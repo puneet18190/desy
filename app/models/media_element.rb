@@ -52,13 +52,25 @@ require 'lessons_media_elements_shared'
 # * *if* *the* *element* *is* *private*, the field +user_id+ can't be changed (this field may be changed only if the element is public, because if the user decides to close his profile, the public elements that he created can't be deleted: using User#destroy_with_dependencies they are switched to another owner (the super administrator of the application, see User.admin)
 # * *minimum* *number* of tags (configurated in settings.yml), <b>only if the attribute validating_in_form is set as +true+</b>
 # * *size* of the file attached to +media+ (configured in settings.yml, in megabytes)
+# * *specific* *media* *validation* depending on the type of attached media (see Media::Video::Uploader::Validation, Media::Audio::Uploader::Validation, ImageUploader, this last being carried out automatically by CarrierWave)
 #
 # == Callbacks
 #
-# dgegdgdas
-#
-#   # Questa deve stare prima delle require dei submodels, perché TODO TODO si riferisce a after_save
-# l'after_save delle tags deve venire prima di quella dell'uploader TODO TODO updates taggings associated to the lesson (see Tagging). If a Tag doesn't exist yet, it is created too. The tags are stored before the validation in the private attribute +inner_tags+ TODO ma in questo caso gli attributi non sono nascosti per altre ragioni
+# * *general* *callbacks*:
+#   1. *on* *the* *method* *new*, it's called MediaElement.new_with_sti_type_inferring, which infers the type of +media+ and defines the correct class among Image, Audio, Video
+#   2. *before_destroy*, if +is_public+ == +true+ the destruction is stopped (<b>this callback is not executed if the attribute destroyable_even_if_public is set as +true+</b>: this is necessary to destroy public elements from the administrator)
+#   3. *before_destroy* destroys associated bookmarks (see Bookmark)
+#   4. *before_destroy* destroys associated reports (see Report)
+#   5. *before_destroy* destroys associated taggings (see Tagging)
+#   6. *after_save* updates taggings associated to the media element (see Tagging). If a Tag doesn't exist yet, it is created too. The tags are stored before the validation in the private attribute +inner_tags+; unlike the class Lesson, here there is a real attribute tags which is public. Notice that <b>this callback must be declared before calling +require+ for the submodels</b>, because the +after_save+ of tags must be called before the +after_save+ of the uploader (see private validation methods in Media::Shared, and callbacks in Image)
+# * *callbacks* *only* *for* Image:
+#   1. *before_save* sets +width+ and +height+ according to the attached image
+#   2. *before_create* sets +converted+ to true, since during the uploading of an Image we don't have to wait for conversion, as happens in Video and Audio
+# * *callbacks* *only* *for* Audio, Video:
+#   1. *before_create* sets the +creation_mode* (+uploaded+ if the element was originally uploaded, or +composed+ if it was created inside the application)
+#   2. *after_save* calls +upload_or_copy+ in Media::Shared
+#   3. *before_destroy* stops the destruction if +converted+ == +false+ (<b>this callback doesn't execute if the attribute destroyable_even_if_not_converted is set to +true+</b>: this is necessary if something goes wrong with the creation of a new media element, in this case the not converted element must be deleted)
+#   4. *after_destroy* cleans the folder containing the attached files (mp4, mp3, webm, ogg)
 #
 # == Database callbacks
 #

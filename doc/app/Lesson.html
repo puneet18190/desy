@@ -618,9 +618,6 @@ is set as <code>true</code></strong></p>
 <p><strong>before_destroy</strong> destroys associated bookmarks (see <a
 href="Bookmark.html">Bookmark</a>)</p>
 </li><li>
-<p><strong>before_destroy</strong> destroys associated likes (see <a
-href="Like.html">Like</a>)</p>
-</li><li>
 <p><strong>before_destroy</strong> destroys associated reports (see <a
 href="Report.html">Report</a>)</p>
 </li><li>
@@ -759,7 +756,7 @@ picked all the suggested lessons and not because the database is empty.</p>
 
           
           <div class="method-source-code" id="dashboard_emptied-3F-source">
-            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 266</span>
+            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 265</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">dashboard_emptied?</span>(<span class="ruby-identifier">an_user_id</span>)
   <span class="ruby-identifier">subject_ids</span> = []
   <span class="ruby-constant">UsersSubject</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">an_user_id</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">us</span><span class="ruby-operator">|</span>
@@ -813,7 +810,7 @@ inserted</p>
 
           
           <div class="method-source-code" id="add_slide-source">
-            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 619</span>
+            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 618</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">add_slide</span>(<span class="ruby-identifier">kind</span>, <span class="ruby-identifier">position</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span> <span class="ruby-operator">||</span> <span class="ruby-operator">!</span><span class="ruby-constant">Slide</span><span class="ruby-operator">::</span><span class="ruby-constant">KINDS_WITHOUT_COVER</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">kind</span>)
     <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span>
@@ -871,7 +868,7 @@ is adding the lesson to his Virtual Classroom</p>
 
           
           <div class="method-source-code" id="add_to_virtual_classroom-source">
-            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 659</span>
+            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 658</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">add_to_virtual_classroom</span>(<span class="ruby-identifier">an_user_id</span>)
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">clear</span>
   <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span>
@@ -932,7 +929,7 @@ be set</p>
 
           
           <div class="method-source-code" id="available-21-source">
-            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 205</span>
+            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 204</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">available!</span>(<span class="ruby-identifier">type</span>, <span class="ruby-identifier">value</span>=<span class="ruby-keyword">true</span>)
   <span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">send</span> <span class="ruby-value">:&quot;available_#{type.to_s.downcase}=&quot;</span>, <span class="ruby-operator">!</span><span class="ruby-operator">!</span><span class="ruby-identifier">value</span>
   <span class="ruby-identifier">update_attribute</span>(<span class="ruby-value">:metadata</span>, <span class="ruby-identifier">metadata</span>)
@@ -980,7 +977,7 @@ returns only the value for the specific type; otherwise it returns
 
           
           <div class="method-source-code" id="available-3F-source">
-            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 187</span>
+            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 186</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">available?</span>(<span class="ruby-identifier">type</span>=<span class="ruby-keyword">nil</span>)
   <span class="ruby-keyword">case</span> <span class="ruby-identifier">type</span> = <span class="ruby-identifier">type</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">downcase</span>
   <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;video&#39;</span>, <span class="ruby-string">&#39;audio&#39;</span>
@@ -1026,7 +1023,7 @@ returns only the value for the specific type; otherwise it returns
 
           
           <div class="method-source-code" id="bookmarked-3F-source">
-            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 362</span>
+            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 361</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">bookmarked?</span>(<span class="ruby-identifier">an_user_id</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span>
   <span class="ruby-constant">Bookmark</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">an_user_id</span>, <span class="ruby-value">:bookmarkable_type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Lesson&#39;</span>, <span class="ruby-value">:bookmarkable_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">any?</span>
@@ -1066,7 +1063,7 @@ href="Buttons.html">Buttons</a>)</p>
 
           
           <div class="method-source-code" id="buttons-source">
-            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 332</span>
+            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 331</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">buttons</span>
   <span class="ruby-keyword">return</span> [] <span class="ruby-keyword">if</span> [<span class="ruby-ivar">@status</span>, <span class="ruby-ivar">@in_vc</span>, <span class="ruby-ivar">@liked</span>, <span class="ruby-ivar">@is_reportable</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-keyword">nil</span>)
   <span class="ruby-keyword">case</span> <span class="ruby-ivar">@status</span>
@@ -1137,7 +1134,7 @@ is copying the lesson</p>
 
           
           <div class="method-source-code" id="copy-source">
-            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 383</span>
+            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 382</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">copy</span>(<span class="ruby-identifier">an_user_id</span>)
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">clear</span>
   <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span> <span class="ruby-operator">||</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">an_user_id</span>).<span class="ruby-identifier">empty?</span> <span class="ruby-operator">||</span> (<span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">is_public</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">user_id</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">an_user_id</span>) <span class="ruby-operator">||</span> (<span class="ruby-keyword">self</span>.<span class="ruby-identifier">is_public</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">user_id</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">an_user_id</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-constant">Bookmark</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:bookmarkable_type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Lesson&#39;</span>, <span class="ruby-value">:bookmarkable_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>, <span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">an_user_id</span>).<span class="ruby-identifier">empty?</span>)
@@ -1240,7 +1237,7 @@ the lesson is new_record</p>
 
           
           <div class="method-source-code" id="cover-source">
-            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 249</span>
+            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 248</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">cover</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span>
   <span class="ruby-constant">Slide</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:kind</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Slide</span><span class="ruby-operator">::</span><span class="ruby-constant">COVER</span>, <span class="ruby-value">:lesson_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">first</span>
@@ -1279,7 +1276,7 @@ href="Bookmark.html">Bookmark</a> of it (the bookmarks are destroyed by the
 
           
           <div class="method-source-code" id="destroy_with_notifications-source">
-            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 581</span>
+            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 580</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy_with_notifications</span>
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">clear</span>
   <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span>
@@ -1338,7 +1335,7 @@ href="Lesson.html#method-i-notify_changes">#notify_changes</a>).</p>
 
           
           <div class="method-source-code" id="dont_notify_changes-source">
-            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 157</span>
+            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 156</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">dont_notify_changes</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">notified</span> = <span class="ruby-keyword">true</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">save</span>
@@ -1382,7 +1379,7 @@ specific USer</p>
 
           
           <div class="method-source-code" id="in_virtual_classroom-3F-source">
-            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 732</span>
+            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 731</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">in_virtual_classroom?</span>(<span class="ruby-identifier">an_user_id</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span>
   <span class="ruby-constant">VirtualClassroomLesson</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">an_user_id</span>, <span class="ruby-value">:lesson_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">any?</span>
@@ -1425,7 +1422,7 @@ particular <a href="User.html">User</a></p>
 
           
           <div class="method-source-code" id="liked-3F-source">
-            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 749</span>
+            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 748</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">liked?</span>(<span class="ruby-identifier">an_user_id</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span>
   <span class="ruby-constant">Like</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">an_user_id</span>, <span class="ruby-value">:lesson_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">any?</span>
@@ -1465,7 +1462,7 @@ and <a href="MediaElementsSlide.html">MediaElementsSlide</a>).</p>
 
           
           <div class="method-source-code" id="modify-source">
-            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 473</span>
+            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 472</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">modify</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">copied_not_modified</span> = <span class="ruby-keyword">false</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">notified</span> = <span class="ruby-keyword">false</span>
@@ -1504,7 +1501,7 @@ have a link of the lesson.</p>
 
           
           <div class="method-source-code" id="not_notified-3F-source">
-            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 170</span>
+            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 169</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">not_notified?</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">status</span>.<span class="ruby-identifier">nil?</span>
   <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">notified</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-constant">Bookmark</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&#39;bookmarkable_type = ? AND bookmarkable_id = ? AND created_at &lt; ?&#39;</span>, <span class="ruby-string">&#39;Lesson&#39;</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">updated_at</span>).<span class="ruby-identifier">any?</span>
@@ -1549,7 +1546,7 @@ method also sets <code>notified</code> as <code>true</code>.</p>
 
           
           <div class="method-source-code" id="notify_changes-source">
-            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 137</span>
+            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 136</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">notify_changes</span>(<span class="ruby-identifier">msg</span>)
   <span class="ruby-constant">Bookmark</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&#39;bookmarkable_type = ? AND bookmarkable_id = ? AND created_at &lt; ?&#39;</span>, <span class="ruby-string">&#39;Lesson&#39;</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">updated_at</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">bo</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">msg</span>.<span class="ruby-identifier">blank?</span>
@@ -1596,7 +1593,7 @@ lesson through <a href="MediaElementsSlide.html">MediaElementsSlide</a> and
 
           
           <div class="method-source-code" id="publish-source">
-            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 487</span>
+            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 486</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">publish</span>
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">clear</span>
   <span class="ruby-identifier">pub_date</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">zone</span>.<span class="ruby-identifier">now</span>
@@ -1673,7 +1670,7 @@ lesson through <a href="MediaElementsSlide.html">MediaElementsSlide</a> and
 
           
           <div class="method-source-code" id="reached_the_maximum_of_slides-3F-source">
-            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 643</span>
+            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 642</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">reached_the_maximum_of_slides?</span>
   <span class="ruby-constant">Slide</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:lesson_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">count</span> <span class="ruby-operator">==</span> <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;max_number_slides_in_a_lesson&#39;</span>]
 <span class="ruby-keyword">end</span></pre>
@@ -1716,7 +1713,7 @@ particular <a href="User.html">User</a>, if any</p>
 
           
           <div class="method-source-code" id="remove_from_virtual_classroom-source">
-            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 695</span>
+            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 694</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">remove_from_virtual_classroom</span>(<span class="ruby-identifier">an_user_id</span>)
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">clear</span>
   <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span>
@@ -1781,7 +1778,7 @@ see the lesson.</p>
 
           
           <div class="method-source-code" id="set_status-source">
-            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 298</span>
+            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 297</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">set_status</span>(<span class="ruby-identifier">an_user_id</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span>
   <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">is_public</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">copied_not_modified</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">an_user_id</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">user_id</span>
@@ -1848,7 +1845,7 @@ href="Statuses.html">Statuses</a>)</p>
 
           
           <div class="method-source-code" id="status-source">
-            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 286</span>
+            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 285</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">status</span>(<span class="ruby-identifier">with_captions</span>=<span class="ruby-keyword">false</span>)
   <span class="ruby-ivar">@status</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">nil</span> <span class="ruby-operator">:</span> (<span class="ruby-identifier">with_captions</span> <span class="ruby-operator">?</span> <span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">status</span>(<span class="ruby-ivar">@status</span>) <span class="ruby-operator">:</span> <span class="ruby-ivar">@status</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -1885,7 +1882,7 @@ href="Statuses.html">Statuses</a>)</p>
 
           
           <div class="method-source-code" id="tags-source">
-            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 218</span>
+            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 217</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">tags</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span> <span class="ruby-operator">?</span> <span class="ruby-string">&#39;&#39;</span> <span class="ruby-operator">:</span> <span class="ruby-constant">Tag</span>.<span class="ruby-identifier">get_friendly_tags</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>, <span class="ruby-string">&#39;Lesson&#39;</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -1928,7 +1925,7 @@ new_record) ready to be saved together with their taggings in the
 
           
           <div class="method-source-code" id="tags-3D-source">
-            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 230</span>
+            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 229</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">tags=</span>(<span class="ruby-identifier">tags</span>)
   <span class="ruby-ivar">@tags</span> = 
     <span class="ruby-keyword">case</span> <span class="ruby-identifier">tags</span>
@@ -1975,7 +1972,7 @@ user who lost a bookmark of the lesson.</p>
 
           
           <div class="method-source-code" id="unpublish-source">
-            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 539</span>
+            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 538</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">unpublish</span>
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">clear</span>
   <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span>
@@ -2048,7 +2045,7 @@ href="MediaElement.html#method-i-visive_tags">MediaElement#visive_tags</a>)</p>
 
           
           <div class="method-source-code" id="visive_tags-source">
-            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 461</span>
+            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 460</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">visive_tags</span>
   <span class="ruby-constant">Tagging</span>.<span class="ruby-identifier">visive_tags</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">tags</span>)
 <span class="ruby-keyword">end</span></pre>

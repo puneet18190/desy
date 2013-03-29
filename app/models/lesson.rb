@@ -52,13 +52,12 @@ require 'lessons_media_elements_shared'
 # == Callbacks
 #
 # 1. *before_destroy* destroys associated bookmarks (see Bookmark)
-# 2. *before_destroy* destroys associated likes (see Like)
-# 3. *before_destroy* destroys associated reports (see Report)
-# 4. *before_destroy* destroys associated taggings (see Tagging)
-# 5. *before_create* initializes both metadata values to +true+
-# 6. *before_create* creates a random encoded string and writes it in +token+
-# 7. *after_save* creates or updates the cover slide
-# 8. *after_save* updates taggings associated to the lesson (see Tagging). If a Tag doesn't exist yet, it is created too. The tags are stored before the validation in the private attribute +inner_tags+
+# 2. *before_destroy* destroys associated reports (see Report)
+# 3. *before_destroy* destroys associated taggings (see Tagging)
+# 4. *before_create* initializes both metadata values to +true+
+# 5. *before_create* creates a random encoded string and writes it in +token+
+# 6. *after_save* creates or updates the cover slide
+# 7. *after_save* updates taggings associated to the lesson (see Tagging). If a Tag doesn't exist yet, it is created too. The tags are stored before the validation in the private attribute +inner_tags+
 #
 # == Database callbacks
 #
