@@ -149,7 +149,7 @@ class Slide < ActiveRecord::Base
   # A boolean
   #
   def allows_text?
-    case kind 
+    case kind
     when TEXT, IMAGE1, AUDIO, VIDEO1 then true
     else false
     end
@@ -178,7 +178,29 @@ class Slide < ActiveRecord::Base
   
   # === Description
   #
-  # Method that performs the list of actions related to the update of a slide's content
+  # Method that performs the list of actions related to the update of a slide's content:
+  # * updates title and text
+  # * for each media element in the slide, checks if it's already present: if so, it's updated, otherwise it's created
+  # * if the lesson is public, each private element added is turned into public too
+  # * calls Lesson.modify
+  #
+  # === Args
+  #
+  # * *title*: title (it might be +nil+)
+  # * *text*: text (it might be +nil+)
+  # * *media_elements*: an array of arrays. Each item of this argument represents a media element in the position given by +index+ + 1 in the array. Each small array contains (in order):
+  #   * *media_element_id*: corresponds to the id of the MediaElement associated
+  #   * *alignment*: corresponds to the field +alignment+ of MediaElementsSlide
+  #   * *caption*: corresponds to the field +caption+ of MediaElementsSlide
+  #
+  # === Returns
+  #
+  # A boolean
+  #
+  # === Usage
+  #
+  # See LessonEditorController#save_slide, LessonEditorController#save_slide_and_exit, LessonEditorController#save_slide_and_edit
+  #   slide.update_with_media_elements((params[:title].blank? ? nil : params[:title]), (params[:text].blank? ? nil : params[:text]), media_elements_params)
   #
   def update_with_media_elements(title, text, media_elements)
     return false if self.new_record?

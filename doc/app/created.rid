@@ -1,4 +1,4 @@
-Fri, 29 Mar 2013 14:54:41 +0100
+Fri, 29 Mar 2013 15:33:36 +0100
 doc/README_FOR_APP	Fri, 29 Mar 2013 14:50:55 +0100
 app/controllers/admin/dashboard_controller.rb	Fri, 22 Mar 2013 09:52:00 +0100
 app/controllers/admin/lessons_controller.rb	Fri, 22 Mar 2013 16:43:21 +0100
@@ -45,7 +45,7 @@ app/models/media_elements_slide.rb	Thu, 28 Mar 2013 16:09:35 +0100
 app/models/notification.rb	Fri, 29 Mar 2013 14:22:21 +0100
 app/models/report.rb	Fri, 29 Mar 2013 14:39:10 +0100
 app/models/school_level.rb	Fri, 29 Mar 2013 14:36:32 +0100
-app/models/slide.rb	Fri, 29 Mar 2013 14:50:28 +0100
+app/models/slide.rb	Fri, 29 Mar 2013 15:33:29 +0100
 app/models/subject.rb	Fri, 22 Mar 2013 10:37:19 +0100
 app/models/tag.rb	Wed, 27 Mar 2013 17:38:09 +0100
 app/models/tagging.rb	Wed, 27 Mar 2013 17:38:13 +0100
