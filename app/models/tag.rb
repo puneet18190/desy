@@ -92,7 +92,7 @@ class Tag < ActiveRecord::Base
   
   # === Description
   #
-  # Used as support for Lesson#get_visive_tags and MediaElement#get_visive_tags
+  # Used as support for Lesson#tags and MediaElement#tags
   #
   # === Args
   #
@@ -101,7 +101,7 @@ class Tag < ActiveRecord::Base
   #
   # === Returns
   #
-  # A string of tags separated by comma and space
+  # A string of tags in the shape ',tag1,tag2,tag3,tag4,'
   #
   def self.get_friendly_tags(item_id, kind)
     tags = Tagging.where(:taggable_id => item_id, :taggable_type => kind).order(:tag_id)
