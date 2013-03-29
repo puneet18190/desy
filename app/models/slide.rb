@@ -1,3 +1,42 @@
+# == Description
+#
+# ActiveRecord class that corresponds to the table +slides+.
+#
+# == Fields
+#
+# * *lesson_id*: reference to the Lesson the slide belongs to
+# * *title*: title of the slide
+# * *text*: text of the slide if present
+# * *position*: position respect to the other slides in the lesson
+# * *kind*: the kind of the slide (the type is an enum defined in postgrsql, in total there are 10 types)
+#
+# == Associations
+#
+# * *lesson*: reference to the Lesson where the slide is contained (*belongs_to*)
+# * *media_elements_slides*: instances of MediaElement contained in this slide (see MediaElementsSlide) (*has_many*)
+#
+# == Validations
+#
+# * *presence* with numericality greater than zero and presence of associated record, for the field +lesson_id+
+# * *presence* of +position+
+# * *length*  of +title+ (value configured in the I18n translation file: if the value is greater than 255 it's set to 255); it's possible for +title+ to be +nil+
+# * *inclusion* of +kind+ in the list of available kinds
+# * *uniqueness* of the couple [+position+, +lesson_id+]
+# * *uniqueness* of the couple [+kind+, +lesson_id+] <b>only if the slide is of kind +cover+</b>
+# * *modifications* *not* *allowed* for the fields +lesson_id+, +kind+, +title+
+# * *the* *position* of the cover must be 1; on the other side, the position of other kinds of slides can't be 1
+# * *the* *text* must be +nil+ if the kind of slide doesn't contain text
+# * *the* *title* must be +nil+ if the kind of slide doesn't contain title
+# * *the* *maximum* *number* of slides must be the one configured in settings.yml. This validation uses Lesson#reached_the_maximum_of_slides?
+#
+# == Callbacks
+#
+# sdfdsfdsfds
+#
+# == Database callbacks
+#
+# sfdfdsfdsf
+#
 class Slide < ActiveRecord::Base
   
   attr_accessible :position, :title, :text
@@ -5,7 +44,6 @@ class Slide < ActiveRecord::Base
   has_many :media_elements_slides
   belongs_to :lesson
   
-  #TODO estrarre da database slide kinds
   AUDIO = 'audio'
   COVER = 'cover'
   IMAGE1 = 'image1'

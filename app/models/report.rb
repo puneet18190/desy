@@ -5,7 +5,7 @@
 # == Fields
 #
 # * *reportable_id*: id of the item (lesson or media element) the report is about
-# * *reportable_type*: contains the string description of the classes Lesson or MediaElement
+# * *reportable_type*: contains the string description of the classes Lesson or MediaElement (the type is an enum defined in postgrsql)
 # * *user_id*: id of the User who sent the report
 # * *comment*: text message associated to the report
 #
