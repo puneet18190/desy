@@ -58,7 +58,7 @@ require 'lessons_media_elements_shared'
 #
 # * *general* *callbacks*:
 #   1. *on* *the* *method* *new*, it's called MediaElement.new_with_sti_type_inferring, which infers the type of +media+ and defines the correct class among Image, Audio, Video
-#   2. *before_destroy*, if +is_public+ == +true+ the destruction is stopped (<b>this callback is not executed if the attribute destroyable_even_if_public is set as +true+</b>: this is necessary to destroy public elements from the administrator)
+#   2. *before_destroy*, if +is_public+ == +true+ the destruction is stopped (<b>this callback is not executed if the attribute destroyable_even_if_public is set as +true+</b>: this is necessary to destroy public elements from the administrator, see Admin::MediaElementsController#destroy)
 #   3. *before_destroy* destroys associated bookmarks (see Bookmark)
 #   4. *before_destroy* destroys associated reports (see Report)
 #   5. *before_destroy* destroys associated taggings (see Tagging)
@@ -78,7 +78,7 @@ require 'lessons_media_elements_shared'
 #
 # == Other details
 #
-# It's defined a scope *of* that filters automaticly all the elements of a user:
+# It's defined a scope *of* that filters automaticly all the elements of a user (see User#own_media_elements):
 #   SELECT "media_elements".* FROM "media_elements" LEFT JOIN bookmarks ON bookmarks.bookmarkable_id = media_elements.id
 #   AND bookmarks.bookmarkable_type = 'MediaElement' AND bookmarks.user_id = 1 WHERE (bookmarks.user_id IS NOT NULL
 #   OR (media_elements.is_public = false AND media_elements.user_id = 1)) ORDER BY COALESCE(bookmarks.created_at, media_elements.updated_at) DESC
@@ -115,7 +115,7 @@ class MediaElement < ActiveRecord::Base
   attr_reader :info_changeable
   # Set to true if it's necessary to validate the number of tags (typically this happens in the public front end)
   attr_writer :validating_in_form
-  # Set to true when it's necessary to destroy public elements (used in the administrator section)
+  # Set to true when it's necessary to destroy public elements (used in the administrator section, see Admin::MediaElementsController#destroy)
   attr_accessor :destroyable_even_if_public
   
   has_many :bookmarks, :as => :bookmarkable, :dependent => :destroy
@@ -149,6 +149,22 @@ class MediaElement < ActiveRecord::Base
   
   class << self
     
+    # === Description
+    #
+    # Alias for the method +new+, that additionally infers the media type and selects the submodel among Audio, Image and Video
+    #
+    # === Args
+    #
+    # * *attributes*: attributes that eventually can be initialized in the new media element
+    # * *options*: additional options
+    # * *block*: block to be executed
+    #
+    # === Usage
+    #
+    # See for instance MediaElementsController#create
+    #   media = params[:media]
+    #   record = MediaElement.new :media => media
+    #
     def new_with_sti_type_inferring(attributes = nil, options = {}, &block)
       media = attributes.try :[], :media
       unless media.is_a?(ActionDispatch::Http::UploadedFile) || media.is_a?(File)
@@ -171,6 +187,25 @@ class MediaElement < ActiveRecord::Base
     end
     alias_method_chain :new, :sti_type_inferring
     
+    # === Description
+    #
+    # Method used for validation for the usage of an element inside the video or audio editor: it's checked, essentially, that an element exists, and that the user who is using the editor is allowed to use it (see Media::Video::Editing::Parameters and Media::Audio::Editing::Parameters)
+    #
+    # === Args
+    #
+    # * *media_element_id*: the id of the element
+    # * *an_user_id*: the id of the User who is using the editor
+    # * *my_sti_type*: the sti_type of the requested element
+    #
+    # === Returns
+    #
+    # If the element can be used, it returns an object of type Video, Audio or Image, depending on the element, otherwise it returns +nil+
+    #
+    # === Usage
+    #
+    # See for instance Media::Video::Editing::Parameters.convert_parameters and Media::Video::Editing::Parameters.get_media_element_from_hash
+    #   hash[key].kind_of?(Integer) ? MediaElement.extract(hash[key], user_id, my_sti_type) : nil
+    #
     def extract(media_element_id, an_user_id, my_sti_type)
       media_element = find_by_id media_element_id
       return nil if media_element.nil? || media_element.sti_type != my_sti_type
@@ -179,10 +214,34 @@ class MediaElement < ActiveRecord::Base
       media_element
     end
     
+    # === Description
+    #
+    # Checks whether the dashboard of a particular user is empty because he picked all the suggested elements and not because the database is empty (see DashboardController#index).
+    #
+    # === Args
+    #
+    # * *user_id*: the id of a User
+    #
+    # === Returns
+    #
+    # A boolean
+    #
     def dashboard_emptied?(an_user_id)
       Bookmark.joins("INNER JOIN media_elements ON media_elements.id = bookmarks.bookmarkable_id AND bookmarks.bookmarkable_type = 'MediaElement'").where('media_elements.is_public = ? AND media_elements.user_id != ? AND bookmarks.user_id = ?', true, an_user_id, an_user_id).any?
     end
     
+    # === Description
+    #
+    # It extracts the type of an element according to the same white list used in MediaElement#new_with_sti_type_inferring. It's used in User#save_in_admin_quick_uploading_cache (accessor method to save a list of files massively uploaded and ready to be saved as media elements)
+    #
+    # === Args
+    #
+    # * *path*: the path to be checked
+    #
+    # === Returns
+    #
+    # The inferred sti_type
+    #
     def filetype(path)
       path = File.extname(path)
       if Audio::EXTENSION_WHITE_LIST.include?(path[1, path.length])

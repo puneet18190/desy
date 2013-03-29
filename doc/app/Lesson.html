@@ -657,7 +657,8 @@ the lessons copied by the current lesson</p>
 <h2 id="label-Other+details">Other details</h2>
 
 <p>It&#39;s defined a scope called <strong>of</strong> that filters
-automaticly all the lessons of a user:</p>
+automaticly all the lessons of a user (see <a
+href="User.html#method-i-own_lessons">User#own_lessons</a>):</p>
 
 <pre>SELECT &quot;lessons&quot;.* FROM &quot;lessons&quot; LEFT JOIN bookmarks ON bookmarks.bookmarkable_id = lessons.id AND bookmarks.bookmarkable_type = &#39;Lesson&#39;
 AND bookmarks.user_id = 1 ORDER BY COALESCE(bookmarks.created_at, lessons.updated_at) DESC</pre>
@@ -742,7 +743,9 @@ AND bookmarks.user_id = 1 ORDER BY COALESCE(bookmarks.created_at, lessons.update
           <h3 id="method-c-dashboard_emptied-3F-label-Description">Description</h3>
 
 <p>Checks whether the dashboard of a particular user is empty because he
-picked all the suggested lessons and not because the database is empty.</p>
+picked all the suggested lessons and not because the database is empty (see
+<a
+href="DashboardController.html#method-i-index">DashboardController#index</a>).</p>
 
 <h3 id="method-c-dashboard_emptied-3F-label-Args">Args</h3>
 <ul><li>

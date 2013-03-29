@@ -68,7 +68,7 @@ require 'lessons_media_elements_shared'
 #
 # == Other details
 #
-# It's defined a scope called *of* that filters automaticly all the lessons of a user:
+# It's defined a scope called *of* that filters automaticly all the lessons of a user (see User#own_lessons):
 #   SELECT "lessons".* FROM "lessons" LEFT JOIN bookmarks ON bookmarks.bookmarkable_id = lessons.id AND bookmarks.bookmarkable_type = 'Lesson'
 #   AND bookmarks.user_id = 1 ORDER BY COALESCE(bookmarks.created_at, lessons.updated_at) DESC
 #
@@ -252,7 +252,7 @@ class Lesson < ActiveRecord::Base
   
   # === Description
   #
-  # Checks whether the dashboard of a particular user is empty because he picked all the suggested lessons and not because the database is empty.
+  # Checks whether the dashboard of a particular user is empty because he picked all the suggested lessons and not because the database is empty (see DashboardController#index).
   #
   # === Args
   #

@@ -34,7 +34,6 @@ class MediaElementsController < ApplicationController
   
   def create
     media = params[:media]
-    
     record = MediaElement.new :media => media
     record.title = params[:title_placeholder] != '0' ? '' : params[:title]
     record.description = params[:description_placeholder] != '0' ? '' : params[:description]
