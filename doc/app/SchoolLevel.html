@@ -418,6 +418,41 @@
 
   <div id="description" class="description">
     
+<h2 id="label-Description">Description</h2>
+
+<p>ActiveRecord class that corresponds to the table
+<code>school_levels</code>.</p>
+
+<h2 id="label-Fields">Fields</h2>
+<ul><li>
+<p><strong>description</strong>: a word identifying the school level</p>
+</li></ul>
+
+<h2 id="label-Associations">Associations</h2>
+<ul><li>
+<p><strong>users</strong>: list of users who are associated to this school
+level (see <a href="User.html">User</a>) (<strong>has_many</strong>)</p>
+</li><li>
+<p><strong>lessons</strong>: list of lessons associated to this school level
+(see <a href="Lesson.html">Lesson</a>) (<strong>has_many</strong>)</p>
+</li></ul>
+
+<h2 id="label-Validations">Validations</h2>
+<ul><li>
+<p><strong>presence</strong> of <code>description</code></p>
+</li><li>
+<p><strong>length</strong> of <code>description</code> (maximum allowed is
+255)</p>
+</li></ul>
+
+<h2 id="label-Callbacks">Callbacks</h2>
+
+<p>None</p>
+
+<h2 id="label-Database+callbacks">Database callbacks</h2>
+
+<p>None</p>
+
   </div><!-- description -->
 
   
@@ -449,14 +484,22 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-is_deletable-3F-label-Description">Description</h3>
+
+<p>A school level is deletable if it has no associated lessons or users. Used
+in the administrator (<a
+href="Admin/SettingsController.html#method-i-school_levels">Admin::SettingsController#school_levels</a>)</p>
+
+<h3 id="method-i-is_deletable-3F-label-Returns">Returns</h3>
+
+<p>A boolean</p>
           
 
           
           <div class="method-source-code" id="is_deletable-3F-source">
-            <pre><span class="ruby-comment"># File app/models/school_level.rb, line 15</span>
+            <pre><span class="ruby-comment"># File app/models/school_level.rb, line 53</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_deletable?</span>
-  <span class="ruby-constant">User</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:school_level_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">empty?</span>
+  <span class="ruby-constant">User</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:school_level_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">empty?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:school_level_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">empty?</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- is_deletable-3F-source -->
           
@@ -479,12 +522,14 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-to_s-label-Description">Description</h3>
+
+<p>Returns the description of the object</p>
           
 
           
           <div class="method-source-code" id="to_s-source">
-            <pre><span class="ruby-comment"># File app/models/school_level.rb, line 11</span>
+            <pre><span class="ruby-comment"># File app/models/school_level.rb, line 41</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">to_s</span>
   <span class="ruby-identifier">description</span>.<span class="ruby-identifier">to_s</span>
 <span class="ruby-keyword">end</span></pre>

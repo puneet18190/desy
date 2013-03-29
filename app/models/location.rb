@@ -35,6 +35,7 @@ class Location < ActiveRecord::Base
   
   has_ancestry
   
+  # List of sublocations (configured in settings.yml)
   SUBMODELS = SETTINGS['location_types'].map do |type|
     Object.const_set type, Class.new(self)
   end

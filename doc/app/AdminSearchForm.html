@@ -450,12 +450,12 @@ these search methods are not optimized and indicized.</p>
       
         <dt id="ORDERINGS">ORDERINGS
         
-        <dd class="description">
+        <dd class="description"><p>Hash of possible orderings, one for each method.</p>
         
       
         <dt id="RECENCIES">RECENCIES
         
-        <dd class="description">
+        <dd class="description"><p>List of possible values for the parameter &#39;recency&#39;</p>
         
       
       </dl>
@@ -530,7 +530,7 @@ href="Lesson.html">Lesson</a></p>
 
           
           <div class="method-source-code" id="search_lessons-source">
-            <pre><span class="ruby-comment"># File app/models/admin_search_form.rb, line 69</span>
+            <pre><span class="ruby-comment"># File app/models/admin_search_form.rb, line 71</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">search_lessons</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">resp</span> = <span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">select</span>(<span class="ruby-string">&#39;lessons.id AS id, title, subject_id, user_id, lessons.created_at AS created_at, lessons.updated_at AS updated_at, token, lessons.description AS description, (SELECT COUNT (*) FROM likes WHERE likes.lesson_id = lessons.id) AS likes_count&#39;</span>)
   <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">joins</span>(<span class="ruby-value">:user</span>)
@@ -645,7 +645,7 @@ href="MediaElement.html">MediaElement</a></p>
 
           
           <div class="method-source-code" id="search_media_elements-source">
-            <pre><span class="ruby-comment"># File app/models/admin_search_form.rb, line 135</span>
+            <pre><span class="ruby-comment"># File app/models/admin_search_form.rb, line 137</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">search_media_elements</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">resp</span> = <span class="ruby-constant">MediaElement</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:converted</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:ordering</span>].<span class="ruby-identifier">present?</span>
@@ -755,7 +755,7 @@ href="User.html">User</a></p>
 
           
           <div class="method-source-code" id="search_notifications_users-source">
-            <pre><span class="ruby-comment"># File app/models/admin_search_form.rb, line 302</span>
+            <pre><span class="ruby-comment"># File app/models/admin_search_form.rb, line 304</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">search_notifications_users</span>(<span class="ruby-identifier">params</span>, <span class="ruby-identifier">count_only</span>=<span class="ruby-keyword">false</span>)
   <span class="ruby-identifier">resp</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">scoped</span>
   <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:school_level_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:school_level_id</span>]) <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:school_level_id</span>].<span class="ruby-identifier">present?</span>
@@ -863,7 +863,7 @@ parameter is present it&#39;s turned to <code>DESC</code></p>
 
           
           <div class="method-source-code" id="search_tags-source">
-            <pre><span class="ruby-comment"># File app/models/admin_search_form.rb, line 264</span>
+            <pre><span class="ruby-comment"># File app/models/admin_search_form.rb, line 266</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">search_tags</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">resp</span> = <span class="ruby-constant">Tag</span>.<span class="ruby-identifier">select</span>(<span class="ruby-string">&quot;id, word, created_at, (SELECT COUNT (*) FROM taggings WHERE taggings.tag_id = tags.id AND taggings.taggable_type = &#39;MediaElement&#39;) AS media_elements_count, (SELECT COUNT (*) FROM taggings WHERE taggings.tag_id = tags.id AND taggings.taggable_type = &#39;Lesson&#39;) AS lessons_count&quot;</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:ordering</span>].<span class="ruby-identifier">present?</span>
@@ -953,7 +953,7 @@ href="User.html">User</a>.</p>
 
           
           <div class="method-source-code" id="search_users-source">
-            <pre><span class="ruby-comment"># File app/models/admin_search_form.rb, line 198</span>
+            <pre><span class="ruby-comment"># File app/models/admin_search_form.rb, line 200</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">search_users</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">resp</span> = <span class="ruby-constant">User</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:ordering</span>].<span class="ruby-identifier">present?</span>

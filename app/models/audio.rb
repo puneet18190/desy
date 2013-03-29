@@ -7,9 +7,17 @@ require 'media/shared'
 # This class inherits from MediaElement, and contains the specific methods needed for media elements of type +audio+. For methods shared by elements of type +audio+ and +video+, see Media::Shared.
 # 
 class Audio < MediaElement
+  
+  # Instance of specific uploader for an audio
   UPLOADER = Media::Audio::Uploader
+  
+  # List of accepted extensions
   EXTENSION_WHITE_LIST = UPLOADER::EXTENSION_WHITE_LIST
+  
+  # Path for restoring the audio editor cache
   CACHE_RESTORE_PATH = '/audios/cache/restore'
+  
+  # Url of the thumb to be used in the section 'elements'
   THUMB_URL = '/assets/simbolo-audio.svg'
   
   include Media::Shared

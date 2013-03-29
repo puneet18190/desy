@@ -487,7 +487,7 @@ the location (ex. “1/5/13/18”)</p>
       
         <dt id="SUBMODELS">SUBMODELS
         
-        <dd class="description">
+        <dd class="description"><p>List of sublocations (configured in settings.yml)</p>
         
       
       </dl>
@@ -524,7 +524,7 @@ the location (ex. “1/5/13/18”)</p>
 
           
           <div class="method-source-code" id="base_label-source">
-            <pre><span class="ruby-comment"># File app/models/location.rb, line 110</span>
+            <pre><span class="ruby-comment"># File app/models/location.rb, line 111</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">base_label</span>
   <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;locations.labels&#39;</span>).<span class="ruby-identifier">last</span>
 <span class="ruby-keyword">end</span></pre>
@@ -569,7 +569,7 @@ keys</p>
 
           
           <div class="method-source-code" id="get_from_chain_params-source">
-            <pre><span class="ruby-comment"># File app/models/location.rb, line 170</span>
+            <pre><span class="ruby-comment"># File app/models/location.rb, line 171</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_from_chain_params</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">flag</span> = <span class="ruby-keyword">true</span>
   <span class="ruby-identifier">index</span> = <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;location_types&#39;</span>].<span class="ruby-identifier">length</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>
@@ -621,7 +621,7 @@ keys</p>
 
           
           <div class="method-source-code" id="label_at-source">
-            <pre><span class="ruby-comment"># File app/models/location.rb, line 126</span>
+            <pre><span class="ruby-comment"># File app/models/location.rb, line 127</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">label_at</span>(<span class="ruby-identifier">index</span>)
   <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;locations.labels&#39;</span>)[<span class="ruby-identifier">index</span>]
 <span class="ruby-keyword">end</span></pre>
@@ -671,7 +671,7 @@ created in order of ancestry.</p>
 
           
           <div class="method-source-code" id="seed-21-source">
-            <pre><span class="ruby-comment"># File app/models/location.rb, line 56</span>
+            <pre><span class="ruby-comment"># File app/models/location.rb, line 57</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">seed!</span>(<span class="ruby-identifier">locations</span>=<span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;locations&#39;</span>], <span class="ruby-identifier">parent</span>=<span class="ruby-keyword">nil</span>, <span class="ruby-identifier">depth</span>=<span class="ruby-value">0</span>)
   <span class="ruby-identifier">raise</span> <span class="ruby-string">&#39;submodel does not exist&#39;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">submodel</span> = <span class="ruby-constant">SUBMODELS</span>[<span class="ruby-identifier">depth</span>]
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">locations</span>.<span class="ruby-identifier">instance_of?</span> <span class="ruby-constant">Array</span>
@@ -726,7 +726,7 @@ the current location</p>
 
           
           <div class="method-source-code" id="ancestry_with_me-source">
-            <pre><span class="ruby-comment"># File app/models/location.rb, line 96</span>
+            <pre><span class="ruby-comment"># File app/models/location.rb, line 97</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">ancestry_with_me</span>
   <span class="ruby-identifier">anc</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">ancestry</span>
   <span class="ruby-identifier">anc</span> = <span class="ruby-node">&quot;#{anc}/&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">anc</span>.<span class="ruby-identifier">present?</span> <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-regexp">/\//</span> <span class="ruby-operator">=~</span> <span class="ruby-identifier">anc</span>).<span class="ruby-identifier">nil?</span>
@@ -765,7 +765,7 @@ associated to this particular location</p>
 
           
           <div class="method-source-code" id="get_filled_select-source">
-            <pre><span class="ruby-comment"># File app/models/location.rb, line 150</span>
+            <pre><span class="ruby-comment"># File app/models/location.rb, line 151</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_filled_select</span>
   <span class="ruby-identifier">resp</span> = []
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">ancestors</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">anc</span><span class="ruby-operator">|</span>
@@ -806,7 +806,7 @@ associated to this particular location</p>
 
           
           <div class="method-source-code" id="label-source">
-            <pre><span class="ruby-comment"># File app/models/location.rb, line 80</span>
+            <pre><span class="ruby-comment"># File app/models/location.rb, line 81</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">label</span>
   <span class="ruby-identifier">index</span> = <span class="ruby-value">0</span>
   <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;location_types&#39;</span>].<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">t</span>, <span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
@@ -846,7 +846,7 @@ associated to this particular location</p>
 
           
           <div class="method-source-code" id="to_s-source">
-            <pre><span class="ruby-comment"># File app/models/location.rb, line 138</span>
+            <pre><span class="ruby-comment"># File app/models/location.rb, line 139</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">to_s</span>
   <span class="ruby-identifier">name</span>.<span class="ruby-identifier">to_s</span>
 <span class="ruby-keyword">end</span></pre>

@@ -38,9 +38,19 @@ class Notification < ActiveRecord::Base
   validate :validate_associations, :validate_seen, :validate_impossible_changes
   
   before_validation :init_validation
-
+  
+  # Block of notifications sent for each job
   SENDING_SLICES_AMOUNT = 1_000
   
+  # === Description
+  #
+  # Sends a notification to one or more users
+  #
+  # === Args
+  #
+  # * *user_id_or_user_ids*: if it's an Integer, it sends the notification to a single user, otherwise splits the block of notifications and uses thread to send them
+  # * *message*: the content of the notification
+  #
   def self.send_to(user_id_or_user_ids, message)
     case user_id_or_user_ids
     when Array
@@ -55,6 +65,10 @@ class Notification < ActiveRecord::Base
     nil
   end
   
+  # === Description
+  #
+  # Sets +seen+ as +true+. Used in NotificationsController#seen
+  #
   def has_been_seen
     return false if self.new_record?
     self.seen = true

@@ -5,8 +5,10 @@
 #
 class AdminSearchForm < Form
   
+  # List of possible values for the parameter 'recency'
   RECENCIES = [1.day.ago, 1.week.ago, 1.month.ago, 1.year.ago]
   
+  # Hash of possible orderings, one for each method.
   ORDERINGS = {
     :media_elements => [
       'media_elements.id %{ord}',
