@@ -246,33 +246,92 @@ class Slide < ActiveRecord::Base
     resp
   end
   
+  # === Description
+  #
+  # Returns the record of Video, obtained through MediaElementsSlide, associated to the given position. If the position is not valid, or there is no video in that position, it returns +nil+
+  #
+  # === Args
+  #
+  # * *position*: the position requested
+  #
+  # === Returns
+  #
+  # Either an object of type Video, or +nil+
+  #
   def video_at(position)
     return nil if self.accepted_media_element_sti_type != MediaElement::VIDEO_TYPE
     x = media_element_at position
     x.nil? ? nil : x.media_element
   end
   
+  # === Description
+  #
+  # Returns the record of Audio, obtained through MediaElementsSlide, associated to the given position. If the position is not valid, or there is no audio in that position, it returns +nil+
+  #
+  # === Args
+  #
+  # * *position*: the position requested
+  #
+  # === Returns
+  #
+  # Either an object of type Audio, or +nil+
+  #
   def audio_at(position)
     return nil if self.accepted_media_element_sti_type != MediaElement::AUDIO_TYPE
     x = media_element_at position
     x.nil? ? nil : x.media_element
   end
   
-  # this returns the record of media_elements_slides, instead of media_elements, since we need information contained in this table (alignment, caption)
+  # === Description
+  #
+  # Returns the MediaElementsSlide, associated to an Image in the given position. If the position is not valid, or there is no image in that position, it returns +nil+. Notice that, unlike Slide#video_at and Slide#audio_at, this method returns an instance of MediaElementsSlide rather than of MediaElement.
+  #
+  # === Args
+  #
+  # * *position*: the position requested
+  #
+  # === Returns
+  #
+  # Either an object of type MediaElementsSlide, or +nil+
+  #
   def image_at(position)
     return nil if self.accepted_media_element_sti_type != MediaElement::IMAGE_TYPE
     x = media_element_at position
     x.nil? ? nil : x
   end
   
+  # === Description
+  #
+  # Returns the previous slide if any
+  #
+  # === Returns
+  #
+  # Either an object of type Slide or +nil+
+  #
   def previous
     self.new_record? ? nil : Slide.where(:lesson_id => self.lesson_id, :position => (self.position - 1)).first
   end
   
+  # === Description
+  #
+  # Returns the following slide if any
+  #
+  # === Returns
+  #
+  # Either an object of type Slide or +nil+
+  #
   def following
     self.new_record? ? nil : Slide.where(:lesson_id => self.lesson_id, :position => (self.position + 1)).first
   end
   
+  # === Description
+  #
+  # Destroys the slide keeping updated the position of the other slides in the same lesson. It's not suggested to use the original method destroy. Used in LessonEditorController#delete_slide
+  #
+  # === Returns
+  #
+  # A boolean
+  #
   def destroy_with_positions
     return false if self.new_record?
     return false if self.kind == COVER
@@ -295,6 +354,18 @@ class Slide < ActiveRecord::Base
     resp
   end
   
+  # === Description
+  #
+  # Changes the position of the slide. If the given position is not valid (<= 1, or > number of slides in the lesson) it does nothing. Used in LessonEditorController#change_slide_position
+  #
+  # === Args
+  #
+  # * *position*: the new position of the slide
+  #
+  # === Returns
+  #
+  # A boolean
+  #
   def change_position(x)
     return false if self.new_record?
     return false if x.class != Fixnum || x < 1

@@ -803,12 +803,27 @@ validations of this model).</p>
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-audio_at-label-Description">Description</h3>
+
+<p>Returns the record of <a href="Audio.html">Audio</a>, obtained through <a
+href="MediaElementsSlide.html">MediaElementsSlide</a>, associated to the
+given position. If the position is not valid, or there is no audio in that
+position, it returns <code>nil</code></p>
+
+<h3 id="method-i-audio_at-label-Args">Args</h3>
+<ul><li>
+<p><strong>position</strong>: the position requested</p>
+</li></ul>
+
+<h3 id="method-i-audio_at-label-Returns">Returns</h3>
+
+<p>Either an object of type <a href="Audio.html">Audio</a>, or
+<code>nil</code></p>
           
 
           
           <div class="method-source-code" id="audio_at-source">
-            <pre><span class="ruby-comment"># File app/models/slide.rb, line 255</span>
+            <pre><span class="ruby-comment"># File app/models/slide.rb, line 279</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">audio_at</span>(<span class="ruby-identifier">position</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">accepted_media_element_sti_type</span> <span class="ruby-operator">!=</span> <span class="ruby-constant">MediaElement</span><span class="ruby-operator">::</span><span class="ruby-constant">AUDIO_TYPE</span>
   <span class="ruby-identifier">x</span> = <span class="ruby-identifier">media_element_at</span> <span class="ruby-identifier">position</span>
@@ -835,12 +850,26 @@ validations of this model).</p>
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-change_position-label-Description">Description</h3>
+
+<p>Changes the position of the slide. If the given position is not valid
+(&lt;= 1, or &gt; number of slides in the lesson) it does nothing. Used in
+<a
+href="LessonEditorController.html#method-i-change_slide_position">LessonEditorController#change_slide_position</a></p>
+
+<h3 id="method-i-change_position-label-Args">Args</h3>
+<ul><li>
+<p><strong>position</strong>: the new position of the slide</p>
+</li></ul>
+
+<h3 id="method-i-change_position-label-Returns">Returns</h3>
+
+<p>A boolean</p>
           
 
           
           <div class="method-source-code" id="change_position-source">
-            <pre><span class="ruby-comment"># File app/models/slide.rb, line 298</span>
+            <pre><span class="ruby-comment"># File app/models/slide.rb, line 369</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">change_position</span>(<span class="ruby-identifier">x</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">class</span> <span class="ruby-operator">!=</span> <span class="ruby-constant">Fixnum</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">x</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">1</span>
@@ -926,12 +955,21 @@ validations of this model).</p>
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-destroy_with_positions-label-Description">Description</h3>
+
+<p>Destroys the slide keeping updated the position of the other slides in the
+same lesson. It&#39;s not suggested to use the original method destroy.
+Used in <a
+href="LessonEditorController.html#method-i-delete_slide">LessonEditorController#delete_slide</a></p>
+
+<h3 id="method-i-destroy_with_positions-label-Returns">Returns</h3>
+
+<p>A boolean</p>
           
 
           
           <div class="method-source-code" id="destroy_with_positions-source">
-            <pre><span class="ruby-comment"># File app/models/slide.rb, line 276</span>
+            <pre><span class="ruby-comment"># File app/models/slide.rb, line 335</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy_with_positions</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">kind</span> <span class="ruby-operator">==</span> <span class="ruby-constant">COVER</span>
@@ -974,12 +1012,18 @@ validations of this model).</p>
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-following-label-Description">Description</h3>
+
+<p>Returns the following slide if any</p>
+
+<h3 id="method-i-following-label-Returns">Returns</h3>
+
+<p>Either an object of type <a href="Slide.html">Slide</a> or <code>nil</code></p>
           
 
           
           <div class="method-source-code" id="following-source">
-            <pre><span class="ruby-comment"># File app/models/slide.rb, line 272</span>
+            <pre><span class="ruby-comment"># File app/models/slide.rb, line 323</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">following</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">nil</span> <span class="ruby-operator">:</span> <span class="ruby-constant">Slide</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:lesson_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">lesson_id</span>, <span class="ruby-value">:position</span> =<span class="ruby-operator">&gt;</span> (<span class="ruby-keyword">self</span>.<span class="ruby-identifier">position</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>)).<span class="ruby-identifier">first</span>
 <span class="ruby-keyword">end</span></pre>
@@ -1004,14 +1048,31 @@ validations of this model).</p>
 
         <div class="method-description">
           
-          <p>this returns the record of media_elements_slides, instead of
-media_elements, since we need information contained in this table
-(alignment, caption)</p>
+          <h3 id="method-i-image_at-label-Description">Description</h3>
+
+<p>Returns the <a href="MediaElementsSlide.html">MediaElementsSlide</a>,
+associated to an <a href="Image.html">Image</a> in the given position. If
+the position is not valid, or there is no image in that position, it
+returns <code>nil</code>. Notice that, unlike <a
+href="Slide.html#method-i-video_at">#video_at</a> and <a
+href="Slide.html#method-i-audio_at">#audio_at</a>, this method returns an
+instance of <a href="MediaElementsSlide.html">MediaElementsSlide</a> rather
+than of <a href="MediaElement.html">MediaElement</a>.</p>
+
+<h3 id="method-i-image_at-label-Args">Args</h3>
+<ul><li>
+<p><strong>position</strong>: the position requested</p>
+</li></ul>
+
+<h3 id="method-i-image_at-label-Returns">Returns</h3>
+
+<p>Either an object of type <a
+href="MediaElementsSlide.html">MediaElementsSlide</a>, or <code>nil</code></p>
           
 
           
           <div class="method-source-code" id="image_at-source">
-            <pre><span class="ruby-comment"># File app/models/slide.rb, line 262</span>
+            <pre><span class="ruby-comment"># File app/models/slide.rb, line 297</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">image_at</span>(<span class="ruby-identifier">position</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">accepted_media_element_sti_type</span> <span class="ruby-operator">!=</span> <span class="ruby-constant">MediaElement</span><span class="ruby-operator">::</span><span class="ruby-constant">IMAGE_TYPE</span>
   <span class="ruby-identifier">x</span> = <span class="ruby-identifier">media_element_at</span> <span class="ruby-identifier">position</span>
@@ -1038,12 +1099,18 @@ media_elements, since we need information contained in this table
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-previous-label-Description">Description</h3>
+
+<p>Returns the previous slide if any</p>
+
+<h3 id="method-i-previous-label-Returns">Returns</h3>
+
+<p>Either an object of type <a href="Slide.html">Slide</a> or <code>nil</code></p>
           
 
           
           <div class="method-source-code" id="previous-source">
-            <pre><span class="ruby-comment"># File app/models/slide.rb, line 268</span>
+            <pre><span class="ruby-comment"># File app/models/slide.rb, line 311</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">previous</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">nil</span> <span class="ruby-operator">:</span> <span class="ruby-constant">Slide</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:lesson_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">lesson_id</span>, <span class="ruby-value">:position</span> =<span class="ruby-operator">&gt;</span> (<span class="ruby-keyword">self</span>.<span class="ruby-identifier">position</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>)).<span class="ruby-identifier">first</span>
 <span class="ruby-keyword">end</span></pre>
@@ -1188,12 +1255,27 @@ href="LessonEditorController.html#method-i-save_slide_and_edit">LessonEditorCont
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-video_at-label-Description">Description</h3>
+
+<p>Returns the record of <a href="Video.html">Video</a>, obtained through <a
+href="MediaElementsSlide.html">MediaElementsSlide</a>, associated to the
+given position. If the position is not valid, or there is no video in that
+position, it returns <code>nil</code></p>
+
+<h3 id="method-i-video_at-label-Args">Args</h3>
+<ul><li>
+<p><strong>position</strong>: the position requested</p>
+</li></ul>
+
+<h3 id="method-i-video_at-label-Returns">Returns</h3>
+
+<p>Either an object of type <a href="Video.html">Video</a>, or
+<code>nil</code></p>
           
 
           
           <div class="method-source-code" id="video_at-source">
-            <pre><span class="ruby-comment"># File app/models/slide.rb, line 249</span>
+            <pre><span class="ruby-comment"># File app/models/slide.rb, line 261</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">video_at</span>(<span class="ruby-identifier">position</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">accepted_media_element_sti_type</span> <span class="ruby-operator">!=</span> <span class="ruby-constant">MediaElement</span><span class="ruby-operator">::</span><span class="ruby-constant">VIDEO_TYPE</span>
   <span class="ruby-identifier">x</span> = <span class="ruby-identifier">media_element_at</span> <span class="ruby-identifier">position</span>
