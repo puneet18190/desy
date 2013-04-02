@@ -388,6 +388,37 @@ class User < ActiveRecord::Base
     end
   end
   
+  # === Description
+  #
+  # Global method used to search for lessons (see SearchController#index).
+  # * *first*, it checks the correctness of all the parameters received;
+  # * *then*, if +word+ is blank, it calls just User#search_lessons_without_tag, that search using the other parameters inserted by the user
+  # * *otherwise*, it checks if the word is a Fixnum (it represents the id of a specific Tag) or a String (it represents a word to be matched against the list of registered tags)
+  #   * if +word+ is a Fixnum, the method just calls User#search_lessons_with_tag, which returns only the lessons associated to that particular Tag (of course, filtered by the other parameters)
+  #   * if +word+ is a String, the method calls User#search_lessons_with_tag (that returns the lessons found) and User#get_tags_associated_to_lesson_search (that returns the list of tags associated to the search)
+  # * there is also the available option +only_tags+: if this option is used with a +word+ of type String, the method calls only User#get_tags_associated_to_lesson_search (this option is typically used when the user is filtering a previous search by a specific Tag: in this case, calling only the method with +word+ = Fixnum, there would be no way to know the previous list of tags, hence in the controller the method is called again with +word+ = String and with +only_tags+ = true)
+  #
+  # === Args
+  #
+  # * *word*: the search parameter. It can be:
+  #   * +blank+ if you need only to search by filters
+  #   * +integer+ if you want to filter by a specific tag
+  #   * +string+ if you want to match a keyword against the list of tags in the database
+  # * *page*: pagination parameter
+  # * *for_page*: pagination parameter
+  # * *order*: one of the keywords defined in SearchOrders
+  # * *filter*: one of the keywords defined in Filters
+  # * *subject_id*: the id of a Subject, this extends the filter to lessons associated to that subject
+  # * *only_tags*: optional boolean, if used with a +word+ of kind String returns only the list of tags associated to the search
+  #
+  # === Returns
+  #
+  # A hash with the following keys:
+  # * *records*: the effective content of the research, an array of object of type Lesson
+  # * *records_amount*: an integer, the total number of lessons found
+  # * *pages_amount*: an integer, the total number of pages in the search result
+  # * *tags*: if required, an array of objects of type Tag. This is the list of the first 20 tags associated to at least a lesson in the search result, ordered by numbers of occurrences among the search results (i.e. order of relevance)
+  #
   def search_lessons(word, page, for_page, order=nil, filter=nil, subject_id=nil, only_tags=nil)
     only_tags = false if only_tags.nil?
     page = 1 if page.class != Fixnum || page <= 0
@@ -414,6 +445,19 @@ class User < ActiveRecord::Base
     end
   end
   
+  # === Description
+  #
+  # Sends a Report for a Lesson
+  #
+  # === Args
+  #
+  # * *lesson_id*: id of the lesson to be reported
+  # * *msg*: the attached message
+  #
+  # === Returns
+  #
+  # A boolean
+  #
   def report_lesson(lesson_id, msg)
     errors.clear
     if self.new_record?
@@ -436,6 +480,19 @@ class User < ActiveRecord::Base
     true
   end
   
+  # === Description
+  #
+  # Sends a Report for a MediaElement
+  #
+  # === Args
+  #
+  # * *media_element_id*: id of the element to be reported
+  # * *msg*: the attached message
+  #
+  # === Returns
+  #
+  # A boolean
+  #
   def report_media_element(media_element_id, msg)
     errors.clear
     if self.new_record?
@@ -458,6 +515,18 @@ class User < ActiveRecord::Base
     true
   end
   
+  # === Description
+  #
+  # Saves a 'I like you' for a Lesson
+  #
+  # === Args
+  #
+  # * *lesson_id*: the id of the lesson that the user appreciates
+  #
+  # === Returns
+  #
+  # A boolean
+  #
   def like(lesson_id)
     return false if self.new_record? || !Lesson.exists?(lesson_id)
     return true if Like.where(:lesson_id => lesson_id, :user_id => self.id).any?
@@ -467,6 +536,18 @@ class User < ActiveRecord::Base
     return l.save
   end
   
+  # === Description
+  #
+  # Removes a 'I like you' that the user had formerly assigned to a Lesson
+  #
+  # === Args
+  #
+  # * *lesson_id*: the id of the lesson tha the user doesn't appreciate anymore
+  #
+  # === Returns
+  #
+  # A boolean
+  #
   def dislike(lesson_id)
     return false if self.new_record? || !Lesson.exists?(lesson_id)
     like = Like.where(:lesson_id => lesson_id, :user_id => self.id).first
@@ -475,12 +556,28 @@ class User < ActiveRecord::Base
     return Like.where(:lesson_id => lesson_id, :user_id => self.id).empty?
   end
   
-  def own_media_elements(page, per_page, filter = nil)
+  # === Description
+  #
+  # Extracts the elements present in the user's personal section (see MediaElementsController#index): the method uses the scope +of+ defined in MediaElement, and applies filters on it. Each element has its status set with MediaElement#set_status.
+  #
+  # === Args
+  #
+  # * *page*: pagination parameter
+  # * *per_page*: pagination parameter
+  # * *filter*: an additional filter defined in Filters
+  #
+  # === Returns
+  #
+  # A hash with the following keys:
+  # * *records*: the effective content of the research, an array of object of type MediaElement
+  # * *pages_amount*: an integer, the total number of pages in the method's result
+  #
+  def own_media_elements(page, per_page, filter=Filters::ALL_MEDIA_ELEMENTS)
     page = 1 if !page.is_a?(Fixnum) || page <= 0
     for_page = 1 if !for_page.is_a?(Fixnum) || for_page <= 0
     offset = (page - 1) * per_page
     relation = MediaElement.of(self)
-    if [ Filters::VIDEO, Filters::AUDIO, Filters::IMAGE ].include? filter
+    if [Filters::VIDEO, Filters::AUDIO, Filters::IMAGE].include? filter
       relation = relation.where('sti_type = ?', filter.capitalize)
     end
     pages_amount = Rational(relation.count, per_page).ceil
@@ -489,10 +586,26 @@ class User < ActiveRecord::Base
       me.set_status self.id
       resp << me
     end
-    { records: resp, pages_amount: pages_amount }
+    {:records => resp, :pages_amount => pages_amount}
   end
   
-  def own_lessons(page, per_page, filter = Filters::ALL_LESSONS)
+  # === Description
+  #
+  # Extracts the lessons present in the user's personal section (see LessonsController#index): the method uses the scope +of+ defined in Lesson, and applies filters on it. Each lesson has its status set with Lesson#set_status.
+  #
+  # === Args
+  #
+  # * *page*: pagination parameter
+  # * *per_page*: pagination parameter
+  # * *filter*: an additional filter defined in Filters
+  #
+  # === Returns
+  #
+  # A hash with the following keys:
+  # * *records*: the effective content of the research, an array of object of type Lesson
+  # * *pages_amount*: an integer, the total number of pages in the method's result
+  #
+  def own_lessons(page, per_page, filter=Filters::ALL_LESSONS)
     page = 1 if !page.is_a?(Fixnum) || page <= 0
     for_page = 1 if !for_page.is_a?(Fixnum) || for_page <= 0
     offset = (page - 1) * per_page
@@ -519,7 +632,7 @@ class User < ActiveRecord::Base
       lesson.set_status self.id
       resp << lesson
     end
-    { records: resp, pages_amount: pages_amount }
+    {:records => resp, :pages_amount => pages_amount}
   end
   
   def suggested_lessons(n)
