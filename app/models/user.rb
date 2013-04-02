@@ -939,7 +939,7 @@ class User < ActiveRecord::Base
         end
         MediaElement.where(:user_id => self.id).each do |me|
           if me.is_public
-            me.user_id = self.class.admin.id
+            me.user_id = User.admin.id
             if !me.save
               errors.add(:base, :problem_destroying)
               raise ActiveRecord::Rollback
