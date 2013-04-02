@@ -914,7 +914,7 @@ class User < ActiveRecord::Base
   
   # === Description
   #
-  # Used to destroy a user and remove it from the database: since for safety reasons there are no database cascade destructions for the associated relations Lesson, UsersSubject, Bookmark, Notification, Like and Report, these are destroyed manually here; for the table MailingListGroup, there is a cascade destruction; for the table MediaElement, the method destroys only the private ones and changes the owner of the public ones (assigned to the super administrator, extracted by the method User#super_admin?). The only user that can't be destroyed with this method is the super administrator (the method checks this using User#super_admin?)
+  # Used to destroy a user and remove it from the database: since for safety reasons there are no database cascade destructions for the associated relations Lesson, UsersSubject, Bookmark, Notification, Like and Report, these are destroyed manually here; for the table MailingListGroup, there is a cascade destruction; for the table MediaElement, the method destroys only the private ones and changes the owner of the public ones (assigned to the super administrator, extracted by the method User.admin). The only user that can't be destroyed with this method is the super administrator (the method checks this using User#super_admin?)
   #
   # === Returns
   #
@@ -970,10 +970,34 @@ class User < ActiveRecord::Base
     resp
   end
   
+  # === Description
+  #
+  # Used in the autocomplete, in the section of the administrator where it's possible to send a notification to multiple users (Admin::MessagesController#filter_users)
+  #
+  # === Args
+  #
+  # * *term*: the string to be matched agains +email+, +name+ and +surname+
+  #
+  # === Returns
+  #
+  # A list of query results where the only field selected is the full name (+name+ + ' ' + +surname+)
+  #
   def self.get_full_names(term)
-    where('email ILIKE ? OR name ILIKE ? OR surname ILIKE ?',"%#{term}%","%#{term}%","%#{term}%").select("id, name || ' ' || surname AS value")
+    where('email ILIKE ? OR name ILIKE ? OR surname ILIKE ?', "%#{term}%", "%#{term}%", "%#{term}%").select("id, name || ' ' || surname AS value")
   end
   
+  # === Description
+  #
+  # Removes a file from the list of multiple uploading of an element (associated to Admin::MediaElementsController#quick_upload_delete and Admin::MediaElementsController#create).
+  #
+  # === Args
+  #
+  # * *name*: the random key generated in User#save_in_admin_quick_uploading_cache, used as a key in the hash of files in uploading
+  #
+  # === Returns
+  #
+  # A boolean
+  #
   def remove_from_admin_quick_uploading_cache(name)
     return false if !File.exists?(Rails.root.join("public/admin/#{self.id}/map.yml"))
     map = YAML::load(File.open(Rails.root.join("public/admin/#{self.id}/map.yml")))
@@ -988,6 +1012,28 @@ class User < ActiveRecord::Base
     true
   end
   
+  # === Description
+  #
+  # Saves a file in the uploading cache (used in Admin::MediaElementsController#quick_upload): the method creates a random name for the file, that will be used as its unique key in the hash
+  #
+  # === Args
+  #
+  # * *file*: the attached file
+  # * *title*: the title (if +nil+, it doesn't specify any title and it'll need to be inserted at the time of the creation)
+  # * *description*: the description (if +nil+, it doesn't specify any description and it'll need to be inserted at the time of the creation)
+  # * *tags*: the tags in shape 'tag1, tag2, tag3, tag4' (if +nil+, it doesn't specify any tags and tags will need to be inserted at the time of the creation)
+  #
+  # === Returns
+  #
+  # A hash with the following keys
+  # * *name*: the randomly extracted key
+  # * *ext*: the extension extracted through MediaElement.new_with_sti_type_inferring
+  # * *type*: the type in ['audio', 'image', 'video']
+  # * *title*: the title
+  # * *description*: the description
+  # * *tags*: the tags in shape 'tag1, tag2, tag3, tag4'
+  # * *original_name*: the original name with which the file was uploaded
+  #
   def save_in_admin_quick_uploading_cache(file, title=nil, description=nil, tags=nil)
     filetype = MediaElement.filetype(file.original_filename)
     return nil if filetype.nil?
@@ -1030,6 +1076,14 @@ class User < ActiveRecord::Base
     }
   end
   
+  # === Description
+  #
+  # Extracts the quick uploadin cache (used in Admin::MediaElementsController#new)
+  #
+  # === Returns
+  #
+  # A hash with the same keys as User#save_in_admin_quick_uploading_cache
+  #
   def admin_quick_uploading_cache
     return [] if !File.exists?(Rails.root.join("public/admin/#{self.id}/map.yml"))
     map = YAML::load File.open(Rails.root.join("public/admin/#{self.id}/map.yml"))

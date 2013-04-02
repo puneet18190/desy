@@ -798,14 +798,29 @@ attributes that don&#39;t correspond to fields, for instance
 
         <div class="method-description">
           
-          
+          <h3 id="method-c-get_full_names-label-Description">Description</h3>
+
+<p>Used in the autocomplete, in the section of the administrator where
+it&#39;s possible to send a notification to multiple users (<a
+href="Admin/MessagesController.html#method-i-filter_users">Admin::MessagesController#filter_users</a>)</p>
+
+<h3 id="method-c-get_full_names-label-Args">Args</h3>
+<ul><li>
+<p><strong>term</strong>: the string to be matched agains <code>email</code>,
+<code>name</code> and <code>surname</code></p>
+</li></ul>
+
+<h3 id="method-c-get_full_names-label-Returns">Returns</h3>
+
+<p>A list of query results where the only field selected is the full name
+(<code>name</code> + &#39; &#39; + <code>surname</code>)</p>
           
 
           
           <div class="method-source-code" id="get_full_names-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 973</span>
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 985</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_full_names</span>(<span class="ruby-identifier">term</span>)
-  <span class="ruby-identifier">where</span>(<span class="ruby-string">&#39;email ILIKE ? OR name ILIKE ? OR surname ILIKE ?&#39;</span>,<span class="ruby-node">&quot;%#{term}%&quot;</span>,<span class="ruby-node">&quot;%#{term}%&quot;</span>,<span class="ruby-node">&quot;%#{term}%&quot;</span>).<span class="ruby-identifier">select</span>(<span class="ruby-string">&quot;id, name || &#39; &#39; || surname AS value&quot;</span>)
+  <span class="ruby-identifier">where</span>(<span class="ruby-string">&#39;email ILIKE ? OR name ILIKE ? OR surname ILIKE ?&#39;</span>, <span class="ruby-node">&quot;%#{term}%&quot;</span>, <span class="ruby-node">&quot;%#{term}%&quot;</span>, <span class="ruby-node">&quot;%#{term}%&quot;</span>).<span class="ruby-identifier">select</span>(<span class="ruby-string">&quot;id, name || &#39; &#39; || surname AS value&quot;</span>)
 <span class="ruby-keyword">end</span></pre>
           </div><!-- get_full_names-source -->
           
@@ -919,12 +934,20 @@ something like</p>
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-admin_quick_uploading_cache-label-Description">Description</h3>
+
+<p>Extracts the quick uploadin cache (used in <a
+href="Admin/MediaElementsController.html#method-i-new">Admin::MediaElementsController#new</a>)</p>
+
+<h3 id="method-i-admin_quick_uploading_cache-label-Returns">Returns</h3>
+
+<p>A hash with the same keys as <a
+href="User.html#method-i-save_in_admin_quick_uploading_cache">#save_in_admin_quick_uploading_cache</a></p>
           
 
           
           <div class="method-source-code" id="admin_quick_uploading_cache-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 1033</span>
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 1087</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">admin_quick_uploading_cache</span>
   <span class="ruby-keyword">return</span> [] <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-constant">Rails</span>.<span class="ruby-identifier">root</span>.<span class="ruby-identifier">join</span>(<span class="ruby-node">&quot;public/admin/#{self.id}/map.yml&quot;</span>))
   <span class="ruby-identifier">map</span> = <span class="ruby-constant">YAML</span><span class="ruby-operator">::</span><span class="ruby-identifier">load</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-constant">Rails</span>.<span class="ruby-identifier">root</span>.<span class="ruby-identifier">join</span>(<span class="ruby-node">&quot;public/admin/#{self.id}/map.yml&quot;</span>))
@@ -1305,10 +1328,9 @@ cascade destruction; for the table <a
 href="MediaElement.html">MediaElement</a>, the method destroys only the
 private ones and changes the owner of the public ones (assigned to the
 super administrator, extracted by the method <a
-href="User.html#method-i-super_admin-3F">#super_admin?</a>). The only user
-that can&#39;t be destroyed with this method is the super administrator
-(the method checks this using <a
-href="User.html#method-i-super_admin-3F">#super_admin?</a>)</p>
+href="User.html#method-c-admin">::admin</a>). The only user that can&#39;t
+be destroyed with this method is the super administrator (the method checks
+this using <a href="User.html#method-i-super_admin-3F">#super_admin?</a>)</p>
 
 <h3 id="method-i-destroy_with_dependencies-label-Returns">Returns</h3>
 
@@ -2169,12 +2191,29 @@ contains all the policies as configured in settings.yml</p>
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-remove_from_admin_quick_uploading_cache-label-Description">Description</h3>
+
+<p>Removes a file from the list of multiple uploading of an element
+(associated to <a
+href="Admin/MediaElementsController.html#method-i-quick_upload_delete">Admin::MediaElementsController#quick_upload_delete</a>
+and <a
+href="Admin/MediaElementsController.html#method-i-create">Admin::MediaElementsController#create</a>).</p>
+
+<h3 id="method-i-remove_from_admin_quick_uploading_cache-label-Args">Args</h3>
+<ul><li>
+<p><strong>name</strong>: the random key generated in <a
+href="User.html#method-i-save_in_admin_quick_uploading_cache">#save_in_admin_quick_uploading_cache</a>,
+used as a key in the hash of files in uploading</p>
+</li></ul>
+
+<h3 id="method-i-remove_from_admin_quick_uploading_cache-label-Returns">Returns</h3>
+
+<p>A boolean</p>
           
 
           
           <div class="method-source-code" id="remove_from_admin_quick_uploading_cache-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 977</span>
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 1001</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">remove_from_admin_quick_uploading_cache</span>(<span class="ruby-identifier">name</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-constant">Rails</span>.<span class="ruby-identifier">root</span>.<span class="ruby-identifier">join</span>(<span class="ruby-node">&quot;public/admin/#{self.id}/map.yml&quot;</span>))
   <span class="ruby-identifier">map</span> = <span class="ruby-constant">YAML</span><span class="ruby-operator">::</span><span class="ruby-identifier">load</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-constant">Rails</span>.<span class="ruby-identifier">root</span>.<span class="ruby-identifier">join</span>(<span class="ruby-node">&quot;public/admin/#{self.id}/map.yml&quot;</span>)))
@@ -2373,12 +2412,56 @@ href="UsersController.html#method-i-reset_password">UsersController#reset_passwo
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-save_in_admin_quick_uploading_cache-label-Description">Description</h3>
+
+<p>Saves a file in the uploading cache (used in <a
+href="Admin/MediaElementsController.html#method-i-quick_upload">Admin::MediaElementsController#quick_upload</a>):
+the method creates a random name for the file, that will be used as its
+unique key in the hash</p>
+
+<h3 id="method-i-save_in_admin_quick_uploading_cache-label-Args">Args</h3>
+<ul><li>
+<p><strong>file</strong>: the attached file</p>
+</li><li>
+<p><strong>title</strong>: the title (if <code>nil</code>, it doesn&#39;t
+specify any title and it&#39;ll need to be inserted at the time of the
+creation)</p>
+</li><li>
+<p><strong>description</strong>: the description (if <code>nil</code>, it
+doesn&#39;t specify any description and it&#39;ll need to be inserted at
+the time of the creation)</p>
+</li><li>
+<p><strong>tags</strong>: the tags in shape &#39;tag1, tag2, tag3, tag4&#39;
+(if <code>nil</code>, it doesn&#39;t specify any tags and tags will need to
+be inserted at the time of the creation)</p>
+</li></ul>
+
+<h3 id="method-i-save_in_admin_quick_uploading_cache-label-Returns">Returns</h3>
+
+<p>A hash with the following keys</p>
+<ul><li>
+<p><strong>name</strong>: the randomly extracted key</p>
+</li><li>
+<p><strong>ext</strong>: the extension extracted through <a
+href="MediaElement.html#method-c-new_with_sti_type_inferring">MediaElement.new_with_sti_type_inferring</a></p>
+</li><li>
+<p><strong>type</strong>: the type in [&#39;audio&#39;, &#39;image&#39;,
+&#39;video&#39;]</p>
+</li><li>
+<p><strong>title</strong>: the title</p>
+</li><li>
+<p><strong>description</strong>: the description</p>
+</li><li>
+<p><strong>tags</strong>: the tags in shape &#39;tag1, tag2, tag3, tag4&#39;</p>
+</li><li>
+<p><strong>original_name</strong>: the original name with which the file was
+uploaded</p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="save_in_admin_quick_uploading_cache-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 991</span>
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 1037</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">save_in_admin_quick_uploading_cache</span>(<span class="ruby-identifier">file</span>, <span class="ruby-identifier">title</span>=<span class="ruby-keyword">nil</span>, <span class="ruby-identifier">description</span>=<span class="ruby-keyword">nil</span>, <span class="ruby-identifier">tags</span>=<span class="ruby-keyword">nil</span>)
   <span class="ruby-identifier">filetype</span> = <span class="ruby-constant">MediaElement</span>.<span class="ruby-identifier">filetype</span>(<span class="ruby-identifier">file</span>.<span class="ruby-identifier">original_filename</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">filetype</span>.<span class="ruby-identifier">nil?</span>
@@ -3063,7 +3146,7 @@ if <code>nil</code> it empties the cache)</p>
 
           
           <div class="method-source-code" id="get_tags_associated_to_lesson_search-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 1048</span>
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 1102</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_tags_associated_to_lesson_search</span>(<span class="ruby-identifier">word</span>, <span class="ruby-identifier">filter</span>, <span class="ruby-identifier">subject_id</span>) <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">filter</span> = <span class="ruby-constant">Filters</span><span class="ruby-operator">::</span><span class="ruby-constant">ALL_LESSONS</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">filter</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> <span class="ruby-operator">!</span><span class="ruby-constant">Filters</span><span class="ruby-operator">::</span><span class="ruby-constant">LESSONS_SEARCH_SET</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">filter</span>)
   <span class="ruby-identifier">subject_id</span> = <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span>[<span class="ruby-constant">NilClass</span>, <span class="ruby-constant">Fixnum</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">subject_id</span>.<span class="ruby-identifier">class</span>)
@@ -3130,7 +3213,7 @@ if <code>nil</code> it empties the cache)</p>
 
           
           <div class="method-source-code" id="get_tags_associated_to_media_element_search-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 1089</span>
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 1143</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_tags_associated_to_media_element_search</span>(<span class="ruby-identifier">word</span>, <span class="ruby-identifier">filter</span>) <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">limit</span> = <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;tags_limit_in_search_engine&#39;</span>]
   <span class="ruby-identifier">filter</span> = <span class="ruby-constant">Filters</span><span class="ruby-operator">::</span><span class="ruby-constant">ALL_MEDIA_ELEMENTS</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">filter</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> <span class="ruby-operator">!</span><span class="ruby-constant">Filters</span><span class="ruby-operator">::</span><span class="ruby-constant">MEDIA_ELEMENTS_SEARCH_SET</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">filter</span>)
@@ -3185,7 +3268,7 @@ if <code>nil</code> it empties the cache)</p>
 
           
           <div class="method-source-code" id="init_validation-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 1300</span>
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 1354</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">init_validation</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-ivar">@user</span> = <span class="ruby-constant">Valid</span>.<span class="ruby-identifier">get_association</span> <span class="ruby-keyword">self</span>, <span class="ruby-value">:id</span>
   <span class="ruby-ivar">@school_level</span> = <span class="ruby-constant">Valid</span>.<span class="ruby-identifier">get_association</span> <span class="ruby-keyword">self</span>, <span class="ruby-value">:school_level_id</span>
@@ -3216,7 +3299,7 @@ if <code>nil</code> it empties the cache)</p>
 
           
           <div class="method-source-code" id="search_lessons_with_tag-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 1189</span>
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 1243</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">search_lessons_with_tag</span>(<span class="ruby-identifier">word</span>, <span class="ruby-identifier">offset</span>, <span class="ruby-identifier">limit</span>, <span class="ruby-identifier">filter</span>, <span class="ruby-identifier">subject_id</span>, <span class="ruby-identifier">order_by</span>) <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">resp</span> = {}
   <span class="ruby-identifier">params</span> = [<span class="ruby-node">&quot;#{word}%&quot;</span>]
@@ -3294,7 +3377,7 @@ if <code>nil</code> it empties the cache)</p>
 
           
           <div class="method-source-code" id="search_lessons_without_tag-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 1241</span>
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 1295</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">search_lessons_without_tag</span>(<span class="ruby-identifier">offset</span>, <span class="ruby-identifier">limit</span>, <span class="ruby-identifier">filter</span>, <span class="ruby-identifier">subject_id</span>, <span class="ruby-identifier">order_by</span>) <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">resp</span> = {}
   <span class="ruby-identifier">params</span> = []
@@ -3379,7 +3462,7 @@ if <code>nil</code> it empties the cache)</p>
 
           
           <div class="method-source-code" id="search_media_elements_with_tag-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 1118</span>
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 1172</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">search_media_elements_with_tag</span>(<span class="ruby-identifier">word</span>, <span class="ruby-identifier">offset</span>, <span class="ruby-identifier">limit</span>, <span class="ruby-identifier">filter</span>, <span class="ruby-identifier">order_by</span>) <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">resp</span> = {}
   <span class="ruby-identifier">params</span> = [<span class="ruby-node">&quot;#{word}%&quot;</span>, <span class="ruby-keyword">true</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>]
@@ -3441,7 +3524,7 @@ if <code>nil</code> it empties the cache)</p>
 
           
           <div class="method-source-code" id="search_media_elements_without_tag-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 1154</span>
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 1208</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">search_media_elements_without_tag</span>(<span class="ruby-identifier">offset</span>, <span class="ruby-identifier">limit</span>, <span class="ruby-identifier">filter</span>, <span class="ruby-identifier">order_by</span>) <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">resp</span> = {}
   <span class="ruby-identifier">order</span> = <span class="ruby-string">&#39;&#39;</span>
@@ -3502,7 +3585,7 @@ if <code>nil</code> it empties the cache)</p>
 
           
           <div class="method-source-code" id="validate_associations-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 1305</span>
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 1359</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">validate_associations</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span> <span class="ruby-value">:school_level_id</span>, <span class="ruby-value">:doesnt_exist</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@school_level</span>.<span class="ruby-identifier">nil?</span>
   <span class="ruby-ivar">@location</span> = <span class="ruby-constant">Valid</span>.<span class="ruby-identifier">get_association</span> <span class="ruby-keyword">self</span>, <span class="ruby-value">:location_id</span>
@@ -3534,7 +3617,7 @@ if <code>nil</code> it empties the cache)</p>
 
           
           <div class="method-source-code" id="validate_email-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 1315</span>
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 1369</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">validate_email</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">email</span>.<span class="ruby-identifier">blank?</span>
   <span class="ruby-identifier">flag</span> = <span class="ruby-keyword">false</span>
@@ -3582,7 +3665,7 @@ if <code>nil</code> it empties the cache)</p>
 
           
           <div class="method-source-code" id="validate_email_not_changed-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 1311</span>
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 1365</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">validate_email_not_changed</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span> <span class="ruby-value">:email</span>, <span class="ruby-value">:changed</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">changed</span>.<span class="ruby-identifier">include?</span> <span class="ruby-string">&#39;email&#39;</span>
 <span class="ruby-keyword">end</span></pre>
