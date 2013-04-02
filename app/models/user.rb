@@ -1099,6 +1099,7 @@ class User < ActiveRecord::Base
   
   private
   
+  # Submethod of User#search_lessons. It returns the first +n+ tags associated to the result of the research, ordered by number of occurrences of these tags among the results; if the +word+ corresponds to a tag, this tag is put in the first place of the result even if it wouldn't be first according to the normal ordering.
   def get_tags_associated_to_lesson_search(word, filter, subject_id) # :doc:
     filter = Filters::ALL_LESSONS if filter.nil? || !Filters::LESSONS_SEARCH_SET.include?(filter)
     subject_id = nil if ![NilClass, Fixnum].include?(subject_id.class)
@@ -1140,6 +1141,7 @@ class User < ActiveRecord::Base
     resp
   end
   
+  # Submethod of User#search_media_elements. It returns the first +n+ tags associated to the result of the research, ordered by number of occurrences of these tags among the results; if the +word+ corresponds to a tag, this tag is put in the first place of the result even if it wouldn't be first according to the normal ordering.
   def get_tags_associated_to_media_element_search(word, filter) # :doc:
     limit = SETTINGS['tags_limit_in_search_engine']
     filter = Filters::ALL_MEDIA_ELEMENTS if filter.nil? || !Filters::MEDIA_ELEMENTS_SEARCH_SET.include?(filter)
@@ -1169,6 +1171,7 @@ class User < ActiveRecord::Base
     resp
   end
   
+  # Submethod of User.search_media_elements: if +word+ is a Fixnum, it extracts all the elements associated to that word, otherwise it extracts all the elements whose tags match the +word+. Results are filtered by the +filter+ (chosen among the ones in Filters), and ordered by +order_by+ (chosen among SearchOrders)
   def search_media_elements_with_tag(word, offset, limit, filter, order_by) # :doc:
     resp = {}
     params = ["#{word}%", true, self.id]
@@ -1205,6 +1208,7 @@ class User < ActiveRecord::Base
     return resp
   end
   
+  # Submethod of User#search_media_elements. It returns all the elements in the database, filtered by +filter+ (chosen among the ones in Filters), and ordered by +order_by+ (chosen among the ones in SearchOrders)
   def search_media_elements_without_tag(offset, limit, filter, order_by) # :doc:
     resp = {}
     order = ''
@@ -1240,6 +1244,7 @@ class User < ActiveRecord::Base
     return resp
   end
   
+  # Submethod of User.search_lessons: if +word+ is a Fixnum, it extracts all the lessons associated to that word, otherwise it extracts all the lessons whose tags match the +word+. Results are filtered by the +filter+ (chosen among the ones in Filters) and by +subject_id+, and ordered by +order_by+ (chosen among SearchOrders)
   def search_lessons_with_tag(word, offset, limit, filter, subject_id, order_by) # :doc:
     resp = {}
     params = ["#{word}%"]
@@ -1292,6 +1297,7 @@ class User < ActiveRecord::Base
     return resp
   end
   
+  # Submethod of User#search_lessons. It returns all the lessons in the database, filtered by +filter+ (chosen among the ones in Filters) and by +subject_id+, and ordered by +order_by+ (chosen among the ones in SearchOrders)
   def search_lessons_without_tag(offset, limit, filter, subject_id, order_by) # :doc:
     resp = {}
     params = []

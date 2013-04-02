@@ -3142,12 +3142,18 @@ if <code>nil</code> it empties the cache)</p>
 
         <div class="method-description">
           
-          
+          <p>Submethod of <a
+href="User.html#method-i-search_lessons">#search_lessons</a>. It returns
+the first <code>n</code> tags associated to the result of the research,
+ordered by number of occurrences of these tags among the results; if the
+<code>word</code> corresponds to a tag, this tag is put in the first place
+of the result even if it wouldn&#39;t be first according to the normal
+ordering.</p>
           
 
           
           <div class="method-source-code" id="get_tags_associated_to_lesson_search-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 1102</span>
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 1103</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_tags_associated_to_lesson_search</span>(<span class="ruby-identifier">word</span>, <span class="ruby-identifier">filter</span>, <span class="ruby-identifier">subject_id</span>) <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">filter</span> = <span class="ruby-constant">Filters</span><span class="ruby-operator">::</span><span class="ruby-constant">ALL_LESSONS</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">filter</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> <span class="ruby-operator">!</span><span class="ruby-constant">Filters</span><span class="ruby-operator">::</span><span class="ruby-constant">LESSONS_SEARCH_SET</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">filter</span>)
   <span class="ruby-identifier">subject_id</span> = <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span>[<span class="ruby-constant">NilClass</span>, <span class="ruby-constant">Fixnum</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">subject_id</span>.<span class="ruby-identifier">class</span>)
@@ -3209,12 +3215,18 @@ if <code>nil</code> it empties the cache)</p>
 
         <div class="method-description">
           
-          
+          <p>Submethod of <a
+href="User.html#method-i-search_media_elements">#search_media_elements</a>.
+It returns the first <code>n</code> tags associated to the result of the
+research, ordered by number of occurrences of these tags among the results;
+if the <code>word</code> corresponds to a tag, this tag is put in the first
+place of the result even if it wouldn&#39;t be first according to the
+normal ordering.</p>
           
 
           
           <div class="method-source-code" id="get_tags_associated_to_media_element_search-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 1143</span>
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 1145</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_tags_associated_to_media_element_search</span>(<span class="ruby-identifier">word</span>, <span class="ruby-identifier">filter</span>) <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">limit</span> = <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;tags_limit_in_search_engine&#39;</span>]
   <span class="ruby-identifier">filter</span> = <span class="ruby-constant">Filters</span><span class="ruby-operator">::</span><span class="ruby-constant">ALL_MEDIA_ELEMENTS</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">filter</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> <span class="ruby-operator">!</span><span class="ruby-constant">Filters</span><span class="ruby-operator">::</span><span class="ruby-constant">MEDIA_ELEMENTS_SEARCH_SET</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">filter</span>)
@@ -3269,7 +3281,7 @@ if <code>nil</code> it empties the cache)</p>
 
           
           <div class="method-source-code" id="init_validation-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 1354</span>
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 1360</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">init_validation</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-ivar">@user</span> = <span class="ruby-constant">Valid</span>.<span class="ruby-identifier">get_association</span> <span class="ruby-keyword">self</span>, <span class="ruby-value">:id</span>
   <span class="ruby-ivar">@school_level</span> = <span class="ruby-constant">Valid</span>.<span class="ruby-identifier">get_association</span> <span class="ruby-keyword">self</span>, <span class="ruby-value">:school_level_id</span>
@@ -3295,12 +3307,19 @@ if <code>nil</code> it empties the cache)</p>
 
         <div class="method-description">
           
-          
+          <p>Submethod of <a
+href="User.html#method-i-search_lessons">#search_lessons</a>: if
+<code>word</code> is a Fixnum, it extracts all the lessons associated to
+that word, otherwise it extracts all the lessons whose tags match the
+<code>word</code>. Results are filtered by the <code>filter</code> (chosen
+among the ones in <a href="Filters.html">Filters</a>) and by
+<code>subject_id</code>, and ordered by <code>order_by</code> (chosen among
+<a href="SearchOrders.html">SearchOrders</a>)</p>
           
 
           
           <div class="method-source-code" id="search_lessons_with_tag-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 1243</span>
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 1248</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">search_lessons_with_tag</span>(<span class="ruby-identifier">word</span>, <span class="ruby-identifier">offset</span>, <span class="ruby-identifier">limit</span>, <span class="ruby-identifier">filter</span>, <span class="ruby-identifier">subject_id</span>, <span class="ruby-identifier">order_by</span>) <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">resp</span> = {}
   <span class="ruby-identifier">params</span> = [<span class="ruby-node">&quot;#{word}%&quot;</span>]
@@ -3373,12 +3392,17 @@ if <code>nil</code> it empties the cache)</p>
 
         <div class="method-description">
           
-          
+          <p>Submethod of <a
+href="User.html#method-i-search_lessons">#search_lessons</a>. It returns
+all the lessons in the database, filtered by <code>filter</code> (chosen
+among the ones in <a href="Filters.html">Filters</a>) and by
+<code>subject_id</code>, and ordered by <code>order_by</code> (chosen among
+the ones in <a href="SearchOrders.html">SearchOrders</a>)</p>
           
 
           
           <div class="method-source-code" id="search_lessons_without_tag-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 1295</span>
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 1301</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">search_lessons_without_tag</span>(<span class="ruby-identifier">offset</span>, <span class="ruby-identifier">limit</span>, <span class="ruby-identifier">filter</span>, <span class="ruby-identifier">subject_id</span>, <span class="ruby-identifier">order_by</span>) <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">resp</span> = {}
   <span class="ruby-identifier">params</span> = []
@@ -3458,12 +3482,19 @@ if <code>nil</code> it empties the cache)</p>
 
         <div class="method-description">
           
-          
+          <p>Submethod of <a
+href="User.html#method-i-search_media_elements">#search_media_elements</a>:
+if <code>word</code> is a Fixnum, it extracts all the elements associated
+to that word, otherwise it extracts all the elements whose tags match the
+<code>word</code>. Results are filtered by the <code>filter</code> (chosen
+among the ones in <a href="Filters.html">Filters</a>), and ordered by
+<code>order_by</code> (chosen among <a
+href="SearchOrders.html">SearchOrders</a>)</p>
           
 
           
           <div class="method-source-code" id="search_media_elements_with_tag-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 1172</span>
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 1175</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">search_media_elements_with_tag</span>(<span class="ruby-identifier">word</span>, <span class="ruby-identifier">offset</span>, <span class="ruby-identifier">limit</span>, <span class="ruby-identifier">filter</span>, <span class="ruby-identifier">order_by</span>) <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">resp</span> = {}
   <span class="ruby-identifier">params</span> = [<span class="ruby-node">&quot;#{word}%&quot;</span>, <span class="ruby-keyword">true</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>]
@@ -3520,12 +3551,17 @@ if <code>nil</code> it empties the cache)</p>
 
         <div class="method-description">
           
-          
+          <p>Submethod of <a
+href="User.html#method-i-search_media_elements">#search_media_elements</a>.
+It returns all the elements in the database, filtered by
+<code>filter</code> (chosen among the ones in <a
+href="Filters.html">Filters</a>), and ordered by <code>order_by</code>
+(chosen among the ones in <a href="SearchOrders.html">SearchOrders</a>)</p>
           
 
           
           <div class="method-source-code" id="search_media_elements_without_tag-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 1208</span>
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 1212</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">search_media_elements_without_tag</span>(<span class="ruby-identifier">offset</span>, <span class="ruby-identifier">limit</span>, <span class="ruby-identifier">filter</span>, <span class="ruby-identifier">order_by</span>) <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">resp</span> = {}
   <span class="ruby-identifier">order</span> = <span class="ruby-string">&#39;&#39;</span>
@@ -3586,7 +3622,7 @@ if <code>nil</code> it empties the cache)</p>
 
           
           <div class="method-source-code" id="validate_associations-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 1359</span>
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 1365</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">validate_associations</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span> <span class="ruby-value">:school_level_id</span>, <span class="ruby-value">:doesnt_exist</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@school_level</span>.<span class="ruby-identifier">nil?</span>
   <span class="ruby-ivar">@location</span> = <span class="ruby-constant">Valid</span>.<span class="ruby-identifier">get_association</span> <span class="ruby-keyword">self</span>, <span class="ruby-value">:location_id</span>
@@ -3619,7 +3655,7 @@ href="Valid.html#method-c-email-3F">Valid.email?</a>)</p>
 
           
           <div class="method-source-code" id="validate_email-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 1370</span>
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 1376</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">validate_email</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">email</span>.<span class="ruby-identifier">blank?</span>
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:email</span>, <span class="ruby-value">:not_a_valid_email</span>) <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">Valid</span>.<span class="ruby-identifier">email?</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">email</span>)
@@ -3650,7 +3686,7 @@ href="Valid.html#method-c-email-3F">Valid.email?</a>)</p>
 
           
           <div class="method-source-code" id="validate_email_not_changed-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 1365</span>
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 1371</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">validate_email_not_changed</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span> <span class="ruby-value">:email</span>, <span class="ruby-value">:changed</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">changed</span>.<span class="ruby-identifier">include?</span> <span class="ruby-string">&#39;email&#39;</span>
 <span class="ruby-keyword">end</span></pre>
