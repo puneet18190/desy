@@ -153,56 +153,132 @@ class User < ActiveRecord::Base
     self.super_admin?
   end
   
-  def accept_policies
-    registration_policies.each{ |p| send("#{p}=", '1') }
-  end
-  
+  # === Description
+  #
+  # Saves the Video Editor cache; if the param is +nil+, the cache is emptied
+  #
+  # === Args
+  #
+  # * *cache*: the cache to be saved (it must be a hash with the structure defined in Media::Video::Editing::Parameters#convert_parameters; if +nil+ it empties the cache)
+  #
   def video_editor_cache!(cache = nil)
     update_attribute :metadata, OpenStruct.new(metadata.marshal_dump.merge(video_editor_cache: cache))
     nil
   end
   
+  # === Description
+  #
+  # Returns the current Video Editor cache for this user
+  #
+  # === Returns
+  #
+  # A hash with parameters (for a sample structure, see Media::Video::Editing::Parameters#convert_parameters)
+  #
   def video_editor_cache
     metadata.try(:video_editor_cache)
   end
   
+  # === Description
+  #
+  # Saves the Audio Editor cache; if the param is +nil+, the cache is emptied
+  #
+  # === Args
+  #
+  # * *cache*: the cache to be saved (it must be a hash with the structure defined in Media::Audio::Editing::Parameters#convert_parameters; if +nil+ it empties the cache)
+  #
   def audio_editor_cache!(cache = nil)
     update_attribute :metadata, OpenStruct.new(metadata.marshal_dump.merge(audio_editor_cache: cache))
     nil
   end
   
+  # === Description
+  #
+  # Returns the current Audio Editor cache for this user
+  #
+  # === Returns
+  #
+  # A hash with parameters (for a sample structure, see Media::Audio::Editing::Parameters#convert_parameters)
+  #
   def audio_editor_cache
     metadata.try(:audio_editor_cache)
   end
   
+  # === Description
+  #
+  # Alternative to the association +mailing_list_groups+, that sorts the groups by name
+  #
+  # === Returns
+  #
+  # An array of objects of kind MailingListGroup
+  #
   def own_mailing_list_groups
     MailingListGroup.where(:user_id => self.id).order(:name)
   end
   
+  # === Description
+  #
+  # Creates a temporary unique new name for a MailingListGroup (used in MailingListController#create_group)
+  #
+  # === Returns
+  #
+  # A string
+  #
   def new_mailing_list_name
     I18n.t('users.mailing_list.label', :number => (MailingListGroup.where(:user_id => self.id).count + 1))
   end
   
+  # === Description
+  #
+  # Manual attr_reader for the constant REGISTRATION_POLICIES, that contains all the policies as configured in settings.yml
+  #
   def registration_policies
     REGISTRATION_POLICIES
   end
   
+  # === Description
+  #
+  # Resets the attributes +password+ e +password_confirmation+ with a new random string (used in UsersController#reset_password)
+  #
+  # === Returns
+  #
+  # A string (the new password)
+  #
   def reset_password!
     new_password = SecureRandom.urlsafe_base64(10)
     update_attributes!(:password => new_password, :password_confirmation => new_password)
     new_password
   end
   
+  # === Description
+  #
+  # Sets the subjects associated to this user (see UsersSubject)
+  #
   def subject_ids=(subject_ids)
     users_subjects.reload.clear
-    subject_ids.each { |id| users_subjects.build user: self, subject_id: id } if subject_ids
+    subject_ids.each { |id| users_subjects.build :user => self, :subject_id => id } if subject_ids
     subject_ids
   end
   
+  # === Description
+  #
+  # Method used in the front end as a shortcut to show the full name of the user
+  #
+  # === Returns
+  #
+  # A string
+  #
   def full_name
     "#{self.name} #{self.surname}"
   end
   
+  # === Description
+  #
+  # Method used in the front end that returns the name of the first Location attached to the user
+  #
+  # === Returns
+  #
+  # A string
+  #
   def base_location
     self.location.name
   end
