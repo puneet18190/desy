@@ -616,12 +616,13 @@ href="NotificationsController.html#method-i-seen">NotificationsController#seen</
 
         <div class="method-description">
           
-          
+          <p>Initializes validation objects (see <a
+href="Valid.html#method-c-get_association">Valid.get_association</a>)</p>
           
 
           
           <div class="method-source-code" id="init_validation-source">
-            <pre><span class="ruby-comment"># File app/models/notification.rb, line 80</span>
+            <pre><span class="ruby-comment"># File app/models/notification.rb, line 81</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">init_validation</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-ivar">@notification</span> = <span class="ruby-constant">Valid</span>.<span class="ruby-identifier">get_association</span> <span class="ruby-keyword">self</span>, <span class="ruby-value">:id</span>
   <span class="ruby-ivar">@user</span> = <span class="ruby-constant">Valid</span>.<span class="ruby-identifier">get_association</span> <span class="ruby-keyword">self</span>, <span class="ruby-value">:user_id</span>
@@ -647,12 +648,12 @@ href="NotificationsController.html#method-i-seen">NotificationsController#seen</
 
         <div class="method-description">
           
-          
+          <p>Validates the presence of all the associated objects</p>
           
 
           
           <div class="method-source-code" id="validate_associations-source">
-            <pre><span class="ruby-comment"># File app/models/notification.rb, line 85</span>
+            <pre><span class="ruby-comment"># File app/models/notification.rb, line 87</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">validate_associations</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:user_id</span>, <span class="ruby-value">:doesnt_exist</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">nil?</span>
 <span class="ruby-keyword">end</span></pre>
@@ -677,12 +678,12 @@ href="NotificationsController.html#method-i-seen">NotificationsController#seen</
 
         <div class="method-description">
           
-          
+          <p>If not a new record, it validates that no field can be changed</p>
           
 
           
           <div class="method-source-code" id="validate_impossible_changes-source">
-            <pre><span class="ruby-comment"># File app/models/notification.rb, line 93</span>
+            <pre><span class="ruby-comment"># File app/models/notification.rb, line 97</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">validate_impossible_changes</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@notification</span>
     <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:seen</span>, <span class="ruby-value">:cant_be_switched_from_true_to_false</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@notification</span>.<span class="ruby-identifier">seen</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">seen</span>
@@ -711,12 +712,13 @@ href="NotificationsController.html#method-i-seen">NotificationsController#seen</
 
         <div class="method-description">
           
-          
+          <p>Validates that <code>seen</code> must be false if the notification is a new
+record</p>
           
 
           
           <div class="method-source-code" id="validate_seen-source">
-            <pre><span class="ruby-comment"># File app/models/notification.rb, line 89</span>
+            <pre><span class="ruby-comment"># File app/models/notification.rb, line 92</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">validate_seen</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:seen</span>, <span class="ruby-value">:must_be_false_if_new_record</span>) <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@notification</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">seen</span>
 <span class="ruby-keyword">end</span></pre>

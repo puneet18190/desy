@@ -397,35 +397,43 @@ class Slide < ActiveRecord::Base
   
   private
   
+  # Validates that the lesson is not exceeding the maximum number of slides
   def validate_max_number_slides # :doc:
     errors.add(:base, :too_many_slides) if @lesson && !@slide && Slide.where(:lesson_id => @lesson.id).count == SETTINGS['max_number_slides_in_a_lesson']
   end
   
+  # Extracts the media element at a given position
   def media_element_at(position) # :doc:
     MediaElementsSlide.where(:slide_id => self.id, :position => position).first
   end
   
+  # Validates that if the slide doesn't allow the +title+, it must be +nil+
   def validate_title # :doc:
     errors.add(:title, :must_be_null_in_this_slide) if !self.allows_title? && !self.title.nil?
   end
   
+  # Validates that if the slide doesn't allow the +text+, it must be +nil+
   def validate_text # :doc:
     errors.add(:text, :must_be_null_in_this_slide) if !self.allows_text? && !self.text.nil?
   end
   
+  # Checks if the slide is the cover of the lesson
   def is_cover # :doc:
     self.kind == COVER
   end
   
+  # Initializes validation objects (see Valid.get_association)
   def init_validation # :doc:
     @slide = Valid.get_association self, :id
     @lesson = Valid.get_association self, :lesson_id
   end
   
+  # Validates the presence of all the associated objects
   def validate_associations # :doc:
     errors.add(:lesson_id, :doesnt_exist) if @lesson.nil?
   end
   
+  # If the slide is not a new record, +lesson_id+ and +kind+ can't be changed; moreover, if it's the cover, the title can't be different by the title of the lesson
   def validate_impossible_changes # :doc:
     if @slide
       errors.add(:lesson_id, :cant_be_changed) if @slide.lesson_id != self.lesson_id

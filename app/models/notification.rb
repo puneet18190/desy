@@ -77,19 +77,23 @@ class Notification < ActiveRecord::Base
   
   private
   
+  # Initializes validation objects (see Valid.get_association)
   def init_validation # :doc:
     @notification = Valid.get_association self, :id
     @user = Valid.get_association self, :user_id
   end
   
+  # Validates the presence of all the associated objects
   def validate_associations # :doc:
     errors.add(:user_id, :doesnt_exist) if @user.nil?
   end
   
+  # Validates that +seen+ must be false if the notification is a new record
   def validate_seen # :doc:
     errors.add(:seen, :must_be_false_if_new_record) if !@notification && self.seen
   end
   
+  # If not a new record, it validates that no field can be changed
   def validate_impossible_changes # :doc:
     if @notification
       errors.add(:seen, :cant_be_switched_from_true_to_false) if @notification.seen && !self.seen
