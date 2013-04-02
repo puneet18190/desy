@@ -1359,7 +1359,7 @@ this using <a href="User.html#method-i-super_admin-3F">#super_admin?</a>)</p>
       <span class="ruby-keyword">end</span>
       <span class="ruby-constant">MediaElement</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">me</span><span class="ruby-operator">|</span>
         <span class="ruby-keyword">if</span> <span class="ruby-identifier">me</span>.<span class="ruby-identifier">is_public</span>
-          <span class="ruby-identifier">me</span>.<span class="ruby-identifier">user_id</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">admin</span>.<span class="ruby-identifier">id</span>
+          <span class="ruby-identifier">me</span>.<span class="ruby-identifier">user_id</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">admin</span>.<span class="ruby-identifier">id</span>
           <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">me</span>.<span class="ruby-identifier">save</span>
             <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:base</span>, <span class="ruby-value">:problem_destroying</span>)
             <span class="ruby-identifier">raise</span> <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Rollback</span>

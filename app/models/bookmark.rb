@@ -45,6 +45,7 @@ class Bookmark < ActiveRecord::Base
   
   private
   
+  # Initializes validation objects (see Valid.get_association)
   def init_validation # :doc:
     @user = Valid.get_association self, :user_id
     @bookmark = Valid.get_association self, :id
@@ -52,21 +53,26 @@ class Bookmark < ActiveRecord::Base
     @media_element = self.bookmarkable_type == 'MediaElement' ? Valid.get_association(self, :bookmarkable_id, MediaElement) : nil
   end
   
+  # True if +bookmarkable_type+ is in the correct syntax
   def good_bookmarkable_type # :doc:
     ['Lesson', 'MediaElement'].include? self.bookmarkable_type
   end
   
+  # Validates the presence of all the associated elements
   def validate_associations # :doc:
     errors.add(:user_id, :doesnt_exist) if @user.nil?
     errors.add(:bookmarkable_id, :lesson_doesnt_exist) if self.bookmarkable_type == 'Lesson' && @lesson.nil?
     errors.add(:bookmarkable_id, :media_element_doesnt_exist) if self.bookmarkable_type == 'MediaElement' && @media_element.nil?
   end
   
+  # For lessons, validates that it doesn't belong to the user and that it's public
+  # For elements, it validates that the element is public
   def validate_availability # :doc:
     errors.add(:bookmarkable_id, :lesson_not_available_for_bookmarks) if @lesson && (@lesson.user_id == self.user_id || !@lesson.is_public)
     errors.add(:bookmarkable_id, :media_element_not_available_for_bookmarks) if @media_element && !@media_element.is_public
   end
   
+  # Callback that destroys the associated record of VirtualClassroomLesson
   def destroy_virtual_classroom # :doc:
     return if self.new_record?
     bookmark_me = Bookmark.find self.id
@@ -77,6 +83,7 @@ class Bookmark < ActiveRecord::Base
     return false if VirtualClassroomLesson.where(:lesson_id => bookmark_me.bookmarkable_id, :user_id => bookmark_me.user_id).any?
   end
   
+  # If not new record, none of the fields can be changed
   def validate_impossible_changes # :doc:
     if @bookmark
       errors.add(:user_id, :cant_be_changed) if self.user_id != @bookmark.user_id
