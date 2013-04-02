@@ -3613,32 +3613,16 @@ if <code>nil</code> it empties the cache)</p>
 
         <div class="method-description">
           
-          
+          <p>Validates the correct format of the email (see <a
+href="Valid.html#method-c-email-3F">Valid.email?</a>)</p>
           
 
           
           <div class="method-source-code" id="validate_email-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 1369</span>
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 1370</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">validate_email</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">email</span>.<span class="ruby-identifier">blank?</span>
-  <span class="ruby-identifier">flag</span> = <span class="ruby-keyword">false</span>
-  <span class="ruby-identifier">flag</span> = <span class="ruby-keyword">true</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span>(<span class="ruby-regexp">/ /</span> <span class="ruby-operator">=~</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">email</span>).<span class="ruby-identifier">nil?</span>
-  <span class="ruby-identifier">x</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">email</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;@&#39;</span>)
-  <span class="ruby-keyword">if</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">==</span> <span class="ruby-value">2</span>
-    <span class="ruby-identifier">flag</span> = <span class="ruby-keyword">true</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">x</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">blank?</span>
-    <span class="ruby-identifier">x</span> = <span class="ruby-identifier">x</span>[<span class="ruby-value">1</span>].<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;.&#39;</span>)
-    <span class="ruby-keyword">if</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>
-      <span class="ruby-identifier">x</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">comp</span><span class="ruby-operator">|</span>
-        <span class="ruby-identifier">flag</span> = <span class="ruby-keyword">true</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">comp</span>.<span class="ruby-identifier">blank?</span>
-      <span class="ruby-keyword">end</span>
-      <span class="ruby-identifier">flag</span> = <span class="ruby-keyword">true</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">last</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">2</span>
-    <span class="ruby-keyword">else</span>
-      <span class="ruby-identifier">flag</span> = <span class="ruby-keyword">true</span>
-    <span class="ruby-keyword">end</span>
-  <span class="ruby-keyword">else</span>
-    <span class="ruby-identifier">flag</span> = <span class="ruby-keyword">true</span>
-  <span class="ruby-keyword">end</span>
-  <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:email</span>, <span class="ruby-value">:not_a_valid_email</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">flag</span>
+  <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:email</span>, <span class="ruby-value">:not_a_valid_email</span>) <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">Valid</span>.<span class="ruby-identifier">email?</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">email</span>)
 <span class="ruby-keyword">end</span></pre>
           </div><!-- validate_email-source -->
           

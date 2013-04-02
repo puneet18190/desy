@@ -1,4 +1,4 @@
-Tue, 02 Apr 2013 14:45:15 +0200
+Tue, 02 Apr 2013 15:05:21 +0200
 doc/README_FOR_APP	Fri, 29 Mar 2013 14:50:55 +0100
 app/controllers/admin/dashboard_controller.rb	Fri, 22 Mar 2013 09:52:00 +0100
 app/controllers/admin/lessons_controller.rb	Fri, 22 Mar 2013 16:43:21 +0100
@@ -36,11 +36,11 @@ app/models/audio.rb	Fri, 29 Mar 2013 14:09:54 +0100
 app/models/bookmark.rb	Tue, 02 Apr 2013 14:35:56 +0200
 app/models/image.rb	Tue, 02 Apr 2013 14:39:00 +0200
 app/models/lesson.rb	Tue, 02 Apr 2013 14:45:06 +0200
-app/models/like.rb	Tue, 02 Apr 2013 11:47:55 +0200
+app/models/like.rb	Tue, 02 Apr 2013 14:47:26 +0200
 app/models/location.rb	Fri, 29 Mar 2013 14:17:54 +0100
-app/models/mailing_list_address.rb	Tue, 02 Apr 2013 11:48:12 +0200
+app/models/mailing_list_address.rb	Tue, 02 Apr 2013 15:04:15 +0200
 app/models/mailing_list_group.rb	Tue, 02 Apr 2013 11:48:21 +0200
-app/models/media_element.rb	Tue, 02 Apr 2013 14:31:51 +0200
+app/models/media_element.rb	Tue, 02 Apr 2013 15:04:46 +0200
 app/models/media_elements_slide.rb	Tue, 02 Apr 2013 11:49:11 +0200
 app/models/notification.rb	Tue, 02 Apr 2013 11:49:20 +0200
 app/models/report.rb	Tue, 02 Apr 2013 11:49:29 +0200
@@ -49,7 +49,7 @@ app/models/slide.rb	Tue, 02 Apr 2013 11:49:48 +0200
 app/models/subject.rb	Fri, 29 Mar 2013 16:04:42 +0100
 app/models/tag.rb	Tue, 02 Apr 2013 11:50:00 +0200
 app/models/tagging.rb	Tue, 02 Apr 2013 11:50:08 +0200
-app/models/user.rb	Tue, 02 Apr 2013 14:29:59 +0200
+app/models/user.rb	Tue, 02 Apr 2013 14:58:59 +0200
 app/models/users_subject.rb	Tue, 02 Apr 2013 12:27:11 +0200
 app/models/video.rb	Tue, 02 Apr 2013 12:44:28 +0200
 app/models/virtual_classroom_lesson.rb	Tue, 02 Apr 2013 14:14:59 +0200
@@ -67,7 +67,7 @@ lib/autoload/statuses.rb	Tue, 19 Mar 2013 16:18:06 +0100
 lib/autoload/time_convert.rb	Fri, 22 Mar 2013 17:26:49 +0100
 lib/autoload/user/authentication.rb	Tue, 19 Mar 2013 18:10:09 +0100
 lib/autoload/user/confirmation.rb	Thu, 14 Mar 2013 16:47:56 +0100
-lib/autoload/valid.rb	Fri, 08 Feb 2013 11:44:15 +0100
+lib/autoload/valid.rb	Tue, 02 Apr 2013 14:59:06 +0200
 lib/controller_info.rb	Thu, 14 Mar 2013 16:47:56 +0100
 lib/dumpable.rb	Thu, 14 Mar 2013 16:47:56 +0100
 lib/env_relative_path.rb	Fri, 08 Feb 2013 11:44:15 +0100
