@@ -11,6 +11,9 @@ module Media
     def run(stdout = :dev_null, stderr = :dev_null)
       stdout = %w(/dev/null w) if stdout == :dev_null
       stderr = %w(/dev/null w) if stderr == :dev_null
+
+      File.write(stdout[0], "#{cmd}\n\n") if stdout.is_a?(Array) && stdout[1] == 'a'
+
       @subexec = Subexec.run cmd, subexec_options.merge(stdout: stdout, stderr: stderr)
     end
 

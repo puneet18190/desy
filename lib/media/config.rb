@@ -3,6 +3,9 @@ require 'recursive_open_struct'
 
 module Media
 
+  #
+  # See Media section: configuration for details about the configuration.
+  #
   CONFIG = RecursiveOpenStruct.new({
     tmp_prefix: "desy#{::Thread.current.object_id}",
     avtools: {

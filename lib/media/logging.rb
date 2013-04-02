@@ -10,7 +10,7 @@ module Media
     include EnvRelativePath
 
     def self.remove_folder!
-      FileUtils.rm_rf env_relative_path Rails.root.join('log', to_s.split('::').take(1).join('::').underscore).to_s
+      FileUtils.rm_rf Rails.root.join('log', to_s.split('::').take(1).join('::').underscore).to_s
     end
 
     module ClassMethods

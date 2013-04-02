@@ -480,6 +480,14 @@
 
   <div id="description" class="description">
     
+<h2 id="label-Description">Description</h2>
+
+<p>Main module of the media managing and editing implementation.</p>
+
+<h3 id="label-Configuration">Configuration</h3>
+
+<p>For details about the configuration, see Media::CONFIG .</p>
+
 <p>Per ora non è utilizzata, ma servirà in fase di editor audio</p>
 
   </div><!-- description -->
@@ -500,7 +508,8 @@
       
         <dt id="CONFIG">CONFIG
         
-        <dd class="description">
+        <dd class="description"><p>See <a href="Media.html">Media</a> section: configuration for details about
+the configuration.</p>
         
       
         <dt id="RAILS_PUBLIC_FOLDER">RAILS_PUBLIC_FOLDER
@@ -541,7 +550,7 @@
 
           
           <div class="method-source-code" id="ubuntu_install-source">
-            <pre><span class="ruby-comment"># File lib/media.rb, line 14</span>
+            <pre><span class="ruby-comment"># File lib/media.rb, line 24</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">ubuntu_install</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-node">%xsudo apt-get install #{ubuntu_packages.map(&amp;:shellescape).join(&#39; &#39;)} 2&gt;&amp;1`</span>
 <span class="ruby-keyword">end</span></pre>
@@ -571,10 +580,10 @@
 
           
           <div class="method-source-code" id="ubuntu_packages-source">
-            <pre><span class="ruby-comment"># File lib/media.rb, line 9</span>
+            <pre><span class="ruby-comment"># File lib/media.rb, line 19</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">ubuntu_packages</span>
   <span class="ruby-comment"># XXX postgresql-contrib-9.2 non dovrebbe stare qui!!!</span>
-  <span class="ruby-node">%w(libav-tools libavcodec-extra-53 mkvtoolnix sox lame postgresql-contrib-9.2)</span>
+  <span class="ruby-node">%w( libav-tools libavcodec-extra-53 mkvtoolnix sox lame postgresql-contrib-9.2 )</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- ubuntu_packages-source -->
           

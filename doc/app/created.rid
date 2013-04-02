@@ -1,4 +1,4 @@
-Tue, 02 Apr 2013 10:33:49 +0200
+Tue, 02 Apr 2013 10:35:11 +0200
 doc/README_FOR_APP	Fri, 29 Mar 2013 14:50:55 +0100
 app/controllers/admin/dashboard_controller.rb	Fri, 22 Mar 2013 09:52:00 +0100
 app/controllers/admin/lessons_controller.rb	Fri, 22 Mar 2013 16:43:21 +0100
@@ -73,7 +73,7 @@ lib/dumpable.rb	Thu, 14 Mar 2013 16:47:56 +0100
 lib/env_relative_path.rb	Fri, 08 Feb 2013 11:44:15 +0100
 lib/errors_logger.rb	Thu, 14 Mar 2013 16:47:56 +0100
 lib/exception_notifier_job.rb	Thu, 14 Mar 2013 16:47:56 +0100
-lib/media.rb	Fri, 15 Mar 2013 12:05:42 +0100
+lib/media.rb	Tue, 02 Apr 2013 10:34:17 +0200
 lib/media/audio.rb	Tue, 05 Mar 2013 14:24:00 +0100
 lib/media/audio/editing.rb	Thu, 14 Mar 2013 16:47:56 +0100
 lib/media/audio/editing/cmd.rb	Fri, 08 Feb 2013 11:44:15 +0100
@@ -91,10 +91,10 @@ lib/media/audio/editing/crop.rb	Fri, 08 Feb 2013 11:44:15 +0100
 lib/media/audio/editing/parameters.rb	Fri, 08 Feb 2013 11:44:15 +0100
 lib/media/audio/uploader.rb	Thu, 14 Mar 2013 16:47:56 +0100
 lib/media/audio/uploader/validation.rb	Thu, 14 Mar 2013 16:47:56 +0100
-lib/media/cmd.rb	Fri, 08 Feb 2013 11:44:15 +0100
+lib/media/cmd.rb	Tue, 02 Apr 2013 10:34:17 +0200
 lib/media/cmd/avconv.rb	Thu, 28 Mar 2013 14:27:19 +0100
 lib/media/cmd/avprobe.rb	Fri, 08 Feb 2013 11:44:15 +0100
-lib/media/config.rb	Fri, 15 Mar 2013 09:23:50 +0100
+lib/media/config.rb	Tue, 02 Apr 2013 10:34:17 +0200
 lib/media/error.rb	Fri, 08 Feb 2013 11:44:15 +0100
 lib/media/image.rb	Fri, 08 Feb 2013 11:44:15 +0100
 lib/media/image/editing.rb	Fri, 08 Feb 2013 11:44:15 +0100
@@ -105,7 +105,7 @@ lib/media/image/editing/crop.rb	Fri, 08 Feb 2013 11:44:15 +0100
 lib/media/image/editing/resize_to_fill.rb	Fri, 08 Feb 2013 11:44:15 +0100
 lib/media/in_tmp_dir.rb	Wed, 20 Mar 2013 14:38:31 +0100
 lib/media/info.rb	Fri, 15 Mar 2013 09:23:50 +0100
-lib/media/logging.rb	Fri, 15 Mar 2013 15:47:21 +0100
+lib/media/logging.rb	Tue, 02 Apr 2013 10:34:17 +0200
 lib/media/shared.rb	Thu, 14 Mar 2013 16:47:56 +0100
 lib/media/similar_durations.rb	Thu, 14 Mar 2013 16:47:56 +0100
 lib/media/thread.rb	Thu, 21 Mar 2013 09:54:09 +0100
