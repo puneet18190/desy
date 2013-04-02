@@ -284,7 +284,7 @@ class Lesson < ActiveRecord::Base
   #
   # === Returns
   #
-  # A string, or a keyword representing the status (see Statuses)
+  # A string, or a keyword representing the status (see Statuses and LessonsMediaElementsShared)
   #
   def status(with_captions=false)
     @status.nil? ? nil : (with_captions ? Lesson.status(@status) : @status)

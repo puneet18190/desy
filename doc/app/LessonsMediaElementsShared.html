@@ -446,12 +446,16 @@
         <div class="method-description">
           
           <p>Translation of the filter of a lesson or of an element (see <a
-href="Filters.html">Filters</a>)</p>
+href="Filters.html">Filters</a>). Example of usage:</p>
+
+<pre>&lt;% Filters::LESSONS_SET.each do |f| %&gt;
+  &lt;%= Lesson.filter(f) %&gt;
+&lt;% end %&gt;</pre>
           
 
           
           <div class="method-source-code" id="filter-source">
-            <pre><span class="ruby-comment"># File lib/autoload/lessons_media_elements_shared.rb, line 10</span>
+            <pre><span class="ruby-comment"># File lib/autoload/lessons_media_elements_shared.rb, line 13</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">filter</span>(<span class="ruby-identifier">f</span>)
   <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-node">&quot;filters.#{f}&quot;</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -477,12 +481,16 @@ href="Filters.html">Filters</a>)</p>
         <div class="method-description">
           
           <p>Translation of the search order of a lesson or of an element (see <a
-href="SearchOrders.html">SearchOrders</a>)</p>
+href="SearchOrders.html">SearchOrders</a>). Example of usage:</p>
+
+<pre>&lt;% SearchOrders::LESSONS_SET.each do |so| %&gt;
+  &lt;%= Lesson.search_order(so) %&gt;
+&lt;% end %&gt;</pre>
           
 
           
           <div class="method-source-code" id="search_order-source">
-            <pre><span class="ruby-comment"># File lib/autoload/lessons_media_elements_shared.rb, line 15</span>
+            <pre><span class="ruby-comment"># File lib/autoload/lessons_media_elements_shared.rb, line 21</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">search_order</span>(<span class="ruby-identifier">so</span>)
   <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-node">&quot;orders.#{so}&quot;</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -508,7 +516,8 @@ href="SearchOrders.html">SearchOrders</a>)</p>
         <div class="method-description">
           
           <p>Translation of the status of a lesson or of an element (see <a
-href="Statuses.html">Statuses</a>)</p>
+href="Statuses.html">Statuses</a>). For an example of usage see <a
+href="Lesson.html#method-i-status">Lesson#status</a></p>
           
 
           
