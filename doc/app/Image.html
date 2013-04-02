@@ -1214,12 +1214,12 @@ href="ImageEditorController.html#method-i-undo">ImageEditorController#undo</a>.<
 
         <div class="method-description">
           
-          
+          <p>Sets the <code>height</code> in <code>metadata</code></p>
           
 
           
           <div class="method-source-code" id="height-3D-source">
-            <pre><span class="ruby-comment"># File app/models/image.rb, line 309</span>
+            <pre><span class="ruby-comment"># File app/models/image.rb, line 311</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">height=</span>(<span class="ruby-identifier">height</span>) <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">height</span> = <span class="ruby-identifier">height</span>
 <span class="ruby-keyword">end</span></pre>
@@ -1244,12 +1244,12 @@ href="ImageEditorController.html#method-i-undo">ImageEditorController#undo</a>.<
 
         <div class="method-description">
           
-          
+          <p>Sets <code>converted</code> to true</p>
           
 
           
           <div class="method-source-code" id="set_converted_to_true-source">
-            <pre><span class="ruby-comment"># File app/models/image.rb, line 318</span>
+            <pre><span class="ruby-comment"># File app/models/image.rb, line 322</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">set_converted_to_true</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">converted</span> = <span class="ruby-keyword">true</span>
   <span class="ruby-keyword">true</span>
@@ -1275,12 +1275,13 @@ href="ImageEditorController.html#method-i-undo">ImageEditorController#undo</a>.<
 
         <div class="method-description">
           
-          
+          <p>Sets <code>width</code> and <code>height</code> according to the data
+contained in <code>media</code></p>
           
 
           
           <div class="method-source-code" id="set_width_and_height-source">
-            <pre><span class="ruby-comment"># File app/models/image.rb, line 313</span>
+            <pre><span class="ruby-comment"># File app/models/image.rb, line 316</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">set_width_and_height</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">width</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">height</span> = <span class="ruby-identifier">media</span>.<span class="ruby-identifier">width</span>, <span class="ruby-identifier">media</span>.<span class="ruby-identifier">height</span>
   <span class="ruby-keyword">true</span>
@@ -1306,12 +1307,12 @@ href="ImageEditorController.html#method-i-undo">ImageEditorController#undo</a>.<
 
         <div class="method-description">
           
-          
+          <p>Sets the <code>width</code> in <code>metadata</code></p>
           
 
           
           <div class="method-source-code" id="width-3D-source">
-            <pre><span class="ruby-comment"># File app/models/image.rb, line 305</span>
+            <pre><span class="ruby-comment"># File app/models/image.rb, line 306</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">width=</span>(<span class="ruby-identifier">width</span>) <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">width</span> = <span class="ruby-identifier">width</span>
 <span class="ruby-keyword">end</span></pre>

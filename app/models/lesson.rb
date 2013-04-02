@@ -757,22 +757,27 @@ class Lesson < ActiveRecord::Base
   
   private
   
+  # Validates that the tags are at least the number configured in settings.yml, unless the attribute +validating_in_form+ is false
   def validate_tags_length # :doc:
     errors.add(:tags, :are_not_enough) if @validating_in_form && @inner_tags.length < SETTINGS['min_tags_for_item']
   end
   
+  # Extracts the corresponding button depending on the fact that the lesson is in the Virtual Classroom or not
   def virtual_classroom_button # :doc:
     @in_vc ? Buttons::REMOVE_VIRTUAL_CLASSROOM : Buttons::ADD_VIRTUAL_CLASSROOM
   end
   
+  # Extracts the corresponding button depending on the fact that the lesson is liked by the user or not
   def like_button # :doc:
     @liked ? Buttons::DISLIKE : Buttons::LIKE
   end
   
+  # Checks if +parent_id+ != +nil+
   def present_parent_id # :doc:
     self.parent_id
   end
   
+  # Validates the presence of all the associated elements; only for +parent_id+, it's allowed +nil+, and if not +nil+ it's checked that it's not the lesson itself
   def validate_associations # :doc:
     errors.add(:user_id, :doesnt_exist) if @user.nil?
     errors.add(:subject_id, :doesnt_exist) if @subject.nil?
@@ -781,6 +786,7 @@ class Lesson < ActiveRecord::Base
     errors.add(:parent_id, :cant_be_the_lesson_itself) if @lesson && self.parent_id == @lesson.id
   end
   
+  # Callback that updates the taggings associated to the lesson. If the corresponding Tag doesn't exist yet, it's created
   def update_or_create_tags # :doc:
     return true unless @inner_tags
     words = []
@@ -801,6 +807,7 @@ class Lesson < ActiveRecord::Base
     end
   end
   
+  # Initializes validation objects (see Valid.get_association). It's initialized also the private attribute +inner_tags+
   def init_validation # :doc:
     @lesson = Valid.get_association self, :id
     @user = Valid.get_association self, :user_id
@@ -828,6 +835,7 @@ class Lesson < ActiveRecord::Base
     end
   end
   
+  # Callback that creates or updates the cover after save
   def create_or_update_cover # :doc:
     if @lesson.nil?
       slide = Slide.new :title => self.title, :position => 1
@@ -841,14 +849,17 @@ class Lesson < ActiveRecord::Base
     end
   end
   
+  # Validates that a new lesson can't be public
   def validate_public # :doc:
     errors.add(:is_public, :cant_be_true_for_new_records) if @lesson.nil? && self.is_public
   end
   
+  # Validates that a lesson just copied can't be public
   def validate_copied_not_modified_and_public # :doc:
     errors.add(:copied_not_modified, :cant_be_true_if_public) if self.is_public && self.copied_not_modified
   end
   
+  # Validates that if the lesson is not new record the fields +token+, +user_id+, +parent_id+ cannot be changed
   def validate_impossible_changes # :doc:
     if @lesson
       errors.add(:token, :cant_be_changed) if @lesson.token != self.token
@@ -857,6 +868,7 @@ class Lesson < ActiveRecord::Base
     end
   end
   
+  # Callback that creates a random secure token and sets is as the +token+ of the lesson
   def create_token # :doc:
     self.token = SecureRandom.urlsafe_base64(16)
     true
