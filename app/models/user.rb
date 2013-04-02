@@ -1357,17 +1357,20 @@ class User < ActiveRecord::Base
     return resp
   end
   
+  # Initializes validation objects (see Valid.get_association)
   def init_validation # :doc:
     @user = Valid.get_association self, :id
     @school_level = Valid.get_association self, :school_level_id
   end
   
+  # Validates the presence of all the associated objects
   def validate_associations # :doc:
     errors.add :school_level_id, :doesnt_exist if @school_level.nil?
     @location = Valid.get_association self, :location_id
     errors.add :location_id, :doesnt_exist if @location.nil? || @location.sti_type != SETTINGS['location_types'].last
   end
   
+  # If the user is not new, it validates that the email didn't change
   def validate_email_not_changed # :doc:
     errors.add :email, :changed if changed.include? 'email'
   end
