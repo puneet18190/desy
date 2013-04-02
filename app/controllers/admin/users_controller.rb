@@ -1,6 +1,5 @@
 class Admin::UsersController < AdminController
   
-  before_filter :find_user, :only => [:show, :destroy]
   layout 'admin'
   
   def index
@@ -14,6 +13,7 @@ class Admin::UsersController < AdminController
   end
   
   def show
+    @user = User.find(params[:id])
     Statistics.user = @user
     @user_lessons        = Lesson.where(:user_id => @user.id).order('updated_at DESC').limit(10)
     @user_elements       = MediaElement.where(:user_id => @user.id).order('updated_at DESC').limit(10)
@@ -25,6 +25,7 @@ class Admin::UsersController < AdminController
   end
   
   def destroy
+    @user = User.find(params[:id])
     @user.destroy_with_dependencies
   end
   
@@ -56,12 +57,6 @@ class Admin::UsersController < AdminController
     @user.active = true
     @user.save
     redirect_to admin_user_path(@user)
-  end
-  
-  private
-  
-  def find_user # :doc:
-    @user = User.find(params[:id])
   end
   
 end
