@@ -34,7 +34,7 @@
 #
 # == Validations
 #
-# qui andranno le validazioni User#get_tags_associated_to_lesson_search
+# * *correctness* of +email+ as an e-mail address
 #
 class User < ActiveRecord::Base
   
@@ -81,10 +81,9 @@ class User < ActiveRecord::Base
   validates_presence_of :users_subjects
   validates_uniqueness_of :email
   validates_length_of :name, :surname, :email, :maximum => 255
-  
   validates_length_of :password, PASSWORD_LENGTH_CONSTRAINTS.merge(:on => :create, :unless => proc { |record| record.encrypted_password.present? })
   validates_length_of :password, PASSWORD_LENGTH_CONSTRAINTS.merge(:on => :update, :allow_nil => true, :allow_blank => true)
-  validates_inclusion_of :active, :in => [true, false]
+  validates_inclusion_of :active, :confirmed, :in => [true, false]
   validate :validate_associations, :validate_email
   validate :validate_email_not_changed, :on => :update
   REGISTRATION_POLICIES.each do |policy|
