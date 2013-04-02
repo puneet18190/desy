@@ -1,3 +1,15 @@
+# == Description
+#
+# Controller for users in the administration section (see AdminController).
+#
+# == Models used
+#
+# * AdminSearchForm
+# * Location
+# * User
+# * Lesson
+# * MediaElement
+#
 class Admin::UsersController < AdminController
   
   layout 'admin'
@@ -29,6 +41,10 @@ class Admin::UsersController < AdminController
     @user.destroy_with_dependencies
   end
   
+  # === Mode
+  #
+  # Json
+  #
   def get_full_names
     @users = User.get_full_names(params[:term])
     render :json => @users
