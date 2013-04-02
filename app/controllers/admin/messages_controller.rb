@@ -24,7 +24,7 @@ class Admin::MessagesController < AdminController
   #
   # === Specific filters
   #
-  # ApplicationController#admin_authentication
+  # * ApplicationController#admin_authentication
   #
   def new_notification
     @locations = [Location.roots]
@@ -47,7 +47,7 @@ class Admin::MessagesController < AdminController
   #
   # === Specific filters
   #
-  # ApplicationController#admin_authentication
+  # * ApplicationController#admin_authentication
   #
   def filter_users
     if params[:search].present?
@@ -77,7 +77,7 @@ class Admin::MessagesController < AdminController
   #
   # === Specific filters
   #
-  # ApplicationController#admin_authentication
+  # * ApplicationController#admin_authentication
   #
   def reports
     @elements_reports = Report.order('created_at DESC').where(:reportable_type => 'MediaElement').page(params[:elements_page])

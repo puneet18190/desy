@@ -20,7 +20,7 @@ class Admin::ReportsController < AdminController
   #
   # === Specific filters
   #
-  # ApplicationController#admin_authenticate
+  # * ApplicationController#admin_authenticate
   #
   def accept
     @ok = correct_integer? params[:id]
@@ -40,7 +40,7 @@ class Admin::ReportsController < AdminController
   #
   # === Specific filters
   #
-  # ApplicationController#admin_authenticate
+  # * ApplicationController#admin_authenticate
   #
   def decline
     @ok = correct_integer? params[:id]

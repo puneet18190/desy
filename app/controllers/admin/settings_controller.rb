@@ -13,41 +13,137 @@ class Admin::SettingsController < AdminController
   
   layout 'admin'
   
+  # === Description
+  #
+  # Main subpage to manage subjects
+  #
+  # === Mode
+  #
+  # Html
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#admin_authenticate
+  #
   def subjects
     @subjects = Subject.all
   end
   
+  # === Description
+  #
+  # Action that creates a new subject
+  #
+  # === Mode
+  #
+  # Html
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#admin_authenticate
+  #
   def new_subject
     Subject.create(:description => params[:description]) if params[:description]
     redirect_to '/admin/settings/subjects'
   end
   
+  # === Description
+  #
+  # Action that deletes a subject; it's possible to do it only if the subject doesn't have associated users or lessons (see Subject#is_deletable?)
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#admin_authenticate
+  #
   def delete_subject
     @id = params[:id]
     subject = Subject.find(@id)
     subject.destroy if subject.is_deletable?
   end
   
+  # === Description
+  #
+  # Main subpage to manage school levels
+  #
+  # === Mode
+  #
+  # Html
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#admin_authenticate
+  #
   def school_levels
     @school_levels = SchoolLevel.all
   end
   
+  # === Description
+  #
+  # Action that creates a new school level
+  #
+  # === Mode
+  #
+  # Html
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#admin_authenticate
+  #
   def new_school_level
     SchoolLevel.create(:description => params[:description]) if params[:description]
     redirect_to '/admin/settings/school_levels'
   end
   
+  # === Description
+  #
+  # Action that deletes a school level; it's possible to do it only if the school level doesn't have associated users or lessons (see SchoolLevel#is_deletable?)
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#admin_authenticate
+  #
   def delete_school_level
     @id = params[:id]
     level = SchoolLevel.find(@id)
     level.destroy if level.is_deletable?
   end
   
+  # === Description
+  #
+  # Main subpage to manage tags
+  #
+  # === Mode
+  #
+  # Html
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#admin_authenticate
+  #
   def tags
     tags = params[:search] ? AdminSearchForm.search_tags(params[:search]) : Tag.order('created_at DESC')
     @tags = tags.page(params[:page])
   end
   
+  # === Description
+  #
+  # Action that deletes a tag; with the cascade destruction, all taggings are destroyed too (in this case it's not validated the minimum amount of tags)
+  #
+  # === Mode
+  #
+  # Html
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#admin_authenticate
+  #
   def delete_tag
     if correct_integer? params[:id]
       @id = params[:id].to_i
@@ -57,11 +153,35 @@ class Admin::SettingsController < AdminController
     redirect_to params[:back_url]
   end
   
+  # === Description
+  #
+  # 'Show' action for all the lessons associated to a given tag
+  #
+  # === Mode
+  #
+  # Html
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#admin_authenticate
+  #
   def lessons_for_tag
     @tag = Tag.find(params[:id])
     @lessons = @tag.get_lessons(params[:page])
   end
   
+  # === Description
+  #
+  # 'Show' action for all the elements associated to a given tag
+  #
+  # === Mode
+  #
+  # Html
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#admin_authenticate
+  #
   def media_elements_for_tag
     @tag = Tag.find(params[:id])
     @media_elements = @tag.get_media_elements(params[:page])

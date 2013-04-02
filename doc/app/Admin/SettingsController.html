@@ -480,12 +480,26 @@ href="../AdminController.html">AdminController</a></p>
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-delete_school_level-label-Description">Description</h3>
+
+<p>Action that deletes a school level; it&#39;s possible to do it only if the
+school level doesn&#39;t have associated users or lessons (see <a
+href="../SchoolLevel.html#method-i-is_deletable-3F">SchoolLevel#is_deletable?</a>)</p>
+
+<h3 id="method-i-delete_school_level-label-Mode">Mode</h3>
+
+<p>Ajax</p>
+
+<h3 id="method-i-delete_school_level-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p><a
+href="../ApplicationController.html#method-i-admin_authenticate">ApplicationController#admin_authenticate</a></p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="delete_school_level-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/settings_controller.rb, line 40</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/settings_controller.rb, line 112</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">delete_school_level</span>
   <span class="ruby-ivar">@id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>]
   <span class="ruby-identifier">level</span> = <span class="ruby-constant">SchoolLevel</span>.<span class="ruby-identifier">find</span>(<span class="ruby-ivar">@id</span>)
@@ -512,12 +526,26 @@ href="../AdminController.html">AdminController</a></p>
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-delete_subject-label-Description">Description</h3>
+
+<p>Action that deletes a subject; it&#39;s possible to do it only if the
+subject doesn&#39;t have associated users or lessons (see <a
+href="../Subject.html#method-i-is_deletable-3F">Subject#is_deletable?</a>)</p>
+
+<h3 id="method-i-delete_subject-label-Mode">Mode</h3>
+
+<p>Ajax</p>
+
+<h3 id="method-i-delete_subject-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p><a
+href="../ApplicationController.html#method-i-admin_authenticate">ApplicationController#admin_authenticate</a></p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="delete_subject-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/settings_controller.rb, line 25</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/settings_controller.rb, line 61</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">delete_subject</span>
   <span class="ruby-ivar">@id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>]
   <span class="ruby-identifier">subject</span> = <span class="ruby-constant">Subject</span>.<span class="ruby-identifier">find</span>(<span class="ruby-ivar">@id</span>)
@@ -544,12 +572,26 @@ href="../AdminController.html">AdminController</a></p>
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-delete_tag-label-Description">Description</h3>
+
+<p>Action that deletes a tag; with the cascade destruction, all taggings are
+destroyed too (in this case it&#39;s not validated the minimum amount of
+tags)</p>
+
+<h3 id="method-i-delete_tag-label-Mode">Mode</h3>
+
+<p>Html</p>
+
+<h3 id="method-i-delete_tag-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p><a
+href="../ApplicationController.html#method-i-admin_authenticate">ApplicationController#admin_authenticate</a></p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="delete_tag-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/settings_controller.rb, line 51</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/settings_controller.rb, line 147</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">delete_tag</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">correct_integer?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>]
     <span class="ruby-ivar">@id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>].<span class="ruby-identifier">to_i</span>
@@ -579,12 +621,24 @@ href="../AdminController.html">AdminController</a></p>
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-lessons_for_tag-label-Description">Description</h3>
+
+<p>&#39;Show&#39; action for all the lessons associated to a given tag</p>
+
+<h3 id="method-i-lessons_for_tag-label-Mode">Mode</h3>
+
+<p>Html</p>
+
+<h3 id="method-i-lessons_for_tag-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p><a
+href="../ApplicationController.html#method-i-admin_authenticate">ApplicationController#admin_authenticate</a></p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="lessons_for_tag-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/settings_controller.rb, line 60</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/settings_controller.rb, line 168</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">lessons_for_tag</span>
   <span class="ruby-ivar">@tag</span> = <span class="ruby-constant">Tag</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-ivar">@lessons</span> = <span class="ruby-ivar">@tag</span>.<span class="ruby-identifier">get_lessons</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>])
@@ -610,12 +664,24 @@ href="../AdminController.html">AdminController</a></p>
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-media_elements_for_tag-label-Description">Description</h3>
+
+<p>&#39;Show&#39; action for all the elements associated to a given tag</p>
+
+<h3 id="method-i-media_elements_for_tag-label-Mode">Mode</h3>
+
+<p>Html</p>
+
+<h3 id="method-i-media_elements_for_tag-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p><a
+href="../ApplicationController.html#method-i-admin_authenticate">ApplicationController#admin_authenticate</a></p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="media_elements_for_tag-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/settings_controller.rb, line 65</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/settings_controller.rb, line 185</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">media_elements_for_tag</span>
   <span class="ruby-ivar">@tag</span> = <span class="ruby-constant">Tag</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-ivar">@media_elements</span> = <span class="ruby-ivar">@tag</span>.<span class="ruby-identifier">get_media_elements</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>])
@@ -641,12 +707,24 @@ href="../AdminController.html">AdminController</a></p>
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-new_school_level-label-Description">Description</h3>
+
+<p>Action that creates a new school level</p>
+
+<h3 id="method-i-new_school_level-label-Mode">Mode</h3>
+
+<p>Html</p>
+
+<h3 id="method-i-new_school_level-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p><a
+href="../ApplicationController.html#method-i-admin_authenticate">ApplicationController#admin_authenticate</a></p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="new_school_level-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/settings_controller.rb, line 35</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/settings_controller.rb, line 95</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new_school_level</span>
   <span class="ruby-constant">SchoolLevel</span>.<span class="ruby-identifier">create</span>(<span class="ruby-value">:description</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:description</span>]) <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:description</span>]
   <span class="ruby-identifier">redirect_to</span> <span class="ruby-string">&#39;/admin/settings/school_levels&#39;</span>
@@ -672,12 +750,24 @@ href="../AdminController.html">AdminController</a></p>
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-new_subject-label-Description">Description</h3>
+
+<p>Action that creates a new subject</p>
+
+<h3 id="method-i-new_subject-label-Mode">Mode</h3>
+
+<p>Html</p>
+
+<h3 id="method-i-new_subject-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p><a
+href="../ApplicationController.html#method-i-admin_authenticate">ApplicationController#admin_authenticate</a></p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="new_subject-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/settings_controller.rb, line 20</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/settings_controller.rb, line 44</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new_subject</span>
   <span class="ruby-constant">Subject</span>.<span class="ruby-identifier">create</span>(<span class="ruby-value">:description</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:description</span>]) <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:description</span>]
   <span class="ruby-identifier">redirect_to</span> <span class="ruby-string">&#39;/admin/settings/subjects&#39;</span>
@@ -703,12 +793,24 @@ href="../AdminController.html">AdminController</a></p>
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-school_levels-label-Description">Description</h3>
+
+<p>Main subpage to manage school levels</p>
+
+<h3 id="method-i-school_levels-label-Mode">Mode</h3>
+
+<p>Html</p>
+
+<h3 id="method-i-school_levels-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p><a
+href="../ApplicationController.html#method-i-admin_authenticate">ApplicationController#admin_authenticate</a></p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="school_levels-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/settings_controller.rb, line 31</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/settings_controller.rb, line 79</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">school_levels</span>
   <span class="ruby-ivar">@school_levels</span> = <span class="ruby-constant">SchoolLevel</span>.<span class="ruby-identifier">all</span>
 <span class="ruby-keyword">end</span></pre>
@@ -733,12 +835,24 @@ href="../AdminController.html">AdminController</a></p>
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-subjects-label-Description">Description</h3>
+
+<p>Main subpage to manage subjects</p>
+
+<h3 id="method-i-subjects-label-Mode">Mode</h3>
+
+<p>Html</p>
+
+<h3 id="method-i-subjects-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p><a
+href="../ApplicationController.html#method-i-admin_authenticate">ApplicationController#admin_authenticate</a></p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="subjects-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/settings_controller.rb, line 16</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/settings_controller.rb, line 28</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">subjects</span>
   <span class="ruby-ivar">@subjects</span> = <span class="ruby-constant">Subject</span>.<span class="ruby-identifier">all</span>
 <span class="ruby-keyword">end</span></pre>
@@ -763,12 +877,24 @@ href="../AdminController.html">AdminController</a></p>
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-tags-label-Description">Description</h3>
+
+<p>Main subpage to manage tags</p>
+
+<h3 id="method-i-tags-label-Mode">Mode</h3>
+
+<p>Html</p>
+
+<h3 id="method-i-tags-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p><a
+href="../ApplicationController.html#method-i-admin_authenticate">ApplicationController#admin_authenticate</a></p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="tags-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/settings_controller.rb, line 46</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/settings_controller.rb, line 130</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">tags</span>
   <span class="ruby-identifier">tags</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:search</span>] <span class="ruby-operator">?</span> <span class="ruby-constant">AdminSearchForm</span>.<span class="ruby-identifier">search_tags</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:search</span>]) <span class="ruby-operator">:</span> <span class="ruby-constant">Tag</span>.<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;created_at DESC&#39;</span>)
   <span class="ruby-ivar">@tags</span> = <span class="ruby-identifier">tags</span>.<span class="ruby-identifier">page</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>])
