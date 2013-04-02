@@ -335,7 +335,7 @@ class User < ActiveRecord::Base
   
   # === Description
   #
-  # Global method used to search for elements (see SearchController#index).
+  # Global method used to search for elements (see SearchController#index). Each element has its status set with MediaElement#set_status.
   # * *first*, it checks the correctness of all the parameters received;
   # * *then*, if +word+ is blank, it calls just User#search_media_elements_without_tag, that search using the other parameters inserted by the user
   # * *otherwise*, it checks if the word is a Fixnum (it represents the id of a specific Tag) or a String (it represents a word to be matched against the list of registered tags)
@@ -390,7 +390,7 @@ class User < ActiveRecord::Base
   
   # === Description
   #
-  # Global method used to search for lessons (see SearchController#index).
+  # Global method used to search for lessons (see SearchController#index). Each lesson has its status set with Lesson#set_status.
   # * *first*, it checks the correctness of all the parameters received;
   # * *then*, if +word+ is blank, it calls just User#search_lessons_without_tag, that search using the other parameters inserted by the user
   # * *otherwise*, it checks if the word is a Fixnum (it represents the id of a specific Tag) or a String (it represents a word to be matched against the list of registered tags)
@@ -635,6 +635,18 @@ class User < ActiveRecord::Base
     {:records => resp, :pages_amount => pages_amount}
   end
   
+  # === Description
+  #
+  # Returns the first n suggested lessons (lessons which are public, not owned nor linked by the user, with a subject in common with him, ordered by date of last modification). Each lesson has its status set with Lesson#set_status. Used in DashboardController#index.
+  #
+  # === Args
+  #
+  # * *n*: the number of requested suggested lessons
+  #
+  # === Returns
+  #
+  # An array of objects of type Lesson
+  #
   def suggested_lessons(n)
     n = 1 if n.class != Fixnum || n < 0
     subject_ids = []
@@ -648,6 +660,18 @@ class User < ActiveRecord::Base
     resp
   end
   
+  # === Description
+  #
+  # Returns the first n suggested elements (elements which are public, not owned nor linked by the user, ordered by date of last modification). Each element has its status set with MediaElement#set_status. Used in DashboardController#index.
+  #
+  # === Args
+  #
+  # * *n*: the number of requested suggested lessons
+  #
+  # === Returns
+  #
+  # An array of objects of type MediaElement
+  #
   def suggested_media_elements(n)
     n = 1 if n.class != Fixnum || n < 0
     resp = MediaElement.where('is_public = ? AND user_id != ? AND NOT EXISTS (SELECT * FROM bookmarks WHERE bookmarks.bookmarkable_type = ? AND bookmarks.bookmarkable_id = media_elements.id AND bookmarks.user_id = ?)', true, self.id, 'MediaElement', self.id).order('publication_date DESC').limit(n)
