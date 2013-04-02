@@ -1,4 +1,4 @@
-Tue, 02 Apr 2013 10:02:02 +0200
+Tue, 02 Apr 2013 10:14:13 +0200
 doc/README_FOR_APP	Fri, 29 Mar 2013 14:50:55 +0100
 app/controllers/admin/dashboard_controller.rb	Fri, 22 Mar 2013 09:52:00 +0100
 app/controllers/admin/lessons_controller.rb	Fri, 22 Mar 2013 16:43:21 +0100
@@ -49,7 +49,7 @@ app/models/slide.rb	Fri, 29 Mar 2013 15:44:50 +0100
 app/models/subject.rb	Fri, 29 Mar 2013 16:04:42 +0100
 app/models/tag.rb	Fri, 29 Mar 2013 16:41:37 +0100
 app/models/tagging.rb	Fri, 29 Mar 2013 16:43:04 +0100
-app/models/user.rb	Tue, 02 Apr 2013 10:01:57 +0200
+app/models/user.rb	Tue, 02 Apr 2013 10:14:09 +0200
 app/models/users_subject.rb	Wed, 20 Mar 2013 17:33:01 +0100
 app/models/video.rb	Thu, 14 Mar 2013 16:47:55 +0100
 app/models/virtual_classroom_lesson.rb	Wed, 20 Mar 2013 17:37:07 +0100

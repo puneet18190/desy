@@ -46,6 +46,14 @@
 # * *modifications* *not* *available* for +email+ if the user is not a new record
 # * *acceptance* of each policy configured in settings.yml
 #
+# == Callbacks
+#
+# 1. *before_destroy* destroys associated instances of subjects (see UsersSubject)
+#
+# == Database callbacks
+#
+# 1. *cascade* *destruction* for the associated table MailingListGroup
+#
 class User < ActiveRecord::Base
   
   require 'user/authentication'
@@ -53,14 +61,18 @@ class User < ActiveRecord::Base
   include Authentication
   include Confirmation
   
+  # List of registration policies, configured in settings.yml
   REGISTRATION_POLICIES = SETTINGS['user_registration_policies'].map(&:to_sym)
   
+  # The attribute used as a handler for the field +encrypted_password+
   attr_accessor :password
   serialize :metadata, OpenStruct
   
+  # List of attributes to be made accessible (the list includes private attributes that don't correspond to fields, for instance +password_confirmation+)
   ATTR_ACCESSIBLE = [:password, :password_confirmation, :name, :surname, :school_level_id, :location_id, :subject_ids] + REGISTRATION_POLICIES
   attr_accessible *ATTR_ACCESSIBLE
   
+  # Hash of constraints for the length of the password
   PASSWORD_LENGTH_CONSTRAINTS = {}.tap do |hash|
     [:minimum, :maximum].each do |key|
       length = SETTINGS["#{key}_password_length"]
@@ -68,6 +80,14 @@ class User < ActiveRecord::Base
     end
   end
   
+  # === Description
+  #
+  # Returns the class of the last Location class (the one that must be attached to a user). The method is defined in this model and not in Location because it's necessary for the association +location+
+  #
+  # === Returns
+  #
+  # An object of type Class
+  #
   def self.location_association_class
     Location::SUBMODELS.last
   end
@@ -78,8 +98,8 @@ class User < ActiveRecord::Base
   has_many :lessons
   has_many :media_elements
   has_many :reports
-  has_many :users_subjects, dependent: :destroy
-  has_many :subjects, through: :users_subjects
+  has_many :users_subjects, :dependent => :destroy
+  has_many :subjects, :through => :users_subjects
   has_many :virtual_classroom_lessons
   has_many :mailing_list_groups
   belongs_to :school_level
@@ -108,16 +128,28 @@ class User < ActiveRecord::Base
   
   alias_attribute :"#{SETTINGS['location_types'].last.downcase}", :location
   
+  # === Description
+  #
+  # It returns an instance of the only super administrator
+  #
+  # === Returns
+  #
+  # An object of type User
+  #
   def self.admin
     find_by_email SETTINGS['admin']['email']
   end
   
+  # === Description
+  #
+  # It checks if the user is administrator or not (i.e., if the user is allowed to enter in the administration module, see for instance Admin::DashboardController). TODO important: at the moment only the super administrator is considered an administrator: in future it'll be necessary to add to config.yml a list of emails of administrators (or alternatively, to add a boolean field +admin+ to the table +users+). <b>The method must be changed without changing its name</b>: it should return something like
+  #   self.super_admin? || SETTINGS['grant_admin_privileges'].include?(self.email)
+  #
+  # === Returns
+  #
+  # A boolean
+  #
   def admin?
-    # TODO importante: qui viene considerato solo l'utente amministratore per ora! Quando serviranno vari amministratori
-    # ad esempio se vogliamo configurare gli amministratori nel file di configurazione, ci sarà qualcosa del genere
-    # QUESTO METODO VA CAMBIATO MA SENZA CAMBIARGLI NOME
-    # super_admin =  self.class.admin
-    # id == super_admin.id || SETTINGS['grant_admin_privileges'].include?(self.email)
     self.super_admin?
   end
   
