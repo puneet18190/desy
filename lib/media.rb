@@ -1,14 +1,24 @@
+#
+# == Description
+#
+# Main module of the media managing and editing implementation.
+# 
+# === Configuration
+#
+# For details about the configuration, see Media::CONFIG .
+#
 module Media
   
-  # Definisce CONFIG
+  # It defines CONFIG
   require 'media/config'
+
 
   RAILS_PUBLIC_FOLDER = Rails.root.join 'public'
   TMP_PREFIX          = CONFIG.tmp_prefix
 
   def self.ubuntu_packages
     # XXX postgresql-contrib-9.2 non dovrebbe stare qui!!!
-    %w(libav-tools libavcodec-extra-53 mkvtoolnix sox lame postgresql-contrib-9.2)
+    %w( libav-tools libavcodec-extra-53 mkvtoolnix sox lame postgresql-contrib-9.2 )
   end
   
   def self.ubuntu_install
