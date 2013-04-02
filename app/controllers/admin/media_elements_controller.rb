@@ -1,9 +1,21 @@
+# Controller of elements in the administration section. See AdminController.
 class Admin::MediaElementsController < AdminController
   
-  before_filter :find_media_element, :only => [:destroy, :load_media_element]
   before_filter :initialize_media_element_with_owner_and_private, :only => :update
   layout 'admin'
   
+  # === Description
+  #
+  # Main page of elements in the admin
+  #
+  # === Mode
+  #
+  # Html
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#admin_authenticate
+  #
   def index
     elements = params[:search] ? AdminSearchForm.search_media_elements(params[:search]) : MediaElement.where(converted: true).order('id DESC')
     @elements = elements.page(params[:page])
@@ -15,23 +27,83 @@ class Admin::MediaElementsController < AdminController
     @from_reporting = params[:from_reporting]
   end
   
+  # === Description
+  #
+  # It opens the page for multiple loading of elements
+  #
+  # === Mode
+  #
+  # Html
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#admin_authenticate
+  #
   def new
     @files = current_user.admin_quick_uploading_cache
   end
   
+  # === Description
+  #
+  # It opens the page for updating and sharing the private elements loaded by the administrator
+  #
+  # === Mode
+  #
+  # Html
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#admin_authenticate
+  #
   def edit
     @private_elements = MediaElement.order('created_at DESC').where(:user_id => current_user.id, :is_public => false, :converted => true)
   end
   
+  # === Description
+  #
+  # Single action of a multiple loading of elements (with a multiple loading many of these actions are fired)
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#admin_authenticate
+  #
   def quick_upload
     @file = current_user.save_in_admin_quick_uploading_cache params[:media], params[:title], params[:description], params[:tags]
   end
   
+  # === Description
+  #
+  # Deletes a temporary file in the multiple uploading section
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#admin_authenticate
+  #
   def quick_upload_delete
     @key = :"#{params[:key]}"
     @ok = current_user.remove_from_admin_quick_uploading_cache @key
   end
   
+  # === Description
+  #
+  # Submits one of the multiple upload temporary files and creates a new element
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#admin_authenticate
+  #
   def create
     @key = :"#{params[:key]}"
     @ok = true
@@ -69,6 +141,19 @@ class Admin::MediaElementsController < AdminController
     end
   end
   
+  # === Description
+  #
+  # Updates or publishes a private media element loaded by the administrator
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#admin_authenticate
+  # * ApplicationController#initialize_media_element_with_owner_and_private
+  #
   def update
     if @ok
       @media_element.title = params[:title]
@@ -86,18 +171,38 @@ class Admin::MediaElementsController < AdminController
     end
   end
   
+  # === Description
+  #
+  # Destroys an element without the normal filters, from the administrator
+  #
+  # === Mode
+  #
+  # Html
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#admin_authenticate
+  #
   def destroy
+    @element = MediaElement.find(params[:id])
     @element.destroyable_even_if_public = true
     @element.destroy
     redirect_to params[:back_url]
   end
   
+  # === Description
+  #
+  # Loads an element in the administrator (so the server is not charged too much)
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#admin_authenticate
+  #
   def load_media_element
-  end
-  
-  private
-  
-  def find_media_element # :doc:
     @element = MediaElement.find(params[:id])
   end
   
