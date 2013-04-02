@@ -1366,26 +1366,10 @@ class User < ActiveRecord::Base
     errors.add :email, :changed if changed.include? 'email'
   end
   
+  # Validates the correct format of the email (see Valid.email?)
   def validate_email # :doc:
     return if self.email.blank?
-    flag = false
-    flag = true if !(/ / =~ self.email).nil?
-    x = self.email.split('@')
-    if x.length == 2
-      flag = true if x[0].blank?
-      x = x[1].split('.')
-      if x.length > 1
-        x.each do |comp|
-          flag = true if comp.blank?
-        end
-        flag = true if x.last.length < 2
-      else
-        flag = true
-      end
-    else
-      flag = true
-    end
-    errors.add(:email, :not_a_valid_email) if flag
+    errors.add(:email, :not_a_valid_email) if !Valid.email?(self.email)
   end
   
 end

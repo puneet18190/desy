@@ -41,17 +41,20 @@ class Like < ActiveRecord::Base
   
   private
   
+  # Validates the presence of all the associated elements
   def validate_associations # :doc:
     errors.add(:user_id, :doesnt_exist) if @user.nil?
     errors.add(:lesson_id, :doesnt_exist) if @lesson.nil?
   end
   
+  # Initializes validation objects (see Valid.get_association)
   def init_validation # :doc:
     @like = Valid.get_association self, :id
     @lesson = Valid.get_association self, :lesson_id
     @user = Valid.get_association self, :user_id
   end
   
+  # If the like is not a new record, +user_id+ and +lesson_id+ cannot be modified
   def validate_impossible_changes # :doc:
     if @like
       errors.add(:user_id, :cant_be_changed) if @like.user_id != self.user_id
@@ -59,6 +62,7 @@ class Like < ActiveRecord::Base
     end
   end
   
+  # Validates that the liked Lesson is not owned by the liker
   def validate_availability # :doc:
     errors.add(:lesson_id, :cant_be_liked) if @lesson && @user && @lesson.user_id == @user.id
   end

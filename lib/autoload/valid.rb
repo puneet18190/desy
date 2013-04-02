@@ -27,6 +27,27 @@ module Valid
     
   end
   
+  def self.email?(email)
+    flag = false
+    flag = true if !(/ / =~ email).nil?
+    x = email.split('@')
+    if x.length == 2
+      flag = true if x[0].blank?
+      x = x[1].split('.')
+      if x.length > 1
+        x.each do |comp|
+          flag = true if comp.blank?
+        end
+        flag = true if x.last.length < 2
+      else
+        flag = true
+      end
+    else
+      flag = true
+    end
+    !flag
+  end
+  
   def self.get_association(object, column, my_class=nil)
     x = Validness.new
     x.get object, column, my_class
