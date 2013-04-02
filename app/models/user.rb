@@ -734,6 +734,21 @@ class User < ActiveRecord::Base
     resp
   end
   
+  # === Description
+  #
+  # Returns the list of lessons in the user's Virtual Classroom (used in VirtualClassroomController#index)
+  #
+  # === Args
+  #
+  # * *page*: pagination parameter
+  # * *per_page*: pagination parameter
+  #
+  # === Returns
+  #
+  # A hash with the following keys:
+  # * *records*: the effective content of the research, an array of object of type VirtualClassroomLesson
+  # * *pages_amount*: an integer, the total number of pages in the method's result
+  #
   def full_virtual_classroom(page, per_page)
     page = 1 if !page.is_a?(Fixnum) || page <= 0
     for_page = 1 if !for_page.is_a?(Fixnum) || for_page <= 0
@@ -744,10 +759,31 @@ class User < ActiveRecord::Base
     return resp
   end
   
+  # === Description
+  #
+  # Gets the total number of notifications associated to the user (used in the filters of NotificationsController)
+  #
+  # === Returns
+  #
+  # An integer
+  #
   def tot_notifications_number
     Notification.where(:user_id => self.id).count
   end
   
+  # === Description
+  #
+  # Destroys a Notification and reloads the current block of notifications (used in NotificationsController#destroy)
+  #
+  # === Args
+  #
+  # * *notification_id*: the id of the notification to be deleted
+  # * *offset*: the current offset of the notification block that the user is visualizing
+  #
+  # === Returns
+  #
+  # A boolean
+  #
   def destroy_notification_and_reload(notification_id, offset)
     notification_id = 0 if !notification_id.is_a?(Fixnum) || notification_id < 0
     offset = 0 if !offset.is_a?(Fixnum) || offset < 0
@@ -764,10 +800,26 @@ class User < ActiveRecord::Base
     resp
   end
   
+  # === Description
+  #
+  # Gets the first visible block of notifications associated to the user (used in the general filters of NotificationsController)
+  #
+  # === Returns
+  #
+  # An array of objects of type Notification
+  #
   def notifications_visible_block(offset, limit)
     Notification.order('created_at DESC').where(:user_id => self.id).offset(offset).limit(limit)
   end
   
+  # === Description
+  #
+  # Gets the total number of notifications not seen by the user (used in the filters of NotificationsController)
+  #
+  # === Returns
+  #
+  # An integer
+  #
   def number_notifications_not_seen
     Notification.where(:seen => false, :user_id => self.id).count
   end
