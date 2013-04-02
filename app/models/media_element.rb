@@ -479,10 +479,12 @@ class MediaElement < ActiveRecord::Base
   
   private
   
+  # Validates that the tags are at least the number configured in settings.yml, unless the attribute +validating_in_form+ is false
   def validate_tags_length # :doc:
     errors.add(:tags, :are_not_enough) if @validating_in_form && @inner_tags.length < SETTINGS['min_tags_for_item']
   end
   
+  # Callback that updates the taggings associated to the element. If the corresponding Tag doesn't exist yet, it's created
   def update_or_create_tags # :doc:
     return true unless @inner_tags
     words = []
@@ -503,6 +505,7 @@ class MediaElement < ActiveRecord::Base
     end
   end
   
+  # Initializes validation objects (see Valid.get_association). It's initialized also the private attribute +inner_tags+
   def init_validation # :doc:
     @media_element = Valid.get_association self, :id
     @user = Valid.get_association self, :user_id
@@ -526,6 +529,7 @@ class MediaElement < ActiveRecord::Base
       end
   end
   
+  # Validates the size of the attached file, comparing it to the maximum size configured in megabytes in settings.yml
   def validate_size # :doc:
     if ( (audio? || video?) && media.try(:value).try(:is_a?, ActionDispatch::Http::UploadedFile) && media.value.tempfile.size > MAX_MEDIA_SIZE ) ||
        ( image? && media.present? && media.file.size > MAX_MEDIA_SIZE )
@@ -533,10 +537,12 @@ class MediaElement < ActiveRecord::Base
     end
   end
   
+  # Validates the presence of all the associated elements
   def validate_associations # :doc:
     errors.add(:user_id, :doesnt_exist) if @user.nil?
   end
   
+  # Validates that +publication_date+ is blank if the element is not public, and that it's present and in the correct format if the element is public
   def validate_publication_date # :doc:
     if self.is_public
       errors.add(:publication_date, :is_not_a_date) if self.publication_date.blank? || !self.publication_date.kind_of?(Time)
@@ -545,6 +551,7 @@ class MediaElement < ActiveRecord::Base
     end
   end
   
+  # If it's new record, it validates that +is_public+ must be false; otherwise, if public it validates that +media+, +title+, +description+, +is_public+, +publication_date+ can't be changed; if private, it validates that +user_id+ can't be changed
   def validate_impossible_changes # :doc:
     if @media_element.nil?
       errors.add(:is_public, :must_be_false_if_new_record) if self.is_public
@@ -562,6 +569,7 @@ class MediaElement < ActiveRecord::Base
     end
   end
   
+  # Callback that stops the destruction of a public element; the callback is not fired if destroyable_even_if_public is true
   def stop_if_public # :doc:
     return true if destroyable_even_if_public
     @media_element = Valid.get_association self, :id
@@ -573,6 +581,7 @@ class MediaElement < ActiveRecord::Base
     end
   end
   
+  # Used as a submethod of MediaElement#disable_lessons_containing_me and MediaElement#enable_lessons_containing_me
   def manage_lessons_containing_me(value) # :doc:
     MediaElementsSlide.where(:media_element_id => id).each do |mes|
       l = mes.slide.lesson

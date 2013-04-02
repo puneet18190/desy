@@ -45,15 +45,18 @@ class MailingListGroup < ActiveRecord::Base
   
   private
   
+  # Initializes validation objects (see Valid.get_association)
   def init_validation # :doc:
     @user = Valid.get_association(self, :user_id)
     @mailing_list_group = Valid.get_association self, :id
   end
   
+  # Validates the presence of all the associated elements
   def validate_associations # :doc:
     errors.add(:user_id, :doesnt_exist) if @user.nil?
   end
   
+  # Validates that if the group is new record the field +user_id+ can't be changed
   def validate_impossible_changes # :doc:
     errors.add(:user_id, :cant_be_changed) if @mailing_list_group && @mailing_list_group.user_id != self.user_id
   end

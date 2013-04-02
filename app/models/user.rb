@@ -662,11 +662,11 @@ class User < ActiveRecord::Base
   
   # === Description
   #
-  # Returns the first n suggested elements (elements which are public, not owned nor linked by the user, ordered by date of last modification). Each element has its status set with MediaElement#set_status. Used in DashboardController#index.
+  # Returns the first n suggested elements (elements which are public, not owned nor linked by the user, ordered by date of publication). Each element has its status set with MediaElement#set_status. Used in DashboardController#index.
   #
   # === Args
   #
-  # * *n*: the number of requested suggested lessons
+  # * *n*: the number of requested suggested elements
   #
   # === Returns
   #

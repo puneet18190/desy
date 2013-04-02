@@ -1706,12 +1706,14 @@ href="Lesson.html#method-i-visive_tags">Lesson#visive_tags</a>)</p>
 
         <div class="method-description">
           
-          
+          <p>Initializes validation objects (see <a
+href="Valid.html#method-c-get_association">Valid.get_association</a>).
+It&#39;s initialized also the private attribute <code>inner_tags</code></p>
           
 
           
           <div class="method-source-code" id="init_validation-source">
-            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 506</span>
+            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 509</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">init_validation</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-ivar">@media_element</span> = <span class="ruby-constant">Valid</span>.<span class="ruby-identifier">get_association</span> <span class="ruby-keyword">self</span>, <span class="ruby-value">:id</span>
   <span class="ruby-ivar">@user</span> = <span class="ruby-constant">Valid</span>.<span class="ruby-identifier">get_association</span> <span class="ruby-keyword">self</span>, <span class="ruby-value">:user_id</span>
@@ -1755,12 +1757,15 @@ href="Lesson.html#method-i-visive_tags">Lesson#visive_tags</a>)</p>
 
         <div class="method-description">
           
-          
+          <p>Used as a submethod of <a
+href="MediaElement.html#method-i-disable_lessons_containing_me">#disable_lessons_containing_me</a>
+and <a
+href="MediaElement.html#method-i-enable_lessons_containing_me">#enable_lessons_containing_me</a></p>
           
 
           
           <div class="method-source-code" id="manage_lessons_containing_me-source">
-            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 576</span>
+            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 585</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">manage_lessons_containing_me</span>(<span class="ruby-identifier">value</span>) <span class="ruby-comment"># :doc:</span>
   <span class="ruby-constant">MediaElementsSlide</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:media_element_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">id</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">mes</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">l</span> = <span class="ruby-identifier">mes</span>.<span class="ruby-identifier">slide</span>.<span class="ruby-identifier">lesson</span>
@@ -1793,12 +1798,15 @@ href="Lesson.html#method-i-visive_tags">Lesson#visive_tags</a>)</p>
 
         <div class="method-description">
           
-          
+          <p>Callback that stops the destruction of a public element; the callback is
+not fired if <a
+href="MediaElement.html#attribute-i-destroyable_even_if_public">#destroyable_even_if_public</a>
+is true</p>
           
 
           
           <div class="method-source-code" id="stop_if_public-source">
-            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 565</span>
+            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 573</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">stop_if_public</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">destroyable_even_if_public</span>
   <span class="ruby-ivar">@media_element</span> = <span class="ruby-constant">Valid</span>.<span class="ruby-identifier">get_association</span> <span class="ruby-keyword">self</span>, <span class="ruby-value">:id</span>
@@ -1830,12 +1838,14 @@ href="Lesson.html#method-i-visive_tags">Lesson#visive_tags</a>)</p>
 
         <div class="method-description">
           
-          
+          <p>Callback that updates the taggings associated to the element. If the
+corresponding <a href="Tag.html">Tag</a> doesn&#39;t exist yet, it&#39;s
+created</p>
           
 
           
           <div class="method-source-code" id="update_or_create_tags-source">
-            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 486</span>
+            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 488</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update_or_create_tags</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span> <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@inner_tags</span>
   <span class="ruby-identifier">words</span> = []
@@ -1876,12 +1886,12 @@ href="Lesson.html#method-i-visive_tags">Lesson#visive_tags</a>)</p>
 
         <div class="method-description">
           
-          
+          <p>Validates the presence of all the associated elements</p>
           
 
           
           <div class="method-source-code" id="validate_associations-source">
-            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 536</span>
+            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 541</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">validate_associations</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:user_id</span>, <span class="ruby-value">:doesnt_exist</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">nil?</span>
 <span class="ruby-keyword">end</span></pre>
@@ -1906,12 +1916,16 @@ href="Lesson.html#method-i-visive_tags">Lesson#visive_tags</a>)</p>
 
         <div class="method-description">
           
-          
+          <p>If it&#39;s new record, it validates that <code>is_public</code> must be
+false; otherwise, if public it validates that <code>media</code>,
+<code>title</code>, <code>description</code>, <code>is_public</code>,
+<code>publication_date</code> can&#39;t be changed; if private, it
+validates that <code>user_id</code> can&#39;t be changed</p>
           
 
           
           <div class="method-source-code" id="validate_impossible_changes-source">
-            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 548</span>
+            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 555</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">validate_impossible_changes</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@media_element</span>.<span class="ruby-identifier">nil?</span>
     <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:is_public</span>, <span class="ruby-value">:must_be_false_if_new_record</span>) <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">is_public</span>
@@ -1949,12 +1963,14 @@ href="Lesson.html#method-i-visive_tags">Lesson#visive_tags</a>)</p>
 
         <div class="method-description">
           
-          
+          <p>Validates that <code>publication_date</code> is blank if the element is not
+public, and that it&#39;s present and in the correct format if the element
+is public</p>
           
 
           
           <div class="method-source-code" id="validate_publication_date-source">
-            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 540</span>
+            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 546</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">validate_publication_date</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">is_public</span>
     <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:publication_date</span>, <span class="ruby-value">:is_not_a_date</span>) <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">publication_date</span>.<span class="ruby-identifier">blank?</span> <span class="ruby-operator">||</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">publication_date</span>.<span class="ruby-identifier">kind_of?</span>(<span class="ruby-constant">Time</span>)
@@ -1983,12 +1999,13 @@ href="Lesson.html#method-i-visive_tags">Lesson#visive_tags</a>)</p>
 
         <div class="method-description">
           
-          
+          <p>Validates the size of the attached file, comparing it to the maximum size
+configured in megabytes in settings.yml</p>
           
 
           
           <div class="method-source-code" id="validate_size-source">
-            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 529</span>
+            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 533</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">validate_size</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-keyword">if</span> ( (<span class="ruby-identifier">audio?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">video?</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">media</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:value</span>).<span class="ruby-identifier">try</span>(<span class="ruby-value">:is_a?</span>, <span class="ruby-constant">ActionDispatch</span><span class="ruby-operator">::</span><span class="ruby-constant">Http</span><span class="ruby-operator">::</span><span class="ruby-constant">UploadedFile</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">media</span>.<span class="ruby-identifier">value</span>.<span class="ruby-identifier">tempfile</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-constant">MAX_MEDIA_SIZE</span> ) <span class="ruby-operator">||</span>
      ( <span class="ruby-identifier">image?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">media</span>.<span class="ruby-identifier">present?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">media</span>.<span class="ruby-identifier">file</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-constant">MAX_MEDIA_SIZE</span> )
@@ -2016,12 +2033,13 @@ href="Lesson.html#method-i-visive_tags">Lesson#visive_tags</a>)</p>
 
         <div class="method-description">
           
-          
+          <p>Validates that the tags are at least the number configured in settings.yml,
+unless the attribute <code>validating_in_form</code> is false</p>
           
 
           
           <div class="method-source-code" id="validate_tags_length-source">
-            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 482</span>
+            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 483</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">validate_tags_length</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:tags</span>, <span class="ruby-value">:are_not_enough</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@validating_in_form</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@inner_tags</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;min_tags_for_item&#39;</span>]
 <span class="ruby-keyword">end</span></pre>
