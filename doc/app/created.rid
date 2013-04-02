@@ -1,4 +1,4 @@
-Fri, 29 Mar 2013 17:28:52 +0100
+Tue, 02 Apr 2013 10:29:52 +0200
 doc/README_FOR_APP	Fri, 29 Mar 2013 12:53:09 +0100
 app/controllers/admin/dashboard_controller.rb	Mon, 25 Mar 2013 12:11:11 +0100
 app/controllers/admin/lessons_controller.rb	Mon, 25 Mar 2013 12:11:11 +0100
@@ -49,7 +49,7 @@ app/models/slide.rb	Fri, 29 Mar 2013 16:47:07 +0100
 app/models/subject.rb	Fri, 29 Mar 2013 16:47:07 +0100
 app/models/tag.rb	Fri, 29 Mar 2013 16:47:07 +0100
 app/models/tagging.rb	Fri, 29 Mar 2013 16:47:07 +0100
-app/models/user.rb	Fri, 29 Mar 2013 17:11:04 +0100
+app/models/user.rb	Tue, 02 Apr 2013 10:29:33 +0200
 app/models/users_subject.rb	Thu, 21 Mar 2013 15:26:11 +0100
 app/models/video.rb	Thu, 07 Mar 2013 14:53:17 +0100
 app/models/virtual_classroom_lesson.rb	Thu, 21 Mar 2013 15:26:11 +0100
@@ -91,7 +91,7 @@ lib/media/audio/editing/crop.rb	Tue, 15 Jan 2013 15:47:47 +0100
 lib/media/audio/editing/parameters.rb	Wed, 06 Feb 2013 09:59:48 +0100
 lib/media/audio/uploader.rb	Wed, 27 Feb 2013 17:09:02 +0100
 lib/media/audio/uploader/validation.rb	Wed, 27 Feb 2013 17:05:02 +0100
-lib/media/cmd.rb	Thu, 28 Mar 2013 11:54:39 +0100
+lib/media/cmd.rb	Tue, 02 Apr 2013 09:45:13 +0200
 lib/media/cmd/avconv.rb	Thu, 28 Mar 2013 13:49:03 +0100
 lib/media/cmd/avprobe.rb	Mon, 17 Dec 2012 15:31:11 +0100
 lib/media/config.rb	Fri, 29 Mar 2013 17:28:46 +0100
@@ -105,7 +105,7 @@ lib/media/image/editing/crop.rb	Thu, 24 Jan 2013 12:12:52 +0100
 lib/media/image/editing/resize_to_fill.rb	Mon, 17 Dec 2012 11:30:15 +0100
 lib/media/in_tmp_dir.rb	Thu, 28 Mar 2013 12:13:40 +0100
 lib/media/info.rb	Thu, 14 Mar 2013 18:30:03 +0100
-lib/media/logging.rb	Fri, 15 Mar 2013 12:57:25 +0100
+lib/media/logging.rb	Tue, 02 Apr 2013 10:01:18 +0200
 lib/media/shared.rb	Fri, 08 Mar 2013 16:26:34 +0100
 lib/media/similar_durations.rb	Wed, 27 Feb 2013 17:03:32 +0100
 lib/media/thread.rb	Thu, 21 Mar 2013 15:26:14 +0100

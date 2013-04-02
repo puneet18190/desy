@@ -13,7 +13,46 @@
 # * *active*: boolean, false if the user is banned
 # * *location_id*: location of the user
 # * *confirmation_token*: token used for confirmation, generated automaticly
-# * *metadata*: TODO, probabilmente cache di video e audio editor
+# * *metadata*:
+#   * +video_editor_cache+: cache of the Video Editor (screenshot of the last video edited)
+#   * +audio_editor_cache+: cache of the Audio Editor (screenshot of the last audio edited)
+#
+# == Associations
+#
+# * *bookmarks*: links created by this user elements or lessons (see Bookmark) (*has_many*)
+# * *notifications*: notifications of this user (see Notification) (*has_many*)
+# * *likes*: list of "I like you" registered by this user on other users' lessons (see Like) (*has_many*)
+# * *lessons*: list of lessons created by this user (see Lesson) (*has_many*)
+# * *media_elements*: list of elements loaded or created by this user (includes also public elements, which are moved into the public database of the application, but they still record who was the user who first created them (see MediaElement, Audio, Image, Video) (*has_many*)
+# * *reports*: reports sent by this user about elements or lessons (see Report) (*has_many*)
+# * *users_subjects*: list of instances of this subject associated to this user through records of UsersSubject (*has_many*)
+# * *subjects*: list of subjects associated to this user (through the association +users_subjects+) (see Subject) (*has_many*)
+# * *virtual_classroom_lessons*: list of lessons present in the user's Virtual Classroom (see VirtualClassroomLesson) (*has_many*)
+# * *mailing_list_groups*: all the mailing list groups that this user created (see MailingListGroup) (*has_many*)
+# * *school_level*: the SchoolLevel associated to this user (*belongs_to*)
+# * *location*: the Location associated to this user (*belongs_to*)
+#
+# == Validations
+#
+# * *presence* of +email+, +name+, +surname+
+# * *presence* with numericality greater than 0 and presence of associated element for +location_id+ and +school_level_id+ (for the location, it's also checked that the subclass is the last in the locations chain, see Location)
+# * *confirmation* of +encrypted_password+ (the attribute password must coincide with its confirmation provided by the user): this validation uses the private attribute +password_confirmation+, associated to password
+# * *presence* of at least one associated record of UsersSubject
+# * *uniqueness* of +email+
+# * *length* of +name+ and +surname+ (maximum 255)
+# * *length* of the attribute password associated to +encrypted_password+ (the maximum is configured in settings.yml, same as the minimum, but the minimum can be null, in which case the minimum size is one character). Since this attribute doesn't correspond to a field, the validation is forced only when the user is created: when the user is updated, instead, the validation allows +nil+ and +blank+ values, in case the user doesn't want to change his password
+# * *inclusion* of +active+ and +confirmed+ in [+true+, +false+]
+# * *correctness* of +email+ as an e-mail address
+# * *modifications* *not* *available* for +email+ if the user is not a new record
+# * *acceptance* of each policy configured in settings.yml
+#
+# == Callbacks
+#
+# 1. *before_destroy* destroys associated instances of subjects (see UsersSubject)
+#
+# == Database callbacks
+#
+# 1. *cascade* *destruction* for the associated table MailingListGroup
 #
 class User < ActiveRecord::Base
   
@@ -22,14 +61,18 @@ class User < ActiveRecord::Base
   include Authentication
   include Confirmation
   
+  # List of registration policies, configured in settings.yml
   REGISTRATION_POLICIES = SETTINGS['user_registration_policies'].map(&:to_sym)
   
+  # The attribute used as a handler for the field +encrypted_password+
   attr_accessor :password
   serialize :metadata, OpenStruct
   
+  # List of attributes to be made accessible (the list includes private attributes that don't correspond to fields, for instance +password_confirmation+)
   ATTR_ACCESSIBLE = [:password, :password_confirmation, :name, :surname, :school_level_id, :location_id, :subject_ids] + REGISTRATION_POLICIES
   attr_accessible *ATTR_ACCESSIBLE
   
+  # Hash of constraints for the length of the password
   PASSWORD_LENGTH_CONSTRAINTS = {}.tap do |hash|
     [:minimum, :maximum].each do |key|
       length = SETTINGS["#{key}_password_length"]
@@ -37,6 +80,14 @@ class User < ActiveRecord::Base
     end
   end
   
+  # === Description
+  #
+  # Returns the class of the last Location class (the one that must be attached to a user). The method is defined in this model and not in Location because it's necessary for the association +location+
+  #
+  # === Returns
+  #
+  # An object of type Class
+  #
   def self.location_association_class
     Location::SUBMODELS.last
   end
@@ -47,23 +98,22 @@ class User < ActiveRecord::Base
   has_many :lessons
   has_many :media_elements
   has_many :reports
-  has_many :users_subjects, dependent: :destroy
-  has_many :subjects, through: :users_subjects
+  has_many :users_subjects, :dependent => :destroy
+  has_many :subjects, :through => :users_subjects
   has_many :virtual_classroom_lessons
-  has_many :mailing_list_groups, :dependent => :destroy
+  has_many :mailing_list_groups
   belongs_to :school_level
   belongs_to :location, :class_name => location_association_class
   
   validates_presence_of :email, :name, :surname, :school_level_id, :location_id
-  validates_numericality_of :school_level_id, :location_id, only_integer: true, greater_than: 0, allow_blank: true
+  validates_numericality_of :school_level_id, :location_id, :only_integer => true, :greater_than => 0
   validates_confirmation_of :password
   validates_presence_of :users_subjects
   validates_uniqueness_of :email
   validates_length_of :name, :surname, :email, :maximum => 255
-  
   validates_length_of :password, PASSWORD_LENGTH_CONSTRAINTS.merge(:on => :create, :unless => proc { |record| record.encrypted_password.present? })
   validates_length_of :password, PASSWORD_LENGTH_CONSTRAINTS.merge(:on => :update, :allow_nil => true, :allow_blank => true)
-  validates_inclusion_of :active, :in => [true, false]
+  validates_inclusion_of :active, :confirmed, :in => [true, false]
   validate :validate_associations, :validate_email
   validate :validate_email_not_changed, :on => :update
   REGISTRATION_POLICIES.each do |policy|
@@ -78,16 +128,28 @@ class User < ActiveRecord::Base
   
   alias_attribute :"#{SETTINGS['location_types'].last.downcase}", :location
   
+  # === Description
+  #
+  # It returns an instance of the only super administrator
+  #
+  # === Returns
+  #
+  # An object of type User
+  #
   def self.admin
     find_by_email SETTINGS['admin']['email']
   end
   
+  # === Description
+  #
+  # It checks if the user is administrator or not (i.e., if the user is allowed to enter in the administration module, see for instance Admin::DashboardController). TODO important: at the moment only the super administrator is considered an administrator: in future it'll be necessary to add to config.yml a list of emails of administrators (or alternatively, to add a boolean field +admin+ to the table +users+). <b>The method must be changed without changing its name</b>: it should return something like
+  #   self.super_admin? || SETTINGS['grant_admin_privileges'].include?(self.email)
+  #
+  # === Returns
+  #
+  # A boolean
+  #
   def admin?
-    # TODO importante: qui viene considerato solo l'utente amministratore per ora! Quando serviranno vari amministratori
-    # ad esempio se vogliamo configurare gli amministratori nel file di configurazione, ci sarà qualcosa del genere
-    # QUESTO METODO VA CAMBIATO MA SENZA CAMBIARGLI NOME
-    # super_admin =  self.class.admin
-    # id == super_admin.id || SETTINGS['grant_admin_privileges'].include?(self.email)
     self.super_admin?
   end
   
@@ -108,7 +170,7 @@ class User < ActiveRecord::Base
     update_attribute :metadata, OpenStruct.new(metadata.marshal_dump.merge(audio_editor_cache: cache))
     nil
   end
-
+  
   def audio_editor_cache
     metadata.try(:audio_editor_cache)
   end
@@ -120,23 +182,23 @@ class User < ActiveRecord::Base
   def new_mailing_list_name
     I18n.t('users.mailing_list.label', :number => (MailingListGroup.where(:user_id => self.id).count + 1))
   end
-
+  
   def registration_policies
     REGISTRATION_POLICIES
   end
-
+  
   def reset_password!
     new_password = SecureRandom.urlsafe_base64(10)
-    update_attributes!(password: new_password, password_confirmation: new_password)
+    update_attributes!(:password => new_password, :password_confirmation => new_password)
     new_password
   end
-
+  
   def subject_ids=(subject_ids)
     users_subjects.reload.clear
     subject_ids.each { |id| users_subjects.build user: self, subject_id: id } if subject_ids
     subject_ids
   end
-
+  
   def full_name
     "#{self.name} #{self.surname}"
   end
@@ -171,36 +233,6 @@ class User < ActiveRecord::Base
     Audio.where(converted: false, user_id: id).all?{ |record| record.uploaded? && !record.modified? }
   end
   
-  # == Description
-  #
-  # Creates one of the URI's subclasses instance from the string.
-  #
-  # == Args
-  #
-  # +uri_str+::
-  #   String with URI.
-  #
-  # == Returns
-  #
-  # An array of the media elements found.
-  #
-  # == Raises
-  #
-  # <tt>URI::InvalidURIError</tt>::
-  #   Raised if URI given is not a correct one.
-  #
-  # == Usage
-  #
-  #   require 'uri'
-  #
-  #   uri = URI.parse("http://www.ruby-lang.org/")
-  #   p uri
-  #   # => #<URI::HTTP:0x202281be URL:http://www.ruby-lang.org/>
-  #   p uri.scheme
-  #   # => "http"
-  #   p uri.host
-  #   # => "www.ruby-lang.org"
-  #
   def search_media_elements(word, page, for_page, order=nil, filter=nil, only_tags=nil)
     only_tags = false if only_tags.nil?
     page = 1 if page.class != Fixnum || page <= 0
@@ -614,7 +646,7 @@ class User < ActiveRecord::Base
   
   private
   
-  def get_tags_associated_to_lesson_search(word, filter, subject_id)
+  def get_tags_associated_to_lesson_search(word, filter, subject_id) # :doc:
     filter = Filters::ALL_LESSONS if filter.nil? || !Filters::LESSONS_SEARCH_SET.include?(filter)
     subject_id = nil if ![NilClass, Fixnum].include?(subject_id.class)
     limit = SETTINGS['tags_limit_in_search_engine']
@@ -655,7 +687,7 @@ class User < ActiveRecord::Base
     resp
   end
   
-  def get_tags_associated_to_media_element_search(word, filter)
+  def get_tags_associated_to_media_element_search(word, filter) # :doc:
     limit = SETTINGS['tags_limit_in_search_engine']
     filter = Filters::ALL_MEDIA_ELEMENTS if filter.nil? || !Filters::MEDIA_ELEMENTS_SEARCH_SET.include?(filter)
     resp = []
@@ -684,7 +716,7 @@ class User < ActiveRecord::Base
     resp
   end
   
-  def search_media_elements_with_tag(word, offset, limit, filter, order_by)
+  def search_media_elements_with_tag(word, offset, limit, filter, order_by) # :doc:
     resp = {}
     params = ["#{word}%", true, self.id]
     joins = "INNER JOIN tags ON (tags.id = taggings.tag_id) INNER JOIN media_elements ON (taggings.taggable_type = 'MediaElement' AND taggings.taggable_id = media_elements.id)"
@@ -720,7 +752,7 @@ class User < ActiveRecord::Base
     return resp
   end
   
-  def search_media_elements_without_tag(offset, limit, filter, order_by)
+  def search_media_elements_without_tag(offset, limit, filter, order_by) # :doc:
     resp = {}
     order = ''
     case order_by
@@ -755,7 +787,7 @@ class User < ActiveRecord::Base
     return resp
   end
   
-  def search_lessons_with_tag(word, offset, limit, filter, subject_id, order_by)
+  def search_lessons_with_tag(word, offset, limit, filter, subject_id, order_by) # :doc:
     resp = {}
     params = ["#{word}%"]
     select = 'lessons.id AS lesson_id'
@@ -807,7 +839,7 @@ class User < ActiveRecord::Base
     return resp
   end
   
-  def search_lessons_without_tag(offset, limit, filter, subject_id, order_by)
+  def search_lessons_without_tag(offset, limit, filter, subject_id, order_by) # :doc:
     resp = {}
     params = []
     select = 'lessons.id AS lesson_id'

@@ -132,6 +132,8 @@ class LessonTest < ActiveSupport::TestCase
     assert_nothing_raised {@lesson.virtual_classroom_lessons}
     assert_nothing_raised {@lesson.parent}
     assert_nothing_raised {@lesson.copies}
+    assert_nothing_raised {@lesson.media_elements_slides}
+    assert_nothing_raised {@lesson.media_elements}
   end
   
   test 'associations' do

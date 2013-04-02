@@ -17,7 +17,7 @@ class UserTest < ActiveSupport::TestCase
   
   test 'empty_and_defaults' do
     @user = User.new
-    assert_error_size 12, @user
+    assert_error_size 13, @user
   end
   
   test 'attr_accessible' do
@@ -32,6 +32,8 @@ class UserTest < ActiveSupport::TestCase
     assert_invalid @user, :school_level_id, 'er', 1, :not_a_number
     assert_invalid @user, :location_id, -2, 1, :greater_than, {:count => 0}
     assert_invalid @user, :location_id, 2.8, 1, :not_an_integer
+    assert_invalid @user, :active, nil, false, :inclusion
+    assert_invalid @user, :confirmed, nil, true, :inclusion
     assert_obj_saved @user
   end
   
@@ -61,6 +63,7 @@ class UserTest < ActiveSupport::TestCase
     assert_nothing_raised {@user.media_elements}
     assert_nothing_raised {@user.reports}
     assert_nothing_raised {@user.users_subjects}
+    assert_nothing_raised {@user.subjects}
     assert_nothing_raised {@user.virtual_classroom_lessons}
     assert_nothing_raised {@user.school_level}
     assert_nothing_raised {@user.location}
