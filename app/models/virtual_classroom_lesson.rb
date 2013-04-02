@@ -1,3 +1,40 @@
+require 'lessons_media_elements_shared'
+
+# == Description
+#
+# ActiveRecord class that corresponds to the table +virtual_classroom_lessons+: the table represents the instance of a lesson in the user's Virtual Classroom
+#
+# == Fields
+#
+# * *lesson_id*: id of the lesson
+# * *user_id*: id of the owner of the Virtual Classroom
+# * *position*: position of the lesson in the playlist (if it's +nil+, the lesson is not in the playlist)
+#
+# == Associations
+#
+# * *user*: reference to the User who owns the Virtual Classroom (*belongs_to*)
+# * *lesson*: reference to the Lesson linked in the Virtual Classroom (*belongs_to*)
+#
+# == Validations
+#
+# * *presence* with numericality greater than 0 and existence of associated record for +user_id+ and +lesson_id+
+# * *numericality* greater than 0 that allows nil for +position+
+# * *uniqueness* of the couple [+lesson_id+, +user_id+]
+# * *uniqueness* of the couple [+position+, +user_id+] <b>only if the lesson is in the playlist</b>
+# * *availability* of the lesson (it must be present in the section 'lesson', it can belong to the owner of the Virtual Classroom, or be linked by him)
+# * *the* *lesson* *cannot* *have* *just* *been* *copied* (see the fields of Lesson)
+# * *modifications* *not* *available* for the fields +user_id+ and +lesson_id+, if it's not a +new_record+
+# * *presence* *in* *playlist* *not* *allowed* if it's a new record
+# * *number* of lessons in the playlist must be smaller than the number configured
+#
+# == Callbacks
+#
+# None
+#
+# == Database callbacks
+#
+# None
+#
 class VirtualClassroomLesson < ActiveRecord::Base
   
   attr_accessible :position
