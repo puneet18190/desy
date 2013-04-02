@@ -49,7 +49,7 @@ class MailingListAddress < ActiveRecord::Base
     @mailing_list_address = Valid.get_association self, :id
   end
   
-  # Validates the presence of all the associated elements
+  # Validates the presence of all the associated objects
   def validate_associations # :doc:
     errors.add(:group_id, :doesnt_exist) if @group.nil?
   end

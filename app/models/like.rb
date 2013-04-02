@@ -41,7 +41,7 @@ class Like < ActiveRecord::Base
   
   private
   
-  # Validates the presence of all the associated elements
+  # Validates the presence of all the associated objects
   def validate_associations # :doc:
     errors.add(:user_id, :doesnt_exist) if @user.nil?
     errors.add(:lesson_id, :doesnt_exist) if @lesson.nil?
