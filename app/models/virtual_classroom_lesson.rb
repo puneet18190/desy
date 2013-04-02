@@ -51,19 +51,51 @@ class VirtualClassroomLesson < ActiveRecord::Base
   
   before_validation :init_validation
   
+  # === Description
+  #
+  # Returns the next lesson in the playlist
+  #
+  # === Returns
+  #
+  # An object of type VirtualClassroomLesson
+  #
   def next_in_playlist
     self.new_record? ? nil : (self.in_playlist? ? VirtualClassroomLesson.where(:user_id => self.user_id, :position => (self.position + 1)).first : nil)
   end
   
+  # === Description
+  #
+  # Returns the previous lesson in the playlist
+  #
+  # === Returns
+  #
+  # An object of type VirtualClassroomLesson
+  #
   def prev_in_playlist
     self.new_record? ? nil : (self.in_playlist? ? VirtualClassroomLesson.where(:user_id => self.user_id, :position => (self.position - 1)).first : nil)
   end
   
+  # === Description
+  #
+  # Checks if the lesson is in the playlist (i.e. if the field +position+ is not null). Used in VirtualClassroomController
+  #
+  # === Returns
+  #
+  # A boolean
+  #
   def in_playlist?
     return false if self.new_record?
     !self.position.blank?
   end
   
+  # === Description
+  #
+  # Removes the lesson from the playlist and updates the positions of the other lessons. Used in VirtualClassroomController#remove_lesson_from_playlist.
+  #
+  # === Returns
+  #
+  # A boolean
+  #
   def remove_from_playlist
     errors.clear
     if self.new_record?
@@ -91,6 +123,14 @@ class VirtualClassroomLesson < ActiveRecord::Base
     resp
   end
   
+  # === Description
+  #
+  # Adds a lesson to the playlist. Used in VirtualClassroomController#add_lesson_to_playlist.
+  #
+  # === Returns
+  #
+  # A boolean
+  #
   def add_to_playlist
     errors.clear
     if self.new_record?
@@ -118,6 +158,18 @@ class VirtualClassroomLesson < ActiveRecord::Base
     true
   end
   
+  # === Description
+  #
+  # Sets a new position of this lesson inside the playlist. The position must be valid, i.e. it can't be < 1, > number of lessons in playlist. Used in VirtualClassroomController#change_position_in_playlist.
+  #
+  # === Args
+  #
+  # * *x*: the new position
+  #
+  # === Returns
+  #
+  # A boolean
+  #
   def change_position(x)
     errors.clear
     if self.new_record?
