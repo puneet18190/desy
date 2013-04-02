@@ -1,3 +1,4 @@
+# Keywords for different visualizations of lessons and elements
 module ButtonDestinations
   
   # Keyword for an expanded lesson
