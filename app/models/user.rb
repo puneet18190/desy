@@ -988,7 +988,7 @@ class User < ActiveRecord::Base
   
   # === Description
   #
-  # Removes a file from the list of multiple uploading of an element (associated to Admin::MediaElementsController#quick_upload_delete and Admin::MediaElementsController#create).
+  # Removes a file from the list of multiple uploading of an element (used in Admin::MediaElementsController#quick_upload_delete and Admin::MediaElementsController#create).
   #
   # === Args
   #
