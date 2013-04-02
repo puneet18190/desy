@@ -76,6 +76,8 @@
     
     <li><a href="#method-i-reports">#reports</a>
     
+    <li><a href="#method-i-send_notifications">#send_notifications</a>
+    
   </ul>
 </nav>
 
@@ -551,6 +553,42 @@
 
     
     </section><!-- public-instance-method-details -->
+  
+     <section id="private-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Private Instance Methods</h3>
+
+    
+      <div id="method-i-send_notifications" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">send_notifications</span><span
+            class="method-args">(users_ids, message)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="send_notifications-source">
+            <pre><span class="ruby-comment"># File app/controllers/admin/messages_controller.rb, line 41</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">send_notifications</span>(<span class="ruby-identifier">users_ids</span>, <span class="ruby-identifier">message</span>) <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-constant">Notification</span>.<span class="ruby-identifier">send_to</span>(<span class="ruby-identifier">users_ids</span>, <span class="ruby-identifier">message</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- send_notifications-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- send_notifications-method -->
+
+    
+    </section><!-- private-instance-method-details -->
   
   </section><!-- 5Buntitled-5D -->
 

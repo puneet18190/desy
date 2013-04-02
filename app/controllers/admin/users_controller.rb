@@ -60,7 +60,7 @@ class Admin::UsersController < AdminController
   
   private
   
-  def find_user
+  def find_user # :doc:
     @user = User.find(params[:id])
   end
   

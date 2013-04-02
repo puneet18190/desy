@@ -97,7 +97,7 @@ class Admin::MediaElementsController < AdminController
   
   private
   
-  def find_media_element
+  def find_media_element # :doc:
     @element = MediaElement.find(params[:id])
   end
   

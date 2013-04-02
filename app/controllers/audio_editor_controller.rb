@@ -108,19 +108,19 @@ class AudioEditorController < ApplicationController
   
   private
   
-  def used_in_private_lessons
+  def used_in_private_lessons # :doc:
     return false if @parameters[:initial_audio].nil?
     @parameters[:initial_audio].media_elements_slides.any?
   end
   
-  def check_available_for_user
+  def check_available_for_user # :doc:
     if !current_user.audio_editor_available
       render 'not_available'
       return
     end
   end
   
-  def extract_form_parameters
+  def extract_form_parameters # :doc:
     unordered_resp = {}
     ordered_resp = {}
     resp = {
@@ -150,7 +150,7 @@ class AudioEditorController < ApplicationController
     resp
   end
   
-  def convert_audio_to_parameters
+  def convert_audio_to_parameters # :doc:
     resp = {}
     resp[:initial_audio_id] = @audio.is_public ? nil : @audio.id
     resp[:components] = [{}]
@@ -161,18 +161,18 @@ class AudioEditorController < ApplicationController
     resp.nil? ? empty_parameters : resp
   end
   
-  def empty_parameters
+  def empty_parameters # :doc:
     resp = {}
     resp[:initial_audio] = nil
     resp[:components] = []
     resp
   end
   
-  def extract_cache
+  def extract_cache # :doc:
     @cache = Audio.convert_parameters current_user.audio_editor_cache, current_user.id
   end
   
-  def initialize_audio_with_owner_or_public
+  def initialize_audio_with_owner_or_public # :doc:
     @audio_id = correct_integer?(params[:audio_id]) ? params[:audio_id].to_i : 0
     @audio = Audio.find_by_id @audio_id
     update_ok(!@audio.nil? && (@audio.is_public || current_user.id == @audio.user_id))

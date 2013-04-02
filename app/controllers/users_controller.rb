@@ -116,7 +116,7 @@ class UsersController < ApplicationController
   
   private
   
-  def fill_locations
+  def fill_locations # :doc:
     @user_location = {}
     prev_location = User.find(current_user.id).location
     SETTINGS['location_types'].reverse.each do |l|

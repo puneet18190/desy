@@ -70,9 +70,21 @@
 
   <ul class="link-list">
     
+    <li><a href="#method-i-check_available_for_user">#check_available_for_user</a>
+    
+    <li><a href="#method-i-convert_audio_to_parameters">#convert_audio_to_parameters</a>
+    
     <li><a href="#method-i-edit">#edit</a>
     
     <li><a href="#method-i-empty_cache">#empty_cache</a>
+    
+    <li><a href="#method-i-empty_parameters">#empty_parameters</a>
+    
+    <li><a href="#method-i-extract_cache">#extract_cache</a>
+    
+    <li><a href="#method-i-extract_form_parameters">#extract_form_parameters</a>
+    
+    <li><a href="#method-i-initialize_audio_with_owner_or_public">#initialize_audio_with_owner_or_public</a>
     
     <li><a href="#method-i-new">#new</a>
     
@@ -83,6 +95,8 @@
     <li><a href="#method-i-save">#save</a>
     
     <li><a href="#method-i-save_cache">#save_cache</a>
+    
+    <li><a href="#method-i-used_in_private_lessons">#used_in_private_lessons</a>
     
   </ul>
 </nav>
@@ -728,6 +742,264 @@
 
     
     </section><!-- public-instance-method-details -->
+  
+     <section id="private-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Private Instance Methods</h3>
+
+    
+      <div id="method-i-check_available_for_user" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">check_available_for_user</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="check_available_for_user-source">
+            <pre><span class="ruby-comment"># File app/controllers/audio_editor_controller.rb, line 116</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">check_available_for_user</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">audio_editor_available</span>
+    <span class="ruby-identifier">render</span> <span class="ruby-string">&#39;not_available&#39;</span>
+    <span class="ruby-keyword">return</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- check_available_for_user-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- check_available_for_user-method -->
+
+    
+      <div id="method-i-convert_audio_to_parameters" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">convert_audio_to_parameters</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="convert_audio_to_parameters-source">
+            <pre><span class="ruby-comment"># File app/controllers/audio_editor_controller.rb, line 153</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">convert_audio_to_parameters</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-identifier">resp</span> = {}
+  <span class="ruby-identifier">resp</span>[<span class="ruby-value">:initial_audio_id</span>] = <span class="ruby-ivar">@audio</span>.<span class="ruby-identifier">is_public</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">nil</span> <span class="ruby-operator">:</span> <span class="ruby-ivar">@audio</span>.<span class="ruby-identifier">id</span>
+  <span class="ruby-identifier">resp</span>[<span class="ruby-value">:components</span>] = [{}]
+  <span class="ruby-identifier">resp</span>[<span class="ruby-value">:components</span>].<span class="ruby-identifier">first</span>[<span class="ruby-value">:audio_id</span>] = <span class="ruby-ivar">@audio</span>.<span class="ruby-identifier">id</span>
+  <span class="ruby-identifier">resp</span>[<span class="ruby-value">:components</span>].<span class="ruby-identifier">first</span>[<span class="ruby-value">:from</span>] = <span class="ruby-value">0</span>
+  <span class="ruby-identifier">resp</span>[<span class="ruby-value">:components</span>].<span class="ruby-identifier">first</span>[<span class="ruby-value">:to</span>] = <span class="ruby-ivar">@audio</span>.<span class="ruby-identifier">min_duration</span>
+  <span class="ruby-identifier">resp</span> = <span class="ruby-constant">Audio</span>.<span class="ruby-identifier">convert_parameters</span>(<span class="ruby-identifier">resp</span>, <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
+  <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">empty_parameters</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">resp</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- convert_audio_to_parameters-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- convert_audio_to_parameters-method -->
+
+    
+      <div id="method-i-empty_parameters" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">empty_parameters</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="empty_parameters-source">
+            <pre><span class="ruby-comment"># File app/controllers/audio_editor_controller.rb, line 164</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">empty_parameters</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-identifier">resp</span> = {}
+  <span class="ruby-identifier">resp</span>[<span class="ruby-value">:initial_audio</span>] = <span class="ruby-keyword">nil</span>
+  <span class="ruby-identifier">resp</span>[<span class="ruby-value">:components</span>] = []
+  <span class="ruby-identifier">resp</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- empty_parameters-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- empty_parameters-method -->
+
+    
+      <div id="method-i-extract_cache" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">extract_cache</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="extract_cache-source">
+            <pre><span class="ruby-comment"># File app/controllers/audio_editor_controller.rb, line 171</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">extract_cache</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-ivar">@cache</span> = <span class="ruby-constant">Audio</span>.<span class="ruby-identifier">convert_parameters</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">audio_editor_cache</span>, <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- extract_cache-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- extract_cache-method -->
+
+    
+      <div id="method-i-extract_form_parameters" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">extract_form_parameters</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="extract_form_parameters-source">
+            <pre><span class="ruby-comment"># File app/controllers/audio_editor_controller.rb, line 123</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">extract_form_parameters</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-identifier">unordered_resp</span> = {}
+  <span class="ruby-identifier">ordered_resp</span> = {}
+  <span class="ruby-identifier">resp</span> = {
+    <span class="ruby-value">:initial_audio_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:initial_audio_id</span>].<span class="ruby-identifier">blank?</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">nil</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:initial_audio_id</span>].<span class="ruby-identifier">to_i</span>,
+    <span class="ruby-value">:components</span> =<span class="ruby-operator">&gt;</span> []
+  }
+  <span class="ruby-identifier">params</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>, <span class="ruby-identifier">v</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span>(<span class="ruby-identifier">k</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/_/</span>).<span class="ruby-identifier">nil?</span>
+      <span class="ruby-identifier">index</span> = <span class="ruby-identifier">k</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;_&#39;</span>).<span class="ruby-identifier">last</span>.<span class="ruby-identifier">to_i</span>
+      <span class="ruby-identifier">p</span> = <span class="ruby-identifier">k</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-node">&quot;_#{index}&quot;</span>, <span class="ruby-string">&#39;&#39;</span>)
+      <span class="ruby-keyword">if</span> [<span class="ruby-string">&#39;audio_id&#39;</span>, <span class="ruby-string">&#39;from&#39;</span>, <span class="ruby-string">&#39;to&#39;</span>, <span class="ruby-string">&#39;position&#39;</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">p</span>)
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">unordered_resp</span>.<span class="ruby-identifier">has_key?</span> <span class="ruby-identifier">index</span>
+          <span class="ruby-identifier">unordered_resp</span>[<span class="ruby-identifier">index</span>][<span class="ruby-value">:&quot;#{p}&quot;</span>] = <span class="ruby-identifier">v</span>.<span class="ruby-identifier">to_i</span>
+        <span class="ruby-keyword">else</span>
+          <span class="ruby-identifier">unordered_resp</span>[<span class="ruby-identifier">index</span>] = {<span class="ruby-value">:&quot;#{p}&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">v</span>.<span class="ruby-identifier">to_i</span>}
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">unordered_resp</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>, <span class="ruby-identifier">v</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">ordered_resp</span>[<span class="ruby-identifier">v</span>[<span class="ruby-value">:position</span>]] = <span class="ruby-identifier">v</span>
+    <span class="ruby-identifier">ordered_resp</span>[<span class="ruby-identifier">v</span>[<span class="ruby-value">:position</span>]].<span class="ruby-identifier">delete</span>(<span class="ruby-value">:position</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">ordered_resp</span>.<span class="ruby-identifier">sort</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">item</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">resp</span>[<span class="ruby-value">:components</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">item</span>[<span class="ruby-value">1</span>]
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">resp</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- extract_form_parameters-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- extract_form_parameters-method -->
+
+    
+      <div id="method-i-initialize_audio_with_owner_or_public" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">initialize_audio_with_owner_or_public</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="initialize_audio_with_owner_or_public-source">
+            <pre><span class="ruby-comment"># File app/controllers/audio_editor_controller.rb, line 175</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize_audio_with_owner_or_public</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-ivar">@audio_id</span> = <span class="ruby-identifier">correct_integer?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:audio_id</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:audio_id</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-value">0</span>
+  <span class="ruby-ivar">@audio</span> = <span class="ruby-constant">Audio</span>.<span class="ruby-identifier">find_by_id</span> <span class="ruby-ivar">@audio_id</span>
+  <span class="ruby-identifier">update_ok</span>(<span class="ruby-operator">!</span><span class="ruby-ivar">@audio</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-ivar">@audio</span>.<span class="ruby-identifier">is_public</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">==</span> <span class="ruby-ivar">@audio</span>.<span class="ruby-identifier">user_id</span>))
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- initialize_audio_with_owner_or_public-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- initialize_audio_with_owner_or_public-method -->
+
+    
+      <div id="method-i-used_in_private_lessons" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">used_in_private_lessons</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="used_in_private_lessons-source">
+            <pre><span class="ruby-comment"># File app/controllers/audio_editor_controller.rb, line 111</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">used_in_private_lessons</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@parameters</span>[<span class="ruby-value">:initial_audio</span>].<span class="ruby-identifier">nil?</span>
+  <span class="ruby-ivar">@parameters</span>[<span class="ruby-value">:initial_audio</span>].<span class="ruby-identifier">media_elements_slides</span>.<span class="ruby-identifier">any?</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- used_in_private_lessons-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- used_in_private_lessons-method -->
+
+    
+    </section><!-- private-instance-method-details -->
   
   </section><!-- 5Buntitled-5D -->
 

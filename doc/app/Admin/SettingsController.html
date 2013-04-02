@@ -468,7 +468,7 @@
 
           
           <div class="method-source-code" id="delete_school_level-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/settings_controller.rb, line 35</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/settings_controller.rb, line 29</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">delete_school_level</span>
   <span class="ruby-ivar">@id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>]
   <span class="ruby-identifier">level</span> = <span class="ruby-constant">SchoolLevel</span>.<span class="ruby-identifier">find</span>(<span class="ruby-ivar">@id</span>)
@@ -500,7 +500,7 @@
 
           
           <div class="method-source-code" id="delete_subject-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/settings_controller.rb, line 17</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/settings_controller.rb, line 14</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">delete_subject</span>
   <span class="ruby-ivar">@id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>]
   <span class="ruby-identifier">subject</span> = <span class="ruby-constant">Subject</span>.<span class="ruby-identifier">find</span>(<span class="ruby-ivar">@id</span>)
@@ -532,7 +532,7 @@
 
           
           <div class="method-source-code" id="delete_tag-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/settings_controller.rb, line 49</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/settings_controller.rb, line 40</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">delete_tag</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">correct_integer?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>]
     <span class="ruby-ivar">@id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>].<span class="ruby-identifier">to_i</span>
@@ -567,7 +567,7 @@
 
           
           <div class="method-source-code" id="lessons_for_tag-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/settings_controller.rb, line 58</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/settings_controller.rb, line 49</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">lessons_for_tag</span>
   <span class="ruby-ivar">@tag</span> = <span class="ruby-constant">Tag</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-ivar">@lessons</span> = <span class="ruby-ivar">@tag</span>.<span class="ruby-identifier">get_lessons</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>])
@@ -598,7 +598,7 @@
 
           
           <div class="method-source-code" id="media_elements_for_tag-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/settings_controller.rb, line 63</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/settings_controller.rb, line 54</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">media_elements_for_tag</span>
   <span class="ruby-ivar">@tag</span> = <span class="ruby-constant">Tag</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-ivar">@media_elements</span> = <span class="ruby-ivar">@tag</span>.<span class="ruby-identifier">get_media_elements</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>])
@@ -629,7 +629,7 @@
 
           
           <div class="method-source-code" id="new_school_level-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/settings_controller.rb, line 30</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/settings_controller.rb, line 24</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new_school_level</span>
   <span class="ruby-constant">SchoolLevel</span>.<span class="ruby-identifier">create</span>(<span class="ruby-value">:description</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:description</span>]) <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:description</span>]
   <span class="ruby-identifier">redirect_to</span> <span class="ruby-string">&#39;/admin/settings/school_levels&#39;</span>
@@ -660,7 +660,7 @@
 
           
           <div class="method-source-code" id="new_subject-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/settings_controller.rb, line 12</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/settings_controller.rb, line 9</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new_subject</span>
   <span class="ruby-constant">Subject</span>.<span class="ruby-identifier">create</span>(<span class="ruby-value">:description</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:description</span>]) <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:description</span>]
   <span class="ruby-identifier">redirect_to</span> <span class="ruby-string">&#39;/admin/settings/subjects&#39;</span>
@@ -686,12 +686,12 @@
 
         <div class="method-description">
           
-          <p>SCHOOL LEVELS</p>
+          
           
 
           
           <div class="method-source-code" id="school_levels-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/settings_controller.rb, line 26</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/settings_controller.rb, line 20</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">school_levels</span>
   <span class="ruby-ivar">@school_levels</span> = <span class="ruby-constant">SchoolLevel</span>.<span class="ruby-identifier">all</span>
 <span class="ruby-keyword">end</span></pre>
@@ -716,12 +716,12 @@
 
         <div class="method-description">
           
-          <p>SUBJECTS</p>
+          
           
 
           
           <div class="method-source-code" id="subjects-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/settings_controller.rb, line 8</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/settings_controller.rb, line 5</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">subjects</span>
   <span class="ruby-ivar">@subjects</span> = <span class="ruby-constant">Subject</span>.<span class="ruby-identifier">all</span>
 <span class="ruby-keyword">end</span></pre>
@@ -746,12 +746,12 @@
 
         <div class="method-description">
           
-          <p>TAGS</p>
+          
           
 
           
           <div class="method-source-code" id="tags-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/settings_controller.rb, line 44</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/settings_controller.rb, line 35</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">tags</span>
   <span class="ruby-identifier">tags</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:search</span>] <span class="ruby-operator">?</span> <span class="ruby-constant">AdminSearchForm</span>.<span class="ruby-identifier">search_tags</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:search</span>]) <span class="ruby-operator">:</span> <span class="ruby-constant">Tag</span>.<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;created_at DESC&#39;</span>)
   <span class="ruby-ivar">@tags</span> = <span class="ruby-identifier">tags</span>.<span class="ruby-identifier">page</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>])

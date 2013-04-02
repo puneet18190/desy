@@ -21,7 +21,7 @@ class Admin::LessonsController < AdminController
   
   private
   
-  def find_lesson
+  def find_lesson # :doc:
     @lesson = Lesson.find(params[:id])
   end
   

@@ -74,6 +74,10 @@
     
     <li><a href="#method-i-destroy">#destroy</a>
     
+    <li><a href="#method-i-failed_authentication_redirect_args">#failed_authentication_redirect_args</a>
+    
+    <li><a href="#method-i-uri_path_and_query">#uri_path_and_query</a>
+    
   </ul>
 </nav>
 
@@ -457,20 +461,17 @@
   <span class="ruby-identifier">redirect_to_param</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:redirect_to</span>]
   <span class="ruby-identifier">path_params</span> = { <span class="ruby-identifier">login</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span> }
   <span class="ruby-identifier">path_params</span>[<span class="ruby-value">:redirect_to</span>] = <span class="ruby-identifier">redirect_to_param</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">redirect_to_param</span>.<span class="ruby-identifier">present?</span>
-
   <span class="ruby-identifier">redirect_args</span> =
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:email</span>].<span class="ruby-identifier">blank?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:password</span>].<span class="ruby-identifier">blank?</span>
       <span class="ruby-identifier">failed_authentication_redirect_args</span> <span class="ruby-identifier">path_params</span>, <span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;other_popup_messages.login.missing_fields&#39;</span>)
     <span class="ruby-keyword">else</span>
       <span class="ruby-keyword">self</span>.<span class="ruby-identifier">current_user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">authenticate</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:email</span>], <span class="ruby-identifier">params</span>[<span class="ruby-value">:password</span>])
-
       <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span>
         <span class="ruby-identifier">uri_path_and_query</span>(<span class="ruby-identifier">redirect_to_param</span>) <span class="ruby-operator">||</span> [<span class="ruby-identifier">dashboard_path</span>]
       <span class="ruby-keyword">else</span>
         <span class="ruby-identifier">failed_authentication_redirect_args</span> <span class="ruby-identifier">path_params</span>, <span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;other_popup_messages.login.wrong_content&#39;</span>)
       <span class="ruby-keyword">end</span>
     <span class="ruby-keyword">end</span>
-
   <span class="ruby-identifier">redirect_to</span> *<span class="ruby-identifier">redirect_args</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- create-source -->
@@ -499,7 +500,7 @@
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/users/sessions_controller.rb, line 26</span>
+            <pre><span class="ruby-comment"># File app/controllers/users/sessions_controller.rb, line 23</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">current_user</span> = <span class="ruby-keyword">nil</span>
   <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">root_path</span>
@@ -515,6 +516,83 @@
 
     
     </section><!-- public-instance-method-details -->
+  
+     <section id="private-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Private Instance Methods</h3>
+
+    
+      <div id="method-i-failed_authentication_redirect_args" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">failed_authentication_redirect_args</span><span
+            class="method-args">(path_params, error)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="failed_authentication_redirect_args-source">
+            <pre><span class="ruby-comment"># File app/controllers/users/sessions_controller.rb, line 30</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">failed_authentication_redirect_args</span>(<span class="ruby-identifier">path_params</span>, <span class="ruby-identifier">error</span>) <span class="ruby-comment"># :doc:</span>
+  [ <span class="ruby-identifier">root_path</span>(<span class="ruby-identifier">path_params</span>), { <span class="ruby-identifier">flash</span><span class="ruby-operator">:</span> { <span class="ruby-identifier">alert</span><span class="ruby-operator">:</span> <span class="ruby-identifier">error</span> } } ]
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- failed_authentication_redirect_args-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- failed_authentication_redirect_args-method -->
+
+    
+      <div id="method-i-uri_path_and_query" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">uri_path_and_query</span><span
+            class="method-args">(url)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p><code>invalid_components_indexes</code> = Scheme, Userinfo, Host, Port,
+Registry, Opaque <code>valid_components_indexes</code> = # Path, Query
+(Fragment is unuseful, ignoring it)</p>
+          
+
+          
+          <div class="method-source-code" id="uri_path_and_query-source">
+            <pre><span class="ruby-comment"># File app/controllers/users/sessions_controller.rb, line 36</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">uri_path_and_query</span>(<span class="ruby-identifier">url</span>) <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">url</span>
+  <span class="ruby-identifier">components</span> = <span class="ruby-constant">URI</span>.<span class="ruby-identifier">split</span> <span class="ruby-identifier">url</span>
+  <span class="ruby-identifier">invalid_components_indexes</span> = [<span class="ruby-value">0</span>, <span class="ruby-value">1</span>, <span class="ruby-value">2</span>, <span class="ruby-value">3</span>, <span class="ruby-value">4</span>, <span class="ruby-value">6</span>]
+  <span class="ruby-identifier">valid_components_indexes</span> = [<span class="ruby-value">5</span>, <span class="ruby-value">7</span>]
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">components</span>.<span class="ruby-identifier">values_at</span>(*<span class="ruby-identifier">invalid_components_indexes</span>).<span class="ruby-identifier">compact</span>.<span class="ruby-identifier">present?</span>
+  <span class="ruby-identifier">path</span>, <span class="ruby-identifier">query</span> = <span class="ruby-identifier">components</span>.<span class="ruby-identifier">values_at</span>(*<span class="ruby-identifier">valid_components_indexes</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">path</span>.<span class="ruby-identifier">blank?</span>
+  <span class="ruby-identifier">path</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;?#{query}&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">query</span>
+  [<span class="ruby-identifier">path</span>]
+<span class="ruby-keyword">rescue</span> <span class="ruby-constant">URI</span><span class="ruby-operator">::</span><span class="ruby-constant">InvalidURIError</span>, <span class="ruby-constant">URI</span><span class="ruby-operator">::</span><span class="ruby-constant">BadURIError</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- uri_path_and_query-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- uri_path_and_query-method -->
+
+    
+    </section><!-- private-instance-method-details -->
   
   </section><!-- 5Buntitled-5D -->
 

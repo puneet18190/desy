@@ -80,7 +80,21 @@
     
     <li><a href="#method-i-empty_virtual_classroom">#empty_virtual_classroom</a>
     
+    <li><a href="#method-i-get_lessons">#get_lessons</a>
+    
     <li><a href="#method-i-index">#index</a>
+    
+    <li><a href="#method-i-initialize_emails">#initialize_emails</a>
+    
+    <li><a href="#method-i-initialize_lesson_for_sending_link">#initialize_lesson_for_sending_link</a>
+    
+    <li><a href="#method-i-initialize_loaded_lessons">#initialize_loaded_lessons</a>
+    
+    <li><a href="#method-i-initialize_page">#initialize_page</a>
+    
+    <li><a href="#method-i-initialize_paginator">#initialize_paginator</a>
+    
+    <li><a href="#method-i-initialize_virtual_classroom_lesson">#initialize_virtual_classroom_lesson</a>
     
     <li><a href="#method-i-load_lessons">#load_lessons</a>
     
@@ -951,6 +965,245 @@
 
     
     </section><!-- public-instance-method-details -->
+  
+     <section id="private-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Private Instance Methods</h3>
+
+    
+      <div id="method-i-get_lessons" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_lessons</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="get_lessons-source">
+            <pre><span class="ruby-comment"># File app/controllers/virtual_classroom_controller.rb, line 195</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_lessons</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-identifier">current_user_virtual_classroom_lessons</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">full_virtual_classroom</span>(<span class="ruby-ivar">@page</span>, <span class="ruby-ivar">@for_page</span>)
+  <span class="ruby-ivar">@lessons</span> = <span class="ruby-identifier">current_user_virtual_classroom_lessons</span>[<span class="ruby-value">:records</span>]
+  <span class="ruby-ivar">@pages_amount</span> = <span class="ruby-identifier">current_user_virtual_classroom_lessons</span>[<span class="ruby-value">:pages_amount</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- get_lessons-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- get_lessons-method -->
+
+    
+      <div id="method-i-initialize_emails" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">initialize_emails</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="initialize_emails-source">
+            <pre><span class="ruby-comment"># File app/controllers/virtual_classroom_controller.rb, line 177</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize_emails</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-identifier">emails_hash</span> = {}
+  <span class="ruby-ivar">@original_emails_number</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:emails</span>].<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;,&#39;</span>).<span class="ruby-identifier">length</span>
+  <span class="ruby-identifier">params</span>[<span class="ruby-value">:emails</span>].<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;,&#39;</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">email</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">emails_hash</span>[<span class="ruby-identifier">email</span>] = <span class="ruby-keyword">true</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span>(<span class="ruby-regexp">/^([0-9a-zA-Z].*?@([0-9a-zA-Z].*\.\w{2,4}))$/</span> <span class="ruby-operator">=~</span> <span class="ruby-identifier">email</span>).<span class="ruby-identifier">nil?</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@emails</span> = <span class="ruby-identifier">emails_hash</span>.<span class="ruby-identifier">keys</span>
+  <span class="ruby-ivar">@message</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:message_placeholer</span>].<span class="ruby-identifier">blank?</span> <span class="ruby-operator">?</span> <span class="ruby-string">&#39;&#39;</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:message</span>]
+  <span class="ruby-ivar">@message</span> = <span class="ruby-ivar">@message</span>.<span class="ruby-identifier">blank?</span> <span class="ruby-operator">?</span> <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;virtual_classroom.send_link.empty_message&#39;</span>) <span class="ruby-operator">:</span> <span class="ruby-ivar">@message</span>[<span class="ruby-value">0</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;language_parameters.notification.message_length_for_send_lesson_link&#39;</span>)]
+  <span class="ruby-identifier">update_ok</span>(<span class="ruby-ivar">@emails</span>.<span class="ruby-identifier">any?</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- initialize_emails-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- initialize_emails-method -->
+
+    
+      <div id="method-i-initialize_lesson_for_sending_link" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">initialize_lesson_for_sending_link</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="initialize_lesson_for_sending_link-source">
+            <pre><span class="ruby-comment"># File app/controllers/virtual_classroom_controller.rb, line 155</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize_lesson_for_sending_link</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-identifier">initialize_lesson</span>
+  <span class="ruby-identifier">update_ok</span>(<span class="ruby-ivar">@lesson</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">user_id</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">in_virtual_classroom?</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>))
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- initialize_lesson_for_sending_link-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- initialize_lesson_for_sending_link-method -->
+
+    
+      <div id="method-i-initialize_loaded_lessons" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">initialize_loaded_lessons</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="initialize_loaded_lessons-source">
+            <pre><span class="ruby-comment"># File app/controllers/virtual_classroom_controller.rb, line 160</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize_loaded_lessons</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-ivar">@load_lessons</span> = []
+  <span class="ruby-identifier">param_name</span> = <span class="ruby-string">&#39;virtual_classroom_quick_loaded_lesson_name&#39;</span>
+  <span class="ruby-identifier">params</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>, <span class="ruby-identifier">v</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">k_last</span> = <span class="ruby-identifier">k</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;_&#39;</span>).<span class="ruby-identifier">last</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">k</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-node">&quot;_#{k_last}&quot;</span>, <span class="ruby-string">&#39;&#39;</span>) <span class="ruby-operator">==</span> <span class="ruby-identifier">param_name</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">correct_integer?</span>(<span class="ruby-identifier">k_last</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">v</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;1&#39;</span>
+      <span class="ruby-identifier">lesson</span> = <span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">k_last</span>.<span class="ruby-identifier">to_i</span>)
+      <span class="ruby-ivar">@load_lessons</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">lesson</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">lesson</span>.<span class="ruby-identifier">nil?</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- initialize_loaded_lessons-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- initialize_loaded_lessons-method -->
+
+    
+      <div id="method-i-initialize_page" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">initialize_page</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="initialize_page-source">
+            <pre><span class="ruby-comment"># File app/controllers/virtual_classroom_controller.rb, line 172</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize_page</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-ivar">@page</span> = <span class="ruby-identifier">correct_integer?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-value">0</span>
+  <span class="ruby-identifier">update_ok</span>(<span class="ruby-ivar">@page</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- initialize_page-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- initialize_page-method -->
+
+    
+      <div id="method-i-initialize_paginator" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">initialize_paginator</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="initialize_paginator-source">
+            <pre><span class="ruby-comment"># File app/controllers/virtual_classroom_controller.rb, line 201</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize_paginator</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-ivar">@page</span> = <span class="ruby-identifier">correct_integer?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-value">1</span>
+  <span class="ruby-ivar">@for_page</span> = <span class="ruby-constant">FOR_PAGE</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- initialize_paginator-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- initialize_paginator-method -->
+
+    
+      <div id="method-i-initialize_virtual_classroom_lesson" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">initialize_virtual_classroom_lesson</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="initialize_virtual_classroom_lesson-source">
+            <pre><span class="ruby-comment"># File app/controllers/virtual_classroom_controller.rb, line 189</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize_virtual_classroom_lesson</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-ivar">@lesson_id</span> = <span class="ruby-identifier">correct_integer?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:lesson_id</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:lesson_id</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-value">0</span>
+  <span class="ruby-ivar">@virtual_classroom_lesson</span> = <span class="ruby-constant">VirtualClassroomLesson</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:lesson_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@lesson_id</span>, <span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">first</span>
+  <span class="ruby-identifier">update_ok</span>(<span class="ruby-operator">!</span><span class="ruby-ivar">@virtual_classroom_lesson</span>.<span class="ruby-identifier">nil?</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- initialize_virtual_classroom_lesson-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- initialize_virtual_classroom_lesson-method -->
+
+    
+    </section><!-- private-instance-method-details -->
   
   </section><!-- 5Buntitled-5D -->
 

@@ -76,6 +76,8 @@
     
     <li><a href="#method-i-edit">#edit</a>
     
+    <li><a href="#method-i-find_media_element">#find_media_element</a>
+    
     <li><a href="#method-i-index">#index</a>
     
     <li><a href="#method-i-load_media_element">#load_media_element</a>
@@ -776,6 +778,42 @@
 
     
     </section><!-- public-instance-method-details -->
+  
+     <section id="private-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Private Instance Methods</h3>
+
+    
+      <div id="method-i-find_media_element" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">find_media_element</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="find_media_element-source">
+            <pre><span class="ruby-comment"># File app/controllers/admin/media_elements_controller.rb, line 100</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">find_media_element</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-ivar">@element</span> = <span class="ruby-constant">MediaElement</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- find_media_element-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- find_media_element-method -->
+
+    
+    </section><!-- private-instance-method-details -->
   
   </section><!-- 5Buntitled-5D -->
 

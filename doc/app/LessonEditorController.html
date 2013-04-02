@@ -74,6 +74,8 @@
     
     <li><a href="#method-i-change_slide_position">#change_slide_position</a>
     
+    <li><a href="#method-i-check_available_for_user">#check_available_for_user</a>
+    
     <li><a href="#method-i-create">#create</a>
     
     <li><a href="#method-i-delete_slide">#delete_slide</a>
@@ -82,9 +84,17 @@
     
     <li><a href="#method-i-index">#index</a>
     
+    <li><a href="#method-i-initialize_kind">#initialize_kind</a>
+    
+    <li><a href="#method-i-initialize_lesson_with_owner_and_slide">#initialize_lesson_with_owner_and_slide</a>
+    
+    <li><a href="#method-i-initialize_subjects">#initialize_subjects</a>
+    
     <li><a href="#method-i-load_slide">#load_slide</a>
     
     <li><a href="#method-i-new">#new</a>
+    
+    <li><a href="#method-i-save_current_slide">#save_current_slide</a>
     
     <li><a href="#method-i-save_slide">#save_slide</a>
     
@@ -862,6 +872,183 @@
 
     
     </section><!-- public-instance-method-details -->
+  
+     <section id="private-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Private Instance Methods</h3>
+
+    
+      <div id="method-i-check_available_for_user" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">check_available_for_user</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="check_available_for_user-source">
+            <pre><span class="ruby-comment"># File app/controllers/lesson_editor_controller.rb, line 114</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">check_available_for_user</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-ivar">@lesson</span> = <span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">find_by_id</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:lesson_id</span>]
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@lesson</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">available?</span>
+    <span class="ruby-identifier">render</span> <span class="ruby-string">&#39;not_available&#39;</span>
+    <span class="ruby-keyword">return</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- check_available_for_user-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- check_available_for_user-method -->
+
+    
+      <div id="method-i-initialize_kind" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">initialize_kind</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="initialize_kind-source">
+            <pre><span class="ruby-comment"># File app/controllers/lesson_editor_controller.rb, line 122</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize_kind</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-ivar">@kind</span> = <span class="ruby-constant">Slide</span><span class="ruby-operator">::</span><span class="ruby-constant">KINDS_WITHOUT_COVER</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:kind</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:kind</span>] <span class="ruby-operator">:</span> <span class="ruby-string">&#39;&#39;</span>
+  <span class="ruby-identifier">update_ok</span>(<span class="ruby-operator">!</span><span class="ruby-ivar">@kind</span>.<span class="ruby-identifier">blank?</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- initialize_kind-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- initialize_kind-method -->
+
+    
+      <div id="method-i-initialize_lesson_with_owner_and_slide" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">initialize_lesson_with_owner_and_slide</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="initialize_lesson_with_owner_and_slide-source">
+            <pre><span class="ruby-comment"># File app/controllers/lesson_editor_controller.rb, line 127</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize_lesson_with_owner_and_slide</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-identifier">initialize_lesson_with_owner</span>
+  <span class="ruby-ivar">@slide_id</span> = <span class="ruby-identifier">correct_integer?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:slide_id</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:slide_id</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-value">0</span>
+  <span class="ruby-ivar">@slide</span> = <span class="ruby-constant">Slide</span>.<span class="ruby-identifier">find_by_id</span> <span class="ruby-ivar">@slide_id</span>
+  <span class="ruby-identifier">update_ok</span>(<span class="ruby-ivar">@slide</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@lesson</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">==</span> <span class="ruby-ivar">@slide</span>.<span class="ruby-identifier">lesson_id</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- initialize_lesson_with_owner_and_slide-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- initialize_lesson_with_owner_and_slide-method -->
+
+    
+      <div id="method-i-initialize_subjects" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">initialize_subjects</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="initialize_subjects-source">
+            <pre><span class="ruby-comment"># File app/controllers/lesson_editor_controller.rb, line 134</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize_subjects</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-ivar">@subjects</span> = []
+  <span class="ruby-constant">UsersSubject</span>.<span class="ruby-identifier">joins</span>(<span class="ruby-value">:subject</span>).<span class="ruby-identifier">where</span>(<span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;subjects.description ASC&#39;</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">sbj</span><span class="ruby-operator">|</span>
+    <span class="ruby-ivar">@subjects</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">sbj</span>.<span class="ruby-identifier">subject</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@subjects</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- initialize_subjects-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- initialize_subjects-method -->
+
+    
+      <div id="method-i-save_current_slide" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">save_current_slide</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="save_current_slide-source">
+            <pre><span class="ruby-comment"># File app/controllers/lesson_editor_controller.rb, line 142</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">save_current_slide</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-identifier">media_elements_params</span> = {}
+  (<span class="ruby-value">1</span><span class="ruby-operator">...</span><span class="ruby-value">5</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">params</span>[<span class="ruby-node">&quot;media_element_#{i}&quot;</span>].<span class="ruby-identifier">blank?</span>
+      <span class="ruby-identifier">media_element_id</span> = <span class="ruby-identifier">correct_integer?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-node">&quot;media_element_#{i}&quot;</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-node">&quot;media_element_#{i}&quot;</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-value">0</span>
+      <span class="ruby-identifier">alignment</span> = <span class="ruby-identifier">params</span>[<span class="ruby-node">&quot;media_element_align_#{i}&quot;</span>].<span class="ruby-identifier">blank?</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">nil</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">params</span>[<span class="ruby-node">&quot;media_element_align_#{i}&quot;</span>].<span class="ruby-identifier">to_i</span>
+      <span class="ruby-identifier">caption</span> = <span class="ruby-identifier">params</span>[<span class="ruby-node">&quot;caption_#{i}&quot;</span>]
+      <span class="ruby-identifier">media_elements_params</span>[<span class="ruby-identifier">i</span>] = [<span class="ruby-identifier">media_element_id</span>, <span class="ruby-identifier">alignment</span>, <span class="ruby-identifier">caption</span>]
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@ok</span> = <span class="ruby-ivar">@slide</span>.<span class="ruby-identifier">update_with_media_elements</span>((<span class="ruby-identifier">params</span>[<span class="ruby-value">:title</span>].<span class="ruby-identifier">blank?</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">nil</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:title</span>]), (<span class="ruby-identifier">params</span>[<span class="ruby-value">:text</span>].<span class="ruby-identifier">blank?</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">nil</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:text</span>]), <span class="ruby-identifier">media_elements_params</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- save_current_slide-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- save_current_slide-method -->
+
+    
+    </section><!-- private-instance-method-details -->
   
   </section><!-- 5Buntitled-5D -->
 

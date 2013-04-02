@@ -170,7 +170,7 @@ class LessonsController < ApplicationController
   
   private
   
-  def check_available_for_user
+  def check_available_for_user # :doc:
     l = Lesson.find_by_id params[:lesson_id]
     if l && !l.available?
       render :nothing => true
@@ -178,13 +178,13 @@ class LessonsController < ApplicationController
     end
   end
   
-  def get_own_lessons
+  def get_own_lessons # :doc:
     current_user_own_lessons = current_user.own_lessons(@page, @for_page, @filter)
     @lessons = current_user_own_lessons[:records]
     @pages_amount = current_user_own_lessons[:pages_amount]
   end
   
-  def initialize_paginator
+  def initialize_paginator # :doc:
     @page = correct_integer?(params[:page]) ? params[:page].to_i : 1
     @for_page = FOR_PAGE
     @filter = params[:filter]

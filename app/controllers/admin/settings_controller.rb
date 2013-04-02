@@ -2,9 +2,6 @@ class Admin::SettingsController < AdminController
   
   layout 'admin'
   
-  
-  # SUBJECTS
-  
   def subjects
     @subjects = Subject.all
   end
@@ -20,9 +17,6 @@ class Admin::SettingsController < AdminController
     subject.destroy if subject.is_deletable?
   end
   
-  
-  # SCHOOL LEVELS
-  
   def school_levels
     @school_levels = SchoolLevel.all
   end
@@ -37,9 +31,6 @@ class Admin::SettingsController < AdminController
     level = SchoolLevel.find(@id)
     level.destroy if level.is_deletable?
   end
-  
-  
-  # TAGS
   
   def tags
     tags = params[:search] ? AdminSearchForm.search_tags(params[:search]) : Tag.order('created_at DESC')
