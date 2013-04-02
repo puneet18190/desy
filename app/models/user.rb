@@ -34,7 +34,17 @@
 #
 # == Validations
 #
+# * *presence* of +email+, +name+, +surname+
+# * *presence* with numericality greater than 0 and presence of associated element for +location_id+ and +school_level_id+ (for the location, it's also checked that the subclass is the last in the locations chain, see Location)
+# * *confirmation* of +encrypted_password+ (the attribute password must coincide with its confirmation provided by the user): this validation uses the private attribute +password_confirmation+, associated to password
+# * *presence* of at least one associated record of UsersSubject
+# * *uniqueness* of +email+
+# * *length* of +name+ and +surname+ (maximum 255)
+# * *length* of the attribute password associated to +encrypted_password+ (the maximum is configured in settings.yml, same as the minimum, but the minimum can be null, in which case the minimum size is one character). Since this attribute doesn't correspond to a field, the validation is forced only when the user is created: when the user is updated, instead, the validation allows +nil+ and +blank+ values, in case the user doesn't want to change his password
+# * *inclusion* of +active+ and +confirmed+ in [+true+, +false+]
 # * *correctness* of +email+ as an e-mail address
+# * *modifications* *not* *available* for +email+ if the user is not a new record
+# * *acceptance* of each policy configured in settings.yml
 #
 class User < ActiveRecord::Base
   
@@ -76,7 +86,7 @@ class User < ActiveRecord::Base
   belongs_to :location, :class_name => location_association_class
   
   validates_presence_of :email, :name, :surname, :school_level_id, :location_id
-  validates_numericality_of :school_level_id, :location_id, only_integer: true, greater_than: 0, allow_blank: true
+  validates_numericality_of :school_level_id, :location_id, :only_integer => true, :greater_than => 0
   validates_confirmation_of :password
   validates_presence_of :users_subjects
   validates_uniqueness_of :email
@@ -147,7 +157,7 @@ class User < ActiveRecord::Base
   
   def reset_password!
     new_password = SecureRandom.urlsafe_base64(10)
-    update_attributes!(password: new_password, password_confirmation: new_password)
+    update_attributes!(:password => new_password, :password_confirmation => new_password)
     new_password
   end
   
