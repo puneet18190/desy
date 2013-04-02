@@ -558,7 +558,7 @@ class User < ActiveRecord::Base
   
   # === Description
   #
-  # Extracts the elements present in the user's personal section (see MediaElementsController#index): the method uses the scope +of+ defined in MediaElement, and applies filters on it. Each element has its status set with MediaElement#set_status.
+  # Extracts the elements present in the user's personal section (see MediaElementsController#index, and GalleriesController): the method uses the scope +of+ defined in MediaElement, and applies filters on it. Each element has its status set with MediaElement#set_status.
   #
   # === Args
   #
@@ -591,7 +591,7 @@ class User < ActiveRecord::Base
   
   # === Description
   #
-  # Extracts the lessons present in the user's personal section (see LessonsController#index): the method uses the scope +of+ defined in Lesson, and applies filters on it. Each lesson has its status set with Lesson#set_status.
+  # Extracts the lessons present in the user's personal section (see LessonsController#index, and GalleriesController): the method uses the scope +of+ defined in Lesson, and applies filters on it. Each lesson has its status set with Lesson#set_status.
   #
   # === Args
   #

@@ -104,22 +104,78 @@ class Video < MediaElement
     media.try(:url, :thumb) if converted
   end
   
+  # === Description
+  #
+  # Returns the url of the placeholder used in case the video is being converted (an animated gif).
+  #
+  # === Args
+  #
+  # * *type*: the type of placeholder required: it can be
+  #   * +:thumb+: used in the expanded media element
+  #   * +:lesson_viewer_big+: used in the lesson viewer (slides of kind 'video2', see Slide)
+  #   * +:lesson_viewer_small+: used in the lesson viewer (slides of kind 'video1', see Slide)
+  #   * +:gallery+: used in the Video Gallery
+  #
+  # === Returns
+  #
+  # An url.
+  #
+  # === Usage
+  #
+  #   <% if video.converted? %>
+  #     <%= render :partial => 'shared/players/video', :locals => {:video => video} %>
+  #   <% else %>
+  #     <%= image_tag video.placeholder_url(:lesson_viewer_small) %>
+  #   <% end %>
+  #
   def placeholder_url(type)
     "/assets/placeholders/video_#{type}.gif"
   end
   
+  # === Description
+  #
+  # Returns the float duration in seconds of the mp4 track;
+  #
+  # === Returns
+  #
+  # A float.
+  #
   def mp4_duration
     converted ? metadata.mp4_duration : nil
   end
   
+  # === Description
+  #
+  # Sets the float duration in seconds of the mp4 track;
+  #
+  # === Args
+  #
+  # * *mp4_duration*: the duration to be set
+  #
   def mp4_duration=(mp4_duration)
     metadata.mp4_duration = mp4_duration
   end
   
+  # === Description
+  #
+  # Returns the float duration in seconds of the webm track;
+  #
+  # === Returns
+  #
+  # A float.
+  #
   def webm_duration
     converted ? metadata.webm_duration : nil
   end
   
+  # === Description
+  #
+  # Sets the float duration in seconds of the webm track;
+  #
+  # === Args
+  #
+  # * *webm_duration*: the duration to be set
+  #
   def webm_duration=(webm_duration)
     metadata.webm_duration = webm_duration
   end
