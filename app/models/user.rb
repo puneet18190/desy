@@ -13,7 +13,28 @@
 # * *active*: boolean, false if the user is banned
 # * *location_id*: location of the user
 # * *confirmation_token*: token used for confirmation, generated automaticly
-# * *metadata*: TODO, probabilmente cache di video e audio editor
+# * *metadata*:
+#   * +video_editor_cache+: cache of the Video Editor (screenshot of the last video edited)
+#   * +audio_editor_cache+: cache of the Audio Editor (screenshot of the last audio edited)
+#
+# == Associations
+#
+# * *bookmarks*: links created by this user elements or lessons (see Bookmark) (*has_many*)
+# * *notifications*: notifications of this user (see Notification) (*has_many*)
+# * *likes*: list of "I like you" registered by this user on other users' lessons (see Like) (*has_many*)
+# * *lessons*: list of lessons created by this user (see Lesson) (*has_many*)
+# * *media_elements*: list of elements loaded or created by this user (includes also public elements, which are moved into the public database of the application, but they still record who was the user who first created them (see MediaElement, Audio, Image, Video) (*has_many*)
+# * *reports*: reports sent by this user about elements or lessons (see Report) (*has_many*)
+# * *users_subjects*: list of instances of this subject associated to this user through records of UsersSubject (*has_many*)
+# * *subjects*: list of subjects associated to this user (through the association +users_subjects+) (see Subject) (*has_many*)
+# * *virtual_classroom_lessons*: list of lessons present in the user's Virtual Classroom (see VirtualClassroomLesson) (*has_many*)
+# * *mailing_list_groups*: all the mailing list groups that this user created (see MailingListGroup) (*has_many*)
+# * *school_level*: the SchoolLevel associated to this user (*belongs_to*)
+# * *location*: the Location associated to this user (*belongs_to*)
+#
+# == Validations
+#
+# qui andranno le validazioni User#get_tags_associated_to_lesson_search
 #
 class User < ActiveRecord::Base
   
@@ -50,7 +71,7 @@ class User < ActiveRecord::Base
   has_many :users_subjects, dependent: :destroy
   has_many :subjects, through: :users_subjects
   has_many :virtual_classroom_lessons
-  has_many :mailing_list_groups, :dependent => :destroy
+  has_many :mailing_list_groups
   belongs_to :school_level
   belongs_to :location, :class_name => location_association_class
   
@@ -108,7 +129,7 @@ class User < ActiveRecord::Base
     update_attribute :metadata, OpenStruct.new(metadata.marshal_dump.merge(audio_editor_cache: cache))
     nil
   end
-
+  
   def audio_editor_cache
     metadata.try(:audio_editor_cache)
   end
@@ -120,23 +141,23 @@ class User < ActiveRecord::Base
   def new_mailing_list_name
     I18n.t('users.mailing_list.label', :number => (MailingListGroup.where(:user_id => self.id).count + 1))
   end
-
+  
   def registration_policies
     REGISTRATION_POLICIES
   end
-
+  
   def reset_password!
     new_password = SecureRandom.urlsafe_base64(10)
     update_attributes!(password: new_password, password_confirmation: new_password)
     new_password
   end
-
+  
   def subject_ids=(subject_ids)
     users_subjects.reload.clear
     subject_ids.each { |id| users_subjects.build user: self, subject_id: id } if subject_ids
     subject_ids
   end
-
+  
   def full_name
     "#{self.name} #{self.surname}"
   end
@@ -171,36 +192,6 @@ class User < ActiveRecord::Base
     Audio.where(converted: false, user_id: id).all?{ |record| record.uploaded? && !record.modified? }
   end
   
-  # == Description
-  #
-  # Creates one of the URI's subclasses instance from the string.
-  #
-  # == Args
-  #
-  # +uri_str+::
-  #   String with URI.
-  #
-  # == Returns
-  #
-  # An array of the media elements found.
-  #
-  # == Raises
-  #
-  # <tt>URI::InvalidURIError</tt>::
-  #   Raised if URI given is not a correct one.
-  #
-  # == Usage
-  #
-  #   require 'uri'
-  #
-  #   uri = URI.parse("http://www.ruby-lang.org/")
-  #   p uri
-  #   # => #<URI::HTTP:0x202281be URL:http://www.ruby-lang.org/>
-  #   p uri.scheme
-  #   # => "http"
-  #   p uri.host
-  #   # => "www.ruby-lang.org"
-  #
   def search_media_elements(word, page, for_page, order=nil, filter=nil, only_tags=nil)
     only_tags = false if only_tags.nil?
     page = 1 if page.class != Fixnum || page <= 0
@@ -614,7 +605,7 @@ class User < ActiveRecord::Base
   
   private
   
-  def get_tags_associated_to_lesson_search(word, filter, subject_id)
+  def get_tags_associated_to_lesson_search(word, filter, subject_id) # :doc:
     filter = Filters::ALL_LESSONS if filter.nil? || !Filters::LESSONS_SEARCH_SET.include?(filter)
     subject_id = nil if ![NilClass, Fixnum].include?(subject_id.class)
     limit = SETTINGS['tags_limit_in_search_engine']
@@ -655,7 +646,7 @@ class User < ActiveRecord::Base
     resp
   end
   
-  def get_tags_associated_to_media_element_search(word, filter)
+  def get_tags_associated_to_media_element_search(word, filter) # :doc:
     limit = SETTINGS['tags_limit_in_search_engine']
     filter = Filters::ALL_MEDIA_ELEMENTS if filter.nil? || !Filters::MEDIA_ELEMENTS_SEARCH_SET.include?(filter)
     resp = []
@@ -684,7 +675,7 @@ class User < ActiveRecord::Base
     resp
   end
   
-  def search_media_elements_with_tag(word, offset, limit, filter, order_by)
+  def search_media_elements_with_tag(word, offset, limit, filter, order_by) # :doc:
     resp = {}
     params = ["#{word}%", true, self.id]
     joins = "INNER JOIN tags ON (tags.id = taggings.tag_id) INNER JOIN media_elements ON (taggings.taggable_type = 'MediaElement' AND taggings.taggable_id = media_elements.id)"
@@ -720,7 +711,7 @@ class User < ActiveRecord::Base
     return resp
   end
   
-  def search_media_elements_without_tag(offset, limit, filter, order_by)
+  def search_media_elements_without_tag(offset, limit, filter, order_by) # :doc:
     resp = {}
     order = ''
     case order_by
@@ -755,7 +746,7 @@ class User < ActiveRecord::Base
     return resp
   end
   
-  def search_lessons_with_tag(word, offset, limit, filter, subject_id, order_by)
+  def search_lessons_with_tag(word, offset, limit, filter, subject_id, order_by) # :doc:
     resp = {}
     params = ["#{word}%"]
     select = 'lessons.id AS lesson_id'
@@ -807,7 +798,7 @@ class User < ActiveRecord::Base
     return resp
   end
   
-  def search_lessons_without_tag(offset, limit, filter, subject_id, order_by)
+  def search_lessons_without_tag(offset, limit, filter, subject_id, order_by) # :doc:
     resp = {}
     params = []
     select = 'lessons.id AS lesson_id'

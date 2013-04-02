@@ -277,6 +277,8 @@
     <ul class="initially-hidden">
       <li><a href="User.html#label-Description">Description</a>
       <li><a href="User.html#label-Fields">Fields</a>
+      <li><a href="User.html#label-Associations">Associations</a>
+      <li><a href="User.html#label-Validations">Validations</a>
     </ul>
   </li>
     <li class="module">
@@ -698,9 +700,9 @@
   
     <li class="method"><a href="Subject.html#method-c-chart_colors">::chart_colors &mdash; Subject</a>
   
-    <li class="method"><a href="Lesson.html#method-c-dashboard_emptied-3F">::dashboard_emptied? &mdash; Lesson</a>
-  
     <li class="method"><a href="MediaElement.html#method-c-dashboard_emptied-3F">::dashboard_emptied? &mdash; MediaElement</a>
+  
+    <li class="method"><a href="Lesson.html#method-c-dashboard_emptied-3F">::dashboard_emptied? &mdash; Lesson</a>
   
     <li class="method"><a href="Dumpable.html#method-c-exception">::exception &mdash; Dumpable</a>
   
@@ -722,21 +724,21 @@
   
     <li class="method"><a href="Dumpable.html#method-c-hash">::hash &mdash; Dumpable</a>
   
-    <li class="method"><a href="FilenameToken.html#method-c-included">::included &mdash; FilenameToken</a>
-  
-    <li class="method"><a href="User/Authentication.html#method-c-included">::included &mdash; User::Authentication</a>
-  
     <li class="method"><a href="Media/Shared.html#method-c-included">::included &mdash; Media::Shared</a>
   
     <li class="method"><a href="User/Confirmation.html#method-c-included">::included &mdash; User::Confirmation</a>
   
-    <li class="method"><a href="EnvRelativePath.html#method-c-included">::included &mdash; EnvRelativePath</a>
+    <li class="method"><a href="FilenameToken.html#method-c-included">::included &mdash; FilenameToken</a>
+  
+    <li class="method"><a href="User/Authentication.html#method-c-included">::included &mdash; User::Authentication</a>
   
     <li class="method"><a href="Media/Logging.html#method-c-included">::included &mdash; Media::Logging</a>
   
-    <li class="method"><a href="EnhancedThread.html#method-c-join">::join &mdash; EnhancedThread</a>
+    <li class="method"><a href="EnvRelativePath.html#method-c-included">::included &mdash; EnvRelativePath</a>
   
     <li class="method"><a href="Media/Thread.html#method-c-join">::join &mdash; Media::Thread</a>
+  
+    <li class="method"><a href="EnhancedThread.html#method-c-join">::join &mdash; EnhancedThread</a>
   
     <li class="method"><a href="Location.html#method-c-label_at">::label_at &mdash; Location</a>
   
@@ -758,25 +760,69 @@
   
     <li class="method"><a href="Statistics.html#method-c-my_likes_count">::my_likes_count &mdash; Statistics</a>
   
-    <li class="method"><a href="Media/Video/Editing/Cmd/ImageToVideo.html#method-c-new">::new &mdash; Media::Video::Editing::Cmd::ImageToVideo</a>
+    <li class="method"><a href="Media/Info.html#method-c-new">::new &mdash; Media::Info</a>
   
-    <li class="method"><a href="Media/Uploader.html#method-c-new">::new &mdash; Media::Uploader</a>
+    <li class="method"><a href="Media/Video/Editing/Cmd/Crop.html#method-c-new">::new &mdash; Media::Video::Editing::Cmd::Crop</a>
   
-    <li class="method"><a href="Media/Image/Editing/ResizeToFill.html#method-c-new">::new &mdash; Media::Image::Editing::ResizeToFill</a>
+    <li class="method"><a href="Media/Video/Editing/Cmd/Concat/Mp4.html#method-c-new">::new &mdash; Media::Video::Editing::Cmd::Concat::Mp4</a>
   
-    <li class="method"><a href="Media/Image/Editing/Crop.html#method-c-new">::new &mdash; Media::Image::Editing::Crop</a>
-  
-    <li class="method"><a href="Media/Video/Editing/Cmd/AudioStreamToFile.html#method-c-new">::new &mdash; Media::Video::Editing::Cmd::AudioStreamToFile</a>
-  
-    <li class="method"><a href="Media/Image/Editing/Cmd/TextToImage.html#method-c-new">::new &mdash; Media::Image::Editing::Cmd::TextToImage</a>
+    <li class="method"><a href="Media/Video/Editing/Cmd/ExtractFrame.html#method-c-new">::new &mdash; Media::Video::Editing::Cmd::ExtractFrame</a>
   
     <li class="method"><a href="Media/Video/Editing/Cmd/Concat.html#method-c-new">::new &mdash; Media::Video::Editing::Cmd::Concat</a>
   
+    <li class="method"><a href="Media/Video/Editing/Cmd/GenerateTransitionFrames.html#method-c-new">::new &mdash; Media::Video::Editing::Cmd::GenerateTransitionFrames</a>
+  
+    <li class="method"><a href="Media/Video/Editing/Cmd/ImageToVideo.html#method-c-new">::new &mdash; Media::Video::Editing::Cmd::ImageToVideo</a>
+  
+    <li class="method"><a href="Media/Video/Editing/Cmd/AudioStreamToFile.html#method-c-new">::new &mdash; Media::Video::Editing::Cmd::AudioStreamToFile</a>
+  
+    <li class="method"><a href="Media/Audio/Editing/Cmd/Conversion.html#method-c-new">::new &mdash; Media::Audio::Editing::Cmd::Conversion</a>
+  
+    <li class="method"><a href="Media/Video/Editing/Cmd/Concat/Webm.html#method-c-new">::new &mdash; Media::Video::Editing::Cmd::Concat::Webm</a>
+  
+    <li class="method"><a href="Media/Audio/Editing/Cmd/Crop.html#method-c-new">::new &mdash; Media::Audio::Editing::Cmd::Crop</a>
+  
+    <li class="method"><a href="Media/Uploader.html#method-c-new">::new &mdash; Media::Uploader</a>
+  
+    <li class="method"><a href="Media/Video/Editing/Transition.html#method-c-new">::new &mdash; Media::Video::Editing::Transition</a>
+  
+    <li class="method"><a href="Media/Video/Editing/TextToVideo.html#method-c-new">::new &mdash; Media::Video::Editing::TextToVideo</a>
+  
+    <li class="method"><a href="Media/Video/Editing/ReplaceAudio.html#method-c-new">::new &mdash; Media::Video::Editing::ReplaceAudio</a>
+  
+    <li class="method"><a href="Media/Video/Editing/Cmd/MergeWebmVideoStreams.html#method-c-new">::new &mdash; Media::Video::Editing::Cmd::MergeWebmVideoStreams</a>
+  
+    <li class="method"><a href="Media/Video/Editing/Cmd/Mp3ToWav.html#method-c-new">::new &mdash; Media::Video::Editing::Cmd::Mp3ToWav</a>
+  
+    <li class="method"><a href="Media/Video/Editing/Cmd/ReplaceAudio.html#method-c-new">::new &mdash; Media::Video::Editing::Cmd::ReplaceAudio</a>
+  
+    <li class="method"><a href="Media/Video/Editing/Cmd/Transition.html#method-c-new">::new &mdash; Media::Video::Editing::Cmd::Transition</a>
+  
+    <li class="method"><a href="ControllerInfo.html#method-c-new">::new &mdash; ControllerInfo</a>
+  
+    <li class="method"><a href="Media/Video/Editing/Cmd/Conversion.html#method-c-new">::new &mdash; Media::Video::Editing::Cmd::Conversion</a>
+  
+    <li class="method"><a href="Media/Image/Editing/ResizeToFill.html#method-c-new">::new &mdash; Media::Image::Editing::ResizeToFill</a>
+  
+    <li class="method"><a href="Media/Video/Editing/Cmd/VideoStreamToFile.html#method-c-new">::new &mdash; Media::Video::Editing::Cmd::VideoStreamToFile</a>
+  
+    <li class="method"><a href="Media/Image/Editing/Crop.html#method-c-new">::new &mdash; Media::Image::Editing::Crop</a>
+  
+    <li class="method"><a href="Media/Video/Editing/Composer.html#method-c-new">::new &mdash; Media::Video::Editing::Composer</a>
+  
+    <li class="method"><a href="Media/Image/Editing/Cmd/TextToImage.html#method-c-new">::new &mdash; Media::Image::Editing::Cmd::TextToImage</a>
+  
+    <li class="method"><a href="Media/Video/Editing/Concat.html#method-c-new">::new &mdash; Media::Video::Editing::Concat</a>
+  
     <li class="method"><a href="Media/Image/Editing/AddTextToImage.html#method-c-new">::new &mdash; Media::Image::Editing::AddTextToImage</a>
+  
+    <li class="method"><a href="EnhancedThread.html#method-c-new">::new &mdash; EnhancedThread</a>
+  
+    <li class="method"><a href="Dumpable/NoMethodError.html#method-c-new">::new &mdash; Dumpable::NoMethodError</a>
   
     <li class="method"><a href="Media/Error.html#method-c-new">::new &mdash; Media::Error</a>
   
-    <li class="method"><a href="Media/Video/Editing/Cmd/Concat/Webm.html#method-c-new">::new &mdash; Media::Video::Editing::Cmd::Concat::Webm</a>
+    <li class="method"><a href="Media/Video/Editing/ImageToVideo.html#method-c-new">::new &mdash; Media::Video::Editing::ImageToVideo</a>
   
     <li class="method"><a href="Media/Cmd/Avprobe.html#method-c-new">::new &mdash; Media::Cmd::Avprobe</a>
   
@@ -786,75 +832,31 @@
   
     <li class="method"><a href="Media/Audio/Editing/Concat.html#method-c-new">::new &mdash; Media::Audio::Editing::Concat</a>
   
-    <li class="method"><a href="Media/Audio/Editing/Composer.html#method-c-new">::new &mdash; Media::Audio::Editing::Composer</a>
-  
-    <li class="method"><a href="Media/Video/Editing/Cmd/Conversion.html#method-c-new">::new &mdash; Media::Video::Editing::Cmd::Conversion</a>
-  
-    <li class="method"><a href="Media/Video/Editing/Cmd/Crop.html#method-c-new">::new &mdash; Media::Video::Editing::Cmd::Crop</a>
-  
-    <li class="method"><a href="Media/Video/Editing/Cmd/ExtractFrame.html#method-c-new">::new &mdash; Media::Video::Editing::Cmd::ExtractFrame</a>
-  
-    <li class="method"><a href="Media/Video/Editing/Cmd/GenerateTransitionFrames.html#method-c-new">::new &mdash; Media::Video::Editing::Cmd::GenerateTransitionFrames</a>
-  
-    <li class="method"><a href="Media/Audio/Editing/Cmd/Crop.html#method-c-new">::new &mdash; Media::Audio::Editing::Cmd::Crop</a>
-  
-    <li class="method"><a href="Media/Audio/Editing/Cmd/Conversion.html#method-c-new">::new &mdash; Media::Audio::Editing::Cmd::Conversion</a>
-  
-    <li class="method"><a href="Media/Info.html#method-c-new">::new &mdash; Media::Info</a>
-  
-    <li class="method"><a href="Media/Video/Editing/Cmd/MergeWebmVideoStreams.html#method-c-new">::new &mdash; Media::Video::Editing::Cmd::MergeWebmVideoStreams</a>
-  
     <li class="method"><a href="Media/Audio/Editing/Cmd/Concat.html#method-c-new">::new &mdash; Media::Audio::Editing::Cmd::Concat</a>
-  
-    <li class="method"><a href="Media/Video/Editing/Cmd/Mp3ToWav.html#method-c-new">::new &mdash; Media::Video::Editing::Cmd::Mp3ToWav</a>
-  
-    <li class="method"><a href="Dumpable/NoMethodError.html#method-c-new">::new &mdash; Dumpable::NoMethodError</a>
-  
-    <li class="method"><a href="ControllerInfo.html#method-c-new">::new &mdash; ControllerInfo</a>
-  
-    <li class="method"><a href="Media/Video/Editing/Cmd/ReplaceAudio.html#method-c-new">::new &mdash; Media::Video::Editing::Cmd::ReplaceAudio</a>
-  
-    <li class="method"><a href="Form.html#method-c-new">::new &mdash; Form</a>
-  
-    <li class="method"><a href="Media/Video/Editing/Cmd/Transition.html#method-c-new">::new &mdash; Media::Video::Editing::Cmd::Transition</a>
-  
-    <li class="method"><a href="Media/Video/Editing/Cmd/TrimAudioFile.html#method-c-new">::new &mdash; Media::Video::Editing::Cmd::TrimAudioFile</a>
-  
-    <li class="method"><a href="Media/Video/Editing/Cmd/VideoStreamToFile.html#method-c-new">::new &mdash; Media::Video::Editing::Cmd::VideoStreamToFile</a>
-  
-    <li class="method"><a href="Media/Video/Editing/Composer.html#method-c-new">::new &mdash; Media::Video::Editing::Composer</a>
-  
-    <li class="method"><a href="Media/Video/Editing/Concat.html#method-c-new">::new &mdash; Media::Video::Editing::Concat</a>
-  
-    <li class="method"><a href="Media/Video/Editing/Transition.html#method-c-new">::new &mdash; Media::Video::Editing::Transition</a>
-  
-    <li class="method"><a href="Media/Video/Editing/TextToVideo.html#method-c-new">::new &mdash; Media::Video::Editing::TextToVideo</a>
-  
-    <li class="method"><a href="EnhancedThread.html#method-c-new">::new &mdash; EnhancedThread</a>
-  
-    <li class="method"><a href="Media/Video/Editing/Conversion.html#method-c-new">::new &mdash; Media::Video::Editing::Conversion</a>
-  
-    <li class="method"><a href="Media/Video/Editing/ReplaceAudio.html#method-c-new">::new &mdash; Media::Video::Editing::ReplaceAudio</a>
-  
-    <li class="method"><a href="Media/Video/Editing/Cmd/Concat/Mp4.html#method-c-new">::new &mdash; Media::Video::Editing::Cmd::Concat::Mp4</a>
   
     <li class="method"><a href="Media/Video/Editing/Crop.html#method-c-new">::new &mdash; Media::Video::Editing::Crop</a>
   
-    <li class="method"><a href="Media/Video/Editing/ImageToVideo.html#method-c-new">::new &mdash; Media::Video::Editing::ImageToVideo</a>
+    <li class="method"><a href="Media/Audio/Editing/Composer.html#method-c-new">::new &mdash; Media::Audio::Editing::Composer</a>
+  
+    <li class="method"><a href="Form.html#method-c-new">::new &mdash; Form</a>
+  
+    <li class="method"><a href="Media/Video/Editing/Cmd/TrimAudioFile.html#method-c-new">::new &mdash; Media::Video::Editing::Cmd::TrimAudioFile</a>
+  
+    <li class="method"><a href="Media/Video/Editing/Conversion.html#method-c-new">::new &mdash; Media::Video::Editing::Conversion</a>
   
     <li class="method"><a href="MediaElement.html#method-c-new_with_sti_type_inferring">::new_with_sti_type_inferring &mdash; MediaElement</a>
   
     <li class="method"><a href="Image.html#method-c-ratio_value">::ratio_value &mdash; Image</a>
   
-    <li class="method"><a href="Media/Video/Editing/Conversion.html#method-c-remove_folder-21">::remove_folder! &mdash; Media::Video::Editing::Conversion</a>
-  
     <li class="method"><a href="Media/Audio/Editing/Conversion.html#method-c-remove_folder-21">::remove_folder! &mdash; Media::Audio::Editing::Conversion</a>
+  
+    <li class="method"><a href="Media/Video/Editing/Conversion.html#method-c-remove_folder-21">::remove_folder! &mdash; Media::Video::Editing::Conversion</a>
   
     <li class="method"><a href="Media/Uploader.html#method-c-remove_folder-21">::remove_folder! &mdash; Media::Uploader</a>
   
-    <li class="method"><a href="Media/Logging.html#method-c-remove_folder-21">::remove_folder! &mdash; Media::Logging</a>
-  
     <li class="method"><a href="ImageUploader.html#method-c-remove_folder-21">::remove_folder! &mdash; ImageUploader</a>
+  
+    <li class="method"><a href="Media/Logging.html#method-c-remove_folder-21">::remove_folder! &mdash; Media::Logging</a>
   
     <li class="method"><a href="AdminSearchForm.html#method-c-search_lessons">::search_lessons &mdash; AdminSearchForm</a>
   
@@ -968,13 +970,13 @@
   
     <li class="method"><a href="User.html#method-i-bookmark">#bookmark &mdash; User</a>
   
-    <li class="method"><a href="Lesson.html#method-i-bookmarked-3F">#bookmarked? &mdash; Lesson</a>
-  
     <li class="method"><a href="MediaElement.html#method-i-bookmarked-3F">#bookmarked? &mdash; MediaElement</a>
   
-    <li class="method"><a href="Lesson.html#method-i-buttons">#buttons &mdash; Lesson</a>
+    <li class="method"><a href="Lesson.html#method-i-bookmarked-3F">#bookmarked? &mdash; Lesson</a>
   
     <li class="method"><a href="MediaElement.html#method-i-buttons">#buttons &mdash; MediaElement</a>
+  
+    <li class="method"><a href="Lesson.html#method-i-buttons">#buttons &mdash; Lesson</a>
   
     <li class="method"><a href="ImageUploader.html#method-i-cache_dir">#cache_dir &mdash; ImageUploader</a>
   
@@ -994,15 +996,15 @@
   
     <li class="method"><a href="User/Authentication/InstanceMethods.html#method-i-clear_password_and_password_confirmation">#clear_password_and_password_confirmation &mdash; User::Authentication::InstanceMethods</a>
   
-    <li class="method"><a href="Media/Video/Editing/Cmd/Mp3ToWav.html#method-i-cmd-21">#cmd! &mdash; Media::Video::Editing::Cmd::Mp3ToWav</a>
-  
     <li class="method"><a href="Media/Cmd.html#method-i-cmd-21">#cmd! &mdash; Media::Cmd</a>
+  
+    <li class="method"><a href="Media/Video/Editing/Cmd/Mp3ToWav.html#method-i-cmd-21">#cmd! &mdash; Media::Video::Editing::Cmd::Mp3ToWav</a>
   
     <li class="method"><a href="Media/Uploader.html#method-i-column_changed-3F">#column_changed? &mdash; Media::Uploader</a>
   
-    <li class="method"><a href="Media/Audio/Editing/Composer.html#method-i-compose">#compose &mdash; Media::Audio::Editing::Composer</a>
-  
     <li class="method"><a href="Media/Video/Editing/Composer.html#method-i-compose">#compose &mdash; Media::Video::Editing::Composer</a>
+  
+    <li class="method"><a href="Media/Audio/Editing/Composer.html#method-i-compose">#compose &mdash; Media::Audio::Editing::Composer</a>
   
     <li class="method"><a href="Media/Shared/InstanceMethods.html#method-i-composed-3F">#composed? &mdash; Media::Shared::InstanceMethods</a>
   
@@ -1018,17 +1020,17 @@
   
     <li class="method"><a href="Media/Video/Editing/Parameters.html#method-i-convert_parameters">#convert_parameters &mdash; Media::Video::Editing::Parameters</a>
   
-    <li class="method"><a href="Media/Audio/Editing/Conversion.html#method-i-convert_to">#convert_to &mdash; Media::Audio::Editing::Conversion</a>
-  
     <li class="method"><a href="Media/Video/Editing/Conversion.html#method-i-convert_to">#convert_to &mdash; Media::Video::Editing::Conversion</a>
   
-    <li class="method"><a href="Media/Audio/Editing/Parameters.html#method-i-convert_to_primitive_parameters">#convert_to_primitive_parameters &mdash; Media::Audio::Editing::Parameters</a>
+    <li class="method"><a href="Media/Audio/Editing/Conversion.html#method-i-convert_to">#convert_to &mdash; Media::Audio::Editing::Conversion</a>
   
     <li class="method"><a href="Media/Video/Editing/Parameters.html#method-i-convert_to_primitive_parameters">#convert_to_primitive_parameters &mdash; Media::Video::Editing::Parameters</a>
   
-    <li class="method"><a href="Lesson.html#method-i-copy">#copy &mdash; Lesson</a>
+    <li class="method"><a href="Media/Audio/Editing/Parameters.html#method-i-convert_to_primitive_parameters">#convert_to_primitive_parameters &mdash; Media::Audio::Editing::Parameters</a>
   
     <li class="method"><a href="LessonsController.html#method-i-copy">#copy &mdash; LessonsController</a>
+  
+    <li class="method"><a href="Lesson.html#method-i-copy">#copy &mdash; Lesson</a>
   
     <li class="method"><a href="Lesson.html#method-i-cover">#cover &mdash; Lesson</a>
   
@@ -1036,15 +1038,15 @@
   
     <li class="method"><a href="Video.html#method-i-cover_url">#cover_url &mdash; Video</a>
   
-    <li class="method"><a href="MediaElementsController.html#method-i-create">#create &mdash; MediaElementsController</a>
+    <li class="method"><a href="Users/SessionsController.html#method-i-create">#create &mdash; Users::SessionsController</a>
   
-    <li class="method"><a href="Admin/MediaElementsController.html#method-i-create">#create &mdash; Admin::MediaElementsController</a>
+    <li class="method"><a href="MediaElementsController.html#method-i-create">#create &mdash; MediaElementsController</a>
   
     <li class="method"><a href="LessonEditorController.html#method-i-create">#create &mdash; LessonEditorController</a>
   
-    <li class="method"><a href="UsersController.html#method-i-create">#create &mdash; UsersController</a>
+    <li class="method"><a href="Admin/MediaElementsController.html#method-i-create">#create &mdash; Admin::MediaElementsController</a>
   
-    <li class="method"><a href="Users/SessionsController.html#method-i-create">#create &mdash; Users::SessionsController</a>
+    <li class="method"><a href="UsersController.html#method-i-create">#create &mdash; UsersController</a>
   
     <li class="method"><a href="MailingListsController.html#method-i-create_address">#create_address &mdash; MailingListsController</a>
   
@@ -1080,15 +1082,15 @@
   
     <li class="method"><a href="Admin/MediaElementsController.html#method-i-destroy">#destroy &mdash; Admin::MediaElementsController</a>
   
-    <li class="method"><a href="Users/SessionsController.html#method-i-destroy">#destroy &mdash; Users::SessionsController</a>
-  
-    <li class="method"><a href="LessonsController.html#method-i-destroy">#destroy &mdash; LessonsController</a>
-  
-    <li class="method"><a href="Admin/UsersController.html#method-i-destroy">#destroy &mdash; Admin::UsersController</a>
-  
     <li class="method"><a href="Admin/LessonsController.html#method-i-destroy">#destroy &mdash; Admin::LessonsController</a>
   
     <li class="method"><a href="MediaElementsController.html#method-i-destroy">#destroy &mdash; MediaElementsController</a>
+  
+    <li class="method"><a href="Admin/UsersController.html#method-i-destroy">#destroy &mdash; Admin::UsersController</a>
+  
+    <li class="method"><a href="Users/SessionsController.html#method-i-destroy">#destroy &mdash; Users::SessionsController</a>
+  
+    <li class="method"><a href="LessonsController.html#method-i-destroy">#destroy &mdash; LessonsController</a>
   
     <li class="method"><a href="User.html#method-i-destroy_notification_and_reload">#destroy_notification_and_reload &mdash; User</a>
   
@@ -1110,23 +1112,23 @@
   
     <li class="method"><a href="Media/Info.html#method-i-duration">#duration &mdash; Media::Info</a>
   
-    <li class="method"><a href="ImageEditorController.html#method-i-edit">#edit &mdash; ImageEditorController</a>
-  
     <li class="method"><a href="AudioEditorController.html#method-i-edit">#edit &mdash; AudioEditorController</a>
-  
-    <li class="method"><a href="Admin/MediaElementsController.html#method-i-edit">#edit &mdash; Admin::MediaElementsController</a>
-  
-    <li class="method"><a href="VideoEditorController.html#method-i-edit">#edit &mdash; VideoEditorController</a>
-  
-    <li class="method"><a href="LessonEditorController.html#method-i-edit">#edit &mdash; LessonEditorController</a>
   
     <li class="method"><a href="UsersController.html#method-i-edit">#edit &mdash; UsersController</a>
   
+    <li class="method"><a href="LessonEditorController.html#method-i-edit">#edit &mdash; LessonEditorController</a>
+  
+    <li class="method"><a href="Admin/MediaElementsController.html#method-i-edit">#edit &mdash; Admin::MediaElementsController</a>
+  
+    <li class="method"><a href="ImageEditorController.html#method-i-edit">#edit &mdash; ImageEditorController</a>
+  
+    <li class="method"><a href="VideoEditorController.html#method-i-edit">#edit &mdash; VideoEditorController</a>
+  
     <li class="method"><a href="Image.html#method-i-editing_url">#editing_url &mdash; Image</a>
   
-    <li class="method"><a href="VideoEditorController.html#method-i-empty_cache">#empty_cache &mdash; VideoEditorController</a>
-  
     <li class="method"><a href="AudioEditorController.html#method-i-empty_cache">#empty_cache &mdash; AudioEditorController</a>
+  
+    <li class="method"><a href="VideoEditorController.html#method-i-empty_cache">#empty_cache &mdash; VideoEditorController</a>
   
     <li class="method"><a href="VirtualClassroomController.html#method-i-empty_playlist">#empty_playlist &mdash; VirtualClassroomController</a>
   
@@ -1182,9 +1184,9 @@
   
     <li class="method"><a href="UsersController.html#method-i-find_locations">#find_locations &mdash; UsersController</a>
   
-    <li class="method"><a href="Media/Uploader.html#method-i-folder">#folder &mdash; Media::Uploader</a>
-  
     <li class="method"><a href="ImageUploader.html#method-i-folder">#folder &mdash; ImageUploader</a>
+  
+    <li class="method"><a href="Media/Uploader.html#method-i-folder">#folder &mdash; Media::Uploader</a>
   
     <li class="method"><a href="Slide.html#method-i-following">#following &mdash; Slide</a>
   
@@ -1212,11 +1214,15 @@
   
     <li class="method"><a href="NotificationsController.html#method-i-get_new_block">#get_new_block &mdash; NotificationsController</a>
   
+    <li class="method"><a href="User.html#method-i-get_tags_associated_to_lesson_search">#get_tags_associated_to_lesson_search &mdash; User</a>
+  
+    <li class="method"><a href="User.html#method-i-get_tags_associated_to_media_element_search">#get_tags_associated_to_media_element_search &mdash; User</a>
+  
     <li class="method"><a href="Notification.html#method-i-has_been_seen">#has_been_seen &mdash; Notification</a>
   
-    <li class="method"><a href="Image.html#method-i-height">#height &mdash; Image</a>
-  
     <li class="method"><a href="ImageUploader.html#method-i-height">#height &mdash; ImageUploader</a>
+  
+    <li class="method"><a href="Image.html#method-i-height">#height &mdash; Image</a>
   
     <li class="method"><a href="PreloginController.html#method-i-home">#home &mdash; PreloginController</a>
   
@@ -1244,25 +1250,25 @@
   
     <li class="method"><a href="Lesson.html#method-i-in_virtual_classroom-3F">#in_virtual_classroom? &mdash; Lesson</a>
   
-    <li class="method"><a href="MediaElementsController.html#method-i-index">#index &mdash; MediaElementsController</a>
-  
-    <li class="method"><a href="VirtualClassroomController.html#method-i-index">#index &mdash; VirtualClassroomController</a>
-  
-    <li class="method"><a href="DashboardController.html#method-i-index">#index &mdash; DashboardController</a>
+    <li class="method"><a href="SearchController.html#method-i-index">#index &mdash; SearchController</a>
   
     <li class="method"><a href="Admin/UsersController.html#method-i-index">#index &mdash; Admin::UsersController</a>
   
+    <li class="method"><a href="DashboardController.html#method-i-index">#index &mdash; DashboardController</a>
+  
+    <li class="method"><a href="VirtualClassroomController.html#method-i-index">#index &mdash; VirtualClassroomController</a>
+  
     <li class="method"><a href="LessonEditorController.html#method-i-index">#index &mdash; LessonEditorController</a>
   
-    <li class="method"><a href="LessonsController.html#method-i-index">#index &mdash; LessonsController</a>
+    <li class="method"><a href="LessonViewerController.html#method-i-index">#index &mdash; LessonViewerController</a>
   
     <li class="method"><a href="Admin/MediaElementsController.html#method-i-index">#index &mdash; Admin::MediaElementsController</a>
   
+    <li class="method"><a href="LessonsController.html#method-i-index">#index &mdash; LessonsController</a>
+  
     <li class="method"><a href="Admin/LessonsController.html#method-i-index">#index &mdash; Admin::LessonsController</a>
   
-    <li class="method"><a href="SearchController.html#method-i-index">#index &mdash; SearchController</a>
-  
-    <li class="method"><a href="LessonViewerController.html#method-i-index">#index &mdash; LessonViewerController</a>
+    <li class="method"><a href="MediaElementsController.html#method-i-index">#index &mdash; MediaElementsController</a>
   
     <li class="method"><a href="Admin/DashboardController.html#method-i-index">#index &mdash; Admin::DashboardController</a>
   
@@ -1302,9 +1308,9 @@
   
     <li class="method"><a href="LessonViewerController.html#method-i-load_slide">#load_slide &mdash; LessonViewerController</a>
   
-    <li class="method"><a href="Media/Logging/InstanceMethods.html#method-i-log_folder">#log_folder &mdash; Media::Logging::InstanceMethods</a>
-  
     <li class="method"><a href="Media/Logging/ClassMethods.html#method-i-log_folder">#log_folder &mdash; Media::Logging::ClassMethods</a>
+  
+    <li class="method"><a href="Media/Logging/InstanceMethods.html#method-i-log_folder">#log_folder &mdash; Media::Logging::InstanceMethods</a>
   
     <li class="method"><a href="UsersController.html#method-i-logout">#logout &mdash; UsersController</a>
   
@@ -1352,13 +1358,13 @@
   
     <li class="method"><a href="Video.html#method-i-mp4_url">#mp4_url &mdash; Video</a>
   
-    <li class="method"><a href="Admin/MediaElementsController.html#method-i-new">#new &mdash; Admin::MediaElementsController</a>
-  
     <li class="method"><a href="AudioEditorController.html#method-i-new">#new &mdash; AudioEditorController</a>
   
-    <li class="method"><a href="MediaElementsController.html#method-i-new">#new &mdash; MediaElementsController</a>
+    <li class="method"><a href="Admin/MediaElementsController.html#method-i-new">#new &mdash; Admin::MediaElementsController</a>
   
     <li class="method"><a href="VideoEditorController.html#method-i-new">#new &mdash; VideoEditorController</a>
+  
+    <li class="method"><a href="MediaElementsController.html#method-i-new">#new &mdash; MediaElementsController</a>
   
     <li class="method"><a href="LessonEditorController.html#method-i-new">#new &mdash; LessonEditorController</a>
   
@@ -1396,9 +1402,9 @@
   
     <li class="method"><a href="Media/Uploader.html#method-i-original_filename_extension">#original_filename_extension &mdash; Media::Uploader</a>
   
-    <li class="method"><a href="Media/Uploader.html#method-i-original_filename_without_extension">#original_filename_without_extension &mdash; Media::Uploader</a>
-  
     <li class="method"><a href="ImageUploader.html#method-i-original_filename_without_extension">#original_filename_without_extension &mdash; ImageUploader</a>
+  
+    <li class="method"><a href="Media/Uploader.html#method-i-original_filename_without_extension">#original_filename_without_extension &mdash; Media::Uploader</a>
   
     <li class="method"><a href="Media/Uploader.html#method-i-output_folder">#output_folder &mdash; Media::Uploader</a>
   
@@ -1406,11 +1412,11 @@
   
     <li class="method"><a href="Media/Uploader.html#method-i-output_path_without_extension">#output_path_without_extension &mdash; Media::Uploader</a>
   
-    <li class="method"><a href="VideoEditorController.html#method-i-overwrite">#overwrite &mdash; VideoEditorController</a>
-  
     <li class="method"><a href="ImageEditorController.html#method-i-overwrite">#overwrite &mdash; ImageEditorController</a>
   
     <li class="method"><a href="AudioEditorController.html#method-i-overwrite">#overwrite &mdash; AudioEditorController</a>
+  
+    <li class="method"><a href="VideoEditorController.html#method-i-overwrite">#overwrite &mdash; VideoEditorController</a>
   
     <li class="method"><a href="Media/Shared/InstanceMethods.html#method-i-overwrite-21">#overwrite! &mdash; Media::Shared::InstanceMethods</a>
   
@@ -1432,25 +1438,25 @@
   
     <li class="method"><a href="Media/Video/Editing/Composer/Job.html#method-i-perform">#perform &mdash; Media::Video::Editing::Composer::Job</a>
   
-    <li class="method"><a href="NotificationsJob.html#method-i-perform">#perform &mdash; NotificationsJob</a>
-  
-    <li class="method"><a href="ExceptionNotifierJob.html#method-i-perform">#perform &mdash; ExceptionNotifierJob</a>
+    <li class="method"><a href="Media/Audio/Editing/Composer/Job.html#method-i-perform">#perform &mdash; Media::Audio::Editing::Composer::Job</a>
   
     <li class="method"><a href="Media/Audio/Editing/Conversion/Job.html#method-i-perform">#perform &mdash; Media::Audio::Editing::Conversion::Job</a>
   
-    <li class="method"><a href="Media/Audio/Editing/Composer/Job.html#method-i-perform">#perform &mdash; Media::Audio::Editing::Composer::Job</a>
+    <li class="method"><a href="NotificationsJob.html#method-i-perform">#perform &mdash; NotificationsJob</a>
+  
+    <li class="method"><a href="ExceptionNotifierJob.html#method-i-perform">#perform &mdash; ExceptionNotifierJob</a>
   
     <li class="method"><a href="Media/Video/Editing/Conversion/Job.html#method-i-perform">#perform &mdash; Media::Video::Editing::Conversion::Job</a>
   
     <li class="method"><a href="Form.html#method-i-persisted-3F">#persisted? &mdash; Form</a>
   
-    <li class="method"><a href="Video.html#method-i-placeholder_url">#placeholder_url &mdash; Video</a>
-  
     <li class="method"><a href="Audio.html#method-i-placeholder_url">#placeholder_url &mdash; Audio</a>
   
-    <li class="method"><a href="LessonViewerController.html#method-i-playlist">#playlist &mdash; LessonViewerController</a>
+    <li class="method"><a href="Video.html#method-i-placeholder_url">#placeholder_url &mdash; Video</a>
   
     <li class="method"><a href="User.html#method-i-playlist">#playlist &mdash; User</a>
+  
+    <li class="method"><a href="LessonViewerController.html#method-i-playlist">#playlist &mdash; LessonViewerController</a>
   
     <li class="method"><a href="User.html#method-i-playlist_for_viewer">#playlist_for_viewer &mdash; User</a>
   
@@ -1472,9 +1478,9 @@
   
     <li class="method"><a href="Media/Uploader.html#method-i-public_relative_path">#public_relative_path &mdash; Media::Uploader</a>
   
-    <li class="method"><a href="Lesson.html#method-i-publish">#publish &mdash; Lesson</a>
-  
     <li class="method"><a href="LessonsController.html#method-i-publish">#publish &mdash; LessonsController</a>
+  
+    <li class="method"><a href="Lesson.html#method-i-publish">#publish &mdash; Lesson</a>
   
     <li class="method"><a href="Admin/MediaElementsController.html#method-i-quick_upload">#quick_upload &mdash; Admin::MediaElementsController</a>
   
@@ -1530,43 +1536,43 @@
   
     <li class="method"><a href="VideoEditorController.html#method-i-restore_cache">#restore_cache &mdash; VideoEditorController</a>
   
-    <li class="method"><a href="Media/Audio/Editing/Conversion.html#method-i-run">#run &mdash; Media::Audio::Editing::Conversion</a>
+    <li class="method"><a href="Media/Video/Editing/Transition.html#method-i-run">#run &mdash; Media::Video::Editing::Transition</a>
   
-    <li class="method"><a href="Media/Video/Editing/Crop.html#method-i-run">#run &mdash; Media::Video::Editing::Crop</a>
+    <li class="method"><a href="Media/Audio/Editing/Concat.html#method-i-run">#run &mdash; Media::Audio::Editing::Concat</a>
   
-    <li class="method"><a href="Media/Image/Editing/Crop.html#method-i-run">#run &mdash; Media::Image::Editing::Crop</a>
+    <li class="method"><a href="Media/Video/Editing/TextToVideo.html#method-i-run">#run &mdash; Media::Video::Editing::TextToVideo</a>
   
-    <li class="method"><a href="Media/Cmd.html#method-i-run">#run &mdash; Media::Cmd</a>
+    <li class="method"><a href="Media/Audio/Editing/Composer.html#method-i-run">#run &mdash; Media::Audio::Editing::Composer</a>
+  
+    <li class="method"><a href="Media/Video/Editing/ReplaceAudio.html#method-i-run">#run &mdash; Media::Video::Editing::ReplaceAudio</a>
   
     <li class="method"><a href="Media/Video/Editing/ImageToVideo.html#method-i-run">#run &mdash; Media::Video::Editing::ImageToVideo</a>
   
-    <li class="method"><a href="Media/Audio/Editing/Composer.html#method-i-run">#run &mdash; Media::Audio::Editing::Composer</a>
+    <li class="method"><a href="Media/Image/Editing/Crop.html#method-i-run">#run &mdash; Media::Image::Editing::Crop</a>
+  
+    <li class="method"><a href="Media/Video/Editing/Crop.html#method-i-run">#run &mdash; Media::Video::Editing::Crop</a>
+  
+    <li class="method"><a href="Media/Image/Editing/ResizeToFill.html#method-i-run">#run &mdash; Media::Image::Editing::ResizeToFill</a>
+  
+    <li class="method"><a href="Media/Audio/Editing/Conversion.html#method-i-run">#run &mdash; Media::Audio::Editing::Conversion</a>
   
     <li class="method"><a href="Media/Video/Editing/Conversion.html#method-i-run">#run &mdash; Media::Video::Editing::Conversion</a>
   
     <li class="method"><a href="Media/Video/Editing/Composer.html#method-i-run">#run &mdash; Media::Video::Editing::Composer</a>
   
-    <li class="method"><a href="Media/Image/Editing/ResizeToFill.html#method-i-run">#run &mdash; Media::Image::Editing::ResizeToFill</a>
-  
-    <li class="method"><a href="Media/Video/Editing/Transition.html#method-i-run">#run &mdash; Media::Video::Editing::Transition</a>
-  
-    <li class="method"><a href="Media/Video/Editing/TextToVideo.html#method-i-run">#run &mdash; Media::Video::Editing::TextToVideo</a>
-  
     <li class="method"><a href="Media/Cmd/Avprobe.html#method-i-run">#run &mdash; Media::Cmd::Avprobe</a>
-  
-    <li class="method"><a href="Media/Video/Editing/ReplaceAudio.html#method-i-run">#run &mdash; Media::Video::Editing::ReplaceAudio</a>
-  
-    <li class="method"><a href="Media/Audio/Editing/Concat.html#method-i-run">#run &mdash; Media::Audio::Editing::Concat</a>
   
     <li class="method"><a href="Media/Video/Editing/Concat.html#method-i-run">#run &mdash; Media::Video::Editing::Concat</a>
   
+    <li class="method"><a href="Media/Cmd.html#method-i-run">#run &mdash; Media::Cmd</a>
+  
     <li class="method"><a href="Media/Cmd.html#method-i-run-21">#run! &mdash; Media::Cmd</a>
+  
+    <li class="method"><a href="ImageEditorController.html#method-i-save">#save &mdash; ImageEditorController</a>
   
     <li class="method"><a href="VideoEditorController.html#method-i-save">#save &mdash; VideoEditorController</a>
   
     <li class="method"><a href="AudioEditorController.html#method-i-save">#save &mdash; AudioEditorController</a>
-  
-    <li class="method"><a href="ImageEditorController.html#method-i-save">#save &mdash; ImageEditorController</a>
   
     <li class="method"><a href="AudioEditorController.html#method-i-save_cache">#save_cache &mdash; AudioEditorController</a>
   
@@ -1586,7 +1592,15 @@
   
     <li class="method"><a href="User.html#method-i-search_lessons">#search_lessons &mdash; User</a>
   
+    <li class="method"><a href="User.html#method-i-search_lessons_with_tag">#search_lessons_with_tag &mdash; User</a>
+  
+    <li class="method"><a href="User.html#method-i-search_lessons_without_tag">#search_lessons_without_tag &mdash; User</a>
+  
     <li class="method"><a href="User.html#method-i-search_media_elements">#search_media_elements &mdash; User</a>
+  
+    <li class="method"><a href="User.html#method-i-search_media_elements_with_tag">#search_media_elements_with_tag &mdash; User</a>
+  
+    <li class="method"><a href="User.html#method-i-search_media_elements_without_tag">#search_media_elements_without_tag &mdash; User</a>
   
     <li class="method"><a href="LessonsMediaElementsShared.html#method-i-search_order">#search_order &mdash; LessonsMediaElementsShared</a>
   
@@ -1608,11 +1622,11 @@
   
     <li class="method"><a href="ApplicationController.html#method-i-set_locale">#set_locale &mdash; ApplicationController</a>
   
-    <li class="method"><a href="Admin/UsersController.html#method-i-set_status">#set_status &mdash; Admin::UsersController</a>
-  
     <li class="method"><a href="MediaElement.html#method-i-set_status">#set_status &mdash; MediaElement</a>
   
     <li class="method"><a href="Lesson.html#method-i-set_status">#set_status &mdash; Lesson</a>
+  
+    <li class="method"><a href="Admin/UsersController.html#method-i-set_status">#set_status &mdash; Admin::UsersController</a>
   
     <li class="method"><a href="Admin/UsersController.html#method-i-show">#show &mdash; Admin::UsersController</a>
   
@@ -1640,9 +1654,9 @@
   
     <li class="method"><a href="User.html#method-i-subject_ids-3D">#subject_ids= &mdash; User</a>
   
-    <li class="method"><a href="UsersController.html#method-i-subjects">#subjects &mdash; UsersController</a>
-  
     <li class="method"><a href="Admin/SettingsController.html#method-i-subjects">#subjects &mdash; Admin::SettingsController</a>
+  
+    <li class="method"><a href="UsersController.html#method-i-subjects">#subjects &mdash; UsersController</a>
   
     <li class="method"><a href="User.html#method-i-suggested_lessons">#suggested_lessons &mdash; User</a>
   
@@ -1660,27 +1674,27 @@
   
     <li class="method"><a href="MediaElement.html#method-i-tags-3D">#tags= &mdash; MediaElement</a>
   
+    <li class="method"><a href="Video.html#method-i-thumb_url">#thumb_url &mdash; Video</a>
+  
     <li class="method"><a href="Image.html#method-i-thumb_url">#thumb_url &mdash; Image</a>
   
     <li class="method"><a href="Audio.html#method-i-thumb_url">#thumb_url &mdash; Audio</a>
   
-    <li class="method"><a href="Video.html#method-i-thumb_url">#thumb_url &mdash; Video</a>
-  
     <li class="method"><a href="Media/InTmpDir.html#method-i-tmp_path">#tmp_path &mdash; Media::InTmpDir</a>
-  
-    <li class="method"><a href="Media/Info.html#method-i-to_hash">#to_hash &mdash; Media::Info</a>
   
     <li class="method"><a href="Media/Uploader.html#method-i-to_hash">#to_hash &mdash; Media::Uploader</a>
   
-    <li class="method"><a href="Media/Error.html#method-i-to_s">#to_s &mdash; Media::Error</a>
+    <li class="method"><a href="Media/Info.html#method-i-to_hash">#to_hash &mdash; Media::Info</a>
   
     <li class="method"><a href="Tag.html#method-i-to_s">#to_s &mdash; Tag</a>
   
     <li class="method"><a href="Subject.html#method-i-to_s">#to_s &mdash; Subject</a>
   
+    <li class="method"><a href="Location.html#method-i-to_s">#to_s &mdash; Location</a>
+  
     <li class="method"><a href="Media/Uploader.html#method-i-to_s">#to_s &mdash; Media::Uploader</a>
   
-    <li class="method"><a href="Location.html#method-i-to_s">#to_s &mdash; Location</a>
+    <li class="method"><a href="Media/Error.html#method-i-to_s">#to_s &mdash; Media::Error</a>
   
     <li class="method"><a href="SchoolLevel.html#method-i-to_s">#to_s &mdash; SchoolLevel</a>
   
@@ -1696,17 +1710,17 @@
   
     <li class="method"><a href="Image.html#method-i-undo">#undo &mdash; Image</a>
   
-    <li class="method"><a href="Lesson.html#method-i-unpublish">#unpublish &mdash; Lesson</a>
-  
     <li class="method"><a href="LessonsController.html#method-i-unpublish">#unpublish &mdash; LessonsController</a>
   
-    <li class="method"><a href="MediaElementsController.html#method-i-update">#update &mdash; MediaElementsController</a>
-  
-    <li class="method"><a href="Admin/MediaElementsController.html#method-i-update">#update &mdash; Admin::MediaElementsController</a>
+    <li class="method"><a href="Lesson.html#method-i-unpublish">#unpublish &mdash; Lesson</a>
   
     <li class="method"><a href="UsersController.html#method-i-update">#update &mdash; UsersController</a>
   
+    <li class="method"><a href="Admin/MediaElementsController.html#method-i-update">#update &mdash; Admin::MediaElementsController</a>
+  
     <li class="method"><a href="LessonEditorController.html#method-i-update">#update &mdash; LessonEditorController</a>
+  
+    <li class="method"><a href="MediaElementsController.html#method-i-update">#update &mdash; MediaElementsController</a>
   
     <li class="method"><a href="MailingListsController.html#method-i-update_group">#update_group &mdash; MailingListsController</a>
   
@@ -1724,9 +1738,9 @@
   
     <li class="method"><a href="User/Authentication/InstanceMethods.html#method-i-valid_password-3F">#valid_password? &mdash; User::Authentication::InstanceMethods</a>
   
-    <li class="method"><a href="Media/Audio/Uploader/Validation.html#method-i-validation">#validation &mdash; Media::Audio::Uploader::Validation</a>
-  
     <li class="method"><a href="Media/Video/Uploader/Validation.html#method-i-validation">#validation &mdash; Media::Video::Uploader::Validation</a>
+  
+    <li class="method"><a href="Media/Audio/Uploader/Validation.html#method-i-validation">#validation &mdash; Media::Audio::Uploader::Validation</a>
   
     <li class="method"><a href="MediaElement.html#method-i-video-3F">#video? &mdash; MediaElement</a>
   
@@ -1746,9 +1760,9 @@
   
     <li class="method"><a href="MediaElementsController.html#method-i-videos_test">#videos_test &mdash; MediaElementsController</a>
   
-    <li class="method"><a href="MediaElement.html#method-i-visive_tags">#visive_tags &mdash; MediaElement</a>
-  
     <li class="method"><a href="Lesson.html#method-i-visive_tags">#visive_tags &mdash; Lesson</a>
+  
+    <li class="method"><a href="MediaElement.html#method-i-visive_tags">#visive_tags &mdash; MediaElement</a>
   
     <li class="method"><a href="Video.html#method-i-webm_duration">#webm_duration &mdash; Video</a>
   
@@ -1758,9 +1772,9 @@
   
     <li class="method"><a href="PreloginController.html#method-i-what_is_desy">#what_is_desy &mdash; PreloginController</a>
   
-    <li class="method"><a href="Image.html#method-i-width">#width &mdash; Image</a>
-  
     <li class="method"><a href="ImageUploader.html#method-i-width">#width &mdash; ImageUploader</a>
+  
+    <li class="method"><a href="Image.html#method-i-width">#width &mdash; Image</a>
   
     <li class="method"><a href="Tag.html#method-i-word-3D">#word= &mdash; Tag</a>
   
