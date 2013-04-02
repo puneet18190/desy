@@ -408,6 +408,10 @@
 
   <div id="description" class="description">
     
+<p>Module containing functions used to convert the time visualization
+according to the time format in different languages. The time language is
+configured in the corresponding translation file</p>
+
   </div><!-- description -->
 
   
@@ -439,12 +443,13 @@
 
         <div class="method-description">
           
-          
+          <p>Main method, that calls the class <a
+href="TimeConvert/TimeConverter.html">TimeConverter</a></p>
           
 
           
           <div class="method-source-code" id="to_string-source">
-            <pre><span class="ruby-comment"># File lib/autoload/time_convert.rb, line 118</span>
+            <pre><span class="ruby-comment"># File lib/autoload/time_convert.rb, line 128</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">to_string</span>(<span class="ruby-identifier">a_time</span>)
   <span class="ruby-identifier">x</span> = <span class="ruby-constant">TimeConverter</span>.<span class="ruby-identifier">new</span>
   <span class="ruby-identifier">x</span>.<span class="ruby-identifier">to_string</span> <span class="ruby-identifier">a_time</span>

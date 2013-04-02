@@ -70,6 +70,18 @@
 
   <ul class="link-list">
     
+    <li><a href="#method-i-convert_in_chinese">#convert_in_chinese</a>
+    
+    <li><a href="#method-i-convert_in_english">#convert_in_english</a>
+    
+    <li><a href="#method-i-convert_in_italian">#convert_in_italian</a>
+    
+    <li><a href="#method-i-english_day_suffix">#english_day_suffix</a>
+    
+    <li><a href="#method-i-english_month">#english_month</a>
+    
+    <li><a href="#method-i-italian_month">#italian_month</a>
+    
     <li><a href="#method-i-to_string">#to_string</a>
     
   </ul>
@@ -414,6 +426,9 @@
 
   <div id="description" class="description">
     
+<p>Subclass used to encapsulate the models of <a
+href="../TimeConvert.html">TimeConvert</a></p>
+
   </div><!-- description -->
 
   
@@ -445,12 +460,12 @@
 
         <div class="method-description">
           
-          
+          <p>Main method that converts a time. The argument must be of type Time</p>
           
 
           
           <div class="method-source-code" id="to_string-source">
-            <pre><span class="ruby-comment"># File lib/autoload/time_convert.rb, line 5</span>
+            <pre><span class="ruby-comment"># File lib/autoload/time_convert.rb, line 8</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">to_string</span>(<span class="ruby-identifier">a_time</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-string">&#39;&#39;</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">a_time</span>.<span class="ruby-identifier">kind_of?</span>(<span class="ruby-constant">Time</span>)
   <span class="ruby-keyword">case</span> <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;time.format&#39;</span>)
@@ -475,6 +490,263 @@
 
     
     </section><!-- public-instance-method-details -->
+  
+     <section id="private-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Private Instance Methods</h3>
+
+    
+      <div id="method-i-convert_in_chinese" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">convert_in_chinese</span><span
+            class="method-args">(a_time)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Convert a time according to standard chinese format</p>
+          
+
+          
+          <div class="method-source-code" id="convert_in_chinese-source">
+            <pre><span class="ruby-comment"># File lib/autoload/time_convert.rb, line 110</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">convert_in_chinese</span>(<span class="ruby-identifier">a_time</span>) <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-identifier">day</span> = <span class="ruby-identifier">a_time</span>.<span class="ruby-identifier">day</span>
+  <span class="ruby-identifier">month</span> = <span class="ruby-identifier">a_time</span>.<span class="ruby-identifier">month</span>
+  <span class="ruby-identifier">year</span> = <span class="ruby-identifier">a_time</span>.<span class="ruby-identifier">year</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-node">&quot;#{english_month(month)} #{day}#{english_day_suffix(day)}, #{year}&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- convert_in_chinese-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- convert_in_chinese-method -->
+
+    
+      <div id="method-i-convert_in_english" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">convert_in_english</span><span
+            class="method-args">(a_time)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Convert a time according to standard english format</p>
+          
+
+          
+          <div class="method-source-code" id="convert_in_english-source">
+            <pre><span class="ruby-comment"># File lib/autoload/time_convert.rb, line 25</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">convert_in_english</span>(<span class="ruby-identifier">a_time</span>) <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-identifier">day</span> = <span class="ruby-identifier">a_time</span>.<span class="ruby-identifier">day</span>
+  <span class="ruby-identifier">month</span> = <span class="ruby-identifier">a_time</span>.<span class="ruby-identifier">month</span>
+  <span class="ruby-identifier">year</span> = <span class="ruby-identifier">a_time</span>.<span class="ruby-identifier">year</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-node">&quot;#{english_month(month)} #{day}#{english_day_suffix(day)}, #{year}&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- convert_in_english-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- convert_in_english-method -->
+
+    
+      <div id="method-i-convert_in_italian" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">convert_in_italian</span><span
+            class="method-args">(a_time)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Convert a time according to standard italian format</p>
+          
+
+          
+          <div class="method-source-code" id="convert_in_italian-source">
+            <pre><span class="ruby-comment"># File lib/autoload/time_convert.rb, line 118</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">convert_in_italian</span>(<span class="ruby-identifier">a_time</span>) <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-identifier">day</span> = <span class="ruby-identifier">a_time</span>.<span class="ruby-identifier">day</span>
+  <span class="ruby-identifier">month</span> = <span class="ruby-identifier">a_time</span>.<span class="ruby-identifier">month</span>
+  <span class="ruby-identifier">year</span> = <span class="ruby-identifier">a_time</span>.<span class="ruby-identifier">year</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-node">&quot;#{(day)} #{italian_month(month)} #{year}&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- convert_in_italian-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- convert_in_italian-method -->
+
+    
+      <div id="method-i-english_day_suffix" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">english_day_suffix</span><span
+            class="method-args">(x)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Suffix for the english days</p>
+          
+
+          
+          <div class="method-source-code" id="english_day_suffix-source">
+            <pre><span class="ruby-comment"># File lib/autoload/time_convert.rb, line 33</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">english_day_suffix</span>(<span class="ruby-identifier">x</span>) <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-keyword">if</span> [<span class="ruby-value">1</span>, <span class="ruby-value">21</span>, <span class="ruby-value">31</span>].<span class="ruby-identifier">include?</span> <span class="ruby-identifier">x</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-string">&#39;st&#39;</span>
+  <span class="ruby-keyword">elsif</span> [<span class="ruby-value">2</span>, <span class="ruby-value">22</span>].<span class="ruby-identifier">include?</span> <span class="ruby-identifier">x</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-string">&#39;nd&#39;</span>
+  <span class="ruby-keyword">elsif</span> [<span class="ruby-value">3</span>, <span class="ruby-value">23</span>].<span class="ruby-identifier">include?</span> <span class="ruby-identifier">x</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-string">&#39;rd&#39;</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-string">&#39;th&#39;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- english_day_suffix-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- english_day_suffix-method -->
+
+    
+      <div id="method-i-english_month" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">english_month</span><span
+            class="method-args">(x)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>English translations for the month</p>
+          
+
+          
+          <div class="method-source-code" id="english_month-source">
+            <pre><span class="ruby-comment"># File lib/autoload/time_convert.rb, line 46</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">english_month</span>(<span class="ruby-identifier">x</span>) <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-keyword">case</span> <span class="ruby-identifier">x</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-value">1</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-string">&#39;January&#39;</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-value">2</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-string">&#39;February&#39;</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-value">3</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-string">&#39;March&#39;</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-value">4</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-string">&#39;April&#39;</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-value">5</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-string">&#39;May&#39;</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-value">6</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-string">&#39;June&#39;</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-value">7</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-string">&#39;July&#39;</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-value">8</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-string">&#39;August&#39;</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-value">9</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-string">&#39;September&#39;</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-value">10</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-string">&#39;October&#39;</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-value">11</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-string">&#39;November&#39;</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-value">12</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-string">&#39;December&#39;</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-string">&#39;&#39;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- english_month-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- english_month-method -->
+
+    
+      <div id="method-i-italian_month" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">italian_month</span><span
+            class="method-args">(x)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Italian translation for the month</p>
+          
+
+          
+          <div class="method-source-code" id="italian_month-source">
+            <pre><span class="ruby-comment"># File lib/autoload/time_convert.rb, line 78</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">italian_month</span>(<span class="ruby-identifier">x</span>) <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-keyword">case</span> <span class="ruby-identifier">x</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-value">1</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-string">&#39;gennaio&#39;</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-value">2</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-string">&#39;febbraio&#39;</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-value">3</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-string">&#39;marzo&#39;</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-value">4</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-string">&#39;aprile&#39;</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-value">5</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-string">&#39;maggio&#39;</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-value">6</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-string">&#39;giugno&#39;</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-value">7</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-string">&#39;luglio&#39;</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-value">8</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-string">&#39;agosto&#39;</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-value">9</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-string">&#39;settembre&#39;</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-value">10</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-string">&#39;ottobre&#39;</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-value">11</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-string">&#39;novembre&#39;</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-value">12</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-string">&#39;dicembre&#39;</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-string">&#39;&#39;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- italian_month-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- italian_month-method -->
+
+    
+    </section><!-- private-instance-method-details -->
   
   </section><!-- 5Buntitled-5D -->
 

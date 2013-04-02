@@ -1,7 +1,10 @@
+# Module containing functions used to convert the time visualization according to the time format in different languages. The time language is configured in the corresponding translation file
 module TimeConvert
   
+  # Subclass used to encapsulate the models of TimeConvert
   class TimeConverter
     
+    # Main method that converts a time. The argument must be of type Time
     def to_string(a_time)
       return '' if !a_time.kind_of?(Time)
       case I18n.t('time.format')
@@ -18,14 +21,16 @@ module TimeConvert
     
     private
     
-    def convert_in_english(a_time)
+    # Convert a time according to standard english format
+    def convert_in_english(a_time) # :doc:
       day = a_time.day
       month = a_time.month
       year = a_time.year
       return "#{english_month(month)} #{day}#{english_day_suffix(day)}, #{year}"
     end
     
-    def english_day_suffix(x)
+    # Suffix for the english days
+    def english_day_suffix(x) # :doc:
       if [1, 21, 31].include? x
         return 'st'
       elsif [2, 22].include? x
@@ -37,7 +42,8 @@ module TimeConvert
       end
     end
     
-    def english_month(x)
+    # English translations for the month
+    def english_month(x) # :doc:
       case x
         when 1
           return 'January'
@@ -68,45 +74,48 @@ module TimeConvert
       end
     end
     
-    def italian_month(x)
+    # Italian translation for the month
+    def italian_month(x) # :doc:
       case x
         when 1
-          return 'Gennaio'
+          return 'gennaio'
         when 2
-          return 'Febbraio'
+          return 'febbraio'
         when 3
-          return 'Marzo'
+          return 'marzo'
         when 4
-          return 'Aprile'
+          return 'aprile'
         when 5
-          return 'Maggio'
+          return 'maggio'
         when 6
-          return 'Giugno'
+          return 'giugno'
         when 7
-          return 'Luglio'
+          return 'luglio'
         when 8
-          return 'Agosto'
+          return 'agosto'
         when 9
-          return 'Settembre'
+          return 'settembre'
         when 10
-          return 'Ottobre'
+          return 'ottobre'
         when 11
-          return 'Novembre'
+          return 'novembre'
         when 12
-          return 'Dicembre'
+          return 'dicembre'
         else
           return ''
       end
     end
     
-    def convert_in_chinese(a_time)
+    # Convert a time according to standard chinese format
+    def convert_in_chinese(a_time) # :doc:
       day = a_time.day
       month = a_time.month
       year = a_time.year
       return "#{english_month(month)} #{day}#{english_day_suffix(day)}, #{year}"
     end
     
-    def convert_in_italian(a_time)
+    # Convert a time according to standard italian format
+    def convert_in_italian(a_time) # :doc:
       day = a_time.day
       month = a_time.month
       year = a_time.year
@@ -115,6 +124,7 @@ module TimeConvert
     
   end
   
+  # Main method, that calls the class TimeConverter
   def self.to_string(a_time)
     x = TimeConverter.new
     x.to_string a_time
