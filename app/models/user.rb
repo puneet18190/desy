@@ -824,14 +824,38 @@ class User < ActiveRecord::Base
     Notification.where(:seen => false, :user_id => self.id).count
   end
   
+  # === Description
+  #
+  # Checks if the playlist is full in the user's Virtual Classroom
+  #
+  # === Returns
+  #
+  # A boolean
+  #
   def playlist_full?
     VirtualClassroomLesson.where('user_id = ? AND position IS NOT NULL', self.id).count == SETTINGS['lessons_in_playlist']
   end
   
+  # === Description
+  #
+  # Returns the playlist of the user's Virtual Classroom
+  #
+  # === Returns
+  #
+  # An array of objects of type VirtualClassroomLesson
+  #
   def playlist
     VirtualClassroomLesson.includes(:lesson).where('user_id = ? AND position IS NOT NULL', self.id).order(:position)
   end
   
+  # === Description
+  #
+  # Gets the playlist for the Lesson Viewer (used in LessonViewerController#playlist)
+  #
+  # === Returns
+  #
+  # An array of ordered objects of type Slide (they correspond to the slides of the lessons in the playlist)
+  #
   def playlist_for_viewer
     resp = []
     VirtualClassroomLesson.includes(:lesson).where('user_id = ? AND position IS NOT NULL', self.id).order(:position).each do |vc|
@@ -840,6 +864,21 @@ class User < ActiveRecord::Base
     resp
   end
   
+  # === Description
+  #
+  # Creates a lesson belonging to the user (used in LessonEditorController#create)
+  #
+  # === Args
+  #
+  # * *title*: the title
+  # * *description*: the description
+  # * *subject_id*: the id of the Subject associated to the Lesson, chosen among the ones associated to the user at the moment of the creation
+  # * *tags*: tags (in the shape 'tag1, tag2, tag3, tag4')
+  #
+  # === Returns
+  #
+  # If the lesson was correctly created, it returns a new object of type Lesson; otherwise, its errors (this is used in the methods which translate error messages in ApplicationController)
+  #
   def create_lesson(title, description, subject_id, tags)
     return nil if self.new_record?
     if UsersSubject.where(:user_id => self.id, :subject_id => subject_id).empty?
@@ -860,11 +899,27 @@ class User < ActiveRecord::Base
     return lesson.save ? lesson : lesson.errors
   end
   
+  # === Description
+  #
+  # Checks if the user is super admin or not (used in User#admin? and User#destroy_with_dependencies)
+  #
+  # === Returns
+  #
+  # A boolean
+  #
   def super_admin?
     super_admin = User.admin
     !super_admin.nil? && self.id == super_admin.id
   end
   
+  # === Description
+  #
+  # Used to destroy a user and remove it from the database: since for safety reasons there are no database cascade destructions for the associated relations Lesson, UsersSubject, Bookmark, Notification, Like and Report, these are destroyed manually here; for the table MailingListGroup, there is a cascade destruction; for the table MediaElement, the method destroys only the private ones and changes the owner of the public ones (assigned to the super administrator, extracted by the method User#super_admin?). The only user that can't be destroyed with this method is the super administrator (the method checks this using User#super_admin?)
+  #
+  # === Returns
+  #
+  # A boolean
+  #
   def destroy_with_dependencies
     if self.new_record? || self.super_admin?
       errors.add(:base, :problem_destroying)
