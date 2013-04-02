@@ -2,7 +2,7 @@
 #
 # Controller of elements in the administration section. See AdminController.
 #
-# == Models used in this controller
+# == Models used
 #
 # * MediaElement
 # * Location

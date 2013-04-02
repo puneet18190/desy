@@ -1,3 +1,14 @@
+# == Description
+#
+# Controller for minor tables, such as +tags+ and +subjects+. See AdminController
+#
+# == Models used
+#
+# * Subject
+# * SchoolLevel
+# * AdminSearchForm
+# * Tag
+#
 class Admin::SettingsController < AdminController
   
   layout 'admin'

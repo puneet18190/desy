@@ -2,7 +2,7 @@
 #
 # Controller of the Dashboard in the administration section. See AdminController.
 #
-# == Models used in this controller
+# == Models used
 #
 # * User
 # * Report

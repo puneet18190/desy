@@ -2,7 +2,7 @@
 #
 # Controller of notifications and general messages in the administration section. See AdminController.
 #
-# == Models used in this controller
+# == Models used
 #
 # * Location
 # * Notification
