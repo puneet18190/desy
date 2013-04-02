@@ -283,6 +283,14 @@ class User < ActiveRecord::Base
     self.location.name
   end
   
+  # === Description
+  #
+  # Used in the front end, it returns a resume of all the parents locations of the user
+  #
+  # === Returns
+  #
+  # A string
+  #
   def parent_locations
     resp = ''
     first = true
@@ -301,14 +309,60 @@ class User < ActiveRecord::Base
     resp
   end
   
+  # === Description
+  #
+  # Checks if the Video Editor is available (this is true if there is no Video in conversion at the moment); used in the filters of VideoEditorController
+  #
+  # === Returns
+  #
+  # A boolean
+  #
   def video_editor_available
-    Video.where(converted: false, user_id: id).all?{ |record| record.uploaded? && !record.modified? }
+    Video.where(:converted => false, :user_id => id).all?{ |record| record.uploaded? && !record.modified? }
   end
   
+  # === Description
+  #
+  # Checks if the Audio Editor is available (this is true if there is no Audio in conversion at the moment); used in the filters of AudioEditorController
+  #
+  # === Returns
+  #
+  # A boolean
+  #
   def audio_editor_available
-    Audio.where(converted: false, user_id: id).all?{ |record| record.uploaded? && !record.modified? }
+    Audio.where(:converted => false, :user_id => id).all?{ |record| record.uploaded? && !record.modified? }
   end
   
+  # === Description
+  #
+  # Global method used to search for elements (see SearchController#index).
+  # * *first*, it checks the correctness of all the parameters received;
+  # * *then*, if +word+ is blank, it calls just User#search_media_elements_without_tag, that search using the other parameters inserted by the user
+  # * *otherwise*, it checks if the word is a Fixnum (it represents the id of a specific Tag) or a String (it represents a word to be matched against the list of registered tags)
+  #   * if +word+ is a Fixnum, the method just calls User#search_media_elements_with_tag, which returns only the elements associated to that particular Tag (of course, filtered by the other parameters)
+  #   * if +word+ is a String, the method calls User#search_media_elements_with_tag (that returns the media elements found) and User#get_tags_associated_to_media_element_search (that returns the list of tags associated to the search)
+  # * there is also the available option +only_tags+: if this option is used with a +word+ of type String, the method calls only User#get_tags_associated_to_media_element_search (this option is typically used when the user is filtering a previous search by a specific Tag: in this case, calling only the method with +word+ = Fixnum, there would be no way to know the previous list of tags, hence in the controller the method is called again with +word+ = String and with +only_tags+ = true)
+  #
+  # === Args
+  #
+  # * *word*: the search parameter. It can be:
+  #   * +blank+ if you need only to search by filters
+  #   * +integer+ if you want to filter by a specific tag
+  #   * +string+ if you want to match a keyword against the list of tags in the database
+  # * *page*: pagination parameter
+  # * *for_page*: pagination parameter
+  # * *order*: one of the keywords defined in SearchOrders
+  # * *filter*: one of the keywords defined in Filters
+  # * *only_tags*: optional boolean, if used with a +word+ of kind String returns only the list of tags associated to the search
+  #
+  # === Returns
+  #
+  # A hash with the following keys:
+  # * *records*: the effective content of the research, an array of object of type MediaElement
+  # * *records_amount*: an integer, the total number of elements found
+  # * *pages_amount*: an integer, the total number of pages in the search result
+  # * *tags*: if required, an array of objects of type Tag. This is the list of the first 20 tags associated to at least an element in the search result, ordered by numbers of occurrences among the search results (i.e. order of relevance)
+  #
   def search_media_elements(word, page, for_page, order=nil, filter=nil, only_tags=nil)
     only_tags = false if only_tags.nil?
     page = 1 if page.class != Fixnum || page <= 0
