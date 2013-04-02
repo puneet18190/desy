@@ -1,7 +1,7 @@
-Tue, 02 Apr 2013 17:12:39 +0200
+Tue, 02 Apr 2013 17:25:18 +0200
 doc/README_FOR_APP	Fri, 29 Mar 2013 14:50:55 +0100
-app/controllers/admin/dashboard_controller.rb	Fri, 22 Mar 2013 09:52:00 +0100
-app/controllers/admin/lessons_controller.rb	Tue, 02 Apr 2013 17:02:38 +0200
+app/controllers/admin/dashboard_controller.rb	Tue, 02 Apr 2013 17:21:53 +0200
+app/controllers/admin/lessons_controller.rb	Tue, 02 Apr 2013 17:25:00 +0200
 app/controllers/admin/media_elements_controller.rb	Tue, 02 Apr 2013 17:02:46 +0200
 app/controllers/admin/messages_controller.rb	Tue, 02 Apr 2013 17:02:52 +0200
 app/controllers/admin/reports_controller.rb	Fri, 22 Mar 2013 16:51:10 +0100

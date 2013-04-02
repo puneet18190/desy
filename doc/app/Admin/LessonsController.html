@@ -72,8 +72,6 @@
     
     <li><a href="#method-i-destroy">#destroy</a>
     
-    <li><a href="#method-i-find_lesson">#find_lesson</a>
-    
     <li><a href="#method-i-index">#index</a>
     
   </ul>
@@ -418,6 +416,9 @@
 
   <div id="description" class="description">
     
+<p>Controller of lessons in the administration section. See <a
+href="../AdminController.html">AdminController</a>.</p>
+
   </div><!-- description -->
 
   
@@ -449,13 +450,26 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-destroy-label-Description">Description</h3>
+
+<p>Destroys a lesson without the normal filters</p>
+
+<h3 id="method-i-destroy-label-Mode">Mode</h3>
+
+<p>Ajax</p>
+
+<h3 id="method-i-destroy-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p><a
+href="../ApplicationController.html#method-i-admin_authenticate">ApplicationController#admin_authenticate</a></p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/lessons_controller.rb, line 17</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/lessons_controller.rb, line 41</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
+  <span class="ruby-ivar">@lesson</span> = <span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">destroy</span>
   <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:back_url</span>]
 <span class="ruby-keyword">end</span></pre>
@@ -480,12 +494,24 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-index-label-Description">Description</h3>
+
+<p>Main page of the section &#39;lessons&#39; in admin</p>
+
+<h3 id="method-i-index-label-Mode">Mode</h3>
+
+<p>Html</p>
+
+<h3 id="method-i-index-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p><a
+href="../ApplicationController.html#method-i-admin_authenticate">ApplicationController#admin_authenticate</a></p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/lessons_controller.rb, line 6</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/lessons_controller.rb, line 18</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
   <span class="ruby-identifier">lessons</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:search</span>] <span class="ruby-operator">?</span> <span class="ruby-constant">AdminSearchForm</span>.<span class="ruby-identifier">search_lessons</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:search</span>]) <span class="ruby-operator">:</span> <span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;id DESC&#39;</span>)
   <span class="ruby-ivar">@lessons</span> = <span class="ruby-identifier">lessons</span>.<span class="ruby-identifier">page</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>])
@@ -507,42 +533,6 @@
 
     
     </section><!-- public-instance-method-details -->
-  
-     <section id="private-instance-5Buntitled-5D-method-details" class="method-section section">
-      <h3 class="section-header">Private Instance Methods</h3>
-
-    
-      <div id="method-i-find_lesson" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">find_lesson</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-
-          
-          <div class="method-source-code" id="find_lesson-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/lessons_controller.rb, line 24</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">find_lesson</span> <span class="ruby-comment"># :doc:</span>
-  <span class="ruby-ivar">@lesson</span> = <span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- find_lesson-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- find_lesson-method -->
-
-    
-    </section><!-- private-instance-method-details -->
   
   </section><!-- 5Buntitled-5D -->
 

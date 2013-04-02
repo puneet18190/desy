@@ -1,7 +1,20 @@
+# Controller of the Dashboard in the administration section. See AdminController.
 class Admin::DashboardController < AdminController
   
   layout 'admin'
   
+  # === Description
+  #
+  # Action that creates instances of all the main information to be shown in the administration dashboard
+  #
+  # === Mode
+  #
+  # Html + Xml
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#admin_authenticate
+  #
   def index
     @users = User.order('created_at DESC').limit(5)
     @elements_reports = Report.order('created_at DESC').where(:reportable_type => 'MediaElement').limit(5)
