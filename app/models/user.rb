@@ -35,7 +35,7 @@
 # == Validations
 #
 # * *presence* of +email+, +name+, +surname+
-# * *presence* with numericality greater than 0 and presence of associated element for +location_id+ and +school_level_id+ (for the location, it's also checked that the subclass is the last in the locations chain, see Location)
+# * *presence* with numericality greater than 0 and presence of associated object for +location_id+ and +school_level_id+ (for the location, it's also checked that the subclass is the last in the locations chain, see Location)
 # * *confirmation* of +encrypted_password+ (the attribute password must coincide with its confirmation provided by the user): this validation uses the private attribute +password_confirmation+, associated to password
 # * *presence* of at least one associated record of UsersSubject
 # * *uniqueness* of +email+

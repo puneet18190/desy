@@ -14,7 +14,7 @@
 #
 # == Validations
 #
-# * *presence* with numericality greater than 0 and presence of associated element for both fields
+# * *presence* with numericality greater than 0 and presence of associated object for both fields
 #
 # == Callbacks
 #

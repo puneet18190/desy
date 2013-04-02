@@ -39,7 +39,7 @@ require 'lessons_media_elements_shared'
 #
 # == Validations
 #
-# * *presence* with numericality > 0 and presence of associated element for +user_id+
+# * *presence* with numericality > 0 and presence of associated object for +user_id+
 # * *presence* of +title+ and +description+
 # * *inclusion* of +is_public+ in [+true+, +false+]
 # * *inclusion* of +sti_type+ in ['+Audio+', '+Image+', '+Video+'] (these three values correspond to an *enum* defined in postgresql)
@@ -537,7 +537,7 @@ class MediaElement < ActiveRecord::Base
     end
   end
   
-  # Validates the presence of all the associated elements
+  # Validates the presence of all the associated objects
   def validate_associations # :doc:
     errors.add(:user_id, :doesnt_exist) if @user.nil?
   end

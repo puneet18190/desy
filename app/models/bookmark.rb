@@ -58,7 +58,7 @@ class Bookmark < ActiveRecord::Base
     ['Lesson', 'MediaElement'].include? self.bookmarkable_type
   end
   
-  # Validates the presence of all the associated elements
+  # Validates the presence of all the associated objects
   def validate_associations # :doc:
     errors.add(:user_id, :doesnt_exist) if @user.nil?
     errors.add(:bookmarkable_id, :lesson_doesnt_exist) if self.bookmarkable_type == 'Lesson' && @lesson.nil?

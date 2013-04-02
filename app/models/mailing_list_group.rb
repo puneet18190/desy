@@ -51,7 +51,7 @@ class MailingListGroup < ActiveRecord::Base
     @mailing_list_group = Valid.get_association self, :id
   end
   
-  # Validates the presence of all the associated elements
+  # Validates the presence of all the associated objects
   def validate_associations # :doc:
     errors.add(:user_id, :doesnt_exist) if @user.nil?
   end

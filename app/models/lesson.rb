@@ -40,7 +40,7 @@ require 'lessons_media_elements_shared'
 #
 # * *presence* with numericality and existence of associated record for +user_id+, +subject_id+, +school_level_id+
 # * *presence* for +title+ and +description+
-# * *presence* of associated element, numericality for +parent_id+ and +parent_id+ must different by +id+, <b>only if different by nil</b>
+# * *presence* of associated object, numericality for +parent_id+ and +parent_id+ must different by +id+, <b>only if different by nil</b>
 # * *inclusion* of +is_public+, +copied_not_modified+, +notified+ in [+true+, +false+]
 # * *length* of +title+ and +description+ (values configured in the I18n translation file; only for title, if the value is greater than 255 it's set to 255)
 # * *uniqueness* of the couple [+parent_id+, +user_id+] <b>if +parent_id+ is not null</b>
@@ -777,7 +777,7 @@ class Lesson < ActiveRecord::Base
     self.parent_id
   end
   
-  # Validates the presence of all the associated elements; only for +parent_id+, it's allowed +nil+, and if not +nil+ it's checked that it's not the lesson itself
+  # Validates the presence of all the associated objects; only for +parent_id+, it's allowed +nil+, and if not +nil+ it's checked that it's not the lesson itself
   def validate_associations # :doc:
     errors.add(:user_id, :doesnt_exist) if @user.nil?
     errors.add(:subject_id, :doesnt_exist) if @subject.nil?
