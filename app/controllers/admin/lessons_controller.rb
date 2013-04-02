@@ -1,4 +1,13 @@
+# == Description
+#
 # Controller of lessons in the administration section. See AdminController.
+#
+# == Models used in this controller
+#
+# * AdminSearchForm
+# * Lesson
+# * Location
+#
 class Admin::LessonsController < AdminController
   
   layout 'admin'

@@ -416,8 +416,19 @@
 
   <div id="description" class="description">
     
+<h2 id="label-Description">Description</h2>
+
 <p>Controller of lessons in the administration section. See <a
 href="../AdminController.html">AdminController</a>.</p>
+
+<h2 id="label-Models+used+in+this+controller">Models used in this controller</h2>
+<ul><li>
+<p><a href="../AdminSearchForm.html">AdminSearchForm</a></p>
+</li><li>
+<p><a href="../Lesson.html">Lesson</a></p>
+</li><li>
+<p><a href="../Location.html">Location</a></p>
+</li></ul>
 
   </div><!-- description -->
 
@@ -467,7 +478,7 @@ href="../ApplicationController.html#method-i-admin_authenticate">ApplicationCont
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/lessons_controller.rb, line 41</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/lessons_controller.rb, line 50</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-ivar">@lesson</span> = <span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">destroy</span>
@@ -511,7 +522,7 @@ href="../ApplicationController.html#method-i-admin_authenticate">ApplicationCont
 
           
           <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/lessons_controller.rb, line 18</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/lessons_controller.rb, line 27</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
   <span class="ruby-identifier">lessons</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:search</span>] <span class="ruby-operator">?</span> <span class="ruby-constant">AdminSearchForm</span>.<span class="ruby-identifier">search_lessons</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:search</span>]) <span class="ruby-operator">:</span> <span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;id DESC&#39;</span>)
   <span class="ruby-ivar">@lessons</span> = <span class="ruby-identifier">lessons</span>.<span class="ruby-identifier">page</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>])

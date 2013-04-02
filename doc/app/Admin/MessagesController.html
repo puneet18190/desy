@@ -420,6 +420,24 @@
 
   <div id="description" class="description">
     
+<h2 id="label-Description">Description</h2>
+
+<p>Controller of notifications and general messages in the administration
+section. See <a href="../AdminController.html">AdminController</a>.</p>
+
+<h2 id="label-Models+used+in+this+controller">Models used in this controller</h2>
+<ul><li>
+<p><a href="../Location.html">Location</a></p>
+</li><li>
+<p><a href="../Notification.html">Notification</a></p>
+</li><li>
+<p><a href="../Report.html">Report</a></p>
+</li><li>
+<p><a href="../User.html">User</a></p>
+</li><li>
+<p><a href="../AdminSearchForm.html">AdminSearchForm</a></p>
+</li></ul>
+
   </div><!-- description -->
 
   
@@ -451,12 +469,23 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-filter_users-label-Description">Description</h3>
+
+<p>Ajax action that updates the number of recipients in the multiple
+notification sender main page</p>
+
+<h3 id="method-i-filter_users-label-Mode">Mode</h3>
+
+<p>Ajax</p>
+
+<h3 id="method-i-filter_users-label-Specific+filters">Specific filters</h3>
+
+<p>ApplicationController#admin_authentication</p>
           
 
           
           <div class="method-source-code" id="filter_users-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/messages_controller.rb, line 16</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/messages_controller.rb, line 52</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">filter_users</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:search</span>].<span class="ruby-identifier">present?</span>
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:send_message</span>].<span class="ruby-identifier">present?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:message</span>].<span class="ruby-identifier">present?</span>
@@ -495,12 +524,22 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-new_notification-label-Description">Description</h3>
+
+<p>Main page of the multiple notification sender</p>
+
+<h3 id="method-i-new_notification-label-Mode">Mode</h3>
+
+<p>Html</p>
+
+<h3 id="method-i-new_notification-label-Specific+filters">Specific filters</h3>
+
+<p>ApplicationController#admin_authentication</p>
           
 
           
           <div class="method-source-code" id="new_notification-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/messages_controller.rb, line 5</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/messages_controller.rb, line 29</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new_notification</span>
   <span class="ruby-ivar">@locations</span> = [<span class="ruby-constant">Location</span>.<span class="ruby-identifier">roots</span>]
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:search</span>]
@@ -532,12 +571,23 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-reports-label-Description">Description</h3>
+
+<p>Main page of the reports (for actions related to reports, see <a
+href="ReportsController.html">Admin::ReportsController</a>)</p>
+
+<h3 id="method-i-reports-label-Mode">Mode</h3>
+
+<p>Html</p>
+
+<h3 id="method-i-reports-label-Specific+filters">Specific filters</h3>
+
+<p>ApplicationController#admin_authentication</p>
           
 
           
           <div class="method-source-code" id="reports-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/messages_controller.rb, line 34</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/messages_controller.rb, line 82</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">reports</span>
   <span class="ruby-ivar">@elements_reports</span> = <span class="ruby-constant">Report</span>.<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;created_at DESC&#39;</span>).<span class="ruby-identifier">where</span>(<span class="ruby-value">:reportable_type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;MediaElement&#39;</span>).<span class="ruby-identifier">page</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:elements_page</span>])
   <span class="ruby-ivar">@lessons_reports</span> = <span class="ruby-constant">Report</span>.<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;created_at DESC&#39;</span>).<span class="ruby-identifier">where</span>(<span class="ruby-value">:reportable_type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Lesson&#39;</span>).<span class="ruby-identifier">page</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:lessons_page</span>])
@@ -574,7 +624,7 @@
 
           
           <div class="method-source-code" id="send_notifications-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/messages_controller.rb, line 41</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/messages_controller.rb, line 89</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">send_notifications</span>(<span class="ruby-identifier">users_ids</span>, <span class="ruby-identifier">message</span>) <span class="ruby-comment"># :doc:</span>
   <span class="ruby-constant">Notification</span>.<span class="ruby-identifier">send_to</span>(<span class="ruby-identifier">users_ids</span>, <span class="ruby-identifier">message</span>)
 <span class="ruby-keyword">end</span></pre>

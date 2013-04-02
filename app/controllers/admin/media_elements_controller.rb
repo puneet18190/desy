@@ -1,4 +1,13 @@
+# == Description
+#
 # Controller of elements in the administration section. See AdminController.
+#
+# == Models used in this controller
+#
+# * MediaElement
+# * Location
+# * AdminSearchForm
+#
 class Admin::MediaElementsController < AdminController
   
   before_filter :initialize_media_element_with_owner_and_private, :only => :update

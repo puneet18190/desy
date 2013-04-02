@@ -1,4 +1,12 @@
+# == Description
+#
 # Controller of the Dashboard in the administration section. See AdminController.
+#
+# == Models used in this controller
+#
+# * User
+# * Report
+#
 class Admin::DashboardController < AdminController
   
   layout 'admin'
