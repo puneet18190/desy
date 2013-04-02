@@ -33,7 +33,7 @@ require 'lessons_media_elements_shared'
 # * *taggings*: tags associated to the lesson (see Tagging, Tag) (*has_many*)
 # * *slides*: slides composing the lesson (see Slide) (*has_many*)
 # * *media_elements_slides*: list of instances of media elements inside slides of this lesson (see MediaElementsSlide) (through the class Slide) (*has_many*)
-# * *media_elements*: list of media elements attached to slides of this lesson (see MediaElement) (through the class Slide and MediaElementsSlide) (*has_many*)
+# * *media_elements*: list of media elements attached to slides of this lesson (see MediaElement) (through the class Slide and MediaElementsSlide) (*has_and_belongs_to_many*)
 # * *virtual_classroom_lessons*: copies of this lesson into the Virtual Classroom of the creator or other users (see VirtualClassroomLesson) (*has_many*)
 #
 # == Validations

@@ -26,7 +26,7 @@
 # * *media_elements*: list of elements loaded or created by this user (includes also public elements, which are moved into the public database of the application, but they still record who was the user who first created them (see MediaElement, Audio, Image, Video) (*has_many*)
 # * *reports*: reports sent by this user about elements or lessons (see Report) (*has_many*)
 # * *users_subjects*: list of instances of this subject associated to this user through records of UsersSubject (*has_many*)
-# * *subjects*: list of subjects associated to this user (through the association +users_subjects+) (see Subject) (*has_many*)
+# * *subjects*: list of subjects associated to this user (through the association +users_subjects+) (see Subject) (*has_and_belongs_to_many*)
 # * *virtual_classroom_lessons*: list of lessons present in the user's Virtual Classroom (see VirtualClassroomLesson) (*has_many*)
 # * *mailing_list_groups*: all the mailing list groups that this user created (see MailingListGroup) (*has_many*)
 # * *school_level*: the SchoolLevel associated to this user (*belongs_to*)
