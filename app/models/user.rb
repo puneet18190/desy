@@ -1242,22 +1242,22 @@ class User < ActiveRecord::Base
     return resp
   end
   
-  def init_validation
+  def init_validation # :doc:
     @user = Valid.get_association self, :id
     @school_level = Valid.get_association self, :school_level_id
   end
   
-  def validate_associations
+  def validate_associations # :doc:
     errors.add :school_level_id, :doesnt_exist if @school_level.nil?
     @location = Valid.get_association self, :location_id
     errors.add :location_id, :doesnt_exist if @location.nil? || @location.sti_type != SETTINGS['location_types'].last
   end
   
-  def validate_email_not_changed
+  def validate_email_not_changed # :doc:
     errors.add :email, :changed if changed.include? 'email'
   end
   
-  def validate_email
+  def validate_email # :doc:
     return if self.email.blank?
     flag = false
     flag = true if !(/ / =~ self.email).nil?

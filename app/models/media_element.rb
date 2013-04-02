@@ -479,11 +479,11 @@ class MediaElement < ActiveRecord::Base
   
   private
   
-  def validate_tags_length
+  def validate_tags_length # :doc:
     errors.add(:tags, :are_not_enough) if @validating_in_form && @inner_tags.length < SETTINGS['min_tags_for_item']
   end
   
-  def update_or_create_tags
+  def update_or_create_tags # :doc:
     return true unless @inner_tags
     words = []
     @inner_tags.each do |t|
@@ -503,7 +503,7 @@ class MediaElement < ActiveRecord::Base
     end
   end
   
-  def init_validation
+  def init_validation # :doc:
     @media_element = Valid.get_association self, :id
     @user = Valid.get_association self, :user_id
     @inner_tags =
@@ -526,18 +526,18 @@ class MediaElement < ActiveRecord::Base
       end
   end
   
-  def validate_size
+  def validate_size # :doc:
     if ( (audio? || video?) && media.try(:value).try(:is_a?, ActionDispatch::Http::UploadedFile) && media.value.tempfile.size > MAX_MEDIA_SIZE ) ||
        ( image? && media.present? && media.file.size > MAX_MEDIA_SIZE )
       errors.add(:media, :too_large)
     end
   end
   
-  def validate_associations
+  def validate_associations # :doc:
     errors.add(:user_id, :doesnt_exist) if @user.nil?
   end
   
-  def validate_publication_date
+  def validate_publication_date # :doc:
     if self.is_public
       errors.add(:publication_date, :is_not_a_date) if self.publication_date.blank? || !self.publication_date.kind_of?(Time)
     else
@@ -545,7 +545,7 @@ class MediaElement < ActiveRecord::Base
     end
   end
   
-  def validate_impossible_changes
+  def validate_impossible_changes # :doc:
     if @media_element.nil?
       errors.add(:is_public, :must_be_false_if_new_record) if self.is_public
     else
@@ -562,7 +562,7 @@ class MediaElement < ActiveRecord::Base
     end
   end
   
-  def stop_if_public
+  def stop_if_public # :doc:
     return true if destroyable_even_if_public
     @media_element = Valid.get_association self, :id
     if @media_element.try(:is_public)
@@ -573,7 +573,7 @@ class MediaElement < ActiveRecord::Base
     end
   end
   
-  def manage_lessons_containing_me(value)
+  def manage_lessons_containing_me(value) # :doc:
     MediaElementsSlide.where(:media_element_id => id).each do |mes|
       l = mes.slide.lesson
       if video?

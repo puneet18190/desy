@@ -72,6 +72,16 @@
     
     <li><a href="#method-c-visive_tags">::visive_tags</a>
     
+    <li><a href="#method-i-destroy_orphan_tags">#destroy_orphan_tags</a>
+    
+    <li><a href="#method-i-good_taggable_type">#good_taggable_type</a>
+    
+    <li><a href="#method-i-init_validation">#init_validation</a>
+    
+    <li><a href="#method-i-validate_associations">#validate_associations</a>
+    
+    <li><a href="#method-i-validate_impossible_changes">#validate_impossible_changes</a>
+    
   </ul>
 </nav>
 
@@ -560,6 +570,172 @@ href="MediaElement.html#method-i-visive_tags">MediaElement#visive_tags</a></p>
 
     
     </section><!-- public-class-method-details -->
+  
+     <section id="private-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Private Instance Methods</h3>
+
+    
+      <div id="method-i-destroy_orphan_tags" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">destroy_orphan_tags</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="destroy_orphan_tags-source">
+            <pre><span class="ruby-comment"># File app/models/tagging.rb, line 66</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy_orphan_tags</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@not_orphans</span>
+  <span class="ruby-identifier">tag</span>.<span class="ruby-identifier">destroy</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">tag</span>.<span class="ruby-identifier">taggings</span>.<span class="ruby-identifier">exists?</span>
+  <span class="ruby-keyword">true</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- destroy_orphan_tags-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- destroy_orphan_tags-method -->
+
+    
+      <div id="method-i-good_taggable_type" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">good_taggable_type</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="good_taggable_type-source">
+            <pre><span class="ruby-comment"># File app/models/tagging.rb, line 72</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">good_taggable_type</span> <span class="ruby-comment"># :doc:</span>
+  [<span class="ruby-string">&#39;Lesson&#39;</span>, <span class="ruby-string">&#39;MediaElement&#39;</span>].<span class="ruby-identifier">include?</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">taggable_type</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- good_taggable_type-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- good_taggable_type-method -->
+
+    
+      <div id="method-i-init_validation" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">init_validation</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="init_validation-source">
+            <pre><span class="ruby-comment"># File app/models/tagging.rb, line 76</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">init_validation</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-ivar">@tagging</span> = <span class="ruby-constant">Valid</span>.<span class="ruby-identifier">get_association</span> <span class="ruby-keyword">self</span>, <span class="ruby-value">:id</span>
+  <span class="ruby-ivar">@lesson</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">taggable_type</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;Lesson&#39;</span> <span class="ruby-operator">?</span> <span class="ruby-constant">Valid</span>.<span class="ruby-identifier">get_association</span>(<span class="ruby-keyword">self</span>, <span class="ruby-value">:taggable_id</span>, <span class="ruby-constant">Lesson</span>) <span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>
+  <span class="ruby-ivar">@media_element</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">taggable_type</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;MediaElement&#39;</span> <span class="ruby-operator">?</span> <span class="ruby-constant">Valid</span>.<span class="ruby-identifier">get_association</span>(<span class="ruby-keyword">self</span>, <span class="ruby-value">:taggable_id</span>, <span class="ruby-constant">MediaElement</span>) <span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- init_validation-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- init_validation-method -->
+
+    
+      <div id="method-i-validate_associations" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">validate_associations</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="validate_associations-source">
+            <pre><span class="ruby-comment"># File app/models/tagging.rb, line 82</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">validate_associations</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:tag_id</span>, <span class="ruby-value">:doesnt_exist</span>) <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">Tag</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">tag_id</span>)
+  <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:taggable_id</span>, <span class="ruby-value">:lesson_doesnt_exist</span>) <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">taggable_type</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;Lesson&#39;</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">nil?</span>
+  <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:taggable_id</span>, <span class="ruby-value">:media_element_doesnt_exist</span>) <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">taggable_type</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;MediaElement&#39;</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@media_element</span>.<span class="ruby-identifier">nil?</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- validate_associations-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- validate_associations-method -->
+
+    
+      <div id="method-i-validate_impossible_changes" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">validate_impossible_changes</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="validate_impossible_changes-source">
+            <pre><span class="ruby-comment"># File app/models/tagging.rb, line 88</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">validate_impossible_changes</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@tagging</span>
+    <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:tag_id</span>, <span class="ruby-value">:cant_be_changed</span>) <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">tag_id</span> <span class="ruby-operator">!=</span> <span class="ruby-ivar">@tagging</span>.<span class="ruby-identifier">tag_id</span>
+    <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:taggable_id</span>, <span class="ruby-value">:cant_be_changed</span>) <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">taggable_id</span> <span class="ruby-operator">!=</span> <span class="ruby-ivar">@tagging</span>.<span class="ruby-identifier">taggable_id</span>
+    <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:taggable_type</span>, <span class="ruby-value">:cant_be_changed</span>) <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">taggable_type</span> <span class="ruby-operator">!=</span> <span class="ruby-ivar">@tagging</span>.<span class="ruby-identifier">taggable_type</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- validate_impossible_changes-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- validate_impossible_changes-method -->
+
+    
+    </section><!-- private-instance-method-details -->
   
   </section><!-- 5Buntitled-5D -->
 

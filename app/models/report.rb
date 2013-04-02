@@ -64,7 +64,7 @@ class Report < ActiveRecord::Base
   
   private
   
-  def good_reportable_type
+  def good_reportable_type # :doc:
     ['Lesson', 'MediaElement'].include? self.reportable_type
   end
   
@@ -75,13 +75,13 @@ class Report < ActiveRecord::Base
     @media_element = self.reportable_type == 'MediaElement' ? Valid.get_association(self, :reportable_id, MediaElement) : nil
   end
   
-  def validate_associations
+  def validate_associations # :doc:
     errors.add(:user_id, :doesnt_exist) if @user.nil?
     errors.add(:reportable_id, :lesson_doesnt_exist) if self.reportable_type == 'Lesson' && @lesson.nil?
     errors.add(:reportable_id, :media_element_doesnt_exist) if self.reportable_type == 'MediaElement' && @media_element.nil?
   end
   
-  def validate_impossible_changes
+  def validate_impossible_changes # :doc:
     if @report
       errors.add(:user_id, :cant_be_changed) if self.user_id != @report.user_id
       errors.add(:reportable_id, :cant_be_changed) if self.reportable_id != @report.reportable_id

@@ -63,29 +63,29 @@ class Tagging < ActiveRecord::Base
   
   private
   
-  def destroy_orphan_tags
+  def destroy_orphan_tags # :doc:
     return true if @not_orphans
     tag.destroy if !tag.taggings.exists?
     true
   end
   
-  def good_taggable_type
+  def good_taggable_type # :doc:
     ['Lesson', 'MediaElement'].include? self.taggable_type
   end
   
-  def init_validation
+  def init_validation # :doc:
     @tagging = Valid.get_association self, :id
     @lesson = self.taggable_type == 'Lesson' ? Valid.get_association(self, :taggable_id, Lesson) : nil
     @media_element = self.taggable_type == 'MediaElement' ? Valid.get_association(self, :taggable_id, MediaElement) : nil
   end
   
-  def validate_associations
+  def validate_associations # :doc:
     errors.add(:tag_id, :doesnt_exist) if !Tag.exists?(self.tag_id)
     errors.add(:taggable_id, :lesson_doesnt_exist) if self.taggable_type == 'Lesson' && @lesson.nil?
     errors.add(:taggable_id, :media_element_doesnt_exist) if self.taggable_type == 'MediaElement' && @media_element.nil?
   end
   
-  def validate_impossible_changes
+  def validate_impossible_changes # :doc:
     if @tagging
       errors.add(:tag_id, :cant_be_changed) if self.tag_id != @tagging.tag_id
       errors.add(:taggable_id, :cant_be_changed) if self.taggable_id != @tagging.taggable_id

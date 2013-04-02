@@ -45,16 +45,16 @@ class MailingListGroup < ActiveRecord::Base
   
   private
   
-  def init_validation
+  def init_validation # :doc:
     @user = Valid.get_association(self, :user_id)
     @mailing_list_group = Valid.get_association self, :id
   end
   
-  def validate_associations
+  def validate_associations # :doc:
     errors.add(:user_id, :doesnt_exist) if @user.nil?
   end
   
-  def validate_impossible_changes
+  def validate_impossible_changes # :doc:
     errors.add(:user_id, :cant_be_changed) if @mailing_list_group && @mailing_list_group.user_id != self.user_id
   end
   

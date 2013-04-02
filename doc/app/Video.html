@@ -446,12 +446,6 @@
 
   <div id="description" class="description">
     
-<p>converted</p>
-
-<pre>true  : conversione andata a buon fine
-false : conversione non andata a buon fine
-nil   : conversione da effettuare o in fase di conversione</pre>
-
   </div><!-- description -->
 
   
@@ -511,7 +505,7 @@ nil   : conversione da effettuare o in fase di conversione</pre>
 
           
           <div class="method-source-code" id="cover_url-source">
-            <pre><span class="ruby-comment"># File app/models/video.rb, line 29</span>
+            <pre><span class="ruby-comment"># File app/models/video.rb, line 25</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">cover_url</span>
   <span class="ruby-identifier">media</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:url</span>, <span class="ruby-value">:cover</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">converted</span>
 <span class="ruby-keyword">end</span></pre>
@@ -541,7 +535,7 @@ nil   : conversione da effettuare o in fase di conversione</pre>
 
           
           <div class="method-source-code" id="min_duration-source">
-            <pre><span class="ruby-comment"># File app/models/video.rb, line 17</span>
+            <pre><span class="ruby-comment"># File app/models/video.rb, line 13</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">min_duration</span>
   [<span class="ruby-identifier">mp4_duration</span>, <span class="ruby-identifier">webm_duration</span>].<span class="ruby-identifier">map</span>(&amp;<span class="ruby-value">:to_i</span>).<span class="ruby-identifier">min</span>
 <span class="ruby-keyword">end</span></pre>
@@ -571,7 +565,7 @@ nil   : conversione da effettuare o in fase di conversione</pre>
 
           
           <div class="method-source-code" id="mp4_duration-source">
-            <pre><span class="ruby-comment"># File app/models/video.rb, line 41</span>
+            <pre><span class="ruby-comment"># File app/models/video.rb, line 37</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">mp4_duration</span>
   <span class="ruby-identifier">converted</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">mp4_duration</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>
 <span class="ruby-keyword">end</span></pre>
@@ -601,7 +595,7 @@ nil   : conversione da effettuare o in fase di conversione</pre>
 
           
           <div class="method-source-code" id="mp4_duration-3D-source">
-            <pre><span class="ruby-comment"># File app/models/video.rb, line 45</span>
+            <pre><span class="ruby-comment"># File app/models/video.rb, line 41</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">mp4_duration=</span>(<span class="ruby-identifier">mp4_duration</span>)
   <span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">mp4_duration</span> = <span class="ruby-identifier">mp4_duration</span>
 <span class="ruby-keyword">end</span></pre>
@@ -631,7 +625,7 @@ nil   : conversione da effettuare o in fase di conversione</pre>
 
           
           <div class="method-source-code" id="mp4_url-source">
-            <pre><span class="ruby-comment"># File app/models/video.rb, line 21</span>
+            <pre><span class="ruby-comment"># File app/models/video.rb, line 17</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">mp4_url</span>
   <span class="ruby-identifier">media</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:url</span>, <span class="ruby-value">:mp4</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">converted</span>
 <span class="ruby-keyword">end</span></pre>
@@ -661,7 +655,7 @@ nil   : conversione da effettuare o in fase di conversione</pre>
 
           
           <div class="method-source-code" id="placeholder_url-source">
-            <pre><span class="ruby-comment"># File app/models/video.rb, line 37</span>
+            <pre><span class="ruby-comment"># File app/models/video.rb, line 33</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">placeholder_url</span>(<span class="ruby-identifier">type</span>)
   <span class="ruby-node">&quot;/assets/placeholders/video_#{type}.gif&quot;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -691,7 +685,7 @@ nil   : conversione da effettuare o in fase di conversione</pre>
 
           
           <div class="method-source-code" id="thumb_url-source">
-            <pre><span class="ruby-comment"># File app/models/video.rb, line 33</span>
+            <pre><span class="ruby-comment"># File app/models/video.rb, line 29</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">thumb_url</span>
   <span class="ruby-identifier">media</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:url</span>, <span class="ruby-value">:thumb</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">converted</span>
 <span class="ruby-keyword">end</span></pre>
@@ -721,7 +715,7 @@ nil   : conversione da effettuare o in fase di conversione</pre>
 
           
           <div class="method-source-code" id="webm_duration-source">
-            <pre><span class="ruby-comment"># File app/models/video.rb, line 49</span>
+            <pre><span class="ruby-comment"># File app/models/video.rb, line 45</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">webm_duration</span>
   <span class="ruby-identifier">converted</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">webm_duration</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>
 <span class="ruby-keyword">end</span></pre>
@@ -751,7 +745,7 @@ nil   : conversione da effettuare o in fase di conversione</pre>
 
           
           <div class="method-source-code" id="webm_duration-3D-source">
-            <pre><span class="ruby-comment"># File app/models/video.rb, line 53</span>
+            <pre><span class="ruby-comment"># File app/models/video.rb, line 49</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">webm_duration=</span>(<span class="ruby-identifier">webm_duration</span>)
   <span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">webm_duration</span> = <span class="ruby-identifier">webm_duration</span>
 <span class="ruby-keyword">end</span></pre>
@@ -781,7 +775,7 @@ nil   : conversione da effettuare o in fase di conversione</pre>
 
           
           <div class="method-source-code" id="webm_url-source">
-            <pre><span class="ruby-comment"># File app/models/video.rb, line 25</span>
+            <pre><span class="ruby-comment"># File app/models/video.rb, line 21</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">webm_url</span>
   <span class="ruby-identifier">media</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:url</span>, <span class="ruby-value">:webm</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">converted</span>
 <span class="ruby-keyword">end</span></pre>

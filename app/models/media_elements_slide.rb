@@ -59,7 +59,7 @@ class MediaElementsSlide < ActiveRecord::Base
   
   private
 
-  def restore_lesson_availability
+  def restore_lesson_availability # :doc:
     if media_element && 
        !media_element.converted? &&
        lesson &&
@@ -70,37 +70,37 @@ class MediaElementsSlide < ActiveRecord::Base
     true
   end
   
-  def init_validation
+  def init_validation # :doc:
     @media_elements_slide = Valid.get_association self, :id
     @slide = Valid.get_association self, :slide_id
     @media_element = Valid.get_association self, :media_element_id
   end
   
-  def validate_image_properties
+  def validate_image_properties # :doc:
     errors.add(:alignment, :must_be_null_if_not_image) if @media_element && !@media_element.image? && !self.alignment.nil?
     errors.add(:alignment, :cant_be_null_if_image) if @media_element && @media_element.image? && self.alignment.nil?
     errors.add(:caption, :must_be_null_if_not_image) if @media_element && !@media_element.image? && !self.caption.blank?
   end
   
-  def validate_associations
+  def validate_associations # :doc:
     errors.add(:media_element_id, :doesnt_exist) if @media_element.nil?
     errors.add(:slide_id, :doesnt_exist) if @slide.nil?
   end
   
-  def validate_type_in_slide
+  def validate_type_in_slide # :doc:
     errors.add(:media_element_id, :is_not_compatible_with_slide) if @media_element && @slide && @slide.accepted_media_element_sti_type != @media_element.sti_type
   end
   
-  def validate_position
+  def validate_position # :doc:
     errors.add(:position, :cant_have_two_elements_in_this_slide) if @media_element && @slide && self.position == 2 && ![Slide::IMAGE2, Slide::IMAGE4].include?(@slide.kind)
     errors.add(:position, :cant_have_more_than_two_elements_in_this_slide) if @media_element && @slide && [3, 4].include?(self.position) && @slide.kind != Slide::IMAGE4
   end
   
-  def validate_media_element
+  def validate_media_element # :doc:
     errors.add(:media_element_id, :is_not_available) if @media_element && @slide && !@media_element.is_public && @media_element.user_id != @slide.lesson.user_id
   end
   
-  def validate_impossible_changes
+  def validate_impossible_changes # :doc:
     if @media_elements_slide
       errors.add(:slide_id, :cant_be_changed) if @media_elements_slide.slide_id != self.slide_id
     end

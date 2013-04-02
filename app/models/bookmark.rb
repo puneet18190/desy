@@ -45,29 +45,29 @@ class Bookmark < ActiveRecord::Base
   
   private
   
-  def init_validation
+  def init_validation # :doc:
     @user = Valid.get_association self, :user_id
     @bookmark = Valid.get_association self, :id
     @lesson = self.bookmarkable_type == 'Lesson' ? Valid.get_association(self, :bookmarkable_id, Lesson) : nil
     @media_element = self.bookmarkable_type == 'MediaElement' ? Valid.get_association(self, :bookmarkable_id, MediaElement) : nil
   end
   
-  def good_bookmarkable_type
+  def good_bookmarkable_type # :doc:
     ['Lesson', 'MediaElement'].include? self.bookmarkable_type
   end
   
-  def validate_associations
+  def validate_associations # :doc:
     errors.add(:user_id, :doesnt_exist) if @user.nil?
     errors.add(:bookmarkable_id, :lesson_doesnt_exist) if self.bookmarkable_type == 'Lesson' && @lesson.nil?
     errors.add(:bookmarkable_id, :media_element_doesnt_exist) if self.bookmarkable_type == 'MediaElement' && @media_element.nil?
   end
   
-  def validate_availability
+  def validate_availability # :doc:
     errors.add(:bookmarkable_id, :lesson_not_available_for_bookmarks) if @lesson && (@lesson.user_id == self.user_id || !@lesson.is_public)
     errors.add(:bookmarkable_id, :media_element_not_available_for_bookmarks) if @media_element && !@media_element.is_public
   end
   
-  def destroy_virtual_classroom
+  def destroy_virtual_classroom # :doc:
     return if self.new_record?
     bookmark_me = Bookmark.find self.id
     return if bookmark_me.bookmarkable_type != 'Lesson'
@@ -77,7 +77,7 @@ class Bookmark < ActiveRecord::Base
     return false if VirtualClassroomLesson.where(:lesson_id => bookmark_me.bookmarkable_id, :user_id => bookmark_me.user_id).any?
   end
   
-  def validate_impossible_changes
+  def validate_impossible_changes # :doc:
     if @bookmark
       errors.add(:user_id, :cant_be_changed) if self.user_id != @bookmark.user_id
       errors.add(:bookmarkable_id, :cant_be_changed) if self.bookmarkable_id != @bookmark.bookmarkable_id

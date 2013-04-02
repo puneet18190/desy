@@ -43,20 +43,20 @@ class MailingListAddress < ActiveRecord::Base
   
   private
   
-  def init_validation
+  def init_validation # :doc:
     @group = Valid.get_association(self, :group_id, MailingListGroup)
     @mailing_list_address = Valid.get_association self, :id
   end
   
-  def validate_associations
+  def validate_associations # :doc:
     errors.add(:group_id, :doesnt_exist) if @group.nil?
   end
   
-  def validate_impossible_changes
+  def validate_impossible_changes # :doc:
     errors.add(:group_id, :cant_be_changed) if @mailing_list_address && @mailing_list_address.group_id != self.group_id
   end
   
-  def validate_email
+  def validate_email # :doc:
     return if self.email.blank?
     flag = false
     flag = true if !(/ / =~ self.email).nil?

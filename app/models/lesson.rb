@@ -757,23 +757,23 @@ class Lesson < ActiveRecord::Base
   
   private
   
-  def validate_tags_length
+  def validate_tags_length # :doc:
     errors.add(:tags, :are_not_enough) if @validating_in_form && @inner_tags.length < SETTINGS['min_tags_for_item']
   end
   
-  def virtual_classroom_button
+  def virtual_classroom_button # :doc:
     @in_vc ? Buttons::REMOVE_VIRTUAL_CLASSROOM : Buttons::ADD_VIRTUAL_CLASSROOM
   end
   
-  def like_button
+  def like_button # :doc:
     @liked ? Buttons::DISLIKE : Buttons::LIKE
   end
   
-  def present_parent_id
+  def present_parent_id # :doc:
     self.parent_id
   end
   
-  def validate_associations
+  def validate_associations # :doc:
     errors.add(:user_id, :doesnt_exist) if @user.nil?
     errors.add(:subject_id, :doesnt_exist) if @subject.nil?
     errors.add(:school_level_id, :doesnt_exist) if @school_level.nil?
@@ -781,7 +781,7 @@ class Lesson < ActiveRecord::Base
     errors.add(:parent_id, :cant_be_the_lesson_itself) if @lesson && self.parent_id == @lesson.id
   end
   
-  def update_or_create_tags
+  def update_or_create_tags # :doc:
     return true unless @inner_tags
     words = []
     @inner_tags.each do |t|
@@ -801,7 +801,7 @@ class Lesson < ActiveRecord::Base
     end
   end
   
-  def init_validation
+  def init_validation # :doc:
     @lesson = Valid.get_association self, :id
     @user = Valid.get_association self, :user_id
     @subject = Valid.get_association self, :subject_id
@@ -828,7 +828,7 @@ class Lesson < ActiveRecord::Base
     end
   end
   
-  def create_or_update_cover
+  def create_or_update_cover # :doc:
     if @lesson.nil?
       slide = Slide.new :title => self.title, :position => 1
       slide.kind = Slide::COVER
@@ -841,15 +841,15 @@ class Lesson < ActiveRecord::Base
     end
   end
   
-  def validate_public
+  def validate_public # :doc:
     errors.add(:is_public, :cant_be_true_for_new_records) if @lesson.nil? && self.is_public
   end
   
-  def validate_copied_not_modified_and_public
+  def validate_copied_not_modified_and_public # :doc:
     errors.add(:copied_not_modified, :cant_be_true_if_public) if self.is_public && self.copied_not_modified
   end
   
-  def validate_impossible_changes
+  def validate_impossible_changes # :doc:
     if @lesson
       errors.add(:token, :cant_be_changed) if @lesson.token != self.token
       errors.add(:user_id, :cant_be_changed) if @lesson.user_id != self.user_id
@@ -857,19 +857,19 @@ class Lesson < ActiveRecord::Base
     end
   end
   
-  def create_token
+  def create_token # :doc:
     self.token = SecureRandom.urlsafe_base64(16)
     true
   end
   
-  def self.test
+  def self.test # :doc:
     l = User.admin.create_lesson('test title', 'test description', 1, "asd, o, mar, rio, mare, test")
     l = find l.id
     _d l
     l.destroy
   end
   
-  def initialize_metadata
+  def initialize_metadata # :doc:
     self.metadata.available_video = true
     self.metadata.available_audio = true
   end

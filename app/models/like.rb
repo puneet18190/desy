@@ -41,25 +41,25 @@ class Like < ActiveRecord::Base
   
   private
   
-  def validate_associations
+  def validate_associations # :doc:
     errors.add(:user_id, :doesnt_exist) if @user.nil?
     errors.add(:lesson_id, :doesnt_exist) if @lesson.nil?
   end
   
-  def init_validation
+  def init_validation # :doc:
     @like = Valid.get_association self, :id
     @lesson = Valid.get_association self, :lesson_id
     @user = Valid.get_association self, :user_id
   end
   
-  def validate_impossible_changes
+  def validate_impossible_changes # :doc:
     if @like
       errors.add(:user_id, :cant_be_changed) if @like.user_id != self.user_id
       errors.add(:lesson_id, :cant_be_changed) if @like.lesson_id != self.lesson_id
     end
   end
   
-  def validate_availability
+  def validate_availability # :doc:
     errors.add(:lesson_id, :cant_be_liked) if @lesson && @user && @lesson.user_id == @user.id
   end
   
