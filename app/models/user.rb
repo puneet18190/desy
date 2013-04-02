@@ -681,6 +681,19 @@ class User < ActiveRecord::Base
     resp
   end
   
+  # === Description
+  #
+  # Used to create a Bookmark on a lesson or a media element
+  #
+  # === Args
+  #
+  # * *type*: 'Lesson' or 'MediaElement'
+  # * *target_id*: the id of the lesson or element to bookmark
+  #
+  # === Returns
+  #
+  # A boolean
+  #
   def bookmark(type, target_id)
     return false if self.new_record?
     b = Bookmark.new
@@ -690,12 +703,24 @@ class User < ActiveRecord::Base
     b.save
   end
   
+  # === Description
+  #
+  # Deletes all the elements of type VirtualClassroomLesson associated to the user. Used in VirtualClassroomController#empty_virtual_classroom
+  #
   def empty_virtual_classroom
     VirtualClassroomLesson.where(:user_id => self.id).each do |vcl|
       vcl.destroy
     end
   end
   
+  # === Description
+  #
+  # Sets +position+ = +nil+ for all the elements of type VirtualClassroomLesson associated to the user (hence, it removes them from the playlist). Used in VirtualClassroomController#empty_playlist
+  #
+  # === Returns
+  #
+  # A boolean
+  #
   def empty_playlist
     return false if self.new_record?
     resp = false
