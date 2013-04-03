@@ -619,12 +619,13 @@ href="ApplicationController.html#method-i-authenticate">ApplicationController#au
 
         <div class="method-description">
           
-          
+          <p>If the user has the token, it&#39;s not necessary to check that the lesson
+is public</p>
           
 
           
           <div class="method-source-code" id="skip_authenticate_user_if_token-source">
-            <pre><span class="ruby-comment"># File app/controllers/lesson_viewer_controller.rb, line 91</span>
+            <pre><span class="ruby-comment"># File app/controllers/lesson_viewer_controller.rb, line 93</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">skip_authenticate_user_if_token</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">initialize_lesson</span>
   <span class="ruby-identifier">update_ok</span>(<span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">is_public</span> <span class="ruby-operator">||</span> (<span class="ruby-identifier">logged_in?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">session</span>[<span class="ruby-value">:user_id</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">==</span> <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">user_id</span>)) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">token</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:token</span>]
@@ -650,12 +651,14 @@ href="ApplicationController.html#method-i-authenticate">ApplicationController#au
 
         <div class="method-description">
           
-          
+          <p>It uses <a
+href="LessonViewerController.html#method-i-skip_authenticate_user_if_token">#skip_authenticate_user_if_token</a>,
+and moreover checks that the slide belongs to the lesson</p>
           
 
           
           <div class="method-source-code" id="skip_authenticate_user_if_token_with_slide-source">
-            <pre><span class="ruby-comment"># File app/controllers/lesson_viewer_controller.rb, line 84</span>
+            <pre><span class="ruby-comment"># File app/controllers/lesson_viewer_controller.rb, line 85</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">skip_authenticate_user_if_token_with_slide</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">skip_authenticate_user_if_token</span>
   <span class="ruby-ivar">@slide_id</span> = <span class="ruby-identifier">correct_integer?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:slide_id</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:slide_id</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-value">0</span>
