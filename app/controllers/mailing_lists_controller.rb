@@ -1,6 +1,6 @@
 # == Description
 #
-# Contains the actions to handle mailing lists and addresses. All these actions can be called from UsersController#mailing_list
+# Contains the actions to handle mailing lists and addresses. All these actions can be called from UsersController#mailing_lists
 #
 # == Models used
 #
