@@ -618,12 +618,13 @@ href="PreloginController.html#method-i-redirect_to_dashboard_if_logged_in">#redi
 
         <div class="method-description">
           
-          
+          <p>If the user is logged in, redirects to <a
+href="DashboardController.html#method-i-index">DashboardController#index</a></p>
           
 
           
           <div class="method-source-code" id="redirect_to_dashboard_if_logged_in-source">
-            <pre><span class="ruby-comment"># File app/controllers/prelogin_controller.rb, line 83</span>
+            <pre><span class="ruby-comment"># File app/controllers/prelogin_controller.rb, line 84</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">redirect_to_dashboard_if_logged_in</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">logged_in?</span>
     <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">dashboard_path</span>
