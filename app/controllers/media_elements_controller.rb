@@ -115,9 +115,8 @@ class MediaElementsController < ApplicationController
         return render :file => Rails.root.join('public/413.html'), :layout => false, :status => 413
       end
       @errors = convert_media_element_uploader_messages record.errors
-      puts record.errors.inspect
-      puts @errors.inspect
       fields = record.errors.messages.keys
+      fields.delete(:media) if fields.include?(:media) && record.errors.messages[:media].empty?
       if fields.include? :sti_type
         fields << :media if !fields.include? :media
         fields.delete :sti_type
