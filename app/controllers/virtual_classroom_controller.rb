@@ -1,11 +1,24 @@
+# == Description
+#
+# Contains all the actions related with the user's Virtual Classroom
+#
+# == Models used
+#
+# * VirtualClassroomLesson
+# * Lesson
+# * Notification
+#
 class VirtualClassroomController < ApplicationController
   
+  # Number of lessons in a page of the Virtual Classroom (configured in settings.yml)
   FOR_PAGE = SETTINGS['lessons_for_page_in_virtual_classroom']
+  
+  # Number of lessons in the first block of the quick loader (configured in settings.yml)
   LESSONS_IN_QUICK_LOADER = SETTINGS['lessons_in_quick_loader']
   
   before_filter :initialize_lesson, :only => [:add_lesson, :remove_lesson, :remove_lesson_from_inside]
   before_filter :initialize_lesson_destination, :only => [:add_lesson, :remove_lesson]
-  before_filter :initialize_layout, :initialize_paginator, :only => [:index]
+  before_filter :initialize_layout, :initialize_paginator, :only => :index
   before_filter :initialize_virtual_classroom_lesson, :only => [:add_lesson_to_playlist, :remove_lesson_from_playlist, :change_position_in_playlist]
   before_filter :initialize_position, :only => :change_position_in_playlist
   before_filter :initialize_lesson_for_sending_link, :only => :send_link
@@ -14,6 +27,19 @@ class VirtualClassroomController < ApplicationController
   before_filter :initialize_loaded_lessons, :only => :load_lessons
   layout 'virtual_classroom'
   
+  # === Description
+  #
+  # Main page of the section 'Virtual Classroom'. When it's called via ajax it's because of the application of filters, paginations, or after an operation that changed the number of items in the page.
+  #
+  # === Mode
+  #
+  # Html + Ajax
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#initialize_layout
+  # * VirtualClassroomController#initialize_paginator
+  #
   def index
     get_lessons
     if @page > @pages_amount && @pages_amount != 0
@@ -26,6 +52,22 @@ class VirtualClassroomController < ApplicationController
     render_js_or_html_index
   end
   
+  # === Description
+  #
+  # Creates a link of this lesson into your Virtual Classroom. List of possible graphical effects (see LessonsController and ButtonDestinations for more details):
+  # * *found*: reloads the lesson in compact mode
+  # * *compact*: reloads the lesson in compact mode
+  # * *expanded*: <i>[this action doesn't occur]</i>
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#initialize_lesson
+  # * ApplicationController#initialize_lesson_destination
+  #
   def add_lesson
     if @ok
       if !@lesson.add_to_virtual_classroom(current_user.id)
@@ -36,13 +78,25 @@ class VirtualClassroomController < ApplicationController
       @error = I18n.t('activerecord.errors.models.lesson.problem_adding_to_virtual_classroom')
     end
     prepare_lesson_for_js
-    if [ButtonDestinations::FOUND_LESSON, ButtonDestinations::COMPACT_LESSON].include? @destination
-      render 'lessons/reload_compact.js'
-    else
-      render 'lessons/reload_expanded.js'
-    end
+    render 'lessons/reload_compact.js'
   end
   
+  # === Description
+  #
+  # Removes the link of this lesson from your Virtual Classroom. List of possible graphical effects (see LessonsController and ButtonDestinations for more details):
+  # * *found*: reloads the lesson in compact mode
+  # * *compact*: reloads the lesson in compact mode
+  # * *expanded*: <i>[this action doesn't occur]</i>
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#initialize_lesson
+  # * ApplicationController#initialize_lesson_destination
+  #
   def remove_lesson
     if @ok
       if !@lesson.remove_from_virtual_classroom(current_user.id)
@@ -53,13 +107,21 @@ class VirtualClassroomController < ApplicationController
       @error = I18n.t('activerecord.errors.models.lesson.problem_removing_from_virtual_classroom')
     end
     prepare_lesson_for_js
-    if [ButtonDestinations::FOUND_LESSON, ButtonDestinations::COMPACT_LESSON].include? @destination
-      render 'lessons/reload_compact.js'
-    else
-      render 'lessons/reload_expanded.js'
-    end
+    render 'lessons/reload_compact.js'
   end
   
+  # === Description
+  #
+  # Removes the lesson from your Virtual Classroom while you are inside the Virtual Classroom itself
+  #
+  # === Mode
+  #
+  # Json
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#initialize_lesson
+  #
   def remove_lesson_from_inside
     if @ok
       if !@lesson.remove_from_virtual_classroom(current_user.id)
@@ -72,6 +134,18 @@ class VirtualClassroomController < ApplicationController
     render :json => {:ok => @ok, :msg => @error}
   end
   
+  # === Description
+  #
+  # Adds a lesson to your playlist
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # * VirtualClassroomController#initialize_virtual_classroom_lesson
+  #
   def add_lesson_to_playlist
     if @ok
       if @virtual_classroom_lesson.add_to_playlist
@@ -85,6 +159,18 @@ class VirtualClassroomController < ApplicationController
     end
   end
   
+  # === Description
+  #
+  # Removes a lesson from the playlist
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # * VirtualClassroomController#initialize_virtual_classroom_lesson
+  #
   def remove_lesson_from_playlist
     if @ok
       if @virtual_classroom_lesson.remove_from_playlist
@@ -98,6 +184,19 @@ class VirtualClassroomController < ApplicationController
     end
   end
   
+  # === Description
+  #
+  # Moves the lesson into a different position inside the playlist
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # * VirtualClassroomController#initialize_virtual_classroom_lesson
+  # * ApplicationController#initialize_position
+  #
   def change_position_in_playlist
     if @ok
       if !@virtual_classroom_lesson.change_position(@position)
@@ -110,25 +209,73 @@ class VirtualClassroomController < ApplicationController
     @playlist = current_user.playlist
   end
   
+  # === Description
+  #
+  # Empties the playlist and reloads it
+  #
+  # === Mode
+  #
+  # Ajax
+  #
   def empty_playlist
     @ok = current_user.empty_playlist
     @error = I18n.t('activerecord.errors.models.virtual_classroom_lesson.problem_emptying_playlist') if !@ok
   end
   
+  # === Description
+  #
+  # Empties the Virtual Classroom and reloads it
+  #
+  # === Mode
+  #
+  # Ajax
+  #
   def empty_virtual_classroom
     current_user.empty_virtual_classroom
   end
   
+  # === Description
+  #
+  # Opens a window that contains the list of your lessons: you can pick multiple lessons and add them directly into your Virtual Classroom
+  #
+  # === Mode
+  #
+  # Ajax
+  #
   def select_lessons
     x = current_user.own_lessons(1, LESSONS_IN_QUICK_LOADER)
     @lessons = x[:records]
     @tot_pages = x[:pages_amount]
   end
   
+  # === Description
+  #
+  # Gets a new block of the list initialized in VirtualClassroomController#select_lessons
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # * VirtualClassroomController#initialize_page
+  #
   def select_lessons_new_block
     @lessons = current_user.own_lessons(@page, LESSONS_IN_QUICK_LOADER)[:records] if @ok
   end
   
+  # === Description
+  #
+  # From the list initialized in VirtualClassroomController#select_lessons, load lessons into the Virtual Classroom
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # VirtualClassroomController#initialize_loaded_lessons
+  #
   def load_lessons
     @loaded = 0
     @load_lessons.each do |l|
@@ -138,6 +285,19 @@ class VirtualClassroomController < ApplicationController
     get_lessons
   end
   
+  # === Description
+  #
+  # Sends a link containing the public url of a lesson to a list of emails (see MailingListGroup)
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # * VirtualClassroomController#initialize_lesson_for_sending_link
+  # * VirtualClassroomController#initialize_emails
+  #
   def send_link
     if @ok
       UserMailer.see_my_lesson(@emails, current_user, @lesson, @message, request.host, request.port).deliver

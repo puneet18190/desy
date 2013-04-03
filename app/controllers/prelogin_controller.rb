@@ -1,3 +1,14 @@
+# == Description
+#
+# Contains the actions called while the user is not logged in
+#
+# == Models used
+#
+# * User
+# * SchoolLevel
+# * Location
+# * Subject
+#
 class PreloginController < ApplicationController
   
   skip_before_filter :authenticate
@@ -5,9 +16,41 @@ class PreloginController < ApplicationController
   
   layout proc{ |controller| controller.action_name == 'home' ? 'home' : 'prelogin' }
   
+  # === Description
+  #
+  # Home page of the application
+  #
+  # === Mode
+  #
+  # Html
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#authenticate
+  #
+  # === Skipped filters
+  #
+  # * PreloginController#redirect_to_dashboard_if_logged_in
+  #
   def home
   end
   
+  # === Description
+  #
+  # Form to sign in
+  #
+  # === Mode
+  #
+  # Html
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#authenticate
+  #
+  # === Skipped filters
+  #
+  # * PreloginController#redirect_to_dashboard_if_logged_in
+  #
   def registration
     @user             = User.new(params[:user])
     @school_level_ids = SchoolLevel.order(:description).map{ |sl| [sl.to_s, sl.id] }
@@ -16,6 +59,22 @@ class PreloginController < ApplicationController
     @subjects         = Subject.order(:description)
   end
   
+  # === Description
+  #
+  # Section of the main page
+  #
+  # === Mode
+  #
+  # Html
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#authenticate
+  #
+  # === Skipped filters
+  #
+  # * PreloginController#redirect_to_dashboard_if_logged_in
+  #
   def what_is_desy
   end
   

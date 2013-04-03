@@ -430,6 +430,19 @@
 
   <div id="description" class="description">
     
+<h2 id="label-Description">Description</h2>
+
+<p>Controller for the search engine with all its options</p>
+
+<h2 id="label-Models+used">Models used</h2>
+<ul><li>
+<p><a href="Lesson.html">Lesson</a></p>
+</li><li>
+<p><a href="MediaElement.html">MediaElement</a></p>
+</li><li>
+<p><a href="User.html">User</a></p>
+</li></ul>
+
   </div><!-- description -->
 
   
@@ -448,12 +461,12 @@
       
         <dt id="LESSONS_FOR_PAGE">LESSONS_FOR_PAGE
         
-        <dd class="description">
+        <dd class="description"><p>How many lessons in a page (configured in settings.yml)</p>
         
       
         <dt id="MEDIA_ELEMENTS_FOR_PAGE">MEDIA_ELEMENTS_FOR_PAGE
         
-        <dd class="description">
+        <dd class="description"><p>How many elements in a page (configured in settings.yml)</p>
         
       
       </dl>
@@ -479,12 +492,61 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-index-label-Description">Description</h3>
+
+<p>Search for lessons and elements in the application&#39;s database. There
+are different options:</p>
+<ul><li>
+<p>if <code>params</code> has the key <code>word</code>, it means that the
+user searched for something (even when he only used filters, the parameter
+<code>word</code> is present and blank); if this is not verified, it means
+that the user entered in the search engine through the direct link labelled
+as &#39;advanced search&#39;</p>
+</li><li>
+<p>the search engine contains two subsections, one for lessons and one for
+elements: to choose which subsection needs to be visible, the filter checks
+a specific parameter called <code>item</code></p>
+</li><li>
+<p>if the parameter <code>tag_id</code> is present, the method calls <a
+href="User.html#method-i-search_media_elements">User#search_media_elements</a>
+or <a href="User.html#method-i-search_lessons">User#search_lessons</a>
+twice:</p>
+<ul><li>
+<p>first with <code>word</code> = <code>tag_id</code> in <code>params</code></p>
+</li><li>
+<p>second with <code>word</code> = <code>word</code> in <code>params</code>
+and the option <code>only_tags</code> = <code>true</code>: this way
+it&#39;s shown the whole range of tags associated to the original word, and
+only the requested tag is selected</p>
+</li></ul>
+</li><li>
+<p>if the parameter <code>tag_id</code> is blank, the method calls <a
+href="User.html#method-i-search_media_elements">User#search_media_elements</a>
+or <a href="User.html#method-i-search_lessons">User#search_lessons</a>
+normally, passing it the <code>word</code> as it received it (possibly
+blank, in which case there is a call to the submethods <a
+href="User.html#method-i-search_lessons_without_tag">User#search_lessons_without_tag</a>
+or <a
+href="User.html#method-i-search_media_elements_without_tag">User#search_media_elements_without_tag</a>)</p>
+</li></ul>
+
+<h3 id="method-i-index-label-Mode">Mode</h3>
+
+<p>Html + Ajax</p>
+
+<h3 id="method-i-index-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p><a
+href="ApplicationController.html#method-i-initialize_layout">ApplicationController#initialize_layout</a></p>
+</li><li>
+<p><a
+href="SearchController.html#method-i-initialize_paginator_and_filters">#initialize_paginator_and_filters</a></p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/search_controller.rb, line 8</span>
+            <pre><span class="ruby-comment"># File app/controllers/search_controller.rb, line 40</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@did_you_search</span>
     <span class="ruby-keyword">case</span> <span class="ruby-ivar">@search_item</span>
@@ -573,7 +635,7 @@
 
           
           <div class="method-source-code" id="get_result_lessons-source">
-            <pre><span class="ruby-comment"># File app/controllers/search_controller.rb, line 90</span>
+            <pre><span class="ruby-comment"># File app/controllers/search_controller.rb, line 122</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_result_lessons</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">search_lessons</span>(<span class="ruby-ivar">@word</span>, <span class="ruby-ivar">@page</span>, <span class="ruby-ivar">@for_page</span>, <span class="ruby-ivar">@order</span>, <span class="ruby-ivar">@filter</span>, <span class="ruby-ivar">@subject_id</span>)
   <span class="ruby-ivar">@lessons</span> = <span class="ruby-identifier">resp</span>[<span class="ruby-value">:records</span>]
@@ -608,7 +670,7 @@
 
           
           <div class="method-source-code" id="get_result_lessons_by_specific_tag-source">
-            <pre><span class="ruby-comment"># File app/controllers/search_controller.rb, line 74</span>
+            <pre><span class="ruby-comment"># File app/controllers/search_controller.rb, line 106</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_result_lessons_by_specific_tag</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">search_lessons</span>(<span class="ruby-ivar">@specific_tag_id</span>, <span class="ruby-ivar">@page</span>, <span class="ruby-ivar">@for_page</span>, <span class="ruby-ivar">@order</span>, <span class="ruby-ivar">@filter</span>, <span class="ruby-ivar">@subject_id</span>)
   <span class="ruby-ivar">@lessons</span> = <span class="ruby-identifier">resp</span>[<span class="ruby-value">:records</span>]
@@ -641,7 +703,7 @@
 
           
           <div class="method-source-code" id="get_result_media_elements-source">
-            <pre><span class="ruby-comment"># File app/controllers/search_controller.rb, line 81</span>
+            <pre><span class="ruby-comment"># File app/controllers/search_controller.rb, line 113</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_result_media_elements</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">search_media_elements</span>(<span class="ruby-ivar">@word</span>, <span class="ruby-ivar">@page</span>, <span class="ruby-ivar">@for_page</span>, <span class="ruby-ivar">@order</span>, <span class="ruby-ivar">@filter</span>)
   <span class="ruby-ivar">@media_elements</span> = <span class="ruby-identifier">resp</span>[<span class="ruby-value">:records</span>]
@@ -676,7 +738,7 @@
 
           
           <div class="method-source-code" id="get_result_media_elements_by_specific_tag-source">
-            <pre><span class="ruby-comment"># File app/controllers/search_controller.rb, line 67</span>
+            <pre><span class="ruby-comment"># File app/controllers/search_controller.rb, line 99</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_result_media_elements_by_specific_tag</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">search_media_elements</span>(<span class="ruby-ivar">@specific_tag_id</span>, <span class="ruby-ivar">@page</span>, <span class="ruby-ivar">@for_page</span>, <span class="ruby-ivar">@order</span>, <span class="ruby-ivar">@filter</span>)
   <span class="ruby-ivar">@media_elements</span> = <span class="ruby-identifier">resp</span>[<span class="ruby-value">:records</span>]
@@ -709,7 +771,7 @@
 
           
           <div class="method-source-code" id="initialize_paginator_and_filters-source">
-            <pre><span class="ruby-comment"># File app/controllers/search_controller.rb, line 99</span>
+            <pre><span class="ruby-comment"># File app/controllers/search_controller.rb, line 131</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize_paginator_and_filters</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-ivar">@did_you_search</span> = <span class="ruby-identifier">params</span>.<span class="ruby-identifier">has_key?</span> <span class="ruby-value">:word</span>
   <span class="ruby-ivar">@search_item</span> = [<span class="ruby-string">&#39;lessons&#39;</span>, <span class="ruby-string">&#39;media_elements&#39;</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:item</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:item</span>] <span class="ruby-operator">:</span> <span class="ruby-string">&#39;lessons&#39;</span>
@@ -749,7 +811,7 @@
 
           
           <div class="method-source-code" id="initialize_paginator_and_filters_for_lessons-source">
-            <pre><span class="ruby-comment"># File app/controllers/search_controller.rb, line 119</span>
+            <pre><span class="ruby-comment"># File app/controllers/search_controller.rb, line 151</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize_paginator_and_filters_for_lessons</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-ivar">@filter</span> = <span class="ruby-constant">Filters</span><span class="ruby-operator">::</span><span class="ruby-constant">LESSONS_SEARCH_SET</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:filter</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:filter</span>] <span class="ruby-operator">:</span> <span class="ruby-constant">Filters</span><span class="ruby-operator">::</span><span class="ruby-constant">ALL_LESSONS</span>
   <span class="ruby-ivar">@order</span> = <span class="ruby-constant">SearchOrders</span><span class="ruby-operator">::</span><span class="ruby-constant">LESSONS_SET</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:order</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:order</span>] <span class="ruby-operator">:</span> <span class="ruby-constant">SearchOrders</span><span class="ruby-operator">::</span><span class="ruby-constant">UPDATED_AT</span>
@@ -782,7 +844,7 @@
 
           
           <div class="method-source-code" id="initialize_paginator_and_filters_for_media_elements-source">
-            <pre><span class="ruby-comment"># File app/controllers/search_controller.rb, line 113</span>
+            <pre><span class="ruby-comment"># File app/controllers/search_controller.rb, line 145</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize_paginator_and_filters_for_media_elements</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-ivar">@filter</span> = <span class="ruby-constant">Filters</span><span class="ruby-operator">::</span><span class="ruby-constant">MEDIA_ELEMENTS_SEARCH_SET</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:filter</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:filter</span>] <span class="ruby-operator">:</span> <span class="ruby-constant">Filters</span><span class="ruby-operator">::</span><span class="ruby-constant">ALL_MEDIA_ELEMENTS</span>
   <span class="ruby-ivar">@order</span> = <span class="ruby-constant">SearchOrders</span><span class="ruby-operator">::</span><span class="ruby-constant">MEDIA_ELEMENTS_SET</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:order</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:order</span>] <span class="ruby-operator">:</span> <span class="ruby-constant">SearchOrders</span><span class="ruby-operator">::</span><span class="ruby-constant">UPDATED_AT</span>
@@ -814,7 +876,7 @@
 
           
           <div class="method-source-code" id="initialize_word_and_specific_tag-source">
-            <pre><span class="ruby-comment"># File app/controllers/search_controller.rb, line 126</span>
+            <pre><span class="ruby-comment"># File app/controllers/search_controller.rb, line 158</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize_word_and_specific_tag</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-ivar">@word</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:word_placeholder</span>].<span class="ruby-identifier">blank?</span> <span class="ruby-operator">?</span> <span class="ruby-string">&#39;&#39;</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:word</span>]
   <span class="ruby-ivar">@page</span> = <span class="ruby-identifier">correct_integer?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-value">1</span>

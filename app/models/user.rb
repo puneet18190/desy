@@ -1333,26 +1333,13 @@ class User < ActiveRecord::Base
       where = "#{where} AND subject_id = ?"
       params << subject_id
     end
-    query = []
-    count = 0
-    case params.length
-      when 1
-        query = Lesson.select(select).where(where, params[0]).order(order).offset(offset).limit(limit)
-        count = Lesson.where(where, params[0]).count
-      when 2
-        query = Lesson.select(select).where(where, params[0], params[1]).order(order).offset(offset).limit(limit)
-        count = Lesson.where(where, params[0], params[1]).count
-      when 3
-        query = Lesson.select(select).where(where, params[0], params[1], params[2]).order(order).offset(offset).limit(limit)
-        count = Lesson.where(where, params[0], params[1], params[2]).count
-    end
     resp[:records] = []
-    query.each do |q|
+    Lesson.select(select).where(where, *params).order(order).offset(offset).limit(limit).each do |q|
       lesson = Lesson.find_by_id q.lesson_id
       lesson.set_status self.id
       resp[:records] << lesson
     end
-    resp[:records_amount] = count
+    resp[:records_amount] = Lesson.where(where, *params).count
     resp[:pages_amount] = Rational(resp[:records_amount], limit).ceil
     return resp
   end

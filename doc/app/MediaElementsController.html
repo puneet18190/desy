@@ -434,6 +434,33 @@
 
   <div id="description" class="description">
     
+<h2 id="label-Description">Description</h2>
+
+<p>Controller for all the actions related to elements and their buttons. All
+over this controller we use the constant keywords defined in <a
+href="ButtonDestinations.html">ButtonDestinations</a>, namely:</p>
+<ol><li>
+<p><strong>found_media_element</strong> (or simply <strong>found</strong>) for
+a media element seen in a results list of the search engine</p>
+</li><li>
+<p><strong>compact_media_element</strong> (or simply <strong>compact</strong>)
+for a media element seen in the compact mode</p>
+</li><li>
+<p><strong>expanded_media_element</strong> (or simply
+<strong>expanded</strong>) for a media element seen in expanded mode (this
+happens only in the dashboard, see <a
+href="DashboardController.html">DashboardController</a>)</p>
+</li></ol>
+
+<h2 id="label-Models+used">Models used</h2>
+<ul><li>
+<p><a href="MediaElement.html">MediaElement</a></p>
+</li><li>
+<p><a href="Notification.html">Notification</a></p>
+</li><li>
+<p><a href="User.html">User</a></p>
+</li></ul>
+
   </div><!-- description -->
 
   
@@ -452,22 +479,26 @@
       
         <dt id="FOR_PAGE_COMPACT">FOR_PAGE_COMPACT
         
-        <dd class="description">
+        <dd class="description"><p>Default number of elements in compact mode to be shown in a single page
+(configured in settings.yml)</p>
         
       
         <dt id="FOR_PAGE_COMPACT_OPTIONS">FOR_PAGE_COMPACT_OPTIONS
         
-        <dd class="description">
+        <dd class="description"><p>Options of possible elements in compact mode to be shown in a single page
+(configured in settings.yml)</p>
         
       
         <dt id="FOR_PAGE_EXPANDED">FOR_PAGE_EXPANDED
         
-        <dd class="description">
+        <dd class="description"><p>Default number of elements in expanded mode to be shown in a single page
+(configured in settings.yml)</p>
         
       
         <dt id="FOR_PAGE_EXPANDED_OPTIONS">FOR_PAGE_EXPANDED_OPTIONS
         
-        <dd class="description">
+        <dd class="description"><p>Options of possible elements in expanded mode to be shown in a single page
+(configured in settings.yml)</p>
         
       
       </dl>
@@ -493,12 +524,34 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-add-label-Description">Description</h3>
+
+<p>Adds a link of this element to your section.</p>
+<ul><li>
+<p><strong>found</strong>: reloads the element in compact mode</p>
+</li><li>
+<p><strong>compact</strong>: <em>[this action doesn&#39;t occur]</em></p>
+</li><li>
+<p><strong>expanded</strong>: removes the element and reloads the whole page</p>
+</li></ul>
+
+<h3 id="method-i-add-label-Mode">Mode</h3>
+
+<p>Ajax + Json</p>
+
+<h3 id="method-i-add-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p><a
+href="ApplicationController.html#method-i-initialize_media_element">ApplicationController#initialize_media_element</a></p>
+</li><li>
+<p><a
+href="ApplicationController.html#method-i-initialize_media_element_destination">ApplicationController#initialize_media_element_destination</a></p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="add-source">
-            <pre><span class="ruby-comment"># File app/controllers/media_elements_controller.rb, line 66</span>
+            <pre><span class="ruby-comment"># File app/controllers/media_elements_controller.rb, line 149</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">add</span>
   <span class="ruby-ivar">@ok_msg</span> = <span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;other_popup_messages.correct.add.media_element&#39;</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
@@ -537,12 +590,18 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-create-label-Description">Description</h3>
+
+<p>Action that calls the uploader, casts the type, and creates the new element</p>
+
+<h3 id="method-i-create-label-Mode">Mode</h3>
+
+<p>Html</p>
           
 
           
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/media_elements_controller.rb, line 35</span>
+            <pre><span class="ruby-comment"># File app/controllers/media_elements_controller.rb, line 103</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-identifier">media</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:media</span>]
   <span class="ruby-identifier">record</span> = <span class="ruby-constant">MediaElement</span>.<span class="ruby-identifier">new</span> <span class="ruby-value">:media</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">media</span>
@@ -560,7 +619,6 @@
     <span class="ruby-ivar">@errors</span> = <span class="ruby-identifier">convert_media_element_uploader_messages</span> <span class="ruby-identifier">record</span>.<span class="ruby-identifier">errors</span>
     <span class="ruby-identifier">puts</span> <span class="ruby-identifier">record</span>.<span class="ruby-identifier">errors</span>.<span class="ruby-identifier">inspect</span>
     <span class="ruby-identifier">puts</span> <span class="ruby-ivar">@errors</span>.<span class="ruby-identifier">inspect</span>
-    
     <span class="ruby-identifier">fields</span> = <span class="ruby-identifier">record</span>.<span class="ruby-identifier">errors</span>.<span class="ruby-identifier">messages</span>.<span class="ruby-identifier">keys</span>
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">fields</span>.<span class="ruby-identifier">include?</span> <span class="ruby-value">:sti_type</span>
       <span class="ruby-identifier">fields</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value">:media</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">fields</span>.<span class="ruby-identifier">include?</span> <span class="ruby-value">:media</span>
@@ -594,12 +652,34 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-destroy-label-Description">Description</h3>
+
+<p>Deletes definitively an element.</p>
+<ul><li>
+<p><strong>found</strong>: removes the element and reloads the whole page</p>
+</li><li>
+<p><strong>compact</strong>: removes the element and reloads the whole page</p>
+</li><li>
+<p><strong>expanded</strong>: removes the element and reloads the whole page</p>
+</li></ul>
+
+<h3 id="method-i-destroy-label-Mode">Mode</h3>
+
+<p>Json</p>
+
+<h3 id="method-i-destroy-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p><a
+href="ApplicationController.html#method-i-initialize_media_element_with_owner">ApplicationController#initialize_media_element_with_owner</a></p>
+</li><li>
+<p><a
+href="ApplicationController.html#method-i-initialize_media_element_destination">ApplicationController#initialize_media_element_destination</a></p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/media_elements_controller.rb, line 84</span>
+            <pre><span class="ruby-comment"># File app/controllers/media_elements_controller.rb, line 183</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
     <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@media_element</span>.<span class="ruby-identifier">check_and_destroy</span>
@@ -632,12 +712,29 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-index-label-Description">Description</h3>
+
+<p>Main page of the section &#39;elements&#39;. When it&#39;s called via ajax
+it&#39;s because of the application of filters, paginations, or after an
+operation that changed the number of items in the page.</p>
+
+<h3 id="method-i-index-label-Mode">Mode</h3>
+
+<p>Html + Ajax</p>
+
+<h3 id="method-i-index-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p><a
+href="ApplicationController.html#method-i-initialize_layout">ApplicationController#initialize_layout</a></p>
+</li><li>
+<p><a
+href="MediaElementsController.html#method-i-initialize_paginator">#initialize_paginator</a></p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/media_elements_controller.rb, line 22</span>
+            <pre><span class="ruby-comment"># File app/controllers/media_elements_controller.rb, line 71</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
   <span class="ruby-identifier">get_own_media_elements</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@page</span> <span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@pages_amount</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@pages_amount</span> <span class="ruby-operator">!=</span> <span class="ruby-value">0</span>
@@ -667,12 +764,18 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-load_preview-label-Description">Description</h3>
+
+<p>Loads the preview of the element (to be shown inside a special popup)</p>
+
+<h3 id="method-i-load_preview-label-Mode">Mode</h3>
+
+<p>Ajax</p>
           
 
           
           <div class="method-source-code" id="load_preview-source">
-            <pre><span class="ruby-comment"># File app/controllers/media_elements_controller.rb, line 136</span>
+            <pre><span class="ruby-comment"># File app/controllers/media_elements_controller.rb, line 271</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">load_preview</span>
   <span class="ruby-ivar">@media_element_id</span> = <span class="ruby-identifier">correct_integer?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:media_element_id</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:media_element_id</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-value">0</span>
   <span class="ruby-ivar">@media_element</span> = <span class="ruby-constant">MediaElement</span>.<span class="ruby-identifier">find_by_id</span> <span class="ruby-ivar">@media_element_id</span>
@@ -704,12 +807,30 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-new-label-Description">Description</h3>
+
+<p>Opens the general page of the elements editor:</p>
+<ul><li>
+<p>the <strong>video</strong> icon redirects to <a
+href="VideoEditorController.html#method-i-new">VideoEditorController#new</a></p>
+</li><li>
+<p>the <strong>audio</strong> icon redirects to <a
+href="AudioEditorController.html#method-i-new">AudioEditorController#new</a></p>
+</li><li>
+<p>the <strong>image</strong> icon redirects to <a
+href="GalleriesController.html#method-i-image_for_image_editor">GalleriesController#image_for_image_editor</a>
+(and successively to <a
+href="ImageEditorController.html#method-i-edit">ImageEditorController#edit</a>)</p>
+</li></ul>
+
+<h3 id="method-i-new-label-Mode">Mode</h3>
+
+<p>Html</p>
           
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/controllers/media_elements_controller.rb, line 31</span>
+            <pre><span class="ruby-comment"># File app/controllers/media_elements_controller.rb, line 91</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
   <span class="ruby-identifier">render</span> <span class="ruby-value">:layout</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;media_element_editor&#39;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -734,12 +855,34 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-remove-label-Description">Description</h3>
+
+<p>Removes the link of this element from your section.</p>
+<ul><li>
+<p><strong>found</strong>: reloads the element in compact mode</p>
+</li><li>
+<p><strong>compact</strong>: removes the element and reloads the whole page</p>
+</li><li>
+<p><strong>expanded</strong>: removes the element and reloads the whole page</p>
+</li></ul>
+
+<h3 id="method-i-remove-label-Mode">Mode</h3>
+
+<p>Ajax + Json</p>
+
+<h3 id="method-i-remove-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p><a
+href="ApplicationController.html#method-i-initialize_media_element">ApplicationController#initialize_media_element</a></p>
+</li><li>
+<p><a
+href="ApplicationController.html#method-i-initialize_media_element_destination">ApplicationController#initialize_media_element_destination</a></p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="remove-source">
-            <pre><span class="ruby-comment"># File app/controllers/media_elements_controller.rb, line 96</span>
+            <pre><span class="ruby-comment"># File app/controllers/media_elements_controller.rb, line 211</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">remove</span>
   <span class="ruby-ivar">@ok_msg</span> = <span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;other_popup_messages.correct.remove.media_element&#39;</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
@@ -785,12 +928,25 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-update-label-Description">Description</h3>
+
+<p>Updates the general information of the element (title, description and
+tags)</p>
+
+<h3 id="method-i-update-label-Mode">Mode</h3>
+
+<p>Ajax</p>
+
+<h3 id="method-i-update-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p><a
+href="ApplicationController.html#method-i-initialize_media_element_with_owner_and_private">ApplicationController#initialize_media_element_with_owner_and_private</a></p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/media_elements_controller.rb, line 121</span>
+            <pre><span class="ruby-comment"># File app/controllers/media_elements_controller.rb, line 248</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
     <span class="ruby-ivar">@media_element</span>.<span class="ruby-identifier">title</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:title</span>]
@@ -826,12 +982,37 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-videos_test-label-Description">Description</h3>
+
+<p>Test useful to check correctness of conversion and cross browser visibility
+of all elements of kind <a href="Video.html">Video</a></p>
+
+<h3 id="method-i-videos_test-label-Mode">Mode</h3>
+
+<p>Html</p>
+
+<h3 id="method-i-videos_test-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p><a
+href="ApplicationController.html#method-i-admin_authenticate">ApplicationController#admin_authenticate</a></p>
+</li></ul>
+
+<h3 id="method-i-videos_test-label-Skipped+filters">Skipped filters</h3>
+<ul><li>
+<p><a
+href="ApplicationController.html#method-i-authenticate">ApplicationController#authenticate</a></p>
+</li><li>
+<p><a
+href="ApplicationController.html#method-i-initialize_location">ApplicationController#initialize_location</a></p>
+</li><li>
+<p><a
+href="ApplicationController.html#method-i-initialize_players_counter">ApplicationController#initialize_players_counter</a></p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="videos_test-source">
-            <pre><span class="ruby-comment"># File app/controllers/media_elements_controller.rb, line 19</span>
+            <pre><span class="ruby-comment"># File app/controllers/media_elements_controller.rb, line 55</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">videos_test</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- videos_test-source -->
@@ -866,7 +1047,7 @@
 
           
           <div class="method-source-code" id="get_own_media_elements-source">
-            <pre><span class="ruby-comment"># File app/controllers/media_elements_controller.rb, line 149</span>
+            <pre><span class="ruby-comment"># File app/controllers/media_elements_controller.rb, line 284</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_own_media_elements</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">current_user_own_media_elements</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">own_media_elements</span>(<span class="ruby-ivar">@page</span>, <span class="ruby-ivar">@for_page</span>, <span class="ruby-ivar">@filter</span>)
   <span class="ruby-ivar">@media_elements</span> = <span class="ruby-identifier">current_user_own_media_elements</span>[<span class="ruby-value">:records</span>]
@@ -898,7 +1079,7 @@
 
           
           <div class="method-source-code" id="initialize_paginator-source">
-            <pre><span class="ruby-comment"># File app/controllers/media_elements_controller.rb, line 155</span>
+            <pre><span class="ruby-comment"># File app/controllers/media_elements_controller.rb, line 290</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize_paginator</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-ivar">@page</span> = <span class="ruby-identifier">correct_integer?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-value">1</span>
   <span class="ruby-ivar">@display</span> = [<span class="ruby-constant">MediaElement</span><span class="ruby-operator">::</span><span class="ruby-constant">DISPLAY_MODES</span>[<span class="ruby-value">:compact</span>], <span class="ruby-constant">MediaElement</span><span class="ruby-operator">::</span><span class="ruby-constant">DISPLAY_MODES</span>[<span class="ruby-value">:expanded</span>]].<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:display</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:display</span>] <span class="ruby-operator">:</span> <span class="ruby-constant">MediaElement</span><span class="ruby-operator">::</span><span class="ruby-constant">DISPLAY_MODES</span>[<span class="ruby-value">:expanded</span>]

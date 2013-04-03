@@ -1,5 +1,14 @@
 require 'media/video/editing/composer/job'
 
+# == Description
+#
+# Controller for all the actions in the video editor
+#
+# == Models used
+#
+# * Video
+# * Notification
+#
 class VideoEditorController < ApplicationController
   
   before_filter :check_available_for_user
@@ -7,6 +16,20 @@ class VideoEditorController < ApplicationController
   before_filter :extract_cache, :only => [:edit, :new, :restore_cache]
   layout 'media_element_editor'
   
+  # === Description
+  #
+  # Opens the video editor with only one component, corresponding to a given video
+  #
+  # === Mode
+  #
+  # Html
+  #
+  # === Specific filters
+  #
+  # * VideoEditorController#check_available_for_user
+  # * VideoEditorController#initialize_video_with_owner_or_public
+  # * VideoEditorController#extract_cache
+  #
   def edit
     if @ok
       @parameters = convert_video_to_parameters
@@ -19,6 +42,19 @@ class VideoEditorController < ApplicationController
     end
   end
   
+  # === Description
+  #
+  # Opens the video editor empty
+  #
+  # === Mode
+  #
+  # Html
+  #
+  # === Specific filters
+  #
+  # * VideoEditorController#check_available_for_user
+  # * VideoEditorController#extract_cache
+  #
   def new
     @parameters = empty_parameters
     @total_length = Video.total_prototype_time(@parameters)
@@ -27,6 +63,19 @@ class VideoEditorController < ApplicationController
     render :edit
   end
   
+  # === Description
+  #
+  # Opens the video editor restoring the cache (if there is no cache, the Editor is empty but there is no redirection to VideoEditorController#new)
+  #
+  # === Mode
+  #
+  # Html
+  #
+  # === Specific filters
+  #
+  # * VideoEditorController#check_available_for_user
+  # * VideoEditorController#extract_cache
+  #
   def restore_cache
     @parameters = @cache.nil? ? empty_parameters : @cache
     @cache = nil
@@ -35,16 +84,52 @@ class VideoEditorController < ApplicationController
     render :edit
   end
   
+  # === Description
+  #
+  # Empties the cache
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # * VideoEditorController#check_available_for_user
+  #
   def empty_cache
     current_user.video_editor_cache!
     render :nothing => true
   end
   
+  # === Description
+  #
+  # Saves the cache
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # * VideoEditorController#check_available_for_user
+  #
   def save_cache
     current_user.video_editor_cache! extract_form_parameters
     render :nothing => true
   end
   
+  # === Description
+  #
+  # Saves the work as a new video
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # * VideoEditorController#check_available_for_user
+  #
   def save
     parameters = Video.convert_to_primitive_parameters(extract_form_parameters, current_user.id)
     @redirect = false
@@ -74,6 +159,18 @@ class VideoEditorController < ApplicationController
     render 'media_elements/info_form_in_editor/save'
   end
   
+  # === Description
+  #
+  # Saves the work overwriting an existing video
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # * VideoEditorController#check_available_for_user
+  #
   def overwrite
     parameters = Video.convert_to_primitive_parameters(extract_form_parameters, current_user.id)
     @redirect = false

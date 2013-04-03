@@ -1,10 +1,31 @@
+# == Description
+#
+# Contains the actions used to handle notifications.
+#
+# == Models used
+#
+# * Notification
+#
 class NotificationsController < ApplicationController
   
+  # Number of notifications inside a pagination block (configured in settings.yml)
   NOTIFICATIONS_LOADED_TOGETHER = SETTINGS['notifications_loaded_together']
   
   before_filter :initialize_notification_with_owner, :only => [:seen, :destroy]
   before_filter :initialize_notification_offset, :only => [:destroy, :get_new_block]
   
+  # === Description
+  #
+  # Sets that the notification has been seen by the user (see Notification#has_been_seen)
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # * NotificationsController#initialize_notification_with_owner
+  #
   def seen
     if @ok
       @ok = @notification.has_been_seen
@@ -12,6 +33,19 @@ class NotificationsController < ApplicationController
     @new_notifications = current_user.number_notifications_not_seen
   end
   
+  # === Description
+  #
+  # Deletes a notification
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # * NotificationsController#initialize_notification_with_owner
+  # * NotificationsController#initialize_notification_offset
+  #
   def destroy
     if @ok
       resp = current_user.destroy_notification_and_reload(@notification.id, @offset_notifications)
@@ -28,6 +62,18 @@ class NotificationsController < ApplicationController
     end
   end
   
+  # === Description
+  #
+  # Pagination with infinite scroll
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # * NotificationsController#initialize_notification_offset
+  #
   def get_new_block
     @notifications = current_user.notifications_visible_block @offset_notifications, NOTIFICATIONS_LOADED_TOGETHER
     @offset_notifications += @notifications.length

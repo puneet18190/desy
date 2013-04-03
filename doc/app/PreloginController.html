@@ -420,6 +420,21 @@
 
   <div id="description" class="description">
     
+<h2 id="label-Description">Description</h2>
+
+<p>Contains the actions called while the user is not logged in</p>
+
+<h2 id="label-Models+used">Models used</h2>
+<ul><li>
+<p><a href="User.html">User</a></p>
+</li><li>
+<p><a href="SchoolLevel.html">SchoolLevel</a></p>
+</li><li>
+<p><a href="Location.html">Location</a></p>
+</li><li>
+<p><a href="Subject.html">Subject</a></p>
+</li></ul>
+
   </div><!-- description -->
 
   
@@ -451,12 +466,30 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-home-label-Description">Description</h3>
+
+<p>Home page of the application</p>
+
+<h3 id="method-i-home-label-Mode">Mode</h3>
+
+<p>Html</p>
+
+<h3 id="method-i-home-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p><a
+href="ApplicationController.html#method-i-authenticate">ApplicationController#authenticate</a></p>
+</li></ul>
+
+<h3 id="method-i-home-label-Skipped+filters">Skipped filters</h3>
+<ul><li>
+<p><a
+href="PreloginController.html#method-i-redirect_to_dashboard_if_logged_in">#redirect_to_dashboard_if_logged_in</a></p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="home-source">
-            <pre><span class="ruby-comment"># File app/controllers/prelogin_controller.rb, line 8</span>
+            <pre><span class="ruby-comment"># File app/controllers/prelogin_controller.rb, line 35</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">home</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- home-source -->
@@ -480,12 +513,30 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-registration-label-Description">Description</h3>
+
+<p>Form to sign in</p>
+
+<h3 id="method-i-registration-label-Mode">Mode</h3>
+
+<p>Html</p>
+
+<h3 id="method-i-registration-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p><a
+href="ApplicationController.html#method-i-authenticate">ApplicationController#authenticate</a></p>
+</li></ul>
+
+<h3 id="method-i-registration-label-Skipped+filters">Skipped filters</h3>
+<ul><li>
+<p><a
+href="PreloginController.html#method-i-redirect_to_dashboard_if_logged_in">#redirect_to_dashboard_if_logged_in</a></p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="registration-source">
-            <pre><span class="ruby-comment"># File app/controllers/prelogin_controller.rb, line 11</span>
+            <pre><span class="ruby-comment"># File app/controllers/prelogin_controller.rb, line 54</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">registration</span>
   <span class="ruby-ivar">@user</span>             = <span class="ruby-constant">User</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:user</span>])
   <span class="ruby-ivar">@school_level_ids</span> = <span class="ruby-constant">SchoolLevel</span>.<span class="ruby-identifier">order</span>(<span class="ruby-value">:description</span>).<span class="ruby-identifier">map</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">sl</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">sl</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-identifier">sl</span>.<span class="ruby-identifier">id</span>] }
@@ -514,12 +565,30 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-what_is_desy-label-Description">Description</h3>
+
+<p>Section of the main page</p>
+
+<h3 id="method-i-what_is_desy-label-Mode">Mode</h3>
+
+<p>Html</p>
+
+<h3 id="method-i-what_is_desy-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p><a
+href="ApplicationController.html#method-i-authenticate">ApplicationController#authenticate</a></p>
+</li></ul>
+
+<h3 id="method-i-what_is_desy-label-Skipped+filters">Skipped filters</h3>
+<ul><li>
+<p><a
+href="PreloginController.html#method-i-redirect_to_dashboard_if_logged_in">#redirect_to_dashboard_if_logged_in</a></p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="what_is_desy-source">
-            <pre><span class="ruby-comment"># File app/controllers/prelogin_controller.rb, line 19</span>
+            <pre><span class="ruby-comment"># File app/controllers/prelogin_controller.rb, line 78</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">what_is_desy</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- what_is_desy-source -->
@@ -554,7 +623,7 @@
 
           
           <div class="method-source-code" id="redirect_to_dashboard_if_logged_in-source">
-            <pre><span class="ruby-comment"># File app/controllers/prelogin_controller.rb, line 24</span>
+            <pre><span class="ruby-comment"># File app/controllers/prelogin_controller.rb, line 83</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">redirect_to_dashboard_if_logged_in</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">logged_in?</span>
     <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">dashboard_path</span>

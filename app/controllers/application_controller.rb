@@ -39,16 +39,19 @@ class ApplicationController < ActionController::Base
   private
   
   if Desy::MORE_THAN_ONE_LANGUAGE
+    # Gets the current language (see ApplicationController#set_locale)
     def get_locale # :doc:
       I18n.locale = session[:locale] || I18n.default_locale
     end
   end
   
+  # Initializes an incremental unique HTML identifier for all the instances of audio and video players (necessary because it's not possible to use the ID of the elements, since the same audio or video may appear more than once in the same page
   def initialize_players_counter # :doc:
     @video_counter = [SecureRandom.urlsafe_base64(16), 1]
     @audio_counter = [SecureRandom.urlsafe_base64(16), 1]
   end
   
+  # Reloads the lesson and sets the status using Lesson#set_status: used for Ajax actions
   def prepare_lesson_for_js # :doc:
     if !@lesson.nil?
       @lesson = Lesson.find_by_id @lesson.id
@@ -56,6 +59,7 @@ class ApplicationController < ActionController::Base
     end
   end
   
+  # Reloads the element and sets the status using Lesson#set_status: used for Ajax actions
   def prepare_media_element_for_js # :doc:
     if !@media_element.nil?
       @media_element = MediaElement.find_by_id @media_element.id
@@ -63,53 +67,63 @@ class ApplicationController < ActionController::Base
     end
   end
   
+  # Uses ApplicationController#initialize_lesson and additionally checks if the logged user owns the lesson
   def initialize_lesson_with_owner # :doc:
     initialize_lesson
     update_ok(@lesson && current_user.id == @lesson.user_id)
   end
   
+  # Checks if the parameter +lesson_id+ is correct and a corresponding lesson exists
   def initialize_lesson # :doc:
     @lesson_id = correct_integer?(params[:lesson_id]) ? params[:lesson_id].to_i : 0
     @lesson = Lesson.find_by_id @lesson_id
     update_ok(!@lesson.nil?)
   end
   
+  # Initializes the attribute +destination+ for the lesson, and checks if it's correct (see ButtonDestinations)
   def initialize_lesson_destination # :doc:
     @destination = params[:destination]
     update_ok(ButtonDestinations::LESSONS.include?(@destination))
   end
   
+  # Uses ApplicationController#initialize_media_element and returns true if additionally the logged user owns the element or the element is public
   def initialize_media_element_with_owner_or_public # :doc:
     initialize_media_element
     update_ok(@media_element && (@media_element.is_public || current_user.id == @media_element.user_id))
   end
   
+  # Uses ApplicationController#initialize_media_element_with_owner and returns true if additionally the element is private
   def initialize_media_element_with_owner_and_private # :doc:
     initialize_media_element_with_owner
     update_ok(@media_element && !@media_element.is_public)
   end
   
+  # Uses ApplicationController#initialize_media_element and returns true if additionally the logged user owns the element
   def initialize_media_element_with_owner # :doc:
     initialize_media_element
     update_ok(@media_element && current_user.id == @media_element.user_id)
   end
   
+  # Checks if the parameter +media_element_id+ is correct and a corresponding element exists
   def initialize_media_element # :doc:
     @media_element_id = correct_integer?(params[:media_element_id]) ? params[:media_element_id].to_i : 0
     @media_element = MediaElement.find_by_id @media_element_id
     update_ok(!@media_element.nil?)
   end
   
+  # Initializes the attribute +destination+ for the element, and checks if it's correct (see ButtonDestinations)
   def initialize_media_element_destination # :doc:
     @destination = params[:destination]
     update_ok(ButtonDestinations::MEDIA_ELEMENTS.include?(@destination))
   end
   
+  # Initializes the attribute +position+ extracting it from +params+
   def initialize_position # :doc:
     @position = correct_integer?(params[:position]) ? params[:position].to_i : 0
     update_ok(@position > 0)
   end
   
+  # Initializes all the objects which are necessary in the main sections (for instance, anything related to notifications, see NotificationsController); additionally, it manages also the case in which it's necessary the effect of removing a lesson or an element from the page
   def initialize_layout # :doc:
     @delete_item = params[:delete_item]
     if !request.xhr?

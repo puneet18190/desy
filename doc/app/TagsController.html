@@ -416,6 +416,17 @@
 
   <div id="description" class="description">
     
+<h2 id="label-Description">Description</h2>
+
+<p>Contains the actions used in autocomplete</p>
+
+<h2 id="label-Models+used">Models used</h2>
+<ul><li>
+<p><a href="Tag.html">Tag</a></p>
+</li><li>
+<p><a href="Tagging.html">Tagging</a></p>
+</li></ul>
+
   </div><!-- description -->
 
   
@@ -447,12 +458,19 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-check_presence-label-Description">Description</h3>
+
+<p>Checks if a specific tag is present in the database (if yes, the tag box
+gets colored)</p>
+
+<h3 id="method-i-check_presence-label-Mode">Mode</h3>
+
+<p>Json</p>
           
 
           
           <div class="method-source-code" id="check_presence-source">
-            <pre><span class="ruby-comment"># File app/controllers/tags_controller.rb, line 8</span>
+            <pre><span class="ruby-comment"># File app/controllers/tags_controller.rb, line 33</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">check_presence</span>
   <span class="ruby-identifier">render</span> <span class="ruby-value">:json</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-value">:ok</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Tag</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:word</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:word</span>]).<span class="ruby-identifier">any?</span>}
 <span class="ruby-keyword">end</span></pre>
@@ -477,12 +495,20 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-get_list-label-Description">Description</h3>
+
+<p>Gets the list of the most popular tags that match the inserted keyword
+(paramster <code>term</code>). See <a
+href="Tag.html#method-c-get_tags_for_autocomplete">Tag.get_tags_for_autocomplete</a></p>
+
+<h3 id="method-i-get_list-label-Mode">Mode</h3>
+
+<p>Json</p>
           
 
           
           <div class="method-source-code" id="get_list-source">
-            <pre><span class="ruby-comment"># File app/controllers/tags_controller.rb, line 3</span>
+            <pre><span class="ruby-comment"># File app/controllers/tags_controller.rb, line 20</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_list</span>
   <span class="ruby-ivar">@tags</span> = <span class="ruby-constant">Tag</span>.<span class="ruby-identifier">get_tags_for_autocomplete</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:term</span>])
   <span class="ruby-identifier">render</span> <span class="ruby-value">:json</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@tags</span>

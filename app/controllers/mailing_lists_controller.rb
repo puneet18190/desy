@@ -1,8 +1,26 @@
+# == Description
+#
+# Contains the actions to handle mailing lists and addresses. All these actions can be called from UsersController#mailing_lists
+#
+# == Models used
+#
+# * User
+# * MailingListGroup
+# * MailingListAddress
+#
 class MailingListsController < ApplicationController
   
   before_filter :initialize_mailing_list_group_with_owner, :only => [:create_address, :update_group, :delete_group]
   before_filter :initialize_mailing_list_address_with_owner, :only => :delete_address
   
+  # === Description
+  #
+  # Creates a new group
+  #
+  # === Mode
+  #
+  # Ajax
+  #
   def create_group
     @mailing_list_group = MailingListGroup.new
     @mailing_list_group.user = current_user
@@ -11,6 +29,18 @@ class MailingListsController < ApplicationController
     render 'update_list'
   end
   
+  # === Description
+  #
+  # Creates a new address inside a given group
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # * MailingListController#initialize_mailing_list_group_with_owner
+  #
   def create_address
     if @ok
       @mailing_list_address = MailingListAddress.new
@@ -22,6 +52,18 @@ class MailingListsController < ApplicationController
     render 'update_addresses'
   end
   
+  # === Description
+  #
+  # Updates an existing group (it's possible to change the name)
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # * MailingListController#initialize_mailing_list_group_with_owner
+  #
   def update_group
     if @ok
       @mailing_list_group.name = params[:name]
@@ -30,11 +72,35 @@ class MailingListsController < ApplicationController
     end
   end
   
+  # === Description
+  #
+  # Removes a group
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # * MailingListController#initialize_mailing_list_group_with_owner
+  #
   def delete_group
     @mailing_list_group.destroy if @ok
     render 'update_list'
   end
   
+  # === Description
+  #
+  # Removes an address inside a group
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # * MailingListController#initialize_mailing_list_address_with_owner
+  #
   def delete_address
     @mailing_list_address.destroy if @ok
     render 'update_addresses'
