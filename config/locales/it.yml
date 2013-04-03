@@ -958,12 +958,12 @@ it:
         content: "In questo pannello potete trovare le lezioni e gli elementi selezionati nel nostro archivio che potrebbero essere di vostro interesse. Se si clicca sull'icona \"+\" di una lezione o di un elemento, si potranno aggiungere alla tua area personale, dove potrai eventualmente modificarli e usarli. L'icona \"occhio\" mostra una anteprima."
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Selezionati per voi - elementi"
+        title: "Scelti per te - elementi"
         # 1 - views/notifications/_tooltip_help.html.erb
         content: "Scegli elementi tra quelli proposti! Se non trovate nulla di interessante, cliccando sul pulsante \"carica un nuovo elemento\" puoi caricare i tuoi elementi."
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Selezionati per voi - lezioni"
+        title: "Scelti per te - lezioni"
         # 1 - views/notifications/_tooltip_help.html.erb
         content: "In questo pannello, %{desy} memorizza tutti le nuove lezioni che potrebbero interessarti. Se in questo momento non ci sono nuove lezioni disponibili, è possibile creare la propria cliccando sul pulsante \"crea una nuova lezione\" che si trova in ogni pagina: sarete reindirizzati all'Editor delle Lezioni. Prima di utilizzare l'Editor delle Lezioni, assicuratevi di avere un numero di elementi sufficienti."
     lessons:
@@ -1177,7 +1177,7 @@ it:
     load_new_media_element_now: "Carica un elemento"
     # Caption of the buttons to switch between suggested lessons and elements ('selected for you': lessons - elements)
     # 1 - views/dashboard/_graybar_left.html.erb
-    selected_for_you: "Selezionati per te"
+    selected_for_you: "Scelti per te"
     # Title of the link 'contact us' (bottom left in the page)
     # 1 - views/dashboard/index.html.erb
     talk_with_desy: "Vuoi parlare con %{desy}?"
@@ -1763,10 +1763,10 @@ it:
       # 2 - views/users/mailing_lists.html.erb
       # 3 - views/users/edit.html.erb
       # 4 - views/users/subjects.html.erb
-      menu_link: "Informazioni personali"
+      menu_link: "Dati personali"
       # Title of the section
       # 1 - views/users/edit.html.erb
-      title: "Informazioni personali"
+      title: "Dati personali"
       # Button to save
       # 1 - views/users/edit.html.erb
       save: "Salva"
