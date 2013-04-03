@@ -47,7 +47,7 @@ module Media
               components: [
                 { type:  described_class::parent::Parameters::VIDEO_COMPONENT,
                   video: video.id              ,
-                  from:  0                     ,
+                  from:  5                     ,
                   to:    video.min_duration   },
                 { type:             described_class::parent::Parameters::TEXT_COMPONENT,
                   content:          'title'              ,

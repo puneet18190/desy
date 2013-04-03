@@ -29,7 +29,7 @@ module Media
         TRANSITIONS_FORMAT  = ( f = Pathname.new(TRANSITIONS); "#{f.basename(f.extname)}-%d#{f.extname}" ) # "transition-%d.jpg"
         FRAME_RATE          = 25
   
-        def initialize(start_inputs, end_inputs, output_without_extension)
+        def initialize(start_inputs, end_inputs, output_without_extension, log_folder = nil)
           unless start_inputs.is_a?(Hash)                       and 
                  start_inputs.keys.sort == FORMATS.sort         and
                  start_inputs.values.all?{ |v| v.is_a? String }
@@ -47,6 +47,8 @@ module Media
           end
   
           @start_inputs, @end_inputs, @output_without_extension = start_inputs, end_inputs, output_without_extension
+          
+          @log_folder = log_folder
         end
   
         # 

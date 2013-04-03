@@ -15,7 +15,7 @@ module Media
         FORMATS  = FORMATS
         CROP_CMD = Cmd::Crop
   
-        def initialize(inputs, output_without_extension, start, duration)
+        def initialize(inputs, output_without_extension, start, duration, log_folder = nil)
           unless inputs.is_a?(Hash)                           and 
                  inputs.keys.sort == self.class::FORMATS.sort and
                  inputs.values.all?{ |v| v.is_a? String }
@@ -35,6 +35,8 @@ module Media
           end
   
           @inputs, @output_without_extension, @start, @duration = inputs, output_without_extension, start, duration
+
+          @log_folder = log_folder
         end
   
         def run

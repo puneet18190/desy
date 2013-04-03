@@ -35,15 +35,14 @@ module Media
         #
         #   #=> { mp4:'/output/without/extension.mp4', webm:'/output/without/extension.webm' }
         #
-        def initialize(inputs, output_without_extension)
-  
+        def initialize(inputs, output_without_extension, log_folder = nil)
           unless inputs.is_a?(Array) and
                  inputs.present?     and
                  inputs.all? do |input|
-                   input.instance_of?(Hash)          and
+                   input.is_a?(Hash)                 and
                    input.keys.sort == FORMATS.sort   and
                    input.values.size == FORMATS.size and
-                   input.values.all?{ |v| v.instance_of? String }
+                   input.values.all?{ |v| v.is_a?(String) }
                  end
             raise Error.new( "inputs must be an array with at least one element and its elements must be hashes with #{FORMATS.inspect} as keys and strings as values", 
                              inputs: inputs, output_without_extension: output_without_extension )
@@ -58,7 +57,8 @@ module Media
           if mp4_inputs.size != webm_inputs.size
             raise Error.new('mp4_inputs and webm_inputs must be of the same size', inputs: @inputs, output_without_extension: @output_without_extension)
           end
-  
+
+          @log_folder = log_folder
         end
   
         def run
