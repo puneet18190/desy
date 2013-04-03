@@ -297,7 +297,7 @@ class LessonEditorController < ApplicationController
     update_ok(!@kind.blank?)
   end
   
-  # Calls ApplicationController#initialize_lessons_with_owner, and additionally checks if the slide corresponds to the lesson
+  # Calls ApplicationController#initialize_lesson_with_owner, and additionally checks if the slide corresponds to the lesson
   def initialize_lesson_with_owner_and_slide # :doc:
     initialize_lesson_with_owner
     @slide_id = correct_integer?(params[:slide_id]) ? params[:slide_id].to_i : 0
