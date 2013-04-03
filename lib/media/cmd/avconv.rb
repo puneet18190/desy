@@ -18,7 +18,7 @@ module Media
       self.formats         = []
 
       def initialize(input_files, output_file, format = nil)
-        if format and not formats.include? format
+        if format && !formats.include?(format)
           raise Error.new( 'format unsupported',
                            input_files: input_files, output_file: output_file, formats: formats, format: format )
         end
