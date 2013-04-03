@@ -13,7 +13,7 @@ module Media
         include Logging
         include InTmpDir
 
-        OUTPUT_MP3_FORMAT = '%s.m4a'
+        OUTPUT_M4A_FORMAT = '%s.m4a'
         OUTPUT_OGG_FORMAT = '%s.ogg'
         
         # Usage example:
@@ -64,7 +64,7 @@ module Media
         end
         
         def m4a_output
-          OUTPUT_MP3_FORMAT % @output_without_extension
+          OUTPUT_M4A_FORMAT % @output_without_extension
         end
 
         def ogg_output

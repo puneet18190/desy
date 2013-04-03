@@ -22,7 +22,7 @@ module Media
         # Durata del padding alla fine del file aggiunto da lame durante la codifica
         # In genere lame aggiunge un pad di massimo 0.04, per cui lo settiamo a 0.05 per stare sicuri di non tagliare troppo
         LAME_ENCODING_RPADDING = 0.05
-        CONCAT_MP3_FORMAT      = 'concat%i.m4a'
+        CONCAT_M4A_FORMAT      = 'concat%i.m4a'
         CONCAT_WAV_FORMAT      = 'concat%i.wav'
         FINAL_WAV              = 'final.wav'
         FINAL_WEBM_NO_AUDIO    = 'final_webm_no_audio.webm'
@@ -136,7 +136,7 @@ module Media
           Hash[ {}.tap do |unordered_wavs_with_paddings|
             Thread.join *mp4_inputs_infos.select{ |info| info.audio_streams.present? }.each_with_index.map { |video_info, i|
               proc {
-                m4a = tmp_path(CONCAT_MP3_FORMAT % i)
+                m4a = tmp_path(CONCAT_M4A_FORMAT % i)
           
                 Cmd::AudioStreamToFile.new(video_info.path, m4a).run! *logs("0_audio_stream_to_file_#{i}") # 1.
           
