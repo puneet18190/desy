@@ -416,6 +416,15 @@
 
   <div id="description" class="description">
     
+<h2 id="label-Description">Description</h2>
+
+<p>Contains the actions necessary to send a report of inappropriate content</p>
+
+<h2 id="label-Models+used">Models used</h2>
+<ul><li>
+<p><a href="Report.html">Report</a></p>
+</li></ul>
+
   </div><!-- description -->
 
   
@@ -447,12 +456,18 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-lesson-label-Description">Description</h3>
+
+<p><a href="Report.html">Report</a> a lesson</p>
+
+<h3 id="method-i-lesson-label-Mode">Mode</h3>
+
+<p>Ajax</p>
           
 
           
           <div class="method-source-code" id="lesson-source">
-            <pre><span class="ruby-comment"># File app/controllers/reports_controller.rb, line 3</span>
+            <pre><span class="ruby-comment"># File app/controllers/reports_controller.rb, line 19</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">lesson</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">correct_integer?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:lesson_id</span>])
     <span class="ruby-ivar">@lesson_id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:lesson_id</span>].<span class="ruby-identifier">to_i</span>
@@ -485,12 +500,18 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-media_element-label-Description">Description</h3>
+
+<p><a href="Report.html">Report</a> an element</p>
+
+<h3 id="method-i-media_element-label-Mode">Mode</h3>
+
+<p>Ajax</p>
           
 
           
           <div class="method-source-code" id="media_element-source">
-            <pre><span class="ruby-comment"># File app/controllers/reports_controller.rb, line 15</span>
+            <pre><span class="ruby-comment"># File app/controllers/reports_controller.rb, line 39</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">media_element</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">correct_integer?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:media_element_id</span>])
     <span class="ruby-ivar">@media_element_id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:media_element_id</span>].<span class="ruby-identifier">to_i</span>

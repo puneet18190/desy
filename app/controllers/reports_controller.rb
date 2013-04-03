@@ -1,5 +1,21 @@
+# == Description
+#
+# Contains the actions necessary to send a report of inappropriate content
+#
+# == Models used
+#
+# * Report
+#
 class ReportsController < ApplicationController
   
+  # === Description
+  #
+  # Report a lesson
+  #
+  # === Mode
+  #
+  # Ajax
+  #
   def lesson
     if correct_integer?(params[:lesson_id])
       @lesson_id = params[:lesson_id].to_i
@@ -12,6 +28,14 @@ class ReportsController < ApplicationController
     end
   end
   
+  # === Description
+  #
+  # Report an element
+  #
+  # === Mode
+  #
+  # Ajax
+  #
   def media_element
     if correct_integer?(params[:media_element_id])
       @media_element_id = params[:media_element_id].to_i
