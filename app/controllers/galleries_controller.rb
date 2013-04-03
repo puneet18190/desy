@@ -24,6 +24,9 @@
 #     * GalleriesController#mixed_for_video_editor
 #     * GalleriesController#mixed_for_video_editor_video_new_block
 #     * GalleriesController#mixed_for_video_editor_image_new_block
+#   * audio gallery
+#     * GalleriesController#audio_for_video_editor
+#     * GalleriesController#audio_for_video_editor_new_block
 #
 # == Models used
 #
@@ -54,10 +57,30 @@ class GalleriesController < ApplicationController
     :image_for_image_editor_new_block
   ]
   
+  # === Description
+  #
+  # Gets the first block of images for the lesson editor
+  #
+  # === Mode
+  #
+  # Ajax
+  #
   def image_for_lesson_editor
     get_images(1)
   end
   
+  # === Description
+  #
+  # Gets following blocks of images for the lesson editor
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # GalleriesController#initialize_page
+  #
   def image_for_lesson_editor_new_block
     if @ok
       get_images(@page)
@@ -66,10 +89,30 @@ class GalleriesController < ApplicationController
     end
   end
   
+  # === Description
+  #
+  # Gets the first block of audios for the lesson editor
+  #
+  # === Mode
+  #
+  # Ajax
+  #
   def audio_for_lesson_editor
     get_audios(1)
   end
   
+  # === Description
+  #
+  # Gets following blocks of audios for the lesson editor
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # GalleriesController#initialize_page
+  #
   def audio_for_lesson_editor_new_block
     if @ok
       get_audios(@page)
@@ -78,10 +121,30 @@ class GalleriesController < ApplicationController
     end
   end
   
+  # === Description
+  #
+  # Gets the first block of videos for the lesson editor
+  #
+  # === Mode
+  #
+  # Ajax
+  #
   def video_for_lesson_editor
     get_videos(1)
   end
   
+  # === Description
+  #
+  # Gets following blocks of videos for the lesson editor
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # GalleriesController#initialize_page
+  #
   def video_for_lesson_editor_new_block
     if @ok
       get_videos(@page)
@@ -90,6 +153,14 @@ class GalleriesController < ApplicationController
     end
   end
   
+  # === Description
+  #
+  # Gets the first block of videos and images for the video editor
+  #
+  # === Mode
+  #
+  # Ajax
+  #
   def mixed_for_video_editor
     get_images(1)
     @image_tot_pages = @tot_pages
@@ -97,6 +168,18 @@ class GalleriesController < ApplicationController
     @video_tot_pages = @tot_pages
   end
   
+  # === Description
+  #
+  # Gets following blocks of images for the video editor
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # GalleriesController#initialize_page
+  #
   def mixed_for_video_editor_image_new_block
     if @ok
       get_images(@page)
@@ -105,6 +188,18 @@ class GalleriesController < ApplicationController
     end
   end
   
+  # === Description
+  #
+  # Gets following blocks of videos for the video editor
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # GalleriesController#initialize_page
+  #
   def mixed_for_video_editor_video_new_block
     if @ok
       get_videos(@page)
@@ -113,10 +208,30 @@ class GalleriesController < ApplicationController
     end
   end
   
+  # === Description
+  #
+  # Gets the first block of audios for the video editor
+  #
+  # === Mode
+  #
+  # Ajax
+  #
   def audio_for_video_editor
     get_audios(1)
   end
   
+  # === Description
+  #
+  # Gets following blocks of audios for the video editor
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # GalleriesController#initialize_page
+  #
   def audio_for_video_editor_new_block
     if @ok
       get_audios(@page)
@@ -125,10 +240,30 @@ class GalleriesController < ApplicationController
     end
   end
   
+  # === Description
+  #
+  # Gets the first block of audios for the audio editor
+  #
+  # === Mode
+  #
+  # Ajax
+  #
   def audio_for_audio_editor
     get_audios(1)
   end
   
+  # === Description
+  #
+  # Gets following blocks of audios for the audio editor
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # GalleriesController#initialize_page
+  #
   def audio_for_audio_editor_new_block
     if @ok
       get_audios(@page)
@@ -137,12 +272,32 @@ class GalleriesController < ApplicationController
     end
   end
   
+  # === Description
+  #
+  # Gets the first block of images for the image editor: this is the only gallery with its own html page, since it is used only to get a new image to open the image editor.
+  #
+  # === Mode
+  #
+  # Html
+  #
   def image_for_image_editor
     get_images(1)
     @back = params[:back] if params[:back].present?
     render :layout => 'media_element_editor'
   end
   
+  # === Description
+  #
+  # Gets following blocks of images for the image editor
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # GalleriesController#initialize_page
+  #
   def image_for_image_editor_new_block
     if @ok
       get_images(@page)
