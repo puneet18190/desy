@@ -416,6 +416,10 @@
 
   <div id="description" class="description">
     
+<p>Module that contains parameters converter for the audio editor (see <a
+href="../../Audio.html">Audio</a>, <a
+href="../../../AudioEditorController.html">AudioEditorController</a>)</p>
+
   </div><!-- description -->
 
   
@@ -447,12 +451,26 @@
 
         <div class="method-description">
           
-          <p>EXAMPLE OF RETURNED HASH:</p>
+          <h3 id="method-i-convert_parameters-label-Description">Description</h3>
+
+<p>Validates and converts the parameters. See the code for further details
+about the validations achieved. The product is in the following format:</p>
 <ul><li>
 <p>an initial parameter, &#39;initial_audio&#39;</p>
 </li><li>
-<p>then an ordered array of components</p>
+<p>then an ordered array of components:</p>
+<ul><li>
+<p>each component is a hash, with a key called :type</p>
+</li><li>
+<p>if the type is &#39;video&#39;, there is an object of kind VIDEO associated
+to the key :video</p>
+</li><li>
+<p>if the type is &#39;image&#39;, there is an object of kind IMAGE associated
+to the key :image</p>
 </li></ul>
+</li></ul>
+
+<h3 id="method-i-convert_parameters-label-Usage">Usage</h3>
 
 <pre class="ruby">{
   :<span class="ruby-identifier">initial_audio</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">OBJECT</span> <span class="ruby-constant">OF</span> <span class="ruby-constant">TYPE</span> <span class="ruby-constant">AUDIO</span> <span class="ruby-keyword">or</span> <span class="ruby-constant">NIL</span>,
@@ -472,7 +490,7 @@
 
           
           <div class="method-source-code" id="convert_parameters-source">
-            <pre><span class="ruby-comment"># File lib/media/audio/editing/parameters.rb, line 48</span>
+            <pre><span class="ruby-comment"># File lib/media/audio/editing/parameters.rb, line 60</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">convert_parameters</span>(<span class="ruby-identifier">hash</span>, <span class="ruby-identifier">user_id</span>)
   
   <span class="ruby-comment"># check if initial audio is correctly declared (it can be nil or integer)</span>
@@ -530,12 +548,16 @@
 
         <div class="method-description">
           
-          
+          <p>This method uses <a
+href="Parameters.html#method-i-convert_parameters">#convert_parameters</a>
+to validate the parameters, and then converts them into a primitive hash
+that contains only IDs instead than objects: now the parameters are ready
+to be passed to the editor</p>
           
 
           
           <div class="method-source-code" id="convert_to_primitive_parameters-source">
-            <pre><span class="ruby-comment"># File lib/media/audio/editing/parameters.rb, line 22</span>
+            <pre><span class="ruby-comment"># File lib/media/audio/editing/parameters.rb, line 25</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">convert_to_primitive_parameters</span>(<span class="ruby-identifier">hash</span>, <span class="ruby-identifier">user_id</span>)
   <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">convert_parameters</span>(<span class="ruby-identifier">hash</span>, <span class="ruby-identifier">user_id</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">nil?</span>
@@ -566,17 +588,18 @@
 
         <div class="method-description">
           
-          
+          <p>Using <a
+href="Parameters.html#method-i-get_media_element_from_hash">#get_media_element_from_hash</a>,
+it validates that the audio exists and is accessible from the user, then
+that <code>from</code> and <code>to</code> are correct</p>
           
 
           
           <div class="method-source-code" id="extract_component-source">
-            <pre><span class="ruby-comment"># File lib/media/audio/editing/parameters.rb, line 85</span>
+            <pre><span class="ruby-comment"># File lib/media/audio/editing/parameters.rb, line 98</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">extract_component</span>(<span class="ruby-identifier">component</span>, <span class="ruby-identifier">user_id</span>)
   <span class="ruby-identifier">audio</span> = <span class="ruby-identifier">get_media_element_from_hash</span>(<span class="ruby-identifier">component</span>, <span class="ruby-value">:audio_id</span>, <span class="ruby-identifier">user_id</span>, <span class="ruby-string">&#39;Audio&#39;</span>)
-  <span class="ruby-comment"># I validate that the audio exists and is accessible from the user</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">audio</span>.<span class="ruby-identifier">nil?</span>
-  <span class="ruby-comment"># FROM and UNTIL are correct</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">component</span>[<span class="ruby-value">:from</span>].<span class="ruby-identifier">kind_of?</span>(<span class="ruby-constant">Integer</span>) <span class="ruby-operator">||</span> <span class="ruby-operator">!</span><span class="ruby-identifier">component</span>[<span class="ruby-value">:to</span>].<span class="ruby-identifier">kind_of?</span>(<span class="ruby-constant">Integer</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">component</span>[<span class="ruby-value">:from</span>] <span class="ruby-operator">&lt;</span> <span class="ruby-value">0</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">component</span>[<span class="ruby-value">:to</span>] <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">audio</span>.<span class="ruby-identifier">min_duration</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">component</span>[<span class="ruby-value">:from</span>] <span class="ruby-operator">&gt;=</span> <span class="ruby-identifier">component</span>[<span class="ruby-value">:to</span>]
   {
@@ -606,12 +629,13 @@
 
         <div class="method-description">
           
-          
+          <p>Used in <a
+href="Parameters.html#method-i-extract_component">#extract_component</a></p>
           
 
           
           <div class="method-source-code" id="get_media_element_from_hash-source">
-            <pre><span class="ruby-comment"># File lib/media/audio/editing/parameters.rb, line 99</span>
+            <pre><span class="ruby-comment"># File lib/media/audio/editing/parameters.rb, line 111</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_media_element_from_hash</span>(<span class="ruby-identifier">hash</span>, <span class="ruby-identifier">key</span>, <span class="ruby-identifier">user_id</span>, <span class="ruby-identifier">my_sti_type</span>)
   <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">key</span>].<span class="ruby-identifier">kind_of?</span>(<span class="ruby-constant">Integer</span>) <span class="ruby-operator">?</span> <span class="ruby-constant">MediaElement</span>.<span class="ruby-identifier">extract</span>(<span class="ruby-identifier">hash</span>[<span class="ruby-identifier">key</span>], <span class="ruby-identifier">user_id</span>, <span class="ruby-identifier">my_sti_type</span>) <span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>
 <span class="ruby-keyword">end</span></pre>
@@ -636,13 +660,13 @@
 
         <div class="method-description">
           
-          <p>it doesn&#39;t check that the parameters are valid; it takes as input
-regardless the basic hash and the full one</p>
+          <p>This method doesn&#39;t check that the parameters are valid; it takes as
+input either the basic hash or the full one, and calculates the total time</p>
           
 
           
           <div class="method-source-code" id="total_prototype_time-source">
-            <pre><span class="ruby-comment"># File lib/media/audio/editing/parameters.rb, line 11</span>
+            <pre><span class="ruby-comment"># File lib/media/audio/editing/parameters.rb, line 13</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">total_prototype_time</span>(<span class="ruby-identifier">hash</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-value">0</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">hash</span>[<span class="ruby-value">:components</span>].<span class="ruby-identifier">instance_of?</span>(<span class="ruby-constant">Array</span>)
   <span class="ruby-identifier">sum</span> = <span class="ruby-value">0</span>

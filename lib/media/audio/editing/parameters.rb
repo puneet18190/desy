@@ -5,9 +5,11 @@ require 'media/audio/editing'
 module Media
   module Audio
     module Editing
+      
+      # Module that contains parameters converter for the audio editor (see Audio, AudioEditorController)
       module Parameters
         
-        # it doesn't check that the parameters are valid; it takes as input regardless the basic hash and the full one
+        # This method doesn't check that the parameters are valid; it takes as input either the basic hash or the full one, and calculates the total time
         def total_prototype_time(hash)
           return 0 if !hash[:components].instance_of?(Array)
           sum = 0
@@ -19,6 +21,7 @@ module Media
           sum
         end
         
+        # This method uses Media::Audio::Editing::Parameters#convert_parameters to validate the parameters, and then converts them into a primitive hash that contains only IDs instead than objects: now the parameters are ready to be passed to the editor
         def convert_to_primitive_parameters(hash, user_id)
           resp = convert_parameters(hash, user_id)
           return nil if resp.nil?
@@ -29,9 +32,17 @@ module Media
           resp
         end
         
-        # EXAMPLE OF RETURNED HASH:
-        # - an initial parameter, 'initial_audio'
-        # - then an ordered array of components
+        # === Description
+        #
+        # Validates and converts the parameters. See the code for further details about the validations achieved. The product is in the following format:
+        # * an initial parameter, 'initial_audio'
+        # * then an ordered array of components:
+        #   * each component is a hash, with a key called :type
+        #   * if the type is 'video', there is an object of kind VIDEO associated to the key :video
+        #   * if the type is 'image', there is an object of kind IMAGE associated to the key :image
+        #
+        # === Usage
+        #
         #  {
         #    :initial_audio => OBJECT OF TYPE AUDIO or NIL,
         #    :components => [
@@ -45,6 +56,7 @@ module Media
         #      }
         #    ]
         #  }
+        #
         def convert_parameters(hash, user_id)
           
           # check if initial audio is correctly declared (it can be nil or integer)
@@ -82,11 +94,10 @@ module Media
           resp_hash
         end
         
+        # Using Media::Audio::Editing::Parameters#get_media_element_from_hash, it validates that the audio exists and is accessible from the user, then that +from+ and +to+ are correct
         def extract_component(component, user_id)
           audio = get_media_element_from_hash(component, :audio_id, user_id, 'Audio')
-          # I validate that the audio exists and is accessible from the user
           return nil if audio.nil?
-          # FROM and UNTIL are correct
           return nil if !component[:from].kind_of?(Integer) || !component[:to].kind_of?(Integer)
           return nil if component[:from] < 0 || component[:to] > audio.min_duration || component[:from] >= component[:to]
           {
@@ -96,9 +107,11 @@ module Media
           }
         end
         
+        # Used in Media::Audio::Editing::Parameters#extract_component
         def get_media_element_from_hash(hash, key, user_id, my_sti_type)
           hash[key].kind_of?(Integer) ? MediaElement.extract(hash[key], user_id, my_sti_type) : nil
         end
+        
       end
     end
   end

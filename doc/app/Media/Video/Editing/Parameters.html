@@ -420,6 +420,10 @@
 
   <div id="description" class="description">
     
+<p>Module that contains parameters converter for the video editor (see <a
+href="../../Video.html">Video</a>, <a
+href="../../../VideoEditorController.html">VideoEditorController</a>)</p>
+
   </div><!-- description -->
 
   
@@ -438,12 +442,22 @@
       
         <dt id="COMPONENTS">COMPONENTS
         
-        <dd class="description">
+        <dd class="description"><p>List of keywords of possible video components</p>
         
       
         <dt id="IMAGE_COMPONENT">IMAGE_COMPONENT
         
-        <dd class="description">
+        <dd class="description"><p>Keyword for an image component</p>
+        
+      
+        <dt id="TEXT_COMPONENT">TEXT_COMPONENT
+        
+        <dd class="description"><p>Keyword for a text component</p>
+        
+      
+        <dt id="VIDEO_COMPONENT">VIDEO_COMPONENT
+        
+        <dd class="description"><p>Keyword for a video component</p>
         
       
       </dl>
@@ -469,7 +483,10 @@
 
         <div class="method-description">
           
-          <p>EXAMPLE OF RETURNED HASH:</p>
+          <h3 id="method-i-convert_parameters-label-Description">Description</h3>
+
+<p>Validates and converts the parameters. See the code for further details
+about the validations achieved. The product is in the following format:</p>
 <ul><li>
 <p>two initial parameters, &#39;initial_video&#39; and &#39;audio_track&#39;</p>
 </li><li>
@@ -484,6 +501,8 @@ to the key :video</p>
 to the key :image</p>
 </li></ul>
 </li></ul>
+
+<h3 id="method-i-convert_parameters-label-Usage">Usage</h3>
 
 <pre class="ruby">{
   :<span class="ruby-identifier">initial_video</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">OBJECT</span> <span class="ruby-constant">OF</span> <span class="ruby-constant">TYPE</span> <span class="ruby-constant">VIDEO</span> <span class="ruby-keyword">or</span> <span class="ruby-constant">NIL</span>,
@@ -514,7 +533,7 @@ to the key :image</p>
 
           
           <div class="method-source-code" id="convert_parameters-source">
-            <pre><span class="ruby-comment"># File lib/media/video/editing/parameters.rb, line 87</span>
+            <pre><span class="ruby-comment"># File lib/media/video/editing/parameters.rb, line 104</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">convert_parameters</span>(<span class="ruby-identifier">hash</span>, <span class="ruby-identifier">user_id</span>)
   
   <span class="ruby-comment"># check if initial video and audio track are correctly declared (they can be nil or integer)</span>
@@ -595,12 +614,16 @@ to the key :image</p>
 
         <div class="method-description">
           
-          
+          <p>This method uses <a
+href="Parameters.html#method-i-convert_parameters">#convert_parameters</a>
+to validate the parameters, and then converts them into a primitive hash
+that contains only IDs instead than objects: now the parameters are ready
+to be passed to the editor</p>
           
 
           
           <div class="method-source-code" id="convert_to_primitive_parameters-source">
-            <pre><span class="ruby-comment"># File lib/media/video/editing/parameters.rb, line 39</span>
+            <pre><span class="ruby-comment"># File lib/media/video/editing/parameters.rb, line 51</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">convert_to_primitive_parameters</span>(<span class="ruby-identifier">hash</span>, <span class="ruby-identifier">user_id</span>)
   <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">convert_parameters</span>(<span class="ruby-identifier">hash</span>, <span class="ruby-identifier">user_id</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">nil?</span>
@@ -638,17 +661,18 @@ to the key :image</p>
 
         <div class="method-description">
           
-          
+          <p>Using <a
+href="Parameters.html#method-i-get_media_element_from_hash">#get_media_element_from_hash</a>,
+it validates that the image exists and is accessible from the user, then
+that <code>duration</code> is correct</p>
           
 
           
           <div class="method-source-code" id="extract_image_component-source">
-            <pre><span class="ruby-comment"># File lib/media/video/editing/parameters.rb, line 147</span>
+            <pre><span class="ruby-comment"># File lib/media/video/editing/parameters.rb, line 165</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">extract_image_component</span>(<span class="ruby-identifier">component</span>, <span class="ruby-identifier">user_id</span>)
   <span class="ruby-identifier">image</span> = <span class="ruby-identifier">get_media_element_from_hash</span>(<span class="ruby-identifier">component</span>, <span class="ruby-value">:image_id</span>, <span class="ruby-identifier">user_id</span>, <span class="ruby-string">&#39;Image&#39;</span>)
-  <span class="ruby-comment"># I validate that the image exists and is accessible from the user</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">image</span>.<span class="ruby-identifier">nil?</span>
-  <span class="ruby-comment"># DURATION is correct</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">component</span>[<span class="ruby-value">:duration</span>].<span class="ruby-identifier">kind_of?</span>(<span class="ruby-constant">Integer</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">component</span>[<span class="ruby-value">:duration</span>] <span class="ruby-operator">&lt;</span> <span class="ruby-value">1</span>
   {
     <span class="ruby-value">:type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">IMAGE_COMPONENT</span>,
@@ -677,14 +701,14 @@ to the key :image</p>
 
         <div class="method-description">
           
-          
+          <p>It validates that <code>content</code>, <code>colors</code> and
+<code>duration</code> are all correct</p>
           
 
           
           <div class="method-source-code" id="extract_text_component-source">
-            <pre><span class="ruby-comment"># File lib/media/video/editing/parameters.rb, line 175</span>
+            <pre><span class="ruby-comment"># File lib/media/video/editing/parameters.rb, line 191</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">extract_text_component</span>(<span class="ruby-identifier">component</span>)
-  <span class="ruby-comment"># CONTENT, COLORS, and DURATION are present and correct</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">component</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value">:content</span>) <span class="ruby-operator">||</span> <span class="ruby-operator">!</span><span class="ruby-identifier">component</span>[<span class="ruby-value">:duration</span>].<span class="ruby-identifier">kind_of?</span>(<span class="ruby-constant">Integer</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">component</span>[<span class="ruby-value">:duration</span>] <span class="ruby-operator">&lt;</span> <span class="ruby-value">1</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-operator">::</span><span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;colors&#39;</span>].<span class="ruby-identifier">has_key?</span>(<span class="ruby-identifier">component</span>[<span class="ruby-value">:background_color</span>]) <span class="ruby-operator">||</span> <span class="ruby-operator">!</span><span class="ruby-operator">::</span><span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;colors&#39;</span>].<span class="ruby-identifier">has_key?</span>(<span class="ruby-identifier">component</span>[<span class="ruby-value">:text_color</span>])
   {
@@ -716,17 +740,18 @@ to the key :image</p>
 
         <div class="method-description">
           
-          
+          <p>Using <a
+href="Parameters.html#method-i-get_media_element_from_hash">#get_media_element_from_hash</a>,
+it validates that the video exists and is accessible from the user, then
+that <code>from</code> and <code>to</code> are correct</p>
           
 
           
           <div class="method-source-code" id="extract_video_component-source">
-            <pre><span class="ruby-comment"># File lib/media/video/editing/parameters.rb, line 160</span>
+            <pre><span class="ruby-comment"># File lib/media/video/editing/parameters.rb, line 177</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">extract_video_component</span>(<span class="ruby-identifier">component</span>, <span class="ruby-identifier">user_id</span>)
   <span class="ruby-identifier">video</span> = <span class="ruby-identifier">get_media_element_from_hash</span>(<span class="ruby-identifier">component</span>, <span class="ruby-value">:video_id</span>, <span class="ruby-identifier">user_id</span>, <span class="ruby-string">&#39;Video&#39;</span>)
-  <span class="ruby-comment"># I validate that the video exists and is accessible from the user</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">video</span>.<span class="ruby-identifier">nil?</span>
-  <span class="ruby-comment"># FROM and UNTIL are correct</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">component</span>[<span class="ruby-value">:from</span>].<span class="ruby-identifier">kind_of?</span>(<span class="ruby-constant">Integer</span>) <span class="ruby-operator">||</span> <span class="ruby-operator">!</span><span class="ruby-identifier">component</span>[<span class="ruby-value">:to</span>].<span class="ruby-identifier">kind_of?</span>(<span class="ruby-constant">Integer</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">component</span>[<span class="ruby-value">:from</span>] <span class="ruby-operator">&lt;</span> <span class="ruby-value">0</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">component</span>[<span class="ruby-value">:to</span>] <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">video</span>.<span class="ruby-identifier">min_duration</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">component</span>[<span class="ruby-value">:from</span>] <span class="ruby-operator">&gt;=</span> <span class="ruby-identifier">component</span>[<span class="ruby-value">:to</span>]
   {
@@ -757,12 +782,17 @@ to the key :image</p>
 
         <div class="method-description">
           
-          
+          <p>Used in <a
+href="Parameters.html#method-i-extract_video_component">#extract_video_component</a>,
+<a
+href="Parameters.html#method-i-extract_image_component">#extract_image_component</a>,
+<a
+href="Parameters.html#method-i-extract_text_component">#extract_text_component</a></p>
           
 
           
           <div class="method-source-code" id="get_media_element_from_hash-source">
-            <pre><span class="ruby-comment"># File lib/media/video/editing/parameters.rb, line 188</span>
+            <pre><span class="ruby-comment"># File lib/media/video/editing/parameters.rb, line 204</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_media_element_from_hash</span>(<span class="ruby-identifier">hash</span>, <span class="ruby-identifier">key</span>, <span class="ruby-identifier">user_id</span>, <span class="ruby-identifier">my_sti_type</span>)
   <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">key</span>].<span class="ruby-identifier">kind_of?</span>(<span class="ruby-constant">Integer</span>) <span class="ruby-operator">?</span> <span class="ruby-constant">MediaElement</span>.<span class="ruby-identifier">extract</span>(<span class="ruby-identifier">hash</span>[<span class="ruby-identifier">key</span>], <span class="ruby-identifier">user_id</span>, <span class="ruby-identifier">my_sti_type</span>) <span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>
 <span class="ruby-keyword">end</span></pre>
@@ -787,13 +817,13 @@ to the key :image</p>
 
         <div class="method-description">
           
-          <p>it doesn&#39;t check that the parameters are valid; it takes as input
-regardless the basic hash and the full one</p>
+          <p>This method doesn&#39;t check that the parameters are valid; it takes as
+input either the basic hash or the full one, and calculates the total time</p>
           
 
           
           <div class="method-source-code" id="total_prototype_time-source">
-            <pre><span class="ruby-comment"># File lib/media/video/editing/parameters.rb, line 14</span>
+            <pre><span class="ruby-comment"># File lib/media/video/editing/parameters.rb, line 25</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">total_prototype_time</span>(<span class="ruby-identifier">hash</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-value">0</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">hash</span>[<span class="ruby-value">:components</span>].<span class="ruby-identifier">instance_of?</span>(<span class="ruby-constant">Array</span>)
   <span class="ruby-identifier">sum</span> = <span class="ruby-value">0</span>
