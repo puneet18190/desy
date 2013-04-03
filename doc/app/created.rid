@@ -1,4 +1,4 @@
-Wed, 03 Apr 2013 10:36:13 +0200
+Wed, 03 Apr 2013 10:46:26 +0200
 doc/README_FOR_APP	Fri, 29 Mar 2013 14:50:55 +0100
 app/controllers/admin/dashboard_controller.rb	Tue, 02 Apr 2013 17:48:03 +0200
 app/controllers/admin/lessons_controller.rb	Wed, 03 Apr 2013 09:16:57 +0200
@@ -13,7 +13,7 @@ app/controllers/audio_editor_controller.rb	Wed, 03 Apr 2013 10:17:03 +0200
 app/controllers/dashboard_controller.rb	Wed, 03 Apr 2013 10:02:01 +0200
 app/controllers/galleries_controller.rb	Wed, 03 Apr 2013 10:31:22 +0200
 app/controllers/image_editor_controller.rb	Wed, 03 Apr 2013 10:36:07 +0200
-app/controllers/lesson_editor_controller.rb	Tue, 02 Apr 2013 17:06:04 +0200
+app/controllers/lesson_editor_controller.rb	Wed, 03 Apr 2013 10:46:13 +0200
 app/controllers/lesson_viewer_controller.rb	Tue, 02 Apr 2013 17:06:17 +0200
 app/controllers/lessons_controller.rb	Tue, 02 Apr 2013 17:06:11 +0200
 app/controllers/mailing_lists_controller.rb	Tue, 02 Apr 2013 17:06:28 +0200

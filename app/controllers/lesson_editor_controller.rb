@@ -1,3 +1,17 @@
+# == Description
+#
+# Actions for lesson editor.
+#
+# == Models used
+#
+# * Lesson
+# * Slide
+# * Tagging
+# * Tag
+# * MediaElement
+# * MediaElementsSlide
+# * Subject
+#
 class LessonEditorController < ApplicationController
   
   before_filter :check_available_for_user
@@ -16,6 +30,19 @@ class LessonEditorController < ApplicationController
   before_filter :initialize_position, :only => :change_slide_position
   layout 'lesson_editor'
   
+  # === Description
+  #
+  # 
+  #
+  # === Mode
+  #
+  # Html
+  #
+  # === Specific filters
+  #
+  # * LessonEditorController#check_available_for_user
+  # * ApplicationController#initialize_lesson_with_owner
+  #
   def index
     if !@ok
       redirect_to '/dashboard'
@@ -26,9 +53,34 @@ class LessonEditorController < ApplicationController
     end
   end
   
+  # === Description
+  #
+  # 
+  #
+  # === Mode
+  #
+  # Html
+  #
+  # === Specific filters
+  #
+  # * LessonEditorController#check_available_for_user
+  # * ApplicationController#initialize_subjects
+  #
   def new
   end
   
+  # === Description
+  #
+  # 
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # * LessonEditorController#check_available_for_user
+  #
   def create
     title = params[:title_placeholder] != '0' ? '' : params[:title]
     description = params[:description_placeholder] != '0' ? '' : params[:description]
@@ -42,6 +94,19 @@ class LessonEditorController < ApplicationController
     end
   end
   
+  # === Description
+  #
+  # 
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # * LessonEditorController#check_available_for_user
+  # * ApplicationController#initialize_lesson_with_owner
+  #
   def update
     if !@ok
       redirect_to '/dashboard'
@@ -61,6 +126,19 @@ class LessonEditorController < ApplicationController
     end
   end
   
+  # === Description
+  #
+  # 
+  #
+  # === Mode
+  #
+  # Html
+  #
+  # === Specific filters
+  #
+  # * LessonEditorController#check_available_for_user
+  # * ApplicationController#initialize_lesson_with_owner
+  #
   def edit
     if !@ok
       redirect_to '/dashboard'
@@ -70,6 +148,20 @@ class LessonEditorController < ApplicationController
     @subjects = Subject.order(:description)
   end
   
+  # === Description
+  #
+  # 
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # * LessonEditorController#check_available_for_user
+  # * LessonEditorController#initialize_lesson_with_owner_and_slide
+  # * LessonEditorController#initialize_kind
+  #
   def add_slide
     if @ok
       @current_slide = @lesson.add_slide @kind, (@slide.position + 1)
@@ -77,18 +169,70 @@ class LessonEditorController < ApplicationController
     end
   end
   
+  # === Description
+  #
+  # 
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # * LessonEditorController#check_available_for_user
+  # * LessonEditorController#initialize_lesson_with_owner_and_slide
+  #
   def save_slide
     save_current_slide if @ok
   end
   
+  # === Description
+  #
+  # 
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # * LessonEditorController#check_available_for_user
+  # * LessonEditorController#initialize_lesson_with_owner_and_slide
+  #
   def save_slide_and_exit
     save_current_slide if @ok
   end
   
+  # === Description
+  #
+  # 
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # * LessonEditorController#check_available_for_user
+  # * LessonEditorController#initialize_lesson_with_owner_and_slide
+  #
   def save_slide_and_edit
     save_current_slide if @ok
   end
   
+  # === Description
+  #
+  # 
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # * LessonEditorController#check_available_for_user
+  # * LessonEditorController#initialize_lesson_with_owner_and_slide
+  #
   def delete_slide
     if @ok
       @current_slide = @lesson.slides.where(:position => @slide.position - 1).first
@@ -97,6 +241,20 @@ class LessonEditorController < ApplicationController
     end
   end
   
+  # === Description
+  #
+  # 
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # * LessonEditorController#check_available_for_user
+  # * LessonEditorController#initialize_lesson_with_owner_and_slide
+  # * ApplicationController#initialize_position
+  #
   def change_slide_position
     if @ok
       @replaced_slide = Slide.find_by_lesson_id_and_position(@lesson_id, @position)
@@ -106,6 +264,19 @@ class LessonEditorController < ApplicationController
     end
   end
   
+  # === Description
+  #
+  # 
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # * LessonEditorController#check_available_for_user
+  # * LessonEditorController#initialize_lesson_with_owner_and_slide
+  #
   def load_slide
   end
   
