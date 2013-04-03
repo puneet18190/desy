@@ -430,6 +430,20 @@
 
   <div id="description" class="description">
     
+<h2 id="label-Description">Description</h2>
+
+<p>Contains the actions to handle mailing lists and addresses. All these
+actions can be called from UsersController#mailing_list</p>
+
+<h2 id="label-Models+used">Models used</h2>
+<ul><li>
+<p><a href="User.html">User</a></p>
+</li><li>
+<p><a href="MailingListGroup.html">MailingListGroup</a></p>
+</li><li>
+<p><a href="MailingListAddress.html">MailingListAddress</a></p>
+</li></ul>
+
   </div><!-- description -->
 
   
@@ -461,12 +475,23 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-create_address-label-Description">Description</h3>
+
+<p>Creates a new address inside a given group</p>
+
+<h3 id="method-i-create_address-label-Mode">Mode</h3>
+
+<p>Ajax</p>
+
+<h3 id="method-i-create_address-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p>MailingListController#initialize_mailing_list_group_with_owner</p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="create_address-source">
-            <pre><span class="ruby-comment"># File app/controllers/mailing_lists_controller.rb, line 14</span>
+            <pre><span class="ruby-comment"># File app/controllers/mailing_lists_controller.rb, line 44</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create_address</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
     <span class="ruby-ivar">@mailing_list_address</span> = <span class="ruby-constant">MailingListAddress</span>.<span class="ruby-identifier">new</span>
@@ -498,12 +523,18 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-create_group-label-Description">Description</h3>
+
+<p>Creates a new group</p>
+
+<h3 id="method-i-create_group-label-Mode">Mode</h3>
+
+<p>Ajax</p>
           
 
           
           <div class="method-source-code" id="create_group-source">
-            <pre><span class="ruby-comment"># File app/controllers/mailing_lists_controller.rb, line 6</span>
+            <pre><span class="ruby-comment"># File app/controllers/mailing_lists_controller.rb, line 24</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create_group</span>
   <span class="ruby-ivar">@mailing_list_group</span> = <span class="ruby-constant">MailingListGroup</span>.<span class="ruby-identifier">new</span>
   <span class="ruby-ivar">@mailing_list_group</span>.<span class="ruby-identifier">user</span> = <span class="ruby-identifier">current_user</span>
@@ -532,12 +563,23 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-delete_address-label-Description">Description</h3>
+
+<p>Removes an address inside a group</p>
+
+<h3 id="method-i-delete_address-label-Mode">Mode</h3>
+
+<p>Ajax</p>
+
+<h3 id="method-i-delete_address-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p>MailingListController#initialize_mailing_list_address_with_owner</p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="delete_address-source">
-            <pre><span class="ruby-comment"># File app/controllers/mailing_lists_controller.rb, line 38</span>
+            <pre><span class="ruby-comment"># File app/controllers/mailing_lists_controller.rb, line 104</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">delete_address</span>
   <span class="ruby-ivar">@mailing_list_address</span>.<span class="ruby-identifier">destroy</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
   <span class="ruby-identifier">render</span> <span class="ruby-string">&#39;update_addresses&#39;</span>
@@ -563,12 +605,23 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-delete_group-label-Description">Description</h3>
+
+<p>Removes a group</p>
+
+<h3 id="method-i-delete_group-label-Mode">Mode</h3>
+
+<p>Ajax</p>
+
+<h3 id="method-i-delete_group-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p>MailingListController#initialize_mailing_list_group_with_owner</p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="delete_group-source">
-            <pre><span class="ruby-comment"># File app/controllers/mailing_lists_controller.rb, line 33</span>
+            <pre><span class="ruby-comment"># File app/controllers/mailing_lists_controller.rb, line 87</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">delete_group</span>
   <span class="ruby-ivar">@mailing_list_group</span>.<span class="ruby-identifier">destroy</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
   <span class="ruby-identifier">render</span> <span class="ruby-string">&#39;update_list&#39;</span>
@@ -594,12 +647,23 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-update_group-label-Description">Description</h3>
+
+<p>Updates an existing group (it&#39;s possible to change the name)</p>
+
+<h3 id="method-i-update_group-label-Mode">Mode</h3>
+
+<p>Ajax</p>
+
+<h3 id="method-i-update_group-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p>MailingListController#initialize_mailing_list_group_with_owner</p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="update_group-source">
-            <pre><span class="ruby-comment"># File app/controllers/mailing_lists_controller.rb, line 25</span>
+            <pre><span class="ruby-comment"># File app/controllers/mailing_lists_controller.rb, line 67</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update_group</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
     <span class="ruby-ivar">@mailing_list_group</span>.<span class="ruby-identifier">name</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:name</span>]
@@ -639,7 +703,7 @@
 
           
           <div class="method-source-code" id="initialize_mailing_list_address-source">
-            <pre><span class="ruby-comment"># File app/controllers/mailing_lists_controller.rb, line 64</span>
+            <pre><span class="ruby-comment"># File app/controllers/mailing_lists_controller.rb, line 130</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize_mailing_list_address</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-ivar">@mailing_list_address_id</span> = <span class="ruby-identifier">correct_integer?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:address_id</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:address_id</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-value">0</span>
   <span class="ruby-ivar">@mailing_list_address</span> = <span class="ruby-constant">MailingListAddress</span>.<span class="ruby-identifier">find_by_id</span> <span class="ruby-ivar">@mailing_list_address_id</span>
@@ -671,7 +735,7 @@
 
           
           <div class="method-source-code" id="initialize_mailing_list_address_with_owner-source">
-            <pre><span class="ruby-comment"># File app/controllers/mailing_lists_controller.rb, line 56</span>
+            <pre><span class="ruby-comment"># File app/controllers/mailing_lists_controller.rb, line 122</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize_mailing_list_address_with_owner</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">initialize_mailing_list_address</span>
   <span class="ruby-identifier">initialize_mailing_list_group</span>
@@ -705,7 +769,7 @@
 
           
           <div class="method-source-code" id="initialize_mailing_list_group-source">
-            <pre><span class="ruby-comment"># File app/controllers/mailing_lists_controller.rb, line 50</span>
+            <pre><span class="ruby-comment"># File app/controllers/mailing_lists_controller.rb, line 116</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize_mailing_list_group</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-ivar">@mailing_list_group_id</span> = <span class="ruby-identifier">correct_integer?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:group_id</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:group_id</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-value">0</span>
   <span class="ruby-ivar">@mailing_list_group</span> = <span class="ruby-constant">MailingListGroup</span>.<span class="ruby-identifier">find_by_id</span> <span class="ruby-ivar">@mailing_list_group_id</span>
@@ -737,7 +801,7 @@
 
           
           <div class="method-source-code" id="initialize_mailing_list_group_with_owner-source">
-            <pre><span class="ruby-comment"># File app/controllers/mailing_lists_controller.rb, line 45</span>
+            <pre><span class="ruby-comment"># File app/controllers/mailing_lists_controller.rb, line 111</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize_mailing_list_group_with_owner</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">initialize_mailing_list_group</span>
   <span class="ruby-identifier">update_ok</span>(<span class="ruby-ivar">@mailing_list_group</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">==</span> <span class="ruby-ivar">@mailing_list_group</span>.<span class="ruby-identifier">user_id</span>)
