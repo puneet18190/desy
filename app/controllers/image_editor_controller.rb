@@ -184,6 +184,7 @@ class ImageEditorController < ApplicationController
   
   private
   
+  # Extracts the params of the textareas in the image
   def extract_textareas_params(params) # :doc:
     resp = {}
     fonts = {'small_font' => 15, 'medium_font' => 25, 'big_font' => 35}
@@ -213,12 +214,14 @@ class ImageEditorController < ApplicationController
     final_resp
   end
   
+  # Initializes the image, checking that it belongs to the current_user, or it's public (these are the conditions under which the user can visualize the image)
   def initialize_image_with_owner_or_public # :doc:
     @image_id = correct_integer?(params[:image_id]) ? params[:image_id].to_i : 0
     @image = Image.find_by_id @image_id
     update_ok(!@image.nil? && (@image.is_public || current_user.id == @image.user_id))
   end
   
+  # Initializes the image, checking that it belongs to the current_user, and it's private (these are the conditions under which the user can modify the image); this control is not necessary in the other two editor (see AudioEditorController and VideoEditorController) because the control is made respectively in Media::Audio::Editing::Parameters and Media::Video::Editing::Parameters
   def initialize_image_with_owner_and_private # :doc:
     @image_id = correct_integer?(params[:image_id]) ? params[:image_id].to_i : 0
     @image = Image.find_by_id @image_id

@@ -1,4 +1,4 @@
-Wed, 03 Apr 2013 16:10:58 +0200
+Wed, 03 Apr 2013 16:22:37 +0200
 doc/README_FOR_APP	Fri, 29 Mar 2013 14:50:55 +0100
 app/controllers/admin/dashboard_controller.rb	Tue, 02 Apr 2013 17:48:03 +0200
 app/controllers/admin/lessons_controller.rb	Wed, 03 Apr 2013 09:16:57 +0200
@@ -11,8 +11,8 @@ app/controllers/admin_controller.rb	Wed, 03 Apr 2013 09:36:41 +0200
 app/controllers/application_controller.rb	Wed, 03 Apr 2013 16:04:45 +0200
 app/controllers/audio_editor_controller.rb	Wed, 03 Apr 2013 16:09:02 +0200
 app/controllers/dashboard_controller.rb	Wed, 03 Apr 2013 16:09:23 +0200
-app/controllers/galleries_controller.rb	Wed, 03 Apr 2013 16:10:32 +0200
-app/controllers/image_editor_controller.rb	Wed, 03 Apr 2013 10:36:07 +0200
+app/controllers/galleries_controller.rb	Wed, 03 Apr 2013 16:18:35 +0200
+app/controllers/image_editor_controller.rb	Wed, 03 Apr 2013 16:22:32 +0200
 app/controllers/lesson_editor_controller.rb	Wed, 03 Apr 2013 10:51:53 +0200
 app/controllers/lesson_viewer_controller.rb	Wed, 03 Apr 2013 12:26:28 +0200
 app/controllers/lessons_controller.rb	Wed, 03 Apr 2013 11:21:39 +0200
@@ -126,7 +126,7 @@ lib/media/video/editing/cmd/merge_webm_video_streams.rb	Wed, 03 Apr 2013 10:16:1
 lib/media/video/editing/cmd/mp3_to_wav.rb	Wed, 03 Apr 2013 12:13:58 +0200
 lib/media/video/editing/cmd/replace_audio.rb	Fri, 08 Feb 2013 11:44:15 +0100
 lib/media/video/editing/cmd/transition.rb	Fri, 08 Feb 2013 11:44:15 +0100
-lib/media/video/editing/cmd/trim_audio_file.rb	Fri, 08 Feb 2013 11:44:15 +0100
+lib/media/video/editing/cmd/trim_audio_file.rb	Wed, 03 Apr 2013 16:12:05 +0200
 lib/media/video/editing/cmd/video_stream_to_file.rb	Fri, 08 Feb 2013 11:44:15 +0100
 lib/media/video/editing/composer.rb	Wed, 03 Apr 2013 10:16:17 +0200
 lib/media/video/editing/composer/job.rb	Fri, 08 Feb 2013 11:44:15 +0100
