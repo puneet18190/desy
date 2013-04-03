@@ -2,4 +2,8 @@
   var slide = $('#slide_in_lesson_editor_<%= @slide_id %>');
   slide.find('.slide-content').html('<%= j render(:partial => "lesson_editor/slides/#{@slide.kind}", :locals => {:slide => @slide}) %>');
   slide.data('loaded', true);
+  $('html.lesson-editor-layout ul#slides input').attr('autocomplete', 'off');
+  slide.find('._image_container_in_lesson_editor').each(function() {
+    makeDraggable($(this).attr('id'));
+  });
 <% end %>

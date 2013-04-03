@@ -1,3 +1,12 @@
+# == Description
+#
+# Contains the actions used in the lesson viewer (view sinle lessons, or view your whole playlist)
+#
+# == Models used
+#
+# * Lesson
+# * VirtualClassroomLesson
+#
 class LessonViewerController < ApplicationController
   
   skip_before_filter :authenticate, :only => :index

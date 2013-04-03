@@ -6,21 +6,22 @@
 */
 $(document).ready(function() {
   
-  $("html.lesson-editor-layout ul#slides").css("margin-top", ((($(window).height() - 590)/2)-40) + "px");
-  $("html.lesson-editor-layout ul#slides.new").css("margin-top", ((($(window).height() - 590)/2)) + "px");
+  $('html.lesson-editor-layout ul#slides').css('margin-top', ((($(window).height() - 590) / 2) - 40) + 'px');
+  $('html.lesson-editor-layout ul#slides.new').css('margin-top', ((($(window).height() - 590) / 2)) + 'px');
+  $('.slide-content.cover .title').css('margin-left', 'auto');
+  $('html.lesson-editor-layout ul#slides input').attr('autocomplete', 'off');
   
   $('._image_container_in_lesson_editor').each(function() {
     makeDraggable($(this).attr('id'));
   });
   
   initializeSortableNavs();
+  
   $('#nav_list_menu').jScrollPane({
     autoReinitialise: false
   });
   
-  $(".slide-content.cover .title").css("margin-left", "auto");
-  
-  $('html.lesson-editor-layout ul#slides input').attr('autocomplete','off');
+  $('#lesson_subject').selectbox();
   
   initLessonEditorPositions();
   
@@ -33,8 +34,6 @@ $(document).ready(function() {
     }
     $("#footer").css("top", ($(window).height() - 40) + "px").css("width", ($(window).width() - 24) + "px");
   });
-  
-  $('#lesson_subject').selectbox();
   
   $('body').on('mouseover', '#slide-numbers li.navNumbers:not(._add_new_slide_options_in_last_position)', function(e) {
     var tip = $(this);
