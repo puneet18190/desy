@@ -141,7 +141,7 @@ module Media
                 Cmd::AudioStreamToFile.new(video_info.path, m4a).run! *logs("0_audio_stream_to_file_#{i}") # 1.
           
                 wav = tmp_path(CONCAT_WAV_FORMAT % i)
-                Cmd::Mp3ToWav.new(m4a, wav).run! *logs("1_m4a_to_wav_#{i}") # 2.
+                Cmd::M4aToWav.new(m4a, wav).run! *logs("1_m4a_to_wav_#{i}") # 2.
                 
                 # aumento l'rpadding nel caso che la traccia video sia sensibilmente più lunga della traccia audio
                 # tenendo in considerazione che l'operazione di encoding aggiunge un rpadding di suo

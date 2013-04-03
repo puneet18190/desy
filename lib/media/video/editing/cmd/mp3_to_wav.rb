@@ -8,7 +8,7 @@ module Media
   module Video
     module Editing
       class Cmd
-        class Mp3ToWav < Cmd
+        class M4aToWav < Cmd
   
           LAME_BIN = 'lame'
   
