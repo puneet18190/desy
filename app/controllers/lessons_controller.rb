@@ -1,6 +1,6 @@
 # == Description
 #
-# Controller for all the actions related to lessons and their buttons. The only two action buttons excluded here are VirtualClassroomController#add_lesson and VirtualClassroomController#remove_lesson. All over this controller we use the constant keywords defined in ButtonDestinations:
+# Controller for all the actions related to lessons and their buttons. The only two action buttons excluded here are VirtualClassroomController#add_lesson and VirtualClassroomController#remove_lesson. All over this controller we use the constant keywords defined in ButtonDestinations, namely:
 # 1. *found_lesson* (or simply *found*) for a lesson seen in a results list of the search engine
 # 2. *compact_lesson* (or simply *compact*) for a lesson seen in the compact mode
 # 3. *expanded_lesson* (or simply *expanded*) for a lesson seen in expanded mode (this happens only in the dashboard, see DashboardController)
@@ -31,7 +31,8 @@ class LessonsController < ApplicationController
   #
   # === Specific filters
   #
-  # 
+  # * ApplicationController#initialize_layout
+  # * LessonsController#initialize_paginator
   #
   def index
     get_own_lessons
@@ -52,7 +53,8 @@ class LessonsController < ApplicationController
   #
   # === Specific filters
   #
-  # 
+  # * ApplicationController#initialize_lesson
+  # * ApplicationController#initialize_lesson_destination
   #
   def add
     @ok_msg = t('other_popup_messages.correct.add.lesson')
@@ -82,7 +84,9 @@ class LessonsController < ApplicationController
   #
   # === Specific filters
   #
-  # 
+  # * LessonsController#check_available_for_user
+  # * ApplicationController#initialize_lesson
+  # * ApplicationController#initialize_lesson_destination
   #
   def copy
     if @ok
@@ -106,7 +110,8 @@ class LessonsController < ApplicationController
   #
   # === Specific filters
   #
-  # 
+  # * ApplicationController#initialize_lesson_with_owner
+  # * ApplicationController#initialize_lesson_destination
   #
   def destroy
     if @ok
@@ -130,7 +135,8 @@ class LessonsController < ApplicationController
   #
   # === Specific filters
   #
-  # 
+  # * ApplicationController#initialize_lesson
+  # * ApplicationController#initialize_lesson_destination
   #
   def dislike
     if @ok
@@ -159,7 +165,8 @@ class LessonsController < ApplicationController
   #
   # === Specific filters
   #
-  # 
+  # * ApplicationController#initialize_lesson
+  # * ApplicationController#initialize_lesson_destination
   #
   def like
     if @ok
@@ -188,7 +195,9 @@ class LessonsController < ApplicationController
   #
   # === Specific filters
   #
-  # 
+  # * LessonsController#check_available_for_user
+  # * ApplicationController#initialize_lesson_with_owner
+  # * ApplicationController#initialize_lesson_destination
   #
   def publish
     @ok_msg = t('other_popup_messages.correct.publish')
@@ -218,7 +227,8 @@ class LessonsController < ApplicationController
   #
   # === Specific filters
   #
-  # 
+  # * ApplicationController#initialize_lesson_with_owner
+  # * ApplicationController#initialize_lesson_destination
   #
   def unpublish
     @ok_msg = t('other_popup_messages.correct.unpublish')
@@ -248,7 +258,8 @@ class LessonsController < ApplicationController
   #
   # === Specific filters
   #
-  # 
+  # * ApplicationController#initialize_lesson
+  # * ApplicationController#initialize_lesson_destination
   #
   def remove
     @ok_msg = t('other_popup_messages.correct.remove.lesson')
@@ -285,7 +296,7 @@ class LessonsController < ApplicationController
   #
   # === Specific filters
   #
-  # 
+  # * ApplicationController#initialize_lesson_with_owner
   #
   def notify_modification
     if @ok
@@ -304,7 +315,7 @@ class LessonsController < ApplicationController
   #
   # === Specific filters
   #
-  # 
+  # * ApplicationController#initialize_lesson_with_owner
   #
   def dont_notify_modification
     if @ok

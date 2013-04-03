@@ -447,8 +447,8 @@ only two action buttons excluded here are <a
 href="VirtualClassroomController.html#method-i-add_lesson">VirtualClassroomController#add_lesson</a>
 and <a
 href="VirtualClassroomController.html#method-i-remove_lesson">VirtualClassroomController#remove_lesson</a>.
-All over this controller we use the constant keywords defined in
-ButtonDestinations:</p>
+All over this controller we use the constant keywords defined in <a
+href="ButtonDestinations.html">ButtonDestinations</a>, namely:</p>
 <ol><li>
 <p><strong>found_lesson</strong> (or simply <strong>found</strong>) for a
 lesson seen in a results list of the search engine</p>
@@ -519,11 +519,18 @@ href="DashboardController.html">DashboardController</a>)</p>
 <p>Ajax + Json</p>
 
 <h3 id="method-i-add-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p><a
+href="ApplicationController.html#method-i-initialize_lesson">ApplicationController#initialize_lesson</a></p>
+</li><li>
+<p><a
+href="ApplicationController.html#method-i-initialize_lesson_destination">ApplicationController#initialize_lesson_destination</a></p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="add-source">
-            <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 57</span>
+            <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 59</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">add</span>
   <span class="ruby-ivar">@ok_msg</span> = <span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;other_popup_messages.correct.add.lesson&#39;</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
@@ -569,11 +576,21 @@ href="DashboardController.html">DashboardController</a>)</p>
 <p>Ajax</p>
 
 <h3 id="method-i-copy-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p><a
+href="LessonsController.html#method-i-check_available_for_user">#check_available_for_user</a></p>
+</li><li>
+<p><a
+href="ApplicationController.html#method-i-initialize_lesson">ApplicationController#initialize_lesson</a></p>
+</li><li>
+<p><a
+href="ApplicationController.html#method-i-initialize_lesson_destination">ApplicationController#initialize_lesson_destination</a></p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="copy-source">
-            <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 87</span>
+            <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 91</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">copy</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
     <span class="ruby-ivar">@new_lesson</span> = <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">copy</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
@@ -613,11 +630,18 @@ href="DashboardController.html">DashboardController</a>)</p>
 <p>Json</p>
 
 <h3 id="method-i-destroy-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p><a
+href="ApplicationController.html#method-i-initialize_lesson_with_owner">ApplicationController#initialize_lesson_with_owner</a></p>
+</li><li>
+<p><a
+href="ApplicationController.html#method-i-initialize_lesson_destination">ApplicationController#initialize_lesson_destination</a></p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 111</span>
+            <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 116</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
     <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">destroy_with_notifications</span>
@@ -657,11 +681,18 @@ href="DashboardController.html">DashboardController</a>)</p>
 <p>Ajax</p>
 
 <h3 id="method-i-dislike-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p><a
+href="ApplicationController.html#method-i-initialize_lesson">ApplicationController#initialize_lesson</a></p>
+</li><li>
+<p><a
+href="ApplicationController.html#method-i-initialize_lesson_destination">ApplicationController#initialize_lesson_destination</a></p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="dislike-source">
-            <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 135</span>
+            <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 141</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">dislike</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
     <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">dislike</span>(<span class="ruby-ivar">@lesson_id</span>)
@@ -706,11 +737,15 @@ href="DashboardController.html">DashboardController</a>)</p>
 <p>Ajax</p>
 
 <h3 id="method-i-dont_notify_modification-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p><a
+href="ApplicationController.html#method-i-initialize_lesson_with_owner">ApplicationController#initialize_lesson_with_owner</a></p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="dont_notify_modification-source">
-            <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 309</span>
+            <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 320</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">dont_notify_modification</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
     <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">dont_notify_changes</span>
@@ -745,11 +780,18 @@ href="DashboardController.html">DashboardController</a>)</p>
 <p>Html + Ajax</p>
 
 <h3 id="method-i-index-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p><a
+href="ApplicationController.html#method-i-initialize_layout">ApplicationController#initialize_layout</a></p>
+</li><li>
+<p><a
+href="LessonsController.html#method-i-initialize_paginator">#initialize_paginator</a></p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 36</span>
+            <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 37</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
   <span class="ruby-identifier">get_own_lessons</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@page</span> <span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@pages_amount</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@pages_amount</span> <span class="ruby-operator">!=</span> <span class="ruby-value">0</span>
@@ -786,11 +828,18 @@ href="DashboardController.html">DashboardController</a>)</p>
 <p>Ajax</p>
 
 <h3 id="method-i-like-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p><a
+href="ApplicationController.html#method-i-initialize_lesson">ApplicationController#initialize_lesson</a></p>
+</li><li>
+<p><a
+href="ApplicationController.html#method-i-initialize_lesson_destination">ApplicationController#initialize_lesson_destination</a></p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="like-source">
-            <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 164</span>
+            <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 171</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">like</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
     <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">like</span>(<span class="ruby-ivar">@lesson_id</span>)
@@ -835,11 +884,15 @@ href="DashboardController.html">DashboardController</a>)</p>
 <p>Ajax</p>
 
 <h3 id="method-i-notify_modification-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p><a
+href="ApplicationController.html#method-i-initialize_lesson_with_owner">ApplicationController#initialize_lesson_with_owner</a></p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="notify_modification-source">
-            <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 290</span>
+            <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 301</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">notify_modification</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
     <span class="ruby-identifier">msg</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:details_placeholder</span>].<span class="ruby-identifier">blank?</span> <span class="ruby-operator">?</span> <span class="ruby-string">&#39;&#39;</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:details</span>]
@@ -874,11 +927,21 @@ href="DashboardController.html">DashboardController</a>)</p>
 <p>Ajax</p>
 
 <h3 id="method-i-publish-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p><a
+href="LessonsController.html#method-i-check_available_for_user">#check_available_for_user</a></p>
+</li><li>
+<p><a
+href="ApplicationController.html#method-i-initialize_lesson_with_owner">ApplicationController#initialize_lesson_with_owner</a></p>
+</li><li>
+<p><a
+href="ApplicationController.html#method-i-initialize_lesson_destination">ApplicationController#initialize_lesson_destination</a></p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="publish-source">
-            <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 193</span>
+            <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 202</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">publish</span>
   <span class="ruby-ivar">@ok_msg</span> = <span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;other_popup_messages.correct.publish&#39;</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
@@ -924,11 +987,18 @@ href="DashboardController.html">DashboardController</a>)</p>
 <p>Ajax + Json</p>
 
 <h3 id="method-i-remove-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p><a
+href="ApplicationController.html#method-i-initialize_lesson">ApplicationController#initialize_lesson</a></p>
+</li><li>
+<p><a
+href="ApplicationController.html#method-i-initialize_lesson_destination">ApplicationController#initialize_lesson_destination</a></p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="remove-source">
-            <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 253</span>
+            <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 264</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">remove</span>
   <span class="ruby-ivar">@ok_msg</span> = <span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;other_popup_messages.correct.remove.lesson&#39;</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
@@ -981,11 +1051,18 @@ href="DashboardController.html">DashboardController</a>)</p>
 <p>Ajax</p>
 
 <h3 id="method-i-unpublish-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p><a
+href="ApplicationController.html#method-i-initialize_lesson_with_owner">ApplicationController#initialize_lesson_with_owner</a></p>
+</li><li>
+<p><a
+href="ApplicationController.html#method-i-initialize_lesson_destination">ApplicationController#initialize_lesson_destination</a></p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="unpublish-source">
-            <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 223</span>
+            <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 233</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">unpublish</span>
   <span class="ruby-ivar">@ok_msg</span> = <span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;other_popup_messages.correct.unpublish&#39;</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
@@ -1035,7 +1112,7 @@ href="DashboardController.html">DashboardController</a>)</p>
 
           
           <div class="method-source-code" id="check_available_for_user-source">
-            <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 318</span>
+            <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 329</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">check_available_for_user</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">l</span> = <span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">find_by_id</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:lesson_id</span>]
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">l</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">l</span>.<span class="ruby-identifier">available?</span>
@@ -1069,7 +1146,7 @@ href="DashboardController.html">DashboardController</a>)</p>
 
           
           <div class="method-source-code" id="get_own_lessons-source">
-            <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 326</span>
+            <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 337</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_own_lessons</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">current_user_own_lessons</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">own_lessons</span>(<span class="ruby-ivar">@page</span>, <span class="ruby-ivar">@for_page</span>, <span class="ruby-ivar">@filter</span>)
   <span class="ruby-ivar">@lessons</span> = <span class="ruby-identifier">current_user_own_lessons</span>[<span class="ruby-value">:records</span>]
@@ -1101,7 +1178,7 @@ href="DashboardController.html">DashboardController</a>)</p>
 
           
           <div class="method-source-code" id="initialize_paginator-source">
-            <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 332</span>
+            <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 343</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize_paginator</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-ivar">@page</span> = <span class="ruby-identifier">correct_integer?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-value">1</span>
   <span class="ruby-ivar">@for_page</span> = <span class="ruby-constant">FOR_PAGE</span>
