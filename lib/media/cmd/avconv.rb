@@ -55,7 +55,11 @@ module Media
       end
 
       def default_output_options
-        [ sn, output_threads, qv, qa, vbitrate ]
+        [ strict, sn, output_threads, qv, qa, vbitrate ]
+      end
+
+      def strict
+        '-strict experimental'
       end
 
       def sn
