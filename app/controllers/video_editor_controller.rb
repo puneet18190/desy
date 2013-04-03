@@ -205,11 +205,13 @@ class VideoEditorController < ApplicationController
   
   private
   
+  # Checks if the video is being used in private lessons
   def used_in_private_lessons # :doc:
     return false if @parameters[:initial_video].nil?
     @parameters[:initial_video].media_elements_slides.any?
   end
   
+  # Checks if the video editor is available for the user (see User#video_editor_available)
   def check_available_for_user # :doc:
     if !current_user.video_editor_available
       render 'not_available'
@@ -217,6 +219,7 @@ class VideoEditorController < ApplicationController
     end
   end
   
+  # Extracts parameters from the form, and converts them into the format of Media::Video::Editing::Parameters
   def extract_single_form_parameter(p, value) # :doc:
     if ['type', 'content', 'background_color', 'text_color'].include? p
       return value
@@ -258,6 +261,7 @@ class VideoEditorController < ApplicationController
     resp
   end
   
+  # Converts a single video in a cache in the format of Media::Video::Editing::Parameters
   def convert_video_to_parameters # :doc:
     resp = {}
     resp[:initial_video_id] = @video.is_public ? nil : @video.id
@@ -271,6 +275,7 @@ class VideoEditorController < ApplicationController
     resp.nil? ? empty_parameters : resp
   end
   
+  # Gets a set of parameters in the format of Media::Video::Editing::Parameters from an empty video editor
   def empty_parameters # :doc:
     resp = {}
     resp[:initial_video] = nil
@@ -279,10 +284,12 @@ class VideoEditorController < ApplicationController
     resp
   end
   
+  # Extracts the cache and converts it
   def extract_cache # :doc:
     @cache = Video.convert_parameters current_user.video_editor_cache, current_user.id
   end
   
+  # Initializes the given video, and returns true if current_user owns it or it's public (these are the conditions for the user to visualize the video, but not modify it)
   def initialize_video_with_owner_or_public # :doc:
     @video_id = correct_integer?(params[:video_id]) ? params[:video_id].to_i : 0
     @video = Video.find_by_id @video_id
