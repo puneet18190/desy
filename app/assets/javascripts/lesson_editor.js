@@ -303,7 +303,7 @@ $(document).ready(function() {
       full_place.show();
       $('#' + place_id + ' ._empty_audio_in_slide').hide();
     }
-    $('#' + place_id + ' ._full_audio_in_slide source[type="audio/mp3"]').attr('src', audio_mp3);
+    $('#' + place_id + ' ._full_audio_in_slide source[type="audio/mp4"]').attr('src', audio_mp3);
     $('#' + place_id + ' ._full_audio_in_slide source[type="audio/ogg"]').attr('src', audio_ogg);
     $('#' + place_id + ' audio').load();
     $('#' + place_id + ' ._media_player_total_time').html(secondsToDateString(duration));

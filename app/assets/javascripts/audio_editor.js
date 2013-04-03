@@ -7,7 +7,7 @@ function loadAudioComponentIfNotLoadedYet(component) {
   if(!component.data('loaded')) {
     var mp3 = component.data('mp3');
     var ogg = component.data('ogg');
-    component.find('source[type="audio/mp3"]').attr('src', mp3);
+    component.find('source[type="audio/mp4"]').attr('src', mp3);
     component.find('source[type="audio/ogg"]').attr('src', ogg);
     component.find('audio').load();
     component.data('loaded', true);
@@ -221,7 +221,7 @@ function addComponentInAudioEditor(audio_id, ogg, mp3, duration, title) {
   var empty_component = $($('#empty_component_for_audio_editor').html());
   empty_component.attr('id', ('audio_component_' + next_position));
   empty_component.find('source[type="audio/ogg"]').attr('src', ogg);
-  empty_component.find('source[type="audio/mp3"]').attr('src', mp3);
+  empty_component.find('source[type="audio/mp4"]').attr('src', mp3);
   empty_component.data('duration', 0);
   empty_component.data('from', 0);
   empty_component.data('to', duration);

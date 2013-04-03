@@ -34,7 +34,7 @@ class Audio < MediaElement
   # === Usage
   #
   #   <audio>
-  #     <source src="<%= audio.mp3_url %>" type="audio/mp3">
+  #     <source src="<%= audio.mp3_url %>" type="audio/mp4">
   #   </audio>
   #
   def mp3_url

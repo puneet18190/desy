@@ -303,7 +303,7 @@ $(document).ready(function() {
         if(!$('#' + instance_id).data('initialized')) {
           var button = $(this).find('._select_audio_from_gallery');
           var duration = button.data('duration');
-          $('#' + instance_id + ' source[type="audio/mp3"]').attr('src', button.data('mp3'));
+          $('#' + instance_id + ' source[type="audio/mp4"]').attr('src', button.data('mp3'));
           $('#' + instance_id + ' source[type="audio/ogg"]').attr('src', button.data('ogg'));
           $('#' + instance_id + ' audio').load();
           $('#' + instance_id + ' ._media_player_total_time').html(secondsToDateString(duration));
@@ -1452,7 +1452,7 @@ $(document).ready(function() {
     $('#video_editor_preview_container').append($('#empty_audio_track_preview_for_video_editor').html());
     var new_audio_track = $('#video_editor_preview_container ._audio_track_preview');
     new_audio_track.data('duration', $(this).data('duration'));
-    new_audio_track.find('source[type="audio/mp3"]').attr('src', $(this).data('mp3'));
+    new_audio_track.find('source[type="audio/mp4"]').attr('src', $(this).data('mp3'));
     new_audio_track.find('source[type="audio/ogg"]').attr('src', $(this).data('ogg'));
     new_audio_track.find('audio').load();
   });
