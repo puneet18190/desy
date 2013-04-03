@@ -36,11 +36,11 @@ class MediaElementsController < ApplicationController
   
   # === Description
   #
-  # 
+  # Test useful to check correctness of conversion and cross browser visibility of all elements of kind Video
   #
   # === Mode
   #
-  # 
+  # Html
   #
   # === Specific filters
   #
@@ -57,11 +57,11 @@ class MediaElementsController < ApplicationController
   
   # === Description
   #
-  # 
+  # Main page of the section 'elements'. When it's called via ajax it's because of the application of filters, paginations, or after an operation that changed the number of items in the page.
   #
   # === Mode
   #
-  # 
+  # Html + Ajax
   #
   # === Specific filters
   #
@@ -79,15 +79,14 @@ class MediaElementsController < ApplicationController
   
   # === Description
   #
-  # 
+  # Opens the general page of the elements editor:
+  # * the *video* icon redirects to VideoEditorController#new
+  # * the *audio* icon redirects to AudioEditorController#new
+  # * the *image* icon redirects to GalleriesController#image_for_image_editor (and successively to ImageEditorController#edit)
   #
   # === Mode
   #
-  # 
-  #
-  # === Specific filters
-  #
-  # 
+  # Html
   #
   def new
     render :layout => 'media_element_editor'
@@ -95,15 +94,11 @@ class MediaElementsController < ApplicationController
   
   # === Description
   #
-  # 
+  # Action that calls the uploader, casts the type, and creates the new element
   #
   # === Mode
   #
-  # 
-  #
-  # === Specific filters
-  #
-  # 
+  # Html
   #
   def create
     media = params[:media]
@@ -122,7 +117,6 @@ class MediaElementsController < ApplicationController
       @errors = convert_media_element_uploader_messages record.errors
       puts record.errors.inspect
       puts @errors.inspect
-      
       fields = record.errors.messages.keys
       if fields.include? :sti_type
         fields << :media if !fields.include? :media
@@ -138,11 +132,14 @@ class MediaElementsController < ApplicationController
   
   # === Description
   #
-  # 
+  # Adds a link of this element to your section.
+  # * *found*: reloads the element in compact mode
+  # * *compact*: <i>[this action doesn't occur]</i>
+  # * *expanded*: removes the element and reloads the whole page
   #
   # === Mode
   #
-  # 
+  # Ajax + Json
   #
   # === Specific filters
   #
@@ -169,11 +166,14 @@ class MediaElementsController < ApplicationController
   
   # === Description
   #
-  # 
+  # Deletes definitively an element.
+  # * *found*: removes the element and reloads the whole page
+  # * *compact*: removes the element and reloads the whole page
+  # * *expanded*: removes the element and reloads the whole page
   #
   # === Mode
   #
-  # 
+  # Json
   #
   # === Specific filters
   #
@@ -194,11 +194,14 @@ class MediaElementsController < ApplicationController
   
   # === Description
   #
-  # 
+  # Removes the link of this element from your section.
+  # * *found*: reloads the element in compact mode
+  # * *compact*: removes the element and reloads the whole page
+  # * *expanded*: removes the element and reloads the whole page
   #
   # === Mode
   #
-  # 
+  # Ajax + Json
   #
   # === Specific filters
   #
@@ -232,11 +235,11 @@ class MediaElementsController < ApplicationController
   
   # === Description
   #
-  # 
+  # Updates the general information of the element (title, description and tags)
   #
   # === Mode
   #
-  # 
+  # Ajax
   #
   # === Specific filters
   #
@@ -259,15 +262,11 @@ class MediaElementsController < ApplicationController
   
   # === Description
   #
-  # 
+  # Loads the preview of the element (to be shown inside a special popup)
   #
   # === Mode
   #
-  # 
-  #
-  # === Specific filters
-  #
-  # 
+  # Ajax
   #
   def load_preview
     @media_element_id = correct_integer?(params[:media_element_id]) ? params[:media_element_id].to_i : 0
