@@ -134,41 +134,49 @@ class ApplicationController < ActionController::Base
     end
   end
   
+  # Initializes the attribute called +where+ with the name of the controller who called the action
   def initialize_location # :doc:
     @where = controller_name
   end
   
+  # Authenticates the user
   def authenticate # :doc:
     return redirect_to root_path(redirect_to: request.fullpath, login: true) unless current_user
   end
   
+  # Authenticates the user, and it must be admin (see User#admin?)
   def admin_authenticate # :doc:
     return redirect_to root_path(redirect_to: request.fullpath, login: true) if not current_user or not current_user.admin?
   end
   
+  # Returns the logged user
   def current_user # :doc:
     @current_user ||= ( session[:user_id] and User.confirmed.find_by_id(session[:user_id]) )
   end
   
+  # Setter method for the attribute current_user
   def current_user=(user) # :doc:
     session[:user_id] = user ? user.id : nil
     @current_user = user
   end
   
+  # Used in all the actions which have double possible rendering (Html + Ajax, see for instance DashboardController#index)
   def render_js_or_html_index # :doc:
     render 'index', formats: [request.xhr? ? :js : :html]
   end
   
+  # Used in ApplicationController#initialize_lesson and similar methods, to check if the id passed as parameter is a correct integer
   def correct_integer?(x) # :doc:
     x.class == String && (x =~ /\A\d+\Z/) == 0
   end
   
+  # Used as a submethod to filters like ApplicationController#initialize_lesson: this method allows these filters to be used without a specified order, it's not necessary that the attribute +ok+ has been already initialized
   def update_ok(condition) # :doc:
     @ok = true if @ok.nil?
     @ok = @ok && condition
   end
   
-  # riceve errors.messages
+  # Used for errors in forms of elements general information: converts an item of type ActiveSupport::OrderedHash (errors.messages) into a translated message for the user.
   def convert_item_error_messages(errors) # :doc:
     resp = []
     media_errors = errors.delete(:media)
@@ -185,14 +193,14 @@ class ApplicationController < ActionController::Base
     resp
   end
   
-  # riceve errors.messages
+  # Used for errors in forms of lessons general information: converts an item of type ActiveSupport::OrderedHash (errors.messages) into a translated message for the user.
   def convert_lesson_editor_messages(errors) # :doc:
     resp = convert_item_error_messages errors
     resp << t('forms.error_captions.subject_missing_in_lesson') if errors.has_key? :subject_id
     resp
   end
   
-  # riceve errors
+  # Used for errors in forms of element uploader: converts an item of type ActiveModel::Errors into a translated message for the user.
   def convert_media_element_uploader_messages(errors) # :doc:
     resp = convert_item_error_messages errors.messages
     if errors.messages.has_key? :media
@@ -210,7 +218,7 @@ class ApplicationController < ActionController::Base
     end
   end
   
-  # riceve errors
+  # Used for errors in forms of user profile: converts an item of type ActiveModel::Errors into a translated message for the user.
   def convert_user_error_messages(errors) # :doc:
     pas_min = SETTINGS['minimum_password_length']
     pas_max = SETTINGS['maximum_password_length']
@@ -245,6 +253,7 @@ class ApplicationController < ActionController::Base
     resp
   end
   
+  # Checks if there is a logged user
   def logged_in? # :doc:
     current_user
   end
