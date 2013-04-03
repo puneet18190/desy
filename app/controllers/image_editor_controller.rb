@@ -1,9 +1,29 @@
+# == Description
+#
+# Actions used in the image editor
+#
+# == Models used
+#
+# * Image
+#
 class ImageEditorController < ApplicationController
   
   before_filter :initialize_image_with_owner_or_public, :only => [:edit, :crop, :save, :add_text, :undo]
   before_filter :initialize_image_with_owner_and_private, :only => :overwrite
   layout 'media_element_editor'
   
+  # === Description
+  #
+  # Opens the image editor with a selected image
+  #
+  # === Mode
+  #
+  # Html
+  #
+  # === Specific filters
+  #
+  # * ImageEditorController#initialize_image_with_owner_or_public
+  #
   def edit
     if !@ok
       redirect_to dashboard_path
@@ -14,6 +34,18 @@ class ImageEditorController < ApplicationController
     @image.enter_edit_mode current_user.id
   end
   
+  # === Description
+  #
+  # Adds texts to the image
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # * ImageEditorController#initialize_image_with_owner_or_public
+  #
   def add_text
     if @ok
       @image.enter_edit_mode current_user.id
@@ -27,6 +59,18 @@ class ImageEditorController < ApplicationController
     end
   end
   
+  # === Description
+  #
+  # Undoes the last modification to the image
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # * ImageEditorController#initialize_image_with_owner_or_public
+  #
   def undo
     if @ok
       @image.enter_edit_mode current_user.id
@@ -41,6 +85,18 @@ class ImageEditorController < ApplicationController
     end
   end
   
+  # === Description
+  #
+  # Crops the image
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # * ImageEditorController#initialize_image_with_owner_or_public
+  #
   def crop
     if @ok && !params[:x1].blank?
       @image.enter_edit_mode current_user.id
@@ -55,6 +111,18 @@ class ImageEditorController < ApplicationController
     end
   end
   
+  # === Description
+  #
+  # Saves the image as a new element
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # * ImageEditorController#initialize_image_with_owner_or_public
+  #
   def save
     if @ok
       @image.enter_edit_mode current_user.id
@@ -77,6 +145,18 @@ class ImageEditorController < ApplicationController
     render 'media_elements/info_form_in_editor/save'
   end
   
+  # === Description
+  #
+  # Saves the image overwriting an existing element
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # * ImageEditorController#initialize_image_with_owner_and_private
+  #
   def overwrite
     if @ok
       @redirect = false

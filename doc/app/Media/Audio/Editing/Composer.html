@@ -74,6 +74,10 @@
     <li><a class="include" href="../../InTmpDir.html">Media::InTmpDir</a>
   
   
+  
+    <li><a class="include" href="../../Logging.html">Media::Logging</a>
+  
+  
   </ul>
 </nav>
 
@@ -82,6 +86,8 @@
   <h3 class="section-header">Methods</h3>
 
   <ul class="link-list">
+    
+    <li><a href="#method-c-log_folder">::log_folder</a>
     
     <li><a href="#method-c-new">::new</a>
     
@@ -451,6 +457,36 @@
       <h3 class="section-header">Public Class Methods</h3>
 
     
+      <div id="method-c-log_folder" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">log_folder</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="log_folder-source">
+            <pre><span class="ruby-comment"># File lib/media/audio/editing/composer.rb, line 17</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">log_folder</span>
+  <span class="ruby-keyword">super</span> <span class="ruby-string">&#39;composings&#39;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- log_folder-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- log_folder-method -->
+
+    
       <div id="method-c-new" class="method-detail ">
         
         <div class="method-heading">
@@ -482,7 +518,7 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/media/audio/editing/composer.rb, line 29</span>
+            <pre><span class="ruby-comment"># File lib/media/audio/editing/composer.rb, line 34</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-ivar">@params</span> = <span class="ruby-identifier">params</span>
 <span class="ruby-keyword">end</span></pre>
@@ -518,8 +554,9 @@
 
           
           <div class="method-source-code" id="compose-source">
-            <pre><span class="ruby-comment"># File lib/media/audio/editing/composer.rb, line 57</span>
+            <pre><span class="ruby-comment"># File lib/media/audio/editing/composer.rb, line 62</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">compose</span>
+  <span class="ruby-identifier">create_log_folder</span>
   <span class="ruby-identifier">in_tmp_dir</span> <span class="ruby-keyword">do</span>
     <span class="ruby-identifier">concats</span> = {}.<span class="ruby-identifier">tap</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">concats</span><span class="ruby-operator">|</span>
       <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">join</span> *<span class="ruby-ivar">@params</span>[<span class="ruby-value">:components</span>].<span class="ruby-identifier">each_with_index</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">component</span>, <span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
@@ -528,7 +565,7 @@
     <span class="ruby-keyword">end</span>
 
     <span class="ruby-identifier">concat</span> = <span class="ruby-identifier">tmp_path</span> <span class="ruby-string">&#39;concat&#39;</span>
-    <span class="ruby-identifier">outputs</span> = <span class="ruby-constant">Concat</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">concats</span>.<span class="ruby-identifier">sort</span>.<span class="ruby-identifier">map</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">_</span>,<span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span> }, <span class="ruby-identifier">concat</span>).<span class="ruby-identifier">run</span>
+    <span class="ruby-identifier">outputs</span> = <span class="ruby-constant">Concat</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">concats</span>.<span class="ruby-identifier">sort</span>.<span class="ruby-identifier">map</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">_</span>,<span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span> }, <span class="ruby-identifier">concat</span>, <span class="ruby-identifier">log_folder</span>(<span class="ruby-string">&#39;concat&#39;</span>)).<span class="ruby-identifier">run</span>
 
     <span class="ruby-identifier">audio</span>.<span class="ruby-identifier">media</span>               = <span class="ruby-identifier">outputs</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">filename</span><span class="ruby-operator">:</span> <span class="ruby-identifier">audio</span>.<span class="ruby-identifier">title</span>)
     <span class="ruby-identifier">audio</span>.<span class="ruby-identifier">composing</span>           = <span class="ruby-keyword">nil</span>
@@ -568,7 +605,7 @@
 
           
           <div class="method-source-code" id="run-source">
-            <pre><span class="ruby-comment"># File lib/media/audio/editing/composer.rb, line 33</span>
+            <pre><span class="ruby-comment"># File lib/media/audio/editing/composer.rb, line 38</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">run</span>
   <span class="ruby-ivar">@old_media</span> = <span class="ruby-identifier">audio</span>.<span class="ruby-identifier">media</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:dup</span>)
   <span class="ruby-identifier">compose</span>

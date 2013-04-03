@@ -515,7 +515,7 @@
         
         <div class="method-heading">
           <span class="method-name">new</span><span
-            class="method-args">(input_path, output_without_extension, duration)</span>
+            class="method-args">(input_path, output_without_extension, duration, log_folder = nil)</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
         
@@ -528,11 +528,12 @@
           
           <div class="method-source-code" id="new-source">
             <pre><span class="ruby-comment"># File lib/media/video/editing/image_to_video.rb, line 23</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">input_path</span>, <span class="ruby-identifier">output_without_extension</span>, <span class="ruby-identifier">duration</span>)
-  <span class="ruby-ivar">@input_path</span>               = <span class="ruby-identifier">input_path</span>
-  <span class="ruby-ivar">@output_without_extension</span> = <span class="ruby-identifier">output_without_extension</span>
-  <span class="ruby-ivar">@duration</span>                 = <span class="ruby-identifier">duration</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">input_path</span>, <span class="ruby-identifier">output_without_extension</span>, <span class="ruby-identifier">duration</span>, <span class="ruby-identifier">log_folder</span> = <span class="ruby-keyword">nil</span>)
   <span class="ruby-identifier">raise</span> <span class="ruby-constant">Error</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;duration must be a Numeric &gt; 0&#39;</span>, <span class="ruby-identifier">duration</span><span class="ruby-operator">:</span> <span class="ruby-identifier">duration</span>) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">duration</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">Numeric</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">duration</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+
+  <span class="ruby-ivar">@duration</span>, <span class="ruby-ivar">@input_path</span>, <span class="ruby-ivar">@output_without_extension</span> = <span class="ruby-identifier">duration</span>, <span class="ruby-identifier">input_path</span>, <span class="ruby-identifier">output_without_extension</span>
+
+  <span class="ruby-ivar">@log_folder</span> = <span class="ruby-identifier">log_folder</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- new-source -->
           
@@ -566,7 +567,7 @@
 
           
           <div class="method-source-code" id="run-source">
-            <pre><span class="ruby-comment"># File lib/media/video/editing/image_to_video.rb, line 30</span>
+            <pre><span class="ruby-comment"># File lib/media/video/editing/image_to_video.rb, line 31</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">run</span>
   <span class="ruby-identifier">in_tmp_dir</span> <span class="ruby-keyword">do</span>
     <span class="ruby-identifier">processed_image_path</span> = <span class="ruby-identifier">tmp_path</span>( <span class="ruby-constant">PROCESSED_IMAGE_PATH_FORMAT</span> <span class="ruby-operator">%</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">extname</span>(<span class="ruby-identifier">input_path</span>) )

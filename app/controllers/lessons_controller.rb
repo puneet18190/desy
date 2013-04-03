@@ -1,5 +1,18 @@
+# == Description
+#
+# Controller for all the actions related to lessons and their buttons. The only two action buttons excluded here are VirtualClassroomController#add_lesson and VirtualClassroomController#remove_lesson. All over this controller we use the constant keywords defined in ButtonDestinations, namely:
+# 1. *found_lesson* (or simply *found*) for a lesson seen in a results list of the search engine
+# 2. *compact_lesson* (or simply *compact*) for a lesson seen in the compact mode
+# 3. *expanded_lesson* (or simply *expanded*) for a lesson seen in expanded mode (this happens only in the dashboard, see DashboardController)
+#
+# == Models used
+#
+# * Lesson
+# * User
+#
 class LessonsController < ApplicationController
   
+  # Number of compact lessons for each page
   FOR_PAGE = SETTINGS['compact_lesson_pagination']
   
   before_filter :check_available_for_user, :only => [:copy, :publish]
@@ -8,6 +21,19 @@ class LessonsController < ApplicationController
   before_filter :initialize_layout, :initialize_paginator, :only => :index
   before_filter :initialize_lesson_destination, :only => [:add, :copy, :like, :remove, :dislike, :destroy, :publish, :unpublish]
   
+  # === Description
+  #
+  # Main page of the section 'lessons'. When it's called via ajax it's because of the application of filters, paginations, or after an operation that changed the number of items in the page.
+  #
+  # === Mode
+  #
+  # Html + Ajax
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#initialize_layout
+  # * LessonsController#initialize_paginator
+  #
   def index
     get_own_lessons
     if @page > @pages_amount && @pages_amount != 0
@@ -17,6 +43,22 @@ class LessonsController < ApplicationController
     render_js_or_html_index
   end
   
+  # === Description
+  #
+  # Adds a link of this lesson to your section.
+  # * *found*: reloads the lesson in compact mode
+  # * *compact*: <i>[this action doesn't occur]</i>
+  # * *expanded*: removes the lesson and reloads the whole page
+  #
+  # === Mode
+  #
+  # Ajax + Json
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#initialize_lesson
+  # * ApplicationController#initialize_lesson_destination
+  #
   def add
     @ok_msg = t('other_popup_messages.correct.add.lesson')
     if @ok
@@ -35,6 +77,20 @@ class LessonsController < ApplicationController
     end
   end
   
+  # === Description
+  #
+  # Creates a copy of this lesson, and opens a popup asking you if you want to edit immediately the new lesson or reload the page
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # * LessonsController#check_available_for_user
+  # * ApplicationController#initialize_lesson
+  # * ApplicationController#initialize_lesson_destination
+  #
   def copy
     if @ok
       @new_lesson = @lesson.copy(current_user.id)
@@ -47,6 +103,22 @@ class LessonsController < ApplicationController
     end
   end
   
+  # === Description
+  #
+  # Deletes definitively a lesson.
+  # * *found*: removes the lesson and reloads the whole page
+  # * *compact*: removes the lesson and reloads the whole page
+  # * *expanded*: <i>[this action doesn't occur]</i>
+  #
+  # === Mode
+  #
+  # Json
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#initialize_lesson_with_owner
+  # * ApplicationController#initialize_lesson_destination
+  #
   def destroy
     if @ok
       if !@lesson.destroy_with_notifications
@@ -59,6 +131,22 @@ class LessonsController < ApplicationController
     render :json => {:ok => @ok, :msg => @error}
   end
   
+  # === Description
+  #
+  # Removes your 'I like it' from the lesson
+  # * *found*: reloads the lesson in compact mode
+  # * *compact*: reloads the lesson in compact mode
+  # * *expanded*: reloads the lesson in expanded mode
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#initialize_lesson
+  # * ApplicationController#initialize_lesson_destination
+  #
   def dislike
     if @ok
       if !current_user.dislike(@lesson_id)
@@ -76,6 +164,22 @@ class LessonsController < ApplicationController
     end
   end
   
+  # === Description
+  #
+  # Records a 'I like it' on the lesson
+  # * *found*: reloads the lesson in compact mode
+  # * *compact*: reloads the lesson in compact mode
+  # * *expanded*: reloads the lesson in expanded mode
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#initialize_lesson
+  # * ApplicationController#initialize_lesson_destination
+  #
   def like
     if @ok
       if !current_user.like(@lesson_id)
@@ -93,6 +197,23 @@ class LessonsController < ApplicationController
     end
   end
   
+  # === Description
+  #
+  # Calls Lesson#publish on the lesson.
+  # * *found*: reloads the lesson in compact mode
+  # * *compact*: reloads the lesson in compact mode
+  # * *expanded*: <i>[this action doesn't occur]</i>
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # * LessonsController#check_available_for_user
+  # * ApplicationController#initialize_lesson_with_owner
+  # * ApplicationController#initialize_lesson_destination
+  #
   def publish
     @ok_msg = t('other_popup_messages.correct.publish')
     if @ok
@@ -111,6 +232,22 @@ class LessonsController < ApplicationController
     end
   end
   
+  # === Description
+  #
+  # Calls Lesson#unpublish on the lesson.
+  # * *found*: reloads the lesson in compact mode
+  # * *compact*: reloads the lesson in compact mode
+  # * *expanded*: <i>[this action doesn't occur]</i>
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#initialize_lesson_with_owner
+  # * ApplicationController#initialize_lesson_destination
+  #
   def unpublish
     @ok_msg = t('other_popup_messages.correct.unpublish')
     if @ok
@@ -129,6 +266,22 @@ class LessonsController < ApplicationController
     end
   end
   
+  # === Description
+  #
+  # Removes the link of this lesson from your section.
+  # * *found*: reloads the lesson in compact mode
+  # * *compact*: removes the lesson and reloads the whole page
+  # * *expanded*: <i>[this action doesn't occur]</i>
+  #
+  # === Mode
+  #
+  # Ajax + Json
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#initialize_lesson
+  # * ApplicationController#initialize_lesson_destination
+  #
   def remove
     @ok_msg = t('other_popup_messages.correct.remove.lesson')
     if @ok
@@ -154,6 +307,18 @@ class LessonsController < ApplicationController
     end
   end
   
+  # === Description
+  #
+  # Sends a notification about the details of the modification and sets the lesson as *notified* (using Lesson#notify_changes)
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#initialize_lesson_with_owner
+  #
   def notify_modification
     if @ok
       msg = params[:details_placeholder].blank? ? '' : params[:details]
@@ -161,6 +326,18 @@ class LessonsController < ApplicationController
     end
   end
   
+  # === Description
+  #
+  # Doesn't send any notification and sets the lesson as *notified* (using Lesson#dont_notify_changes)
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#initialize_lesson_with_owner
+  #
   def dont_notify_modification
     if @ok
       @lesson.dont_notify_changes

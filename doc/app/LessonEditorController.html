@@ -446,6 +446,27 @@
 
   <div id="description" class="description">
     
+<h2 id="label-Description">Description</h2>
+
+<p>Actions for lesson editor.</p>
+
+<h2 id="label-Models+used">Models used</h2>
+<ul><li>
+<p><a href="Lesson.html">Lesson</a></p>
+</li><li>
+<p><a href="Slide.html">Slide</a></p>
+</li><li>
+<p><a href="Tagging.html">Tagging</a></p>
+</li><li>
+<p><a href="Tag.html">Tag</a></p>
+</li><li>
+<p><a href="MediaElement.html">MediaElement</a></p>
+</li><li>
+<p><a href="MediaElementsSlide.html">MediaElementsSlide</a></p>
+</li><li>
+<p><a href="Subject.html">Subject</a></p>
+</li></ul>
+
   </div><!-- description -->
 
   
@@ -477,12 +498,30 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-add_slide-label-Description">Description</h3>
+
+<p>Action that adds a new slide to the lesson</p>
+
+<h3 id="method-i-add_slide-label-Mode">Mode</h3>
+
+<p>Ajax</p>
+
+<h3 id="method-i-add_slide-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p><a
+href="LessonEditorController.html#method-i-check_available_for_user">#check_available_for_user</a></p>
+</li><li>
+<p><a
+href="LessonEditorController.html#method-i-initialize_lesson_with_owner_and_slide">#initialize_lesson_with_owner_and_slide</a></p>
+</li><li>
+<p><a
+href="LessonEditorController.html#method-i-initialize_kind">#initialize_kind</a></p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="add_slide-source">
-            <pre><span class="ruby-comment"># File app/controllers/lesson_editor_controller.rb, line 73</span>
+            <pre><span class="ruby-comment"># File app/controllers/lesson_editor_controller.rb, line 165</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">add_slide</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
     <span class="ruby-ivar">@current_slide</span> = <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">add_slide</span> <span class="ruby-ivar">@kind</span>, (<span class="ruby-ivar">@slide</span>.<span class="ruby-identifier">position</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>)
@@ -510,12 +549,30 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-change_slide_position-label-Description">Description</h3>
+
+<p>Action that changes the position of a slide</p>
+
+<h3 id="method-i-change_slide_position-label-Mode">Mode</h3>
+
+<p>Ajax</p>
+
+<h3 id="method-i-change_slide_position-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p><a
+href="LessonEditorController.html#method-i-check_available_for_user">#check_available_for_user</a></p>
+</li><li>
+<p><a
+href="LessonEditorController.html#method-i-initialize_lesson_with_owner_and_slide">#initialize_lesson_with_owner_and_slide</a></p>
+</li><li>
+<p><a
+href="ApplicationController.html#method-i-initialize_position">ApplicationController#initialize_position</a></p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="change_slide_position-source">
-            <pre><span class="ruby-comment"># File app/controllers/lesson_editor_controller.rb, line 100</span>
+            <pre><span class="ruby-comment"># File app/controllers/lesson_editor_controller.rb, line 258</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">change_slide_position</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
     <span class="ruby-ivar">@replaced_slide</span> = <span class="ruby-constant">Slide</span>.<span class="ruby-identifier">find_by_lesson_id_and_position</span>(<span class="ruby-ivar">@lesson_id</span>, <span class="ruby-ivar">@position</span>)
@@ -545,12 +602,24 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-create-label-Description">Description</h3>
+
+<p>Action that creates a new lesson</p>
+
+<h3 id="method-i-create-label-Mode">Mode</h3>
+
+<p>Ajax</p>
+
+<h3 id="method-i-create-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p><a
+href="LessonEditorController.html#method-i-check_available_for_user">#check_available_for_user</a></p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/lesson_editor_controller.rb, line 32</span>
+            <pre><span class="ruby-comment"># File app/controllers/lesson_editor_controller.rb, line 84</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-identifier">title</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:title_placeholder</span>] <span class="ruby-operator">!=</span> <span class="ruby-string">&#39;0&#39;</span> <span class="ruby-operator">?</span> <span class="ruby-string">&#39;&#39;</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:title</span>]
   <span class="ruby-identifier">description</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:description_placeholder</span>] <span class="ruby-operator">!=</span> <span class="ruby-string">&#39;0&#39;</span> <span class="ruby-operator">?</span> <span class="ruby-string">&#39;&#39;</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:description</span>]
@@ -584,12 +653,27 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-delete_slide-label-Description">Description</h3>
+
+<p>Action that deletes the current slide</p>
+
+<h3 id="method-i-delete_slide-label-Mode">Mode</h3>
+
+<p>Ajax</p>
+
+<h3 id="method-i-delete_slide-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p><a
+href="LessonEditorController.html#method-i-check_available_for_user">#check_available_for_user</a></p>
+</li><li>
+<p><a
+href="LessonEditorController.html#method-i-initialize_lesson_with_owner_and_slide">#initialize_lesson_with_owner_and_slide</a></p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="delete_slide-source">
-            <pre><span class="ruby-comment"># File app/controllers/lesson_editor_controller.rb, line 92</span>
+            <pre><span class="ruby-comment"># File app/controllers/lesson_editor_controller.rb, line 236</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">delete_slide</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
     <span class="ruby-ivar">@current_slide</span> = <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">slides</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:position</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@slide</span>.<span class="ruby-identifier">position</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>).<span class="ruby-identifier">first</span>
@@ -618,12 +702,28 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-edit-label-Description">Description</h3>
+
+<p>Form to edit general information (title, description, tags, subject) of an
+existing lesson</p>
+
+<h3 id="method-i-edit-label-Mode">Mode</h3>
+
+<p>Html</p>
+
+<h3 id="method-i-edit-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p><a
+href="LessonEditorController.html#method-i-check_available_for_user">#check_available_for_user</a></p>
+</li><li>
+<p><a
+href="ApplicationController.html#method-i-initialize_lesson_with_owner">ApplicationController#initialize_lesson_with_owner</a></p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/lesson_editor_controller.rb, line 64</span>
+            <pre><span class="ruby-comment"># File app/controllers/lesson_editor_controller.rb, line 142</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
   <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@ok</span>
     <span class="ruby-identifier">redirect_to</span> <span class="ruby-string">&#39;/dashboard&#39;</span>
@@ -653,12 +753,27 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-index-label-Description">Description</h3>
+
+<p>Main page of the editor for a specific lesson</p>
+
+<h3 id="method-i-index-label-Mode">Mode</h3>
+
+<p>Html</p>
+
+<h3 id="method-i-index-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p><a
+href="LessonEditorController.html#method-i-check_available_for_user">#check_available_for_user</a></p>
+</li><li>
+<p><a
+href="ApplicationController.html#method-i-initialize_lesson_with_owner">ApplicationController#initialize_lesson_with_owner</a></p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/lesson_editor_controller.rb, line 19</span>
+            <pre><span class="ruby-comment"># File app/controllers/lesson_editor_controller.rb, line 46</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
   <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@ok</span>
     <span class="ruby-identifier">redirect_to</span> <span class="ruby-string">&#39;/dashboard&#39;</span>
@@ -689,12 +804,27 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-load_slide-label-Description">Description</h3>
+
+<p>Action that loads via Ajax a new slide</p>
+
+<h3 id="method-i-load_slide-label-Mode">Mode</h3>
+
+<p>Ajax</p>
+
+<h3 id="method-i-load_slide-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p><a
+href="LessonEditorController.html#method-i-check_available_for_user">#check_available_for_user</a></p>
+</li><li>
+<p><a
+href="LessonEditorController.html#method-i-initialize_lesson_with_owner_and_slide">#initialize_lesson_with_owner_and_slide</a></p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="load_slide-source">
-            <pre><span class="ruby-comment"># File app/controllers/lesson_editor_controller.rb, line 109</span>
+            <pre><span class="ruby-comment"># File app/controllers/lesson_editor_controller.rb, line 280</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">load_slide</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- load_slide-source -->
@@ -718,12 +848,27 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-new-label-Description">Description</h3>
+
+<p>Form to create a new lesson</p>
+
+<h3 id="method-i-new-label-Mode">Mode</h3>
+
+<p>Html</p>
+
+<h3 id="method-i-new-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p><a
+href="LessonEditorController.html#method-i-check_available_for_user">#check_available_for_user</a></p>
+</li><li>
+<p><a
+href="LessonEditorController.html#method-i-initialize_subjects">#initialize_subjects</a></p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/controllers/lesson_editor_controller.rb, line 29</span>
+            <pre><span class="ruby-comment"># File app/controllers/lesson_editor_controller.rb, line 69</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- new-source -->
@@ -747,12 +892,27 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-save_slide-label-Description">Description</h3>
+
+<p>Action that saves the current slide without doing anything else</p>
+
+<h3 id="method-i-save_slide-label-Mode">Mode</h3>
+
+<p>Ajax</p>
+
+<h3 id="method-i-save_slide-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p><a
+href="LessonEditorController.html#method-i-check_available_for_user">#check_available_for_user</a></p>
+</li><li>
+<p><a
+href="LessonEditorController.html#method-i-initialize_lesson_with_owner_and_slide">#initialize_lesson_with_owner_and_slide</a></p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="save_slide-source">
-            <pre><span class="ruby-comment"># File app/controllers/lesson_editor_controller.rb, line 80</span>
+            <pre><span class="ruby-comment"># File app/controllers/lesson_editor_controller.rb, line 185</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">save_slide</span>
   <span class="ruby-identifier">save_current_slide</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
 <span class="ruby-keyword">end</span></pre>
@@ -777,12 +937,28 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-save_slide_and_edit-label-Description">Description</h3>
+
+<p>Action that saves the current slide and redirecting to <a
+href="LessonEditorController.html#method-i-edit">#edit</a> right after</p>
+
+<h3 id="method-i-save_slide_and_edit-label-Mode">Mode</h3>
+
+<p>Ajax</p>
+
+<h3 id="method-i-save_slide_and_edit-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p><a
+href="LessonEditorController.html#method-i-check_available_for_user">#check_available_for_user</a></p>
+</li><li>
+<p><a
+href="LessonEditorController.html#method-i-initialize_lesson_with_owner_and_slide">#initialize_lesson_with_owner_and_slide</a></p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="save_slide_and_edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/lesson_editor_controller.rb, line 88</span>
+            <pre><span class="ruby-comment"># File app/controllers/lesson_editor_controller.rb, line 219</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">save_slide_and_edit</span>
   <span class="ruby-identifier">save_current_slide</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
 <span class="ruby-keyword">end</span></pre>
@@ -807,12 +983,27 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-save_slide_and_exit-label-Description">Description</h3>
+
+<p>Action that saves the current slide and leaving the editor right after</p>
+
+<h3 id="method-i-save_slide_and_exit-label-Mode">Mode</h3>
+
+<p>Ajax</p>
+
+<h3 id="method-i-save_slide_and_exit-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p><a
+href="LessonEditorController.html#method-i-check_available_for_user">#check_available_for_user</a></p>
+</li><li>
+<p><a
+href="LessonEditorController.html#method-i-initialize_lesson_with_owner_and_slide">#initialize_lesson_with_owner_and_slide</a></p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="save_slide_and_exit-source">
-            <pre><span class="ruby-comment"># File app/controllers/lesson_editor_controller.rb, line 84</span>
+            <pre><span class="ruby-comment"># File app/controllers/lesson_editor_controller.rb, line 202</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">save_slide_and_exit</span>
   <span class="ruby-identifier">save_current_slide</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
 <span class="ruby-keyword">end</span></pre>
@@ -837,12 +1028,28 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-update-label-Description">Description</h3>
+
+<p>Action that updates general information (title, description, tags, subject)
+of an existing lesson</p>
+
+<h3 id="method-i-update-label-Mode">Mode</h3>
+
+<p>Ajax</p>
+
+<h3 id="method-i-update-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p><a
+href="LessonEditorController.html#method-i-check_available_for_user">#check_available_for_user</a></p>
+</li><li>
+<p><a
+href="ApplicationController.html#method-i-initialize_lesson_with_owner">ApplicationController#initialize_lesson_with_owner</a></p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/lesson_editor_controller.rb, line 45</span>
+            <pre><span class="ruby-comment"># File app/controllers/lesson_editor_controller.rb, line 110</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@ok</span>
     <span class="ruby-identifier">redirect_to</span> <span class="ruby-string">&#39;/dashboard&#39;</span>
@@ -893,7 +1100,7 @@
 
           
           <div class="method-source-code" id="check_available_for_user-source">
-            <pre><span class="ruby-comment"># File app/controllers/lesson_editor_controller.rb, line 114</span>
+            <pre><span class="ruby-comment"># File app/controllers/lesson_editor_controller.rb, line 285</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">check_available_for_user</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-ivar">@lesson</span> = <span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">find_by_id</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:lesson_id</span>]
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@lesson</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">available?</span>
@@ -927,7 +1134,7 @@
 
           
           <div class="method-source-code" id="initialize_kind-source">
-            <pre><span class="ruby-comment"># File app/controllers/lesson_editor_controller.rb, line 122</span>
+            <pre><span class="ruby-comment"># File app/controllers/lesson_editor_controller.rb, line 293</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize_kind</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-ivar">@kind</span> = <span class="ruby-constant">Slide</span><span class="ruby-operator">::</span><span class="ruby-constant">KINDS_WITHOUT_COVER</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:kind</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:kind</span>] <span class="ruby-operator">:</span> <span class="ruby-string">&#39;&#39;</span>
   <span class="ruby-identifier">update_ok</span>(<span class="ruby-operator">!</span><span class="ruby-ivar">@kind</span>.<span class="ruby-identifier">blank?</span>)
@@ -958,7 +1165,7 @@
 
           
           <div class="method-source-code" id="initialize_lesson_with_owner_and_slide-source">
-            <pre><span class="ruby-comment"># File app/controllers/lesson_editor_controller.rb, line 127</span>
+            <pre><span class="ruby-comment"># File app/controllers/lesson_editor_controller.rb, line 298</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize_lesson_with_owner_and_slide</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">initialize_lesson_with_owner</span>
   <span class="ruby-ivar">@slide_id</span> = <span class="ruby-identifier">correct_integer?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:slide_id</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:slide_id</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-value">0</span>
@@ -991,7 +1198,7 @@
 
           
           <div class="method-source-code" id="initialize_subjects-source">
-            <pre><span class="ruby-comment"># File app/controllers/lesson_editor_controller.rb, line 134</span>
+            <pre><span class="ruby-comment"># File app/controllers/lesson_editor_controller.rb, line 305</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize_subjects</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-ivar">@subjects</span> = []
   <span class="ruby-constant">UsersSubject</span>.<span class="ruby-identifier">joins</span>(<span class="ruby-value">:subject</span>).<span class="ruby-identifier">where</span>(<span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;subjects.description ASC&#39;</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">sbj</span><span class="ruby-operator">|</span>
@@ -1025,7 +1232,7 @@
 
           
           <div class="method-source-code" id="save_current_slide-source">
-            <pre><span class="ruby-comment"># File app/controllers/lesson_editor_controller.rb, line 142</span>
+            <pre><span class="ruby-comment"># File app/controllers/lesson_editor_controller.rb, line 313</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">save_current_slide</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">media_elements_params</span> = {}
   (<span class="ruby-value">1</span><span class="ruby-operator">...</span><span class="ruby-value">5</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>

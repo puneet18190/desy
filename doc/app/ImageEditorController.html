@@ -430,6 +430,15 @@
 
   <div id="description" class="description">
     
+<h2 id="label-Description">Description</h2>
+
+<p>Actions used in the image editor</p>
+
+<h2 id="label-Models+used">Models used</h2>
+<ul><li>
+<p><a href="Image.html">Image</a></p>
+</li></ul>
+
   </div><!-- description -->
 
   
@@ -461,12 +470,24 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-add_text-label-Description">Description</h3>
+
+<p>Adds texts to the image</p>
+
+<h3 id="method-i-add_text-label-Mode">Mode</h3>
+
+<p>Ajax</p>
+
+<h3 id="method-i-add_text-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p><a
+href="ImageEditorController.html#method-i-initialize_image_with_owner_or_public">#initialize_image_with_owner_or_public</a></p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="add_text-source">
-            <pre><span class="ruby-comment"># File app/controllers/image_editor_controller.rb, line 17</span>
+            <pre><span class="ruby-comment"># File app/controllers/image_editor_controller.rb, line 49</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">add_text</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
     <span class="ruby-ivar">@image</span>.<span class="ruby-identifier">enter_edit_mode</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>
@@ -500,12 +521,24 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-crop-label-Description">Description</h3>
+
+<p>Crops the image</p>
+
+<h3 id="method-i-crop-label-Mode">Mode</h3>
+
+<p>Ajax</p>
+
+<h3 id="method-i-crop-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p><a
+href="ImageEditorController.html#method-i-initialize_image_with_owner_or_public">#initialize_image_with_owner_or_public</a></p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="crop-source">
-            <pre><span class="ruby-comment"># File app/controllers/image_editor_controller.rb, line 44</span>
+            <pre><span class="ruby-comment"># File app/controllers/image_editor_controller.rb, line 100</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">crop</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">params</span>[<span class="ruby-value">:x1</span>].<span class="ruby-identifier">blank?</span>
     <span class="ruby-ivar">@image</span>.<span class="ruby-identifier">enter_edit_mode</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>
@@ -540,12 +573,24 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-edit-label-Description">Description</h3>
+
+<p>Opens the image editor with a selected image</p>
+
+<h3 id="method-i-edit-label-Mode">Mode</h3>
+
+<p>Html</p>
+
+<h3 id="method-i-edit-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p><a
+href="ImageEditorController.html#method-i-initialize_image_with_owner_or_public">#initialize_image_with_owner_or_public</a></p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/image_editor_controller.rb, line 7</span>
+            <pre><span class="ruby-comment"># File app/controllers/image_editor_controller.rb, line 27</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
   <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@ok</span>
     <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">dashboard_path</span>
@@ -576,12 +621,24 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-overwrite-label-Description">Description</h3>
+
+<p>Saves the image overwriting an existing element</p>
+
+<h3 id="method-i-overwrite-label-Mode">Mode</h3>
+
+<p>Ajax</p>
+
+<h3 id="method-i-overwrite-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p><a
+href="ImageEditorController.html#method-i-initialize_image_with_owner_and_private">#initialize_image_with_owner_and_private</a></p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="overwrite-source">
-            <pre><span class="ruby-comment"># File app/controllers/image_editor_controller.rb, line 80</span>
+            <pre><span class="ruby-comment"># File app/controllers/image_editor_controller.rb, line 160</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">overwrite</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
     <span class="ruby-ivar">@redirect</span> = <span class="ruby-keyword">false</span>
@@ -627,12 +684,24 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-save-label-Description">Description</h3>
+
+<p>Saves the image as a new element</p>
+
+<h3 id="method-i-save-label-Mode">Mode</h3>
+
+<p>Ajax</p>
+
+<h3 id="method-i-save-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p><a
+href="ImageEditorController.html#method-i-initialize_image_with_owner_or_public">#initialize_image_with_owner_or_public</a></p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="save-source">
-            <pre><span class="ruby-comment"># File app/controllers/image_editor_controller.rb, line 58</span>
+            <pre><span class="ruby-comment"># File app/controllers/image_editor_controller.rb, line 126</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">save</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
     <span class="ruby-ivar">@image</span>.<span class="ruby-identifier">enter_edit_mode</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>
@@ -675,12 +744,24 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-undo-label-Description">Description</h3>
+
+<p>Undoes the last modification to the image</p>
+
+<h3 id="method-i-undo-label-Mode">Mode</h3>
+
+<p>Ajax</p>
+
+<h3 id="method-i-undo-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p><a
+href="ImageEditorController.html#method-i-initialize_image_with_owner_or_public">#initialize_image_with_owner_or_public</a></p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="undo-source">
-            <pre><span class="ruby-comment"># File app/controllers/image_editor_controller.rb, line 30</span>
+            <pre><span class="ruby-comment"># File app/controllers/image_editor_controller.rb, line 74</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">undo</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
     <span class="ruby-ivar">@image</span>.<span class="ruby-identifier">enter_edit_mode</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>
@@ -726,7 +807,7 @@
 
           
           <div class="method-source-code" id="extract_textareas_params-source">
-            <pre><span class="ruby-comment"># File app/controllers/image_editor_controller.rb, line 107</span>
+            <pre><span class="ruby-comment"># File app/controllers/image_editor_controller.rb, line 187</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">extract_textareas_params</span>(<span class="ruby-identifier">params</span>) <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">resp</span> = {}
   <span class="ruby-identifier">fonts</span> = {<span class="ruby-string">&#39;small_font&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">15</span>, <span class="ruby-string">&#39;medium_font&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">25</span>, <span class="ruby-string">&#39;big_font&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">35</span>}
@@ -781,7 +862,7 @@
 
           
           <div class="method-source-code" id="initialize_image_with_owner_and_private-source">
-            <pre><span class="ruby-comment"># File app/controllers/image_editor_controller.rb, line 142</span>
+            <pre><span class="ruby-comment"># File app/controllers/image_editor_controller.rb, line 222</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize_image_with_owner_and_private</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-ivar">@image_id</span> = <span class="ruby-identifier">correct_integer?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:image_id</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:image_id</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-value">0</span>
   <span class="ruby-ivar">@image</span> = <span class="ruby-constant">Image</span>.<span class="ruby-identifier">find_by_id</span> <span class="ruby-ivar">@image_id</span>
@@ -813,7 +894,7 @@
 
           
           <div class="method-source-code" id="initialize_image_with_owner_or_public-source">
-            <pre><span class="ruby-comment"># File app/controllers/image_editor_controller.rb, line 136</span>
+            <pre><span class="ruby-comment"># File app/controllers/image_editor_controller.rb, line 216</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize_image_with_owner_or_public</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-ivar">@image_id</span> = <span class="ruby-identifier">correct_integer?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:image_id</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:image_id</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-value">0</span>
   <span class="ruby-ivar">@image</span> = <span class="ruby-constant">Image</span>.<span class="ruby-identifier">find_by_id</span> <span class="ruby-ivar">@image_id</span>

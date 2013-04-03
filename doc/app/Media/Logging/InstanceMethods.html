@@ -454,10 +454,8 @@
           <div class="method-source-code" id="create_log_folder-source">
             <pre><span class="ruby-comment"># File lib/media/logging.rb, line 26</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create_log_folder</span>(<span class="ruby-identifier">folder_name</span> = <span class="ruby-keyword">nil</span>)
-  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">thread_relative_log_folder</span> = <span class="ruby-keyword">nil</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">thread_relative_log_folder</span> = <span class="ruby-identifier">log_folder</span>(<span class="ruby-identifier">folder_name</span>)
-  <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">mkdir_p</span> <span class="ruby-identifier">thread_relative_log_folder</span>
-  <span class="ruby-identifier">thread_relative_log_folder</span>
+  <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">mkdir_p</span>(<span class="ruby-identifier">thread_relative_log_folder</span>).<span class="ruby-identifier">first</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- create_log_folder-source -->
           
@@ -485,10 +483,13 @@
 
           
           <div class="method-source-code" id="log_folder-source">
-            <pre><span class="ruby-comment"># File lib/media/logging.rb, line 34</span>
+            <pre><span class="ruby-comment"># File lib/media/logging.rb, line 32</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">log_folder</span>(<span class="ruby-identifier">folder_name</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-comment"># raise &quot;wrong @log_folder (#{@log_folder.inspect})&quot; if !@log_folder.is_a?(String) || !@log_folder.start_with?(&#39;/home/mau/web_apps/desy/log/media/video/editing/composings/test&#39;)</span>
+
+  <span class="ruby-comment"># puts caller.join(&quot;\n&quot;)</span>
   <span class="ruby-ivar">@log_folder</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">thread_relative_log_folder</span> <span class="ruby-operator">||</span> (
-    <span class="ruby-identifier">folder_name</span> <span class="ruby-operator">||=</span> <span class="ruby-node">&quot;#{Time.now.utc.strftime(&quot;%Y-%m-%d_%H-%M-%S_%N&quot;)}_#{::Thread.current.object_id}&quot;</span>
+    <span class="ruby-identifier">folder_name</span> <span class="ruby-operator">||=</span> <span class="ruby-node">&quot;#{Time.now.utc.strftime(&quot;%Y-%m-%d_%H-%M-%S&quot;)}_#{::Thread.current.object_id}&quot;</span>
     <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">log_folder</span>, <span class="ruby-identifier">folder_name</span>
   )
 <span class="ruby-keyword">end</span></pre>
@@ -518,7 +519,7 @@
 
           
           <div class="method-source-code" id="logs-source">
-            <pre><span class="ruby-comment"># File lib/media/logging.rb, line 49</span>
+            <pre><span class="ruby-comment"># File lib/media/logging.rb, line 50</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">logs</span>(<span class="ruby-identifier">prefix</span> = <span class="ruby-keyword">nil</span>)
   [<span class="ruby-node">%W(#{stdout_log(prefix)} a)</span>, <span class="ruby-node">%W(#{stderr_log(prefix)} a)</span>]
 <span class="ruby-keyword">end</span></pre>
@@ -548,7 +549,7 @@
 
           
           <div class="method-source-code" id="stderr_log-source">
-            <pre><span class="ruby-comment"># File lib/media/logging.rb, line 45</span>
+            <pre><span class="ruby-comment"># File lib/media/logging.rb, line 46</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">stderr_log</span>(<span class="ruby-identifier">prefix</span> = <span class="ruby-keyword">nil</span>)
   <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span> <span class="ruby-identifier">log_folder</span>, (<span class="ruby-identifier">prefix</span> <span class="ruby-operator">?</span> <span class="ruby-node">&quot;#{prefix}.#{STDERR_LOG}&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-constant">STDERR_LOG</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -578,7 +579,7 @@
 
           
           <div class="method-source-code" id="stdout_log-source">
-            <pre><span class="ruby-comment"># File lib/media/logging.rb, line 41</span>
+            <pre><span class="ruby-comment"># File lib/media/logging.rb, line 42</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">stdout_log</span>(<span class="ruby-identifier">prefix</span> = <span class="ruby-keyword">nil</span>)
   <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span> <span class="ruby-identifier">log_folder</span>, (<span class="ruby-identifier">prefix</span> <span class="ruby-operator">?</span> <span class="ruby-node">&quot;#{prefix}.#{STDOUT_LOG}&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-constant">STDOUT_LOG</span>)
 <span class="ruby-keyword">end</span></pre>

@@ -13,7 +13,7 @@ class DashboardController < ApplicationController
   
   # === Description
   #
-  # Extracts suggested lessons and elements (see User#suggested_lessons, User#suggested_media_elements)
+  # Extracts suggested lessons and elements (see User#suggested_lessons, User#suggested_media_elements). When it's called via ajax it's because of the application of filters, paginations, or after an operation that changed the number of items in the page.
   #
   # === Mode
   #
