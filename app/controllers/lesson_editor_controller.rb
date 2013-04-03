@@ -32,7 +32,7 @@ class LessonEditorController < ApplicationController
   
   # === Description
   #
-  # 
+  # Main page of the editor for a specific lesson
   #
   # === Mode
   #
@@ -55,7 +55,7 @@ class LessonEditorController < ApplicationController
   
   # === Description
   #
-  # 
+  # Form to create a new lesson
   #
   # === Mode
   #
@@ -64,14 +64,14 @@ class LessonEditorController < ApplicationController
   # === Specific filters
   #
   # * LessonEditorController#check_available_for_user
-  # * ApplicationController#initialize_subjects
+  # * LessonEditorController#initialize_subjects
   #
   def new
   end
   
   # === Description
   #
-  # 
+  # Action that creates a new lesson
   #
   # === Mode
   #
@@ -96,7 +96,7 @@ class LessonEditorController < ApplicationController
   
   # === Description
   #
-  # 
+  # Action that updates general information (title, description, tags, subject) of an existing lesson
   #
   # === Mode
   #
@@ -128,7 +128,7 @@ class LessonEditorController < ApplicationController
   
   # === Description
   #
-  # 
+  # Form to edit general information (title, description, tags, subject) of an existing lesson
   #
   # === Mode
   #
@@ -150,7 +150,7 @@ class LessonEditorController < ApplicationController
   
   # === Description
   #
-  # 
+  # Action that adds a new slide to the lesson
   #
   # === Mode
   #
@@ -171,7 +171,7 @@ class LessonEditorController < ApplicationController
   
   # === Description
   #
-  # 
+  # Action that saves the current slide without doing anything else
   #
   # === Mode
   #
@@ -188,7 +188,7 @@ class LessonEditorController < ApplicationController
   
   # === Description
   #
-  # 
+  # Action that saves the current slide and leaving the editor right after
   #
   # === Mode
   #
@@ -205,7 +205,7 @@ class LessonEditorController < ApplicationController
   
   # === Description
   #
-  # 
+  # Action that saves the current slide and redirecting to LessonEditorController#edit right after
   #
   # === Mode
   #
@@ -222,7 +222,7 @@ class LessonEditorController < ApplicationController
   
   # === Description
   #
-  # 
+  # Action that deletes the current slide
   #
   # === Mode
   #
@@ -243,7 +243,7 @@ class LessonEditorController < ApplicationController
   
   # === Description
   #
-  # 
+  # Action that changes the position of a slide
   #
   # === Mode
   #
@@ -266,7 +266,7 @@ class LessonEditorController < ApplicationController
   
   # === Description
   #
-  # 
+  # Action that loads via Ajax a new slide
   #
   # === Mode
   #
