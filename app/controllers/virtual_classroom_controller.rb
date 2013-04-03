@@ -18,7 +18,7 @@ class VirtualClassroomController < ApplicationController
   
   before_filter :initialize_lesson, :only => [:add_lesson, :remove_lesson, :remove_lesson_from_inside]
   before_filter :initialize_lesson_destination, :only => [:add_lesson, :remove_lesson]
-  before_filter :initialize_layout, :initialize_paginator, :only => [:index]
+  before_filter :initialize_layout, :initialize_paginator, :only => :index
   before_filter :initialize_virtual_classroom_lesson, :only => [:add_lesson_to_playlist, :remove_lesson_from_playlist, :change_position_in_playlist]
   before_filter :initialize_position, :only => :change_position_in_playlist
   before_filter :initialize_lesson_for_sending_link, :only => :send_link
@@ -37,7 +37,8 @@ class VirtualClassroomController < ApplicationController
   #
   # === Specific filters
   #
-  # 
+  # * ApplicationController#initialize_layout
+  # * VirtualClassroomController#initialize_paginator
   #
   def index
     get_lessons
@@ -61,7 +62,8 @@ class VirtualClassroomController < ApplicationController
   #
   # === Specific filters
   #
-  # 
+  # * ApplicationController#initialize_lesson
+  # * ApplicationController#initialize_lesson_destination
   #
   def add_lesson
     if @ok
@@ -90,7 +92,8 @@ class VirtualClassroomController < ApplicationController
   #
   # === Specific filters
   #
-  # 
+  # * ApplicationController#initialize_lesson
+  # * ApplicationController#initialize_lesson_destination
   #
   def remove_lesson
     if @ok
@@ -119,7 +122,7 @@ class VirtualClassroomController < ApplicationController
   #
   # === Specific filters
   #
-  # 
+  # * ApplicationController#initialize_lesson
   #
   def remove_lesson_from_inside
     if @ok
@@ -143,7 +146,7 @@ class VirtualClassroomController < ApplicationController
   #
   # === Specific filters
   #
-  # 
+  # * VirtualClassroomController#initialize_virtual_classroom_lesson
   #
   def add_lesson_to_playlist
     if @ok
@@ -168,7 +171,7 @@ class VirtualClassroomController < ApplicationController
   #
   # === Specific filters
   #
-  # 
+  # * VirtualClassroomController#initialize_virtual_classroom_lesson
   #
   def remove_lesson_from_playlist
     if @ok
@@ -193,7 +196,8 @@ class VirtualClassroomController < ApplicationController
   #
   # === Specific filters
   #
-  # 
+  # * VirtualClassroomController#initialize_virtual_classroom_lesson
+  # * ApplicationController#initialize_position
   #
   def change_position_in_playlist
     if @ok
@@ -215,10 +219,6 @@ class VirtualClassroomController < ApplicationController
   #
   # Ajax
   #
-  # === Specific filters
-  #
-  # 
-  #
   def empty_playlist
     @ok = current_user.empty_playlist
     @error = I18n.t('activerecord.errors.models.virtual_classroom_lesson.problem_emptying_playlist') if !@ok
@@ -232,10 +232,6 @@ class VirtualClassroomController < ApplicationController
   #
   # Ajax
   #
-  # === Specific filters
-  #
-  # 
-  #
   def empty_virtual_classroom
     current_user.empty_virtual_classroom
   end
@@ -247,10 +243,6 @@ class VirtualClassroomController < ApplicationController
   # === Mode
   #
   # Ajax
-  #
-  # === Specific filters
-  #
-  # 
   #
   def select_lessons
     x = current_user.own_lessons(1, LESSONS_IN_QUICK_LOADER)
@@ -268,7 +260,7 @@ class VirtualClassroomController < ApplicationController
   #
   # === Specific filters
   #
-  # 
+  # * VirtualClassroomController#initialize_page
   #
   def select_lessons_new_block
     @lessons = current_user.own_lessons(@page, LESSONS_IN_QUICK_LOADER)[:records] if @ok
@@ -284,7 +276,7 @@ class VirtualClassroomController < ApplicationController
   #
   # === Specific filters
   #
-  # 
+  # VirtualClassroomController#initialize_loaded_lessons
   #
   def load_lessons
     @loaded = 0
@@ -305,7 +297,8 @@ class VirtualClassroomController < ApplicationController
   #
   # === Specific filters
   #
-  # 
+  # * VirtualClassroomController#initialize_lesson_for_sending_link
+  # * VirtualClassroomController#initialize_emails
   #
   def send_link
     if @ok
