@@ -64,7 +64,21 @@
 </nav>
 
     
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
     
+    <li><a href="#method-i-init_validation">#init_validation</a>
+    
+    <li><a href="#method-i-validate_associations">#validate_associations</a>
+    
+    <li><a href="#method-i-validate_impossible_changes">#validate_impossible_changes</a>
+    
+  </ul>
+</nav>
+
   </div>
 
   <div id="project-metadata">
@@ -311,8 +325,6 @@
   
     <li><a href="./Filters.html">Filters</a>
   
-    <li><a href="./Form.html">Form</a>
-  
     <li><a href="./GalleriesController.html">GalleriesController</a>
   
     <li><a href="./Image.html">Image</a>
@@ -471,6 +483,105 @@ table <a href="MailingListAddress.html">MailingListAddress</a></p>
 
     <!-- Methods -->
     
+     <section id="private-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Private Instance Methods</h3>
+
+    
+      <div id="method-i-init_validation" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">init_validation</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Initializes validation objects (see <a
+href="Valid.html#method-c-get_association">Valid.get_association</a>)</p>
+          
+
+          
+          <div class="method-source-code" id="init_validation-source">
+            <pre><span class="ruby-comment"># File app/models/mailing_list_group.rb, line 49</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">init_validation</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-ivar">@user</span> = <span class="ruby-constant">Valid</span>.<span class="ruby-identifier">get_association</span>(<span class="ruby-keyword">self</span>, <span class="ruby-value">:user_id</span>)
+  <span class="ruby-ivar">@mailing_list_group</span> = <span class="ruby-constant">Valid</span>.<span class="ruby-identifier">get_association</span> <span class="ruby-keyword">self</span>, <span class="ruby-value">:id</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- init_validation-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- init_validation-method -->
+
+    
+      <div id="method-i-validate_associations" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">validate_associations</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Validates the presence of all the associated objects</p>
+          
+
+          
+          <div class="method-source-code" id="validate_associations-source">
+            <pre><span class="ruby-comment"># File app/models/mailing_list_group.rb, line 55</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">validate_associations</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:user_id</span>, <span class="ruby-value">:doesnt_exist</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">nil?</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- validate_associations-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- validate_associations-method -->
+
+    
+      <div id="method-i-validate_impossible_changes" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">validate_impossible_changes</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Validates that if the group is new record the field <code>user_id</code>
+can&#39;t be changed</p>
+          
+
+          
+          <div class="method-source-code" id="validate_impossible_changes-source">
+            <pre><span class="ruby-comment"># File app/models/mailing_list_group.rb, line 60</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">validate_impossible_changes</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:user_id</span>, <span class="ruby-value">:cant_be_changed</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@mailing_list_group</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@mailing_list_group</span>.<span class="ruby-identifier">user_id</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">user_id</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- validate_impossible_changes-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- validate_impossible_changes-method -->
+
+    
+    </section><!-- private-instance-method-details -->
+  
   </section><!-- 5Buntitled-5D -->
 
 </div><!-- documentation -->

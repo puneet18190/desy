@@ -323,8 +323,6 @@
   
     <li><a href="../Filters.html">Filters</a>
   
-    <li><a href="../Form.html">Form</a>
-  
     <li><a href="../GalleriesController.html">GalleriesController</a>
   
     <li><a href="../Image.html">Image</a>
@@ -418,6 +416,19 @@
 
   <div id="description" class="description">
     
+<h2 id="label-Description">Description</h2>
+
+<p>Controller for the actions related to reports in the administration (see <a
+href="../AdminController.html">AdminController</a>). Actions in this
+controller may be called by <a
+href="DashboardController.html">Admin::DashboardController</a> and <a
+href="MessagesController.html">Admin::MessagesController</a></p>
+
+<h2 id="label-Models+used">Models used</h2>
+<ul><li>
+<p><a href="../Report.html">Report</a></p>
+</li></ul>
+
   </div><!-- description -->
 
   
@@ -449,12 +460,25 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-accept-label-Description">Description</h3>
+
+<p>A report is accepted and thus the associated lesson or element is deleted,
+together with the report</p>
+
+<h3 id="method-i-accept-label-Mode">Mode</h3>
+
+<p>Ajax</p>
+
+<h3 id="method-i-accept-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p><a
+href="../ApplicationController.html#method-i-admin_authenticate">ApplicationController#admin_authenticate</a></p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="accept-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/reports_controller.rb, line 5</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/reports_controller.rb, line 25</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">accept</span>
   <span class="ruby-ivar">@ok</span> = <span class="ruby-identifier">correct_integer?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>]
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
@@ -483,12 +507,25 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-decline-label-Description">Description</h3>
+
+<p>A report is declined and thus the associated lesson or element is
+<strong>not</strong> deleted; the report itself is deleted, instead</p>
+
+<h3 id="method-i-decline-label-Mode">Mode</h3>
+
+<p>Ajax</p>
+
+<h3 id="method-i-decline-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p><a
+href="../ApplicationController.html#method-i-admin_authenticate">ApplicationController#admin_authenticate</a></p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="decline-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/reports_controller.rb, line 13</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/reports_controller.rb, line 45</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">decline</span>
   <span class="ruby-ivar">@ok</span> = <span class="ruby-identifier">correct_integer?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>]
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>

@@ -321,8 +321,6 @@
   
     <li><a href="../Filters.html">Filters</a>
   
-    <li><a href="../Form.html">Form</a>
-  
     <li><a href="../GalleriesController.html">GalleriesController</a>
   
     <li><a href="../Image.html">Image</a>
@@ -416,6 +414,18 @@
 
   <div id="description" class="description">
     
+<h2 id="label-Description">Description</h2>
+
+<p>Controller of the Dashboard in the administration section. See <a
+href="../AdminController.html">AdminController</a>.</p>
+
+<h2 id="label-Models+used">Models used</h2>
+<ul><li>
+<p><a href="../User.html">User</a></p>
+</li><li>
+<p><a href="../Report.html">Report</a></p>
+</li></ul>
+
   </div><!-- description -->
 
   
@@ -447,12 +457,25 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-index-label-Description">Description</h3>
+
+<p>Action that creates instances of all the main information to be shown in
+the administration dashboard</p>
+
+<h3 id="method-i-index-label-Mode">Mode</h3>
+
+<p>Html + Xml</p>
+
+<h3 id="method-i-index-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p><a
+href="../ApplicationController.html#method-i-admin_authenticate">ApplicationController#admin_authenticate</a></p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/dashboard_controller.rb, line 5</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/dashboard_controller.rb, line 26</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
   <span class="ruby-ivar">@users</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;created_at DESC&#39;</span>).<span class="ruby-identifier">limit</span>(<span class="ruby-value">5</span>)
   <span class="ruby-ivar">@elements_reports</span> = <span class="ruby-constant">Report</span>.<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;created_at DESC&#39;</span>).<span class="ruby-identifier">where</span>(<span class="ruby-value">:reportable_type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;MediaElement&#39;</span>).<span class="ruby-identifier">limit</span>(<span class="ruby-value">5</span>)

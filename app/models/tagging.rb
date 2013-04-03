@@ -63,29 +63,34 @@ class Tagging < ActiveRecord::Base
   
   private
   
-  def destroy_orphan_tags
+  # Callback that destroys the attached Tag if it doesn't have attached taggings anymore. The callback is not fired if the attribute not_orphans is +true+
+  def destroy_orphan_tags # :doc:
     return true if @not_orphans
     tag.destroy if !tag.taggings.exists?
     true
   end
   
-  def good_taggable_type
+  # Checks that +taggable_type+ is in the correct format
+  def good_taggable_type # :doc:
     ['Lesson', 'MediaElement'].include? self.taggable_type
   end
   
-  def init_validation
+  # Initializes validation objects (see Valid.get_association)
+  def init_validation # :doc:
     @tagging = Valid.get_association self, :id
     @lesson = self.taggable_type == 'Lesson' ? Valid.get_association(self, :taggable_id, Lesson) : nil
     @media_element = self.taggable_type == 'MediaElement' ? Valid.get_association(self, :taggable_id, MediaElement) : nil
   end
   
-  def validate_associations
+  # Validates the presence of all the associated objects
+  def validate_associations # :doc:
     errors.add(:tag_id, :doesnt_exist) if !Tag.exists?(self.tag_id)
     errors.add(:taggable_id, :lesson_doesnt_exist) if self.taggable_type == 'Lesson' && @lesson.nil?
     errors.add(:taggable_id, :media_element_doesnt_exist) if self.taggable_type == 'MediaElement' && @media_element.nil?
   end
   
-  def validate_impossible_changes
+  # If not a new record, it validates that no field changed
+  def validate_impossible_changes # :doc:
     if @tagging
       errors.add(:tag_id, :cant_be_changed) if self.tag_id != @tagging.tag_id
       errors.add(:taggable_id, :cant_be_changed) if self.taggable_id != @tagging.taggable_id

@@ -17,7 +17,7 @@ class UserTest < ActiveSupport::TestCase
   
   test 'empty_and_defaults' do
     @user = User.new
-    assert_error_size 13, @user
+    assert_error_size 15, @user
   end
   
   test 'attr_accessible' do

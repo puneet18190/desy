@@ -108,19 +108,19 @@ class VideoEditorController < ApplicationController
   
   private
   
-  def used_in_private_lessons
+  def used_in_private_lessons # :doc:
     return false if @parameters[:initial_video].nil?
     @parameters[:initial_video].media_elements_slides.any?
   end
   
-  def check_available_for_user
+  def check_available_for_user # :doc:
     if !current_user.video_editor_available
       render 'not_available'
       return
     end
   end
   
-  def extract_single_form_parameter(p, value)
+  def extract_single_form_parameter(p, value) # :doc:
     if ['type', 'content', 'background_color', 'text_color'].include? p
       return value
     elsif ['position', 'video_id', 'image_id', 'from', 'to', 'duration'].include? p
@@ -130,7 +130,7 @@ class VideoEditorController < ApplicationController
     end
   end
   
-  def extract_form_parameters
+  def extract_form_parameters # :doc:
     unordered_resp = {}
     ordered_resp = {}
     resp = {
@@ -161,7 +161,7 @@ class VideoEditorController < ApplicationController
     resp
   end
   
-  def convert_video_to_parameters
+  def convert_video_to_parameters # :doc:
     resp = {}
     resp[:initial_video_id] = @video.is_public ? nil : @video.id
     resp[:audio_id] = nil
@@ -174,7 +174,7 @@ class VideoEditorController < ApplicationController
     resp.nil? ? empty_parameters : resp
   end
   
-  def empty_parameters
+  def empty_parameters # :doc:
     resp = {}
     resp[:initial_video] = nil
     resp[:audio_track] = nil
@@ -182,11 +182,11 @@ class VideoEditorController < ApplicationController
     resp
   end
   
-  def extract_cache
+  def extract_cache # :doc:
     @cache = Video.convert_parameters current_user.video_editor_cache, current_user.id
   end
   
-  def initialize_video_with_owner_or_public
+  def initialize_video_with_owner_or_public # :doc:
     @video_id = correct_integer?(params[:video_id]) ? params[:video_id].to_i : 0
     @video = Video.find_by_id @video_id
     update_ok(!@video.nil? && (@video.is_public || current_user.id == @video.user_id))

@@ -104,7 +104,7 @@ class ImageEditorController < ApplicationController
   
   private
   
-  def extract_textareas_params(params)
+  def extract_textareas_params(params) # :doc:
     resp = {}
     fonts = {'small_font' => 15, 'medium_font' => 25, 'big_font' => 35}
     params.each do |k, v|
@@ -133,13 +133,13 @@ class ImageEditorController < ApplicationController
     final_resp
   end
   
-  def initialize_image_with_owner_or_public
+  def initialize_image_with_owner_or_public # :doc:
     @image_id = correct_integer?(params[:image_id]) ? params[:image_id].to_i : 0
     @image = Image.find_by_id @image_id
     update_ok(!@image.nil? && (@image.is_public || current_user.id == @image.user_id))
   end
   
-  def initialize_image_with_owner_and_private
+  def initialize_image_with_owner_and_private # :doc:
     @image_id = correct_integer?(params[:image_id]) ? params[:image_id].to_i : 0
     @image = Image.find_by_id @image_id
     update_ok(!@image.nil? && !@image.is_public && current_user.id == @image.user_id)

@@ -305,8 +305,6 @@
   
     <li><a href="./Filters.html">Filters</a>
   
-    <li><a href="./Form.html">Form</a>
-  
     <li><a href="./GalleriesController.html">GalleriesController</a>
   
     <li><a href="./Image.html">Image</a>
@@ -400,6 +398,11 @@
 
   <div id="description" class="description">
     
+<p>Keywords for statuses of lessons and elements; with the word
+<code>item</code> below we refere to both lessons and media elements. See
+<a href="Lesson.html#method-i-set_status">Lesson#set_status</a> and <a
+href="MediaElement.html#method-i-set_status">MediaElement#set_status</a></p>
+
   </div><!-- description -->
 
   
@@ -418,37 +421,42 @@
       
         <dt id="COPIED">COPIED
         
-        <dd class="description">
+        <dd class="description"><p>The lesson has the field <code>copied_not_modified</code> set as
+<code>true</code></p>
         
       
         <dt id="LESSONS_SET">LESSONS_SET
         
-        <dd class="description">
+        <dd class="description"><p>Set of available statuses for lessons</p>
         
       
         <dt id="LINKED">LINKED
         
-        <dd class="description">
+        <dd class="description"><p>The field <code>is_public</code> is <code>true</code>, and the user has a
+link to the item</p>
         
       
         <dt id="MEDIA_ELEMENTS_SET">MEDIA_ELEMENTS_SET
         
-        <dd class="description">
+        <dd class="description"><p>Set of available statuses for elements</p>
         
       
         <dt id="PRIVATE">PRIVATE
         
-        <dd class="description">
+        <dd class="description"><p>The field <code>is_public</code> is <code>false</code>, and the item
+belongs to the user</p>
         
       
         <dt id="PUBLIC">PUBLIC
         
-        <dd class="description">
+        <dd class="description"><p>The item has the field <code>is_public</code> set as <code>true</code> and
+it&#39;s not linked by the user</p>
         
       
         <dt id="SHARED">SHARED
         
-        <dd class="description">
+        <dd class="description"><p>The lesson has the field <code>is_public</code> set as <code>true</code>
+and it belongs to the user</p>
         
       
       </dl>

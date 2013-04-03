@@ -74,6 +74,10 @@
     
     <li><a href="#method-i-get_new_block">#get_new_block</a>
     
+    <li><a href="#method-i-initialize_notification_offset">#initialize_notification_offset</a>
+    
+    <li><a href="#method-i-initialize_notification_with_owner">#initialize_notification_with_owner</a>
+    
     <li><a href="#method-i-seen">#seen</a>
     
   </ul>
@@ -325,8 +329,6 @@
   
     <li><a href="./Filters.html">Filters</a>
   
-    <li><a href="./Form.html">Form</a>
-  
     <li><a href="./GalleriesController.html">GalleriesController</a>
   
     <li><a href="./Image.html">Image</a>
@@ -560,6 +562,74 @@
 
     
     </section><!-- public-instance-method-details -->
+  
+     <section id="private-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Private Instance Methods</h3>
+
+    
+      <div id="method-i-initialize_notification_offset" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">initialize_notification_offset</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="initialize_notification_offset-source">
+            <pre><span class="ruby-comment"># File app/controllers/notifications_controller.rb, line 38</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize_notification_offset</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-ivar">@offset_notifications</span> = (<span class="ruby-identifier">correct_integer?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:offset</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:offset</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-constant">NOTIFICATIONS_LOADED_TOGETHER</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- initialize_notification_offset-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- initialize_notification_offset-method -->
+
+    
+      <div id="method-i-initialize_notification_with_owner" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">initialize_notification_with_owner</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="initialize_notification_with_owner-source">
+            <pre><span class="ruby-comment"># File app/controllers/notifications_controller.rb, line 42</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize_notification_with_owner</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-ivar">@notification_id</span> = <span class="ruby-identifier">correct_integer?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:notification_id</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:notification_id</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-value">0</span>
+  <span class="ruby-ivar">@notification</span> = <span class="ruby-constant">Notification</span>.<span class="ruby-identifier">find_by_id</span> <span class="ruby-ivar">@notification_id</span>
+  <span class="ruby-identifier">update_ok</span>(<span class="ruby-operator">!</span><span class="ruby-ivar">@notification</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">==</span> <span class="ruby-ivar">@notification</span>.<span class="ruby-identifier">user_id</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- initialize_notification_with_owner-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- initialize_notification_with_owner-method -->
+
+    
+    </section><!-- private-instance-method-details -->
   
   </section><!-- 5Buntitled-5D -->
 

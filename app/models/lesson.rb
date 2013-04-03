@@ -33,14 +33,14 @@ require 'lessons_media_elements_shared'
 # * *taggings*: tags associated to the lesson (see Tagging, Tag) (*has_many*)
 # * *slides*: slides composing the lesson (see Slide) (*has_many*)
 # * *media_elements_slides*: list of instances of media elements inside slides of this lesson (see MediaElementsSlide) (through the class Slide) (*has_many*)
-# * *media_elements*: list of media elements attached to slides of this lesson (see MediaElement) (through the class Slide and MediaElementsSlide) (*has_many*)
+# * *media_elements*: list of media elements attached to slides of this lesson (see MediaElement) (through the class Slide and MediaElementsSlide) (*has_and_belongs_to_many*)
 # * *virtual_classroom_lessons*: copies of this lesson into the Virtual Classroom of the creator or other users (see VirtualClassroomLesson) (*has_many*)
 #
 # == Validations
 #
 # * *presence* with numericality and existence of associated record for +user_id+, +subject_id+, +school_level_id+
 # * *presence* for +title+ and +description+
-# * *presence* of associated element, numericality for +parent_id+ and +parent_id+ must different by +id+, <b>only if different by nil</b>
+# * *presence* of associated object, numericality for +parent_id+ and +parent_id+ must different by +id+, <b>only if different by nil</b>
 # * *inclusion* of +is_public+, +copied_not_modified+, +notified+ in [+true+, +false+]
 # * *length* of +title+ and +description+ (values configured in the I18n translation file; only for title, if the value is greater than 255 it's set to 255)
 # * *uniqueness* of the couple [+parent_id+, +user_id+] <b>if +parent_id+ is not null</b>
@@ -284,7 +284,7 @@ class Lesson < ActiveRecord::Base
   #
   # === Returns
   #
-  # A string, or a keyword representing the status (see Statuses)
+  # A string, or a keyword representing the status (see Statuses and LessonsMediaElementsShared)
   #
   def status(with_captions=false)
     @status.nil? ? nil : (with_captions ? Lesson.status(@status) : @status)
@@ -757,23 +757,28 @@ class Lesson < ActiveRecord::Base
   
   private
   
-  def validate_tags_length
+  # Validates that the tags are at least the number configured in settings.yml, unless the attribute +validating_in_form+ is false
+  def validate_tags_length # :doc:
     errors.add(:tags, :are_not_enough) if @validating_in_form && @inner_tags.length < SETTINGS['min_tags_for_item']
   end
   
-  def virtual_classroom_button
+  # Extracts the corresponding button depending on the fact that the lesson is in the Virtual Classroom or not
+  def virtual_classroom_button # :doc:
     @in_vc ? Buttons::REMOVE_VIRTUAL_CLASSROOM : Buttons::ADD_VIRTUAL_CLASSROOM
   end
   
-  def like_button
+  # Extracts the corresponding button depending on the fact that the lesson is liked by the user or not
+  def like_button # :doc:
     @liked ? Buttons::DISLIKE : Buttons::LIKE
   end
   
-  def present_parent_id
+  # Checks if +parent_id+ != +nil+
+  def present_parent_id # :doc:
     self.parent_id
   end
   
-  def validate_associations
+  # Validates the presence of all the associated objects; only for +parent_id+, it's allowed +nil+, and if not +nil+ it's checked that it's not the lesson itself
+  def validate_associations # :doc:
     errors.add(:user_id, :doesnt_exist) if @user.nil?
     errors.add(:subject_id, :doesnt_exist) if @subject.nil?
     errors.add(:school_level_id, :doesnt_exist) if @school_level.nil?
@@ -781,7 +786,8 @@ class Lesson < ActiveRecord::Base
     errors.add(:parent_id, :cant_be_the_lesson_itself) if @lesson && self.parent_id == @lesson.id
   end
   
-  def update_or_create_tags
+  # Callback that updates the taggings associated to the lesson. If the corresponding Tag doesn't exist yet, it's created
+  def update_or_create_tags # :doc:
     return true unless @inner_tags
     words = []
     @inner_tags.each do |t|
@@ -801,7 +807,8 @@ class Lesson < ActiveRecord::Base
     end
   end
   
-  def init_validation
+  # Initializes validation objects (see Valid.get_association). It's initialized also the private attribute +inner_tags+
+  def init_validation # :doc:
     @lesson = Valid.get_association self, :id
     @user = Valid.get_association self, :user_id
     @subject = Valid.get_association self, :subject_id
@@ -828,7 +835,8 @@ class Lesson < ActiveRecord::Base
     end
   end
   
-  def create_or_update_cover
+  # Callback that creates or updates the cover after save
+  def create_or_update_cover # :doc:
     if @lesson.nil?
       slide = Slide.new :title => self.title, :position => 1
       slide.kind = Slide::COVER
@@ -841,15 +849,18 @@ class Lesson < ActiveRecord::Base
     end
   end
   
-  def validate_public
+  # Validates that a new lesson can't be public
+  def validate_public # :doc:
     errors.add(:is_public, :cant_be_true_for_new_records) if @lesson.nil? && self.is_public
   end
   
-  def validate_copied_not_modified_and_public
+  # Validates that a lesson just copied can't be public
+  def validate_copied_not_modified_and_public # :doc:
     errors.add(:copied_not_modified, :cant_be_true_if_public) if self.is_public && self.copied_not_modified
   end
   
-  def validate_impossible_changes
+  # Validates that if the lesson is not new record the fields +token+, +user_id+, +parent_id+ cannot be changed
+  def validate_impossible_changes # :doc:
     if @lesson
       errors.add(:token, :cant_be_changed) if @lesson.token != self.token
       errors.add(:user_id, :cant_be_changed) if @lesson.user_id != self.user_id
@@ -857,19 +868,20 @@ class Lesson < ActiveRecord::Base
     end
   end
   
-  def create_token
+  # Callback that creates a random secure token and sets is as the +token+ of the lesson
+  def create_token # :doc:
     self.token = SecureRandom.urlsafe_base64(16)
     true
   end
   
-  def self.test
+  def self.test # :doc:
     l = User.admin.create_lesson('test title', 'test description', 1, "asd, o, mar, rio, mare, test")
     l = find l.id
     _d l
     l.destroy
   end
   
-  def initialize_metadata
+  def initialize_metadata # :doc:
     self.metadata.available_video = true
     self.metadata.available_audio = true
   end

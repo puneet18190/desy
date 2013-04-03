@@ -76,6 +76,10 @@
     
     <li><a href="#method-i-playlist">#playlist</a>
     
+    <li><a href="#method-i-skip_authenticate_user_if_token">#skip_authenticate_user_if_token</a>
+    
+    <li><a href="#method-i-skip_authenticate_user_if_token_with_slide">#skip_authenticate_user_if_token_with_slide</a>
+    
   </ul>
 </nav>
 
@@ -325,8 +329,6 @@
   
     <li><a href="./Filters.html">Filters</a>
   
-    <li><a href="./Form.html">Form</a>
-  
     <li><a href="./GalleriesController.html">GalleriesController</a>
   
     <li><a href="./Image.html">Image</a>
@@ -545,6 +547,76 @@
 
     
     </section><!-- public-instance-method-details -->
+  
+     <section id="private-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Private Instance Methods</h3>
+
+    
+      <div id="method-i-skip_authenticate_user_if_token" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">skip_authenticate_user_if_token</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="skip_authenticate_user_if_token-source">
+            <pre><span class="ruby-comment"># File app/controllers/lesson_viewer_controller.rb, line 42</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">skip_authenticate_user_if_token</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-identifier">initialize_lesson</span>
+  <span class="ruby-identifier">update_ok</span>(<span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">is_public</span> <span class="ruby-operator">||</span> (<span class="ruby-identifier">logged_in?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">session</span>[<span class="ruby-value">:user_id</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">==</span> <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">user_id</span>)) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">token</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:token</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- skip_authenticate_user_if_token-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- skip_authenticate_user_if_token-method -->
+
+    
+      <div id="method-i-skip_authenticate_user_if_token_with_slide" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">skip_authenticate_user_if_token_with_slide</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="skip_authenticate_user_if_token_with_slide-source">
+            <pre><span class="ruby-comment"># File app/controllers/lesson_viewer_controller.rb, line 35</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">skip_authenticate_user_if_token_with_slide</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-identifier">skip_authenticate_user_if_token</span>
+  <span class="ruby-ivar">@slide_id</span> = <span class="ruby-identifier">correct_integer?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:slide_id</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:slide_id</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-value">0</span>
+  <span class="ruby-ivar">@slide</span> = <span class="ruby-constant">Slide</span>.<span class="ruby-identifier">find_by_id</span> <span class="ruby-ivar">@slide_id</span>
+  <span class="ruby-identifier">update_ok</span>(<span class="ruby-ivar">@slide</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@lesson</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">==</span> <span class="ruby-ivar">@slide</span>.<span class="ruby-identifier">lesson_id</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- skip_authenticate_user_if_token_with_slide-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- skip_authenticate_user_if_token_with_slide-method -->
+
+    
+    </section><!-- private-instance-method-details -->
   
   </section><!-- 5Buntitled-5D -->
 

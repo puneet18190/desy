@@ -84,6 +84,8 @@
     
     <li><a href="#method-i-height">#height</a>
     
+    <li><a href="#method-i-height-3D">#height=</a>
+    
     <li><a href="#method-i-in_edit_mode-3F">#in_edit_mode?</a>
     
     <li><a href="#method-i-leave_edit_mode">#leave_edit_mode</a>
@@ -92,6 +94,10 @@
     
     <li><a href="#method-i-save_editing_prev">#save_editing_prev</a>
     
+    <li><a href="#method-i-set_converted_to_true">#set_converted_to_true</a>
+    
+    <li><a href="#method-i-set_width_and_height">#set_width_and_height</a>
+    
     <li><a href="#method-i-thumb_url">#thumb_url</a>
     
     <li><a href="#method-i-undo">#undo</a>
@@ -99,6 +105,8 @@
     <li><a href="#method-i-url">#url</a>
     
     <li><a href="#method-i-width">#width</a>
+    
+    <li><a href="#method-i-width-3D">#width=</a>
     
   </ul>
 </nav>
@@ -348,8 +356,6 @@
     <li><a href="./ExceptionNotifierJob.html">ExceptionNotifierJob</a>
   
     <li><a href="./Filters.html">Filters</a>
-  
-    <li><a href="./Form.html">Form</a>
   
     <li><a href="./GalleriesController.html">GalleriesController</a>
   
@@ -1190,6 +1196,135 @@ href="ImageEditorController.html#method-i-undo">ImageEditorController#undo</a>.<
 
     
     </section><!-- public-instance-method-details -->
+  
+     <section id="private-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Private Instance Methods</h3>
+
+    
+      <div id="method-i-height-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">height=</span><span
+            class="method-args">(height)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Sets the <code>height</code> in <code>metadata</code></p>
+          
+
+          
+          <div class="method-source-code" id="height-3D-source">
+            <pre><span class="ruby-comment"># File app/models/image.rb, line 311</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">height=</span>(<span class="ruby-identifier">height</span>) <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">height</span> = <span class="ruby-identifier">height</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- height-3D-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- height-3D-method -->
+
+    
+      <div id="method-i-set_converted_to_true" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">set_converted_to_true</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Sets <code>converted</code> to true</p>
+          
+
+          
+          <div class="method-source-code" id="set_converted_to_true-source">
+            <pre><span class="ruby-comment"># File app/models/image.rb, line 322</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">set_converted_to_true</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">converted</span> = <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">true</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- set_converted_to_true-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- set_converted_to_true-method -->
+
+    
+      <div id="method-i-set_width_and_height" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">set_width_and_height</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Sets <code>width</code> and <code>height</code> according to the data
+contained in <code>media</code></p>
+          
+
+          
+          <div class="method-source-code" id="set_width_and_height-source">
+            <pre><span class="ruby-comment"># File app/models/image.rb, line 316</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">set_width_and_height</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">width</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">height</span> = <span class="ruby-identifier">media</span>.<span class="ruby-identifier">width</span>, <span class="ruby-identifier">media</span>.<span class="ruby-identifier">height</span>
+  <span class="ruby-keyword">true</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- set_width_and_height-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- set_width_and_height-method -->
+
+    
+      <div id="method-i-width-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">width=</span><span
+            class="method-args">(width)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Sets the <code>width</code> in <code>metadata</code></p>
+          
+
+          
+          <div class="method-source-code" id="width-3D-source">
+            <pre><span class="ruby-comment"># File app/models/image.rb, line 306</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">width=</span>(<span class="ruby-identifier">width</span>) <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">width</span> = <span class="ruby-identifier">width</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- width-3D-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- width-3D-method -->
+
+    
+    </section><!-- private-instance-method-details -->
   
   </section><!-- 5Buntitled-5D -->
 

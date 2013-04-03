@@ -311,8 +311,6 @@
   
     <li><a href="./Filters.html">Filters</a>
   
-    <li><a href="./Form.html">Form</a>
-  
     <li><a href="./GalleriesController.html">GalleriesController</a>
   
     <li><a href="./Image.html">Image</a>
@@ -406,6 +404,43 @@
 
   <div id="description" class="description">
     
+<h2 id="label-Description">Description</h2>
+
+<p>ActiveRecord model associated to the table &#39;users_subjects&#39;: this
+table is used as a link association of type
+<code>has_and_belongs_to_many</code> between the models <a
+href="User.html">User</a> and <a href="Subject.html">Subject</a></p>
+
+<h2 id="label-Fields">Fields</h2>
+<ul><li>
+<p><strong>user_id</strong>: id of the user</p>
+</li><li>
+<p><strong>subject_id</strong>: id of the subject</p>
+</li></ul>
+
+<h2 id="label-Associations">Associations</h2>
+<ul><li>
+<p><strong>user</strong>: the <a href="User.html">User</a> who owns this
+instance of a subject (<strong>belongs_to</strong>)</p>
+</li><li>
+<p><strong>subject</strong>: the <a href="Subject.html">Subject</a> instanced
+(<strong>belongs_to</strong>)</p>
+</li></ul>
+
+<h2 id="label-Validations">Validations</h2>
+<ul><li>
+<p><strong>presence</strong> with numericality greater than 0 and presence of
+associated object for both fields</p>
+</li></ul>
+
+<h2 id="label-Callbacks">Callbacks</h2>
+
+<p>None</p>
+
+<h2 id="label-Database+callbacks">Database callbacks</h2>
+
+<p>None</p>
+
   </div><!-- description -->
 
   

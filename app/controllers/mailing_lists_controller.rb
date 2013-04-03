@@ -42,18 +42,18 @@ class MailingListsController < ApplicationController
   
   private
   
-  def initialize_mailing_list_group_with_owner
+  def initialize_mailing_list_group_with_owner # :doc:
     initialize_mailing_list_group
     update_ok(@mailing_list_group && current_user.id == @mailing_list_group.user_id)
   end
   
-  def initialize_mailing_list_group
+  def initialize_mailing_list_group # :doc:
     @mailing_list_group_id = correct_integer?(params[:group_id]) ? params[:group_id].to_i : 0
     @mailing_list_group = MailingListGroup.find_by_id @mailing_list_group_id
     update_ok(!@mailing_list_group.nil?)
   end
   
-  def initialize_mailing_list_address_with_owner
+  def initialize_mailing_list_address_with_owner # :doc:
     initialize_mailing_list_address
     initialize_mailing_list_group
     update_ok(@mailing_list_address && @mailing_list_group)
@@ -61,7 +61,7 @@ class MailingListsController < ApplicationController
     update_ok(current_user.id == @mailing_list_group.user_id)
   end
   
-  def initialize_mailing_list_address
+  def initialize_mailing_list_address # :doc:
     @mailing_list_address_id = correct_integer?(params[:address_id]) ? params[:address_id].to_i : 0
     @mailing_list_address = MailingListAddress.find_by_id @mailing_list_address_id
     update_ok(!@mailing_list_address.nil?)

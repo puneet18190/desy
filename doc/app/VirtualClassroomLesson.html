@@ -76,11 +76,25 @@
     
     <li><a href="#method-i-in_playlist-3F">#in_playlist?</a>
     
+    <li><a href="#method-i-init_validation">#init_validation</a>
+    
     <li><a href="#method-i-next_in_playlist">#next_in_playlist</a>
     
     <li><a href="#method-i-prev_in_playlist">#prev_in_playlist</a>
     
     <li><a href="#method-i-remove_from_playlist">#remove_from_playlist</a>
+    
+    <li><a href="#method-i-validate_associations">#validate_associations</a>
+    
+    <li><a href="#method-i-validate_availability">#validate_availability</a>
+    
+    <li><a href="#method-i-validate_copied_not_modified">#validate_copied_not_modified</a>
+    
+    <li><a href="#method-i-validate_impossible_changes">#validate_impossible_changes</a>
+    
+    <li><a href="#method-i-validate_playlist_length">#validate_playlist_length</a>
+    
+    <li><a href="#method-i-validate_positions">#validate_positions</a>
     
   </ul>
 </nav>
@@ -331,8 +345,6 @@
   
     <li><a href="./Filters.html">Filters</a>
   
-    <li><a href="./Form.html">Form</a>
-  
     <li><a href="./GalleriesController.html">GalleriesController</a>
   
     <li><a href="./Image.html">Image</a>
@@ -426,6 +438,74 @@
 
   <div id="description" class="description">
     
+<h2 id="label-Description">Description</h2>
+
+<p>ActiveRecord class that corresponds to the table
+<code>virtual_classroom_lessons</code>: the table represents the instance
+of a lesson in the user&#39;s Virtual Classroom</p>
+
+<h2 id="label-Fields">Fields</h2>
+<ul><li>
+<p><strong>lesson_id</strong>: id of the lesson</p>
+</li><li>
+<p><strong>user_id</strong>: id of the owner of the Virtual Classroom</p>
+</li><li>
+<p><strong>position</strong>: position of the lesson in the playlist (if
+it&#39;s <code>nil</code>, the lesson is not in the playlist)</p>
+</li></ul>
+
+<h2 id="label-Associations">Associations</h2>
+<ul><li>
+<p><strong>user</strong>: reference to the <a href="User.html">User</a> who
+owns the Virtual Classroom (<strong>belongs_to</strong>)</p>
+</li><li>
+<p><strong>lesson</strong>: reference to the <a href="Lesson.html">Lesson</a>
+linked in the Virtual Classroom (<strong>belongs_to</strong>)</p>
+</li></ul>
+
+<h2 id="label-Validations">Validations</h2>
+<ul><li>
+<p><strong>presence</strong> with numericality greater than 0 and existence of
+associated record for <code>user_id</code> and <code>lesson_id</code></p>
+</li><li>
+<p><strong>numericality</strong> greater than 0 that allows nil for
+<code>position</code></p>
+</li><li>
+<p><strong>uniqueness</strong> of the couple [<code>lesson_id</code>,
+<code>user_id</code>]</p>
+</li><li>
+<p><strong>uniqueness</strong> of the couple [<code>position</code>,
+<code>user_id</code>] <strong>only if the lesson is in the
+playlist</strong></p>
+</li><li>
+<p><strong>availability</strong> of the lesson (it must be present in the
+section &#39;lesson&#39;, it can belong to the owner of the Virtual
+Classroom, or be linked by him)</p>
+</li><li>
+<p><strong>the</strong> <strong>lesson</strong> <strong>cannot</strong>
+<strong>have</strong> <strong>just</strong> <strong>been</strong>
+<strong>copied</strong> (see the fields of <a
+href="Lesson.html">Lesson</a>)</p>
+</li><li>
+<p><strong>modifications</strong> <strong>not</strong>
+<strong>available</strong> for the fields <code>user_id</code> and
+<code>lesson_id</code>, if it&#39;s not a <code>new_record</code></p>
+</li><li>
+<p><strong>presence</strong> <strong>in</strong> <strong>playlist</strong>
+<strong>not</strong> <strong>allowed</strong> if it&#39;s a new record</p>
+</li><li>
+<p><strong>number</strong> of lessons in the playlist must be smaller than the
+number configured</p>
+</li></ul>
+
+<h2 id="label-Callbacks">Callbacks</h2>
+
+<p>None</p>
+
+<h2 id="label-Database+callbacks">Database callbacks</h2>
+
+<p>None</p>
+
   </div><!-- description -->
 
   
@@ -457,12 +537,19 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-add_to_playlist-label-Description">Description</h3>
+
+<p>Adds a lesson to the playlist. Used in <a
+href="VirtualClassroomController.html#method-i-add_lesson_to_playlist">VirtualClassroomController#add_lesson_to_playlist</a>.</p>
+
+<h3 id="method-i-add_to_playlist-label-Returns">Returns</h3>
+
+<p>A boolean</p>
           
 
           
           <div class="method-source-code" id="add_to_playlist-source">
-            <pre><span class="ruby-comment"># File app/models/virtual_classroom_lesson.rb, line 57</span>
+            <pre><span class="ruby-comment"># File app/models/virtual_classroom_lesson.rb, line 134</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">add_to_playlist</span>
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">clear</span>
   <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span>
@@ -510,12 +597,26 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-change_position-label-Description">Description</h3>
+
+<p>Sets a new position of this lesson inside the playlist. The position must
+be valid, i.e. it can&#39;t be &lt; 1, &gt; number of lessons in playlist.
+Used in <a
+href="VirtualClassroomController.html#method-i-change_position_in_playlist">VirtualClassroomController#change_position_in_playlist</a>.</p>
+
+<h3 id="method-i-change_position-label-Args">Args</h3>
+<ul><li>
+<p><strong>x</strong>: the new position</p>
+</li></ul>
+
+<h3 id="method-i-change_position-label-Returns">Returns</h3>
+
+<p>A boolean</p>
           
 
           
           <div class="method-source-code" id="change_position-source">
-            <pre><span class="ruby-comment"># File app/models/virtual_classroom_lesson.rb, line 84</span>
+            <pre><span class="ruby-comment"># File app/models/virtual_classroom_lesson.rb, line 173</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">change_position</span>(<span class="ruby-identifier">x</span>)
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">clear</span>
   <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span>
@@ -586,12 +687,20 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-in_playlist-3F-label-Description">Description</h3>
+
+<p>Checks if the lesson is in the playlist (i.e. if the field
+<code>position</code> is not null). Used in <a
+href="VirtualClassroomController.html">VirtualClassroomController</a></p>
+
+<h3 id="method-i-in_playlist-3F-label-Returns">Returns</h3>
+
+<p>A boolean</p>
           
 
           
           <div class="method-source-code" id="in_playlist-3F-source">
-            <pre><span class="ruby-comment"># File app/models/virtual_classroom_lesson.rb, line 25</span>
+            <pre><span class="ruby-comment"># File app/models/virtual_classroom_lesson.rb, line 86</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">in_playlist?</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span>
   <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">position</span>.<span class="ruby-identifier">blank?</span>
@@ -617,12 +726,19 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-next_in_playlist-label-Description">Description</h3>
+
+<p>Returns the next lesson in the playlist</p>
+
+<h3 id="method-i-next_in_playlist-label-Returns">Returns</h3>
+
+<p>An object of type <a
+href="VirtualClassroomLesson.html">VirtualClassroomLesson</a></p>
           
 
           
           <div class="method-source-code" id="next_in_playlist-source">
-            <pre><span class="ruby-comment"># File app/models/virtual_classroom_lesson.rb, line 17</span>
+            <pre><span class="ruby-comment"># File app/models/virtual_classroom_lesson.rb, line 62</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">next_in_playlist</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">nil</span> <span class="ruby-operator">:</span> (<span class="ruby-keyword">self</span>.<span class="ruby-identifier">in_playlist?</span> <span class="ruby-operator">?</span> <span class="ruby-constant">VirtualClassroomLesson</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">user_id</span>, <span class="ruby-value">:position</span> =<span class="ruby-operator">&gt;</span> (<span class="ruby-keyword">self</span>.<span class="ruby-identifier">position</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>)).<span class="ruby-identifier">first</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -647,12 +763,19 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-prev_in_playlist-label-Description">Description</h3>
+
+<p>Returns the previous lesson in the playlist</p>
+
+<h3 id="method-i-prev_in_playlist-label-Returns">Returns</h3>
+
+<p>An object of type <a
+href="VirtualClassroomLesson.html">VirtualClassroomLesson</a></p>
           
 
           
           <div class="method-source-code" id="prev_in_playlist-source">
-            <pre><span class="ruby-comment"># File app/models/virtual_classroom_lesson.rb, line 21</span>
+            <pre><span class="ruby-comment"># File app/models/virtual_classroom_lesson.rb, line 74</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">prev_in_playlist</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">nil</span> <span class="ruby-operator">:</span> (<span class="ruby-keyword">self</span>.<span class="ruby-identifier">in_playlist?</span> <span class="ruby-operator">?</span> <span class="ruby-constant">VirtualClassroomLesson</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">user_id</span>, <span class="ruby-value">:position</span> =<span class="ruby-operator">&gt;</span> (<span class="ruby-keyword">self</span>.<span class="ruby-identifier">position</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>)).<span class="ruby-identifier">first</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -677,12 +800,20 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-remove_from_playlist-label-Description">Description</h3>
+
+<p>Removes the lesson from the playlist and updates the positions of the other
+lessons. Used in <a
+href="VirtualClassroomController.html#method-i-remove_lesson_from_playlist">VirtualClassroomController#remove_lesson_from_playlist</a>.</p>
+
+<h3 id="method-i-remove_from_playlist-label-Returns">Returns</h3>
+
+<p>A boolean</p>
           
 
           
           <div class="method-source-code" id="remove_from_playlist-source">
-            <pre><span class="ruby-comment"># File app/models/virtual_classroom_lesson.rb, line 30</span>
+            <pre><span class="ruby-comment"># File app/models/virtual_classroom_lesson.rb, line 99</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">remove_from_playlist</span>
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">clear</span>
   <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span>
@@ -720,6 +851,232 @@
 
     
     </section><!-- public-instance-method-details -->
+  
+     <section id="private-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Private Instance Methods</h3>
+
+    
+      <div id="method-i-init_validation" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">init_validation</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Initializes validation objects (see <a
+href="Valid.html#method-c-get_association">Valid.get_association</a>)</p>
+          
+
+          
+          <div class="method-source-code" id="init_validation-source">
+            <pre><span class="ruby-comment"># File app/models/virtual_classroom_lesson.rb, line 231</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">init_validation</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-ivar">@virtual_classroom_lesson</span> = <span class="ruby-constant">Valid</span>.<span class="ruby-identifier">get_association</span> <span class="ruby-keyword">self</span>, <span class="ruby-value">:id</span>
+  <span class="ruby-ivar">@lesson</span> = <span class="ruby-constant">Valid</span>.<span class="ruby-identifier">get_association</span> <span class="ruby-keyword">self</span>, <span class="ruby-value">:lesson_id</span>
+  <span class="ruby-ivar">@user</span> = <span class="ruby-constant">Valid</span>.<span class="ruby-identifier">get_association</span> <span class="ruby-keyword">self</span>, <span class="ruby-value">:user_id</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- init_validation-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- init_validation-method -->
+
+    
+      <div id="method-i-validate_associations" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">validate_associations</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Validates the presence of all the associated objects</p>
+          
+
+          
+          <div class="method-source-code" id="validate_associations-source">
+            <pre><span class="ruby-comment"># File app/models/virtual_classroom_lesson.rb, line 238</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">validate_associations</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:user_id</span>, <span class="ruby-value">:doesnt_exist</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">nil?</span>
+  <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:lesson_id</span>, <span class="ruby-value">:doesnt_exist</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">nil?</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- validate_associations-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- validate_associations-method -->
+
+    
+      <div id="method-i-validate_availability" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">validate_availability</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Validates that the lesson is in the user&#39;s section &#39;lessons&#39;</p>
+          
+
+          
+          <div class="method-source-code" id="validate_availability-source">
+            <pre><span class="ruby-comment"># File app/models/virtual_classroom_lesson.rb, line 244</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">validate_availability</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:lesson_id</span>, <span class="ruby-value">:is_not_available</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@lesson</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@user</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">user_id</span> <span class="ruby-operator">!=</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">bookmarked?</span>(<span class="ruby-ivar">@user</span>.<span class="ruby-identifier">id</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- validate_availability-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- validate_availability-method -->
+
+    
+      <div id="method-i-validate_copied_not_modified" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">validate_copied_not_modified</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>It validates that the lesson hasn&#39;t just been copied</p>
+          
+
+          
+          <div class="method-source-code" id="validate_copied_not_modified-source">
+            <pre><span class="ruby-comment"># File app/models/virtual_classroom_lesson.rb, line 249</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">validate_copied_not_modified</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:lesson_id</span>, <span class="ruby-value">:just_been_copied</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@lesson</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">copied_not_modified</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- validate_copied_not_modified-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- validate_copied_not_modified-method -->
+
+    
+      <div id="method-i-validate_impossible_changes" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">validate_impossible_changes</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>If the lesson is not anymore a new record, <code>user_id</code> and
+<code>lesson_id</code> can&#39;t be changed</p>
+          
+
+          
+          <div class="method-source-code" id="validate_impossible_changes-source">
+            <pre><span class="ruby-comment"># File app/models/virtual_classroom_lesson.rb, line 259</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">validate_impossible_changes</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@virtual_classroom_lesson</span>
+    <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:user_id</span>, <span class="ruby-value">:cant_be_changed</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@virtual_classroom_lesson</span>.<span class="ruby-identifier">user_id</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">user_id</span>
+    <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:lesson_id</span>, <span class="ruby-value">:cant_be_changed</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@virtual_classroom_lesson</span>.<span class="ruby-identifier">lesson_id</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">lesson_id</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- validate_impossible_changes-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- validate_impossible_changes-method -->
+
+    
+      <div id="method-i-validate_playlist_length" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">validate_playlist_length</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Validates the length of the playlist (compared to the one configured in
+settings.yml)</p>
+          
+
+          
+          <div class="method-source-code" id="validate_playlist_length-source">
+            <pre><span class="ruby-comment"># File app/models/virtual_classroom_lesson.rb, line 226</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">validate_playlist_length</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:position</span>, <span class="ruby-value">:reached_maximum_in_playlist</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@virtual_classroom_lesson</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@virtual_classroom_lesson</span>.<span class="ruby-identifier">position</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">position</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-constant">VirtualClassroomLesson</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&#39;user_id = ? AND position IS NOT NULL&#39;</span>, <span class="ruby-ivar">@virtual_classroom_lesson</span>.<span class="ruby-identifier">user_id</span>).<span class="ruby-identifier">count</span> <span class="ruby-operator">==</span> <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;lessons_in_playlist&#39;</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- validate_playlist_length-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- validate_playlist_length-method -->
+
+    
+      <div id="method-i-validate_positions" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">validate_positions</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Validates that the position can&#39;t be different by <code>nil</code> if
+the lesson is new record</p>
+          
+
+          
+          <div class="method-source-code" id="validate_positions-source">
+            <pre><span class="ruby-comment"># File app/models/virtual_classroom_lesson.rb, line 254</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">validate_positions</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:position</span>, <span class="ruby-value">:must_be_null_if_new_record</span>) <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">position</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- validate_positions-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- validate_positions-method -->
+
+    
+    </section><!-- private-instance-method-details -->
   
   </section><!-- 5Buntitled-5D -->
 

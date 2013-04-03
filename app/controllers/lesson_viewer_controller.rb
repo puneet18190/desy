@@ -32,14 +32,14 @@ class LessonViewerController < ApplicationController
   
   private
   
-  def skip_authenticate_user_if_token_with_slide
+  def skip_authenticate_user_if_token_with_slide # :doc:
     skip_authenticate_user_if_token
     @slide_id = correct_integer?(params[:slide_id]) ? params[:slide_id].to_i : 0
     @slide = Slide.find_by_id @slide_id
     update_ok(@slide && @lesson && @lesson.id == @slide.lesson_id)
   end
   
-  def skip_authenticate_user_if_token
+  def skip_authenticate_user_if_token # :doc:
     initialize_lesson
     update_ok(@lesson.is_public || (logged_in? && session[:user_id].to_i == @lesson.user_id)) if @ok && @lesson.token != params[:token]
   end

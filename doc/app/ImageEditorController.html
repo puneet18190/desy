@@ -76,6 +76,12 @@
     
     <li><a href="#method-i-edit">#edit</a>
     
+    <li><a href="#method-i-extract_textareas_params">#extract_textareas_params</a>
+    
+    <li><a href="#method-i-initialize_image_with_owner_and_private">#initialize_image_with_owner_and_private</a>
+    
+    <li><a href="#method-i-initialize_image_with_owner_or_public">#initialize_image_with_owner_or_public</a>
+    
     <li><a href="#method-i-overwrite">#overwrite</a>
     
     <li><a href="#method-i-save">#save</a>
@@ -330,8 +336,6 @@
     <li><a href="./ExceptionNotifierJob.html">ExceptionNotifierJob</a>
   
     <li><a href="./Filters.html">Filters</a>
-  
-    <li><a href="./Form.html">Form</a>
   
     <li><a href="./GalleriesController.html">GalleriesController</a>
   
@@ -701,6 +705,131 @@
 
     
     </section><!-- public-instance-method-details -->
+  
+     <section id="private-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Private Instance Methods</h3>
+
+    
+      <div id="method-i-extract_textareas_params" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">extract_textareas_params</span><span
+            class="method-args">(params)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="extract_textareas_params-source">
+            <pre><span class="ruby-comment"># File app/controllers/image_editor_controller.rb, line 107</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">extract_textareas_params</span>(<span class="ruby-identifier">params</span>) <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-identifier">resp</span> = {}
+  <span class="ruby-identifier">fonts</span> = {<span class="ruby-string">&#39;small_font&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">15</span>, <span class="ruby-string">&#39;medium_font&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">25</span>, <span class="ruby-string">&#39;big_font&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">35</span>}
+  <span class="ruby-identifier">params</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>, <span class="ruby-identifier">v</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span>(<span class="ruby-identifier">k</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/_/</span>).<span class="ruby-identifier">nil?</span>
+      <span class="ruby-identifier">index</span> = <span class="ruby-identifier">k</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;_&#39;</span>).<span class="ruby-identifier">last</span>.<span class="ruby-identifier">to_i</span>
+      <span class="ruby-identifier">p</span> = <span class="ruby-identifier">k</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-node">&quot;_#{index}&quot;</span>, <span class="ruby-string">&#39;&#39;</span>)
+      <span class="ruby-keyword">if</span> [<span class="ruby-string">&#39;color&#39;</span>, <span class="ruby-string">&#39;font&#39;</span>, <span class="ruby-string">&#39;coords&#39;</span>, <span class="ruby-string">&#39;text&#39;</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">p</span>)
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">has_key?</span> <span class="ruby-identifier">index</span>
+          <span class="ruby-identifier">resp</span>[<span class="ruby-identifier">index</span>][<span class="ruby-value">:&quot;#{p}&quot;</span>] = <span class="ruby-identifier">v</span>
+        <span class="ruby-keyword">else</span>
+          <span class="ruby-identifier">resp</span>[<span class="ruby-identifier">index</span>] = {<span class="ruby-value">:&quot;#{p}&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">v</span>}
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">final_resp</span> = []
+  <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>, <span class="ruby-identifier">v</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">final_resp</span> <span class="ruby-operator">&lt;&lt;</span> {
+      <span class="ruby-value">:color</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;colors&#39;</span>][<span class="ruby-identifier">v</span>[<span class="ruby-value">:color</span>].<span class="ruby-identifier">gsub</span>(<span class="ruby-string">&#39;color_&#39;</span>, <span class="ruby-string">&#39;&#39;</span>)][<span class="ruby-string">&#39;code&#39;</span>],
+      <span class="ruby-value">:font_size</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">fonts</span>[<span class="ruby-identifier">v</span>[<span class="ruby-value">:font</span>]].<span class="ruby-identifier">to_f</span>,
+      <span class="ruby-value">:coord_x</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">v</span>[<span class="ruby-value">:coords</span>].<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;,&#39;</span>).<span class="ruby-identifier">first</span>.<span class="ruby-identifier">to_f</span>,
+      <span class="ruby-value">:coord_y</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">v</span>[<span class="ruby-value">:coords</span>].<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;,&#39;</span>).<span class="ruby-identifier">last</span>.<span class="ruby-identifier">to_f</span>,
+      <span class="ruby-value">:text</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">v</span>[<span class="ruby-value">:text</span>]
+    }
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">final_resp</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- extract_textareas_params-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- extract_textareas_params-method -->
+
+    
+      <div id="method-i-initialize_image_with_owner_and_private" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">initialize_image_with_owner_and_private</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="initialize_image_with_owner_and_private-source">
+            <pre><span class="ruby-comment"># File app/controllers/image_editor_controller.rb, line 142</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize_image_with_owner_and_private</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-ivar">@image_id</span> = <span class="ruby-identifier">correct_integer?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:image_id</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:image_id</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-value">0</span>
+  <span class="ruby-ivar">@image</span> = <span class="ruby-constant">Image</span>.<span class="ruby-identifier">find_by_id</span> <span class="ruby-ivar">@image_id</span>
+  <span class="ruby-identifier">update_ok</span>(<span class="ruby-operator">!</span><span class="ruby-ivar">@image</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@image</span>.<span class="ruby-identifier">is_public</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">==</span> <span class="ruby-ivar">@image</span>.<span class="ruby-identifier">user_id</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- initialize_image_with_owner_and_private-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- initialize_image_with_owner_and_private-method -->
+
+    
+      <div id="method-i-initialize_image_with_owner_or_public" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">initialize_image_with_owner_or_public</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="initialize_image_with_owner_or_public-source">
+            <pre><span class="ruby-comment"># File app/controllers/image_editor_controller.rb, line 136</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize_image_with_owner_or_public</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-ivar">@image_id</span> = <span class="ruby-identifier">correct_integer?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:image_id</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:image_id</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-value">0</span>
+  <span class="ruby-ivar">@image</span> = <span class="ruby-constant">Image</span>.<span class="ruby-identifier">find_by_id</span> <span class="ruby-ivar">@image_id</span>
+  <span class="ruby-identifier">update_ok</span>(<span class="ruby-operator">!</span><span class="ruby-ivar">@image</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-ivar">@image</span>.<span class="ruby-identifier">is_public</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">==</span> <span class="ruby-ivar">@image</span>.<span class="ruby-identifier">user_id</span>))
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- initialize_image_with_owner_or_public-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- initialize_image_with_owner_or_public-method -->
+
+    
+    </section><!-- private-instance-method-details -->
   
   </section><!-- 5Buntitled-5D -->
 

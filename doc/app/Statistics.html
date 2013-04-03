@@ -86,6 +86,8 @@
     
     <li><a href="#method-c-my_likes_count">::my_likes_count</a>
     
+    <li><a href="#method-c-sbj_to_percentage">::sbj_to_percentage</a>
+    
   </ul>
 </nav>
 
@@ -335,8 +337,6 @@
   
     <li><a href="./Filters.html">Filters</a>
   
-    <li><a href="./Form.html">Form</a>
-  
     <li><a href="./GalleriesController.html">GalleriesController</a>
   
     <li><a href="./Image.html">Image</a>
@@ -430,6 +430,13 @@
 
   <div id="description" class="description">
     
+<p>Module of methods that return statistics, used in <a
+href="UsersController.html#method-i-statistics">UsersController#statistics</a>,
+<a
+href="Admin/DashboardController.html#method-i-index">Admin::DashboardController#index</a>
+and <a
+href="Admin/UsersController.html#method-i-show">Admin::UsersController#show</a></p>
+
   </div><!-- description -->
 
   
@@ -456,7 +463,7 @@
 
         <div class="method-description">
         
-        
+        <p>The user necessary to scope all personal statistics</p>
         
         </div>
       </div>
@@ -481,12 +488,12 @@
 
         <div class="method-description">
           
-          <p>The first n lessons liked by users in all DESY</p>
+          <p>The first n lessons liked by users in all the application</p>
           
 
           
           <div class="method-source-code" id="all_liked_lessons-source">
-            <pre><span class="ruby-comment"># File lib/autoload/statistics.rb, line 16</span>
+            <pre><span class="ruby-comment"># File lib/autoload/statistics.rb, line 15</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">all_liked_lessons</span>(<span class="ruby-identifier">first_n</span>)
   <span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">select</span>(<span class="ruby-string">&#39;id, title, (SELECT COUNT (*) FROM likes WHERE likes.lesson_id = lessons.id) AS likes_count&#39;</span>).<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;likes_count DESC, updated_at DESC&#39;</span>).<span class="ruby-identifier">limit</span>(<span class="ruby-identifier">first_n</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -516,7 +523,7 @@
 
           
           <div class="method-source-code" id="all_shared_elements-source">
-            <pre><span class="ruby-comment"># File lib/autoload/statistics.rb, line 59</span>
+            <pre><span class="ruby-comment"># File lib/autoload/statistics.rb, line 55</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">all_shared_elements</span>
   <span class="ruby-constant">MediaElement</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:is_public</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>).<span class="ruby-identifier">count</span>
 <span class="ruby-keyword">end</span></pre>
@@ -546,7 +553,7 @@
 
           
           <div class="method-source-code" id="all_shared_lessons-source">
-            <pre><span class="ruby-comment"># File lib/autoload/statistics.rb, line 54</span>
+            <pre><span class="ruby-comment"># File lib/autoload/statistics.rb, line 50</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">all_shared_lessons</span>
   <span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:is_public</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>).<span class="ruby-identifier">count</span>
 <span class="ruby-keyword">end</span></pre>
@@ -576,7 +583,7 @@
 
           
           <div class="method-source-code" id="all_subjects_chart-source">
-            <pre><span class="ruby-comment"># File lib/autoload/statistics.rb, line 67</span>
+            <pre><span class="ruby-comment"># File lib/autoload/statistics.rb, line 60</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">all_subjects_chart</span>
   <span class="ruby-identifier">amt</span> = <span class="ruby-string">&#39;&#39;</span>
   <span class="ruby-identifier">desc</span> = <span class="ruby-string">&#39;&#39;</span>
@@ -609,12 +616,12 @@
 
         <div class="method-description">
           
-          <p>The number of users in DESY</p>
+          <p>The number of users in the application</p>
           
 
           
           <div class="method-source-code" id="all_users-source">
-            <pre><span class="ruby-comment"># File lib/autoload/statistics.rb, line 49</span>
+            <pre><span class="ruby-comment"># File lib/autoload/statistics.rb, line 45</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">all_users</span>
   <span class="ruby-constant">User</span>.<span class="ruby-identifier">count</span>
 <span class="ruby-keyword">end</span></pre>
@@ -644,7 +651,7 @@
 
           
           <div class="method-source-code" id="all_users_like-source">
-            <pre><span class="ruby-comment"># File lib/autoload/statistics.rb, line 21</span>
+            <pre><span class="ruby-comment"># File lib/autoload/statistics.rb, line 20</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">all_users_like</span>(<span class="ruby-identifier">first_n</span>)
   <span class="ruby-constant">Like</span>.<span class="ruby-identifier">joins</span>(<span class="ruby-value">:lesson</span>, <span class="ruby-value">:lesson</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:user</span>).<span class="ruby-identifier">group</span>(<span class="ruby-string">&#39;users.id&#39;</span>).<span class="ruby-identifier">select</span>(<span class="ruby-string">&#39;users.id, users.name, users.surname, COUNT(*) AS likes_count&#39;</span>).<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;likes_count DESC, users.created_at DESC&#39;</span>).<span class="ruby-identifier">limit</span>(<span class="ruby-identifier">first_n</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -674,7 +681,7 @@
 
           
           <div class="method-source-code" id="my_copied_lessons-source">
-            <pre><span class="ruby-comment"># File lib/autoload/statistics.rb, line 29</span>
+            <pre><span class="ruby-comment"># File lib/autoload/statistics.rb, line 25</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">my_copied_lessons</span>
   <span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">joins</span>(<span class="ruby-string">&#39;INNER JOIN lessons AS parent_lessons ON (parent_lessons.id = lessons.parent_id)&#39;</span>).<span class="ruby-identifier">where</span>(<span class="ruby-string">&#39;lessons.user_id != ? AND parent_lessons.user_id = ?&#39;</span>, <span class="ruby-identifier">user</span>.<span class="ruby-identifier">id</span>, <span class="ruby-identifier">user</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">count</span>
 <span class="ruby-keyword">end</span></pre>
@@ -706,7 +713,7 @@ user&#39;s section)</p>
 
           
           <div class="method-source-code" id="my_created_elements-source">
-            <pre><span class="ruby-comment"># File lib/autoload/statistics.rb, line 39</span>
+            <pre><span class="ruby-comment"># File lib/autoload/statistics.rb, line 35</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">my_created_elements</span>
   <span class="ruby-constant">MediaElement</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">count</span>
 <span class="ruby-keyword">end</span></pre>
@@ -737,7 +744,7 @@ and still not modified)</p>
 
           
           <div class="method-source-code" id="my_created_lessons-source">
-            <pre><span class="ruby-comment"># File lib/autoload/statistics.rb, line 34</span>
+            <pre><span class="ruby-comment"># File lib/autoload/statistics.rb, line 30</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">my_created_lessons</span>
   <span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">id</span>, <span class="ruby-value">:copied_not_modified</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>).<span class="ruby-identifier">count</span>
 <span class="ruby-keyword">end</span></pre>
@@ -768,7 +775,7 @@ received</p>
 
           
           <div class="method-source-code" id="my_liked_lessons-source">
-            <pre><span class="ruby-comment"># File lib/autoload/statistics.rb, line 11</span>
+            <pre><span class="ruby-comment"># File lib/autoload/statistics.rb, line 10</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">my_liked_lessons</span>(<span class="ruby-identifier">first_n</span>)
   <span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">select</span>(<span class="ruby-string">&#39;id, title, (SELECT COUNT (*) FROM likes WHERE likes.lesson_id = lessons.id) AS likes_count&#39;</span>).<span class="ruby-identifier">where</span>(<span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;likes_count DESC, updated_at DESC&#39;</span>).<span class="ruby-identifier">limit</span>(<span class="ruby-identifier">first_n</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -798,7 +805,7 @@ received</p>
 
           
           <div class="method-source-code" id="my_likes_count-source">
-            <pre><span class="ruby-comment"># File lib/autoload/statistics.rb, line 44</span>
+            <pre><span class="ruby-comment"># File lib/autoload/statistics.rb, line 40</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">my_likes_count</span>
   <span class="ruby-constant">Like</span>.<span class="ruby-identifier">joins</span>(<span class="ruby-value">:lesson</span>).<span class="ruby-identifier">where</span>(<span class="ruby-value">:lessons</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">id</span>}).<span class="ruby-identifier">count</span>
 <span class="ruby-keyword">end</span></pre>
@@ -813,6 +820,44 @@ received</p>
 
     
     </section><!-- public-class-method-details -->
+  
+     <section id="private-class-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Private Class Methods</h3>
+
+    
+      <div id="method-c-sbj_to_percentage" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">sbj_to_percentage</span><span
+            class="method-args">(val)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Used as a submethod of Statistics#all_subjects_chart</p>
+          
+
+          
+          <div class="method-source-code" id="sbj_to_percentage-source">
+            <pre><span class="ruby-comment"># File lib/autoload/statistics.rb, line 75</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">sbj_to_percentage</span>(<span class="ruby-identifier">val</span>) <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-identifier">tot</span> = <span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">count</span>
+  <span class="ruby-identifier">res</span> = (<span class="ruby-identifier">val</span>.<span class="ruby-identifier">to_f</span> * <span class="ruby-value">100</span>) <span class="ruby-operator">/</span> <span class="ruby-identifier">tot</span>.<span class="ruby-identifier">to_f</span>
+  <span class="ruby-identifier">res</span>.<span class="ruby-identifier">round</span>(<span class="ruby-value">2</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- sbj_to_percentage-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- sbj_to_percentage-method -->
+
+    
+    </section><!-- private-class-method-details -->
   
   </section><!-- 5Buntitled-5D -->
 

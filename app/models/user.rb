@@ -26,7 +26,7 @@
 # * *media_elements*: list of elements loaded or created by this user (includes also public elements, which are moved into the public database of the application, but they still record who was the user who first created them (see MediaElement, Audio, Image, Video) (*has_many*)
 # * *reports*: reports sent by this user about elements or lessons (see Report) (*has_many*)
 # * *users_subjects*: list of instances of this subject associated to this user through records of UsersSubject (*has_many*)
-# * *subjects*: list of subjects associated to this user (through the association +users_subjects+) (see Subject) (*has_many*)
+# * *subjects*: list of subjects associated to this user (through the association +users_subjects+) (see Subject) (*has_and_belongs_to_many*)
 # * *virtual_classroom_lessons*: list of lessons present in the user's Virtual Classroom (see VirtualClassroomLesson) (*has_many*)
 # * *mailing_list_groups*: all the mailing list groups that this user created (see MailingListGroup) (*has_many*)
 # * *school_level*: the SchoolLevel associated to this user (*belongs_to*)
@@ -35,7 +35,7 @@
 # == Validations
 #
 # * *presence* of +email+, +name+, +surname+
-# * *presence* with numericality greater than 0 and presence of associated element for +location_id+ and +school_level_id+ (for the location, it's also checked that the subclass is the last in the locations chain, see Location)
+# * *presence* with numericality greater than 0 and presence of associated object for +location_id+ and +school_level_id+ (for the location, it's also checked that the subclass is the last in the locations chain, see Location)
 # * *confirmation* of +encrypted_password+ (the attribute password must coincide with its confirmation provided by the user): this validation uses the private attribute +password_confirmation+, associated to password
 # * *presence* of at least one associated record of UsersSubject
 # * *uniqueness* of +email+
@@ -153,60 +153,144 @@ class User < ActiveRecord::Base
     self.super_admin?
   end
   
-  def accept_policies
-    registration_policies.each{ |p| send("#{p}=", '1') }
-  end
-  
+  # === Description
+  #
+  # Saves the Video Editor cache; if the param is +nil+, the cache is emptied
+  #
+  # === Args
+  #
+  # * *cache*: the cache to be saved (it must be a hash with the structure defined in Media::Video::Editing::Parameters#convert_parameters; if +nil+ it empties the cache)
+  #
   def video_editor_cache!(cache = nil)
     update_attribute :metadata, OpenStruct.new(metadata.marshal_dump.merge(video_editor_cache: cache))
     nil
   end
   
+  # === Description
+  #
+  # Returns the current Video Editor cache for this user
+  #
+  # === Returns
+  #
+  # A hash with parameters (for a sample structure, see Media::Video::Editing::Parameters#convert_parameters)
+  #
   def video_editor_cache
     metadata.try(:video_editor_cache)
   end
   
+  # === Description
+  #
+  # Saves the Audio Editor cache; if the param is +nil+, the cache is emptied
+  #
+  # === Args
+  #
+  # * *cache*: the cache to be saved (it must be a hash with the structure defined in Media::Audio::Editing::Parameters#convert_parameters; if +nil+ it empties the cache)
+  #
   def audio_editor_cache!(cache = nil)
     update_attribute :metadata, OpenStruct.new(metadata.marshal_dump.merge(audio_editor_cache: cache))
     nil
   end
   
+  # === Description
+  #
+  # Returns the current Audio Editor cache for this user
+  #
+  # === Returns
+  #
+  # A hash with parameters (for a sample structure, see Media::Audio::Editing::Parameters#convert_parameters)
+  #
   def audio_editor_cache
     metadata.try(:audio_editor_cache)
   end
   
+  # === Description
+  #
+  # Alternative to the association +mailing_list_groups+, that sorts the groups by name
+  #
+  # === Returns
+  #
+  # An array of objects of kind MailingListGroup
+  #
   def own_mailing_list_groups
     MailingListGroup.where(:user_id => self.id).order(:name)
   end
   
+  # === Description
+  #
+  # Creates a temporary unique new name for a MailingListGroup (used in MailingListController#create_group)
+  #
+  # === Returns
+  #
+  # A string
+  #
   def new_mailing_list_name
     I18n.t('users.mailing_list.label', :number => (MailingListGroup.where(:user_id => self.id).count + 1))
   end
   
+  # === Description
+  #
+  # Manual attr_reader for the constant REGISTRATION_POLICIES, that contains all the policies as configured in settings.yml
+  #
   def registration_policies
     REGISTRATION_POLICIES
   end
   
+  # === Description
+  #
+  # Resets the attributes +password+ e +password_confirmation+ with a new random string (used in UsersController#reset_password)
+  #
+  # === Returns
+  #
+  # A string (the new password)
+  #
   def reset_password!
     new_password = SecureRandom.urlsafe_base64(10)
     update_attributes!(:password => new_password, :password_confirmation => new_password)
     new_password
   end
   
+  # === Description
+  #
+  # Sets the subjects associated to this user (see UsersSubject)
+  #
   def subject_ids=(subject_ids)
     users_subjects.reload.clear
-    subject_ids.each { |id| users_subjects.build user: self, subject_id: id } if subject_ids
+    subject_ids.each { |id| users_subjects.build :user => self, :subject_id => id } if subject_ids
     subject_ids
   end
   
+  # === Description
+  #
+  # Method used in the front end as a shortcut to show the full name of the user
+  #
+  # === Returns
+  #
+  # A string
+  #
   def full_name
     "#{self.name} #{self.surname}"
   end
   
+  # === Description
+  #
+  # Method used in the front end that returns the name of the first Location attached to the user
+  #
+  # === Returns
+  #
+  # A string
+  #
   def base_location
     self.location.name
   end
   
+  # === Description
+  #
+  # Used in the front end, it returns a resume of all the parents locations of the user
+  #
+  # === Returns
+  #
+  # A string
+  #
   def parent_locations
     resp = ''
     first = true
@@ -225,14 +309,60 @@ class User < ActiveRecord::Base
     resp
   end
   
+  # === Description
+  #
+  # Checks if the Video Editor is available (this is true if there is no Video in conversion at the moment); used in the filters of VideoEditorController
+  #
+  # === Returns
+  #
+  # A boolean
+  #
   def video_editor_available
-    Video.where(converted: false, user_id: id).all?{ |record| record.uploaded? && !record.modified? }
+    Video.where(:converted => false, :user_id => id).all?{ |record| record.uploaded? && !record.modified? }
   end
   
+  # === Description
+  #
+  # Checks if the Audio Editor is available (this is true if there is no Audio in conversion at the moment); used in the filters of AudioEditorController
+  #
+  # === Returns
+  #
+  # A boolean
+  #
   def audio_editor_available
-    Audio.where(converted: false, user_id: id).all?{ |record| record.uploaded? && !record.modified? }
+    Audio.where(:converted => false, :user_id => id).all?{ |record| record.uploaded? && !record.modified? }
   end
   
+  # === Description
+  #
+  # Global method used to search for elements (see SearchController#index). Each element has its status set with MediaElement#set_status.
+  # * *first*, it checks the correctness of all the parameters received;
+  # * *then*, if +word+ is blank, it calls just User#search_media_elements_without_tag, that search using the other parameters inserted by the user
+  # * *otherwise*, it checks if the word is a Fixnum (it represents the id of a specific Tag) or a String (it represents a word to be matched against the list of registered tags)
+  #   * if +word+ is a Fixnum, the method just calls User#search_media_elements_with_tag, which returns only the elements associated to that particular Tag (of course, filtered by the other parameters)
+  #   * if +word+ is a String, the method calls User#search_media_elements_with_tag (that returns the media elements found) and User#get_tags_associated_to_media_element_search (that returns the list of tags associated to the search)
+  # * there is also the available option +only_tags+: if this option is used with a +word+ of type String, the method calls only User#get_tags_associated_to_media_element_search (this option is typically used when the user is filtering a previous search by a specific Tag: in this case, calling only the method with +word+ = Fixnum, there would be no way to know the previous list of tags, hence in the controller the method is called again with +word+ = String and with +only_tags+ = true)
+  #
+  # === Args
+  #
+  # * *word*: the search parameter. It can be:
+  #   * +blank+ if you need only to search by filters
+  #   * +integer+ if you want to filter by a specific tag
+  #   * +string+ if you want to match a keyword against the list of tags in the database
+  # * *page*: pagination parameter
+  # * *for_page*: pagination parameter
+  # * *order*: one of the keywords defined in SearchOrders
+  # * *filter*: one of the keywords defined in Filters
+  # * *only_tags*: optional boolean, if used with a +word+ of kind String returns only the list of tags associated to the search
+  #
+  # === Returns
+  #
+  # A hash with the following keys:
+  # * *records*: the effective content of the research, an array of object of type MediaElement
+  # * *records_amount*: an integer, the total number of elements found
+  # * *pages_amount*: an integer, the total number of pages in the search result
+  # * *tags*: if required, an array of objects of type Tag. This is the list of the first 20 tags associated to at least an element in the search result, ordered by numbers of occurrences among the search results (i.e. order of relevance)
+  #
   def search_media_elements(word, page, for_page, order=nil, filter=nil, only_tags=nil)
     only_tags = false if only_tags.nil?
     page = 1 if page.class != Fixnum || page <= 0
@@ -258,6 +388,37 @@ class User < ActiveRecord::Base
     end
   end
   
+  # === Description
+  #
+  # Global method used to search for lessons (see SearchController#index). Each lesson has its status set with Lesson#set_status.
+  # * *first*, it checks the correctness of all the parameters received;
+  # * *then*, if +word+ is blank, it calls just User#search_lessons_without_tag, that search using the other parameters inserted by the user
+  # * *otherwise*, it checks if the word is a Fixnum (it represents the id of a specific Tag) or a String (it represents a word to be matched against the list of registered tags)
+  #   * if +word+ is a Fixnum, the method just calls User#search_lessons_with_tag, which returns only the lessons associated to that particular Tag (of course, filtered by the other parameters)
+  #   * if +word+ is a String, the method calls User#search_lessons_with_tag (that returns the lessons found) and User#get_tags_associated_to_lesson_search (that returns the list of tags associated to the search)
+  # * there is also the available option +only_tags+: if this option is used with a +word+ of type String, the method calls only User#get_tags_associated_to_lesson_search (this option is typically used when the user is filtering a previous search by a specific Tag: in this case, calling only the method with +word+ = Fixnum, there would be no way to know the previous list of tags, hence in the controller the method is called again with +word+ = String and with +only_tags+ = true)
+  #
+  # === Args
+  #
+  # * *word*: the search parameter. It can be:
+  #   * +blank+ if you need only to search by filters
+  #   * +integer+ if you want to filter by a specific tag
+  #   * +string+ if you want to match a keyword against the list of tags in the database
+  # * *page*: pagination parameter
+  # * *for_page*: pagination parameter
+  # * *order*: one of the keywords defined in SearchOrders
+  # * *filter*: one of the keywords defined in Filters
+  # * *subject_id*: the id of a Subject, this extends the filter to lessons associated to that subject
+  # * *only_tags*: optional boolean, if used with a +word+ of kind String returns only the list of tags associated to the search
+  #
+  # === Returns
+  #
+  # A hash with the following keys:
+  # * *records*: the effective content of the research, an array of object of type Lesson
+  # * *records_amount*: an integer, the total number of lessons found
+  # * *pages_amount*: an integer, the total number of pages in the search result
+  # * *tags*: if required, an array of objects of type Tag. This is the list of the first 20 tags associated to at least a lesson in the search result, ordered by numbers of occurrences among the search results (i.e. order of relevance)
+  #
   def search_lessons(word, page, for_page, order=nil, filter=nil, subject_id=nil, only_tags=nil)
     only_tags = false if only_tags.nil?
     page = 1 if page.class != Fixnum || page <= 0
@@ -284,6 +445,19 @@ class User < ActiveRecord::Base
     end
   end
   
+  # === Description
+  #
+  # Sends a Report for a Lesson
+  #
+  # === Args
+  #
+  # * *lesson_id*: id of the lesson to be reported
+  # * *msg*: the attached message
+  #
+  # === Returns
+  #
+  # A boolean
+  #
   def report_lesson(lesson_id, msg)
     errors.clear
     if self.new_record?
@@ -306,6 +480,19 @@ class User < ActiveRecord::Base
     true
   end
   
+  # === Description
+  #
+  # Sends a Report for a MediaElement
+  #
+  # === Args
+  #
+  # * *media_element_id*: id of the element to be reported
+  # * *msg*: the attached message
+  #
+  # === Returns
+  #
+  # A boolean
+  #
   def report_media_element(media_element_id, msg)
     errors.clear
     if self.new_record?
@@ -328,6 +515,18 @@ class User < ActiveRecord::Base
     true
   end
   
+  # === Description
+  #
+  # Saves a 'I like you' for a Lesson
+  #
+  # === Args
+  #
+  # * *lesson_id*: the id of the lesson that the user appreciates
+  #
+  # === Returns
+  #
+  # A boolean
+  #
   def like(lesson_id)
     return false if self.new_record? || !Lesson.exists?(lesson_id)
     return true if Like.where(:lesson_id => lesson_id, :user_id => self.id).any?
@@ -337,6 +536,18 @@ class User < ActiveRecord::Base
     return l.save
   end
   
+  # === Description
+  #
+  # Removes a 'I like you' that the user had formerly assigned to a Lesson
+  #
+  # === Args
+  #
+  # * *lesson_id*: the id of the lesson tha the user doesn't appreciate anymore
+  #
+  # === Returns
+  #
+  # A boolean
+  #
   def dislike(lesson_id)
     return false if self.new_record? || !Lesson.exists?(lesson_id)
     like = Like.where(:lesson_id => lesson_id, :user_id => self.id).first
@@ -345,12 +556,28 @@ class User < ActiveRecord::Base
     return Like.where(:lesson_id => lesson_id, :user_id => self.id).empty?
   end
   
-  def own_media_elements(page, per_page, filter = nil)
+  # === Description
+  #
+  # Extracts the elements present in the user's personal section (see MediaElementsController#index, and GalleriesController): the method uses the scope +of+ defined in MediaElement, and applies filters on it. Each element has its status set with MediaElement#set_status.
+  #
+  # === Args
+  #
+  # * *page*: pagination parameter
+  # * *per_page*: pagination parameter
+  # * *filter*: an additional filter defined in Filters
+  #
+  # === Returns
+  #
+  # A hash with the following keys:
+  # * *records*: the effective content of the research, an array of object of type MediaElement
+  # * *pages_amount*: an integer, the total number of pages in the method's result
+  #
+  def own_media_elements(page, per_page, filter=Filters::ALL_MEDIA_ELEMENTS)
     page = 1 if !page.is_a?(Fixnum) || page <= 0
     for_page = 1 if !for_page.is_a?(Fixnum) || for_page <= 0
     offset = (page - 1) * per_page
     relation = MediaElement.of(self)
-    if [ Filters::VIDEO, Filters::AUDIO, Filters::IMAGE ].include? filter
+    if [Filters::VIDEO, Filters::AUDIO, Filters::IMAGE].include? filter
       relation = relation.where('sti_type = ?', filter.capitalize)
     end
     pages_amount = Rational(relation.count, per_page).ceil
@@ -359,10 +586,26 @@ class User < ActiveRecord::Base
       me.set_status self.id
       resp << me
     end
-    { records: resp, pages_amount: pages_amount }
+    {:records => resp, :pages_amount => pages_amount}
   end
   
-  def own_lessons(page, per_page, filter = Filters::ALL_LESSONS)
+  # === Description
+  #
+  # Extracts the lessons present in the user's personal section (see LessonsController#index, and GalleriesController): the method uses the scope +of+ defined in Lesson, and applies filters on it. Each lesson has its status set with Lesson#set_status.
+  #
+  # === Args
+  #
+  # * *page*: pagination parameter
+  # * *per_page*: pagination parameter
+  # * *filter*: an additional filter defined in Filters
+  #
+  # === Returns
+  #
+  # A hash with the following keys:
+  # * *records*: the effective content of the research, an array of object of type Lesson
+  # * *pages_amount*: an integer, the total number of pages in the method's result
+  #
+  def own_lessons(page, per_page, filter=Filters::ALL_LESSONS)
     page = 1 if !page.is_a?(Fixnum) || page <= 0
     for_page = 1 if !for_page.is_a?(Fixnum) || for_page <= 0
     offset = (page - 1) * per_page
@@ -389,9 +632,21 @@ class User < ActiveRecord::Base
       lesson.set_status self.id
       resp << lesson
     end
-    { records: resp, pages_amount: pages_amount }
+    {:records => resp, :pages_amount => pages_amount}
   end
   
+  # === Description
+  #
+  # Returns the first n suggested lessons (lessons which are public, not owned nor linked by the user, with a subject in common with him, ordered by date of last modification). Each lesson has its status set with Lesson#set_status. Used in DashboardController#index.
+  #
+  # === Args
+  #
+  # * *n*: the number of requested suggested lessons
+  #
+  # === Returns
+  #
+  # An array of objects of type Lesson
+  #
   def suggested_lessons(n)
     n = 1 if n.class != Fixnum || n < 0
     subject_ids = []
@@ -405,6 +660,18 @@ class User < ActiveRecord::Base
     resp
   end
   
+  # === Description
+  #
+  # Returns the first n suggested elements (elements which are public, not owned nor linked by the user, ordered by date of publication). Each element has its status set with MediaElement#set_status. Used in DashboardController#index.
+  #
+  # === Args
+  #
+  # * *n*: the number of requested suggested elements
+  #
+  # === Returns
+  #
+  # An array of objects of type MediaElement
+  #
   def suggested_media_elements(n)
     n = 1 if n.class != Fixnum || n < 0
     resp = MediaElement.where('is_public = ? AND user_id != ? AND NOT EXISTS (SELECT * FROM bookmarks WHERE bookmarks.bookmarkable_type = ? AND bookmarks.bookmarkable_id = media_elements.id AND bookmarks.user_id = ?)', true, self.id, 'MediaElement', self.id).order('publication_date DESC').limit(n)
@@ -414,6 +681,19 @@ class User < ActiveRecord::Base
     resp
   end
   
+  # === Description
+  #
+  # Used to create a Bookmark on a lesson or a media element
+  #
+  # === Args
+  #
+  # * *type*: 'Lesson' or 'MediaElement'
+  # * *target_id*: the id of the lesson or element to bookmark
+  #
+  # === Returns
+  #
+  # A boolean
+  #
   def bookmark(type, target_id)
     return false if self.new_record?
     b = Bookmark.new
@@ -423,12 +703,24 @@ class User < ActiveRecord::Base
     b.save
   end
   
+  # === Description
+  #
+  # Deletes all the elements of type VirtualClassroomLesson associated to the user. Used in VirtualClassroomController#empty_virtual_classroom
+  #
   def empty_virtual_classroom
     VirtualClassroomLesson.where(:user_id => self.id).each do |vcl|
       vcl.destroy
     end
   end
   
+  # === Description
+  #
+  # Sets +position+ = +nil+ for all the elements of type VirtualClassroomLesson associated to the user (hence, it removes them from the playlist). Used in VirtualClassroomController#empty_playlist
+  #
+  # === Returns
+  #
+  # A boolean
+  #
   def empty_playlist
     return false if self.new_record?
     resp = false
@@ -442,6 +734,21 @@ class User < ActiveRecord::Base
     resp
   end
   
+  # === Description
+  #
+  # Returns the list of lessons in the user's Virtual Classroom (used in VirtualClassroomController#index)
+  #
+  # === Args
+  #
+  # * *page*: pagination parameter
+  # * *per_page*: pagination parameter
+  #
+  # === Returns
+  #
+  # A hash with the following keys:
+  # * *records*: the effective content of the research, an array of object of type VirtualClassroomLesson
+  # * *pages_amount*: an integer, the total number of pages in the method's result
+  #
   def full_virtual_classroom(page, per_page)
     page = 1 if !page.is_a?(Fixnum) || page <= 0
     for_page = 1 if !for_page.is_a?(Fixnum) || for_page <= 0
@@ -452,10 +759,31 @@ class User < ActiveRecord::Base
     return resp
   end
   
+  # === Description
+  #
+  # Gets the total number of notifications associated to the user (used in the filters of NotificationsController)
+  #
+  # === Returns
+  #
+  # An integer
+  #
   def tot_notifications_number
     Notification.where(:user_id => self.id).count
   end
   
+  # === Description
+  #
+  # Destroys a Notification and reloads the current block of notifications (used in NotificationsController#destroy)
+  #
+  # === Args
+  #
+  # * *notification_id*: the id of the notification to be deleted
+  # * *offset*: the current offset of the notification block that the user is visualizing
+  #
+  # === Returns
+  #
+  # A boolean
+  #
   def destroy_notification_and_reload(notification_id, offset)
     notification_id = 0 if !notification_id.is_a?(Fixnum) || notification_id < 0
     offset = 0 if !offset.is_a?(Fixnum) || offset < 0
@@ -472,22 +800,62 @@ class User < ActiveRecord::Base
     resp
   end
   
+  # === Description
+  #
+  # Gets the first visible block of notifications associated to the user (used in the general filters of NotificationsController)
+  #
+  # === Returns
+  #
+  # An array of objects of type Notification
+  #
   def notifications_visible_block(offset, limit)
     Notification.order('created_at DESC').where(:user_id => self.id).offset(offset).limit(limit)
   end
   
+  # === Description
+  #
+  # Gets the total number of notifications not seen by the user (used in the filters of NotificationsController)
+  #
+  # === Returns
+  #
+  # An integer
+  #
   def number_notifications_not_seen
     Notification.where(:seen => false, :user_id => self.id).count
   end
   
+  # === Description
+  #
+  # Checks if the playlist is full in the user's Virtual Classroom
+  #
+  # === Returns
+  #
+  # A boolean
+  #
   def playlist_full?
     VirtualClassroomLesson.where('user_id = ? AND position IS NOT NULL', self.id).count == SETTINGS['lessons_in_playlist']
   end
   
+  # === Description
+  #
+  # Returns the playlist of the user's Virtual Classroom
+  #
+  # === Returns
+  #
+  # An array of objects of type VirtualClassroomLesson
+  #
   def playlist
     VirtualClassroomLesson.includes(:lesson).where('user_id = ? AND position IS NOT NULL', self.id).order(:position)
   end
   
+  # === Description
+  #
+  # Gets the playlist for the Lesson Viewer (used in LessonViewerController#playlist)
+  #
+  # === Returns
+  #
+  # An array of ordered objects of type Slide (they correspond to the slides of the lessons in the playlist)
+  #
   def playlist_for_viewer
     resp = []
     VirtualClassroomLesson.includes(:lesson).where('user_id = ? AND position IS NOT NULL', self.id).order(:position).each do |vc|
@@ -496,6 +864,21 @@ class User < ActiveRecord::Base
     resp
   end
   
+  # === Description
+  #
+  # Creates a lesson belonging to the user (used in LessonEditorController#create)
+  #
+  # === Args
+  #
+  # * *title*: the title
+  # * *description*: the description
+  # * *subject_id*: the id of the Subject associated to the Lesson, chosen among the ones associated to the user at the moment of the creation
+  # * *tags*: tags (in the shape 'tag1, tag2, tag3, tag4')
+  #
+  # === Returns
+  #
+  # If the lesson was correctly created, it returns a new object of type Lesson; otherwise, its errors (this is used in ApplicationController#convert_lesson_editor_messages)
+  #
   def create_lesson(title, description, subject_id, tags)
     return nil if self.new_record?
     if UsersSubject.where(:user_id => self.id, :subject_id => subject_id).empty?
@@ -516,11 +899,27 @@ class User < ActiveRecord::Base
     return lesson.save ? lesson : lesson.errors
   end
   
+  # === Description
+  #
+  # Checks if the user is super admin or not (used in User#admin? and User#destroy_with_dependencies)
+  #
+  # === Returns
+  #
+  # A boolean
+  #
   def super_admin?
     super_admin = User.admin
     !super_admin.nil? && self.id == super_admin.id
   end
   
+  # === Description
+  #
+  # Used to destroy a user and remove it from the database: since for safety reasons there are no database cascade destructions for the associated relations Lesson, UsersSubject, Bookmark, Notification, Like and Report, these are destroyed manually here; for the table MailingListGroup, there is a cascade destruction; for the table MediaElement, the method destroys only the private ones and changes the owner of the public ones (assigned to the super administrator, extracted by the method User.admin). The only user that can't be destroyed with this method is the super administrator (the method checks this using User#super_admin?)
+  #
+  # === Returns
+  #
+  # A boolean
+  #
   def destroy_with_dependencies
     if self.new_record? || self.super_admin?
       errors.add(:base, :problem_destroying)
@@ -540,7 +939,7 @@ class User < ActiveRecord::Base
         end
         MediaElement.where(:user_id => self.id).each do |me|
           if me.is_public
-            me.user_id = self.class.admin.id
+            me.user_id = User.admin.id
             if !me.save
               errors.add(:base, :problem_destroying)
               raise ActiveRecord::Rollback
@@ -571,10 +970,34 @@ class User < ActiveRecord::Base
     resp
   end
   
+  # === Description
+  #
+  # Used in the autocomplete, in the section of the administrator where it's possible to send a notification to multiple users (Admin::MessagesController#filter_users)
+  #
+  # === Args
+  #
+  # * *term*: the string to be matched agains +email+, +name+ and +surname+
+  #
+  # === Returns
+  #
+  # A list of query results where the only field selected is the full name (+name+ + ' ' + +surname+)
+  #
   def self.get_full_names(term)
-    where('email ILIKE ? OR name ILIKE ? OR surname ILIKE ?',"%#{term}%","%#{term}%","%#{term}%").select("id, name || ' ' || surname AS value")
+    where('email ILIKE ? OR name ILIKE ? OR surname ILIKE ?', "%#{term}%", "%#{term}%", "%#{term}%").select("id, name || ' ' || surname AS value")
   end
   
+  # === Description
+  #
+  # Removes a file from the list of multiple uploading of an element (used in Admin::MediaElementsController#quick_upload_delete and Admin::MediaElementsController#create).
+  #
+  # === Args
+  #
+  # * *name*: the random key generated in User#save_in_admin_quick_uploading_cache, used as a key in the hash of files in uploading
+  #
+  # === Returns
+  #
+  # A boolean
+  #
   def remove_from_admin_quick_uploading_cache(name)
     return false if !File.exists?(Rails.root.join("public/admin/#{self.id}/map.yml"))
     map = YAML::load(File.open(Rails.root.join("public/admin/#{self.id}/map.yml")))
@@ -589,6 +1012,28 @@ class User < ActiveRecord::Base
     true
   end
   
+  # === Description
+  #
+  # Saves a file in the uploading cache (used in Admin::MediaElementsController#quick_upload): the method creates a random name for the file, that will be used as its unique key in the hash
+  #
+  # === Args
+  #
+  # * *file*: the attached file
+  # * *title*: the title (if +nil+, it doesn't specify any title and it'll need to be inserted at the time of the creation)
+  # * *description*: the description (if +nil+, it doesn't specify any description and it'll need to be inserted at the time of the creation)
+  # * *tags*: the tags in shape 'tag1, tag2, tag3, tag4' (if +nil+, it doesn't specify any tags and tags will need to be inserted at the time of the creation)
+  #
+  # === Returns
+  #
+  # A hash with the following keys
+  # * *name*: the randomly extracted key
+  # * *ext*: the extension extracted through MediaElement.new_with_sti_type_inferring
+  # * *type*: the type in ['audio', 'image', 'video']
+  # * *title*: the title
+  # * *description*: the description
+  # * *tags*: the tags in shape 'tag1, tag2, tag3, tag4'
+  # * *original_name*: the original name with which the file was uploaded
+  #
   def save_in_admin_quick_uploading_cache(file, title=nil, description=nil, tags=nil)
     filetype = MediaElement.filetype(file.original_filename)
     return nil if filetype.nil?
@@ -631,6 +1076,14 @@ class User < ActiveRecord::Base
     }
   end
   
+  # === Description
+  #
+  # Extracts the quick uploadin cache (used in Admin::MediaElementsController#new)
+  #
+  # === Returns
+  #
+  # A hash with the same keys as User#save_in_admin_quick_uploading_cache
+  #
   def admin_quick_uploading_cache
     return [] if !File.exists?(Rails.root.join("public/admin/#{self.id}/map.yml"))
     map = YAML::load File.open(Rails.root.join("public/admin/#{self.id}/map.yml"))
@@ -646,6 +1099,7 @@ class User < ActiveRecord::Base
   
   private
   
+  # Submethod of User#search_lessons. It returns the first +n+ tags associated to the result of the research, ordered by number of occurrences of these tags among the results; if the +word+ corresponds to a tag, this tag is put in the first place of the result even if it wouldn't be first according to the normal ordering.
   def get_tags_associated_to_lesson_search(word, filter, subject_id) # :doc:
     filter = Filters::ALL_LESSONS if filter.nil? || !Filters::LESSONS_SEARCH_SET.include?(filter)
     subject_id = nil if ![NilClass, Fixnum].include?(subject_id.class)
@@ -687,6 +1141,7 @@ class User < ActiveRecord::Base
     resp
   end
   
+  # Submethod of User#search_media_elements. It returns the first +n+ tags associated to the result of the research, ordered by number of occurrences of these tags among the results; if the +word+ corresponds to a tag, this tag is put in the first place of the result even if it wouldn't be first according to the normal ordering.
   def get_tags_associated_to_media_element_search(word, filter) # :doc:
     limit = SETTINGS['tags_limit_in_search_engine']
     filter = Filters::ALL_MEDIA_ELEMENTS if filter.nil? || !Filters::MEDIA_ELEMENTS_SEARCH_SET.include?(filter)
@@ -716,6 +1171,7 @@ class User < ActiveRecord::Base
     resp
   end
   
+  # Submethod of User.search_media_elements: if +word+ is a Fixnum, it extracts all the elements associated to that word, otherwise it extracts all the elements whose tags match the +word+. Results are filtered by the +filter+ (chosen among the ones in Filters), and ordered by +order_by+ (chosen among SearchOrders)
   def search_media_elements_with_tag(word, offset, limit, filter, order_by) # :doc:
     resp = {}
     params = ["#{word}%", true, self.id]
@@ -752,6 +1208,7 @@ class User < ActiveRecord::Base
     return resp
   end
   
+  # Submethod of User#search_media_elements. It returns all the elements in the database, filtered by +filter+ (chosen among the ones in Filters), and ordered by +order_by+ (chosen among the ones in SearchOrders)
   def search_media_elements_without_tag(offset, limit, filter, order_by) # :doc:
     resp = {}
     order = ''
@@ -787,6 +1244,7 @@ class User < ActiveRecord::Base
     return resp
   end
   
+  # Submethod of User.search_lessons: if +word+ is a Fixnum, it extracts all the lessons associated to that word, otherwise it extracts all the lessons whose tags match the +word+. Results are filtered by the +filter+ (chosen among the ones in Filters) and by +subject_id+, and ordered by +order_by+ (chosen among SearchOrders)
   def search_lessons_with_tag(word, offset, limit, filter, subject_id, order_by) # :doc:
     resp = {}
     params = ["#{word}%"]
@@ -839,6 +1297,7 @@ class User < ActiveRecord::Base
     return resp
   end
   
+  # Submethod of User#search_lessons. It returns all the lessons in the database, filtered by +filter+ (chosen among the ones in Filters) and by +subject_id+, and ordered by +order_by+ (chosen among the ones in SearchOrders)
   def search_lessons_without_tag(offset, limit, filter, subject_id, order_by) # :doc:
     resp = {}
     params = []
@@ -898,41 +1357,28 @@ class User < ActiveRecord::Base
     return resp
   end
   
-  def init_validation
+  # Initializes validation objects (see Valid.get_association)
+  def init_validation # :doc:
     @user = Valid.get_association self, :id
     @school_level = Valid.get_association self, :school_level_id
   end
   
-  def validate_associations
+  # Validates the presence of all the associated objects
+  def validate_associations # :doc:
     errors.add :school_level_id, :doesnt_exist if @school_level.nil?
     @location = Valid.get_association self, :location_id
     errors.add :location_id, :doesnt_exist if @location.nil? || @location.sti_type != SETTINGS['location_types'].last
   end
   
-  def validate_email_not_changed
+  # If the user is not new, it validates that the email didn't change
+  def validate_email_not_changed # :doc:
     errors.add :email, :changed if changed.include? 'email'
   end
   
-  def validate_email
+  # Validates the correct format of the email (see Valid.email?)
+  def validate_email # :doc:
     return if self.email.blank?
-    flag = false
-    flag = true if !(/ / =~ self.email).nil?
-    x = self.email.split('@')
-    if x.length == 2
-      flag = true if x[0].blank?
-      x = x[1].split('.')
-      if x.length > 1
-        x.each do |comp|
-          flag = true if comp.blank?
-        end
-        flag = true if x.last.length < 2
-      else
-        flag = true
-      end
-    else
-      flag = true
-    end
-    errors.add(:email, :not_a_valid_email) if flag
+    errors.add(:email, :not_a_valid_email) if !Valid.email?(self.email)
   end
   
 end

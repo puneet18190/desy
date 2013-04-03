@@ -64,10 +64,12 @@ class Report < ActiveRecord::Base
   
   private
   
-  def good_reportable_type
+  # Checks if the format of +reportable_type+ is correct
+  def good_reportable_type # :doc:
     ['Lesson', 'MediaElement'].include? self.reportable_type
   end
   
+  # Initializes validation objects (see Valid.get_association)
   def init_validation
     @report = Valid.get_association self, :id
     @user = Valid.get_association self, :user_id
@@ -75,13 +77,15 @@ class Report < ActiveRecord::Base
     @media_element = self.reportable_type == 'MediaElement' ? Valid.get_association(self, :reportable_id, MediaElement) : nil
   end
   
-  def validate_associations
+  # Validates the presence of all the associated objects
+  def validate_associations # :doc:
     errors.add(:user_id, :doesnt_exist) if @user.nil?
     errors.add(:reportable_id, :lesson_doesnt_exist) if self.reportable_type == 'Lesson' && @lesson.nil?
     errors.add(:reportable_id, :media_element_doesnt_exist) if self.reportable_type == 'MediaElement' && @media_element.nil?
   end
   
-  def validate_impossible_changes
+  # If the report is not a new record, it validates that no field can be changed
+  def validate_impossible_changes # :doc:
     if @report
       errors.add(:user_id, :cant_be_changed) if self.user_id != @report.user_id
       errors.add(:reportable_id, :cant_be_changed) if self.reportable_id != @report.reportable_id

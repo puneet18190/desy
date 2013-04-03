@@ -1,8 +1,29 @@
+# == Description
+#
+# Controller of lessons in the administration section. See AdminController.
+#
+# == Models used
+#
+# * AdminSearchForm
+# * Lesson
+# * Location
+#
 class Admin::LessonsController < AdminController
   
-  before_filter :find_lesson, :only => [:destroy]
   layout 'admin'
   
+  # === Description
+  #
+  # Main page of the section 'lessons' in admin. If params[:search] is present, it is used AdminSearchForm to perform the requested search.
+  #
+  # === Mode
+  #
+  # Html
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#admin_authenticate
+  #
   def index
     lessons = params[:search] ? AdminSearchForm.search_lessons(params[:search]) : Lesson.order('id DESC')
     @lessons = lessons.page(params[:page])
@@ -14,15 +35,22 @@ class Admin::LessonsController < AdminController
     @from_reporting = params[:from_reporting]
   end
   
+  # === Description
+  #
+  # Destroys a lesson without the normal filters
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#admin_authenticate
+  #
   def destroy
+    @lesson = Lesson.find(params[:id])
     @lesson.destroy
     redirect_to params[:back_url]
-  end
-  
-  private
-  
-  def find_lesson
-    @lesson = Lesson.find(params[:id])
   end
   
 end

@@ -397,36 +397,44 @@ class Slide < ActiveRecord::Base
   
   private
   
-  def validate_max_number_slides
+  # Validates that the lesson is not exceeding the maximum number of slides
+  def validate_max_number_slides # :doc:
     errors.add(:base, :too_many_slides) if @lesson && !@slide && Slide.where(:lesson_id => @lesson.id).count == SETTINGS['max_number_slides_in_a_lesson']
   end
   
-  def media_element_at(position)
+  # Extracts the media element at a given position
+  def media_element_at(position) # :doc:
     MediaElementsSlide.where(:slide_id => self.id, :position => position).first
   end
   
-  def validate_title
+  # Validates that if the slide doesn't allow the +title+, it must be +nil+
+  def validate_title # :doc:
     errors.add(:title, :must_be_null_in_this_slide) if !self.allows_title? && !self.title.nil?
   end
   
-  def validate_text
+  # Validates that if the slide doesn't allow the +text+, it must be +nil+
+  def validate_text # :doc:
     errors.add(:text, :must_be_null_in_this_slide) if !self.allows_text? && !self.text.nil?
   end
   
-  def is_cover
+  # Checks if the slide is the cover of the lesson
+  def is_cover # :doc:
     self.kind == COVER
   end
   
-  def init_validation
+  # Initializes validation objects (see Valid.get_association)
+  def init_validation # :doc:
     @slide = Valid.get_association self, :id
     @lesson = Valid.get_association self, :lesson_id
   end
   
-  def validate_associations
+  # Validates the presence of all the associated objects
+  def validate_associations # :doc:
     errors.add(:lesson_id, :doesnt_exist) if @lesson.nil?
   end
   
-  def validate_impossible_changes
+  # If the slide is not a new record, +lesson_id+ and +kind+ can't be changed; moreover, if it's the cover, the title can't be different by the title of the lesson
+  def validate_impossible_changes # :doc:
     if @slide
       errors.add(:lesson_id, :cant_be_changed) if @slide.lesson_id != self.lesson_id
       errors.add(:kind, :cant_be_changed) if @slide.kind != self.kind
@@ -434,12 +442,12 @@ class Slide < ActiveRecord::Base
     end
   end
   
-  def validate_cover
+  def validate_cover # :doc:
     errors.add(:position, :cover_must_be_first_slide) if self.kind == COVER && self.position != 1
     errors.add(:position, :if_not_cover_cant_be_first_slide) if self.kind != COVER && self.position == 1
   end
   
-  def stop_if_cover
+  def stop_if_cover # :doc:
     @slide = self.new_record? ? nil : Slide.where(:id => self.id).first
     return true if @slide.nil?
     return @slide.kind != COVER

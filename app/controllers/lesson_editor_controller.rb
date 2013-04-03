@@ -111,7 +111,7 @@ class LessonEditorController < ApplicationController
   
   private
   
-  def check_available_for_user
+  def check_available_for_user # :doc:
     @lesson = Lesson.find_by_id params[:lesson_id]
     if @lesson && !@lesson.available?
       render 'not_available'
@@ -119,19 +119,19 @@ class LessonEditorController < ApplicationController
     end
   end
   
-  def initialize_kind
+  def initialize_kind # :doc:
     @kind = Slide::KINDS_WITHOUT_COVER.include?(params[:kind]) ? params[:kind] : ''
     update_ok(!@kind.blank?)
   end
   
-  def initialize_lesson_with_owner_and_slide
+  def initialize_lesson_with_owner_and_slide # :doc:
     initialize_lesson_with_owner
     @slide_id = correct_integer?(params[:slide_id]) ? params[:slide_id].to_i : 0
     @slide = Slide.find_by_id @slide_id
     update_ok(@slide && @lesson && @lesson.id == @slide.lesson_id)
   end
   
-  def initialize_subjects
+  def initialize_subjects # :doc:
     @subjects = []
     UsersSubject.joins(:subject).where(:user_id => current_user.id).order('subjects.description ASC').each do |sbj|
       @subjects << sbj.subject
@@ -139,7 +139,7 @@ class LessonEditorController < ApplicationController
     @subjects
   end
   
-  def save_current_slide
+  def save_current_slide # :doc:
     media_elements_params = {}
     (1...5).each do |i|
       if !params["media_element_#{i}"].blank?

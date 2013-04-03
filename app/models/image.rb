@@ -302,20 +302,24 @@ class Image < MediaElement
   
   private
   
-  def width=(width)
+  # Sets the +width+ in +metadata+
+  def width=(width) # :doc:
     metadata.width = width
   end
   
-  def height=(height)
+  # Sets the +height+ in +metadata+
+  def height=(height) # :doc:
     metadata.height = height
   end
   
-  def set_width_and_height
+  # Sets +width+ and +height+ according to the data contained in +media+
+  def set_width_and_height # :doc:
     self.width, self.height = media.width, media.height
     true
   end
-
-  def set_converted_to_true
+  
+  # Sets +converted+ to true
+  def set_converted_to_true # :doc:
     self.converted = true
     true
   end

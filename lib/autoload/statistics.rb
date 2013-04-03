@@ -1,18 +1,17 @@
+# Module of methods that return statistics, used in UsersController#statistics, Admin::DashboardController#index and Admin::UsersController#show
 module Statistics
   
   class << self
     
+    # The user necessary to scope all personal statistics
     attr_accessor :user
-    
-    
-    # PART 1: statistics retrieving ActiveRecord arrays
     
     # The first n lessons of the current user, ordered by the number of likes received
     def my_liked_lessons(first_n)
       Lesson.select('id, title, (SELECT COUNT (*) FROM likes WHERE likes.lesson_id = lessons.id) AS likes_count').where(:user_id => user.id).order('likes_count DESC, updated_at DESC').limit(first_n)
     end
     
-    # The first n lessons liked by users in all DESY
+    # The first n lessons liked by users in all the application
     def all_liked_lessons(first_n)
       Lesson.select('id, title, (SELECT COUNT (*) FROM likes WHERE likes.lesson_id = lessons.id) AS likes_count').order('likes_count DESC, updated_at DESC').limit(first_n)
     end
@@ -21,9 +20,6 @@ module Statistics
     def all_users_like(first_n)
       Like.joins(:lesson, :lesson => :user).group('users.id').select('users.id, users.name, users.surname, COUNT(*) AS likes_count').order('likes_count DESC, users.created_at DESC').limit(first_n)
     end
-    
-    
-    # PART 2: statistics retrieving numbers
     
     # Lessons created by the current user, and copied by other users
     def my_copied_lessons
@@ -45,7 +41,7 @@ module Statistics
       Like.joins(:lesson).where(:lessons => {:user_id => user.id}).count
     end
     
-    # The number of users in DESY
+    # The number of users in the application
     def all_users
       User.count
     end
@@ -59,9 +55,6 @@ module Statistics
     def all_shared_elements
       MediaElement.where(:is_public => true).count
     end
-    
-    
-    # PART 3: statistics retrieving charts
     
     # Chart representing the distribution of subjects among lessons
     def all_subjects_chart
@@ -78,7 +71,8 @@ module Statistics
     
     private
     
-    def sbj_to_percentage(val)
+    # Used as a submethod of Statistics#all_subjects_chart
+    def sbj_to_percentage(val) # :doc:
       tot = Lesson.count
       res = (val.to_f * 100) / tot.to_f
       res.round(2)

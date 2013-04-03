@@ -1,7 +1,31 @@
+# == Description
+#
+# Controller of notifications and general messages in the administration section. See AdminController.
+#
+# == Models used
+#
+# * Location
+# * Notification
+# * Report
+# * User
+# * AdminSearchForm
+#
 class Admin::MessagesController < AdminController
   
   layout 'admin'
   
+  # === Description
+  #
+  # Main page of the multiple notification sender
+  #
+  # === Mode
+  #
+  # Html
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#admin_authentication
+  #
   def new_notification
     @locations = [Location.roots]
     if params[:search]
@@ -13,6 +37,18 @@ class Admin::MessagesController < AdminController
     end
   end
   
+  # === Description
+  #
+  # Ajax action that updates the number of recipients in the multiple notification sender main page
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#admin_authentication
+  #
   def filter_users
     if params[:search].present?
       if params[:send_message].present? && params[:message].present?
@@ -31,6 +67,18 @@ class Admin::MessagesController < AdminController
     end
   end
   
+  # === Description
+  #
+  # Main page of the reports (for actions related to reports, see Admin::ReportsController)
+  #
+  # === Mode
+  #
+  # Html
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#admin_authentication
+  #
   def reports
     @elements_reports = Report.order('created_at DESC').where(:reportable_type => 'MediaElement').page(params[:elements_page])
     @lessons_reports = Report.order('created_at DESC').where(:reportable_type => 'Lesson').page(params[:lessons_page])
@@ -38,7 +86,7 @@ class Admin::MessagesController < AdminController
   
   private
   
-  def send_notifications(users_ids, message)
+  def send_notifications(users_ids, message) # :doc:
     Notification.send_to(users_ids, message)
   end
   

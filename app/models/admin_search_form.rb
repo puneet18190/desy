@@ -3,7 +3,7 @@
 # This class contains the list of search methods used in the administrator.
 # Unlike the methods used in the application's search engine (see User#search_lessons, User#search_media_elements), these search methods are not optimized and indicized.
 #
-class AdminSearchForm < Form
+class AdminSearchForm
   
   # List of possible values for the parameter 'recency'
   RECENCIES = [1.day.ago, 1.week.ago, 1.month.ago, 1.year.ago]

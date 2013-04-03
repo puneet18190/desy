@@ -1,5 +1,14 @@
 require 'media/audio/editing/composer/job'
 
+# == Description
+#
+# Controller for all the actions in the Audio Editor
+#
+# == Models used
+#
+# * Audio
+# * Notification
+#
 class AudioEditorController < ApplicationController
   
   before_filter :check_available_for_user
@@ -7,6 +16,20 @@ class AudioEditorController < ApplicationController
   before_filter :extract_cache, :only => [:edit, :new, :restore_cache]
   layout 'media_element_editor'
   
+  # === Description
+  #
+  # Opens the Audio Editor with only one component, corresponding to a given audio
+  #
+  # === Mode
+  #
+  # Html
+  #
+  # === Specific filters
+  #
+  # * AudioEditorController#check_available_for_user
+  # * AudioEditorController#initialize_audio_with_owner_or_public
+  # * AudioEditorController#extract_cache
+  #
   def edit
     if @ok
       @parameters = convert_audio_to_parameters
@@ -19,6 +42,19 @@ class AudioEditorController < ApplicationController
     end
   end
   
+  # === Description
+  #
+  # Opens the Audio Editor empty
+  #
+  # === Mode
+  #
+  # Html
+  #
+  # === Specific filters
+  #
+  # * AudioEditorController#check_available_for_user
+  # * AudioEditorController#extract_cache
+  #
   def new
     @parameters = empty_parameters
     @total_length = Audio.total_prototype_time(@parameters)
@@ -27,6 +63,19 @@ class AudioEditorController < ApplicationController
     render :edit
   end
   
+  # === Description
+  #
+  # Opens the Audio Editor restoring the cache (if there is no cache, the Editor is empty but there is no redirection to AudioEditorController#new)
+  #
+  # === Mode
+  #
+  # Html
+  #
+  # === Specific filters
+  #
+  # * AudioEditorController#check_available_for_user
+  # * AudioEditorController#extract_cache
+  #
   def restore_cache
     @parameters = @cache.nil? ? empty_parameters : @cache
     @cache = nil
@@ -35,16 +84,52 @@ class AudioEditorController < ApplicationController
     render :edit
   end
   
+  # === Description
+  #
+  # Empties the cache
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # * AudioEditorController#check_available_for_user
+  #
   def empty_cache
     current_user.audio_editor_cache!
     render :nothing => true
   end
   
+  # === Description
+  #
+  # Saves the cache
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # * AudioEditorController#check_available_for_user
+  #
   def save_cache
     current_user.audio_editor_cache! extract_form_parameters
     render :nothing => true
   end
   
+  # === Description
+  #
+  # Saves the work as a new audio
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # * AudioEditorController#check_available_for_user
+  #
   def save
     parameters = Audio.convert_to_primitive_parameters(extract_form_parameters, current_user.id)
     @redirect = false
@@ -74,6 +159,18 @@ class AudioEditorController < ApplicationController
     render 'media_elements/info_form_in_editor/save'
   end
   
+  # === Description
+  #
+  # Saves the work overwriting an existing audio
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # * AudioEditorController#check_available_for_user
+  #
   def overwrite
     parameters = Audio.convert_to_primitive_parameters(extract_form_parameters, current_user.id)
     @redirect = false
@@ -108,19 +205,19 @@ class AudioEditorController < ApplicationController
   
   private
   
-  def used_in_private_lessons
+  def used_in_private_lessons # :doc:
     return false if @parameters[:initial_audio].nil?
     @parameters[:initial_audio].media_elements_slides.any?
   end
   
-  def check_available_for_user
+  def check_available_for_user # :doc:
     if !current_user.audio_editor_available
       render 'not_available'
       return
     end
   end
   
-  def extract_form_parameters
+  def extract_form_parameters # :doc:
     unordered_resp = {}
     ordered_resp = {}
     resp = {
@@ -150,7 +247,7 @@ class AudioEditorController < ApplicationController
     resp
   end
   
-  def convert_audio_to_parameters
+  def convert_audio_to_parameters # :doc:
     resp = {}
     resp[:initial_audio_id] = @audio.is_public ? nil : @audio.id
     resp[:components] = [{}]
@@ -161,18 +258,18 @@ class AudioEditorController < ApplicationController
     resp.nil? ? empty_parameters : resp
   end
   
-  def empty_parameters
+  def empty_parameters # :doc:
     resp = {}
     resp[:initial_audio] = nil
     resp[:components] = []
     resp
   end
   
-  def extract_cache
+  def extract_cache # :doc:
     @cache = Audio.convert_parameters current_user.audio_editor_cache, current_user.id
   end
   
-  def initialize_audio_with_owner_or_public
+  def initialize_audio_with_owner_or_public # :doc:
     @audio_id = correct_integer?(params[:audio_id]) ? params[:audio_id].to_i : 0
     @audio = Audio.find_by_id @audio_id
     update_ok(!@audio.nil? && (@audio.is_public || current_user.id == @audio.user_id))

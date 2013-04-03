@@ -88,9 +88,29 @@
     
     <li><a href="#method-i-image_at">#image_at</a>
     
+    <li><a href="#method-i-init_validation">#init_validation</a>
+    
+    <li><a href="#method-i-is_cover">#is_cover</a>
+    
+    <li><a href="#method-i-media_element_at">#media_element_at</a>
+    
     <li><a href="#method-i-previous">#previous</a>
     
+    <li><a href="#method-i-stop_if_cover">#stop_if_cover</a>
+    
     <li><a href="#method-i-update_with_media_elements">#update_with_media_elements</a>
+    
+    <li><a href="#method-i-validate_associations">#validate_associations</a>
+    
+    <li><a href="#method-i-validate_cover">#validate_cover</a>
+    
+    <li><a href="#method-i-validate_impossible_changes">#validate_impossible_changes</a>
+    
+    <li><a href="#method-i-validate_max_number_slides">#validate_max_number_slides</a>
+    
+    <li><a href="#method-i-validate_text">#validate_text</a>
+    
+    <li><a href="#method-i-validate_title">#validate_title</a>
     
     <li><a href="#method-i-video_at">#video_at</a>
     
@@ -342,8 +362,6 @@
     <li><a href="./ExceptionNotifierJob.html">ExceptionNotifierJob</a>
   
     <li><a href="./Filters.html">Filters</a>
-  
-    <li><a href="./Form.html">Form</a>
   
     <li><a href="./GalleriesController.html">GalleriesController</a>
   
@@ -1292,6 +1310,325 @@ position, it returns <code>nil</code></p>
 
     
     </section><!-- public-instance-method-details -->
+  
+     <section id="private-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Private Instance Methods</h3>
+
+    
+      <div id="method-i-init_validation" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">init_validation</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Initializes validation objects (see <a
+href="Valid.html#method-c-get_association">Valid.get_association</a>)</p>
+          
+
+          
+          <div class="method-source-code" id="init_validation-source">
+            <pre><span class="ruby-comment"># File app/models/slide.rb, line 426</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">init_validation</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-ivar">@slide</span> = <span class="ruby-constant">Valid</span>.<span class="ruby-identifier">get_association</span> <span class="ruby-keyword">self</span>, <span class="ruby-value">:id</span>
+  <span class="ruby-ivar">@lesson</span> = <span class="ruby-constant">Valid</span>.<span class="ruby-identifier">get_association</span> <span class="ruby-keyword">self</span>, <span class="ruby-value">:lesson_id</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- init_validation-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- init_validation-method -->
+
+    
+      <div id="method-i-is_cover" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">is_cover</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Checks if the slide is the cover of the lesson</p>
+          
+
+          
+          <div class="method-source-code" id="is_cover-source">
+            <pre><span class="ruby-comment"># File app/models/slide.rb, line 421</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">is_cover</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">kind</span> <span class="ruby-operator">==</span> <span class="ruby-constant">COVER</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- is_cover-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- is_cover-method -->
+
+    
+      <div id="method-i-media_element_at" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">media_element_at</span><span
+            class="method-args">(position)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Extracts the media element at a given position</p>
+          
+
+          
+          <div class="method-source-code" id="media_element_at-source">
+            <pre><span class="ruby-comment"># File app/models/slide.rb, line 406</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">media_element_at</span>(<span class="ruby-identifier">position</span>) <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-constant">MediaElementsSlide</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:slide_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>, <span class="ruby-value">:position</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">position</span>).<span class="ruby-identifier">first</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- media_element_at-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- media_element_at-method -->
+
+    
+      <div id="method-i-stop_if_cover" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">stop_if_cover</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="stop_if_cover-source">
+            <pre><span class="ruby-comment"># File app/models/slide.rb, line 450</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">stop_if_cover</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-ivar">@slide</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">nil</span> <span class="ruby-operator">:</span> <span class="ruby-constant">Slide</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">first</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@slide</span>.<span class="ruby-identifier">nil?</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-ivar">@slide</span>.<span class="ruby-identifier">kind</span> <span class="ruby-operator">!=</span> <span class="ruby-constant">COVER</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- stop_if_cover-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- stop_if_cover-method -->
+
+    
+      <div id="method-i-validate_associations" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">validate_associations</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Validates the presence of all the associated objects</p>
+          
+
+          
+          <div class="method-source-code" id="validate_associations-source">
+            <pre><span class="ruby-comment"># File app/models/slide.rb, line 432</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">validate_associations</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:lesson_id</span>, <span class="ruby-value">:doesnt_exist</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">nil?</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- validate_associations-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- validate_associations-method -->
+
+    
+      <div id="method-i-validate_cover" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">validate_cover</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="validate_cover-source">
+            <pre><span class="ruby-comment"># File app/models/slide.rb, line 445</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">validate_cover</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:position</span>, <span class="ruby-value">:cover_must_be_first_slide</span>) <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">kind</span> <span class="ruby-operator">==</span> <span class="ruby-constant">COVER</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">position</span> <span class="ruby-operator">!=</span> <span class="ruby-value">1</span>
+  <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:position</span>, <span class="ruby-value">:if_not_cover_cant_be_first_slide</span>) <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">kind</span> <span class="ruby-operator">!=</span> <span class="ruby-constant">COVER</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">position</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- validate_cover-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- validate_cover-method -->
+
+    
+      <div id="method-i-validate_impossible_changes" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">validate_impossible_changes</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>If the slide is not a new record, <code>lesson_id</code> and
+<code>kind</code> can&#39;t be changed; moreover, if it&#39;s the cover,
+the title can&#39;t be different by the title of the lesson</p>
+          
+
+          
+          <div class="method-source-code" id="validate_impossible_changes-source">
+            <pre><span class="ruby-comment"># File app/models/slide.rb, line 437</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">validate_impossible_changes</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@slide</span>
+    <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:lesson_id</span>, <span class="ruby-value">:cant_be_changed</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@slide</span>.<span class="ruby-identifier">lesson_id</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">lesson_id</span>
+    <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:kind</span>, <span class="ruby-value">:cant_be_changed</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@slide</span>.<span class="ruby-identifier">kind</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">kind</span>
+    <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:title</span>, <span class="ruby-value">:in_cover_it_cant_be_different_by_lessons_title</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@lesson</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">cover?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@slide</span>.<span class="ruby-identifier">title</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">title</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">title</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">title</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- validate_impossible_changes-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- validate_impossible_changes-method -->
+
+    
+      <div id="method-i-validate_max_number_slides" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">validate_max_number_slides</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Validates that the lesson is not exceeding the maximum number of slides</p>
+          
+
+          
+          <div class="method-source-code" id="validate_max_number_slides-source">
+            <pre><span class="ruby-comment"># File app/models/slide.rb, line 401</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">validate_max_number_slides</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:base</span>, <span class="ruby-value">:too_many_slides</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@lesson</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@slide</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-constant">Slide</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:lesson_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">count</span> <span class="ruby-operator">==</span> <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;max_number_slides_in_a_lesson&#39;</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- validate_max_number_slides-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- validate_max_number_slides-method -->
+
+    
+      <div id="method-i-validate_text" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">validate_text</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Validates that if the slide doesn&#39;t allow the <code>text</code>, it
+must be <code>nil</code></p>
+          
+
+          
+          <div class="method-source-code" id="validate_text-source">
+            <pre><span class="ruby-comment"># File app/models/slide.rb, line 416</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">validate_text</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:text</span>, <span class="ruby-value">:must_be_null_in_this_slide</span>) <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">allows_text?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">text</span>.<span class="ruby-identifier">nil?</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- validate_text-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- validate_text-method -->
+
+    
+      <div id="method-i-validate_title" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">validate_title</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Validates that if the slide doesn&#39;t allow the <code>title</code>, it
+must be <code>nil</code></p>
+          
+
+          
+          <div class="method-source-code" id="validate_title-source">
+            <pre><span class="ruby-comment"># File app/models/slide.rb, line 411</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">validate_title</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:title</span>, <span class="ruby-value">:must_be_null_in_this_slide</span>) <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">allows_title?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">title</span>.<span class="ruby-identifier">nil?</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- validate_title-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- validate_title-method -->
+
+    
+    </section><!-- private-instance-method-details -->
   
   </section><!-- 5Buntitled-5D -->
 

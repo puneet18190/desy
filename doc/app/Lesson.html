@@ -84,6 +84,8 @@
     
     <li><a href="#method-c-dashboard_emptied-3F">::dashboard_emptied?</a>
     
+    <li><a href="#method-c-test">::test</a>
+    
     <li><a href="#method-i-add_slide">#add_slide</a>
     
     <li><a href="#method-i-add_to_virtual_classroom">#add_to_virtual_classroom</a>
@@ -100,11 +102,21 @@
     
     <li><a href="#method-i-cover">#cover</a>
     
+    <li><a href="#method-i-create_or_update_cover">#create_or_update_cover</a>
+    
+    <li><a href="#method-i-create_token">#create_token</a>
+    
     <li><a href="#method-i-destroy_with_notifications">#destroy_with_notifications</a>
     
     <li><a href="#method-i-dont_notify_changes">#dont_notify_changes</a>
     
     <li><a href="#method-i-in_virtual_classroom-3F">#in_virtual_classroom?</a>
+    
+    <li><a href="#method-i-init_validation">#init_validation</a>
+    
+    <li><a href="#method-i-initialize_metadata">#initialize_metadata</a>
+    
+    <li><a href="#method-i-like_button">#like_button</a>
     
     <li><a href="#method-i-liked-3F">#liked?</a>
     
@@ -113,6 +125,8 @@
     <li><a href="#method-i-not_notified-3F">#not_notified?</a>
     
     <li><a href="#method-i-notify_changes">#notify_changes</a>
+    
+    <li><a href="#method-i-present_parent_id">#present_parent_id</a>
     
     <li><a href="#method-i-publish">#publish</a>
     
@@ -129,6 +143,20 @@
     <li><a href="#method-i-tags-3D">#tags=</a>
     
     <li><a href="#method-i-unpublish">#unpublish</a>
+    
+    <li><a href="#method-i-update_or_create_tags">#update_or_create_tags</a>
+    
+    <li><a href="#method-i-validate_associations">#validate_associations</a>
+    
+    <li><a href="#method-i-validate_copied_not_modified_and_public">#validate_copied_not_modified_and_public</a>
+    
+    <li><a href="#method-i-validate_impossible_changes">#validate_impossible_changes</a>
+    
+    <li><a href="#method-i-validate_public">#validate_public</a>
+    
+    <li><a href="#method-i-validate_tags_length">#validate_tags_length</a>
+    
+    <li><a href="#method-i-virtual_classroom_button">#virtual_classroom_button</a>
     
     <li><a href="#method-i-visive_tags">#visive_tags</a>
     
@@ -381,8 +409,6 @@
   
     <li><a href="./Filters.html">Filters</a>
   
-    <li><a href="./Form.html">Form</a>
-  
     <li><a href="./GalleriesController.html">GalleriesController</a>
   
     <li><a href="./Image.html">Image</a>
@@ -564,7 +590,7 @@ href="MediaElementsSlide.html">MediaElementsSlide</a>) (through the class
 of this lesson (see <a href="MediaElement.html">MediaElement</a>) (through
 the class <a href="Slide.html">Slide</a> and <a
 href="MediaElementsSlide.html">MediaElementsSlide</a>)
-(<strong>has_many</strong>)</p>
+(<strong>has_and_belongs_to_many</strong>)</p>
 </li><li>
 <p><strong>virtual_classroom_lessons</strong>: copies of this lesson into the
 Virtual Classroom of the creator or other users (see <a
@@ -581,7 +607,7 @@ record for <code>user_id</code>, <code>subject_id</code>,
 <p><strong>presence</strong> for <code>title</code> and
 <code>description</code></p>
 </li><li>
-<p><strong>presence</strong> of associated element, numericality for
+<p><strong>presence</strong> of associated object, numericality for
 <code>parent_id</code> and <code>parent_id</code> must different by
 <code>id</code>, <strong>only if different by nil</strong></p>
 </li><li>
@@ -779,6 +805,45 @@ href="DashboardController.html#method-i-index">DashboardController#index</a>).</
 
     
     </section><!-- public-class-method-details -->
+  
+     <section id="private-class-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Private Class Methods</h3>
+
+    
+      <div id="method-c-test" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test-source">
+            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 877</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">test</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-identifier">l</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">admin</span>.<span class="ruby-identifier">create_lesson</span>(<span class="ruby-string">&#39;test title&#39;</span>, <span class="ruby-string">&#39;test description&#39;</span>, <span class="ruby-value">1</span>, <span class="ruby-string">&quot;asd, o, mar, rio, mare, test&quot;</span>)
+  <span class="ruby-identifier">l</span> = <span class="ruby-identifier">find</span> <span class="ruby-identifier">l</span>.<span class="ruby-identifier">id</span>
+  <span class="ruby-identifier">_d</span> <span class="ruby-identifier">l</span>
+  <span class="ruby-identifier">l</span>.<span class="ruby-identifier">destroy</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test-method -->
+
+    
+    </section><!-- private-class-method-details -->
   
      <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
       <h3 class="section-header">Public Instance Methods</h3>
@@ -1861,7 +1926,8 @@ otherwise it returns the status keyword (for default).</p>
 <h3 id="method-i-status-label-Returns">Returns</h3>
 
 <p>A string, or a keyword representing the status (see <a
-href="Statuses.html">Statuses</a>)</p>
+href="Statuses.html">Statuses</a> and <a
+href="LessonsMediaElementsShared.html">LessonsMediaElementsShared</a>)</p>
           
 
           
@@ -2082,6 +2148,472 @@ href="MediaElement.html#method-i-visive_tags">MediaElement#visive_tags</a>)</p>
 
     
     </section><!-- public-instance-method-details -->
+  
+     <section id="private-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Private Instance Methods</h3>
+
+    
+      <div id="method-i-create_or_update_cover" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">create_or_update_cover</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Callback that creates or updates the cover after save</p>
+          
+
+          
+          <div class="method-source-code" id="create_or_update_cover-source">
+            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 839</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">create_or_update_cover</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">nil?</span>
+    <span class="ruby-identifier">slide</span> = <span class="ruby-constant">Slide</span>.<span class="ruby-identifier">new</span> <span class="ruby-value">:title</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">title</span>, <span class="ruby-value">:position</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>
+    <span class="ruby-identifier">slide</span>.<span class="ruby-identifier">kind</span> = <span class="ruby-constant">Slide</span><span class="ruby-operator">::</span><span class="ruby-constant">COVER</span>
+    <span class="ruby-identifier">slide</span>.<span class="ruby-identifier">lesson_id</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>
+    <span class="ruby-identifier">slide</span>.<span class="ruby-identifier">save</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-ivar">@title_changed</span>
+    <span class="ruby-identifier">my_cover</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">cover</span>
+    <span class="ruby-identifier">my_cover</span>.<span class="ruby-identifier">title</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">title</span>
+    <span class="ruby-identifier">my_cover</span>.<span class="ruby-identifier">save</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- create_or_update_cover-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- create_or_update_cover-method -->
+
+    
+      <div id="method-i-create_token" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">create_token</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Callback that creates a random secure token and sets is as the
+<code>token</code> of the lesson</p>
+          
+
+          
+          <div class="method-source-code" id="create_token-source">
+            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 872</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">create_token</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">token</span> = <span class="ruby-constant">SecureRandom</span>.<span class="ruby-identifier">urlsafe_base64</span>(<span class="ruby-value">16</span>)
+  <span class="ruby-keyword">true</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- create_token-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- create_token-method -->
+
+    
+      <div id="method-i-init_validation" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">init_validation</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Initializes validation objects (see <a
+href="Valid.html#method-c-get_association">Valid.get_association</a>).
+It&#39;s initialized also the private attribute <code>inner_tags</code></p>
+          
+
+          
+          <div class="method-source-code" id="init_validation-source">
+            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 811</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">init_validation</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-ivar">@lesson</span> = <span class="ruby-constant">Valid</span>.<span class="ruby-identifier">get_association</span> <span class="ruby-keyword">self</span>, <span class="ruby-value">:id</span>
+  <span class="ruby-ivar">@user</span> = <span class="ruby-constant">Valid</span>.<span class="ruby-identifier">get_association</span> <span class="ruby-keyword">self</span>, <span class="ruby-value">:user_id</span>
+  <span class="ruby-ivar">@subject</span> = <span class="ruby-constant">Valid</span>.<span class="ruby-identifier">get_association</span> <span class="ruby-keyword">self</span>, <span class="ruby-value">:subject_id</span>
+  <span class="ruby-ivar">@school_level</span> = <span class="ruby-constant">Valid</span>.<span class="ruby-identifier">get_association</span> <span class="ruby-keyword">self</span>, <span class="ruby-value">:school_level_id</span>
+  <span class="ruby-ivar">@parent</span> = <span class="ruby-constant">Valid</span>.<span class="ruby-identifier">get_association</span> <span class="ruby-keyword">self</span>, <span class="ruby-value">:parent_id</span>, <span class="ruby-constant">Lesson</span>
+  <span class="ruby-ivar">@title_changed</span> = (<span class="ruby-ivar">@lesson</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">title</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">title</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@tags</span>.<span class="ruby-identifier">blank?</span>
+    <span class="ruby-ivar">@inner_tags</span> = <span class="ruby-constant">Tag</span>.<span class="ruby-identifier">get_tags_for_item</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>, <span class="ruby-string">&#39;Lesson&#39;</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">resp_tags</span> = []
+    <span class="ruby-identifier">prev_tags</span> = []
+    <span class="ruby-ivar">@tags</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;,&#39;</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">t</span><span class="ruby-operator">|</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">t</span>.<span class="ruby-identifier">blank?</span>
+        <span class="ruby-identifier">t</span> = <span class="ruby-identifier">t</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">strip</span>.<span class="ruby-identifier">mb_chars</span>.<span class="ruby-identifier">downcase</span>.<span class="ruby-identifier">to_s</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">prev_tags</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">t</span>
+          <span class="ruby-identifier">tag</span> = <span class="ruby-constant">Tag</span>.<span class="ruby-identifier">find_by_word</span> <span class="ruby-identifier">t</span>
+          <span class="ruby-identifier">tag</span> = <span class="ruby-constant">Tag</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:word</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">t</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">tag</span>.<span class="ruby-identifier">nil?</span>
+          <span class="ruby-identifier">resp_tags</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">tag</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">tag</span>.<span class="ruby-identifier">valid?</span>
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-identifier">prev_tags</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">t</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-ivar">@inner_tags</span> = <span class="ruby-identifier">resp_tags</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- init_validation-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- init_validation-method -->
+
+    
+      <div id="method-i-initialize_metadata" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">initialize_metadata</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="initialize_metadata-source">
+            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 884</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize_metadata</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">available_video</span> = <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">available_audio</span> = <span class="ruby-keyword">true</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- initialize_metadata-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- initialize_metadata-method -->
+
+    
+      <div id="method-i-like_button" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">like_button</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Extracts the corresponding button depending on the fact that the lesson is
+liked by the user or not</p>
+          
+
+          
+          <div class="method-source-code" id="like_button-source">
+            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 771</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">like_button</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-ivar">@liked</span> <span class="ruby-operator">?</span> <span class="ruby-constant">Buttons</span><span class="ruby-operator">::</span><span class="ruby-constant">DISLIKE</span> <span class="ruby-operator">:</span> <span class="ruby-constant">Buttons</span><span class="ruby-operator">::</span><span class="ruby-constant">LIKE</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- like_button-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- like_button-method -->
+
+    
+      <div id="method-i-present_parent_id" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">present_parent_id</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Checks if <code>parent_id</code> != <code>nil</code></p>
+          
+
+          
+          <div class="method-source-code" id="present_parent_id-source">
+            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 776</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">present_parent_id</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">parent_id</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- present_parent_id-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- present_parent_id-method -->
+
+    
+      <div id="method-i-update_or_create_tags" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">update_or_create_tags</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Callback that updates the taggings associated to the lesson. If the
+corresponding <a href="Tag.html">Tag</a> doesn&#39;t exist yet, it&#39;s
+created</p>
+          
+
+          
+          <div class="method-source-code" id="update_or_create_tags-source">
+            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 790</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">update_or_create_tags</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span> <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@inner_tags</span>
+  <span class="ruby-identifier">words</span> = []
+  <span class="ruby-ivar">@inner_tags</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">t</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Rollback</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">t</span>.<span class="ruby-identifier">new_record?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">t</span>.<span class="ruby-identifier">save</span>
+    <span class="ruby-identifier">words</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">t</span>.<span class="ruby-identifier">id</span>
+    <span class="ruby-identifier">tagging</span> = <span class="ruby-constant">Tagging</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:taggable_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>, <span class="ruby-value">:taggable_type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Lesson&#39;</span>, <span class="ruby-value">:tag_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">t</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">first</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">tagging</span>.<span class="ruby-identifier">nil?</span>
+      <span class="ruby-identifier">tagging</span> = <span class="ruby-constant">Tagging</span>.<span class="ruby-identifier">new</span>
+      <span class="ruby-identifier">tagging</span>.<span class="ruby-identifier">taggable_id</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>
+      <span class="ruby-identifier">tagging</span>.<span class="ruby-identifier">taggable_type</span> = <span class="ruby-string">&#39;Lesson&#39;</span>
+      <span class="ruby-identifier">tagging</span>.<span class="ruby-identifier">tag_id</span> = <span class="ruby-identifier">t</span>.<span class="ruby-identifier">id</span>
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Rollback</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">tagging</span>.<span class="ruby-identifier">save</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-constant">Tagging</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:taggable_type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Lesson&#39;</span>, <span class="ruby-value">:taggable_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">t</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">t</span>.<span class="ruby-identifier">destroy</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">words</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">t</span>.<span class="ruby-identifier">tag_id</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- update_or_create_tags-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- update_or_create_tags-method -->
+
+    
+      <div id="method-i-validate_associations" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">validate_associations</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Validates the presence of all the associated objects; only for
+<code>parent_id</code>, it&#39;s allowed <code>nil</code>, and if not
+<code>nil</code> it&#39;s checked that it&#39;s not the lesson itself</p>
+          
+
+          
+          <div class="method-source-code" id="validate_associations-source">
+            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 781</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">validate_associations</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:user_id</span>, <span class="ruby-value">:doesnt_exist</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">nil?</span>
+  <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:subject_id</span>, <span class="ruby-value">:doesnt_exist</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@subject</span>.<span class="ruby-identifier">nil?</span>
+  <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:school_level_id</span>, <span class="ruby-value">:doesnt_exist</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@school_level</span>.<span class="ruby-identifier">nil?</span>
+  <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:parent_id</span>, <span class="ruby-value">:doesnt_exist</span>) <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">parent_id</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@parent</span>.<span class="ruby-identifier">nil?</span>
+  <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:parent_id</span>, <span class="ruby-value">:cant_be_the_lesson_itself</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@lesson</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">parent_id</span> <span class="ruby-operator">==</span> <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">id</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- validate_associations-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- validate_associations-method -->
+
+    
+      <div id="method-i-validate_copied_not_modified_and_public" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">validate_copied_not_modified_and_public</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Validates that a lesson just copied can&#39;t be public</p>
+          
+
+          
+          <div class="method-source-code" id="validate_copied_not_modified_and_public-source">
+            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 858</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">validate_copied_not_modified_and_public</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:copied_not_modified</span>, <span class="ruby-value">:cant_be_true_if_public</span>) <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">is_public</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">copied_not_modified</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- validate_copied_not_modified_and_public-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- validate_copied_not_modified_and_public-method -->
+
+    
+      <div id="method-i-validate_impossible_changes" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">validate_impossible_changes</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Validates that if the lesson is not new record the fields
+<code>token</code>, <code>user_id</code>, <code>parent_id</code> cannot be
+changed</p>
+          
+
+          
+          <div class="method-source-code" id="validate_impossible_changes-source">
+            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 863</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">validate_impossible_changes</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@lesson</span>
+    <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:token</span>, <span class="ruby-value">:cant_be_changed</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">token</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">token</span>
+    <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:user_id</span>, <span class="ruby-value">:cant_be_changed</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">user_id</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">user_id</span>
+    <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:parent_id</span>, <span class="ruby-value">:cant_be_changed</span>) <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">parent_id</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">parent_id</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">parent_id</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- validate_impossible_changes-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- validate_impossible_changes-method -->
+
+    
+      <div id="method-i-validate_public" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">validate_public</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Validates that a new lesson can&#39;t be public</p>
+          
+
+          
+          <div class="method-source-code" id="validate_public-source">
+            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 853</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">validate_public</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:is_public</span>, <span class="ruby-value">:cant_be_true_for_new_records</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">is_public</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- validate_public-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- validate_public-method -->
+
+    
+      <div id="method-i-validate_tags_length" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">validate_tags_length</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Validates that the tags are at least the number configured in settings.yml,
+unless the attribute <code>validating_in_form</code> is false</p>
+          
+
+          
+          <div class="method-source-code" id="validate_tags_length-source">
+            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 761</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">validate_tags_length</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:tags</span>, <span class="ruby-value">:are_not_enough</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@validating_in_form</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@inner_tags</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;min_tags_for_item&#39;</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- validate_tags_length-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- validate_tags_length-method -->
+
+    
+      <div id="method-i-virtual_classroom_button" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">virtual_classroom_button</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Extracts the corresponding button depending on the fact that the lesson is
+in the Virtual Classroom or not</p>
+          
+
+          
+          <div class="method-source-code" id="virtual_classroom_button-source">
+            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 766</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">virtual_classroom_button</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-ivar">@in_vc</span> <span class="ruby-operator">?</span> <span class="ruby-constant">Buttons</span><span class="ruby-operator">::</span><span class="ruby-constant">REMOVE_VIRTUAL_CLASSROOM</span> <span class="ruby-operator">:</span> <span class="ruby-constant">Buttons</span><span class="ruby-operator">::</span><span class="ruby-constant">ADD_VIRTUAL_CLASSROOM</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- virtual_classroom_button-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- virtual_classroom_button-method -->
+
+    
+    </section><!-- private-instance-method-details -->
   
   </section><!-- 5Buntitled-5D -->
 

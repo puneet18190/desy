@@ -193,15 +193,18 @@ class Tag < ActiveRecord::Base
   
   private
   
-  def init_validation
+  # Initializes validation objects (see Valid.get_association)
+  def init_validation # :doc:
     @tag = Valid.get_association self, :id
   end
   
-  def word_not_changed
+  # Validates that if not new record +word+ can't be changed
+  def word_not_changed # :doc:
     errors.add(:word, :cant_be_changed) if @tag && @tag.word != self.word
   end
   
-  def destroy_taggings
+  # Callback that destroys the taggings before the destruction of the present tag
+  def destroy_taggings # :doc:
     Tagging.where(:tag_id => self.id).each do |tagging|
       tagging.not_orphans = true
       tagging.destroy

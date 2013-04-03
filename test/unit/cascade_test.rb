@@ -2,6 +2,47 @@ require 'test_helper'
 
 class CascadeTest < ActiveSupport::TestCase
   
+  test 'mailing_list_cascade' do
+    resp = User.confirmed.new(:password => SETTINGS['admin']['password'], :password_confirmation => SETTINGS['admin']['password'], :name => 'oo', :surname => 'fsg', :school_level_id => 1, :location_id => 1, :subject_ids => [1, 2]) do |user|
+      user.email = SETTINGS['admin']['email']
+    end
+    resp.policy_1 = '1'
+    resp.policy_2 = '1'
+    resp.active = true
+    assert_obj_saved resp
+    mg1 = MailingListGroup.new
+    mg1.user_id = 1
+    mg1.name = 'Gruppo 1'
+    assert_obj_saved mg1
+    mg2 = MailingListGroup.new
+    mg2.user_id = 1
+    mg2.name = 'Gruppo 2'
+    assert_obj_saved mg2
+    mg1 = mg1.id
+    mg2 = mg2.id
+    address1 = MailingListAddress.new
+    address1.group_id = mg1
+    address1.heading = 'cane'
+    address1.email = 'cane@cane.cn'
+    assert_obj_saved address1
+    address2 = MailingListAddress.new
+    address2.group_id = mg2
+    address2.heading = 'Pinilla'
+    address2.email = 'pinilla@cane.cn'
+    assert_obj_saved address1
+    address1 = address1.id
+    address2 = address2.id
+    MailingListGroup.find(mg2).destroy
+    assert_nil MailingListGroup.find_by_id mg2
+    assert_nil MailingListAddress.find_by_id address2
+    assert_not_nil MailingListGroup.find_by_id mg1
+    assert_not_nil MailingListAddress.find_by_id address1
+    User.find(1).destroy_with_dependencies
+    assert_nil User.find_by_id 1
+    assert_nil MailingListGroup.find_by_id mg1
+    assert_nil MailingListAddress.find_by_id address1
+  end
+  
   test 'lesson_cascade' do
     @lesson = Lesson.find 2
     @copied_lesson = Lesson.new :subject_id => 1, :school_level_id => 2, :title => 'Fernandello mio', :description => 'Voglio divenire uno scienziaaato'

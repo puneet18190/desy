@@ -152,12 +152,12 @@ class VirtualClassroomController < ApplicationController
   
   private
   
-  def initialize_lesson_for_sending_link
+  def initialize_lesson_for_sending_link # :doc:
     initialize_lesson
     update_ok(@lesson && @lesson.user_id == current_user.id && @lesson.in_virtual_classroom?(current_user.id))
   end
   
-  def initialize_loaded_lessons
+  def initialize_loaded_lessons # :doc:
     @load_lessons = []
     param_name = 'virtual_classroom_quick_loaded_lesson_name'
     params.each do |k, v|
@@ -169,12 +169,12 @@ class VirtualClassroomController < ApplicationController
     end
   end
   
-  def initialize_page
+  def initialize_page # :doc:
     @page = correct_integer?(params[:page]) ? params[:page].to_i : 0
     update_ok(@page > 0)
   end
   
-  def initialize_emails
+  def initialize_emails # :doc:
     emails_hash = {}
     @original_emails_number = params[:emails].split(',').length
     params[:emails].split(',').each do |email|
@@ -186,19 +186,19 @@ class VirtualClassroomController < ApplicationController
     update_ok(@emails.any?)
   end
   
-  def initialize_virtual_classroom_lesson
+  def initialize_virtual_classroom_lesson # :doc:
     @lesson_id = correct_integer?(params[:lesson_id]) ? params[:lesson_id].to_i : 0
     @virtual_classroom_lesson = VirtualClassroomLesson.where(:lesson_id => @lesson_id, :user_id => current_user.id).first
     update_ok(!@virtual_classroom_lesson.nil?)
   end
   
-  def get_lessons
+  def get_lessons # :doc:
     current_user_virtual_classroom_lessons = current_user.full_virtual_classroom(@page, @for_page)
     @lessons = current_user_virtual_classroom_lessons[:records]
     @pages_amount = current_user_virtual_classroom_lessons[:pages_amount]
   end
   
-  def initialize_paginator
+  def initialize_paginator # :doc:
     @page = correct_integer?(params[:page]) ? params[:page].to_i : 1
     @for_page = FOR_PAGE
   end
