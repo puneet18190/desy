@@ -64,7 +64,7 @@ class Users::SessionsController < ApplicationController
   end
   
   # +invalid_components_indexes+ = Scheme, Userinfo, Host, Port, Registry, Opaque
-  # +valid_components_indexes+ = # Path, Query (Fragment is unuseful, ignoring it)
+  # +valid_components_indexes+ = # Path, Query (Fragment is useless, ignoring it)
   def uri_path_and_query(url) # :doc:
     return nil unless url
     components = URI.split url
