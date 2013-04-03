@@ -79,7 +79,7 @@ class GalleriesController < ApplicationController
   #
   # === Specific filters
   #
-  # GalleriesController#initialize_page
+  # * GalleriesController#initialize_page
   #
   def image_for_lesson_editor_new_block
     if @ok
@@ -111,7 +111,7 @@ class GalleriesController < ApplicationController
   #
   # === Specific filters
   #
-  # GalleriesController#initialize_page
+  # * GalleriesController#initialize_page
   #
   def audio_for_lesson_editor_new_block
     if @ok
@@ -143,7 +143,7 @@ class GalleriesController < ApplicationController
   #
   # === Specific filters
   #
-  # GalleriesController#initialize_page
+  # * GalleriesController#initialize_page
   #
   def video_for_lesson_editor_new_block
     if @ok
@@ -178,7 +178,7 @@ class GalleriesController < ApplicationController
   #
   # === Specific filters
   #
-  # GalleriesController#initialize_page
+  # * GalleriesController#initialize_page
   #
   def mixed_for_video_editor_image_new_block
     if @ok
@@ -198,7 +198,7 @@ class GalleriesController < ApplicationController
   #
   # === Specific filters
   #
-  # GalleriesController#initialize_page
+  # * GalleriesController#initialize_page
   #
   def mixed_for_video_editor_video_new_block
     if @ok
@@ -230,7 +230,7 @@ class GalleriesController < ApplicationController
   #
   # === Specific filters
   #
-  # GalleriesController#initialize_page
+  # * GalleriesController#initialize_page
   #
   def audio_for_video_editor_new_block
     if @ok
@@ -262,7 +262,7 @@ class GalleriesController < ApplicationController
   #
   # === Specific filters
   #
-  # GalleriesController#initialize_page
+  # * GalleriesController#initialize_page
   #
   def audio_for_audio_editor_new_block
     if @ok
@@ -296,7 +296,7 @@ class GalleriesController < ApplicationController
   #
   # === Specific filters
   #
-  # GalleriesController#initialize_page
+  # * GalleriesController#initialize_page
   #
   def image_for_image_editor_new_block
     if @ok
