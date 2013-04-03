@@ -1767,6 +1767,9 @@ it:
       # Title of the section
       # 1 - views/users/edit.html.erb
       title: "Informazioni personali"
+      # Button to save
+      # 1 - views/users/edit.html.erb
+      save: "Salva"
       # Description of the section
       # 1 - views/users/edit.html.erb
       description: "In questa sezione è possibile aggiornare o modificare tutti i parametri del tuo account"
@@ -1917,6 +1920,9 @@ it:
       # Description
       # 1 - views/users/subjects.html.erb
       description: "Scegli le tue materie!"
+      # Button to save
+      # 1 - views/users/subjects.html.erb
+      save: "Salva"
   
   
   # SECTION 2.16: Captions used inside the Video Editor

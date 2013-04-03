@@ -1767,6 +1767,9 @@ cn:
       # Title of the section
       # 1 - views/users/edit.html.erb
       title: "个人信息"
+      # Button to save
+      # 1 - views/users/edit.html.erb
+      save: "保存"
       # Description of the section
       # 1 - views/users/edit.html.erb
       description: "在这个区中你能更新或修改你帐号所有的参数"
@@ -1921,6 +1924,9 @@ cn:
       # Description
       # 1 - views/users/subjects.html.erb
       description: "选择你的科目"
+      # Button to save
+      # 1 - views/users/subjects.html.erb
+      save: "保存"
   
   
   # SECTION 2.16: Captions used inside the Video Editor
