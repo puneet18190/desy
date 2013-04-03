@@ -1,4 +1,4 @@
-Wed, 03 Apr 2013 14:08:20 +0200
+Wed, 03 Apr 2013 14:26:33 +0200
 doc/README_FOR_APP	Fri, 29 Mar 2013 14:50:55 +0100
 app/controllers/admin/dashboard_controller.rb	Tue, 02 Apr 2013 17:48:03 +0200
 app/controllers/admin/lessons_controller.rb	Wed, 03 Apr 2013 09:16:57 +0200
@@ -19,9 +19,9 @@ app/controllers/lessons_controller.rb	Wed, 03 Apr 2013 11:21:39 +0200
 app/controllers/mailing_lists_controller.rb	Wed, 03 Apr 2013 12:32:17 +0200
 app/controllers/media_elements_controller.rb	Wed, 03 Apr 2013 12:52:38 +0200
 app/controllers/notifications_controller.rb	Wed, 03 Apr 2013 14:03:41 +0200
-app/controllers/prelogin_controller.rb	Wed, 03 Apr 2013 14:06:40 +0200
-app/controllers/reports_controller.rb	Wed, 03 Apr 2013 14:08:15 +0200
-app/controllers/search_controller.rb	Tue, 02 Apr 2013 17:08:03 +0200
+app/controllers/prelogin_controller.rb	Wed, 03 Apr 2013 14:10:30 +0200
+app/controllers/reports_controller.rb	Wed, 03 Apr 2013 14:10:58 +0200
+app/controllers/search_controller.rb	Wed, 03 Apr 2013 14:26:30 +0200
 app/controllers/tags_controller.rb	Fri, 29 Mar 2013 16:22:32 +0100
 app/controllers/users/sessions_controller.rb	Wed, 03 Apr 2013 09:52:04 +0200
 app/controllers/users_controller.rb	Tue, 02 Apr 2013 17:08:13 +0200

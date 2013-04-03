@@ -30,7 +30,7 @@ class PreloginController < ApplicationController
   #
   # === Skipped filters
   #
-  # PreloginController#redirect_to_dashboard_if_logged_in
+  # * PreloginController#redirect_to_dashboard_if_logged_in
   #
   def home
   end
@@ -49,7 +49,7 @@ class PreloginController < ApplicationController
   #
   # === Skipped filters
   #
-  # PreloginController#redirect_to_dashboard_if_logged_in
+  # * PreloginController#redirect_to_dashboard_if_logged_in
   #
   def registration
     @user             = User.new(params[:user])
@@ -73,7 +73,7 @@ class PreloginController < ApplicationController
   #
   # === Skipped filters
   #
-  # PreloginController#redirect_to_dashboard_if_logged_in
+  # * PreloginController#redirect_to_dashboard_if_logged_in
   #
   def what_is_desy
   end

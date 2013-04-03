@@ -10,7 +10,7 @@ class ReportsController < ApplicationController
   
   # === Description
   #
-  # Report a lesson
+  # Reports a lesson
   #
   # === Mode
   #
@@ -30,7 +30,7 @@ class ReportsController < ApplicationController
   
   # === Description
   #
-  # Report an element
+  # Reports an element
   #
   # === Mode
   #

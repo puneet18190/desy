@@ -1,10 +1,42 @@
+# == Description
+#
+# Controller for the search engine with all its options
+#
+# == Models used
+#
+# * Lesson
+# * MediaElement
+# * User
+#
 class SearchController < ApplicationController
   
+  # How many lessons in a page (configured in settings.yml)
   LESSONS_FOR_PAGE = SETTINGS['compact_lesson_pagination']
+  
+  # How many elements in a page (configured in settings.yml)
   MEDIA_ELEMENTS_FOR_PAGE = SETTINGS['compact_media_element_pagination']
   
   before_filter :initialize_layout, :initialize_paginator_and_filters
   
+  # === Description
+  #
+  # Search for lessons and elements in the application's database. There are different options:
+  # * if +params+ has the key +word+, it means that the user searched for something (even when he only used filters, the parameter +word+ is present and blank); if this is not verified, it means that the user entered in the search engine through the direct link labelled as 'advanced search'
+  # * the search engine contains two subsections, one for lessons and one for elements: to choose which subsection needs to be visible, the filter checks a specific parameter called +item+
+  # * if the parameter +tag_id+ is present, the method calls User#search_media_elements or User#search_lessons twice:
+  #   * first with +word+ = +tag_id+ in +params+
+  #   * second with +word+ = +word+ in +params+ and the option +only_tags+ = +true+: this way it's shown the whole range of tags associated to the original word, and only the requested tag is selected
+  # * if the parameter +tag_id+ is blank, the method calls User#search_media_elements or User#search_lessons normally, passing it the +word+ as it received it (possibly blank, in which case there is a call to the submethods User#search_lessons_without_tag or User#search_media_elements_without_tag)
+  #
+  # === Mode
+  #
+  # Html + Ajax
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#initialize_layout
+  # * SearchController#initialize_paginator_and_filters
+  #
   def index
     if @did_you_search
       case @search_item
