@@ -23,7 +23,7 @@ class LessonsController < ApplicationController
   
   # === Description
   #
-  # 
+  # Main page of the section 'lessons'. When it's called via ajax it's because of the application of filters, paginations, or after an operation that changed the number of items in the page.
   #
   # === Mode
   #
@@ -45,7 +45,10 @@ class LessonsController < ApplicationController
   
   # === Description
   #
-  # 
+  # Adds a link of this lesson to your section.
+  # * *found*: reloads the lesson in compact mode
+  # * *compact*: <i>[this action doesn't occur]</i>
+  # * *expanded*: removes the lesson and reloads the whole page
   #
   # === Mode
   #
@@ -76,7 +79,7 @@ class LessonsController < ApplicationController
   
   # === Description
   #
-  # 
+  # Creates a copy of this lesson, and opens a popup asking you if you want to edit immediately the new lesson or reload the page
   #
   # === Mode
   #
@@ -102,7 +105,10 @@ class LessonsController < ApplicationController
   
   # === Description
   #
-  # 
+  # Deletes definitively a lesson.
+  # * *found*: removes the lesson and reloads the whole page
+  # * *compact*: removes the lesson and reloads the whole page
+  # * *expanded*: <i>[this action doesn't occur]</i>
   #
   # === Mode
   #
@@ -127,7 +133,10 @@ class LessonsController < ApplicationController
   
   # === Description
   #
-  # 
+  # Removes your 'I like it' from the lesson
+  # * *found*: reloads the lesson in compact mode
+  # * *compact*: reloads the lesson in compact mode
+  # * *expanded*: reloads the lesson in expanded mode
   #
   # === Mode
   #
@@ -157,7 +166,10 @@ class LessonsController < ApplicationController
   
   # === Description
   #
-  # 
+  # Records a 'I like it' on the lesson
+  # * *found*: reloads the lesson in compact mode
+  # * *compact*: reloads the lesson in compact mode
+  # * *expanded*: reloads the lesson in expanded mode
   #
   # === Mode
   #
@@ -187,7 +199,10 @@ class LessonsController < ApplicationController
   
   # === Description
   #
-  # 
+  # Calls Lesson#publish on the lesson.
+  # * *found*: reloads the lesson in compact mode
+  # * *compact*: reloads the lesson in compact mode
+  # * *expanded*: <i>[this action doesn't occur]</i>
   #
   # === Mode
   #
@@ -219,7 +234,10 @@ class LessonsController < ApplicationController
   
   # === Description
   #
-  # 
+  # Calls Lesson#unpublish on the lesson.
+  # * *found*: reloads the lesson in compact mode
+  # * *compact*: reloads the lesson in compact mode
+  # * *expanded*: <i>[this action doesn't occur]</i>
   #
   # === Mode
   #
@@ -250,7 +268,10 @@ class LessonsController < ApplicationController
   
   # === Description
   #
-  # 
+  # Removes the link of this lesson from your section.
+  # * *found*: reloads the lesson in compact mode
+  # * *compact*: removes the lesson and reloads the whole page
+  # * *expanded*: <i>[this action doesn't occur]</i>
   #
   # === Mode
   #
@@ -288,7 +309,7 @@ class LessonsController < ApplicationController
   
   # === Description
   #
-  # 
+  # Sends a notification about the details of the modification and sets the lesson as *notified* (using Lesson#notify_changes)
   #
   # === Mode
   #
@@ -307,7 +328,7 @@ class LessonsController < ApplicationController
   
   # === Description
   #
-  # 
+  # Doesn't send any notification and sets the lesson as *notified* (using Lesson#dont_notify_changes)
   #
   # === Mode
   #

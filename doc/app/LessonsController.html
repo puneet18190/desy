@@ -514,6 +514,15 @@ href="DashboardController.html">DashboardController</a>)</p>
           
           <h3 id="method-i-add-label-Description">Description</h3>
 
+<p>Adds a link of this lesson to your section.</p>
+<ul><li>
+<p><strong>found</strong>: reloads the lesson in compact mode</p>
+</li><li>
+<p><strong>compact</strong>: <em>[this action doesn&#39;t occur]</em></p>
+</li><li>
+<p><strong>expanded</strong>: removes the lesson and reloads the whole page</p>
+</li></ul>
+
 <h3 id="method-i-add-label-Mode">Mode</h3>
 
 <p>Ajax + Json</p>
@@ -530,7 +539,7 @@ href="ApplicationController.html#method-i-initialize_lesson_destination">Applica
 
           
           <div class="method-source-code" id="add-source">
-            <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 59</span>
+            <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 62</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">add</span>
   <span class="ruby-ivar">@ok_msg</span> = <span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;other_popup_messages.correct.add.lesson&#39;</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
@@ -571,6 +580,9 @@ href="ApplicationController.html#method-i-initialize_lesson_destination">Applica
           
           <h3 id="method-i-copy-label-Description">Description</h3>
 
+<p>Creates a copy of this lesson, and opens a popup asking you if you want to
+edit immediately the new lesson or reload the page</p>
+
 <h3 id="method-i-copy-label-Mode">Mode</h3>
 
 <p>Ajax</p>
@@ -590,7 +602,7 @@ href="ApplicationController.html#method-i-initialize_lesson_destination">Applica
 
           
           <div class="method-source-code" id="copy-source">
-            <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 91</span>
+            <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 94</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">copy</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
     <span class="ruby-ivar">@new_lesson</span> = <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">copy</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
@@ -625,6 +637,15 @@ href="ApplicationController.html#method-i-initialize_lesson_destination">Applica
           
           <h3 id="method-i-destroy-label-Description">Description</h3>
 
+<p>Deletes definitively a lesson.</p>
+<ul><li>
+<p><strong>found</strong>: removes the lesson and reloads the whole page</p>
+</li><li>
+<p><strong>compact</strong>: removes the lesson and reloads the whole page</p>
+</li><li>
+<p><strong>expanded</strong>: <em>[this action doesn&#39;t occur]</em></p>
+</li></ul>
+
 <h3 id="method-i-destroy-label-Mode">Mode</h3>
 
 <p>Json</p>
@@ -641,7 +662,7 @@ href="ApplicationController.html#method-i-initialize_lesson_destination">Applica
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 116</span>
+            <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 122</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
     <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">destroy_with_notifications</span>
@@ -676,6 +697,15 @@ href="ApplicationController.html#method-i-initialize_lesson_destination">Applica
           
           <h3 id="method-i-dislike-label-Description">Description</h3>
 
+<p>Removes your &#39;I like it&#39; from the lesson</p>
+<ul><li>
+<p><strong>found</strong>: reloads the lesson in compact mode</p>
+</li><li>
+<p><strong>compact</strong>: reloads the lesson in compact mode</p>
+</li><li>
+<p><strong>expanded</strong>: reloads the lesson in expanded mode</p>
+</li></ul>
+
 <h3 id="method-i-dislike-label-Mode">Mode</h3>
 
 <p>Ajax</p>
@@ -692,7 +722,7 @@ href="ApplicationController.html#method-i-initialize_lesson_destination">Applica
 
           
           <div class="method-source-code" id="dislike-source">
-            <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 141</span>
+            <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 150</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">dislike</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
     <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">dislike</span>(<span class="ruby-ivar">@lesson_id</span>)
@@ -732,6 +762,10 @@ href="ApplicationController.html#method-i-initialize_lesson_destination">Applica
           
           <h3 id="method-i-dont_notify_modification-label-Description">Description</h3>
 
+<p>Doesn&#39;t send any notification and sets the lesson as
+<strong>notified</strong> (using <a
+href="Lesson.html#method-i-dont_notify_changes">Lesson#dont_notify_changes</a>)</p>
+
 <h3 id="method-i-dont_notify_modification-label-Mode">Mode</h3>
 
 <p>Ajax</p>
@@ -745,7 +779,7 @@ href="ApplicationController.html#method-i-initialize_lesson_with_owner">Applicat
 
           
           <div class="method-source-code" id="dont_notify_modification-source">
-            <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 320</span>
+            <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 341</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">dont_notify_modification</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
     <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">dont_notify_changes</span>
@@ -774,6 +808,10 @@ href="ApplicationController.html#method-i-initialize_lesson_with_owner">Applicat
         <div class="method-description">
           
           <h3 id="method-i-index-label-Description">Description</h3>
+
+<p>Main page of the section &#39;lessons&#39;. When it&#39;s called via ajax
+it&#39;s because of the application of filters, paginations, or after an
+operation that changed the number of items in the page.</p>
 
 <h3 id="method-i-index-label-Mode">Mode</h3>
 
@@ -823,6 +861,15 @@ href="LessonsController.html#method-i-initialize_paginator">#initialize_paginato
           
           <h3 id="method-i-like-label-Description">Description</h3>
 
+<p>Records a &#39;I like it&#39; on the lesson</p>
+<ul><li>
+<p><strong>found</strong>: reloads the lesson in compact mode</p>
+</li><li>
+<p><strong>compact</strong>: reloads the lesson in compact mode</p>
+</li><li>
+<p><strong>expanded</strong>: reloads the lesson in expanded mode</p>
+</li></ul>
+
 <h3 id="method-i-like-label-Mode">Mode</h3>
 
 <p>Ajax</p>
@@ -839,7 +886,7 @@ href="ApplicationController.html#method-i-initialize_lesson_destination">Applica
 
           
           <div class="method-source-code" id="like-source">
-            <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 171</span>
+            <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 183</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">like</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
     <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">like</span>(<span class="ruby-ivar">@lesson_id</span>)
@@ -879,6 +926,10 @@ href="ApplicationController.html#method-i-initialize_lesson_destination">Applica
           
           <h3 id="method-i-notify_modification-label-Description">Description</h3>
 
+<p>Sends a notification about the details of the modification and sets the
+lesson as <strong>notified</strong> (using <a
+href="Lesson.html#method-i-notify_changes">Lesson#notify_changes</a>)</p>
+
 <h3 id="method-i-notify_modification-label-Mode">Mode</h3>
 
 <p>Ajax</p>
@@ -892,7 +943,7 @@ href="ApplicationController.html#method-i-initialize_lesson_with_owner">Applicat
 
           
           <div class="method-source-code" id="notify_modification-source">
-            <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 301</span>
+            <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 322</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">notify_modification</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
     <span class="ruby-identifier">msg</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:details_placeholder</span>].<span class="ruby-identifier">blank?</span> <span class="ruby-operator">?</span> <span class="ruby-string">&#39;&#39;</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:details</span>]
@@ -922,6 +973,16 @@ href="ApplicationController.html#method-i-initialize_lesson_with_owner">Applicat
           
           <h3 id="method-i-publish-label-Description">Description</h3>
 
+<p>Calls <a href="Lesson.html#method-i-publish">Lesson#publish</a> on the
+lesson.</p>
+<ul><li>
+<p><strong>found</strong>: reloads the lesson in compact mode</p>
+</li><li>
+<p><strong>compact</strong>: reloads the lesson in compact mode</p>
+</li><li>
+<p><strong>expanded</strong>: <em>[this action doesn&#39;t occur]</em></p>
+</li></ul>
+
 <h3 id="method-i-publish-label-Mode">Mode</h3>
 
 <p>Ajax</p>
@@ -941,7 +1002,7 @@ href="ApplicationController.html#method-i-initialize_lesson_destination">Applica
 
           
           <div class="method-source-code" id="publish-source">
-            <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 202</span>
+            <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 217</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">publish</span>
   <span class="ruby-ivar">@ok_msg</span> = <span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;other_popup_messages.correct.publish&#39;</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
@@ -982,6 +1043,15 @@ href="ApplicationController.html#method-i-initialize_lesson_destination">Applica
           
           <h3 id="method-i-remove-label-Description">Description</h3>
 
+<p>Removes the link of this lesson from your section.</p>
+<ul><li>
+<p><strong>found</strong>: reloads the lesson in compact mode</p>
+</li><li>
+<p><strong>compact</strong>: removes the lesson and reloads the whole page</p>
+</li><li>
+<p><strong>expanded</strong>: <em>[this action doesn&#39;t occur]</em></p>
+</li></ul>
+
 <h3 id="method-i-remove-label-Mode">Mode</h3>
 
 <p>Ajax + Json</p>
@@ -998,7 +1068,7 @@ href="ApplicationController.html#method-i-initialize_lesson_destination">Applica
 
           
           <div class="method-source-code" id="remove-source">
-            <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 264</span>
+            <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 285</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">remove</span>
   <span class="ruby-ivar">@ok_msg</span> = <span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;other_popup_messages.correct.remove.lesson&#39;</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
@@ -1046,6 +1116,16 @@ href="ApplicationController.html#method-i-initialize_lesson_destination">Applica
           
           <h3 id="method-i-unpublish-label-Description">Description</h3>
 
+<p>Calls <a href="Lesson.html#method-i-unpublish">Lesson#unpublish</a> on the
+lesson.</p>
+<ul><li>
+<p><strong>found</strong>: reloads the lesson in compact mode</p>
+</li><li>
+<p><strong>compact</strong>: reloads the lesson in compact mode</p>
+</li><li>
+<p><strong>expanded</strong>: <em>[this action doesn&#39;t occur]</em></p>
+</li></ul>
+
 <h3 id="method-i-unpublish-label-Mode">Mode</h3>
 
 <p>Ajax</p>
@@ -1062,7 +1142,7 @@ href="ApplicationController.html#method-i-initialize_lesson_destination">Applica
 
           
           <div class="method-source-code" id="unpublish-source">
-            <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 233</span>
+            <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 251</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">unpublish</span>
   <span class="ruby-ivar">@ok_msg</span> = <span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;other_popup_messages.correct.unpublish&#39;</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
@@ -1112,7 +1192,7 @@ href="ApplicationController.html#method-i-initialize_lesson_destination">Applica
 
           
           <div class="method-source-code" id="check_available_for_user-source">
-            <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 329</span>
+            <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 350</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">check_available_for_user</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">l</span> = <span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">find_by_id</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:lesson_id</span>]
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">l</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">l</span>.<span class="ruby-identifier">available?</span>
@@ -1146,7 +1226,7 @@ href="ApplicationController.html#method-i-initialize_lesson_destination">Applica
 
           
           <div class="method-source-code" id="get_own_lessons-source">
-            <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 337</span>
+            <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 358</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_own_lessons</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">current_user_own_lessons</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">own_lessons</span>(<span class="ruby-ivar">@page</span>, <span class="ruby-ivar">@for_page</span>, <span class="ruby-ivar">@filter</span>)
   <span class="ruby-ivar">@lessons</span> = <span class="ruby-identifier">current_user_own_lessons</span>[<span class="ruby-value">:records</span>]
@@ -1178,7 +1258,7 @@ href="ApplicationController.html#method-i-initialize_lesson_destination">Applica
 
           
           <div class="method-source-code" id="initialize_paginator-source">
-            <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 343</span>
+            <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 364</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize_paginator</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-ivar">@page</span> = <span class="ruby-identifier">correct_integer?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-value">1</span>
   <span class="ruby-ivar">@for_page</span> = <span class="ruby-constant">FOR_PAGE</span>
