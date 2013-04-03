@@ -14,7 +14,7 @@ class Admin::LessonsController < AdminController
   
   # === Description
   #
-  # Main page of the section 'lessons' in admin
+  # Main page of the section 'lessons' in admin. If params[:search] is present, it is used AdminSearchForm to perform the requested search.
   #
   # === Mode
   #

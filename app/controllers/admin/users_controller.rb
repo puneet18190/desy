@@ -14,6 +14,18 @@ class Admin::UsersController < AdminController
   
   layout 'admin'
   
+  # === Description
+  #
+  # Main page with the list of users. If params[:search] is present, it is used AdminSearchForm to perform the requested search.
+  #
+  # === Mode
+  #
+  # Html
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#admin_authenticate
+  #
   def index
     users = params[:search] ? AdminSearchForm.search_users(params[:search]) : User.order('id DESC')
     @users = users.page(params[:page])
@@ -24,6 +36,18 @@ class Admin::UsersController < AdminController
     end
   end
   
+  # === Description
+  #
+  # 'Show' action for a single user. It contains personal statistics.
+  #
+  # === Mode
+  #
+  # Html
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#admin_authenticate
+  #
   def show
     @user = User.find(params[:id])
     Statistics.user = @user
@@ -36,31 +60,87 @@ class Admin::UsersController < AdminController
     @my_likes_count      = Statistics.my_likes_count
   end
   
+  # === Description
+  #
+  # Action to destroy a user and remove its contact from the database (see User#destroy_with_dependencies)
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#admin_authenticate
+  #
   def destroy
     @user = User.find(params[:id])
     @user.destroy_with_dependencies
   end
   
+  # === Description
+  #
+  # Used for autocomplete in the search forms all over the administration section
+  #
   # === Mode
   #
   # Json
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#admin_authenticate
   #
   def get_full_names
     @users = User.get_full_names(params[:term])
     render :json => @users
   end
   
+  # === Description
+  #
+  # Used for location filling all over the administration section (to be distinguished by UsersController#find_locations, which is used in the rest of the application)
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#admin_authenticate
+  #
   def find_locations
     parent = Location.find_by_id params[:id]
     @locations = parent.nil? ? [] : parent.children
   end
   
+  # === Description
+  #
+  # To switch the status of a user form 'banned' to 'active' and viceversa: used only in the main list of users (Admin::UsersController#index)
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#admin_authenticate
+  #
   def set_status
     @user = User.find params[:id]
     @user.active = params[:active]
     @user.save
   end
   
+  # === Description
+  #
+  # Sets the field +active+ of User to +false+ (used only in Admin::UsersController#show)
+  #
+  # === Mode
+  #
+  # Html
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#admin_authenticate
+  #
   def ban
     @user = User.find params[:id]
     @user.active = false
@@ -68,6 +148,18 @@ class Admin::UsersController < AdminController
     redirect_to admin_user_path(@user)
   end
   
+  # === Description
+  #
+  # Sets the field +active+ of User to +true+ (used only in Admin::UsersController#show)
+  #
+  # === Mode
+  #
+  # Html
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#admin_authenticate
+  #
   def activate
     @user = User.find params[:id]
     @user.active = true

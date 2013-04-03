@@ -117,7 +117,7 @@ class Admin::SettingsController < AdminController
   
   # === Description
   #
-  # Main subpage to manage tags
+  # Main subpage to manage tags. If params[:search] is present, it is used AdminSearchForm to perform the requested search.
   #
   # === Mode
   #

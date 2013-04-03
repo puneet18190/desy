@@ -15,7 +15,7 @@ class Admin::MediaElementsController < AdminController
   
   # === Description
   #
-  # Main page of elements in the admin
+  # Main page of elements in the admin. If params[:search] is present, it is used AdminSearchForm to perform the requested search.
   #
   # === Mode
   #
