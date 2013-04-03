@@ -29,7 +29,7 @@ class VirtualClassroomController < ApplicationController
   
   # === Description
   #
-  # 
+  # Main page of the section 'Virtual Classroom'. When it's called via ajax it's because of the application of filters, paginations, or after an operation that changed the number of items in the page.
   #
   # === Mode
   #
@@ -54,7 +54,10 @@ class VirtualClassroomController < ApplicationController
   
   # === Description
   #
-  # see LessonsController
+  # Creates a link of this lesson into your Virtual Classroom. List of possible graphical effects (see LessonsController and ButtonDestionations for more details):
+  # * *found*: reloads the lesson in compact mode
+  # * *compact*: reloads the lesson in compact mode
+  # * *expanded*: <i>[this action doesn't occur]</i>
   #
   # === Mode
   #
@@ -75,16 +78,15 @@ class VirtualClassroomController < ApplicationController
       @error = I18n.t('activerecord.errors.models.lesson.problem_adding_to_virtual_classroom')
     end
     prepare_lesson_for_js
-    if [ButtonDestinations::FOUND_LESSON, ButtonDestinations::COMPACT_LESSON].include? @destination
-      render 'lessons/reload_compact.js'
-    else
-      render 'lessons/reload_expanded.js'
-    end
+    render 'lessons/reload_compact.js'
   end
   
   # === Description
   #
-  # see LessonsController
+  # Removes the link of this lesson from your Virtual Classroom. List of possible graphical effects (see LessonsController and ButtonDestionations for more details):
+  # * *found*: reloads the lesson in compact mode
+  # * *compact*: reloads the lesson in compact mode
+  # * *expanded*: <i>[this action doesn't occur]</i>
   #
   # === Mode
   #
@@ -105,16 +107,12 @@ class VirtualClassroomController < ApplicationController
       @error = I18n.t('activerecord.errors.models.lesson.problem_removing_from_virtual_classroom')
     end
     prepare_lesson_for_js
-    if [ButtonDestinations::FOUND_LESSON, ButtonDestinations::COMPACT_LESSON].include? @destination
-      render 'lessons/reload_compact.js'
-    else
-      render 'lessons/reload_expanded.js'
-    end
+    render 'lessons/reload_compact.js'
   end
   
   # === Description
   #
-  # 
+  # Removes the lesson from your Virtual Classroom while you are inside the Virtual Classroom itself
   #
   # === Mode
   #
@@ -138,7 +136,7 @@ class VirtualClassroomController < ApplicationController
   
   # === Description
   #
-  # 
+  # Adds a lesson to your playlist
   #
   # === Mode
   #
@@ -163,7 +161,7 @@ class VirtualClassroomController < ApplicationController
   
   # === Description
   #
-  # 
+  # Removes a lesson from the playlist
   #
   # === Mode
   #
@@ -188,7 +186,7 @@ class VirtualClassroomController < ApplicationController
   
   # === Description
   #
-  # 
+  # Moves the lesson into a different position inside the playlist
   #
   # === Mode
   #
@@ -213,7 +211,7 @@ class VirtualClassroomController < ApplicationController
   
   # === Description
   #
-  # 
+  # Empties the playlist and reloads it
   #
   # === Mode
   #
@@ -226,7 +224,7 @@ class VirtualClassroomController < ApplicationController
   
   # === Description
   #
-  # 
+  # Empties the Virtual Classroom and reloads it
   #
   # === Mode
   #
@@ -238,7 +236,7 @@ class VirtualClassroomController < ApplicationController
   
   # === Description
   #
-  # 
+  # Opens a window that contains the list of your lessons: you can pick multiple lessons and add them directly into your Virtual Classroom
   #
   # === Mode
   #
@@ -252,7 +250,7 @@ class VirtualClassroomController < ApplicationController
   
   # === Description
   #
-  # 
+  # Gets a new block of the list initialized in VirtualClassroomController#select_lessons
   #
   # === Mode
   #
@@ -268,7 +266,7 @@ class VirtualClassroomController < ApplicationController
   
   # === Description
   #
-  # 
+  # From the list initialized in VirtualClassroomController#select_lessons, load lessons into the Virtual Classroom
   #
   # === Mode
   #
@@ -289,7 +287,7 @@ class VirtualClassroomController < ApplicationController
   
   # === Description
   #
-  # 
+  # Sends a link containing the public url of a lesson to a list of emails (see MailingListGroup)
   #
   # === Mode
   #
