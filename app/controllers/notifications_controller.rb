@@ -16,15 +16,15 @@ class NotificationsController < ApplicationController
   
   # === Description
   #
-  # 
+  # Sets that the notification has been seen by the user (see Notification#has_been_seen)
   #
   # === Mode
   #
-  # 
+  # Ajax
   #
   # === Specific filters
   #
-  # 
+  # * NotificationsController#initialize_notification_with_owner
   #
   def seen
     if @ok
@@ -35,15 +35,16 @@ class NotificationsController < ApplicationController
   
   # === Description
   #
-  # 
+  # Deletes a notification
   #
   # === Mode
   #
-  # 
+  # Ajax
   #
   # === Specific filters
   #
-  # 
+  # * NotificationsController#initialize_notification_with_owner
+  # * NotificationsController#initialize_notification_offset
   #
   def destroy
     if @ok
@@ -63,15 +64,15 @@ class NotificationsController < ApplicationController
   
   # === Description
   #
-  # 
+  # Pagination with infinite scroll
   #
   # === Mode
   #
-  # 
+  # Ajax
   #
   # === Specific filters
   #
-  # 
+  # * NotificationsController#initialize_notification_offset
   #
   def get_new_block
     @notifications = current_user.notifications_visible_block @offset_notifications, NOTIFICATIONS_LOADED_TOGETHER
