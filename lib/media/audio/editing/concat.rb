@@ -22,7 +22,7 @@ module Media
         #
         #   #=> { mp4:'/output/without/extension.mp4', webm:'/output/without/extension.webm' }
         #
-        def initialize(inputs, output_without_extension)
+        def initialize(inputs, output_without_extension, log_folder = nil)
           unless inputs.is_a?(Array) and
                  inputs.present?     and
                  inputs.all? do |input|
@@ -44,6 +44,8 @@ module Media
           if mp3_inputs.size != ogg_inputs.size
             raise Error.new('mp3_inputs and ogg_inputs must be of the same size', inputs: @inputs, output_without_extension: @output_without_extension)
           end
+
+          @log_folder = log_folder
         end
 
         def run

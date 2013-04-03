@@ -20,11 +20,12 @@ module Media
   
         attr_reader :input_path, :output_without_extension, :duration
   
-        def initialize(input_path, output_without_extension, duration)
-          @input_path               = input_path
-          @output_without_extension = output_without_extension
-          @duration                 = duration
+        def initialize(input_path, output_without_extension, duration, log_folder = nil)
           raise Error.new('duration must be a Numeric > 0', duration: duration) unless duration.is_a? Numeric and duration > 0
+
+          @duration, @input_path, @output_without_extension = duration, input_path, output_without_extension
+
+          @log_folder = log_folder
         end
   
         def run

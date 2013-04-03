@@ -24,16 +24,17 @@ module Media
     
     module InstanceMethods
       def create_log_folder(folder_name = nil)
-        self.thread_relative_log_folder = nil
         self.thread_relative_log_folder = log_folder(folder_name)
-        FileUtils.mkdir_p thread_relative_log_folder
-        thread_relative_log_folder
+        FileUtils.mkdir_p(thread_relative_log_folder).first
       end
 
 
       def log_folder(folder_name = nil)
+        # raise "wrong @log_folder (#{@log_folder.inspect})" if !@log_folder.is_a?(String) || !@log_folder.start_with?('/home/mau/web_apps/desy/log/media/video/editing/composings/test')
+
+        # puts caller.join("\n")
         @log_folder || thread_relative_log_folder || (
-          folder_name ||= "#{Time.now.utc.strftime("%Y-%m-%d_%H-%M-%S_%N")}_#{::Thread.current.object_id}"
+          folder_name ||= "#{Time.now.utc.strftime("%Y-%m-%d_%H-%M-%S")}_#{::Thread.current.object_id}"
           File.join self.class.log_folder, folder_name
         )
       end

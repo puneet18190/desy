@@ -18,7 +18,7 @@ module Media
   
         CORRESPONDING_AUDIO_FORMATS = { mp4: :mp3, webm: :ogg }
   
-        def initialize(video_inputs, audio_inputs, output_without_extension)
+        def initialize(video_inputs, audio_inputs, output_without_extension, log_folder = nil)
           unless video_inputs.is_a?(Hash)                       and 
                  video_inputs.keys.sort == FORMATS.sort         and
                  video_inputs.values.all?{ |v| v.is_a? String }
@@ -36,6 +36,8 @@ module Media
           end
   
           @video_inputs, @audio_inputs, @output_without_extension = video_inputs, audio_inputs, output_without_extension
+
+          @log_folder = log_folder
         end
   
         def run

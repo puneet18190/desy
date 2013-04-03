@@ -2,6 +2,7 @@ require 'media'
 require 'media/video'
 require 'media/video/editing'
 require 'media/in_tmp_dir'
+require 'media/logging'
 require 'media/error'
 require 'media/video/editing/parameters'
 require 'media/thread'
@@ -17,6 +18,11 @@ module Media
       class Composer
 
         include InTmpDir
+        include Logging
+
+        def self.log_folder
+          super 'composings'
+        end
 
         #  {
         #    :initial_video => {
@@ -74,6 +80,7 @@ module Media
         end
 
         def compose
+          create_log_folder
           in_tmp_dir do
             concats = {}
 
@@ -99,16 +106,16 @@ module Media
               next_concat = concats_sorted[next_i][1]
               proc {
                 transition_i = (i+next_i)/2.0
-                concats.store transition_i, Transition.new(concat, next_concat, tmp_path(transition_i.to_s)).run
+                concats.store transition_i, Transition.new(concat, next_concat, tmp_path(transition_i.to_s), log_folder('transitions', transition_i.to_s)).run
               }
             }
 
             concat = tmp_path 'concat'
-            outputs = Concat.new(concats.sort.map{ |_,c| c }, concat).run
+            outputs = Concat.new(concats.sort.map{ |_,c| c }, concat, log_folder('concat')).run
 
             if audio
               audios = Hash[ Media::Audio::FORMATS.map{ |f| [f, audio.media.path(f)] } ]
-              outputs = ReplaceAudio.new(outputs, audios, tmp_path('replace_audio')).run
+              outputs = ReplaceAudio.new(outputs, audios, tmp_path('replace_audio'), log_folder('replace_audio')).run
             end
 
             video.media               = outputs.merge(filename: video.title)
@@ -125,15 +132,27 @@ module Media
         end
 
         private
+        def log_folder(*folders)
+          File.join(@log_folder, *folders)
+        end
+
+        def log_folder_name
+          File.join self.class.log_folder, video.id.to_s, "#{Time.now.utc.strftime("%Y-%m-%d_%H-%M-%S")}_#{::Thread.main.object_id}"
+        end
+
+        def create_log_folder
+          @log_folder = FileUtils.mkdir_p(log_folder_name).first
+        end
+
         def compose_text(text, duration, color, background_color, i)
           text_file = Pathname.new tmp_path "text_#{i}.txt"
           text_file.open('w') { |f| f.write text }
-          TextToVideo.new(text_file, output_without_extension(i), duration, color: color, background_color: background_color).run
+          TextToVideo.new(text_file, output_without_extension(i), duration, { color: color, background_color: background_color }, log_folder('components', "#{i}_text")).run
         end
 
         def compose_image(image_id, duration, i)
           image = ::Image.find image_id
-          ImageToVideo.new(image.media.path, output_without_extension(i), duration).run
+          ImageToVideo.new(image.media.path, output_without_extension(i), duration, log_folder('components', "#{i}_image")).run
         end
 
         def compose_video(video_id, from, to, i)
@@ -146,7 +165,7 @@ module Media
             end
           else
             start, duration = from, to-from
-            Crop.new(inputs, output_without_extension(i), start, duration).run
+            Crop.new(inputs, output_without_extension(i), start, duration, log_folder('components', "#{i}_video")).run
           end
         end
 

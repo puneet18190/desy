@@ -12,6 +12,11 @@ module Media
       class Composer
 
         include InTmpDir
+        include Logging
+
+        def self.log_folder
+          super 'composings'
+        end
 
         #  {
         #    :initial_audio => OBJECT OF TYPE AUDIO or NIL,
@@ -55,6 +60,7 @@ module Media
         end
 
         def compose
+          create_log_folder
           in_tmp_dir do
             concats = {}.tap do |concats|
               Thread.join *@params[:components].each_with_index.map { |component, i|
@@ -63,7 +69,7 @@ module Media
             end
 
             concat = tmp_path 'concat'
-            outputs = Concat.new(concats.sort.map{ |_,c| c }, concat).run
+            outputs = Concat.new(concats.sort.map{ |_,c| c }, concat, log_folder('concat')).run
 
             audio.media               = outputs.merge(filename: audio.title)
             audio.composing           = nil
@@ -79,6 +85,18 @@ module Media
         end
 
         private
+        def log_folder(*folders)
+          File.join(@log_folder, *folders)
+        end
+
+        def log_folder_name
+          File.join self.class.log_folder, audio.id.to_s, "#{Time.now.utc.strftime("%Y-%m-%d_%H-%M-%S")}_#{::Thread.main.object_id}"
+        end
+
+        def create_log_folder
+          @log_folder = FileUtils.mkdir_p(log_folder_name).first
+        end
+
         def compose_audio(audio_id, from, to, i)
           audio = ::Audio.find audio_id
           inputs = Hash[ FORMATS.map{ |f| [f, audio.media.path(f)] } ]
@@ -89,7 +107,7 @@ module Media
             end
           else
             start, duration = from, to-from
-            Crop.new(inputs, output_without_extension(i), start, duration).run
+            Crop.new(inputs, output_without_extension(i), start, duration, log_folder('crop', i.to_s)).run
           end
         end
 
