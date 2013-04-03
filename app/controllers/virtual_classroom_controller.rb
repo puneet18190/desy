@@ -54,7 +54,7 @@ class VirtualClassroomController < ApplicationController
   
   # === Description
   #
-  # Creates a link of this lesson into your Virtual Classroom. List of possible graphical effects (see LessonsController and ButtonDestionations for more details):
+  # Creates a link of this lesson into your Virtual Classroom. List of possible graphical effects (see LessonsController and ButtonDestinations for more details):
   # * *found*: reloads the lesson in compact mode
   # * *compact*: reloads the lesson in compact mode
   # * *expanded*: <i>[this action doesn't occur]</i>
@@ -83,7 +83,7 @@ class VirtualClassroomController < ApplicationController
   
   # === Description
   #
-  # Removes the link of this lesson from your Virtual Classroom. List of possible graphical effects (see LessonsController and ButtonDestionations for more details):
+  # Removes the link of this lesson from your Virtual Classroom. List of possible graphical effects (see LessonsController and ButtonDestinations for more details):
   # * *found*: reloads the lesson in compact mode
   # * *compact*: reloads the lesson in compact mode
   # * *expanded*: <i>[this action doesn't occur]</i>
