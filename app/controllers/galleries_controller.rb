@@ -1,7 +1,7 @@
 # == Description
 #
 # List of actions to handle all the instances of galleries in the application. Since the gallery pagination is made with infinite scroll, for each gallery there is an action that extracts it first, and another one that gets a new block of elements. List of galleries for each section
-# * Lesson Editor (see LessonEditorController):
+# * lesson editor (see LessonEditorController):
 #   * audio gallery
 #     * GalleriesController#audio_for_lesson_editor
 #     * GalleriesController#audio_for_lesson_editor_new_block
@@ -11,15 +11,15 @@
 #   * video gallery
 #     * GalleriesController#video_for_lesson_editor
 #     * GalleriesController#video_for_lesson_editor_new_block
-# * Image Editor (see ImageEditorController):
+# * image editor (see ImageEditorController):
 #   * image gallery
 #     * GalleriesController#image_for_image_editor
 #     * GalleriesController#image_for_image_editor_new_block
-# * Audio Editor (see AudioEditorController):
+# * audio editor (see AudioEditorController):
 #   * audio gallery
 #     * GalleriesController#audio_for_audio_editor
 #     * GalleriesController#audio_for_audio_editor_new_block
-# * Video Editor (see VideoEditorController):
+# * video editor (see VideoEditorController):
 #   * mixed gallery (video + image + texts)
 #     * GalleriesController#mixed_for_video_editor
 #     * GalleriesController#mixed_for_video_editor_video_new_block

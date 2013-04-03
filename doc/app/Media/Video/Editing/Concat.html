@@ -501,7 +501,7 @@ per stare sicuri di non tagliare troppo</p>
         
         <div class="method-heading">
           <span class="method-name">new</span><span
-            class="method-args">(inputs, output_without_extension)</span>
+            class="method-args">(inputs, output_without_extension, log_folder = nil)</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
         
@@ -522,15 +522,14 @@ per stare sicuri di non tagliare troppo</p>
           
           <div class="method-source-code" id="new-source">
             <pre><span class="ruby-comment"># File lib/media/video/editing/concat.rb, line 38</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">inputs</span>, <span class="ruby-identifier">output_without_extension</span>)
-  
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">inputs</span>, <span class="ruby-identifier">output_without_extension</span>, <span class="ruby-identifier">log_folder</span> = <span class="ruby-keyword">nil</span>)
   <span class="ruby-keyword">unless</span> <span class="ruby-identifier">inputs</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Array</span>) <span class="ruby-keyword">and</span>
          <span class="ruby-identifier">inputs</span>.<span class="ruby-identifier">present?</span>     <span class="ruby-keyword">and</span>
          <span class="ruby-identifier">inputs</span>.<span class="ruby-identifier">all?</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">input</span><span class="ruby-operator">|</span>
-           <span class="ruby-identifier">input</span>.<span class="ruby-identifier">instance_of?</span>(<span class="ruby-constant">Hash</span>)          <span class="ruby-keyword">and</span>
+           <span class="ruby-identifier">input</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hash</span>)                 <span class="ruby-keyword">and</span>
            <span class="ruby-identifier">input</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">sort</span> <span class="ruby-operator">==</span> <span class="ruby-constant">FORMATS</span>.<span class="ruby-identifier">sort</span>   <span class="ruby-keyword">and</span>
            <span class="ruby-identifier">input</span>.<span class="ruby-identifier">values</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">==</span> <span class="ruby-constant">FORMATS</span>.<span class="ruby-identifier">size</span> <span class="ruby-keyword">and</span>
-           <span class="ruby-identifier">input</span>.<span class="ruby-identifier">values</span>.<span class="ruby-identifier">all?</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">v</span>.<span class="ruby-identifier">instance_of?</span> <span class="ruby-constant">String</span> }
+           <span class="ruby-identifier">input</span>.<span class="ruby-identifier">values</span>.<span class="ruby-identifier">all?</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">v</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">String</span>) }
          <span class="ruby-keyword">end</span>
     <span class="ruby-identifier">raise</span> <span class="ruby-constant">Error</span>.<span class="ruby-identifier">new</span>( <span class="ruby-node">&quot;inputs must be an array with at least one element and its elements must be hashes with #{FORMATS.inspect} as keys and strings as values&quot;</span>, 
                      <span class="ruby-identifier">inputs</span><span class="ruby-operator">:</span> <span class="ruby-identifier">inputs</span>, <span class="ruby-identifier">output_without_extension</span><span class="ruby-operator">:</span> <span class="ruby-identifier">output_without_extension</span> )
@@ -545,7 +544,8 @@ per stare sicuri di non tagliare troppo</p>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">mp4_inputs</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">webm_inputs</span>.<span class="ruby-identifier">size</span>
     <span class="ruby-identifier">raise</span> <span class="ruby-constant">Error</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;mp4_inputs and webm_inputs must be of the same size&#39;</span>, <span class="ruby-identifier">inputs</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@inputs</span>, <span class="ruby-identifier">output_without_extension</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@output_without_extension</span>)
   <span class="ruby-keyword">end</span>
-  
+
+  <span class="ruby-ivar">@log_folder</span> = <span class="ruby-identifier">log_folder</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- new-source -->
           

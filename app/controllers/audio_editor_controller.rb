@@ -2,7 +2,7 @@ require 'media/audio/editing/composer/job'
 
 # == Description
 #
-# Controller for all the actions in the Audio Editor
+# Controller for all the actions in the audio editor
 #
 # == Models used
 #
@@ -18,7 +18,7 @@ class AudioEditorController < ApplicationController
   
   # === Description
   #
-  # Opens the Audio Editor with only one component, corresponding to a given audio
+  # Opens the audio editor with only one component, corresponding to a given audio
   #
   # === Mode
   #
@@ -44,7 +44,7 @@ class AudioEditorController < ApplicationController
   
   # === Description
   #
-  # Opens the Audio Editor empty
+  # Opens the audio editor empty
   #
   # === Mode
   #
@@ -65,7 +65,7 @@ class AudioEditorController < ApplicationController
   
   # === Description
   #
-  # Opens the Audio Editor restoring the cache (if there is no cache, the Editor is empty but there is no redirection to AudioEditorController#new)
+  # Opens the audio editor restoring the cache (if there is no cache, the Editor is empty but there is no redirection to AudioEditorController#new)
   #
   # === Mode
   #
