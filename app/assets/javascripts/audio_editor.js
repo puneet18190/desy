@@ -7,8 +7,8 @@ function loadAudioComponentIfNotLoadedYet(component) {
   if(!component.data('loaded')) {
     var mp3 = component.data('mp3');
     var ogg = component.data('ogg');
-    component.find('source[type="video/mp3"]').attr('src', mp3);
-    component.find('source[type="video/ogg"]').attr('src', ogg);
+    component.find('source[type="audio/mp3"]').attr('src', mp3);
+    component.find('source[type="audio/ogg"]').attr('src', ogg);
     component.find('audio').load();
     component.data('loaded', true);
   }
