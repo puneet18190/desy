@@ -868,12 +868,13 @@ href="AudioEditorController.html#method-i-check_available_for_user">#check_avail
 
         <div class="method-description">
           
-          
+          <p>Checks if the audio editor is available for the user (see <a
+href="User.html#method-i-audio_editor_available">User#audio_editor_available</a>)</p>
           
 
           
           <div class="method-source-code" id="check_available_for_user-source">
-            <pre><span class="ruby-comment"># File app/controllers/audio_editor_controller.rb, line 213</span>
+            <pre><span class="ruby-comment"># File app/controllers/audio_editor_controller.rb, line 215</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">check_available_for_user</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">audio_editor_available</span>
     <span class="ruby-identifier">render</span> <span class="ruby-string">&#39;not_available&#39;</span>
@@ -901,12 +902,13 @@ href="AudioEditorController.html#method-i-check_available_for_user">#check_avail
 
         <div class="method-description">
           
-          
+          <p>Converts a single audio in a cache in the format of <a
+href="Media/Audio/Editing/Parameters.html">Media::Audio::Editing::Parameters</a></p>
           
 
           
           <div class="method-source-code" id="convert_audio_to_parameters-source">
-            <pre><span class="ruby-comment"># File app/controllers/audio_editor_controller.rb, line 250</span>
+            <pre><span class="ruby-comment"># File app/controllers/audio_editor_controller.rb, line 254</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">convert_audio_to_parameters</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">resp</span> = {}
   <span class="ruby-identifier">resp</span>[<span class="ruby-value">:initial_audio_id</span>] = <span class="ruby-ivar">@audio</span>.<span class="ruby-identifier">is_public</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">nil</span> <span class="ruby-operator">:</span> <span class="ruby-ivar">@audio</span>.<span class="ruby-identifier">id</span>
@@ -938,12 +940,14 @@ href="AudioEditorController.html#method-i-check_available_for_user">#check_avail
 
         <div class="method-description">
           
-          
+          <p>Gets a set of parameters in the format of <a
+href="Media/Audio/Editing/Parameters.html">Media::Audio::Editing::Parameters</a>
+from an empty audio editor</p>
           
 
           
           <div class="method-source-code" id="empty_parameters-source">
-            <pre><span class="ruby-comment"># File app/controllers/audio_editor_controller.rb, line 261</span>
+            <pre><span class="ruby-comment"># File app/controllers/audio_editor_controller.rb, line 266</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">empty_parameters</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">resp</span> = {}
   <span class="ruby-identifier">resp</span>[<span class="ruby-value">:initial_audio</span>] = <span class="ruby-keyword">nil</span>
@@ -971,12 +975,12 @@ href="AudioEditorController.html#method-i-check_available_for_user">#check_avail
 
         <div class="method-description">
           
-          
+          <p>Extracts the cache and converts it</p>
           
 
           
           <div class="method-source-code" id="extract_cache-source">
-            <pre><span class="ruby-comment"># File app/controllers/audio_editor_controller.rb, line 268</span>
+            <pre><span class="ruby-comment"># File app/controllers/audio_editor_controller.rb, line 274</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">extract_cache</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-ivar">@cache</span> = <span class="ruby-constant">Audio</span>.<span class="ruby-identifier">convert_parameters</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">audio_editor_cache</span>, <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>
 <span class="ruby-keyword">end</span></pre>
@@ -1001,12 +1005,13 @@ href="AudioEditorController.html#method-i-check_available_for_user">#check_avail
 
         <div class="method-description">
           
-          
+          <p>Extracts parameters from the form, and converts them into the format of <a
+href="Media/Audio/Editing/Parameters.html">Media::Audio::Editing::Parameters</a></p>
           
 
           
           <div class="method-source-code" id="extract_form_parameters-source">
-            <pre><span class="ruby-comment"># File app/controllers/audio_editor_controller.rb, line 220</span>
+            <pre><span class="ruby-comment"># File app/controllers/audio_editor_controller.rb, line 223</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">extract_form_parameters</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">unordered_resp</span> = {}
   <span class="ruby-identifier">ordered_resp</span> = {}
@@ -1057,12 +1062,14 @@ href="AudioEditorController.html#method-i-check_available_for_user">#check_avail
 
         <div class="method-description">
           
-          
+          <p>Initializes the given audio, and returns true if current_user owns it or
+it&#39;s public (these are the conditions for the user to visualize the
+audio, but not modify it)</p>
           
 
           
           <div class="method-source-code" id="initialize_audio_with_owner_or_public-source">
-            <pre><span class="ruby-comment"># File app/controllers/audio_editor_controller.rb, line 272</span>
+            <pre><span class="ruby-comment"># File app/controllers/audio_editor_controller.rb, line 279</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize_audio_with_owner_or_public</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-ivar">@audio_id</span> = <span class="ruby-identifier">correct_integer?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:audio_id</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:audio_id</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-value">0</span>
   <span class="ruby-ivar">@audio</span> = <span class="ruby-constant">Audio</span>.<span class="ruby-identifier">find_by_id</span> <span class="ruby-ivar">@audio_id</span>
@@ -1089,12 +1096,12 @@ href="AudioEditorController.html#method-i-check_available_for_user">#check_avail
 
         <div class="method-description">
           
-          
+          <p>Checks if the audio is being used in private lessons</p>
           
 
           
           <div class="method-source-code" id="used_in_private_lessons-source">
-            <pre><span class="ruby-comment"># File app/controllers/audio_editor_controller.rb, line 208</span>
+            <pre><span class="ruby-comment"># File app/controllers/audio_editor_controller.rb, line 209</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">used_in_private_lessons</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@parameters</span>[<span class="ruby-value">:initial_audio</span>].<span class="ruby-identifier">nil?</span>
   <span class="ruby-ivar">@parameters</span>[<span class="ruby-value">:initial_audio</span>].<span class="ruby-identifier">media_elements_slides</span>.<span class="ruby-identifier">any?</span>

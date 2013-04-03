@@ -34,6 +34,7 @@ class DashboardController < ApplicationController
   
   private
   
+  # Initializes all the parameters of pagination
   def initialize_pagination # :doc:
     @lessons_for_page = SETTINGS['lessons_for_page_in_dashboard']
     @lesson_pages = SETTINGS['lesson_pages_in_dashboard']

@@ -1238,12 +1238,14 @@ href="GalleriesController.html#method-i-initialize_page">#initialize_page</a></p
 
         <div class="method-description">
           
-          
+          <p>Gets the audios, using <a
+href="User.html#method-i-own_media_elements">User#own_media_elements</a>
+with <code>filter</code> = <code>audio</code></p>
           
 
           
           <div class="method-source-code" id="get_audios-source">
-            <pre><span class="ruby-comment"># File app/controllers/galleries_controller.rb, line 316</span>
+            <pre><span class="ruby-comment"># File app/controllers/galleries_controller.rb, line 318</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_audios</span>(<span class="ruby-identifier">page</span>) <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">x</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">own_media_elements</span>(<span class="ruby-identifier">page</span>, <span class="ruby-constant">AUDIOS_FOR_PAGE</span>, <span class="ruby-constant">Filters</span><span class="ruby-operator">::</span><span class="ruby-constant">AUDIO</span>)
   <span class="ruby-ivar">@audios</span> = <span class="ruby-identifier">x</span>[<span class="ruby-value">:records</span>]
@@ -1270,12 +1272,14 @@ href="GalleriesController.html#method-i-initialize_page">#initialize_page</a></p
 
         <div class="method-description">
           
-          
+          <p>Gets the images, using <a
+href="User.html#method-i-own_media_elements">User#own_media_elements</a>
+with <code>filter</code> = <code>image</code></p>
           
 
           
           <div class="method-source-code" id="get_images-source">
-            <pre><span class="ruby-comment"># File app/controllers/galleries_controller.rb, line 328</span>
+            <pre><span class="ruby-comment"># File app/controllers/galleries_controller.rb, line 332</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_images</span>(<span class="ruby-identifier">page</span>) <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">x</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">own_media_elements</span>(<span class="ruby-identifier">page</span>, <span class="ruby-constant">IMAGES_FOR_PAGE</span>, <span class="ruby-constant">Filters</span><span class="ruby-operator">::</span><span class="ruby-constant">IMAGE</span>)
   <span class="ruby-ivar">@images</span> = <span class="ruby-identifier">x</span>[<span class="ruby-value">:records</span>]
@@ -1302,12 +1306,14 @@ href="GalleriesController.html#method-i-initialize_page">#initialize_page</a></p
 
         <div class="method-description">
           
-          
+          <p>Gets the videos, using <a
+href="User.html#method-i-own_media_elements">User#own_media_elements</a>
+with <code>filter</code> = <code>video</code></p>
           
 
           
           <div class="method-source-code" id="get_videos-source">
-            <pre><span class="ruby-comment"># File app/controllers/galleries_controller.rb, line 322</span>
+            <pre><span class="ruby-comment"># File app/controllers/galleries_controller.rb, line 325</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_videos</span>(<span class="ruby-identifier">page</span>) <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">x</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">own_media_elements</span>(<span class="ruby-identifier">page</span>, <span class="ruby-constant">VIDEOS_FOR_PAGE</span>, <span class="ruby-constant">Filters</span><span class="ruby-operator">::</span><span class="ruby-constant">VIDEO</span>)
   <span class="ruby-ivar">@videos</span> = <span class="ruby-identifier">x</span>[<span class="ruby-value">:records</span>]
@@ -1334,12 +1340,13 @@ href="GalleriesController.html#method-i-initialize_page">#initialize_page</a></p
 
         <div class="method-description">
           
-          
+          <p>Initializes the parameter <code>page</code> used in all the actions getting
+new blocks in the gallery</p>
           
 
           
           <div class="method-source-code" id="initialize_page-source">
-            <pre><span class="ruby-comment"># File app/controllers/galleries_controller.rb, line 311</span>
+            <pre><span class="ruby-comment"># File app/controllers/galleries_controller.rb, line 312</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize_page</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-ivar">@page</span> = <span class="ruby-identifier">correct_integer?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-value">0</span>
   <span class="ruby-identifier">update_ok</span>(<span class="ruby-ivar">@page</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>)
