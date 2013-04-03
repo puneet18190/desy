@@ -1,24 +1,73 @@
+# == Description
+#
+# Controller for all the actions related to elements and their buttons. All over this controller we use the constant keywords defined in ButtonDestinations, namely:
+# 1. *found_media_element* (or simply *found*) for a media element seen in a results list of the search engine
+# 2. *compact_media_element* (or simply *compact*) for a media element seen in the compact mode
+# 3. *expanded_media_element* (or simply *expanded*) for a media element seen in expanded mode (this happens only in the dashboard, see DashboardController)
+#
+# == Models used
+#
+# * MediaElement
+# * Notification
+# * User
+#
 class MediaElementsController < ApplicationController
   
+  # Default number of elements in compact mode to be shown in a single page (configured in settings.yml)
   FOR_PAGE_COMPACT = SETTINGS['compact_media_element_pagination']
+  
+  # Options of possible elements in compact mode to be shown in a single page (configured in settings.yml)
   FOR_PAGE_COMPACT_OPTIONS = SETTINGS['compact_media_element_pagination_options']
+  
+  # Default number of elements in expanded mode to be shown in a single page (configured in settings.yml)
   FOR_PAGE_EXPANDED = SETTINGS['expanded_media_element_pagination']
+  
+  # Options of possible elements in expanded mode to be shown in a single page (configured in settings.yml)
   FOR_PAGE_EXPANDED_OPTIONS = SETTINGS['expanded_media_element_pagination_options']
   
+  skip_before_filter :authenticate, :initialize_location, :initialize_players_counter, :only => :videos_test
   before_filter :initialize_media_element, :only => [:add, :remove]
   before_filter :initialize_media_element_with_owner, :only => :destroy
   before_filter :initialize_media_element_with_owner_and_private, :only => :update
   before_filter :initialize_layout, :initialize_paginator, :only => :index
   before_filter :initialize_media_element_destination, :only => [:add, :remove, :destroy]
-
-  skip_before_filter :authenticate, :initialize_location, :initialize_players_counter, only: :videos_test
-  before_filter :admin_authenticate, only: :videos_test
-
-  layout false, only: :videos_test
-
+  before_filter :admin_authenticate, :only => :videos_test
+  layout false, :only => :videos_test
+  
+  # === Description
+  #
+  # 
+  #
+  # === Mode
+  #
+  # 
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#admin_authenticate
+  #
+  # === Skipped filters
+  #
+  # * ApplicationController#authenticate
+  # * ApplicationController#initialize_location
+  # * ApplicationController#initialize_players_counter
+  #
   def videos_test
   end
   
+  # === Description
+  #
+  # 
+  #
+  # === Mode
+  #
+  # 
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#initialize_layout
+  # * MediaElementsController#initialize_paginator
+  #
   def index
     get_own_media_elements
     if @page > @pages_amount && @pages_amount != 0
@@ -28,10 +77,34 @@ class MediaElementsController < ApplicationController
     render_js_or_html_index
   end
   
+  # === Description
+  #
+  # 
+  #
+  # === Mode
+  #
+  # 
+  #
+  # === Specific filters
+  #
+  # 
+  #
   def new
     render :layout => 'media_element_editor'
   end
   
+  # === Description
+  #
+  # 
+  #
+  # === Mode
+  #
+  # 
+  #
+  # === Specific filters
+  #
+  # 
+  #
   def create
     media = params[:media]
     record = MediaElement.new :media => media
@@ -63,6 +136,19 @@ class MediaElementsController < ApplicationController
     render :layout => false
   end
   
+  # === Description
+  #
+  # 
+  #
+  # === Mode
+  #
+  # 
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#initialize_media_element
+  # * ApplicationController#initialize_media_element_destination
+  #
   def add
     @ok_msg = t('other_popup_messages.correct.add.media_element')
     if @ok
@@ -81,6 +167,19 @@ class MediaElementsController < ApplicationController
     end
   end
   
+  # === Description
+  #
+  # 
+  #
+  # === Mode
+  #
+  # 
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#initialize_media_element_with_owner
+  # * ApplicationController#initialize_media_element_destination
+  #
   def destroy
     if @ok
       if !@media_element.check_and_destroy
@@ -93,6 +192,19 @@ class MediaElementsController < ApplicationController
     render :json => {:ok => @ok, :msg => @error}
   end
   
+  # === Description
+  #
+  # 
+  #
+  # === Mode
+  #
+  # 
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#initialize_media_element
+  # * ApplicationController#initialize_media_element_destination
+  #
   def remove
     @ok_msg = t('other_popup_messages.correct.remove.media_element')
     if @ok
@@ -118,6 +230,18 @@ class MediaElementsController < ApplicationController
     end
   end
   
+  # === Description
+  #
+  # 
+  #
+  # === Mode
+  #
+  # 
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#initialize_media_element_with_owner_and_private
+  #
   def update
     if @ok
       @media_element.title = params[:title]
@@ -133,6 +257,18 @@ class MediaElementsController < ApplicationController
     end
   end
   
+  # === Description
+  #
+  # 
+  #
+  # === Mode
+  #
+  # 
+  #
+  # === Specific filters
+  #
+  # 
+  #
   def load_preview
     @media_element_id = correct_integer?(params[:media_element_id]) ? params[:media_element_id].to_i : 0
     @media_element = MediaElement.find_by_id @media_element_id
