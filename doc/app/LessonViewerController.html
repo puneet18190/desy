@@ -422,6 +422,18 @@
 
   <div id="description" class="description">
     
+<h2 id="label-Description">Description</h2>
+
+<p>Contains the actions used in the lesson viewer (view sinle lessons, or view
+your whole playlist)</p>
+
+<h2 id="label-Models+used">Models used</h2>
+<ul><li>
+<p><a href="Lesson.html">Lesson</a></p>
+</li><li>
+<p><a href="VirtualClassroomLesson.html">VirtualClassroomLesson</a></p>
+</li></ul>
+
   </div><!-- description -->
 
   
@@ -453,12 +465,31 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-index-label-Description">Description</h3>
+
+<p>Index of a single lesson viewer; it&#39;s not necessary to authenticate, if
+in the url is present the correct token of the lesson</p>
+
+<h3 id="method-i-index-label-Mode">Mode</h3>
+
+<p>Html</p>
+
+<h3 id="method-i-index-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p><a
+href="LessonViewerController.html#method-i-skip_authenticate_user_if_token">#skip_authenticate_user_if_token</a></p>
+</li></ul>
+
+<h3 id="method-i-index-label-Skipped+filters">Skipped filters</h3>
+<ul><li>
+<p><a
+href="ApplicationController.html#method-i-authenticate">ApplicationController#authenticate</a></p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/lesson_viewer_controller.rb, line 7</span>
+            <pre><span class="ruby-comment"># File app/controllers/lesson_viewer_controller.rb, line 32</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
   <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@ok</span>
     <span class="ruby-identifier">redirect_to</span> <span class="ruby-string">&#39;/dashboard&#39;</span>
@@ -490,12 +521,31 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-load_slide-label-Description">Description</h3>
+
+<p>Loads a new slide in the lesson viewer; it&#39;s not necessary to
+authenticate, if in the url is present the correct token of the lesson</p>
+
+<h3 id="method-i-load_slide-label-Mode">Mode</h3>
+
+<p>Ajax</p>
+
+<h3 id="method-i-load_slide-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p><a
+href="LessonViewerController.html#method-i-skip_authenticate_user_if_token_with_slide">#skip_authenticate_user_if_token_with_slide</a></p>
+</li></ul>
+
+<h3 id="method-i-load_slide-label-Skipped+filters">Skipped filters</h3>
+<ul><li>
+<p><a
+href="ApplicationController.html#method-i-authenticate">ApplicationController#authenticate</a></p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="load_slide-source">
-            <pre><span class="ruby-comment"># File app/controllers/lesson_viewer_controller.rb, line 30</span>
+            <pre><span class="ruby-comment"># File app/controllers/lesson_viewer_controller.rb, line 79</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">load_slide</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- load_slide-source -->
@@ -519,12 +569,18 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-playlist-label-Description">Description</h3>
+
+<p>Index of the playlist viewer</p>
+
+<h3 id="method-i-playlist-label-Mode">Mode</h3>
+
+<p>Html</p>
           
 
           
           <div class="method-source-code" id="playlist-source">
-            <pre><span class="ruby-comment"># File app/controllers/lesson_viewer_controller.rb, line 18</span>
+            <pre><span class="ruby-comment"># File app/controllers/lesson_viewer_controller.rb, line 51</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">playlist</span>
   <span class="ruby-ivar">@is_back</span> = <span class="ruby-keyword">true</span>
   <span class="ruby-ivar">@with_exit</span> = <span class="ruby-keyword">false</span>
@@ -568,7 +624,7 @@
 
           
           <div class="method-source-code" id="skip_authenticate_user_if_token-source">
-            <pre><span class="ruby-comment"># File app/controllers/lesson_viewer_controller.rb, line 42</span>
+            <pre><span class="ruby-comment"># File app/controllers/lesson_viewer_controller.rb, line 91</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">skip_authenticate_user_if_token</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">initialize_lesson</span>
   <span class="ruby-identifier">update_ok</span>(<span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">is_public</span> <span class="ruby-operator">||</span> (<span class="ruby-identifier">logged_in?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">session</span>[<span class="ruby-value">:user_id</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">==</span> <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">user_id</span>)) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">token</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:token</span>]
@@ -599,7 +655,7 @@
 
           
           <div class="method-source-code" id="skip_authenticate_user_if_token_with_slide-source">
-            <pre><span class="ruby-comment"># File app/controllers/lesson_viewer_controller.rb, line 35</span>
+            <pre><span class="ruby-comment"># File app/controllers/lesson_viewer_controller.rb, line 84</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">skip_authenticate_user_if_token_with_slide</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">skip_authenticate_user_if_token</span>
   <span class="ruby-ivar">@slide_id</span> = <span class="ruby-identifier">correct_integer?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:slide_id</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:slide_id</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-value">0</span>

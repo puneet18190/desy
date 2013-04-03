@@ -13,6 +13,22 @@ class LessonViewerController < ApplicationController
   before_filter :skip_authenticate_user_if_token, :only => :index
   before_filter :skip_authenticate_user_if_token_with_slide, :only => :load_slide
   
+  # === Description
+  #
+  # Index of a single lesson viewer; it's not necessary to authenticate, if in the url is present the correct token of the lesson
+  #
+  # === Mode
+  #
+  # Html
+  #
+  # === Specific filters
+  #
+  # * LessonViewerController#skip_authenticate_user_if_token
+  #
+  # === Skipped filters
+  #
+  # * ApplicationController#authenticate
+  #
   def index
     if !@ok
       redirect_to '/dashboard'
@@ -24,6 +40,14 @@ class LessonViewerController < ApplicationController
     end
   end
   
+  # === Description
+  #
+  # Index of the playlist viewer
+  #
+  # === Mode
+  #
+  # Html
+  #
   def playlist
     @is_back = true
     @with_exit = false
@@ -36,6 +60,22 @@ class LessonViewerController < ApplicationController
     end
   end
   
+  # === Description
+  #
+  # Loads a new slide in the lesson viewer; it's not necessary to authenticate, if in the url is present the correct token of the lesson
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # * LessonViewerController#skip_authenticate_user_if_token_with_slide
+  #
+  # === Skipped filters
+  #
+  # * ApplicationController#authenticate
+  #
   def load_slide
   end
   
