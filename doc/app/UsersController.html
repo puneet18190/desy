@@ -80,8 +80,6 @@
     
     <li><a href="#method-i-find_locations">#find_locations</a>
     
-    <li><a href="#method-i-logout">#logout</a>
-    
     <li><a href="#method-i-mailing_lists">#mailing_lists</a>
     
     <li><a href="#method-i-request_reset_password">#request_reset_password</a>
@@ -436,6 +434,28 @@
 
   <div id="description" class="description">
     
+<h2 id="label-Description">Description</h2>
+
+<p>Controller for actions related to user&#39;s profile and statistics</p>
+
+<h2 id="label-Models+used">Models used</h2>
+<ul><li>
+<p><a href="User.html">User</a></p>
+</li><li>
+<p><a href="UserMailer.html">UserMailer</a></p>
+</li><li>
+<p><a href="Location.html">Location</a></p>
+</li><li>
+<p><a href="Subject.html">Subject</a></p>
+</li><li>
+<p><a href="SchoolLevel.html">SchoolLevel</a></p>
+</li></ul>
+
+<h2 id="label-Subcontrollers">Subcontrollers</h2>
+<ul><li>
+<p><a href="Users/SessionsController.html">Users::SessionsController</a></p>
+</li></ul>
+
   </div><!-- description -->
 
   
@@ -467,12 +487,24 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-confirm-label-Description">Description</h3>
+
+<p>Confirms a profile using the link with token received by e-mail by the user</p>
+
+<h3 id="method-i-confirm-label-Mode">Mode</h3>
+
+<p>Html</p>
+
+<h3 id="method-i-confirm-label-Skipped+filters">Skipped filters</h3>
+<ul><li>
+<p><a
+href="ApplicationController.html#method-i-authenticate">ApplicationController#authenticate</a></p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="confirm-source">
-            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 25</span>
+            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 65</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">confirm</span>
   <span class="ruby-keyword">if</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">confirm!</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:token</span>])
     <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">root_path</span>(<span class="ruby-identifier">login</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>), { <span class="ruby-identifier">flash</span><span class="ruby-operator">:</span> { <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;flash.successful_confirmation&#39;</span>) } }
@@ -501,12 +533,24 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-create-label-Description">Description</h3>
+
+<p>Creates a profile which is not confirmed yet</p>
+
+<h3 id="method-i-create-label-Mode">Mode</h3>
+
+<p>Html</p>
+
+<h3 id="method-i-create-label-Skipped+filters">Skipped filters</h3>
+<ul><li>
+<p><a
+href="ApplicationController.html#method-i-authenticate">ApplicationController#authenticate</a></p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 7</span>
+            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 35</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-identifier">email</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:user</span>].<span class="ruby-identifier">try</span>(<span class="ruby-value">:delete</span>, <span class="ruby-value">:email</span>)
   <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">active</span>.<span class="ruby-identifier">not_confirmed</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:user</span>]) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">user</span><span class="ruby-operator">|</span>
@@ -545,12 +589,24 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-edit-label-Description">Description</h3>
+
+<p>Form to edit the general information about your profile</p>
+
+<h3 id="method-i-edit-label-Mode">Mode</h3>
+
+<p>Html</p>
+
+<h3 id="method-i-edit-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p><a
+href="ApplicationController.html#method-i-initialize_layout">ApplicationController#initialize_layout</a></p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 49</span>
+            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 125</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
   <span class="ruby-ivar">@user</span> = <span class="ruby-identifier">current_user</span>
   <span class="ruby-ivar">@school_level_ids</span> = <span class="ruby-constant">SchoolLevel</span>.<span class="ruby-identifier">order</span>(<span class="ruby-value">:description</span>).<span class="ruby-identifier">map</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">sl</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">sl</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-identifier">sl</span>.<span class="ruby-identifier">id</span>] }
@@ -577,12 +633,24 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-find_locations-label-Description">Description</h3>
+
+<p>Necessary to fill the locations list</p>
+
+<h3 id="method-i-find_locations-label-Mode">Mode</h3>
+
+<p>Html</p>
+
+<h3 id="method-i-find_locations-label-Skipped+filters">Skipped filters</h3>
+<ul><li>
+<p><a
+href="ApplicationController.html#method-i-authenticate">ApplicationController#authenticate</a></p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="find_locations-source">
-            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 55</span>
+            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 143</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">find_locations</span>
   <span class="ruby-identifier">parent</span> = <span class="ruby-constant">Location</span>.<span class="ruby-identifier">find_by_id</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>]
   <span class="ruby-ivar">@locations</span> = <span class="ruby-identifier">parent</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">?</span> [] <span class="ruby-operator">:</span> <span class="ruby-identifier">parent</span>.<span class="ruby-identifier">children</span>
@@ -597,37 +665,6 @@
       </div><!-- find_locations-method -->
 
     
-      <div id="method-i-logout" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">logout</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-
-          
-          <div class="method-source-code" id="logout-source">
-            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 112</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">logout</span>
-  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">current_user</span> = <span class="ruby-keyword">nil</span>
-  <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">root_path</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- logout-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- logout-method -->
-
-    
       <div id="method-i-mailing_lists" class="method-detail ">
         
         <div class="method-heading">
@@ -639,12 +676,25 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-mailing_lists-label-Description">Description</h3>
+
+<p>Manage your mailing lists and addresses (see <a
+href="MailingListsController.html">MailingListsController</a>)</p>
+
+<h3 id="method-i-mailing_lists-label-Mode">Mode</h3>
+
+<p>Html</p>
+
+<h3 id="method-i-mailing_lists-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p><a
+href="ApplicationController.html#method-i-initialize_layout">ApplicationController#initialize_layout</a></p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="mailing_lists-source">
-            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 93</span>
+            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 217</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">mailing_lists</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- mailing_lists-source -->
@@ -668,12 +718,24 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-request_reset_password-label-Description">Description</h3>
+
+<p>TODO questa descrizione andrà aggiornata poi</p>
+
+<h3 id="method-i-request_reset_password-label-Mode">Mode</h3>
+
+<p>Html</p>
+
+<h3 id="method-i-request_reset_password-label-Skipped+filters">Skipped filters</h3>
+<ul><li>
+<p><a
+href="ApplicationController.html#method-i-authenticate">ApplicationController#authenticate</a></p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="request_reset_password-source">
-            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 33</span>
+            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 85</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">request_reset_password</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- request_reset_password-source -->
@@ -697,12 +759,24 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-reset_password-label-Description">Description</h3>
+
+<p>TODO questa descrizione andrà aggiornata poi</p>
+
+<h3 id="method-i-reset_password-label-Mode">Mode</h3>
+
+<p>Html</p>
+
+<h3 id="method-i-reset_password-label-Skipped+filters">Skipped filters</h3>
+<ul><li>
+<p><a
+href="ApplicationController.html#method-i-authenticate">ApplicationController#authenticate</a></p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="reset_password-source">
-            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 36</span>
+            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 100</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">reset_password</span>
   <span class="ruby-identifier">email</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:email</span>]
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">email</span>.<span class="ruby-identifier">blank?</span>
@@ -736,12 +810,24 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-statistics-label-Description">Description</h3>
+
+<p>Static page with general and personal statistics</p>
+
+<h3 id="method-i-statistics-label-Mode">Mode</h3>
+
+<p>Html</p>
+
+<h3 id="method-i-statistics-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p><a
+href="ApplicationController.html#method-i-initialize_layout">ApplicationController#initialize_layout</a></p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="statistics-source">
-            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 96</span>
+            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 232</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">statistics</span>
   <span class="ruby-constant">Statistics</span>.<span class="ruby-identifier">user</span> = <span class="ruby-identifier">current_user</span>
   <span class="ruby-ivar">@my_created_lessons</span>  = <span class="ruby-constant">Statistics</span>.<span class="ruby-identifier">my_created_lessons</span>
@@ -778,12 +864,24 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-subjects-label-Description">Description</h3>
+
+<p>Form to edit your list of subjects</p>
+
+<h3 id="method-i-subjects-label-Mode">Mode</h3>
+
+<p>Html</p>
+
+<h3 id="method-i-subjects-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p><a
+href="ApplicationController.html#method-i-initialize_layout">ApplicationController#initialize_layout</a></p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="subjects-source">
-            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 60</span>
+            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 160</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">subjects</span>
   <span class="ruby-ivar">@user</span> = <span class="ruby-identifier">current_user</span>
   <span class="ruby-ivar">@subjects</span> = <span class="ruby-constant">Subject</span>.<span class="ruby-identifier">order</span>(<span class="ruby-value">:description</span>)
@@ -809,12 +907,26 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-update-label-Description">Description</h3>
+
+<p>Updates your profile (it can be called either from <a
+href="UsersController.html#method-i-edit">#edit</a> or from <a
+href="UsersController.html#method-i-subjects">#subjects</a>)</p>
+
+<h3 id="method-i-update-label-Mode">Mode</h3>
+
+<p>Html</p>
+
+<h3 id="method-i-update-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p><a
+href="ApplicationController.html#method-i-initialize_layout">ApplicationController#initialize_layout</a></p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 65</span>
+            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 177</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-ivar">@user</span> = <span class="ruby-identifier">current_user</span>
   <span class="ruby-identifier">in_subjects</span> = <span class="ruby-operator">!</span><span class="ruby-operator">!</span><span class="ruby-identifier">params</span>[<span class="ruby-value">:in_subjects</span>]
@@ -874,7 +986,7 @@
 
           
           <div class="method-source-code" id="fill_locations-source">
-            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 119</span>
+            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 250</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">fill_locations</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-ivar">@user_location</span> = {}
   <span class="ruby-identifier">prev_location</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">location</span>

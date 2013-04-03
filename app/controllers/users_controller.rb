@@ -1,9 +1,37 @@
+# == Description
+#
+# Controller for actions related to user's profile and statistics
+#
+# == Models used
+#
+# * User
+# * UserMailer
+# * Location
+# * Subject
+# * SchoolLevel
+#
+# == Subcontrollers
+#
+# * Users::SessionsController
+#
 class UsersController < ApplicationController
   
-  skip_before_filter :authenticate, only: [:create, :confirm, :request_reset_password, :reset_password, :find_locations]
+  skip_before_filter :authenticate, :only => [:create, :confirm, :request_reset_password, :reset_password, :find_locations]
   before_filter :initialize_layout, :only => [:edit, :update, :subjects, :statistics, :mailing_lists]
-  layout 'prelogin', only: [:create, :request_reset_password]
+  layout 'prelogin', :only => [:create, :request_reset_password]
   
+  # === Description
+  #
+  # Creates a profile which is not confirmed yet
+  #
+  # === Mode
+  #
+  # Html
+  #
+  # === Skipped filters
+  #
+  # * ApplicationController#authenticate
+  #
   def create
     email = params[:user].try(:delete, :email)
     @user = User.active.not_confirmed.new(params[:user]) do |user|
@@ -22,6 +50,18 @@ class UsersController < ApplicationController
     end
   end
   
+  # === Description
+  #
+  # Confirms a profile using the link with token received by e-mail by the user
+  #
+  # === Mode
+  #
+  # Html
+  #
+  # === Skipped filters
+  #
+  # * ApplicationController#authenticate
+  #
   def confirm
     if User.confirm!(params[:token])
       redirect_to root_path(login: true), { flash: { notice: t('flash.successful_confirmation') } }
@@ -30,9 +70,33 @@ class UsersController < ApplicationController
     end
   end
   
+  # === Description
+  #
+  # TODO questa descrizione andrà aggiornata poi
+  #
+  # === Mode
+  #
+  # Html
+  #
+  # === Skipped filters
+  #
+  # * ApplicationController#authenticate
+  #
   def request_reset_password
   end
   
+  # === Description
+  #
+  # TODO questa descrizione andrà aggiornata poi
+  #
+  # === Mode
+  #
+  # Html
+  #
+  # === Skipped filters
+  #
+  # * ApplicationController#authenticate
+  #
   def reset_password
     email = params[:email]
     if email.blank?
@@ -46,22 +110,70 @@ class UsersController < ApplicationController
     redirect_to root_path, { flash: { notice: t('flash.password_reset_successfully') } }
   end
   
+  # === Description
+  #
+  # Form to edit the general information about your profile
+  #
+  # === Mode
+  #
+  # Html
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#initialize_layout
+  #
   def edit
     @user = current_user
     @school_level_ids = SchoolLevel.order(:description).map{ |sl| [sl.to_s, sl.id] }
     fill_locations
   end
   
+  # === Description
+  #
+  # Necessary to fill the locations list
+  #
+  # === Mode
+  #
+  # Html
+  #
+  # === Skipped filters
+  #
+  # * ApplicationController#authenticate
+  #
   def find_locations
     parent = Location.find_by_id params[:id]
     @locations = parent.nil? ? [] : parent.children
   end
   
+  # === Description
+  #
+  # Form to edit your list of subjects
+  #
+  # === Mode
+  #
+  # Html
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#initialize_layout
+  #
   def subjects
     @user = current_user
     @subjects = Subject.order(:description)
   end
   
+  # === Description
+  #
+  # Updates your profile (it can be called either from UsersController#edit or from UsersController#subjects)
+  #
+  # === Mode
+  #
+  # Html
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#initialize_layout
+  #
   def update
     @user = current_user
     in_subjects = !!params[:in_subjects]
@@ -90,9 +202,33 @@ class UsersController < ApplicationController
     end
   end
   
+  # === Description
+  #
+  # Manage your mailing lists and addresses (see MailingListsController)
+  #
+  # === Mode
+  #
+  # Html
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#initialize_layout
+  #
   def mailing_lists
   end
-
+  
+  # === Description
+  #
+  # Static page with general and personal statistics
+  #
+  # === Mode
+  #
+  # Html
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#initialize_layout
+  #
   def statistics
     Statistics.user = current_user
     @my_created_lessons  = Statistics.my_created_lessons
@@ -107,11 +243,6 @@ class UsersController < ApplicationController
     @all_users_like      = Statistics.all_users_like(3)
     @all_subjects_chart  = Statistics.all_subjects_chart[0].split(',')
     @all_subjects_desc   = Statistics.all_subjects_chart[1].split(',')
-  end
-  
-  def logout
-    self.current_user = nil
-    redirect_to root_path
   end
   
   private
