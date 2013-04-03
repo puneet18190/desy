@@ -1187,12 +1187,13 @@ href="ApplicationController.html#method-i-initialize_lesson_destination">Applica
 
         <div class="method-description">
           
-          
+          <p>Checks if the lesson is available (it doesn&#39;t contain any audio or
+video in conversion)</p>
           
 
           
           <div class="method-source-code" id="check_available_for_user-source">
-            <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 350</span>
+            <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 351</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">check_available_for_user</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">l</span> = <span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">find_by_id</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:lesson_id</span>]
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">l</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">l</span>.<span class="ruby-identifier">available?</span>
@@ -1221,12 +1222,13 @@ href="ApplicationController.html#method-i-initialize_lesson_destination">Applica
 
         <div class="method-description">
           
-          
+          <p>Gets the lessons using <a
+href="User.html#method-i-own_lessons">User#own_lessons</a></p>
           
 
           
           <div class="method-source-code" id="get_own_lessons-source">
-            <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 358</span>
+            <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 360</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_own_lessons</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">current_user_own_lessons</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">own_lessons</span>(<span class="ruby-ivar">@page</span>, <span class="ruby-ivar">@for_page</span>, <span class="ruby-ivar">@filter</span>)
   <span class="ruby-ivar">@lessons</span> = <span class="ruby-identifier">current_user_own_lessons</span>[<span class="ruby-value">:records</span>]
@@ -1253,12 +1255,12 @@ href="ApplicationController.html#method-i-initialize_lesson_destination">Applica
 
         <div class="method-description">
           
-          
+          <p>Initializes pagination parameters and filters</p>
           
 
           
           <div class="method-source-code" id="initialize_paginator-source">
-            <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 364</span>
+            <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 367</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize_paginator</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-ivar">@page</span> = <span class="ruby-identifier">correct_integer?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-value">1</span>
   <span class="ruby-ivar">@for_page</span> = <span class="ruby-constant">FOR_PAGE</span>
