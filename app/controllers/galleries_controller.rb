@@ -1,7 +1,46 @@
+# == Description
+#
+# List of actions to handle all the instances of galleries in the application. Since the gallery pagination is made with infinite scroll, for each gallery there is an action that extracts it first, and another one that gets a new block of elements. List of galleries for each section
+# * Lesson Editor (see LessonEditorController):
+#   * audio gallery
+#     * GalleriesController#audio_for_lesson_editor
+#     * GalleriesController#audio_for_lesson_editor_new_block
+#   * image gallery
+#     * GalleriesController#image_for_lesson_editor
+#     * GalleriesController#image_for_lesson_editor_new_block
+#   * video gallery
+#     * GalleriesController#video_for_lesson_editor
+#     * GalleriesController#video_for_lesson_editor_new_block
+# * Image Editor (see ImageEditorController):
+#   * image gallery
+#     * GalleriesController#image_for_image_editor
+#     * GalleriesController#image_for_image_editor_new_block
+# * Audio Editor (see AudioEditorController):
+#   * audio gallery
+#     * GalleriesController#audio_for_audio_editor
+#     * GalleriesController#audio_for_audio_editor_new_block
+# * Video Editor (see VideoEditorController):
+#   * mixed gallery (video + image + texts)
+#     * GalleriesController#mixed_for_video_editor
+#     * GalleriesController#mixed_for_video_editor_video_new_block
+#     * GalleriesController#mixed_for_video_editor_image_new_block
+#
+# == Models used
+#
+# * User
+# * Image
+# * Audio
+# * Video
+#
 class GalleriesController < ApplicationController
   
+  # Number of images for page, configured in settings.yml
   IMAGES_FOR_PAGE = SETTINGS['images_for_page_in_gallery']
+  
+  # Number of audios for page, configured in settings.yml
   AUDIOS_FOR_PAGE = SETTINGS['audios_for_page_in_gallery']
+  
+  # Number of videos for page, configured in settings.yml
   VIDEOS_FOR_PAGE = SETTINGS['videos_for_page_in_gallery']
   
   before_filter :initialize_page, :only => [
