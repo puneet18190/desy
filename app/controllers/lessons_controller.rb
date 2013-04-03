@@ -1,5 +1,18 @@
+# == Description
+#
+# Controller for all the actions related to lessons and their buttons. The only two action buttons excluded here are VirtualClassroomController#add_lesson and VirtualClassroomController#remove_lesson. All over this controller we use the constant keywords defined in ButtonDestinations:
+# 1. *found_lesson* (or simply *found*) for a lesson seen in a results list of the search engine
+# 2. *compact_lesson* (or simply *compact*) for a lesson seen in the compact mode
+# 3. *expanded_lesson* (or simply *expanded*) for a lesson seen in expanded mode (this happens only in the dashboard, see DashboardController)
+#
+# == Models used
+#
+# * Lesson
+# * User
+#
 class LessonsController < ApplicationController
   
+  # Number of compact lessons for each page
   FOR_PAGE = SETTINGS['compact_lesson_pagination']
   
   before_filter :check_available_for_user, :only => [:copy, :publish]
@@ -8,6 +21,18 @@ class LessonsController < ApplicationController
   before_filter :initialize_layout, :initialize_paginator, :only => :index
   before_filter :initialize_lesson_destination, :only => [:add, :copy, :like, :remove, :dislike, :destroy, :publish, :unpublish]
   
+  # === Description
+  #
+  # 
+  #
+  # === Mode
+  #
+  # Html + Ajax
+  #
+  # === Specific filters
+  #
+  # 
+  #
   def index
     get_own_lessons
     if @page > @pages_amount && @pages_amount != 0
@@ -17,6 +42,18 @@ class LessonsController < ApplicationController
     render_js_or_html_index
   end
   
+  # === Description
+  #
+  # 
+  #
+  # === Mode
+  #
+  # Ajax + Json
+  #
+  # === Specific filters
+  #
+  # 
+  #
   def add
     @ok_msg = t('other_popup_messages.correct.add.lesson')
     if @ok
@@ -35,6 +72,18 @@ class LessonsController < ApplicationController
     end
   end
   
+  # === Description
+  #
+  # 
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # 
+  #
   def copy
     if @ok
       @new_lesson = @lesson.copy(current_user.id)
@@ -47,6 +96,18 @@ class LessonsController < ApplicationController
     end
   end
   
+  # === Description
+  #
+  # 
+  #
+  # === Mode
+  #
+  # Json
+  #
+  # === Specific filters
+  #
+  # 
+  #
   def destroy
     if @ok
       if !@lesson.destroy_with_notifications
@@ -59,6 +120,18 @@ class LessonsController < ApplicationController
     render :json => {:ok => @ok, :msg => @error}
   end
   
+  # === Description
+  #
+  # 
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # 
+  #
   def dislike
     if @ok
       if !current_user.dislike(@lesson_id)
@@ -76,6 +149,18 @@ class LessonsController < ApplicationController
     end
   end
   
+  # === Description
+  #
+  # 
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # 
+  #
   def like
     if @ok
       if !current_user.like(@lesson_id)
@@ -93,6 +178,18 @@ class LessonsController < ApplicationController
     end
   end
   
+  # === Description
+  #
+  # 
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # 
+  #
   def publish
     @ok_msg = t('other_popup_messages.correct.publish')
     if @ok
@@ -111,6 +208,18 @@ class LessonsController < ApplicationController
     end
   end
   
+  # === Description
+  #
+  # 
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # 
+  #
   def unpublish
     @ok_msg = t('other_popup_messages.correct.unpublish')
     if @ok
@@ -129,6 +238,18 @@ class LessonsController < ApplicationController
     end
   end
   
+  # === Description
+  #
+  # 
+  #
+  # === Mode
+  #
+  # Ajax + Json
+  #
+  # === Specific filters
+  #
+  # 
+  #
   def remove
     @ok_msg = t('other_popup_messages.correct.remove.lesson')
     if @ok
@@ -154,6 +275,18 @@ class LessonsController < ApplicationController
     end
   end
   
+  # === Description
+  #
+  # 
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # 
+  #
   def notify_modification
     if @ok
       msg = params[:details_placeholder].blank? ? '' : params[:details]
@@ -161,6 +294,18 @@ class LessonsController < ApplicationController
     end
   end
   
+  # === Description
+  #
+  # 
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # 
+  #
   def dont_notify_modification
     if @ok
       @lesson.dont_notify_changes
