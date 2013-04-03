@@ -1,6 +1,19 @@
+# == Description
+#
+# Contains all the actions related with the user's Virtual Classroom
+#
+# == Models used
+#
+# * VirtualClassroomLesson
+# * Lesson
+# * Notification
+#
 class VirtualClassroomController < ApplicationController
   
+  # Number of lessons in a page of the Virtual Classroom (configured in settings.yml)
   FOR_PAGE = SETTINGS['lessons_for_page_in_virtual_classroom']
+  
+  # Number of lessons in the first block of the quick loader (configured in settings.yml)
   LESSONS_IN_QUICK_LOADER = SETTINGS['lessons_in_quick_loader']
   
   before_filter :initialize_lesson, :only => [:add_lesson, :remove_lesson, :remove_lesson_from_inside]
@@ -14,6 +27,18 @@ class VirtualClassroomController < ApplicationController
   before_filter :initialize_loaded_lessons, :only => :load_lessons
   layout 'virtual_classroom'
   
+  # === Description
+  #
+  # 
+  #
+  # === Mode
+  #
+  # 
+  #
+  # === Specific filters
+  #
+  # 
+  #
   def index
     get_lessons
     if @page > @pages_amount && @pages_amount != 0
@@ -26,6 +51,18 @@ class VirtualClassroomController < ApplicationController
     render_js_or_html_index
   end
   
+  # === Description
+  #
+  # see LessonsController
+  #
+  # === Mode
+  #
+  # 
+  #
+  # === Specific filters
+  #
+  # 
+  #
   def add_lesson
     if @ok
       if !@lesson.add_to_virtual_classroom(current_user.id)
@@ -43,6 +80,18 @@ class VirtualClassroomController < ApplicationController
     end
   end
   
+  # === Description
+  #
+  # see LessonsController
+  #
+  # === Mode
+  #
+  # 
+  #
+  # === Specific filters
+  #
+  # 
+  #
   def remove_lesson
     if @ok
       if !@lesson.remove_from_virtual_classroom(current_user.id)
@@ -60,6 +109,18 @@ class VirtualClassroomController < ApplicationController
     end
   end
   
+  # === Description
+  #
+  # 
+  #
+  # === Mode
+  #
+  # 
+  #
+  # === Specific filters
+  #
+  # 
+  #
   def remove_lesson_from_inside
     if @ok
       if !@lesson.remove_from_virtual_classroom(current_user.id)
@@ -72,6 +133,18 @@ class VirtualClassroomController < ApplicationController
     render :json => {:ok => @ok, :msg => @error}
   end
   
+  # === Description
+  #
+  # 
+  #
+  # === Mode
+  #
+  # 
+  #
+  # === Specific filters
+  #
+  # 
+  #
   def add_lesson_to_playlist
     if @ok
       if @virtual_classroom_lesson.add_to_playlist
@@ -85,6 +158,18 @@ class VirtualClassroomController < ApplicationController
     end
   end
   
+  # === Description
+  #
+  # 
+  #
+  # === Mode
+  #
+  # 
+  #
+  # === Specific filters
+  #
+  # 
+  #
   def remove_lesson_from_playlist
     if @ok
       if @virtual_classroom_lesson.remove_from_playlist
@@ -98,6 +183,18 @@ class VirtualClassroomController < ApplicationController
     end
   end
   
+  # === Description
+  #
+  # 
+  #
+  # === Mode
+  #
+  # 
+  #
+  # === Specific filters
+  #
+  # 
+  #
   def change_position_in_playlist
     if @ok
       if !@virtual_classroom_lesson.change_position(@position)
@@ -110,25 +207,85 @@ class VirtualClassroomController < ApplicationController
     @playlist = current_user.playlist
   end
   
+  # === Description
+  #
+  # 
+  #
+  # === Mode
+  #
+  # 
+  #
+  # === Specific filters
+  #
+  # 
+  #
   def empty_playlist
     @ok = current_user.empty_playlist
     @error = I18n.t('activerecord.errors.models.virtual_classroom_lesson.problem_emptying_playlist') if !@ok
   end
   
+  # === Description
+  #
+  # 
+  #
+  # === Mode
+  #
+  # 
+  #
+  # === Specific filters
+  #
+  # 
+  #
   def empty_virtual_classroom
     current_user.empty_virtual_classroom
   end
   
+  # === Description
+  #
+  # 
+  #
+  # === Mode
+  #
+  # 
+  #
+  # === Specific filters
+  #
+  # 
+  #
   def select_lessons
     x = current_user.own_lessons(1, LESSONS_IN_QUICK_LOADER)
     @lessons = x[:records]
     @tot_pages = x[:pages_amount]
   end
   
+  # === Description
+  #
+  # 
+  #
+  # === Mode
+  #
+  # 
+  #
+  # === Specific filters
+  #
+  # 
+  #
   def select_lessons_new_block
     @lessons = current_user.own_lessons(@page, LESSONS_IN_QUICK_LOADER)[:records] if @ok
   end
   
+  # === Description
+  #
+  # 
+  #
+  # === Mode
+  #
+  # 
+  #
+  # === Specific filters
+  #
+  # 
+  #
   def load_lessons
     @loaded = 0
     @load_lessons.each do |l|
@@ -138,6 +295,18 @@ class VirtualClassroomController < ApplicationController
     get_lessons
   end
   
+  # === Description
+  #
+  # 
+  #
+  # === Mode
+  #
+  # 
+  #
+  # === Specific filters
+  #
+  # 
+  #
   def send_link
     if @ok
       UserMailer.see_my_lesson(@emails, current_user, @lesson, @message, request.host, request.port).deliver

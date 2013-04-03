@@ -452,6 +452,19 @@
 
   <div id="description" class="description">
     
+<h2 id="label-Description">Description</h2>
+
+<p>Contains all the actions related with the user&#39;s Virtual Classroom</p>
+
+<h2 id="label-Models+used">Models used</h2>
+<ul><li>
+<p><a href="VirtualClassroomLesson.html">VirtualClassroomLesson</a></p>
+</li><li>
+<p><a href="Lesson.html">Lesson</a></p>
+</li><li>
+<p><a href="Notification.html">Notification</a></p>
+</li></ul>
+
   </div><!-- description -->
 
   
@@ -470,12 +483,14 @@
       
         <dt id="FOR_PAGE">FOR_PAGE
         
-        <dd class="description">
+        <dd class="description"><p>Number of lessons in a page of the Virtual Classroom (configured in
+settings.yml)</p>
         
       
         <dt id="LESSONS_IN_QUICK_LOADER">LESSONS_IN_QUICK_LOADER
         
-        <dd class="description">
+        <dd class="description"><p>Number of lessons in the first block of the quick loader (configured in
+settings.yml)</p>
         
       
       </dl>
@@ -501,12 +516,18 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-add_lesson-label-Description">Description</h3>
+
+<p>see <a href="LessonsController.html">LessonsController</a></p>
+
+<h3 id="method-i-add_lesson-label-Mode">Mode</h3>
+
+<h3 id="method-i-add_lesson-label-Specific+filters">Specific filters</h3>
           
 
           
           <div class="method-source-code" id="add_lesson-source">
-            <pre><span class="ruby-comment"># File app/controllers/virtual_classroom_controller.rb, line 29</span>
+            <pre><span class="ruby-comment"># File app/controllers/virtual_classroom_controller.rb, line 66</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">add_lesson</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
     <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">add_to_virtual_classroom</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
@@ -544,12 +565,16 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-add_lesson_to_playlist-label-Description">Description</h3>
+
+<h3 id="method-i-add_lesson_to_playlist-label-Mode">Mode</h3>
+
+<h3 id="method-i-add_lesson_to_playlist-label-Specific+filters">Specific filters</h3>
           
 
           
           <div class="method-source-code" id="add_lesson_to_playlist-source">
-            <pre><span class="ruby-comment"># File app/controllers/virtual_classroom_controller.rb, line 75</span>
+            <pre><span class="ruby-comment"># File app/controllers/virtual_classroom_controller.rb, line 148</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">add_lesson_to_playlist</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
     <span class="ruby-keyword">if</span> <span class="ruby-ivar">@virtual_classroom_lesson</span>.<span class="ruby-identifier">add_to_playlist</span>
@@ -583,12 +608,16 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-change_position_in_playlist-label-Description">Description</h3>
+
+<h3 id="method-i-change_position_in_playlist-label-Mode">Mode</h3>
+
+<h3 id="method-i-change_position_in_playlist-label-Specific+filters">Specific filters</h3>
           
 
           
           <div class="method-source-code" id="change_position_in_playlist-source">
-            <pre><span class="ruby-comment"># File app/controllers/virtual_classroom_controller.rb, line 101</span>
+            <pre><span class="ruby-comment"># File app/controllers/virtual_classroom_controller.rb, line 198</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">change_position_in_playlist</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
     <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@virtual_classroom_lesson</span>.<span class="ruby-identifier">change_position</span>(<span class="ruby-ivar">@position</span>)
@@ -621,12 +650,16 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-empty_playlist-label-Description">Description</h3>
+
+<h3 id="method-i-empty_playlist-label-Mode">Mode</h3>
+
+<h3 id="method-i-empty_playlist-label-Specific+filters">Specific filters</h3>
           
 
           
           <div class="method-source-code" id="empty_playlist-source">
-            <pre><span class="ruby-comment"># File app/controllers/virtual_classroom_controller.rb, line 113</span>
+            <pre><span class="ruby-comment"># File app/controllers/virtual_classroom_controller.rb, line 222</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">empty_playlist</span>
   <span class="ruby-ivar">@ok</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">empty_playlist</span>
   <span class="ruby-ivar">@error</span> = <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;activerecord.errors.models.virtual_classroom_lesson.problem_emptying_playlist&#39;</span>) <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@ok</span>
@@ -652,12 +685,16 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-empty_virtual_classroom-label-Description">Description</h3>
+
+<h3 id="method-i-empty_virtual_classroom-label-Mode">Mode</h3>
+
+<h3 id="method-i-empty_virtual_classroom-label-Specific+filters">Specific filters</h3>
           
 
           
           <div class="method-source-code" id="empty_virtual_classroom-source">
-            <pre><span class="ruby-comment"># File app/controllers/virtual_classroom_controller.rb, line 118</span>
+            <pre><span class="ruby-comment"># File app/controllers/virtual_classroom_controller.rb, line 239</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">empty_virtual_classroom</span>
   <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">empty_virtual_classroom</span>
 <span class="ruby-keyword">end</span></pre>
@@ -682,12 +719,16 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-index-label-Description">Description</h3>
+
+<h3 id="method-i-index-label-Mode">Mode</h3>
+
+<h3 id="method-i-index-label-Specific+filters">Specific filters</h3>
           
 
           
           <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/virtual_classroom_controller.rb, line 17</span>
+            <pre><span class="ruby-comment"># File app/controllers/virtual_classroom_controller.rb, line 42</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
   <span class="ruby-identifier">get_lessons</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@page</span> <span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@pages_amount</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@pages_amount</span> <span class="ruby-operator">!=</span> <span class="ruby-value">0</span>
@@ -720,12 +761,16 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-load_lessons-label-Description">Description</h3>
+
+<h3 id="method-i-load_lessons-label-Mode">Mode</h3>
+
+<h3 id="method-i-load_lessons-label-Specific+filters">Specific filters</h3>
           
 
           
           <div class="method-source-code" id="load_lessons-source">
-            <pre><span class="ruby-comment"># File app/controllers/virtual_classroom_controller.rb, line 132</span>
+            <pre><span class="ruby-comment"># File app/controllers/virtual_classroom_controller.rb, line 289</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">load_lessons</span>
   <span class="ruby-ivar">@loaded</span> = <span class="ruby-value">0</span>
   <span class="ruby-ivar">@load_lessons</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">l</span><span class="ruby-operator">|</span>
@@ -755,12 +800,18 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-remove_lesson-label-Description">Description</h3>
+
+<p>see <a href="LessonsController.html">LessonsController</a></p>
+
+<h3 id="method-i-remove_lesson-label-Mode">Mode</h3>
+
+<h3 id="method-i-remove_lesson-label-Specific+filters">Specific filters</h3>
           
 
           
           <div class="method-source-code" id="remove_lesson-source">
-            <pre><span class="ruby-comment"># File app/controllers/virtual_classroom_controller.rb, line 46</span>
+            <pre><span class="ruby-comment"># File app/controllers/virtual_classroom_controller.rb, line 95</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">remove_lesson</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
     <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">remove_from_virtual_classroom</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
@@ -798,12 +849,16 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-remove_lesson_from_inside-label-Description">Description</h3>
+
+<h3 id="method-i-remove_lesson_from_inside-label-Mode">Mode</h3>
+
+<h3 id="method-i-remove_lesson_from_inside-label-Specific+filters">Specific filters</h3>
           
 
           
           <div class="method-source-code" id="remove_lesson_from_inside-source">
-            <pre><span class="ruby-comment"># File app/controllers/virtual_classroom_controller.rb, line 63</span>
+            <pre><span class="ruby-comment"># File app/controllers/virtual_classroom_controller.rb, line 124</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">remove_lesson_from_inside</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
     <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">remove_from_virtual_classroom</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
@@ -836,12 +891,16 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-remove_lesson_from_playlist-label-Description">Description</h3>
+
+<h3 id="method-i-remove_lesson_from_playlist-label-Mode">Mode</h3>
+
+<h3 id="method-i-remove_lesson_from_playlist-label-Specific+filters">Specific filters</h3>
           
 
           
           <div class="method-source-code" id="remove_lesson_from_playlist-source">
-            <pre><span class="ruby-comment"># File app/controllers/virtual_classroom_controller.rb, line 88</span>
+            <pre><span class="ruby-comment"># File app/controllers/virtual_classroom_controller.rb, line 173</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">remove_lesson_from_playlist</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
     <span class="ruby-keyword">if</span> <span class="ruby-ivar">@virtual_classroom_lesson</span>.<span class="ruby-identifier">remove_from_playlist</span>
@@ -875,12 +934,16 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-select_lessons-label-Description">Description</h3>
+
+<h3 id="method-i-select_lessons-label-Mode">Mode</h3>
+
+<h3 id="method-i-select_lessons-label-Specific+filters">Specific filters</h3>
           
 
           
           <div class="method-source-code" id="select_lessons-source">
-            <pre><span class="ruby-comment"># File app/controllers/virtual_classroom_controller.rb, line 122</span>
+            <pre><span class="ruby-comment"># File app/controllers/virtual_classroom_controller.rb, line 255</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">select_lessons</span>
   <span class="ruby-identifier">x</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">own_lessons</span>(<span class="ruby-value">1</span>, <span class="ruby-constant">LESSONS_IN_QUICK_LOADER</span>)
   <span class="ruby-ivar">@lessons</span> = <span class="ruby-identifier">x</span>[<span class="ruby-value">:records</span>]
@@ -907,12 +970,16 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-select_lessons_new_block-label-Description">Description</h3>
+
+<h3 id="method-i-select_lessons_new_block-label-Mode">Mode</h3>
+
+<h3 id="method-i-select_lessons_new_block-label-Specific+filters">Specific filters</h3>
           
 
           
           <div class="method-source-code" id="select_lessons_new_block-source">
-            <pre><span class="ruby-comment"># File app/controllers/virtual_classroom_controller.rb, line 128</span>
+            <pre><span class="ruby-comment"># File app/controllers/virtual_classroom_controller.rb, line 273</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">select_lessons_new_block</span>
   <span class="ruby-ivar">@lessons</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">own_lessons</span>(<span class="ruby-ivar">@page</span>, <span class="ruby-constant">LESSONS_IN_QUICK_LOADER</span>)[<span class="ruby-value">:records</span>] <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
 <span class="ruby-keyword">end</span></pre>
@@ -937,12 +1004,16 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-send_link-label-Description">Description</h3>
+
+<h3 id="method-i-send_link-label-Mode">Mode</h3>
+
+<h3 id="method-i-send_link-label-Specific+filters">Specific filters</h3>
           
 
           
           <div class="method-source-code" id="send_link-source">
-            <pre><span class="ruby-comment"># File app/controllers/virtual_classroom_controller.rb, line 141</span>
+            <pre><span class="ruby-comment"># File app/controllers/virtual_classroom_controller.rb, line 310</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">send_link</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
     <span class="ruby-constant">UserMailer</span>.<span class="ruby-identifier">see_my_lesson</span>(<span class="ruby-ivar">@emails</span>, <span class="ruby-identifier">current_user</span>, <span class="ruby-ivar">@lesson</span>, <span class="ruby-ivar">@message</span>, <span class="ruby-identifier">request</span>.<span class="ruby-identifier">host</span>, <span class="ruby-identifier">request</span>.<span class="ruby-identifier">port</span>).<span class="ruby-identifier">deliver</span>
@@ -986,7 +1057,7 @@
 
           
           <div class="method-source-code" id="get_lessons-source">
-            <pre><span class="ruby-comment"># File app/controllers/virtual_classroom_controller.rb, line 195</span>
+            <pre><span class="ruby-comment"># File app/controllers/virtual_classroom_controller.rb, line 364</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_lessons</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">current_user_virtual_classroom_lessons</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">full_virtual_classroom</span>(<span class="ruby-ivar">@page</span>, <span class="ruby-ivar">@for_page</span>)
   <span class="ruby-ivar">@lessons</span> = <span class="ruby-identifier">current_user_virtual_classroom_lessons</span>[<span class="ruby-value">:records</span>]
@@ -1018,7 +1089,7 @@
 
           
           <div class="method-source-code" id="initialize_emails-source">
-            <pre><span class="ruby-comment"># File app/controllers/virtual_classroom_controller.rb, line 177</span>
+            <pre><span class="ruby-comment"># File app/controllers/virtual_classroom_controller.rb, line 346</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize_emails</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">emails_hash</span> = {}
   <span class="ruby-ivar">@original_emails_number</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:emails</span>].<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;,&#39;</span>).<span class="ruby-identifier">length</span>
@@ -1056,7 +1127,7 @@
 
           
           <div class="method-source-code" id="initialize_lesson_for_sending_link-source">
-            <pre><span class="ruby-comment"># File app/controllers/virtual_classroom_controller.rb, line 155</span>
+            <pre><span class="ruby-comment"># File app/controllers/virtual_classroom_controller.rb, line 324</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize_lesson_for_sending_link</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">initialize_lesson</span>
   <span class="ruby-identifier">update_ok</span>(<span class="ruby-ivar">@lesson</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">user_id</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">in_virtual_classroom?</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>))
@@ -1087,7 +1158,7 @@
 
           
           <div class="method-source-code" id="initialize_loaded_lessons-source">
-            <pre><span class="ruby-comment"># File app/controllers/virtual_classroom_controller.rb, line 160</span>
+            <pre><span class="ruby-comment"># File app/controllers/virtual_classroom_controller.rb, line 329</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize_loaded_lessons</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-ivar">@load_lessons</span> = []
   <span class="ruby-identifier">param_name</span> = <span class="ruby-string">&#39;virtual_classroom_quick_loaded_lesson_name&#39;</span>
@@ -1125,7 +1196,7 @@
 
           
           <div class="method-source-code" id="initialize_page-source">
-            <pre><span class="ruby-comment"># File app/controllers/virtual_classroom_controller.rb, line 172</span>
+            <pre><span class="ruby-comment"># File app/controllers/virtual_classroom_controller.rb, line 341</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize_page</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-ivar">@page</span> = <span class="ruby-identifier">correct_integer?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-value">0</span>
   <span class="ruby-identifier">update_ok</span>(<span class="ruby-ivar">@page</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>)
@@ -1156,7 +1227,7 @@
 
           
           <div class="method-source-code" id="initialize_paginator-source">
-            <pre><span class="ruby-comment"># File app/controllers/virtual_classroom_controller.rb, line 201</span>
+            <pre><span class="ruby-comment"># File app/controllers/virtual_classroom_controller.rb, line 370</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize_paginator</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-ivar">@page</span> = <span class="ruby-identifier">correct_integer?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-value">1</span>
   <span class="ruby-ivar">@for_page</span> = <span class="ruby-constant">FOR_PAGE</span>
@@ -1187,7 +1258,7 @@
 
           
           <div class="method-source-code" id="initialize_virtual_classroom_lesson-source">
-            <pre><span class="ruby-comment"># File app/controllers/virtual_classroom_controller.rb, line 189</span>
+            <pre><span class="ruby-comment"># File app/controllers/virtual_classroom_controller.rb, line 358</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize_virtual_classroom_lesson</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-ivar">@lesson_id</span> = <span class="ruby-identifier">correct_integer?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:lesson_id</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:lesson_id</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-value">0</span>
   <span class="ruby-ivar">@virtual_classroom_lesson</span> = <span class="ruby-constant">VirtualClassroomLesson</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:lesson_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@lesson_id</span>, <span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">first</span>
