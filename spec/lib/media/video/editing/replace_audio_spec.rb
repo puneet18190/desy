@@ -9,7 +9,7 @@ module Media
           subject { described_class.new(video_inputs, audio_inputs, output_without_extension) }
   
           let(:valid_video_inputs) { { mp4: 'input', webm: 'input' } }
-          let(:valid_audio_inputs) { { mp3: 'input', ogg:  'input' } }
+          let(:valid_audio_inputs) { { m4a: 'input', ogg:  'input' } }
   
           let(:output_without_extension) { 'output' }
   
@@ -51,7 +51,7 @@ module Media
   
           context 'when inputs are not Strings' do
             let(:video_inputs) { { mp4: nil, webm: nil } }
-            let(:audio_inputs) { { mp3: nil, ogg:  nil } }
+            let(:audio_inputs) { { m4a: nil, ogg:  nil } }
             it { expect { subject }.to raise_error Error }
           end
   
@@ -63,7 +63,7 @@ module Media
   
           context 'when audio inputs are not Strings' do
             let(:video_inputs) { valid_video_inputs }
-            let(:audio_inputs) { { mp3: nil, ogg:  nil } }
+            let(:audio_inputs) { { m4a: nil, ogg:  nil } }
             it { expect { subject }.to raise_error Error }
           end
   

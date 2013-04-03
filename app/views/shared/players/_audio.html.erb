@@ -1,13 +1,13 @@
 <%
   audio_class = '_empty_audio_player'
   ogg = ''
-  mp3 = ''
+  m4a = ''
   duration = ''
   string_duration = ''
   if audio
     audio_class = '_instance_of_player'
     ogg = audio.ogg_url
-    mp3 = audio.mp3_url
+    m4a = audio.m4a_url
     duration = audio.min_duration
     string_duration = seconds_to_time(duration)
   end
@@ -15,7 +15,7 @@
 
 <div id="instance_<%= @audio_counter[0] %>_<%= @audio_counter[1] %>_of_audio_player" class="audioPlayer <%= audio_class %>" data-media-type="audio" data-initialized="false" data-duration="<%= duration %>">
   <audio>
-    <source src="<%= mp3 %>" type="audio/mp4">
+    <source src="<%= m4a %>" type="audio/mp4">
     <source src="<%= ogg  %>" type="audio/ogg">
     <%= t('captions.dont_support_audio') %>
   </audio>

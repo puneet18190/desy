@@ -39,7 +39,7 @@ module Media
 
         attr_reader :model_id, :uploaded_path
 
-        # Example: new('/tmp/path.abcdef', '/path/to/desy/public/media_elements/13/valid-audio', 'valid audio.mp3', 13)
+        # Example: new('/tmp/path.abcdef', '/path/to/desy/public/media_elements/13/valid-audio', 'valid audio.m4a', 13)
         def initialize(uploaded_path, output_path_without_extension, original_filename, model_id)
           @model_id = model_id
           init_model
@@ -55,12 +55,12 @@ module Media
 
             Thread.join *FORMATS.map{ |format| proc{ convert_to(format) } }
 
-            mp3_file_info = Info.new output_path(:mp3)
+            m4a_file_info = Info.new output_path(:m4a)
             ogg_file_info = Info.new output_path(:ogg)
 
-            unless similar_durations?(mp3_file_info.duration, ogg_file_info.duration) 
+            unless similar_durations?(m4a_file_info.duration, ogg_file_info.duration) 
               raise Error.new( 'output audios have different duration', 
-                               model_id: model_id, mp3_duration: mp3_file_info.duration, ogg_duration: ogg_file_info.duration )
+                               model_id: model_id, m4a_duration: m4a_file_info.duration, ogg_duration: ogg_file_info.duration )
             end
 
           rescue StandardError => e
@@ -85,7 +85,7 @@ module Media
 
           model.converted    = true
           model.rename_media = true
-          model.mp3_duration = mp3_file_info.duration
+          model.m4a_duration = m4a_file_info.duration
           model.ogg_duration = ogg_file_info.duration
           model.media        = output_filename_without_extension
           model[:media]      = output_filename_without_extension

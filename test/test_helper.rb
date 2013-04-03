@@ -66,7 +66,7 @@ class ActiveSupport::TestCase
         MediaElement.where(:id => x).update_all(:is_public => false)
         was_public = true
       end
-      a.media = {:mp3 => Rails.root.join("test/samples/one.mp3").to_s, :ogg => Rails.root.join("test/samples/one.ogg").to_s, :filename => "audio_test"}
+      a.media = {:m4a => Rails.root.join("test/samples/one.m4a").to_s, :ogg => Rails.root.join("test/samples/one.ogg").to_s, :filename => "audio_test"}
       assert_obj_saved a
       if was_public
         MediaElement.where(:id => x).update_all(:is_public => true)

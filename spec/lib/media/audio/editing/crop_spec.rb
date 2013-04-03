@@ -8,7 +8,7 @@ module Media
         describe '.new' do
           subject { described_class.new(inputs, output_without_extension, start, duration) }
   
-          let(:inputs)                   { { mp3: 'input', ogg: 'input' } }
+          let(:inputs)                   { { m4a: 'input', ogg: 'input' } }
           let(:output_without_extension) { 'output' }
           let(:start)                    { 0 }
           let(:duration)                 { 10 }
@@ -24,7 +24,7 @@ module Media
           end
   
           context 'when inputs are not strings' do
-            let(:inputs) { { mp3: nil, ogg: nil } }
+            let(:inputs) { { m4a: nil, ogg: nil } }
             it { expect { subject }.to raise_error Error }
           end
   

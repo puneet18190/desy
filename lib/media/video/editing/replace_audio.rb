@@ -16,7 +16,7 @@ module Media
         include Logging
         include InTmpDir
   
-        CORRESPONDING_AUDIO_FORMATS = { mp4: :mp3, webm: :ogg }
+        CORRESPONDING_AUDIO_FORMATS = { mp4: :m4a, webm: :ogg }
   
         def initialize(video_inputs, audio_inputs, output_without_extension, log_folder = nil)
           unless video_inputs.is_a?(Hash)                       and 

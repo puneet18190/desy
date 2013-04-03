@@ -40,18 +40,18 @@ module Media
         end
 
         def error_message_for_converted_files
-          mp3_path, ogg_path = @converted_files[:mp3], @converted_files[:ogg]
+          m4a_path, ogg_path = @converted_files[:m4a], @converted_files[:ogg]
           if !@original_filename_without_extension.is_a?(String)
             'invalid filename'
-          elsif !mp3_path.instance_of?(String) || !ogg_path.instance_of?(String)
+          elsif !m4a_path.instance_of?(String) || !ogg_path.instance_of?(String)
             'invalid paths'
-          elsif [mp3_path, ogg_path].map{ |p| File.extname(p) } != %w(.mp3 .ogg)
+          elsif [m4a_path, ogg_path].map{ |p| File.extname(p) } != %w(.m4a .ogg)
             'invalid extension'
-          elsif !(mp3_info = Info.new(mp3_path, false)).valid? || !(ogg_info = Info.new(ogg_path, false)).valid?
+          elsif !(m4a_info = Info.new(m4a_path, false)).valid? || !(ogg_info = Info.new(ogg_path, false)).valid?
             'invalid audio'
-          elsif [mp3_info.duration, ogg_info.duration].min < self.class::MIN_DURATION
+          elsif [m4a_info.duration, ogg_info.duration].min < self.class::MIN_DURATION
             'invalid duration'
-          elsif not similar_durations?(mp3_info.duration, ogg_info.duration)
+          elsif not similar_durations?(m4a_info.duration, ogg_info.duration)
             'invalid duration difference'
           end
         end

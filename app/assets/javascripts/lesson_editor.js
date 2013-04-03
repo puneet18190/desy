@@ -295,7 +295,7 @@ $(document).ready(function() {
     var position = $('#info_container').data('current-media-element-position');
     var place_id = 'media_element_' + position + '_in_slide_' + current_slide.data('slide-id');
     $('#' + place_id + ' ._input_audio_id').val(audio_id);
-    var audio_mp3 = $(this).data('mp3');
+    var audio_m4a = $(this).data('m4a');
     var audio_ogg = $(this).data('ogg');
     var duration = $(this).data('duration');
     var full_place = $('#' + place_id + ' ._full_audio_in_slide');
@@ -303,7 +303,7 @@ $(document).ready(function() {
       full_place.show();
       $('#' + place_id + ' ._empty_audio_in_slide').hide();
     }
-    $('#' + place_id + ' ._full_audio_in_slide source[type="audio/mp4"]').attr('src', audio_mp3);
+    $('#' + place_id + ' ._full_audio_in_slide source[type="audio/mp4"]').attr('src', audio_m4a);
     $('#' + place_id + ' ._full_audio_in_slide source[type="audio/ogg"]').attr('src', audio_ogg);
     $('#' + place_id + ' audio').load();
     $('#' + place_id + ' ._media_player_total_time').html(secondsToDateString(duration));

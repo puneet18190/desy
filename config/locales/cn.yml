@@ -1064,7 +1064,7 @@ cn:
     # 2 - views/video_editor/previews/_video.html.erb
     # 3 - views/admin/media_elements/previews/_video.html.erb
     dont_support_video: "你的浏览器不支持视频"
-    # Used as a placeholder in any <audio> HTML tag, if the browser doesn't support either .ogg or .mp3
+    # Used as a placeholder in any <audio> HTML tag, if the browser doesn't support either .ogg or .m4a
     # 1 - views/shared/players/_audio.html.erb
     # 2 - views/video_editor/previews/_audio_track.html.erb
     # 3 - views/admin/media_elements/previews/_audio.html.erb

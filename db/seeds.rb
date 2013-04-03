@@ -89,8 +89,8 @@ class Seeds
   def media(record)
     case record
     when Audio
-      v = Pathname.glob(AUDIOS_FOLDER.join record.id.to_s, '*.mp3').first
-      { mp3: v.to_s, ogg: v.sub(/\.mp3$/, '.ogg').to_s, filename: v.basename(v.extname).to_s }
+      v = Pathname.glob(AUDIOS_FOLDER.join record.id.to_s, '*.m4a').first
+      { m4a: v.to_s, ogg: v.sub(/\.m4a$/, '.ogg').to_s, filename: v.basename(v.extname).to_s }
     when Video
       v = Pathname.glob(VIDEOS_FOLDER.join record.id.to_s, '*.mp4').first
       { mp4: v.to_s, webm: v.sub(/\.mp4$/, '.webm').to_s, filename: v.basename(v.extname).to_s }

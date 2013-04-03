@@ -190,13 +190,13 @@ class StatisticsTest < ActiveSupport::TestCase
     @el3.user_id = 1
     @el3.sti_type = 'Audio'
     @el3.tags = tag_map[0]
-    @el3.media = {:mp3 => Rails.root.join("test/samples/one.mp3").to_s, :ogg => Rails.root.join("test/samples/one.ogg").to_s, :filename => "audio_test"}
+    @el3.media = {:m4a => Rails.root.join("test/samples/one.m4a").to_s, :ogg => Rails.root.join("test/samples/one.ogg").to_s, :filename => "audio_test"}
     assert_obj_saved @el3
     @el4 = MediaElement.new :description => 'desc4', :title => 'titl4'
     @el4.user_id = 1
     @el4.sti_type = 'Audio'
     @el4.tags = tag_map[6]
-    @el4.media = {:mp3 => Rails.root.join("test/samples/one.mp3").to_s, :ogg => Rails.root.join("test/samples/one.ogg").to_s, :filename => "audio_test"}
+    @el4.media = {:m4a => Rails.root.join("test/samples/one.m4a").to_s, :ogg => Rails.root.join("test/samples/one.ogg").to_s, :filename => "audio_test"}
     assert_obj_saved @el4
     @el5 = MediaElement.new :description => 'desc5', :title => 'titl5'
     @el5.user_id = 1

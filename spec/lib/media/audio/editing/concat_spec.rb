@@ -21,22 +21,22 @@ module Media
           end
   
           context 'when there is some inputs value which is not an hash' do
-            let(:inputs) { [ { ogg: 'input', mp3: 'input'}, nil ] }
+            let(:inputs) { [ { ogg: 'input', m4a: 'input'}, nil ] }
             it { expect { subject }.to raise_error Error }
           end
   
           context 'when inputs are not paired' do
-            let(:inputs) { [ { ogg: 'input', mp3: 'input'}, { ogg: 'input' } ] }
+            let(:inputs) { [ { ogg: 'input', m4a: 'input'}, { ogg: 'input' } ] }
             it { expect { subject }.to raise_error Error }
           end
   
           context 'when at least one value of the inputs is empty' do
-            let(:inputs) { [ { ogg: 'input', mp3: nil } ] }
+            let(:inputs) { [ { ogg: 'input', m4a: nil } ] }
             it { expect { subject }.to raise_error Error }
           end
   
           context 'when output_without_extension is not a string' do
-            let(:inputs) { [ { ogg: 'input', mp3: 'input'} ] }
+            let(:inputs) { [ { ogg: 'input', m4a: 'input'} ] }
   
             let(:output_without_extension) { nil }
             it { expect { subject }.to raise_error Error }
@@ -44,12 +44,12 @@ module Media
   
           context 'when inputs values is an Hash with the right keys and paired values' do
             context 'with one pair of values' do
-              let(:inputs) { [{ ogg: 'input', mp3: 'input'} ] }
+              let(:inputs) { [{ ogg: 'input', m4a: 'input'} ] }
               it { expect { subject }.to_not raise_error }
             end
   
             context 'with two pairs of values' do
-              let(:inputs) { [ { ogg: 'input', mp3: 'input' }, { ogg: 'input', mp3: 'input' } ] }
+              let(:inputs) { [ { ogg: 'input', m4a: 'input' }, { ogg: 'input', m4a: 'input' } ] }
               it { expect { subject }.to_not raise_error }
             end
           end

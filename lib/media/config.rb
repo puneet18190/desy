@@ -25,7 +25,7 @@ module Media
         video: {
           formats: {
             mp4: {
-              codecs: %w( libx264 libmp3lame ),
+              codecs: %w( libx264 libm4alame ),
               threads: 'auto',
               qa: 4,
               default_bitrates: { video: nil , audio: '200k' }
@@ -44,8 +44,8 @@ module Media
         },
         audio: {
           formats: {
-            mp3: {
-              codecs: [nil, 'libmp3lame'],
+            m4a: {
+              codecs: [nil, 'libm4alame'],
               threads: 'auto',
               qa: 4,
               default_bitrates: { video: nil, audio: '200k' }

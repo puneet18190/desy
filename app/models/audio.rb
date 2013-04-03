@@ -25,7 +25,7 @@ class Audio < MediaElement
   
   # === Description
   #
-  # Returns the url for the audio in format +mp3+
+  # Returns the url for the audio in format +m4a+
   #
   # === Returns
   #
@@ -34,11 +34,11 @@ class Audio < MediaElement
   # === Usage
   #
   #   <audio>
-  #     <source src="<%= audio.mp3_url %>" type="audio/mp4">
+  #     <source src="<%= audio.m4a_url %>" type="audio/mp4">
   #   </audio>
   #
-  def mp3_url
-    media.try(:url, :mp3) if converted
+  def m4a_url
+    media.try(:url, :m4a) if converted
   end
   
   # === Description
@@ -103,14 +103,14 @@ class Audio < MediaElement
   
   # === Description
   #
-  # Returns the float duration in seconds of the mp3 track;
+  # Returns the float duration in seconds of the m4a track;
   #
   # === Returns
   #
   # A float.
   #
-  def mp3_duration
-    metadata.mp3_duration
+  def m4a_duration
+    metadata.m4a_duration
   end
   
   # === Description
@@ -127,14 +127,14 @@ class Audio < MediaElement
   
   # === Description
   #
-  # Sets the float duration in seconds of the mp3 track;
+  # Sets the float duration in seconds of the m4a track;
   #
   # === Args
   #
-  # * *mp3_duration*: the duration to be set
+  # * *m4a_duration*: the duration to be set
   #
-  def mp3_duration=(mp3_duration)
-    metadata.mp3_duration = mp3_duration
+  def m4a_duration=(m4a_duration)
+    metadata.m4a_duration = m4a_duration
   end
   
   # === Description
@@ -151,7 +151,7 @@ class Audio < MediaElement
   
   # === Description
   #
-  # Returns the lower integer approximation of the minimum between +ogg_duration+ and +mp3_duration+. This is necessary to insert in the html players an integer duration in seconds that can be used without risks.
+  # Returns the lower integer approximation of the minimum between +ogg_duration+ and +m4a_duration+. This is necessary to insert in the html players an integer duration in seconds that can be used without risks.
   #
   # === Returns
   #
@@ -162,7 +162,7 @@ class Audio < MediaElement
   #   <div class="audioPlayer _instance_of_player" data-media-type="audio" data-initialized="false" data-duration="<%= audio.min_duration %>">
   #
   def min_duration
-    [mp3_duration, ogg_duration].map(&:to_i).min
+    [m4a_duration, ogg_duration].map(&:to_i).min
   end
   
 end

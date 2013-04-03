@@ -6,7 +6,7 @@
   to = ''
   max_to = 0
   ogg = ''
-  mp3 = ''
+  m4a = ''
   if !empty
     external_div_attributes = "id=\"audio_component_#{identifier}\" data-position=\"#{identifier}\" data-duration=\"#{component[:to] - component[:from]}\" data-from=\"#{component[:from]}\" data-to=\"#{component[:to]}\""
     title = component[:audio].title
@@ -15,11 +15,11 @@
     to = seconds_to_time component[:to]
     max_to = component[:audio].min_duration
     ogg = component[:audio].ogg_url
-    mp3 = component[:audio].mp3_url
+    m4a = component[:audio].m4a_url
   end
 %>
 
-<div data-loaded="<%= empty %>" data-mp3="<%= mp3 %>" data-ogg="<%= ogg %>" class="<%= empty ? '_audio_editor_empty_component'.html_safe : '_audio_editor_component'.html_safe %>" <%= external_div_attributes.html_safe %> data-max-to="<%= max_to %>" data-playing="false">
+<div data-loaded="<%= empty %>" data-m4a="<%= m4a %>" data-ogg="<%= ogg %>" class="<%= empty ? '_audio_editor_empty_component'.html_safe : '_audio_editor_component'.html_safe %>" <%= external_div_attributes.html_safe %> data-max-to="<%= max_to %>" data-playing="false">
   
   <div class="contatore _audio_component_icon">
     <%= identifier %>

@@ -5,13 +5,13 @@ module Media
     describe Uploader do
       let(:media_folder)            { Rails.root.join('spec/support/samples') }
       let(:media_without_extension) { media_folder.join('con verted').to_s }
-      let(:valid_audio_path)        { media_folder.join('valid audio.mp3').to_s }
-      let(:tmp_valid_audio_path)    { media_folder.join('tmp.valid audio.mp3').to_s }
+      let(:valid_audio_path)        { media_folder.join('valid audio.m4a').to_s }
+      let(:tmp_valid_audio_path)    { media_folder.join('tmp.valid audio.m4a').to_s }
       let(:media_file)              { File.open(tmp_valid_audio_path) }
       let(:media_uploaded)          do 
         ActionDispatch::Http::UploadedFile.new(filename: File.basename(tmp_valid_audio_path), tempfile: File.open(tmp_valid_audio_path))
       end
-      let(:media_hash)              { { filename: 'tmp.valid audio', mp3: "#{media_without_extension}.mp3", ogg: "#{media_without_extension}.ogg" } }
+      let(:media_hash)              { { filename: 'tmp.valid audio', m4a: "#{media_without_extension}.m4a", ogg: "#{media_without_extension}.ogg" } }
       
       describe 'saving the associated model' do
         before(:all) do
@@ -67,7 +67,7 @@ module Media
           end
 
           context 'when filename is blank' do
-            let(:path) { media_folder.join '.mp3' }
+            let(:path) { media_folder.join '.m4a' }
             it { should be_false }
           end
 
@@ -77,12 +77,12 @@ module Media
           end
 
           context 'when is an invalid audio' do
-            let(:path) { media_folder.join 'invalid audio.mp3' }
+            let(:path) { media_folder.join 'invalid audio.m4a' }
             it { should be_false }
           end
 
           context 'when the audio is too short' do
-            let(:path) { media_folder.join 'short audio.mp3' }
+            let(:path) { media_folder.join 'short audio.m4a' }
             it { should be_false }
           end
         end
@@ -166,18 +166,18 @@ module Media
             it { should be_false }
           end
 
-          context 'when mp3 file extension is invalid' do
-            let(:media) { media_hash.merge(mp3: media_hash[:ogg]) }
+          context 'when m4a file extension is invalid' do
+            let(:media) { media_hash.merge(m4a: media_hash[:ogg]) }
             it { should be_false }
           end
 
           context 'when ogg file extension is invalid' do
-            let(:media) { media_hash.merge(ogg: media_hash[:mp3]) }
+            let(:media) { media_hash.merge(ogg: media_hash[:m4a]) }
             it { should be_false }
           end
 
-          context 'when mp3 file is not a valid audio' do
-            let(:media) { media_hash.merge(mp3: media_folder.join('invalid audio.mp3').to_s) }
+          context 'when m4a file is not a valid audio' do
+            let(:media) { media_hash.merge(m4a: media_folder.join('invalid audio.m4a').to_s) }
             it { should be_false }
           end
 
@@ -187,12 +187,12 @@ module Media
           end
 
           context 'when audios are too short' do
-            let(:media) { media_hash.merge(mp3: media_folder.join('short audio.mp3').to_s, ogg: media_folder.join('short audio.ogg').to_s) }
+            let(:media) { media_hash.merge(m4a: media_folder.join('short audio.m4a').to_s, ogg: media_folder.join('short audio.ogg').to_s) }
             it { should be_false }
           end
 
           context 'when audios have different durations' do
-            let(:media) { media_hash.merge(mp3: media_folder.join('concat 1.mp3').to_s, ogg: media_folder.join('concat 2.ogg').to_s) }
+            let(:media) { media_hash.merge(m4a: media_folder.join('concat 1.m4a').to_s, ogg: media_folder.join('concat 2.ogg').to_s) }
             it { should be_false }
           end
 

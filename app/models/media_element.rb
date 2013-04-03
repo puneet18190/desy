@@ -15,7 +15,7 @@ require 'lessons_media_elements_shared'
 # * *metadata*: can contain different keys, depending on +sti_type+
 #   * *audio*
 #     * +creation_mode+: it can be *uploaded* (if the element was originally uploaded), or *composed* (if it was created inside the application using other elements)
-#     * +mp3_duration+: the float duration of the mp3 attached file
+#     * +m4a_duration+: the float duration of the m4a attached file
 #     * +ogg_duration+: the float duration of the ogg attached file
 #   * *image*
 #     * +width+: width of the original image
@@ -70,7 +70,7 @@ require 'lessons_media_elements_shared'
 #   * *before_create* sets the +creation_mode* (+uploaded+ if the element was originally uploaded, or +composed+ if it was created inside the application)
 #   * *after_save* calls +upload_or_copy+ in Media::Shared
 #   * *before_destroy* stops the destruction if +converted+ == +false+ (<b>this callback doesn't execute if the attribute destroyable_even_if_not_converted in Media::Shared is set to +true+</b>: this is necessary if something goes wrong with the creation of a new media element, in this case the not converted element must be deleted)
-#   * *after_destroy* cleans the folder containing the attached files (mp4, mp3, webm, ogg)
+#   * *after_destroy* cleans the folder containing the attached files (mp4, m4a, webm, ogg)
 #
 # == Database callbacks
 #

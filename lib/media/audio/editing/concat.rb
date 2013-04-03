@@ -13,7 +13,7 @@ module Media
         include Logging
         include InTmpDir
 
-        OUTPUT_MP3_FORMAT = '%s.mp3'
+        OUTPUT_MP3_FORMAT = '%s.m4a'
         OUTPUT_OGG_FORMAT = '%s.ogg'
         
         # Usage example:
@@ -41,17 +41,17 @@ module Media
   
           @inputs, @output_without_extension = inputs, output_without_extension
           
-          if mp3_inputs.size != ogg_inputs.size
-            raise Error.new('mp3_inputs and ogg_inputs must be of the same size', inputs: @inputs, output_without_extension: @output_without_extension)
+          if m4a_inputs.size != ogg_inputs.size
+            raise Error.new('m4a_inputs and ogg_inputs must be of the same size', inputs: @inputs, output_without_extension: @output_without_extension)
           end
 
           @log_folder = log_folder
         end
 
         def run
-          # Posso controllare mp3_inputs per sapere quante coppie di video ho, perché ho già visto che mp3_inputs.size == webm_inputs.size
+          # Posso controllare m4a_inputs per sapere quante coppie di video ho, perché ho già visto che m4a_inputs.size == webm_inputs.size
           # Caso speciale: se ho una sola coppia di input copio i due video nei rispettivi output e li ritorno
-          return copy_first_inputs_to_outputs if mp3_inputs.size == 1
+          return copy_first_inputs_to_outputs if m4a_inputs.size == 1
           
           in_tmp_dir { Thread.join *FORMATS.map { |format| proc{ concat(format) } } }
           outputs
@@ -63,7 +63,7 @@ module Media
           Cmd::Concat.new(inputs[format], outputs[format]).run! *logs
         end
         
-        def mp3_output
+        def m4a_output
           OUTPUT_MP3_FORMAT % @output_without_extension
         end
 
@@ -72,15 +72,15 @@ module Media
         end
 
         def outputs
-          { mp3: mp3_output, ogg: ogg_output }
+          { m4a: m4a_output, ogg: ogg_output }
         end
 
         def inputs
           @_inputs ||= Hash[ FORMATS.map{ |f| [f, @inputs.map{ |input| input[f] } ] } ]
         end
 
-        def mp3_inputs
-          @inputs.map{ |input| input[:mp3] }
+        def m4a_inputs
+          @inputs.map{ |input| input[:m4a] }
         end
         
         def ogg_inputs

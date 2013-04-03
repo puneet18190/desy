@@ -3,8 +3,8 @@ require 'spec_helper'
 describe Audio, slow: true do
 
   let(:media_folder)         { Rails.root.join('spec/support/samples') }
-  let(:valid_audio_path)     { media_folder.join 'valid audio.mp3' }
-  let(:tmp_valid_audio_path) { media_folder.join 'tmp.valid audio.mp3' }
+  let(:valid_audio_path)     { media_folder.join 'valid audio.m4a' }
+  let(:tmp_valid_audio_path) { media_folder.join 'tmp.valid audio.m4a' }
   let(:media)                { ActionDispatch::Http::UploadedFile.new(filename: File.basename(tmp_valid_audio_path), tempfile: File.open(tmp_valid_audio_path)) }
   let(:user)                 { User.admin }
 

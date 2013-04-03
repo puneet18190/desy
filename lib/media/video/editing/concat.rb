@@ -6,7 +6,7 @@ require 'media/in_tmp_dir'
 require 'media/info'
 require 'media/thread'
 require 'media/video/editing/cmd/audio_stream_to_file'
-require 'media/video/editing/cmd/mp3_to_wav'
+require 'media/video/editing/cmd/m4a_to_wav'
 require 'media/audio/editing/cmd/concat'
 require 'media/video/editing/cmd/merge_webm_video_streams'
 require 'media/video/editing/cmd/concat'
@@ -22,7 +22,7 @@ module Media
         # Durata del padding alla fine del file aggiunto da lame durante la codifica
         # In genere lame aggiunge un pad di massimo 0.04, per cui lo settiamo a 0.05 per stare sicuri di non tagliare troppo
         LAME_ENCODING_RPADDING = 0.05
-        CONCAT_MP3_FORMAT      = 'concat%i.mp3'
+        CONCAT_MP3_FORMAT      = 'concat%i.m4a'
         CONCAT_WAV_FORMAT      = 'concat%i.wav'
         FINAL_WAV              = 'final.wav'
         FINAL_WEBM_NO_AUDIO    = 'final_webm_no_audio.webm'
@@ -120,7 +120,7 @@ module Media
   
         # Generazione traccia audio
         #
-        #   1. estraggo gli mp3 dagli mp4
+        #   1. estraggo gli m4a dagli mp4
         #   2. li converto in wav (le operazioni di taglia e cuci sono più precise se effettuate su formati lossless)
         #   3. aumento l'rpadding nel caso la traccia wave sia sensibilmente più corta della traccia video corrispondente
         #   4. associo il wav ai paddings corrispondenti
@@ -136,12 +136,12 @@ module Media
           Hash[ {}.tap do |unordered_wavs_with_paddings|
             Thread.join *mp4_inputs_infos.select{ |info| info.audio_streams.present? }.each_with_index.map { |video_info, i|
               proc {
-                mp3 = tmp_path(CONCAT_MP3_FORMAT % i)
+                m4a = tmp_path(CONCAT_MP3_FORMAT % i)
           
-                Cmd::AudioStreamToFile.new(video_info.path, mp3).run! *logs("0_audio_stream_to_file_#{i}") # 1.
+                Cmd::AudioStreamToFile.new(video_info.path, m4a).run! *logs("0_audio_stream_to_file_#{i}") # 1.
           
                 wav = tmp_path(CONCAT_WAV_FORMAT % i)
-                Cmd::Mp3ToWav.new(mp3, wav).run! *logs("1_mp3_to_wav_#{i}") # 2.
+                Cmd::Mp3ToWav.new(m4a, wav).run! *logs("1_m4a_to_wav_#{i}") # 2.
                 
                 # aumento l'rpadding nel caso che la traccia video sia sensibilmente più lunga della traccia audio
                 # tenendo in considerazione che l'operazione di encoding aggiunge un rpadding di suo

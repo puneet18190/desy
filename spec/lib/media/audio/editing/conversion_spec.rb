@@ -8,8 +8,8 @@ module Media
   
         supported_formats = MESS::AUDIO_FORMATS
   
-        let(:uploaded_path)            { "#{MESS::SAMPLES_FOLDER}/tmp.in put.mp3" }
-        let(:filename)                 { 'in put.mp3' }
+        let(:uploaded_path)            { "#{MESS::SAMPLES_FOLDER}/tmp.in put.m4a" }
+        let(:filename)                 { 'in put.m4a' }
         let(:tempfile)                 { File.open(uploaded_path) }
         let(:uploaded)                 { ActionDispatch::Http::UploadedFile.new(filename: filename, tempfile: tempfile) }
         let(:model)                    do

@@ -5,9 +5,9 @@ function resizeLastComponentInAudioEditor() {
 
 function loadAudioComponentIfNotLoadedYet(component) {
   if(!component.data('loaded')) {
-    var mp3 = component.data('mp3');
+    var m4a = component.data('m4a');
     var ogg = component.data('ogg');
-    component.find('source[type="audio/mp4"]').attr('src', mp3);
+    component.find('source[type="audio/mp4"]').attr('src', m4a);
     component.find('source[type="audio/ogg"]').attr('src', ogg);
     component.find('audio').load();
     component.data('loaded', true);
@@ -214,14 +214,14 @@ function selectAudioEditorCursor(id) {
   $('#audio_component_' + id + ' ._current_time').addClass('selected');
 }
 
-function addComponentInAudioEditor(audio_id, ogg, mp3, duration, title) {
+function addComponentInAudioEditor(audio_id, ogg, m4a, duration, title) {
   var next_position = $('#info_container').data('last-component-id') + 1;
   var selected_component = $('._audio_editor_component._selected');
   $('#info_container').data('last-component-id', next_position);
   var empty_component = $($('#empty_component_for_audio_editor').html());
   empty_component.attr('id', ('audio_component_' + next_position));
   empty_component.find('source[type="audio/ogg"]').attr('src', ogg);
-  empty_component.find('source[type="audio/mp4"]').attr('src', mp3);
+  empty_component.find('source[type="audio/mp4"]').attr('src', m4a);
   empty_component.data('duration', 0);
   empty_component.data('from', 0);
   empty_component.data('to', duration);

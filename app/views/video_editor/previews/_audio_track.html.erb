@@ -1,17 +1,17 @@
 <%
   ogg = ''
-  mp3 = ''
+  m4a = ''
   duration = 0
   if audio_track
     ogg = audio_track.ogg_url
-    mp3 = audio_track.mp3_url
+    m4a = audio_track.m4a_url
     duration = audio_track.min_duration
   end
 %>
 
 <div style="display:none" class="_audio_track_preview" data-duration="<%= duration %>">
   <audio>
-    <source src="<%= mp3 %>" type="audio/mp4">
+    <source src="<%= m4a %>" type="audio/mp4">
     <source src="<%= ogg %>" type="audio/ogg">
     <%= t('captions.dont_support_audio') %>
   </audio>

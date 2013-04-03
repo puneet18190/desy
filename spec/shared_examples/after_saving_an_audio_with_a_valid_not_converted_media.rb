@@ -7,9 +7,9 @@ shared_examples 'after saving an audio with a valid not converted media' do
   let(:url_without_extension)  { "#{public_relative_folder}/#{name}" }
   let(:path_without_extension) { "#{folder}/#{name}" }
 
-  let(:urls)                   { { mp3:   [ url_without_extension, ".mp3" ], 
+  let(:urls)                   { { m4a:   [ url_without_extension, ".m4a" ], 
                                    ogg:   [ url_without_extension, ".ogg" ] } }
-  let(:paths)                  { { mp3:   [ path_without_extension, ".mp3" ], 
+  let(:paths)                  { { m4a:   [ path_without_extension, ".m4a" ], 
                                    ogg:   [ path_without_extension, ".ogg" ] } }
 
   let(:info)                   { Hash[ MESS::AUDIO_FORMATS.map{ |f| [f, Media::Info.new(audio.media.path(f))] } ] }
