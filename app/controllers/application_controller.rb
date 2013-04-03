@@ -1,4 +1,10 @@
-# It contains the general filters and methods used all over the application's controllers
+# == Description
+#
+# It contains the general filters and methods used all over the application's controllers. The following filters are forced all over the application, when not specified otherwise (moreover, they are *always* skipped in ApplicationController#page_not_found, ApplicationController#set_locale):
+# * ApplicationController#authenticate
+# * ApplicationController#initialize_location
+# * ApplicationController#initialize_players_counter
+#
 class ApplicationController < ActionController::Base
   
   # List of actions that in no case require the autentication.

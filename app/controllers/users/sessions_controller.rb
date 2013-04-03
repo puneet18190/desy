@@ -1,7 +1,27 @@
+# == Description
+#
+# Controller that handles sessions and login (see UsersController).
+#
+# === Models used
+#
+# * User
+#
 class Users::SessionsController < ApplicationController
   
-  skip_before_filter :authenticate, only: [:create, :destroy]
+  skip_before_filter :authenticate, :only => [:create, :destroy]
   
+  # === Description
+  #
+  # Create a new user session
+  #
+  # === Mode
+  #
+  # Html
+  #
+  # === Skipped filters
+  #
+  # * ApplicationController#authenticate
+  #
   def create
     redirect_to_param = params[:redirect_to]
     path_params = { login: true }
@@ -20,6 +40,18 @@ class Users::SessionsController < ApplicationController
     redirect_to *redirect_args
   end
   
+  # === Description
+  #
+  # Destroys a user session
+  #
+  # === Mode
+  #
+  # Html
+  #
+  # === Skipped filters
+  #
+  # * ApplicationController#authenticate
+  #
   def destroy
     self.current_user = nil
     redirect_to root_path

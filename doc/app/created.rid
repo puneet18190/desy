@@ -1,4 +1,4 @@
-Wed, 03 Apr 2013 09:23:10 +0200
+Wed, 03 Apr 2013 09:49:19 +0200
 doc/README_FOR_APP	Fri, 29 Mar 2013 14:50:55 +0100
 app/controllers/admin/dashboard_controller.rb	Tue, 02 Apr 2013 17:48:03 +0200
 app/controllers/admin/lessons_controller.rb	Wed, 03 Apr 2013 09:16:57 +0200
@@ -7,8 +7,8 @@ app/controllers/admin/messages_controller.rb	Tue, 02 Apr 2013 17:55:03 +0200
 app/controllers/admin/reports_controller.rb	Tue, 02 Apr 2013 17:54:52 +0200
 app/controllers/admin/settings_controller.rb	Wed, 03 Apr 2013 09:16:41 +0200
 app/controllers/admin/users_controller.rb	Wed, 03 Apr 2013 09:22:58 +0200
-app/controllers/admin_controller.rb	Thu, 14 Mar 2013 16:47:55 +0100
-app/controllers/application_controller.rb	Tue, 02 Apr 2013 17:10:18 +0200
+app/controllers/admin_controller.rb	Wed, 03 Apr 2013 09:36:41 +0200
+app/controllers/application_controller.rb	Wed, 03 Apr 2013 09:48:54 +0200
 app/controllers/audio_editor_controller.rb	Tue, 02 Apr 2013 17:04:53 +0200
 app/controllers/dashboard_controller.rb	Tue, 02 Apr 2013 17:04:57 +0200
 app/controllers/galleries_controller.rb	Tue, 02 Apr 2013 17:05:39 +0200
@@ -23,7 +23,7 @@ app/controllers/prelogin_controller.rb	Tue, 02 Apr 2013 17:07:38 +0200
 app/controllers/reports_controller.rb	Fri, 08 Feb 2013 11:44:11 +0100
 app/controllers/search_controller.rb	Tue, 02 Apr 2013 17:08:03 +0200
 app/controllers/tags_controller.rb	Fri, 29 Mar 2013 16:22:32 +0100
-app/controllers/users/sessions_controller.rb	Tue, 02 Apr 2013 17:04:29 +0200
+app/controllers/users/sessions_controller.rb	Wed, 03 Apr 2013 09:41:41 +0200
 app/controllers/users_controller.rb	Tue, 02 Apr 2013 17:08:13 +0200
 app/controllers/video_editor_controller.rb	Tue, 02 Apr 2013 17:08:27 +0200
 app/controllers/virtual_classroom_controller.rb	Tue, 02 Apr 2013 17:09:20 +0200
