@@ -1,4 +1,4 @@
-Wed, 03 Apr 2013 15:07:39 +0200
+Wed, 03 Apr 2013 15:14:31 +0200
 doc/README_FOR_APP	Fri, 29 Mar 2013 14:50:55 +0100
 app/controllers/admin/dashboard_controller.rb	Tue, 02 Apr 2013 17:48:03 +0200
 app/controllers/admin/lessons_controller.rb	Wed, 03 Apr 2013 09:16:57 +0200
@@ -26,7 +26,7 @@ app/controllers/tags_controller.rb	Wed, 03 Apr 2013 14:39:30 +0200
 app/controllers/users/sessions_controller.rb	Wed, 03 Apr 2013 09:52:04 +0200
 app/controllers/users_controller.rb	Wed, 03 Apr 2013 14:57:01 +0200
 app/controllers/video_editor_controller.rb	Wed, 03 Apr 2013 15:03:47 +0200
-app/controllers/virtual_classroom_controller.rb	Wed, 03 Apr 2013 15:07:32 +0200
+app/controllers/virtual_classroom_controller.rb	Wed, 03 Apr 2013 15:14:23 +0200
 app/helpers/admin_helper.rb	Fri, 22 Mar 2013 16:05:45 +0100
 app/helpers/application_helper.rb	Mon, 25 Mar 2013 17:36:58 +0100
 app/helpers/mailer_helper.rb	Thu, 14 Mar 2013 16:47:55 +0100

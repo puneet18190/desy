@@ -33,7 +33,7 @@ class VirtualClassroomController < ApplicationController
   #
   # === Mode
   #
-  # 
+  # Html + Ajax
   #
   # === Specific filters
   #
@@ -57,7 +57,7 @@ class VirtualClassroomController < ApplicationController
   #
   # === Mode
   #
-  # 
+  # Ajax
   #
   # === Specific filters
   #
@@ -86,7 +86,7 @@ class VirtualClassroomController < ApplicationController
   #
   # === Mode
   #
-  # 
+  # Ajax
   #
   # === Specific filters
   #
@@ -115,7 +115,7 @@ class VirtualClassroomController < ApplicationController
   #
   # === Mode
   #
-  # 
+  # Json
   #
   # === Specific filters
   #
@@ -139,7 +139,7 @@ class VirtualClassroomController < ApplicationController
   #
   # === Mode
   #
-  # 
+  # Ajax
   #
   # === Specific filters
   #
@@ -164,7 +164,7 @@ class VirtualClassroomController < ApplicationController
   #
   # === Mode
   #
-  # 
+  # Ajax
   #
   # === Specific filters
   #
@@ -189,7 +189,7 @@ class VirtualClassroomController < ApplicationController
   #
   # === Mode
   #
-  # 
+  # Ajax
   #
   # === Specific filters
   #
@@ -213,7 +213,7 @@ class VirtualClassroomController < ApplicationController
   #
   # === Mode
   #
-  # 
+  # Ajax
   #
   # === Specific filters
   #
@@ -230,7 +230,7 @@ class VirtualClassroomController < ApplicationController
   #
   # === Mode
   #
-  # 
+  # Ajax
   #
   # === Specific filters
   #
@@ -246,7 +246,7 @@ class VirtualClassroomController < ApplicationController
   #
   # === Mode
   #
-  # 
+  # Ajax
   #
   # === Specific filters
   #
@@ -264,7 +264,7 @@ class VirtualClassroomController < ApplicationController
   #
   # === Mode
   #
-  # 
+  # Ajax
   #
   # === Specific filters
   #
@@ -280,7 +280,7 @@ class VirtualClassroomController < ApplicationController
   #
   # === Mode
   #
-  # 
+  # Ajax
   #
   # === Specific filters
   #
@@ -301,7 +301,7 @@ class VirtualClassroomController < ApplicationController
   #
   # === Mode
   #
-  # 
+  # Ajax
   #
   # === Specific filters
   #
