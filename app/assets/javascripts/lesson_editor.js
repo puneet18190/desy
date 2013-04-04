@@ -14,6 +14,117 @@ Lesson editor functions, it handles visual effects, CRUD actions on single slide
 
 
 
+
+
+
+
+
+
+
+
+
+// current slide
+
+/**
+* Restore page elements around current slide after new slide selection
+* 
+* @method showEverythingOutCurrentSlide
+* @for showEverythingOutCurrentSlide
+*/
+function showEverythingOutCurrentSlide() {
+  var current_slide = $('li._lesson_editor_current_slide');
+  $('#heading').children().show();
+  $('._add_new_slide_options_in_last_position').show();
+  $('._not_current_slide_disabled').addClass('_not_current_slide').removeClass('_not_current_slide_disabled');
+  current_slide.find('.buttons a').css('visibility', 'visible');
+}
+
+/**
+* Hide page elements around current slide on new slide selection
+* 
+* @method hideEverythingOutCurrentSlide
+* @for hideEverythingOutCurrentSlide
+*/
+function hideEverythingOutCurrentSlide() {
+  var current_slide = $('li._lesson_editor_current_slide');
+  $('#heading').children().hide();
+  $('._add_new_slide_options_in_last_position').hide();
+  $('._not_current_slide').removeClass('_not_current_slide').addClass('_not_current_slide_disabled');
+  current_slide.find('.buttons a:not(._hide_add_slide)').css('visibility', 'hidden');
+}
+
+/**
+* Hide new slide selection
+* 
+* @method showNewSlideChoice
+* @for showNewSlideChoice
+*/
+function showNewSlideOptions() {
+  stopMediaInCurrentSlide();
+  var current_slide_content = $('li._lesson_editor_current_slide .slide-content');
+  current_slide_content.removeClass('cover title video1 video2 audio image1 image2 image3 image4 text');
+  var html_to_be_replaced = $('#new_slide_option_list').html();
+  current_slide_content.prepend(html_to_be_replaced);
+  current_slide_content.siblings('.buttons').find('._add_new_slide_options').removeAttr('class').addClass('minusButtonOrange _hide_add_slide _hide_add_new_slide_options');
+  hideEverythingOutCurrentSlide();
+}
+
+/**
+* Hide new slide selection
+* 
+* @method hideNewSlideChoice
+* @for hideNewSlideChoice
+*/
+function hideNewSlideChoice() {
+  var current_slide = $('li._lesson_editor_current_slide');
+  current_slide.find('div.slide-content').addClass(current_slide.data('kind'));
+  current_slide.find('.box.new_slide').remove();
+  current_slide.find('._hide_add_new_slide_options').removeAttr('class').addClass('addButtonOrange _add_new_slide_options');
+  showEverythingOutCurrentSlide();
+}
+
+/**
+* Stop video and audio playing into current slide, 
+* usually only one kind of media is present into current slide
+* 
+* @method stopMediaInCurrentSlide
+* @for stopMediaInCurrentSlide
+*/
+function stopMediaInCurrentSlide() {
+  var current_slide_id = $('li._lesson_editor_current_slide').attr('id');
+  stopMedia('#' + current_slide_id + ' audio');
+  stopMedia('#' + current_slide_id + ' video');
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // document ready
 
 function lessonEditorDocumentReady() {
@@ -406,29 +517,69 @@ function lessonEditorDocumentReadyTextFields() {
 
 
 
-
-
-
-// scroll pain
+// forms
 
 /**
-* Update top scrollPane when moving to another slide
+* Submit serialized form data for current slide
 * 
-* @method scrollPaneUpdate
-* @for scrollPaneUpdate
-* @param trigger_element {String} element which triggers the scroll, class or id
-* @example
-      scrollPaneUpdate('._not_current_slide');
+* @method submitCurrentSlideForm
+* @for submitCurrentSlideForm
 */
-function scrollPaneUpdate(trigger_element) {
-  var not_current = $(trigger_element);
-  if($('.slides.active').data('position') < not_current.parent('li').data('position')) {
-    $('#nav_list_menu').data('jsp').scrollByX(30);
-  } else {
-    $('#nav_list_menu').data('jsp').scrollByX(-30);
-  }
-  return false;
+function submitCurrentSlideForm() {
+  $.ajax({
+    type: "POST",
+    url: $('._lesson_editor_current_slide form').attr('action'),
+    timeout:5000,
+    data: $('._lesson_editor_current_slide form').serialize(),
+    beforeSend: unbindLoader()
+  }).always(bindLoader);
 }
+
+/**
+* Save current slide. It sends tinyMCE editor content to form data to be serialized, 
+* it handles form placeholders.
+*
+* Uses: [submitCurrentSlideForm](../classes/submitCurrentSlideForm.html#method_submitCurrentSlideForm)
+* 
+* @method saveCurrentSlide
+* @for saveCurrentSlide
+*/
+function saveCurrentSlide() {
+  tinyMCE.triggerSave();
+  var temporary = new Array();
+  var temp_counter = 0;
+  $('._lesson_editor_current_slide ._lesson_editor_placeholder').each(function() {
+    if($(this).data('placeholder')) {
+      temporary[temp_counter] = $(this).val();
+      temp_counter++;
+      $(this).val('');
+    }
+  });
+  submitCurrentSlideForm();
+  temp_counter = 0;
+  $('._lesson_editor_current_slide ._lesson_editor_placeholder').each(function() {
+    if($(this).data('placeholder')) {
+      $(this).val(temporary[temp_counter]);
+      temp_counter++;
+    }
+  });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -499,64 +650,95 @@ function showGalleryInLessonEditor(obj, sti_type) {
 
 
 
-// current slide
+
+
+
+
+
+
+// image resizing
 
 /**
-* Restore page elements around current slide after new slide selection
-* 
-* @method showEverythingOutCurrentSlide
-* @for showEverythingOutCurrentSlide
+* Check if image ratio is bigger then kind ratio
+*
+* @method isHorizontalMask
+* @for isHorizontalMask
+* @param image_width {Number}
+* @param image_height {Number}
+* @param kind {String} type image into slide, acceptes values: cover, image1, image2, image3, image4
+* @return {Boolean} true if image ratio is bigger then kind ratio
 */
-function showEverythingOutCurrentSlide() {
-  var current_slide = $('li._lesson_editor_current_slide');
-  $('#heading').children().show();
-  $('._add_new_slide_options_in_last_position').show();
-  $('._not_current_slide_disabled').addClass('_not_current_slide').removeClass('_not_current_slide_disabled');
-  current_slide.find('.buttons a').css('visibility', 'visible');
+function isHorizontalMask(image_width, image_height, kind) {
+  var ratio = image_width / image_height;
+  var slideRatio = 0;
+  switch(kind) {
+    case 'cover': slideRatio = 1.6;
+    break;
+    case 'image1': slideRatio = 1;
+    break;
+    case 'image2': slideRatio = 0.75;
+    break;
+    case 'image3': slideRatio = 1.55;
+    break;
+    case 'image4': slideRatio = 1.55;
+    break;
+    default: slideRatio = 1.5;
+  }
+  return (ratio >= slideRatio);
 }
 
 /**
-* Hide page elements around current slide on new slide selection
-* 
-* @method hideEverythingOutCurrentSlide
-* @for hideEverythingOutCurrentSlide
+* Sets scaled width to slide images
+*
+* @method resizeWidth
+* @for resizeWidth
+* @param image_width {Number}
+* @param image_height {Number}
+* @param kind {String} type image into slide, acceptes values: cover, image1, image2, image3, image4
+* @return {Number} scaled width
 */
-function hideEverythingOutCurrentSlide() {
-  var current_slide = $('li._lesson_editor_current_slide');
-  $('#heading').children().hide();
-  $('._add_new_slide_options_in_last_position').hide();
-  $('._not_current_slide').removeClass('_not_current_slide').addClass('_not_current_slide_disabled');
-  current_slide.find('.buttons a:not(._hide_add_slide)').css('visibility', 'hidden');
+function resizeWidth(width, height, kind) {
+  switch(kind) {
+   case 'cover': slideHeight = 560;
+   break;
+   case 'image1': slideHeight = 420;
+   break;
+   case 'image2': slideHeight = 550;
+   break;
+   case 'image3': slideHeight = 550;
+   break;
+   case 'image4': slideHeight = 265;
+   break;
+   default: slideHeight = 590;
+  }
+  return (width * slideHeight) / height;
 }
-
+ 
 /**
-* Hide new slide selection
-* 
-* @method showNewSlideChoice
-* @for showNewSlideChoice
-*/
-function showNewSlideOptions() {
-  stopMediaInCurrentSlide();
-  var current_slide_content = $('li._lesson_editor_current_slide .slide-content');
-  current_slide_content.removeClass('cover title video1 video2 audio image1 image2 image3 image4 text');
-  var html_to_be_replaced = $('#new_slide_option_list').html();
-  current_slide_content.prepend(html_to_be_replaced);
-  current_slide_content.siblings('.buttons').find('._add_new_slide_options').removeAttr('class').addClass('minusButtonOrange _hide_add_slide _hide_add_new_slide_options');
-  hideEverythingOutCurrentSlide();
-}
-
-/**
-* Hide new slide selection
-* 
-* @method hideNewSlideChoice
-* @for hideNewSlideChoice
-*/
-function hideNewSlideChoice() {
-  var current_slide = $('li._lesson_editor_current_slide');
-  current_slide.find('div.slide-content').addClass(current_slide.data('kind'));
-  current_slide.find('.box.new_slide').remove();
-  current_slide.find('._hide_add_new_slide_options').removeAttr('class').addClass('addButtonOrange _add_new_slide_options');
-  showEverythingOutCurrentSlide();
+* Sets scaled height to slide images
+*
+* @method resizeHeight
+* @for resizeHeight
+* @param image_width {Number}
+* @param image_height {Number}
+* @param kind {String} type image into slide, acceptes values: cover, image1, image2, image3, image4
+* @return {Number} scaled height
+*/ 
+function resizeHeight(width, height, kind) {
+  switch(kind) {
+   case 'cover': slideWidth = 900;
+   break;
+   case 'image1': slideWidth = 420;
+   break;
+   case 'image2': slideWidth = 420;
+   break;
+   case 'image3': slideWidth = 860;
+   break;
+   case 'image4': slideWidth = 420;
+   break;
+   default: slideWidth = 900;
+  }
+  return (height * slideWidth) / width;
 }
 
 
@@ -572,20 +754,11 @@ function hideNewSlideChoice() {
 
 
 
-// media
 
-/**
-* Stop video and audio playing into current slide, 
-* usually only one kind of media is present into current slide
-* 
-* @method stopMediaInCurrentSlide
-* @for stopMediaInCurrentSlide
-*/
-function stopMediaInCurrentSlide() {
-  var current_slide_id = $('li._lesson_editor_current_slide').attr('id');
-  stopMedia('#' + current_slide_id + ' audio');
-  stopMedia('#' + current_slide_id + ' video');
-}
+
+
+
+
 
 
 
@@ -733,53 +906,10 @@ function makeDraggable(place_id) {
 
 
 
-// forms
 
-/**
-* Submit serialized form data for current slide
-* 
-* @method submitCurrentSlideForm
-* @for submitCurrentSlideForm
-*/
-function submitCurrentSlideForm() {
-  $.ajax({
-    type: "POST",
-    url: $('._lesson_editor_current_slide form').attr('action'),
-    timeout:5000,
-    data: $('._lesson_editor_current_slide form').serialize(),
-    beforeSend: unbindLoader()
-  }).always(bindLoader);
-}
 
-/**
-* Save current slide. It sends tinyMCE editor content to form data to be serialized, 
-* it handles form placeholders.
-*
-* Uses: [submitCurrentSlideForm](../classes/submitCurrentSlideForm.html#method_submitCurrentSlideForm)
-* 
-* @method saveCurrentSlide
-* @for saveCurrentSlide
-*/
-function saveCurrentSlide() {
-  tinyMCE.triggerSave();
-  var temporary = new Array();
-  var temp_counter = 0;
-  $('._lesson_editor_current_slide ._lesson_editor_placeholder').each(function() {
-    if($(this).data('placeholder')) {
-      temporary[temp_counter] = $(this).val();
-      temp_counter++;
-      $(this).val('');
-    }
-  });
-  submitCurrentSlideForm();
-  temp_counter = 0;
-  $('._lesson_editor_current_slide ._lesson_editor_placeholder').each(function() {
-    if($(this).data('placeholder')) {
-      $(this).val(temporary[temp_counter]);
-      temp_counter++;
-    }
-  });
-}
+
+
 
 
 
@@ -844,6 +974,17 @@ function loadSlideAndAdhiacentInLessonEditor(slide_id) {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 // slide navigation
 
 /**
@@ -863,16 +1004,16 @@ function slideTo(slide_id, callback) {
   if (position == 1) {
     marginReset = 0;
   } else {
-    marginReset = (-((position - 1) * 1010)) + "px";
+    marginReset = (-((position - 1) * 1010)) + 'px';
   }
-  $("ul#slides").animate({
+  $('ul#slides').animate({
     marginLeft: marginReset
   }, 1500, function() {
     if(typeof(callback) != 'undefined') {
       callback();
     }
   });
-  $("ul#slides li").animate({
+  $('ul#slides li').animate({
     opacity: 0.4,
   }, 150, function() {
     $(this).find('.buttons').fadeOut();
@@ -893,6 +1034,58 @@ function slideTo(slide_id, callback) {
     $(this).find('layer').remove();
     $('li._lesson_editor_current_slide').removeClass('_lesson_editor_current_slide active');
     $('#slide_in_lesson_editor_' + slide_id).addClass('_lesson_editor_current_slide active');
+  });
+}
+
+/**
+* Update top scrollPane when moving to another slide
+* 
+* @method scrollPaneUpdate
+* @for scrollPaneUpdate
+* @param trigger_element {String} element which triggers the scroll, class or id
+* @example
+      scrollPaneUpdate('._not_current_slide');
+*/
+function scrollPaneUpdate(trigger_element) {
+  var not_current = $(trigger_element);
+  if($('.slides.active').data('position') < not_current.parent('li').data('position')) {
+    $('#nav_list_menu').data('jsp').scrollByX(30);
+  } else {
+    $('#nav_list_menu').data('jsp').scrollByX(-30);
+  }
+  return false;
+}
+
+/**
+* Initialize slides position to center
+*
+* @method initLessonEditorPositions
+* @for initLessonEditorPositions
+*/
+function initLessonEditorPositions() {
+  WW = parseInt($(window).outerWidth());
+  WH = parseInt($(window).outerHeight());
+  $('#main').css('width', WW);
+  $('ul#slides').css('width', (($('ul#slides li').length + 2) * 1000));
+  $('ul#slides').css('top', ((WH / 2) - 295) + 'px');
+  $('ul#slides.new').css('top', ((WH / 2) - 335) + 'px')
+  $('#footer').css('top', (WH - 40) + "px").css('width', (WW - 24) + 'px')
+  if(WW > 1000) {
+    $('ul#slides li:first').css('margin-left', ((WW - 900) / 2) + 'px')
+    $('ul#slides.new li:first').css('margin-left', ((WW - 900) / 2) + 'px');
+  }
+}
+
+/**
+* Re-initialize slides position to center after ajax events
+*
+* @method reInitializeSlidePositionsInLessonEditor
+* @for reInitializeSlidePositionsInLessonEditor
+*/
+function reInitializeSlidePositionsInLessonEditor() {
+  $('ul#slides').css('width', (($('ul#slides li').length + 2) * 1000));
+  $('ul#slides li').each(function(index){
+    $(this).data('position', (index + 1));
   });
 }
 
@@ -1035,162 +1228,4 @@ function initTinymce(tiny_id) {
   //$('body').on("click",'textarea.tinymce',function(){
   //  $('.mceExternalToolbar').show();
   //});
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// slides positions
-
-/**
-* Initialize slides position to center
-*
-* @method initLessonEditorPositions
-* @for initLessonEditorPositions
-*/
-function initLessonEditorPositions() {
-  WW = parseInt($(window).outerWidth());
-  WH = parseInt($(window).outerHeight());
-  $('#main').css('width', WW);
-  $('ul#slides').css('width', (($('ul#slides li').length + 2) * 1000));
-  $('ul#slides').css('top', ((WH / 2) - 295) + 'px');
-  $('ul#slides.new').css('top', ((WH / 2) - 335) + 'px')
-  $('#footer').css('top', (WH - 40) + "px").css('width', (WW - 24) + 'px')
-  if(WW > 1000) {
-    $('ul#slides li:first').css('margin-left', ((WW - 900) / 2) + 'px')
-    $('ul#slides.new li:first').css('margin-left', ((WW - 900) / 2) + 'px');
-  }
-}
-
-/**
-* Re-initialize slides position to center after ajax events
-*
-* @method reInitializeSlidePositionsInLessonEditor
-* @for reInitializeSlidePositionsInLessonEditor
-*/
-function reInitializeSlidePositionsInLessonEditor() {
-  $('ul#slides').css('width', (($('ul#slides li').length+2) * 1000));
-  $('ul#slides li').each(function(index){
-    $(this).data('position', (index + 1));
-  });
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// image resizing
-
-/**
-* Check if image ratio is bigger then kind ratio
-*
-* @method isHorizontalMask
-* @for isHorizontalMask
-* @param image_width {Number}
-* @param image_height {Number}
-* @param kind {String} type image into slide, acceptes values: cover, image1, image2, image3, image4
-* @return {Boolean} true if image ratio is bigger then kind ratio
-*/
-function isHorizontalMask(image_width, image_height, kind){
-  var ratio = image_width/image_height;
-  var slideRatio = 0;
-  switch(kind) {
-    case "cover": slideRatio = 1.6;
-    break;
-    case "image1": slideRatio = 1;
-    break;
-    case "image2": slideRatio = 0.75;
-    break;
-    case "image3": slideRatio = 1.55;
-    break;
-    case "image4": slideRatio = 1.55;
-    break;
-    default: slideRatio = 1.5;
-  }
-  return (ratio >= slideRatio);
-}
-
-/**
-* Sets scaled width to slide images
-*
-* @method resizeWidth
-* @for resizeWidth
-* @param image_width {Number}
-* @param image_height {Number}
-* @param kind {String} type image into slide, acceptes values: cover, image1, image2, image3, image4
-* @return {Number} scaled width
-*/
-function resizeWidth(width, height, kind){
-  switch(kind) {
-   case "cover": slideHeight = 560;
-   break;
-   case "image1": slideHeight = 420;
-   break;
-   case "image2": slideHeight = 550;
-   break;
-   case "image3": slideHeight = 550;
-   break;
-   case "image4": slideHeight = 265;
-   break;
-   default: slideHeight = 590;
-  }
-  return (width*slideHeight)/height;
-}
- 
-/**
-* Sets scaled height to slide images
-*
-* @method resizeHeight
-* @for resizeHeight
-* @param image_width {Number}
-* @param image_height {Number}
-* @param kind {String} type image into slide, acceptes values: cover, image1, image2, image3, image4
-* @return {Number} scaled height
-*/ 
-function resizeHeight(width,height,kind){
-  switch(kind) {
-   case "cover": slideWidth = 900;
-   break;
-   case "image1": slideWidth = 420;
-   break;
-   case "image2": slideWidth = 420;
-   break;
-   case "image3": slideWidth = 860;
-   break;
-   case "image4": slideWidth = 420;
-   break;
-   default: slideWidth = 900;
-  }
-  return (height*slideWidth)/width;
 }
