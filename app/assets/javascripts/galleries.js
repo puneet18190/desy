@@ -3,20 +3,91 @@ Media element galleries, initialization.
 @module galleries
 **/
 
+
+
+
+
+/**
+Scale image size form image gallery popup
+@method resizedWidthForImageGallery
+@for GalleriesAccessories
+@param width {Number} image original width
+@param height {Number} image original height
+**/
+function resizedWidthForImageGallery(width, height) {
+  if(height > width) {
+    return (420 * width / height) + 20;
+  } else {
+    return 440;
+  }
+}
+
+
+
+
+
+/**
+bla bla bla
+@method galleriesDocumentReady
+@for GalleriesDocumentReady
+**/
 function galleriesDocumentReady() {
-  
+  galleriesDocumentReadyOpen();
+  galleriesDocumentReadyClose();
+}
+
+/**
+bla bla bla
+@method galleriesDocumentReadyClose
+@for GalleriesDocumentReady
+**/
+function galleriesDocumentReadyClose() {
+  $('body').on('click', '._close_mixed_gallery_in_video_editor', function() {
+    closeGalleryInVideoEditor('mixed');
+  });
+  $('body').on('click', '._close_audio_gallery_in_video_editor', function() {
+    closeGalleryInVideoEditor('audio');
+    var expanded_audio = $('._audio_expanded_in_gallery');
+    if(expanded_audio.length > 0) {
+      expanded_audio.removeClass('_audio_expanded_in_gallery');
+      var audio_id = expanded_audio.attr('id');
+      stopMedia('#' + audio_id + ' audio');
+      $('#' + audio_id + ' ._expanded').hide();
+    }
+  });
+  $('body').on('click', '._close_audio_gallery_in_audio_editor', function() {
+    closeGalleryInAudioEditor();
+    var expanded_audio = $('._audio_expanded_in_gallery');
+    if(expanded_audio.length > 0) {
+      expanded_audio.removeClass('_audio_expanded_in_gallery');
+      var audio_id = expanded_audio.attr('id');
+      stopMedia('#' + audio_id + ' audio');
+      $('#' + audio_id + ' ._expanded').hide();
+    }
+  });
+  $('body').on('click', '._close_on_click_out', function() {
+    $('.ui-dialog-content:visible').each(function() {
+      closePopUp($(this).attr('id'));
+    });
+  });
+}
+
+/**
+bla bla bla
+@method galleriesDocumentReadyOpen
+@for GalleriesDocumentReady
+**/
+function galleriesDocumentReadyOpen() {
   $('body').on('click','._image_gallery_thumb', function(e) {
     e.preventDefault();
     showImageInGalleryPopUp($(this).data('image-id'));
   });
-  
   $('body').on('click','._video_gallery_thumb', function(e) {
     e.preventDefault();
     if(!$(this).hasClass('_disabled')) {
       showVideoInGalleryPopUp($(this).data('video-id'));
     }
   });
-  
   $('body').on('click', '._audio_gallery_thumb._enabled ._compact', function(e) {
     if(!$(e.target).hasClass('_select_audio_from_gallery')) {
       var parent_id = $(this).parent().attr('id');
@@ -54,68 +125,35 @@ function galleriesDocumentReady() {
       }
     }
   });
-  
-  $('body').on('click', '._close_mixed_gallery_in_video_editor', function() {
-    closeGalleryInVideoEditor('mixed');
-  });
-  
-  $('body').on('click', '._close_audio_gallery_in_video_editor', function() {
-    closeGalleryInVideoEditor('audio');
-    var expanded_audio = $('._audio_expanded_in_gallery');
-    if(expanded_audio.length > 0) {
-      expanded_audio.removeClass('_audio_expanded_in_gallery');
-      var audio_id = expanded_audio.attr('id');
-      stopMedia('#' + audio_id + ' audio');
-      $('#' + audio_id + ' ._expanded').hide();
-    }
-  });
-  
-  $('body').on('click', '._close_audio_gallery_in_audio_editor', function() {
-    closeGalleryInAudioEditor();
-    var expanded_audio = $('._audio_expanded_in_gallery');
-    if(expanded_audio.length > 0) {
-      expanded_audio.removeClass('_audio_expanded_in_gallery');
-      var audio_id = expanded_audio.attr('id');
-      stopMedia('#' + audio_id + ' audio');
-      $('#' + audio_id + ' ._expanded').hide();
-    }
-  });
-  
-  $('body').on('click', "._close_on_click_out", function(){
-    $(".ui-dialog-content:visible").each(function(){
-      closePopUp($(this).attr("id"));
-    });
-  });
-  
 }
 
+
+
+
+
 /**
-* Initialize image gallery in lesson editor.
-* Init jScrollPane and get images block.
-* 
-* @method initializeImageGalleryInLessonEditor
-* @for initializeImageGalleryInLessonEditor
-*/
-function initializeImageGalleryInLessonEditor() {
-  $('#lesson_editor_image_gallery_container #image_gallery_content > div').jScrollPane({
+Initialize audio gallery in audio editor. Init jScrollPane and get audios block.
+@method initializeAudioGalleryInAudioEditor
+@for GalleriesInitializers
+**/
+function initializeAudioGalleryInAudioEditor() {
+  $('#audio_editor_gallery_container #audio_gallery_content > div').jScrollPane({
     autoReinitialise: true
   });
-  $('#lesson_editor_image_gallery_container .scroll-pane').bind('jsp-arrow-change', function(event, isAtTop, isAtBottom, isAtLeft, isAtRight) {
-    var page = $('#lesson_editor_image_gallery_container').data('page');
-    var tot_pages = $('#lesson_editor_image_gallery_container').data('tot-pages');
+  $('#audio_editor_gallery_container .scroll-pane').bind('jsp-arrow-change', function(event, isAtTop, isAtBottom, isAtLeft, isAtRight) {
+    var page = $('#audio_editor_gallery_container').data('page');
+    var tot_pages = $('#audio_editor_gallery_container').data('tot-pages');
     if(isAtBottom && (page < tot_pages)) {
-      $.get('/lessons/galleries/image/new_block?page=' + (page + 1));
+      $.get('/audios/galleries/audio/new_block?page=' + (page + 1));
     }
   });
 }
 
 /**
-* Initialize audio gallery in lesson editor.
-* Init jScrollPane and get audios block.
-* 
-* @method initializeAudioGalleryInLessonEditor
-* @for initializeAudioGalleryInLessonEditor
-*/
+Initialize audio gallery in lesson editor. Init jScrollPane and get audios block.
+@method initializeAudioGalleryInLessonEditor
+@for GalleriesInitializers
+**/
 function initializeAudioGalleryInLessonEditor() {
   $('#lesson_editor_audio_gallery_container #audio_gallery_content > div').jScrollPane({
     autoReinitialise: true
@@ -130,32 +168,64 @@ function initializeAudioGalleryInLessonEditor() {
 }
 
 /**
-* Initialize video gallery in lesson editor.
-* Init jScrollPane and get videos block.
-* 
-* @method initializeVideoGalleryInLessonEditor
-* @for initializeVideoGalleryInLessonEditor
-*/
-function initializeVideoGalleryInLessonEditor() {
-  $('#lesson_editor_video_gallery_container #video_gallery_content > div').jScrollPane({
+Initialize audio gallery in video editor. Init jScrollPane and audios block.
+@method initializeImageGalleryInLessonEditor
+@for GalleriesInitializers
+**/
+function initializeAudioGalleryInVideoEditor() {
+  $('#video_editor_audio_gallery_container #audio_gallery_content > div').jScrollPane({
     autoReinitialise: true
   });
-  $('#lesson_editor_video_gallery_container .scroll-pane').bind('jsp-arrow-change', function(event, isAtTop, isAtBottom, isAtLeft, isAtRight) {
-    var page = $('#lesson_editor_video_gallery_container').data('page');
-    var tot_pages = $('#lesson_editor_video_gallery_container').data('tot-pages');
+  $('#video_editor_audio_gallery_container .scroll-pane').bind('jsp-arrow-change', function(event, isAtTop, isAtBottom, isAtLeft, isAtRight) {
+    var page = $('#video_editor_audio_gallery_container').data('page');
+    var tot_pages = $('#video_editor_audio_gallery_container').data('tot-pages');
     if(isAtBottom && (page < tot_pages)) {
-      $.get('/lessons/galleries/video/new_block?page=' + (page + 1));
+      $.get('/videos/galleries/audio/new_block?page=' + (page + 1));
     }
   });
 }
 
 /**
-* Initialize all media mixed gallery in video editor.
-* Init jScrollPane and get mixed media block.
-* 
-* @method initializeImageGalleryInLessonEditor
-* @for initializeImageGalleryInLessonEditor
-*/
+Initialize image gallery in image editor. Init jScrollPane and get images block.
+@method initializeImageGalleryInImageEditor
+@for GalleriesInitializers
+**/
+function initializeImageGalleryInImageEditor() {
+  $('#image_gallery_for_image_editor #image_gallery_content > div').jScrollPane({
+    autoReinitialise: true
+  });
+  $('#image_gallery_for_image_editor .scroll-pane').bind('jsp-arrow-change', function(event, isAtTop, isAtBottom, isAtLeft, isAtRight) {
+    var page = $('#image_gallery_for_image_editor').data('page');
+    var tot_pages = $('#image_gallery_for_image_editor').data('tot-pages');
+    if(isAtBottom && (page < tot_pages)) {
+      $.get('/images/galleries/image/new_block?page=' + (page + 1));
+    }
+  });
+}
+
+/**
+Initialize image gallery in lesson editor. Init jScrollPane and get images block.
+@method initializeImageGalleryInLessonEditor
+@for GalleriesInitializers
+**/
+function initializeImageGalleryInLessonEditor() {
+  $('#lesson_editor_image_gallery_container #image_gallery_content > div').jScrollPane({
+    autoReinitialise: true
+  });
+  $('#lesson_editor_image_gallery_container .scroll-pane').bind('jsp-arrow-change', function(event, isAtTop, isAtBottom, isAtLeft, isAtRight) {
+    var page = $('#lesson_editor_image_gallery_container').data('page');
+    var tot_pages = $('#lesson_editor_image_gallery_container').data('tot-pages');
+    if(isAtBottom && (page < tot_pages)) {
+      $.get('/lessons/galleries/image/new_block?page=' + (page + 1));
+    }
+  });
+}
+
+/**
+Initialize all media mixed gallery in video editor. Init jScrollPane and get mixed media block.
+@method initializeImageGalleryInLessonEditor
+@for GalleriesInitializers
+**/
 function initializeMixedGalleryInVideoEditor() {
   $('#video_editor_mixed_gallery_container #video_gallery_content > div').jScrollPane({
     autoReinitialise: true
@@ -180,77 +250,19 @@ function initializeMixedGalleryInVideoEditor() {
 }
 
 /**
-* Initialize audio gallery in video editor.
-* Init jScrollPane and audios block.
-* 
-* @method initializeImageGalleryInLessonEditor
-* @for initializeImageGalleryInLessonEditor
-*/
-function initializeAudioGalleryInVideoEditor() {
-  $('#video_editor_audio_gallery_container #audio_gallery_content > div').jScrollPane({
+Initialize video gallery in lesson editor. Init jScrollPane and get videos block.
+@method initializeVideoGalleryInLessonEditor
+@for GalleriesInitializers
+**/
+function initializeVideoGalleryInLessonEditor() {
+  $('#lesson_editor_video_gallery_container #video_gallery_content > div').jScrollPane({
     autoReinitialise: true
   });
-  $('#video_editor_audio_gallery_container .scroll-pane').bind('jsp-arrow-change', function(event, isAtTop, isAtBottom, isAtLeft, isAtRight) {
-    var page = $('#video_editor_audio_gallery_container').data('page');
-    var tot_pages = $('#video_editor_audio_gallery_container').data('tot-pages');
+  $('#lesson_editor_video_gallery_container .scroll-pane').bind('jsp-arrow-change', function(event, isAtTop, isAtBottom, isAtLeft, isAtRight) {
+    var page = $('#lesson_editor_video_gallery_container').data('page');
+    var tot_pages = $('#lesson_editor_video_gallery_container').data('tot-pages');
     if(isAtBottom && (page < tot_pages)) {
-      $.get('/videos/galleries/audio/new_block?page=' + (page + 1));
+      $.get('/lessons/galleries/video/new_block?page=' + (page + 1));
     }
   });
-}
-
-/**
-* Initialize audio gallery in audio editor.
-* Init jScrollPane and get audios block.
-* 
-* @method initializeAudioGalleryInAudioEditor
-* @for initializeAudioGalleryInAudioEditor
-*/
-function initializeAudioGalleryInAudioEditor() {
-  $('#audio_editor_gallery_container #audio_gallery_content > div').jScrollPane({
-    autoReinitialise: true
-  });
-  $('#audio_editor_gallery_container .scroll-pane').bind('jsp-arrow-change', function(event, isAtTop, isAtBottom, isAtLeft, isAtRight) {
-    var page = $('#audio_editor_gallery_container').data('page');
-    var tot_pages = $('#audio_editor_gallery_container').data('tot-pages');
-    if(isAtBottom && (page < tot_pages)) {
-      $.get('/audios/galleries/audio/new_block?page=' + (page + 1));
-    }
-  });
-}
-
-/**
-* Initialize image gallery in image editor.
-* Init jScrollPane and get images block.
-* 
-* @method initializeImageGalleryInImageEditor
-* @for initializeImageGalleryInImageEditor
-*/
-function initializeImageGalleryInImageEditor() {
-  $('#image_gallery_for_image_editor #image_gallery_content > div').jScrollPane({
-    autoReinitialise: true
-  });
-  $('#image_gallery_for_image_editor .scroll-pane').bind('jsp-arrow-change', function(event, isAtTop, isAtBottom, isAtLeft, isAtRight) {
-    var page = $('#image_gallery_for_image_editor').data('page');
-    var tot_pages = $('#image_gallery_for_image_editor').data('tot-pages');
-    if(isAtBottom && (page < tot_pages)) {
-      $.get('/images/galleries/image/new_block?page=' + (page + 1));
-    }
-  });
-}
-
-/**
-* Scale image size form image gallery popup
-* 
-* @method resizedWidthForImageGallery
-* @for resizedWidthForImageGallery
-* @param width {Number} image original width
-* @param height {Number} image original height
-*/
-function resizedWidthForImageGallery(width, height) {
-  if(height > width) {
-    return (420 * width / height) + 20;
-  } else {
-    return 440;
-  }
 }
