@@ -26,4 +26,5 @@ $(document).ready(function() {
   lessonViewerDocumentReady();
   automaticLoginDocumentReady();
   tagsDocumentReady();
+  locationsDocumentReady();
 });

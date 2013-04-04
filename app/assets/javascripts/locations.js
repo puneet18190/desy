@@ -1,4 +1,4 @@
-$(document).ready(function() {
+function locationsDocumentReady() {
   
   $('._location_select_box').each(function() {
     $('#' + $(this).attr('id')).selectbox();
@@ -17,4 +17,4 @@ $(document).ready(function() {
     }
   });
   
-});
+}

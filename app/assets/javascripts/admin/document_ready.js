@@ -7,4 +7,5 @@ $(document).ready(function() {
   adminMiscellaneaDocumentReady();
   adminEffectsDocumentReady();
   adminBrowsersDocumentReady();
+  adminLocationsDocumentReady();
 });

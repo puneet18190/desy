@@ -70,6 +70,9 @@ function adminEffectsDocumentReady() {
    $('tr.collapsed').slideUp('slow');
   });
   
+}
+
+function adminLocationsDocumentReady() {
   $('._select_locations_admin').on('change', function() {
     if(!$(this).data('is-last')) {
       if($(this).val() == '0') {
@@ -82,7 +85,6 @@ function adminEffectsDocumentReady() {
       }
     }
   });
-  
 }
 
 function adminMiscellaneaDocumentReady() {
