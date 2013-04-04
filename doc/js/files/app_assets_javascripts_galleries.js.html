@@ -117,6 +117,12 @@
             
                 <li><a href="..&#x2F;classes/enlightTextarea.html">enlightTextarea</a></li>
             
+                <li><a href="..&#x2F;classes/GalleriesAccessories.html">GalleriesAccessories</a></li>
+            
+                <li><a href="..&#x2F;classes/GalleriesDocumentReady.html">GalleriesDocumentReady</a></li>
+            
+                <li><a href="..&#x2F;classes/GalleriesInitializers.html">GalleriesInitializers</a></li>
+            
                 <li><a href="..&#x2F;classes/getDragPosition.html">getDragPosition</a></li>
             
                 <li><a href="..&#x2F;classes/getLessonViewerCurrentSlide.html">getLessonViewerCurrentSlide</a></li>
@@ -155,17 +161,9 @@
             
                 <li><a href="..&#x2F;classes/initializeAudioEditorCutter.html">initializeAudioEditorCutter</a></li>
             
-                <li><a href="..&#x2F;classes/initializeAudioGalleryInAudioEditor.html">initializeAudioGalleryInAudioEditor</a></li>
-            
-                <li><a href="..&#x2F;classes/initializeAudioGalleryInLessonEditor.html">initializeAudioGalleryInLessonEditor</a></li>
-            
                 <li><a href="..&#x2F;classes/initializeDraggableVirtualClassroomLesson.html">initializeDraggableVirtualClassroomLesson</a></li>
             
                 <li><a href="..&#x2F;classes/initializeHelp.html">initializeHelp</a></li>
-            
-                <li><a href="..&#x2F;classes/initializeImageGalleryInImageEditor.html">initializeImageGalleryInImageEditor</a></li>
-            
-                <li><a href="..&#x2F;classes/initializeImageGalleryInLessonEditor.html">initializeImageGalleryInLessonEditor</a></li>
             
                 <li><a href="..&#x2F;classes/initializeLessonViewer.html">initializeLessonViewer</a></li>
             
@@ -188,8 +186,6 @@
                 <li><a href="..&#x2F;classes/initializeSortableNavs.html">initializeSortableNavs</a></li>
             
                 <li><a href="..&#x2F;classes/initializeVideoEditor.html">initializeVideoEditor</a></li>
-            
-                <li><a href="..&#x2F;classes/initializeVideoGalleryInLessonEditor.html">initializeVideoGalleryInLessonEditor</a></li>
             
                 <li><a href="..&#x2F;classes/initializeVideoInVideoEditorPreview.html">initializeVideoInVideoEditorPreview</a></li>
             
@@ -232,8 +228,6 @@
                 <li><a href="..&#x2F;classes/resetImageEditorTexts.html">resetImageEditorTexts</a></li>
             
                 <li><a href="..&#x2F;classes/resetMediaElementChangeInfo.html">resetMediaElementChangeInfo</a></li>
-            
-                <li><a href="..&#x2F;classes/resizedWidthForImageGallery.html">resizedWidthForImageGallery</a></li>
             
                 <li><a href="..&#x2F;classes/resizeHeight.html">resizeHeight</a></li>
             
@@ -399,20 +393,91 @@ Media element galleries, initialization.
 @module galleries
 **&#x2F;
 
+
+
+
+
+&#x2F;**
+Scale image size form image gallery popup
+@method resizedWidthForImageGallery
+@for GalleriesAccessories
+@param width {Number} image original width
+@param height {Number} image original height
+**&#x2F;
+function resizedWidthForImageGallery(width, height) {
+  if(height &gt; width) {
+    return (420 * width &#x2F; height) + 20;
+  } else {
+    return 440;
+  }
+}
+
+
+
+
+
+&#x2F;**
+bla bla bla
+@method galleriesDocumentReady
+@for GalleriesDocumentReady
+**&#x2F;
 function galleriesDocumentReady() {
-  
+  galleriesDocumentReadyOpen();
+  galleriesDocumentReadyClose();
+}
+
+&#x2F;**
+bla bla bla
+@method galleriesDocumentReadyClose
+@for GalleriesDocumentReady
+**&#x2F;
+function galleriesDocumentReadyClose() {
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._close_mixed_gallery_in_video_editor&#x27;, function() {
+    closeGalleryInVideoEditor(&#x27;mixed&#x27;);
+  });
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._close_audio_gallery_in_video_editor&#x27;, function() {
+    closeGalleryInVideoEditor(&#x27;audio&#x27;);
+    var expanded_audio = $(&#x27;._audio_expanded_in_gallery&#x27;);
+    if(expanded_audio.length &gt; 0) {
+      expanded_audio.removeClass(&#x27;_audio_expanded_in_gallery&#x27;);
+      var audio_id = expanded_audio.attr(&#x27;id&#x27;);
+      stopMedia(&#x27;#&#x27; + audio_id + &#x27; audio&#x27;);
+      $(&#x27;#&#x27; + audio_id + &#x27; ._expanded&#x27;).hide();
+    }
+  });
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._close_audio_gallery_in_audio_editor&#x27;, function() {
+    closeGalleryInAudioEditor();
+    var expanded_audio = $(&#x27;._audio_expanded_in_gallery&#x27;);
+    if(expanded_audio.length &gt; 0) {
+      expanded_audio.removeClass(&#x27;_audio_expanded_in_gallery&#x27;);
+      var audio_id = expanded_audio.attr(&#x27;id&#x27;);
+      stopMedia(&#x27;#&#x27; + audio_id + &#x27; audio&#x27;);
+      $(&#x27;#&#x27; + audio_id + &#x27; ._expanded&#x27;).hide();
+    }
+  });
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._close_on_click_out&#x27;, function() {
+    $(&#x27;.ui-dialog-content:visible&#x27;).each(function() {
+      closePopUp($(this).attr(&#x27;id&#x27;));
+    });
+  });
+}
+
+&#x2F;**
+bla bla bla
+@method galleriesDocumentReadyOpen
+@for GalleriesDocumentReady
+**&#x2F;
+function galleriesDocumentReadyOpen() {
   $(&#x27;body&#x27;).on(&#x27;click&#x27;,&#x27;._image_gallery_thumb&#x27;, function(e) {
     e.preventDefault();
     showImageInGalleryPopUp($(this).data(&#x27;image-id&#x27;));
   });
-  
   $(&#x27;body&#x27;).on(&#x27;click&#x27;,&#x27;._video_gallery_thumb&#x27;, function(e) {
     e.preventDefault();
     if(!$(this).hasClass(&#x27;_disabled&#x27;)) {
       showVideoInGalleryPopUp($(this).data(&#x27;video-id&#x27;));
     }
   });
-  
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._audio_gallery_thumb._enabled ._compact&#x27;, function(e) {
     if(!$(e.target).hasClass(&#x27;_select_audio_from_gallery&#x27;)) {
       var parent_id = $(this).parent().attr(&#x27;id&#x27;);
@@ -450,68 +515,35 @@ function galleriesDocumentReady() {
       }
     }
   });
-  
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._close_mixed_gallery_in_video_editor&#x27;, function() {
-    closeGalleryInVideoEditor(&#x27;mixed&#x27;);
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._close_audio_gallery_in_video_editor&#x27;, function() {
-    closeGalleryInVideoEditor(&#x27;audio&#x27;);
-    var expanded_audio = $(&#x27;._audio_expanded_in_gallery&#x27;);
-    if(expanded_audio.length &gt; 0) {
-      expanded_audio.removeClass(&#x27;_audio_expanded_in_gallery&#x27;);
-      var audio_id = expanded_audio.attr(&#x27;id&#x27;);
-      stopMedia(&#x27;#&#x27; + audio_id + &#x27; audio&#x27;);
-      $(&#x27;#&#x27; + audio_id + &#x27; ._expanded&#x27;).hide();
-    }
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._close_audio_gallery_in_audio_editor&#x27;, function() {
-    closeGalleryInAudioEditor();
-    var expanded_audio = $(&#x27;._audio_expanded_in_gallery&#x27;);
-    if(expanded_audio.length &gt; 0) {
-      expanded_audio.removeClass(&#x27;_audio_expanded_in_gallery&#x27;);
-      var audio_id = expanded_audio.attr(&#x27;id&#x27;);
-      stopMedia(&#x27;#&#x27; + audio_id + &#x27; audio&#x27;);
-      $(&#x27;#&#x27; + audio_id + &#x27; ._expanded&#x27;).hide();
-    }
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &quot;._close_on_click_out&quot;, function(){
-    $(&quot;.ui-dialog-content:visible&quot;).each(function(){
-      closePopUp($(this).attr(&quot;id&quot;));
-    });
-  });
-  
 }
 
+
+
+
+
 &#x2F;**
-* Initialize image gallery in lesson editor.
-* Init jScrollPane and get images block.
-* 
-* @method initializeImageGalleryInLessonEditor
-* @for initializeImageGalleryInLessonEditor
-*&#x2F;
-function initializeImageGalleryInLessonEditor() {
-  $(&#x27;#lesson_editor_image_gallery_container #image_gallery_content &gt; div&#x27;).jScrollPane({
+Initialize audio gallery in audio editor. Init jScrollPane and get audios block.
+@method initializeAudioGalleryInAudioEditor
+@for GalleriesInitializers
+**&#x2F;
+function initializeAudioGalleryInAudioEditor() {
+  $(&#x27;#audio_editor_gallery_container #audio_gallery_content &gt; div&#x27;).jScrollPane({
     autoReinitialise: true
   });
-  $(&#x27;#lesson_editor_image_gallery_container .scroll-pane&#x27;).bind(&#x27;jsp-arrow-change&#x27;, function(event, isAtTop, isAtBottom, isAtLeft, isAtRight) {
-    var page = $(&#x27;#lesson_editor_image_gallery_container&#x27;).data(&#x27;page&#x27;);
-    var tot_pages = $(&#x27;#lesson_editor_image_gallery_container&#x27;).data(&#x27;tot-pages&#x27;);
+  $(&#x27;#audio_editor_gallery_container .scroll-pane&#x27;).bind(&#x27;jsp-arrow-change&#x27;, function(event, isAtTop, isAtBottom, isAtLeft, isAtRight) {
+    var page = $(&#x27;#audio_editor_gallery_container&#x27;).data(&#x27;page&#x27;);
+    var tot_pages = $(&#x27;#audio_editor_gallery_container&#x27;).data(&#x27;tot-pages&#x27;);
     if(isAtBottom &amp;&amp; (page &lt; tot_pages)) {
-      $.get(&#x27;&#x2F;lessons&#x2F;galleries&#x2F;image&#x2F;new_block?page=&#x27; + (page + 1));
+      $.get(&#x27;&#x2F;audios&#x2F;galleries&#x2F;audio&#x2F;new_block?page=&#x27; + (page + 1));
     }
   });
 }
 
 &#x2F;**
-* Initialize audio gallery in lesson editor.
-* Init jScrollPane and get audios block.
-* 
-* @method initializeAudioGalleryInLessonEditor
-* @for initializeAudioGalleryInLessonEditor
-*&#x2F;
+Initialize audio gallery in lesson editor. Init jScrollPane and get audios block.
+@method initializeAudioGalleryInLessonEditor
+@for GalleriesInitializers
+**&#x2F;
 function initializeAudioGalleryInLessonEditor() {
   $(&#x27;#lesson_editor_audio_gallery_container #audio_gallery_content &gt; div&#x27;).jScrollPane({
     autoReinitialise: true
@@ -526,32 +558,64 @@ function initializeAudioGalleryInLessonEditor() {
 }
 
 &#x2F;**
-* Initialize video gallery in lesson editor.
-* Init jScrollPane and get videos block.
-* 
-* @method initializeVideoGalleryInLessonEditor
-* @for initializeVideoGalleryInLessonEditor
-*&#x2F;
-function initializeVideoGalleryInLessonEditor() {
-  $(&#x27;#lesson_editor_video_gallery_container #video_gallery_content &gt; div&#x27;).jScrollPane({
+Initialize audio gallery in video editor. Init jScrollPane and audios block.
+@method initializeImageGalleryInLessonEditor
+@for GalleriesInitializers
+**&#x2F;
+function initializeAudioGalleryInVideoEditor() {
+  $(&#x27;#video_editor_audio_gallery_container #audio_gallery_content &gt; div&#x27;).jScrollPane({
     autoReinitialise: true
   });
-  $(&#x27;#lesson_editor_video_gallery_container .scroll-pane&#x27;).bind(&#x27;jsp-arrow-change&#x27;, function(event, isAtTop, isAtBottom, isAtLeft, isAtRight) {
-    var page = $(&#x27;#lesson_editor_video_gallery_container&#x27;).data(&#x27;page&#x27;);
-    var tot_pages = $(&#x27;#lesson_editor_video_gallery_container&#x27;).data(&#x27;tot-pages&#x27;);
+  $(&#x27;#video_editor_audio_gallery_container .scroll-pane&#x27;).bind(&#x27;jsp-arrow-change&#x27;, function(event, isAtTop, isAtBottom, isAtLeft, isAtRight) {
+    var page = $(&#x27;#video_editor_audio_gallery_container&#x27;).data(&#x27;page&#x27;);
+    var tot_pages = $(&#x27;#video_editor_audio_gallery_container&#x27;).data(&#x27;tot-pages&#x27;);
     if(isAtBottom &amp;&amp; (page &lt; tot_pages)) {
-      $.get(&#x27;&#x2F;lessons&#x2F;galleries&#x2F;video&#x2F;new_block?page=&#x27; + (page + 1));
+      $.get(&#x27;&#x2F;videos&#x2F;galleries&#x2F;audio&#x2F;new_block?page=&#x27; + (page + 1));
     }
   });
 }
 
 &#x2F;**
-* Initialize all media mixed gallery in video editor.
-* Init jScrollPane and get mixed media block.
-* 
-* @method initializeImageGalleryInLessonEditor
-* @for initializeImageGalleryInLessonEditor
-*&#x2F;
+Initialize image gallery in image editor. Init jScrollPane and get images block.
+@method initializeImageGalleryInImageEditor
+@for GalleriesInitializers
+**&#x2F;
+function initializeImageGalleryInImageEditor() {
+  $(&#x27;#image_gallery_for_image_editor #image_gallery_content &gt; div&#x27;).jScrollPane({
+    autoReinitialise: true
+  });
+  $(&#x27;#image_gallery_for_image_editor .scroll-pane&#x27;).bind(&#x27;jsp-arrow-change&#x27;, function(event, isAtTop, isAtBottom, isAtLeft, isAtRight) {
+    var page = $(&#x27;#image_gallery_for_image_editor&#x27;).data(&#x27;page&#x27;);
+    var tot_pages = $(&#x27;#image_gallery_for_image_editor&#x27;).data(&#x27;tot-pages&#x27;);
+    if(isAtBottom &amp;&amp; (page &lt; tot_pages)) {
+      $.get(&#x27;&#x2F;images&#x2F;galleries&#x2F;image&#x2F;new_block?page=&#x27; + (page + 1));
+    }
+  });
+}
+
+&#x2F;**
+Initialize image gallery in lesson editor. Init jScrollPane and get images block.
+@method initializeImageGalleryInLessonEditor
+@for GalleriesInitializers
+**&#x2F;
+function initializeImageGalleryInLessonEditor() {
+  $(&#x27;#lesson_editor_image_gallery_container #image_gallery_content &gt; div&#x27;).jScrollPane({
+    autoReinitialise: true
+  });
+  $(&#x27;#lesson_editor_image_gallery_container .scroll-pane&#x27;).bind(&#x27;jsp-arrow-change&#x27;, function(event, isAtTop, isAtBottom, isAtLeft, isAtRight) {
+    var page = $(&#x27;#lesson_editor_image_gallery_container&#x27;).data(&#x27;page&#x27;);
+    var tot_pages = $(&#x27;#lesson_editor_image_gallery_container&#x27;).data(&#x27;tot-pages&#x27;);
+    if(isAtBottom &amp;&amp; (page &lt; tot_pages)) {
+      $.get(&#x27;&#x2F;lessons&#x2F;galleries&#x2F;image&#x2F;new_block?page=&#x27; + (page + 1));
+    }
+  });
+}
+
+&#x2F;**
+Initialize all media mixed gallery in video editor. Init jScrollPane and get mixed media block.
+@method initializeImageGalleryInLessonEditor
+@for GalleriesInitializers
+**&#x2F;
 function initializeMixedGalleryInVideoEditor() {
   $(&#x27;#video_editor_mixed_gallery_container #video_gallery_content &gt; div&#x27;).jScrollPane({
     autoReinitialise: true
@@ -576,79 +640,21 @@ function initializeMixedGalleryInVideoEditor() {
 }
 
 &#x2F;**
-* Initialize audio gallery in video editor.
-* Init jScrollPane and audios block.
-* 
-* @method initializeImageGalleryInLessonEditor
-* @for initializeImageGalleryInLessonEditor
-*&#x2F;
-function initializeAudioGalleryInVideoEditor() {
-  $(&#x27;#video_editor_audio_gallery_container #audio_gallery_content &gt; div&#x27;).jScrollPane({
+Initialize video gallery in lesson editor. Init jScrollPane and get videos block.
+@method initializeVideoGalleryInLessonEditor
+@for GalleriesInitializers
+**&#x2F;
+function initializeVideoGalleryInLessonEditor() {
+  $(&#x27;#lesson_editor_video_gallery_container #video_gallery_content &gt; div&#x27;).jScrollPane({
     autoReinitialise: true
   });
-  $(&#x27;#video_editor_audio_gallery_container .scroll-pane&#x27;).bind(&#x27;jsp-arrow-change&#x27;, function(event, isAtTop, isAtBottom, isAtLeft, isAtRight) {
-    var page = $(&#x27;#video_editor_audio_gallery_container&#x27;).data(&#x27;page&#x27;);
-    var tot_pages = $(&#x27;#video_editor_audio_gallery_container&#x27;).data(&#x27;tot-pages&#x27;);
+  $(&#x27;#lesson_editor_video_gallery_container .scroll-pane&#x27;).bind(&#x27;jsp-arrow-change&#x27;, function(event, isAtTop, isAtBottom, isAtLeft, isAtRight) {
+    var page = $(&#x27;#lesson_editor_video_gallery_container&#x27;).data(&#x27;page&#x27;);
+    var tot_pages = $(&#x27;#lesson_editor_video_gallery_container&#x27;).data(&#x27;tot-pages&#x27;);
     if(isAtBottom &amp;&amp; (page &lt; tot_pages)) {
-      $.get(&#x27;&#x2F;videos&#x2F;galleries&#x2F;audio&#x2F;new_block?page=&#x27; + (page + 1));
+      $.get(&#x27;&#x2F;lessons&#x2F;galleries&#x2F;video&#x2F;new_block?page=&#x27; + (page + 1));
     }
   });
-}
-
-&#x2F;**
-* Initialize audio gallery in audio editor.
-* Init jScrollPane and get audios block.
-* 
-* @method initializeAudioGalleryInAudioEditor
-* @for initializeAudioGalleryInAudioEditor
-*&#x2F;
-function initializeAudioGalleryInAudioEditor() {
-  $(&#x27;#audio_editor_gallery_container #audio_gallery_content &gt; div&#x27;).jScrollPane({
-    autoReinitialise: true
-  });
-  $(&#x27;#audio_editor_gallery_container .scroll-pane&#x27;).bind(&#x27;jsp-arrow-change&#x27;, function(event, isAtTop, isAtBottom, isAtLeft, isAtRight) {
-    var page = $(&#x27;#audio_editor_gallery_container&#x27;).data(&#x27;page&#x27;);
-    var tot_pages = $(&#x27;#audio_editor_gallery_container&#x27;).data(&#x27;tot-pages&#x27;);
-    if(isAtBottom &amp;&amp; (page &lt; tot_pages)) {
-      $.get(&#x27;&#x2F;audios&#x2F;galleries&#x2F;audio&#x2F;new_block?page=&#x27; + (page + 1));
-    }
-  });
-}
-
-&#x2F;**
-* Initialize image gallery in image editor.
-* Init jScrollPane and get images block.
-* 
-* @method initializeImageGalleryInImageEditor
-* @for initializeImageGalleryInImageEditor
-*&#x2F;
-function initializeImageGalleryInImageEditor() {
-  $(&#x27;#image_gallery_for_image_editor #image_gallery_content &gt; div&#x27;).jScrollPane({
-    autoReinitialise: true
-  });
-  $(&#x27;#image_gallery_for_image_editor .scroll-pane&#x27;).bind(&#x27;jsp-arrow-change&#x27;, function(event, isAtTop, isAtBottom, isAtLeft, isAtRight) {
-    var page = $(&#x27;#image_gallery_for_image_editor&#x27;).data(&#x27;page&#x27;);
-    var tot_pages = $(&#x27;#image_gallery_for_image_editor&#x27;).data(&#x27;tot-pages&#x27;);
-    if(isAtBottom &amp;&amp; (page &lt; tot_pages)) {
-      $.get(&#x27;&#x2F;images&#x2F;galleries&#x2F;image&#x2F;new_block?page=&#x27; + (page + 1));
-    }
-  });
-}
-
-&#x2F;**
-* Scale image size form image gallery popup
-* 
-* @method resizedWidthForImageGallery
-* @for resizedWidthForImageGallery
-* @param width {Number} image original width
-* @param height {Number} image original height
-*&#x2F;
-function resizedWidthForImageGallery(width, height) {
-  if(height &gt; width) {
-    return (420 * width &#x2F; height) + 20;
-  } else {
-    return 440;
-  }
 }
 
     </pre>
