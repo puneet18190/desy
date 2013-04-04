@@ -4,9 +4,9 @@ Functions used in the Administration section: only for this section, it's genera
 **/
 
 /**
-Initializes 
+Initializes the browser classes in the tag html. Same functionality as {{#crossLink "BrowsersDocumentReady/browsersDocumentReady:method"}}{{/crossLink}}.
 @method adminBrowsersDocumentReady
-@for DocumentReady
+@for AdminDocumentReady
 **/
 function adminBrowsersDocumentReady() {
   if(!$.browser.msie) {
@@ -17,9 +17,9 @@ function adminBrowsersDocumentReady() {
 }
 
 /**
-Open a collapsed table row with extra content, tipically clicking on previous collapsable table row.
+Initializes the effects of collapse and change date.
 @method adminEffectsDocumentReady
-@for DocumentReady
+@for AdminDocumentReady
 **/
 function adminEffectsDocumentReady() {
   
@@ -82,9 +82,9 @@ function adminEffectsDocumentReady() {
 }
 
 /**
-Open a collapsed table row with extra content, tipically clicking on previous collapsable table row.
+Initializes the locations filling. See similar {{#crossLink "LocationsDocumentReady/locationsDocumentReady:method"}}{{/crossLink}}.
 @method adminLocationsDocumentReady
-@for DocumentReady
+@for AdminDocumentReady
 **/
 function adminLocationsDocumentReady() {
   $('._select_locations_admin').on('change', function() {
@@ -102,9 +102,9 @@ function adminLocationsDocumentReady() {
 }
 
 /**
-Open a collapsed table row with extra content, tipically clicking on previous collapsable table row.
+Initializes actions for less important tables, such as Tag, Subject, SchoolLevel 
 @method adminMiscellaneaDocumentReady
-@for DocumentReady
+@for AdminDocumentReady
 **/
 function adminMiscellaneaDocumentReady() {
   
@@ -140,9 +140,9 @@ function adminMiscellaneaDocumentReady() {
 }
 
 /**
-Open a collapsed table row with extra content, tipically clicking on previous collapsable table row.
+Initializes effects for MediaElement.
 @method adminMediaElementsDocumentReady
-@for DocumentReady
+@for AdminDocumentReady
 **/
 function adminMediaElementsDocumentReady() {
   
@@ -215,9 +215,9 @@ function adminMediaElementsDocumentReady() {
 }
 
 /**
-Open a collapsed table row with extra content, tipically clicking on previous collapsable table row.
+Initializes effects for User.
 @method adminUsersDocumentReady
-@for DocumentReady
+@for AdminDocumentReady
 **/
 function adminUsersDocumentReady() {
   $('body').on('click', '._active_status', function(e) {
@@ -235,9 +235,9 @@ function adminUsersDocumentReady() {
 }
 
 /**
-Open a collapsed table row with extra content, tipically clicking on previous collapsable table row.
+Initializes effects for the administration search engin.
 @method adminSearchDocumentReady
-@for DocumentReady
+@for AdminDocumentReady
 **/
 function adminSearchDocumentReady() {
   
@@ -301,9 +301,9 @@ function adminSearchDocumentReady() {
 }
 
 /**
-Open a collapsed table row with extra content, tipically clicking on previous collapsable table row.
+Initializes effects for sorting in administration search engine
 @method adminSortingDocumentReady
-@for DocumentReady
+@for AdminDocumentReady
 **/
 function adminSortingDocumentReady() {
   
@@ -341,8 +341,7 @@ function adminSortingDocumentReady() {
 Open a collapsed table row with extra content, tipically clicking on previous collapsable table row.
 @method openAndLoadNextTr
 @for Collapsed
-@param prevTr {Object} bla bla bla bla eccoci qua
-@param hdasgf {Object} bla bla bla bla eccoci dgdsgdsg
+@param prevTr {Object} the previous element in the table
 **/
 function openAndLoadNextTr(prevTr) {
   var next_tr = prevTr.next('tr.collapsed');

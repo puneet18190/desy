@@ -1,3 +1,8 @@
+/**
+bla bla bla
+@for BrowsersDocumentReady
+@method browsersDocumentReady
+**/
 function browsersDocumentReady() {
   (function(){
     var name = $.grep(_.keys($.browser), function(el, i) {

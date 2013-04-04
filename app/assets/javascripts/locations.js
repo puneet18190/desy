@@ -1,3 +1,8 @@
+/**
+ba bla bla bla
+@for LocationsDocumentReady
+@method locationsDocumentReady
+**/
 function locationsDocumentReady() {
   
   $('._location_select_box').each(function() {
