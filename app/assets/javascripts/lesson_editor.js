@@ -3,62 +3,85 @@ Lesson editor functions, it handles visual effects, CRUD actions on single slide
 @module lesson-editor
 **/
 
+
+
+
+
+
+
+
+
+
+
+
+// document ready
+
 function lessonEditorDocumentReady() {
-  
+  lessonEditorDocumentReadyGeneral();
+  lessonEditorDocumentReadyJqueryAnimations();
+  lessonEditorDocumentReadyResize();
+  lessonEditorDocumentReadySlidesNavigator();
+  lessonEditorDocumentReadySlideButtons();
+  lessonEditorDocumentReadyNewSlideChoice();
+  lessonEditorDocumentReadyGalleries();
+  lessonEditorDocumentReadyAddMediaElement();
+  lessonEditorDocumentReadyReplaceMediaElement();
+  lessonEditorDocumentReadyTextFields();
+}
+
+function lessonEditorDocumentReadyGeneral() {
   $('html.lesson-editor-layout ul#slides').css('margin-top', ((($(window).height() - 590) / 2) - 40) + 'px');
   $('html.lesson-editor-layout ul#slides.new').css('margin-top', ((($(window).height() - 590) / 2)) + 'px');
   $('.slide-content.cover .title').css('margin-left', 'auto');
   $('html.lesson-editor-layout ul#slides input').attr('autocomplete', 'off');
-  
+}
+
+function lessonEditorDocumentReadyJqueryAnimations() {
   $('._image_container_in_lesson_editor').each(function() {
     makeDraggable($(this).attr('id'));
   });
-  
   initializeSortableNavs();
-  
   $('#nav_list_menu').jScrollPane({
     autoReinitialise: false
   });
-  
   $('#lesson_subject').selectbox();
-  
   initLessonEditorPositions();
-  
+}
+
+function lessonEditorDocumentReadyResize() {
   $(window).resize(function() {
-    $("html.lesson-editor-layout ul#slides").css("margin-top", ((($(window).height() - 590)/2)-40) + "px");
-    $("html.lesson-editor-layout ul#slides.new").css("margin-top", ((($(window).height() - 590)/2)) + "px");
+    $('html.lesson-editor-layout ul#slides').css('margin-top', ((($(window).height() - 590) / 2) - 40) + 'px');
+    $('html.lesson-editor-layout ul#slides.new').css('margin-top', ((($(window).height() - 590) / 2)) + 'px');
     if(WW > 1000) {
-      $("ul#slides li:first").css("margin-left", (($(window).width() - 900) / 2) + "px")
-      $("ul#slides.new li:first").css("margin-left", (($(window).width() - 900) / 2) + "px");
+      $('ul#slides li:first').css('margin-left', (($(window).width() - 900) / 2) + 'px')
+      $('ul#slides.new li:first').css('margin-left', (($(window).width() - 900) / 2) + 'px');
     }
-    $("#footer").css("top", ($(window).height() - 40) + "px").css("width", ($(window).width() - 24) + "px");
+    $('#footer').css('top', ($(window).height() - 40) + 'px').css('width', ($(window).width() - 24) + 'px');
   });
-  
+}
+
+function lessonEditorDocumentReadySlidesNavigator() {
   $('body').on('mouseover', '#slide-numbers li.navNumbers:not(._add_new_slide_options_in_last_position)', function(e) {
     var tip = $(this);
     var this_tooltip = tip.children('.slide-tooltip');
-    if(e.pageX < ($(window).width()/2)){
-      this_tooltip.show();  
-    }else{
-      this_tooltip.addClass("slide-tooltip-to-left");
+    if(e.pageX < ($(window).width() / 2)) {
+      this_tooltip.show();
+    } else {
+      this_tooltip.addClass('slide-tooltip-to-left');
       tip.children('.slide-tooltip-to-left').show();
     }
-    
   });
-  
   $('body').on('mouseout', '#slide-numbers li.navNumbers:not(._add_new_slide_options_in_last_position)', function(e) {
     var this_tooltip =$(this).children('.slide-tooltip');
-    this_tooltip.removeClass("slide-tooltip-to-left");
+    this_tooltip.removeClass('slide-tooltip-to-left');
     this_tooltip.hide();
   });
-  
   $('body').on('click', '._slide_nav:not(._lesson_editor_current_slide_nav)', function(e) {
     e.preventDefault();
     stopMediaInCurrentSlide();
     saveCurrentSlide();
     slideTo($(this).data('slide-id'));
   });
-  
   $('body').on('click', '._not_current_slide', function(e) {
     e.preventDefault();
     saveCurrentSlide();
@@ -66,15 +89,27 @@ function lessonEditorDocumentReady() {
     slideTo($(this).parent().data('slide-id'));
     scrollPaneUpdate(this);
   });
-  
+  $('body').on('click', '._add_new_slide_options_in_last_position', function() {
+    if(!$(this).hasClass('disabled')) {
+      saveCurrentSlide();
+      var last_slide_id = $("#slide-numbers li.navNumbers:last").find('a').data('slide-id');
+      $('#nav_list_menu').data('jsp').scrollToPercentX(100, true);
+      if($('#slide_in_lesson_editor_' + last_slide_id).hasClass('_lesson_editor_current_slide')) {
+        showNewSlideOptions();
+      } else {
+        slideTo('' + last_slide_id, showNewSlideOptions);
+      }
+    }
+  });
+}
+
+function lessonEditorDocumentReadySlideButtons() {
   $('body').on('click', '._hide_add_new_slide_options', function() {
     hideNewSlideChoice();
   });
-  
   $('body').on('click', '._save_slide', function(e) {
     saveCurrentSlide();
   });
-  
   $('body').on('click', '._save_slide_and_exit', function() {
     tinyMCE.triggerSave();
     var temporary = new Array();
@@ -89,7 +124,7 @@ function lessonEditorDocumentReady() {
     $.ajax({
       type: 'post',
       url: $('._lesson_editor_current_slide form').attr('action') + '_and_exit',
-      timeout:5000,
+      timeout: 5000,
       data: $('._lesson_editor_current_slide form').serialize()
     });
     temp_counter = 0;
@@ -100,7 +135,6 @@ function lessonEditorDocumentReady() {
       }
     });
   });
-  
   $('body').on('click', '._save_slide_and_edit', function() {
     tinyMCE.triggerSave();
     var temporary = new Array();
@@ -115,7 +149,7 @@ function lessonEditorDocumentReady() {
     $.ajax({
       type: 'post',
       url: $('._lesson_editor_current_slide form').attr('action') + '_and_edit',
-      timeout:5000,
+      timeout: 5000,
       data: $('._lesson_editor_current_slide form').serialize()
     });
     temp_counter = 0;
@@ -126,27 +160,24 @@ function lessonEditorDocumentReady() {
       }
     });
   });
-  
   $('body').on('click', '._add_new_slide_options', function() {
     if(!$(this).hasClass('disabled')) {
       saveCurrentSlide();
       showNewSlideOptions();
     }
   });
-  
-  $('body').on('click', '._add_new_slide_options_in_last_position', function() {
-    if(!$(this).hasClass('disabled')) {
-      saveCurrentSlide();
-      var last_slide_id = $("#slide-numbers li.navNumbers:last").find('a').data('slide-id');
-      $('#nav_list_menu').data('jsp').scrollToPercentX(100, true);
-      if($("#slide_in_lesson_editor_"+last_slide_id).hasClass('_lesson_editor_current_slide')) {
-        showNewSlideOptions();
-      } else {
-        slideTo('' + last_slide_id, showNewSlideOptions);
-      }
-    }
+  $('body').on('click', '._delete_slide', function() {
+    stopMediaInCurrentSlide();
+    var slide = $('li._lesson_editor_current_slide');
+    slide.prepend('<layer class="_not_current_slide_disabled"></layer>');
+    $.ajax({
+      type: 'post',
+      url: '/lessons/' + $('#info_container').data('lesson-id') + '/slides/' + slide.data('slide-id') + '/delete'
+    });
   });
-  
+}
+
+function lessonEditorDocumentReadyNewSlideChoice() {
   $('body').on('click', '._add_new_slide', function() {
     hideNewSlideChoice();
     var slide = $('li._lesson_editor_current_slide');
@@ -159,41 +190,28 @@ function lessonEditorDocumentReady() {
       url: '/lessons/' + lesson_id + '/slides/' + slide_id + '/kind/' + kind + '/create/'
     });
   });
-  
-  $('body').on('click', '._delete_slide', function() {
-    stopMediaInCurrentSlide();
-    var slide = $('li._lesson_editor_current_slide');
-    slide.prepend('<layer class="_not_current_slide_disabled"></layer>');
-    $.ajax({
-      type: 'post',
-      url: '/lessons/' + $('#info_container').data('lesson-id') + '/slides/' + slide.data('slide-id') + '/delete'
-    });
-  });
-  
+}
+
+function lessonEditorDocumentReadyGalleries() {
   $('body').on('click', '._show_image_gallery_in_lesson_editor', function() {
     showGalleryInLessonEditor(this, 'image');
   });
-  
   $('body').on('click', '._show_audio_gallery_in_lesson_editor', function() {
     stopMediaInCurrentSlide();
     showGalleryInLessonEditor(this, 'audio');
   });
-  
   $('body').on('click', '._show_video_gallery_in_lesson_editor', function() {
     stopMediaInCurrentSlide();
     showGalleryInLessonEditor(this, 'video');
   });
-  
   $('body').on('click', '._close_image_gallery_in_lesson_editor', function(e) {
     e.preventDefault();
     removeGalleryInLessonEditor('image');
   });
-  
   $('body').on('click', '._close_video_gallery_in_lesson_editor', function(e) {
     e.preventDefault();
     removeGalleryInLessonEditor('video');
   });
-  
   $('body').on('click', '._close_audio_gallery_in_lesson_editor', function(e) {
     e.preventDefault();
     var current_playing_audio = $('._audio_expanded_in_gallery');
@@ -204,7 +222,9 @@ function lessonEditorDocumentReady() {
     }
     removeGalleryInLessonEditor('audio');
   });
-  
+}
+
+function lessonEditorDocumentReadyAddMediaElement() {
   $('body').on('click', '._add_image_to_slide', function(e) {
     e.preventDefault();
     var image_id = $(this).data('image-id');
@@ -240,15 +260,12 @@ function lessonEditorDocumentReady() {
     full_place.addClass(new_mask).removeClass(old_mask);
     var img_tag = $('#' + place_id + ' ._full_image_in_slide img');
     img_tag.attr('src', image_url);
-    //reset position on image change
-    img_tag.parent().css("left",0);
-    img_tag.parent().css("top",0);
-
+    img_tag.parent().css('left', 0);
+    img_tag.parent().css('top', 0);
     img_tag.removeAttr(old_orientation);
     img_tag.attr(orientation, orientation_val);
     makeDraggable(place_id);
   });
-  
   $('body').on('click', '._add_video_to_slide', function(e) {
     e.preventDefault();
     var video_id = $(this).data('video-id');
@@ -281,7 +298,6 @@ function lessonEditorDocumentReady() {
     }
     $('#' + place_id + ' ._rolloverable').data('rolloverable', true);
   });
-  
   $('body').on('click', '._add_audio_to_slide', function(e) {
     e.preventDefault();
     var audio_id = $(this).data('audio-id');
@@ -317,7 +333,9 @@ function lessonEditorDocumentReady() {
       initializeMedia(audio_player.attr('id'), 'audio');
     }
   });
-  
+}
+
+function lessonEditorDocumentReadyReplaceMediaElement() {
   $('body').on('mouseover', '._full_image_in_slide, ._full_video_in_slide', function() {
     var obj = $('#' + $(this).parent().attr('id') + ' ._rolloverable');
     var slide_id = obj.data('slide-id');
@@ -326,7 +344,6 @@ function lessonEditorDocumentReady() {
       $('#media_element_' + position + '_in_slide_' + slide_id + ' ._lesson_editor_rollover_content').show();
     }
   });
-  
   $('body').on('mouseout', '._full_image_in_slide, ._full_video_in_slide', function() {
     var obj = $('#' + $(this).parent().attr('id') + ' ._rolloverable');
     var slide_id = obj.data('slide-id');
@@ -335,43 +352,64 @@ function lessonEditorDocumentReady() {
       $('#media_element_' + position + '_in_slide_' + slide_id + ' ._lesson_editor_rollover_content').hide();
     }
   });
-  
+}
+
+function lessonEditorDocumentReadyTextFields() {
   $('body').on('focus', '._lesson_editor_placeholder', function() {
     if($(this).data('placeholder')) {
       $(this).val('');
       $(this).data('placeholder', false);
     }
   });
-  
   $('body').on('focus', '#slides._new #title', function() {
     if($('#slides._new #title_placeholder').val() == '') {
       $(this).val('');
       $('#slides._new #title_placeholder').attr('value', '0');
     }
   });
-  
   $('body').on('focus', '#slides._new #description', function() {
     if($('#slides._new #description_placeholder').val() == '') {
       $(this).val('');
       $('#slides._new #description_placeholder').attr('value', '0');
     }
   });
-  
   $('body').on('focus', '#slides._update #title', function() {
     if($('#slides._update #title_placeholder').val() == '') {
       $(this).val('');
       $('#slides._update #title_placeholder').attr('value', '0');
     }
   });
-  
   $('body').on('focus', '#slides._update #description', function() {
     if($('#slides._update #description_placeholder').val() == '') {
       $(this).val('');
       $('#slides._update #description_placeholder').attr('value', '0');
     }
   });
-  
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /**
 * Update top scrollPane when moving to another slide
@@ -382,17 +420,17 @@ function lessonEditorDocumentReady() {
 * @example
       scrollPaneUpdate('._not_current_slide');
 */
-function scrollPaneUpdate(trigger_element){
+function scrollPaneUpdate(trigger_element) {
   //TODO Control if moving right or left and when to scroll
   // better activate it on last visible in focus
   // trigger element is _not_current_slide
   var not_current = $(trigger_element);
-  if($(".slides.active").data("position") < not_current.parent("li").data("position")){
+  if($('.slides.active').data('position') < not_current.parent('li').data('position')) {
     $('#nav_list_menu').data('jsp').scrollByX(30);
-  }else{
-	  $('#nav_list_menu').data('jsp').scrollByX(-30);
+  } else {
+    $('#nav_list_menu').data('jsp').scrollByX(-30);
   }
-	return false;
+  return false;
 }
 
 /**
@@ -402,7 +440,7 @@ function scrollPaneUpdate(trigger_element){
 * @for removeGalleryInLessonEditor
 * @param sty_type {String} gallery type
 * @example 
-      `removeGalleryInLessonEditor('audio');`
+      `removeGalleryInLessonEditor('audio');
 */
 function removeGalleryInLessonEditor(sti_type) {
   $('#lesson_editor_' + sti_type + '_gallery_container').hide();
@@ -860,20 +898,25 @@ function reInitializeSlidePositionsInLessonEditor() {
 * @param tiny_id {Number} tinyMCE textarea id
 */
 function initTinymce(tiny_id) {
+  var plugins = 'pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,';
+  plugins += 'insertdatetime,preview,media,searchreplace,print,paste,directionality,fullscreen,';
+  plugins += 'noneditable,visualchars,nonbreaking,xhtmlxtras,template,tiny_mce_wiris';
+  var buttons = 'fontsizeselect,forecolor,justifyleft,justifycenter,justifyright,justifyfull,';
+  buttons += 'bold,italic,underline,numlist,bullist,link,unlink,tiny_mce_wiris_formulaEditor';
   tinyMCE.init({
     mode: 'exact',
     elements: tiny_id,
-    theme: "advanced",
-    editor_selector: "tinymce",
-    skin: "desy",
-    content_css: "/assets/tiny_mce_desy.css",
-    plugins: "pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,insertdatetime,preview,media,searchreplace,print,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template,tiny_mce_wiris",
-    theme_advanced_buttons1: "fontsizeselect,forecolor,justifyleft,justifycenter,justifyright,justifyfull,bold,italic,underline,numlist,bullist,link,unlink,tiny_mce_wiris_formulaEditor",
-    theme_advanced_toolbar_location: "external",
-    theme_advanced_toolbar_align: "left",
+    theme: 'advanced',
+    editor_selector: 'tinymce',
+    skin: 'desy',
+    content_css: '/assets/tiny_mce_desy.css',
+    plugins: plugins,
+    theme_advanced_buttons1: buttons,
+    theme_advanced_toolbar_location: 'external',
+    theme_advanced_toolbar_align: 'left',
     theme_advanced_statusbar_location: false,
     theme_advanced_resizing: true,
-    theme_advanced_font_sizes: "1em=.size1,2em=.size2,3em=.size3,4em=.size4,5em=.size5,6em=.size6,7em=.size7",
+    theme_advanced_font_sizes: '1em=.size1,2em=.size2,3em=.size3,4em=.size4,5em=.size5,6em=.size6,7em=.size7',
     setup: function(ed) {
       ed.onKeyUp.add(function(ed, e) {
         tinyMceCallbacks(ed,tiny_id);
