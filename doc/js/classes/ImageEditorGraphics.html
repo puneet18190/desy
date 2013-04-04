@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>resetImageEditorCrop - DESY</title>
+    <title>ImageEditorGraphics - DESY</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.8.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -111,8 +111,6 @@
             
                 <li><a href="..&#x2F;classes/disableTagsInputTooHigh.html">disableTagsInputTooHigh</a></li>
             
-                <li><a href="..&#x2F;classes/enlightTextarea.html">enlightTextarea</a></li>
-            
                 <li><a href="..&#x2F;classes/GalleriesAccessories.html">GalleriesAccessories</a></li>
             
                 <li><a href="..&#x2F;classes/GalleriesDocumentReady.html">GalleriesDocumentReady</a></li>
@@ -127,13 +125,9 @@
             
                 <li><a href="..&#x2F;classes/GeneralUrls.html">GeneralUrls</a></li>
             
-                <li><a href="..&#x2F;classes/getDragPosition.html">getDragPosition</a></li>
-            
                 <li><a href="..&#x2F;classes/getLessonViewerCurrentSlide.html">getLessonViewerCurrentSlide</a></li>
             
                 <li><a href="..&#x2F;classes/getMaximumZIndex.html">getMaximumZIndex</a></li>
-            
-                <li><a href="..&#x2F;classes/getRelativePositionInImageEditor.html">getRelativePositionInImageEditor</a></li>
             
                 <li><a href="..&#x2F;classes/getUnivoqueClassForTag.html">getUnivoqueClassForTag</a></li>
             
@@ -156,6 +150,14 @@
                 <li><a href="..&#x2F;classes/hideNotificationsButton.html">hideNotificationsButton</a></li>
             
                 <li><a href="..&#x2F;classes/hideNotificationsFumetto.html">hideNotificationsFumetto</a></li>
+            
+                <li><a href="..&#x2F;classes/ImageEditorDocumentReady.html">ImageEditorDocumentReady</a></li>
+            
+                <li><a href="..&#x2F;classes/ImageEditorGraphics.html">ImageEditorGraphics</a></li>
+            
+                <li><a href="..&#x2F;classes/ImageEditorImageScale.html">ImageEditorImageScale</a></li>
+            
+                <li><a href="..&#x2F;classes/ImageEditorTexts.html">ImageEditorTexts</a></li>
             
                 <li><a href="..&#x2F;classes/initializeActionOfMediaTimeUpdater.html">initializeActionOfMediaTimeUpdater</a></li>
             
@@ -213,8 +215,6 @@
             
                 <li><a href="..&#x2F;classes/makeDraggable.html">makeDraggable</a></li>
             
-                <li><a href="..&#x2F;classes/offlightTextarea.html">offlightTextarea</a></li>
-            
                 <li><a href="..&#x2F;classes/openPlaylistMenuInLessonViewer.html">openPlaylistMenuInLessonViewer</a></li>
             
                 <li><a href="..&#x2F;classes/reInitializeSlidePositionsInLessonEditor.html">reInitializeSlidePositionsInLessonEditor</a></li>
@@ -222,12 +222,6 @@
                 <li><a href="..&#x2F;classes/removeFromTagsValue.html">removeFromTagsValue</a></li>
             
                 <li><a href="..&#x2F;classes/removeGalleryInLessonEditor.html">removeGalleryInLessonEditor</a></li>
-            
-                <li><a href="..&#x2F;classes/resetImageEditorCrop.html">resetImageEditorCrop</a></li>
-            
-                <li><a href="..&#x2F;classes/resetImageEditorOperationsChoice.html">resetImageEditorOperationsChoice</a></li>
-            
-                <li><a href="..&#x2F;classes/resetImageEditorTexts.html">resetImageEditorTexts</a></li>
             
                 <li><a href="..&#x2F;classes/resetMediaElementChangeInfo.html">resetMediaElementChangeInfo</a></li>
             
@@ -286,8 +280,6 @@
                 <li><a href="..&#x2F;classes/submitCurrentSlideForm.html">submitCurrentSlideForm</a></li>
             
                 <li><a href="..&#x2F;classes/switchLessonInPlaylistMenuLessonViewer.html">switchLessonInPlaylistMenuLessonViewer</a></li>
-            
-                <li><a href="..&#x2F;classes/textAreaImageEditorContent.html">textAreaImageEditorContent</a></li>
             
                 <li><a href="..&#x2F;classes/tinyMceCallbacks.html">tinyMceCallbacks</a></li>
             
@@ -384,7 +376,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>resetImageEditorCrop Class</h1>
+                        <h1>ImageEditorGraphics Class</h1>
 <div class="box meta">
     
 
@@ -438,6 +430,20 @@
                                 
                             </li>
                         
+                            <li class="index-item method">
+                                <a href="#method_resetImageEditorOperationsChoice">resetImageEditorOperationsChoice</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_resetImageEditorTexts">resetImageEditorTexts</a>
+
+                                
+                                
+                            </li>
+                        
                     </ul>
                 </div>
             
@@ -486,7 +492,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_image_editor.js.html#l360"><code>app&#x2F;assets&#x2F;javascripts&#x2F;image_editor.js:360</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_image_editor.js.html#l277"><code>app&#x2F;assets&#x2F;javascripts&#x2F;image_editor.js:277</code></a>
         
         </p>
 
@@ -498,6 +504,114 @@
 
     <div class="description">
         <p>Reset image editor crop, disable crop state for image</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_resetImageEditorOperationsChoice" class="method item">
+    <h3 class="name"><code>resetImageEditorOperationsChoice</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_image_editor.js.html#l292"><code>app&#x2F;assets&#x2F;javascripts&#x2F;image_editor.js:292</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Reset image editor functions, reset image editor to initial state</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_resetImageEditorTexts" class="method item">
+    <h3 class="name"><code>resetImageEditorTexts</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_image_editor.js.html#l305"><code>app&#x2F;assets&#x2F;javascripts&#x2F;image_editor.js:305</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Reset image editor textareas, disable text state for image</p>
     </div>
 
     

@@ -137,14 +137,10 @@
             },
             "classes": {},
             "fors": {
-                "enlightTextarea": 1,
-                "offlightTextarea": 1,
-                "getDragPosition": 1,
-                "textAreaImageEditorContent": 1,
-                "getRelativePositionInImageEditor": 1,
-                "resetImageEditorOperationsChoice": 1,
-                "resetImageEditorCrop": 1,
-                "resetImageEditorTexts": 1
+                "ImageEditorDocumentReady": 1,
+                "ImageEditorGraphics": 1,
+                "ImageEditorImageScale": 1,
+                "ImageEditorTexts": 1
             },
             "namespaces": {}
         },
@@ -544,24 +540,16 @@
             "name": "image-editor",
             "submodules": {},
             "classes": {
-                "enlightTextarea": 1,
-                "offlightTextarea": 1,
-                "getDragPosition": 1,
-                "textAreaImageEditorContent": 1,
-                "getRelativePositionInImageEditor": 1,
-                "resetImageEditorOperationsChoice": 1,
-                "resetImageEditorCrop": 1,
-                "resetImageEditorTexts": 1
+                "ImageEditorDocumentReady": 1,
+                "ImageEditorGraphics": 1,
+                "ImageEditorImageScale": 1,
+                "ImageEditorTexts": 1
             },
             "fors": {
-                "enlightTextarea": 1,
-                "offlightTextarea": 1,
-                "getDragPosition": 1,
-                "textAreaImageEditorContent": 1,
-                "getRelativePositionInImageEditor": 1,
-                "resetImageEditorOperationsChoice": 1,
-                "resetImageEditorCrop": 1,
-                "resetImageEditorTexts": 1
+                "ImageEditorDocumentReady": 1,
+                "ImageEditorGraphics": 1,
+                "ImageEditorImageScale": 1,
+                "ImageEditorTexts": 1
             },
             "namespaces": {},
             "tag": "module",
@@ -1271,9 +1259,9 @@
             "module": "general",
             "namespace": ""
         },
-        "enlightTextarea": {
-            "name": "enlightTextarea",
-            "shortname": "enlightTextarea",
+        "ImageEditorDocumentReady": {
+            "name": "ImageEditorDocumentReady",
+            "shortname": "ImageEditorDocumentReady",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -1282,9 +1270,9 @@
             "module": "image-editor",
             "namespace": ""
         },
-        "offlightTextarea": {
-            "name": "offlightTextarea",
-            "shortname": "offlightTextarea",
+        "ImageEditorGraphics": {
+            "name": "ImageEditorGraphics",
+            "shortname": "ImageEditorGraphics",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -1293,9 +1281,9 @@
             "module": "image-editor",
             "namespace": ""
         },
-        "getDragPosition": {
-            "name": "getDragPosition",
-            "shortname": "getDragPosition",
+        "ImageEditorImageScale": {
+            "name": "ImageEditorImageScale",
+            "shortname": "ImageEditorImageScale",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -1304,53 +1292,9 @@
             "module": "image-editor",
             "namespace": ""
         },
-        "textAreaImageEditorContent": {
-            "name": "textAreaImageEditorContent",
-            "shortname": "textAreaImageEditorContent",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "image-editor",
-            "namespace": ""
-        },
-        "getRelativePositionInImageEditor": {
-            "name": "getRelativePositionInImageEditor",
-            "shortname": "getRelativePositionInImageEditor",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "image-editor",
-            "namespace": ""
-        },
-        "resetImageEditorOperationsChoice": {
-            "name": "resetImageEditorOperationsChoice",
-            "shortname": "resetImageEditorOperationsChoice",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "image-editor",
-            "namespace": ""
-        },
-        "resetImageEditorCrop": {
-            "name": "resetImageEditorCrop",
-            "shortname": "resetImageEditorCrop",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "image-editor",
-            "namespace": ""
-        },
-        "resetImageEditorTexts": {
-            "name": "resetImageEditorTexts",
-            "shortname": "resetImageEditorTexts",
+        "ImageEditorTexts": {
+            "name": "ImageEditorTexts",
+            "shortname": "ImageEditorTexts",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -3954,83 +3898,88 @@
         },
         {
             "file": "app/assets/javascripts/image_editor.js",
-            "line": 252,
-            "description": "Sets current textarea to active.",
+            "line": 10,
+            "description": "bla bla bla",
             "itemtype": "method",
-            "name": "enlightTextarea",
-            "params": [
-                {
-                    "name": "id",
-                    "description": "identifier for textarea to set current",
-                    "type": "Number"
-                }
-            ],
-            "class": "enlightTextarea",
+            "name": "imageEditorDocumentReady",
+            "class": "ImageEditorDocumentReady",
             "module": "image-editor"
         },
         {
             "file": "app/assets/javascripts/image_editor.js",
-            "line": 265,
-            "description": "Disable textareas,\ntypically applied to all textareas,\nremoves the current flag to active textarea.",
+            "line": 23,
+            "description": "bla bla bla",
             "itemtype": "method",
-            "name": "offlightTextarea",
-            "class": "offlightTextarea",
+            "name": "imageEditorDocumentReadyCommit",
+            "class": "ImageEditorDocumentReady",
             "module": "image-editor"
         },
         {
             "file": "app/assets/javascripts/image_editor.js",
-            "line": 279,
-            "description": "Get textarea coordinates while dragging",
+            "line": 94,
+            "description": "bla bla bla",
             "itemtype": "method",
-            "name": "getDragPosition",
-            "params": [
-                {
-                    "name": "obj",
-                    "description": "textarea container",
-                    "type": "Object"
-                }
-            ],
-            "return": {
-                "description": "two items array with X,Y coords in px",
-                "type": "Array"
-            },
-            "example": [
-                " \n     `getDragPosition($(#image_editor_text_1));`"
-            ],
-            "class": "getDragPosition",
+            "name": "imageEditorDocumentReadyCrop",
+            "class": "ImageEditorDocumentReady",
             "module": "image-editor"
         },
         {
             "file": "app/assets/javascripts/image_editor.js",
-            "line": 300,
-            "description": "Append new textarea to image editor container",
+            "line": 146,
+            "description": "bla bla bla",
             "itemtype": "method",
-            "name": "textAreaImageEditorContent",
-            "params": [
-                {
-                    "name": "coords",
-                    "description": "textarea coordinates",
-                    "type": "Array"
-                },
-                {
-                    "name": "textCount",
-                    "description": "textarea container id",
-                    "type": "Number"
-                }
-            ],
-            "return": {
-                "description": "new textarea container",
-                "type": "Object"
-            },
-            "example": [
-                " \n     `var coords = getRelativePositionInImageEditor($(#image_editor_container._text_enabled img), event);`\n     `var textCount = $('#info_container').data('current-textarea-identifier');`\n     `$('#image_editor_container').append(textAreaImageEditorContent(coords, textCount));`"
-            ],
-            "class": "textAreaImageEditorContent",
+            "name": "imageEditorDocumentReadyGeneral",
+            "class": "ImageEditorDocumentReady",
             "module": "image-editor"
         },
         {
             "file": "app/assets/javascripts/image_editor.js",
-            "line": 327,
+            "line": 162,
+            "description": "bla bla bla",
+            "itemtype": "method",
+            "name": "imageEditorDocumentReadyTexts",
+            "class": "ImageEditorDocumentReady",
+            "module": "image-editor"
+        },
+        {
+            "file": "app/assets/javascripts/image_editor.js",
+            "line": 259,
+            "description": "bla bla bla",
+            "itemtype": "method",
+            "name": "imageEditorDocumentReadyUndo",
+            "class": "ImageEditorDocumentReady",
+            "module": "image-editor"
+        },
+        {
+            "file": "app/assets/javascripts/image_editor.js",
+            "line": 277,
+            "description": "Reset image editor crop, disable crop state for image",
+            "itemtype": "method",
+            "name": "resetImageEditorCrop",
+            "class": "ImageEditorGraphics",
+            "module": "image-editor"
+        },
+        {
+            "file": "app/assets/javascripts/image_editor.js",
+            "line": 292,
+            "description": "Reset image editor functions, reset image editor to initial state",
+            "itemtype": "method",
+            "name": "resetImageEditorOperationsChoice",
+            "class": "ImageEditorGraphics",
+            "module": "image-editor"
+        },
+        {
+            "file": "app/assets/javascripts/image_editor.js",
+            "line": 305,
+            "description": "Reset image editor textareas, disable text state for image",
+            "itemtype": "method",
+            "name": "resetImageEditorTexts",
+            "class": "ImageEditorGraphics",
+            "module": "image-editor"
+        },
+        {
+            "file": "app/assets/javascripts/image_editor.js",
+            "line": 321,
             "description": "Get image relative position into editor container",
             "itemtype": "method",
             "name": "getRelativePositionInImageEditor",
@@ -4050,34 +3999,77 @@
                 "description": "image relative position coordinates",
                 "type": "Array"
             },
-            "class": "getRelativePositionInImageEditor",
+            "class": "ImageEditorImageScale",
             "module": "image-editor"
         },
         {
             "file": "app/assets/javascripts/image_editor.js",
-            "line": 346,
-            "description": "Reset image editor functions, reset image editor to initial state",
+            "line": 343,
+            "description": "Sets current textarea to active.",
             "itemtype": "method",
-            "name": "resetImageEditorOperationsChoice",
-            "class": "resetImageEditorOperationsChoice",
+            "name": "enlightTextarea",
+            "params": [
+                {
+                    "name": "id",
+                    "description": "identifier for textarea to set current",
+                    "type": "Number"
+                }
+            ],
+            "class": "ImageEditorTexts",
             "module": "image-editor"
         },
         {
             "file": "app/assets/javascripts/image_editor.js",
-            "line": 360,
-            "description": "Reset image editor crop, disable crop state for image",
+            "line": 355,
+            "description": "Get textarea coordinates while dragging",
             "itemtype": "method",
-            "name": "resetImageEditorCrop",
-            "class": "resetImageEditorCrop",
+            "name": "getDragPosition",
+            "params": [
+                {
+                    "name": "obj",
+                    "description": "textarea container",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "two items array with X,Y coords in px",
+                "type": "Array"
+            },
+            "class": "ImageEditorTexts",
             "module": "image-editor"
         },
         {
             "file": "app/assets/javascripts/image_editor.js",
-            "line": 376,
-            "description": "Reset image editor textareas, disable text state for image",
+            "line": 373,
+            "description": "Disable textareas, typically applied to all textareas, removes the current flag to active textarea.",
             "itemtype": "method",
-            "name": "resetImageEditorTexts",
-            "class": "resetImageEditorTexts",
+            "name": "offlightTextarea",
+            "class": "ImageEditorTexts",
+            "module": "image-editor"
+        },
+        {
+            "file": "app/assets/javascripts/image_editor.js",
+            "line": 384,
+            "description": "Append new textarea to image editor container",
+            "itemtype": "method",
+            "name": "textAreaImageEditorContent",
+            "params": [
+                {
+                    "name": "coords",
+                    "description": "textarea coordinates",
+                    "type": "Array"
+                },
+                {
+                    "name": "textCount",
+                    "description": "textarea container id",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "new textarea container",
+                "type": "Object"
+            },
+            "class": "ImageEditorTexts",
             "module": "image-editor"
         },
         {
