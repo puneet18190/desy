@@ -1,6 +1,9 @@
 YUI.add("yuidoc-meta", function(Y) {
    Y.YUIDoc = { meta: {
     "classes": [
+        "Autocomplete",
+        "Collapsed",
+        "DocumentReady",
         "addDeleteItemToCurrentUrl",
         "addEmailToVirtualClassroomSendLessonLinkSelector",
         "addLesson",
@@ -44,7 +47,6 @@ YUI.add("yuidoc-meta", function(Y) {
         "hideNotificationsFumetto",
         "initLessonEditorPositions",
         "initMediaElementLoader",
-        "initNotificationsAutocomplete",
         "initSearchTagsAutocomplete",
         "initTinymce",
         "initializeActionOfMediaTimeUpdater",
@@ -77,7 +79,6 @@ YUI.add("yuidoc-meta", function(Y) {
         "loadSlideInLessonEditor",
         "makeDraggable",
         "offlightTextarea",
-        "openAndLoadNextTr",
         "openPlaylistMenuInLessonViewer",
         "previewLesson",
         "publishLesson",
@@ -155,7 +156,6 @@ YUI.add("yuidoc-meta", function(Y) {
     ],
     "modules": [
         "Administration",
-        "AjaxLoader",
         "Buttons",
         "Dashboard",
         "Dialogs",
@@ -170,17 +170,18 @@ YUI.add("yuidoc-meta", function(Y) {
         "Tags",
         "Times",
         "VideoEditor",
-        "VirtualClassroom"
+        "VirtualClassroom",
+        "ajax-loader"
     ],
     "allModules": [
         {
             "displayName": "Administration",
             "name": "Administration",
-            "description": "Administration graphic events and flagging options."
+            "description": "Functions used in the Administration section: only for this section, it's generated a separate file which doesn't merge with the regular one. The only external module loaded is {{#crossLinkModule \"ajax-loader\"}}{{/crossLinkModule}}."
         },
         {
-            "displayName": "AjaxLoader",
-            "name": "AjaxLoader",
+            "displayName": "ajax-loader",
+            "name": "ajax-loader",
             "description": "Shows a loading image while page is loading, \nit handles ajax calls too."
         },
         {

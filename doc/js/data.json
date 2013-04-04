@@ -13,15 +13,16 @@
             },
             "classes": {},
             "fors": {
-                "openAndLoadNextTr": 1,
-                "initNotificationsAutocomplete": 1
+                "DocumentReady": 1,
+                "Collapsed": 1,
+                "Autocomplete": 1
             },
             "namespaces": {}
         },
         "app/assets/javascripts/ajax_loader.js": {
             "name": "app/assets/javascripts/ajax_loader.js",
             "modules": {
-                "AjaxLoader": 1
+                "ajax-loader": 1
             },
             "classes": {},
             "fors": {
@@ -333,21 +334,23 @@
             "name": "Administration",
             "submodules": {},
             "classes": {
-                "openAndLoadNextTr": 1,
-                "initNotificationsAutocomplete": 1
+                "DocumentReady": 1,
+                "Collapsed": 1,
+                "Autocomplete": 1
             },
             "fors": {
-                "openAndLoadNextTr": 1,
-                "initNotificationsAutocomplete": 1
+                "DocumentReady": 1,
+                "Collapsed": 1,
+                "Autocomplete": 1
             },
             "namespaces": {},
             "tag": "module",
             "file": "app/assets/javascripts/admin/admin_functions.js",
             "line": 1,
-            "description": "Administration graphic events and flagging options."
+            "description": "Functions used in the Administration section: only for this section, it's generated a separate file which doesn't merge with the regular one. The only external module loaded is {{#crossLinkModule \"ajax-loader\"}}{{/crossLinkModule}}."
         },
-        "AjaxLoader": {
-            "name": "AjaxLoader",
+        "ajax-loader": {
+            "name": "ajax-loader",
             "submodules": {},
             "classes": {
                 "bindLoader": 1,
@@ -854,9 +857,9 @@
         }
     },
     "classes": {
-        "openAndLoadNextTr": {
-            "name": "openAndLoadNextTr",
-            "shortname": "openAndLoadNextTr",
+        "DocumentReady": {
+            "name": "DocumentReady",
+            "shortname": "DocumentReady",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -865,9 +868,20 @@
             "module": "Administration",
             "namespace": ""
         },
-        "initNotificationsAutocomplete": {
-            "name": "initNotificationsAutocomplete",
-            "shortname": "initNotificationsAutocomplete",
+        "Collapsed": {
+            "name": "Collapsed",
+            "shortname": "Collapsed",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Administration",
+            "namespace": ""
+        },
+        "Autocomplete": {
+            "name": "Autocomplete",
+            "shortname": "Autocomplete",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -884,7 +898,7 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "module": "AjaxLoader",
+            "module": "ajax-loader",
             "namespace": ""
         },
         "unbindLoader": {
@@ -895,7 +909,7 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "module": "AjaxLoader",
+            "module": "ajax-loader",
             "namespace": ""
         },
         "showLoader": {
@@ -906,7 +920,7 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "module": "AjaxLoader",
+            "module": "ajax-loader",
             "namespace": ""
         },
         "hideLoader": {
@@ -917,7 +931,7 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "module": "AjaxLoader",
+            "module": "ajax-loader",
             "namespace": ""
         },
         "addDeleteItemToCurrentUrl": {
@@ -2519,27 +2533,104 @@
     "classitems": [
         {
             "file": "app/assets/javascripts/admin/admin_functions.js",
-            "line": 301,
-            "description": "Open a collapsed table row with extra content,\ntipically clicking on previous collapsable table row.",
+            "line": 6,
+            "description": "Open a collapsed table row with extra content, tipically clicking on previous collapsable table row.",
+            "itemtype": "method",
+            "name": "adminBrowsersDocumentReady",
+            "class": "DocumentReady",
+            "module": "Administration"
+        },
+        {
+            "file": "app/assets/javascripts/admin/admin_functions.js",
+            "line": 19,
+            "description": "Open a collapsed table row with extra content, tipically clicking on previous collapsable table row.",
+            "itemtype": "method",
+            "name": "adminEffectsDocumentReady",
+            "class": "DocumentReady",
+            "module": "Administration"
+        },
+        {
+            "file": "app/assets/javascripts/admin/admin_functions.js",
+            "line": 84,
+            "description": "Open a collapsed table row with extra content, tipically clicking on previous collapsable table row.",
+            "itemtype": "method",
+            "name": "adminLocationsDocumentReady",
+            "class": "DocumentReady",
+            "module": "Administration"
+        },
+        {
+            "file": "app/assets/javascripts/admin/admin_functions.js",
+            "line": 104,
+            "description": "Open a collapsed table row with extra content, tipically clicking on previous collapsable table row.",
+            "itemtype": "method",
+            "name": "adminMiscellaneaDocumentReady",
+            "class": "DocumentReady",
+            "module": "Administration"
+        },
+        {
+            "file": "app/assets/javascripts/admin/admin_functions.js",
+            "line": 142,
+            "description": "Open a collapsed table row with extra content, tipically clicking on previous collapsable table row.",
+            "itemtype": "method",
+            "name": "adminMediaElementsDocumentReady",
+            "class": "DocumentReady",
+            "module": "Administration"
+        },
+        {
+            "file": "app/assets/javascripts/admin/admin_functions.js",
+            "line": 217,
+            "description": "Open a collapsed table row with extra content, tipically clicking on previous collapsable table row.",
+            "itemtype": "method",
+            "name": "adminUsersDocumentReady",
+            "class": "DocumentReady",
+            "module": "Administration"
+        },
+        {
+            "file": "app/assets/javascripts/admin/admin_functions.js",
+            "line": 237,
+            "description": "Open a collapsed table row with extra content, tipically clicking on previous collapsable table row.",
+            "itemtype": "method",
+            "name": "adminSearchDocumentReady",
+            "class": "DocumentReady",
+            "module": "Administration"
+        },
+        {
+            "file": "app/assets/javascripts/admin/admin_functions.js",
+            "line": 303,
+            "description": "Open a collapsed table row with extra content, tipically clicking on previous collapsable table row.",
+            "itemtype": "method",
+            "name": "adminSortingDocumentReady",
+            "class": "DocumentReady",
+            "module": "Administration"
+        },
+        {
+            "file": "app/assets/javascripts/admin/admin_functions.js",
+            "line": 340,
+            "description": "Open a collapsed table row with extra content, tipically clicking on previous collapsable table row.",
             "itemtype": "method",
             "name": "openAndLoadNextTr",
             "params": [
                 {
                     "name": "prevTr",
-                    "description": "",
+                    "description": "bla bla bla bla eccoci qua",
+                    "type": "Object"
+                },
+                {
+                    "name": "hdasgf",
+                    "description": "bla bla bla bla eccoci dgdsgdsg",
                     "type": "Object"
                 }
             ],
-            "class": "openAndLoadNextTr",
+            "class": "Collapsed",
             "module": "Administration"
         },
         {
             "file": "app/assets/javascripts/admin/admin_functions.js",
-            "line": 322,
+            "line": 360,
             "description": "Initializer for jQueryUI autocomplete on users serch into Admin Notifications.",
             "itemtype": "method",
             "name": "initNotificationsAutocomplete",
-            "class": "initNotificationsAutocomplete",
+            "class": "Autocomplete",
             "module": "Administration"
         },
         {
@@ -2549,7 +2640,7 @@
             "itemtype": "method",
             "name": "bindLoader",
             "class": "bindLoader",
-            "module": "AjaxLoader"
+            "module": "ajax-loader"
         },
         {
             "file": "app/assets/javascripts/ajax_loader.js",
@@ -2558,7 +2649,7 @@
             "itemtype": "method",
             "name": "unbindLoader",
             "class": "unbindLoader",
-            "module": "AjaxLoader"
+            "module": "ajax-loader"
         },
         {
             "file": "app/assets/javascripts/ajax_loader.js",
@@ -2567,7 +2658,7 @@
             "itemtype": "method",
             "name": "showLoader",
             "class": "showLoader",
-            "module": "AjaxLoader"
+            "module": "ajax-loader"
         },
         {
             "file": "app/assets/javascripts/ajax_loader.js",
@@ -2576,7 +2667,7 @@
             "itemtype": "method",
             "name": "hideLoader",
             "class": "hideLoader",
-            "module": "AjaxLoader"
+            "module": "ajax-loader"
         },
         {
             "file": "app/assets/javascripts/buttons.js",

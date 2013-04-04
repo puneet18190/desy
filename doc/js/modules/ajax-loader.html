@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>initNotificationsAutocomplete - DESY</title>
+    <title>ajax-loader - DESY</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.8.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -55,6 +55,8 @@
             
                 <li><a href="..&#x2F;classes/addToTagsValue.html">addToTagsValue</a></li>
             
+                <li><a href="..&#x2F;classes/Autocomplete.html">Autocomplete</a></li>
+            
                 <li><a href="..&#x2F;classes/bindLoader.html">bindLoader</a></li>
             
                 <li><a href="..&#x2F;classes/centerThis.html">centerThis</a></li>
@@ -73,6 +75,8 @@
             
                 <li><a href="..&#x2F;classes/closePopUp.html">closePopUp</a></li>
             
+                <li><a href="..&#x2F;classes/Collapsed.html">Collapsed</a></li>
+            
                 <li><a href="..&#x2F;classes/copyLesson.html">copyLesson</a></li>
             
                 <li><a href="..&#x2F;classes/createTagSpan.html">createTagSpan</a></li>
@@ -86,6 +90,8 @@
                 <li><a href="..&#x2F;classes/disableTagsInputTooHigh.html">disableTagsInputTooHigh</a></li>
             
                 <li><a href="..&#x2F;classes/dislikeLesson.html">dislikeLesson</a></li>
+            
+                <li><a href="..&#x2F;classes/DocumentReady.html">DocumentReady</a></li>
             
                 <li><a href="..&#x2F;classes/enlightTextarea.html">enlightTextarea</a></li>
             
@@ -175,8 +181,6 @@
             
                 <li><a href="..&#x2F;classes/initMediaElementLoader.html">initMediaElementLoader</a></li>
             
-                <li><a href="..&#x2F;classes/initNotificationsAutocomplete.html">initNotificationsAutocomplete</a></li>
-            
                 <li><a href="..&#x2F;classes/initSearchTagsAutocomplete.html">initSearchTagsAutocomplete</a></li>
             
                 <li><a href="..&#x2F;classes/initTinymce.html">initTinymce</a></li>
@@ -192,8 +196,6 @@
                 <li><a href="..&#x2F;classes/makeDraggable.html">makeDraggable</a></li>
             
                 <li><a href="..&#x2F;classes/offlightTextarea.html">offlightTextarea</a></li>
-            
-                <li><a href="..&#x2F;classes/openAndLoadNextTr.html">openAndLoadNextTr</a></li>
             
                 <li><a href="..&#x2F;classes/openPlaylistMenuInLessonViewer.html">openPlaylistMenuInLessonViewer</a></li>
             
@@ -349,7 +351,7 @@
             
                 <li><a href="..&#x2F;modules/Administration.html">Administration</a></li>
             
-                <li><a href="..&#x2F;modules/AjaxLoader.html">AjaxLoader</a></li>
+                <li><a href="..&#x2F;modules/ajax-loader.html">ajax-loader</a></li>
             
                 <li><a href="..&#x2F;modules/Buttons.html">Buttons</a></li>
             
@@ -416,18 +418,16 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>initNotificationsAutocomplete Class</h1>
-<div class="box meta">
+                        <h1>ajax-loader Module</h1>
+<div class="box clearfix meta">
     
 
     
 
     
-
-    
-        
-            Module: <a href="../modules/Administration.html">Administration</a>
-        
+        <div class="foundat">
+            Defined in: <a href="..&#x2F;files&#x2F;app_assets_javascripts_ajax_loader.js.html#l1"><code>app&#x2F;assets&#x2F;javascripts&#x2F;ajax_loader.js:1</code></a>
+        </div>
     
 
     
@@ -436,117 +436,48 @@
 
 
 <div class="box intro">
-    
+    <p>Shows a loading image while page is loading, 
+it handles ajax calls too.</p>
 </div>
 
 
 
-<div id="classdocs" class="tabview">
-    <ul class="api-class-tabs">
-        <li class="api-class-tab index"><a href="#index">Index</a></li>
+<div class="yui3-g">
+    <div class="yui3-u-1-2">
+        
+            <p>This module provides the following classes:</p>
 
-        
-            <li class="api-class-tab methods"><a href="#methods">Methods</a></li>
-        
-        
-        
-        
-    </ul>
-
-    <div>
-        <div id="index" class="api-class-tabpanel index">
-            <h2 class="off-left">Item Index</h2>
-
+            <ul class="module-classes">
             
-                <div class="index-section methods">
-                    <h3>Methods</h3>
-
-                    <ul class="index-list methods">
-                        
-                            <li class="index-item method">
-                                <a href="#method_initNotificationsAutocomplete">initNotificationsAutocomplete</a>
-
-                                
-                                
-                            </li>
-                        
-                    </ul>
-                </div>
+                <li class="module-class">
+                    <a href="..&#x2F;classes/bindLoader.html">
+                        bindLoader
+                    </a>
+                </li>
             
-
+                <li class="module-class">
+                    <a href="..&#x2F;classes/hideLoader.html">
+                        hideLoader
+                    </a>
+                </li>
             
-
+                <li class="module-class">
+                    <a href="..&#x2F;classes/showLoader.html">
+                        showLoader
+                    </a>
+                </li>
             
-
+                <li class="module-class">
+                    <a href="..&#x2F;classes/unbindLoader.html">
+                        unbindLoader
+                    </a>
+                </li>
             
-        </div>
-
-        
-            <div id="methods" class="api-class-tabpanel">
-                <h2 class="off-left">Methods</h2>
-
-                
-                    <div id="method_initNotificationsAutocomplete" class="method item">
-    <h3 class="name"><code>initNotificationsAutocomplete</code></h3>
-
-    
-        <span class="paren">()</span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_admin_admin_functions.js.html#l322"><code>app&#x2F;assets&#x2F;javascripts&#x2F;admin&#x2F;admin_functions.js:322</code></a>
-        
-        </p>
-
-
-        
-
+            </ul>
         
     </div>
 
-    <div class="description">
-        <p>Initializer for jQueryUI autocomplete on users serch into Admin Notifications.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-            </div>
-        
-
-        
-
-        
-
+    <div class="yui3-u-1-2">
         
     </div>
 </div>
