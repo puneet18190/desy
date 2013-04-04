@@ -20,14 +20,14 @@
           <br><br>
           <%= text_field_tag 'title', '' %>
           <%= hidden_field_tag 'title_placeholder', '' %>
-          <br>
+          
           <%= text_area_tag 'description', '' %>
           <%= hidden_field_tag 'description_placeholder', '' %>
         </div>
         
         <div class="cols fltrt">
           <h1><%= t('forms.upload_media_element.title') %></h1>
-          <p style="padding-bottom:32px"><%= t('forms.upload_media_element.description') %></p>
+          <p style="padding-bottom:30px"><%= t('forms.upload_media_element.description') %></p>
           <br class="clearfloat">
           <div class="ui-widget pull-right _tags_container">
             <%= text_field_tag 'tags', '', :maxlength => SETTINGS['max_tag_length'], :class => 'lower' %>
