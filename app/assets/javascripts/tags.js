@@ -3,7 +3,8 @@
 * 
 * @module Tags
 */
-$(document).ready(function() {
+
+function tagsDocumentReady() {
   
   // SEARCH TAGS 
   initSearchTagsAutocomplete("#general_tag_reader_for_search");
@@ -242,7 +243,7 @@ $(document).ready(function() {
     disableTagsInputTooHigh('#slides._update ._tags_container', '#slides._update #tags');
   });
   
-});
+}
 
 /**
 * Handle adding tag not in the autocomplete data list
