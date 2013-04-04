@@ -41,15 +41,7 @@
         <div id="api-tabview-panel">
             <ul id="api-classes" class="apis classes">
             
-                <li><a href="..&#x2F;classes/addDeleteItemToCurrentUrl.html">addDeleteItemToCurrentUrl</a></li>
-            
                 <li><a href="..&#x2F;classes/addEmailToVirtualClassroomSendLessonLinkSelector.html">addEmailToVirtualClassroomSendLessonLinkSelector</a></li>
-            
-                <li><a href="..&#x2F;classes/addLesson.html">addLesson</a></li>
-            
-                <li><a href="..&#x2F;classes/addLessonToVirtualClassroom.html">addLessonToVirtualClassroom</a></li>
-            
-                <li><a href="..&#x2F;classes/addMediaElement.html">addMediaElement</a></li>
             
                 <li><a href="..&#x2F;classes/addTagWithoutSuggestion.html">addTagWithoutSuggestion</a></li>
             
@@ -85,6 +77,14 @@
             
                 <li><a href="..&#x2F;classes/BrowsersDocumentReady.html">BrowsersDocumentReady</a></li>
             
+                <li><a href="..&#x2F;classes/ButtonsAccessories.html">ButtonsAccessories</a></li>
+            
+                <li><a href="..&#x2F;classes/ButtonsDocumentReady.html">ButtonsDocumentReady</a></li>
+            
+                <li><a href="..&#x2F;classes/ButtonsLesson.html">ButtonsLesson</a></li>
+            
+                <li><a href="..&#x2F;classes/ButtonsMediaElement.html">ButtonsMediaElement</a></li>
+            
                 <li><a href="..&#x2F;classes/centerThis.html">centerThis</a></li>
             
                 <li><a href="..&#x2F;classes/centerThisInContainer.html">centerThisInContainer</a></li>
@@ -101,19 +101,11 @@
             
                 <li><a href="..&#x2F;classes/closePopUp.html">closePopUp</a></li>
             
-                <li><a href="..&#x2F;classes/copyLesson.html">copyLesson</a></li>
-            
                 <li><a href="..&#x2F;classes/createTagSpan.html">createTagSpan</a></li>
             
                 <li><a href="..&#x2F;classes/customOverlayClose.html">customOverlayClose</a></li>
             
-                <li><a href="..&#x2F;classes/destroyLesson.html">destroyLesson</a></li>
-            
-                <li><a href="..&#x2F;classes/destroyMediaElement.html">destroyMediaElement</a></li>
-            
                 <li><a href="..&#x2F;classes/disableTagsInputTooHigh.html">disableTagsInputTooHigh</a></li>
-            
-                <li><a href="..&#x2F;classes/dislikeLesson.html">dislikeLesson</a></li>
             
                 <li><a href="..&#x2F;classes/enlightTextarea.html">enlightTextarea</a></li>
             
@@ -207,8 +199,6 @@
             
                 <li><a href="..&#x2F;classes/isHorizontalMask.html">isHorizontalMask</a></li>
             
-                <li><a href="..&#x2F;classes/likeLesson.html">likeLesson</a></li>
-            
                 <li><a href="..&#x2F;classes/loadSlideAndAdhiacentInLessonEditor.html">loadSlideAndAdhiacentInLessonEditor</a></li>
             
                 <li><a href="..&#x2F;classes/loadSlideInLessonEditor.html">loadSlideInLessonEditor</a></li>
@@ -220,10 +210,6 @@
                 <li><a href="..&#x2F;classes/offlightTextarea.html">offlightTextarea</a></li>
             
                 <li><a href="..&#x2F;classes/openPlaylistMenuInLessonViewer.html">openPlaylistMenuInLessonViewer</a></li>
-            
-                <li><a href="..&#x2F;classes/previewLesson.html">previewLesson</a></li>
-            
-                <li><a href="..&#x2F;classes/publishLesson.html">publishLesson</a></li>
             
                 <li><a href="..&#x2F;classes/reInitializeSlidePositionsInLessonEditor.html">reInitializeSlidePositionsInLessonEditor</a></li>
             
@@ -240,12 +226,6 @@
                 <li><a href="..&#x2F;classes/removeFromTagsValue.html">removeFromTagsValue</a></li>
             
                 <li><a href="..&#x2F;classes/removeGalleryInLessonEditor.html">removeGalleryInLessonEditor</a></li>
-            
-                <li><a href="..&#x2F;classes/removeLesson.html">removeLesson</a></li>
-            
-                <li><a href="..&#x2F;classes/removeLessonFromVirtualClassroom.html">removeLessonFromVirtualClassroom</a></li>
-            
-                <li><a href="..&#x2F;classes/removeMediaElement.html">removeMediaElement</a></li>
             
                 <li><a href="..&#x2F;classes/removeURLParameter.html">removeURLParameter</a></li>
             
@@ -349,8 +329,6 @@
             
                 <li><a href="..&#x2F;classes/tinyMceKeyDownCallbacks.html">tinyMceKeyDownCallbacks</a></li>
             
-                <li><a href="..&#x2F;classes/unpublishLesson.html">unpublishLesson</a></li>
-            
                 <li><a href="..&#x2F;classes/updateURLParameter.html">updateURLParameter</a></li>
             
                 <li><a href="..&#x2F;classes/uploadDone.html">uploadDone</a></li>
@@ -453,8 +431,16 @@ Lessons and Elements actions triggered via buttons.
 @module buttons
 **&#x2F;
 
+
+
+
+
+&#x2F;**
+bla bla bla
+@method mediaElementButtonsDocumentReady
+@for ButtonsDocumentReady
+**&#x2F;
 function mediaElementButtonsDocumentReady() {
-  
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._Video_button_add, ._Audio_button_add, ._Image_button_add&#x27;, function(e) {
     if(!$(this).parent().hasClass(&#x27;_disabled&#x27;)) {
       var my_param = $(this).data(&#x27;clickparam&#x27;);
@@ -464,7 +450,6 @@ function mediaElementButtonsDocumentReady() {
       addMediaElement(my_param, destination, current_url, reload);
     }
   });
-  
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._Video_button_destroy, ._Audio_button_destroy, ._Image_button_destroy&#x27;, function(e) {
     if(!$(this).parent().hasClass(&#x27;_disabled&#x27;)) {
       var my_param = $(this).data(&#x27;clickparam&#x27;);
@@ -474,14 +459,12 @@ function mediaElementButtonsDocumentReady() {
       destroyMediaElement(my_param, destination, current_url, used_in_private_lessons);
     }
   });
-  
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._Video_button_preview, ._Audio_button_preview, ._Image_button_preview&#x27;, function(e) {
     if(!$(this).parents(&#x27;._media_element_item&#x27;).hasClass(&#x27;_disabled&#x27;)) {
       var my_param = $(this).data(&#x27;clickparam&#x27;);
       showMediaElementInfoPopUp(my_param);
     }
   });
-  
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._Video_button_edit&#x27;, function(e) {
     if(!$(this).parent().hasClass(&#x27;_disabled&#x27;)) {
       e.preventDefault();
@@ -493,7 +476,6 @@ function mediaElementButtonsDocumentReady() {
       return false;
     }
   });
-  
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._Audio_button_edit&#x27;, function(e) {
     if(!$(this).parent().hasClass(&#x27;_disabled&#x27;)) {
       e.preventDefault();
@@ -505,7 +487,6 @@ function mediaElementButtonsDocumentReady() {
       return false;
     }
   });
-  
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._Image_button_edit&#x27;, function(e) {
     if(!$(this).parent().hasClass(&#x27;_disabled&#x27;)) {
       e.preventDefault();
@@ -517,7 +498,6 @@ function mediaElementButtonsDocumentReady() {
       return false;
     }
   });
-  
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._Video_button_remove, ._Audio_button_remove, ._Image_button_remove&#x27;, function(e) {
     if(!$(this).parent().hasClass(&#x27;_disabled&#x27;)) {
       var my_param = $(this).data(&#x27;clickparam&#x27;);
@@ -527,11 +507,14 @@ function mediaElementButtonsDocumentReady() {
       removeMediaElement(my_param, destination, current_url, reload);
     }
   });
-  
 }
 
+&#x2F;**
+bla bla bla
+@method lessonButtonsDocumentReady
+@for ButtonsDocumentReady
+**&#x2F;
 function lessonButtonsDocumentReady() {
-  
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._Lesson_button_add&#x27;, function(e) {
     e.preventDefault();
     if(!$(this).parent().hasClass(&#x27;_disabled&#x27;)) {
@@ -543,7 +526,6 @@ function lessonButtonsDocumentReady() {
     }
     return false;
   });
-  
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._Lesson_button_copy&#x27;, function(e) {
     e.preventDefault();
     if(!$(this).parent().hasClass(&#x27;_disabled&#x27;)) {
@@ -553,7 +535,6 @@ function lessonButtonsDocumentReady() {
     }
     return false;
   });
-  
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._Lesson_button_destroy&#x27;, function(e) {
     e.preventDefault();
     if(!$(this).parent().hasClass(&#x27;_disabled&#x27;)) {
@@ -564,7 +545,6 @@ function lessonButtonsDocumentReady() {
     }
     return false;
   });
-  
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._Lesson_button_dislike&#x27;, function(e) {
     e.preventDefault();
     if(!$(this).parent().hasClass(&#x27;_disabled&#x27;)) {
@@ -574,7 +554,6 @@ function lessonButtonsDocumentReady() {
     }
     return false;
   });
-  
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._Lesson_button_like&#x27;, function(e) {
     e.preventDefault();
     if(!$(this).parent().hasClass(&#x27;_disabled&#x27;)) {
@@ -584,7 +563,6 @@ function lessonButtonsDocumentReady() {
     }
     return false;
   });
-  
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._Lesson_button_preview&#x27;, function(e) {
     e.preventDefault();
     if(!$(this).parent().hasClass(&#x27;_disabled&#x27;)) {
@@ -594,7 +572,6 @@ function lessonButtonsDocumentReady() {
     }
     return false;
   });
-  
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._Lesson_button_publish&#x27;, function(e) {
     e.preventDefault();
     if(!$(this).parent().hasClass(&#x27;_disabled&#x27;)) {
@@ -604,7 +581,6 @@ function lessonButtonsDocumentReady() {
     }
     return false;
   });
-  
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._Lesson_button_remove&#x27;, function(e) {
     e.preventDefault();
     if(!$(this).parent().hasClass(&#x27;_disabled&#x27;)) {
@@ -616,7 +592,6 @@ function lessonButtonsDocumentReady() {
     }
     return false;
   });
-  
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._Lesson_button_unpublish&#x27;, function(e) {
     e.preventDefault();
     if(!$(this).parent().hasClass(&#x27;_disabled&#x27;)) {
@@ -631,7 +606,6 @@ function lessonButtonsDocumentReady() {
     }
     return false;
   });
-  
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._Lesson_button_add_virtual_classroom&#x27;, function(e) {
     e.preventDefault();
     if(!$(this).parent().hasClass(&#x27;_disabled&#x27;)) {
@@ -641,7 +615,6 @@ function lessonButtonsDocumentReady() {
     }
     return false;
   });
-  
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._Lesson_button_remove_virtual_classroom&#x27;, function(e) {
     e.preventDefault();
     if(!$(this).parent().hasClass(&#x27;_disabled&#x27;)) {
@@ -651,7 +624,6 @@ function lessonButtonsDocumentReady() {
     }
     return false;
   });
-  
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._Lesson_button_edit&#x27;, function(e) {
     e.preventDefault();
     if(!$(this).parent().hasClass(&#x27;_disabled&#x27;)) {
@@ -660,16 +632,18 @@ function lessonButtonsDocumentReady() {
     }
     return false;
   });
-  
 }
 
+
+
+
+
 &#x2F;**
-* Add item removed from a view to the current destination url
-* 
-* @method addDeleteItemToCurrentUrl
-* @for addDeleteItemToCurrentUrl
-* @return {String} updated url
-*&#x2F;
+Add item removed from a view to the current destination url
+@method addDeleteItemToCurrentUrl
+@for ButtonsAccessories
+@return {String} updated url
+**&#x2F;
 function addDeleteItemToCurrentUrl(current_url, delete_item) {
   var point_start_params = current_url.indexOf(&#x27;?&#x27;);
   var resp = current_url;
@@ -681,19 +655,19 @@ function addDeleteItemToCurrentUrl(current_url, delete_item) {
   return resp;
 }
 
+
+
+
+
 &#x2F;**
-* Add lessons from dashboard to my lessons
-*
-* Uses [addDeleteItemToCurrentUrl](..&#x2F;classes&#x2F;addDeleteItemToCurrentUrl.html#method_addDeleteItemToCurrentUrl)
-* and [showErrorPopUp](..&#x2F;classes&#x2F;showErrorPopUp.html#method_showErrorPopUp)
-*
-* @method addLesson
-* @for addLesson
-* @param lessons_id {Number} lesson id
-* @param destination {String} destination view
-* @param current_url {String} url where the lesson is added from
-* @param reload {Boolean}
-*&#x2F;
+Add lessons from dashboard to my lessons. Uses [addDeleteItemToCurrentUrl](..&#x2F;classes&#x2F;addDeleteItemToCurrentUrl.html#method_addDeleteItemToCurrentUrl) and [showErrorPopUp](..&#x2F;classes&#x2F;showErrorPopUp.html#method_showErrorPopUp)
+@method addLesson
+@for ButtonsLesson
+@param lessons_id {Number} lesson id
+@param destination {String} destination view
+@param current_url {String} url where the lesson is added from
+@param reload {Boolean}
+**&#x2F;
 function addLesson(lesson_id, destination, current_url, reload) {
   if(reload) {
     $.ajax({
@@ -722,13 +696,12 @@ function addLesson(lesson_id, destination, current_url, reload) {
 }
 
 &#x2F;**
-* Create user own copy of the lesson
-*
-* @method copyLesson
-* @for copyLesson
-* @param lessons_id {Number} lesson id
-* @param destination {String} destination view
-*&#x2F;
+Create user own copy of the lesson
+@method copyLesson
+@for ButtonsLesson
+@param lessons_id {Number} lesson id
+@param destination {String} destination view
+**&#x2F;
 function copyLesson(lesson_id, destination) {
   $.ajax({
     type: &#x27;post&#x27;,
@@ -737,18 +710,13 @@ function copyLesson(lesson_id, destination) {
 }
 
 &#x2F;**
-* Destroy lessons lesson
-*
-* Uses [addDeleteItemToCurrentUrl](..&#x2F;classes&#x2F;addDeleteItemToCurrentUrl.html#method_addDeleteItemToCurrentUrl)
-* and [showConfirmPopUp](..&#x2F;classes&#x2F;showConfirmPopUp.html#method_showConfirmPopUp)
-* and [showErrorPopUp](..&#x2F;classes&#x2F;showErrorPopUp.html#method_showErrorPopUp)
-*
-* @method destroyLesson
-* @for destroyLesson
-* @param lessons_id {Number} lesson id
-* @param destination {String} destination view
-* @param current_url {String} url where the lesson is added from
-*&#x2F;
+Destroy lessons lesson Uses [addDeleteItemToCurrentUrl](..&#x2F;classes&#x2F;addDeleteItemToCurrentUrl.html#method_addDeleteItemToCurrentUrl) and [showConfirmPopUp](..&#x2F;classes&#x2F;showConfirmPopUp.html#method_showConfirmPopUp) and [showErrorPopUp](..&#x2F;classes&#x2F;showErrorPopUp.html#method_showErrorPopUp)
+@method destroyLesson
+@for ButtonsLesson
+@param lessons_id {Number} lesson id
+@param destination {String} destination view
+@param current_url {String} url where the lesson is added from
+**&#x2F;
 function destroyLesson(lesson_id, destination, current_url) {
   var captions = $(&#x27;#popup_captions_container&#x27;);
   showConfirmPopUp(captions.data(&#x27;destroy-lesson-title&#x27;), captions.data(&#x27;destroy-lesson-confirm&#x27;), captions.data(&#x27;destroy-lesson-yes&#x27;), captions.data(&#x27;destroy-lesson-no&#x27;), function() {
@@ -776,13 +744,12 @@ function destroyLesson(lesson_id, destination, current_url) {
 }
 
 &#x2F;**
-* Remove like from a lesson
-*
-* @method dislikeLesson
-* @for dislikeLesson
-* @param lessons_id {Number} lesson id
-* @param destination {String} destination view
-*&#x2F;
+Remove like from a lesson
+@method dislikeLesson
+@for ButtonsLesson
+@param lessons_id {Number} lesson id
+@param destination {String} destination view
+**&#x2F;
 function dislikeLesson(lesson_id, destination) {
   $.ajax({
     type: &#x27;post&#x27;,
@@ -791,13 +758,12 @@ function dislikeLesson(lesson_id, destination) {
 }
 
 &#x2F;**
-* Add like to a lesson
-*
-* @method likeLesson
-* @for likeLesson
-* @param lessons_id {Number} lesson id
-* @param destination {String} destination view
-*&#x2F;
+Add like to a lesson
+@method likeLesson
+@for ButtonsLesson
+@param lessons_id {Number} lesson id
+@param destination {String} destination view
+**&#x2F;
 function likeLesson(lesson_id, destination) {
   $.ajax({
     type: &#x27;post&#x27;,
@@ -806,17 +772,16 @@ function likeLesson(lesson_id, destination) {
 }
 
 &#x2F;**
-* View lesson link
-*
-* @method previewLesson
-* @for previewLesson
-* @param lessons_id {Number} lesson id
-* @param redirect_to {String} link url to come back from lesson viewer 
-*&#x2F;
+View lesson link
+@method previewLesson
+@for ButtonsLesson
+@param lessons_id {Number} lesson id
+@param redirect_to {String} link url to come back from lesson viewer 
+**&#x2F;
 function previewLesson(lesson_id, redirect_to) {
   var parser = UrlParser.parse(redirect_to);
   var back = &#x27;&#x27;;
-  if ( parser ) {
+  if(parser) {
     var pathname = parser.pathname || &#x27;&#x27;;
     var search = parser.search || &#x27;&#x27;;
     var hash = parser.hash || &#x27;&#x27;;
@@ -825,21 +790,16 @@ function previewLesson(lesson_id, redirect_to) {
       back = &#x27;?back=&#x27; + encodedBack;
     }
   }
-
   window.location.href = &#x27;&#x2F;lessons&#x2F;&#x27; + lesson_id + &#x27;&#x2F;view&#x27; + back;
 }
 
 &#x2F;**
-* Make a lesson public
-*
-* Uses [showConfirmPopUp](..&#x2F;classes&#x2F;showConfirmPopUp.html#method_showConfirmPopUp)
-* and [closePopUp](..&#x2F;classes&#x2F;closePopUp.html#method_closePopUp)
-*
-* @method publishLesson
-* @for publishLesson
-* @param lessons_id {Number} lesson id
-* @param destination {String} destination view
-*&#x2F;
+Make a lesson public Uses [showConfirmPopUp](..&#x2F;classes&#x2F;showConfirmPopUp.html#method_showConfirmPopUp) and [closePopUp](..&#x2F;classes&#x2F;closePopUp.html#method_closePopUp)
+@method publishLesson
+@for ButtonsLesson
+@param lessons_id {Number} lesson id
+@param destination {String} destination view
+**&#x2F;
 function publishLesson(lesson_id, destination) {
   var captions = $(&#x27;#popup_captions_container&#x27;);
   showConfirmPopUp(captions.data(&#x27;publish-title&#x27;), captions.data(&#x27;publish-confirm&#x27;), captions.data(&#x27;publish-yes&#x27;), captions.data(&#x27;publish-no&#x27;), function() {
@@ -855,18 +815,14 @@ function publishLesson(lesson_id, destination) {
 }
 
 &#x2F;**
-* Remove a lesson from yours (unlink).
-*
-* Uses [addDeleteItemToCurrentUrl](..&#x2F;classes&#x2F;addDeleteItemToCurrentUrl.html#method_addDeleteItemToCurrentUrl)
-* and [showErrorPopUp](..&#x2F;classes&#x2F;showErrorPopUp.html#method_showErrorPopUp)
-*
-* @method removeLesson
-* @for removeLesson
-* @param lessons_id {Number} lesson id
-* @param destination {String} destination view
-* @param current_url {String} url where the lesson is added from
-* @param reload {Boolean}
-*&#x2F;
+Remove a lesson from yours (unlink).Uses [addDeleteItemToCurrentUrl](..&#x2F;classes&#x2F;addDeleteItemToCurrentUrl.html#method_addDeleteItemToCurrentUrl) and [showErrorPopUp](..&#x2F;classes&#x2F;showErrorPopUp.html#method_showErrorPopUp)
+@method removeLesson
+@for ButtonsLesson
+@param lessons_id {Number} lesson id
+@param destination {String} destination view
+@param current_url {String} url where the lesson is added from
+@param reload {Boolean}
+**&#x2F;
 function removeLesson(lesson_id, destination, current_url, reload) {
   if(reload) {
     $.ajax({
@@ -895,16 +851,12 @@ function removeLesson(lesson_id, destination, current_url, reload) {
 }
 
 &#x2F;**
-* Make a lesson private
-*
-* Uses [showConfirmPopUp](..&#x2F;classes&#x2F;showConfirmPopUp.html#method_showConfirmPopUp)
-* and [closePopUp](..&#x2F;classes&#x2F;closePopUp.html#method_closePopUp)
-*
-* @method unpublishLesson
-* @for unpublishLesson
-* @param lessons_id {Number} lesson id
-* @param destination {String} destination view
-*&#x2F;
+Make a lesson private Uses [showConfirmPopUp](..&#x2F;classes&#x2F;showConfirmPopUp.html#method_showConfirmPopUp) and [closePopUp](..&#x2F;classes&#x2F;closePopUp.html#method_closePopUp)
+@method unpublishLesson
+@for ButtonsLesson
+@param lessons_id {Number} lesson id
+@param destination {String} destination view
+**&#x2F;
 function unpublishLesson(lesson_id, destination) {
   var captions = $(&#x27;#popup_captions_container&#x27;);
   showConfirmPopUp(captions.data(&#x27;unpublish-title&#x27;), captions.data(&#x27;unpublish-confirm&#x27;), captions.data(&#x27;unpublish-yes&#x27;), captions.data(&#x27;unpublish-no&#x27;), function() {
@@ -920,13 +872,12 @@ function unpublishLesson(lesson_id, destination) {
 }
 
 &#x2F;**
-* Make the lesson available in the virtual classroom
-*
-* @method addLessonToVirtualClassroom
-* @for addLessonToVirtualClassroom
-* @param lessons_id {Number} lesson id
-* @param destination {String} destination view
-*&#x2F;
+Make the lesson available in the virtual classroom
+@method addLessonToVirtualClassroom
+@for ButtonsLesson
+@param lessons_id {Number} lesson id
+@param destination {String} destination view
+**&#x2F;
 function addLessonToVirtualClassroom(lesson_id, destination) {
   $.ajax({
     type: &#x27;post&#x27;,
@@ -935,13 +886,12 @@ function addLessonToVirtualClassroom(lesson_id, destination) {
 }
 
 &#x2F;**
-* Remove lesson availability in the virtual classroom
-*
-* @method removeLessonFromVirtualClassroom
-* @for removeLessonFromVirtualClassroom
-* @param lessons_id {Number} lesson_id
-* @param destination {String} destination view
-*&#x2F;
+Remove lesson availability in the virtual classroom
+@method removeLessonFromVirtualClassroom
+@for ButtonsLesson
+@param lessons_id {Number} lesson_id
+@param destination {String} destination view
+**&#x2F;
 function removeLessonFromVirtualClassroom(lesson_id, destination) {
   $.ajax({
     type: &#x27;post&#x27;,
@@ -949,19 +899,19 @@ function removeLessonFromVirtualClassroom(lesson_id, destination) {
   });
 }
 
+
+
+
+
 &#x2F;**
-* Add media element from dashboard to my lessons
-*
-* Uses [addDeleteItemToCurrentUrl](..&#x2F;classes&#x2F;addDeleteItemToCurrentUrl.html#method_addDeleteItemToCurrentUrl)
-* and [showErrorPopUp](..&#x2F;classes&#x2F;showErrorPopUp.html#method_showErrorPopUp)
-*
-* @method addMediaElement
-* @for addMediaElement
-* @param media_element_id {Number} media_element id
-* @param destination {String} destination view
-* @param current_url {String} url where the lesson is added from
-* @param reload {Boolean}
-*&#x2F;
+Add media element from dashboard to my lessons Uses [addDeleteItemToCurrentUrl](..&#x2F;classes&#x2F;addDeleteItemToCurrentUrl.html#method_addDeleteItemToCurrentUrl) and [showErrorPopUp](..&#x2F;classes&#x2F;showErrorPopUp.html#method_showErrorPopUp)
+@method addMediaElement
+@for ButtonsMediaElement
+@param media_element_id {Number} media_element id
+@param destination {String} destination view
+@param current_url {String} url where the lesson is added from
+@param reload {Boolean}
+**&#x2F;
 function addMediaElement(media_element_id, destination, current_url, reload) {
   if(reload) {
     $.ajax({
@@ -990,20 +940,14 @@ function addMediaElement(media_element_id, destination, current_url, reload) {
 }
 
 &#x2F;**
-* Destroy Media Element
-*
-* Uses [addDeleteItemToCurrentUrl](..&#x2F;classes&#x2F;addDeleteItemToCurrentUrl.html#method_addDeleteItemToCurrentUrl)
-* and [showConfirmPopUp](..&#x2F;classes&#x2F;showConfirmPopUp.html#method_showConfirmPopUp)
-* and [showErrorPopUp](..&#x2F;classes&#x2F;showErrorPopUp.html#method_showErrorPopUp)
-* and [closePopUp](..&#x2F;classes&#x2F;closePopUp.html#method_closePopUp)
-*
-* @method destroyMediaElement
-* @for destroyMediaElement
-* @param lessons_id {Number} lesson_id
-* @param destination {String} destination view
-* @param current_url {String} url where the lesson is added from
-* @param used_in_private_lessons {Boolean}
-*&#x2F;
+Destroy Media Element Uses [addDeleteItemToCurrentUrl](..&#x2F;classes&#x2F;addDeleteItemToCurrentUrl.html#method_addDeleteItemToCurrentUrl) and [showConfirmPopUp](..&#x2F;classes&#x2F;showConfirmPopUp.html#method_showConfirmPopUp) and [showErrorPopUp](..&#x2F;classes&#x2F;showErrorPopUp.html#method_showErrorPopUp) and [closePopUp](..&#x2F;classes&#x2F;closePopUp.html#method_closePopUp)
+@method destroyMediaElement
+@for ButtonsMediaElement
+@param lessons_id {Number} lesson_id
+@param destination {String} destination view
+@param current_url {String} url where the lesson is added from
+@param used_in_private_lessons {Boolean}
+**&#x2F;
 function destroyMediaElement(media_element_id, destination, current_url, used_in_private_lessons) {
   var captions = $(&#x27;#popup_captions_container&#x27;);
   var title = captions.data(&#x27;destroy-media-element-title&#x27;);
@@ -1038,18 +982,14 @@ function destroyMediaElement(media_element_id, destination, current_url, used_in
 }
 
 &#x2F;**
-* Remove a media element from yours (unlink).
-*
-* Uses [addDeleteItemToCurrentUrl](..&#x2F;classes&#x2F;addDeleteItemToCurrentUrl.html#method_addDeleteItemToCurrentUrl)
-* and [showErrorPopUp](..&#x2F;classes&#x2F;showErrorPopUp.html#method_showErrorPopUp)
-*
-* @method removeMediaElement
-* @for removeMediaElement
-* @param media_element_id {Number} media element id
-* @param destination {String} destination view
-* @param current_url {String} url where the lesson is added from
-* @param reload {Boolean}
-*&#x2F;
+Remove a media element from yours (unlink). Uses [addDeleteItemToCurrentUrl](..&#x2F;classes&#x2F;addDeleteItemToCurrentUrl.html#method_addDeleteItemToCurrentUrl) and [showErrorPopUp](..&#x2F;classes&#x2F;showErrorPopUp.html#method_showErrorPopUp)
+@method removeMediaElement
+@for ButtonsMediaElement
+@param media_element_id {Number} media element id
+@param destination {String} destination view
+@param current_url {String} url where the lesson is added from
+@param reload {Boolean}
+**&#x2F;
 function removeMediaElement(media_element_id, destination, current_url, reload) {
   if(reload) {
     $.ajax({
