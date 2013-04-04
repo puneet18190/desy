@@ -281,6 +281,17 @@ function getMediaElementsFormat() {
 }
 
 /**
+Shows error icon when somethings goes wrong
+@method redError
+@for GeneralMiscellanea
+**/
+function redError() {
+  $('body').prepend('<span class="_slide_error"></span>');
+  centerThis('._slide_error');
+  $('._slide_error').fadeTo('fast', 0).fadeTo('fast', 0.7).fadeTo('fast', 0.3).fadeOut();
+}
+
+/**
 bla bla bla
 @method secondsToDateString
 @for GeneralMiscellanea
@@ -305,17 +316,6 @@ function secondsToDateString(seconds) {
     resp = resp + '0' + ss;
   }
   return resp;
-}
-
-/**
-Shows error icon when somethings goes wrong
-@method redError
-@for GeneralMiscellanea
-**/
-function redError() {
-  $('body').prepend('<span class="_slide_error"></span>');
-  centerThis('._slide_error');
-  $('._slide_error').fadeTo('fast', 0).fadeTo('fast', 0.7).fadeTo('fast', 0.3).fadeOut();
 }
 
 
