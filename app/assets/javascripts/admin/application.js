@@ -14,5 +14,5 @@
 //= require bootstrap-datepicker
 //= require jquery-fileupload/basic
 //= require ajax_loader
-//= require admin/admin_functions
+//= require admin/functions
 //= require admin/document_ready
