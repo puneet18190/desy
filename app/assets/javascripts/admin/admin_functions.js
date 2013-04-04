@@ -1,9 +1,13 @@
 /**
-* Administration graphic events and flagging options.
-* 
-* @module Administration
-*/
+Functions used in the Administration section: only for this section, it's generated a separate file which doesn't merge with the regular one. The only external module loaded is {{#crossLinkModule "ajax-loader"}}{{/crossLinkModule}}.
+@module administration
+**/
 
+/**
+Initializes 
+@method adminBrowsersDocumentReady
+@for DocumentReady
+**/
 function adminBrowsersDocumentReady() {
   if(!$.browser.msie) {
     $('#new-elements').fileupload();
@@ -12,6 +16,11 @@ function adminBrowsersDocumentReady() {
   }
 }
 
+/**
+Open a collapsed table row with extra content, tipically clicking on previous collapsable table row.
+@method adminEffectsDocumentReady
+@for DocumentReady
+**/
 function adminEffectsDocumentReady() {
   
   var nowTemp = new Date();
@@ -72,6 +81,11 @@ function adminEffectsDocumentReady() {
   
 }
 
+/**
+Open a collapsed table row with extra content, tipically clicking on previous collapsable table row.
+@method adminLocationsDocumentReady
+@for DocumentReady
+**/
 function adminLocationsDocumentReady() {
   $('._select_locations_admin').on('change', function() {
     if(!$(this).data('is-last')) {
@@ -87,6 +101,11 @@ function adminLocationsDocumentReady() {
   });
 }
 
+/**
+Open a collapsed table row with extra content, tipically clicking on previous collapsable table row.
+@method adminMiscellaneaDocumentReady
+@for DocumentReady
+**/
 function adminMiscellaneaDocumentReady() {
   
   $('body').on('click', 'ul.subjects li a i.icon-remove', function() {
@@ -120,6 +139,11 @@ function adminMiscellaneaDocumentReady() {
   
 }
 
+/**
+Open a collapsed table row with extra content, tipically clicking on previous collapsable table row.
+@method adminMediaElementsDocumentReady
+@for DocumentReady
+**/
 function adminMediaElementsDocumentReady() {
   
   $('body').on('click', '._create_new_element', function() {
@@ -190,6 +214,11 @@ function adminMediaElementsDocumentReady() {
   
 }
 
+/**
+Open a collapsed table row with extra content, tipically clicking on previous collapsable table row.
+@method adminUsersDocumentReady
+@for DocumentReady
+**/
 function adminUsersDocumentReady() {
   $('body').on('click', '._active_status', function(e) {
     e.preventDefault();
@@ -205,6 +234,11 @@ function adminUsersDocumentReady() {
   });
 }
 
+/**
+Open a collapsed table row with extra content, tipically clicking on previous collapsable table row.
+@method adminSearchDocumentReady
+@for DocumentReady
+**/
 function adminSearchDocumentReady() {
   
   if($('#search_date_range').find('option:selected').val() && ($('#search_date_range').find('option:selected').val().length > 0)) {
@@ -266,6 +300,11 @@ function adminSearchDocumentReady() {
   
 }
 
+/**
+Open a collapsed table row with extra content, tipically clicking on previous collapsable table row.
+@method adminSortingDocumentReady
+@for DocumentReady
+**/
 function adminSortingDocumentReady() {
   
   $('body').on('click', 'table#lessons-list thead tr th a', function(e) {
@@ -299,13 +338,12 @@ function adminSortingDocumentReady() {
 }
 
 /**
-* Open a collapsed table row with extra content,
-* tipically clicking on previous collapsable table row.
-* 
-* @method openAndLoadNextTr
-* @for openAndLoadNextTr
-* @param prevTr {Object}
-*/
+Open a collapsed table row with extra content, tipically clicking on previous collapsable table row.
+@method openAndLoadNextTr
+@for Collapsed
+@param prevTr {Object} bla bla bla bla eccoci qua
+@param hdasgf {Object} bla bla bla bla eccoci dgdsgdsg
+**/
 function openAndLoadNextTr(prevTr) {
   var next_tr = prevTr.next('tr.collapsed');
   var thumb = next_tr.find('.element-thumbnail');
@@ -320,11 +358,10 @@ function openAndLoadNextTr(prevTr) {
 }
 
 /**
-* Initializer for jQueryUI autocomplete on users serch into Admin Notifications.
-* 
-* @method initNotificationsAutocomplete
-* @for initNotificationsAutocomplete
-*/
+Initializer for jQueryUI autocomplete on users serch into Admin Notifications.
+@method initNotificationsAutocomplete
+@for Autocomplete
+**/
 function initNotificationsAutocomplete() {
   $(function() {
     function log(message, _id) {

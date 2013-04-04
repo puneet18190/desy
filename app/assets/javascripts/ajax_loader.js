@@ -2,7 +2,7 @@
 * Shows a loading image while page is loading, 
 * it handles ajax calls too.
 * 
-* @module AjaxLoader
+* @module ajax-loader
 */
 
 function ajaxLoaderDocumentReady() {
