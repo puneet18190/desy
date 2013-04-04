@@ -164,39 +164,6 @@ function adminLocationsDocumentReady() {
 }
 
 /**
-Initializes actions for less important tables, such as Tag, Subject, SchoolLevel 
-@method adminMiscellaneaDocumentReady
-@for AdminDocumentReady
-**/
-function adminMiscellaneaDocumentReady() {
-  $('body').on('click', 'ul.subjects li a i.icon-remove', function() {
-    var _id = $(this).parents('li').data('param');
-    $.ajax({
-      type: 'delete',
-      url: '/admin/settings/subjects/' + _id + '/delete'
-    });
-  });
-  $('body').on('click', 'ul.school_levels li a i.icon-remove', function() {
-    $.ajax({
-      type: 'delete',
-      url: '/admin/settings/school_levels/' + $(this).parents('li').data('param') + '/delete'
-    });
-  });
-  $('body').on('click', '._dont_report_item', function() {
-    $.ajax({
-      type: 'delete',
-      url: 'reports/' + $(this).data('report-id') + '/decline'
-    });
-  });
-  $('body').on('click', '._report_item', function() {
-    $.ajax({
-      type: 'delete',
-      url: 'reports/' + $(this).data('report-id') + '/accept'
-    });
-  });
-}
-
-/**
 Initializes effects for MediaElement.
 @method adminMediaElementsDocumentReady
 @for AdminDocumentReady
@@ -263,21 +230,34 @@ function adminMediaElementsDocumentReady() {
 }
 
 /**
-Initializes effects for User.
-@method adminUsersDocumentReady
+Initializes actions for less important tables, such as Tag, Subject, SchoolLevel 
+@method adminMiscellaneaDocumentReady
 @for AdminDocumentReady
 **/
-function adminUsersDocumentReady() {
-  $('body').on('click', '._active_status', function(e) {
-    e.preventDefault();
-    var link = $(this);
-    var status = true;
-    if(link.hasClass('ban')) {
-      status = false;
-    }
+function adminMiscellaneaDocumentReady() {
+  $('body').on('click', 'ul.subjects li a i.icon-remove', function() {
+    var _id = $(this).parents('li').data('param');
     $.ajax({
-      url: '/admin/users/' + link.data('param') + '/set_status?active=' + status,
-      type: "put"
+      type: 'delete',
+      url: '/admin/settings/subjects/' + _id + '/delete'
+    });
+  });
+  $('body').on('click', 'ul.school_levels li a i.icon-remove', function() {
+    $.ajax({
+      type: 'delete',
+      url: '/admin/settings/school_levels/' + $(this).parents('li').data('param') + '/delete'
+    });
+  });
+  $('body').on('click', '._dont_report_item', function() {
+    $.ajax({
+      type: 'delete',
+      url: 'reports/' + $(this).data('report-id') + '/decline'
+    });
+  });
+  $('body').on('click', '._report_item', function() {
+    $.ajax({
+      type: 'delete',
+      url: 'reports/' + $(this).data('report-id') + '/accept'
     });
   });
 }
@@ -372,5 +352,25 @@ function adminSortingDocumentReady() {
     $("input#search_ordering").val($(this).data('ordering'));
     $("input#search_desc").val($(this).data('desc'));
     $('#admin-search-tags').submit();
+  });
+}
+
+/**
+Initializes effects for User.
+@method adminUsersDocumentReady
+@for AdminDocumentReady
+**/
+function adminUsersDocumentReady() {
+  $('body').on('click', '._active_status', function(e) {
+    e.preventDefault();
+    var link = $(this);
+    var status = true;
+    if(link.hasClass('ban')) {
+      status = false;
+    }
+    $.ajax({
+      url: '/admin/users/' + link.data('param') + '/set_status?active=' + status,
+      type: "put"
+    });
   });
 }
