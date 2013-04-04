@@ -1,4 +1,9 @@
 /**
+bla bla bla
+@module locations
+**/
+
+/**
 ba bla bla bla
 @for LocationsDocumentReady
 @method locationsDocumentReady

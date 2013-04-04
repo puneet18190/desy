@@ -1,8 +1,7 @@
 /**
-* Generic shared javascript functions
-* 
-* @module General
-*/
+Generic shared javascript functions
+@module general
+**/
 
 function expandedItemsDocumentReady() {
   
@@ -213,6 +212,28 @@ function generalWindowResizeDocumentReady() {
   if($(window).height()>widc.height()){
     widc.css('margin-top',($(window).height() - widc.height())/2 + 'px');
   }
+}
+
+function secondsToDateString(seconds) {
+  var mm = parseInt(seconds / 60);
+  var ss = seconds % 60;
+  var hh = parseInt(mm / 60);
+  mm = mm % 60;
+  var resp = '';
+  if(hh > 0) {
+    resp = hh + ':';
+  }
+  if(mm > 9) {
+    resp = mm + ':';
+  } else {
+    resp = '0' + mm + ':';
+  }
+  if(ss > 9) {
+    resp = resp + ss;
+  } else {
+    resp = resp + '0' + ss;
+  }
+  return resp;
 }
 
 function getMediaElementsFormat() {

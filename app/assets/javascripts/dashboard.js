@@ -1,9 +1,7 @@
 /**
-* Dashboard is the welcome page of DESY where you find shared lessons and elements. 
-* This handles elements interaction events.
-* 
-* @module Dashboard
-*/
+Dashboard is the welcome page of DESY where you find shared lessons and elements. This handles elements interaction events.
+@module dashboard
+**/
 
 function dashboardDocumentReady() {
   $('body').on('mouseover', '._empty_media_elements', function() {

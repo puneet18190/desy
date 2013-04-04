@@ -1,8 +1,7 @@
 /**
-* Lessons and Elements actions triggered via buttons. 
-* 
-* @module Buttons
-*/
+Lessons and Elements actions triggered via buttons.
+@module buttons
+**/
 
 function mediaElementButtonsDocumentReady() {
   

@@ -1,5 +1,10 @@
 /**
 bla bla bla
+@module browsers
+**/
+
+/**
+bla bla bla
 @for BrowsersDocumentReady
 @method browsersDocumentReady
 **/

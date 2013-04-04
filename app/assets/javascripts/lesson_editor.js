@@ -1,9 +1,7 @@
 /**
-* Lesson editor functions, 
-* it handles visual effects, CRUD actions on single slides and lessons, it handles tinyMCE editor too.
-* 
-* @module LessonEditor
-*/
+Lesson editor functions, it handles visual effects, CRUD actions on single slides and lessons, it handles tinyMCE editor too.
+@module lesson-editor
+**/
 
 function lessonEditorDocumentReady() {
   

@@ -1,8 +1,7 @@
 /**
-* New media element popup handler, form validation errors handling.
-* 
-* @module MediaElementLoader
-*/
+New media element popup handler, form validation errors handling.
+@module media-element-loader
+**/
 
 function mediaElementLoaderDocumentReady() {
   

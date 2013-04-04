@@ -1,3 +1,8 @@
+/**
+bla bla bla
+@module media-element-editor
+**/
+
 function mediaElementEditorDocumentReady() {
   
   $('body').on('focus', '#form_info_new_media_element_in_editor #new_title', function() {

@@ -1,8 +1,7 @@
 /**
-* Provides video editor ajax actions.
-* 
-* @module VideoEditor
-*/
+Provides video editor ajax actions.
+@module video-editor
+**/
 
 /**
 * Video Editor initialization

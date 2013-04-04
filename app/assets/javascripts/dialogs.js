@@ -1,10 +1,7 @@
 /**
-* Dialogs, model and popup interaction. 
-* Open, close content management.
-* Uses jQueryUI _dialog_
-* 
-* @module Dialogs
-*/
+Dialogs, model and popup interaction. Open, close content management. Uses jQueryUI _dialog_
+@module dialogs
+**/
 
 /**
 * Modal for media element editor, asking whether or not restore cached content.

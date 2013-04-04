@@ -24,5 +24,6 @@
 //= require jquery.peity
 //= require tinymce-jquery
 //= require dots_pagination
+//= require url_parser
 //= require jquery.formparams
 //= require_directory .

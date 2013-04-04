@@ -1,9 +1,7 @@
 /**
-* Image editor functions, 
-* crop and textarea management.
-* 
-* @module ImageEditor
-*/
+Image editor functions, crop and textarea management.
+@module image-editor
+**/
 
 function imageEditorDocumentReady() {
   

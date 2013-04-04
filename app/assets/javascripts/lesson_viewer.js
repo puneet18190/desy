@@ -7,10 +7,9 @@
 */
 
 /**
-* Lesson viewer, it handles slides switching and playlist menu effects.
-* 
-* @module LessonViewer
-*/
+Lesson viewer, it handles slides switching and playlist menu effects.
+@module lesson-viewer
+**/
 
 function lessonViewerDocumentReady() {
   

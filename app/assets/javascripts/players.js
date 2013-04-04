@@ -1,8 +1,7 @@
 /**
-* Media elements players: initializer, play, stop, update frame.
-* 
-* @module Players
-*/
+Media elements players: initializer, play, stop, update frame.
+@module players
+**/
 
 // GENERAL PLAYERS
 

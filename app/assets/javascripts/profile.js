@@ -1,3 +1,8 @@
+/**
+bla bla bla
+@module profile
+**/
+
 function automaticLoginDocumentReady() {
   if($('html').hasClass('prelogin-controller home-action')) {
     var parsedLocation = UrlParser.parse(window.location.href);

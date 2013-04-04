@@ -1,3 +1,8 @@
+/**
+bla bla bla
+@module audio-editor
+**/
+
 function resizeLastComponentInAudioEditor() {
   $('._audio_editor_component._last').last().removeClass('_last')
   $('._audio_editor_component').last().addClass('_last');

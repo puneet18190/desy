@@ -1,9 +1,7 @@
 /**
-* It's where users can share their lessons.
-* It handles share lessons link and add to playlist actions.
-* 
-* @module VirtualClassroom
-*/
+It's where users can share their lessons. It handles share lessons link and add to playlist actions.
+@module virtual-classroom
+**/
 
 function virtualClassroomDocumentReady() {
   

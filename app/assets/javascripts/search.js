@@ -1,3 +1,8 @@
+/**
+bla bla bla
+@module search
+**/
+
 function searchDocumentReady() {
   
   $('body').on('click', '#which_item_to_search_switch_media_elements', function() {

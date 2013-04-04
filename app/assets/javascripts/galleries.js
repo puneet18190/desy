@@ -1,8 +1,7 @@
 /**
-* Media element galleries, initialization.
-* 
-* @module Galleries
-*/
+Media element galleries, initialization.
+@module galleries
+**/
 
 function galleriesDocumentReady() {
   

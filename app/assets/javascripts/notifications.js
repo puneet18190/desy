@@ -1,8 +1,7 @@
 /**
-* Notification info and help assistant messages handler.
-* 
-* @module Notifications
-*/
+Notification info and help assistant messages handler.
+@module notifications
+**/
 
 function notificationsDocumentReady() {
   

@@ -1,8 +1,7 @@
 /**
-* Tags autocomplete, _add_ and _remove_ from list.
-* 
-* @module Tags
-*/
+Tags autocomplete, _add_ and _remove_ from list.
+@module tags
+**/
 
 function tagsDocumentReady() {
   
