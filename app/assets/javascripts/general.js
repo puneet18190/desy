@@ -4,6 +4,34 @@
 * @module General
 */
 
+function defaultValueJavaScriptAnimationsDocumentReady() {
+  $('._which_item_to_search_switch[checked]').first().attr('checked', 'checked');
+  $('#for_page_media_elements option[selected]').first().attr('selected', 'selected');
+  $('#filter_media_elements option[selected]').first().attr('selected', 'selected');
+  $('#filter_lessons option[selected]').first().attr('selected', 'selected');
+  $('#filter_search_lessons option[selected]').first().attr('selected', 'selected');
+  $('#filter_search_media_elements option[selected]').first().attr('selected', 'selected');
+  $('#filter_search_lessons_subject option[selected]').first().attr('selected', 'selected');
+  $('._order_lessons_radio_input[checked]').first().attr('checked', 'checked');
+  $('._order_media_elements_radio_input[checked]').first().attr('checked', 'checked');
+}
+
+function generalWindowResizeDocumentReady() {
+  $(window).resize(function() {
+    if($('#my_media_elements').length > 0 || $('#media_elements_in_dashboard').length > 0){
+      recenterMyMediaElements();
+    }
+  });
+  var hac = $('.home-action .container');
+  var widc = $('.what_is_desy-action .container');
+  if($(window).height()>hac.height()){
+    hac.css('margin-top',($(window).height() - hac.height())/2 + 'px');
+  }
+  if($(window).height()>widc.height()){
+    widc.css('margin-top',($(window).height() - widc.height())/2 + 'px');
+  }
+}
+
 /**
 * Add new parameters to an url
 * 

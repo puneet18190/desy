@@ -1,95 +1,14 @@
 $(document).ready(function() {
   
+  browsersDocumentReady();
   
-  // BROWSER DETECTION: DECLARING BROWSER NAME AND VERSION AS HTML TAG CLASS
+  generalWindowResizeDocumentReady();
   
-  (function(){
-    var name = $.grep(_.keys($.browser), function(el, i) {
-      return el !== 'version';
-    })[0];
-    if(name) {
-      $('html').addClass(name);
-    }
-    if($('html').hasClass('msie')) {
-      $('._audio_editor_component ._double_slider .ui-slider-range').css('opacity', 0.4);
-    }
-  })();
+  ajaxLoaderDocumentReady();
   
+  defaultValueJavaScriptAnimationsDocumentReady();
   
-  // AFTER WINDOW RESIZE
-  
-  $(window).resize(function() {
-    if($('#my_media_elements').length > 0 || $('#media_elements_in_dashboard').length > 0){
-      recenterMyMediaElements();
-    }
-  });
-
-  var hac = $('.home-action .container');
-  var widc = $('.what_is_desy-action .container');
-  if($(window).height()>hac.height()){
-    hac.css('margin-top',($(window).height() - hac.height())/2 + 'px');
-  }
-
-  if($(window).height()>widc.height()){
-    widc.css('margin-top',($(window).height() - widc.height())/2 + 'px');
-  }
-  
-  // LOADER
-  
-  bindLoader();
-  
-  
-  // DEFAULT VALUE FOR JAVASCRIPT ANIMATIONS
-  
-  $('._which_item_to_search_switch[checked]').first().attr('checked', 'checked');
-  
-  $('#for_page_media_elements option[selected]').first().attr('selected', 'selected');
-  
-  $('#filter_media_elements option[selected]').first().attr('selected', 'selected');
-  
-  $('#filter_lessons option[selected]').first().attr('selected', 'selected');
-  
-  $('#filter_search_lessons option[selected]').first().attr('selected', 'selected');
-  
-  $('#filter_search_media_elements option[selected]').first().attr('selected', 'selected');
-  
-  $('#filter_search_lessons_subject option[selected]').first().attr('selected', 'selected');
-  
-  $('._order_lessons_radio_input[checked]').first().attr('checked', 'checked');
-  
-  $('._order_media_elements_radio_input[checked]').first().attr('checked', 'checked');
-  
-  
-  // DASHBOARD
-  
-  $('body').on('mouseover', '._empty_media_elements', function() {
-    $(this).find('._empty_media_elements_hover').addClass('current');
-  });
-  
-  $('body').on('mouseout', '._empty_media_elements', function() {
-    $(this).find('._empty_media_elements_hover').removeClass('current');
-  });
-  
-  $('body').on('mouseover', '._empty_lessons', function() {
-    $(this).find('._empty_lessons_hover').addClass('current');
-  });
-  
-  $('body').on('mouseout', '._empty_lessons', function() {
-    $(this).find('._empty_lessons_hover').removeClass('current');
-  });
-  
-  $('body').on('click', '._empty_lessons', function() {
-    window.location = '/lessons/new';
-  });
-  
-  $('#switch_to_lessons').click(function() {
-    switchToSuggestedLessons();
-  });
-  
-  $('#switch_to_media_elements').click(function() {
-    switchToSuggestedMediaElements();
-  });
-  
+  dashboardDocumentReady();
   
   // FORMS
   

@@ -5,6 +5,10 @@
 * @module AjaxLoader
 */
 
+function ajaxLoaderDocumentReady() {
+  bindLoader();
+}
+
 /**
 * Bind Loader, show loader on ajaxStart and hide loader on ajaxStop.
 * 
