@@ -7,30 +7,11 @@ Lesson editor functions, it handles visual effects, CRUD actions on single slide
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// current slide
-
 /**
-* Hide page elements around current slide on new slide selection
-* 
-* @method hideEverythingOutCurrentSlide
-* @for hideEverythingOutCurrentSlide
-*/
+Hide page elements around current slide on new slide selection
+@method hideEverythingOutCurrentSlide
+@for LessonEditorCurrentSlide
+**/
 function hideEverythingOutCurrentSlide() {
   var current_slide = $('li._lesson_editor_current_slide');
   $('#heading').children().hide();
@@ -40,11 +21,10 @@ function hideEverythingOutCurrentSlide() {
 }
 
 /**
-* Hide new slide selection
-* 
-* @method hideNewSlideChoice
-* @for hideNewSlideChoice
-*/
+Hide new slide selection
+@method hideNewSlideChoice
+@for LessonEditorCurrentSlide
+**/
 function hideNewSlideChoice() {
   var current_slide = $('li._lesson_editor_current_slide');
   current_slide.find('div.slide-content').addClass(current_slide.data('kind'));
@@ -54,11 +34,10 @@ function hideNewSlideChoice() {
 }
 
 /**
-* Restore page elements around current slide after new slide selection
-* 
-* @method showEverythingOutCurrentSlide
-* @for showEverythingOutCurrentSlide
-*/
+Restore page elements around current slide after new slide selection
+@method showEverythingOutCurrentSlide
+@for LessonEditorCurrentSlide
+**/
 function showEverythingOutCurrentSlide() {
   var current_slide = $('li._lesson_editor_current_slide');
   $('#heading').children().show();
@@ -68,11 +47,10 @@ function showEverythingOutCurrentSlide() {
 }
 
 /**
-* Hide new slide selection
-* 
-* @method showNewSlideChoice
-* @for showNewSlideChoice
-*/
+Hide new slide selection
+@method showNewSlideChoice
+@for LessonEditorCurrentSlide
+**/
 function showNewSlideOptions() {
   stopMediaInCurrentSlide();
   var current_slide_content = $('li._lesson_editor_current_slide .slide-content');
@@ -84,12 +62,10 @@ function showNewSlideOptions() {
 }
 
 /**
-* Stop video and audio playing into current slide, 
-* usually only one kind of media is present into current slide
-* 
-* @method stopMediaInCurrentSlide
-* @for stopMediaInCurrentSlide
-*/
+Stop video and audio playing into current slide, usually only one kind of media is present into current slide
+@method stopMediaInCurrentSlide
+@for LessonEditorCurrentSlide
+**/
 function stopMediaInCurrentSlide() {
   var current_slide_id = $('li._lesson_editor_current_slide').attr('id');
   stopMedia('#' + current_slide_id + ' audio');
@@ -100,33 +76,11 @@ function stopMediaInCurrentSlide() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// document ready
-
+/**
+bla bla bla
+@method lessonEditorDocumentReady
+@for LessonEditorDocumentReady
+**/
 function lessonEditorDocumentReady() {
   lessonEditorDocumentReadyGeneral();
   lessonEditorDocumentReadyJqueryAnimations();
@@ -140,6 +94,11 @@ function lessonEditorDocumentReady() {
   lessonEditorDocumentReadyTextFields();
 }
 
+/**
+bla bla bla
+@method lessonEditorDocumentReadyAddMediaElement
+@for LessonEditorDocumentReady
+**/
 function lessonEditorDocumentReadyAddMediaElement() {
   $('body').on('click', '._add_image_to_slide', function(e) {
     e.preventDefault();
@@ -251,6 +210,11 @@ function lessonEditorDocumentReadyAddMediaElement() {
   });
 }
 
+/**
+bla bla bla
+@method lessonEditorDocumentReadyGalleries
+@for LessonEditorDocumentReady
+**/
 function lessonEditorDocumentReadyGalleries() {
   $('body').on('click', '._show_image_gallery_in_lesson_editor', function() {
     showGalleryInLessonEditor(this, 'image');
@@ -283,6 +247,11 @@ function lessonEditorDocumentReadyGalleries() {
   });
 }
 
+/**
+bla bla bla
+@method lessonEditorDocumentReadyGeneral
+@for LessonEditorDocumentReady
+**/
 function lessonEditorDocumentReadyGeneral() {
   $('html.lesson-editor-layout ul#slides').css('margin-top', ((($(window).height() - 590) / 2) - 40) + 'px');
   $('html.lesson-editor-layout ul#slides.new').css('margin-top', ((($(window).height() - 590) / 2)) + 'px');
@@ -290,6 +259,11 @@ function lessonEditorDocumentReadyGeneral() {
   $('html.lesson-editor-layout ul#slides input').attr('autocomplete', 'off');
 }
 
+/**
+bla bla bla
+@method lessonEditorDocumentReadyJqueryAnimations
+@for LessonEditorDocumentReady
+**/
 function lessonEditorDocumentReadyJqueryAnimations() {
   $('._image_container_in_lesson_editor').each(function() {
     makeDraggable($(this).attr('id'));
@@ -302,6 +276,11 @@ function lessonEditorDocumentReadyJqueryAnimations() {
   initLessonEditorPositions();
 }
 
+/**
+bla bla bla
+@method lessonEditorDocumentReadyNewSlideChoice
+@for LessonEditorDocumentReady
+**/
 function lessonEditorDocumentReadyNewSlideChoice() {
   $('body').on('click', '._add_new_slide', function() {
     hideNewSlideChoice();
@@ -317,6 +296,11 @@ function lessonEditorDocumentReadyNewSlideChoice() {
   });
 }
 
+/**
+bla bla bla
+@method lessonEditorDocumentReadyReplaceMediaElement
+@for LessonEditorDocumentReady
+**/
 function lessonEditorDocumentReadyReplaceMediaElement() {
   $('body').on('mouseover', '._full_image_in_slide, ._full_video_in_slide', function() {
     var obj = $('#' + $(this).parent().attr('id') + ' ._rolloverable');
@@ -336,6 +320,11 @@ function lessonEditorDocumentReadyReplaceMediaElement() {
   });
 }
 
+/**
+bla bla bla
+@method lessonEditorDocumentReadyResize
+@for LessonEditorDocumentReady
+**/
 function lessonEditorDocumentReadyResize() {
   $(window).resize(function() {
     $('html.lesson-editor-layout ul#slides').css('margin-top', ((($(window).height() - 590) / 2) - 40) + 'px');
@@ -348,6 +337,11 @@ function lessonEditorDocumentReadyResize() {
   });
 }
 
+/**
+bla bla bla
+@method lessonEditorDocumentReadySlideButtons
+@for LessonEditorDocumentReady
+**/
 function lessonEditorDocumentReadySlideButtons() {
   $('body').on('click', '._hide_add_new_slide_options', function() {
     hideNewSlideChoice();
@@ -422,6 +416,11 @@ function lessonEditorDocumentReadySlideButtons() {
   });
 }
 
+/**
+bla bla bla
+@method lessonEditorDocumentReadySlidesNavigator
+@for LessonEditorDocumentReady
+**/
 function lessonEditorDocumentReadySlidesNavigator() {
   $('body').on('mouseover', '#slide-numbers li.navNumbers:not(._add_new_slide_options_in_last_position)', function(e) {
     var tip = $(this);
@@ -465,6 +464,11 @@ function lessonEditorDocumentReadySlidesNavigator() {
   });
 }
 
+/**
+bla bla bla
+@method lessonEditorDocumentReadyTextFields
+@for LessonEditorDocumentReady
+**/
 function lessonEditorDocumentReadyTextFields() {
   $('body').on('focus', '._lesson_editor_placeholder', function() {
     if($(this).data('placeholder')) {
