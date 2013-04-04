@@ -9,5 +9,5 @@
     thumb_div.find('.zoomOutThumb').html('<%= j(render :partial => "lesson_editor/slides/choose_thumbnail", :locals => {:slide => @slide}) %>')
   <% end %>
 <% else %>
-  slideError();
+  redError();
 <% end %>

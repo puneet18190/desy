@@ -409,7 +409,7 @@ function lessonEditorDocumentReadyTextFields() {
 
 
 
-
+// scroll pain
 
 /**
 * Update top scrollPane when moving to another slide
@@ -421,9 +421,6 @@ function lessonEditorDocumentReadyTextFields() {
       scrollPaneUpdate('._not_current_slide');
 */
 function scrollPaneUpdate(trigger_element) {
-  //TODO Control if moving right or left and when to scroll
-  // better activate it on last visible in focus
-  // trigger element is _not_current_slide
   var not_current = $(trigger_element);
   if($('.slides.active').data('position') < not_current.parent('li').data('position')) {
     $('#nav_list_menu').data('jsp').scrollByX(30);
@@ -432,6 +429,21 @@ function scrollPaneUpdate(trigger_element) {
   }
   return false;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// galleries
 
 /**
 * Hide media gallery for selected type
@@ -475,6 +487,19 @@ function showGalleryInLessonEditor(obj, sti_type) {
     });
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+// current slide
 
 /**
 * Restore page elements around current slide after new slide selection
@@ -534,6 +559,21 @@ function hideNewSlideChoice() {
   showEverythingOutCurrentSlide();
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+// media
+
 /**
 * Stop video and audio playing into current slide, 
 * usually only one kind of media is present into current slide
@@ -546,6 +586,20 @@ function stopMediaInCurrentSlide() {
   stopMedia('#' + current_slide_id + ' audio');
   stopMedia('#' + current_slide_id + ' video');
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+// jquery animations
 
 /**
 * Inizialize jQueryUI _sortable_ function on top navigation numbers,
@@ -610,17 +664,17 @@ function makeDraggable(place_id) {
     axe = 'y';
   }
   var image = $('#' + place_id + '  ._full_image_in_slide img');
-  var side = "";
+  var side = '';
   var maskedImgWidth;
   var maskedImgHeight;
   var dist;
-  if(axe == "x") {
+  if(axe == 'x') {
     maskedImgWidth = image.attr('width');
     dist = maskedImgWidth - full_place.width();
-    side = "left";
+    side = 'left';
   } else {
     maskedImgHeight = image.attr('height');
-    side = "top";
+    side = 'top';
     dist = maskedImgHeight - full_place.height();
   }
   $('#' + place_id + ' ._full_image_in_slide ._rolloverable').draggable({
@@ -637,25 +691,25 @@ function makeDraggable(place_id) {
       var offset = thisDrag.css(side);
       if(parseInt(offset) > 0) {
         offset = 0;
-        if(side=="left") {
+        if(side=='left') {
           thisDrag.animate({
-            left: "0"
+            left: '0'
           }, 100);
         } else {
           thisDrag.animate({
-            top: "0"
+            top: '0'
           }, 100);
         }
       } else {
         if(parseInt(offset) < -(parseInt(dist))) {
           offset = -parseInt(dist);
-          if(side=="left") {
+          if(side=='left') {
             thisDrag.animate({
-              left: "-" + dist + "px"
+              left: '-' + dist + 'px'
             }, 100);
           } else {
             thisDrag.animate({
-              top: "-" + dist + "px"
+              top: '-' + dist + 'px'
             }, 100);
           }
         }
@@ -664,6 +718,22 @@ function makeDraggable(place_id) {
     }
   });
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// forms
 
 /**
 * Submit serialized form data for current slide
@@ -711,6 +781,20 @@ function saveCurrentSlide() {
   });
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+// slide loading
+
 /**
 * Asynchronous slide loading. 
 * It is called when the current slide is not loaded yet.
@@ -745,6 +829,22 @@ function loadSlideAndAdhiacentInLessonEditor(slide_id) {
   loadSlideInLessonEditor(slide.prev());
   loadSlideInLessonEditor(slide.next());
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// slide navigation
 
 /**
 * Slide to current slide, update current slide in top navigation.
@@ -796,25 +896,33 @@ function slideTo(slide_id, callback) {
   });
 }
 
-/**
-* Initialize slides position to center
-*
-* @method initLessonEditorPositions
-* @for initLessonEditorPositions
-*/
-function initLessonEditorPositions() {
-  WW = parseInt($(window).outerWidth());
-  WH = parseInt($(window).outerHeight());
-  $("#main").css("width", WW);
-  $("ul#slides").css("width",(($("ul#slides li").length + 2) * 1000) );
-  $("ul#slides").css("top", ((WH / 2) - 295) + "px");
-  $("ul#slides.new").css("top", ((WH / 2) - 335) + "px")
-  $("#footer").css("top", (WH - 40) + "px").css("width", (WW - 24) + "px")
-  if(WW > 1000) {
-    $("ul#slides li:first").css("margin-left", ((WW - 900) / 2) + "px")
-    $("ul#slides.new li:first").css("margin-left", ((WW - 900) / 2) + "px");
-  }
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// tinyMCE
 
 /**
 * TinyMCE callback to show warning when texearea content exceeds the available space.
@@ -875,19 +983,6 @@ function tinyMceKeyDownCallbacks(inst,tiny_id){
 }
 
 /**
-* Re-initialize slides position to center after ajax events
-*
-* @method reInitializeSlidePositionsInLessonEditor
-* @for reInitializeSlidePositionsInLessonEditor
-*/
-function reInitializeSlidePositionsInLessonEditor() {
-  $("ul#slides").css("width",(($("ul#slides li").length+2) * 1000));
-  $('ul#slides li').each(function(index){
-    $(this).data('position', (index + 1));
-  });
-}
-
-/**
 * Initialize tinyMCE editor for a single textarea
 *
 * Uses: [tinyMceKeyDownCallbacks](../classes/tinyMceKeyDownCallbacks.html#method_tinyMceKeyDownCallbacks) 
@@ -942,17 +1037,80 @@ function initTinymce(tiny_id) {
   //});
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// slides positions
+
 /**
-* Show error message when somethings goes wrong
+* Initialize slides position to center
 *
-* @method slideError
-* @for slideError
+* @method initLessonEditorPositions
+* @for initLessonEditorPositions
 */
-function slideError() {
-  $("body").prepend("<span class='_slide_error'></span>");
-  centerThis("._slide_error");
-  $("._slide_error").fadeTo('fast', 0).fadeTo('fast', 0.7).fadeTo('fast', 0.3).fadeOut();
+function initLessonEditorPositions() {
+  WW = parseInt($(window).outerWidth());
+  WH = parseInt($(window).outerHeight());
+  $('#main').css('width', WW);
+  $('ul#slides').css('width', (($('ul#slides li').length + 2) * 1000));
+  $('ul#slides').css('top', ((WH / 2) - 295) + 'px');
+  $('ul#slides.new').css('top', ((WH / 2) - 335) + 'px')
+  $('#footer').css('top', (WH - 40) + "px").css('width', (WW - 24) + 'px')
+  if(WW > 1000) {
+    $('ul#slides li:first').css('margin-left', ((WW - 900) / 2) + 'px')
+    $('ul#slides.new li:first').css('margin-left', ((WW - 900) / 2) + 'px');
+  }
 }
+
+/**
+* Re-initialize slides position to center after ajax events
+*
+* @method reInitializeSlidePositionsInLessonEditor
+* @for reInitializeSlidePositionsInLessonEditor
+*/
+function reInitializeSlidePositionsInLessonEditor() {
+  $('ul#slides').css('width', (($('ul#slides li').length+2) * 1000));
+  $('ul#slides li').each(function(index){
+    $(this).data('position', (index + 1));
+  });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// image resizing
 
 /**
 * Check if image ratio is bigger then kind ratio

@@ -307,6 +307,17 @@ function secondsToDateString(seconds) {
   return resp;
 }
 
+/**
+Shows error icon when somethings goes wrong
+@method redError
+@for GeneralMiscellanea
+**/
+function redError() {
+  $('body').prepend('<span class="_slide_error"></span>');
+  centerThis('._slide_error');
+  $('._slide_error').fadeTo('fast', 0).fadeTo('fast', 0.7).fadeTo('fast', 0.3).fadeOut();
+}
+
 
 
 
