@@ -2519,7 +2519,7 @@
     "classitems": [
         {
             "file": "app/assets/javascripts/admin/admin_functions.js",
-            "line": 7,
+            "line": 301,
             "description": "Open a collapsed table row with extra content,\ntipically clicking on previous collapsable table row.",
             "itemtype": "method",
             "name": "openAndLoadNextTr",
@@ -2535,7 +2535,7 @@
         },
         {
             "file": "app/assets/javascripts/admin/admin_functions.js",
-            "line": 28,
+            "line": 322,
             "description": "Initializer for jQueryUI autocomplete on users serch into Admin Notifications.",
             "itemtype": "method",
             "name": "initNotificationsAutocomplete",
@@ -2544,7 +2544,7 @@
         },
         {
             "file": "app/assets/javascripts/ajax_loader.js",
-            "line": 8,
+            "line": 12,
             "description": "Bind Loader, show loader on ajaxStart and hide loader on ajaxStop.",
             "itemtype": "method",
             "name": "bindLoader",
@@ -2553,7 +2553,7 @@
         },
         {
             "file": "app/assets/javascripts/ajax_loader.js",
-            "line": 37,
+            "line": 41,
             "description": "Unbind Loader, unbind loader for ajaxStart and ajaxStop.",
             "itemtype": "method",
             "name": "unbindLoader",
@@ -2562,7 +2562,7 @@
         },
         {
             "file": "app/assets/javascripts/ajax_loader.js",
-            "line": 47,
+            "line": 51,
             "description": "Show Loader, force loader to show.\ncomes with timeout (default=5000) to force loader to hide [hideLoader](../classes/hideLoader.html#method_hideLoader)",
             "itemtype": "method",
             "name": "showLoader",
@@ -2571,7 +2571,7 @@
         },
         {
             "file": "app/assets/javascripts/ajax_loader.js",
-            "line": 62,
+            "line": 66,
             "description": "Hide Loader, force loader to hide.",
             "itemtype": "method",
             "name": "hideLoader",
@@ -2580,7 +2580,7 @@
         },
         {
             "file": "app/assets/javascripts/buttons.js",
-            "line": 7,
+            "line": 217,
             "description": "Add item removed from a view to the current destination url",
             "itemtype": "method",
             "name": "addDeleteItemToCurrentUrl",
@@ -2593,7 +2593,7 @@
         },
         {
             "file": "app/assets/javascripts/buttons.js",
-            "line": 25,
+            "line": 235,
             "description": "Add lessons from dashboard to my lessons\n\nUses [addDeleteItemToCurrentUrl](../classes/addDeleteItemToCurrentUrl.html#method_addDeleteItemToCurrentUrl)\nand [showErrorPopUp](../classes/showErrorPopUp.html#method_showErrorPopUp)",
             "itemtype": "method",
             "name": "addLesson",
@@ -2624,7 +2624,7 @@
         },
         {
             "file": "app/assets/javascripts/buttons.js",
-            "line": 65,
+            "line": 275,
             "description": "Create user own copy of the lesson",
             "itemtype": "method",
             "name": "copyLesson",
@@ -2645,7 +2645,7 @@
         },
         {
             "file": "app/assets/javascripts/buttons.js",
-            "line": 80,
+            "line": 290,
             "description": "Destroy lessons lesson\n\nUses [addDeleteItemToCurrentUrl](../classes/addDeleteItemToCurrentUrl.html#method_addDeleteItemToCurrentUrl)\nand [showConfirmPopUp](../classes/showConfirmPopUp.html#method_showConfirmPopUp)\nand [showErrorPopUp](../classes/showErrorPopUp.html#method_showErrorPopUp)",
             "itemtype": "method",
             "name": "destroyLesson",
@@ -2671,7 +2671,7 @@
         },
         {
             "file": "app/assets/javascripts/buttons.js",
-            "line": 119,
+            "line": 329,
             "description": "Remove like from a lesson",
             "itemtype": "method",
             "name": "dislikeLesson",
@@ -2692,7 +2692,7 @@
         },
         {
             "file": "app/assets/javascripts/buttons.js",
-            "line": 134,
+            "line": 344,
             "description": "Add like to a lesson",
             "itemtype": "method",
             "name": "likeLesson",
@@ -2713,7 +2713,7 @@
         },
         {
             "file": "app/assets/javascripts/buttons.js",
-            "line": 149,
+            "line": 359,
             "description": "View lesson link",
             "itemtype": "method",
             "name": "previewLesson",
@@ -2734,7 +2734,7 @@
         },
         {
             "file": "app/assets/javascripts/buttons.js",
-            "line": 173,
+            "line": 383,
             "description": "Make a lesson public\n\nUses [showConfirmPopUp](../classes/showConfirmPopUp.html#method_showConfirmPopUp)\nand [closePopUp](../classes/closePopUp.html#method_closePopUp)",
             "itemtype": "method",
             "name": "publishLesson",
@@ -2755,7 +2755,7 @@
         },
         {
             "file": "app/assets/javascripts/buttons.js",
-            "line": 198,
+            "line": 408,
             "description": "Remove a lesson from yours (unlink).\n\nUses [addDeleteItemToCurrentUrl](../classes/addDeleteItemToCurrentUrl.html#method_addDeleteItemToCurrentUrl)\nand [showErrorPopUp](../classes/showErrorPopUp.html#method_showErrorPopUp)",
             "itemtype": "method",
             "name": "removeLesson",
@@ -2786,7 +2786,7 @@
         },
         {
             "file": "app/assets/javascripts/buttons.js",
-            "line": 238,
+            "line": 448,
             "description": "Make a lesson private\n\nUses [showConfirmPopUp](../classes/showConfirmPopUp.html#method_showConfirmPopUp)\nand [closePopUp](../classes/closePopUp.html#method_closePopUp)",
             "itemtype": "method",
             "name": "unpublishLesson",
@@ -2807,7 +2807,7 @@
         },
         {
             "file": "app/assets/javascripts/buttons.js",
-            "line": 263,
+            "line": 473,
             "description": "Make the lesson available in the virtual classroom",
             "itemtype": "method",
             "name": "addLessonToVirtualClassroom",
@@ -2828,7 +2828,7 @@
         },
         {
             "file": "app/assets/javascripts/buttons.js",
-            "line": 278,
+            "line": 488,
             "description": "Remove lesson availability in the virtual classroom",
             "itemtype": "method",
             "name": "removeLessonFromVirtualClassroom",
@@ -2849,7 +2849,7 @@
         },
         {
             "file": "app/assets/javascripts/buttons.js",
-            "line": 293,
+            "line": 503,
             "description": "Add media element from dashboard to my lessons\n\nUses [addDeleteItemToCurrentUrl](../classes/addDeleteItemToCurrentUrl.html#method_addDeleteItemToCurrentUrl)\nand [showErrorPopUp](../classes/showErrorPopUp.html#method_showErrorPopUp)",
             "itemtype": "method",
             "name": "addMediaElement",
@@ -2880,7 +2880,7 @@
         },
         {
             "file": "app/assets/javascripts/buttons.js",
-            "line": 333,
+            "line": 543,
             "description": "Destroy Media Element\n\nUses [addDeleteItemToCurrentUrl](../classes/addDeleteItemToCurrentUrl.html#method_addDeleteItemToCurrentUrl)\nand [showConfirmPopUp](../classes/showConfirmPopUp.html#method_showConfirmPopUp)\nand [showErrorPopUp](../classes/showErrorPopUp.html#method_showErrorPopUp)\nand [closePopUp](../classes/closePopUp.html#method_closePopUp)",
             "itemtype": "method",
             "name": "destroyMediaElement",
@@ -2911,7 +2911,7 @@
         },
         {
             "file": "app/assets/javascripts/buttons.js",
-            "line": 381,
+            "line": 591,
             "description": "Remove a media element from yours (unlink).\n\nUses [addDeleteItemToCurrentUrl](../classes/addDeleteItemToCurrentUrl.html#method_addDeleteItemToCurrentUrl)\nand [showErrorPopUp](../classes/showErrorPopUp.html#method_showErrorPopUp)",
             "itemtype": "method",
             "name": "removeMediaElement",
@@ -2942,7 +2942,7 @@
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
-            "line": 8,
+            "line": 32,
             "description": "Reload Dashboard content on page change, using bottom pagination.",
             "itemtype": "method",
             "name": "reloadDashboardPages",
@@ -2951,7 +2951,7 @@
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
-            "line": 21,
+            "line": 45,
             "description": "Switch to suggested elements page in dashboard.\n\nUses: [reloadMediaElementsDashboardPagination](../classes/reloadMediaElementsDashboardPagination.html#method_reloadMediaElementsDashboardPagination)",
             "itemtype": "method",
             "name": "switchToSuggestedMediaElements",
@@ -2960,7 +2960,7 @@
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
-            "line": 42,
+            "line": 66,
             "description": "Switch to suggested lessons page in dashboard.\n\nUses: [reloadMediaLessonsDashboardPagination](../classes/reloadMediaLessonsDashboardPagination.html#method_reloadMediaLessonsDashboardPagination)",
             "itemtype": "method",
             "name": "switchToSuggestedLessons",
@@ -2969,7 +2969,7 @@
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
-            "line": 63,
+            "line": 87,
             "description": "Pagination html generator",
             "itemtype": "method",
             "name": "getHtmlPagination",
@@ -2994,7 +2994,7 @@
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
-            "line": 101,
+            "line": 125,
             "description": "Realod pagination html for media elements.\n\nUses: [changePageDashboardMediaElements](../classes/changePageDashboardMediaElements.html#method_changePageDashboardMediaElements)",
             "itemtype": "method",
             "name": "reloadMediaElementsDashboardPagination",
@@ -3015,7 +3015,7 @@
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
-            "line": 134,
+            "line": 158,
             "description": "Realod pagination html for lessons.\n\nUses: [changePageDashboardLessons](../classes/changePageDashboardLessons.html#method_changePageDashboardLessons)",
             "itemtype": "method",
             "name": "reloadLessonsDashboardPagination",
@@ -3036,7 +3036,7 @@
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
-            "line": 165,
+            "line": 189,
             "description": "Change media elements page in dashboard.\n\nUses: [reloadMediaElementsDashboardPagination](../classes/reloadMediaElementsDashboardPagination.html#method_reloadMediaElementsDashboardPagination)",
             "itemtype": "method",
             "name": "changePageDashboardMediaElements",
@@ -3062,7 +3062,7 @@
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
-            "line": 184,
+            "line": 208,
             "description": "Change lessons page in dashboard.\n\nUses: [reloadLessonsDashboardPagination](../classes/reloadLessonsDashboardPagination.html#method_reloadLessonsDashboardPagination)",
             "itemtype": "method",
             "name": "changePageDashboardLessons",
@@ -3363,7 +3363,7 @@
         },
         {
             "file": "app/assets/javascripts/galleries.js",
-            "line": 7,
+            "line": 93,
             "description": "Initialize image gallery in lesson editor.\nInit jScrollPane and get images block.",
             "itemtype": "method",
             "name": "initializeImageGalleryInLessonEditor",
@@ -3372,7 +3372,7 @@
         },
         {
             "file": "app/assets/javascripts/galleries.js",
-            "line": 27,
+            "line": 113,
             "description": "Initialize audio gallery in lesson editor.\nInit jScrollPane and get audios block.",
             "itemtype": "method",
             "name": "initializeAudioGalleryInLessonEditor",
@@ -3381,7 +3381,7 @@
         },
         {
             "file": "app/assets/javascripts/galleries.js",
-            "line": 47,
+            "line": 133,
             "description": "Initialize video gallery in lesson editor.\nInit jScrollPane and get videos block.",
             "itemtype": "method",
             "name": "initializeVideoGalleryInLessonEditor",
@@ -3390,7 +3390,7 @@
         },
         {
             "file": "app/assets/javascripts/galleries.js",
-            "line": 67,
+            "line": 153,
             "description": "Initialize all media mixed gallery in video editor.\nInit jScrollPane and get mixed media block.",
             "itemtype": "method",
             "name": "initializeImageGalleryInLessonEditor",
@@ -3399,7 +3399,7 @@
         },
         {
             "file": "app/assets/javascripts/galleries.js",
-            "line": 97,
+            "line": 183,
             "description": "Initialize audio gallery in video editor.\nInit jScrollPane and audios block.",
             "itemtype": "method",
             "name": "initializeImageGalleryInLessonEditor",
@@ -3408,7 +3408,7 @@
         },
         {
             "file": "app/assets/javascripts/galleries.js",
-            "line": 117,
+            "line": 203,
             "description": "Initialize audio gallery in audio editor.\nInit jScrollPane and get audios block.",
             "itemtype": "method",
             "name": "initializeAudioGalleryInAudioEditor",
@@ -3417,7 +3417,7 @@
         },
         {
             "file": "app/assets/javascripts/galleries.js",
-            "line": 137,
+            "line": 223,
             "description": "Initialize image gallery in image editor.\nInit jScrollPane and get images block.",
             "itemtype": "method",
             "name": "initializeImageGalleryInImageEditor",
@@ -3426,7 +3426,7 @@
         },
         {
             "file": "app/assets/javascripts/galleries.js",
-            "line": 157,
+            "line": 243,
             "description": "Scale image size form image gallery popup",
             "itemtype": "method",
             "name": "resizedWidthForImageGallery",
@@ -3447,7 +3447,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 7,
+            "line": 238,
             "description": "Add new parameters to an url",
             "itemtype": "method",
             "name": "updateURLParameter",
@@ -3477,7 +3477,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 36,
+            "line": 267,
             "description": "Remove a param from url",
             "itemtype": "method",
             "name": "removeURLParameter",
@@ -3502,7 +3502,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 63,
+            "line": 294,
             "description": "Center a div into a given container",
             "itemtype": "method",
             "name": "centerThisInContainer",
@@ -3526,7 +3526,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 81,
+            "line": 312,
             "description": "Center a div into current window",
             "itemtype": "method",
             "name": "centerThis",
@@ -3545,7 +3545,7 @@
         },
         {
             "file": "app/assets/javascripts/image_editor.js",
-            "line": 244,
+            "line": 254,
             "description": "Sets current textarea to active.",
             "itemtype": "method",
             "name": "enlightTextarea",
@@ -3561,7 +3561,7 @@
         },
         {
             "file": "app/assets/javascripts/image_editor.js",
-            "line": 257,
+            "line": 267,
             "description": "Disable textareas,\ntypically applied to all textareas,\nremoves the current flag to active textarea.",
             "itemtype": "method",
             "name": "offlightTextarea",
@@ -3570,7 +3570,7 @@
         },
         {
             "file": "app/assets/javascripts/image_editor.js",
-            "line": 271,
+            "line": 281,
             "description": "Get textarea coordinates while dragging",
             "itemtype": "method",
             "name": "getDragPosition",
@@ -3593,7 +3593,7 @@
         },
         {
             "file": "app/assets/javascripts/image_editor.js",
-            "line": 292,
+            "line": 302,
             "description": "Append new textarea to image editor container",
             "itemtype": "method",
             "name": "textAreaImageEditorContent",
@@ -3621,7 +3621,7 @@
         },
         {
             "file": "app/assets/javascripts/image_editor.js",
-            "line": 319,
+            "line": 329,
             "description": "Get image relative position into editor container",
             "itemtype": "method",
             "name": "getRelativePositionInImageEditor",
@@ -3646,7 +3646,7 @@
         },
         {
             "file": "app/assets/javascripts/image_editor.js",
-            "line": 338,
+            "line": 348,
             "description": "Reset image editor functions, reset image editor to initial state",
             "itemtype": "method",
             "name": "resetImageEditorOperationsChoice",
@@ -3655,7 +3655,7 @@
         },
         {
             "file": "app/assets/javascripts/image_editor.js",
-            "line": 352,
+            "line": 362,
             "description": "Reset image editor crop, disable crop state for image",
             "itemtype": "method",
             "name": "resetImageEditorCrop",
@@ -3664,7 +3664,7 @@
         },
         {
             "file": "app/assets/javascripts/image_editor.js",
-            "line": 368,
+            "line": 378,
             "description": "Reset image editor textareas, disable text state for image",
             "itemtype": "method",
             "name": "resetImageEditorTexts",
@@ -3673,7 +3673,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 350,
+            "line": 378,
             "description": "Update top scrollPane when moving to another slide",
             "itemtype": "method",
             "name": "scrollPaneUpdate",
@@ -3692,7 +3692,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 372,
+            "line": 400,
             "description": "Hide media gallery for selected type",
             "itemtype": "method",
             "name": "removeGalleryInLessonEditor",
@@ -3711,7 +3711,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 387,
+            "line": 415,
             "description": "Show media gallery for selected type clicking on slide green plus button",
             "itemtype": "method",
             "name": "showGalleryInLessonEditor",
@@ -3735,7 +3735,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 415,
+            "line": 443,
             "description": "Restore page elements around current slide after new slide selection",
             "itemtype": "method",
             "name": "showEverythingOutCurrentSlide",
@@ -3744,7 +3744,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 429,
+            "line": 457,
             "description": "Hide page elements around current slide on new slide selection",
             "itemtype": "method",
             "name": "hideEverythingOutCurrentSlide",
@@ -3753,7 +3753,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 443,
+            "line": 471,
             "description": "Hide new slide selection",
             "itemtype": "method",
             "name": "showNewSlideChoice",
@@ -3762,7 +3762,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 459,
+            "line": 487,
             "description": "Hide new slide selection",
             "itemtype": "method",
             "name": "hideNewSlideChoice",
@@ -3771,7 +3771,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 473,
+            "line": 501,
             "description": "Stop video and audio playing into current slide, \nusually only one kind of media is present into current slide",
             "itemtype": "method",
             "name": "stopMediaInCurrentSlide",
@@ -3780,7 +3780,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 486,
+            "line": 514,
             "description": "Inizialize jQueryUI _sortable_ function on top navigation numbers,\nso that they can be sorted",
             "itemtype": "method",
             "name": "initializeSortableNavs",
@@ -3789,7 +3789,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 533,
+            "line": 561,
             "description": "Inizialize jQueryUI _draggable_ function on slide image containers.",
             "itemtype": "method",
             "name": "makeDraggable",
@@ -3808,7 +3808,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 604,
+            "line": 632,
             "description": "Submit serialized form data for current slide",
             "itemtype": "method",
             "name": "submitCurrentSlideForm",
@@ -3817,7 +3817,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 620,
+            "line": 648,
             "description": "Save current slide. It sends tinyMCE editor content to form data to be serialized, \nit handles form placeholders.\n\nUses: [submitCurrentSlideForm](../classes/submitCurrentSlideForm.html#method_submitCurrentSlideForm)",
             "itemtype": "method",
             "name": "saveCurrentSlide",
@@ -3826,7 +3826,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 650,
+            "line": 678,
             "description": "Asynchronous slide loading. \nIt is called when the current slide is not loaded yet.",
             "itemtype": "method",
             "name": "loadSlideInLessonEditor",
@@ -3845,7 +3845,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 669,
+            "line": 697,
             "description": "Asynchronously loads current slide, previous and following if any of these aren't loaded yet.\n\nUses: [loadSlideInLessonEditor](../classes/loadSlideInLessonEditor.html#method_loadSlideInLessonEditor)",
             "itemtype": "method",
             "name": "loadSlideAndAdhiacentInLessonEditor",
@@ -3861,7 +3861,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 685,
+            "line": 713,
             "description": "Slide to current slide, update current slide in top navigation.\n\nUses: [loadSlideAndAdhiacentInLessonEditor](../classes/loadSlideAndAdhiacentInLessonEditor.html#method_loadSlideAndAdhiacentInLessonEditor)",
             "itemtype": "method",
             "name": "slideTo",
@@ -3882,7 +3882,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 735,
+            "line": 763,
             "description": "Initialize slides position to center",
             "itemtype": "method",
             "name": "initLessonEditorPositions",
@@ -3891,7 +3891,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 755,
+            "line": 783,
             "description": "TinyMCE callback to show warning when texearea content exceeds the available space.\nAdd a red border to the textarea\n\nAdd this function on tinyMCE setup.",
             "itemtype": "method",
             "name": "tinyMceCallbacks",
@@ -3915,7 +3915,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 786,
+            "line": 814,
             "description": "TinyMCE keyDown callback to fix list item style.\nIt adds same style of list item text to list numbers or dots.\n\nAdd this function on tinyMCE setup.",
             "itemtype": "method",
             "name": "tinyMceKeyDownCallbacks",
@@ -3939,7 +3939,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 813,
+            "line": 841,
             "description": "Re-initialize slides position to center after ajax events",
             "itemtype": "method",
             "name": "reInitializeSlidePositionsInLessonEditor",
@@ -3948,7 +3948,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 826,
+            "line": 854,
             "description": "Initialize tinyMCE editor for a single textarea\n\nUses: [tinyMceKeyDownCallbacks](../classes/tinyMceKeyDownCallbacks.html#method_tinyMceKeyDownCallbacks) \nand [tinyMceCallbacks](../classes/tinyMceCallbacks.html#method_tinyMceCallbacks)",
             "itemtype": "method",
             "name": "initTinymce",
@@ -3964,7 +3964,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 876,
+            "line": 904,
             "description": "Show error message when somethings goes wrong",
             "itemtype": "method",
             "name": "slideError",
@@ -3973,7 +3973,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 888,
+            "line": 916,
             "description": "Check if image ratio is bigger then kind ratio",
             "itemtype": "method",
             "name": "isHorizontalMask",
@@ -4003,7 +4003,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 917,
+            "line": 945,
             "description": "Sets scaled width to slide images",
             "itemtype": "method",
             "name": "resizeWidth",
@@ -4033,7 +4033,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 944,
+            "line": 972,
             "description": "Sets scaled height to slide images",
             "itemtype": "method",
             "name": "resizeHeight",
@@ -4063,7 +4063,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 76,
+            "line": 77,
             "description": "Open playlist menu, show lessons conver list and change playlist toggle label\n\nUses: [hideArrowsInLessonViewer](../classes/hideArrowsInLessonViewer.html#method_hideArrowsInLessonViewer)",
             "itemtype": "method",
             "name": "openPlaylistMenuInLessonViewer",
@@ -4072,7 +4072,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 91,
+            "line": 92,
             "description": "Open playlist menu, show lessons conver list and change playlist toggle label\n\nUses: [showArrowsInLessonViewer](../classes/showArrowsInLessonViewer.html#method_showArrowsInLessonViewer)",
             "itemtype": "method",
             "name": "closePlaylistMenuInLessonViewer",
@@ -4088,7 +4088,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 109,
+            "line": 110,
             "description": "Sets selected lesson from playlist menu",
             "itemtype": "method",
             "name": "selectComponentInLessonViewerPlaylistMenu",
@@ -4109,7 +4109,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 200,
+            "line": 201,
             "description": "Gets the current slide id",
             "itemtype": "method",
             "name": "getLessonViewerCurrentSlide",
@@ -4122,7 +4122,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 211,
+            "line": 212,
             "description": "Slide to given slide\n\nUses: [stopMediaInLessonViewer](../classes/stopMediaInLessonViewer.html#method_stopMediaInLessonViewer)\nand [getLessonViewerCurrentSlide](../classes/getLessonViewerCurrentSlide.html#method_getLessonViewerCurrentSlide)\nand [unbindLoader](../classes/unbindLoader.html#method_unbindLoader)\nand [bindLoader](../classes/bindLoader.html#method_bindLoader)",
             "itemtype": "method",
             "name": "slideToInLessonViewer",
@@ -4138,7 +4138,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 253,
+            "line": 254,
             "description": "Hide slides navigation arrows in lesson viewer",
             "itemtype": "method",
             "name": "hideArrowsInLessonViewer",
@@ -4147,7 +4147,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 263,
+            "line": 264,
             "description": "Show slides navigation arrows in lesson viewer",
             "itemtype": "method",
             "name": "hideArrowsInLessonViewer",
@@ -4156,7 +4156,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 273,
+            "line": 274,
             "description": "Handle playlist menu on lesson viewer startup\n\nUses: [selectComponentInLessonViewerPlaylistMenu](../classes/selectComponentInLessonViewerPlaylistMenu.html#method_selectComponentInLessonViewerPlaylistMenu)",
             "itemtype": "method",
             "name": "initializeLessonViewer",
@@ -4165,7 +4165,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 292,
+            "line": 293,
             "description": "Stop media playling in current slide in lesson viewer",
             "itemtype": "method",
             "name": "stopMediaInLessonViewer",
@@ -4174,7 +4174,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 304,
+            "line": 305,
             "description": "Open playlist menu, show lessons conver list and change playlist toggle label\n\nUses: [selectComponentInLessonViewerPlaylistMenu](../classes/selectComponentInLessonViewerPlaylistMenu.html#method_selectComponentInLessonViewerPlaylistMenu)",
             "itemtype": "method",
             "name": "switchLessonInPlaylistMenuLessonViewer",
@@ -4195,7 +4195,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 322,
+            "line": 323,
             "description": "Open playlist menu, show lessons conver list and change playlist toggle label\n\nUses: [slideToInLessonViewer](../classes/slideToInLessonViewer.html#method_slideToInLessonViewer)\nand [switchLessonInPlaylistMenuLessonViewer](../classes/switchLessonInPlaylistMenuLessonViewer.html#method_switchLessonInPlaylistMenuLessonViewer)",
             "itemtype": "method",
             "name": "slideToInLessonViewerWithLessonSwitch",
@@ -4211,7 +4211,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 337,
+            "line": 338,
             "description": "Go to next slide in lesson viewer,\nif last slide it goes to first one.\n\nUses: [slideToInLessonViewerWithLessonSwitch](../classes/slideToInLessonViewerWithLessonSwitch.html#method_slideToInLessonViewerWithLessonSwitch)",
             "itemtype": "method",
             "name": "goToNextSlideInLessonViewer",
@@ -4220,7 +4220,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 355,
+            "line": 356,
             "description": "Go to previous slide in lesson viewer,\nif first slide it goes to last one.\n\nUses: [slideToInLessonViewerWithLessonSwitch](../classes/slideToInLessonViewerWithLessonSwitch.html#method_slideToInLessonViewerWithLessonSwitch)",
             "itemtype": "method",
             "name": "goToPrevSlideInLessonViewer",
@@ -4229,7 +4229,7 @@
         },
         {
             "file": "app/assets/javascripts/media_element_loader.js",
-            "line": 7,
+            "line": 49,
             "description": "Set iframe as target for form submit, added a callback function to control 413 status error.\n\nUses: [uploadDone](../classes/uploadDone.html#method_uploadDone)",
             "itemtype": "method",
             "name": "initMediaElementLoader",
@@ -4238,7 +4238,7 @@
         },
         {
             "file": "app/assets/javascripts/media_element_loader.js",
-            "line": 24,
+            "line": 66,
             "description": "Handle 413 status error, file too large",
             "itemtype": "method",
             "name": "uploadDone",
@@ -4247,7 +4247,7 @@
         },
         {
             "file": "app/assets/javascripts/media_element_loader.js",
-            "line": 40,
+            "line": 82,
             "description": "Update form fields with error labels",
             "itemtype": "method",
             "name": "uploadMediaElementLoaderError",
@@ -4263,7 +4263,7 @@
         },
         {
             "file": "app/assets/javascripts/media_element_loader.js",
-            "line": 66,
+            "line": 108,
             "description": "Reload media elements page after new media element is successfully loaded.",
             "itemtype": "method",
             "name": "uploadMediaElementLoadeDoneRedirect",
@@ -4272,7 +4272,7 @@
         },
         {
             "file": "app/assets/javascripts/media_element_loader.js",
-            "line": 79,
+            "line": 121,
             "description": "Fill in media element update form with media element values.",
             "itemtype": "method",
             "name": "resetMediaElementChangeInfo",
@@ -4288,7 +4288,7 @@
         },
         {
             "file": "app/assets/javascripts/notifications.js",
-            "line": 7,
+            "line": 50,
             "description": "Checks if any notification is available and initialize unread notification counter.\nHandles notifications show/hide effects.\n\nUses: [showNotificationsFumetto](../classes/showNotificationsFumetto.html#method_showNotificationsFumetto)\nand [showNotificationsButton](../classes/showNotificationsButton.html#method_showNotificationsButton)\nand [hideHelpTooltip](../classes/hideHelpTooltip.html#method_hideHelpTooltip)\nand [hideHelpButton](../classes/hideHelpButton.html#method_hideHelpButton)\nand [showNotificationsTooltip](../classes/showNotificationsTooltip.html#method_showNotificationsTooltip)\nand [hideNotificationsFumetto](../classes/hideNotificationsFumetto.html#method_hideNotificationsFumetto)\nand [hideNotificationsTooltip](../classes/hideNotificationsTooltip.html#method_hideNotificationsTooltip)\nand [hideNotificationsButton](../classes/hideNotificationsButton.html#method_hideNotificationsButton)\nand [unbindLoader](../classes/unbindLoader.html#method_unbindLoader)\nand [bindLoader](../classes/bindLoader.html#method_bindLoader)\nand [hideExpandedNotification](../classes/hideExpandedNotification.html#method_hideExpandedNotification)",
             "itemtype": "method",
             "name": "initializeNotifications",
@@ -4297,7 +4297,7 @@
         },
         {
             "file": "app/assets/javascripts/notifications.js",
-            "line": 108,
+            "line": 151,
             "description": "Checks if any help is available and initialize them.\nHandles help show/hide effects.\n\nUses: [hideNotificationsTooltip](../classes/hideNotificationsTooltip.html#method_hideNotificationsTooltip)\nand [hideNotificationsButton](../classes/hideNotificationsButton.html#method_hideNotificationsButton)\nand [hideNotificationsFumetto](../classes/hideNotificationsFumetto.html#method_hideNotificationsFumetto)\nand [showHelpTooltip](../classes/showHelpTooltip.html#method_showHelpTooltip)\nand [showHelpButton](../classes/showHelpButton.html#method_showHelpButton)\nand [hideHelpTooltip](../classes/hideHelpTooltip.html#method_hideHelpTooltip)\nand [hideHelpButton](../classes/hideHelpButton.html#method_hideHelpButton)",
             "itemtype": "method",
             "name": "initializeHelp",
@@ -4306,7 +4306,7 @@
         },
         {
             "file": "app/assets/javascripts/notifications.js",
-            "line": 147,
+            "line": 190,
             "description": "Empty and hide expanded notifications.",
             "itemtype": "method",
             "name": "hideExpandedNotification",
@@ -4315,7 +4315,7 @@
         },
         {
             "file": "app/assets/javascripts/notifications.js",
-            "line": 158,
+            "line": 201,
             "description": "Hide notifications tooltip.\n\nUses: [hideExpandedNotification](../classes/hideExpandedNotification.html#method_hideExpandedNotification)",
             "itemtype": "method",
             "name": "hideExpandedNotification",
@@ -4324,7 +4324,7 @@
         },
         {
             "file": "app/assets/javascripts/notifications.js",
-            "line": 171,
+            "line": 214,
             "description": "Show notifications tooltip.",
             "itemtype": "method",
             "name": "showNotificationsTooltip",
@@ -4333,7 +4333,7 @@
         },
         {
             "file": "app/assets/javascripts/notifications.js",
-            "line": 181,
+            "line": 224,
             "description": "Hide help tooltip.",
             "itemtype": "method",
             "name": "hideHelpTooltip",
@@ -4342,7 +4342,7 @@
         },
         {
             "file": "app/assets/javascripts/notifications.js",
-            "line": 191,
+            "line": 234,
             "description": "Show help tooltip.",
             "itemtype": "method",
             "name": "showHelpTooltip",
@@ -4351,7 +4351,7 @@
         },
         {
             "file": "app/assets/javascripts/notifications.js",
-            "line": 201,
+            "line": 244,
             "description": "Hide notifications button.",
             "itemtype": "method",
             "name": "hideNotificationsButton",
@@ -4360,7 +4360,7 @@
         },
         {
             "file": "app/assets/javascripts/notifications.js",
-            "line": 211,
+            "line": 254,
             "description": "Show notifications button.",
             "itemtype": "method",
             "name": "showNotificationsButton",
@@ -4369,7 +4369,7 @@
         },
         {
             "file": "app/assets/javascripts/notifications.js",
-            "line": 221,
+            "line": 264,
             "description": "Hide notifications balloon.",
             "itemtype": "method",
             "name": "hideNotificationsFumetto",
@@ -4378,7 +4378,7 @@
         },
         {
             "file": "app/assets/javascripts/notifications.js",
-            "line": 231,
+            "line": 274,
             "description": "Show notifications balloon.",
             "itemtype": "method",
             "name": "showNotificationsFumetto",
@@ -4387,7 +4387,7 @@
         },
         {
             "file": "app/assets/javascripts/notifications.js",
-            "line": 241,
+            "line": 284,
             "description": "Hide help button.",
             "itemtype": "method",
             "name": "hideHelpButton",
@@ -4396,7 +4396,7 @@
         },
         {
             "file": "app/assets/javascripts/notifications.js",
-            "line": 251,
+            "line": 294,
             "description": "Show help button.",
             "itemtype": "method",
             "name": "showHelpButton",
@@ -4405,7 +4405,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 9,
+            "line": 188,
             "description": "JS-TODO",
             "itemtype": "method",
             "name": "initializeMediaTimeUpdater",
@@ -4426,7 +4426,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 32,
+            "line": 211,
             "description": "JS-TODO",
             "itemtype": "method",
             "name": "initializeActionOfMediaTimeUpdater",
@@ -4435,7 +4435,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 53,
+            "line": 232,
             "description": "JS-TODO",
             "itemtype": "method",
             "name": "initializeMedia",
@@ -4444,7 +4444,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 80,
+            "line": 259,
             "description": "JS-TODO",
             "itemtype": "method",
             "name": "stopMedia",
@@ -4453,7 +4453,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 111,
+            "line": 290,
             "description": "JS-TODO",
             "itemtype": "method",
             "name": "initializeMediaTimeUpdaterInVideoEditor",
@@ -4462,7 +4462,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 132,
+            "line": 311,
             "description": "JS-TODO",
             "itemtype": "method",
             "name": "initializeActionOfMediaTimeUpdaterInVideoEditor",
@@ -4471,7 +4471,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 207,
+            "line": 386,
             "description": "JS-TODO",
             "itemtype": "method",
             "name": "initializeVideoInVideoEditorPreview",
@@ -4480,7 +4480,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 287,
+            "line": 466,
             "description": "JS-TODO",
             "itemtype": "method",
             "name": "stopVideoInVideoEditorPreview",
@@ -4489,7 +4489,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 314,
+            "line": 493,
             "description": "JS-TODO",
             "itemtype": "method",
             "name": "selectVideoComponentCutterHandle",
@@ -4498,7 +4498,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 328,
+            "line": 507,
             "description": "JS-TODO",
             "itemtype": "method",
             "name": "initializeMediaTimeUpdaterInAudioEditor",
@@ -4507,7 +4507,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 349,
+            "line": 528,
             "description": "JS-TODO",
             "itemtype": "method",
             "name": "initializeActionOfMediaTimeUpdaterInAudioEditor",
@@ -4516,7 +4516,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 402,
+            "line": 581,
             "description": "JS-TODO",
             "itemtype": "method",
             "name": "initializeAudioEditorCutter",
@@ -4525,7 +4525,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 493,
+            "line": 672,
             "description": "JS-TODO",
             "itemtype": "method",
             "name": "selectAudioComponentCutterHandle",
@@ -4534,7 +4534,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 505,
+            "line": 684,
             "description": "JS-TODO\n\nIE SI ARRABBIA SE GLI SETTI UN VALORE DI SEEK NON COMPRESO\nTRA L'INIZIO E LA FINE DEI VALORI SEEKABLE",
             "itemtype": "method",
             "name": "validSeek",
@@ -4543,7 +4543,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 526,
+            "line": 705,
             "description": "JS-TODO\n\nFUNCTIONS WHICH ARE VALID IN ANY CASE",
             "itemtype": "method",
             "name": "setCurrentTimeToMedia",
@@ -4552,7 +4552,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 544,
+            "line": 723,
             "description": "JS-TODO",
             "itemtype": "method",
             "name": "showLoadingMediaErrorPopup",
@@ -4561,7 +4561,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 559,
+            "line": 738,
             "description": "JS-TODO",
             "itemtype": "method",
             "name": "stopAllMedia",
@@ -4570,7 +4570,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 247,
+            "line": 248,
             "description": "Handle adding tag not in the autocomplete data list\n\nUses: [checkNoTagDuplicates](../classes/checkNoTagDuplicates.html#method_checkNoTagDuplicates)\nand [addToTagsValue](../classes/addToTagsValue.html#method_addToTagsValue)\nand [createTagSpan](../classes/createTagSpan.html#method_createTagSpan)\nand [unbindLoader](../classes/unbindLoader.html#method_unbindLoader)\nand [getUnivoqueClassForTag](../classes/getUnivoqueClassForTag.html#method_getUnivoqueClassForTag)\nand [bindLoader](../classes/bindLoader.html#method_bindLoader)\nand [disableTagsInputTooHigh](../classes/disableTagsInputTooHigh.html#method_disableTagsInputTooHigh)",
             "itemtype": "method",
             "name": "addTagWithoutSuggestion",
@@ -4596,7 +4596,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 291,
+            "line": 292,
             "description": "Add tag word to hidden field with tags values",
             "itemtype": "method",
             "name": "addToTagsValue",
@@ -4617,7 +4617,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 309,
+            "line": 310,
             "description": "Remove tag word to hidden field with tags values",
             "itemtype": "method",
             "name": "removeFromTagsValue",
@@ -4638,7 +4638,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 323,
+            "line": 324,
             "description": "Generates a name_aware class for a given tag",
             "itemtype": "method",
             "name": "getUnivoqueClassForTag",
@@ -4658,7 +4658,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 339,
+            "line": 340,
             "description": "Checks if a tag word is present in the tags container.",
             "itemtype": "method",
             "name": "checkNoTagDuplicates",
@@ -4683,7 +4683,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 358,
+            "line": 359,
             "description": "Creates a new span element for a new tag.",
             "itemtype": "method",
             "name": "createTagSpan",
@@ -4708,7 +4708,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 376,
+            "line": 377,
             "description": "Disable insert new tag when tags container is full.",
             "itemtype": "method",
             "name": "disableTagsInputTooHigh",
@@ -4729,7 +4729,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 390,
+            "line": 391,
             "description": "Initialize jQueryUI _autocomplete_ for tags in search input\n\nUses: [unbindLoader](../classes/unbindLoader.html#method_unbindLoader)\nand [bindLoader](../classes/bindLoader.html#method_bindLoader)",
             "itemtype": "method",
             "name": "initSearchTagsAutocomplete",
@@ -4745,7 +4745,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 424,
+            "line": 425,
             "description": "Initialize jQueryUI _autocomplete_ for tags in lessons and elements form\n\nUses: [unbindLoader](../classes/unbindLoader.html#method_unbindLoader)\nand [bindLoader](../classes/bindLoader.html#method_bindLoader)\nand [checkNoTagDuplicates](../classes/checkNoTagDuplicates.html#method_checkNoTagDuplicates)\nand [addToTagsValue](../classes/addToTagsValue.html#method_addToTagsValue)\nand [createTagSpan](../classes/createTagSpan.html#method_createTagSpan)\nand [disableTagsInputTooHigh](../classes/disableTagsInputTooHigh.html#method_disableTagsInputTooHigh)",
             "itemtype": "method",
             "name": "initSearchTagsAutocomplete",
@@ -4821,7 +4821,7 @@
         },
         {
             "file": "app/assets/javascripts/virtual_classroom.js",
-            "line": 8,
+            "line": 221,
             "description": "Add email to recipients list on email add button (+).",
             "itemtype": "method",
             "name": "addEmailToVirtualClassroomSendLessonLinkSelector",
@@ -4830,7 +4830,7 @@
         },
         {
             "file": "app/assets/javascripts/virtual_classroom.js",
-            "line": 22,
+            "line": 235,
             "description": "JS-TODO",
             "itemtype": "method",
             "name": "initializeNotAvailableLessonsToLoadQuick",
@@ -4839,7 +4839,7 @@
         },
         {
             "file": "app/assets/javascripts/virtual_classroom.js",
-            "line": 36,
+            "line": 249,
             "description": "JS-TODO",
             "itemtype": "method",
             "name": "initializeScrollPaneQuickLessonSelector",
@@ -4848,7 +4848,7 @@
         },
         {
             "file": "app/assets/javascripts/virtual_classroom.js",
-            "line": 52,
+            "line": 265,
             "description": "JS-TODO",
             "itemtype": "method",
             "name": "initializeVirtualClassroom",
@@ -4857,7 +4857,7 @@
         },
         {
             "file": "app/assets/javascripts/virtual_classroom.js",
-            "line": 69,
+            "line": 282,
             "description": "JS-TODO",
             "itemtype": "method",
             "name": "initializeDraggableVirtualClassroomLesson",
@@ -4866,7 +4866,7 @@
         },
         {
             "file": "app/assets/javascripts/virtual_classroom.js",
-            "line": 110,
+            "line": 323,
             "description": "Initialize playlist container and jScrollPane\n\nUses: [getMaximumZIndex](../classes/getMaximumZIndex.html#method_getMaximumZIndex)",
             "itemtype": "method",
             "name": "initializePlaylist",
@@ -4875,7 +4875,7 @@
         },
         {
             "file": "app/assets/javascripts/virtual_classroom.js",
-            "line": 174,
+            "line": 387,
             "description": "Get highest zIndex value, among elements of a given class",
             "itemtype": "method",
             "name": "getMaximumZIndex",

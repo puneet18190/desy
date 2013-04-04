@@ -425,7 +425,8 @@
 * 
 * @module Tags
 *&#x2F;
-$(document).ready(function() {
+
+function tagsDocumentReady() {
   
   &#x2F;&#x2F; SEARCH TAGS 
   initSearchTagsAutocomplete(&quot;#general_tag_reader_for_search&quot;);
@@ -664,7 +665,7 @@ $(document).ready(function() {
     disableTagsInputTooHigh(&#x27;#slides._update ._tags_container&#x27;, &#x27;#slides._update #tags&#x27;);
   });
   
-});
+}
 
 &#x2F;**
 * Handle adding tag not in the autocomplete data list

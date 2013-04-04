@@ -427,6 +427,30 @@
 * @module Dashboard
 *&#x2F;
 
+function dashboardDocumentReady() {
+  $(&#x27;body&#x27;).on(&#x27;mouseover&#x27;, &#x27;._empty_media_elements&#x27;, function() {
+    $(this).find(&#x27;._empty_media_elements_hover&#x27;).addClass(&#x27;current&#x27;);
+  });
+  $(&#x27;body&#x27;).on(&#x27;mouseout&#x27;, &#x27;._empty_media_elements&#x27;, function() {
+    $(this).find(&#x27;._empty_media_elements_hover&#x27;).removeClass(&#x27;current&#x27;);
+  });
+  $(&#x27;body&#x27;).on(&#x27;mouseover&#x27;, &#x27;._empty_lessons&#x27;, function() {
+    $(this).find(&#x27;._empty_lessons_hover&#x27;).addClass(&#x27;current&#x27;);
+  });
+  $(&#x27;body&#x27;).on(&#x27;mouseout&#x27;, &#x27;._empty_lessons&#x27;, function() {
+    $(this).find(&#x27;._empty_lessons_hover&#x27;).removeClass(&#x27;current&#x27;);
+  });
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._empty_lessons&#x27;, function() {
+    window.location = &#x27;&#x2F;lessons&#x2F;new&#x27;;
+  });
+  $(&#x27;#switch_to_lessons&#x27;).click(function() {
+    switchToSuggestedLessons();
+  });
+  $(&#x27;#switch_to_media_elements&#x27;).click(function() {
+    switchToSuggestedMediaElements();
+  });
+}
+
 &#x2F;**
 * Reload Dashboard content on page change, using bottom pagination.
 * 

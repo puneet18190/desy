@@ -426,6 +426,48 @@
 * @module MediaElementLoader
 *&#x2F;
 
+function mediaElementLoaderDocumentReady() {
+  
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._load_media_element&#x27;, function(e) {
+    e.preventDefault();
+    showLoadMediaElementPopUp();
+  });
+  
+  $(&#x27;body&#x27;).on(&#x27;change&#x27;, &#x27;input#new_media_element_input&#x27;, function() {
+    var file_name = $(this).val().replace(&quot;C:\\fakepath\\&quot;, &quot;&quot;);
+    if(file_name.length &gt; 20){
+      file_name = file_name.substring(0,20)+&quot;...&quot;;
+    }
+    $(&#x27;#media_element_media_show&#x27;).text(file_name);
+  });
+  
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#load-media-element ._close&#x27;, function() {
+    closePopUp(&#x27;load-media-element&#x27;);
+  })
+
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#new_media_element_submit&#x27;, function() {
+    $(&#x27;input,textarea&#x27;).removeClass(&#x27;form_error&#x27;);
+    $(&#x27;.barraLoading img&#x27;).show();
+    $(&#x27;.barraLoading img&#x27;).attr(&#x27;src&#x27;, &#x27;&#x2F;assets&#x2F;loadingBar.gif&#x27;);
+    $(this).closest(&#x27;#new_media_element&#x27;).submit();
+  });
+  
+  $(&#x27;body&#x27;).on(&#x27;focus&#x27;, &#x27;#load-media-element #title&#x27;, function() {
+    if($(&#x27;#load-media-element #title_placeholder&#x27;).val() == &#x27;&#x27;) {
+      $(this).attr(&#x27;value&#x27;, &#x27;&#x27;);
+      $(&#x27;#load-media-element #title_placeholder&#x27;).attr(&#x27;value&#x27;, &#x27;0&#x27;);
+    }
+  });
+  
+  $(&#x27;body&#x27;).on(&#x27;focus&#x27;, &#x27;#load-media-element #description&#x27;, function() {
+    if($(&#x27;#load-media-element #description_placeholder&#x27;).val() == &#x27;&#x27;) {
+      $(this).attr(&#x27;value&#x27;, &#x27;&#x27;);
+      $(&#x27;#load-media-element #description_placeholder&#x27;).attr(&#x27;value&#x27;, &#x27;0&#x27;);
+    }
+  });
+  
+}
+
 &#x2F;**
 * Set iframe as target for form submit, added a callback function to control 413 status error.
 *
@@ -518,6 +560,7 @@ function resetMediaElementChangeInfo(media_element_id) {
   });
   container.find(&#x27;#tags_value&#x27;).val(container.data(&#x27;tags&#x27;));
 }
+
     </pre>
 </div>
 

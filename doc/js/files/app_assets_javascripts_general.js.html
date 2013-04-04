@@ -426,6 +426,237 @@
 * @module General
 *&#x2F;
 
+function expandedItemsDocumentReady() {
+  
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;,&#x27;._lesson_compact&#x27;, function() {
+    if(!$(this).parent().hasClass(&#x27;_disabled&#x27;)) {
+      var my_id = $(this).parent().attr(&#x27;id&#x27;);
+      var my_expanded = $(&#x27;#&#x27; + my_id + &#x27; ._lesson_expanded&#x27;);
+      if(my_expanded.is(&#x27;:visible&#x27;)) {
+        my_expanded.find(&#x27;._report_form_content&#x27;).hide();
+        my_expanded.find(&#x27;._reportable_icon&#x27;).removeClass(&#x27;report_light _report_selected&#x27;).addClass(&#x27;report&#x27;);
+        my_expanded.hide(&#x27;blind&#x27;, {}, 500, function() {
+          my_expanded.hide();
+        });
+      } else {
+        my_expanded.show(&#x27;blind&#x27;, {}, 500, function() {
+          my_expanded.show();
+        });
+      }
+    }
+  });
+  
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#display_expanded_media_elements&#x27;, function() {
+    if(!$(this).hasClass(&#x27;current&#x27;)) {
+      $.ajax({
+        type: &#x27;get&#x27;,
+        url: &#x27;&#x2F;media_elements?display=expanded&#x27;
+      });
+    }
+  });
+  
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#display_compact_media_elements&#x27;, function() {
+    if(!$(this).hasClass(&#x27;current&#x27;)) {
+      $.ajax({
+        type: &#x27;get&#x27;,
+        url: &#x27;&#x2F;media_elements?display=compact&#x27;
+      });
+    }
+  });
+  
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._close_media_element_preview_popup&#x27;, function() {
+    var param = $(this).data(&#x27;param&#x27;);
+    closePopUp(&#x27;dialog-media-element-&#x27; + param);
+  });
+  
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._change_info_container ._cancel, ._change_info_to_pick.change_info_light&#x27;, function() {
+    $(&#x27;#dialog-media-element-&#x27; + $(this).data(&#x27;param&#x27;) + &#x27; ._audio_preview_in_media_element_popup&#x27;).show();
+    $(&#x27;#dialog-media-element-&#x27; + $(this).data(&#x27;param&#x27;) + &#x27; ._change_info_container&#x27;).hide(&#x27;fade&#x27;, {}, 500, function() {
+      var icon = $(this);
+      if(!$(this).hasClass(&#x27;_change_info_to_pick&#x27;)) {
+        icon = $(&#x27;#dialog-media-element-&#x27; + $(this).data(&#x27;param&#x27;) + &#x27; ._change_info_to_pick&#x27;);
+      }
+      icon.addClass(&#x27;change_info&#x27;);
+      icon.removeClass(&#x27;change_info_light&#x27;);
+      resetMediaElementChangeInfo($(this).data(&#x27;param&#x27;));
+    });
+  });
+  
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._change_info_to_pick.change_info&#x27;, function() {
+    $(&#x27;#dialog-media-element-&#x27; + $(this).data(&#x27;param&#x27;) + &#x27; ._change_info_container&#x27;).show(&#x27;fade&#x27;, {}, 500);
+    $(this).removeClass(&#x27;change_info&#x27;);
+    $(this).addClass(&#x27;change_info_light&#x27;);
+    $(&#x27;#dialog-media-element-&#x27; + $(this).data(&#x27;param&#x27;) + &#x27; ._audio_preview_in_media_element_popup&#x27;).hide();
+  });
+  
+}
+
+function filtersDocumentReady() {
+  
+  $(&#x27;body&#x27;).on(&#x27;change&#x27;, &#x27;#filter_lessons&#x27;, function() {
+    var filter = $(&#x27;#filter_lessons option:selected&#x27;).val();
+    var redirect_url = &#x27;&#x2F;lessons?filter=&#x27; + filter;
+    $.get(redirect_url);
+  });
+  
+  $(&#x27;body&#x27;).on(&#x27;change&#x27;, &#x27;#filter_media_elements&#x27;, function() {
+    var filter = $(&#x27;#filter_media_elements option:selected&#x27;).val();
+    var redirect_url = getCompleteMediaElementsUrlWithoutFilter() + &#x27;&amp;filter=&#x27; + filter;
+    $.get(redirect_url);
+  });
+  
+  $(&#x27;body&#x27;).on(&#x27;change&#x27;, &#x27;#for_page_media_elements&#x27;, function() {
+    var for_page = $(&#x27;#for_page_media_elements option:selected&#x27;).val();
+    var redirect_url = getCompleteMediaElementsUrlWithoutForPage() + &#x27;&amp;for_page=&#x27; + for_page;
+    $.get(redirect_url);
+  });
+  
+}
+
+function formsDocumentReady() {
+  
+  $(&#x27;body&#x27;).on(&#x27;mouseover&#x27;, &#x27;._report_lesson_click&#x27;, function() {
+    var obj = $(&#x27;#&#x27; + this.id + &#x27; a._reportable_icon&#x27;);
+    if(!obj.hasClass(&#x27;_report_selected&#x27;)) {
+      obj.removeClass(&#x27;report&#x27;);
+      obj.addClass(&#x27;report_light&#x27;);
+    }
+  });
+  
+  $(&#x27;body&#x27;).on(&#x27;mouseout&#x27;, &#x27;._report_lesson_click&#x27;, function() {
+    var obj = $(&#x27;#&#x27; + this.id + &#x27; a._reportable_icon&#x27;);
+    if(!obj.hasClass(&#x27;_report_selected&#x27;)) {
+      obj.removeClass(&#x27;report_light&#x27;);
+      obj.addClass(&#x27;report&#x27;);
+    }
+  });
+  
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._report_lesson_click&#x27;, function() {
+    var param = $(this).data(&#x27;param&#x27;);
+    var obj = $(&#x27;#lesson_report_form_&#x27; + param);
+    if(!obj.is(&#x27;:visible&#x27;)) {
+      var button = $(&#x27;#&#x27; + this.id + &#x27; a._reportable_icon&#x27;);
+      button.addClass(&#x27;_report_selected&#x27;);
+      button.removeClass(&#x27;report&#x27;);
+      button.addClass(&#x27;report_light&#x27;);
+      obj.show(&#x27;fade&#x27;, {}, 500, function() {
+        obj.show();
+      });
+    } else {
+      var button = $(&#x27;#&#x27; + this.id + &#x27; a._reportable_icon&#x27;);
+      button.removeClass(&#x27;_report_selected&#x27;);
+      button.removeClass(&#x27;report_light&#x27;);
+      button.addClass(&#x27;report&#x27;);
+      obj.hide(&#x27;fade&#x27;, {}, 500, function() {
+        obj.hide();
+      });
+    }
+    return false;
+  });
+  
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._report_media_element_click&#x27;, function() {
+    var param = $(this).data(&#x27;param&#x27;);
+    var obj = $(&#x27;#media_element_report_form_&#x27; + param);
+    if(!obj.is(&#x27;:visible&#x27;)) {
+      $(this).removeClass(&#x27;report&#x27;);
+      $(this).addClass(&#x27;report_light&#x27;);
+      obj.show(&#x27;fade&#x27;, {}, 500, function() {
+        obj.show();
+      });
+    } else {
+      $(this).removeClass(&#x27;report_light&#x27;);
+      $(this).addClass(&#x27;report&#x27;);
+      obj.hide(&#x27;fade&#x27;, {}, 500, function() {
+        obj.hide();
+      });
+    }
+    return false;
+  });
+  
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._report_form_content&#x27;, function(e) {
+    e.preventDefault();
+    return false;
+  });
+  
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._report_form_content ._send&#x27;, function(e) {
+    $(this).closest(&#x27;form&#x27;).submit();
+  });
+  
+}
+
+function javaScriptAnimationsDocumentReady() {
+  $(&#x27;#notifications_list&#x27;).jScrollPane({
+    autoReinitialise: true
+  });
+  $(&#x27;#select_lesson_list&#x27;).selectbox();
+  $(&#x27;#which_item_to_search&#x27;).selectbox();
+  $(&#x27;#filter_lessons&#x27;).selectbox();
+  $(&#x27;#filter_search_lessons&#x27;).selectbox();
+  $(&#x27;#filter_search_lessons_subject&#x27;).selectbox();
+  $(&#x27;#profile_school_level&#x27;).selectbox();
+  $(&#x27;#profile_region&#x27;).selectbox();
+  $(&#x27;#for_page_media_elements&#x27;).selectbox();
+  $(&#x27;#filter_media_elements&#x27;).selectbox();
+  $(&#x27;#filter_search_media_elements&#x27;).selectbox();
+  $(&#x27;#user_school_level_id&#x27;).selectbox();
+  $(&#x27;body&#x27;).on(&#x27;keyup blur&#x27;, &#x27;input[maxlength], textarea[maxlength]&#x27;, function () {
+    var myself = $(this);
+    var len = myself.val().length;
+    var maxlength = myself.attr(&#x27;maxlength&#x27;)
+    if (maxlength &amp;&amp; len &gt; maxlength) {
+      myself.val(myself.val().slice(0, maxlength));
+    }
+  });
+}
+
+function defaultValueJavaScriptAnimationsDocumentReady() {
+  $(&#x27;._which_item_to_search_switch[checked]&#x27;).first().attr(&#x27;checked&#x27;, &#x27;checked&#x27;);
+  $(&#x27;#for_page_media_elements option[selected]&#x27;).first().attr(&#x27;selected&#x27;, &#x27;selected&#x27;);
+  $(&#x27;#filter_media_elements option[selected]&#x27;).first().attr(&#x27;selected&#x27;, &#x27;selected&#x27;);
+  $(&#x27;#filter_lessons option[selected]&#x27;).first().attr(&#x27;selected&#x27;, &#x27;selected&#x27;);
+  $(&#x27;#filter_search_lessons option[selected]&#x27;).first().attr(&#x27;selected&#x27;, &#x27;selected&#x27;);
+  $(&#x27;#filter_search_media_elements option[selected]&#x27;).first().attr(&#x27;selected&#x27;, &#x27;selected&#x27;);
+  $(&#x27;#filter_search_lessons_subject option[selected]&#x27;).first().attr(&#x27;selected&#x27;, &#x27;selected&#x27;);
+  $(&#x27;._order_lessons_radio_input[checked]&#x27;).first().attr(&#x27;checked&#x27;, &#x27;checked&#x27;);
+  $(&#x27;._order_media_elements_radio_input[checked]&#x27;).first().attr(&#x27;checked&#x27;, &#x27;checked&#x27;);
+}
+
+function generalWindowResizeDocumentReady() {
+  $(window).resize(function() {
+    if($(&#x27;#my_media_elements&#x27;).length &gt; 0 || $(&#x27;#media_elements_in_dashboard&#x27;).length &gt; 0){
+      recenterMyMediaElements();
+    }
+  });
+  var hac = $(&#x27;.home-action .container&#x27;);
+  var widc = $(&#x27;.what_is_desy-action .container&#x27;);
+  if($(window).height()&gt;hac.height()){
+    hac.css(&#x27;margin-top&#x27;,($(window).height() - hac.height())&#x2F;2 + &#x27;px&#x27;);
+  }
+  if($(window).height()&gt;widc.height()){
+    widc.css(&#x27;margin-top&#x27;,($(window).height() - widc.height())&#x2F;2 + &#x27;px&#x27;);
+  }
+}
+
+function getMediaElementsFormat() {
+  var param = &#x27;display=compact&#x27;;
+  if($(&#x27;#display_expanded_media_elements&#x27;).hasClass(&#x27;current&#x27;)) {
+    param = &#x27;display=expanded&#x27;;
+  }
+  return param
+}
+
+function getCompleteMediaElementsUrlWithoutFilter() {
+  var param_format = getMediaElementsFormat();
+  var param_for_page = &#x27;for_page=&#x27; + $(&#x27;#for_page_media_elements option:selected&#x27;).val();
+  return &#x27;&#x2F;media_elements?&#x27; + param_format + &#x27;&amp;&#x27; + param_for_page;
+}
+
+function getCompleteMediaElementsUrlWithoutForPage() {
+  var param_format = getMediaElementsFormat();
+  var param_filter = &#x27;filter=&#x27; + $(&#x27;#filter_media_elements option:selected&#x27;).val();
+  return &#x27;&#x2F;media_elements?&#x27; + param_format + &#x27;&amp;&#x27; + param_filter;
+}
+
 &#x2F;**
 * Add new parameters to an url
 * 

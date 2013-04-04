@@ -426,7 +426,17 @@
 * 
 * @module ImageEditor
 *&#x2F;
-$(document).ready(function() {
+
+function imageEditorDocumentReady() {
+  
+  $(&#x27;.image_editor_only #form_info_new_media_element_in_editor, .image_editor_only #form_info_update_media_element_in_editor&#x27;).css(&quot;left&quot;,($(window).width()&#x2F;2)-495);
+  $(&#x27;#image_gallery_for_image_editor ._select_image_from_gallery&#x27;).addClass(&#x27;_add_image_to_image_editor&#x27;);
+  $(&#x27;#image_gallery_for_image_editor .gallery-header&#x27;).css(&quot;left&quot;,($(window).width()&#x2F;2)-420);
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._add_image_to_image_editor&#x27;, function() {
+    var parser = document.createElement(&#x27;a&#x27;);
+    parser.href = $(&#x27;._exit_url&#x27;).attr(&#x27;href&#x27;);
+    window.location = &#x27;&#x2F;images&#x2F;&#x27; + $(this).data(&#x27;image-id&#x27;) + &#x27;&#x2F;edit?back=&#x27; + encodeURIComponent(parser.pathname+parser.search+parser.hash);
+  });
   
   $(&#x27;#cropped_image&#x27;).imgAreaSelect({
     hide: true,
@@ -661,7 +671,7 @@ $(document).ready(function() {
     $(&#x27;#image_editor #form_info_update_media_element_in_editor&#x27;).hide();
   });
   
-});
+}
 
 &#x2F;**
 * Sets current textarea to active.
@@ -799,6 +809,7 @@ function resetImageEditorTexts() {
   $(&#x27;._image_editor_text&#x27;).remove();
   $(&#x27;#image_editor_text_buttons ._do&#x27;).addClass(&#x27;disabled&#x27;);
 }
+
     </pre>
 </div>
 

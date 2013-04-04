@@ -426,23 +426,25 @@
 * 
 * @module LessonEditor
 *&#x2F;
-$(document).ready(function() {
+
+function lessonEditorDocumentReady() {
   
-  $(&quot;html.lesson-editor-layout ul#slides&quot;).css(&quot;margin-top&quot;, ((($(window).height() - 590)&#x2F;2)-40) + &quot;px&quot;);
-  $(&quot;html.lesson-editor-layout ul#slides.new&quot;).css(&quot;margin-top&quot;, ((($(window).height() - 590)&#x2F;2)) + &quot;px&quot;);
+  $(&#x27;html.lesson-editor-layout ul#slides&#x27;).css(&#x27;margin-top&#x27;, ((($(window).height() - 590) &#x2F; 2) - 40) + &#x27;px&#x27;);
+  $(&#x27;html.lesson-editor-layout ul#slides.new&#x27;).css(&#x27;margin-top&#x27;, ((($(window).height() - 590) &#x2F; 2)) + &#x27;px&#x27;);
+  $(&#x27;.slide-content.cover .title&#x27;).css(&#x27;margin-left&#x27;, &#x27;auto&#x27;);
+  $(&#x27;html.lesson-editor-layout ul#slides input&#x27;).attr(&#x27;autocomplete&#x27;, &#x27;off&#x27;);
   
   $(&#x27;._image_container_in_lesson_editor&#x27;).each(function() {
     makeDraggable($(this).attr(&#x27;id&#x27;));
   });
   
   initializeSortableNavs();
+  
   $(&#x27;#nav_list_menu&#x27;).jScrollPane({
     autoReinitialise: false
   });
   
-  $(&quot;.slide-content.cover .title&quot;).css(&quot;margin-left&quot;, &quot;auto&quot;);
-  
-  $(&#x27;html.lesson-editor-layout ul#slides input&#x27;).attr(&#x27;autocomplete&#x27;,&#x27;off&#x27;);
+  $(&#x27;#lesson_subject&#x27;).selectbox();
   
   initLessonEditorPositions();
   
@@ -455,8 +457,6 @@ $(document).ready(function() {
     }
     $(&quot;#footer&quot;).css(&quot;top&quot;, ($(window).height() - 40) + &quot;px&quot;).css(&quot;width&quot;, ($(window).width() - 24) + &quot;px&quot;);
   });
-  
-  $(&#x27;#lesson_subject&#x27;).selectbox();
   
   $(&#x27;body&#x27;).on(&#x27;mouseover&#x27;, &#x27;#slide-numbers li.navNumbers:not(._add_new_slide_options_in_last_position)&#x27;, function(e) {
     var tip = $(this);
@@ -767,7 +767,35 @@ $(document).ready(function() {
     }
   });
   
-});
+  $(&#x27;body&#x27;).on(&#x27;focus&#x27;, &#x27;#slides._new #title&#x27;, function() {
+    if($(&#x27;#slides._new #title_placeholder&#x27;).val() == &#x27;&#x27;) {
+      $(this).val(&#x27;&#x27;);
+      $(&#x27;#slides._new #title_placeholder&#x27;).attr(&#x27;value&#x27;, &#x27;0&#x27;);
+    }
+  });
+  
+  $(&#x27;body&#x27;).on(&#x27;focus&#x27;, &#x27;#slides._new #description&#x27;, function() {
+    if($(&#x27;#slides._new #description_placeholder&#x27;).val() == &#x27;&#x27;) {
+      $(this).val(&#x27;&#x27;);
+      $(&#x27;#slides._new #description_placeholder&#x27;).attr(&#x27;value&#x27;, &#x27;0&#x27;);
+    }
+  });
+  
+  $(&#x27;body&#x27;).on(&#x27;focus&#x27;, &#x27;#slides._update #title&#x27;, function() {
+    if($(&#x27;#slides._update #title_placeholder&#x27;).val() == &#x27;&#x27;) {
+      $(this).val(&#x27;&#x27;);
+      $(&#x27;#slides._update #title_placeholder&#x27;).attr(&#x27;value&#x27;, &#x27;0&#x27;);
+    }
+  });
+  
+  $(&#x27;body&#x27;).on(&#x27;focus&#x27;, &#x27;#slides._update #description&#x27;, function() {
+    if($(&#x27;#slides._update #description_placeholder&#x27;).val() == &#x27;&#x27;) {
+      $(this).val(&#x27;&#x27;);
+      $(&#x27;#slides._update #description_placeholder&#x27;).attr(&#x27;value&#x27;, &#x27;0&#x27;);
+    }
+  });
+  
+}
 
 &#x2F;**
 * Update top scrollPane when moving to another slide

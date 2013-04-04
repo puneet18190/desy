@@ -426,6 +426,49 @@
 * @module Notifications
 *&#x2F;
 
+function notificationsDocumentReady() {
+  
+  initializeNotifications();
+  initializeHelp();
+  
+  $(&#x27;#tooltip_content .scroll-pane&#x27;).bind(&#x27;jsp-arrow-change&#x27;, function(event, isAtTop, isAtBottom, isAtLeft, isAtRight) {
+    var tot_number = $(&#x27;#tooltip_content&#x27;).data(&#x27;tot-number&#x27;);
+    var offset = $(&#x27;#tooltip_content&#x27;).data(&#x27;offset&#x27;);
+    if(isAtBottom &amp;&amp; (offset &lt; tot_number)) {
+      $.get(&#x27;&#x2F;notifications&#x2F;get_new_block?offset=&#x27; + offset);
+    }
+  });
+  
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._destroy_notification&#x27;, function() {
+    var my_id = $(this).data(&#x27;param&#x27;);
+    var offset = $(&#x27;#tooltip_content&#x27;).data(&#x27;offset&#x27;);
+    $.post(&#x27;&#x2F;notifications&#x2F;&#x27; + my_id + &#x27;&#x2F;destroy?offset=&#x27; + offset);
+  });
+  
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#lesson-notification ._no&#x27;, function(e) {
+    e.preventDefault();
+    closePopUp(&#x27;lesson-notification&#x27;);
+    var lesson_id = $(&#x27;#lesson-notification&#x27;).data(&#x27;lesson-id&#x27;);
+    $(&#x27;#&#x27; + lesson_id).removeClass(&#x27;_lesson_change_not_notified&#x27;);
+    $(&#x27;#&#x27; + lesson_id + &#x27; .unpublish&#x27;).attr(&#x27;title&#x27;, $(&#x27;#popup_captions_container&#x27;).data(&#x27;title-unpublish&#x27;));
+    var id = lesson_id.split(&#x27;_&#x27;);
+    id = id[id.length - 1];
+    $.ajax({
+      type: &#x27;post&#x27;,
+      url: &#x27;&#x2F;lessons&#x2F;&#x27; + id + &#x27;&#x2F;dont_notify_modification&#x27;,
+      beforeSend: unbindLoader()
+    }).always(bindLoader);
+  });
+  
+  $(&#x27;body&#x27;).on(&#x27;focus&#x27;, &#x27;#lesson-notification #lesson_notify_modification_details&#x27;, function() {
+    if($(&#x27;#lesson-notification #lesson_notify_modification_details_placeholder&#x27;).val() === &#x27;&#x27;) {
+      $(this).val(&#x27;&#x27;);
+      $(&#x27;#lesson-notification #lesson_notify_modification_details_placeholder&#x27;).val(&#x27;0&#x27;);
+    }
+  });
+  
+}
+
 &#x2F;**
 * Checks if any notification is available and initialize unread notification counter.
 * Handles notifications show&#x2F;hide effects.

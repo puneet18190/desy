@@ -426,6 +426,92 @@
 * @module Galleries
 *&#x2F;
 
+function galleriesDocumentReady() {
+  
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;,&#x27;._image_gallery_thumb&#x27;, function(e) {
+    e.preventDefault();
+    showImageInGalleryPopUp($(this).data(&#x27;image-id&#x27;));
+  });
+  
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;,&#x27;._video_gallery_thumb&#x27;, function(e) {
+    e.preventDefault();
+    if(!$(this).hasClass(&#x27;_disabled&#x27;)) {
+      showVideoInGalleryPopUp($(this).data(&#x27;video-id&#x27;));
+    }
+  });
+  
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._audio_gallery_thumb._enabled ._compact&#x27;, function(e) {
+    if(!$(e.target).hasClass(&#x27;_select_audio_from_gallery&#x27;)) {
+      var parent_id = $(this).parent().attr(&#x27;id&#x27;);
+      var obj = $(&#x27;#&#x27; + parent_id + &#x27; ._expanded&#x27;);
+      if(obj.is(&#x27;:visible&#x27;)) {
+        $(&#x27;#&#x27; + parent_id).removeClass(&#x27;_audio_expanded_in_gallery&#x27;);
+        stopMedia(&#x27;#&#x27; + parent_id + &#x27; audio&#x27;);
+        obj.hide(&#x27;blind&#x27;, {}, 500);
+      } else {
+        var currently_open = $(&#x27;._audio_expanded_in_gallery&#x27;);
+        if(currently_open.length != 0) {
+          currently_open.removeClass(&#x27;_audio_expanded_in_gallery&#x27;);
+          stopMedia(&#x27;#&#x27; + currently_open.attr(&#x27;id&#x27;) + &#x27; audio&#x27;);
+          $(&#x27;#&#x27; + currently_open.attr(&#x27;id&#x27;) + &#x27; ._expanded&#x27;).hide(&#x27;blind&#x27;, {}, 500);
+        }
+        $(&#x27;#&#x27; + parent_id).addClass(&#x27;_audio_expanded_in_gallery&#x27;);
+        var instance_id = $(&#x27;#&#x27; + parent_id + &#x27; ._empty_audio_player, #&#x27; + parent_id + &#x27; ._instance_of_player&#x27;).attr(&#x27;id&#x27;);
+        if(!$(&#x27;#&#x27; + instance_id).data(&#x27;initialized&#x27;)) {
+          var button = $(this).find(&#x27;._select_audio_from_gallery&#x27;);
+          var duration = button.data(&#x27;duration&#x27;);
+          $(&#x27;#&#x27; + instance_id + &#x27; source[type=&quot;audio&#x2F;mp3&quot;]&#x27;).attr(&#x27;src&#x27;, button.data(&#x27;mp3&#x27;));
+          $(&#x27;#&#x27; + instance_id + &#x27; source[type=&quot;audio&#x2F;ogg&quot;]&#x27;).attr(&#x27;src&#x27;, button.data(&#x27;ogg&#x27;));
+          $(&#x27;#&#x27; + instance_id + &#x27; audio&#x27;).load();
+          $(&#x27;#&#x27; + instance_id + &#x27; ._media_player_total_time&#x27;).html(secondsToDateString(duration));
+          $(&#x27;#&#x27; + instance_id).data(&#x27;duration&#x27;, duration);
+          $(&#x27;#&#x27; + instance_id).removeClass(&#x27;_empty_audio_player&#x27;).addClass(&#x27;_instance_of_player&#x27;);
+          initializeMedia(instance_id, &#x27;audio&#x27;);
+        }
+        obj.show(&#x27;blind&#x27;, {}, 500, function() {
+          setTimeout(function() {
+            var actual = $(&#x27;#audio_gallery_content &gt; div&#x27;).data(&#x27;jsp&#x27;).getContentPositionY();
+            $(&#x27;#audio_gallery_content &gt; div&#x27;).data(&#x27;jsp&#x27;).scrollToY(actual + 55, true);
+          }, 300);
+        });
+      }
+    }
+  });
+  
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._close_mixed_gallery_in_video_editor&#x27;, function() {
+    closeGalleryInVideoEditor(&#x27;mixed&#x27;);
+  });
+  
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._close_audio_gallery_in_video_editor&#x27;, function() {
+    closeGalleryInVideoEditor(&#x27;audio&#x27;);
+    var expanded_audio = $(&#x27;._audio_expanded_in_gallery&#x27;);
+    if(expanded_audio.length &gt; 0) {
+      expanded_audio.removeClass(&#x27;_audio_expanded_in_gallery&#x27;);
+      var audio_id = expanded_audio.attr(&#x27;id&#x27;);
+      stopMedia(&#x27;#&#x27; + audio_id + &#x27; audio&#x27;);
+      $(&#x27;#&#x27; + audio_id + &#x27; ._expanded&#x27;).hide();
+    }
+  });
+  
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._close_audio_gallery_in_audio_editor&#x27;, function() {
+    closeGalleryInAudioEditor();
+    var expanded_audio = $(&#x27;._audio_expanded_in_gallery&#x27;);
+    if(expanded_audio.length &gt; 0) {
+      expanded_audio.removeClass(&#x27;_audio_expanded_in_gallery&#x27;);
+      var audio_id = expanded_audio.attr(&#x27;id&#x27;);
+      stopMedia(&#x27;#&#x27; + audio_id + &#x27; audio&#x27;);
+      $(&#x27;#&#x27; + audio_id + &#x27; ._expanded&#x27;).hide();
+    }
+  });
+  
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &quot;._close_on_click_out&quot;, function(){
+    $(&quot;.ui-dialog-content:visible&quot;).each(function(){
+      closePopUp($(this).attr(&quot;id&quot;));
+    });
+  });
+  
+}
+
 &#x2F;**
 * Initialize image gallery in lesson editor.
 * Init jScrollPane and get images block.
