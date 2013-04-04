@@ -436,6 +436,27 @@ Lessons and Elements actions triggered via buttons.
 
 
 &#x2F;**
+Add item removed from a view to the current destination url
+@method addDeleteItemToCurrentUrl
+@for ButtonsAccessories
+@return {String} updated url
+**&#x2F;
+function addDeleteItemToCurrentUrl(current_url, delete_item) {
+  var point_start_params = current_url.indexOf(&#x27;?&#x27;);
+  var resp = current_url;
+  if(point_start_params == -1) {
+    resp = resp + &#x27;?delete_item=&#x27; + delete_item;
+  } else {
+    resp = resp + &#x27;&amp;delete_item=&#x27; + delete_item;
+  }
+  return resp;
+}
+
+
+
+
+
+&#x2F;**
 bla bla bla
 @method mediaElementButtonsDocumentReady
 @for ButtonsDocumentReady
@@ -632,27 +653,6 @@ function lessonButtonsDocumentReady() {
     }
     return false;
   });
-}
-
-
-
-
-
-&#x2F;**
-Add item removed from a view to the current destination url
-@method addDeleteItemToCurrentUrl
-@for ButtonsAccessories
-@return {String} updated url
-**&#x2F;
-function addDeleteItemToCurrentUrl(current_url, delete_item) {
-  var point_start_params = current_url.indexOf(&#x27;?&#x27;);
-  var resp = current_url;
-  if(point_start_params == -1) {
-    resp = resp + &#x27;?delete_item=&#x27; + delete_item;
-  } else {
-    resp = resp + &#x27;&amp;delete_item=&#x27; + delete_item;
-  }
-  return resp;
 }
 
 

@@ -68,8 +68,8 @@
             },
             "classes": {},
             "fors": {
-                "ButtonsDocumentReady": 1,
                 "ButtonsAccessories": 1,
+                "ButtonsDocumentReady": 1,
                 "ButtonsLesson": 1,
                 "ButtonsMediaElement": 1
             },
@@ -460,14 +460,14 @@
             "name": "buttons",
             "submodules": {},
             "classes": {
-                "ButtonsDocumentReady": 1,
                 "ButtonsAccessories": 1,
+                "ButtonsDocumentReady": 1,
                 "ButtonsLesson": 1,
                 "ButtonsMediaElement": 1
             },
             "fors": {
-                "ButtonsDocumentReady": 1,
                 "ButtonsAccessories": 1,
+                "ButtonsDocumentReady": 1,
                 "ButtonsLesson": 1,
                 "ButtonsMediaElement": 1
             },
@@ -1119,9 +1119,9 @@
             "module": "browsers",
             "namespace": ""
         },
-        "ButtonsDocumentReady": {
-            "name": "ButtonsDocumentReady",
-            "shortname": "ButtonsDocumentReady",
+        "ButtonsAccessories": {
+            "name": "ButtonsAccessories",
+            "shortname": "ButtonsAccessories",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -1130,9 +1130,9 @@
             "module": "buttons",
             "namespace": ""
         },
-        "ButtonsAccessories": {
-            "name": "ButtonsAccessories",
-            "shortname": "ButtonsAccessories",
+        "ButtonsDocumentReady": {
+            "name": "ButtonsDocumentReady",
+            "shortname": "ButtonsDocumentReady",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -2650,15 +2650,6 @@
         {
             "file": "app/assets/javascripts/admin/functions.js",
             "line": 166,
-            "description": "Initializes actions for less important tables, such as Tag, Subject, SchoolLevel",
-            "itemtype": "method",
-            "name": "adminMiscellaneaDocumentReady",
-            "class": "AdminDocumentReady",
-            "module": "administration"
-        },
-        {
-            "file": "app/assets/javascripts/admin/functions.js",
-            "line": 199,
             "description": "Initializes effects for MediaElement.",
             "itemtype": "method",
             "name": "adminMediaElementsDocumentReady",
@@ -2667,16 +2658,16 @@
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
-            "line": 265,
-            "description": "Initializes effects for User.",
+            "line": 232,
+            "description": "Initializes actions for less important tables, such as Tag, Subject, SchoolLevel",
             "itemtype": "method",
-            "name": "adminUsersDocumentReady",
+            "name": "adminMiscellaneaDocumentReady",
             "class": "AdminDocumentReady",
             "module": "administration"
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
-            "line": 285,
+            "line": 265,
             "description": "Initializes effects for the administration search engin.",
             "itemtype": "method",
             "name": "adminSearchDocumentReady",
@@ -2685,10 +2676,19 @@
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
-            "line": 346,
+            "line": 326,
             "description": "Initializes effects for sorting in administration search engine",
             "itemtype": "method",
             "name": "adminSortingDocumentReady",
+            "class": "AdminDocumentReady",
+            "module": "administration"
+        },
+        {
+            "file": "app/assets/javascripts/admin/functions.js",
+            "line": 358,
+            "description": "Initializes effects for User.",
+            "itemtype": "method",
+            "name": "adminUsersDocumentReady",
             "class": "AdminDocumentReady",
             "module": "administration"
         },
@@ -3118,24 +3118,6 @@
         {
             "file": "app/assets/javascripts/buttons.js",
             "line": 10,
-            "description": "bla bla bla",
-            "itemtype": "method",
-            "name": "mediaElementButtonsDocumentReady",
-            "class": "ButtonsDocumentReady",
-            "module": "buttons"
-        },
-        {
-            "file": "app/assets/javascripts/buttons.js",
-            "line": 84,
-            "description": "bla bla bla",
-            "itemtype": "method",
-            "name": "lessonButtonsDocumentReady",
-            "class": "ButtonsDocumentReady",
-            "module": "buttons"
-        },
-        {
-            "file": "app/assets/javascripts/buttons.js",
-            "line": 213,
             "description": "Add item removed from a view to the current destination url",
             "itemtype": "method",
             "name": "addDeleteItemToCurrentUrl",
@@ -3144,6 +3126,24 @@
                 "type": "String"
             },
             "class": "ButtonsAccessories",
+            "module": "buttons"
+        },
+        {
+            "file": "app/assets/javascripts/buttons.js",
+            "line": 31,
+            "description": "bla bla bla",
+            "itemtype": "method",
+            "name": "mediaElementButtonsDocumentReady",
+            "class": "ButtonsDocumentReady",
+            "module": "buttons"
+        },
+        {
+            "file": "app/assets/javascripts/buttons.js",
+            "line": 105,
+            "description": "bla bla bla",
+            "itemtype": "method",
+            "name": "lessonButtonsDocumentReady",
+            "class": "ButtonsDocumentReady",
             "module": "buttons"
         },
         {

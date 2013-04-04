@@ -592,39 +592,6 @@ function adminLocationsDocumentReady() {
 }
 
 &#x2F;**
-Initializes actions for less important tables, such as Tag, Subject, SchoolLevel 
-@method adminMiscellaneaDocumentReady
-@for AdminDocumentReady
-**&#x2F;
-function adminMiscellaneaDocumentReady() {
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;ul.subjects li a i.icon-remove&#x27;, function() {
-    var _id = $(this).parents(&#x27;li&#x27;).data(&#x27;param&#x27;);
-    $.ajax({
-      type: &#x27;delete&#x27;,
-      url: &#x27;&#x2F;admin&#x2F;settings&#x2F;subjects&#x2F;&#x27; + _id + &#x27;&#x2F;delete&#x27;
-    });
-  });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;ul.school_levels li a i.icon-remove&#x27;, function() {
-    $.ajax({
-      type: &#x27;delete&#x27;,
-      url: &#x27;&#x2F;admin&#x2F;settings&#x2F;school_levels&#x2F;&#x27; + $(this).parents(&#x27;li&#x27;).data(&#x27;param&#x27;) + &#x27;&#x2F;delete&#x27;
-    });
-  });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._dont_report_item&#x27;, function() {
-    $.ajax({
-      type: &#x27;delete&#x27;,
-      url: &#x27;reports&#x2F;&#x27; + $(this).data(&#x27;report-id&#x27;) + &#x27;&#x2F;decline&#x27;
-    });
-  });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._report_item&#x27;, function() {
-    $.ajax({
-      type: &#x27;delete&#x27;,
-      url: &#x27;reports&#x2F;&#x27; + $(this).data(&#x27;report-id&#x27;) + &#x27;&#x2F;accept&#x27;
-    });
-  });
-}
-
-&#x2F;**
 Initializes effects for MediaElement.
 @method adminMediaElementsDocumentReady
 @for AdminDocumentReady
@@ -691,21 +658,34 @@ function adminMediaElementsDocumentReady() {
 }
 
 &#x2F;**
-Initializes effects for User.
-@method adminUsersDocumentReady
+Initializes actions for less important tables, such as Tag, Subject, SchoolLevel 
+@method adminMiscellaneaDocumentReady
 @for AdminDocumentReady
 **&#x2F;
-function adminUsersDocumentReady() {
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._active_status&#x27;, function(e) {
-    e.preventDefault();
-    var link = $(this);
-    var status = true;
-    if(link.hasClass(&#x27;ban&#x27;)) {
-      status = false;
-    }
+function adminMiscellaneaDocumentReady() {
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;ul.subjects li a i.icon-remove&#x27;, function() {
+    var _id = $(this).parents(&#x27;li&#x27;).data(&#x27;param&#x27;);
     $.ajax({
-      url: &#x27;&#x2F;admin&#x2F;users&#x2F;&#x27; + link.data(&#x27;param&#x27;) + &#x27;&#x2F;set_status?active=&#x27; + status,
-      type: &quot;put&quot;
+      type: &#x27;delete&#x27;,
+      url: &#x27;&#x2F;admin&#x2F;settings&#x2F;subjects&#x2F;&#x27; + _id + &#x27;&#x2F;delete&#x27;
+    });
+  });
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;ul.school_levels li a i.icon-remove&#x27;, function() {
+    $.ajax({
+      type: &#x27;delete&#x27;,
+      url: &#x27;&#x2F;admin&#x2F;settings&#x2F;school_levels&#x2F;&#x27; + $(this).parents(&#x27;li&#x27;).data(&#x27;param&#x27;) + &#x27;&#x2F;delete&#x27;
+    });
+  });
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._dont_report_item&#x27;, function() {
+    $.ajax({
+      type: &#x27;delete&#x27;,
+      url: &#x27;reports&#x2F;&#x27; + $(this).data(&#x27;report-id&#x27;) + &#x27;&#x2F;decline&#x27;
+    });
+  });
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._report_item&#x27;, function() {
+    $.ajax({
+      type: &#x27;delete&#x27;,
+      url: &#x27;reports&#x2F;&#x27; + $(this).data(&#x27;report-id&#x27;) + &#x27;&#x2F;accept&#x27;
     });
   });
 }
@@ -800,6 +780,26 @@ function adminSortingDocumentReady() {
     $(&quot;input#search_ordering&quot;).val($(this).data(&#x27;ordering&#x27;));
     $(&quot;input#search_desc&quot;).val($(this).data(&#x27;desc&#x27;));
     $(&#x27;#admin-search-tags&#x27;).submit();
+  });
+}
+
+&#x2F;**
+Initializes effects for User.
+@method adminUsersDocumentReady
+@for AdminDocumentReady
+**&#x2F;
+function adminUsersDocumentReady() {
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._active_status&#x27;, function(e) {
+    e.preventDefault();
+    var link = $(this);
+    var status = true;
+    if(link.hasClass(&#x27;ban&#x27;)) {
+      status = false;
+    }
+    $.ajax({
+      url: &#x27;&#x2F;admin&#x2F;users&#x2F;&#x27; + link.data(&#x27;param&#x27;) + &#x27;&#x2F;set_status?active=&#x27; + status,
+      type: &quot;put&quot;
+    });
   });
 }
 
