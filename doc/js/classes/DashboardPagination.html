@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>changePageDashboardLessons - DESY</title>
+    <title>DashboardPagination - DESY</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.8.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -89,10 +89,6 @@
             
                 <li><a href="..&#x2F;classes/centerThisInContainer.html">centerThisInContainer</a></li>
             
-                <li><a href="..&#x2F;classes/changePageDashboardLessons.html">changePageDashboardLessons</a></li>
-            
-                <li><a href="..&#x2F;classes/changePageDashboardMediaElements.html">changePageDashboardMediaElements</a></li>
-            
                 <li><a href="..&#x2F;classes/checkNoTagDuplicates.html">checkNoTagDuplicates</a></li>
             
                 <li><a href="..&#x2F;classes/closeGenericVideoComponentCutter.html">closeGenericVideoComponentCutter</a></li>
@@ -105,13 +101,17 @@
             
                 <li><a href="..&#x2F;classes/customOverlayClose.html">customOverlayClose</a></li>
             
+                <li><a href="..&#x2F;classes/DashboardDocumentReady.html">DashboardDocumentReady</a></li>
+            
+                <li><a href="..&#x2F;classes/DashboardGeneral.html">DashboardGeneral</a></li>
+            
+                <li><a href="..&#x2F;classes/DashboardPagination.html">DashboardPagination</a></li>
+            
                 <li><a href="..&#x2F;classes/disableTagsInputTooHigh.html">disableTagsInputTooHigh</a></li>
             
                 <li><a href="..&#x2F;classes/enlightTextarea.html">enlightTextarea</a></li>
             
                 <li><a href="..&#x2F;classes/getDragPosition.html">getDragPosition</a></li>
-            
-                <li><a href="..&#x2F;classes/getHtmlPagination.html">getHtmlPagination</a></li>
             
                 <li><a href="..&#x2F;classes/getLessonViewerCurrentSlide.html">getLessonViewerCurrentSlide</a></li>
             
@@ -213,12 +213,6 @@
             
                 <li><a href="..&#x2F;classes/reInitializeSlidePositionsInLessonEditor.html">reInitializeSlidePositionsInLessonEditor</a></li>
             
-                <li><a href="..&#x2F;classes/reloadDashboardPages.html">reloadDashboardPages</a></li>
-            
-                <li><a href="..&#x2F;classes/reloadLessonsDashboardPagination.html">reloadLessonsDashboardPagination</a></li>
-            
-                <li><a href="..&#x2F;classes/reloadMediaElementsDashboardPagination.html">reloadMediaElementsDashboardPagination</a></li>
-            
                 <li><a href="..&#x2F;classes/removeCompletelyMediaElementPopup.html">removeCompletelyMediaElementPopup</a></li>
             
                 <li><a href="..&#x2F;classes/removeCustomOverlayClose.html">removeCustomOverlayClose</a></li>
@@ -319,10 +313,6 @@
             
                 <li><a href="..&#x2F;classes/switchLessonInPlaylistMenuLessonViewer.html">switchLessonInPlaylistMenuLessonViewer</a></li>
             
-                <li><a href="..&#x2F;classes/switchToSuggestedLessons.html">switchToSuggestedLessons</a></li>
-            
-                <li><a href="..&#x2F;classes/switchToSuggestedMediaElements.html">switchToSuggestedMediaElements</a></li>
-            
                 <li><a href="..&#x2F;classes/textAreaImageEditorContent.html">textAreaImageEditorContent</a></li>
             
                 <li><a href="..&#x2F;classes/tinyMceCallbacks.html">tinyMceCallbacks</a></li>
@@ -422,7 +412,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>changePageDashboardLessons Class</h1>
+                        <h1>DashboardPagination Class</h1>
 <div class="box meta">
     
 
@@ -471,6 +461,41 @@
                         
                             <li class="index-item method">
                                 <a href="#method_changePageDashboardLessons">changePageDashboardLessons</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_changePageDashboardMediaElements">changePageDashboardMediaElements</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_getHtmlPagination">getHtmlPagination</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_reloadDashboardPages">reloadDashboardPages</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_reloadLessonsDashboardPagination">reloadLessonsDashboardPagination</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_reloadMediaElementsDashboardPagination">reloadMediaElementsDashboardPagination</a>
 
                                 
                                 
@@ -546,7 +571,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_dashboard.js.html#l206"><code>app&#x2F;assets&#x2F;javascripts&#x2F;dashboard.js:206</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_dashboard.js.html#l83"><code>app&#x2F;assets&#x2F;javascripts&#x2F;dashboard.js:83</code></a>
         
         </p>
 
@@ -557,9 +582,7 @@
     </div>
 
     <div class="description">
-        <p>Change lessons page in dashboard.</p>
-
-<p>Uses: <a href="../classes/reloadLessonsDashboardPagination.html#method_reloadLessonsDashboardPagination">reloadLessonsDashboardPagination</a></p>
+        <p>Change lessons page in dashboard. Uses: <a href="../classes/reloadLessonsDashboardPagination.html#method_reloadLessonsDashboardPagination">reloadLessonsDashboardPagination</a></p>
     </div>
 
     
@@ -582,6 +605,530 @@
 
                     
                 </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">pos</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>pagination position</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">poges_amount</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>pagination pages amount</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_changePageDashboardMediaElements" class="method item">
+    <h3 class="name"><code>changePageDashboardMediaElements</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>old_pos</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>pos</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>poges_amount</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_dashboard.js.html#l99"><code>app&#x2F;assets&#x2F;javascripts&#x2F;dashboard.js:99</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Change media elements page in dashboard. Uses: <a href="../classes/reloadMediaElementsDashboardPagination.html#method_reloadMediaElementsDashboardPagination">reloadMediaElementsDashboardPagination</a></p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">old_pos</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>pagination old position</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">pos</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>pagination position</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">poges_amount</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>pagination pages amount</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_getHtmlPagination" class="method item">
+    <h3 class="name"><code>getHtmlPagination</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>pos</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>pages_amount</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_dashboard.js.html#l115"><code>app&#x2F;assets&#x2F;javascripts&#x2F;dashboard.js:115</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Pagination html generator</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">pos</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>current position</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">pages_amount</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>number of pages</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>:
+                    
+                    pagination html elements
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_reloadDashboardPages" class="method item">
+    <h3 class="name"><code>reloadDashboardPages</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_dashboard.js.html#l156"><code>app&#x2F;assets&#x2F;javascripts&#x2F;dashboard.js:156</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Reload Dashboard content on page change, using bottom pagination.</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_reloadLessonsDashboardPagination" class="method item">
+    <h3 class="name"><code>reloadLessonsDashboardPagination</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>pos</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>poges_amount</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_dashboard.js.html#l168"><code>app&#x2F;assets&#x2F;javascripts&#x2F;dashboard.js:168</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Realod pagination html for lessons. Uses: <a href="../classes/changePageDashboardLessons.html#method_changePageDashboardLessons">changePageDashboardLessons</a></p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">pos</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>pagination position</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">poges_amount</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>pagination pages amount</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_reloadMediaElementsDashboardPagination" class="method item">
+    <h3 class="name"><code>reloadMediaElementsDashboardPagination</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>pos</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>poges_amount</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_dashboard.js.html#l196"><code>app&#x2F;assets&#x2F;javascripts&#x2F;dashboard.js:196</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Realod pagination html for media elements. Uses: <a href="../classes/changePageDashboardMediaElements.html#method_changePageDashboardMediaElements">changePageDashboardMediaElements</a></p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
             
                 <li class="param">
                     

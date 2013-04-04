@@ -89,10 +89,6 @@
             
                 <li><a href="..&#x2F;classes/centerThisInContainer.html">centerThisInContainer</a></li>
             
-                <li><a href="..&#x2F;classes/changePageDashboardLessons.html">changePageDashboardLessons</a></li>
-            
-                <li><a href="..&#x2F;classes/changePageDashboardMediaElements.html">changePageDashboardMediaElements</a></li>
-            
                 <li><a href="..&#x2F;classes/checkNoTagDuplicates.html">checkNoTagDuplicates</a></li>
             
                 <li><a href="..&#x2F;classes/closeGenericVideoComponentCutter.html">closeGenericVideoComponentCutter</a></li>
@@ -105,13 +101,17 @@
             
                 <li><a href="..&#x2F;classes/customOverlayClose.html">customOverlayClose</a></li>
             
+                <li><a href="..&#x2F;classes/DashboardDocumentReady.html">DashboardDocumentReady</a></li>
+            
+                <li><a href="..&#x2F;classes/DashboardGeneral.html">DashboardGeneral</a></li>
+            
+                <li><a href="..&#x2F;classes/DashboardPagination.html">DashboardPagination</a></li>
+            
                 <li><a href="..&#x2F;classes/disableTagsInputTooHigh.html">disableTagsInputTooHigh</a></li>
             
                 <li><a href="..&#x2F;classes/enlightTextarea.html">enlightTextarea</a></li>
             
                 <li><a href="..&#x2F;classes/getDragPosition.html">getDragPosition</a></li>
-            
-                <li><a href="..&#x2F;classes/getHtmlPagination.html">getHtmlPagination</a></li>
             
                 <li><a href="..&#x2F;classes/getLessonViewerCurrentSlide.html">getLessonViewerCurrentSlide</a></li>
             
@@ -213,12 +213,6 @@
             
                 <li><a href="..&#x2F;classes/reInitializeSlidePositionsInLessonEditor.html">reInitializeSlidePositionsInLessonEditor</a></li>
             
-                <li><a href="..&#x2F;classes/reloadDashboardPages.html">reloadDashboardPages</a></li>
-            
-                <li><a href="..&#x2F;classes/reloadLessonsDashboardPagination.html">reloadLessonsDashboardPagination</a></li>
-            
-                <li><a href="..&#x2F;classes/reloadMediaElementsDashboardPagination.html">reloadMediaElementsDashboardPagination</a></li>
-            
                 <li><a href="..&#x2F;classes/removeCompletelyMediaElementPopup.html">removeCompletelyMediaElementPopup</a></li>
             
                 <li><a href="..&#x2F;classes/removeCustomOverlayClose.html">removeCustomOverlayClose</a></li>
@@ -318,10 +312,6 @@
                 <li><a href="..&#x2F;classes/submitCurrentSlideForm.html">submitCurrentSlideForm</a></li>
             
                 <li><a href="..&#x2F;classes/switchLessonInPlaylistMenuLessonViewer.html">switchLessonInPlaylistMenuLessonViewer</a></li>
-            
-                <li><a href="..&#x2F;classes/switchToSuggestedLessons.html">switchToSuggestedLessons</a></li>
-            
-                <li><a href="..&#x2F;classes/switchToSuggestedMediaElements.html">switchToSuggestedMediaElements</a></li>
             
                 <li><a href="..&#x2F;classes/textAreaImageEditorContent.html">textAreaImageEditorContent</a></li>
             
@@ -431,6 +421,15 @@ Dashboard is the welcome page of DESY where you find shared lessons and elements
 @module dashboard
 **&#x2F;
 
+
+
+
+
+&#x2F;**
+bla bla bla
+@method dashboardDocumentReady
+@for DashboardDocumentReady
+**&#x2F;
 function dashboardDocumentReady() {
   $(&#x27;body&#x27;).on(&#x27;mouseover&#x27;, &#x27;._empty_media_elements&#x27;, function() {
     $(this).find(&#x27;._empty_media_elements_hover&#x27;).addClass(&#x27;current&#x27;);
@@ -455,48 +454,15 @@ function dashboardDocumentReady() {
   });
 }
 
-&#x2F;**
-* Reload Dashboard content on page change, using bottom pagination.
-* 
-* @method reloadDashboardPages
-* @for reloadDashboardPages
-*&#x2F;
-function reloadDashboardPages(lessons_page, media_elements_page) {
-  $(&#x27;#suggested_media_elements_1&#x27;).hide();
-  $(&#x27;#suggested_media_elements_&#x27; + media_elements_page).show();
-  $(&#x27;#suggested_lessons_1&#x27;).hide();
-  $(&#x27;#suggested_lessons_&#x27; + lessons_page).show();
-}
+
+
+
 
 &#x2F;**
-* Switch to suggested elements page in dashboard.
-* 
-* Uses: [reloadMediaElementsDashboardPagination](..&#x2F;classes&#x2F;reloadMediaElementsDashboardPagination.html#method_reloadMediaElementsDashboardPagination)
-*
-* @method switchToSuggestedMediaElements
-* @for switchToSuggestedMediaElements
-*&#x2F;
-function switchToSuggestedMediaElements() {
-  $(&#x27;#lessons_in_dashboard&#x27;).hide(&#x27;fade&#x27;, {}, 500, function() {
-    $(this).hide();
-    $(&#x27;#media_elements_in_dashboard&#x27;).show();
-    $(&#x27;#switch_to_media_elements&#x27;).addClass(&#x27;current&#x27;);
-    $(&#x27;#switch_to_lessons&#x27;).removeClass(&#x27;current&#x27;);
-    var pagination_div = $(&#x27;#dashboard_pagination&#x27;);
-    var media_elements_page = pagination_div.data(&#x27;media-elements-page&#x27;);
-    var media_elements_tot = pagination_div.data(&#x27;media-elements-tot&#x27;);
-    reloadMediaElementsDashboardPagination(media_elements_page, media_elements_tot);
-  });
-}
-
-&#x2F;**
-* Switch to suggested lessons page in dashboard.
-* 
-* Uses: [reloadMediaLessonsDashboardPagination](..&#x2F;classes&#x2F;reloadMediaLessonsDashboardPagination.html#method_reloadMediaLessonsDashboardPagination)
-*
-* @method switchToSuggestedLessons
-* @for switchToSuggestedLessons
-*&#x2F;
+Switch to suggested lessons page in dashboard. Uses: [reloadMediaLessonsDashboardPagination](..&#x2F;classes&#x2F;reloadMediaLessonsDashboardPagination.html#method_reloadMediaLessonsDashboardPagination)
+@method switchToSuggestedLessons
+@for DashboardGeneral
+**&#x2F;
 function switchToSuggestedLessons() {
   $(&#x27;#media_elements_in_dashboard&#x27;).hide(&#x27;fade&#x27;, {}, 500, function() {
     $(this).hide();
@@ -511,86 +477,119 @@ function switchToSuggestedLessons() {
 }
 
 &#x2F;**
-* Pagination html generator
-* 
-* @method getHtmlPagination
-* @for getHtmlPagination
-* @param pos {Number} current position
-* @param pages_amount {Number} number of pages
-* @return {Object} pagination html elements  
-*&#x2F;
-function getHtmlPagination(pos, pages_amount) {
-  var $prev_attrs = {};
-  var $next_attrs = {};
-
-  if(pos &lt;= 1) {
-    $prev_attrs.role = &#x27;disabled&#x27;;
-  } else {
-    $prev_attrs.data = { page: pos-1 };
-    $prev_attrs.title = $(&#x27;#popup_captions_container&#x27;).data(&#x27;title-pagination-left&#x27;);
-  }
-
-  if(pos &gt;= pages_amount) {
-    $next_attrs.role = &#x27;disabled&#x27;;
-  } else {
-    $next_attrs.data = { page: pos+1 };
-    $next_attrs.title = $(&#x27;#popup_captions_container&#x27;).data(&#x27;title-pagination-right&#x27;);
-  }
-
-  var $pagination = $(&#x27;&lt;span&#x2F;&gt;&#x27;, { &#x27;class&#x27;: &#x27;dots_pagination&#x27; });
-
-  $pagination.append(
-    $(&#x27;&lt;span&#x2F;&gt;&#x27;, { role: &#x27;pages&#x27; })
-      .append( $(&#x27;&lt;a&#x2F;&gt;&#x27;, $prev_attrs) )
-      .append( $(&#x27;&lt;a&#x2F;&gt;&#x27;, { role: &#x27;current&#x27;, data: { page: pos } }) )
-      .append( $(&#x27;&lt;a&#x2F;&gt;&#x27;, $next_attrs) )
-  );
-  return $pagination;
+Switch to suggested elements page in dashboard. Uses: [reloadMediaElementsDashboardPagination](..&#x2F;classes&#x2F;reloadMediaElementsDashboardPagination.html#method_reloadMediaElementsDashboardPagination)
+@method switchToSuggestedMediaElements
+@for DashboardGeneral
+**&#x2F;
+function switchToSuggestedMediaElements() {
+  $(&#x27;#lessons_in_dashboard&#x27;).hide(&#x27;fade&#x27;, {}, 500, function() {
+    $(this).hide();
+    $(&#x27;#media_elements_in_dashboard&#x27;).show();
+    $(&#x27;#switch_to_media_elements&#x27;).addClass(&#x27;current&#x27;);
+    $(&#x27;#switch_to_lessons&#x27;).removeClass(&#x27;current&#x27;);
+    var pagination_div = $(&#x27;#dashboard_pagination&#x27;);
+    var media_elements_page = pagination_div.data(&#x27;media-elements-page&#x27;);
+    var media_elements_tot = pagination_div.data(&#x27;media-elements-tot&#x27;);
+    reloadMediaElementsDashboardPagination(media_elements_page, media_elements_tot);
+  });
 }
 
+
+
+
+
 &#x2F;**
-* Realod pagination html for media elements.
-* 
-* Uses: [changePageDashboardMediaElements](..&#x2F;classes&#x2F;changePageDashboardMediaElements.html#method_changePageDashboardMediaElements)
-*
-* @method reloadMediaElementsDashboardPagination
-* @for reloadMediaElementsDashboardPagination
-* @param pos {Number} pagination position
-* @param poges_amount {Number} pagination pages amount
-*&#x2F;
-function reloadMediaElementsDashboardPagination(pos, pages_amount) {
-  if(pages_amount == 0) {
-    $(&#x27;#dashboard_pagination&#x27;).html(&#x27;&#x27;);
-    $(&#x27;#dashboard_pagination&#x27;).data(&#x27;media-elements-tot&#x27;, 0);
-    $(&#x27;#dashboard_pagination&#x27;).data(&#x27;media-elements-page&#x27;, 0);
-    return;
-  }
-  $(&#x27;#dashboard_pagination&#x27;).html(getHtmlPagination(pos, pages_amount));
-  $(&#x27;#dashboard_pagination&#x27;).data(&#x27;media-elements-tot&#x27;, pages_amount);
-  $(&#x27;#dashboard_pagination&#x27;).data(&#x27;media-elements-page&#x27;, pos);
-  $(document).ready(function() {
-    var prevPage = function(prevPage) {
-      changePageDashboardMediaElements(pos, (pos - 1), pages_amount);
-      return true;
-    }
-    var nextPage = function(nextPage) {
-      changePageDashboardMediaElements(pos, (pos + 1), pages_amount);
-      return true;
-    }
-    new DotsPagination($(&#x27;[role=pages]&#x27;), pages_amount, prevPage, nextPage);
+Change lessons page in dashboard. Uses: [reloadLessonsDashboardPagination](..&#x2F;classes&#x2F;reloadLessonsDashboardPagination.html#method_reloadLessonsDashboardPagination)
+@method changePageDashboardLessons
+@for DashboardPagination
+@param old_pos {Number} pagination old position
+@param pos {Number} pagination position
+@param poges_amount {Number} pagination pages amount
+**&#x2F;
+function changePageDashboardLessons(old_pos, pos, pages_amount) {
+  $(&#x27;#suggested_lessons_&#x27; + (old_pos)).hide(&#x27;fade&#x27;, {}, 500, function() {
+    $(this).hide();
+    $(&#x27;#suggested_lessons_&#x27; + (pos)).show();
+    reloadLessonsDashboardPagination(pos, pages_amount);
   });
 }
 
 &#x2F;**
-* Realod pagination html for lessons.
-* 
-* Uses: [changePageDashboardLessons](..&#x2F;classes&#x2F;changePageDashboardLessons.html#method_changePageDashboardLessons)
-*
-* @method reloadLessonsDashboardPagination
-* @for reloadLessonsDashboardPagination
-* @param pos {Number} pagination position
-* @param poges_amount {Number} pagination pages amount
-*&#x2F;
+Change media elements page in dashboard. Uses: [reloadMediaElementsDashboardPagination](..&#x2F;classes&#x2F;reloadMediaElementsDashboardPagination.html#method_reloadMediaElementsDashboardPagination)
+@method changePageDashboardMediaElements
+@for DashboardPagination
+@param old_pos {Number} pagination old position
+@param pos {Number} pagination position
+@param poges_amount {Number} pagination pages amount
+**&#x2F;
+function changePageDashboardMediaElements(old_pos, pos, pages_amount) {
+  $(&#x27;#suggested_media_elements_&#x27; + (old_pos)).hide(&#x27;fade&#x27;, {}, 500, function() {
+    $(this).hide();
+    $(&#x27;#suggested_media_elements_&#x27; + (pos)).show();
+    reloadMediaElementsDashboardPagination(pos, pages_amount);
+  });
+}
+
+&#x2F;**
+Pagination html generator
+@method getHtmlPagination
+@for DashboardPagination
+@param pos {Number} current position
+@param pages_amount {Number} number of pages
+@return {Object} pagination html elements  
+**&#x2F;
+function getHtmlPagination(pos, pages_amount) {
+  var prev_attrs = {};
+  var next_attrs = {};
+  if(pos &lt;= 1) {
+    prev_attrs.role = &#x27;disabled&#x27;;
+  } else {
+    prev_attrs.data = {
+      page: pos - 1
+    };
+    prev_attrs.title = $(&#x27;#popup_captions_container&#x27;).data(&#x27;title-pagination-left&#x27;);
+  }
+  if(pos &gt;= pages_amount) {
+    next_attrs.role = &#x27;disabled&#x27;;
+  } else {
+    next_attrs.data = {
+      page: pos + 1
+    };
+    next_attrs.title = $(&#x27;#popup_captions_container&#x27;).data(&#x27;title-pagination-right&#x27;);
+  }
+  var pagination = $(&#x27;&lt;span&#x2F;&gt;&#x27;, {
+    &#x27;class&#x27;: &#x27;dots_pagination&#x27;
+  });
+  pagination.append($(&#x27;&lt;span&#x2F;&gt;&#x27;, {
+    role: &#x27;pages&#x27;
+  }).append($(&#x27;&lt;a&#x2F;&gt;&#x27;, prev_attrs)).append($(&#x27;&lt;a&#x2F;&gt;&#x27;, {
+    role: &#x27;current&#x27;,
+    data: {
+      page: pos
+    }
+  })).append($(&#x27;&lt;a&#x2F;&gt;&#x27;, next_attrs)));
+  return pagination;
+}
+
+&#x2F;**
+Reload Dashboard content on page change, using bottom pagination.
+@method reloadDashboardPages
+@for DashboardPagination
+**&#x2F;
+function reloadDashboardPages(lessons_page, media_elements_page) {
+  $(&#x27;#suggested_media_elements_1&#x27;).hide();
+  $(&#x27;#suggested_media_elements_&#x27; + media_elements_page).show();
+  $(&#x27;#suggested_lessons_1&#x27;).hide();
+  $(&#x27;#suggested_lessons_&#x27; + lessons_page).show();
+}
+
+&#x2F;**
+Realod pagination html for lessons. Uses: [changePageDashboardLessons](..&#x2F;classes&#x2F;changePageDashboardLessons.html#method_changePageDashboardLessons)
+@method reloadLessonsDashboardPagination
+@for DashboardPagination
+@param pos {Number} pagination position
+@param poges_amount {Number} pagination pages amount
+**&#x2F;
 function reloadLessonsDashboardPagination(pos, pages_amount) {
   if(pages_amount == 0) {
     $(&#x27;#dashboard_pagination&#x27;).empty().data({ &#x27;lessons-tot&#x27;: 0, &#x27;lessons-page&#x27;: 0 });
@@ -613,40 +612,32 @@ function reloadLessonsDashboardPagination(pos, pages_amount) {
 }
 
 &#x2F;**
-* Change media elements page in dashboard.
-* 
-* Uses: [reloadMediaElementsDashboardPagination](..&#x2F;classes&#x2F;reloadMediaElementsDashboardPagination.html#method_reloadMediaElementsDashboardPagination)
-*
-* @method changePageDashboardMediaElements
-* @for changePageDashboardMediaElements
-* @param old_pos {Number} pagination old position
-* @param pos {Number} pagination position
-* @param poges_amount {Number} pagination pages amount
-*&#x2F;
-function changePageDashboardMediaElements(old_pos, pos, pages_amount) {
-  $(&#x27;#suggested_media_elements_&#x27; + (old_pos)).hide(&#x27;fade&#x27;, {}, 500, function() {
-    $(this).hide();
-    $(&#x27;#suggested_media_elements_&#x27; + (pos)).show();
-    reloadMediaElementsDashboardPagination(pos, pages_amount);
-  });
-}
-
-&#x2F;**
-* Change lessons page in dashboard.
-* 
-* Uses: [reloadLessonsDashboardPagination](..&#x2F;classes&#x2F;reloadLessonsDashboardPagination.html#method_reloadLessonsDashboardPagination)
-*
-* @method changePageDashboardLessons
-* @for changePageDashboardLessons
-* @param old_pos {Number} pagination old position
-* @param pos {Number} pagination position
-* @param poges_amount {Number} pagination pages amount
-*&#x2F;
-function changePageDashboardLessons(old_pos, pos, pages_amount) {
-  $(&#x27;#suggested_lessons_&#x27; + (old_pos)).hide(&#x27;fade&#x27;, {}, 500, function() {
-    $(this).hide();
-    $(&#x27;#suggested_lessons_&#x27; + (pos)).show();
-    reloadLessonsDashboardPagination(pos, pages_amount);
+Realod pagination html for media elements. Uses: [changePageDashboardMediaElements](..&#x2F;classes&#x2F;changePageDashboardMediaElements.html#method_changePageDashboardMediaElements)
+@method reloadMediaElementsDashboardPagination
+@for DashboardPagination
+@param pos {Number} pagination position
+@param poges_amount {Number} pagination pages amount
+**&#x2F;
+function reloadMediaElementsDashboardPagination(pos, pages_amount) {
+  if(pages_amount == 0) {
+    $(&#x27;#dashboard_pagination&#x27;).html(&#x27;&#x27;);
+    $(&#x27;#dashboard_pagination&#x27;).data(&#x27;media-elements-tot&#x27;, 0);
+    $(&#x27;#dashboard_pagination&#x27;).data(&#x27;media-elements-page&#x27;, 0);
+    return;
+  }
+  $(&#x27;#dashboard_pagination&#x27;).html(getHtmlPagination(pos, pages_amount));
+  $(&#x27;#dashboard_pagination&#x27;).data(&#x27;media-elements-tot&#x27;, pages_amount);
+  $(&#x27;#dashboard_pagination&#x27;).data(&#x27;media-elements-page&#x27;, pos);
+  $(document).ready(function() {
+    var prevPage = function(prevPage) {
+      changePageDashboardMediaElements(pos, (pos - 1), pages_amount);
+      return true;
+    }
+    var nextPage = function(nextPage) {
+      changePageDashboardMediaElements(pos, (pos + 1), pages_amount);
+      return true;
+    }
+    new DotsPagination($(&#x27;[role=pages]&#x27;), pages_amount, prevPage, nextPage);
   });
 }
 
