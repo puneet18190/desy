@@ -437,20 +437,13 @@ bla bla bla
 @module audio-editor
 **&#x2F;
 
+
+
+&#x2F;&#x2F; components
+
 function resizeLastComponentInAudioEditor() {
   $(&#x27;._audio_editor_component._last&#x27;).last().removeClass(&#x27;_last&#x27;)
   $(&#x27;._audio_editor_component&#x27;).last().addClass(&#x27;_last&#x27;);
-}
-
-function loadAudioComponentIfNotLoadedYet(component) {
-  if(!component.data(&#x27;loaded&#x27;)) {
-    var mp3 = component.data(&#x27;mp3&#x27;);
-    var ogg = component.data(&#x27;ogg&#x27;);
-    component.find(&#x27;source[type=&quot;audio&#x2F;mp3&quot;]&#x27;).attr(&#x27;src&#x27;, mp3);
-    component.find(&#x27;source[type=&quot;audio&#x2F;ogg&quot;]&#x27;).attr(&#x27;src&#x27;, ogg);
-    component.find(&#x27;audio&#x27;).load();
-    component.data(&#x27;loaded&#x27;, true);
-  }
 }
 
 function selectAudioEditorComponent(component) {
@@ -486,33 +479,14 @@ function deselectAllAudioEditorComponents() {
   $(&#x27;._audio_editor_component._selected&#x27;).removeClass(&#x27;_selected&#x27;);
 }
 
-function initializeAudioEditor() {
-  resizeLastComponentInAudioEditor();
-  $(&#x27;#audio_editor_timeline&#x27;).jScrollPane({
-    autoReinitialise: true
-  });
-  $(&#x27;#audio_editor_timeline .jspPane&#x27;).sortable({
-    scroll: true,
-    handle: &#x27;._sort_handle&#x27;,
-    axis: &#x27;y&#x27;,
-    cursor: &#x27;move&#x27;,
-    start: function(event, ui) {
-      selectAudioEditorComponent($(ui.item));
-    },
-    stop: function(event, ui) {
-      var my_item = $(ui.item);
-      resizeLastComponentInAudioEditor();
-      var boolean1 = (my_item.next().length == 0);
-      var boolean2 = (my_item.data(&#x27;position&#x27;) != $(&#x27;._audio_editor_component&#x27;).length);
-      var boolean3 = (my_item.next().data(&#x27;position&#x27;) != (my_item.data(&#x27;position&#x27;) + 1));
-      if(boolean1 &amp;&amp; boolean2 || !boolean1 &amp;&amp; boolean3) {
-        reloadAudioEditorComponentPositions();
-        $(&#x27;._audio_editor_component ._title&#x27;).effect(&#x27;highlight&#x27;, {color: &#x27;#41A62A&#x27;}, 1000);
-      }
-    }
-  });
-  if($(&#x27;html&#x27;).hasClass(&#x27;msie&#x27;)) {
-    $(&#x27;._audio_editor_component ._double_slider .ui-slider-range&#x27;).css(&#x27;opacity&#x27;, 0.4);
+function loadAudioComponentIfNotLoadedYet(component) {
+  if(!component.data(&#x27;loaded&#x27;)) {
+    var mp3 = component.data(&#x27;mp3&#x27;);
+    var ogg = component.data(&#x27;ogg&#x27;);
+    component.find(&#x27;source[type=&quot;audio&#x2F;mp3&quot;]&#x27;).attr(&#x27;src&#x27;, mp3);
+    component.find(&#x27;source[type=&quot;audio&#x2F;ogg&quot;]&#x27;).attr(&#x27;src&#x27;, ogg);
+    component.find(&#x27;audio&#x27;).load();
+    component.data(&#x27;loaded&#x27;, true);
   }
 }
 
@@ -548,109 +522,6 @@ function removeAudioEditorComponent(component) {
     }
     resizeLastComponentInAudioEditor();
   });
-}
-
-function disableCommitAndPreviewInAudioEditor() {
-  $(&#x27;#empty_audio_editor&#x27;).show();
-  $(&#x27;#commit_audio_editor&#x27;).hide();
-  $(&#x27;#start_audio_editor_preview&#x27;).addClass(&#x27;disabled&#x27;);
-  $(&#x27;#rewind_audio_editor_preview&#x27;).addClass(&#x27;disabled&#x27;);
-}
-
-function enableCommitAndPreviewInAudioEditor() {
-  $(&#x27;#empty_audio_editor&#x27;).hide();
-  $(&#x27;#commit_audio_editor&#x27;).show();
-  $(&#x27;#start_audio_editor_preview&#x27;).removeClass(&#x27;disabled&#x27;);
-  $(&#x27;#rewind_audio_editor_preview&#x27;).removeClass(&#x27;disabled&#x27;);
-}
-
-function setToZeroAllZIndexesInAudioEditor() {
-  $(&#x27;._audio_editor_component ._remove&#x27;).css(&#x27;z-index&#x27;, 0);
-  $(&#x27;._audio_editor_component ._box_ghost&#x27;).css(&#x27;z-index&#x27;, 0);
-  $(&#x27;._audio_editor_component ._media_player_slider_disabler&#x27;).css(&#x27;z-index&#x27;, 0);
-  $(&#x27;._audio_editor_component ._double_slider&#x27;).css(&#x27;z-index&#x27;, 0);
-  $(&#x27;._audio_editor_component ._under_double_slider&#x27;).css(&#x27;z-index&#x27;, 0);
-  $(&#x27;._audio_editor_component ._media_player_slider&#x27;).css(&#x27;z-index&#x27;, 0);
-}
-
-function setBackAllZIndexesInAudioEditor() {
-  $(&#x27;._audio_editor_component ._remove&#x27;).css(&#x27;z-index&#x27;, 101);
-  $(&#x27;._audio_editor_component ._box_ghost&#x27;).css(&#x27;z-index&#x27;, 100);
-  $(&#x27;._audio_editor_component ._media_player_slider_disabler&#x27;).css(&#x27;z-index&#x27;, 99);
-  $(&#x27;._audio_editor_component ._double_slider&#x27;).css(&#x27;z-index&#x27;, 98);
-  $(&#x27;._audio_editor_component ._under_double_slider&#x27;).css(&#x27;z-index&#x27;, 97);
-  $(&#x27;._audio_editor_component ._media_player_slider&#x27;).css(&#x27;z-index&#x27;, 96);
-}
-
-function showGalleryInAudioEditor() {
-  $(&#x27;._audio_editor_bottom_bar&#x27;).hide();
-  $(&#x27;#audio_editor_gallery_container&#x27;).show();
-  setToZeroAllZIndexesInAudioEditor();
-  calculateNewPositionGalleriesInAudioEditor();
-}
-
-function showCommitAudioEditorForm(scope) {
-  $(&#x27;._audio_editor_bottom_bar&#x27;).hide();
-  $(&#x27;#audio_editor #form_info_&#x27; + scope + &#x27;_media_element_in_editor&#x27;).show();
-  setToZeroAllZIndexesInAudioEditor();
-}
-
-function hideCommitAudioEditorForm(scope) {
-  $(&#x27;._audio_editor_bottom_bar&#x27;).show();
-  $(&#x27;#audio_editor #form_info_&#x27; + scope + &#x27;_media_element_in_editor&#x27;).hide();
-  setBackAllZIndexesInAudioEditor();
-}
-
-function calculateNewPositionGalleriesInAudioEditor() {
-  $(&#x27;#audio_editor_gallery_container&#x27;).css(&#x27;left&#x27;, (($(window).width() - 940) &#x2F; 2) + &#x27;px&#x27;);
-}
-
-function closeGalleryInAudioEditor() {
-  $(&#x27;._audio_editor_bottom_bar&#x27;).show();
-  $(&#x27;#audio_editor_gallery_container&#x27;).hide(&#x27;fade&#x27;, {}, 250, function() {
-    setBackAllZIndexesInAudioEditor();
-  });
-}
-
-function cutAudioComponentLeftSide(identifier, pos) {
-  var component = $(&#x27;#audio_component_&#x27; + identifier);
-  var new_duration = component.data(&#x27;to&#x27;) - pos;
-  component.data(&#x27;from&#x27;, pos);
-  component.find(&#x27;._cutter_from&#x27;).html(secondsToDateString(pos));
-  component.find(&#x27;._audio_component_input_from&#x27;).val(pos);
-  changeDurationAudioEditorComponent(component, new_duration);
-}
-
-function cutAudioComponentRightSide(identifier, pos) {
-  var component = $(&#x27;#audio_component_&#x27; + identifier);
-  var new_duration = pos - component.data(&#x27;from&#x27;);
-  component.data(&#x27;to&#x27;, pos);
-  component.find(&#x27;._cutter_to&#x27;).html(secondsToDateString(pos));
-  component.find(&#x27;._audio_component_input_to&#x27;).val(pos);
-  changeDurationAudioEditorComponent(component, new_duration);
-}
-
-function deselectAllAudioEditorCursors(id) {
-  $(&#x27;#audio_component_&#x27; + id + &#x27; .ui-slider-handle&#x27;).removeClass(&#x27;selected&#x27;);
-  $(&#x27;#audio_component_&#x27; + id + &#x27; ._cutter_from, #audio_component_&#x27; + id + &#x27; ._cutter_to, #audio_component_&#x27; + id + &#x27; ._current_time&#x27;).removeClass(&#x27;selected&#x27;);
-}
-
-function selectAudioEditorLeftHandle(id) {
-  deselectAllAudioEditorCursors(id);
-  $(&#x27;#audio_component_&#x27; + id + &#x27; ._double_slider .ui-slider-handle&#x27;).first().addClass(&#x27;selected&#x27;);
-  $(&#x27;#audio_component_&#x27; + id + &#x27; ._cutter_from&#x27;).addClass(&#x27;selected&#x27;);
-}
-
-function selectAudioEditorRightHandle(id) {
-  deselectAllAudioEditorCursors(id);
-  $($(&#x27;#audio_component_&#x27; + id + &#x27; ._double_slider .ui-slider-handle&#x27;)[1]).addClass(&#x27;selected&#x27;);
-  $(&#x27;#audio_component_&#x27; + id + &#x27; ._cutter_to&#x27;).addClass(&#x27;selected&#x27;);
-}
-
-function selectAudioEditorCursor(id) {
-  deselectAllAudioEditorCursors(id);
-  $(&#x27;#audio_component_&#x27; + id + &#x27; ._media_player_slider .ui-slider-handle&#x27;).addClass(&#x27;selected&#x27;);
-  $(&#x27;#audio_component_&#x27; + id + &#x27; ._current_time&#x27;).addClass(&#x27;selected&#x27;);
 }
 
 function addComponentInAudioEditor(audio_id, ogg, mp3, duration, title) {
@@ -702,6 +573,14 @@ function fillAudioEditorSingleParameter(input, identifier, value) {
   return &#x27;&lt;input id=&quot;&#x27; + input + &#x27;_&#x27; + identifier + &#x27;&quot; class=&quot;_audio_component_input_&#x27; + input + &#x27;&quot; type=&quot;hidden&quot; value=&quot;&#x27; + value + &#x27;&quot; name=&quot;&#x27; + input + &#x27;_&#x27; + identifier + &#x27;&quot;&gt;&#x27;;
 }
 
+
+
+
+
+
+
+&#x2F;&#x2F; scrollpain
+
 function scrollToFirstSelectedAudioEditorComponent(callback) {
   var selected_component = $(&#x27;._audio_editor_component._selected&#x27;);
   var scroll_pain = $(&#x27;#audio_editor_timeline&#x27;);
@@ -752,6 +631,189 @@ function scrollToFirstSelectedAudioEditorComponent(callback) {
     }
   }
 }
+
+function followPreviewComponentsWithVerticalScrollInAudioEditor() {
+  if($(&#x27;._audio_editor_component._selected&#x27;).data(&#x27;position&#x27;) - parseInt($(&#x27;#audio_editor_timeline&#x27;).data(&#x27;jsp&#x27;).getContentPositionY() &#x2F; 113) == 4) {
+    scrollToFirstSelectedAudioEditorComponent();
+  }
+}
+
+
+
+
+
+
+
+
+&#x2F;&#x2F; graphics
+
+function disableCommitAndPreviewInAudioEditor() {
+  $(&#x27;#empty_audio_editor&#x27;).show();
+  $(&#x27;#commit_audio_editor&#x27;).hide();
+  $(&#x27;#start_audio_editor_preview&#x27;).addClass(&#x27;disabled&#x27;);
+  $(&#x27;#rewind_audio_editor_preview&#x27;).addClass(&#x27;disabled&#x27;);
+}
+
+function enableCommitAndPreviewInAudioEditor() {
+  $(&#x27;#empty_audio_editor&#x27;).hide();
+  $(&#x27;#commit_audio_editor&#x27;).show();
+  $(&#x27;#start_audio_editor_preview&#x27;).removeClass(&#x27;disabled&#x27;);
+  $(&#x27;#rewind_audio_editor_preview&#x27;).removeClass(&#x27;disabled&#x27;);
+}
+
+function setToZeroAllZIndexesInAudioEditor() {
+  $(&#x27;._audio_editor_component ._remove&#x27;).css(&#x27;z-index&#x27;, 0);
+  $(&#x27;._audio_editor_component ._box_ghost&#x27;).css(&#x27;z-index&#x27;, 0);
+  $(&#x27;._audio_editor_component ._media_player_slider_disabler&#x27;).css(&#x27;z-index&#x27;, 0);
+  $(&#x27;._audio_editor_component ._double_slider&#x27;).css(&#x27;z-index&#x27;, 0);
+  $(&#x27;._audio_editor_component ._under_double_slider&#x27;).css(&#x27;z-index&#x27;, 0);
+  $(&#x27;._audio_editor_component ._media_player_slider&#x27;).css(&#x27;z-index&#x27;, 0);
+}
+
+function setBackAllZIndexesInAudioEditor() {
+  $(&#x27;._audio_editor_component ._remove&#x27;).css(&#x27;z-index&#x27;, 101);
+  $(&#x27;._audio_editor_component ._box_ghost&#x27;).css(&#x27;z-index&#x27;, 100);
+  $(&#x27;._audio_editor_component ._media_player_slider_disabler&#x27;).css(&#x27;z-index&#x27;, 99);
+  $(&#x27;._audio_editor_component ._double_slider&#x27;).css(&#x27;z-index&#x27;, 98);
+  $(&#x27;._audio_editor_component ._under_double_slider&#x27;).css(&#x27;z-index&#x27;, 97);
+  $(&#x27;._audio_editor_component ._media_player_slider&#x27;).css(&#x27;z-index&#x27;, 96);
+}
+
+function showCommitAudioEditorForm(scope) {
+  $(&#x27;._audio_editor_bottom_bar&#x27;).hide();
+  $(&#x27;#audio_editor #form_info_&#x27; + scope + &#x27;_media_element_in_editor&#x27;).show();
+  setToZeroAllZIndexesInAudioEditor();
+}
+
+function hideCommitAudioEditorForm(scope) {
+  $(&#x27;._audio_editor_bottom_bar&#x27;).show();
+  $(&#x27;#audio_editor #form_info_&#x27; + scope + &#x27;_media_element_in_editor&#x27;).hide();
+  setBackAllZIndexesInAudioEditor();
+}
+
+
+
+
+
+
+
+
+
+&#x2F;&#x2F; galleries
+
+function showGalleryInAudioEditor() {
+  $(&#x27;._audio_editor_bottom_bar&#x27;).hide();
+  $(&#x27;#audio_editor_gallery_container&#x27;).show();
+  setToZeroAllZIndexesInAudioEditor();
+  calculateNewPositionGalleriesInAudioEditor();
+}
+
+function calculateNewPositionGalleriesInAudioEditor() {
+  $(&#x27;#audio_editor_gallery_container&#x27;).css(&#x27;left&#x27;, (($(window).width() - 940) &#x2F; 2) + &#x27;px&#x27;);
+}
+
+function closeGalleryInAudioEditor() {
+  $(&#x27;._audio_editor_bottom_bar&#x27;).show();
+  $(&#x27;#audio_editor_gallery_container&#x27;).hide(&#x27;fade&#x27;, {}, 250, function() {
+    setBackAllZIndexesInAudioEditor();
+  });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&#x2F;&#x2F; cutters
+
+function cutAudioComponentLeftSide(identifier, pos) {
+  var component = $(&#x27;#audio_component_&#x27; + identifier);
+  var new_duration = component.data(&#x27;to&#x27;) - pos;
+  component.data(&#x27;from&#x27;, pos);
+  component.find(&#x27;._cutter_from&#x27;).html(secondsToDateString(pos));
+  component.find(&#x27;._audio_component_input_from&#x27;).val(pos);
+  changeDurationAudioEditorComponent(component, new_duration);
+}
+
+function cutAudioComponentRightSide(identifier, pos) {
+  var component = $(&#x27;#audio_component_&#x27; + identifier);
+  var new_duration = pos - component.data(&#x27;from&#x27;);
+  component.data(&#x27;to&#x27;, pos);
+  component.find(&#x27;._cutter_to&#x27;).html(secondsToDateString(pos));
+  component.find(&#x27;._audio_component_input_to&#x27;).val(pos);
+  changeDurationAudioEditorComponent(component, new_duration);
+}
+
+function deselectAllAudioEditorCursors(id) {
+  $(&#x27;#audio_component_&#x27; + id + &#x27; .ui-slider-handle&#x27;).removeClass(&#x27;selected&#x27;);
+  $(&#x27;#audio_component_&#x27; + id + &#x27; ._cutter_from, #audio_component_&#x27; + id + &#x27; ._cutter_to, #audio_component_&#x27; + id + &#x27; ._current_time&#x27;).removeClass(&#x27;selected&#x27;);
+}
+
+function selectAudioEditorLeftHandle(id) {
+  deselectAllAudioEditorCursors(id);
+  $(&#x27;#audio_component_&#x27; + id + &#x27; ._double_slider .ui-slider-handle&#x27;).first().addClass(&#x27;selected&#x27;);
+  $(&#x27;#audio_component_&#x27; + id + &#x27; ._cutter_from&#x27;).addClass(&#x27;selected&#x27;);
+}
+
+function selectAudioEditorRightHandle(id) {
+  deselectAllAudioEditorCursors(id);
+  $($(&#x27;#audio_component_&#x27; + id + &#x27; ._double_slider .ui-slider-handle&#x27;)[1]).addClass(&#x27;selected&#x27;);
+  $(&#x27;#audio_component_&#x27; + id + &#x27; ._cutter_to&#x27;).addClass(&#x27;selected&#x27;);
+}
+
+function selectAudioEditorCursor(id) {
+  deselectAllAudioEditorCursors(id);
+  $(&#x27;#audio_component_&#x27; + id + &#x27; ._media_player_slider .ui-slider-handle&#x27;).addClass(&#x27;selected&#x27;);
+  $(&#x27;#audio_component_&#x27; + id + &#x27; ._current_time&#x27;).addClass(&#x27;selected&#x27;);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+&#x2F;&#x2F; general
+
+function getAudioComponentIdentifier(component) {
+  var id = component.attr(&#x27;id&#x27;).split(&#x27;_&#x27;);
+  return id[id.length - 1];
+}
+
+
+
+
+
+
+
+
+
+
+
+
+&#x2F;&#x2F; preview
 
 function enterAudioEditorPreviewMode() {
   $(&#x27;#info_container&#x27;).data(&#x27;in-preview&#x27;, true);
@@ -898,69 +960,29 @@ function increaseAudioEditorPreviewTimer() {
   data_container.data(&#x27;current-preview-time&#x27;, global_time + 1);
 }
 
-function getAudioComponentIdentifier(component) {
-  var id = component.attr(&#x27;id&#x27;).split(&#x27;_&#x27;);
-  return id[id.length - 1];
-}
 
-function followPreviewComponentsWithVerticalScrollInAudioEditor() {
-  if($(&#x27;._audio_editor_component._selected&#x27;).data(&#x27;position&#x27;) - parseInt($(&#x27;#audio_editor_timeline&#x27;).data(&#x27;jsp&#x27;).getContentPositionY() &#x2F; 113) == 4) {
-    scrollToFirstSelectedAudioEditorComponent();
-  }
-}
+
+
+
+
+
+
+
+
+
+
+
+
+&#x2F;&#x2F; document ready
 
 function audioEditorDocumentReady() {
-  
-  $(&#x27;body&#x27;).on(&#x27;mouseover&#x27;, &#x27;._audio_editor_component ._box_ghost&#x27;, function() {
-    $(this).parent().find(&#x27;._sort_handle&#x27;).addClass(&#x27;current&#x27;);
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;mouseout&#x27;, &#x27;._audio_editor_component ._box_ghost&#x27;, function(e) {
-    if($(this).is(&#x27;:visible&#x27;) &amp;&amp; !$(e.relatedTarget).hasClass(&#x27;_remove&#x27;)) {
-      $(this).parent().find(&#x27;._sort_handle&#x27;).removeClass(&#x27;current&#x27;);
-    }
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._audio_editor_component ._sort_handle&#x27;, function() {
-    selectAudioEditorComponent($(this).parent().parent());
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._audio_editor_component ._box_ghost&#x27;, function() {
-    selectAudioEditorComponent($(this).parent());
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._audio_editor_component ._remove&#x27;, function() {
-    removeAudioEditorComponent($(this).parent());
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#add_new_audio_component_in_audio_editor&#x27;, function() {
-    if(!$(&#x27;#add_new_audio_component_in_audio_editor&#x27;).hasClass(&#x27;disabled&#x27;)) {
-      var selected_component = $(&#x27;._audio_editor_component._selected&#x27;);
-      if(selected_component.length &gt; 0) {
-        selected_component.find(&#x27;._media_player_pause_in_audio_editor_preview&#x27;).click();
-      }
-      if($(&#x27;#audio_editor_gallery_container&#x27;).data(&#x27;loaded&#x27;)) {
-        showGalleryInAudioEditor();
-      } else {
-        $.ajax({
-          type: &#x27;get&#x27;,
-          url: &#x27;&#x2F;audios&#x2F;galleries&#x2F;audio&#x27;
-        });
-      }
-    }
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._add_audio_component_to_audio_editor&#x27;, function() {
-    stopMedia(&#x27;._audio_expanded_in_gallery audio&#x27;);
-    $(&#x27;._audio_expanded_in_gallery ._expanded&#x27;).hide();
-    $(&#x27;._audio_expanded_in_gallery&#x27;).removeClass(&#x27;_audio_expanded_in_gallery&#x27;);
-    var audio_id = $(this).data(&#x27;audio-id&#x27;);
-    closeGalleryInAudioEditor();
-    stopMedia(&#x27;#gallery_audio_&#x27; + audio_id + &#x27; audio&#x27;);
-    $(&#x27;#gallery_audio_&#x27; + audio_id + &#x27; ._expanded&#x27;).hide();
-    addComponentInAudioEditor(audio_id, $(this).data(&#x27;ogg&#x27;), $(this).data(&#x27;mp3&#x27;), $(this).data(&#x27;duration&#x27;), $(this).data(&#x27;title&#x27;));
-  });
-  
+  audioEditorDocumentReadyCommit();
+  audioEditorDocumentReadyPreview();
+  audioEditorDocumentReadyCutters();
+  audioEditorDocumentReadyGeneral();
+}
+
+function audioEditorDocumentReadyCommit() {
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._exit_audio_editor&#x27;, function() {
     stopCacheLoop();
     var captions = $(&#x27;#popup_captions_container&#x27;);
@@ -987,32 +1009,6 @@ function audioEditorDocumentReady() {
       closePopUp(&#x27;dialog-confirm&#x27;);
     });
   });
-  
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#start_audio_editor_preview&#x27;, function() {
-    if(!$(this).hasClass(&#x27;disabled&#x27;)) {
-      enterAudioEditorPreviewMode();
-    }
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#rewind_audio_editor_preview&#x27;, function() {
-    if(!$(this).hasClass(&#x27;disabled&#x27;)) {
-      var selected_component = $(&#x27;._audio_editor_component&#x27;).first();
-      selectAudioEditorComponent(selected_component);
-      disableCommitAndPreviewInAudioEditor();
-      scrollToFirstSelectedAudioEditorComponent(function() {
-        enableCommitAndPreviewInAudioEditor();
-        var from = selected_component.data(&#x27;from&#x27;);
-        selected_component.find(&#x27;._media_player_slider&#x27;).slider(&#x27;value&#x27;, from);
-        selected_component.find(&#x27;._current_time&#x27;).html(secondsToDateString(from));
-        setCurrentTimeToMedia(selected_component.find(&#x27;audio&#x27;), selected_component.find(&#x27;._media_player_slider&#x27;).slider(&#x27;value&#x27;));
-      });
-    }
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#stop_audio_editor_preview&#x27;, function() {
-    leaveAudioEditorPreviewMode();
-  });
-  
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#commit_audio_editor&#x27;, function() {
     stopCacheLoop();
     submitMediaElementEditorCacheForm($(&#x27;#audio_editor_form&#x27;));
@@ -1035,7 +1031,6 @@ function audioEditorDocumentReady() {
       showCommitAudioEditorForm(&#x27;new&#x27;);
     }
   });
-  
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#audio_editor #form_info_new_media_element_in_editor ._cancel&#x27;, function() {
     $(&#x27;#audio_editor_form&#x27;).attr(&#x27;action&#x27;, &#x27;&#x2F;audios&#x2F;cache&#x2F;save&#x27;);
     resetMediaElementEditorForms();
@@ -1046,19 +1041,16 @@ function audioEditorDocumentReady() {
     hideCommitAudioEditorForm(&#x27;new&#x27;);
     startCacheLoop();
   });
-  
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#audio_editor #form_info_update_media_element_in_editor ._cancel&#x27;, function() {
     $(&#x27;#audio_editor_form&#x27;).attr(&#x27;action&#x27;, &#x27;&#x2F;audios&#x2F;cache&#x2F;save&#x27;);
     resetMediaElementEditorForms();
     hideCommitAudioEditorForm(&#x27;update&#x27;);
     startCacheLoop();
   });
-  
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#audio_editor #form_info_new_media_element_in_editor ._commit&#x27;, function() {
     $(&#x27;#audio_editor_form&#x27;).attr(&#x27;action&#x27;, &#x27;&#x2F;audios&#x2F;commit&#x2F;new&#x27;);
     $(&#x27;#audio_editor_form&#x27;).submit();
   });
-  
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#audio_editor #form_info_update_media_element_in_editor ._commit&#x27;, function() {
     if($(&#x27;#info_container&#x27;).data(&#x27;used-in-private-lessons&#x27;)) {
       var captions = $(&#x27;#popup_captions_container&#x27;);
@@ -1078,7 +1070,34 @@ function audioEditorDocumentReady() {
       $(&#x27;#audio_editor_form&#x27;).submit();
     }
   });
-  
+}
+
+function audioEditorDocumentReadyPreview() {
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#start_audio_editor_preview&#x27;, function() {
+    if(!$(this).hasClass(&#x27;disabled&#x27;)) {
+      enterAudioEditorPreviewMode();
+    }
+  });
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#rewind_audio_editor_preview&#x27;, function() {
+    if(!$(this).hasClass(&#x27;disabled&#x27;)) {
+      var selected_component = $(&#x27;._audio_editor_component&#x27;).first();
+      selectAudioEditorComponent(selected_component);
+      disableCommitAndPreviewInAudioEditor();
+      scrollToFirstSelectedAudioEditorComponent(function() {
+        enableCommitAndPreviewInAudioEditor();
+        var from = selected_component.data(&#x27;from&#x27;);
+        selected_component.find(&#x27;._media_player_slider&#x27;).slider(&#x27;value&#x27;, from);
+        selected_component.find(&#x27;._current_time&#x27;).html(secondsToDateString(from));
+        setCurrentTimeToMedia(selected_component.find(&#x27;audio&#x27;), selected_component.find(&#x27;._media_player_slider&#x27;).slider(&#x27;value&#x27;));
+      });
+    }
+  });
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#stop_audio_editor_preview&#x27;, function() {
+    leaveAudioEditorPreviewMode();
+  });
+}
+
+function audioEditorDocumentReadyCutters() {
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._audio_editor_component ._precision_arrow_left&#x27;, function() {
     var component = $(this).parents(&#x27;._audio_editor_component&#x27;);
     var identifier = getAudioComponentIdentifier(component);
@@ -1106,7 +1125,6 @@ function audioEditorDocumentReady() {
       }
     }
   });
-  
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._audio_editor_component ._precision_arrow_right&#x27;, function() {
     var component = $(this).parents(&#x27;._audio_editor_component&#x27;);
     var identifier = getAudioComponentIdentifier(component);
@@ -1135,9 +1153,79 @@ function audioEditorDocumentReady() {
       }
     }
   });
-  
-  initializeAudioEditor();
-  
+}
+
+function audioEditorDocumentReadyGeneral() {
+  $(&#x27;body&#x27;).on(&#x27;mouseover&#x27;, &#x27;._audio_editor_component ._box_ghost&#x27;, function() {
+    $(this).parent().find(&#x27;._sort_handle&#x27;).addClass(&#x27;current&#x27;);
+  });
+  $(&#x27;body&#x27;).on(&#x27;mouseout&#x27;, &#x27;._audio_editor_component ._box_ghost&#x27;, function(e) {
+    if($(this).is(&#x27;:visible&#x27;) &amp;&amp; !$(e.relatedTarget).hasClass(&#x27;_remove&#x27;)) {
+      $(this).parent().find(&#x27;._sort_handle&#x27;).removeClass(&#x27;current&#x27;);
+    }
+  });
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._audio_editor_component ._sort_handle&#x27;, function() {
+    selectAudioEditorComponent($(this).parent().parent());
+  });
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._audio_editor_component ._box_ghost&#x27;, function() {
+    selectAudioEditorComponent($(this).parent());
+  });
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._audio_editor_component ._remove&#x27;, function() {
+    removeAudioEditorComponent($(this).parent());
+  });
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#add_new_audio_component_in_audio_editor&#x27;, function() {
+    if(!$(&#x27;#add_new_audio_component_in_audio_editor&#x27;).hasClass(&#x27;disabled&#x27;)) {
+      var selected_component = $(&#x27;._audio_editor_component._selected&#x27;);
+      if(selected_component.length &gt; 0) {
+        selected_component.find(&#x27;._media_player_pause_in_audio_editor_preview&#x27;).click();
+      }
+      if($(&#x27;#audio_editor_gallery_container&#x27;).data(&#x27;loaded&#x27;)) {
+        showGalleryInAudioEditor();
+      } else {
+        $.ajax({
+          type: &#x27;get&#x27;,
+          url: &#x27;&#x2F;audios&#x2F;galleries&#x2F;audio&#x27;
+        });
+      }
+    }
+  });
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._add_audio_component_to_audio_editor&#x27;, function() {
+    stopMedia(&#x27;._audio_expanded_in_gallery audio&#x27;);
+    $(&#x27;._audio_expanded_in_gallery ._expanded&#x27;).hide();
+    $(&#x27;._audio_expanded_in_gallery&#x27;).removeClass(&#x27;_audio_expanded_in_gallery&#x27;);
+    var audio_id = $(this).data(&#x27;audio-id&#x27;);
+    closeGalleryInAudioEditor();
+    stopMedia(&#x27;#gallery_audio_&#x27; + audio_id + &#x27; audio&#x27;);
+    $(&#x27;#gallery_audio_&#x27; + audio_id + &#x27; ._expanded&#x27;).hide();
+    addComponentInAudioEditor(audio_id, $(this).data(&#x27;ogg&#x27;), $(this).data(&#x27;mp3&#x27;), $(this).data(&#x27;duration&#x27;), $(this).data(&#x27;title&#x27;));
+  });
+  resizeLastComponentInAudioEditor();
+  $(&#x27;#audio_editor_timeline&#x27;).jScrollPane({
+    autoReinitialise: true
+  });
+  $(&#x27;#audio_editor_timeline .jspPane&#x27;).sortable({
+    scroll: true,
+    handle: &#x27;._sort_handle&#x27;,
+    axis: &#x27;y&#x27;,
+    cursor: &#x27;move&#x27;,
+    start: function(event, ui) {
+      selectAudioEditorComponent($(ui.item));
+    },
+    stop: function(event, ui) {
+      var my_item = $(ui.item);
+      resizeLastComponentInAudioEditor();
+      var boolean1 = (my_item.next().length == 0);
+      var boolean2 = (my_item.data(&#x27;position&#x27;) != $(&#x27;._audio_editor_component&#x27;).length);
+      var boolean3 = (my_item.next().data(&#x27;position&#x27;) != (my_item.data(&#x27;position&#x27;) + 1));
+      if(boolean1 &amp;&amp; boolean2 || !boolean1 &amp;&amp; boolean3) {
+        reloadAudioEditorComponentPositions();
+        $(&#x27;._audio_editor_component ._title&#x27;).effect(&#x27;highlight&#x27;, {color: &#x27;#41A62A&#x27;}, 1000);
+      }
+    }
+  });
+  if($(&#x27;html&#x27;).hasClass(&#x27;msie&#x27;)) {
+    $(&#x27;._audio_editor_component ._double_slider .ui-slider-range&#x27;).css(&#x27;opacity&#x27;, 0.4);
+  }
 }
 
     </pre>
