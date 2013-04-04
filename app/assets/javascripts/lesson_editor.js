@@ -26,20 +26,6 @@ Lesson editor functions, it handles visual effects, CRUD actions on single slide
 // current slide
 
 /**
-* Restore page elements around current slide after new slide selection
-* 
-* @method showEverythingOutCurrentSlide
-* @for showEverythingOutCurrentSlide
-*/
-function showEverythingOutCurrentSlide() {
-  var current_slide = $('li._lesson_editor_current_slide');
-  $('#heading').children().show();
-  $('._add_new_slide_options_in_last_position').show();
-  $('._not_current_slide_disabled').addClass('_not_current_slide').removeClass('_not_current_slide_disabled');
-  current_slide.find('.buttons a').css('visibility', 'visible');
-}
-
-/**
 * Hide page elements around current slide on new slide selection
 * 
 * @method hideEverythingOutCurrentSlide
@@ -56,6 +42,34 @@ function hideEverythingOutCurrentSlide() {
 /**
 * Hide new slide selection
 * 
+* @method hideNewSlideChoice
+* @for hideNewSlideChoice
+*/
+function hideNewSlideChoice() {
+  var current_slide = $('li._lesson_editor_current_slide');
+  current_slide.find('div.slide-content').addClass(current_slide.data('kind'));
+  current_slide.find('.box.new_slide').remove();
+  current_slide.find('._hide_add_new_slide_options').removeAttr('class').addClass('addButtonOrange _add_new_slide_options');
+  showEverythingOutCurrentSlide();
+}
+
+/**
+* Restore page elements around current slide after new slide selection
+* 
+* @method showEverythingOutCurrentSlide
+* @for showEverythingOutCurrentSlide
+*/
+function showEverythingOutCurrentSlide() {
+  var current_slide = $('li._lesson_editor_current_slide');
+  $('#heading').children().show();
+  $('._add_new_slide_options_in_last_position').show();
+  $('._not_current_slide_disabled').addClass('_not_current_slide').removeClass('_not_current_slide_disabled');
+  current_slide.find('.buttons a').css('visibility', 'visible');
+}
+
+/**
+* Hide new slide selection
+* 
 * @method showNewSlideChoice
 * @for showNewSlideChoice
 */
@@ -67,20 +81,6 @@ function showNewSlideOptions() {
   current_slide_content.prepend(html_to_be_replaced);
   current_slide_content.siblings('.buttons').find('._add_new_slide_options').removeAttr('class').addClass('minusButtonOrange _hide_add_slide _hide_add_new_slide_options');
   hideEverythingOutCurrentSlide();
-}
-
-/**
-* Hide new slide selection
-* 
-* @method hideNewSlideChoice
-* @for hideNewSlideChoice
-*/
-function hideNewSlideChoice() {
-  var current_slide = $('li._lesson_editor_current_slide');
-  current_slide.find('div.slide-content').addClass(current_slide.data('kind'));
-  current_slide.find('.box.new_slide').remove();
-  current_slide.find('._hide_add_new_slide_options').removeAttr('class').addClass('addButtonOrange _add_new_slide_options');
-  showEverythingOutCurrentSlide();
 }
 
 /**
@@ -520,22 +520,6 @@ function lessonEditorDocumentReadyTextFields() {
 // forms
 
 /**
-* Submit serialized form data for current slide
-* 
-* @method submitCurrentSlideForm
-* @for submitCurrentSlideForm
-*/
-function submitCurrentSlideForm() {
-  $.ajax({
-    type: "POST",
-    url: $('._lesson_editor_current_slide form').attr('action'),
-    timeout:5000,
-    data: $('._lesson_editor_current_slide form').serialize(),
-    beforeSend: unbindLoader()
-  }).always(bindLoader);
-}
-
-/**
 * Save current slide. It sends tinyMCE editor content to form data to be serialized, 
 * it handles form placeholders.
 *
@@ -564,6 +548,23 @@ function saveCurrentSlide() {
     }
   });
 }
+
+/**
+* Submit serialized form data for current slide
+* 
+* @method submitCurrentSlideForm
+* @for submitCurrentSlideForm
+*/
+function submitCurrentSlideForm() {
+  $.ajax({
+    type: "POST",
+    url: $('._lesson_editor_current_slide form').attr('action'),
+    timeout:5000,
+    data: $('._lesson_editor_current_slide form').serialize(),
+    beforeSend: unbindLoader()
+  }).always(bindLoader);
+}
+
 
 
 
@@ -688,33 +689,6 @@ function isHorizontalMask(image_width, image_height, kind) {
 }
 
 /**
-* Sets scaled width to slide images
-*
-* @method resizeWidth
-* @for resizeWidth
-* @param image_width {Number}
-* @param image_height {Number}
-* @param kind {String} type image into slide, acceptes values: cover, image1, image2, image3, image4
-* @return {Number} scaled width
-*/
-function resizeWidth(width, height, kind) {
-  switch(kind) {
-   case 'cover': slideHeight = 560;
-   break;
-   case 'image1': slideHeight = 420;
-   break;
-   case 'image2': slideHeight = 550;
-   break;
-   case 'image3': slideHeight = 550;
-   break;
-   case 'image4': slideHeight = 265;
-   break;
-   default: slideHeight = 590;
-  }
-  return (width * slideHeight) / height;
-}
- 
-/**
 * Sets scaled height to slide images
 *
 * @method resizeHeight
@@ -740,6 +714,34 @@ function resizeHeight(width, height, kind) {
   }
   return (height * slideWidth) / width;
 }
+
+/**
+* Sets scaled width to slide images
+*
+* @method resizeWidth
+* @for resizeWidth
+* @param image_width {Number}
+* @param image_height {Number}
+* @param kind {String} type image into slide, acceptes values: cover, image1, image2, image3, image4
+* @return {Number} scaled width
+*/
+function resizeWidth(width, height, kind) {
+  switch(kind) {
+   case 'cover': slideHeight = 560;
+   break;
+   case 'image1': slideHeight = 420;
+   break;
+   case 'image2': slideHeight = 550;
+   break;
+   case 'image3': slideHeight = 550;
+   break;
+   case 'image4': slideHeight = 265;
+   break;
+   default: slideHeight = 590;
+  }
+  return (width * slideHeight) / height;
+}
+
 
 
 
@@ -782,13 +784,13 @@ function resizeHeight(width, height, kind) {
 * @for initializeSortableNavs
 */
 function initializeSortableNavs() {
-  $("#heading, #heading .scroll-pane").css("width", (parseInt($(window).outerWidth())-50) + "px");
+  $('#heading, #heading .scroll-pane').css('width', (parseInt($(window).outerWidth()) - 50) + 'px');
   var slides_numbers = $('#slide-numbers');
-  var slides_amount = slides_numbers.find("li.navNumbers").length;
-  slides_numbers.css('width', ''+((parseInt(slides_amount + 1) * 32)-28) + 'px');
-  var add_last_button = $("._add_new_slide_options_in_last_position");
-  if(parseInt(slides_numbers.css('width')) < (parseInt($(window).outerWidth())-100)){
-    add_last_button.css("left", ""+(slides_numbers.find("li.navNumbers").last().position().left + 40)+"px"); 
+  var slides_amount = slides_numbers.find('li.navNumbers').length;
+  slides_numbers.css('width', '' + ((parseInt(slides_amount + 1) * 32) - 28) + 'px');
+  var add_last_button = $('._add_new_slide_options_in_last_position');
+  if(parseInt(slides_numbers.css('width')) < (parseInt($(window).outerWidth()) - 100)) {
+    add_last_button.css('left', '' + (slides_numbers.find('li.navNumbers').last().position().left + 40) + 'px');
   }
   slides_numbers.sortable({
     items: '._slide_nav_sortable',
@@ -926,6 +928,22 @@ function makeDraggable(place_id) {
 // slide loading
 
 /**
+* Asynchronously loads current slide, previous and following if any of these aren't loaded yet.
+*
+* Uses: [loadSlideInLessonEditor](../classes/loadSlideInLessonEditor.html#method_loadSlideInLessonEditor)
+* 
+* @method loadSlideAndAdhiacentInLessonEditor
+* @for loadSlideAndAdhiacentInLessonEditor
+* @param slide_id {Number} slide id
+*/
+function loadSlideAndAdhiacentInLessonEditor(slide_id) {
+  var slide = $('#slide_in_lesson_editor_' + slide_id);
+  loadSlideInLessonEditor(slide);
+  loadSlideInLessonEditor(slide.prev());
+  loadSlideInLessonEditor(slide.next());
+}
+
+/**
 * Asynchronous slide loading. 
 * It is called when the current slide is not loaded yet.
 * 
@@ -943,23 +961,6 @@ function loadSlideInLessonEditor(slide) {
     })
   }
 }
-
-/**
-* Asynchronously loads current slide, previous and following if any of these aren't loaded yet.
-*
-* Uses: [loadSlideInLessonEditor](../classes/loadSlideInLessonEditor.html#method_loadSlideInLessonEditor)
-* 
-* @method loadSlideAndAdhiacentInLessonEditor
-* @for loadSlideAndAdhiacentInLessonEditor
-* @param slide_id {Number} slide id
-*/
-function loadSlideAndAdhiacentInLessonEditor(slide_id) {
-  var slide = $('#slide_in_lesson_editor_' + slide_id);
-  loadSlideInLessonEditor(slide);
-  loadSlideInLessonEditor(slide.prev());
-  loadSlideInLessonEditor(slide.next());
-}
-
 
 
 
@@ -986,6 +987,58 @@ function loadSlideAndAdhiacentInLessonEditor(slide_id) {
 
 
 // slide navigation
+
+/**
+* Initialize slides position to center
+*
+* @method initLessonEditorPositions
+* @for initLessonEditorPositions
+*/
+function initLessonEditorPositions() {
+  WW = parseInt($(window).outerWidth());
+  WH = parseInt($(window).outerHeight());
+  $('#main').css('width', WW);
+  $('ul#slides').css('width', (($('ul#slides li').length + 2) * 1000));
+  $('ul#slides').css('top', ((WH / 2) - 295) + 'px');
+  $('ul#slides.new').css('top', ((WH / 2) - 335) + 'px')
+  $('#footer').css('top', (WH - 40) + "px").css('width', (WW - 24) + 'px')
+  if(WW > 1000) {
+    $('ul#slides li:first').css('margin-left', ((WW - 900) / 2) + 'px')
+    $('ul#slides.new li:first').css('margin-left', ((WW - 900) / 2) + 'px');
+  }
+}
+
+/**
+* Re-initialize slides position to center after ajax events
+*
+* @method reInitializeSlidePositionsInLessonEditor
+* @for reInitializeSlidePositionsInLessonEditor
+*/
+function reInitializeSlidePositionsInLessonEditor() {
+  $('ul#slides').css('width', (($('ul#slides li').length + 2) * 1000));
+  $('ul#slides li').each(function(index){
+    $(this).data('position', (index + 1));
+  });
+}
+
+/**
+* Update top scrollPane when moving to another slide
+* 
+* @method scrollPaneUpdate
+* @for scrollPaneUpdate
+* @param trigger_element {String} element which triggers the scroll, class or id
+* @example
+      scrollPaneUpdate('._not_current_slide');
+*/
+function scrollPaneUpdate(trigger_element) {
+  var not_current = $(trigger_element);
+  if($('.slides.active').data('position') < not_current.parent('li').data('position')) {
+    $('#nav_list_menu').data('jsp').scrollByX(30);
+  } else {
+    $('#nav_list_menu').data('jsp').scrollByX(-30);
+  }
+  return false;
+}
 
 /**
 * Slide to current slide, update current slide in top navigation.
@@ -1037,58 +1090,6 @@ function slideTo(slide_id, callback) {
   });
 }
 
-/**
-* Update top scrollPane when moving to another slide
-* 
-* @method scrollPaneUpdate
-* @for scrollPaneUpdate
-* @param trigger_element {String} element which triggers the scroll, class or id
-* @example
-      scrollPaneUpdate('._not_current_slide');
-*/
-function scrollPaneUpdate(trigger_element) {
-  var not_current = $(trigger_element);
-  if($('.slides.active').data('position') < not_current.parent('li').data('position')) {
-    $('#nav_list_menu').data('jsp').scrollByX(30);
-  } else {
-    $('#nav_list_menu').data('jsp').scrollByX(-30);
-  }
-  return false;
-}
-
-/**
-* Initialize slides position to center
-*
-* @method initLessonEditorPositions
-* @for initLessonEditorPositions
-*/
-function initLessonEditorPositions() {
-  WW = parseInt($(window).outerWidth());
-  WH = parseInt($(window).outerHeight());
-  $('#main').css('width', WW);
-  $('ul#slides').css('width', (($('ul#slides li').length + 2) * 1000));
-  $('ul#slides').css('top', ((WH / 2) - 295) + 'px');
-  $('ul#slides.new').css('top', ((WH / 2) - 335) + 'px')
-  $('#footer').css('top', (WH - 40) + "px").css('width', (WW - 24) + 'px')
-  if(WW > 1000) {
-    $('ul#slides li:first').css('margin-left', ((WW - 900) / 2) + 'px')
-    $('ul#slides.new li:first').css('margin-left', ((WW - 900) / 2) + 'px');
-  }
-}
-
-/**
-* Re-initialize slides position to center after ajax events
-*
-* @method reInitializeSlidePositionsInLessonEditor
-* @for reInitializeSlidePositionsInLessonEditor
-*/
-function reInitializeSlidePositionsInLessonEditor() {
-  $('ul#slides').css('width', (($('ul#slides li').length + 2) * 1000));
-  $('ul#slides li').each(function(index){
-    $(this).data('position', (index + 1));
-  });
-}
-
 
 
 
@@ -1116,64 +1117,6 @@ function reInitializeSlidePositionsInLessonEditor() {
 
 
 // tinyMCE
-
-/**
-* TinyMCE callback to show warning when texearea content exceeds the available space.
-* Add a red border to the textarea
-*
-* Add this function on tinyMCE setup.
-*
-* @method tinyMceCallbacks
-* @for tinyMceCallbacks
-* @param inst {Object} tinyMCE body instance
-* @param tiny_id {Number} tinyMCE textarea id
-* @example
-      setup: function(ed) {
-        ed.onKeyUp.add(function(ed, e) {
-          tinyMceCallbacks(ed,tiny_id);
-        });
-      }
-*/
-function tinyMceCallbacks(inst,tiny_id){
-  var maxH = 422;
-  if($("textarea#"+tiny_id).parent('.audio-content').length > 0){
-    maxH = 324;
-  }
-  
-  if (inst.getBody().scrollHeight > maxH) {
-    $(inst.getBody()).parentsUntil("table.mceLayout").css("border","1px solid red");
-  } else {
-    $(inst.getBody()).parentsUntil("table.mceLayout").css("border","1px solid white");
-  }
-  
-}
-
-/**
-* TinyMCE keyDown callback to fix list item style.
-* It adds same style of list item text to list numbers or dots.
-*
-* Add this function on tinyMCE setup.
-*
-* @method tinyMceKeyDownCallbacks
-* @for tinyMceKeyDownCallbacks
-* @param inst {Object} tinyMCE body instance
-* @param tiny_id {Number} tinyMCE textarea id
-* @example
-      setup: function(ed) {
-        ed.onKeyDown.add(function(ed, e) {
-          tinyMceKeyDownCallbacks(ed,tiny_id);
-        });
-      }
-*/
-function tinyMceKeyDownCallbacks(inst,tiny_id){
-  var spans = $(inst.getBody()).find("li span");
-  spans.each(function(){
-    var span = $(this);
-    span.parents('li').removeAttr('class');
-    span.parents('li').addClass(span.attr('class'));
-    span.parentsUntil('li').attr('style',span.attr('style'));
-  });
-}
 
 /**
 * Initialize tinyMCE editor for a single textarea
@@ -1228,4 +1171,60 @@ function initTinymce(tiny_id) {
   //$('body').on("click",'textarea.tinymce',function(){
   //  $('.mceExternalToolbar').show();
   //});
+}
+
+/**
+* TinyMCE callback to show warning when texearea content exceeds the available space.
+* Add a red border to the textarea
+*
+* Add this function on tinyMCE setup.
+*
+* @method tinyMceCallbacks
+* @for tinyMceCallbacks
+* @param inst {Object} tinyMCE body instance
+* @param tiny_id {Number} tinyMCE textarea id
+* @example
+      setup: function(ed) {
+        ed.onKeyUp.add(function(ed, e) {
+          tinyMceCallbacks(ed,tiny_id);
+        });
+      }
+*/
+function tinyMceCallbacks(inst,tiny_id) {
+  var maxH = 422;
+  if($('textarea#' + tiny_id).parent('.audio-content').length > 0) {
+    maxH = 324;
+  }
+  if (inst.getBody().scrollHeight > maxH) {
+    $(inst.getBody()).parentsUntil('table.mceLayout').css('border', '1px solid red');
+  } else {
+    $(inst.getBody()).parentsUntil('table.mceLayout').css('border', '1px solid white');
+  }
+}
+
+/**
+* TinyMCE keyDown callback to fix list item style.
+* It adds same style of list item text to list numbers or dots.
+*
+* Add this function on tinyMCE setup.
+*
+* @method tinyMceKeyDownCallbacks
+* @for tinyMceKeyDownCallbacks
+* @param inst {Object} tinyMCE body instance
+* @param tiny_id {Number} tinyMCE textarea id
+* @example
+      setup: function(ed) {
+        ed.onKeyDown.add(function(ed, e) {
+          tinyMceKeyDownCallbacks(ed,tiny_id);
+        });
+      }
+*/
+function tinyMceKeyDownCallbacks(inst,tiny_id){
+  var spans = $(inst.getBody()).find('li span');
+  spans.each(function(){
+    var span = $(this);
+    span.parents('li').removeAttr('class');
+    span.parents('li').addClass(span.attr('class'));
+    span.parentsUntil('li').attr('style', span.attr('style'));
+  });
 }
