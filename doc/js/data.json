@@ -95,22 +95,11 @@
             },
             "classes": {},
             "fors": {
-                "showRestoreCacheMediaElementEditorPopUp": 1,
-                "showLessonNotificationPopUp": 1,
-                "showSendLessonLinkPopUp": 1,
-                "showVirtualClassroomQuickSelectPopUp": 1,
-                "showTimedPopUp": 1,
-                "showErrorPopUp": 1,
-                "showOkPopUp": 1,
-                "showMediaElementInfoPopUp": 1,
-                "showLoadMediaElementPopUp": 1,
-                "showImageInGalleryPopUp": 1,
-                "showVideoInGalleryPopUp": 1,
-                "showConfirmPopUp": 1,
-                "removeCompletelyMediaElementPopup": 1,
-                "closePopUp": 1,
-                "customOverlayClose": 1,
-                "removeCustomOverlayClose": 1
+                "DialogsAccessories": 1,
+                "DialogsConfirmation": 1,
+                "DialogsGalleries": 1,
+                "DialogsTimed": 1,
+                "DialogsWithForm": 1
             },
             "namespaces": {}
         },
@@ -495,40 +484,18 @@
             "name": "dialogs",
             "submodules": {},
             "classes": {
-                "showRestoreCacheMediaElementEditorPopUp": 1,
-                "showLessonNotificationPopUp": 1,
-                "showSendLessonLinkPopUp": 1,
-                "showVirtualClassroomQuickSelectPopUp": 1,
-                "showTimedPopUp": 1,
-                "showErrorPopUp": 1,
-                "showOkPopUp": 1,
-                "showMediaElementInfoPopUp": 1,
-                "showLoadMediaElementPopUp": 1,
-                "showImageInGalleryPopUp": 1,
-                "showVideoInGalleryPopUp": 1,
-                "showConfirmPopUp": 1,
-                "removeCompletelyMediaElementPopup": 1,
-                "closePopUp": 1,
-                "customOverlayClose": 1,
-                "removeCustomOverlayClose": 1
+                "DialogsAccessories": 1,
+                "DialogsConfirmation": 1,
+                "DialogsGalleries": 1,
+                "DialogsTimed": 1,
+                "DialogsWithForm": 1
             },
             "fors": {
-                "showRestoreCacheMediaElementEditorPopUp": 1,
-                "showLessonNotificationPopUp": 1,
-                "showSendLessonLinkPopUp": 1,
-                "showVirtualClassroomQuickSelectPopUp": 1,
-                "showTimedPopUp": 1,
-                "showErrorPopUp": 1,
-                "showOkPopUp": 1,
-                "showMediaElementInfoPopUp": 1,
-                "showLoadMediaElementPopUp": 1,
-                "showImageInGalleryPopUp": 1,
-                "showVideoInGalleryPopUp": 1,
-                "showConfirmPopUp": 1,
-                "removeCompletelyMediaElementPopup": 1,
-                "closePopUp": 1,
-                "customOverlayClose": 1,
-                "removeCustomOverlayClose": 1
+                "DialogsAccessories": 1,
+                "DialogsConfirmation": 1,
+                "DialogsGalleries": 1,
+                "DialogsTimed": 1,
+                "DialogsWithForm": 1
             },
             "namespaces": {},
             "tag": "module",
@@ -1181,9 +1148,9 @@
             "module": "dashboard",
             "namespace": ""
         },
-        "showRestoreCacheMediaElementEditorPopUp": {
-            "name": "showRestoreCacheMediaElementEditorPopUp",
-            "shortname": "showRestoreCacheMediaElementEditorPopUp",
+        "DialogsAccessories": {
+            "name": "DialogsAccessories",
+            "shortname": "DialogsAccessories",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -1192,9 +1159,9 @@
             "module": "dialogs",
             "namespace": ""
         },
-        "showLessonNotificationPopUp": {
-            "name": "showLessonNotificationPopUp",
-            "shortname": "showLessonNotificationPopUp",
+        "DialogsConfirmation": {
+            "name": "DialogsConfirmation",
+            "shortname": "DialogsConfirmation",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -1203,9 +1170,9 @@
             "module": "dialogs",
             "namespace": ""
         },
-        "showSendLessonLinkPopUp": {
-            "name": "showSendLessonLinkPopUp",
-            "shortname": "showSendLessonLinkPopUp",
+        "DialogsGalleries": {
+            "name": "DialogsGalleries",
+            "shortname": "DialogsGalleries",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -1214,9 +1181,9 @@
             "module": "dialogs",
             "namespace": ""
         },
-        "showVirtualClassroomQuickSelectPopUp": {
-            "name": "showVirtualClassroomQuickSelectPopUp",
-            "shortname": "showVirtualClassroomQuickSelectPopUp",
+        "DialogsTimed": {
+            "name": "DialogsTimed",
+            "shortname": "DialogsTimed",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -1225,130 +1192,9 @@
             "module": "dialogs",
             "namespace": ""
         },
-        "showTimedPopUp": {
-            "name": "showTimedPopUp",
-            "shortname": "showTimedPopUp",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "dialogs",
-            "namespace": ""
-        },
-        "showErrorPopUp": {
-            "name": "showErrorPopUp",
-            "shortname": "showErrorPopUp",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "dialogs",
-            "namespace": ""
-        },
-        "showOkPopUp": {
-            "name": "showOkPopUp",
-            "shortname": "showOkPopUp",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "dialogs",
-            "namespace": ""
-        },
-        "showMediaElementInfoPopUp": {
-            "name": "showMediaElementInfoPopUp",
-            "shortname": "showMediaElementInfoPopUp",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "dialogs",
-            "namespace": ""
-        },
-        "showLoadMediaElementPopUp": {
-            "name": "showLoadMediaElementPopUp",
-            "shortname": "showLoadMediaElementPopUp",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "dialogs",
-            "namespace": ""
-        },
-        "showImageInGalleryPopUp": {
-            "name": "showImageInGalleryPopUp",
-            "shortname": "showImageInGalleryPopUp",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "dialogs",
-            "namespace": ""
-        },
-        "showVideoInGalleryPopUp": {
-            "name": "showVideoInGalleryPopUp",
-            "shortname": "showVideoInGalleryPopUp",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "dialogs",
-            "namespace": ""
-        },
-        "showConfirmPopUp": {
-            "name": "showConfirmPopUp",
-            "shortname": "showConfirmPopUp",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "dialogs",
-            "namespace": ""
-        },
-        "removeCompletelyMediaElementPopup": {
-            "name": "removeCompletelyMediaElementPopup",
-            "shortname": "removeCompletelyMediaElementPopup",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "dialogs",
-            "namespace": ""
-        },
-        "closePopUp": {
-            "name": "closePopUp",
-            "shortname": "closePopUp",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "dialogs",
-            "namespace": ""
-        },
-        "customOverlayClose": {
-            "name": "customOverlayClose",
-            "shortname": "customOverlayClose",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "dialogs",
-            "namespace": ""
-        },
-        "removeCustomOverlayClose": {
-            "name": "removeCustomOverlayClose",
-            "shortname": "removeCustomOverlayClose",
+        "DialogsWithForm": {
+            "name": "DialogsWithForm",
+            "shortname": "DialogsWithForm",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -3582,132 +3428,35 @@
         },
         {
             "file": "app/assets/javascripts/dialogs.js",
-            "line": 6,
-            "description": "Modal for media element editor, asking whether or not restore cached content.\nAvailable for audio and video editor only.",
+            "line": 10,
+            "description": "Close popup with given id",
             "itemtype": "method",
-            "name": "showRestoreCacheMediaElementEditorPopUp",
+            "name": "closePopUp",
             "params": [
-                {
-                    "name": "callback_ok",
-                    "description": "restore callback function",
-                    "type": "Object"
-                },
-                {
-                    "name": "callback_no",
-                    "description": "don't restore callback function",
-                    "type": "Object"
-                }
-            ],
-            "class": "showRestoreCacheMediaElementEditorPopUp",
-            "module": "dialogs"
-        },
-        {
-            "file": "app/assets/javascripts/dialogs.js",
-            "line": 53,
-            "description": "Modal warning on unpublish lesson.",
-            "itemtype": "method",
-            "name": "showLessonNotificationPopUp",
-            "params": [
-                {
-                    "name": "lesson_id",
-                    "description": "lesson id",
-                    "type": "Number"
-                }
-            ],
-            "class": "showLessonNotificationPopUp",
-            "module": "dialogs"
-        },
-        {
-            "file": "app/assets/javascripts/dialogs.js",
-            "line": 89,
-            "description": "Share lesson link popup in virtual classroom",
-            "itemtype": "method",
-            "name": "showSendLessonLinkPopUp",
-            "params": [
-                {
-                    "name": "lesson_id",
-                    "description": "lesson id",
-                    "type": "Number"
-                }
-            ],
-            "class": "showSendLessonLinkPopUp",
-            "module": "dialogs"
-        },
-        {
-            "file": "app/assets/javascripts/dialogs.js",
-            "line": 134,
-            "description": "Modal with lessons to add to virtual classroom.\n\nUses: [showOkPopUp](../classes/showOkPopUp.html#method_showOkPopUp)\nand [showErrorPopUp](../classes/showErrorPopUp.html#method_showErrorPopUp)",
-            "itemtype": "method",
-            "name": "showVirtualClassroomQuickSelectPopUp",
-            "params": [
-                {
-                    "name": "content",
-                    "description": "lessons list partial",
-                    "type": "Object"
-                }
-            ],
-            "class": "showVirtualClassroomQuickSelectPopUp",
-            "module": "dialogs"
-        },
-        {
-            "file": "app/assets/javascripts/dialogs.js",
-            "line": 177,
-            "description": "Show timed popup that auto close after _n_ seconds.\nTimeout is handled with data-timeout into `_popup_parameters_container_`\n\nUses: [closePopUp](../classes/closePopUp.html#method_closePopUp)",
-            "itemtype": "method",
-            "name": "showTimedPopUp",
-            "params": [
-                {
-                    "name": "content",
-                    "description": "lessons list partial",
-                    "type": "Object"
-                },
                 {
                     "name": "id",
-                    "description": "dialog select id",
+                    "description": "popup selector id",
                     "type": "String"
                 }
             ],
-            "class": "showTimedPopUp",
+            "class": "DialogsAccessories",
             "module": "dialogs"
         },
         {
             "file": "app/assets/javascripts/dialogs.js",
-            "line": 211,
-            "description": "Modal with error icon and custom content\n\nUses: [showTimedPopUp](../classes/showTimedPopUp.html#method_showTimedPopUp)",
+            "line": 20,
+            "description": "Add close popup functionality to widget overlay layer. Triggered on popup blur.",
             "itemtype": "method",
-            "name": "showErrorPopUp",
-            "params": [
-                {
-                    "name": "content",
-                    "description": "modal text content",
-                    "type": "Object"
-                }
-            ],
-            "class": "showErrorPopUp",
+            "name": "customOverlayClose",
+            "class": "DialogsAccessories",
             "module": "dialogs"
         },
         {
             "file": "app/assets/javascripts/dialogs.js",
-            "line": 225,
-            "description": "Modal with ok icon and custom content\n\nUses: [showTimedPopUp](../classes/showTimedPopUp.html#method_showTimedPopUp)",
+            "line": 30,
+            "description": "Destroy given media element popup",
             "itemtype": "method",
-            "name": "showOkPopUp",
-            "params": [
-                {
-                    "name": "content",
-                    "description": "modal text content",
-                    "type": "Object"
-                }
-            ],
-            "class": "showOkPopUp",
-            "module": "dialogs"
-        },
-        {
-            "file": "app/assets/javascripts/dialogs.js",
-            "line": 239,
-            "description": "Modal for media element update form\n\nUses: [customOverlayClose](../classes/customOverlayClose.html#method_customOverlayClose)\nand [removeCustomOverlayClose](../classes/removeCustomOverlayClose.html#method_removeCustomOverlayClose)\nand [resetMediaElementChangeInfo](../classes/resetMediaElementChangeInfo.html#method_resetMediaElementChangeInfo)\nand [stopMedia](../classes/stopMedia.html#method_stopMedia)",
-            "itemtype": "method",
-            "name": "showMediaElementInfoPopUp",
+            "name": "removeCompletelyMediaElementPopup",
             "params": [
                 {
                     "name": "media_element_id",
@@ -3715,58 +3464,21 @@
                     "type": "Number"
                 }
             ],
-            "class": "showMediaElementInfoPopUp",
+            "class": "DialogsAccessories",
             "module": "dialogs"
         },
         {
             "file": "app/assets/javascripts/dialogs.js",
-            "line": 297,
-            "description": "Modal for new media element form",
+            "line": 47,
+            "description": "Remove close popup functionality to widget overlay layer.",
             "itemtype": "method",
-            "name": "showLoadMediaElementPopUp",
-            "class": "showLoadMediaElementPopUp",
+            "name": "removeCustomOverlayClose",
+            "class": "DialogsAccessories",
             "module": "dialogs"
         },
         {
             "file": "app/assets/javascripts/dialogs.js",
-            "line": 336,
-            "description": "Image popup for image gallery\n\nUses: [resizedWidthForImageGallery](../classes/resizedWidthForImageGallery.html#method_resizedWidthForImageGallery)\nand [customOverlayClose](../classes/customOverlayClose.html#method_customOverlayClose)\nand [removeCustomOverlayClose](../classes/removeCustomOverlayClose.html#method_removeCustomOverlayClose)",
-            "itemtype": "method",
-            "name": "showImageInGalleryPopUp",
-            "params": [
-                {
-                    "name": "image_id",
-                    "description": "image id",
-                    "type": "Number"
-                },
-                {
-                    "name": "callback",
-                    "description": "callback function",
-                    "type": "Object"
-                }
-            ],
-            "class": "showImageInGalleryPopUp",
-            "module": "dialogs"
-        },
-        {
-            "file": "app/assets/javascripts/dialogs.js",
-            "line": 381,
-            "description": "Video popup for video gallery\n\nUses: [customOverlayClose](../classes/customOverlayClose.html#method_customOverlayClose)\nand [initializeMedia](../classes/initializeMedia.html#method_initializeMedia)\nand [stopMedia](../classes/stopMedia.html#method_stopMedia)\nand [removeCustomOverlayClose](../classes/removeCustomOverlayClose.html#method_removeCustomOverlayClose)",
-            "itemtype": "method",
-            "name": "showVideoInGalleryPopUp",
-            "params": [
-                {
-                    "name": "video_id",
-                    "description": "video id",
-                    "type": "Number"
-                }
-            ],
-            "class": "showVideoInGalleryPopUp",
-            "module": "dialogs"
-        },
-        {
-            "file": "app/assets/javascripts/dialogs.js",
-            "line": 434,
+            "line": 60,
             "description": "Generic popup for confirmation prompt",
             "itemtype": "method",
             "name": "showConfirmPopUp",
@@ -3802,15 +3514,151 @@
                     "type": "Object"
                 }
             ],
-            "class": "showConfirmPopUp",
+            "class": "DialogsConfirmation",
             "module": "dialogs"
         },
         {
             "file": "app/assets/javascripts/dialogs.js",
-            "line": 471,
-            "description": "Destroy given media element popup",
+            "line": 96,
+            "description": "Modal for media element editor, asking whether or not restore cached content. Available for audio and video editor only.",
             "itemtype": "method",
-            "name": "removeCompletelyMediaElementPopup",
+            "name": "showRestoreCacheMediaElementEditorPopUp",
+            "params": [
+                {
+                    "name": "callback_ok",
+                    "description": "restore callback function",
+                    "type": "Object"
+                },
+                {
+                    "name": "callback_no",
+                    "description": "don't restore callback function",
+                    "type": "Object"
+                }
+            ],
+            "class": "DialogsConfirmation",
+            "module": "dialogs"
+        },
+        {
+            "file": "app/assets/javascripts/dialogs.js",
+            "line": 145,
+            "description": "Image popup for image gallery Uses: [resizedWidthForImageGallery](../classes/resizedWidthForImageGallery.html#method_resizedWidthForImageGallery) and [customOverlayClose](../classes/customOverlayClose.html#method_customOverlayClose) and [removeCustomOverlayClose](../classes/removeCustomOverlayClose.html#method_removeCustomOverlayClose)",
+            "itemtype": "method",
+            "name": "showImageInGalleryPopUp",
+            "params": [
+                {
+                    "name": "image_id",
+                    "description": "image id",
+                    "type": "Number"
+                },
+                {
+                    "name": "callback",
+                    "description": "callback function",
+                    "type": "Object"
+                }
+            ],
+            "class": "DialogsGalleries",
+            "module": "dialogs"
+        },
+        {
+            "file": "app/assets/javascripts/dialogs.js",
+            "line": 185,
+            "description": "Video popup for video gallery Uses: [customOverlayClose](../classes/customOverlayClose.html#method_customOverlayClose) and [initializeMedia](../classes/initializeMedia.html#method_initializeMedia) and [stopMedia](../classes/stopMedia.html#method_stopMedia) and [removeCustomOverlayClose](../classes/removeCustomOverlayClose.html#method_removeCustomOverlayClose)",
+            "itemtype": "method",
+            "name": "showVideoInGalleryPopUp",
+            "params": [
+                {
+                    "name": "video_id",
+                    "description": "video id",
+                    "type": "Number"
+                }
+            ],
+            "class": "DialogsGalleries",
+            "module": "dialogs"
+        },
+        {
+            "file": "app/assets/javascripts/dialogs.js",
+            "line": 236,
+            "description": "Modal with error icon and custom content Uses: [showTimedPopUp](../classes/showTimedPopUp.html#method_showTimedPopUp)",
+            "itemtype": "method",
+            "name": "showErrorPopUp",
+            "params": [
+                {
+                    "name": "content",
+                    "description": "modal text content",
+                    "type": "Object"
+                }
+            ],
+            "class": "DialogsTimed",
+            "module": "dialogs"
+        },
+        {
+            "file": "app/assets/javascripts/dialogs.js",
+            "line": 247,
+            "description": "Modal with ok icon and custom content Uses: [showTimedPopUp](../classes/showTimedPopUp.html#method_showTimedPopUp)",
+            "itemtype": "method",
+            "name": "showOkPopUp",
+            "params": [
+                {
+                    "name": "content",
+                    "description": "modal text content",
+                    "type": "Object"
+                }
+            ],
+            "class": "DialogsTimed",
+            "module": "dialogs"
+        },
+        {
+            "file": "app/assets/javascripts/dialogs.js",
+            "line": 258,
+            "description": "Show timed popup that auto close after _n_ seconds. Timeout is handled with data-timeout into `_popup_parameters_container_` Uses: [closePopUp](../classes/closePopUp.html#method_closePopUp)",
+            "itemtype": "method",
+            "name": "showTimedPopUp",
+            "params": [
+                {
+                    "name": "content",
+                    "description": "lessons list partial",
+                    "type": "Object"
+                },
+                {
+                    "name": "id",
+                    "description": "dialog select id",
+                    "type": "String"
+                }
+            ],
+            "class": "DialogsTimed",
+            "module": "dialogs"
+        },
+        {
+            "file": "app/assets/javascripts/dialogs.js",
+            "line": 292,
+            "description": "Modal warning on unpublish lesson.",
+            "itemtype": "method",
+            "name": "showLessonNotificationPopUp",
+            "params": [
+                {
+                    "name": "lesson_id",
+                    "description": "lesson id",
+                    "type": "Number"
+                }
+            ],
+            "class": "DialogsWithForm",
+            "module": "dialogs"
+        },
+        {
+            "file": "app/assets/javascripts/dialogs.js",
+            "line": 327,
+            "description": "Modal for new media element form",
+            "itemtype": "method",
+            "name": "showLoadMediaElementPopUp",
+            "class": "DialogsWithForm",
+            "module": "dialogs"
+        },
+        {
+            "file": "app/assets/javascripts/dialogs.js",
+            "line": 365,
+            "description": "Modal for media element update form Uses: [customOverlayClose](../classes/customOverlayClose.html#method_customOverlayClose) and [removeCustomOverlayClose](../classes/removeCustomOverlayClose.html#method_removeCustomOverlayClose) and [resetMediaElementChangeInfo](../classes/resetMediaElementChangeInfo.html#method_resetMediaElementChangeInfo) and [stopMedia](../classes/stopMedia.html#method_stopMedia)",
+            "itemtype": "method",
+            "name": "showMediaElementInfoPopUp",
             "params": [
                 {
                     "name": "media_element_id",
@@ -3818,41 +3666,39 @@
                     "type": "Number"
                 }
             ],
-            "class": "removeCompletelyMediaElementPopup",
+            "class": "DialogsWithForm",
             "module": "dialogs"
         },
         {
             "file": "app/assets/javascripts/dialogs.js",
-            "line": 489,
-            "description": "Close popup with given id",
+            "line": 417,
+            "description": "Share lesson link popup in virtual classroom",
             "itemtype": "method",
-            "name": "closePopUp",
+            "name": "showSendLessonLinkPopUp",
             "params": [
                 {
-                    "name": "id",
-                    "description": "popup selector id",
-                    "type": "String"
+                    "name": "lesson_id",
+                    "description": "lesson id",
+                    "type": "Number"
                 }
             ],
-            "class": "closePopUp",
+            "class": "DialogsWithForm",
             "module": "dialogs"
         },
         {
             "file": "app/assets/javascripts/dialogs.js",
-            "line": 500,
-            "description": "Add close popup functionality to widget overlay layer.\nTriggered on popup blur.",
+            "line": 461,
+            "description": "Modal with lessons to add to virtual classroom. Uses: [showOkPopUp](../classes/showOkPopUp.html#method_showOkPopUp) and [showErrorPopUp](../classes/showErrorPopUp.html#method_showErrorPopUp)",
             "itemtype": "method",
-            "name": "customOverlayClose",
-            "class": "customOverlayClose",
-            "module": "dialogs"
-        },
-        {
-            "file": "app/assets/javascripts/dialogs.js",
-            "line": 512,
-            "description": "Remove close popup functionality to widget overlay layer.",
-            "itemtype": "method",
-            "name": "removeCustomOverlayClose",
-            "class": "removeCustomOverlayClose",
+            "name": "showVirtualClassroomQuickSelectPopUp",
+            "params": [
+                {
+                    "name": "content",
+                    "description": "lessons list partial",
+                    "type": "Object"
+                }
+            ],
+            "class": "DialogsWithForm",
             "module": "dialogs"
         },
         {
