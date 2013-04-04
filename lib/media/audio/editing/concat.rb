@@ -60,7 +60,7 @@ module Media
         private
         def concat(format)
           create_log_folder
-          Cmd::Concat.new(inputs[format], outputs[format]).run! *logs
+          Cmd::Concat.new(inputs[format], outputs[format], format).run! *logs
         end
         
         def m4a_output

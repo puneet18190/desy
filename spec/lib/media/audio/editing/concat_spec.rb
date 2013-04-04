@@ -129,7 +129,7 @@ module Media
                   concat.send(:stdout_log).should start_with Rails.root.join('log/media/audio/editing/concat/test/').to_s
                 end
 
-                it 'creates a audio with the expected duration' do
+                it 'creates a audio with the expected duration', focus: (format == :m4a) do
                   duration = info[:duration]
                   expected = output_infos[format][:duration]
                   duration.should be_within(0.2).of(expected)
