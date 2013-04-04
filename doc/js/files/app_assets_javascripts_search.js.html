@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Dashboard - DESY</title>
+    <title>app&#x2F;assets&#x2F;javascripts&#x2F;search.js - DESY</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.8.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -61,7 +61,11 @@
             
                 <li><a href="..&#x2F;classes/AdminDocumentReady.html">AdminDocumentReady</a></li>
             
-                <li><a href="..&#x2F;classes/bindLoader.html">bindLoader</a></li>
+                <li><a href="..&#x2F;classes/AjaxLoaderBinder.html">AjaxLoaderBinder</a></li>
+            
+                <li><a href="..&#x2F;classes/AjaxLoaderDocumentReady.html">AjaxLoaderDocumentReady</a></li>
+            
+                <li><a href="..&#x2F;classes/AjaxLoaderVisibility.html">AjaxLoaderVisibility</a></li>
             
                 <li><a href="..&#x2F;classes/BrowsersDocumentReady.html">BrowsersDocumentReady</a></li>
             
@@ -122,8 +126,6 @@
                 <li><a href="..&#x2F;classes/hideHelpButton.html">hideHelpButton</a></li>
             
                 <li><a href="..&#x2F;classes/hideHelpTooltip.html">hideHelpTooltip</a></li>
-            
-                <li><a href="..&#x2F;classes/hideLoader.html">hideLoader</a></li>
             
                 <li><a href="..&#x2F;classes/hideNewSlideChoice.html">hideNewSlideChoice</a></li>
             
@@ -249,8 +251,6 @@
             
                 <li><a href="..&#x2F;classes/scrollPaneUpdate.html">scrollPaneUpdate</a></li>
             
-                <li><a href="..&#x2F;classes/secondsToDateString.html">secondsToDateString</a></li>
-            
                 <li><a href="..&#x2F;classes/selectAudioComponentCutterHandle.html">selectAudioComponentCutterHandle</a></li>
             
                 <li><a href="..&#x2F;classes/selectComponentInLessonViewerPlaylistMenu.html">selectComponentInLessonViewerPlaylistMenu</a></li>
@@ -274,8 +274,6 @@
                 <li><a href="..&#x2F;classes/showImageInGalleryPopUp.html">showImageInGalleryPopUp</a></li>
             
                 <li><a href="..&#x2F;classes/showLessonNotificationPopUp.html">showLessonNotificationPopUp</a></li>
-            
-                <li><a href="..&#x2F;classes/showLoader.html">showLoader</a></li>
             
                 <li><a href="..&#x2F;classes/showLoadingMediaErrorPopup.html">showLoadingMediaErrorPopup</a></li>
             
@@ -335,8 +333,6 @@
             
                 <li><a href="..&#x2F;classes/tinyMceKeyDownCallbacks.html">tinyMceKeyDownCallbacks</a></li>
             
-                <li><a href="..&#x2F;classes/unbindLoader.html">unbindLoader</a></li>
-            
                 <li><a href="..&#x2F;classes/unpublishLesson.html">unpublishLesson</a></li>
             
                 <li><a href="..&#x2F;classes/updateURLParameter.html">updateURLParameter</a></li>
@@ -357,35 +353,45 @@
             
                 <li><a href="..&#x2F;modules/ajax-loader.html">ajax-loader</a></li>
             
-                <li><a href="..&#x2F;modules/Buttons.html">Buttons</a></li>
+                <li><a href="..&#x2F;modules/audio-editor.html">audio-editor</a></li>
             
-                <li><a href="..&#x2F;modules/Dashboard.html">Dashboard</a></li>
+                <li><a href="..&#x2F;modules/browsers.html">browsers</a></li>
             
-                <li><a href="..&#x2F;modules/Dialogs.html">Dialogs</a></li>
+                <li><a href="..&#x2F;modules/buttons.html">buttons</a></li>
             
-                <li><a href="..&#x2F;modules/Galleries.html">Galleries</a></li>
+                <li><a href="..&#x2F;modules/dashboard.html">dashboard</a></li>
             
-                <li><a href="..&#x2F;modules/General.html">General</a></li>
+                <li><a href="..&#x2F;modules/dialogs.html">dialogs</a></li>
             
-                <li><a href="..&#x2F;modules/ImageEditor.html">ImageEditor</a></li>
+                <li><a href="..&#x2F;modules/galleries.html">galleries</a></li>
             
-                <li><a href="..&#x2F;modules/LessonEditor.html">LessonEditor</a></li>
+                <li><a href="..&#x2F;modules/general.html">general</a></li>
             
-                <li><a href="..&#x2F;modules/LessonViewer.html">LessonViewer</a></li>
+                <li><a href="..&#x2F;modules/image-editor.html">image-editor</a></li>
             
-                <li><a href="..&#x2F;modules/MediaElementLoader.html">MediaElementLoader</a></li>
+                <li><a href="..&#x2F;modules/lesson-editor.html">lesson-editor</a></li>
             
-                <li><a href="..&#x2F;modules/Notifications.html">Notifications</a></li>
+                <li><a href="..&#x2F;modules/lesson-viewer.html">lesson-viewer</a></li>
             
-                <li><a href="..&#x2F;modules/Players.html">Players</a></li>
+                <li><a href="..&#x2F;modules/locations.html">locations</a></li>
             
-                <li><a href="..&#x2F;modules/Tags.html">Tags</a></li>
+                <li><a href="..&#x2F;modules/media-element-editor.html">media-element-editor</a></li>
             
-                <li><a href="..&#x2F;modules/Times.html">Times</a></li>
+                <li><a href="..&#x2F;modules/media-element-loader.html">media-element-loader</a></li>
             
-                <li><a href="..&#x2F;modules/VideoEditor.html">VideoEditor</a></li>
+                <li><a href="..&#x2F;modules/notifications.html">notifications</a></li>
             
-                <li><a href="..&#x2F;modules/VirtualClassroom.html">VirtualClassroom</a></li>
+                <li><a href="..&#x2F;modules/players.html">players</a></li>
+            
+                <li><a href="..&#x2F;modules/profile.html">profile</a></li>
+            
+                <li><a href="..&#x2F;modules/search.html">search</a></li>
+            
+                <li><a href="..&#x2F;modules/tags.html">tags</a></li>
+            
+                <li><a href="..&#x2F;modules/video-editor.html">video-editor</a></li>
+            
+                <li><a href="..&#x2F;modules/virtual-classroom.html">virtual-classroom</a></li>
             
             </ul>
         </div>
@@ -422,92 +428,100 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>Dashboard Module</h1>
-<div class="box clearfix meta">
-    
+                        <h1 class="file-heading">File: app&#x2F;assets&#x2F;javascripts&#x2F;search.js</h1>
 
-    
+<div class="file">
+    <pre class="code prettyprint linenums">
+&#x2F;**
+bla bla bla
+@module search
+**&#x2F;
 
-    
-        <div class="foundat">
-            Defined in: <a href="..&#x2F;files&#x2F;app_assets_javascripts_dashboard.js.html#l1"><code>app&#x2F;assets&#x2F;javascripts&#x2F;dashboard.js:1</code></a>
-        </div>
-    
+function searchDocumentReady() {
+  
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#which_item_to_search_switch_media_elements&#x27;, function() {
+    $(&#x27;#search_lessons_main_page&#x27;).hide(&#x27;fade&#x27;, {}, 500, function() {
+      $(&#x27;#search_media_elements_main_page&#x27;).show();
+      $(&#x27;#search_lessons_main_page&#x27;).hide();
+      if($(&#x27;#general_pagination&#x27;).is(&#x27;:visible&#x27;)) {
+        $(&#x27;#general_pagination&#x27;).hide();
+      } else {
+        $(&#x27;#general_pagination&#x27;).show();
+      }
+    });
+  });
+  
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#which_item_to_search_switch_lessons&#x27;, function() {
+    $(&#x27;#search_media_elements_main_page&#x27;).hide(&#x27;fade&#x27;, {}, 500, function() {
+      $(&#x27;#search_media_elements_main_page&#x27;).hide();
+      $(&#x27;#search_lessons_main_page&#x27;).show();
+      if($(&#x27;#general_pagination&#x27;).is(&#x27;:visible&#x27;)) {
+        $(&#x27;#general_pagination&#x27;).hide();
+      } else {
+        $(&#x27;#general_pagination&#x27;).show();
+      }
+    });
+  });
+  
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._clickable_tag_for_lessons, ._clickable_tag_for_media_elements&#x27;, function() {
+    if(!$(this).hasClass(&#x27;current&#x27;)) {
+      var url = $(&#x27;#info_container&#x27;).data(&#x27;currenturl&#x27;);
+      url = updateURLParameter(url, &#x27;tag_id&#x27;, &#x27;&#x27; + $(this).data(&#x27;param&#x27;));
+      url = updateURLParameter(url, &#x27;page&#x27;, &#x27;1&#x27;);
+      window.location = url;
+    }
+  });
+  
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._clickable_tag_for_lessons.current, ._clickable_tag_for_media_elements.current&#x27;, function() {
+    var url = $(&#x27;#info_container&#x27;).data(&#x27;currenturl&#x27;);
+    url = removeURLParameter(url, &#x27;tag_id&#x27;);
+    url = updateURLParameter(url, &#x27;page&#x27;, &#x27;1&#x27;);
+    window.location = url;
+  });
+  
+  $(&#x27;body&#x27;).on(&#x27;focus&#x27;, &#x27;#lessons_tag_reader_for_search&#x27;, function() {
+    if($(&#x27;#lessons_tag_kind_for_search&#x27;).val() == &#x27;&#x27;) {
+      $(this).val(&#x27;&#x27;);
+      $(this).css(&#x27;color&#x27;, &#x27;#939393&#x27;);
+      $(&#x27;#lessons_tag_kind_for_search&#x27;).val(&#x27;0&#x27;);
+    }
+  });
+  
+  $(&#x27;body&#x27;).on(&#x27;focus&#x27;, &#x27;#media_elements_tag_reader_for_search&#x27;, function() {
+    if($(&#x27;#media_elements_tag_kind_for_search&#x27;).val() == &#x27;&#x27;) {
+      $(this).val(&#x27;&#x27;);
+      $(this).css(&#x27;color&#x27;, &#x27;#939393&#x27;);
+      $(&#x27;#media_elements_tag_kind_for_search&#x27;).val(&#x27;0&#x27;);
+    }
+  });
+  
+  $(&#x27;body&#x27;).on(&#x27;focus&#x27;, &#x27;#general_tag_reader_for_search&#x27;, function() {
+    $(this).attr(&#x27;value&#x27;, &#x27;&#x27;);
+    $(this).css(&#x27;color&#x27;, &#x27;#939393&#x27;);
+    $(&#x27;#general_tag_kind_for_search&#x27;).attr(&#x27;value&#x27;, &#x27;0&#x27;);
+    $(&#x27;#search_general_submit&#x27;).removeClass(&#x27;current&#x27;);
+  });
+  
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#search_general_submit&#x27;, function() {
+    if(!$(this).hasClass(&#x27;current&#x27;)) {
+      $(&#x27;#search_general&#x27;).submit();
+      $(this).addClass(&#x27;current&#x27;);
+    }
+  });
+  
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._keep_searching&#x27;, function() {
+    var form = $(this).parent();
+    form.animate({
+      height: &#x27;210&#x27;
+    }, 500, function() {
+      form.find(&#x27;._search_engine_form&#x27;).show();
+      form.find(&#x27;._keep_searching&#x27;).hide();
+    });
+  });
+  
+}
 
-    
-</div>
-
-
-
-<div class="box intro">
-    <p>Dashboard is the welcome page of DESY where you find shared lessons and elements. 
-This handles elements interaction events.</p>
-</div>
-
-
-
-<div class="yui3-g">
-    <div class="yui3-u-1-2">
-        
-            <p>This module provides the following classes:</p>
-
-            <ul class="module-classes">
-            
-                <li class="module-class">
-                    <a href="..&#x2F;classes/changePageDashboardLessons.html">
-                        changePageDashboardLessons
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="..&#x2F;classes/changePageDashboardMediaElements.html">
-                        changePageDashboardMediaElements
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="..&#x2F;classes/getHtmlPagination.html">
-                        getHtmlPagination
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="..&#x2F;classes/reloadDashboardPages.html">
-                        reloadDashboardPages
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="..&#x2F;classes/reloadLessonsDashboardPagination.html">
-                        reloadLessonsDashboardPagination
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="..&#x2F;classes/reloadMediaElementsDashboardPagination.html">
-                        reloadMediaElementsDashboardPagination
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="..&#x2F;classes/switchToSuggestedLessons.html">
-                        switchToSuggestedLessons
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="..&#x2F;classes/switchToSuggestedMediaElements.html">
-                        switchToSuggestedMediaElements
-                    </a>
-                </li>
-            
-            </ul>
-        
-    </div>
-
-    <div class="yui3-u-1-2">
-        
-    </div>
+    </pre>
 </div>
 
                     </div>

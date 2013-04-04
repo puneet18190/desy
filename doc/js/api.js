@@ -4,6 +4,9 @@ YUI.add("yuidoc-meta", function(Y) {
         "AdminAutocomplete",
         "AdminCollapsed",
         "AdminDocumentReady",
+        "AjaxLoaderBinder",
+        "AjaxLoaderDocumentReady",
+        "AjaxLoaderVisibility",
         "BrowsersDocumentReady",
         "LocationsDocumentReady",
         "addDeleteItemToCurrentUrl",
@@ -13,7 +16,6 @@ YUI.add("yuidoc-meta", function(Y) {
         "addMediaElement",
         "addTagWithoutSuggestion",
         "addToTagsValue",
-        "bindLoader",
         "centerThis",
         "centerThisInContainer",
         "changePageDashboardLessons",
@@ -43,7 +45,6 @@ YUI.add("yuidoc-meta", function(Y) {
         "hideExpandedNotification",
         "hideHelpButton",
         "hideHelpTooltip",
-        "hideLoader",
         "hideNewSlideChoice",
         "hideNotificationsButton",
         "hideNotificationsFumetto",
@@ -105,7 +106,6 @@ YUI.add("yuidoc-meta", function(Y) {
         "resizedWidthForImageGallery",
         "saveCurrentSlide",
         "scrollPaneUpdate",
-        "secondsToDateString",
         "selectAudioComponentCutterHandle",
         "selectComponentInLessonViewerPlaylistMenu",
         "selectVideoComponentCutterHandle",
@@ -119,7 +119,6 @@ YUI.add("yuidoc-meta", function(Y) {
         "showImageInGalleryPopUp",
         "showLessonNotificationPopUp",
         "showLoadMediaElementPopUp",
-        "showLoader",
         "showLoadingMediaErrorPopup",
         "showMediaElementInfoPopUp",
         "showNewSlideChoice",
@@ -148,7 +147,6 @@ YUI.add("yuidoc-meta", function(Y) {
         "textAreaImageEditorContent",
         "tinyMceCallbacks",
         "tinyMceKeyDownCallbacks",
-        "unbindLoader",
         "unpublishLesson",
         "updateURLParameter",
         "uploadDone",
@@ -157,23 +155,28 @@ YUI.add("yuidoc-meta", function(Y) {
         "validSeek"
     ],
     "modules": [
-        "Buttons",
-        "Dashboard",
-        "Dialogs",
-        "Galleries",
-        "General",
-        "ImageEditor",
-        "LessonEditor",
-        "LessonViewer",
-        "MediaElementLoader",
-        "Notifications",
-        "Players",
-        "Tags",
-        "Times",
-        "VideoEditor",
-        "VirtualClassroom",
         "administration",
-        "ajax-loader"
+        "ajax-loader",
+        "audio-editor",
+        "browsers",
+        "buttons",
+        "dashboard",
+        "dialogs",
+        "galleries",
+        "general",
+        "image-editor",
+        "lesson-editor",
+        "lesson-viewer",
+        "locations",
+        "media-element-editor",
+        "media-element-loader",
+        "notifications",
+        "players",
+        "profile",
+        "search",
+        "tags",
+        "video-editor",
+        "virtual-classroom"
     ],
     "allModules": [
         {
@@ -184,82 +187,107 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "ajax-loader",
             "name": "ajax-loader",
-            "description": "Shows a loading image while page is loading, \nit handles ajax calls too."
+            "description": "Shows a loading image while page is loading, it handles ajax calls too."
         },
         {
-            "displayName": "Buttons",
-            "name": "Buttons",
+            "displayName": "audio-editor",
+            "name": "audio-editor",
+            "description": "bla bla bla"
+        },
+        {
+            "displayName": "browsers",
+            "name": "browsers",
+            "description": "bla bla bla"
+        },
+        {
+            "displayName": "buttons",
+            "name": "buttons",
             "description": "Lessons and Elements actions triggered via buttons."
         },
         {
-            "displayName": "Dashboard",
-            "name": "Dashboard",
-            "description": "Dashboard is the welcome page of DESY where you find shared lessons and elements. \nThis handles elements interaction events."
+            "displayName": "dashboard",
+            "name": "dashboard",
+            "description": "Dashboard is the welcome page of DESY where you find shared lessons and elements. This handles elements interaction events."
         },
         {
-            "displayName": "Dialogs",
-            "name": "Dialogs",
-            "description": "Dialogs, model and popup interaction. \nOpen, close content management.\nUses jQueryUI _dialog_"
+            "displayName": "dialogs",
+            "name": "dialogs",
+            "description": "Dialogs, model and popup interaction. Open, close content management. Uses jQueryUI _dialog_"
         },
         {
-            "displayName": "Galleries",
-            "name": "Galleries",
+            "displayName": "galleries",
+            "name": "galleries",
             "description": "Media element galleries, initialization."
         },
         {
-            "displayName": "General",
-            "name": "General",
+            "displayName": "general",
+            "name": "general",
             "description": "Generic shared javascript functions"
         },
         {
-            "displayName": "ImageEditor",
-            "name": "ImageEditor",
-            "description": "Image editor functions, \ncrop and textarea management."
+            "displayName": "image-editor",
+            "name": "image-editor",
+            "description": "Image editor functions, crop and textarea management."
         },
         {
-            "displayName": "LessonEditor",
-            "name": "LessonEditor",
-            "description": "Lesson editor functions, \nit handles visual effects, CRUD actions on single slides and lessons, it handles tinyMCE editor too."
+            "displayName": "lesson-editor",
+            "name": "lesson-editor",
+            "description": "Lesson editor functions, it handles visual effects, CRUD actions on single slides and lessons, it handles tinyMCE editor too."
         },
         {
-            "displayName": "LessonViewer",
-            "name": "LessonViewer",
+            "displayName": "lesson-viewer",
+            "name": "lesson-viewer",
             "description": "Lesson viewer, it handles slides switching and playlist menu effects."
         },
         {
-            "displayName": "MediaElementLoader",
-            "name": "MediaElementLoader",
+            "displayName": "locations",
+            "name": "locations",
+            "description": "bla bla bla"
+        },
+        {
+            "displayName": "media-element-editor",
+            "name": "media-element-editor",
+            "description": "bla bla bla"
+        },
+        {
+            "displayName": "media-element-loader",
+            "name": "media-element-loader",
             "description": "New media element popup handler, form validation errors handling."
         },
         {
-            "displayName": "Notifications",
-            "name": "Notifications",
+            "displayName": "notifications",
+            "name": "notifications",
             "description": "Notification info and help assistant messages handler."
         },
         {
-            "displayName": "Players",
-            "name": "Players",
+            "displayName": "players",
+            "name": "players",
             "description": "Media elements players: initializer, play, stop, update frame."
         },
         {
-            "displayName": "Tags",
-            "name": "Tags",
+            "displayName": "profile",
+            "name": "profile",
+            "description": "bla bla bla"
+        },
+        {
+            "displayName": "search",
+            "name": "search",
+            "description": "bla bla bla"
+        },
+        {
+            "displayName": "tags",
+            "name": "tags",
             "description": "Tags autocomplete, _add_ and _remove_ from list."
         },
         {
-            "displayName": "Times",
-            "name": "Times",
-            "description": "Shows a loading image while page is loading, \nit handles ajax calls too."
-        },
-        {
-            "displayName": "VideoEditor",
-            "name": "VideoEditor",
+            "displayName": "video-editor",
+            "name": "video-editor",
             "description": "Provides video editor ajax actions."
         },
         {
-            "displayName": "VirtualClassroom",
-            "name": "VirtualClassroom",
-            "description": "It's where users can share their lessons.\nIt handles share lessons link and add to playlist actions."
+            "displayName": "virtual-classroom",
+            "name": "virtual-classroom",
+            "description": "It's where users can share their lessons. It handles share lessons link and add to playlist actions."
         }
     ]
 } };
