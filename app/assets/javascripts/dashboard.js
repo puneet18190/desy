@@ -43,7 +43,7 @@ function dashboardDocumentReady() {
 /**
 Switch to suggested lessons page in dashboard. Uses: [reloadMediaLessonsDashboardPagination](../classes/reloadMediaLessonsDashboardPagination.html#method_reloadMediaLessonsDashboardPagination)
 @method switchToSuggestedLessons
-@for PaginationGeneral
+@for DashboardGeneral
 **/
 function switchToSuggestedLessons() {
   $('#media_elements_in_dashboard').hide('fade', {}, 500, function() {
@@ -61,7 +61,7 @@ function switchToSuggestedLessons() {
 /**
 Switch to suggested elements page in dashboard. Uses: [reloadMediaElementsDashboardPagination](../classes/reloadMediaElementsDashboardPagination.html#method_reloadMediaElementsDashboardPagination)
 @method switchToSuggestedMediaElements
-@for PaginationGeneral
+@for DashboardGeneral
 **/
 function switchToSuggestedMediaElements() {
   $('#lessons_in_dashboard').hide('fade', {}, 500, function() {
