@@ -3,14 +3,9 @@ Shows a loading image while page is loading, it handles ajax calls too.
 @module ajax-loader
 **/
 
-/**
-Initializes the ajax loader. Used also in {{#crossLinkModule "administration"}}{{/crossLinkModule}}.
-@method ajaxLoaderDocumentReady
-@for AjaxLoaderDocumentReady
-**/
-function ajaxLoaderDocumentReady() {
-  bindLoader();
-}
+
+
+
 
 /**
 Bind Loader, show loader on ajaxStart and hide loader on ajaxStop.
@@ -49,6 +44,23 @@ function unbindLoader() {
   $('#loading').unbind('ajaxStart ajaxStop');
 }
 
+
+
+
+
+/**
+Initializes the ajax loader. Used also in {{#crossLinkModule "administration"}}{{/crossLinkModule}}.
+@method ajaxLoaderDocumentReady
+@for AjaxLoaderDocumentReady
+**/
+function ajaxLoaderDocumentReady() {
+  bindLoader();
+}
+
+
+
+
+
 /**
 Show Loader, force loader to show. It comes with timeout (default=5000) to force loader to hide [hideLoader](../classes/hideLoader.html#method_hideLoader)
 @method showLoader
@@ -59,7 +71,9 @@ function showLoader() {
   loader.css('top', (($(window).height() / 2) - 100) + 'px');
   loader.css('left', (($(window).width() / 2) - 50) + 'px');
   $('#loading').show();
-  setTimeout('hideLoader()', 5000);
+  setTimeout(function() {
+    hideLoader()
+  }, 5000);
 }
 
 /**
