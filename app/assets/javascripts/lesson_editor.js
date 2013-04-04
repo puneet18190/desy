@@ -1119,64 +1119,6 @@ function slideTo(slide_id, callback) {
 // tinyMCE
 
 /**
-* TinyMCE callback to show warning when texearea content exceeds the available space.
-* Add a red border to the textarea
-*
-* Add this function on tinyMCE setup.
-*
-* @method tinyMceCallbacks
-* @for tinyMceCallbacks
-* @param inst {Object} tinyMCE body instance
-* @param tiny_id {Number} tinyMCE textarea id
-* @example
-      setup: function(ed) {
-        ed.onKeyUp.add(function(ed, e) {
-          tinyMceCallbacks(ed,tiny_id);
-        });
-      }
-*/
-function tinyMceCallbacks(inst,tiny_id){
-  var maxH = 422;
-  if($("textarea#"+tiny_id).parent('.audio-content').length > 0){
-    maxH = 324;
-  }
-  
-  if (inst.getBody().scrollHeight > maxH) {
-    $(inst.getBody()).parentsUntil("table.mceLayout").css("border","1px solid red");
-  } else {
-    $(inst.getBody()).parentsUntil("table.mceLayout").css("border","1px solid white");
-  }
-  
-}
-
-/**
-* TinyMCE keyDown callback to fix list item style.
-* It adds same style of list item text to list numbers or dots.
-*
-* Add this function on tinyMCE setup.
-*
-* @method tinyMceKeyDownCallbacks
-* @for tinyMceKeyDownCallbacks
-* @param inst {Object} tinyMCE body instance
-* @param tiny_id {Number} tinyMCE textarea id
-* @example
-      setup: function(ed) {
-        ed.onKeyDown.add(function(ed, e) {
-          tinyMceKeyDownCallbacks(ed,tiny_id);
-        });
-      }
-*/
-function tinyMceKeyDownCallbacks(inst,tiny_id){
-  var spans = $(inst.getBody()).find("li span");
-  spans.each(function(){
-    var span = $(this);
-    span.parents('li').removeAttr('class');
-    span.parents('li').addClass(span.attr('class'));
-    span.parentsUntil('li').attr('style',span.attr('style'));
-  });
-}
-
-/**
 * Initialize tinyMCE editor for a single textarea
 *
 * Uses: [tinyMceKeyDownCallbacks](../classes/tinyMceKeyDownCallbacks.html#method_tinyMceKeyDownCallbacks) 
@@ -1229,4 +1171,60 @@ function initTinymce(tiny_id) {
   //$('body').on("click",'textarea.tinymce',function(){
   //  $('.mceExternalToolbar').show();
   //});
+}
+
+/**
+* TinyMCE callback to show warning when texearea content exceeds the available space.
+* Add a red border to the textarea
+*
+* Add this function on tinyMCE setup.
+*
+* @method tinyMceCallbacks
+* @for tinyMceCallbacks
+* @param inst {Object} tinyMCE body instance
+* @param tiny_id {Number} tinyMCE textarea id
+* @example
+      setup: function(ed) {
+        ed.onKeyUp.add(function(ed, e) {
+          tinyMceCallbacks(ed,tiny_id);
+        });
+      }
+*/
+function tinyMceCallbacks(inst,tiny_id) {
+  var maxH = 422;
+  if($('textarea#' + tiny_id).parent('.audio-content').length > 0) {
+    maxH = 324;
+  }
+  if (inst.getBody().scrollHeight > maxH) {
+    $(inst.getBody()).parentsUntil('table.mceLayout').css('border', '1px solid red');
+  } else {
+    $(inst.getBody()).parentsUntil('table.mceLayout').css('border', '1px solid white');
+  }
+}
+
+/**
+* TinyMCE keyDown callback to fix list item style.
+* It adds same style of list item text to list numbers or dots.
+*
+* Add this function on tinyMCE setup.
+*
+* @method tinyMceKeyDownCallbacks
+* @for tinyMceKeyDownCallbacks
+* @param inst {Object} tinyMCE body instance
+* @param tiny_id {Number} tinyMCE textarea id
+* @example
+      setup: function(ed) {
+        ed.onKeyDown.add(function(ed, e) {
+          tinyMceKeyDownCallbacks(ed,tiny_id);
+        });
+      }
+*/
+function tinyMceKeyDownCallbacks(inst,tiny_id){
+  var spans = $(inst.getBody()).find('li span');
+  spans.each(function(){
+    var span = $(this);
+    span.parents('li').removeAttr('class');
+    span.parents('li').addClass(span.attr('class'));
+    span.parentsUntil('li').attr('style', span.attr('style'));
+  });
 }
