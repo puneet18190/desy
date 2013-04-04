@@ -2722,18 +2722,18 @@
         {
             "file": "app/assets/javascripts/ajax_loader.js",
             "line": 64,
-            "description": "Show Loader, force loader to show. It comes with timeout (default=5000) to force loader to hide [hideLoader](../classes/hideLoader.html#method_hideLoader)",
+            "description": "Hide Loader, force loader to hide.",
             "itemtype": "method",
-            "name": "showLoader",
+            "name": "hideLoader",
             "class": "AjaxLoaderVisibility",
             "module": "ajax-loader"
         },
         {
             "file": "app/assets/javascripts/ajax_loader.js",
-            "line": 79,
-            "description": "Hide Loader, force loader to hide.",
+            "line": 73,
+            "description": "Show Loader, force loader to show. It comes with timeout (default=5000) to force loader to hide [hideLoader](../classes/hideLoader.html#method_hideLoader)",
             "itemtype": "method",
-            "name": "hideLoader",
+            "name": "showLoader",
             "class": "AjaxLoaderVisibility",
             "module": "ajax-loader"
         },

@@ -490,6 +490,15 @@ function ajaxLoaderDocumentReady() {
 
 
 &#x2F;**
+Hide Loader, force loader to hide.
+@method hideLoader
+@for AjaxLoaderVisibility
+**&#x2F;
+function hideLoader() {
+  $(&#x27;#loading&#x27;).hide();
+}
+
+&#x2F;**
 Show Loader, force loader to show. It comes with timeout (default=5000) to force loader to hide [hideLoader](..&#x2F;classes&#x2F;hideLoader.html#method_hideLoader)
 @method showLoader
 @for AjaxLoaderVisibility
@@ -502,15 +511,6 @@ function showLoader() {
   setTimeout(function() {
     hideLoader()
   }, 5000);
-}
-
-&#x2F;**
-Hide Loader, force loader to hide.
-@method hideLoader
-@for AjaxLoaderVisibility
-**&#x2F;
-function hideLoader() {
-  $(&#x27;#loading&#x27;).hide();
 }
 
     </pre>
