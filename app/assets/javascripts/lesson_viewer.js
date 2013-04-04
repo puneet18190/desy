@@ -11,7 +11,8 @@
 * 
 * @module LessonViewer
 */
-$(document).ready(function() {
+
+function lessonViewerDocumentReady() {
   
   initializeLessonViewer();
   
@@ -71,7 +72,7 @@ $(document).ready(function() {
     }
   });
   
-});
+}
 
 /**
 * Open playlist menu, show lessons conver list and change playlist toggle label
