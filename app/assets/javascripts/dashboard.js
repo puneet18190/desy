@@ -41,6 +41,46 @@ function dashboardDocumentReady() {
 
 
 /**
+Switch to suggested lessons page in dashboard. Uses: [reloadMediaLessonsDashboardPagination](../classes/reloadMediaLessonsDashboardPagination.html#method_reloadMediaLessonsDashboardPagination)
+@method switchToSuggestedLessons
+@for PaginationGeneral
+**/
+function switchToSuggestedLessons() {
+  $('#media_elements_in_dashboard').hide('fade', {}, 500, function() {
+    $(this).hide();
+    $('#lessons_in_dashboard').show();
+    $('#switch_to_lessons').addClass('current');
+    $('#switch_to_media_elements').removeClass('current');
+    var pagination_div = $('#dashboard_pagination');
+    var lessons_page = pagination_div.data('lessons-page');
+    var lessons_tot = pagination_div.data('lessons-tot');
+    reloadLessonsDashboardPagination(lessons_page, lessons_tot);
+  });
+}
+
+/**
+Switch to suggested elements page in dashboard. Uses: [reloadMediaElementsDashboardPagination](../classes/reloadMediaElementsDashboardPagination.html#method_reloadMediaElementsDashboardPagination)
+@method switchToSuggestedMediaElements
+@for PaginationGeneral
+**/
+function switchToSuggestedMediaElements() {
+  $('#lessons_in_dashboard').hide('fade', {}, 500, function() {
+    $(this).hide();
+    $('#media_elements_in_dashboard').show();
+    $('#switch_to_media_elements').addClass('current');
+    $('#switch_to_lessons').removeClass('current');
+    var pagination_div = $('#dashboard_pagination');
+    var media_elements_page = pagination_div.data('media-elements-page');
+    var media_elements_tot = pagination_div.data('media-elements-tot');
+    reloadMediaElementsDashboardPagination(media_elements_page, media_elements_tot);
+  });
+}
+
+
+
+
+
+/**
 Change lessons page in dashboard. Uses: [reloadLessonsDashboardPagination](../classes/reloadLessonsDashboardPagination.html#method_reloadLessonsDashboardPagination)
 @method changePageDashboardLessons
 @for DashboardPagination
@@ -180,45 +220,5 @@ function reloadMediaElementsDashboardPagination(pos, pages_amount) {
       return true;
     }
     new DotsPagination($('[role=pages]'), pages_amount, prevPage, nextPage);
-  });
-}
-
-
-
-
-
-/**
-Switch to suggested lessons page in dashboard. Uses: [reloadMediaLessonsDashboardPagination](../classes/reloadMediaLessonsDashboardPagination.html#method_reloadMediaLessonsDashboardPagination)
-@method switchToSuggestedLessons
-@for PaginationGeneral
-**/
-function switchToSuggestedLessons() {
-  $('#media_elements_in_dashboard').hide('fade', {}, 500, function() {
-    $(this).hide();
-    $('#lessons_in_dashboard').show();
-    $('#switch_to_lessons').addClass('current');
-    $('#switch_to_media_elements').removeClass('current');
-    var pagination_div = $('#dashboard_pagination');
-    var lessons_page = pagination_div.data('lessons-page');
-    var lessons_tot = pagination_div.data('lessons-tot');
-    reloadLessonsDashboardPagination(lessons_page, lessons_tot);
-  });
-}
-
-/**
-Switch to suggested elements page in dashboard. Uses: [reloadMediaElementsDashboardPagination](../classes/reloadMediaElementsDashboardPagination.html#method_reloadMediaElementsDashboardPagination)
-@method switchToSuggestedMediaElements
-@for PaginationGeneral
-**/
-function switchToSuggestedMediaElements() {
-  $('#lessons_in_dashboard').hide('fade', {}, 500, function() {
-    $(this).hide();
-    $('#media_elements_in_dashboard').show();
-    $('#switch_to_media_elements').addClass('current');
-    $('#switch_to_lessons').removeClass('current');
-    var pagination_div = $('#dashboard_pagination');
-    var media_elements_page = pagination_div.data('media-elements-page');
-    var media_elements_tot = pagination_div.data('media-elements-tot');
-    reloadMediaElementsDashboardPagination(media_elements_page, media_elements_tot);
   });
 }
