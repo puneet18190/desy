@@ -151,30 +151,15 @@
             },
             "classes": {},
             "fors": {
-                "scrollPaneUpdate": 1,
-                "removeGalleryInLessonEditor": 1,
-                "showGalleryInLessonEditor": 1,
-                "showEverythingOutCurrentSlide": 1,
-                "hideEverythingOutCurrentSlide": 1,
-                "showNewSlideChoice": 1,
-                "hideNewSlideChoice": 1,
-                "stopMediaInCurrentSlide": 1,
-                "initializeSortableNavs": 1,
-                "makeDraggable": 1,
-                "submitCurrentSlideForm": 1,
-                "saveCurrentSlide": 1,
-                "loadSlideInLessonEditor": 1,
-                "loadSlideAndAdhiacentInLessonEditor": 1,
-                "slideTo": 1,
-                "initLessonEditorPositions": 1,
-                "tinyMceCallbacks": 1,
-                "tinyMceKeyDownCallbacks": 1,
-                "reInitializeSlidePositionsInLessonEditor": 1,
-                "initTinymce": 1,
-                "slideError": 1,
-                "isHorizontalMask": 1,
-                "resizeWidth": 1,
-                "resizeHeight": 1
+                "LessonEditorCurrentSlide": 1,
+                "LessonEditorDocumentReady": 1,
+                "LessonEditorForms": 1,
+                "LessonEditorGalleries": 1,
+                "LessonEditorImageResizing": 1,
+                "LessonEditorJqueryAnimations": 1,
+                "LessonEditorSlideLoading": 1,
+                "LessonEditorSlidesNavigation": 1,
+                "LessonEditorTinyMCE": 1
             },
             "namespaces": {}
         },
@@ -561,56 +546,26 @@
             "name": "lesson-editor",
             "submodules": {},
             "classes": {
-                "scrollPaneUpdate": 1,
-                "removeGalleryInLessonEditor": 1,
-                "showGalleryInLessonEditor": 1,
-                "showEverythingOutCurrentSlide": 1,
-                "hideEverythingOutCurrentSlide": 1,
-                "showNewSlideChoice": 1,
-                "hideNewSlideChoice": 1,
-                "stopMediaInCurrentSlide": 1,
-                "initializeSortableNavs": 1,
-                "makeDraggable": 1,
-                "submitCurrentSlideForm": 1,
-                "saveCurrentSlide": 1,
-                "loadSlideInLessonEditor": 1,
-                "loadSlideAndAdhiacentInLessonEditor": 1,
-                "slideTo": 1,
-                "initLessonEditorPositions": 1,
-                "tinyMceCallbacks": 1,
-                "tinyMceKeyDownCallbacks": 1,
-                "reInitializeSlidePositionsInLessonEditor": 1,
-                "initTinymce": 1,
-                "slideError": 1,
-                "isHorizontalMask": 1,
-                "resizeWidth": 1,
-                "resizeHeight": 1
+                "LessonEditorCurrentSlide": 1,
+                "LessonEditorDocumentReady": 1,
+                "LessonEditorForms": 1,
+                "LessonEditorGalleries": 1,
+                "LessonEditorImageResizing": 1,
+                "LessonEditorJqueryAnimations": 1,
+                "LessonEditorSlideLoading": 1,
+                "LessonEditorSlidesNavigation": 1,
+                "LessonEditorTinyMCE": 1
             },
             "fors": {
-                "scrollPaneUpdate": 1,
-                "removeGalleryInLessonEditor": 1,
-                "showGalleryInLessonEditor": 1,
-                "showEverythingOutCurrentSlide": 1,
-                "hideEverythingOutCurrentSlide": 1,
-                "showNewSlideChoice": 1,
-                "hideNewSlideChoice": 1,
-                "stopMediaInCurrentSlide": 1,
-                "initializeSortableNavs": 1,
-                "makeDraggable": 1,
-                "submitCurrentSlideForm": 1,
-                "saveCurrentSlide": 1,
-                "loadSlideInLessonEditor": 1,
-                "loadSlideAndAdhiacentInLessonEditor": 1,
-                "slideTo": 1,
-                "initLessonEditorPositions": 1,
-                "tinyMceCallbacks": 1,
-                "tinyMceKeyDownCallbacks": 1,
-                "reInitializeSlidePositionsInLessonEditor": 1,
-                "initTinymce": 1,
-                "slideError": 1,
-                "isHorizontalMask": 1,
-                "resizeWidth": 1,
-                "resizeHeight": 1
+                "LessonEditorCurrentSlide": 1,
+                "LessonEditorDocumentReady": 1,
+                "LessonEditorForms": 1,
+                "LessonEditorGalleries": 1,
+                "LessonEditorImageResizing": 1,
+                "LessonEditorJqueryAnimations": 1,
+                "LessonEditorSlideLoading": 1,
+                "LessonEditorSlidesNavigation": 1,
+                "LessonEditorTinyMCE": 1
             },
             "namespaces": {},
             "tag": "module",
@@ -1303,9 +1258,9 @@
             "module": "image-editor",
             "namespace": ""
         },
-        "scrollPaneUpdate": {
-            "name": "scrollPaneUpdate",
-            "shortname": "scrollPaneUpdate",
+        "LessonEditorCurrentSlide": {
+            "name": "LessonEditorCurrentSlide",
+            "shortname": "LessonEditorCurrentSlide",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -1314,9 +1269,9 @@
             "module": "lesson-editor",
             "namespace": ""
         },
-        "removeGalleryInLessonEditor": {
-            "name": "removeGalleryInLessonEditor",
-            "shortname": "removeGalleryInLessonEditor",
+        "LessonEditorDocumentReady": {
+            "name": "LessonEditorDocumentReady",
+            "shortname": "LessonEditorDocumentReady",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -1325,9 +1280,9 @@
             "module": "lesson-editor",
             "namespace": ""
         },
-        "showGalleryInLessonEditor": {
-            "name": "showGalleryInLessonEditor",
-            "shortname": "showGalleryInLessonEditor",
+        "LessonEditorForms": {
+            "name": "LessonEditorForms",
+            "shortname": "LessonEditorForms",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -1336,9 +1291,9 @@
             "module": "lesson-editor",
             "namespace": ""
         },
-        "showEverythingOutCurrentSlide": {
-            "name": "showEverythingOutCurrentSlide",
-            "shortname": "showEverythingOutCurrentSlide",
+        "LessonEditorGalleries": {
+            "name": "LessonEditorGalleries",
+            "shortname": "LessonEditorGalleries",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -1347,9 +1302,9 @@
             "module": "lesson-editor",
             "namespace": ""
         },
-        "hideEverythingOutCurrentSlide": {
-            "name": "hideEverythingOutCurrentSlide",
-            "shortname": "hideEverythingOutCurrentSlide",
+        "LessonEditorImageResizing": {
+            "name": "LessonEditorImageResizing",
+            "shortname": "LessonEditorImageResizing",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -1358,9 +1313,9 @@
             "module": "lesson-editor",
             "namespace": ""
         },
-        "showNewSlideChoice": {
-            "name": "showNewSlideChoice",
-            "shortname": "showNewSlideChoice",
+        "LessonEditorJqueryAnimations": {
+            "name": "LessonEditorJqueryAnimations",
+            "shortname": "LessonEditorJqueryAnimations",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -1369,9 +1324,9 @@
             "module": "lesson-editor",
             "namespace": ""
         },
-        "hideNewSlideChoice": {
-            "name": "hideNewSlideChoice",
-            "shortname": "hideNewSlideChoice",
+        "LessonEditorSlideLoading": {
+            "name": "LessonEditorSlideLoading",
+            "shortname": "LessonEditorSlideLoading",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -1380,9 +1335,9 @@
             "module": "lesson-editor",
             "namespace": ""
         },
-        "stopMediaInCurrentSlide": {
-            "name": "stopMediaInCurrentSlide",
-            "shortname": "stopMediaInCurrentSlide",
+        "LessonEditorSlidesNavigation": {
+            "name": "LessonEditorSlidesNavigation",
+            "shortname": "LessonEditorSlidesNavigation",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -1391,174 +1346,9 @@
             "module": "lesson-editor",
             "namespace": ""
         },
-        "initializeSortableNavs": {
-            "name": "initializeSortableNavs",
-            "shortname": "initializeSortableNavs",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "lesson-editor",
-            "namespace": ""
-        },
-        "makeDraggable": {
-            "name": "makeDraggable",
-            "shortname": "makeDraggable",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "lesson-editor",
-            "namespace": ""
-        },
-        "submitCurrentSlideForm": {
-            "name": "submitCurrentSlideForm",
-            "shortname": "submitCurrentSlideForm",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "lesson-editor",
-            "namespace": ""
-        },
-        "saveCurrentSlide": {
-            "name": "saveCurrentSlide",
-            "shortname": "saveCurrentSlide",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "lesson-editor",
-            "namespace": ""
-        },
-        "loadSlideInLessonEditor": {
-            "name": "loadSlideInLessonEditor",
-            "shortname": "loadSlideInLessonEditor",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "lesson-editor",
-            "namespace": ""
-        },
-        "loadSlideAndAdhiacentInLessonEditor": {
-            "name": "loadSlideAndAdhiacentInLessonEditor",
-            "shortname": "loadSlideAndAdhiacentInLessonEditor",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "lesson-editor",
-            "namespace": ""
-        },
-        "slideTo": {
-            "name": "slideTo",
-            "shortname": "slideTo",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "lesson-editor",
-            "namespace": ""
-        },
-        "initLessonEditorPositions": {
-            "name": "initLessonEditorPositions",
-            "shortname": "initLessonEditorPositions",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "lesson-editor",
-            "namespace": ""
-        },
-        "tinyMceCallbacks": {
-            "name": "tinyMceCallbacks",
-            "shortname": "tinyMceCallbacks",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "lesson-editor",
-            "namespace": ""
-        },
-        "tinyMceKeyDownCallbacks": {
-            "name": "tinyMceKeyDownCallbacks",
-            "shortname": "tinyMceKeyDownCallbacks",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "lesson-editor",
-            "namespace": ""
-        },
-        "reInitializeSlidePositionsInLessonEditor": {
-            "name": "reInitializeSlidePositionsInLessonEditor",
-            "shortname": "reInitializeSlidePositionsInLessonEditor",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "lesson-editor",
-            "namespace": ""
-        },
-        "initTinymce": {
-            "name": "initTinymce",
-            "shortname": "initTinymce",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "lesson-editor",
-            "namespace": ""
-        },
-        "slideError": {
-            "name": "slideError",
-            "shortname": "slideError",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "lesson-editor",
-            "namespace": ""
-        },
-        "isHorizontalMask": {
-            "name": "isHorizontalMask",
-            "shortname": "isHorizontalMask",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "lesson-editor",
-            "namespace": ""
-        },
-        "resizeWidth": {
-            "name": "resizeWidth",
-            "shortname": "resizeWidth",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "lesson-editor",
-            "namespace": ""
-        },
-        "resizeHeight": {
-            "name": "resizeHeight",
-            "shortname": "resizeHeight",
+        "LessonEditorTinyMCE": {
+            "name": "LessonEditorTinyMCE",
+            "shortname": "LessonEditorTinyMCE",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -3817,6 +3607,15 @@
         {
             "file": "app/assets/javascripts/general.js",
             "line": 283,
+            "description": "Shows error icon when somethings goes wrong",
+            "itemtype": "method",
+            "name": "redError",
+            "class": "GeneralMiscellanea",
+            "module": "general"
+        },
+        {
+            "file": "app/assets/javascripts/general.js",
+            "line": 294,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "secondsToDateString",
@@ -3825,7 +3624,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 314,
+            "line": 325,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "getCompleteMediaElementsUrlWithoutFilter",
@@ -3834,7 +3633,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 325,
+            "line": 336,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "getCompleteMediaElementsUrlWithoutForPage",
@@ -3843,7 +3642,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 336,
+            "line": 347,
             "description": "Remove a param from url",
             "itemtype": "method",
             "name": "removeURLParameter",
@@ -3868,7 +3667,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 362,
+            "line": 373,
             "description": "Add new parameters to an url",
             "itemtype": "method",
             "name": "updateURLParameter",
@@ -4074,26 +3873,169 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 376,
-            "description": "Update top scrollPane when moving to another slide",
+            "line": 10,
+            "description": "Hide page elements around current slide on new slide selection",
             "itemtype": "method",
-            "name": "scrollPaneUpdate",
-            "params": [
-                {
-                    "name": "trigger_element",
-                    "description": "element which triggers the scroll, class or id",
-                    "type": "String"
-                }
-            ],
-            "example": [
-                "\n     scrollPaneUpdate('._not_current_slide');"
-            ],
-            "class": "scrollPaneUpdate",
+            "name": "hideEverythingOutCurrentSlide",
+            "class": "LessonEditorCurrentSlide",
             "module": "lesson-editor"
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 398,
+            "line": 23,
+            "description": "Hide new slide selection",
+            "itemtype": "method",
+            "name": "hideNewSlideChoice",
+            "class": "LessonEditorCurrentSlide",
+            "module": "lesson-editor"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_editor.js",
+            "line": 36,
+            "description": "Restore page elements around current slide after new slide selection",
+            "itemtype": "method",
+            "name": "showEverythingOutCurrentSlide",
+            "class": "LessonEditorCurrentSlide",
+            "module": "lesson-editor"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_editor.js",
+            "line": 49,
+            "description": "Hide new slide selection",
+            "itemtype": "method",
+            "name": "showNewSlideChoice",
+            "class": "LessonEditorCurrentSlide",
+            "module": "lesson-editor"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_editor.js",
+            "line": 64,
+            "description": "Stop video and audio playing into current slide, usually only one kind of media is present into current slide",
+            "itemtype": "method",
+            "name": "stopMediaInCurrentSlide",
+            "class": "LessonEditorCurrentSlide",
+            "module": "lesson-editor"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_editor.js",
+            "line": 79,
+            "description": "bla bla bla",
+            "itemtype": "method",
+            "name": "lessonEditorDocumentReady",
+            "class": "LessonEditorDocumentReady",
+            "module": "lesson-editor"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_editor.js",
+            "line": 97,
+            "description": "bla bla bla",
+            "itemtype": "method",
+            "name": "lessonEditorDocumentReadyAddMediaElement",
+            "class": "LessonEditorDocumentReady",
+            "module": "lesson-editor"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_editor.js",
+            "line": 213,
+            "description": "bla bla bla",
+            "itemtype": "method",
+            "name": "lessonEditorDocumentReadyGalleries",
+            "class": "LessonEditorDocumentReady",
+            "module": "lesson-editor"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_editor.js",
+            "line": 250,
+            "description": "bla bla bla",
+            "itemtype": "method",
+            "name": "lessonEditorDocumentReadyGeneral",
+            "class": "LessonEditorDocumentReady",
+            "module": "lesson-editor"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_editor.js",
+            "line": 262,
+            "description": "bla bla bla",
+            "itemtype": "method",
+            "name": "lessonEditorDocumentReadyJqueryAnimations",
+            "class": "LessonEditorDocumentReady",
+            "module": "lesson-editor"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_editor.js",
+            "line": 279,
+            "description": "bla bla bla",
+            "itemtype": "method",
+            "name": "lessonEditorDocumentReadyNewSlideChoice",
+            "class": "LessonEditorDocumentReady",
+            "module": "lesson-editor"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_editor.js",
+            "line": 299,
+            "description": "bla bla bla",
+            "itemtype": "method",
+            "name": "lessonEditorDocumentReadyReplaceMediaElement",
+            "class": "LessonEditorDocumentReady",
+            "module": "lesson-editor"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_editor.js",
+            "line": 323,
+            "description": "bla bla bla",
+            "itemtype": "method",
+            "name": "lessonEditorDocumentReadyResize",
+            "class": "LessonEditorDocumentReady",
+            "module": "lesson-editor"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_editor.js",
+            "line": 340,
+            "description": "bla bla bla",
+            "itemtype": "method",
+            "name": "lessonEditorDocumentReadySlideButtons",
+            "class": "LessonEditorDocumentReady",
+            "module": "lesson-editor"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_editor.js",
+            "line": 419,
+            "description": "bla bla bla",
+            "itemtype": "method",
+            "name": "lessonEditorDocumentReadySlidesNavigator",
+            "class": "LessonEditorDocumentReady",
+            "module": "lesson-editor"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_editor.js",
+            "line": 467,
+            "description": "bla bla bla",
+            "itemtype": "method",
+            "name": "lessonEditorDocumentReadyTextFields",
+            "class": "LessonEditorDocumentReady",
+            "module": "lesson-editor"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_editor.js",
+            "line": 509,
+            "description": "Save current slide. It sends tinyMCE editor content to form data to be serialized, it handles form placeholders. Uses: [submitCurrentSlideForm](../classes/submitCurrentSlideForm.html#method_submitCurrentSlideForm)",
+            "itemtype": "method",
+            "name": "saveCurrentSlide",
+            "class": "LessonEditorForms",
+            "module": "lesson-editor"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_editor.js",
+            "line": 535,
+            "description": "Submit serialized form data for current slide",
+            "itemtype": "method",
+            "name": "submitCurrentSlideForm",
+            "class": "LessonEditorForms",
+            "module": "lesson-editor"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_editor.js",
+            "line": 554,
             "description": "Hide media gallery for selected type",
             "itemtype": "method",
             "name": "removeGalleryInLessonEditor",
@@ -4104,15 +4046,12 @@
                     "type": "String"
                 }
             ],
-            "example": [
-                " \n     `removeGalleryInLessonEditor('audio');`"
-            ],
-            "class": "removeGalleryInLessonEditor",
+            "class": "LessonEditorGalleries",
             "module": "lesson-editor"
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 413,
+            "line": 566,
             "description": "Show media gallery for selected type clicking on slide green plus button",
             "itemtype": "method",
             "name": "showGalleryInLessonEditor",
@@ -4128,253 +4067,12 @@
                     "type": "String"
                 }
             ],
-            "example": [
-                " \n     `showGalleryInLessonEditor('._show_video_gallery_in_lesson_editor','video');`"
-            ],
-            "class": "showGalleryInLessonEditor",
+            "class": "LessonEditorGalleries",
             "module": "lesson-editor"
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 441,
-            "description": "Restore page elements around current slide after new slide selection",
-            "itemtype": "method",
-            "name": "showEverythingOutCurrentSlide",
-            "class": "showEverythingOutCurrentSlide",
-            "module": "lesson-editor"
-        },
-        {
-            "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 455,
-            "description": "Hide page elements around current slide on new slide selection",
-            "itemtype": "method",
-            "name": "hideEverythingOutCurrentSlide",
-            "class": "hideEverythingOutCurrentSlide",
-            "module": "lesson-editor"
-        },
-        {
-            "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 469,
-            "description": "Hide new slide selection",
-            "itemtype": "method",
-            "name": "showNewSlideChoice",
-            "class": "showNewSlideChoice",
-            "module": "lesson-editor"
-        },
-        {
-            "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 485,
-            "description": "Hide new slide selection",
-            "itemtype": "method",
-            "name": "hideNewSlideChoice",
-            "class": "hideNewSlideChoice",
-            "module": "lesson-editor"
-        },
-        {
-            "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 499,
-            "description": "Stop video and audio playing into current slide, \nusually only one kind of media is present into current slide",
-            "itemtype": "method",
-            "name": "stopMediaInCurrentSlide",
-            "class": "stopMediaInCurrentSlide",
-            "module": "lesson-editor"
-        },
-        {
-            "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 512,
-            "description": "Inizialize jQueryUI _sortable_ function on top navigation numbers,\nso that they can be sorted",
-            "itemtype": "method",
-            "name": "initializeSortableNavs",
-            "class": "initializeSortableNavs",
-            "module": "lesson-editor"
-        },
-        {
-            "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 559,
-            "description": "Inizialize jQueryUI _draggable_ function on slide image containers.",
-            "itemtype": "method",
-            "name": "makeDraggable",
-            "params": [
-                {
-                    "name": "place_id",
-                    "description": "media element id",
-                    "type": "Number"
-                }
-            ],
-            "example": [
-                "\n     `makeDraggable('media_element_1_in_slide_43');`"
-            ],
-            "class": "makeDraggable",
-            "module": "lesson-editor"
-        },
-        {
-            "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 630,
-            "description": "Submit serialized form data for current slide",
-            "itemtype": "method",
-            "name": "submitCurrentSlideForm",
-            "class": "submitCurrentSlideForm",
-            "module": "lesson-editor"
-        },
-        {
-            "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 646,
-            "description": "Save current slide. It sends tinyMCE editor content to form data to be serialized, \nit handles form placeholders.\n\nUses: [submitCurrentSlideForm](../classes/submitCurrentSlideForm.html#method_submitCurrentSlideForm)",
-            "itemtype": "method",
-            "name": "saveCurrentSlide",
-            "class": "saveCurrentSlide",
-            "module": "lesson-editor"
-        },
-        {
-            "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 676,
-            "description": "Asynchronous slide loading. \nIt is called when the current slide is not loaded yet.",
-            "itemtype": "method",
-            "name": "loadSlideInLessonEditor",
-            "params": [
-                {
-                    "name": "slide",
-                    "description": "slide object id",
-                    "type": "String"
-                }
-            ],
-            "example": [
-                "\n     `loadSlideInLessonEditor($('#slide_in_lesson_editor_33'));`"
-            ],
-            "class": "loadSlideInLessonEditor",
-            "module": "lesson-editor"
-        },
-        {
-            "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 695,
-            "description": "Asynchronously loads current slide, previous and following if any of these aren't loaded yet.\n\nUses: [loadSlideInLessonEditor](../classes/loadSlideInLessonEditor.html#method_loadSlideInLessonEditor)",
-            "itemtype": "method",
-            "name": "loadSlideAndAdhiacentInLessonEditor",
-            "params": [
-                {
-                    "name": "slide_id",
-                    "description": "slide id",
-                    "type": "Number"
-                }
-            ],
-            "class": "loadSlideAndAdhiacentInLessonEditor",
-            "module": "lesson-editor"
-        },
-        {
-            "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 711,
-            "description": "Slide to current slide, update current slide in top navigation.\n\nUses: [loadSlideAndAdhiacentInLessonEditor](../classes/loadSlideAndAdhiacentInLessonEditor.html#method_loadSlideAndAdhiacentInLessonEditor)",
-            "itemtype": "method",
-            "name": "slideTo",
-            "params": [
-                {
-                    "name": "slide_id",
-                    "description": "slide id",
-                    "type": "Number"
-                },
-                {
-                    "name": "callback",
-                    "description": "callback function",
-                    "type": "Object"
-                }
-            ],
-            "class": "slideTo",
-            "module": "lesson-editor"
-        },
-        {
-            "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 761,
-            "description": "Initialize slides position to center",
-            "itemtype": "method",
-            "name": "initLessonEditorPositions",
-            "class": "initLessonEditorPositions",
-            "module": "lesson-editor"
-        },
-        {
-            "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 781,
-            "description": "TinyMCE callback to show warning when texearea content exceeds the available space.\nAdd a red border to the textarea\n\nAdd this function on tinyMCE setup.",
-            "itemtype": "method",
-            "name": "tinyMceCallbacks",
-            "params": [
-                {
-                    "name": "inst",
-                    "description": "tinyMCE body instance",
-                    "type": "Object"
-                },
-                {
-                    "name": "tiny_id",
-                    "description": "tinyMCE textarea id",
-                    "type": "Number"
-                }
-            ],
-            "example": [
-                "\n     setup: function(ed) {\n       ed.onKeyUp.add(function(ed, e) {\n         tinyMceCallbacks(ed,tiny_id);\n       });\n     }"
-            ],
-            "class": "tinyMceCallbacks",
-            "module": "lesson-editor"
-        },
-        {
-            "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 812,
-            "description": "TinyMCE keyDown callback to fix list item style.\nIt adds same style of list item text to list numbers or dots.\n\nAdd this function on tinyMCE setup.",
-            "itemtype": "method",
-            "name": "tinyMceKeyDownCallbacks",
-            "params": [
-                {
-                    "name": "inst",
-                    "description": "tinyMCE body instance",
-                    "type": "Object"
-                },
-                {
-                    "name": "tiny_id",
-                    "description": "tinyMCE textarea id",
-                    "type": "Number"
-                }
-            ],
-            "example": [
-                "\n     setup: function(ed) {\n       ed.onKeyDown.add(function(ed, e) {\n         tinyMceKeyDownCallbacks(ed,tiny_id);\n       });\n     }"
-            ],
-            "class": "tinyMceKeyDownCallbacks",
-            "module": "lesson-editor"
-        },
-        {
-            "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 839,
-            "description": "Re-initialize slides position to center after ajax events",
-            "itemtype": "method",
-            "name": "reInitializeSlidePositionsInLessonEditor",
-            "class": "reInitializeSlidePositionsInLessonEditor",
-            "module": "lesson-editor"
-        },
-        {
-            "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 852,
-            "description": "Initialize tinyMCE editor for a single textarea\n\nUses: [tinyMceKeyDownCallbacks](../classes/tinyMceKeyDownCallbacks.html#method_tinyMceKeyDownCallbacks) \nand [tinyMceCallbacks](../classes/tinyMceCallbacks.html#method_tinyMceCallbacks)",
-            "itemtype": "method",
-            "name": "initTinymce",
-            "params": [
-                {
-                    "name": "tiny_id",
-                    "description": "tinyMCE textarea id",
-                    "type": "Number"
-                }
-            ],
-            "class": "initTinymce",
-            "module": "lesson-editor"
-        },
-        {
-            "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 902,
-            "description": "Show error message when somethings goes wrong",
-            "itemtype": "method",
-            "name": "slideError",
-            "class": "slideError",
-            "module": "lesson-editor"
-        },
-        {
-            "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 914,
+            "line": 595,
             "description": "Check if image ratio is bigger then kind ratio",
             "itemtype": "method",
             "name": "isHorizontalMask",
@@ -4399,42 +4097,12 @@
                 "description": "true if image ratio is bigger then kind ratio",
                 "type": "Boolean"
             },
-            "class": "isHorizontalMask",
+            "class": "LessonEditorImageResizing",
             "module": "lesson-editor"
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 943,
-            "description": "Sets scaled width to slide images",
-            "itemtype": "method",
-            "name": "resizeWidth",
-            "params": [
-                {
-                    "name": "image_width",
-                    "description": "",
-                    "type": "Number"
-                },
-                {
-                    "name": "image_height",
-                    "description": "",
-                    "type": "Number"
-                },
-                {
-                    "name": "kind",
-                    "description": "type image into slide, acceptes values: cover, image1, image2, image3, image4",
-                    "type": "String"
-                }
-            ],
-            "return": {
-                "description": "scaled width",
-                "type": "Number"
-            },
-            "class": "resizeWidth",
-            "module": "lesson-editor"
-        },
-        {
-            "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 970,
+            "line": 623,
             "description": "Sets scaled height to slide images",
             "itemtype": "method",
             "name": "resizeHeight",
@@ -4459,7 +4127,207 @@
                 "description": "scaled height",
                 "type": "Number"
             },
-            "class": "resizeHeight",
+            "class": "LessonEditorImageResizing",
+            "module": "lesson-editor"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_editor.js",
+            "line": 649,
+            "description": "Sets scaled width to slide images",
+            "itemtype": "method",
+            "name": "resizeWidth",
+            "params": [
+                {
+                    "name": "image_width",
+                    "description": "",
+                    "type": "Number"
+                },
+                {
+                    "name": "image_height",
+                    "description": "",
+                    "type": "Number"
+                },
+                {
+                    "name": "kind",
+                    "description": "type image into slide, acceptes values: cover, image1, image2, image3, image4",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "scaled width",
+                "type": "Number"
+            },
+            "class": "LessonEditorImageResizing",
+            "module": "lesson-editor"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_editor.js",
+            "line": 679,
+            "description": "Inizialize jQueryUI _sortable_ function on top navigation numbers, so that they can be sorted",
+            "itemtype": "method",
+            "name": "initializeSortableNavs",
+            "class": "LessonEditorJqueryAnimations",
+            "module": "lesson-editor"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_editor.js",
+            "line": 724,
+            "description": "Inizialize jQueryUI _draggable_ function on slide image containers.",
+            "itemtype": "method",
+            "name": "makeDraggable",
+            "params": [
+                {
+                    "name": "place_id",
+                    "description": "media element id",
+                    "type": "Number"
+                }
+            ],
+            "class": "LessonEditorJqueryAnimations",
+            "module": "lesson-editor"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_editor.js",
+            "line": 796,
+            "description": "Asynchronously loads current slide, previous and following if any of these aren't loaded yet. Uses: [loadSlideInLessonEditor](../classes/loadSlideInLessonEditor.html#method_loadSlideInLessonEditor)",
+            "itemtype": "method",
+            "name": "loadSlideAndAdhiacentInLessonEditor",
+            "params": [
+                {
+                    "name": "slide_id",
+                    "description": "slide id",
+                    "type": "Number"
+                }
+            ],
+            "class": "LessonEditorSlideLoading",
+            "module": "lesson-editor"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_editor.js",
+            "line": 809,
+            "description": "Asynchronous slide loading. It is called when the current slide is not loaded yet.",
+            "itemtype": "method",
+            "name": "loadSlideInLessonEditor",
+            "params": [
+                {
+                    "name": "slide",
+                    "description": "slide object id",
+                    "type": "String"
+                }
+            ],
+            "class": "LessonEditorSlideLoading",
+            "module": "lesson-editor"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_editor.js",
+            "line": 828,
+            "description": "Initialize slides position to center",
+            "itemtype": "method",
+            "name": "initLessonEditorPositions",
+            "class": "LessonEditorSlidesNavigation",
+            "module": "lesson-editor"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_editor.js",
+            "line": 847,
+            "description": "Re-initialize slides position to center after ajax events",
+            "itemtype": "method",
+            "name": "reInitializeSlidePositionsInLessonEditor",
+            "class": "LessonEditorSlidesNavigation",
+            "module": "lesson-editor"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_editor.js",
+            "line": 859,
+            "description": "Update top scrollPane when moving to another slide",
+            "itemtype": "method",
+            "name": "scrollPaneUpdate",
+            "params": [
+                {
+                    "name": "trigger_element",
+                    "description": "element which triggers the scroll, class or id",
+                    "type": "String"
+                }
+            ],
+            "class": "LessonEditorSlidesNavigation",
+            "module": "lesson-editor"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_editor.js",
+            "line": 875,
+            "description": "Slide to current slide, update current slide in top navigation. Uses: [loadSlideAndAdhiacentInLessonEditor](../classes/loadSlideAndAdhiacentInLessonEditor.html#method_loadSlideAndAdhiacentInLessonEditor)",
+            "itemtype": "method",
+            "name": "slideTo",
+            "params": [
+                {
+                    "name": "slide_id",
+                    "description": "slide id",
+                    "type": "Number"
+                },
+                {
+                    "name": "callback",
+                    "description": "callback function",
+                    "type": "Object"
+                }
+            ],
+            "class": "LessonEditorSlidesNavigation",
+            "module": "lesson-editor"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_editor.js",
+            "line": 926,
+            "description": "Initialize tinyMCE editor for a single textarea Uses: [tinyMceKeyDownCallbacks](../classes/tinyMceKeyDownCallbacks.html#method_tinyMceKeyDownCallbacks) and [tinyMceCallbacks](../classes/tinyMceCallbacks.html#method_tinyMceCallbacks)",
+            "itemtype": "method",
+            "name": "initTinymce",
+            "params": [
+                {
+                    "name": "tiny_id",
+                    "description": "tinyMCE textarea id",
+                    "type": "Number"
+                }
+            ],
+            "class": "LessonEditorTinyMCE",
+            "module": "lesson-editor"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_editor.js",
+            "line": 970,
+            "description": "TinyMCE callback to show warning when texearea content exceeds the available space. Add a red border to the textarea. Add this function on tinyMCE setup.",
+            "itemtype": "method",
+            "name": "tinyMceCallbacks",
+            "params": [
+                {
+                    "name": "inst",
+                    "description": "tinyMCE body instance",
+                    "type": "Object"
+                },
+                {
+                    "name": "tiny_id",
+                    "description": "tinyMCE textarea id",
+                    "type": "Number"
+                }
+            ],
+            "class": "LessonEditorTinyMCE",
+            "module": "lesson-editor"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_editor.js",
+            "line": 989,
+            "description": "TinyMCE keyDown callback to fix list item style. It adds same style of list item text to list numbers or dots. Add this function on tinyMCE setup.",
+            "itemtype": "method",
+            "name": "tinyMceKeyDownCallbacks",
+            "params": [
+                {
+                    "name": "inst",
+                    "description": "tinyMCE body instance",
+                    "type": "Object"
+                },
+                {
+                    "name": "tiny_id",
+                    "description": "tinyMCE textarea id",
+                    "type": "Number"
+                }
+            ],
+            "class": "LessonEditorTinyMCE",
             "module": "lesson-editor"
         },
         {
