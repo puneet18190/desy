@@ -2742,49 +2742,13 @@
             "line": 10,
             "description": "bla bla bla",
             "itemtype": "method",
-            "name": "resizeLastComponentInAudioEditor",
+            "name": "addComponentInAudioEditor",
             "class": "AudioEditorComponents",
             "module": "audio-editor"
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 20,
-            "description": "bla bla bla",
-            "itemtype": "method",
-            "name": "selectAudioEditorComponent",
-            "class": "AudioEditorComponents",
-            "module": "audio-editor"
-        },
-        {
-            "file": "app/assets/javascripts/audio_editor.js",
-            "line": 40,
-            "description": "bla bla bla",
-            "itemtype": "method",
-            "name": "deselectAllAudioEditorComponents",
-            "class": "AudioEditorComponents",
-            "module": "audio-editor"
-        },
-        {
-            "file": "app/assets/javascripts/audio_editor.js",
-            "line": 63,
-            "description": "bla bla bla",
-            "itemtype": "method",
-            "name": "loadAudioComponentIfNotLoadedYet",
-            "class": "AudioEditorComponents",
-            "module": "audio-editor"
-        },
-        {
-            "file": "app/assets/javascripts/audio_editor.js",
-            "line": 79,
-            "description": "bla bla bla",
-            "itemtype": "method",
-            "name": "reloadAudioEditorComponentPositions",
-            "class": "AudioEditorComponents",
-            "module": "audio-editor"
-        },
-        {
-            "file": "app/assets/javascripts/audio_editor.js",
-            "line": 93,
+            "line": 60,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "changeDurationAudioEditorComponent",
@@ -2793,7 +2757,43 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 108,
+            "line": 75,
+            "description": "bla bla bla",
+            "itemtype": "method",
+            "name": "deselectAllAudioEditorComponents",
+            "class": "AudioEditorComponents",
+            "module": "audio-editor"
+        },
+        {
+            "file": "app/assets/javascripts/audio_editor.js",
+            "line": 98,
+            "description": "bla bla bla",
+            "itemtype": "method",
+            "name": "fillAudioEditorSingleParameter",
+            "class": "AudioEditorComponents",
+            "module": "audio-editor"
+        },
+        {
+            "file": "app/assets/javascripts/audio_editor.js",
+            "line": 107,
+            "description": "bla bla bla",
+            "itemtype": "method",
+            "name": "loadAudioComponentIfNotLoadedYet",
+            "class": "AudioEditorComponents",
+            "module": "audio-editor"
+        },
+        {
+            "file": "app/assets/javascripts/audio_editor.js",
+            "line": 123,
+            "description": "bla bla bla",
+            "itemtype": "method",
+            "name": "reloadAudioEditorComponentPositions",
+            "class": "AudioEditorComponents",
+            "module": "audio-editor"
+        },
+        {
+            "file": "app/assets/javascripts/audio_editor.js",
+            "line": 137,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "removeAudioEditorComponent",
@@ -2802,19 +2802,19 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 128,
+            "line": 157,
             "description": "bla bla bla",
             "itemtype": "method",
-            "name": "addComponentInAudioEditor",
+            "name": "resizeLastComponentInAudioEditor",
             "class": "AudioEditorComponents",
             "module": "audio-editor"
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 178,
+            "line": 167,
             "description": "bla bla bla",
             "itemtype": "method",
-            "name": "fillAudioEditorSingleParameter",
+            "name": "selectAudioEditorComponent",
             "class": "AudioEditorComponents",
             "module": "audio-editor"
         },
@@ -2850,7 +2850,7 @@
             "line": 229,
             "description": "bla bla bla",
             "itemtype": "method",
-            "name": "selectAudioEditorLeftHandle",
+            "name": "selectAudioEditorCursor",
             "class": "AudioEditorCutters",
             "module": "audio-editor"
         },
@@ -2859,7 +2859,7 @@
             "line": 240,
             "description": "bla bla bla",
             "itemtype": "method",
-            "name": "selectAudioEditorRightHandle",
+            "name": "selectAudioEditorLeftHandle",
             "class": "AudioEditorCutters",
             "module": "audio-editor"
         },
@@ -2868,7 +2868,7 @@
             "line": 251,
             "description": "bla bla bla",
             "itemtype": "method",
-            "name": "selectAudioEditorCursor",
+            "name": "selectAudioEditorRightHandle",
             "class": "AudioEditorCutters",
             "module": "audio-editor"
         },
@@ -2895,22 +2895,13 @@
             "line": 373,
             "description": "bla bla bla",
             "itemtype": "method",
-            "name": "audioEditorDocumentReadyPreview",
-            "class": "AudioEditorDocumentReady",
-            "module": "audio-editor"
-        },
-        {
-            "file": "app/assets/javascripts/audio_editor.js",
-            "line": 403,
-            "description": "bla bla bla",
-            "itemtype": "method",
             "name": "audioEditorDocumentReadyCutters",
             "class": "AudioEditorDocumentReady",
             "module": "audio-editor"
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 466,
+            "line": 436,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "audioEditorDocumentReadyGeneral",
@@ -2919,16 +2910,16 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 548,
+            "line": 514,
             "description": "bla bla bla",
             "itemtype": "method",
-            "name": "showGalleryInAudioEditor",
-            "class": "AudioEditorGalleries",
+            "name": "audioEditorDocumentReadyPreview",
+            "class": "AudioEditorDocumentReady",
             "module": "audio-editor"
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 560,
+            "line": 548,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "calculateNewPositionGalleriesInAudioEditor",
@@ -2937,10 +2928,19 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 569,
+            "line": 557,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "closeGalleryInAudioEditor",
+            "class": "AudioEditorGalleries",
+            "module": "audio-editor"
+        },
+        {
+            "file": "app/assets/javascripts/audio_editor.js",
+            "line": 569,
+            "description": "bla bla bla",
+            "itemtype": "method",
+            "name": "showGalleryInAudioEditor",
             "class": "AudioEditorGalleries",
             "module": "audio-editor"
         },
@@ -2976,13 +2976,13 @@
             "line": 623,
             "description": "bla bla bla",
             "itemtype": "method",
-            "name": "setToZeroAllZIndexesInAudioEditor",
+            "name": "hideCommitAudioEditorForm",
             "class": "AudioEditorGraphics",
             "module": "audio-editor"
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 637,
+            "line": 634,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "setBackAllZIndexesInAudioEditor",
@@ -2991,10 +2991,10 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 651,
+            "line": 648,
             "description": "bla bla bla",
             "itemtype": "method",
-            "name": "showCommitAudioEditorForm",
+            "name": "setToZeroAllZIndexesInAudioEditor",
             "class": "AudioEditorGraphics",
             "module": "audio-editor"
         },
@@ -3003,7 +3003,7 @@
             "line": 662,
             "description": "bla bla bla",
             "itemtype": "method",
-            "name": "hideCommitAudioEditorForm",
+            "name": "showCommitAudioEditorForm",
             "class": "AudioEditorGraphics",
             "module": "audio-editor"
         },
@@ -3012,49 +3012,22 @@
             "line": 677,
             "description": "bla bla bla",
             "itemtype": "method",
-            "name": "enterAudioEditorPreviewMode",
-            "class": "AudioEditorPreview",
-            "module": "audio-editor"
-        },
-        {
-            "file": "app/assets/javascripts/audio_editor.js",
-            "line": 718,
-            "description": "bla bla bla",
-            "itemtype": "method",
-            "name": "switchBackAudioComponentsFromPreviewMode",
-            "class": "AudioEditorPreview",
-            "module": "audio-editor"
-        },
-        {
-            "file": "app/assets/javascripts/audio_editor.js",
-            "line": 732,
-            "description": "bla bla bla",
-            "itemtype": "method",
-            "name": "switchAudioComponentsToPreviewMode",
-            "class": "AudioEditorPreview",
-            "module": "audio-editor"
-        },
-        {
-            "file": "app/assets/javascripts/audio_editor.js",
-            "line": 746,
-            "description": "bla bla bla",
-            "itemtype": "method",
             "name": "deselectAllAudioEditorComponentsInPreviewMode",
             "class": "AudioEditorPreview",
             "module": "audio-editor"
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 762,
+            "line": 693,
             "description": "bla bla bla",
             "itemtype": "method",
-            "name": "selectAudioEditorComponentInPreviewMode",
+            "name": "enterAudioEditorPreviewMode",
             "class": "AudioEditorPreview",
             "module": "audio-editor"
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 776,
+            "line": 734,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "getAudioEditorGlobalPreviewTime",
@@ -3063,25 +3036,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 800,
-            "description": "bla bla bla",
-            "itemtype": "method",
-            "name": "leaveAudioEditorPreviewMode",
-            "class": "AudioEditorPreview",
-            "module": "audio-editor"
-        },
-        {
-            "file": "app/assets/javascripts/audio_editor.js",
-            "line": 832,
-            "description": "bla bla bla",
-            "itemtype": "method",
-            "name": "startAudioEditorPreview",
-            "class": "AudioEditorPreview",
-            "module": "audio-editor"
-        },
-        {
-            "file": "app/assets/javascripts/audio_editor.js",
-            "line": 855,
+            "line": 758,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "increaseAudioEditorPreviewTimer",
@@ -3090,19 +3045,64 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
+            "line": 770,
+            "description": "bla bla bla",
+            "itemtype": "method",
+            "name": "leaveAudioEditorPreviewMode",
+            "class": "AudioEditorPreview",
+            "module": "audio-editor"
+        },
+        {
+            "file": "app/assets/javascripts/audio_editor.js",
+            "line": 802,
+            "description": "bla bla bla",
+            "itemtype": "method",
+            "name": "selectAudioEditorComponentInPreviewMode",
+            "class": "AudioEditorPreview",
+            "module": "audio-editor"
+        },
+        {
+            "file": "app/assets/javascripts/audio_editor.js",
+            "line": 816,
+            "description": "bla bla bla",
+            "itemtype": "method",
+            "name": "startAudioEditorPreview",
+            "class": "AudioEditorPreview",
+            "module": "audio-editor"
+        },
+        {
+            "file": "app/assets/javascripts/audio_editor.js",
+            "line": 839,
+            "description": "bla bla bla",
+            "itemtype": "method",
+            "name": "switchAudioComponentsToPreviewMode",
+            "class": "AudioEditorPreview",
+            "module": "audio-editor"
+        },
+        {
+            "file": "app/assets/javascripts/audio_editor.js",
+            "line": 853,
+            "description": "bla bla bla",
+            "itemtype": "method",
+            "name": "switchBackAudioComponentsFromPreviewMode",
+            "class": "AudioEditorPreview",
+            "module": "audio-editor"
+        },
+        {
+            "file": "app/assets/javascripts/audio_editor.js",
             "line": 871,
             "description": "bla bla bla",
             "itemtype": "method",
-            "name": "scrollToFirstSelectedAudioEditorComponent",
+            "name": "followPreviewComponentsWithVerticalScrollInAudioEditor",
             "class": "AudioEditorScrollpain",
             "module": "audio-editor"
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 927,
+            "line": 882,
             "description": "bla bla bla",
             "itemtype": "method",
-            "name": "followPreviewComponentsWithVerticalScrollInAudioEditor",
+            "name": "scrollToFirstSelectedAudioEditorComponent",
             "class": "AudioEditorScrollpain",
             "module": "audio-editor"
         },
