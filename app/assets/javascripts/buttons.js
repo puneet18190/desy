@@ -30,80 +30,6 @@ function addDeleteItemToCurrentUrl(current_url, delete_item) {
 
 /**
 bla bla bla
-@method mediaElementButtonsDocumentReady
-@for ButtonsDocumentReady
-**/
-function mediaElementButtonsDocumentReady() {
-  $('body').on('click', '._Video_button_add, ._Audio_button_add, ._Image_button_add', function(e) {
-    if(!$(this).parent().hasClass('_disabled')) {
-      var my_param = $(this).data('clickparam');
-      var destination = $(this).data('destination');
-      var reload = $(this).data('reload');
-      var current_url = $('#info_container').data('currenturl');
-      addMediaElement(my_param, destination, current_url, reload);
-    }
-  });
-  $('body').on('click', '._Video_button_destroy, ._Audio_button_destroy, ._Image_button_destroy', function(e) {
-    if(!$(this).parent().hasClass('_disabled')) {
-      var my_param = $(this).data('clickparam');
-      var destination = $(this).data('destination');
-      var current_url = $('#info_container').data('currenturl');
-      var used_in_private_lessons = $(this).data('media-element-used-in-private-lessons');
-      destroyMediaElement(my_param, destination, current_url, used_in_private_lessons);
-    }
-  });
-  $('body').on('click', '._Video_button_preview, ._Audio_button_preview, ._Image_button_preview', function(e) {
-    if(!$(this).parents('._media_element_item').hasClass('_disabled')) {
-      var my_param = $(this).data('clickparam');
-      showMediaElementInfoPopUp(my_param);
-    }
-  });
-  $('body').on('click', '._Video_button_edit', function(e) {
-    if(!$(this).parent().hasClass('_disabled')) {
-      e.preventDefault();
-      var video_id = $(this).data('clickparam');
-      var redirect_back_to = $("#info_container").data('currenturl');
-      var parser = document.createElement('a');
-      parser.href = redirect_back_to;
-      window.location = '/videos/' + video_id + '/edit?back=' + encodeURIComponent(parser.pathname+parser.search+parser.hash);
-      return false;
-    }
-  });
-  $('body').on('click', '._Audio_button_edit', function(e) {
-    if(!$(this).parent().hasClass('_disabled')) {
-      e.preventDefault();
-      var audio_id = $(this).data('clickparam');
-      var redirect_back_to = $("#info_container").data('currenturl');
-      var parser = document.createElement('a');
-      parser.href = redirect_back_to;
-      window.location = '/audios/' + audio_id + '/edit?back=' + encodeURIComponent(parser.pathname+parser.search+parser.hash);
-      return false;
-    }
-  });
-  $('body').on('click', '._Image_button_edit', function(e) {
-    if(!$(this).parent().hasClass('_disabled')) {
-      e.preventDefault();
-      var image_id = $(this).data('clickparam');
-      var redirect_back_to = $("#info_container").data('currenturl');
-      var parser = document.createElement('a');
-      parser.href = redirect_back_to;
-      window.location = '/images/' + image_id + '/edit?back=' + encodeURIComponent(parser.pathname+parser.search+parser.hash);
-      return false;
-    }
-  });
-  $('body').on('click', '._Video_button_remove, ._Audio_button_remove, ._Image_button_remove', function(e) {
-    if(!$(this).parent().hasClass('_disabled')) {
-      var my_param = $(this).data('clickparam');
-      var destination = $(this).data('destination');
-      var reload = $(this).data('reload');
-      var current_url = $('#info_container').data('currenturl');
-      removeMediaElement(my_param, destination, current_url, reload);
-    }
-  });
-}
-
-/**
-bla bla bla
 @method lessonButtonsDocumentReady
 @for ButtonsDocumentReady
 **/
@@ -227,6 +153,80 @@ function lessonButtonsDocumentReady() {
   });
 }
 
+/**
+bla bla bla
+@method mediaElementButtonsDocumentReady
+@for ButtonsDocumentReady
+**/
+function mediaElementButtonsDocumentReady() {
+  $('body').on('click', '._Video_button_add, ._Audio_button_add, ._Image_button_add', function(e) {
+    if(!$(this).parent().hasClass('_disabled')) {
+      var my_param = $(this).data('clickparam');
+      var destination = $(this).data('destination');
+      var reload = $(this).data('reload');
+      var current_url = $('#info_container').data('currenturl');
+      addMediaElement(my_param, destination, current_url, reload);
+    }
+  });
+  $('body').on('click', '._Video_button_destroy, ._Audio_button_destroy, ._Image_button_destroy', function(e) {
+    if(!$(this).parent().hasClass('_disabled')) {
+      var my_param = $(this).data('clickparam');
+      var destination = $(this).data('destination');
+      var current_url = $('#info_container').data('currenturl');
+      var used_in_private_lessons = $(this).data('media-element-used-in-private-lessons');
+      destroyMediaElement(my_param, destination, current_url, used_in_private_lessons);
+    }
+  });
+  $('body').on('click', '._Video_button_preview, ._Audio_button_preview, ._Image_button_preview', function(e) {
+    if(!$(this).parents('._media_element_item').hasClass('_disabled')) {
+      var my_param = $(this).data('clickparam');
+      showMediaElementInfoPopUp(my_param);
+    }
+  });
+  $('body').on('click', '._Video_button_edit', function(e) {
+    if(!$(this).parent().hasClass('_disabled')) {
+      e.preventDefault();
+      var video_id = $(this).data('clickparam');
+      var redirect_back_to = $("#info_container").data('currenturl');
+      var parser = document.createElement('a');
+      parser.href = redirect_back_to;
+      window.location = '/videos/' + video_id + '/edit?back=' + encodeURIComponent(parser.pathname+parser.search+parser.hash);
+      return false;
+    }
+  });
+  $('body').on('click', '._Audio_button_edit', function(e) {
+    if(!$(this).parent().hasClass('_disabled')) {
+      e.preventDefault();
+      var audio_id = $(this).data('clickparam');
+      var redirect_back_to = $("#info_container").data('currenturl');
+      var parser = document.createElement('a');
+      parser.href = redirect_back_to;
+      window.location = '/audios/' + audio_id + '/edit?back=' + encodeURIComponent(parser.pathname+parser.search+parser.hash);
+      return false;
+    }
+  });
+  $('body').on('click', '._Image_button_edit', function(e) {
+    if(!$(this).parent().hasClass('_disabled')) {
+      e.preventDefault();
+      var image_id = $(this).data('clickparam');
+      var redirect_back_to = $("#info_container").data('currenturl');
+      var parser = document.createElement('a');
+      parser.href = redirect_back_to;
+      window.location = '/images/' + image_id + '/edit?back=' + encodeURIComponent(parser.pathname+parser.search+parser.hash);
+      return false;
+    }
+  });
+  $('body').on('click', '._Video_button_remove, ._Audio_button_remove, ._Image_button_remove', function(e) {
+    if(!$(this).parent().hasClass('_disabled')) {
+      var my_param = $(this).data('clickparam');
+      var destination = $(this).data('destination');
+      var reload = $(this).data('reload');
+      var current_url = $('#info_container').data('currenturl');
+      removeMediaElement(my_param, destination, current_url, reload);
+    }
+  });
+}
+
 
 
 
@@ -265,6 +265,20 @@ function addLesson(lesson_id, destination, current_url, reload) {
       }
     });
   }
+}
+
+/**
+Make the lesson available in the virtual classroom
+@method addLessonToVirtualClassroom
+@for ButtonsLesson
+@param lessons_id {Number} lesson id
+@param destination {String} destination view
+**/
+function addLessonToVirtualClassroom(lesson_id, destination) {
+  $.ajax({
+    type: 'post',
+    url: '/virtual_classroom/' + lesson_id + '/add_lesson?destination=' + destination
+  });
 }
 
 /**
@@ -423,6 +437,20 @@ function removeLesson(lesson_id, destination, current_url, reload) {
 }
 
 /**
+Remove lesson availability in the virtual classroom
+@method removeLessonFromVirtualClassroom
+@for ButtonsLesson
+@param lessons_id {Number} lesson_id
+@param destination {String} destination view
+**/
+function removeLessonFromVirtualClassroom(lesson_id, destination) {
+  $.ajax({
+    type: 'post',
+    url: '/virtual_classroom/' + lesson_id + '/remove_lesson?destination=' + destination
+  });
+}
+
+/**
 Make a lesson private Uses [showConfirmPopUp](../classes/showConfirmPopUp.html#method_showConfirmPopUp) and [closePopUp](../classes/closePopUp.html#method_closePopUp)
 @method unpublishLesson
 @for ButtonsLesson
@@ -440,34 +468,6 @@ function unpublishLesson(lesson_id, destination) {
     closePopUp('dialog-confirm');
   }, function() {
     closePopUp('dialog-confirm');
-  });
-}
-
-/**
-Make the lesson available in the virtual classroom
-@method addLessonToVirtualClassroom
-@for ButtonsLesson
-@param lessons_id {Number} lesson id
-@param destination {String} destination view
-**/
-function addLessonToVirtualClassroom(lesson_id, destination) {
-  $.ajax({
-    type: 'post',
-    url: '/virtual_classroom/' + lesson_id + '/add_lesson?destination=' + destination
-  });
-}
-
-/**
-Remove lesson availability in the virtual classroom
-@method removeLessonFromVirtualClassroom
-@for ButtonsLesson
-@param lessons_id {Number} lesson_id
-@param destination {String} destination view
-**/
-function removeLessonFromVirtualClassroom(lesson_id, destination) {
-  $.ajax({
-    type: 'post',
-    url: '/virtual_classroom/' + lesson_id + '/remove_lesson?destination=' + destination
   });
 }
 
