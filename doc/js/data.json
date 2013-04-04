@@ -9,11 +9,11 @@
         "app/assets/javascripts/admin/admin_functions.js": {
             "name": "app/assets/javascripts/admin/admin_functions.js",
             "modules": {
-                "Administration": 1
+                "administration": 1
             },
             "classes": {},
             "fors": {
-                "DocumentReady": 1,
+                "AdminDocumentReady": 1,
                 "Collapsed": 1,
                 "Autocomplete": 1
             },
@@ -30,6 +30,15 @@
                 "unbindLoader": 1,
                 "showLoader": 1,
                 "hideLoader": 1
+            },
+            "namespaces": {}
+        },
+        "app/assets/javascripts/browsers.js": {
+            "name": "app/assets/javascripts/browsers.js",
+            "modules": {},
+            "classes": {},
+            "fors": {
+                "BrowsersDocumentReady": 1
             },
             "namespaces": {}
         },
@@ -206,6 +215,15 @@
             },
             "namespaces": {}
         },
+        "app/assets/javascripts/locations.js": {
+            "name": "app/assets/javascripts/locations.js",
+            "modules": {},
+            "classes": {},
+            "fors": {
+                "LocationsDocumentReady": 1
+            },
+            "namespaces": {}
+        },
         "app/assets/javascripts/media_element_loader.js": {
             "name": "app/assets/javascripts/media_element_loader.js",
             "modules": {
@@ -330,16 +348,16 @@
         }
     },
     "modules": {
-        "Administration": {
-            "name": "Administration",
+        "administration": {
+            "name": "administration",
             "submodules": {},
             "classes": {
-                "DocumentReady": 1,
+                "AdminDocumentReady": 1,
                 "Collapsed": 1,
                 "Autocomplete": 1
             },
             "fors": {
-                "DocumentReady": 1,
+                "AdminDocumentReady": 1,
                 "Collapsed": 1,
                 "Autocomplete": 1
             },
@@ -356,13 +374,15 @@
                 "bindLoader": 1,
                 "unbindLoader": 1,
                 "showLoader": 1,
-                "hideLoader": 1
+                "hideLoader": 1,
+                "BrowsersDocumentReady": 1
             },
             "fors": {
                 "bindLoader": 1,
                 "unbindLoader": 1,
                 "showLoader": 1,
-                "hideLoader": 1
+                "hideLoader": 1,
+                "BrowsersDocumentReady": 1
             },
             "namespaces": {},
             "tag": "module",
@@ -638,7 +658,8 @@
                 "switchLessonInPlaylistMenuLessonViewer": 1,
                 "slideToInLessonViewerWithLessonSwitch": 1,
                 "goToNextSlideInLessonViewer": 1,
-                "goToPrevSlideInLessonViewer": 1
+                "goToPrevSlideInLessonViewer": 1,
+                "LocationsDocumentReady": 1
             },
             "fors": {
                 "openPlaylistMenuInLessonViewer": 1,
@@ -652,7 +673,8 @@
                 "switchLessonInPlaylistMenuLessonViewer": 1,
                 "slideToInLessonViewerWithLessonSwitch": 1,
                 "goToNextSlideInLessonViewer": 1,
-                "goToPrevSlideInLessonViewer": 1
+                "goToPrevSlideInLessonViewer": 1,
+                "LocationsDocumentReady": 1
             },
             "namespaces": {},
             "tag": "module",
@@ -857,15 +879,15 @@
         }
     },
     "classes": {
-        "DocumentReady": {
-            "name": "DocumentReady",
-            "shortname": "DocumentReady",
+        "AdminDocumentReady": {
+            "name": "AdminDocumentReady",
+            "shortname": "AdminDocumentReady",
             "classitems": [],
             "plugins": [],
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "module": "Administration",
+            "module": "administration",
             "namespace": ""
         },
         "Collapsed": {
@@ -876,7 +898,7 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "module": "Administration",
+            "module": "administration",
             "namespace": ""
         },
         "Autocomplete": {
@@ -887,7 +909,7 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "module": "Administration",
+            "module": "administration",
             "namespace": ""
         },
         "bindLoader": {
@@ -926,6 +948,17 @@
         "hideLoader": {
             "name": "hideLoader",
             "shortname": "hideLoader",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "ajax-loader",
+            "namespace": ""
+        },
+        "BrowsersDocumentReady": {
+            "name": "BrowsersDocumentReady",
+            "shortname": "BrowsersDocumentReady",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -1957,6 +1990,17 @@
             "module": "LessonViewer",
             "namespace": ""
         },
+        "LocationsDocumentReady": {
+            "name": "LocationsDocumentReady",
+            "shortname": "LocationsDocumentReady",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "LessonViewer",
+            "namespace": ""
+        },
         "initMediaElementLoader": {
             "name": "initMediaElementLoader",
             "shortname": "initMediaElementLoader",
@@ -2534,74 +2578,74 @@
         {
             "file": "app/assets/javascripts/admin/admin_functions.js",
             "line": 6,
-            "description": "Open a collapsed table row with extra content, tipically clicking on previous collapsable table row.",
+            "description": "Initializes the browser classes in the tag html. Same functionality as {{#crossLink \"BrowsersDocumentReady/browsersDocumentReady:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "adminBrowsersDocumentReady",
-            "class": "DocumentReady",
-            "module": "Administration"
+            "class": "AdminDocumentReady",
+            "module": "administration"
         },
         {
             "file": "app/assets/javascripts/admin/admin_functions.js",
             "line": 19,
-            "description": "Open a collapsed table row with extra content, tipically clicking on previous collapsable table row.",
+            "description": "Initializes the effects of collapse and change date.",
             "itemtype": "method",
             "name": "adminEffectsDocumentReady",
-            "class": "DocumentReady",
-            "module": "Administration"
+            "class": "AdminDocumentReady",
+            "module": "administration"
         },
         {
             "file": "app/assets/javascripts/admin/admin_functions.js",
             "line": 84,
-            "description": "Open a collapsed table row with extra content, tipically clicking on previous collapsable table row.",
+            "description": "Initializes the locations filling. See similar {{#crossLink \"LocationsDocumentReady/locationsDocumentReady:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "adminLocationsDocumentReady",
-            "class": "DocumentReady",
-            "module": "Administration"
+            "class": "AdminDocumentReady",
+            "module": "administration"
         },
         {
             "file": "app/assets/javascripts/admin/admin_functions.js",
             "line": 104,
-            "description": "Open a collapsed table row with extra content, tipically clicking on previous collapsable table row.",
+            "description": "Initializes actions for less important tables, such as Tag, Subject, SchoolLevel",
             "itemtype": "method",
             "name": "adminMiscellaneaDocumentReady",
-            "class": "DocumentReady",
-            "module": "Administration"
+            "class": "AdminDocumentReady",
+            "module": "administration"
         },
         {
             "file": "app/assets/javascripts/admin/admin_functions.js",
             "line": 142,
-            "description": "Open a collapsed table row with extra content, tipically clicking on previous collapsable table row.",
+            "description": "Initializes effects for MediaElement.",
             "itemtype": "method",
             "name": "adminMediaElementsDocumentReady",
-            "class": "DocumentReady",
-            "module": "Administration"
+            "class": "AdminDocumentReady",
+            "module": "administration"
         },
         {
             "file": "app/assets/javascripts/admin/admin_functions.js",
             "line": 217,
-            "description": "Open a collapsed table row with extra content, tipically clicking on previous collapsable table row.",
+            "description": "Initializes effects for User.",
             "itemtype": "method",
             "name": "adminUsersDocumentReady",
-            "class": "DocumentReady",
-            "module": "Administration"
+            "class": "AdminDocumentReady",
+            "module": "administration"
         },
         {
             "file": "app/assets/javascripts/admin/admin_functions.js",
             "line": 237,
-            "description": "Open a collapsed table row with extra content, tipically clicking on previous collapsable table row.",
+            "description": "Initializes effects for the administration search engin.",
             "itemtype": "method",
             "name": "adminSearchDocumentReady",
-            "class": "DocumentReady",
-            "module": "Administration"
+            "class": "AdminDocumentReady",
+            "module": "administration"
         },
         {
             "file": "app/assets/javascripts/admin/admin_functions.js",
             "line": 303,
-            "description": "Open a collapsed table row with extra content, tipically clicking on previous collapsable table row.",
+            "description": "Initializes effects for sorting in administration search engine",
             "itemtype": "method",
             "name": "adminSortingDocumentReady",
-            "class": "DocumentReady",
-            "module": "Administration"
+            "class": "AdminDocumentReady",
+            "module": "administration"
         },
         {
             "file": "app/assets/javascripts/admin/admin_functions.js",
@@ -2612,26 +2656,21 @@
             "params": [
                 {
                     "name": "prevTr",
-                    "description": "bla bla bla bla eccoci qua",
-                    "type": "Object"
-                },
-                {
-                    "name": "hdasgf",
-                    "description": "bla bla bla bla eccoci dgdsgdsg",
+                    "description": "the previous element in the table",
                     "type": "Object"
                 }
             ],
             "class": "Collapsed",
-            "module": "Administration"
+            "module": "administration"
         },
         {
             "file": "app/assets/javascripts/admin/admin_functions.js",
-            "line": 360,
+            "line": 359,
             "description": "Initializer for jQueryUI autocomplete on users serch into Admin Notifications.",
             "itemtype": "method",
             "name": "initNotificationsAutocomplete",
             "class": "Autocomplete",
-            "module": "Administration"
+            "module": "administration"
         },
         {
             "file": "app/assets/javascripts/ajax_loader.js",
@@ -2667,6 +2706,15 @@
             "itemtype": "method",
             "name": "hideLoader",
             "class": "hideLoader",
+            "module": "ajax-loader"
+        },
+        {
+            "file": "app/assets/javascripts/browsers.js",
+            "line": 1,
+            "description": "bla bla bla",
+            "itemtype": "method",
+            "name": "browsersDocumentReady",
+            "class": "BrowsersDocumentReady",
             "module": "ajax-loader"
         },
         {
@@ -4316,6 +4364,15 @@
             "itemtype": "method",
             "name": "goToPrevSlideInLessonViewer",
             "class": "goToPrevSlideInLessonViewer",
+            "module": "LessonViewer"
+        },
+        {
+            "file": "app/assets/javascripts/locations.js",
+            "line": 1,
+            "description": "ba bla bla bla",
+            "itemtype": "method",
+            "name": "locationsDocumentReady",
+            "class": "LocationsDocumentReady",
             "module": "LessonViewer"
         },
         {

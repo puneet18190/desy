@@ -1,9 +1,11 @@
 YUI.add("yuidoc-meta", function(Y) {
    Y.YUIDoc = { meta: {
     "classes": [
+        "AdminDocumentReady",
         "Autocomplete",
+        "BrowsersDocumentReady",
         "Collapsed",
-        "DocumentReady",
+        "LocationsDocumentReady",
         "addDeleteItemToCurrentUrl",
         "addEmailToVirtualClassroomSendLessonLinkSelector",
         "addLesson",
@@ -155,7 +157,6 @@ YUI.add("yuidoc-meta", function(Y) {
         "validSeek"
     ],
     "modules": [
-        "Administration",
         "Buttons",
         "Dashboard",
         "Dialogs",
@@ -171,12 +172,13 @@ YUI.add("yuidoc-meta", function(Y) {
         "Times",
         "VideoEditor",
         "VirtualClassroom",
+        "administration",
         "ajax-loader"
     ],
     "allModules": [
         {
-            "displayName": "Administration",
-            "name": "Administration",
+            "displayName": "administration",
+            "name": "administration",
             "description": "Functions used in the Administration section: only for this section, it's generated a separate file which doesn't merge with the regular one. The only external module loaded is {{#crossLinkModule \"ajax-loader\"}}{{/crossLinkModule}}."
         },
         {

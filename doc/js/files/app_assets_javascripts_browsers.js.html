@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Administration - DESY</title>
+    <title>app&#x2F;assets&#x2F;javascripts&#x2F;browsers.js - DESY</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.8.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -55,9 +55,13 @@
             
                 <li><a href="..&#x2F;classes/addToTagsValue.html">addToTagsValue</a></li>
             
+                <li><a href="..&#x2F;classes/AdminDocumentReady.html">AdminDocumentReady</a></li>
+            
                 <li><a href="..&#x2F;classes/Autocomplete.html">Autocomplete</a></li>
             
                 <li><a href="..&#x2F;classes/bindLoader.html">bindLoader</a></li>
+            
+                <li><a href="..&#x2F;classes/BrowsersDocumentReady.html">BrowsersDocumentReady</a></li>
             
                 <li><a href="..&#x2F;classes/centerThis.html">centerThis</a></li>
             
@@ -90,8 +94,6 @@
                 <li><a href="..&#x2F;classes/disableTagsInputTooHigh.html">disableTagsInputTooHigh</a></li>
             
                 <li><a href="..&#x2F;classes/dislikeLesson.html">dislikeLesson</a></li>
-            
-                <li><a href="..&#x2F;classes/DocumentReady.html">DocumentReady</a></li>
             
                 <li><a href="..&#x2F;classes/enlightTextarea.html">enlightTextarea</a></li>
             
@@ -192,6 +194,8 @@
                 <li><a href="..&#x2F;classes/loadSlideAndAdhiacentInLessonEditor.html">loadSlideAndAdhiacentInLessonEditor</a></li>
             
                 <li><a href="..&#x2F;classes/loadSlideInLessonEditor.html">loadSlideInLessonEditor</a></li>
+            
+                <li><a href="..&#x2F;classes/LocationsDocumentReady.html">LocationsDocumentReady</a></li>
             
                 <li><a href="..&#x2F;classes/makeDraggable.html">makeDraggable</a></li>
             
@@ -349,7 +353,7 @@
 
             <ul id="api-modules" class="apis modules">
             
-                <li><a href="..&#x2F;modules/Administration.html">Administration</a></li>
+                <li><a href="..&#x2F;modules/administration.html">administration</a></li>
             
                 <li><a href="..&#x2F;modules/ajax-loader.html">ajax-loader</a></li>
             
@@ -418,61 +422,30 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>Administration Module</h1>
-<div class="box clearfix meta">
-    
+                        <h1 class="file-heading">File: app&#x2F;assets&#x2F;javascripts&#x2F;browsers.js</h1>
 
-    
+<div class="file">
+    <pre class="code prettyprint linenums">
+&#x2F;**
+bla bla bla
+@for BrowsersDocumentReady
+@method browsersDocumentReady
+**&#x2F;
+function browsersDocumentReady() {
+  (function(){
+    var name = $.grep(_.keys($.browser), function(el, i) {
+      return el !== &#x27;version&#x27;;
+    })[0];
+    if(name) {
+      $(&#x27;html&#x27;).addClass(name);
+    }
+    if($(&#x27;html&#x27;).hasClass(&#x27;msie&#x27;)) {
+      $(&#x27;._audio_editor_component ._double_slider .ui-slider-range&#x27;).css(&#x27;opacity&#x27;, 0.4);
+    }
+  })();
+}
 
-    
-        <div class="foundat">
-            Defined in: <a href="..&#x2F;files&#x2F;app_assets_javascripts_admin_admin_functions.js.html#l1"><code>app&#x2F;assets&#x2F;javascripts&#x2F;admin&#x2F;admin_functions.js:1</code></a>
-        </div>
-    
-
-    
-</div>
-
-
-
-<div class="box intro">
-    <p>Functions used in the Administration section: only for this section, it's generated a separate file which doesn't merge with the regular one. The only external module loaded is <a href="../modules/ajax-loader.html">ajax-loader</a>.</p>
-</div>
-
-
-
-<div class="yui3-g">
-    <div class="yui3-u-1-2">
-        
-            <p>This module provides the following classes:</p>
-
-            <ul class="module-classes">
-            
-                <li class="module-class">
-                    <a href="..&#x2F;classes/Autocomplete.html">
-                        Autocomplete
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="..&#x2F;classes/Collapsed.html">
-                        Collapsed
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="..&#x2F;classes/DocumentReady.html">
-                        DocumentReady
-                    </a>
-                </li>
-            
-            </ul>
-        
-    </div>
-
-    <div class="yui3-u-1-2">
-        
-    </div>
+    </pre>
 </div>
 
                     </div>

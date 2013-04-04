@@ -55,9 +55,13 @@
             
                 <li><a href="..&#x2F;classes/addToTagsValue.html">addToTagsValue</a></li>
             
+                <li><a href="..&#x2F;classes/AdminDocumentReady.html">AdminDocumentReady</a></li>
+            
                 <li><a href="..&#x2F;classes/Autocomplete.html">Autocomplete</a></li>
             
                 <li><a href="..&#x2F;classes/bindLoader.html">bindLoader</a></li>
+            
+                <li><a href="..&#x2F;classes/BrowsersDocumentReady.html">BrowsersDocumentReady</a></li>
             
                 <li><a href="..&#x2F;classes/centerThis.html">centerThis</a></li>
             
@@ -90,8 +94,6 @@
                 <li><a href="..&#x2F;classes/disableTagsInputTooHigh.html">disableTagsInputTooHigh</a></li>
             
                 <li><a href="..&#x2F;classes/dislikeLesson.html">dislikeLesson</a></li>
-            
-                <li><a href="..&#x2F;classes/DocumentReady.html">DocumentReady</a></li>
             
                 <li><a href="..&#x2F;classes/enlightTextarea.html">enlightTextarea</a></li>
             
@@ -192,6 +194,8 @@
                 <li><a href="..&#x2F;classes/loadSlideAndAdhiacentInLessonEditor.html">loadSlideAndAdhiacentInLessonEditor</a></li>
             
                 <li><a href="..&#x2F;classes/loadSlideInLessonEditor.html">loadSlideInLessonEditor</a></li>
+            
+                <li><a href="..&#x2F;classes/LocationsDocumentReady.html">LocationsDocumentReady</a></li>
             
                 <li><a href="..&#x2F;classes/makeDraggable.html">makeDraggable</a></li>
             
@@ -349,7 +353,7 @@
 
             <ul id="api-modules" class="apis modules">
             
-                <li><a href="..&#x2F;modules/Administration.html">Administration</a></li>
+                <li><a href="..&#x2F;modules/administration.html">administration</a></li>
             
                 <li><a href="..&#x2F;modules/ajax-loader.html">ajax-loader</a></li>
             
@@ -424,13 +428,13 @@
     <pre class="code prettyprint linenums">
 &#x2F;**
 Functions used in the Administration section: only for this section, it&#x27;s generated a separate file which doesn&#x27;t merge with the regular one. The only external module loaded is {{#crossLinkModule &quot;ajax-loader&quot;}}{{&#x2F;crossLinkModule}}.
-@module Administration
+@module administration
 **&#x2F;
 
 &#x2F;**
-Open a collapsed table row with extra content, tipically clicking on previous collapsable table row.
+Initializes the browser classes in the tag html. Same functionality as {{#crossLink &quot;BrowsersDocumentReady&#x2F;browsersDocumentReady:method&quot;}}{{&#x2F;crossLink}}.
 @method adminBrowsersDocumentReady
-@for DocumentReady
+@for AdminDocumentReady
 **&#x2F;
 function adminBrowsersDocumentReady() {
   if(!$.browser.msie) {
@@ -441,9 +445,9 @@ function adminBrowsersDocumentReady() {
 }
 
 &#x2F;**
-Open a collapsed table row with extra content, tipically clicking on previous collapsable table row.
+Initializes the effects of collapse and change date.
 @method adminEffectsDocumentReady
-@for DocumentReady
+@for AdminDocumentReady
 **&#x2F;
 function adminEffectsDocumentReady() {
   
@@ -506,9 +510,9 @@ function adminEffectsDocumentReady() {
 }
 
 &#x2F;**
-Open a collapsed table row with extra content, tipically clicking on previous collapsable table row.
+Initializes the locations filling. See similar {{#crossLink &quot;LocationsDocumentReady&#x2F;locationsDocumentReady:method&quot;}}{{&#x2F;crossLink}}.
 @method adminLocationsDocumentReady
-@for DocumentReady
+@for AdminDocumentReady
 **&#x2F;
 function adminLocationsDocumentReady() {
   $(&#x27;._select_locations_admin&#x27;).on(&#x27;change&#x27;, function() {
@@ -526,9 +530,9 @@ function adminLocationsDocumentReady() {
 }
 
 &#x2F;**
-Open a collapsed table row with extra content, tipically clicking on previous collapsable table row.
+Initializes actions for less important tables, such as Tag, Subject, SchoolLevel 
 @method adminMiscellaneaDocumentReady
-@for DocumentReady
+@for AdminDocumentReady
 **&#x2F;
 function adminMiscellaneaDocumentReady() {
   
@@ -564,9 +568,9 @@ function adminMiscellaneaDocumentReady() {
 }
 
 &#x2F;**
-Open a collapsed table row with extra content, tipically clicking on previous collapsable table row.
+Initializes effects for MediaElement.
 @method adminMediaElementsDocumentReady
-@for DocumentReady
+@for AdminDocumentReady
 **&#x2F;
 function adminMediaElementsDocumentReady() {
   
@@ -639,9 +643,9 @@ function adminMediaElementsDocumentReady() {
 }
 
 &#x2F;**
-Open a collapsed table row with extra content, tipically clicking on previous collapsable table row.
+Initializes effects for User.
 @method adminUsersDocumentReady
-@for DocumentReady
+@for AdminDocumentReady
 **&#x2F;
 function adminUsersDocumentReady() {
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._active_status&#x27;, function(e) {
@@ -659,9 +663,9 @@ function adminUsersDocumentReady() {
 }
 
 &#x2F;**
-Open a collapsed table row with extra content, tipically clicking on previous collapsable table row.
+Initializes effects for the administration search engin.
 @method adminSearchDocumentReady
-@for DocumentReady
+@for AdminDocumentReady
 **&#x2F;
 function adminSearchDocumentReady() {
   
@@ -725,9 +729,9 @@ function adminSearchDocumentReady() {
 }
 
 &#x2F;**
-Open a collapsed table row with extra content, tipically clicking on previous collapsable table row.
+Initializes effects for sorting in administration search engine
 @method adminSortingDocumentReady
-@for DocumentReady
+@for AdminDocumentReady
 **&#x2F;
 function adminSortingDocumentReady() {
   
@@ -765,8 +769,7 @@ function adminSortingDocumentReady() {
 Open a collapsed table row with extra content, tipically clicking on previous collapsable table row.
 @method openAndLoadNextTr
 @for Collapsed
-@param prevTr {Object} bla bla bla bla eccoci qua
-@param hdasgf {Object} bla bla bla bla eccoci dgdsgdsg
+@param prevTr {Object} the previous element in the table
 **&#x2F;
 function openAndLoadNextTr(prevTr) {
   var next_tr = prevTr.next(&#x27;tr.collapsed&#x27;);
