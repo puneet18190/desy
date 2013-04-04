@@ -4,7 +4,8 @@
 * 
 * @module LessonEditor
 */
-$(document).ready(function() {
+
+function lessonEditorDocumentReady() {
   
   $('html.lesson-editor-layout ul#slides').css('margin-top', ((($(window).height() - 590) / 2) - 40) + 'px');
   $('html.lesson-editor-layout ul#slides.new').css('margin-top', ((($(window).height() - 590) / 2)) + 'px');
@@ -344,7 +345,35 @@ $(document).ready(function() {
     }
   });
   
-});
+  $('body').on('focus', '#slides._new #title', function() {
+    if($('#slides._new #title_placeholder').val() == '') {
+      $(this).val('');
+      $('#slides._new #title_placeholder').attr('value', '0');
+    }
+  });
+  
+  $('body').on('focus', '#slides._new #description', function() {
+    if($('#slides._new #description_placeholder').val() == '') {
+      $(this).val('');
+      $('#slides._new #description_placeholder').attr('value', '0');
+    }
+  });
+  
+  $('body').on('focus', '#slides._update #title', function() {
+    if($('#slides._update #title_placeholder').val() == '') {
+      $(this).val('');
+      $('#slides._update #title_placeholder').attr('value', '0');
+    }
+  });
+  
+  $('body').on('focus', '#slides._update #description', function() {
+    if($('#slides._update #description_placeholder').val() == '') {
+      $(this).val('');
+      $('#slides._update #description_placeholder').attr('value', '0');
+    }
+  });
+  
+}
 
 /**
 * Update top scrollPane when moving to another slide

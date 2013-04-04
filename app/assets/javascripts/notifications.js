@@ -4,6 +4,49 @@
 * @module Notifications
 */
 
+function notificationsDocumentReady() {
+  
+  initializeNotifications();
+  initializeHelp();
+  
+  $('#tooltip_content .scroll-pane').bind('jsp-arrow-change', function(event, isAtTop, isAtBottom, isAtLeft, isAtRight) {
+    var tot_number = $('#tooltip_content').data('tot-number');
+    var offset = $('#tooltip_content').data('offset');
+    if(isAtBottom && (offset < tot_number)) {
+      $.get('/notifications/get_new_block?offset=' + offset);
+    }
+  });
+  
+  $('body').on('click', '._destroy_notification', function() {
+    var my_id = $(this).data('param');
+    var offset = $('#tooltip_content').data('offset');
+    $.post('/notifications/' + my_id + '/destroy?offset=' + offset);
+  });
+  
+  $('body').on('click', '#lesson-notification ._no', function(e) {
+    e.preventDefault();
+    closePopUp('lesson-notification');
+    var lesson_id = $('#lesson-notification').data('lesson-id');
+    $('#' + lesson_id).removeClass('_lesson_change_not_notified');
+    $('#' + lesson_id + ' .unpublish').attr('title', $('#popup_captions_container').data('title-unpublish'));
+    var id = lesson_id.split('_');
+    id = id[id.length - 1];
+    $.ajax({
+      type: 'post',
+      url: '/lessons/' + id + '/dont_notify_modification',
+      beforeSend: unbindLoader()
+    }).always(bindLoader);
+  });
+  
+  $('body').on('focus', '#lesson-notification #lesson_notify_modification_details', function() {
+    if($('#lesson-notification #lesson_notify_modification_details_placeholder').val() === '') {
+      $(this).val('');
+      $('#lesson-notification #lesson_notify_modification_details_placeholder').val('0');
+    }
+  });
+  
+}
+
 /**
 * Checks if any notification is available and initialize unread notification counter.
 * Handles notifications show/hide effects.

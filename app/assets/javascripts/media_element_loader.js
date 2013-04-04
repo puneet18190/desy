@@ -4,6 +4,48 @@
 * @module MediaElementLoader
 */
 
+function mediaElementLoaderDocumentReady() {
+  
+  $('body').on('click', '._load_media_element', function(e) {
+    e.preventDefault();
+    showLoadMediaElementPopUp();
+  });
+  
+  $('body').on('change', 'input#new_media_element_input', function() {
+    var file_name = $(this).val().replace("C:\\fakepath\\", "");
+    if(file_name.length > 20){
+      file_name = file_name.substring(0,20)+"...";
+    }
+    $('#media_element_media_show').text(file_name);
+  });
+  
+  $('body').on('click', '#load-media-element ._close', function() {
+    closePopUp('load-media-element');
+  })
+
+  $('body').on('click', '#new_media_element_submit', function() {
+    $('input,textarea').removeClass('form_error');
+    $('.barraLoading img').show();
+    $('.barraLoading img').attr('src', '/assets/loadingBar.gif');
+    $(this).closest('#new_media_element').submit();
+  });
+  
+  $('body').on('focus', '#load-media-element #title', function() {
+    if($('#load-media-element #title_placeholder').val() == '') {
+      $(this).attr('value', '');
+      $('#load-media-element #title_placeholder').attr('value', '0');
+    }
+  });
+  
+  $('body').on('focus', '#load-media-element #description', function() {
+    if($('#load-media-element #description_placeholder').val() == '') {
+      $(this).attr('value', '');
+      $('#load-media-element #description_placeholder').attr('value', '0');
+    }
+  });
+  
+}
+
 /**
 * Set iframe as target for form submit, added a callback function to control 413 status error.
 *

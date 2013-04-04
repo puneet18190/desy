@@ -1,3 +1,21 @@
+function mediaElementEditorDocumentReady() {
+  
+  $('body').on('focus', '#form_info_new_media_element_in_editor #new_title', function() {
+    if($('#form_info_new_media_element_in_editor #new_title_placeholder').val() == '') {
+      $(this).attr('value', '');
+      $('#form_info_new_media_element_in_editor #new_title_placeholder').attr('value', '0');
+    }
+  });
+  
+  $('body').on('focus', '#form_info_new_media_element_in_editor #new_description', function() {
+    if($('#form_info_new_media_element_in_editor #new_description_placeholder').val() == '') {
+      $(this).attr('value', '');
+      $('#form_info_new_media_element_in_editor #new_description_placeholder').attr('value', '0');
+    }
+  });
+  
+}
+
 function getNormalizedPositionTimelineHorizontalScrollPane(jscrollpane_id, component_width, component_position, components_visible_number) {
   var how_many_hidden_to_left = getHowManyComponentsHiddenToLeftTimelineHorizontalScrollPane(jscrollpane_id, component_width);
   var resp = how_many_hidden_to_left * component_width;

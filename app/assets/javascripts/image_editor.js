@@ -4,7 +4,17 @@
 * 
 * @module ImageEditor
 */
-$(document).ready(function() {
+
+function imageEditorDocumentReady() {
+  
+  $('.image_editor_only #form_info_new_media_element_in_editor, .image_editor_only #form_info_update_media_element_in_editor').css("left",($(window).width()/2)-495);
+  $('#image_gallery_for_image_editor ._select_image_from_gallery').addClass('_add_image_to_image_editor');
+  $('#image_gallery_for_image_editor .gallery-header').css("left",($(window).width()/2)-420);
+  $('body').on('click', '._add_image_to_image_editor', function() {
+    var parser = document.createElement('a');
+    parser.href = $('._exit_url').attr('href');
+    window.location = '/images/' + $(this).data('image-id') + '/edit?back=' + encodeURIComponent(parser.pathname+parser.search+parser.hash);
+  });
   
   $('#cropped_image').imgAreaSelect({
     hide: true,
@@ -239,7 +249,7 @@ $(document).ready(function() {
     $('#image_editor #form_info_update_media_element_in_editor').hide();
   });
   
-});
+}
 
 /**
 * Sets current textarea to active.
