@@ -482,8 +482,8 @@ function showConfirmPopUp(title, content, msg_ok, msg_no, callback_ok, callback_
       resizable: false,
       draggable: false,
       width: 485,
-      show: &quot;fade&quot;,
-      hide: {effect: &quot;fade&quot;},
+      show: &#x27;fade&#x27;,
+      hide: {effect: &#x27;fade&#x27;},
       buttons: dialog_buttons
     });
   }
@@ -517,8 +517,8 @@ function showRestoreCacheMediaElementEditorPopUp(callback_ok, callback_no) {
       resizable: false,
       draggable: false,
       width: 520,
-      show: &quot;fade&quot;,
-      hide: {effect: &quot;fade&quot;},
+      show: &#x27;fade&#x27;,
+      hide: {effect: &#x27;fade&#x27;},
       buttons: dialog_buttons,
       open: function(event, ui) {
         var overlay = obj.parent().prev();
@@ -558,9 +558,9 @@ function showImageInGalleryPopUp(image_id, callback) {
       width: my_width,
       resizable: false,
       draggable: false,
-      show: &quot;fade&quot;,
+      show: &#x27;fade&#x27;,
       hide: {
-        effect: &quot;fade&quot;,
+        effect: &#x27;fade&#x27;,
         duration: 500
       },
       open: function() {
@@ -597,9 +597,9 @@ function showVideoInGalleryPopUp(video_id) {
       draggable: false,
       width: 446,
       height: 360,
-      show: &quot;fade&quot;,
+      show: &#x27;fade&#x27;,
       hide: {
-        effect: &quot;fade&quot;,
+        effect: &#x27;fade&#x27;,
         duration: 500
       },
       open: function() {
@@ -670,8 +670,8 @@ function showTimedPopUp(content, id) {
       resizable: false,
       draggable: false,
       width: 485,
-      show: &quot;fade&quot;,
-      hide: {effect: &quot;fade&quot;},
+      show: &#x27;fade&#x27;,
+      hide: {effect: &#x27;fade&#x27;},
       open: function(event, ui) {
         setTimeout(function() {
           closePopUp(id);
@@ -709,8 +709,8 @@ function showLessonNotificationPopUp(lesson_id) {
       draggable: false,
       width: 710,
       height: 300,
-      hide: {effect: &quot;fade&quot;},
-      show: &quot;fade&quot;,
+      hide: {effect: &#x27;fade&#x27;},
+      show: &#x27;fade&#x27;,
       open: function() {
         $(&#x27;#lesson-notification #lesson_notify_modification_details&#x27;).blur();
         $(&#x27;#lesson-notification #lesson_notify_modification_details&#x27;).val($(&#x27;#lesson-notification&#x27;).data(&#x27;message-placeholder&#x27;));
@@ -781,8 +781,8 @@ function showMediaElementInfoPopUp(media_element_id) {
         resizable: false,
         draggable: false,
         width: 874,
-        show: &quot;fade&quot;,
-        hide: {effect: &quot;fade&quot;},
+        show: &#x27;fade&#x27;,
+        hide: {effect: &#x27;fade&#x27;},
         open: function() {
           customOverlayClose();
         },
@@ -831,8 +831,8 @@ function showSendLessonLinkPopUp(lesson_id) {
       draggable: false,
       width: 690,
       height: 410,
-      show: &quot;fade&quot;,
-      hide: {effect: &quot;fade&quot;},
+      show: &#x27;fade&#x27;,
+      hide: {effect: &#x27;fade&#x27;},
       beforeClose: function() {
         $(&#x27;#virtual_classroom_send_link_mails_box&#x27;).data(&#x27;jsp&#x27;).destroy();
       },
@@ -872,8 +872,8 @@ function showVirtualClassroomQuickSelectPopUp(content) {
       resizable: false,
       draggable: false,
       width: 920,
-      show: &quot;fade&quot;,
-      hide: {effect: &quot;fade&quot;},
+      show: &#x27;fade&#x27;,
+      hide: {effect: &#x27;fade&#x27;},
       open: function(event, ui) {
         var overlay = obj.parent().prev();
         overlay.addClass(&#x27;dialog_opaco&#x27;);

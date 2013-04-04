@@ -86,8 +86,8 @@ function showConfirmPopUp(title, content, msg_ok, msg_no, callback_ok, callback_
       resizable: false,
       draggable: false,
       width: 485,
-      show: "fade",
-      hide: {effect: "fade"},
+      show: 'fade',
+      hide: {effect: 'fade'},
       buttons: dialog_buttons
     });
   }
@@ -121,8 +121,8 @@ function showRestoreCacheMediaElementEditorPopUp(callback_ok, callback_no) {
       resizable: false,
       draggable: false,
       width: 520,
-      show: "fade",
-      hide: {effect: "fade"},
+      show: 'fade',
+      hide: {effect: 'fade'},
       buttons: dialog_buttons,
       open: function(event, ui) {
         var overlay = obj.parent().prev();
@@ -162,9 +162,9 @@ function showImageInGalleryPopUp(image_id, callback) {
       width: my_width,
       resizable: false,
       draggable: false,
-      show: "fade",
+      show: 'fade',
       hide: {
-        effect: "fade",
+        effect: 'fade',
         duration: 500
       },
       open: function() {
@@ -201,9 +201,9 @@ function showVideoInGalleryPopUp(video_id) {
       draggable: false,
       width: 446,
       height: 360,
-      show: "fade",
+      show: 'fade',
       hide: {
-        effect: "fade",
+        effect: 'fade',
         duration: 500
       },
       open: function() {
@@ -274,8 +274,8 @@ function showTimedPopUp(content, id) {
       resizable: false,
       draggable: false,
       width: 485,
-      show: "fade",
-      hide: {effect: "fade"},
+      show: 'fade',
+      hide: {effect: 'fade'},
       open: function(event, ui) {
         setTimeout(function() {
           closePopUp(id);
@@ -313,8 +313,8 @@ function showLessonNotificationPopUp(lesson_id) {
       draggable: false,
       width: 710,
       height: 300,
-      hide: {effect: "fade"},
-      show: "fade",
+      hide: {effect: 'fade'},
+      show: 'fade',
       open: function() {
         $('#lesson-notification #lesson_notify_modification_details').blur();
         $('#lesson-notification #lesson_notify_modification_details').val($('#lesson-notification').data('message-placeholder'));
@@ -385,8 +385,8 @@ function showMediaElementInfoPopUp(media_element_id) {
         resizable: false,
         draggable: false,
         width: 874,
-        show: "fade",
-        hide: {effect: "fade"},
+        show: 'fade',
+        hide: {effect: 'fade'},
         open: function() {
           customOverlayClose();
         },
@@ -435,8 +435,8 @@ function showSendLessonLinkPopUp(lesson_id) {
       draggable: false,
       width: 690,
       height: 410,
-      show: "fade",
-      hide: {effect: "fade"},
+      show: 'fade',
+      hide: {effect: 'fade'},
       beforeClose: function() {
         $('#virtual_classroom_send_link_mails_box').data('jsp').destroy();
       },
@@ -476,8 +476,8 @@ function showVirtualClassroomQuickSelectPopUp(content) {
       resizable: false,
       draggable: false,
       width: 920,
-      show: "fade",
-      hide: {effect: "fade"},
+      show: 'fade',
+      hide: {effect: 'fade'},
       open: function(event, ui) {
         var overlay = obj.parent().prev();
         overlay.addClass('dialog_opaco');
