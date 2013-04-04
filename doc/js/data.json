@@ -6,8 +6,8 @@
         "url": "http://desy.morganspa.com/"
     },
     "files": {
-        "app/assets/javascripts/admin/admin_functions.js": {
-            "name": "app/assets/javascripts/admin/admin_functions.js",
+        "app/assets/javascripts/admin/functions.js": {
+            "name": "app/assets/javascripts/admin/functions.js",
             "modules": {
                 "administration": 1
             },
@@ -391,7 +391,7 @@
             },
             "namespaces": {},
             "tag": "module",
-            "file": "app/assets/javascripts/admin/admin_functions.js",
+            "file": "app/assets/javascripts/admin/functions.js",
             "line": 1,
             "description": "Functions used in the Administration section: only for this section, it's generated a separate file which doesn't merge with the regular one. The only external module loaded is {{#crossLinkModule \"ajax-loader\"}}{{/crossLinkModule}}."
         },
@@ -2635,7 +2635,7 @@
     },
     "classitems": [
         {
-            "file": "app/assets/javascripts/admin/admin_functions.js",
+            "file": "app/assets/javascripts/admin/functions.js",
             "line": 6,
             "description": "Initializes the browser classes in the tag html. Same functionality as {{#crossLink \"BrowsersDocumentReady/browsersDocumentReady:method\"}}{{/crossLink}}.",
             "itemtype": "method",
@@ -2644,7 +2644,7 @@
             "module": "administration"
         },
         {
-            "file": "app/assets/javascripts/admin/admin_functions.js",
+            "file": "app/assets/javascripts/admin/functions.js",
             "line": 19,
             "description": "Initializes the effects of collapse and change date.",
             "itemtype": "method",
@@ -2653,7 +2653,7 @@
             "module": "administration"
         },
         {
-            "file": "app/assets/javascripts/admin/admin_functions.js",
+            "file": "app/assets/javascripts/admin/functions.js",
             "line": 84,
             "description": "Initializes the locations filling. See similar {{#crossLink \"LocationsDocumentReady/locationsDocumentReady:method\"}}{{/crossLink}}.",
             "itemtype": "method",
@@ -2662,7 +2662,7 @@
             "module": "administration"
         },
         {
-            "file": "app/assets/javascripts/admin/admin_functions.js",
+            "file": "app/assets/javascripts/admin/functions.js",
             "line": 104,
             "description": "Initializes actions for less important tables, such as Tag, Subject, SchoolLevel",
             "itemtype": "method",
@@ -2671,7 +2671,7 @@
             "module": "administration"
         },
         {
-            "file": "app/assets/javascripts/admin/admin_functions.js",
+            "file": "app/assets/javascripts/admin/functions.js",
             "line": 142,
             "description": "Initializes effects for MediaElement.",
             "itemtype": "method",
@@ -2680,7 +2680,7 @@
             "module": "administration"
         },
         {
-            "file": "app/assets/javascripts/admin/admin_functions.js",
+            "file": "app/assets/javascripts/admin/functions.js",
             "line": 217,
             "description": "Initializes effects for User.",
             "itemtype": "method",
@@ -2689,7 +2689,7 @@
             "module": "administration"
         },
         {
-            "file": "app/assets/javascripts/admin/admin_functions.js",
+            "file": "app/assets/javascripts/admin/functions.js",
             "line": 237,
             "description": "Initializes effects for the administration search engin.",
             "itemtype": "method",
@@ -2698,7 +2698,7 @@
             "module": "administration"
         },
         {
-            "file": "app/assets/javascripts/admin/admin_functions.js",
+            "file": "app/assets/javascripts/admin/functions.js",
             "line": 303,
             "description": "Initializes effects for sorting in administration search engine",
             "itemtype": "method",
@@ -2707,7 +2707,7 @@
             "module": "administration"
         },
         {
-            "file": "app/assets/javascripts/admin/admin_functions.js",
+            "file": "app/assets/javascripts/admin/functions.js",
             "line": 340,
             "description": "Open a collapsed table row with extra content, tipically clicking on previous collapsable table row.",
             "itemtype": "method",
@@ -2723,7 +2723,7 @@
             "module": "administration"
         },
         {
-            "file": "app/assets/javascripts/admin/admin_functions.js",
+            "file": "app/assets/javascripts/admin/functions.js",
             "line": 359,
             "description": "Initializer for jQueryUI autocomplete on users serch into Admin Notifications.",
             "itemtype": "method",
