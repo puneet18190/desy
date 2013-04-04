@@ -123,10 +123,10 @@
             },
             "classes": {},
             "fors": {
-                "updateURLParameter": 1,
-                "removeURLParameter": 1,
-                "centerThisInContainer": 1,
-                "centerThis": 1
+                "GeneralCentering": 1,
+                "GeneralDocumentReady": 1,
+                "GeneralMiscellanea": 1,
+                "GeneralUrls": 1
             },
             "namespaces": {}
         },
@@ -523,16 +523,16 @@
             "name": "general",
             "submodules": {},
             "classes": {
-                "updateURLParameter": 1,
-                "removeURLParameter": 1,
-                "centerThisInContainer": 1,
-                "centerThis": 1
+                "GeneralCentering": 1,
+                "GeneralDocumentReady": 1,
+                "GeneralMiscellanea": 1,
+                "GeneralUrls": 1
             },
             "fors": {
-                "updateURLParameter": 1,
-                "removeURLParameter": 1,
-                "centerThisInContainer": 1,
-                "centerThis": 1
+                "GeneralCentering": 1,
+                "GeneralDocumentReady": 1,
+                "GeneralMiscellanea": 1,
+                "GeneralUrls": 1
             },
             "namespaces": {},
             "tag": "module",
@@ -1227,9 +1227,9 @@
             "module": "galleries",
             "namespace": ""
         },
-        "updateURLParameter": {
-            "name": "updateURLParameter",
-            "shortname": "updateURLParameter",
+        "GeneralCentering": {
+            "name": "GeneralCentering",
+            "shortname": "GeneralCentering",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -1238,9 +1238,9 @@
             "module": "general",
             "namespace": ""
         },
-        "removeURLParameter": {
-            "name": "removeURLParameter",
-            "shortname": "removeURLParameter",
+        "GeneralDocumentReady": {
+            "name": "GeneralDocumentReady",
+            "shortname": "GeneralDocumentReady",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -1249,9 +1249,9 @@
             "module": "general",
             "namespace": ""
         },
-        "centerThisInContainer": {
-            "name": "centerThisInContainer",
-            "shortname": "centerThisInContainer",
+        "GeneralMiscellanea": {
+            "name": "GeneralMiscellanea",
+            "shortname": "GeneralMiscellanea",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -1260,9 +1260,9 @@
             "module": "general",
             "namespace": ""
         },
-        "centerThis": {
-            "name": "centerThis",
-            "shortname": "centerThis",
+        "GeneralUrls": {
+            "name": "GeneralUrls",
+            "shortname": "GeneralUrls",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -3772,7 +3772,159 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 259,
+            "line": 10,
+            "description": "Center a div into current window",
+            "itemtype": "method",
+            "name": "centerThis",
+            "params": [
+                {
+                    "name": "div",
+                    "description": "div selector to center, class or id",
+                    "type": "String"
+                }
+            ],
+            "class": "GeneralCentering",
+            "module": "general"
+        },
+        {
+            "file": "app/assets/javascripts/general.js",
+            "line": 24,
+            "description": "Center a div into a given container",
+            "itemtype": "method",
+            "name": "centerThisInContainer",
+            "params": [
+                {
+                    "name": "div",
+                    "description": "div selector to center, class or id",
+                    "type": "String"
+                },
+                {
+                    "name": "container",
+                    "description": "container selector to center div into, class or id",
+                    "type": "String"
+                }
+            ],
+            "class": "GeneralCentering",
+            "module": "general"
+        },
+        {
+            "file": "app/assets/javascripts/general.js",
+            "line": 43,
+            "description": "bla bla bla",
+            "itemtype": "method",
+            "name": "defaultValueJavaScriptAnimationsDocumentReady",
+            "class": "GeneralDocumentReady",
+            "module": "general"
+        },
+        {
+            "file": "app/assets/javascripts/general.js",
+            "line": 60,
+            "description": "bla bla bla",
+            "itemtype": "method",
+            "name": "expandedItemsDocumentReady",
+            "class": "GeneralDocumentReady",
+            "module": "general"
+        },
+        {
+            "file": "app/assets/javascripts/general.js",
+            "line": 123,
+            "description": "bla bla bla",
+            "itemtype": "method",
+            "name": "filtersDocumentReady",
+            "class": "GeneralDocumentReady",
+            "module": "general"
+        },
+        {
+            "file": "app/assets/javascripts/general.js",
+            "line": 146,
+            "description": "bla bla bla",
+            "itemtype": "method",
+            "name": "formsDocumentReady",
+            "class": "GeneralDocumentReady",
+            "module": "general"
+        },
+        {
+            "file": "app/assets/javascripts/general.js",
+            "line": 215,
+            "description": "bla bla bla",
+            "itemtype": "method",
+            "name": "generalWindowResizeDocumentReady",
+            "class": "GeneralDocumentReady",
+            "module": "general"
+        },
+        {
+            "file": "app/assets/javascripts/general.js",
+            "line": 236,
+            "description": "bla bla bla",
+            "itemtype": "method",
+            "name": "javaScriptAnimationsDocumentReady",
+            "class": "GeneralDocumentReady",
+            "module": "general"
+        },
+        {
+            "file": "app/assets/javascripts/general.js",
+            "line": 270,
+            "description": "bla bla bla",
+            "itemtype": "method",
+            "name": "getMediaElementsFormat",
+            "class": "GeneralMiscellanea",
+            "module": "general"
+        },
+        {
+            "file": "app/assets/javascripts/general.js",
+            "line": 283,
+            "description": "bla bla bla",
+            "itemtype": "method",
+            "name": "secondsToDateString",
+            "class": "GeneralMiscellanea",
+            "module": "general"
+        },
+        {
+            "file": "app/assets/javascripts/general.js",
+            "line": 314,
+            "description": "bla bla bla",
+            "itemtype": "method",
+            "name": "getCompleteMediaElementsUrlWithoutFilter",
+            "class": "GeneralUrls",
+            "module": "general"
+        },
+        {
+            "file": "app/assets/javascripts/general.js",
+            "line": 325,
+            "description": "bla bla bla",
+            "itemtype": "method",
+            "name": "getCompleteMediaElementsUrlWithoutForPage",
+            "class": "GeneralUrls",
+            "module": "general"
+        },
+        {
+            "file": "app/assets/javascripts/general.js",
+            "line": 336,
+            "description": "Remove a param from url",
+            "itemtype": "method",
+            "name": "removeURLParameter",
+            "params": [
+                {
+                    "name": "url",
+                    "description": "starting url",
+                    "type": "String"
+                },
+                {
+                    "name": "param",
+                    "description": "param to remove",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "update url",
+                "type": "String"
+            },
+            "class": "GeneralUrls",
+            "module": "general"
+        },
+        {
+            "file": "app/assets/javascripts/general.js",
+            "line": 362,
             "description": "Add new parameters to an url",
             "itemtype": "method",
             "name": "updateURLParameter",
@@ -3797,75 +3949,7 @@
                 "description": "updated url",
                 "type": "String"
             },
-            "class": "updateURLParameter",
-            "module": "general"
-        },
-        {
-            "file": "app/assets/javascripts/general.js",
-            "line": 288,
-            "description": "Remove a param from url",
-            "itemtype": "method",
-            "name": "removeURLParameter",
-            "params": [
-                {
-                    "name": "url",
-                    "description": "starting url",
-                    "type": "String"
-                },
-                {
-                    "name": "param",
-                    "description": "param to remove",
-                    "type": "String"
-                }
-            ],
-            "return": {
-                "description": "update url",
-                "type": "String"
-            },
-            "class": "removeURLParameter",
-            "module": "general"
-        },
-        {
-            "file": "app/assets/javascripts/general.js",
-            "line": 315,
-            "description": "Center a div into a given container",
-            "itemtype": "method",
-            "name": "centerThisInContainer",
-            "params": [
-                {
-                    "name": "div",
-                    "description": "div selector to center, class or id",
-                    "type": "String"
-                },
-                {
-                    "name": "container",
-                    "description": "container selector to center div into, class or id",
-                    "type": "String"
-                }
-            ],
-            "example": [
-                "\n     centerThisInContainer('._saved','#image_wrapper');"
-            ],
-            "class": "centerThisInContainer",
-            "module": "general"
-        },
-        {
-            "file": "app/assets/javascripts/general.js",
-            "line": 333,
-            "description": "Center a div into current window",
-            "itemtype": "method",
-            "name": "centerThis",
-            "params": [
-                {
-                    "name": "div",
-                    "description": "div selector to center, class or id",
-                    "type": "String"
-                }
-            ],
-            "example": [
-                "\n     centerThis(\"._slide_error\");"
-            ],
-            "class": "centerThis",
+            "class": "GeneralUrls",
             "module": "general"
         },
         {

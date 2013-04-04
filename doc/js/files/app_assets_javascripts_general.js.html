@@ -85,10 +85,6 @@
             
                 <li><a href="..&#x2F;classes/ButtonsMediaElement.html">ButtonsMediaElement</a></li>
             
-                <li><a href="..&#x2F;classes/centerThis.html">centerThis</a></li>
-            
-                <li><a href="..&#x2F;classes/centerThisInContainer.html">centerThisInContainer</a></li>
-            
                 <li><a href="..&#x2F;classes/checkNoTagDuplicates.html">checkNoTagDuplicates</a></li>
             
                 <li><a href="..&#x2F;classes/closeGenericVideoComponentCutter.html">closeGenericVideoComponentCutter</a></li>
@@ -122,6 +118,14 @@
                 <li><a href="..&#x2F;classes/GalleriesDocumentReady.html">GalleriesDocumentReady</a></li>
             
                 <li><a href="..&#x2F;classes/GalleriesInitializers.html">GalleriesInitializers</a></li>
+            
+                <li><a href="..&#x2F;classes/GeneralCentering.html">GeneralCentering</a></li>
+            
+                <li><a href="..&#x2F;classes/GeneralDocumentReady.html">GeneralDocumentReady</a></li>
+            
+                <li><a href="..&#x2F;classes/GeneralMiscellanea.html">GeneralMiscellanea</a></li>
+            
+                <li><a href="..&#x2F;classes/GeneralUrls.html">GeneralUrls</a></li>
             
                 <li><a href="..&#x2F;classes/getDragPosition.html">getDragPosition</a></li>
             
@@ -219,8 +223,6 @@
             
                 <li><a href="..&#x2F;classes/removeGalleryInLessonEditor.html">removeGalleryInLessonEditor</a></li>
             
-                <li><a href="..&#x2F;classes/removeURLParameter.html">removeURLParameter</a></li>
-            
                 <li><a href="..&#x2F;classes/resetImageEditorCrop.html">resetImageEditorCrop</a></li>
             
                 <li><a href="..&#x2F;classes/resetImageEditorOperationsChoice.html">resetImageEditorOperationsChoice</a></li>
@@ -290,8 +292,6 @@
                 <li><a href="..&#x2F;classes/tinyMceCallbacks.html">tinyMceCallbacks</a></li>
             
                 <li><a href="..&#x2F;classes/tinyMceKeyDownCallbacks.html">tinyMceKeyDownCallbacks</a></li>
-            
-                <li><a href="..&#x2F;classes/updateURLParameter.html">updateURLParameter</a></li>
             
                 <li><a href="..&#x2F;classes/uploadDone.html">uploadDone</a></li>
             
@@ -393,8 +393,66 @@ Generic shared javascript functions
 @module general
 **&#x2F;
 
+
+
+
+
+&#x2F;**
+Center a div into current window
+@method centerThis
+@for GeneralCentering
+@param div {String} div selector to center, class or id
+**&#x2F;
+function centerThis(div) {
+  var winH = $(window).height();
+  var winW = $(window).width();
+  var centerDiv = $(div);
+  centerDiv.css(&#x27;top&#x27;, winH&#x2F;2-centerDiv.height()&#x2F;2);
+  centerDiv.css(&#x27;left&#x27;, winW&#x2F;2-centerDiv.width()&#x2F;2);
+}
+
+&#x2F;**
+Center a div into a given container
+@method centerThisInContainer
+@for GeneralCentering
+@param div {String} div selector to center, class or id
+@param container {String} container selector to center div into, class or id
+**&#x2F;
+function centerThisInContainer(div,container) {
+  var contH = $(container).height();
+  var contW = $(container).width();
+  var centerDiv = $(div);
+  centerDiv.css(&#x27;top&#x27;, (contH&#x2F;2-centerDiv.height()&#x2F;2)+$(container).position().top);
+  centerDiv.css(&#x27;left&#x27;, (contW&#x2F;2-centerDiv.width()&#x2F;2)+$(container).position().left);
+}
+
+
+
+
+
+&#x2F;**
+bla bla bla
+@method defaultValueJavaScriptAnimationsDocumentReady
+@for GeneralDocumentReady
+**&#x2F;
+function defaultValueJavaScriptAnimationsDocumentReady() {
+  $(&#x27;._which_item_to_search_switch[checked]&#x27;).first().attr(&#x27;checked&#x27;, &#x27;checked&#x27;);
+  $(&#x27;#for_page_media_elements option[selected]&#x27;).first().attr(&#x27;selected&#x27;, &#x27;selected&#x27;);
+  $(&#x27;#filter_media_elements option[selected]&#x27;).first().attr(&#x27;selected&#x27;, &#x27;selected&#x27;);
+  $(&#x27;#filter_lessons option[selected]&#x27;).first().attr(&#x27;selected&#x27;, &#x27;selected&#x27;);
+  $(&#x27;#filter_search_lessons option[selected]&#x27;).first().attr(&#x27;selected&#x27;, &#x27;selected&#x27;);
+  $(&#x27;#filter_search_media_elements option[selected]&#x27;).first().attr(&#x27;selected&#x27;, &#x27;selected&#x27;);
+  $(&#x27;#filter_search_lessons_subject option[selected]&#x27;).first().attr(&#x27;selected&#x27;, &#x27;selected&#x27;);
+  $(&#x27;._order_lessons_radio_input[checked]&#x27;).first().attr(&#x27;checked&#x27;, &#x27;checked&#x27;);
+  $(&#x27;._order_media_elements_radio_input[checked]&#x27;).first().attr(&#x27;checked&#x27;, &#x27;checked&#x27;);
+}
+
+&#x2F;**
+bla bla bla
+@method expandedItemsDocumentReady
+@for GeneralDocumentReady
+**&#x2F;
 function expandedItemsDocumentReady() {
-  
   $(&#x27;body&#x27;).on(&#x27;click&#x27;,&#x27;._lesson_compact&#x27;, function() {
     if(!$(this).parent().hasClass(&#x27;_disabled&#x27;)) {
       var my_id = $(this).parent().attr(&#x27;id&#x27;);
@@ -412,7 +470,6 @@ function expandedItemsDocumentReady() {
       }
     }
   });
-  
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#display_expanded_media_elements&#x27;, function() {
     if(!$(this).hasClass(&#x27;current&#x27;)) {
       $.ajax({
@@ -421,7 +478,6 @@ function expandedItemsDocumentReady() {
       });
     }
   });
-  
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#display_compact_media_elements&#x27;, function() {
     if(!$(this).hasClass(&#x27;current&#x27;)) {
       $.ajax({
@@ -430,12 +486,10 @@ function expandedItemsDocumentReady() {
       });
     }
   });
-  
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._close_media_element_preview_popup&#x27;, function() {
     var param = $(this).data(&#x27;param&#x27;);
     closePopUp(&#x27;dialog-media-element-&#x27; + param);
   });
-  
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._change_info_container ._cancel, ._change_info_to_pick.change_info_light&#x27;, function() {
     $(&#x27;#dialog-media-element-&#x27; + $(this).data(&#x27;param&#x27;) + &#x27; ._audio_preview_in_media_element_popup&#x27;).show();
     $(&#x27;#dialog-media-element-&#x27; + $(this).data(&#x27;param&#x27;) + &#x27; ._change_info_container&#x27;).hide(&#x27;fade&#x27;, {}, 500, function() {
@@ -448,40 +502,43 @@ function expandedItemsDocumentReady() {
       resetMediaElementChangeInfo($(this).data(&#x27;param&#x27;));
     });
   });
-  
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._change_info_to_pick.change_info&#x27;, function() {
     $(&#x27;#dialog-media-element-&#x27; + $(this).data(&#x27;param&#x27;) + &#x27; ._change_info_container&#x27;).show(&#x27;fade&#x27;, {}, 500);
     $(this).removeClass(&#x27;change_info&#x27;);
     $(this).addClass(&#x27;change_info_light&#x27;);
     $(&#x27;#dialog-media-element-&#x27; + $(this).data(&#x27;param&#x27;) + &#x27; ._audio_preview_in_media_element_popup&#x27;).hide();
   });
-  
 }
 
+&#x2F;**
+bla bla bla
+@method filtersDocumentReady
+@for GeneralDocumentReady
+**&#x2F;
 function filtersDocumentReady() {
-  
   $(&#x27;body&#x27;).on(&#x27;change&#x27;, &#x27;#filter_lessons&#x27;, function() {
     var filter = $(&#x27;#filter_lessons option:selected&#x27;).val();
     var redirect_url = &#x27;&#x2F;lessons?filter=&#x27; + filter;
     $.get(redirect_url);
   });
-  
   $(&#x27;body&#x27;).on(&#x27;change&#x27;, &#x27;#filter_media_elements&#x27;, function() {
     var filter = $(&#x27;#filter_media_elements option:selected&#x27;).val();
     var redirect_url = getCompleteMediaElementsUrlWithoutFilter() + &#x27;&amp;filter=&#x27; + filter;
     $.get(redirect_url);
   });
-  
   $(&#x27;body&#x27;).on(&#x27;change&#x27;, &#x27;#for_page_media_elements&#x27;, function() {
     var for_page = $(&#x27;#for_page_media_elements option:selected&#x27;).val();
     var redirect_url = getCompleteMediaElementsUrlWithoutForPage() + &#x27;&amp;for_page=&#x27; + for_page;
     $.get(redirect_url);
   });
-  
 }
 
+&#x2F;**
+bla bla bla
+@method formsDocumentReady
+@for GeneralDocumentReady
+**&#x2F;
 function formsDocumentReady() {
-  
   $(&#x27;body&#x27;).on(&#x27;mouseover&#x27;, &#x27;._report_lesson_click&#x27;, function() {
     var obj = $(&#x27;#&#x27; + this.id + &#x27; a._reportable_icon&#x27;);
     if(!obj.hasClass(&#x27;_report_selected&#x27;)) {
@@ -489,7 +546,6 @@ function formsDocumentReady() {
       obj.addClass(&#x27;report_light&#x27;);
     }
   });
-  
   $(&#x27;body&#x27;).on(&#x27;mouseout&#x27;, &#x27;._report_lesson_click&#x27;, function() {
     var obj = $(&#x27;#&#x27; + this.id + &#x27; a._reportable_icon&#x27;);
     if(!obj.hasClass(&#x27;_report_selected&#x27;)) {
@@ -497,7 +553,6 @@ function formsDocumentReady() {
       obj.addClass(&#x27;report&#x27;);
     }
   });
-  
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._report_lesson_click&#x27;, function() {
     var param = $(this).data(&#x27;param&#x27;);
     var obj = $(&#x27;#lesson_report_form_&#x27; + param);
@@ -520,7 +575,6 @@ function formsDocumentReady() {
     }
     return false;
   });
-  
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._report_media_element_click&#x27;, function() {
     var param = $(this).data(&#x27;param&#x27;);
     var obj = $(&#x27;#media_element_report_form_&#x27; + param);
@@ -539,18 +593,41 @@ function formsDocumentReady() {
     }
     return false;
   });
-  
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._report_form_content&#x27;, function(e) {
     e.preventDefault();
     return false;
   });
-  
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._report_form_content ._send&#x27;, function(e) {
     $(this).closest(&#x27;form&#x27;).submit();
   });
-  
 }
 
+&#x2F;**
+bla bla bla
+@method generalWindowResizeDocumentReady
+@for GeneralDocumentReady
+**&#x2F;
+function generalWindowResizeDocumentReady() {
+  $(window).resize(function() {
+    if($(&#x27;#my_media_elements&#x27;).length &gt; 0 || $(&#x27;#media_elements_in_dashboard&#x27;).length &gt; 0){
+      recenterMyMediaElements();
+    }
+  });
+  var hac = $(&#x27;.home-action .container&#x27;);
+  var widc = $(&#x27;.what_is_desy-action .container&#x27;);
+  if($(window).height()&gt;hac.height()){
+    hac.css(&#x27;margin-top&#x27;,($(window).height() - hac.height())&#x2F;2 + &#x27;px&#x27;);
+  }
+  if($(window).height()&gt;widc.height()){
+    widc.css(&#x27;margin-top&#x27;,($(window).height() - widc.height())&#x2F;2 + &#x27;px&#x27;);
+  }
+}
+
+&#x2F;**
+bla bla bla
+@method javaScriptAnimationsDocumentReady
+@for GeneralDocumentReady
+**&#x2F;
 function javaScriptAnimationsDocumentReady() {
   $(&#x27;#notifications_list&#x27;).jScrollPane({
     autoReinitialise: true
@@ -576,34 +653,28 @@ function javaScriptAnimationsDocumentReady() {
   });
 }
 
-function defaultValueJavaScriptAnimationsDocumentReady() {
-  $(&#x27;._which_item_to_search_switch[checked]&#x27;).first().attr(&#x27;checked&#x27;, &#x27;checked&#x27;);
-  $(&#x27;#for_page_media_elements option[selected]&#x27;).first().attr(&#x27;selected&#x27;, &#x27;selected&#x27;);
-  $(&#x27;#filter_media_elements option[selected]&#x27;).first().attr(&#x27;selected&#x27;, &#x27;selected&#x27;);
-  $(&#x27;#filter_lessons option[selected]&#x27;).first().attr(&#x27;selected&#x27;, &#x27;selected&#x27;);
-  $(&#x27;#filter_search_lessons option[selected]&#x27;).first().attr(&#x27;selected&#x27;, &#x27;selected&#x27;);
-  $(&#x27;#filter_search_media_elements option[selected]&#x27;).first().attr(&#x27;selected&#x27;, &#x27;selected&#x27;);
-  $(&#x27;#filter_search_lessons_subject option[selected]&#x27;).first().attr(&#x27;selected&#x27;, &#x27;selected&#x27;);
-  $(&#x27;._order_lessons_radio_input[checked]&#x27;).first().attr(&#x27;checked&#x27;, &#x27;checked&#x27;);
-  $(&#x27;._order_media_elements_radio_input[checked]&#x27;).first().attr(&#x27;checked&#x27;, &#x27;checked&#x27;);
+
+
+
+
+&#x2F;**
+bla bla bla
+@method getMediaElementsFormat
+@for GeneralMiscellanea
+**&#x2F;
+function getMediaElementsFormat() {
+  var param = &#x27;display=compact&#x27;;
+  if($(&#x27;#display_expanded_media_elements&#x27;).hasClass(&#x27;current&#x27;)) {
+    param = &#x27;display=expanded&#x27;;
+  }
+  return param
 }
 
-function generalWindowResizeDocumentReady() {
-  $(window).resize(function() {
-    if($(&#x27;#my_media_elements&#x27;).length &gt; 0 || $(&#x27;#media_elements_in_dashboard&#x27;).length &gt; 0){
-      recenterMyMediaElements();
-    }
-  });
-  var hac = $(&#x27;.home-action .container&#x27;);
-  var widc = $(&#x27;.what_is_desy-action .container&#x27;);
-  if($(window).height()&gt;hac.height()){
-    hac.css(&#x27;margin-top&#x27;,($(window).height() - hac.height())&#x2F;2 + &#x27;px&#x27;);
-  }
-  if($(window).height()&gt;widc.height()){
-    widc.css(&#x27;margin-top&#x27;,($(window).height() - widc.height())&#x2F;2 + &#x27;px&#x27;);
-  }
-}
-
+&#x2F;**
+bla bla bla
+@method secondsToDateString
+@for GeneralMiscellanea
+**&#x2F;
 function secondsToDateString(seconds) {
   var mm = parseInt(seconds &#x2F; 60);
   var ss = seconds % 60;
@@ -626,20 +697,26 @@ function secondsToDateString(seconds) {
   return resp;
 }
 
-function getMediaElementsFormat() {
-  var param = &#x27;display=compact&#x27;;
-  if($(&#x27;#display_expanded_media_elements&#x27;).hasClass(&#x27;current&#x27;)) {
-    param = &#x27;display=expanded&#x27;;
-  }
-  return param
-}
 
+
+
+
+&#x2F;**
+bla bla bla
+@method getCompleteMediaElementsUrlWithoutFilter
+@for GeneralUrls
+**&#x2F;
 function getCompleteMediaElementsUrlWithoutFilter() {
   var param_format = getMediaElementsFormat();
   var param_for_page = &#x27;for_page=&#x27; + $(&#x27;#for_page_media_elements option:selected&#x27;).val();
   return &#x27;&#x2F;media_elements?&#x27; + param_format + &#x27;&amp;&#x27; + param_for_page;
 }
 
+&#x2F;**
+bla bla bla
+@method getCompleteMediaElementsUrlWithoutForPage
+@for GeneralUrls
+**&#x2F;
 function getCompleteMediaElementsUrlWithoutForPage() {
   var param_format = getMediaElementsFormat();
   var param_filter = &#x27;filter=&#x27; + $(&#x27;#filter_media_elements option:selected&#x27;).val();
@@ -647,43 +724,13 @@ function getCompleteMediaElementsUrlWithoutForPage() {
 }
 
 &#x2F;**
-* Add new parameters to an url
-* 
-* @method updateURLParameter
-* @for updateURLParameter
-* @param url {String} starting url
-* @param param {String} new param
-* @param paramVal {String} new param value
-* @return {String} updated url
-*&#x2F;
-function updateURLParameter(url, param, paramVal) {
-  var newAdditionalURL = &#x27;&#x27;;
-  var tempArray = url.split(&#x27;?&#x27;);
-  var baseURL = tempArray[0];
-  var additionalURL = tempArray[1];
-  var temp = &#x27;&#x27;;
-  if (additionalURL) {
-    tempArray = additionalURL.split(&#x27;&amp;&#x27;);
-    for (i=0; i&lt;tempArray.length; i++){
-      if(tempArray[i].split(&#x27;=&#x27;)[0] != param){
-        newAdditionalURL += temp + tempArray[i];
-        temp = &#x27;&amp;&#x27;;
-      }
-    }
-  }
-  var rows_txt = temp + &#x27;&#x27; + param + &#x27;=&#x27; + paramVal;
-  return baseURL + &#x27;?&#x27; + newAdditionalURL + rows_txt;
-}
-
-&#x2F;**
-* Remove a param from url
-* 
-* @method removeURLParameter
-* @for removeURLParameter
-* @param url {String} starting url
-* @param param {String} param to remove
-* @return {String} update url
-*&#x2F;
+Remove a param from url
+@method removeURLParameter
+@for GeneralUrls
+@param url {String} starting url
+@param param {String} param to remove
+@return {String} update url
+**&#x2F;
 function removeURLParameter(url, param) {
   var newAdditionalURL = &#x27;&#x27;;
   var tempArray = url.split(&#x27;?&#x27;);
@@ -692,49 +739,42 @@ function removeURLParameter(url, param) {
   var temp = &#x27;&#x27;;
   if (additionalURL) {
     tempArray = additionalURL.split(&#x27;&amp;&#x27;);
-    for (i=0; i&lt;tempArray.length; i++){
-      if(tempArray[i].split(&#x27;=&#x27;)[0] != param){
-        newAdditionalURL += temp + tempArray[i];
+    for (i=0; i &lt; tempArray.length; i++) {
+      if(tempArray[i].split(&#x27;=&#x27;)[0] != param) {
+        newAdditionalURL += (temp + tempArray[i]);
         temp = &#x27;&amp;&#x27;;
       }
     }
   }
-  return baseURL + &#x27;?&#x27; + newAdditionalURL;
+  return (baseURL + &#x27;?&#x27; + newAdditionalURL);
 }
 
 &#x2F;**
-* Center a div into a given container
-* 
-* @method centerThisInContainer
-* @for centerThisInContainer
-* @param div {String} div selector to center, class or id
-* @param container {String} container selector to center div into, class or id
-* @example
-      centerThisInContainer(&#x27;._saved&#x27;,&#x27;#image_wrapper&#x27;);
-*&#x2F;
-function centerThisInContainer(div,container) {
-  var contH = $(container).height();
-  var contW = $(container).width();
-  var centerDiv = $(div);
-  centerDiv.css(&#x27;top&#x27;, (contH&#x2F;2-centerDiv.height()&#x2F;2)+$(container).position().top);
-  centerDiv.css(&#x27;left&#x27;, (contW&#x2F;2-centerDiv.width()&#x2F;2)+$(container).position().left);
-}
-
-&#x2F;**
-* Center a div into current window
-* 
-* @method centerThis
-* @for centerThis
-* @param div {String} div selector to center, class or id
-* @example
-      centerThis(&quot;._slide_error&quot;);
-*&#x2F;
-function centerThis(div) {
-  var winH = $(window).height();
-  var winW = $(window).width();
-  var centerDiv = $(div);
-  centerDiv.css(&#x27;top&#x27;, winH&#x2F;2-centerDiv.height()&#x2F;2);
-  centerDiv.css(&#x27;left&#x27;, winW&#x2F;2-centerDiv.width()&#x2F;2);
+Add new parameters to an url
+@method updateURLParameter
+@for GeneralUrls
+@param url {String} starting url
+@param param {String} new param
+@param paramVal {String} new param value
+@return {String} updated url
+**&#x2F;
+function updateURLParameter(url, param, paramVal) {
+  var newAdditionalURL = &#x27;&#x27;;
+  var tempArray = url.split(&#x27;?&#x27;);
+  var baseURL = tempArray[0];
+  var additionalURL = tempArray[1];
+  var temp = &#x27;&#x27;;
+  if (additionalURL) {
+    tempArray = additionalURL.split(&#x27;&amp;&#x27;);
+    for (i=0; i &lt; tempArray.length; i++) {
+      if(tempArray[i].split(&#x27;=&#x27;)[0] != param) {
+        newAdditionalURL += (temp + tempArray[i]);
+        temp = &#x27;&amp;&#x27;;
+      }
+    }
+  }
+  var rows_txt = temp + &#x27;&#x27; + param + &#x27;=&#x27; + paramVal;
+  return (baseURL + &#x27;?&#x27; + newAdditionalURL + rows_txt);
 }
 
     </pre>
