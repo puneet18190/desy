@@ -3133,16 +3133,16 @@
             "line": 31,
             "description": "bla bla bla",
             "itemtype": "method",
-            "name": "mediaElementButtonsDocumentReady",
+            "name": "lessonButtonsDocumentReady",
             "class": "ButtonsDocumentReady",
             "module": "buttons"
         },
         {
             "file": "app/assets/javascripts/buttons.js",
-            "line": 105,
+            "line": 156,
             "description": "bla bla bla",
             "itemtype": "method",
-            "name": "lessonButtonsDocumentReady",
+            "name": "mediaElementButtonsDocumentReady",
             "class": "ButtonsDocumentReady",
             "module": "buttons"
         },
@@ -3180,6 +3180,27 @@
         {
             "file": "app/assets/javascripts/buttons.js",
             "line": 270,
+            "description": "Make the lesson available in the virtual classroom",
+            "itemtype": "method",
+            "name": "addLessonToVirtualClassroom",
+            "params": [
+                {
+                    "name": "lessons_id",
+                    "description": "lesson id",
+                    "type": "Number"
+                },
+                {
+                    "name": "destination",
+                    "description": "destination view",
+                    "type": "String"
+                }
+            ],
+            "class": "ButtonsLesson",
+            "module": "buttons"
+        },
+        {
+            "file": "app/assets/javascripts/buttons.js",
+            "line": 284,
             "description": "Create user own copy of the lesson",
             "itemtype": "method",
             "name": "copyLesson",
@@ -3200,7 +3221,7 @@
         },
         {
             "file": "app/assets/javascripts/buttons.js",
-            "line": 284,
+            "line": 298,
             "description": "Destroy lessons lesson Uses [addDeleteItemToCurrentUrl](../classes/addDeleteItemToCurrentUrl.html#method_addDeleteItemToCurrentUrl) and [showConfirmPopUp](../classes/showConfirmPopUp.html#method_showConfirmPopUp) and [showErrorPopUp](../classes/showErrorPopUp.html#method_showErrorPopUp)",
             "itemtype": "method",
             "name": "destroyLesson",
@@ -3226,7 +3247,7 @@
         },
         {
             "file": "app/assets/javascripts/buttons.js",
-            "line": 318,
+            "line": 332,
             "description": "Remove like from a lesson",
             "itemtype": "method",
             "name": "dislikeLesson",
@@ -3247,7 +3268,7 @@
         },
         {
             "file": "app/assets/javascripts/buttons.js",
-            "line": 332,
+            "line": 346,
             "description": "Add like to a lesson",
             "itemtype": "method",
             "name": "likeLesson",
@@ -3268,7 +3289,7 @@
         },
         {
             "file": "app/assets/javascripts/buttons.js",
-            "line": 346,
+            "line": 360,
             "description": "View lesson link",
             "itemtype": "method",
             "name": "previewLesson",
@@ -3289,7 +3310,7 @@
         },
         {
             "file": "app/assets/javascripts/buttons.js",
-            "line": 368,
+            "line": 382,
             "description": "Make a lesson public Uses [showConfirmPopUp](../classes/showConfirmPopUp.html#method_showConfirmPopUp) and [closePopUp](../classes/closePopUp.html#method_closePopUp)",
             "itemtype": "method",
             "name": "publishLesson",
@@ -3310,7 +3331,7 @@
         },
         {
             "file": "app/assets/javascripts/buttons.js",
-            "line": 389,
+            "line": 403,
             "description": "Remove a lesson from yours (unlink).Uses [addDeleteItemToCurrentUrl](../classes/addDeleteItemToCurrentUrl.html#method_addDeleteItemToCurrentUrl) and [showErrorPopUp](../classes/showErrorPopUp.html#method_showErrorPopUp)",
             "itemtype": "method",
             "name": "removeLesson",
@@ -3341,49 +3362,7 @@
         },
         {
             "file": "app/assets/javascripts/buttons.js",
-            "line": 425,
-            "description": "Make a lesson private Uses [showConfirmPopUp](../classes/showConfirmPopUp.html#method_showConfirmPopUp) and [closePopUp](../classes/closePopUp.html#method_closePopUp)",
-            "itemtype": "method",
-            "name": "unpublishLesson",
-            "params": [
-                {
-                    "name": "lessons_id",
-                    "description": "lesson id",
-                    "type": "Number"
-                },
-                {
-                    "name": "destination",
-                    "description": "destination view",
-                    "type": "String"
-                }
-            ],
-            "class": "ButtonsLesson",
-            "module": "buttons"
-        },
-        {
-            "file": "app/assets/javascripts/buttons.js",
-            "line": 446,
-            "description": "Make the lesson available in the virtual classroom",
-            "itemtype": "method",
-            "name": "addLessonToVirtualClassroom",
-            "params": [
-                {
-                    "name": "lessons_id",
-                    "description": "lesson id",
-                    "type": "Number"
-                },
-                {
-                    "name": "destination",
-                    "description": "destination view",
-                    "type": "String"
-                }
-            ],
-            "class": "ButtonsLesson",
-            "module": "buttons"
-        },
-        {
-            "file": "app/assets/javascripts/buttons.js",
-            "line": 460,
+            "line": 439,
             "description": "Remove lesson availability in the virtual classroom",
             "itemtype": "method",
             "name": "removeLessonFromVirtualClassroom",
@@ -3391,6 +3370,27 @@
                 {
                     "name": "lessons_id",
                     "description": "lesson_id",
+                    "type": "Number"
+                },
+                {
+                    "name": "destination",
+                    "description": "destination view",
+                    "type": "String"
+                }
+            ],
+            "class": "ButtonsLesson",
+            "module": "buttons"
+        },
+        {
+            "file": "app/assets/javascripts/buttons.js",
+            "line": 453,
+            "description": "Make a lesson private Uses [showConfirmPopUp](../classes/showConfirmPopUp.html#method_showConfirmPopUp) and [closePopUp](../classes/closePopUp.html#method_closePopUp)",
+            "itemtype": "method",
+            "name": "unpublishLesson",
+            "params": [
+                {
+                    "name": "lessons_id",
+                    "description": "lesson id",
                     "type": "Number"
                 },
                 {
