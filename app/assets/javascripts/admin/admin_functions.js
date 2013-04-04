@@ -340,7 +340,7 @@ function adminSortingDocumentReady() {
 /**
 Open a collapsed table row with extra content, tipically clicking on previous collapsable table row.
 @method openAndLoadNextTr
-@for Collapsed
+@for AdminCollapsed
 @param prevTr {Object} the previous element in the table
 **/
 function openAndLoadNextTr(prevTr) {
@@ -359,7 +359,7 @@ function openAndLoadNextTr(prevTr) {
 /**
 Initializer for jQueryUI autocomplete on users serch into Admin Notifications.
 @method initNotificationsAutocomplete
-@for Autocomplete
+@for AdminAutocomplete
 **/
 function initNotificationsAutocomplete() {
   $(function() {

@@ -14,8 +14,8 @@
             "classes": {},
             "fors": {
                 "AdminDocumentReady": 1,
-                "Collapsed": 1,
-                "Autocomplete": 1
+                "AdminCollapsed": 1,
+                "AdminAutocomplete": 1
             },
             "namespaces": {}
         },
@@ -353,13 +353,13 @@
             "submodules": {},
             "classes": {
                 "AdminDocumentReady": 1,
-                "Collapsed": 1,
-                "Autocomplete": 1
+                "AdminCollapsed": 1,
+                "AdminAutocomplete": 1
             },
             "fors": {
                 "AdminDocumentReady": 1,
-                "Collapsed": 1,
-                "Autocomplete": 1
+                "AdminCollapsed": 1,
+                "AdminAutocomplete": 1
             },
             "namespaces": {},
             "tag": "module",
@@ -890,9 +890,9 @@
             "module": "administration",
             "namespace": ""
         },
-        "Collapsed": {
-            "name": "Collapsed",
-            "shortname": "Collapsed",
+        "AdminCollapsed": {
+            "name": "AdminCollapsed",
+            "shortname": "AdminCollapsed",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -901,9 +901,9 @@
             "module": "administration",
             "namespace": ""
         },
-        "Autocomplete": {
-            "name": "Autocomplete",
-            "shortname": "Autocomplete",
+        "AdminAutocomplete": {
+            "name": "AdminAutocomplete",
+            "shortname": "AdminAutocomplete",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -2660,7 +2660,7 @@
                     "type": "Object"
                 }
             ],
-            "class": "Collapsed",
+            "class": "AdminCollapsed",
             "module": "administration"
         },
         {
@@ -2669,7 +2669,7 @@
             "description": "Initializer for jQueryUI autocomplete on users serch into Admin Notifications.",
             "itemtype": "method",
             "name": "initNotificationsAutocomplete",
-            "class": "Autocomplete",
+            "class": "AdminAutocomplete",
             "module": "administration"
         },
         {

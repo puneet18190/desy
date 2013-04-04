@@ -1,10 +1,10 @@
 YUI.add("yuidoc-meta", function(Y) {
    Y.YUIDoc = { meta: {
     "classes": [
+        "AdminAutocomplete",
+        "AdminCollapsed",
         "AdminDocumentReady",
-        "Autocomplete",
         "BrowsersDocumentReady",
-        "Collapsed",
         "LocationsDocumentReady",
         "addDeleteItemToCurrentUrl",
         "addEmailToVirtualClassroomSendLessonLinkSelector",
