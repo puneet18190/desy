@@ -5,8 +5,8 @@ bla bla bla
 
 /**
 bla bla bla
-@for BrowsersDocumentReady
 @method browsersDocumentReady
+@for BrowsersDocumentReady
 **/
 function browsersDocumentReady() {
   (function(){
