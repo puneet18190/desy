@@ -3,20 +3,13 @@ bla bla bla
 @module audio-editor
 **/
 
+
+
+// components
+
 function resizeLastComponentInAudioEditor() {
   $('._audio_editor_component._last').last().removeClass('_last')
   $('._audio_editor_component').last().addClass('_last');
-}
-
-function loadAudioComponentIfNotLoadedYet(component) {
-  if(!component.data('loaded')) {
-    var mp3 = component.data('mp3');
-    var ogg = component.data('ogg');
-    component.find('source[type="audio/mp3"]').attr('src', mp3);
-    component.find('source[type="audio/ogg"]').attr('src', ogg);
-    component.find('audio').load();
-    component.data('loaded', true);
-  }
 }
 
 function selectAudioEditorComponent(component) {
@@ -52,33 +45,14 @@ function deselectAllAudioEditorComponents() {
   $('._audio_editor_component._selected').removeClass('_selected');
 }
 
-function initializeAudioEditor() {
-  resizeLastComponentInAudioEditor();
-  $('#audio_editor_timeline').jScrollPane({
-    autoReinitialise: true
-  });
-  $('#audio_editor_timeline .jspPane').sortable({
-    scroll: true,
-    handle: '._sort_handle',
-    axis: 'y',
-    cursor: 'move',
-    start: function(event, ui) {
-      selectAudioEditorComponent($(ui.item));
-    },
-    stop: function(event, ui) {
-      var my_item = $(ui.item);
-      resizeLastComponentInAudioEditor();
-      var boolean1 = (my_item.next().length == 0);
-      var boolean2 = (my_item.data('position') != $('._audio_editor_component').length);
-      var boolean3 = (my_item.next().data('position') != (my_item.data('position') + 1));
-      if(boolean1 && boolean2 || !boolean1 && boolean3) {
-        reloadAudioEditorComponentPositions();
-        $('._audio_editor_component ._title').effect('highlight', {color: '#41A62A'}, 1000);
-      }
-    }
-  });
-  if($('html').hasClass('msie')) {
-    $('._audio_editor_component ._double_slider .ui-slider-range').css('opacity', 0.4);
+function loadAudioComponentIfNotLoadedYet(component) {
+  if(!component.data('loaded')) {
+    var mp3 = component.data('mp3');
+    var ogg = component.data('ogg');
+    component.find('source[type="audio/mp3"]').attr('src', mp3);
+    component.find('source[type="audio/ogg"]').attr('src', ogg);
+    component.find('audio').load();
+    component.data('loaded', true);
   }
 }
 
@@ -114,109 +88,6 @@ function removeAudioEditorComponent(component) {
     }
     resizeLastComponentInAudioEditor();
   });
-}
-
-function disableCommitAndPreviewInAudioEditor() {
-  $('#empty_audio_editor').show();
-  $('#commit_audio_editor').hide();
-  $('#start_audio_editor_preview').addClass('disabled');
-  $('#rewind_audio_editor_preview').addClass('disabled');
-}
-
-function enableCommitAndPreviewInAudioEditor() {
-  $('#empty_audio_editor').hide();
-  $('#commit_audio_editor').show();
-  $('#start_audio_editor_preview').removeClass('disabled');
-  $('#rewind_audio_editor_preview').removeClass('disabled');
-}
-
-function setToZeroAllZIndexesInAudioEditor() {
-  $('._audio_editor_component ._remove').css('z-index', 0);
-  $('._audio_editor_component ._box_ghost').css('z-index', 0);
-  $('._audio_editor_component ._media_player_slider_disabler').css('z-index', 0);
-  $('._audio_editor_component ._double_slider').css('z-index', 0);
-  $('._audio_editor_component ._under_double_slider').css('z-index', 0);
-  $('._audio_editor_component ._media_player_slider').css('z-index', 0);
-}
-
-function setBackAllZIndexesInAudioEditor() {
-  $('._audio_editor_component ._remove').css('z-index', 101);
-  $('._audio_editor_component ._box_ghost').css('z-index', 100);
-  $('._audio_editor_component ._media_player_slider_disabler').css('z-index', 99);
-  $('._audio_editor_component ._double_slider').css('z-index', 98);
-  $('._audio_editor_component ._under_double_slider').css('z-index', 97);
-  $('._audio_editor_component ._media_player_slider').css('z-index', 96);
-}
-
-function showGalleryInAudioEditor() {
-  $('._audio_editor_bottom_bar').hide();
-  $('#audio_editor_gallery_container').show();
-  setToZeroAllZIndexesInAudioEditor();
-  calculateNewPositionGalleriesInAudioEditor();
-}
-
-function showCommitAudioEditorForm(scope) {
-  $('._audio_editor_bottom_bar').hide();
-  $('#audio_editor #form_info_' + scope + '_media_element_in_editor').show();
-  setToZeroAllZIndexesInAudioEditor();
-}
-
-function hideCommitAudioEditorForm(scope) {
-  $('._audio_editor_bottom_bar').show();
-  $('#audio_editor #form_info_' + scope + '_media_element_in_editor').hide();
-  setBackAllZIndexesInAudioEditor();
-}
-
-function calculateNewPositionGalleriesInAudioEditor() {
-  $('#audio_editor_gallery_container').css('left', (($(window).width() - 940) / 2) + 'px');
-}
-
-function closeGalleryInAudioEditor() {
-  $('._audio_editor_bottom_bar').show();
-  $('#audio_editor_gallery_container').hide('fade', {}, 250, function() {
-    setBackAllZIndexesInAudioEditor();
-  });
-}
-
-function cutAudioComponentLeftSide(identifier, pos) {
-  var component = $('#audio_component_' + identifier);
-  var new_duration = component.data('to') - pos;
-  component.data('from', pos);
-  component.find('._cutter_from').html(secondsToDateString(pos));
-  component.find('._audio_component_input_from').val(pos);
-  changeDurationAudioEditorComponent(component, new_duration);
-}
-
-function cutAudioComponentRightSide(identifier, pos) {
-  var component = $('#audio_component_' + identifier);
-  var new_duration = pos - component.data('from');
-  component.data('to', pos);
-  component.find('._cutter_to').html(secondsToDateString(pos));
-  component.find('._audio_component_input_to').val(pos);
-  changeDurationAudioEditorComponent(component, new_duration);
-}
-
-function deselectAllAudioEditorCursors(id) {
-  $('#audio_component_' + id + ' .ui-slider-handle').removeClass('selected');
-  $('#audio_component_' + id + ' ._cutter_from, #audio_component_' + id + ' ._cutter_to, #audio_component_' + id + ' ._current_time').removeClass('selected');
-}
-
-function selectAudioEditorLeftHandle(id) {
-  deselectAllAudioEditorCursors(id);
-  $('#audio_component_' + id + ' ._double_slider .ui-slider-handle').first().addClass('selected');
-  $('#audio_component_' + id + ' ._cutter_from').addClass('selected');
-}
-
-function selectAudioEditorRightHandle(id) {
-  deselectAllAudioEditorCursors(id);
-  $($('#audio_component_' + id + ' ._double_slider .ui-slider-handle')[1]).addClass('selected');
-  $('#audio_component_' + id + ' ._cutter_to').addClass('selected');
-}
-
-function selectAudioEditorCursor(id) {
-  deselectAllAudioEditorCursors(id);
-  $('#audio_component_' + id + ' ._media_player_slider .ui-slider-handle').addClass('selected');
-  $('#audio_component_' + id + ' ._current_time').addClass('selected');
 }
 
 function addComponentInAudioEditor(audio_id, ogg, mp3, duration, title) {
@@ -268,6 +139,14 @@ function fillAudioEditorSingleParameter(input, identifier, value) {
   return '<input id="' + input + '_' + identifier + '" class="_audio_component_input_' + input + '" type="hidden" value="' + value + '" name="' + input + '_' + identifier + '">';
 }
 
+
+
+
+
+
+
+// scrollpain
+
 function scrollToFirstSelectedAudioEditorComponent(callback) {
   var selected_component = $('._audio_editor_component._selected');
   var scroll_pain = $('#audio_editor_timeline');
@@ -318,6 +197,189 @@ function scrollToFirstSelectedAudioEditorComponent(callback) {
     }
   }
 }
+
+function followPreviewComponentsWithVerticalScrollInAudioEditor() {
+  if($('._audio_editor_component._selected').data('position') - parseInt($('#audio_editor_timeline').data('jsp').getContentPositionY() / 113) == 4) {
+    scrollToFirstSelectedAudioEditorComponent();
+  }
+}
+
+
+
+
+
+
+
+
+// graphics
+
+function disableCommitAndPreviewInAudioEditor() {
+  $('#empty_audio_editor').show();
+  $('#commit_audio_editor').hide();
+  $('#start_audio_editor_preview').addClass('disabled');
+  $('#rewind_audio_editor_preview').addClass('disabled');
+}
+
+function enableCommitAndPreviewInAudioEditor() {
+  $('#empty_audio_editor').hide();
+  $('#commit_audio_editor').show();
+  $('#start_audio_editor_preview').removeClass('disabled');
+  $('#rewind_audio_editor_preview').removeClass('disabled');
+}
+
+function setToZeroAllZIndexesInAudioEditor() {
+  $('._audio_editor_component ._remove').css('z-index', 0);
+  $('._audio_editor_component ._box_ghost').css('z-index', 0);
+  $('._audio_editor_component ._media_player_slider_disabler').css('z-index', 0);
+  $('._audio_editor_component ._double_slider').css('z-index', 0);
+  $('._audio_editor_component ._under_double_slider').css('z-index', 0);
+  $('._audio_editor_component ._media_player_slider').css('z-index', 0);
+}
+
+function setBackAllZIndexesInAudioEditor() {
+  $('._audio_editor_component ._remove').css('z-index', 101);
+  $('._audio_editor_component ._box_ghost').css('z-index', 100);
+  $('._audio_editor_component ._media_player_slider_disabler').css('z-index', 99);
+  $('._audio_editor_component ._double_slider').css('z-index', 98);
+  $('._audio_editor_component ._under_double_slider').css('z-index', 97);
+  $('._audio_editor_component ._media_player_slider').css('z-index', 96);
+}
+
+function showCommitAudioEditorForm(scope) {
+  $('._audio_editor_bottom_bar').hide();
+  $('#audio_editor #form_info_' + scope + '_media_element_in_editor').show();
+  setToZeroAllZIndexesInAudioEditor();
+}
+
+function hideCommitAudioEditorForm(scope) {
+  $('._audio_editor_bottom_bar').show();
+  $('#audio_editor #form_info_' + scope + '_media_element_in_editor').hide();
+  setBackAllZIndexesInAudioEditor();
+}
+
+
+
+
+
+
+
+
+
+// galleries
+
+function showGalleryInAudioEditor() {
+  $('._audio_editor_bottom_bar').hide();
+  $('#audio_editor_gallery_container').show();
+  setToZeroAllZIndexesInAudioEditor();
+  calculateNewPositionGalleriesInAudioEditor();
+}
+
+function calculateNewPositionGalleriesInAudioEditor() {
+  $('#audio_editor_gallery_container').css('left', (($(window).width() - 940) / 2) + 'px');
+}
+
+function closeGalleryInAudioEditor() {
+  $('._audio_editor_bottom_bar').show();
+  $('#audio_editor_gallery_container').hide('fade', {}, 250, function() {
+    setBackAllZIndexesInAudioEditor();
+  });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// cutters
+
+function cutAudioComponentLeftSide(identifier, pos) {
+  var component = $('#audio_component_' + identifier);
+  var new_duration = component.data('to') - pos;
+  component.data('from', pos);
+  component.find('._cutter_from').html(secondsToDateString(pos));
+  component.find('._audio_component_input_from').val(pos);
+  changeDurationAudioEditorComponent(component, new_duration);
+}
+
+function cutAudioComponentRightSide(identifier, pos) {
+  var component = $('#audio_component_' + identifier);
+  var new_duration = pos - component.data('from');
+  component.data('to', pos);
+  component.find('._cutter_to').html(secondsToDateString(pos));
+  component.find('._audio_component_input_to').val(pos);
+  changeDurationAudioEditorComponent(component, new_duration);
+}
+
+function deselectAllAudioEditorCursors(id) {
+  $('#audio_component_' + id + ' .ui-slider-handle').removeClass('selected');
+  $('#audio_component_' + id + ' ._cutter_from, #audio_component_' + id + ' ._cutter_to, #audio_component_' + id + ' ._current_time').removeClass('selected');
+}
+
+function selectAudioEditorLeftHandle(id) {
+  deselectAllAudioEditorCursors(id);
+  $('#audio_component_' + id + ' ._double_slider .ui-slider-handle').first().addClass('selected');
+  $('#audio_component_' + id + ' ._cutter_from').addClass('selected');
+}
+
+function selectAudioEditorRightHandle(id) {
+  deselectAllAudioEditorCursors(id);
+  $($('#audio_component_' + id + ' ._double_slider .ui-slider-handle')[1]).addClass('selected');
+  $('#audio_component_' + id + ' ._cutter_to').addClass('selected');
+}
+
+function selectAudioEditorCursor(id) {
+  deselectAllAudioEditorCursors(id);
+  $('#audio_component_' + id + ' ._media_player_slider .ui-slider-handle').addClass('selected');
+  $('#audio_component_' + id + ' ._current_time').addClass('selected');
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+// general
+
+function getAudioComponentIdentifier(component) {
+  var id = component.attr('id').split('_');
+  return id[id.length - 1];
+}
+
+
+
+
+
+
+
+
+
+
+
+
+// preview
 
 function enterAudioEditorPreviewMode() {
   $('#info_container').data('in-preview', true);
@@ -464,69 +526,29 @@ function increaseAudioEditorPreviewTimer() {
   data_container.data('current-preview-time', global_time + 1);
 }
 
-function getAudioComponentIdentifier(component) {
-  var id = component.attr('id').split('_');
-  return id[id.length - 1];
-}
 
-function followPreviewComponentsWithVerticalScrollInAudioEditor() {
-  if($('._audio_editor_component._selected').data('position') - parseInt($('#audio_editor_timeline').data('jsp').getContentPositionY() / 113) == 4) {
-    scrollToFirstSelectedAudioEditorComponent();
-  }
-}
+
+
+
+
+
+
+
+
+
+
+
+
+// document ready
 
 function audioEditorDocumentReady() {
-  
-  $('body').on('mouseover', '._audio_editor_component ._box_ghost', function() {
-    $(this).parent().find('._sort_handle').addClass('current');
-  });
-  
-  $('body').on('mouseout', '._audio_editor_component ._box_ghost', function(e) {
-    if($(this).is(':visible') && !$(e.relatedTarget).hasClass('_remove')) {
-      $(this).parent().find('._sort_handle').removeClass('current');
-    }
-  });
-  
-  $('body').on('click', '._audio_editor_component ._sort_handle', function() {
-    selectAudioEditorComponent($(this).parent().parent());
-  });
-  
-  $('body').on('click', '._audio_editor_component ._box_ghost', function() {
-    selectAudioEditorComponent($(this).parent());
-  });
-  
-  $('body').on('click', '._audio_editor_component ._remove', function() {
-    removeAudioEditorComponent($(this).parent());
-  });
-  
-  $('body').on('click', '#add_new_audio_component_in_audio_editor', function() {
-    if(!$('#add_new_audio_component_in_audio_editor').hasClass('disabled')) {
-      var selected_component = $('._audio_editor_component._selected');
-      if(selected_component.length > 0) {
-        selected_component.find('._media_player_pause_in_audio_editor_preview').click();
-      }
-      if($('#audio_editor_gallery_container').data('loaded')) {
-        showGalleryInAudioEditor();
-      } else {
-        $.ajax({
-          type: 'get',
-          url: '/audios/galleries/audio'
-        });
-      }
-    }
-  });
-  
-  $('body').on('click', '._add_audio_component_to_audio_editor', function() {
-    stopMedia('._audio_expanded_in_gallery audio');
-    $('._audio_expanded_in_gallery ._expanded').hide();
-    $('._audio_expanded_in_gallery').removeClass('_audio_expanded_in_gallery');
-    var audio_id = $(this).data('audio-id');
-    closeGalleryInAudioEditor();
-    stopMedia('#gallery_audio_' + audio_id + ' audio');
-    $('#gallery_audio_' + audio_id + ' ._expanded').hide();
-    addComponentInAudioEditor(audio_id, $(this).data('ogg'), $(this).data('mp3'), $(this).data('duration'), $(this).data('title'));
-  });
-  
+  audioEditorDocumentReadyCommit();
+  audioEditorDocumentReadyPreview();
+  audioEditorDocumentReadyCutters();
+  audioEditorDocumentReadyGeneral();
+}
+
+function audioEditorDocumentReadyCommit() {
   $('body').on('click', '._exit_audio_editor', function() {
     stopCacheLoop();
     var captions = $('#popup_captions_container');
@@ -553,32 +575,6 @@ function audioEditorDocumentReady() {
       closePopUp('dialog-confirm');
     });
   });
-  
-  $('body').on('click', '#start_audio_editor_preview', function() {
-    if(!$(this).hasClass('disabled')) {
-      enterAudioEditorPreviewMode();
-    }
-  });
-  
-  $('body').on('click', '#rewind_audio_editor_preview', function() {
-    if(!$(this).hasClass('disabled')) {
-      var selected_component = $('._audio_editor_component').first();
-      selectAudioEditorComponent(selected_component);
-      disableCommitAndPreviewInAudioEditor();
-      scrollToFirstSelectedAudioEditorComponent(function() {
-        enableCommitAndPreviewInAudioEditor();
-        var from = selected_component.data('from');
-        selected_component.find('._media_player_slider').slider('value', from);
-        selected_component.find('._current_time').html(secondsToDateString(from));
-        setCurrentTimeToMedia(selected_component.find('audio'), selected_component.find('._media_player_slider').slider('value'));
-      });
-    }
-  });
-  
-  $('body').on('click', '#stop_audio_editor_preview', function() {
-    leaveAudioEditorPreviewMode();
-  });
-  
   $('body').on('click', '#commit_audio_editor', function() {
     stopCacheLoop();
     submitMediaElementEditorCacheForm($('#audio_editor_form'));
@@ -601,7 +597,6 @@ function audioEditorDocumentReady() {
       showCommitAudioEditorForm('new');
     }
   });
-  
   $('body').on('click', '#audio_editor #form_info_new_media_element_in_editor ._cancel', function() {
     $('#audio_editor_form').attr('action', '/audios/cache/save');
     resetMediaElementEditorForms();
@@ -612,19 +607,16 @@ function audioEditorDocumentReady() {
     hideCommitAudioEditorForm('new');
     startCacheLoop();
   });
-  
   $('body').on('click', '#audio_editor #form_info_update_media_element_in_editor ._cancel', function() {
     $('#audio_editor_form').attr('action', '/audios/cache/save');
     resetMediaElementEditorForms();
     hideCommitAudioEditorForm('update');
     startCacheLoop();
   });
-  
   $('body').on('click', '#audio_editor #form_info_new_media_element_in_editor ._commit', function() {
     $('#audio_editor_form').attr('action', '/audios/commit/new');
     $('#audio_editor_form').submit();
   });
-  
   $('body').on('click', '#audio_editor #form_info_update_media_element_in_editor ._commit', function() {
     if($('#info_container').data('used-in-private-lessons')) {
       var captions = $('#popup_captions_container');
@@ -644,7 +636,34 @@ function audioEditorDocumentReady() {
       $('#audio_editor_form').submit();
     }
   });
-  
+}
+
+function audioEditorDocumentReadyPreview() {
+  $('body').on('click', '#start_audio_editor_preview', function() {
+    if(!$(this).hasClass('disabled')) {
+      enterAudioEditorPreviewMode();
+    }
+  });
+  $('body').on('click', '#rewind_audio_editor_preview', function() {
+    if(!$(this).hasClass('disabled')) {
+      var selected_component = $('._audio_editor_component').first();
+      selectAudioEditorComponent(selected_component);
+      disableCommitAndPreviewInAudioEditor();
+      scrollToFirstSelectedAudioEditorComponent(function() {
+        enableCommitAndPreviewInAudioEditor();
+        var from = selected_component.data('from');
+        selected_component.find('._media_player_slider').slider('value', from);
+        selected_component.find('._current_time').html(secondsToDateString(from));
+        setCurrentTimeToMedia(selected_component.find('audio'), selected_component.find('._media_player_slider').slider('value'));
+      });
+    }
+  });
+  $('body').on('click', '#stop_audio_editor_preview', function() {
+    leaveAudioEditorPreviewMode();
+  });
+}
+
+function audioEditorDocumentReadyCutters() {
   $('body').on('click', '._audio_editor_component ._precision_arrow_left', function() {
     var component = $(this).parents('._audio_editor_component');
     var identifier = getAudioComponentIdentifier(component);
@@ -672,7 +691,6 @@ function audioEditorDocumentReady() {
       }
     }
   });
-  
   $('body').on('click', '._audio_editor_component ._precision_arrow_right', function() {
     var component = $(this).parents('._audio_editor_component');
     var identifier = getAudioComponentIdentifier(component);
@@ -701,7 +719,77 @@ function audioEditorDocumentReady() {
       }
     }
   });
-  
-  initializeAudioEditor();
-  
+}
+
+function audioEditorDocumentReadyGeneral() {
+  $('body').on('mouseover', '._audio_editor_component ._box_ghost', function() {
+    $(this).parent().find('._sort_handle').addClass('current');
+  });
+  $('body').on('mouseout', '._audio_editor_component ._box_ghost', function(e) {
+    if($(this).is(':visible') && !$(e.relatedTarget).hasClass('_remove')) {
+      $(this).parent().find('._sort_handle').removeClass('current');
+    }
+  });
+  $('body').on('click', '._audio_editor_component ._sort_handle', function() {
+    selectAudioEditorComponent($(this).parent().parent());
+  });
+  $('body').on('click', '._audio_editor_component ._box_ghost', function() {
+    selectAudioEditorComponent($(this).parent());
+  });
+  $('body').on('click', '._audio_editor_component ._remove', function() {
+    removeAudioEditorComponent($(this).parent());
+  });
+  $('body').on('click', '#add_new_audio_component_in_audio_editor', function() {
+    if(!$('#add_new_audio_component_in_audio_editor').hasClass('disabled')) {
+      var selected_component = $('._audio_editor_component._selected');
+      if(selected_component.length > 0) {
+        selected_component.find('._media_player_pause_in_audio_editor_preview').click();
+      }
+      if($('#audio_editor_gallery_container').data('loaded')) {
+        showGalleryInAudioEditor();
+      } else {
+        $.ajax({
+          type: 'get',
+          url: '/audios/galleries/audio'
+        });
+      }
+    }
+  });
+  $('body').on('click', '._add_audio_component_to_audio_editor', function() {
+    stopMedia('._audio_expanded_in_gallery audio');
+    $('._audio_expanded_in_gallery ._expanded').hide();
+    $('._audio_expanded_in_gallery').removeClass('_audio_expanded_in_gallery');
+    var audio_id = $(this).data('audio-id');
+    closeGalleryInAudioEditor();
+    stopMedia('#gallery_audio_' + audio_id + ' audio');
+    $('#gallery_audio_' + audio_id + ' ._expanded').hide();
+    addComponentInAudioEditor(audio_id, $(this).data('ogg'), $(this).data('mp3'), $(this).data('duration'), $(this).data('title'));
+  });
+  resizeLastComponentInAudioEditor();
+  $('#audio_editor_timeline').jScrollPane({
+    autoReinitialise: true
+  });
+  $('#audio_editor_timeline .jspPane').sortable({
+    scroll: true,
+    handle: '._sort_handle',
+    axis: 'y',
+    cursor: 'move',
+    start: function(event, ui) {
+      selectAudioEditorComponent($(ui.item));
+    },
+    stop: function(event, ui) {
+      var my_item = $(ui.item);
+      resizeLastComponentInAudioEditor();
+      var boolean1 = (my_item.next().length == 0);
+      var boolean2 = (my_item.data('position') != $('._audio_editor_component').length);
+      var boolean3 = (my_item.next().data('position') != (my_item.data('position') + 1));
+      if(boolean1 && boolean2 || !boolean1 && boolean3) {
+        reloadAudioEditorComponentPositions();
+        $('._audio_editor_component ._title').effect('highlight', {color: '#41A62A'}, 1000);
+      }
+    }
+  });
+  if($('html').hasClass('msie')) {
+    $('._audio_editor_component ._double_slider .ui-slider-range').css('opacity', 0.4);
+  }
 }
