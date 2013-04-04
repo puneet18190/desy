@@ -18,18 +18,18 @@ module Media
         
         # Usage example:
         #
-        # Concat.new([ { webm: 'input.webm', mp4: 'input.mp4'}, { webm: 'input2.webm', mp4: 'input2.mp4'} ], '/output/without/extension').run 
+        # Concat.new([ { ogg: 'input.ogg', m4a: 'input.m4a'}, { ogg: 'input2.ogg', m4a: 'input2.m4a'} ], '/output/without/extension').run 
         #
-        #   #=> { mp4:'/output/without/extension.mp4', webm:'/output/without/extension.webm' }
+        #   #=> { m4a:'/output/without/extension.m4a', ogg:'/output/without/extension.ogg' }
         #
         def initialize(inputs, output_without_extension, log_folder = nil)
-          unless inputs.is_a?(Array) and
-                 inputs.present?     and
+          unless inputs.is_a?(Array) &&
+                 inputs.present?     &&
                  inputs.all? do |input|
-                   input.instance_of?(Hash)          and
-                   input.keys.sort == FORMATS.sort   and
-                   input.values.size == FORMATS.size and
-                   input.values.all?{ |v| v.instance_of? String }
+                   input.is_a?(Hash)                 &&
+                   input.keys.sort == FORMATS.sort   &&
+                   input.values.size == FORMATS.size &&
+                   input.values.all?{ |v| v.is_a? String }
                  end
             raise Error.new( "inputs must be an array with at least one element and its elements must be hashes with #{FORMATS.inspect} as keys and strings as values", 
                              inputs: inputs, output_without_extension: output_without_extension )
@@ -49,7 +49,7 @@ module Media
         end
 
         def run
-          # Posso controllare m4a_inputs per sapere quante coppie di video ho, perché ho già visto che m4a_inputs.size == webm_inputs.size
+          # Posso controllare m4a_inputs per sapere quante coppie di video ho, perché ho già visto che m4a_inputs.size == ogg_inputs.size
           # Caso speciale: se ho una sola coppia di input copio i due video nei rispettivi output e li ritorno
           return copy_first_inputs_to_outputs if m4a_inputs.size == 1
           
