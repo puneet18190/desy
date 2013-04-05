@@ -9,77 +9,6 @@ Media elements players: initializer, play, stop, update frame.
 
 /**
 bla bla bla
-@method initializeMediaTimeUpdaterInAudioEditor
-@for PlayersAudioEditor
-**/
-function initializeMediaTimeUpdaterInAudioEditor(identifier) {
-  media = $('#audio_component_' + identifier + ' audio');
-  if(media.readyState != 0) {
-    media[0].addEventListener('timeupdate', function() {
-      initializeActionOfMediaTimeUpdaterInAudioEditor(this, identifier, false);
-    }, false);
-  } else {
-    media.on('loadedmetadata', function() {
-      media[0].addEventListener('timeupdate', function() {
-        initializeActionOfMediaTimeUpdaterInAudioEditor(this, identifier, false);
-      }, false);
-    });
-  }
-}
-
-/**
-@method initializeActionOfMediaTimeUpdaterInAudioEditor
-@for PlayersAudioEditor
-**/
-function initializeActionOfMediaTimeUpdaterInAudioEditor(media, identifier, force_parsed_int) {
-  var component = $('#audio_component_' + identifier);
-  var audio_cut_to = component.data('to');
-  var parsed_int = parseInt(media.currentTime);
-  if(force_parsed_int) {
-    parsed_int = audio_cut_to;
-  }
-  if($('#info_container').data('in-preview')) {
-    if(parsed_int > component.find('._media_player_slider').slider('value')) {
-      increaseAudioEditorPreviewTimer();
-      if(parsed_int == audio_cut_to) {
-        var old_start = component.data('from');
-        component.find('audio')[0].pause();
-        component.find('._current_time').html(secondsToDateString(old_start));
-        component.find('._media_player_slider').slider('value', old_start);
-        setCurrentTimeToMedia(component.find('audio'), old_start);
-        var next_component = component.next();
-        if(next_component.length > 0) {
-          deselectAllAudioEditorComponentsInPreviewMode();
-          var new_start = next_component.data('from');
-          next_component.find('._media_player_slider').slider('value', new_start);
-          next_component.find('._current_time').html(secondsToDateString(new_start));
-          loadAudioComponentIfNotLoadedYet(next_component);
-          setCurrentTimeToMedia(next_component.find('audio'), new_start);
-          startAudioEditorPreview(next_component);
-        } else {
-          leaveAudioEditorPreviewMode($('._audio_editor_component').first().attr('id'));
-        }
-      } else {
-        component.find('._current_time').html(secondsToDateString(parsed_int));
-        component.find('._media_player_slider').slider('value', parsed_int);
-      }
-    }
-  } else if(component.data('playing')) {
-    if(parsed_int == (audio_cut_to)) {
-      var initial_time = component.data('from');
-      component.find('._media_player_pause_in_audio_editor_preview').click();
-      component.find('._media_player_slider').slider('value', initial_time);
-      component.find('._current_time').html(secondsToDateString(initial_time));
-      setCurrentTimeToMedia($(media), initial_time);
-    } else if(!component.find('._media_player_play_in_audio_editor_preview').is(':visible')) {
-      component.find('._current_time').html(secondsToDateString(parsed_int));
-      component.find('._media_player_slider').slider('value', parsed_int);
-    }
-  }
-}
-
-/**
-bla bla bla
 @method initializeAudioEditorCutter
 @for PlayersAudioEditor
 **/
@@ -169,6 +98,77 @@ function initializeAudioEditorCutter(identifier) {
 }
 
 /**
+@method initializeActionOfMediaTimeUpdaterInAudioEditor
+@for PlayersAudioEditor
+**/
+function initializeActionOfMediaTimeUpdaterInAudioEditor(media, identifier, force_parsed_int) {
+  var component = $('#audio_component_' + identifier);
+  var audio_cut_to = component.data('to');
+  var parsed_int = parseInt(media.currentTime);
+  if(force_parsed_int) {
+    parsed_int = audio_cut_to;
+  }
+  if($('#info_container').data('in-preview')) {
+    if(parsed_int > component.find('._media_player_slider').slider('value')) {
+      increaseAudioEditorPreviewTimer();
+      if(parsed_int == audio_cut_to) {
+        var old_start = component.data('from');
+        component.find('audio')[0].pause();
+        component.find('._current_time').html(secondsToDateString(old_start));
+        component.find('._media_player_slider').slider('value', old_start);
+        setCurrentTimeToMedia(component.find('audio'), old_start);
+        var next_component = component.next();
+        if(next_component.length > 0) {
+          deselectAllAudioEditorComponentsInPreviewMode();
+          var new_start = next_component.data('from');
+          next_component.find('._media_player_slider').slider('value', new_start);
+          next_component.find('._current_time').html(secondsToDateString(new_start));
+          loadAudioComponentIfNotLoadedYet(next_component);
+          setCurrentTimeToMedia(next_component.find('audio'), new_start);
+          startAudioEditorPreview(next_component);
+        } else {
+          leaveAudioEditorPreviewMode($('._audio_editor_component').first().attr('id'));
+        }
+      } else {
+        component.find('._current_time').html(secondsToDateString(parsed_int));
+        component.find('._media_player_slider').slider('value', parsed_int);
+      }
+    }
+  } else if(component.data('playing')) {
+    if(parsed_int == (audio_cut_to)) {
+      var initial_time = component.data('from');
+      component.find('._media_player_pause_in_audio_editor_preview').click();
+      component.find('._media_player_slider').slider('value', initial_time);
+      component.find('._current_time').html(secondsToDateString(initial_time));
+      setCurrentTimeToMedia($(media), initial_time);
+    } else if(!component.find('._media_player_play_in_audio_editor_preview').is(':visible')) {
+      component.find('._current_time').html(secondsToDateString(parsed_int));
+      component.find('._media_player_slider').slider('value', parsed_int);
+    }
+  }
+}
+
+/**
+bla bla bla
+@method initializeMediaTimeUpdaterInAudioEditor
+@for PlayersAudioEditor
+**/
+function initializeMediaTimeUpdaterInAudioEditor(identifier) {
+  media = $('#audio_component_' + identifier + ' audio');
+  if(media.readyState != 0) {
+    media[0].addEventListener('timeupdate', function() {
+      initializeActionOfMediaTimeUpdaterInAudioEditor(this, identifier, false);
+    }, false);
+  } else {
+    media.on('loadedmetadata', function() {
+      media[0].addEventListener('timeupdate', function() {
+        initializeActionOfMediaTimeUpdaterInAudioEditor(this, identifier, false);
+      }, false);
+    });
+  }
+}
+
+/**
 bla bla bla
 @method selectAudioComponentCutterHandle
 @for PlayersAudioEditor
@@ -182,23 +182,6 @@ function selectAudioComponentCutterHandle(component, val) {
 
 
 
-
-/**
-IE SI ARRABBIA SE GLI SETTI UN VALORE DI SEEK NON COMPRESO TRA L'INIZIO E LA FINE DEI VALORI SEEKABLE
-@method validSeek
-@for PlayersCommon
-**/
-function validSeek(media, seek) {
-  var confidence = 0.001;
-  var minStart = media[0].seekable.start(0);
-  var maxEnd = media[0].seekable.end(0);
-  if (seek < minStart) {
-    seek = minStart+confidence;
-  } else if (seek > maxEnd) {
-    seek = maxEnd - confidence;
-  }
-  return seek;
-}
 
 /**
 bla bla bla
@@ -240,6 +223,23 @@ function stopAllMedia() {
   });
 }
 
+/**
+IE SI ARRABBIA SE GLI SETTI UN VALORE DI SEEK NON COMPRESO TRA L'INIZIO E LA FINE DEI VALORI SEEKABLE
+@method validSeek
+@for PlayersCommon
+**/
+function validSeek(media, seek) {
+  var confidence = 0.001;
+  var minStart = media[0].seekable.start(0);
+  var maxEnd = media[0].seekable.end(0);
+  if (seek < minStart) {
+    seek = minStart+confidence;
+  } else if (seek > maxEnd) {
+    seek = maxEnd - confidence;
+  }
+  return seek;
+}
+
 
 
 
@@ -253,6 +253,76 @@ function playersDocumentReady() {
   playersDocumentReadyGeneral();
   playersDocumentReadyVideoEditor();
   playersDocumentReadyAudioEditor();
+}
+
+/**
+bla bla bla
+@method playersDocumentReadyAudioEditor
+@for PlayersDocumentReady
+**/
+function playersDocumentReadyAudioEditor() {
+  $('body').on('click', '._media_player_play_in_audio_editor_preview', function() {
+    var component = $(this).parents('._audio_editor_component');
+    var identifier = getAudioComponentIdentifier(component);
+    var audio = component.find('audio');
+    if(audio[0].error) {
+      showLoadingMediaErrorPopup(audio[0].error.code, 'audio');
+    } else {
+      $(this).hide();
+      $('#start_audio_editor_preview').addClass('disabled');
+      $('#rewind_audio_editor_preview').addClass('disabled');
+      component.data('playing', true);
+      component.find('._media_player_slider_disabler').show();
+      component.find('._media_player_rewind_in_audio_editor_preview').hide();
+      component.find('._media_player_pause_in_audio_editor_preview').show();
+      deselectAllAudioEditorCursors(identifier);
+      var single_slider = component.find('._media_player_slider');
+      if(audio[0].currentTime < single_slider.slider('value')) {
+        setCurrentTimeToMedia(audio, single_slider.slider('value'));
+      }
+      if(audio.readyState != 0) {
+        audio[0].play();
+      } else {
+        audio.on('loadedmetadata', function() {
+          audio[0].play();
+        });
+      }
+    }
+  });
+  $('body').on('click', '._media_player_pause_in_audio_editor_preview', function() {
+    $(this).hide();
+    $('#start_audio_editor_preview').removeClass('disabled');
+    $('#rewind_audio_editor_preview').removeClass('disabled');
+    var component = $(this).parents('._audio_editor_component');
+    var identifier = getAudioComponentIdentifier(component);
+    component.data('playing', false);
+    component.find('._media_player_slider_disabler').hide();
+    component.find('._media_player_rewind_in_audio_editor_preview').show();
+    component.find('._media_player_play_in_audio_editor_preview').show();
+    selectAudioEditorCursor(identifier);
+    component.find('audio')[0].pause();
+    if(component.data('to') != parseInt(component.find('audio')[0].currentTime)) {
+      setCurrentTimeToMedia(component.find('audio'), component.find('._media_player_slider').slider('value'));
+    }
+  });
+  $('body').on('click', '._media_player_rewind_in_audio_editor_preview', function() {
+    var component = $(this).parents('._audio_editor_component');
+    var initial_time = component.data('from');
+    component.find('._media_player_slider').slider('value', initial_time);
+    setCurrentTimeToMedia(component.find('audio'), initial_time);
+    component.find('._current_time').html(secondsToDateString(initial_time));
+  });
+  $('body').on('click', '._audio_editor_component ._double_slider .ui-slider-range', function(e) {
+    var component = $(this).parents('._audio_editor_component');
+    var identifier = getAudioComponentIdentifier(component);
+    var percent = component.data('max-to') * (e.pageX - component.find('._double_slider').offset().left) / component.find('._double_slider').width();
+    resp = parseInt(percent);
+    if(percent - parseInt(percent) > 0.5) {
+      resp += 1;
+    }
+    selectAudioEditorCursor(identifier);
+    selectAudioComponentCutterHandle(component, resp);
+  });
 }
 
 /**
@@ -373,131 +443,15 @@ function playersDocumentReadyVideoEditor() {
   });
 }
 
+
+
+
+
 /**
 bla bla bla
-@method playersDocumentReadyAudioEditor
-@for PlayersDocumentReady
+@method initializeActionOfMediaTimeUpdater
+@for PlayersGeneral
 **/
-function playersDocumentReadyAudioEditor() {
-  $('body').on('click', '._media_player_play_in_audio_editor_preview', function() {
-    var component = $(this).parents('._audio_editor_component');
-    var identifier = getAudioComponentIdentifier(component);
-    var audio = component.find('audio');
-    if(audio[0].error) {
-      showLoadingMediaErrorPopup(audio[0].error.code, 'audio');
-    } else {
-      $(this).hide();
-      $('#start_audio_editor_preview').addClass('disabled');
-      $('#rewind_audio_editor_preview').addClass('disabled');
-      component.data('playing', true);
-      component.find('._media_player_slider_disabler').show();
-      component.find('._media_player_rewind_in_audio_editor_preview').hide();
-      component.find('._media_player_pause_in_audio_editor_preview').show();
-      deselectAllAudioEditorCursors(identifier);
-      var single_slider = component.find('._media_player_slider');
-      if(audio[0].currentTime < single_slider.slider('value')) {
-        setCurrentTimeToMedia(audio, single_slider.slider('value'));
-      }
-      if(audio.readyState != 0) {
-        audio[0].play();
-      } else {
-        audio.on('loadedmetadata', function() {
-          audio[0].play();
-        });
-      }
-    }
-  });
-  $('body').on('click', '._media_player_pause_in_audio_editor_preview', function() {
-    $(this).hide();
-    $('#start_audio_editor_preview').removeClass('disabled');
-    $('#rewind_audio_editor_preview').removeClass('disabled');
-    var component = $(this).parents('._audio_editor_component');
-    var identifier = getAudioComponentIdentifier(component);
-    component.data('playing', false);
-    component.find('._media_player_slider_disabler').hide();
-    component.find('._media_player_rewind_in_audio_editor_preview').show();
-    component.find('._media_player_play_in_audio_editor_preview').show();
-    selectAudioEditorCursor(identifier);
-    component.find('audio')[0].pause();
-    if(component.data('to') != parseInt(component.find('audio')[0].currentTime)) {
-      setCurrentTimeToMedia(component.find('audio'), component.find('._media_player_slider').slider('value'));
-    }
-  });
-  $('body').on('click', '._media_player_rewind_in_audio_editor_preview', function() {
-    var component = $(this).parents('._audio_editor_component');
-    var initial_time = component.data('from');
-    component.find('._media_player_slider').slider('value', initial_time);
-    setCurrentTimeToMedia(component.find('audio'), initial_time);
-    component.find('._current_time').html(secondsToDateString(initial_time));
-  });
-  $('body').on('click', '._audio_editor_component ._double_slider .ui-slider-range', function(e) {
-    var component = $(this).parents('._audio_editor_component');
-    var identifier = getAudioComponentIdentifier(component);
-    var percent = component.data('max-to') * (e.pageX - component.find('._double_slider').offset().left) / component.find('._double_slider').width();
-    resp = parseInt(percent);
-    if(percent - parseInt(percent) > 0.5) {
-      resp += 1;
-    }
-    selectAudioEditorCursor(identifier);
-    selectAudioComponentCutterHandle(component, resp);
-  });
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// general
-
-/**
-* JS-TODO
-* 
-* @method initializeMediaTimeUpdater
-* @for initializeMediaTimeUpdater
-* @param media {String} media element selector class or id
-* @param reference_id {String} 
-*/
-function initializeMediaTimeUpdater(media, reference_id) {
-  media = $(media);
-  if(media.readyState != 0) {
-    media[0].addEventListener('timeupdate', function() {
-      initializeActionOfMediaTimeUpdater(this, reference_id);
-    }, false);
-  } else {
-    media.on('loadedmetadata', function() {
-      media[0].addEventListener('timeupdate', function() {
-        initializeActionOfMediaTimeUpdater(this, reference_id);
-      }, false);
-    });
-  }
-}
-
-/**
-* JS-TODO
-* 
-* @method initializeActionOfMediaTimeUpdater
-* @for initializeActionOfMediaTimeUpdater
-*/
 function initializeActionOfMediaTimeUpdater(media, reference_id) {
   var duration = $('#' + reference_id).data('duration');
   var container_id = $(media).parent().attr('id');
@@ -514,11 +468,10 @@ function initializeActionOfMediaTimeUpdater(media, reference_id) {
 }
 
 /**
-* JS-TODO
-* 
-* @method initializeMedia
-* @for initializeMedia
-*/
+bla bla bla
+@method initializeMedia
+@for PlayersGeneral
+**/
 function initializeMedia(content_id, type) {
   var duration = $('#' + content_id).data('duration');
   $('#' + content_id + ' ._media_player_slider').slider({
@@ -541,11 +494,32 @@ function initializeMedia(content_id, type) {
 }
 
 /**
-* JS-TODO
-* 
-* @method stopMedia
-* @for stopMedia
-*/
+bla bla bla
+@method initializeMediaTimeUpdater
+@for PlayersGeneral
+@param media {String} media element selector class or id
+@param reference_id {String}
+**/
+function initializeMediaTimeUpdater(media, reference_id) {
+  media = $(media);
+  if(media.readyState != 0) {
+    media[0].addEventListener('timeupdate', function() {
+      initializeActionOfMediaTimeUpdater(this, reference_id);
+    }, false);
+  } else {
+    media.on('loadedmetadata', function() {
+      media[0].addEventListener('timeupdate', function() {
+        initializeActionOfMediaTimeUpdater(this, reference_id);
+      }, false);
+    });
+  }
+}
+
+/**
+bla bla bla
+@method stopMedia
+@for PlayersGeneral
+**/
 function stopMedia(media) {
   try {
     if($(media).length != 0) {
@@ -572,51 +546,11 @@ function stopMedia(media) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// video editor
-
 /**
-* JS-TODO
-* 
-* @method initializeMediaTimeUpdaterInVideoEditor
-* @for initializeMediaTimeUpdaterInVideoEditor
-*/
-function initializeMediaTimeUpdaterInVideoEditor(media, identifier) {
-  media = $(media);
-  if(media.readyState != 0) {
-    media[0].addEventListener('timeupdate', function() {
-      initializeActionOfMediaTimeUpdaterInVideoEditor(this, identifier, false);
-    }, false);
-  } else {
-    media.on('loadedmetadata', function() {
-      media[0].addEventListener('timeupdate', function() {
-        initializeActionOfMediaTimeUpdaterInVideoEditor(this, identifier, false);
-      }, false);
-    });
-  }
-}
-
-/**
-* JS-TODO
-* 
-* @method initializeActionOfMediaTimeUpdaterInVideoEditor
-* @for initializeActionOfMediaTimeUpdaterInVideoEditor
-*/
+bla bla bla
+@method initializeActionOfMediaTimeUpdaterInVideoEditor
+@for PlayersVideoEditor
+**/
 function initializeActionOfMediaTimeUpdaterInVideoEditor(media, identifier, force_parsed_int) {
   var video_cut_to = $('#video_component_' + identifier + '_cutter').data('to');
   var parsed_int = parseInt(media.currentTime);
@@ -687,11 +621,30 @@ function initializeActionOfMediaTimeUpdaterInVideoEditor(media, identifier, forc
 }
 
 /**
-* JS-TODO
-* 
-* @method initializeVideoInVideoEditorPreview
-* @for initializeVideoInVideoEditorPreview
-*/
+bla bla bla
+@method initializeMediaTimeUpdaterInVideoEditor
+@for PlayersVideoEditor
+**/
+function initializeMediaTimeUpdaterInVideoEditor(media, identifier) {
+  media = $(media);
+  if(media.readyState != 0) {
+    media[0].addEventListener('timeupdate', function() {
+      initializeActionOfMediaTimeUpdaterInVideoEditor(this, identifier, false);
+    }, false);
+  } else {
+    media.on('loadedmetadata', function() {
+      media[0].addEventListener('timeupdate', function() {
+        initializeActionOfMediaTimeUpdaterInVideoEditor(this, identifier, false);
+      }, false);
+    });
+  }
+}
+
+/**
+bla bla bla
+@method initializeVideoInVideoEditorPreview
+@for PlayersVideoEditor
+**/
 function initializeVideoInVideoEditorPreview(identifier) {
   var my_cutter = $('#video_component_' + identifier + '_cutter');
   $('#video_component_' + identifier + '_preview video').on('loadeddata', function() {
@@ -767,11 +720,20 @@ function initializeVideoInVideoEditorPreview(identifier) {
 }
 
 /**
-* JS-TODO
-* 
-* @method stopVideoInVideoEditorPreview
-* @for stopVideoInVideoEditorPreview
-*/
+bla bla bla
+@method selectVideoComponentCutterHandle
+@for PlayersVideoEditor
+**/
+function selectVideoComponentCutterHandle(cutter, val) {
+  setCurrentTimeToMedia($('#' + cutter.attr('id').replace('cutter', 'preview') + ' video'), val);
+  cutter.find('._media_player_slider').slider('value', val);
+}
+
+/**
+bla bla bla
+@method stopVideoInVideoEditorPreview
+@for PlayersVideoEditor
+**/
 function stopVideoInVideoEditorPreview(identifier) {
   try {
     if($('#video_component_' + identifier + '_preview video').length != 0) {
@@ -791,15 +753,4 @@ function stopVideoInVideoEditorPreview(identifier) {
   } catch(err) {
     console.log('error stopping media: ' + err);
   }
-}
-
-/**
-* JS-TODO
-* 
-* @method selectVideoComponentCutterHandle
-* @for selectVideoComponentCutterHandle
-*/
-function selectVideoComponentCutterHandle(cutter, val) {
-  setCurrentTimeToMedia($('#' + cutter.attr('id').replace('cutter', 'preview') + ' video'), val);
-  cutter.find('._media_player_slider').slider('value', val);
 }
