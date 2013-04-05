@@ -202,18 +202,9 @@
             },
             "classes": {},
             "fors": {
-                "initializeNotifications": 1,
-                "initializeHelp": 1,
-                "hideExpandedNotification": 1,
-                "showNotificationsTooltip": 1,
-                "hideHelpTooltip": 1,
-                "showHelpTooltip": 1,
-                "hideNotificationsButton": 1,
-                "showNotificationsButton": 1,
-                "hideNotificationsFumetto": 1,
-                "showNotificationsFumetto": 1,
-                "hideHelpButton": 1,
-                "showHelpButton": 1
+                "NotificationsAccessories": 1,
+                "NotificationsDocumentReady": 1,
+                "NotificationsGraphics": 1
             },
             "namespaces": {}
         },
@@ -602,32 +593,14 @@
             "name": "notifications",
             "submodules": {},
             "classes": {
-                "initializeNotifications": 1,
-                "initializeHelp": 1,
-                "hideExpandedNotification": 1,
-                "showNotificationsTooltip": 1,
-                "hideHelpTooltip": 1,
-                "showHelpTooltip": 1,
-                "hideNotificationsButton": 1,
-                "showNotificationsButton": 1,
-                "hideNotificationsFumetto": 1,
-                "showNotificationsFumetto": 1,
-                "hideHelpButton": 1,
-                "showHelpButton": 1
+                "NotificationsAccessories": 1,
+                "NotificationsDocumentReady": 1,
+                "NotificationsGraphics": 1
             },
             "fors": {
-                "initializeNotifications": 1,
-                "initializeHelp": 1,
-                "hideExpandedNotification": 1,
-                "showNotificationsTooltip": 1,
-                "hideHelpTooltip": 1,
-                "showHelpTooltip": 1,
-                "hideNotificationsButton": 1,
-                "showNotificationsButton": 1,
-                "hideNotificationsFumetto": 1,
-                "showNotificationsFumetto": 1,
-                "hideHelpButton": 1,
-                "showHelpButton": 1
+                "NotificationsAccessories": 1,
+                "NotificationsDocumentReady": 1,
+                "NotificationsGraphics": 1
             },
             "namespaces": {},
             "tag": "module",
@@ -1428,9 +1401,9 @@
             "module": "media-element-loader",
             "namespace": ""
         },
-        "initializeNotifications": {
-            "name": "initializeNotifications",
-            "shortname": "initializeNotifications",
+        "NotificationsAccessories": {
+            "name": "NotificationsAccessories",
+            "shortname": "NotificationsAccessories",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -1439,9 +1412,9 @@
             "module": "notifications",
             "namespace": ""
         },
-        "initializeHelp": {
-            "name": "initializeHelp",
-            "shortname": "initializeHelp",
+        "NotificationsDocumentReady": {
+            "name": "NotificationsDocumentReady",
+            "shortname": "NotificationsDocumentReady",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -1450,108 +1423,9 @@
             "module": "notifications",
             "namespace": ""
         },
-        "hideExpandedNotification": {
-            "name": "hideExpandedNotification",
-            "shortname": "hideExpandedNotification",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "notifications",
-            "namespace": ""
-        },
-        "showNotificationsTooltip": {
-            "name": "showNotificationsTooltip",
-            "shortname": "showNotificationsTooltip",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "notifications",
-            "namespace": ""
-        },
-        "hideHelpTooltip": {
-            "name": "hideHelpTooltip",
-            "shortname": "hideHelpTooltip",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "notifications",
-            "namespace": ""
-        },
-        "showHelpTooltip": {
-            "name": "showHelpTooltip",
-            "shortname": "showHelpTooltip",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "notifications",
-            "namespace": ""
-        },
-        "hideNotificationsButton": {
-            "name": "hideNotificationsButton",
-            "shortname": "hideNotificationsButton",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "notifications",
-            "namespace": ""
-        },
-        "showNotificationsButton": {
-            "name": "showNotificationsButton",
-            "shortname": "showNotificationsButton",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "notifications",
-            "namespace": ""
-        },
-        "hideNotificationsFumetto": {
-            "name": "hideNotificationsFumetto",
-            "shortname": "hideNotificationsFumetto",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "notifications",
-            "namespace": ""
-        },
-        "showNotificationsFumetto": {
-            "name": "showNotificationsFumetto",
-            "shortname": "showNotificationsFumetto",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "notifications",
-            "namespace": ""
-        },
-        "hideHelpButton": {
-            "name": "hideHelpButton",
-            "shortname": "hideHelpButton",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "notifications",
-            "namespace": ""
-        },
-        "showHelpButton": {
-            "name": "showHelpButton",
-            "shortname": "showHelpButton",
+        "NotificationsGraphics": {
+            "name": "NotificationsGraphics",
+            "shortname": "NotificationsGraphics",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -4583,119 +4457,146 @@
         },
         {
             "file": "app/assets/javascripts/notifications.js",
-            "line": 49,
-            "description": "Checks if any notification is available and initialize unread notification counter.\nHandles notifications show/hide effects.\n\nUses: [showNotificationsFumetto](../classes/showNotificationsFumetto.html#method_showNotificationsFumetto)\nand [showNotificationsButton](../classes/showNotificationsButton.html#method_showNotificationsButton)\nand [hideHelpTooltip](../classes/hideHelpTooltip.html#method_hideHelpTooltip)\nand [hideHelpButton](../classes/hideHelpButton.html#method_hideHelpButton)\nand [showNotificationsTooltip](../classes/showNotificationsTooltip.html#method_showNotificationsTooltip)\nand [hideNotificationsFumetto](../classes/hideNotificationsFumetto.html#method_hideNotificationsFumetto)\nand [hideNotificationsTooltip](../classes/hideNotificationsTooltip.html#method_hideNotificationsTooltip)\nand [hideNotificationsButton](../classes/hideNotificationsButton.html#method_hideNotificationsButton)\nand [unbindLoader](../classes/unbindLoader.html#method_unbindLoader)\nand [bindLoader](../classes/bindLoader.html#method_bindLoader)\nand [hideExpandedNotification](../classes/hideExpandedNotification.html#method_hideExpandedNotification)",
-            "itemtype": "method",
-            "name": "initializeNotifications",
-            "class": "initializeNotifications",
-            "module": "notifications"
-        },
-        {
-            "file": "app/assets/javascripts/notifications.js",
-            "line": 150,
-            "description": "Checks if any help is available and initialize them.\nHandles help show/hide effects.\n\nUses: [hideNotificationsTooltip](../classes/hideNotificationsTooltip.html#method_hideNotificationsTooltip)\nand [hideNotificationsButton](../classes/hideNotificationsButton.html#method_hideNotificationsButton)\nand [hideNotificationsFumetto](../classes/hideNotificationsFumetto.html#method_hideNotificationsFumetto)\nand [showHelpTooltip](../classes/showHelpTooltip.html#method_showHelpTooltip)\nand [showHelpButton](../classes/showHelpButton.html#method_showHelpButton)\nand [hideHelpTooltip](../classes/hideHelpTooltip.html#method_hideHelpTooltip)\nand [hideHelpButton](../classes/hideHelpButton.html#method_hideHelpButton)",
-            "itemtype": "method",
-            "name": "initializeHelp",
-            "class": "initializeHelp",
-            "module": "notifications"
-        },
-        {
-            "file": "app/assets/javascripts/notifications.js",
-            "line": 189,
+            "line": 10,
             "description": "Empty and hide expanded notifications.",
             "itemtype": "method",
             "name": "hideExpandedNotification",
-            "class": "hideExpandedNotification",
+            "class": "NotificationsAccessories",
             "module": "notifications"
         },
         {
             "file": "app/assets/javascripts/notifications.js",
-            "line": 200,
-            "description": "Hide notifications tooltip.\n\nUses: [hideExpandedNotification](../classes/hideExpandedNotification.html#method_hideExpandedNotification)",
-            "itemtype": "method",
-            "name": "hideExpandedNotification",
-            "class": "hideExpandedNotification",
-            "module": "notifications"
-        },
-        {
-            "file": "app/assets/javascripts/notifications.js",
-            "line": 213,
-            "description": "Show notifications tooltip.",
-            "itemtype": "method",
-            "name": "showNotificationsTooltip",
-            "class": "showNotificationsTooltip",
-            "module": "notifications"
-        },
-        {
-            "file": "app/assets/javascripts/notifications.js",
-            "line": 223,
-            "description": "Hide help tooltip.",
-            "itemtype": "method",
-            "name": "hideHelpTooltip",
-            "class": "hideHelpTooltip",
-            "module": "notifications"
-        },
-        {
-            "file": "app/assets/javascripts/notifications.js",
-            "line": 233,
-            "description": "Show help tooltip.",
-            "itemtype": "method",
-            "name": "showHelpTooltip",
-            "class": "showHelpTooltip",
-            "module": "notifications"
-        },
-        {
-            "file": "app/assets/javascripts/notifications.js",
-            "line": 243,
-            "description": "Hide notifications button.",
-            "itemtype": "method",
-            "name": "hideNotificationsButton",
-            "class": "hideNotificationsButton",
-            "module": "notifications"
-        },
-        {
-            "file": "app/assets/javascripts/notifications.js",
-            "line": 253,
-            "description": "Show notifications button.",
-            "itemtype": "method",
-            "name": "showNotificationsButton",
-            "class": "showNotificationsButton",
-            "module": "notifications"
-        },
-        {
-            "file": "app/assets/javascripts/notifications.js",
-            "line": 263,
-            "description": "Hide notifications balloon.",
-            "itemtype": "method",
-            "name": "hideNotificationsFumetto",
-            "class": "hideNotificationsFumetto",
-            "module": "notifications"
-        },
-        {
-            "file": "app/assets/javascripts/notifications.js",
-            "line": 273,
-            "description": "Show notifications balloon.",
-            "itemtype": "method",
-            "name": "showNotificationsFumetto",
-            "class": "showNotificationsFumetto",
-            "module": "notifications"
-        },
-        {
-            "file": "app/assets/javascripts/notifications.js",
-            "line": 283,
+            "line": 20,
             "description": "Hide help button.",
             "itemtype": "method",
             "name": "hideHelpButton",
-            "class": "hideHelpButton",
+            "class": "NotificationsAccessories",
             "module": "notifications"
         },
         {
             "file": "app/assets/javascripts/notifications.js",
-            "line": 293,
+            "line": 29,
+            "description": "Hide help tooltip.",
+            "itemtype": "method",
+            "name": "hideHelpTooltip",
+            "class": "NotificationsAccessories",
+            "module": "notifications"
+        },
+        {
+            "file": "app/assets/javascripts/notifications.js",
+            "line": 38,
+            "description": "Hide notifications button.",
+            "itemtype": "method",
+            "name": "hideNotificationsButton",
+            "class": "NotificationsAccessories",
+            "module": "notifications"
+        },
+        {
+            "file": "app/assets/javascripts/notifications.js",
+            "line": 47,
+            "description": "Hide notifications balloon.",
+            "itemtype": "method",
+            "name": "hideNotificationsFumetto",
+            "class": "NotificationsAccessories",
+            "module": "notifications"
+        },
+        {
+            "file": "app/assets/javascripts/notifications.js",
+            "line": 56,
+            "description": "Hide notifications tooltip. Uses: [hideExpandedNotification](../classes/hideExpandedNotification.html#method_hideExpandedNotification)",
+            "itemtype": "method",
+            "name": "hideNotificationsTooltip",
+            "class": "NotificationsAccessories",
+            "module": "notifications"
+        },
+        {
+            "file": "app/assets/javascripts/notifications.js",
+            "line": 66,
             "description": "Show help button.",
             "itemtype": "method",
             "name": "showHelpButton",
-            "class": "showHelpButton",
+            "class": "NotificationsAccessories",
+            "module": "notifications"
+        },
+        {
+            "file": "app/assets/javascripts/notifications.js",
+            "line": 75,
+            "description": "Show help tooltip.",
+            "itemtype": "method",
+            "name": "showHelpTooltip",
+            "class": "NotificationsAccessories",
+            "module": "notifications"
+        },
+        {
+            "file": "app/assets/javascripts/notifications.js",
+            "line": 84,
+            "description": "Show notifications button.",
+            "itemtype": "method",
+            "name": "showNotificationsButton",
+            "class": "NotificationsAccessories",
+            "module": "notifications"
+        },
+        {
+            "file": "app/assets/javascripts/notifications.js",
+            "line": 93,
+            "description": "Show notifications fumetto.",
+            "itemtype": "method",
+            "name": "showNotificationsFumetto",
+            "class": "NotificationsAccessories",
+            "module": "notifications"
+        },
+        {
+            "file": "app/assets/javascripts/notifications.js",
+            "line": 102,
+            "description": "Show notifications tooltip.",
+            "itemtype": "method",
+            "name": "showNotificationsTooltip",
+            "class": "NotificationsAccessories",
+            "module": "notifications"
+        },
+        {
+            "file": "app/assets/javascripts/notifications.js",
+            "line": 115,
+            "description": "bla bla bla",
+            "itemtype": "method",
+            "name": "notificationsDocumentReady",
+            "class": "NotificationsDocumentReady",
+            "module": "notifications"
+        },
+        {
+            "file": "app/assets/javascripts/notifications.js",
+            "line": 125,
+            "description": "bla bla bla",
+            "itemtype": "method",
+            "name": "notificationsDocumentReadyLessonModification",
+            "class": "NotificationsDocumentReady",
+            "module": "notifications"
+        },
+        {
+            "file": "app/assets/javascripts/notifications.js",
+            "line": 153,
+            "description": "bla bla bla",
+            "itemtype": "method",
+            "name": "notificationsDocumentReadyTooltips",
+            "class": "NotificationsDocumentReady",
+            "module": "notifications"
+        },
+        {
+            "file": "app/assets/javascripts/notifications.js",
+            "line": 179,
+            "description": "Checks if any help is available and initialize them. Handles help show/hide effects.",
+            "itemtype": "method",
+            "name": "initializeHelp",
+            "class": "NotificationsGraphics",
+            "module": "notifications"
+        },
+        {
+            "file": "app/assets/javascripts/notifications.js",
+            "line": 207,
+            "description": "Checks if any notification is available and initialize unread notification counter. Handles notifications show/hide effects.",
+            "itemtype": "method",
+            "name": "initializeNotifications",
+            "class": "NotificationsGraphics",
             "module": "notifications"
         },
         {

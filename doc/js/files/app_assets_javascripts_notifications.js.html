@@ -125,16 +125,6 @@
             
                 <li><a href="..&#x2F;classes/getUnivoqueClassForTag.html">getUnivoqueClassForTag</a></li>
             
-                <li><a href="..&#x2F;classes/hideExpandedNotification.html">hideExpandedNotification</a></li>
-            
-                <li><a href="..&#x2F;classes/hideHelpButton.html">hideHelpButton</a></li>
-            
-                <li><a href="..&#x2F;classes/hideHelpTooltip.html">hideHelpTooltip</a></li>
-            
-                <li><a href="..&#x2F;classes/hideNotificationsButton.html">hideNotificationsButton</a></li>
-            
-                <li><a href="..&#x2F;classes/hideNotificationsFumetto.html">hideNotificationsFumetto</a></li>
-            
                 <li><a href="..&#x2F;classes/ImageEditorDocumentReady.html">ImageEditorDocumentReady</a></li>
             
                 <li><a href="..&#x2F;classes/ImageEditorGraphics.html">ImageEditorGraphics</a></li>
@@ -153,8 +143,6 @@
             
                 <li><a href="..&#x2F;classes/initializeDraggableVirtualClassroomLesson.html">initializeDraggableVirtualClassroomLesson</a></li>
             
-                <li><a href="..&#x2F;classes/initializeHelp.html">initializeHelp</a></li>
-            
                 <li><a href="..&#x2F;classes/initializeMedia.html">initializeMedia</a></li>
             
                 <li><a href="..&#x2F;classes/initializeMediaTimeUpdater.html">initializeMediaTimeUpdater</a></li>
@@ -164,8 +152,6 @@
                 <li><a href="..&#x2F;classes/initializeMediaTimeUpdaterInVideoEditor.html">initializeMediaTimeUpdaterInVideoEditor</a></li>
             
                 <li><a href="..&#x2F;classes/initializeNotAvailableLessonsToLoadQuick.html">initializeNotAvailableLessonsToLoadQuick</a></li>
-            
-                <li><a href="..&#x2F;classes/initializeNotifications.html">initializeNotifications</a></li>
             
                 <li><a href="..&#x2F;classes/initializePlaylist.html">initializePlaylist</a></li>
             
@@ -223,6 +209,12 @@
             
                 <li><a href="..&#x2F;classes/MediaElementLoaderGeneral.html">MediaElementLoaderGeneral</a></li>
             
+                <li><a href="..&#x2F;classes/NotificationsAccessories.html">NotificationsAccessories</a></li>
+            
+                <li><a href="..&#x2F;classes/NotificationsDocumentReady.html">NotificationsDocumentReady</a></li>
+            
+                <li><a href="..&#x2F;classes/NotificationsGraphics.html">NotificationsGraphics</a></li>
+            
                 <li><a href="..&#x2F;classes/removeFromTagsValue.html">removeFromTagsValue</a></li>
             
                 <li><a href="..&#x2F;classes/selectAudioComponentCutterHandle.html">selectAudioComponentCutterHandle</a></li>
@@ -231,17 +223,7 @@
             
                 <li><a href="..&#x2F;classes/setCurrentTimeToMedia.html">setCurrentTimeToMedia</a></li>
             
-                <li><a href="..&#x2F;classes/showHelpButton.html">showHelpButton</a></li>
-            
-                <li><a href="..&#x2F;classes/showHelpTooltip.html">showHelpTooltip</a></li>
-            
                 <li><a href="..&#x2F;classes/showLoadingMediaErrorPopup.html">showLoadingMediaErrorPopup</a></li>
-            
-                <li><a href="..&#x2F;classes/showNotificationsButton.html">showNotificationsButton</a></li>
-            
-                <li><a href="..&#x2F;classes/showNotificationsFumetto.html">showNotificationsFumetto</a></li>
-            
-                <li><a href="..&#x2F;classes/showNotificationsTooltip.html">showNotificationsTooltip</a></li>
             
                 <li><a href="..&#x2F;classes/stopAllMedia.html">stopAllMedia</a></li>
             
@@ -339,25 +321,131 @@ Notification info and help assistant messages handler.
 @module notifications
 **&#x2F;
 
+
+
+
+
+&#x2F;**
+Empty and hide expanded notifications.
+@method hideExpandedNotification
+@for NotificationsAccessories
+**&#x2F;
+function hideExpandedNotification() {
+  $(&#x27;#expanded_notification&#x27;).html(&#x27;&#x27;);
+  $(&#x27;#expanded_notification&#x27;).hide();
+}
+
+&#x2F;**
+Hide help button.
+@method hideHelpButton
+@for NotificationsAccessories
+**&#x2F;
+function hideHelpButton() {
+  $(&#x27;#help&#x27;).removeClass(&#x27;current&#x27;);
+}
+
+&#x2F;**
+Hide help tooltip.
+@method hideHelpTooltip
+@for NotificationsAccessories
+**&#x2F;
+function hideHelpTooltip() {
+  $(&#x27;#tooltip_help&#x27;).hide();
+}
+
+&#x2F;**
+Hide notifications button.
+@method hideNotificationsButton
+@for NotificationsAccessories
+**&#x2F;
+function hideNotificationsButton() {
+  $(&#x27;#notifications_button&#x27;).removeClass(&#x27;current&#x27;);
+}
+
+&#x2F;**
+Hide notifications balloon.
+@method hideNotificationsFumetto
+@for NotificationsAccessories
+**&#x2F;
+function hideNotificationsFumetto() {
+  $(&#x27;#tooltip_arancione&#x27;).hide();
+}
+
+&#x2F;**
+Hide notifications tooltip. Uses: [hideExpandedNotification](..&#x2F;classes&#x2F;hideExpandedNotification.html#method_hideExpandedNotification)
+@method hideNotificationsTooltip
+@for NotificationsAccessories
+**&#x2F;
+function hideNotificationsTooltip() {
+  $(&#x27;#tooltip_content&#x27;).hide();
+  hideExpandedNotification();
+}
+
+&#x2F;**
+Show help button.
+@method showHelpButton
+@for NotificationsAccessories
+**&#x2F;
+function showHelpButton() {
+  $(&#x27;#help&#x27;).addClass(&#x27;current&#x27;);
+}
+
+&#x2F;**
+Show help tooltip.
+@method showHelpTooltip
+@for NotificationsAccessories
+**&#x2F;
+function showHelpTooltip() {
+  $(&#x27;#tooltip_help&#x27;).show();
+}
+
+&#x2F;**
+Show notifications button.
+@method showNotificationsButton
+@for NotificationsAccessories
+**&#x2F;
+function showNotificationsButton() {
+  $(&#x27;#notifications_button&#x27;).addClass(&#x27;current&#x27;);
+}
+
+&#x2F;**
+Show notifications fumetto.
+@method showNotificationsFumetto
+@for NotificationsAccessories
+**&#x2F;
+function showNotificationsFumetto() {
+  $(&#x27;#tooltip_arancione&#x27;).show();
+}
+
+&#x2F;**
+Show notifications tooltip.
+@method showNotificationsTooltip
+@for NotificationsAccessories
+**&#x2F;
+function showNotificationsTooltip() {
+  $(&#x27;#tooltip_content&#x27;).show();
+}
+
+
+
+
+
+&#x2F;**
+bla bla bla
+@method notificationsDocumentReady
+@for NotificationsDocumentReady
+**&#x2F;
 function notificationsDocumentReady() {
-  
-  initializeNotifications();
-  initializeHelp();
-  
-  $(&#x27;#tooltip_content .scroll-pane&#x27;).bind(&#x27;jsp-arrow-change&#x27;, function(event, isAtTop, isAtBottom, isAtLeft, isAtRight) {
-    var tot_number = $(&#x27;#tooltip_content&#x27;).data(&#x27;tot-number&#x27;);
-    var offset = $(&#x27;#tooltip_content&#x27;).data(&#x27;offset&#x27;);
-    if(isAtBottom &amp;&amp; (offset &lt; tot_number)) {
-      $.get(&#x27;&#x2F;notifications&#x2F;get_new_block?offset=&#x27; + offset);
-    }
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._destroy_notification&#x27;, function() {
-    var my_id = $(this).data(&#x27;param&#x27;);
-    var offset = $(&#x27;#tooltip_content&#x27;).data(&#x27;offset&#x27;);
-    $.post(&#x27;&#x2F;notifications&#x2F;&#x27; + my_id + &#x27;&#x2F;destroy?offset=&#x27; + offset);
-  });
-  
+  notificationsDocumentReadyTooltips();
+  notificationsDocumentReadyLessonModification();
+}
+
+&#x2F;**
+bla bla bla
+@method notificationsDocumentReadyLessonModification
+@for NotificationsDocumentReady
+**&#x2F;
+function notificationsDocumentReadyLessonModification() {
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#lesson-notification ._no&#x27;, function(e) {
     e.preventDefault();
     closePopUp(&#x27;lesson-notification&#x27;);
@@ -372,35 +460,73 @@ function notificationsDocumentReady() {
       beforeSend: unbindLoader()
     }).always(bindLoader);
   });
-  
   $(&#x27;body&#x27;).on(&#x27;focus&#x27;, &#x27;#lesson-notification #lesson_notify_modification_details&#x27;, function() {
     if($(&#x27;#lesson-notification #lesson_notify_modification_details_placeholder&#x27;).val() === &#x27;&#x27;) {
       $(this).val(&#x27;&#x27;);
       $(&#x27;#lesson-notification #lesson_notify_modification_details_placeholder&#x27;).val(&#x27;0&#x27;);
     }
   });
-  
 }
 
 &#x2F;**
-* Checks if any notification is available and initialize unread notification counter.
-* Handles notifications show&#x2F;hide effects.
-*
-* Uses: [showNotificationsFumetto](..&#x2F;classes&#x2F;showNotificationsFumetto.html#method_showNotificationsFumetto)
-* and [showNotificationsButton](..&#x2F;classes&#x2F;showNotificationsButton.html#method_showNotificationsButton)
-* and [hideHelpTooltip](..&#x2F;classes&#x2F;hideHelpTooltip.html#method_hideHelpTooltip)
-* and [hideHelpButton](..&#x2F;classes&#x2F;hideHelpButton.html#method_hideHelpButton)
-* and [showNotificationsTooltip](..&#x2F;classes&#x2F;showNotificationsTooltip.html#method_showNotificationsTooltip)
-* and [hideNotificationsFumetto](..&#x2F;classes&#x2F;hideNotificationsFumetto.html#method_hideNotificationsFumetto)
-* and [hideNotificationsTooltip](..&#x2F;classes&#x2F;hideNotificationsTooltip.html#method_hideNotificationsTooltip)
-* and [hideNotificationsButton](..&#x2F;classes&#x2F;hideNotificationsButton.html#method_hideNotificationsButton)
-* and [unbindLoader](..&#x2F;classes&#x2F;unbindLoader.html#method_unbindLoader)
-* and [bindLoader](..&#x2F;classes&#x2F;bindLoader.html#method_bindLoader)
-* and [hideExpandedNotification](..&#x2F;classes&#x2F;hideExpandedNotification.html#method_hideExpandedNotification)
-*
-* @method initializeNotifications
-* @for initializeNotifications
-*&#x2F;
+bla bla bla
+@method notificationsDocumentReadyTooltips
+@for NotificationsDocumentReady
+**&#x2F;
+function notificationsDocumentReadyTooltips() {
+  initializeNotifications();
+  initializeHelp();
+  $(&#x27;#tooltip_content .scroll-pane&#x27;).bind(&#x27;jsp-arrow-change&#x27;, function(event, isAtTop, isAtBottom, isAtLeft, isAtRight) {
+    var tot_number = $(&#x27;#tooltip_content&#x27;).data(&#x27;tot-number&#x27;);
+    var offset = $(&#x27;#tooltip_content&#x27;).data(&#x27;offset&#x27;);
+    if(isAtBottom &amp;&amp; (offset &lt; tot_number)) {
+      $.get(&#x27;&#x2F;notifications&#x2F;get_new_block?offset=&#x27; + offset);
+    }
+  });
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._destroy_notification&#x27;, function() {
+    var my_id = $(this).data(&#x27;param&#x27;);
+    var offset = $(&#x27;#tooltip_content&#x27;).data(&#x27;offset&#x27;);
+    $.post(&#x27;&#x2F;notifications&#x2F;&#x27; + my_id + &#x27;&#x2F;destroy?offset=&#x27; + offset);
+  });
+}
+
+
+
+
+
+&#x2F;**
+Checks if any help is available and initialize them. Handles help show&#x2F;hide effects.
+@method initializeHelp
+@for NotificationsGraphics
+**&#x2F;
+function initializeHelp() {
+  $(&#x27;#help&#x27;).click(function() {
+    if(!$(&#x27;#tooltip_help&#x27;).is(&#x27;:visible&#x27;)) {
+      hideNotificationsTooltip();
+      hideNotificationsButton();
+      hideNotificationsFumetto();
+      $(&#x27;#tooltip_help&#x27;).show(&#x27;fade&#x27;, {}, 500, function() {
+        showHelpTooltip();
+      });
+      showHelpButton();
+    } else {
+      $(&#x27;#tooltip_help&#x27;).hide(&#x27;fade&#x27;, {}, 500, function() {
+        hideHelpTooltip();
+      });
+      hideHelpButton();
+      if($(&#x27;#tooltip_arancione&#x27;).data(&#x27;number&#x27;) &gt; 0) {
+        showNotificationsButton();
+        showNotificationsFumetto();
+      }
+    }
+  });
+}
+
+&#x2F;**
+Checks if any notification is available and initialize unread notification counter. Handles notifications show&#x2F;hide effects.
+@method initializeNotifications
+@for NotificationsGraphics
+**&#x2F;
 function initializeNotifications() {
   if($(&#x27;#tooltip_arancione&#x27;).data(&#x27;number&#x27;) &gt; 0) {
     showNotificationsFumetto();
@@ -468,172 +594,19 @@ function initializeNotifications() {
     var click_id = $(e.target).attr(&#x27;id&#x27;);
     if($(&#x27;#tooltip_content&#x27;).length &gt; 0){
       if($(&#x27;#tooltip_content&#x27;).is(&#x27;:visible&#x27;)) {
-        if(click_id != &#x27;tooltip_content&#x27; &amp;&amp; click_id != &#x27;expanded_notification&#x27; &amp;&amp; click_id != &#x27;notifications_button&#x27; &amp;&amp; $(e.target).parents(&#x27;#tooltip_content&#x27;).length == 0 &amp;&amp; $(e.target).parents(&#x27;#expanded_notification&#x27;).length == 0){
+        if(click_id != &#x27;tooltip_content&#x27; &amp;&amp; click_id != &#x27;expanded_notification&#x27; &amp;&amp; click_id != &#x27;notifications_button&#x27; &amp;&amp; $(e.target).parents(&#x27;#tooltip_content&#x27;).length == 0 &amp;&amp; $(e.target).parents(&#x27;#expanded_notification&#x27;).length == 0) {
           $(&#x27;#notifications_button&#x27;).trigger(&#x27;click&#x27;);
         }
       }
     }
     if($(&#x27;#tooltip_help&#x27;).length &gt; 0) {
       if($(&#x27;#tooltip_help&#x27;).is(&#x27;:visible&#x27;)) {
-        if(click_id != &#x27;tooltip_help&#x27; &amp;&amp; click_id != &#x27;help&#x27; &amp;&amp; $(e.target).parents(&#x27;#tooltip_help&#x27;).length == 0){
+        if(click_id != &#x27;tooltip_help&#x27; &amp;&amp; click_id != &#x27;help&#x27; &amp;&amp; $(e.target).parents(&#x27;#tooltip_help&#x27;).length == 0) {
           $(&#x27;#help&#x27;).trigger(&#x27;click&#x27;);
         }
       }
     }
   });
-}
-
-&#x2F;**
-* Checks if any help is available and initialize them.
-* Handles help show&#x2F;hide effects.
-*
-* Uses: [hideNotificationsTooltip](..&#x2F;classes&#x2F;hideNotificationsTooltip.html#method_hideNotificationsTooltip)
-* and [hideNotificationsButton](..&#x2F;classes&#x2F;hideNotificationsButton.html#method_hideNotificationsButton)
-* and [hideNotificationsFumetto](..&#x2F;classes&#x2F;hideNotificationsFumetto.html#method_hideNotificationsFumetto)
-* and [showHelpTooltip](..&#x2F;classes&#x2F;showHelpTooltip.html#method_showHelpTooltip)
-* and [showHelpButton](..&#x2F;classes&#x2F;showHelpButton.html#method_showHelpButton)
-* and [hideHelpTooltip](..&#x2F;classes&#x2F;hideHelpTooltip.html#method_hideHelpTooltip)
-* and [hideHelpButton](..&#x2F;classes&#x2F;hideHelpButton.html#method_hideHelpButton)
-* 
-* @method initializeHelp
-* @for initializeHelp
-*
-*&#x2F;
-function initializeHelp() {
-  $(&#x27;#help&#x27;).click(function() {
-    if(!$(&#x27;#tooltip_help&#x27;).is(&#x27;:visible&#x27;)) {
-      hideNotificationsTooltip();
-      hideNotificationsButton();
-      hideNotificationsFumetto();
-      $(&#x27;#tooltip_help&#x27;).show(&#x27;fade&#x27;, {}, 500, function() {
-        showHelpTooltip();
-      });
-      showHelpButton();
-    } else {
-      $(&#x27;#tooltip_help&#x27;).hide(&#x27;fade&#x27;, {}, 500, function() {
-        hideHelpTooltip();
-      });
-      hideHelpButton();
-      if($(&#x27;#tooltip_arancione&#x27;).data(&#x27;number&#x27;) &gt; 0) {
-        showNotificationsButton();
-        showNotificationsFumetto();
-      }
-    }
-  });
-}
-
-&#x2F;**
-* Empty and hide expanded notifications.
-* 
-* @method hideExpandedNotification
-* @for hideExpandedNotification
-*&#x2F;
-function hideExpandedNotification() {
-  $(&#x27;#expanded_notification&#x27;).html(&#x27;&#x27;);
-  $(&#x27;#expanded_notification&#x27;).hide();
-}
-
-&#x2F;**
-* Hide notifications tooltip.
-*
-* Uses: [hideExpandedNotification](..&#x2F;classes&#x2F;hideExpandedNotification.html#method_hideExpandedNotification)
-* 
-* @method hideExpandedNotification
-* @for hideExpandedNotification
-*&#x2F;
-function hideNotificationsTooltip() {
-  $(&#x27;#tooltip_content&#x27;).hide();
-  hideExpandedNotification();
-}
-
-&#x2F;**
-* Show notifications tooltip.
-* 
-* @method showNotificationsTooltip
-* @for showNotificationsTooltip
-*&#x2F;
-function showNotificationsTooltip() {
-  $(&#x27;#tooltip_content&#x27;).show();
-}
-
-&#x2F;**
-* Hide help tooltip.
-* 
-* @method hideHelpTooltip
-* @for hideHelpTooltip
-*&#x2F;
-function hideHelpTooltip() {
-  $(&#x27;#tooltip_help&#x27;).hide();
-}
-
-&#x2F;**
-* Show help tooltip.
-* 
-* @method showHelpTooltip
-* @for showHelpTooltip
-*&#x2F;
-function showHelpTooltip() {
-  $(&#x27;#tooltip_help&#x27;).show();
-}
-
-&#x2F;**
-* Hide notifications button.
-* 
-* @method hideNotificationsButton
-* @for hideNotificationsButton
-*&#x2F;
-function hideNotificationsButton() {
-  $(&#x27;#notifications_button&#x27;).removeClass(&#x27;current&#x27;);
-}
-
-&#x2F;**
-* Show notifications button.
-* 
-* @method showNotificationsButton
-* @for showNotificationsButton
-*&#x2F;
-function showNotificationsButton() {
-  $(&#x27;#notifications_button&#x27;).addClass(&#x27;current&#x27;);
-}
-
-&#x2F;**
-* Hide notifications balloon.
-* 
-* @method hideNotificationsFumetto
-* @for hideNotificationsFumetto
-*&#x2F;
-function hideNotificationsFumetto() {
-  $(&#x27;#tooltip_arancione&#x27;).hide();
-}
-
-&#x2F;**
-* Show notifications balloon.
-* 
-* @method showNotificationsFumetto
-* @for showNotificationsFumetto
-*&#x2F;
-function showNotificationsFumetto() {
-  $(&#x27;#tooltip_arancione&#x27;).show();
-}
-
-&#x2F;**
-* Hide help button.
-* 
-* @method hideHelpButton
-* @for hideHelpButton
-*&#x2F;
-function hideHelpButton() {
-  $(&#x27;#help&#x27;).removeClass(&#x27;current&#x27;);
-}
-
-&#x2F;**
-* Show help button.
-* 
-* @method showHelpButton
-* @for showHelpButton
-*&#x2F;
-function showHelpButton() {
-  $(&#x27;#help&#x27;).addClass(&#x27;current&#x27;);
 }
 
     </pre>
