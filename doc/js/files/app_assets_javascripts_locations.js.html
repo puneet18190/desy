@@ -343,15 +343,13 @@ bla bla bla
 
 &#x2F;**
 ba bla bla bla
-@for LocationsDocumentReady
 @method locationsDocumentReady
+@for LocationsDocumentReady
 **&#x2F;
 function locationsDocumentReady() {
-  
   $(&#x27;._location_select_box&#x27;).each(function() {
     $(&#x27;#&#x27; + $(this).attr(&#x27;id&#x27;)).selectbox();
   });
-  
   $(&#x27;._location_select_box&#x27;).on(&#x27;change&#x27;, function() {
     if(!$(this).data(&#x27;is-last&#x27;)) {
       if($(this).val() == &#x27;0&#x27;) {
@@ -364,7 +362,6 @@ function locationsDocumentReady() {
       }
     }
   });
-  
 }
 
     </pre>
