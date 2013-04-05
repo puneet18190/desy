@@ -45,7 +45,7 @@ require 'lessons_media_elements_shared'
 # * *length* of +title+ and +description+ (values configured in the I18n translation file; only for title, if the value is greater than 255 it's set to 255)
 # * *uniqueness* of the couple [+parent_id+, +user_id+] <b>if +parent_id+ is not null</b>
 # * *if* *new* *record* +is_public+ must be false
-# * *if* *public* +copied_not_modified+ must be false
+# * *if* *public* +copied_not_modified+ must be false. <b>This validation is not fired if skip_public_validation is +true+</b>
 # * *modifications* *not* *available* for the +user_id+, +parent_id+, +token+
 # * *minimum* *number* of tags (configurated in settings.yml), <b>only if the attribute validating_in_form is set as +true+</b>
 #
@@ -56,7 +56,7 @@ require 'lessons_media_elements_shared'
 # 3. *before_destroy* destroys associated taggings (see Tagging)
 # 4. *before_create* initializes both metadata values to +true+
 # 5. *before_create* creates a random encoded string and writes it in +token+
-# 6. *after_save* creates or updates the cover slide
+# 6. *after_save* creates or updates the cover slide. <b>This callback is not fired if skip_cover_creation is +true+</b>
 # 7. *after_save* updates taggings associated to the lesson (see Tagging). If a Tag doesn't exist yet, it is created too. The tags are stored before the validation in the private attribute +inner_tags+
 #
 # == Database callbacks
@@ -85,6 +85,10 @@ class Lesson < ActiveRecord::Base
   attr_reader :is_reportable
   # Set to true if it's necessary to validate the number of tags (typically this happens in the public front end)
   attr_writer :validating_in_form
+  # Set to true if it's necessary to skip cover creation (used in seeding)
+  attr_accessor :skip_cover_creation
+  # Set to true if it's necessary to skip public validations (used in seeding)
+  attr_accessor :skip_public_validations
   
   serialize :metadata, OpenStruct
   
@@ -838,6 +842,7 @@ class Lesson < ActiveRecord::Base
   # Callback that creates or updates the cover after save
   def create_or_update_cover # :doc:
     if @lesson.nil?
+      return true if skip_cover_creation
       slide = Slide.new :title => self.title, :position => 1
       slide.kind = Slide::COVER
       slide.lesson_id = self.id
@@ -851,7 +856,7 @@ class Lesson < ActiveRecord::Base
   
   # Validates that a new lesson can't be public
   def validate_public # :doc:
-    errors.add(:is_public, :cant_be_true_for_new_records) if @lesson.nil? && self.is_public
+    errors.add(:is_public, :cant_be_true_for_new_records) if @lesson.nil? && self.is_public && !self.skip_public_validations
   end
   
   # Validates that a lesson just copied can't be public

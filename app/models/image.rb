@@ -10,6 +10,8 @@ class Image < MediaElement
   
   # List of accepted extensions for an image
   EXTENSION_WHITE_LIST = ImageUploader::EXTENSION_WHITE_LIST
+  # Extensions globbing for finding images with <tt>Dir.glob</tt>
+  EXTENSIONS_GLOB      = "*.{#{EXTENSION_WHITE_LIST.join(',')}}"
   
   mount_uploader :media, ImageUploader
   
