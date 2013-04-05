@@ -45,7 +45,7 @@ require 'lessons_media_elements_shared'
 # * *length* of +title+ and +description+ (values configured in the I18n translation file; only for title, if the value is greater than 255 it's set to 255)
 # * *uniqueness* of the couple [+parent_id+, +user_id+] <b>if +parent_id+ is not null</b>
 # * *if* *new* *record* +is_public+ must be false
-# * *if* *public* +copied_not_modified+ must be false. <b>This validation is not fired if skip_public_validation is +true+</b>
+# * *if* *public* +copied_not_modified+ must be false. <b>This validation is not fired if skip_public_validations is +true+</b>
 # * *modifications* *not* *available* for the +user_id+, +parent_id+, +token+
 # * *minimum* *number* of tags (configurated in settings.yml), <b>only if the attribute validating_in_form is set as +true+</b>
 #

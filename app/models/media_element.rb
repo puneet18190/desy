@@ -47,8 +47,8 @@ require 'lessons_media_elements_shared'
 # * *length* of +description+ (maximum configured in the translation file)
 # * *presence* of +media+; <b>this validation is skipped if the element is of type Video or Audio, and if the element is being composed</b>: in fact, in this case there is not yet a media to be attached (unlike when the element is uploaded, because when it's uploaded there exists a media file but it's not yet converted)
 # * *if* *the* *element* *is* *public*, +publication_date+ can't be null, whereas if it's private it must be null
-# * *the* *element* *cannot* *be* *public* if new record. <b>This validation is not fired if skip_public_validation is +true+</b>
-# * *if* *the* *element* *is* *public*, the fields +media+, +title+, +description+, +is_public+, +publication_date+ can't be changed anymore. <b>This validation is not fired if skip_public_validation is +true+</b>
+# * *the* *element* *cannot* *be* *public* if new record. <b>This validation is not fired if skip_public_validations is +true+</b>
+# * *if* *the* *element* *is* *public*, the fields +media+, +title+, +description+, +is_public+, +publication_date+ can't be changed anymore. <b>This validation is not fired if skip_public_validations is +true+</b>
 # * *if* *the* *element* *is* *private*, the field +user_id+ can't be changed (this field may be changed only if the element is public, because if the user decides to close his profile, the public elements that he created can't be deleted: using User#destroy_with_dependencies they are switched to another owner (the super administrator of the application, see User.admin)
 # * *minimum* *number* of tags (configurated in settings.yml), <b>only if the attribute validating_in_form is set as +true+</b>
 # * *size* of the file attached to +media+ (configured in settings.yml, in megabytes)
