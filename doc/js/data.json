@@ -188,11 +188,10 @@
             },
             "classes": {},
             "fors": {
-                "initMediaElementLoader": 1,
-                "uploadDone": 1,
-                "uploadMediaElementLoaderError": 1,
-                "uploadMediaElementLoadeDoneRedirect": 1,
-                "resetMediaElementChangeInfo": 1
+                "MediaElementLoaderDocumentReady": 1,
+                "MediaElementLoaderDone": 1,
+                "MediaElementLoaderErrors": 1,
+                "MediaElementLoaderGeneral": 1
             },
             "namespaces": {}
         },
@@ -582,18 +581,16 @@
             "name": "media-element-loader",
             "submodules": {},
             "classes": {
-                "initMediaElementLoader": 1,
-                "uploadDone": 1,
-                "uploadMediaElementLoaderError": 1,
-                "uploadMediaElementLoadeDoneRedirect": 1,
-                "resetMediaElementChangeInfo": 1
+                "MediaElementLoaderDocumentReady": 1,
+                "MediaElementLoaderDone": 1,
+                "MediaElementLoaderErrors": 1,
+                "MediaElementLoaderGeneral": 1
             },
             "fors": {
-                "initMediaElementLoader": 1,
-                "uploadDone": 1,
-                "uploadMediaElementLoaderError": 1,
-                "uploadMediaElementLoadeDoneRedirect": 1,
-                "resetMediaElementChangeInfo": 1
+                "MediaElementLoaderDocumentReady": 1,
+                "MediaElementLoaderDone": 1,
+                "MediaElementLoaderErrors": 1,
+                "MediaElementLoaderGeneral": 1
             },
             "namespaces": {},
             "tag": "module",
@@ -1387,9 +1384,9 @@
             "module": "media-element-editor",
             "namespace": ""
         },
-        "initMediaElementLoader": {
-            "name": "initMediaElementLoader",
-            "shortname": "initMediaElementLoader",
+        "MediaElementLoaderDocumentReady": {
+            "name": "MediaElementLoaderDocumentReady",
+            "shortname": "MediaElementLoaderDocumentReady",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -1398,9 +1395,9 @@
             "module": "media-element-loader",
             "namespace": ""
         },
-        "uploadDone": {
-            "name": "uploadDone",
-            "shortname": "uploadDone",
+        "MediaElementLoaderDone": {
+            "name": "MediaElementLoaderDone",
+            "shortname": "MediaElementLoaderDone",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -1409,9 +1406,9 @@
             "module": "media-element-loader",
             "namespace": ""
         },
-        "uploadMediaElementLoaderError": {
-            "name": "uploadMediaElementLoaderError",
-            "shortname": "uploadMediaElementLoaderError",
+        "MediaElementLoaderErrors": {
+            "name": "MediaElementLoaderErrors",
+            "shortname": "MediaElementLoaderErrors",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -1420,20 +1417,9 @@
             "module": "media-element-loader",
             "namespace": ""
         },
-        "uploadMediaElementLoadeDoneRedirect": {
-            "name": "uploadMediaElementLoadeDoneRedirect",
-            "shortname": "uploadMediaElementLoadeDoneRedirect",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "media-element-loader",
-            "namespace": ""
-        },
-        "resetMediaElementChangeInfo": {
-            "name": "resetMediaElementChangeInfo",
-            "shortname": "resetMediaElementChangeInfo",
+        "MediaElementLoaderGeneral": {
+            "name": "MediaElementLoaderGeneral",
+            "shortname": "MediaElementLoaderGeneral",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -4529,25 +4515,34 @@
         },
         {
             "file": "app/assets/javascripts/media_element_loader.js",
-            "line": 48,
-            "description": "Set iframe as target for form submit, added a callback function to control 413 status error.\n\nUses: [uploadDone](../classes/uploadDone.html#method_uploadDone)",
+            "line": 10,
+            "description": "bla bla bla",
             "itemtype": "method",
-            "name": "initMediaElementLoader",
-            "class": "initMediaElementLoader",
+            "name": "mediaElementLoaderDocumentReady",
+            "class": "MediaElementLoaderDocumentReady",
             "module": "media-element-loader"
         },
         {
             "file": "app/assets/javascripts/media_element_loader.js",
-            "line": 65,
+            "line": 54,
             "description": "Handle 413 status error, file too large",
             "itemtype": "method",
             "name": "uploadDone",
-            "class": "uploadDone",
+            "class": "MediaElementLoaderDone",
             "module": "media-element-loader"
         },
         {
             "file": "app/assets/javascripts/media_element_loader.js",
-            "line": 81,
+            "line": 69,
+            "description": "Reload media elements page after new media element is successfully loaded.",
+            "itemtype": "method",
+            "name": "uploadMediaElementLoadeDoneRedirect",
+            "class": "MediaElementLoaderDone",
+            "module": "media-element-loader"
+        },
+        {
+            "file": "app/assets/javascripts/media_element_loader.js",
+            "line": 85,
             "description": "Update form fields with error labels",
             "itemtype": "method",
             "name": "uploadMediaElementLoaderError",
@@ -4558,21 +4553,21 @@
                     "type": "Object"
                 }
             ],
-            "class": "uploadMediaElementLoaderError",
+            "class": "MediaElementLoaderErrors",
             "module": "media-element-loader"
         },
         {
             "file": "app/assets/javascripts/media_element_loader.js",
-            "line": 107,
-            "description": "Reload media elements page after new media element is successfully loaded.",
+            "line": 114,
+            "description": "Set iframe as target for form submit, added a callback function to control 413 status error. Uses: [uploadDone](../classes/uploadDone.html#method_uploadDone)",
             "itemtype": "method",
-            "name": "uploadMediaElementLoadeDoneRedirect",
-            "class": "uploadMediaElementLoadeDoneRedirect",
+            "name": "initMediaElementLoader",
+            "class": "MediaElementLoaderGeneral",
             "module": "media-element-loader"
         },
         {
             "file": "app/assets/javascripts/media_element_loader.js",
-            "line": 120,
+            "line": 128,
             "description": "Fill in media element update form with media element values.",
             "itemtype": "method",
             "name": "resetMediaElementChangeInfo",
@@ -4583,7 +4578,7 @@
                     "type": "Number"
                 }
             ],
-            "class": "resetMediaElementChangeInfo",
+            "class": "MediaElementLoaderGeneral",
             "module": "media-element-loader"
         },
         {
