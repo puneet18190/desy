@@ -18,22 +18,12 @@ function hideExpandedNotification() {
 }
 
 /**
-Hide notifications tooltip. Uses: [hideExpandedNotification](../classes/hideExpandedNotification.html#method_hideExpandedNotification)
-@method hideExpandedNotification
+Hide help button.
+@method hideHelpButton
 @for NotificationsAccessories
 **/
-function hideNotificationsTooltip() {
-  $('#tooltip_content').hide();
-  hideExpandedNotification();
-}
-
-/**
-Show notifications tooltip.
-@method showNotificationsTooltip
-@for NotificationsAccessories
-**/
-function showNotificationsTooltip() {
-  $('#tooltip_content').show();
+function hideHelpButton() {
+  $('#help').removeClass('current');
 }
 
 /**
@@ -46,30 +36,12 @@ function hideHelpTooltip() {
 }
 
 /**
-Show help tooltip.
-@method showHelpTooltip
-@for NotificationsAccessories
-**/
-function showHelpTooltip() {
-  $('#tooltip_help').show();
-}
-
-/**
 Hide notifications button.
 @method hideNotificationsButton
 @for NotificationsAccessories
 **/
 function hideNotificationsButton() {
   $('#notifications_button').removeClass('current');
-}
-
-/**
-Show notifications button.
-@method showNotificationsButton
-@for NotificationsAccessories
-**/
-function showNotificationsButton() {
-  $('#notifications_button').addClass('current');
 }
 
 /**
@@ -82,21 +54,13 @@ function hideNotificationsFumetto() {
 }
 
 /**
-Show notifications fumetto.
-@method showNotificationsFumetto
+Hide notifications tooltip. Uses: [hideExpandedNotification](../classes/hideExpandedNotification.html#method_hideExpandedNotification)
+@method hideExpandedNotification
 @for NotificationsAccessories
 **/
-function showNotificationsFumetto() {
-  $('#tooltip_arancione').show();
-}
-
-/**
-Hide help button.
-@method hideHelpButton
-@for NotificationsAccessories
-**/
-function hideHelpButton() {
-  $('#help').removeClass('current');
+function hideNotificationsTooltip() {
+  $('#tooltip_content').hide();
+  hideExpandedNotification();
 }
 
 /**
@@ -106,6 +70,42 @@ Show help button.
 **/
 function showHelpButton() {
   $('#help').addClass('current');
+}
+
+/**
+Show help tooltip.
+@method showHelpTooltip
+@for NotificationsAccessories
+**/
+function showHelpTooltip() {
+  $('#tooltip_help').show();
+}
+
+/**
+Show notifications button.
+@method showNotificationsButton
+@for NotificationsAccessories
+**/
+function showNotificationsButton() {
+  $('#notifications_button').addClass('current');
+}
+
+/**
+Show notifications fumetto.
+@method showNotificationsFumetto
+@for NotificationsAccessories
+**/
+function showNotificationsFumetto() {
+  $('#tooltip_arancione').show();
+}
+
+/**
+Show notifications tooltip.
+@method showNotificationsTooltip
+@for NotificationsAccessories
+**/
+function showNotificationsTooltip() {
+  $('#tooltip_content').show();
 }
 
 
@@ -175,6 +175,34 @@ function notificationsDocumentReadyLessonModification() {
 
 
 
+
+/**
+Checks if any help is available and initialize them. Handles help show/hide effects.
+@method initializeHelp
+@for NotificationsGraphics
+**/
+function initializeHelp() {
+  $('#help').click(function() {
+    if(!$('#tooltip_help').is(':visible')) {
+      hideNotificationsTooltip();
+      hideNotificationsButton();
+      hideNotificationsFumetto();
+      $('#tooltip_help').show('fade', {}, 500, function() {
+        showHelpTooltip();
+      });
+      showHelpButton();
+    } else {
+      $('#tooltip_help').hide('fade', {}, 500, function() {
+        hideHelpTooltip();
+      });
+      hideHelpButton();
+      if($('#tooltip_arancione').data('number') > 0) {
+        showNotificationsButton();
+        showNotificationsFumetto();
+      }
+    }
+  });
+}
 
 /**
 Checks if any notification is available and initialize unread notification counter. Handles notifications show/hide effects.
@@ -258,34 +286,6 @@ function initializeNotifications() {
         if(click_id != 'tooltip_help' && click_id != 'help' && $(e.target).parents('#tooltip_help').length == 0) {
           $('#help').trigger('click');
         }
-      }
-    }
-  });
-}
-
-/**
-Checks if any help is available and initialize them. Handles help show/hide effects.
-@method initializeHelp
-@for NotificationsGraphics
-**/
-function initializeHelp() {
-  $('#help').click(function() {
-    if(!$('#tooltip_help').is(':visible')) {
-      hideNotificationsTooltip();
-      hideNotificationsButton();
-      hideNotificationsFumetto();
-      $('#tooltip_help').show('fade', {}, 500, function() {
-        showHelpTooltip();
-      });
-      showHelpButton();
-    } else {
-      $('#tooltip_help').hide('fade', {}, 500, function() {
-        hideHelpTooltip();
-      });
-      hideHelpButton();
-      if($('#tooltip_arancione').data('number') > 0) {
-        showNotificationsButton();
-        showNotificationsFumetto();
       }
     }
   });
