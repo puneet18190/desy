@@ -29,7 +29,7 @@ module MediaEditingSpecSupport
                     videos_with_some_audio_streams: {
                       videos: ['concat 1', 'concat 2'].map{ |i| Hash[ VIDEO_FORMATS.map{ |f| [f, SAMPLES_FOLDER.join("#{i}.#{f}").to_s] } ] } * 2,
                       output_infos: {
-                        mp4:  {:duration=>96.36, :streams=>{:video=>[{:codec=>"h264", :width=>960, :height=>540, :bitrate=>865}], :audio=>[{:codec=>"m4a", :bitrate=>69}]}},
+                        mp4:  {:duration=>96.36, :streams=>{:video=>[{:codec=>"h264", :width=>960, :height=>540, :bitrate=>865}], :audio=>[{:codec=>"aac", :bitrate=>144}]}},
                         webm: {:duration=>96.34, :streams=>{:video=>[{:codec=>"vp8", :width=>960, :height=>540, :bitrate=>nil}], :audio=>[{:codec=>"vorbis", :bitrate=>nil}]}}
                       }
                     },
@@ -61,24 +61,24 @@ module MediaEditingSpecSupport
   CONCAT_AUDIOS = {
                     audios: ['concat 1', 'concat 2'].map{ |i| Hash[ AUDIO_FORMATS.map{ |f| [f, SAMPLES_FOLDER.join("#{i}.#{f}").to_s] } ] } * 2,
                     output_infos: {
-                      m4a:  {:duration=>136.51, :streams=>{:audio=>[{:codec=>"m4a", :bitrate=>128}]}},
+                      m4a:  {:duration=>136.51, :streams=>{:audio=>[{:codec=>"aac", :bitrate=>180}]}},
                       ogg: {:duration=>136.3, :streams=>{:audio=>[{:codec=>"vorbis", :bitrate=>112}]}}
                     }
                   }
 
   VIDEO_COMPOSING = { without_audio_track: 
                       { 
-                        mp4: {:streams=>{:video=>[{:codec=>"h264", :width=>960, :height=>540, :bitrate=>819}], :audio=>[{:codec=>"m4a", :bitrate=>63}]}},
+                        mp4: {:streams=>{:video=>[{:codec=>"h264", :width=>960, :height=>540, :bitrate=>819}], :audio=>[{:codec=>"aac", :bitrate=>63}]}},
                         webm: {:streams=>{:video=>[{:codec=>"vp8", :width=>960, :height=>540, :bitrate=>nil}], :audio=>[{:codec=>"vorbis", :bitrate=>nil}]}}
                       },
                       with_audio_track:
                       { 
-                        mp4: {:streams=>{:video=>[{:codec=>"h264", :width=>960, :height=>540, :bitrate=>819}], :audio=>[{:codec=>"m4a", :bitrate=>149}]}},
+                        mp4: {:streams=>{:video=>[{:codec=>"h264", :width=>960, :height=>540, :bitrate=>819}], :audio=>[{:codec=>"aac", :bitrate=>149}]}},
                         webm: {:streams=>{:video=>[{:codec=>"vp8", :width=>960, :height=>540, :bitrate=>nil}], :audio=>[{:codec=>"vorbis", :bitrate=>nil}]}}
                       }
                     }
   AUDIO_COMPOSING = { 
-                      m4a: {:duration=>60, :streams=>{:video=>[], :audio=>[{:codec=>"m4a", :bitrate=>128}]}}, 
+                      m4a: {:duration=>60, :streams=>{:video=>[], :audio=>[{:codec=>"aac", :bitrate=>180}]}}, 
                       ogg: {:duration=>60, :streams=>{:video=>[], :audio=>[{:codec=>"vorbis", :bitrate=>112}]}} 
                     }
 

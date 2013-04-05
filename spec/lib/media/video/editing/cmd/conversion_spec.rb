@@ -48,7 +48,7 @@ module Media
                 let!(:format)        { format }
                 let!(:vbitrate) { ' -b:v 2M' if format == :webm }
                 let!(:cmd_format)   do
-                  %Q[#{pre_command} -i inp\\ ut -sn -threads #{AVCONV_OUTPUT_THREADS[format]} -q:v 1 -q:a #{AVCONV_OUTPUT_QA[format]}#{vbitrate} -c:v #{AVCONV_CODECS[format][0]} -c:a #{AVCONV_CODECS[format][1]} -map 0:v:0%s -vf 'scale=lt(iw/ih\\,#{oar})*#{ow}+gte(iw/ih\\,#{oar})*-1:lt(iw/ih\\,#{oar})*-1+gte(iw/ih\\,#{oar})*#{oh},crop=#{ow}:#{oh}:(iw-ow)/2:(ih-oh)/2' -ar 44100 out\\ put]
+                  %Q[#{pre_command} -i inp\\ ut -strict experimental -sn -threads #{AVCONV_OUTPUT_THREADS[format]} -q:v 1 -q:a #{AVCONV_OUTPUT_QA[format]}#{vbitrate} -c:v #{AVCONV_CODECS[format][0]} -c:a #{AVCONV_CODECS[format][1]} -map 0:v:0%s -vf 'scale=lt(iw/ih\\,#{oar})*#{ow}+gte(iw/ih\\,#{oar})*-1:lt(iw/ih\\,#{oar})*-1+gte(iw/ih\\,#{oar})*#{oh},crop=#{ow}:#{oh}:(iw-ow)/2:(ih-oh)/2' -ar 44100 out\\ put]
                 end
   
                 context 'when audio streams are not present' do
