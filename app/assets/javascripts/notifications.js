@@ -55,7 +55,7 @@ function hideNotificationsFumetto() {
 
 /**
 Hide notifications tooltip. Uses: [hideExpandedNotification](../classes/hideExpandedNotification.html#method_hideExpandedNotification)
-@method hideExpandedNotification
+@method hideNotificationsTooltip
 @for NotificationsAccessories
 **/
 function hideNotificationsTooltip() {
@@ -124,28 +124,6 @@ function notificationsDocumentReady() {
 
 /**
 bla bla bla
-@method notificationsDocumentReadyTooltips
-@for NotificationsDocumentReady
-**/
-function notificationsDocumentReadyTooltips() {
-  initializeNotifications();
-  initializeHelp();
-  $('#tooltip_content .scroll-pane').bind('jsp-arrow-change', function(event, isAtTop, isAtBottom, isAtLeft, isAtRight) {
-    var tot_number = $('#tooltip_content').data('tot-number');
-    var offset = $('#tooltip_content').data('offset');
-    if(isAtBottom && (offset < tot_number)) {
-      $.get('/notifications/get_new_block?offset=' + offset);
-    }
-  });
-  $('body').on('click', '._destroy_notification', function() {
-    var my_id = $(this).data('param');
-    var offset = $('#tooltip_content').data('offset');
-    $.post('/notifications/' + my_id + '/destroy?offset=' + offset);
-  });
-}
-
-/**
-bla bla bla
 @method notificationsDocumentReadyLessonModification
 @for NotificationsDocumentReady
 **/
@@ -169,6 +147,28 @@ function notificationsDocumentReadyLessonModification() {
       $(this).val('');
       $('#lesson-notification #lesson_notify_modification_details_placeholder').val('0');
     }
+  });
+}
+
+/**
+bla bla bla
+@method notificationsDocumentReadyTooltips
+@for NotificationsDocumentReady
+**/
+function notificationsDocumentReadyTooltips() {
+  initializeNotifications();
+  initializeHelp();
+  $('#tooltip_content .scroll-pane').bind('jsp-arrow-change', function(event, isAtTop, isAtBottom, isAtLeft, isAtRight) {
+    var tot_number = $('#tooltip_content').data('tot-number');
+    var offset = $('#tooltip_content').data('offset');
+    if(isAtBottom && (offset < tot_number)) {
+      $.get('/notifications/get_new_block?offset=' + offset);
+    }
+  });
+  $('body').on('click', '._destroy_notification', function() {
+    var my_id = $(this).data('param');
+    var offset = $('#tooltip_content').data('offset');
+    $.post('/notifications/' + my_id + '/destroy?offset=' + offset);
   });
 }
 
