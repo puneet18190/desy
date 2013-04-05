@@ -70,6 +70,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "PlayersVideoEditor",
         "ProfilePrelogin",
         "ProfileUsers",
+        "SearchDocumentReady",
         "addEmailToVirtualClassroomSendLessonLinkSelector",
         "addTagWithoutSuggestion",
         "addToTagsValue",

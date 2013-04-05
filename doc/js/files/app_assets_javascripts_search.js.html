@@ -213,6 +213,8 @@
             
                 <li><a href="..&#x2F;classes/removeFromTagsValue.html">removeFromTagsValue</a></li>
             
+                <li><a href="..&#x2F;classes/SearchDocumentReady.html">SearchDocumentReady</a></li>
+            
             </ul>
 
             <ul id="api-modules" class="apis modules">
@@ -301,8 +303,49 @@ bla bla bla
 @module search
 **&#x2F;
 
+
+
+
+
+&#x2F;**
+bla bla bla
+@method searchDocumentReady
+@for SearchDocumentReady
+**&#x2F;
 function searchDocumentReady() {
-  
+  searchDocumentReadyGeneral();
+  searchDocumentReadyFilterByTag();
+  searchDocumentReadyPlaceholders();
+}
+
+&#x2F;**
+bla bla bla
+@method searchDocumentReadyFilterByTag
+@for SearchDocumentReady
+**&#x2F;
+function searchDocumentReadyFilterByTag() {
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._clickable_tag_for_lessons, ._clickable_tag_for_media_elements&#x27;, function() {
+    if(!$(this).hasClass(&#x27;current&#x27;)) {
+      var url = $(&#x27;#info_container&#x27;).data(&#x27;currenturl&#x27;);
+      url = updateURLParameter(url, &#x27;tag_id&#x27;, &#x27;&#x27; + $(this).data(&#x27;param&#x27;));
+      url = updateURLParameter(url, &#x27;page&#x27;, &#x27;1&#x27;);
+      window.location = url;
+    }
+  });
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._clickable_tag_for_lessons.current, ._clickable_tag_for_media_elements.current&#x27;, function() {
+    var url = $(&#x27;#info_container&#x27;).data(&#x27;currenturl&#x27;);
+    url = removeURLParameter(url, &#x27;tag_id&#x27;);
+    url = updateURLParameter(url, &#x27;page&#x27;, &#x27;1&#x27;);
+    window.location = url;
+  });
+}
+
+&#x2F;**
+bla bla bla
+@method searchDocumentReadyGeneral
+@for SearchDocumentReady
+**&#x2F;
+function searchDocumentReadyGeneral() {
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#which_item_to_search_switch_media_elements&#x27;, function() {
     $(&#x27;#search_lessons_main_page&#x27;).hide(&#x27;fade&#x27;, {}, 500, function() {
       $(&#x27;#search_media_elements_main_page&#x27;).show();
@@ -314,7 +357,6 @@ function searchDocumentReady() {
       }
     });
   });
-  
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#which_item_to_search_switch_lessons&#x27;, function() {
     $(&#x27;#search_media_elements_main_page&#x27;).hide(&#x27;fade&#x27;, {}, 500, function() {
       $(&#x27;#search_media_elements_main_page&#x27;).hide();
@@ -326,53 +368,12 @@ function searchDocumentReady() {
       }
     });
   });
-  
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._clickable_tag_for_lessons, ._clickable_tag_for_media_elements&#x27;, function() {
-    if(!$(this).hasClass(&#x27;current&#x27;)) {
-      var url = $(&#x27;#info_container&#x27;).data(&#x27;currenturl&#x27;);
-      url = updateURLParameter(url, &#x27;tag_id&#x27;, &#x27;&#x27; + $(this).data(&#x27;param&#x27;));
-      url = updateURLParameter(url, &#x27;page&#x27;, &#x27;1&#x27;);
-      window.location = url;
-    }
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._clickable_tag_for_lessons.current, ._clickable_tag_for_media_elements.current&#x27;, function() {
-    var url = $(&#x27;#info_container&#x27;).data(&#x27;currenturl&#x27;);
-    url = removeURLParameter(url, &#x27;tag_id&#x27;);
-    url = updateURLParameter(url, &#x27;page&#x27;, &#x27;1&#x27;);
-    window.location = url;
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;focus&#x27;, &#x27;#lessons_tag_reader_for_search&#x27;, function() {
-    if($(&#x27;#lessons_tag_kind_for_search&#x27;).val() == &#x27;&#x27;) {
-      $(this).val(&#x27;&#x27;);
-      $(this).css(&#x27;color&#x27;, &#x27;#939393&#x27;);
-      $(&#x27;#lessons_tag_kind_for_search&#x27;).val(&#x27;0&#x27;);
-    }
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;focus&#x27;, &#x27;#media_elements_tag_reader_for_search&#x27;, function() {
-    if($(&#x27;#media_elements_tag_kind_for_search&#x27;).val() == &#x27;&#x27;) {
-      $(this).val(&#x27;&#x27;);
-      $(this).css(&#x27;color&#x27;, &#x27;#939393&#x27;);
-      $(&#x27;#media_elements_tag_kind_for_search&#x27;).val(&#x27;0&#x27;);
-    }
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;focus&#x27;, &#x27;#general_tag_reader_for_search&#x27;, function() {
-    $(this).attr(&#x27;value&#x27;, &#x27;&#x27;);
-    $(this).css(&#x27;color&#x27;, &#x27;#939393&#x27;);
-    $(&#x27;#general_tag_kind_for_search&#x27;).attr(&#x27;value&#x27;, &#x27;0&#x27;);
-    $(&#x27;#search_general_submit&#x27;).removeClass(&#x27;current&#x27;);
-  });
-  
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#search_general_submit&#x27;, function() {
     if(!$(this).hasClass(&#x27;current&#x27;)) {
       $(&#x27;#search_general&#x27;).submit();
       $(this).addClass(&#x27;current&#x27;);
     }
   });
-  
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._keep_searching&#x27;, function() {
     var form = $(this).parent();
     form.animate({
@@ -382,7 +383,34 @@ function searchDocumentReady() {
       form.find(&#x27;._keep_searching&#x27;).hide();
     });
   });
-  
+}
+
+&#x2F;**
+bla bla bla
+@method searchDocumentReadyPlaceholders
+@for SearchDocumentReady
+**&#x2F;
+function searchDocumentReadyPlaceholders() {
+  $(&#x27;body&#x27;).on(&#x27;focus&#x27;, &#x27;#lessons_tag_reader_for_search&#x27;, function() {
+    if($(&#x27;#lessons_tag_kind_for_search&#x27;).val() == &#x27;&#x27;) {
+      $(this).val(&#x27;&#x27;);
+      $(this).css(&#x27;color&#x27;, &#x27;#939393&#x27;);
+      $(&#x27;#lessons_tag_kind_for_search&#x27;).val(&#x27;0&#x27;);
+    }
+  });
+  $(&#x27;body&#x27;).on(&#x27;focus&#x27;, &#x27;#media_elements_tag_reader_for_search&#x27;, function() {
+    if($(&#x27;#media_elements_tag_kind_for_search&#x27;).val() == &#x27;&#x27;) {
+      $(this).val(&#x27;&#x27;);
+      $(this).css(&#x27;color&#x27;, &#x27;#939393&#x27;);
+      $(&#x27;#media_elements_tag_kind_for_search&#x27;).val(&#x27;0&#x27;);
+    }
+  });
+  $(&#x27;body&#x27;).on(&#x27;focus&#x27;, &#x27;#general_tag_reader_for_search&#x27;, function() {
+    $(this).attr(&#x27;value&#x27;, &#x27;&#x27;);
+    $(this).css(&#x27;color&#x27;, &#x27;#939393&#x27;);
+    $(&#x27;#general_tag_kind_for_search&#x27;).attr(&#x27;value&#x27;, &#x27;0&#x27;);
+    $(&#x27;#search_general_submit&#x27;).removeClass(&#x27;current&#x27;);
+  });
 }
 
     </pre>

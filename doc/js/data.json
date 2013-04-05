@@ -241,7 +241,9 @@
                 "search": 1
             },
             "classes": {},
-            "fors": {},
+            "fors": {
+                "SearchDocumentReady": 1
+            },
             "namespaces": {}
         },
         "app/assets/javascripts/tags.js": {
@@ -642,8 +644,12 @@
         "search": {
             "name": "search",
             "submodules": {},
-            "classes": {},
-            "fors": {},
+            "classes": {
+                "SearchDocumentReady": 1
+            },
+            "fors": {
+                "SearchDocumentReady": 1
+            },
             "namespaces": {},
             "tag": "module",
             "file": "app/assets/javascripts/search.js",
@@ -1482,6 +1488,17 @@
             "plugin_for": [],
             "extension_for": [],
             "module": "profile",
+            "namespace": ""
+        },
+        "SearchDocumentReady": {
+            "name": "SearchDocumentReady",
+            "shortname": "SearchDocumentReady",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "search",
             "namespace": ""
         },
         "addTagWithoutSuggestion": {
@@ -4688,6 +4705,42 @@
             "name": "profileDocumentReady",
             "class": "ProfileUsers",
             "module": "profile"
+        },
+        {
+            "file": "app/assets/javascripts/search.js",
+            "line": 10,
+            "description": "bla bla bla",
+            "itemtype": "method",
+            "name": "searchDocumentReady",
+            "class": "SearchDocumentReady",
+            "module": "search"
+        },
+        {
+            "file": "app/assets/javascripts/search.js",
+            "line": 21,
+            "description": "bla bla bla",
+            "itemtype": "method",
+            "name": "searchDocumentReadyFilterByTag",
+            "class": "SearchDocumentReady",
+            "module": "search"
+        },
+        {
+            "file": "app/assets/javascripts/search.js",
+            "line": 43,
+            "description": "bla bla bla",
+            "itemtype": "method",
+            "name": "searchDocumentReadyGeneral",
+            "class": "SearchDocumentReady",
+            "module": "search"
+        },
+        {
+            "file": "app/assets/javascripts/search.js",
+            "line": 88,
+            "description": "bla bla bla",
+            "itemtype": "method",
+            "name": "searchDocumentReadyPlaceholders",
+            "class": "SearchDocumentReady",
+            "module": "search"
         },
         {
             "file": "app/assets/javascripts/tags.js",
