@@ -97,8 +97,8 @@
     <li>lib/media/video/editing/cmd/extract_frame.rb
     <li>lib/media/video/editing/cmd/generate_transition_frames.rb
     <li>lib/media/video/editing/cmd/image_to_video.rb
+    <li>lib/media/video/editing/cmd/m4a_to_wav.rb
     <li>lib/media/video/editing/cmd/merge_webm_video_streams.rb
-    <li>lib/media/video/editing/cmd/mp3_to_wav.rb
     <li>lib/media/video/editing/cmd/replace_audio.rb
     <li>lib/media/video/editing/cmd/transition.rb
     <li>lib/media/video/editing/cmd/trim_audio_file.rb
@@ -261,9 +261,9 @@
   
     <li><a href="./Media/Video/Editing/Cmd/ImageToVideo.html">Media::Video::Editing::Cmd::ImageToVideo</a>
   
-    <li><a href="./Media/Video/Editing/Cmd/MergeWebmVideoStreams.html">Media::Video::Editing::Cmd::MergeWebmVideoStreams</a>
+    <li><a href="./Media/Video/Editing/Cmd/M4aToWav.html">Media::Video::Editing::Cmd::M4aToWav</a>
   
-    <li><a href="./Media/Video/Editing/Cmd/Mp3ToWav.html">Media::Video::Editing::Cmd::Mp3ToWav</a>
+    <li><a href="./Media/Video/Editing/Cmd/MergeWebmVideoStreams.html">Media::Video::Editing::Cmd::MergeWebmVideoStreams</a>
   
     <li><a href="./Media/Video/Editing/Cmd/ReplaceAudio.html">Media::Video::Editing::Cmd::ReplaceAudio</a>
   
@@ -548,7 +548,7 @@ the configuration.</p>
 
           
           <div class="method-source-code" id="ubuntu_install-source">
-            <pre><span class="ruby-comment"># File lib/media.rb, line 24</span>
+            <pre><span class="ruby-comment"># File lib/media.rb, line 23</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">ubuntu_install</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-node">%xsudo apt-get install #{ubuntu_packages.map(&amp;:shellescape).join(&#39; &#39;)} 2&gt;&amp;1`</span>
 <span class="ruby-keyword">end</span></pre>
@@ -580,8 +580,7 @@ the configuration.</p>
           <div class="method-source-code" id="ubuntu_packages-source">
             <pre><span class="ruby-comment"># File lib/media.rb, line 19</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">ubuntu_packages</span>
-  <span class="ruby-comment"># XXX postgresql-contrib-9.2 non dovrebbe stare qui!!!</span>
-  <span class="ruby-node">%w( libav-tools libavcodec-extra-53 mkvtoolnix sox lame postgresql-contrib-9.2 )</span>
+  <span class="ruby-node">%w( libav-tools libavcodec-extra-53 mkvtoolnix sox )</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- ubuntu_packages-source -->
           

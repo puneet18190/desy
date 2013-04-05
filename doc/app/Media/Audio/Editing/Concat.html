@@ -215,9 +215,9 @@
   
     <li><a href="../../../Media/Video/Editing/Cmd/ImageToVideo.html">Media::Video::Editing::Cmd::ImageToVideo</a>
   
-    <li><a href="../../../Media/Video/Editing/Cmd/MergeWebmVideoStreams.html">Media::Video::Editing::Cmd::MergeWebmVideoStreams</a>
+    <li><a href="../../../Media/Video/Editing/Cmd/M4aToWav.html">Media::Video::Editing::Cmd::M4aToWav</a>
   
-    <li><a href="../../../Media/Video/Editing/Cmd/Mp3ToWav.html">Media::Video::Editing::Cmd::Mp3ToWav</a>
+    <li><a href="../../../Media/Video/Editing/Cmd/MergeWebmVideoStreams.html">Media::Video::Editing::Cmd::MergeWebmVideoStreams</a>
   
     <li><a href="../../../Media/Video/Editing/Cmd/ReplaceAudio.html">Media::Video::Editing::Cmd::ReplaceAudio</a>
   
@@ -448,7 +448,7 @@
       <h3 class="section-header">Constants</h3>
       <dl>
       
-        <dt id="OUTPUT_MP3_FORMAT">OUTPUT_MP3_FORMAT
+        <dt id="OUTPUT_M4A_FORMAT">OUTPUT_M4A_FORMAT
         
         <dd class="description">
         
@@ -483,12 +483,11 @@
           
           <p>Usage example:</p>
 
-<p><a href="Concat.html#method-c-new">::new</a>([ { webm:
-&#39;input.webm&#39;, mp4: &#39;input.mp4&#39;}, { webm:
-&#39;input2.webm&#39;, mp4: &#39;input2.mp4&#39;} ],
-&#39;/output/without/extension&#39;).run</p>
+<p><a href="Concat.html#method-c-new">::new</a>([ { ogg: &#39;input.ogg&#39;,
+m4a: &#39;input.m4a&#39;}, { ogg: &#39;input2.ogg&#39;, m4a:
+&#39;input2.m4a&#39;} ], &#39;/output/without/extension&#39;).run</p>
 
-<pre class="ruby"><span class="ruby-comment">#=&gt; { mp4:&#39;/output/without/extension.mp4&#39;, webm:&#39;/output/without/extension.webm&#39; }</span>
+<pre class="ruby"><span class="ruby-comment">#=&gt; { m4a:&#39;/output/without/extension.m4a&#39;, ogg:&#39;/output/without/extension.ogg&#39; }</span>
 </pre>
           
 
@@ -496,13 +495,13 @@
           <div class="method-source-code" id="new-source">
             <pre><span class="ruby-comment"># File lib/media/audio/editing/concat.rb, line 25</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">inputs</span>, <span class="ruby-identifier">output_without_extension</span>, <span class="ruby-identifier">log_folder</span> = <span class="ruby-keyword">nil</span>)
-  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">inputs</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Array</span>) <span class="ruby-keyword">and</span>
-         <span class="ruby-identifier">inputs</span>.<span class="ruby-identifier">present?</span>     <span class="ruby-keyword">and</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">inputs</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Array</span>) <span class="ruby-operator">&amp;&amp;</span>
+         <span class="ruby-identifier">inputs</span>.<span class="ruby-identifier">present?</span>     <span class="ruby-operator">&amp;&amp;</span>
          <span class="ruby-identifier">inputs</span>.<span class="ruby-identifier">all?</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">input</span><span class="ruby-operator">|</span>
-           <span class="ruby-identifier">input</span>.<span class="ruby-identifier">instance_of?</span>(<span class="ruby-constant">Hash</span>)          <span class="ruby-keyword">and</span>
-           <span class="ruby-identifier">input</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">sort</span> <span class="ruby-operator">==</span> <span class="ruby-constant">FORMATS</span>.<span class="ruby-identifier">sort</span>   <span class="ruby-keyword">and</span>
-           <span class="ruby-identifier">input</span>.<span class="ruby-identifier">values</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">==</span> <span class="ruby-constant">FORMATS</span>.<span class="ruby-identifier">size</span> <span class="ruby-keyword">and</span>
-           <span class="ruby-identifier">input</span>.<span class="ruby-identifier">values</span>.<span class="ruby-identifier">all?</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">v</span>.<span class="ruby-identifier">instance_of?</span> <span class="ruby-constant">String</span> }
+           <span class="ruby-identifier">input</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hash</span>)                 <span class="ruby-operator">&amp;&amp;</span>
+           <span class="ruby-identifier">input</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">sort</span> <span class="ruby-operator">==</span> <span class="ruby-constant">FORMATS</span>.<span class="ruby-identifier">sort</span>   <span class="ruby-operator">&amp;&amp;</span>
+           <span class="ruby-identifier">input</span>.<span class="ruby-identifier">values</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">==</span> <span class="ruby-constant">FORMATS</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&amp;&amp;</span>
+           <span class="ruby-identifier">input</span>.<span class="ruby-identifier">values</span>.<span class="ruby-identifier">all?</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">v</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">String</span> }
          <span class="ruby-keyword">end</span>
     <span class="ruby-identifier">raise</span> <span class="ruby-constant">Error</span>.<span class="ruby-identifier">new</span>( <span class="ruby-node">&quot;inputs must be an array with at least one element and its elements must be hashes with #{FORMATS.inspect} as keys and strings as values&quot;</span>, 
                      <span class="ruby-identifier">inputs</span><span class="ruby-operator">:</span> <span class="ruby-identifier">inputs</span>, <span class="ruby-identifier">output_without_extension</span><span class="ruby-operator">:</span> <span class="ruby-identifier">output_without_extension</span> )
@@ -514,8 +513,8 @@
   
   <span class="ruby-ivar">@inputs</span>, <span class="ruby-ivar">@output_without_extension</span> = <span class="ruby-identifier">inputs</span>, <span class="ruby-identifier">output_without_extension</span>
   
-  <span class="ruby-keyword">if</span> <span class="ruby-identifier">mp3_inputs</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">ogg_inputs</span>.<span class="ruby-identifier">size</span>
-    <span class="ruby-identifier">raise</span> <span class="ruby-constant">Error</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;mp3_inputs and ogg_inputs must be of the same size&#39;</span>, <span class="ruby-identifier">inputs</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@inputs</span>, <span class="ruby-identifier">output_without_extension</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@output_without_extension</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">m4a_inputs</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">ogg_inputs</span>.<span class="ruby-identifier">size</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">Error</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;m4a_inputs and ogg_inputs must be of the same size&#39;</span>, <span class="ruby-identifier">inputs</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@inputs</span>, <span class="ruby-identifier">output_without_extension</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@output_without_extension</span>)
   <span class="ruby-keyword">end</span>
 
   <span class="ruby-ivar">@log_folder</span> = <span class="ruby-identifier">log_folder</span>
@@ -554,9 +553,9 @@
           <div class="method-source-code" id="run-source">
             <pre><span class="ruby-comment"># File lib/media/audio/editing/concat.rb, line 51</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">run</span>
-  <span class="ruby-comment"># Posso controllare mp3_inputs per sapere quante coppie di video ho, perché ho già visto che mp3_inputs.size == webm_inputs.size</span>
+  <span class="ruby-comment"># Posso controllare m4a_inputs per sapere quante coppie di video ho, perché ho già visto che m4a_inputs.size == ogg_inputs.size</span>
   <span class="ruby-comment"># Caso speciale: se ho una sola coppia di input copio i due video nei rispettivi output e li ritorno</span>
-  <span class="ruby-keyword">return</span> <span class="ruby-identifier">copy_first_inputs_to_outputs</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">mp3_inputs</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">copy_first_inputs_to_outputs</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">m4a_inputs</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
   
   <span class="ruby-identifier">in_tmp_dir</span> { <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">join</span> *<span class="ruby-constant">FORMATS</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span> <span class="ruby-identifier">proc</span>{ <span class="ruby-identifier">concat</span>(<span class="ruby-identifier">format</span>) } } }
   <span class="ruby-identifier">outputs</span>

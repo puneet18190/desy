@@ -197,9 +197,9 @@
   
     <li><a href="../../../../Media/Video/Editing/Cmd/ImageToVideo.html">Media::Video::Editing::Cmd::ImageToVideo</a>
   
-    <li><a href="../../../../Media/Video/Editing/Cmd/MergeWebmVideoStreams.html">Media::Video::Editing::Cmd::MergeWebmVideoStreams</a>
+    <li><a href="../../../../Media/Video/Editing/Cmd/M4aToWav.html">Media::Video::Editing::Cmd::M4aToWav</a>
   
-    <li><a href="../../../../Media/Video/Editing/Cmd/Mp3ToWav.html">Media::Video::Editing::Cmd::Mp3ToWav</a>
+    <li><a href="../../../../Media/Video/Editing/Cmd/MergeWebmVideoStreams.html">Media::Video::Editing::Cmd::MergeWebmVideoStreams</a>
   
     <li><a href="../../../../Media/Video/Editing/Cmd/ReplaceAudio.html">Media::Video::Editing::Cmd::ReplaceAudio</a>
   
@@ -425,6 +425,19 @@
     
 
     
+    <!-- Constants -->
+    <section id="constants-list" class="section">
+      <h3 class="section-header">Constants</h3>
+      <dl>
+      
+        <dt id="UNSUPPORTED_FORMATS">UNSUPPORTED_FORMATS
+        
+        <dd class="description">
+        
+      
+      </dl>
+    </section>
+    
 
     
 
@@ -438,7 +451,7 @@
         
         <div class="method-heading">
           <span class="method-name">new</span><span
-            class="method-args">(audios_with_paddings, output)</span>
+            class="method-args">(audios_with_paddings, output, format = nil)</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
         
@@ -450,9 +463,9 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/media/audio/editing/cmd/concat.rb, line 14</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">audios_with_paddings</span>, <span class="ruby-identifier">output</span>)
-  <span class="ruby-ivar">@audios_with_paddings</span>, <span class="ruby-ivar">@output</span> = <span class="ruby-identifier">audios_with_paddings</span>, <span class="ruby-identifier">output</span>
+            <pre><span class="ruby-comment"># File lib/media/audio/editing/cmd/concat.rb, line 16</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">audios_with_paddings</span>, <span class="ruby-identifier">output</span>, <span class="ruby-identifier">format</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-ivar">@audios_with_paddings</span>, <span class="ruby-ivar">@output</span>, <span class="ruby-ivar">@format</span> = <span class="ruby-identifier">audios_with_paddings</span>, <span class="ruby-identifier">output</span>, <span class="ruby-identifier">format</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- new-source -->
           

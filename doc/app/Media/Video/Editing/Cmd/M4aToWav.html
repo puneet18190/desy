@@ -4,7 +4,7 @@
 <head>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
 
-<title>class Media::Video::Editing::Cmd::Mp3ToWav - Rails Application Documentation</title>
+<title>class Media::Video::Editing::Cmd::M4aToWav - Rails Application Documentation</title>
 
 <link type="text/css" media="screen" href="../../../../rdoc.css" rel="stylesheet">
 
@@ -47,7 +47,7 @@
     <nav id="file-list-section" class="section">
   <h3 class="section-header">Defined In</h3>
   <ul>
-    <li>lib/media/video/editing/cmd/mp3_to_wav.rb
+    <li>lib/media/video/editing/cmd/m4a_to_wav.rb
   </ul>
 </nav>
 
@@ -59,7 +59,7 @@
     <nav id="parent-class-section" class="section">
   <h3 class="section-header">Parent</h3>
   
-  <p class="link"><a href="../Cmd.html">Media::Video::Editing::Cmd</a>
+  <p class="link"><a href="Avconv.html">Media::Video::Editing::Cmd::Avconv</a>
   
 </nav>
 
@@ -72,7 +72,15 @@
     
     <li><a href="#method-c-new">::new</a>
     
-    <li><a href="#method-i-cmd-21">#cmd!</a>
+    <li><a href="#method-i-acodec">#acodec</a>
+    
+    <li><a href="#method-i-amap">#amap</a>
+    
+    <li><a href="#method-i-output_threads">#output_threads</a>
+    
+    <li><a href="#method-i-qv">#qv</a>
+    
+    <li><a href="#method-i-sn">#sn</a>
     
   </ul>
 </nav>
@@ -199,9 +207,9 @@
   
     <li><a href="../../../../Media/Video/Editing/Cmd/ImageToVideo.html">Media::Video::Editing::Cmd::ImageToVideo</a>
   
-    <li><a href="../../../../Media/Video/Editing/Cmd/MergeWebmVideoStreams.html">Media::Video::Editing::Cmd::MergeWebmVideoStreams</a>
+    <li><a href="../../../../Media/Video/Editing/Cmd/M4aToWav.html">Media::Video::Editing::Cmd::M4aToWav</a>
   
-    <li><a href="../../../../Media/Video/Editing/Cmd/Mp3ToWav.html">Media::Video::Editing::Cmd::Mp3ToWav</a>
+    <li><a href="../../../../Media/Video/Editing/Cmd/MergeWebmVideoStreams.html">Media::Video::Editing::Cmd::MergeWebmVideoStreams</a>
   
     <li><a href="../../../../Media/Video/Editing/Cmd/ReplaceAudio.html">Media::Video::Editing::Cmd::ReplaceAudio</a>
   
@@ -412,7 +420,7 @@
 </nav>
 
 <div id="documentation">
-  <h1 class="class">class Media::Video::Editing::Cmd::Mp3ToWav</h1>
+  <h1 class="class">class Media::Video::Editing::Cmd::M4aToWav</h1>
 
   <div id="description" class="description">
     
@@ -427,19 +435,6 @@
     
 
     
-    <!-- Constants -->
-    <section id="constants-list" class="section">
-      <h3 class="section-header">Constants</h3>
-      <dl>
-      
-        <dt id="LAME_BIN">LAME_BIN
-        
-        <dd class="description">
-        
-      
-      </dl>
-    </section>
-    
 
     
 
@@ -453,7 +448,7 @@
         
         <div class="method-heading">
           <span class="method-name">new</span><span
-            class="method-args">(input, output)</span>
+            class="method-args">(input_file, output_file)</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
         
@@ -465,9 +460,11 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/mp3_to_wav.rb, line 15</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">input</span>, <span class="ruby-identifier">output</span>)
-  <span class="ruby-ivar">@input</span>, <span class="ruby-ivar">@output</span> = <span class="ruby-identifier">input</span>, <span class="ruby-identifier">output</span>
+            <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/m4a_to_wav.rb, line 15</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">input_file</span>, <span class="ruby-identifier">output_file</span>)
+  <span class="ruby-keyword">super</span>([<span class="ruby-identifier">input_file</span>], <span class="ruby-identifier">output_file</span>, <span class="ruby-keyword">nil</span>)
+
+  <span class="ruby-identifier">output_options</span> [ <span class="ruby-identifier">acodec</span>, <span class="ruby-identifier">amap</span> ]
 <span class="ruby-keyword">end</span></pre>
           </div><!-- new-source -->
           
@@ -485,10 +482,10 @@
       <h3 class="section-header">Public Instance Methods</h3>
 
     
-      <div id="method-i-cmd-21" class="method-detail ">
+      <div id="method-i-acodec" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">cmd!</span><span
+          <span class="method-name">acodec</span><span
             class="method-args">()</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
@@ -500,19 +497,139 @@
           
 
           
-          <div class="method-source-code" id="cmd-21-source">
-            <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/mp3_to_wav.rb, line 19</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">cmd!</span>
-  <span class="ruby-node">&quot;#{LAME_BIN.shellescape} --verbose #{@input.shellescape} --decode #{@output.shellescape}&quot;</span>
+          <div class="method-source-code" id="acodec-source">
+            <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/m4a_to_wav.rb, line 33</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">acodec</span>
+  <span class="ruby-string">&#39;-c:a pcm_s16le&#39;</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- cmd-21-source -->
+          </div><!-- acodec-source -->
           
         </div>
 
         
 
         
-      </div><!-- cmd-21-method -->
+      </div><!-- acodec-method -->
+
+    
+      <div id="method-i-amap" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">amap</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="amap-source">
+            <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/m4a_to_wav.rb, line 29</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">amap</span>
+  <span class="ruby-string">&#39;-map 0:a:0&#39;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- amap-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- amap-method -->
+
+    
+      <div id="method-i-output_threads" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">output_threads</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="output_threads-source">
+            <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/m4a_to_wav.rb, line 37</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">output_threads</span>
+  <span class="ruby-string">&#39;-threads auto&#39;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- output_threads-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- output_threads-method -->
+
+    
+      <div id="method-i-qv" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">qv</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="qv-source">
+            <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/m4a_to_wav.rb, line 25</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">qv</span>
+  <span class="ruby-keyword">nil</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- qv-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- qv-method -->
+
+    
+      <div id="method-i-sn" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">sn</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="sn-source">
+            <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/m4a_to_wav.rb, line 21</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">sn</span>
+  <span class="ruby-keyword">nil</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- sn-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- sn-method -->
 
     
     </section><!-- public-instance-method-details -->

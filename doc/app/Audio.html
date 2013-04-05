@@ -82,13 +82,13 @@
 
   <ul class="link-list">
     
+    <li><a href="#method-i-m4a_duration">#m4a_duration</a>
+    
+    <li><a href="#method-i-m4a_duration-3D">#m4a_duration=</a>
+    
+    <li><a href="#method-i-m4a_url">#m4a_url</a>
+    
     <li><a href="#method-i-min_duration">#min_duration</a>
-    
-    <li><a href="#method-i-mp3_duration">#mp3_duration</a>
-    
-    <li><a href="#method-i-mp3_duration-3D">#mp3_duration=</a>
-    
-    <li><a href="#method-i-mp3_url">#mp3_url</a>
     
     <li><a href="#method-i-ogg_duration">#ogg_duration</a>
     
@@ -225,9 +225,9 @@
   
     <li><a href="./Media/Video/Editing/Cmd/ImageToVideo.html">Media::Video::Editing::Cmd::ImageToVideo</a>
   
-    <li><a href="./Media/Video/Editing/Cmd/MergeWebmVideoStreams.html">Media::Video::Editing::Cmd::MergeWebmVideoStreams</a>
+    <li><a href="./Media/Video/Editing/Cmd/M4aToWav.html">Media::Video::Editing::Cmd::M4aToWav</a>
   
-    <li><a href="./Media/Video/Editing/Cmd/Mp3ToWav.html">Media::Video::Editing::Cmd::Mp3ToWav</a>
+    <li><a href="./Media/Video/Editing/Cmd/MergeWebmVideoStreams.html">Media::Video::Editing::Cmd::MergeWebmVideoStreams</a>
   
     <li><a href="./Media/Video/Editing/Cmd/ReplaceAudio.html">Media::Video::Editing::Cmd::ReplaceAudio</a>
   
@@ -498,6 +498,123 @@ href="Media/Shared.html">Media::Shared</a>.</p>
       <h3 class="section-header">Public Instance Methods</h3>
 
     
+      <div id="method-i-m4a_duration" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">m4a_duration</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <h3 id="method-i-m4a_duration-label-Description">Description</h3>
+
+<p>Returns the float duration in seconds of the m4a track;</p>
+
+<h3 id="method-i-m4a_duration-label-Returns">Returns</h3>
+
+<p>A float.</p>
+          
+
+          
+          <div class="method-source-code" id="m4a_duration-source">
+            <pre><span class="ruby-comment"># File app/models/audio.rb, line 112</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">m4a_duration</span>
+  <span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">m4a_duration</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- m4a_duration-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- m4a_duration-method -->
+
+    
+      <div id="method-i-m4a_duration-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">m4a_duration=</span><span
+            class="method-args">(m4a_duration)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <h3 id="method-i-m4a_duration-3D-label-Description">Description</h3>
+
+<p>Sets the float duration in seconds of the m4a track;</p>
+
+<h3 id="method-i-m4a_duration-3D-label-Args">Args</h3>
+<ul><li>
+<p><strong><a
+href="Audio.html#method-i-m4a_duration">#m4a_duration</a></strong>: the
+duration to be set</p>
+</li></ul>
+          
+
+          
+          <div class="method-source-code" id="m4a_duration-3D-source">
+            <pre><span class="ruby-comment"># File app/models/audio.rb, line 136</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">m4a_duration=</span>(<span class="ruby-identifier">m4a_duration</span>)
+  <span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">m4a_duration</span> = <span class="ruby-identifier">m4a_duration</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- m4a_duration-3D-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- m4a_duration-3D-method -->
+
+    
+      <div id="method-i-m4a_url" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">m4a_url</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <h3 id="method-i-m4a_url-label-Description">Description</h3>
+
+<p>Returns the url for the audio in format <code>m4a</code></p>
+
+<h3 id="method-i-m4a_url-label-Returns">Returns</h3>
+
+<p>An url.</p>
+
+<h3 id="method-i-m4a_url-label-Usage">Usage</h3>
+
+<pre>&lt;audio&gt;
+  &lt;source src=&quot;&lt;%= audio.m4a_url %&gt;&quot; type=&quot;audio/mp4&quot;&gt;
+&lt;/audio&gt;</pre>
+          
+
+          
+          <div class="method-source-code" id="m4a_url-source">
+            <pre><span class="ruby-comment"># File app/models/audio.rb, line 40</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">m4a_url</span>
+  <span class="ruby-identifier">media</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:url</span>, <span class="ruby-value">:m4a</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">converted</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- m4a_url-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- m4a_url-method -->
+
+    
       <div id="method-i-min_duration" class="method-detail ">
         
         <div class="method-heading">
@@ -512,7 +629,7 @@ href="Media/Shared.html">Media::Shared</a>.</p>
           <h3 id="method-i-min_duration-label-Description">Description</h3>
 
 <p>Returns the lower integer approximation of the minimum between
-<code>ogg_duration</code> and <code>mp3_duration</code>. This is necessary
+<code>ogg_duration</code> and <code>m4a_duration</code>. This is necessary
 to insert in the html players an integer duration in seconds that can be
 used without risks.</p>
 
@@ -529,7 +646,7 @@ used without risks.</p>
           <div class="method-source-code" id="min_duration-source">
             <pre><span class="ruby-comment"># File app/models/audio.rb, line 164</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">min_duration</span>
-  [<span class="ruby-identifier">mp3_duration</span>, <span class="ruby-identifier">ogg_duration</span>].<span class="ruby-identifier">map</span>(&amp;<span class="ruby-value">:to_i</span>).<span class="ruby-identifier">min</span>
+  [<span class="ruby-identifier">m4a_duration</span>, <span class="ruby-identifier">ogg_duration</span>].<span class="ruby-identifier">map</span>(&amp;<span class="ruby-value">:to_i</span>).<span class="ruby-identifier">min</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- min_duration-source -->
           
@@ -539,123 +656,6 @@ used without risks.</p>
 
         
       </div><!-- min_duration-method -->
-
-    
-      <div id="method-i-mp3_duration" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">mp3_duration</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          <h3 id="method-i-mp3_duration-label-Description">Description</h3>
-
-<p>Returns the float duration in seconds of the mp3 track;</p>
-
-<h3 id="method-i-mp3_duration-label-Returns">Returns</h3>
-
-<p>A float.</p>
-          
-
-          
-          <div class="method-source-code" id="mp3_duration-source">
-            <pre><span class="ruby-comment"># File app/models/audio.rb, line 112</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">mp3_duration</span>
-  <span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">mp3_duration</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- mp3_duration-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- mp3_duration-method -->
-
-    
-      <div id="method-i-mp3_duration-3D" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">mp3_duration=</span><span
-            class="method-args">(mp3_duration)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          <h3 id="method-i-mp3_duration-3D-label-Description">Description</h3>
-
-<p>Sets the float duration in seconds of the mp3 track;</p>
-
-<h3 id="method-i-mp3_duration-3D-label-Args">Args</h3>
-<ul><li>
-<p><strong><a
-href="Audio.html#method-i-mp3_duration">#mp3_duration</a></strong>: the
-duration to be set</p>
-</li></ul>
-          
-
-          
-          <div class="method-source-code" id="mp3_duration-3D-source">
-            <pre><span class="ruby-comment"># File app/models/audio.rb, line 136</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">mp3_duration=</span>(<span class="ruby-identifier">mp3_duration</span>)
-  <span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">mp3_duration</span> = <span class="ruby-identifier">mp3_duration</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- mp3_duration-3D-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- mp3_duration-3D-method -->
-
-    
-      <div id="method-i-mp3_url" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">mp3_url</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          <h3 id="method-i-mp3_url-label-Description">Description</h3>
-
-<p>Returns the url for the audio in format <code>mp3</code></p>
-
-<h3 id="method-i-mp3_url-label-Returns">Returns</h3>
-
-<p>An url.</p>
-
-<h3 id="method-i-mp3_url-label-Usage">Usage</h3>
-
-<pre>&lt;audio&gt;
-  &lt;source src=&quot;&lt;%= audio.mp3_url %&gt;&quot; type=&quot;audio/mp3&quot;&gt;
-&lt;/audio&gt;</pre>
-          
-
-          
-          <div class="method-source-code" id="mp3_url-source">
-            <pre><span class="ruby-comment"># File app/models/audio.rb, line 40</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">mp3_url</span>
-  <span class="ruby-identifier">media</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:url</span>, <span class="ruby-value">:mp3</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">converted</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- mp3_url-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- mp3_url-method -->
 
     
       <div id="method-i-ogg_duration" class="method-detail ">
