@@ -34,84 +34,6 @@ function virtualClassroomDocumentReady() {
   virtualClassroomDocumentReadySendLink();
 }
 
-function virtualClassroomDocumentReadyPlaylist() {
-  $('body').on('click', '._playlist_play', function() {
-    window.location = '/lessons/view/playlist';
-  });
-  $('body').on('mouseover', '._lesson_in_playlist', function() {
-    $('#' + this.id + ' ._remove_lesson_from_playlist').show();
-  });
-  $('body').on('mouseout', '._lesson_in_playlist', function() {
-    $('#' + this.id + ' ._remove_lesson_from_playlist').hide();
-  });
-  $('body').on('click', '._remove_lesson_from_playlist', function() {
-    var lesson_id = $(this).data('clickparam');
-    $.ajax({
-      type: 'post',
-      url: '/virtual_classroom/' + lesson_id + '/remove_lesson_from_playlist'
-    });
-  });
-  $('body').on('click', '._empty_playlist_button', function() {
-    var captions = $('#popup_captions_container');
-    var title = captions.data('empty-virtual-classroom-playlist-title');
-    var confirm = captions.data('empty-virtual-classroom-playlist-confirm');
-    var yes = captions.data('empty-virtual-classroom-playlist-yes');
-    var no = captions.data('empty-virtual-classroom-playlist-no');
-    showConfirmPopUp(title, confirm, yes, no, function() {
-      closePopUp('dialog-confirm');
-      $.ajax({
-        type: 'post',
-        url: '/virtual_classroom/empty_playlist'
-      });
-    }, function() {
-      closePopUp('dialog-confirm');
-    });
-  });
-}
-
-function virtualClassroomDocumentReadyMultipleLessonLoading() {
-  $('body').on('click', '#open_quick_load_lessons_popup_in_virtual_classroom', function() {
-    if(!$(this).hasClass('current')) {
-      $.ajax({
-        type: 'get',
-        url: '/virtual_classroom/select_lessons'
-      });
-    }
-  });
-  $('body').on('click', '._virtual_classroom_quick_loaded_lesson', function() {
-    var cover = $('#' + this.id + ' ._lesson_thumb');
-    if(!cover.hasClass('current')) {
-      var appended = $('#' + this.id + ' ._current_inserted');
-      if(appended.length == 0) {
-        $('#virtual_classroom_quick_select_submit').removeClass('current');
-        $('#' + this.id + ' input').val('1');
-        cover.append('<div class="currentInserted _current_inserted"><a></a></div>');
-      } else {
-        $('#' + this.id + ' input').val('0');
-        appended.remove();
-        if($('#dialog-virtual-classroom-quick-select ._current_inserted').length == 0) {
-          $('#virtual_classroom_quick_select_submit').addClass('current');
-        }
-      }
-    }
-  });
-  $('body').on('mouseover', '._virtual_classroom_quick_loaded_lesson ._current_inserted', function() {
-    $(this).children('a').css('background-position', '-10em -0.1em');
-  });
-  $('body').on('mouseout', '._virtual_classroom_quick_loaded_lesson ._current_inserted', function() {
-    $(this).children('a').css('background-position', '-10em -15.2em');
-  });
-  $('body').on('click', '#virtual_classroom_quick_select_submit', function() {
-    if(!$(this).hasClass('current')) {
-      $('#virtual_classroom_quick_select_container form').submit();
-    }
-  });
-  $('body').on('click', '#virtual_classroom_quick_select_close', function() {
-    $('.dialog_opaco').removeClass('dialog_opaco');
-    closePopUp('dialog-virtual-classroom-quick-select');
-  });
-}
-
 function virtualClassroomDocumentReadyIconsAndButtons() {
   $('body').on('click', '._remove_lesson_from_inside_virtual_classroom', function() {
     var lesson_id = $(this).data('clickparam');
@@ -159,6 +81,84 @@ function virtualClassroomDocumentReadyIconsAndButtons() {
       previewLesson(my_param, redirect_back_to);
     }
     return false;
+  });
+}
+
+function virtualClassroomDocumentReadyMultipleLessonLoading() {
+  $('body').on('click', '#open_quick_load_lessons_popup_in_virtual_classroom', function() {
+    if(!$(this).hasClass('current')) {
+      $.ajax({
+        type: 'get',
+        url: '/virtual_classroom/select_lessons'
+      });
+    }
+  });
+  $('body').on('click', '._virtual_classroom_quick_loaded_lesson', function() {
+    var cover = $('#' + this.id + ' ._lesson_thumb');
+    if(!cover.hasClass('current')) {
+      var appended = $('#' + this.id + ' ._current_inserted');
+      if(appended.length == 0) {
+        $('#virtual_classroom_quick_select_submit').removeClass('current');
+        $('#' + this.id + ' input').val('1');
+        cover.append('<div class="currentInserted _current_inserted"><a></a></div>');
+      } else {
+        $('#' + this.id + ' input').val('0');
+        appended.remove();
+        if($('#dialog-virtual-classroom-quick-select ._current_inserted').length == 0) {
+          $('#virtual_classroom_quick_select_submit').addClass('current');
+        }
+      }
+    }
+  });
+  $('body').on('mouseover', '._virtual_classroom_quick_loaded_lesson ._current_inserted', function() {
+    $(this).children('a').css('background-position', '-10em -0.1em');
+  });
+  $('body').on('mouseout', '._virtual_classroom_quick_loaded_lesson ._current_inserted', function() {
+    $(this).children('a').css('background-position', '-10em -15.2em');
+  });
+  $('body').on('click', '#virtual_classroom_quick_select_submit', function() {
+    if(!$(this).hasClass('current')) {
+      $('#virtual_classroom_quick_select_container form').submit();
+    }
+  });
+  $('body').on('click', '#virtual_classroom_quick_select_close', function() {
+    $('.dialog_opaco').removeClass('dialog_opaco');
+    closePopUp('dialog-virtual-classroom-quick-select');
+  });
+}
+
+function virtualClassroomDocumentReadyPlaylist() {
+  $('body').on('click', '._playlist_play', function() {
+    window.location = '/lessons/view/playlist';
+  });
+  $('body').on('mouseover', '._lesson_in_playlist', function() {
+    $('#' + this.id + ' ._remove_lesson_from_playlist').show();
+  });
+  $('body').on('mouseout', '._lesson_in_playlist', function() {
+    $('#' + this.id + ' ._remove_lesson_from_playlist').hide();
+  });
+  $('body').on('click', '._remove_lesson_from_playlist', function() {
+    var lesson_id = $(this).data('clickparam');
+    $.ajax({
+      type: 'post',
+      url: '/virtual_classroom/' + lesson_id + '/remove_lesson_from_playlist'
+    });
+  });
+  $('body').on('click', '._empty_playlist_button', function() {
+    var captions = $('#popup_captions_container');
+    var title = captions.data('empty-virtual-classroom-playlist-title');
+    var confirm = captions.data('empty-virtual-classroom-playlist-confirm');
+    var yes = captions.data('empty-virtual-classroom-playlist-yes');
+    var no = captions.data('empty-virtual-classroom-playlist-no');
+    showConfirmPopUp(title, confirm, yes, no, function() {
+      closePopUp('dialog-confirm');
+      $.ajax({
+        type: 'post',
+        url: '/virtual_classroom/empty_playlist'
+      });
+    }, function() {
+      closePopUp('dialog-confirm');
+    });
   });
 }
 
@@ -242,79 +242,6 @@ function virtualClassroomDocumentReadySendLink() {
 
 
 
-// send link
-
-/**
-* Add email to recipients list on email add button (+).
-* 
-* @method addEmailToVirtualClassroomSendLessonLinkSelector
-* @for addEmailToVirtualClassroomSendLessonLinkSelector
-*/
-function addEmailToVirtualClassroomSendLessonLinkSelector() {
-  var selector = $('#virtual_classroom_emails_selector');
-  if(!selector.data('placeholdered') && selector.val() != '') {
-    $('#virtual_classroom_send_link_mails_box .jspPane').append('<div class="_email"><span class="_text">' + selector.val() + '</span><a class="_remove"></a></div>');
-    selector.val('');
-  }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-// multiple loading
-
-/**
-* JS-TODO
-* 
-* @method initializeNotAvailableLessonsToLoadQuick
-* @for initializeNotAvailableLessonsToLoadQuick
-*/
-function initializeNotAvailableLessonsToLoadQuick() {
-  $('._virtual_classroom_quick_loaded_lesson').each(function() {
-    if(!$(this).data('available')) {
-      $('#' + this.id + ' ._lesson_thumb').addClass('current');
-    }
-  });
-}
-
-/**
-* JS-TODO
-* 
-* @method initializeScrollPaneQuickLessonSelector
-* @for initializeScrollPaneQuickLessonSelector
-*/
-function initializeScrollPaneQuickLessonSelector() {
-  $('#virtual_classroom_quick_select_container.scroll-pane').bind('jsp-arrow-change', function(event, isAtTop, isAtBottom, isAtLeft, isAtRight) {
-    var page = $('#virtual_classroom_quick_select_container').data('page');
-    var tot_pages = $('#virtual_classroom_quick_select_container').data('tot-pages');
-    if(isAtBottom && (page < tot_pages)) {
-      $.get('/virtual_classroom/select_lessons_new_block?page=' + (page + 1));
-    }
-  });
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -324,20 +251,22 @@ function initializeScrollPaneQuickLessonSelector() {
 // javascript animations
 
 /**
-* JS-TODO
+* Get highest zIndex value, among elements of a given class
 * 
-* @method initializeVirtualClassroom
-* @for initializeVirtualClassroom
+* @method getMaximumZIndex
+* @for getMaximumZIndex
+* @param a_class {String} css class name
+* @return {Number} highest zIndex value
 */
-function initializeVirtualClassroom() {
-  $('._virtual_classroom_lesson').each(function() {
-    if($(this).data('in-playlist')) {
-      $('#' + this.id + ' ._lesson_thumb').addClass('current');
-    } else {
-      initializeDraggableVirtualClassroomLesson(this.id);
+function getMaximumZIndex(a_class) {
+  var index_highest = 0;
+  $('.' + a_class).each(function() {
+    var index_current = parseInt($(this).css("zIndex"), 10);
+    if(index_current > index_highest) {
+      index_highest = index_current;
     }
   });
-  initializePlaylist();
+  return index_highest;
 }
 
 /**
@@ -446,20 +375,101 @@ function initializePlaylist() {
 }
 
 /**
-* Get highest zIndex value, among elements of a given class
+* JS-TODO
 * 
-* @method getMaximumZIndex
-* @for getMaximumZIndex
-* @param a_class {String} css class name
-* @return {Number} highest zIndex value
+* @method initializeVirtualClassroom
+* @for initializeVirtualClassroom
 */
-function getMaximumZIndex(a_class) {
-  var index_highest = 0;
-  $('.' + a_class).each(function() {
-    var index_current = parseInt($(this).css("zIndex"), 10);
-    if(index_current > index_highest) {
-      index_highest = index_current;
+function initializeVirtualClassroom() {
+  $('._virtual_classroom_lesson').each(function() {
+    if($(this).data('in-playlist')) {
+      $('#' + this.id + ' ._lesson_thumb').addClass('current');
+    } else {
+      initializeDraggableVirtualClassroomLesson(this.id);
     }
   });
-  return index_highest;
+  initializePlaylist();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// multiple loading
+
+/**
+* JS-TODO
+* 
+* @method initializeNotAvailableLessonsToLoadQuick
+* @for initializeNotAvailableLessonsToLoadQuick
+*/
+function initializeNotAvailableLessonsToLoadQuick() {
+  $('._virtual_classroom_quick_loaded_lesson').each(function() {
+    if(!$(this).data('available')) {
+      $('#' + this.id + ' ._lesson_thumb').addClass('current');
+    }
+  });
+}
+
+/**
+* JS-TODO
+* 
+* @method initializeScrollPaneQuickLessonSelector
+* @for initializeScrollPaneQuickLessonSelector
+*/
+function initializeScrollPaneQuickLessonSelector() {
+  $('#virtual_classroom_quick_select_container.scroll-pane').bind('jsp-arrow-change', function(event, isAtTop, isAtBottom, isAtLeft, isAtRight) {
+    var page = $('#virtual_classroom_quick_select_container').data('page');
+    var tot_pages = $('#virtual_classroom_quick_select_container').data('tot-pages');
+    if(isAtBottom && (page < tot_pages)) {
+      $.get('/virtual_classroom/select_lessons_new_block?page=' + (page + 1));
+    }
+  });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// send link
+
+/**
+* Add email to recipients list on email add button (+).
+* 
+* @method addEmailToVirtualClassroomSendLessonLinkSelector
+* @for addEmailToVirtualClassroomSendLessonLinkSelector
+*/
+function addEmailToVirtualClassroomSendLessonLinkSelector() {
+  var selector = $('#virtual_classroom_emails_selector');
+  if(!selector.data('placeholdered') && selector.val() != '') {
+    $('#virtual_classroom_send_link_mails_box .jspPane').append('<div class="_email"><span class="_text">' + selector.val() + '</span><a class="_remove"></a></div>');
+    selector.val('');
+  }
 }
