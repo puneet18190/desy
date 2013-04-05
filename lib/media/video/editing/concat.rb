@@ -36,12 +36,12 @@ module Media
         #   #=> { mp4:'/output/without/extension.mp4', webm:'/output/without/extension.webm' }
         #
         def initialize(inputs, output_without_extension, log_folder = nil)
-          unless inputs.is_a?(Array) and
-                 inputs.present?     and
+          unless inputs.is_a?(Array) &&
+                 inputs.present?     &&
                  inputs.all? do |input|
-                   input.is_a?(Hash)                 and
-                   input.keys.sort == FORMATS.sort   and
-                   input.values.size == FORMATS.size and
+                   input.is_a?(Hash)                 &&
+                   input.keys.sort == FORMATS.sort   &&
+                   input.values.size == FORMATS.size &&
                    input.values.all?{ |v| v.is_a?(String) }
                  end
             raise Error.new( "inputs must be an array with at least one element and its elements must be hashes with #{FORMATS.inspect} as keys and strings as values", 
