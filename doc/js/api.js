@@ -15,7 +15,6 @@ YUI.add("yuidoc-meta", function(Y) {
         "AudioEditorGraphics",
         "AudioEditorPreview",
         "AudioEditorScrollpain",
-        "BrowsersDocumentReady",
         "ButtonsAccessories",
         "ButtonsDocumentReady",
         "ButtonsLesson",
@@ -53,7 +52,10 @@ YUI.add("yuidoc-meta", function(Y) {
         "LessonViewerGraphics",
         "LessonViewerPlaylist",
         "LessonViewerSlidesNavigation",
-        "LocationsDocumentReady",
+        "MediaElementEditorCache",
+        "MediaElementEditorDocumentReady",
+        "MediaElementEditorForms",
+        "MediaElementEditorHorizontalTimelines",
         "addEmailToVirtualClassroomSendLessonLinkSelector",
         "addTagWithoutSuggestion",
         "addToTagsValue",
@@ -110,7 +112,6 @@ YUI.add("yuidoc-meta", function(Y) {
         "administration",
         "ajax-loader",
         "audio-editor",
-        "browsers",
         "buttons",
         "dashboard",
         "dialogs",
@@ -119,7 +120,6 @@ YUI.add("yuidoc-meta", function(Y) {
         "image-editor",
         "lesson-editor",
         "lesson-viewer",
-        "locations",
         "media-element-editor",
         "media-element-loader",
         "notifications",
@@ -144,11 +144,6 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "audio-editor",
             "name": "audio-editor",
-            "description": "bla bla bla"
-        },
-        {
-            "displayName": "browsers",
-            "name": "browsers",
             "description": "bla bla bla"
         },
         {
@@ -190,11 +185,6 @@ YUI.add("yuidoc-meta", function(Y) {
             "displayName": "lesson-viewer",
             "name": "lesson-viewer",
             "description": "Lesson viewer, it handles slides switching and playlist menu effects."
-        },
-        {
-            "displayName": "locations",
-            "name": "locations",
-            "description": "bla bla bla"
         },
         {
             "displayName": "media-element-editor",

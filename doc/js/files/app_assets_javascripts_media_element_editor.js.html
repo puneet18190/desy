@@ -75,8 +75,6 @@
             
                 <li><a href="..&#x2F;classes/AudioEditorScrollpain.html">AudioEditorScrollpain</a></li>
             
-                <li><a href="..&#x2F;classes/BrowsersDocumentReady.html">BrowsersDocumentReady</a></li>
-            
                 <li><a href="..&#x2F;classes/ButtonsAccessories.html">ButtonsAccessories</a></li>
             
                 <li><a href="..&#x2F;classes/ButtonsDocumentReady.html">ButtonsDocumentReady</a></li>
@@ -211,7 +209,13 @@
             
                 <li><a href="..&#x2F;classes/LessonViewerSlidesNavigation.html">LessonViewerSlidesNavigation</a></li>
             
-                <li><a href="..&#x2F;classes/LocationsDocumentReady.html">LocationsDocumentReady</a></li>
+                <li><a href="..&#x2F;classes/MediaElementEditorCache.html">MediaElementEditorCache</a></li>
+            
+                <li><a href="..&#x2F;classes/MediaElementEditorDocumentReady.html">MediaElementEditorDocumentReady</a></li>
+            
+                <li><a href="..&#x2F;classes/MediaElementEditorForms.html">MediaElementEditorForms</a></li>
+            
+                <li><a href="..&#x2F;classes/MediaElementEditorHorizontalTimelines.html">MediaElementEditorHorizontalTimelines</a></li>
             
                 <li><a href="..&#x2F;classes/removeFromTagsValue.html">removeFromTagsValue</a></li>
             
@@ -259,8 +263,6 @@
             
                 <li><a href="..&#x2F;modules/audio-editor.html">audio-editor</a></li>
             
-                <li><a href="..&#x2F;modules/browsers.html">browsers</a></li>
-            
                 <li><a href="..&#x2F;modules/buttons.html">buttons</a></li>
             
                 <li><a href="..&#x2F;modules/dashboard.html">dashboard</a></li>
@@ -276,8 +278,6 @@
                 <li><a href="..&#x2F;modules/lesson-editor.html">lesson-editor</a></li>
             
                 <li><a href="..&#x2F;modules/lesson-viewer.html">lesson-viewer</a></li>
-            
-                <li><a href="..&#x2F;modules/locations.html">locations</a></li>
             
                 <li><a href="..&#x2F;modules/media-element-editor.html">media-element-editor</a></li>
             
@@ -341,68 +341,100 @@ bla bla bla
 @module media-element-editor
 **&#x2F;
 
+
+
+
+
+&#x2F;**
+bla bla bla
+@method saveCacheLoop
+@for MediaElementEditorCache
+**&#x2F;
+function saveCacheLoop() {
+  var cache_form = &#x27;&#x27;;
+  if($(&#x27;html&#x27;).hasClass(&#x27;video_editor-controller&#x27;)) {
+    cache_form = $(&#x27;#video_editor_form&#x27;);
+  }
+  if($(&#x27;html&#x27;).hasClass(&#x27;audio_editor-controller&#x27;)) {
+    cache_form = $(&#x27;#audio_editor_form&#x27;);
+  }
+  var time = $(&#x27;#popup_parameters_container&#x27;).data(&#x27;cache-time&#x27;);
+  if(cache_form != &#x27;&#x27; &amp;&amp; $(&#x27;#info_container&#x27;).data(&#x27;save-cache&#x27;)) {
+    submitMediaElementEditorCacheForm(cache_form);
+    setTimeout(function() {
+      saveCacheLoop();
+    }, time);
+  }
+}
+
+&#x2F;**
+bla bla bla
+@method startCacheLoop
+@for MediaElementEditorCache
+**&#x2F;
+function startCacheLoop() {
+  $(&#x27;#info_container&#x27;).data(&#x27;save-cache&#x27;, true);
+  saveCacheLoop();
+}
+
+&#x2F;**
+bla bla bla
+@method stopCacheLoop
+@for MediaElementEditorCache
+**&#x2F;
+function stopCacheLoop() {
+  $(&#x27;#info_container&#x27;).data(&#x27;cache-enabled-first-time&#x27;, false);
+  $(&#x27;#info_container&#x27;).data(&#x27;save-cache&#x27;, false);
+}
+
+&#x2F;**
+bla bla bla
+@method submitMediaElementEditorCacheForm
+@for MediaElementEditorCache
+**&#x2F;
+function submitMediaElementEditorCacheForm(form) {
+  $.ajax({
+    type: &#x27;post&#x27;,
+    url: form.attr(&#x27;action&#x27;),
+    timeout: 5000,
+    data: form.serialize(),
+    beforeSend: unbindLoader()
+  }).always(bindLoader);
+}
+
+
+
+
+
+&#x2F;**
+bla bla bla
+@method mediaElementEditorDocumentReady
+@for MediaElementEditorDocumentReady
+**&#x2F;
 function mediaElementEditorDocumentReady() {
-  
   $(&#x27;body&#x27;).on(&#x27;focus&#x27;, &#x27;#form_info_new_media_element_in_editor #new_title&#x27;, function() {
     if($(&#x27;#form_info_new_media_element_in_editor #new_title_placeholder&#x27;).val() == &#x27;&#x27;) {
       $(this).attr(&#x27;value&#x27;, &#x27;&#x27;);
       $(&#x27;#form_info_new_media_element_in_editor #new_title_placeholder&#x27;).attr(&#x27;value&#x27;, &#x27;0&#x27;);
     }
   });
-  
   $(&#x27;body&#x27;).on(&#x27;focus&#x27;, &#x27;#form_info_new_media_element_in_editor #new_description&#x27;, function() {
     if($(&#x27;#form_info_new_media_element_in_editor #new_description_placeholder&#x27;).val() == &#x27;&#x27;) {
       $(this).attr(&#x27;value&#x27;, &#x27;&#x27;);
       $(&#x27;#form_info_new_media_element_in_editor #new_description_placeholder&#x27;).attr(&#x27;value&#x27;, &#x27;0&#x27;);
     }
   });
-  
 }
 
-function getNormalizedPositionTimelineHorizontalScrollPane(jscrollpane_id, component_width, component_position, components_visible_number) {
-  var how_many_hidden_to_left = getHowManyComponentsHiddenToLeftTimelineHorizontalScrollPane(jscrollpane_id, component_width);
-  var resp = how_many_hidden_to_left * component_width;
-  if(how_many_hidden_to_left + components_visible_number &lt; component_position) {
-    resp += component_width;
-  }
-  return resp;
-}
 
-function getAbsolutePositionTimelineHorizontalScrollPane(jscrollpane_id, component_width, component_position, components_visible_number) {
-  var how_many_hidden_to_left = getHowManyComponentsHiddenToLeftTimelineHorizontalScrollPane(jscrollpane_id, component_width);
-  if($(&#x27;#&#x27; + jscrollpane_id).data(&#x27;jsp&#x27;).getPercentScrolledX() == 1) {
-    how_many_hidden_to_left += 1;
-  }
-  var resp = (components_visible_number - 1);
-  if(how_many_hidden_to_left + components_visible_number &gt;= component_position) {
-   resp = (component_position - how_many_hidden_to_left - 1);
-  }
-  return resp * component_width;
-}
 
-function getHowManyComponentsHiddenToLeftTimelineHorizontalScrollPane(jscrollpane_id, component_width) {
-  var hidden_to_left = $(&#x27;#&#x27; + jscrollpane_id).data(&#x27;jsp&#x27;).getContentPositionX();
-  return parseInt(hidden_to_left &#x2F; component_width);
-}
 
-function calculateCorrectMovementHorizontalScrollLeft(hidden, movement) {
-  if(movement &gt; hidden) {
-    return hidden;
-  } else {
-    return movement;
-  }
-}
 
-function calculateCorrectMovementHorizontalScrollRight(hidden, movement, tot, visible) {
-  return calculateCorrectMovementHorizontalScrollLeft(tot - hidden - visible, movement);
-}
-
-function recenterMyMediaElements() {
-  var WW = $(window).width();
-  var elNumber = WW &#x2F; 220;
-  $(&#x27;._boxViewExpandedMediaElementWrapper&#x27;).css(&#x27;width&#x27;, (100&#x2F;parseInt(elNumber)) + &#x27;%&#x27;);
-}
-
+&#x2F;**
+bla bla bla
+@method resetMediaElementEditorForms
+@for MediaElementEditorForms
+**&#x2F;
 function resetMediaElementEditorForms() {
   $(&#x27;#form_info_new_media_element_in_editor .error_messages, #form_info_update_media_element_in_editor .error_messages&#x27;).html(&#x27;&#x27;);
   var new_form = $(&#x27;#form_info_new_media_element_in_editor&#x27;);
@@ -432,41 +464,71 @@ function resetMediaElementEditorForms() {
   update_form.find(&#x27;._tags_container&#x27;).removeClass(&#x27;form_error&#x27;);
 }
 
-function startCacheLoop() {
-  $(&#x27;#info_container&#x27;).data(&#x27;save-cache&#x27;, true);
-  saveCacheLoop();
+
+
+
+
+&#x2F;**
+bla bla bla
+@method calculateCorrectMovementHorizontalScrollLeft
+@for MediaElementEditorHorizontalTimelines
+**&#x2F;
+function calculateCorrectMovementHorizontalScrollLeft(hidden, movement) {
+  if(movement &gt; hidden) {
+    return hidden;
+  } else {
+    return movement;
+  }
 }
 
-function stopCacheLoop() {
-  $(&#x27;#info_container&#x27;).data(&#x27;cache-enabled-first-time&#x27;, false);
-  $(&#x27;#info_container&#x27;).data(&#x27;save-cache&#x27;, false);
+&#x2F;**
+bla bla bla
+@method calculateCorrectMovementHorizontalScrollRight
+@for MediaElementEditorHorizontalTimelines
+**&#x2F;
+function calculateCorrectMovementHorizontalScrollRight(hidden, movement, tot, visible) {
+  return calculateCorrectMovementHorizontalScrollLeft(tot - hidden - visible, movement);
 }
 
-function submitMediaElementEditorCacheForm(form) {
-  $.ajax({
-    type: &quot;POST&quot;,
-    url: form.attr(&#x27;action&#x27;),
-    timeout: 5000,
-    data: form.serialize(),
-    beforeSend: unbindLoader()
-  }).always(bindLoader);
+&#x2F;**
+bla bla bla
+@method getAbsolutePositionTimelineHorizontalScrollPane
+@for MediaElementEditorHorizontalTimelines
+**&#x2F;
+function getAbsolutePositionTimelineHorizontalScrollPane(jscrollpane_id, component_width, component_position, components_visible_number) {
+  var how_many_hidden_to_left = getHowManyComponentsHiddenToLeftTimelineHorizontalScrollPane(jscrollpane_id, component_width);
+  if($(&#x27;#&#x27; + jscrollpane_id).data(&#x27;jsp&#x27;).getPercentScrolledX() == 1) {
+    how_many_hidden_to_left += 1;
+  }
+  var resp = (components_visible_number - 1);
+  if(how_many_hidden_to_left + components_visible_number &gt;= component_position) {
+   resp = (component_position - how_many_hidden_to_left - 1);
+  }
+  return resp * component_width;
 }
 
-function saveCacheLoop() {
-  var cache_form = &#x27;&#x27;;
-  if($(&#x27;html&#x27;).hasClass(&#x27;video_editor-controller&#x27;)) {
-    cache_form = $(&#x27;#video_editor_form&#x27;);
+&#x2F;**
+bla bla bla
+@method getHowManyComponentsHiddenToLeftTimelineHorizontalScrollPane
+@for MediaElementEditorHorizontalTimelines
+**&#x2F;
+function getHowManyComponentsHiddenToLeftTimelineHorizontalScrollPane(jscrollpane_id, component_width) {
+  var hidden_to_left = $(&#x27;#&#x27; + jscrollpane_id).data(&#x27;jsp&#x27;).getContentPositionX();
+  return parseInt(hidden_to_left &#x2F; component_width);
+}
+
+&#x2F;**
+bla bla bla
+@method getNormalizedPositionTimelineHorizontalScrollPane
+@for MediaElementEditorHorizontalTimelines
+**&#x2F;
+function getNormalizedPositionTimelineHorizontalScrollPane(jscrollpane_id, component_width, component_position, components_visible_number) {
+  var how_many_hidden_to_left = getHowManyComponentsHiddenToLeftTimelineHorizontalScrollPane(jscrollpane_id, component_width);
+  var resp = how_many_hidden_to_left * component_width;
+  if(how_many_hidden_to_left + components_visible_number &lt; component_position) {
+    resp += component_width;
   }
-  if($(&#x27;html&#x27;).hasClass(&#x27;audio_editor-controller&#x27;)) {
-    cache_form = $(&#x27;#audio_editor_form&#x27;);
-  }
-  var time = $(&#x27;#popup_parameters_container&#x27;).data(&#x27;cache-time&#x27;);
-  if(cache_form != &#x27;&#x27; &amp;&amp; $(&#x27;#info_container&#x27;).data(&#x27;save-cache&#x27;)) {
-    submitMediaElementEditorCacheForm(cache_form);
-    setTimeout(function() {
-      saveCacheLoop();
-    }, time);
-  }
+  return resp;
 }
 
     </pre>

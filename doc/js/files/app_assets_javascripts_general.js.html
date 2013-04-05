@@ -75,8 +75,6 @@
             
                 <li><a href="..&#x2F;classes/AudioEditorScrollpain.html">AudioEditorScrollpain</a></li>
             
-                <li><a href="..&#x2F;classes/BrowsersDocumentReady.html">BrowsersDocumentReady</a></li>
-            
                 <li><a href="..&#x2F;classes/ButtonsAccessories.html">ButtonsAccessories</a></li>
             
                 <li><a href="..&#x2F;classes/ButtonsDocumentReady.html">ButtonsDocumentReady</a></li>
@@ -211,7 +209,13 @@
             
                 <li><a href="..&#x2F;classes/LessonViewerSlidesNavigation.html">LessonViewerSlidesNavigation</a></li>
             
-                <li><a href="..&#x2F;classes/LocationsDocumentReady.html">LocationsDocumentReady</a></li>
+                <li><a href="..&#x2F;classes/MediaElementEditorCache.html">MediaElementEditorCache</a></li>
+            
+                <li><a href="..&#x2F;classes/MediaElementEditorDocumentReady.html">MediaElementEditorDocumentReady</a></li>
+            
+                <li><a href="..&#x2F;classes/MediaElementEditorForms.html">MediaElementEditorForms</a></li>
+            
+                <li><a href="..&#x2F;classes/MediaElementEditorHorizontalTimelines.html">MediaElementEditorHorizontalTimelines</a></li>
             
                 <li><a href="..&#x2F;classes/removeFromTagsValue.html">removeFromTagsValue</a></li>
             
@@ -259,8 +263,6 @@
             
                 <li><a href="..&#x2F;modules/audio-editor.html">audio-editor</a></li>
             
-                <li><a href="..&#x2F;modules/browsers.html">browsers</a></li>
-            
                 <li><a href="..&#x2F;modules/buttons.html">buttons</a></li>
             
                 <li><a href="..&#x2F;modules/dashboard.html">dashboard</a></li>
@@ -276,8 +278,6 @@
                 <li><a href="..&#x2F;modules/lesson-editor.html">lesson-editor</a></li>
             
                 <li><a href="..&#x2F;modules/lesson-viewer.html">lesson-viewer</a></li>
-            
-                <li><a href="..&#x2F;modules/locations.html">locations</a></li>
             
                 <li><a href="..&#x2F;modules/media-element-editor.html">media-element-editor</a></li>
             
@@ -374,9 +374,39 @@ function centerThisInContainer(div,container) {
   centerDiv.css(&#x27;left&#x27;, (contW&#x2F;2-centerDiv.width()&#x2F;2)+$(container).position().left);
 }
 
+&#x2F;**
+bla bla bla
+@method recenterMyMediaElements
+@for GeneralCentering
+**&#x2F;
+function recenterMyMediaElements() {
+  var WW = $(window).width();
+  var elNumber = WW &#x2F; 220;
+  $(&#x27;._boxViewExpandedMediaElementWrapper&#x27;).css(&#x27;width&#x27;, (100 &#x2F; parseInt(elNumber)) + &#x27;%&#x27;);
+}
 
 
 
+
+
+&#x2F;**
+bla bla bla
+@method browsersDocumentReady
+@for GeneralDocumentReady
+**&#x2F;
+function browsersDocumentReady() {
+  (function(){
+    var name = $.grep(_.keys($.browser), function(el, i) {
+      return el !== &#x27;version&#x27;;
+    })[0];
+    if(name) {
+      $(&#x27;html&#x27;).addClass(name);
+    }
+    if($(&#x27;html&#x27;).hasClass(&#x27;msie&#x27;)) {
+      $(&#x27;._audio_editor_component ._double_slider .ui-slider-range&#x27;).css(&#x27;opacity&#x27;, 0.4);
+    }
+  })();
+}
 
 &#x2F;**
 bla bla bla
@@ -597,6 +627,29 @@ function javaScriptAnimationsDocumentReady() {
     var maxlength = myself.attr(&#x27;maxlength&#x27;)
     if (maxlength &amp;&amp; len &gt; maxlength) {
       myself.val(myself.val().slice(0, maxlength));
+    }
+  });
+}
+
+&#x2F;**
+ba bla bla bla
+@method locationsDocumentReady
+@for GeneralDocumentReady
+**&#x2F;
+function locationsDocumentReady() {
+  $(&#x27;._location_select_box&#x27;).each(function() {
+    $(&#x27;#&#x27; + $(this).attr(&#x27;id&#x27;)).selectbox();
+  });
+  $(&#x27;._location_select_box&#x27;).on(&#x27;change&#x27;, function() {
+    if(!$(this).data(&#x27;is-last&#x27;)) {
+      if($(this).val() == &#x27;0&#x27;) {
+        $(this).parents(&#x27;._location_selector&#x27;).nextAll().find(&#x27;select&#x27;).html(&#x27;&#x27;);
+      } else {
+        $.ajax({
+          url: &#x27;&#x2F;locations&#x2F;&#x27; + $(this).val() + &#x27;&#x2F;find&#x27;,
+          type: &#x27;get&#x27;
+        });
+      }
     }
   });
 }

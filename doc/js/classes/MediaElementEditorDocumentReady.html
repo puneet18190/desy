@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>app&#x2F;assets&#x2F;javascripts&#x2F;locations.js - DESY</title>
+    <title>MediaElementEditorDocumentReady - DESY</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.8.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -74,8 +74,6 @@
                 <li><a href="..&#x2F;classes/AudioEditorPreview.html">AudioEditorPreview</a></li>
             
                 <li><a href="..&#x2F;classes/AudioEditorScrollpain.html">AudioEditorScrollpain</a></li>
-            
-                <li><a href="..&#x2F;classes/BrowsersDocumentReady.html">BrowsersDocumentReady</a></li>
             
                 <li><a href="..&#x2F;classes/ButtonsAccessories.html">ButtonsAccessories</a></li>
             
@@ -211,7 +209,13 @@
             
                 <li><a href="..&#x2F;classes/LessonViewerSlidesNavigation.html">LessonViewerSlidesNavigation</a></li>
             
-                <li><a href="..&#x2F;classes/LocationsDocumentReady.html">LocationsDocumentReady</a></li>
+                <li><a href="..&#x2F;classes/MediaElementEditorCache.html">MediaElementEditorCache</a></li>
+            
+                <li><a href="..&#x2F;classes/MediaElementEditorDocumentReady.html">MediaElementEditorDocumentReady</a></li>
+            
+                <li><a href="..&#x2F;classes/MediaElementEditorForms.html">MediaElementEditorForms</a></li>
+            
+                <li><a href="..&#x2F;classes/MediaElementEditorHorizontalTimelines.html">MediaElementEditorHorizontalTimelines</a></li>
             
                 <li><a href="..&#x2F;classes/removeFromTagsValue.html">removeFromTagsValue</a></li>
             
@@ -259,8 +263,6 @@
             
                 <li><a href="..&#x2F;modules/audio-editor.html">audio-editor</a></li>
             
-                <li><a href="..&#x2F;modules/browsers.html">browsers</a></li>
-            
                 <li><a href="..&#x2F;modules/buttons.html">buttons</a></li>
             
                 <li><a href="..&#x2F;modules/dashboard.html">dashboard</a></li>
@@ -276,8 +278,6 @@
                 <li><a href="..&#x2F;modules/lesson-editor.html">lesson-editor</a></li>
             
                 <li><a href="..&#x2F;modules/lesson-viewer.html">lesson-viewer</a></li>
-            
-                <li><a href="..&#x2F;modules/locations.html">locations</a></li>
             
                 <li><a href="..&#x2F;modules/media-element-editor.html">media-element-editor</a></li>
             
@@ -332,39 +332,139 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: app&#x2F;assets&#x2F;javascripts&#x2F;locations.js</h1>
+                        <h1>MediaElementEditorDocumentReady Class</h1>
+<div class="box meta">
+    
 
-<div class="file">
-    <pre class="code prettyprint linenums">
-&#x2F;**
-bla bla bla
-@module locations
-**&#x2F;
+    
 
-&#x2F;**
-ba bla bla bla
-@method locationsDocumentReady
-@for LocationsDocumentReady
-**&#x2F;
-function locationsDocumentReady() {
-  $(&#x27;._location_select_box&#x27;).each(function() {
-    $(&#x27;#&#x27; + $(this).attr(&#x27;id&#x27;)).selectbox();
-  });
-  $(&#x27;._location_select_box&#x27;).on(&#x27;change&#x27;, function() {
-    if(!$(this).data(&#x27;is-last&#x27;)) {
-      if($(this).val() == &#x27;0&#x27;) {
-        $(this).parents(&#x27;._location_selector&#x27;).nextAll().find(&#x27;select&#x27;).html(&#x27;&#x27;);
-      } else {
-        $.ajax({
-          url: &#x27;&#x2F;locations&#x2F;&#x27; + $(this).val() + &#x27;&#x2F;find&#x27;,
-          type: &#x27;get&#x27;
-        });
-      }
-    }
-  });
-}
+    
 
-    </pre>
+    
+        
+            Module: <a href="../modules/media-element-editor.html">media-element-editor</a>
+        
+    
+
+    
+</div>
+
+
+
+<div class="box intro">
+    
+</div>
+
+
+
+<div id="classdocs" class="tabview">
+    <ul class="api-class-tabs">
+        <li class="api-class-tab index"><a href="#index">Index</a></li>
+
+        
+            <li class="api-class-tab methods"><a href="#methods">Methods</a></li>
+        
+        
+        
+        
+    </ul>
+
+    <div>
+        <div id="index" class="api-class-tabpanel index">
+            <h2 class="off-left">Item Index</h2>
+
+            
+                <div class="index-section methods">
+                    <h3>Methods</h3>
+
+                    <ul class="index-list methods">
+                        
+                            <li class="index-item method">
+                                <a href="#method_mediaElementEditorDocumentReady">mediaElementEditorDocumentReady</a>
+
+                                
+                                
+                            </li>
+                        
+                    </ul>
+                </div>
+            
+
+            
+
+            
+
+            
+        </div>
+
+        
+            <div id="methods" class="api-class-tabpanel">
+                <h2 class="off-left">Methods</h2>
+
+                
+                    <div id="method_mediaElementEditorDocumentReady" class="method item">
+    <h3 class="name"><code>mediaElementEditorDocumentReady</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_media_element_editor.js.html#l71"><code>app&#x2F;assets&#x2F;javascripts&#x2F;media_element_editor.js:71</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>bla bla bla</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+            </div>
+        
+
+        
+
+        
+
+        
+    </div>
 </div>
 
                     </div>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>browsers - DESY</title>
+    <title>MediaElementEditorCache - DESY</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.8.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -74,8 +74,6 @@
                 <li><a href="..&#x2F;classes/AudioEditorPreview.html">AudioEditorPreview</a></li>
             
                 <li><a href="..&#x2F;classes/AudioEditorScrollpain.html">AudioEditorScrollpain</a></li>
-            
-                <li><a href="..&#x2F;classes/BrowsersDocumentReady.html">BrowsersDocumentReady</a></li>
             
                 <li><a href="..&#x2F;classes/ButtonsAccessories.html">ButtonsAccessories</a></li>
             
@@ -211,7 +209,13 @@
             
                 <li><a href="..&#x2F;classes/LessonViewerSlidesNavigation.html">LessonViewerSlidesNavigation</a></li>
             
-                <li><a href="..&#x2F;classes/LocationsDocumentReady.html">LocationsDocumentReady</a></li>
+                <li><a href="..&#x2F;classes/MediaElementEditorCache.html">MediaElementEditorCache</a></li>
+            
+                <li><a href="..&#x2F;classes/MediaElementEditorDocumentReady.html">MediaElementEditorDocumentReady</a></li>
+            
+                <li><a href="..&#x2F;classes/MediaElementEditorForms.html">MediaElementEditorForms</a></li>
+            
+                <li><a href="..&#x2F;classes/MediaElementEditorHorizontalTimelines.html">MediaElementEditorHorizontalTimelines</a></li>
             
                 <li><a href="..&#x2F;classes/removeFromTagsValue.html">removeFromTagsValue</a></li>
             
@@ -259,8 +263,6 @@
             
                 <li><a href="..&#x2F;modules/audio-editor.html">audio-editor</a></li>
             
-                <li><a href="..&#x2F;modules/browsers.html">browsers</a></li>
-            
                 <li><a href="..&#x2F;modules/buttons.html">buttons</a></li>
             
                 <li><a href="..&#x2F;modules/dashboard.html">dashboard</a></li>
@@ -276,8 +278,6 @@
                 <li><a href="..&#x2F;modules/lesson-editor.html">lesson-editor</a></li>
             
                 <li><a href="..&#x2F;modules/lesson-viewer.html">lesson-viewer</a></li>
-            
-                <li><a href="..&#x2F;modules/locations.html">locations</a></li>
             
                 <li><a href="..&#x2F;modules/media-element-editor.html">media-element-editor</a></li>
             
@@ -332,16 +332,18 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>browsers Module</h1>
-<div class="box clearfix meta">
+                        <h1>MediaElementEditorCache Class</h1>
+<div class="box meta">
     
 
     
 
     
-        <div class="foundat">
-            Defined in: <a href="..&#x2F;files&#x2F;app_assets_javascripts_browsers.js.html#l1"><code>app&#x2F;assets&#x2F;javascripts&#x2F;browsers.js:1</code></a>
-        </div>
+
+    
+        
+            Module: <a href="../modules/media-element-editor.html">media-element-editor</a>
+        
     
 
     
@@ -350,29 +352,300 @@
 
 
 <div class="box intro">
-    <p>bla bla bla</p>
+    
 </div>
 
 
 
-<div class="yui3-g">
-    <div class="yui3-u-1-2">
-        
-            <p>This module provides the following classes:</p>
+<div id="classdocs" class="tabview">
+    <ul class="api-class-tabs">
+        <li class="api-class-tab index"><a href="#index">Index</a></li>
 
-            <ul class="module-classes">
+        
+            <li class="api-class-tab methods"><a href="#methods">Methods</a></li>
+        
+        
+        
+        
+    </ul>
+
+    <div>
+        <div id="index" class="api-class-tabpanel index">
+            <h2 class="off-left">Item Index</h2>
+
             
-                <li class="module-class">
-                    <a href="..&#x2F;classes/BrowsersDocumentReady.html">
-                        BrowsersDocumentReady
-                    </a>
-                </li>
+                <div class="index-section methods">
+                    <h3>Methods</h3>
+
+                    <ul class="index-list methods">
+                        
+                            <li class="index-item method">
+                                <a href="#method_saveCacheLoop">saveCacheLoop</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_startCacheLoop">startCacheLoop</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_stopCacheLoop">stopCacheLoop</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_submitMediaElementEditorCacheForm">submitMediaElementEditorCacheForm</a>
+
+                                
+                                
+                            </li>
+                        
+                    </ul>
+                </div>
             
-            </ul>
+
+            
+
+            
+
+            
+        </div>
+
+        
+            <div id="methods" class="api-class-tabpanel">
+                <h2 class="off-left">Methods</h2>
+
+                
+                    <div id="method_saveCacheLoop" class="method item">
+    <h3 class="name"><code>saveCacheLoop</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_media_element_editor.js.html#l10"><code>app&#x2F;assets&#x2F;javascripts&#x2F;media_element_editor.js:10</code></a>
+        
+        </p>
+
+
+        
+
         
     </div>
 
-    <div class="yui3-u-1-2">
+    <div class="description">
+        <p>bla bla bla</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_startCacheLoop" class="method item">
+    <h3 class="name"><code>startCacheLoop</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_media_element_editor.js.html#l32"><code>app&#x2F;assets&#x2F;javascripts&#x2F;media_element_editor.js:32</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>bla bla bla</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_stopCacheLoop" class="method item">
+    <h3 class="name"><code>stopCacheLoop</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_media_element_editor.js.html#l42"><code>app&#x2F;assets&#x2F;javascripts&#x2F;media_element_editor.js:42</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>bla bla bla</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_submitMediaElementEditorCacheForm" class="method item">
+    <h3 class="name"><code>submitMediaElementEditorCacheForm</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_media_element_editor.js.html#l52"><code>app&#x2F;assets&#x2F;javascripts&#x2F;media_element_editor.js:52</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>bla bla bla</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+            </div>
+        
+
+        
+
+        
+
         
     </div>
 </div>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>app&#x2F;assets&#x2F;javascripts&#x2F;browsers.js - DESY</title>
+    <title>MediaElementEditorHorizontalTimelines - DESY</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.8.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -74,8 +74,6 @@
                 <li><a href="..&#x2F;classes/AudioEditorPreview.html">AudioEditorPreview</a></li>
             
                 <li><a href="..&#x2F;classes/AudioEditorScrollpain.html">AudioEditorScrollpain</a></li>
-            
-                <li><a href="..&#x2F;classes/BrowsersDocumentReady.html">BrowsersDocumentReady</a></li>
             
                 <li><a href="..&#x2F;classes/ButtonsAccessories.html">ButtonsAccessories</a></li>
             
@@ -211,7 +209,13 @@
             
                 <li><a href="..&#x2F;classes/LessonViewerSlidesNavigation.html">LessonViewerSlidesNavigation</a></li>
             
-                <li><a href="..&#x2F;classes/LocationsDocumentReady.html">LocationsDocumentReady</a></li>
+                <li><a href="..&#x2F;classes/MediaElementEditorCache.html">MediaElementEditorCache</a></li>
+            
+                <li><a href="..&#x2F;classes/MediaElementEditorDocumentReady.html">MediaElementEditorDocumentReady</a></li>
+            
+                <li><a href="..&#x2F;classes/MediaElementEditorForms.html">MediaElementEditorForms</a></li>
+            
+                <li><a href="..&#x2F;classes/MediaElementEditorHorizontalTimelines.html">MediaElementEditorHorizontalTimelines</a></li>
             
                 <li><a href="..&#x2F;classes/removeFromTagsValue.html">removeFromTagsValue</a></li>
             
@@ -259,8 +263,6 @@
             
                 <li><a href="..&#x2F;modules/audio-editor.html">audio-editor</a></li>
             
-                <li><a href="..&#x2F;modules/browsers.html">browsers</a></li>
-            
                 <li><a href="..&#x2F;modules/buttons.html">buttons</a></li>
             
                 <li><a href="..&#x2F;modules/dashboard.html">dashboard</a></li>
@@ -276,8 +278,6 @@
                 <li><a href="..&#x2F;modules/lesson-editor.html">lesson-editor</a></li>
             
                 <li><a href="..&#x2F;modules/lesson-viewer.html">lesson-viewer</a></li>
-            
-                <li><a href="..&#x2F;modules/locations.html">locations</a></li>
             
                 <li><a href="..&#x2F;modules/media-element-editor.html">media-element-editor</a></li>
             
@@ -332,35 +332,383 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: app&#x2F;assets&#x2F;javascripts&#x2F;browsers.js</h1>
+                        <h1>MediaElementEditorHorizontalTimelines Class</h1>
+<div class="box meta">
+    
 
-<div class="file">
-    <pre class="code prettyprint linenums">
-&#x2F;**
-bla bla bla
-@module browsers
-**&#x2F;
+    
 
-&#x2F;**
-bla bla bla
-@method browsersDocumentReady
-@for BrowsersDocumentReady
-**&#x2F;
-function browsersDocumentReady() {
-  (function(){
-    var name = $.grep(_.keys($.browser), function(el, i) {
-      return el !== &#x27;version&#x27;;
-    })[0];
-    if(name) {
-      $(&#x27;html&#x27;).addClass(name);
-    }
-    if($(&#x27;html&#x27;).hasClass(&#x27;msie&#x27;)) {
-      $(&#x27;._audio_editor_component ._double_slider .ui-slider-range&#x27;).css(&#x27;opacity&#x27;, 0.4);
-    }
-  })();
-}
+    
 
-    </pre>
+    
+        
+            Module: <a href="../modules/media-element-editor.html">media-element-editor</a>
+        
+    
+
+    
+</div>
+
+
+
+<div class="box intro">
+    
+</div>
+
+
+
+<div id="classdocs" class="tabview">
+    <ul class="api-class-tabs">
+        <li class="api-class-tab index"><a href="#index">Index</a></li>
+
+        
+            <li class="api-class-tab methods"><a href="#methods">Methods</a></li>
+        
+        
+        
+        
+    </ul>
+
+    <div>
+        <div id="index" class="api-class-tabpanel index">
+            <h2 class="off-left">Item Index</h2>
+
+            
+                <div class="index-section methods">
+                    <h3>Methods</h3>
+
+                    <ul class="index-list methods">
+                        
+                            <li class="index-item method">
+                                <a href="#method_calculateCorrectMovementHorizontalScrollLeft">calculateCorrectMovementHorizontalScrollLeft</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_calculateCorrectMovementHorizontalScrollRight">calculateCorrectMovementHorizontalScrollRight</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_getAbsolutePositionTimelineHorizontalScrollPane">getAbsolutePositionTimelineHorizontalScrollPane</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_getHowManyComponentsHiddenToLeftTimelineHorizontalScrollPane">getHowManyComponentsHiddenToLeftTimelineHorizontalScrollPane</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_getNormalizedPositionTimelineHorizontalScrollPane">getNormalizedPositionTimelineHorizontalScrollPane</a>
+
+                                
+                                
+                            </li>
+                        
+                    </ul>
+                </div>
+            
+
+            
+
+            
+
+            
+        </div>
+
+        
+            <div id="methods" class="api-class-tabpanel">
+                <h2 class="off-left">Methods</h2>
+
+                
+                    <div id="method_calculateCorrectMovementHorizontalScrollLeft" class="method item">
+    <h3 class="name"><code>calculateCorrectMovementHorizontalScrollLeft</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_media_element_editor.js.html#l133"><code>app&#x2F;assets&#x2F;javascripts&#x2F;media_element_editor.js:133</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>bla bla bla</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_calculateCorrectMovementHorizontalScrollRight" class="method item">
+    <h3 class="name"><code>calculateCorrectMovementHorizontalScrollRight</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_media_element_editor.js.html#l146"><code>app&#x2F;assets&#x2F;javascripts&#x2F;media_element_editor.js:146</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>bla bla bla</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_getAbsolutePositionTimelineHorizontalScrollPane" class="method item">
+    <h3 class="name"><code>getAbsolutePositionTimelineHorizontalScrollPane</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_media_element_editor.js.html#l155"><code>app&#x2F;assets&#x2F;javascripts&#x2F;media_element_editor.js:155</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>bla bla bla</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_getHowManyComponentsHiddenToLeftTimelineHorizontalScrollPane" class="method item">
+    <h3 class="name"><code>getHowManyComponentsHiddenToLeftTimelineHorizontalScrollPane</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_media_element_editor.js.html#l172"><code>app&#x2F;assets&#x2F;javascripts&#x2F;media_element_editor.js:172</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>bla bla bla</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_getNormalizedPositionTimelineHorizontalScrollPane" class="method item">
+    <h3 class="name"><code>getNormalizedPositionTimelineHorizontalScrollPane</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_media_element_editor.js.html#l182"><code>app&#x2F;assets&#x2F;javascripts&#x2F;media_element_editor.js:182</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>bla bla bla</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+            </div>
+        
+
+        
+
+        
+
+        
+    </div>
 </div>
 
                     </div>

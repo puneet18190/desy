@@ -50,17 +50,6 @@
             },
             "namespaces": {}
         },
-        "app/assets/javascripts/browsers.js": {
-            "name": "app/assets/javascripts/browsers.js",
-            "modules": {
-                "browsers": 1
-            },
-            "classes": {},
-            "fors": {
-                "BrowsersDocumentReady": 1
-            },
-            "namespaces": {}
-        },
         "app/assets/javascripts/buttons.js": {
             "name": "app/assets/javascripts/buttons.js",
             "modules": {
@@ -178,24 +167,18 @@
             },
             "namespaces": {}
         },
-        "app/assets/javascripts/locations.js": {
-            "name": "app/assets/javascripts/locations.js",
-            "modules": {
-                "locations": 1
-            },
-            "classes": {},
-            "fors": {
-                "LocationsDocumentReady": 1
-            },
-            "namespaces": {}
-        },
         "app/assets/javascripts/media_element_editor.js": {
             "name": "app/assets/javascripts/media_element_editor.js",
             "modules": {
                 "media-element-editor": 1
             },
             "classes": {},
-            "fors": {},
+            "fors": {
+                "MediaElementEditorCache": 1,
+                "MediaElementEditorDocumentReady": 1,
+                "MediaElementEditorForms": 1,
+                "MediaElementEditorHorizontalTimelines": 1
+            },
             "namespaces": {}
         },
         "app/assets/javascripts/media_element_loader.js": {
@@ -396,21 +379,6 @@
             "line": 1,
             "description": "bla bla bla"
         },
-        "browsers": {
-            "name": "browsers",
-            "submodules": {},
-            "classes": {
-                "BrowsersDocumentReady": 1
-            },
-            "fors": {
-                "BrowsersDocumentReady": 1
-            },
-            "namespaces": {},
-            "tag": "module",
-            "file": "app/assets/javascripts/browsers.js",
-            "line": 1,
-            "description": "bla bla bla"
-        },
         "buttons": {
             "name": "buttons",
             "submodules": {},
@@ -589,26 +557,21 @@
             "line": 9,
             "description": "Lesson viewer, it handles slides switching and playlist menu effects."
         },
-        "locations": {
-            "name": "locations",
-            "submodules": {},
-            "classes": {
-                "LocationsDocumentReady": 1
-            },
-            "fors": {
-                "LocationsDocumentReady": 1
-            },
-            "namespaces": {},
-            "tag": "module",
-            "file": "app/assets/javascripts/locations.js",
-            "line": 1,
-            "description": "bla bla bla"
-        },
         "media-element-editor": {
             "name": "media-element-editor",
             "submodules": {},
-            "classes": {},
-            "fors": {},
+            "classes": {
+                "MediaElementEditorCache": 1,
+                "MediaElementEditorDocumentReady": 1,
+                "MediaElementEditorForms": 1,
+                "MediaElementEditorHorizontalTimelines": 1
+            },
+            "fors": {
+                "MediaElementEditorCache": 1,
+                "MediaElementEditorDocumentReady": 1,
+                "MediaElementEditorForms": 1,
+                "MediaElementEditorHorizontalTimelines": 1
+            },
             "namespaces": {},
             "tag": "module",
             "file": "app/assets/javascripts/media_element_editor.js",
@@ -971,17 +934,6 @@
             "plugin_for": [],
             "extension_for": [],
             "module": "audio-editor",
-            "namespace": ""
-        },
-        "BrowsersDocumentReady": {
-            "name": "BrowsersDocumentReady",
-            "shortname": "BrowsersDocumentReady",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "browsers",
             "namespace": ""
         },
         "ButtonsAccessories": {
@@ -1391,15 +1343,48 @@
             "module": "lesson-viewer",
             "namespace": ""
         },
-        "LocationsDocumentReady": {
-            "name": "LocationsDocumentReady",
-            "shortname": "LocationsDocumentReady",
+        "MediaElementEditorCache": {
+            "name": "MediaElementEditorCache",
+            "shortname": "MediaElementEditorCache",
             "classitems": [],
             "plugins": [],
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "module": "locations",
+            "module": "media-element-editor",
+            "namespace": ""
+        },
+        "MediaElementEditorDocumentReady": {
+            "name": "MediaElementEditorDocumentReady",
+            "shortname": "MediaElementEditorDocumentReady",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "media-element-editor",
+            "namespace": ""
+        },
+        "MediaElementEditorForms": {
+            "name": "MediaElementEditorForms",
+            "shortname": "MediaElementEditorForms",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "media-element-editor",
+            "namespace": ""
+        },
+        "MediaElementEditorHorizontalTimelines": {
+            "name": "MediaElementEditorHorizontalTimelines",
+            "shortname": "MediaElementEditorHorizontalTimelines",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "media-element-editor",
             "namespace": ""
         },
         "initMediaElementLoader": {
@@ -2477,15 +2462,6 @@
             "module": "audio-editor"
         },
         {
-            "file": "app/assets/javascripts/browsers.js",
-            "line": 6,
-            "description": "bla bla bla",
-            "itemtype": "method",
-            "name": "browsersDocumentReady",
-            "class": "BrowsersDocumentReady",
-            "module": "browsers"
-        },
-        {
             "file": "app/assets/javascripts/buttons.js",
             "line": 10,
             "description": "Add item removed from a view to the current destination url",
@@ -3445,7 +3421,25 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 43,
+            "line": 39,
+            "description": "bla bla bla",
+            "itemtype": "method",
+            "name": "recenterMyMediaElements",
+            "class": "GeneralCentering",
+            "module": "general"
+        },
+        {
+            "file": "app/assets/javascripts/general.js",
+            "line": 54,
+            "description": "bla bla bla",
+            "itemtype": "method",
+            "name": "browsersDocumentReady",
+            "class": "GeneralDocumentReady",
+            "module": "general"
+        },
+        {
+            "file": "app/assets/javascripts/general.js",
+            "line": 73,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "defaultValueJavaScriptAnimationsDocumentReady",
@@ -3454,7 +3448,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 60,
+            "line": 90,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "expandedItemsDocumentReady",
@@ -3463,7 +3457,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 123,
+            "line": 153,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "filtersDocumentReady",
@@ -3472,7 +3466,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 146,
+            "line": 176,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "formsDocumentReady",
@@ -3481,7 +3475,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 215,
+            "line": 245,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "generalWindowResizeDocumentReady",
@@ -3490,7 +3484,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 236,
+            "line": 266,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "javaScriptAnimationsDocumentReady",
@@ -3499,7 +3493,16 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 270,
+            "line": 296,
+            "description": "ba bla bla bla",
+            "itemtype": "method",
+            "name": "locationsDocumentReady",
+            "class": "GeneralDocumentReady",
+            "module": "general"
+        },
+        {
+            "file": "app/assets/javascripts/general.js",
+            "line": 323,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "getMediaElementsFormat",
@@ -3508,7 +3511,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 283,
+            "line": 336,
             "description": "Shows error icon when somethings goes wrong",
             "itemtype": "method",
             "name": "redError",
@@ -3517,7 +3520,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 294,
+            "line": 347,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "secondsToDateString",
@@ -3526,7 +3529,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 325,
+            "line": 378,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "getCompleteMediaElementsUrlWithoutFilter",
@@ -3535,7 +3538,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 336,
+            "line": 389,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "getCompleteMediaElementsUrlWithoutForPage",
@@ -3544,7 +3547,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 347,
+            "line": 400,
             "description": "Remove a param from url",
             "itemtype": "method",
             "name": "removeURLParameter",
@@ -3569,7 +3572,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 373,
+            "line": 426,
             "description": "Add new parameters to an url",
             "itemtype": "method",
             "name": "updateURLParameter",
@@ -4426,13 +4429,103 @@
             "module": "lesson-viewer"
         },
         {
-            "file": "app/assets/javascripts/locations.js",
-            "line": 6,
-            "description": "ba bla bla bla",
+            "file": "app/assets/javascripts/media_element_editor.js",
+            "line": 10,
+            "description": "bla bla bla",
             "itemtype": "method",
-            "name": "locationsDocumentReady",
-            "class": "LocationsDocumentReady",
-            "module": "locations"
+            "name": "saveCacheLoop",
+            "class": "MediaElementEditorCache",
+            "module": "media-element-editor"
+        },
+        {
+            "file": "app/assets/javascripts/media_element_editor.js",
+            "line": 32,
+            "description": "bla bla bla",
+            "itemtype": "method",
+            "name": "startCacheLoop",
+            "class": "MediaElementEditorCache",
+            "module": "media-element-editor"
+        },
+        {
+            "file": "app/assets/javascripts/media_element_editor.js",
+            "line": 42,
+            "description": "bla bla bla",
+            "itemtype": "method",
+            "name": "stopCacheLoop",
+            "class": "MediaElementEditorCache",
+            "module": "media-element-editor"
+        },
+        {
+            "file": "app/assets/javascripts/media_element_editor.js",
+            "line": 52,
+            "description": "bla bla bla",
+            "itemtype": "method",
+            "name": "submitMediaElementEditorCacheForm",
+            "class": "MediaElementEditorCache",
+            "module": "media-element-editor"
+        },
+        {
+            "file": "app/assets/javascripts/media_element_editor.js",
+            "line": 71,
+            "description": "bla bla bla",
+            "itemtype": "method",
+            "name": "mediaElementEditorDocumentReady",
+            "class": "MediaElementEditorDocumentReady",
+            "module": "media-element-editor"
+        },
+        {
+            "file": "app/assets/javascripts/media_element_editor.js",
+            "line": 95,
+            "description": "bla bla bla",
+            "itemtype": "method",
+            "name": "resetMediaElementEditorForms",
+            "class": "MediaElementEditorForms",
+            "module": "media-element-editor"
+        },
+        {
+            "file": "app/assets/javascripts/media_element_editor.js",
+            "line": 133,
+            "description": "bla bla bla",
+            "itemtype": "method",
+            "name": "calculateCorrectMovementHorizontalScrollLeft",
+            "class": "MediaElementEditorHorizontalTimelines",
+            "module": "media-element-editor"
+        },
+        {
+            "file": "app/assets/javascripts/media_element_editor.js",
+            "line": 146,
+            "description": "bla bla bla",
+            "itemtype": "method",
+            "name": "calculateCorrectMovementHorizontalScrollRight",
+            "class": "MediaElementEditorHorizontalTimelines",
+            "module": "media-element-editor"
+        },
+        {
+            "file": "app/assets/javascripts/media_element_editor.js",
+            "line": 155,
+            "description": "bla bla bla",
+            "itemtype": "method",
+            "name": "getAbsolutePositionTimelineHorizontalScrollPane",
+            "class": "MediaElementEditorHorizontalTimelines",
+            "module": "media-element-editor"
+        },
+        {
+            "file": "app/assets/javascripts/media_element_editor.js",
+            "line": 172,
+            "description": "bla bla bla",
+            "itemtype": "method",
+            "name": "getHowManyComponentsHiddenToLeftTimelineHorizontalScrollPane",
+            "class": "MediaElementEditorHorizontalTimelines",
+            "module": "media-element-editor"
+        },
+        {
+            "file": "app/assets/javascripts/media_element_editor.js",
+            "line": 182,
+            "description": "bla bla bla",
+            "itemtype": "method",
+            "name": "getNormalizedPositionTimelineHorizontalScrollPane",
+            "class": "MediaElementEditorHorizontalTimelines",
+            "module": "media-element-editor"
         },
         {
             "file": "app/assets/javascripts/media_element_loader.js",
