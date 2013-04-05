@@ -17,8 +17,7 @@ module Media
   TMP_PREFIX          = CONFIG.tmp_prefix
 
   def self.ubuntu_packages
-    # XXX postgresql-contrib-9.2 non dovrebbe stare qui!!!
-    %w( libav-tools libavcodec-extra-53 mkvtoolnix sox lame postgresql-contrib-9.2 )
+    %w( libav-tools libavcodec-extra-53 mkvtoolnix sox )
   end
   
   def self.ubuntu_install
