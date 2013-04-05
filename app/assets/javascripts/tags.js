@@ -417,7 +417,7 @@ function initSearchTagsAutocomplete(input) {
 
 /**
 Initialize jQueryUI _autocomplete_ for tags in lessons and elements form
-@method initSearchTagsAutocomplete
+@method initTagsAutocomplete
 @for TagsInitializers
 @param scope {String} tags container scope, class or id
 **/
