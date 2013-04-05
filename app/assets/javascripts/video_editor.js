@@ -7,27 +7,11 @@ Provides video editor ajax actions.
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// add components
-
+/**
+bla bla bla
+@method addImageComponentInVideoEditor
+@for VideoEditorAddComponents
+**/
 function addImageComponentInVideoEditor(image_id, component, preview, duration) {
   $('._new_component_in_video_editor_hover a').removeClass('current');
   var next_position = $('#info_container').data('last-component-id') + 1;
@@ -87,6 +71,11 @@ function addImageComponentInVideoEditor(image_id, component, preview, duration) 
   }, 1100);
 }
 
+/**
+bla bla bla
+@method addTextComponentInVideoEditor
+@for VideoEditorAddComponents
+**/
 function addTextComponentInVideoEditor(component, content, duration, background_color, text_color) {
   $('._new_component_in_video_editor_hover a').removeClass('current');
   var next_position = $('#info_container').data('last-component-id') + 1;
@@ -153,6 +142,11 @@ function addTextComponentInVideoEditor(component, content, duration, background_
   }, 1100);
 }
 
+/**
+bla bla bla
+@method addVideoComponentInVideoEditor
+@for VideoEditorAddComponents
+**/
 function addVideoComponentInVideoEditor(video_id, webm, mp4, component, duration) {
   $('._new_component_in_video_editor_hover a').removeClass('current');
   var next_position = $('#info_container').data('last-component-id') + 1;
@@ -226,28 +220,11 @@ function addVideoComponentInVideoEditor(video_id, webm, mp4, component, duration
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// components
-
+/**
+bla bla bla
+@method changeDurationVideoEditorComponent
+@for VideoEditorComponents
+**/
 function changeDurationVideoEditorComponent(component_id, new_duration) {
   var old_duration = $('#' + component_id).data('duration');
   var total_length = $('#info_container').data('total-length');
@@ -267,6 +244,11 @@ function changeDurationVideoEditorComponent(component_id, new_duration) {
   $('#visual_video_editor_total_length').html(secondsToDateString(total_length));
 }
 
+/**
+bla bla bla
+@method clearSpecificVideoEditorComponentParameters
+@for VideoEditorComponents
+**/
 function clearSpecificVideoEditorComponentParameters(component_id) {
   var huge_selector = '#' + component_id + ' ._video_component_input_content';
   huge_selector += ', #' + component_id + ' ._video_component_input_background_color';
@@ -279,14 +261,29 @@ function clearSpecificVideoEditorComponentParameters(component_id) {
   $(huge_selector).remove();
 }
 
+/**
+bla bla bla
+@method fillVideoEditorSingleParameter
+@for VideoEditorComponents
+**/
 function fillVideoEditorSingleParameter(input, identifier, value) {
   return '<input id="' + input + '_' + identifier + '" class="_video_component_input_' + input + '" type="hidden" value="' + value + '" name="' + input + '_' + identifier + '">';
 }
 
+/**
+bla bla bla
+@method highlightAndUpdateVideoComponentIcon
+@for VideoEditorComponents
+**/
 function highlightAndUpdateVideoComponentIcon(component_id) {
   $('#' + component_id + ' ._video_component_icon').effect('highlight', {color: '#41A62A'}, 1500);
 }
 
+/**
+bla bla bla
+@method reloadVideoEditorComponentPositions
+@for VideoEditorComponents
+**/
 function reloadVideoEditorComponentPositions() {
   var components = $('._video_editor_component');
   components.each(function(index) {
@@ -296,6 +293,11 @@ function reloadVideoEditorComponentPositions() {
   });
 }
 
+/**
+bla bla bla
+@method resetVisibilityOfVideoEditorTransitions
+@for VideoEditorComponents
+**/
 function resetVisibilityOfVideoEditorTransitions() {
   var components = $('._video_editor_component');
   components.each(function(index) {
@@ -307,6 +309,11 @@ function resetVisibilityOfVideoEditorTransitions() {
   });
 }
 
+/**
+bla bla bla
+@method startVideoEditorPreviewClipWithDelay
+@for VideoEditorComponents
+**/
 function startVideoEditorPreviewClipWithDelay(component_id) {
   setTimeout(function() {
     var obj = $('#' + component_id);
@@ -320,39 +327,13 @@ function startVideoEditorPreviewClipWithDelay(component_id) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// cutters
-
 /**
-* Video Editor generic video component cutter.
-* 
- @method closeGenericVideoComponentCutter
-* @for closeGenericVideoComponentCutter
-* @param name {String} An 
-*   Attribute name or 
-*   object property path.
-* @return {String} Unique clientId.
-*/
+bla bla bla
+@method closeGenericVideoComponentCutter
+@for VideoEditorCutters
+@param name {String} An attribute name or object property path.
+@return {String} Unique clientId.
+**/
 function closeGenericVideoComponentCutter() {
   $('._video_component_cutter_arrow').hide('fade', {}, 250);
   $('._video_component_cutter').hide('fade', {}, 250, function() {
@@ -369,6 +350,11 @@ function closeGenericVideoComponentCutter() {
   });
 }
 
+/**
+bla bla bla
+@method commitVideoComponentVideoCutter
+@for VideoEditorCutters
+**/
 function commitVideoComponentVideoCutter(identifier) {
   var from = $('#video_component_' + identifier + '_cutter').data('from');
   var to = $('#video_component_' + identifier + '_cutter').data('to');
@@ -381,18 +367,33 @@ function commitVideoComponentVideoCutter(identifier) {
   }
 }
 
+/**
+bla bla bla
+@method cutVideoComponentLeftSide
+@for VideoEditorCutters
+**/
 function cutVideoComponentLeftSide(identifier, pos) {
   $('#video_component_' + identifier + '_cutter').data('from', pos);
   var new_duration = $('#video_component_' + identifier + '_cutter').data('to') - pos;
   $('#video_component_' + identifier + '_cutter ._video_editor_cutter_selected_time').html(secondsToDateString(new_duration));
 }
 
+/**
+bla bla bla
+@method cutVideoComponentRightSide
+@for VideoEditorCutters
+**/
 function cutVideoComponentRightSide(identifier, pos) {
   $('#video_component_' + identifier + '_cutter').data('to', pos);
   var new_duration = pos - $('#video_component_' + identifier + '_cutter').data('from');
   $('#video_component_' + identifier + '_cutter ._video_editor_cutter_selected_time').html(secondsToDateString(new_duration));
 }
 
+/**
+bla bla bla
+@method showVideoEditorCutter
+@for VideoEditorCutters
+**/
 function showVideoEditorCutter(component_id) {
   $('._video_editor_bottom_bar').css('visibility', 'hidden');
   $('#commit_video_editor').hide();
@@ -408,6 +409,11 @@ function showVideoEditorCutter(component_id) {
   });
 }
 
+/**
+bla bla bla
+@method startVideoEditorPreviewClip
+@for VideoEditorCutters
+**/
 function startVideoEditorPreviewClip(component_id) {
   $('._video_component_preview').hide();
   loadVideoComponentIfNotLoadedYet(component_id);
@@ -418,25 +424,11 @@ function startVideoEditorPreviewClip(component_id) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// document ready
-
+/**
+bla bla bla
+@method videoEditorDocumentReady
+@for VideoEditorDocumentReady
+**/
 function videoEditorDocumentReady() {
   videoEditorDocumentReadyPreview();
   videoEditorDocumentReadyCutters();
@@ -450,6 +442,11 @@ function videoEditorDocumentReady() {
   videoEditorDocumentReadyInitialization();
 }
 
+/**
+bla bla bla
+@method videoEditorDocumentReadyAddComponent
+@for VideoEditorDocumentReady
+**/
 function videoEditorDocumentReadyAddComponent() {
   $('body').on('click', '._add_video_component_to_video_editor', function() {
     var video_id = $(this).data('video-id');
@@ -528,6 +525,11 @@ function videoEditorDocumentReadyAddComponent() {
   });
 }
 
+/**
+bla bla bla
+@method videoEditorDocumentReadyAudioTrack
+@for VideoEditorDocumentReady
+**/
 function videoEditorDocumentReadyAudioTrack() {
   $('body').on('click', '._add_audio_track_to_video_editor', function() {
     $('#video_editor_preview_container ._audio_track_preview').remove();
@@ -563,6 +565,11 @@ function videoEditorDocumentReadyAudioTrack() {
   });
 }
 
+/**
+bla bla bla
+@method videoEditorDocumentReadyCommit
+@for VideoEditorDocumentReady
+**/
 function videoEditorDocumentReadyCommit() {
   $('body').on('click', '._exit_video_editor', function() {
     stopCacheLoop();
@@ -658,6 +665,11 @@ function videoEditorDocumentReadyCommit() {
   });
 }
 
+/**
+bla bla bla
+@method videoEditorDocumentReadyComponentsCommon
+@for VideoEditorDocumentReady
+**/
 function videoEditorDocumentReadyComponentsCommon() {
   $('body').on('mouseover', '._video_editor_component_hover', function() {
     var father = $(this).parent();
@@ -682,6 +694,11 @@ function videoEditorDocumentReadyComponentsCommon() {
   });
 }
 
+/**
+bla bla bla
+@method videoEditorDocumentReadyCutters
+@for VideoEditorDocumentReady
+**/
 function videoEditorDocumentReadyCutters() {
   $('body').on('click', '._video_component_cutter_button', function() {
     var component_id = $(this).parents('._video_editor_component').attr('id');
@@ -793,6 +810,11 @@ function videoEditorDocumentReadyCutters() {
   });
 }
 
+/**
+bla bla bla
+@method videoEditorDocumentReadyGalleries
+@for VideoEditorDocumentReady
+**/
 function videoEditorDocumentReadyGalleries() {
   $('body').on('click', '._new_component_in_video_editor_button', function() {
     var father = $(this).parent().parent().parent().parent();
@@ -849,6 +871,11 @@ function videoEditorDocumentReadyGalleries() {
   });
 }
 
+/**
+bla bla bla
+@method videoEditorDocumentReadyInitialization
+@for VideoEditorDocumentReady
+**/
 function videoEditorDocumentReadyInitialization() {
   $('#media_elements_list_in_video_editor').jScrollPane({
     autoReinitialise: true
@@ -889,6 +916,11 @@ function videoEditorDocumentReadyInitialization() {
   });
 }
 
+/**
+bla bla bla
+@method videoEditorDocumentReadyPreview
+@for VideoEditorDocumentReady
+**/
 function videoEditorDocumentReadyPreview() {
   $('body').on('click', '#video_editor_preview_go_to_left_component', function() {
     if($('#video_editor_global_preview').data('arrows')) {
@@ -990,6 +1022,11 @@ function videoEditorDocumentReadyPreview() {
   });
 }
 
+/**
+bla bla bla
+@method videoEditorDocumentReadyRemoveComponent
+@for VideoEditorDocumentReady
+**/
 function videoEditorDocumentReadyRemoveComponent() {
   $('body').on('click', '._remove_component_from_video_editor_button', function() {
     var component = $(this).parents('._video_editor_component');
@@ -1016,6 +1053,11 @@ function videoEditorDocumentReadyRemoveComponent() {
   });
 }
 
+/**
+bla bla bla
+@method videoEditorDocumentReadyTextComponentEditor
+@for VideoEditorDocumentReady
+**/
 function videoEditorDocumentReadyTextComponentEditor() {
   $('body').on('click', '._text_component_in_video_editor_background_color_selector ._color', function() {
     var old_background_color = $('#text_component_preview').data('background-color');
@@ -1040,50 +1082,21 @@ function videoEditorDocumentReadyTextComponentEditor() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// galleries
-
+/**
+bla bla bla
+@method calculateNewPositionGalleriesInVideoEditor
+@for VideoEditorGalleries
+**/
 function calculateNewPositionGalleriesInVideoEditor() {
   $('#video_editor_mixed_gallery_container').css('left', (($(window).width() - 940) / 2) + 'px');
   $('#video_editor_audio_gallery_container').css('left', (($(window).width() - 940) / 2) + 'px');
 }
 
+/**
+bla bla bla
+@method closeGalleryInVideoEditor
+@for VideoEditorGalleries
+**/
 function closeGalleryInVideoEditor(type) {
   $('#video_editor_' + type + '_gallery_container').hide('fade', {}, 250, function() {
     $('#media_elements_list_in_video_editor .jspHorizontalBar').css('visibility', 'visible');
@@ -1092,6 +1105,11 @@ function closeGalleryInVideoEditor(type) {
   });
 }
 
+/**
+bla bla bla
+@method showGalleryInVideoEditor
+@for VideoEditorGalleries
+**/
 function showGalleryInVideoEditor(type) {
   $('#media_elements_list_in_video_editor .jspHorizontalBar').css('visibility', 'hidden');
   $('#video_editor_' + type + '_gallery_container').show();
@@ -1100,6 +1118,11 @@ function showGalleryInVideoEditor(type) {
   $('._video_editor_component_menu').hide();
 }
 
+/**
+bla bla bla
+@method switchToOtherGalleryInMixedGalleryInVideoEditor
+@for VideoEditorGalleries
+**/
 function switchToOtherGalleryInMixedGalleryInVideoEditor(type) {
   if(!$('#video_editor_mixed_gallery_container ' + type).is(':visible')) {
     var big_selector = '#video_editor_mixed_gallery_container ._videos, #video_editor_mixed_gallery_container ._images, #video_editor_mixed_gallery_container ._texts';
@@ -1120,31 +1143,30 @@ function switchToOtherGalleryInMixedGalleryInVideoEditor(type) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// general
-
+/**
+bla bla bla
+@method getFirstVideoEditorComponent
+@for VideoEditorGeneral
+**/
 function getFirstVideoEditorComponent() {
   return $('._video_editor_component').first();
 }
 
+/**
+bla bla bla
+@method getLastVideoEditorComponent
+@for VideoEditorGeneral
+**/
 function getLastVideoEditorComponent() {
   var components = $('._video_editor_component');
   return $(components[components.length - 1]);
 }
 
+/**
+bla bla bla
+@method getVideoComponentIdentifier
+@for VideoEditorGeneral
+**/
 function getVideoComponentIdentifier(item_id) {
   var resp = item_id.split('_');
   if($('#' + item_id).hasClass('_video_editor_component')) {
@@ -1154,6 +1176,11 @@ function getVideoComponentIdentifier(item_id) {
   }
 }
 
+/**
+bla bla bla
+@method loadVideoComponentIfNotLoadedYet
+@for VideoEditorGeneral
+**/
 function loadVideoComponentIfNotLoadedYet(component_id) {
   if(!$('#' + component_id + '_preview').data('loaded')) {
     var mp4 = $('#' + component_id + '_preview').data('mp4');
@@ -1165,6 +1192,11 @@ function loadVideoComponentIfNotLoadedYet(component_id) {
   }
 }
 
+/**
+bla bla bla
+@method videoEditorWithAudioTrack
+@for VideoEditorGeneral
+**/
 function videoEditorWithAudioTrack() {
   return $('#audio_track_in_video_editor_input').val() != '';
 }
@@ -1173,25 +1205,11 @@ function videoEditorWithAudioTrack() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// preview
-
+/**
+bla bla bla
+@method automaticIncreaseVideoEditorPreviewTimer
+@for VideoEditorPreview
+**/
 function automaticIncreaseVideoEditorPreviewTimer(time, total_length, callback) {
   setTimeout(function() {
     if($('#video_editor_global_preview').data('in-use')) {
@@ -1205,6 +1223,11 @@ function automaticIncreaseVideoEditorPreviewTimer(time, total_length, callback) 
   }, 1000);
 }
 
+/**
+bla bla bla
+@method increaseVideoEditorPreviewTimer
+@for VideoEditorPreview
+**/
 function increaseVideoEditorPreviewTimer(with_component) {
   var data_container = $('#video_editor_global_preview');
   var global_time = data_container.data('current-time');
@@ -1222,6 +1245,11 @@ function increaseVideoEditorPreviewTimer(with_component) {
   }
 }
 
+/**
+bla bla bla
+@method openPreviewModeInVideoEditor
+@for VideoEditorPreview
+**/
 function openPreviewModeInVideoEditor() {
   var first_component = getFirstVideoEditorComponent();
   var first_identifier = getVideoComponentIdentifier(first_component.attr('id'));
@@ -1260,6 +1288,11 @@ function openPreviewModeInVideoEditor() {
   }, 1500);
 }
 
+/**
+bla bla bla
+@method playVideoEditorComponent
+@for VideoEditorPreview
+**/
 function playVideoEditorComponent(component, with_scroll) {
   if(with_scroll) {
     followPreviewComponentsWithHorizontalScrollInVideoEditor();
@@ -1331,6 +1364,11 @@ function playVideoEditorComponent(component, with_scroll) {
   }
 }
 
+/**
+bla bla bla
+@method startVideoEditorGlobalPreview
+@for VideoEditorPreview
+**/
 function startVideoEditorGlobalPreview() {
   $('#video_editor_global_preview').data('in-use', true);
   var current_identifier = $('#video_editor_global_preview').data('current-component');
@@ -1363,24 +1401,11 @@ function startVideoEditorGlobalPreview() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// preview accessories
-
+/**
+bla bla bla
+@method calculateVideoComponentStartSecondInVideoEditor
+@for VideoEditorPreviewAccessories
+**/
 function calculateVideoComponentStartSecondInVideoEditor(identifier) {
   var duration = 0;
   var stop = false;
@@ -1398,11 +1423,21 @@ function calculateVideoComponentStartSecondInVideoEditor(identifier) {
   return duration;
 }
 
+/**
+bla bla bla
+@method hideVideoEditorPreviewComponentProgressBar
+@for VideoEditorPreviewAccessories
+**/
 function hideVideoEditorPreviewComponentProgressBar() {
   $('#video_editor_preview_slider').slider('destroy');
   $('#video_editor_preview_slider').hide();
 }
 
+/**
+bla bla bla
+@method selectVideoComponentInPreview
+@for VideoEditorPreviewAccessories
+**/
 function selectVideoComponentInPreview(component, time) {
   $('._video_component_preview').hide();
   $('#' + component.attr('id') + '_preview').show();
@@ -1414,6 +1449,11 @@ function selectVideoComponentInPreview(component, time) {
   setVisualTimesVideoEditorPreview(component, time);
 }
 
+/**
+bla bla bla
+@method setVisualTimesVideoEditorPreview
+@for VideoEditorPreviewAccessories
+**/
 function setVisualTimesVideoEditorPreview(component, time) {
   var identifier = getVideoComponentIdentifier(component.attr('id'));
   var global_time = calculateVideoComponentStartSecondInVideoEditor(identifier) + time;
@@ -1438,6 +1478,11 @@ function setVisualTimesVideoEditorPreview(component, time) {
   });
 }
 
+/**
+bla bla bla
+@method showVideoEditorPreviewArrowToComponents
+@for VideoEditorPreviewAccessories
+**/
 function showVideoEditorPreviewArrowToComponents() {
   if(getVideoComponentIdentifier(getFirstVideoEditorComponent().attr('id')) != $('#video_editor_global_preview').data('current-component')) {
     $('#video_editor_preview_go_to_left_component').show();
@@ -1451,6 +1496,11 @@ function showVideoEditorPreviewArrowToComponents() {
   }
 }
 
+/**
+bla bla bla
+@method showVideoEditorPreviewComponentProgressBar
+@for VideoEditorPreviewAccessories
+**/
 function showVideoEditorPreviewComponentProgressBar(identifier, position) {
   var component = $('#video_component_' + identifier);
   var tool = $('#video_editor_preview_slider');
@@ -1478,40 +1528,11 @@ function showVideoEditorPreviewComponentProgressBar(identifier, position) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// replace components
-
+/**
+bla bla bla
+@method replaceImageComponentInVideoEditor
+@for VideoEditorReplaceComponents
+**/
 function replaceImageComponentInVideoEditor(image_id, component, preview, position, duration) {
   var identifier = getVideoComponentIdentifier(position);
   // build preview
@@ -1542,6 +1563,11 @@ function replaceImageComponentInVideoEditor(image_id, component, preview, positi
   changeDurationVideoEditorComponent(position, duration);
 }
 
+/**
+bla bla bla
+@method replaceTextComponentInVideoEditor
+@for VideoEditorReplaceComponents
+**/
 function replaceTextComponentInVideoEditor(component, content, position, duration, background_color, text_color) {
   var identifier = getVideoComponentIdentifier(position);
   // build preview
@@ -1579,6 +1605,11 @@ function replaceTextComponentInVideoEditor(component, content, position, duratio
   changeDurationVideoEditorComponent(position, duration);
 }
 
+/**
+bla bla bla
+@method replaceVideoComponentInVideoEditor
+@for VideoEditorReplaceComponents
+**/
 function replaceVideoComponentInVideoEditor(video_id, webm, mp4, component, position, duration) {
   var identifier = getVideoComponentIdentifier(position);
   // build preview
@@ -1623,30 +1654,11 @@ function replaceVideoComponentInVideoEditor(video_id, webm, mp4, component, posi
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// scroll pain
-
+/**
+bla bla bla
+@method followPreviewComponentsWithHorizontalScrollInVideoEditor
+@for VideoEditorScrollPain
+**/
 function followPreviewComponentsWithHorizontalScrollInVideoEditor() {
   var jsp_handler = $('#media_elements_list_in_video_editor').data('jsp');
   var identifier = $('#video_editor_global_preview').data('current-component');
@@ -1692,33 +1704,11 @@ function followPreviewComponentsWithHorizontalScrollInVideoEditor() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// text component editor
-
+/**
+bla bla bla
+@method resetVideoEditorTextComponent
+@for VideoEditorTextComponentEditor
+**/
 function resetVideoEditorTextComponent() {
   $('#text_component_preview textarea').val($('#text_component_preview').data('placeholder-content'));
   $('#video_editor_mixed_gallery_container ._texts ._duration_selector input').val('');
@@ -1729,6 +1719,11 @@ function resetVideoEditorTextComponent() {
   switchTextComponentTextColor(old_text_color, 'black');
 }
 
+/**
+bla bla bla
+@method switchTextComponentBackgroundColor
+@for VideoEditorTextComponentEditor
+**/
 function switchTextComponentBackgroundColor(old_color, new_color) {
   $('#text_component_preview').removeClass('background_color_' + old_color).addClass('background_color_' + new_color);
   $('._text_component_in_video_editor_background_color_selector ._color').removeClass('current');
@@ -1736,6 +1731,11 @@ function switchTextComponentBackgroundColor(old_color, new_color) {
   $('#text_component_preview').data('background-color', new_color);
 }
 
+/**
+bla bla bla
+@method switchTextComponentTextColor
+@for VideoEditorTextComponentEditor
+**/
 function switchTextComponentTextColor(old_color, new_color) {
   $('#text_component_preview textarea').removeClass('color_' + old_color).addClass('color_' + new_color);
   $('._text_component_in_video_editor_text_color_selector ._color').removeClass('current');
