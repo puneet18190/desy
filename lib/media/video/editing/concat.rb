@@ -19,9 +19,6 @@ module Media
         include Logging
         include InTmpDir
   
-        # Durata del padding alla fine del file aggiunto da lame durante la codifica
-        # In genere lame aggiunge un pad di massimo 0.04, per cui lo settiamo a 0.05 per stare sicuri di non tagliare troppo
-        LAME_ENCODING_RPADDING = 0.05
         CONCAT_M4A_FORMAT      = 'concat%i.m4a'
         CONCAT_WAV_FORMAT      = 'concat%i.wav'
         FINAL_WAV              = 'final.wav'
@@ -155,7 +152,7 @@ module Media
   
         def increase_rpadding_depending_on_video_overflow(video_info, wav, paddings)
           wav_info = Info.new(wav)
-          overflow = video_info.duration - wav_info.duration - LAME_ENCODING_RPADDING
+          overflow = video_info.duration - wav_info.duration
           paddings[1] += overflow if overflow > 0
         end
   
