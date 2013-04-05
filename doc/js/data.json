@@ -3464,7 +3464,7 @@
             "line": 170,
             "description": "Initialize audio gallery in video editor. Init jScrollPane and audios block.",
             "itemtype": "method",
-            "name": "initializeImageGalleryInLessonEditor",
+            "name": "initializeAudioGalleryInVideoEditor",
             "class": "GalleriesInitializers",
             "module": "galleries"
         },
@@ -3491,7 +3491,7 @@
             "line": 224,
             "description": "Initialize all media mixed gallery in video editor. Init jScrollPane and get mixed media block.",
             "itemtype": "method",
-            "name": "initializeImageGalleryInLessonEditor",
+            "name": "initializeMixedGalleryInVideoEditor",
             "class": "GalleriesInitializers",
             "module": "galleries"
         },

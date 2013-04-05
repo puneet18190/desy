@@ -169,7 +169,7 @@ function initializeAudioGalleryInLessonEditor() {
 
 /**
 Initialize audio gallery in video editor. Init jScrollPane and audios block.
-@method initializeImageGalleryInLessonEditor
+@method initializeAudioGalleryInVideoEditor
 @for GalleriesInitializers
 **/
 function initializeAudioGalleryInVideoEditor() {
@@ -223,7 +223,7 @@ function initializeImageGalleryInLessonEditor() {
 
 /**
 Initialize all media mixed gallery in video editor. Init jScrollPane and get mixed media block.
-@method initializeImageGalleryInLessonEditor
+@method initializeMixedGalleryInVideoEditor
 @for GalleriesInitializers
 **/
 function initializeMixedGalleryInVideoEditor() {
