@@ -133,23 +133,7 @@
             
                 <li><a href="..&#x2F;classes/ImageEditorTexts.html">ImageEditorTexts</a></li>
             
-                <li><a href="..&#x2F;classes/initializeActionOfMediaTimeUpdater.html">initializeActionOfMediaTimeUpdater</a></li>
-            
-                <li><a href="..&#x2F;classes/initializeActionOfMediaTimeUpdaterInAudioEditor.html">initializeActionOfMediaTimeUpdaterInAudioEditor</a></li>
-            
-                <li><a href="..&#x2F;classes/initializeActionOfMediaTimeUpdaterInVideoEditor.html">initializeActionOfMediaTimeUpdaterInVideoEditor</a></li>
-            
-                <li><a href="..&#x2F;classes/initializeAudioEditorCutter.html">initializeAudioEditorCutter</a></li>
-            
                 <li><a href="..&#x2F;classes/initializeDraggableVirtualClassroomLesson.html">initializeDraggableVirtualClassroomLesson</a></li>
-            
-                <li><a href="..&#x2F;classes/initializeMedia.html">initializeMedia</a></li>
-            
-                <li><a href="..&#x2F;classes/initializeMediaTimeUpdater.html">initializeMediaTimeUpdater</a></li>
-            
-                <li><a href="..&#x2F;classes/initializeMediaTimeUpdaterInAudioEditor.html">initializeMediaTimeUpdaterInAudioEditor</a></li>
-            
-                <li><a href="..&#x2F;classes/initializeMediaTimeUpdaterInVideoEditor.html">initializeMediaTimeUpdaterInVideoEditor</a></li>
             
                 <li><a href="..&#x2F;classes/initializeNotAvailableLessonsToLoadQuick.html">initializeNotAvailableLessonsToLoadQuick</a></li>
             
@@ -158,8 +142,6 @@
                 <li><a href="..&#x2F;classes/initializeScrollPaneQuickLessonSelector.html">initializeScrollPaneQuickLessonSelector</a></li>
             
                 <li><a href="..&#x2F;classes/initializeVideoEditor.html">initializeVideoEditor</a></li>
-            
-                <li><a href="..&#x2F;classes/initializeVideoInVideoEditorPreview.html">initializeVideoInVideoEditorPreview</a></li>
             
                 <li><a href="..&#x2F;classes/initializeVirtualClassroom.html">initializeVirtualClassroom</a></li>
             
@@ -215,23 +197,17 @@
             
                 <li><a href="..&#x2F;classes/NotificationsGraphics.html">NotificationsGraphics</a></li>
             
+                <li><a href="..&#x2F;classes/PlayersAudioEditor.html">PlayersAudioEditor</a></li>
+            
+                <li><a href="..&#x2F;classes/PlayersCommon.html">PlayersCommon</a></li>
+            
+                <li><a href="..&#x2F;classes/PlayersDocumentReady.html">PlayersDocumentReady</a></li>
+            
+                <li><a href="..&#x2F;classes/PlayersGeneral.html">PlayersGeneral</a></li>
+            
+                <li><a href="..&#x2F;classes/PlayersVideoEditor.html">PlayersVideoEditor</a></li>
+            
                 <li><a href="..&#x2F;classes/removeFromTagsValue.html">removeFromTagsValue</a></li>
-            
-                <li><a href="..&#x2F;classes/selectAudioComponentCutterHandle.html">selectAudioComponentCutterHandle</a></li>
-            
-                <li><a href="..&#x2F;classes/selectVideoComponentCutterHandle.html">selectVideoComponentCutterHandle</a></li>
-            
-                <li><a href="..&#x2F;classes/setCurrentTimeToMedia.html">setCurrentTimeToMedia</a></li>
-            
-                <li><a href="..&#x2F;classes/showLoadingMediaErrorPopup.html">showLoadingMediaErrorPopup</a></li>
-            
-                <li><a href="..&#x2F;classes/stopAllMedia.html">stopAllMedia</a></li>
-            
-                <li><a href="..&#x2F;classes/stopMedia.html">stopMedia</a></li>
-            
-                <li><a href="..&#x2F;classes/stopVideoInVideoEditorPreview.html">stopVideoInVideoEditorPreview</a></li>
-            
-                <li><a href="..&#x2F;classes/validSeek.html">validSeek</a></li>
             
             </ul>
 
@@ -321,533 +297,14 @@ Media elements players: initializer, play, stop, update frame.
 @module players
 **&#x2F;
 
-&#x2F;&#x2F; GENERAL PLAYERS
 
-function playersDocumentReady() {
-  
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._media_player_play&#x27;, function() {
-    var container_id = $(this).parent().attr(&#x27;id&#x27;);
-    var type = $(this).parent().data(&#x27;media-type&#x27;);
-    var media = $(&#x27;#&#x27; + container_id + &#x27; &#x27; + type);
-    if(media[0].error) {
-      showLoadingMediaErrorPopup(media[0].error.code, type);
-    } else {
-      $(&#x27;#&#x27; + container_id + &#x27; ._media_player_slider_disabler&#x27;).show();
-      $(&#x27;#&#x27; + container_id + &#x27; ._media_player_pause&#x27;).show();
-      $(this).hide();
-      if(media[0].readyState != 0) {
-        media[0].play();
-      } else {
-        media.on(&#x27;loadedmetadata&#x27;, function() {
-          media[0].play();
-        });
-      }
-    }
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._media_player_pause&#x27;, function() {
-    $(this).hide();
-    var container_id = $(this).parent().attr(&#x27;id&#x27;);
-    var type = $(this).parent().data(&#x27;media-type&#x27;);
-    $(&#x27;#&#x27; + container_id + &#x27; ._media_player_slider_disabler&#x27;).hide();
-    $(&#x27;#&#x27; + container_id + &#x27; ._media_player_play&#x27;).show();
-    $(&#x27;#&#x27; + container_id + &#x27; &#x27; + type)[0].pause();
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._video_full_screen&#x27;, function() {
-    var container_id = $(this).parent().attr(&#x27;id&#x27;);
-    $(&#x27;#&#x27; + container_id + &#x27; video&#x27;).fullScreen(true);
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._media_player_play_in_video_editor_preview&#x27;, function() {
-    var identifier = getVideoComponentIdentifier($(this).parents(&#x27;._video_component_cutter&#x27;).attr(&#x27;id&#x27;));
-    var video = $(&#x27;#video_component_&#x27; + identifier + &#x27;_preview video&#x27;);
-    if(video[0].error){
-      showLoadingMediaErrorPopup(video[0].error.code, &#x27;video&#x27;);
-    } else {
-      $(this).hide();
-      $(this).parents(&#x27;._video_component_cutter&#x27;).data(&#x27;playing&#x27;, true);
-      $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter ._media_player_rewind_in_video_editor_preview&#x27;).hide();
-      $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter ._media_player_slider_disabler&#x27;).show();
-      $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter ._media_player_pause_in_video_editor_preview&#x27;).show();
-      $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter .ui-slider-handle&#x27;).removeClass(&#x27;selected&#x27;);
-      if(video.readyState != 0) {
-        video[0].play();
-      } else {
-        video.on(&#x27;loadedmetadata&#x27;, function() {
-          video[0].play();
-        });
-      }
-    }
-    var actual_audio_track_time = calculateVideoComponentStartSecondInVideoEditor(identifier);
-    if(videoEditorWithAudioTrack() &amp;&amp; actual_audio_track_time &lt; $(&#x27;#full_audio_track_placeholder_in_video_editor&#x27;).data(&#x27;duration&#x27;)) {
-      var audio_track = $(&#x27;#video_editor_preview_container audio&#x27;);
-      if(audio_track[0].error) {
-        showLoadingMediaErrorPopup(audio_track[0].error.code, &#x27;audio&#x27;);
-      } else {
-        setCurrentTimeToMedia(audio_track, actual_audio_track_time);
-        if(audio_track.readyState != 0) {
-          audio_track[0].play();
-        } else {
-          audio_track.on(&#x27;loadedmetadata&#x27;, function() {
-            audio_track[0].play();
-          });
-        }
-      }
-    }
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._media_player_pause_in_video_editor_preview&#x27;, function() {
-    $(this).hide();
-    $(this).parents(&#x27;._video_component_cutter&#x27;).data(&#x27;playing&#x27;, false);
-    var cutter_id = $(this).parents(&#x27;._video_component_cutter&#x27;).attr(&#x27;id&#x27;);
-    var preview_id = cutter_id.replace(&#x27;cutter&#x27;, &#x27;preview&#x27;);
-    $(&#x27;#&#x27; + cutter_id + &#x27; ._media_player_rewind_in_video_editor_preview&#x27;).show();
-    $(&#x27;#&#x27; + cutter_id + &#x27; ._media_player_slider_disabler&#x27;).hide();
-    $(&#x27;#&#x27; + cutter_id + &#x27; ._media_player_play_in_video_editor_preview&#x27;).show();
-    $(&#x27;#&#x27; + cutter_id + &#x27; ._media_player_slider .ui-slider-handle&#x27;).addClass(&#x27;selected&#x27;);
-    $(&#x27;#&#x27; + preview_id + &#x27; video&#x27;)[0].pause();
-    if(videoEditorWithAudioTrack()) {
-      $(&#x27;#video_editor_preview_container audio&#x27;)[0].pause();
-    }
-    if(parseInt($(&#x27;#&#x27; + preview_id + &#x27; video&#x27;)[0].currentTime) != $(&#x27;#&#x27; + cutter_id).data(&#x27;to&#x27;)) {
-      setCurrentTimeToMedia($(&#x27;#&#x27; + preview_id + &#x27; video&#x27;), $(&#x27;#&#x27; + cutter_id + &#x27; ._media_player_slider&#x27;).slider(&#x27;value&#x27;));
-    }
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._media_player_rewind_in_video_editor_preview&#x27;, function() {
-    var identifier = getVideoComponentIdentifier($(this).parents(&#x27;._video_component_cutter&#x27;).attr(&#x27;id&#x27;));
-    var initial_time = $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter&#x27;).data(&#x27;from&#x27;);
-    $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter ._media_player_slider&#x27;).slider(&#x27;value&#x27;, initial_time);
-    setCurrentTimeToMedia($(&#x27;#video_component_&#x27; + identifier + &#x27;_preview video&#x27;), initial_time);
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._video_component_cutter ._double_slider .ui-slider-range&#x27;, function(e) {
-    var cutter = $(this).parents(&#x27;._video_component_cutter&#x27;);
-    var percent = cutter.data(&#x27;max-to&#x27;) * (e.pageX - cutter.find(&#x27;._double_slider&#x27;).offset().left) &#x2F; cutter.find(&#x27;._double_slider&#x27;).width();
-    resp = parseInt(percent);
-    if(percent - parseInt(percent) &gt; 0.5) {
-      resp += 1;
-    }
-    cutter.find(&#x27;.ui-slider-handle&#x27;).removeClass(&#x27;selected&#x27;);
-    cutter.find(&#x27;._media_player_slider .ui-slider-handle&#x27;).addClass(&#x27;selected&#x27;);
-    selectVideoComponentCutterHandle(cutter, resp);
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._media_player_play_in_audio_editor_preview&#x27;, function() {
-    var component = $(this).parents(&#x27;._audio_editor_component&#x27;);
-    var identifier = getAudioComponentIdentifier(component);
-    var audio = component.find(&#x27;audio&#x27;);
-    if(audio[0].error) {
-      showLoadingMediaErrorPopup(audio[0].error.code, &#x27;audio&#x27;);
-    } else {
-      $(this).hide();
-      $(&#x27;#start_audio_editor_preview&#x27;).addClass(&#x27;disabled&#x27;);
-      $(&#x27;#rewind_audio_editor_preview&#x27;).addClass(&#x27;disabled&#x27;);
-      component.data(&#x27;playing&#x27;, true);
-      component.find(&#x27;._media_player_slider_disabler&#x27;).show();
-      component.find(&#x27;._media_player_rewind_in_audio_editor_preview&#x27;).hide();
-      component.find(&#x27;._media_player_pause_in_audio_editor_preview&#x27;).show();
-      deselectAllAudioEditorCursors(identifier);
-      var single_slider = component.find(&#x27;._media_player_slider&#x27;);
-      if(audio[0].currentTime &lt; single_slider.slider(&#x27;value&#x27;)) {
-        setCurrentTimeToMedia(audio, single_slider.slider(&#x27;value&#x27;));
-      }
-      if(audio.readyState != 0) {
-        audio[0].play();
-      } else {
-        audio.on(&#x27;loadedmetadata&#x27;, function() {
-          audio[0].play();
-        });
-      }
-    }
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._media_player_pause_in_audio_editor_preview&#x27;, function() {
-    $(this).hide();
-    $(&#x27;#start_audio_editor_preview&#x27;).removeClass(&#x27;disabled&#x27;);
-    $(&#x27;#rewind_audio_editor_preview&#x27;).removeClass(&#x27;disabled&#x27;);
-    var component = $(this).parents(&#x27;._audio_editor_component&#x27;);
-    var identifier = getAudioComponentIdentifier(component);
-    component.data(&#x27;playing&#x27;, false);
-    component.find(&#x27;._media_player_slider_disabler&#x27;).hide();
-    component.find(&#x27;._media_player_rewind_in_audio_editor_preview&#x27;).show();
-    component.find(&#x27;._media_player_play_in_audio_editor_preview&#x27;).show();
-    selectAudioEditorCursor(identifier);
-    component.find(&#x27;audio&#x27;)[0].pause();
-    if(component.data(&#x27;to&#x27;) != parseInt(component.find(&#x27;audio&#x27;)[0].currentTime)) {
-      setCurrentTimeToMedia(component.find(&#x27;audio&#x27;), component.find(&#x27;._media_player_slider&#x27;).slider(&#x27;value&#x27;));
-    }
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._media_player_rewind_in_audio_editor_preview&#x27;, function() {
-    var component = $(this).parents(&#x27;._audio_editor_component&#x27;);
-    var initial_time = component.data(&#x27;from&#x27;);
-    component.find(&#x27;._media_player_slider&#x27;).slider(&#x27;value&#x27;, initial_time);
-    setCurrentTimeToMedia(component.find(&#x27;audio&#x27;), initial_time);
-    component.find(&#x27;._current_time&#x27;).html(secondsToDateString(initial_time));
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._audio_editor_component ._double_slider .ui-slider-range&#x27;, function(e) {
-    var component = $(this).parents(&#x27;._audio_editor_component&#x27;);
-    var identifier = getAudioComponentIdentifier(component);
-    var percent = component.data(&#x27;max-to&#x27;) * (e.pageX - component.find(&#x27;._double_slider&#x27;).offset().left) &#x2F; component.find(&#x27;._double_slider&#x27;).width();
-    resp = parseInt(percent);
-    if(percent - parseInt(percent) &gt; 0.5) {
-      resp += 1;
-    }
-    selectAudioEditorCursor(identifier);
-    selectAudioComponentCutterHandle(component, resp);
-  });
-  
-}
+
+
 
 &#x2F;**
-* JS-TODO
-* 
-* @method initializeMediaTimeUpdater
-* @for initializeMediaTimeUpdater
-* @param media {String} media element selector class or id
-* @param reference_id {String} 
-*&#x2F;
-function initializeMediaTimeUpdater(media, reference_id) {
-  media = $(media);
-  if(media.readyState != 0) {
-    media[0].addEventListener(&#x27;timeupdate&#x27;, function() {
-      initializeActionOfMediaTimeUpdater(this, reference_id);
-    }, false);
-  } else {
-    media.on(&#x27;loadedmetadata&#x27;, function() {
-      media[0].addEventListener(&#x27;timeupdate&#x27;, function() {
-        initializeActionOfMediaTimeUpdater(this, reference_id);
-      }, false);
-    });
-  }
-}
-
-&#x2F;**
-* JS-TODO
-* 
-* @method initializeActionOfMediaTimeUpdater
-* @for initializeActionOfMediaTimeUpdater
-*&#x2F;
-function initializeActionOfMediaTimeUpdater(media, reference_id) {
-  var duration = $(&#x27;#&#x27; + reference_id).data(&#x27;duration&#x27;);
-  var container_id = $(media).parent().attr(&#x27;id&#x27;);
-  var parsed_int = parseInt(media.currentTime);
-  if(parsed_int == (duration)) {
-    $(&#x27;#&#x27; + container_id + &#x27; ._media_player_pause&#x27;).click();
-    $(&#x27;#&#x27; + container_id + &#x27; ._media_player_slider&#x27;).slider(&#x27;value&#x27;, 0);
-    $(&#x27;#&#x27; + container_id + &#x27; ._media_player_current_time&#x27;).html(secondsToDateString(0));
-    setCurrentTimeToMedia($(media), 0);
-  } else if(!$(&#x27;#&#x27; + container_id + &#x27; ._media_player_play&#x27;).is(&#x27;:visible&#x27;)) {
-    $(&#x27;#&#x27; + container_id + &#x27; ._media_player_current_time&#x27;).html(secondsToDateString(parsed_int));
-    $(&#x27;#&#x27; + container_id + &#x27; ._media_player_slider&#x27;).slider(&#x27;value&#x27;, parsed_int);
-  }
-}
-
-&#x2F;**
-* JS-TODO
-* 
-* @method initializeMedia
-* @for initializeMedia
-*&#x2F;
-function initializeMedia(content_id, type) {
-  var duration = $(&#x27;#&#x27; + content_id).data(&#x27;duration&#x27;);
-  $(&#x27;#&#x27; + content_id + &#x27; ._media_player_slider&#x27;).slider({
-    min: 0,
-    max: duration,
-    range: &#x27;min&#x27;,
-    value: 0,
-    slide: function(event, ui) {
-      if($(&#x27;#&#x27; + content_id + &#x27; ._media_player_play&#x27;).is(&#x27;:visible&#x27;)) {
-        setCurrentTimeToMedia($(&#x27;#&#x27; + content_id + &#x27; &#x27; + type), ui.value);
-        $(&#x27;#&#x27; + content_id + &#x27; ._media_player_current_time&#x27;).html(secondsToDateString(ui.value));
-      }
-    }
-  });
-  initializeMediaTimeUpdater(&#x27;#&#x27; + content_id + &#x27; &#x27; + type, content_id);
-  $(&#x27;#&#x27; + content_id + &#x27; &#x27; + type).bind(&#x27;ended&#x27;, function() {
-    stopMedia(this);
-  });
-  $(&#x27;#&#x27; + content_id).data(&#x27;initialized&#x27;, true);
-}
-
-&#x2F;**
-* JS-TODO
-* 
-* @method stopMedia
-* @for stopMedia
-*&#x2F;
-function stopMedia(media) {
-  try {
-    if($(media).length != 0) {
-      var has_source = true;
-      $(media).find(&#x27;source&#x27;).each(function() {
-        if($(this).attr(&#x27;src&#x27;) == &#x27;&#x27;) {
-          has_source = false;
-        }
-      });
-      if(has_source) {
-        var container_id = $(media).parent().attr(&#x27;id&#x27;);
-        $(&#x27;#&#x27; + container_id + &#x27; ._media_player_pause&#x27;).click();
-        $(&#x27;#&#x27; + container_id + &#x27; ._media_player_slider&#x27;).slider(&#x27;value&#x27;, 0);
-        $(&#x27;#&#x27; + container_id + &#x27; ._media_player_current_time&#x27;).html(secondsToDateString(0));
-        setCurrentTimeToMedia($(media), 0);
-      }
-    }
-  } catch(err) {
-    console.log(&#x27;error stopping media: &#x27; + err);
-  }
-}
-
-
-&#x2F;&#x2F; VIDEO PLAYERS IN VIDEO EDITOR
-
-&#x2F;**
-* JS-TODO
-* 
-* @method initializeMediaTimeUpdaterInVideoEditor
-* @for initializeMediaTimeUpdaterInVideoEditor
-*&#x2F;
-function initializeMediaTimeUpdaterInVideoEditor(media, identifier) {
-  media = $(media);
-  if(media.readyState != 0) {
-    media[0].addEventListener(&#x27;timeupdate&#x27;, function() {
-      initializeActionOfMediaTimeUpdaterInVideoEditor(this, identifier, false);
-    }, false);
-  } else {
-    media.on(&#x27;loadedmetadata&#x27;, function() {
-      media[0].addEventListener(&#x27;timeupdate&#x27;, function() {
-        initializeActionOfMediaTimeUpdaterInVideoEditor(this, identifier, false);
-      }, false);
-    });
-  }
-}
-
-&#x2F;**
-* JS-TODO
-* 
-* @method initializeActionOfMediaTimeUpdaterInVideoEditor
-* @for initializeActionOfMediaTimeUpdaterInVideoEditor
-*&#x2F;
-function initializeActionOfMediaTimeUpdaterInVideoEditor(media, identifier, force_parsed_int) {
-  var video_cut_to = $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter&#x27;).data(&#x27;to&#x27;);
-  var parsed_int = parseInt(media.currentTime);
-  if(force_parsed_int) {
-    parsed_int = video_cut_to;
-  }
-  if($(&#x27;#video_editor_global_preview&#x27;).data(&#x27;in-use&#x27;)) {
-    var component = $(&#x27;#video_component_&#x27; + identifier);
-    if(parsed_int &gt; component.data(&#x27;current-preview-time&#x27;) + $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter&#x27;).data(&#x27;from&#x27;)) {
-      if(parsed_int == video_cut_to) {
-        $(&#x27;#video_component_&#x27; + identifier + &#x27;_preview video&#x27;)[0].pause();
-        var next_component = component.next();
-        var next_identifier = getVideoComponentIdentifier(next_component.attr(&#x27;id&#x27;));
-        if(next_component.hasClass(&#x27;_video_editor_component&#x27;)) {
-          increaseVideoEditorPreviewTimer(true);
-          $(&#x27;#video_editor_global_preview&#x27;).data(&#x27;current-component&#x27;, next_identifier);
-          $(&#x27;#video_component_&#x27; + identifier + &#x27;_preview&#x27;).hide(&#x27;fade&#x27;, {}, 1000);
-          component.find(&#x27;._video_component_transition&#x27;).removeClass(&#x27;current&#x27;);
-          next_component.find(&#x27;._video_editor_component_hover, ._video_component_icon&#x27;).removeClass(&#x27;selected&#x27;);
-          $(&#x27;#video_component_&#x27; + next_identifier + &#x27;_preview&#x27;).show(&#x27;fade&#x27;, {}, 1000, function() {
-            hideVideoEditorPreviewComponentProgressBar();
-            setCurrentTimeToMedia($(&#x27;#video_component_&#x27; + identifier + &#x27;_preview video&#x27;), $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter&#x27;).data(&#x27;from&#x27;));
-            $(&#x27;#video_component_&#x27; + identifier + &#x27; ._video_component_icon ._right&#x27;).html(secondsToDateString(0));
-            if(!$(&#x27;#video_editor_global_preview&#x27;).data(&#x27;in-use&#x27;)) {
-              $(&#x27;._video_component_transition&#x27;).addClass(&#x27;current&#x27;);
-            }
-            increaseVideoEditorPreviewTimer(false);
-            component.find(&#x27;._video_editor_component_hover, ._video_component_icon&#x27;).addClass(&#x27;selected&#x27;);
-            if($(&#x27;#video_editor_global_preview&#x27;).data(&#x27;in-use&#x27;)) {
-              playVideoEditorComponent(next_component, true);
-            } else {
-              var how_many_hidden_to_left = getHowManyComponentsHiddenToLeftTimelineHorizontalScrollPane(&#x27;media_elements_list_in_video_editor&#x27;, 186);
-              showVideoEditorPreviewComponentProgressBar(next_identifier, next_component.data(&#x27;position&#x27;) - how_many_hidden_to_left);
-            }
-          });
-        } else {
-          var first_component = getFirstVideoEditorComponent();
-          selectVideoComponentInPreview(first_component);
-          hideVideoEditorPreviewComponentProgressBar();
-          if(videoEditorWithAudioTrack()) {
-            $(&#x27;#video_editor_preview_container audio&#x27;)[0].pause();
-          }
-          $(&#x27;#video_editor_global_preview_pause&#x27;).trigger(&#x27;click&#x27;);
-          if($(&#x27;._video_editor_component&#x27;).length &gt; 5) {
-            $(&#x27;#media_elements_list_in_video_editor&#x27;).jScrollPane().bind(&#x27;panescrollstop&#x27;, function() {
-              showVideoEditorPreviewComponentProgressBar(getVideoComponentIdentifier(first_component.attr(&#x27;id&#x27;)), 1);
-              $(&#x27;#media_elements_list_in_video_editor&#x27;).jScrollPane().unbind(&#x27;panescrollstop&#x27;);
-            });
-            $(&#x27;#media_elements_list_in_video_editor&#x27;).data(&#x27;jsp&#x27;).scrollToX(0, true, 500);
-          } else {
-            showVideoEditorPreviewComponentProgressBar(getVideoComponentIdentifier(first_component.attr(&#x27;id&#x27;)), 1);
-          }
-        }
-      } else {
-        increaseVideoEditorPreviewTimer(true);
-      }
-    }
-  } else if($(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter&#x27;).data(&#x27;playing&#x27;)) {
-    if(parsed_int == (video_cut_to)) {
-      var initial_time = $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter&#x27;).data(&#x27;from&#x27;);
-      $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter ._media_player_pause_in_video_editor_preview&#x27;).click();
-      $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter ._media_player_slider&#x27;).slider(&#x27;value&#x27;, initial_time);
-      setCurrentTimeToMedia($(media), initial_time);
-    } else if(!$(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter ._media_player_play_in_video_editor_preview&#x27;).is(&#x27;:visible&#x27;)) {
-      $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter ._media_player_slider&#x27;).slider(&#x27;value&#x27;, parsed_int);
-    }
-  }
-}
-
-&#x2F;**
-* JS-TODO
-* 
-* @method initializeVideoInVideoEditorPreview
-* @for initializeVideoInVideoEditorPreview
-*&#x2F;
-function initializeVideoInVideoEditorPreview(identifier) {
-  var my_cutter = $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter&#x27;);
-  $(&#x27;#video_component_&#x27; + identifier + &#x27;_preview video&#x27;).on(&#x27;loadeddata&#x27;, function() {
-    setCurrentTimeToMedia($(&#x27;#video_component_&#x27; + identifier + &#x27;_preview video&#x27;), my_cutter.data(&#x27;from&#x27;));
-  });
-  var video_max_to = my_cutter.data(&#x27;max-to&#x27;);
-  my_cutter.find(&#x27;._media_player_slider&#x27;).slider({
-    min: 0,
-    max: video_max_to,
-    value: my_cutter.data(&#x27;from&#x27;),
-    slide: function(event, ui) {
-      if(my_cutter.find(&#x27;._media_player_play_in_video_editor_preview&#x27;).is(&#x27;:visible&#x27;)) {
-        setCurrentTimeToMedia($(&#x27;#video_component_&#x27; + identifier + &#x27;_preview video&#x27;), ui.value);
-      }
-    }
-  });
-  my_cutter.find(&#x27;._double_slider&#x27;).slider({
-    min: 0,
-    max: video_max_to,
-    range: true,
-    values: [my_cutter.data(&#x27;from&#x27;), my_cutter.data(&#x27;to&#x27;)],
-    start: function(event, ui) {
-      my_cutter.find(&#x27;.ui-slider-handle&#x27;).removeClass(&#x27;selected&#x27;);
-      $(ui.handle).addClass(&#x27;selected&#x27;);
-    },
-    slide: function(event, ui) {
-      var left_val = ui.values[0];
-      var right_val = ui.values[1];
-      var cursor_val = my_cutter.find(&#x27;._media_player_slider&#x27;).slider(&#x27;value&#x27;);
-      if(left_val != my_cutter.data(&#x27;from&#x27;)) {
-        if(cursor_val &lt; left_val) {
-          selectVideoComponentCutterHandle(my_cutter, left_val);
-        }
-      } else {
-        if(cursor_val &gt; right_val) {
-          selectVideoComponentCutterHandle(my_cutter, right_val);
-        }
-      }
-    },
-    stop: function(event, ui) {
-      my_cutter.data(&#x27;changed&#x27;, true);
-      var left_val = ui.values[0];
-      var right_val = ui.values[1];
-      if(left_val != my_cutter.data(&#x27;from&#x27;)) {
-        if(left_val == right_val) {
-          my_cutter.find(&#x27;._double_slider&#x27;).slider(&#x27;values&#x27;, 0, left_val - 1);
-          left_val -= 1;
-        }
-        cutVideoComponentLeftSide(identifier, left_val);
-      }
-      if(right_val != my_cutter.data(&#x27;to&#x27;)) {
-        if(left_val == right_val) {
-          my_cutter.find(&#x27;._double_slider&#x27;).slider(&#x27;values&#x27;, 1, right_val + 1);
-          right_val += 1;
-        }
-        cutVideoComponentRightSide(identifier, right_val);
-      }
-    }
-  });
-  my_cutter.find(&#x27;._double_slider .ui-slider-range&#x27;).mousedown(function(e) {
-    return false;
-  });
-  $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter ._media_player_slider .ui-slider-handle&#x27;).addClass(&#x27;selected&#x27;);
-  initializeMediaTimeUpdaterInVideoEditor(&#x27;#video_component_&#x27; + identifier + &#x27;_preview video&#x27;, identifier);
-  $(&#x27;#video_component_&#x27; + identifier + &#x27;_preview video&#x27;).bind(&#x27;ended&#x27;, function() {
-    if($(&#x27;#video_editor_global_preview&#x27;).data(&#x27;in-use&#x27;)) {
-      initializeActionOfMediaTimeUpdaterInVideoEditor($(&#x27;#video_component_&#x27; + identifier + &#x27;_preview video&#x27;)[0], identifier, true);
-    } else {
-      stopVideoInVideoEditorPreview(identifier);
-    }
-    
-  });
-}
-
-&#x2F;**
-* JS-TODO
-* 
-* @method stopVideoInVideoEditorPreview
-* @for stopVideoInVideoEditorPreview
-*&#x2F;
-function stopVideoInVideoEditorPreview(identifier) {
-  try {
-    if($(&#x27;#video_component_&#x27; + identifier + &#x27;_preview video&#x27;).length != 0) {
-      var has_source = true;
-      $(&#x27;#video_component_&#x27; + identifier + &#x27;_preview video&#x27;).find(&#x27;source&#x27;).each(function() {
-        if($(this).attr(&#x27;src&#x27;) == &#x27;&#x27;) {
-          has_source = false;
-        }
-      });
-      if(has_source) {
-        $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter ._media_player_pause_in_video_editor_preview&#x27;).click();
-        var initial_time = $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter&#x27;).data(&#x27;from&#x27;);
-        $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter ._media_player_slider&#x27;).slider(&#x27;value&#x27;, initial_time);
-        setCurrentTimeToMedia($(&#x27;#video_component_&#x27; + identifier + &#x27;_preview video&#x27;), initial_time);
-      }
-    }
-  } catch(err) {
-    console.log(&#x27;error stopping media: &#x27; + err);
-  }
-}
-
-&#x2F;**
-* JS-TODO
-* 
-* @method selectVideoComponentCutterHandle
-* @for selectVideoComponentCutterHandle
-*&#x2F;
-function selectVideoComponentCutterHandle(cutter, val) {
-  setCurrentTimeToMedia($(&#x27;#&#x27; + cutter.attr(&#x27;id&#x27;).replace(&#x27;cutter&#x27;, &#x27;preview&#x27;) + &#x27; video&#x27;), val);
-  cutter.find(&#x27;._media_player_slider&#x27;).slider(&#x27;value&#x27;, val);
-}
-
-
-&#x2F;&#x2F; AUDIO PLAYERS IN AUDIO EDITOR
-
-&#x2F;**
-* JS-TODO
-* 
-* @method initializeMediaTimeUpdaterInAudioEditor
-* @for initializeMediaTimeUpdaterInAudioEditor
-*&#x2F;
-function initializeMediaTimeUpdaterInAudioEditor(identifier) {
-  media = $(&#x27;#audio_component_&#x27; + identifier + &#x27; audio&#x27;);
-  if(media.readyState != 0) {
-    media[0].addEventListener(&#x27;timeupdate&#x27;, function() {
-      initializeActionOfMediaTimeUpdaterInAudioEditor(this, identifier, false);
-    }, false);
-  } else {
-    media.on(&#x27;loadedmetadata&#x27;, function() {
-      media[0].addEventListener(&#x27;timeupdate&#x27;, function() {
-        initializeActionOfMediaTimeUpdaterInAudioEditor(this, identifier, false);
-      }, false);
-    });
-  }
-}
-
-&#x2F;**
-* JS-TODO
-* 
-* @method initializeActionOfMediaTimeUpdaterInAudioEditor
-* @for initializeActionOfMediaTimeUpdaterInAudioEditor
-*&#x2F;
+@method initializeActionOfMediaTimeUpdaterInAudioEditor
+@for PlayersAudioEditor
+**&#x2F;
 function initializeActionOfMediaTimeUpdaterInAudioEditor(media, identifier, force_parsed_int) {
   var component = $(&#x27;#audio_component_&#x27; + identifier);
   var audio_cut_to = component.data(&#x27;to&#x27;);
@@ -896,11 +353,10 @@ function initializeActionOfMediaTimeUpdaterInAudioEditor(media, identifier, forc
 }
 
 &#x2F;**
-* JS-TODO
-* 
-* @method initializeAudioEditorCutter
-* @for initializeAudioEditorCutter
-*&#x2F;
+bla bla bla
+@method initializeAudioEditorCutter
+@for PlayersAudioEditor
+**&#x2F;
 function initializeAudioEditorCutter(identifier) {
   var component = $(&#x27;#audio_component_&#x27; + identifier);
   var single_slider = component.find(&#x27;._media_player_slider&#x27;);
@@ -987,46 +443,45 @@ function initializeAudioEditorCutter(identifier) {
 }
 
 &#x2F;**
-* JS-TODO
-* 
-* @method selectAudioComponentCutterHandle
-* @for selectAudioComponentCutterHandle
-*&#x2F;
+bla bla bla
+@method initializeMediaTimeUpdaterInAudioEditor
+@for PlayersAudioEditor
+**&#x2F;
+function initializeMediaTimeUpdaterInAudioEditor(identifier) {
+  media = $(&#x27;#audio_component_&#x27; + identifier + &#x27; audio&#x27;);
+  if(media.readyState != 0) {
+    media[0].addEventListener(&#x27;timeupdate&#x27;, function() {
+      initializeActionOfMediaTimeUpdaterInAudioEditor(this, identifier, false);
+    }, false);
+  } else {
+    media.on(&#x27;loadedmetadata&#x27;, function() {
+      media[0].addEventListener(&#x27;timeupdate&#x27;, function() {
+        initializeActionOfMediaTimeUpdaterInAudioEditor(this, identifier, false);
+      }, false);
+    });
+  }
+}
+
+&#x2F;**
+bla bla bla
+@method selectAudioComponentCutterHandle
+@for PlayersAudioEditor
+**&#x2F;
 function selectAudioComponentCutterHandle(component, val) {
   setCurrentTimeToMedia(component.find(&#x27;audio&#x27;), val);
   component.find(&#x27;._media_player_slider&#x27;).slider(&#x27;value&#x27;, val);
   component.find(&#x27;._current_time&#x27;).html(secondsToDateString(val));
 }
 
-&#x2F;**
-* JS-TODO
-*
-* IE SI ARRABBIA SE GLI SETTI UN VALORE DI SEEK NON COMPRESO
-* TRA L&#x27;INIZIO E LA FINE DEI VALORI SEEKABLE
-* 
-* @method validSeek
-* @for validSeek
-*&#x2F;
-function validSeek(media, seek) {
-  var confidence = 0.001;
-  var minStart = media[0].seekable.start(0);
-  var maxEnd = media[0].seekable.end(0);
-  if ( seek &lt; minStart ) {
-    seek = minStart+confidence;
-  } else if ( seek &gt; maxEnd ) {
-    seek = maxEnd-confidence;
-  }
-  return seek;
-}
+
+
+
 
 &#x2F;**
-* JS-TODO
-*
-* FUNCTIONS WHICH ARE VALID IN ANY CASE
-* 
-* @method setCurrentTimeToMedia
-* @for setCurrentTimeToMedia
-*&#x2F;
+bla bla bla
+@method setCurrentTimeToMedia
+@for PlayersCommon
+**&#x2F;
 function setCurrentTimeToMedia(media, seek) {
   if(media[0].readyState != 0) {
     media[0].currentTime = validSeek(media, seek);
@@ -1038,11 +493,10 @@ function setCurrentTimeToMedia(media, seek) {
 }
 
 &#x2F;**
-* JS-TODO
-* 
-* @method showLoadingMediaErrorPopup
-* @for showLoadingMediaErrorPopup
-*&#x2F;
+bla bla bla
+@method showLoadingMediaErrorPopup
+@for PlayersCommon
+**&#x2F;
 function showLoadingMediaErrorPopup(code, type) {
   var captions = $(&#x27;#popup_captions_container&#x27;);
   var message = captions.data(&#x27;media-error-code-&#x27; + code);
@@ -1053,15 +507,546 @@ function showLoadingMediaErrorPopup(code, type) {
 }
 
 &#x2F;**
-* JS-TODO
-* 
-* @method stopAllMedia
-* @for stopAllMedia
-*&#x2F;
+bla bla bla
+@method stopAllMedia
+@for PlayersCommon
+**&#x2F;
 function stopAllMedia() {
   $(&#x27;audio, video&#x27;).each(function() {
     stopMedia(this);
   });
+}
+
+&#x2F;**
+IE SI ARRABBIA SE GLI SETTI UN VALORE DI SEEK NON COMPRESO TRA L&#x27;INIZIO E LA FINE DEI VALORI SEEKABLE
+@method validSeek
+@for PlayersCommon
+**&#x2F;
+function validSeek(media, seek) {
+  var confidence = 0.001;
+  var minStart = media[0].seekable.start(0);
+  var maxEnd = media[0].seekable.end(0);
+  if (seek &lt; minStart) {
+    seek = minStart+confidence;
+  } else if (seek &gt; maxEnd) {
+    seek = maxEnd - confidence;
+  }
+  return seek;
+}
+
+
+
+
+
+&#x2F;**
+bla bla bla
+@method playersDocumentReady
+@for PlayersDocumentReady
+**&#x2F;
+function playersDocumentReady() {
+  playersDocumentReadyGeneral();
+  playersDocumentReadyVideoEditor();
+  playersDocumentReadyAudioEditor();
+}
+
+&#x2F;**
+bla bla bla
+@method playersDocumentReadyAudioEditor
+@for PlayersDocumentReady
+**&#x2F;
+function playersDocumentReadyAudioEditor() {
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._media_player_play_in_audio_editor_preview&#x27;, function() {
+    var component = $(this).parents(&#x27;._audio_editor_component&#x27;);
+    var identifier = getAudioComponentIdentifier(component);
+    var audio = component.find(&#x27;audio&#x27;);
+    if(audio[0].error) {
+      showLoadingMediaErrorPopup(audio[0].error.code, &#x27;audio&#x27;);
+    } else {
+      $(this).hide();
+      $(&#x27;#start_audio_editor_preview&#x27;).addClass(&#x27;disabled&#x27;);
+      $(&#x27;#rewind_audio_editor_preview&#x27;).addClass(&#x27;disabled&#x27;);
+      component.data(&#x27;playing&#x27;, true);
+      component.find(&#x27;._media_player_slider_disabler&#x27;).show();
+      component.find(&#x27;._media_player_rewind_in_audio_editor_preview&#x27;).hide();
+      component.find(&#x27;._media_player_pause_in_audio_editor_preview&#x27;).show();
+      deselectAllAudioEditorCursors(identifier);
+      var single_slider = component.find(&#x27;._media_player_slider&#x27;);
+      if(audio[0].currentTime &lt; single_slider.slider(&#x27;value&#x27;)) {
+        setCurrentTimeToMedia(audio, single_slider.slider(&#x27;value&#x27;));
+      }
+      if(audio.readyState != 0) {
+        audio[0].play();
+      } else {
+        audio.on(&#x27;loadedmetadata&#x27;, function() {
+          audio[0].play();
+        });
+      }
+    }
+  });
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._media_player_pause_in_audio_editor_preview&#x27;, function() {
+    $(this).hide();
+    $(&#x27;#start_audio_editor_preview&#x27;).removeClass(&#x27;disabled&#x27;);
+    $(&#x27;#rewind_audio_editor_preview&#x27;).removeClass(&#x27;disabled&#x27;);
+    var component = $(this).parents(&#x27;._audio_editor_component&#x27;);
+    var identifier = getAudioComponentIdentifier(component);
+    component.data(&#x27;playing&#x27;, false);
+    component.find(&#x27;._media_player_slider_disabler&#x27;).hide();
+    component.find(&#x27;._media_player_rewind_in_audio_editor_preview&#x27;).show();
+    component.find(&#x27;._media_player_play_in_audio_editor_preview&#x27;).show();
+    selectAudioEditorCursor(identifier);
+    component.find(&#x27;audio&#x27;)[0].pause();
+    if(component.data(&#x27;to&#x27;) != parseInt(component.find(&#x27;audio&#x27;)[0].currentTime)) {
+      setCurrentTimeToMedia(component.find(&#x27;audio&#x27;), component.find(&#x27;._media_player_slider&#x27;).slider(&#x27;value&#x27;));
+    }
+  });
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._media_player_rewind_in_audio_editor_preview&#x27;, function() {
+    var component = $(this).parents(&#x27;._audio_editor_component&#x27;);
+    var initial_time = component.data(&#x27;from&#x27;);
+    component.find(&#x27;._media_player_slider&#x27;).slider(&#x27;value&#x27;, initial_time);
+    setCurrentTimeToMedia(component.find(&#x27;audio&#x27;), initial_time);
+    component.find(&#x27;._current_time&#x27;).html(secondsToDateString(initial_time));
+  });
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._audio_editor_component ._double_slider .ui-slider-range&#x27;, function(e) {
+    var component = $(this).parents(&#x27;._audio_editor_component&#x27;);
+    var identifier = getAudioComponentIdentifier(component);
+    var percent = component.data(&#x27;max-to&#x27;) * (e.pageX - component.find(&#x27;._double_slider&#x27;).offset().left) &#x2F; component.find(&#x27;._double_slider&#x27;).width();
+    resp = parseInt(percent);
+    if(percent - parseInt(percent) &gt; 0.5) {
+      resp += 1;
+    }
+    selectAudioEditorCursor(identifier);
+    selectAudioComponentCutterHandle(component, resp);
+  });
+}
+
+&#x2F;**
+bla bla bla
+@method playersDocumentReadyGeneral
+@for PlayersDocumentReady
+**&#x2F;
+function playersDocumentReadyGeneral() {
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._media_player_play&#x27;, function() {
+    var container_id = $(this).parent().attr(&#x27;id&#x27;);
+    var type = $(this).parent().data(&#x27;media-type&#x27;);
+    var media = $(&#x27;#&#x27; + container_id + &#x27; &#x27; + type);
+    if(media[0].error) {
+      showLoadingMediaErrorPopup(media[0].error.code, type);
+    } else {
+      $(&#x27;#&#x27; + container_id + &#x27; ._media_player_slider_disabler&#x27;).show();
+      $(&#x27;#&#x27; + container_id + &#x27; ._media_player_pause&#x27;).show();
+      $(this).hide();
+      if(media[0].readyState != 0) {
+        media[0].play();
+      } else {
+        media.on(&#x27;loadedmetadata&#x27;, function() {
+          media[0].play();
+        });
+      }
+    }
+  });
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._media_player_pause&#x27;, function() {
+    $(this).hide();
+    var container_id = $(this).parent().attr(&#x27;id&#x27;);
+    var type = $(this).parent().data(&#x27;media-type&#x27;);
+    $(&#x27;#&#x27; + container_id + &#x27; ._media_player_slider_disabler&#x27;).hide();
+    $(&#x27;#&#x27; + container_id + &#x27; ._media_player_play&#x27;).show();
+    $(&#x27;#&#x27; + container_id + &#x27; &#x27; + type)[0].pause();
+  });
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._video_full_screen&#x27;, function() {
+    var container_id = $(this).parent().attr(&#x27;id&#x27;);
+    $(&#x27;#&#x27; + container_id + &#x27; video&#x27;).fullScreen(true);
+  });
+}
+
+&#x2F;**
+bla bla bla
+@method playersDocumentReadyVideoEditor
+@for PlayersDocumentReady
+**&#x2F;
+function playersDocumentReadyVideoEditor() {
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._media_player_play_in_video_editor_preview&#x27;, function() {
+    var identifier = getVideoComponentIdentifier($(this).parents(&#x27;._video_component_cutter&#x27;).attr(&#x27;id&#x27;));
+    var video = $(&#x27;#video_component_&#x27; + identifier + &#x27;_preview video&#x27;);
+    if(video[0].error){
+      showLoadingMediaErrorPopup(video[0].error.code, &#x27;video&#x27;);
+    } else {
+      $(this).hide();
+      $(this).parents(&#x27;._video_component_cutter&#x27;).data(&#x27;playing&#x27;, true);
+      $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter ._media_player_rewind_in_video_editor_preview&#x27;).hide();
+      $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter ._media_player_slider_disabler&#x27;).show();
+      $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter ._media_player_pause_in_video_editor_preview&#x27;).show();
+      $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter .ui-slider-handle&#x27;).removeClass(&#x27;selected&#x27;);
+      if(video.readyState != 0) {
+        video[0].play();
+      } else {
+        video.on(&#x27;loadedmetadata&#x27;, function() {
+          video[0].play();
+        });
+      }
+    }
+    var actual_audio_track_time = calculateVideoComponentStartSecondInVideoEditor(identifier);
+    if(videoEditorWithAudioTrack() &amp;&amp; actual_audio_track_time &lt; $(&#x27;#full_audio_track_placeholder_in_video_editor&#x27;).data(&#x27;duration&#x27;)) {
+      var audio_track = $(&#x27;#video_editor_preview_container audio&#x27;);
+      if(audio_track[0].error) {
+        showLoadingMediaErrorPopup(audio_track[0].error.code, &#x27;audio&#x27;);
+      } else {
+        setCurrentTimeToMedia(audio_track, actual_audio_track_time);
+        if(audio_track.readyState != 0) {
+          audio_track[0].play();
+        } else {
+          audio_track.on(&#x27;loadedmetadata&#x27;, function() {
+            audio_track[0].play();
+          });
+        }
+      }
+    }
+  });
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._media_player_pause_in_video_editor_preview&#x27;, function() {
+    $(this).hide();
+    $(this).parents(&#x27;._video_component_cutter&#x27;).data(&#x27;playing&#x27;, false);
+    var cutter_id = $(this).parents(&#x27;._video_component_cutter&#x27;).attr(&#x27;id&#x27;);
+    var preview_id = cutter_id.replace(&#x27;cutter&#x27;, &#x27;preview&#x27;);
+    $(&#x27;#&#x27; + cutter_id + &#x27; ._media_player_rewind_in_video_editor_preview&#x27;).show();
+    $(&#x27;#&#x27; + cutter_id + &#x27; ._media_player_slider_disabler&#x27;).hide();
+    $(&#x27;#&#x27; + cutter_id + &#x27; ._media_player_play_in_video_editor_preview&#x27;).show();
+    $(&#x27;#&#x27; + cutter_id + &#x27; ._media_player_slider .ui-slider-handle&#x27;).addClass(&#x27;selected&#x27;);
+    $(&#x27;#&#x27; + preview_id + &#x27; video&#x27;)[0].pause();
+    if(videoEditorWithAudioTrack()) {
+      $(&#x27;#video_editor_preview_container audio&#x27;)[0].pause();
+    }
+    if(parseInt($(&#x27;#&#x27; + preview_id + &#x27; video&#x27;)[0].currentTime) != $(&#x27;#&#x27; + cutter_id).data(&#x27;to&#x27;)) {
+      setCurrentTimeToMedia($(&#x27;#&#x27; + preview_id + &#x27; video&#x27;), $(&#x27;#&#x27; + cutter_id + &#x27; ._media_player_slider&#x27;).slider(&#x27;value&#x27;));
+    }
+  });
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._media_player_rewind_in_video_editor_preview&#x27;, function() {
+    var identifier = getVideoComponentIdentifier($(this).parents(&#x27;._video_component_cutter&#x27;).attr(&#x27;id&#x27;));
+    var initial_time = $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter&#x27;).data(&#x27;from&#x27;);
+    $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter ._media_player_slider&#x27;).slider(&#x27;value&#x27;, initial_time);
+    setCurrentTimeToMedia($(&#x27;#video_component_&#x27; + identifier + &#x27;_preview video&#x27;), initial_time);
+  });
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._video_component_cutter ._double_slider .ui-slider-range&#x27;, function(e) {
+    var cutter = $(this).parents(&#x27;._video_component_cutter&#x27;);
+    var percent = cutter.data(&#x27;max-to&#x27;) * (e.pageX - cutter.find(&#x27;._double_slider&#x27;).offset().left) &#x2F; cutter.find(&#x27;._double_slider&#x27;).width();
+    resp = parseInt(percent);
+    if(percent - parseInt(percent) &gt; 0.5) {
+      resp += 1;
+    }
+    cutter.find(&#x27;.ui-slider-handle&#x27;).removeClass(&#x27;selected&#x27;);
+    cutter.find(&#x27;._media_player_slider .ui-slider-handle&#x27;).addClass(&#x27;selected&#x27;);
+    selectVideoComponentCutterHandle(cutter, resp);
+  });
+}
+
+
+
+
+
+&#x2F;**
+bla bla bla
+@method initializeActionOfMediaTimeUpdater
+@for PlayersGeneral
+**&#x2F;
+function initializeActionOfMediaTimeUpdater(media, reference_id) {
+  var duration = $(&#x27;#&#x27; + reference_id).data(&#x27;duration&#x27;);
+  var container_id = $(media).parent().attr(&#x27;id&#x27;);
+  var parsed_int = parseInt(media.currentTime);
+  if(parsed_int == (duration)) {
+    $(&#x27;#&#x27; + container_id + &#x27; ._media_player_pause&#x27;).click();
+    $(&#x27;#&#x27; + container_id + &#x27; ._media_player_slider&#x27;).slider(&#x27;value&#x27;, 0);
+    $(&#x27;#&#x27; + container_id + &#x27; ._media_player_current_time&#x27;).html(secondsToDateString(0));
+    setCurrentTimeToMedia($(media), 0);
+  } else if(!$(&#x27;#&#x27; + container_id + &#x27; ._media_player_play&#x27;).is(&#x27;:visible&#x27;)) {
+    $(&#x27;#&#x27; + container_id + &#x27; ._media_player_current_time&#x27;).html(secondsToDateString(parsed_int));
+    $(&#x27;#&#x27; + container_id + &#x27; ._media_player_slider&#x27;).slider(&#x27;value&#x27;, parsed_int);
+  }
+}
+
+&#x2F;**
+bla bla bla
+@method initializeMedia
+@for PlayersGeneral
+**&#x2F;
+function initializeMedia(content_id, type) {
+  var duration = $(&#x27;#&#x27; + content_id).data(&#x27;duration&#x27;);
+  $(&#x27;#&#x27; + content_id + &#x27; ._media_player_slider&#x27;).slider({
+    min: 0,
+    max: duration,
+    range: &#x27;min&#x27;,
+    value: 0,
+    slide: function(event, ui) {
+      if($(&#x27;#&#x27; + content_id + &#x27; ._media_player_play&#x27;).is(&#x27;:visible&#x27;)) {
+        setCurrentTimeToMedia($(&#x27;#&#x27; + content_id + &#x27; &#x27; + type), ui.value);
+        $(&#x27;#&#x27; + content_id + &#x27; ._media_player_current_time&#x27;).html(secondsToDateString(ui.value));
+      }
+    }
+  });
+  initializeMediaTimeUpdater(&#x27;#&#x27; + content_id + &#x27; &#x27; + type, content_id);
+  $(&#x27;#&#x27; + content_id + &#x27; &#x27; + type).bind(&#x27;ended&#x27;, function() {
+    stopMedia(this);
+  });
+  $(&#x27;#&#x27; + content_id).data(&#x27;initialized&#x27;, true);
+}
+
+&#x2F;**
+bla bla bla
+@method initializeMediaTimeUpdater
+@for PlayersGeneral
+@param media {String} media element selector class or id
+@param reference_id {String}
+**&#x2F;
+function initializeMediaTimeUpdater(media, reference_id) {
+  media = $(media);
+  if(media.readyState != 0) {
+    media[0].addEventListener(&#x27;timeupdate&#x27;, function() {
+      initializeActionOfMediaTimeUpdater(this, reference_id);
+    }, false);
+  } else {
+    media.on(&#x27;loadedmetadata&#x27;, function() {
+      media[0].addEventListener(&#x27;timeupdate&#x27;, function() {
+        initializeActionOfMediaTimeUpdater(this, reference_id);
+      }, false);
+    });
+  }
+}
+
+&#x2F;**
+bla bla bla
+@method stopMedia
+@for PlayersGeneral
+**&#x2F;
+function stopMedia(media) {
+  try {
+    if($(media).length != 0) {
+      var has_source = true;
+      $(media).find(&#x27;source&#x27;).each(function() {
+        if($(this).attr(&#x27;src&#x27;) == &#x27;&#x27;) {
+          has_source = false;
+        }
+      });
+      if(has_source) {
+        var container_id = $(media).parent().attr(&#x27;id&#x27;);
+        $(&#x27;#&#x27; + container_id + &#x27; ._media_player_pause&#x27;).click();
+        $(&#x27;#&#x27; + container_id + &#x27; ._media_player_slider&#x27;).slider(&#x27;value&#x27;, 0);
+        $(&#x27;#&#x27; + container_id + &#x27; ._media_player_current_time&#x27;).html(secondsToDateString(0));
+        setCurrentTimeToMedia($(media), 0);
+      }
+    }
+  } catch(err) {
+    console.log(&#x27;error stopping media: &#x27; + err);
+  }
+}
+
+
+
+
+
+&#x2F;**
+bla bla bla
+@method initializeActionOfMediaTimeUpdaterInVideoEditor
+@for PlayersVideoEditor
+**&#x2F;
+function initializeActionOfMediaTimeUpdaterInVideoEditor(media, identifier, force_parsed_int) {
+  var video_cut_to = $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter&#x27;).data(&#x27;to&#x27;);
+  var parsed_int = parseInt(media.currentTime);
+  if(force_parsed_int) {
+    parsed_int = video_cut_to;
+  }
+  if($(&#x27;#video_editor_global_preview&#x27;).data(&#x27;in-use&#x27;)) {
+    var component = $(&#x27;#video_component_&#x27; + identifier);
+    if(parsed_int &gt; component.data(&#x27;current-preview-time&#x27;) + $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter&#x27;).data(&#x27;from&#x27;)) {
+      if(parsed_int == video_cut_to) {
+        $(&#x27;#video_component_&#x27; + identifier + &#x27;_preview video&#x27;)[0].pause();
+        var next_component = component.next();
+        var next_identifier = getVideoComponentIdentifier(next_component.attr(&#x27;id&#x27;));
+        if(next_component.hasClass(&#x27;_video_editor_component&#x27;)) {
+          increaseVideoEditorPreviewTimer(true);
+          $(&#x27;#video_editor_global_preview&#x27;).data(&#x27;current-component&#x27;, next_identifier);
+          $(&#x27;#video_component_&#x27; + identifier + &#x27;_preview&#x27;).hide(&#x27;fade&#x27;, {}, 1000);
+          component.find(&#x27;._video_component_transition&#x27;).removeClass(&#x27;current&#x27;);
+          next_component.find(&#x27;._video_editor_component_hover, ._video_component_icon&#x27;).removeClass(&#x27;selected&#x27;);
+          $(&#x27;#video_component_&#x27; + next_identifier + &#x27;_preview&#x27;).show(&#x27;fade&#x27;, {}, 1000, function() {
+            hideVideoEditorPreviewComponentProgressBar();
+            setCurrentTimeToMedia($(&#x27;#video_component_&#x27; + identifier + &#x27;_preview video&#x27;), $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter&#x27;).data(&#x27;from&#x27;));
+            $(&#x27;#video_component_&#x27; + identifier + &#x27; ._video_component_icon ._right&#x27;).html(secondsToDateString(0));
+            if(!$(&#x27;#video_editor_global_preview&#x27;).data(&#x27;in-use&#x27;)) {
+              $(&#x27;._video_component_transition&#x27;).addClass(&#x27;current&#x27;);
+            }
+            increaseVideoEditorPreviewTimer(false);
+            component.find(&#x27;._video_editor_component_hover, ._video_component_icon&#x27;).addClass(&#x27;selected&#x27;);
+            if($(&#x27;#video_editor_global_preview&#x27;).data(&#x27;in-use&#x27;)) {
+              playVideoEditorComponent(next_component, true);
+            } else {
+              var how_many_hidden_to_left = getHowManyComponentsHiddenToLeftTimelineHorizontalScrollPane(&#x27;media_elements_list_in_video_editor&#x27;, 186);
+              showVideoEditorPreviewComponentProgressBar(next_identifier, next_component.data(&#x27;position&#x27;) - how_many_hidden_to_left);
+            }
+          });
+        } else {
+          var first_component = getFirstVideoEditorComponent();
+          selectVideoComponentInPreview(first_component);
+          hideVideoEditorPreviewComponentProgressBar();
+          if(videoEditorWithAudioTrack()) {
+            $(&#x27;#video_editor_preview_container audio&#x27;)[0].pause();
+          }
+          $(&#x27;#video_editor_global_preview_pause&#x27;).trigger(&#x27;click&#x27;);
+          if($(&#x27;._video_editor_component&#x27;).length &gt; 5) {
+            $(&#x27;#media_elements_list_in_video_editor&#x27;).jScrollPane().bind(&#x27;panescrollstop&#x27;, function() {
+              showVideoEditorPreviewComponentProgressBar(getVideoComponentIdentifier(first_component.attr(&#x27;id&#x27;)), 1);
+              $(&#x27;#media_elements_list_in_video_editor&#x27;).jScrollPane().unbind(&#x27;panescrollstop&#x27;);
+            });
+            $(&#x27;#media_elements_list_in_video_editor&#x27;).data(&#x27;jsp&#x27;).scrollToX(0, true, 500);
+          } else {
+            showVideoEditorPreviewComponentProgressBar(getVideoComponentIdentifier(first_component.attr(&#x27;id&#x27;)), 1);
+          }
+        }
+      } else {
+        increaseVideoEditorPreviewTimer(true);
+      }
+    }
+  } else if($(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter&#x27;).data(&#x27;playing&#x27;)) {
+    if(parsed_int == (video_cut_to)) {
+      var initial_time = $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter&#x27;).data(&#x27;from&#x27;);
+      $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter ._media_player_pause_in_video_editor_preview&#x27;).click();
+      $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter ._media_player_slider&#x27;).slider(&#x27;value&#x27;, initial_time);
+      setCurrentTimeToMedia($(media), initial_time);
+    } else if(!$(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter ._media_player_play_in_video_editor_preview&#x27;).is(&#x27;:visible&#x27;)) {
+      $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter ._media_player_slider&#x27;).slider(&#x27;value&#x27;, parsed_int);
+    }
+  }
+}
+
+&#x2F;**
+bla bla bla
+@method initializeMediaTimeUpdaterInVideoEditor
+@for PlayersVideoEditor
+**&#x2F;
+function initializeMediaTimeUpdaterInVideoEditor(media, identifier) {
+  media = $(media);
+  if(media.readyState != 0) {
+    media[0].addEventListener(&#x27;timeupdate&#x27;, function() {
+      initializeActionOfMediaTimeUpdaterInVideoEditor(this, identifier, false);
+    }, false);
+  } else {
+    media.on(&#x27;loadedmetadata&#x27;, function() {
+      media[0].addEventListener(&#x27;timeupdate&#x27;, function() {
+        initializeActionOfMediaTimeUpdaterInVideoEditor(this, identifier, false);
+      }, false);
+    });
+  }
+}
+
+&#x2F;**
+bla bla bla
+@method initializeVideoInVideoEditorPreview
+@for PlayersVideoEditor
+**&#x2F;
+function initializeVideoInVideoEditorPreview(identifier) {
+  var my_cutter = $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter&#x27;);
+  $(&#x27;#video_component_&#x27; + identifier + &#x27;_preview video&#x27;).on(&#x27;loadeddata&#x27;, function() {
+    setCurrentTimeToMedia($(&#x27;#video_component_&#x27; + identifier + &#x27;_preview video&#x27;), my_cutter.data(&#x27;from&#x27;));
+  });
+  var video_max_to = my_cutter.data(&#x27;max-to&#x27;);
+  my_cutter.find(&#x27;._media_player_slider&#x27;).slider({
+    min: 0,
+    max: video_max_to,
+    value: my_cutter.data(&#x27;from&#x27;),
+    slide: function(event, ui) {
+      if(my_cutter.find(&#x27;._media_player_play_in_video_editor_preview&#x27;).is(&#x27;:visible&#x27;)) {
+        setCurrentTimeToMedia($(&#x27;#video_component_&#x27; + identifier + &#x27;_preview video&#x27;), ui.value);
+      }
+    }
+  });
+  my_cutter.find(&#x27;._double_slider&#x27;).slider({
+    min: 0,
+    max: video_max_to,
+    range: true,
+    values: [my_cutter.data(&#x27;from&#x27;), my_cutter.data(&#x27;to&#x27;)],
+    start: function(event, ui) {
+      my_cutter.find(&#x27;.ui-slider-handle&#x27;).removeClass(&#x27;selected&#x27;);
+      $(ui.handle).addClass(&#x27;selected&#x27;);
+    },
+    slide: function(event, ui) {
+      var left_val = ui.values[0];
+      var right_val = ui.values[1];
+      var cursor_val = my_cutter.find(&#x27;._media_player_slider&#x27;).slider(&#x27;value&#x27;);
+      if(left_val != my_cutter.data(&#x27;from&#x27;)) {
+        if(cursor_val &lt; left_val) {
+          selectVideoComponentCutterHandle(my_cutter, left_val);
+        }
+      } else {
+        if(cursor_val &gt; right_val) {
+          selectVideoComponentCutterHandle(my_cutter, right_val);
+        }
+      }
+    },
+    stop: function(event, ui) {
+      my_cutter.data(&#x27;changed&#x27;, true);
+      var left_val = ui.values[0];
+      var right_val = ui.values[1];
+      if(left_val != my_cutter.data(&#x27;from&#x27;)) {
+        if(left_val == right_val) {
+          my_cutter.find(&#x27;._double_slider&#x27;).slider(&#x27;values&#x27;, 0, left_val - 1);
+          left_val -= 1;
+        }
+        cutVideoComponentLeftSide(identifier, left_val);
+      }
+      if(right_val != my_cutter.data(&#x27;to&#x27;)) {
+        if(left_val == right_val) {
+          my_cutter.find(&#x27;._double_slider&#x27;).slider(&#x27;values&#x27;, 1, right_val + 1);
+          right_val += 1;
+        }
+        cutVideoComponentRightSide(identifier, right_val);
+      }
+    }
+  });
+  my_cutter.find(&#x27;._double_slider .ui-slider-range&#x27;).mousedown(function(e) {
+    return false;
+  });
+  $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter ._media_player_slider .ui-slider-handle&#x27;).addClass(&#x27;selected&#x27;);
+  initializeMediaTimeUpdaterInVideoEditor(&#x27;#video_component_&#x27; + identifier + &#x27;_preview video&#x27;, identifier);
+  $(&#x27;#video_component_&#x27; + identifier + &#x27;_preview video&#x27;).bind(&#x27;ended&#x27;, function() {
+    if($(&#x27;#video_editor_global_preview&#x27;).data(&#x27;in-use&#x27;)) {
+      initializeActionOfMediaTimeUpdaterInVideoEditor($(&#x27;#video_component_&#x27; + identifier + &#x27;_preview video&#x27;)[0], identifier, true);
+    } else {
+      stopVideoInVideoEditorPreview(identifier);
+    }
+    
+  });
+}
+
+&#x2F;**
+bla bla bla
+@method selectVideoComponentCutterHandle
+@for PlayersVideoEditor
+**&#x2F;
+function selectVideoComponentCutterHandle(cutter, val) {
+  setCurrentTimeToMedia($(&#x27;#&#x27; + cutter.attr(&#x27;id&#x27;).replace(&#x27;cutter&#x27;, &#x27;preview&#x27;) + &#x27; video&#x27;), val);
+  cutter.find(&#x27;._media_player_slider&#x27;).slider(&#x27;value&#x27;, val);
+}
+
+&#x2F;**
+bla bla bla
+@method stopVideoInVideoEditorPreview
+@for PlayersVideoEditor
+**&#x2F;
+function stopVideoInVideoEditorPreview(identifier) {
+  try {
+    if($(&#x27;#video_component_&#x27; + identifier + &#x27;_preview video&#x27;).length != 0) {
+      var has_source = true;
+      $(&#x27;#video_component_&#x27; + identifier + &#x27;_preview video&#x27;).find(&#x27;source&#x27;).each(function() {
+        if($(this).attr(&#x27;src&#x27;) == &#x27;&#x27;) {
+          has_source = false;
+        }
+      });
+      if(has_source) {
+        $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter ._media_player_pause_in_video_editor_preview&#x27;).click();
+        var initial_time = $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter&#x27;).data(&#x27;from&#x27;);
+        $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter ._media_player_slider&#x27;).slider(&#x27;value&#x27;, initial_time);
+        setCurrentTimeToMedia($(&#x27;#video_component_&#x27; + identifier + &#x27;_preview video&#x27;), initial_time);
+      }
+    }
+  } catch(err) {
+    console.log(&#x27;error stopping media: &#x27; + err);
+  }
 }
 
     </pre>
