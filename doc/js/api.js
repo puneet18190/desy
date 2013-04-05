@@ -85,13 +85,10 @@ YUI.add("yuidoc-meta", function(Y) {
         "VideoEditorReplaceComponents",
         "VideoEditorScrollPain",
         "VideoEditorTextComponentEditor",
-        "addEmailToVirtualClassroomSendLessonLinkSelector",
-        "getMaximumZIndex",
-        "initializeDraggableVirtualClassroomLesson",
-        "initializeNotAvailableLessonsToLoadQuick",
-        "initializePlaylist",
-        "initializeScrollPaneQuickLessonSelector",
-        "initializeVirtualClassroom"
+        "VirtualClassroomDocumentReady",
+        "VirtualClassroomJavaScriptAnimations",
+        "VirtualClassroomMultipleLoading",
+        "VirtualClassroomSendLink"
     ],
     "modules": [
         "administration",

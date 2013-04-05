@@ -287,13 +287,10 @@
             },
             "classes": {},
             "fors": {
-                "addEmailToVirtualClassroomSendLessonLinkSelector": 1,
-                "initializeNotAvailableLessonsToLoadQuick": 1,
-                "initializeScrollPaneQuickLessonSelector": 1,
-                "initializeVirtualClassroom": 1,
-                "initializeDraggableVirtualClassroomLesson": 1,
-                "initializePlaylist": 1,
-                "getMaximumZIndex": 1
+                "VirtualClassroomDocumentReady": 1,
+                "VirtualClassroomJavaScriptAnimations": 1,
+                "VirtualClassroomMultipleLoading": 1,
+                "VirtualClassroomSendLink": 1
             },
             "namespaces": {}
         }
@@ -718,22 +715,16 @@
             "name": "virtual-classroom",
             "submodules": {},
             "classes": {
-                "addEmailToVirtualClassroomSendLessonLinkSelector": 1,
-                "initializeNotAvailableLessonsToLoadQuick": 1,
-                "initializeScrollPaneQuickLessonSelector": 1,
-                "initializeVirtualClassroom": 1,
-                "initializeDraggableVirtualClassroomLesson": 1,
-                "initializePlaylist": 1,
-                "getMaximumZIndex": 1
+                "VirtualClassroomDocumentReady": 1,
+                "VirtualClassroomJavaScriptAnimations": 1,
+                "VirtualClassroomMultipleLoading": 1,
+                "VirtualClassroomSendLink": 1
             },
             "fors": {
-                "addEmailToVirtualClassroomSendLessonLinkSelector": 1,
-                "initializeNotAvailableLessonsToLoadQuick": 1,
-                "initializeScrollPaneQuickLessonSelector": 1,
-                "initializeVirtualClassroom": 1,
-                "initializeDraggableVirtualClassroomLesson": 1,
-                "initializePlaylist": 1,
-                "getMaximumZIndex": 1
+                "VirtualClassroomDocumentReady": 1,
+                "VirtualClassroomJavaScriptAnimations": 1,
+                "VirtualClassroomMultipleLoading": 1,
+                "VirtualClassroomSendLink": 1
             },
             "namespaces": {},
             "tag": "module",
@@ -1667,9 +1658,9 @@
             "module": "video-editor",
             "namespace": ""
         },
-        "addEmailToVirtualClassroomSendLessonLinkSelector": {
-            "name": "addEmailToVirtualClassroomSendLessonLinkSelector",
-            "shortname": "addEmailToVirtualClassroomSendLessonLinkSelector",
+        "VirtualClassroomDocumentReady": {
+            "name": "VirtualClassroomDocumentReady",
+            "shortname": "VirtualClassroomDocumentReady",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -1678,9 +1669,9 @@
             "module": "virtual-classroom",
             "namespace": ""
         },
-        "initializeNotAvailableLessonsToLoadQuick": {
-            "name": "initializeNotAvailableLessonsToLoadQuick",
-            "shortname": "initializeNotAvailableLessonsToLoadQuick",
+        "VirtualClassroomJavaScriptAnimations": {
+            "name": "VirtualClassroomJavaScriptAnimations",
+            "shortname": "VirtualClassroomJavaScriptAnimations",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -1689,9 +1680,9 @@
             "module": "virtual-classroom",
             "namespace": ""
         },
-        "initializeScrollPaneQuickLessonSelector": {
-            "name": "initializeScrollPaneQuickLessonSelector",
-            "shortname": "initializeScrollPaneQuickLessonSelector",
+        "VirtualClassroomMultipleLoading": {
+            "name": "VirtualClassroomMultipleLoading",
+            "shortname": "VirtualClassroomMultipleLoading",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -1700,42 +1691,9 @@
             "module": "virtual-classroom",
             "namespace": ""
         },
-        "initializeVirtualClassroom": {
-            "name": "initializeVirtualClassroom",
-            "shortname": "initializeVirtualClassroom",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "virtual-classroom",
-            "namespace": ""
-        },
-        "initializeDraggableVirtualClassroomLesson": {
-            "name": "initializeDraggableVirtualClassroomLesson",
-            "shortname": "initializeDraggableVirtualClassroomLesson",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "virtual-classroom",
-            "namespace": ""
-        },
-        "initializePlaylist": {
-            "name": "initializePlaylist",
-            "shortname": "initializePlaylist",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "virtual-classroom",
-            "namespace": ""
-        },
-        "getMaximumZIndex": {
-            "name": "getMaximumZIndex",
-            "shortname": "getMaximumZIndex",
+        "VirtualClassroomSendLink": {
+            "name": "VirtualClassroomSendLink",
+            "shortname": "VirtualClassroomSendLink",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -5551,61 +5509,52 @@
         },
         {
             "file": "app/assets/javascripts/virtual_classroom.js",
-            "line": 219,
-            "description": "Add email to recipients list on email add button (+).",
+            "line": 10,
+            "description": "bla bla bla",
             "itemtype": "method",
-            "name": "addEmailToVirtualClassroomSendLessonLinkSelector",
-            "class": "addEmailToVirtualClassroomSendLessonLinkSelector",
+            "name": "virtualClassroomDocumentReady",
+            "class": "VirtualClassroomDocumentReady",
             "module": "virtual-classroom"
         },
         {
             "file": "app/assets/javascripts/virtual_classroom.js",
-            "line": 233,
-            "description": "JS-TODO",
+            "line": 23,
+            "description": "bla bla bla",
             "itemtype": "method",
-            "name": "initializeNotAvailableLessonsToLoadQuick",
-            "class": "initializeNotAvailableLessonsToLoadQuick",
+            "name": "virtualClassroomDocumentReadyIconsAndButtons",
+            "class": "VirtualClassroomDocumentReady",
             "module": "virtual-classroom"
         },
         {
             "file": "app/assets/javascripts/virtual_classroom.js",
-            "line": 247,
-            "description": "JS-TODO",
+            "line": 78,
+            "description": "bla bla bla",
             "itemtype": "method",
-            "name": "initializeScrollPaneQuickLessonSelector",
-            "class": "initializeScrollPaneQuickLessonSelector",
+            "name": "virtualClassroomDocumentReadyMultipleLessonLoading",
+            "class": "VirtualClassroomDocumentReady",
             "module": "virtual-classroom"
         },
         {
             "file": "app/assets/javascripts/virtual_classroom.js",
-            "line": 263,
-            "description": "JS-TODO",
+            "line": 126,
+            "description": "bla bla bla",
             "itemtype": "method",
-            "name": "initializeVirtualClassroom",
-            "class": "initializeVirtualClassroom",
+            "name": "virtualClassroomDocumentReadyPlaylist",
+            "class": "VirtualClassroomDocumentReady",
             "module": "virtual-classroom"
         },
         {
             "file": "app/assets/javascripts/virtual_classroom.js",
-            "line": 280,
-            "description": "JS-TODO",
+            "line": 166,
+            "description": "bla bla bla",
             "itemtype": "method",
-            "name": "initializeDraggableVirtualClassroomLesson",
-            "class": "initializeDraggableVirtualClassroomLesson",
+            "name": "virtualClassroomDocumentReadySendLink",
+            "class": "VirtualClassroomDocumentReady",
             "module": "virtual-classroom"
         },
         {
             "file": "app/assets/javascripts/virtual_classroom.js",
-            "line": 321,
-            "description": "Initialize playlist container and jScrollPane\n\nUses: [getMaximumZIndex](../classes/getMaximumZIndex.html#method_getMaximumZIndex)",
-            "itemtype": "method",
-            "name": "initializePlaylist",
-            "class": "initializePlaylist",
-            "module": "virtual-classroom"
-        },
-        {
-            "file": "app/assets/javascripts/virtual_classroom.js",
-            "line": 385,
+            "line": 243,
             "description": "Get highest zIndex value, among elements of a given class",
             "itemtype": "method",
             "name": "getMaximumZIndex",
@@ -5620,7 +5569,61 @@
                 "description": "highest zIndex value",
                 "type": "Number"
             },
-            "class": "getMaximumZIndex",
+            "class": "VirtualClassroomJavaScriptAnimations",
+            "module": "virtual-classroom"
+        },
+        {
+            "file": "app/assets/javascripts/virtual_classroom.js",
+            "line": 261,
+            "description": "bla bla bla",
+            "itemtype": "method",
+            "name": "initializeDraggableVirtualClassroomLesson",
+            "class": "VirtualClassroomJavaScriptAnimations",
+            "module": "virtual-classroom"
+        },
+        {
+            "file": "app/assets/javascripts/virtual_classroom.js",
+            "line": 301,
+            "description": "Initialize playlist container and jScrollPane Uses: [getMaximumZIndex](../classes/getMaximumZIndex.html#method_getMaximumZIndex)",
+            "itemtype": "method",
+            "name": "initializePlaylist",
+            "class": "VirtualClassroomJavaScriptAnimations",
+            "module": "virtual-classroom"
+        },
+        {
+            "file": "app/assets/javascripts/virtual_classroom.js",
+            "line": 362,
+            "description": "bla bla bla",
+            "itemtype": "method",
+            "name": "initializeVirtualClassroom",
+            "class": "VirtualClassroomJavaScriptAnimations",
+            "module": "virtual-classroom"
+        },
+        {
+            "file": "app/assets/javascripts/virtual_classroom.js",
+            "line": 382,
+            "description": "bla bla bla",
+            "itemtype": "method",
+            "name": "initializeNotAvailableLessonsToLoadQuick",
+            "class": "VirtualClassroomMultipleLoading",
+            "module": "virtual-classroom"
+        },
+        {
+            "file": "app/assets/javascripts/virtual_classroom.js",
+            "line": 395,
+            "description": "bla bla bla",
+            "itemtype": "method",
+            "name": "initializeScrollPaneQuickLessonSelector",
+            "class": "VirtualClassroomMultipleLoading",
+            "module": "virtual-classroom"
+        },
+        {
+            "file": "app/assets/javascripts/virtual_classroom.js",
+            "line": 414,
+            "description": "Add email to recipients list on email add button (+).",
+            "itemtype": "method",
+            "name": "addEmailToVirtualClassroomSendLessonLinkSelector",
+            "class": "VirtualClassroomSendLink",
             "module": "virtual-classroom"
         }
     ],
