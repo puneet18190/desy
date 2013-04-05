@@ -170,18 +170,11 @@
             },
             "classes": {},
             "fors": {
-                "openPlaylistMenuInLessonViewer": 1,
-                "closePlaylistMenuInLessonViewer": 1,
-                "selectComponentInLessonViewerPlaylistMenu": 1,
-                "getLessonViewerCurrentSlide": 1,
-                "slideToInLessonViewer": 1,
-                "hideArrowsInLessonViewer": 1,
-                "initializeLessonViewer": 1,
-                "stopMediaInLessonViewer": 1,
-                "switchLessonInPlaylistMenuLessonViewer": 1,
-                "slideToInLessonViewerWithLessonSwitch": 1,
-                "goToNextSlideInLessonViewer": 1,
-                "goToPrevSlideInLessonViewer": 1
+                "LessonViewerDocumentReady": 1,
+                "LessonViewerGeneral": 1,
+                "LessonViewerGraphics": 1,
+                "LessonViewerPlaylist": 1,
+                "LessonViewerSlidesNavigation": 1
             },
             "namespaces": {}
         },
@@ -577,32 +570,18 @@
             "name": "lesson-viewer",
             "submodules": {},
             "classes": {
-                "openPlaylistMenuInLessonViewer": 1,
-                "closePlaylistMenuInLessonViewer": 1,
-                "selectComponentInLessonViewerPlaylistMenu": 1,
-                "getLessonViewerCurrentSlide": 1,
-                "slideToInLessonViewer": 1,
-                "hideArrowsInLessonViewer": 1,
-                "initializeLessonViewer": 1,
-                "stopMediaInLessonViewer": 1,
-                "switchLessonInPlaylistMenuLessonViewer": 1,
-                "slideToInLessonViewerWithLessonSwitch": 1,
-                "goToNextSlideInLessonViewer": 1,
-                "goToPrevSlideInLessonViewer": 1
+                "LessonViewerDocumentReady": 1,
+                "LessonViewerGeneral": 1,
+                "LessonViewerGraphics": 1,
+                "LessonViewerPlaylist": 1,
+                "LessonViewerSlidesNavigation": 1
             },
             "fors": {
-                "openPlaylistMenuInLessonViewer": 1,
-                "closePlaylistMenuInLessonViewer": 1,
-                "selectComponentInLessonViewerPlaylistMenu": 1,
-                "getLessonViewerCurrentSlide": 1,
-                "slideToInLessonViewer": 1,
-                "hideArrowsInLessonViewer": 1,
-                "initializeLessonViewer": 1,
-                "stopMediaInLessonViewer": 1,
-                "switchLessonInPlaylistMenuLessonViewer": 1,
-                "slideToInLessonViewerWithLessonSwitch": 1,
-                "goToNextSlideInLessonViewer": 1,
-                "goToPrevSlideInLessonViewer": 1
+                "LessonViewerDocumentReady": 1,
+                "LessonViewerGeneral": 1,
+                "LessonViewerGraphics": 1,
+                "LessonViewerPlaylist": 1,
+                "LessonViewerSlidesNavigation": 1
             },
             "namespaces": {},
             "tag": "module",
@@ -1357,9 +1336,9 @@
             "module": "lesson-editor",
             "namespace": ""
         },
-        "openPlaylistMenuInLessonViewer": {
-            "name": "openPlaylistMenuInLessonViewer",
-            "shortname": "openPlaylistMenuInLessonViewer",
+        "LessonViewerDocumentReady": {
+            "name": "LessonViewerDocumentReady",
+            "shortname": "LessonViewerDocumentReady",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -1368,9 +1347,9 @@
             "module": "lesson-viewer",
             "namespace": ""
         },
-        "closePlaylistMenuInLessonViewer": {
-            "name": "closePlaylistMenuInLessonViewer",
-            "shortname": "closePlaylistMenuInLessonViewer",
+        "LessonViewerGeneral": {
+            "name": "LessonViewerGeneral",
+            "shortname": "LessonViewerGeneral",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -1379,9 +1358,9 @@
             "module": "lesson-viewer",
             "namespace": ""
         },
-        "selectComponentInLessonViewerPlaylistMenu": {
-            "name": "selectComponentInLessonViewerPlaylistMenu",
-            "shortname": "selectComponentInLessonViewerPlaylistMenu",
+        "LessonViewerGraphics": {
+            "name": "LessonViewerGraphics",
+            "shortname": "LessonViewerGraphics",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -1390,9 +1369,9 @@
             "module": "lesson-viewer",
             "namespace": ""
         },
-        "getLessonViewerCurrentSlide": {
-            "name": "getLessonViewerCurrentSlide",
-            "shortname": "getLessonViewerCurrentSlide",
+        "LessonViewerPlaylist": {
+            "name": "LessonViewerPlaylist",
+            "shortname": "LessonViewerPlaylist",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -1401,86 +1380,9 @@
             "module": "lesson-viewer",
             "namespace": ""
         },
-        "slideToInLessonViewer": {
-            "name": "slideToInLessonViewer",
-            "shortname": "slideToInLessonViewer",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "lesson-viewer",
-            "namespace": ""
-        },
-        "hideArrowsInLessonViewer": {
-            "name": "hideArrowsInLessonViewer",
-            "shortname": "hideArrowsInLessonViewer",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "lesson-viewer",
-            "namespace": ""
-        },
-        "initializeLessonViewer": {
-            "name": "initializeLessonViewer",
-            "shortname": "initializeLessonViewer",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "lesson-viewer",
-            "namespace": ""
-        },
-        "stopMediaInLessonViewer": {
-            "name": "stopMediaInLessonViewer",
-            "shortname": "stopMediaInLessonViewer",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "lesson-viewer",
-            "namespace": ""
-        },
-        "switchLessonInPlaylistMenuLessonViewer": {
-            "name": "switchLessonInPlaylistMenuLessonViewer",
-            "shortname": "switchLessonInPlaylistMenuLessonViewer",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "lesson-viewer",
-            "namespace": ""
-        },
-        "slideToInLessonViewerWithLessonSwitch": {
-            "name": "slideToInLessonViewerWithLessonSwitch",
-            "shortname": "slideToInLessonViewerWithLessonSwitch",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "lesson-viewer",
-            "namespace": ""
-        },
-        "goToNextSlideInLessonViewer": {
-            "name": "goToNextSlideInLessonViewer",
-            "shortname": "goToNextSlideInLessonViewer",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "lesson-viewer",
-            "namespace": ""
-        },
-        "goToPrevSlideInLessonViewer": {
-            "name": "goToPrevSlideInLessonViewer",
-            "shortname": "goToPrevSlideInLessonViewer",
+        "LessonViewerSlidesNavigation": {
+            "name": "LessonViewerSlidesNavigation",
+            "shortname": "LessonViewerSlidesNavigation",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -4332,17 +4234,84 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 76,
-            "description": "Open playlist menu, show lessons conver list and change playlist toggle label\n\nUses: [hideArrowsInLessonViewer](../classes/hideArrowsInLessonViewer.html#method_hideArrowsInLessonViewer)",
+            "line": 18,
+            "description": "bla bla bla",
             "itemtype": "method",
-            "name": "openPlaylistMenuInLessonViewer",
-            "class": "openPlaylistMenuInLessonViewer",
+            "name": "lessonViewerDocumentReady",
+            "class": "LessonViewerDocumentReady",
             "module": "lesson-viewer"
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 91,
-            "description": "Open playlist menu, show lessons conver list and change playlist toggle label\n\nUses: [showArrowsInLessonViewer](../classes/showArrowsInLessonViewer.html#method_showArrowsInLessonViewer)",
+            "line": 29,
+            "description": "bla bla bla",
+            "itemtype": "method",
+            "name": "lessonViewerDocumentReadyPlaylist",
+            "class": "LessonViewerDocumentReady",
+            "module": "lesson-viewer"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_viewer.js",
+            "line": 65,
+            "description": "bla bla bla",
+            "itemtype": "method",
+            "name": "lessonViewerDocumentReadySlidesNavigation",
+            "class": "LessonViewerDocumentReady",
+            "module": "lesson-viewer"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_viewer.js",
+            "line": 98,
+            "description": "Gets the current slide id",
+            "itemtype": "method",
+            "name": "getLessonViewerCurrentSlide",
+            "return": {
+                "description": "current slide id",
+                "type": "Number"
+            },
+            "class": "LessonViewerGeneral",
+            "module": "lesson-viewer"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_viewer.js",
+            "line": 108,
+            "description": "Handle playlist menu on lesson viewer startup Uses: [selectComponentInLessonViewerPlaylistMenu](../classes/selectComponentInLessonViewerPlaylistMenu.html#method_selectComponentInLessonViewerPlaylistMenu)",
+            "itemtype": "method",
+            "name": "initializeLessonViewer",
+            "class": "LessonViewerGeneral",
+            "module": "lesson-viewer"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_viewer.js",
+            "line": 124,
+            "description": "Stop media playling in current slide in lesson viewer",
+            "itemtype": "method",
+            "name": "stopMediaInLessonViewer",
+            "class": "LessonViewerGeneral",
+            "module": "lesson-viewer"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_viewer.js",
+            "line": 139,
+            "description": "Hide slides navigation arrows in lesson viewer",
+            "itemtype": "method",
+            "name": "hideArrowsInLessonViewer",
+            "class": "LessonViewerGraphics",
+            "module": "lesson-viewer"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_viewer.js",
+            "line": 148,
+            "description": "Show slides navigation arrows in lesson viewer",
+            "itemtype": "method",
+            "name": "showArrowsInLessonViewer",
+            "class": "LessonViewerGraphics",
+            "module": "lesson-viewer"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_viewer.js",
+            "line": 161,
+            "description": "Open playlist menu, show lessons cover list and change playlist toggle label Uses: [showArrowsInLessonViewer](../classes/showArrowsInLessonViewer.html#method_showArrowsInLessonViewer)",
             "itemtype": "method",
             "name": "closePlaylistMenuInLessonViewer",
             "params": [
@@ -4352,12 +4321,21 @@
                     "type": "Object"
                 }
             ],
-            "class": "closePlaylistMenuInLessonViewer",
+            "class": "LessonViewerPlaylist",
             "module": "lesson-viewer"
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 109,
+            "line": 176,
+            "description": "Open playlist menu, show lessons conver list and change playlist toggle label Uses: [hideArrowsInLessonViewer](../classes/hideArrowsInLessonViewer.html#method_hideArrowsInLessonViewer)",
+            "itemtype": "method",
+            "name": "openPlaylistMenuInLessonViewer",
+            "class": "LessonViewerPlaylist",
+            "module": "lesson-viewer"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_viewer.js",
+            "line": 188,
             "description": "Sets selected lesson from playlist menu",
             "itemtype": "method",
             "name": "selectComponentInLessonViewerPlaylistMenu",
@@ -4373,78 +4351,13 @@
                     "type": "Object"
                 }
             ],
-            "class": "selectComponentInLessonViewerPlaylistMenu",
+            "class": "LessonViewerPlaylist",
             "module": "lesson-viewer"
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 200,
-            "description": "Gets the current slide id",
-            "itemtype": "method",
-            "name": "getLessonViewerCurrentSlide",
-            "return": {
-                "description": "current slide id",
-                "type": "Number"
-            },
-            "class": "getLessonViewerCurrentSlide",
-            "module": "lesson-viewer"
-        },
-        {
-            "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 211,
-            "description": "Slide to given slide\n\nUses: [stopMediaInLessonViewer](../classes/stopMediaInLessonViewer.html#method_stopMediaInLessonViewer)\nand [getLessonViewerCurrentSlide](../classes/getLessonViewerCurrentSlide.html#method_getLessonViewerCurrentSlide)\nand [unbindLoader](../classes/unbindLoader.html#method_unbindLoader)\nand [bindLoader](../classes/bindLoader.html#method_bindLoader)",
-            "itemtype": "method",
-            "name": "slideToInLessonViewer",
-            "params": [
-                {
-                    "name": "to",
-                    "description": "slide to slide to",
-                    "type": "Object"
-                }
-            ],
-            "class": "slideToInLessonViewer",
-            "module": "lesson-viewer"
-        },
-        {
-            "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 253,
-            "description": "Hide slides navigation arrows in lesson viewer",
-            "itemtype": "method",
-            "name": "hideArrowsInLessonViewer",
-            "class": "hideArrowsInLessonViewer",
-            "module": "lesson-viewer"
-        },
-        {
-            "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 263,
-            "description": "Show slides navigation arrows in lesson viewer",
-            "itemtype": "method",
-            "name": "hideArrowsInLessonViewer",
-            "class": "hideArrowsInLessonViewer",
-            "module": "lesson-viewer"
-        },
-        {
-            "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 273,
-            "description": "Handle playlist menu on lesson viewer startup\n\nUses: [selectComponentInLessonViewerPlaylistMenu](../classes/selectComponentInLessonViewerPlaylistMenu.html#method_selectComponentInLessonViewerPlaylistMenu)",
-            "itemtype": "method",
-            "name": "initializeLessonViewer",
-            "class": "initializeLessonViewer",
-            "module": "lesson-viewer"
-        },
-        {
-            "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 292,
-            "description": "Stop media playling in current slide in lesson viewer",
-            "itemtype": "method",
-            "name": "stopMediaInLessonViewer",
-            "class": "stopMediaInLessonViewer",
-            "module": "lesson-viewer"
-        },
-        {
-            "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 304,
-            "description": "Open playlist menu, show lessons conver list and change playlist toggle label\n\nUses: [selectComponentInLessonViewerPlaylistMenu](../classes/selectComponentInLessonViewerPlaylistMenu.html#method_selectComponentInLessonViewerPlaylistMenu)",
+            "line": 278,
+            "description": "Open playlist menu, show lessons conver list and change playlist toggle label Uses: [selectComponentInLessonViewerPlaylistMenu](../classes/selectComponentInLessonViewerPlaylistMenu.html#method_selectComponentInLessonViewerPlaylistMenu)",
             "itemtype": "method",
             "name": "switchLessonInPlaylistMenuLessonViewer",
             "params": [
@@ -4459,13 +4372,47 @@
                     "type": "Object"
                 }
             ],
-            "class": "switchLessonInPlaylistMenuLessonViewer",
+            "class": "LessonViewerPlaylist",
             "module": "lesson-viewer"
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 322,
-            "description": "Open playlist menu, show lessons conver list and change playlist toggle label\n\nUses: [slideToInLessonViewer](../classes/slideToInLessonViewer.html#method_slideToInLessonViewer)\nand [switchLessonInPlaylistMenuLessonViewer](../classes/switchLessonInPlaylistMenuLessonViewer.html#method_switchLessonInPlaylistMenuLessonViewer)",
+            "line": 297,
+            "description": "Go to next slide in lesson viewer, if last slide it goes to first one. Uses: [slideToInLessonViewerWithLessonSwitch](../classes/slideToInLessonViewerWithLessonSwitch.html#method_slideToInLessonViewerWithLessonSwitch)",
+            "itemtype": "method",
+            "name": "goToNextSlideInLessonViewer",
+            "class": "LessonViewerSlidesNavigation",
+            "module": "lesson-viewer"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_viewer.js",
+            "line": 311,
+            "description": "Go to previous slide in lesson viewer, if first slide it goes to last one. Uses: [slideToInLessonViewerWithLessonSwitch](../classes/slideToInLessonViewerWithLessonSwitch.html#method_slideToInLessonViewerWithLessonSwitch)",
+            "itemtype": "method",
+            "name": "goToPrevSlideInLessonViewer",
+            "class": "LessonViewerSlidesNavigation",
+            "module": "lesson-viewer"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_viewer.js",
+            "line": 325,
+            "description": "Slide to given slide Uses: [stopMediaInLessonViewer](../classes/stopMediaInLessonViewer.html#method_stopMediaInLessonViewer) and [getLessonViewerCurrentSlide](../classes/getLessonViewerCurrentSlide.html#method_getLessonViewerCurrentSlide) and [unbindLoader](../classes/unbindLoader.html#method_unbindLoader) and [bindLoader](../classes/bindLoader.html#method_bindLoader)",
+            "itemtype": "method",
+            "name": "slideToInLessonViewer",
+            "params": [
+                {
+                    "name": "to",
+                    "description": "slide to slide to",
+                    "type": "Object"
+                }
+            ],
+            "class": "LessonViewerSlidesNavigation",
+            "module": "lesson-viewer"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_viewer.js",
+            "line": 361,
+            "description": "Open playlist menu, show lessons conver list and change playlist toggle label Uses: [slideToInLessonViewer](../classes/slideToInLessonViewer.html#method_slideToInLessonViewer) and [switchLessonInPlaylistMenuLessonViewer](../classes/switchLessonInPlaylistMenuLessonViewer.html#method_switchLessonInPlaylistMenuLessonViewer)",
             "itemtype": "method",
             "name": "slideToInLessonViewerWithLessonSwitch",
             "params": [
@@ -4475,25 +4422,7 @@
                     "type": "Object"
                 }
             ],
-            "class": "slideToInLessonViewerWithLessonSwitch",
-            "module": "lesson-viewer"
-        },
-        {
-            "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 337,
-            "description": "Go to next slide in lesson viewer,\nif last slide it goes to first one.\n\nUses: [slideToInLessonViewerWithLessonSwitch](../classes/slideToInLessonViewerWithLessonSwitch.html#method_slideToInLessonViewerWithLessonSwitch)",
-            "itemtype": "method",
-            "name": "goToNextSlideInLessonViewer",
-            "class": "goToNextSlideInLessonViewer",
-            "module": "lesson-viewer"
-        },
-        {
-            "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 355,
-            "description": "Go to previous slide in lesson viewer,\nif first slide it goes to last one.\n\nUses: [slideToInLessonViewerWithLessonSwitch](../classes/slideToInLessonViewerWithLessonSwitch.html#method_slideToInLessonViewerWithLessonSwitch)",
-            "itemtype": "method",
-            "name": "goToPrevSlideInLessonViewer",
-            "class": "goToPrevSlideInLessonViewer",
+            "class": "LessonViewerSlidesNavigation",
             "module": "lesson-viewer"
         },
         {

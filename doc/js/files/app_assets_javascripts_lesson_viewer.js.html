@@ -89,8 +89,6 @@
             
                 <li><a href="..&#x2F;classes/closeGenericVideoComponentCutter.html">closeGenericVideoComponentCutter</a></li>
             
-                <li><a href="..&#x2F;classes/closePlaylistMenuInLessonViewer.html">closePlaylistMenuInLessonViewer</a></li>
-            
                 <li><a href="..&#x2F;classes/createTagSpan.html">createTagSpan</a></li>
             
                 <li><a href="..&#x2F;classes/DashboardDocumentReady.html">DashboardDocumentReady</a></li>
@@ -125,17 +123,9 @@
             
                 <li><a href="..&#x2F;classes/GeneralUrls.html">GeneralUrls</a></li>
             
-                <li><a href="..&#x2F;classes/getLessonViewerCurrentSlide.html">getLessonViewerCurrentSlide</a></li>
-            
                 <li><a href="..&#x2F;classes/getMaximumZIndex.html">getMaximumZIndex</a></li>
             
                 <li><a href="..&#x2F;classes/getUnivoqueClassForTag.html">getUnivoqueClassForTag</a></li>
-            
-                <li><a href="..&#x2F;classes/goToNextSlideInLessonViewer.html">goToNextSlideInLessonViewer</a></li>
-            
-                <li><a href="..&#x2F;classes/goToPrevSlideInLessonViewer.html">goToPrevSlideInLessonViewer</a></li>
-            
-                <li><a href="..&#x2F;classes/hideArrowsInLessonViewer.html">hideArrowsInLessonViewer</a></li>
             
                 <li><a href="..&#x2F;classes/hideExpandedNotification.html">hideExpandedNotification</a></li>
             
@@ -166,8 +156,6 @@
                 <li><a href="..&#x2F;classes/initializeDraggableVirtualClassroomLesson.html">initializeDraggableVirtualClassroomLesson</a></li>
             
                 <li><a href="..&#x2F;classes/initializeHelp.html">initializeHelp</a></li>
-            
-                <li><a href="..&#x2F;classes/initializeLessonViewer.html">initializeLessonViewer</a></li>
             
                 <li><a href="..&#x2F;classes/initializeMedia.html">initializeMedia</a></li>
             
@@ -213,17 +201,23 @@
             
                 <li><a href="..&#x2F;classes/LessonEditorTinyMCE.html">LessonEditorTinyMCE</a></li>
             
-                <li><a href="..&#x2F;classes/LocationsDocumentReady.html">LocationsDocumentReady</a></li>
+                <li><a href="..&#x2F;classes/LessonViewerDocumentReady.html">LessonViewerDocumentReady</a></li>
             
-                <li><a href="..&#x2F;classes/openPlaylistMenuInLessonViewer.html">openPlaylistMenuInLessonViewer</a></li>
+                <li><a href="..&#x2F;classes/LessonViewerGeneral.html">LessonViewerGeneral</a></li>
+            
+                <li><a href="..&#x2F;classes/LessonViewerGraphics.html">LessonViewerGraphics</a></li>
+            
+                <li><a href="..&#x2F;classes/LessonViewerPlaylist.html">LessonViewerPlaylist</a></li>
+            
+                <li><a href="..&#x2F;classes/LessonViewerSlidesNavigation.html">LessonViewerSlidesNavigation</a></li>
+            
+                <li><a href="..&#x2F;classes/LocationsDocumentReady.html">LocationsDocumentReady</a></li>
             
                 <li><a href="..&#x2F;classes/removeFromTagsValue.html">removeFromTagsValue</a></li>
             
                 <li><a href="..&#x2F;classes/resetMediaElementChangeInfo.html">resetMediaElementChangeInfo</a></li>
             
                 <li><a href="..&#x2F;classes/selectAudioComponentCutterHandle.html">selectAudioComponentCutterHandle</a></li>
-            
-                <li><a href="..&#x2F;classes/selectComponentInLessonViewerPlaylistMenu.html">selectComponentInLessonViewerPlaylistMenu</a></li>
             
                 <li><a href="..&#x2F;classes/selectVideoComponentCutterHandle.html">selectVideoComponentCutterHandle</a></li>
             
@@ -241,19 +235,11 @@
             
                 <li><a href="..&#x2F;classes/showNotificationsTooltip.html">showNotificationsTooltip</a></li>
             
-                <li><a href="..&#x2F;classes/slideToInLessonViewer.html">slideToInLessonViewer</a></li>
-            
-                <li><a href="..&#x2F;classes/slideToInLessonViewerWithLessonSwitch.html">slideToInLessonViewerWithLessonSwitch</a></li>
-            
                 <li><a href="..&#x2F;classes/stopAllMedia.html">stopAllMedia</a></li>
             
                 <li><a href="..&#x2F;classes/stopMedia.html">stopMedia</a></li>
             
-                <li><a href="..&#x2F;classes/stopMediaInLessonViewer.html">stopMediaInLessonViewer</a></li>
-            
                 <li><a href="..&#x2F;classes/stopVideoInVideoEditorPreview.html">stopVideoInVideoEditorPreview</a></li>
-            
-                <li><a href="..&#x2F;classes/switchLessonInPlaylistMenuLessonViewer.html">switchLessonInPlaylistMenuLessonViewer</a></li>
             
                 <li><a href="..&#x2F;classes/uploadDone.html">uploadDone</a></li>
             
@@ -351,7 +337,7 @@
 <div class="file">
     <pre class="code prettyprint linenums">
 &#x2F;*
-  NOTA DI ADRIANO:
+  NOTA DI ADRIANO: FIXME metti questa nota nella descrizione del modulo
     ci sono tre bug conosciuti e dovuti al malfunzionamento di JScrollPane:
      (1) quando passo dalla prima slide della terza lezione all&#x27;ultima slide della seconda lezione, lo scroll non segue la selezione della lezione in basso
      (2) quando passo dall&#x27;ultima slide dell&#x27;ultima lezione alla prima slide della prima lezione, idem
@@ -363,17 +349,33 @@ Lesson viewer, it handles slides switching and playlist menu effects.
 @module lesson-viewer
 **&#x2F;
 
+
+
+
+
+&#x2F;**
+bla bla bla
+@method lessonViewerDocumentReady
+@for LessonViewerDocumentReady
+**&#x2F;
 function lessonViewerDocumentReady() {
-  
   initializeLessonViewer();
-  
+  lessonViewerDocumentReadyPlaylist();
+  lessonViewerDocumentReadySlidesNavigation();
+}
+
+&#x2F;**
+bla bla bla
+@method lessonViewerDocumentReadyPlaylist
+@for LessonViewerDocumentReady
+**&#x2F;
+function lessonViewerDocumentReadyPlaylist() {
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#carousel_container a&#x27;, function() {
     var me = $(this);
     if(!me.hasClass(&#x27;esciButton&#x27;) &amp;&amp; !me.hasClass(&#x27;_playlist_menu_item&#x27;) &amp;&amp; !me.hasClass(&#x27;_open_playlist&#x27;) &amp;&amp; !me.hasClass(&#x27;_close_playlist&#x27;)) {
       closePlaylistMenuInLessonViewer(function() {});
     }
   });
-  
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._playlist_menu_item&#x27;, function() {
     var lesson_id = $(this).data(&#x27;lesson-id&#x27;);
     switchLessonInPlaylistMenuLessonViewer(lesson_id, function() {
@@ -382,7 +384,6 @@ function lessonViewerDocumentReady() {
       });
     });
   });
-  
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;a._open_playlist&#x27;, function() {
     if(!$(this).data(&#x27;loaded&#x27;) &amp;&amp; $(&#x27;._playlist_menu_item&#x27;).length &gt; 3) {
       $(this).data(&#x27;loaded&#x27;, true);
@@ -394,11 +395,17 @@ function lessonViewerDocumentReady() {
     stopMediaInLessonViewer();
     openPlaylistMenuInLessonViewer();
   });
-  
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;a._close_playlist&#x27;, function() {
     closePlaylistMenuInLessonViewer(function() {});
   });
-  
+}
+
+&#x2F;**
+bla bla bla
+@method lessonViewerDocumentReadySlidesNavigation
+@for LessonViewerDocumentReady
+**&#x2F;
+function lessonViewerDocumentReadySlidesNavigation() {
   $(document.documentElement).keyup(function(e) {
     if(e.keyCode == 37) {
       goToPrevSlideInLessonViewer();
@@ -406,7 +413,6 @@ function lessonViewerDocumentReady() {
       goToNextSlideInLessonViewer();
     }
   });
-  
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#right_scroll&#x27;, function(e) {
     e.preventDefault();
     if(!$(this).hasClass(&#x27;disabled&#x27;)) {
@@ -414,7 +420,6 @@ function lessonViewerDocumentReady() {
       goToNextSlideInLessonViewer();
     }
   });
-  
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#left_scroll&#x27;, function(e) {
     e.preventDefault();
     if(!$(this).hasClass(&#x27;disabled&#x27;)) {
@@ -422,33 +427,81 @@ function lessonViewerDocumentReady() {
       goToPrevSlideInLessonViewer();
     }
   });
-  
+}
+
+
+
+
+
+&#x2F;**
+Gets the current slide id
+@method getLessonViewerCurrentSlide
+@for LessonViewerGeneral
+@return {Number} current slide id
+**&#x2F;
+function getLessonViewerCurrentSlide() {
+  return $(&#x27;#&#x27; + $(&#x27;._lesson_viewer_current_slide&#x27;).attr(&#x27;id&#x27;));
 }
 
 &#x2F;**
-* Open playlist menu, show lessons conver list and change playlist toggle label
-*
-* Uses: [hideArrowsInLessonViewer](..&#x2F;classes&#x2F;hideArrowsInLessonViewer.html#method_hideArrowsInLessonViewer)
-* 
-* @method openPlaylistMenuInLessonViewer
-* @for openPlaylistMenuInLessonViewer
-*&#x2F;
-function openPlaylistMenuInLessonViewer() {
-  hideArrowsInLessonViewer();
-  $(&#x27;a._open_playlist span&#x27;).hide();
-  $(&#x27;a._close_playlist span&#x27;).show();
-  $(&#x27;.playlistMenu&#x27;).slideDown(&#x27;slow&#x27;);
+Handle playlist menu on lesson viewer startup Uses: [selectComponentInLessonViewerPlaylistMenu](..&#x2F;classes&#x2F;selectComponentInLessonViewerPlaylistMenu.html#method_selectComponentInLessonViewerPlaylistMenu)
+@method initializeLessonViewer
+@for LessonViewerGeneral
+**&#x2F;
+function initializeLessonViewer() {
+  selectComponentInLessonViewerPlaylistMenu($(&#x27;._playlist_menu_item&#x27;).first());
+  if($(&#x27;._playlist_menu_item&#x27;).length &lt;= 3) {
+    $(&#x27;#playlist_menu&#x27;).css(&#x27;overflow&#x27;, &#x27;hidden&#x27;);
+  }
+  $(&#x27;html.lesson-viewer-layout .container&#x27;).css(&#x27;margin-top&#x27;, ($(window).height() - 590) &#x2F; 2 + &#x27;px&#x27;);
+  $(window).resize(function() {
+    $(&#x27;html.lesson-viewer-layout .container&#x27;).css(&#x27;margin-top&#x27;, ($(window).height() - 590) &#x2F; 2 + &#x27;px&#x27;);
+  });
 }
 
 &#x2F;**
-* Open playlist menu, show lessons conver list and change playlist toggle label
-*
-* Uses: [showArrowsInLessonViewer](..&#x2F;classes&#x2F;showArrowsInLessonViewer.html#method_showArrowsInLessonViewer)
-* 
-* @method closePlaylistMenuInLessonViewer
-* @for closePlaylistMenuInLessonViewer
-* @param callback {Object} to call after effect is complete
-*&#x2F;
+Stop media playling in current slide in lesson viewer
+@method stopMediaInLessonViewer
+@for LessonViewerGeneral
+**&#x2F;
+function stopMediaInLessonViewer() {
+  var current_slide_id = $(&#x27;._lesson_viewer_current_slide&#x27;).attr(&#x27;id&#x27;);
+  stopMedia(&#x27;#&#x27; + current_slide_id + &#x27; audio&#x27;);
+  stopMedia(&#x27;#&#x27; + current_slide_id + &#x27; video&#x27;);
+}
+
+
+
+
+
+&#x2F;**
+Hide slides navigation arrows in lesson viewer
+@method hideArrowsInLessonViewer
+@for LessonViewerGraphics
+**&#x2F;
+function hideArrowsInLessonViewer() {
+  $(&#x27;#right_scroll, #left_scroll&#x27;).hide();
+}
+
+&#x2F;**
+Show slides navigation arrows in lesson viewer
+@method showArrowsInLessonViewer
+@for LessonViewerGraphics
+**&#x2F;
+function showArrowsInLessonViewer() {
+  $(&#x27;#right_scroll, #left_scroll&#x27;).show();
+}
+
+
+
+
+
+&#x2F;**
+Open playlist menu, show lessons cover list and change playlist toggle label Uses: [showArrowsInLessonViewer](..&#x2F;classes&#x2F;showArrowsInLessonViewer.html#method_showArrowsInLessonViewer)
+@method closePlaylistMenuInLessonViewer
+@for LessonViewerPlaylist
+@param callback {Object} to call after effect is complete
+**&#x2F;
 function closePlaylistMenuInLessonViewer(callback) {
   $(&#x27;.playlistMenu&#x27;).slideUp(&#x27;slow&#x27;, function() {
     callback();
@@ -459,13 +512,24 @@ function closePlaylistMenuInLessonViewer(callback) {
 }
 
 &#x2F;**
-* Sets selected lesson from playlist menu
-*
-* @method selectComponentInLessonViewerPlaylistMenu
-* @for selectComponentInLessonViewerPlaylistMenu
-* @param component {Object} selected lesson
-* @param callback {Object} to call after function is complete
-*&#x2F;
+Open playlist menu, show lessons conver list and change playlist toggle label Uses: [hideArrowsInLessonViewer](..&#x2F;classes&#x2F;hideArrowsInLessonViewer.html#method_hideArrowsInLessonViewer)
+@method openPlaylistMenuInLessonViewer
+@for LessonViewerPlaylist
+**&#x2F;
+function openPlaylistMenuInLessonViewer() {
+  hideArrowsInLessonViewer();
+  $(&#x27;a._open_playlist span&#x27;).hide();
+  $(&#x27;a._close_playlist span&#x27;).show();
+  $(&#x27;.playlistMenu&#x27;).slideDown(&#x27;slow&#x27;);
+}
+
+&#x2F;**
+Sets selected lesson from playlist menu
+@method selectComponentInLessonViewerPlaylistMenu
+@for LessonViewerPlaylist
+@param component {Object} selected lesson
+@param callback {Object} to call after function is complete
+**&#x2F;
 function selectComponentInLessonViewerPlaylistMenu(component, callback) {
   $(&#x27;._playlist_menu_item&#x27;).css(&#x27;margin&#x27;, &#x27;2px 60px 2px 0&#x27;).css(&#x27;border&#x27;, 0);
   $(&#x27;._playlist_menu_item&#x27;).last().css(&#x27;margin-right&#x27;, 0);
@@ -550,28 +614,58 @@ function selectComponentInLessonViewerPlaylistMenu(component, callback) {
 }
 
 &#x2F;**
-* Gets the current slide id
-*
-* @method getLessonViewerCurrentSlide
-* @for getLessonViewerCurrentSlide
-* @return {Number} current slide id
-*&#x2F;
-function getLessonViewerCurrentSlide() {
-  return $(&#x27;#&#x27; + $(&#x27;._lesson_viewer_current_slide&#x27;).attr(&#x27;id&#x27;));
+Open playlist menu, show lessons conver list and change playlist toggle label Uses: [selectComponentInLessonViewerPlaylistMenu](..&#x2F;classes&#x2F;selectComponentInLessonViewerPlaylistMenu.html#method_selectComponentInLessonViewerPlaylistMenu)
+@method switchLessonInPlaylistMenuLessonViewer
+@for LessonViewerPlaylist
+@param lesson_id {Number} lesson id to switch to
+@param callback {Object} callback after function is complete
+**&#x2F;
+function switchLessonInPlaylistMenuLessonViewer(lesson_id, callback) {
+  if($(&#x27;._lesson_title_in_playlist&#x27;).data(&#x27;lesson-id&#x27;) != lesson_id) {
+    $(&#x27;._lesson_title_in_playlist&#x27;).hide();
+    $(&#x27;#lesson_viewer_playlist_title_&#x27; + lesson_id).show();
+    selectComponentInLessonViewerPlaylistMenu($(&#x27;#playlist_menu_item_&#x27; + lesson_id), callback);
+  }
+}
+
+
+
+
+
+&#x2F;**
+Go to next slide in lesson viewer, if last slide it goes to first one. Uses: [slideToInLessonViewerWithLessonSwitch](..&#x2F;classes&#x2F;slideToInLessonViewerWithLessonSwitch.html#method_slideToInLessonViewerWithLessonSwitch)
+@method goToNextSlideInLessonViewer
+@for LessonViewerSlidesNavigation
+**&#x2F;
+function goToNextSlideInLessonViewer() {
+  var next_slide = getLessonViewerCurrentSlide().next();
+  if(next_slide.length == 0) {
+    slideToInLessonViewerWithLessonSwitch($(&#x27;._slide_in_lesson_viewer&#x27;).first());
+  } else {
+    slideToInLessonViewerWithLessonSwitch(next_slide);
+  }
 }
 
 &#x2F;**
-* Slide to given slide
-*
-* Uses: [stopMediaInLessonViewer](..&#x2F;classes&#x2F;stopMediaInLessonViewer.html#method_stopMediaInLessonViewer)
-* and [getLessonViewerCurrentSlide](..&#x2F;classes&#x2F;getLessonViewerCurrentSlide.html#method_getLessonViewerCurrentSlide)
-* and [unbindLoader](..&#x2F;classes&#x2F;unbindLoader.html#method_unbindLoader)
-* and [bindLoader](..&#x2F;classes&#x2F;bindLoader.html#method_bindLoader)
-* 
-* @method slideToInLessonViewer
-* @for slideToInLessonViewer
-* @param to {Object} slide to slide to
-*&#x2F;
+Go to previous slide in lesson viewer, if first slide it goes to last one. Uses: [slideToInLessonViewerWithLessonSwitch](..&#x2F;classes&#x2F;slideToInLessonViewerWithLessonSwitch.html#method_slideToInLessonViewerWithLessonSwitch)
+@method goToPrevSlideInLessonViewer
+@for LessonViewerSlidesNavigation
+**&#x2F;
+function goToPrevSlideInLessonViewer() {
+  var prev_slide = getLessonViewerCurrentSlide().prev();
+  if(prev_slide.length == 0) {
+    slideToInLessonViewerWithLessonSwitch($(&#x27;._slide_in_lesson_viewer&#x27;).last());
+  } else {
+    slideToInLessonViewerWithLessonSwitch(prev_slide);
+  }
+}
+
+&#x2F;**
+Slide to given slide Uses: [stopMediaInLessonViewer](..&#x2F;classes&#x2F;stopMediaInLessonViewer.html#method_stopMediaInLessonViewer) and [getLessonViewerCurrentSlide](..&#x2F;classes&#x2F;getLessonViewerCurrentSlide.html#method_getLessonViewerCurrentSlide) and [unbindLoader](..&#x2F;classes&#x2F;unbindLoader.html#method_unbindLoader) and [bindLoader](..&#x2F;classes&#x2F;bindLoader.html#method_bindLoader)
+@method slideToInLessonViewer
+@for LessonViewerSlidesNavigation
+@param to {Object} slide to slide to
+**&#x2F;
 function slideToInLessonViewer(to) {
   stopMediaInLessonViewer();
   var from = getLessonViewerCurrentSlide();
@@ -603,123 +697,14 @@ function slideToInLessonViewer(to) {
 }
 
 &#x2F;**
-* Hide slides navigation arrows in lesson viewer
-* 
-* @method hideArrowsInLessonViewer
-* @for hideArrowsInLessonViewer
-*&#x2F;
-function hideArrowsInLessonViewer() {
-  $(&#x27;#right_scroll, #left_scroll&#x27;).hide();
-}
-
-&#x2F;**
-* Show slides navigation arrows in lesson viewer
-* 
-* @method hideArrowsInLessonViewer
-* @for hideArrowsInLessonViewer
-*&#x2F;
-function showArrowsInLessonViewer() {
-  $(&#x27;#right_scroll, #left_scroll&#x27;).show();
-}
-
-&#x2F;**
-* Handle playlist menu on lesson viewer startup
-*
-* Uses: [selectComponentInLessonViewerPlaylistMenu](..&#x2F;classes&#x2F;selectComponentInLessonViewerPlaylistMenu.html#method_selectComponentInLessonViewerPlaylistMenu)
-* 
-* @method initializeLessonViewer
-* @for initializeLessonViewer
-*&#x2F;
-function initializeLessonViewer() {
-  selectComponentInLessonViewerPlaylistMenu($(&#x27;._playlist_menu_item&#x27;).first());
-  if($(&#x27;._playlist_menu_item&#x27;).length &lt;= 3) {
-    $(&#x27;#playlist_menu&#x27;).css(&#x27;overflow&#x27;, &#x27;hidden&#x27;);
-  }
-  $(&#x27;html.lesson-viewer-layout .container&#x27;).css(&#x27;margin-top&#x27;, ($(window).height() - 590) &#x2F; 2 + &#x27;px&#x27;);
-  $(window).resize(function() {
-    $(&#x27;html.lesson-viewer-layout .container&#x27;).css(&#x27;margin-top&#x27;, ($(window).height() - 590) &#x2F; 2 + &#x27;px&#x27;);
-  });
-}
-
-&#x2F;**
-* Stop media playling in current slide in lesson viewer
-* 
-* @method stopMediaInLessonViewer
-* @for stopMediaInLessonViewer
-*&#x2F;
-function stopMediaInLessonViewer() {
-  var current_slide_id = $(&#x27;._lesson_viewer_current_slide&#x27;).attr(&#x27;id&#x27;);
-  stopMedia(&#x27;#&#x27; + current_slide_id + &#x27; audio&#x27;);
-  stopMedia(&#x27;#&#x27; + current_slide_id + &#x27; video&#x27;);
-}
-
-&#x2F;**
-* Open playlist menu, show lessons conver list and change playlist toggle label
-*
-* Uses: [selectComponentInLessonViewerPlaylistMenu](..&#x2F;classes&#x2F;selectComponentInLessonViewerPlaylistMenu.html#method_selectComponentInLessonViewerPlaylistMenu)
-* 
-* @method switchLessonInPlaylistMenuLessonViewer
-* @for switchLessonInPlaylistMenuLessonViewer
-* @param lesson_id {Number} lesson id to switch to
-* @param callback {Object} callback after function is complete
-*&#x2F;
-function switchLessonInPlaylistMenuLessonViewer(lesson_id, callback) {
-  if($(&#x27;._lesson_title_in_playlist&#x27;).data(&#x27;lesson-id&#x27;) != lesson_id) {
-    $(&#x27;._lesson_title_in_playlist&#x27;).hide();
-    $(&#x27;#lesson_viewer_playlist_title_&#x27; + lesson_id).show();
-    selectComponentInLessonViewerPlaylistMenu($(&#x27;#playlist_menu_item_&#x27; + lesson_id), callback);
-  }
-}
-
-&#x2F;**
-* Open playlist menu, show lessons conver list and change playlist toggle label
-*
-* Uses: [slideToInLessonViewer](..&#x2F;classes&#x2F;slideToInLessonViewer.html#method_slideToInLessonViewer)
-* and [switchLessonInPlaylistMenuLessonViewer](..&#x2F;classes&#x2F;switchLessonInPlaylistMenuLessonViewer.html#method_switchLessonInPlaylistMenuLessonViewer)
-* 
-* @method slideToInLessonViewerWithLessonSwitch
-* @for slideToInLessonViewerWithLessonSwitch
-* @param component {Object} slide to slide to
-*&#x2F;
+Open playlist menu, show lessons conver list and change playlist toggle label Uses: [slideToInLessonViewer](..&#x2F;classes&#x2F;slideToInLessonViewer.html#method_slideToInLessonViewer) and [switchLessonInPlaylistMenuLessonViewer](..&#x2F;classes&#x2F;switchLessonInPlaylistMenuLessonViewer.html#method_switchLessonInPlaylistMenuLessonViewer)
+@method slideToInLessonViewerWithLessonSwitch
+@for LessonViewerSlidesNavigation
+@param component {Object} slide to slide to
+**&#x2F;
 function slideToInLessonViewerWithLessonSwitch(component) {
   slideToInLessonViewer(component);
   switchLessonInPlaylistMenuLessonViewer(component.data(&#x27;lesson-id&#x27;));
-}
-
-&#x2F;**
-* Go to next slide in lesson viewer,
-* if last slide it goes to first one.
-*
-* Uses: [slideToInLessonViewerWithLessonSwitch](..&#x2F;classes&#x2F;slideToInLessonViewerWithLessonSwitch.html#method_slideToInLessonViewerWithLessonSwitch)
-* 
-* @method goToNextSlideInLessonViewer
-* @for goToNextSlideInLessonViewer
-*&#x2F;
-function goToNextSlideInLessonViewer() {
-  var next_slide = getLessonViewerCurrentSlide().next();
-  if(next_slide.length == 0) {
-    slideToInLessonViewerWithLessonSwitch($(&#x27;._slide_in_lesson_viewer&#x27;).first());
-  } else {
-    slideToInLessonViewerWithLessonSwitch(next_slide);
-  }
-}
-
-&#x2F;**
-* Go to previous slide in lesson viewer,
-* if first slide it goes to last one.
-*
-* Uses: [slideToInLessonViewerWithLessonSwitch](..&#x2F;classes&#x2F;slideToInLessonViewerWithLessonSwitch.html#method_slideToInLessonViewerWithLessonSwitch)
-* 
-* @method goToPrevSlideInLessonViewer
-* @for goToPrevSlideInLessonViewer
-*&#x2F;
-function goToPrevSlideInLessonViewer() {
-  var prev_slide = getLessonViewerCurrentSlide().prev();
-  if(prev_slide.length == 0) {
-    slideToInLessonViewerWithLessonSwitch($(&#x27;._slide_in_lesson_viewer&#x27;).last());
-  } else {
-    slideToInLessonViewerWithLessonSwitch(prev_slide);
-  }
 }
 
     </pre>
