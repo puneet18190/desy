@@ -8,6 +8,57 @@ Media elements players: initializer, play, stop, update frame.
 
 
 /**
+@method initializeActionOfMediaTimeUpdaterInAudioEditor
+@for PlayersAudioEditor
+**/
+function initializeActionOfMediaTimeUpdaterInAudioEditor(media, identifier, force_parsed_int) {
+  var component = $('#audio_component_' + identifier);
+  var audio_cut_to = component.data('to');
+  var parsed_int = parseInt(media.currentTime);
+  if(force_parsed_int) {
+    parsed_int = audio_cut_to;
+  }
+  if($('#info_container').data('in-preview')) {
+    if(parsed_int > component.find('._media_player_slider').slider('value')) {
+      increaseAudioEditorPreviewTimer();
+      if(parsed_int == audio_cut_to) {
+        var old_start = component.data('from');
+        component.find('audio')[0].pause();
+        component.find('._current_time').html(secondsToDateString(old_start));
+        component.find('._media_player_slider').slider('value', old_start);
+        setCurrentTimeToMedia(component.find('audio'), old_start);
+        var next_component = component.next();
+        if(next_component.length > 0) {
+          deselectAllAudioEditorComponentsInPreviewMode();
+          var new_start = next_component.data('from');
+          next_component.find('._media_player_slider').slider('value', new_start);
+          next_component.find('._current_time').html(secondsToDateString(new_start));
+          loadAudioComponentIfNotLoadedYet(next_component);
+          setCurrentTimeToMedia(next_component.find('audio'), new_start);
+          startAudioEditorPreview(next_component);
+        } else {
+          leaveAudioEditorPreviewMode($('._audio_editor_component').first().attr('id'));
+        }
+      } else {
+        component.find('._current_time').html(secondsToDateString(parsed_int));
+        component.find('._media_player_slider').slider('value', parsed_int);
+      }
+    }
+  } else if(component.data('playing')) {
+    if(parsed_int == (audio_cut_to)) {
+      var initial_time = component.data('from');
+      component.find('._media_player_pause_in_audio_editor_preview').click();
+      component.find('._media_player_slider').slider('value', initial_time);
+      component.find('._current_time').html(secondsToDateString(initial_time));
+      setCurrentTimeToMedia($(media), initial_time);
+    } else if(!component.find('._media_player_play_in_audio_editor_preview').is(':visible')) {
+      component.find('._current_time').html(secondsToDateString(parsed_int));
+      component.find('._media_player_slider').slider('value', parsed_int);
+    }
+  }
+}
+
+/**
 bla bla bla
 @method initializeAudioEditorCutter
 @for PlayersAudioEditor
@@ -95,57 +146,6 @@ function initializeAudioEditorCutter(identifier) {
       }
     }
   });
-}
-
-/**
-@method initializeActionOfMediaTimeUpdaterInAudioEditor
-@for PlayersAudioEditor
-**/
-function initializeActionOfMediaTimeUpdaterInAudioEditor(media, identifier, force_parsed_int) {
-  var component = $('#audio_component_' + identifier);
-  var audio_cut_to = component.data('to');
-  var parsed_int = parseInt(media.currentTime);
-  if(force_parsed_int) {
-    parsed_int = audio_cut_to;
-  }
-  if($('#info_container').data('in-preview')) {
-    if(parsed_int > component.find('._media_player_slider').slider('value')) {
-      increaseAudioEditorPreviewTimer();
-      if(parsed_int == audio_cut_to) {
-        var old_start = component.data('from');
-        component.find('audio')[0].pause();
-        component.find('._current_time').html(secondsToDateString(old_start));
-        component.find('._media_player_slider').slider('value', old_start);
-        setCurrentTimeToMedia(component.find('audio'), old_start);
-        var next_component = component.next();
-        if(next_component.length > 0) {
-          deselectAllAudioEditorComponentsInPreviewMode();
-          var new_start = next_component.data('from');
-          next_component.find('._media_player_slider').slider('value', new_start);
-          next_component.find('._current_time').html(secondsToDateString(new_start));
-          loadAudioComponentIfNotLoadedYet(next_component);
-          setCurrentTimeToMedia(next_component.find('audio'), new_start);
-          startAudioEditorPreview(next_component);
-        } else {
-          leaveAudioEditorPreviewMode($('._audio_editor_component').first().attr('id'));
-        }
-      } else {
-        component.find('._current_time').html(secondsToDateString(parsed_int));
-        component.find('._media_player_slider').slider('value', parsed_int);
-      }
-    }
-  } else if(component.data('playing')) {
-    if(parsed_int == (audio_cut_to)) {
-      var initial_time = component.data('from');
-      component.find('._media_player_pause_in_audio_editor_preview').click();
-      component.find('._media_player_slider').slider('value', initial_time);
-      component.find('._current_time').html(secondsToDateString(initial_time));
-      setCurrentTimeToMedia($(media), initial_time);
-    } else if(!component.find('._media_player_play_in_audio_editor_preview').is(':visible')) {
-      component.find('._current_time').html(secondsToDateString(parsed_int));
-      component.find('._media_player_slider').slider('value', parsed_int);
-    }
-  }
 }
 
 /**
