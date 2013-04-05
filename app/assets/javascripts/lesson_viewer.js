@@ -15,19 +15,22 @@ Lesson viewer, it handles slides switching and playlist menu effects.
 
 
 
-
-
-
-
-
-// document ready
-
+/**
+bla bla bla
+@method lessonViewerDocumentReady
+@for LessonViewerDocumentReady
+**/
 function lessonViewerDocumentReady() {
   initializeLessonViewer();
   lessonViewerDocumentReadyPlaylist();
   lessonViewerDocumentReadySlidesNavigation();
 }
 
+/**
+bla bla bla
+@method lessonViewerDocumentReadyPlaylist
+@for LessonViewerDocumentReady
+**/
 function lessonViewerDocumentReadyPlaylist() {
   $('body').on('click', '#carousel_container a', function() {
     var me = $(this);
@@ -59,6 +62,11 @@ function lessonViewerDocumentReadyPlaylist() {
   });
 }
 
+/**
+bla bla bla
+@method lessonViewerDocumentReadySlidesNavigation
+@for LessonViewerDocumentReady
+**/
 function lessonViewerDocumentReadySlidesNavigation() {
   $(document.documentElement).keyup(function(e) {
     if(e.keyCode == 37) {
@@ -87,37 +95,21 @@ function lessonViewerDocumentReadySlidesNavigation() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-// general
-
 /**
-* Gets the current slide id
-*
-* @method getLessonViewerCurrentSlide
-* @for getLessonViewerCurrentSlide
-* @return {Number} current slide id
-*/
+Gets the current slide id
+@method getLessonViewerCurrentSlide
+@for LessonViewerGeneral
+@return {Number} current slide id
+**/
 function getLessonViewerCurrentSlide() {
   return $('#' + $('._lesson_viewer_current_slide').attr('id'));
 }
 
 /**
-* Handle playlist menu on lesson viewer startup
-*
-* Uses: [selectComponentInLessonViewerPlaylistMenu](../classes/selectComponentInLessonViewerPlaylistMenu.html#method_selectComponentInLessonViewerPlaylistMenu)
-* 
-* @method initializeLessonViewer
-* @for initializeLessonViewer
-*/
+Handle playlist menu on lesson viewer startup Uses: [selectComponentInLessonViewerPlaylistMenu](../classes/selectComponentInLessonViewerPlaylistMenu.html#method_selectComponentInLessonViewerPlaylistMenu)
+@method initializeLessonViewer
+@for LessonViewerGeneral
+**/
 function initializeLessonViewer() {
   selectComponentInLessonViewerPlaylistMenu($('._playlist_menu_item').first());
   if($('._playlist_menu_item').length <= 3) {
@@ -130,11 +122,10 @@ function initializeLessonViewer() {
 }
 
 /**
-* Stop media playling in current slide in lesson viewer
-* 
-* @method stopMediaInLessonViewer
-* @for stopMediaInLessonViewer
-*/
+Stop media playling in current slide in lesson viewer
+@method stopMediaInLessonViewer
+@for LessonViewerGeneral
+**/
 function stopMediaInLessonViewer() {
   var current_slide_id = $('._lesson_viewer_current_slide').attr('id');
   stopMedia('#' + current_slide_id + ' audio');
@@ -145,34 +136,20 @@ function stopMediaInLessonViewer() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-// graphics
-
 /**
-* Hide slides navigation arrows in lesson viewer
-* 
-* @method hideArrowsInLessonViewer
-* @for hideArrowsInLessonViewer
-*/
+Hide slides navigation arrows in lesson viewer
+@method hideArrowsInLessonViewer
+@for LessonViewerGraphics
+**/
 function hideArrowsInLessonViewer() {
   $('#right_scroll, #left_scroll').hide();
 }
 
 /**
-* Show slides navigation arrows in lesson viewer
-* 
-* @method hideArrowsInLessonViewer
-* @for hideArrowsInLessonViewer
-*/
+Show slides navigation arrows in lesson viewer
+@method hideArrowsInLessonViewer
+@for LessonViewerGraphics
+**/
 function showArrowsInLessonViewer() {
   $('#right_scroll, #left_scroll').show();
 }
@@ -181,27 +158,12 @@ function showArrowsInLessonViewer() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-// playlist
-
 /**
-* Open playlist menu, show lessons cover list and change playlist toggle label
-*
-* Uses: [showArrowsInLessonViewer](../classes/showArrowsInLessonViewer.html#method_showArrowsInLessonViewer)
-* 
-* @method closePlaylistMenuInLessonViewer
-* @for closePlaylistMenuInLessonViewer
-* @param callback {Object} to call after effect is complete
-*/
+Open playlist menu, show lessons cover list and change playlist toggle label Uses: [showArrowsInLessonViewer](../classes/showArrowsInLessonViewer.html#method_showArrowsInLessonViewer)
+@method closePlaylistMenuInLessonViewer
+@for LessonViewerPlaylist
+@param callback {Object} to call after effect is complete
+**/
 function closePlaylistMenuInLessonViewer(callback) {
   $('.playlistMenu').slideUp('slow', function() {
     callback();
@@ -212,13 +174,10 @@ function closePlaylistMenuInLessonViewer(callback) {
 }
 
 /**
-* Open playlist menu, show lessons conver list and change playlist toggle label
-*
-* Uses: [hideArrowsInLessonViewer](../classes/hideArrowsInLessonViewer.html#method_hideArrowsInLessonViewer)
-* 
-* @method openPlaylistMenuInLessonViewer
-* @for openPlaylistMenuInLessonViewer
-*/
+Open playlist menu, show lessons conver list and change playlist toggle label Uses: [hideArrowsInLessonViewer](../classes/hideArrowsInLessonViewer.html#method_hideArrowsInLessonViewer)
+@method openPlaylistMenuInLessonViewer
+@for LessonViewerPlaylist
+**/
 function openPlaylistMenuInLessonViewer() {
   hideArrowsInLessonViewer();
   $('a._open_playlist span').hide();
@@ -227,13 +186,12 @@ function openPlaylistMenuInLessonViewer() {
 }
 
 /**
-* Sets selected lesson from playlist menu
-*
-* @method selectComponentInLessonViewerPlaylistMenu
-* @for selectComponentInLessonViewerPlaylistMenu
-* @param component {Object} selected lesson
-* @param callback {Object} to call after function is complete
-*/
+Sets selected lesson from playlist menu
+@method selectComponentInLessonViewerPlaylistMenu
+@for LessonViewerPlaylist
+@param component {Object} selected lesson
+@param callback {Object} to call after function is complete
+**/
 function selectComponentInLessonViewerPlaylistMenu(component, callback) {
   $('._playlist_menu_item').css('margin', '2px 60px 2px 0').css('border', 0);
   $('._playlist_menu_item').last().css('margin-right', 0);
@@ -318,15 +276,12 @@ function selectComponentInLessonViewerPlaylistMenu(component, callback) {
 }
 
 /**
-* Open playlist menu, show lessons conver list and change playlist toggle label
-*
-* Uses: [selectComponentInLessonViewerPlaylistMenu](../classes/selectComponentInLessonViewerPlaylistMenu.html#method_selectComponentInLessonViewerPlaylistMenu)
-* 
-* @method switchLessonInPlaylistMenuLessonViewer
-* @for switchLessonInPlaylistMenuLessonViewer
-* @param lesson_id {Number} lesson id to switch to
-* @param callback {Object} callback after function is complete
-*/
+Open playlist menu, show lessons conver list and change playlist toggle label Uses: [selectComponentInLessonViewerPlaylistMenu](../classes/selectComponentInLessonViewerPlaylistMenu.html#method_selectComponentInLessonViewerPlaylistMenu)
+@method switchLessonInPlaylistMenuLessonViewer
+@for LessonViewerPlaylist
+@param lesson_id {Number} lesson id to switch to
+@param callback {Object} callback after function is complete
+**/
 function switchLessonInPlaylistMenuLessonViewer(lesson_id, callback) {
   if($('._lesson_title_in_playlist').data('lesson-id') != lesson_id) {
     $('._lesson_title_in_playlist').hide();
@@ -339,37 +294,11 @@ function switchLessonInPlaylistMenuLessonViewer(lesson_id, callback) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// slides navigation
-
 /**
-* Go to next slide in lesson viewer,
-* if last slide it goes to first one.
-*
-* Uses: [slideToInLessonViewerWithLessonSwitch](../classes/slideToInLessonViewerWithLessonSwitch.html#method_slideToInLessonViewerWithLessonSwitch)
-* 
-* @method goToNextSlideInLessonViewer
-* @for goToNextSlideInLessonViewer
-*/
+Go to next slide in lesson viewer, if last slide it goes to first one. Uses: [slideToInLessonViewerWithLessonSwitch](../classes/slideToInLessonViewerWithLessonSwitch.html#method_slideToInLessonViewerWithLessonSwitch)
+@method goToNextSlideInLessonViewer
+@for LessonViewerSlidesNavigation
+**/
 function goToNextSlideInLessonViewer() {
   var next_slide = getLessonViewerCurrentSlide().next();
   if(next_slide.length == 0) {
@@ -380,14 +309,10 @@ function goToNextSlideInLessonViewer() {
 }
 
 /**
-* Go to previous slide in lesson viewer,
-* if first slide it goes to last one.
-*
-* Uses: [slideToInLessonViewerWithLessonSwitch](../classes/slideToInLessonViewerWithLessonSwitch.html#method_slideToInLessonViewerWithLessonSwitch)
-* 
-* @method goToPrevSlideInLessonViewer
-* @for goToPrevSlideInLessonViewer
-*/
+Go to previous slide in lesson viewer, if first slide it goes to last one. Uses: [slideToInLessonViewerWithLessonSwitch](../classes/slideToInLessonViewerWithLessonSwitch.html#method_slideToInLessonViewerWithLessonSwitch)
+@method goToPrevSlideInLessonViewer
+@for LessonViewerSlidesNavigation
+**/
 function goToPrevSlideInLessonViewer() {
   var prev_slide = getLessonViewerCurrentSlide().prev();
   if(prev_slide.length == 0) {
@@ -398,17 +323,11 @@ function goToPrevSlideInLessonViewer() {
 }
 
 /**
-* Slide to given slide
-*
-* Uses: [stopMediaInLessonViewer](../classes/stopMediaInLessonViewer.html#method_stopMediaInLessonViewer)
-* and [getLessonViewerCurrentSlide](../classes/getLessonViewerCurrentSlide.html#method_getLessonViewerCurrentSlide)
-* and [unbindLoader](../classes/unbindLoader.html#method_unbindLoader)
-* and [bindLoader](../classes/bindLoader.html#method_bindLoader)
-* 
-* @method slideToInLessonViewer
-* @for slideToInLessonViewer
-* @param to {Object} slide to slide to
-*/
+Slide to given slide Uses: [stopMediaInLessonViewer](../classes/stopMediaInLessonViewer.html#method_stopMediaInLessonViewer) and [getLessonViewerCurrentSlide](../classes/getLessonViewerCurrentSlide.html#method_getLessonViewerCurrentSlide) and [unbindLoader](../classes/unbindLoader.html#method_unbindLoader) and [bindLoader](../classes/bindLoader.html#method_bindLoader)
+@method slideToInLessonViewer
+@for LessonViewerSlidesNavigation
+@param to {Object} slide to slide to
+**/
 function slideToInLessonViewer(to) {
   stopMediaInLessonViewer();
   var from = getLessonViewerCurrentSlide();
@@ -440,15 +359,11 @@ function slideToInLessonViewer(to) {
 }
 
 /**
-* Open playlist menu, show lessons conver list and change playlist toggle label
-*
-* Uses: [slideToInLessonViewer](../classes/slideToInLessonViewer.html#method_slideToInLessonViewer)
-* and [switchLessonInPlaylistMenuLessonViewer](../classes/switchLessonInPlaylistMenuLessonViewer.html#method_switchLessonInPlaylistMenuLessonViewer)
-* 
-* @method slideToInLessonViewerWithLessonSwitch
-* @for slideToInLessonViewerWithLessonSwitch
-* @param component {Object} slide to slide to
-*/
+Open playlist menu, show lessons conver list and change playlist toggle label Uses: [slideToInLessonViewer](../classes/slideToInLessonViewer.html#method_slideToInLessonViewer) and [switchLessonInPlaylistMenuLessonViewer](../classes/switchLessonInPlaylistMenuLessonViewer.html#method_switchLessonInPlaylistMenuLessonViewer)
+@method slideToInLessonViewerWithLessonSwitch
+@for LessonViewerSlidesNavigation
+@param component {Object} slide to slide to
+**/
 function slideToInLessonViewerWithLessonSwitch(component) {
   slideToInLessonViewer(component);
   switchLessonInPlaylistMenuLessonViewer(component.data('lesson-id'));
