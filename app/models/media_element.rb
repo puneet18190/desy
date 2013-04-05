@@ -47,8 +47,8 @@ require 'lessons_media_elements_shared'
 # * *length* of +description+ (maximum configured in the translation file)
 # * *presence* of +media+; <b>this validation is skipped if the element is of type Video or Audio, and if the element is being composed</b>: in fact, in this case there is not yet a media to be attached (unlike when the element is uploaded, because when it's uploaded there exists a media file but it's not yet converted)
 # * *if* *the* *element* *is* *public*, +publication_date+ can't be null, whereas if it's private it must be null
-# * *the* *element* *cannot* *be* *public* if new record
-# * *if* *the* *element* *is* *public*, the fields +media+, +title+, +description+, +is_public+, +publication_date+ can't be changed anymore
+# * *the* *element* *cannot* *be* *public* if new record <b>This validation is not fired if skip_public_validation is +true+</b>
+# * *if* *the* *element* *is* *public*, the fields +media+, +title+, +description+, +is_public+, +publication_date+ can't be changed anymore <b>This validation is not fired if skip_public_validation is +true+</b>
 # * *if* *the* *element* *is* *private*, the field +user_id+ can't be changed (this field may be changed only if the element is public, because if the user decides to close his profile, the public elements that he created can't be deleted: using User#destroy_with_dependencies they are switched to another owner (the super administrator of the application, see User.admin)
 # * *minimum* *number* of tags (configurated in settings.yml), <b>only if the attribute validating_in_form is set as +true+</b>
 # * *size* of the file attached to +media+ (configured in settings.yml, in megabytes)
@@ -117,6 +117,8 @@ class MediaElement < ActiveRecord::Base
   attr_writer :validating_in_form
   # Set to true when it's necessary to destroy public elements (used in the administrator section, see Admin::MediaElementsController#destroy)
   attr_accessor :destroyable_even_if_public
+  # Set to true when it's necessary to skip the public error (used in seeding)
+  attr_accessor :skip_public_validations
   
   has_many :bookmarks, :as => :bookmarkable, :dependent => :destroy
   has_many :media_elements_slides
@@ -554,15 +556,17 @@ class MediaElement < ActiveRecord::Base
   # If it's new record, it validates that +is_public+ must be false; otherwise, if public it validates that +media+, +title+, +description+, +is_public+, +publication_date+ can't be changed; if private, it validates that +user_id+ can't be changed
   def validate_impossible_changes # :doc:
     if @media_element.nil?
-      errors.add(:is_public, :must_be_false_if_new_record) if self.is_public
+      errors.add(:is_public, :must_be_false_if_new_record) if self.is_public && !self.skip_public_validations
     else
       errors.add(:sti_type, :cant_be_changed) if @media_element.sti_type != self.sti_type
       if @media_element.is_public
-        errors.add(:media, :cant_be_changed_if_public) if self.changed.include? 'media'
-        errors.add(:title, :cant_be_changed_if_public) if @media_element.title != self.title
-        errors.add(:description, :cant_be_changed_if_public) if @media_element.description != self.description
-        errors.add(:is_public, :cant_be_changed_if_public) if !self.is_public
-        errors.add(:publication_date, :cant_be_changed_if_public) if @media_element.publication_date != self.publication_date
+        if !self.skip_public_validations
+          errors.add(:media, :cant_be_changed_if_public) if self.changed.include? 'media'
+          errors.add(:title, :cant_be_changed_if_public) if @media_element.title != self.title
+          errors.add(:description, :cant_be_changed_if_public) if @media_element.description != self.description
+          errors.add(:is_public, :cant_be_changed_if_public) if !self.is_public
+          errors.add(:publication_date, :cant_be_changed_if_public) if @media_element.publication_date != self.publication_date
+        end
       else
         errors.add(:user_id, :cant_be_changed) if @media_element.user_id != self.user_id
       end
