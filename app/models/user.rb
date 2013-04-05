@@ -152,6 +152,19 @@ class User < ActiveRecord::Base
   def admin?
     self.super_admin?
   end
+
+  # === Description
+  #
+  # It accepts all the policies declared in +registration_policies+. Example:
+  #   User.new.accept_policies
+  #
+  # === Returns
+  #
+  # An enumerator of the policies
+  #
+  def accept_policies
+    registration_policies.each{ |p| send("#{p}=", '1') }
+  end
   
   # === Description
   #
