@@ -7,15 +7,143 @@ Tags autocomplete, _add_ and _remove_ from list.
 
 
 
+/**
+Handle adding tag not in the autocomplete data list
+@method addTagWithoutSuggestion
+@for TagsAccessories
+@param input {String} input selector for tag, class or id
+@param container_selector {String} added tags container selector, class or id
+@param tags_value_selector {String} hidden input field for tags value selector
+**/
+function addTagWithoutSuggestion(input, container_selector, tags_value_selector) {
+  var my_val = $.trim($(input).val()).toLowerCase();
+  if(my_val.length >= $('#popup_parameters_container').data('min-tag-length') && checkNoTagDuplicates(my_val, container_selector)) {
+    if($('.ui-autocomplete a').first().text() == my_val) {
+      addToTagsValue(my_val, (container_selector + ' ' + tags_value_selector));
+      createTagSpan(my_val, false).insertBefore(input);
+    } else {
+      addToTagsValue(my_val, (container_selector + ' ' + tags_value_selector));
+      createTagSpan(my_val, true).insertBefore(input);
+      $.ajax({
+        type: 'get',
+        beforeSend: unbindLoader(),
+        url: '/tags/' + my_val + '/check_presence',
+        dataType: 'json',
+        success: function(data) {
+          if(data.ok) {
+            $(container_selector).find('span.' + getUnivoqueClassForTag(my_val)).removeClass('new_tag');
+          }
+        }
+      }).always(bindLoader);
+    }
+    disableTagsInputTooHigh(container_selector, input);
+  }
+  $('.ui-autocomplete').hide();
+  $(input).val('');
+}
+
+/**
+Add tag word to hidden field with tags values
+@method addToTagsValue
+@for TagsAccessories
+@param word {String} tag name
+@param value_selector {String} hidden input field for tags value selector
+**/
+function addToTagsValue(word, value_selector) {
+  var old_value = $(value_selector).val();
+  if(old_value.indexOf(',') == -1) {
+    old_value = (',' + word + ',');
+  } else {
+    old_value += (word + ',');
+  }
+  $(value_selector).val(old_value);
+}
+
+/**
+Checks if a tag word is present in the tags container.
+@method checkNoTagDuplicates
+@for TagsAccessories
+@param word {String} tag name
+@param container_selector {String} tags container selector
+@return {Boolean}
+**/
+function checkNoTagDuplicates(word, container_selector) {
+  var flag = true;
+  $(container_selector + ' span').each(function() {
+    if($(this).text() === word) {
+      flag = false;
+    }
+  });
+  return flag;
+}
+
+/**
+Creates a new span element for a new tag.
+@method createTagSpan
+@for TagsAccessories
+@param word {String} tag name
+@param new_tag {Boolean} flag true if it's a new tag, false otherwise
+@return {Object} span element
+**/
+function createTagSpan(word, new_tag) {
+  var span = $('<span>').text(word);
+  var a = $('<a>').addClass('remove').appendTo(span);
+  if(new_tag) {
+    span.addClass('new_tag ' + getUnivoqueClassForTag(word));
+  }
+  return span;
+}
+
+/**
+Disable insert new tag when tags container is full.
+@method disableTagsInputTooHigh
+@for TagsAccessories
+@param container_selector {String} tags container selector, class or id
+@param input_selector {String} new tag input selector, class or id
+**/
+function disableTagsInputTooHigh(container_selector, input_selector) {
+  if($(container_selector)[0].scrollHeight > $(container_selector).height()) {
+    $(input_selector).hide();
+  }
+}
+
+/**
+Generates a name_aware class for a given tag
+@method getUnivoqueClassForTag
+@for TagsAccessories
+@param word {String} tag name
+@return {String} i.e. w_a_t_e_r_
+**/
+function getUnivoqueClassForTag(word) {
+  var resp = '';
+  for(var i = 0; i < word.length; i++) {
+    resp += '_' + word.charCodeAt(i);
+  }
+  return resp
+}
+
+/**
+Remove tag word to hidden field with tags values
+@method removeFromTagsValue
+@for TagsAccessories
+@param word {String} tag name
+@param value_selector {String} hidden input field for tags value selector
+**/
+function removeFromTagsValue(word, value_selector) {
+  var old_value = $(value_selector).val();
+  old_value = old_value.replace((',' + word + ','), ',');
+  $(value_selector).val(old_value);
+}
 
 
 
 
 
-
-
-// document ready
-
+/**
+bla bla bla
+@method tagsDocumentReady
+@for TagsDocumentReady
+**/
 function tagsDocumentReady() {
   initSearchTagsAutocomplete('#general_tag_reader_for_search');
   initSearchTagsAutocomplete('#lessons_tag_reader_for_search');
@@ -28,6 +156,11 @@ function tagsDocumentReady() {
   tagsDocumentReadyUpdateLesson();
 }
 
+/**
+bla bla bla
+@method tagsDocumentReadyChangeMediaElementInfo
+@for TagsDocumentReady
+**/
 function tagsDocumentReadyChangeMediaElementInfo() {
   $('body').on('click', '._change_info_container ._tags_container .remove', function() {
     var media_element_id = $(this).parent().parent().parent().parent().parent().data('param');
@@ -68,6 +201,11 @@ function tagsDocumentReadyChangeMediaElementInfo() {
   });
 }
 
+/**
+bla bla bla
+@method tagsDocumentReadyMediaElementLoader
+@for TagsDocumentReady
+**/
 function tagsDocumentReadyMediaElementLoader() {
   $('body').on('click', '#load-media-element ._tags_container .remove', function() {
     removeFromTagsValue($(this).parent().text(), '#load-media-element ._tags_container #tags_value');
@@ -98,6 +236,81 @@ function tagsDocumentReadyMediaElementLoader() {
   initTagsAutocomplete('#load-media-element');
 }
 
+/**
+bla bla bla
+@method tagsDocumentReadyNewLesson
+@for TagsDocumentReady
+**/
+function tagsDocumentReadyNewLesson() {
+  $('body').on('click', '#slides._new ._tags_container .remove', function() {
+    removeFromTagsValue($(this).parent().text(), '#slides._new ._tags_container #tags_value');
+    $(this).parent().remove();
+    if($('#slides._new #tags').not(':visible')) {
+      $('#slides._new #tags').show();
+      disableTagsInputTooHigh('#slides._new ._tags_container', '#slides._new #tags');
+    }
+  });
+  $('body').on('focus', '#slides._new ._tags_container', function() {
+    $(this).find('._placeholder').hide();
+  });
+  $('body').on('click', '#slides._new ._tags_container', function() {
+    $('#slides._new #tags').focus();
+    $(this).find('._placeholder').hide();
+  });
+  $('body').on('keydown', '#slides._new #tags', function(e) {
+    if(e.which === 13 || e.which === 188) {
+      e.preventDefault();
+      addTagWithoutSuggestion(this, '#slides._new ._tags_container', '#tags_value');
+    } else if(e.which == 8 && $(this).val() == '') {
+      $(this).prev().find('.remove').trigger('click');
+    }
+  });
+  $('body').on('blur', '#slides._new #tags', function(e) {
+    addTagWithoutSuggestion(this, '#slides._new ._tags_container', '#tags_value');
+  });
+  initTagsAutocomplete('#slides._new');
+}
+
+/**
+bla bla bla
+@method tagsDocumentReadyNewMediaElement
+@for TagsDocumentReady
+**/
+function tagsDocumentReadyNewMediaElement() {
+  $('body').on('click', '#form_info_new_media_element_in_editor ._tags_container .remove', function() {
+    removeFromTagsValue($(this).parent().text(), '#form_info_new_media_element_in_editor ._tags_container #new_tags_value');
+    $(this).parent().remove();
+    if($('#form_info_new_media_element_in_editor #new_tags').not(':visible')) {
+      $('#form_info_new_media_element_in_editor #new_tags').show();
+      disableTagsInputTooHigh('#form_info_new_media_element_in_editor ._tags_container', '#form_info_new_media_element_in_editor #new_tags');
+    }
+  });
+  $('body').on('focus', '#form_info_new_media_element_in_editor ._tags_container', function() {
+    $(this).find('._placeholder').hide();
+  });
+  $('body').on('click', '#form_info_new_media_element_in_editor ._tags_container', function() {
+    $('#form_info_new_media_element_in_editor #new_tags').focus();
+    $(this).find('._placeholder').hide();
+  });
+  $('body').on('keydown', '#form_info_new_media_element_in_editor #new_tags', function(e) {
+    if(e.which === 13 || e.which === 188) {
+      e.preventDefault();
+      addTagWithoutSuggestion(this, '#form_info_new_media_element_in_editor ._tags_container', '#new_tags_value');
+    } else if(e.which == 8 && $(this).val() == '') {
+      $(this).prev().find('.remove').trigger('click');
+    }
+  });
+  $('body').on('blur', '#form_info_new_media_element_in_editor #new_tags', function(e) {
+    addTagWithoutSuggestion(this, '#form_info_new_media_element_in_editor ._tags_container', '#new_tags_value');
+  });
+  initTagsAutocomplete('#form_info_new_media_element_in_editor');
+}
+
+/**
+bla bla bla
+@method tagsDocumentReadyOvervriteMediaElement
+@for TagsDocumentReady
+**/
 function tagsDocumentReadyOvervriteMediaElement() {
   $('body').on('click', '#form_info_update_media_element_in_editor ._tags_container .remove', function() {
     removeFromTagsValue($(this).parent().text(), '#form_info_update_media_element_in_editor ._tags_container #update_tags_value');
@@ -131,66 +344,11 @@ function tagsDocumentReadyOvervriteMediaElement() {
   });
 }
 
-function tagsDocumentReadyNewMediaElement() {
-  $('body').on('click', '#form_info_new_media_element_in_editor ._tags_container .remove', function() {
-    removeFromTagsValue($(this).parent().text(), '#form_info_new_media_element_in_editor ._tags_container #new_tags_value');
-    $(this).parent().remove();
-    if($('#form_info_new_media_element_in_editor #new_tags').not(':visible')) {
-      $('#form_info_new_media_element_in_editor #new_tags').show();
-      disableTagsInputTooHigh('#form_info_new_media_element_in_editor ._tags_container', '#form_info_new_media_element_in_editor #new_tags');
-    }
-  });
-  $('body').on('focus', '#form_info_new_media_element_in_editor ._tags_container', function() {
-    $(this).find('._placeholder').hide();
-  });
-  $('body').on('click', '#form_info_new_media_element_in_editor ._tags_container', function() {
-    $('#form_info_new_media_element_in_editor #new_tags').focus();
-    $(this).find('._placeholder').hide();
-  });
-  $('body').on('keydown', '#form_info_new_media_element_in_editor #new_tags', function(e) {
-    if(e.which === 13 || e.which === 188) {
-      e.preventDefault();
-      addTagWithoutSuggestion(this, '#form_info_new_media_element_in_editor ._tags_container', '#new_tags_value');
-    } else if(e.which == 8 && $(this).val() == '') {
-      $(this).prev().find('.remove').trigger('click');
-    }
-  });
-  $('body').on('blur', '#form_info_new_media_element_in_editor #new_tags', function(e) {
-    addTagWithoutSuggestion(this, '#form_info_new_media_element_in_editor ._tags_container', '#new_tags_value');
-  });
-  initTagsAutocomplete('#form_info_new_media_element_in_editor');
-}
-
-function tagsDocumentReadyNewLesson() {
-  $('body').on('click', '#slides._new ._tags_container .remove', function() {
-    removeFromTagsValue($(this).parent().text(), '#slides._new ._tags_container #tags_value');
-    $(this).parent().remove();
-    if($('#slides._new #tags').not(':visible')) {
-      $('#slides._new #tags').show();
-      disableTagsInputTooHigh('#slides._new ._tags_container', '#slides._new #tags');
-    }
-  });
-  $('body').on('focus', '#slides._new ._tags_container', function() {
-    $(this).find('._placeholder').hide();
-  });
-  $('body').on('click', '#slides._new ._tags_container', function() {
-    $('#slides._new #tags').focus();
-    $(this).find('._placeholder').hide();
-  });
-  $('body').on('keydown', '#slides._new #tags', function(e) {
-    if(e.which === 13 || e.which === 188) {
-      e.preventDefault();
-      addTagWithoutSuggestion(this, '#slides._new ._tags_container', '#tags_value');
-    } else if(e.which == 8 && $(this).val() == '') {
-      $(this).prev().find('.remove').trigger('click');
-    }
-  });
-  $('body').on('blur', '#slides._new #tags', function(e) {
-    addTagWithoutSuggestion(this, '#slides._new ._tags_container', '#tags_value');
-  });
-  initTagsAutocomplete('#slides._new');
-}
-
+/**
+bla bla bla
+@method tagsDocumentReadyUpdateLesson
+@for TagsDocumentReady
+**/
 function tagsDocumentReadyUpdateLesson() {
   $('body').on('click', '#slides._update ._tags_container .remove', function() {
     removeFromTagsValue($(this).parent().text(), '#slides._update ._tags_container #tags_value');
@@ -227,179 +385,12 @@ function tagsDocumentReadyUpdateLesson() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /**
-* Handle adding tag not in the autocomplete data list
-*
-* Uses: [checkNoTagDuplicates](../classes/checkNoTagDuplicates.html#method_checkNoTagDuplicates)
-* and [addToTagsValue](../classes/addToTagsValue.html#method_addToTagsValue)
-* and [createTagSpan](../classes/createTagSpan.html#method_createTagSpan)
-* and [unbindLoader](../classes/unbindLoader.html#method_unbindLoader)
-* and [getUnivoqueClassForTag](../classes/getUnivoqueClassForTag.html#method_getUnivoqueClassForTag)
-* and [bindLoader](../classes/bindLoader.html#method_bindLoader)
-* and [disableTagsInputTooHigh](../classes/disableTagsInputTooHigh.html#method_disableTagsInputTooHigh)
-* 
-* @method addTagWithoutSuggestion
-* @for addTagWithoutSuggestion
-* @param input {String} input selector for tag, class or id
-* @param container_selector {String} added tags container selector, class or id
-* @param tags_value_selector {String} hidden input field for tags value selector
-*/
-function addTagWithoutSuggestion(input, container_selector, tags_value_selector) {
-  var my_val = $.trim($(input).val()).toLowerCase();
-  if(my_val.length >= $('#popup_parameters_container').data('min-tag-length') && checkNoTagDuplicates(my_val, container_selector)) {
-    if($('.ui-autocomplete a').first().text() == my_val) {
-      addToTagsValue(my_val, (container_selector + ' ' + tags_value_selector));
-      createTagSpan(my_val, false).insertBefore(input);
-    } else {
-      addToTagsValue(my_val, (container_selector + ' ' + tags_value_selector));
-      createTagSpan(my_val, true).insertBefore(input);
-      $.ajax({
-        type: 'get',
-        beforeSend: unbindLoader(),
-        url: '/tags/' + my_val + '/check_presence',
-        dataType: 'json',
-        success: function(data) {
-          if(data.ok) {
-            $(container_selector).find('span.' + getUnivoqueClassForTag(my_val)).removeClass('new_tag');
-          }
-        }
-      }).always(bindLoader);
-    }
-    disableTagsInputTooHigh(container_selector, input);
-  }
-  $('.ui-autocomplete').hide();
-  $(input).val('');
-}
-
-/**
-* Add tag word to hidden field with tags values
-* 
-* @method addToTagsValue
-* @for addToTagsValue
-* @param word {String} tag name
-* @param value_selector {String} hidden input field for tags value selector
-*/
-function addToTagsValue(word, value_selector) {
-  var old_value = $(value_selector).val();
-  if(old_value.indexOf(',') == -1) {
-    old_value = (',' + word + ',');
-  } else {
-    old_value += (word + ',');
-  }
-  $(value_selector).val(old_value);
-}
-
-/**
-* Remove tag word to hidden field with tags values
-* 
-* @method removeFromTagsValue
-* @for removeFromTagsValue
-* @param word {String} tag name
-* @param value_selector {String} hidden input field for tags value selector
-*/
-function removeFromTagsValue(word, value_selector) {
-  var old_value = $(value_selector).val();
-  old_value = old_value.replace((',' + word + ','), ',');
-  $(value_selector).val(old_value);
-}
-
-/**
-* Generates a name_aware class for a given tag
-* 
-* @method getUnivoqueClassForTag
-* @for getUnivoqueClassForTag
-* @param word {String} tag name
-* @return {String} i.e. w_a_t_e_r_
-*/
-function getUnivoqueClassForTag(word) {
-  var resp = '';
-  for(var i = 0; i < word.length; i++) {
-    resp += '_' + word.charCodeAt(i);
-  }
-  return resp
-}
-
-/**
-* Checks if a tag word is present in the tags container.
-* 
-* @method checkNoTagDuplicates
-* @for checkNoTagDuplicates
-* @param word {String} tag name
-* @param container_selector {String} tags container selector
-* @return {Boolean}
-*/
-function checkNoTagDuplicates(word, container_selector) {
-  var flag = true;
-  $(container_selector + ' span').each(function() {
-    if($(this).text() === word) {
-      flag = false;
-    }
-  });
-  return flag;
-}
-
-/**
-* Creates a new span element for a new tag.
-* 
-* @method createTagSpan
-* @for createTagSpan
-* @param word {String} tag name
-* @param new_tag {Boolean} flag true if it's a new tag, false otherwise
-* @return {Object} span element
-*/
-function createTagSpan(word, new_tag) {
-  var span = $('<span>').text(word);
-  var a = $('<a>').addClass('remove').appendTo(span);
-  if(new_tag) {
-    span.addClass('new_tag ' + getUnivoqueClassForTag(word));
-  }
-  return span;
-}
-
-/**
-* Disable insert new tag when tags container is full.
-* 
-* @method disableTagsInputTooHigh
-* @for disableTagsInputTooHigh
-* @param container_selector {String} tags container selector, class or id
-* @param input_selector {String} new tag input selector, class or id
-*/
-function disableTagsInputTooHigh(container_selector, input_selector) {
-  if($(container_selector)[0].scrollHeight > $(container_selector).height()) {
-    $(input_selector).hide();
-  }
-}
-
-/**
-* Initialize jQueryUI _autocomplete_ for tags in search input
-*
-* Uses: [unbindLoader](../classes/unbindLoader.html#method_unbindLoader)
-* and [bindLoader](../classes/bindLoader.html#method_bindLoader)
-* 
-* @method initSearchTagsAutocomplete
-* @for initSearchTagsAutocomplete
-* @param input {String} search by tag input selector, class or id
-*/
+Initialize jQueryUI _autocomplete_ for tags in search input Uses: [unbindLoader](../classes/unbindLoader.html#method_unbindLoader) and [bindLoader](../classes/bindLoader.html#method_bindLoader)
+@method initSearchTagsAutocomplete
+@for TagsInitializers
+@param input {String} search by tag input selector, class or id
+**/
 function initSearchTagsAutocomplete(input) {
   var cache = {};
   $(input).autocomplete({
@@ -425,19 +416,11 @@ function initSearchTagsAutocomplete(input) {
 }
 
 /**
-* Initialize jQueryUI _autocomplete_ for tags in lessons and elements form
-*
-* Uses: [unbindLoader](../classes/unbindLoader.html#method_unbindLoader)
-* and [bindLoader](../classes/bindLoader.html#method_bindLoader)
-* and [checkNoTagDuplicates](../classes/checkNoTagDuplicates.html#method_checkNoTagDuplicates)
-* and [addToTagsValue](../classes/addToTagsValue.html#method_addToTagsValue)
-* and [createTagSpan](../classes/createTagSpan.html#method_createTagSpan)
-* and [disableTagsInputTooHigh](../classes/disableTagsInputTooHigh.html#method_disableTagsInputTooHigh)
-* 
-* @method initSearchTagsAutocomplete
-* @for initSearchTagsAutocomplete
-* @param scope {String} tags container scope, class or id
-*/
+Initialize jQueryUI _autocomplete_ for tags in lessons and elements form
+@method initSearchTagsAutocomplete
+@for TagsInitializers
+@param scope {String} tags container scope, class or id
+**/
 function initTagsAutocomplete(scope) {
   var input_selector = scope + ' #tags';
   if(scope == '#form_info_new_media_element_in_editor') {
