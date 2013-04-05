@@ -242,7 +242,7 @@ function virtualClassroomDocumentReadySendLink() {
 
 
 
-
+// send link
 
 /**
 * Add email to recipients list on email add button (+).
@@ -257,6 +257,20 @@ function addEmailToVirtualClassroomSendLessonLinkSelector() {
     selector.val('');
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+// multiple loading
 
 /**
 * JS-TODO
@@ -287,6 +301,27 @@ function initializeScrollPaneQuickLessonSelector() {
     }
   });
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// javascript animations
 
 /**
 * JS-TODO
