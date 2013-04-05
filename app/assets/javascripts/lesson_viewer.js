@@ -147,7 +147,7 @@ function hideArrowsInLessonViewer() {
 
 /**
 Show slides navigation arrows in lesson viewer
-@method hideArrowsInLessonViewer
+@method showArrowsInLessonViewer
 @for LessonViewerGraphics
 **/
 function showArrowsInLessonViewer() {
