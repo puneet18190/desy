@@ -229,7 +229,10 @@
                 "profile": 1
             },
             "classes": {},
-            "fors": {},
+            "fors": {
+                "ProfilePrelogin": 1,
+                "ProfileUsers": 1
+            },
             "namespaces": {}
         },
         "app/assets/javascripts/search.js": {
@@ -622,8 +625,14 @@
         "profile": {
             "name": "profile",
             "submodules": {},
-            "classes": {},
-            "fors": {},
+            "classes": {
+                "ProfilePrelogin": 1,
+                "ProfileUsers": 1
+            },
+            "fors": {
+                "ProfilePrelogin": 1,
+                "ProfileUsers": 1
+            },
             "namespaces": {},
             "tag": "module",
             "file": "app/assets/javascripts/profile.js",
@@ -1451,6 +1460,28 @@
             "plugin_for": [],
             "extension_for": [],
             "module": "players",
+            "namespace": ""
+        },
+        "ProfilePrelogin": {
+            "name": "ProfilePrelogin",
+            "shortname": "ProfilePrelogin",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "profile",
+            "namespace": ""
+        },
+        "ProfileUsers": {
+            "name": "ProfileUsers",
+            "shortname": "ProfileUsers",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "profile",
             "namespace": ""
         },
         "addTagWithoutSuggestion": {
@@ -4630,6 +4661,33 @@
             "name": "stopVideoInVideoEditorPreview",
             "class": "PlayersVideoEditor",
             "module": "players"
+        },
+        {
+            "file": "app/assets/javascripts/profile.js",
+            "line": 10,
+            "description": "bla bla bla",
+            "itemtype": "method",
+            "name": "automaticLoginDocumentReady",
+            "class": "ProfilePrelogin",
+            "module": "profile"
+        },
+        {
+            "file": "app/assets/javascripts/profile.js",
+            "line": 24,
+            "description": "bla bla bla",
+            "itemtype": "method",
+            "name": "preloginDocumentReady",
+            "class": "ProfilePrelogin",
+            "module": "profile"
+        },
+        {
+            "file": "app/assets/javascripts/profile.js",
+            "line": 48,
+            "description": "bla bla bla",
+            "itemtype": "method",
+            "name": "profileDocumentReady",
+            "class": "ProfileUsers",
+            "module": "profile"
         },
         {
             "file": "app/assets/javascripts/tags.js",
