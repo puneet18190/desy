@@ -802,12 +802,12 @@ href="ImageEditorController.html#method-i-initialize_image_with_owner_or_public"
 
         <div class="method-description">
           
-          
+          <p>Extracts the params of the textareas in the image</p>
           
 
           
           <div class="method-source-code" id="extract_textareas_params-source">
-            <pre><span class="ruby-comment"># File app/controllers/image_editor_controller.rb, line 187</span>
+            <pre><span class="ruby-comment"># File app/controllers/image_editor_controller.rb, line 188</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">extract_textareas_params</span>(<span class="ruby-identifier">params</span>) <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">resp</span> = {}
   <span class="ruby-identifier">fonts</span> = {<span class="ruby-string">&#39;small_font&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">15</span>, <span class="ruby-string">&#39;medium_font&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">25</span>, <span class="ruby-string">&#39;big_font&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">35</span>}
@@ -857,12 +857,20 @@ href="ImageEditorController.html#method-i-initialize_image_with_owner_or_public"
 
         <div class="method-description">
           
-          
+          <p>Initializes the image, checking that it belongs to the current_user, and
+it&#39;s private (these are the conditions under which the user can modify
+the image); this control is not necessary in the other two editor (see <a
+href="AudioEditorController.html">AudioEditorController</a> and <a
+href="VideoEditorController.html">VideoEditorController</a>) because the
+control is made respectively in <a
+href="Media/Audio/Editing/Parameters.html">Media::Audio::Editing::Parameters</a>
+and <a
+href="Media/Video/Editing/Parameters.html">Media::Video::Editing::Parameters</a></p>
           
 
           
           <div class="method-source-code" id="initialize_image_with_owner_and_private-source">
-            <pre><span class="ruby-comment"># File app/controllers/image_editor_controller.rb, line 222</span>
+            <pre><span class="ruby-comment"># File app/controllers/image_editor_controller.rb, line 225</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize_image_with_owner_and_private</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-ivar">@image_id</span> = <span class="ruby-identifier">correct_integer?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:image_id</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:image_id</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-value">0</span>
   <span class="ruby-ivar">@image</span> = <span class="ruby-constant">Image</span>.<span class="ruby-identifier">find_by_id</span> <span class="ruby-ivar">@image_id</span>
@@ -889,12 +897,14 @@ href="ImageEditorController.html#method-i-initialize_image_with_owner_or_public"
 
         <div class="method-description">
           
-          
+          <p>Initializes the image, checking that it belongs to the current_user, or
+it&#39;s public (these are the conditions under which the user can
+visualize the image)</p>
           
 
           
           <div class="method-source-code" id="initialize_image_with_owner_or_public-source">
-            <pre><span class="ruby-comment"># File app/controllers/image_editor_controller.rb, line 216</span>
+            <pre><span class="ruby-comment"># File app/controllers/image_editor_controller.rb, line 218</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize_image_with_owner_or_public</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-ivar">@image_id</span> = <span class="ruby-identifier">correct_integer?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:image_id</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:image_id</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-value">0</span>
   <span class="ruby-ivar">@image</span> = <span class="ruby-constant">Image</span>.<span class="ruby-identifier">find_by_id</span> <span class="ruby-ivar">@image_id</span>

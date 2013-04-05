@@ -205,11 +205,13 @@ class AudioEditorController < ApplicationController
   
   private
   
+  # Checks if the audio is being used in private lessons
   def used_in_private_lessons # :doc:
     return false if @parameters[:initial_audio].nil?
     @parameters[:initial_audio].media_elements_slides.any?
   end
   
+  # Checks if the audio editor is available for the user (see User#audio_editor_available)
   def check_available_for_user # :doc:
     if !current_user.audio_editor_available
       render 'not_available'
@@ -217,6 +219,7 @@ class AudioEditorController < ApplicationController
     end
   end
   
+  # Extracts parameters from the form, and converts them into the format of Media::Audio::Editing::Parameters
   def extract_form_parameters # :doc:
     unordered_resp = {}
     ordered_resp = {}
@@ -247,6 +250,7 @@ class AudioEditorController < ApplicationController
     resp
   end
   
+  # Converts a single audio in a cache in the format of Media::Audio::Editing::Parameters
   def convert_audio_to_parameters # :doc:
     resp = {}
     resp[:initial_audio_id] = @audio.is_public ? nil : @audio.id
@@ -258,6 +262,7 @@ class AudioEditorController < ApplicationController
     resp.nil? ? empty_parameters : resp
   end
   
+  # Gets a set of parameters in the format of Media::Audio::Editing::Parameters from an empty audio editor
   def empty_parameters # :doc:
     resp = {}
     resp[:initial_audio] = nil
@@ -265,10 +270,12 @@ class AudioEditorController < ApplicationController
     resp
   end
   
+  # Extracts the cache and converts it
   def extract_cache # :doc:
     @cache = Audio.convert_parameters current_user.audio_editor_cache, current_user.id
   end
   
+  # Initializes the given audio, and returns true if current_user owns it or it's public (these are the conditions for the user to visualize the audio, but not modify it)
   def initialize_audio_with_owner_or_public # :doc:
     @audio_id = correct_integer?(params[:audio_id]) ? params[:audio_id].to_i : 0
     @audio = Audio.find_by_id @audio_id

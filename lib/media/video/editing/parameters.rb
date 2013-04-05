@@ -5,12 +5,23 @@ require 'media/video/editing'
 module Media
   module Video
     module Editing
+      
+      # Module that contains parameters converter for the video editor (see Video, VideoEditorController)
       module Parameters
         
-        COMPONENTS = %w(video text image)
-        VIDEO_COMPONENT, TEXT_COMPONENT, IMAGE_COMPONENT = COMPONENTS
+        # Keyword for a video component
+        VIDEO_COMPONENT = 'video'
         
-        # it doesn't check that the parameters are valid; it takes as input regardless the basic hash and the full one
+        # Keyword for a text component
+        TEXT_COMPONENT= 'text'
+        
+        # Keyword for an image component
+        IMAGE_COMPONENT = 'image'
+        
+        # List of keywords of possible video components
+        COMPONENTS = [VIDEO_COMPONENT, TEXT_COMPONENT, IMAGE_COMPONENT]
+        
+        # This method doesn't check that the parameters are valid; it takes as input either the basic hash or the full one, and calculates the total time
         def total_prototype_time(hash)
           return 0 if !hash[:components].instance_of?(Array)
           sum = 0
@@ -36,6 +47,7 @@ module Media
           sum
         end
         
+        # This method uses Media::Video::Editing::Parameters#convert_parameters to validate the parameters, and then converts them into a primitive hash that contains only IDs instead than objects: now the parameters are ready to be passed to the editor
         def convert_to_primitive_parameters(hash, user_id)
           resp = convert_parameters(hash, user_id)
           return nil if resp.nil?
@@ -53,12 +65,16 @@ module Media
           resp
         end
         
-        # EXAMPLE OF RETURNED HASH:
-        # - two initial parameters, 'initial_video' and 'audio_track'
-        # - then an ordered array of components:
-        #   - each component is a hash, with a key called :type
-        #   - if the type is 'video', there is an object of kind VIDEO associated to the key :video
-        #   - if the type is 'image', there is an object of kind IMAGE associated to the key :image
+        # === Description
+        #
+        # Validates and converts the parameters. See the code for further details about the validations achieved. The product is in the following format:
+        # * two initial parameters, 'initial_video' and 'audio_track'
+        # * then an ordered array of components:
+        #   * each component is a hash, with a key called :type
+        #   * if the type is 'video', there is an object of kind VIDEO associated to the key :video
+        #   * if the type is 'image', there is an object of kind IMAGE associated to the key :image
+        #
+        # === Usage
         #
         #  {
         #    :initial_video => OBJECT OF TYPE VIDEO or NIL,
@@ -84,6 +100,7 @@ module Media
         #      }
         #    ]
         #  }
+        #
         def convert_parameters(hash, user_id)
           
           # check if initial video and audio track are correctly declared (they can be nil or integer)
@@ -144,11 +161,10 @@ module Media
           resp_hash
         end
         
+        # Using Media::Video::Editing::Parameters#get_media_element_from_hash, it validates that the image exists and is accessible from the user, then that +duration+ is correct
         def extract_image_component(component, user_id)
           image = get_media_element_from_hash(component, :image_id, user_id, 'Image')
-          # I validate that the image exists and is accessible from the user
           return nil if image.nil?
-          # DURATION is correct
           return nil if !component[:duration].kind_of?(Integer) || component[:duration] < 1
           {
             :type => IMAGE_COMPONENT,
@@ -157,11 +173,10 @@ module Media
           }
         end
         
+        # Using Media::Video::Editing::Parameters#get_media_element_from_hash, it validates that the video exists and is accessible from the user, then that +from+ and +to+ are correct
         def extract_video_component(component, user_id)
           video = get_media_element_from_hash(component, :video_id, user_id, 'Video')
-          # I validate that the video exists and is accessible from the user
           return nil if video.nil?
-          # FROM and UNTIL are correct
           return nil if !component[:from].kind_of?(Integer) || !component[:to].kind_of?(Integer)
           return nil if component[:from] < 0 || component[:to] > video.min_duration || component[:from] >= component[:to]
           {
@@ -172,8 +187,8 @@ module Media
           }
         end
         
+        # It validates that +content+, +colors+ and +duration+ are all correct
         def extract_text_component(component)
-          # CONTENT, COLORS, and DURATION are present and correct
           return nil if !component.has_key?(:content) || !component[:duration].kind_of?(Integer) || component[:duration] < 1
           return nil if !::SETTINGS['colors'].has_key?(component[:background_color]) || !::SETTINGS['colors'].has_key?(component[:text_color])
           {
@@ -185,9 +200,11 @@ module Media
           }
         end
         
+        # Used in Media::Video::Editing::Parameters#extract_video_component, Media::Video::Editing::Parameters#extract_image_component, Media::Video::Editing::Parameters#extract_text_component
         def get_media_element_from_hash(hash, key, user_id, my_sti_type)
           hash[key].kind_of?(Integer) ? MediaElement.extract(hash[key], user_id, my_sti_type) : nil
         end
+        
       end
     end
   end

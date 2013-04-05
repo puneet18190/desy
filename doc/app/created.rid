@@ -1,4 +1,4 @@
-Wed, 03 Apr 2013 15:50:47 +0200
+Wed, 03 Apr 2013 17:47:46 +0200
 doc/README_FOR_APP	Fri, 29 Mar 2013 14:50:55 +0100
 app/controllers/admin/dashboard_controller.rb	Tue, 02 Apr 2013 17:48:03 +0200
 app/controllers/admin/lessons_controller.rb	Wed, 03 Apr 2013 09:16:57 +0200
@@ -8,25 +8,25 @@ app/controllers/admin/reports_controller.rb	Tue, 02 Apr 2013 17:54:52 +0200
 app/controllers/admin/settings_controller.rb	Wed, 03 Apr 2013 09:16:41 +0200
 app/controllers/admin/users_controller.rb	Wed, 03 Apr 2013 09:22:58 +0200
 app/controllers/admin_controller.rb	Wed, 03 Apr 2013 09:36:41 +0200
-app/controllers/application_controller.rb	Wed, 03 Apr 2013 15:50:19 +0200
-app/controllers/audio_editor_controller.rb	Wed, 03 Apr 2013 10:17:03 +0200
-app/controllers/dashboard_controller.rb	Wed, 03 Apr 2013 11:12:17 +0200
-app/controllers/galleries_controller.rb	Wed, 03 Apr 2013 10:31:22 +0200
-app/controllers/image_editor_controller.rb	Wed, 03 Apr 2013 10:36:07 +0200
-app/controllers/lesson_editor_controller.rb	Wed, 03 Apr 2013 10:51:53 +0200
-app/controllers/lesson_viewer_controller.rb	Wed, 03 Apr 2013 12:26:28 +0200
-app/controllers/lessons_controller.rb	Wed, 03 Apr 2013 11:21:39 +0200
-app/controllers/mailing_lists_controller.rb	Wed, 03 Apr 2013 14:58:50 +0200
-app/controllers/media_elements_controller.rb	Wed, 03 Apr 2013 12:52:38 +0200
-app/controllers/notifications_controller.rb	Wed, 03 Apr 2013 14:03:41 +0200
-app/controllers/prelogin_controller.rb	Wed, 03 Apr 2013 14:10:30 +0200
+app/controllers/application_controller.rb	Wed, 03 Apr 2013 17:43:57 +0200
+app/controllers/audio_editor_controller.rb	Wed, 03 Apr 2013 16:09:02 +0200
+app/controllers/dashboard_controller.rb	Wed, 03 Apr 2013 16:09:23 +0200
+app/controllers/galleries_controller.rb	Wed, 03 Apr 2013 16:18:35 +0200
+app/controllers/image_editor_controller.rb	Wed, 03 Apr 2013 16:22:32 +0200
+app/controllers/lesson_editor_controller.rb	Wed, 03 Apr 2013 16:28:56 +0200
+app/controllers/lesson_viewer_controller.rb	Wed, 03 Apr 2013 16:48:33 +0200
+app/controllers/lessons_controller.rb	Wed, 03 Apr 2013 16:46:01 +0200
+app/controllers/mailing_lists_controller.rb	Wed, 03 Apr 2013 16:49:27 +0200
+app/controllers/media_elements_controller.rb	Wed, 03 Apr 2013 17:47:31 +0200
+app/controllers/notifications_controller.rb	Wed, 03 Apr 2013 16:52:06 +0200
+app/controllers/prelogin_controller.rb	Wed, 03 Apr 2013 16:53:42 +0200
 app/controllers/reports_controller.rb	Wed, 03 Apr 2013 14:10:58 +0200
-app/controllers/search_controller.rb	Wed, 03 Apr 2013 14:26:30 +0200
+app/controllers/search_controller.rb	Wed, 03 Apr 2013 16:56:56 +0200
 app/controllers/tags_controller.rb	Wed, 03 Apr 2013 14:39:30 +0200
 app/controllers/users/sessions_controller.rb	Wed, 03 Apr 2013 15:40:01 +0200
-app/controllers/users_controller.rb	Wed, 03 Apr 2013 14:57:01 +0200
-app/controllers/video_editor_controller.rb	Wed, 03 Apr 2013 15:03:47 +0200
-app/controllers/virtual_classroom_controller.rb	Wed, 03 Apr 2013 15:34:23 +0200
+app/controllers/users_controller.rb	Wed, 03 Apr 2013 16:58:57 +0200
+app/controllers/video_editor_controller.rb	Wed, 03 Apr 2013 17:02:11 +0200
+app/controllers/virtual_classroom_controller.rb	Wed, 03 Apr 2013 17:05:08 +0200
 app/helpers/admin_helper.rb	Fri, 22 Mar 2013 16:05:45 +0100
 app/helpers/application_helper.rb	Mon, 25 Mar 2013 17:36:58 +0100
 app/helpers/mailer_helper.rb	Thu, 14 Mar 2013 16:47:55 +0100
@@ -49,7 +49,7 @@ app/models/slide.rb	Tue, 02 Apr 2013 15:32:32 +0200
 app/models/subject.rb	Fri, 29 Mar 2013 16:04:42 +0100
 app/models/tag.rb	Tue, 02 Apr 2013 15:33:26 +0200
 app/models/tagging.rb	Tue, 02 Apr 2013 15:35:32 +0200
-app/models/user.rb	Wed, 03 Apr 2013 14:29:41 +0200
+app/models/user.rb	Wed, 03 Apr 2013 17:15:31 +0200
 app/models/users_subject.rb	Tue, 02 Apr 2013 15:23:46 +0200
 app/models/video.rb	Tue, 02 Apr 2013 12:44:28 +0200
 app/models/virtual_classroom_lesson.rb	Tue, 02 Apr 2013 15:49:55 +0200
@@ -87,7 +87,7 @@ lib/media/audio/editing/concat.rb	Wed, 03 Apr 2013 10:16:17 +0200
 lib/media/audio/editing/conversion.rb	Fri, 15 Mar 2013 09:23:50 +0100
 lib/media/audio/editing/conversion/job.rb	Fri, 08 Feb 2013 11:44:15 +0100
 lib/media/audio/editing/crop.rb	Fri, 08 Feb 2013 11:44:15 +0100
-lib/media/audio/editing/parameters.rb	Fri, 08 Feb 2013 11:44:15 +0100
+lib/media/audio/editing/parameters.rb	Wed, 03 Apr 2013 17:33:40 +0200
 lib/media/audio/uploader.rb	Thu, 14 Mar 2013 16:47:56 +0100
 lib/media/audio/uploader/validation.rb	Thu, 14 Mar 2013 16:47:56 +0100
 lib/media/cmd.rb	Tue, 02 Apr 2013 10:34:17 +0200
@@ -126,7 +126,7 @@ lib/media/video/editing/cmd/merge_webm_video_streams.rb	Wed, 03 Apr 2013 10:16:1
 lib/media/video/editing/cmd/mp3_to_wav.rb	Wed, 03 Apr 2013 12:13:58 +0200
 lib/media/video/editing/cmd/replace_audio.rb	Fri, 08 Feb 2013 11:44:15 +0100
 lib/media/video/editing/cmd/transition.rb	Fri, 08 Feb 2013 11:44:15 +0100
-lib/media/video/editing/cmd/trim_audio_file.rb	Fri, 08 Feb 2013 11:44:15 +0100
+lib/media/video/editing/cmd/trim_audio_file.rb	Wed, 03 Apr 2013 16:12:05 +0200
 lib/media/video/editing/cmd/video_stream_to_file.rb	Fri, 08 Feb 2013 11:44:15 +0100
 lib/media/video/editing/composer.rb	Wed, 03 Apr 2013 10:16:17 +0200
 lib/media/video/editing/composer/job.rb	Fri, 08 Feb 2013 11:44:15 +0100
@@ -135,7 +135,7 @@ lib/media/video/editing/conversion.rb	Fri, 15 Mar 2013 09:23:50 +0100
 lib/media/video/editing/conversion/job.rb	Fri, 08 Feb 2013 11:44:15 +0100
 lib/media/video/editing/crop.rb	Wed, 03 Apr 2013 10:16:17 +0200
 lib/media/video/editing/image_to_video.rb	Wed, 03 Apr 2013 10:16:17 +0200
-lib/media/video/editing/parameters.rb	Mon, 25 Mar 2013 14:36:32 +0100
+lib/media/video/editing/parameters.rb	Wed, 03 Apr 2013 17:32:43 +0200
 lib/media/video/editing/replace_audio.rb	Wed, 03 Apr 2013 10:16:17 +0200
 lib/media/video/editing/text_to_video.rb	Wed, 03 Apr 2013 10:16:17 +0200
 lib/media/video/editing/transition.rb	Wed, 03 Apr 2013 10:16:17 +0200

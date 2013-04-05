@@ -1095,12 +1095,12 @@ href="ApplicationController.html#method-i-initialize_lesson_with_owner">Applicat
 
         <div class="method-description">
           
-          
+          <p>Checks if the lesson editor is not locked for the user</p>
           
 
           
           <div class="method-source-code" id="check_available_for_user-source">
-            <pre><span class="ruby-comment"># File app/controllers/lesson_editor_controller.rb, line 285</span>
+            <pre><span class="ruby-comment"># File app/controllers/lesson_editor_controller.rb, line 286</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">check_available_for_user</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-ivar">@lesson</span> = <span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">find_by_id</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:lesson_id</span>]
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@lesson</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">available?</span>
@@ -1129,12 +1129,12 @@ href="ApplicationController.html#method-i-initialize_lesson_with_owner">Applicat
 
         <div class="method-description">
           
-          
+          <p>Initializes the kind of a new slide, taking it from the url parameters</p>
           
 
           
           <div class="method-source-code" id="initialize_kind-source">
-            <pre><span class="ruby-comment"># File app/controllers/lesson_editor_controller.rb, line 293</span>
+            <pre><span class="ruby-comment"># File app/controllers/lesson_editor_controller.rb, line 295</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize_kind</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-ivar">@kind</span> = <span class="ruby-constant">Slide</span><span class="ruby-operator">::</span><span class="ruby-constant">KINDS_WITHOUT_COVER</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:kind</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:kind</span>] <span class="ruby-operator">:</span> <span class="ruby-string">&#39;&#39;</span>
   <span class="ruby-identifier">update_ok</span>(<span class="ruby-operator">!</span><span class="ruby-ivar">@kind</span>.<span class="ruby-identifier">blank?</span>)
@@ -1160,12 +1160,14 @@ href="ApplicationController.html#method-i-initialize_lesson_with_owner">Applicat
 
         <div class="method-description">
           
-          
+          <p>Calls <a
+href="ApplicationController.html#method-i-initialize_lesson_with_owner">ApplicationController#initialize_lesson_with_owner</a>,
+and additionally checks if the slide corresponds to the lesson</p>
           
 
           
           <div class="method-source-code" id="initialize_lesson_with_owner_and_slide-source">
-            <pre><span class="ruby-comment"># File app/controllers/lesson_editor_controller.rb, line 298</span>
+            <pre><span class="ruby-comment"># File app/controllers/lesson_editor_controller.rb, line 301</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize_lesson_with_owner_and_slide</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">initialize_lesson_with_owner</span>
   <span class="ruby-ivar">@slide_id</span> = <span class="ruby-identifier">correct_integer?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:slide_id</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:slide_id</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-value">0</span>
@@ -1193,12 +1195,12 @@ href="ApplicationController.html#method-i-initialize_lesson_with_owner">Applicat
 
         <div class="method-description">
           
-          
+          <p>Initializes the subjects</p>
           
 
           
           <div class="method-source-code" id="initialize_subjects-source">
-            <pre><span class="ruby-comment"># File app/controllers/lesson_editor_controller.rb, line 305</span>
+            <pre><span class="ruby-comment"># File app/controllers/lesson_editor_controller.rb, line 309</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize_subjects</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-ivar">@subjects</span> = []
   <span class="ruby-constant">UsersSubject</span>.<span class="ruby-identifier">joins</span>(<span class="ruby-value">:subject</span>).<span class="ruby-identifier">where</span>(<span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;subjects.description ASC&#39;</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">sbj</span><span class="ruby-operator">|</span>
@@ -1227,12 +1229,13 @@ href="ApplicationController.html#method-i-initialize_lesson_with_owner">Applicat
 
         <div class="method-description">
           
-          
+          <p>Saves the current slide, using <a
+href="Slide.html#method-i-update_with_media_elements">Slide#update_with_media_elements</a></p>
           
 
           
           <div class="method-source-code" id="save_current_slide-source">
-            <pre><span class="ruby-comment"># File app/controllers/lesson_editor_controller.rb, line 313</span>
+            <pre><span class="ruby-comment"># File app/controllers/lesson_editor_controller.rb, line 318</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">save_current_slide</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">media_elements_params</span> = {}
   (<span class="ruby-value">1</span><span class="ruby-operator">...</span><span class="ruby-value">5</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>

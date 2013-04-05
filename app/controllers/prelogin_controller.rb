@@ -80,6 +80,7 @@ class PreloginController < ApplicationController
   
   private
   
+  # If the user is logged in, redirects to DashboardController#index
   def redirect_to_dashboard_if_logged_in # :doc:
     if logged_in?
       redirect_to dashboard_path

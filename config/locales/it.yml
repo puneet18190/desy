@@ -504,9 +504,9 @@ it:
       # 1 - views/lesson_editor/new.html.erb
       description: "Inserire tutte le informazioni richieste nel modulo"
       # 1 - views/lesson_editor/new.html.erb
-      cancel: "Cancella"
+      cancel: "Annulla"
       # 1 - views/lesson_editor/new.html.erb
-      done: "Prossimo"
+      done: "Continua"
     # Form to modify a lesson
     update_lesson:
       # 1 - views/lesson_editor/edit.html.erb
@@ -514,7 +514,7 @@ it:
       # 1 - views/lesson_editor/edit.html.erb
       description: "Aggiorna le informazioni sulla lezione in virtù del nuovo contenuto"
       # 1 - views/lesson_editor/edit.html.erb
-      cancel: "Cancella"
+      cancel: "Annulla"
       # 1 - views/lesson_editor/edit.html.erb
       done: "Aggiorna"
     # Form for uploading a new media element
@@ -524,9 +524,9 @@ it:
       # 1 - views/media_elements/_new_form_popup.html.erb
       description: "Selezionare un file facendo clic sul pulsante a sinistra"
       # 1 - views/media_elements/_new_form_popup.html.erb
-      cancel: "Cancella"
+      cancel: "Annulla"
       # 1 - views/media_elements/_new_form_popup.html.erb
-      done: "Aggiorna"
+      done: "Carica"
     # Form for modifying a media element
     change_info_media_element:
       # 1 - views/media_elements/_popup.html.erb
@@ -534,9 +534,9 @@ it:
       # 1 - views/media_elements/_popup.html.erb
       description: "Compila il modulo per modificare i dati"
       # 1 - views/media_elements/_popup.html.erb
-      cancel: "Cancella"
+      cancel: "Annulla"
       # 1 - views/media_elements/_popup.html.erb
-      done: "Salva"
+      done: "Aggiorna"
     # Form for creating a new media element with one of the three editors (image / audio / video)
     new_media_element_in_editor:
       # 1 - views/media_elements/info_form_in_editor/_new.html.erb
@@ -544,7 +544,7 @@ it:
       # 1 - views/media_elements/info_form_in_editor/_new.html.erb
       description: "Inserire tutti i dettagli nel modulo"
       # 1 - views/media_elements/info_form_in_editor/_new.html.erb
-      cancel: "Cancella"
+      cancel: "Annulla"
       # 1 - views/media_elements/info_form_in_editor/_new.html.erb
       done: "Salva"
     # Form for editing general information of an element after having overwritten its content with one of the three editors (image / audio / video)
@@ -554,9 +554,9 @@ it:
       # 1 - views/media_elements/info_form_in_editor/_edit.html.erb
       description: "Aggiorna le informazioni sulla lezione in virtù del nuovo contenuto"
       # 1 - views/media_elements/info_form_in_editor/_edit.html.erb
-      cancel: "Cancella"
+      cancel: "Annulla"
       # 1 - views/media_elements/info_form_in_editor/_edit.html.erb
-      done: "Aggiorna"
+      done: "Salva"
     # Error messages shown in case the user doesn't fill the form correctly
     error_captions:
       # Standard error for a text field which hasn't been filled properly (i.e. exceeded max number of characters, not filled, etc.)
@@ -619,7 +619,7 @@ it:
       media: "Seleziona un file da caricare"
       # Subject (used only for lessons)
       # 1 - helpers/application_helper.rb
-      subject_id: "Seleziona un argomento"
+      subject_id: "Seleziona una materia"
       # Tags (the variable %{num} represents the maximum number of characters for each tags, the variable %{items} represents the minimum amount of tags)
       # 1 - views/media_elements/_new_form_popup.html.erb
       # 2 - views/media_elements/info_form_in_editor/_new.html.erb
@@ -958,12 +958,12 @@ it:
         content: "In questo pannello potete trovare le lezioni e gli elementi selezionati nel nostro archivio che potrebbero essere di vostro interesse. Se si clicca sull'icona \"+\" di una lezione o di un elemento, si potranno aggiungere alla tua area personale, dove potrai eventualmente modificarli e usarli. L'icona \"occhio\" mostra una anteprima."
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Selezionati per voi - elementi"
+        title: "Scelti per te - elementi"
         # 1 - views/notifications/_tooltip_help.html.erb
         content: "Scegli elementi tra quelli proposti! Se non trovate nulla di interessante, cliccando sul pulsante \"carica un nuovo elemento\" puoi caricare i tuoi elementi."
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Selezionati per voi - lezioni"
+        title: "Scelti per te - lezioni"
         # 1 - views/notifications/_tooltip_help.html.erb
         content: "In questo pannello, %{desy} memorizza tutti le nuove lezioni che potrebbero interessarti. Se in questo momento non ci sono nuove lezioni disponibili, è possibile creare la propria cliccando sul pulsante \"crea una nuova lezione\" che si trova in ogni pagina: sarete reindirizzati all'Editor delle Lezioni. Prima di utilizzare l'Editor delle Lezioni, assicuratevi di avere un numero di elementi sufficienti."
     lessons:
@@ -1177,7 +1177,7 @@ it:
     load_new_media_element_now: "Carica un elemento"
     # Caption of the buttons to switch between suggested lessons and elements ('selected for you': lessons - elements)
     # 1 - views/dashboard/_graybar_left.html.erb
-    selected_for_you: "Selezionati per te"
+    selected_for_you: "Scelti per te"
     # Title of the link 'contact us' (bottom left in the page)
     # 1 - views/dashboard/index.html.erb
     talk_with_desy: "Vuoi parlare con %{desy}?"
@@ -1763,10 +1763,13 @@ it:
       # 2 - views/users/mailing_lists.html.erb
       # 3 - views/users/edit.html.erb
       # 4 - views/users/subjects.html.erb
-      menu_link: "Informazioni personali"
+      menu_link: "Dati personali"
       # Title of the section
       # 1 - views/users/edit.html.erb
-      title: "Informazioni personali"
+      title: "Dati personali"
+      # Button to save
+      # 1 - views/users/edit.html.erb
+      save: "Salva"
       # Description of the section
       # 1 - views/users/edit.html.erb
       description: "In questa sezione è possibile aggiornare o modificare tutti i parametri del tuo account"
@@ -1917,6 +1920,9 @@ it:
       # Description
       # 1 - views/users/subjects.html.erb
       description: "Scegli le tue materie!"
+      # Button to save
+      # 1 - views/users/subjects.html.erb
+      save: "Salva"
   
   
   # SECTION 2.16: Captions used inside the Video Editor

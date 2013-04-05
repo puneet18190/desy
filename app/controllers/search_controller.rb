@@ -96,6 +96,7 @@ class SearchController < ApplicationController
   
   private
   
+  # Gets media elements by specific tag, using User#search_media_elements_with_tag
   def get_result_media_elements_by_specific_tag # :doc:
     resp = current_user.search_media_elements(@specific_tag_id, @page, @for_page, @order, @filter)
     @media_elements = resp[:records]
@@ -103,6 +104,7 @@ class SearchController < ApplicationController
     @media_elements_amount = resp[:records_amount]
   end
   
+  # Gets lessons by specific tag, using User#search_lessons_with_tag
   def get_result_lessons_by_specific_tag # :doc:
     resp = current_user.search_lessons(@specific_tag_id, @page, @for_page, @order, @filter, @subject_id)
     @lessons = resp[:records]
@@ -110,6 +112,7 @@ class SearchController < ApplicationController
     @lessons_amount = resp[:records_amount]
   end
   
+  # Gets media elements using User#search_media_elements
   def get_result_media_elements # :doc:
     resp = current_user.search_media_elements(@word, @page, @for_page, @order, @filter)
     @media_elements = resp[:records]
@@ -119,6 +122,7 @@ class SearchController < ApplicationController
     @tags = resp[:tags] if resp.has_key? :tags
   end
   
+  # Gets lessons using User#search_lessons
   def get_result_lessons # :doc:
     resp = current_user.search_lessons(@word, @page, @for_page, @order, @filter, @subject_id)
     @lessons = resp[:records]
@@ -128,6 +132,7 @@ class SearchController < ApplicationController
     @tags = resp[:tags] if resp.has_key? :tags
   end
   
+  # Initializes paginator and filters - generic method
   def initialize_paginator_and_filters # :doc:
     @did_you_search = params.has_key? :word
     @search_item = ['lessons', 'media_elements'].include?(params[:item]) ? params[:item] : 'lessons'
@@ -142,12 +147,14 @@ class SearchController < ApplicationController
     end
   end
   
+  # Called from SearchController#initialize_paginator_and_filters, it contains specific parameters for elements
   def initialize_paginator_and_filters_for_media_elements # :doc:
     @filter = Filters::MEDIA_ELEMENTS_SEARCH_SET.include?(params[:filter]) ? params[:filter] : Filters::ALL_MEDIA_ELEMENTS
     @order = SearchOrders::MEDIA_ELEMENTS_SET.include?(params[:order]) ? params[:order] : SearchOrders::UPDATED_AT
     @for_page = MEDIA_ELEMENTS_FOR_PAGE
   end
   
+  # Called from SearchController#initialize_paginator_and_filters, it contains specific parameters for lessons
   def initialize_paginator_and_filters_for_lessons # :doc:
     @filter = Filters::LESSONS_SEARCH_SET.include?(params[:filter]) ? params[:filter] : Filters::ALL_LESSONS
     @order = SearchOrders::LESSONS_SET.include?(params[:order]) ? params[:order] : SearchOrders::UPDATED_AT
@@ -155,6 +162,7 @@ class SearchController < ApplicationController
     @for_page = LESSONS_FOR_PAGE
   end
   
+  # Extracts the parameters +tag_id+ and +word+
   def initialize_word_and_specific_tag # :doc:
     @word = params[:word_placeholder].blank? ? '' : params[:word]
     @page = correct_integer?(params[:page]) ? params[:page].to_i : 1

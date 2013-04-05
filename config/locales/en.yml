@@ -1767,6 +1767,9 @@ en:
       # Title of the section
       # 1 - views/users/edit.html.erb
       title: "Personal Info"
+      # Button to save
+      # 1 - views/users/edit.html.erb
+      save: "Save"
       # Description of the section
       # 1 - views/users/edit.html.erb
       description: "In this area you can update or modify all the parameters of your account"
@@ -1917,6 +1920,9 @@ en:
       # Description
       # 1 - views/users/subjects.html.erb
       description: "Choose your subjects!"
+      # Button to save
+      # 1 - views/users/subjects.html.erb
+      save: "Save"
   
   
   # SECTION 2.16: Captions used inside the Video Editor

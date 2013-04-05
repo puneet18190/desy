@@ -623,12 +623,13 @@ page</p>
 
         <div class="method-description">
           
-          
+          <p>Authenticates the user, and it must be admin (see <a
+href="User.html#method-i-admin-3F">User#admin?</a>)</p>
           
 
           
           <div class="method-source-code" id="admin_authenticate-source">
-            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 145</span>
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 148</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">admin_authenticate</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-keyword">return</span> <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">root_path</span>(<span class="ruby-identifier">redirect_to</span><span class="ruby-operator">:</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">fullpath</span>, <span class="ruby-identifier">login</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>) <span class="ruby-keyword">if</span> <span class="ruby-keyword">not</span> <span class="ruby-identifier">current_user</span> <span class="ruby-keyword">or</span> <span class="ruby-keyword">not</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">admin?</span>
 <span class="ruby-keyword">end</span></pre>
@@ -653,12 +654,12 @@ page</p>
 
         <div class="method-description">
           
-          
+          <p>Authenticates the user</p>
           
 
           
           <div class="method-source-code" id="authenticate-source">
-            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 141</span>
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 143</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">authenticate</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-keyword">return</span> <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">root_path</span>(<span class="ruby-identifier">redirect_to</span><span class="ruby-operator">:</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">fullpath</span>, <span class="ruby-identifier">login</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">current_user</span>
 <span class="ruby-keyword">end</span></pre>
@@ -683,12 +684,14 @@ page</p>
 
         <div class="method-description">
           
-          <p>riceve errors.messages</p>
+          <p>Used for errors in forms of elements general information: converts an item
+of type ActiveSupport::OrderedHash (errors.messages) into a translated
+message for the user.</p>
           
 
           
           <div class="method-source-code" id="convert_item_error_messages-source">
-            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 172</span>
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 180</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">convert_item_error_messages</span>(<span class="ruby-identifier">errors</span>) <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">resp</span> = []
   <span class="ruby-identifier">media_errors</span> = <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-value">:media</span>)
@@ -725,12 +728,14 @@ page</p>
 
         <div class="method-description">
           
-          <p>riceve errors.messages</p>
+          <p>Used for errors in forms of lessons general information: converts an item
+of type ActiveSupport::OrderedHash (errors.messages) into a translated
+message for the user.</p>
           
 
           
           <div class="method-source-code" id="convert_lesson_editor_messages-source">
-            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 189</span>
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 197</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">convert_lesson_editor_messages</span>(<span class="ruby-identifier">errors</span>) <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">convert_item_error_messages</span> <span class="ruby-identifier">errors</span>
   <span class="ruby-identifier">resp</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;forms.error_captions.subject_missing_in_lesson&#39;</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">has_key?</span> <span class="ruby-value">:subject_id</span>
@@ -757,15 +762,16 @@ page</p>
 
         <div class="method-description">
           
-          <p>riceve errors</p>
+          <p>Used for errors in forms of element uploader: converts an item of type
+ActiveModel::Errors into a translated message for the user.</p>
           
 
           
           <div class="method-source-code" id="convert_media_element_uploader_messages-source">
-            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 196</span>
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 204</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">convert_media_element_uploader_messages</span>(<span class="ruby-identifier">errors</span>) <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">convert_item_error_messages</span> <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">messages</span>
-  <span class="ruby-keyword">if</span> <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">messages</span>.<span class="ruby-identifier">has_key?</span> <span class="ruby-value">:media</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">messages</span>.<span class="ruby-identifier">has_key?</span> <span class="ruby-value">:media</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">messages</span>[<span class="ruby-value">:media</span>].<span class="ruby-identifier">any?</span>
     <span class="ruby-keyword">return</span> ([<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;forms.error_captions.media_blank&#39;</span>)] <span class="ruby-operator">+</span> <span class="ruby-identifier">resp</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">added?</span> <span class="ruby-value">:media</span>, <span class="ruby-value">:blank</span>
     <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span>(<span class="ruby-regexp">/unsupported format/</span> <span class="ruby-operator">=~</span> <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">messages</span>[<span class="ruby-value">:media</span>].<span class="ruby-identifier">to_s</span>).<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> <span class="ruby-operator">!</span>(<span class="ruby-regexp">/invalid extension/</span> <span class="ruby-operator">=~</span> <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">messages</span>[<span class="ruby-value">:media</span>].<span class="ruby-identifier">to_s</span>).<span class="ruby-identifier">nil?</span>
       <span class="ruby-keyword">return</span> [<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;forms.error_captions.media_unsupported_format&#39;</span>)] <span class="ruby-operator">+</span> <span class="ruby-identifier">resp</span>
@@ -800,12 +806,13 @@ page</p>
 
         <div class="method-description">
           
-          <p>riceve errors</p>
+          <p>Used for errors in forms of user profile: converts an item of type
+ActiveModel::Errors into a translated message for the user.</p>
           
 
           
           <div class="method-source-code" id="convert_user_error_messages-source">
-            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 214</span>
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 222</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">convert_user_error_messages</span>(<span class="ruby-identifier">errors</span>) <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">pas_min</span> = <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;minimum_password_length&#39;</span>]
   <span class="ruby-identifier">pas_max</span> = <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;maximum_password_length&#39;</span>]
@@ -860,12 +867,15 @@ page</p>
 
         <div class="method-description">
           
-          
+          <p>Used in <a
+href="ApplicationController.html#method-i-initialize_lesson">#initialize_lesson</a>
+and similar methods, to check if the id passed as parameter is a correct
+integer</p>
           
 
           
           <div class="method-source-code" id="correct_integer-3F-source">
-            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 162</span>
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 169</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">correct_integer?</span>(<span class="ruby-identifier">x</span>) <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">x</span>.<span class="ruby-identifier">class</span> <span class="ruby-operator">==</span> <span class="ruby-constant">String</span> <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-identifier">x</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/\A\d+\Z/</span>) <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
 <span class="ruby-keyword">end</span></pre>
@@ -890,12 +900,13 @@ page</p>
 
         <div class="method-description">
           
-          
+          <p>Setter method for the attribute <a
+href="ApplicationController.html#attribute-i-current_user">#current_user</a></p>
           
 
           
           <div class="method-source-code" id="current_user-3D-source">
-            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 153</span>
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 158</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">current_user=</span>(<span class="ruby-identifier">user</span>) <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">session</span>[<span class="ruby-value">:user_id</span>] = <span class="ruby-identifier">user</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>
   <span class="ruby-ivar">@current_user</span> = <span class="ruby-identifier">user</span>
@@ -1091,12 +1102,13 @@ and additionally checks if the logged user owns the lesson</p>
 
         <div class="method-description">
           
-          
+          <p>Initializes the attribute called <code>where</code> with the name of the
+controller who called the action</p>
           
 
           
           <div class="method-source-code" id="initialize_location-source">
-            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 137</span>
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 138</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize_location</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-ivar">@where</span> = <span class="ruby-identifier">controller_name</span>
 <span class="ruby-keyword">end</span></pre>
@@ -1353,12 +1365,12 @@ in the same page</p>
 
         <div class="method-description">
           
-          
+          <p>Checks if there is a logged user</p>
           
 
           
           <div class="method-source-code" id="logged_in-3F-source">
-            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 248</span>
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 257</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">logged_in?</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">current_user</span>
 <span class="ruby-keyword">end</span></pre>
@@ -1453,12 +1465,14 @@ actions</p>
 
         <div class="method-description">
           
-          
+          <p>Used in all the actions which have double possible rendering (Html + Ajax,
+see for instance <a
+href="DashboardController.html#method-i-index">DashboardController#index</a>)</p>
           
 
           
           <div class="method-source-code" id="render_js_or_html_index-source">
-            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 158</span>
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 164</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">render_js_or_html_index</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">render</span> <span class="ruby-string">&#39;index&#39;</span>, <span class="ruby-identifier">formats</span><span class="ruby-operator">:</span> [<span class="ruby-identifier">request</span>.<span class="ruby-identifier">xhr?</span> <span class="ruby-operator">?</span> <span class="ruby-value">:js</span> <span class="ruby-operator">:</span> <span class="ruby-value">:html</span>]
 <span class="ruby-keyword">end</span></pre>
@@ -1483,12 +1497,16 @@ actions</p>
 
         <div class="method-description">
           
-          
+          <p>Used as a submethod to filters like <a
+href="ApplicationController.html#method-i-initialize_lesson">#initialize_lesson</a>:
+this method allows these filters to be used without a specified order,
+it&#39;s not necessary that the attribute <code>ok</code> has been already
+initialized</p>
           
 
           
           <div class="method-source-code" id="update_ok-source">
-            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 166</span>
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 174</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update_ok</span>(<span class="ruby-identifier">condition</span>) <span class="ruby-comment"># :doc:</span>
   <span class="ruby-ivar">@ok</span> = <span class="ruby-keyword">true</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>.<span class="ruby-identifier">nil?</span>
   <span class="ruby-ivar">@ok</span> = <span class="ruby-ivar">@ok</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">condition</span>

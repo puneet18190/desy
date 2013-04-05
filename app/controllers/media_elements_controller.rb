@@ -115,9 +115,8 @@ class MediaElementsController < ApplicationController
         return render :file => Rails.root.join('public/413.html'), :layout => false, :status => 413
       end
       @errors = convert_media_element_uploader_messages record.errors
-      puts record.errors.inspect
-      puts @errors.inspect
       fields = record.errors.messages.keys
+      fields.delete(:media) if fields.include?(:media) && record.errors.messages[:media].empty?
       if fields.include? :sti_type
         fields << :media if !fields.include? :media
         fields.delete :sti_type
@@ -281,12 +280,14 @@ class MediaElementsController < ApplicationController
   
   private
   
+  # Gets media elements using User#own_media_elements
   def get_own_media_elements # :doc:
     current_user_own_media_elements = current_user.own_media_elements(@page, @for_page, @filter)
     @media_elements = current_user_own_media_elements[:records]
     @pages_amount = current_user_own_media_elements[:pages_amount]
   end
   
+  # Initializes pagination parameters and filters
   def initialize_paginator # :doc:
     @page = correct_integer?(params[:page]) ? params[:page].to_i : 1
     @display = [MediaElement::DISPLAY_MODES[:compact], MediaElement::DISPLAY_MODES[:expanded]].include?(params[:display]) ? params[:display] : MediaElement::DISPLAY_MODES[:expanded]

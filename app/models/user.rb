@@ -761,7 +761,7 @@ class User < ActiveRecord::Base
   
   # === Description
   #
-  # Gets the total number of notifications associated to the user (used in the filters of NotificationsController)
+  # Gets the total number of notifications associated to the user (used in ApplicationController#initialize_layout and NotificationsController#destroy)
   #
   # === Returns
   #
@@ -802,7 +802,7 @@ class User < ActiveRecord::Base
   
   # === Description
   #
-  # Gets the first visible block of notifications associated to the user (used in the general filters of NotificationsController)
+  # Gets the first visible block of notifications associated to the user (used in ApplicationController#initialize_layout and NotificationsController#get_new_block)
   #
   # === Returns
   #
@@ -814,7 +814,7 @@ class User < ActiveRecord::Base
   
   # === Description
   #
-  # Gets the total number of notifications not seen by the user (used in the filters of NotificationsController)
+  # Gets the total number of notifications not seen by the user (used in ApplicationController#initialize_layout and NotificationsController#seen)
   #
   # === Returns
   #

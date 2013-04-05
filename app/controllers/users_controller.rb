@@ -247,6 +247,7 @@ class UsersController < ApplicationController
   
   private
   
+  # Fills the locations
   def fill_locations # :doc:
     @user_location = {}
     prev_location = User.find(current_user.id).location
