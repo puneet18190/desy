@@ -7,25 +7,11 @@ It's where users can share their lessons. It handles share lessons link and add 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// document ready
-
+/**
+bla bla bla
+@method virtualClassroomDocumentReady
+@for VirtualClassroomDocumentReady
+**/
 function virtualClassroomDocumentReady() {
   initializeVirtualClassroom();
   virtualClassroomDocumentReadyPlaylist();
@@ -34,6 +20,11 @@ function virtualClassroomDocumentReady() {
   virtualClassroomDocumentReadySendLink();
 }
 
+/**
+bla bla bla
+@method virtualClassroomDocumentReadyIconsAndButtons
+@for VirtualClassroomDocumentReady
+**/
 function virtualClassroomDocumentReadyIconsAndButtons() {
   $('body').on('click', '._remove_lesson_from_inside_virtual_classroom', function() {
     var lesson_id = $(this).data('clickparam');
@@ -84,6 +75,11 @@ function virtualClassroomDocumentReadyIconsAndButtons() {
   });
 }
 
+/**
+bla bla bla
+@method virtualClassroomDocumentReadyMultipleLessonLoading
+@for VirtualClassroomDocumentReady
+**/
 function virtualClassroomDocumentReadyMultipleLessonLoading() {
   $('body').on('click', '#open_quick_load_lessons_popup_in_virtual_classroom', function() {
     if(!$(this).hasClass('current')) {
@@ -127,6 +123,11 @@ function virtualClassroomDocumentReadyMultipleLessonLoading() {
   });
 }
 
+/**
+bla bla bla
+@method virtualClassroomDocumentReadyPlaylist
+@for VirtualClassroomDocumentReady
+**/
 function virtualClassroomDocumentReadyPlaylist() {
   $('body').on('click', '._playlist_play', function() {
     window.location = '/lessons/view/playlist';
@@ -162,6 +163,11 @@ function virtualClassroomDocumentReadyPlaylist() {
   });
 }
 
+/**
+bla bla bla
+@method virtualClassroomDocumentReadySendLink
+@for VirtualClassroomDocumentReady
+**/
 function virtualClassroomDocumentReadySendLink() {
   $('body').on('click', '._send_lesson_link', function() {
     var lesson_id = $(this).data('lesson-id');
@@ -234,30 +240,13 @@ function virtualClassroomDocumentReadySendLink() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// javascript animations
-
 /**
-* Get highest zIndex value, among elements of a given class
-* 
-* @method getMaximumZIndex
-* @for getMaximumZIndex
-* @param a_class {String} css class name
-* @return {Number} highest zIndex value
-*/
+Get highest zIndex value, among elements of a given class
+@method getMaximumZIndex
+@for VirtualClassroomJavaScriptAnimations
+@param a_class {String} css class name
+@return {Number} highest zIndex value
+**/
 function getMaximumZIndex(a_class) {
   var index_highest = 0;
   $('.' + a_class).each(function() {
@@ -270,11 +259,10 @@ function getMaximumZIndex(a_class) {
 }
 
 /**
-* JS-TODO
-* 
-* @method initializeDraggableVirtualClassroomLesson
-* @for initializeDraggableVirtualClassroomLesson
-*/
+bla bla bla
+@method initializeDraggableVirtualClassroomLesson
+@for VirtualClassroomJavaScriptAnimations
+**/
 function initializeDraggableVirtualClassroomLesson(id) {
   var lesson_cover = $('#' + id + ' ._lesson_thumb');
   var object = $('#' + id);
@@ -311,13 +299,10 @@ function initializeDraggableVirtualClassroomLesson(id) {
 }
 
 /**
-* Initialize playlist container and jScrollPane
-*
-* Uses: [getMaximumZIndex](../classes/getMaximumZIndex.html#method_getMaximumZIndex)
-* 
-* @method initializePlaylist
-* @for initializePlaylist
-*/
+Initialize playlist container and jScrollPane Uses: [getMaximumZIndex](../classes/getMaximumZIndex.html#method_getMaximumZIndex)
+@method initializePlaylist
+@for VirtualClassroomJavaScriptAnimations
+**/
 function initializePlaylist() {
   $('#lessons_list_in_playlist').jScrollPane({
     autoReinitialise: true
@@ -375,11 +360,10 @@ function initializePlaylist() {
 }
 
 /**
-* JS-TODO
-* 
-* @method initializeVirtualClassroom
-* @for initializeVirtualClassroom
-*/
+bla bla bla
+@method initializeVirtualClassroom
+@for VirtualClassroomJavaScriptAnimations
+**/
 function initializeVirtualClassroom() {
   $('._virtual_classroom_lesson').each(function() {
     if($(this).data('in-playlist')) {
@@ -395,29 +379,11 @@ function initializeVirtualClassroom() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// multiple loading
-
 /**
-* JS-TODO
-* 
-* @method initializeNotAvailableLessonsToLoadQuick
-* @for initializeNotAvailableLessonsToLoadQuick
-*/
+bla bla bla
+@method initializeNotAvailableLessonsToLoadQuick
+@for VirtualClassroomMultipleLoading
+**/
 function initializeNotAvailableLessonsToLoadQuick() {
   $('._virtual_classroom_quick_loaded_lesson').each(function() {
     if(!$(this).data('available')) {
@@ -427,11 +393,10 @@ function initializeNotAvailableLessonsToLoadQuick() {
 }
 
 /**
-* JS-TODO
-* 
-* @method initializeScrollPaneQuickLessonSelector
-* @for initializeScrollPaneQuickLessonSelector
-*/
+bla bla bla
+@method initializeScrollPaneQuickLessonSelector
+@for VirtualClassroomMultipleLoading
+**/
 function initializeScrollPaneQuickLessonSelector() {
   $('#virtual_classroom_quick_select_container.scroll-pane').bind('jsp-arrow-change', function(event, isAtTop, isAtBottom, isAtLeft, isAtRight) {
     var page = $('#virtual_classroom_quick_select_container').data('page');
@@ -446,26 +411,11 @@ function initializeScrollPaneQuickLessonSelector() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-// send link
-
 /**
-* Add email to recipients list on email add button (+).
-* 
-* @method addEmailToVirtualClassroomSendLessonLinkSelector
-* @for addEmailToVirtualClassroomSendLessonLinkSelector
-*/
+Add email to recipients list on email add button (+).
+@method addEmailToVirtualClassroomSendLessonLinkSelector
+@for VirtualClassroomSendLink
+**/
 function addEmailToVirtualClassroomSendLessonLinkSelector() {
   var selector = $('#virtual_classroom_emails_selector');
   if(!selector.data('placeholdered') && selector.val() != '') {
