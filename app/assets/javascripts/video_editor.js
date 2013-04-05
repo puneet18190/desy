@@ -3,49 +3,22 @@ Provides video editor ajax actions.
 @module video-editor
 **/
 
-/**
-* Video Editor initialization
-* 
 
 
 
 
-/**
-* Video Editor generic video component cutter.
-* 
- @method closeGenericVideoComponentCutter
-* @for closeGenericVideoComponentCutter
-* @param name {String} An 
-*   Attribute name or 
-*   object property path.
-* @return {String} Unique clientId.
-*/
-function closeGenericVideoComponentCutter() {
-  $('._video_component_cutter_arrow').hide('fade', {}, 250);
-  $('._video_component_cutter').hide('fade', {}, 250, function() {
-    $('#commit_video_editor').show();
-    $('#video_editor_global_preview a').removeClass('disabled');
-    $('._video_editor_bottom_bar').css('visibility', 'visible');
-    resetVisibilityOfVideoEditorTransitions();
-    $('#media_elements_list_in_video_editor .jspHorizontalBar').css('visibility', 'visible');
-    $('._video_editor_bottom_bar').show();
-    $('#video_editor_box_ghost').hide();
-    $('._video_editor_component_hover').removeClass('selected');
-    $('._new_component_in_video_editor_hover').removeClass('selected');
-    $('._video_component_icon').removeClass('selected');
-  });
-}
 
-function resetVisibilityOfVideoEditorTransitions() {
-  var components = $('._video_editor_component');
-  components.each(function(index) {
-    if(index < (components.length - 1)) {
-      $(this).find('._video_component_transition').removeClass('current');
-    } else {
-      $(this).find('._video_component_transition').addClass('current');
-    }
-  });
-}
+
+
+
+
+
+
+
+
+
+
+// galleries
 
 function calculateNewPositionGalleriesInVideoEditor() {
   $('#video_editor_mixed_gallery_container').css('left', (($(window).width() - 940) / 2) + 'px');
@@ -84,14 +57,37 @@ function switchToOtherGalleryInMixedGalleryInVideoEditor(type) {
   }
 }
 
-function reloadVideoEditorComponentPositions() {
-  var components = $('._video_editor_component');
-  components.each(function(index) {
-    $(this).data('position', (index + 1));
-    $(this).find('._video_component_input_position').val(index + 1);
-    $(this).find('._video_component_icon ._left').html(index + 1);
-  });
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// add components
 
 function addImageComponentInVideoEditor(image_id, component, preview, duration) {
   $('._new_component_in_video_editor_hover a').removeClass('current');
@@ -150,36 +146,6 @@ function addImageComponentInVideoEditor(image_id, component, preview, duration) 
     highlightAndUpdateVideoComponentIcon(('video_component_' + next_position));
     $('#media_elements_list_in_video_editor').data('jsp').scrollToPercentX(100, true);
   }, 1100);
-}
-
-function replaceImageComponentInVideoEditor(image_id, component, preview, position, duration) {
-  var identifier = getVideoComponentIdentifier(position);
-  // build preview
-  var empty_preview = $('#empty_image_preview_for_video_editor').html();
-  empty_preview = '<div id="temporary_empty_preview" ' + empty_preview.substr(empty_preview.indexOf('div') + 3, empty_preview.length);
-  $('#video_component_' + identifier + '_preview').replaceWith(empty_preview);
-  // build cutter
-  var empty_cutter = $('#empty_image_cutter_for_video_editor').html();
-  empty_cutter = '<div id="temporary_empty_cutter" ' + empty_cutter.substr(empty_cutter.indexOf('div') + 3, empty_cutter.length);
-  $('#video_component_' + identifier + '_cutter').replaceWith(empty_cutter);
-  // edit preview
-  current_preview = $('#temporary_empty_preview');
-  current_preview.attr('id', ('video_component_' + identifier + '_preview'));
-  current_preview.html(preview);
-  // edit cutter
-  current_cutter = $('#temporary_empty_cutter');
-  current_cutter.attr('id', ('video_component_' + identifier + '_cutter'));
-  current_cutter.find('._old').html(secondsToDateString(duration));
-  // edit component
-  $('#' + position).removeClass('_video _image _text').addClass('_image');
-  $('#' + position + ' ._video_component_thumb').replaceWith(component);
-  clearSpecificVideoEditorComponentParameters(position);
-  $('#' + position + ' ._video_component_input_type').val('image');
-  var to_be_appended = fillVideoEditorSingleParameter('image_id', identifier, image_id);
-  to_be_appended += fillVideoEditorSingleParameter('duration', identifier, duration);
-  $('#' + position + ' ._video_editor_component_hover').append(to_be_appended);
-  // other things
-  changeDurationVideoEditorComponent(position, duration);
 }
 
 function addVideoComponentInVideoEditor(video_id, webm, mp4, component, duration) {
@@ -251,46 +217,6 @@ function addVideoComponentInVideoEditor(video_id, webm, mp4, component, duration
   }, 1100);
 }
 
-function replaceVideoComponentInVideoEditor(video_id, webm, mp4, component, position, duration) {
-  var identifier = getVideoComponentIdentifier(position);
-  // build preview
-  var empty_preview = $('#empty_video_preview_for_video_editor').html();
-  empty_preview = '<div id="temporary_empty_preview" ' + empty_preview.substr(empty_preview.indexOf('div') + 3, empty_preview.length);
-  $('#video_component_' + identifier + '_preview').replaceWith(empty_preview);
-  // build cutter
-  var empty_cutter = $('#empty_video_cutter_for_video_editor').html();
-  empty_cutter = '<div id="temporary_empty_cutter" ' + empty_cutter.substr(empty_cutter.indexOf('div') + 3, empty_cutter.length);
-  $('#video_component_' + identifier + '_cutter').replaceWith(empty_cutter);
-  // edit preview
-  current_preview = $('#temporary_empty_preview');
-  if(videoEditorWithAudioTrack()) {
-    current_preview.find('video').prop('muted', true);
-  }
-  current_preview.attr('id', ('video_component_' + identifier + '_preview'));
-  current_preview.find('source[type="video/webm"]').attr('src', webm);
-  current_preview.find('source[type="video/mp4"]').attr('src', mp4);
-  current_preview.find('video').load();
-  // edit cutter
-  current_cutter = $('#temporary_empty_cutter');
-  current_cutter.attr('id', ('video_component_' + identifier + '_cutter'));
-  current_cutter.find('._video_editor_cutter_total_time').html(secondsToDateString(duration));
-  current_cutter.find('._video_editor_cutter_selected_time').html(secondsToDateString(duration));
-  current_cutter.data('to', duration);
-  current_cutter.data('max-to', duration);
-  initializeVideoInVideoEditorPreview(identifier);
-  // edit component
-  $('#' + position).removeClass('_video _image _text').addClass('_video');
-  $('#' + position + ' ._video_component_thumb').replaceWith(component);
-  clearSpecificVideoEditorComponentParameters(position);
-  $('#' + position + ' ._video_component_input_type').val('video');
-  var to_be_appended = fillVideoEditorSingleParameter('video_id', identifier, video_id);
-  to_be_appended += fillVideoEditorSingleParameter('from', identifier, 0);
-  to_be_appended += fillVideoEditorSingleParameter('to', identifier, duration);
-  $('#' + position + ' ._video_editor_component_hover').append(to_be_appended);
-  // other things
-  changeDurationVideoEditorComponent(position, duration);
-}
-
 function addTextComponentInVideoEditor(component, content, duration, background_color, text_color) {
   $('._new_component_in_video_editor_hover a').removeClass('current');
   var next_position = $('#info_container').data('last-component-id') + 1;
@@ -357,6 +283,101 @@ function addTextComponentInVideoEditor(component, content, duration, background_
   }, 1100);
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// replace components
+
+function replaceImageComponentInVideoEditor(image_id, component, preview, position, duration) {
+  var identifier = getVideoComponentIdentifier(position);
+  // build preview
+  var empty_preview = $('#empty_image_preview_for_video_editor').html();
+  empty_preview = '<div id="temporary_empty_preview" ' + empty_preview.substr(empty_preview.indexOf('div') + 3, empty_preview.length);
+  $('#video_component_' + identifier + '_preview').replaceWith(empty_preview);
+  // build cutter
+  var empty_cutter = $('#empty_image_cutter_for_video_editor').html();
+  empty_cutter = '<div id="temporary_empty_cutter" ' + empty_cutter.substr(empty_cutter.indexOf('div') + 3, empty_cutter.length);
+  $('#video_component_' + identifier + '_cutter').replaceWith(empty_cutter);
+  // edit preview
+  current_preview = $('#temporary_empty_preview');
+  current_preview.attr('id', ('video_component_' + identifier + '_preview'));
+  current_preview.html(preview);
+  // edit cutter
+  current_cutter = $('#temporary_empty_cutter');
+  current_cutter.attr('id', ('video_component_' + identifier + '_cutter'));
+  current_cutter.find('._old').html(secondsToDateString(duration));
+  // edit component
+  $('#' + position).removeClass('_video _image _text').addClass('_image');
+  $('#' + position + ' ._video_component_thumb').replaceWith(component);
+  clearSpecificVideoEditorComponentParameters(position);
+  $('#' + position + ' ._video_component_input_type').val('image');
+  var to_be_appended = fillVideoEditorSingleParameter('image_id', identifier, image_id);
+  to_be_appended += fillVideoEditorSingleParameter('duration', identifier, duration);
+  $('#' + position + ' ._video_editor_component_hover').append(to_be_appended);
+  // other things
+  changeDurationVideoEditorComponent(position, duration);
+}
+
+function replaceVideoComponentInVideoEditor(video_id, webm, mp4, component, position, duration) {
+  var identifier = getVideoComponentIdentifier(position);
+  // build preview
+  var empty_preview = $('#empty_video_preview_for_video_editor').html();
+  empty_preview = '<div id="temporary_empty_preview" ' + empty_preview.substr(empty_preview.indexOf('div') + 3, empty_preview.length);
+  $('#video_component_' + identifier + '_preview').replaceWith(empty_preview);
+  // build cutter
+  var empty_cutter = $('#empty_video_cutter_for_video_editor').html();
+  empty_cutter = '<div id="temporary_empty_cutter" ' + empty_cutter.substr(empty_cutter.indexOf('div') + 3, empty_cutter.length);
+  $('#video_component_' + identifier + '_cutter').replaceWith(empty_cutter);
+  // edit preview
+  current_preview = $('#temporary_empty_preview');
+  if(videoEditorWithAudioTrack()) {
+    current_preview.find('video').prop('muted', true);
+  }
+  current_preview.attr('id', ('video_component_' + identifier + '_preview'));
+  current_preview.find('source[type="video/webm"]').attr('src', webm);
+  current_preview.find('source[type="video/mp4"]').attr('src', mp4);
+  current_preview.find('video').load();
+  // edit cutter
+  current_cutter = $('#temporary_empty_cutter');
+  current_cutter.attr('id', ('video_component_' + identifier + '_cutter'));
+  current_cutter.find('._video_editor_cutter_total_time').html(secondsToDateString(duration));
+  current_cutter.find('._video_editor_cutter_selected_time').html(secondsToDateString(duration));
+  current_cutter.data('to', duration);
+  current_cutter.data('max-to', duration);
+  initializeVideoInVideoEditorPreview(identifier);
+  // edit component
+  $('#' + position).removeClass('_video _image _text').addClass('_video');
+  $('#' + position + ' ._video_component_thumb').replaceWith(component);
+  clearSpecificVideoEditorComponentParameters(position);
+  $('#' + position + ' ._video_component_input_type').val('video');
+  var to_be_appended = fillVideoEditorSingleParameter('video_id', identifier, video_id);
+  to_be_appended += fillVideoEditorSingleParameter('from', identifier, 0);
+  to_be_appended += fillVideoEditorSingleParameter('to', identifier, duration);
+  $('#' + position + ' ._video_editor_component_hover').append(to_be_appended);
+  // other things
+  changeDurationVideoEditorComponent(position, duration);
+}
+
 function replaceTextComponentInVideoEditor(component, content, position, duration, background_color, text_color) {
   var identifier = getVideoComponentIdentifier(position);
   // build preview
@@ -394,6 +415,41 @@ function replaceTextComponentInVideoEditor(component, content, position, duratio
   changeDurationVideoEditorComponent(position, duration);
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// text component editor
+
 function resetVideoEditorTextComponent() {
   $('#text_component_preview textarea').val($('#text_component_preview').data('placeholder-content'));
   $('#video_editor_mixed_gallery_container ._texts ._duration_selector input').val('');
@@ -418,6 +474,81 @@ function switchTextComponentTextColor(old_color, new_color) {
   $('#text_component_preview').data('text-color', new_color);
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// components
+
+function resetVisibilityOfVideoEditorTransitions() {
+  var components = $('._video_editor_component');
+  components.each(function(index) {
+    if(index < (components.length - 1)) {
+      $(this).find('._video_component_transition').removeClass('current');
+    } else {
+      $(this).find('._video_component_transition').addClass('current');
+    }
+  });
+}
+
+function reloadVideoEditorComponentPositions() {
+  var components = $('._video_editor_component');
+  components.each(function(index) {
+    $(this).data('position', (index + 1));
+    $(this).find('._video_component_input_position').val(index + 1);
+    $(this).find('._video_component_icon ._left').html(index + 1);
+  });
+}
+
+function startVideoEditorPreviewClipWithDelay(component_id) {
+  setTimeout(function() {
+    var obj = $('#' + component_id);
+    if(obj.data('preview-selected') && !$('#' + component_id + '_preview').is(':visible')) {
+      startVideoEditorPreviewClip(component_id);
+    }
+  }, 500);
+}
+
+function highlightAndUpdateVideoComponentIcon(component_id) {
+  $('#' + component_id + ' ._video_component_icon').effect('highlight', {color: '#41A62A'}, 1500);
+}
+
+function clearSpecificVideoEditorComponentParameters(component_id) {
+  var huge_selector = '#' + component_id + ' ._video_component_input_content';
+  huge_selector += ', #' + component_id + ' ._video_component_input_background_color';
+  huge_selector += ', #' + component_id + ' ._video_component_input_text_color';
+  huge_selector += ', #' + component_id + ' ._video_component_input_duration';
+  huge_selector += ', #' + component_id + ' ._video_component_input_image_id';
+  huge_selector += ', #' + component_id + ' ._video_component_input_video_id';
+  huge_selector += ', #' + component_id + ' ._video_component_input_from';
+  huge_selector += ', #' + component_id + ' ._video_component_input_to';
+  $(huge_selector).remove();
+}
+
+function fillVideoEditorSingleParameter(input, identifier, value) {
+  return '<input id="' + input + '_' + identifier + '" class="_video_component_input_' + input + '" type="hidden" value="' + value + '" name="' + input + '_' + identifier + '">';
+}
+
 function changeDurationVideoEditorComponent(component_id, new_duration) {
   var old_duration = $('#' + component_id).data('duration');
   var total_length = $('#info_container').data('total-length');
@@ -437,33 +568,45 @@ function changeDurationVideoEditorComponent(component_id, new_duration) {
   $('#visual_video_editor_total_length').html(secondsToDateString(total_length));
 }
 
-function fillVideoEditorSingleParameter(input, identifier, value) {
-  return '<input id="' + input + '_' + identifier + '" class="_video_component_input_' + input + '" type="hidden" value="' + value + '" name="' + input + '_' + identifier + '">';
-}
 
-function clearSpecificVideoEditorComponentParameters(component_id) {
-  var huge_selector = '#' + component_id + ' ._video_component_input_content';
-  huge_selector += ', #' + component_id + ' ._video_component_input_background_color';
-  huge_selector += ', #' + component_id + ' ._video_component_input_text_color';
-  huge_selector += ', #' + component_id + ' ._video_component_input_duration';
-  huge_selector += ', #' + component_id + ' ._video_component_input_image_id';
-  huge_selector += ', #' + component_id + ' ._video_component_input_video_id';
-  huge_selector += ', #' + component_id + ' ._video_component_input_from';
-  huge_selector += ', #' + component_id + ' ._video_component_input_to';
-  $(huge_selector).remove();
-}
 
-function highlightAndUpdateVideoComponentIcon(component_id) {
-  $('#' + component_id + ' ._video_component_icon').effect('highlight', {color: '#41A62A'}, 1500);
-}
 
-function startVideoEditorPreviewClipWithDelay(component_id) {
-  setTimeout(function() {
-    var obj = $('#' + component_id);
-    if(obj.data('preview-selected') && !$('#' + component_id + '_preview').is(':visible')) {
-      startVideoEditorPreviewClip(component_id);
-    }
-  }, 500);
+
+
+
+
+
+
+
+
+
+
+// cutters
+
+/**
+* Video Editor generic video component cutter.
+* 
+ @method closeGenericVideoComponentCutter
+* @for closeGenericVideoComponentCutter
+* @param name {String} An 
+*   Attribute name or 
+*   object property path.
+* @return {String} Unique clientId.
+*/
+function closeGenericVideoComponentCutter() {
+  $('._video_component_cutter_arrow').hide('fade', {}, 250);
+  $('._video_component_cutter').hide('fade', {}, 250, function() {
+    $('#commit_video_editor').show();
+    $('#video_editor_global_preview a').removeClass('disabled');
+    $('._video_editor_bottom_bar').css('visibility', 'visible');
+    resetVisibilityOfVideoEditorTransitions();
+    $('#media_elements_list_in_video_editor .jspHorizontalBar').css('visibility', 'visible');
+    $('._video_editor_bottom_bar').show();
+    $('#video_editor_box_ghost').hide();
+    $('._video_editor_component_hover').removeClass('selected');
+    $('._new_component_in_video_editor_hover').removeClass('selected');
+    $('._video_component_icon').removeClass('selected');
+  });
 }
 
 function showVideoEditorCutter(component_id) {
@@ -487,17 +630,6 @@ function startVideoEditorPreviewClip(component_id) {
   $('#' + component_id + '_preview').show('fade', {}, 250);
 }
 
-function loadVideoComponentIfNotLoadedYet(component_id) {
-  if(!$('#' + component_id + '_preview').data('loaded')) {
-    var mp4 = $('#' + component_id + '_preview').data('mp4');
-    var webm = $('#' + component_id + '_preview').data('webm');
-    $('#' + component_id + '_preview video source[type="video/mp4"]').attr('src', mp4);
-    $('#' + component_id + '_preview video source[type="video/webm"]').attr('src', webm);
-    $('#' + component_id + '_preview video').load();
-    $('#' + component_id + '_preview').data('loaded', true);
-  }
-}
-
 function commitVideoComponentVideoCutter(identifier) {
   var from = $('#video_component_' + identifier + '_cutter').data('from');
   var to = $('#video_component_' + identifier + '_cutter').data('to');
@@ -508,10 +640,6 @@ function commitVideoComponentVideoCutter(identifier) {
     highlightAndUpdateVideoComponentIcon('video_component_' + identifier);
     $('#video_component_' + identifier + '_cutter').data('changed', false);
   }
-}
-
-function videoEditorWithAudioTrack() {
-  return $('#audio_track_in_video_editor_input').val() != '';
 }
 
 function cutVideoComponentLeftSide(identifier, pos) {
@@ -526,48 +654,41 @@ function cutVideoComponentRightSide(identifier, pos) {
   $('#video_component_' + identifier + '_cutter ._video_editor_cutter_selected_time').html(secondsToDateString(new_duration));
 }
 
-function calculateVideoComponentStartSecondInVideoEditor(identifier) {
-  var duration = 0;
-  var stop = false;
-  $('._video_editor_component').each(function(index) {
-    if(getVideoComponentIdentifier($(this).attr('id')) == identifier) {
-      stop = true;
-    } else if(!stop) {
-      duration += ($(this).data('duration') + 1);
-    }
-  });
-  var cutter = $('#video_component_' + identifier + '_cutter');
-  if(!cutter.hasClass('_mini_cutter')) {
-    duration += (cutter.find('._media_player_slider').slider('value') - cutter.data('from'));
-  }
-  return duration;
-}
 
-function startVideoEditorGlobalPreview() {
-  $('#video_editor_global_preview').data('in-use', true);
-  var current_identifier = $('#video_editor_global_preview').data('current-component');
-  var current_component = $('#video_component_' + current_identifier);
-  var actual_audio_track_time = calculateVideoComponentStartSecondInVideoEditor(current_identifier) + current_component.data('current-preview-time');
-  if(videoEditorWithAudioTrack() && actual_audio_track_time < $('#full_audio_track_placeholder_in_video_editor').data('duration')) {
-    var audio_track = $('#video_editor_preview_container audio');
-    if(media[0].error) {
-      showLoadingMediaErrorPopup(audio_track[0].error.code, 'audio');
-    } else {
-      setCurrentTimeToMedia(audio_track, actual_audio_track_time);
-      if(audio_track.readyState != 0) {
-        audio_track[0].play();
-      } else {
-        audio_track.on('loadedmetadata', function() {
-          audio_track[0].play();
-        });
-      }
-    }
-  }
-  if(current_component.data('position') == getHowManyComponentsHiddenToLeftTimelineHorizontalScrollPane('media_elements_list_in_video_editor', 186) + 1) {
-    playVideoEditorComponent(current_component, false);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// general
+
+function getVideoComponentIdentifier(item_id) {
+  var resp = item_id.split('_');
+  if($('#' + item_id).hasClass('_video_editor_component')) {
+    return resp[resp.length - 1];
   } else {
-    hideVideoEditorPreviewComponentProgressBar();
-    playVideoEditorComponent(current_component, true);
+    return resp[resp.length - 2];
   }
 }
 
@@ -579,6 +700,36 @@ function getLastVideoEditorComponent() {
   var components = $('._video_editor_component');
   return $(components[components.length - 1]);
 }
+
+function videoEditorWithAudioTrack() {
+  return $('#audio_track_in_video_editor_input').val() != '';
+}
+
+function loadVideoComponentIfNotLoadedYet(component_id) {
+  if(!$('#' + component_id + '_preview').data('loaded')) {
+    var mp4 = $('#' + component_id + '_preview').data('mp4');
+    var webm = $('#' + component_id + '_preview').data('webm');
+    $('#' + component_id + '_preview video source[type="video/mp4"]').attr('src', mp4);
+    $('#' + component_id + '_preview video source[type="video/webm"]').attr('src', webm);
+    $('#' + component_id + '_preview video').load();
+    $('#' + component_id + '_preview').data('loaded', true);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// preview
 
 function playVideoEditorComponent(component, with_scroll) {
   if(with_scroll) {
@@ -651,58 +802,6 @@ function playVideoEditorComponent(component, with_scroll) {
   }
 }
 
-function selectVideoComponentInPreview(component, time) {
-  $('._video_component_preview').hide();
-  $('#' + component.attr('id') + '_preview').show();
-  $('._video_editor_component_hover, ._video_component_icon').addClass('selected');
-  component.find('._video_editor_component_hover, ._video_component_icon').removeClass('selected');
-  if(time == undefined) {
-    time = 0;
-  }
-  setVisualTimesVideoEditorPreview(component, time);
-}
-
-function setVisualTimesVideoEditorPreview(component, time) {
-  var identifier = getVideoComponentIdentifier(component.attr('id'));
-  var global_time = calculateVideoComponentStartSecondInVideoEditor(identifier) + time;
-  $('#visual_video_editor_current_time').html(secondsToDateString(global_time));
-  $('#video_editor_global_preview').data('current-time', global_time);
-  $('#video_editor_global_preview').data('current-component', identifier);
-  $('._video_editor_component').each(function() {
-    var my_identifier = getVideoComponentIdentifier($(this).attr('id'));
-    if(my_identifier == identifier) {
-      $(this).find('._video_component_icon ._right').html(secondsToDateString(time));
-      $(this).data('current-preview-time', time);
-      if($('#video_component_' + my_identifier + '_preview video').length > 0 && $('#video_component_' + my_identifier + '_preview').data('loaded')) {
-        setCurrentTimeToMedia($('#video_component_' + my_identifier + '_preview video'), $('#video_component_' + my_identifier + '_cutter').data('from') + time);
-      }
-    } else {
-      $(this).find('._video_component_icon ._right').html(secondsToDateString(0));
-      $(this).data('current-preview-time', 0);
-      if($('#video_component_' + my_identifier + '_preview video').length > 0 && $('#video_component_' + my_identifier + '_preview').data('loaded')) {
-        setCurrentTimeToMedia($('#video_component_' + my_identifier + '_preview video'), $('#video_component_' + my_identifier + '_cutter').data('from'));
-      }
-    }
-  });
-}
-
-function getInitialPointOfVideoEditorComponent(component) {
-  resp = 0;
-  if(component.hasClass('_video')) {
-    resp = $('#' + component.attr('id') + '_cutter').data('from');
-  }
-  return resp;
-}
-
-function getVideoComponentIdentifier(item_id) {
-  var resp = item_id.split('_');
-  if($('#' + item_id).hasClass('_video_editor_component')) {
-    return resp[resp.length - 1];
-  } else {
-    return resp[resp.length - 2];
-  }
-}
-
 function automaticIncreaseVideoEditorPreviewTimer(time, total_length, callback) {
   setTimeout(function() {
     if($('#video_editor_global_preview').data('in-use')) {
@@ -730,19 +829,6 @@ function increaseVideoEditorPreviewTimer(with_component) {
     if($('#video_editor_preview_slider').is(':visible')) {
       $('#video_editor_preview_slider').slider('value', component_time + 1);
     }
-  }
-}
-
-function showVideoEditorPreviewArrowToComponents() {
-  if(getVideoComponentIdentifier(getFirstVideoEditorComponent().attr('id')) != $('#video_editor_global_preview').data('current-component')) {
-    $('#video_editor_preview_go_to_left_component').show();
-  } else {
-    $('#video_editor_preview_go_to_left_component').hide();
-  }
-  if(getVideoComponentIdentifier(getLastVideoEditorComponent().attr('id')) != $('#video_editor_global_preview').data('current-component')) {
-    $('#video_editor_preview_go_to_right_component').show();
-  } else {
-    $('#video_editor_preview_go_to_right_component').hide();
   }
 }
 
@@ -783,6 +869,55 @@ function openPreviewModeInVideoEditor() {
     startVideoEditorGlobalPreview();
   }, 1500);
 }
+
+function startVideoEditorGlobalPreview() {
+  $('#video_editor_global_preview').data('in-use', true);
+  var current_identifier = $('#video_editor_global_preview').data('current-component');
+  var current_component = $('#video_component_' + current_identifier);
+  var actual_audio_track_time = calculateVideoComponentStartSecondInVideoEditor(current_identifier) + current_component.data('current-preview-time');
+  if(videoEditorWithAudioTrack() && actual_audio_track_time < $('#full_audio_track_placeholder_in_video_editor').data('duration')) {
+    var audio_track = $('#video_editor_preview_container audio');
+    if(media[0].error) {
+      showLoadingMediaErrorPopup(audio_track[0].error.code, 'audio');
+    } else {
+      setCurrentTimeToMedia(audio_track, actual_audio_track_time);
+      if(audio_track.readyState != 0) {
+        audio_track[0].play();
+      } else {
+        audio_track.on('loadedmetadata', function() {
+          audio_track[0].play();
+        });
+      }
+    }
+  }
+  if(current_component.data('position') == getHowManyComponentsHiddenToLeftTimelineHorizontalScrollPane('media_elements_list_in_video_editor', 186) + 1) {
+    playVideoEditorComponent(current_component, false);
+  } else {
+    hideVideoEditorPreviewComponentProgressBar();
+    playVideoEditorComponent(current_component, true);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// scroll pain
 
 function followPreviewComponentsWithHorizontalScrollInVideoEditor() {
   var jsp_handler = $('#media_elements_list_in_video_editor').data('jsp');
@@ -825,6 +960,42 @@ function followPreviewComponentsWithHorizontalScrollInVideoEditor() {
   }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// preview accessories
+
+function calculateVideoComponentStartSecondInVideoEditor(identifier) {
+  var duration = 0;
+  var stop = false;
+  $('._video_editor_component').each(function(index) {
+    if(getVideoComponentIdentifier($(this).attr('id')) == identifier) {
+      stop = true;
+    } else if(!stop) {
+      duration += ($(this).data('duration') + 1);
+    }
+  });
+  var cutter = $('#video_component_' + identifier + '_cutter');
+  if(!cutter.hasClass('_mini_cutter')) {
+    duration += (cutter.find('._media_player_slider').slider('value') - cutter.data('from'));
+  }
+  return duration;
+}
+
 function showVideoEditorPreviewComponentProgressBar(identifier, position) {
   var component = $('#video_component_' + identifier);
   var tool = $('#video_editor_preview_slider');
@@ -853,10 +1024,53 @@ function hideVideoEditorPreviewComponentProgressBar() {
   $('#video_editor_preview_slider').hide();
 }
 
+function showVideoEditorPreviewArrowToComponents() {
+  if(getVideoComponentIdentifier(getFirstVideoEditorComponent().attr('id')) != $('#video_editor_global_preview').data('current-component')) {
+    $('#video_editor_preview_go_to_left_component').show();
+  } else {
+    $('#video_editor_preview_go_to_left_component').hide();
+  }
+  if(getVideoComponentIdentifier(getLastVideoEditorComponent().attr('id')) != $('#video_editor_global_preview').data('current-component')) {
+    $('#video_editor_preview_go_to_right_component').show();
+  } else {
+    $('#video_editor_preview_go_to_right_component').hide();
+  }
+}
 
+function setVisualTimesVideoEditorPreview(component, time) {
+  var identifier = getVideoComponentIdentifier(component.attr('id'));
+  var global_time = calculateVideoComponentStartSecondInVideoEditor(identifier) + time;
+  $('#visual_video_editor_current_time').html(secondsToDateString(global_time));
+  $('#video_editor_global_preview').data('current-time', global_time);
+  $('#video_editor_global_preview').data('current-component', identifier);
+  $('._video_editor_component').each(function() {
+    var my_identifier = getVideoComponentIdentifier($(this).attr('id'));
+    if(my_identifier == identifier) {
+      $(this).find('._video_component_icon ._right').html(secondsToDateString(time));
+      $(this).data('current-preview-time', time);
+      if($('#video_component_' + my_identifier + '_preview video').length > 0 && $('#video_component_' + my_identifier + '_preview').data('loaded')) {
+        setCurrentTimeToMedia($('#video_component_' + my_identifier + '_preview video'), $('#video_component_' + my_identifier + '_cutter').data('from') + time);
+      }
+    } else {
+      $(this).find('._video_component_icon ._right').html(secondsToDateString(0));
+      $(this).data('current-preview-time', 0);
+      if($('#video_component_' + my_identifier + '_preview video').length > 0 && $('#video_component_' + my_identifier + '_preview').data('loaded')) {
+        setCurrentTimeToMedia($('#video_component_' + my_identifier + '_preview video'), $('#video_component_' + my_identifier + '_cutter').data('from'));
+      }
+    }
+  });
+}
 
-
-
+function selectVideoComponentInPreview(component, time) {
+  $('._video_component_preview').hide();
+  $('#' + component.attr('id') + '_preview').show();
+  $('._video_editor_component_hover, ._video_component_icon').addClass('selected');
+  component.find('._video_editor_component_hover, ._video_component_icon').removeClass('selected');
+  if(time == undefined) {
+    time = 0;
+  }
+  setVisualTimesVideoEditorPreview(component, time);
+}
 
 
 
