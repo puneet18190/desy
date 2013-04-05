@@ -487,7 +487,7 @@ function lessonEditorDocumentReadyAddMediaElement() {
     var position = $(&#x27;#info_container&#x27;).data(&#x27;current-media-element-position&#x27;);
     var place_id = &#x27;media_element_&#x27; + position + &#x27;_in_slide_&#x27; + current_slide.data(&#x27;slide-id&#x27;);
     $(&#x27;#&#x27; + place_id + &#x27; ._input_audio_id&#x27;).val(audio_id);
-    var audio_mp3 = $(this).data(&#x27;mp3&#x27;);
+    var audio_m4a = $(this).data(&#x27;m4a&#x27;);
     var audio_ogg = $(this).data(&#x27;ogg&#x27;);
     var duration = $(this).data(&#x27;duration&#x27;);
     var full_place = $(&#x27;#&#x27; + place_id + &#x27; ._full_audio_in_slide&#x27;);
@@ -495,7 +495,7 @@ function lessonEditorDocumentReadyAddMediaElement() {
       full_place.show();
       $(&#x27;#&#x27; + place_id + &#x27; ._empty_audio_in_slide&#x27;).hide();
     }
-    $(&#x27;#&#x27; + place_id + &#x27; ._full_audio_in_slide source[type=&quot;audio&#x2F;mp3&quot;]&#x27;).attr(&#x27;src&#x27;, audio_mp3);
+    $(&#x27;#&#x27; + place_id + &#x27; ._full_audio_in_slide source[type=&quot;audio&#x2F;mp4&quot;]&#x27;).attr(&#x27;src&#x27;, audio_m4a);
     $(&#x27;#&#x27; + place_id + &#x27; ._full_audio_in_slide source[type=&quot;audio&#x2F;ogg&quot;]&#x27;).attr(&#x27;src&#x27;, audio_ogg);
     $(&#x27;#&#x27; + place_id + &#x27; audio&#x27;).load();
     $(&#x27;#&#x27; + place_id + &#x27; ._media_player_total_time&#x27;).html(secondsToDateString(duration));

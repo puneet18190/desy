@@ -314,14 +314,14 @@ bla bla bla
 @method addComponentInAudioEditor
 @for AudioEditorComponents
 **&#x2F;
-function addComponentInAudioEditor(audio_id, ogg, mp3, duration, title) {
+function addComponentInAudioEditor(audio_id, ogg, m4a, duration, title) {
   var next_position = $(&#x27;#info_container&#x27;).data(&#x27;last-component-id&#x27;) + 1;
   var selected_component = $(&#x27;._audio_editor_component._selected&#x27;);
   $(&#x27;#info_container&#x27;).data(&#x27;last-component-id&#x27;, next_position);
   var empty_component = $($(&#x27;#empty_component_for_audio_editor&#x27;).html());
   empty_component.attr(&#x27;id&#x27;, (&#x27;audio_component_&#x27; + next_position));
   empty_component.find(&#x27;source[type=&quot;audio&#x2F;ogg&quot;]&#x27;).attr(&#x27;src&#x27;, ogg);
-  empty_component.find(&#x27;source[type=&quot;audio&#x2F;mp3&quot;]&#x27;).attr(&#x27;src&#x27;, mp3);
+  empty_component.find(&#x27;source[type=&quot;audio&#x2F;mp4&quot;]&#x27;).attr(&#x27;src&#x27;, m4a);
   empty_component.data(&#x27;duration&#x27;, 0);
   empty_component.data(&#x27;from&#x27;, 0);
   empty_component.data(&#x27;to&#x27;, duration);
@@ -413,9 +413,9 @@ bla bla bla
 **&#x2F;
 function loadAudioComponentIfNotLoadedYet(component) {
   if(!component.data(&#x27;loaded&#x27;)) {
-    var mp3 = component.data(&#x27;mp3&#x27;);
+    var m4a = component.data(&#x27;m4a&#x27;);
     var ogg = component.data(&#x27;ogg&#x27;);
-    component.find(&#x27;source[type=&quot;audio&#x2F;mp3&quot;]&#x27;).attr(&#x27;src&#x27;, mp3);
+    component.find(&#x27;source[type=&quot;audio&#x2F;mp4&quot;]&#x27;).attr(&#x27;src&#x27;, m4a);
     component.find(&#x27;source[type=&quot;audio&#x2F;ogg&quot;]&#x27;).attr(&#x27;src&#x27;, ogg);
     component.find(&#x27;audio&#x27;).load();
     component.data(&#x27;loaded&#x27;, true);
@@ -782,7 +782,7 @@ function audioEditorDocumentReadyGeneral() {
     closeGalleryInAudioEditor();
     stopMedia(&#x27;#gallery_audio_&#x27; + audio_id + &#x27; audio&#x27;);
     $(&#x27;#gallery_audio_&#x27; + audio_id + &#x27; ._expanded&#x27;).hide();
-    addComponentInAudioEditor(audio_id, $(this).data(&#x27;ogg&#x27;), $(this).data(&#x27;mp3&#x27;), $(this).data(&#x27;duration&#x27;), $(this).data(&#x27;title&#x27;));
+    addComponentInAudioEditor(audio_id, $(this).data(&#x27;ogg&#x27;), $(this).data(&#x27;m4a&#x27;), $(this).data(&#x27;duration&#x27;), $(this).data(&#x27;title&#x27;));
   });
   resizeLastComponentInAudioEditor();
   $(&#x27;#audio_editor_timeline&#x27;).jScrollPane({

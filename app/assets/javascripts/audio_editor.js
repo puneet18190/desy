@@ -670,6 +670,10 @@ function showCommitAudioEditorForm(scope) {
   setToZeroAllZIndexesInAudioEditor();
 }
 
+
+
+
+
 /**
 bla bla bla
 @method deselectAllAudioEditorComponentsInPreviewMode

@@ -410,7 +410,7 @@ function galleriesDocumentReadyOpen() {
         if(!$(&#x27;#&#x27; + instance_id).data(&#x27;initialized&#x27;)) {
           var button = $(this).find(&#x27;._select_audio_from_gallery&#x27;);
           var duration = button.data(&#x27;duration&#x27;);
-          $(&#x27;#&#x27; + instance_id + &#x27; source[type=&quot;audio&#x2F;mp3&quot;]&#x27;).attr(&#x27;src&#x27;, button.data(&#x27;mp3&#x27;));
+          $(&#x27;#&#x27; + instance_id + &#x27; source[type=&quot;audio&#x2F;mp4&quot;]&#x27;).attr(&#x27;src&#x27;, button.data(&#x27;m4a&#x27;));
           $(&#x27;#&#x27; + instance_id + &#x27; source[type=&quot;audio&#x2F;ogg&quot;]&#x27;).attr(&#x27;src&#x27;, button.data(&#x27;ogg&#x27;));
           $(&#x27;#&#x27; + instance_id + &#x27; audio&#x27;).load();
           $(&#x27;#&#x27; + instance_id + &#x27; ._media_player_total_time&#x27;).html(secondsToDateString(duration));

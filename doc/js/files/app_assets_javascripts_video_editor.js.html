@@ -853,7 +853,7 @@ function videoEditorDocumentReadyAudioTrack() {
     $(&#x27;#video_editor_preview_container&#x27;).append($(&#x27;#empty_audio_track_preview_for_video_editor&#x27;).html());
     var new_audio_track = $(&#x27;#video_editor_preview_container ._audio_track_preview&#x27;);
     new_audio_track.data(&#x27;duration&#x27;, $(this).data(&#x27;duration&#x27;));
-    new_audio_track.find(&#x27;source[type=&quot;audio&#x2F;mp3&quot;]&#x27;).attr(&#x27;src&#x27;, $(this).data(&#x27;mp3&#x27;));
+    new_audio_track.find(&#x27;source[type=&quot;audio&#x2F;mp4&quot;]&#x27;).attr(&#x27;src&#x27;, $(this).data(&#x27;m4a&#x27;));
     new_audio_track.find(&#x27;source[type=&quot;audio&#x2F;ogg&quot;]&#x27;).attr(&#x27;src&#x27;, $(this).data(&#x27;ogg&#x27;));
     new_audio_track.find(&#x27;audio&#x27;).load();
   });
