@@ -79,8 +79,6 @@
             
                 <li><a href="..&#x2F;classes/ButtonsMediaElement.html">ButtonsMediaElement</a></li>
             
-                <li><a href="..&#x2F;classes/closeGenericVideoComponentCutter.html">closeGenericVideoComponentCutter</a></li>
-            
                 <li><a href="..&#x2F;classes/DashboardDocumentReady.html">DashboardDocumentReady</a></li>
             
                 <li><a href="..&#x2F;classes/DashboardGeneral.html">DashboardGeneral</a></li>
@@ -128,8 +126,6 @@
                 <li><a href="..&#x2F;classes/initializePlaylist.html">initializePlaylist</a></li>
             
                 <li><a href="..&#x2F;classes/initializeScrollPaneQuickLessonSelector.html">initializeScrollPaneQuickLessonSelector</a></li>
-            
-                <li><a href="..&#x2F;classes/initializeVideoEditor.html">initializeVideoEditor</a></li>
             
                 <li><a href="..&#x2F;classes/initializeVirtualClassroom.html">initializeVirtualClassroom</a></li>
             
@@ -204,6 +200,28 @@
                 <li><a href="..&#x2F;classes/TagsDocumentReady.html">TagsDocumentReady</a></li>
             
                 <li><a href="..&#x2F;classes/TagsInitializers.html">TagsInitializers</a></li>
+            
+                <li><a href="..&#x2F;classes/VideoEditorAddComponents.html">VideoEditorAddComponents</a></li>
+            
+                <li><a href="..&#x2F;classes/VideoEditorComponents.html">VideoEditorComponents</a></li>
+            
+                <li><a href="..&#x2F;classes/VideoEditorCutters.html">VideoEditorCutters</a></li>
+            
+                <li><a href="..&#x2F;classes/VideoEditorDocumentReady.html">VideoEditorDocumentReady</a></li>
+            
+                <li><a href="..&#x2F;classes/VideoEditorGalleries.html">VideoEditorGalleries</a></li>
+            
+                <li><a href="..&#x2F;classes/VideoEditorGeneral.html">VideoEditorGeneral</a></li>
+            
+                <li><a href="..&#x2F;classes/VideoEditorPreview.html">VideoEditorPreview</a></li>
+            
+                <li><a href="..&#x2F;classes/VideoEditorPreviewAccessories.html">VideoEditorPreviewAccessories</a></li>
+            
+                <li><a href="..&#x2F;classes/VideoEditorReplaceComponents.html">VideoEditorReplaceComponents</a></li>
+            
+                <li><a href="..&#x2F;classes/VideoEditorScrollPain.html">VideoEditorScrollPain</a></li>
+            
+                <li><a href="..&#x2F;classes/VideoEditorTextComponentEditor.html">VideoEditorTextComponentEditor</a></li>
             
             </ul>
 
@@ -293,141 +311,15 @@ Provides video editor ajax actions.
 @module video-editor
 **&#x2F;
 
-&#x2F;**
-* Video Editor initialization
-* 
-* @method initializeVideoEditor
-* @for initializeVideoEditor
-* @param name {String} An 
-*   Attribute name or 
-*   object property path.
-* @return {String} Unique clientId.
-*&#x2F;
-function initializeVideoEditor() {
-  $(&#x27;#media_elements_list_in_video_editor&#x27;).jScrollPane({
-    autoReinitialise: true
-  });
-  calculateNewPositionGalleriesInVideoEditor();
-  $(&#x27;#video_editor_timeline&#x27;).sortable({
-    scroll: true,
-    handle: &#x27;._video_editor_component_hover&#x27;,
-    axis: &#x27;x&#x27;,
-    cursor: &#x27;move&#x27;,
-    cancel: &#x27;._video_editor_component_menu&#x27;,
-    containment: &#x27;parent&#x27;,
-    start: function(event, ui) {
-      my_item = $(ui.item);
-      if(!$(&#x27;#&#x27; + my_item.attr(&#x27;id&#x27;) + &#x27;_preview&#x27;).is(&#x27;:visible&#x27;)) {
-        startVideoEditorPreviewClip(my_item.attr(&#x27;id&#x27;));
-      }
-      my_item.find(&#x27;._video_editor_component_menu&#x27;).hide();
-      my_item.data(&#x27;rolloverable&#x27;, false);
-      my_item.find(&#x27;._video_component_icon&#x27;).addClass(&#x27;current&#x27;);
-      my_item.find(&#x27;._video_component_thumb&#x27;).addClass(&#x27;current&#x27;);
-      $(&#x27;._video_editor_component ._video_component_transition&#x27;).addClass(&#x27;current&#x27;);
-    },
-    stop: function(event, ui) {
-      my_item = $(ui.item);
-      my_item.data(&#x27;rolloverable&#x27;, true);
-      my_item.find(&#x27;._video_component_icon&#x27;).removeClass(&#x27;current&#x27;);
-      my_item.find(&#x27;._video_component_thumb&#x27;).removeClass(&#x27;current&#x27;);
-      resetVisibilityOfVideoEditorTransitions();
-      var boolean1 = (my_item.next().attr(&#x27;id&#x27;) == &#x27;add_new_video_component&#x27;);
-      var boolean2 = (my_item.data(&#x27;position&#x27;) != $(&#x27;._video_editor_component&#x27;).length);
-      var boolean3 = (my_item.next().data(&#x27;position&#x27;) != (my_item.data(&#x27;position&#x27;) + 1));
-      if(boolean1 &amp;&amp; boolean2 || !boolean1 &amp;&amp; boolean3) {
-        reloadVideoEditorComponentPositions();
-        $(&#x27;._video_component_icon&#x27;).effect(&#x27;highlight&#x27;, {color: &#x27;#41A62A&#x27;}, 1500);
-      }
-    }
-  });
-}
+
+
+
 
 &#x2F;**
-* Video Editor generic video component cutter.
-* 
-* Also see [initializeVideoEditor](..&#x2F;classes&#x2F;initializeVideoEditor.html#method_initializeVideoEditor)
-* 
-* @method closeGenericVideoComponentCutter
-* @for closeGenericVideoComponentCutter
-* @param name {String} An 
-*   Attribute name or 
-*   object property path.
-* @return {String} Unique clientId.
-*&#x2F;
-function closeGenericVideoComponentCutter() {
-  $(&#x27;._video_component_cutter_arrow&#x27;).hide(&#x27;fade&#x27;, {}, 250);
-  $(&#x27;._video_component_cutter&#x27;).hide(&#x27;fade&#x27;, {}, 250, function() {
-    $(&#x27;#commit_video_editor&#x27;).show();
-    $(&#x27;#video_editor_global_preview a&#x27;).removeClass(&#x27;disabled&#x27;);
-    $(&#x27;._video_editor_bottom_bar&#x27;).css(&#x27;visibility&#x27;, &#x27;visible&#x27;);
-    resetVisibilityOfVideoEditorTransitions();
-    $(&#x27;#media_elements_list_in_video_editor .jspHorizontalBar&#x27;).css(&#x27;visibility&#x27;, &#x27;visible&#x27;);
-    $(&#x27;._video_editor_bottom_bar&#x27;).show();
-    $(&#x27;#video_editor_box_ghost&#x27;).hide();
-    $(&#x27;._video_editor_component_hover&#x27;).removeClass(&#x27;selected&#x27;);
-    $(&#x27;._new_component_in_video_editor_hover&#x27;).removeClass(&#x27;selected&#x27;);
-    $(&#x27;._video_component_icon&#x27;).removeClass(&#x27;selected&#x27;);
-  });
-}
-
-function resetVisibilityOfVideoEditorTransitions() {
-  var components = $(&#x27;._video_editor_component&#x27;);
-  components.each(function(index) {
-    if(index &lt; (components.length - 1)) {
-      $(this).find(&#x27;._video_component_transition&#x27;).removeClass(&#x27;current&#x27;);
-    } else {
-      $(this).find(&#x27;._video_component_transition&#x27;).addClass(&#x27;current&#x27;);
-    }
-  });
-}
-
-function calculateNewPositionGalleriesInVideoEditor() {
-  $(&#x27;#video_editor_mixed_gallery_container&#x27;).css(&#x27;left&#x27;, (($(window).width() - 940) &#x2F; 2) + &#x27;px&#x27;);
-  $(&#x27;#video_editor_audio_gallery_container&#x27;).css(&#x27;left&#x27;, (($(window).width() - 940) &#x2F; 2) + &#x27;px&#x27;);
-}
-
-function showGalleryInVideoEditor(type) {
-  $(&#x27;#media_elements_list_in_video_editor .jspHorizontalBar&#x27;).css(&#x27;visibility&#x27;, &#x27;hidden&#x27;);
-  $(&#x27;#video_editor_&#x27; + type + &#x27;_gallery_container&#x27;).show();
-  $(&#x27;._video_editor_bottom_bar&#x27;).hide();
-  calculateNewPositionGalleriesInVideoEditor();
-  $(&#x27;._video_editor_component_menu&#x27;).hide();
-}
-
-function closeGalleryInVideoEditor(type) {
-  $(&#x27;#video_editor_&#x27; + type + &#x27;_gallery_container&#x27;).hide(&#x27;fade&#x27;, {}, 250, function() {
-    $(&#x27;#media_elements_list_in_video_editor .jspHorizontalBar&#x27;).css(&#x27;visibility&#x27;, &#x27;visible&#x27;);
-    $(&#x27;._video_editor_bottom_bar&#x27;).show();
-    calculateNewPositionGalleriesInVideoEditor();
-  });
-}
-
-function switchToOtherGalleryInMixedGalleryInVideoEditor(type) {
-  if(!$(&#x27;#video_editor_mixed_gallery_container &#x27; + type).is(&#x27;:visible&#x27;)) {
-    var big_selector = &#x27;#video_editor_mixed_gallery_container ._videos, #video_editor_mixed_gallery_container ._images, #video_editor_mixed_gallery_container ._texts&#x27;;
-    $(big_selector).each(function() {
-      if($(this).is(&#x27;:visible&#x27;)) {
-        big_selector = this;
-      }
-    });
-    $(big_selector).hide();
-    if(type == &#x27;._texts&#x27;) {
-      resetVideoEditorTextComponent();
-    }
-    $(&#x27;#video_editor_mixed_gallery_container &#x27; + type).show();
-  }
-}
-
-function reloadVideoEditorComponentPositions() {
-  var components = $(&#x27;._video_editor_component&#x27;);
-  components.each(function(index) {
-    $(this).data(&#x27;position&#x27;, (index + 1));
-    $(this).find(&#x27;._video_component_input_position&#x27;).val(index + 1);
-    $(this).find(&#x27;._video_component_icon ._left&#x27;).html(index + 1);
-  });
-}
-
+bla bla bla
+@method addImageComponentInVideoEditor
+@for VideoEditorAddComponents
+**&#x2F;
 function addImageComponentInVideoEditor(image_id, component, preview, duration) {
   $(&#x27;._new_component_in_video_editor_hover a&#x27;).removeClass(&#x27;current&#x27;);
   var next_position = $(&#x27;#info_container&#x27;).data(&#x27;last-component-id&#x27;) + 1;
@@ -487,36 +379,82 @@ function addImageComponentInVideoEditor(image_id, component, preview, duration) 
   }, 1100);
 }
 
-function replaceImageComponentInVideoEditor(image_id, component, preview, position, duration) {
-  var identifier = getVideoComponentIdentifier(position);
+&#x2F;**
+bla bla bla
+@method addTextComponentInVideoEditor
+@for VideoEditorAddComponents
+**&#x2F;
+function addTextComponentInVideoEditor(component, content, duration, background_color, text_color) {
+  $(&#x27;._new_component_in_video_editor_hover a&#x27;).removeClass(&#x27;current&#x27;);
+  var next_position = $(&#x27;#info_container&#x27;).data(&#x27;last-component-id&#x27;) + 1;
+  var new_timeline_width = parseInt($(&#x27;#video_editor_timeline&#x27;).css(&#x27;width&#x27;).replace(&#x27;px&#x27;, &#x27;&#x27;)) + 186;
+  $(&#x27;#media_elements_list_in_video_editor&#x27;).data(&#x27;jsp&#x27;).destroy();
+  $(&#x27;#video_editor_timeline&#x27;).css(&#x27;width&#x27;, new_timeline_width + &#x27;px&#x27;);
+  $(&#x27;#media_elements_list_in_video_editor&#x27;).jScrollPane({
+    autoReinitialise: true
+  });
+  $(&#x27;#media_elements_list_in_video_editor .jspHorizontalBar&#x27;).css(&#x27;visibility&#x27;, &#x27;hidden&#x27;);
+  $(&#x27;#info_container&#x27;).data(&#x27;last-component-id&#x27;, next_position);
   &#x2F;&#x2F; build preview
-  var empty_preview = $(&#x27;#empty_image_preview_for_video_editor&#x27;).html();
+  var empty_preview = $(&#x27;#empty_text_preview_for_video_editor&#x27;).html();
   empty_preview = &#x27;&lt;div id=&quot;temporary_empty_preview&quot; &#x27; + empty_preview.substr(empty_preview.indexOf(&#x27;div&#x27;) + 3, empty_preview.length);
-  $(&#x27;#video_component_&#x27; + identifier + &#x27;_preview&#x27;).replaceWith(empty_preview);
+  $(&#x27;#video_editor_preview_container&#x27;).append(empty_preview);
   &#x2F;&#x2F; build cutter
-  var empty_cutter = $(&#x27;#empty_image_cutter_for_video_editor&#x27;).html();
+  var empty_cutter = $(&#x27;#empty_text_cutter_for_video_editor&#x27;).html();
   empty_cutter = &#x27;&lt;div id=&quot;temporary_empty_cutter&quot; &#x27; + empty_cutter.substr(empty_cutter.indexOf(&#x27;div&#x27;) + 3, empty_cutter.length);
-  $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter&#x27;).replaceWith(empty_cutter);
+  $(&#x27;#video_editor_cutters&#x27;).append(empty_cutter);
+  &#x2F;&#x2F; build component
+  var empty_component = $(&#x27;#empty_text_component_for_video_editor&#x27;).html();
+  empty_component = &#x27;&lt;div id=&quot;temporary_empty_component&quot; &#x27; + empty_component.substr(empty_component.indexOf(&#x27;div&#x27;) + 3, empty_component.length);
+  $(&#x27;#add_new_video_component&#x27;).before(empty_component);
   &#x2F;&#x2F; edit preview
   current_preview = $(&#x27;#temporary_empty_preview&#x27;);
-  current_preview.attr(&#x27;id&#x27;, (&#x27;video_component_&#x27; + identifier + &#x27;_preview&#x27;));
-  current_preview.html(preview);
+  current_preview.attr(&#x27;id&#x27;, (&#x27;video_component_&#x27; + next_position + &#x27;_preview&#x27;));
+  current_preview.removeClass(&#x27;background_color_white&#x27;).addClass(&#x27;background_color_&#x27; + background_color);
+  current_preview.find(&#x27;p&#x27;).removeClass(&#x27;color_black&#x27;).addClass(&#x27;color_&#x27; + text_color);
+  current_preview.find(&#x27;p&#x27;).html(content);
   &#x2F;&#x2F; edit cutter
   current_cutter = $(&#x27;#temporary_empty_cutter&#x27;);
-  current_cutter.attr(&#x27;id&#x27;, (&#x27;video_component_&#x27; + identifier + &#x27;_cutter&#x27;));
+  current_cutter.attr(&#x27;id&#x27;, (&#x27;video_component_&#x27; + next_position + &#x27;_cutter&#x27;));
   current_cutter.find(&#x27;._old&#x27;).html(secondsToDateString(duration));
   &#x2F;&#x2F; edit component
-  $(&#x27;#&#x27; + position).removeClass(&#x27;_video _image _text&#x27;).addClass(&#x27;_image&#x27;);
-  $(&#x27;#&#x27; + position + &#x27; ._video_component_thumb&#x27;).replaceWith(component);
-  clearSpecificVideoEditorComponentParameters(position);
-  $(&#x27;#&#x27; + position + &#x27; ._video_component_input_type&#x27;).val(&#x27;image&#x27;);
-  var to_be_appended = fillVideoEditorSingleParameter(&#x27;image_id&#x27;, identifier, image_id);
-  to_be_appended += fillVideoEditorSingleParameter(&#x27;duration&#x27;, identifier, duration);
-  $(&#x27;#&#x27; + position + &#x27; ._video_editor_component_hover&#x27;).append(to_be_appended);
+  current_component = $(&#x27;#temporary_empty_component&#x27;);
+  current_component.attr(&#x27;id&#x27;, (&#x27;video_component_&#x27; + next_position));
+  current_component.removeClass(&#x27;_video_editor_empty_component&#x27;).addClass(&#x27;_video_editor_component&#x27;);
+  current_component.data(&#x27;duration&#x27;, 0);
+  current_component.data(&#x27;position&#x27;, next_position);
+  current_component.find(&#x27;._video_component_icon ._left&#x27;).html(next_position);
+  current_component.find(&#x27;._video_editor_component_hover&#x27;).append(component);
+  $(&#x27;#video_component_&#x27; + next_position + &#x27; ._video_component_thumb ._text_content&#x27;).html(content);
+  $(&#x27;#video_component_&#x27; + next_position + &#x27; ._video_component_thumb ._text_content&#x27;).removeClass(&#x27;color_black&#x27;).addClass(&#x27;color_&#x27; + text_color);
+  $(&#x27;#video_component_&#x27; + next_position + &#x27; ._video_component_thumb&#x27;).removeClass(&#x27;background_color_white&#x27;).addClass(&#x27;background_color_&#x27; + background_color);
+  var to_be_appended = fillVideoEditorSingleParameter(&#x27;type&#x27;, next_position, &#x27;text&#x27;);
+  to_be_appended += fillVideoEditorSingleParameter(&#x27;content&#x27;, next_position, content);
+  to_be_appended += fillVideoEditorSingleParameter(&#x27;duration&#x27;, next_position, duration);
+  to_be_appended += fillVideoEditorSingleParameter(&#x27;background_color&#x27;, next_position, background_color);
+  to_be_appended += fillVideoEditorSingleParameter(&#x27;text_color&#x27;, next_position, text_color);
+  to_be_appended += fillVideoEditorSingleParameter(&#x27;position&#x27;, next_position, next_position);
+  current_component.find(&#x27;._video_editor_component_hover&#x27;).append(to_be_appended);
   &#x2F;&#x2F; other things
-  changeDurationVideoEditorComponent(position, duration);
+  changeDurationVideoEditorComponent((&#x27;video_component_&#x27; + next_position), duration);
+  reloadVideoEditorComponentPositions();
+  resetVisibilityOfVideoEditorTransitions();
+  if(!$(&#x27;#video_editor_global_preview&#x27;).hasClass(&#x27;_enabled&#x27;)) {
+    $(&#x27;#video_editor_global_preview&#x27;).addClass(&#x27;_enabled&#x27;);
+    $(&#x27;#video_editor_global_preview a&#x27;).removeClass(&#x27;disabled&#x27;);
+    $(&#x27;#commit_video_editor&#x27;).css(&#x27;visibility&#x27;, &#x27;visible&#x27;);
+  }
+  setTimeout(function() {
+    highlightAndUpdateVideoComponentIcon((&#x27;video_component_&#x27; + next_position));
+    $(&#x27;#media_elements_list_in_video_editor&#x27;).data(&#x27;jsp&#x27;).scrollToPercentX(100, true);
+  }, 1100);
 }
 
+&#x2F;**
+bla bla bla
+@method addVideoComponentInVideoEditor
+@for VideoEditorAddComponents
+**&#x2F;
 function addVideoComponentInVideoEditor(video_id, webm, mp4, component, duration) {
   $(&#x27;._new_component_in_video_editor_hover a&#x27;).removeClass(&#x27;current&#x27;);
   var next_position = $(&#x27;#info_container&#x27;).data(&#x27;last-component-id&#x27;) + 1;
@@ -586,173 +524,15 @@ function addVideoComponentInVideoEditor(video_id, webm, mp4, component, duration
   }, 1100);
 }
 
-function replaceVideoComponentInVideoEditor(video_id, webm, mp4, component, position, duration) {
-  var identifier = getVideoComponentIdentifier(position);
-  &#x2F;&#x2F; build preview
-  var empty_preview = $(&#x27;#empty_video_preview_for_video_editor&#x27;).html();
-  empty_preview = &#x27;&lt;div id=&quot;temporary_empty_preview&quot; &#x27; + empty_preview.substr(empty_preview.indexOf(&#x27;div&#x27;) + 3, empty_preview.length);
-  $(&#x27;#video_component_&#x27; + identifier + &#x27;_preview&#x27;).replaceWith(empty_preview);
-  &#x2F;&#x2F; build cutter
-  var empty_cutter = $(&#x27;#empty_video_cutter_for_video_editor&#x27;).html();
-  empty_cutter = &#x27;&lt;div id=&quot;temporary_empty_cutter&quot; &#x27; + empty_cutter.substr(empty_cutter.indexOf(&#x27;div&#x27;) + 3, empty_cutter.length);
-  $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter&#x27;).replaceWith(empty_cutter);
-  &#x2F;&#x2F; edit preview
-  current_preview = $(&#x27;#temporary_empty_preview&#x27;);
-  if(videoEditorWithAudioTrack()) {
-    current_preview.find(&#x27;video&#x27;).prop(&#x27;muted&#x27;, true);
-  }
-  current_preview.attr(&#x27;id&#x27;, (&#x27;video_component_&#x27; + identifier + &#x27;_preview&#x27;));
-  current_preview.find(&#x27;source[type=&quot;video&#x2F;webm&quot;]&#x27;).attr(&#x27;src&#x27;, webm);
-  current_preview.find(&#x27;source[type=&quot;video&#x2F;mp4&quot;]&#x27;).attr(&#x27;src&#x27;, mp4);
-  current_preview.find(&#x27;video&#x27;).load();
-  &#x2F;&#x2F; edit cutter
-  current_cutter = $(&#x27;#temporary_empty_cutter&#x27;);
-  current_cutter.attr(&#x27;id&#x27;, (&#x27;video_component_&#x27; + identifier + &#x27;_cutter&#x27;));
-  current_cutter.find(&#x27;._video_editor_cutter_total_time&#x27;).html(secondsToDateString(duration));
-  current_cutter.find(&#x27;._video_editor_cutter_selected_time&#x27;).html(secondsToDateString(duration));
-  current_cutter.data(&#x27;to&#x27;, duration);
-  current_cutter.data(&#x27;max-to&#x27;, duration);
-  initializeVideoInVideoEditorPreview(identifier);
-  &#x2F;&#x2F; edit component
-  $(&#x27;#&#x27; + position).removeClass(&#x27;_video _image _text&#x27;).addClass(&#x27;_video&#x27;);
-  $(&#x27;#&#x27; + position + &#x27; ._video_component_thumb&#x27;).replaceWith(component);
-  clearSpecificVideoEditorComponentParameters(position);
-  $(&#x27;#&#x27; + position + &#x27; ._video_component_input_type&#x27;).val(&#x27;video&#x27;);
-  var to_be_appended = fillVideoEditorSingleParameter(&#x27;video_id&#x27;, identifier, video_id);
-  to_be_appended += fillVideoEditorSingleParameter(&#x27;from&#x27;, identifier, 0);
-  to_be_appended += fillVideoEditorSingleParameter(&#x27;to&#x27;, identifier, duration);
-  $(&#x27;#&#x27; + position + &#x27; ._video_editor_component_hover&#x27;).append(to_be_appended);
-  &#x2F;&#x2F; other things
-  changeDurationVideoEditorComponent(position, duration);
-}
 
-function addTextComponentInVideoEditor(component, content, duration, background_color, text_color) {
-  $(&#x27;._new_component_in_video_editor_hover a&#x27;).removeClass(&#x27;current&#x27;);
-  var next_position = $(&#x27;#info_container&#x27;).data(&#x27;last-component-id&#x27;) + 1;
-  var new_timeline_width = parseInt($(&#x27;#video_editor_timeline&#x27;).css(&#x27;width&#x27;).replace(&#x27;px&#x27;, &#x27;&#x27;)) + 186;
-  $(&#x27;#media_elements_list_in_video_editor&#x27;).data(&#x27;jsp&#x27;).destroy();
-  $(&#x27;#video_editor_timeline&#x27;).css(&#x27;width&#x27;, new_timeline_width + &#x27;px&#x27;);
-  $(&#x27;#media_elements_list_in_video_editor&#x27;).jScrollPane({
-    autoReinitialise: true
-  });
-  $(&#x27;#media_elements_list_in_video_editor .jspHorizontalBar&#x27;).css(&#x27;visibility&#x27;, &#x27;hidden&#x27;);
-  $(&#x27;#info_container&#x27;).data(&#x27;last-component-id&#x27;, next_position);
-  &#x2F;&#x2F; build preview
-  var empty_preview = $(&#x27;#empty_text_preview_for_video_editor&#x27;).html();
-  empty_preview = &#x27;&lt;div id=&quot;temporary_empty_preview&quot; &#x27; + empty_preview.substr(empty_preview.indexOf(&#x27;div&#x27;) + 3, empty_preview.length);
-  $(&#x27;#video_editor_preview_container&#x27;).append(empty_preview);
-  &#x2F;&#x2F; build cutter
-  var empty_cutter = $(&#x27;#empty_text_cutter_for_video_editor&#x27;).html();
-  empty_cutter = &#x27;&lt;div id=&quot;temporary_empty_cutter&quot; &#x27; + empty_cutter.substr(empty_cutter.indexOf(&#x27;div&#x27;) + 3, empty_cutter.length);
-  $(&#x27;#video_editor_cutters&#x27;).append(empty_cutter);
-  &#x2F;&#x2F; build component
-  var empty_component = $(&#x27;#empty_text_component_for_video_editor&#x27;).html();
-  empty_component = &#x27;&lt;div id=&quot;temporary_empty_component&quot; &#x27; + empty_component.substr(empty_component.indexOf(&#x27;div&#x27;) + 3, empty_component.length);
-  $(&#x27;#add_new_video_component&#x27;).before(empty_component);
-  &#x2F;&#x2F; edit preview
-  current_preview = $(&#x27;#temporary_empty_preview&#x27;);
-  current_preview.attr(&#x27;id&#x27;, (&#x27;video_component_&#x27; + next_position + &#x27;_preview&#x27;));
-  current_preview.removeClass(&#x27;background_color_white&#x27;).addClass(&#x27;background_color_&#x27; + background_color);
-  current_preview.find(&#x27;p&#x27;).removeClass(&#x27;color_black&#x27;).addClass(&#x27;color_&#x27; + text_color);
-  current_preview.find(&#x27;p&#x27;).html(content);
-  &#x2F;&#x2F; edit cutter
-  current_cutter = $(&#x27;#temporary_empty_cutter&#x27;);
-  current_cutter.attr(&#x27;id&#x27;, (&#x27;video_component_&#x27; + next_position + &#x27;_cutter&#x27;));
-  current_cutter.find(&#x27;._old&#x27;).html(secondsToDateString(duration));
-  &#x2F;&#x2F; edit component
-  current_component = $(&#x27;#temporary_empty_component&#x27;);
-  current_component.attr(&#x27;id&#x27;, (&#x27;video_component_&#x27; + next_position));
-  current_component.removeClass(&#x27;_video_editor_empty_component&#x27;).addClass(&#x27;_video_editor_component&#x27;);
-  current_component.data(&#x27;duration&#x27;, 0);
-  current_component.data(&#x27;position&#x27;, next_position);
-  current_component.find(&#x27;._video_component_icon ._left&#x27;).html(next_position);
-  current_component.find(&#x27;._video_editor_component_hover&#x27;).append(component);
-  $(&#x27;#video_component_&#x27; + next_position + &#x27; ._video_component_thumb ._text_content&#x27;).html(content);
-  $(&#x27;#video_component_&#x27; + next_position + &#x27; ._video_component_thumb ._text_content&#x27;).removeClass(&#x27;color_black&#x27;).addClass(&#x27;color_&#x27; + text_color);
-  $(&#x27;#video_component_&#x27; + next_position + &#x27; ._video_component_thumb&#x27;).removeClass(&#x27;background_color_white&#x27;).addClass(&#x27;background_color_&#x27; + background_color);
-  var to_be_appended = fillVideoEditorSingleParameter(&#x27;type&#x27;, next_position, &#x27;text&#x27;);
-  to_be_appended += fillVideoEditorSingleParameter(&#x27;content&#x27;, next_position, content);
-  to_be_appended += fillVideoEditorSingleParameter(&#x27;duration&#x27;, next_position, duration);
-  to_be_appended += fillVideoEditorSingleParameter(&#x27;background_color&#x27;, next_position, background_color);
-  to_be_appended += fillVideoEditorSingleParameter(&#x27;text_color&#x27;, next_position, text_color);
-  to_be_appended += fillVideoEditorSingleParameter(&#x27;position&#x27;, next_position, next_position);
-  current_component.find(&#x27;._video_editor_component_hover&#x27;).append(to_be_appended);
-  &#x2F;&#x2F; other things
-  changeDurationVideoEditorComponent((&#x27;video_component_&#x27; + next_position), duration);
-  reloadVideoEditorComponentPositions();
-  resetVisibilityOfVideoEditorTransitions();
-  if(!$(&#x27;#video_editor_global_preview&#x27;).hasClass(&#x27;_enabled&#x27;)) {
-    $(&#x27;#video_editor_global_preview&#x27;).addClass(&#x27;_enabled&#x27;);
-    $(&#x27;#video_editor_global_preview a&#x27;).removeClass(&#x27;disabled&#x27;);
-    $(&#x27;#commit_video_editor&#x27;).css(&#x27;visibility&#x27;, &#x27;visible&#x27;);
-  }
-  setTimeout(function() {
-    highlightAndUpdateVideoComponentIcon((&#x27;video_component_&#x27; + next_position));
-    $(&#x27;#media_elements_list_in_video_editor&#x27;).data(&#x27;jsp&#x27;).scrollToPercentX(100, true);
-  }, 1100);
-}
 
-function replaceTextComponentInVideoEditor(component, content, position, duration, background_color, text_color) {
-  var identifier = getVideoComponentIdentifier(position);
-  &#x2F;&#x2F; build preview
-  var empty_preview = $(&#x27;#empty_text_preview_for_video_editor&#x27;).html();
-  empty_preview = &#x27;&lt;div id=&quot;temporary_empty_preview&quot; &#x27; + empty_preview.substr(empty_preview.indexOf(&#x27;div&#x27;) + 3, empty_preview.length);
-  $(&#x27;#video_component_&#x27; + identifier + &#x27;_preview&#x27;).replaceWith(empty_preview);
-  &#x2F;&#x2F; build cutter
-  var empty_cutter = $(&#x27;#empty_text_cutter_for_video_editor&#x27;).html();
-  empty_cutter = &#x27;&lt;div id=&quot;temporary_empty_cutter&quot; &#x27; + empty_cutter.substr(empty_cutter.indexOf(&#x27;div&#x27;) + 3, empty_cutter.length);
-  $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter&#x27;).replaceWith(empty_cutter);
-  &#x2F;&#x2F; edit preview
-  current_preview = $(&#x27;#temporary_empty_preview&#x27;);
-  current_preview.attr(&#x27;id&#x27;, (&#x27;video_component_&#x27; + identifier + &#x27;_preview&#x27;));
-  current_preview.removeClass(&#x27;background_color_white&#x27;).addClass(&#x27;background_color_&#x27; + background_color);
-  current_preview.find(&#x27;p&#x27;).removeClass(&#x27;color_black&#x27;).addClass(&#x27;color_&#x27; + text_color);
-  current_preview.find(&#x27;p&#x27;).html(content);
-  &#x2F;&#x2F; edit cutter
-  current_cutter = $(&#x27;#temporary_empty_cutter&#x27;);
-  current_cutter.attr(&#x27;id&#x27;, (&#x27;video_component_&#x27; + identifier + &#x27;_cutter&#x27;));
-  current_cutter.find(&#x27;._old&#x27;).html(secondsToDateString(duration));
-  &#x2F;&#x2F; edit component
-  $(&#x27;#&#x27; + position).removeClass(&#x27;_video _image _text&#x27;).addClass(&#x27;_text&#x27;);
-  $(&#x27;#&#x27; + position + &#x27; ._video_component_thumb&#x27;).replaceWith(component);
-  $(&#x27;#&#x27; + position + &#x27; ._video_component_thumb ._text_content&#x27;).html(content);
-  $(&#x27;#&#x27; + position + &#x27; ._video_component_thumb ._text_content&#x27;).removeClass(&#x27;color_black&#x27;).addClass(&#x27;color_&#x27; + text_color);
-  $(&#x27;#&#x27; + position + &#x27; ._video_component_thumb&#x27;).removeClass(&#x27;background_color_white&#x27;).addClass(&#x27;background_color_&#x27; + background_color);
-  clearSpecificVideoEditorComponentParameters(position);
-  $(&#x27;#&#x27; + position + &#x27; ._video_component_input_type&#x27;).val(&#x27;text&#x27;);
-  var to_be_appended = fillVideoEditorSingleParameter(&#x27;content&#x27;, identifier, content);
-  to_be_appended += fillVideoEditorSingleParameter(&#x27;background_color&#x27;, identifier, background_color);
-  to_be_appended += fillVideoEditorSingleParameter(&#x27;text_color&#x27;, identifier, text_color);
-  to_be_appended += fillVideoEditorSingleParameter(&#x27;duration&#x27;, identifier, duration);
-  $(&#x27;#&#x27; + position + &#x27; ._video_editor_component_hover&#x27;).append(to_be_appended);
-  &#x2F;&#x2F; other things
-  changeDurationVideoEditorComponent(position, duration);
-}
 
-function resetVideoEditorTextComponent() {
-  $(&#x27;#text_component_preview textarea&#x27;).val($(&#x27;#text_component_preview&#x27;).data(&#x27;placeholder-content&#x27;));
-  $(&#x27;#video_editor_mixed_gallery_container ._texts ._duration_selector input&#x27;).val(&#x27;&#x27;);
-  $(&#x27;#text_component_preview&#x27;).data(&#x27;placeholder&#x27;, true);
-  var old_background_color = $(&#x27;#text_component_preview&#x27;).data(&#x27;background-color&#x27;);
-  var old_text_color = $(&#x27;#text_component_preview&#x27;).data(&#x27;text-color&#x27;);
-  switchTextComponentBackgroundColor(old_background_color, &#x27;white&#x27;);
-  switchTextComponentTextColor(old_text_color, &#x27;black&#x27;);
-}
 
-function switchTextComponentBackgroundColor(old_color, new_color) {
-  $(&#x27;#text_component_preview&#x27;).removeClass(&#x27;background_color_&#x27; + old_color).addClass(&#x27;background_color_&#x27; + new_color);
-  $(&#x27;._text_component_in_video_editor_background_color_selector ._color&#x27;).removeClass(&#x27;current&#x27;);
-  $(&#x27;._text_component_in_video_editor_background_color_selector .background_color_&#x27; + new_color).addClass(&#x27;current&#x27;);
-  $(&#x27;#text_component_preview&#x27;).data(&#x27;background-color&#x27;, new_color);
-}
-
-function switchTextComponentTextColor(old_color, new_color) {
-  $(&#x27;#text_component_preview textarea&#x27;).removeClass(&#x27;color_&#x27; + old_color).addClass(&#x27;color_&#x27; + new_color);
-  $(&#x27;._text_component_in_video_editor_text_color_selector ._color&#x27;).removeClass(&#x27;current&#x27;);
-  $(&#x27;._text_component_in_video_editor_text_color_selector .background_color_&#x27; + new_color).addClass(&#x27;current&#x27;);
-  $(&#x27;#text_component_preview&#x27;).data(&#x27;text-color&#x27;, new_color);
-}
-
+&#x2F;**
+bla bla bla
+@method changeDurationVideoEditorComponent
+@for VideoEditorComponents
+**&#x2F;
 function changeDurationVideoEditorComponent(component_id, new_duration) {
   var old_duration = $(&#x27;#&#x27; + component_id).data(&#x27;duration&#x27;);
   var total_length = $(&#x27;#info_container&#x27;).data(&#x27;total-length&#x27;);
@@ -772,10 +552,11 @@ function changeDurationVideoEditorComponent(component_id, new_duration) {
   $(&#x27;#visual_video_editor_total_length&#x27;).html(secondsToDateString(total_length));
 }
 
-function fillVideoEditorSingleParameter(input, identifier, value) {
-  return &#x27;&lt;input id=&quot;&#x27; + input + &#x27;_&#x27; + identifier + &#x27;&quot; class=&quot;_video_component_input_&#x27; + input + &#x27;&quot; type=&quot;hidden&quot; value=&quot;&#x27; + value + &#x27;&quot; name=&quot;&#x27; + input + &#x27;_&#x27; + identifier + &#x27;&quot;&gt;&#x27;;
-}
-
+&#x2F;**
+bla bla bla
+@method clearSpecificVideoEditorComponentParameters
+@for VideoEditorComponents
+**&#x2F;
 function clearSpecificVideoEditorComponentParameters(component_id) {
   var huge_selector = &#x27;#&#x27; + component_id + &#x27; ._video_component_input_content&#x27;;
   huge_selector += &#x27;, #&#x27; + component_id + &#x27; ._video_component_input_background_color&#x27;;
@@ -788,10 +569,59 @@ function clearSpecificVideoEditorComponentParameters(component_id) {
   $(huge_selector).remove();
 }
 
+&#x2F;**
+bla bla bla
+@method fillVideoEditorSingleParameter
+@for VideoEditorComponents
+**&#x2F;
+function fillVideoEditorSingleParameter(input, identifier, value) {
+  return &#x27;&lt;input id=&quot;&#x27; + input + &#x27;_&#x27; + identifier + &#x27;&quot; class=&quot;_video_component_input_&#x27; + input + &#x27;&quot; type=&quot;hidden&quot; value=&quot;&#x27; + value + &#x27;&quot; name=&quot;&#x27; + input + &#x27;_&#x27; + identifier + &#x27;&quot;&gt;&#x27;;
+}
+
+&#x2F;**
+bla bla bla
+@method highlightAndUpdateVideoComponentIcon
+@for VideoEditorComponents
+**&#x2F;
 function highlightAndUpdateVideoComponentIcon(component_id) {
   $(&#x27;#&#x27; + component_id + &#x27; ._video_component_icon&#x27;).effect(&#x27;highlight&#x27;, {color: &#x27;#41A62A&#x27;}, 1500);
 }
 
+&#x2F;**
+bla bla bla
+@method reloadVideoEditorComponentPositions
+@for VideoEditorComponents
+**&#x2F;
+function reloadVideoEditorComponentPositions() {
+  var components = $(&#x27;._video_editor_component&#x27;);
+  components.each(function(index) {
+    $(this).data(&#x27;position&#x27;, (index + 1));
+    $(this).find(&#x27;._video_component_input_position&#x27;).val(index + 1);
+    $(this).find(&#x27;._video_component_icon ._left&#x27;).html(index + 1);
+  });
+}
+
+&#x2F;**
+bla bla bla
+@method resetVisibilityOfVideoEditorTransitions
+@for VideoEditorComponents
+**&#x2F;
+function resetVisibilityOfVideoEditorTransitions() {
+  var components = $(&#x27;._video_editor_component&#x27;);
+  components.each(function(index) {
+    if(index &lt; (components.length - 1)) {
+      $(this).find(&#x27;._video_component_transition&#x27;).removeClass(&#x27;current&#x27;);
+    } else {
+      $(this).find(&#x27;._video_component_transition&#x27;).addClass(&#x27;current&#x27;);
+    }
+  });
+}
+
+&#x2F;**
+bla bla bla
+@method startVideoEditorPreviewClipWithDelay
+@for VideoEditorComponents
+**&#x2F;
 function startVideoEditorPreviewClipWithDelay(component_id) {
   setTimeout(function() {
     var obj = $(&#x27;#&#x27; + component_id);
@@ -801,6 +631,77 @@ function startVideoEditorPreviewClipWithDelay(component_id) {
   }, 500);
 }
 
+
+
+
+
+&#x2F;**
+bla bla bla
+@method closeGenericVideoComponentCutter
+@for VideoEditorCutters
+@param name {String} An attribute name or object property path.
+@return {String} Unique clientId.
+**&#x2F;
+function closeGenericVideoComponentCutter() {
+  $(&#x27;._video_component_cutter_arrow&#x27;).hide(&#x27;fade&#x27;, {}, 250);
+  $(&#x27;._video_component_cutter&#x27;).hide(&#x27;fade&#x27;, {}, 250, function() {
+    $(&#x27;#commit_video_editor&#x27;).show();
+    $(&#x27;#video_editor_global_preview a&#x27;).removeClass(&#x27;disabled&#x27;);
+    $(&#x27;._video_editor_bottom_bar&#x27;).css(&#x27;visibility&#x27;, &#x27;visible&#x27;);
+    resetVisibilityOfVideoEditorTransitions();
+    $(&#x27;#media_elements_list_in_video_editor .jspHorizontalBar&#x27;).css(&#x27;visibility&#x27;, &#x27;visible&#x27;);
+    $(&#x27;._video_editor_bottom_bar&#x27;).show();
+    $(&#x27;#video_editor_box_ghost&#x27;).hide();
+    $(&#x27;._video_editor_component_hover&#x27;).removeClass(&#x27;selected&#x27;);
+    $(&#x27;._new_component_in_video_editor_hover&#x27;).removeClass(&#x27;selected&#x27;);
+    $(&#x27;._video_component_icon&#x27;).removeClass(&#x27;selected&#x27;);
+  });
+}
+
+&#x2F;**
+bla bla bla
+@method commitVideoComponentVideoCutter
+@for VideoEditorCutters
+**&#x2F;
+function commitVideoComponentVideoCutter(identifier) {
+  var from = $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter&#x27;).data(&#x27;from&#x27;);
+  var to = $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter&#x27;).data(&#x27;to&#x27;);
+  $(&#x27;#video_component_&#x27; + identifier + &#x27; ._video_component_input_from&#x27;).val(from);
+  $(&#x27;#video_component_&#x27; + identifier + &#x27; ._video_component_input_to&#x27;).val(to);
+  changeDurationVideoEditorComponent(&#x27;video_component_&#x27; + identifier, to - from);
+  if($(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter&#x27;).data(&#x27;changed&#x27;)) {
+    highlightAndUpdateVideoComponentIcon(&#x27;video_component_&#x27; + identifier);
+    $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter&#x27;).data(&#x27;changed&#x27;, false);
+  }
+}
+
+&#x2F;**
+bla bla bla
+@method cutVideoComponentLeftSide
+@for VideoEditorCutters
+**&#x2F;
+function cutVideoComponentLeftSide(identifier, pos) {
+  $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter&#x27;).data(&#x27;from&#x27;, pos);
+  var new_duration = $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter&#x27;).data(&#x27;to&#x27;) - pos;
+  $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter ._video_editor_cutter_selected_time&#x27;).html(secondsToDateString(new_duration));
+}
+
+&#x2F;**
+bla bla bla
+@method cutVideoComponentRightSide
+@for VideoEditorCutters
+**&#x2F;
+function cutVideoComponentRightSide(identifier, pos) {
+  $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter&#x27;).data(&#x27;to&#x27;, pos);
+  var new_duration = pos - $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter&#x27;).data(&#x27;from&#x27;);
+  $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter ._video_editor_cutter_selected_time&#x27;).html(secondsToDateString(new_duration));
+}
+
+&#x2F;**
+bla bla bla
+@method showVideoEditorCutter
+@for VideoEditorCutters
+**&#x2F;
 function showVideoEditorCutter(component_id) {
   $(&#x27;._video_editor_bottom_bar&#x27;).css(&#x27;visibility&#x27;, &#x27;hidden&#x27;);
   $(&#x27;#commit_video_editor&#x27;).hide();
@@ -816,12 +717,778 @@ function showVideoEditorCutter(component_id) {
   });
 }
 
+&#x2F;**
+bla bla bla
+@method startVideoEditorPreviewClip
+@for VideoEditorCutters
+**&#x2F;
 function startVideoEditorPreviewClip(component_id) {
   $(&#x27;._video_component_preview&#x27;).hide();
   loadVideoComponentIfNotLoadedYet(component_id);
   $(&#x27;#&#x27; + component_id + &#x27;_preview&#x27;).show(&#x27;fade&#x27;, {}, 250);
 }
 
+
+
+
+
+&#x2F;**
+bla bla bla
+@method videoEditorDocumentReady
+@for VideoEditorDocumentReady
+**&#x2F;
+function videoEditorDocumentReady() {
+  videoEditorDocumentReadyPreview();
+  videoEditorDocumentReadyCutters();
+  videoEditorDocumentReadyCommit();
+  videoEditorDocumentReadyRemoveComponent();
+  videoEditorDocumentReadyComponentsCommon();
+  videoEditorDocumentReadyGalleries();
+  videoEditorDocumentReadyTextComponentEditor();
+  videoEditorDocumentReadyAddComponent();
+  videoEditorDocumentReadyAudioTrack();
+  videoEditorDocumentReadyInitialization();
+}
+
+&#x2F;**
+bla bla bla
+@method videoEditorDocumentReadyAddComponent
+@for VideoEditorDocumentReady
+**&#x2F;
+function videoEditorDocumentReadyAddComponent() {
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._add_video_component_to_video_editor&#x27;, function() {
+    var video_id = $(this).data(&#x27;video-id&#x27;);
+    var popup_id = &#x27;dialog-video-gallery-&#x27; + video_id;
+    var component = $(&#x27;#&#x27; + popup_id + &#x27; ._temporary&#x27;).html();
+    var webm = $(&#x27;#&#x27; + popup_id + &#x27; source[type=&quot;video&#x2F;webm&quot;]&#x27;).attr(&#x27;src&#x27;);
+    var mp4 = $(&#x27;#&#x27; + popup_id + &#x27; source[type=&quot;video&#x2F;mp4&quot;]&#x27;).attr(&#x27;src&#x27;);
+    var duration = $(this).data(&#x27;duration&#x27;);
+    closePopUp(popup_id);
+    setTimeout(function() {
+      closeGalleryInVideoEditor(&#x27;mixed&#x27;);
+    }, 700);
+    if($(&#x27;#info_container&#x27;).data(&#x27;replacing-component&#x27;)) {
+      var current_component = $(&#x27;#info_container&#x27;).data(&#x27;current-component&#x27;);
+      setTimeout(function() {
+        highlightAndUpdateVideoComponentIcon(current_component);
+      }, 1400);
+      replaceVideoComponentInVideoEditor(video_id, webm, mp4, component, current_component, duration);
+    } else {
+      addVideoComponentInVideoEditor(video_id, webm, mp4, component, duration);
+    }
+  });
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._add_image_component_to_video_editor&#x27;, function() {
+    var popup_id = &#x27;dialog-image-gallery-&#x27; + $(this).data(&#x27;image-id&#x27;);
+    $(&#x27;#&#x27; + popup_id + &#x27; ._bottom_of_image_popup_in_gallery&#x27;).hide();
+    $(&#x27;#&#x27; + popup_id + &#x27; ._duration_selector&#x27;).show();
+    $(&#x27;#&#x27; + popup_id + &#x27; ._duration_selector input&#x27;).val(&#x27;&#x27;);
+  });
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._add_image_component_to_video_editor_after_select_duration&#x27;, function() {
+    var image_id = $(this).data(&#x27;image-id&#x27;)
+    var popup_id = &#x27;dialog-image-gallery-&#x27; + image_id;
+    var duration = parseInt($(&#x27;#&#x27; + popup_id + &#x27; input&#x27;).val());
+    if(isNaN(duration) || duration &lt; 1) {
+      showErrorPopUp($(&#x27;#popup_captions_container&#x27;).data(&#x27;invalid-component-duration-in-video-editor&#x27;));
+    } else {
+      var component = $(&#x27;#&#x27; + popup_id + &#x27; ._temporary ._video_component_thumb&#x27;)[0].outerHTML;
+      var preview = $(&#x27;#&#x27; + popup_id + &#x27; ._temporary ._image_preview_in_video_editor_gallery&#x27;).html();
+      closePopUp(popup_id);
+      setTimeout(function() {
+        closeGalleryInVideoEditor(&#x27;mixed&#x27;);
+      }, 700);
+      if($(&#x27;#info_container&#x27;).data(&#x27;replacing-component&#x27;)) {
+        var current_component = $(&#x27;#info_container&#x27;).data(&#x27;current-component&#x27;);
+        setTimeout(function() {
+          highlightAndUpdateVideoComponentIcon(current_component);
+        }, 1400);
+        replaceImageComponentInVideoEditor(image_id, component, preview, current_component, duration);
+      } else {
+        addImageComponentInVideoEditor(image_id, component, preview, duration);
+      }
+    }
+  });
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#insert_text_component_in_video_editor&#x27;, function() {
+    var preview = $(&#x27;#text_component_preview&#x27;);
+    var background_color = preview.data(&#x27;background-color&#x27;);
+    var text_color = preview.data(&#x27;text-color&#x27;);
+    var duration = parseInt($(&#x27;#video_editor_mixed_gallery_container ._texts ._duration_selector input&#x27;).val());
+    if(isNaN(duration) || duration &lt; 1) {
+      showErrorPopUp($(&#x27;#popup_captions_container&#x27;).data(&#x27;invalid-component-duration-in-video-editor&#x27;));
+    } else if(preview.data(&#x27;placeholder&#x27;)) {
+      showErrorPopUp($(&#x27;#popup_captions_container&#x27;).data(&#x27;empty-text-component-in-video-editor&#x27;));
+    } else {
+      var content = $(&#x27;#text_component_preview textarea&#x27;).val().split(&quot;\n&quot;).join(&#x27;&lt;br&#x2F;&gt;&#x27;);
+      var component = $(&#x27;#video_editor_mixed_gallery_container ._texts ._temporary&#x27;).html();
+      closeGalleryInVideoEditor(&#x27;mixed&#x27;);
+      if($(&#x27;#info_container&#x27;).data(&#x27;replacing-component&#x27;)) {
+        var current_component = $(&#x27;#info_container&#x27;).data(&#x27;current-component&#x27;);
+        setTimeout(function() {
+          highlightAndUpdateVideoComponentIcon(current_component);
+        }, 700);
+        replaceTextComponentInVideoEditor(component, content, current_component, duration, background_color, text_color);
+      } else {
+        addTextComponentInVideoEditor(component, content, duration, background_color, text_color);
+      }
+    }
+  });
+}
+
+&#x2F;**
+bla bla bla
+@method videoEditorDocumentReadyAudioTrack
+@for VideoEditorDocumentReady
+**&#x2F;
+function videoEditorDocumentReadyAudioTrack() {
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._add_audio_track_to_video_editor&#x27;, function() {
+    $(&#x27;#video_editor_preview_container ._audio_track_preview&#x27;).remove();
+    if(!$(&#x27;#video_editor_preview_container video&#x27;).prop(&#x27;muted&#x27;)) {
+      $(&#x27;#video_editor_preview_container video&#x27;).prop(&#x27;muted&#x27;, true);
+    }
+    var audio_id = $(this).data(&#x27;audio-id&#x27;);
+    closeGalleryInVideoEditor(&#x27;audio&#x27;);
+    stopMedia(&#x27;._audio_expanded_in_gallery audio&#x27;);
+    $(&#x27;._audio_expanded_in_gallery ._expanded&#x27;).hide();
+    $(&#x27;._audio_expanded_in_gallery&#x27;).removeClass(&#x27;_audio_expanded_in_gallery&#x27;);
+    $(&#x27;#audio_track_in_video_editor_input&#x27;).val(audio_id);
+    $(&#x27;#empty_audio_track_placeholder_in_video_editor&#x27;).hide();
+    $(&#x27;#full_audio_track_placeholder_in_video_editor&#x27;).show();
+    $(&#x27;#full_audio_track_placeholder_in_video_editor&#x27;).data(&#x27;duration&#x27;, $(this).data(&#x27;duration&#x27;));
+    var new_html_title = $(&#x27;#gallery_audio_&#x27; + audio_id + &#x27; ._compact p&#x27;).html();
+    new_html_title += (&#x27;&lt;br&#x2F;&gt;&#x27; + secondsToDateString($(this).data(&#x27;duration&#x27;)));
+    $(&#x27;#full_audio_track_placeholder_in_video_editor ._title&#x27;).html(new_html_title);
+    $(&#x27;#video_editor_preview_container&#x27;).append($(&#x27;#empty_audio_track_preview_for_video_editor&#x27;).html());
+    var new_audio_track = $(&#x27;#video_editor_preview_container ._audio_track_preview&#x27;);
+    new_audio_track.data(&#x27;duration&#x27;, $(this).data(&#x27;duration&#x27;));
+    new_audio_track.find(&#x27;source[type=&quot;audio&#x2F;mp3&quot;]&#x27;).attr(&#x27;src&#x27;, $(this).data(&#x27;mp3&#x27;));
+    new_audio_track.find(&#x27;source[type=&quot;audio&#x2F;ogg&quot;]&#x27;).attr(&#x27;src&#x27;, $(this).data(&#x27;ogg&#x27;));
+    new_audio_track.find(&#x27;audio&#x27;).load();
+  });
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#full_audio_track_placeholder_in_video_editor ._remove&#x27;, function() {
+    $(&#x27;#video_editor_preview_container video&#x27;).prop(&#x27;muted&#x27;, false);
+    var audio_id = $(&#x27;#audio_track_in_video_editor_input&#x27;).val();
+    $(&#x27;#video_editor_preview_container ._audio_track_preview&#x27;).remove();
+    $(&#x27;#audio_track_in_video_editor_input&#x27;).val(&#x27;&#x27;);
+    $(&#x27;#full_audio_track_placeholder_in_video_editor&#x27;).hide();
+    $(&#x27;#empty_audio_track_placeholder_in_video_editor&#x27;).show();
+  });
+}
+
+&#x2F;**
+bla bla bla
+@method videoEditorDocumentReadyCommit
+@for VideoEditorDocumentReady
+**&#x2F;
+function videoEditorDocumentReadyCommit() {
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._exit_video_editor&#x27;, function() {
+    stopCacheLoop();
+    var captions = $(&#x27;#popup_captions_container&#x27;);
+    showConfirmPopUp(captions.data(&#x27;exit-video-editor-title&#x27;), captions.data(&#x27;exit-video-editor-confirm&#x27;), captions.data(&#x27;exit-video-editor-yes&#x27;), captions.data(&#x27;exit-video-editor-no&#x27;), function() {
+      $(&#x27;dialog-confirm&#x27;).hide();
+      $.ajax({
+        type: &#x27;post&#x27;,
+        url: &#x27;&#x2F;videos&#x2F;cache&#x2F;empty&#x27;,
+        beforeSend: unbindLoader(),
+        success: function() {
+          window.location = &#x27;&#x2F;media_elements&#x27;;
+        }
+      }).always(bindLoader);
+    }, function() {
+      if($(&#x27;#form_info_update_media_element_in_editor&#x27;).length == 0) {
+        if(!$(&#x27;#form_info_new_media_element_in_editor&#x27;).is(&#x27;:visible&#x27;)) {
+          startCacheLoop();
+        }
+      } else {
+        if(!$(&#x27;#form_info_new_media_element_in_editor&#x27;).is(&#x27;:visible&#x27;) &amp;&amp; !$(&#x27;#form_info_update_media_element_in_editor&#x27;).is(&#x27;:visible&#x27;)) {
+          startCacheLoop();
+        }
+      }
+      closePopUp(&#x27;dialog-confirm&#x27;);
+    });
+  });
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#commit_video_editor&#x27;, function() {
+    stopCacheLoop();
+    submitMediaElementEditorCacheForm($(&#x27;#video_editor_form&#x27;));
+    if($(this).hasClass(&#x27;_with_choice&#x27;)) {
+      var captions = $(&#x27;#popup_captions_container&#x27;);
+      var title = captions.data(&#x27;save-media-element-editor-title&#x27;);
+      var confirm = captions.data(&#x27;save-media-element-editor-confirm&#x27;);
+      var yes = captions.data(&#x27;save-media-element-editor-yes&#x27;);
+      var no = captions.data(&#x27;save-media-element-editor-no&#x27;);
+      showConfirmPopUp(title, confirm, yes, no, function() {
+        closePopUp(&#x27;dialog-confirm&#x27;);
+        $(&#x27;._video_editor_bottom_bar&#x27;).hide();
+        $(&#x27;#video_editor #form_info_update_media_element_in_editor&#x27;).show();
+      }, function() {
+        closePopUp(&#x27;dialog-confirm&#x27;);
+        $(&#x27;#video_editor_title ._titled&#x27;).hide();
+        $(&#x27;#video_editor_title ._untitled&#x27;).show();
+        $(&#x27;._video_editor_bottom_bar&#x27;).hide();
+        $(&#x27;#video_editor #form_info_new_media_element_in_editor&#x27;).show();
+      });
+    } else {
+      $(&#x27;._video_editor_bottom_bar&#x27;).hide();
+      $(&#x27;#video_editor #form_info_new_media_element_in_editor&#x27;).show();
+    }
+  });
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#video_editor #form_info_new_media_element_in_editor ._commit&#x27;, function() {
+    $(&#x27;#video_editor_form&#x27;).attr(&#x27;action&#x27;, &#x27;&#x2F;videos&#x2F;commit&#x2F;new&#x27;);
+    $(&#x27;#video_editor_form&#x27;).submit();
+  });
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#video_editor #form_info_update_media_element_in_editor ._commit&#x27;, function() {
+    if($(&#x27;#info_container&#x27;).data(&#x27;used-in-private-lessons&#x27;)) {
+      var captions = $(&#x27;#popup_captions_container&#x27;);
+      var title = captions.data(&#x27;overwrite-media-element-editor-title&#x27;);
+      var confirm = captions.data(&#x27;overwrite-media-element-editor-confirm&#x27;);
+      var yes = captions.data(&#x27;overwrite-media-element-editor-yes&#x27;);
+      var no = captions.data(&#x27;overwrite-media-element-editor-no&#x27;);
+      showConfirmPopUp(title, confirm, yes, no, function() {
+        $(&#x27;dialog-confirm&#x27;).hide();
+        $(&#x27;#video_editor_form&#x27;).attr(&#x27;action&#x27;, &#x27;&#x2F;videos&#x2F;commit&#x2F;overwrite&#x27;);
+        $(&#x27;#video_editor_form&#x27;).submit();
+      }, function() {
+        closePopUp(&#x27;dialog-confirm&#x27;);
+      });
+    } else {
+      $(&#x27;#video_editor_form&#x27;).attr(&#x27;action&#x27;, &#x27;&#x2F;videos&#x2F;commit&#x2F;overwrite&#x27;);
+      $(&#x27;#video_editor_form&#x27;).submit();
+    }
+  });
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#video_editor #form_info_new_media_element_in_editor ._cancel&#x27;, function() {
+    $(&#x27;#video_editor_form&#x27;).attr(&#x27;action&#x27;, &#x27;&#x2F;videos&#x2F;cache&#x2F;save&#x27;);
+    resetMediaElementEditorForms();
+    if($(&#x27;#video_editor_title ._titled&#x27;).length &gt; 0) {
+      $(&#x27;#video_editor_title ._titled&#x27;).show();
+      $(&#x27;#video_editor_title ._untitled&#x27;).hide();
+    }
+    $(&#x27;._video_editor_bottom_bar&#x27;).show();
+    $(&#x27;#video_editor #form_info_new_media_element_in_editor&#x27;).hide();
+    startCacheLoop();
+  });
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#video_editor #form_info_update_media_element_in_editor ._cancel&#x27;, function() {
+    $(&#x27;#video_editor_form&#x27;).attr(&#x27;action&#x27;, &#x27;&#x2F;videos&#x2F;cache&#x2F;save&#x27;);
+    resetMediaElementEditorForms();
+    $(&#x27;._video_editor_bottom_bar&#x27;).show();
+    $(&#x27;#video_editor #form_info_update_media_element_in_editor&#x27;).hide();
+    startCacheLoop();
+  });
+}
+
+&#x2F;**
+bla bla bla
+@method videoEditorDocumentReadyComponentsCommon
+@for VideoEditorDocumentReady
+**&#x2F;
+function videoEditorDocumentReadyComponentsCommon() {
+  $(&#x27;body&#x27;).on(&#x27;mouseover&#x27;, &#x27;._video_editor_component_hover&#x27;, function() {
+    var father = $(this).parent();
+    if(father.data(&#x27;rolloverable&#x27;)) {
+      father.data(&#x27;preview-selected&#x27;, true);
+      startVideoEditorPreviewClipWithDelay(father.attr(&#x27;id&#x27;));
+      $(&#x27;#&#x27; + father.attr(&#x27;id&#x27;) + &#x27; ._video_editor_component_menu&#x27;).show();
+    }
+  });
+  $(&#x27;body&#x27;).on(&#x27;mouseout&#x27;, &#x27;._video_editor_component_hover&#x27;, function() {
+    var father = $(this).parent();
+    father.data(&#x27;preview-selected&#x27;, false);
+    if(father.data(&#x27;rolloverable&#x27;)) {
+      $(&#x27;#&#x27; + father.attr(&#x27;id&#x27;) + &#x27; ._video_editor_component_menu&#x27;).hide();
+    }
+  });
+  $(&#x27;body&#x27;).on(&#x27;mouseover&#x27;, &#x27;._new_component_in_video_editor_hover&#x27;, function() {
+    $(&#x27;._new_component_in_video_editor_hover a&#x27;).addClass(&#x27;current&#x27;);
+  });
+  $(&#x27;body&#x27;).on(&#x27;mouseout&#x27;, &#x27;._new_component_in_video_editor_hover&#x27;, function() {
+    $(&#x27;._new_component_in_video_editor_hover a&#x27;).removeClass(&#x27;current&#x27;);
+  });
+}
+
+&#x2F;**
+bla bla bla
+@method videoEditorDocumentReadyCutters
+@for VideoEditorDocumentReady
+**&#x2F;
+function videoEditorDocumentReadyCutters() {
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._video_component_cutter_button&#x27;, function() {
+    var component_id = $(this).parents(&#x27;._video_editor_component&#x27;).attr(&#x27;id&#x27;);
+    if(!$(&#x27;#&#x27; + component_id + &#x27;_preview&#x27;).is(&#x27;:visible&#x27;)) {
+      startVideoEditorPreviewClip(component_id);
+    }
+    $(&#x27;#video_editor_box_ghost&#x27;).show();
+    $(&#x27;#video_editor_global_preview&#x27;).removeClass(&#x27;_enabled&#x27;);
+    var pos = $(&#x27;#&#x27; + component_id).data(&#x27;position&#x27;);
+    var scroll_to = getNormalizedPositionTimelineHorizontalScrollPane(&#x27;media_elements_list_in_video_editor&#x27;, 186, pos, 5);
+    if($(&#x27;#&#x27; + component_id + &#x27;_cutter&#x27;).hasClass(&#x27;_mini_cutter&#x27;)) {
+      $(&#x27;#&#x27; + component_id + &#x27;_cutter&#x27;).css(&#x27;left&#x27;, (3 + getAbsolutePositionTimelineHorizontalScrollPane(&#x27;media_elements_list_in_video_editor&#x27;, 186, pos, 5)));
+    }
+    var jsp_handler = $(&#x27;#media_elements_list_in_video_editor&#x27;).data(&#x27;jsp&#x27;);
+    if(scroll_to != jsp_handler.getContentPositionX() &amp;&amp; jsp_handler.getPercentScrolledX() != 1) {
+      $(&#x27;#media_elements_list_in_video_editor&#x27;).jScrollPane().bind(&#x27;panescrollstop&#x27;, function() {
+        showVideoEditorCutter(component_id);
+        $(&#x27;#media_elements_list_in_video_editor&#x27;).jScrollPane().unbind(&#x27;panescrollstop&#x27;);
+      });
+      jsp_handler.scrollToX(scroll_to, true);
+    } else {
+      showVideoEditorCutter(component_id);
+    }
+  });
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._media_player_done_video_component_in_video_editor_preview&#x27;, function() {
+    closeGenericVideoComponentCutter();
+    var component_id = $(this).parents(&#x27;._video_component_cutter&#x27;).attr(&#x27;id&#x27;);
+    var identifier = getVideoComponentIdentifier(component_id);
+    $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter ._double_slider .ui-slider-handle&#x27;).removeClass(&#x27;selected&#x27;);
+    stopVideoInVideoEditorPreview(identifier);
+    commitVideoComponentVideoCutter(identifier);
+    $(&#x27;#video_editor_global_preview&#x27;).addClass(&#x27;_enabled&#x27;);
+  });
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._media_player_done_other_component_in_video_editor_preview&#x27;, function() {
+    var component_id = $(this).parents(&#x27;._video_component_cutter&#x27;).attr(&#x27;id&#x27;);
+    var identifier = getVideoComponentIdentifier(component_id);
+    var duration = $(&#x27;#&#x27; + component_id + &#x27; ._duration_selector input&#x27;).val();
+    if(duration == &#x27;&#x27;) {
+      closeGenericVideoComponentCutter();
+    } else {
+      duration = parseInt(duration);
+      if(isNaN(duration) || duration &lt; 1) {
+        showErrorPopUp($(&#x27;#popup_captions_container&#x27;).data(&#x27;invalid-component-duration-in-video-editor&#x27;));
+      } else {
+        closeGenericVideoComponentCutter();
+        changeDurationVideoEditorComponent((&#x27;video_component_&#x27; + identifier), duration);
+        $(&#x27;#&#x27; + component_id + &#x27; ._duration_selector input&#x27;).val(&#x27;&#x27;);
+        $(&#x27;#&#x27; + component_id + &#x27; ._old&#x27;).html(secondsToDateString(duration));
+        $(&#x27;#video_component_&#x27; + identifier + &#x27; ._video_component_input_duration&#x27;).val(duration);
+        highlightAndUpdateVideoComponentIcon(&#x27;video_component_&#x27; + identifier);
+      }
+    }
+    $(&#x27;#video_editor_global_preview&#x27;).addClass(&#x27;_enabled&#x27;);
+  });
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._video_component_cutter ._precision_arrow_left&#x27;, function() {
+    var cutter = $(this).parents(&#x27;._video_component_cutter&#x27;);
+    var identifier = getVideoComponentIdentifier(cutter.attr(&#x27;id&#x27;));
+    var single_slider = cutter.find(&#x27;._media_player_slider&#x27;);
+    var double_slider = cutter.find(&#x27;._double_slider&#x27;);
+    if(single_slider.find(&#x27;.ui-slider-handle&#x27;).hasClass(&#x27;selected&#x27;)) {
+      var resp = single_slider.slider(&#x27;value&#x27;);
+      if(resp &gt; 0 &amp;&amp; resp &gt; double_slider.slider(&#x27;values&#x27;, 0)) {
+        selectVideoComponentCutterHandle(cutter, resp - 1);
+      }
+    } else if(double_slider.find(&#x27;.ui-slider-handle&#x27;).first().hasClass(&#x27;selected&#x27;)) {
+      var resp = double_slider.slider(&#x27;values&#x27;, 0);
+      if(resp &gt; 0) {
+        double_slider.slider(&#x27;values&#x27;, 0, resp - 1);
+        cutVideoComponentLeftSide(identifier, resp - 1);
+      }
+    } else {
+      var resp = double_slider.slider(&#x27;values&#x27;, 1);
+      if(resp &gt; double_slider.slider(&#x27;values&#x27;, 0) + 1) {
+        if(single_slider.slider(&#x27;value&#x27;) == resp) {
+          selectVideoComponentCutterHandle(cutter, resp - 1);
+        }
+        double_slider.slider(&#x27;values&#x27;, 1, resp - 1);
+        cutVideoComponentRightSide(identifier, resp - 1);
+      }
+    }
+  });
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._video_component_cutter ._precision_arrow_right&#x27;, function() {
+    var cutter = $(this).parents(&#x27;._video_component_cutter&#x27;);
+    var identifier = getVideoComponentIdentifier(cutter.attr(&#x27;id&#x27;));
+    var duration = cutter.data(&#x27;max-to&#x27;);
+    var single_slider = cutter.find(&#x27;._media_player_slider&#x27;);
+    var double_slider = cutter.find(&#x27;._double_slider&#x27;);
+    if(single_slider.find(&#x27;.ui-slider-handle&#x27;).hasClass(&#x27;selected&#x27;)) {
+      var resp = single_slider.slider(&#x27;value&#x27;);
+      if(resp &lt; duration &amp;&amp; resp &lt; double_slider.slider(&#x27;values&#x27;, 1)) {
+        selectVideoComponentCutterHandle(cutter, resp + 1);
+      }
+    } else if(double_slider.find(&#x27;.ui-slider-handle&#x27;).first().hasClass(&#x27;selected&#x27;)) {
+      var resp = double_slider.slider(&#x27;values&#x27;, 0);
+      if(resp &lt; double_slider.slider(&#x27;values&#x27;, 1) - 1) {
+        if(single_slider.slider(&#x27;value&#x27;) == resp) {
+          selectVideoComponentCutterHandle(cutter, resp + 1);
+        }
+        double_slider.slider(&#x27;values&#x27;, 0, resp + 1);
+        cutVideoComponentLeftSide(identifier, resp + 1);
+      }
+    } else {
+      var resp = double_slider.slider(&#x27;values&#x27;, 1);
+      if(resp &lt; duration) {
+        double_slider.slider(&#x27;values&#x27;, 1, resp + 1);
+        cutVideoComponentRightSide(identifier, resp + 1);
+      }
+    }
+  });
+}
+
+&#x2F;**
+bla bla bla
+@method videoEditorDocumentReadyGalleries
+@for VideoEditorDocumentReady
+**&#x2F;
+function videoEditorDocumentReadyGalleries() {
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._new_component_in_video_editor_button&#x27;, function() {
+    var father = $(this).parent().parent().parent().parent();
+    var infos = $(&#x27;#info_container&#x27;);
+    if($(this).hasClass(&#x27;_replace_component&#x27;)) {
+      infos.data(&#x27;replacing-component&#x27;, true);
+      infos.data(&#x27;current-component&#x27;, father.attr(&#x27;id&#x27;));
+    } else {
+      infos.data(&#x27;replacing-component&#x27;, false);
+    }
+    if($(&#x27;#video_editor_mixed_gallery_container&#x27;).data(&#x27;loaded&#x27;)) {
+      showGalleryInVideoEditor(&#x27;mixed&#x27;);
+      resetVideoEditorTextComponent();
+    } else {
+      $.ajax({
+        type: &#x27;get&#x27;,
+        url: &#x27;&#x2F;videos&#x2F;galleries&#x27;
+      });
+    }
+  });
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._show_audio_gallery_in_video_editor&#x27;, function() {
+    if($(&#x27;#video_editor_audio_gallery_container&#x27;).data(&#x27;loaded&#x27;)) {
+      showGalleryInVideoEditor(&#x27;audio&#x27;);
+    } else {
+      $.ajax({
+        type: &#x27;get&#x27;,
+        url: &#x27;&#x2F;videos&#x2F;galleries&#x2F;audio&#x27;
+      });
+    }
+  });
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#video_editor_mixed_gallery_container ._switch_video&#x27;, function() {
+    $(&#x27;._switch_image, ._switch_text&#x27;).removeClass(&#x27;current&#x27;);
+    $(this).addClass(&#x27;current&#x27;);
+    switchToOtherGalleryInMixedGalleryInVideoEditor(&#x27;._videos&#x27;);
+  });
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#video_editor_mixed_gallery_container ._switch_image&#x27;, function() {
+    $(&#x27;._switch_video, ._switch_text&#x27;).removeClass(&#x27;current&#x27;);
+    $(this).addClass(&#x27;current&#x27;);
+    switchToOtherGalleryInMixedGalleryInVideoEditor(&#x27;._images&#x27;);
+  });
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#video_editor_mixed_gallery_container ._switch_text&#x27;, function() {
+    $(&#x27;._switch_image, ._switch_video&#x27;).removeClass(&#x27;current&#x27;);
+    $(this).addClass(&#x27;current&#x27;);
+    switchToOtherGalleryInMixedGalleryInVideoEditor(&#x27;._texts&#x27;);
+  });
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._image_gallery_thumb_in_mixed_gallery_video_editor&#x27;, function(e) {
+    e.preventDefault();
+    var image_id = $(this).data(&#x27;image-id&#x27;);
+    showImageInGalleryPopUp(image_id, function() {
+      var popup_id = &#x27;dialog-image-gallery-&#x27; + image_id;
+      $(&#x27;#&#x27; + popup_id + &#x27; ._bottom_of_image_popup_in_gallery&#x27;).show();
+      $(&#x27;#&#x27; + popup_id + &#x27; ._duration_selector&#x27;).hide();
+    });
+  });
+}
+
+&#x2F;**
+bla bla bla
+@method videoEditorDocumentReadyInitialization
+@for VideoEditorDocumentReady
+**&#x2F;
+function videoEditorDocumentReadyInitialization() {
+  $(&#x27;#media_elements_list_in_video_editor&#x27;).jScrollPane({
+    autoReinitialise: true
+  });
+  calculateNewPositionGalleriesInVideoEditor();
+  $(&#x27;#video_editor_timeline&#x27;).sortable({
+    scroll: true,
+    handle: &#x27;._video_editor_component_hover&#x27;,
+    axis: &#x27;x&#x27;,
+    cursor: &#x27;move&#x27;,
+    cancel: &#x27;._video_editor_component_menu&#x27;,
+    containment: &#x27;parent&#x27;,
+    start: function(event, ui) {
+      my_item = $(ui.item);
+      if(!$(&#x27;#&#x27; + my_item.attr(&#x27;id&#x27;) + &#x27;_preview&#x27;).is(&#x27;:visible&#x27;)) {
+        startVideoEditorPreviewClip(my_item.attr(&#x27;id&#x27;));
+      }
+      my_item.find(&#x27;._video_editor_component_menu&#x27;).hide();
+      my_item.data(&#x27;rolloverable&#x27;, false);
+      my_item.find(&#x27;._video_component_icon&#x27;).addClass(&#x27;current&#x27;);
+      my_item.find(&#x27;._video_component_thumb&#x27;).addClass(&#x27;current&#x27;);
+      $(&#x27;._video_editor_component ._video_component_transition&#x27;).addClass(&#x27;current&#x27;);
+    },
+    stop: function(event, ui) {
+      my_item = $(ui.item);
+      my_item.data(&#x27;rolloverable&#x27;, true);
+      my_item.find(&#x27;._video_component_icon&#x27;).removeClass(&#x27;current&#x27;);
+      my_item.find(&#x27;._video_component_thumb&#x27;).removeClass(&#x27;current&#x27;);
+      resetVisibilityOfVideoEditorTransitions();
+      var boolean1 = (my_item.next().attr(&#x27;id&#x27;) == &#x27;add_new_video_component&#x27;);
+      var boolean2 = (my_item.data(&#x27;position&#x27;) != $(&#x27;._video_editor_component&#x27;).length);
+      var boolean3 = (my_item.next().data(&#x27;position&#x27;) != (my_item.data(&#x27;position&#x27;) + 1));
+      if(boolean1 &amp;&amp; boolean2 || !boolean1 &amp;&amp; boolean3) {
+        reloadVideoEditorComponentPositions();
+        $(&#x27;._video_component_icon&#x27;).effect(&#x27;highlight&#x27;, {color: &#x27;#41A62A&#x27;}, 1500);
+      }
+    }
+  });
+}
+
+&#x2F;**
+bla bla bla
+@method videoEditorDocumentReadyPreview
+@for VideoEditorDocumentReady
+**&#x2F;
+function videoEditorDocumentReadyPreview() {
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#video_editor_preview_go_to_left_component&#x27;, function() {
+    if($(&#x27;#video_editor_global_preview&#x27;).data(&#x27;arrows&#x27;)) {
+      var prev_component = $(&#x27;#video_component_&#x27; + $(&#x27;#video_editor_global_preview&#x27;).data(&#x27;current-component&#x27;)).prev();
+      loadVideoComponentIfNotLoadedYet(prev_component.attr(&#x27;id&#x27;));
+      selectVideoComponentInPreview(prev_component);
+      showVideoEditorPreviewArrowToComponents();
+      hideVideoEditorPreviewComponentProgressBar();
+      followPreviewComponentsWithHorizontalScrollInVideoEditor();
+    }
+  });
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#video_editor_preview_go_to_right_component&#x27;, function() {
+    if($(&#x27;#video_editor_global_preview&#x27;).data(&#x27;arrows&#x27;)) {
+      var next_component = $(&#x27;#video_component_&#x27; + $(&#x27;#video_editor_global_preview&#x27;).data(&#x27;current-component&#x27;)).next();
+      loadVideoComponentIfNotLoadedYet(next_component.attr(&#x27;id&#x27;));
+      selectVideoComponentInPreview(next_component);
+      showVideoEditorPreviewArrowToComponents();
+      hideVideoEditorPreviewComponentProgressBar();
+      followPreviewComponentsWithHorizontalScrollInVideoEditor();
+    }
+  });
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#video_editor_global_preview_play&#x27;, function() {
+    if(!$(this).data(&#x27;temporarily-disabled&#x27;)) {
+      $(this).hide();
+      $(&#x27;#video_editor_preview_slider_box_ghost&#x27;).show();
+      $(&#x27;#video_editor_preview_go_to_left_component, #video_editor_preview_go_to_right_component&#x27;).hide();
+      $(&#x27;#video_editor_global_preview_pause&#x27;).show();
+      $(&#x27;#visual_video_editor_current_time&#x27;).css(&#x27;color&#x27;, &#x27;white&#x27;);
+      $(&#x27;#visual_video_editor_total_length&#x27;).css(&#x27;color&#x27;, &#x27;#787575&#x27;);
+      $(&#x27;#exit_video_editor_preview&#x27;).hide();
+      startVideoEditorGlobalPreview();
+    }
+  });
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#exit_video_editor_preview&#x27;, function() {
+    hideVideoEditorPreviewComponentProgressBar();
+    $(&#x27;#info_container&#x27;).data(&#x27;forced-kevin-luck-style&#x27;, &#x27;&#x27;);
+    $(&#x27;#video_editor_global_preview_pause&#x27;).removeClass(&#x27;_enabled&#x27;);
+    $(&#x27;#video_editor_preview_go_to_left_component, #video_editor_preview_go_to_right_component&#x27;).hide();
+    $(&#x27;._video_component_preview&#x27;).hide();
+    $(&#x27;._video_editor_component_hover, ._video_component_icon&#x27;).removeClass(&#x27;selected&#x27;);
+    setVisualTimesVideoEditorPreview(getFirstVideoEditorComponent(), 0);
+    resetVisibilityOfVideoEditorTransitions();
+    $(&#x27;._video_editor_component&#x27;).each(function() {
+      $(this).find(&#x27;._video_component_icon ._right&#x27;).html(secondsToDateString($(this).data(&#x27;duration&#x27;)));
+    });
+    $(&#x27;#full_audio_track_placeholder_in_video_editor, #empty_audio_track_placeholder_in_video_editor&#x27;).css(&#x27;visibility&#x27;, &#x27;visible&#x27;);
+    $(&#x27;#media_elements_list_in_video_editor&#x27;).data(&#x27;jsp&#x27;).destroy();
+    $(&#x27;#add_new_video_component&#x27;).show();
+    $(&#x27;#add_new_video_component&#x27;).prev().find(&#x27;._video_component_transition&#x27;).show();
+    $(&#x27;#add_new_video_component&#x27;).prev().css(&#x27;width&#x27;, &#x27;186&#x27;);
+    var new_timeline_width = parseInt($(&#x27;#video_editor_timeline&#x27;).css(&#x27;width&#x27;).replace(&#x27;px&#x27;, &#x27;&#x27;)) + 184;
+    $(&#x27;#video_editor_timeline&#x27;).css(&#x27;width&#x27;, new_timeline_width + &#x27;px&#x27;);
+    $(&#x27;#media_elements_list_in_video_editor&#x27;).jScrollPane({
+      autoReinitialise: true,
+    });
+    $(&#x27;#visual_video_editor_current_time&#x27;).css(&#x27;visibility&#x27;, &#x27;hidden&#x27;)
+    $(&#x27;#video_editor_global_preview&#x27;).show();
+    $(&#x27;#video_editor_global_preview_play&#x27;).hide();
+    $(&#x27;#commit_video_editor&#x27;).show();
+    $(&#x27;#exit_video_editor_preview&#x27;).hide();
+    $(&#x27;#video_editor_box_ghost&#x27;).hide();
+  });
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#video_editor_global_preview_pause._enabled&#x27;, function() {
+    $(&#x27;#video_editor_global_preview_play&#x27;).data(&#x27;temporarily-disabled&#x27;, true);
+    setTimeout(function() {
+      $(&#x27;#video_editor_global_preview_play&#x27;).data(&#x27;temporarily-disabled&#x27;, false);
+    }, 1000);
+    $(&#x27;#video_editor_preview_slider_box_ghost&#x27;).hide();
+    $(&#x27;#video_editor_global_preview&#x27;).data(&#x27;in-use&#x27;, false);
+    showVideoEditorPreviewArrowToComponents();
+    $(this).hide();
+    $(&#x27;#video_editor_global_preview_play&#x27;).show();
+    $(&#x27;#exit_video_editor_preview&#x27;).show();
+    $(&#x27;#visual_video_editor_current_time&#x27;).css(&#x27;color&#x27;, &#x27;#787575&#x27;);
+    $(&#x27;#visual_video_editor_total_length&#x27;).css(&#x27;color&#x27;, &#x27;white&#x27;);
+    var current_identifier = $(&#x27;#video_editor_global_preview&#x27;).data(&#x27;current-component&#x27;);
+    var current_component = $(&#x27;#video_component_&#x27; + current_identifier);
+    if($(&#x27;#video_component_&#x27; + current_identifier + &#x27;_preview video&#x27;).length &gt; 0) {
+      $(&#x27;#video_component_&#x27; + current_identifier + &#x27;_preview video&#x27;)[0].pause();
+      setCurrentTimeToMedia($(&#x27;#video_component_&#x27; + current_identifier + &#x27;_preview video&#x27;), ($(&#x27;#video_component_&#x27; + current_identifier + &#x27;_cutter&#x27;).data(&#x27;from&#x27;) + current_component.data(&#x27;current-preview-time&#x27;)));
+    }
+    if(videoEditorWithAudioTrack()) {
+      $(&#x27;#video_editor_preview_container audio&#x27;)[0].pause();
+    }
+  });
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#video_editor_global_preview._enabled&#x27;, function() {
+    loadVideoComponentIfNotLoadedYet(getFirstVideoEditorComponent().attr(&#x27;id&#x27;));
+    $(&#x27;#info_container&#x27;).data(&#x27;forced-kevin-luck-style&#x27;, &#x27;visibility:hidden&#x27;);
+    var jsp_handler = $(&#x27;#media_elements_list_in_video_editor&#x27;).data(&#x27;jsp&#x27;);
+    if(jsp_handler.getContentPositionX() &gt; 0) {
+      $(&#x27;#media_elements_list_in_video_editor&#x27;).jScrollPane().bind(&#x27;panescrollstop&#x27;, function() {
+        openPreviewModeInVideoEditor();
+        $(&#x27;#media_elements_list_in_video_editor&#x27;).jScrollPane().unbind(&#x27;panescrollstop&#x27;);
+      });
+      $(&#x27;#media_elements_list_in_video_editor&#x27;).data(&#x27;jsp&#x27;).scrollToPercentX(0, true);
+    } else {
+      openPreviewModeInVideoEditor();
+    }
+  });
+}
+
+&#x2F;**
+bla bla bla
+@method videoEditorDocumentReadyRemoveComponent
+@for VideoEditorDocumentReady
+**&#x2F;
+function videoEditorDocumentReadyRemoveComponent() {
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._remove_component_from_video_editor_button&#x27;, function() {
+    var component = $(this).parents(&#x27;._video_editor_component&#x27;);
+    var identifier = getVideoComponentIdentifier(component.attr(&#x27;id&#x27;));
+    $(&#x27;#video_component_&#x27; + identifier).hide(&#x27;fade&#x27;, {}, 500, function() {
+      $(&#x27;#video_component_&#x27; + identifier + &#x27;_preview&#x27;).remove();
+      $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter&#x27;).remove();
+      changeDurationVideoEditorComponent((&#x27;video_component_&#x27; + identifier), 0);
+      $(&#x27;#media_elements_list_in_video_editor&#x27;).data(&#x27;jsp&#x27;).destroy();
+      $(this).remove();
+      reloadVideoEditorComponentPositions();
+      var old_timeline_width = parseInt($(&#x27;#video_editor_timeline&#x27;).css(&#x27;width&#x27;).replace(&#x27;px&#x27;, &#x27;&#x27;));
+      $(&#x27;#video_editor_timeline&#x27;).css(&#x27;width&#x27;, ((old_timeline_width - 186) + &#x27;px&#x27;));
+      $(&#x27;#media_elements_list_in_video_editor&#x27;).jScrollPane({
+        autoReinitialise: true
+      });
+      resetVisibilityOfVideoEditorTransitions();
+      if($(&#x27;._video_editor_component&#x27;).length == 0) {
+        $(&#x27;#video_editor_global_preview&#x27;).removeClass(&#x27;_enabled&#x27;);
+        $(&#x27;#video_editor_global_preview a&#x27;).addClass(&#x27;disabled&#x27;);
+        $(&#x27;#commit_video_editor&#x27;).css(&#x27;visibility&#x27;, &#x27;hidden&#x27;);
+      }
+    });
+  });
+}
+
+&#x2F;**
+bla bla bla
+@method videoEditorDocumentReadyTextComponentEditor
+@for VideoEditorDocumentReady
+**&#x2F;
+function videoEditorDocumentReadyTextComponentEditor() {
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._text_component_in_video_editor_background_color_selector ._color&#x27;, function() {
+    var old_background_color = $(&#x27;#text_component_preview&#x27;).data(&#x27;background-color&#x27;);
+    var new_background_color = $(this).data(&#x27;color&#x27;);
+    switchTextComponentBackgroundColor(old_background_color, new_background_color);
+  });
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._text_component_in_video_editor_text_color_selector ._color&#x27;, function() {
+    var old_text_color = $(&#x27;#text_component_preview&#x27;).data(&#x27;text-color&#x27;);
+    var new_text_color = $(this).data(&#x27;color&#x27;);
+    switchTextComponentTextColor(old_text_color, new_text_color);
+  });
+  $(&#x27;body&#x27;).on(&#x27;focus&#x27;, &#x27;#text_component_preview textarea&#x27;, function() {
+    var preview = $(&#x27;#text_component_preview&#x27;);
+    if(preview.data(&#x27;placeholder&#x27;)) {
+      preview.data(&#x27;placeholder&#x27;, false);
+      $(this).val(&#x27;&#x27;);
+    }
+  });
+}
+
+
+
+
+
+&#x2F;**
+bla bla bla
+@method calculateNewPositionGalleriesInVideoEditor
+@for VideoEditorGalleries
+**&#x2F;
+function calculateNewPositionGalleriesInVideoEditor() {
+  $(&#x27;#video_editor_mixed_gallery_container&#x27;).css(&#x27;left&#x27;, (($(window).width() - 940) &#x2F; 2) + &#x27;px&#x27;);
+  $(&#x27;#video_editor_audio_gallery_container&#x27;).css(&#x27;left&#x27;, (($(window).width() - 940) &#x2F; 2) + &#x27;px&#x27;);
+}
+
+&#x2F;**
+bla bla bla
+@method closeGalleryInVideoEditor
+@for VideoEditorGalleries
+**&#x2F;
+function closeGalleryInVideoEditor(type) {
+  $(&#x27;#video_editor_&#x27; + type + &#x27;_gallery_container&#x27;).hide(&#x27;fade&#x27;, {}, 250, function() {
+    $(&#x27;#media_elements_list_in_video_editor .jspHorizontalBar&#x27;).css(&#x27;visibility&#x27;, &#x27;visible&#x27;);
+    $(&#x27;._video_editor_bottom_bar&#x27;).show();
+    calculateNewPositionGalleriesInVideoEditor();
+  });
+}
+
+&#x2F;**
+bla bla bla
+@method showGalleryInVideoEditor
+@for VideoEditorGalleries
+**&#x2F;
+function showGalleryInVideoEditor(type) {
+  $(&#x27;#media_elements_list_in_video_editor .jspHorizontalBar&#x27;).css(&#x27;visibility&#x27;, &#x27;hidden&#x27;);
+  $(&#x27;#video_editor_&#x27; + type + &#x27;_gallery_container&#x27;).show();
+  $(&#x27;._video_editor_bottom_bar&#x27;).hide();
+  calculateNewPositionGalleriesInVideoEditor();
+  $(&#x27;._video_editor_component_menu&#x27;).hide();
+}
+
+&#x2F;**
+bla bla bla
+@method switchToOtherGalleryInMixedGalleryInVideoEditor
+@for VideoEditorGalleries
+**&#x2F;
+function switchToOtherGalleryInMixedGalleryInVideoEditor(type) {
+  if(!$(&#x27;#video_editor_mixed_gallery_container &#x27; + type).is(&#x27;:visible&#x27;)) {
+    var big_selector = &#x27;#video_editor_mixed_gallery_container ._videos, #video_editor_mixed_gallery_container ._images, #video_editor_mixed_gallery_container ._texts&#x27;;
+    $(big_selector).each(function() {
+      if($(this).is(&#x27;:visible&#x27;)) {
+        big_selector = this;
+      }
+    });
+    $(big_selector).hide();
+    if(type == &#x27;._texts&#x27;) {
+      resetVideoEditorTextComponent();
+    }
+    $(&#x27;#video_editor_mixed_gallery_container &#x27; + type).show();
+  }
+}
+
+
+
+
+
+&#x2F;**
+bla bla bla
+@method getFirstVideoEditorComponent
+@for VideoEditorGeneral
+**&#x2F;
+function getFirstVideoEditorComponent() {
+  return $(&#x27;._video_editor_component&#x27;).first();
+}
+
+&#x2F;**
+bla bla bla
+@method getLastVideoEditorComponent
+@for VideoEditorGeneral
+**&#x2F;
+function getLastVideoEditorComponent() {
+  var components = $(&#x27;._video_editor_component&#x27;);
+  return $(components[components.length - 1]);
+}
+
+&#x2F;**
+bla bla bla
+@method getVideoComponentIdentifier
+@for VideoEditorGeneral
+**&#x2F;
+function getVideoComponentIdentifier(item_id) {
+  var resp = item_id.split(&#x27;_&#x27;);
+  if($(&#x27;#&#x27; + item_id).hasClass(&#x27;_video_editor_component&#x27;)) {
+    return resp[resp.length - 1];
+  } else {
+    return resp[resp.length - 2];
+  }
+}
+
+&#x2F;**
+bla bla bla
+@method loadVideoComponentIfNotLoadedYet
+@for VideoEditorGeneral
+**&#x2F;
 function loadVideoComponentIfNotLoadedYet(component_id) {
   if(!$(&#x27;#&#x27; + component_id + &#x27;_preview&#x27;).data(&#x27;loaded&#x27;)) {
     var mp4 = $(&#x27;#&#x27; + component_id + &#x27;_preview&#x27;).data(&#x27;mp4&#x27;);
@@ -833,88 +1500,107 @@ function loadVideoComponentIfNotLoadedYet(component_id) {
   }
 }
 
-function commitVideoComponentVideoCutter(identifier) {
-  var from = $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter&#x27;).data(&#x27;from&#x27;);
-  var to = $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter&#x27;).data(&#x27;to&#x27;);
-  $(&#x27;#video_component_&#x27; + identifier + &#x27; ._video_component_input_from&#x27;).val(from);
-  $(&#x27;#video_component_&#x27; + identifier + &#x27; ._video_component_input_to&#x27;).val(to);
-  changeDurationVideoEditorComponent(&#x27;video_component_&#x27; + identifier, to - from);
-  if($(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter&#x27;).data(&#x27;changed&#x27;)) {
-    highlightAndUpdateVideoComponentIcon(&#x27;video_component_&#x27; + identifier);
-    $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter&#x27;).data(&#x27;changed&#x27;, false);
-  }
-}
-
+&#x2F;**
+bla bla bla
+@method videoEditorWithAudioTrack
+@for VideoEditorGeneral
+**&#x2F;
 function videoEditorWithAudioTrack() {
   return $(&#x27;#audio_track_in_video_editor_input&#x27;).val() != &#x27;&#x27;;
 }
 
-function cutVideoComponentLeftSide(identifier, pos) {
-  $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter&#x27;).data(&#x27;from&#x27;, pos);
-  var new_duration = $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter&#x27;).data(&#x27;to&#x27;) - pos;
-  $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter ._video_editor_cutter_selected_time&#x27;).html(secondsToDateString(new_duration));
-}
 
-function cutVideoComponentRightSide(identifier, pos) {
-  $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter&#x27;).data(&#x27;to&#x27;, pos);
-  var new_duration = pos - $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter&#x27;).data(&#x27;from&#x27;);
-  $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter ._video_editor_cutter_selected_time&#x27;).html(secondsToDateString(new_duration));
-}
 
-function calculateVideoComponentStartSecondInVideoEditor(identifier) {
-  var duration = 0;
-  var stop = false;
-  $(&#x27;._video_editor_component&#x27;).each(function(index) {
-    if(getVideoComponentIdentifier($(this).attr(&#x27;id&#x27;)) == identifier) {
-      stop = true;
-    } else if(!stop) {
-      duration += ($(this).data(&#x27;duration&#x27;) + 1);
-    }
-  });
-  var cutter = $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter&#x27;);
-  if(!cutter.hasClass(&#x27;_mini_cutter&#x27;)) {
-    duration += (cutter.find(&#x27;._media_player_slider&#x27;).slider(&#x27;value&#x27;) - cutter.data(&#x27;from&#x27;));
-  }
-  return duration;
-}
 
-function startVideoEditorGlobalPreview() {
-  $(&#x27;#video_editor_global_preview&#x27;).data(&#x27;in-use&#x27;, true);
-  var current_identifier = $(&#x27;#video_editor_global_preview&#x27;).data(&#x27;current-component&#x27;);
-  var current_component = $(&#x27;#video_component_&#x27; + current_identifier);
-  var actual_audio_track_time = calculateVideoComponentStartSecondInVideoEditor(current_identifier) + current_component.data(&#x27;current-preview-time&#x27;);
-  if(videoEditorWithAudioTrack() &amp;&amp; actual_audio_track_time &lt; $(&#x27;#full_audio_track_placeholder_in_video_editor&#x27;).data(&#x27;duration&#x27;)) {
-    var audio_track = $(&#x27;#video_editor_preview_container audio&#x27;);
-    if(media[0].error) {
-      showLoadingMediaErrorPopup(audio_track[0].error.code, &#x27;audio&#x27;);
-    } else {
-      setCurrentTimeToMedia(audio_track, actual_audio_track_time);
-      if(audio_track.readyState != 0) {
-        audio_track[0].play();
+
+&#x2F;**
+bla bla bla
+@method automaticIncreaseVideoEditorPreviewTimer
+@for VideoEditorPreview
+**&#x2F;
+function automaticIncreaseVideoEditorPreviewTimer(time, total_length, callback) {
+  setTimeout(function() {
+    if($(&#x27;#video_editor_global_preview&#x27;).data(&#x27;in-use&#x27;)) {
+      if(time &lt; total_length) {
+        increaseVideoEditorPreviewTimer(true);
+        automaticIncreaseVideoEditorPreviewTimer(time + 1, total_length, callback);
       } else {
-        audio_track.on(&#x27;loadedmetadata&#x27;, function() {
-          audio_track[0].play();
-        });
+        callback();
       }
     }
+  }, 1000);
+}
+
+&#x2F;**
+bla bla bla
+@method increaseVideoEditorPreviewTimer
+@for VideoEditorPreview
+**&#x2F;
+function increaseVideoEditorPreviewTimer(with_component) {
+  var data_container = $(&#x27;#video_editor_global_preview&#x27;);
+  var global_time = data_container.data(&#x27;current-time&#x27;);
+  $(&#x27;#visual_video_editor_current_time&#x27;).html(secondsToDateString(global_time + 1));
+  data_container.data(&#x27;current-time&#x27;, global_time + 1);
+  if(with_component) {
+    var identifier = data_container.data(&#x27;current-component&#x27;);
+    var component = $(&#x27;#video_component_&#x27; + identifier);
+    var component_time = component.data(&#x27;current-preview-time&#x27;);
+    component.find(&#x27;._video_component_icon ._right&#x27;).html(secondsToDateString(component_time + 1));
+    component.data(&#x27;current-preview-time&#x27;, component_time + 1);
+    if($(&#x27;#video_editor_preview_slider&#x27;).is(&#x27;:visible&#x27;)) {
+      $(&#x27;#video_editor_preview_slider&#x27;).slider(&#x27;value&#x27;, component_time + 1);
+    }
   }
-  if(current_component.data(&#x27;position&#x27;) == getHowManyComponentsHiddenToLeftTimelineHorizontalScrollPane(&#x27;media_elements_list_in_video_editor&#x27;, 186) + 1) {
-    playVideoEditorComponent(current_component, false);
-  } else {
-    hideVideoEditorPreviewComponentProgressBar();
-    playVideoEditorComponent(current_component, true);
-  }
 }
 
-function getFirstVideoEditorComponent() {
-  return $(&#x27;._video_editor_component&#x27;).first();
+&#x2F;**
+bla bla bla
+@method openPreviewModeInVideoEditor
+@for VideoEditorPreview
+**&#x2F;
+function openPreviewModeInVideoEditor() {
+  var first_component = getFirstVideoEditorComponent();
+  var first_identifier = getVideoComponentIdentifier(first_component.attr(&#x27;id&#x27;));
+  $(&#x27;._video_component_preview&#x27;).hide();
+  $(&#x27;#full_audio_track_placeholder_in_video_editor, #empty_audio_track_placeholder_in_video_editor&#x27;).css(&#x27;visibility&#x27;, &#x27;hidden&#x27;);
+  $(&#x27;#visual_video_editor_current_time&#x27;).css(&#x27;visibility&#x27;, &#x27;visible&#x27;).css(&#x27;color&#x27;, &#x27;white&#x27;);
+  $(&#x27;#visual_video_editor_total_length&#x27;).css(&#x27;color&#x27;, &#x27;#787575&#x27;);
+  $(&#x27;#video_editor_global_preview&#x27;).hide();
+  $(&#x27;#video_editor_global_preview_pause&#x27;).show();
+  $(&#x27;#commit_video_editor&#x27;).hide();
+  $(&#x27;#video_editor_box_ghost&#x27;).show();
+  $(&#x27;._video_editor_component_hover, ._video_component_icon&#x27;).addClass(&#x27;selected&#x27;);
+  $(&#x27;#media_elements_list_in_video_editor&#x27;).data(&#x27;jsp&#x27;).destroy();
+  $(&#x27;#add_new_video_component&#x27;).hide();
+  $(&#x27;#add_new_video_component&#x27;).prev().find(&#x27;._video_component_transition&#x27;).hide();
+  $(&#x27;#add_new_video_component&#x27;).prev().css(&#x27;width&#x27;, &#x27;159&#x27;);
+  var new_timeline_width = parseInt($(&#x27;#video_editor_timeline&#x27;).css(&#x27;width&#x27;).replace(&#x27;px&#x27;, &#x27;&#x27;)) - 184;
+  $(&#x27;#video_editor_timeline&#x27;).css(&#x27;width&#x27;, new_timeline_width + &#x27;px&#x27;);
+  $(&#x27;#video_editor_preview_slider_box_ghost&#x27;).show();
+  $(&#x27;#media_elements_list_in_video_editor&#x27;).jScrollPane({
+    autoReinitialise: true,
+    initialHorizontalStyles: &#x27;visibility:hidden&#x27;
+  });
+  $(&#x27;._video_component_transition&#x27;).addClass(&#x27;current&#x27;);
+  setVisualTimesVideoEditorPreview(first_component, 0);
+  $(&#x27;#video_editor_preview_container ._loader&#x27;).show();
+  $(&#x27;#video_editor_global_preview_pause a&#x27;).addClass(&#x27;disabled&#x27;);
+  setTimeout(function() {
+    $(&#x27;#video_editor_global_preview_pause&#x27;).addClass(&#x27;_enabled&#x27;);
+    $(&#x27;#video_editor_global_preview_pause a&#x27;).removeClass(&#x27;disabled&#x27;);
+    $(&#x27;#video_editor_preview_container ._loader&#x27;).hide();
+    $(&#x27;#video_component_&#x27; + first_identifier + &#x27;_preview&#x27;).show();
+    showVideoEditorPreviewComponentProgressBar(first_identifier, 1);
+    first_component.find(&#x27;._video_editor_component_hover, ._video_component_icon&#x27;).removeClass(&#x27;selected&#x27;);
+    startVideoEditorGlobalPreview();
+  }, 1500);
 }
 
-function getLastVideoEditorComponent() {
-  var components = $(&#x27;._video_editor_component&#x27;);
-  return $(components[components.length - 1]);
-}
-
+&#x2F;**
+bla bla bla
+@method playVideoEditorComponent
+@for VideoEditorPreview
+**&#x2F;
 function playVideoEditorComponent(component, with_scroll) {
   if(with_scroll) {
     followPreviewComponentsWithHorizontalScrollInVideoEditor();
@@ -986,6 +1672,80 @@ function playVideoEditorComponent(component, with_scroll) {
   }
 }
 
+&#x2F;**
+bla bla bla
+@method startVideoEditorGlobalPreview
+@for VideoEditorPreview
+**&#x2F;
+function startVideoEditorGlobalPreview() {
+  $(&#x27;#video_editor_global_preview&#x27;).data(&#x27;in-use&#x27;, true);
+  var current_identifier = $(&#x27;#video_editor_global_preview&#x27;).data(&#x27;current-component&#x27;);
+  var current_component = $(&#x27;#video_component_&#x27; + current_identifier);
+  var actual_audio_track_time = calculateVideoComponentStartSecondInVideoEditor(current_identifier) + current_component.data(&#x27;current-preview-time&#x27;);
+  if(videoEditorWithAudioTrack() &amp;&amp; actual_audio_track_time &lt; $(&#x27;#full_audio_track_placeholder_in_video_editor&#x27;).data(&#x27;duration&#x27;)) {
+    var audio_track = $(&#x27;#video_editor_preview_container audio&#x27;);
+    if(media[0].error) {
+      showLoadingMediaErrorPopup(audio_track[0].error.code, &#x27;audio&#x27;);
+    } else {
+      setCurrentTimeToMedia(audio_track, actual_audio_track_time);
+      if(audio_track.readyState != 0) {
+        audio_track[0].play();
+      } else {
+        audio_track.on(&#x27;loadedmetadata&#x27;, function() {
+          audio_track[0].play();
+        });
+      }
+    }
+  }
+  if(current_component.data(&#x27;position&#x27;) == getHowManyComponentsHiddenToLeftTimelineHorizontalScrollPane(&#x27;media_elements_list_in_video_editor&#x27;, 186) + 1) {
+    playVideoEditorComponent(current_component, false);
+  } else {
+    hideVideoEditorPreviewComponentProgressBar();
+    playVideoEditorComponent(current_component, true);
+  }
+}
+
+
+
+
+
+&#x2F;**
+bla bla bla
+@method calculateVideoComponentStartSecondInVideoEditor
+@for VideoEditorPreviewAccessories
+**&#x2F;
+function calculateVideoComponentStartSecondInVideoEditor(identifier) {
+  var duration = 0;
+  var stop = false;
+  $(&#x27;._video_editor_component&#x27;).each(function(index) {
+    if(getVideoComponentIdentifier($(this).attr(&#x27;id&#x27;)) == identifier) {
+      stop = true;
+    } else if(!stop) {
+      duration += ($(this).data(&#x27;duration&#x27;) + 1);
+    }
+  });
+  var cutter = $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter&#x27;);
+  if(!cutter.hasClass(&#x27;_mini_cutter&#x27;)) {
+    duration += (cutter.find(&#x27;._media_player_slider&#x27;).slider(&#x27;value&#x27;) - cutter.data(&#x27;from&#x27;));
+  }
+  return duration;
+}
+
+&#x2F;**
+bla bla bla
+@method hideVideoEditorPreviewComponentProgressBar
+@for VideoEditorPreviewAccessories
+**&#x2F;
+function hideVideoEditorPreviewComponentProgressBar() {
+  $(&#x27;#video_editor_preview_slider&#x27;).slider(&#x27;destroy&#x27;);
+  $(&#x27;#video_editor_preview_slider&#x27;).hide();
+}
+
+&#x2F;**
+bla bla bla
+@method selectVideoComponentInPreview
+@for VideoEditorPreviewAccessories
+**&#x2F;
 function selectVideoComponentInPreview(component, time) {
   $(&#x27;._video_component_preview&#x27;).hide();
   $(&#x27;#&#x27; + component.attr(&#x27;id&#x27;) + &#x27;_preview&#x27;).show();
@@ -997,6 +1757,11 @@ function selectVideoComponentInPreview(component, time) {
   setVisualTimesVideoEditorPreview(component, time);
 }
 
+&#x2F;**
+bla bla bla
+@method setVisualTimesVideoEditorPreview
+@for VideoEditorPreviewAccessories
+**&#x2F;
 function setVisualTimesVideoEditorPreview(component, time) {
   var identifier = getVideoComponentIdentifier(component.attr(&#x27;id&#x27;));
   var global_time = calculateVideoComponentStartSecondInVideoEditor(identifier) + time;
@@ -1021,53 +1786,11 @@ function setVisualTimesVideoEditorPreview(component, time) {
   });
 }
 
-function getInitialPointOfVideoEditorComponent(component) {
-  resp = 0;
-  if(component.hasClass(&#x27;_video&#x27;)) {
-    resp = $(&#x27;#&#x27; + component.attr(&#x27;id&#x27;) + &#x27;_cutter&#x27;).data(&#x27;from&#x27;);
-  }
-  return resp;
-}
-
-function getVideoComponentIdentifier(item_id) {
-  var resp = item_id.split(&#x27;_&#x27;);
-  if($(&#x27;#&#x27; + item_id).hasClass(&#x27;_video_editor_component&#x27;)) {
-    return resp[resp.length - 1];
-  } else {
-    return resp[resp.length - 2];
-  }
-}
-
-function automaticIncreaseVideoEditorPreviewTimer(time, total_length, callback) {
-  setTimeout(function() {
-    if($(&#x27;#video_editor_global_preview&#x27;).data(&#x27;in-use&#x27;)) {
-      if(time &lt; total_length) {
-        increaseVideoEditorPreviewTimer(true);
-        automaticIncreaseVideoEditorPreviewTimer(time + 1, total_length, callback);
-      } else {
-        callback();
-      }
-    }
-  }, 1000);
-}
-
-function increaseVideoEditorPreviewTimer(with_component) {
-  var data_container = $(&#x27;#video_editor_global_preview&#x27;);
-  var global_time = data_container.data(&#x27;current-time&#x27;);
-  $(&#x27;#visual_video_editor_current_time&#x27;).html(secondsToDateString(global_time + 1));
-  data_container.data(&#x27;current-time&#x27;, global_time + 1);
-  if(with_component) {
-    var identifier = data_container.data(&#x27;current-component&#x27;);
-    var component = $(&#x27;#video_component_&#x27; + identifier);
-    var component_time = component.data(&#x27;current-preview-time&#x27;);
-    component.find(&#x27;._video_component_icon ._right&#x27;).html(secondsToDateString(component_time + 1));
-    component.data(&#x27;current-preview-time&#x27;, component_time + 1);
-    if($(&#x27;#video_editor_preview_slider&#x27;).is(&#x27;:visible&#x27;)) {
-      $(&#x27;#video_editor_preview_slider&#x27;).slider(&#x27;value&#x27;, component_time + 1);
-    }
-  }
-}
-
+&#x2F;**
+bla bla bla
+@method showVideoEditorPreviewArrowToComponents
+@for VideoEditorPreviewAccessories
+**&#x2F;
 function showVideoEditorPreviewArrowToComponents() {
   if(getVideoComponentIdentifier(getFirstVideoEditorComponent().attr(&#x27;id&#x27;)) != $(&#x27;#video_editor_global_preview&#x27;).data(&#x27;current-component&#x27;)) {
     $(&#x27;#video_editor_preview_go_to_left_component&#x27;).show();
@@ -1081,44 +1804,169 @@ function showVideoEditorPreviewArrowToComponents() {
   }
 }
 
-function openPreviewModeInVideoEditor() {
-  var first_component = getFirstVideoEditorComponent();
-  var first_identifier = getVideoComponentIdentifier(first_component.attr(&#x27;id&#x27;));
-  $(&#x27;._video_component_preview&#x27;).hide();
-  $(&#x27;#full_audio_track_placeholder_in_video_editor, #empty_audio_track_placeholder_in_video_editor&#x27;).css(&#x27;visibility&#x27;, &#x27;hidden&#x27;);
-  $(&#x27;#visual_video_editor_current_time&#x27;).css(&#x27;visibility&#x27;, &#x27;visible&#x27;).css(&#x27;color&#x27;, &#x27;white&#x27;);
-  $(&#x27;#visual_video_editor_total_length&#x27;).css(&#x27;color&#x27;, &#x27;#787575&#x27;);
-  $(&#x27;#video_editor_global_preview&#x27;).hide();
-  $(&#x27;#video_editor_global_preview_pause&#x27;).show();
-  $(&#x27;#commit_video_editor&#x27;).hide();
-  $(&#x27;#video_editor_box_ghost&#x27;).show();
-  $(&#x27;._video_editor_component_hover, ._video_component_icon&#x27;).addClass(&#x27;selected&#x27;);
-  $(&#x27;#media_elements_list_in_video_editor&#x27;).data(&#x27;jsp&#x27;).destroy();
-  $(&#x27;#add_new_video_component&#x27;).hide();
-  $(&#x27;#add_new_video_component&#x27;).prev().find(&#x27;._video_component_transition&#x27;).hide();
-  $(&#x27;#add_new_video_component&#x27;).prev().css(&#x27;width&#x27;, &#x27;159&#x27;);
-  var new_timeline_width = parseInt($(&#x27;#video_editor_timeline&#x27;).css(&#x27;width&#x27;).replace(&#x27;px&#x27;, &#x27;&#x27;)) - 184;
-  $(&#x27;#video_editor_timeline&#x27;).css(&#x27;width&#x27;, new_timeline_width + &#x27;px&#x27;);
-  $(&#x27;#video_editor_preview_slider_box_ghost&#x27;).show();
-  $(&#x27;#media_elements_list_in_video_editor&#x27;).jScrollPane({
-    autoReinitialise: true,
-    initialHorizontalStyles: &#x27;visibility:hidden&#x27;
-  });
-  $(&#x27;._video_component_transition&#x27;).addClass(&#x27;current&#x27;);
-  setVisualTimesVideoEditorPreview(first_component, 0);
-  $(&#x27;#video_editor_preview_container ._loader&#x27;).show();
-  $(&#x27;#video_editor_global_preview_pause a&#x27;).addClass(&#x27;disabled&#x27;);
-  setTimeout(function() {
-    $(&#x27;#video_editor_global_preview_pause&#x27;).addClass(&#x27;_enabled&#x27;);
-    $(&#x27;#video_editor_global_preview_pause a&#x27;).removeClass(&#x27;disabled&#x27;);
-    $(&#x27;#video_editor_preview_container ._loader&#x27;).hide();
-    $(&#x27;#video_component_&#x27; + first_identifier + &#x27;_preview&#x27;).show();
-    showVideoEditorPreviewComponentProgressBar(first_identifier, 1);
-    first_component.find(&#x27;._video_editor_component_hover, ._video_component_icon&#x27;).removeClass(&#x27;selected&#x27;);
-    startVideoEditorGlobalPreview();
-  }, 1500);
+&#x2F;**
+bla bla bla
+@method showVideoEditorPreviewComponentProgressBar
+@for VideoEditorPreviewAccessories
+**&#x2F;
+function showVideoEditorPreviewComponentProgressBar(identifier, position) {
+  var component = $(&#x27;#video_component_&#x27; + identifier);
+  var tool = $(&#x27;#video_editor_preview_slider&#x27;);
+  if(!tool.is(&#x27;:visible&#x27;)) {
+    tool.slider({
+      min: 0,
+      max: component.data(&#x27;duration&#x27;),
+      value: component.data(&#x27;current-preview-time&#x27;),
+      range: &#x27;min&#x27;,
+      stop: function(event, ui) {
+        var my_value = ui.value;
+        if(my_value == component.data(&#x27;duration&#x27;)) {
+          my_value = component.data(&#x27;duration&#x27;) - 1;
+          tool.slider(&#x27;value&#x27;, my_value);
+        }
+        setVisualTimesVideoEditorPreview(component, my_value);
+      }
+    });
+    tool.show();
+    tool.css(&#x27;left&#x27;, (position - 1) * 186 + 3);
+  }
 }
 
+
+
+
+
+&#x2F;**
+bla bla bla
+@method replaceImageComponentInVideoEditor
+@for VideoEditorReplaceComponents
+**&#x2F;
+function replaceImageComponentInVideoEditor(image_id, component, preview, position, duration) {
+  var identifier = getVideoComponentIdentifier(position);
+  &#x2F;&#x2F; build preview
+  var empty_preview = $(&#x27;#empty_image_preview_for_video_editor&#x27;).html();
+  empty_preview = &#x27;&lt;div id=&quot;temporary_empty_preview&quot; &#x27; + empty_preview.substr(empty_preview.indexOf(&#x27;div&#x27;) + 3, empty_preview.length);
+  $(&#x27;#video_component_&#x27; + identifier + &#x27;_preview&#x27;).replaceWith(empty_preview);
+  &#x2F;&#x2F; build cutter
+  var empty_cutter = $(&#x27;#empty_image_cutter_for_video_editor&#x27;).html();
+  empty_cutter = &#x27;&lt;div id=&quot;temporary_empty_cutter&quot; &#x27; + empty_cutter.substr(empty_cutter.indexOf(&#x27;div&#x27;) + 3, empty_cutter.length);
+  $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter&#x27;).replaceWith(empty_cutter);
+  &#x2F;&#x2F; edit preview
+  current_preview = $(&#x27;#temporary_empty_preview&#x27;);
+  current_preview.attr(&#x27;id&#x27;, (&#x27;video_component_&#x27; + identifier + &#x27;_preview&#x27;));
+  current_preview.html(preview);
+  &#x2F;&#x2F; edit cutter
+  current_cutter = $(&#x27;#temporary_empty_cutter&#x27;);
+  current_cutter.attr(&#x27;id&#x27;, (&#x27;video_component_&#x27; + identifier + &#x27;_cutter&#x27;));
+  current_cutter.find(&#x27;._old&#x27;).html(secondsToDateString(duration));
+  &#x2F;&#x2F; edit component
+  $(&#x27;#&#x27; + position).removeClass(&#x27;_video _image _text&#x27;).addClass(&#x27;_image&#x27;);
+  $(&#x27;#&#x27; + position + &#x27; ._video_component_thumb&#x27;).replaceWith(component);
+  clearSpecificVideoEditorComponentParameters(position);
+  $(&#x27;#&#x27; + position + &#x27; ._video_component_input_type&#x27;).val(&#x27;image&#x27;);
+  var to_be_appended = fillVideoEditorSingleParameter(&#x27;image_id&#x27;, identifier, image_id);
+  to_be_appended += fillVideoEditorSingleParameter(&#x27;duration&#x27;, identifier, duration);
+  $(&#x27;#&#x27; + position + &#x27; ._video_editor_component_hover&#x27;).append(to_be_appended);
+  &#x2F;&#x2F; other things
+  changeDurationVideoEditorComponent(position, duration);
+}
+
+&#x2F;**
+bla bla bla
+@method replaceTextComponentInVideoEditor
+@for VideoEditorReplaceComponents
+**&#x2F;
+function replaceTextComponentInVideoEditor(component, content, position, duration, background_color, text_color) {
+  var identifier = getVideoComponentIdentifier(position);
+  &#x2F;&#x2F; build preview
+  var empty_preview = $(&#x27;#empty_text_preview_for_video_editor&#x27;).html();
+  empty_preview = &#x27;&lt;div id=&quot;temporary_empty_preview&quot; &#x27; + empty_preview.substr(empty_preview.indexOf(&#x27;div&#x27;) + 3, empty_preview.length);
+  $(&#x27;#video_component_&#x27; + identifier + &#x27;_preview&#x27;).replaceWith(empty_preview);
+  &#x2F;&#x2F; build cutter
+  var empty_cutter = $(&#x27;#empty_text_cutter_for_video_editor&#x27;).html();
+  empty_cutter = &#x27;&lt;div id=&quot;temporary_empty_cutter&quot; &#x27; + empty_cutter.substr(empty_cutter.indexOf(&#x27;div&#x27;) + 3, empty_cutter.length);
+  $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter&#x27;).replaceWith(empty_cutter);
+  &#x2F;&#x2F; edit preview
+  current_preview = $(&#x27;#temporary_empty_preview&#x27;);
+  current_preview.attr(&#x27;id&#x27;, (&#x27;video_component_&#x27; + identifier + &#x27;_preview&#x27;));
+  current_preview.removeClass(&#x27;background_color_white&#x27;).addClass(&#x27;background_color_&#x27; + background_color);
+  current_preview.find(&#x27;p&#x27;).removeClass(&#x27;color_black&#x27;).addClass(&#x27;color_&#x27; + text_color);
+  current_preview.find(&#x27;p&#x27;).html(content);
+  &#x2F;&#x2F; edit cutter
+  current_cutter = $(&#x27;#temporary_empty_cutter&#x27;);
+  current_cutter.attr(&#x27;id&#x27;, (&#x27;video_component_&#x27; + identifier + &#x27;_cutter&#x27;));
+  current_cutter.find(&#x27;._old&#x27;).html(secondsToDateString(duration));
+  &#x2F;&#x2F; edit component
+  $(&#x27;#&#x27; + position).removeClass(&#x27;_video _image _text&#x27;).addClass(&#x27;_text&#x27;);
+  $(&#x27;#&#x27; + position + &#x27; ._video_component_thumb&#x27;).replaceWith(component);
+  $(&#x27;#&#x27; + position + &#x27; ._video_component_thumb ._text_content&#x27;).html(content);
+  $(&#x27;#&#x27; + position + &#x27; ._video_component_thumb ._text_content&#x27;).removeClass(&#x27;color_black&#x27;).addClass(&#x27;color_&#x27; + text_color);
+  $(&#x27;#&#x27; + position + &#x27; ._video_component_thumb&#x27;).removeClass(&#x27;background_color_white&#x27;).addClass(&#x27;background_color_&#x27; + background_color);
+  clearSpecificVideoEditorComponentParameters(position);
+  $(&#x27;#&#x27; + position + &#x27; ._video_component_input_type&#x27;).val(&#x27;text&#x27;);
+  var to_be_appended = fillVideoEditorSingleParameter(&#x27;content&#x27;, identifier, content);
+  to_be_appended += fillVideoEditorSingleParameter(&#x27;background_color&#x27;, identifier, background_color);
+  to_be_appended += fillVideoEditorSingleParameter(&#x27;text_color&#x27;, identifier, text_color);
+  to_be_appended += fillVideoEditorSingleParameter(&#x27;duration&#x27;, identifier, duration);
+  $(&#x27;#&#x27; + position + &#x27; ._video_editor_component_hover&#x27;).append(to_be_appended);
+  &#x2F;&#x2F; other things
+  changeDurationVideoEditorComponent(position, duration);
+}
+
+&#x2F;**
+bla bla bla
+@method replaceVideoComponentInVideoEditor
+@for VideoEditorReplaceComponents
+**&#x2F;
+function replaceVideoComponentInVideoEditor(video_id, webm, mp4, component, position, duration) {
+  var identifier = getVideoComponentIdentifier(position);
+  &#x2F;&#x2F; build preview
+  var empty_preview = $(&#x27;#empty_video_preview_for_video_editor&#x27;).html();
+  empty_preview = &#x27;&lt;div id=&quot;temporary_empty_preview&quot; &#x27; + empty_preview.substr(empty_preview.indexOf(&#x27;div&#x27;) + 3, empty_preview.length);
+  $(&#x27;#video_component_&#x27; + identifier + &#x27;_preview&#x27;).replaceWith(empty_preview);
+  &#x2F;&#x2F; build cutter
+  var empty_cutter = $(&#x27;#empty_video_cutter_for_video_editor&#x27;).html();
+  empty_cutter = &#x27;&lt;div id=&quot;temporary_empty_cutter&quot; &#x27; + empty_cutter.substr(empty_cutter.indexOf(&#x27;div&#x27;) + 3, empty_cutter.length);
+  $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter&#x27;).replaceWith(empty_cutter);
+  &#x2F;&#x2F; edit preview
+  current_preview = $(&#x27;#temporary_empty_preview&#x27;);
+  if(videoEditorWithAudioTrack()) {
+    current_preview.find(&#x27;video&#x27;).prop(&#x27;muted&#x27;, true);
+  }
+  current_preview.attr(&#x27;id&#x27;, (&#x27;video_component_&#x27; + identifier + &#x27;_preview&#x27;));
+  current_preview.find(&#x27;source[type=&quot;video&#x2F;webm&quot;]&#x27;).attr(&#x27;src&#x27;, webm);
+  current_preview.find(&#x27;source[type=&quot;video&#x2F;mp4&quot;]&#x27;).attr(&#x27;src&#x27;, mp4);
+  current_preview.find(&#x27;video&#x27;).load();
+  &#x2F;&#x2F; edit cutter
+  current_cutter = $(&#x27;#temporary_empty_cutter&#x27;);
+  current_cutter.attr(&#x27;id&#x27;, (&#x27;video_component_&#x27; + identifier + &#x27;_cutter&#x27;));
+  current_cutter.find(&#x27;._video_editor_cutter_total_time&#x27;).html(secondsToDateString(duration));
+  current_cutter.find(&#x27;._video_editor_cutter_selected_time&#x27;).html(secondsToDateString(duration));
+  current_cutter.data(&#x27;to&#x27;, duration);
+  current_cutter.data(&#x27;max-to&#x27;, duration);
+  initializeVideoInVideoEditorPreview(identifier);
+  &#x2F;&#x2F; edit component
+  $(&#x27;#&#x27; + position).removeClass(&#x27;_video _image _text&#x27;).addClass(&#x27;_video&#x27;);
+  $(&#x27;#&#x27; + position + &#x27; ._video_component_thumb&#x27;).replaceWith(component);
+  clearSpecificVideoEditorComponentParameters(position);
+  $(&#x27;#&#x27; + position + &#x27; ._video_component_input_type&#x27;).val(&#x27;video&#x27;);
+  var to_be_appended = fillVideoEditorSingleParameter(&#x27;video_id&#x27;, identifier, video_id);
+  to_be_appended += fillVideoEditorSingleParameter(&#x27;from&#x27;, identifier, 0);
+  to_be_appended += fillVideoEditorSingleParameter(&#x27;to&#x27;, identifier, duration);
+  $(&#x27;#&#x27; + position + &#x27; ._video_editor_component_hover&#x27;).append(to_be_appended);
+  &#x2F;&#x2F; other things
+  changeDurationVideoEditorComponent(position, duration);
+}
+
+
+
+
+
+&#x2F;**
+bla bla bla
+@method followPreviewComponentsWithHorizontalScrollInVideoEditor
+@for VideoEditorScrollPain
+**&#x2F;
 function followPreviewComponentsWithHorizontalScrollInVideoEditor() {
   var jsp_handler = $(&#x27;#media_elements_list_in_video_editor&#x27;).data(&#x27;jsp&#x27;);
   var identifier = $(&#x27;#video_editor_global_preview&#x27;).data(&#x27;current-component&#x27;);
@@ -1160,594 +2008,47 @@ function followPreviewComponentsWithHorizontalScrollInVideoEditor() {
   }
 }
 
-function showVideoEditorPreviewComponentProgressBar(identifier, position) {
-  var component = $(&#x27;#video_component_&#x27; + identifier);
-  var tool = $(&#x27;#video_editor_preview_slider&#x27;);
-  if(!tool.is(&#x27;:visible&#x27;)) {
-    tool.slider({
-      min: 0,
-      max: component.data(&#x27;duration&#x27;),
-      value: component.data(&#x27;current-preview-time&#x27;),
-      range: &#x27;min&#x27;,
-      stop: function(event, ui) {
-        var my_value = ui.value;
-        if(my_value == component.data(&#x27;duration&#x27;)) {
-          my_value = component.data(&#x27;duration&#x27;) - 1;
-          tool.slider(&#x27;value&#x27;, my_value);
-        }
-        setVisualTimesVideoEditorPreview(component, my_value);
-      }
-    });
-    tool.show();
-    tool.css(&#x27;left&#x27;, (position - 1) * 186 + 3);
-  }
+
+
+
+
+&#x2F;**
+bla bla bla
+@method resetVideoEditorTextComponent
+@for VideoEditorTextComponentEditor
+**&#x2F;
+function resetVideoEditorTextComponent() {
+  $(&#x27;#text_component_preview textarea&#x27;).val($(&#x27;#text_component_preview&#x27;).data(&#x27;placeholder-content&#x27;));
+  $(&#x27;#video_editor_mixed_gallery_container ._texts ._duration_selector input&#x27;).val(&#x27;&#x27;);
+  $(&#x27;#text_component_preview&#x27;).data(&#x27;placeholder&#x27;, true);
+  var old_background_color = $(&#x27;#text_component_preview&#x27;).data(&#x27;background-color&#x27;);
+  var old_text_color = $(&#x27;#text_component_preview&#x27;).data(&#x27;text-color&#x27;);
+  switchTextComponentBackgroundColor(old_background_color, &#x27;white&#x27;);
+  switchTextComponentTextColor(old_text_color, &#x27;black&#x27;);
 }
 
-function hideVideoEditorPreviewComponentProgressBar() {
-  $(&#x27;#video_editor_preview_slider&#x27;).slider(&#x27;destroy&#x27;);
-  $(&#x27;#video_editor_preview_slider&#x27;).hide();
+&#x2F;**
+bla bla bla
+@method switchTextComponentBackgroundColor
+@for VideoEditorTextComponentEditor
+**&#x2F;
+function switchTextComponentBackgroundColor(old_color, new_color) {
+  $(&#x27;#text_component_preview&#x27;).removeClass(&#x27;background_color_&#x27; + old_color).addClass(&#x27;background_color_&#x27; + new_color);
+  $(&#x27;._text_component_in_video_editor_background_color_selector ._color&#x27;).removeClass(&#x27;current&#x27;);
+  $(&#x27;._text_component_in_video_editor_background_color_selector .background_color_&#x27; + new_color).addClass(&#x27;current&#x27;);
+  $(&#x27;#text_component_preview&#x27;).data(&#x27;background-color&#x27;, new_color);
 }
 
-function videoEditorDocumentReady() {
-  
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#video_editor_preview_go_to_left_component&#x27;, function() {
-    if($(&#x27;#video_editor_global_preview&#x27;).data(&#x27;arrows&#x27;)) {
-      var prev_component = $(&#x27;#video_component_&#x27; + $(&#x27;#video_editor_global_preview&#x27;).data(&#x27;current-component&#x27;)).prev();
-      loadVideoComponentIfNotLoadedYet(prev_component.attr(&#x27;id&#x27;));
-      selectVideoComponentInPreview(prev_component);
-      showVideoEditorPreviewArrowToComponents();
-      hideVideoEditorPreviewComponentProgressBar();
-      followPreviewComponentsWithHorizontalScrollInVideoEditor();
-    }
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#video_editor_preview_go_to_right_component&#x27;, function() {
-    if($(&#x27;#video_editor_global_preview&#x27;).data(&#x27;arrows&#x27;)) {
-      var next_component = $(&#x27;#video_component_&#x27; + $(&#x27;#video_editor_global_preview&#x27;).data(&#x27;current-component&#x27;)).next();
-      loadVideoComponentIfNotLoadedYet(next_component.attr(&#x27;id&#x27;));
-      selectVideoComponentInPreview(next_component);
-      showVideoEditorPreviewArrowToComponents();
-      hideVideoEditorPreviewComponentProgressBar();
-      followPreviewComponentsWithHorizontalScrollInVideoEditor();
-    }
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#video_editor_global_preview_play&#x27;, function() {
-    if(!$(this).data(&#x27;temporarily-disabled&#x27;)) {
-      $(this).hide();
-      $(&#x27;#video_editor_preview_slider_box_ghost&#x27;).show();
-      $(&#x27;#video_editor_preview_go_to_left_component, #video_editor_preview_go_to_right_component&#x27;).hide();
-      $(&#x27;#video_editor_global_preview_pause&#x27;).show();
-      $(&#x27;#visual_video_editor_current_time&#x27;).css(&#x27;color&#x27;, &#x27;white&#x27;);
-      $(&#x27;#visual_video_editor_total_length&#x27;).css(&#x27;color&#x27;, &#x27;#787575&#x27;);
-      $(&#x27;#exit_video_editor_preview&#x27;).hide();
-      startVideoEditorGlobalPreview();
-    }
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#exit_video_editor_preview&#x27;, function() {
-    hideVideoEditorPreviewComponentProgressBar();
-    $(&#x27;#info_container&#x27;).data(&#x27;forced-kevin-luck-style&#x27;, &#x27;&#x27;);
-    $(&#x27;#video_editor_global_preview_pause&#x27;).removeClass(&#x27;_enabled&#x27;);
-    $(&#x27;#video_editor_preview_go_to_left_component, #video_editor_preview_go_to_right_component&#x27;).hide();
-    $(&#x27;._video_component_preview&#x27;).hide();
-    $(&#x27;._video_editor_component_hover, ._video_component_icon&#x27;).removeClass(&#x27;selected&#x27;);
-    setVisualTimesVideoEditorPreview(getFirstVideoEditorComponent(), 0);
-    resetVisibilityOfVideoEditorTransitions();
-    $(&#x27;._video_editor_component&#x27;).each(function() {
-      $(this).find(&#x27;._video_component_icon ._right&#x27;).html(secondsToDateString($(this).data(&#x27;duration&#x27;)));
-    });
-    $(&#x27;#full_audio_track_placeholder_in_video_editor, #empty_audio_track_placeholder_in_video_editor&#x27;).css(&#x27;visibility&#x27;, &#x27;visible&#x27;);
-    $(&#x27;#media_elements_list_in_video_editor&#x27;).data(&#x27;jsp&#x27;).destroy();
-    $(&#x27;#add_new_video_component&#x27;).show();
-    $(&#x27;#add_new_video_component&#x27;).prev().find(&#x27;._video_component_transition&#x27;).show();
-    $(&#x27;#add_new_video_component&#x27;).prev().css(&#x27;width&#x27;, &#x27;186&#x27;);
-    var new_timeline_width = parseInt($(&#x27;#video_editor_timeline&#x27;).css(&#x27;width&#x27;).replace(&#x27;px&#x27;, &#x27;&#x27;)) + 184;
-    $(&#x27;#video_editor_timeline&#x27;).css(&#x27;width&#x27;, new_timeline_width + &#x27;px&#x27;);
-    $(&#x27;#media_elements_list_in_video_editor&#x27;).jScrollPane({
-      autoReinitialise: true,
-    });
-    $(&#x27;#visual_video_editor_current_time&#x27;).css(&#x27;visibility&#x27;, &#x27;hidden&#x27;)
-    $(&#x27;#video_editor_global_preview&#x27;).show();
-    $(&#x27;#video_editor_global_preview_play&#x27;).hide();
-    $(&#x27;#commit_video_editor&#x27;).show();
-    $(&#x27;#exit_video_editor_preview&#x27;).hide();
-    $(&#x27;#video_editor_box_ghost&#x27;).hide();
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#video_editor_global_preview_pause._enabled&#x27;, function() {
-    $(&#x27;#video_editor_global_preview_play&#x27;).data(&#x27;temporarily-disabled&#x27;, true);
-    setTimeout(function() {
-      $(&#x27;#video_editor_global_preview_play&#x27;).data(&#x27;temporarily-disabled&#x27;, false);
-    }, 1000);
-    $(&#x27;#video_editor_preview_slider_box_ghost&#x27;).hide();
-    $(&#x27;#video_editor_global_preview&#x27;).data(&#x27;in-use&#x27;, false);
-    showVideoEditorPreviewArrowToComponents();
-    $(this).hide();
-    $(&#x27;#video_editor_global_preview_play&#x27;).show();
-    $(&#x27;#exit_video_editor_preview&#x27;).show();
-    $(&#x27;#visual_video_editor_current_time&#x27;).css(&#x27;color&#x27;, &#x27;#787575&#x27;);
-    $(&#x27;#visual_video_editor_total_length&#x27;).css(&#x27;color&#x27;, &#x27;white&#x27;);
-    var current_identifier = $(&#x27;#video_editor_global_preview&#x27;).data(&#x27;current-component&#x27;);
-    var current_component = $(&#x27;#video_component_&#x27; + current_identifier);
-    if($(&#x27;#video_component_&#x27; + current_identifier + &#x27;_preview video&#x27;).length &gt; 0) {
-      $(&#x27;#video_component_&#x27; + current_identifier + &#x27;_preview video&#x27;)[0].pause();
-      setCurrentTimeToMedia($(&#x27;#video_component_&#x27; + current_identifier + &#x27;_preview video&#x27;), ($(&#x27;#video_component_&#x27; + current_identifier + &#x27;_cutter&#x27;).data(&#x27;from&#x27;) + current_component.data(&#x27;current-preview-time&#x27;)));
-    }
-    if(videoEditorWithAudioTrack()) {
-      $(&#x27;#video_editor_preview_container audio&#x27;)[0].pause();
-    }
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#video_editor_global_preview._enabled&#x27;, function() {
-    loadVideoComponentIfNotLoadedYet(getFirstVideoEditorComponent().attr(&#x27;id&#x27;));
-    $(&#x27;#info_container&#x27;).data(&#x27;forced-kevin-luck-style&#x27;, &#x27;visibility:hidden&#x27;);
-    var jsp_handler = $(&#x27;#media_elements_list_in_video_editor&#x27;).data(&#x27;jsp&#x27;);
-    if(jsp_handler.getContentPositionX() &gt; 0) {
-      $(&#x27;#media_elements_list_in_video_editor&#x27;).jScrollPane().bind(&#x27;panescrollstop&#x27;, function() {
-        openPreviewModeInVideoEditor();
-        $(&#x27;#media_elements_list_in_video_editor&#x27;).jScrollPane().unbind(&#x27;panescrollstop&#x27;);
-      });
-      $(&#x27;#media_elements_list_in_video_editor&#x27;).data(&#x27;jsp&#x27;).scrollToPercentX(0, true);
-    } else {
-      openPreviewModeInVideoEditor();
-    }
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._video_component_cutter_button&#x27;, function() {
-    var component_id = $(this).parents(&#x27;._video_editor_component&#x27;).attr(&#x27;id&#x27;);
-    if(!$(&#x27;#&#x27; + component_id + &#x27;_preview&#x27;).is(&#x27;:visible&#x27;)) {
-      startVideoEditorPreviewClip(component_id);
-    }
-    $(&#x27;#video_editor_box_ghost&#x27;).show();
-    $(&#x27;#video_editor_global_preview&#x27;).removeClass(&#x27;_enabled&#x27;);
-    var pos = $(&#x27;#&#x27; + component_id).data(&#x27;position&#x27;);
-    var scroll_to = getNormalizedPositionTimelineHorizontalScrollPane(&#x27;media_elements_list_in_video_editor&#x27;, 186, pos, 5);
-    if($(&#x27;#&#x27; + component_id + &#x27;_cutter&#x27;).hasClass(&#x27;_mini_cutter&#x27;)) {
-      $(&#x27;#&#x27; + component_id + &#x27;_cutter&#x27;).css(&#x27;left&#x27;, (3 + getAbsolutePositionTimelineHorizontalScrollPane(&#x27;media_elements_list_in_video_editor&#x27;, 186, pos, 5)));
-    }
-    var jsp_handler = $(&#x27;#media_elements_list_in_video_editor&#x27;).data(&#x27;jsp&#x27;);
-    if(scroll_to != jsp_handler.getContentPositionX() &amp;&amp; jsp_handler.getPercentScrolledX() != 1) {
-      $(&#x27;#media_elements_list_in_video_editor&#x27;).jScrollPane().bind(&#x27;panescrollstop&#x27;, function() {
-        showVideoEditorCutter(component_id);
-        $(&#x27;#media_elements_list_in_video_editor&#x27;).jScrollPane().unbind(&#x27;panescrollstop&#x27;);
-      });
-      jsp_handler.scrollToX(scroll_to, true);
-    } else {
-      showVideoEditorCutter(component_id);
-    }
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._media_player_done_video_component_in_video_editor_preview&#x27;, function() {
-    closeGenericVideoComponentCutter();
-    var component_id = $(this).parents(&#x27;._video_component_cutter&#x27;).attr(&#x27;id&#x27;);
-    var identifier = getVideoComponentIdentifier(component_id);
-    $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter ._double_slider .ui-slider-handle&#x27;).removeClass(&#x27;selected&#x27;);
-    stopVideoInVideoEditorPreview(identifier);
-    commitVideoComponentVideoCutter(identifier);
-    $(&#x27;#video_editor_global_preview&#x27;).addClass(&#x27;_enabled&#x27;);
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._media_player_done_other_component_in_video_editor_preview&#x27;, function() {
-    var component_id = $(this).parents(&#x27;._video_component_cutter&#x27;).attr(&#x27;id&#x27;);
-    var identifier = getVideoComponentIdentifier(component_id);
-    var duration = $(&#x27;#&#x27; + component_id + &#x27; ._duration_selector input&#x27;).val();
-    if(duration == &#x27;&#x27;) {
-      closeGenericVideoComponentCutter();
-    } else {
-      duration = parseInt(duration);
-      if(isNaN(duration) || duration &lt; 1) {
-        showErrorPopUp($(&#x27;#popup_captions_container&#x27;).data(&#x27;invalid-component-duration-in-video-editor&#x27;));
-      } else {
-        closeGenericVideoComponentCutter();
-        changeDurationVideoEditorComponent((&#x27;video_component_&#x27; + identifier), duration);
-        $(&#x27;#&#x27; + component_id + &#x27; ._duration_selector input&#x27;).val(&#x27;&#x27;);
-        $(&#x27;#&#x27; + component_id + &#x27; ._old&#x27;).html(secondsToDateString(duration));
-        $(&#x27;#video_component_&#x27; + identifier + &#x27; ._video_component_input_duration&#x27;).val(duration);
-        highlightAndUpdateVideoComponentIcon(&#x27;video_component_&#x27; + identifier);
-      }
-    }
-    $(&#x27;#video_editor_global_preview&#x27;).addClass(&#x27;_enabled&#x27;);
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._exit_video_editor&#x27;, function() {
-    stopCacheLoop();
-    var captions = $(&#x27;#popup_captions_container&#x27;);
-    showConfirmPopUp(captions.data(&#x27;exit-video-editor-title&#x27;), captions.data(&#x27;exit-video-editor-confirm&#x27;), captions.data(&#x27;exit-video-editor-yes&#x27;), captions.data(&#x27;exit-video-editor-no&#x27;), function() {
-      $(&#x27;dialog-confirm&#x27;).hide();
-      $.ajax({
-        type: &#x27;post&#x27;,
-        url: &#x27;&#x2F;videos&#x2F;cache&#x2F;empty&#x27;,
-        beforeSend: unbindLoader(),
-        success: function() {
-          window.location = &#x27;&#x2F;media_elements&#x27;;
-        }
-      }).always(bindLoader);
-    }, function() {
-      if($(&#x27;#form_info_update_media_element_in_editor&#x27;).length == 0) {
-        if(!$(&#x27;#form_info_new_media_element_in_editor&#x27;).is(&#x27;:visible&#x27;)) {
-          startCacheLoop();
-        }
-      } else {
-        if(!$(&#x27;#form_info_new_media_element_in_editor&#x27;).is(&#x27;:visible&#x27;) &amp;&amp; !$(&#x27;#form_info_update_media_element_in_editor&#x27;).is(&#x27;:visible&#x27;)) {
-          startCacheLoop();
-        }
-      }
-      closePopUp(&#x27;dialog-confirm&#x27;);
-    });
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._remove_component_from_video_editor_button&#x27;, function() {
-    var component = $(this).parents(&#x27;._video_editor_component&#x27;);
-    var identifier = getVideoComponentIdentifier(component.attr(&#x27;id&#x27;));
-    $(&#x27;#video_component_&#x27; + identifier).hide(&#x27;fade&#x27;, {}, 500, function() {
-      $(&#x27;#video_component_&#x27; + identifier + &#x27;_preview&#x27;).remove();
-      $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter&#x27;).remove();
-      changeDurationVideoEditorComponent((&#x27;video_component_&#x27; + identifier), 0);
-      $(&#x27;#media_elements_list_in_video_editor&#x27;).data(&#x27;jsp&#x27;).destroy();
-      $(this).remove();
-      reloadVideoEditorComponentPositions();
-      var old_timeline_width = parseInt($(&#x27;#video_editor_timeline&#x27;).css(&#x27;width&#x27;).replace(&#x27;px&#x27;, &#x27;&#x27;));
-      $(&#x27;#video_editor_timeline&#x27;).css(&#x27;width&#x27;, ((old_timeline_width - 186) + &#x27;px&#x27;));
-      $(&#x27;#media_elements_list_in_video_editor&#x27;).jScrollPane({
-        autoReinitialise: true
-      });
-      resetVisibilityOfVideoEditorTransitions();
-      if($(&#x27;._video_editor_component&#x27;).length == 0) {
-        $(&#x27;#video_editor_global_preview&#x27;).removeClass(&#x27;_enabled&#x27;);
-        $(&#x27;#video_editor_global_preview a&#x27;).addClass(&#x27;disabled&#x27;);
-        $(&#x27;#commit_video_editor&#x27;).css(&#x27;visibility&#x27;, &#x27;hidden&#x27;);
-      }
-    });
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;mouseover&#x27;, &#x27;._video_editor_component_hover&#x27;, function() {
-    var father = $(this).parent();
-    if(father.data(&#x27;rolloverable&#x27;)) {
-      father.data(&#x27;preview-selected&#x27;, true);
-      startVideoEditorPreviewClipWithDelay(father.attr(&#x27;id&#x27;));
-      $(&#x27;#&#x27; + father.attr(&#x27;id&#x27;) + &#x27; ._video_editor_component_menu&#x27;).show();
-    }
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;mouseout&#x27;, &#x27;._video_editor_component_hover&#x27;, function() {
-    var father = $(this).parent();
-    father.data(&#x27;preview-selected&#x27;, false);
-    if(father.data(&#x27;rolloverable&#x27;)) {
-      $(&#x27;#&#x27; + father.attr(&#x27;id&#x27;) + &#x27; ._video_editor_component_menu&#x27;).hide();
-    }
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;mouseover&#x27;, &#x27;._new_component_in_video_editor_hover&#x27;, function() {
-    $(&#x27;._new_component_in_video_editor_hover a&#x27;).addClass(&#x27;current&#x27;);
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;mouseout&#x27;, &#x27;._new_component_in_video_editor_hover&#x27;, function() {
-    $(&#x27;._new_component_in_video_editor_hover a&#x27;).removeClass(&#x27;current&#x27;);
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._new_component_in_video_editor_button&#x27;, function() {
-    var father = $(this).parent().parent().parent().parent();
-    var infos = $(&#x27;#info_container&#x27;);
-    if($(this).hasClass(&#x27;_replace_component&#x27;)) {
-      infos.data(&#x27;replacing-component&#x27;, true);
-      infos.data(&#x27;current-component&#x27;, father.attr(&#x27;id&#x27;));
-    } else {
-      infos.data(&#x27;replacing-component&#x27;, false);
-    }
-    if($(&#x27;#video_editor_mixed_gallery_container&#x27;).data(&#x27;loaded&#x27;)) {
-      showGalleryInVideoEditor(&#x27;mixed&#x27;);
-      resetVideoEditorTextComponent();
-    } else {
-      $.ajax({
-        type: &#x27;get&#x27;,
-        url: &#x27;&#x2F;videos&#x2F;galleries&#x27;
-      });
-    }
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._show_audio_gallery_in_video_editor&#x27;, function() {
-    if($(&#x27;#video_editor_audio_gallery_container&#x27;).data(&#x27;loaded&#x27;)) {
-      showGalleryInVideoEditor(&#x27;audio&#x27;);
-    } else {
-      $.ajax({
-        type: &#x27;get&#x27;,
-        url: &#x27;&#x2F;videos&#x2F;galleries&#x2F;audio&#x27;
-      });
-    }
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#video_editor_mixed_gallery_container ._switch_video&#x27;, function() {
-    $(&#x27;._switch_image, ._switch_text&#x27;).removeClass(&#x27;current&#x27;);
-    $(this).addClass(&#x27;current&#x27;);
-    switchToOtherGalleryInMixedGalleryInVideoEditor(&#x27;._videos&#x27;);
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#video_editor_mixed_gallery_container ._switch_image&#x27;, function() {
-    $(&#x27;._switch_video, ._switch_text&#x27;).removeClass(&#x27;current&#x27;);
-    $(this).addClass(&#x27;current&#x27;);
-    switchToOtherGalleryInMixedGalleryInVideoEditor(&#x27;._images&#x27;);
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#video_editor_mixed_gallery_container ._switch_text&#x27;, function() {
-    $(&#x27;._switch_image, ._switch_video&#x27;).removeClass(&#x27;current&#x27;);
-    $(this).addClass(&#x27;current&#x27;);
-    switchToOtherGalleryInMixedGalleryInVideoEditor(&#x27;._texts&#x27;);
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._add_video_component_to_video_editor&#x27;, function() {
-    var video_id = $(this).data(&#x27;video-id&#x27;);
-    var popup_id = &#x27;dialog-video-gallery-&#x27; + video_id;
-    var component = $(&#x27;#&#x27; + popup_id + &#x27; ._temporary&#x27;).html();
-    var webm = $(&#x27;#&#x27; + popup_id + &#x27; source[type=&quot;video&#x2F;webm&quot;]&#x27;).attr(&#x27;src&#x27;);
-    var mp4 = $(&#x27;#&#x27; + popup_id + &#x27; source[type=&quot;video&#x2F;mp4&quot;]&#x27;).attr(&#x27;src&#x27;);
-    var duration = $(this).data(&#x27;duration&#x27;);
-    closePopUp(popup_id);
-    setTimeout(function() {
-      closeGalleryInVideoEditor(&#x27;mixed&#x27;);
-    }, 700);
-    if($(&#x27;#info_container&#x27;).data(&#x27;replacing-component&#x27;)) {
-      var current_component = $(&#x27;#info_container&#x27;).data(&#x27;current-component&#x27;);
-      setTimeout(function() {
-        highlightAndUpdateVideoComponentIcon(current_component);
-      }, 1400);
-      replaceVideoComponentInVideoEditor(video_id, webm, mp4, component, current_component, duration);
-    } else {
-      addVideoComponentInVideoEditor(video_id, webm, mp4, component, duration);
-    }
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._add_image_component_to_video_editor&#x27;, function() {
-    var popup_id = &#x27;dialog-image-gallery-&#x27; + $(this).data(&#x27;image-id&#x27;);
-    $(&#x27;#&#x27; + popup_id + &#x27; ._bottom_of_image_popup_in_gallery&#x27;).hide();
-    $(&#x27;#&#x27; + popup_id + &#x27; ._duration_selector&#x27;).show();
-    $(&#x27;#&#x27; + popup_id + &#x27; ._duration_selector input&#x27;).val(&#x27;&#x27;);
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._add_image_component_to_video_editor_after_select_duration&#x27;, function() {
-    var image_id = $(this).data(&#x27;image-id&#x27;)
-    var popup_id = &#x27;dialog-image-gallery-&#x27; + image_id;
-    var duration = parseInt($(&#x27;#&#x27; + popup_id + &#x27; input&#x27;).val());
-    if(isNaN(duration) || duration &lt; 1) {
-      showErrorPopUp($(&#x27;#popup_captions_container&#x27;).data(&#x27;invalid-component-duration-in-video-editor&#x27;));
-    } else {
-      var component = $(&#x27;#&#x27; + popup_id + &#x27; ._temporary ._video_component_thumb&#x27;)[0].outerHTML;
-      var preview = $(&#x27;#&#x27; + popup_id + &#x27; ._temporary ._image_preview_in_video_editor_gallery&#x27;).html();
-      closePopUp(popup_id);
-      setTimeout(function() {
-        closeGalleryInVideoEditor(&#x27;mixed&#x27;);
-      }, 700);
-      if($(&#x27;#info_container&#x27;).data(&#x27;replacing-component&#x27;)) {
-        var current_component = $(&#x27;#info_container&#x27;).data(&#x27;current-component&#x27;);
-        setTimeout(function() {
-          highlightAndUpdateVideoComponentIcon(current_component);
-        }, 1400);
-        replaceImageComponentInVideoEditor(image_id, component, preview, current_component, duration);
-      } else {
-        addImageComponentInVideoEditor(image_id, component, preview, duration);
-      }
-    }
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._add_audio_track_to_video_editor&#x27;, function() {
-    $(&#x27;#video_editor_preview_container ._audio_track_preview&#x27;).remove();
-    if(!$(&#x27;#video_editor_preview_container video&#x27;).prop(&#x27;muted&#x27;)) {
-      $(&#x27;#video_editor_preview_container video&#x27;).prop(&#x27;muted&#x27;, true);
-    }
-    var audio_id = $(this).data(&#x27;audio-id&#x27;);
-    closeGalleryInVideoEditor(&#x27;audio&#x27;);
-    stopMedia(&#x27;._audio_expanded_in_gallery audio&#x27;);
-    $(&#x27;._audio_expanded_in_gallery ._expanded&#x27;).hide();
-    $(&#x27;._audio_expanded_in_gallery&#x27;).removeClass(&#x27;_audio_expanded_in_gallery&#x27;);
-    $(&#x27;#audio_track_in_video_editor_input&#x27;).val(audio_id);
-    $(&#x27;#empty_audio_track_placeholder_in_video_editor&#x27;).hide();
-    $(&#x27;#full_audio_track_placeholder_in_video_editor&#x27;).show();
-    $(&#x27;#full_audio_track_placeholder_in_video_editor&#x27;).data(&#x27;duration&#x27;, $(this).data(&#x27;duration&#x27;));
-    var new_html_title = $(&#x27;#gallery_audio_&#x27; + audio_id + &#x27; ._compact p&#x27;).html();
-    new_html_title += (&#x27;&lt;br&#x2F;&gt;&#x27; + secondsToDateString($(this).data(&#x27;duration&#x27;)));
-    $(&#x27;#full_audio_track_placeholder_in_video_editor ._title&#x27;).html(new_html_title);
-    $(&#x27;#video_editor_preview_container&#x27;).append($(&#x27;#empty_audio_track_preview_for_video_editor&#x27;).html());
-    var new_audio_track = $(&#x27;#video_editor_preview_container ._audio_track_preview&#x27;);
-    new_audio_track.data(&#x27;duration&#x27;, $(this).data(&#x27;duration&#x27;));
-    new_audio_track.find(&#x27;source[type=&quot;audio&#x2F;mp3&quot;]&#x27;).attr(&#x27;src&#x27;, $(this).data(&#x27;mp3&#x27;));
-    new_audio_track.find(&#x27;source[type=&quot;audio&#x2F;ogg&quot;]&#x27;).attr(&#x27;src&#x27;, $(this).data(&#x27;ogg&#x27;));
-    new_audio_track.find(&#x27;audio&#x27;).load();
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#full_audio_track_placeholder_in_video_editor ._remove&#x27;, function() {
-    $(&#x27;#video_editor_preview_container video&#x27;).prop(&#x27;muted&#x27;, false);
-    var audio_id = $(&#x27;#audio_track_in_video_editor_input&#x27;).val();
-    $(&#x27;#video_editor_preview_container ._audio_track_preview&#x27;).remove();
-    $(&#x27;#audio_track_in_video_editor_input&#x27;).val(&#x27;&#x27;);
-    $(&#x27;#full_audio_track_placeholder_in_video_editor&#x27;).hide();
-    $(&#x27;#empty_audio_track_placeholder_in_video_editor&#x27;).show();
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._image_gallery_thumb_in_mixed_gallery_video_editor&#x27;, function(e) {
-    e.preventDefault();
-    var image_id = $(this).data(&#x27;image-id&#x27;);
-    showImageInGalleryPopUp(image_id, function() {
-      var popup_id = &#x27;dialog-image-gallery-&#x27; + image_id;
-      $(&#x27;#&#x27; + popup_id + &#x27; ._bottom_of_image_popup_in_gallery&#x27;).show();
-      $(&#x27;#&#x27; + popup_id + &#x27; ._duration_selector&#x27;).hide();
-    });
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._text_component_in_video_editor_background_color_selector ._color&#x27;, function() {
-    var old_background_color = $(&#x27;#text_component_preview&#x27;).data(&#x27;background-color&#x27;);
-    var new_background_color = $(this).data(&#x27;color&#x27;);
-    switchTextComponentBackgroundColor(old_background_color, new_background_color);
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._text_component_in_video_editor_text_color_selector ._color&#x27;, function() {
-    var old_text_color = $(&#x27;#text_component_preview&#x27;).data(&#x27;text-color&#x27;);
-    var new_text_color = $(this).data(&#x27;color&#x27;);
-    switchTextComponentTextColor(old_text_color, new_text_color);
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;focus&#x27;, &#x27;#text_component_preview textarea&#x27;, function() {
-    var preview = $(&#x27;#text_component_preview&#x27;);
-    if(preview.data(&#x27;placeholder&#x27;)) {
-      preview.data(&#x27;placeholder&#x27;, false);
-      $(this).val(&#x27;&#x27;);
-    }
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#insert_text_component_in_video_editor&#x27;, function() {
-    var preview = $(&#x27;#text_component_preview&#x27;);
-    var background_color = preview.data(&#x27;background-color&#x27;);
-    var text_color = preview.data(&#x27;text-color&#x27;);
-    var duration = parseInt($(&#x27;#video_editor_mixed_gallery_container ._texts ._duration_selector input&#x27;).val());
-    if(isNaN(duration) || duration &lt; 1) {
-      showErrorPopUp($(&#x27;#popup_captions_container&#x27;).data(&#x27;invalid-component-duration-in-video-editor&#x27;));
-    } else if(preview.data(&#x27;placeholder&#x27;)) {
-      showErrorPopUp($(&#x27;#popup_captions_container&#x27;).data(&#x27;empty-text-component-in-video-editor&#x27;));
-    } else {
-      var content = $(&#x27;#text_component_preview textarea&#x27;).val().split(&quot;\n&quot;).join(&#x27;&lt;br&#x2F;&gt;&#x27;);
-      var component = $(&#x27;#video_editor_mixed_gallery_container ._texts ._temporary&#x27;).html();
-      closeGalleryInVideoEditor(&#x27;mixed&#x27;);
-      if($(&#x27;#info_container&#x27;).data(&#x27;replacing-component&#x27;)) {
-        var current_component = $(&#x27;#info_container&#x27;).data(&#x27;current-component&#x27;);
-        setTimeout(function() {
-          highlightAndUpdateVideoComponentIcon(current_component);
-        }, 700);
-        replaceTextComponentInVideoEditor(component, content, current_component, duration, background_color, text_color);
-      } else {
-        addTextComponentInVideoEditor(component, content, duration, background_color, text_color);
-      }
-    }
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#commit_video_editor&#x27;, function() {
-    stopCacheLoop();
-    submitMediaElementEditorCacheForm($(&#x27;#video_editor_form&#x27;));
-    if($(this).hasClass(&#x27;_with_choice&#x27;)) {
-      var captions = $(&#x27;#popup_captions_container&#x27;);
-      var title = captions.data(&#x27;save-media-element-editor-title&#x27;);
-      var confirm = captions.data(&#x27;save-media-element-editor-confirm&#x27;);
-      var yes = captions.data(&#x27;save-media-element-editor-yes&#x27;);
-      var no = captions.data(&#x27;save-media-element-editor-no&#x27;);
-      showConfirmPopUp(title, confirm, yes, no, function() {
-        closePopUp(&#x27;dialog-confirm&#x27;);
-        $(&#x27;._video_editor_bottom_bar&#x27;).hide();
-        $(&#x27;#video_editor #form_info_update_media_element_in_editor&#x27;).show();
-      }, function() {
-        closePopUp(&#x27;dialog-confirm&#x27;);
-        $(&#x27;#video_editor_title ._titled&#x27;).hide();
-        $(&#x27;#video_editor_title ._untitled&#x27;).show();
-        $(&#x27;._video_editor_bottom_bar&#x27;).hide();
-        $(&#x27;#video_editor #form_info_new_media_element_in_editor&#x27;).show();
-      });
-    } else {
-      $(&#x27;._video_editor_bottom_bar&#x27;).hide();
-      $(&#x27;#video_editor #form_info_new_media_element_in_editor&#x27;).show();
-    }
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#video_editor #form_info_new_media_element_in_editor ._commit&#x27;, function() {
-    $(&#x27;#video_editor_form&#x27;).attr(&#x27;action&#x27;, &#x27;&#x2F;videos&#x2F;commit&#x2F;new&#x27;);
-    $(&#x27;#video_editor_form&#x27;).submit();
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#video_editor #form_info_update_media_element_in_editor ._commit&#x27;, function() {
-    if($(&#x27;#info_container&#x27;).data(&#x27;used-in-private-lessons&#x27;)) {
-      var captions = $(&#x27;#popup_captions_container&#x27;);
-      var title = captions.data(&#x27;overwrite-media-element-editor-title&#x27;);
-      var confirm = captions.data(&#x27;overwrite-media-element-editor-confirm&#x27;);
-      var yes = captions.data(&#x27;overwrite-media-element-editor-yes&#x27;);
-      var no = captions.data(&#x27;overwrite-media-element-editor-no&#x27;);
-      showConfirmPopUp(title, confirm, yes, no, function() {
-        $(&#x27;dialog-confirm&#x27;).hide();
-        $(&#x27;#video_editor_form&#x27;).attr(&#x27;action&#x27;, &#x27;&#x2F;videos&#x2F;commit&#x2F;overwrite&#x27;);
-        $(&#x27;#video_editor_form&#x27;).submit();
-      }, function() {
-        closePopUp(&#x27;dialog-confirm&#x27;);
-      });
-    } else {
-      $(&#x27;#video_editor_form&#x27;).attr(&#x27;action&#x27;, &#x27;&#x2F;videos&#x2F;commit&#x2F;overwrite&#x27;);
-      $(&#x27;#video_editor_form&#x27;).submit();
-    }
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#video_editor #form_info_new_media_element_in_editor ._cancel&#x27;, function() {
-    $(&#x27;#video_editor_form&#x27;).attr(&#x27;action&#x27;, &#x27;&#x2F;videos&#x2F;cache&#x2F;save&#x27;);
-    resetMediaElementEditorForms();
-    if($(&#x27;#video_editor_title ._titled&#x27;).length &gt; 0) {
-      $(&#x27;#video_editor_title ._titled&#x27;).show();
-      $(&#x27;#video_editor_title ._untitled&#x27;).hide();
-    }
-    $(&#x27;._video_editor_bottom_bar&#x27;).show();
-    $(&#x27;#video_editor #form_info_new_media_element_in_editor&#x27;).hide();
-    startCacheLoop();
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#video_editor #form_info_update_media_element_in_editor ._cancel&#x27;, function() {
-    $(&#x27;#video_editor_form&#x27;).attr(&#x27;action&#x27;, &#x27;&#x2F;videos&#x2F;cache&#x2F;save&#x27;);
-    resetMediaElementEditorForms();
-    $(&#x27;._video_editor_bottom_bar&#x27;).show();
-    $(&#x27;#video_editor #form_info_update_media_element_in_editor&#x27;).hide();
-    startCacheLoop();
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._video_component_cutter ._precision_arrow_left&#x27;, function() {
-    var cutter = $(this).parents(&#x27;._video_component_cutter&#x27;);
-    var identifier = getVideoComponentIdentifier(cutter.attr(&#x27;id&#x27;));
-    var single_slider = cutter.find(&#x27;._media_player_slider&#x27;);
-    var double_slider = cutter.find(&#x27;._double_slider&#x27;);
-    if(single_slider.find(&#x27;.ui-slider-handle&#x27;).hasClass(&#x27;selected&#x27;)) {
-      var resp = single_slider.slider(&#x27;value&#x27;);
-      if(resp &gt; 0 &amp;&amp; resp &gt; double_slider.slider(&#x27;values&#x27;, 0)) {
-        selectVideoComponentCutterHandle(cutter, resp - 1);
-      }
-    } else if(double_slider.find(&#x27;.ui-slider-handle&#x27;).first().hasClass(&#x27;selected&#x27;)) {
-      var resp = double_slider.slider(&#x27;values&#x27;, 0);
-      if(resp &gt; 0) {
-        double_slider.slider(&#x27;values&#x27;, 0, resp - 1);
-        cutVideoComponentLeftSide(identifier, resp - 1);
-      }
-    } else {
-      var resp = double_slider.slider(&#x27;values&#x27;, 1);
-      if(resp &gt; double_slider.slider(&#x27;values&#x27;, 0) + 1) {
-        if(single_slider.slider(&#x27;value&#x27;) == resp) {
-          selectVideoComponentCutterHandle(cutter, resp - 1);
-        }
-        double_slider.slider(&#x27;values&#x27;, 1, resp - 1);
-        cutVideoComponentRightSide(identifier, resp - 1);
-      }
-    }
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._video_component_cutter ._precision_arrow_right&#x27;, function() {
-    var cutter = $(this).parents(&#x27;._video_component_cutter&#x27;);
-    var identifier = getVideoComponentIdentifier(cutter.attr(&#x27;id&#x27;));
-    var duration = cutter.data(&#x27;max-to&#x27;);
-    var single_slider = cutter.find(&#x27;._media_player_slider&#x27;);
-    var double_slider = cutter.find(&#x27;._double_slider&#x27;);
-    if(single_slider.find(&#x27;.ui-slider-handle&#x27;).hasClass(&#x27;selected&#x27;)) {
-      var resp = single_slider.slider(&#x27;value&#x27;);
-      if(resp &lt; duration &amp;&amp; resp &lt; double_slider.slider(&#x27;values&#x27;, 1)) {
-        selectVideoComponentCutterHandle(cutter, resp + 1);
-      }
-    } else if(double_slider.find(&#x27;.ui-slider-handle&#x27;).first().hasClass(&#x27;selected&#x27;)) {
-      var resp = double_slider.slider(&#x27;values&#x27;, 0);
-      if(resp &lt; double_slider.slider(&#x27;values&#x27;, 1) - 1) {
-        if(single_slider.slider(&#x27;value&#x27;) == resp) {
-          selectVideoComponentCutterHandle(cutter, resp + 1);
-        }
-        double_slider.slider(&#x27;values&#x27;, 0, resp + 1);
-        cutVideoComponentLeftSide(identifier, resp + 1);
-      }
-    } else {
-      var resp = double_slider.slider(&#x27;values&#x27;, 1);
-      if(resp &lt; duration) {
-        double_slider.slider(&#x27;values&#x27;, 1, resp + 1);
-        cutVideoComponentRightSide(identifier, resp + 1);
-      }
-    }
-  });
-  
-  initializeVideoEditor();
-  
+&#x2F;**
+bla bla bla
+@method switchTextComponentTextColor
+@for VideoEditorTextComponentEditor
+**&#x2F;
+function switchTextComponentTextColor(old_color, new_color) {
+  $(&#x27;#text_component_preview textarea&#x27;).removeClass(&#x27;color_&#x27; + old_color).addClass(&#x27;color_&#x27; + new_color);
+  $(&#x27;._text_component_in_video_editor_text_color_selector ._color&#x27;).removeClass(&#x27;current&#x27;);
+  $(&#x27;._text_component_in_video_editor_text_color_selector .background_color_&#x27; + new_color).addClass(&#x27;current&#x27;);
+  $(&#x27;#text_component_preview&#x27;).data(&#x27;text-color&#x27;, new_color);
 }
 
     </pre>
