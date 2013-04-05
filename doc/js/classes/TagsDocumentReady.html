@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>createTagSpan - DESY</title>
+    <title>TagsDocumentReady - DESY</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.8.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -43,10 +43,6 @@
             
                 <li><a href="..&#x2F;classes/addEmailToVirtualClassroomSendLessonLinkSelector.html">addEmailToVirtualClassroomSendLessonLinkSelector</a></li>
             
-                <li><a href="..&#x2F;classes/addTagWithoutSuggestion.html">addTagWithoutSuggestion</a></li>
-            
-                <li><a href="..&#x2F;classes/addToTagsValue.html">addToTagsValue</a></li>
-            
                 <li><a href="..&#x2F;classes/AdminAutocomplete.html">AdminAutocomplete</a></li>
             
                 <li><a href="..&#x2F;classes/AdminCollapsed.html">AdminCollapsed</a></li>
@@ -83,11 +79,7 @@
             
                 <li><a href="..&#x2F;classes/ButtonsMediaElement.html">ButtonsMediaElement</a></li>
             
-                <li><a href="..&#x2F;classes/checkNoTagDuplicates.html">checkNoTagDuplicates</a></li>
-            
                 <li><a href="..&#x2F;classes/closeGenericVideoComponentCutter.html">closeGenericVideoComponentCutter</a></li>
-            
-                <li><a href="..&#x2F;classes/createTagSpan.html">createTagSpan</a></li>
             
                 <li><a href="..&#x2F;classes/DashboardDocumentReady.html">DashboardDocumentReady</a></li>
             
@@ -105,8 +97,6 @@
             
                 <li><a href="..&#x2F;classes/DialogsWithForm.html">DialogsWithForm</a></li>
             
-                <li><a href="..&#x2F;classes/disableTagsInputTooHigh.html">disableTagsInputTooHigh</a></li>
-            
                 <li><a href="..&#x2F;classes/GalleriesAccessories.html">GalleriesAccessories</a></li>
             
                 <li><a href="..&#x2F;classes/GalleriesDocumentReady.html">GalleriesDocumentReady</a></li>
@@ -122,8 +112,6 @@
                 <li><a href="..&#x2F;classes/GeneralUrls.html">GeneralUrls</a></li>
             
                 <li><a href="..&#x2F;classes/getMaximumZIndex.html">getMaximumZIndex</a></li>
-            
-                <li><a href="..&#x2F;classes/getUnivoqueClassForTag.html">getUnivoqueClassForTag</a></li>
             
                 <li><a href="..&#x2F;classes/ImageEditorDocumentReady.html">ImageEditorDocumentReady</a></li>
             
@@ -144,8 +132,6 @@
                 <li><a href="..&#x2F;classes/initializeVideoEditor.html">initializeVideoEditor</a></li>
             
                 <li><a href="..&#x2F;classes/initializeVirtualClassroom.html">initializeVirtualClassroom</a></li>
-            
-                <li><a href="..&#x2F;classes/initSearchTagsAutocomplete.html">initSearchTagsAutocomplete</a></li>
             
                 <li><a href="..&#x2F;classes/LessonEditorCurrentSlide.html">LessonEditorCurrentSlide</a></li>
             
@@ -211,9 +197,13 @@
             
                 <li><a href="..&#x2F;classes/ProfileUsers.html">ProfileUsers</a></li>
             
-                <li><a href="..&#x2F;classes/removeFromTagsValue.html">removeFromTagsValue</a></li>
-            
                 <li><a href="..&#x2F;classes/SearchDocumentReady.html">SearchDocumentReady</a></li>
+            
+                <li><a href="..&#x2F;classes/TagsAccessories.html">TagsAccessories</a></li>
+            
+                <li><a href="..&#x2F;classes/TagsDocumentReady.html">TagsDocumentReady</a></li>
+            
+                <li><a href="..&#x2F;classes/TagsInitializers.html">TagsInitializers</a></li>
             
             </ul>
 
@@ -294,7 +284,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>createTagSpan Class</h1>
+                        <h1>TagsDocumentReady Class</h1>
 <div class="box meta">
     
 
@@ -342,7 +332,49 @@
                     <ul class="index-list methods">
                         
                             <li class="index-item method">
-                                <a href="#method_createTagSpan">createTagSpan</a>
+                                <a href="#method_tagsDocumentReady">tagsDocumentReady</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_tagsDocumentReadyChangeMediaElementInfo">tagsDocumentReadyChangeMediaElementInfo</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_tagsDocumentReadyMediaElementLoader">tagsDocumentReadyMediaElementLoader</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_tagsDocumentReadyNewLesson">tagsDocumentReadyNewLesson</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_tagsDocumentReadyNewMediaElement">tagsDocumentReadyNewMediaElement</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_tagsDocumentReadyOvervriteMediaElement">tagsDocumentReadyOvervriteMediaElement</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_tagsDocumentReadyUpdateLesson">tagsDocumentReadyUpdateLesson</a>
 
                                 
                                 
@@ -364,33 +396,13 @@
                 <h2 class="off-left">Methods</h2>
 
                 
-                    <div id="method_createTagSpan" class="method item">
-    <h3 class="name"><code>createTagSpan</code></h3>
+                    <div id="method_tagsDocumentReady" class="method item">
+    <h3 class="name"><code>tagsDocumentReady</code></h3>
 
     
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>word</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>new_tag</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
+        <span class="paren">()</span>
     
 
-    
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-        </span>
     
 
     
@@ -416,7 +428,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_tags.js.html#l358"><code>app&#x2F;assets&#x2F;javascripts&#x2F;tags.js:358</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_tags.js.html#l142"><code>app&#x2F;assets&#x2F;javascripts&#x2F;tags.js:142</code></a>
         
         </p>
 
@@ -427,62 +439,335 @@
     </div>
 
     <div class="description">
-        <p>Creates a new span element for a new tag.</p>
+        <p>bla bla bla</p>
     </div>
 
     
-        <div class="params">
-            <h4>Parameters:</h4>
 
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">word</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>tag name</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">new_tag</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>flag true if it's a new tag, false otherwise</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
     
 
     
-        <div class="returns">
-            <h4>Returns:</h4>
+</div>
 
-            <div class="returns-description">
                 
-                    
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>:
-                    
-                    span element
+                    <div id="method_tagsDocumentReadyChangeMediaElementInfo" class="method item">
+    <h3 class="name"><code>tagsDocumentReadyChangeMediaElementInfo</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
                 
-            </div>
-        </div>
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_tags.js.html#l159"><code>app&#x2F;assets&#x2F;javascripts&#x2F;tags.js:159</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>bla bla bla</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_tagsDocumentReadyMediaElementLoader" class="method item">
+    <h3 class="name"><code>tagsDocumentReadyMediaElementLoader</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_tags.js.html#l204"><code>app&#x2F;assets&#x2F;javascripts&#x2F;tags.js:204</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>bla bla bla</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_tagsDocumentReadyNewLesson" class="method item">
+    <h3 class="name"><code>tagsDocumentReadyNewLesson</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_tags.js.html#l239"><code>app&#x2F;assets&#x2F;javascripts&#x2F;tags.js:239</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>bla bla bla</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_tagsDocumentReadyNewMediaElement" class="method item">
+    <h3 class="name"><code>tagsDocumentReadyNewMediaElement</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_tags.js.html#l274"><code>app&#x2F;assets&#x2F;javascripts&#x2F;tags.js:274</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>bla bla bla</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_tagsDocumentReadyOvervriteMediaElement" class="method item">
+    <h3 class="name"><code>tagsDocumentReadyOvervriteMediaElement</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_tags.js.html#l309"><code>app&#x2F;assets&#x2F;javascripts&#x2F;tags.js:309</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>bla bla bla</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_tagsDocumentReadyUpdateLesson" class="method item">
+    <h3 class="name"><code>tagsDocumentReadyUpdateLesson</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_tags.js.html#l347"><code>app&#x2F;assets&#x2F;javascripts&#x2F;tags.js:347</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>bla bla bla</p>
+    </div>
+
+    
+
     
 
     

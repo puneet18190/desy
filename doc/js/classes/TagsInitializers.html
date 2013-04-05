@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>initSearchTagsAutocomplete - DESY</title>
+    <title>TagsInitializers - DESY</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.8.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -43,10 +43,6 @@
             
                 <li><a href="..&#x2F;classes/addEmailToVirtualClassroomSendLessonLinkSelector.html">addEmailToVirtualClassroomSendLessonLinkSelector</a></li>
             
-                <li><a href="..&#x2F;classes/addTagWithoutSuggestion.html">addTagWithoutSuggestion</a></li>
-            
-                <li><a href="..&#x2F;classes/addToTagsValue.html">addToTagsValue</a></li>
-            
                 <li><a href="..&#x2F;classes/AdminAutocomplete.html">AdminAutocomplete</a></li>
             
                 <li><a href="..&#x2F;classes/AdminCollapsed.html">AdminCollapsed</a></li>
@@ -83,11 +79,7 @@
             
                 <li><a href="..&#x2F;classes/ButtonsMediaElement.html">ButtonsMediaElement</a></li>
             
-                <li><a href="..&#x2F;classes/checkNoTagDuplicates.html">checkNoTagDuplicates</a></li>
-            
                 <li><a href="..&#x2F;classes/closeGenericVideoComponentCutter.html">closeGenericVideoComponentCutter</a></li>
-            
-                <li><a href="..&#x2F;classes/createTagSpan.html">createTagSpan</a></li>
             
                 <li><a href="..&#x2F;classes/DashboardDocumentReady.html">DashboardDocumentReady</a></li>
             
@@ -105,8 +97,6 @@
             
                 <li><a href="..&#x2F;classes/DialogsWithForm.html">DialogsWithForm</a></li>
             
-                <li><a href="..&#x2F;classes/disableTagsInputTooHigh.html">disableTagsInputTooHigh</a></li>
-            
                 <li><a href="..&#x2F;classes/GalleriesAccessories.html">GalleriesAccessories</a></li>
             
                 <li><a href="..&#x2F;classes/GalleriesDocumentReady.html">GalleriesDocumentReady</a></li>
@@ -122,8 +112,6 @@
                 <li><a href="..&#x2F;classes/GeneralUrls.html">GeneralUrls</a></li>
             
                 <li><a href="..&#x2F;classes/getMaximumZIndex.html">getMaximumZIndex</a></li>
-            
-                <li><a href="..&#x2F;classes/getUnivoqueClassForTag.html">getUnivoqueClassForTag</a></li>
             
                 <li><a href="..&#x2F;classes/ImageEditorDocumentReady.html">ImageEditorDocumentReady</a></li>
             
@@ -144,8 +132,6 @@
                 <li><a href="..&#x2F;classes/initializeVideoEditor.html">initializeVideoEditor</a></li>
             
                 <li><a href="..&#x2F;classes/initializeVirtualClassroom.html">initializeVirtualClassroom</a></li>
-            
-                <li><a href="..&#x2F;classes/initSearchTagsAutocomplete.html">initSearchTagsAutocomplete</a></li>
             
                 <li><a href="..&#x2F;classes/LessonEditorCurrentSlide.html">LessonEditorCurrentSlide</a></li>
             
@@ -211,9 +197,13 @@
             
                 <li><a href="..&#x2F;classes/ProfileUsers.html">ProfileUsers</a></li>
             
-                <li><a href="..&#x2F;classes/removeFromTagsValue.html">removeFromTagsValue</a></li>
-            
                 <li><a href="..&#x2F;classes/SearchDocumentReady.html">SearchDocumentReady</a></li>
+            
+                <li><a href="..&#x2F;classes/TagsAccessories.html">TagsAccessories</a></li>
+            
+                <li><a href="..&#x2F;classes/TagsDocumentReady.html">TagsDocumentReady</a></li>
+            
+                <li><a href="..&#x2F;classes/TagsInitializers.html">TagsInitializers</a></li>
             
             </ul>
 
@@ -294,7 +284,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>initSearchTagsAutocomplete Class</h1>
+                        <h1>TagsInitializers Class</h1>
 <div class="box meta">
     
 
@@ -349,7 +339,7 @@
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_initSearchTagsAutocomplete">initSearchTagsAutocomplete</a>
+                                <a href="#method_initTagsAutocomplete">initTagsAutocomplete</a>
 
                                 
                                 
@@ -413,7 +403,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_tags.js.html#l390"><code>app&#x2F;assets&#x2F;javascripts&#x2F;tags.js:390</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_tags.js.html#l388"><code>app&#x2F;assets&#x2F;javascripts&#x2F;tags.js:388</code></a>
         
         </p>
 
@@ -424,10 +414,7 @@
     </div>
 
     <div class="description">
-        <p>Initialize jQueryUI <em>autocomplete</em> for tags in search input</p>
-
-<p>Uses: <a href="../classes/unbindLoader.html#method_unbindLoader">unbindLoader</a>
-and <a href="../classes/bindLoader.html#method_bindLoader">bindLoader</a></p>
+        <p>Initialize jQueryUI <em>autocomplete</em> for tags in search input Uses: <a href="../classes/unbindLoader.html#method_unbindLoader">unbindLoader</a> and <a href="../classes/bindLoader.html#method_bindLoader">bindLoader</a></p>
     </div>
 
     
@@ -461,8 +448,8 @@ and <a href="../classes/bindLoader.html#method_bindLoader">bindLoader</a></p>
 </div>
 
                 
-                    <div id="method_initSearchTagsAutocomplete" class="method item">
-    <h3 class="name"><code>initSearchTagsAutocomplete</code></h3>
+                    <div id="method_initTagsAutocomplete" class="method item">
+    <h3 class="name"><code>initTagsAutocomplete</code></h3>
 
     
         <div class="args">
@@ -503,7 +490,7 @@ and <a href="../classes/bindLoader.html#method_bindLoader">bindLoader</a></p>
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_tags.js.html#l424"><code>app&#x2F;assets&#x2F;javascripts&#x2F;tags.js:424</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_tags.js.html#l418"><code>app&#x2F;assets&#x2F;javascripts&#x2F;tags.js:418</code></a>
         
         </p>
 
@@ -515,13 +502,6 @@ and <a href="../classes/bindLoader.html#method_bindLoader">bindLoader</a></p>
 
     <div class="description">
         <p>Initialize jQueryUI <em>autocomplete</em> for tags in lessons and elements form</p>
-
-<p>Uses: <a href="../classes/unbindLoader.html#method_unbindLoader">unbindLoader</a>
-and <a href="../classes/bindLoader.html#method_bindLoader">bindLoader</a>
-and <a href="../classes/checkNoTagDuplicates.html#method_checkNoTagDuplicates">checkNoTagDuplicates</a>
-and <a href="../classes/addToTagsValue.html#method_addToTagsValue">addToTagsValue</a>
-and <a href="../classes/createTagSpan.html#method_createTagSpan">createTagSpan</a>
-and <a href="../classes/disableTagsInputTooHigh.html#method_disableTagsInputTooHigh">disableTagsInputTooHigh</a></p>
     </div>
 
     

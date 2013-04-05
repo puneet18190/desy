@@ -43,10 +43,6 @@
             
                 <li><a href="..&#x2F;classes/addEmailToVirtualClassroomSendLessonLinkSelector.html">addEmailToVirtualClassroomSendLessonLinkSelector</a></li>
             
-                <li><a href="..&#x2F;classes/addTagWithoutSuggestion.html">addTagWithoutSuggestion</a></li>
-            
-                <li><a href="..&#x2F;classes/addToTagsValue.html">addToTagsValue</a></li>
-            
                 <li><a href="..&#x2F;classes/AdminAutocomplete.html">AdminAutocomplete</a></li>
             
                 <li><a href="..&#x2F;classes/AdminCollapsed.html">AdminCollapsed</a></li>
@@ -83,11 +79,7 @@
             
                 <li><a href="..&#x2F;classes/ButtonsMediaElement.html">ButtonsMediaElement</a></li>
             
-                <li><a href="..&#x2F;classes/checkNoTagDuplicates.html">checkNoTagDuplicates</a></li>
-            
                 <li><a href="..&#x2F;classes/closeGenericVideoComponentCutter.html">closeGenericVideoComponentCutter</a></li>
-            
-                <li><a href="..&#x2F;classes/createTagSpan.html">createTagSpan</a></li>
             
                 <li><a href="..&#x2F;classes/DashboardDocumentReady.html">DashboardDocumentReady</a></li>
             
@@ -105,8 +97,6 @@
             
                 <li><a href="..&#x2F;classes/DialogsWithForm.html">DialogsWithForm</a></li>
             
-                <li><a href="..&#x2F;classes/disableTagsInputTooHigh.html">disableTagsInputTooHigh</a></li>
-            
                 <li><a href="..&#x2F;classes/GalleriesAccessories.html">GalleriesAccessories</a></li>
             
                 <li><a href="..&#x2F;classes/GalleriesDocumentReady.html">GalleriesDocumentReady</a></li>
@@ -122,8 +112,6 @@
                 <li><a href="..&#x2F;classes/GeneralUrls.html">GeneralUrls</a></li>
             
                 <li><a href="..&#x2F;classes/getMaximumZIndex.html">getMaximumZIndex</a></li>
-            
-                <li><a href="..&#x2F;classes/getUnivoqueClassForTag.html">getUnivoqueClassForTag</a></li>
             
                 <li><a href="..&#x2F;classes/ImageEditorDocumentReady.html">ImageEditorDocumentReady</a></li>
             
@@ -144,8 +132,6 @@
                 <li><a href="..&#x2F;classes/initializeVideoEditor.html">initializeVideoEditor</a></li>
             
                 <li><a href="..&#x2F;classes/initializeVirtualClassroom.html">initializeVirtualClassroom</a></li>
-            
-                <li><a href="..&#x2F;classes/initSearchTagsAutocomplete.html">initSearchTagsAutocomplete</a></li>
             
                 <li><a href="..&#x2F;classes/LessonEditorCurrentSlide.html">LessonEditorCurrentSlide</a></li>
             
@@ -211,9 +197,13 @@
             
                 <li><a href="..&#x2F;classes/ProfileUsers.html">ProfileUsers</a></li>
             
-                <li><a href="..&#x2F;classes/removeFromTagsValue.html">removeFromTagsValue</a></li>
-            
                 <li><a href="..&#x2F;classes/SearchDocumentReady.html">SearchDocumentReady</a></li>
+            
+                <li><a href="..&#x2F;classes/TagsAccessories.html">TagsAccessories</a></li>
+            
+                <li><a href="..&#x2F;classes/TagsDocumentReady.html">TagsDocumentReady</a></li>
+            
+                <li><a href="..&#x2F;classes/TagsInitializers.html">TagsInitializers</a></li>
             
             </ul>
 
@@ -303,264 +293,18 @@ Tags autocomplete, _add_ and _remove_ from list.
 @module tags
 **&#x2F;
 
-function tagsDocumentReady() {
-  
-  &#x2F;&#x2F; SEARCH TAGS 
-  initSearchTagsAutocomplete(&quot;#general_tag_reader_for_search&quot;);
-  initSearchTagsAutocomplete(&quot;#lessons_tag_reader_for_search&quot;);
-  initSearchTagsAutocomplete(&quot;#media_elements_tag_reader_for_search&quot;);
-  
-  &#x2F;&#x2F; FORM CHANGE INFO MEDIA ELEMENT
-  
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._change_info_container ._tags_container .remove&#x27;, function() {
-    var media_element_id = $(this).parent().parent().parent().parent().parent().data(&#x27;param&#x27;);
-    removeFromTagsValue($(this).parent().text(), &#x27;#dialog-media-element-&#x27; + media_element_id + &#x27; ._tags_container ._tags_value&#x27;);
-    $(this).parent().remove();
-    if($(&#x27;#dialog-media-element-&#x27; + media_element_id + &#x27; #tags&#x27;).not(&#x27;:visible&#x27;)) {
-      $(&#x27;#dialog-media-element-&#x27; + media_element_id + &#x27; #tags&#x27;).show();
-      disableTagsInputTooHigh(&#x27;#dialog-media-element-&#x27; + media_element_id + &#x27; ._tags_container&#x27;, &#x27;#dialog-media-element-&#x27; + media_element_id + &#x27; #tags&#x27;);
-    }
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;focus&#x27;, &#x27;._change_info_container ._tags_container&#x27;, function() {
-    $(this).find(&#x27;._placeholder&#x27;).hide();
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._change_info_container ._tags_container&#x27;, function() {
-    var media_element_id = $(this).parent().parent().parent().parent().data(&#x27;param&#x27;);
-    $(&#x27;#dialog-media-element-&#x27; + media_element_id + &#x27; #tags&#x27;).focus();
-    $(this).find(&#x27;._placeholder&#x27;).hide();
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;keydown&#x27;, &#x27;._change_info_container #tags&#x27;, function(e) {
-    var media_element_id = $(this).parent().parent().parent().parent().data(&#x27;param&#x27;);
-    if(e.which === 13 || e.which === 188) {
-      e.preventDefault();
-      addTagWithoutSuggestion(this, &#x27;#dialog-media-element-&#x27; + media_element_id + &#x27; ._tags_container&#x27;, &#x27;._tags_value&#x27;);
-    } else if(e.which == 8 &amp;&amp; $(this).val() == &#x27;&#x27;) {
-      $(this).prev().find(&#x27;.remove&#x27;).trigger(&#x27;click&#x27;);
-    }
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;blur&#x27;, &#x27;._change_info_container #tags&#x27;, function(e) {
-    var media_element_id = $(this).parent().parent().parent().parent().data(&#x27;param&#x27;);
-    addTagWithoutSuggestion(this, &#x27;#dialog-media-element-&#x27; + media_element_id + &#x27; ._tags_container&#x27;, &#x27;._tags_value&#x27;);
-  });
-  
-  $(&#x27;._change_info_container&#x27;).each(function() {
-    var media_element_id = $(this).data(&#x27;param&#x27;);
-    initTagsAutocomplete(&#x27;#dialog-media-element-&#x27; + media_element_id);
-    (function() {
-      disableTagsInputTooHigh(&#x27;#dialog-media-element-&#x27; + media_element_id + &#x27; ._tags_container&#x27;, &#x27;#dialog-media-element-&#x27; + media_element_id + &#x27; #tags&#x27;);
-    });
-  });
-  
-  
-  &#x2F;&#x2F; FORM UPLOAD NEW MEDIA ELEMENT
-  
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#load-media-element ._tags_container .remove&#x27;, function() {
-    removeFromTagsValue($(this).parent().text(), &#x27;#load-media-element ._tags_container #tags_value&#x27;);
-    $(this).parent().remove();
-    if($(&#x27;#load-media-element #tags&#x27;).not(&#x27;:visible&#x27;)) {
-      $(&#x27;#load-media-element #tags&#x27;).show();
-      disableTagsInputTooHigh(&#x27;#load-media-element ._tags_container&#x27;, &#x27;#load-media-element #tags&#x27;);
-    }
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;focus&#x27;, &#x27;#load-media-element ._tags_container&#x27;, function() {
-    $(this).find(&#x27;._placeholder&#x27;).hide();
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#load-media-element ._tags_container&#x27;, function() {
-    $(&#x27;#load-media-element #tags&#x27;).focus();
-    $(this).find(&#x27;._placeholder&#x27;).hide();
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;keydown&#x27;, &#x27;#load-media-element #tags&#x27;, function(e) {
-    if(e.which === 13 || e.which === 188) {
-      e.preventDefault();
-      addTagWithoutSuggestion(this, &#x27;#load-media-element ._tags_container&#x27;, &#x27;#tags_value&#x27;);
-    } else if(e.which == 8 &amp;&amp; $(this).val() == &#x27;&#x27;) {
-      $(this).prev().find(&#x27;.remove&#x27;).trigger(&#x27;click&#x27;);
-    }
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;blur&#x27;, &#x27;#load-media-element #tags&#x27;, function(e) {
-    addTagWithoutSuggestion(this, &#x27;#load-media-element ._tags_container&#x27;, &#x27;#tags_value&#x27;);
-  });
-  
-  initTagsAutocomplete(&#x27;#load-media-element&#x27;);
-  
-  
-  &#x2F;&#x2F; FORM OVERWRITE MEDIA ELEMENT
-  
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#form_info_update_media_element_in_editor ._tags_container .remove&#x27;, function() {
-    removeFromTagsValue($(this).parent().text(), &#x27;#form_info_update_media_element_in_editor ._tags_container #update_tags_value&#x27;);
-    $(this).parent().remove();
-    if($(&#x27;#form_info_update_media_element_in_editor #update_tags&#x27;).not(&#x27;:visible&#x27;)) {
-      $(&#x27;#form_info_update_media_element_in_editor #update_tags&#x27;).show();
-      disableTagsInputTooHigh(&#x27;#form_info_update_media_element_in_editor ._tags_container&#x27;, &#x27;#form_info_update_media_element_in_editor #update_tags&#x27;);
-    }
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;focus&#x27;, &#x27;#form_info_update_media_element_in_editor ._tags_container&#x27;, function() {
-    $(this).find(&#x27;._placeholder&#x27;).hide();
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#form_info_update_media_element_in_editor ._tags_container&#x27;, function() {
-    $(&#x27;#form_info_update_media_element_in_editor #update_tags&#x27;).focus();
-    $(this).find(&#x27;._placeholder&#x27;).hide();
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;keydown&#x27;, &#x27;#form_info_update_media_element_in_editor #update_tags&#x27;, function(e) {
-    if(e.which === 13 || e.which === 188) {
-      e.preventDefault();
-      addTagWithoutSuggestion(this, &#x27;#form_info_update_media_element_in_editor ._tags_container&#x27;, &#x27;#update_tags_value&#x27;);
-    } else if(e.which == 8 &amp;&amp; $(this).val() == &#x27;&#x27;) {
-      $(this).prev().find(&#x27;.remove&#x27;).trigger(&#x27;click&#x27;);
-    }
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;blur&#x27;, &#x27;#form_info_update_media_element_in_editor #update_tags&#x27;, function(e) {
-    addTagWithoutSuggestion(this, &#x27;#form_info_update_media_element_in_editor ._tags_container&#x27;, &#x27;#update_tags_value&#x27;);
-  });
-  
-  initTagsAutocomplete(&#x27;#form_info_update_media_element_in_editor&#x27;);
-  
-  (function() {
-    disableTagsInputTooHigh(&#x27;#form_info_update_media_element_in_editor ._tags_container&#x27;, &#x27;#form_info_update_media_element_in_editor #update_tags&#x27;);
-  });
-  
-  
-  &#x2F;&#x2F; FORM SAVE AS NEW MEDIA ELEMENT
-  
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#form_info_new_media_element_in_editor ._tags_container .remove&#x27;, function() {
-    removeFromTagsValue($(this).parent().text(), &#x27;#form_info_new_media_element_in_editor ._tags_container #new_tags_value&#x27;);
-    $(this).parent().remove();
-    if($(&#x27;#form_info_new_media_element_in_editor #new_tags&#x27;).not(&#x27;:visible&#x27;)) {
-      $(&#x27;#form_info_new_media_element_in_editor #new_tags&#x27;).show();
-      disableTagsInputTooHigh(&#x27;#form_info_new_media_element_in_editor ._tags_container&#x27;, &#x27;#form_info_new_media_element_in_editor #new_tags&#x27;);
-    }
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;focus&#x27;, &#x27;#form_info_new_media_element_in_editor ._tags_container&#x27;, function() {
-    $(this).find(&#x27;._placeholder&#x27;).hide();
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#form_info_new_media_element_in_editor ._tags_container&#x27;, function() {
-    $(&#x27;#form_info_new_media_element_in_editor #new_tags&#x27;).focus();
-    $(this).find(&#x27;._placeholder&#x27;).hide();
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;keydown&#x27;, &#x27;#form_info_new_media_element_in_editor #new_tags&#x27;, function(e) {
-    if(e.which === 13 || e.which === 188) {
-      e.preventDefault();
-      addTagWithoutSuggestion(this, &#x27;#form_info_new_media_element_in_editor ._tags_container&#x27;, &#x27;#new_tags_value&#x27;);
-    } else if(e.which == 8 &amp;&amp; $(this).val() == &#x27;&#x27;) {
-      $(this).prev().find(&#x27;.remove&#x27;).trigger(&#x27;click&#x27;);
-    }
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;blur&#x27;, &#x27;#form_info_new_media_element_in_editor #new_tags&#x27;, function(e) {
-    addTagWithoutSuggestion(this, &#x27;#form_info_new_media_element_in_editor ._tags_container&#x27;, &#x27;#new_tags_value&#x27;);
-  });
-  
-  initTagsAutocomplete(&#x27;#form_info_new_media_element_in_editor&#x27;);
-  
-  
-  &#x2F;&#x2F; FORM NEW LESSON
-  
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#slides._new ._tags_container .remove&#x27;, function() {
-    removeFromTagsValue($(this).parent().text(), &#x27;#slides._new ._tags_container #tags_value&#x27;);
-    $(this).parent().remove();
-    if($(&#x27;#slides._new #tags&#x27;).not(&#x27;:visible&#x27;)) {
-      $(&#x27;#slides._new #tags&#x27;).show();
-      disableTagsInputTooHigh(&#x27;#slides._new ._tags_container&#x27;, &#x27;#slides._new #tags&#x27;);
-    }
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;focus&#x27;, &#x27;#slides._new ._tags_container&#x27;, function() {
-    $(this).find(&#x27;._placeholder&#x27;).hide();
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#slides._new ._tags_container&#x27;, function() {
-    $(&#x27;#slides._new #tags&#x27;).focus();
-    $(this).find(&#x27;._placeholder&#x27;).hide();
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;keydown&#x27;, &#x27;#slides._new #tags&#x27;, function(e) {
-    if(e.which === 13 || e.which === 188) {
-      e.preventDefault();
-      addTagWithoutSuggestion(this, &#x27;#slides._new ._tags_container&#x27;, &#x27;#tags_value&#x27;);
-    } else if(e.which == 8 &amp;&amp; $(this).val() == &#x27;&#x27;) {
-      $(this).prev().find(&#x27;.remove&#x27;).trigger(&#x27;click&#x27;);
-    }
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;blur&#x27;, &#x27;#slides._new #tags&#x27;, function(e) {
-    addTagWithoutSuggestion(this, &#x27;#slides._new ._tags_container&#x27;, &#x27;#tags_value&#x27;);
-  });
-  
-  initTagsAutocomplete(&#x27;#slides._new&#x27;);
-  
-  
-  &#x2F;&#x2F; FORM UPDATE LESSON
-  
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#slides._update ._tags_container .remove&#x27;, function() {
-    removeFromTagsValue($(this).parent().text(), &#x27;#slides._update ._tags_container #tags_value&#x27;);
-    $(this).parent().remove();
-    if($(&#x27;#slides._update #tags&#x27;).not(&#x27;:visible&#x27;)) {
-      $(&#x27;#slides._update #tags&#x27;).show();
-      disableTagsInputTooHigh(&#x27;#slides._update ._tags_container&#x27;, &#x27;#slides._update #tags&#x27;);
-    }
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;focus&#x27;, &#x27;#slides._update ._tags_container&#x27;, function() {
-    $(this).find(&#x27;._placeholder&#x27;).hide();
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#slides._update ._tags_container&#x27;, function() {
-    $(&#x27;#slides._update #tags&#x27;).focus();
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;keydown&#x27;, &#x27;#slides._update #tags&#x27;, function(e) {
-    if(e.which === 13 || e.which === 188) {
-      e.preventDefault();
-      addTagWithoutSuggestion(this, &#x27;#slides._update ._tags_container&#x27;, &#x27;#tags_value&#x27;);
-    } else if(e.which == 8 &amp;&amp; $(this).val() == &#x27;&#x27;) {
-      $(this).prev().find(&#x27;.remove&#x27;).trigger(&#x27;click&#x27;);
-    }
-  });
-  
-  $(&#x27;body&#x27;).on(&#x27;blur&#x27;, &#x27;#slides._update #tags&#x27;, function(e) {
-    addTagWithoutSuggestion(this, &#x27;#slides._update ._tags_container&#x27;, &#x27;#tags_value&#x27;);
-  });
-  
-  initTagsAutocomplete(&#x27;#slides._update&#x27;);
-  
-  (function() {
-    disableTagsInputTooHigh(&#x27;#slides._update ._tags_container&#x27;, &#x27;#slides._update #tags&#x27;);
-  });
-  
-}
+
+
+
 
 &#x2F;**
-* Handle adding tag not in the autocomplete data list
-*
-* Uses: [checkNoTagDuplicates](..&#x2F;classes&#x2F;checkNoTagDuplicates.html#method_checkNoTagDuplicates)
-* and [addToTagsValue](..&#x2F;classes&#x2F;addToTagsValue.html#method_addToTagsValue)
-* and [createTagSpan](..&#x2F;classes&#x2F;createTagSpan.html#method_createTagSpan)
-* and [unbindLoader](..&#x2F;classes&#x2F;unbindLoader.html#method_unbindLoader)
-* and [getUnivoqueClassForTag](..&#x2F;classes&#x2F;getUnivoqueClassForTag.html#method_getUnivoqueClassForTag)
-* and [bindLoader](..&#x2F;classes&#x2F;bindLoader.html#method_bindLoader)
-* and [disableTagsInputTooHigh](..&#x2F;classes&#x2F;disableTagsInputTooHigh.html#method_disableTagsInputTooHigh)
-* 
-* @method addTagWithoutSuggestion
-* @for addTagWithoutSuggestion
-* @param input {String} input selector for tag, class or id
-* @param container_selector {String} added tags container selector, class or id
-* @param tags_value_selector {String} hidden input field for tags value selector
-*&#x2F;
+Handle adding tag not in the autocomplete data list
+@method addTagWithoutSuggestion
+@for TagsAccessories
+@param input {String} input selector for tag, class or id
+@param container_selector {String} added tags container selector, class or id
+@param tags_value_selector {String} hidden input field for tags value selector
+**&#x2F;
 function addTagWithoutSuggestion(input, container_selector, tags_value_selector) {
   var my_val = $.trim($(input).val()).toLowerCase();
   if(my_val.length &gt;= $(&#x27;#popup_parameters_container&#x27;).data(&#x27;min-tag-length&#x27;) &amp;&amp; checkNoTagDuplicates(my_val, container_selector)) {
@@ -589,13 +333,12 @@ function addTagWithoutSuggestion(input, container_selector, tags_value_selector)
 }
 
 &#x2F;**
-* Add tag word to hidden field with tags values
-* 
-* @method addToTagsValue
-* @for addToTagsValue
-* @param word {String} tag name
-* @param value_selector {String} hidden input field for tags value selector
-*&#x2F;
+Add tag word to hidden field with tags values
+@method addToTagsValue
+@for TagsAccessories
+@param word {String} tag name
+@param value_selector {String} hidden input field for tags value selector
+**&#x2F;
 function addToTagsValue(word, value_selector) {
   var old_value = $(value_selector).val();
   if(old_value.indexOf(&#x27;,&#x27;) == -1) {
@@ -607,44 +350,13 @@ function addToTagsValue(word, value_selector) {
 }
 
 &#x2F;**
-* Remove tag word to hidden field with tags values
-* 
-* @method removeFromTagsValue
-* @for removeFromTagsValue
-* @param word {String} tag name
-* @param value_selector {String} hidden input field for tags value selector
-*&#x2F;
-function removeFromTagsValue(word, value_selector) {
-  var old_value = $(value_selector).val();
-  old_value = old_value.replace((&#x27;,&#x27; + word + &#x27;,&#x27;), &#x27;,&#x27;);
-  $(value_selector).val(old_value);
-}
-
-&#x2F;**
-* Generates a name_aware class for a given tag
-* 
-* @method getUnivoqueClassForTag
-* @for getUnivoqueClassForTag
-* @param word {String} tag name
-* @return {String} i.e. w_a_t_e_r_
-*&#x2F;
-function getUnivoqueClassForTag(word) {
-  var resp = &#x27;&#x27;;
-  for(var i = 0; i &lt; word.length; i++) {
-    resp += &#x27;_&#x27; + word.charCodeAt(i);
-  }
-  return resp
-}
-
-&#x2F;**
-* Checks if a tag word is present in the tags container.
-* 
-* @method checkNoTagDuplicates
-* @for checkNoTagDuplicates
-* @param word {String} tag name
-* @param container_selector {String} tags container selector
-* @return {Boolean}
-*&#x2F;
+Checks if a tag word is present in the tags container.
+@method checkNoTagDuplicates
+@for TagsAccessories
+@param word {String} tag name
+@param container_selector {String} tags container selector
+@return {Boolean}
+**&#x2F;
 function checkNoTagDuplicates(word, container_selector) {
   var flag = true;
   $(container_selector + &#x27; span&#x27;).each(function() {
@@ -656,14 +368,13 @@ function checkNoTagDuplicates(word, container_selector) {
 }
 
 &#x2F;**
-* Creates a new span element for a new tag.
-* 
-* @method createTagSpan
-* @for createTagSpan
-* @param word {String} tag name
-* @param new_tag {Boolean} flag true if it&#x27;s a new tag, false otherwise
-* @return {Object} span element
-*&#x2F;
+Creates a new span element for a new tag.
+@method createTagSpan
+@for TagsAccessories
+@param word {String} tag name
+@param new_tag {Boolean} flag true if it&#x27;s a new tag, false otherwise
+@return {Object} span element
+**&#x2F;
 function createTagSpan(word, new_tag) {
   var span = $(&#x27;&lt;span&gt;&#x27;).text(word);
   var a = $(&#x27;&lt;a&gt;&#x27;).addClass(&#x27;remove&#x27;).appendTo(span);
@@ -674,13 +385,12 @@ function createTagSpan(word, new_tag) {
 }
 
 &#x2F;**
-* Disable insert new tag when tags container is full.
-* 
-* @method disableTagsInputTooHigh
-* @for disableTagsInputTooHigh
-* @param container_selector {String} tags container selector, class or id
-* @param input_selector {String} new tag input selector, class or id
-*&#x2F;
+Disable insert new tag when tags container is full.
+@method disableTagsInputTooHigh
+@for TagsAccessories
+@param container_selector {String} tags container selector, class or id
+@param input_selector {String} new tag input selector, class or id
+**&#x2F;
 function disableTagsInputTooHigh(container_selector, input_selector) {
   if($(container_selector)[0].scrollHeight &gt; $(container_selector).height()) {
     $(input_selector).hide();
@@ -688,15 +398,289 @@ function disableTagsInputTooHigh(container_selector, input_selector) {
 }
 
 &#x2F;**
-* Initialize jQueryUI _autocomplete_ for tags in search input
-*
-* Uses: [unbindLoader](..&#x2F;classes&#x2F;unbindLoader.html#method_unbindLoader)
-* and [bindLoader](..&#x2F;classes&#x2F;bindLoader.html#method_bindLoader)
-* 
-* @method initSearchTagsAutocomplete
-* @for initSearchTagsAutocomplete
-* @param input {String} search by tag input selector, class or id
-*&#x2F;
+Generates a name_aware class for a given tag
+@method getUnivoqueClassForTag
+@for TagsAccessories
+@param word {String} tag name
+@return {String} i.e. w_a_t_e_r_
+**&#x2F;
+function getUnivoqueClassForTag(word) {
+  var resp = &#x27;&#x27;;
+  for(var i = 0; i &lt; word.length; i++) {
+    resp += &#x27;_&#x27; + word.charCodeAt(i);
+  }
+  return resp
+}
+
+&#x2F;**
+Remove tag word to hidden field with tags values
+@method removeFromTagsValue
+@for TagsAccessories
+@param word {String} tag name
+@param value_selector {String} hidden input field for tags value selector
+**&#x2F;
+function removeFromTagsValue(word, value_selector) {
+  var old_value = $(value_selector).val();
+  old_value = old_value.replace((&#x27;,&#x27; + word + &#x27;,&#x27;), &#x27;,&#x27;);
+  $(value_selector).val(old_value);
+}
+
+
+
+
+
+&#x2F;**
+bla bla bla
+@method tagsDocumentReady
+@for TagsDocumentReady
+**&#x2F;
+function tagsDocumentReady() {
+  initSearchTagsAutocomplete(&#x27;#general_tag_reader_for_search&#x27;);
+  initSearchTagsAutocomplete(&#x27;#lessons_tag_reader_for_search&#x27;);
+  initSearchTagsAutocomplete(&#x27;#media_elements_tag_reader_for_search&#x27;);
+  tagsDocumentReadyChangeMediaElementInfo();
+  tagsDocumentReadyMediaElementLoader();
+  tagsDocumentReadyOvervriteMediaElement();
+  tagsDocumentReadyNewMediaElement();
+  tagsDocumentReadyNewLesson();
+  tagsDocumentReadyUpdateLesson();
+}
+
+&#x2F;**
+bla bla bla
+@method tagsDocumentReadyChangeMediaElementInfo
+@for TagsDocumentReady
+**&#x2F;
+function tagsDocumentReadyChangeMediaElementInfo() {
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._change_info_container ._tags_container .remove&#x27;, function() {
+    var media_element_id = $(this).parent().parent().parent().parent().parent().data(&#x27;param&#x27;);
+    removeFromTagsValue($(this).parent().text(), &#x27;#dialog-media-element-&#x27; + media_element_id + &#x27; ._tags_container ._tags_value&#x27;);
+    $(this).parent().remove();
+    if($(&#x27;#dialog-media-element-&#x27; + media_element_id + &#x27; #tags&#x27;).not(&#x27;:visible&#x27;)) {
+      $(&#x27;#dialog-media-element-&#x27; + media_element_id + &#x27; #tags&#x27;).show();
+      disableTagsInputTooHigh(&#x27;#dialog-media-element-&#x27; + media_element_id + &#x27; ._tags_container&#x27;, &#x27;#dialog-media-element-&#x27; + media_element_id + &#x27; #tags&#x27;);
+    }
+  });
+  $(&#x27;body&#x27;).on(&#x27;focus&#x27;, &#x27;._change_info_container ._tags_container&#x27;, function() {
+    $(this).find(&#x27;._placeholder&#x27;).hide();
+  });
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._change_info_container ._tags_container&#x27;, function() {
+    var media_element_id = $(this).parent().parent().parent().parent().data(&#x27;param&#x27;);
+    $(&#x27;#dialog-media-element-&#x27; + media_element_id + &#x27; #tags&#x27;).focus();
+    $(this).find(&#x27;._placeholder&#x27;).hide();
+  });
+  $(&#x27;body&#x27;).on(&#x27;keydown&#x27;, &#x27;._change_info_container #tags&#x27;, function(e) {
+    var media_element_id = $(this).parent().parent().parent().parent().data(&#x27;param&#x27;);
+    if(e.which === 13 || e.which === 188) {
+      e.preventDefault();
+      addTagWithoutSuggestion(this, &#x27;#dialog-media-element-&#x27; + media_element_id + &#x27; ._tags_container&#x27;, &#x27;._tags_value&#x27;);
+    } else if(e.which == 8 &amp;&amp; $(this).val() == &#x27;&#x27;) {
+      $(this).prev().find(&#x27;.remove&#x27;).trigger(&#x27;click&#x27;);
+    }
+  });
+  $(&#x27;body&#x27;).on(&#x27;blur&#x27;, &#x27;._change_info_container #tags&#x27;, function(e) {
+    var media_element_id = $(this).parent().parent().parent().parent().data(&#x27;param&#x27;);
+    addTagWithoutSuggestion(this, &#x27;#dialog-media-element-&#x27; + media_element_id + &#x27; ._tags_container&#x27;, &#x27;._tags_value&#x27;);
+  });
+  $(&#x27;._change_info_container&#x27;).each(function() {
+    var media_element_id = $(this).data(&#x27;param&#x27;);
+    initTagsAutocomplete(&#x27;#dialog-media-element-&#x27; + media_element_id);
+    (function() {
+      disableTagsInputTooHigh(&#x27;#dialog-media-element-&#x27; + media_element_id + &#x27; ._tags_container&#x27;, &#x27;#dialog-media-element-&#x27; + media_element_id + &#x27; #tags&#x27;);
+    });
+  });
+}
+
+&#x2F;**
+bla bla bla
+@method tagsDocumentReadyMediaElementLoader
+@for TagsDocumentReady
+**&#x2F;
+function tagsDocumentReadyMediaElementLoader() {
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#load-media-element ._tags_container .remove&#x27;, function() {
+    removeFromTagsValue($(this).parent().text(), &#x27;#load-media-element ._tags_container #tags_value&#x27;);
+    $(this).parent().remove();
+    if($(&#x27;#load-media-element #tags&#x27;).not(&#x27;:visible&#x27;)) {
+      $(&#x27;#load-media-element #tags&#x27;).show();
+      disableTagsInputTooHigh(&#x27;#load-media-element ._tags_container&#x27;, &#x27;#load-media-element #tags&#x27;);
+    }
+  });
+  $(&#x27;body&#x27;).on(&#x27;focus&#x27;, &#x27;#load-media-element ._tags_container&#x27;, function() {
+    $(this).find(&#x27;._placeholder&#x27;).hide();
+  });
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#load-media-element ._tags_container&#x27;, function() {
+    $(&#x27;#load-media-element #tags&#x27;).focus();
+    $(this).find(&#x27;._placeholder&#x27;).hide();
+  });
+  $(&#x27;body&#x27;).on(&#x27;keydown&#x27;, &#x27;#load-media-element #tags&#x27;, function(e) {
+    if(e.which === 13 || e.which === 188) {
+      e.preventDefault();
+      addTagWithoutSuggestion(this, &#x27;#load-media-element ._tags_container&#x27;, &#x27;#tags_value&#x27;);
+    } else if(e.which == 8 &amp;&amp; $(this).val() == &#x27;&#x27;) {
+      $(this).prev().find(&#x27;.remove&#x27;).trigger(&#x27;click&#x27;);
+    }
+  });
+  $(&#x27;body&#x27;).on(&#x27;blur&#x27;, &#x27;#load-media-element #tags&#x27;, function(e) {
+    addTagWithoutSuggestion(this, &#x27;#load-media-element ._tags_container&#x27;, &#x27;#tags_value&#x27;);
+  });
+  initTagsAutocomplete(&#x27;#load-media-element&#x27;);
+}
+
+&#x2F;**
+bla bla bla
+@method tagsDocumentReadyNewLesson
+@for TagsDocumentReady
+**&#x2F;
+function tagsDocumentReadyNewLesson() {
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#slides._new ._tags_container .remove&#x27;, function() {
+    removeFromTagsValue($(this).parent().text(), &#x27;#slides._new ._tags_container #tags_value&#x27;);
+    $(this).parent().remove();
+    if($(&#x27;#slides._new #tags&#x27;).not(&#x27;:visible&#x27;)) {
+      $(&#x27;#slides._new #tags&#x27;).show();
+      disableTagsInputTooHigh(&#x27;#slides._new ._tags_container&#x27;, &#x27;#slides._new #tags&#x27;);
+    }
+  });
+  $(&#x27;body&#x27;).on(&#x27;focus&#x27;, &#x27;#slides._new ._tags_container&#x27;, function() {
+    $(this).find(&#x27;._placeholder&#x27;).hide();
+  });
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#slides._new ._tags_container&#x27;, function() {
+    $(&#x27;#slides._new #tags&#x27;).focus();
+    $(this).find(&#x27;._placeholder&#x27;).hide();
+  });
+  $(&#x27;body&#x27;).on(&#x27;keydown&#x27;, &#x27;#slides._new #tags&#x27;, function(e) {
+    if(e.which === 13 || e.which === 188) {
+      e.preventDefault();
+      addTagWithoutSuggestion(this, &#x27;#slides._new ._tags_container&#x27;, &#x27;#tags_value&#x27;);
+    } else if(e.which == 8 &amp;&amp; $(this).val() == &#x27;&#x27;) {
+      $(this).prev().find(&#x27;.remove&#x27;).trigger(&#x27;click&#x27;);
+    }
+  });
+  $(&#x27;body&#x27;).on(&#x27;blur&#x27;, &#x27;#slides._new #tags&#x27;, function(e) {
+    addTagWithoutSuggestion(this, &#x27;#slides._new ._tags_container&#x27;, &#x27;#tags_value&#x27;);
+  });
+  initTagsAutocomplete(&#x27;#slides._new&#x27;);
+}
+
+&#x2F;**
+bla bla bla
+@method tagsDocumentReadyNewMediaElement
+@for TagsDocumentReady
+**&#x2F;
+function tagsDocumentReadyNewMediaElement() {
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#form_info_new_media_element_in_editor ._tags_container .remove&#x27;, function() {
+    removeFromTagsValue($(this).parent().text(), &#x27;#form_info_new_media_element_in_editor ._tags_container #new_tags_value&#x27;);
+    $(this).parent().remove();
+    if($(&#x27;#form_info_new_media_element_in_editor #new_tags&#x27;).not(&#x27;:visible&#x27;)) {
+      $(&#x27;#form_info_new_media_element_in_editor #new_tags&#x27;).show();
+      disableTagsInputTooHigh(&#x27;#form_info_new_media_element_in_editor ._tags_container&#x27;, &#x27;#form_info_new_media_element_in_editor #new_tags&#x27;);
+    }
+  });
+  $(&#x27;body&#x27;).on(&#x27;focus&#x27;, &#x27;#form_info_new_media_element_in_editor ._tags_container&#x27;, function() {
+    $(this).find(&#x27;._placeholder&#x27;).hide();
+  });
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#form_info_new_media_element_in_editor ._tags_container&#x27;, function() {
+    $(&#x27;#form_info_new_media_element_in_editor #new_tags&#x27;).focus();
+    $(this).find(&#x27;._placeholder&#x27;).hide();
+  });
+  $(&#x27;body&#x27;).on(&#x27;keydown&#x27;, &#x27;#form_info_new_media_element_in_editor #new_tags&#x27;, function(e) {
+    if(e.which === 13 || e.which === 188) {
+      e.preventDefault();
+      addTagWithoutSuggestion(this, &#x27;#form_info_new_media_element_in_editor ._tags_container&#x27;, &#x27;#new_tags_value&#x27;);
+    } else if(e.which == 8 &amp;&amp; $(this).val() == &#x27;&#x27;) {
+      $(this).prev().find(&#x27;.remove&#x27;).trigger(&#x27;click&#x27;);
+    }
+  });
+  $(&#x27;body&#x27;).on(&#x27;blur&#x27;, &#x27;#form_info_new_media_element_in_editor #new_tags&#x27;, function(e) {
+    addTagWithoutSuggestion(this, &#x27;#form_info_new_media_element_in_editor ._tags_container&#x27;, &#x27;#new_tags_value&#x27;);
+  });
+  initTagsAutocomplete(&#x27;#form_info_new_media_element_in_editor&#x27;);
+}
+
+&#x2F;**
+bla bla bla
+@method tagsDocumentReadyOvervriteMediaElement
+@for TagsDocumentReady
+**&#x2F;
+function tagsDocumentReadyOvervriteMediaElement() {
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#form_info_update_media_element_in_editor ._tags_container .remove&#x27;, function() {
+    removeFromTagsValue($(this).parent().text(), &#x27;#form_info_update_media_element_in_editor ._tags_container #update_tags_value&#x27;);
+    $(this).parent().remove();
+    if($(&#x27;#form_info_update_media_element_in_editor #update_tags&#x27;).not(&#x27;:visible&#x27;)) {
+      $(&#x27;#form_info_update_media_element_in_editor #update_tags&#x27;).show();
+      disableTagsInputTooHigh(&#x27;#form_info_update_media_element_in_editor ._tags_container&#x27;, &#x27;#form_info_update_media_element_in_editor #update_tags&#x27;);
+    }
+  });
+  $(&#x27;body&#x27;).on(&#x27;focus&#x27;, &#x27;#form_info_update_media_element_in_editor ._tags_container&#x27;, function() {
+    $(this).find(&#x27;._placeholder&#x27;).hide();
+  });
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#form_info_update_media_element_in_editor ._tags_container&#x27;, function() {
+    $(&#x27;#form_info_update_media_element_in_editor #update_tags&#x27;).focus();
+    $(this).find(&#x27;._placeholder&#x27;).hide();
+  });
+  $(&#x27;body&#x27;).on(&#x27;keydown&#x27;, &#x27;#form_info_update_media_element_in_editor #update_tags&#x27;, function(e) {
+    if(e.which === 13 || e.which === 188) {
+      e.preventDefault();
+      addTagWithoutSuggestion(this, &#x27;#form_info_update_media_element_in_editor ._tags_container&#x27;, &#x27;#update_tags_value&#x27;);
+    } else if(e.which == 8 &amp;&amp; $(this).val() == &#x27;&#x27;) {
+      $(this).prev().find(&#x27;.remove&#x27;).trigger(&#x27;click&#x27;);
+    }
+  });
+  $(&#x27;body&#x27;).on(&#x27;blur&#x27;, &#x27;#form_info_update_media_element_in_editor #update_tags&#x27;, function(e) {
+    addTagWithoutSuggestion(this, &#x27;#form_info_update_media_element_in_editor ._tags_container&#x27;, &#x27;#update_tags_value&#x27;);
+  });
+  initTagsAutocomplete(&#x27;#form_info_update_media_element_in_editor&#x27;);
+  (function() {
+    disableTagsInputTooHigh(&#x27;#form_info_update_media_element_in_editor ._tags_container&#x27;, &#x27;#form_info_update_media_element_in_editor #update_tags&#x27;);
+  });
+}
+
+&#x2F;**
+bla bla bla
+@method tagsDocumentReadyUpdateLesson
+@for TagsDocumentReady
+**&#x2F;
+function tagsDocumentReadyUpdateLesson() {
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#slides._update ._tags_container .remove&#x27;, function() {
+    removeFromTagsValue($(this).parent().text(), &#x27;#slides._update ._tags_container #tags_value&#x27;);
+    $(this).parent().remove();
+    if($(&#x27;#slides._update #tags&#x27;).not(&#x27;:visible&#x27;)) {
+      $(&#x27;#slides._update #tags&#x27;).show();
+      disableTagsInputTooHigh(&#x27;#slides._update ._tags_container&#x27;, &#x27;#slides._update #tags&#x27;);
+    }
+  });
+  $(&#x27;body&#x27;).on(&#x27;focus&#x27;, &#x27;#slides._update ._tags_container&#x27;, function() {
+    $(this).find(&#x27;._placeholder&#x27;).hide();
+  });
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#slides._update ._tags_container&#x27;, function() {
+    $(&#x27;#slides._update #tags&#x27;).focus();
+  });
+  $(&#x27;body&#x27;).on(&#x27;keydown&#x27;, &#x27;#slides._update #tags&#x27;, function(e) {
+    if(e.which === 13 || e.which === 188) {
+      e.preventDefault();
+      addTagWithoutSuggestion(this, &#x27;#slides._update ._tags_container&#x27;, &#x27;#tags_value&#x27;);
+    } else if(e.which == 8 &amp;&amp; $(this).val() == &#x27;&#x27;) {
+      $(this).prev().find(&#x27;.remove&#x27;).trigger(&#x27;click&#x27;);
+    }
+  });
+  $(&#x27;body&#x27;).on(&#x27;blur&#x27;, &#x27;#slides._update #tags&#x27;, function(e) {
+    addTagWithoutSuggestion(this, &#x27;#slides._update ._tags_container&#x27;, &#x27;#tags_value&#x27;);
+  });
+  initTagsAutocomplete(&#x27;#slides._update&#x27;);
+  (function() {
+    disableTagsInputTooHigh(&#x27;#slides._update ._tags_container&#x27;, &#x27;#slides._update #tags&#x27;);
+  });
+}
+
+
+
+
+
+&#x2F;**
+Initialize jQueryUI _autocomplete_ for tags in search input Uses: [unbindLoader](..&#x2F;classes&#x2F;unbindLoader.html#method_unbindLoader) and [bindLoader](..&#x2F;classes&#x2F;bindLoader.html#method_bindLoader)
+@method initSearchTagsAutocomplete
+@for TagsInitializers
+@param input {String} search by tag input selector, class or id
+**&#x2F;
 function initSearchTagsAutocomplete(input) {
   var cache = {};
   $(input).autocomplete({
@@ -722,19 +706,11 @@ function initSearchTagsAutocomplete(input) {
 }
 
 &#x2F;**
-* Initialize jQueryUI _autocomplete_ for tags in lessons and elements form
-*
-* Uses: [unbindLoader](..&#x2F;classes&#x2F;unbindLoader.html#method_unbindLoader)
-* and [bindLoader](..&#x2F;classes&#x2F;bindLoader.html#method_bindLoader)
-* and [checkNoTagDuplicates](..&#x2F;classes&#x2F;checkNoTagDuplicates.html#method_checkNoTagDuplicates)
-* and [addToTagsValue](..&#x2F;classes&#x2F;addToTagsValue.html#method_addToTagsValue)
-* and [createTagSpan](..&#x2F;classes&#x2F;createTagSpan.html#method_createTagSpan)
-* and [disableTagsInputTooHigh](..&#x2F;classes&#x2F;disableTagsInputTooHigh.html#method_disableTagsInputTooHigh)
-* 
-* @method initSearchTagsAutocomplete
-* @for initSearchTagsAutocomplete
-* @param scope {String} tags container scope, class or id
-*&#x2F;
+Initialize jQueryUI _autocomplete_ for tags in lessons and elements form
+@method initTagsAutocomplete
+@for TagsInitializers
+@param scope {String} tags container scope, class or id
+**&#x2F;
 function initTagsAutocomplete(scope) {
   var input_selector = scope + &#x27; #tags&#x27;;
   if(scope == &#x27;#form_info_new_media_element_in_editor&#x27;) {
