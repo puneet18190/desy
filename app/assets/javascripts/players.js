@@ -155,9 +155,17 @@ bla bla bla
 **/
 function initializeMediaTimeUpdaterInAudioEditor(identifier) {
   media = $('#audio_component_' + identifier + ' audio');
-  media[0].addEventListener('timeupdate', function() {
-    initializeActionOfMediaTimeUpdaterInAudioEditor(this, identifier, false);
-  }, false);
+  if(media.readyState != 0) {
+    media[0].addEventListener('timeupdate', function() {
+      initializeActionOfMediaTimeUpdaterInAudioEditor(this, identifier, false);
+    }, false);
+  } else {
+    media.on('loadedmetadata', function() {
+      media[0].addEventListener('timeupdate', function() {
+        initializeActionOfMediaTimeUpdaterInAudioEditor(this, identifier, false);
+      }, false);
+    });
+  }
 }
 
 /**
@@ -463,9 +471,18 @@ bla bla bla
 @param reference_id {String}
 **/
 function initializeMediaTimeUpdater(media, reference_id) {
-  media.addEventListener('timeupdate', function() {
-    initializeActionOfMediaTimeUpdater(this, reference_id);
-  }, false);
+  media = $(media);
+  if(media.readyState != 0) {
+    media[0].addEventListener('timeupdate', function() {
+      initializeActionOfMediaTimeUpdater(this, reference_id);
+    }, false);
+  } else {
+    media.on('loadedmetadata', function() {
+      media[0].addEventListener('timeupdate', function() {
+        initializeActionOfMediaTimeUpdater(this, reference_id);
+      }, false);
+    });
+  }
 }
 
 /**
@@ -579,9 +596,18 @@ bla bla bla
 @for PlayersVideoEditor
 **/
 function initializeMediaTimeUpdaterInVideoEditor(media, identifier) {
-  media.addEventListener('timeupdate', function() {
-    initializeActionOfMediaTimeUpdaterInVideoEditor(this, identifier, false);
-  }, false);
+  media = $(media);
+  if(media.readyState != 0) {
+    media[0].addEventListener('timeupdate', function() {
+      initializeActionOfMediaTimeUpdaterInVideoEditor(this, identifier, false);
+    }, false);
+  } else {
+    media.on('loadedmetadata', function() {
+      media[0].addEventListener('timeupdate', function() {
+        initializeActionOfMediaTimeUpdaterInVideoEditor(this, identifier, false);
+      }, false);
+    });
+  }
 }
 
 /**
