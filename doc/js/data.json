@@ -133,6 +133,15 @@
             },
             "namespaces": {}
         },
+        "app/assets/javascripts/jquery_patches.js": {
+            "name": "app/assets/javascripts/jquery_patches.js",
+            "modules": {},
+            "classes": {},
+            "fors": {
+                "JQueryPatches": 1
+            },
+            "namespaces": {}
+        },
         "app/assets/javascripts/lesson_editor.js": {
             "name": "app/assets/javascripts/lesson_editor.js",
             "modules": {
@@ -473,13 +482,15 @@
                 "ImageEditorDocumentReady": 1,
                 "ImageEditorGraphics": 1,
                 "ImageEditorImageScale": 1,
-                "ImageEditorTexts": 1
+                "ImageEditorTexts": 1,
+                "JQueryPatches": 1
             },
             "fors": {
                 "ImageEditorDocumentReady": 1,
                 "ImageEditorGraphics": 1,
                 "ImageEditorImageScale": 1,
-                "ImageEditorTexts": 1
+                "ImageEditorTexts": 1,
+                "JQueryPatches": 1
             },
             "namespaces": {},
             "tag": "module",
@@ -1133,6 +1144,17 @@
         "ImageEditorTexts": {
             "name": "ImageEditorTexts",
             "shortname": "ImageEditorTexts",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "image-editor",
+            "namespace": ""
+        },
+        "JQueryPatches": {
+            "name": "JQueryPatches",
+            "shortname": "JQueryPatches",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -3193,7 +3215,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 70,
+            "line": 68,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "defaultValueJavaScriptAnimationsDocumentReady",
@@ -3202,7 +3224,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 87,
+            "line": 85,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "expandedItemsDocumentReady",
@@ -3211,7 +3233,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 150,
+            "line": 148,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "filtersDocumentReady",
@@ -3220,7 +3242,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 173,
+            "line": 171,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "formsDocumentReady",
@@ -3229,7 +3251,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 242,
+            "line": 240,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "generalWindowResizeDocumentReady",
@@ -3238,7 +3260,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 263,
+            "line": 261,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "javaScriptAnimationsDocumentReady",
@@ -3247,7 +3269,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 293,
+            "line": 291,
             "description": "ba bla bla bla",
             "itemtype": "method",
             "name": "locationsDocumentReady",
@@ -3256,7 +3278,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 320,
+            "line": 318,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "getMediaElementsFormat",
@@ -3265,7 +3287,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 333,
+            "line": 331,
             "description": "Shows error icon when somethings goes wrong",
             "itemtype": "method",
             "name": "redError",
@@ -3274,7 +3296,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 344,
+            "line": 342,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "secondsToDateString",
@@ -3283,7 +3305,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 375,
+            "line": 373,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "getCompleteMediaElementsUrlWithoutFilter",
@@ -3292,7 +3314,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 386,
+            "line": 384,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "getCompleteMediaElementsUrlWithoutForPage",
@@ -3301,7 +3323,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 397,
+            "line": 395,
             "description": "Remove a param from url",
             "itemtype": "method",
             "name": "removeURLParameter",
@@ -3326,7 +3348,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 423,
+            "line": 421,
             "description": "Add new parameters to an url",
             "itemtype": "method",
             "name": "updateURLParameter",
@@ -3528,6 +3550,15 @@
                 "type": "Object"
             },
             "class": "ImageEditorTexts",
+            "module": "image-editor"
+        },
+        {
+            "file": "app/assets/javascripts/jquery_patches.js",
+            "line": 1,
+            "description": "bla bla bla",
+            "itemtype": "method",
+            "name": "IPadDetection",
+            "class": "JQueryPatches",
             "module": "image-editor"
         },
         {
