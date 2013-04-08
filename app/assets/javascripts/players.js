@@ -189,7 +189,13 @@ bla bla bla
 @for PlayersCommon
 **/
 function setCurrentTimeToMedia(media, seek) {
-  media[0].currentTime = validSeek(media, seek);
+  if(media[0].readyState != 0) {
+    media[0].currentTime = validSeek(media, seek);
+  } else {
+    media.on('loadedmetadata', function() {
+      media[0].currentTime = validSeek(media, seek);
+    });
+  }
 }
 
 /**
