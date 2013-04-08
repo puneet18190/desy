@@ -63,7 +63,7 @@ module Media
     sox: {
       cmd: {
         bin: 'sox',
-        global_options: %w(-V6 --buffer 131072 --multi-threaded)
+        global_options: %w( -V6 --buffer 131072 --multi-threaded )
       }
     },
     imagemagick: {

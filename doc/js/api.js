@@ -38,6 +38,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "ImageEditorGraphics",
         "ImageEditorImageScale",
         "ImageEditorTexts",
+        "JQueryPatches",
         "LessonEditorCurrentSlide",
         "LessonEditorDocumentReady",
         "LessonEditorForms",

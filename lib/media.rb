@@ -12,7 +12,6 @@ module Media
   # It defines CONFIG
   require 'media/config'
 
-
   RAILS_PUBLIC_FOLDER = Rails.root.join 'public'
   TMP_PREFIX          = CONFIG.tmp_prefix
 
