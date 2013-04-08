@@ -425,6 +425,36 @@ function playersDocumentReadyVideoEditor() {
 
 /**
 bla bla bla
+@method mediaEventsLogger
+@for PlayersGeneral
+**/
+function mediaEventsLogger(media) {
+  media.on('loadstart', function() {console.log('loadstart');});
+  media.on('progress', function() {console.log('progress');});
+  media.on('suspend', function() {console.log('suspend');});
+  media.on('abort', function() {console.log('abort');});
+  media.on('error', function() {console.log('error');});
+  media.on('emptied', function() {console.log('emptied');});
+  media.on('stalled', function() {console.log('stalled');});
+  media.on('loadedmetadata', function() {console.log('loadedmetadata');});
+  media.on('loadeddata', function() {console.log('loadeddata');});
+  media.on('canplay', function() {console.log('canplay');});
+  media.on('canplaythrough', function() {console.log('canplaythrough');});
+  media.on('playing', function() {console.log('playing');});
+  media.on('waiting', function() {console.log('waiting');});
+  media.on('seeking', function() {console.log('seeking');});
+  media.on('seeked', function() {console.log('seeked');});
+  media.on('ended', function() {console.log('ended');});
+  media.on('durationchange', function() {console.log('durationchange');});
+  media.on('timeupdate', function() {console.log('timeupdate');});
+  media.on('play', function() {console.log('play');});
+  media.on('pause', function() {console.log('pause');});
+  media.on('ratechange', function() {console.log('ratechange');});
+  media.on('volumechange', function() {console.log('volumechange');});
+}
+
+/**
+bla bla bla
 @method initializeActionOfMediaTimeUpdater
 @for PlayersGeneral
 **/

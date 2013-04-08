@@ -1128,13 +1128,7 @@ function startAudioEditorPreview(component) {
     showLoadingMediaErrorPopup(audio[0].error.code, &#x27;audio&#x27;);
     $(&#x27;#stop_audio_editor_preview&#x27;).click();
   } else {
-    if(audio.readyState != 0) {
-      audio[0].play();
-    } else {
-      audio.on(&#x27;loadedmetadata&#x27;, function() {
-        audio[0].play();
-      });
-    }
+    audio[0].play();
   }
 }
 

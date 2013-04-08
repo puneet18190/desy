@@ -1611,13 +1611,7 @@ function playVideoEditorComponent(component, with_scroll) {
       showLoadingMediaErrorPopup(video[0].error.code, &#x27;video&#x27;);
       $(&#x27;#video_editor_global_preview_pause&#x27;).click();
     } else {
-      if(video.readyState != 0) {
-        video[0].play();
-      } else {
-        video.on(&#x27;loadedmetadata&#x27;, function() {
-          video[0].play();
-        });
-      }
+      video[0].play();
     }
   } else {
     automaticIncreaseVideoEditorPreviewTimer(component.data(&#x27;current-preview-time&#x27;) + 1, component.data(&#x27;duration&#x27;), function() {
@@ -1682,13 +1676,7 @@ function startVideoEditorGlobalPreview() {
       showLoadingMediaErrorPopup(audio_track[0].error.code, &#x27;audio&#x27;);
     } else {
       setCurrentTimeToMedia(audio_track, actual_audio_track_time);
-      if(audio_track.readyState != 0) {
-        audio_track[0].play();
-      } else {
-        audio_track.on(&#x27;loadedmetadata&#x27;, function() {
-          audio_track[0].play();
-        });
-      }
+      audio_track[0].play();
     }
   }
   if(current_component.data(&#x27;position&#x27;) == getHowManyComponentsHiddenToLeftTimelineHorizontalScrollPane(&#x27;media_elements_list_in_video_editor&#x27;, 186) + 1) {

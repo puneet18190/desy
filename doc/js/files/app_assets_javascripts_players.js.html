@@ -582,13 +582,7 @@ function playersDocumentReadyAudioEditor() {
       if(audio[0].currentTime &lt; single_slider.slider(&#x27;value&#x27;)) {
         setCurrentTimeToMedia(audio, single_slider.slider(&#x27;value&#x27;));
       }
-      if(audio.readyState != 0) {
-        audio[0].play();
-      } else {
-        audio.on(&#x27;loadedmetadata&#x27;, function() {
-          audio[0].play();
-        });
-      }
+      audio[0].play();
     }
   });
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._media_player_pause_in_audio_editor_preview&#x27;, function() {
@@ -643,13 +637,7 @@ function playersDocumentReadyGeneral() {
       $(&#x27;#&#x27; + container_id + &#x27; ._media_player_slider_disabler&#x27;).show();
       $(&#x27;#&#x27; + container_id + &#x27; ._media_player_pause&#x27;).show();
       $(this).hide();
-      if(media[0].readyState != 0) {
-        media[0].play();
-      } else {
-        media.on(&#x27;loadedmetadata&#x27;, function() {
-          media[0].play();
-        });
-      }
+      media[0].play();
     }
   });
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._media_player_pause&#x27;, function() {
@@ -684,13 +672,7 @@ function playersDocumentReadyVideoEditor() {
       $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter ._media_player_slider_disabler&#x27;).show();
       $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter ._media_player_pause_in_video_editor_preview&#x27;).show();
       $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter .ui-slider-handle&#x27;).removeClass(&#x27;selected&#x27;);
-      if(video.readyState != 0) {
-        video[0].play();
-      } else {
-        video.on(&#x27;loadedmetadata&#x27;, function() {
-          video[0].play();
-        });
-      }
+      video[0].play();
     }
     var actual_audio_track_time = calculateVideoComponentStartSecondInVideoEditor(identifier);
     if(videoEditorWithAudioTrack() &amp;&amp; actual_audio_track_time &lt; $(&#x27;#full_audio_track_placeholder_in_video_editor&#x27;).data(&#x27;duration&#x27;)) {
@@ -699,13 +681,7 @@ function playersDocumentReadyVideoEditor() {
         showLoadingMediaErrorPopup(audio_track[0].error.code, &#x27;audio&#x27;);
       } else {
         setCurrentTimeToMedia(audio_track, actual_audio_track_time);
-        if(audio_track.readyState != 0) {
-          audio_track[0].play();
-        } else {
-          audio_track.on(&#x27;loadedmetadata&#x27;, function() {
-            audio_track[0].play();
-          });
-        }
+        audio_track[0].play();
       }
     }
   });
@@ -748,6 +724,36 @@ function playersDocumentReadyVideoEditor() {
 
 
 
+
+&#x2F;**
+bla bla bla
+@method mediaEventsLogger
+@for PlayersGeneral
+**&#x2F;
+function mediaEventsLogger(media) {
+  media.on(&#x27;loadstart&#x27;, function() {console.log(&#x27;loadstart&#x27;);});
+  media.on(&#x27;progress&#x27;, function() {console.log(&#x27;progress&#x27;);});
+  media.on(&#x27;suspend&#x27;, function() {console.log(&#x27;suspend&#x27;);});
+  media.on(&#x27;abort&#x27;, function() {console.log(&#x27;abort&#x27;);});
+  media.on(&#x27;error&#x27;, function() {console.log(&#x27;error&#x27;);});
+  media.on(&#x27;emptied&#x27;, function() {console.log(&#x27;emptied&#x27;);});
+  media.on(&#x27;stalled&#x27;, function() {console.log(&#x27;stalled&#x27;);});
+  media.on(&#x27;loadedmetadata&#x27;, function() {console.log(&#x27;loadedmetadata&#x27;);});
+  media.on(&#x27;loadeddata&#x27;, function() {console.log(&#x27;loadeddata&#x27;);});
+  media.on(&#x27;canplay&#x27;, function() {console.log(&#x27;canplay&#x27;);});
+  media.on(&#x27;canplaythrough&#x27;, function() {console.log(&#x27;canplaythrough&#x27;);});
+  media.on(&#x27;playing&#x27;, function() {console.log(&#x27;playing&#x27;);});
+  media.on(&#x27;waiting&#x27;, function() {console.log(&#x27;waiting&#x27;);});
+  media.on(&#x27;seeking&#x27;, function() {console.log(&#x27;seeking&#x27;);});
+  media.on(&#x27;seeked&#x27;, function() {console.log(&#x27;seeked&#x27;);});
+  media.on(&#x27;ended&#x27;, function() {console.log(&#x27;ended&#x27;);});
+  media.on(&#x27;durationchange&#x27;, function() {console.log(&#x27;durationchange&#x27;);});
+  media.on(&#x27;timeupdate&#x27;, function() {console.log(&#x27;timeupdate&#x27;);});
+  media.on(&#x27;play&#x27;, function() {console.log(&#x27;play&#x27;);});
+  media.on(&#x27;pause&#x27;, function() {console.log(&#x27;pause&#x27;);});
+  media.on(&#x27;ratechange&#x27;, function() {console.log(&#x27;ratechange&#x27;);});
+  media.on(&#x27;volumechange&#x27;, function() {console.log(&#x27;volumechange&#x27;);});
+}
 
 &#x2F;**
 bla bla bla
