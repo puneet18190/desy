@@ -432,6 +432,13 @@ function stopMediaInLessonViewer() {
   var current_slide_id = $(&#x27;._lesson_viewer_current_slide&#x27;).attr(&#x27;id&#x27;);
   stopMedia(&#x27;#&#x27; + current_slide_id + &#x27; audio&#x27;);
   stopMedia(&#x27;#&#x27; + current_slide_id + &#x27; video&#x27;);
+  var media_audio = $(&#x27;#&#x27; + current_slide_id + &#x27; audio&#x27;);
+  var media_video = $(&#x27;#&#x27; + current_slide_id + &#x27; video&#x27;);
+  if(media_audio.length &gt; 0) {
+    setCurrentTimeToMedia(media_audio, 0);
+  } else if(media_video.length &gt; 0){
+    setCurrentTimeToMedia(media_video, 0);
+  }
 }
 
 
@@ -637,25 +644,33 @@ function slideToInLessonViewer(to) {
   to.addClass(&#x27;_lesson_viewer_current_slide&#x27;);
   from.hide(&#x27;fade&#x27;, {}, 500, function() {
     to.show();
-    if(!to.data(&#x27;loaded&#x27;)) {
+    var to_prev = to.prev();
+    if(to_prev.length == 0) {
+      to_prev = $(&#x27;._slide_in_lesson_viewer&#x27;).last();
+    }
+    var to_next = to.next();
+    if(to_next.length == 0) {
+      to_next = $(&#x27;._slide_in_lesson_viewer&#x27;).first();
+    }
+    var loading_url = &#x27;&#x2F;lessons&#x2F;&#x27; + to.data(&#x27;lesson-id&#x27;) + &#x27;&#x2F;view&#x2F;slides&#x2F;&#x27; + to.data(&#x27;slide-id&#x27;) + &#x27;&#x2F;load?token=&#x27; + to.data(&#x27;lesson-token&#x27;);
+    if($(&#x27;._lesson_title_in_playlist&#x27;).length &gt; 0) {
+      loading_url += &#x27;&amp;with_playlist=true&#x27;;
+    }
+    if(!to_prev.data(&#x27;loaded&#x27;) || !to.data(&#x27;loaded&#x27;) || !to_next.data(&#x27;loaded&#x27;)) {
       $.ajax({
         type: &#x27;get&#x27;,
         beforeSend: unbindLoader(),
-        url: &#x27;&#x2F;lessons&#x2F;&#x27; + to.data(&#x27;lesson-id&#x27;) + &#x27;&#x2F;view&#x2F;slides&#x2F;&#x27; + to.data(&#x27;slide-id&#x27;) + &#x27;&#x2F;load?token=&#x27; + to.data(&#x27;lesson-token&#x27;),
+        url: loading_url,
         success: function() {
           $(&#x27;#left_scroll, #right_scroll&#x27;).removeClass(&#x27;disabled&#x27;);
-          var media = to.find(&#x27;._instance_of_player&#x27;);
-          if(media.length &gt; 0) {
-            media.find(&#x27;._media_player_play&#x27;).click();
-          }
         }
       }).always(bindLoader);
     } else {
       $(&#x27;#left_scroll, #right_scroll&#x27;).removeClass(&#x27;disabled&#x27;);
-      var media = to.find(&#x27;._instance_of_player&#x27;);
-      if(media.length &gt; 0) {
-        media.find(&#x27;._media_player_play&#x27;).click();
-      }
+    }
+    var media = to.find(&#x27;._instance_of_player&#x27;);
+    if(media.length &gt; 0) {
+      media.find(&#x27;._media_player_play&#x27;).click();
     }
   });
 }

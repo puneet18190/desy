@@ -2019,7 +2019,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 514,
+            "line": 517,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "audioEditorDocumentReadyPreview",
@@ -2028,7 +2028,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 548,
+            "line": 551,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "calculateNewPositionGalleriesInAudioEditor",
@@ -2037,7 +2037,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 557,
+            "line": 560,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "closeGalleryInAudioEditor",
@@ -2046,7 +2046,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 569,
+            "line": 572,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "showGalleryInAudioEditor",
@@ -2055,7 +2055,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 585,
+            "line": 588,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "getAudioComponentIdentifier",
@@ -2064,7 +2064,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 599,
+            "line": 602,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "disableCommitAndPreviewInAudioEditor",
@@ -2073,7 +2073,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 611,
+            "line": 614,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "enableCommitAndPreviewInAudioEditor",
@@ -2082,7 +2082,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 623,
+            "line": 626,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "hideCommitAudioEditorForm",
@@ -2091,7 +2091,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 634,
+            "line": 637,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "setBackAllZIndexesInAudioEditor",
@@ -2100,7 +2100,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 648,
+            "line": 651,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "setToZeroAllZIndexesInAudioEditor",
@@ -2109,7 +2109,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 662,
+            "line": 665,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "showCommitAudioEditorForm",
@@ -2118,7 +2118,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 677,
+            "line": 680,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "deselectAllAudioEditorComponentsInPreviewMode",
@@ -2127,7 +2127,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 693,
+            "line": 696,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "enterAudioEditorPreviewMode",
@@ -2136,7 +2136,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 734,
+            "line": 737,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "getAudioEditorGlobalPreviewTime",
@@ -2145,7 +2145,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 758,
+            "line": 761,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "increaseAudioEditorPreviewTimer",
@@ -2154,7 +2154,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 770,
+            "line": 773,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "leaveAudioEditorPreviewMode",
@@ -2163,7 +2163,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 802,
+            "line": 805,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "selectAudioEditorComponentInPreviewMode",
@@ -2172,7 +2172,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 816,
+            "line": 819,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "startAudioEditorPreview",
@@ -2181,7 +2181,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 833,
+            "line": 836,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "switchAudioComponentsToPreviewMode",
@@ -2190,7 +2190,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 847,
+            "line": 850,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "switchBackAudioComponentsFromPreviewMode",
@@ -2199,7 +2199,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 865,
+            "line": 868,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "followPreviewComponentsWithVerticalScrollInAudioEditor",
@@ -2208,7 +2208,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 876,
+            "line": 879,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "scrollToFirstSelectedAudioEditorComponent",
@@ -3193,7 +3193,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 73,
+            "line": 70,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "defaultValueJavaScriptAnimationsDocumentReady",
@@ -3202,7 +3202,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 90,
+            "line": 87,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "expandedItemsDocumentReady",
@@ -3211,7 +3211,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 153,
+            "line": 150,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "filtersDocumentReady",
@@ -3220,7 +3220,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 176,
+            "line": 173,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "formsDocumentReady",
@@ -3229,7 +3229,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 245,
+            "line": 242,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "generalWindowResizeDocumentReady",
@@ -3238,7 +3238,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 266,
+            "line": 263,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "javaScriptAnimationsDocumentReady",
@@ -3247,7 +3247,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 296,
+            "line": 293,
             "description": "ba bla bla bla",
             "itemtype": "method",
             "name": "locationsDocumentReady",
@@ -3256,7 +3256,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 323,
+            "line": 320,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "getMediaElementsFormat",
@@ -3265,7 +3265,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 336,
+            "line": 333,
             "description": "Shows error icon when somethings goes wrong",
             "itemtype": "method",
             "name": "redError",
@@ -3274,7 +3274,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 347,
+            "line": 344,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "secondsToDateString",
@@ -3283,7 +3283,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 378,
+            "line": 375,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "getCompleteMediaElementsUrlWithoutFilter",
@@ -3292,7 +3292,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 389,
+            "line": 386,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "getCompleteMediaElementsUrlWithoutForPage",
@@ -3301,7 +3301,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 400,
+            "line": 397,
             "description": "Remove a param from url",
             "itemtype": "method",
             "name": "removeURLParameter",
@@ -3326,7 +3326,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 426,
+            "line": 423,
             "description": "Add new parameters to an url",
             "itemtype": "method",
             "name": "updateURLParameter",
@@ -4049,7 +4049,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 139,
+            "line": 146,
             "description": "Hide slides navigation arrows in lesson viewer",
             "itemtype": "method",
             "name": "hideArrowsInLessonViewer",
@@ -4058,7 +4058,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 148,
+            "line": 155,
             "description": "Show slides navigation arrows in lesson viewer",
             "itemtype": "method",
             "name": "showArrowsInLessonViewer",
@@ -4067,7 +4067,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 161,
+            "line": 168,
             "description": "Open playlist menu, show lessons cover list and change playlist toggle label Uses: [showArrowsInLessonViewer](../classes/showArrowsInLessonViewer.html#method_showArrowsInLessonViewer)",
             "itemtype": "method",
             "name": "closePlaylistMenuInLessonViewer",
@@ -4083,7 +4083,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 176,
+            "line": 183,
             "description": "Open playlist menu, show lessons conver list and change playlist toggle label Uses: [hideArrowsInLessonViewer](../classes/hideArrowsInLessonViewer.html#method_hideArrowsInLessonViewer)",
             "itemtype": "method",
             "name": "openPlaylistMenuInLessonViewer",
@@ -4092,7 +4092,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 188,
+            "line": 195,
             "description": "Sets selected lesson from playlist menu",
             "itemtype": "method",
             "name": "selectComponentInLessonViewerPlaylistMenu",
@@ -4113,7 +4113,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 278,
+            "line": 285,
             "description": "Open playlist menu, show lessons conver list and change playlist toggle label Uses: [selectComponentInLessonViewerPlaylistMenu](../classes/selectComponentInLessonViewerPlaylistMenu.html#method_selectComponentInLessonViewerPlaylistMenu)",
             "itemtype": "method",
             "name": "switchLessonInPlaylistMenuLessonViewer",
@@ -4134,7 +4134,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 297,
+            "line": 304,
             "description": "Go to next slide in lesson viewer, if last slide it goes to first one. Uses: [slideToInLessonViewerWithLessonSwitch](../classes/slideToInLessonViewerWithLessonSwitch.html#method_slideToInLessonViewerWithLessonSwitch)",
             "itemtype": "method",
             "name": "goToNextSlideInLessonViewer",
@@ -4143,7 +4143,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 311,
+            "line": 318,
             "description": "Go to previous slide in lesson viewer, if first slide it goes to last one. Uses: [slideToInLessonViewerWithLessonSwitch](../classes/slideToInLessonViewerWithLessonSwitch.html#method_slideToInLessonViewerWithLessonSwitch)",
             "itemtype": "method",
             "name": "goToPrevSlideInLessonViewer",
@@ -4152,7 +4152,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 325,
+            "line": 332,
             "description": "Slide to given slide Uses: [stopMediaInLessonViewer](../classes/stopMediaInLessonViewer.html#method_stopMediaInLessonViewer) and [getLessonViewerCurrentSlide](../classes/getLessonViewerCurrentSlide.html#method_getLessonViewerCurrentSlide) and [unbindLoader](../classes/unbindLoader.html#method_unbindLoader) and [bindLoader](../classes/bindLoader.html#method_bindLoader)",
             "itemtype": "method",
             "name": "slideToInLessonViewer",
@@ -4168,7 +4168,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 361,
+            "line": 376,
             "description": "Open playlist menu, show lessons conver list and change playlist toggle label Uses: [slideToInLessonViewer](../classes/slideToInLessonViewer.html#method_slideToInLessonViewer) and [switchLessonInPlaylistMenuLessonViewer](../classes/switchLessonInPlaylistMenuLessonViewer.html#method_switchLessonInPlaylistMenuLessonViewer)",
             "itemtype": "method",
             "name": "slideToInLessonViewerWithLessonSwitch",

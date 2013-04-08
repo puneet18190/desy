@@ -741,6 +741,9 @@ bla bla bla
 @for AudioEditorDocumentReady
 **&#x2F;
 function audioEditorDocumentReadyGeneral() {
+  if($.browser === &#x27;msie&#x27;) {
+    $(&#x27;._audio_editor_component ._double_slider .ui-slider-range&#x27;).css(&#x27;opacity&#x27;, 0.4);
+  }
   $(&#x27;body&#x27;).on(&#x27;mouseover&#x27;, &#x27;._audio_editor_component ._box_ghost&#x27;, function() {
     $(this).parent().find(&#x27;._sort_handle&#x27;).addClass(&#x27;current&#x27;);
   });
