@@ -204,4 +204,16 @@ class SlideTest < ActiveSupport::TestCase
     assert_obj_saved s
   end
   
+  test 'adhiacent_slides' do
+    vcl1 = VirtualClassroomLesson.first
+    vcl2 = VirtualClassroomLesson.new
+    vcl2.user_id = 1
+    vcl2.lesson_id = 1
+    assert_obj_saved vcl2
+    l1 = Lesson.find(1)
+    l2 = Lesson.find(2)
+    assert_equal l1.id, vcl1.lesson_id
+    assert_equal l2.id, vcl2.lesson_id
+  end
+  
 end
