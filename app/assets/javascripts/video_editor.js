@@ -1370,7 +1370,7 @@ function startVideoEditorGlobalPreview() {
   var actual_audio_track_time = calculateVideoComponentStartSecondInVideoEditor(current_identifier) + current_component.data('current-preview-time');
   if(videoEditorWithAudioTrack() && actual_audio_track_time < $('#full_audio_track_placeholder_in_video_editor').data('duration')) {
     var audio_track = $('#video_editor_preview_container audio');
-    if(media[0].error) {
+    if(audio_track[0].error) {
       showLoadingMediaErrorPopup(audio_track[0].error.code, 'audio');
     } else {
       setCurrentTimeToMedia(audio_track, actual_audio_track_time);
