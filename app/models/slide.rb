@@ -403,13 +403,17 @@ class Slide < ActiveRecord::Base
       return nil if vcl.nil?
       new_position = is_previous ? (vcl.position - 1) : (vcl.position + 1)
       new_vcl = VirtualClassroomLesson.where(:user_id => an_user_id, :position => new_position).first
-      new_vcl = is_previous ? VirtualClassroomLesson.order('position ASC').where(:user_id => an_user_id).last : VirtualClassroomLesson.order('position ASC').where(:user_id => an_user_id).first if new_vcl.nil?
-      return is_previous ? new_vcl.lesson.slides.order('position ASC').last : new_vcl.lesson.slides.order('position ASC').first
+      new_vcl = get_last_or_first(VirtualClassroomLesson.order('position ASC').where('user_id = ? AND position IS NOT NULL', an_user_id), is_previous)
+      return get_last_or_first(new_vcl.lesson.slides.order('position ASC'), is_previous)
     end
-    return is_previous ? self.lesson.slides.order('position ASC').last : self.lesson.slides.order('position ASC').first
+    get_last_or_first(self.lesson.slides.order('position ASC'), is_previous)
   end
   
   private
+  
+  def get_last_or_first(query, last)
+    last ? query.last : query.first
+  end
   
   # Validates that the lesson is not exceeding the maximum number of slides
   def validate_max_number_slides # :doc:
