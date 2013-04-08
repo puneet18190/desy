@@ -439,6 +439,9 @@ bla bla bla
 @for AudioEditorDocumentReady
 **/
 function audioEditorDocumentReadyGeneral() {
+  if($.browser === 'msie') {
+    $('._audio_editor_component ._double_slider .ui-slider-range').css('opacity', 0.4);
+  }
   $('body').on('mouseover', '._audio_editor_component ._box_ghost', function() {
     $(this).parent().find('._sort_handle').addClass('current');
   });
