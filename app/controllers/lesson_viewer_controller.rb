@@ -11,7 +11,7 @@ class LessonViewerController < ApplicationController
   
   skip_before_filter :authenticate, :only => [:index, :load_slide]
   before_filter :skip_authenticate_user_if_token, :only => :index
-  before_filter :skip_authenticate_user_if_token_with_slide, :only => :load_slide
+  before_filter :skip_authenticate_user_if_token_with_three_slides, :only => :load_slide
   
   # === Description
   #
@@ -70,7 +70,7 @@ class LessonViewerController < ApplicationController
   #
   # === Specific filters
   #
-  # * LessonViewerController#skip_authenticate_user_if_token_with_slide
+  # * LessonViewerController#skip_authenticate_user_if_token_with_three_slides
   #
   # === Skipped filters
   #
@@ -82,11 +82,16 @@ class LessonViewerController < ApplicationController
   private
   
   # It uses LessonViewerController#skip_authenticate_user_if_token, and moreover checks that the slide belongs to the lesson
-  def skip_authenticate_user_if_token_with_slide # :doc:
+  def skip_authenticate_user_if_token_with_three_slides # :doc:
     skip_authenticate_user_if_token
     @slide_id = correct_integer?(params[:slide_id]) ? params[:slide_id].to_i : 0
     @slide = Slide.find_by_id @slide_id
     update_ok(@slide && @lesson && @lesson.id == @slide.lesson_id)
+    if @ok
+      @prev_slide = @slide.get_adhiacent_slide_in_lesson_viewer(current_user.id, params[:with_playlist].present?, true)
+      @next_slide = @slide.get_adhiacent_slide_in_lesson_viewer(current_user.id, params[:with_playlist].present?, false)
+      update_ok(!@prev_slide.nil? && !@next_slide.nil?)
+    end
   end
   
   # If the user has the token, it's not necessary to check that the lesson is public

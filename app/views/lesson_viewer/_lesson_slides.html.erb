@@ -11,7 +11,7 @@
         <%
           slide.text = '' if slide.text.blank?
           class_cover = slide.cover? ? "_cover_bookmark_for_lesson_viewer_#{slide.lesson_id}".html_safe : ''
-          loaded = (overall_counter == 1)
+          loaded = ([1, 2, slides.length].include? overall_counter)
         %>
         <li id="slide_in_lesson_viewer_<%= slide.id %>" class="_slide_in_lesson_viewer cover slide <%= class_current %> <%= class_cover %>" data-overall-counter="<%= overall_counter %>" data-lesson-id="<%= slide.lesson_id %>" data-loaded="<%= loaded %>" data-lesson-token="<%= slide.lesson.token %>" data-lesson-updated-at="<%= slide.lesson.updated_at.to_i %>" data-slide-id="<%= slide.id %>" <%= style_current %>>
           <% if loaded %>

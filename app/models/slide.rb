@@ -395,6 +395,20 @@ class Slide < ActiveRecord::Base
     resp
   end
   
+  def get_adhiacent_slide_in_lesson_viewer(an_user_id, with_playlist, is_previous)
+    resp = is_previous ? self.previous : self.following
+    return resp if !resp.nil?
+    if with_playlist
+      vcl = VirtualClassroomLesson.where(:user_id => an_user_id, :lesson_id => self.lesson_id).first
+      return nil if vcl.nil?
+      new_position = is_previous ? (vcl.position - 1) : (vcl.position + 1)
+      new_vcl = VirtualClassroomLesson.where(:user_id => an_user_id, :position => new_position).first
+      new_vcl = is_previous ? VirtualClassroomLesson.order(:position).where(:user_id => an_user_id).last : VirtualClassroomLesson.order(:position).where(:user_id => an_user_id).first if new_vcl.nil?
+      return is_previous ? new_vcl.lesson.slides.order(:position).last : new_vcl.lesson.slides.order(:position).first
+    end
+    return is_previous ? self.lesson.slides.order(:position).last : self.lesson.slides.order(:position).first
+  end
+  
   private
   
   # Validates that the lesson is not exceeding the maximum number of slides

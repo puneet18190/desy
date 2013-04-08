@@ -335,17 +335,25 @@ function slideToInLessonViewer(to) {
   to.addClass('_lesson_viewer_current_slide');
   from.hide('fade', {}, 500, function() {
     to.show();
-    if(!to.data('loaded')) {
+    var to_prev = to.prev();
+    if(to_prev.length == 0) {
+      to_prev = $('._slide_in_lesson_viewer').last();
+    }
+    var to_next = to.next();
+    if(to_next.length == 0) {
+      to_next = $('._slide_in_lesson_viewer').first();
+    }
+    var loading_url = '/lessons/' + to.data('lesson-id') + '/view/slides/' + to.data('slide-id') + '/load?token=' + to.data('lesson-token');
+    if($('._lesson_title_in_playlist').length > 0) {
+      loading_url += '&with_playlist=true';
+    }
+    if(!to_prev.data('loaded') || !to.data('loaded') || !to_next.data('loaded')) {
       $.ajax({
         type: 'get',
         beforeSend: unbindLoader(),
-        url: '/lessons/' + to.data('lesson-id') + '/view/slides/' + to.data('slide-id') + '/load?token=' + to.data('lesson-token'),
+        url: loading_url,
         success: function() {
           $('#left_scroll, #right_scroll').removeClass('disabled');
-          var media = to.find('._instance_of_player');
-          if(media.length > 0) {
-            media.find('._media_player_play').click();
-          }
         }
       }).always(bindLoader);
     } else {
