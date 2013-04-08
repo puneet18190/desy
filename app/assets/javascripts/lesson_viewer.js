@@ -130,6 +130,13 @@ function stopMediaInLessonViewer() {
   var current_slide_id = $('._lesson_viewer_current_slide').attr('id');
   stopMedia('#' + current_slide_id + ' audio');
   stopMedia('#' + current_slide_id + ' video');
+  var media_audio = $('#' + current_slide_id + ' audio');
+  var media_video = $('#' + current_slide_id + ' video');
+  if(media_audio.length > 0) {
+    setCurrentTimeToMedia(media_audio, 0);
+  } else if(media_video.length > 0){
+    setCurrentTimeToMedia(media_video, 0);
+  }
 }
 
 
@@ -358,10 +365,10 @@ function slideToInLessonViewer(to) {
       }).always(bindLoader);
     } else {
       $('#left_scroll, #right_scroll').removeClass('disabled');
-      var media = to.find('._instance_of_player');
-      if(media.length > 0) {
-        media.find('._media_player_play').click();
-      }
+    }
+    var media = to.find('._instance_of_player');
+    if(media.length > 0) {
+      media.find('._media_player_play').click();
     }
   });
 }
