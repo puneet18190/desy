@@ -205,15 +205,19 @@ class SlideTest < ActiveSupport::TestCase
   end
   
   test 'adhiacent_slides' do
-    vcl1 = VirtualClassroomLesson.first
-    vcl2 = VirtualClassroomLesson.new
-    vcl2.user_id = 1
-    vcl2.lesson_id = 1
-    assert_obj_saved vcl2
+    vcl2 = VirtualClassroomLesson.first
+    vcl1 = VirtualClassroomLesson.new
+    vcl1.user_id = 1
+    vcl1.lesson_id = 1
+    assert_obj_saved vcl1
     l1 = Lesson.find(1)
+    assert_equal 1, l1.slides.count
     l2 = Lesson.find(2)
+    assert_equal 3, l2.slides.count
     assert_equal l1.id, vcl1.lesson_id
     assert_equal l2.id, vcl2.lesson_id
+    s = l2.cover.following
+    assert_equal 2, s.position
   end
   
 end
