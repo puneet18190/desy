@@ -297,21 +297,24 @@ html.virtual_classroom-controller {
     }
     
     .playInVirtualClassroom {
-      padding:10px;
-      background-color:#2eaadc;
-      text-align:center;
+      padding:8px 10px 10px 70px;
+      /*background-color:#2eaadc;*/
+      /*text-align:center;*/
+      background: #252525  url(<%= asset_path 'freccina_play_virtual.png' %>) 1.6em 0.6em no-repeat;
       color:#fff;
       font: 180% 'Nunito', sans-serif;
-      margin-top:15px;
+      margin-bottom:15px;
       
-      &:hover {
-        cursor:pointer;
-        background-color:#59c9f6;
-      }
+      
     }
     a {
       color:#fff;
+      &:hover {
+        cursor:pointer;
+        color:#59c9f6;
+      }
     }
+    
   }
   .empty {
     color:#727377;
