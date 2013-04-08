@@ -155,17 +155,9 @@ bla bla bla
 **/
 function initializeMediaTimeUpdaterInAudioEditor(identifier) {
   media = $('#audio_component_' + identifier + ' audio');
-  if(media.readyState != 0) {
-    media[0].addEventListener('timeupdate', function() {
-      initializeActionOfMediaTimeUpdaterInAudioEditor(this, identifier, false);
-    }, false);
-  } else {
-    media.on('loadedmetadata', function() {
-      media[0].addEventListener('timeupdate', function() {
-        initializeActionOfMediaTimeUpdaterInAudioEditor(this, identifier, false);
-      }, false);
-    });
-  }
+  media[0].addEventListener('timeupdate', function() {
+    initializeActionOfMediaTimeUpdaterInAudioEditor(this, identifier, false);
+  }, false);
 }
 
 /**
@@ -189,13 +181,7 @@ bla bla bla
 @for PlayersCommon
 **/
 function setCurrentTimeToMedia(media, seek) {
-  if(media[0].readyState != 0) {
-    media[0].currentTime = validSeek(media, seek);
-  } else {
-    media.on('loadedmetadata', function() {
-      media[0].currentTime = validSeek(media, seek);
-    });
-  }
+  media[0].currentTime = validSeek(media, seek);
 }
 
 /**
@@ -280,13 +266,7 @@ function playersDocumentReadyAudioEditor() {
       if(audio[0].currentTime < single_slider.slider('value')) {
         setCurrentTimeToMedia(audio, single_slider.slider('value'));
       }
-      if(audio.readyState != 0) {
-        audio[0].play();
-      } else {
-        audio.on('loadedmetadata', function() {
-          audio[0].play();
-        });
-      }
+      audio[0].play();
     }
   });
   $('body').on('click', '._media_player_pause_in_audio_editor_preview', function() {
@@ -341,13 +321,7 @@ function playersDocumentReadyGeneral() {
       $('#' + container_id + ' ._media_player_slider_disabler').show();
       $('#' + container_id + ' ._media_player_pause').show();
       $(this).hide();
-      if(media[0].readyState != 0) {
-        media[0].play();
-      } else {
-        media.on('loadedmetadata', function() {
-          media[0].play();
-        });
-      }
+      media[0].play();
     }
   });
   $('body').on('click', '._media_player_pause', function() {
@@ -382,13 +356,7 @@ function playersDocumentReadyVideoEditor() {
       $('#video_component_' + identifier + '_cutter ._media_player_slider_disabler').show();
       $('#video_component_' + identifier + '_cutter ._media_player_pause_in_video_editor_preview').show();
       $('#video_component_' + identifier + '_cutter .ui-slider-handle').removeClass('selected');
-      if(video.readyState != 0) {
-        video[0].play();
-      } else {
-        video.on('loadedmetadata', function() {
-          video[0].play();
-        });
-      }
+      video[0].play();
     }
     var actual_audio_track_time = calculateVideoComponentStartSecondInVideoEditor(identifier);
     if(videoEditorWithAudioTrack() && actual_audio_track_time < $('#full_audio_track_placeholder_in_video_editor').data('duration')) {
@@ -397,13 +365,7 @@ function playersDocumentReadyVideoEditor() {
         showLoadingMediaErrorPopup(audio_track[0].error.code, 'audio');
       } else {
         setCurrentTimeToMedia(audio_track, actual_audio_track_time);
-        if(audio_track.readyState != 0) {
-          audio_track[0].play();
-        } else {
-          audio_track.on('loadedmetadata', function() {
-            audio_track[0].play();
-          });
-        }
+        audio_track[0].play();
       }
     }
   });
@@ -501,18 +463,9 @@ bla bla bla
 @param reference_id {String}
 **/
 function initializeMediaTimeUpdater(media, reference_id) {
-  media = $(media);
-  if(media.readyState != 0) {
-    media[0].addEventListener('timeupdate', function() {
-      initializeActionOfMediaTimeUpdater(this, reference_id);
-    }, false);
-  } else {
-    media.on('loadedmetadata', function() {
-      media[0].addEventListener('timeupdate', function() {
-        initializeActionOfMediaTimeUpdater(this, reference_id);
-      }, false);
-    });
-  }
+  media.addEventListener('timeupdate', function() {
+    initializeActionOfMediaTimeUpdater(this, reference_id);
+  }, false);
 }
 
 /**
@@ -626,18 +579,9 @@ bla bla bla
 @for PlayersVideoEditor
 **/
 function initializeMediaTimeUpdaterInVideoEditor(media, identifier) {
-  media = $(media);
-  if(media.readyState != 0) {
-    media[0].addEventListener('timeupdate', function() {
-      initializeActionOfMediaTimeUpdaterInVideoEditor(this, identifier, false);
-    }, false);
-  } else {
-    media.on('loadedmetadata', function() {
-      media[0].addEventListener('timeupdate', function() {
-        initializeActionOfMediaTimeUpdaterInVideoEditor(this, identifier, false);
-      }, false);
-    });
-  }
+  media.addEventListener('timeupdate', function() {
+    initializeActionOfMediaTimeUpdaterInVideoEditor(this, identifier, false);
+  }, false);
 }
 
 /**

@@ -826,13 +826,7 @@ function startAudioEditorPreview(component) {
     showLoadingMediaErrorPopup(audio[0].error.code, 'audio');
     $('#stop_audio_editor_preview').click();
   } else {
-    if(audio.readyState != 0) {
-      audio[0].play();
-    } else {
-      audio.on('loadedmetadata', function() {
-        audio[0].play();
-      });
-    }
+    audio[0].play();
   }
 }
 
