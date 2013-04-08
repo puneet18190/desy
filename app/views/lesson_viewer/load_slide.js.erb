@@ -4,31 +4,22 @@
     document.location.reload();
   } else {
     if(!slide.data('loaded')) {
-    
-    console.log('sto caricando la slide ID=<%= @slide.id %>');
-    
       slide.html('<%= j render(:partial => "lesson_viewer/slides/#{@slide.kind}", :locals => {:slide => @slide}) %>');
       slide.data('loaded', true);
     }
     var prev_slide = $('#slide_in_lesson_viewer_<%= @prev_slide.id %>');
-    if(<%= @lesson.updated_at.to_i %> != prev_slide.data('lesson-updated-at')) {
+    if(<%= @prev_lesson.updated_at.to_i %> != prev_slide.data('lesson-updated-at')) {
       document.location.reload();
     } else {
       if(!prev_slide.data('loaded')) {
-        
-        console.log('sto caricando la slide ID=<%= @prev_slide.id %>');
-        
         prev_slide.html('<%= j render(:partial => "lesson_viewer/slides/#{@prev_slide.kind}", :locals => {:slide => @prev_slide}) %>');
         prev_slide.data('loaded', true);
       }
       var next_slide = $('#slide_in_lesson_viewer_<%= @next_slide.id %>');
-      if(<%= @lesson.updated_at.to_i %> != next_slide.data('lesson-updated-at')) {
+      if(<%= @next_lesson.updated_at.to_i %> != next_slide.data('lesson-updated-at')) {
         document.location.reload();
       } else {
         if(!next_slide.data('loaded')) {
-        
-        console.log('sto caricando la slide ID=<%= @next_slide.id %>');
-        
           next_slide.html('<%= j render(:partial => "lesson_viewer/slides/#{@next_slide.kind}", :locals => {:slide => @next_slide}) %>');
           next_slide.data('loaded', true);
         }

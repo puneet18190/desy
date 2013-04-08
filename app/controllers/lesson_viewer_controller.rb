@@ -91,6 +91,9 @@ class LessonViewerController < ApplicationController
       @prev_slide = @slide.get_adhiacent_slide_in_lesson_viewer(current_user.id, params[:with_playlist].present?, true)
       @next_slide = @slide.get_adhiacent_slide_in_lesson_viewer(current_user.id, params[:with_playlist].present?, false)
       update_ok(!@prev_slide.nil? && !@next_slide.nil?)
+      @prev_lesson = Lesson.find_by_id @prev_slide.lesson_id
+      @next_lesson = Lesson.find_by_id @next_slide.lesson_id
+      update_ok(!@prev_lesson.nil? && !@next_lesson.nil?)
     end
   end
   
