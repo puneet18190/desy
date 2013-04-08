@@ -400,10 +400,10 @@ class Slide < ActiveRecord::Base
     return resp if !resp.nil?
     if with_playlist
       vcl = VirtualClassroomLesson.where(:user_id => an_user_id, :lesson_id => self.lesson_id).first
-      return nil if vcl.nil?
+      return nil if vcl.nil? || vcl.position.nil?
       new_position = is_previous ? (vcl.position - 1) : (vcl.position + 1)
       new_vcl = VirtualClassroomLesson.where(:user_id => an_user_id, :position => new_position).first
-      new_vcl = get_last_or_first(VirtualClassroomLesson.order('position ASC').where('user_id = ? AND position IS NOT NULL', an_user_id), is_previous)
+      new_vcl = get_last_or_first(VirtualClassroomLesson.order('position ASC').where('user_id = ? AND position IS NOT NULL', an_user_id), is_previous) if new_vcl.nil?
       return get_last_or_first(new_vcl.lesson.slides.order('position ASC'), is_previous)
     end
     get_last_or_first(self.lesson.slides.order('position ASC'), is_previous)

@@ -218,6 +218,49 @@ class SlideTest < ActiveSupport::TestCase
     assert_equal l2.id, vcl2.lesson_id
     s = l2.cover.following
     assert_equal 2, s.position
+    # normale da dx a sx e viceversa in playlist
+    assert_equal 4, s.get_adhiacent_slide_in_lesson_viewer(1, true, false).id
+    assert_equal 2, s.get_adhiacent_slide_in_lesson_viewer(1, true, true).id
+    # normale da dx a sx e viceversa non in playlist
+    assert_equal 4, s.get_adhiacent_slide_in_lesson_viewer(1, false, false).id
+    assert_equal 2, s.get_adhiacent_slide_in_lesson_viewer(1, false, true).id
+    # dalla fine all'inizio in playlist
+    s = Slide.find(4)
+    assert_equal 2, s.get_adhiacent_slide_in_lesson_viewer(1, true, false).id
+    # idem non in playlist
+    assert_equal 2, s.get_adhiacent_slide_in_lesson_viewer(1, false, false).id
+    # dall'inizio alla fine in playlist
+    s = Slide.find(2)
+    assert_equal 4, s.get_adhiacent_slide_in_lesson_viewer(1, true, true).id
+    # idem non in playlist
+    assert_equal 4, s.get_adhiacent_slide_in_lesson_viewer(1, false, true).id
+    # dalla slide a se stessa fuori playlist
+    s = Slide.find(1)
+    assert_equal 1, s.get_adhiacent_slide_in_lesson_viewer(1, false, true).id
+    assert_equal 1, s.get_adhiacent_slide_in_lesson_viewer(1, false, false).id
+    # dalla slide a se stessa in playlist
+    assert vcl2.remove_from_playlist
+    assert vcl1.add_to_playlist
+    assert_equal 1, s.get_adhiacent_slide_in_lesson_viewer(1, true, true).id
+    assert_equal 1, s.get_adhiacent_slide_in_lesson_viewer(1, true, false).id
+    # da lezione alla successiva in playlist (x4 casi)
+    assert vcl2.add_to_playlist
+    assert_equal 2, s.get_adhiacent_slide_in_lesson_viewer(1, true, false).id
+    assert_equal 4, s.get_adhiacent_slide_in_lesson_viewer(1, true, true).id
+    s = Slide.find(4)
+    # da lezione alla successiva in playlist
+    assert_equal 1, s.get_adhiacent_slide_in_lesson_viewer(1, true, false).id
+    s = Slide.find(2)
+    assert_equal 1, s.get_adhiacent_slide_in_lesson_viewer(1, true, true).id
+    # ignoro la playlist
+    assert_equal 4, s.get_adhiacent_slide_in_lesson_viewer(1, false, true).id
+    s = Slide.find(4)
+    assert_equal 2, s.get_adhiacent_slide_in_lesson_viewer(1, false, false).id
+    assert vcl2.remove_from_playlist
+    assert_nil s.get_adhiacent_slide_in_lesson_viewer(1, true, false)
+    VirtualClassroomLesson.delete_all
+    assert VirtualClassroomLesson.all.empty?
+    assert_nil s.get_adhiacent_slide_in_lesson_viewer(1, true, false)
   end
   
 end
