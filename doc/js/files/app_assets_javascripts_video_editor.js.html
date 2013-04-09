@@ -1674,7 +1674,7 @@ function startVideoEditorGlobalPreview() {
   var actual_audio_track_time = calculateVideoComponentStartSecondInVideoEditor(current_identifier) + current_component.data(&#x27;current-preview-time&#x27;);
   if(videoEditorWithAudioTrack() &amp;&amp; actual_audio_track_time &lt; $(&#x27;#full_audio_track_placeholder_in_video_editor&#x27;).data(&#x27;duration&#x27;)) {
     var audio_track = $(&#x27;#video_editor_preview_container audio&#x27;);
-    if(media[0].error) {
+    if(audio_track[0].error) {
       showLoadingMediaErrorPopup(audio_track[0].error.code, &#x27;audio&#x27;);
     } else {
       setCurrentTimeToMedia(audio_track, actual_audio_track_time);

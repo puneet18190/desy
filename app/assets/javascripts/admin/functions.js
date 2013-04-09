@@ -72,7 +72,7 @@ function openAndLoadNextTr(prevTr) {
 
 
 /**
-Initializes the browser classes in the tag html. Same functionality as {{#crossLink "BrowsersDocumentReady/browsersDocumentReady:method"}}{{/crossLink}}.
+Initializes the browser classes in the tag html. Same functionality as {{#crossLink "GeneralDocumentReady/browsersDocumentReady:method"}}{{/crossLink}}.
 @method adminBrowsersDocumentReady
 @for AdminDocumentReady
 **/
@@ -144,7 +144,7 @@ function adminEffectsDocumentReady() {
 }
 
 /**
-Initializes the locations filling. See similar {{#crossLink "LocationsDocumentReady/locationsDocumentReady:method"}}{{/crossLink}}.
+Initializes the locations filling. See similar {{#crossLink "GeneralDocumentReady/locationsDocumentReady:method"}}{{/crossLink}}.
 @method adminLocationsDocumentReady
 @for AdminDocumentReady
 **/
@@ -263,7 +263,7 @@ function adminMiscellaneaDocumentReady() {
 }
 
 /**
-Initializes effects for the administration search engin.
+Initializes effects for the administration search engine.
 @method adminSearchDocumentReady
 @for AdminDocumentReady
 **/
@@ -324,7 +324,7 @@ function adminSearchDocumentReady() {
 }
 
 /**
-Initializes effects for sorting in administration search engine
+Initializes effects for sorting in administration search engine.
 @method adminSortingDocumentReady
 @for AdminDocumentReady
 **/

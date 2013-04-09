@@ -671,7 +671,7 @@ function slideToInLessonViewer(to) {
       $(&#x27;#left_scroll, #right_scroll&#x27;).removeClass(&#x27;disabled&#x27;);
     }
     var media = to.find(&#x27;._instance_of_player&#x27;);
-    if(media.length &gt; 0) {
+    if(media.length &gt; 0 &amp;&amp; !$.browser.ipad) {
       media.find(&#x27;._media_player_play&#x27;).click();
     }
   });

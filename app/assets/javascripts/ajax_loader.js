@@ -36,7 +36,7 @@ function bindLoader() {
 }
 
 /**
-Unbind Loader, unbind loader for ajaxStart and ajaxStop.
+Unbind Loader, unbind loader for ajaxStart and ajaxStop. Used occasionally, when the loader is not necessary (for instance in {{#crossLinkModule "lesson-editor"}}{{/crossLinkModule}})
 @method unbindLoader
 @for AjaxLoaderBinder
 **/
@@ -49,7 +49,7 @@ function unbindLoader() {
 
 
 /**
-Initializes the ajax loader. Used also in {{#crossLinkModule "administration"}}{{/crossLinkModule}}.
+Initializes the ajax loader. Used also in the initialization of the module {{#crossLinkModule "administration"}}{{/crossLinkModule}}.
 @method ajaxLoaderDocumentReady
 @for AjaxLoaderDocumentReady
 **/
@@ -62,7 +62,7 @@ function ajaxLoaderDocumentReady() {
 
 
 /**
-Hide Loader, force loader to hide.
+Hides the loader without binding or unbinding it.
 @method hideLoader
 @for AjaxLoaderVisibility
 **/
@@ -71,7 +71,7 @@ function hideLoader() {
 }
 
 /**
-Show Loader, force loader to show. It comes with timeout (default=5000) to force loader to hide [hideLoader](../classes/hideLoader.html#method_hideLoader)
+Shows the loader without binding or unbinding it (it has a timeout of 5000).
 @method showLoader
 @for AjaxLoaderVisibility
 **/
