@@ -395,6 +395,20 @@ class Slide < ActiveRecord::Base
     resp
   end
   
+  # === Description
+  #
+  # Method that extracts the slide adhiacent to this, according to the 'circular' order used in lesson viewer (see LessonViewerController). It the current slide is the last and you apply the method to get the next one, it returns back the first.
+  #
+  # === Args
+  #
+  # * *an_user_id*: the id of the User who is viewing the lesson (it's used only to extract the VirtualClassroomLesson, not to make any security control about the current slide: such controls are achieved in LessonViewerController#skip_authenticate_user_if_token_with_three_slides)
+  # * *with_playlist*: if true, the method uses the virtual classroom of the user to get the next slide, in case this slide is the last of its lesson
+  # * *is_previous*: if true, the method gets the previoius slide, otherwise the following one
+  #
+  # === Returns
+  #
+  # An object of kind Slide, or nil (only if +with_playlist+ is +true+ and the lesson to which this slide belongs is not included in the user's virtual classroom)
+  #
   def get_adhiacent_slide_in_lesson_viewer(an_user_id, with_playlist, is_previous)
     resp = is_previous ? self.previous : self.following
     return resp if !resp.nil?
@@ -411,6 +425,7 @@ class Slide < ActiveRecord::Base
   
   private
   
+  # Submethod of Slide#get_adhiacent_slide_in_lesson_viewer
   def get_last_or_first(query, last)
     last ? query.last : query.first
   end

@@ -548,7 +548,7 @@ the configuration.</p>
 
           
           <div class="method-source-code" id="ubuntu_install-source">
-            <pre><span class="ruby-comment"># File lib/media.rb, line 23</span>
+            <pre><span class="ruby-comment"># File lib/media.rb, line 22</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">ubuntu_install</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-node">%xsudo apt-get install #{ubuntu_packages.map(&amp;:shellescape).join(&#39; &#39;)} 2&gt;&amp;1`</span>
 <span class="ruby-keyword">end</span></pre>
@@ -578,7 +578,7 @@ the configuration.</p>
 
           
           <div class="method-source-code" id="ubuntu_packages-source">
-            <pre><span class="ruby-comment"># File lib/media.rb, line 19</span>
+            <pre><span class="ruby-comment"># File lib/media.rb, line 18</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">ubuntu_packages</span>
   <span class="ruby-node">%w( libav-tools libavcodec-extra-53 mkvtoolnix sox )</span>
 <span class="ruby-keyword">end</span></pre>

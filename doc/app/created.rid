@@ -1,4 +1,4 @@
-Mon, 08 Apr 2013 16:12:35 +0200
+Tue, 09 Apr 2013 09:51:45 +0200
 doc/README_FOR_APP	Fri, 29 Mar 2013 14:50:55 +0100
 app/controllers/admin/dashboard_controller.rb	Tue, 02 Apr 2013 17:48:03 +0200
 app/controllers/admin/lessons_controller.rb	Wed, 03 Apr 2013 09:16:57 +0200
@@ -14,7 +14,7 @@ app/controllers/dashboard_controller.rb	Fri, 05 Apr 2013 12:26:19 +0200
 app/controllers/galleries_controller.rb	Fri, 05 Apr 2013 12:26:19 +0200
 app/controllers/image_editor_controller.rb	Fri, 05 Apr 2013 12:26:19 +0200
 app/controllers/lesson_editor_controller.rb	Fri, 05 Apr 2013 14:59:10 +0200
-app/controllers/lesson_viewer_controller.rb	Mon, 08 Apr 2013 15:19:23 +0200
+app/controllers/lesson_viewer_controller.rb	Tue, 09 Apr 2013 09:38:16 +0200
 app/controllers/lessons_controller.rb	Fri, 05 Apr 2013 14:59:10 +0200
 app/controllers/mailing_lists_controller.rb	Fri, 05 Apr 2013 14:59:10 +0200
 app/controllers/media_elements_controller.rb	Fri, 05 Apr 2013 14:59:10 +0200
@@ -45,7 +45,7 @@ app/models/media_elements_slide.rb	Tue, 02 Apr 2013 15:20:41 +0200
 app/models/notification.rb	Tue, 02 Apr 2013 15:26:48 +0200
 app/models/report.rb	Tue, 02 Apr 2013 15:28:48 +0200
 app/models/school_level.rb	Fri, 29 Mar 2013 14:36:32 +0100
-app/models/slide.rb	Mon, 08 Apr 2013 15:18:12 +0200
+app/models/slide.rb	Tue, 09 Apr 2013 09:51:31 +0200
 app/models/subject.rb	Fri, 29 Mar 2013 16:04:42 +0100
 app/models/tag.rb	Tue, 02 Apr 2013 15:33:26 +0200
 app/models/tagging.rb	Tue, 02 Apr 2013 15:35:32 +0200
@@ -72,7 +72,7 @@ lib/dumpable.rb	Thu, 14 Mar 2013 16:47:56 +0100
 lib/env_relative_path.rb	Fri, 08 Feb 2013 11:44:15 +0100
 lib/errors_logger.rb	Thu, 14 Mar 2013 16:47:56 +0100
 lib/exception_notifier_job.rb	Thu, 14 Mar 2013 16:47:56 +0100
-lib/media.rb	Fri, 05 Apr 2013 17:09:51 +0200
+lib/media.rb	Mon, 08 Apr 2013 16:56:54 +0200
 lib/media/audio.rb	Tue, 05 Mar 2013 14:24:00 +0100
 lib/media/audio/editing.rb	Thu, 14 Mar 2013 16:47:56 +0100
 lib/media/audio/editing/cmd.rb	Fri, 08 Feb 2013 11:44:15 +0100
@@ -93,7 +93,7 @@ lib/media/audio/uploader/validation.rb	Fri, 05 Apr 2013 17:09:51 +0200
 lib/media/cmd.rb	Tue, 02 Apr 2013 10:34:17 +0200
 lib/media/cmd/avconv.rb	Fri, 05 Apr 2013 17:09:51 +0200
 lib/media/cmd/avprobe.rb	Fri, 08 Feb 2013 11:44:15 +0100
-lib/media/config.rb	Fri, 05 Apr 2013 17:09:51 +0200
+lib/media/config.rb	Mon, 08 Apr 2013 16:56:54 +0200
 lib/media/error.rb	Fri, 08 Feb 2013 11:44:15 +0100
 lib/media/image.rb	Fri, 08 Feb 2013 11:44:15 +0100
 lib/media/image/editing.rb	Fri, 08 Feb 2013 11:44:15 +0100
