@@ -18,9 +18,9 @@ function initNotificationsAutocomplete() {
       if($('#' + _id).length === 0) {
         $('<div class="label label-info" id="+_id+">').text(message).prependTo('#log').append('<a href="#" class="del">x</a>');
         $('#log').scrollTop(0);
-        if($('#search_users_ids').val().length > 0){
-          $('#search_users_ids').val($( '#search_users_ids').val()+','+_id);
-        }else{
+        if($('#search_users_ids').val().length > 0) {
+          $('#search_users_ids').val($( '#search_users_ids').val() + ',' + _id);
+        } else {
           $('#search_users_ids').val(_id);
         }
         $('#filter-users').submit();
@@ -35,10 +35,8 @@ function initNotificationsAutocomplete() {
     $('#contact-recipients').autocomplete({
       source: '/admin/users/get_full_names',
       minLength: 2,
-      select: function( event, ui ) {
-        log( ui.item ?
-          ui.item.value :
-          'No match' , ui.item.id );
+      select: function(event, ui) {
+        log(ui.item ? ui.item.value : 'No match' , ui.item.id);
       }
     });
   });
@@ -185,10 +183,10 @@ function adminMediaElementsDocumentReady() {
   $('body').on('click','.action._publish_list_element i', function(e) {
     e.preventDefault();
     $.ajax({
-      type: 'PUT',
+      type: 'put',
       url: '/admin/media_elements/' + $(this).parent('a').data('param') + '?is_public=true',
-      timeout:5000,
-      success: function(){
+      timeout: 5000,
+      success: function() {
         var btn = $(e.target);
         btn.remove();
       }
@@ -213,14 +211,14 @@ function adminMediaElementsDocumentReady() {
     e.preventDefault();
     var my_div = $(this).parent('div')
     var ids_val = $('#search_users_ids').val().split(',');
-    ids_val.splice(ids_val.indexOf(my_div.attr('id')),1);
+    ids_val.splice(ids_val.indexOf(my_div.attr('id')), 1);
     $('#search_users_ids').val(ids_val);
     my_div.remove();
     $('#filter-users').submit();
   });
-  $('body').on('click','._filter_and_send',function(e){
+  $('body').on('click','._filter_and_send', function(e) {
     e.preventDefault();
-    if(!$(this).hasClass('disabled')){
+    if(!$(this).hasClass('disabled')) {
       $form = $(this).parents('form');
       $form.find('#send_message').val(true);
       $form.submit();

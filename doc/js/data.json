@@ -1737,7 +1737,7 @@
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
-            "line": 51,
+            "line": 49,
             "description": "Open a collapsed table row with extra content, tipically clicking on previous collapsable table row.",
             "itemtype": "method",
             "name": "openAndLoadNextTr",
@@ -1753,7 +1753,7 @@
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
-            "line": 74,
+            "line": 72,
             "description": "Initializes the browser classes in the tag html. Same functionality as {{#crossLink \"GeneralDocumentReady/browsersDocumentReady:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "adminBrowsersDocumentReady",
@@ -1762,7 +1762,7 @@
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
-            "line": 87,
+            "line": 85,
             "description": "Initializes the effects of collapse and change date.",
             "itemtype": "method",
             "name": "adminEffectsDocumentReady",
@@ -1771,7 +1771,7 @@
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
-            "line": 146,
+            "line": 144,
             "description": "Initializes the locations filling. See similar {{#crossLink \"GeneralDocumentReady/locationsDocumentReady:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "adminLocationsDocumentReady",
@@ -1780,7 +1780,7 @@
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
-            "line": 166,
+            "line": 164,
             "description": "Initializes effects for MediaElement.",
             "itemtype": "method",
             "name": "adminMediaElementsDocumentReady",
@@ -1789,7 +1789,7 @@
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
-            "line": 232,
+            "line": 230,
             "description": "Initializes actions for less important tables, such as Tag, Subject, SchoolLevel",
             "itemtype": "method",
             "name": "adminMiscellaneaDocumentReady",
@@ -1798,7 +1798,7 @@
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
-            "line": 265,
+            "line": 263,
             "description": "Initializes effects for the administration search engine.",
             "itemtype": "method",
             "name": "adminSearchDocumentReady",
@@ -1807,7 +1807,7 @@
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
-            "line": 326,
+            "line": 324,
             "description": "Initializes effects for sorting in administration search engine.",
             "itemtype": "method",
             "name": "adminSortingDocumentReady",
@@ -1816,7 +1816,7 @@
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
-            "line": 358,
+            "line": 356,
             "description": "Initializes effects for User.",
             "itemtype": "method",
             "name": "adminUsersDocumentReady",
