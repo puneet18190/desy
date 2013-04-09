@@ -322,9 +322,9 @@ function initNotificationsAutocomplete() {
       if($(&#x27;#&#x27; + _id).length === 0) {
         $(&#x27;&lt;div class=&quot;label label-info&quot; id=&quot;+_id+&quot;&gt;&#x27;).text(message).prependTo(&#x27;#log&#x27;).append(&#x27;&lt;a href=&quot;#&quot; class=&quot;del&quot;&gt;x&lt;&#x2F;a&gt;&#x27;);
         $(&#x27;#log&#x27;).scrollTop(0);
-        if($(&#x27;#search_users_ids&#x27;).val().length &gt; 0){
-          $(&#x27;#search_users_ids&#x27;).val($( &#x27;#search_users_ids&#x27;).val()+&#x27;,&#x27;+_id);
-        }else{
+        if($(&#x27;#search_users_ids&#x27;).val().length &gt; 0) {
+          $(&#x27;#search_users_ids&#x27;).val($( &#x27;#search_users_ids&#x27;).val() + &#x27;,&#x27; + _id);
+        } else {
           $(&#x27;#search_users_ids&#x27;).val(_id);
         }
         $(&#x27;#filter-users&#x27;).submit();
@@ -339,10 +339,8 @@ function initNotificationsAutocomplete() {
     $(&#x27;#contact-recipients&#x27;).autocomplete({
       source: &#x27;&#x2F;admin&#x2F;users&#x2F;get_full_names&#x27;,
       minLength: 2,
-      select: function( event, ui ) {
-        log( ui.item ?
-          ui.item.value :
-          &#x27;No match&#x27; , ui.item.id );
+      select: function(event, ui) {
+        log(ui.item ? ui.item.value : &#x27;No match&#x27; , ui.item.id);
       }
     });
   });
@@ -376,7 +374,7 @@ function openAndLoadNextTr(prevTr) {
 
 
 &#x2F;**
-Initializes the browser classes in the tag html. Same functionality as {{#crossLink &quot;BrowsersDocumentReady&#x2F;browsersDocumentReady:method&quot;}}{{&#x2F;crossLink}}.
+Initializes the browser classes in the tag html. Same functionality as {{#crossLink &quot;GeneralDocumentReady&#x2F;browsersDocumentReady:method&quot;}}{{&#x2F;crossLink}}.
 @method adminBrowsersDocumentReady
 @for AdminDocumentReady
 **&#x2F;
@@ -448,7 +446,7 @@ function adminEffectsDocumentReady() {
 }
 
 &#x2F;**
-Initializes the locations filling. See similar {{#crossLink &quot;LocationsDocumentReady&#x2F;locationsDocumentReady:method&quot;}}{{&#x2F;crossLink}}.
+Initializes the locations filling. See similar {{#crossLink &quot;GeneralDocumentReady&#x2F;locationsDocumentReady:method&quot;}}{{&#x2F;crossLink}}.
 @method adminLocationsDocumentReady
 @for AdminDocumentReady
 **&#x2F;
@@ -489,10 +487,10 @@ function adminMediaElementsDocumentReady() {
   $(&#x27;body&#x27;).on(&#x27;click&#x27;,&#x27;.action._publish_list_element i&#x27;, function(e) {
     e.preventDefault();
     $.ajax({
-      type: &#x27;PUT&#x27;,
+      type: &#x27;put&#x27;,
       url: &#x27;&#x2F;admin&#x2F;media_elements&#x2F;&#x27; + $(this).parent(&#x27;a&#x27;).data(&#x27;param&#x27;) + &#x27;?is_public=true&#x27;,
-      timeout:5000,
-      success: function(){
+      timeout: 5000,
+      success: function() {
         var btn = $(e.target);
         btn.remove();
       }
@@ -517,14 +515,14 @@ function adminMediaElementsDocumentReady() {
     e.preventDefault();
     var my_div = $(this).parent(&#x27;div&#x27;)
     var ids_val = $(&#x27;#search_users_ids&#x27;).val().split(&#x27;,&#x27;);
-    ids_val.splice(ids_val.indexOf(my_div.attr(&#x27;id&#x27;)),1);
+    ids_val.splice(ids_val.indexOf(my_div.attr(&#x27;id&#x27;)), 1);
     $(&#x27;#search_users_ids&#x27;).val(ids_val);
     my_div.remove();
     $(&#x27;#filter-users&#x27;).submit();
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;,&#x27;._filter_and_send&#x27;,function(e){
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;,&#x27;._filter_and_send&#x27;, function(e) {
     e.preventDefault();
-    if(!$(this).hasClass(&#x27;disabled&#x27;)){
+    if(!$(this).hasClass(&#x27;disabled&#x27;)) {
       $form = $(this).parents(&#x27;form&#x27;);
       $form.find(&#x27;#send_message&#x27;).val(true);
       $form.submit();
@@ -567,7 +565,7 @@ function adminMiscellaneaDocumentReady() {
 }
 
 &#x2F;**
-Initializes effects for the administration search engin.
+Initializes effects for the administration search engine.
 @method adminSearchDocumentReady
 @for AdminDocumentReady
 **&#x2F;
@@ -628,7 +626,7 @@ function adminSearchDocumentReady() {
 }
 
 &#x2F;**
-Initializes effects for sorting in administration search engine
+Initializes effects for sorting in administration search engine.
 @method adminSortingDocumentReady
 @for AdminDocumentReady
 **&#x2F;

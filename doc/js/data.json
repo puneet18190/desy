@@ -1737,7 +1737,7 @@
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
-            "line": 51,
+            "line": 49,
             "description": "Open a collapsed table row with extra content, tipically clicking on previous collapsable table row.",
             "itemtype": "method",
             "name": "openAndLoadNextTr",
@@ -1753,8 +1753,8 @@
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
-            "line": 74,
-            "description": "Initializes the browser classes in the tag html. Same functionality as {{#crossLink \"BrowsersDocumentReady/browsersDocumentReady:method\"}}{{/crossLink}}.",
+            "line": 72,
+            "description": "Initializes the browser classes in the tag html. Same functionality as {{#crossLink \"GeneralDocumentReady/browsersDocumentReady:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "adminBrowsersDocumentReady",
             "class": "AdminDocumentReady",
@@ -1762,7 +1762,7 @@
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
-            "line": 87,
+            "line": 85,
             "description": "Initializes the effects of collapse and change date.",
             "itemtype": "method",
             "name": "adminEffectsDocumentReady",
@@ -1771,8 +1771,8 @@
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
-            "line": 146,
-            "description": "Initializes the locations filling. See similar {{#crossLink \"LocationsDocumentReady/locationsDocumentReady:method\"}}{{/crossLink}}.",
+            "line": 144,
+            "description": "Initializes the locations filling. See similar {{#crossLink \"GeneralDocumentReady/locationsDocumentReady:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "adminLocationsDocumentReady",
             "class": "AdminDocumentReady",
@@ -1780,7 +1780,7 @@
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
-            "line": 166,
+            "line": 164,
             "description": "Initializes effects for MediaElement.",
             "itemtype": "method",
             "name": "adminMediaElementsDocumentReady",
@@ -1789,7 +1789,7 @@
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
-            "line": 232,
+            "line": 230,
             "description": "Initializes actions for less important tables, such as Tag, Subject, SchoolLevel",
             "itemtype": "method",
             "name": "adminMiscellaneaDocumentReady",
@@ -1798,8 +1798,8 @@
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
-            "line": 265,
-            "description": "Initializes effects for the administration search engin.",
+            "line": 263,
+            "description": "Initializes effects for the administration search engine.",
             "itemtype": "method",
             "name": "adminSearchDocumentReady",
             "class": "AdminDocumentReady",
@@ -1807,8 +1807,8 @@
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
-            "line": 326,
-            "description": "Initializes effects for sorting in administration search engine",
+            "line": 324,
+            "description": "Initializes effects for sorting in administration search engine.",
             "itemtype": "method",
             "name": "adminSortingDocumentReady",
             "class": "AdminDocumentReady",
@@ -1816,7 +1816,7 @@
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
-            "line": 358,
+            "line": 356,
             "description": "Initializes effects for User.",
             "itemtype": "method",
             "name": "adminUsersDocumentReady",
@@ -1835,7 +1835,7 @@
         {
             "file": "app/assets/javascripts/ajax_loader.js",
             "line": 38,
-            "description": "Unbind Loader, unbind loader for ajaxStart and ajaxStop.",
+            "description": "Unbind Loader, unbind loader for ajaxStart and ajaxStop. Used occasionally, when the loader is not necessary (for instance in {{#crossLinkModule \"lesson-editor\"}}{{/crossLinkModule}})",
             "itemtype": "method",
             "name": "unbindLoader",
             "class": "AjaxLoaderBinder",
@@ -1844,7 +1844,7 @@
         {
             "file": "app/assets/javascripts/ajax_loader.js",
             "line": 51,
-            "description": "Initializes the ajax loader. Used also in {{#crossLinkModule \"administration\"}}{{/crossLinkModule}}.",
+            "description": "Initializes the ajax loader. Used also in the initialization of the module {{#crossLinkModule \"administration\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "ajaxLoaderDocumentReady",
             "class": "AjaxLoaderDocumentReady",
@@ -1853,7 +1853,7 @@
         {
             "file": "app/assets/javascripts/ajax_loader.js",
             "line": 64,
-            "description": "Hide Loader, force loader to hide.",
+            "description": "Hides the loader without binding or unbinding it.",
             "itemtype": "method",
             "name": "hideLoader",
             "class": "AjaxLoaderVisibility",
@@ -1862,7 +1862,7 @@
         {
             "file": "app/assets/javascripts/ajax_loader.js",
             "line": 73,
-            "description": "Show Loader, force loader to show. It comes with timeout (default=5000) to force loader to hide [hideLoader](../classes/hideLoader.html#method_hideLoader)",
+            "description": "Shows the loader without binding or unbinding it (it has a timeout of 5000).",
             "itemtype": "method",
             "name": "showLoader",
             "class": "AjaxLoaderVisibility",
