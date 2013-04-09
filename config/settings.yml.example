@@ -12,7 +12,7 @@ application:
 # Types of the locations related to Desy
 # The order is important: it determines the parent->child relation
 # The last location is the one associated the the user
-location_types: ['Province', 'Town', 'School']
+location_types: ['Province', 'City', 'County']
 
 # SEEDS
 admin:

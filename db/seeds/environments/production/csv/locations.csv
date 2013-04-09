@@ -2,105 +2,39 @@ id,name,sti_type,ancestry
 1,湖北省,Province,
 2,咸宁市,City,1
 3,蒲圻市,County,1/2
-4,School 1,School,1/2/3
-5,School 2,School,1/2/3
-6,阳新县,County,1/2
-7,School 3,School,1/2/6
-8,School 4,School,1/2/6
-9,嘉鱼县,County,1/2
-10,School 5,School,1/2/9
-11,School 6,School,1/2/9
-12,通山县,County,1/2
-13,School 7,School,1/2/12
-14,School 8,School,1/2/12
-15,崇阳县,County,1/2
-16,School 9,School,1/2/15
-17,School 10,School,1/2/15
-18,通城县,County,1/2
-19,School 11,School,1/2/18
-20,School 12,School,1/2/18
-21,宜昌市,City,1
-22,枝城市,County,1/21
-23,School 13,School,1/21/22
-24,School 14,School,1/21/22
-25,当阳市,County,1/21
-26,School 15,School,1/21/25
-27,School 16,School,1/21/25
-28,宜昌县,County,1/21
-29,School 17,School,1/21/28
-30,School 18,School,1/21/28
-31,秭归县,County,1/21
-32,School 19,School,1/21/31
-33,School 20,School,1/21/31
-34,远安县,County,1/21
-35,School 21,School,1/21/34
-36,School 22,School,1/21/34
-37,兴山县,County,1/21
-38,School 23,School,1/21/37
-39,School 24,School,1/21/37
-40,枝江县,County,1/21
-41,School 25,School,1/21/40
-42,School 26,School,1/21/40
-43,五峰土家族自治县,County,1/21
-44,School 27,School,1/21/43
-45,School 28,School,1/21/43
-46,长阳土家族自治县,County,1/21
-47,School 29,School,1/21/46
-48,School 30,School,1/21/46
-49,湖南省,Province,
-50,衡阳市,City,49
-51,珠晖区,County,49/50
-52,School 31,School,49/50/51
-53,School 32,School,49/50/51
-54,雁峰区,County,49/50
-55,School 33,School,49/50/54
-56,School 34,School,49/50/54
-57,石鼓区,County,49/50
-58,School 35,School,49/50/57
-59,School 36,School,49/50/57
-60,蒸湘区,County,49/50
-61,School 37,School,49/50/60
-62,School 38,School,49/50/60
-63,南岳区,County,49/50
-64,School 39,School,49/50/63
-65,School 40,School,49/50/63
-66,耒阳市,County,49/50
-67,School 41,School,49/50/66
-68,School 42,School,49/50/66
-69,常宁市,County,49/50
-70,School 43,School,49/50/69
-71,School 44,School,49/50/69
-72,衡阳县,County,49/50
-73,School 45,School,49/50/72
-74,School 46,School,49/50/72
-75,衡东县,County,49/50
-76,School 47,School,49/50/75
-77,School 48,School,49/50/75
-78,衡山县,County,49/50
-79,School 49,School,49/50/78
-80,School 50,School,49/50/78
-81,衡南县,County,49/50
-82,School 51,School,49/50/81
-83,School 52,School,49/50/81
-84,祁东县,County,49/50
-85,School 53,School,49/50/84
-86,School 54,School,49/50/84
-87,岳阳市,City,49
-88,云溪区,County,49/87
-89,School 55,School,49/87/88
-90,School 56,School,49/87/88
-91,岳阳楼区,County,49/87
-92,School 57,School,49/87/91
-93,School 58,School,49/87/91
-94,临湘市,County,49/87
-95,School 59,School,49/87/94
-96,School 60,School,49/87/94
-97,汨罗市,County,49/87
-98,School 61,School,49/87/97
-99,School 62,School,49/87/97
-100,岳阳县,County,49/87
-101,School 63,School,49/87/100
-102,School 64,School,49/87/100
-103,湘阴县,County,49/87
-104,School 65,School,49/87/103
-105,School 66,School,49/87/103
+4,阳新县,County,1/2
+5,嘉鱼县,County,1/2
+6,通山县,County,1/2
+7,崇阳县,County,1/2
+8,通城县,County,1/2
+9,宜昌市,City,1
+10,枝城市,County,1/9
+11,当阳市,County,1/9
+12,宜昌县,County,1/9
+13,秭归县,County,1/9
+14,远安县,County,1/9
+15,兴山县,County,1/9
+16,枝江县,County,1/9
+17,五峰土家族自治县,County,1/9
+18,长阳土家族自治县,County,1/9
+19,湖南省,Province,
+20,衡阳市,City,19
+21,珠晖区,County,19/20
+22,雁峰区,County,19/20
+23,石鼓区,County,19/20
+24,蒸湘区,County,19/20
+25,南岳区,County,19/20
+26,耒阳市,County,19/20
+27,常宁市,County,19/20
+28,衡阳县,County,19/20
+29,衡东县,County,19/20
+30,衡山县,County,19/20
+31,衡南县,County,19/20
+32,祁东县,County,19/20
+33,岳阳市,City,19
+34,云溪区,County,19/33
+35,岳阳楼区,County,19/33
+36,临湘市,County,19/33
+37,汨罗市,County,19/33
+38,岳阳县,County,19/33
+39,湘阴县,County,19/33
