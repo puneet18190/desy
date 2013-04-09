@@ -66,7 +66,7 @@ class Location < ActiveRecord::Base
   #
   def ancestry_with_me
     anc = self.ancestry
-    anc = "#{anc}/" if anc.present? && (/\// =~ anc).nil?
+    anc << "/" if anc.present? && /\// !~ anc
     "#{anc}#{self.id}/"
   end
   
