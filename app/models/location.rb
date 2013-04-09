@@ -42,36 +42,6 @@ class Location < ActiveRecord::Base
   
   # === Description
   #
-  # This method creates the list of seeds: at this moment the seeds are picked from settings.yml, but it should be possible to change this feature. If the input is an array the methods creates a location for each of its values, otherwise the method assumes that it's a Hash: the locations are created in order of ancestry.
-  #
-  # === Args
-  #
-  # * *locations*: an array or a hash of locations
-  # * *parent*: the parent of the location
-  # * *depth*: the depth where the methods starts
-  #
-  # === Raises
-  #
-  # * *submodel does no exist*
-  #
-  def self.seed!(locations=SETTINGS['locations'], parent=nil, depth=0)
-    raise 'submodel does not exist' unless submodel = SUBMODELS[depth]
-    if locations.instance_of? Array
-      locations.each do |location|
-        submodel.create!(name: location, parent: parent)
-      end
-      return
-    end
-    locations.map do |name, sublocations|
-      [ submodel.create!(name: name, parent: parent), sublocations ]
-    end.each do |location, sublocations|
-      send __method__, sublocations, location, depth + 1
-    end
-    nil
-  end
-  
-  # === Description
-  #
   # Used in the frontend, to extract the label of the location's category (translated with I18n)
   #
   # === Returns
