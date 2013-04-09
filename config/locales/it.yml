@@ -1290,7 +1290,7 @@ it:
       # 2 - views/lesson_editor/slides/_video1.html.erb
       # 3 - views/lesson_editor/slides/_image1.html.erb
       # 4 - views/lesson_editor/slides/_audio.html.erb
-      text: "Scrivi del testo qui"
+      text: "Inserisci un testo"
       # Placeholder for the title of a slide
       # 1 - views/lesson_editor/slides/_text.html.erb
       # 2 - views/lesson_editor/slides/_title.html.erb
