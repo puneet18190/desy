@@ -71,4 +71,11 @@ module Desy
   end
 
   MORE_THAN_ONE_LANGUAGE = SETTINGS['languages'].size > 1
+
+  UBUNTU_REQUIRED_PACKAGES = %w( g++ libsqlite3-dev libpq-dev )
+  
+  def self.ubuntu_install
+    puts `sudo apt-get install #{UBUNTU_REQUIRED_PACKAGES.map(&:shellescape).join(' ')} 2>&1`
+  end
+
 end
