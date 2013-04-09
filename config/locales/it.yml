@@ -2241,7 +2241,7 @@ it:
     # Caption inside the select of each location type (the variable %{location} is replaced by the name of the location type, ex City, Province, District)
     # 1 - views/admin/users/_locations_list.html.erb
     # 2 - views/users/_locations_list.html.erb
-    placeholder: "Seleziona %{location}"
+    placeholder: "Seleziona una %{location}"
   
   
   # SECTION 3.4: Media formats

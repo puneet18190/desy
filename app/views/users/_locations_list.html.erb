@@ -1,6 +1,6 @@
 <% if locations.any? %>
   <% if !edit %>
-    <option value="0"><%= t('locations.placeholder', :location => locations.first.label) %></option>
+    <option value="0"><%= t('locations.placeholder', :location => locations.first.label.downcase) %></option>
   <% end %>
   <%= options_from_collection_for_select(locations, 'id', 'name', selected.to_i) %>
 <% end %>
