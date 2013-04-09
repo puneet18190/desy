@@ -1068,24 +1068,53 @@ href="LessonEditorController.html#method-i-delete_slide">LessonEditorController#
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-get_adhiacent_slide_in_lesson_viewer-label-Description">Description</h3>
+
+<p>Method that extracts the slide adhiacent to this, according to the
+&#39;circular&#39; order used in lesson viewer (see <a
+href="LessonViewerController.html">LessonViewerController</a>). It the
+current slide is the last and you apply the method to get the next one, it
+returns back the first.</p>
+
+<h3 id="method-i-get_adhiacent_slide_in_lesson_viewer-label-Args">Args</h3>
+<ul><li>
+<p><strong>an_user_id</strong>: the id of the <a href="User.html">User</a> who
+is viewing the lesson (it&#39;s used only to extract the <a
+href="VirtualClassroomLesson.html">VirtualClassroomLesson</a>, not to make
+any security control about the current slide: such controls are achieved in
+<a
+href="LessonViewerController.html#method-i-skip_authenticate_user_if_token_with_three_slides">LessonViewerController#skip_authenticate_user_if_token_with_three_slides</a>)</p>
+</li><li>
+<p><strong>with_playlist</strong>: if true, the method uses the virtual
+classroom of the user to get the next slide, in case this slide is the last
+of its lesson</p>
+</li><li>
+<p><strong>is_previous</strong>: if true, the method gets the previoius slide,
+otherwise the following one</p>
+</li></ul>
+
+<h3 id="method-i-get_adhiacent_slide_in_lesson_viewer-label-Returns">Returns</h3>
+
+<p>An object of kind <a href="Slide.html">Slide</a>, or nil (only if
+<code>with_playlist</code> is <code>true</code> and the lesson to which
+this slide belongs is not included in the user&#39;s virtual classroom)</p>
           
 
           
           <div class="method-source-code" id="get_adhiacent_slide_in_lesson_viewer-source">
-            <pre><span class="ruby-comment"># File app/models/slide.rb, line 398</span>
+            <pre><span class="ruby-comment"># File app/models/slide.rb, line 412</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_adhiacent_slide_in_lesson_viewer</span>(<span class="ruby-identifier">an_user_id</span>, <span class="ruby-identifier">with_playlist</span>, <span class="ruby-identifier">is_previous</span>)
   <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">is_previous</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">previous</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">following</span>
   <span class="ruby-keyword">return</span> <span class="ruby-identifier">resp</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">resp</span>.<span class="ruby-identifier">nil?</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">with_playlist</span>
     <span class="ruby-identifier">vcl</span> = <span class="ruby-constant">VirtualClassroomLesson</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">an_user_id</span>, <span class="ruby-value">:lesson_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">lesson_id</span>).<span class="ruby-identifier">first</span>
-    <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">vcl</span>.<span class="ruby-identifier">nil?</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">vcl</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">vcl</span>.<span class="ruby-identifier">position</span>.<span class="ruby-identifier">nil?</span>
     <span class="ruby-identifier">new_position</span> = <span class="ruby-identifier">is_previous</span> <span class="ruby-operator">?</span> (<span class="ruby-identifier">vcl</span>.<span class="ruby-identifier">position</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>) <span class="ruby-operator">:</span> (<span class="ruby-identifier">vcl</span>.<span class="ruby-identifier">position</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>)
     <span class="ruby-identifier">new_vcl</span> = <span class="ruby-constant">VirtualClassroomLesson</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">an_user_id</span>, <span class="ruby-value">:position</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">new_position</span>).<span class="ruby-identifier">first</span>
-    <span class="ruby-identifier">new_vcl</span> = <span class="ruby-identifier">is_previous</span> <span class="ruby-operator">?</span> <span class="ruby-constant">VirtualClassroomLesson</span>.<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;position ASC&#39;</span>).<span class="ruby-identifier">where</span>(<span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">an_user_id</span>).<span class="ruby-identifier">last</span> <span class="ruby-operator">:</span> <span class="ruby-constant">VirtualClassroomLesson</span>.<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;position ASC&#39;</span>).<span class="ruby-identifier">where</span>(<span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">an_user_id</span>).<span class="ruby-identifier">first</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">new_vcl</span>.<span class="ruby-identifier">nil?</span>
-    <span class="ruby-keyword">return</span> <span class="ruby-identifier">is_previous</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">new_vcl</span>.<span class="ruby-identifier">lesson</span>.<span class="ruby-identifier">slides</span>.<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;position ASC&#39;</span>).<span class="ruby-identifier">last</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">new_vcl</span>.<span class="ruby-identifier">lesson</span>.<span class="ruby-identifier">slides</span>.<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;position ASC&#39;</span>).<span class="ruby-identifier">first</span>
+    <span class="ruby-identifier">new_vcl</span> = <span class="ruby-identifier">get_last_or_first</span>(<span class="ruby-constant">VirtualClassroomLesson</span>.<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;position ASC&#39;</span>).<span class="ruby-identifier">where</span>(<span class="ruby-string">&#39;user_id = ? AND position IS NOT NULL&#39;</span>, <span class="ruby-identifier">an_user_id</span>), <span class="ruby-identifier">is_previous</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">new_vcl</span>.<span class="ruby-identifier">nil?</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">get_last_or_first</span>(<span class="ruby-identifier">new_vcl</span>.<span class="ruby-identifier">lesson</span>.<span class="ruby-identifier">slides</span>.<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;position ASC&#39;</span>), <span class="ruby-identifier">is_previous</span>)
   <span class="ruby-keyword">end</span>
-  <span class="ruby-keyword">return</span> <span class="ruby-identifier">is_previous</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">lesson</span>.<span class="ruby-identifier">slides</span>.<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;position ASC&#39;</span>).<span class="ruby-identifier">last</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">lesson</span>.<span class="ruby-identifier">slides</span>.<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;position ASC&#39;</span>).<span class="ruby-identifier">first</span>
+  <span class="ruby-identifier">get_last_or_first</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">lesson</span>.<span class="ruby-identifier">slides</span>.<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;position ASC&#39;</span>), <span class="ruby-identifier">is_previous</span>)
 <span class="ruby-keyword">end</span></pre>
           </div><!-- get_adhiacent_slide_in_lesson_viewer-source -->
           
@@ -1374,7 +1403,7 @@ href="Valid.html#method-c-get_association">Valid.get_association</a>)</p>
 
           
           <div class="method-source-code" id="init_validation-source">
-            <pre><span class="ruby-comment"># File app/models/slide.rb, line 440</span>
+            <pre><span class="ruby-comment"># File app/models/slide.rb, line 459</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">init_validation</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-ivar">@slide</span> = <span class="ruby-constant">Valid</span>.<span class="ruby-identifier">get_association</span> <span class="ruby-keyword">self</span>, <span class="ruby-value">:id</span>
   <span class="ruby-ivar">@lesson</span> = <span class="ruby-constant">Valid</span>.<span class="ruby-identifier">get_association</span> <span class="ruby-keyword">self</span>, <span class="ruby-value">:lesson_id</span>
@@ -1405,7 +1434,7 @@ href="Valid.html#method-c-get_association">Valid.get_association</a>)</p>
 
           
           <div class="method-source-code" id="is_cover-source">
-            <pre><span class="ruby-comment"># File app/models/slide.rb, line 435</span>
+            <pre><span class="ruby-comment"># File app/models/slide.rb, line 454</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_cover</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">kind</span> <span class="ruby-operator">==</span> <span class="ruby-constant">COVER</span>
 <span class="ruby-keyword">end</span></pre>
@@ -1435,7 +1464,7 @@ href="Valid.html#method-c-get_association">Valid.get_association</a>)</p>
 
           
           <div class="method-source-code" id="media_element_at-source">
-            <pre><span class="ruby-comment"># File app/models/slide.rb, line 420</span>
+            <pre><span class="ruby-comment"># File app/models/slide.rb, line 439</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">media_element_at</span>(<span class="ruby-identifier">position</span>) <span class="ruby-comment"># :doc:</span>
   <span class="ruby-constant">MediaElementsSlide</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:slide_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>, <span class="ruby-value">:position</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">position</span>).<span class="ruby-identifier">first</span>
 <span class="ruby-keyword">end</span></pre>
@@ -1465,7 +1494,7 @@ href="Valid.html#method-c-get_association">Valid.get_association</a>)</p>
 
           
           <div class="method-source-code" id="stop_if_cover-source">
-            <pre><span class="ruby-comment"># File app/models/slide.rb, line 464</span>
+            <pre><span class="ruby-comment"># File app/models/slide.rb, line 483</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">stop_if_cover</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-ivar">@slide</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">nil</span> <span class="ruby-operator">:</span> <span class="ruby-constant">Slide</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">first</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@slide</span>.<span class="ruby-identifier">nil?</span>
@@ -1497,7 +1526,7 @@ href="Valid.html#method-c-get_association">Valid.get_association</a>)</p>
 
           
           <div class="method-source-code" id="validate_associations-source">
-            <pre><span class="ruby-comment"># File app/models/slide.rb, line 446</span>
+            <pre><span class="ruby-comment"># File app/models/slide.rb, line 465</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">validate_associations</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:lesson_id</span>, <span class="ruby-value">:doesnt_exist</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">nil?</span>
 <span class="ruby-keyword">end</span></pre>
@@ -1527,7 +1556,7 @@ href="Valid.html#method-c-get_association">Valid.get_association</a>)</p>
 
           
           <div class="method-source-code" id="validate_cover-source">
-            <pre><span class="ruby-comment"># File app/models/slide.rb, line 459</span>
+            <pre><span class="ruby-comment"># File app/models/slide.rb, line 478</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">validate_cover</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:position</span>, <span class="ruby-value">:cover_must_be_first_slide</span>) <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">kind</span> <span class="ruby-operator">==</span> <span class="ruby-constant">COVER</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">position</span> <span class="ruby-operator">!=</span> <span class="ruby-value">1</span>
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:position</span>, <span class="ruby-value">:if_not_cover_cant_be_first_slide</span>) <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">kind</span> <span class="ruby-operator">!=</span> <span class="ruby-constant">COVER</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">position</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
@@ -1560,7 +1589,7 @@ the title can&#39;t be different by the title of the lesson</p>
 
           
           <div class="method-source-code" id="validate_impossible_changes-source">
-            <pre><span class="ruby-comment"># File app/models/slide.rb, line 451</span>
+            <pre><span class="ruby-comment"># File app/models/slide.rb, line 470</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">validate_impossible_changes</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@slide</span>
     <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:lesson_id</span>, <span class="ruby-value">:cant_be_changed</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@slide</span>.<span class="ruby-identifier">lesson_id</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">lesson_id</span>
@@ -1594,7 +1623,7 @@ the title can&#39;t be different by the title of the lesson</p>
 
           
           <div class="method-source-code" id="validate_max_number_slides-source">
-            <pre><span class="ruby-comment"># File app/models/slide.rb, line 415</span>
+            <pre><span class="ruby-comment"># File app/models/slide.rb, line 434</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">validate_max_number_slides</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:base</span>, <span class="ruby-value">:too_many_slides</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@lesson</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@slide</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-constant">Slide</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:lesson_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">count</span> <span class="ruby-operator">==</span> <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;max_number_slides_in_a_lesson&#39;</span>]
 <span class="ruby-keyword">end</span></pre>
@@ -1625,7 +1654,7 @@ must be <code>nil</code></p>
 
           
           <div class="method-source-code" id="validate_text-source">
-            <pre><span class="ruby-comment"># File app/models/slide.rb, line 430</span>
+            <pre><span class="ruby-comment"># File app/models/slide.rb, line 449</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">validate_text</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:text</span>, <span class="ruby-value">:must_be_null_in_this_slide</span>) <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">allows_text?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">text</span>.<span class="ruby-identifier">nil?</span>
 <span class="ruby-keyword">end</span></pre>
@@ -1656,7 +1685,7 @@ must be <code>nil</code></p>
 
           
           <div class="method-source-code" id="validate_title-source">
-            <pre><span class="ruby-comment"># File app/models/slide.rb, line 425</span>
+            <pre><span class="ruby-comment"># File app/models/slide.rb, line 444</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">validate_title</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:title</span>, <span class="ruby-value">:must_be_null_in_this_slide</span>) <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">allows_title?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">title</span>.<span class="ruby-identifier">nil?</span>
 <span class="ruby-keyword">end</span></pre>
