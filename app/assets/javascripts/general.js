@@ -52,7 +52,7 @@ function recenterMyMediaElements() {
 
 
 /**
-bla bla bla
+This function guesses the browser and writes it in a class of the tag 'html'.
 @method browsersDocumentReady
 @for GeneralDocumentReady
 **/
@@ -66,7 +66,7 @@ function browsersDocumentReady() {
 }
 
 /**
-bla bla bla
+This function sets the default values of SelectBoxe all around the application. This function is necessary because otherwise the original value wouldn't be set, since we use a JQuery plugin to design selects.
 @method defaultValueJavaScriptAnimationsDocumentReady
 @for GeneralDocumentReady
 **/
@@ -83,7 +83,7 @@ function defaultValueJavaScriptAnimationsDocumentReady() {
 }
 
 /**
-bla bla bla
+Initialization for all the functionalities of expanded lessons and media element popup (see also {{#crossLink "DialogsWithForm/showMediaElementInfoPopUp:method}}{{/crossLink}}).
 @method expandedItemsDocumentReady
 @for GeneralDocumentReady
 **/
@@ -146,7 +146,7 @@ function expandedItemsDocumentReady() {
 }
 
 /**
-bla bla bla
+Similar to {{#crossLink "GeneralDocumentReady/defaultValueJavaScriptAnimationsDocumentReady:method}}{{/crossLink}}, this function initializes the initial value of the raio buttons styled using a javascript plugin.
 @method filtersDocumentReady
 @for GeneralDocumentReady
 **/
@@ -169,11 +169,11 @@ function filtersDocumentReady() {
 }
 
 /**
-bla bla bla
-@method formsDocumentReady
+Initializes reports forms for both lessons and media elements.
+@method reportsDocumentReady
 @for GeneralDocumentReady
 **/
-function formsDocumentReady() {
+function reportsDocumentReady() {
   $('body').on('mouseover', '._report_lesson_click', function() {
     var obj = $('#' + this.id + ' a._reportable_icon');
     if(!obj.hasClass('_report_selected')) {
@@ -238,7 +238,7 @@ function formsDocumentReady() {
 }
 
 /**
-bla bla bla
+bla bla bla FIXME FIXME FIXME 
 @method generalWindowResizeDocumentReady
 @for GeneralDocumentReady
 **/
