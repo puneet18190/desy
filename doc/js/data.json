@@ -2139,7 +2139,7 @@
         {
             "file": "app/assets/javascripts/audio_editor.js",
             "line": 296,
-            "description": "bla bla bla",
+            "description": "Initializes the whole Audio Editor, calling all the subinitializers",
             "itemtype": "method",
             "name": "audioEditorDocumentReady",
             "class": "AudioEditorDocumentReady",
@@ -2148,7 +2148,7 @@
         {
             "file": "app/assets/javascripts/audio_editor.js",
             "line": 308,
-            "description": "bla bla bla",
+            "description": "Initializer for the functionalities of committing changes (click on 'commit', on 'cancel', popup asking to overwrite, etc). For other functionalities common to all the Element Editors, see {{#crossLink \"MediaElementEditorForms\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "audioEditorDocumentReadyCommit",
             "class": "AudioEditorDocumentReady",
@@ -2157,7 +2157,7 @@
         {
             "file": "app/assets/javascripts/audio_editor.js",
             "line": 403,
-            "description": "bla bla bla",
+            "description": "Initializer for the precision arrows in the cutters. For the other functionalities related to cutters, see {{#crossLink \"PlayersAudioEditor\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "audioEditorDocumentReadyCutters",
             "class": "AudioEditorDocumentReady",
@@ -2166,7 +2166,7 @@
         {
             "file": "app/assets/javascripts/audio_editor.js",
             "line": 466,
-            "description": "bla bla bla",
+            "description": "Initializes the JQueryUi animations (sorting components), and all the effects of selection of components (see {{#crossLink \"AudioEditorComponents/selectAudioEditorComponent:method\"}}{{/crossLink}} and similar methods).",
             "itemtype": "method",
             "name": "audioEditorDocumentReadyGeneral",
             "class": "AudioEditorDocumentReady",
@@ -2175,7 +2175,7 @@
         {
             "file": "app/assets/javascripts/audio_editor.js",
             "line": 547,
-            "description": "bla bla bla",
+            "description": "Initializes the functionalities of the preview (see also {{#crossLink \"AudioEditorPreview\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "audioEditorDocumentReadyPreview",
             "class": "AudioEditorDocumentReady",

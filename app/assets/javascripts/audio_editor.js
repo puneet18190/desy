@@ -294,7 +294,7 @@ function selectAudioEditorRightHandle(id) {
 
 
 /**
-bla bla bla
+Initializes the whole Audio Editor, calling all the subinitializers
 @method audioEditorDocumentReady
 @for AudioEditorDocumentReady
 **/
@@ -306,7 +306,7 @@ function audioEditorDocumentReady() {
 }
 
 /**
-bla bla bla
+Initializer for the functionalities of committing changes (click on 'commit', on 'cancel', popup asking to overwrite, etc). For other functionalities common to all the Element Editors, see {{#crossLink "MediaElementEditorForms"}}{{/crossLink}}.
 @method audioEditorDocumentReadyCommit
 @for AudioEditorDocumentReady
 **/
@@ -401,7 +401,7 @@ function audioEditorDocumentReadyCommit() {
 }
 
 /**
-bla bla bla
+Initializer for the precision arrows in the cutters. For the other functionalities related to cutters, see {{#crossLink "PlayersAudioEditor"}}{{/crossLink}}.
 @method audioEditorDocumentReadyCutters
 @for AudioEditorDocumentReady
 **/
@@ -464,7 +464,7 @@ function audioEditorDocumentReadyCutters() {
 }
 
 /**
-bla bla bla
+Initializes the JQueryUi animations (sorting components), and all the effects of selection of components (see {{#crossLink "AudioEditorComponents/selectAudioEditorComponent:method"}}{{/crossLink}} and similar methods).
 @method audioEditorDocumentReadyGeneral
 @for AudioEditorDocumentReady
 **/
@@ -545,7 +545,7 @@ function audioEditorDocumentReadyGeneral() {
 }
 
 /**
-bla bla bla
+Initializes the functionalities of the preview (see also {{#crossLink "AudioEditorPreview"}}{{/crossLink}}).
 @method audioEditorDocumentReadyPreview
 @for AudioEditorDocumentReady
 **/
