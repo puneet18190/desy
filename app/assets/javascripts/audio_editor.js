@@ -668,7 +668,7 @@ function hideCommitAudioEditorForm(scope) {
 }
 
 /**
-Function that sets the correct value to all the z-indexes: there are in total three hidden layers for each component, one global, plus two sliders in each cutter, and each of them needs its specific z-index. Used at any time the components are hidden and need to be shown (for instance {{#crossLink "AudioEditorGalleries/showAudioEditorGallery:method"}}{{/crossLink}}).
+Function that sets the correct value to all the z-indexes: there are in total three hidden layers for each component, one global, plus two sliders in each cutter, and each of them needs its specific z-index. Used at any time the components are hidden and need to be shown (for instance {{#crossLink "AudioEditorGalleries/showGalleryInAudioEditor:method"}}{{/crossLink}}).
 @method setBackAllZIndexesInAudioEditor
 @for AudioEditorGraphics
 **/
@@ -682,7 +682,7 @@ function setBackAllZIndexesInAudioEditor() {
 }
 
 /**
-Function that sets to zero the value to all the z-indexes: there are in total three hidden layers for each component, one global, plus two sliders in each cutter, and each of them needs its specific z-index. Used at any time the components are shown and need to be hidden (for instance {{#crossLink "AudioEditorGalleries/hideAudioEditorGallery:method"}}{{/crossLink}}).
+Function that sets to zero the value to all the z-indexes: there are in total three hidden layers for each component, one global, plus two sliders in each cutter, and each of them needs its specific z-index. Used at any time the components are shown and need to be hidden (for instance {{#crossLink "AudioEditorGalleries/closeGalleryInAudioEditor:method"}}{{/crossLink}}).
 @method setToZeroAllZIndexesInAudioEditor
 @for AudioEditorGraphics
 **/
