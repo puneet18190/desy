@@ -160,7 +160,7 @@ function galleriesDocumentReadyOpen() {
 
 
 /**
-Initialize audio gallery in audio editor. Init jScrollPane and get audios block.
+Initialize audio gallery in {{#crossLinkModule "audio-editor"}}{{/crossLinkModule}}.
 @method initializeAudioGalleryInAudioEditor
 @for GalleriesInitializers
 **/
@@ -178,7 +178,7 @@ function initializeAudioGalleryInAudioEditor() {
 }
 
 /**
-Initialize audio gallery in lesson editor. Init jScrollPane and get audios block.
+Initialize audio gallery in {{#crossLinkModule "lesson-editor"}}{{/crossLinkModule}}.
 @method initializeAudioGalleryInLessonEditor
 @for GalleriesInitializers
 **/
@@ -196,7 +196,7 @@ function initializeAudioGalleryInLessonEditor() {
 }
 
 /**
-Initialize audio gallery in video editor. Init jScrollPane and audios block.
+Initialize audio gallery in {{#crossLinkModule "video-editor"}}{{/crossLinkModule}}.
 @method initializeAudioGalleryInVideoEditor
 @for GalleriesInitializers
 **/
@@ -214,7 +214,7 @@ function initializeAudioGalleryInVideoEditor() {
 }
 
 /**
-Initialize image gallery in image editor. Init jScrollPane and get images block.
+Initialize image gallery in {{#crossLinkModule "image-editor"}}{{/crossLinkModule}}.
 @method initializeImageGalleryInImageEditor
 @for GalleriesInitializers
 **/
@@ -232,7 +232,7 @@ function initializeImageGalleryInImageEditor() {
 }
 
 /**
-Initialize image gallery in lesson editor. Init jScrollPane and get images block.
+Initialize image gallery in {{#crossLinkModule "lesson-editor"}}{{/crossLinkModule}}.
 @method initializeImageGalleryInLessonEditor
 @for GalleriesInitializers
 **/
@@ -250,7 +250,7 @@ function initializeImageGalleryInLessonEditor() {
 }
 
 /**
-Initialize all media mixed gallery in video editor. Init jScrollPane and get mixed media block.
+Initialize mixed gallery in {{#crossLinkModule "video-editor"}}{{/crossLinkModule}}.
 @method initializeMixedGalleryInVideoEditor
 @for GalleriesInitializers
 **/
@@ -278,7 +278,7 @@ function initializeMixedGalleryInVideoEditor() {
 }
 
 /**
-Initialize video gallery in lesson editor. Init jScrollPane and get videos block.
+Initialize video gallery in {{#crossLinkModule "lesson-editor"}}{{/crossLinkModule}}.
 @method initializeVideoGalleryInLessonEditor
 @for GalleriesInitializers
 **/

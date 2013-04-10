@@ -3273,7 +3273,7 @@
         {
             "file": "app/assets/javascripts/galleries.js",
             "line": 38,
-            "description": "Scale image size form image gallery popup",
+            "description": "Scale image size form image gallery popup.",
             "itemtype": "method",
             "name": "resizedWidthForImageGallery",
             "params": [
@@ -3294,7 +3294,7 @@
         {
             "file": "app/assets/javascripts/galleries.js",
             "line": 57,
-            "description": "bla bla bla",
+            "description": "Initializer for effects in galleries.",
             "itemtype": "method",
             "name": "galleriesDocumentReady",
             "class": "GalleriesDocumentReady",
@@ -3303,7 +3303,7 @@
         {
             "file": "app/assets/javascripts/galleries.js",
             "line": 67,
-            "description": "bla bla bla",
+            "description": "Initializer for effects of closing a gallery. Typically, when closing a gallery the system closes all the media inside it using {{#crossLink \"PlayersGeneral/stopMedia:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "galleriesDocumentReadyClose",
             "class": "GalleriesDocumentReady",
@@ -3312,7 +3312,7 @@
         {
             "file": "app/assets/javascripts/galleries.js",
             "line": 103,
-            "description": "bla bla bla",
+            "description": "Initializer for effects of opening a gallery and opening the individual dialog of an element in a gallery: this method calls methods belonging to the class {{#crossLink \"DialogsGalleries\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "galleriesDocumentReadyOpen",
             "class": "GalleriesDocumentReady",
@@ -3321,7 +3321,7 @@
         {
             "file": "app/assets/javascripts/galleries.js",
             "line": 162,
-            "description": "Initialize audio gallery in audio editor. Init jScrollPane and get audios block.",
+            "description": "Initialize audio gallery in {{#crossLinkModule \"audio-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "initializeAudioGalleryInAudioEditor",
             "class": "GalleriesInitializers",
@@ -3330,7 +3330,7 @@
         {
             "file": "app/assets/javascripts/galleries.js",
             "line": 180,
-            "description": "Initialize audio gallery in lesson editor. Init jScrollPane and get audios block.",
+            "description": "Initialize audio gallery in {{#crossLinkModule \"lesson-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "initializeAudioGalleryInLessonEditor",
             "class": "GalleriesInitializers",
@@ -3339,7 +3339,7 @@
         {
             "file": "app/assets/javascripts/galleries.js",
             "line": 198,
-            "description": "Initialize audio gallery in video editor. Init jScrollPane and audios block.",
+            "description": "Initialize audio gallery in {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "initializeAudioGalleryInVideoEditor",
             "class": "GalleriesInitializers",
@@ -3348,7 +3348,7 @@
         {
             "file": "app/assets/javascripts/galleries.js",
             "line": 216,
-            "description": "Initialize image gallery in image editor. Init jScrollPane and get images block.",
+            "description": "Initialize image gallery in {{#crossLinkModule \"image-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "initializeImageGalleryInImageEditor",
             "class": "GalleriesInitializers",
@@ -3357,7 +3357,7 @@
         {
             "file": "app/assets/javascripts/galleries.js",
             "line": 234,
-            "description": "Initialize image gallery in lesson editor. Init jScrollPane and get images block.",
+            "description": "Initialize image gallery in {{#crossLinkModule \"lesson-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "initializeImageGalleryInLessonEditor",
             "class": "GalleriesInitializers",
@@ -3366,7 +3366,7 @@
         {
             "file": "app/assets/javascripts/galleries.js",
             "line": 252,
-            "description": "Initialize all media mixed gallery in video editor. Init jScrollPane and get mixed media block.",
+            "description": "Initialize mixed gallery in {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "initializeMixedGalleryInVideoEditor",
             "class": "GalleriesInitializers",
@@ -3375,7 +3375,7 @@
         {
             "file": "app/assets/javascripts/galleries.js",
             "line": 280,
-            "description": "Initialize video gallery in lesson editor. Init jScrollPane and get videos block.",
+            "description": "Initialize video gallery in {{#crossLinkModule \"lesson-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "initializeVideoGalleryInLessonEditor",
             "class": "GalleriesInitializers",
