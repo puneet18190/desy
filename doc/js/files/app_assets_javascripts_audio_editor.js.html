@@ -375,9 +375,11 @@ function addComponentInAudioEditor(audio_id, ogg, m4a, duration, title) {
 }
 
 &#x2F;**
-bla bla bla
+This function changes the duration of a component, and updates the global durations.
 @method changeDurationAudioEditorComponent
 @for AudioEditorComponents
+@param component {Object} the component
+@param new_duration {Number} the new duration
 **&#x2F;
 function changeDurationAudioEditorComponent(component, new_duration) {
   var old_duration = component.data(&#x27;duration&#x27;);
@@ -390,7 +392,7 @@ function changeDurationAudioEditorComponent(component, new_duration) {
 }
 
 &#x2F;**
-bla bla bla
+Function that deselects all the audio components.
 @method deselectAllAudioEditorComponents
 @for AudioEditorComponents
 **&#x2F;
@@ -413,9 +415,13 @@ function deselectAllAudioEditorComponents() {
 }
 
 &#x2F;**
-bla bla bla
+Function that creates a single input field to be inserted in the empty audio component during the process of construction of a new one (used in {{#crossLink &quot;AudioEditorComponents&#x2F;addComponentInAudioEditor:method&quot;}}{{&#x2F;crossLink}}).
 @method fillAudioEditorSingleParameter
 @for AudioEditorComponents
+@param input {String} the specific input to be filled (for example, &lt;i&gt;audio_id&lt;&#x2F;i&gt;, &lt;i&gt;from&lt;&#x2F;i&gt;, or &lt;i&gt;to&lt;&#x2F;i&gt;)
+@param identifier {Number} the identifier of the component
+@param value {String} the HTML value to be assigned to the input
+@return {String} the resulting input written in HTML
 **&#x2F;
 function fillAudioEditorSingleParameter(input, identifier, value) {
   return &#x27;&lt;input id=&quot;&#x27; + input + &#x27;_&#x27; + identifier + &#x27;&quot; class=&quot;_audio_component_input_&#x27; + input + &#x27;&quot; type=&quot;hidden&quot; value=&quot;&#x27; + value + &#x27;&quot; name=&quot;&#x27; + input + &#x27;_&#x27; + identifier + &#x27;&quot;&gt;&#x27;;
