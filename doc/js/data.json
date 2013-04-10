@@ -412,7 +412,7 @@
             "tag": "module",
             "file": "app/assets/javascripts/dashboard.js",
             "line": 1,
-            "description": "The dashboard is the home page of DESY: the page is divided in two sections, one for <b>suggested elements</b> and one for <b>suggested lessons</b>. Each of these two sections is split into three pages of lessons and elements. When the server loads the dashboard, all the six pages (three for lessons, three for elements) are loaded together, and all the operations are handled with javascript functions.\n<br/><br/>\nThere are two simple functions that switch between the pages for lessons and elements (see both methods of {{#crossLink \"DashboardGeneral\"}}{{/crossLink}}). A bit more complicated are the functions to pass from a page to another (all contained in the class {{#crossLink \"DashboardPagination\"}}{{/crossLink}}): the core of such an asynchronous pagination is the method {{#crossLink \"DashboardPagination/getHtmlPagination:method\"}}{{/crossLink}} that reconstructs the normal pagination without calling the corresponding partial in views/shared/pagination.html.erb."
+            "description": "The dashboard is the home page of DESY: the page is divided in two sections, one for <b>suggested elements</b> and one for <b>suggested lessons</b>. Each of these two sections is split into three pages of lessons and elements. When the server loads the dashboard, all the six pages (three for lessons, three for elements) are loaded together, and all the operations are handled with javascript functions.\n<br/><br/>\nThere are two simple functions that switch between the pages for lessons and elements (see both methods of {{#crossLink \"DashboardGeneral\"}}{{/crossLink}}). A bit more complicated are the functions to pass from a page to another (all contained in the class {{#crossLink \"DashboardPagination\"}}{{/crossLink}}): the core of such an asynchronous pagination is the method {{#crossLink \"DashboardPagination/getHtmlPagination:method\"}}{{/crossLink}} that reconstructs the normal pagination without calling the corresponding partial in <i>views/shared/pagination.html.erb</i>: this pagination is unique for both elements and lessons, and it is reloaded each time the user changes page using the functions {{#crossLink \"DashboardPagination/reloadLessonsDashboardPagination:method\"}}{{/crossLink}} and {{#crossLink \"DashboardPagination/reloadMediaElementsDashboardPagination:method\"}}{{/crossLink}}."
         },
         "dialogs": {
             "name": "dialogs",
@@ -2860,23 +2860,21 @@
         {
             "file": "app/assets/javascripts/dashboard.js",
             "line": 85,
-            "description": "Change lessons page in dashboard. Uses: [reloadLessonsDashboardPagination](../classes/reloadLessonsDashboardPagination.html#method_reloadLessonsDashboardPagination)",
-            "itemtype": "method",
-            "name": "changePageDashboardLessons",
+            "description": "This function changes page of the section containing suggested lessons. As already mentioned, the method reloads the pagination using {{#crossLink \"DashboardPagination/reloadLessonsDashboardPagination:method\"}}{{/crossLink}}.",
             "params": [
                 {
                     "name": "old_pos",
-                    "description": "pagination old position",
+                    "description": "old page",
                     "type": "Number"
                 },
                 {
                     "name": "pos",
-                    "description": "pagination position",
+                    "description": "new page",
                     "type": "Number"
                 },
                 {
                     "name": "poges_amount",
-                    "description": "pagination pages amount",
+                    "description": "amount of pages of lessons",
                     "type": "Number"
                 }
             ],
@@ -2885,24 +2883,24 @@
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
-            "line": 101,
-            "description": "Change media elements page in dashboard. Uses: [reloadMediaElementsDashboardPagination](../classes/reloadMediaElementsDashboardPagination.html#method_reloadMediaElementsDashboardPagination)",
+            "line": 100,
+            "description": "This function changes page of the section containing suggested elements. As already mentioned, the method reloads the pagination using {{#crossLink \"DashboardPagination/reloadMediaElementsDashboardPagination:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "changePageDashboardMediaElements",
             "params": [
                 {
                     "name": "old_pos",
-                    "description": "pagination old position",
+                    "description": "old page",
                     "type": "Number"
                 },
                 {
                     "name": "pos",
-                    "description": "pagination position",
+                    "description": "new page",
                     "type": "Number"
                 },
                 {
                     "name": "poges_amount",
-                    "description": "pagination pages amount",
+                    "description": "amount of pages of elements",
                     "type": "Number"
                 }
             ],
@@ -2911,24 +2909,24 @@
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
-            "line": 117,
-            "description": "Pagination html generator",
+            "line": 116,
+            "description": "This function generates HTML code with the same functionality of the one defined in the partial <i>views/shared/pagination.html.erb</i>.",
             "itemtype": "method",
             "name": "getHtmlPagination",
             "params": [
                 {
                     "name": "pos",
-                    "description": "current position",
+                    "description": "selected page",
                     "type": "Number"
                 },
                 {
                     "name": "pages_amount",
-                    "description": "number of pages",
+                    "description": "total amount of pages",
                     "type": "Number"
                 }
             ],
             "return": {
-                "description": "pagination html elements",
+                "description": "JQuery HTML element to be attached to the document",
                 "type": "Object"
             },
             "class": "DashboardPagination",
@@ -2936,28 +2934,19 @@
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
-            "line": 158,
-            "description": "Reload Dashboard content on page change, using bottom pagination.",
+            "line": 157,
+            "description": "This function sets the current pages of lessons and elements, without loading the pagination. It's only used in the index.js.erb for pagination.",
             "itemtype": "method",
             "name": "reloadDashboardPages",
-            "class": "DashboardPagination",
-            "module": "dashboard"
-        },
-        {
-            "file": "app/assets/javascripts/dashboard.js",
-            "line": 170,
-            "description": "Realod pagination html for lessons. Uses: [changePageDashboardLessons](../classes/changePageDashboardLessons.html#method_changePageDashboardLessons)",
-            "itemtype": "method",
-            "name": "reloadLessonsDashboardPagination",
             "params": [
                 {
-                    "name": "pos",
-                    "description": "pagination position",
+                    "name": "lessons_page",
+                    "description": "page to be selected for lessons",
                     "type": "Number"
                 },
                 {
-                    "name": "poges_amount",
-                    "description": "pagination pages amount",
+                    "name": "media_elements_page",
+                    "description": "page to be selected for media elements",
                     "type": "Number"
                 }
             ],
@@ -2966,19 +2955,40 @@
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
-            "line": 198,
-            "description": "Realod pagination html for media elements. Uses: [changePageDashboardMediaElements](../classes/changePageDashboardMediaElements.html#method_changePageDashboardMediaElements)",
+            "line": 171,
+            "description": "This function reloads the pagination for lessons (it uses {{/crossLink \"DashboardPagination/getHtmlPagination:method\"}}{{/crossLink}}).",
+            "itemtype": "method",
+            "name": "reloadLessonsDashboardPagination",
+            "params": [
+                {
+                    "name": "pos",
+                    "description": "current page",
+                    "type": "Number"
+                },
+                {
+                    "name": "poges_amount",
+                    "description": "amount of pages for lessons",
+                    "type": "Number"
+                }
+            ],
+            "class": "DashboardPagination",
+            "module": "dashboard"
+        },
+        {
+            "file": "app/assets/javascripts/dashboard.js",
+            "line": 199,
+            "description": "This function reloads the pagination for media elements (it uses {{/crossLink \"DashboardPagination/getHtmlPagination:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "reloadMediaElementsDashboardPagination",
             "params": [
                 {
                     "name": "pos",
-                    "description": "pagination position",
+                    "description": "current page",
                     "type": "Number"
                 },
                 {
                     "name": "poges_amount",
-                    "description": "pagination pages amount",
+                    "description": "amount of pages for elements",
                     "type": "Number"
                 }
             ],
@@ -5888,6 +5898,10 @@
         {
             "message": "replacing incorrect tag: returns with return",
             "line": " app/assets/javascripts/audio_editor.js:618"
+        },
+        {
+            "message": "Missing item type\nThis function changes page of the section containing suggested lessons. As already mentioned, the method reloads the pagination using {{#crossLink \"DashboardPagination/reloadLessonsDashboardPagination:method\"}}{{/crossLink}}.",
+            "line": " app/assets/javascripts/dashboard.js:85"
         }
     ]
 }
