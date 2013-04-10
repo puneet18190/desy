@@ -215,7 +215,7 @@ Changes the value of the left margin of an audio component, and updates its dura
 @method cutAudioComponentLeftSide
 @for AudioEditorCutters
 @param identifier {Number} the unique identifier of the component
-@param pos {Number} the new position of the left margin of the component (value <i>from</i>)
+@param pos {Number} the new position of the left margin of the component (input <i>from</i>)
 **/
 function cutAudioComponentLeftSide(identifier, pos) {
   var component = $('#audio_component_' + identifier);
@@ -231,7 +231,7 @@ Changes the value of the right margin of an audio component, and updates its dur
 @method cutAudioComponentRightSide
 @for AudioEditorCutters
 @param identifier {Number} the unique identifier of the component
-@param pos {Number} the new position of the right margin of the component (value <i>from</i>)
+@param pos {Number} the new position of the right margin of the component (input <i>to</i>)
 **/
 function cutAudioComponentRightSide(identifier, pos) {
   var component = $('#audio_component_' + identifier);

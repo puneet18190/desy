@@ -2044,7 +2044,7 @@
                 },
                 {
                     "name": "pos",
-                    "description": "the new position of the left margin of the component (value <i>from</i>)",
+                    "description": "the new position of the left margin of the component (input <i>from</i>)",
                     "type": "Number"
                 }
             ],
@@ -2065,7 +2065,7 @@
                 },
                 {
                     "name": "pos",
-                    "description": "the new position of the right margin of the component (value <i>from</i>)",
+                    "description": "the new position of the right margin of the component (input <i>to</i>)",
                     "type": "Number"
                 }
             ],
