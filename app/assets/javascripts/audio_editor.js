@@ -176,7 +176,7 @@ function removeAudioEditorComponent(component) {
 }
 
 /**
-This function removes the margin bottom from the last component in the timeline: this is necessary to handle with precision the JScrollPain (see {{#crossLink "AudioEditorScrollPain"}}{{/crossLink}}).
+This function removes the margin bottom from the last component in the timeline: this is necessary to handle with precision the JScrollPain (see {{#crossLink "AudioEditorScrollpain"}}{{/crossLink}}).
 @method resizeLastComponentInAudioEditor
 @for AudioEditorComponents
 **/
@@ -186,9 +186,10 @@ function resizeLastComponentInAudioEditor() {
 }
 
 /**
-bla bla bla
+Function that selects an audio component.
 @method selectAudioEditorComponent
 @for AudioEditorComponents
+@params component {Object} the component to be selected
 **/
 function selectAudioEditorComponent(component) {
   loadAudioComponentIfNotLoadedYet(component);
@@ -210,9 +211,11 @@ function selectAudioEditorComponent(component) {
 
 
 /**
-bla bla bla
+Changes the value of the left margin of an audio component, and updates its duration using {{#crossLink "AudioEditorComponents/changeDurationAudioEditorComponent:method"}}{{/crossLink}}.
 @method cutAudioComponentLeftSide
 @for AudioEditorCutters
+@param identifier {Number} the unique identifier of the component
+@param pos {Number} the new position of the left margin of the component (input <i>from</i>)
 **/
 function cutAudioComponentLeftSide(identifier, pos) {
   var component = $('#audio_component_' + identifier);
@@ -224,9 +227,11 @@ function cutAudioComponentLeftSide(identifier, pos) {
 }
 
 /**
-bla bla bla
+Changes the value of the right margin of an audio component, and updates its duration using {{#crossLink "AudioEditorComponents/changeDurationAudioEditorComponent:method"}}{{/crossLink}}.
 @method cutAudioComponentRightSide
 @for AudioEditorCutters
+@param identifier {Number} the unique identifier of the component
+@param pos {Number} the new position of the right margin of the component (input <i>to</i>)
 **/
 function cutAudioComponentRightSide(identifier, pos) {
   var component = $('#audio_component_' + identifier);
@@ -238,9 +243,10 @@ function cutAudioComponentRightSide(identifier, pos) {
 }
 
 /**
-bla bla bla
+Deselects all the cursors in a component.
 @method deselectAllAudioEditorCursors
 @for AudioEditorCutters
+@param id {Number} the unique identifier of the component
 **/
 function deselectAllAudioEditorCursors(id) {
   $('#audio_component_' + id + ' .ui-slider-handle').removeClass('selected');
@@ -248,9 +254,10 @@ function deselectAllAudioEditorCursors(id) {
 }
 
 /**
-bla bla bla
+Selects the central cursor of an audio component.
 @method selectAudioEditorCursor
 @for AudioEditorCutters
+@param id {Number} the unique identifier of the component
 **/
 function selectAudioEditorCursor(id) {
   deselectAllAudioEditorCursors(id);
@@ -259,9 +266,10 @@ function selectAudioEditorCursor(id) {
 }
 
 /**
-bla bla bla
+Selects the left handle of an audio component.
 @method selectAudioEditorLeftHandle
 @for AudioEditorCutters
+@param id {Number} the unique identifier of the component
 **/
 function selectAudioEditorLeftHandle(id) {
   deselectAllAudioEditorCursors(id);
@@ -270,9 +278,10 @@ function selectAudioEditorLeftHandle(id) {
 }
 
 /**
-bla bla bla
+Selects the right handle of an audio component.
 @method selectAudioEditorRightHandle
 @for AudioEditorCutters
+@param id {Number} the unique identifier of the component
 **/
 function selectAudioEditorRightHandle(id) {
   deselectAllAudioEditorCursors(id);
