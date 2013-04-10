@@ -364,15 +364,15 @@ function removeCustomOverlayClose() {
 
 
 &#x2F;**
-Generic popup for confirmation prompt
+Generic confirmation dialog.
 @method showConfirmPopUp
 @for DialogsConfirmation
-@param title {String} popup title
-@param content {String} popup content
-@param msg_ok {String} text for ok button
-@param msg_no {String} text for cancel button
-@param callback_ok {Object} ok callback function
-@param callback_no {Object} cancel callback function
+@param title {String} title
+@param content {String} text
+@param msg_ok {String} caption for the button &#x27;ok&#x27; (on the left side of the dialog)
+@param msg_no {String} caption for the button &#x27;cancel&#x27; (on the right side of the dialog)
+@param callback_ok {Function} callback associated to the button &#x27;ok&#x27;
+@param callback_no {Function} callback associated to the button &#x27;cancel&#x27;
 **&#x2F;
 function showConfirmPopUp(title, content, msg_ok, msg_no, callback_ok, callback_no) {
   var obj = $(&#x27;#dialog-confirm&#x27;);
@@ -400,11 +400,11 @@ function showConfirmPopUp(title, content, msg_ok, msg_no, callback_ok, callback_
 }
 
 &#x2F;**
-Modal for media element editor, asking whether or not restore cached content. Available for audio and video editor only.
+Dialog used in {{#crossLinkModule &quot;audio-editor&quot;}}{{&#x2F;crossLinkModule}} and in {{#crossLinkModule &quot;video-editor&quot;}}{{&#x2F;crossLinkModule}}, that asks the user if he wants to restore the cache or not. Specificly, it&#x27;s used in the generic function {{#crossLink &quot;MediaElementEditorCache&#x2F;startCacheLoop:method&quot;}}{{&#x2F;crossLink}}.
 @method showRestoreCacheMediaElementEditorPopUp
 @for DialogsConfirmation
-@param callback_ok {Object} restore callback function
-@param callback_no {Object} don&#x27;t restore callback function
+@param callback_ok {Function} callback function to restore the cache
+@param callback_no {Function} callback function that removes the cache and opens the requested page
 **&#x2F;
 function showRestoreCacheMediaElementEditorPopUp(callback_ok, callback_no) {
   var obj = $(&#x27;#dialog-restore-cache-media-element-editor&#x27;);

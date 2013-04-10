@@ -3048,39 +3048,39 @@
         {
             "file": "app/assets/javascripts/dialogs.js",
             "line": 60,
-            "description": "Generic popup for confirmation prompt",
+            "description": "Generic confirmation dialog.",
             "itemtype": "method",
             "name": "showConfirmPopUp",
             "params": [
                 {
                     "name": "title",
-                    "description": "popup title",
+                    "description": "title",
                     "type": "String"
                 },
                 {
                     "name": "content",
-                    "description": "popup content",
+                    "description": "text",
                     "type": "String"
                 },
                 {
                     "name": "msg_ok",
-                    "description": "text for ok button",
+                    "description": "caption for the button 'ok' (on the left side of the dialog)",
                     "type": "String"
                 },
                 {
                     "name": "msg_no",
-                    "description": "text for cancel button",
+                    "description": "caption for the button 'cancel' (on the right side of the dialog)",
                     "type": "String"
                 },
                 {
                     "name": "callback_ok",
-                    "description": "ok callback function",
-                    "type": "Object"
+                    "description": "callback associated to the button 'ok'",
+                    "type": "Function"
                 },
                 {
                     "name": "callback_no",
-                    "description": "cancel callback function",
-                    "type": "Object"
+                    "description": "callback associated to the button 'cancel'",
+                    "type": "Function"
                 }
             ],
             "class": "DialogsConfirmation",
@@ -3089,19 +3089,19 @@
         {
             "file": "app/assets/javascripts/dialogs.js",
             "line": 96,
-            "description": "Modal for media element editor, asking whether or not restore cached content. Available for audio and video editor only.",
+            "description": "Dialog used in {{#crossLinkModule \"audio-editor\"}}{{/crossLinkModule}} and in {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}}, that asks the user if he wants to restore the cache or not. Specificly, it's used in the generic function {{#crossLink \"MediaElementEditorCache/startCacheLoop:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "showRestoreCacheMediaElementEditorPopUp",
             "params": [
                 {
                     "name": "callback_ok",
-                    "description": "restore callback function",
-                    "type": "Object"
+                    "description": "callback function to restore the cache",
+                    "type": "Function"
                 },
                 {
                     "name": "callback_no",
-                    "description": "don't restore callback function",
-                    "type": "Object"
+                    "description": "callback function that removes the cache and opens the requested page",
+                    "type": "Function"
                 }
             ],
             "class": "DialogsConfirmation",

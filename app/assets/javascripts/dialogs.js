@@ -58,15 +58,15 @@ function removeCustomOverlayClose() {
 
 
 /**
-Generic popup for confirmation prompt
+Generic confirmation dialog.
 @method showConfirmPopUp
 @for DialogsConfirmation
-@param title {String} popup title
-@param content {String} popup content
-@param msg_ok {String} text for ok button
-@param msg_no {String} text for cancel button
-@param callback_ok {Object} ok callback function
-@param callback_no {Object} cancel callback function
+@param title {String} title
+@param content {String} text
+@param msg_ok {String} caption for the button 'ok' (on the left side of the dialog)
+@param msg_no {String} caption for the button 'cancel' (on the right side of the dialog)
+@param callback_ok {Function} callback associated to the button 'ok'
+@param callback_no {Function} callback associated to the button 'cancel'
 **/
 function showConfirmPopUp(title, content, msg_ok, msg_no, callback_ok, callback_no) {
   var obj = $('#dialog-confirm');
@@ -94,11 +94,11 @@ function showConfirmPopUp(title, content, msg_ok, msg_no, callback_ok, callback_
 }
 
 /**
-Modal for media element editor, asking whether or not restore cached content. Available for audio and video editor only.
+Dialog used in {{#crossLinkModule "audio-editor"}}{{/crossLinkModule}} and in {{#crossLinkModule "video-editor"}}{{/crossLinkModule}}, that asks the user if he wants to restore the cache or not. Specificly, it's used in the generic function {{#crossLink "MediaElementEditorCache/startCacheLoop:method"}}{{/crossLink}}.
 @method showRestoreCacheMediaElementEditorPopUp
 @for DialogsConfirmation
-@param callback_ok {Object} restore callback function
-@param callback_no {Object} don't restore callback function
+@param callback_ok {Function} callback function to restore the cache
+@param callback_no {Function} callback function that removes the cache and opens the requested page
 **/
 function showRestoreCacheMediaElementEditorPopUp(callback_ok, callback_no) {
   var obj = $('#dialog-restore-cache-media-element-editor');
