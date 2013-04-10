@@ -435,7 +435,7 @@
             "tag": "module",
             "file": "app/assets/javascripts/dialogs.js",
             "line": 1,
-            "description": "Dialogs, model and popup interaction. Open, close content management. Uses jQueryUI _dialog_"
+            "description": "This module contains the javascript functions that use JQueryUi dialogs. Some of them are closed with a time delay (class {{#crossLink \"DialogsTimed\"}}{{/crossLink}}), other are closed with buttons by the user (class {{#crossLink \"DialogsConfirmation\"}}{{/crossLink}}), and other ones contain a form to be filled in by the user (class {{#crossLink \"DialogsWithForm\"}}{{/crossLink}})."
         },
         "galleries": {
             "name": "galleries",
@@ -2998,13 +2998,13 @@
         {
             "file": "app/assets/javascripts/dialogs.js",
             "line": 10,
-            "description": "Close popup with given id",
+            "description": "Close a dialog with given HTML id.",
             "itemtype": "method",
             "name": "closePopUp",
             "params": [
                 {
                     "name": "id",
-                    "description": "popup selector id",
+                    "description": "HTML id of the dialog",
                     "type": "String"
                 }
             ],
@@ -3014,7 +3014,7 @@
         {
             "file": "app/assets/javascripts/dialogs.js",
             "line": 20,
-            "description": "Add close popup functionality to widget overlay layer. Triggered on popup blur.",
+            "description": "Adds the class <i>close on click out</i> to the widget overlay: this function is called on the callbacks of dialog functions, to allow the user to close the dialog directly clicking out.",
             "itemtype": "method",
             "name": "customOverlayClose",
             "class": "DialogsAccessories",
@@ -3023,13 +3023,13 @@
         {
             "file": "app/assets/javascripts/dialogs.js",
             "line": 30,
-            "description": "Destroy given media element popup",
+            "description": "Close and successively remove HTML for a given media element popup.",
             "itemtype": "method",
             "name": "removeCompletelyMediaElementPopup",
             "params": [
                 {
                     "name": "media_element_id",
-                    "description": "media element id",
+                    "description": "id of the element in the database, used to extract the HTML id of the dialog",
                     "type": "Number"
                 }
             ],
@@ -3039,7 +3039,7 @@
         {
             "file": "app/assets/javascripts/dialogs.js",
             "line": 47,
-            "description": "Remove close popup functionality to widget overlay layer.",
+            "description": "Opposite of {{#crossLink \"DialogsAccessories/customOverlayClose:method\"}}{{/crossLink}}. Remember that the widget-overlay object is unique for every dialog built with JQueryUi, thus it's compulsory to remove the class <i>close on click out</i> before opening a new dialog.",
             "itemtype": "method",
             "name": "removeCustomOverlayClose",
             "class": "DialogsAccessories",

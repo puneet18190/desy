@@ -305,7 +305,7 @@
 <div class="file">
     <pre class="code prettyprint linenums">
 &#x2F;**
-Dialogs, model and popup interaction. Open, close content management. Uses jQueryUI _dialog_
+This module contains the javascript functions that use JQueryUi dialogs. Some of them are closed with a time delay (class {{#crossLink &quot;DialogsTimed&quot;}}{{&#x2F;crossLink}}), other are closed with buttons by the user (class {{#crossLink &quot;DialogsConfirmation&quot;}}{{&#x2F;crossLink}}), and other ones contain a form to be filled in by the user (class {{#crossLink &quot;DialogsWithForm&quot;}}{{&#x2F;crossLink}}).
 @module dialogs
 **&#x2F;
 
@@ -314,17 +314,17 @@ Dialogs, model and popup interaction. Open, close content management. Uses jQuer
 
 
 &#x2F;**
-Close popup with given id
+Close a dialog with given HTML id.
 @method closePopUp
 @for DialogsAccessories
-@param id {String} popup selector id
+@param id {String} HTML id of the dialog
 **&#x2F;
 function closePopUp(id) {
   $(&#x27;#&#x27; + id).dialog(&#x27;close&#x27;);
 }
 
 &#x2F;**
-Add close popup functionality to widget overlay layer. Triggered on popup blur.
+Adds the class &lt;i&gt;close on click out&lt;&#x2F;i&gt; to the widget overlay: this function is called on the callbacks of dialog functions, to allow the user to close the dialog directly clicking out.
 @method customOverlayClose
 @for DialogsAccessories
 **&#x2F;
@@ -334,10 +334,10 @@ function customOverlayClose() {
 }
 
 &#x2F;**
-Destroy given media element popup
+Close and successively remove HTML for a given media element popup.
 @method removeCompletelyMediaElementPopup
 @for DialogsAccessories
-@param media_element_id {Number} media element id
+@param media_element_id {Number} id of the element in the database, used to extract the HTML id of the dialog
 **&#x2F;
 function removeCompletelyMediaElementPopup(media_element_id) {
   var obj = $(&#x27;#dialog-media-element-&#x27; + media_element_id);
@@ -351,7 +351,7 @@ function removeCompletelyMediaElementPopup(media_element_id) {
 }
 
 &#x2F;**
-Remove close popup functionality to widget overlay layer.
+Opposite of {{#crossLink &quot;DialogsAccessories&#x2F;customOverlayClose:method&quot;}}{{&#x2F;crossLink}}. Remember that the widget-overlay object is unique for every dialog built with JQueryUi, thus it&#x27;s compulsory to remove the class &lt;i&gt;close on click out&lt;&#x2F;i&gt; before opening a new dialog.
 @method removeCustomOverlayClose
 @for DialogsAccessories
 **&#x2F;

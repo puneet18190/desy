@@ -1,5 +1,5 @@
 /**
-Dialogs, model and popup interaction. Open, close content management. Uses jQueryUI _dialog_
+This module contains the javascript functions that use JQueryUi dialogs. Some of them are closed with a time delay (class {{#crossLink "DialogsTimed"}}{{/crossLink}}), other are closed with buttons by the user (class {{#crossLink "DialogsConfirmation"}}{{/crossLink}}), and other ones contain a form to be filled in by the user (class {{#crossLink "DialogsWithForm"}}{{/crossLink}}).
 @module dialogs
 **/
 
@@ -8,17 +8,17 @@ Dialogs, model and popup interaction. Open, close content management. Uses jQuer
 
 
 /**
-Close popup with given id
+Close a dialog with given HTML id.
 @method closePopUp
 @for DialogsAccessories
-@param id {String} popup selector id
+@param id {String} HTML id of the dialog
 **/
 function closePopUp(id) {
   $('#' + id).dialog('close');
 }
 
 /**
-Add close popup functionality to widget overlay layer. Triggered on popup blur.
+Adds the class <i>close on click out</i> to the widget overlay: this function is called on the callbacks of dialog functions, to allow the user to close the dialog directly clicking out.
 @method customOverlayClose
 @for DialogsAccessories
 **/
@@ -28,10 +28,10 @@ function customOverlayClose() {
 }
 
 /**
-Destroy given media element popup
+Close and successively remove HTML for a given media element popup.
 @method removeCompletelyMediaElementPopup
 @for DialogsAccessories
-@param media_element_id {Number} media element id
+@param media_element_id {Number} id of the element in the database, used to extract the HTML id of the dialog
 **/
 function removeCompletelyMediaElementPopup(media_element_id) {
   var obj = $('#dialog-media-element-' + media_element_id);
@@ -45,7 +45,7 @@ function removeCompletelyMediaElementPopup(media_element_id) {
 }
 
 /**
-Remove close popup functionality to widget overlay layer.
+Opposite of {{#crossLink "DialogsAccessories/customOverlayClose:method"}}{{/crossLink}}. Remember that the widget-overlay object is unique for every dialog built with JQueryUi, thus it's compulsory to remove the class <i>close on click out</i> before opening a new dialog.
 @method removeCustomOverlayClose
 @for DialogsAccessories
 **/
