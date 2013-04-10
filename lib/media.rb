@@ -18,7 +18,7 @@ module Media
   UBUNTU_REQUIRED_PACKAGES = %w( imagemagick libav-tools libavcodec-extra-53 mkvtoolnix sox )
 
   def self.ubuntu_install
-    puts `sudo apt-get install #{UBUNTU_REQUIRED_PACKAGES.map(&:shellescape).join(' ')} 2>&1`
+    exec "sudo apt-get install #{UBUNTU_REQUIRED_PACKAGES.map(&:shellescape).join(' ')}"
   end
 
 end
