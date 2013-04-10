@@ -2474,7 +2474,7 @@
             "name": "addLesson",
             "params": [
                 {
-                    "name": "lessons_id",
+                    "name": "lesson_id",
                     "description": "id of the lesson in the database",
                     "type": "Number"
                 },
@@ -2505,7 +2505,7 @@
             "name": "addLessonToVirtualClassroom",
             "params": [
                 {
-                    "name": "lessons_id",
+                    "name": "lesson_id",
                     "description": "id of the lesson in the database",
                     "type": "Number"
                 },
@@ -2526,7 +2526,7 @@
             "name": "copyLesson",
             "params": [
                 {
-                    "name": "lessons_id",
+                    "name": "lesson_id",
                     "description": "id of the lesson in the database",
                     "type": "Number"
                 },
@@ -2547,7 +2547,7 @@
             "name": "destroyLesson",
             "params": [
                 {
-                    "name": "lessons_id",
+                    "name": "lesson_id",
                     "description": "id of the lesson in the database",
                     "type": "Number"
                 },
@@ -2573,7 +2573,7 @@
             "name": "dislikeLesson",
             "params": [
                 {
-                    "name": "lessons_id",
+                    "name": "lesson_id",
                     "description": "id of the lesson in the database",
                     "type": "Number"
                 },
@@ -2594,7 +2594,7 @@
             "name": "likeLesson",
             "params": [
                 {
-                    "name": "lessons_id",
+                    "name": "lesson_id",
                     "description": "id of the lesson in the database",
                     "type": "Number"
                 },
@@ -2615,7 +2615,7 @@
             "name": "previewLesson",
             "params": [
                 {
-                    "name": "lessons_id",
+                    "name": "lesson_id",
                     "description": "id of the lesson in the database",
                     "type": "Number"
                 },
@@ -2636,7 +2636,7 @@
             "name": "publishLesson",
             "params": [
                 {
-                    "name": "lessons_id",
+                    "name": "lesson_id",
                     "description": "id of the lesson in the database",
                     "type": "Number"
                 },
@@ -2657,7 +2657,7 @@
             "name": "removeLesson",
             "params": [
                 {
-                    "name": "lessons_id",
+                    "name": "lesson_id",
                     "description": "id of the lesson in the database",
                     "type": "Number"
                 },
@@ -2688,7 +2688,7 @@
             "name": "removeLessonFromVirtualClassroom",
             "params": [
                 {
-                    "name": "lessons_id",
+                    "name": "lesson_id",
                     "description": "id of the lesson in the database",
                     "type": "Number"
                 },
@@ -2709,7 +2709,7 @@
             "name": "unpublishLesson",
             "params": [
                 {
-                    "name": "lessons_id",
+                    "name": "lesson_id",
                     "description": "id of the lesson in the database",
                     "type": "Number"
                 },
@@ -2756,28 +2756,28 @@
         {
             "file": "app/assets/javascripts/buttons.js",
             "line": 516,
-            "description": "Destroy Media Element Uses [addDeleteItemToCurrentUrl](../classes/addDeleteItemToCurrentUrl.html#method_addDeleteItemToCurrentUrl) and [showConfirmPopUp](../classes/showConfirmPopUp.html#method_showConfirmPopUp) and [showErrorPopUp](../classes/showErrorPopUp.html#method_showErrorPopUp) and [closePopUp](../classes/closePopUp.html#method_closePopUp)",
+            "description": "Calls the url to destroy a media element. It removes the element from the page.",
             "itemtype": "method",
             "name": "destroyMediaElement",
             "params": [
                 {
-                    "name": "lessons_id",
-                    "description": "lesson_id",
+                    "name": "media_element_id",
+                    "description": "id of the element in the database",
                     "type": "Number"
                 },
                 {
                     "name": "destination",
-                    "description": "destination view",
+                    "description": "destination (used to pick the HTML id of the element)",
                     "type": "String"
                 },
                 {
                     "name": "current_url",
-                    "description": "url where the lesson is added from",
+                    "description": "url where the element is added from",
                     "type": "String"
                 },
                 {
                     "name": "used_in_private_lessons",
-                    "description": "",
+                    "description": "if true, the application writes in the confirmation popup that the user is going to remove the same element from his private lessons",
                     "type": "Boolean"
                 }
             ],
@@ -2787,28 +2787,28 @@
         {
             "file": "app/assets/javascripts/buttons.js",
             "line": 558,
-            "description": "Remove a media element from yours (unlink). Uses [addDeleteItemToCurrentUrl](../classes/addDeleteItemToCurrentUrl.html#method_addDeleteItemToCurrentUrl) and [showErrorPopUp](../classes/showErrorPopUp.html#method_showErrorPopUp)",
+            "description": "Calls the url to remove a link of an element. It can either reload the item or remove it from the page.",
             "itemtype": "method",
             "name": "removeMediaElement",
             "params": [
                 {
                     "name": "media_element_id",
-                    "description": "media element id",
+                    "description": "id of the element in the database",
                     "type": "Number"
                 },
                 {
                     "name": "destination",
-                    "description": "destination view",
+                    "description": "destination (used to pick the HTML id of the element)",
                     "type": "String"
                 },
                 {
                     "name": "current_url",
-                    "description": "url where the lesson is added from",
+                    "description": "url where the element is added from",
                     "type": "String"
                 },
                 {
                     "name": "reload",
-                    "description": "",
+                    "description": "true if the item must be reloaded, false if it must be removed",
                     "type": "Boolean"
                 }
             ],
