@@ -189,19 +189,18 @@ module Media
     end
 
     def upload
-      if not model.skip_conversion
-        # FIXME a volte il file temporaneo caricato viene cancellato prima dell'inizio della conversione,
-        #       per cui lo copio nella cartella temporanea delle conversioni. Bisognerebbe evitare questo passaggio
-        #       e far sì che il file temporaneo non venga cancellato se possibile.
-        #       Per non rallentare la risposta, si potrebbe far partire la copia in un thread e rinviare la conversione
-        #       fin quando la copia non è finita
-        raise 'model id cannot be blank' if model_id.blank?
-        conversion_temp_path = self.class::CONVERSION_CLASS.temp_path(model_id, original_filename)
-        conversion_temp_folder = File.dirname conversion_temp_path
-        FileUtils.mkdir_p conversion_temp_folder
+      return if model.skip_conversion
+
+      raise Error.new('model_id cannot be blank', model: @model, column: @column, value: @value) if model_id.blank?
+      conversion_temp_path = self.class::CONVERSION_CLASS.temp_path(model_id, original_filename)
+
+      FileUtils.mkdir_p File.dirname(conversion_temp_path)
+      
+      # TODO Maybe in order to give the response as soon as possible, the copy should be done in a thread...
+      EnhancedThread.new {
         FileUtils.cp @original_file.path, conversion_temp_path
         Delayed::Job.enqueue self.class::CONVERSION_CLASS::Job.new(@original_file.path, output_path_without_extension, original_filename, model_id)
-      end
+      }
     end
   end
 end
