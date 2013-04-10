@@ -475,7 +475,7 @@
             "tag": "module",
             "file": "app/assets/javascripts/general.js",
             "line": 1,
-            "description": "Generic shared javascript functions"
+            "description": "Generic javascript functions user throughout the application."
         },
         "image-editor": {
             "name": "image-editor",
@@ -3384,13 +3384,13 @@
         {
             "file": "app/assets/javascripts/general.js",
             "line": 10,
-            "description": "Center a div into current window",
+            "description": "Centers a div into the current window.",
             "itemtype": "method",
             "name": "centerThis",
             "params": [
                 {
                     "name": "div",
-                    "description": "div selector to center, class or id",
+                    "description": "HTML selector to be centered",
                     "type": "String"
                 }
             ],
@@ -3400,18 +3400,18 @@
         {
             "file": "app/assets/javascripts/general.js",
             "line": 24,
-            "description": "Center a div into a given container",
+            "description": "Centers a div into a given container.",
             "itemtype": "method",
             "name": "centerThisInContainer",
             "params": [
                 {
                     "name": "div",
-                    "description": "div selector to center, class or id",
+                    "description": "HTML selector to be centered",
                     "type": "String"
                 },
                 {
                     "name": "container",
-                    "description": "container selector to center div into, class or id",
+                    "description": "HTML selector that represents the container in which the div must be centered",
                     "type": "String"
                 }
             ],
@@ -3421,7 +3421,7 @@
         {
             "file": "app/assets/javascripts/general.js",
             "line": 39,
-            "description": "bla bla bla",
+            "description": "Recenters the media elements according to their number and the screen resolution.",
             "itemtype": "method",
             "name": "recenterMyMediaElements",
             "class": "GeneralCentering",

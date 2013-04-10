@@ -1,5 +1,5 @@
 /**
-Generic shared javascript functions
+Generic javascript functions user throughout the application.
 @module general
 **/
 
@@ -8,10 +8,10 @@ Generic shared javascript functions
 
 
 /**
-Center a div into current window
+Centers a div into the current window.
 @method centerThis
 @for GeneralCentering
-@param div {String} div selector to center, class or id
+@param div {String} HTML selector to be centered
 **/
 function centerThis(div) {
   var winH = $(window).height();
@@ -22,13 +22,13 @@ function centerThis(div) {
 }
 
 /**
-Center a div into a given container
+Centers a div into a given container.
 @method centerThisInContainer
 @for GeneralCentering
-@param div {String} div selector to center, class or id
-@param container {String} container selector to center div into, class or id
+@param div {String} HTML selector to be centered
+@param container {String} HTML selector that represents the container in which the div must be centered
 **/
-function centerThisInContainer(div,container) {
+function centerThisInContainer(div, container) {
   var contH = $(container).height();
   var contW = $(container).width();
   var centerDiv = $(div);
@@ -37,7 +37,7 @@ function centerThisInContainer(div,container) {
 }
 
 /**
-bla bla bla
+Recenters the media elements according to their number and the screen resolution.
 @method recenterMyMediaElements
 @for GeneralCentering
 **/

@@ -153,7 +153,7 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "general",
             "name": "general",
-            "description": "Generic shared javascript functions"
+            "description": "Generic javascript functions user throughout the application."
         },
         {
             "displayName": "image-editor",

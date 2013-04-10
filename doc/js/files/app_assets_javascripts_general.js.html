@@ -305,7 +305,7 @@
 <div class="file">
     <pre class="code prettyprint linenums">
 &#x2F;**
-Generic shared javascript functions
+Generic javascript functions user throughout the application.
 @module general
 **&#x2F;
 
@@ -314,10 +314,10 @@ Generic shared javascript functions
 
 
 &#x2F;**
-Center a div into current window
+Centers a div into the current window.
 @method centerThis
 @for GeneralCentering
-@param div {String} div selector to center, class or id
+@param div {String} HTML selector to be centered
 **&#x2F;
 function centerThis(div) {
   var winH = $(window).height();
@@ -328,13 +328,13 @@ function centerThis(div) {
 }
 
 &#x2F;**
-Center a div into a given container
+Centers a div into a given container.
 @method centerThisInContainer
 @for GeneralCentering
-@param div {String} div selector to center, class or id
-@param container {String} container selector to center div into, class or id
+@param div {String} HTML selector to be centered
+@param container {String} HTML selector that represents the container in which the div must be centered
 **&#x2F;
-function centerThisInContainer(div,container) {
+function centerThisInContainer(div, container) {
   var contH = $(container).height();
   var contW = $(container).width();
   var centerDiv = $(div);
@@ -343,7 +343,7 @@ function centerThisInContainer(div,container) {
 }
 
 &#x2F;**
-bla bla bla
+Recenters the media elements according to their number and the screen resolution.
 @method recenterMyMediaElements
 @for GeneralCentering
 **&#x2F;
