@@ -2426,9 +2426,21 @@
         {
             "file": "app/assets/javascripts/buttons.js",
             "line": 10,
-            "description": "Add item removed from a view to the current destination url",
+            "description": "Add the url parameter 'delete_item' to an url (this parameter is used to delete an item while reloading the page).",
             "itemtype": "method",
             "name": "addDeleteItemToCurrentUrl",
+            "params": [
+                {
+                    "name": "current_url",
+                    "description": "the initial url",
+                    "type": "String"
+                },
+                {
+                    "name": "delete_item",
+                    "description": "the value to be assigned to the url parameter 'delete_item'",
+                    "type": "String"
+                }
+            ],
             "return": {
                 "description": "updated url",
                 "type": "String"
@@ -2438,8 +2450,8 @@
         },
         {
             "file": "app/assets/javascripts/buttons.js",
-            "line": 31,
-            "description": "bla bla bla",
+            "line": 33,
+            "description": "Initializes all the buttons available for lessons.",
             "itemtype": "method",
             "name": "lessonButtonsDocumentReady",
             "class": "ButtonsDocumentReady",
@@ -2447,8 +2459,8 @@
         },
         {
             "file": "app/assets/javascripts/buttons.js",
-            "line": 156,
-            "description": "bla bla bla",
+            "line": 158,
+            "description": "Initializes all the buttons for media elements.",
             "itemtype": "method",
             "name": "mediaElementButtonsDocumentReady",
             "class": "ButtonsDocumentReady",
@@ -2456,7 +2468,7 @@
         },
         {
             "file": "app/assets/javascripts/buttons.js",
-            "line": 234,
+            "line": 236,
             "description": "Add lessons from dashboard to my lessons. Uses [addDeleteItemToCurrentUrl](../classes/addDeleteItemToCurrentUrl.html#method_addDeleteItemToCurrentUrl) and [showErrorPopUp](../classes/showErrorPopUp.html#method_showErrorPopUp)",
             "itemtype": "method",
             "name": "addLesson",
@@ -2487,7 +2499,7 @@
         },
         {
             "file": "app/assets/javascripts/buttons.js",
-            "line": 270,
+            "line": 272,
             "description": "Make the lesson available in the virtual classroom",
             "itemtype": "method",
             "name": "addLessonToVirtualClassroom",
@@ -2508,7 +2520,7 @@
         },
         {
             "file": "app/assets/javascripts/buttons.js",
-            "line": 284,
+            "line": 286,
             "description": "Create user own copy of the lesson",
             "itemtype": "method",
             "name": "copyLesson",
@@ -2529,7 +2541,7 @@
         },
         {
             "file": "app/assets/javascripts/buttons.js",
-            "line": 298,
+            "line": 300,
             "description": "Destroy lessons lesson Uses [addDeleteItemToCurrentUrl](../classes/addDeleteItemToCurrentUrl.html#method_addDeleteItemToCurrentUrl) and [showConfirmPopUp](../classes/showConfirmPopUp.html#method_showConfirmPopUp) and [showErrorPopUp](../classes/showErrorPopUp.html#method_showErrorPopUp)",
             "itemtype": "method",
             "name": "destroyLesson",
@@ -2555,7 +2567,7 @@
         },
         {
             "file": "app/assets/javascripts/buttons.js",
-            "line": 332,
+            "line": 334,
             "description": "Remove like from a lesson",
             "itemtype": "method",
             "name": "dislikeLesson",
@@ -2576,7 +2588,7 @@
         },
         {
             "file": "app/assets/javascripts/buttons.js",
-            "line": 346,
+            "line": 348,
             "description": "Add like to a lesson",
             "itemtype": "method",
             "name": "likeLesson",
@@ -2597,7 +2609,7 @@
         },
         {
             "file": "app/assets/javascripts/buttons.js",
-            "line": 360,
+            "line": 362,
             "description": "View lesson link",
             "itemtype": "method",
             "name": "previewLesson",
@@ -2618,7 +2630,7 @@
         },
         {
             "file": "app/assets/javascripts/buttons.js",
-            "line": 382,
+            "line": 384,
             "description": "Make a lesson public Uses [showConfirmPopUp](../classes/showConfirmPopUp.html#method_showConfirmPopUp) and [closePopUp](../classes/closePopUp.html#method_closePopUp)",
             "itemtype": "method",
             "name": "publishLesson",
@@ -2639,7 +2651,7 @@
         },
         {
             "file": "app/assets/javascripts/buttons.js",
-            "line": 403,
+            "line": 405,
             "description": "Remove a lesson from yours (unlink).Uses [addDeleteItemToCurrentUrl](../classes/addDeleteItemToCurrentUrl.html#method_addDeleteItemToCurrentUrl) and [showErrorPopUp](../classes/showErrorPopUp.html#method_showErrorPopUp)",
             "itemtype": "method",
             "name": "removeLesson",
@@ -2670,7 +2682,7 @@
         },
         {
             "file": "app/assets/javascripts/buttons.js",
-            "line": 439,
+            "line": 441,
             "description": "Remove lesson availability in the virtual classroom",
             "itemtype": "method",
             "name": "removeLessonFromVirtualClassroom",
@@ -2691,7 +2703,7 @@
         },
         {
             "file": "app/assets/javascripts/buttons.js",
-            "line": 453,
+            "line": 455,
             "description": "Make a lesson private Uses [showConfirmPopUp](../classes/showConfirmPopUp.html#method_showConfirmPopUp) and [closePopUp](../classes/closePopUp.html#method_closePopUp)",
             "itemtype": "method",
             "name": "unpublishLesson",
@@ -2712,7 +2724,7 @@
         },
         {
             "file": "app/assets/javascripts/buttons.js",
-            "line": 478,
+            "line": 480,
             "description": "Add media element from dashboard to my lessons Uses [addDeleteItemToCurrentUrl](../classes/addDeleteItemToCurrentUrl.html#method_addDeleteItemToCurrentUrl) and [showErrorPopUp](../classes/showErrorPopUp.html#method_showErrorPopUp)",
             "itemtype": "method",
             "name": "addMediaElement",
@@ -2743,7 +2755,7 @@
         },
         {
             "file": "app/assets/javascripts/buttons.js",
-            "line": 514,
+            "line": 516,
             "description": "Destroy Media Element Uses [addDeleteItemToCurrentUrl](../classes/addDeleteItemToCurrentUrl.html#method_addDeleteItemToCurrentUrl) and [showConfirmPopUp](../classes/showConfirmPopUp.html#method_showConfirmPopUp) and [showErrorPopUp](../classes/showErrorPopUp.html#method_showErrorPopUp) and [closePopUp](../classes/closePopUp.html#method_closePopUp)",
             "itemtype": "method",
             "name": "destroyMediaElement",
@@ -2774,7 +2786,7 @@
         },
         {
             "file": "app/assets/javascripts/buttons.js",
-            "line": 556,
+            "line": 558,
             "description": "Remove a media element from yours (unlink). Uses [addDeleteItemToCurrentUrl](../classes/addDeleteItemToCurrentUrl.html#method_addDeleteItemToCurrentUrl) and [showErrorPopUp](../classes/showErrorPopUp.html#method_showErrorPopUp)",
             "itemtype": "method",
             "name": "removeMediaElement",

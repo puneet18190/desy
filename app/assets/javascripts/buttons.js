@@ -8,9 +8,11 @@ Lessons and Elements actions triggered via buttons.
 
 
 /**
-Add item removed from a view to the current destination url
+Add the url parameter 'delete_item' to an url (this parameter is used to delete an item while reloading the page).
 @method addDeleteItemToCurrentUrl
 @for ButtonsAccessories
+@param current_url {String} the initial url
+@param delete_item {String} the value to be assigned to the url parameter 'delete_item'
 @return {String} updated url
 **/
 function addDeleteItemToCurrentUrl(current_url, delete_item) {
@@ -29,7 +31,7 @@ function addDeleteItemToCurrentUrl(current_url, delete_item) {
 
 
 /**
-bla bla bla
+Initializes all the buttons available for lessons.
 @method lessonButtonsDocumentReady
 @for ButtonsDocumentReady
 **/
@@ -154,7 +156,7 @@ function lessonButtonsDocumentReady() {
 }
 
 /**
-bla bla bla
+Initializes all the buttons for media elements.
 @method mediaElementButtonsDocumentReady
 @for ButtonsDocumentReady
 **/
