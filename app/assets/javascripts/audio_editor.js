@@ -1,5 +1,13 @@
 /**
-bla bla bla
+This module contains javascript functions used to animate the Audio Editor. The editing of an audio consists in cutting and connecting together different elements of type audio (referred to as <b>audio components</b>): each component has a unique <b>identifier</b>, to be distinguished by the ID in the database of the corresponding audio.
+<br/><br/>
+Each audio component contains a <b>cutter</b> (used to select a portion of the original audio), the standard player controls, and a <b>sorting handle</b>. To use the controls of a component, first it must be <b>selected</b> (using the function {{#crossLink "AudioEditorComponents/selectAudioEditorComponent:method"}}{{/crossLink}}): if a component is not selected, it's shown with opacity and without the player controls. The functionality of sorting components is handled in {{#crossLink "AudioEditorDocumentReady/audioEditorDocumentReadyGeneral:method"}}{{/crossLink}}; the functionalities of player commands, together with the most important functionalities of the cutter, are located in the module {{#crossLinkModule "players"}}{{/crossLinkModule}} (class {{#crossLink "PlayersAudioEditor"}}{{/crossLink}}); the only functionalities of the cutter located in this module are found in the class {{#crossLink "AudioEditorCutters"}}{{/crossLink}} and in the method {{#crossLink "AudioEditorDocumentReady/audioEditorDocumentReadyCutters:method"}}{{/crossLink}} (functionality of precision arrows).
+<br/><br/>
+On the top of the right column are positioned the time durations (updated with {{#crossLink "AudioEditorComponents/changeDurationAudioEditorComponent:method"}}{{/crossLink}}), ad the button 'plus' used to open the audio gallery (see the class {{#crossLink "AudioEditorGalleries"}}{{/crossLink}} and the method {{#crossLink "AudioEditorDocumentReady/audioEditorDocumentReadyGeneral:method"}}{{/crossLink}}).
+<br/><br/>
+On the bottom of the right column are positioned the controls for the <b>global preview</b> (which plays all the components globally). Similarly to the module {{#crossLinkModule "video-editor"}}{{/crossLinkModule}}, before playing the global preview the system must enter in <b>preview mode</b>: the difference is that in the Audio Editor this mode is switched automatically by the system, whereas in the Video Editor it's the user who decides to enter and leave the preview mode. To enter in preview mode we use the method {{#crossLink "AudioEditorPreview/enterAudioEditorPreviewMode:method"}}{{/crossLink}}, which calls {{#crossLink "AudioEditorPreview/switchAudioComponentsToPreviewMode:method"}}{{/crossLink}} or each component. A component in preview mode can be <b>selected</b> (using a differente method respect to the normal component selection: see {{#crossLink "AudioEditorPreview/selectAudioEditorComponentInPreviewMode:method"}}{{/crossLink}}). Each component in the global preview is played using the method {{#crossLink "AudioEditorPreview/startAudioEditorPreview:method"}}{{/crossLink}} (to which we pass the component to start with); the main part of the functionality of passing from a component to the next one during the global preview is handled in the module {{#crossLinkModule "players"}}{{/crossLinkModule}} (more specificly, in the method {{#crossLink "PlayersAudioEditor/initializeActionOfMediaTimeUpdaterInAudioEditor:method"}}{{/crossLink}}.
+<br/><br/>
+As for the other Element Editors ({{#crossLinkModule "image-editor"}}{{/crossLinkModule}}, {{#crossLinkModule "video-editor"}}{{/crossLinkModule}}) the core of the process of committing changes is handled in the module {{#crossLinkModule "media-element-editor"}}{{/crossLinkModule}} (more specificly in the class {{#crossLink "MediaElementEditorForms"}}{{/crossLink}}); the part of this functionality specific for the Audio Editor is handled in {{#crossLink "AudioEditorDocumentReady/audioEditorDocumentReadyCommit:method"}}{{/crossLink}}.
 @module audio-editor
 **/
 
@@ -8,9 +16,14 @@ bla bla bla
 
 
 /**
-bla bla bla
+This function adds a new audio component to the timeline: it extracts the empty audio component hidden in the template, replaces in it the values of the new audio component, and appends it right after the selected component. If there are no selected components, the new one is appended at the end of the timeline.
 @method addComponentInAudioEditor
 @for AudioEditorComponents
+@param audio_id {Number} the ID of the audio in the database
+@param ogg {String} the path of the attached audio in format ogg
+@param m4a {String} the path of the attached audio in format mp4
+@param duration {Number} the integer duration of the audio
+@param title {String} the title of the audio extracted from the database
 **/
 function addComponentInAudioEditor(audio_id, ogg, m4a, duration, title) {
   var next_position = $('#info_container').data('last-component-id') + 1;
@@ -58,9 +71,11 @@ function addComponentInAudioEditor(audio_id, ogg, m4a, duration, title) {
 }
 
 /**
-bla bla bla
+This function changes the duration of a component, and updates the global durations.
 @method changeDurationAudioEditorComponent
 @for AudioEditorComponents
+@param component {Object} the component
+@param new_duration {Number} the new duration
 **/
 function changeDurationAudioEditorComponent(component, new_duration) {
   var old_duration = component.data('duration');
@@ -73,7 +88,7 @@ function changeDurationAudioEditorComponent(component, new_duration) {
 }
 
 /**
-bla bla bla
+Function that deselects all the audio components.
 @method deselectAllAudioEditorComponents
 @for AudioEditorComponents
 **/
@@ -96,18 +111,23 @@ function deselectAllAudioEditorComponents() {
 }
 
 /**
-bla bla bla
+Function that creates a single input field to be inserted in the empty audio component during the process of construction of a new one (used in {{#crossLink "AudioEditorComponents/addComponentInAudioEditor:method"}}{{/crossLink}}).
 @method fillAudioEditorSingleParameter
 @for AudioEditorComponents
+@param input {String} the specific input to be filled (for example, <i>audio_id</i>, <i>from</i>, or <i>to</i>)
+@param identifier {Number} the identifier of the component
+@param value {String} the HTML value to be assigned to the input
+@return {String} the resulting input written in HTML
 **/
 function fillAudioEditorSingleParameter(input, identifier, value) {
   return '<input id="' + input + '_' + identifier + '" class="_audio_component_input_' + input + '" type="hidden" value="' + value + '" name="' + input + '_' + identifier + '">';
 }
 
 /**
-bla bla bla
+An HTML5 audio is loaded only when necessary: this function extracts from the data the sources of the audio, and loads it (unless the component had already been loaded previously)
 @method loadAudioComponentIfNotLoadedYet
 @for AudioEditorComponents
+@param component {Object} the component to load
 **/
 function loadAudioComponentIfNotLoadedYet(component) {
   if(!component.data('loaded')) {
@@ -121,7 +141,7 @@ function loadAudioComponentIfNotLoadedYet(component) {
 }
 
 /**
-bla bla bla
+Reloads the correct positions of the components after sorting them.
 @method reloadAudioEditorComponentPositions
 @for AudioEditorComponents
 **/
@@ -135,9 +155,10 @@ function reloadAudioEditorComponentPositions() {
 }
 
 /**
-bla bla bla
+Removes a component from the timeline.
 @method removeAudioEditorComponent
 @for AudioEditorComponents
+@param component {Object} the component to be removed
 **/
 function removeAudioEditorComponent(component) {
   if(component.hasClass('_selected')) {
@@ -155,7 +176,7 @@ function removeAudioEditorComponent(component) {
 }
 
 /**
-bla bla bla
+This function removes the margin bottom from the last component in the timeline: this is necessary to handle with precision the JScrollPain (see {{#crossLink "AudioEditorScrollPain"}}{{/crossLink}}).
 @method resizeLastComponentInAudioEditor
 @for AudioEditorComponents
 **/

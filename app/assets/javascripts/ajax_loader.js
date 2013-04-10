@@ -1,5 +1,5 @@
 /**
-Shows a loading image while page is loading, it handles ajax calls too.
+Here it's defined the general <b>ajax loader</b> of the application.
 @module ajax-loader
 **/
 
