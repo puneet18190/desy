@@ -579,7 +579,7 @@ function audioEditorDocumentReadyPreview() {
 
 
 /**
-bla bla bla
+Sets the correct position of the gallery: used while showing and closing the audio gallery (see respectively {{#crossLink "AudioEditorGalleries/showGalleryInAudioEditor:method"}}{{/crossLink}} and {{#crossLink "AudioEditorGalleries/closeGalleryInAudioEditor:method"}}{{/crossLink}}.
 @method calculateNewPositionGalleriesInAudioEditor
 @for AudioEditorGalleries
 **/
@@ -588,7 +588,7 @@ function calculateNewPositionGalleriesInAudioEditor() {
 }
 
 /**
-bla bla bla
+Closes the gallery.
 @method closeGalleryInAudioEditor
 @for AudioEditorGalleries
 **/
@@ -600,7 +600,7 @@ function closeGalleryInAudioEditor() {
 }
 
 /**
-bla bla bla
+Shows the gallery.
 @method showGalleryInAudioEditor
 @for AudioEditorGalleries
 **/

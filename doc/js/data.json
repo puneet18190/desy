@@ -2184,7 +2184,7 @@
         {
             "file": "app/assets/javascripts/audio_editor.js",
             "line": 581,
-            "description": "bla bla bla",
+            "description": "Sets the correct position of the gallery: used while showing and closing the audio gallery (see respectively {{#crossLink \"AudioEditorGalleries/showGalleryInAudioEditor:method\"}}{{/crossLink}} and {{#crossLink \"AudioEditorGalleries/closeGalleryInAudioEditor:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "calculateNewPositionGalleriesInAudioEditor",
             "class": "AudioEditorGalleries",
@@ -2193,7 +2193,7 @@
         {
             "file": "app/assets/javascripts/audio_editor.js",
             "line": 590,
-            "description": "bla bla bla",
+            "description": "Closes the gallery.",
             "itemtype": "method",
             "name": "closeGalleryInAudioEditor",
             "class": "AudioEditorGalleries",
@@ -2202,7 +2202,7 @@
         {
             "file": "app/assets/javascripts/audio_editor.js",
             "line": 602,
-            "description": "bla bla bla",
+            "description": "Shows the gallery.",
             "itemtype": "method",
             "name": "showGalleryInAudioEditor",
             "class": "AudioEditorGalleries",
