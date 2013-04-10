@@ -3430,7 +3430,7 @@
         {
             "file": "app/assets/javascripts/general.js",
             "line": 54,
-            "description": "bla bla bla",
+            "description": "This function guesses the browser and writes it in a class of the tag 'html'.",
             "itemtype": "method",
             "name": "browsersDocumentReady",
             "class": "GeneralDocumentReady",
@@ -3439,7 +3439,7 @@
         {
             "file": "app/assets/javascripts/general.js",
             "line": 68,
-            "description": "bla bla bla",
+            "description": "This function sets the default values of SelectBoxe all around the application. This function is necessary because otherwise the original value wouldn't be set, since we use a JQuery plugin to design selects.",
             "itemtype": "method",
             "name": "defaultValueJavaScriptAnimationsDocumentReady",
             "class": "GeneralDocumentReady",
@@ -3448,7 +3448,7 @@
         {
             "file": "app/assets/javascripts/general.js",
             "line": 85,
-            "description": "bla bla bla",
+            "description": "Initialization for all the functionalities of expanded lessons and media element popup (see also {{#crossLink \"DialogsWithForm/showMediaElementInfoPopUp:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "expandedItemsDocumentReady",
             "class": "GeneralDocumentReady",
@@ -3457,7 +3457,7 @@
         {
             "file": "app/assets/javascripts/general.js",
             "line": 148,
-            "description": "bla bla bla",
+            "description": "Similar to {{#crossLink \"GeneralDocumentReady/defaultValueJavaScriptAnimationsDocumentReady:method\"}}{{/crossLink}}, this function initializes the initial value of the raio buttons styled using a javascript plugin.",
             "itemtype": "method",
             "name": "filtersDocumentReady",
             "class": "GeneralDocumentReady",
@@ -3466,16 +3466,7 @@
         {
             "file": "app/assets/javascripts/general.js",
             "line": 171,
-            "description": "bla bla bla",
-            "itemtype": "method",
-            "name": "formsDocumentReady",
-            "class": "GeneralDocumentReady",
-            "module": "general"
-        },
-        {
-            "file": "app/assets/javascripts/general.js",
-            "line": 240,
-            "description": "bla bla bla",
+            "description": "Initializer for consequences of window resizing.",
             "itemtype": "method",
             "name": "generalWindowResizeDocumentReady",
             "class": "GeneralDocumentReady",
@@ -3483,8 +3474,8 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 261,
-            "description": "bla bla bla",
+            "line": 192,
+            "description": "Initializer for all javascript and JQuery plugins.",
             "itemtype": "method",
             "name": "javaScriptAnimationsDocumentReady",
             "class": "GeneralDocumentReady",
@@ -3492,10 +3483,19 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 291,
-            "description": "ba bla bla bla",
+            "line": 222,
+            "description": "Initializer for locations automatic filling.",
             "itemtype": "method",
             "name": "locationsDocumentReady",
+            "class": "GeneralDocumentReady",
+            "module": "general"
+        },
+        {
+            "file": "app/assets/javascripts/general.js",
+            "line": 245,
+            "description": "Initializes reports forms for both lessons and media elements.",
+            "itemtype": "method",
+            "name": "reportsDocumentReady",
             "class": "GeneralDocumentReady",
             "module": "general"
         },

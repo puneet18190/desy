@@ -83,7 +83,7 @@ function defaultValueJavaScriptAnimationsDocumentReady() {
 }
 
 /**
-Initialization for all the functionalities of expanded lessons and media element popup (see also {{#crossLink "DialogsWithForm/showMediaElementInfoPopUp:method}}{{/crossLink}}).
+Initialization for all the functionalities of expanded lessons and media element popup (see also {{#crossLink "DialogsWithForm/showMediaElementInfoPopUp:method"}}{{/crossLink}}).
 @method expandedItemsDocumentReady
 @for GeneralDocumentReady
 **/
@@ -146,7 +146,7 @@ function expandedItemsDocumentReady() {
 }
 
 /**
-Similar to {{#crossLink "GeneralDocumentReady/defaultValueJavaScriptAnimationsDocumentReady:method}}{{/crossLink}}, this function initializes the initial value of the raio buttons styled using a javascript plugin.
+Similar to {{#crossLink "GeneralDocumentReady/defaultValueJavaScriptAnimationsDocumentReady:method"}}{{/crossLink}}, this function initializes the initial value of the raio buttons styled using a javascript plugin.
 @method filtersDocumentReady
 @for GeneralDocumentReady
 **/
@@ -165,6 +165,80 @@ function filtersDocumentReady() {
     var for_page = $('#for_page_media_elements option:selected').val();
     var redirect_url = getCompleteMediaElementsUrlWithoutForPage() + '&for_page=' + for_page;
     $.get(redirect_url);
+  });
+}
+
+/**
+Initializer for consequences of window resizing.
+@method generalWindowResizeDocumentReady
+@for GeneralDocumentReady
+**/
+function generalWindowResizeDocumentReady() {
+  $(window).resize(function() {
+    if($('#my_media_elements').length > 0 || $('#media_elements_in_dashboard').length > 0) {
+      recenterMyMediaElements();
+    }
+  });
+  var hac = $('.home-action .container');
+  var widc = $('.what_is_desy-action .container');
+  if($(window).height()>hac.height()){
+    hac.css('margin-top', ($(window).height() - hac.height())/2 + 'px');
+  }
+  if($(window).height()>widc.height()){
+    widc.css('margin-top', ($(window).height() - widc.height())/2 + 'px');
+  }
+}
+
+/**
+Initializer for all javascript and JQuery plugins.
+@method javaScriptAnimationsDocumentReady
+@for GeneralDocumentReady
+**/
+function javaScriptAnimationsDocumentReady() {
+  $('#notifications_list').jScrollPane({
+    autoReinitialise: true
+  });
+  $('#select_lesson_list').selectbox();
+  $('#which_item_to_search').selectbox();
+  $('#filter_lessons').selectbox();
+  $('#filter_search_lessons').selectbox();
+  $('#filter_search_lessons_subject').selectbox();
+  $('#profile_school_level').selectbox();
+  $('#profile_region').selectbox();
+  $('#for_page_media_elements').selectbox();
+  $('#filter_media_elements').selectbox();
+  $('#filter_search_media_elements').selectbox();
+  $('#user_school_level_id').selectbox();
+  $('body').on('keyup blur', 'input[maxlength], textarea[maxlength]', function () {
+    var myself = $(this);
+    var len = myself.val().length;
+    var maxlength = myself.attr('maxlength')
+    if (maxlength && len > maxlength) {
+      myself.val(myself.val().slice(0, maxlength));
+    }
+  });
+}
+
+/**
+Initializer for locations automatic filling.
+@method locationsDocumentReady
+@for GeneralDocumentReady
+**/
+function locationsDocumentReady() {
+  $('._location_select_box').each(function() {
+    $('#' + $(this).attr('id')).selectbox();
+  });
+  $('._location_select_box').on('change', function() {
+    if(!$(this).data('is-last')) {
+      if($(this).val() == '0') {
+        $(this).parents('._location_selector').nextAll().find('select').html('');
+      } else {
+        $.ajax({
+          url: '/locations/' + $(this).val() + '/find',
+          type: 'get'
+        });
+      }
+    }
   });
 }
 
@@ -234,80 +308,6 @@ function reportsDocumentReady() {
   });
   $('body').on('click', '._report_form_content ._send', function(e) {
     $(this).closest('form').submit();
-  });
-}
-
-/**
-bla bla bla FIXME FIXME FIXME 
-@method generalWindowResizeDocumentReady
-@for GeneralDocumentReady
-**/
-function generalWindowResizeDocumentReady() {
-  $(window).resize(function() {
-    if($('#my_media_elements').length > 0 || $('#media_elements_in_dashboard').length > 0){
-      recenterMyMediaElements();
-    }
-  });
-  var hac = $('.home-action .container');
-  var widc = $('.what_is_desy-action .container');
-  if($(window).height()>hac.height()){
-    hac.css('margin-top',($(window).height() - hac.height())/2 + 'px');
-  }
-  if($(window).height()>widc.height()){
-    widc.css('margin-top',($(window).height() - widc.height())/2 + 'px');
-  }
-}
-
-/**
-bla bla bla
-@method javaScriptAnimationsDocumentReady
-@for GeneralDocumentReady
-**/
-function javaScriptAnimationsDocumentReady() {
-  $('#notifications_list').jScrollPane({
-    autoReinitialise: true
-  });
-  $('#select_lesson_list').selectbox();
-  $('#which_item_to_search').selectbox();
-  $('#filter_lessons').selectbox();
-  $('#filter_search_lessons').selectbox();
-  $('#filter_search_lessons_subject').selectbox();
-  $('#profile_school_level').selectbox();
-  $('#profile_region').selectbox();
-  $('#for_page_media_elements').selectbox();
-  $('#filter_media_elements').selectbox();
-  $('#filter_search_media_elements').selectbox();
-  $('#user_school_level_id').selectbox();
-  $('body').on('keyup blur', 'input[maxlength], textarea[maxlength]', function () {
-    var myself = $(this);
-    var len = myself.val().length;
-    var maxlength = myself.attr('maxlength')
-    if (maxlength && len > maxlength) {
-      myself.val(myself.val().slice(0, maxlength));
-    }
-  });
-}
-
-/**
-ba bla bla bla
-@method locationsDocumentReady
-@for GeneralDocumentReady
-**/
-function locationsDocumentReady() {
-  $('._location_select_box').each(function() {
-    $('#' + $(this).attr('id')).selectbox();
-  });
-  $('._location_select_box').on('change', function() {
-    if(!$(this).data('is-last')) {
-      if($(this).val() == '0') {
-        $(this).parents('._location_selector').nextAll().find('select').html('');
-      } else {
-        $.ajax({
-          url: '/locations/' + $(this).val() + '/find',
-          type: 'get'
-        });
-      }
-    }
   });
 }
 
