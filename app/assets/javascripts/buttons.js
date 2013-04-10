@@ -364,7 +364,7 @@ Calls the url that opens the lesson viewer for this lesson.
 @method previewLesson
 @for ButtonsLesson
 @param lessons_id {Number} id of the lesson in the database
-@param redirect_to {String} url to be redirected when leavine the Lesson Viewer
+@param redirect_to {String} url to be redirected when leaving the Lesson Viewer
 **/
 function previewLesson(lesson_id, redirect_to) {
   var parser = UrlParser.parse(redirect_to);
@@ -478,13 +478,13 @@ function unpublishLesson(lesson_id, destination) {
 
 
 /**
-Add media element from dashboard to my lessons Uses [addDeleteItemToCurrentUrl](../classes/addDeleteItemToCurrentUrl.html#method_addDeleteItemToCurrentUrl) and [showErrorPopUp](../classes/showErrorPopUp.html#method_showErrorPopUp)
+Calls the url to add the link of a media element. It can either reload the item or remove it from the page.
 @method addMediaElement
 @for ButtonsMediaElement
-@param media_element_id {Number} media_element id
-@param destination {String} destination view
-@param current_url {String} url where the lesson is added from
-@param reload {Boolean}
+@param media_element_id {Number} id of the element in the database
+@param destination {String} destination (used to pick the HTML id of the element)
+@param current_url {String} url where the element is added from
+@param reload {Boolean} true if the item must be reloaded, false if it must be removed
 **/
 function addMediaElement(media_element_id, destination, current_url, reload) {
   if(reload) {

@@ -2621,7 +2621,7 @@
                 },
                 {
                     "name": "redirect_to",
-                    "description": "url to be redirected when leavine the Lesson Viewer",
+                    "description": "url to be redirected when leaving the Lesson Viewer",
                     "type": "String"
                 }
             ],
@@ -2725,28 +2725,28 @@
         {
             "file": "app/assets/javascripts/buttons.js",
             "line": 480,
-            "description": "Add media element from dashboard to my lessons Uses [addDeleteItemToCurrentUrl](../classes/addDeleteItemToCurrentUrl.html#method_addDeleteItemToCurrentUrl) and [showErrorPopUp](../classes/showErrorPopUp.html#method_showErrorPopUp)",
+            "description": "Calls the url to add the link of a media element. It can either reload the item or remove it from the page.",
             "itemtype": "method",
             "name": "addMediaElement",
             "params": [
                 {
                     "name": "media_element_id",
-                    "description": "media_element id",
+                    "description": "id of the element in the database",
                     "type": "Number"
                 },
                 {
                     "name": "destination",
-                    "description": "destination view",
+                    "description": "destination (used to pick the HTML id of the element)",
                     "type": "String"
                 },
                 {
                     "name": "current_url",
-                    "description": "url where the lesson is added from",
+                    "description": "url where the element is added from",
                     "type": "String"
                 },
                 {
                     "name": "reload",
-                    "description": "",
+                    "description": "true if the item must be reloaded, false if it must be removed",
                     "type": "Boolean"
                 }
             ],
