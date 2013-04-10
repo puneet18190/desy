@@ -480,7 +480,7 @@ function removeAudioEditorComponent(component) {
 }
 
 &#x2F;**
-This function removes the margin bottom from the last component in the timeline: this is necessary to handle with precision the JScrollPain (see {{#crossLink &quot;AudioEditorScrollPain&quot;}}{{&#x2F;crossLink}}).
+This function removes the margin bottom from the last component in the timeline: this is necessary to handle with precision the JScrollPain (see {{#crossLink &quot;AudioEditorScrollpain&quot;}}{{&#x2F;crossLink}}).
 @method resizeLastComponentInAudioEditor
 @for AudioEditorComponents
 **&#x2F;
@@ -490,9 +490,10 @@ function resizeLastComponentInAudioEditor() {
 }
 
 &#x2F;**
-bla bla bla
+Function that selects an audio component.
 @method selectAudioEditorComponent
 @for AudioEditorComponents
+@params component {Object} the component to be selected
 **&#x2F;
 function selectAudioEditorComponent(component) {
   loadAudioComponentIfNotLoadedYet(component);
