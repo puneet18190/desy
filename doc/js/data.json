@@ -3147,14 +3147,14 @@
         {
             "file": "app/assets/javascripts/dialogs.js",
             "line": 236,
-            "description": "Modal with error icon and custom content Uses: [showTimedPopUp](../classes/showTimedPopUp.html#method_showTimedPopUp)",
+            "description": "Timed dialog for errors. It uses the general {{#crossLink \"DialogsTimed/showTimedPopUp:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "showErrorPopUp",
             "params": [
                 {
                     "name": "content",
-                    "description": "modal text content",
-                    "type": "Object"
+                    "description": "the text content of the dialog",
+                    "type": "String"
                 }
             ],
             "class": "DialogsTimed",
@@ -3163,14 +3163,14 @@
         {
             "file": "app/assets/javascripts/dialogs.js",
             "line": 247,
-            "description": "Modal with ok icon and custom content Uses: [showTimedPopUp](../classes/showTimedPopUp.html#method_showTimedPopUp)",
+            "description": "Timed dialog for success. It uses the general {{#crossLink \"DialogsTimed/showTimedPopUp:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "showOkPopUp",
             "params": [
                 {
                     "name": "content",
-                    "description": "modal text content",
-                    "type": "Object"
+                    "description": "the text content of the dialog",
+                    "type": "String"
                 }
             ],
             "class": "DialogsTimed",
@@ -3179,18 +3179,18 @@
         {
             "file": "app/assets/javascripts/dialogs.js",
             "line": 258,
-            "description": "Show timed popup that auto close after _n_ seconds. Timeout is handled with data-timeout into `_popup_parameters_container_` Uses: [closePopUp](../classes/closePopUp.html#method_closePopUp)",
+            "description": "General function that opens a dialog, fills it with HTML content and closes it after a configured time.",
             "itemtype": "method",
             "name": "showTimedPopUp",
             "params": [
                 {
                     "name": "content",
-                    "description": "lessons list partial",
-                    "type": "Object"
+                    "description": "HTML content",
+                    "type": "String"
                 },
                 {
                     "name": "id",
-                    "description": "dialog select id",
+                    "description": "HTML id of the dialog",
                     "type": "String"
                 }
             ],

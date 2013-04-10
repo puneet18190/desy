@@ -540,10 +540,10 @@ function showVideoInGalleryPopUp(video_id) {
 
 
 &#x2F;**
-Modal with error icon and custom content Uses: [showTimedPopUp](..&#x2F;classes&#x2F;showTimedPopUp.html#method_showTimedPopUp)
+Timed dialog for errors. It uses the general {{#crossLink &quot;DialogsTimed&#x2F;showTimedPopUp:method&quot;}}{{&#x2F;crossLink}}.
 @method showErrorPopUp
 @for DialogsTimed
-@param content {Object} modal text content
+@param content {String} the text content of the dialog
 **&#x2F;
 function showErrorPopUp(content) {
   var new_content = &#x27;&lt;img src=&quot;&#x2F;assets&#x2F;unsuccess.png&quot;&#x2F;&gt;&lt;h1&gt;&#x27; + content + &#x27;&lt;&#x2F;h1&gt;&#x27;;
@@ -551,10 +551,10 @@ function showErrorPopUp(content) {
 }
 
 &#x2F;**
-Modal with ok icon and custom content Uses: [showTimedPopUp](..&#x2F;classes&#x2F;showTimedPopUp.html#method_showTimedPopUp)
+Timed dialog for success. It uses the general {{#crossLink &quot;DialogsTimed&#x2F;showTimedPopUp:method&quot;}}{{&#x2F;crossLink}}.
 @method showOkPopUp
 @for DialogsTimed
-@param content {Object} modal text content
+@param content {String} the text content of the dialog
 **&#x2F;
 function showOkPopUp(content) {
   var new_content = &#x27;&lt;img src=&quot;&#x2F;assets&#x2F;success.png&quot;&#x2F;&gt;&lt;h1&gt;&#x27; + content + &#x27;&lt;&#x2F;h1&gt;&#x27;;
@@ -562,11 +562,11 @@ function showOkPopUp(content) {
 }
 
 &#x2F;**
-Show timed popup that auto close after _n_ seconds. Timeout is handled with data-timeout into &#x60;_popup_parameters_container_&#x60; Uses: [closePopUp](..&#x2F;classes&#x2F;closePopUp.html#method_closePopUp)
+General function that opens a dialog, fills it with HTML content and closes it after a configured time.
 @method showTimedPopUp
 @for DialogsTimed
-@param content {Object} lessons list partial
-@param id {String} dialog select id 
+@param content {String} HTML content
+@param id {String} HTML id of the dialog
 **&#x2F;
 function showTimedPopUp(content, id) {
   var obj = $(&#x27;#&#x27; + id);
