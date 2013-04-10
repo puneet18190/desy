@@ -1,5 +1,5 @@
 /**
-bla bla bla
+bla bla bla -- dire dove è situato il bottone di commit in tutti gli editors.
 @module media-element-editor
 **/
 
