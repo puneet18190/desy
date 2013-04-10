@@ -305,7 +305,15 @@
 <div class="file">
     <pre class="code prettyprint linenums">
 &#x2F;**
-Image editor functions, crop and textarea management.
+The Image Editor can perform two kinds of operations on an image: &lt;b&gt;crop selection&lt;&#x2F;b&gt;, and &lt;b&gt;insertion of texts&lt;&#x2F;b&gt;.
+&lt;br&#x2F;&gt;&lt;br&#x2F;&gt;
+The editor is structured as follows: in the center of the screen is located the image under modification, scaled to fit the available space but conserving its original proportions (the coordinates are extracted using the method {{#crossLink &quot;ImageEditorImageScale&#x2F;getRelativePositionInImageEditor:method&quot;}}{{&#x2F;crossLink}}); the column on the left contains the icons for both available actions.
+&lt;br&#x2F;&gt;&lt;br&#x2F;&gt;
+Clicking on the icon &#x27;crop&#x27;, the user enters in the &lt;b&gt;crop mode&lt;&#x2F;b&gt;: the image is sensible to the action of clicking and dragging, and reacts showing a selected area with the rest of the image shadowed (see the initializer {{#crossLink &quot;ImageEditorDocumentReady&#x2F;imageEditorDocumentReadyCrop:method&quot;}}{{&#x2F;crossLink}}). Similarly, clicking on the icon &#x27;texts&#x27;, the user enters in &lt;b&gt;texts insertion mode&lt;&#x2F;b&gt;: this means that clicking on the image he can create small editable text areas that will be added on the image (see the initializer {{#crossLink &quot;ImageEditorDocumentReady&#x2F;imageEditorDocumentReadyTexts:method&quot;}}{{&#x2F;crossLink}} and the class {{#crossLink &quot;ImageEditorTexts&quot;}}{{&#x2F;crossLink}}). While the user is in crop mode or texts insertion mode, he can come back to the initial status of the editor clicking on one of the two buttons on the bottom right corner of the image: &lt;b&gt;cancel&lt;&#x2F;b&gt; resets the mode without applying the modifications, and &lt;b&gt;apply&lt;&#x2F;b&gt; does the same but saving the image first (the graphics of these operations is handled in the class {{#crossLink &quot;ImageEditorGraphics&quot;}}{{&#x2F;crossLink}}).
+&lt;br&#x2F;&gt;&lt;br&#x2F;&gt;
+The image in editing is conserved in a temporary folder, together with the version of the image before the last step of editing. Each time a new operation is performed, the temporary image is saved in the place of its old version: this way it&#x27;s always possible to undo the last operation (there is a specific route for this, initialized in the method {{#crossLink &quot;ImageEditorDocumentReady&#x2F;imageEditorDocumentReadyUndo:method&quot;}}{{&#x2F;crossLink}}).
+&lt;br&#x2F;&gt;&lt;br&#x2F;&gt;
+As for the other Element Editors ({{#crossLinkModule &quot;audio-editor&quot;}}{{&#x2F;crossLinkModule}}, {{#crossLinkModule &quot;video-editor&quot;}}{{&#x2F;crossLinkModule}}) the core of the process of committing changes is handled in the module {{#crossLinkModule &quot;media-element-editor&quot;}}{{&#x2F;crossLinkModule}} (more specificly in the class {{#crossLink &quot;MediaElementEditorForms&quot;}}{{&#x2F;crossLink}}); the part of this functionality specific for the Image Editor is handled in {{#crossLink &quot;ImageEditorDocumentReady&#x2F;imageEditorDocumentReadyCommit:method&quot;}}{{&#x2F;crossLink}}.
 @module image-editor
 **&#x2F;
 

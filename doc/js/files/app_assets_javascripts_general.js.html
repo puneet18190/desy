@@ -305,7 +305,7 @@
 <div class="file">
     <pre class="code prettyprint linenums">
 &#x2F;**
-Generic shared javascript functions
+Generic javascript functions user throughout the application.
 @module general
 **&#x2F;
 
@@ -314,10 +314,10 @@ Generic shared javascript functions
 
 
 &#x2F;**
-Center a div into current window
+Centers a div into the current window.
 @method centerThis
 @for GeneralCentering
-@param div {String} div selector to center, class or id
+@param div {String} HTML selector to be centered
 **&#x2F;
 function centerThis(div) {
   var winH = $(window).height();
@@ -328,13 +328,13 @@ function centerThis(div) {
 }
 
 &#x2F;**
-Center a div into a given container
+Centers a div into a given container.
 @method centerThisInContainer
 @for GeneralCentering
-@param div {String} div selector to center, class or id
-@param container {String} container selector to center div into, class or id
+@param div {String} HTML selector to be centered
+@param container {String} HTML selector that represents the container in which the div must be centered
 **&#x2F;
-function centerThisInContainer(div,container) {
+function centerThisInContainer(div, container) {
   var contH = $(container).height();
   var contW = $(container).width();
   var centerDiv = $(div);
@@ -343,7 +343,7 @@ function centerThisInContainer(div,container) {
 }
 
 &#x2F;**
-bla bla bla
+Recenters the media elements according to their number and the screen resolution.
 @method recenterMyMediaElements
 @for GeneralCentering
 **&#x2F;
@@ -358,7 +358,7 @@ function recenterMyMediaElements() {
 
 
 &#x2F;**
-bla bla bla
+This function guesses the browser and writes it in a class of the tag &#x27;html&#x27;.
 @method browsersDocumentReady
 @for GeneralDocumentReady
 **&#x2F;
@@ -372,7 +372,7 @@ function browsersDocumentReady() {
 }
 
 &#x2F;**
-bla bla bla
+This function sets the default values of SelectBoxe all around the application. This function is necessary because otherwise the original value wouldn&#x27;t be set, since we use a JQuery plugin to design selects.
 @method defaultValueJavaScriptAnimationsDocumentReady
 @for GeneralDocumentReady
 **&#x2F;
@@ -389,7 +389,7 @@ function defaultValueJavaScriptAnimationsDocumentReady() {
 }
 
 &#x2F;**
-bla bla bla
+Initialization for all the functionalities of expanded lessons and media element popup (see also {{#crossLink &quot;DialogsWithForm&#x2F;showMediaElementInfoPopUp:method&quot;}}{{&#x2F;crossLink}}).
 @method expandedItemsDocumentReady
 @for GeneralDocumentReady
 **&#x2F;
@@ -452,7 +452,7 @@ function expandedItemsDocumentReady() {
 }
 
 &#x2F;**
-bla bla bla
+Similar to {{#crossLink &quot;GeneralDocumentReady&#x2F;defaultValueJavaScriptAnimationsDocumentReady:method&quot;}}{{&#x2F;crossLink}}, this function initializes the initial value of the raio buttons styled using a javascript plugin.
 @method filtersDocumentReady
 @for GeneralDocumentReady
 **&#x2F;
@@ -475,11 +475,85 @@ function filtersDocumentReady() {
 }
 
 &#x2F;**
-bla bla bla
-@method formsDocumentReady
+Initializer for consequences of window resizing.
+@method generalWindowResizeDocumentReady
 @for GeneralDocumentReady
 **&#x2F;
-function formsDocumentReady() {
+function generalWindowResizeDocumentReady() {
+  $(window).resize(function() {
+    if($(&#x27;#my_media_elements&#x27;).length &gt; 0 || $(&#x27;#media_elements_in_dashboard&#x27;).length &gt; 0) {
+      recenterMyMediaElements();
+    }
+  });
+  var hac = $(&#x27;.home-action .container&#x27;);
+  var widc = $(&#x27;.what_is_desy-action .container&#x27;);
+  if($(window).height()&gt;hac.height()){
+    hac.css(&#x27;margin-top&#x27;, ($(window).height() - hac.height())&#x2F;2 + &#x27;px&#x27;);
+  }
+  if($(window).height()&gt;widc.height()){
+    widc.css(&#x27;margin-top&#x27;, ($(window).height() - widc.height())&#x2F;2 + &#x27;px&#x27;);
+  }
+}
+
+&#x2F;**
+Initializer for all javascript and JQuery plugins.
+@method javaScriptAnimationsDocumentReady
+@for GeneralDocumentReady
+**&#x2F;
+function javaScriptAnimationsDocumentReady() {
+  $(&#x27;#notifications_list&#x27;).jScrollPane({
+    autoReinitialise: true
+  });
+  $(&#x27;#select_lesson_list&#x27;).selectbox();
+  $(&#x27;#which_item_to_search&#x27;).selectbox();
+  $(&#x27;#filter_lessons&#x27;).selectbox();
+  $(&#x27;#filter_search_lessons&#x27;).selectbox();
+  $(&#x27;#filter_search_lessons_subject&#x27;).selectbox();
+  $(&#x27;#profile_school_level&#x27;).selectbox();
+  $(&#x27;#profile_region&#x27;).selectbox();
+  $(&#x27;#for_page_media_elements&#x27;).selectbox();
+  $(&#x27;#filter_media_elements&#x27;).selectbox();
+  $(&#x27;#filter_search_media_elements&#x27;).selectbox();
+  $(&#x27;#user_school_level_id&#x27;).selectbox();
+  $(&#x27;body&#x27;).on(&#x27;keyup blur&#x27;, &#x27;input[maxlength], textarea[maxlength]&#x27;, function () {
+    var myself = $(this);
+    var len = myself.val().length;
+    var maxlength = myself.attr(&#x27;maxlength&#x27;)
+    if (maxlength &amp;&amp; len &gt; maxlength) {
+      myself.val(myself.val().slice(0, maxlength));
+    }
+  });
+}
+
+&#x2F;**
+Initializer for locations automatic filling.
+@method locationsDocumentReady
+@for GeneralDocumentReady
+**&#x2F;
+function locationsDocumentReady() {
+  $(&#x27;._location_select_box&#x27;).each(function() {
+    $(&#x27;#&#x27; + $(this).attr(&#x27;id&#x27;)).selectbox();
+  });
+  $(&#x27;._location_select_box&#x27;).on(&#x27;change&#x27;, function() {
+    if(!$(this).data(&#x27;is-last&#x27;)) {
+      if($(this).val() == &#x27;0&#x27;) {
+        $(this).parents(&#x27;._location_selector&#x27;).nextAll().find(&#x27;select&#x27;).html(&#x27;&#x27;);
+      } else {
+        $.ajax({
+          url: &#x27;&#x2F;locations&#x2F;&#x27; + $(this).val() + &#x27;&#x2F;find&#x27;,
+          type: &#x27;get&#x27;
+        });
+      }
+    }
+  });
+}
+
+&#x2F;**
+Initializes reports forms for both lessons and media elements.
+@method reportsDocumentReady
+@for GeneralDocumentReady
+**&#x2F;
+function reportsDocumentReady() {
   $(&#x27;body&#x27;).on(&#x27;mouseover&#x27;, &#x27;._report_lesson_click&#x27;, function() {
     var obj = $(&#x27;#&#x27; + this.id + &#x27; a._reportable_icon&#x27;);
     if(!obj.hasClass(&#x27;_report_selected&#x27;)) {
@@ -543,86 +617,12 @@ function formsDocumentReady() {
   });
 }
 
-&#x2F;**
-bla bla bla
-@method generalWindowResizeDocumentReady
-@for GeneralDocumentReady
-**&#x2F;
-function generalWindowResizeDocumentReady() {
-  $(window).resize(function() {
-    if($(&#x27;#my_media_elements&#x27;).length &gt; 0 || $(&#x27;#media_elements_in_dashboard&#x27;).length &gt; 0){
-      recenterMyMediaElements();
-    }
-  });
-  var hac = $(&#x27;.home-action .container&#x27;);
-  var widc = $(&#x27;.what_is_desy-action .container&#x27;);
-  if($(window).height()&gt;hac.height()){
-    hac.css(&#x27;margin-top&#x27;,($(window).height() - hac.height())&#x2F;2 + &#x27;px&#x27;);
-  }
-  if($(window).height()&gt;widc.height()){
-    widc.css(&#x27;margin-top&#x27;,($(window).height() - widc.height())&#x2F;2 + &#x27;px&#x27;);
-  }
-}
-
-&#x2F;**
-bla bla bla
-@method javaScriptAnimationsDocumentReady
-@for GeneralDocumentReady
-**&#x2F;
-function javaScriptAnimationsDocumentReady() {
-  $(&#x27;#notifications_list&#x27;).jScrollPane({
-    autoReinitialise: true
-  });
-  $(&#x27;#select_lesson_list&#x27;).selectbox();
-  $(&#x27;#which_item_to_search&#x27;).selectbox();
-  $(&#x27;#filter_lessons&#x27;).selectbox();
-  $(&#x27;#filter_search_lessons&#x27;).selectbox();
-  $(&#x27;#filter_search_lessons_subject&#x27;).selectbox();
-  $(&#x27;#profile_school_level&#x27;).selectbox();
-  $(&#x27;#profile_region&#x27;).selectbox();
-  $(&#x27;#for_page_media_elements&#x27;).selectbox();
-  $(&#x27;#filter_media_elements&#x27;).selectbox();
-  $(&#x27;#filter_search_media_elements&#x27;).selectbox();
-  $(&#x27;#user_school_level_id&#x27;).selectbox();
-  $(&#x27;body&#x27;).on(&#x27;keyup blur&#x27;, &#x27;input[maxlength], textarea[maxlength]&#x27;, function () {
-    var myself = $(this);
-    var len = myself.val().length;
-    var maxlength = myself.attr(&#x27;maxlength&#x27;)
-    if (maxlength &amp;&amp; len &gt; maxlength) {
-      myself.val(myself.val().slice(0, maxlength));
-    }
-  });
-}
-
-&#x2F;**
-ba bla bla bla
-@method locationsDocumentReady
-@for GeneralDocumentReady
-**&#x2F;
-function locationsDocumentReady() {
-  $(&#x27;._location_select_box&#x27;).each(function() {
-    $(&#x27;#&#x27; + $(this).attr(&#x27;id&#x27;)).selectbox();
-  });
-  $(&#x27;._location_select_box&#x27;).on(&#x27;change&#x27;, function() {
-    if(!$(this).data(&#x27;is-last&#x27;)) {
-      if($(this).val() == &#x27;0&#x27;) {
-        $(this).parents(&#x27;._location_selector&#x27;).nextAll().find(&#x27;select&#x27;).html(&#x27;&#x27;);
-      } else {
-        $.ajax({
-          url: &#x27;&#x2F;locations&#x2F;&#x27; + $(this).val() + &#x27;&#x2F;find&#x27;,
-          type: &#x27;get&#x27;
-        });
-      }
-    }
-  });
-}
-
 
 
 
 
 &#x2F;**
-bla bla bla
+Gets the requested format to visualize media elements.
 @method getMediaElementsFormat
 @for GeneralMiscellanea
 **&#x2F;
@@ -635,7 +635,7 @@ function getMediaElementsFormat() {
 }
 
 &#x2F;**
-Shows error icon when somethings goes wrong
+Shows a red error icon when somethings goes wrong. Widely used in {{#crossLinkModule &quot;lesson-editor&quot;}}{{&#x2F;crossLinkModule}} and in {{#crossLinkModule &quot;image-editor&quot;}}{{&#x2F;crossLinkModule}}.
 @method redError
 @for GeneralMiscellanea
 **&#x2F;
@@ -646,9 +646,10 @@ function redError() {
 }
 
 &#x2F;**
-bla bla bla
+Function to convert seconds into a time string of the kind &lt;i&gt;02:35&lt;&#x2F;i&gt;; used in {{#crossLinkModule &quot;video-editor&quot;}}{{&#x2F;crossLinkModule}} and in {{#crossLinkModule &quot;audio-editor&quot;}}{{&#x2F;crossLinkModule}}.
 @method secondsToDateString
 @for GeneralMiscellanea
+@param seconds {Number} the seconds to be converted
 **&#x2F;
 function secondsToDateString(seconds) {
   var mm = parseInt(seconds &#x2F; 60);
@@ -677,9 +678,10 @@ function secondsToDateString(seconds) {
 
 
 &#x2F;**
-bla bla bla
+This function returns an url for media elements without the parameter &#x27;filter&#x27;. The original url is extracted by the method {{#crossLink &quot;GeneralMiscellanea&#x2F;getMediaElementsFormat:method&quot;}}{{&#x2F;crossLink}}.
 @method getCompleteMediaElementsUrlWithoutFilter
 @for GeneralUrls
+@return {String} the current url without the parameter &#x27;filter&#x27;
 **&#x2F;
 function getCompleteMediaElementsUrlWithoutFilter() {
   var param_format = getMediaElementsFormat();
@@ -688,9 +690,10 @@ function getCompleteMediaElementsUrlWithoutFilter() {
 }
 
 &#x2F;**
-bla bla bla
+This function returns an url for media elements without the parameter &#x27;for_page&#x27;. The original url is extracted by the method {{#crossLink &quot;GeneralMiscellanea&#x2F;getMediaElementsFormat:method&quot;}}{{&#x2F;crossLink}}.
 @method getCompleteMediaElementsUrlWithoutForPage
 @for GeneralUrls
+@return {String} the current url without the parameter &#x27;for_page&#x27;
 **&#x2F;
 function getCompleteMediaElementsUrlWithoutForPage() {
   var param_format = getMediaElementsFormat();
@@ -699,12 +702,12 @@ function getCompleteMediaElementsUrlWithoutForPage() {
 }
 
 &#x2F;**
-Remove a param from url
+Removes a parameter from an url.
 @method removeURLParameter
 @for GeneralUrls
-@param url {String} starting url
+@param url {String} initial url
 @param param {String} param to remove
-@return {String} update url
+@return {String} updated url
 **&#x2F;
 function removeURLParameter(url, param) {
   var newAdditionalURL = &#x27;&#x27;;
@@ -725,12 +728,12 @@ function removeURLParameter(url, param) {
 }
 
 &#x2F;**
-Add new parameters to an url
+Adds or update new parameters to an url.
 @method updateURLParameter
 @for GeneralUrls
-@param url {String} starting url
-@param param {String} new param
-@param paramVal {String} new param value
+@param url {String} initial url
+@param param {String} parameter
+@param paramVal {String} new value for the parameter
 @return {String} updated url
 **&#x2F;
 function updateURLParameter(url, param, paramVal) {

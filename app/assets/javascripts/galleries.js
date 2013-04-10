@@ -1,5 +1,33 @@
 /**
-Media element galleries, initialization.
+The galleries are containers of media elements, used at any time the user needs to pick an element of a specific type.
+<br/><br/>
+There are three kinds of gallery, each of them has specific features depending on where it's used. Each instance of a gallery is provided of its specific url route, that performs the speficic javascript actions it requires. For instance, in the image gallery contained inside the {{#crossLinkModule "video-editor"}}{{/crossLinkModule}}, to each image popup (see also {{#crossLink "DialogsGalleries/showImageInGalleryPopUp:method"}}{{/crossLink}}) is attached additional HTML code that contains the input for inserting the duration of the image component. Each gallery is also provided of infinite scroll pagination, which is initialized in the methods of {{#crossLink "GalleriesInitializers"}}{{/crossLink}}. The complete list of galleries is:
+<br/>
+<ul>
+  <li>
+    <b>audio gallery</b>, whose occurrences are
+    <ul>
+      <li>in Audio Editor, initialized by {{#crossLink "GalleriesInitializers/initializeAudioGalleryInAudioEditor:method"}}{{/crossLink}}</li>
+      <li>in Lesson Editor, initialized by {{#crossLink "GalleriesInitializers/initializeAudioGalleryInLessonEditor:method"}}{{/crossLink}}</li>
+      <li>in Video Editor, initialized by {{#crossLink "GalleriesInitializers/initializeAudioGalleryInVideoEditor:method"}}{{/crossLink}}</li>
+    </ul>
+  </li>
+  <li>
+    <b>image gallery</b>, whose occurrences are
+    <ul>
+      <li>in Image Editor, initialized by {{#crossLink "GalleriesInitializers/initializeImageGalleryInImageEditor:method"}}{{/crossLink}}</li>
+      <li>in Lesson Editor, initialized by {{#crossLink "GalleriesInitializers/initializeImageGalleryInLessonEditor:method"}}{{/crossLink}}</li>
+      <li>in the mixed gallery of Video Editor, initialized by {{#crossLink "GalleriesInitializers/initializeMixedGalleryInVideoEditor:method"}}{{/crossLink}}</li>
+    </ul>
+  </li>
+  <li>
+    <b>video gallery</b>, whose occurrences are
+    <ul>
+      <li>in Lesson Editor, initialized by {{#crossLink "GalleriesInitializers/initializeVideoGalleryInLessonEditor:method"}}{{/crossLink}}</li>
+      <li>in the mixed gallery of Video Editor, initialized by {{#crossLink "GalleriesInitializers/initializeMixedGalleryInVideoEditor:method"}}{{/crossLink}}</li>
+    </ul>
+  </li>
+</ul>
 @module galleries
 **/
 
@@ -8,7 +36,7 @@ Media element galleries, initialization.
 
 
 /**
-Scale image size form image gallery popup
+Scale image size form image gallery popup.
 @method resizedWidthForImageGallery
 @for GalleriesAccessories
 @param width {Number} image original width
@@ -27,7 +55,7 @@ function resizedWidthForImageGallery(width, height) {
 
 
 /**
-bla bla bla
+Initializer for effects in galleries.
 @method galleriesDocumentReady
 @for GalleriesDocumentReady
 **/
@@ -37,7 +65,7 @@ function galleriesDocumentReady() {
 }
 
 /**
-bla bla bla
+Initializer for effects of closing a gallery. Typically, when closing a gallery the system closes all the media inside it using {{#crossLink "PlayersGeneral/stopMedia:method"}}{{/crossLink}}.
 @method galleriesDocumentReadyClose
 @for GalleriesDocumentReady
 **/
@@ -73,7 +101,7 @@ function galleriesDocumentReadyClose() {
 }
 
 /**
-bla bla bla
+Initializer for effects of opening a gallery and opening the individual dialog of an element in a gallery: this method calls methods belonging to the class {{#crossLink "DialogsGalleries"}}{{/crossLink}}.
 @method galleriesDocumentReadyOpen
 @for GalleriesDocumentReady
 **/
@@ -132,7 +160,7 @@ function galleriesDocumentReadyOpen() {
 
 
 /**
-Initialize audio gallery in audio editor. Init jScrollPane and get audios block.
+Initialize audio gallery in {{#crossLinkModule "audio-editor"}}{{/crossLinkModule}}.
 @method initializeAudioGalleryInAudioEditor
 @for GalleriesInitializers
 **/
@@ -150,7 +178,7 @@ function initializeAudioGalleryInAudioEditor() {
 }
 
 /**
-Initialize audio gallery in lesson editor. Init jScrollPane and get audios block.
+Initialize audio gallery in {{#crossLinkModule "lesson-editor"}}{{/crossLinkModule}}.
 @method initializeAudioGalleryInLessonEditor
 @for GalleriesInitializers
 **/
@@ -168,7 +196,7 @@ function initializeAudioGalleryInLessonEditor() {
 }
 
 /**
-Initialize audio gallery in video editor. Init jScrollPane and audios block.
+Initialize audio gallery in {{#crossLinkModule "video-editor"}}{{/crossLinkModule}}.
 @method initializeAudioGalleryInVideoEditor
 @for GalleriesInitializers
 **/
@@ -186,7 +214,7 @@ function initializeAudioGalleryInVideoEditor() {
 }
 
 /**
-Initialize image gallery in image editor. Init jScrollPane and get images block.
+Initialize image gallery in {{#crossLinkModule "image-editor"}}{{/crossLinkModule}}.
 @method initializeImageGalleryInImageEditor
 @for GalleriesInitializers
 **/
@@ -204,7 +232,7 @@ function initializeImageGalleryInImageEditor() {
 }
 
 /**
-Initialize image gallery in lesson editor. Init jScrollPane and get images block.
+Initialize image gallery in {{#crossLinkModule "lesson-editor"}}{{/crossLinkModule}}.
 @method initializeImageGalleryInLessonEditor
 @for GalleriesInitializers
 **/
@@ -222,7 +250,7 @@ function initializeImageGalleryInLessonEditor() {
 }
 
 /**
-Initialize all media mixed gallery in video editor. Init jScrollPane and get mixed media block.
+Initialize mixed gallery in {{#crossLinkModule "video-editor"}}{{/crossLinkModule}}.
 @method initializeMixedGalleryInVideoEditor
 @for GalleriesInitializers
 **/
@@ -250,7 +278,7 @@ function initializeMixedGalleryInVideoEditor() {
 }
 
 /**
-Initialize video gallery in lesson editor. Init jScrollPane and get videos block.
+Initialize video gallery in {{#crossLinkModule "lesson-editor"}}{{/crossLinkModule}}.
 @method initializeVideoGalleryInLessonEditor
 @for GalleriesInitializers
 **/

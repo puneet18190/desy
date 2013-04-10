@@ -84,6 +84,7 @@ function switchToSuggestedMediaElements() {
 
 /**
 This function changes page of the section containing suggested lessons. As already mentioned, the method reloads the pagination using {{#crossLink "DashboardPagination/reloadLessonsDashboardPagination:method"}}{{/crossLink}}.
+@method changePageDashboardLessons
 @for DashboardPagination
 @param old_pos {Number} old page
 @param pos {Number} new page
