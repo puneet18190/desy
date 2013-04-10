@@ -3502,7 +3502,7 @@
         {
             "file": "app/assets/javascripts/general.js",
             "line": 318,
-            "description": "bla bla bla",
+            "description": "Gets the requested format to visualize media elements.",
             "itemtype": "method",
             "name": "getMediaElementsFormat",
             "class": "GeneralMiscellanea",
@@ -3511,7 +3511,7 @@
         {
             "file": "app/assets/javascripts/general.js",
             "line": 331,
-            "description": "Shows error icon when somethings goes wrong",
+            "description": "Shows a red error icon when somethings goes wrong. Widely used in {{#crossLinkModule \"lesson-editor\"}}{{/crossLinkModule}} and in {{#crossLinkModule \"image-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "redError",
             "class": "GeneralMiscellanea",
@@ -3520,15 +3520,22 @@
         {
             "file": "app/assets/javascripts/general.js",
             "line": 342,
-            "description": "bla bla bla",
+            "description": "Function to convert seconds into a time string of the kind <i>02:35</i>; used in {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}} and in {{#crossLinkModule \"audio-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "secondsToDateString",
+            "params": [
+                {
+                    "name": "seconds",
+                    "description": "the seconds to be converted",
+                    "type": "Number"
+                }
+            ],
             "class": "GeneralMiscellanea",
             "module": "general"
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 373,
+            "line": 374,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "getCompleteMediaElementsUrlWithoutFilter",
@@ -3537,7 +3544,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 384,
+            "line": 385,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "getCompleteMediaElementsUrlWithoutForPage",
@@ -3546,7 +3553,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 395,
+            "line": 396,
             "description": "Remove a param from url",
             "itemtype": "method",
             "name": "removeURLParameter",
@@ -3571,7 +3578,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 421,
+            "line": 422,
             "description": "Add new parameters to an url",
             "itemtype": "method",
             "name": "updateURLParameter",

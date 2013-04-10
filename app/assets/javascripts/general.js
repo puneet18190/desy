@@ -316,7 +316,7 @@ function reportsDocumentReady() {
 
 
 /**
-bla bla bla
+Gets the requested format to visualize media elements.
 @method getMediaElementsFormat
 @for GeneralMiscellanea
 **/
@@ -329,7 +329,7 @@ function getMediaElementsFormat() {
 }
 
 /**
-Shows error icon when somethings goes wrong
+Shows a red error icon when somethings goes wrong. Widely used in {{#crossLinkModule "lesson-editor"}}{{/crossLinkModule}} and in {{#crossLinkModule "image-editor"}}{{/crossLinkModule}}.
 @method redError
 @for GeneralMiscellanea
 **/
@@ -340,9 +340,10 @@ function redError() {
 }
 
 /**
-bla bla bla
+Function to convert seconds into a time string of the kind <i>02:35</i>; used in {{#crossLinkModule "video-editor"}}{{/crossLinkModule}} and in {{#crossLinkModule "audio-editor"}}{{/crossLinkModule}}.
 @method secondsToDateString
 @for GeneralMiscellanea
+@param seconds {Number} the seconds to be converted
 **/
 function secondsToDateString(seconds) {
   var mm = parseInt(seconds / 60);
