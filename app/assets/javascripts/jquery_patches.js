@@ -10,7 +10,7 @@ bla bla bla (dire che devono venire caricati prima di document ready)
 /**
 bla bla bla
 @method iPadDetection
-@for JQueryPatches
+@for JqueryPatchesBrowsers
 **/
 (function() {
   var ua = navigator.userAgent.toLowerCase();

@@ -115,7 +115,7 @@
             
                 <li><a href="..&#x2F;classes/ImageEditorTexts.html">ImageEditorTexts</a></li>
             
-                <li><a href="..&#x2F;classes/JQueryPatches.html">JQueryPatches</a></li>
+                <li><a href="..&#x2F;classes/JqueryPatchesBrowsers.html">JqueryPatchesBrowsers</a></li>
             
                 <li><a href="..&#x2F;classes/LessonEditorCurrentSlide.html">LessonEditorCurrentSlide</a></li>
             
@@ -305,7 +305,9 @@
 <div class="file">
     <pre class="code prettyprint linenums">
 &#x2F;**
-Dashboard is the welcome page of DESY where you find shared lessons and elements. This handles elements interaction events.
+The dashboard is the home page of DESY: the page is divided in two sections, one for &lt;b&gt;suggested elements&lt;&#x2F;b&gt; and one for &lt;b&gt;suggested lessons&lt;&#x2F;b&gt;. Each of these two sections is split into three pages of lessons and elements. When the server loads the dashboard, all the six pages (three for lessons, three for elements) are loaded together, and all the operations are handled with javascript functions.
+&lt;br&#x2F;&gt;&lt;br&#x2F;&gt;
+There are two simple functions that switch between the pages for lessons and elements (see both methods of {{#crossLink &quot;DashboardGeneral&quot;}}{{&#x2F;crossLink}}). A bit more complicated are the functions to pass from a page to another (all contained in the class {{#crossLink &quot;DashboardPagination&quot;}}{{&#x2F;crossLink}}): the core of such an asynchronous pagination is the method {{#crossLink &quot;DashboardPagination&#x2F;getHtmlPagination:method&quot;}}{{&#x2F;crossLink}} that reconstructs the normal pagination without calling the corresponding partial in views&#x2F;shared&#x2F;pagination.html.erb.
 @module dashboard
 **&#x2F;
 

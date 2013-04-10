@@ -140,7 +140,7 @@
             },
             "classes": {},
             "fors": {
-                "JQueryPatches": 1
+                "JqueryPatchesBrowsers": 1
             },
             "namespaces": {}
         },
@@ -412,7 +412,7 @@
             "tag": "module",
             "file": "app/assets/javascripts/dashboard.js",
             "line": 1,
-            "description": "Dashboard is the welcome page of DESY where you find shared lessons and elements. This handles elements interaction events."
+            "description": "The dashboard is the home page of DESY: the page is divided in two sections, one for <b>suggested elements</b> and one for <b>suggested lessons</b>. Each of these two sections is split into three pages of lessons and elements. When the server loads the dashboard, all the six pages (three for lessons, three for elements) are loaded together, and all the operations are handled with javascript functions.\n<br/><br/>\nThere are two simple functions that switch between the pages for lessons and elements (see both methods of {{#crossLink \"DashboardGeneral\"}}{{/crossLink}}). A bit more complicated are the functions to pass from a page to another (all contained in the class {{#crossLink \"DashboardPagination\"}}{{/crossLink}}): the core of such an asynchronous pagination is the method {{#crossLink \"DashboardPagination/getHtmlPagination:method\"}}{{/crossLink}} that reconstructs the normal pagination without calling the corresponding partial in views/shared/pagination.html.erb."
         },
         "dialogs": {
             "name": "dialogs",
@@ -502,10 +502,10 @@
             "name": "jquery-patches",
             "submodules": {},
             "classes": {
-                "JQueryPatches": 1
+                "JqueryPatchesBrowsers": 1
             },
             "fors": {
-                "JQueryPatches": 1
+                "JqueryPatchesBrowsers": 1
             },
             "namespaces": {},
             "tag": "module",
@@ -1167,9 +1167,9 @@
             "module": "image-editor",
             "namespace": ""
         },
-        "JQueryPatches": {
-            "name": "JQueryPatches",
-            "shortname": "JQueryPatches",
+        "JqueryPatchesBrowsers": {
+            "name": "JqueryPatchesBrowsers",
+            "shortname": "JqueryPatchesBrowsers",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -2832,7 +2832,7 @@
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
-            "line": 10,
+            "line": 12,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "dashboardDocumentReady",
@@ -2841,7 +2841,7 @@
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
-            "line": 43,
+            "line": 45,
             "description": "Switch to suggested lessons page in dashboard. Uses: [reloadMediaLessonsDashboardPagination](../classes/reloadMediaLessonsDashboardPagination.html#method_reloadMediaLessonsDashboardPagination)",
             "itemtype": "method",
             "name": "switchToSuggestedLessons",
@@ -2850,7 +2850,7 @@
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
-            "line": 61,
+            "line": 63,
             "description": "Switch to suggested elements page in dashboard. Uses: [reloadMediaElementsDashboardPagination](../classes/reloadMediaElementsDashboardPagination.html#method_reloadMediaElementsDashboardPagination)",
             "itemtype": "method",
             "name": "switchToSuggestedMediaElements",
@@ -2859,7 +2859,7 @@
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
-            "line": 83,
+            "line": 85,
             "description": "Change lessons page in dashboard. Uses: [reloadLessonsDashboardPagination](../classes/reloadLessonsDashboardPagination.html#method_reloadLessonsDashboardPagination)",
             "itemtype": "method",
             "name": "changePageDashboardLessons",
@@ -2885,7 +2885,7 @@
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
-            "line": 99,
+            "line": 101,
             "description": "Change media elements page in dashboard. Uses: [reloadMediaElementsDashboardPagination](../classes/reloadMediaElementsDashboardPagination.html#method_reloadMediaElementsDashboardPagination)",
             "itemtype": "method",
             "name": "changePageDashboardMediaElements",
@@ -2911,7 +2911,7 @@
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
-            "line": 115,
+            "line": 117,
             "description": "Pagination html generator",
             "itemtype": "method",
             "name": "getHtmlPagination",
@@ -2936,7 +2936,7 @@
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
-            "line": 156,
+            "line": 158,
             "description": "Reload Dashboard content on page change, using bottom pagination.",
             "itemtype": "method",
             "name": "reloadDashboardPages",
@@ -2945,7 +2945,7 @@
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
-            "line": 168,
+            "line": 170,
             "description": "Realod pagination html for lessons. Uses: [changePageDashboardLessons](../classes/changePageDashboardLessons.html#method_changePageDashboardLessons)",
             "itemtype": "method",
             "name": "reloadLessonsDashboardPagination",
@@ -2966,7 +2966,7 @@
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
-            "line": 196,
+            "line": 198,
             "description": "Realod pagination html for media elements. Uses: [changePageDashboardMediaElements](../classes/changePageDashboardMediaElements.html#method_changePageDashboardMediaElements)",
             "itemtype": "method",
             "name": "reloadMediaElementsDashboardPagination",
@@ -3771,7 +3771,7 @@
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "iPadDetection",
-            "class": "JQueryPatches",
+            "class": "JqueryPatchesBrowsers",
             "module": "jquery-patches"
         },
         {
