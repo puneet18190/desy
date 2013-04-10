@@ -5,7 +5,7 @@ class UserMailer < ActionMailer::Base
   
   APPLICATION_NAME = SETTINGS['application_name']
   
-  layout "user_mailer"
+  layout 'shared/mailer'
 
   default :from => SETTINGS['admin']['email']
 
