@@ -234,13 +234,13 @@ function mediaElementButtonsDocumentReady() {
 
 
 /**
-Add lessons from dashboard to my lessons. Uses [addDeleteItemToCurrentUrl](../classes/addDeleteItemToCurrentUrl.html#method_addDeleteItemToCurrentUrl) and [showErrorPopUp](../classes/showErrorPopUp.html#method_showErrorPopUp)
+Calls the url to add the link of a lesson. It either can reload the item or remove it from the page.
 @method addLesson
 @for ButtonsLesson
-@param lessons_id {Number} lesson id
-@param destination {String} destination view
+@param lessons_id {Number} id of the lesson in the database
+@param destination {String} destination (used to pick the HTML id of the lesson)
 @param current_url {String} url where the lesson is added from
-@param reload {Boolean}
+@param reload {Boolean} true if the item must be reloaded, false if it must be removed
 **/
 function addLesson(lesson_id, destination, current_url, reload) {
   if(reload) {
@@ -270,11 +270,11 @@ function addLesson(lesson_id, destination, current_url, reload) {
 }
 
 /**
-Make the lesson available in the virtual classroom
+Calls the url to add a lesson to my Virtual Classroom. It reloads the item.
 @method addLessonToVirtualClassroom
 @for ButtonsLesson
-@param lessons_id {Number} lesson id
-@param destination {String} destination view
+@param lessons_id {Number} id of the lesson in the database
+@param destination {String} destination (used to pick the HTML id of the lesson)
 **/
 function addLessonToVirtualClassroom(lesson_id, destination) {
   $.ajax({
@@ -284,11 +284,11 @@ function addLessonToVirtualClassroom(lesson_id, destination) {
 }
 
 /**
-Create user own copy of the lesson
+Calls the url to copy a lesson.
 @method copyLesson
 @for ButtonsLesson
-@param lessons_id {Number} lesson id
-@param destination {String} destination view
+@param lessons_id {Number} id of the lesson in the database
+@param destination {String} destination (used to pick the HTML id of the lesson)
 **/
 function copyLesson(lesson_id, destination) {
   $.ajax({
@@ -298,11 +298,11 @@ function copyLesson(lesson_id, destination) {
 }
 
 /**
-Destroy lessons lesson Uses [addDeleteItemToCurrentUrl](../classes/addDeleteItemToCurrentUrl.html#method_addDeleteItemToCurrentUrl) and [showConfirmPopUp](../classes/showConfirmPopUp.html#method_showConfirmPopUp) and [showErrorPopUp](../classes/showErrorPopUp.html#method_showErrorPopUp)
+Calls the url to destroy a lesson. It removes the lesson from the page.
 @method destroyLesson
 @for ButtonsLesson
-@param lessons_id {Number} lesson id
-@param destination {String} destination view
+@param lessons_id {Number} id of the lesson in the database
+@param destination {String} destination (used to pick the HTML id of the lesson)
 @param current_url {String} url where the lesson is added from
 **/
 function destroyLesson(lesson_id, destination, current_url) {
@@ -331,7 +331,7 @@ function destroyLesson(lesson_id, destination, current_url) {
   });
 }
 
-/**
+/** FIXME GIUNTO QUI
 Remove like from a lesson
 @method dislikeLesson
 @for ButtonsLesson
