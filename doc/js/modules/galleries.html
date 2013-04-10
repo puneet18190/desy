@@ -318,7 +318,36 @@
 
 
 <div class="box intro">
-    <p>Media element galleries, initialization.</p>
+    <p>The galleries are containers of media elements, used at any time the user needs to pick an element of a specific type.
+<br/><br/>
+There are three kinds of gallery, each of them has specific features depending on where it's used. Each instance of a gallery is provided of its specific url route, that performs the speficic javascript actions it requires. For instance, in the image gallery contained inside the <a href="../modules/video-editor.html">video-editor</a>, to each image popup (see also <a href="../classes/DialogsGalleries.html#method_showImageInGalleryPopUp" class="crosslink">showImageInGalleryPopUp</a>) is attached additional HTML code that contains the input for inserting the duration of the image component. Each gallery is also provided of infinite scroll pagination, which is initialized in the methods of <a href="../classes/GalleriesInitializers.html" class="crosslink">GalleriesInitializers</a>. The complete list of galleries is:
+<br/></p>
+
+<ul>
+  <li>
+    <b>audio gallery</b>, whose occurrences are
+    <ul>
+      <li>in Audio Editor, initialized by <a href="../classes/GalleriesInitializers.html#method_initializeAudioGalleryInAudioEditor" class="crosslink">initializeAudioGalleryInAudioEditor</a></li>
+      <li>in Lesson Editor, initialized by <a href="../classes/GalleriesInitializers.html#method_initializeAudioGalleryInLessonEditor" class="crosslink">initializeAudioGalleryInLessonEditor</a></li>
+      <li>in Video Editor, initialized by <a href="../classes/GalleriesInitializers.html#method_initializeAudioGalleryInVideoEditor" class="crosslink">initializeAudioGalleryInVideoEditor</a></li>
+    </ul>
+  </li>
+  <li>
+    <b>image gallery</b>, whose occurrences are
+    <ul>
+      <li>in Image Editor, initialized by <a href="../classes/GalleriesInitializers.html#method_initializeImageGalleryInImageEditor" class="crosslink">initializeImageGalleryInImageEditor</a></li>
+      <li>in Lesson Editor, initialized by <a href="../classes/GalleriesInitializers.html#method_initializeImageGalleryInLessonEditor" class="crosslink">initializeImageGalleryInLessonEditor</a></li>
+      <li>in the mixed gallery of Video Editor, initialized by <a href="../classes/GalleriesInitializers.html#method_initializeMixedGalleryInVideoEditor" class="crosslink">initializeMixedGalleryInVideoEditor</a></li>
+    </ul>
+  </li>
+  <li>
+    <b>video gallery</b>, whose occurrences are
+    <ul>
+      <li>in Lesson Editor, initialized by <a href="../classes/GalleriesInitializers.html#method_initializeVideoGalleryInLessonEditor" class="crosslink">initializeVideoGalleryInLessonEditor</a></li>
+      <li>in the mixed gallery of Video Editor, initialized by <a href="../classes/GalleriesInitializers.html#method_initializeMixedGalleryInVideoEditor" class="crosslink">initializeMixedGalleryInVideoEditor</a></li>
+    </ul>
+  </li>
+</ul>
 </div>
 
 

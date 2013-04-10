@@ -305,7 +305,35 @@
 <div class="file">
     <pre class="code prettyprint linenums">
 &#x2F;**
-Media element galleries, initialization.
+The galleries are containers of media elements, used at any time the user needs to pick an element of a specific type.
+&lt;br&#x2F;&gt;&lt;br&#x2F;&gt;
+There are three kinds of gallery, each of them has specific features depending on where it&#x27;s used. Each instance of a gallery is provided of its specific url route, that performs the speficic javascript actions it requires. For instance, in the image gallery contained inside the {{#crossLinkModule &quot;video-editor&quot;}}{{&#x2F;crossLinkModule}}, to each image popup (see also {{#crossLink &quot;DialogsGalleries&#x2F;showImageInGalleryPopUp:method&quot;}}{{&#x2F;crossLink}}) is attached additional HTML code that contains the input for inserting the duration of the image component. Each gallery is also provided of infinite scroll pagination, which is initialized in the methods of {{#crossLink &quot;GalleriesInitializers&quot;}}{{&#x2F;crossLink}}. The complete list of galleries is:
+&lt;br&#x2F;&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;b&gt;audio gallery&lt;&#x2F;b&gt;, whose occurrences are
+    &lt;ul&gt;
+      &lt;li&gt;in Audio Editor, initialized by {{#crossLink &quot;GalleriesInitializers&#x2F;initializeAudioGalleryInAudioEditor:method&quot;}}{{&#x2F;crossLink}}&lt;&#x2F;li&gt;
+      &lt;li&gt;in Lesson Editor, initialized by {{#crossLink &quot;GalleriesInitializers&#x2F;initializeAudioGalleryInLessonEditor:method&quot;}}{{&#x2F;crossLink}}&lt;&#x2F;li&gt;
+      &lt;li&gt;in Video Editor, initialized by {{#crossLink &quot;GalleriesInitializers&#x2F;initializeAudioGalleryInVideoEditor:method&quot;}}{{&#x2F;crossLink}}&lt;&#x2F;li&gt;
+    &lt;&#x2F;ul&gt;
+  &lt;&#x2F;li&gt;
+  &lt;li&gt;
+    &lt;b&gt;image gallery&lt;&#x2F;b&gt;, whose occurrences are
+    &lt;ul&gt;
+      &lt;li&gt;in Image Editor, initialized by {{#crossLink &quot;GalleriesInitializers&#x2F;initializeImageGalleryInImageEditor:method&quot;}}{{&#x2F;crossLink}}&lt;&#x2F;li&gt;
+      &lt;li&gt;in Lesson Editor, initialized by {{#crossLink &quot;GalleriesInitializers&#x2F;initializeImageGalleryInLessonEditor:method&quot;}}{{&#x2F;crossLink}}&lt;&#x2F;li&gt;
+      &lt;li&gt;in the mixed gallery of Video Editor, initialized by {{#crossLink &quot;GalleriesInitializers&#x2F;initializeMixedGalleryInVideoEditor:method&quot;}}{{&#x2F;crossLink}}&lt;&#x2F;li&gt;
+    &lt;&#x2F;ul&gt;
+  &lt;&#x2F;li&gt;
+  &lt;li&gt;
+    &lt;b&gt;video gallery&lt;&#x2F;b&gt;, whose occurrences are
+    &lt;ul&gt;
+      &lt;li&gt;in Lesson Editor, initialized by {{#crossLink &quot;GalleriesInitializers&#x2F;initializeVideoGalleryInLessonEditor:method&quot;}}{{&#x2F;crossLink}}&lt;&#x2F;li&gt;
+      &lt;li&gt;in the mixed gallery of Video Editor, initialized by {{#crossLink &quot;GalleriesInitializers&#x2F;initializeMixedGalleryInVideoEditor:method&quot;}}{{&#x2F;crossLink}}&lt;&#x2F;li&gt;
+    &lt;&#x2F;ul&gt;
+  &lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
 @module galleries
 **&#x2F;
 
