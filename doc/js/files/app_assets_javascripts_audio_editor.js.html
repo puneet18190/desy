@@ -920,9 +920,11 @@ function showGalleryInAudioEditor() {
 
 
 &#x2F;**
-bla bla bla
+Extracts the unique identifier of a component using its HTML id.
 @method getAudioComponentIdentifier
 @for AudioEditorGeneral
+@param component {Object} the component from which we want to extract the identifier
+@returns {Number} the identifier.
 **&#x2F;
 function getAudioComponentIdentifier(component) {
   var id = component.attr(&#x27;id&#x27;).split(&#x27;_&#x27;);
