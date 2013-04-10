@@ -3121,7 +3121,7 @@
                 },
                 {
                     "name": "callback",
-                    "description": "callback function (it depends on the gallery, see module {{#crossLinkModule \"galleries\"}}{{(crossLinkModule}}",
+                    "description": "callback function (it depends on the gallery, see module {{#crossLinkModule \"galleries\"}}{{/crossLinkModule}}",
                     "type": "Object"
                 }
             ],

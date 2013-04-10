@@ -147,7 +147,7 @@ Dialog for the image gallery.
 @method showImageInGalleryPopUp
 @for DialogsGalleries
 @param image_id {Number} id in the database of the image, which is used to extract the HTML id of the dialog
-@param callback {Object} callback function (it depends on the gallery, see module {{#crossLinkModule "galleries"}}{{(crossLinkModule}}
+@param callback {Object} callback function (it depends on the gallery, see module {{#crossLinkModule "galleries"}}{{/crossLinkModule}}
 **/
 function showImageInGalleryPopUp(image_id, callback) {
   var obj = $('#dialog-image-gallery-' + image_id);
