@@ -1,5 +1,33 @@
 /**
-Media element galleries, initialization.
+The galleries are containers of media elements, used at any time the user needs to pick an element of a specific type.
+<br/><br/>
+There are three kinds of gallery, each of them has specific features depending on where it's used. Each instance of a gallery is provided of its specific url route, that performs the speficic javascript actions it requires. For instance, in the image gallery contained inside the {{#crossLinkModule "video-editor"}}{{/crossLinkModule}}, to each image popup (see also {{#crossLink "DialogsGalleries/showImageInGalleryPopUp:method"}}{{/crossLink}}) is attached additional HTML code that contains the input for inserting the duration of the image component. Each gallery is also provided of infinite scroll pagination, which is initialized in the methods of {{/#crossLink "GalleriesInitializers"}}{{/crossLink}}. The complete list of galleries is:
+<br/>
+<ul>
+  <li>
+    <b>audio gallery</b>, whose occurrences are
+    <ul>
+      <li>in Audio Editor, initialized by {{#crossLink "GalleriesInitializers/initializeAudioGalleryInAudioEditor:method"}}{{/crossLink}}</li>
+      <li>in Lesson Editor, initialized by {{#crossLink "GalleriesInitializers/initializeAudioGalleryInLessonEditor:method"}}{{/crossLink}}</li>
+      <li>in Video Editor, initialized by {{#crossLink "GalleriesInitializers/initializeAudioGalleryInVideoEditor:method"}}{{/crossLink}}</li>
+    </ul>
+  </li>
+  <li>
+    <b>image gallery</b>, whose occurrences are
+    <ul>
+      <li>in Image Editor, initialized by {{#crossLink "GalleriesInitializers/initializeImageGalleryInImageEditor:method"}}{{/crossLink}}</li>
+      <li>in Lesson Editor, initialized by {{#crossLink "GalleriesInitializers/initializeImageGalleryInLessonEditor:method"}}{{/crossLink}}</li>
+      <li>in the mixed gallery of Video Editor, initialized by {{#crossLink "GalleriesInitializers/initializeMixedGalleryInVideoEditor:method"}}{{/crossLink}}</li>
+    </ul>
+  </li>
+  <li>
+    <b>video gallery</b>, whose occurrences are
+    <ul>
+      <li>in Lesson Editor, initialized by {{#crossLink "GalleriesInitializers/initializeVideoGalleryInLessonEditor:method"}}{{/crossLink}}</li>
+      <li>in the mixed gallery of Video Editor, initialized by {{#crossLink "GalleriesInitializers/initializeMixedGalleryInVideoEditor:method"}}{{/crossLink}}</li>
+    </ul>
+  </li>
+</ul>
 @module galleries
 **/
 
