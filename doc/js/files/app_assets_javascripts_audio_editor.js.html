@@ -303,7 +303,7 @@
 <div class="file">
     <pre class="code prettyprint linenums">
 &#x2F;**
-This module contains javascript functions used to animate the Audio Editor. The editing of an audio consists in cutting and connecting together different elements of type audio (referred to as &lt;b&gt;audio components&lt;&#x2F;b&gt;).
+This module contains javascript functions used to animate the Audio Editor. The editing of an audio consists in cutting and connecting together different elements of type audio (referred to as &lt;b&gt;audio components&lt;&#x2F;b&gt;): each component has a unique &lt;b&gt;identifier&lt;&#x2F;b&gt;, to be distinguished by the ID in the database of the corresponding audio.
 &lt;br&#x2F;&gt;&lt;br&#x2F;&gt;
 Each audio component contains a &lt;b&gt;cutter&lt;&#x2F;b&gt; (used to select a portion of the original audio), the standard player controls, and a &lt;b&gt;sorting handle&lt;&#x2F;b&gt;. To use the controls of a component, first it must be &lt;b&gt;selected&lt;&#x2F;b&gt; (using the function {{#crossLink &quot;AudioEditorComponents&#x2F;selectAudioEditorComponent:method&quot;}}{{&#x2F;crossLink}}): if a component is not selected, it&#x27;s shown with opacity and without the player controls. The functionality of sorting components is handled in {{#crossLink &quot;AudioEditorDocumentReady&#x2F;audioEditorDocumentReadyGeneral:method&quot;}}{{&#x2F;crossLink}}; the functionalities of player commands, together with the most important functionalities of the cutter, are located in the module {{#crossLinkModule &quot;players&quot;}}{{&#x2F;crossLinkModule}} (class {{#crossLink &quot;PlayersAudioEditor&quot;}}{{&#x2F;crossLink}}); the only functionalities of the cutter located in this module are found in the class {{#crossLink &quot;AudioEditorCutters&quot;}}{{&#x2F;crossLink}} and in the method {{#crossLink &quot;AudioEditorDocumentReady&#x2F;audioEditorDocumentReadyCutters:method&quot;}}{{&#x2F;crossLink}} (functionality of precision arrows).
 &lt;br&#x2F;&gt;&lt;br&#x2F;&gt;
@@ -320,9 +320,14 @@ As for the other Element Editors ({{#crossLinkModule &quot;image-editor&quot;}}{
 
 
 &#x2F;**
-bla bla bla
+This function adds a new audio component to the timeline: it extracts the empty audio component hidden in the template, replaces in it the values of the new audio component, and appends it right after the selected component. If there are no selected components, the new one is appended at the end of the timeline.
 @method addComponentInAudioEditor
 @for AudioEditorComponents
+@param audio_id {Number} the ID of the audio in the database
+@param ogg {String} the path of the attached audio in format ogg
+@param m4a {String} the path of the attached audio in format mp4
+@param duration {Number} the integer duration of the audio
+@param title {String} the title of the audio extracted from the database
 **&#x2F;
 function addComponentInAudioEditor(audio_id, ogg, m4a, duration, title) {
   var next_position = $(&#x27;#info_container&#x27;).data(&#x27;last-component-id&#x27;) + 1;

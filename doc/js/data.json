@@ -370,7 +370,7 @@
             "tag": "module",
             "file": "app/assets/javascripts/audio_editor.js",
             "line": 1,
-            "description": "This module contains javascript functions used to animate the Audio Editor. The editing of an audio consists in cutting and connecting together different elements of type audio (referred to as <b>audio components</b>).\n<br/><br/>\nEach audio component contains a <b>cutter</b> (used to select a portion of the original audio), the standard player controls, and a <b>sorting handle</b>. To use the controls of a component, first it must be <b>selected</b> (using the function {{#crossLink \"AudioEditorComponents/selectAudioEditorComponent:method\"}}{{/crossLink}}): if a component is not selected, it's shown with opacity and without the player controls. The functionality of sorting components is handled in {{#crossLink \"AudioEditorDocumentReady/audioEditorDocumentReadyGeneral:method\"}}{{/crossLink}}; the functionalities of player commands, together with the most important functionalities of the cutter, are located in the module {{#crossLinkModule \"players\"}}{{/crossLinkModule}} (class {{#crossLink \"PlayersAudioEditor\"}}{{/crossLink}}); the only functionalities of the cutter located in this module are found in the class {{#crossLink \"AudioEditorCutters\"}}{{/crossLink}} and in the method {{#crossLink \"AudioEditorDocumentReady/audioEditorDocumentReadyCutters:method\"}}{{/crossLink}} (functionality of precision arrows).\n<br/><br/>\nOn the top of the right column are positioned the time durations (updated with {{#crossLink \"AudioEditorComponents/changeDurationAudioEditorComponent:method\"}}{{/crossLink}}), ad the button 'plus' used to open the audio gallery (see the class {{#crossLink \"AudioEditorGalleries\"}}{{/crossLink}} and the method {{#crossLink \"AudioEditorDocumentReady/audioEditorDocumentReadyGeneral:method\"}}{{/crossLink}}).\n<br/><br/>\nOn the bottom of the right column are positioned the controls for the <b>global preview</b> (which plays all the components globally). Similarly to the module {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}}, before playing the global preview the system must enter in <b>preview mode</b>: the difference is that in the Audio Editor this mode is switched automatically by the system, whereas in the Video Editor it's the user who decides to enter and leave the preview mode. To enter in preview mode we use the method {{#crossLink \"AudioEditorPreview/enterAudioEditorPreviewMode:method\"}}{{/crossLink}}, which calls {{#crossLink \"AudioEditorPreview/switchAudioComponentsToPreviewMode:method\"}}{{/crossLink}} or each component. A component in preview mode can be <b>selected</b> (using a differente method respect to the normal component selection: see {{#crossLink \"AudioEditorPreview/selectAudioEditorComponentInPreviewMode:method\"}}{{/crossLink}}). Each component in the global preview is played using the method {{#crossLink \"AudioEditorPreview/startAudioEditorPreview:method\"}}{{/crossLink}} (to which we pass the component to start with); the main part of the functionality of passing from a component to the next one during the global preview is handled in the module {{#crossLinkModule \"players\"}}{{/crossLinkModule}} (more specificly, in the method {{#crossLink \"PlayersAudioEditor/initializeActionOfMediaTimeUpdaterInAudioEditor:method\"}}{{/crossLink}}.\n<br/><br/>\nAs for the other Element Editors ({{#crossLinkModule \"image-editor\"}}{{/crossLinkModule}}, {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}}) the core of the process of committing changes is handled in the module {{#crossLinkModule \"media-element-editor\"}}{{/crossLinkModule}} (more specificly in the class {{#crossLink \"MediaElementEditorForms\"}}{{/crossLink}}); the part of this functionality specific for the Audio Editor is handled in {{#crossLink \"AudioEditorDocumentReady/audioEditorDocumentReadyCommit:method\"}}{{/crossLink}}."
+            "description": "This module contains javascript functions used to animate the Audio Editor. The editing of an audio consists in cutting and connecting together different elements of type audio (referred to as <b>audio components</b>): each component has a unique <b>identifier</b>, to be distinguished by the ID in the database of the corresponding audio.\n<br/><br/>\nEach audio component contains a <b>cutter</b> (used to select a portion of the original audio), the standard player controls, and a <b>sorting handle</b>. To use the controls of a component, first it must be <b>selected</b> (using the function {{#crossLink \"AudioEditorComponents/selectAudioEditorComponent:method\"}}{{/crossLink}}): if a component is not selected, it's shown with opacity and without the player controls. The functionality of sorting components is handled in {{#crossLink \"AudioEditorDocumentReady/audioEditorDocumentReadyGeneral:method\"}}{{/crossLink}}; the functionalities of player commands, together with the most important functionalities of the cutter, are located in the module {{#crossLinkModule \"players\"}}{{/crossLinkModule}} (class {{#crossLink \"PlayersAudioEditor\"}}{{/crossLink}}); the only functionalities of the cutter located in this module are found in the class {{#crossLink \"AudioEditorCutters\"}}{{/crossLink}} and in the method {{#crossLink \"AudioEditorDocumentReady/audioEditorDocumentReadyCutters:method\"}}{{/crossLink}} (functionality of precision arrows).\n<br/><br/>\nOn the top of the right column are positioned the time durations (updated with {{#crossLink \"AudioEditorComponents/changeDurationAudioEditorComponent:method\"}}{{/crossLink}}), ad the button 'plus' used to open the audio gallery (see the class {{#crossLink \"AudioEditorGalleries\"}}{{/crossLink}} and the method {{#crossLink \"AudioEditorDocumentReady/audioEditorDocumentReadyGeneral:method\"}}{{/crossLink}}).\n<br/><br/>\nOn the bottom of the right column are positioned the controls for the <b>global preview</b> (which plays all the components globally). Similarly to the module {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}}, before playing the global preview the system must enter in <b>preview mode</b>: the difference is that in the Audio Editor this mode is switched automatically by the system, whereas in the Video Editor it's the user who decides to enter and leave the preview mode. To enter in preview mode we use the method {{#crossLink \"AudioEditorPreview/enterAudioEditorPreviewMode:method\"}}{{/crossLink}}, which calls {{#crossLink \"AudioEditorPreview/switchAudioComponentsToPreviewMode:method\"}}{{/crossLink}} or each component. A component in preview mode can be <b>selected</b> (using a differente method respect to the normal component selection: see {{#crossLink \"AudioEditorPreview/selectAudioEditorComponentInPreviewMode:method\"}}{{/crossLink}}). Each component in the global preview is played using the method {{#crossLink \"AudioEditorPreview/startAudioEditorPreview:method\"}}{{/crossLink}} (to which we pass the component to start with); the main part of the functionality of passing from a component to the next one during the global preview is handled in the module {{#crossLinkModule \"players\"}}{{/crossLinkModule}} (more specificly, in the method {{#crossLink \"PlayersAudioEditor/initializeActionOfMediaTimeUpdaterInAudioEditor:method\"}}{{/crossLink}}.\n<br/><br/>\nAs for the other Element Editors ({{#crossLinkModule \"image-editor\"}}{{/crossLinkModule}}, {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}}) the core of the process of committing changes is handled in the module {{#crossLinkModule \"media-element-editor\"}}{{/crossLinkModule}} (more specificly in the class {{#crossLink \"MediaElementEditorForms\"}}{{/crossLink}}); the part of this functionality specific for the Audio Editor is handled in {{#crossLink \"AudioEditorDocumentReady/audioEditorDocumentReadyCommit:method\"}}{{/crossLink}}."
         },
         "buttons": {
             "name": "buttons",
@@ -1871,15 +1871,42 @@
         {
             "file": "app/assets/javascripts/audio_editor.js",
             "line": 18,
-            "description": "bla bla bla",
+            "description": "This function adds a new audio component to the timeline: it extracts the empty audio component hidden in the template, replaces in it the values of the new audio component, and appends it right after the selected component. If there are no selected components, the new one is appended at the end of the timeline.",
             "itemtype": "method",
             "name": "addComponentInAudioEditor",
+            "params": [
+                {
+                    "name": "audio_id",
+                    "description": "the ID of the audio in the database",
+                    "type": "Number"
+                },
+                {
+                    "name": "ogg",
+                    "description": "the path of the attached audio in format ogg",
+                    "type": "String"
+                },
+                {
+                    "name": "m4a",
+                    "description": "the path of the attached audio in format mp4",
+                    "type": "String"
+                },
+                {
+                    "name": "duration",
+                    "description": "the integer duration of the audio",
+                    "type": "Number"
+                },
+                {
+                    "name": "title",
+                    "description": "the title of the audio extracted from the database",
+                    "type": "String"
+                }
+            ],
             "class": "AudioEditorComponents",
             "module": "audio-editor"
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 68,
+            "line": 73,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "changeDurationAudioEditorComponent",
@@ -1888,7 +1915,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 83,
+            "line": 88,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "deselectAllAudioEditorComponents",
@@ -1897,7 +1924,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 106,
+            "line": 111,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "fillAudioEditorSingleParameter",
@@ -1906,7 +1933,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 115,
+            "line": 120,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "loadAudioComponentIfNotLoadedYet",
@@ -1915,7 +1942,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 131,
+            "line": 136,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "reloadAudioEditorComponentPositions",
@@ -1924,7 +1951,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 145,
+            "line": 150,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "removeAudioEditorComponent",
@@ -1933,7 +1960,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 165,
+            "line": 170,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "resizeLastComponentInAudioEditor",
@@ -1942,7 +1969,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 175,
+            "line": 180,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "selectAudioEditorComponent",
@@ -1951,7 +1978,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 199,
+            "line": 204,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "cutAudioComponentLeftSide",
@@ -1960,7 +1987,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 213,
+            "line": 218,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "cutAudioComponentRightSide",
@@ -1969,7 +1996,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 227,
+            "line": 232,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "deselectAllAudioEditorCursors",
@@ -1978,7 +2005,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 237,
+            "line": 242,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "selectAudioEditorCursor",
@@ -1987,7 +2014,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 248,
+            "line": 253,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "selectAudioEditorLeftHandle",
@@ -1996,7 +2023,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 259,
+            "line": 264,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "selectAudioEditorRightHandle",
@@ -2005,7 +2032,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 274,
+            "line": 279,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "audioEditorDocumentReady",
@@ -2014,7 +2041,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 286,
+            "line": 291,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "audioEditorDocumentReadyCommit",
@@ -2023,7 +2050,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 381,
+            "line": 386,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "audioEditorDocumentReadyCutters",
@@ -2032,7 +2059,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 444,
+            "line": 449,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "audioEditorDocumentReadyGeneral",
@@ -2041,7 +2068,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 525,
+            "line": 530,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "audioEditorDocumentReadyPreview",
@@ -2050,7 +2077,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 559,
+            "line": 564,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "calculateNewPositionGalleriesInAudioEditor",
@@ -2059,7 +2086,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 568,
+            "line": 573,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "closeGalleryInAudioEditor",
@@ -2068,7 +2095,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 580,
+            "line": 585,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "showGalleryInAudioEditor",
@@ -2077,7 +2104,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 596,
+            "line": 601,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "getAudioComponentIdentifier",
@@ -2086,7 +2113,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 610,
+            "line": 615,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "disableCommitAndPreviewInAudioEditor",
@@ -2095,7 +2122,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 622,
+            "line": 627,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "enableCommitAndPreviewInAudioEditor",
@@ -2104,7 +2131,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 634,
+            "line": 639,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "hideCommitAudioEditorForm",
@@ -2113,7 +2140,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 645,
+            "line": 650,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "setBackAllZIndexesInAudioEditor",
@@ -2122,7 +2149,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 659,
+            "line": 664,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "setToZeroAllZIndexesInAudioEditor",
@@ -2131,7 +2158,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 673,
+            "line": 678,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "showCommitAudioEditorForm",
@@ -2140,7 +2167,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 688,
+            "line": 693,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "deselectAllAudioEditorComponentsInPreviewMode",
@@ -2149,7 +2176,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 704,
+            "line": 709,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "enterAudioEditorPreviewMode",
@@ -2158,7 +2185,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 745,
+            "line": 750,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "getAudioEditorGlobalPreviewTime",
@@ -2167,7 +2194,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 769,
+            "line": 774,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "increaseAudioEditorPreviewTimer",
@@ -2176,7 +2203,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 781,
+            "line": 786,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "leaveAudioEditorPreviewMode",
@@ -2185,7 +2212,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 813,
+            "line": 818,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "selectAudioEditorComponentInPreviewMode",
@@ -2194,7 +2221,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 827,
+            "line": 832,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "startAudioEditorPreview",
@@ -2203,7 +2230,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 844,
+            "line": 849,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "switchAudioComponentsToPreviewMode",
@@ -2212,7 +2239,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 858,
+            "line": 863,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "switchBackAudioComponentsFromPreviewMode",
@@ -2221,7 +2248,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 876,
+            "line": 881,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "followPreviewComponentsWithVerticalScrollInAudioEditor",
@@ -2230,7 +2257,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 887,
+            "line": 892,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "scrollToFirstSelectedAudioEditorComponent",

@@ -1,5 +1,5 @@
 /**
-This module contains javascript functions used to animate the Audio Editor. The editing of an audio consists in cutting and connecting together different elements of type audio (referred to as <b>audio components</b>).
+This module contains javascript functions used to animate the Audio Editor. The editing of an audio consists in cutting and connecting together different elements of type audio (referred to as <b>audio components</b>): each component has a unique <b>identifier</b>, to be distinguished by the ID in the database of the corresponding audio.
 <br/><br/>
 Each audio component contains a <b>cutter</b> (used to select a portion of the original audio), the standard player controls, and a <b>sorting handle</b>. To use the controls of a component, first it must be <b>selected</b> (using the function {{#crossLink "AudioEditorComponents/selectAudioEditorComponent:method"}}{{/crossLink}}): if a component is not selected, it's shown with opacity and without the player controls. The functionality of sorting components is handled in {{#crossLink "AudioEditorDocumentReady/audioEditorDocumentReadyGeneral:method"}}{{/crossLink}}; the functionalities of player commands, together with the most important functionalities of the cutter, are located in the module {{#crossLinkModule "players"}}{{/crossLinkModule}} (class {{#crossLink "PlayersAudioEditor"}}{{/crossLink}}); the only functionalities of the cutter located in this module are found in the class {{#crossLink "AudioEditorCutters"}}{{/crossLink}} and in the method {{#crossLink "AudioEditorDocumentReady/audioEditorDocumentReadyCutters:method"}}{{/crossLink}} (functionality of precision arrows).
 <br/><br/>
@@ -16,9 +16,14 @@ As for the other Element Editors ({{#crossLinkModule "image-editor"}}{{/crossLin
 
 
 /**
-bla bla bla
+This function adds a new audio component to the timeline: it extracts the empty audio component hidden in the template, replaces in it the values of the new audio component, and appends it right after the selected component. If there are no selected components, the new one is appended at the end of the timeline.
 @method addComponentInAudioEditor
 @for AudioEditorComponents
+@param audio_id {Number} the ID of the audio in the database
+@param ogg {String} the path of the attached audio in format ogg
+@param m4a {String} the path of the attached audio in format mp4
+@param duration {Number} the integer duration of the audio
+@param title {String} the title of the audio extracted from the database
 **/
 function addComponentInAudioEditor(audio_id, ogg, m4a, duration, title) {
   var next_position = $('#info_container').data('last-component-id') + 1;
