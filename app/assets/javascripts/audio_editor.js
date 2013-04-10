@@ -189,7 +189,7 @@ function resizeLastComponentInAudioEditor() {
 Function that selects an audio component.
 @method selectAudioEditorComponent
 @for AudioEditorComponents
-@params component {Object} the component to be selected
+@param component {Object} the component to be selected
 **/
 function selectAudioEditorComponent(component) {
   loadAudioComponentIfNotLoadedYet(component);
@@ -620,7 +620,7 @@ Extracts the unique identifier of a component using its HTML id.
 @method getAudioComponentIdentifier
 @for AudioEditorGeneral
 @param component {Object} the component from which we want to extract the identifier
-@returns {Number} the identifier.
+@return {Number} the identifier.
 **/
 function getAudioComponentIdentifier(component) {
   var id = component.attr('id').split('_');

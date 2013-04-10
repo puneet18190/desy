@@ -375,7 +375,7 @@ function secondsToDateString(seconds) {
 This function returns an url for media elements without the parameter 'filter'. The original url is extracted by the method {{#crossLink "GeneralMiscellanea/getMediaElementsFormat:method"}}{{/crossLink}}.
 @method getCompleteMediaElementsUrlWithoutFilter
 @for GeneralUrls
-@returns {String} the current url without the parameter 'filter'
+@return {String} the current url without the parameter 'filter'
 **/
 function getCompleteMediaElementsUrlWithoutFilter() {
   var param_format = getMediaElementsFormat();
@@ -387,7 +387,7 @@ function getCompleteMediaElementsUrlWithoutFilter() {
 This function returns an url for media elements without the parameter 'for_page'. The original url is extracted by the method {{#crossLink "GeneralMiscellanea/getMediaElementsFormat:method"}}{{/crossLink}}.
 @method getCompleteMediaElementsUrlWithoutForPage
 @for GeneralUrls
-@returns {String} the current url without the parameter 'for_page'
+@return {String} the current url without the parameter 'for_page'
 **/
 function getCompleteMediaElementsUrlWithoutForPage() {
   var param_format = getMediaElementsFormat();
