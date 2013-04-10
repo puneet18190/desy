@@ -2469,7 +2469,7 @@
         {
             "file": "app/assets/javascripts/buttons.js",
             "line": 236,
-            "description": "Calls the url to add the link of a lesson. It either can reload the item or remove it from the page.",
+            "description": "Calls the url to add the link of a lesson. It can either reload the item or remove it from the page.",
             "itemtype": "method",
             "name": "addLesson",
             "params": [
@@ -2568,18 +2568,18 @@
         {
             "file": "app/assets/javascripts/buttons.js",
             "line": 334,
-            "description": "Remove like from a lesson",
+            "description": "Calls the url to remove the 'I like it' from a lesson. It reloads the item.",
             "itemtype": "method",
             "name": "dislikeLesson",
             "params": [
                 {
                     "name": "lessons_id",
-                    "description": "lesson id",
+                    "description": "id of the lesson in the database",
                     "type": "Number"
                 },
                 {
                     "name": "destination",
-                    "description": "destination view",
+                    "description": "destination (used to pick the HTML id of the lesson)",
                     "type": "String"
                 }
             ],
@@ -2589,18 +2589,18 @@
         {
             "file": "app/assets/javascripts/buttons.js",
             "line": 348,
-            "description": "Add like to a lesson",
+            "description": "Calls the url to add a 'I like it' to a lesson. It reloads the item.",
             "itemtype": "method",
             "name": "likeLesson",
             "params": [
                 {
                     "name": "lessons_id",
-                    "description": "lesson id",
+                    "description": "id of the lesson in the database",
                     "type": "Number"
                 },
                 {
                     "name": "destination",
-                    "description": "destination view",
+                    "description": "destination (used to pick the HTML id of the lesson)",
                     "type": "String"
                 }
             ],
@@ -2610,18 +2610,18 @@
         {
             "file": "app/assets/javascripts/buttons.js",
             "line": 362,
-            "description": "View lesson link",
+            "description": "Calls the url that opens the lesson viewer for this lesson.",
             "itemtype": "method",
             "name": "previewLesson",
             "params": [
                 {
                     "name": "lessons_id",
-                    "description": "lesson id",
+                    "description": "id of the lesson in the database",
                     "type": "Number"
                 },
                 {
                     "name": "redirect_to",
-                    "description": "link url to come back from lesson viewer",
+                    "description": "url to be redirected when leavine the Lesson Viewer",
                     "type": "String"
                 }
             ],
@@ -2631,18 +2631,18 @@
         {
             "file": "app/assets/javascripts/buttons.js",
             "line": 384,
-            "description": "Make a lesson public Uses [showConfirmPopUp](../classes/showConfirmPopUp.html#method_showConfirmPopUp) and [closePopUp](../classes/closePopUp.html#method_closePopUp)",
+            "description": "Calls the url to publish a lesson. It reloads the item.",
             "itemtype": "method",
             "name": "publishLesson",
             "params": [
                 {
                     "name": "lessons_id",
-                    "description": "lesson id",
+                    "description": "id of the lesson in the database",
                     "type": "Number"
                 },
                 {
                     "name": "destination",
-                    "description": "destination view",
+                    "description": "destination (used to pick the HTML id of the lesson)",
                     "type": "String"
                 }
             ],
@@ -2652,18 +2652,18 @@
         {
             "file": "app/assets/javascripts/buttons.js",
             "line": 405,
-            "description": "Remove a lesson from yours (unlink).Uses [addDeleteItemToCurrentUrl](../classes/addDeleteItemToCurrentUrl.html#method_addDeleteItemToCurrentUrl) and [showErrorPopUp](../classes/showErrorPopUp.html#method_showErrorPopUp)",
+            "description": "Calls the url to remove a link of a lesson. It can either reload the item or remove it from the page.",
             "itemtype": "method",
             "name": "removeLesson",
             "params": [
                 {
                     "name": "lessons_id",
-                    "description": "lesson id",
+                    "description": "id of the lesson in the database",
                     "type": "Number"
                 },
                 {
                     "name": "destination",
-                    "description": "destination view",
+                    "description": "destination (used to pick the HTML id of the lesson)",
                     "type": "String"
                 },
                 {
@@ -2673,7 +2673,7 @@
                 },
                 {
                     "name": "reload",
-                    "description": "",
+                    "description": "true if the item must be reloaded, false if it must be removed",
                     "type": "Boolean"
                 }
             ],
@@ -2683,18 +2683,18 @@
         {
             "file": "app/assets/javascripts/buttons.js",
             "line": 441,
-            "description": "Remove lesson availability in the virtual classroom",
+            "description": "Calls the url to remove a lesson from my Virtual Classroom. It reloads the item.",
             "itemtype": "method",
             "name": "removeLessonFromVirtualClassroom",
             "params": [
                 {
                     "name": "lessons_id",
-                    "description": "lesson_id",
+                    "description": "id of the lesson in the database",
                     "type": "Number"
                 },
                 {
                     "name": "destination",
-                    "description": "destination view",
+                    "description": "destination (used to pick the HTML id of the lesson)",
                     "type": "String"
                 }
             ],
@@ -2704,18 +2704,18 @@
         {
             "file": "app/assets/javascripts/buttons.js",
             "line": 455,
-            "description": "Make a lesson private Uses [showConfirmPopUp](../classes/showConfirmPopUp.html#method_showConfirmPopUp) and [closePopUp](../classes/closePopUp.html#method_closePopUp)",
+            "description": "Calls the url to unpublish a lesson. It reloads the item.",
             "itemtype": "method",
             "name": "unpublishLesson",
             "params": [
                 {
                     "name": "lessons_id",
-                    "description": "lesson id",
+                    "description": "id of the lesson in the database",
                     "type": "Number"
                 },
                 {
                     "name": "destination",
-                    "description": "destination view",
+                    "description": "destination (used to pick the HTML id of the lesson)",
                     "type": "String"
                 }
             ],
