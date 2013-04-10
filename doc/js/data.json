@@ -341,7 +341,7 @@
             "tag": "module",
             "file": "app/assets/javascripts/ajax_loader.js",
             "line": 1,
-            "description": "Shows a loading image while page is loading, it handles ajax calls too."
+            "description": "Here it's defined the general <b>ajax loader</b> of the application."
         },
         "audio-editor": {
             "name": "audio-editor",

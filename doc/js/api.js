@@ -122,7 +122,7 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "ajax-loader",
             "name": "ajax-loader",
-            "description": "Shows a loading image while page is loading, it handles ajax calls too."
+            "description": "Here it's defined the general <b>ajax loader</b> of the application."
         },
         {
             "displayName": "audio-editor",
