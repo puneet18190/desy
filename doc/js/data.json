@@ -2956,7 +2956,7 @@
         {
             "file": "app/assets/javascripts/dashboard.js",
             "line": 171,
-            "description": "This function reloads the pagination for lessons (it uses {{/crossLink \"DashboardPagination/getHtmlPagination:method\"}}{{/crossLink}}).",
+            "description": "This function reloads the pagination for lessons (it uses {{#crossLink \"DashboardPagination/getHtmlPagination:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "reloadLessonsDashboardPagination",
             "params": [
@@ -2977,7 +2977,7 @@
         {
             "file": "app/assets/javascripts/dashboard.js",
             "line": 199,
-            "description": "This function reloads the pagination for media elements (it uses {{/crossLink \"DashboardPagination/getHtmlPagination:method\"}}{{/crossLink}}).",
+            "description": "This function reloads the pagination for media elements (it uses {{#crossLink \"DashboardPagination/getHtmlPagination:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "reloadMediaElementsDashboardPagination",
             "params": [

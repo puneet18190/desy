@@ -169,7 +169,7 @@ function reloadDashboardPages(lessons_page, media_elements_page) {
 }
 
 /**
-This function reloads the pagination for lessons (it uses {{/crossLink "DashboardPagination/getHtmlPagination:method"}}{{/crossLink}}).
+This function reloads the pagination for lessons (it uses {{#crossLink "DashboardPagination/getHtmlPagination:method"}}{{/crossLink}}).
 @method reloadLessonsDashboardPagination
 @for DashboardPagination
 @param pos {Number} current page
@@ -197,7 +197,7 @@ function reloadLessonsDashboardPagination(pos, pages_amount) {
 }
 
 /**
-This function reloads the pagination for media elements (it uses {{/crossLink "DashboardPagination/getHtmlPagination:method"}}{{/crossLink}}).
+This function reloads the pagination for media elements (it uses {{#crossLink "DashboardPagination/getHtmlPagination:method"}}{{/crossLink}}).
 @method reloadMediaElementsDashboardPagination
 @for DashboardPagination
 @param pos {Number} current page
