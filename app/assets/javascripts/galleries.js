@@ -36,7 +36,7 @@ There are three kinds of gallery, each of them has specific features depending o
 
 
 /**
-Scale image size form image gallery popup
+Scale image size form image gallery popup.
 @method resizedWidthForImageGallery
 @for GalleriesAccessories
 @param width {Number} image original width
@@ -55,7 +55,7 @@ function resizedWidthForImageGallery(width, height) {
 
 
 /**
-bla bla bla
+Initializer for effects in galleries.
 @method galleriesDocumentReady
 @for GalleriesDocumentReady
 **/
@@ -65,7 +65,7 @@ function galleriesDocumentReady() {
 }
 
 /**
-bla bla bla
+Initializer for effects of closing a gallery. Typically, when closing a gallery the system closes all the media inside it using {{#crossLink "PlayersGeneral/stopMedia:method"}}{{/crossLink}}.
 @method galleriesDocumentReadyClose
 @for GalleriesDocumentReady
 **/
@@ -101,7 +101,7 @@ function galleriesDocumentReadyClose() {
 }
 
 /**
-bla bla bla
+Initializer for effects of opening a gallery and opening the individual dialog of an element in a gallery: this method calls methods belonging to the class {{#crossLink "DialogsGalleries"}}{{/crossLink}}.
 @method galleriesDocumentReadyOpen
 @for GalleriesDocumentReady
 **/
