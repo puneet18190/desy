@@ -1,18 +1,29 @@
 require 'media'
 require 'media/similar_durations'
 require 'securerandom'
+require 'find'
 
 module Media
   class Uploader < String
     include SimilarDurations
 
     attr_reader :model, :column, :value
+    # cattr_accessor :media_elements_folder_size
 
     PUBLIC_RELATIVE_MEDIA_ELEMENTS_FOLDER = 'media_elements'
     MEDIA_ELEMENTS_FOLDER                 = RAILS_PUBLIC_FOLDER.join PUBLIC_RELATIVE_MEDIA_ELEMENTS_FOLDER
+    MAXIMUM_MEDIA_ELEMENTS_FOLDER_SIZE    = SETTINGS['maximum_media_elements_folder_size'].gigabytes.to_i
 
     def self.remove_folder!
       FileUtils.rm_rf self::FOLDER
+    end
+
+    def self.media_elements_folder_size
+      Find.find(MEDIA_ELEMENTS_FOLDER).sum { |f| File.stat(f).size }
+    end
+
+    def self.maximum_media_elements_folder_size_exceeded?
+      media_elements_folder_size > MAXIMUM_MEDIA_ELEMENTS_FOLDER_SIZE
     end
 
     def initialize(model, column, value)
@@ -76,13 +87,14 @@ module Media
     end
 
     def upload_or_copy
-      # TODO messaggio migliore
-      raise 'unable to upload without a model id' unless model_id
+      raise Error.new('model_id cannot be blank', model: @model, column: @column, value: @value) if model_id.blank?
+
       if @converted_files
         copy
       elsif @original_file
         upload
       end
+
       true
     end
 
@@ -183,24 +195,27 @@ module Media
       model.send :"rename_#{column}=", nil
       model.skip_conversion = nil
       model.send :"reload_#{column}"
+
+      true
     end
 
     def extract_versions(infos)
     end
 
+    def upload_copy_and_job(conversion_temp_path)
+      FileUtils.cp @original_file.path, conversion_temp_path
+      Delayed::Job.enqueue self.class::CONVERSION_CLASS::Job.new(@original_file.path, output_path_without_extension, original_filename, model_id)
+    end
+
     def upload
       return if model.skip_conversion
 
-      raise Error.new('model_id cannot be blank', model: @model, column: @column, value: @value) if model_id.blank?
       conversion_temp_path = self.class::CONVERSION_CLASS.temp_path(model_id, original_filename)
 
       FileUtils.mkdir_p File.dirname(conversion_temp_path)
-      
-      # TODO Maybe in order to give the response as soon as possible, the copy should be done in a thread...
-      EnhancedThread.new {
-        FileUtils.cp @original_file.path, conversion_temp_path
-        Delayed::Job.enqueue self.class::CONVERSION_CLASS::Job.new(@original_file.path, output_path_without_extension, original_filename, model_id)
-      }
+
+      # FIXME Test environment doesn't use delayed_job, so parallel execution breaks tests
+      Rails.env.test? ? upload_copy_and_job(conversion_temp_path) : EnhancedThread.new{ upload_copy_and_job(conversion_temp_path) }
     end
   end
 end

@@ -16,8 +16,8 @@ module Media
             error_message_for_converted_files
           elsif @original_file
             error_message_for_file_to_convert
-          elsif @value.instance_of?(String)
-            if column_changed? and not rename?
+          elsif @value.is_a?(String)
+            if column_changed? && !rename?
               'renaming denied'
             end
           else
@@ -31,7 +31,7 @@ module Media
             'unsupported format'
           else
             info = Info.new(@original_file.path, false)
-            if not info.valid?
+            if !info.valid?
               'invalid audio'
             elsif info.duration < self.class::MIN_DURATION
               'invalid duration'
@@ -51,7 +51,7 @@ module Media
             'invalid audio'
           elsif [m4a_info.duration, ogg_info.duration].min < self.class::MIN_DURATION
             'invalid duration'
-          elsif not similar_durations?(m4a_info.duration, ogg_info.duration)
+          elsif !similar_durations?(m4a_info.duration, ogg_info.duration)
             'invalid duration difference'
           end
         end

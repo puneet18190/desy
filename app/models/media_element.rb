@@ -136,7 +136,12 @@ class MediaElement < ActiveRecord::Base
 
   validates_presence_of :media, :unless => proc{ |record| [Video, Audio].include?(record.class) && record.composing }
 
-  validate :validate_associations, :validate_publication_date, :validate_impossible_changes, :validate_tags_length, :validate_size
+  validate :validate_associations, 
+           :validate_publication_date, 
+           :validate_impossible_changes, 
+           :validate_tags_length, 
+           :validate_size, 
+           :validate_maximum_media_elements_folder_size
   
   before_validation :init_validation
   before_destroy :stop_if_public
@@ -596,6 +601,10 @@ class MediaElement < ActiveRecord::Base
       end
       l.save!
     end
+  end
+
+  def validate_maximum_media_elements_folder_size # :doc:
+    errors.add :media, :folder_size_exceeded if Media::Uploader.maximum_media_elements_folder_size_exceeded?
   end
   
 end
