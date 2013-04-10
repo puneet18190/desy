@@ -903,7 +903,7 @@ function switchBackAudioComponentsFromPreviewMode() {
 
 
 /**
-bla bla bla
+Function used to keep updated the position of the scroll with the current component played in the global preview. It checks a condition and then uses {{#crossLink "AudioEditorScrollpain/scrollToFirstSelectedAudioEditorComponent:method"}}{{/crossLink}}.
 @method followPreviewComponentsWithVerticalScrollInAudioEditor
 @for AudioEditorScrollpain
 **/
@@ -914,9 +914,10 @@ function followPreviewComponentsWithVerticalScrollInAudioEditor() {
 }
 
 /**
-bla bla bla
+Hand made function that simply scrolls to a component and executes a callback. This function needed to be written since the original JScrollPain doesn't provide it (!).
 @method scrollToFirstSelectedAudioEditorComponent
 @for AudioEditorScrollpain
+@param callback {Function} the callback to be executed after scrolling
 **/
 function scrollToFirstSelectedAudioEditorComponent(callback) {
   var selected_component = $('._audio_editor_component._selected');

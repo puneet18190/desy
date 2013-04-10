@@ -2401,7 +2401,7 @@
         {
             "file": "app/assets/javascripts/audio_editor.js",
             "line": 905,
-            "description": "bla bla bla",
+            "description": "Function used to keep updated the position of the scroll with the current component played in the global preview. It checks a condition and then uses {{#crossLink \"AudioEditorScrollpain/scrollToFirstSelectedAudioEditorComponent:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "followPreviewComponentsWithVerticalScrollInAudioEditor",
             "class": "AudioEditorScrollpain",
@@ -2410,9 +2410,16 @@
         {
             "file": "app/assets/javascripts/audio_editor.js",
             "line": 916,
-            "description": "bla bla bla",
+            "description": "Hand made function that simply scrolls to a component and executes a callback. This function needed to be written since the original JScrollPain doesn't provide it (!).",
             "itemtype": "method",
             "name": "scrollToFirstSelectedAudioEditorComponent",
+            "params": [
+                {
+                    "name": "callback",
+                    "description": "the callback to be executed after scrolling",
+                    "type": "Function"
+                }
+            ],
             "class": "AudioEditorScrollpain",
             "module": "audio-editor"
         },
