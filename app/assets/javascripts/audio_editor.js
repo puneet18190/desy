@@ -712,7 +712,7 @@ function showCommitAudioEditorForm(scope) {
 
 
 /**
-bla bla bla
+Deselects all the components in preview mode (it corresponds to {{#crossLink "AudioEditorComponents/deselectAllAudioEditorComponents:method"}}{{/crossLink}}).
 @method deselectAllAudioEditorComponentsInPreviewMode
 @for AudioEditorPreview
 **/
@@ -728,7 +728,7 @@ function deselectAllAudioEditorComponentsInPreviewMode() {
 }
 
 /**
-bla bla bla
+Function that sets all the graphical details that characterize the preview mode. It automatically calls the function {{#crossLink "AudioEditorPreview/startAudioEditorPreview:method"}}{{/crossLink}}, passing it as parameter the selected component, or the first one if there is no selected component.
 @method enterAudioEditorPreviewMode
 @for AudioEditorPreview
 **/
@@ -769,7 +769,7 @@ function enterAudioEditorPreviewMode() {
 }
 
 /**
-bla bla bla
+Gets the current time in the global preview, using the information relative to the selected component and the position of the cursor inside its cutter.
 @method getAudioEditorGlobalPreviewTime
 @for AudioEditorPreview
 **/
@@ -793,7 +793,7 @@ function getAudioEditorGlobalPreviewTime() {
 }
 
 /**
-bla bla bla
+Increases of one second the global preview timer.
 @method increaseAudioEditorPreviewTimer
 @for AudioEditorPreview
 **/
@@ -805,9 +805,10 @@ function increaseAudioEditorPreviewTimer() {
 }
 
 /**
-bla bla bla
+Function that sets back to the regular value all the graphical details that characterize the preview mode.
 @method leaveAudioEditorPreviewMode
 @for AudioEditorPreview
+@param forced_component {Object} the component that must be selected after leaving the preview mode: if not specified, the function selects the first component.
 **/
 function leaveAudioEditorPreviewMode(forced_component) {
   var selected_component = $('#' + $('._audio_editor_component._selected').attr('id'));
@@ -837,9 +838,10 @@ function leaveAudioEditorPreviewMode(forced_component) {
 }
 
 /**
-bla bla bla
+Selects a component in preview mode (it corresponds to {{#crossLink "AudioEditorComponents/selectAudioEditorComponent:method"}}{{/crossLink}}).
 @method selectAudioEditorComponentInPreviewMode
 @for AudioEditorPreview
+@param component {Object} the component to be selected
 **/
 function selectAudioEditorComponentInPreviewMode(component) {
   component.addClass('_selected');
@@ -851,9 +853,10 @@ function selectAudioEditorComponentInPreviewMode(component) {
 }
 
 /**
-bla bla bla
+Starts the preview from a given component.
 @method startAudioEditorPreview
 @for AudioEditorPreview
+@param component {Object} the component from which the preview starts.
 **/
 function startAudioEditorPreview(component) {
   selectAudioEditorComponentInPreviewMode(component);
@@ -868,7 +871,7 @@ function startAudioEditorPreview(component) {
 }
 
 /**
-bla bla bla
+Switches all the components in preview mode.
 @method switchAudioComponentsToPreviewMode
 @for AudioEditorPreview
 **/
@@ -882,7 +885,7 @@ function switchAudioComponentsToPreviewMode() {
 }
 
 /**
-bla bla bla
+Switches all the components back to regular mode.
 @method switchBackAudioComponentsFromPreviewMode
 @for AudioEditorPreview
 **/

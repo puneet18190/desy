@@ -2299,7 +2299,7 @@
         {
             "file": "app/assets/javascripts/audio_editor.js",
             "line": 714,
-            "description": "bla bla bla",
+            "description": "Deselects all the components in preview mode (it corresponds to {{#crossLink \"AudioEditorComponents/deselectAllAudioEditorComponents:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "deselectAllAudioEditorComponentsInPreviewMode",
             "class": "AudioEditorPreview",
@@ -2308,7 +2308,7 @@
         {
             "file": "app/assets/javascripts/audio_editor.js",
             "line": 730,
-            "description": "bla bla bla",
+            "description": "Function that sets all the graphical details that characterize the preview mode. It automatically calls the function {{#crossLink \"AudioEditorPreview/startAudioEditorPreview:method\"}}{{/crossLink}}, passing it as parameter the selected component, or the first one if there is no selected component.",
             "itemtype": "method",
             "name": "enterAudioEditorPreviewMode",
             "class": "AudioEditorPreview",
@@ -2317,7 +2317,7 @@
         {
             "file": "app/assets/javascripts/audio_editor.js",
             "line": 771,
-            "description": "bla bla bla",
+            "description": "Gets the current time in the global preview, using the information relative to the selected component and the position of the cursor inside its cutter.",
             "itemtype": "method",
             "name": "getAudioEditorGlobalPreviewTime",
             "class": "AudioEditorPreview",
@@ -2326,7 +2326,7 @@
         {
             "file": "app/assets/javascripts/audio_editor.js",
             "line": 795,
-            "description": "bla bla bla",
+            "description": "Increases of one second the global preview timer.",
             "itemtype": "method",
             "name": "increaseAudioEditorPreviewTimer",
             "class": "AudioEditorPreview",
@@ -2335,34 +2335,55 @@
         {
             "file": "app/assets/javascripts/audio_editor.js",
             "line": 807,
-            "description": "bla bla bla",
+            "description": "Function that sets back to the regular value all the graphical details that characterize the preview mode.",
             "itemtype": "method",
             "name": "leaveAudioEditorPreviewMode",
+            "params": [
+                {
+                    "name": "forced_component",
+                    "description": "the component that must be selected after leaving the preview mode: if not specified, the function selects the first component.",
+                    "type": "Object"
+                }
+            ],
             "class": "AudioEditorPreview",
             "module": "audio-editor"
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 839,
-            "description": "bla bla bla",
+            "line": 840,
+            "description": "Selects a component in preview mode (it corresponds to {{#crossLink \"AudioEditorComponents/selectAudioEditorComponent:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "selectAudioEditorComponentInPreviewMode",
+            "params": [
+                {
+                    "name": "component",
+                    "description": "the component to be selected",
+                    "type": "Object"
+                }
+            ],
             "class": "AudioEditorPreview",
             "module": "audio-editor"
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 853,
-            "description": "bla bla bla",
+            "line": 855,
+            "description": "Starts the preview from a given component.",
             "itemtype": "method",
             "name": "startAudioEditorPreview",
+            "params": [
+                {
+                    "name": "component",
+                    "description": "the component from which the preview starts.",
+                    "type": "Object"
+                }
+            ],
             "class": "AudioEditorPreview",
             "module": "audio-editor"
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 870,
-            "description": "bla bla bla",
+            "line": 873,
+            "description": "Switches all the components in preview mode.",
             "itemtype": "method",
             "name": "switchAudioComponentsToPreviewMode",
             "class": "AudioEditorPreview",
@@ -2370,8 +2391,8 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 884,
-            "description": "bla bla bla",
+            "line": 887,
+            "description": "Switches all the components back to regular mode.",
             "itemtype": "method",
             "name": "switchBackAudioComponentsFromPreviewMode",
             "class": "AudioEditorPreview",
@@ -2379,7 +2400,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 902,
+            "line": 905,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "followPreviewComponentsWithVerticalScrollInAudioEditor",
@@ -2388,7 +2409,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 913,
+            "line": 916,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "scrollToFirstSelectedAudioEditorComponent",
