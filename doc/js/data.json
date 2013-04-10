@@ -511,7 +511,7 @@
             "tag": "module",
             "file": "app/assets/javascripts/jquery_patches.js",
             "line": 1,
-            "description": "bla bla bla (dire che devono venire caricati prima di document ready)"
+            "description": "bla bla bla (dire che devono venire caricati prima di document ready, e che a momento c'è solamente la classe per detectare i browsers)"
         },
         "lesson-editor": {
             "name": "lesson-editor",
@@ -2833,7 +2833,7 @@
         {
             "file": "app/assets/javascripts/dashboard.js",
             "line": 12,
-            "description": "bla bla bla",
+            "description": "Initializer for the animation effects of the Dashboard.",
             "itemtype": "method",
             "name": "dashboardDocumentReady",
             "class": "DashboardDocumentReady",
@@ -2842,7 +2842,7 @@
         {
             "file": "app/assets/javascripts/dashboard.js",
             "line": 45,
-            "description": "Switch to suggested lessons page in dashboard. Uses: [reloadMediaLessonsDashboardPagination](../classes/reloadMediaLessonsDashboardPagination.html#method_reloadMediaLessonsDashboardPagination)",
+            "description": "This function switched to the page of suggested lessons, and reloads the pagination (if there are no suggested lessons the pagination is removed).",
             "itemtype": "method",
             "name": "switchToSuggestedLessons",
             "class": "DashboardGeneral",
@@ -2851,7 +2851,7 @@
         {
             "file": "app/assets/javascripts/dashboard.js",
             "line": 63,
-            "description": "Switch to suggested elements page in dashboard. Uses: [reloadMediaElementsDashboardPagination](../classes/reloadMediaElementsDashboardPagination.html#method_reloadMediaElementsDashboardPagination)",
+            "description": "This function switches to the page of suggested elements, and reloads the pagination (if there are no suggested elements the pagination is removed).",
             "itemtype": "method",
             "name": "switchToSuggestedMediaElements",
             "class": "DashboardGeneral",

@@ -1,5 +1,5 @@
 /**
-bla bla bla (dire che devono venire caricati prima di document ready)
+bla bla bla (dire che devono venire caricati prima di document ready, e che a momento c'è solamente la classe per detectare i browsers)
 @module jquery-patches
 **/
 

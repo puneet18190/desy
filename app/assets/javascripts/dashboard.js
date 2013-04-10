@@ -10,7 +10,7 @@ There are two simple functions that switch between the pages for lessons and ele
 
 
 /**
-bla bla bla
+Initializer for the animation effects of the Dashboard.
 @method dashboardDocumentReady
 @for DashboardDocumentReady
 **/
@@ -43,7 +43,7 @@ function dashboardDocumentReady() {
 
 
 /**
-Switch to suggested lessons page in dashboard. Uses: [reloadMediaLessonsDashboardPagination](../classes/reloadMediaLessonsDashboardPagination.html#method_reloadMediaLessonsDashboardPagination)
+This function switched to the page of suggested lessons, and reloads the pagination (if there are no suggested lessons the pagination is removed).
 @method switchToSuggestedLessons
 @for DashboardGeneral
 **/
@@ -61,7 +61,7 @@ function switchToSuggestedLessons() {
 }
 
 /**
-Switch to suggested elements page in dashboard. Uses: [reloadMediaElementsDashboardPagination](../classes/reloadMediaElementsDashboardPagination.html#method_reloadMediaElementsDashboardPagination)
+This function switches to the page of suggested elements, and reloads the pagination (if there are no suggested elements the pagination is removed).
 @method switchToSuggestedMediaElements
 @for DashboardGeneral
 **/

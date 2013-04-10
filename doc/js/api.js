@@ -163,7 +163,7 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "jquery-patches",
             "name": "jquery-patches",
-            "description": "bla bla bla (dire che devono venire caricati prima di document ready)"
+            "description": "bla bla bla (dire che devono venire caricati prima di document ready, e che a momento c'è solamente la classe per detectare i browsers)"
         },
         {
             "displayName": "lesson-editor",
