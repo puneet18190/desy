@@ -290,10 +290,10 @@ function showTimedPopUp(content, id) {
 
 
 /**
-Modal warning on unpublish lesson.
+Dialog containing a form used to send a notification about modifications of a public lesson.
 @method showLessonNotificationPopUp
 @for DialogsWithForm
-@param lesson_id {Number} lesson id
+@param lesson_id {Number} id in the database of the lesson
 **/
 function showLessonNotificationPopUp(lesson_id) {
   var lesson_id_number = lesson_id.split('_');
@@ -325,7 +325,7 @@ function showLessonNotificationPopUp(lesson_id) {
 }
 
 /**
-Modal for new media element form
+Dialog containing the form to upload a new media element. This function interacts with the module {{#crossLinkModule "media-element-loader"}}{{/crossLinkModule}}.
 @method showLoadMediaElementPopUp
 @for DialogsWithForm
 **/
@@ -363,10 +363,10 @@ function showLoadMediaElementPopUp() {
 }
 
 /**
-Modal for media element update form Uses: [customOverlayClose](../classes/customOverlayClose.html#method_customOverlayClose) and [removeCustomOverlayClose](../classes/removeCustomOverlayClose.html#method_removeCustomOverlayClose) and [resetMediaElementChangeInfo](../classes/resetMediaElementChangeInfo.html#method_resetMediaElementChangeInfo) and [stopMedia](../classes/stopMedia.html#method_stopMedia)
+Dialog containing the media element general information. If the element is private, this same dialog contains the form to change title, description and tags (see the method {{#crossLink "MediaElementLoaderGeneral/resetMediaElementChangeInfo:method"}}{{/crossLink}}).
 @method showMediaElementInfoPopUp
 @for DialogsWithForm
-@param media_element_id {Number} media element id
+@param media_element_id {Number} id in the database of the media element
 **/
 function showMediaElementInfoPopUp(media_element_id) {
   var obj = $('#dialog-media-element-' + media_element_id);
@@ -415,10 +415,10 @@ function showMediaElementInfoPopUp(media_element_id) {
 }
 
 /**
-Share lesson link popup in virtual classroom 
+Dialog containing the form to send the public link of a lesson. Used in {{#crossLink "VirtualClassroomSendLink"}}{{/crossLink}}.
 @method showSendLessonLinkPopUp
 @for DialogsWithForm
-@param lesson_id {Number} lesson id
+@param lesson_id {Number} id in the database of the lesson
 **/
 function showSendLessonLinkPopUp(lesson_id) {
   var obj = $('#dialog-virtual-classroom-send-link');
@@ -459,10 +459,10 @@ function showSendLessonLinkPopUp(lesson_id) {
 }
 
 /**
-Modal with lessons to add to virtual classroom. Uses: [showOkPopUp](../classes/showOkPopUp.html#method_showOkPopUp) and [showErrorPopUp](../classes/showErrorPopUp.html#method_showErrorPopUp)
+Dialog containing a list of lessons to be loaded in the Virtual Classroom. Used in {{#crossLink "VirtualClassroomMultipleLoading"}}{{/crossLink}}.
 @method showVirtualClassroomQuickSelectPopUp
 @for DialogsWithForm
-@param content {Object} lessons list partial
+@param content {Object} HTML content for the list of lessons
 **/
 function showVirtualClassroomQuickSelectPopUp(content) {
   var obj = $('#dialog-virtual-classroom-quick-select');
