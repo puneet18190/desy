@@ -678,9 +678,10 @@ function secondsToDateString(seconds) {
 
 
 &#x2F;**
-bla bla bla
+This function returns an url for media elements without the parameter &#x27;filter&#x27;. The original url is extracted by the method {{#crossLink &quot;GeneralMiscellanea&#x2F;getMediaElementsFormat:method&quot;}}{{&#x2F;crossLink}}.
 @method getCompleteMediaElementsUrlWithoutFilter
 @for GeneralUrls
+@returns {String} the current url without the parameter &#x27;filter&#x27;
 **&#x2F;
 function getCompleteMediaElementsUrlWithoutFilter() {
   var param_format = getMediaElementsFormat();
@@ -689,9 +690,10 @@ function getCompleteMediaElementsUrlWithoutFilter() {
 }
 
 &#x2F;**
-bla bla bla
+This function returns an url for media elements without the parameter &#x27;for_page&#x27;. The original url is extracted by the method {{#crossLink &quot;GeneralMiscellanea&#x2F;getMediaElementsFormat:method&quot;}}{{&#x2F;crossLink}}.
 @method getCompleteMediaElementsUrlWithoutForPage
 @for GeneralUrls
+@returns {String} the current url without the parameter &#x27;for_page&#x27;
 **&#x2F;
 function getCompleteMediaElementsUrlWithoutForPage() {
   var param_format = getMediaElementsFormat();
@@ -700,12 +702,12 @@ function getCompleteMediaElementsUrlWithoutForPage() {
 }
 
 &#x2F;**
-Remove a param from url
+Removes a parameter from an url.
 @method removeURLParameter
 @for GeneralUrls
-@param url {String} starting url
+@param url {String} initial url
 @param param {String} param to remove
-@return {String} update url
+@return {String} updated url
 **&#x2F;
 function removeURLParameter(url, param) {
   var newAdditionalURL = &#x27;&#x27;;
@@ -726,12 +728,12 @@ function removeURLParameter(url, param) {
 }
 
 &#x2F;**
-Add new parameters to an url
+Adds or update new parameters to an url.
 @method updateURLParameter
 @for GeneralUrls
-@param url {String} starting url
-@param param {String} new param
-@param paramVal {String} new param value
+@param url {String} initial url
+@param param {String} parameter
+@param paramVal {String} new value for the parameter
 @return {String} updated url
 **&#x2F;
 function updateURLParameter(url, param, paramVal) {

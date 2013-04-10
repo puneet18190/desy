@@ -372,9 +372,10 @@ function secondsToDateString(seconds) {
 
 
 /**
-bla bla bla
+This function returns an url for media elements without the parameter 'filter'. The original url is extracted by the method {{#crossLink "GeneralMiscellanea/getMediaElementsFormat:method"}}{{/crossLink}}.
 @method getCompleteMediaElementsUrlWithoutFilter
 @for GeneralUrls
+@returns {String} the current url without the parameter 'filter'
 **/
 function getCompleteMediaElementsUrlWithoutFilter() {
   var param_format = getMediaElementsFormat();
@@ -383,9 +384,10 @@ function getCompleteMediaElementsUrlWithoutFilter() {
 }
 
 /**
-bla bla bla
+This function returns an url for media elements without the parameter 'for_page'. The original url is extracted by the method {{#crossLink "GeneralMiscellanea/getMediaElementsFormat:method"}}{{/crossLink}}.
 @method getCompleteMediaElementsUrlWithoutForPage
 @for GeneralUrls
+@returns {String} the current url without the parameter 'for_page'
 **/
 function getCompleteMediaElementsUrlWithoutForPage() {
   var param_format = getMediaElementsFormat();
@@ -394,12 +396,12 @@ function getCompleteMediaElementsUrlWithoutForPage() {
 }
 
 /**
-Remove a param from url
+Removes a parameter from an url.
 @method removeURLParameter
 @for GeneralUrls
-@param url {String} starting url
+@param url {String} initial url
 @param param {String} param to remove
-@return {String} update url
+@return {String} updated url
 **/
 function removeURLParameter(url, param) {
   var newAdditionalURL = '';
@@ -420,12 +422,12 @@ function removeURLParameter(url, param) {
 }
 
 /**
-Add new parameters to an url
+Adds or update new parameters to an url.
 @method updateURLParameter
 @for GeneralUrls
-@param url {String} starting url
-@param param {String} new param
-@param paramVal {String} new param value
+@param url {String} initial url
+@param param {String} parameter
+@param paramVal {String} new value for the parameter
 @return {String} updated url
 **/
 function updateURLParameter(url, param, paramVal) {

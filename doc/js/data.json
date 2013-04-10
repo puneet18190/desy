@@ -3536,31 +3536,39 @@
         {
             "file": "app/assets/javascripts/general.js",
             "line": 374,
-            "description": "bla bla bla",
+            "description": "This function returns an url for media elements without the parameter 'filter'. The original url is extracted by the method {{#crossLink \"GeneralMiscellanea/getMediaElementsFormat:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "getCompleteMediaElementsUrlWithoutFilter",
+            "return": {
+                "description": "the current url without the parameter 'filter'",
+                "type": "String"
+            },
             "class": "GeneralUrls",
             "module": "general"
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 385,
-            "description": "bla bla bla",
+            "line": 386,
+            "description": "This function returns an url for media elements without the parameter 'for_page'. The original url is extracted by the method {{#crossLink \"GeneralMiscellanea/getMediaElementsFormat:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "getCompleteMediaElementsUrlWithoutForPage",
+            "return": {
+                "description": "the current url without the parameter 'for_page'",
+                "type": "String"
+            },
             "class": "GeneralUrls",
             "module": "general"
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 396,
-            "description": "Remove a param from url",
+            "line": 398,
+            "description": "Removes a parameter from an url.",
             "itemtype": "method",
             "name": "removeURLParameter",
             "params": [
                 {
                     "name": "url",
-                    "description": "starting url",
+                    "description": "initial url",
                     "type": "String"
                 },
                 {
@@ -3570,7 +3578,7 @@
                 }
             ],
             "return": {
-                "description": "update url",
+                "description": "updated url",
                 "type": "String"
             },
             "class": "GeneralUrls",
@@ -3578,24 +3586,24 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 422,
-            "description": "Add new parameters to an url",
+            "line": 424,
+            "description": "Adds or update new parameters to an url.",
             "itemtype": "method",
             "name": "updateURLParameter",
             "params": [
                 {
                     "name": "url",
-                    "description": "starting url",
+                    "description": "initial url",
                     "type": "String"
                 },
                 {
                     "name": "param",
-                    "description": "new param",
+                    "description": "parameter",
                     "type": "String"
                 },
                 {
                     "name": "paramVal",
-                    "description": "new param value",
+                    "description": "new value for the parameter",
                     "type": "String"
                 }
             ],
@@ -5905,6 +5913,14 @@
         {
             "message": "replacing incorrect tag: returns with return",
             "line": " app/assets/javascripts/audio_editor.js:618"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " app/assets/javascripts/general.js:374"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " app/assets/javascripts/general.js:386"
         },
         {
             "message": "Missing item type\nThis function changes page of the section containing suggested lessons. As already mentioned, the method reloads the pagination using {{#crossLink \"DashboardPagination/reloadLessonsDashboardPagination:method\"}}{{/crossLink}}.",
