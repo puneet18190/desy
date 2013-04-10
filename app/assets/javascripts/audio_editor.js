@@ -632,7 +632,7 @@ function getAudioComponentIdentifier(component) {
 
 
 /**
-bla bla bla
+Disables the buttons <i>commit</i> and <i>prewiev</i>.
 @method disableCommitAndPreviewInAudioEditor
 @for AudioEditorGraphics
 **/
@@ -644,7 +644,7 @@ function disableCommitAndPreviewInAudioEditor() {
 }
 
 /**
-bla bla bla
+Enables the buttons <i>commit</i> and <i>preview</i>.
 @method enableCommitAndPreviewInAudioEditor
 @for AudioEditorGraphics
 **/
@@ -656,9 +656,10 @@ function enableCommitAndPreviewInAudioEditor() {
 }
 
 /**
-bla bla bla
+Hides the commit form for overwrite or for new element (depending on the parameter).
 @method hideCommitAudioEditorForm
 @for AudioEditorGraphics
+@param scope {String} it can be either 'overwrite' or 'new'
 **/
 function hideCommitAudioEditorForm(scope) {
   $('._audio_editor_bottom_bar').show();
@@ -667,7 +668,7 @@ function hideCommitAudioEditorForm(scope) {
 }
 
 /**
-bla bla bla
+Function that sets the correct value to all the z-indexes: there are in total three hidden layers for each component, one global, plus two sliders in each cutter, and each of them needs its specific z-index. Used at any time the components are hidden and need to be shown (for instance {{#crossLink "AudioEditorGalleries/showAudioEditorGallery:method"}}{{/crossLink}}).
 @method setBackAllZIndexesInAudioEditor
 @for AudioEditorGraphics
 **/
@@ -681,7 +682,7 @@ function setBackAllZIndexesInAudioEditor() {
 }
 
 /**
-bla bla bla
+Function that sets to zero the value to all the z-indexes: there are in total three hidden layers for each component, one global, plus two sliders in each cutter, and each of them needs its specific z-index. Used at any time the components are shown and need to be hidden (for instance {{#crossLink "AudioEditorGalleries/hideAudioEditorGallery:method"}}{{/crossLink}}).
 @method setToZeroAllZIndexesInAudioEditor
 @for AudioEditorGraphics
 **/
@@ -695,9 +696,10 @@ function setToZeroAllZIndexesInAudioEditor() {
 }
 
 /**
-bla bla bla
+Shows the commit form for overwrite or for new element (depending on the parameter).
 @method showCommitAudioEditorForm
 @for AudioEditorGraphics
+@param scope {String} it can be either 'overwrite' or 'new'
 **/
 function showCommitAudioEditorForm(scope) {
   $('._audio_editor_bottom_bar').hide();

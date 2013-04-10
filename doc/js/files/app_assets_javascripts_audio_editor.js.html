@@ -936,7 +936,7 @@ function getAudioComponentIdentifier(component) {
 
 
 &#x2F;**
-bla bla bla
+Disables the buttons &lt;i&gt;commit&lt;&#x2F;i&gt; and &lt;i&gt;prewiev&lt;&#x2F;i&gt;.
 @method disableCommitAndPreviewInAudioEditor
 @for AudioEditorGraphics
 **&#x2F;
@@ -948,7 +948,7 @@ function disableCommitAndPreviewInAudioEditor() {
 }
 
 &#x2F;**
-bla bla bla
+Enables the buttons &lt;i&gt;commit&lt;&#x2F;i&gt; and &lt;i&gt;preview&lt;&#x2F;i&gt;.
 @method enableCommitAndPreviewInAudioEditor
 @for AudioEditorGraphics
 **&#x2F;
@@ -960,9 +960,10 @@ function enableCommitAndPreviewInAudioEditor() {
 }
 
 &#x2F;**
-bla bla bla
+Hides the commit form for overwrite or for new element (depending on the parameter).
 @method hideCommitAudioEditorForm
 @for AudioEditorGraphics
+@param scope {String} it can be either &#x27;overwrite&#x27; or &#x27;new&#x27;
 **&#x2F;
 function hideCommitAudioEditorForm(scope) {
   $(&#x27;._audio_editor_bottom_bar&#x27;).show();
@@ -971,7 +972,7 @@ function hideCommitAudioEditorForm(scope) {
 }
 
 &#x2F;**
-bla bla bla
+Function that sets the correct value to all the z-indexes: there are in total three hidden layers for each component, one global, plus two sliders in each cutter, and each of them needs its specific z-index. Used at any time the components are hidden and need to be shown (for instance {{#crossLink &quot;AudioEditorGalleries&#x2F;showAudioEditorGallery:method&quot;}}{{&#x2F;crossLink}}).
 @method setBackAllZIndexesInAudioEditor
 @for AudioEditorGraphics
 **&#x2F;
@@ -985,7 +986,7 @@ function setBackAllZIndexesInAudioEditor() {
 }
 
 &#x2F;**
-bla bla bla
+Function that sets to zero the value to all the z-indexes: there are in total three hidden layers for each component, one global, plus two sliders in each cutter, and each of them needs its specific z-index. Used at any time the components are shown and need to be hidden (for instance {{#crossLink &quot;AudioEditorGalleries&#x2F;hideAudioEditorGallery:method&quot;}}{{&#x2F;crossLink}}).
 @method setToZeroAllZIndexesInAudioEditor
 @for AudioEditorGraphics
 **&#x2F;
@@ -999,9 +1000,10 @@ function setToZeroAllZIndexesInAudioEditor() {
 }
 
 &#x2F;**
-bla bla bla
+Shows the commit form for overwrite or for new element (depending on the parameter).
 @method showCommitAudioEditorForm
 @for AudioEditorGraphics
+@param scope {String} it can be either &#x27;overwrite&#x27; or &#x27;new&#x27;
 **&#x2F;
 function showCommitAudioEditorForm(scope) {
   $(&#x27;._audio_editor_bottom_bar&#x27;).hide();

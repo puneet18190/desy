@@ -2231,7 +2231,7 @@
         {
             "file": "app/assets/javascripts/audio_editor.js",
             "line": 634,
-            "description": "bla bla bla",
+            "description": "Disables the buttons <i>commit</i> and <i>prewiev</i>.",
             "itemtype": "method",
             "name": "disableCommitAndPreviewInAudioEditor",
             "class": "AudioEditorGraphics",
@@ -2240,7 +2240,7 @@
         {
             "file": "app/assets/javascripts/audio_editor.js",
             "line": 646,
-            "description": "bla bla bla",
+            "description": "Enables the buttons <i>commit</i> and <i>preview</i>.",
             "itemtype": "method",
             "name": "enableCommitAndPreviewInAudioEditor",
             "class": "AudioEditorGraphics",
@@ -2249,16 +2249,23 @@
         {
             "file": "app/assets/javascripts/audio_editor.js",
             "line": 658,
-            "description": "bla bla bla",
+            "description": "Hides the commit form for overwrite or for new element (depending on the parameter).",
             "itemtype": "method",
             "name": "hideCommitAudioEditorForm",
+            "params": [
+                {
+                    "name": "scope",
+                    "description": "it can be either 'overwrite' or 'new'",
+                    "type": "String"
+                }
+            ],
             "class": "AudioEditorGraphics",
             "module": "audio-editor"
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 669,
-            "description": "bla bla bla",
+            "line": 670,
+            "description": "Function that sets the correct value to all the z-indexes: there are in total three hidden layers for each component, one global, plus two sliders in each cutter, and each of them needs its specific z-index. Used at any time the components are hidden and need to be shown (for instance {{#crossLink \"AudioEditorGalleries/showAudioEditorGallery:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "setBackAllZIndexesInAudioEditor",
             "class": "AudioEditorGraphics",
@@ -2266,8 +2273,8 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 683,
-            "description": "bla bla bla",
+            "line": 684,
+            "description": "Function that sets to zero the value to all the z-indexes: there are in total three hidden layers for each component, one global, plus two sliders in each cutter, and each of them needs its specific z-index. Used at any time the components are shown and need to be hidden (for instance {{#crossLink \"AudioEditorGalleries/hideAudioEditorGallery:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "setToZeroAllZIndexesInAudioEditor",
             "class": "AudioEditorGraphics",
@@ -2275,16 +2282,23 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 697,
-            "description": "bla bla bla",
+            "line": 698,
+            "description": "Shows the commit form for overwrite or for new element (depending on the parameter).",
             "itemtype": "method",
             "name": "showCommitAudioEditorForm",
+            "params": [
+                {
+                    "name": "scope",
+                    "description": "it can be either 'overwrite' or 'new'",
+                    "type": "String"
+                }
+            ],
             "class": "AudioEditorGraphics",
             "module": "audio-editor"
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 712,
+            "line": 714,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "deselectAllAudioEditorComponentsInPreviewMode",
@@ -2293,7 +2307,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 728,
+            "line": 730,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "enterAudioEditorPreviewMode",
@@ -2302,7 +2316,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 769,
+            "line": 771,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "getAudioEditorGlobalPreviewTime",
@@ -2311,7 +2325,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 793,
+            "line": 795,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "increaseAudioEditorPreviewTimer",
@@ -2320,7 +2334,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 805,
+            "line": 807,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "leaveAudioEditorPreviewMode",
@@ -2329,7 +2343,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 837,
+            "line": 839,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "selectAudioEditorComponentInPreviewMode",
@@ -2338,7 +2352,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 851,
+            "line": 853,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "startAudioEditorPreview",
@@ -2347,7 +2361,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 868,
+            "line": 870,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "switchAudioComponentsToPreviewMode",
@@ -2356,7 +2370,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 882,
+            "line": 884,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "switchBackAudioComponentsFromPreviewMode",
@@ -2365,7 +2379,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 900,
+            "line": 902,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "followPreviewComponentsWithVerticalScrollInAudioEditor",
@@ -2374,7 +2388,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 911,
+            "line": 913,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "scrollToFirstSelectedAudioEditorComponent",
