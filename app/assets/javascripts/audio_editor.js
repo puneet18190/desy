@@ -124,9 +124,10 @@ function fillAudioEditorSingleParameter(input, identifier, value) {
 }
 
 /**
-bla bla bla
+An HTML5 audio is loaded only when necessary: this function extracts from the data the sources of the audio, and loads it (unless the component had already been loaded previously)
 @method loadAudioComponentIfNotLoadedYet
 @for AudioEditorComponents
+@param component {Object} the component to load
 **/
 function loadAudioComponentIfNotLoadedYet(component) {
   if(!component.data('loaded')) {
@@ -140,7 +141,7 @@ function loadAudioComponentIfNotLoadedYet(component) {
 }
 
 /**
-bla bla bla
+Reloads the correct positions of the components after sorting them.
 @method reloadAudioEditorComponentPositions
 @for AudioEditorComponents
 **/
@@ -154,9 +155,10 @@ function reloadAudioEditorComponentPositions() {
 }
 
 /**
-bla bla bla
+Removes a component from the timeline.
 @method removeAudioEditorComponent
 @for AudioEditorComponents
+@param component {Object} the component to be removed
 **/
 function removeAudioEditorComponent(component) {
   if(component.hasClass('_selected')) {
@@ -174,7 +176,7 @@ function removeAudioEditorComponent(component) {
 }
 
 /**
-bla bla bla
+This function removes the margin bottom from the last component in the timeline: this is necessary to handle with precision the JScrollPain (see {{#crossLink "AudioEditorScrollPain"}}{{/crossLink}}).
 @method resizeLastComponentInAudioEditor
 @for AudioEditorComponents
 **/
