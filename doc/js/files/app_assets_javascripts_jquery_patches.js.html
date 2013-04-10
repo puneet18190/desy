@@ -241,6 +241,8 @@
             
                 <li><a href="..&#x2F;modules/image-editor.html">image-editor</a></li>
             
+                <li><a href="..&#x2F;modules/jquery-patches.html">jquery-patches</a></li>
+            
                 <li><a href="..&#x2F;modules/lesson-editor.html">lesson-editor</a></li>
             
                 <li><a href="..&#x2F;modules/lesson-viewer.html">lesson-viewer</a></li>
@@ -303,16 +305,26 @@
 <div class="file">
     <pre class="code prettyprint linenums">
 &#x2F;**
+bla bla bla (dire che devono venire caricati prima di document ready)
+@module jquery-patches
+**&#x2F;
+
+
+
+
+
+&#x2F;**
 bla bla bla
-@method IPadDetection
+@method iPadDetection
 @for JQueryPatches
 **&#x2F;
-(function(){
+(function() {
   var ua = navigator.userAgent.toLowerCase();
-  if ( ua.indexOf(&quot;ipad&quot;) &gt;= 0 ) {
+  if(ua.indexOf(&#x27;ipad&#x27;) &gt;= 0) {
     $.browser.ipad = true;
   }
 })();
+
     </pre>
 </div>
 

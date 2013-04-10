@@ -135,7 +135,9 @@
         },
         "app/assets/javascripts/jquery_patches.js": {
             "name": "app/assets/javascripts/jquery_patches.js",
-            "modules": {},
+            "modules": {
+                "jquery-patches": 1
+            },
             "classes": {},
             "fors": {
                 "JQueryPatches": 1
@@ -482,21 +484,34 @@
                 "ImageEditorDocumentReady": 1,
                 "ImageEditorGraphics": 1,
                 "ImageEditorImageScale": 1,
-                "ImageEditorTexts": 1,
-                "JQueryPatches": 1
+                "ImageEditorTexts": 1
             },
             "fors": {
                 "ImageEditorDocumentReady": 1,
                 "ImageEditorGraphics": 1,
                 "ImageEditorImageScale": 1,
-                "ImageEditorTexts": 1,
-                "JQueryPatches": 1
+                "ImageEditorTexts": 1
             },
             "namespaces": {},
             "tag": "module",
             "file": "app/assets/javascripts/image_editor.js",
             "line": 1,
             "description": "Image editor functions, crop and textarea management."
+        },
+        "jquery-patches": {
+            "name": "jquery-patches",
+            "submodules": {},
+            "classes": {
+                "JQueryPatches": 1
+            },
+            "fors": {
+                "JQueryPatches": 1
+            },
+            "namespaces": {},
+            "tag": "module",
+            "file": "app/assets/javascripts/jquery_patches.js",
+            "line": 1,
+            "description": "bla bla bla (dire che devono venire caricati prima di document ready)"
         },
         "lesson-editor": {
             "name": "lesson-editor",
@@ -1160,7 +1175,7 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "module": "image-editor",
+            "module": "jquery-patches",
             "namespace": ""
         },
         "LessonEditorCurrentSlide": {
@@ -3752,12 +3767,12 @@
         },
         {
             "file": "app/assets/javascripts/jquery_patches.js",
-            "line": 1,
+            "line": 10,
             "description": "bla bla bla",
             "itemtype": "method",
-            "name": "IPadDetection",
+            "name": "iPadDetection",
             "class": "JQueryPatches",
-            "module": "image-editor"
+            "module": "jquery-patches"
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",

@@ -101,6 +101,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "galleries",
         "general",
         "image-editor",
+        "jquery-patches",
         "lesson-editor",
         "lesson-viewer",
         "media-element-editor",
@@ -158,6 +159,11 @@ YUI.add("yuidoc-meta", function(Y) {
             "displayName": "image-editor",
             "name": "image-editor",
             "description": "Image editor functions, crop and textarea management."
+        },
+        {
+            "displayName": "jquery-patches",
+            "name": "jquery-patches",
+            "description": "bla bla bla (dire che devono venire caricati prima di document ready)"
         },
         {
             "displayName": "lesson-editor",
