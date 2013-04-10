@@ -115,7 +115,7 @@
             
                 <li><a href="..&#x2F;classes/ImageEditorTexts.html">ImageEditorTexts</a></li>
             
-                <li><a href="..&#x2F;classes/JQueryPatches.html">JQueryPatches</a></li>
+                <li><a href="..&#x2F;classes/JqueryPatchesBrowsers.html">JqueryPatchesBrowsers</a></li>
             
                 <li><a href="..&#x2F;classes/LessonEditorCurrentSlide.html">LessonEditorCurrentSlide</a></li>
             
@@ -241,6 +241,8 @@
             
                 <li><a href="..&#x2F;modules/image-editor.html">image-editor</a></li>
             
+                <li><a href="..&#x2F;modules/jquery-patches.html">jquery-patches</a></li>
+            
                 <li><a href="..&#x2F;modules/lesson-editor.html">lesson-editor</a></li>
             
                 <li><a href="..&#x2F;modules/lesson-viewer.html">lesson-viewer</a></li>
@@ -321,8 +323,8 @@ function centerThis(div) {
   var winH = $(window).height();
   var winW = $(window).width();
   var centerDiv = $(div);
-  centerDiv.css(&#x27;top&#x27;, winH&#x2F;2-centerDiv.height()&#x2F;2);
-  centerDiv.css(&#x27;left&#x27;, winW&#x2F;2-centerDiv.width()&#x2F;2);
+  centerDiv.css(&#x27;top&#x27;, winH&#x2F;2 - centerDiv.height()&#x2F;2);
+  centerDiv.css(&#x27;left&#x27;, winW&#x2F;2 - centerDiv.width()&#x2F;2);
 }
 
 &#x2F;**
@@ -336,8 +338,8 @@ function centerThisInContainer(div,container) {
   var contH = $(container).height();
   var contW = $(container).width();
   var centerDiv = $(div);
-  centerDiv.css(&#x27;top&#x27;, (contH&#x2F;2-centerDiv.height()&#x2F;2)+$(container).position().top);
-  centerDiv.css(&#x27;left&#x27;, (contW&#x2F;2-centerDiv.width()&#x2F;2)+$(container).position().left);
+  centerDiv.css(&#x27;top&#x27;, (contH&#x2F;2 - centerDiv.height()&#x2F;2) + $(container).position().top);
+  centerDiv.css(&#x27;left&#x27;, (contW&#x2F;2 - centerDiv.width()&#x2F;2) + $(container).position().left);
 }
 
 &#x2F;**

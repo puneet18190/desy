@@ -38,7 +38,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "ImageEditorGraphics",
         "ImageEditorImageScale",
         "ImageEditorTexts",
-        "JQueryPatches",
+        "JqueryPatchesBrowsers",
         "LessonEditorCurrentSlide",
         "LessonEditorDocumentReady",
         "LessonEditorForms",
@@ -101,6 +101,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "galleries",
         "general",
         "image-editor",
+        "jquery-patches",
         "lesson-editor",
         "lesson-viewer",
         "media-element-editor",
@@ -137,12 +138,12 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "dashboard",
             "name": "dashboard",
-            "description": "Dashboard is the welcome page of DESY where you find shared lessons and elements. This handles elements interaction events."
+            "description": "The dashboard is the home page of DESY: the page is divided in two sections, one for <b>suggested elements</b> and one for <b>suggested lessons</b>. Each of these two sections is split into three pages of lessons and elements. When the server loads the dashboard, all the six pages (three for lessons, three for elements) are loaded together, and all the operations are handled with javascript functions.\n<br/><br/>\nThere are two simple functions that switch between the pages for lessons and elements (see both methods of {{#crossLink \"DashboardGeneral\"}}{{/crossLink}}). A bit more complicated are the functions to pass from a page to another (all contained in the class {{#crossLink \"DashboardPagination\"}}{{/crossLink}}): the core of such an asynchronous pagination is the method {{#crossLink \"DashboardPagination/getHtmlPagination:method\"}}{{/crossLink}} that reconstructs the normal pagination without calling the corresponding partial in <i>views/shared/pagination.html.erb</i>: this pagination is unique for both elements and lessons, and it is reloaded each time the user changes page using the functions {{#crossLink \"DashboardPagination/reloadLessonsDashboardPagination:method\"}}{{/crossLink}} and {{#crossLink \"DashboardPagination/reloadMediaElementsDashboardPagination:method\"}}{{/crossLink}}."
         },
         {
             "displayName": "dialogs",
             "name": "dialogs",
-            "description": "Dialogs, model and popup interaction. Open, close content management. Uses jQueryUI _dialog_"
+            "description": "This module contains the javascript functions that use JQueryUi dialogs. Some of them are closed with a time delay (class {{#crossLink \"DialogsTimed\"}}{{/crossLink}}), other are closed with buttons by the user (class {{#crossLink \"DialogsConfirmation\"}}{{/crossLink}}), and other ones contain a form to be filled in by the user (class {{#crossLink \"DialogsWithForm\"}}{{/crossLink}})."
         },
         {
             "displayName": "galleries",
@@ -158,6 +159,11 @@ YUI.add("yuidoc-meta", function(Y) {
             "displayName": "image-editor",
             "name": "image-editor",
             "description": "Image editor functions, crop and textarea management."
+        },
+        {
+            "displayName": "jquery-patches",
+            "name": "jquery-patches",
+            "description": "bla bla bla (dire che devono venire caricati prima di document ready, e che a momento c'è solamente la classe per detectare i browsers)"
         },
         {
             "displayName": "lesson-editor",

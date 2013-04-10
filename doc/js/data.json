@@ -135,10 +135,12 @@
         },
         "app/assets/javascripts/jquery_patches.js": {
             "name": "app/assets/javascripts/jquery_patches.js",
-            "modules": {},
+            "modules": {
+                "jquery-patches": 1
+            },
             "classes": {},
             "fors": {
-                "JQueryPatches": 1
+                "JqueryPatchesBrowsers": 1
             },
             "namespaces": {}
         },
@@ -410,7 +412,7 @@
             "tag": "module",
             "file": "app/assets/javascripts/dashboard.js",
             "line": 1,
-            "description": "Dashboard is the welcome page of DESY where you find shared lessons and elements. This handles elements interaction events."
+            "description": "The dashboard is the home page of DESY: the page is divided in two sections, one for <b>suggested elements</b> and one for <b>suggested lessons</b>. Each of these two sections is split into three pages of lessons and elements. When the server loads the dashboard, all the six pages (three for lessons, three for elements) are loaded together, and all the operations are handled with javascript functions.\n<br/><br/>\nThere are two simple functions that switch between the pages for lessons and elements (see both methods of {{#crossLink \"DashboardGeneral\"}}{{/crossLink}}). A bit more complicated are the functions to pass from a page to another (all contained in the class {{#crossLink \"DashboardPagination\"}}{{/crossLink}}): the core of such an asynchronous pagination is the method {{#crossLink \"DashboardPagination/getHtmlPagination:method\"}}{{/crossLink}} that reconstructs the normal pagination without calling the corresponding partial in <i>views/shared/pagination.html.erb</i>: this pagination is unique for both elements and lessons, and it is reloaded each time the user changes page using the functions {{#crossLink \"DashboardPagination/reloadLessonsDashboardPagination:method\"}}{{/crossLink}} and {{#crossLink \"DashboardPagination/reloadMediaElementsDashboardPagination:method\"}}{{/crossLink}}."
         },
         "dialogs": {
             "name": "dialogs",
@@ -433,7 +435,7 @@
             "tag": "module",
             "file": "app/assets/javascripts/dialogs.js",
             "line": 1,
-            "description": "Dialogs, model and popup interaction. Open, close content management. Uses jQueryUI _dialog_"
+            "description": "This module contains the javascript functions that use JQueryUi dialogs. Some of them are closed with a time delay (class {{#crossLink \"DialogsTimed\"}}{{/crossLink}}), other are closed with buttons by the user (class {{#crossLink \"DialogsConfirmation\"}}{{/crossLink}}), and other ones contain a form to be filled in by the user (class {{#crossLink \"DialogsWithForm\"}}{{/crossLink}})."
         },
         "galleries": {
             "name": "galleries",
@@ -482,21 +484,34 @@
                 "ImageEditorDocumentReady": 1,
                 "ImageEditorGraphics": 1,
                 "ImageEditorImageScale": 1,
-                "ImageEditorTexts": 1,
-                "JQueryPatches": 1
+                "ImageEditorTexts": 1
             },
             "fors": {
                 "ImageEditorDocumentReady": 1,
                 "ImageEditorGraphics": 1,
                 "ImageEditorImageScale": 1,
-                "ImageEditorTexts": 1,
-                "JQueryPatches": 1
+                "ImageEditorTexts": 1
             },
             "namespaces": {},
             "tag": "module",
             "file": "app/assets/javascripts/image_editor.js",
             "line": 1,
             "description": "Image editor functions, crop and textarea management."
+        },
+        "jquery-patches": {
+            "name": "jquery-patches",
+            "submodules": {},
+            "classes": {
+                "JqueryPatchesBrowsers": 1
+            },
+            "fors": {
+                "JqueryPatchesBrowsers": 1
+            },
+            "namespaces": {},
+            "tag": "module",
+            "file": "app/assets/javascripts/jquery_patches.js",
+            "line": 1,
+            "description": "bla bla bla (dire che devono venire caricati prima di document ready, e che a momento c'è solamente la classe per detectare i browsers)"
         },
         "lesson-editor": {
             "name": "lesson-editor",
@@ -1152,15 +1167,15 @@
             "module": "image-editor",
             "namespace": ""
         },
-        "JQueryPatches": {
-            "name": "JQueryPatches",
-            "shortname": "JQueryPatches",
+        "JqueryPatchesBrowsers": {
+            "name": "JqueryPatchesBrowsers",
+            "shortname": "JqueryPatchesBrowsers",
             "classitems": [],
             "plugins": [],
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "module": "image-editor",
+            "module": "jquery-patches",
             "namespace": ""
         },
         "LessonEditorCurrentSlide": {
@@ -2139,7 +2154,7 @@
         {
             "file": "app/assets/javascripts/audio_editor.js",
             "line": 296,
-            "description": "bla bla bla",
+            "description": "Initializes the whole Audio Editor, calling all the subinitializers",
             "itemtype": "method",
             "name": "audioEditorDocumentReady",
             "class": "AudioEditorDocumentReady",
@@ -2148,7 +2163,7 @@
         {
             "file": "app/assets/javascripts/audio_editor.js",
             "line": 308,
-            "description": "bla bla bla",
+            "description": "Initializer for the functionalities of committing changes (click on 'commit', on 'cancel', popup asking to overwrite, etc). For other functionalities common to all the Element Editors, see {{#crossLink \"MediaElementEditorForms\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "audioEditorDocumentReadyCommit",
             "class": "AudioEditorDocumentReady",
@@ -2157,7 +2172,7 @@
         {
             "file": "app/assets/javascripts/audio_editor.js",
             "line": 403,
-            "description": "bla bla bla",
+            "description": "Initializer for the precision arrows in the cutters. For the other functionalities related to cutters, see {{#crossLink \"PlayersAudioEditor\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "audioEditorDocumentReadyCutters",
             "class": "AudioEditorDocumentReady",
@@ -2166,7 +2181,7 @@
         {
             "file": "app/assets/javascripts/audio_editor.js",
             "line": 466,
-            "description": "bla bla bla",
+            "description": "Initializes the JQueryUi animations (sorting components), and all the effects of selection of components (see {{#crossLink \"AudioEditorComponents/selectAudioEditorComponent:method\"}}{{/crossLink}} and similar methods).",
             "itemtype": "method",
             "name": "audioEditorDocumentReadyGeneral",
             "class": "AudioEditorDocumentReady",
@@ -2175,7 +2190,7 @@
         {
             "file": "app/assets/javascripts/audio_editor.js",
             "line": 547,
-            "description": "bla bla bla",
+            "description": "Initializes the functionalities of the preview (see also {{#crossLink \"AudioEditorPreview\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "audioEditorDocumentReadyPreview",
             "class": "AudioEditorDocumentReady",
@@ -2184,7 +2199,7 @@
         {
             "file": "app/assets/javascripts/audio_editor.js",
             "line": 581,
-            "description": "bla bla bla",
+            "description": "Sets the correct position of the gallery: used while showing and closing the audio gallery (see respectively {{#crossLink \"AudioEditorGalleries/showGalleryInAudioEditor:method\"}}{{/crossLink}} and {{#crossLink \"AudioEditorGalleries/closeGalleryInAudioEditor:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "calculateNewPositionGalleriesInAudioEditor",
             "class": "AudioEditorGalleries",
@@ -2193,7 +2208,7 @@
         {
             "file": "app/assets/javascripts/audio_editor.js",
             "line": 590,
-            "description": "bla bla bla",
+            "description": "Closes the gallery.",
             "itemtype": "method",
             "name": "closeGalleryInAudioEditor",
             "class": "AudioEditorGalleries",
@@ -2202,7 +2217,7 @@
         {
             "file": "app/assets/javascripts/audio_editor.js",
             "line": 602,
-            "description": "bla bla bla",
+            "description": "Shows the gallery.",
             "itemtype": "method",
             "name": "showGalleryInAudioEditor",
             "class": "AudioEditorGalleries",
@@ -2211,16 +2226,27 @@
         {
             "file": "app/assets/javascripts/audio_editor.js",
             "line": 618,
-            "description": "bla bla bla",
+            "description": "Extracts the unique identifier of a component using its HTML id.",
             "itemtype": "method",
             "name": "getAudioComponentIdentifier",
+            "params": [
+                {
+                    "name": "component",
+                    "description": "the component from which we want to extract the identifier",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "the identifier.",
+                "type": "Number"
+            },
             "class": "AudioEditorGeneral",
             "module": "audio-editor"
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 632,
-            "description": "bla bla bla",
+            "line": 634,
+            "description": "Disables the buttons <i>commit</i> and <i>prewiev</i>.",
             "itemtype": "method",
             "name": "disableCommitAndPreviewInAudioEditor",
             "class": "AudioEditorGraphics",
@@ -2228,8 +2254,8 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 644,
-            "description": "bla bla bla",
+            "line": 646,
+            "description": "Enables the buttons <i>commit</i> and <i>preview</i>.",
             "itemtype": "method",
             "name": "enableCommitAndPreviewInAudioEditor",
             "class": "AudioEditorGraphics",
@@ -2237,17 +2263,24 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 656,
-            "description": "bla bla bla",
+            "line": 658,
+            "description": "Hides the commit form for overwrite or for new element (depending on the parameter).",
             "itemtype": "method",
             "name": "hideCommitAudioEditorForm",
+            "params": [
+                {
+                    "name": "scope",
+                    "description": "it can be either 'overwrite' or 'new'",
+                    "type": "String"
+                }
+            ],
             "class": "AudioEditorGraphics",
             "module": "audio-editor"
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 667,
-            "description": "bla bla bla",
+            "line": 670,
+            "description": "Function that sets the correct value to all the z-indexes: there are in total three hidden layers for each component, one global, plus two sliders in each cutter, and each of them needs its specific z-index. Used at any time the components are hidden and need to be shown (for instance {{#crossLink \"AudioEditorGalleries/showGalleryInAudioEditor:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "setBackAllZIndexesInAudioEditor",
             "class": "AudioEditorGraphics",
@@ -2255,8 +2288,8 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 681,
-            "description": "bla bla bla",
+            "line": 684,
+            "description": "Function that sets to zero the value to all the z-indexes: there are in total three hidden layers for each component, one global, plus two sliders in each cutter, and each of them needs its specific z-index. Used at any time the components are shown and need to be hidden (for instance {{#crossLink \"AudioEditorGalleries/closeGalleryInAudioEditor:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "setToZeroAllZIndexesInAudioEditor",
             "class": "AudioEditorGraphics",
@@ -2264,17 +2297,24 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 695,
-            "description": "bla bla bla",
+            "line": 698,
+            "description": "Shows the commit form for overwrite or for new element (depending on the parameter).",
             "itemtype": "method",
             "name": "showCommitAudioEditorForm",
+            "params": [
+                {
+                    "name": "scope",
+                    "description": "it can be either 'overwrite' or 'new'",
+                    "type": "String"
+                }
+            ],
             "class": "AudioEditorGraphics",
             "module": "audio-editor"
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 710,
-            "description": "bla bla bla",
+            "line": 714,
+            "description": "Deselects all the components in preview mode (it corresponds to {{#crossLink \"AudioEditorComponents/deselectAllAudioEditorComponents:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "deselectAllAudioEditorComponentsInPreviewMode",
             "class": "AudioEditorPreview",
@@ -2282,8 +2322,8 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 726,
-            "description": "bla bla bla",
+            "line": 730,
+            "description": "Function that sets all the graphical details that characterize the preview mode. It automatically calls the function {{#crossLink \"AudioEditorPreview/startAudioEditorPreview:method\"}}{{/crossLink}}, passing it as parameter the selected component, or the first one if there is no selected component.",
             "itemtype": "method",
             "name": "enterAudioEditorPreviewMode",
             "class": "AudioEditorPreview",
@@ -2291,8 +2331,8 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 767,
-            "description": "bla bla bla",
+            "line": 771,
+            "description": "Gets the current time in the global preview, using the information relative to the selected component and the position of the cursor inside its cutter.",
             "itemtype": "method",
             "name": "getAudioEditorGlobalPreviewTime",
             "class": "AudioEditorPreview",
@@ -2300,8 +2340,8 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 791,
-            "description": "bla bla bla",
+            "line": 795,
+            "description": "Increases of one second the global preview timer.",
             "itemtype": "method",
             "name": "increaseAudioEditorPreviewTimer",
             "class": "AudioEditorPreview",
@@ -2309,35 +2349,56 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 803,
-            "description": "bla bla bla",
+            "line": 807,
+            "description": "Function that sets back to the regular value all the graphical details that characterize the preview mode.",
             "itemtype": "method",
             "name": "leaveAudioEditorPreviewMode",
+            "params": [
+                {
+                    "name": "forced_component",
+                    "description": "the component that must be selected after leaving the preview mode: if not specified, the function selects the first component.",
+                    "type": "Object"
+                }
+            ],
             "class": "AudioEditorPreview",
             "module": "audio-editor"
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 835,
-            "description": "bla bla bla",
+            "line": 840,
+            "description": "Selects a component in preview mode (it corresponds to {{#crossLink \"AudioEditorComponents/selectAudioEditorComponent:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "selectAudioEditorComponentInPreviewMode",
+            "params": [
+                {
+                    "name": "component",
+                    "description": "the component to be selected",
+                    "type": "Object"
+                }
+            ],
             "class": "AudioEditorPreview",
             "module": "audio-editor"
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 849,
-            "description": "bla bla bla",
+            "line": 855,
+            "description": "Starts the preview from a given component.",
             "itemtype": "method",
             "name": "startAudioEditorPreview",
+            "params": [
+                {
+                    "name": "component",
+                    "description": "the component from which the preview starts.",
+                    "type": "Object"
+                }
+            ],
             "class": "AudioEditorPreview",
             "module": "audio-editor"
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 866,
-            "description": "bla bla bla",
+            "line": 873,
+            "description": "Switches all the components in preview mode.",
             "itemtype": "method",
             "name": "switchAudioComponentsToPreviewMode",
             "class": "AudioEditorPreview",
@@ -2345,8 +2406,8 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 880,
-            "description": "bla bla bla",
+            "line": 887,
+            "description": "Switches all the components back to regular mode.",
             "itemtype": "method",
             "name": "switchBackAudioComponentsFromPreviewMode",
             "class": "AudioEditorPreview",
@@ -2354,8 +2415,8 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 898,
-            "description": "bla bla bla",
+            "line": 905,
+            "description": "Function used to keep updated the position of the scroll with the current component played in the global preview. It checks a condition and then uses {{#crossLink \"AudioEditorScrollpain/scrollToFirstSelectedAudioEditorComponent:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "followPreviewComponentsWithVerticalScrollInAudioEditor",
             "class": "AudioEditorScrollpain",
@@ -2363,19 +2424,38 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 909,
-            "description": "bla bla bla",
+            "line": 916,
+            "description": "Hand made function that simply scrolls to a component and executes a callback. This function needed to be written since the original JScrollPain doesn't provide it (!).",
             "itemtype": "method",
             "name": "scrollToFirstSelectedAudioEditorComponent",
+            "params": [
+                {
+                    "name": "callback",
+                    "description": "the callback to be executed after scrolling",
+                    "type": "Function"
+                }
+            ],
             "class": "AudioEditorScrollpain",
             "module": "audio-editor"
         },
         {
             "file": "app/assets/javascripts/buttons.js",
             "line": 10,
-            "description": "Add item removed from a view to the current destination url",
+            "description": "Add the url parameter 'delete_item' to an url (this parameter is used to delete an item while reloading the page).",
             "itemtype": "method",
             "name": "addDeleteItemToCurrentUrl",
+            "params": [
+                {
+                    "name": "current_url",
+                    "description": "the initial url",
+                    "type": "String"
+                },
+                {
+                    "name": "delete_item",
+                    "description": "the value to be assigned to the url parameter 'delete_item'",
+                    "type": "String"
+                }
+            ],
             "return": {
                 "description": "updated url",
                 "type": "String"
@@ -2385,8 +2465,8 @@
         },
         {
             "file": "app/assets/javascripts/buttons.js",
-            "line": 31,
-            "description": "bla bla bla",
+            "line": 33,
+            "description": "Initializes all the buttons available for lessons.",
             "itemtype": "method",
             "name": "lessonButtonsDocumentReady",
             "class": "ButtonsDocumentReady",
@@ -2394,8 +2474,8 @@
         },
         {
             "file": "app/assets/javascripts/buttons.js",
-            "line": 156,
-            "description": "bla bla bla",
+            "line": 158,
+            "description": "Initializes all the buttons for media elements.",
             "itemtype": "method",
             "name": "mediaElementButtonsDocumentReady",
             "class": "ButtonsDocumentReady",
@@ -2403,19 +2483,19 @@
         },
         {
             "file": "app/assets/javascripts/buttons.js",
-            "line": 234,
-            "description": "Add lessons from dashboard to my lessons. Uses [addDeleteItemToCurrentUrl](../classes/addDeleteItemToCurrentUrl.html#method_addDeleteItemToCurrentUrl) and [showErrorPopUp](../classes/showErrorPopUp.html#method_showErrorPopUp)",
+            "line": 236,
+            "description": "Calls the url to add the link of a lesson. It can either reload the item or remove it from the page.",
             "itemtype": "method",
             "name": "addLesson",
             "params": [
                 {
-                    "name": "lessons_id",
-                    "description": "lesson id",
+                    "name": "lesson_id",
+                    "description": "id of the lesson in the database",
                     "type": "Number"
                 },
                 {
                     "name": "destination",
-                    "description": "destination view",
+                    "description": "destination (used to pick the HTML id of the lesson)",
                     "type": "String"
                 },
                 {
@@ -2425,7 +2505,7 @@
                 },
                 {
                     "name": "reload",
-                    "description": "",
+                    "description": "true if the item must be reloaded, false if it must be removed",
                     "type": "Boolean"
                 }
             ],
@@ -2434,19 +2514,19 @@
         },
         {
             "file": "app/assets/javascripts/buttons.js",
-            "line": 270,
-            "description": "Make the lesson available in the virtual classroom",
+            "line": 272,
+            "description": "Calls the url to add a lesson to my Virtual Classroom. It reloads the item.",
             "itemtype": "method",
             "name": "addLessonToVirtualClassroom",
             "params": [
                 {
-                    "name": "lessons_id",
-                    "description": "lesson id",
+                    "name": "lesson_id",
+                    "description": "id of the lesson in the database",
                     "type": "Number"
                 },
                 {
                     "name": "destination",
-                    "description": "destination view",
+                    "description": "destination (used to pick the HTML id of the lesson)",
                     "type": "String"
                 }
             ],
@@ -2455,19 +2535,19 @@
         },
         {
             "file": "app/assets/javascripts/buttons.js",
-            "line": 284,
-            "description": "Create user own copy of the lesson",
+            "line": 286,
+            "description": "Calls the url to copy a lesson.",
             "itemtype": "method",
             "name": "copyLesson",
             "params": [
                 {
-                    "name": "lessons_id",
-                    "description": "lesson id",
+                    "name": "lesson_id",
+                    "description": "id of the lesson in the database",
                     "type": "Number"
                 },
                 {
                     "name": "destination",
-                    "description": "destination view",
+                    "description": "destination (used to pick the HTML id of the lesson)",
                     "type": "String"
                 }
             ],
@@ -2476,19 +2556,19 @@
         },
         {
             "file": "app/assets/javascripts/buttons.js",
-            "line": 298,
-            "description": "Destroy lessons lesson Uses [addDeleteItemToCurrentUrl](../classes/addDeleteItemToCurrentUrl.html#method_addDeleteItemToCurrentUrl) and [showConfirmPopUp](../classes/showConfirmPopUp.html#method_showConfirmPopUp) and [showErrorPopUp](../classes/showErrorPopUp.html#method_showErrorPopUp)",
+            "line": 300,
+            "description": "Calls the url to destroy a lesson. It removes the lesson from the page.",
             "itemtype": "method",
             "name": "destroyLesson",
             "params": [
                 {
-                    "name": "lessons_id",
-                    "description": "lesson id",
+                    "name": "lesson_id",
+                    "description": "id of the lesson in the database",
                     "type": "Number"
                 },
                 {
                     "name": "destination",
-                    "description": "destination view",
+                    "description": "destination (used to pick the HTML id of the lesson)",
                     "type": "String"
                 },
                 {
@@ -2502,19 +2582,19 @@
         },
         {
             "file": "app/assets/javascripts/buttons.js",
-            "line": 332,
-            "description": "Remove like from a lesson",
+            "line": 334,
+            "description": "Calls the url to remove the 'I like it' from a lesson. It reloads the item.",
             "itemtype": "method",
             "name": "dislikeLesson",
             "params": [
                 {
-                    "name": "lessons_id",
-                    "description": "lesson id",
+                    "name": "lesson_id",
+                    "description": "id of the lesson in the database",
                     "type": "Number"
                 },
                 {
                     "name": "destination",
-                    "description": "destination view",
+                    "description": "destination (used to pick the HTML id of the lesson)",
                     "type": "String"
                 }
             ],
@@ -2523,19 +2603,19 @@
         },
         {
             "file": "app/assets/javascripts/buttons.js",
-            "line": 346,
-            "description": "Add like to a lesson",
+            "line": 348,
+            "description": "Calls the url to add a 'I like it' to a lesson. It reloads the item.",
             "itemtype": "method",
             "name": "likeLesson",
             "params": [
                 {
-                    "name": "lessons_id",
-                    "description": "lesson id",
+                    "name": "lesson_id",
+                    "description": "id of the lesson in the database",
                     "type": "Number"
                 },
                 {
                     "name": "destination",
-                    "description": "destination view",
+                    "description": "destination (used to pick the HTML id of the lesson)",
                     "type": "String"
                 }
             ],
@@ -2544,19 +2624,19 @@
         },
         {
             "file": "app/assets/javascripts/buttons.js",
-            "line": 360,
-            "description": "View lesson link",
+            "line": 362,
+            "description": "Calls the url that opens the lesson viewer for this lesson.",
             "itemtype": "method",
             "name": "previewLesson",
             "params": [
                 {
-                    "name": "lessons_id",
-                    "description": "lesson id",
+                    "name": "lesson_id",
+                    "description": "id of the lesson in the database",
                     "type": "Number"
                 },
                 {
                     "name": "redirect_to",
-                    "description": "link url to come back from lesson viewer",
+                    "description": "url to be redirected when leaving the Lesson Viewer",
                     "type": "String"
                 }
             ],
@@ -2565,19 +2645,19 @@
         },
         {
             "file": "app/assets/javascripts/buttons.js",
-            "line": 382,
-            "description": "Make a lesson public Uses [showConfirmPopUp](../classes/showConfirmPopUp.html#method_showConfirmPopUp) and [closePopUp](../classes/closePopUp.html#method_closePopUp)",
+            "line": 384,
+            "description": "Calls the url to publish a lesson. It reloads the item.",
             "itemtype": "method",
             "name": "publishLesson",
             "params": [
                 {
-                    "name": "lessons_id",
-                    "description": "lesson id",
+                    "name": "lesson_id",
+                    "description": "id of the lesson in the database",
                     "type": "Number"
                 },
                 {
                     "name": "destination",
-                    "description": "destination view",
+                    "description": "destination (used to pick the HTML id of the lesson)",
                     "type": "String"
                 }
             ],
@@ -2586,19 +2666,19 @@
         },
         {
             "file": "app/assets/javascripts/buttons.js",
-            "line": 403,
-            "description": "Remove a lesson from yours (unlink).Uses [addDeleteItemToCurrentUrl](../classes/addDeleteItemToCurrentUrl.html#method_addDeleteItemToCurrentUrl) and [showErrorPopUp](../classes/showErrorPopUp.html#method_showErrorPopUp)",
+            "line": 405,
+            "description": "Calls the url to remove a link of a lesson. It can either reload the item or remove it from the page.",
             "itemtype": "method",
             "name": "removeLesson",
             "params": [
                 {
-                    "name": "lessons_id",
-                    "description": "lesson id",
+                    "name": "lesson_id",
+                    "description": "id of the lesson in the database",
                     "type": "Number"
                 },
                 {
                     "name": "destination",
-                    "description": "destination view",
+                    "description": "destination (used to pick the HTML id of the lesson)",
                     "type": "String"
                 },
                 {
@@ -2608,7 +2688,7 @@
                 },
                 {
                     "name": "reload",
-                    "description": "",
+                    "description": "true if the item must be reloaded, false if it must be removed",
                     "type": "Boolean"
                 }
             ],
@@ -2617,19 +2697,19 @@
         },
         {
             "file": "app/assets/javascripts/buttons.js",
-            "line": 439,
-            "description": "Remove lesson availability in the virtual classroom",
+            "line": 441,
+            "description": "Calls the url to remove a lesson from my Virtual Classroom. It reloads the item.",
             "itemtype": "method",
             "name": "removeLessonFromVirtualClassroom",
             "params": [
                 {
-                    "name": "lessons_id",
-                    "description": "lesson_id",
+                    "name": "lesson_id",
+                    "description": "id of the lesson in the database",
                     "type": "Number"
                 },
                 {
                     "name": "destination",
-                    "description": "destination view",
+                    "description": "destination (used to pick the HTML id of the lesson)",
                     "type": "String"
                 }
             ],
@@ -2638,19 +2718,19 @@
         },
         {
             "file": "app/assets/javascripts/buttons.js",
-            "line": 453,
-            "description": "Make a lesson private Uses [showConfirmPopUp](../classes/showConfirmPopUp.html#method_showConfirmPopUp) and [closePopUp](../classes/closePopUp.html#method_closePopUp)",
+            "line": 455,
+            "description": "Calls the url to unpublish a lesson. It reloads the item.",
             "itemtype": "method",
             "name": "unpublishLesson",
             "params": [
                 {
-                    "name": "lessons_id",
-                    "description": "lesson id",
+                    "name": "lesson_id",
+                    "description": "id of the lesson in the database",
                     "type": "Number"
                 },
                 {
                     "name": "destination",
-                    "description": "destination view",
+                    "description": "destination (used to pick the HTML id of the lesson)",
                     "type": "String"
                 }
             ],
@@ -2659,29 +2739,29 @@
         },
         {
             "file": "app/assets/javascripts/buttons.js",
-            "line": 478,
-            "description": "Add media element from dashboard to my lessons Uses [addDeleteItemToCurrentUrl](../classes/addDeleteItemToCurrentUrl.html#method_addDeleteItemToCurrentUrl) and [showErrorPopUp](../classes/showErrorPopUp.html#method_showErrorPopUp)",
+            "line": 480,
+            "description": "Calls the url to add the link of a media element. It can either reload the item or remove it from the page.",
             "itemtype": "method",
             "name": "addMediaElement",
             "params": [
                 {
                     "name": "media_element_id",
-                    "description": "media_element id",
+                    "description": "id of the element in the database",
                     "type": "Number"
                 },
                 {
                     "name": "destination",
-                    "description": "destination view",
+                    "description": "destination (used to pick the HTML id of the element)",
                     "type": "String"
                 },
                 {
                     "name": "current_url",
-                    "description": "url where the lesson is added from",
+                    "description": "url where the element is added from",
                     "type": "String"
                 },
                 {
                     "name": "reload",
-                    "description": "",
+                    "description": "true if the item must be reloaded, false if it must be removed",
                     "type": "Boolean"
                 }
             ],
@@ -2690,29 +2770,29 @@
         },
         {
             "file": "app/assets/javascripts/buttons.js",
-            "line": 514,
-            "description": "Destroy Media Element Uses [addDeleteItemToCurrentUrl](../classes/addDeleteItemToCurrentUrl.html#method_addDeleteItemToCurrentUrl) and [showConfirmPopUp](../classes/showConfirmPopUp.html#method_showConfirmPopUp) and [showErrorPopUp](../classes/showErrorPopUp.html#method_showErrorPopUp) and [closePopUp](../classes/closePopUp.html#method_closePopUp)",
+            "line": 516,
+            "description": "Calls the url to destroy a media element. It removes the element from the page.",
             "itemtype": "method",
             "name": "destroyMediaElement",
             "params": [
                 {
-                    "name": "lessons_id",
-                    "description": "lesson_id",
+                    "name": "media_element_id",
+                    "description": "id of the element in the database",
                     "type": "Number"
                 },
                 {
                     "name": "destination",
-                    "description": "destination view",
+                    "description": "destination (used to pick the HTML id of the element)",
                     "type": "String"
                 },
                 {
                     "name": "current_url",
-                    "description": "url where the lesson is added from",
+                    "description": "url where the element is added from",
                     "type": "String"
                 },
                 {
                     "name": "used_in_private_lessons",
-                    "description": "",
+                    "description": "if true, the application writes in the confirmation popup that the user is going to remove the same element from his private lessons",
                     "type": "Boolean"
                 }
             ],
@@ -2721,29 +2801,29 @@
         },
         {
             "file": "app/assets/javascripts/buttons.js",
-            "line": 556,
-            "description": "Remove a media element from yours (unlink). Uses [addDeleteItemToCurrentUrl](../classes/addDeleteItemToCurrentUrl.html#method_addDeleteItemToCurrentUrl) and [showErrorPopUp](../classes/showErrorPopUp.html#method_showErrorPopUp)",
+            "line": 558,
+            "description": "Calls the url to remove a link of an element. It can either reload the item or remove it from the page.",
             "itemtype": "method",
             "name": "removeMediaElement",
             "params": [
                 {
                     "name": "media_element_id",
-                    "description": "media element id",
+                    "description": "id of the element in the database",
                     "type": "Number"
                 },
                 {
                     "name": "destination",
-                    "description": "destination view",
+                    "description": "destination (used to pick the HTML id of the element)",
                     "type": "String"
                 },
                 {
                     "name": "current_url",
-                    "description": "url where the lesson is added from",
+                    "description": "url where the element is added from",
                     "type": "String"
                 },
                 {
                     "name": "reload",
-                    "description": "",
+                    "description": "true if the item must be reloaded, false if it must be removed",
                     "type": "Boolean"
                 }
             ],
@@ -2752,8 +2832,8 @@
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
-            "line": 10,
-            "description": "bla bla bla",
+            "line": 12,
+            "description": "Initializer for the animation effects of the Dashboard.",
             "itemtype": "method",
             "name": "dashboardDocumentReady",
             "class": "DashboardDocumentReady",
@@ -2761,8 +2841,8 @@
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
-            "line": 43,
-            "description": "Switch to suggested lessons page in dashboard. Uses: [reloadMediaLessonsDashboardPagination](../classes/reloadMediaLessonsDashboardPagination.html#method_reloadMediaLessonsDashboardPagination)",
+            "line": 45,
+            "description": "This function switched to the page of suggested lessons, and reloads the pagination (if there are no suggested lessons the pagination is removed).",
             "itemtype": "method",
             "name": "switchToSuggestedLessons",
             "class": "DashboardGeneral",
@@ -2770,8 +2850,8 @@
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
-            "line": 61,
-            "description": "Switch to suggested elements page in dashboard. Uses: [reloadMediaElementsDashboardPagination](../classes/reloadMediaElementsDashboardPagination.html#method_reloadMediaElementsDashboardPagination)",
+            "line": 63,
+            "description": "This function switches to the page of suggested elements, and reloads the pagination (if there are no suggested elements the pagination is removed).",
             "itemtype": "method",
             "name": "switchToSuggestedMediaElements",
             "class": "DashboardGeneral",
@@ -2779,24 +2859,22 @@
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
-            "line": 83,
-            "description": "Change lessons page in dashboard. Uses: [reloadLessonsDashboardPagination](../classes/reloadLessonsDashboardPagination.html#method_reloadLessonsDashboardPagination)",
-            "itemtype": "method",
-            "name": "changePageDashboardLessons",
+            "line": 85,
+            "description": "This function changes page of the section containing suggested lessons. As already mentioned, the method reloads the pagination using {{#crossLink \"DashboardPagination/reloadLessonsDashboardPagination:method\"}}{{/crossLink}}.",
             "params": [
                 {
                     "name": "old_pos",
-                    "description": "pagination old position",
+                    "description": "old page",
                     "type": "Number"
                 },
                 {
                     "name": "pos",
-                    "description": "pagination position",
+                    "description": "new page",
                     "type": "Number"
                 },
                 {
                     "name": "poges_amount",
-                    "description": "pagination pages amount",
+                    "description": "amount of pages of lessons",
                     "type": "Number"
                 }
             ],
@@ -2805,24 +2883,24 @@
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
-            "line": 99,
-            "description": "Change media elements page in dashboard. Uses: [reloadMediaElementsDashboardPagination](../classes/reloadMediaElementsDashboardPagination.html#method_reloadMediaElementsDashboardPagination)",
+            "line": 100,
+            "description": "This function changes page of the section containing suggested elements. As already mentioned, the method reloads the pagination using {{#crossLink \"DashboardPagination/reloadMediaElementsDashboardPagination:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "changePageDashboardMediaElements",
             "params": [
                 {
                     "name": "old_pos",
-                    "description": "pagination old position",
+                    "description": "old page",
                     "type": "Number"
                 },
                 {
                     "name": "pos",
-                    "description": "pagination position",
+                    "description": "new page",
                     "type": "Number"
                 },
                 {
                     "name": "poges_amount",
-                    "description": "pagination pages amount",
+                    "description": "amount of pages of elements",
                     "type": "Number"
                 }
             ],
@@ -2831,24 +2909,24 @@
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
-            "line": 115,
-            "description": "Pagination html generator",
+            "line": 116,
+            "description": "This function generates HTML code with the same functionality of the one defined in the partial <i>views/shared/pagination.html.erb</i>.",
             "itemtype": "method",
             "name": "getHtmlPagination",
             "params": [
                 {
                     "name": "pos",
-                    "description": "current position",
+                    "description": "selected page",
                     "type": "Number"
                 },
                 {
                     "name": "pages_amount",
-                    "description": "number of pages",
+                    "description": "total amount of pages",
                     "type": "Number"
                 }
             ],
             "return": {
-                "description": "pagination html elements",
+                "description": "JQuery HTML element to be attached to the document",
                 "type": "Object"
             },
             "class": "DashboardPagination",
@@ -2856,28 +2934,19 @@
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
-            "line": 156,
-            "description": "Reload Dashboard content on page change, using bottom pagination.",
+            "line": 157,
+            "description": "This function sets the current pages of lessons and elements, without loading the pagination. It's only used in the index.js.erb for pagination.",
             "itemtype": "method",
             "name": "reloadDashboardPages",
-            "class": "DashboardPagination",
-            "module": "dashboard"
-        },
-        {
-            "file": "app/assets/javascripts/dashboard.js",
-            "line": 168,
-            "description": "Realod pagination html for lessons. Uses: [changePageDashboardLessons](../classes/changePageDashboardLessons.html#method_changePageDashboardLessons)",
-            "itemtype": "method",
-            "name": "reloadLessonsDashboardPagination",
             "params": [
                 {
-                    "name": "pos",
-                    "description": "pagination position",
+                    "name": "lessons_page",
+                    "description": "page to be selected for lessons",
                     "type": "Number"
                 },
                 {
-                    "name": "poges_amount",
-                    "description": "pagination pages amount",
+                    "name": "media_elements_page",
+                    "description": "page to be selected for media elements",
                     "type": "Number"
                 }
             ],
@@ -2886,19 +2955,40 @@
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
-            "line": 196,
-            "description": "Realod pagination html for media elements. Uses: [changePageDashboardMediaElements](../classes/changePageDashboardMediaElements.html#method_changePageDashboardMediaElements)",
+            "line": 171,
+            "description": "This function reloads the pagination for lessons (it uses {{#crossLink \"DashboardPagination/getHtmlPagination:method\"}}{{/crossLink}}).",
+            "itemtype": "method",
+            "name": "reloadLessonsDashboardPagination",
+            "params": [
+                {
+                    "name": "pos",
+                    "description": "current page",
+                    "type": "Number"
+                },
+                {
+                    "name": "poges_amount",
+                    "description": "amount of pages for lessons",
+                    "type": "Number"
+                }
+            ],
+            "class": "DashboardPagination",
+            "module": "dashboard"
+        },
+        {
+            "file": "app/assets/javascripts/dashboard.js",
+            "line": 199,
+            "description": "This function reloads the pagination for media elements (it uses {{#crossLink \"DashboardPagination/getHtmlPagination:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "reloadMediaElementsDashboardPagination",
             "params": [
                 {
                     "name": "pos",
-                    "description": "pagination position",
+                    "description": "current page",
                     "type": "Number"
                 },
                 {
                     "name": "poges_amount",
-                    "description": "pagination pages amount",
+                    "description": "amount of pages for elements",
                     "type": "Number"
                 }
             ],
@@ -2908,13 +2998,13 @@
         {
             "file": "app/assets/javascripts/dialogs.js",
             "line": 10,
-            "description": "Close popup with given id",
+            "description": "Close a dialog with given HTML id.",
             "itemtype": "method",
             "name": "closePopUp",
             "params": [
                 {
                     "name": "id",
-                    "description": "popup selector id",
+                    "description": "HTML id of the dialog",
                     "type": "String"
                 }
             ],
@@ -2924,7 +3014,7 @@
         {
             "file": "app/assets/javascripts/dialogs.js",
             "line": 20,
-            "description": "Add close popup functionality to widget overlay layer. Triggered on popup blur.",
+            "description": "Adds the class <i>close on click out</i> to the widget overlay: this function is called on the callbacks of dialog functions, to allow the user to close the dialog directly clicking out.",
             "itemtype": "method",
             "name": "customOverlayClose",
             "class": "DialogsAccessories",
@@ -2933,13 +3023,13 @@
         {
             "file": "app/assets/javascripts/dialogs.js",
             "line": 30,
-            "description": "Destroy given media element popup",
+            "description": "Close and successively remove HTML for a given media element popup.",
             "itemtype": "method",
             "name": "removeCompletelyMediaElementPopup",
             "params": [
                 {
                     "name": "media_element_id",
-                    "description": "media element id",
+                    "description": "id of the element in the database, used to extract the HTML id of the dialog",
                     "type": "Number"
                 }
             ],
@@ -2949,7 +3039,7 @@
         {
             "file": "app/assets/javascripts/dialogs.js",
             "line": 47,
-            "description": "Remove close popup functionality to widget overlay layer.",
+            "description": "Opposite of {{#crossLink \"DialogsAccessories/customOverlayClose:method\"}}{{/crossLink}}. Remember that the widget-overlay object is unique for every dialog built with JQueryUi, thus it's compulsory to remove the class <i>close on click out</i> before opening a new dialog.",
             "itemtype": "method",
             "name": "removeCustomOverlayClose",
             "class": "DialogsAccessories",
@@ -2958,39 +3048,39 @@
         {
             "file": "app/assets/javascripts/dialogs.js",
             "line": 60,
-            "description": "Generic popup for confirmation prompt",
+            "description": "Generic confirmation dialog.",
             "itemtype": "method",
             "name": "showConfirmPopUp",
             "params": [
                 {
                     "name": "title",
-                    "description": "popup title",
+                    "description": "title",
                     "type": "String"
                 },
                 {
                     "name": "content",
-                    "description": "popup content",
+                    "description": "text",
                     "type": "String"
                 },
                 {
                     "name": "msg_ok",
-                    "description": "text for ok button",
+                    "description": "caption for the button 'ok' (on the left side of the dialog)",
                     "type": "String"
                 },
                 {
                     "name": "msg_no",
-                    "description": "text for cancel button",
+                    "description": "caption for the button 'cancel' (on the right side of the dialog)",
                     "type": "String"
                 },
                 {
                     "name": "callback_ok",
-                    "description": "ok callback function",
-                    "type": "Object"
+                    "description": "callback associated to the button 'ok'",
+                    "type": "Function"
                 },
                 {
                     "name": "callback_no",
-                    "description": "cancel callback function",
-                    "type": "Object"
+                    "description": "callback associated to the button 'cancel'",
+                    "type": "Function"
                 }
             ],
             "class": "DialogsConfirmation",
@@ -2999,19 +3089,19 @@
         {
             "file": "app/assets/javascripts/dialogs.js",
             "line": 96,
-            "description": "Modal for media element editor, asking whether or not restore cached content. Available for audio and video editor only.",
+            "description": "Dialog used in {{#crossLinkModule \"audio-editor\"}}{{/crossLinkModule}} and in {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}}, that asks the user if he wants to restore the cache or not. Specificly, it's used in the generic function {{#crossLink \"MediaElementEditorCache/startCacheLoop:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "showRestoreCacheMediaElementEditorPopUp",
             "params": [
                 {
                     "name": "callback_ok",
-                    "description": "restore callback function",
-                    "type": "Object"
+                    "description": "callback function to restore the cache",
+                    "type": "Function"
                 },
                 {
                     "name": "callback_no",
-                    "description": "don't restore callback function",
-                    "type": "Object"
+                    "description": "callback function that removes the cache and opens the requested page",
+                    "type": "Function"
                 }
             ],
             "class": "DialogsConfirmation",
@@ -3020,18 +3110,18 @@
         {
             "file": "app/assets/javascripts/dialogs.js",
             "line": 145,
-            "description": "Image popup for image gallery Uses: [resizedWidthForImageGallery](../classes/resizedWidthForImageGallery.html#method_resizedWidthForImageGallery) and [customOverlayClose](../classes/customOverlayClose.html#method_customOverlayClose) and [removeCustomOverlayClose](../classes/removeCustomOverlayClose.html#method_removeCustomOverlayClose)",
+            "description": "Dialog for the image gallery.",
             "itemtype": "method",
             "name": "showImageInGalleryPopUp",
             "params": [
                 {
                     "name": "image_id",
-                    "description": "image id",
+                    "description": "id in the database of the image, which is used to extract the HTML id of the dialog",
                     "type": "Number"
                 },
                 {
                     "name": "callback",
-                    "description": "callback function",
+                    "description": "callback function (it depends on the gallery, see module {{#crossLinkModule \"galleries\"}}{{/crossLinkModule}}",
                     "type": "Object"
                 }
             ],
@@ -3041,13 +3131,13 @@
         {
             "file": "app/assets/javascripts/dialogs.js",
             "line": 185,
-            "description": "Video popup for video gallery Uses: [customOverlayClose](../classes/customOverlayClose.html#method_customOverlayClose) and [initializeMedia](../classes/initializeMedia.html#method_initializeMedia) and [stopMedia](../classes/stopMedia.html#method_stopMedia) and [removeCustomOverlayClose](../classes/removeCustomOverlayClose.html#method_removeCustomOverlayClose)",
+            "description": "Dialog for the video gallery (notice that the video is initialized in the moment the dialog gets opened.",
             "itemtype": "method",
             "name": "showVideoInGalleryPopUp",
             "params": [
                 {
                     "name": "video_id",
-                    "description": "video id",
+                    "description": "id in the database of the video, which is used to extract the HTML id of the dialog",
                     "type": "Number"
                 }
             ],
@@ -3057,14 +3147,14 @@
         {
             "file": "app/assets/javascripts/dialogs.js",
             "line": 236,
-            "description": "Modal with error icon and custom content Uses: [showTimedPopUp](../classes/showTimedPopUp.html#method_showTimedPopUp)",
+            "description": "Timed dialog for errors. It uses the general {{#crossLink \"DialogsTimed/showTimedPopUp:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "showErrorPopUp",
             "params": [
                 {
                     "name": "content",
-                    "description": "modal text content",
-                    "type": "Object"
+                    "description": "the text content of the dialog",
+                    "type": "String"
                 }
             ],
             "class": "DialogsTimed",
@@ -3073,14 +3163,14 @@
         {
             "file": "app/assets/javascripts/dialogs.js",
             "line": 247,
-            "description": "Modal with ok icon and custom content Uses: [showTimedPopUp](../classes/showTimedPopUp.html#method_showTimedPopUp)",
+            "description": "Timed dialog for success. It uses the general {{#crossLink \"DialogsTimed/showTimedPopUp:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "showOkPopUp",
             "params": [
                 {
                     "name": "content",
-                    "description": "modal text content",
-                    "type": "Object"
+                    "description": "the text content of the dialog",
+                    "type": "String"
                 }
             ],
             "class": "DialogsTimed",
@@ -3089,18 +3179,18 @@
         {
             "file": "app/assets/javascripts/dialogs.js",
             "line": 258,
-            "description": "Show timed popup that auto close after _n_ seconds. Timeout is handled with data-timeout into `_popup_parameters_container_` Uses: [closePopUp](../classes/closePopUp.html#method_closePopUp)",
+            "description": "General function that opens a dialog, fills it with HTML content and closes it after a configured time.",
             "itemtype": "method",
             "name": "showTimedPopUp",
             "params": [
                 {
                     "name": "content",
-                    "description": "lessons list partial",
-                    "type": "Object"
+                    "description": "HTML content",
+                    "type": "String"
                 },
                 {
                     "name": "id",
-                    "description": "dialog select id",
+                    "description": "HTML id of the dialog",
                     "type": "String"
                 }
             ],
@@ -3110,13 +3200,13 @@
         {
             "file": "app/assets/javascripts/dialogs.js",
             "line": 292,
-            "description": "Modal warning on unpublish lesson.",
+            "description": "Dialog containing a form used to send a notification about modifications of a public lesson.",
             "itemtype": "method",
             "name": "showLessonNotificationPopUp",
             "params": [
                 {
                     "name": "lesson_id",
-                    "description": "lesson id",
+                    "description": "id in the database of the lesson",
                     "type": "Number"
                 }
             ],
@@ -3126,7 +3216,7 @@
         {
             "file": "app/assets/javascripts/dialogs.js",
             "line": 327,
-            "description": "Modal for new media element form",
+            "description": "Dialog containing the form to upload a new media element. This function interacts with the module {{#crossLinkModule \"media-element-loader\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "showLoadMediaElementPopUp",
             "class": "DialogsWithForm",
@@ -3135,13 +3225,13 @@
         {
             "file": "app/assets/javascripts/dialogs.js",
             "line": 365,
-            "description": "Modal for media element update form Uses: [customOverlayClose](../classes/customOverlayClose.html#method_customOverlayClose) and [removeCustomOverlayClose](../classes/removeCustomOverlayClose.html#method_removeCustomOverlayClose) and [resetMediaElementChangeInfo](../classes/resetMediaElementChangeInfo.html#method_resetMediaElementChangeInfo) and [stopMedia](../classes/stopMedia.html#method_stopMedia)",
+            "description": "Dialog containing the media element general information. If the element is private, this same dialog contains the form to change title, description and tags (see the method {{#crossLink \"MediaElementLoaderGeneral/resetMediaElementChangeInfo:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "showMediaElementInfoPopUp",
             "params": [
                 {
                     "name": "media_element_id",
-                    "description": "media element id",
+                    "description": "id in the database of the media element",
                     "type": "Number"
                 }
             ],
@@ -3151,13 +3241,13 @@
         {
             "file": "app/assets/javascripts/dialogs.js",
             "line": 417,
-            "description": "Share lesson link popup in virtual classroom",
+            "description": "Dialog containing the form to send the public link of a lesson. Used in {{#crossLink \"VirtualClassroomSendLink\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "showSendLessonLinkPopUp",
             "params": [
                 {
                     "name": "lesson_id",
-                    "description": "lesson id",
+                    "description": "id in the database of the lesson",
                     "type": "Number"
                 }
             ],
@@ -3167,13 +3257,13 @@
         {
             "file": "app/assets/javascripts/dialogs.js",
             "line": 461,
-            "description": "Modal with lessons to add to virtual classroom. Uses: [showOkPopUp](../classes/showOkPopUp.html#method_showOkPopUp) and [showErrorPopUp](../classes/showErrorPopUp.html#method_showErrorPopUp)",
+            "description": "Dialog containing a list of lessons to be loaded in the Virtual Classroom. Used in {{#crossLink \"VirtualClassroomMultipleLoading\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "showVirtualClassroomQuickSelectPopUp",
             "params": [
                 {
                     "name": "content",
-                    "description": "lessons list partial",
+                    "description": "HTML content for the list of lessons",
                     "type": "Object"
                 }
             ],
@@ -3687,12 +3777,12 @@
         },
         {
             "file": "app/assets/javascripts/jquery_patches.js",
-            "line": 1,
+            "line": 10,
             "description": "bla bla bla",
             "itemtype": "method",
-            "name": "IPadDetection",
-            "class": "JQueryPatches",
-            "module": "image-editor"
+            "name": "iPadDetection",
+            "class": "JqueryPatchesBrowsers",
+            "module": "jquery-patches"
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
@@ -5804,6 +5894,14 @@
         {
             "message": "replacing incorrect tag: params with param",
             "line": " app/assets/javascripts/audio_editor.js:188"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " app/assets/javascripts/audio_editor.js:618"
+        },
+        {
+            "message": "Missing item type\nThis function changes page of the section containing suggested lessons. As already mentioned, the method reloads the pagination using {{#crossLink \"DashboardPagination/reloadLessonsDashboardPagination:method\"}}{{/crossLink}}.",
+            "line": " app/assets/javascripts/dashboard.js:85"
         }
     ]
 }

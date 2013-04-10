@@ -115,7 +115,7 @@
             
                 <li><a href="..&#x2F;classes/ImageEditorTexts.html">ImageEditorTexts</a></li>
             
-                <li><a href="..&#x2F;classes/JQueryPatches.html">JQueryPatches</a></li>
+                <li><a href="..&#x2F;classes/JqueryPatchesBrowsers.html">JqueryPatchesBrowsers</a></li>
             
                 <li><a href="..&#x2F;classes/LessonEditorCurrentSlide.html">LessonEditorCurrentSlide</a></li>
             
@@ -240,6 +240,8 @@
                 <li><a href="..&#x2F;modules/general.html">general</a></li>
             
                 <li><a href="..&#x2F;modules/image-editor.html">image-editor</a></li>
+            
+                <li><a href="..&#x2F;modules/jquery-patches.html">jquery-patches</a></li>
             
                 <li><a href="..&#x2F;modules/lesson-editor.html">lesson-editor</a></li>
             
@@ -435,7 +437,7 @@
     </div>
 
     <div class="description">
-        <p>Modal with error icon and custom content Uses: <a href="../classes/showTimedPopUp.html#method_showTimedPopUp">showTimedPopUp</a></p>
+        <p>Timed dialog for errors. It uses the general <a href="../classes/DialogsTimed.html#method_showTimedPopUp" class="crosslink">showTimedPopUp</a>.</p>
     </div>
 
     
@@ -447,13 +449,13 @@
                 <li class="param">
                     
                         <code class="param-name">content</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>modal text content</p>
+                        <p>the text content of the dialog</p>
                     </div>
 
                     
@@ -522,7 +524,7 @@
     </div>
 
     <div class="description">
-        <p>Modal with ok icon and custom content Uses: <a href="../classes/showTimedPopUp.html#method_showTimedPopUp">showTimedPopUp</a></p>
+        <p>Timed dialog for success. It uses the general <a href="../classes/DialogsTimed.html#method_showTimedPopUp" class="crosslink">showTimedPopUp</a>.</p>
     </div>
 
     
@@ -534,13 +536,13 @@
                 <li class="param">
                     
                         <code class="param-name">content</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>modal text content</p>
+                        <p>the text content of the dialog</p>
                     </div>
 
                     
@@ -615,7 +617,7 @@
     </div>
 
     <div class="description">
-        <p>Show timed popup that auto close after <em>n</em> seconds. Timeout is handled with data-timeout into <code>_popup_parameters_container_</code> Uses: <a href="../classes/closePopUp.html#method_closePopUp">closePopUp</a></p>
+        <p>General function that opens a dialog, fills it with HTML content and closes it after a configured time.</p>
     </div>
 
     
@@ -627,13 +629,13 @@
                 <li class="param">
                     
                         <code class="param-name">content</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>lessons list partial</p>
+                        <p>HTML content</p>
                     </div>
 
                     
@@ -648,7 +650,7 @@
                     
 
                     <div class="param-description">
-                        <p>dialog select id</p>
+                        <p>HTML id of the dialog</p>
                     </div>
 
                     

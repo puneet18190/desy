@@ -115,7 +115,7 @@
             
                 <li><a href="..&#x2F;classes/ImageEditorTexts.html">ImageEditorTexts</a></li>
             
-                <li><a href="..&#x2F;classes/JQueryPatches.html">JQueryPatches</a></li>
+                <li><a href="..&#x2F;classes/JqueryPatchesBrowsers.html">JqueryPatchesBrowsers</a></li>
             
                 <li><a href="..&#x2F;classes/LessonEditorCurrentSlide.html">LessonEditorCurrentSlide</a></li>
             
@@ -240,6 +240,8 @@
                 <li><a href="..&#x2F;modules/general.html">general</a></li>
             
                 <li><a href="..&#x2F;modules/image-editor.html">image-editor</a></li>
+            
+                <li><a href="..&#x2F;modules/jquery-patches.html">jquery-patches</a></li>
             
                 <li><a href="..&#x2F;modules/lesson-editor.html">lesson-editor</a></li>
             
@@ -458,7 +460,7 @@
     </div>
 
     <div class="description">
-        <p>Generic popup for confirmation prompt</p>
+        <p>Generic confirmation dialog.</p>
     </div>
 
     
@@ -476,7 +478,7 @@
                     
 
                     <div class="param-description">
-                        <p>popup title</p>
+                        <p>title</p>
                     </div>
 
                     
@@ -491,7 +493,7 @@
                     
 
                     <div class="param-description">
-                        <p>popup content</p>
+                        <p>text</p>
                     </div>
 
                     
@@ -506,7 +508,7 @@
                     
 
                     <div class="param-description">
-                        <p>text for ok button</p>
+                        <p>caption for the button 'ok' (on the left side of the dialog)</p>
                     </div>
 
                     
@@ -521,7 +523,7 @@
                     
 
                     <div class="param-description">
-                        <p>text for cancel button</p>
+                        <p>caption for the button 'cancel' (on the right side of the dialog)</p>
                     </div>
 
                     
@@ -530,13 +532,13 @@
                 <li class="param">
                     
                         <code class="param-name">callback_ok</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>ok callback function</p>
+                        <p>callback associated to the button 'ok'</p>
                     </div>
 
                     
@@ -545,13 +547,13 @@
                 <li class="param">
                     
                         <code class="param-name">callback_no</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>cancel callback function</p>
+                        <p>callback associated to the button 'cancel'</p>
                     </div>
 
                     
@@ -626,7 +628,7 @@
     </div>
 
     <div class="description">
-        <p>Modal for media element editor, asking whether or not restore cached content. Available for audio and video editor only.</p>
+        <p>Dialog used in <a href="../modules/audio-editor.html">audio-editor</a> and in <a href="../modules/video-editor.html">video-editor</a>, that asks the user if he wants to restore the cache or not. Specificly, it's used in the generic function <a href="../classes/MediaElementEditorCache.html#method_startCacheLoop" class="crosslink">startCacheLoop</a>.</p>
     </div>
 
     
@@ -638,13 +640,13 @@
                 <li class="param">
                     
                         <code class="param-name">callback_ok</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>restore callback function</p>
+                        <p>callback function to restore the cache</p>
                     </div>
 
                     
@@ -653,13 +655,13 @@
                 <li class="param">
                     
                         <code class="param-name">callback_no</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>don't restore callback function</p>
+                        <p>callback function that removes the cache and opens the requested page</p>
                     </div>
 
                     

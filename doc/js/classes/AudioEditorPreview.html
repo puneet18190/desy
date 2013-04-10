@@ -115,7 +115,7 @@
             
                 <li><a href="..&#x2F;classes/ImageEditorTexts.html">ImageEditorTexts</a></li>
             
-                <li><a href="..&#x2F;classes/JQueryPatches.html">JQueryPatches</a></li>
+                <li><a href="..&#x2F;classes/JqueryPatchesBrowsers.html">JqueryPatchesBrowsers</a></li>
             
                 <li><a href="..&#x2F;classes/LessonEditorCurrentSlide.html">LessonEditorCurrentSlide</a></li>
             
@@ -240,6 +240,8 @@
                 <li><a href="..&#x2F;modules/general.html">general</a></li>
             
                 <li><a href="..&#x2F;modules/image-editor.html">image-editor</a></li>
+            
+                <li><a href="..&#x2F;modules/jquery-patches.html">jquery-patches</a></li>
             
                 <li><a href="..&#x2F;modules/lesson-editor.html">lesson-editor</a></li>
             
@@ -456,7 +458,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_audio_editor.js.html#l710"><code>app&#x2F;assets&#x2F;javascripts&#x2F;audio_editor.js:710</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_audio_editor.js.html#l714"><code>app&#x2F;assets&#x2F;javascripts&#x2F;audio_editor.js:714</code></a>
         
         </p>
 
@@ -467,7 +469,7 @@
     </div>
 
     <div class="description">
-        <p>bla bla bla</p>
+        <p>Deselects all the components in preview mode (it corresponds to <a href="../classes/AudioEditorComponents.html#method_deselectAllAudioEditorComponents" class="crosslink">deselectAllAudioEditorComponents</a>).</p>
     </div>
 
     
@@ -510,7 +512,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_audio_editor.js.html#l726"><code>app&#x2F;assets&#x2F;javascripts&#x2F;audio_editor.js:726</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_audio_editor.js.html#l730"><code>app&#x2F;assets&#x2F;javascripts&#x2F;audio_editor.js:730</code></a>
         
         </p>
 
@@ -521,7 +523,7 @@
     </div>
 
     <div class="description">
-        <p>bla bla bla</p>
+        <p>Function that sets all the graphical details that characterize the preview mode. It automatically calls the function <a href="../classes/AudioEditorPreview.html#method_startAudioEditorPreview" class="crosslink">startAudioEditorPreview</a>, passing it as parameter the selected component, or the first one if there is no selected component.</p>
     </div>
 
     
@@ -564,7 +566,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_audio_editor.js.html#l767"><code>app&#x2F;assets&#x2F;javascripts&#x2F;audio_editor.js:767</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_audio_editor.js.html#l771"><code>app&#x2F;assets&#x2F;javascripts&#x2F;audio_editor.js:771</code></a>
         
         </p>
 
@@ -575,7 +577,7 @@
     </div>
 
     <div class="description">
-        <p>bla bla bla</p>
+        <p>Gets the current time in the global preview, using the information relative to the selected component and the position of the cursor inside its cutter.</p>
     </div>
 
     
@@ -618,7 +620,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_audio_editor.js.html#l791"><code>app&#x2F;assets&#x2F;javascripts&#x2F;audio_editor.js:791</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_audio_editor.js.html#l795"><code>app&#x2F;assets&#x2F;javascripts&#x2F;audio_editor.js:795</code></a>
         
         </p>
 
@@ -629,7 +631,7 @@
     </div>
 
     <div class="description">
-        <p>bla bla bla</p>
+        <p>Increases of one second the global preview timer.</p>
     </div>
 
     
@@ -644,7 +646,17 @@
     <h3 class="name"><code>leaveAudioEditorPreviewMode</code></h3>
 
     
-        <span class="paren">()</span>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>forced_component</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
     
 
     
@@ -672,7 +684,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_audio_editor.js.html#l803"><code>app&#x2F;assets&#x2F;javascripts&#x2F;audio_editor.js:803</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_audio_editor.js.html#l807"><code>app&#x2F;assets&#x2F;javascripts&#x2F;audio_editor.js:807</code></a>
         
         </p>
 
@@ -683,9 +695,32 @@
     </div>
 
     <div class="description">
-        <p>bla bla bla</p>
+        <p>Function that sets back to the regular value all the graphical details that characterize the preview mode.</p>
     </div>
 
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">forced_component</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>the component that must be selected after leaving the preview mode: if not specified, the function selects the first component.</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
     
 
     
@@ -698,7 +733,17 @@
     <h3 class="name"><code>selectAudioEditorComponentInPreviewMode</code></h3>
 
     
-        <span class="paren">()</span>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>component</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
     
 
     
@@ -726,7 +771,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_audio_editor.js.html#l835"><code>app&#x2F;assets&#x2F;javascripts&#x2F;audio_editor.js:835</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_audio_editor.js.html#l840"><code>app&#x2F;assets&#x2F;javascripts&#x2F;audio_editor.js:840</code></a>
         
         </p>
 
@@ -737,9 +782,32 @@
     </div>
 
     <div class="description">
-        <p>bla bla bla</p>
+        <p>Selects a component in preview mode (it corresponds to <a href="../classes/AudioEditorComponents.html#method_selectAudioEditorComponent" class="crosslink">selectAudioEditorComponent</a>).</p>
     </div>
 
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">component</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>the component to be selected</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
     
 
     
@@ -752,7 +820,17 @@
     <h3 class="name"><code>startAudioEditorPreview</code></h3>
 
     
-        <span class="paren">()</span>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>component</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
     
 
     
@@ -780,7 +858,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_audio_editor.js.html#l849"><code>app&#x2F;assets&#x2F;javascripts&#x2F;audio_editor.js:849</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_audio_editor.js.html#l855"><code>app&#x2F;assets&#x2F;javascripts&#x2F;audio_editor.js:855</code></a>
         
         </p>
 
@@ -791,9 +869,32 @@
     </div>
 
     <div class="description">
-        <p>bla bla bla</p>
+        <p>Starts the preview from a given component.</p>
     </div>
 
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">component</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>the component from which the preview starts.</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
     
 
     
@@ -834,7 +935,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_audio_editor.js.html#l866"><code>app&#x2F;assets&#x2F;javascripts&#x2F;audio_editor.js:866</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_audio_editor.js.html#l873"><code>app&#x2F;assets&#x2F;javascripts&#x2F;audio_editor.js:873</code></a>
         
         </p>
 
@@ -845,7 +946,7 @@
     </div>
 
     <div class="description">
-        <p>bla bla bla</p>
+        <p>Switches all the components in preview mode.</p>
     </div>
 
     
@@ -888,7 +989,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_audio_editor.js.html#l880"><code>app&#x2F;assets&#x2F;javascripts&#x2F;audio_editor.js:880</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_audio_editor.js.html#l887"><code>app&#x2F;assets&#x2F;javascripts&#x2F;audio_editor.js:887</code></a>
         
         </p>
 
@@ -899,7 +1000,7 @@
     </div>
 
     <div class="description">
-        <p>bla bla bla</p>
+        <p>Switches all the components back to regular mode.</p>
     </div>
 
     
