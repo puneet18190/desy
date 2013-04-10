@@ -3110,18 +3110,18 @@
         {
             "file": "app/assets/javascripts/dialogs.js",
             "line": 145,
-            "description": "Image popup for image gallery Uses: [resizedWidthForImageGallery](../classes/resizedWidthForImageGallery.html#method_resizedWidthForImageGallery) and [customOverlayClose](../classes/customOverlayClose.html#method_customOverlayClose) and [removeCustomOverlayClose](../classes/removeCustomOverlayClose.html#method_removeCustomOverlayClose)",
+            "description": "Dialog for the image gallery.",
             "itemtype": "method",
             "name": "showImageInGalleryPopUp",
             "params": [
                 {
                     "name": "image_id",
-                    "description": "image id",
+                    "description": "id in the database of the image, which is used to extract the HTML id of the dialog",
                     "type": "Number"
                 },
                 {
                     "name": "callback",
-                    "description": "callback function",
+                    "description": "callback function (it depends on the gallery, see module {{#crossLinkModule \"galleries\"}}{{(crossLinkModule}}",
                     "type": "Object"
                 }
             ],
@@ -3131,13 +3131,13 @@
         {
             "file": "app/assets/javascripts/dialogs.js",
             "line": 185,
-            "description": "Video popup for video gallery Uses: [customOverlayClose](../classes/customOverlayClose.html#method_customOverlayClose) and [initializeMedia](../classes/initializeMedia.html#method_initializeMedia) and [stopMedia](../classes/stopMedia.html#method_stopMedia) and [removeCustomOverlayClose](../classes/removeCustomOverlayClose.html#method_removeCustomOverlayClose)",
+            "description": "Dialog for the video gallery (notice that the video is initialized in the moment the dialog gets opened.",
             "itemtype": "method",
             "name": "showVideoInGalleryPopUp",
             "params": [
                 {
                     "name": "video_id",
-                    "description": "video id",
+                    "description": "id in the database of the video, which is used to extract the HTML id of the dialog",
                     "type": "Number"
                 }
             ],

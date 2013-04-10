@@ -143,11 +143,11 @@ function showRestoreCacheMediaElementEditorPopUp(callback_ok, callback_no) {
 
 
 /**
-Image popup for image gallery Uses: [resizedWidthForImageGallery](../classes/resizedWidthForImageGallery.html#method_resizedWidthForImageGallery) and [customOverlayClose](../classes/customOverlayClose.html#method_customOverlayClose) and [removeCustomOverlayClose](../classes/removeCustomOverlayClose.html#method_removeCustomOverlayClose)
+Dialog for the image gallery.
 @method showImageInGalleryPopUp
 @for DialogsGalleries
-@param image_id {Number} image id
-@param callback {Object} callback function
+@param image_id {Number} id in the database of the image, which is used to extract the HTML id of the dialog
+@param callback {Object} callback function (it depends on the gallery, see module {{#crossLinkModule "galleries"}}{{(crossLinkModule}}
 **/
 function showImageInGalleryPopUp(image_id, callback) {
   var obj = $('#dialog-image-gallery-' + image_id);
@@ -183,10 +183,10 @@ function showImageInGalleryPopUp(image_id, callback) {
 }
 
 /**
-Video popup for video gallery Uses: [customOverlayClose](../classes/customOverlayClose.html#method_customOverlayClose) and [initializeMedia](../classes/initializeMedia.html#method_initializeMedia) and [stopMedia](../classes/stopMedia.html#method_stopMedia) and [removeCustomOverlayClose](../classes/removeCustomOverlayClose.html#method_removeCustomOverlayClose)
+Dialog for the video gallery (notice that the video is initialized in the moment the dialog gets opened.
 @method showVideoInGalleryPopUp
 @for DialogsGalleries
-@param video_id {Number} video id
+@param video_id {Number} id in the database of the video, which is used to extract the HTML id of the dialog
 **/
 function showVideoInGalleryPopUp(video_id) {
   var obj = $('#dialog-video-gallery-' + video_id);
