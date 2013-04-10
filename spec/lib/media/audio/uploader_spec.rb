@@ -1,8 +1,9 @@
 require 'spec_helper'
 
 module Media
-  module Audio    
+  module Audio
     describe Uploader do
+
       let(:media_folder)            { Rails.root.join('spec/support/samples') }
       let(:media_without_extension) { media_folder.join('con verted').to_s }
       let(:valid_audio_path)        { media_folder.join('valid audio.m4a').to_s }
@@ -84,6 +85,17 @@ module Media
           context 'when the audio is too short' do
             let(:path) { media_folder.join 'short audio.m4a' }
             it { should be_false }
+          end
+
+          context 'when the media elements folder size exceeds the maximum value allowed' do
+            let(:path)                                    { valid_audio_path }
+            let(:prev_maximum_media_elements_folder_size) { Media::Uploader::MAXIMUM_MEDIA_ELEMENTS_FOLDER_SIZE }
+            before do
+              prev_maximum_media_elements_folder_size
+              Media::Uploader.const_set :MAXIMUM_MEDIA_ELEMENTS_FOLDER_SIZE, Media::Uploader.media_elements_folder_size-1
+            end
+            it { should be_false }
+            after { Media::Uploader.const_set :MAXIMUM_MEDIA_ELEMENTS_FOLDER_SIZE, prev_maximum_media_elements_folder_size }
           end
         end
 

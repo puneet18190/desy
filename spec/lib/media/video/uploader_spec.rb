@@ -85,6 +85,17 @@ module Media
             let(:path) { media_folder.join 'short video.mp4' }
             it { should be_false }
           end
+
+          context 'when the media elements folder size exceeds the maximum value allowed' do
+            let(:path)                                    { valid_video_path }
+            let(:prev_maximum_media_elements_folder_size) { Media::Uploader::MAXIMUM_MEDIA_ELEMENTS_FOLDER_SIZE }
+            before do
+              prev_maximum_media_elements_folder_size
+              Media::Uploader.const_set :MAXIMUM_MEDIA_ELEMENTS_FOLDER_SIZE, Media::Uploader.media_elements_folder_size-1
+            end
+            it { should be_false }
+            after { Media::Uploader.const_set :MAXIMUM_MEDIA_ELEMENTS_FOLDER_SIZE, prev_maximum_media_elements_folder_size }
+          end
         end
 
         context 'when media type is a File' do
