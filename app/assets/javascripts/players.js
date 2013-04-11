@@ -13,6 +13,11 @@ This module contains the javascript functions and initializers used in the <b>me
 
 
 /**
+This method is fired each time the audio component player receives an event of <b>timeupdate</b>. There are two cases of use of this method:
+<ul>
+  <li>if the audio player <b>is not in preview mode</b>, it operates as a normal player, with very slight differences due to the different environment (see {{#crossLink "PlayersGeneral/initializeActionOfMediaTimeUpdater:method"}}{{/crossLink}})</li>
+  <li>.</li>
+</ul>
 @method initializeActionOfMediaTimeUpdaterInAudioEditor
 @for PlayersAudioEditor
 **/
@@ -154,7 +159,7 @@ function initializeAudioEditorCutter(identifier) {
 }
 
 /**
-bla bla bla
+This is the method that assocaites {{#crossLink "PlayersAudioEditor/initializeActionOfMediaTimeUpdaterInAudioEditor:method"}}{{/crossLink}} to the event of <b>timeupdate</b>. Notice that the method waits until he receives the event <b>loadedmetadata</b> before working.
 @method initializeMediaTimeUpdaterInAudioEditor
 @for PlayersAudioEditor
 **/
@@ -187,6 +192,36 @@ function selectAudioComponentCutterHandle(component, val) {
 
 
 
+
+/**
+bla bla bla
+@method mediaEventsLogger
+@for PlayersGeneral
+**/
+function mediaEventsLogger(media) {
+  media.on('loadstart', function() {console.log('loadstart');});
+  media.on('progress', function() {console.log('progress');});
+  media.on('suspend', function() {console.log('suspend');});
+  media.on('abort', function() {console.log('abort');});
+  media.on('error', function() {console.log('error');});
+  media.on('emptied', function() {console.log('emptied');});
+  media.on('stalled', function() {console.log('stalled');});
+  media.on('loadedmetadata', function() {console.log('loadedmetadata');});
+  media.on('loadeddata', function() {console.log('loadeddata');});
+  media.on('canplay', function() {console.log('canplay');});
+  media.on('canplaythrough', function() {console.log('canplaythrough');});
+  media.on('playing', function() {console.log('playing');});
+  media.on('waiting', function() {console.log('waiting');});
+  media.on('seeking', function() {console.log('seeking');});
+  media.on('seeked', function() {console.log('seeked');});
+  media.on('ended', function() {console.log('ended');});
+  media.on('durationchange', function() {console.log('durationchange');});
+  media.on('timeupdate', function() {console.log('timeupdate');});
+  media.on('play', function() {console.log('play');});
+  media.on('pause', function() {console.log('pause');});
+  media.on('ratechange', function() {console.log('ratechange');});
+  media.on('volumechange', function() {console.log('volumechange');});
+}
 
 /**
 bla bla bla
@@ -427,36 +462,6 @@ function playersDocumentReadyVideoEditor() {
 
 
 
-
-/**
-bla bla bla
-@method mediaEventsLogger
-@for PlayersGeneral
-**/
-function mediaEventsLogger(media) {
-  media.on('loadstart', function() {console.log('loadstart');});
-  media.on('progress', function() {console.log('progress');});
-  media.on('suspend', function() {console.log('suspend');});
-  media.on('abort', function() {console.log('abort');});
-  media.on('error', function() {console.log('error');});
-  media.on('emptied', function() {console.log('emptied');});
-  media.on('stalled', function() {console.log('stalled');});
-  media.on('loadedmetadata', function() {console.log('loadedmetadata');});
-  media.on('loadeddata', function() {console.log('loadeddata');});
-  media.on('canplay', function() {console.log('canplay');});
-  media.on('canplaythrough', function() {console.log('canplaythrough');});
-  media.on('playing', function() {console.log('playing');});
-  media.on('waiting', function() {console.log('waiting');});
-  media.on('seeking', function() {console.log('seeking');});
-  media.on('seeked', function() {console.log('seeked');});
-  media.on('ended', function() {console.log('ended');});
-  media.on('durationchange', function() {console.log('durationchange');});
-  media.on('timeupdate', function() {console.log('timeupdate');});
-  media.on('play', function() {console.log('play');});
-  media.on('pause', function() {console.log('pause');});
-  media.on('ratechange', function() {console.log('ratechange');});
-  media.on('volumechange', function() {console.log('volumechange');});
-}
 
 /**
 bla bla bla
