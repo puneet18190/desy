@@ -523,7 +523,7 @@ function lessonEditorDocumentReadyTextFields() {
 
 
 /**
-Save current slide. It sends tinyMCE editor content to form data to be serialized, it handles form placeholders. Uses: [submitCurrentSlideForm](../classes/submitCurrentSlideForm.html#method_submitCurrentSlideForm)
+Save current slide. It sends tinyMCE editor content to form data to be serialized, it handles form placeholders.
 @method saveCurrentSlide
 @for LessonEditorForms
 **/
@@ -549,7 +549,7 @@ function saveCurrentSlide() {
 }
 
 /**
-Submit serialized form data for current slide
+Submit serialized form data for current slide (used in {{#crossLink "LessonEditorForms/saveCurrentSlide:method"}}{{/crossLink}}).
 @method submitCurrentSlideForm
 @for LessonEditorForms
 **/
@@ -568,7 +568,7 @@ function submitCurrentSlideForm() {
 
 
 /**
-Hide media gallery for selected type
+Hides media gallery for selected type.
 @method removeGalleryInLessonEditor
 @for LessonEditorGalleries
 @param sty_type {String} gallery type
@@ -580,10 +580,10 @@ function removeGalleryInLessonEditor(sti_type) {
 }
 
 /**
-Show media gallery for selected type clicking on slide green plus button
+Shows media gallery for selected type.
 @method showGalleryInLessonEditor
 @for LessonEditorGalleries
-@param obj {String} gallery type
+@param obj {String} HTML selector for the button that opens the gallery (used to extract the position of the current slide)
 @param sty_type {String} gallery type
 **/
 function showGalleryInLessonEditor(obj, sti_type) {

@@ -3948,7 +3948,7 @@
         {
             "file": "app/assets/javascripts/lesson_editor.js",
             "line": 525,
-            "description": "Save current slide. It sends tinyMCE editor content to form data to be serialized, it handles form placeholders. Uses: [submitCurrentSlideForm](../classes/submitCurrentSlideForm.html#method_submitCurrentSlideForm)",
+            "description": "Save current slide. It sends tinyMCE editor content to form data to be serialized, it handles form placeholders.",
             "itemtype": "method",
             "name": "saveCurrentSlide",
             "class": "LessonEditorForms",
@@ -3957,7 +3957,7 @@
         {
             "file": "app/assets/javascripts/lesson_editor.js",
             "line": 551,
-            "description": "Submit serialized form data for current slide",
+            "description": "Submit serialized form data for current slide (used in {{#crossLink \"LessonEditorForms/saveCurrentSlide:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "submitCurrentSlideForm",
             "class": "LessonEditorForms",
@@ -3966,7 +3966,7 @@
         {
             "file": "app/assets/javascripts/lesson_editor.js",
             "line": 570,
-            "description": "Hide media gallery for selected type",
+            "description": "Hides media gallery for selected type.",
             "itemtype": "method",
             "name": "removeGalleryInLessonEditor",
             "params": [
@@ -3982,13 +3982,13 @@
         {
             "file": "app/assets/javascripts/lesson_editor.js",
             "line": 582,
-            "description": "Show media gallery for selected type clicking on slide green plus button",
+            "description": "Shows media gallery for selected type.",
             "itemtype": "method",
             "name": "showGalleryInLessonEditor",
             "params": [
                 {
                     "name": "obj",
-                    "description": "gallery type",
+                    "description": "HTML selector for the button that opens the gallery (used to extract the position of the current slide)",
                     "type": "String"
                 },
                 {
