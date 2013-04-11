@@ -318,7 +318,9 @@
 
 
 <div class="box intro">
-    <p>bla bla bla (dire che devono venire caricati prima di document ready, e che a momento c'è solamente la classe per detectare i browsers)</p>
+    <p>This module contains all the patches for JQuery. Notice that the methods listed here sometimes are defined using anonimous functions fired in this same file: this is because in the javascript loading tree these functions can be loaded where the application needs, rather than in the file <i>document_ready.js</i>.
+<br/><br/>
+So far the only class present in the module is <a href="../classes/JqueryPatchesBrowsers.html" class="crosslink">JqueryPatchesBrowsers</a>, used to detect browsers. The functions in this class differ by <a href="../classes/AdminDocumentReady.html#method_adminBrowsersDocumentReady" class="crosslink">adminBrowsersDocumentReady</a> and <a href="../classes/GeneralDocumentReady.html#method_browsersDocumentReady" class="crosslink">browsersDocumentReady</a> because instead of adding a class to the HTML tag they create an attribute for a JQuery object.</p>
 </div>
 
 
