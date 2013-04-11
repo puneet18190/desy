@@ -970,9 +970,11 @@ function initializeActionOfMediaTimeUpdaterInVideoEditor(media, identifier, forc
 }
 
 &#x2F;**
-bla bla bla
+This is the method that associates {{#crossLink &quot;PlayersVideoEditor&#x2F;initializeActionOfMediaTimeUpdaterInVideoEditor:method&quot;}}{{&#x2F;crossLink}} to the event of &lt;b&gt;timeupdate&lt;&#x2F;b&gt;. Notice that the method waits until he receives the event &lt;b&gt;loadedmetadata&lt;&#x2F;b&gt; before working.
 @method initializeMediaTimeUpdaterInVideoEditor
 @for PlayersVideoEditor
+@param media {String} HTML selector for the audio or video
+@param identifier {Number} unique identifier of a video component (see {{#crossLinkModule &quot;video-editor&quot;}}{{&#x2F;crossLinkModule}})
 **&#x2F;
 function initializeMediaTimeUpdaterInVideoEditor(media, identifier) {
   media = $(media);
@@ -990,9 +992,10 @@ function initializeMediaTimeUpdaterInVideoEditor(media, identifier) {
 }
 
 &#x2F;**
-bla bla bla
+Initializes two sliders: one (JQueryUi single slider) for the &lt;b&gt;cursor&lt;&#x2F;b&gt;, and one (JQueryUi double slider) for the &lt;b&gt;cutting handles&lt;&#x2F;b&gt;. It also initializes how to handle the event &lt;b&gt;ended&lt;&#x2F;b&gt; associated to the video.
 @method initializeVideoInVideoEditorPreview
 @for PlayersVideoEditor
+@param identifier {Number} the unique identifier of the video component (see {{#crossLinkModule &quot;video-editor&quot;}}{{&#x2F;crossLinkModule}})
 **&#x2F;
 function initializeVideoInVideoEditorPreview(identifier) {
   var my_cutter = $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter&#x27;);
@@ -1068,9 +1071,11 @@ function initializeVideoInVideoEditorPreview(identifier) {
 }
 
 &#x2F;**
-bla bla bla
+Method that &lt;b&gt;updates the video cursor&lt;&#x2F;b&gt;, in case one of the two handles passes over the cursor (the cursor must follow the handle).
 @method selectVideoComponentCutterHandle
 @for PlayersVideoEditor
+@param cutter {Object} the JQuery object representing the cutter for that particular component (see {{#crossLinkModule &quot;video-editor&quot;}}{{&#x2F;crossLinkModule}})
+@param val {Number} the value to be assigned
 **&#x2F;
 function selectVideoComponentCutterHandle(cutter, val) {
   setCurrentTimeToMedia($(&#x27;#&#x27; + cutter.attr(&#x27;id&#x27;).replace(&#x27;cutter&#x27;, &#x27;preview&#x27;) + &#x27; video&#x27;), val);
@@ -1078,9 +1083,10 @@ function selectVideoComponentCutterHandle(cutter, val) {
 }
 
 &#x2F;**
-bla bla bla
+Specific method to call if the event &lt;b&gt;ended&lt;&#x2F;b&gt; is fired on the video and we are not in the {{#crossLinkModule &quot;video-editor&quot;}}{{&#x2F;crossLinkModule}} preview mode (unlike in {{#crossLink &quot;PlayersAudioEditor&quot;}}{{&#x2F;crossLink}}, in this case it&#x27;s separated by the method {{#crossLink &quot;PlayersVideoEditor&#x2F;initializeVideoInVideoEditorPreview:method&quot;}}{{&#x2F;crossLink}}, since it&#x27;s more complicated.
 @method stopVideoInVideoEditorPreview
 @for PlayersVideoEditor
+@param identifier {Number} the unique identifier of the video component
 **&#x2F;
 function stopVideoInVideoEditorPreview(identifier) {
   try {

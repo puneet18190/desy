@@ -5183,36 +5183,74 @@
         {
             "file": "app/assets/javascripts/players.js",
             "line": 666,
-            "description": "bla bla bla",
+            "description": "This is the method that associates {{#crossLink \"PlayersVideoEditor/initializeActionOfMediaTimeUpdaterInVideoEditor:method\"}}{{/crossLink}} to the event of <b>timeupdate</b>. Notice that the method waits until he receives the event <b>loadedmetadata</b> before working.",
             "itemtype": "method",
             "name": "initializeMediaTimeUpdaterInVideoEditor",
+            "params": [
+                {
+                    "name": "media",
+                    "description": "HTML selector for the audio or video",
+                    "type": "String"
+                },
+                {
+                    "name": "identifier",
+                    "description": "unique identifier of a video component (see {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}})",
+                    "type": "Number"
+                }
+            ],
             "class": "PlayersVideoEditor",
             "module": "players"
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 686,
-            "description": "bla bla bla",
+            "line": 688,
+            "description": "Initializes two sliders: one (JQueryUi single slider) for the <b>cursor</b>, and one (JQueryUi double slider) for the <b>cutting handles</b>. It also initializes how to handle the event <b>ended</b> associated to the video.",
             "itemtype": "method",
             "name": "initializeVideoInVideoEditorPreview",
+            "params": [
+                {
+                    "name": "identifier",
+                    "description": "the unique identifier of the video component (see {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}})",
+                    "type": "Number"
+                }
+            ],
             "class": "PlayersVideoEditor",
             "module": "players"
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 764,
-            "description": "bla bla bla",
+            "line": 767,
+            "description": "Method that <b>updates the video cursor</b>, in case one of the two handles passes over the cursor (the cursor must follow the handle).",
             "itemtype": "method",
             "name": "selectVideoComponentCutterHandle",
+            "params": [
+                {
+                    "name": "cutter",
+                    "description": "the JQuery object representing the cutter for that particular component (see {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}})",
+                    "type": "Object"
+                },
+                {
+                    "name": "val",
+                    "description": "the value to be assigned",
+                    "type": "Number"
+                }
+            ],
             "class": "PlayersVideoEditor",
             "module": "players"
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 774,
-            "description": "bla bla bla",
+            "line": 779,
+            "description": "Specific method to call if the event <b>ended</b> is fired on the video and we are not in the {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}} preview mode (unlike in {{#crossLink \"PlayersAudioEditor\"}}{{/crossLink}}, in this case it's separated by the method {{#crossLink \"PlayersVideoEditor/initializeVideoInVideoEditorPreview:method\"}}{{/crossLink}}, since it's more complicated.",
             "itemtype": "method",
             "name": "stopVideoInVideoEditorPreview",
+            "params": [
+                {
+                    "name": "identifier",
+                    "description": "the unique identifier of the video component",
+                    "type": "Number"
+                }
+            ],
             "class": "PlayersVideoEditor",
             "module": "players"
         },

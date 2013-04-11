@@ -664,9 +664,11 @@ function initializeActionOfMediaTimeUpdaterInVideoEditor(media, identifier, forc
 }
 
 /**
-bla bla bla
+This is the method that associates {{#crossLink "PlayersVideoEditor/initializeActionOfMediaTimeUpdaterInVideoEditor:method"}}{{/crossLink}} to the event of <b>timeupdate</b>. Notice that the method waits until he receives the event <b>loadedmetadata</b> before working.
 @method initializeMediaTimeUpdaterInVideoEditor
 @for PlayersVideoEditor
+@param media {String} HTML selector for the audio or video
+@param identifier {Number} unique identifier of a video component (see {{#crossLinkModule "video-editor"}}{{/crossLinkModule}})
 **/
 function initializeMediaTimeUpdaterInVideoEditor(media, identifier) {
   media = $(media);
@@ -684,9 +686,10 @@ function initializeMediaTimeUpdaterInVideoEditor(media, identifier) {
 }
 
 /**
-bla bla bla
+Initializes two sliders: one (JQueryUi single slider) for the <b>cursor</b>, and one (JQueryUi double slider) for the <b>cutting handles</b>. It also initializes how to handle the event <b>ended</b> associated to the video.
 @method initializeVideoInVideoEditorPreview
 @for PlayersVideoEditor
+@param identifier {Number} the unique identifier of the video component (see {{#crossLinkModule "video-editor"}}{{/crossLinkModule}})
 **/
 function initializeVideoInVideoEditorPreview(identifier) {
   var my_cutter = $('#video_component_' + identifier + '_cutter');
@@ -762,9 +765,11 @@ function initializeVideoInVideoEditorPreview(identifier) {
 }
 
 /**
-bla bla bla
+Method that <b>updates the video cursor</b>, in case one of the two handles passes over the cursor (the cursor must follow the handle).
 @method selectVideoComponentCutterHandle
 @for PlayersVideoEditor
+@param cutter {Object} the JQuery object representing the cutter for that particular component (see {{#crossLinkModule "video-editor"}}{{/crossLinkModule}})
+@param val {Number} the value to be assigned
 **/
 function selectVideoComponentCutterHandle(cutter, val) {
   setCurrentTimeToMedia($('#' + cutter.attr('id').replace('cutter', 'preview') + ' video'), val);
@@ -772,9 +777,10 @@ function selectVideoComponentCutterHandle(cutter, val) {
 }
 
 /**
-bla bla bla
+Specific method to call if the event <b>ended</b> is fired on the video and we are not in the {{#crossLinkModule "video-editor"}}{{/crossLinkModule}} preview mode (unlike in {{#crossLink "PlayersAudioEditor"}}{{/crossLink}}, in this case it's separated by the method {{#crossLink "PlayersVideoEditor/initializeVideoInVideoEditorPreview:method"}}{{/crossLink}}, since it's more complicated.
 @method stopVideoInVideoEditorPreview
 @for PlayersVideoEditor
+@param identifier {Number} the unique identifier of the video component
 **/
 function stopVideoInVideoEditorPreview(identifier) {
   try {
