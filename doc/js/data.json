@@ -586,7 +586,7 @@
             "tag": "module",
             "file": "app/assets/javascripts/media_element_editor.js",
             "line": 1,
-            "description": "bla bla bla -- dire dove è situato il bottone di commit in tutti gli editors."
+            "description": "This module contains javascript functions common to all the editors ({{#crossLinkModule \"audio-editor\"}}{{/crossLinkModule}}, {{#crossLinkModule \"image-editor\"}}{{/crossLinkModule}}, {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}})."
         },
         "media-element-loader": {
             "name": "media-element-loader",
@@ -607,7 +607,7 @@
             "tag": "module",
             "file": "app/assets/javascripts/media_element_loader.js",
             "line": 1,
-            "description": "New media element popup handler, form validation errors handling."
+            "description": "Javascript functions used in the media element loader."
         },
         "notifications": {
             "name": "notifications",
@@ -626,7 +626,7 @@
             "tag": "module",
             "file": "app/assets/javascripts/notifications.js",
             "line": 1,
-            "description": "Notification info and help assistant messages handler."
+            "description": "Javascript functions used to handle notifications."
         },
         "players": {
             "name": "players",
@@ -4410,7 +4410,7 @@
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
             "line": 311,
-            "description": "Go to next slide in lesson viewer, if last slide it goes to first one. Uses: [slideToInLessonViewerWithLessonSwitch](../classes/slideToInLessonViewerWithLessonSwitch.html#method_slideToInLessonViewerWithLessonSwitch)",
+            "description": "Goes to next slide using {{#crossLink \"LessonViewerSlidesNavigation/slideToInLessonViewer:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "goToNextSlideInLessonViewer",
             "class": "LessonViewerSlidesNavigation",
@@ -4419,7 +4419,7 @@
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
             "line": 325,
-            "description": "Go to previous slide in lesson viewer, if first slide it goes to last one. Uses: [slideToInLessonViewerWithLessonSwitch](../classes/slideToInLessonViewerWithLessonSwitch.html#method_slideToInLessonViewerWithLessonSwitch)",
+            "description": "Goes to previous slide using {{#crossLink \"LessonViewerSlidesNavigation/slideToInLessonViewer:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "goToPrevSlideInLessonViewer",
             "class": "LessonViewerSlidesNavigation",
@@ -4428,13 +4428,13 @@
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
             "line": 339,
-            "description": "Slide to given slide Uses:",
+            "description": "Goes to a given slide. If the new slide contains a media and the browser is not an iPad (see {{#crossLink \"JqueryPatchesBrowsers/iPadDetection:method\"}}{{/crossLink}}) the media is automaticly played.",
             "itemtype": "method",
             "name": "slideToInLessonViewer",
             "params": [
                 {
                     "name": "to",
-                    "description": "slide to slide to",
+                    "description": "destination slide",
                     "type": "Object"
                 }
             ],
@@ -4444,13 +4444,13 @@
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
             "line": 383,
-            "description": "Open playlist menu, show lessons conver list and change playlist toggle label Uses: [slideToInLessonViewer](../classes/slideToInLessonViewer.html#method_slideToInLessonViewer) and [switchLessonInPlaylistMenuLessonViewer](../classes/switchLessonInPlaylistMenuLessonViewer.html#method_switchLessonInPlaylistMenuLessonViewer)",
+            "description": "Goes to a slide (using {{#crossLink \"LessonViewerSlidesNavigation/slideToInLessonViewer:method\"}}{{/crossLink}}) and updates the lesson in playlist menu (using {{#crossLink \"LessonViewerPlaylist/switchLessonInPlaylistMenuLessonViewer:method\"}}{{/crossLink}} without callbacks).",
             "itemtype": "method",
             "name": "slideToInLessonViewerWithLessonSwitch",
             "params": [
                 {
                     "name": "component",
-                    "description": "slide to slide to",
+                    "description": "destination slide",
                     "type": "Object"
                 }
             ],
@@ -4460,7 +4460,7 @@
         {
             "file": "app/assets/javascripts/media_element_editor.js",
             "line": 10,
-            "description": "bla bla bla",
+            "description": "One step of the repeated <b>cache</b> saving (used in {{#crossLinkModule \"image-editor\"}}{{/crossLinkModule}} and {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}})",
             "itemtype": "method",
             "name": "saveCacheLoop",
             "class": "MediaElementEditorCache",
@@ -4469,7 +4469,7 @@
         {
             "file": "app/assets/javascripts/media_element_editor.js",
             "line": 32,
-            "description": "bla bla bla",
+            "description": "Initializes the <b>cache loop</b> and starts it calling {{#crossLink \"MediaElementEditorCache/saveCacheLoop:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "startCacheLoop",
             "class": "MediaElementEditorCache",
@@ -4478,7 +4478,7 @@
         {
             "file": "app/assets/javascripts/media_element_editor.js",
             "line": 42,
-            "description": "bla bla bla",
+            "description": "Stops the cache loop.",
             "itemtype": "method",
             "name": "stopCacheLoop",
             "class": "MediaElementEditorCache",
@@ -4487,7 +4487,7 @@
         {
             "file": "app/assets/javascripts/media_element_editor.js",
             "line": 52,
-            "description": "bla bla bla",
+            "description": "Submethod of {{#crossLink \"MediaElementEditorCache/saveCacheLoop:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "submitMediaElementEditorCacheForm",
             "class": "MediaElementEditorCache",
@@ -4496,7 +4496,7 @@
         {
             "file": "app/assets/javascripts/media_element_editor.js",
             "line": 71,
-            "description": "bla bla bla",
+            "description": "Initializes the placeholder of the <b>commit forms</b> used in {{#crossLinkModule \"audio-editor\"}}{{/crossLinkModule}}, {{#crossLinkModule \"image-editor\"}}{{/crossLinkModule}} and {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "mediaElementEditorDocumentReady",
             "class": "MediaElementEditorDocumentReady",
@@ -4505,7 +4505,7 @@
         {
             "file": "app/assets/javascripts/media_element_editor.js",
             "line": 95,
-            "description": "bla bla bla",
+            "description": "Resets the <b>commit forms</b> used in {{#crossLinkModule \"audio-editor\"}}{{/crossLinkModule}}, {{#crossLinkModule \"image-editor\"}}{{/crossLinkModule}} and {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}}. This method is associated to the button 'cancel' in these forms (see {{#crossLink \"AudioEditorDocumentReady/audioEditorDocumentReadyCommit:method\"}}{{/crossLink}}, {{#crossLink \"ImageEditorDocumentReady/imageEditorDocumentReadyCommit:method\"}}{{/crossLink}} and {{#crossLink \"VideoEditorDocumentReady/videoEditorDocumentReadyCommit:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "resetMediaElementEditorForms",
             "class": "MediaElementEditorForms",
@@ -4514,52 +4514,152 @@
         {
             "file": "app/assets/javascripts/media_element_editor.js",
             "line": 133,
-            "description": "bla bla bla",
+            "description": "Submethod used in the methods of {{#crossLink \"VideoEditorScrollPain\"}}{{/crossLink}}: calculates the correct movement that a horizontal <b>left</b> scroll must do taking into consideration the space available (thing that obviously JScrollPain doesn't do itself).",
             "itemtype": "method",
             "name": "calculateCorrectMovementHorizontalScrollLeft",
+            "params": [
+                {
+                    "name": "hidden",
+                    "description": "the portion of the scroll hidden on the left",
+                    "type": "Float"
+                },
+                {
+                    "name": "movement",
+                    "description": "the required movement",
+                    "type": "Float"
+                }
+            ],
+            "return": {
+                "description": "the correct movement to do",
+                "type": "Float"
+            },
             "class": "MediaElementEditorHorizontalTimelines",
             "module": "media-element-editor"
         },
         {
             "file": "app/assets/javascripts/media_element_editor.js",
-            "line": 146,
-            "description": "bla bla bla",
+            "line": 149,
+            "description": "Submethod used in the methods of {{#crossLink \"VideoEditorScrollPain\"}}{{/crossLink}}: calculates the correct movement that a horizontal <b>right</b> scroll must do taking into consideration the space available (thing that obviously JScrollPain doesn't do itself).",
             "itemtype": "method",
             "name": "calculateCorrectMovementHorizontalScrollRight",
+            "params": [
+                {
+                    "name": "hidden",
+                    "description": "the portion of the scroll hidden on the left",
+                    "type": "Float"
+                },
+                {
+                    "name": "movement",
+                    "description": "the required movement",
+                    "type": "Float"
+                }
+            ],
+            "return": {
+                "description": "the correct movement to do",
+                "type": "Float"
+            },
             "class": "MediaElementEditorHorizontalTimelines",
             "module": "media-element-editor"
         },
         {
             "file": "app/assets/javascripts/media_element_editor.js",
-            "line": 155,
-            "description": "bla bla bla",
+            "line": 161,
+            "description": "Submethod used in the methods of {{#crossLink \"VideoEditorScrollPain\"}}{{/crossLink}}: calculates the absolute position to be assigned to <b>a div that must be aligned to the component</b> after having been moved to first position.",
             "itemtype": "method",
             "name": "getAbsolutePositionTimelineHorizontalScrollPane",
+            "params": [
+                {
+                    "name": "jscrollpane_id",
+                    "description": "the HTML id of the scroll pane",
+                    "type": "String"
+                },
+                {
+                    "name": "component_width",
+                    "description": "the width in pixels of a single component",
+                    "type": "Number"
+                },
+                {
+                    "name": "component_position",
+                    "description": "the position among the other components",
+                    "type": "Number"
+                },
+                {
+                    "name": "components_visible_number",
+                    "description": "how many components are visible at the same time in the scroll pane",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "the correct position of the div in pixels (it's not float because we pass to the method only integers, unlike {{#crossLink \"MediaElementEditorHorizontalTimelines/calculateCorrectMovementHorizontalScrollRight:method\"}}{{/crossLink}} and {{#crossLink \"MediaElementEditorHorizontalTimelines/calculateCorrectMovementHorizontalScrollRight:method\"}}{{/crossLink}} that are defined generally)",
+                "type": "Number"
+            },
             "class": "MediaElementEditorHorizontalTimelines",
             "module": "media-element-editor"
         },
         {
             "file": "app/assets/javascripts/media_element_editor.js",
-            "line": 172,
-            "description": "bla bla bla",
+            "line": 183,
+            "description": "Submethod used in the methods of {{#crossLink \"VideoEditorScrollPain\"}}{{/crossLink}}: gets how many components are hidden to the left of the scroll pane.",
             "itemtype": "method",
             "name": "getHowManyComponentsHiddenToLeftTimelineHorizontalScrollPane",
+            "params": [
+                {
+                    "name": "jscrollpane_id",
+                    "description": "the HTML id of the scroll pane",
+                    "type": "String"
+                },
+                {
+                    "name": "component_width",
+                    "description": "the width in pixels of a single component",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "the number of components hidden to the left",
+                "type": "Number"
+            },
             "class": "MediaElementEditorHorizontalTimelines",
             "module": "media-element-editor"
         },
         {
             "file": "app/assets/javascripts/media_element_editor.js",
-            "line": 182,
-            "description": "bla bla bla",
+            "line": 196,
+            "description": "Submethod used in the methods of {{#crossLink \"VideoEditorScrollPain\"}}{{/crossLink}}: exactly the same as {{#crossLink \"MediaElementEditorHorizontalTimelines/getAbsolutePositionTimelineHorizontalScrollPane:method\"}}{{/crossLink}}, but <b>it returns the position of the scroll pane</b> instead of the absolute pixels for an external div.",
             "itemtype": "method",
             "name": "getNormalizedPositionTimelineHorizontalScrollPane",
+            "params": [
+                {
+                    "name": "jscrollpane_id",
+                    "description": "the HTML id of the scroll pane",
+                    "type": "String"
+                },
+                {
+                    "name": "component_width",
+                    "description": "the width in pixels of a single component",
+                    "type": "Number"
+                },
+                {
+                    "name": "component_position",
+                    "description": "the position among the other components",
+                    "type": "Number"
+                },
+                {
+                    "name": "components_visible_number",
+                    "description": "how many components are visible at the same time in the scroll pane",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "the correct position of the scroll in pixels",
+                "type": "Number"
+            },
             "class": "MediaElementEditorHorizontalTimelines",
             "module": "media-element-editor"
         },
         {
             "file": "app/assets/javascripts/media_element_loader.js",
             "line": 10,
-            "description": "bla bla bla",
+            "description": "Initializer for the loading form.",
             "itemtype": "method",
             "name": "mediaElementLoaderDocumentReady",
             "class": "MediaElementLoaderDocumentReady",
@@ -4568,16 +4668,20 @@
         {
             "file": "app/assets/javascripts/media_element_loader.js",
             "line": 54,
-            "description": "Handle 413 status error, file too large",
+            "description": "Handles 413 status error, file too large.",
             "itemtype": "method",
             "name": "uploadDone",
+            "return": {
+                "description": "false, for some reason",
+                "type": "Boolean"
+            },
             "class": "MediaElementLoaderDone",
             "module": "media-element-loader"
         },
         {
             "file": "app/assets/javascripts/media_element_loader.js",
-            "line": 69,
-            "description": "Reload media elements page after new media element is successfully loaded.",
+            "line": 70,
+            "description": "Reloads media elements page after new media element is successfully loaded.",
             "itemtype": "method",
             "name": "uploadMediaElementLoadeDoneRedirect",
             "class": "MediaElementLoaderDone",
@@ -4585,15 +4689,15 @@
         },
         {
             "file": "app/assets/javascripts/media_element_loader.js",
-            "line": 85,
-            "description": "Update form fields with error labels",
+            "line": 86,
+            "description": "Update form fields with error labels.",
             "itemtype": "method",
             "name": "uploadMediaElementLoaderError",
             "params": [
                 {
                     "name": "errors",
                     "description": "errors list",
-                    "type": "Object"
+                    "type": "Array"
                 }
             ],
             "class": "MediaElementLoaderErrors",
@@ -4601,8 +4705,8 @@
         },
         {
             "file": "app/assets/javascripts/media_element_loader.js",
-            "line": 114,
-            "description": "Set iframe as target for form submit, added a callback function to control 413 status error. Uses: [uploadDone](../classes/uploadDone.html#method_uploadDone)",
+            "line": 115,
+            "description": "Sets iframe as target for form submit, and adds a callback function to control 413 status error; notice that <b>upload target</b> is the HTML id of the frame.",
             "itemtype": "method",
             "name": "initMediaElementLoader",
             "class": "MediaElementLoaderGeneral",
@@ -4610,14 +4714,14 @@
         },
         {
             "file": "app/assets/javascripts/media_element_loader.js",
-            "line": 128,
-            "description": "Fill in media element update form with media element values.",
+            "line": 129,
+            "description": "Resets the media element loading form; used in {{#crossLink \"DialogsWithForm/showLoadMediaElementPopUp:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "resetMediaElementChangeInfo",
             "params": [
                 {
                     "name": "media_element_id",
-                    "description": "media element id",
+                    "description": "id of the element in the database, used to extract the HTML id",
                     "type": "Number"
                 }
             ],
@@ -4627,7 +4731,7 @@
         {
             "file": "app/assets/javascripts/notifications.js",
             "line": 10,
-            "description": "Empty and hide expanded notifications.",
+            "description": "Closes the div containig an expanded notification.",
             "itemtype": "method",
             "name": "hideExpandedNotification",
             "class": "NotificationsAccessories",
@@ -4636,7 +4740,7 @@
         {
             "file": "app/assets/javascripts/notifications.js",
             "line": 20,
-            "description": "Hide help button.",
+            "description": "Hides the help button.",
             "itemtype": "method",
             "name": "hideHelpButton",
             "class": "NotificationsAccessories",
@@ -4645,7 +4749,7 @@
         {
             "file": "app/assets/javascripts/notifications.js",
             "line": 29,
-            "description": "Hide help tooltip.",
+            "description": "Hides the help tooltip.",
             "itemtype": "method",
             "name": "hideHelpTooltip",
             "class": "NotificationsAccessories",
@@ -4654,7 +4758,7 @@
         {
             "file": "app/assets/javascripts/notifications.js",
             "line": 38,
-            "description": "Hide notifications button.",
+            "description": "Hides the notifications button.",
             "itemtype": "method",
             "name": "hideNotificationsButton",
             "class": "NotificationsAccessories",
@@ -4663,7 +4767,7 @@
         {
             "file": "app/assets/javascripts/notifications.js",
             "line": 47,
-            "description": "Hide notifications balloon.",
+            "description": "Hides the notifications orange icon over the notifications button.",
             "itemtype": "method",
             "name": "hideNotificationsFumetto",
             "class": "NotificationsAccessories",
@@ -4672,7 +4776,7 @@
         {
             "file": "app/assets/javascripts/notifications.js",
             "line": 56,
-            "description": "Hide notifications tooltip. Uses: [hideExpandedNotification](../classes/hideExpandedNotification.html#method_hideExpandedNotification)",
+            "description": "Hides the notifications tooltip.",
             "itemtype": "method",
             "name": "hideNotificationsTooltip",
             "class": "NotificationsAccessories",
@@ -4681,7 +4785,7 @@
         {
             "file": "app/assets/javascripts/notifications.js",
             "line": 66,
-            "description": "Show help button.",
+            "description": "Shows the help button.",
             "itemtype": "method",
             "name": "showHelpButton",
             "class": "NotificationsAccessories",
@@ -4690,7 +4794,7 @@
         {
             "file": "app/assets/javascripts/notifications.js",
             "line": 75,
-            "description": "Show help tooltip.",
+            "description": "Shows the help tooltip.",
             "itemtype": "method",
             "name": "showHelpTooltip",
             "class": "NotificationsAccessories",
@@ -4699,7 +4803,7 @@
         {
             "file": "app/assets/javascripts/notifications.js",
             "line": 84,
-            "description": "Show notifications button.",
+            "description": "Shows the notifications button.",
             "itemtype": "method",
             "name": "showNotificationsButton",
             "class": "NotificationsAccessories",
@@ -4708,7 +4812,7 @@
         {
             "file": "app/assets/javascripts/notifications.js",
             "line": 93,
-            "description": "Show notifications fumetto.",
+            "description": "Shows the notifications orange icon over the notifications button.",
             "itemtype": "method",
             "name": "showNotificationsFumetto",
             "class": "NotificationsAccessories",
@@ -4717,7 +4821,7 @@
         {
             "file": "app/assets/javascripts/notifications.js",
             "line": 102,
-            "description": "Show notifications tooltip.",
+            "description": "Shows the notifications tooltip.",
             "itemtype": "method",
             "name": "showNotificationsTooltip",
             "class": "NotificationsAccessories",
@@ -4726,7 +4830,7 @@
         {
             "file": "app/assets/javascripts/notifications.js",
             "line": 115,
-            "description": "bla bla bla",
+            "description": "Global initializer for notifications and help",
             "itemtype": "method",
             "name": "notificationsDocumentReady",
             "class": "NotificationsDocumentReady",
@@ -4735,7 +4839,7 @@
         {
             "file": "app/assets/javascripts/notifications.js",
             "line": 125,
-            "description": "bla bla bla",
+            "description": "Initializes the form for notifying a lesson's modifications. These actions are linked on the button {{#crossLink \"ButtonsLesson/unpublishLesson:method\"}}{{/crossLink}}, provided that it has the class <i>lesson change not notified</i>.",
             "itemtype": "method",
             "name": "notificationsDocumentReadyLessonModification",
             "class": "NotificationsDocumentReady",
@@ -4744,7 +4848,7 @@
         {
             "file": "app/assets/javascripts/notifications.js",
             "line": 153,
-            "description": "bla bla bla",
+            "description": "General initializer for help and notifications tooltips.",
             "itemtype": "method",
             "name": "notificationsDocumentReadyTooltips",
             "class": "NotificationsDocumentReady",
@@ -4753,7 +4857,7 @@
         {
             "file": "app/assets/javascripts/notifications.js",
             "line": 179,
-            "description": "Checks if any help is available and initialize them. Handles help show/hide effects.",
+            "description": "Initializes the graphical tools of the <b>help tooltip</b>.",
             "itemtype": "method",
             "name": "initializeHelp",
             "class": "NotificationsGraphics",
@@ -4762,7 +4866,7 @@
         {
             "file": "app/assets/javascripts/notifications.js",
             "line": 207,
-            "description": "Checks if any notification is available and initialize unread notification counter. Handles notifications show/hide effects.",
+            "description": "Initializes the graphical tools and the routes attached to the <b>notifications tooltip</b>.",
             "itemtype": "method",
             "name": "initializeNotifications",
             "class": "NotificationsGraphics",

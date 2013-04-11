@@ -178,17 +178,17 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "media-element-editor",
             "name": "media-element-editor",
-            "description": "bla bla bla -- dire dove è situato il bottone di commit in tutti gli editors."
+            "description": "This module contains javascript functions common to all the editors ({{#crossLinkModule \"audio-editor\"}}{{/crossLinkModule}}, {{#crossLinkModule \"image-editor\"}}{{/crossLinkModule}}, {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}})."
         },
         {
             "displayName": "media-element-loader",
             "name": "media-element-loader",
-            "description": "New media element popup handler, form validation errors handling."
+            "description": "Javascript functions used in the media element loader."
         },
         {
             "displayName": "notifications",
             "name": "notifications",
-            "description": "Notification info and help assistant messages handler."
+            "description": "Javascript functions used to handle notifications."
         },
         {
             "displayName": "players",
