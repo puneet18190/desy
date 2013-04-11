@@ -89,4 +89,4 @@ maximum_password_length:
 # MAXIMUM SIZE OF AN ELEMENT (IN MEGABYTES)
 max_media_size: 50
 # MAXIMUM SIZE OF THE MEDIA ELEMENTS FOLDER (IN GIGABYTES)
-maximum_media_elements_folder_size: 0.1
+maximum_media_elements_folder_size: 20

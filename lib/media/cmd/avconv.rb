@@ -74,6 +74,10 @@ module Media
         "-q:a #{self.class.output_qa[@format].to_s.shellescape}" if @format
       end
 
+      def achannels
+        '-ac 2'
+      end
+
       def ar
         '-ar 44100'
       end
