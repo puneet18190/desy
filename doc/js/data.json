@@ -3725,13 +3725,13 @@
         {
             "file": "app/assets/javascripts/image_editor.js",
             "line": 351,
-            "description": "Sets current textarea to active.",
+            "description": "Selects a text area (this function is called when the user clicks on a textarea in the image).",
             "itemtype": "method",
             "name": "enlightTextarea",
             "params": [
                 {
                     "name": "id",
-                    "description": "identifier for textarea to set current",
+                    "description": "unique identifier for the textarea, used to extract its HTML id",
                     "type": "Number"
                 }
             ],
@@ -3741,7 +3741,7 @@
         {
             "file": "app/assets/javascripts/image_editor.js",
             "line": 363,
-            "description": "Get textarea coordinates while dragging",
+            "description": "Gets the coordinates of a textarea while dragging.",
             "itemtype": "method",
             "name": "getDragPosition",
             "params": [
@@ -3752,7 +3752,7 @@
                 }
             ],
             "return": {
-                "description": "two items array with X,Y coords in px",
+                "description": "two items array with X,Y coordinates in pixels",
                 "type": "Array"
             },
             "class": "ImageEditorTexts",
@@ -3761,7 +3761,7 @@
         {
             "file": "app/assets/javascripts/image_editor.js",
             "line": 381,
-            "description": "Disable textareas, typically applied to all textareas, removes the current flag to active textarea.",
+            "description": "Used together with {{#crossLink \"ImageEditorTexts/enlightTextAreas:method\"}}{{/crossLink}}, it disables all text areas in the image.",
             "itemtype": "method",
             "name": "offlightTextarea",
             "class": "ImageEditorTexts",
@@ -3770,7 +3770,7 @@
         {
             "file": "app/assets/javascripts/image_editor.js",
             "line": 392,
-            "description": "Append new textarea to image editor container",
+            "description": "Extracts a new empty textarea, and appends it to the image at given coordinates.",
             "itemtype": "method",
             "name": "textAreaImageEditorContent",
             "params": [
@@ -3781,13 +3781,13 @@
                 },
                 {
                     "name": "textCount",
-                    "description": "textarea container id",
+                    "description": "unique identifier for the textarea, used to extract its HTML id",
                     "type": "Number"
                 }
             ],
             "return": {
-                "description": "new textarea container",
-                "type": "Object"
+                "description": "HTML of the new textarea container",
+                "type": "String"
             },
             "class": "ImageEditorTexts",
             "module": "image-editor"

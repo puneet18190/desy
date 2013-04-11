@@ -444,7 +444,7 @@
     </div>
 
     <div class="description">
-        <p>Sets current textarea to active.</p>
+        <p>Selects a text area (this function is called when the user clicks on a textarea in the image).</p>
     </div>
 
     
@@ -462,7 +462,7 @@
                     
 
                     <div class="param-description">
-                        <p>identifier for textarea to set current</p>
+                        <p>unique identifier for the textarea, used to extract its HTML id</p>
                     </div>
 
                     
@@ -535,7 +535,7 @@
     </div>
 
     <div class="description">
-        <p>Get textarea coordinates while dragging</p>
+        <p>Gets the coordinates of a textarea while dragging.</p>
     </div>
 
     
@@ -572,7 +572,7 @@
                     
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>:
                     
-                    two items array with X,Y coords in px
+                    two items array with X,Y coordinates in pixels
                 
             </div>
         </div>
@@ -625,7 +625,7 @@
     </div>
 
     <div class="description">
-        <p>Disable textareas, typically applied to all textareas, removes the current flag to active textarea.</p>
+        <p>Used together with ImageEditorTexts/enlightTextAreas:method, it disables all text areas in the image.</p>
     </div>
 
     
@@ -661,7 +661,7 @@
 
     
         <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
         </span>
     
 
@@ -699,7 +699,7 @@
     </div>
 
     <div class="description">
-        <p>Append new textarea to image editor container</p>
+        <p>Extracts a new empty textarea, and appends it to the image at given coordinates.</p>
     </div>
 
     
@@ -732,7 +732,7 @@
                     
 
                     <div class="param-description">
-                        <p>textarea container id</p>
+                        <p>unique identifier for the textarea, used to extract its HTML id</p>
                     </div>
 
                     
@@ -749,9 +749,9 @@
             <div class="returns-description">
                 
                     
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>:
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
                     
-                    new textarea container
+                    HTML of the new textarea container
                 
             </div>
         </div>

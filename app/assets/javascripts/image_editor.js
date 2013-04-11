@@ -349,10 +349,10 @@ function getRelativePositionInImageEditor(obj, event) {
 
 
 /**
-Sets current textarea to active.
+Selects a text area (this function is called when the user clicks on a textarea in the image).
 @method enlightTextarea
 @for ImageEditorTexts
-@param id {Number} identifier for textarea to set current 
+@param id {Number} unique identifier for the textarea, used to extract its HTML id
 **/
 function enlightTextarea(id) {
   $('#image_editor_textarea_' + id).css('background-color', 'rgba(230,230,230,0.5)');
@@ -361,11 +361,11 @@ function enlightTextarea(id) {
 }
 
 /**
-Get textarea coordinates while dragging
+Gets the coordinates of a textarea while dragging.
 @method getDragPosition
 @for ImageEditorTexts
 @param obj {Object} textarea container
-@return {Array} two items array with X,Y coords in px
+@return {Array} two items array with X,Y coordinates in pixels
 **/
 function getDragPosition(obj) {
   var imgOff = $('#image_wrapper').children('img').offset();
@@ -379,7 +379,7 @@ function getDragPosition(obj) {
 }
 
 /**
-Disable textareas, typically applied to all textareas, removes the current flag to active textarea.
+Used together with {{#crossLink "ImageEditorTexts/enlightTextAreas:method"}}{{/crossLink}}, it disables all text areas in the image.
 @method offlightTextarea
 @for ImageEditorTexts
 **/
@@ -390,12 +390,12 @@ function offlightTextareas() {
 }
 
 /**
-Append new textarea to image editor container
+Extracts a new empty textarea, and appends it to the image at given coordinates.
 @method textAreaImageEditorContent
 @for ImageEditorTexts
 @param coords {Array} textarea coordinates
-@param textCount {Number} textarea container id
-@return {Object} new textarea container
+@param textCount {Number} unique identifier for the textarea, used to extract its HTML id
+@return {String} HTML of the new textarea container
 **/
 function textAreaImageEditorContent(coords, textCount) {
   var textarea_container = $($.trim($('#image_editor_empty_text_area_container').html()));

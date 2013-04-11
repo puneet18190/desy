@@ -655,10 +655,10 @@ function getRelativePositionInImageEditor(obj, event) {
 
 
 &#x2F;**
-Sets current textarea to active.
+Selects a text area (this function is called when the user clicks on a textarea in the image).
 @method enlightTextarea
 @for ImageEditorTexts
-@param id {Number} identifier for textarea to set current 
+@param id {Number} unique identifier for the textarea, used to extract its HTML id
 **&#x2F;
 function enlightTextarea(id) {
   $(&#x27;#image_editor_textarea_&#x27; + id).css(&#x27;background-color&#x27;, &#x27;rgba(230,230,230,0.5)&#x27;);
@@ -667,11 +667,11 @@ function enlightTextarea(id) {
 }
 
 &#x2F;**
-Get textarea coordinates while dragging
+Gets the coordinates of a textarea while dragging.
 @method getDragPosition
 @for ImageEditorTexts
 @param obj {Object} textarea container
-@return {Array} two items array with X,Y coords in px
+@return {Array} two items array with X,Y coordinates in pixels
 **&#x2F;
 function getDragPosition(obj) {
   var imgOff = $(&#x27;#image_wrapper&#x27;).children(&#x27;img&#x27;).offset();
@@ -685,7 +685,7 @@ function getDragPosition(obj) {
 }
 
 &#x2F;**
-Disable textareas, typically applied to all textareas, removes the current flag to active textarea.
+Used together with {{#crossLink &quot;ImageEditorTexts&#x2F;enlightTextAreas:method&quot;}}{{&#x2F;crossLink}}, it disables all text areas in the image.
 @method offlightTextarea
 @for ImageEditorTexts
 **&#x2F;
@@ -696,12 +696,12 @@ function offlightTextareas() {
 }
 
 &#x2F;**
-Append new textarea to image editor container
+Extracts a new empty textarea, and appends it to the image at given coordinates.
 @method textAreaImageEditorContent
 @for ImageEditorTexts
 @param coords {Array} textarea coordinates
-@param textCount {Number} textarea container id
-@return {Object} new textarea container
+@param textCount {Number} unique identifier for the textarea, used to extract its HTML id
+@return {String} HTML of the new textarea container
 **&#x2F;
 function textAreaImageEditorContent(coords, textCount) {
   var textarea_container = $($.trim($(&#x27;#image_editor_empty_text_area_container&#x27;).html()));
