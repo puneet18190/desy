@@ -1,5 +1,5 @@
 /**
-Provides video editor ajax actions.
+Provides video editor ajax actions. TODO per quanto riguarda la fase di commit, copiare il paragrafo da audio e image editor e adattarlo
 @module video-editor
 **/
 
@@ -566,7 +566,7 @@ function videoEditorDocumentReadyAudioTrack() {
 }
 
 /**
-bla bla bla
+bla bla bla -- TODO copiare dagli analoghi in image editor e audio editor
 @method videoEditorDocumentReadyCommit
 @for VideoEditorDocumentReady
 **/

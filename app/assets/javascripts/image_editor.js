@@ -16,7 +16,7 @@ As for the other Element Editors ({{#crossLinkModule "audio-editor"}}{{/crossLin
 
 
 /**
-bla bla bla
+General initializer for Image Editor.
 @method imageEditorDocumentReady
 @for ImageEditorDocumentReady
 **/
@@ -29,7 +29,7 @@ function imageEditorDocumentReady() {
 }
 
 /**
-bla bla bla
+Initializer for the functionalities of committing changes (click on 'commit', on 'cancel', popup asking to overwrite, etc). For other functionalities common to all the Element Editors, see {{#crossLink "MediaElementEditorForms"}}{{/crossLink}}.
 @method imageEditorDocumentReadyCommit
 @for ImageEditorDocumentReady
 **/
@@ -100,7 +100,7 @@ function imageEditorDocumentReadyCommit() {
 }
 
 /**
-bla bla bla
+Initializer for crop mode: it contains the initialization of the JQueryUi plugin <b>imgAreaSelect</b>.
 @method imageEditorDocumentReadyCrop
 @for ImageEditorDocumentReady
 **/
@@ -152,14 +152,14 @@ function imageEditorDocumentReadyCrop() {
 }
 
 /**
-bla bla bla
+Initializer for the general graphical properties of the editor: position and resizing of the image, etc.
 @method imageEditorDocumentReadyGeneral
 @for ImageEditorDocumentReady
 **/
 function imageEditorDocumentReadyGeneral() {
   $('.image_editor_only #form_info_new_media_element_in_editor, .image_editor_only #form_info_update_media_element_in_editor').css("left",($(window).width()/2)-495);
   $('#image_gallery_for_image_editor ._select_image_from_gallery').addClass('_add_image_to_image_editor');
-  $('#image_gallery_for_image_editor .gallery-header').css("left",($(window).width()/2)-420);
+  $('#image_gallery_for_image_editor .gallery-header').css('left', ($(window).width()/2) - 420);
   $('body').on('click', '._add_image_to_image_editor', function() {
     var parser = document.createElement('a');
     parser.href = $('._exit_url').attr('href');
@@ -168,7 +168,7 @@ function imageEditorDocumentReadyGeneral() {
 }
 
 /**
-bla bla bla
+Initializer for text inserting mode. It includes the initialization of JQueryUi draggable for the small text areas inside the image.
 @method imageEditorDocumentReadyTexts
 @for ImageEditorDocumentReady
 **/
@@ -265,7 +265,7 @@ function imageEditorDocumentReadyTexts() {
 }
 
 /**
-bla bla bla
+Initializer for the route linked to the action 'undo', that undoes the last step of editing.
 @method imageEditorDocumentReadyUndo
 @for ImageEditorDocumentReady
 **/
@@ -283,7 +283,7 @@ function imageEditorDocumentReadyUndo() {
 
 
 /**
-Reset image editor crop, disable crop state for image
+Function that closes the crop mode (notice that the imgAreaSelect initialized in {{#crossLink "ImageEditorDocumentReady/imageEditorDocumentReadyCrop:method"}}{{/crossLink}} is disabled too).
 @method resetImageEditorCrop
 @for ImageEditorGraphics
 **/
@@ -298,7 +298,7 @@ function resetImageEditorCrop() {
 }
 
 /**
-Reset image editor functions, reset image editor to initial state
+Function that is used together with both {{#crossLink "ImageEditorGraphics/resetImageEditorCrop:method"}}{{/crossLink}} and {{#crossLink "ImageEditorGraphics/resetImageEditorTexts:method"}}{{/crossLink}}: it resets the icons on the left column, and all the accessories of the two editing modes.
 @method resetImageEditorOperationsChoice
 @for ImageEditorGraphics
 **/
@@ -311,7 +311,7 @@ function resetImageEditorOperationsChoice() {
 }
 
 /**
-Reset image editor textareas, disable text state for image
+Function that closes the texts inserting mode (it's removed also the class <i>text enabled</i>, initialized in {{#crossLink "ImageEditorDocumentReady/imageEditorDocumentReadyTexts:method"}}{{/crossLink}}, that makes the image sensitive to the click of the user for the creation of small text areas).
 @method resetImageEditorTexts
 @for ImageEditorGraphics
 **/
@@ -327,7 +327,7 @@ function resetImageEditorTexts() {
 
 
 /**
-Get image relative position into editor container
+Get image relative position into editor container.
 @method getRelativePositionInImageEditor
 @for ImageEditorImageScale
 @param obj {Object} image
@@ -349,10 +349,10 @@ function getRelativePositionInImageEditor(obj, event) {
 
 
 /**
-Sets current textarea to active.
+Selects a text area (this function is called when the user clicks on a textarea in the image).
 @method enlightTextarea
 @for ImageEditorTexts
-@param id {Number} identifier for textarea to set current 
+@param id {Number} unique identifier for the textarea, used to extract its HTML id
 **/
 function enlightTextarea(id) {
   $('#image_editor_textarea_' + id).css('background-color', 'rgba(230,230,230,0.5)');
@@ -361,11 +361,11 @@ function enlightTextarea(id) {
 }
 
 /**
-Get textarea coordinates while dragging
+Gets the coordinates of a textarea while dragging.
 @method getDragPosition
 @for ImageEditorTexts
 @param obj {Object} textarea container
-@return {Array} two items array with X,Y coords in px
+@return {Array} two items array with X,Y coordinates in pixels
 **/
 function getDragPosition(obj) {
   var imgOff = $('#image_wrapper').children('img').offset();
@@ -379,7 +379,7 @@ function getDragPosition(obj) {
 }
 
 /**
-Disable textareas, typically applied to all textareas, removes the current flag to active textarea.
+Used together with {{#crossLink "ImageEditorTexts/enlightTextAreas:method"}}{{/crossLink}}, it disables all text areas in the image.
 @method offlightTextarea
 @for ImageEditorTexts
 **/
@@ -390,12 +390,12 @@ function offlightTextareas() {
 }
 
 /**
-Append new textarea to image editor container
+Extracts a new empty textarea, and appends it to the image at given coordinates.
 @method textAreaImageEditorContent
 @for ImageEditorTexts
 @param coords {Array} textarea coordinates
-@param textCount {Number} textarea container id
-@return {Object} new textarea container
+@param textCount {Number} unique identifier for the textarea, used to extract its HTML id
+@return {String} HTML of the new textarea container
 **/
 function textAreaImageEditorContent(coords, textCount) {
   var textarea_container = $($.trim($('#image_editor_empty_text_area_container').html()));

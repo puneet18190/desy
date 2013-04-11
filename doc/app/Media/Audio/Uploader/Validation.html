@@ -347,6 +347,8 @@
   
     <li><a href="../../../MailingListsController.html">MailingListsController</a>
   
+    <li><a href="../../../MaintainerNotificationsMailer.html">MaintainerNotificationsMailer</a>
+  
     <li><a href="../../../MediaElement.html">MediaElement</a>
   
     <li><a href="../../../MediaElementsController.html">MediaElementsController</a>
@@ -452,8 +454,8 @@
     <span class="ruby-identifier">error_message_for_converted_files</span>
   <span class="ruby-keyword">elsif</span> <span class="ruby-ivar">@original_file</span>
     <span class="ruby-identifier">error_message_for_file_to_convert</span>
-  <span class="ruby-keyword">elsif</span> <span class="ruby-ivar">@value</span>.<span class="ruby-identifier">instance_of?</span>(<span class="ruby-constant">String</span>)
-    <span class="ruby-keyword">if</span> <span class="ruby-identifier">column_changed?</span> <span class="ruby-keyword">and</span> <span class="ruby-keyword">not</span> <span class="ruby-identifier">rename?</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-ivar">@value</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">String</span>)
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">column_changed?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">rename?</span>
       <span class="ruby-string">&#39;renaming denied&#39;</span>
     <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">else</span>

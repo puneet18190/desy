@@ -1,13 +1,16 @@
-/*
-  NOTA DI ADRIANO: FIXME metti questa nota nella descrizione del modulo
-    ci sono tre bug conosciuti e dovuti al malfunzionamento di JScrollPane:
-     (1) quando passo dalla prima slide della terza lezione all'ultima slide della seconda lezione, lo scroll non segue la selezione della lezione in basso
-     (2) quando passo dall'ultima slide dell'ultima lezione alla prima slide della prima lezione, idem
-     (3) se, dopo aver aperto la prima volta il menu delle lezioni, (SOLO LA PRIMA VOLTA), clicco su una delle lezioni entro due secondi, si rompe il menu
-*/
-
 /**
-Lesson viewer, it handles slides switching and playlist menu effects.
+The Lesson Viewer is the instrument to reporoduce single and multiple lessons (playlists). The Viewer provides the user of a screen containing the current slide with <b>two arrows</b> to switch to the next one. If the lesson is being reproduced inside a playlist, it's additionally available a <b>playlst menu</b> (opened on the bottom of the current slide).
+<br/><br/>
+The main methods of this module are {{#crossLink "LessonViewerSlidesNavigation/slideToInLessonViewer:method"}}{{/crossLink}} (moves to a given slide) and {{#crossLink "LessonViewerPlaylist/switchLessonInPlaylistMenuLessonViewer:method"}}{{/crossLink}} (moves to the first slide of a given lesson and updates the selected lesson in the menu). The first method can be used separately if there is no playlist, or together with the second one if there is one (they are called together inside {{#crossLink "LessonViewerSlidesNavigation/slideToInLessonViewerWithLessonSwitch:method"}}{{/crossLink}}).
+<br/><br/>
+Additionally, {{#crossLink "LessonViewerPlaylist/switchLessonInPlaylistMenuLessonViewer:method"}}{{/crossLink}} can be provided of a callback that is passed to {{#crossLink "LessonViewerPlaylist/selectComponentInLessonViewerPlaylistMenu:method"}}{{/crossLink}} and executed after the animation of the scroll inside the lesson menu: the callback is used when the user selects a lesson directly from the menu, and {{#crossLink "LessonViewerSlidesNavigation/slideToInLessonViewer:method"}}{{/crossLink}} is executed to get to the cover of the selected lesson after that the menu has been closed.
+<br/><br/>
+There are <b>three known bugs</b> due to the bad quality of the plugin <b>JScrollPain</b>:
+<ul>
+  <li>When the user passes from <i>the first slide of the third lesson</i> to <i>the last slide of the second lesson</i>, the scroll doesn't follow the selection of the new lesson</li>
+  <li>Same problem when the user passes from <i>the last slide of the last lesson</i> to <i>the first slide of the first lesson</i></li>
+  <li>If, after having opened <b>for the first time</b> (and only for that time) the playlist menu, I click before two seconds on a lesson, the menu gets broken</li>
+</ul>
 @module lesson-viewer
 **/
 
@@ -16,7 +19,7 @@ Lesson viewer, it handles slides switching and playlist menu effects.
 
 
 /**
-bla bla bla
+Global initializer.
 @method lessonViewerDocumentReady
 @for LessonViewerDocumentReady
 **/
@@ -27,7 +30,7 @@ function lessonViewerDocumentReady() {
 }
 
 /**
-bla bla bla
+Initializer for functionalities of the playlist menu.
 @method lessonViewerDocumentReadyPlaylist
 @for LessonViewerDocumentReady
 **/
@@ -63,7 +66,7 @@ function lessonViewerDocumentReadyPlaylist() {
 }
 
 /**
-bla bla bla
+Initializer for slides navigation.
 @method lessonViewerDocumentReadySlidesNavigation
 @for LessonViewerDocumentReady
 **/
@@ -96,17 +99,17 @@ function lessonViewerDocumentReadySlidesNavigation() {
 
 
 /**
-Gets the current slide id
+Gets the HTML id of the current slide (marked with the class <b>lesson viewer current slide</b>).
 @method getLessonViewerCurrentSlide
 @for LessonViewerGeneral
-@return {Number} current slide id
+@return {String} HTML id of the current slide
 **/
 function getLessonViewerCurrentSlide() {
   return $('#' + $('._lesson_viewer_current_slide').attr('id'));
 }
 
 /**
-Handle playlist menu on lesson viewer startup Uses: [selectComponentInLessonViewerPlaylistMenu](../classes/selectComponentInLessonViewerPlaylistMenu.html#method_selectComponentInLessonViewerPlaylistMenu)
+Initializes the positions, and selects the right lesson in the playlist menu. Called in {{#crossLink "LessonViewerDocumentReady/lessonViewerDocumentReady:method"}}{{/crossLink}}.
 @method initializeLessonViewer
 @for LessonViewerGeneral
 **/
@@ -122,7 +125,7 @@ function initializeLessonViewer() {
 }
 
 /**
-Stop media playling in current slide in lesson viewer
+Stops media playing in current slide.
 @method stopMediaInLessonViewer
 @for LessonViewerGeneral
 **/
@@ -144,7 +147,7 @@ function stopMediaInLessonViewer() {
 
 
 /**
-Hide slides navigation arrows in lesson viewer
+Hides slides navigation arrows.
 @method hideArrowsInLessonViewer
 @for LessonViewerGraphics
 **/
@@ -153,7 +156,7 @@ function hideArrowsInLessonViewer() {
 }
 
 /**
-Show slides navigation arrows in lesson viewer
+Shows slides navigation arrows.
 @method showArrowsInLessonViewer
 @for LessonViewerGraphics
 **/
@@ -330,7 +333,7 @@ function goToPrevSlideInLessonViewer() {
 }
 
 /**
-Slide to given slide Uses: [stopMediaInLessonViewer](../classes/stopMediaInLessonViewer.html#method_stopMediaInLessonViewer) and [getLessonViewerCurrentSlide](../classes/getLessonViewerCurrentSlide.html#method_getLessonViewerCurrentSlide) and [unbindLoader](../classes/unbindLoader.html#method_unbindLoader) and [bindLoader](../classes/bindLoader.html#method_bindLoader)
+Slide to given slide Uses: 
 @method slideToInLessonViewer
 @for LessonViewerSlidesNavigation
 @param to {Object} slide to slide to

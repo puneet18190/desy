@@ -305,7 +305,9 @@
 <div class="file">
     <pre class="code prettyprint linenums">
 &#x2F;**
-bla bla bla (dire che devono venire caricati prima di document ready, e che a momento c&#x27;è solamente la classe per detectare i browsers)
+This module contains all the patches for JQuery. Notice that the methods listed here sometimes are defined using anonimous functions fired in this same file: this is because in the javascript loading tree these functions can be loaded where the application needs, rather than in the file &lt;i&gt;document_ready.js&lt;&#x2F;i&gt;.
+&lt;br&#x2F;&gt;&lt;br&#x2F;&gt;
+So far the only class present in the module is {{#crossLink &quot;JqueryPatchesBrowsers&quot;}}{{&#x2F;crossLink}}, used to detect browsers. The functions in this class differ by {{#crossLink &quot;AdminDocumentReady&#x2F;adminBrowsersDocumentReady:method&quot;}}{{&#x2F;crossLink}} and {{#crossLink &quot;GeneralDocumentReady&#x2F;browsersDocumentReady:method&quot;}}{{&#x2F;crossLink}} because instead of adding a class to the HTML tag they create an attribute for a JQuery object.
 @module jquery-patches
 **&#x2F;
 
@@ -314,7 +316,7 @@ bla bla bla (dire che devono venire caricati prima di document ready, e che a mo
 
 
 &#x2F;**
-bla bla bla
+Detects if the browser is an iPad, and saves the result in &lt;b&gt;$.browser.ipad&lt;&#x2F;b&gt;.
 @method iPadDetection
 @for JqueryPatchesBrowsers
 **&#x2F;
