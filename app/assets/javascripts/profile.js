@@ -1,5 +1,5 @@
 /**
-bla bla bla
+This module contains the initialization methods for <b>profiling</b> and <b>registration</b> of new users.
 @module profile
 **/
 
@@ -8,7 +8,7 @@ bla bla bla
 
 
 /**
-bla bla bla
+Initializes the action that shows automaticly the login form when somebody opens the maing page of the application without being logged.
 @method automaticLoginDocumentReady
 @for ProfilePrelogin
 **/
@@ -22,7 +22,7 @@ function automaticLoginDocumentReady() {
 }
 
 /**
-bla bla bla
+Initializes the handler of the login form.
 @method preloginDocumentReady
 @for ProfilePrelogin
 **/
@@ -46,7 +46,7 @@ function preloginDocumentReady() {
 
 
 /**
-bla bla bla
+Initializes the javascript effects of the registration / modify profile form.
 @method profileDocumentReady
 @for ProfileUsers
 **/

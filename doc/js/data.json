@@ -666,7 +666,7 @@
             "tag": "module",
             "file": "app/assets/javascripts/profile.js",
             "line": 1,
-            "description": "bla bla bla"
+            "description": "This module contains the initialization methods for <b>profiling</b> and <b>registration</b> of new users."
         },
         "search": {
             "name": "search",
@@ -5257,7 +5257,7 @@
         {
             "file": "app/assets/javascripts/profile.js",
             "line": 10,
-            "description": "bla bla bla",
+            "description": "Initializes the action that shows automaticly the login form when somebody opens the maing page of the application without being logged.",
             "itemtype": "method",
             "name": "automaticLoginDocumentReady",
             "class": "ProfilePrelogin",
@@ -5266,7 +5266,7 @@
         {
             "file": "app/assets/javascripts/profile.js",
             "line": 24,
-            "description": "bla bla bla",
+            "description": "Initializes the handler of the login form.",
             "itemtype": "method",
             "name": "preloginDocumentReady",
             "class": "ProfilePrelogin",
@@ -5275,7 +5275,7 @@
         {
             "file": "app/assets/javascripts/profile.js",
             "line": 48,
-            "description": "bla bla bla",
+            "description": "Initializes the javascript effects of the registration / modify profile form.",
             "itemtype": "method",
             "name": "profileDocumentReady",
             "class": "ProfileUsers",

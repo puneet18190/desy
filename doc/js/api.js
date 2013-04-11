@@ -198,7 +198,7 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "profile",
             "name": "profile",
-            "description": "bla bla bla"
+            "description": "This module contains the initialization methods for <b>profiling</b> and <b>registration</b> of new users."
         },
         {
             "displayName": "search",
