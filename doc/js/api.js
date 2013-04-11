@@ -213,7 +213,7 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "video-editor",
             "name": "video-editor",
-            "description": "Provides video editor ajax actions."
+            "description": "Provides video editor ajax actions. TODO per quanto riguarda la fase di commit, copiare il paragrafo da audio e image editor e adattarlo"
         },
         {
             "displayName": "virtual-classroom",

@@ -322,7 +322,7 @@ As for the other Element Editors ({{#crossLinkModule &quot;audio-editor&quot;}}{
 
 
 &#x2F;**
-bla bla bla
+General initializer for Image Editor.
 @method imageEditorDocumentReady
 @for ImageEditorDocumentReady
 **&#x2F;
@@ -335,7 +335,7 @@ function imageEditorDocumentReady() {
 }
 
 &#x2F;**
-bla bla bla
+Initializer for the functionalities of committing changes (click on &#x27;commit&#x27;, on &#x27;cancel&#x27;, popup asking to overwrite, etc). For other functionalities common to all the Element Editors, see {{#crossLink &quot;MediaElementEditorForms&quot;}}{{&#x2F;crossLink}}.
 @method imageEditorDocumentReadyCommit
 @for ImageEditorDocumentReady
 **&#x2F;
@@ -406,7 +406,7 @@ function imageEditorDocumentReadyCommit() {
 }
 
 &#x2F;**
-bla bla bla
+Initializer for crop mode: it contains the initialization of the JQueryUi plugin &lt;b&gt;imgAreaSelect&lt;&#x2F;b&gt;.
 @method imageEditorDocumentReadyCrop
 @for ImageEditorDocumentReady
 **&#x2F;
@@ -458,14 +458,14 @@ function imageEditorDocumentReadyCrop() {
 }
 
 &#x2F;**
-bla bla bla
+Initializer for the general graphical properties of the editor: position and resizing of the image, etc.
 @method imageEditorDocumentReadyGeneral
 @for ImageEditorDocumentReady
 **&#x2F;
 function imageEditorDocumentReadyGeneral() {
   $(&#x27;.image_editor_only #form_info_new_media_element_in_editor, .image_editor_only #form_info_update_media_element_in_editor&#x27;).css(&quot;left&quot;,($(window).width()&#x2F;2)-495);
   $(&#x27;#image_gallery_for_image_editor ._select_image_from_gallery&#x27;).addClass(&#x27;_add_image_to_image_editor&#x27;);
-  $(&#x27;#image_gallery_for_image_editor .gallery-header&#x27;).css(&quot;left&quot;,($(window).width()&#x2F;2)-420);
+  $(&#x27;#image_gallery_for_image_editor .gallery-header&#x27;).css(&#x27;left&#x27;, ($(window).width()&#x2F;2) - 420);
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._add_image_to_image_editor&#x27;, function() {
     var parser = document.createElement(&#x27;a&#x27;);
     parser.href = $(&#x27;._exit_url&#x27;).attr(&#x27;href&#x27;);
@@ -474,7 +474,7 @@ function imageEditorDocumentReadyGeneral() {
 }
 
 &#x2F;**
-bla bla bla
+Initializer for text inserting mode. It includes the initialization of JQueryUi draggable for the small text areas inside the image.
 @method imageEditorDocumentReadyTexts
 @for ImageEditorDocumentReady
 **&#x2F;
@@ -571,7 +571,7 @@ function imageEditorDocumentReadyTexts() {
 }
 
 &#x2F;**
-bla bla bla
+Initializer for the route linked to the action &#x27;undo&#x27;, that undoes the last step of editing.
 @method imageEditorDocumentReadyUndo
 @for ImageEditorDocumentReady
 **&#x2F;

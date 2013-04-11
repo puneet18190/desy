@@ -735,7 +735,7 @@
             "tag": "module",
             "file": "app/assets/javascripts/video_editor.js",
             "line": 1,
-            "description": "Provides video editor ajax actions."
+            "description": "Provides video editor ajax actions. TODO per quanto riguarda la fase di commit, copiare il paragrafo da audio e image editor e adattarlo"
         },
         "virtual-classroom": {
             "name": "virtual-classroom",
@@ -3619,7 +3619,7 @@
         {
             "file": "app/assets/javascripts/image_editor.js",
             "line": 18,
-            "description": "bla bla bla",
+            "description": "General initializer for Image Editor.",
             "itemtype": "method",
             "name": "imageEditorDocumentReady",
             "class": "ImageEditorDocumentReady",
@@ -3628,7 +3628,7 @@
         {
             "file": "app/assets/javascripts/image_editor.js",
             "line": 31,
-            "description": "bla bla bla",
+            "description": "Initializer for the functionalities of committing changes (click on 'commit', on 'cancel', popup asking to overwrite, etc). For other functionalities common to all the Element Editors, see {{#crossLink \"MediaElementEditorForms\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "imageEditorDocumentReadyCommit",
             "class": "ImageEditorDocumentReady",
@@ -3637,7 +3637,7 @@
         {
             "file": "app/assets/javascripts/image_editor.js",
             "line": 102,
-            "description": "bla bla bla",
+            "description": "Initializer for crop mode: it contains the initialization of the JQueryUi plugin <b>imgAreaSelect</b>.",
             "itemtype": "method",
             "name": "imageEditorDocumentReadyCrop",
             "class": "ImageEditorDocumentReady",
@@ -3646,7 +3646,7 @@
         {
             "file": "app/assets/javascripts/image_editor.js",
             "line": 154,
-            "description": "bla bla bla",
+            "description": "Initializer for the general graphical properties of the editor: position and resizing of the image, etc.",
             "itemtype": "method",
             "name": "imageEditorDocumentReadyGeneral",
             "class": "ImageEditorDocumentReady",
@@ -3655,7 +3655,7 @@
         {
             "file": "app/assets/javascripts/image_editor.js",
             "line": 170,
-            "description": "bla bla bla",
+            "description": "Initializer for text inserting mode. It includes the initialization of JQueryUi draggable for the small text areas inside the image.",
             "itemtype": "method",
             "name": "imageEditorDocumentReadyTexts",
             "class": "ImageEditorDocumentReady",
@@ -3664,7 +3664,7 @@
         {
             "file": "app/assets/javascripts/image_editor.js",
             "line": 267,
-            "description": "bla bla bla",
+            "description": "Initializer for the route linked to the action 'undo', that undoes the last step of editing.",
             "itemtype": "method",
             "name": "imageEditorDocumentReadyUndo",
             "class": "ImageEditorDocumentReady",
@@ -5475,7 +5475,7 @@
         {
             "file": "app/assets/javascripts/video_editor.js",
             "line": 568,
-            "description": "bla bla bla",
+            "description": "bla bla bla -- TODO copiare dagli analoghi in image editor e audio editor",
             "itemtype": "method",
             "name": "videoEditorDocumentReadyCommit",
             "class": "VideoEditorDocumentReady",
