@@ -163,7 +163,7 @@ function initializeAudioEditorCutter(identifier) {
 }
 
 /**
-This is the method that assocaites {{#crossLink "PlayersAudioEditor/initializeActionOfMediaTimeUpdaterInAudioEditor:method"}}{{/crossLink}} to the event of <b>timeupdate</b>. Notice that the method waits until he receives the event <b>loadedmetadata</b> before working.
+This is the method that associates {{#crossLink "PlayersAudioEditor/initializeActionOfMediaTimeUpdaterInAudioEditor:method"}}{{/crossLink}} to the event of <b>timeupdate</b>. Notice that the method waits until he receives the event <b>loadedmetadata</b> before working.
 @method initializeMediaTimeUpdaterInAudioEditor
 @for PlayersAudioEditor
 @param identifier {Number} the unique identifier of the audio component (see {{#crossLinkModule "audio-editor"}}{{/crossLinkModule}})
@@ -528,7 +528,7 @@ function initializeMedia(content_id, type) {
 }
 
 /**
-This is the method that assocaites {{#crossLink "PlayersGeneral/initializeActionOfMediaTimeUpdater:method"}}{{/crossLink}} to the event of <b>timeupdate</b>. Notice that the method waits until he receives the event <b>loadedmetadata</b> before working.
+This is the method that associates {{#crossLink "PlayersGeneral/initializeActionOfMediaTimeUpdater:method"}}{{/crossLink}} to the event of <b>timeupdate</b>. Notice that the method waits until he receives the event <b>loadedmetadata</b> before working.
 @method initializeMediaTimeUpdater
 @for PlayersGeneral
 @param media {String} HTML selector for the audio or video

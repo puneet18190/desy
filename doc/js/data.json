@@ -4917,7 +4917,7 @@
         {
             "file": "app/assets/javascripts/players.js",
             "line": 165,
-            "description": "This is the method that assocaites {{#crossLink \"PlayersAudioEditor/initializeActionOfMediaTimeUpdaterInAudioEditor:method\"}}{{/crossLink}} to the event of <b>timeupdate</b>. Notice that the method waits until he receives the event <b>loadedmetadata</b> before working.",
+            "description": "This is the method that associates {{#crossLink \"PlayersAudioEditor/initializeActionOfMediaTimeUpdaterInAudioEditor:method\"}}{{/crossLink}} to the event of <b>timeupdate</b>. Notice that the method waits until he receives the event <b>loadedmetadata</b> before working.",
             "itemtype": "method",
             "name": "initializeMediaTimeUpdaterInAudioEditor",
             "params": [
@@ -5120,7 +5120,7 @@
         {
             "file": "app/assets/javascripts/players.js",
             "line": 530,
-            "description": "This is the method that assocaites {{#crossLink \"PlayersGeneral/initializeActionOfMediaTimeUpdater:method\"}}{{/crossLink}} to the event of <b>timeupdate</b>. Notice that the method waits until he receives the event <b>loadedmetadata</b> before working.",
+            "description": "This is the method that associates {{#crossLink \"PlayersGeneral/initializeActionOfMediaTimeUpdater:method\"}}{{/crossLink}} to the event of <b>timeupdate</b>. Notice that the method waits until he receives the event <b>loadedmetadata</b> before working.",
             "itemtype": "method",
             "name": "initializeMediaTimeUpdater",
             "params": [
