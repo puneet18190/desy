@@ -564,8 +564,8 @@
             "namespaces": {},
             "tag": "module",
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 9,
-            "description": "Lesson viewer, it handles slides switching and playlist menu effects."
+            "line": 1,
+            "description": "The Lesson Viewer is the instrument to reporoduce single and multiple lessons (playlists). The Viewer provides the user of a screen containing the current slide with <b>two arrows</b> to switch to the next one. If the lesson is being reproduced inside a playlist, it's additionally available a <b>playlst menu</b> (opened on the bottom of the current slide).\n<br/><br/>\nThe main methods of this module are {{#crossLink \"LessonViewerSlidesNavigation/slideToInLessonViewer:method\"}}{{/crossLink}} (moves to a given slide) and {{#crossLink \"LessonViewerPlaylist/switchLessonInPlaylistMenuLessonViewer:method\"}}{{/crossLink}} (moves to the first slide of a given lesson and updates the selected lesson in the menu). The first method can be used separately if there is no playlist, or together with the second one if there is one (they are called together inside {{#crossLink \"LessonViewerSlidesNavigation/slideToInLessonViewerWithLessonSwitch:method\"}}{{/crossLink}}).\n<br/><br/>\nAdditionally, {{#crossLink \"LessonViewerPlaylist/switchLessonInPlaylistMenuLessonViewer:method\"}}{{/crossLink}} can be provided of a callback that is passed to {{#crossLink \"LessonViewerPlaylist/selectComponentInLessonViewerPlaylistMenu:method\"}}{{/crossLink}} and executed after the animation of the scroll inside the lesson menu: the callback is used when the user selects a lesson directly from the menu, and {{#crossLink \"LessonViewerSlidesNavigation/slideToInLessonViewer:method\"}}{{/crossLink}} is executed to get to the cover of the selected lesson after that the menu has been closed.\n<br/><br/>\nThere are <b>three known bugs</b> due to the bad quality of the plugin <b>JScrollPain</b>:\n<ul>\n  <li>When the user passes from <i>the first slide of the third lesson</i> to <i>the last slide of the second lesson</i>, the scroll doesn't follow the selection of the new lesson</li>\n  <li>Same problem when the user passes from <i>the last slide of the last lesson</i> to <i>the first slide of the first lesson</i></li>\n  <li>If, after having opened <b>for the first time</b> (and only for that time) the playlist menu, I click before two seconds on a lesson, the menu gets broken</li>\n</ul>"
         },
         "media-element-editor": {
             "name": "media-element-editor",
@@ -4266,7 +4266,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 18,
+            "line": 21,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "lessonViewerDocumentReady",
@@ -4275,7 +4275,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 29,
+            "line": 32,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "lessonViewerDocumentReadyPlaylist",
@@ -4284,7 +4284,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 65,
+            "line": 68,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "lessonViewerDocumentReadySlidesNavigation",
@@ -4293,7 +4293,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 98,
+            "line": 101,
             "description": "Gets the current slide id",
             "itemtype": "method",
             "name": "getLessonViewerCurrentSlide",
@@ -4306,7 +4306,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 108,
+            "line": 111,
             "description": "Handle playlist menu on lesson viewer startup Uses: [selectComponentInLessonViewerPlaylistMenu](../classes/selectComponentInLessonViewerPlaylistMenu.html#method_selectComponentInLessonViewerPlaylistMenu)",
             "itemtype": "method",
             "name": "initializeLessonViewer",
@@ -4315,7 +4315,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 124,
+            "line": 127,
             "description": "Stop media playling in current slide in lesson viewer",
             "itemtype": "method",
             "name": "stopMediaInLessonViewer",
@@ -4324,7 +4324,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 146,
+            "line": 149,
             "description": "Hide slides navigation arrows in lesson viewer",
             "itemtype": "method",
             "name": "hideArrowsInLessonViewer",
@@ -4333,7 +4333,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 155,
+            "line": 158,
             "description": "Show slides navigation arrows in lesson viewer",
             "itemtype": "method",
             "name": "showArrowsInLessonViewer",
@@ -4342,7 +4342,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 168,
+            "line": 171,
             "description": "Open playlist menu, show lessons cover list and change playlist toggle label Uses: [showArrowsInLessonViewer](../classes/showArrowsInLessonViewer.html#method_showArrowsInLessonViewer)",
             "itemtype": "method",
             "name": "closePlaylistMenuInLessonViewer",
@@ -4358,7 +4358,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 183,
+            "line": 186,
             "description": "Open playlist menu, show lessons conver list and change playlist toggle label Uses: [hideArrowsInLessonViewer](../classes/hideArrowsInLessonViewer.html#method_hideArrowsInLessonViewer)",
             "itemtype": "method",
             "name": "openPlaylistMenuInLessonViewer",
@@ -4367,7 +4367,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 195,
+            "line": 198,
             "description": "Sets selected lesson from playlist menu",
             "itemtype": "method",
             "name": "selectComponentInLessonViewerPlaylistMenu",
@@ -4388,7 +4388,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 285,
+            "line": 288,
             "description": "Open playlist menu, show lessons conver list and change playlist toggle label Uses: [selectComponentInLessonViewerPlaylistMenu](../classes/selectComponentInLessonViewerPlaylistMenu.html#method_selectComponentInLessonViewerPlaylistMenu)",
             "itemtype": "method",
             "name": "switchLessonInPlaylistMenuLessonViewer",
@@ -4409,7 +4409,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 304,
+            "line": 307,
             "description": "Go to next slide in lesson viewer, if last slide it goes to first one. Uses: [slideToInLessonViewerWithLessonSwitch](../classes/slideToInLessonViewerWithLessonSwitch.html#method_slideToInLessonViewerWithLessonSwitch)",
             "itemtype": "method",
             "name": "goToNextSlideInLessonViewer",
@@ -4418,7 +4418,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 318,
+            "line": 321,
             "description": "Go to previous slide in lesson viewer, if first slide it goes to last one. Uses: [slideToInLessonViewerWithLessonSwitch](../classes/slideToInLessonViewerWithLessonSwitch.html#method_slideToInLessonViewerWithLessonSwitch)",
             "itemtype": "method",
             "name": "goToPrevSlideInLessonViewer",
@@ -4427,8 +4427,8 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 332,
-            "description": "Slide to given slide Uses: [stopMediaInLessonViewer](../classes/stopMediaInLessonViewer.html#method_stopMediaInLessonViewer) and [getLessonViewerCurrentSlide](../classes/getLessonViewerCurrentSlide.html#method_getLessonViewerCurrentSlide) and [unbindLoader](../classes/unbindLoader.html#method_unbindLoader) and [bindLoader](../classes/bindLoader.html#method_bindLoader)",
+            "line": 335,
+            "description": "Slide to given slide Uses:",
             "itemtype": "method",
             "name": "slideToInLessonViewer",
             "params": [
@@ -4443,7 +4443,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 376,
+            "line": 379,
             "description": "Open playlist menu, show lessons conver list and change playlist toggle label Uses: [slideToInLessonViewer](../classes/slideToInLessonViewer.html#method_slideToInLessonViewer) and [switchLessonInPlaylistMenuLessonViewer](../classes/switchLessonInPlaylistMenuLessonViewer.html#method_switchLessonInPlaylistMenuLessonViewer)",
             "itemtype": "method",
             "name": "slideToInLessonViewerWithLessonSwitch",

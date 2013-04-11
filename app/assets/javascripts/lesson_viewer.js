@@ -5,10 +5,10 @@ The main methods of this module are {{#crossLink "LessonViewerSlidesNavigation/s
 <br/><br/>
 Additionally, {{#crossLink "LessonViewerPlaylist/switchLessonInPlaylistMenuLessonViewer:method"}}{{/crossLink}} can be provided of a callback that is passed to {{#crossLink "LessonViewerPlaylist/selectComponentInLessonViewerPlaylistMenu:method"}}{{/crossLink}} and executed after the animation of the scroll inside the lesson menu: the callback is used when the user selects a lesson directly from the menu, and {{#crossLink "LessonViewerSlidesNavigation/slideToInLessonViewer:method"}}{{/crossLink}} is executed to get to the cover of the selected lesson after that the menu has been closed.
 <br/><br/>
-There are three known bugs due to the bad quality of the plugin <b>JScrollPain</b>:
+There are <b>three known bugs</b> due to the bad quality of the plugin <b>JScrollPain</b>:
 <ul>
-  <li>When the user passes from the first slide of the third lesson to the last slide of the second lesson, the scroll doesn't follow the selection of the new lesson</li>
-  <li>Same problem when the user passes from the last slide of the last lesson to the first slide of the first lesson</li>
+  <li>When the user passes from <i>the first slide of the third lesson</i> to <i>the last slide of the second lesson</i>, the scroll doesn't follow the selection of the new lesson</li>
+  <li>Same problem when the user passes from <i>the last slide of the last lesson</i> to <i>the first slide of the first lesson</i></li>
   <li>If, after having opened <b>for the first time</b> (and only for that time) the playlist menu, I click before two seconds on a lesson, the menu gets broken</li>
 </ul>
 @module lesson-viewer
