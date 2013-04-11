@@ -363,6 +363,8 @@
   
     <li><a href="./MailingListsController.html">MailingListsController</a>
   
+    <li><a href="./MaintainerNotificationsMailer.html">MaintainerNotificationsMailer</a>
+  
     <li><a href="./MediaElement.html">MediaElement</a>
   
     <li><a href="./MediaElementsController.html">MediaElementsController</a>
@@ -663,7 +665,7 @@ the current location</p>
             <pre><span class="ruby-comment"># File app/models/location.rb, line 67</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">ancestry_with_me</span>
   <span class="ruby-identifier">anc</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">ancestry</span>
-  <span class="ruby-identifier">anc</span> = <span class="ruby-node">&quot;#{anc}/&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">anc</span>.<span class="ruby-identifier">present?</span> <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-regexp">/\//</span> <span class="ruby-operator">=~</span> <span class="ruby-identifier">anc</span>).<span class="ruby-identifier">nil?</span>
+  <span class="ruby-identifier">anc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;/&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">anc</span>.<span class="ruby-identifier">present?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-regexp">/\//</span> <span class="ruby-operator">!~</span> <span class="ruby-identifier">anc</span>
   <span class="ruby-node">&quot;#{anc}#{self.id}/&quot;</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- ancestry_with_me-source -->

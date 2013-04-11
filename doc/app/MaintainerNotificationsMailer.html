@@ -4,7 +4,7 @@
 <head>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
 
-<title>class NotificationsController - Rails Application Documentation</title>
+<title>class MaintainerNotificationsMailer - Rails Application Documentation</title>
 
 <link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
 
@@ -47,7 +47,7 @@
     <nav id="file-list-section" class="section">
   <h3 class="section-header">Defined In</h3>
   <ul>
-    <li>app/controllers/notifications_controller.rb
+    <li>app/mailers/maintainer_notifications_mailer.rb
   </ul>
 </nav>
 
@@ -59,7 +59,7 @@
     <nav id="parent-class-section" class="section">
   <h3 class="section-header">Parent</h3>
   
-  <p class="link"><a href="ApplicationController.html">ApplicationController</a>
+  <p class="link">ActionMailer::Base
   
 </nav>
 
@@ -70,15 +70,7 @@
 
   <ul class="link-list">
     
-    <li><a href="#method-i-destroy">#destroy</a>
-    
-    <li><a href="#method-i-get_new_block">#get_new_block</a>
-    
-    <li><a href="#method-i-initialize_notification_offset">#initialize_notification_offset</a>
-    
-    <li><a href="#method-i-initialize_notification_with_owner">#initialize_notification_with_owner</a>
-    
-    <li><a href="#method-i-seen">#seen</a>
+    <li><a href="#method-i-media_elements_folder_size_alert">#media_elements_folder_size_alert</a>
     
   </ul>
 </nav>
@@ -420,19 +412,10 @@
 </nav>
 
 <div id="documentation">
-  <h1 class="class">class NotificationsController</h1>
+  <h1 class="class">class MaintainerNotificationsMailer</h1>
 
   <div id="description" class="description">
     
-<h2 id="label-Description">Description</h2>
-
-<p>Contains the actions used to handle notifications.</p>
-
-<h2 id="label-Models+used">Models used</h2>
-<ul><li>
-<p><a href="Notification.html">Notification</a></p>
-</li></ul>
-
   </div><!-- description -->
 
   
@@ -444,20 +427,6 @@
     
 
     
-    <!-- Constants -->
-    <section id="constants-list" class="section">
-      <h3 class="section-header">Constants</h3>
-      <dl>
-      
-        <dt id="NOTIFICATIONS_LOADED_TOGETHER">NOTIFICATIONS_LOADED_TOGETHER
-        
-        <dd class="description"><p>Number of notifications inside a pagination block (configured in
-settings.yml)</p>
-        
-      
-      </dl>
-    </section>
-    
 
     
 
@@ -467,221 +436,39 @@ settings.yml)</p>
       <h3 class="section-header">Public Instance Methods</h3>
 
     
-      <div id="method-i-destroy" class="method-detail ">
+      <div id="method-i-media_elements_folder_size_alert" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">destroy</span><span
-            class="method-args">()</span>
+          <span class="method-name">media_elements_folder_size_alert</span><span
+            class="method-args">(current_media_elements_folder_size, maximum_media_elements_folder_size)</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
         
 
         <div class="method-description">
           
-          <h3 id="method-i-destroy-label-Description">Description</h3>
-
-<p>Deletes a notification</p>
-
-<h3 id="method-i-destroy-label-Mode">Mode</h3>
-
-<p>Ajax</p>
-
-<h3 id="method-i-destroy-label-Specific+filters">Specific filters</h3>
-<ul><li>
-<p><a
-href="NotificationsController.html#method-i-initialize_notification_with_owner">#initialize_notification_with_owner</a></p>
-</li><li>
-<p><a
-href="NotificationsController.html#method-i-initialize_notification_offset">#initialize_notification_offset</a></p>
-</li></ul>
+          
           
 
           
-          <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/notifications_controller.rb, line 49</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
-  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
-    <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">destroy_notification_and_reload</span>(<span class="ruby-ivar">@notification</span>.<span class="ruby-identifier">id</span>, <span class="ruby-ivar">@offset_notifications</span>)
-    <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">resp</span>.<span class="ruby-identifier">nil?</span>
-      <span class="ruby-ivar">@offset_notifications</span> = <span class="ruby-identifier">resp</span>[<span class="ruby-value">:offset</span>]
-      <span class="ruby-ivar">@next_notification</span> = <span class="ruby-identifier">resp</span>[<span class="ruby-value">:last</span>]
-      <span class="ruby-ivar">@new_notifications</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">number_notifications_not_seen</span>
-      <span class="ruby-ivar">@tot_notifications</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">tot_notifications_number</span>
-    <span class="ruby-keyword">else</span>
-      <span class="ruby-ivar">@error</span> = <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;activerecord.errors.models.notification.problem_destroying&#39;</span>)
-    <span class="ruby-keyword">end</span>
-  <span class="ruby-keyword">else</span>
-    <span class="ruby-ivar">@error</span> = <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;activerecord.errors.models.notification.problem_destroying&#39;</span>)
-  <span class="ruby-keyword">end</span>
+          <div class="method-source-code" id="media_elements_folder_size_alert-source">
+            <pre><span class="ruby-comment"># File app/mailers/maintainer_notifications_mailer.rb, line 7</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">media_elements_folder_size_alert</span>(<span class="ruby-identifier">current_media_elements_folder_size</span>, <span class="ruby-identifier">maximum_media_elements_folder_size</span>)
+  <span class="ruby-ivar">@current_media_elements_folder_size_in_gigabytes</span> = <span class="ruby-identifier">current_media_elements_folder_size</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">/</span> <span class="ruby-value">1024</span><span class="ruby-operator">**</span><span class="ruby-value">3</span>
+  <span class="ruby-ivar">@maximum_media_elements_folder_size_in_gigabytes</span> = <span class="ruby-identifier">maximum_media_elements_folder_size</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">/</span> <span class="ruby-value">1024</span><span class="ruby-operator">**</span><span class="ruby-value">3</span>
+  <span class="ruby-identifier">mail</span> <span class="ruby-identifier">subject</span><span class="ruby-operator">:</span> <span class="ruby-node">&quot;#{SETTINGS[&#39;application_name&#39;]} - media elements folder size is reaching the maximum size allowed&quot;</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- destroy-source -->
+          </div><!-- media_elements_folder_size_alert-source -->
           
         </div>
 
         
 
         
-      </div><!-- destroy-method -->
-
-    
-      <div id="method-i-get_new_block" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">get_new_block</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          <h3 id="method-i-get_new_block-label-Description">Description</h3>
-
-<p>Pagination with infinite scroll</p>
-
-<h3 id="method-i-get_new_block-label-Mode">Mode</h3>
-
-<p>Ajax</p>
-
-<h3 id="method-i-get_new_block-label-Specific+filters">Specific filters</h3>
-<ul><li>
-<p><a
-href="NotificationsController.html#method-i-initialize_notification_offset">#initialize_notification_offset</a></p>
-</li></ul>
-          
-
-          
-          <div class="method-source-code" id="get_new_block-source">
-            <pre><span class="ruby-comment"># File app/controllers/notifications_controller.rb, line 77</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_new_block</span>
-  <span class="ruby-ivar">@notifications</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">notifications_visible_block</span> <span class="ruby-ivar">@offset_notifications</span>, <span class="ruby-constant">NOTIFICATIONS_LOADED_TOGETHER</span>
-  <span class="ruby-ivar">@offset_notifications</span> <span class="ruby-operator">+=</span> <span class="ruby-ivar">@notifications</span>.<span class="ruby-identifier">length</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- get_new_block-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- get_new_block-method -->
-
-    
-      <div id="method-i-seen" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">seen</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          <h3 id="method-i-seen-label-Description">Description</h3>
-
-<p>Sets that the notification has been seen by the user (see <a
-href="Notification.html#method-i-has_been_seen">Notification#has_been_seen</a>)</p>
-
-<h3 id="method-i-seen-label-Mode">Mode</h3>
-
-<p>Ajax</p>
-
-<h3 id="method-i-seen-label-Specific+filters">Specific filters</h3>
-<ul><li>
-<p><a
-href="NotificationsController.html#method-i-initialize_notification_with_owner">#initialize_notification_with_owner</a></p>
-</li></ul>
-          
-
-          
-          <div class="method-source-code" id="seen-source">
-            <pre><span class="ruby-comment"># File app/controllers/notifications_controller.rb, line 29</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">seen</span>
-  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
-    <span class="ruby-ivar">@ok</span> = <span class="ruby-ivar">@notification</span>.<span class="ruby-identifier">has_been_seen</span>
-  <span class="ruby-keyword">end</span>
-  <span class="ruby-ivar">@new_notifications</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">number_notifications_not_seen</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- seen-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- seen-method -->
+      </div><!-- media_elements_folder_size_alert-method -->
 
     
     </section><!-- public-instance-method-details -->
-  
-     <section id="private-instance-5Buntitled-5D-method-details" class="method-section section">
-      <h3 class="section-header">Private Instance Methods</h3>
-
-    
-      <div id="method-i-initialize_notification_offset" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">initialize_notification_offset</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Initializes the notifications offset</p>
-          
-
-          
-          <div class="method-source-code" id="initialize_notification_offset-source">
-            <pre><span class="ruby-comment"># File app/controllers/notifications_controller.rb, line 85</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize_notification_offset</span> <span class="ruby-comment"># :doc:</span>
-  <span class="ruby-ivar">@offset_notifications</span> = (<span class="ruby-identifier">correct_integer?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:offset</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:offset</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-constant">NOTIFICATIONS_LOADED_TOGETHER</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- initialize_notification_offset-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- initialize_notification_offset-method -->
-
-    
-      <div id="method-i-initialize_notification_with_owner" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">initialize_notification_with_owner</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Checks if the owner of the notification is correct</p>
-          
-
-          
-          <div class="method-source-code" id="initialize_notification_with_owner-source">
-            <pre><span class="ruby-comment"># File app/controllers/notifications_controller.rb, line 90</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize_notification_with_owner</span> <span class="ruby-comment"># :doc:</span>
-  <span class="ruby-ivar">@notification_id</span> = <span class="ruby-identifier">correct_integer?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:notification_id</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:notification_id</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-value">0</span>
-  <span class="ruby-ivar">@notification</span> = <span class="ruby-constant">Notification</span>.<span class="ruby-identifier">find_by_id</span> <span class="ruby-ivar">@notification_id</span>
-  <span class="ruby-identifier">update_ok</span>(<span class="ruby-operator">!</span><span class="ruby-ivar">@notification</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">==</span> <span class="ruby-ivar">@notification</span>.<span class="ruby-identifier">user_id</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- initialize_notification_with_owner-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- initialize_notification_with_owner-method -->
-
-    
-    </section><!-- private-instance-method-details -->
   
   </section><!-- 5Buntitled-5D -->
 

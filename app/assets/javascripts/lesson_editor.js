@@ -93,7 +93,7 @@ function stopMediaInCurrentSlide() {
 
 
 /**
-bla bla bla
+General initialization of Lesson Editor.
 @method lessonEditorDocumentReady
 @for LessonEditorDocumentReady
 **/
@@ -111,7 +111,7 @@ function lessonEditorDocumentReady() {
 }
 
 /**
-bla bla bla
+Initializer of the three functionalities to add an element (image, audio, video).
 @method lessonEditorDocumentReadyAddMediaElement
 @for LessonEditorDocumentReady
 **/
@@ -227,7 +227,7 @@ function lessonEditorDocumentReadyAddMediaElement() {
 }
 
 /**
-bla bla bla
+Initializer for galleries.
 @method lessonEditorDocumentReadyGalleries
 @for LessonEditorDocumentReady
 **/
@@ -264,7 +264,7 @@ function lessonEditorDocumentReadyGalleries() {
 }
 
 /**
-bla bla bla
+General initialization of position (used together with {{#crossLink "LessonEditorSlidesNavigation/initLessonEditorPositions:method"}}{{/crossLink}}).
 @method lessonEditorDocumentReadyGeneral
 @for LessonEditorDocumentReady
 **/
@@ -276,7 +276,7 @@ function lessonEditorDocumentReadyGeneral() {
 }
 
 /**
-bla bla bla
+Initializer for JQueryUi animations defined in the class {{#crossLink "LessonEditorJqueryAnimations"}}{{/crossLink}}.
 @method lessonEditorDocumentReadyJqueryAnimations
 @for LessonEditorDocumentReady
 **/
@@ -293,7 +293,7 @@ function lessonEditorDocumentReadyJqueryAnimations() {
 }
 
 /**
-bla bla bla
+Initializer for the template that contains the list of possible slides to be added.
 @method lessonEditorDocumentReadyNewSlideChoice
 @for LessonEditorDocumentReady
 **/
@@ -313,7 +313,7 @@ function lessonEditorDocumentReadyNewSlideChoice() {
 }
 
 /**
-bla bla bla
+Initializer for the mouseover and mouseout to replace a media element already added.
 @method lessonEditorDocumentReadyReplaceMediaElement
 @for LessonEditorDocumentReady
 **/
@@ -337,7 +337,7 @@ function lessonEditorDocumentReadyReplaceMediaElement() {
 }
 
 /**
-bla bla bla
+Initializer for window resize.
 @method lessonEditorDocumentReadyResize
 @for LessonEditorDocumentReady
 **/
@@ -354,7 +354,7 @@ function lessonEditorDocumentReadyResize() {
 }
 
 /**
-bla bla bla
+Initializer for the buttons on the right side of each slide.
 @method lessonEditorDocumentReadySlideButtons
 @for LessonEditorDocumentReady
 **/
@@ -433,7 +433,7 @@ function lessonEditorDocumentReadySlideButtons() {
 }
 
 /**
-bla bla bla
+Initializer for the scroll and all the actions of the slide navigator (see the class {{#crossLink "LessonEditorSlidesNavigation"}}{{/crossLink}}).
 @method lessonEditorDocumentReadySlidesNavigator
 @for LessonEditorDocumentReady
 **/
@@ -481,7 +481,7 @@ function lessonEditorDocumentReadySlidesNavigator() {
 }
 
 /**
-bla bla bla
+Initializer for the placeholders of text inputs throughout the Lesson Editor.
 @method lessonEditorDocumentReadyTextFields
 @for LessonEditorDocumentReady
 **/

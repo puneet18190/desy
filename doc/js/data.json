@@ -3849,7 +3849,7 @@
         {
             "file": "app/assets/javascripts/lesson_editor.js",
             "line": 95,
-            "description": "bla bla bla",
+            "description": "General initialization of Lesson Editor.",
             "itemtype": "method",
             "name": "lessonEditorDocumentReady",
             "class": "LessonEditorDocumentReady",
@@ -3858,7 +3858,7 @@
         {
             "file": "app/assets/javascripts/lesson_editor.js",
             "line": 113,
-            "description": "bla bla bla",
+            "description": "Initializer of the three functionalities to add an element (image, audio, video).",
             "itemtype": "method",
             "name": "lessonEditorDocumentReadyAddMediaElement",
             "class": "LessonEditorDocumentReady",
@@ -3867,7 +3867,7 @@
         {
             "file": "app/assets/javascripts/lesson_editor.js",
             "line": 229,
-            "description": "bla bla bla",
+            "description": "Initializer for galleries.",
             "itemtype": "method",
             "name": "lessonEditorDocumentReadyGalleries",
             "class": "LessonEditorDocumentReady",
@@ -3876,7 +3876,7 @@
         {
             "file": "app/assets/javascripts/lesson_editor.js",
             "line": 266,
-            "description": "bla bla bla",
+            "description": "General initialization of position (used together with {{#crossLink \"LessonEditorSlidesNavigation/initLessonEditorPositions:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "lessonEditorDocumentReadyGeneral",
             "class": "LessonEditorDocumentReady",
@@ -3885,7 +3885,7 @@
         {
             "file": "app/assets/javascripts/lesson_editor.js",
             "line": 278,
-            "description": "bla bla bla",
+            "description": "Initializer for JQueryUi animations defined in the class {{#crossLink \"LessonEditorJqueryAnimations\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "lessonEditorDocumentReadyJqueryAnimations",
             "class": "LessonEditorDocumentReady",
@@ -3894,7 +3894,7 @@
         {
             "file": "app/assets/javascripts/lesson_editor.js",
             "line": 295,
-            "description": "bla bla bla",
+            "description": "Initializer for the template that contains the list of possible slides to be added.",
             "itemtype": "method",
             "name": "lessonEditorDocumentReadyNewSlideChoice",
             "class": "LessonEditorDocumentReady",
@@ -3903,7 +3903,7 @@
         {
             "file": "app/assets/javascripts/lesson_editor.js",
             "line": 315,
-            "description": "bla bla bla",
+            "description": "Initializer for the mouseover and mouseout to replace a media element already added.",
             "itemtype": "method",
             "name": "lessonEditorDocumentReadyReplaceMediaElement",
             "class": "LessonEditorDocumentReady",
@@ -3912,7 +3912,7 @@
         {
             "file": "app/assets/javascripts/lesson_editor.js",
             "line": 339,
-            "description": "bla bla bla",
+            "description": "Initializer for window resize.",
             "itemtype": "method",
             "name": "lessonEditorDocumentReadyResize",
             "class": "LessonEditorDocumentReady",
@@ -3921,7 +3921,7 @@
         {
             "file": "app/assets/javascripts/lesson_editor.js",
             "line": 356,
-            "description": "bla bla bla",
+            "description": "Initializer for the buttons on the right side of each slide.",
             "itemtype": "method",
             "name": "lessonEditorDocumentReadySlideButtons",
             "class": "LessonEditorDocumentReady",
@@ -3930,7 +3930,7 @@
         {
             "file": "app/assets/javascripts/lesson_editor.js",
             "line": 435,
-            "description": "bla bla bla",
+            "description": "Initializer for the scroll and all the actions of the slide navigator (see the class {{#crossLink \"LessonEditorSlidesNavigation\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "lessonEditorDocumentReadySlidesNavigator",
             "class": "LessonEditorDocumentReady",
@@ -3939,7 +3939,7 @@
         {
             "file": "app/assets/javascripts/lesson_editor.js",
             "line": 483,
-            "description": "bla bla bla",
+            "description": "Initializer for the placeholders of text inputs throughout the Lesson Editor.",
             "itemtype": "method",
             "name": "lessonEditorDocumentReadyTextFields",
             "class": "LessonEditorDocumentReady",

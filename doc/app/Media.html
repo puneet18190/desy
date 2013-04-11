@@ -134,8 +134,6 @@
     
     <li><a href="#method-c-ubuntu_install">::ubuntu_install</a>
     
-    <li><a href="#method-c-ubuntu_packages">::ubuntu_packages</a>
-    
   </ul>
 </nav>
 
@@ -415,6 +413,8 @@
   
     <li><a href="./MailingListsController.html">MailingListsController</a>
   
+    <li><a href="./MaintainerNotificationsMailer.html">MaintainerNotificationsMailer</a>
+  
     <li><a href="./MediaElement.html">MediaElement</a>
   
     <li><a href="./MediaElementsController.html">MediaElementsController</a>
@@ -520,6 +520,11 @@ the configuration.</p>
         <dd class="description">
         
       
+        <dt id="UBUNTU_REQUIRED_PACKAGES">UBUNTU_REQUIRED_PACKAGES
+        
+        <dd class="description">
+        
+      
       </dl>
     </section>
     
@@ -548,9 +553,9 @@ the configuration.</p>
 
           
           <div class="method-source-code" id="ubuntu_install-source">
-            <pre><span class="ruby-comment"># File lib/media.rb, line 22</span>
+            <pre><span class="ruby-comment"># File lib/media.rb, line 20</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">ubuntu_install</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-node">%xsudo apt-get install #{ubuntu_packages.map(&amp;:shellescape).join(&#39; &#39;)} 2&gt;&amp;1`</span>
+  <span class="ruby-identifier">exec</span> <span class="ruby-node">&quot;sudo apt-get install #{UBUNTU_REQUIRED_PACKAGES.map(&amp;:shellescape).join(&#39; &#39;)}&quot;</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- ubuntu_install-source -->
           
@@ -560,36 +565,6 @@ the configuration.</p>
 
         
       </div><!-- ubuntu_install-method -->
-
-    
-      <div id="method-c-ubuntu_packages" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">ubuntu_packages</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-
-          
-          <div class="method-source-code" id="ubuntu_packages-source">
-            <pre><span class="ruby-comment"># File lib/media.rb, line 18</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">ubuntu_packages</span>
-  <span class="ruby-node">%w( libav-tools libavcodec-extra-53 mkvtoolnix sox )</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- ubuntu_packages-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- ubuntu_packages-method -->
 
     
     </section><!-- public-class-method-details -->
