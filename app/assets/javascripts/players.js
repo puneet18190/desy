@@ -582,9 +582,17 @@ function stopMedia(media) {
 
 
 /**
-bla bla bla
+This method has the same cases of use of {{#crossLink "PlayersAudioEditor/initializeActionOfMediaTimeUpdaterInAudioEditor:method"}}{{/crossLink}}, with a couple of details more due to the more complicated environment present in {{#crossLinkModule "video-editor"}}{{/crossLinkModule}}:
+<ul>
+  <li>the passage from a component to another (the method called in this case is {{#crossLink "VideoEditorPreview/playVideoEditorComponent:method"}}{{/crossLink}}) must handle a <b>transition</b> of one second</li>
+  <li>it's necessary to hide and show the preview <b>progress bar</b> (see {{#crossLink "VideoEditorPreviewAccessories/showVideoEditorPreviewComponentProgressBar:method"}}{{/crossLink}}) positioning it with the help of the methods in {{#crossLink "MediaElementEditorHorizontalTimelines"}}{{/crossLink}}</li>
+  <li>the method needs also to update the <b>background audio track</b>, but only if it's present and if the <b>global preview time</b> is not greater than its duration.</li>
+</ul>
 @method initializeActionOfMediaTimeUpdaterInVideoEditor
 @for PlayersVideoEditor
+@param media {String} HTML selector for the video
+@param identifier {Number} unique identifier for the video component (see {{#crossLinkModule "video-editor"}}{{/crossLinkModule}})
+@param force_parsed_int {Boolean} forces the last second of the video; normally it's <i>false</i>, except the case in which the duration of the video is very close to the biggest lower integer (for instance, the duration is 10.01, which is very close to 10): in this case, the signal that the video ended <b>is not received directly by the current method</b>, but rather by the event handler <b>ended</b> initialized in the end of {{#crossLink "PlayersVideoEditor/initializeVideoInVideoEditorPreview:method"}}{{/crossLink}}
 **/
 function initializeActionOfMediaTimeUpdaterInVideoEditor(media, identifier, force_parsed_int) {
   var video_cut_to = $('#video_component_' + identifier + '_cutter').data('to');

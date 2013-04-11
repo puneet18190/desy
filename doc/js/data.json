@@ -5157,15 +5157,32 @@
         {
             "file": "app/assets/javascripts/players.js",
             "line": 584,
-            "description": "bla bla bla",
+            "description": "This method has the same cases of use of {{#crossLink \"PlayersAudioEditor/initializeActionOfMediaTimeUpdaterInAudioEditor:method\"}}{{/crossLink}}, with a couple of details more due to the more complicated environment present in {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}}:\n<ul>\n  <li>the passage from a component to another (the method called in this case is {{#crossLink \"VideoEditorPreview/playVideoEditorComponent:method\"}}{{/crossLink}}) must handle a <b>transition</b> of one second</li>\n  <li>it's necessary to hide and show the preview <b>progress bar</b> (see {{#crossLink \"VideoEditorPreviewAccessories/showVideoEditorPreviewComponentProgressBar:method\"}}{{/crossLink}}) positioning it with the help of the methods in {{#crossLink \"MediaElementEditorHorizontalTimelines\"}}{{/crossLink}}</li>\n  <li>the method needs also to update the <b>background audio track</b>, but only if it's present and if the <b>global preview time</b> is not greater than its duration.</li>\n</ul>",
             "itemtype": "method",
             "name": "initializeActionOfMediaTimeUpdaterInVideoEditor",
+            "params": [
+                {
+                    "name": "media",
+                    "description": "HTML selector for the video",
+                    "type": "String"
+                },
+                {
+                    "name": "identifier",
+                    "description": "unique identifier for the video component (see {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}})",
+                    "type": "Number"
+                },
+                {
+                    "name": "force_parsed_int",
+                    "description": "forces the last second of the video; normally it's <i>false</i>, except the case in which the duration of the video is very close to the biggest lower integer (for instance, the duration is 10.01, which is very close to 10): in this case, the signal that the video ended <b>is not received directly by the current method</b>, but rather by the event handler <b>ended</b> initialized in the end of {{#crossLink \"PlayersVideoEditor/initializeVideoInVideoEditorPreview:method\"}}{{/crossLink}}",
+                    "type": "Boolean"
+                }
+            ],
             "class": "PlayersVideoEditor",
             "module": "players"
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 658,
+            "line": 666,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "initializeMediaTimeUpdaterInVideoEditor",
@@ -5174,7 +5191,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 678,
+            "line": 686,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "initializeVideoInVideoEditorPreview",
@@ -5183,7 +5200,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 756,
+            "line": 764,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "selectVideoComponentCutterHandle",
@@ -5192,7 +5209,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 766,
+            "line": 774,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "stopVideoInVideoEditorPreview",

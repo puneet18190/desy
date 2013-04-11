@@ -888,9 +888,17 @@ function stopMedia(media) {
 
 
 &#x2F;**
-bla bla bla
+This method has the same cases of use of {{#crossLink &quot;PlayersAudioEditor&#x2F;initializeActionOfMediaTimeUpdaterInAudioEditor:method&quot;}}{{&#x2F;crossLink}}, with a couple of details more due to the more complicated environment present in {{#crossLinkModule &quot;video-editor&quot;}}{{&#x2F;crossLinkModule}}:
+&lt;ul&gt;
+  &lt;li&gt;the passage from a component to another (the method called in this case is {{#crossLink &quot;VideoEditorPreview&#x2F;playVideoEditorComponent:method&quot;}}{{&#x2F;crossLink}}) must handle a &lt;b&gt;transition&lt;&#x2F;b&gt; of one second&lt;&#x2F;li&gt;
+  &lt;li&gt;it&#x27;s necessary to hide and show the preview &lt;b&gt;progress bar&lt;&#x2F;b&gt; (see {{#crossLink &quot;VideoEditorPreviewAccessories&#x2F;showVideoEditorPreviewComponentProgressBar:method&quot;}}{{&#x2F;crossLink}}) positioning it with the help of the methods in {{#crossLink &quot;MediaElementEditorHorizontalTimelines&quot;}}{{&#x2F;crossLink}}&lt;&#x2F;li&gt;
+  &lt;li&gt;the method needs also to update the &lt;b&gt;background audio track&lt;&#x2F;b&gt;, but only if it&#x27;s present and if the &lt;b&gt;global preview time&lt;&#x2F;b&gt; is not greater than its duration.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
 @method initializeActionOfMediaTimeUpdaterInVideoEditor
 @for PlayersVideoEditor
+@param media {String} HTML selector for the video
+@param identifier {Number} unique identifier for the video component (see {{#crossLinkModule &quot;video-editor&quot;}}{{&#x2F;crossLinkModule}})
+@param force_parsed_int {Boolean} forces the last second of the video; normally it&#x27;s &lt;i&gt;false&lt;&#x2F;i&gt;, except the case in which the duration of the video is very close to the biggest lower integer (for instance, the duration is 10.01, which is very close to 10): in this case, the signal that the video ended &lt;b&gt;is not received directly by the current method&lt;&#x2F;b&gt;, but rather by the event handler &lt;b&gt;ended&lt;&#x2F;b&gt; initialized in the end of {{#crossLink &quot;PlayersVideoEditor&#x2F;initializeVideoInVideoEditorPreview:method&quot;}}{{&#x2F;crossLink}}
 **&#x2F;
 function initializeActionOfMediaTimeUpdaterInVideoEditor(media, identifier, force_parsed_int) {
   var video_cut_to = $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter&#x27;).data(&#x27;to&#x27;);
