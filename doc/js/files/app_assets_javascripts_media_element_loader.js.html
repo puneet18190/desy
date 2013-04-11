@@ -305,7 +305,7 @@
 <div class="file">
     <pre class="code prettyprint linenums">
 &#x2F;**
-New media element popup handler, form validation errors handling.
+Javascript functions used in the media element loader.
 @module media-element-loader
 **&#x2F;
 
@@ -314,7 +314,7 @@ New media element popup handler, form validation errors handling.
 
 
 &#x2F;**
-bla bla bla
+Initializer for the loading form.
 @method mediaElementLoaderDocumentReady
 @for MediaElementLoaderDocumentReady
 **&#x2F;
@@ -358,9 +358,10 @@ function mediaElementLoaderDocumentReady() {
 
 
 &#x2F;**
-Handle 413 status error, file too large
+Handles 413 status error, file too large.
 @method uploadDone
 @for MediaElementLoaderDone
+@return {Boolean} false, for some reason
 **&#x2F;
 function uploadDone() {
   var ret = document.getElementById(&#x27;upload_target&#x27;).contentWindow.document.title;
@@ -373,7 +374,7 @@ function uploadDone() {
 }
 
 &#x2F;**
-Reload media elements page after new media element is successfully loaded.
+Reloads media elements page after new media element is successfully loaded.
 @method uploadMediaElementLoadeDoneRedirect
 @for MediaElementLoaderDone
 **&#x2F;
@@ -389,10 +390,10 @@ function uploadMediaElementLoadeDoneRedirect() {
 
 
 &#x2F;**
-Update form fields with error labels
+Update form fields with error labels.
 @method uploadMediaElementLoaderError
 @for MediaElementLoaderErrors
-@param errors {Object} errors list
+@param errors {Array} errors list
 **&#x2F;
 function uploadMediaElementLoaderError(errors) {
   for (var i = 0; i &lt; errors.length; i++) {
@@ -418,7 +419,7 @@ function uploadMediaElementLoaderError(errors) {
 
 
 &#x2F;**
-Set iframe as target for form submit, added a callback function to control 413 status error. Uses: [uploadDone](..&#x2F;classes&#x2F;uploadDone.html#method_uploadDone)
+Sets iframe as target for form submit, and adds a callback function to control 413 status error; notice that &lt;b&gt;upload target&lt;&#x2F;b&gt; is the HTML id of the frame.
 @method initMediaElementLoader
 @for MediaElementLoaderGeneral
 **&#x2F;
@@ -426,16 +427,16 @@ function initMediaElementLoader() {
   document.getElementById(&#x27;new_media_element&#x27;).onsubmit=function() {
     $(&#x27;.form_error&#x27;).removeClass(&#x27;form_error&#x27;);
     $(&#x27;.too_large&#x27;).remove();
-    document.getElementById(&#x27;new_media_element&#x27;).target = &#x27;upload_target&#x27;; &#x2F;&#x2F;&#x27;upload_target&#x27; is the name of the iframe
-    document.getElementById(&quot;upload_target&quot;).onload = uploadDone;
+    document.getElementById(&#x27;new_media_element&#x27;).target = &#x27;upload_target&#x27;;
+    document.getElementById(&#x27;upload_target&#x27;).onload = uploadDone;
   }
 }
 
 &#x2F;**
-Fill in media element update form with media element values.
+Resets the media element loading form; used in {{#crossLink &quot;DialogsWithForm&#x2F;showLoadMediaElementPopUp:method&quot;}}{{&#x2F;crossLink}}.
 @method resetMediaElementChangeInfo
 @for MediaElementLoaderGeneral
-@param media_element_id {Number} media element id
+@param media_element_id {Number} id of the element in the database, used to extract the HTML id
 **&#x2F;
 function resetMediaElementChangeInfo(media_element_id) {
   var container = $(&#x27;#dialog-media-element-&#x27; + media_element_id + &#x27; ._change_info_container&#x27;);

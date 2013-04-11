@@ -607,7 +607,7 @@
             "tag": "module",
             "file": "app/assets/javascripts/media_element_loader.js",
             "line": 1,
-            "description": "New media element popup handler, form validation errors handling."
+            "description": "Javascript functions used in the media element loader."
         },
         "notifications": {
             "name": "notifications",
@@ -4659,7 +4659,7 @@
         {
             "file": "app/assets/javascripts/media_element_loader.js",
             "line": 10,
-            "description": "bla bla bla",
+            "description": "Initializer for the loading form.",
             "itemtype": "method",
             "name": "mediaElementLoaderDocumentReady",
             "class": "MediaElementLoaderDocumentReady",
@@ -4668,16 +4668,20 @@
         {
             "file": "app/assets/javascripts/media_element_loader.js",
             "line": 54,
-            "description": "Handle 413 status error, file too large",
+            "description": "Handles 413 status error, file too large.",
             "itemtype": "method",
             "name": "uploadDone",
+            "return": {
+                "description": "false, for some reason",
+                "type": "Boolean"
+            },
             "class": "MediaElementLoaderDone",
             "module": "media-element-loader"
         },
         {
             "file": "app/assets/javascripts/media_element_loader.js",
-            "line": 69,
-            "description": "Reload media elements page after new media element is successfully loaded.",
+            "line": 70,
+            "description": "Reloads media elements page after new media element is successfully loaded.",
             "itemtype": "method",
             "name": "uploadMediaElementLoadeDoneRedirect",
             "class": "MediaElementLoaderDone",
@@ -4685,15 +4689,15 @@
         },
         {
             "file": "app/assets/javascripts/media_element_loader.js",
-            "line": 85,
-            "description": "Update form fields with error labels",
+            "line": 86,
+            "description": "Update form fields with error labels.",
             "itemtype": "method",
             "name": "uploadMediaElementLoaderError",
             "params": [
                 {
                     "name": "errors",
                     "description": "errors list",
-                    "type": "Object"
+                    "type": "Array"
                 }
             ],
             "class": "MediaElementLoaderErrors",
@@ -4701,8 +4705,8 @@
         },
         {
             "file": "app/assets/javascripts/media_element_loader.js",
-            "line": 114,
-            "description": "Set iframe as target for form submit, added a callback function to control 413 status error. Uses: [uploadDone](../classes/uploadDone.html#method_uploadDone)",
+            "line": 115,
+            "description": "Sets iframe as target for form submit, and adds a callback function to control 413 status error; notice that <b>upload target</b> is the HTML id of the frame.",
             "itemtype": "method",
             "name": "initMediaElementLoader",
             "class": "MediaElementLoaderGeneral",
@@ -4710,14 +4714,14 @@
         },
         {
             "file": "app/assets/javascripts/media_element_loader.js",
-            "line": 128,
-            "description": "Fill in media element update form with media element values.",
+            "line": 129,
+            "description": "Resets the media element loading form; used in {{#crossLink \"DialogsWithForm/showLoadMediaElementPopUp:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "resetMediaElementChangeInfo",
             "params": [
                 {
                     "name": "media_element_id",
-                    "description": "media element id",
+                    "description": "id of the element in the database, used to extract the HTML id",
                     "type": "Number"
                 }
             ],

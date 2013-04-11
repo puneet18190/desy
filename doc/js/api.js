@@ -183,7 +183,7 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "media-element-loader",
             "name": "media-element-loader",
-            "description": "New media element popup handler, form validation errors handling."
+            "description": "Javascript functions used in the media element loader."
         },
         {
             "displayName": "notifications",
