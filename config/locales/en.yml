@@ -569,6 +569,10 @@ en:
       # The user didn't select a file to be uploaded
       # 1 - controllers/application_controller.rb
       media_blank: "No file uploaded"
+      # TODO
+      # The media elements folder exceeded the maximum size available
+      # 1 - controllers/application_controller.rb
+      media_folder_size_exceeded: "Media uploading is temporarly disabled; please try again later"
       # The user tried to upload an attachment whose format is not supported
       # 1 - controllers/application_controller.rb
       # 2 - controllers/application_controller.rb
