@@ -1,5 +1,7 @@
 /**
-Lesson editor functions, it handles visual effects, CRUD actions on single slides and lessons, it handles tinyMCE editor too.
+The Lesson Editor is used to add and edit slides to a private lesson.
+<br/><br/>
+When opening the Editor on a lesson, all the slides are appended to a queue, of which it's visible only the portion that surrounds the surrent slide (the width of such a portion depends on the screen resolution, see {{#crossLink "LessonEditorSlidesNavigation/initLessonEditorPositions:method"}}{{/crossLink}}, {{#crossLink "LessonEditorDocumentReady/lessonEditorDocumentReadyResize:method"}}{{/crossLink}} and {{#crossLink "LessonEditorDocumentReady/lessonEditorDocumentReadyGeneral:method"}}{{/crossLink}}). The current slide is illuminated and editable, whereas the adhiacent slides are covered by a layer with opacity that prevents the user from editing them: if the user clicks on this layer, the application takes the slide below it as new current slide and moves it to the center of the screen (see {{#crossLink "LessonEditorDocumentReady/lessonEditorDocumentReadySlidesNavigator:method"}}{{/crossLink}} and the methods in {{#crossLink "LessonEditorSlidesNavigation"}}{{/crossLink}}), only after this operation, the user can edit that particular slide. The slides are instanced together at the beginning, but their content is loaded only when the user moves to them (to avoid overloading when there are many slides containing media, see the methods in {{#crossLink "LessonEditorSlideLoading"}}{{/crossLink}}).
 @module lesson-editor
 **/
 
