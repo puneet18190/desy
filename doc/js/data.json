@@ -5126,8 +5126,8 @@
             "params": [
                 {
                     "name": "media",
-                    "description": "the jquery object representing a <b>video</b> or an <b>audio</b> tag",
-                    "type": "Object"
+                    "description": "HTML selector for the audio or video",
+                    "type": "String"
                 },
                 {
                     "name": "reference_id",

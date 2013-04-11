@@ -531,7 +531,7 @@ function initializeMedia(content_id, type) {
 This is the method that assocaites {{#crossLink "PlayersGeneral/initializeActionOfMediaTimeUpdater:method"}}{{/crossLink}} to the event of <b>timeupdate</b>. Notice that the method waits until he receives the event <b>loadedmetadata</b> before working.
 @method initializeMediaTimeUpdater
 @for PlayersGeneral
-@param media {Object} the jquery object representing a <b>video</b> or an <b>audio</b> tag
+@param media {String} HTML selector for the audio or video
 @param reference_id {String} HTML id of the unique container of the audio or video
 **/
 function initializeMediaTimeUpdater(media, reference_id) {
