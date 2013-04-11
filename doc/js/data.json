@@ -3673,7 +3673,7 @@
         {
             "file": "app/assets/javascripts/image_editor.js",
             "line": 285,
-            "description": "Reset image editor crop, disable crop state for image",
+            "description": "Function that closes the crop mode (notice that the imgAreaSelect initialized in {{#crossLink \"ImageEditorDocumentReady/imageEditorDocumentReadyCrop:method\"}}{{/crossLink}} is disabled too).",
             "itemtype": "method",
             "name": "resetImageEditorCrop",
             "class": "ImageEditorGraphics",
@@ -3682,7 +3682,7 @@
         {
             "file": "app/assets/javascripts/image_editor.js",
             "line": 300,
-            "description": "Reset image editor functions, reset image editor to initial state",
+            "description": "Function that is used together with both {{#crossLink \"ImageEditorGraphics/resetImageEditorCrop:method\"}}{{/crossLink}} and {{#crossLink \"ImageEditorGraphics/resetImageEditorTexts:method\"}}{{/crossLink}}: it resets the icons on the left column, and all the accessories of the two editing modes.",
             "itemtype": "method",
             "name": "resetImageEditorOperationsChoice",
             "class": "ImageEditorGraphics",
@@ -3691,7 +3691,7 @@
         {
             "file": "app/assets/javascripts/image_editor.js",
             "line": 313,
-            "description": "Reset image editor textareas, disable text state for image",
+            "description": "Function that closes the texts inserting mode (it's removed also the class <i>text enabled</i>, initialized in {{#crossLink \"ImageEditorDocumentReady/imageEditorDocumentReadyTexts:method\"}}{{/crossLink}}, that makes the image sensitive to the click of the user for the creation of small text areas).",
             "itemtype": "method",
             "name": "resetImageEditorTexts",
             "class": "ImageEditorGraphics",
@@ -3700,7 +3700,7 @@
         {
             "file": "app/assets/javascripts/image_editor.js",
             "line": 329,
-            "description": "Get image relative position into editor container",
+            "description": "Get image relative position into editor container.",
             "itemtype": "method",
             "name": "getRelativePositionInImageEditor",
             "params": [

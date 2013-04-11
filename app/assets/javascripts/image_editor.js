@@ -283,7 +283,7 @@ function imageEditorDocumentReadyUndo() {
 
 
 /**
-Reset image editor crop, disable crop state for image
+Function that closes the crop mode (notice that the imgAreaSelect initialized in {{#crossLink "ImageEditorDocumentReady/imageEditorDocumentReadyCrop:method"}}{{/crossLink}} is disabled too).
 @method resetImageEditorCrop
 @for ImageEditorGraphics
 **/
@@ -298,7 +298,7 @@ function resetImageEditorCrop() {
 }
 
 /**
-Reset image editor functions, reset image editor to initial state
+Function that is used together with both {{#crossLink "ImageEditorGraphics/resetImageEditorCrop:method"}}{{/crossLink}} and {{#crossLink "ImageEditorGraphics/resetImageEditorTexts:method"}}{{/crossLink}}: it resets the icons on the left column, and all the accessories of the two editing modes.
 @method resetImageEditorOperationsChoice
 @for ImageEditorGraphics
 **/
@@ -311,7 +311,7 @@ function resetImageEditorOperationsChoice() {
 }
 
 /**
-Reset image editor textareas, disable text state for image
+Function that closes the texts inserting mode (it's removed also the class <i>text enabled</i>, initialized in {{#crossLink "ImageEditorDocumentReady/imageEditorDocumentReadyTexts:method"}}{{/crossLink}}, that makes the image sensitive to the click of the user for the creation of small text areas).
 @method resetImageEditorTexts
 @for ImageEditorGraphics
 **/
@@ -327,7 +327,7 @@ function resetImageEditorTexts() {
 
 
 /**
-Get image relative position into editor container
+Get image relative position into editor container.
 @method getRelativePositionInImageEditor
 @for ImageEditorImageScale
 @param obj {Object} image
