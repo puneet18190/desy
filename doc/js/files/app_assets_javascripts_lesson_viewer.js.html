@@ -615,7 +615,7 @@ function switchLessonInPlaylistMenuLessonViewer(lesson_id, callback) {
 
 
 &#x2F;**
-Go to next slide in lesson viewer, if last slide it goes to first one. Uses: [slideToInLessonViewerWithLessonSwitch](..&#x2F;classes&#x2F;slideToInLessonViewerWithLessonSwitch.html#method_slideToInLessonViewerWithLessonSwitch)
+Goes to next slide using {{#crossLink &quot;LessonViewerSlidesNavigation&#x2F;slideToInLessonViewer:method&quot;}}{{&#x2F;crossLink}}.
 @method goToNextSlideInLessonViewer
 @for LessonViewerSlidesNavigation
 **&#x2F;
@@ -629,7 +629,7 @@ function goToNextSlideInLessonViewer() {
 }
 
 &#x2F;**
-Go to previous slide in lesson viewer, if first slide it goes to last one. Uses: [slideToInLessonViewerWithLessonSwitch](..&#x2F;classes&#x2F;slideToInLessonViewerWithLessonSwitch.html#method_slideToInLessonViewerWithLessonSwitch)
+Goes to previous slide using {{#crossLink &quot;LessonViewerSlidesNavigation&#x2F;slideToInLessonViewer:method&quot;}}{{&#x2F;crossLink}}.
 @method goToPrevSlideInLessonViewer
 @for LessonViewerSlidesNavigation
 **&#x2F;
@@ -643,10 +643,10 @@ function goToPrevSlideInLessonViewer() {
 }
 
 &#x2F;**
-Slide to given slide Uses: 
+Goes to a given slide. If the new slide contains a media and the browser is not an iPad (see {{#crossLink &quot;JqueryPatchesBrowsers&#x2F;iPadDetection:method&quot;}}{{&#x2F;crossLink}}) the media is automaticly played.
 @method slideToInLessonViewer
 @for LessonViewerSlidesNavigation
-@param to {Object} slide to slide to
+@param to {Object} destination slide
 **&#x2F;
 function slideToInLessonViewer(to) {
   stopMediaInLessonViewer();
@@ -687,10 +687,10 @@ function slideToInLessonViewer(to) {
 }
 
 &#x2F;**
-Open playlist menu, show lessons conver list and change playlist toggle label Uses: [slideToInLessonViewer](..&#x2F;classes&#x2F;slideToInLessonViewer.html#method_slideToInLessonViewer) and [switchLessonInPlaylistMenuLessonViewer](..&#x2F;classes&#x2F;switchLessonInPlaylistMenuLessonViewer.html#method_switchLessonInPlaylistMenuLessonViewer)
+Goes to a slide (using {{#crossLink &quot;LessonViewerSlidesNavigation&#x2F;slideToInLessonViewer:method&quot;}}{{&#x2F;crossLink}}) and updates the lesson in playlist menu (using {{#crossLink &quot;LessonViewerPlaylist&#x2F;switchLessonInPlaylistMenuLessonViewer:method&quot;}}{{&#x2F;crossLink}} without callbacks).
 @method slideToInLessonViewerWithLessonSwitch
 @for LessonViewerSlidesNavigation
-@param component {Object} slide to slide to
+@param component {Object} destination slide
 **&#x2F;
 function slideToInLessonViewerWithLessonSwitch(component) {
   slideToInLessonViewer(component);

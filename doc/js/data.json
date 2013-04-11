@@ -4410,7 +4410,7 @@
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
             "line": 311,
-            "description": "Go to next slide in lesson viewer, if last slide it goes to first one. Uses: [slideToInLessonViewerWithLessonSwitch](../classes/slideToInLessonViewerWithLessonSwitch.html#method_slideToInLessonViewerWithLessonSwitch)",
+            "description": "Goes to next slide using {{#crossLink \"LessonViewerSlidesNavigation/slideToInLessonViewer:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "goToNextSlideInLessonViewer",
             "class": "LessonViewerSlidesNavigation",
@@ -4419,7 +4419,7 @@
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
             "line": 325,
-            "description": "Go to previous slide in lesson viewer, if first slide it goes to last one. Uses: [slideToInLessonViewerWithLessonSwitch](../classes/slideToInLessonViewerWithLessonSwitch.html#method_slideToInLessonViewerWithLessonSwitch)",
+            "description": "Goes to previous slide using {{#crossLink \"LessonViewerSlidesNavigation/slideToInLessonViewer:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "goToPrevSlideInLessonViewer",
             "class": "LessonViewerSlidesNavigation",
@@ -4428,13 +4428,13 @@
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
             "line": 339,
-            "description": "Slide to given slide Uses:",
+            "description": "Goes to a given slide. If the new slide contains a media and the browser is not an iPad (see {{#crossLink \"JqueryPatchesBrowsers/iPadDetection:method\"}}{{/crossLink}}) the media is automaticly played.",
             "itemtype": "method",
             "name": "slideToInLessonViewer",
             "params": [
                 {
                     "name": "to",
-                    "description": "slide to slide to",
+                    "description": "destination slide",
                     "type": "Object"
                 }
             ],
@@ -4444,13 +4444,13 @@
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
             "line": 383,
-            "description": "Open playlist menu, show lessons conver list and change playlist toggle label Uses: [slideToInLessonViewer](../classes/slideToInLessonViewer.html#method_slideToInLessonViewer) and [switchLessonInPlaylistMenuLessonViewer](../classes/switchLessonInPlaylistMenuLessonViewer.html#method_switchLessonInPlaylistMenuLessonViewer)",
+            "description": "Goes to a slide (using {{#crossLink \"LessonViewerSlidesNavigation/slideToInLessonViewer:method\"}}{{/crossLink}}) and updates the lesson in playlist menu (using {{#crossLink \"LessonViewerPlaylist/switchLessonInPlaylistMenuLessonViewer:method\"}}{{/crossLink}} without callbacks).",
             "itemtype": "method",
             "name": "slideToInLessonViewerWithLessonSwitch",
             "params": [
                 {
                     "name": "component",
-                    "description": "slide to slide to",
+                    "description": "destination slide",
                     "type": "Object"
                 }
             ],
