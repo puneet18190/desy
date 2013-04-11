@@ -24,7 +24,7 @@ The text slides are provided of TinyMCE text editor, initialized in the methods 
 
 
 /**
-Hide page elements around current slide on new slide selection
+Hides buttons, adhiacent slides and slide navigation (used before {{#crossLink "LessonEditorDocumentReady/lessonEditorDocumentReadyNewSlideChoice:method"}}{{/crossLink}} and {{#crossLink "LessonEditorGalleries/showGalleryInLessonEditor:method"}}{{/crossLink}}).
 @method hideEverythingOutCurrentSlide
 @for LessonEditorCurrentSlide
 **/
@@ -37,7 +37,7 @@ function hideEverythingOutCurrentSlide() {
 }
 
 /**
-Hide new slide selection
+Hides the template for selection of new slides.
 @method hideNewSlideChoice
 @for LessonEditorCurrentSlide
 **/
@@ -50,7 +50,7 @@ function hideNewSlideChoice() {
 }
 
 /**
-Restore page elements around current slide after new slide selection
+Opposite of {{#crossLink "LessonEditorCurrentSlide/hideEverythingOutCurrentSlide:method"}}{{/crossLink}}.
 @method showEverythingOutCurrentSlide
 @for LessonEditorCurrentSlide
 **/
@@ -63,7 +63,7 @@ function showEverythingOutCurrentSlide() {
 }
 
 /**
-Hide new slide selection
+Shows the template for selection of new slides.
 @method showNewSlideChoice
 @for LessonEditorCurrentSlide
 **/
@@ -78,7 +78,7 @@ function showNewSlideOptions() {
 }
 
 /**
-Stop video and audio playing into current slide, usually only one kind of media is present into current slide
+Stop video and audio playing into the current slide (used before changing slide with {{#crossLink "LessonEditorSlidesNavigation/slideTo:method"}}{{/crossLink}}).
 @method stopMediaInCurrentSlide
 @for LessonEditorCurrentSlide
 **/

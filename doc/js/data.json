@@ -3804,7 +3804,7 @@
         {
             "file": "app/assets/javascripts/lesson_editor.js",
             "line": 26,
-            "description": "Hide page elements around current slide on new slide selection",
+            "description": "Hides buttons, adhiacent slides and slide navigation (used before {{#crossLink \"LessonEditorDocumentReady/lessonEditorDocumentReadyNewSlideChoice:method\"}}{{/crossLink}} and {{#crossLink \"LessonEditorGalleries/showGalleryInLessonEditor:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "hideEverythingOutCurrentSlide",
             "class": "LessonEditorCurrentSlide",
@@ -3813,7 +3813,7 @@
         {
             "file": "app/assets/javascripts/lesson_editor.js",
             "line": 39,
-            "description": "Hide new slide selection",
+            "description": "Hides the template for selection of new slides.",
             "itemtype": "method",
             "name": "hideNewSlideChoice",
             "class": "LessonEditorCurrentSlide",
@@ -3822,7 +3822,7 @@
         {
             "file": "app/assets/javascripts/lesson_editor.js",
             "line": 52,
-            "description": "Restore page elements around current slide after new slide selection",
+            "description": "Opposite of {{#crossLink \"LessonEditorCurrentSlide/hideEverythingOutCurrentSlide:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "showEverythingOutCurrentSlide",
             "class": "LessonEditorCurrentSlide",
@@ -3831,7 +3831,7 @@
         {
             "file": "app/assets/javascripts/lesson_editor.js",
             "line": 65,
-            "description": "Hide new slide selection",
+            "description": "Shows the template for selection of new slides.",
             "itemtype": "method",
             "name": "showNewSlideChoice",
             "class": "LessonEditorCurrentSlide",
@@ -3840,7 +3840,7 @@
         {
             "file": "app/assets/javascripts/lesson_editor.js",
             "line": 80,
-            "description": "Stop video and audio playing into current slide, usually only one kind of media is present into current slide",
+            "description": "Stop video and audio playing into the current slide (used before changing slide with {{#crossLink \"LessonEditorSlidesNavigation/slideTo:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "stopMediaInCurrentSlide",
             "class": "LessonEditorCurrentSlide",

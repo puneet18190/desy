@@ -330,7 +330,7 @@ The text slides are provided of TinyMCE text editor, initialized in the methods 
 
 
 &#x2F;**
-Hide page elements around current slide on new slide selection
+Hides buttons, adhiacent slides and slide navigation (used before {{#crossLink &quot;LessonEditorDocumentReady&#x2F;lessonEditorDocumentReadyNewSlideChoice:method&quot;}}{{&#x2F;crossLink}} and {{#crossLink &quot;LessonEditorGalleries&#x2F;showGalleryInLessonEditor:method&quot;}}{{&#x2F;crossLink}}).
 @method hideEverythingOutCurrentSlide
 @for LessonEditorCurrentSlide
 **&#x2F;
@@ -343,7 +343,7 @@ function hideEverythingOutCurrentSlide() {
 }
 
 &#x2F;**
-Hide new slide selection
+Hides the template for selection of new slides.
 @method hideNewSlideChoice
 @for LessonEditorCurrentSlide
 **&#x2F;
@@ -356,7 +356,7 @@ function hideNewSlideChoice() {
 }
 
 &#x2F;**
-Restore page elements around current slide after new slide selection
+Opposite of {{#crossLink &quot;LessonEditorCurrentSlide&#x2F;hideEverythingOutCurrentSlide:method&quot;}}{{&#x2F;crossLink}}.
 @method showEverythingOutCurrentSlide
 @for LessonEditorCurrentSlide
 **&#x2F;
@@ -369,7 +369,7 @@ function showEverythingOutCurrentSlide() {
 }
 
 &#x2F;**
-Hide new slide selection
+Shows the template for selection of new slides.
 @method showNewSlideChoice
 @for LessonEditorCurrentSlide
 **&#x2F;
@@ -384,7 +384,7 @@ function showNewSlideOptions() {
 }
 
 &#x2F;**
-Stop video and audio playing into current slide, usually only one kind of media is present into current slide
+Stop video and audio playing into the current slide (used before changing slide with {{#crossLink &quot;LessonEditorSlidesNavigation&#x2F;slideTo:method&quot;}}{{&#x2F;crossLink}}).
 @method stopMediaInCurrentSlide
 @for LessonEditorCurrentSlide
 **&#x2F;
