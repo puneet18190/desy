@@ -5042,7 +5042,7 @@
         {
             "file": "app/assets/javascripts/players.js",
             "line": 301,
-            "description": "bla bla bla",
+            "description": "Global initializer for players.",
             "itemtype": "method",
             "name": "playersDocumentReady",
             "class": "PlayersDocumentReady",
@@ -5051,7 +5051,7 @@
         {
             "file": "app/assets/javascripts/players.js",
             "line": 312,
-            "description": "bla bla bla",
+            "description": "Initializer for buttons inside a cutter in {{#crossLinkModule \"audio-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "playersDocumentReadyAudioEditor",
             "class": "PlayersDocumentReady",
@@ -5060,7 +5060,7 @@
         {
             "file": "app/assets/javascripts/players.js",
             "line": 376,
-            "description": "bla bla bla",
+            "description": "Initializer for buttons inside any player.",
             "itemtype": "method",
             "name": "playersDocumentReadyGeneral",
             "class": "PlayersDocumentReady",
@@ -5069,7 +5069,7 @@
         {
             "file": "app/assets/javascripts/players.js",
             "line": 409,
-            "description": "bla bla bla",
+            "description": "Initializer for buttons inside a cutter in {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "playersDocumentReadyVideoEditor",
             "class": "PlayersDocumentReady",

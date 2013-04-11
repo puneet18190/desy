@@ -287,7 +287,7 @@ function validSeek(media, seek) {
   var minStart = media[0].seekable.start(0);
   var maxEnd = media[0].seekable.end(0);
   if (seek < minStart) {
-    seek = minStart+confidence;
+    seek = minStart + confidence;
   } else if (seek > maxEnd) {
     seek = maxEnd - confidence;
   }
@@ -299,7 +299,7 @@ function validSeek(media, seek) {
 
 
 /**
-bla bla bla
+Global initializer for players.
 @method playersDocumentReady
 @for PlayersDocumentReady
 **/
@@ -310,7 +310,7 @@ function playersDocumentReady() {
 }
 
 /**
-bla bla bla
+Initializer for buttons inside a cutter in {{#crossLinkModule "audio-editor"}}{{/crossLinkModule}}.
 @method playersDocumentReadyAudioEditor
 @for PlayersDocumentReady
 **/
@@ -374,7 +374,7 @@ function playersDocumentReadyAudioEditor() {
 }
 
 /**
-bla bla bla
+Initializer for buttons inside any player.
 @method playersDocumentReadyGeneral
 @for PlayersDocumentReady
 **/
@@ -407,7 +407,7 @@ function playersDocumentReadyGeneral() {
 }
 
 /**
-bla bla bla
+Initializer for buttons inside a cutter in {{#crossLinkModule "video-editor"}}{{/crossLinkModule}}.
 @method playersDocumentReadyVideoEditor
 @for PlayersDocumentReady
 **/
