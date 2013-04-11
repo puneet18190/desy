@@ -16,7 +16,7 @@ As for the other Element Editors ({{#crossLinkModule "audio-editor"}}{{/crossLin
 
 
 /**
-bla bla bla
+General initializer for Image Editor.
 @method imageEditorDocumentReady
 @for ImageEditorDocumentReady
 **/
@@ -29,7 +29,7 @@ function imageEditorDocumentReady() {
 }
 
 /**
-bla bla bla
+Initializer for the functionalities of committing changes (click on 'commit', on 'cancel', popup asking to overwrite, etc). For other functionalities common to all the Element Editors, see {{#crossLink "MediaElementEditorForms"}}{{/crossLink}}.
 @method imageEditorDocumentReadyCommit
 @for ImageEditorDocumentReady
 **/
@@ -100,7 +100,7 @@ function imageEditorDocumentReadyCommit() {
 }
 
 /**
-bla bla bla
+Initializer for crop mode: it contains the initialization of the JQueryUi plugin <b>imgAreaSelect</b>.
 @method imageEditorDocumentReadyCrop
 @for ImageEditorDocumentReady
 **/
@@ -152,14 +152,14 @@ function imageEditorDocumentReadyCrop() {
 }
 
 /**
-bla bla bla
+Initializer for the general graphical properties of the editor: position and resizing of the image, etc.
 @method imageEditorDocumentReadyGeneral
 @for ImageEditorDocumentReady
 **/
 function imageEditorDocumentReadyGeneral() {
   $('.image_editor_only #form_info_new_media_element_in_editor, .image_editor_only #form_info_update_media_element_in_editor').css("left",($(window).width()/2)-495);
   $('#image_gallery_for_image_editor ._select_image_from_gallery').addClass('_add_image_to_image_editor');
-  $('#image_gallery_for_image_editor .gallery-header').css("left",($(window).width()/2)-420);
+  $('#image_gallery_for_image_editor .gallery-header').css('left', ($(window).width()/2) - 420);
   $('body').on('click', '._add_image_to_image_editor', function() {
     var parser = document.createElement('a');
     parser.href = $('._exit_url').attr('href');
@@ -168,7 +168,7 @@ function imageEditorDocumentReadyGeneral() {
 }
 
 /**
-bla bla bla
+Initializer for text inserting mode. It includes the initialization of JQueryUi draggable for the small text areas inside the image.
 @method imageEditorDocumentReadyTexts
 @for ImageEditorDocumentReady
 **/
@@ -265,7 +265,7 @@ function imageEditorDocumentReadyTexts() {
 }
 
 /**
-bla bla bla
+Initializer for the route linked to the action 'undo', that undoes the last step of editing.
 @method imageEditorDocumentReadyUndo
 @for ImageEditorDocumentReady
 **/
