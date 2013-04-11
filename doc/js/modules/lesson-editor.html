@@ -318,7 +318,9 @@
 
 
 <div class="box intro">
-    <p>Lesson editor functions, it handles visual effects, CRUD actions on single slides and lessons, it handles tinyMCE editor too.</p>
+    <p>The Lesson Editor is used to add and edit slides to a private lesson.
+<br/><br/>
+When opening the Editor on a lesson, all its slides are appended to a queue, of which it's visible only the portion that surrounds the current slide (the width of such a portion depends on the screen resolution, see <a href="../classes/LessonEditorSlidesNavigation.html#method_initLessonEditorPositions" class="crosslink">initLessonEditorPositions</a>, <a href="../classes/LessonEditorDocumentReady.html#method_lessonEditorDocumentReadyResize" class="crosslink">lessonEditorDocumentReadyResize</a> and <a href="../classes/LessonEditorDocumentReady.html#method_lessonEditorDocumentReadyGeneral" class="crosslink">lessonEditorDocumentReadyGeneral</a>). The current slide is illuminated and editable, whereas the adhiacent slides are covered by a layer with opacity that prevents the user from editing them: if the user clicks on this layer, the application takes the slide below it as new current slide and moves it to the center of the screen (see <a href="../classes/LessonEditorDocumentReady.html#method_lessonEditorDocumentReadySlidesNavigator" class="crosslink">lessonEditorDocumentReadySlidesNavigator</a> and the methods in <a href="../classes/LessonEditorSlidesNavigation.html" class="crosslink">LessonEditorSlidesNavigation</a>): only after this operation, the user can edit that particular slide. To avoid overloading when there are many slides containing media, the slides are instanced all together but their content is loaded only when the user moves to them (see the methods in <a href="../classes/LessonEditorSlideLoading.html" class="crosslink">LessonEditorSlideLoading</a>).</p>
 </div>
 
 
