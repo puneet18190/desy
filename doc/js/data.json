@@ -542,7 +542,7 @@
             "tag": "module",
             "file": "app/assets/javascripts/lesson_editor.js",
             "line": 1,
-            "description": "The Lesson Editor is used to add and edit slides to a private lesson.\n<br/><br/>\nWhen opening the Editor on a lesson, all its slides are appended to a queue, of which it's visible only the portion that surrounds the <b>current slide</b> (the width of such a portion depends on the screen resolution, see {{#crossLink \"LessonEditorSlidesNavigation/initLessonEditorPositions:method\"}}{{/crossLink}}, {{#crossLink \"LessonEditorDocumentReady/lessonEditorDocumentReadyResize:method\"}}{{/crossLink}} and {{#crossLink \"LessonEditorDocumentReady/lessonEditorDocumentReadyGeneral:method\"}}{{/crossLink}}). The current slide is illuminated and editable, whereas the adhiacent slides are covered by a layer with opacity that prevents the user from editing them: if the user clicks on this layer, the application takes the slide below it as new current slide and moves it to the center of the screen (see {{#crossLink \"LessonEditorDocumentReady/lessonEditorDocumentReadySlidesNavigator:method\"}}{{/crossLink}} and the methods in {{#crossLink \"LessonEditorSlidesNavigation\"}}{{/crossLink}}): only after this operation, the user can edit that particular slide. To avoid overloading when there are many slides containing media, the slides are instanced all together but their content is loaded only when the user moves to them (see the methods in {{#crossLink \"LessonEditorSlideLoading\"}}{{/crossLink}}).\n<br/><br/>\nOn the right side of each slide the user finds a list of <b>buttons</b> (initialized in {{#crossLink \"LessonEditorDocumentReady/lessonEditorDocumentReadySlideButtons:method\"}}{{/crossLink}}): each button corresponds either to an action that can be performed on the slide, either to an action that can be performed to the whole lesson (for instance, save and exit, or edit title description and tags).\n<br/><br/>\nThe tool to navigate the slides is located on the top of the editor: each small square represents a slide (with its position), and passing with the mouse over it the Editor shows a miniature of the corresponding slide (these functionalities are initialized in {{#crossLink \"LessonEditorDocumentReady/lessonEditorDocumentReadySlidesNavigator:method\"}}{{/crossLink}}). Clicking on a slide miniature, the application moves to that slide using the function {{#crossLink \"LessonEditorSlidesNavigation/slideTo:method\"}}{{/crossLink}}. The slides can be sorted dragging with the mouse (using the JQueryUi plugin, initialized in {{#crossLink \"LessonEditorDocumentReady/lessonEditorDocumentReadyJqueryAnimations:method\"}}{{/crossLink}} and {{#crossLink \"LessonEditorJqueryAnimations/initializeSortableNavs:method\"}}{{/crossLink}}).\n<br/><br/>\nInside the Editor, there are two operations that require hiding and replacement of the queue of slides: <b>adding a media element to a slide</b> and <b>choosing a new slide</b>. In both these operations, an HTML div is extracted from the main template (where it was hidden), and put in the place of the current slide, hiding the rest of the slides queue, buttons, and slides navigation (operations performed by {{#crossLink \"LessonEditorCurrentSlide/hideEverythingOutCurrentSlide:method\"}}{{/crossLink}}). For the galleries, the extracted div must be filled by an action called via Ajax (see the module {{#crossLinkModule \"galleries\"}}{{/crossLinkModule}}), whereas the div with the list of available slides is already loaded with the Editor (see {{#crossLink \"LessonEditorDocumentReady/lessonEditorDocumentReadyNewSlideChoice:method\"}}{{/crossLink}}).\n<br/><br/>\nTo add a media element to a slide, the user picks it from its specific gallery: when he clicks on the button 'plus', the system calls the corresponding subfunction in {{#crossLink \"LessonEditorDocumentReady/lessonEditorDocumentReadyAddMediaElement:method\"}}{{/crossLink}}. To avoid troubles due to the replacement of JQuery plugins, video and audio tags, etc, this method always replaces the sources of <b>audio</b> and <b>video</b> tags and calls <i>load()</i>.\n<br/><br/>\nIf the element added is of type <b>image</b>, the user may drag it inside the slide, using {{#crossLink \"LessonEditorJqueryAnimations/makeDraggable:method\"}}{{/crossLink}}. A set of methods (in the class {{#crossLink \"LessonEditorImageResizing\"}}{{/crossLink}}) is available to resize the image and the alignment chosen by the user; more specificly, the method {{#crossLink \"LessonEditorImageResizing/isHorizontalMask:method\"}}{{/crossLink}} is used to understand, depending on the type of slide and on the proportions of the image, if the image is <b>vertical</b> (and then the user can drag it vertically) or <b>horizontal</b> (the user can drag it horizontally)."
+            "description": "The Lesson Editor is used to add and edit slides to a private lesson.\n<br/><br/>\nWhen opening the Editor on a lesson, all its slides are appended to a queue, of which it's visible only the portion that surrounds the <b>current slide</b> (the width of such a portion depends on the screen resolution, see {{#crossLink \"LessonEditorSlidesNavigation/initLessonEditorPositions:method\"}}{{/crossLink}}, {{#crossLink \"LessonEditorDocumentReady/lessonEditorDocumentReadyResize:method\"}}{{/crossLink}} and {{#crossLink \"LessonEditorDocumentReady/lessonEditorDocumentReadyGeneral:method\"}}{{/crossLink}}). The current slide is illuminated and editable, whereas the adhiacent slides are covered by a layer with opacity that prevents the user from editing them: if the user clicks on this layer, the application takes the slide below it as new current slide and moves it to the center of the screen (see {{#crossLink \"LessonEditorDocumentReady/lessonEditorDocumentReadySlidesNavigator:method\"}}{{/crossLink}} and the methods in {{#crossLink \"LessonEditorSlidesNavigation\"}}{{/crossLink}}): only after this operation, the user can edit that particular slide. To avoid overloading when there are many slides containing media, the slides are instanced all together but their content is loaded only when the user moves to them (see the methods in {{#crossLink \"LessonEditorSlideLoading\"}}{{/crossLink}}).\n<br/><br/>\nOn the right side of each slide the user finds a list of <b>buttons</b> (initialized in {{#crossLink \"LessonEditorDocumentReady/lessonEditorDocumentReadySlideButtons:method\"}}{{/crossLink}}): each button corresponds either to an action that can be performed on the slide, either to an action that can be performed to the whole lesson (for instance, save and exit, or edit title description and tags).\n<br/><br/>\nThe tool to navigate the slides is located on the top of the editor: each small square represents a slide (with its position), and passing with the mouse over it the Editor shows a miniature of the corresponding slide (these functionalities are initialized in {{#crossLink \"LessonEditorDocumentReady/lessonEditorDocumentReadySlidesNavigator:method\"}}{{/crossLink}}). Clicking on a slide miniature, the application moves to that slide using the function {{#crossLink \"LessonEditorSlidesNavigation/slideTo:method\"}}{{/crossLink}}. The slides can be sorted dragging with the mouse (using the JQueryUi plugin, initialized in {{#crossLink \"LessonEditorDocumentReady/lessonEditorDocumentReadyJqueryAnimations:method\"}}{{/crossLink}} and {{#crossLink \"LessonEditorJqueryAnimations/initializeSortableNavs:method\"}}{{/crossLink}}).\n<br/><br/>\nInside the Editor, there are two operations that require hiding and replacement of the queue of slides: <b>adding a media element to a slide</b> and <b>choosing a new slide</b>. In both these operations, an HTML div is extracted from the main template (where it was hidden), and put in the place of the current slide, hiding the rest of the slides queue, buttons, and slides navigation (operations performed by {{#crossLink \"LessonEditorCurrentSlide/hideEverythingOutCurrentSlide:method\"}}{{/crossLink}}). For the galleries, the extracted div must be filled by an action called via Ajax (see the module {{#crossLinkModule \"galleries\"}}{{/crossLinkModule}}), whereas the div with the list of available slides is already loaded with the Editor (see {{#crossLink \"LessonEditorDocumentReady/lessonEditorDocumentReadyNewSlideChoice:method\"}}{{/crossLink}}).\n<br/><br/>\nTo add a media element to a slide, the user picks it from its specific gallery: when he clicks on the button 'plus', the system calls the corresponding subfunction in {{#crossLink \"LessonEditorDocumentReady/lessonEditorDocumentReadyAddMediaElement:method\"}}{{/crossLink}}. To avoid troubles due to the replacement of JQuery plugins, video and audio tags, etc, this method always replaces the sources of <b>audio</b> and <b>video</b> tags and calls <i>load()</i>.\n<br/><br/>\nIf the element added is of type <b>image</b>, the user may drag it inside the slide, using {{#crossLink \"LessonEditorJqueryAnimations/makeDraggable:method\"}}{{/crossLink}}. A set of methods (in the class {{#crossLink \"LessonEditorImageResizing\"}}{{/crossLink}}) is available to resize the image and the alignment chosen by the user; more specificly, the method {{#crossLink \"LessonEditorImageResizing/isHorizontalMask:method\"}}{{/crossLink}} is used to understand, depending on the type of slide and on the proportions of the image, if the image is <b>vertical</b> (and then the user can drag it vertically) or <b>horizontal</b> (the user can drag it horizontally).\n<br/><br/>\nEach slide contains a form linked to the action that updates it, there is no global saving for the whole lesson. The slide is automaticly saved (using the method {{#crossLink \"LessonEditorForms/saveCurrentSlide:method\"}}{{/crossLink}}) <i>before moving to another slide</i>, <i>before showing the options to add a new slide</i>, and <i>before changing position of a slide</i>. The same function is called by the user when he clicks on the button 'save' on the right of each slide; the buttons <b>save and exit</b> and <b>edit general info</b> are also linked to slide saving, but it's performed with a callback (see again the buttons initialization in {{#crossLink \"LessonEditorDocumentReady/lessonEditorDocumentReadySlideButtons:method\"}}{{/crossLink}})."
         },
         "lesson-viewer": {
             "name": "lesson-viewer",
@@ -3803,7 +3803,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 22,
+            "line": 24,
             "description": "Hide page elements around current slide on new slide selection",
             "itemtype": "method",
             "name": "hideEverythingOutCurrentSlide",
@@ -3812,7 +3812,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 35,
+            "line": 37,
             "description": "Hide new slide selection",
             "itemtype": "method",
             "name": "hideNewSlideChoice",
@@ -3821,7 +3821,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 48,
+            "line": 50,
             "description": "Restore page elements around current slide after new slide selection",
             "itemtype": "method",
             "name": "showEverythingOutCurrentSlide",
@@ -3830,7 +3830,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 61,
+            "line": 63,
             "description": "Hide new slide selection",
             "itemtype": "method",
             "name": "showNewSlideChoice",
@@ -3839,7 +3839,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 76,
+            "line": 78,
             "description": "Stop video and audio playing into current slide, usually only one kind of media is present into current slide",
             "itemtype": "method",
             "name": "stopMediaInCurrentSlide",
@@ -3848,7 +3848,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 91,
+            "line": 93,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "lessonEditorDocumentReady",
@@ -3857,7 +3857,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 109,
+            "line": 111,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "lessonEditorDocumentReadyAddMediaElement",
@@ -3866,7 +3866,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 225,
+            "line": 227,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "lessonEditorDocumentReadyGalleries",
@@ -3875,7 +3875,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 262,
+            "line": 264,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "lessonEditorDocumentReadyGeneral",
@@ -3884,7 +3884,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 274,
+            "line": 276,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "lessonEditorDocumentReadyJqueryAnimations",
@@ -3893,7 +3893,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 291,
+            "line": 293,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "lessonEditorDocumentReadyNewSlideChoice",
@@ -3902,7 +3902,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 311,
+            "line": 313,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "lessonEditorDocumentReadyReplaceMediaElement",
@@ -3911,7 +3911,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 335,
+            "line": 337,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "lessonEditorDocumentReadyResize",
@@ -3920,7 +3920,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 352,
+            "line": 354,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "lessonEditorDocumentReadySlideButtons",
@@ -3929,7 +3929,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 431,
+            "line": 433,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "lessonEditorDocumentReadySlidesNavigator",
@@ -3938,7 +3938,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 479,
+            "line": 481,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "lessonEditorDocumentReadyTextFields",
@@ -3947,7 +3947,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 521,
+            "line": 523,
             "description": "Save current slide. It sends tinyMCE editor content to form data to be serialized, it handles form placeholders. Uses: [submitCurrentSlideForm](../classes/submitCurrentSlideForm.html#method_submitCurrentSlideForm)",
             "itemtype": "method",
             "name": "saveCurrentSlide",
@@ -3956,7 +3956,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 547,
+            "line": 549,
             "description": "Submit serialized form data for current slide",
             "itemtype": "method",
             "name": "submitCurrentSlideForm",
@@ -3965,7 +3965,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 566,
+            "line": 568,
             "description": "Hide media gallery for selected type",
             "itemtype": "method",
             "name": "removeGalleryInLessonEditor",
@@ -3981,7 +3981,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 578,
+            "line": 580,
             "description": "Show media gallery for selected type clicking on slide green plus button",
             "itemtype": "method",
             "name": "showGalleryInLessonEditor",
@@ -4002,7 +4002,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 607,
+            "line": 609,
             "description": "Check if image ratio is bigger then kind ratio",
             "itemtype": "method",
             "name": "isHorizontalMask",
@@ -4032,7 +4032,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 635,
+            "line": 637,
             "description": "Sets scaled height to slide images",
             "itemtype": "method",
             "name": "resizeHeight",
@@ -4062,7 +4062,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 661,
+            "line": 663,
             "description": "Sets scaled width to slide images",
             "itemtype": "method",
             "name": "resizeWidth",
@@ -4092,7 +4092,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 691,
+            "line": 693,
             "description": "Inizialize jQueryUI _sortable_ function on top navigation numbers, so that they can be sorted",
             "itemtype": "method",
             "name": "initializeSortableNavs",
@@ -4101,7 +4101,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 736,
+            "line": 738,
             "description": "Inizialize jQueryUI _draggable_ function on slide image containers.",
             "itemtype": "method",
             "name": "makeDraggable",
@@ -4117,7 +4117,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 808,
+            "line": 810,
             "description": "Asynchronously loads current slide, previous and following if any of these aren't loaded yet. Uses: [loadSlideInLessonEditor](../classes/loadSlideInLessonEditor.html#method_loadSlideInLessonEditor)",
             "itemtype": "method",
             "name": "loadSlideAndAdhiacentInLessonEditor",
@@ -4133,7 +4133,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 821,
+            "line": 823,
             "description": "Asynchronous slide loading. It is called when the current slide is not loaded yet.",
             "itemtype": "method",
             "name": "loadSlideInLessonEditor",
@@ -4149,7 +4149,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 840,
+            "line": 842,
             "description": "Initialize slides position to center",
             "itemtype": "method",
             "name": "initLessonEditorPositions",
@@ -4158,7 +4158,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 859,
+            "line": 861,
             "description": "Re-initialize slides position to center after ajax events",
             "itemtype": "method",
             "name": "reInitializeSlidePositionsInLessonEditor",
@@ -4167,7 +4167,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 871,
+            "line": 873,
             "description": "Update top scrollPane when moving to another slide",
             "itemtype": "method",
             "name": "scrollPaneUpdate",
@@ -4183,7 +4183,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 887,
+            "line": 889,
             "description": "Slide to current slide, update current slide in top navigation. Uses: [loadSlideAndAdhiacentInLessonEditor](../classes/loadSlideAndAdhiacentInLessonEditor.html#method_loadSlideAndAdhiacentInLessonEditor)",
             "itemtype": "method",
             "name": "slideTo",
@@ -4204,7 +4204,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 938,
+            "line": 940,
             "description": "Initialize tinyMCE editor for a single textarea Uses: [tinyMceKeyDownCallbacks](../classes/tinyMceKeyDownCallbacks.html#method_tinyMceKeyDownCallbacks) and [tinyMceCallbacks](../classes/tinyMceCallbacks.html#method_tinyMceCallbacks)",
             "itemtype": "method",
             "name": "initTinymce",
@@ -4220,7 +4220,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 982,
+            "line": 984,
             "description": "TinyMCE callback to show warning when texearea content exceeds the available space. Add a red border to the textarea. Add this function on tinyMCE setup.",
             "itemtype": "method",
             "name": "tinyMceCallbacks",
@@ -4241,7 +4241,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1001,
+            "line": 1003,
             "description": "TinyMCE keyDown callback to fix list item style. It adds same style of list item text to list numbers or dots. Add this function on tinyMCE setup.",
             "itemtype": "method",
             "name": "tinyMceKeyDownCallbacks",
