@@ -4003,28 +4003,28 @@
         {
             "file": "app/assets/javascripts/lesson_editor.js",
             "line": 611,
-            "description": "Check if image ratio is bigger then kind ratio",
+            "description": "Check if image ratio is bigger then kind ratio.",
             "itemtype": "method",
             "name": "isHorizontalMask",
             "params": [
                 {
                     "name": "image_width",
-                    "description": "",
+                    "description": "width of the image",
                     "type": "Number"
                 },
                 {
                     "name": "image_height",
-                    "description": "",
+                    "description": "height of the image",
                     "type": "Number"
                 },
                 {
                     "name": "kind",
-                    "description": "type image into slide, acceptes values: cover, image1, image2, image3, image4",
+                    "description": "type image into slide, accepts values: cover, image1, image2, image3, image4",
                     "type": "String"
                 }
             ],
             "return": {
-                "description": "true if image ratio is bigger then kind ratio",
+                "description": "true if the image is horizontal, false if vertical",
                 "type": "Boolean"
             },
             "class": "LessonEditorImageResizing",
@@ -4033,23 +4033,23 @@
         {
             "file": "app/assets/javascripts/lesson_editor.js",
             "line": 639,
-            "description": "Sets scaled height to slide images",
+            "description": "Gets scaled height to slide images.",
             "itemtype": "method",
             "name": "resizeHeight",
             "params": [
                 {
                     "name": "image_width",
-                    "description": "",
+                    "description": "width of the image",
                     "type": "Number"
                 },
                 {
                     "name": "image_height",
-                    "description": "",
+                    "description": "height of the image",
                     "type": "Number"
                 },
                 {
                     "name": "kind",
-                    "description": "type image into slide, acceptes values: cover, image1, image2, image3, image4",
+                    "description": "type image into slide, accepts values: cover, image1, image2, image3, image4",
                     "type": "String"
                 }
             ],
@@ -4063,23 +4063,23 @@
         {
             "file": "app/assets/javascripts/lesson_editor.js",
             "line": 665,
-            "description": "Sets scaled width to slide images",
+            "description": "Gets scaled width to slide images.",
             "itemtype": "method",
             "name": "resizeWidth",
             "params": [
                 {
                     "name": "image_width",
-                    "description": "",
+                    "description": "width of the image",
                     "type": "Number"
                 },
                 {
                     "name": "image_height",
-                    "description": "",
+                    "description": "height of the image",
                     "type": "Number"
                 },
                 {
                     "name": "kind",
-                    "description": "type image into slide, acceptes values: cover, image1, image2, image3, image4",
+                    "description": "type image into slide, accepts values: cover, image1, image2, image3, image4",
                     "type": "String"
                 }
             ],
@@ -4093,7 +4093,7 @@
         {
             "file": "app/assets/javascripts/lesson_editor.js",
             "line": 695,
-            "description": "Inizialize jQueryUI _sortable_ function on top navigation numbers, so that they can be sorted",
+            "description": "Inizializes jQueryUI <b>sortable</b> function on top navigation numbers, so that they can be sorted (see also {{#crossLink \"LessonEditorDocumentReady/lessonEditorDocumentReadySlidesNavigator:method\"}}{{/crossLink}} and {{#crossLink \"LessonEditorSlidesNavigation\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "initializeSortableNavs",
             "class": "LessonEditorJqueryAnimations",
@@ -4102,14 +4102,14 @@
         {
             "file": "app/assets/javascripts/lesson_editor.js",
             "line": 740,
-            "description": "Inizialize jQueryUI _draggable_ function on slide image containers.",
+            "description": "Inizializes jQueryUI <b>draggable</b> function on slide image containers (to understand if the draggable is vertical or horizontal it uses {{#crossLink \"LessonEditorImageResizing/isHorizontalMask:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "makeDraggable",
             "params": [
                 {
                     "name": "place_id",
-                    "description": "media element id",
-                    "type": "Number"
+                    "description": "HTML id for the container to make draggable",
+                    "type": "String"
                 }
             ],
             "class": "LessonEditorJqueryAnimations",

@@ -609,13 +609,13 @@ function showGalleryInLessonEditor(obj, sti_type) {
 
 
 /**
-Check if image ratio is bigger then kind ratio
+Check if image ratio is bigger then kind ratio.
 @method isHorizontalMask
 @for LessonEditorImageResizing
-@param image_width {Number}
-@param image_height {Number}
-@param kind {String} type image into slide, acceptes values: cover, image1, image2, image3, image4
-@return {Boolean} true if image ratio is bigger then kind ratio
+@param image_width {Number} width of the image
+@param image_height {Number} height of the image
+@param kind {String} type image into slide, accepts values: cover, image1, image2, image3, image4
+@return {Boolean} true if the image is horizontal, false if vertical
 **/
 function isHorizontalMask(image_width, image_height, kind) {
   var ratio = image_width / image_height;
@@ -637,12 +637,12 @@ function isHorizontalMask(image_width, image_height, kind) {
 }
 
 /**
-Sets scaled height to slide images
+Gets scaled height to slide images.
 @method resizeHeight
 @for LessonEditorImageResizing
-@param image_width {Number}
-@param image_height {Number}
-@param kind {String} type image into slide, acceptes values: cover, image1, image2, image3, image4
+@param image_width {Number} width of the image
+@param image_height {Number} height of the image
+@param kind {String} type image into slide, accepts values: cover, image1, image2, image3, image4
 @return {Number} scaled height
 **/
 function resizeHeight(width, height, kind) {
@@ -663,12 +663,12 @@ function resizeHeight(width, height, kind) {
 }
 
 /**
-Sets scaled width to slide images
+Gets scaled width to slide images.
 @method resizeWidth
 @for LessonEditorImageResizing
-@param image_width {Number}
-@param image_height {Number}
-@param kind {String} type image into slide, acceptes values: cover, image1, image2, image3, image4
+@param image_width {Number} width of the image
+@param image_height {Number} height of the image
+@param kind {String} type image into slide, accepts values: cover, image1, image2, image3, image4
 @return {Number} scaled width
 **/
 function resizeWidth(width, height, kind) {
@@ -693,7 +693,7 @@ function resizeWidth(width, height, kind) {
 
 
 /**
-Inizialize jQueryUI _sortable_ function on top navigation numbers, so that they can be sorted
+Inizializes jQueryUI <b>sortable</b> function on top navigation numbers, so that they can be sorted (see also {{#crossLink "LessonEditorDocumentReady/lessonEditorDocumentReadySlidesNavigator:method"}}{{/crossLink}} and {{#crossLink "LessonEditorSlidesNavigation"}}{{/crossLink}}).
 @method initializeSortableNavs
 @for LessonEditorJqueryAnimations
 **/
@@ -738,10 +738,10 @@ function initializeSortableNavs() {
 }
 
 /**
-Inizialize jQueryUI _draggable_ function on slide image containers.
+Inizializes jQueryUI <b>draggable</b> function on slide image containers (to understand if the draggable is vertical or horizontal it uses {{#crossLink "LessonEditorImageResizing/isHorizontalMask:method"}}{{/crossLink}}).
 @method makeDraggable
 @for LessonEditorJqueryAnimations
-@param place_id {Number} media element id
+@param place_id {String} HTML id for the container to make draggable
 **/
 function makeDraggable(place_id) {
   var full_place = $('#' + place_id + ' ._full_image_in_slide');
