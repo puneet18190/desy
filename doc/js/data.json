@@ -4875,16 +4875,33 @@
         {
             "file": "app/assets/javascripts/players.js",
             "line": 15,
-            "description": "This method is fired each time the audio component player receives an event of <b>timeupdate</b>. There are two cases of use of this method:\n<ul>\n  <li>if the audio player <b>is not in preview mode</b>, it operates as a normal player, with very slight differences due to the different environment (see {{#crossLink \"PlayersGeneral/initializeActionOfMediaTimeUpdater:method\"}}{{/crossLink}})</li>\n  <li>.</li>\n</ul>",
+            "description": "This method is fired each time the audio component player receives an event of <b>timeupdate</b>. There are two cases of use of this method:\n<ul>\n  <li>if the Audio Editor <b>is not in preview mode</b>, it operates as a normal player (see {{#crossLink \"PlayersGeneral/initializeActionOfMediaTimeUpdater:method\"}}{{/crossLink}}), with very slight differences due to the different environment</li>\n  <li>if we are <b>in preview mode</b>, the method acts as a counterpart of {{#crossLink \"AudioEditorPreview/startAudioEditorPreview:method\"}}{{/crossLink}}: at any time the seconds increase, the method updates the timer using {{#crossLink \"AudioEditorPreview/increaseAudioEditorPreviewTimer:method\"}}{{/crossLink}}; when the audio is over, if it's not playing the last component, the method calls {{#crossLink \"AudioEditorPreview/startAudioEditorPreview:method\"}}{{/crossLink}} for the following one.</li>\n</ul>",
             "itemtype": "method",
             "name": "initializeActionOfMediaTimeUpdaterInAudioEditor",
+            "params": [
+                {
+                    "name": "media",
+                    "description": "HTML selector for the audio",
+                    "type": "String"
+                },
+                {
+                    "name": "identifier",
+                    "description": "unique identifier for the audio component (see {{#crossLinkModule \"audio-editor\"}}{{/crossLinkModule}})",
+                    "type": "Number"
+                },
+                {
+                    "name": "force_parsed_int",
+                    "description": "forces the last second of the audio; normally it's <i>false</i>, except the case in which the duration of the audio is very close to the biggest lower integer (for instance, the duration is 10.01, which is very close to 10): in this case, the signal that the audio ended <b>is not received directly by the current method</b>, but rather by the event handler <b>ended</b> initialized in the end of {{#crossLink \"PlayersAudioEditor/initializeAudioEditorCutter:method\"}}{{/crossLink}}",
+                    "type": "Boolean"
+                }
+            ],
             "class": "PlayersAudioEditor",
             "module": "players"
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 71,
-            "description": "bla bla bla",
+            "line": 74,
+            "description": "Initializes two sliders: one (JQueryUi single slider) for the <b>cursor</b>, and one (JQueryUi double slider) for the <b>cutting handles</b>. It also initializes how to handle the event <b>ended</b> associated to the audio.",
             "itemtype": "method",
             "name": "initializeAudioEditorCutter",
             "class": "PlayersAudioEditor",
@@ -4892,7 +4909,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 161,
+            "line": 164,
             "description": "This is the method that assocaites {{#crossLink \"PlayersAudioEditor/initializeActionOfMediaTimeUpdaterInAudioEditor:method\"}}{{/crossLink}} to the event of <b>timeupdate</b>. Notice that the method waits until he receives the event <b>loadedmetadata</b> before working.",
             "itemtype": "method",
             "name": "initializeMediaTimeUpdaterInAudioEditor",
@@ -4901,8 +4918,8 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 181,
-            "description": "bla bla bla",
+            "line": 184,
+            "description": "Method that <b>updates the audio cursor</b>, in case one of the two handles passes over the cursor (the cursor must follow the handle).",
             "itemtype": "method",
             "name": "selectAudioComponentCutterHandle",
             "class": "PlayersAudioEditor",
@@ -4910,7 +4927,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 196,
+            "line": 199,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "mediaEventsLogger",
@@ -4919,7 +4936,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 226,
+            "line": 229,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "setCurrentTimeToMedia",
@@ -4928,7 +4945,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 241,
+            "line": 244,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "showLoadingMediaErrorPopup",
@@ -4937,7 +4954,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 255,
+            "line": 258,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "stopAllMedia",
@@ -4946,7 +4963,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 266,
+            "line": 269,
             "description": "IE SI ARRABBIA SE GLI SETTI UN VALORE DI SEEK NON COMPRESO TRA L'INIZIO E LA FINE DEI VALORI SEEKABLE",
             "itemtype": "method",
             "name": "validSeek",
@@ -4955,7 +4972,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 287,
+            "line": 290,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "playersDocumentReady",
@@ -4964,7 +4981,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 298,
+            "line": 301,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "playersDocumentReadyAudioEditor",
@@ -4973,7 +4990,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 362,
+            "line": 365,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "playersDocumentReadyGeneral",
@@ -4982,7 +4999,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 395,
+            "line": 398,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "playersDocumentReadyVideoEditor",
@@ -4991,7 +5008,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 466,
+            "line": 469,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "initializeActionOfMediaTimeUpdater",
@@ -5000,7 +5017,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 486,
+            "line": 489,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "initializeMedia",
@@ -5009,7 +5026,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 512,
+            "line": 515,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "initializeMediaTimeUpdater",
@@ -5030,7 +5047,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 534,
+            "line": 537,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "stopMedia",
@@ -5039,7 +5056,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 565,
+            "line": 568,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "initializeActionOfMediaTimeUpdaterInVideoEditor",
@@ -5048,7 +5065,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 639,
+            "line": 642,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "initializeMediaTimeUpdaterInVideoEditor",
@@ -5057,7 +5074,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 659,
+            "line": 662,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "initializeVideoInVideoEditorPreview",
@@ -5066,7 +5083,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 737,
+            "line": 740,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "selectVideoComponentCutterHandle",
@@ -5075,7 +5092,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 747,
+            "line": 750,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "stopVideoInVideoEditorPreview",

@@ -15,11 +15,14 @@ This module contains the javascript functions and initializers used in the <b>me
 /**
 This method is fired each time the audio component player receives an event of <b>timeupdate</b>. There are two cases of use of this method:
 <ul>
-  <li>if the audio player <b>is not in preview mode</b>, it operates as a normal player, with very slight differences due to the different environment (see {{#crossLink "PlayersGeneral/initializeActionOfMediaTimeUpdater:method"}}{{/crossLink}})</li>
-  <li>.</li>
+  <li>if the Audio Editor <b>is not in preview mode</b>, it operates as a normal player (see {{#crossLink "PlayersGeneral/initializeActionOfMediaTimeUpdater:method"}}{{/crossLink}}), with very slight differences due to the different environment</li>
+  <li>if we are <b>in preview mode</b>, the method acts as a counterpart of {{#crossLink "AudioEditorPreview/startAudioEditorPreview:method"}}{{/crossLink}}: at any time the seconds increase, the method updates the timer using {{#crossLink "AudioEditorPreview/increaseAudioEditorPreviewTimer:method"}}{{/crossLink}}; when the audio is over, if it's not playing the last component, the method calls {{#crossLink "AudioEditorPreview/startAudioEditorPreview:method"}}{{/crossLink}} for the following one.</li>
 </ul>
 @method initializeActionOfMediaTimeUpdaterInAudioEditor
 @for PlayersAudioEditor
+@param media {String} HTML selector for the audio
+@param identifier {Number} unique identifier for the audio component (see {{#crossLinkModule "audio-editor"}}{{/crossLinkModule}})
+@param force_parsed_int {Boolean} forces the last second of the audio; normally it's <i>false</i>, except the case in which the duration of the audio is very close to the biggest lower integer (for instance, the duration is 10.01, which is very close to 10): in this case, the signal that the audio ended <b>is not received directly by the current method</b>, but rather by the event handler <b>ended</b> initialized in the end of {{#crossLink "PlayersAudioEditor/initializeAudioEditorCutter:method"}}{{/crossLink}}
 **/
 function initializeActionOfMediaTimeUpdaterInAudioEditor(media, identifier, force_parsed_int) {
   var component = $('#audio_component_' + identifier);
@@ -69,7 +72,7 @@ function initializeActionOfMediaTimeUpdaterInAudioEditor(media, identifier, forc
 }
 
 /**
-bla bla bla
+Initializes two sliders: one (JQueryUi single slider) for the <b>cursor</b>, and one (JQueryUi double slider) for the <b>cutting handles</b>. It also initializes how to handle the event <b>ended</b> associated to the audio.
 @method initializeAudioEditorCutter
 @for PlayersAudioEditor
 **/
@@ -179,7 +182,7 @@ function initializeMediaTimeUpdaterInAudioEditor(identifier) {
 }
 
 /**
-bla bla bla
+Method that <b>updates the audio cursor</b>, in case one of the two handles passes over the cursor (the cursor must follow the handle).
 @method selectAudioComponentCutterHandle
 @for PlayersAudioEditor
 **/
