@@ -9,7 +9,9 @@ The tool to navigate the slides is located on the top of the editor: each small 
 <br/><br/>
 Inside the Editor, there are two operations that require hiding and replacement of the queue of slides: <b>adding a media element to a slide</b> and <b>choosing a new slide</b>. In both these operations, an HTML div is extracted from the main template (where it was hidden), and put in the place of the current slide, hiding the rest of the slides queue, buttons, and slides navigation (operations performed by {{#crossLink "LessonEditorCurrentSlide/hideEverythingOutCurrentSlide:method"}}{{/crossLink}}). For the galleries, the extracted div must be filled by an action called via Ajax (see the module {{#crossLinkModule "galleries"}}{{/crossLinkModule}}), whereas the div with the list of available slides is already loaded with the Editor (see {{#crossLink "LessonEditorDocumentReady/lessonEditorDocumentReadyNewSlideChoice:method"}}{{/crossLink}}).
 <br/><br/>
-
+To add a media element to a slide, the user picks one from the specific gallery: when he clicks on the button 'plus', the system calls the corresponding subfunction in {{#crossLink "LessonEditorDocumentReady/lessonEditorDocumentReadyAddMediaElement:method"}}{{/crossLink}}. To avoid troubles due to the replacement of JQuery plugins, video and audio tags, etc, this method always replaces the sources of <b>audio</b> and <b>video</b> tags and calls <i>load()</i>.
+<br/><br/>
+If the element added is of type <b>image</b>, the user may drag it inside the slide, using {{#crossLink "LessonEditorJqueryAnimations/makeDraggable:method"}}{{/crossLink}}. A set of methods (in the class {{#crossLink "LessonEditorImageResizing"}}{{/crossLink}}) is available to resize the image and the alignment chosen by the user; more specificly, the method {{#crossLink "LessonEditorImageResizing/isHorizontalMask:method"}}{{/crossLink}} is used to understand, depending on the type of slide and on the proportions of the image, id the image is <b>vertical</b> (and then the user can dragg it vertically) or <b>horizontal</b> (the user can drag it horizontally).
 @module lesson-editor
 **/
 
