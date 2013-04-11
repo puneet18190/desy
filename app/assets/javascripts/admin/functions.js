@@ -1,5 +1,5 @@
 /**
-Functions used in the Administration section: only for this section, it's generated a separate file which doesn't merge with the regular one. The only external module loaded is {{#crossLinkModule "ajax-loader"}}{{/crossLinkModule}}.
+Functions used in the Administration section: only for this section, <b>it's generated a separate file</b> which doesn't merge with the regular one. The only external module loaded is {{#crossLinkModule "ajax-loader"}}{{/crossLinkModule}}.
 @module administration
 **/
 
