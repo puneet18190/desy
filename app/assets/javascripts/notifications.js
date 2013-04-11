@@ -151,7 +151,7 @@ function notificationsDocumentReadyLessonModification() {
 }
 
 /**
-Initializer for help and notifications tooltips.
+General initializer for help and notifications tooltips.
 @method notificationsDocumentReadyTooltips
 @for NotificationsDocumentReady
 **/
@@ -177,7 +177,7 @@ function notificationsDocumentReadyTooltips() {
 
 
 /**
-Checks if any help is available and initialize them. Handles help show/hide effects.
+Initializes the graphical tools of the <b>help tooltip</b>.
 @method initializeHelp
 @for NotificationsGraphics
 **/
@@ -205,7 +205,7 @@ function initializeHelp() {
 }
 
 /**
-Checks if any notification is available and initialize unread notification counter. Handles notifications show/hide effects.
+Initializes the graphical tools and the routes attached to the <b>notifications tooltip</b>.
 @method initializeNotifications
 @for NotificationsGraphics
 **/

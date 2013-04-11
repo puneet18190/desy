@@ -4848,7 +4848,7 @@
         {
             "file": "app/assets/javascripts/notifications.js",
             "line": 153,
-            "description": "Initializer for help and notifications tooltips.",
+            "description": "General initializer for help and notifications tooltips.",
             "itemtype": "method",
             "name": "notificationsDocumentReadyTooltips",
             "class": "NotificationsDocumentReady",
@@ -4857,7 +4857,7 @@
         {
             "file": "app/assets/javascripts/notifications.js",
             "line": 179,
-            "description": "Checks if any help is available and initialize them. Handles help show/hide effects.",
+            "description": "Initializes the graphical tools of the <b>help tooltip</b>.",
             "itemtype": "method",
             "name": "initializeHelp",
             "class": "NotificationsGraphics",
@@ -4866,7 +4866,7 @@
         {
             "file": "app/assets/javascripts/notifications.js",
             "line": 207,
-            "description": "Checks if any notification is available and initialize unread notification counter. Handles notifications show/hide effects.",
+            "description": "Initializes the graphical tools and the routes attached to the <b>notifications tooltip</b>.",
             "itemtype": "method",
             "name": "initializeNotifications",
             "class": "NotificationsGraphics",
