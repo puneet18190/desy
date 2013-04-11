@@ -652,7 +652,7 @@ href="VideoEditorController.html#method-i-check_available_for_user">#check_avail
 
           
           <div class="method-source-code" id="overwrite-source">
-            <pre><span class="ruby-comment"># File app/controllers/video_editor_controller.rb, line 174</span>
+            <pre><span class="ruby-comment"># File app/controllers/video_editor_controller.rb, line 175</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">overwrite</span>
   <span class="ruby-identifier">parameters</span> = <span class="ruby-constant">Video</span>.<span class="ruby-identifier">convert_to_primitive_parameters</span>(<span class="ruby-identifier">extract_form_parameters</span>, <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
   <span class="ruby-ivar">@redirect</span> = <span class="ruby-keyword">false</span>
@@ -679,7 +679,8 @@ href="VideoEditorController.html#method-i-check_available_for_user">#check_avail
     <span class="ruby-constant">Delayed</span><span class="ruby-operator">::</span><span class="ruby-constant">Job</span>.<span class="ruby-identifier">enqueue</span> <span class="ruby-constant">Media</span><span class="ruby-operator">::</span><span class="ruby-constant">Video</span><span class="ruby-operator">::</span><span class="ruby-constant">Editing</span><span class="ruby-operator">::</span><span class="ruby-constant">Composer</span><span class="ruby-operator">::</span><span class="ruby-constant">Job</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">parameters</span>)
   <span class="ruby-keyword">else</span>
     <span class="ruby-ivar">@error_ids</span> = <span class="ruby-string">&#39;update&#39;</span>
-    <span class="ruby-ivar">@errors</span> = <span class="ruby-identifier">convert_item_error_messages</span>(<span class="ruby-identifier">record</span>.<span class="ruby-identifier">errors</span>.<span class="ruby-identifier">messages</span>)
+    <span class="ruby-ivar">@errors</span> = [<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;forms.error_captions.media_folder_size_exceeded&#39;</span>)] <span class="ruby-keyword">if</span> <span class="ruby-identifier">record</span>.<span class="ruby-identifier">errors</span>.<span class="ruby-identifier">added?</span> <span class="ruby-value">:media</span>, <span class="ruby-value">:folder_size_exceeded</span>
+    <span class="ruby-ivar">@errors</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">convert_item_error_messages</span>(<span class="ruby-identifier">record</span>.<span class="ruby-identifier">errors</span>.<span class="ruby-identifier">messages</span>)
     <span class="ruby-ivar">@error_fields</span> = <span class="ruby-identifier">record</span>.<span class="ruby-identifier">errors</span>.<span class="ruby-identifier">messages</span>.<span class="ruby-identifier">keys</span>
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">render</span> <span class="ruby-string">&#39;media_elements/info_form_in_editor/save&#39;</span>
@@ -797,7 +798,8 @@ href="VideoEditorController.html#method-i-check_available_for_user">#check_avail
     <span class="ruby-constant">Delayed</span><span class="ruby-operator">::</span><span class="ruby-constant">Job</span>.<span class="ruby-identifier">enqueue</span> <span class="ruby-constant">Media</span><span class="ruby-operator">::</span><span class="ruby-constant">Video</span><span class="ruby-operator">::</span><span class="ruby-constant">Editing</span><span class="ruby-operator">::</span><span class="ruby-constant">Composer</span><span class="ruby-operator">::</span><span class="ruby-constant">Job</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">parameters</span>)
   <span class="ruby-keyword">else</span>
     <span class="ruby-ivar">@error_ids</span> = <span class="ruby-string">&#39;new&#39;</span>
-    <span class="ruby-ivar">@errors</span> = <span class="ruby-identifier">convert_item_error_messages</span>(<span class="ruby-identifier">record</span>.<span class="ruby-identifier">errors</span>.<span class="ruby-identifier">messages</span>)
+    <span class="ruby-ivar">@errors</span> = [<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;forms.error_captions.media_folder_size_exceeded&#39;</span>)] <span class="ruby-keyword">if</span> <span class="ruby-identifier">record</span>.<span class="ruby-identifier">errors</span>.<span class="ruby-identifier">added?</span> <span class="ruby-value">:media</span>, <span class="ruby-value">:folder_size_exceeded</span>
+    <span class="ruby-ivar">@errors</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">convert_item_error_messages</span>(<span class="ruby-identifier">record</span>.<span class="ruby-identifier">errors</span>.<span class="ruby-identifier">messages</span>)
     <span class="ruby-ivar">@error_fields</span> = <span class="ruby-identifier">record</span>.<span class="ruby-identifier">errors</span>.<span class="ruby-identifier">messages</span>.<span class="ruby-identifier">keys</span>
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">render</span> <span class="ruby-string">&#39;media_elements/info_form_in_editor/save&#39;</span>
@@ -878,7 +880,7 @@ href="User.html#method-i-video_editor_available">User#video_editor_available</a>
 
           
           <div class="method-source-code" id="check_available_for_user-source">
-            <pre><span class="ruby-comment"># File app/controllers/video_editor_controller.rb, line 215</span>
+            <pre><span class="ruby-comment"># File app/controllers/video_editor_controller.rb, line 217</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">check_available_for_user</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">video_editor_available</span>
     <span class="ruby-identifier">render</span> <span class="ruby-string">&#39;not_available&#39;</span>
@@ -912,7 +914,7 @@ href="Media/Video/Editing/Parameters.html">Media::Video::Editing::Parameters</a>
 
           
           <div class="method-source-code" id="convert_video_to_parameters-source">
-            <pre><span class="ruby-comment"># File app/controllers/video_editor_controller.rb, line 265</span>
+            <pre><span class="ruby-comment"># File app/controllers/video_editor_controller.rb, line 267</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">convert_video_to_parameters</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">resp</span> = {}
   <span class="ruby-identifier">resp</span>[<span class="ruby-value">:initial_video_id</span>] = <span class="ruby-ivar">@video</span>.<span class="ruby-identifier">is_public</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">nil</span> <span class="ruby-operator">:</span> <span class="ruby-ivar">@video</span>.<span class="ruby-identifier">id</span>
@@ -953,7 +955,7 @@ from an empty video editor</p>
 
           
           <div class="method-source-code" id="empty_parameters-source">
-            <pre><span class="ruby-comment"># File app/controllers/video_editor_controller.rb, line 279</span>
+            <pre><span class="ruby-comment"># File app/controllers/video_editor_controller.rb, line 281</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">empty_parameters</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">resp</span> = {}
   <span class="ruby-identifier">resp</span>[<span class="ruby-value">:initial_video</span>] = <span class="ruby-keyword">nil</span>
@@ -987,7 +989,7 @@ from an empty video editor</p>
 
           
           <div class="method-source-code" id="extract_cache-source">
-            <pre><span class="ruby-comment"># File app/controllers/video_editor_controller.rb, line 288</span>
+            <pre><span class="ruby-comment"># File app/controllers/video_editor_controller.rb, line 290</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">extract_cache</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-ivar">@cache</span> = <span class="ruby-constant">Video</span>.<span class="ruby-identifier">convert_parameters</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">video_editor_cache</span>, <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>
 <span class="ruby-keyword">end</span></pre>
@@ -1017,7 +1019,7 @@ from an empty video editor</p>
 
           
           <div class="method-source-code" id="extract_form_parameters-source">
-            <pre><span class="ruby-comment"># File app/controllers/video_editor_controller.rb, line 233</span>
+            <pre><span class="ruby-comment"># File app/controllers/video_editor_controller.rb, line 235</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">extract_form_parameters</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">unordered_resp</span> = {}
   <span class="ruby-identifier">ordered_resp</span> = {}
@@ -1075,7 +1077,7 @@ href="Media/Video/Editing/Parameters.html">Media::Video::Editing::Parameters</a>
 
           
           <div class="method-source-code" id="extract_single_form_parameter-source">
-            <pre><span class="ruby-comment"># File app/controllers/video_editor_controller.rb, line 223</span>
+            <pre><span class="ruby-comment"># File app/controllers/video_editor_controller.rb, line 225</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">extract_single_form_parameter</span>(<span class="ruby-identifier">p</span>, <span class="ruby-identifier">value</span>) <span class="ruby-comment"># :doc:</span>
   <span class="ruby-keyword">if</span> [<span class="ruby-string">&#39;type&#39;</span>, <span class="ruby-string">&#39;content&#39;</span>, <span class="ruby-string">&#39;background_color&#39;</span>, <span class="ruby-string">&#39;text_color&#39;</span>].<span class="ruby-identifier">include?</span> <span class="ruby-identifier">p</span>
     <span class="ruby-keyword">return</span> <span class="ruby-identifier">value</span>
@@ -1113,7 +1115,7 @@ video, but not modify it)</p>
 
           
           <div class="method-source-code" id="initialize_video_with_owner_or_public-source">
-            <pre><span class="ruby-comment"># File app/controllers/video_editor_controller.rb, line 293</span>
+            <pre><span class="ruby-comment"># File app/controllers/video_editor_controller.rb, line 295</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize_video_with_owner_or_public</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-ivar">@video_id</span> = <span class="ruby-identifier">correct_integer?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:video_id</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:video_id</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-value">0</span>
   <span class="ruby-ivar">@video</span> = <span class="ruby-constant">Video</span>.<span class="ruby-identifier">find_by_id</span> <span class="ruby-ivar">@video_id</span>
@@ -1145,7 +1147,7 @@ video, but not modify it)</p>
 
           
           <div class="method-source-code" id="used_in_private_lessons-source">
-            <pre><span class="ruby-comment"># File app/controllers/video_editor_controller.rb, line 209</span>
+            <pre><span class="ruby-comment"># File app/controllers/video_editor_controller.rb, line 211</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">used_in_private_lessons</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@parameters</span>[<span class="ruby-value">:initial_video</span>].<span class="ruby-identifier">nil?</span>
   <span class="ruby-ivar">@parameters</span>[<span class="ruby-value">:initial_video</span>].<span class="ruby-identifier">media_elements_slides</span>.<span class="ruby-identifier">any?</span>

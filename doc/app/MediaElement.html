@@ -632,7 +632,7 @@ they are switched to another owner (the super administrator of the
 application, see <a href="User.html#method-c-admin">User.admin</a>)</p>
 </li><li>
 <p><strong>minimum</strong> <strong>number</strong> of tags (configurated in
-settings.yml), <strong>only if the attribute <a
+config/settings.yml), <strong>only if the attribute <a
 href="MediaElement.html#attribute-i-validating_in_form">#validating_in_form</a>
 is set as <code>true</code></strong></p>
 </li><li>
@@ -646,6 +646,9 @@ href="Media/Video/Uploader/Validation.html">Media::Video::Uploader::Validation</
 href="Media/Audio/Uploader/Validation.html">Media::Audio::Uploader::Validation</a>,
 <a href="ImageUploader.html">ImageUploader</a>, this last being carried out
 automatically by CarrierWave)</p>
+</li><li>
+<p><strong>the maximum size of the media elements folder size</strong>
+(configured in config/settings.yml, in gigabytes)</p>
 </li></ul>
 
 <h2 id="label-Callbacks">Callbacks</h2>
@@ -901,7 +904,7 @@ href="DashboardController.html#method-i-index">DashboardController#index</a>).</
 
           
           <div class="method-source-code" id="dashboard_emptied-3F-source">
-            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 238</span>
+            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 239</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">dashboard_emptied?</span>(<span class="ruby-identifier">an_user_id</span>)
   <span class="ruby-constant">Bookmark</span>.<span class="ruby-identifier">joins</span>(<span class="ruby-string">&quot;INNER JOIN media_elements ON media_elements.id = bookmarks.bookmarkable_id AND bookmarks.bookmarkable_type = &#39;MediaElement&#39;&quot;</span>).<span class="ruby-identifier">where</span>(<span class="ruby-string">&#39;media_elements.is_public = ? AND media_elements.user_id != ? AND bookmarks.user_id = ?&#39;</span>, <span class="ruby-keyword">true</span>, <span class="ruby-identifier">an_user_id</span>, <span class="ruby-identifier">an_user_id</span>).<span class="ruby-identifier">any?</span>
 <span class="ruby-keyword">end</span></pre>
@@ -964,7 +967,7 @@ href="Media/Video/Editing/Parameters.html#method-i-get_media_element_from_hash">
 
           
           <div class="method-source-code" id="extract-source">
-            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 218</span>
+            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 219</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">extract</span>(<span class="ruby-identifier">media_element_id</span>, <span class="ruby-identifier">an_user_id</span>, <span class="ruby-identifier">my_sti_type</span>)
   <span class="ruby-identifier">media_element</span> = <span class="ruby-identifier">find_by_id</span> <span class="ruby-identifier">media_element_id</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">media_element</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">media_element</span>.<span class="ruby-identifier">sti_type</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">my_sti_type</span>
@@ -1013,7 +1016,7 @@ saved as media elements)</p>
 
           
           <div class="method-source-code" id="filetype-source">
-            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 254</span>
+            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 255</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">filetype</span>(<span class="ruby-identifier">path</span>)
   <span class="ruby-identifier">path</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">extname</span>(<span class="ruby-identifier">path</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-constant">Audio</span><span class="ruby-operator">::</span><span class="ruby-constant">EXTENSION_WHITE_LIST</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">path</span>[<span class="ruby-value">1</span>, <span class="ruby-identifier">path</span>.<span class="ruby-identifier">length</span>])
@@ -1075,7 +1078,7 @@ href="MediaElementsController.html#method-i-create">MediaElementsController#crea
 
           
           <div class="method-source-code" id="new_with_sti_type_inferring-source">
-            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 177</span>
+            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 178</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new_with_sti_type_inferring</span>(<span class="ruby-identifier">attributes</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">options</span> = {}, &amp;<span class="ruby-identifier">block</span>)
   <span class="ruby-identifier">media</span> = <span class="ruby-identifier">attributes</span>.<span class="ruby-identifier">try</span> <span class="ruby-value">:[]</span>, <span class="ruby-value">:media</span>
   <span class="ruby-keyword">unless</span> <span class="ruby-identifier">media</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">ActionDispatch</span><span class="ruby-operator">::</span><span class="ruby-constant">Http</span><span class="ruby-operator">::</span><span class="ruby-constant">UploadedFile</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">media</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">File</span>)
@@ -1135,7 +1138,7 @@ href="Audio.html">Audio</a></p>
 
           
           <div class="method-source-code" id="audio-3F-source">
-            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 317</span>
+            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 318</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">audio?</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">sti_type</span> <span class="ruby-operator">==</span> <span class="ruby-constant">AUDIO_TYPE</span>
 <span class="ruby-keyword">end</span></pre>
@@ -1177,7 +1180,7 @@ particular user</p>
 
           
           <div class="method-source-code" id="bookmarked-3F-source">
-            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 450</span>
+            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 451</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">bookmarked?</span>(<span class="ruby-identifier">an_user_id</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span>
   <span class="ruby-constant">Bookmark</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">an_user_id</span>, <span class="ruby-value">:bookmarkable_type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;MediaElement&#39;</span>, <span class="ruby-value">:bookmarkable_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">any?</span>
@@ -1217,7 +1220,7 @@ href="Buttons.html">Buttons</a>)</p>
 
           
           <div class="method-source-code" id="buttons-source">
-            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 425</span>
+            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 426</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">buttons</span>
   <span class="ruby-keyword">return</span> [] <span class="ruby-keyword">if</span> [<span class="ruby-ivar">@status</span>, <span class="ruby-ivar">@is_reportable</span>, <span class="ruby-ivar">@info_changeable</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-keyword">nil</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@status</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Statuses</span><span class="ruby-operator">::</span><span class="ruby-constant">PRIVATE</span>
@@ -1264,7 +1267,7 @@ href="MediaElementsController.html#method-i-destroy">MediaElementsController#des
 
           
           <div class="method-source-code" id="check_and_destroy-source">
-            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 463</span>
+            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 464</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">check_and_destroy</span>
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">clear</span>
   <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span>
@@ -1319,7 +1322,7 @@ see <a href="Media/Shared.html">Media::Shared</a>.</p>
 
           
           <div class="method-source-code" id="disable_lessons_containing_me-source">
-            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 285</span>
+            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 286</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">disable_lessons_containing_me</span>
   <span class="ruby-identifier">manage_lessons_containing_me</span>(<span class="ruby-keyword">false</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -1357,7 +1360,7 @@ href="Media/Audio/Editing/Composer.html">Media::Audio::Editing::Composer</a>.</p
 
           
           <div class="method-source-code" id="enable_lessons_containing_me-source">
-            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 293</span>
+            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 294</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">enable_lessons_containing_me</span>
   <span class="ruby-identifier">manage_lessons_containing_me</span>(<span class="ruby-keyword">true</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -1394,7 +1397,7 @@ href="Image.html">Image</a></p>
 
           
           <div class="method-source-code" id="image-3F-source">
-            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 305</span>
+            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 306</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">image?</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">sti_type</span> <span class="ruby-operator">==</span> <span class="ruby-constant">IMAGE_TYPE</span>
 <span class="ruby-keyword">end</span></pre>
@@ -1440,7 +1443,7 @@ see the element.</p>
 
           
           <div class="method-source-code" id="set_status-source">
-            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 396</span>
+            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 397</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">set_status</span>(<span class="ruby-identifier">an_user_id</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span>
   <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">is_public</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">an_user_id</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">user_id</span>
@@ -1502,7 +1505,7 @@ href="Statuses.html">Statuses</a>)</p>
 
           
           <div class="method-source-code" id="status-source">
-            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 384</span>
+            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 385</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">status</span>(<span class="ruby-identifier">with_captions</span>=<span class="ruby-keyword">false</span>)
   <span class="ruby-ivar">@status</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">nil</span> <span class="ruby-operator">:</span> (<span class="ruby-identifier">with_captions</span> <span class="ruby-operator">?</span> <span class="ruby-constant">MediaElement</span>.<span class="ruby-identifier">status</span>(<span class="ruby-ivar">@status</span>) <span class="ruby-operator">:</span> <span class="ruby-ivar">@status</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -1539,7 +1542,7 @@ file</p>
 
           
           <div class="method-source-code" id="sti_type_to_s-source">
-            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 277</span>
+            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 278</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">sti_type_to_s</span>
   <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-node">&quot;sti_types.#{self.sti_type.downcase}&quot;</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -1576,7 +1579,7 @@ file</p>
 
           
           <div class="method-source-code" id="tags-source">
-            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 349</span>
+            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 350</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">tags</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span> <span class="ruby-operator">?</span> <span class="ruby-string">&#39;&#39;</span> <span class="ruby-operator">:</span> <span class="ruby-constant">Tag</span>.<span class="ruby-identifier">get_friendly_tags</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>, <span class="ruby-string">&#39;MediaElement&#39;</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -1619,7 +1622,7 @@ new_record) ready to be saved together with their taggings in the
 
           
           <div class="method-source-code" id="tags-3D-source">
-            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 361</span>
+            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 362</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">tags=</span>(<span class="ruby-identifier">tags</span>)
   <span class="ruby-ivar">@tags</span> = 
     <span class="ruby-keyword">case</span> <span class="ruby-identifier">tags</span>
@@ -1663,7 +1666,7 @@ href="Video.html">Video</a></p>
 
           
           <div class="method-source-code" id="video-3F-source">
-            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 329</span>
+            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 330</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">video?</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">sti_type</span> <span class="ruby-operator">==</span> <span class="ruby-constant">VIDEO_TYPE</span>
 <span class="ruby-keyword">end</span></pre>
@@ -1697,7 +1700,7 @@ href="Lesson.html#method-i-visive_tags">Lesson#visive_tags</a>)</p>
 
           
           <div class="method-source-code" id="visive_tags-source">
-            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 337</span>
+            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 338</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">visive_tags</span>
   <span class="ruby-constant">Tagging</span>.<span class="ruby-identifier">visive_tags</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">tags</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -1735,7 +1738,7 @@ It&#39;s initialized also the private attribute <code>inner_tags</code></p>
 
           
           <div class="method-source-code" id="init_validation-source">
-            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 516</span>
+            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 517</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">init_validation</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-ivar">@media_element</span> = <span class="ruby-constant">Valid</span>.<span class="ruby-identifier">get_association</span> <span class="ruby-keyword">self</span>, <span class="ruby-value">:id</span>
   <span class="ruby-ivar">@user</span> = <span class="ruby-constant">Valid</span>.<span class="ruby-identifier">get_association</span> <span class="ruby-keyword">self</span>, <span class="ruby-value">:user_id</span>
@@ -1787,7 +1790,7 @@ href="MediaElement.html#method-i-enable_lessons_containing_me">#enable_lessons_c
 
           
           <div class="method-source-code" id="manage_lessons_containing_me-source">
-            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 594</span>
+            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 595</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">manage_lessons_containing_me</span>(<span class="ruby-identifier">value</span>) <span class="ruby-comment"># :doc:</span>
   <span class="ruby-constant">MediaElementsSlide</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:media_element_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">id</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">mes</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">l</span> = <span class="ruby-identifier">mes</span>.<span class="ruby-identifier">slide</span>.<span class="ruby-identifier">lesson</span>
@@ -1828,7 +1831,7 @@ is true</p>
 
           
           <div class="method-source-code" id="stop_if_public-source">
-            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 582</span>
+            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 583</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">stop_if_public</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">destroyable_even_if_public</span>
   <span class="ruby-ivar">@media_element</span> = <span class="ruby-constant">Valid</span>.<span class="ruby-identifier">get_association</span> <span class="ruby-keyword">self</span>, <span class="ruby-value">:id</span>
@@ -1867,7 +1870,7 @@ created</p>
 
           
           <div class="method-source-code" id="update_or_create_tags-source">
-            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 495</span>
+            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 496</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update_or_create_tags</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span> <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@inner_tags</span>
   <span class="ruby-identifier">words</span> = []
@@ -1913,7 +1916,7 @@ created</p>
 
           
           <div class="method-source-code" id="validate_associations-source">
-            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 548</span>
+            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 549</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">validate_associations</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:user_id</span>, <span class="ruby-value">:doesnt_exist</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">nil?</span>
 <span class="ruby-keyword">end</span></pre>
@@ -1947,7 +1950,7 @@ validates that <code>user_id</code> can&#39;t be changed</p>
 
           
           <div class="method-source-code" id="validate_impossible_changes-source">
-            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 562</span>
+            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 563</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">validate_impossible_changes</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@media_element</span>.<span class="ruby-identifier">nil?</span>
     <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:is_public</span>, <span class="ruby-value">:must_be_false_if_new_record</span>) <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">is_public</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">skip_public_validations</span>
@@ -1987,12 +1990,13 @@ validates that <code>user_id</code> can&#39;t be changed</p>
 
         <div class="method-description">
           
-          
+          <p>Validates the sum of the media elements folder size to don&#39;t exceed the
+maximum size available</p>
           
 
           
           <div class="method-source-code" id="validate_maximum_media_elements_folder_size-source">
-            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 606</span>
+            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 608</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">validate_maximum_media_elements_folder_size</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span> <span class="ruby-value">:media</span>, <span class="ruby-value">:folder_size_exceeded</span> <span class="ruby-keyword">if</span> <span class="ruby-constant">Media</span><span class="ruby-operator">::</span><span class="ruby-constant">Uploader</span>.<span class="ruby-identifier">maximum_media_elements_folder_size_exceeded?</span>
 <span class="ruby-keyword">end</span></pre>
@@ -2024,7 +2028,7 @@ is public</p>
 
           
           <div class="method-source-code" id="validate_publication_date-source">
-            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 553</span>
+            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 554</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">validate_publication_date</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">is_public</span>
     <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:publication_date</span>, <span class="ruby-value">:is_not_a_date</span>) <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">publication_date</span>.<span class="ruby-identifier">blank?</span> <span class="ruby-operator">||</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">publication_date</span>.<span class="ruby-identifier">kind_of?</span>(<span class="ruby-constant">Time</span>)
@@ -2059,7 +2063,7 @@ configured in megabytes in settings.yml</p>
 
           
           <div class="method-source-code" id="validate_size-source">
-            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 540</span>
+            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 541</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">validate_size</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-keyword">if</span> ( (<span class="ruby-identifier">audio?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">video?</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">media</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:value</span>).<span class="ruby-identifier">try</span>(<span class="ruby-value">:is_a?</span>, <span class="ruby-constant">ActionDispatch</span><span class="ruby-operator">::</span><span class="ruby-constant">Http</span><span class="ruby-operator">::</span><span class="ruby-constant">UploadedFile</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">media</span>.<span class="ruby-identifier">value</span>.<span class="ruby-identifier">tempfile</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-constant">MAX_MEDIA_SIZE</span> ) <span class="ruby-operator">||</span>
      ( <span class="ruby-identifier">image?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">media</span>.<span class="ruby-identifier">present?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">media</span>.<span class="ruby-identifier">file</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-constant">MAX_MEDIA_SIZE</span> )
@@ -2093,7 +2097,7 @@ unless the attribute <code>validating_in_form</code> is false</p>
 
           
           <div class="method-source-code" id="validate_tags_length-source">
-            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 490</span>
+            <pre><span class="ruby-comment"># File app/models/media_element.rb, line 491</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">validate_tags_length</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:tags</span>, <span class="ruby-value">:are_not_enough</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@validating_in_form</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@inner_tags</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;min_tags_for_item&#39;</span>]
 <span class="ruby-keyword">end</span></pre>
