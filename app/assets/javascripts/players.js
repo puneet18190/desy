@@ -75,6 +75,7 @@ function initializeActionOfMediaTimeUpdaterInAudioEditor(media, identifier, forc
 Initializes two sliders: one (JQueryUi single slider) for the <b>cursor</b>, and one (JQueryUi double slider) for the <b>cutting handles</b>. It also initializes how to handle the event <b>ended</b> associated to the audio.
 @method initializeAudioEditorCutter
 @for PlayersAudioEditor
+@param identifier {Number} the unique identifier of the audio component (see {{#crossLinkModule "audio-editor"}}{{/crossLinkModule}})
 **/
 function initializeAudioEditorCutter(identifier) {
   var component = $('#audio_component_' + identifier);
@@ -165,6 +166,7 @@ function initializeAudioEditorCutter(identifier) {
 This is the method that assocaites {{#crossLink "PlayersAudioEditor/initializeActionOfMediaTimeUpdaterInAudioEditor:method"}}{{/crossLink}} to the event of <b>timeupdate</b>. Notice that the method waits until he receives the event <b>loadedmetadata</b> before working.
 @method initializeMediaTimeUpdaterInAudioEditor
 @for PlayersAudioEditor
+@param identifier {Number} the unique identifier of the audio component (see {{#crossLinkModule "audio-editor"}}{{/crossLinkModule}})
 **/
 function initializeMediaTimeUpdaterInAudioEditor(identifier) {
   media = $('#audio_component_' + identifier + ' audio');
@@ -185,6 +187,8 @@ function initializeMediaTimeUpdaterInAudioEditor(identifier) {
 Method that <b>updates the audio cursor</b>, in case one of the two handles passes over the cursor (the cursor must follow the handle).
 @method selectAudioComponentCutterHandle
 @for PlayersAudioEditor
+@param component {Object} the JQuery object representing the component
+@param val {Number} the value to be assigned
 **/
 function selectAudioComponentCutterHandle(component, val) {
   setCurrentTimeToMedia(component.find('audio'), val);
@@ -197,9 +201,10 @@ function selectAudioComponentCutterHandle(component, val) {
 
 
 /**
-bla bla bla
+Method that logs all the possible events of a given media.
 @method mediaEventsLogger
 @for PlayersGeneral
+@param media {Object} the jquery object representing a <b>video</b> or an <b>audio</b> tag
 **/
 function mediaEventsLogger(media) {
   media.on('loadstart', function() {console.log('loadstart');});
@@ -227,9 +232,11 @@ function mediaEventsLogger(media) {
 }
 
 /**
-bla bla bla
+Sets a time to any media in any environment. Notice that the method waits until he receives the event <b>loadedmetadata</b> before working.
 @method setCurrentTimeToMedia
 @for PlayersCommon
+@param media {Object} the jquery object representing a <b>video</b> or an <b>audio</b> tag
+@param seek {Float} the time to be set
 **/
 function setCurrentTimeToMedia(media, seek) {
   if(media[0].readyState != 0) {

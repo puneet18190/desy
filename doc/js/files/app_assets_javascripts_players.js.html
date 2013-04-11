@@ -381,6 +381,7 @@ function initializeActionOfMediaTimeUpdaterInAudioEditor(media, identifier, forc
 Initializes two sliders: one (JQueryUi single slider) for the &lt;b&gt;cursor&lt;&#x2F;b&gt;, and one (JQueryUi double slider) for the &lt;b&gt;cutting handles&lt;&#x2F;b&gt;. It also initializes how to handle the event &lt;b&gt;ended&lt;&#x2F;b&gt; associated to the audio.
 @method initializeAudioEditorCutter
 @for PlayersAudioEditor
+@param identifier {Number} the unique identifier of the audio component (see {{#crossLinkModule &quot;audio-editor&quot;}}{{&#x2F;crossLinkModule}})
 **&#x2F;
 function initializeAudioEditorCutter(identifier) {
   var component = $(&#x27;#audio_component_&#x27; + identifier);
@@ -471,6 +472,7 @@ function initializeAudioEditorCutter(identifier) {
 This is the method that assocaites {{#crossLink &quot;PlayersAudioEditor&#x2F;initializeActionOfMediaTimeUpdaterInAudioEditor:method&quot;}}{{&#x2F;crossLink}} to the event of &lt;b&gt;timeupdate&lt;&#x2F;b&gt;. Notice that the method waits until he receives the event &lt;b&gt;loadedmetadata&lt;&#x2F;b&gt; before working.
 @method initializeMediaTimeUpdaterInAudioEditor
 @for PlayersAudioEditor
+@param identifier {Number} the unique identifier of the audio component (see {{#crossLinkModule &quot;audio-editor&quot;}}{{&#x2F;crossLinkModule}})
 **&#x2F;
 function initializeMediaTimeUpdaterInAudioEditor(identifier) {
   media = $(&#x27;#audio_component_&#x27; + identifier + &#x27; audio&#x27;);
@@ -491,6 +493,8 @@ function initializeMediaTimeUpdaterInAudioEditor(identifier) {
 Method that &lt;b&gt;updates the audio cursor&lt;&#x2F;b&gt;, in case one of the two handles passes over the cursor (the cursor must follow the handle).
 @method selectAudioComponentCutterHandle
 @for PlayersAudioEditor
+@param component {Object} the JQuery object representing the component
+@param val {Number} the value to be assigned
 **&#x2F;
 function selectAudioComponentCutterHandle(component, val) {
   setCurrentTimeToMedia(component.find(&#x27;audio&#x27;), val);
@@ -503,9 +507,10 @@ function selectAudioComponentCutterHandle(component, val) {
 
 
 &#x2F;**
-bla bla bla
+Method that logs all the possible events of a given media.
 @method mediaEventsLogger
 @for PlayersGeneral
+@param media {Object} the jquery object representing a &lt;b&gt;video&lt;&#x2F;b&gt; or an &lt;b&gt;audio&lt;&#x2F;b&gt; tag
 **&#x2F;
 function mediaEventsLogger(media) {
   media.on(&#x27;loadstart&#x27;, function() {console.log(&#x27;loadstart&#x27;);});
@@ -533,9 +538,11 @@ function mediaEventsLogger(media) {
 }
 
 &#x2F;**
-bla bla bla
+Sets a time to any media in any environment. Notice that the method waits until he receives the event &lt;b&gt;loadedmetadata&lt;&#x2F;b&gt; before working.
 @method setCurrentTimeToMedia
 @for PlayersCommon
+@param media {Object} the jquery object representing a &lt;b&gt;video&lt;&#x2F;b&gt; or an &lt;b&gt;audio&lt;&#x2F;b&gt; tag
+@param seek {Float} the time to be set
 **&#x2F;
 function setCurrentTimeToMedia(media, seek) {
   if(media[0].readyState != 0) {
