@@ -466,7 +466,7 @@
 
           
           <div class="method-source-code" id="action_html_class-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 23</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 21</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">action_html_class</span>
   <span class="ruby-node">&quot;#{h action_name}-action&quot;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -496,7 +496,7 @@
 
           
           <div class="method-source-code" id="controller_html_class-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 19</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 17</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">controller_html_class</span>
   <span class="ruby-node">&quot;#{h controller_path}-controller&quot;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -526,7 +526,7 @@
 
           
           <div class="method-source-code" id="is_horizontal-3F-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 48</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 46</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_horizontal?</span>(<span class="ruby-identifier">width</span>, <span class="ruby-identifier">height</span>, <span class="ruby-identifier">kind</span>)
   <span class="ruby-comment"># width.to_f / height.to_f : ratio</span>
   ( <span class="ruby-identifier">width</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">/</span> <span class="ruby-identifier">height</span>.<span class="ruby-identifier">to_f</span> ) <span class="ruby-operator">&gt;</span>
@@ -564,7 +564,7 @@
 
           
           <div class="method-source-code" id="jsd-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 90</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 88</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">jsd</span>(<span class="ruby-identifier">object</span>)
 <span class="ruby-keyword">end</span></pre>
           </div><!-- jsd-source -->
@@ -593,7 +593,7 @@
 
           
           <div class="method-source-code" id="manipulate_url-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 27</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 25</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">manipulate_url</span>(<span class="ruby-identifier">options</span> = {})
   <span class="ruby-identifier">param_to_remove</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:remove_query_param</span>]
   <span class="ruby-identifier">page</span>            = <span class="ruby-identifier">options</span>[<span class="ruby-value">:page</span>]
@@ -640,7 +640,7 @@
 
           
           <div class="method-source-code" id="remove_title_from_notification-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 72</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 70</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">remove_title_from_notification</span>(<span class="ruby-identifier">notification</span>)
    <span class="ruby-identifier">x</span> = (<span class="ruby-identifier">notification</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/&lt;\/div&gt;/</span>)
    <span class="ruby-identifier">x</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">notification</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">notification</span>[<span class="ruby-identifier">x</span> <span class="ruby-operator">+</span> <span class="ruby-value">6</span>, <span class="ruby-identifier">notification</span>.<span class="ruby-identifier">length</span>]
@@ -671,7 +671,7 @@
 
           
           <div class="method-source-code" id="resize_height-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 77</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 75</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">resize_height</span>(<span class="ruby-identifier">width</span>, <span class="ruby-identifier">height</span>, <span class="ruby-identifier">kind</span>)
   <span class="ruby-identifier">height</span> *
     <span class="ruby-keyword">case</span> <span class="ruby-identifier">kind</span>
@@ -708,7 +708,7 @@
 
           
           <div class="method-source-code" id="resize_width-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 60</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 58</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">resize_width</span>(<span class="ruby-identifier">width</span>, <span class="ruby-identifier">height</span>, <span class="ruby-identifier">kind</span>)
   <span class="ruby-identifier">width</span> *
     <span class="ruby-keyword">case</span> <span class="ruby-identifier">kind</span>
@@ -746,7 +746,7 @@
 
           
           <div class="method-source-code" id="seconds_to_time-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 15</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 13</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">seconds_to_time</span>(<span class="ruby-identifier">seconds</span>)
   <span class="ruby-constant">Time</span>.<span class="ruby-identifier">at</span>(<span class="ruby-identifier">seconds</span>).<span class="ruby-identifier">utc</span>.<span class="ruby-identifier">strftime</span>(<span class="ruby-identifier">seconds</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">3600</span> <span class="ruby-operator">?</span> <span class="ruby-string">&#39;%T&#39;</span> <span class="ruby-operator">:</span> <span class="ruby-string">&#39;%M:%S&#39;</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -794,7 +794,7 @@
         
         <div class="method-heading">
           <span class="method-name">standard_form_error_messages</span><span
-            class="method-args">(errors, color='white')</span>
+            class="method-args">(errors, color = 'white')</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
         
@@ -807,12 +807,10 @@
           
           <div class="method-source-code" id="standard_form_error_messages-source">
             <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 7</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">standard_form_error_messages</span>(<span class="ruby-identifier">errors</span>, <span class="ruby-identifier">color</span>=<span class="ruby-string">&#39;white&#39;</span>)
-  <span class="ruby-identifier">msg</span> = <span class="ruby-node">&quot;&lt;img src=&#39;/assets/puntoesclamativo.png&#39; style=&#39;margin: 0 5px -3px 0&#39; /&gt;&lt;span class=\&quot;lower\&quot; style=\&quot;color:#{color}\&quot;&gt;&quot;</span>
-  <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">val</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">msg</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;#{val}; &quot;</span>
-  <span class="ruby-keyword">end</span>
-  <span class="ruby-keyword">return</span> <span class="ruby-node">&quot;#{msg[0..-3]}&lt;/span&gt;&quot;</span>.<span class="ruby-identifier">html_safe</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">standard_form_error_messages</span>(<span class="ruby-identifier">errors</span>, <span class="ruby-identifier">color</span> = <span class="ruby-string">&#39;white&#39;</span>)
+  <span class="ruby-identifier">msg</span> = <span class="ruby-node">&quot;&lt;img src=&#39;/assets/puntoesclamativo.png&#39; style=&#39;margin: 0 5px -3px 0&#39; /&gt;&lt;span class=\&quot;lower\&quot; style=\&quot;color:#{h color}\&quot;&gt;&quot;</span>
+  <span class="ruby-identifier">msg</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">map</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">e</span><span class="ruby-operator">|</span> <span class="ruby-identifier">h</span> <span class="ruby-identifier">e</span> }.<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;; &#39;</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-node">&quot;#{msg}&lt;/span&gt;&quot;</span>.<span class="ruby-identifier">html_safe</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- standard_form_error_messages-source -->
           

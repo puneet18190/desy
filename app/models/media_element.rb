@@ -50,9 +50,10 @@ require 'lessons_media_elements_shared'
 # * *the* *element* *cannot* *be* *public* if new record. <b>This validation is not fired if skip_public_validations is +true+</b>
 # * *if* *the* *element* *is* *public*, the fields +media+, +title+, +description+, +is_public+, +publication_date+ can't be changed anymore. <b>This validation is not fired if skip_public_validations is +true+</b>
 # * *if* *the* *element* *is* *private*, the field +user_id+ can't be changed (this field may be changed only if the element is public, because if the user decides to close his profile, the public elements that he created can't be deleted: using User#destroy_with_dependencies they are switched to another owner (the super administrator of the application, see User.admin)
-# * *minimum* *number* of tags (configurated in settings.yml), <b>only if the attribute validating_in_form is set as +true+</b>
+# * *minimum* *number* of tags (configurated in config/settings.yml), <b>only if the attribute validating_in_form is set as +true+</b>
 # * *size* of the file attached to +media+ (configured in settings.yml, in megabytes)
 # * *specific* *media* *validation* depending on the type of attached media (see Media::Video::Uploader::Validation, Media::Audio::Uploader::Validation, ImageUploader, this last being carried out automatically by CarrierWave)
+# * <b>the maximum size of the media elements folder size</b> (configured in config/settings.yml, in gigabytes)
 #
 # == Callbacks
 #
@@ -603,6 +604,7 @@ class MediaElement < ActiveRecord::Base
     end
   end
 
+  # Validates the sum of the media elements folder size to don't exceed the maximum size available
   def validate_maximum_media_elements_folder_size # :doc:
     errors.add :media, :folder_size_exceeded if Media::Uploader.maximum_media_elements_folder_size_exceeded?
   end
