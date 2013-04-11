@@ -586,7 +586,7 @@
             "tag": "module",
             "file": "app/assets/javascripts/media_element_editor.js",
             "line": 1,
-            "description": "bla bla bla -- dire dove è situato il bottone di commit in tutti gli editors."
+            "description": "This module contains javascript functions common to all the editors ({{#crossLinkModule \"audio-editor\"}}{{/crossLinkModule}}, {{#crossLinkModule \"image-editor\"}}{{/crossLinkModule}}, {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}})."
         },
         "media-element-loader": {
             "name": "media-element-loader",
@@ -4460,7 +4460,7 @@
         {
             "file": "app/assets/javascripts/media_element_editor.js",
             "line": 10,
-            "description": "bla bla bla",
+            "description": "One step of the repeated <b>cache</b> saving (used in {{#crossLinkModule \"image-editor\"}}{{/crossLinkModule}} and {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}})",
             "itemtype": "method",
             "name": "saveCacheLoop",
             "class": "MediaElementEditorCache",
@@ -4469,7 +4469,7 @@
         {
             "file": "app/assets/javascripts/media_element_editor.js",
             "line": 32,
-            "description": "bla bla bla",
+            "description": "Initializes the <b>cache loop</b> and starts it calling {{#crossLink \"MediaElementEditorCache/saveCacheLoop:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "startCacheLoop",
             "class": "MediaElementEditorCache",
@@ -4478,7 +4478,7 @@
         {
             "file": "app/assets/javascripts/media_element_editor.js",
             "line": 42,
-            "description": "bla bla bla",
+            "description": "Stops the cache loop.",
             "itemtype": "method",
             "name": "stopCacheLoop",
             "class": "MediaElementEditorCache",
@@ -4487,7 +4487,7 @@
         {
             "file": "app/assets/javascripts/media_element_editor.js",
             "line": 52,
-            "description": "bla bla bla",
+            "description": "Submethod of {{#crossLink \"MediaElementEditorCache/saveCacheLoop:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "submitMediaElementEditorCacheForm",
             "class": "MediaElementEditorCache",
@@ -4496,7 +4496,7 @@
         {
             "file": "app/assets/javascripts/media_element_editor.js",
             "line": 71,
-            "description": "bla bla bla",
+            "description": "Initializes the placeholder of the <b>commit forms</b> used in {{#crossLinkModule \"audio-editor\"}}{{/crossLinkModule}}, {{#crossLinkModule \"image-editor\"}}{{/crossLinkModule}} and {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "mediaElementEditorDocumentReady",
             "class": "MediaElementEditorDocumentReady",
@@ -4505,7 +4505,7 @@
         {
             "file": "app/assets/javascripts/media_element_editor.js",
             "line": 95,
-            "description": "bla bla bla",
+            "description": "Resets the <b>commit forms</b> used in {{#crossLinkModule \"audio-editor\"}}{{/crossLinkModule}}, {{#crossLinkModule \"image-editor\"}}{{/crossLinkModule}} and {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}}. This method is associated to the button 'cancel' in these forms (see {{#crossLink \"AudioEditorDocumentReady/audioEditorDocumentReadyCommit:method\"}}{{/crossLink}}, {{#crossLink \"ImageEditorDocumentReady/imageEditorDocumentReadyCommit:method\"}}{{/crossLink}} and {{#crossLink \"VideoEditorDocumentReady/videoEditorDocumentReadyCommit:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "resetMediaElementEditorForms",
             "class": "MediaElementEditorForms",

@@ -1,5 +1,5 @@
 /**
-bla bla bla -- dire dove è situato il bottone di commit in tutti gli editors.
+This module contains javascript functions common to all the editors ({{#crossLinkModule "audio-editor"}}{{/crossLinkModule}}, {{#crossLinkModule "image-editor"}}{{/crossLinkModule}}, {{#crossLinkModule "video-editor"}}{{/crossLinkModule}}).
 @module media-element-editor
 **/
 
@@ -8,7 +8,7 @@ bla bla bla -- dire dove è situato il bottone di commit in tutti gli editors.
 
 
 /**
-bla bla bla
+One step of the repeated <b>cache</b> saving (used in {{#crossLinkModule "image-editor"}}{{/crossLinkModule}} and {{#crossLinkModule "video-editor"}}{{/crossLinkModule}})
 @method saveCacheLoop
 @for MediaElementEditorCache
 **/
@@ -30,7 +30,7 @@ function saveCacheLoop() {
 }
 
 /**
-bla bla bla
+Initializes the <b>cache loop</b> and starts it calling {{#crossLink "MediaElementEditorCache/saveCacheLoop:method"}}{{/crossLink}}.
 @method startCacheLoop
 @for MediaElementEditorCache
 **/
@@ -40,7 +40,7 @@ function startCacheLoop() {
 }
 
 /**
-bla bla bla
+Stops the cache loop.
 @method stopCacheLoop
 @for MediaElementEditorCache
 **/
@@ -50,7 +50,7 @@ function stopCacheLoop() {
 }
 
 /**
-bla bla bla
+Submethod of {{#crossLink "MediaElementEditorCache/saveCacheLoop:method"}}{{/crossLink}}.
 @method submitMediaElementEditorCacheForm
 @for MediaElementEditorCache
 **/
@@ -69,7 +69,7 @@ function submitMediaElementEditorCacheForm(form) {
 
 
 /**
-bla bla bla
+Initializes the placeholder of the <b>commit forms</b> used in {{#crossLinkModule "audio-editor"}}{{/crossLinkModule}}, {{#crossLinkModule "image-editor"}}{{/crossLinkModule}} and {{#crossLinkModule "video-editor"}}{{/crossLinkModule}}.
 @method mediaElementEditorDocumentReady
 @for MediaElementEditorDocumentReady
 **/
@@ -93,7 +93,7 @@ function mediaElementEditorDocumentReady() {
 
 
 /**
-bla bla bla
+Resets the <b>commit forms</b> used in {{#crossLinkModule "audio-editor"}}{{/crossLinkModule}}, {{#crossLinkModule "image-editor"}}{{/crossLinkModule}} and {{#crossLinkModule "video-editor"}}{{/crossLinkModule}}. This method is associated to the button 'cancel' in these forms (see {{#crossLink "AudioEditorDocumentReady/audioEditorDocumentReadyCommit:method"}}{{/crossLink}}, {{#crossLink "ImageEditorDocumentReady/imageEditorDocumentReadyCommit:method"}}{{/crossLink}} and {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyCommit:method"}}{{/crossLink}}).
 @method resetMediaElementEditorForms
 @for MediaElementEditorForms
 **/

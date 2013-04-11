@@ -178,7 +178,7 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "media-element-editor",
             "name": "media-element-editor",
-            "description": "bla bla bla -- dire dove è situato il bottone di commit in tutti gli editors."
+            "description": "This module contains javascript functions common to all the editors ({{#crossLinkModule \"audio-editor\"}}{{/crossLinkModule}}, {{#crossLinkModule \"image-editor\"}}{{/crossLinkModule}}, {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}})."
         },
         {
             "displayName": "media-element-loader",
