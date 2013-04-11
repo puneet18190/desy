@@ -454,7 +454,7 @@
             "tag": "module",
             "file": "app/assets/javascripts/galleries.js",
             "line": 1,
-            "description": "The galleries are containers of media elements, used at any time the user needs to pick an element of a specific type.\n<br/><br/>\nThere are three kinds of gallery, each of them has specific features depending on where it's used. Each instance of a gallery is provided of its specific url route, that performs the speficic javascript actions it requires. For instance, in the image gallery contained inside the {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}}, to each image popup (see also {{#crossLink \"DialogsGalleries/showImageInGalleryPopUp:method\"}}{{/crossLink}}) is attached additional HTML code that contains the input for inserting the duration of the image component. Each gallery is also provided of infinite scroll pagination, which is initialized in the methods of {{#crossLink \"GalleriesInitializers\"}}{{/crossLink}}. The complete list of galleries is:\n<br/>\n<ul>\n  <li>\n    <b>audio gallery</b>, whose occurrences are\n    <ul>\n      <li>in Audio Editor, initialized by {{#crossLink \"GalleriesInitializers/initializeAudioGalleryInAudioEditor:method\"}}{{/crossLink}}</li>\n      <li>in Lesson Editor, initialized by {{#crossLink \"GalleriesInitializers/initializeAudioGalleryInLessonEditor:method\"}}{{/crossLink}}</li>\n      <li>in Video Editor, initialized by {{#crossLink \"GalleriesInitializers/initializeAudioGalleryInVideoEditor:method\"}}{{/crossLink}}</li>\n    </ul>\n  </li>\n  <li>\n    <b>image gallery</b>, whose occurrences are\n    <ul>\n      <li>in Image Editor, initialized by {{#crossLink \"GalleriesInitializers/initializeImageGalleryInImageEditor:method\"}}{{/crossLink}}</li>\n      <li>in Lesson Editor, initialized by {{#crossLink \"GalleriesInitializers/initializeImageGalleryInLessonEditor:method\"}}{{/crossLink}}</li>\n      <li>in the mixed gallery of Video Editor, initialized by {{#crossLink \"GalleriesInitializers/initializeMixedGalleryInVideoEditor:method\"}}{{/crossLink}}</li>\n    </ul>\n  </li>\n  <li>\n    <b>video gallery</b>, whose occurrences are\n    <ul>\n      <li>in Lesson Editor, initialized by {{#crossLink \"GalleriesInitializers/initializeVideoGalleryInLessonEditor:method\"}}{{/crossLink}}</li>\n      <li>in the mixed gallery of Video Editor, initialized by {{#crossLink \"GalleriesInitializers/initializeMixedGalleryInVideoEditor:method\"}}{{/crossLink}}</li>\n    </ul>\n  </li>\n</ul>"
+            "description": "The galleries are containers of media elements, used at any time the user needs to pick an element of a specific type.\n<br/><br/>\nThere are three kinds of gallery, each of them has specific features depending on where it's used. Each instance of a gallery is provided of its specific url route, that performs the speficic javascript actions it requires. For instance, in the image gallery contained inside the {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}}, to each image popup (see also {{#crossLink \"DialogsGalleries/showImageInGalleryPopUp:method\"}}{{/crossLink}}) is attached additional HTML code that contains the input for inserting the duration of the image component. Each gallery is also provided of infinite scroll pagination, which is initialized in the methods of {{#crossLink \"GalleriesInitializers\"}}{{/crossLink}}. The complete list of galleries is:\n<br/>\n<ul>\n  <li>\n    <b>audio gallery</b>, whose occurrences are\n    <ul>\n      <li>in Audio Editor, initialized by {{#crossLink \"GalleriesInitializers/initializeAudioGalleryInAudioEditor:method\"}}{{/crossLink}}</li>\n      <li>in Lesson Editor, initialized by {{#crossLink \"GalleriesInitializers/initializeAudioGalleryInLessonEditor:method\"}}{{/crossLink}}</li>\n      <li>in Video Editor, initialized by {{#crossLink \"GalleriesInitializers/initializeAudioGalleryInVideoEditor:method\"}}{{/crossLink}}</li>\n    </ul>\n  </li>\n  <li>\n    <b>image gallery</b>, whose occurrences are\n    <ul>\n      <li>in Image Editor, initialized by {{#crossLink \"GalleriesInitializers/initializeImageGalleryInImageEditor:method\"}}{{/crossLink}}</li>\n      <li>in Lesson Editor, initialized by {{#crossLink \"GalleriesInitializers/initializeImageGalleryInLessonEditor:method\"}}{{/crossLink}}</li>\n      <li>in the mixed gallery of Video Editor, initialized by {{#crossLink \"GalleriesInitializers/initializeMixedGalleryInVideoEditor:method\"}}{{/crossLink}}</li>\n    </ul>\n  </li>\n  <li>\n    <b>video gallery</b>, whose occurrences are\n    <ul>\n      <li>in Lesson Editor, initialized by {{#crossLink \"GalleriesInitializers/initializeVideoGalleryInLessonEditor:method\"}}{{/crossLink}}</li>\n      <li>in the mixed gallery of Video Editor, initialized by {{#crossLink \"GalleriesInitializers/initializeMixedGalleryInVideoEditor:method\"}}{{/crossLink}}.</li>\n    </ul>\n  </li>\n</ul>"
         },
         "general": {
             "name": "general",
@@ -649,7 +649,7 @@
             "tag": "module",
             "file": "app/assets/javascripts/players.js",
             "line": 1,
-            "description": "Media elements players: initializer, play, stop, update frame."
+            "description": "This module contains the javascript functions and initializers used in the <b>media players</b> all over the application. The model can be divided into three main classes:\n<ul>\n  <li>{{#crossLink \"PlayersGeneral\"}}{{/crossLink}}, used in the generic players, for instance in {{#crossLinkModule \"lesson-editor\"}}{{/crossLinkModule}} and {{#crossLinkModule \"lesson-viewer\"}}{{/crossLinkModule}}</li>\n  <li>{{#crossLink \"PlayersAudioEditor\"}}{{/crossLink}}, used in the players of the module {{#crossLinkModule \"audio-editor\"}}{{/crossLinkModule}} (only players of kind <b>audio</b>)</li>\n  <li>{{#crossLink \"PlayersVideoEditor\"}}{{/crossLink}}, used in the players of the module {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}} (mainly players of kind <b>video</b>, but also of kind <b>audio</b> for the background audio track).</li>\n</ul>"
         },
         "profile": {
             "name": "profile",
@@ -4874,7 +4874,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 10,
+            "line": 15,
             "itemtype": "method",
             "name": "initializeActionOfMediaTimeUpdaterInAudioEditor",
             "class": "PlayersAudioEditor",
@@ -4882,7 +4882,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 61,
+            "line": 66,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "initializeAudioEditorCutter",
@@ -4891,7 +4891,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 151,
+            "line": 156,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "initializeMediaTimeUpdaterInAudioEditor",
@@ -4900,7 +4900,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 171,
+            "line": 176,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "selectAudioComponentCutterHandle",
@@ -4909,7 +4909,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 186,
+            "line": 191,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "setCurrentTimeToMedia",
@@ -4918,7 +4918,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 201,
+            "line": 206,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "showLoadingMediaErrorPopup",
@@ -4927,7 +4927,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 215,
+            "line": 220,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "stopAllMedia",
@@ -4936,7 +4936,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 226,
+            "line": 231,
             "description": "IE SI ARRABBIA SE GLI SETTI UN VALORE DI SEEK NON COMPRESO TRA L'INIZIO E LA FINE DEI VALORI SEEKABLE",
             "itemtype": "method",
             "name": "validSeek",
@@ -4945,7 +4945,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 247,
+            "line": 252,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "playersDocumentReady",
@@ -4954,7 +4954,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 258,
+            "line": 263,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "playersDocumentReadyAudioEditor",
@@ -4963,7 +4963,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 322,
+            "line": 327,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "playersDocumentReadyGeneral",
@@ -4972,7 +4972,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 355,
+            "line": 360,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "playersDocumentReadyVideoEditor",
@@ -4981,7 +4981,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 426,
+            "line": 431,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "mediaEventsLogger",
@@ -4990,7 +4990,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 456,
+            "line": 461,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "initializeActionOfMediaTimeUpdater",
@@ -4999,7 +4999,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 476,
+            "line": 481,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "initializeMedia",
@@ -5008,7 +5008,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 502,
+            "line": 507,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "initializeMediaTimeUpdater",
@@ -5029,7 +5029,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 524,
+            "line": 529,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "stopMedia",
@@ -5038,7 +5038,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 555,
+            "line": 560,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "initializeActionOfMediaTimeUpdaterInVideoEditor",
@@ -5047,7 +5047,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 629,
+            "line": 634,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "initializeMediaTimeUpdaterInVideoEditor",
@@ -5056,7 +5056,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 649,
+            "line": 654,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "initializeVideoInVideoEditorPreview",
@@ -5065,7 +5065,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 728,
+            "line": 732,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "selectVideoComponentCutterHandle",
@@ -5074,7 +5074,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 738,
+            "line": 742,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "stopVideoInVideoEditorPreview",

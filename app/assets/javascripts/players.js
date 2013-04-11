@@ -1,5 +1,10 @@
 /**
-Media elements players: initializer, play, stop, update frame.
+This module contains the javascript functions and initializers used in the <b>media players</b> all over the application. The model can be divided into three main classes:
+<ul>
+  <li>{{#crossLink "PlayersGeneral"}}{{/crossLink}}, used in the generic players, for instance in {{#crossLinkModule "lesson-editor"}}{{/crossLinkModule}} and {{#crossLinkModule "lesson-viewer"}}{{/crossLinkModule}}</li>
+  <li>{{#crossLink "PlayersAudioEditor"}}{{/crossLink}}, used in the players of the module {{#crossLinkModule "audio-editor"}}{{/crossLinkModule}} (only players of kind <b>audio</b>)</li>
+  <li>{{#crossLink "PlayersVideoEditor"}}{{/crossLink}}, used in the players of the module {{#crossLinkModule "video-editor"}}{{/crossLinkModule}} (mainly players of kind <b>video</b>, but also of kind <b>audio</b> for the background audio track).</li>
+</ul>
 @module players
 **/
 
@@ -721,7 +726,6 @@ function initializeVideoInVideoEditorPreview(identifier) {
     } else {
       stopVideoInVideoEditorPreview(identifier);
     }
-    
   });
 }
 
