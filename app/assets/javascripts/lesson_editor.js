@@ -941,10 +941,10 @@ function slideTo(slide_id, callback) {
 
 
 /**
-Initialize tinyMCE editor for a single textarea Uses: [tinyMceKeyDownCallbacks](../classes/tinyMceKeyDownCallbacks.html#method_tinyMceKeyDownCallbacks) and [tinyMceCallbacks](../classes/tinyMceCallbacks.html#method_tinyMceCallbacks) 
+Initialize tinyMCE editor for a single textarea.
 @method initTinymce
 @for LessonEditorTinyMCE
-@param tiny_id {Number} tinyMCE textarea id
+@param tiny_id {String} HTML id of the tinyMCE textarea
 **/
 function initTinymce(tiny_id) {
   var plugins = 'pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,';
@@ -985,13 +985,13 @@ function initTinymce(tiny_id) {
 }
 
 /**
-TinyMCE callback to show warning when texearea content exceeds the available space. Add a red border to the textarea. Add this function on tinyMCE setup.
+TinyMCE callback to show warning when texearea content exceeds the available space. Adds a red border to the textarea.This function is used in tinyMCE setup ({{#crossLink "LessonEditorTinyMCE/initTinymce:method"}}{{/crossLink}}).
 @method tinyMceCallbacks
 @for LessonEditorTinyMCE
 @param inst {Object} tinyMCE body instance
-@param tiny_id {Number} tinyMCE textarea id
+@param tiny_id {Number} HTML id of the tinyMCE textarea
 **/
-function tinyMceCallbacks(inst,tiny_id) {
+function tinyMceCallbacks(inst, tiny_id) {
   var maxH = 422;
   if($('textarea#' + tiny_id).parent('.audio-content').length > 0) {
     maxH = 324;
@@ -1004,15 +1004,15 @@ function tinyMceCallbacks(inst,tiny_id) {
 }
 
 /**
-TinyMCE keyDown callback to fix list item style. It adds same style of list item text to list numbers or dots. Add this function on tinyMCE setup.
+TinyMCE keyDown callback to fix list item style. It adds same style of list item text to list numbers or dots. This function is used in tinyMCE setup ({{#crossLink "LessonEditorTinyMCE/initTinymce:method"}}{{/crossLink}}).
 @method tinyMceKeyDownCallbacks
 @for LessonEditorTinyMCE
 @param inst {Object} tinyMCE body instance
-@param tiny_id {Number} tinyMCE textarea id
+@param tiny_id {Number} HTML id of the tinyMCE textarea
 **/
-function tinyMceKeyDownCallbacks(inst,tiny_id){
+function tinyMceKeyDownCallbacks(inst, tiny_id) {
   var spans = $(inst.getBody()).find('li span');
-  spans.each(function(){
+  spans.each(function() {
     var span = $(this);
     span.parents('li').removeAttr('class');
     span.parents('li').addClass(span.attr('class'));
