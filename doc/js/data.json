@@ -626,7 +626,7 @@
             "tag": "module",
             "file": "app/assets/javascripts/notifications.js",
             "line": 1,
-            "description": "Notification info and help assistant messages handler."
+            "description": "Javascript functions used to handle notifications."
         },
         "players": {
             "name": "players",
@@ -4731,7 +4731,7 @@
         {
             "file": "app/assets/javascripts/notifications.js",
             "line": 10,
-            "description": "Empty and hide expanded notifications.",
+            "description": "Closes the div containig an expanded notification.",
             "itemtype": "method",
             "name": "hideExpandedNotification",
             "class": "NotificationsAccessories",
@@ -4740,7 +4740,7 @@
         {
             "file": "app/assets/javascripts/notifications.js",
             "line": 20,
-            "description": "Hide help button.",
+            "description": "Hides the help button.",
             "itemtype": "method",
             "name": "hideHelpButton",
             "class": "NotificationsAccessories",
@@ -4749,7 +4749,7 @@
         {
             "file": "app/assets/javascripts/notifications.js",
             "line": 29,
-            "description": "Hide help tooltip.",
+            "description": "Hides the help tooltip.",
             "itemtype": "method",
             "name": "hideHelpTooltip",
             "class": "NotificationsAccessories",
@@ -4758,7 +4758,7 @@
         {
             "file": "app/assets/javascripts/notifications.js",
             "line": 38,
-            "description": "Hide notifications button.",
+            "description": "Hides the notifications button.",
             "itemtype": "method",
             "name": "hideNotificationsButton",
             "class": "NotificationsAccessories",
@@ -4767,7 +4767,7 @@
         {
             "file": "app/assets/javascripts/notifications.js",
             "line": 47,
-            "description": "Hide notifications balloon.",
+            "description": "Hides the notifications orange icon over the notifications button.",
             "itemtype": "method",
             "name": "hideNotificationsFumetto",
             "class": "NotificationsAccessories",
@@ -4776,7 +4776,7 @@
         {
             "file": "app/assets/javascripts/notifications.js",
             "line": 56,
-            "description": "Hide notifications tooltip. Uses: [hideExpandedNotification](../classes/hideExpandedNotification.html#method_hideExpandedNotification)",
+            "description": "Hides the notifications tooltip.",
             "itemtype": "method",
             "name": "hideNotificationsTooltip",
             "class": "NotificationsAccessories",
@@ -4785,7 +4785,7 @@
         {
             "file": "app/assets/javascripts/notifications.js",
             "line": 66,
-            "description": "Show help button.",
+            "description": "Shows the help button.",
             "itemtype": "method",
             "name": "showHelpButton",
             "class": "NotificationsAccessories",
@@ -4794,7 +4794,7 @@
         {
             "file": "app/assets/javascripts/notifications.js",
             "line": 75,
-            "description": "Show help tooltip.",
+            "description": "Shows the help tooltip.",
             "itemtype": "method",
             "name": "showHelpTooltip",
             "class": "NotificationsAccessories",
@@ -4803,7 +4803,7 @@
         {
             "file": "app/assets/javascripts/notifications.js",
             "line": 84,
-            "description": "Show notifications button.",
+            "description": "Shows the notifications button.",
             "itemtype": "method",
             "name": "showNotificationsButton",
             "class": "NotificationsAccessories",
@@ -4812,7 +4812,7 @@
         {
             "file": "app/assets/javascripts/notifications.js",
             "line": 93,
-            "description": "Show notifications fumetto.",
+            "description": "Shows the notifications orange icon over the notifications button.",
             "itemtype": "method",
             "name": "showNotificationsFumetto",
             "class": "NotificationsAccessories",
@@ -4821,7 +4821,7 @@
         {
             "file": "app/assets/javascripts/notifications.js",
             "line": 102,
-            "description": "Show notifications tooltip.",
+            "description": "Shows the notifications tooltip.",
             "itemtype": "method",
             "name": "showNotificationsTooltip",
             "class": "NotificationsAccessories",
@@ -4830,7 +4830,7 @@
         {
             "file": "app/assets/javascripts/notifications.js",
             "line": 115,
-            "description": "bla bla bla",
+            "description": "Global initializer for notifications and help",
             "itemtype": "method",
             "name": "notificationsDocumentReady",
             "class": "NotificationsDocumentReady",
@@ -4839,7 +4839,7 @@
         {
             "file": "app/assets/javascripts/notifications.js",
             "line": 125,
-            "description": "bla bla bla",
+            "description": "Initializes the form for notifying a lesson's modifications. These actions are linked on the button {{#crossLink \"ButtonsLesson/unpublishLesson:method\"}}{{/crossLink}}, provided that it has the class <i>lesson change not notified</i>.",
             "itemtype": "method",
             "name": "notificationsDocumentReadyLessonModification",
             "class": "NotificationsDocumentReady",
@@ -4848,7 +4848,7 @@
         {
             "file": "app/assets/javascripts/notifications.js",
             "line": 153,
-            "description": "bla bla bla",
+            "description": "Initializer for help and notifications tooltips.",
             "itemtype": "method",
             "name": "notificationsDocumentReadyTooltips",
             "class": "NotificationsDocumentReady",

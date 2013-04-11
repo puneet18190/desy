@@ -188,7 +188,7 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "notifications",
             "name": "notifications",
-            "description": "Notification info and help assistant messages handler."
+            "description": "Javascript functions used to handle notifications."
         },
         {
             "displayName": "players",
