@@ -437,9 +437,12 @@ function resetMediaElementEditorForms() {
 
 
 &#x2F;**
-bla bla bla
+Submethod used in the methods of {{#crossLink &quot;VideoEditorScrollPain&quot;}}{{&#x2F;crossLink}}: calculates the correct movement that a horizontal &lt;b&gt;left&lt;&#x2F;b&gt; scroll must do taking into consideration the space available (thing that obviously JScrollPain doesn&#x27;t do itself).
 @method calculateCorrectMovementHorizontalScrollLeft
 @for MediaElementEditorHorizontalTimelines
+@param hidden {Float} the portion of the scroll hidden on the left
+@param movement {Float} the required movement
+@return {Float} the correct movement to do
 **&#x2F;
 function calculateCorrectMovementHorizontalScrollLeft(hidden, movement) {
   if(movement &gt; hidden) {
@@ -450,18 +453,26 @@ function calculateCorrectMovementHorizontalScrollLeft(hidden, movement) {
 }
 
 &#x2F;**
-bla bla bla
+Submethod used in the methods of {{#crossLink &quot;VideoEditorScrollPain&quot;}}{{&#x2F;crossLink}}: calculates the correct movement that a horizontal &lt;b&gt;right&lt;&#x2F;b&gt; scroll must do taking into consideration the space available (thing that obviously JScrollPain doesn&#x27;t do itself).
 @method calculateCorrectMovementHorizontalScrollRight
 @for MediaElementEditorHorizontalTimelines
+@param hidden {Float} the portion of the scroll hidden on the left
+@param movement {Float} the required movement
+@return {Float} the correct movement to do
 **&#x2F;
 function calculateCorrectMovementHorizontalScrollRight(hidden, movement, tot, visible) {
   return calculateCorrectMovementHorizontalScrollLeft(tot - hidden - visible, movement);
 }
 
 &#x2F;**
-bla bla bla
+Submethod used in the methods of {{#crossLink &quot;VideoEditorScrollPain&quot;}}{{&#x2F;crossLink}}: calculates the absolute position to be assigned to &lt;b&gt;a div that must be aligned to the component&lt;&#x2F;b&gt; after having been moved to first position.
 @method getAbsolutePositionTimelineHorizontalScrollPane
 @for MediaElementEditorHorizontalTimelines
+@param jscrollpane_id {String} the HTML id of the scroll pane
+@param component_width {Number} the width in pixels of a single component
+@param component_position {Number} the position among the other components
+@param components_visible_number {Number} how many components are visible at the same time in the scroll pane
+@return {Number} the correct position of the div in pixels (it&#x27;s not float because we pass to the method only integers, unlike {{#crossLink &quot;MediaElementEditorHorizontalTimelines&#x2F;calculateCorrectMovementHorizontalScrollRight:method&quot;}}{{&#x2F;crossLink}} and {{#crossLink &quot;MediaElementEditorHorizontalTimelines&#x2F;calculateCorrectMovementHorizontalScrollRight:method&quot;}}{{&#x2F;crossLink}} that are defined generally)
 **&#x2F;
 function getAbsolutePositionTimelineHorizontalScrollPane(jscrollpane_id, component_width, component_position, components_visible_number) {
   var how_many_hidden_to_left = getHowManyComponentsHiddenToLeftTimelineHorizontalScrollPane(jscrollpane_id, component_width);
@@ -476,9 +487,12 @@ function getAbsolutePositionTimelineHorizontalScrollPane(jscrollpane_id, compone
 }
 
 &#x2F;**
-bla bla bla
+Submethod used in the methods of {{#crossLink &quot;VideoEditorScrollPain&quot;}}{{&#x2F;crossLink}}: gets how many components are hidden to the left of the scroll pane.
 @method getHowManyComponentsHiddenToLeftTimelineHorizontalScrollPane
 @for MediaElementEditorHorizontalTimelines
+@param jscrollpane_id {String} the HTML id of the scroll pane
+@param component_width {Number} the width in pixels of a single component
+@return {Number} the number of components hidden to the left
 **&#x2F;
 function getHowManyComponentsHiddenToLeftTimelineHorizontalScrollPane(jscrollpane_id, component_width) {
   var hidden_to_left = $(&#x27;#&#x27; + jscrollpane_id).data(&#x27;jsp&#x27;).getContentPositionX();
@@ -486,9 +500,14 @@ function getHowManyComponentsHiddenToLeftTimelineHorizontalScrollPane(jscrollpan
 }
 
 &#x2F;**
-bla bla bla
+Submethod used in the methods of {{#crossLink &quot;VideoEditorScrollPain&quot;}}{{&#x2F;crossLink}}: exactly the same as {{#crossLink &quot;MediaElementEditorHorizontalTimelines&#x2F;getAbsolutePositionTimelineHorizontalScrollPane:method&quot;}}{{&#x2F;crossLink}}, but &lt;b&gt;it returns the position of the scroll pane&lt;&#x2F;b&gt; instead of the absolute pixels for an external div.
 @method getNormalizedPositionTimelineHorizontalScrollPane
 @for MediaElementEditorHorizontalTimelines
+@param jscrollpane_id {String} the HTML id of the scroll pane
+@param component_width {Number} the width in pixels of a single component
+@param component_position {Number} the position among the other components
+@param components_visible_number {Number} how many components are visible at the same time in the scroll pane
+@return {Number} the correct position of the scroll in pixels
 **&#x2F;
 function getNormalizedPositionTimelineHorizontalScrollPane(jscrollpane_id, component_width, component_position, components_visible_number) {
   var how_many_hidden_to_left = getHowManyComponentsHiddenToLeftTimelineHorizontalScrollPane(jscrollpane_id, component_width);

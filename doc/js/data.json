@@ -4514,45 +4514,145 @@
         {
             "file": "app/assets/javascripts/media_element_editor.js",
             "line": 133,
-            "description": "bla bla bla",
+            "description": "Submethod used in the methods of {{#crossLink \"VideoEditorScrollPain\"}}{{/crossLink}}: calculates the correct movement that a horizontal <b>left</b> scroll must do taking into consideration the space available (thing that obviously JScrollPain doesn't do itself).",
             "itemtype": "method",
             "name": "calculateCorrectMovementHorizontalScrollLeft",
+            "params": [
+                {
+                    "name": "hidden",
+                    "description": "the portion of the scroll hidden on the left",
+                    "type": "Float"
+                },
+                {
+                    "name": "movement",
+                    "description": "the required movement",
+                    "type": "Float"
+                }
+            ],
+            "return": {
+                "description": "the correct movement to do",
+                "type": "Float"
+            },
             "class": "MediaElementEditorHorizontalTimelines",
             "module": "media-element-editor"
         },
         {
             "file": "app/assets/javascripts/media_element_editor.js",
-            "line": 146,
-            "description": "bla bla bla",
+            "line": 149,
+            "description": "Submethod used in the methods of {{#crossLink \"VideoEditorScrollPain\"}}{{/crossLink}}: calculates the correct movement that a horizontal <b>right</b> scroll must do taking into consideration the space available (thing that obviously JScrollPain doesn't do itself).",
             "itemtype": "method",
             "name": "calculateCorrectMovementHorizontalScrollRight",
+            "params": [
+                {
+                    "name": "hidden",
+                    "description": "the portion of the scroll hidden on the left",
+                    "type": "Float"
+                },
+                {
+                    "name": "movement",
+                    "description": "the required movement",
+                    "type": "Float"
+                }
+            ],
+            "return": {
+                "description": "the correct movement to do",
+                "type": "Float"
+            },
             "class": "MediaElementEditorHorizontalTimelines",
             "module": "media-element-editor"
         },
         {
             "file": "app/assets/javascripts/media_element_editor.js",
-            "line": 155,
-            "description": "bla bla bla",
+            "line": 161,
+            "description": "Submethod used in the methods of {{#crossLink \"VideoEditorScrollPain\"}}{{/crossLink}}: calculates the absolute position to be assigned to <b>a div that must be aligned to the component</b> after having been moved to first position.",
             "itemtype": "method",
             "name": "getAbsolutePositionTimelineHorizontalScrollPane",
+            "params": [
+                {
+                    "name": "jscrollpane_id",
+                    "description": "the HTML id of the scroll pane",
+                    "type": "String"
+                },
+                {
+                    "name": "component_width",
+                    "description": "the width in pixels of a single component",
+                    "type": "Number"
+                },
+                {
+                    "name": "component_position",
+                    "description": "the position among the other components",
+                    "type": "Number"
+                },
+                {
+                    "name": "components_visible_number",
+                    "description": "how many components are visible at the same time in the scroll pane",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "the correct position of the div in pixels (it's not float because we pass to the method only integers, unlike {{#crossLink \"MediaElementEditorHorizontalTimelines/calculateCorrectMovementHorizontalScrollRight:method\"}}{{/crossLink}} and {{#crossLink \"MediaElementEditorHorizontalTimelines/calculateCorrectMovementHorizontalScrollRight:method\"}}{{/crossLink}} that are defined generally)",
+                "type": "Number"
+            },
             "class": "MediaElementEditorHorizontalTimelines",
             "module": "media-element-editor"
         },
         {
             "file": "app/assets/javascripts/media_element_editor.js",
-            "line": 172,
-            "description": "bla bla bla",
+            "line": 183,
+            "description": "Submethod used in the methods of {{#crossLink \"VideoEditorScrollPain\"}}{{/crossLink}}: gets how many components are hidden to the left of the scroll pane.",
             "itemtype": "method",
             "name": "getHowManyComponentsHiddenToLeftTimelineHorizontalScrollPane",
+            "params": [
+                {
+                    "name": "jscrollpane_id",
+                    "description": "the HTML id of the scroll pane",
+                    "type": "String"
+                },
+                {
+                    "name": "component_width",
+                    "description": "the width in pixels of a single component",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "the number of components hidden to the left",
+                "type": "Number"
+            },
             "class": "MediaElementEditorHorizontalTimelines",
             "module": "media-element-editor"
         },
         {
             "file": "app/assets/javascripts/media_element_editor.js",
-            "line": 182,
-            "description": "bla bla bla",
+            "line": 196,
+            "description": "Submethod used in the methods of {{#crossLink \"VideoEditorScrollPain\"}}{{/crossLink}}: exactly the same as {{#crossLink \"MediaElementEditorHorizontalTimelines/getAbsolutePositionTimelineHorizontalScrollPane:method\"}}{{/crossLink}}, but <b>it returns the position of the scroll pane</b> instead of the absolute pixels for an external div.",
             "itemtype": "method",
             "name": "getNormalizedPositionTimelineHorizontalScrollPane",
+            "params": [
+                {
+                    "name": "jscrollpane_id",
+                    "description": "the HTML id of the scroll pane",
+                    "type": "String"
+                },
+                {
+                    "name": "component_width",
+                    "description": "the width in pixels of a single component",
+                    "type": "Number"
+                },
+                {
+                    "name": "component_position",
+                    "description": "the position among the other components",
+                    "type": "Number"
+                },
+                {
+                    "name": "components_visible_number",
+                    "description": "how many components are visible at the same time in the scroll pane",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "the correct position of the scroll in pixels",
+                "type": "Number"
+            },
             "class": "MediaElementEditorHorizontalTimelines",
             "module": "media-element-editor"
         },
