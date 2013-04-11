@@ -2,6 +2,10 @@
 The Lesson Editor is used to add and edit slides to a private lesson.
 <br/><br/>
 When opening the Editor on a lesson, all its slides are appended to a queue, of which it's visible only the portion that surrounds the current slide (the width of such a portion depends on the screen resolution, see {{#crossLink "LessonEditorSlidesNavigation/initLessonEditorPositions:method"}}{{/crossLink}}, {{#crossLink "LessonEditorDocumentReady/lessonEditorDocumentReadyResize:method"}}{{/crossLink}} and {{#crossLink "LessonEditorDocumentReady/lessonEditorDocumentReadyGeneral:method"}}{{/crossLink}}). The current slide is illuminated and editable, whereas the adhiacent slides are covered by a layer with opacity that prevents the user from editing them: if the user clicks on this layer, the application takes the slide below it as new current slide and moves it to the center of the screen (see {{#crossLink "LessonEditorDocumentReady/lessonEditorDocumentReadySlidesNavigator:method"}}{{/crossLink}} and the methods in {{#crossLink "LessonEditorSlidesNavigation"}}{{/crossLink}}): only after this operation, the user can edit that particular slide. To avoid overloading when there are many slides containing media, the slides are instanced all together but their content is loaded only when the user moves to them (see the methods in {{#crossLink "LessonEditorSlideLoading"}}{{/crossLink}}).
+<br/><br/>
+On the right side of each slide the user finds a list of buttons (initialized in {{#crossLink "LessonEditorDocumentReady/lessonEditorDocumentReadySlideButtons:method"}}{{/crossLink}}): each button corresponds either to an action that can be performed on the slide, either to an action that can be performed to the whole lesson (for instance, save and exit, or edit title description and tags).
+<br/><br/>
+
 @module lesson-editor
 **/
 
@@ -914,7 +918,7 @@ function slideTo(slide_id, callback) {
   $('ul#slides li:eq(' + (position - 1) + ')').animate({
     opacity: 1,
   }, 500, function() {
-    $(this).find(".buttons").fadeIn();
+    $(this).find('.buttons').fadeIn();
     $(this).find('layer').remove();
     $('li._lesson_editor_current_slide').removeClass('_lesson_editor_current_slide active');
     $('#slide_in_lesson_editor_' + slide_id).addClass('_lesson_editor_current_slide active');
