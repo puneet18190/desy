@@ -227,9 +227,9 @@
             "classes": {},
             "fors": {
                 "PlayersAudioEditor": 1,
-                "PlayersGeneral": 1,
                 "PlayersCommon": 1,
                 "PlayersDocumentReady": 1,
+                "PlayersGeneral": 1,
                 "PlayersVideoEditor": 1
             },
             "namespaces": {}
@@ -633,16 +633,16 @@
             "submodules": {},
             "classes": {
                 "PlayersAudioEditor": 1,
-                "PlayersGeneral": 1,
                 "PlayersCommon": 1,
                 "PlayersDocumentReady": 1,
+                "PlayersGeneral": 1,
                 "PlayersVideoEditor": 1
             },
             "fors": {
                 "PlayersAudioEditor": 1,
-                "PlayersGeneral": 1,
                 "PlayersCommon": 1,
                 "PlayersDocumentReady": 1,
+                "PlayersGeneral": 1,
                 "PlayersVideoEditor": 1
             },
             "namespaces": {},
@@ -1464,17 +1464,6 @@
             "module": "players",
             "namespace": ""
         },
-        "PlayersGeneral": {
-            "name": "PlayersGeneral",
-            "shortname": "PlayersGeneral",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "players",
-            "namespace": ""
-        },
         "PlayersCommon": {
             "name": "PlayersCommon",
             "shortname": "PlayersCommon",
@@ -1489,6 +1478,17 @@
         "PlayersDocumentReady": {
             "name": "PlayersDocumentReady",
             "shortname": "PlayersDocumentReady",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "players",
+            "namespace": ""
+        },
+        "PlayersGeneral": {
+            "name": "PlayersGeneral",
+            "shortname": "PlayersGeneral",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -4964,7 +4964,7 @@
                     "type": "Object"
                 }
             ],
-            "class": "PlayersGeneral",
+            "class": "PlayersCommon",
             "module": "players"
         },
         {
@@ -4991,16 +4991,28 @@
         {
             "file": "app/assets/javascripts/players.js",
             "line": 251,
-            "description": "bla bla bla",
+            "description": "It shows an alert with error details, in case a media returned error.",
             "itemtype": "method",
             "name": "showLoadingMediaErrorPopup",
+            "params": [
+                {
+                    "name": "code",
+                    "description": "the code associated to the error (it can be 1, 2, 3 or 4)",
+                    "type": "Number"
+                },
+                {
+                    "name": "type",
+                    "description": "either <b>'audio'</b> or <b>'video'</b>",
+                    "type": "String"
+                }
+            ],
             "class": "PlayersCommon",
             "module": "players"
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 265,
-            "description": "bla bla bla",
+            "line": 267,
+            "description": "Stops all media in the page.",
             "itemtype": "method",
             "name": "stopAllMedia",
             "class": "PlayersCommon",
@@ -5008,16 +5020,28 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 276,
-            "description": "IE SI ARRABBIA SE GLI SETTI UN VALORE DI SEEK NON COMPRESO TRA L'INIZIO E LA FINE DEI VALORI SEEKABLE",
+            "line": 278,
+            "description": "Submethod of {{#crossLink \"PlayersCommon/setCurrentTimeToMedia:method\"}}{{/crossLink}}, used because some browsers (Internet Explorer for instance), get broken if the value of seek is not included in the <b>seekable interval</b>.",
             "itemtype": "method",
             "name": "validSeek",
+            "params": [
+                {
+                    "name": "media",
+                    "description": "the jquery object representing a <b>video</b> or an <b>audio</b> tag",
+                    "type": "Object"
+                },
+                {
+                    "name": "seek",
+                    "description": "the value to be assigned to the media",
+                    "type": "Float"
+                }
+            ],
             "class": "PlayersCommon",
             "module": "players"
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 297,
+            "line": 301,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "playersDocumentReady",
@@ -5026,7 +5050,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 308,
+            "line": 312,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "playersDocumentReadyAudioEditor",
@@ -5035,7 +5059,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 372,
+            "line": 376,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "playersDocumentReadyGeneral",
@@ -5044,7 +5068,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 405,
+            "line": 409,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "playersDocumentReadyVideoEditor",
@@ -5053,7 +5077,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 476,
+            "line": 480,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "initializeActionOfMediaTimeUpdater",
@@ -5062,7 +5086,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 496,
+            "line": 500,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "initializeMedia",
@@ -5071,7 +5095,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 522,
+            "line": 526,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "initializeMediaTimeUpdater",
@@ -5092,7 +5116,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 544,
+            "line": 548,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "stopMedia",
@@ -5101,7 +5125,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 575,
+            "line": 579,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "initializeActionOfMediaTimeUpdaterInVideoEditor",
@@ -5110,7 +5134,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 649,
+            "line": 653,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "initializeMediaTimeUpdaterInVideoEditor",
@@ -5119,7 +5143,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 669,
+            "line": 673,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "initializeVideoInVideoEditorPreview",
@@ -5128,7 +5152,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 747,
+            "line": 751,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "selectVideoComponentCutterHandle",
@@ -5137,7 +5161,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 757,
+            "line": 761,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "stopVideoInVideoEditorPreview",

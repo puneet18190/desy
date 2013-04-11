@@ -203,7 +203,7 @@ function selectAudioComponentCutterHandle(component, val) {
 /**
 Method that logs all the possible events of a given media.
 @method mediaEventsLogger
-@for PlayersGeneral
+@for PlayersCommon
 @param media {Object} the jquery object representing a <b>video</b> or an <b>audio</b> tag
 **/
 function mediaEventsLogger(media) {
@@ -249,9 +249,11 @@ function setCurrentTimeToMedia(media, seek) {
 }
 
 /**
-bla bla bla
+It shows an alert with error details, in case a media returned error.
 @method showLoadingMediaErrorPopup
 @for PlayersCommon
+@param code {Number} the code associated to the error (it can be 1, 2, 3 or 4)
+@param type {String} either <b>'audio'</b> or <b>'video'</b>
 **/
 function showLoadingMediaErrorPopup(code, type) {
   var captions = $('#popup_captions_container');
@@ -263,7 +265,7 @@ function showLoadingMediaErrorPopup(code, type) {
 }
 
 /**
-bla bla bla
+Stops all media in the page.
 @method stopAllMedia
 @for PlayersCommon
 **/
@@ -274,9 +276,11 @@ function stopAllMedia() {
 }
 
 /**
-IE SI ARRABBIA SE GLI SETTI UN VALORE DI SEEK NON COMPRESO TRA L'INIZIO E LA FINE DEI VALORI SEEKABLE
+Submethod of {{#crossLink "PlayersCommon/setCurrentTimeToMedia:method"}}{{/crossLink}}, used because some browsers (Internet Explorer for instance), get broken if the value of seek is not included in the <b>seekable interval</b>.
 @method validSeek
 @for PlayersCommon
+@param media {Object} the jquery object representing a <b>video</b> or an <b>audio</b> tag
+@param seek {Float} the value to be assigned to the media
 **/
 function validSeek(media, seek) {
   var confidence = 0.001;

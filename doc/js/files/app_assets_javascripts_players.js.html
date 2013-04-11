@@ -509,7 +509,7 @@ function selectAudioComponentCutterHandle(component, val) {
 &#x2F;**
 Method that logs all the possible events of a given media.
 @method mediaEventsLogger
-@for PlayersGeneral
+@for PlayersCommon
 @param media {Object} the jquery object representing a &lt;b&gt;video&lt;&#x2F;b&gt; or an &lt;b&gt;audio&lt;&#x2F;b&gt; tag
 **&#x2F;
 function mediaEventsLogger(media) {
@@ -555,9 +555,11 @@ function setCurrentTimeToMedia(media, seek) {
 }
 
 &#x2F;**
-bla bla bla
+It shows an alert with error details, in case a media returned error.
 @method showLoadingMediaErrorPopup
 @for PlayersCommon
+@param code {Number} the code associated to the error (it can be 1, 2, 3 or 4)
+@param type {String} either &lt;b&gt;&#x27;audio&#x27;&lt;&#x2F;b&gt; or &lt;b&gt;&#x27;video&#x27;&lt;&#x2F;b&gt;
 **&#x2F;
 function showLoadingMediaErrorPopup(code, type) {
   var captions = $(&#x27;#popup_captions_container&#x27;);
@@ -569,7 +571,7 @@ function showLoadingMediaErrorPopup(code, type) {
 }
 
 &#x2F;**
-bla bla bla
+Stops all media in the page.
 @method stopAllMedia
 @for PlayersCommon
 **&#x2F;
@@ -580,9 +582,11 @@ function stopAllMedia() {
 }
 
 &#x2F;**
-IE SI ARRABBIA SE GLI SETTI UN VALORE DI SEEK NON COMPRESO TRA L&#x27;INIZIO E LA FINE DEI VALORI SEEKABLE
+Submethod of {{#crossLink &quot;PlayersCommon&#x2F;setCurrentTimeToMedia:method&quot;}}{{&#x2F;crossLink}}, used because some browsers (Internet Explorer for instance), get broken if the value of seek is not included in the &lt;b&gt;seekable interval&lt;&#x2F;b&gt;.
 @method validSeek
 @for PlayersCommon
+@param media {Object} the jquery object representing a &lt;b&gt;video&lt;&#x2F;b&gt; or an &lt;b&gt;audio&lt;&#x2F;b&gt; tag
+@param seek {Float} the value to be assigned to the media
 **&#x2F;
 function validSeek(media, seek) {
   var confidence = 0.001;
