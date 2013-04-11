@@ -19,7 +19,7 @@ There are <b>three known bugs</b> due to the bad quality of the plugin <b>JScrol
 
 
 /**
-bla bla bla
+Global initializer.
 @method lessonViewerDocumentReady
 @for LessonViewerDocumentReady
 **/
@@ -30,7 +30,7 @@ function lessonViewerDocumentReady() {
 }
 
 /**
-bla bla bla
+Initializer for functionalities of the playlist menu.
 @method lessonViewerDocumentReadyPlaylist
 @for LessonViewerDocumentReady
 **/
@@ -66,7 +66,7 @@ function lessonViewerDocumentReadyPlaylist() {
 }
 
 /**
-bla bla bla
+Initializer for slides navigation.
 @method lessonViewerDocumentReadySlidesNavigation
 @for LessonViewerDocumentReady
 **/
@@ -99,17 +99,17 @@ function lessonViewerDocumentReadySlidesNavigation() {
 
 
 /**
-Gets the current slide id
+Gets the HTML id of the current slide (marked with the class <b>lesson viewer current slide</b>).
 @method getLessonViewerCurrentSlide
 @for LessonViewerGeneral
-@return {Number} current slide id
+@return {String} HTML id of the current slide
 **/
 function getLessonViewerCurrentSlide() {
   return $('#' + $('._lesson_viewer_current_slide').attr('id'));
 }
 
 /**
-Handle playlist menu on lesson viewer startup Uses: [selectComponentInLessonViewerPlaylistMenu](../classes/selectComponentInLessonViewerPlaylistMenu.html#method_selectComponentInLessonViewerPlaylistMenu)
+Initializes the positions, and selects the right lesson in the playlist menu. Called in {{#crossLink "LessonViewerDocumentReady/lessonViewerDocumentReady:method"}}{{/crossLink}}.
 @method initializeLessonViewer
 @for LessonViewerGeneral
 **/
@@ -125,7 +125,7 @@ function initializeLessonViewer() {
 }
 
 /**
-Stop media playling in current slide in lesson viewer
+Stops media playing in current slide.
 @method stopMediaInLessonViewer
 @for LessonViewerGeneral
 **/
@@ -147,7 +147,7 @@ function stopMediaInLessonViewer() {
 
 
 /**
-Hide slides navigation arrows in lesson viewer
+Hides slides navigation arrows.
 @method hideArrowsInLessonViewer
 @for LessonViewerGraphics
 **/
@@ -156,7 +156,7 @@ function hideArrowsInLessonViewer() {
 }
 
 /**
-Show slides navigation arrows in lesson viewer
+Shows slides navigation arrows.
 @method showArrowsInLessonViewer
 @for LessonViewerGraphics
 **/

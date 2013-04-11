@@ -325,7 +325,7 @@ There are &lt;b&gt;three known bugs&lt;&#x2F;b&gt; due to the bad quality of the
 
 
 &#x2F;**
-bla bla bla
+Global initializer.
 @method lessonViewerDocumentReady
 @for LessonViewerDocumentReady
 **&#x2F;
@@ -336,7 +336,7 @@ function lessonViewerDocumentReady() {
 }
 
 &#x2F;**
-bla bla bla
+Initializer for functionalities of the playlist menu.
 @method lessonViewerDocumentReadyPlaylist
 @for LessonViewerDocumentReady
 **&#x2F;
@@ -372,7 +372,7 @@ function lessonViewerDocumentReadyPlaylist() {
 }
 
 &#x2F;**
-bla bla bla
+Initializer for slides navigation.
 @method lessonViewerDocumentReadySlidesNavigation
 @for LessonViewerDocumentReady
 **&#x2F;
@@ -405,17 +405,17 @@ function lessonViewerDocumentReadySlidesNavigation() {
 
 
 &#x2F;**
-Gets the current slide id
+Gets the HTML id of the current slide (marked with the class &lt;b&gt;lesson viewer current slide&lt;&#x2F;b&gt;).
 @method getLessonViewerCurrentSlide
 @for LessonViewerGeneral
-@return {Number} current slide id
+@return {String} HTML id of the current slide
 **&#x2F;
 function getLessonViewerCurrentSlide() {
   return $(&#x27;#&#x27; + $(&#x27;._lesson_viewer_current_slide&#x27;).attr(&#x27;id&#x27;));
 }
 
 &#x2F;**
-Handle playlist menu on lesson viewer startup Uses: [selectComponentInLessonViewerPlaylistMenu](..&#x2F;classes&#x2F;selectComponentInLessonViewerPlaylistMenu.html#method_selectComponentInLessonViewerPlaylistMenu)
+Initializes the positions, and selects the right lesson in the playlist menu. Called in {{#crossLink &quot;LessonViewerDocumentReady&#x2F;lessonViewerDocumentReady:method&quot;}}{{&#x2F;crossLink}}.
 @method initializeLessonViewer
 @for LessonViewerGeneral
 **&#x2F;
@@ -431,7 +431,7 @@ function initializeLessonViewer() {
 }
 
 &#x2F;**
-Stop media playling in current slide in lesson viewer
+Stops media playing in current slide.
 @method stopMediaInLessonViewer
 @for LessonViewerGeneral
 **&#x2F;
@@ -453,7 +453,7 @@ function stopMediaInLessonViewer() {
 
 
 &#x2F;**
-Hide slides navigation arrows in lesson viewer
+Hides slides navigation arrows.
 @method hideArrowsInLessonViewer
 @for LessonViewerGraphics
 **&#x2F;
@@ -462,7 +462,7 @@ function hideArrowsInLessonViewer() {
 }
 
 &#x2F;**
-Show slides navigation arrows in lesson viewer
+Shows slides navigation arrows.
 @method showArrowsInLessonViewer
 @for LessonViewerGraphics
 **&#x2F;

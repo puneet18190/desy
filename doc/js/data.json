@@ -4267,7 +4267,7 @@
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
             "line": 21,
-            "description": "bla bla bla",
+            "description": "Global initializer.",
             "itemtype": "method",
             "name": "lessonViewerDocumentReady",
             "class": "LessonViewerDocumentReady",
@@ -4276,7 +4276,7 @@
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
             "line": 32,
-            "description": "bla bla bla",
+            "description": "Initializer for functionalities of the playlist menu.",
             "itemtype": "method",
             "name": "lessonViewerDocumentReadyPlaylist",
             "class": "LessonViewerDocumentReady",
@@ -4285,7 +4285,7 @@
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
             "line": 68,
-            "description": "bla bla bla",
+            "description": "Initializer for slides navigation.",
             "itemtype": "method",
             "name": "lessonViewerDocumentReadySlidesNavigation",
             "class": "LessonViewerDocumentReady",
@@ -4294,12 +4294,12 @@
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
             "line": 101,
-            "description": "Gets the current slide id",
+            "description": "Gets the HTML id of the current slide (marked with the class <b>lesson viewer current slide</b>).",
             "itemtype": "method",
             "name": "getLessonViewerCurrentSlide",
             "return": {
-                "description": "current slide id",
-                "type": "Number"
+                "description": "HTML id of the current slide",
+                "type": "String"
             },
             "class": "LessonViewerGeneral",
             "module": "lesson-viewer"
@@ -4307,7 +4307,7 @@
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
             "line": 111,
-            "description": "Handle playlist menu on lesson viewer startup Uses: [selectComponentInLessonViewerPlaylistMenu](../classes/selectComponentInLessonViewerPlaylistMenu.html#method_selectComponentInLessonViewerPlaylistMenu)",
+            "description": "Initializes the positions, and selects the right lesson in the playlist menu. Called in {{#crossLink \"LessonViewerDocumentReady/lessonViewerDocumentReady:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "initializeLessonViewer",
             "class": "LessonViewerGeneral",
@@ -4316,7 +4316,7 @@
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
             "line": 127,
-            "description": "Stop media playling in current slide in lesson viewer",
+            "description": "Stops media playing in current slide.",
             "itemtype": "method",
             "name": "stopMediaInLessonViewer",
             "class": "LessonViewerGeneral",
@@ -4325,7 +4325,7 @@
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
             "line": 149,
-            "description": "Hide slides navigation arrows in lesson viewer",
+            "description": "Hides slides navigation arrows.",
             "itemtype": "method",
             "name": "hideArrowsInLessonViewer",
             "class": "LessonViewerGraphics",
@@ -4334,7 +4334,7 @@
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
             "line": 158,
-            "description": "Show slides navigation arrows in lesson viewer",
+            "description": "Shows slides navigation arrows.",
             "itemtype": "method",
             "name": "showArrowsInLessonViewer",
             "class": "LessonViewerGraphics",
