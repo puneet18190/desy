@@ -681,7 +681,7 @@
             "tag": "module",
             "file": "app/assets/javascripts/search.js",
             "line": 1,
-            "description": "bla bla bla"
+            "description": "Collection of initializers for the graphical effects of the <b>search engine</b>."
         },
         "tags": {
             "name": "tags",
@@ -5284,7 +5284,7 @@
         {
             "file": "app/assets/javascripts/search.js",
             "line": 10,
-            "description": "bla bla bla",
+            "description": "Global initializer for the search engine.",
             "itemtype": "method",
             "name": "searchDocumentReady",
             "class": "SearchDocumentReady",
@@ -5293,7 +5293,7 @@
         {
             "file": "app/assets/javascripts/search.js",
             "line": 21,
-            "description": "bla bla bla",
+            "description": "Initializes the <b>clickable tags</b> allowing a filter on a research.",
             "itemtype": "method",
             "name": "searchDocumentReadyFilterByTag",
             "class": "SearchDocumentReady",
@@ -5302,7 +5302,7 @@
         {
             "file": "app/assets/javascripts/search.js",
             "line": 43,
-            "description": "bla bla bla",
+            "description": "Initializer for generic effects.",
             "itemtype": "method",
             "name": "searchDocumentReadyGeneral",
             "class": "SearchDocumentReady",
@@ -5311,7 +5311,7 @@
         {
             "file": "app/assets/javascripts/search.js",
             "line": 88,
-            "description": "bla bla bla",
+            "description": "Initializer for <b>search keyword</b> placeholders.",
             "itemtype": "method",
             "name": "searchDocumentReadyPlaceholders",
             "class": "SearchDocumentReady",

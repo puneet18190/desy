@@ -203,7 +203,7 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "search",
             "name": "search",
-            "description": "bla bla bla"
+            "description": "Collection of initializers for the graphical effects of the <b>search engine</b>."
         },
         {
             "displayName": "tags",

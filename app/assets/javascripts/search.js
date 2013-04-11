@@ -1,5 +1,5 @@
 /**
-bla bla bla
+Collection of initializers for the graphical effects of the <b>search engine</b>.
 @module search
 **/
 
@@ -8,7 +8,7 @@ bla bla bla
 
 
 /**
-bla bla bla
+Global initializer for the search engine.
 @method searchDocumentReady
 @for SearchDocumentReady
 **/
@@ -19,7 +19,7 @@ function searchDocumentReady() {
 }
 
 /**
-bla bla bla
+Initializes the <b>clickable tags</b> allowing a filter on a research.
 @method searchDocumentReadyFilterByTag
 @for SearchDocumentReady
 **/
@@ -41,7 +41,7 @@ function searchDocumentReadyFilterByTag() {
 }
 
 /**
-bla bla bla
+Initializer for generic effects.
 @method searchDocumentReadyGeneral
 @for SearchDocumentReady
 **/
@@ -86,7 +86,7 @@ function searchDocumentReadyGeneral() {
 }
 
 /**
-bla bla bla
+Initializer for <b>search keyword</b> placeholders.
 @method searchDocumentReadyPlaceholders
 @for SearchDocumentReady
 **/
