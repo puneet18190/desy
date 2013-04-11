@@ -5,7 +5,7 @@ When opening the Editor on a lesson, all its slides are appended to a queue, of 
 <br/><br/>
 On the right side of each slide the user finds a list of buttons (initialized in {{#crossLink "LessonEditorDocumentReady/lessonEditorDocumentReadySlideButtons:method"}}{{/crossLink}}): each button corresponds either to an action that can be performed on the slide, either to an action that can be performed to the whole lesson (for instance, save and exit, or edit title description and tags).
 <br/><br/>
-
+The tool to navigate the slides is located on the top of the editor: each small square represents a slide (with its position), and passing with the mouse over it the Editor shows a miniature of the corresponding slide (these functionalities are initialized in {{#crossLink "LessonEditorDocumentReady/lessonEditorDocumentReadySlidesNavigator:method"}}{{/crossLink}}). Clicking on a slide miniature, the application moves to that slide using the function {{#crossLink "LessonEditorSlidesNavigation/slideTo:method"}}{{/crossLink}}. The slides can be sorted dragging with the mouse (using the JQueryUi plugin, initialized in {{#crossLink "LessonEditorDocumentReady/lessonEditorDocumentReadyJqueryAnimations:method"}}{{/crossLink}} and {{#crossLink "LessonEditorJqueryAnimations/initializeSortableNavs:method"}}{{/crossLink}}).
 @module lesson-editor
 **/
 
