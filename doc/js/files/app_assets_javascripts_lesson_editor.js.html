@@ -370,7 +370,7 @@ function showEverythingOutCurrentSlide() {
 
 &#x2F;**
 Shows the template for selection of new slides.
-@method showNewSlideChoice
+@method showNewSlideOptions
 @for LessonEditorCurrentSlide
 **&#x2F;
 function showNewSlideOptions() {
@@ -863,7 +863,7 @@ function submitCurrentSlideForm() {
   $.ajax({
     type: &#x27;post&#x27;,
     url: $(&#x27;._lesson_editor_current_slide form&#x27;).attr(&#x27;action&#x27;),
-    timeout:5000,
+    timeout: 5000,
     data: $(&#x27;._lesson_editor_current_slide form&#x27;).serialize(),
     beforeSend: unbindLoader()
   }).always(bindLoader);
@@ -1116,10 +1116,10 @@ function makeDraggable(place_id) {
 
 
 &#x2F;**
-Asynchronously loads current slide, previous and following if any of these aren&#x27;t loaded yet. Uses: [loadSlideInLessonEditor](..&#x2F;classes&#x2F;loadSlideInLessonEditor.html#method_loadSlideInLessonEditor)
+Asynchronously loads current slide, previous and following.
 @method loadSlideAndAdhiacentInLessonEditor
 @for LessonEditorSlideLoading
-@param slide_id {Number} slide id
+@param slide_id {Number} id in the database of the current slide, used to extract the HTML id
 **&#x2F;
 function loadSlideAndAdhiacentInLessonEditor(slide_id) {
   var slide = $(&#x27;#slide_in_lesson_editor_&#x27; + slide_id);
@@ -1129,10 +1129,10 @@ function loadSlideAndAdhiacentInLessonEditor(slide_id) {
 }
 
 &#x2F;**
-Asynchronous slide loading. It is called when the current slide is not loaded yet.
+Asynchronous slide loading. It checks if the slide has been loaded or not.
 @method loadSlideInLessonEditor
 @for LessonEditorSlideLoading
-@param slide {String} slide object id
+@param slide {Object} slide to be loaded
 **&#x2F;
 function loadSlideInLessonEditor(slide) {
   if(slide.length &gt; 0 &amp;&amp; !slide.data(&#x27;loaded&#x27;)) {
@@ -1148,7 +1148,7 @@ function loadSlideInLessonEditor(slide) {
 
 
 &#x2F;**
-Initialize slides position to center
+Initialize slides position to center.
 @method initLessonEditorPositions
 @for LessonEditorSlidesNavigation
 **&#x2F;
@@ -1167,7 +1167,7 @@ function initLessonEditorPositions() {
 }
 
 &#x2F;**
-Re-initialize slides position to center after ajax events
+Re-initialize slides position to center after ajax events.
 @method reInitializeSlidePositionsInLessonEditor
 @for LessonEditorSlidesNavigation
 **&#x2F;
@@ -1179,10 +1179,11 @@ function reInitializeSlidePositionsInLessonEditor() {
 }
 
 &#x2F;**
-Update top scrollPane when moving to another slide
+Scrolls navigation scrollPane ({{#crossLink &quot;LessonEditorSlidesNavigation&quot;}}{{&#x2F;crossLink}}) when moving to another slide.
 @method scrollPaneUpdate
 @for LessonEditorSlidesNavigation
-@param trigger_element {String} element which triggers the scroll, class or id
+@param trigger_element {String} HTML selector for the element which triggers the scroll
+@return {Boolean} false, probably to stop further actions
 **&#x2F;
 function scrollPaneUpdate(trigger_element) {
   var not_current = $(trigger_element);
@@ -1195,11 +1196,11 @@ function scrollPaneUpdate(trigger_element) {
 }
 
 &#x2F;**
-Slide to current slide, update current slide in top navigation. Uses: [loadSlideAndAdhiacentInLessonEditor](..&#x2F;classes&#x2F;loadSlideAndAdhiacentInLessonEditor.html#method_loadSlideAndAdhiacentInLessonEditor)
+Moves to a slide, update current slide in top navigation.
 @method slideTo
 @for LessonEditorSlidesNavigation
-@param slide_id {Number} slide id
-@param callback {Object} callback function
+@param slide_id {Number} id in the database of the slide, used to extract the HTML id
+@param callback {Object} callback function, to be executed after the slide (for instance, this function is used to call {{#crossLink &quot;LessonEditorCurrentSlide&#x2F;showNewSlideOptions:method&quot;}}{{&#x2F;crossLink}})
 **&#x2F;
 function slideTo(slide_id, callback) {
   loadSlideAndAdhiacentInLessonEditor(slide_id);

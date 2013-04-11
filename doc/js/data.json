@@ -3833,7 +3833,7 @@
             "line": 65,
             "description": "Shows the template for selection of new slides.",
             "itemtype": "method",
-            "name": "showNewSlideChoice",
+            "name": "showNewSlideOptions",
             "class": "LessonEditorCurrentSlide",
             "module": "lesson-editor"
         },
@@ -4118,13 +4118,13 @@
         {
             "file": "app/assets/javascripts/lesson_editor.js",
             "line": 812,
-            "description": "Asynchronously loads current slide, previous and following if any of these aren't loaded yet. Uses: [loadSlideInLessonEditor](../classes/loadSlideInLessonEditor.html#method_loadSlideInLessonEditor)",
+            "description": "Asynchronously loads current slide, previous and following.",
             "itemtype": "method",
             "name": "loadSlideAndAdhiacentInLessonEditor",
             "params": [
                 {
                     "name": "slide_id",
-                    "description": "slide id",
+                    "description": "id in the database of the current slide, used to extract the HTML id",
                     "type": "Number"
                 }
             ],
@@ -4134,14 +4134,14 @@
         {
             "file": "app/assets/javascripts/lesson_editor.js",
             "line": 825,
-            "description": "Asynchronous slide loading. It is called when the current slide is not loaded yet.",
+            "description": "Asynchronous slide loading. It checks if the slide has been loaded or not.",
             "itemtype": "method",
             "name": "loadSlideInLessonEditor",
             "params": [
                 {
                     "name": "slide",
-                    "description": "slide object id",
-                    "type": "String"
+                    "description": "slide to be loaded",
+                    "type": "Object"
                 }
             ],
             "class": "LessonEditorSlideLoading",
@@ -4150,7 +4150,7 @@
         {
             "file": "app/assets/javascripts/lesson_editor.js",
             "line": 844,
-            "description": "Initialize slides position to center",
+            "description": "Initialize slides position to center.",
             "itemtype": "method",
             "name": "initLessonEditorPositions",
             "class": "LessonEditorSlidesNavigation",
@@ -4159,7 +4159,7 @@
         {
             "file": "app/assets/javascripts/lesson_editor.js",
             "line": 863,
-            "description": "Re-initialize slides position to center after ajax events",
+            "description": "Re-initialize slides position to center after ajax events.",
             "itemtype": "method",
             "name": "reInitializeSlidePositionsInLessonEditor",
             "class": "LessonEditorSlidesNavigation",
@@ -4168,34 +4168,38 @@
         {
             "file": "app/assets/javascripts/lesson_editor.js",
             "line": 875,
-            "description": "Update top scrollPane when moving to another slide",
+            "description": "Scrolls navigation scrollPane ({{#crossLink \"LessonEditorSlidesNavigation\"}}{{/crossLink}}) when moving to another slide.",
             "itemtype": "method",
             "name": "scrollPaneUpdate",
             "params": [
                 {
                     "name": "trigger_element",
-                    "description": "element which triggers the scroll, class or id",
+                    "description": "HTML selector for the element which triggers the scroll",
                     "type": "String"
                 }
             ],
+            "return": {
+                "description": "false, probably to stop further actions",
+                "type": "Boolean"
+            },
             "class": "LessonEditorSlidesNavigation",
             "module": "lesson-editor"
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 891,
-            "description": "Slide to current slide, update current slide in top navigation. Uses: [loadSlideAndAdhiacentInLessonEditor](../classes/loadSlideAndAdhiacentInLessonEditor.html#method_loadSlideAndAdhiacentInLessonEditor)",
+            "line": 892,
+            "description": "Moves to a slide, update current slide in top navigation.",
             "itemtype": "method",
             "name": "slideTo",
             "params": [
                 {
                     "name": "slide_id",
-                    "description": "slide id",
+                    "description": "id in the database of the slide, used to extract the HTML id",
                     "type": "Number"
                 },
                 {
                     "name": "callback",
-                    "description": "callback function",
+                    "description": "callback function, to be executed after the slide (for instance, this function is used to call {{#crossLink \"LessonEditorCurrentSlide/showNewSlideOptions:method\"}}{{/crossLink}})",
                     "type": "Object"
                 }
             ],
@@ -4204,7 +4208,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 942,
+            "line": 943,
             "description": "Initialize tinyMCE editor for a single textarea Uses: [tinyMceKeyDownCallbacks](../classes/tinyMceKeyDownCallbacks.html#method_tinyMceKeyDownCallbacks) and [tinyMceCallbacks](../classes/tinyMceCallbacks.html#method_tinyMceCallbacks)",
             "itemtype": "method",
             "name": "initTinymce",
@@ -4220,7 +4224,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 986,
+            "line": 987,
             "description": "TinyMCE callback to show warning when texearea content exceeds the available space. Add a red border to the textarea. Add this function on tinyMCE setup.",
             "itemtype": "method",
             "name": "tinyMceCallbacks",
@@ -4241,7 +4245,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1005,
+            "line": 1006,
             "description": "TinyMCE keyDown callback to fix list item style. It adds same style of list item text to list numbers or dots. Add this function on tinyMCE setup.",
             "itemtype": "method",
             "name": "tinyMceKeyDownCallbacks",
