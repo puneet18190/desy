@@ -169,10 +169,10 @@ function showArrowsInLessonViewer() {
 
 
 /**
-Open playlist menu, show lessons cover list and change playlist toggle label Uses: [showArrowsInLessonViewer](../classes/showArrowsInLessonViewer.html#method_showArrowsInLessonViewer)
+Closes the playlist menu and executes a callback.
 @method closePlaylistMenuInLessonViewer
 @for LessonViewerPlaylist
-@param callback {Object} to call after effect is complete
+@param callback {Function} to call after effect is complete
 **/
 function closePlaylistMenuInLessonViewer(callback) {
   $('.playlistMenu').slideUp('slow', function() {
@@ -184,7 +184,7 @@ function closePlaylistMenuInLessonViewer(callback) {
 }
 
 /**
-Open playlist menu, show lessons conver list and change playlist toggle label Uses: [hideArrowsInLessonViewer](../classes/hideArrowsInLessonViewer.html#method_hideArrowsInLessonViewer)
+Opposite of {{#crossLink "LessonViewerPlaylist/closePlaylistMenuInLessonViewer:method"}}{{/crossLink}}.
 @method openPlaylistMenuInLessonViewer
 @for LessonViewerPlaylist
 **/
@@ -196,11 +196,11 @@ function openPlaylistMenuInLessonViewer() {
 }
 
 /**
-Sets selected lesson from playlist menu
+Huge method that replaces missing functionalities of the bad plugin JScrollPain. The aim of this method is to select a lesson in the menu, adapt the size of the scroll pane, and if required scroll and execute a callback.
 @method selectComponentInLessonViewerPlaylistMenu
 @for LessonViewerPlaylist
 @param component {Object} selected lesson
-@param callback {Object} to call after function is complete
+@param callback {Function} to call after function is complete (optional)
 **/
 function selectComponentInLessonViewerPlaylistMenu(component, callback) {
   $('._playlist_menu_item').css('margin', '2px 60px 2px 0').css('border', 0);
@@ -286,11 +286,15 @@ function selectComponentInLessonViewerPlaylistMenu(component, callback) {
 }
 
 /**
-Open playlist menu, show lessons conver list and change playlist toggle label Uses: [selectComponentInLessonViewerPlaylistMenu](../classes/selectComponentInLessonViewerPlaylistMenu.html#method_selectComponentInLessonViewerPlaylistMenu)
+This method can be used in two ways:
+<ul>
+  <li><b>with callback</b>, if the user clicks on a lesson in the menu</li>
+  <li><b>without callback</b>, if the user gets to a new lesson while navigating normally (he clicks only on <i>next slide</i> and <i>prev slide</i>, see {{#crossLink "LessonViewerSlidesNavigation/slideToInLessonViewerWithLessonSwitch:method"}}{{/crossLink}})</li>
+</ul>
 @method switchLessonInPlaylistMenuLessonViewer
 @for LessonViewerPlaylist
-@param lesson_id {Number} lesson id to switch to
-@param callback {Object} callback after function is complete
+@param lesson_id {Number} id in the database of the lesson, used to extract the HTML id
+@param callback {Function} callback after function is complete (optional)
 **/
 function switchLessonInPlaylistMenuLessonViewer(lesson_id, callback) {
   if($('._lesson_title_in_playlist').data('lesson-id') != lesson_id) {

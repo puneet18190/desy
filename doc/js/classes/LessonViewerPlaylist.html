@@ -444,7 +444,7 @@
     </div>
 
     <div class="description">
-        <p>Open playlist menu, show lessons cover list and change playlist toggle label Uses: <a href="../classes/showArrowsInLessonViewer.html#method_showArrowsInLessonViewer">showArrowsInLessonViewer</a></p>
+        <p>Closes the playlist menu and executes a callback.</p>
     </div>
 
     
@@ -456,7 +456,7 @@
                 <li class="param">
                     
                         <code class="param-name">callback</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
                     
 
                     
@@ -521,7 +521,7 @@
     </div>
 
     <div class="description">
-        <p>Open playlist menu, show lessons conver list and change playlist toggle label Uses: <a href="../classes/hideArrowsInLessonViewer.html#method_hideArrowsInLessonViewer">hideArrowsInLessonViewer</a></p>
+        <p>Opposite of <a href="../classes/LessonViewerPlaylist.html#method_closePlaylistMenuInLessonViewer" class="crosslink">closePlaylistMenuInLessonViewer</a>.</p>
     </div>
 
     
@@ -591,7 +591,7 @@
     </div>
 
     <div class="description">
-        <p>Sets selected lesson from playlist menu</p>
+        <p>Huge method that replaces missing functionalities of the bad plugin JScrollPain. The aim of this method is to select a lesson in the menu, adapt the size of the scroll pane, and if required scroll and execute a callback.</p>
     </div>
 
     
@@ -618,13 +618,13 @@
                 <li class="param">
                     
                         <code class="param-name">callback</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>to call after function is complete</p>
+                        <p>to call after function is complete (optional)</p>
                     </div>
 
                     
@@ -699,7 +699,12 @@
     </div>
 
     <div class="description">
-        <p>Open playlist menu, show lessons conver list and change playlist toggle label Uses: <a href="../classes/selectComponentInLessonViewerPlaylistMenu.html#method_selectComponentInLessonViewerPlaylistMenu">selectComponentInLessonViewerPlaylistMenu</a></p>
+        <p>This method can be used in two ways:</p>
+
+<ul>
+  <li><b>with callback</b>, if the user clicks on a lesson in the menu</li>
+  <li><b>without callback</b>, if the user gets to a new lesson while navigating normally (he clicks only on <i>next slide</i> and <i>prev slide</i>, see <a href="../classes/LessonViewerSlidesNavigation.html#method_slideToInLessonViewerWithLessonSwitch" class="crosslink">slideToInLessonViewerWithLessonSwitch</a>)</li>
+</ul>
     </div>
 
     
@@ -717,7 +722,7 @@
                     
 
                     <div class="param-description">
-                        <p>lesson id to switch to</p>
+                        <p>id in the database of the lesson, used to extract the HTML id</p>
                     </div>
 
                     
@@ -726,13 +731,13 @@
                 <li class="param">
                     
                         <code class="param-name">callback</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>callback after function is complete</p>
+                        <p>callback after function is complete (optional)</p>
                     </div>
 
                     

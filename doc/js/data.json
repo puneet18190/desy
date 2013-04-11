@@ -4343,14 +4343,14 @@
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
             "line": 171,
-            "description": "Open playlist menu, show lessons cover list and change playlist toggle label Uses: [showArrowsInLessonViewer](../classes/showArrowsInLessonViewer.html#method_showArrowsInLessonViewer)",
+            "description": "Closes the playlist menu and executes a callback.",
             "itemtype": "method",
             "name": "closePlaylistMenuInLessonViewer",
             "params": [
                 {
                     "name": "callback",
                     "description": "to call after effect is complete",
-                    "type": "Object"
+                    "type": "Function"
                 }
             ],
             "class": "LessonViewerPlaylist",
@@ -4359,7 +4359,7 @@
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
             "line": 186,
-            "description": "Open playlist menu, show lessons conver list and change playlist toggle label Uses: [hideArrowsInLessonViewer](../classes/hideArrowsInLessonViewer.html#method_hideArrowsInLessonViewer)",
+            "description": "Opposite of {{#crossLink \"LessonViewerPlaylist/closePlaylistMenuInLessonViewer:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "openPlaylistMenuInLessonViewer",
             "class": "LessonViewerPlaylist",
@@ -4368,7 +4368,7 @@
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
             "line": 198,
-            "description": "Sets selected lesson from playlist menu",
+            "description": "Huge method that replaces missing functionalities of the bad plugin JScrollPain. The aim of this method is to select a lesson in the menu, adapt the size of the scroll pane, and if required scroll and execute a callback.",
             "itemtype": "method",
             "name": "selectComponentInLessonViewerPlaylistMenu",
             "params": [
@@ -4379,8 +4379,8 @@
                 },
                 {
                     "name": "callback",
-                    "description": "to call after function is complete",
-                    "type": "Object"
+                    "description": "to call after function is complete (optional)",
+                    "type": "Function"
                 }
             ],
             "class": "LessonViewerPlaylist",
@@ -4389,19 +4389,19 @@
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
             "line": 288,
-            "description": "Open playlist menu, show lessons conver list and change playlist toggle label Uses: [selectComponentInLessonViewerPlaylistMenu](../classes/selectComponentInLessonViewerPlaylistMenu.html#method_selectComponentInLessonViewerPlaylistMenu)",
+            "description": "This method can be used in two ways:\n<ul>\n  <li><b>with callback</b>, if the user clicks on a lesson in the menu</li>\n  <li><b>without callback</b>, if the user gets to a new lesson while navigating normally (he clicks only on <i>next slide</i> and <i>prev slide</i>, see {{#crossLink \"LessonViewerSlidesNavigation/slideToInLessonViewerWithLessonSwitch:method\"}}{{/crossLink}})</li>\n</ul>",
             "itemtype": "method",
             "name": "switchLessonInPlaylistMenuLessonViewer",
             "params": [
                 {
                     "name": "lesson_id",
-                    "description": "lesson id to switch to",
+                    "description": "id in the database of the lesson, used to extract the HTML id",
                     "type": "Number"
                 },
                 {
                     "name": "callback",
-                    "description": "callback after function is complete",
-                    "type": "Object"
+                    "description": "callback after function is complete (optional)",
+                    "type": "Function"
                 }
             ],
             "class": "LessonViewerPlaylist",
@@ -4409,7 +4409,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 307,
+            "line": 311,
             "description": "Go to next slide in lesson viewer, if last slide it goes to first one. Uses: [slideToInLessonViewerWithLessonSwitch](../classes/slideToInLessonViewerWithLessonSwitch.html#method_slideToInLessonViewerWithLessonSwitch)",
             "itemtype": "method",
             "name": "goToNextSlideInLessonViewer",
@@ -4418,7 +4418,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 321,
+            "line": 325,
             "description": "Go to previous slide in lesson viewer, if first slide it goes to last one. Uses: [slideToInLessonViewerWithLessonSwitch](../classes/slideToInLessonViewerWithLessonSwitch.html#method_slideToInLessonViewerWithLessonSwitch)",
             "itemtype": "method",
             "name": "goToPrevSlideInLessonViewer",
@@ -4427,7 +4427,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 335,
+            "line": 339,
             "description": "Slide to given slide Uses:",
             "itemtype": "method",
             "name": "slideToInLessonViewer",
@@ -4443,7 +4443,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 379,
+            "line": 383,
             "description": "Open playlist menu, show lessons conver list and change playlist toggle label Uses: [slideToInLessonViewer](../classes/slideToInLessonViewer.html#method_slideToInLessonViewer) and [switchLessonInPlaylistMenuLessonViewer](../classes/switchLessonInPlaylistMenuLessonViewer.html#method_switchLessonInPlaylistMenuLessonViewer)",
             "itemtype": "method",
             "name": "slideToInLessonViewerWithLessonSwitch",
