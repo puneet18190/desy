@@ -784,9 +784,11 @@ function playersDocumentReadyVideoEditor() {
 
 
 &#x2F;**
-bla bla bla
+Method that handles the event &lt;b&gt;timeupdate&lt;&#x2F;b&gt; for general audio or video players: if we got to the last second, the method rewinds the media, otherwise sets the time to the slider (this happens even if the slider already had that value, unlike the methods {{#crossLink &quot;PlayersAudioEditor&#x2F;initializeActionOfMediaTimeUpdaterInAudioEditor:method&quot;}}{{&#x2F;crossLink}} and {{#crossLink &quot;PlayersVideoEditor&#x2F;initializeActionOfMediaTimeUpdaterInVideoEditor:method&quot;}}{{&#x2F;crossLink}} during &lt;b&gt;preview mode&lt;&#x2F;b&gt;).
 @method initializeActionOfMediaTimeUpdater
 @for PlayersGeneral
+@param media {String} HTML selector for the audio or video
+@param reference_id {String} HTML id of the unique container of the audio or video
 **&#x2F;
 function initializeActionOfMediaTimeUpdater(media, reference_id) {
   var duration = $(&#x27;#&#x27; + reference_id).data(&#x27;duration&#x27;);
@@ -804,9 +806,11 @@ function initializeActionOfMediaTimeUpdater(media, reference_id) {
 }
 
 &#x2F;**
-bla bla bla
+Initializes the media player for a generic audio or video.
 @method initializeMedia
 @for PlayersGeneral
+@param content_id {String} the HTML id of the unique container of the media
+@param type {String} it can be either &lt;b&gt;&#x27;audio&#x27;&lt;&#x2F;b&gt; or &lt;b&gt;&#x27;video&#x27;&lt;&#x2F;b&gt;
 **&#x2F;
 function initializeMedia(content_id, type) {
   var duration = $(&#x27;#&#x27; + content_id).data(&#x27;duration&#x27;);
@@ -830,11 +834,11 @@ function initializeMedia(content_id, type) {
 }
 
 &#x2F;**
-bla bla bla
+This is the method that assocaites {{#crossLink &quot;PlayersGeneral&#x2F;initializeActionOfMediaTimeUpdater:method&quot;}}{{&#x2F;crossLink}} to the event of &lt;b&gt;timeupdate&lt;&#x2F;b&gt;. Notice that the method waits until he receives the event &lt;b&gt;loadedmetadata&lt;&#x2F;b&gt; before working.
 @method initializeMediaTimeUpdater
 @for PlayersGeneral
-@param media {String} media element selector class or id
-@param reference_id {String}
+@param media {Object} the jquery object representing a &lt;b&gt;video&lt;&#x2F;b&gt; or an &lt;b&gt;audio&lt;&#x2F;b&gt; tag
+@param reference_id {String} HTML id of the unique container of the audio or video
 **&#x2F;
 function initializeMediaTimeUpdater(media, reference_id) {
   media = $(media);
@@ -852,9 +856,10 @@ function initializeMediaTimeUpdater(media, reference_id) {
 }
 
 &#x2F;**
-bla bla bla
+Stops a generic media, logging errors in the console.
 @method stopMedia
 @for PlayersGeneral
+@param media {String} HTML selector for the audio or video
 **&#x2F;
 function stopMedia(media) {
   try {

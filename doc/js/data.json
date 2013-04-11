@@ -5078,36 +5078,18 @@
         {
             "file": "app/assets/javascripts/players.js",
             "line": 480,
-            "description": "bla bla bla",
+            "description": "Method that handles the event <b>timeupdate</b> for general audio or video players: if we got to the last second, the method rewinds the media, otherwise sets the time to the slider (this happens even if the slider already had that value, unlike the methods {{#crossLink \"PlayersAudioEditor/initializeActionOfMediaTimeUpdaterInAudioEditor:method\"}}{{/crossLink}} and {{#crossLink \"PlayersVideoEditor/initializeActionOfMediaTimeUpdaterInVideoEditor:method\"}}{{/crossLink}} during <b>preview mode</b>).",
             "itemtype": "method",
             "name": "initializeActionOfMediaTimeUpdater",
-            "class": "PlayersGeneral",
-            "module": "players"
-        },
-        {
-            "file": "app/assets/javascripts/players.js",
-            "line": 500,
-            "description": "bla bla bla",
-            "itemtype": "method",
-            "name": "initializeMedia",
-            "class": "PlayersGeneral",
-            "module": "players"
-        },
-        {
-            "file": "app/assets/javascripts/players.js",
-            "line": 526,
-            "description": "bla bla bla",
-            "itemtype": "method",
-            "name": "initializeMediaTimeUpdater",
             "params": [
                 {
                     "name": "media",
-                    "description": "media element selector class or id",
+                    "description": "HTML selector for the audio or video",
                     "type": "String"
                 },
                 {
                     "name": "reference_id",
-                    "description": "",
+                    "description": "HTML id of the unique container of the audio or video",
                     "type": "String"
                 }
             ],
@@ -5116,16 +5098,65 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 548,
-            "description": "bla bla bla",
+            "line": 502,
+            "description": "Initializes the media player for a generic audio or video.",
             "itemtype": "method",
-            "name": "stopMedia",
+            "name": "initializeMedia",
+            "params": [
+                {
+                    "name": "content_id",
+                    "description": "the HTML id of the unique container of the media",
+                    "type": "String"
+                },
+                {
+                    "name": "type",
+                    "description": "it can be either <b>'audio'</b> or <b>'video'</b>",
+                    "type": "String"
+                }
+            ],
             "class": "PlayersGeneral",
             "module": "players"
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 579,
+            "line": 530,
+            "description": "This is the method that assocaites {{#crossLink \"PlayersGeneral/initializeActionOfMediaTimeUpdater:method\"}}{{/crossLink}} to the event of <b>timeupdate</b>. Notice that the method waits until he receives the event <b>loadedmetadata</b> before working.",
+            "itemtype": "method",
+            "name": "initializeMediaTimeUpdater",
+            "params": [
+                {
+                    "name": "media",
+                    "description": "the jquery object representing a <b>video</b> or an <b>audio</b> tag",
+                    "type": "Object"
+                },
+                {
+                    "name": "reference_id",
+                    "description": "HTML id of the unique container of the audio or video",
+                    "type": "String"
+                }
+            ],
+            "class": "PlayersGeneral",
+            "module": "players"
+        },
+        {
+            "file": "app/assets/javascripts/players.js",
+            "line": 552,
+            "description": "Stops a generic media, logging errors in the console.",
+            "itemtype": "method",
+            "name": "stopMedia",
+            "params": [
+                {
+                    "name": "media",
+                    "description": "HTML selector for the audio or video",
+                    "type": "String"
+                }
+            ],
+            "class": "PlayersGeneral",
+            "module": "players"
+        },
+        {
+            "file": "app/assets/javascripts/players.js",
+            "line": 584,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "initializeActionOfMediaTimeUpdaterInVideoEditor",
@@ -5134,7 +5165,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 653,
+            "line": 658,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "initializeMediaTimeUpdaterInVideoEditor",
@@ -5143,7 +5174,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 673,
+            "line": 678,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "initializeVideoInVideoEditorPreview",
@@ -5152,7 +5183,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 751,
+            "line": 756,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "selectVideoComponentCutterHandle",
@@ -5161,7 +5192,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 761,
+            "line": 766,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "stopVideoInVideoEditorPreview",
