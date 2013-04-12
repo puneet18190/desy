@@ -90,3 +90,5 @@ maximum_password_length:
 max_media_size: 50
 # MAXIMUM SIZE OF THE MEDIA ELEMENTS FOLDER (IN GIGABYTES)
 maximum_media_elements_folder_size: 20
+# SESSION TIMEOUT (IN HOURS)
+session_timeout: 48
