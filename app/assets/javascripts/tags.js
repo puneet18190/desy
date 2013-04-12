@@ -148,7 +148,7 @@ function removeFromTagsValue(word, value_selector) {
 
 
 /**
-bla bla bla
+Global initializer for all instances of search autocomplete and tagging autocomplete.
 @method tagsDocumentReady
 @for TagsDocumentReady
 **/
@@ -165,7 +165,7 @@ function tagsDocumentReady() {
 }
 
 /**
-bla bla bla
+Initializer for tagging autocomplete in the form to <b>change the general information of a media element</b> (see {{#crossLink "DialogsWithForm/showMediaElementInfoPopUp:method"}}{{/crossLink}}).
 @method tagsDocumentReadyChangeMediaElementInfo
 @for TagsDocumentReady
 **/
@@ -210,7 +210,7 @@ function tagsDocumentReadyChangeMediaElementInfo() {
 }
 
 /**
-bla bla bla
+Initializer for tagging autocomplete in the form to <b>upload a new media element</b> (see {{#crossLink "DialogsWithForm/showLoadMediaElementPopUp:method"}}{{/crossLink}} and the module {{#crossLinkModule "media-element-loader"}}{{/crossLinkModule}}).
 @method tagsDocumentReadyMediaElementLoader
 @for TagsDocumentReady
 **/
@@ -245,7 +245,7 @@ function tagsDocumentReadyMediaElementLoader() {
 }
 
 /**
-bla bla bla
+Initializer for tagging autocomplete in the form to <b>create a new lesson</b>.
 @method tagsDocumentReadyNewLesson
 @for TagsDocumentReady
 **/
@@ -280,7 +280,7 @@ function tagsDocumentReadyNewLesson() {
 }
 
 /**
-bla bla bla
+Initializer for tagging autocomplete in the form to <b>save as new an element in the {{#crossLinkModule "media-element-editor"}}{{/crossLinkModule}}</b> (see the method {{#crossLink "MediaElementEditorForms/resetMediaElementEditorForms:method"}}{{/crossLink}}).
 @method tagsDocumentReadyNewMediaElement
 @for TagsDocumentReady
 **/
@@ -315,7 +315,7 @@ function tagsDocumentReadyNewMediaElement() {
 }
 
 /**
-bla bla bla
+Initializer for tagging autocomplete in the form to <b>overwrite an element in the {{#crossLinkModule "media-element-editor"}}{{/crossLinkModule}}</b> (see the method {{#crossLink "MediaElementEditorForms/resetMediaElementEditorForms:method"}}{{/crossLink}}).
 @method tagsDocumentReadyOvervriteMediaElement
 @for TagsDocumentReady
 **/
@@ -353,7 +353,7 @@ function tagsDocumentReadyOvervriteMediaElement() {
 }
 
 /**
-bla bla bla
+Initializer for tagging autocomplete in the form to <b>update the general information of a lesson</b>.
 @method tagsDocumentReadyUpdateLesson
 @for TagsDocumentReady
 **/

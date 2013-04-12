@@ -5479,7 +5479,7 @@
         {
             "file": "app/assets/javascripts/tags.js",
             "line": 150,
-            "description": "bla bla bla",
+            "description": "Global initializer for all instances of search autocomplete and tagging autocomplete.",
             "itemtype": "method",
             "name": "tagsDocumentReady",
             "class": "TagsDocumentReady",
@@ -5488,7 +5488,7 @@
         {
             "file": "app/assets/javascripts/tags.js",
             "line": 167,
-            "description": "bla bla bla",
+            "description": "Initializer for tagging autocomplete in the form to <b>change the general information of a media element</b> (see {{#crossLink \"DialogsWithForm/showMediaElementInfoPopUp:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "tagsDocumentReadyChangeMediaElementInfo",
             "class": "TagsDocumentReady",
@@ -5497,7 +5497,7 @@
         {
             "file": "app/assets/javascripts/tags.js",
             "line": 212,
-            "description": "bla bla bla",
+            "description": "Initializer for tagging autocomplete in the form to <b>upload a new media element</b> (see {{#crossLink \"DialogsWithForm/showLoadMediaElementPopUp:method\"}}{{/crossLink}} and the module {{#crossLinkModule \"media-element-loader\"}}{{/crossLinkModule}}).",
             "itemtype": "method",
             "name": "tagsDocumentReadyMediaElementLoader",
             "class": "TagsDocumentReady",
@@ -5506,7 +5506,7 @@
         {
             "file": "app/assets/javascripts/tags.js",
             "line": 247,
-            "description": "bla bla bla",
+            "description": "Initializer for tagging autocomplete in the form to <b>create a new lesson</b>.",
             "itemtype": "method",
             "name": "tagsDocumentReadyNewLesson",
             "class": "TagsDocumentReady",
@@ -5515,7 +5515,7 @@
         {
             "file": "app/assets/javascripts/tags.js",
             "line": 282,
-            "description": "bla bla bla",
+            "description": "Initializer for tagging autocomplete in the form to <b>save as new an element in the {{#crossLinkModule \"media-element-editor\"}}{{/crossLinkModule}}</b> (see the method {{#crossLink \"MediaElementEditorForms/resetMediaElementEditorForms:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "tagsDocumentReadyNewMediaElement",
             "class": "TagsDocumentReady",
@@ -5524,7 +5524,7 @@
         {
             "file": "app/assets/javascripts/tags.js",
             "line": 317,
-            "description": "bla bla bla",
+            "description": "Initializer for tagging autocomplete in the form to <b>overwrite an element in the {{#crossLinkModule \"media-element-editor\"}}{{/crossLinkModule}}</b> (see the method {{#crossLink \"MediaElementEditorForms/resetMediaElementEditorForms:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "tagsDocumentReadyOvervriteMediaElement",
             "class": "TagsDocumentReady",
@@ -5533,7 +5533,7 @@
         {
             "file": "app/assets/javascripts/tags.js",
             "line": 355,
-            "description": "bla bla bla",
+            "description": "Initializer for tagging autocomplete in the form to <b>update the general information of a lesson</b>.",
             "itemtype": "method",
             "name": "tagsDocumentReadyUpdateLesson",
             "class": "TagsDocumentReady",
