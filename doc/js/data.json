@@ -735,7 +735,7 @@
             "tag": "module",
             "file": "app/assets/javascripts/video_editor.js",
             "line": 1,
-            "description": "The Video Editor is structured as follows: centered in the middle of the Editor is located the <b>preview screen</b>, below it the <b>components timeline</b> and the <b>audio track</b>, and on the right the <b>preview column</b> which contains also global statistics about the video.\n<br/><br/>\nA video created with the Video Editor can be composed by <b>three types of components</b> (and optionally an <b>audio track</b>):\n<ul>\n  <li>a <b>video component</b> is an element of type video extracted from the user's gallery, associated to an <b>initial</b> and <b>final point</b></li>\n  <li>a <b>image component</b> is an element of type image extracted from the user's gallery, associated to a <b>duration</b> in seconds (the image is held in the video for a number of seconds equal to the component's duration); the image is centered and cropped maintaining its original proportions, to make it fit in the video screen (which has proportions 16/9)</li>\n  <li>a <b>text component</b> is a centered title for which the user chooses a <b>background color</b>, a <b>font color</b> and a <b>duration</b> (which has the same interpretation as for image components).</li>\n</ul>\nThe resulting video will be the concatenation of all the components inside the timeline, with optionally the chosen audio track as background audio. On the <b>timeline</b> the user may perform the following actions:\n<ul>\n  <li><b>add</b> a new component (see class {{#crossLink \"VideoEditorAddComponents\"}}{{/crossLink}}) or <b>replace</b> an existing one, even without maintaining its original type (see class {{#crossLink \"VideoEditorReplaceComponents\"}}{{/crossLink}}): these functionalities are initialized in {{#crossLink \"VideoEditorDocumentReady/videoEditorDocumentReadyAddComponent:method\"}}{{/crossLink}}</li>\n  <li><b>remove</b> a component from the timeline (initialized in {{#crossLink \"VideoEditorDocumentReady/videoEditorDocumentReadyRemoveComponent:method\"}}{{/crossLink}})</li>\n  <li><b>sort</b> and change the order of the components (initialized in {{#crossLink \"VideoEditorDocumentReady/videoEditorDocumentReadyInitialization:method\"}}{{/crossLink}})</li>\n  <li><b>cut</b> a video component (change its initial and final point) or <b>change duration</b> of an image or text compoent (both these functionalities are initialized in {{#crossLink \"VideoEditorDocumentReady/videoEditorDocumentReadyCutters:method\"}}{{/crossLink}} and implemented in the class {{#crossLink \"VideoEditorCutters\"}}{{/crossLink}}).</li>\n</ul>\nEach component is provided of its own <b>identifier</b> (the same used in {{#crossLinkModule \"audio-editor\"}}{{/crossLinkModule}}), that is unique and doesn't change on any operation performed by the user. Moreover, regardless of its type, a component is strictly linked with two <b>external accessories</b>:\n<ul>\n  <li>a <b>cutter</b> (whose HTML id is <i>video component [identifier] cutter</i>): this item is normally hidden, when requested it appears below the timeline and is used to cut a video component or change the duration of an image or text component (class {{#crossLink \"VideoEditorCutters\"}}{{/crossLink}})</li>\n  <li>a <b>preview clip</b> (whose HTML id is <i>video component [identifier] preview</i>): this item is hidden inside the <b>preview screen</b>, and it's used\n    <ul>\n      <li>to provide the user of a big clip of the component while handling it (functionality initialized in {{#crossLink \"VideoEditorDocumentReady/videoEditorDocumentReadyComponentsCommon:method\"}}{{/crossLink}})</li>\n      <li>to play a video component while cutting it (initialized in the method {{#crossLink \"PlayersDocumentReady/playersDocumentReadyVideoEditor:method\"}}{{/crossLink}} in the module {{#crossLinkModule \"players\"}}{{/crossLinkModule}})</li>\n      <li>to be shown in the <b>global preview</b> (see class {{#crossLink \"VideoEditorPreview\"}}{{/crossLink}}).</li>\n    </ul>\n  </li>\n</ul>\nThe method that <b>extracts the identifier from a component</b> is {{#crossLink \"VideoEditorGeneral/getVideoComponentIdentifier:method\"}}{{/crossLink}} (it works receiving as parameter either the component or its cutter or preview clip).\n<br/><br/>\nWhile the user is working, the <b>preview clip</b> visible in the preview screen corresponds to the last component <b>selected</b> by the user. A component gets selected either if the user keeps the mouse on it for more than half a second (using the method {{#crossLink \"VideoEditorComponents/startVideoEditorPreviewClipWithDelay:method\"}}{{/crossLink}}, which avoids compulsive changes inside the preview screen when the user passes with the mouse over the timeline), or immediately on the actions of <b>sorting</b> and <b>cutting</b> (using the method {{#crossLink \"VideoEditorCutters/startVideoEditorPreviewClip:method\"}}{{/crossLink}}): both behaviors are initialized in {{#crossLink \"VideoEditorDocumentReady/videoEditorDocumentReadyComponentsCommon:method\"}}{{/crossLink}}. To the <b>preview clip</b> of a video component is also associated a method ({{#crossLink \"VideoEditorGeneral/loadVideoComponentIfNotLoadedYet:method\"}}{{/crossLink}}) that loads the HTML5 video tag only when necessary: this, similarly to {{#crossLinkModule \"audio-editor\"}}{{/crossLinkModule}}, avoids overloading of the HTML.\n\n\n<br/><br/>\nAs for the other Element Editors ({{#crossLinkModule \"image-editor\"}}{{/crossLinkModule}}, {{#crossLinkModule \"audio-editor\"}}{{/crossLinkModule}}) the core of the process of committing changes is handled in the module {{#crossLinkModule \"media-element-editor\"}}{{/crossLinkModule}} (more specificly in the class {{#crossLink \"MediaElementEditorForms\"}}{{/crossLink}}); the part of this functionality specific for the Video Editor is handled in {{#crossLink \"VideoEditorDocumentReady/videoEditorDocumentReadyCommit:method\"}}{{/crossLink}}."
+            "description": "The Video Editor is structured as follows: centered in the middle of the Editor is located the <b>preview screen</b>, below it the <b>components timeline</b> and the <b>audio track</b>, and on the right the <b>preview column</b> which contains also global statistics about the video.\n<br/><br/>\nA video created with the Video Editor can be composed by <b>three types of components</b> (and optionally an <b>audio track</b>):\n<ul>\n  <li>a <b>video component</b> is an element of type video extracted from the user's gallery, associated to an <b>initial</b> and <b>final point</b></li>\n  <li>a <b>image component</b> is an element of type image extracted from the user's gallery, associated to a <b>duration</b> in seconds (the image is held in the video for a number of seconds equal to the component's duration); the image is centered and cropped maintaining its original proportions, to make it fit in the video screen (which has proportions 16/9)</li>\n  <li>a <b>text component</b> is a centered title for which the user chooses a <b>background color</b>, a <b>font color</b> and a <b>duration</b> (which has the same interpretation as for image components).</li>\n</ul>\nThe resulting video will be the concatenation of all the components inside the timeline, with optionally the chosen audio track as background audio. On the <b>timeline</b> the user may perform the following actions:\n<ul>\n  <li><b>add</b> a new component (see class {{#crossLink \"VideoEditorAddComponents\"}}{{/crossLink}}) or <b>replace</b> an existing one, even without maintaining its original type (see class {{#crossLink \"VideoEditorReplaceComponents\"}}{{/crossLink}}): these functionalities are initialized in {{#crossLink \"VideoEditorDocumentReady/videoEditorDocumentReadyAddComponent:method\"}}{{/crossLink}}</li>\n  <li><b>remove</b> a component from the timeline (initialized in {{#crossLink \"VideoEditorDocumentReady/videoEditorDocumentReadyRemoveComponent:method\"}}{{/crossLink}})</li>\n  <li><b>sort</b> and change the order of the components (initialized in {{#crossLink \"VideoEditorDocumentReady/videoEditorDocumentReadyInitialization:method\"}}{{/crossLink}})</li>\n  <li><b>cut</b> a video component (change its initial and final point) or <b>change duration</b> of an image or text compoent (both these functionalities are initialized in {{#crossLink \"VideoEditorDocumentReady/videoEditorDocumentReadyCutters:method\"}}{{/crossLink}} and implemented in the class {{#crossLink \"VideoEditorCutters\"}}{{/crossLink}}).</li>\n</ul>\nEach component is provided of its own <b>identifier</b> (the same used in {{#crossLinkModule \"audio-editor\"}}{{/crossLinkModule}}), that is unique and doesn't change on any operation performed by the user. Moreover, regardless of its type, a component is strictly linked with two <b>external accessories</b>:\n<ul>\n  <li>a <b>cutter</b> (whose HTML id is <i>video component [identifier] cutter</i>): this item is normally hidden, when requested it appears below the timeline and is used to cut a video component or change the duration of an image or text component (class {{#crossLink \"VideoEditorCutters\"}}{{/crossLink}})</li>\n  <li>a <b>preview clip</b> (whose HTML id is <i>video component [identifier] preview</i>): this item is hidden inside the <b>preview screen</b>, and it's used\n    <ul>\n      <li>to provide the user of a big clip of the component while handling it (functionality initialized in {{#crossLink \"VideoEditorDocumentReady/videoEditorDocumentReadyComponentsCommon:method\"}}{{/crossLink}})</li>\n      <li>to play a video component while cutting it (initialized in the method {{#crossLink \"PlayersDocumentReady/playersDocumentReadyVideoEditor:method\"}}{{/crossLink}} in the module {{#crossLinkModule \"players\"}}{{/crossLinkModule}})</li>\n      <li>to be shown in the <b>global preview</b> (see class {{#crossLink \"VideoEditorPreview\"}}{{/crossLink}}).</li>\n    </ul>\n  </li>\n</ul>\nThe method that <b>extracts the identifier from a component</b> is {{#crossLink \"VideoEditorGeneral/getVideoComponentIdentifier:method\"}}{{/crossLink}} (it works receiving as parameter either the component or its cutter or preview clip).\n<br/><br/>\nWhile the user is working, the <b>preview clip</b> visible in the preview screen corresponds to the last component <b>selected</b> by the user. A component gets selected either if the user keeps the mouse on it for more than half a second (using the method {{#crossLink \"VideoEditorComponents/startVideoEditorPreviewClipWithDelay:method\"}}{{/crossLink}}, which avoids compulsive changes inside the preview screen when the user passes with the mouse over the timeline), or immediately on the actions of <b>sorting</b> and <b>cutting</b> (using the method {{#crossLink \"VideoEditorCutters/startVideoEditorPreviewClip:method\"}}{{/crossLink}}): both behaviors are initialized in {{#crossLink \"VideoEditorDocumentReady/videoEditorDocumentReadyComponentsCommon:method\"}}{{/crossLink}}. To the <b>preview clip</b> of a video component is also associated a method ({{#crossLink \"VideoEditorGeneral/loadVideoComponentIfNotLoadedYet:method\"}}{{/crossLink}}) that loads the HTML5 video tag only when necessary: this, similarly to {{#crossLinkModule \"audio-editor\"}}{{/crossLinkModule}}, avoids overloading of the HTML.\n<br/><br/>\nThe <b>component gallery</b> used inside the Video Editor (initialized in {{#crossLink \"GalleriesInitializers/initializeMixedGalleryInVideoEditor:method\"}}{{/crossLink}}) is the only gallery in the application which contains mixed types of elements. It's divided into three sections, one for each kind of component: the sections for <b>video</b> and <b>image</b> components have the same external behavior of normal image and video galleries (see the module {{#crossLinkModule \"galleries\"}}{{/crossLinkModule}}), whereas the section for <b>text</b> components is a peculiar text editor (see the class {{#crossLink \"VideoEditorTextComponentEditor\"}}{{/crossLink}}). The component gallery (together with the regular audio gallery for the <b>audio track</b>) is initialized in {{#crossLink \"VideoEditorDocumentReady/videoEditorDocumentReadyGalleries:method\"}}{{/crossLink}}, and its functionality defined in the methods of {{#crossLink \"VideoEditorGalleries\"}}{{/crossLink}} (for instance, the method to switch from a section to another).\n\n\n<br/><br/>\nAs for the other Element Editors ({{#crossLinkModule \"image-editor\"}}{{/crossLinkModule}}, {{#crossLinkModule \"audio-editor\"}}{{/crossLinkModule}}) the core of the process of committing changes is handled in the module {{#crossLinkModule \"media-element-editor\"}}{{/crossLinkModule}} (more specificly in the class {{#crossLink \"MediaElementEditorForms\"}}{{/crossLink}}); the part of this functionality specific for the Video Editor is handled in {{#crossLink \"VideoEditorDocumentReady/videoEditorDocumentReadyCommit:method\"}}{{/crossLink}}."
         },
         "virtual-classroom": {
             "name": "virtual-classroom",
@@ -5573,7 +5573,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 42,
+            "line": 44,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "addImageComponentInVideoEditor",
@@ -5582,7 +5582,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 106,
+            "line": 108,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "addTextComponentInVideoEditor",
@@ -5591,7 +5591,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 177,
+            "line": 179,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "addVideoComponentInVideoEditor",
@@ -5600,7 +5600,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 255,
+            "line": 257,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "changeDurationVideoEditorComponent",
@@ -5609,7 +5609,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 279,
+            "line": 281,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "clearSpecificVideoEditorComponentParameters",
@@ -5618,7 +5618,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 296,
+            "line": 298,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "fillVideoEditorSingleParameter",
@@ -5627,7 +5627,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 305,
+            "line": 307,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "highlightAndUpdateVideoComponentIcon",
@@ -5636,7 +5636,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 314,
+            "line": 316,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "reloadVideoEditorComponentPositions",
@@ -5645,7 +5645,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 328,
+            "line": 330,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "resetVisibilityOfVideoEditorTransitions",
@@ -5654,7 +5654,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 344,
+            "line": 346,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "startVideoEditorPreviewClipWithDelay",
@@ -5663,7 +5663,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 362,
+            "line": 364,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "closeGenericVideoComponentCutter",
@@ -5683,7 +5683,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 385,
+            "line": 387,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "commitVideoComponentVideoCutter",
@@ -5692,7 +5692,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 402,
+            "line": 404,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "cutVideoComponentLeftSide",
@@ -5701,7 +5701,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 413,
+            "line": 415,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "cutVideoComponentRightSide",
@@ -5710,7 +5710,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 424,
+            "line": 426,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "showVideoEditorCutter",
@@ -5719,7 +5719,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 444,
+            "line": 446,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "startVideoEditorPreviewClip",
@@ -5728,7 +5728,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 459,
+            "line": 461,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "videoEditorDocumentReady",
@@ -5737,7 +5737,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 477,
+            "line": 479,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "videoEditorDocumentReadyAddComponent",
@@ -5746,7 +5746,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 560,
+            "line": 562,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "videoEditorDocumentReadyAudioTrack",
@@ -5755,7 +5755,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 600,
+            "line": 602,
             "description": "bla bla bla -- TODO copiare dagli analoghi in image editor e audio editor",
             "itemtype": "method",
             "name": "videoEditorDocumentReadyCommit",
@@ -5764,7 +5764,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 700,
+            "line": 702,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "videoEditorDocumentReadyComponentsCommon",
@@ -5773,7 +5773,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 729,
+            "line": 731,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "videoEditorDocumentReadyCutters",
@@ -5782,7 +5782,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 845,
+            "line": 847,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "videoEditorDocumentReadyGalleries",
@@ -5791,7 +5791,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 906,
+            "line": 908,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "videoEditorDocumentReadyInitialization",
@@ -5800,7 +5800,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 951,
+            "line": 953,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "videoEditorDocumentReadyPreview",
@@ -5809,7 +5809,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1057,
+            "line": 1059,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "videoEditorDocumentReadyRemoveComponent",
@@ -5818,7 +5818,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1088,
+            "line": 1090,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "videoEditorDocumentReadyTextComponentEditor",
@@ -5827,7 +5827,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1117,
+            "line": 1119,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "calculateNewPositionGalleriesInVideoEditor",
@@ -5836,7 +5836,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1127,
+            "line": 1129,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "closeGalleryInVideoEditor",
@@ -5845,7 +5845,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1140,
+            "line": 1142,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "showGalleryInVideoEditor",
@@ -5854,7 +5854,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1153,
+            "line": 1155,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "switchToOtherGalleryInMixedGalleryInVideoEditor",
@@ -5863,7 +5863,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1178,
+            "line": 1180,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "getFirstVideoEditorComponent",
@@ -5872,7 +5872,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1187,
+            "line": 1189,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "getLastVideoEditorComponent",
@@ -5881,7 +5881,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1197,
+            "line": 1199,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "getVideoComponentIdentifier",
@@ -5890,7 +5890,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1211,
+            "line": 1213,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "loadVideoComponentIfNotLoadedYet",
@@ -5899,7 +5899,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1227,
+            "line": 1229,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "videoEditorWithAudioTrack",
@@ -5908,7 +5908,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1240,
+            "line": 1242,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "automaticIncreaseVideoEditorPreviewTimer",
@@ -5917,7 +5917,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1258,
+            "line": 1260,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "increaseVideoEditorPreviewTimer",
@@ -5926,7 +5926,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1280,
+            "line": 1282,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "openPreviewModeInVideoEditor",
@@ -5935,7 +5935,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1323,
+            "line": 1325,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "playVideoEditorComponent",
@@ -5944,7 +5944,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1393,
+            "line": 1395,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "startVideoEditorGlobalPreview",
@@ -5953,7 +5953,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1424,
+            "line": 1426,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "calculateVideoComponentStartSecondInVideoEditor",
@@ -5962,7 +5962,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1446,
+            "line": 1448,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "hideVideoEditorPreviewComponentProgressBar",
@@ -5971,7 +5971,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1456,
+            "line": 1458,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "selectVideoComponentInPreview",
@@ -5980,7 +5980,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1472,
+            "line": 1474,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "setVisualTimesVideoEditorPreview",
@@ -5989,7 +5989,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1501,
+            "line": 1503,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "showVideoEditorPreviewArrowToComponents",
@@ -5998,7 +5998,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1519,
+            "line": 1521,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "showVideoEditorPreviewComponentProgressBar",
@@ -6007,7 +6007,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1551,
+            "line": 1553,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "replaceImageComponentInVideoEditor",
@@ -6016,7 +6016,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1586,
+            "line": 1588,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "replaceTextComponentInVideoEditor",
@@ -6025,7 +6025,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1628,
+            "line": 1630,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "replaceVideoComponentInVideoEditor",
@@ -6034,7 +6034,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1677,
+            "line": 1679,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "followPreviewComponentsWithHorizontalScrollInVideoEditor",
@@ -6043,7 +6043,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1727,
+            "line": 1729,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "resetVideoEditorTextComponent",
@@ -6052,7 +6052,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1742,
+            "line": 1744,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "switchTextComponentBackgroundColor",
@@ -6061,7 +6061,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1754,
+            "line": 1756,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "switchTextComponentTextColor",
