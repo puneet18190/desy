@@ -5542,13 +5542,13 @@
         {
             "file": "app/assets/javascripts/tags.js",
             "line": 396,
-            "description": "Initialize jQueryUI _autocomplete_ for tags in search input Uses: [unbindLoader](../classes/unbindLoader.html#method_unbindLoader) and [bindLoader](../classes/bindLoader.html#method_bindLoader)",
+            "description": "Initializer for search autocompĺete.",
             "itemtype": "method",
             "name": "initSearchTagsAutocomplete",
             "params": [
                 {
                     "name": "input",
-                    "description": "search by tag input selector, class or id",
+                    "description": "HTML selector for the input",
                     "type": "String"
                 }
             ],
@@ -5558,13 +5558,13 @@
         {
             "file": "app/assets/javascripts/tags.js",
             "line": 426,
-            "description": "Initialize jQueryUI _autocomplete_ for tags in lessons and elements form",
+            "description": "Initializer for tagging autocompĺete.",
             "itemtype": "method",
             "name": "initTagsAutocomplete",
             "params": [
                 {
                     "name": "scope",
-                    "description": "tags container scope, class or id",
+                    "description": "HTML scope for the tag container",
                     "type": "String"
                 }
             ],

@@ -394,10 +394,10 @@ function tagsDocumentReadyUpdateLesson() {
 
 
 /**
-Initialize jQueryUI _autocomplete_ for tags in search input Uses: [unbindLoader](../classes/unbindLoader.html#method_unbindLoader) and [bindLoader](../classes/bindLoader.html#method_bindLoader)
+Initializer for search autocompĺete.
 @method initSearchTagsAutocomplete
 @for TagsInitializers
-@param input {String} search by tag input selector, class or id
+@param input {String} HTML selector for the input
 **/
 function initSearchTagsAutocomplete(input) {
   var cache = {};
@@ -424,10 +424,10 @@ function initSearchTagsAutocomplete(input) {
 }
 
 /**
-Initialize jQueryUI _autocomplete_ for tags in lessons and elements form
+Initializer for tagging autocompĺete.
 @method initTagsAutocomplete
 @for TagsInitializers
-@param scope {String} tags container scope, class or id
+@param scope {String} HTML scope for the tag container
 **/
 function initTagsAutocomplete(scope) {
   var input_selector = scope + ' #tags';
