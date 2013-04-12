@@ -1,5 +1,4 @@
-Thu, 11 Apr 2013 13:01:30 +0200
-doc/README_FOR_APP	Mon, 08 Apr 2013 11:29:59 +0200
+Thu, 11 Apr 2013 17:17:20 +0200
 app/controllers/admin/dashboard_controller.rb	Mon, 08 Apr 2013 11:29:47 +0200
 app/controllers/admin/lessons_controller.rb	Mon, 08 Apr 2013 11:29:47 +0200
 app/controllers/admin/media_elements_controller.rb	Mon, 08 Apr 2013 11:29:47 +0200
@@ -79,7 +78,7 @@ lib/media/audio/editing.rb	Mon, 08 Apr 2013 11:29:59 +0200
 lib/media/audio/editing/cmd.rb	Mon, 08 Apr 2013 11:29:59 +0200
 lib/media/audio/editing/cmd/avconv.rb	Mon, 08 Apr 2013 11:29:59 +0200
 lib/media/audio/editing/cmd/concat.rb	Mon, 08 Apr 2013 11:29:59 +0200
-lib/media/audio/editing/cmd/conversion.rb	Mon, 08 Apr 2013 11:29:59 +0200
+lib/media/audio/editing/cmd/conversion.rb	Thu, 11 Apr 2013 15:01:57 +0200
 lib/media/audio/editing/cmd/crop.rb	Mon, 08 Apr 2013 11:29:59 +0200
 lib/media/audio/editing/cmd/sox.rb	Mon, 08 Apr 2013 11:29:59 +0200
 lib/media/audio/editing/composer.rb	Mon, 08 Apr 2013 11:29:59 +0200
@@ -92,7 +91,7 @@ lib/media/audio/editing/parameters.rb	Mon, 08 Apr 2013 11:29:59 +0200
 lib/media/audio/uploader.rb	Mon, 08 Apr 2013 11:29:59 +0200
 lib/media/audio/uploader/validation.rb	Wed, 10 Apr 2013 12:23:41 +0200
 lib/media/cmd.rb	Mon, 08 Apr 2013 11:29:59 +0200
-lib/media/cmd/avconv.rb	Mon, 08 Apr 2013 11:29:59 +0200
+lib/media/cmd/avconv.rb	Thu, 11 Apr 2013 15:02:07 +0200
 lib/media/cmd/avprobe.rb	Mon, 08 Apr 2013 11:29:59 +0200
 lib/media/config.rb	Mon, 08 Apr 2013 16:17:07 +0200
 lib/media/error.rb	Mon, 08 Apr 2013 11:29:59 +0200
@@ -118,7 +117,7 @@ lib/media/video/editing/cmd/avconv.rb	Mon, 08 Apr 2013 11:29:59 +0200
 lib/media/video/editing/cmd/concat.rb	Mon, 08 Apr 2013 11:29:59 +0200
 lib/media/video/editing/cmd/concat/mp4.rb	Mon, 08 Apr 2013 11:29:59 +0200
 lib/media/video/editing/cmd/concat/webm.rb	Mon, 08 Apr 2013 11:29:59 +0200
-lib/media/video/editing/cmd/conversion.rb	Mon, 08 Apr 2013 11:29:59 +0200
+lib/media/video/editing/cmd/conversion.rb	Thu, 11 Apr 2013 15:01:35 +0200
 lib/media/video/editing/cmd/crop.rb	Mon, 08 Apr 2013 11:29:59 +0200
 lib/media/video/editing/cmd/extract_frame.rb	Mon, 08 Apr 2013 11:29:59 +0200
 lib/media/video/editing/cmd/generate_transition_frames.rb	Mon, 08 Apr 2013 11:29:59 +0200
@@ -143,3 +142,4 @@ lib/media/video/editing/transition.rb	Mon, 08 Apr 2013 11:29:59 +0200
 lib/media/video/uploader.rb	Mon, 08 Apr 2013 11:29:59 +0200
 lib/media/video/uploader/validation.rb	Mon, 08 Apr 2013 11:29:59 +0200
 lib/notifications_job.rb	Mon, 08 Apr 2013 11:29:59 +0200
+doc/README.rdoc	Thu, 11 Apr 2013 17:13:49 +0200

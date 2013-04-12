@@ -1,0 +1,27 @@
+= DESY - Digital Educational SYstem
+
+== Description
+
+DESY - Digital Educational SYstem is a web application thought to create and share on-line multimedia lessons.
+
+The lessons are created by the application users; users can also upload media elements, which can be included in their lessons and shared with other users.
+
+The lessons can be collected inside containers called Virtual Classrooms, which will be shared on the web via their respective URLs.
+
+== Architecture
+
+The software architecture is composed by: 
+
+* the web application: developed in {Ruby}[http://www.ruby-lang.org] using the web framework {Ruby on Rails}[http://rubyonrails.org/], provides the web frontend; it uses PostgreSQL for data persistence
+* the background processes: managed through the {Delayed::Job}[https://github.com/collectiveidea/delayed_job] library, they run the istances which go about the uploaded media converting and editing
+* the cron jobs: periodically actions, like f.e. checking the size of media elements folder in order to send an alert to the maintainer
+
+== Procedure of installation
+
+DeSY was designed to be deployed on Linux systems. The ideal infastructure consists of:
+
+* a web 
+
+== Configuration
+
+DeSY can be configured through the file config/settings.yml (which must be created after the installation - see {Procedure of installation}[rdoc-label:label-Procedure+of+installation]).
