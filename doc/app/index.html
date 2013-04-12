@@ -4,7 +4,7 @@
 <head>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
 
-<title>Rails Application Documentation</title>
+<title>DESY - Digital Educational SYstem application documentation</title>
 
 <link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
 
@@ -49,7 +49,7 @@
 
   <ul>
   
-    <li class="file"><a href="./doc/README_FOR_APP.html">README_FOR_APP</a>
+    <li class="file"><a href="./doc/README_rdoc.html">README</a>
   
   </ul>
 </nav>
@@ -377,7 +377,55 @@
   </div>
 </nav>
 
-<p>This is the API documentation for Rails Application Documentation.
+<div id="documentation" class="description">
+  
+<h1 id="label-DESY+-+Digital+Educational+SYstem">DESY - Digital Educational SYstem</h1>
+
+<h2 id="label-Description">Description</h2>
+
+<p>DESY - Digital Educational SYstem is a web application thought to create
+and share on-line multimedia lessons.</p>
+
+<p>The lessons are created by the application users; users can also upload
+media elements, which can be included in their lessons and shared with
+other users.</p>
+
+<p>The lessons can be collected inside containers called Virtual Classrooms,
+which will be shared on the web via their respective URLs.</p>
+
+<h2 id="label-Architecture">Architecture</h2>
+
+<p>The software architecture is composed by:</p>
+<ul><li>
+<p>the web application: developed in <a
+href="http://www.ruby-lang.org">Ruby</a> using the web framework <a
+href="http://rubyonrails.org/">Ruby on Rails</a>, provides the web
+frontend; it uses PostgreSQL for data persistence</p>
+</li><li>
+<p>the background processes: managed through the <a
+href="https://github.com/collectiveidea/delayed_job">Delayed::Job</a>
+library, they run the istances which go about the uploaded media converting
+and editing</p>
+</li><li>
+<p>the cron jobs: periodically actions, like f.e. checking the size of media
+elements folder in order to send an alert to the maintainer</p>
+</li></ul>
+
+<h2 id="label-Procedure+of+installation">Procedure of installation</h2>
+
+<p>DeSY was designed to be deployed on Linux systems. The ideal infastructure
+consists of:</p>
+<ul><li>
+<p>a web</p>
+</li></ul>
+
+<h2 id="label-Configuration">Configuration</h2>
+
+<p>DeSY can be configured through the file config/settings.yml (which must be
+created after the installation - see <a
+href="#label-Procedure+of+installation">Procedure of installation</a></p>
+
+</div>
 
 
 <footer id="validator-badges">
