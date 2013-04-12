@@ -5320,23 +5320,23 @@
         {
             "file": "app/assets/javascripts/tags.js",
             "line": 18,
-            "description": "Handle adding tag not in the autocomplete data list",
+            "description": "Adds a tag without using the suggestion (the case with the suggestion is handled by {{#crossLink \"TagsInitializers/initTagsAutocomplete:method\"}}{{/crossLink}}). In the particular case in which the user adds the tag <b>before</b> the autocomplete has shown the list of matches, this method calls a route from the backend that checks if the tag was present in the database: if yes, the tag gets colored differently.",
             "itemtype": "method",
             "name": "addTagWithoutSuggestion",
             "params": [
                 {
                     "name": "input",
-                    "description": "input selector for tag, class or id",
+                    "description": "HTML selector for the tag input",
                     "type": "String"
                 },
                 {
                     "name": "container_selector",
-                    "description": "added tags container selector, class or id",
+                    "description": "HTML selector for the container",
                     "type": "String"
                 },
                 {
                     "name": "tags_value_selector",
-                    "description": "hidden input field for tags value selector",
+                    "description": "HTML selector for the hidden input",
                     "type": "String"
                 }
             ],
@@ -5346,18 +5346,18 @@
         {
             "file": "app/assets/javascripts/tags.js",
             "line": 53,
-            "description": "Add tag word to hidden field with tags values",
+            "description": "Adds a tag to the <b>hidden input</b>.",
             "itemtype": "method",
             "name": "addToTagsValue",
             "params": [
                 {
                     "name": "word",
-                    "description": "tag name",
+                    "description": "tag to be inserted",
                     "type": "String"
                 },
                 {
                     "name": "value_selector",
-                    "description": "hidden input field for tags value selector",
+                    "description": "HTML selector for the hidden input",
                     "type": "String"
                 }
             ],
@@ -5367,18 +5367,18 @@
         {
             "file": "app/assets/javascripts/tags.js",
             "line": 70,
-            "description": "Checks if a tag word is present in the tags container.",
+            "description": "Checks if a tag is already present in the hidden input.",
             "itemtype": "method",
             "name": "checkNoTagDuplicates",
             "params": [
                 {
                     "name": "word",
-                    "description": "tag name",
+                    "description": "tag to be checked",
                     "type": "String"
                 },
                 {
                     "name": "container_selector",
-                    "description": "tags container selector",
+                    "description": "HTML selector for the container",
                     "type": "String"
                 }
             ],
@@ -5392,18 +5392,18 @@
         {
             "file": "app/assets/javascripts/tags.js",
             "line": 88,
-            "description": "Creates a new span element for a new tag.",
+            "description": "Creates a new span box for a tag.",
             "itemtype": "method",
             "name": "createTagSpan",
             "params": [
                 {
                     "name": "word",
-                    "description": "tag name",
+                    "description": "tag to be created",
                     "type": "String"
                 },
                 {
                     "name": "new_tag",
-                    "description": "flag true if it's a new tag, false otherwise",
+                    "description": "true if it must be colored as a tag not present in the database yet",
                     "type": "Boolean"
                 }
             ],
@@ -5417,18 +5417,18 @@
         {
             "file": "app/assets/javascripts/tags.js",
             "line": 105,
-            "description": "Disable insert new tag when tags container is full.",
+            "description": "Disables the tag input if the container is full.",
             "itemtype": "method",
             "name": "disableTagsInputTooHigh",
             "params": [
                 {
                     "name": "container_selector",
-                    "description": "tags container selector, class or id",
+                    "description": "HTML selector for the container",
                     "type": "String"
                 },
                 {
                     "name": "input_selector",
-                    "description": "new tag input selector, class or id",
+                    "description": "HTML selector for the tag input",
                     "type": "String"
                 }
             ],
@@ -5438,18 +5438,18 @@
         {
             "file": "app/assets/javascripts/tags.js",
             "line": 118,
-            "description": "Generates a name_aware class for a given tag",
+            "description": "Generates a unique class for a given tag (containing underscores, and taking into consideration special characters).",
             "itemtype": "method",
             "name": "getUnivoqueClassForTag",
             "params": [
                 {
                     "name": "word",
-                    "description": "tag name",
+                    "description": "tag",
                     "type": "String"
                 }
             ],
             "return": {
-                "description": "i.e. w_a_t_e_r_",
+                "description": "unique class for that tag",
                 "type": "String"
             },
             "class": "TagsAccessories",
@@ -5458,18 +5458,18 @@
         {
             "file": "app/assets/javascripts/tags.js",
             "line": 133,
-            "description": "Remove tag word to hidden field with tags values",
+            "description": "Removes a tag from the <b>hidden input</b>.",
             "itemtype": "method",
             "name": "removeFromTagsValue",
             "params": [
                 {
                     "name": "word",
-                    "description": "tag name",
+                    "description": "tag to be removed",
                     "type": "String"
                 },
                 {
                     "name": "value_selector",
-                    "description": "hidden input field for tags value selector",
+                    "description": "HTML selector for the hidden input",
                     "type": "String"
                 }
             ],

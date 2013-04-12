@@ -16,12 +16,12 @@ The <b>tagging autocomplete mode</b> is initialized for six standard forms (see 
 
 
 /**
-Handle adding tag not in the autocomplete data list
+Adds a tag without using the suggestion (the case with the suggestion is handled by {{#crossLink "TagsInitializers/initTagsAutocomplete:method"}}{{/crossLink}}). In the particular case in which the user adds the tag <b>before</b> the autocomplete has shown the list of matches, this method calls a route from the backend that checks if the tag was present in the database: if yes, the tag gets colored differently.
 @method addTagWithoutSuggestion
 @for TagsAccessories
-@param input {String} input selector for tag, class or id
-@param container_selector {String} added tags container selector, class or id
-@param tags_value_selector {String} hidden input field for tags value selector
+@param input {String} HTML selector for the tag input
+@param container_selector {String} HTML selector for the container
+@param tags_value_selector {String} HTML selector for the hidden input
 **/
 function addTagWithoutSuggestion(input, container_selector, tags_value_selector) {
   var my_val = $.trim($(input).val()).toLowerCase();
@@ -51,11 +51,11 @@ function addTagWithoutSuggestion(input, container_selector, tags_value_selector)
 }
 
 /**
-Add tag word to hidden field with tags values
+Adds a tag to the <b>hidden input</b>.
 @method addToTagsValue
 @for TagsAccessories
-@param word {String} tag name
-@param value_selector {String} hidden input field for tags value selector
+@param word {String} tag to be inserted
+@param value_selector {String} HTML selector for the hidden input
 **/
 function addToTagsValue(word, value_selector) {
   var old_value = $(value_selector).val();
@@ -68,11 +68,11 @@ function addToTagsValue(word, value_selector) {
 }
 
 /**
-Checks if a tag word is present in the tags container.
+Checks if a tag is already present in the hidden input.
 @method checkNoTagDuplicates
 @for TagsAccessories
-@param word {String} tag name
-@param container_selector {String} tags container selector
+@param word {String} tag to be checked
+@param container_selector {String} HTML selector for the container
 @return {Boolean}
 **/
 function checkNoTagDuplicates(word, container_selector) {
@@ -86,11 +86,11 @@ function checkNoTagDuplicates(word, container_selector) {
 }
 
 /**
-Creates a new span element for a new tag.
+Creates a new span box for a tag.
 @method createTagSpan
 @for TagsAccessories
-@param word {String} tag name
-@param new_tag {Boolean} flag true if it's a new tag, false otherwise
+@param word {String} tag to be created
+@param new_tag {Boolean} true if it must be colored as a tag not present in the database yet
 @return {Object} span element
 **/
 function createTagSpan(word, new_tag) {
@@ -103,11 +103,11 @@ function createTagSpan(word, new_tag) {
 }
 
 /**
-Disable insert new tag when tags container is full.
+Disables the tag input if the container is full.
 @method disableTagsInputTooHigh
 @for TagsAccessories
-@param container_selector {String} tags container selector, class or id
-@param input_selector {String} new tag input selector, class or id
+@param container_selector {String} HTML selector for the container
+@param input_selector {String} HTML selector for the tag input
 **/
 function disableTagsInputTooHigh(container_selector, input_selector) {
   if($(container_selector)[0].scrollHeight > $(container_selector).height()) {
@@ -116,11 +116,11 @@ function disableTagsInputTooHigh(container_selector, input_selector) {
 }
 
 /**
-Generates a name_aware class for a given tag
+Generates a unique class for a given tag (containing underscores, and taking into consideration special characters).
 @method getUnivoqueClassForTag
 @for TagsAccessories
-@param word {String} tag name
-@return {String} i.e. w_a_t_e_r_
+@param word {String} tag
+@return {String} unique class for that tag
 **/
 function getUnivoqueClassForTag(word) {
   var resp = '';
@@ -131,11 +131,11 @@ function getUnivoqueClassForTag(word) {
 }
 
 /**
-Remove tag word to hidden field with tags values
+Removes a tag from the <b>hidden input</b>.
 @method removeFromTagsValue
 @for TagsAccessories
-@param word {String} tag name
-@param value_selector {String} hidden input field for tags value selector
+@param word {String} tag to be removed
+@param value_selector {String} HTML selector for the hidden input
 **/
 function removeFromTagsValue(word, value_selector) {
   var old_value = $(value_selector).val();

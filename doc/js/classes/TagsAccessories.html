@@ -477,7 +477,7 @@
     </div>
 
     <div class="description">
-        <p>Handle adding tag not in the autocomplete data list</p>
+        <p>Adds a tag without using the suggestion (the case with the suggestion is handled by <a href="../classes/TagsInitializers.html#method_initTagsAutocomplete" class="crosslink">initTagsAutocomplete</a>). In the particular case in which the user adds the tag <b>before</b> the autocomplete has shown the list of matches, this method calls a route from the backend that checks if the tag was present in the database: if yes, the tag gets colored differently.</p>
     </div>
 
     
@@ -495,7 +495,7 @@
                     
 
                     <div class="param-description">
-                        <p>input selector for tag, class or id</p>
+                        <p>HTML selector for the tag input</p>
                     </div>
 
                     
@@ -510,7 +510,7 @@
                     
 
                     <div class="param-description">
-                        <p>added tags container selector, class or id</p>
+                        <p>HTML selector for the container</p>
                     </div>
 
                     
@@ -525,7 +525,7 @@
                     
 
                     <div class="param-description">
-                        <p>hidden input field for tags value selector</p>
+                        <p>HTML selector for the hidden input</p>
                     </div>
 
                     
@@ -600,7 +600,7 @@
     </div>
 
     <div class="description">
-        <p>Add tag word to hidden field with tags values</p>
+        <p>Adds a tag to the <b>hidden input</b>.</p>
     </div>
 
     
@@ -618,7 +618,7 @@
                     
 
                     <div class="param-description">
-                        <p>tag name</p>
+                        <p>tag to be inserted</p>
                     </div>
 
                     
@@ -633,7 +633,7 @@
                     
 
                     <div class="param-description">
-                        <p>hidden input field for tags value selector</p>
+                        <p>HTML selector for the hidden input</p>
                     </div>
 
                     
@@ -712,7 +712,7 @@
     </div>
 
     <div class="description">
-        <p>Checks if a tag word is present in the tags container.</p>
+        <p>Checks if a tag is already present in the hidden input.</p>
     </div>
 
     
@@ -730,7 +730,7 @@
                     
 
                     <div class="param-description">
-                        <p>tag name</p>
+                        <p>tag to be checked</p>
                     </div>
 
                     
@@ -745,7 +745,7 @@
                     
 
                     <div class="param-description">
-                        <p>tags container selector</p>
+                        <p>HTML selector for the container</p>
                     </div>
 
                     
@@ -836,7 +836,7 @@
     </div>
 
     <div class="description">
-        <p>Creates a new span element for a new tag.</p>
+        <p>Creates a new span box for a tag.</p>
     </div>
 
     
@@ -854,7 +854,7 @@
                     
 
                     <div class="param-description">
-                        <p>tag name</p>
+                        <p>tag to be created</p>
                     </div>
 
                     
@@ -869,7 +869,7 @@
                     
 
                     <div class="param-description">
-                        <p>flag true if it's a new tag, false otherwise</p>
+                        <p>true if it must be colored as a tag not present in the database yet</p>
                     </div>
 
                     
@@ -957,7 +957,7 @@
     </div>
 
     <div class="description">
-        <p>Disable insert new tag when tags container is full.</p>
+        <p>Disables the tag input if the container is full.</p>
     </div>
 
     
@@ -975,7 +975,7 @@
                     
 
                     <div class="param-description">
-                        <p>tags container selector, class or id</p>
+                        <p>HTML selector for the container</p>
                     </div>
 
                     
@@ -990,7 +990,7 @@
                     
 
                     <div class="param-description">
-                        <p>new tag input selector, class or id</p>
+                        <p>HTML selector for the tag input</p>
                     </div>
 
                     
@@ -1063,7 +1063,7 @@
     </div>
 
     <div class="description">
-        <p>Generates a name_aware class for a given tag</p>
+        <p>Generates a unique class for a given tag (containing underscores, and taking into consideration special characters).</p>
     </div>
 
     
@@ -1081,7 +1081,7 @@
                     
 
                     <div class="param-description">
-                        <p>tag name</p>
+                        <p>tag</p>
                     </div>
 
                     
@@ -1100,7 +1100,7 @@
                     
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
                     
-                    i.e. w<em>a</em>t<em>e</em>r_
+                    unique class for that tag
                 
             </div>
         </div>
@@ -1169,7 +1169,7 @@
     </div>
 
     <div class="description">
-        <p>Remove tag word to hidden field with tags values</p>
+        <p>Removes a tag from the <b>hidden input</b>.</p>
     </div>
 
     
@@ -1187,7 +1187,7 @@
                     
 
                     <div class="param-description">
-                        <p>tag name</p>
+                        <p>tag to be removed</p>
                     </div>
 
                     
@@ -1202,7 +1202,7 @@
                     
 
                     <div class="param-description">
-                        <p>hidden input field for tags value selector</p>
+                        <p>HTML selector for the hidden input</p>
                     </div>
 
                     
