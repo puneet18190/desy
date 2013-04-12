@@ -700,7 +700,7 @@
             "tag": "module",
             "file": "app/assets/javascripts/tags.js",
             "line": 1,
-            "description": "The functions in this module handle two different functionalities of <b>autocomplete</b> for tags: suggestions for a research (<b>search autocomplete</b>, and suggestions for tagging lessons and media elements (<b>tagging autocomplete</b>). Both modes use the same JQuery plugin called <i>JQueryAutocomplete</i> (the same used in {{#crossLink \"AdminAutocomplete/initNotificationsAutocomplete:method\"}}{{/crossLink}}).\n<br/><br/>\nThe <b>search</b> autocomplete mode requires a simple initializer (method {{#crossLink \"TagsInitializers/initSearchTagsAutocomplete:method\"}}{{/crossLink}}), which is initialized in three different keyword inputs of the search engine (the general one, the one for elements and the one for lessons, see {{#crossLink \"TagsDocumentReady/tagsDocumentReady:method\"}}{{/crossLink}})."
+            "description": "The functions in this module handle two different functionalities of <b>autocomplete</b> for tags: suggestions for a research (<b>search autocomplete</b>), and suggestions for tagging lessons and media elements (<b>tagging autocomplete</b>). Both modes use the same JQuery plugin called <i>JQueryAutocomplete</i> (the same used in {{#crossLink \"AdminAutocomplete/initNotificationsAutocomplete:method\"}}{{/crossLink}}).\n<br/><br/>\nThe <b>search</b> autocomplete mode requires a simple initializer (method {{#crossLink \"TagsInitializers/initSearchTagsAutocomplete:method\"}}{{/crossLink}}), which is called for three different keyword inputs of the search engine (the general one, the one for elements and the one for lessons, see {{#crossLink \"TagsDocumentReady/tagsDocumentReady:method\"}}{{/crossLink}}).\n<br/><br/>\nThe <b>tagging</b> autocomplete mode is slightly more complicated, because it must show to the user a friendly view of the tags he added (small boxes with an 'x' to remove it) and at the same time store a string value to be send to the rails backend. The implemented solution is a <b>container</b> div that contains a list of tag <b>boxes</b> (implemented with span, see {{#crossLink \"TagsAccessories/createTagSpan:method\"}}{{/crossLink}}) and an <b>tag input</b> where the user writes; when he inserts a new tag and presses <i>enter</i> or <i>comma</i>, the tag is added to the previous line in the container; if such a line is full, the tag input is moved to the next line; when the lines in the container are over, the tag input gets disabled (see {{#crossLink \"TagsAccessories/disableTagsInputTooHigh:method\"}}{{/crossLink}}). During this whole process, a <b>hidden input</b> gets updated with a string representing the current tags separated by comma ({{#crossLink \"TagsAccessories/addToTagsValue:method\"}}{{/crossLink}}, {{#crossLink \"TagsAccessories/removeFromTagsValue:method\"}}{{/crossLink}}).\n<br/><br/>\nThe system also checks if the inserted tag is not repeated (using {{#crossLink \"TagsAccessories/checkNoTagDuplicates:method\"}}{{/crossLink}}), and assigns a different color for tags already in the database and for new ones ({{#crossLink \"TagsAccessories/addTagWithoutSuggestion:method\"}}{{/crossLink}}).\n<br/><br/>\nThe <b>tagging autocomplete mode</b> is initialized for six standard forms (see initializers in the class {{#crossLink \"TagsDocumentReady\"}}{{/crossLink}})."
         },
         "video-editor": {
             "name": "video-editor",
@@ -5319,7 +5319,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 12,
+            "line": 18,
             "description": "Handle adding tag not in the autocomplete data list",
             "itemtype": "method",
             "name": "addTagWithoutSuggestion",
@@ -5345,7 +5345,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 47,
+            "line": 53,
             "description": "Add tag word to hidden field with tags values",
             "itemtype": "method",
             "name": "addToTagsValue",
@@ -5366,7 +5366,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 64,
+            "line": 70,
             "description": "Checks if a tag word is present in the tags container.",
             "itemtype": "method",
             "name": "checkNoTagDuplicates",
@@ -5391,7 +5391,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 82,
+            "line": 88,
             "description": "Creates a new span element for a new tag.",
             "itemtype": "method",
             "name": "createTagSpan",
@@ -5416,7 +5416,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 99,
+            "line": 105,
             "description": "Disable insert new tag when tags container is full.",
             "itemtype": "method",
             "name": "disableTagsInputTooHigh",
@@ -5437,7 +5437,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 112,
+            "line": 118,
             "description": "Generates a name_aware class for a given tag",
             "itemtype": "method",
             "name": "getUnivoqueClassForTag",
@@ -5457,7 +5457,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 127,
+            "line": 133,
             "description": "Remove tag word to hidden field with tags values",
             "itemtype": "method",
             "name": "removeFromTagsValue",
@@ -5478,7 +5478,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 144,
+            "line": 150,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "tagsDocumentReady",
@@ -5487,7 +5487,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 161,
+            "line": 167,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "tagsDocumentReadyChangeMediaElementInfo",
@@ -5496,7 +5496,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 206,
+            "line": 212,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "tagsDocumentReadyMediaElementLoader",
@@ -5505,7 +5505,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 241,
+            "line": 247,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "tagsDocumentReadyNewLesson",
@@ -5514,7 +5514,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 276,
+            "line": 282,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "tagsDocumentReadyNewMediaElement",
@@ -5523,7 +5523,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 311,
+            "line": 317,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "tagsDocumentReadyOvervriteMediaElement",
@@ -5532,7 +5532,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 349,
+            "line": 355,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "tagsDocumentReadyUpdateLesson",
@@ -5541,7 +5541,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 390,
+            "line": 396,
             "description": "Initialize jQueryUI _autocomplete_ for tags in search input Uses: [unbindLoader](../classes/unbindLoader.html#method_unbindLoader) and [bindLoader](../classes/bindLoader.html#method_bindLoader)",
             "itemtype": "method",
             "name": "initSearchTagsAutocomplete",
@@ -5557,7 +5557,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 420,
+            "line": 426,
             "description": "Initialize jQueryUI _autocomplete_ for tags in lessons and elements form",
             "itemtype": "method",
             "name": "initTagsAutocomplete",
