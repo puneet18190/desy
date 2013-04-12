@@ -1,0 +1,660 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>Media::Info</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/github.css" type="text/css" media="screen" />
+<script src="../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Class</span> 
+            Media::Info 
+            
+                <span class="parent">&lt; 
+                    
+                    Object
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../files/lib/media/info_rb.html">lib/media/info.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>A</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-audio_streams">audio_streams</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>D</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-duration">duration</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>N</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-c-new">new</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>S</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-similar_to-3F">similar_to?</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-streams">streams</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>T</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-to_hash">to_hash</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>V</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-valid-3F">valid?</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-video_streams">video_streams</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+    <!-- Includes -->
+    <div class="sectiontitle">Included Modules</div>
+    <ul>
+      
+        <li>
+          
+            <a href="SimilarDurations.html">
+              Media::SimilarDurations
+            </a>
+          
+        </li>
+      
+    </ul>
+  
+
+
+
+  
+
+    
+
+    
+
+    
+      <!-- Section constants -->
+      <div class="sectiontitle">Constants</div>
+      <table border='0' cellpadding='5'>
+        
+          <tr valign='top'>
+            <td class="attr-name">DURATION_REGEX</td>
+            <td>=</td>
+            <td class="attr-value">/^  Duration: (?&lt;hours&gt;\d{2,}):(?&lt;minutes&gt;\d\d):(?&lt;seconds&gt;\d\d\.\d\d)/</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"></td>
+            </tr>
+          
+        
+          <tr valign='top'>
+            <td class="attr-name">STREAMS</td>
+            <td>=</td>
+            <td class="attr-value">[:video, :audio]</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"></td>
+            </tr>
+          
+        
+          <tr valign='top'>
+            <td class="attr-name">STREAMS_REGEX_FORMAT</td>
+            <td>=</td>
+            <td class="attr-value">&#x27;^    Stream #0\.\d+.*?: %s.*?: (.*)$&#x27;</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"></td>
+            </tr>
+          
+        
+          <tr valign='top'>
+            <td class="attr-name">CODEC_MATCH_REGEX</td>
+            <td>=</td>
+            <td class="attr-value">/^(?&lt;codec&gt;\w+)/</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"></td>
+            </tr>
+          
+        
+          <tr valign='top'>
+            <td class="attr-name">BITRATE_MATCH_REGEX</td>
+            <td>=</td>
+            <td class="attr-value">/, (?&lt;bitrate&gt;\d+) kb\/s(,|$)/</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"></td>
+            </tr>
+          
+        
+          <tr valign='top'>
+            <td class="attr-name">SIZES_MATCH_REGEX</td>
+            <td>=</td>
+            <td class="attr-value">/, (?&lt;width&gt;\w+)x(?&lt;height&gt;\w+)( \[PAR \w+:\w+ DAR \w+:\w+\])?(,|$)/</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"></td>
+            </tr>
+          
+        
+          <tr valign='top'>
+            <td class="attr-name">DURATION_THRESHOLD</td>
+            <td>=</td>
+            <td class="attr-value">CONFIG.duration_threshold</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"></td>
+            </tr>
+          
+        
+          <tr valign='top'>
+            <td class="attr-name">BITRATE_THRESHOLD</td>
+            <td>=</td>
+            <td class="attr-value">5</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"></td>
+            </tr>
+          
+        
+      </table>
+    
+
+
+    
+      <!-- Section attributes -->
+      <div class="sectiontitle">Attributes</div>
+      <table border='0' cellpadding='5'>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
+              [R]
+            </td>
+            <td class='attr-name'>path</td>
+            <td class='attr-desc'></td>
+          </tr>
+        
+      </table>
+    
+
+
+    <!-- Methods -->
+    
+      <div class="sectiontitle">Class Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-c-new">
+            
+              <b>new</b>(path, raise_if_invalid = true)
+            
+            <a href="../../classes/Media/Info.html#method-c-new" name="method-c-new" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-new_source')" id="l_method-c-new_source">show</a>
+                
+              </p>
+              <div id="method-c-new_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/media/info.rb, line 22</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">raise_if_invalid</span> = <span class="ruby-keyword">true</span>)
+  <span class="ruby-ivar">@path</span>      = <span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span> <span class="ruby-identifier">path</span>
+  <span class="ruby-ivar">@cmd</span>       = <span class="ruby-constant">Cmd</span><span class="ruby-operator">::</span><span class="ruby-constant">Avprobe</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">path</span>)
+  <span class="ruby-ivar">@output</span>    = <span class="ruby-ivar">@cmd</span>.<span class="ruby-identifier">run</span>.<span class="ruby-identifier">output</span>
+  <span class="ruby-identifier">exitstatus</span> = <span class="ruby-ivar">@cmd</span>.<span class="ruby-identifier">exitstatus</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">exitstatus</span> <span class="ruby-operator">!=</span> <span class="ruby-number">0</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">raise_if_invalid</span>
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">Error</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;avprobe failed&#39;</span>, <span class="ruby-identifier">path</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@path</span>, <span class="ruby-identifier">cmd</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@cmd</span>, <span class="ruby-identifier">exitstatus</span><span class="ruby-operator">:</span> <span class="ruby-identifier">exitstatus</span>)
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-ivar">@invalid</span> = <span class="ruby-keyword">true</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                  
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-audio_streams">
+            
+              <b>audio_streams</b>()
+            
+            <a href="../../classes/Media/Info.html#method-i-audio_streams" name="method-i-audio_streams" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-audio_streams_source')" id="l_method-i-audio_streams_source">show</a>
+                
+              </p>
+              <div id="method-i-audio_streams_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/media/info.rb, line 123</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">audio_streams</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">valid?</span>
+
+  <span class="ruby-identifier">streams</span>[<span class="ruby-value">:audio</span>]
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-duration">
+            
+              <b>duration</b>()
+            
+            <a href="../../classes/Media/Info.html#method-i-duration" name="method-i-duration" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-duration_source')" id="l_method-i-duration_source">show</a>
+                
+              </p>
+              <div id="method-i-duration_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/media/info.rb, line 68</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">duration</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">valid?</span>
+
+  <span class="ruby-identifier">matches</span> = <span class="ruby-ivar">@output</span>.<span class="ruby-identifier">match</span> <span class="ruby-constant">DURATION_REGEX</span>
+  <span class="ruby-identifier">hours</span>, <span class="ruby-identifier">minutes</span>, <span class="ruby-identifier">seconds</span> = <span class="ruby-identifier">matches</span>[<span class="ruby-value">:hours</span>], <span class="ruby-identifier">matches</span>[<span class="ruby-value">:minutes</span>], <span class="ruby-identifier">matches</span>[<span class="ruby-value">:seconds</span>]
+
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">hours</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">minutes</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">seconds</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">Error</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;not parsable duration&#39;</span>, <span class="ruby-identifier">cmd</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@cmd</span>, <span class="ruby-identifier">output</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@output</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">hours_to_seconds</span>   = <span class="ruby-identifier">hours</span>.<span class="ruby-identifier">to_i</span>   * <span class="ruby-number">3600</span>
+  <span class="ruby-identifier">minutes_to_seconds</span> = <span class="ruby-identifier">minutes</span>.<span class="ruby-identifier">to_i</span> * <span class="ruby-number">60</span>
+
+  <span class="ruby-identifier">seconds</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">hours_to_seconds</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">minutes_to_seconds</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-similar_to-3F">
+            
+              <b>similar_to?</b>(other_infos_hash, ignore_bitrate = false)
+            
+            <a href="../../classes/Media/Info.html#method-i-similar_to-3F" name="method-i-similar_to-3F" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-similar_to-3F_source')" id="l_method-i-similar_to-3F_source">show</a>
+                
+              </p>
+              <div id="method-i-similar_to-3F_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/media/info.rb, line 41</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">similar_to?</span>(<span class="ruby-identifier">other_infos_hash</span>, <span class="ruby-identifier">ignore_bitrate</span> = <span class="ruby-keyword">false</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">other_infos_hash</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hash</span>)
+
+  <span class="ruby-identifier">infos_hash</span> = <span class="ruby-identifier">to_hash</span>.<span class="ruby-identifier">reject</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>,<span class="ruby-identifier">_</span><span class="ruby-operator">|</span> <span class="ruby-identifier">k</span> <span class="ruby-operator">==</span> <span class="ruby-value">:path</span> }
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> (<span class="ruby-identifier">infos_hash</span>[<span class="ruby-value">:duration</span>].<span class="ruby-identifier">blank?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">other_infos_hash</span>[<span class="ruby-value">:duration</span>].<span class="ruby-identifier">present?</span>) <span class="ruby-operator">||</span> (<span class="ruby-identifier">infos_hash</span>[<span class="ruby-value">:duration</span>].<span class="ruby-identifier">present?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">other_infos_hash</span>[<span class="ruby-value">:duration</span>].<span class="ruby-identifier">blank?</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">similar_durations?</span>(<span class="ruby-identifier">infos_hash</span>[<span class="ruby-value">:duration</span>], <span class="ruby-identifier">other_infos_hash</span>[<span class="ruby-value">:duration</span>])
+
+  <span class="ruby-identifier">streams</span>, <span class="ruby-identifier">other_streams</span> = <span class="ruby-identifier">infos_hash</span>[<span class="ruby-value">:streams</span>], <span class="ruby-identifier">other_infos_hash</span>[<span class="ruby-value">:streams</span>]
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">streams</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">sort</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">other_streams</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">sort</span>
+
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">ignore_bitrate</span>
+
+  <span class="ruby-identifier">streams</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>, <span class="ruby-identifier">_streams</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">_streams</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">stream</span>, <span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">other_stream</span> = <span class="ruby-identifier">other_infos_hash</span>[<span class="ruby-value">:streams</span>][<span class="ruby-identifier">k</span>][<span class="ruby-identifier">i</span>]
+      <span class="ruby-identifier">bitrate</span>, <span class="ruby-identifier">other_bitrate</span> = <span class="ruby-identifier">stream</span>[<span class="ruby-value">:bitrate</span>], <span class="ruby-identifier">other_stream</span>[<span class="ruby-value">:bitrate</span>]
+
+      <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">stream</span>.<span class="ruby-identifier">reject</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>,<span class="ruby-identifier">_</span><span class="ruby-operator">|</span> <span class="ruby-identifier">k</span> <span class="ruby-operator">==</span> <span class="ruby-value">:bitrate</span> } <span class="ruby-operator">==</span> <span class="ruby-identifier">other_stream</span>.<span class="ruby-identifier">reject</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>,<span class="ruby-identifier">_</span><span class="ruby-operator">|</span> <span class="ruby-identifier">k</span> <span class="ruby-operator">==</span> <span class="ruby-value">:bitrate</span> }
+      <span class="ruby-keyword">next</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">bitrate</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">other_bitrate</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> (<span class="ruby-identifier">bitrate</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">other_bitrate</span>) <span class="ruby-operator">||</span> (<span class="ruby-operator">!</span><span class="ruby-identifier">bitrate</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">other_bitrate</span>)
+      <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">unless</span> (<span class="ruby-identifier">bitrate</span><span class="ruby-operator">-</span><span class="ruby-constant">BITRATE_THRESHOLD</span><span class="ruby-operator">..</span><span class="ruby-identifier">bitrate</span><span class="ruby-operator">+</span><span class="ruby-constant">BITRATE_THRESHOLD</span>).<span class="ruby-identifier">include?</span> <span class="ruby-identifier">other_bitrate</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">true</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-streams">
+            
+              <b>streams</b>()
+            
+            <a href="../../classes/Media/Info.html#method-i-streams" name="method-i-streams" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Il parsing delle informazioni degli streams è un po&#39; complesso: da un
+input di questo tipo</p>
+
+<pre>Stream #0.0: Video: h264 (Main), yuv420p, 320x240, 445 kb/s, 29.97 tbr, 1k tbn, 59.94 tbc
+Stream #0.1: Audio: aac, 44100 Hz, mono, s16, 78 kb/s</pre>
+
+<p>Devo ottenere un output di questo tipo:</p>
+
+<pre class="ruby">{
+  :<span class="ruby-identifier">video</span> =<span class="ruby-operator">&gt;</span> { 
+    [ { <span class="ruby-identifier">codec</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;h264&#39;</span>, <span class="ruby-identifier">bitrate</span><span class="ruby-operator">:</span> <span class="ruby-value">445</span> } ]
+  },
+  :<span class="ruby-identifier">audio</span> =<span class="ruby-operator">&gt;</span> {
+    [ { <span class="ruby-identifier">codec</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;aac&#39;</span>, <span class="ruby-identifier">bitrate</span><span class="ruby-operator">:</span> <span class="ruby-value">78</span> } ]
+  }
+}
+</pre>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-streams_source')" id="l_method-i-streams_source">show</a>
+                
+              </p>
+              <div id="method-i-streams_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/media/info.rb, line 99</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">streams</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">valid?</span>
+
+  <span class="ruby-ivar">@streams</span> <span class="ruby-operator">||=</span>
+    {}.<span class="ruby-identifier">tap</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">streams</span><span class="ruby-operator">|</span>
+      <span class="ruby-constant">STREAMS</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">stream_type</span><span class="ruby-operator">|</span>
+        <span class="ruby-comment"># Scan example:</span>
+        <span class="ruby-comment">#   &#39;    Stream #0.0: Video(eng): h264 (Main), yuv420p, 320x240, 445 kb/s, 29.97 tbr, 1k tbn, 59.94 tbc&#39; =&gt;</span>
+        <span class="ruby-comment">#   [[&quot;    Stream #0.0: Video(eng): &quot;, &quot;h264 (Main), yuv420p, 320x240, 445 kb/s, 29.97 tbr, 1k tbn, 59.94 tbc&quot;]</span>
+        <span class="ruby-identifier">s</span> = <span class="ruby-ivar">@output</span>.<span class="ruby-identifier">scan</span> <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">STREAMS_REGEX_FORMAT</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">stream_type</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">capitalize</span>)
+
+        <span class="ruby-identifier">streams</span>[<span class="ruby-identifier">stream_type</span>] = <span class="ruby-identifier">s</span>.<span class="ruby-identifier">map</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">scan_data</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">send</span>(<span class="ruby-value">:&quot;parse_#{stream_type}_stream&quot;</span>, <span class="ruby-identifier">scan_data</span>)
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-to_hash">
+            
+              <b>to_hash</b>()
+            
+            <a href="../../classes/Media/Info.html#method-i-to_hash" name="method-i-to_hash" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-to_hash_source')" id="l_method-i-to_hash_source">show</a>
+                
+              </p>
+              <div id="method-i-to_hash_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/media/info.rb, line 129</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">to_hash</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">valid?</span>
+  
+  { <span class="ruby-identifier">path</span><span class="ruby-operator">:</span> <span class="ruby-identifier">path</span>, <span class="ruby-identifier">duration</span><span class="ruby-operator">:</span> <span class="ruby-identifier">duration</span>, <span class="ruby-identifier">streams</span><span class="ruby-operator">:</span> <span class="ruby-identifier">streams</span> }
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-valid-3F">
+            
+              <b>valid?</b>()
+            
+            <a href="../../classes/Media/Info.html#method-i-valid-3F" name="method-i-valid-3F" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-valid-3F_source')" id="l_method-i-valid-3F_source">show</a>
+                
+              </p>
+              <div id="method-i-valid-3F_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/media/info.rb, line 37</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">valid?</span>
+  <span class="ruby-keyword">not</span> <span class="ruby-ivar">@invalid</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-video_streams">
+            
+              <b>video_streams</b>()
+            
+            <a href="../../classes/Media/Info.html#method-i-video_streams" name="method-i-video_streams" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-video_streams_source')" id="l_method-i-video_streams_source">show</a>
+                
+              </p>
+              <div id="method-i-video_streams_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/media/info.rb, line 117</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">video_streams</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">valid?</span>
+
+  <span class="ruby-identifier">streams</span>[<span class="ruby-value">:video</span>]
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                    </div>
+
+    </div>
+  </body>
+</html>    

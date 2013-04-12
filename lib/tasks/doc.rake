@@ -3,15 +3,19 @@ Rake::Task["doc:app"].clear
 Rake::Task["doc/app"].clear
 Rake::Task["doc/app/index.html"].clear
 
+
 namespace :doc do
 
   desc "Generate documentation for the application"
   Rake::RDocTask.new('app') do |rdoc|
-    rdoc.rdoc_dir = 'doc/app'
-    rdoc.template = 'darkfish'
-    rdoc.title    = "DESY - Digital Educational SYstem application documentation"
-    rdoc.main     = 'doc/README.rdoc' # define README.rdoc as index
 
+    require 'sdoc'
+
+    rdoc.rdoc_dir = 'doc/app'
+    rdoc.title    = "DESY - Digital Educational SYstem application documentation"
+    rdoc.main     = 'doc/README.rdoc'
+
+    rdoc.options << '--fmt' << 'sdoc'
     rdoc.options << '--charset' << 'utf-8'
 
     rdoc.rdoc_files.include('app/**/*.rb')
