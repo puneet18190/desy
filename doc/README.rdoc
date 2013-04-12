@@ -12,16 +12,45 @@ The lessons can be collected inside containers called Virtual Classrooms, which 
 
 The software architecture is composed by: 
 
-* the web application: developed in {Ruby}[http://www.ruby-lang.org] using the web framework {Ruby on Rails}[http://rubyonrails.org/], provides the web frontend; it uses PostgreSQL for data persistence
-* the background processes: managed through the {Delayed::Job}[https://github.com/collectiveidea/delayed_job] library, they run the istances which go about the uploaded media converting and editing
-* the cron jobs: periodically actions, like f.e. checking the size of media elements folder in order to send an alert to the maintainer
+* the <b>web application</b>: developed in {Ruby}[http://www.ruby-lang.org] using the web framework {Ruby on Rails}[http://rubyonrails.org/], provides the web frontend; it uses PostgreSQL for data persistence
+* the <b>background processes</b>: managed through the {Delayed::Job}[https://github.com/collectiveidea/delayed_job] library, they run the instances charged of uploaded media converting and editing
+* the <b>cron jobs</b>: periodically actions, like f.e. checking the size of media elements folder in order to send an alert to the maintainer
+
+== Requirements
+
+=== Hardware requirements
+
+An adequate infastructure consists of:
+
+* a web server: it runs the web application and the database, and hosts the media elements; it requires of enough CPU and RAM for running the processes instances, and enough disk space to host the media files
+* a media processing server: it runs the media processing jobs, and requires of a discrete amount of CPU and RAM in order to process the media files; it should be designated to run the cron jobs too
+
+=== Software requirements
+
+DeSY is designed to be deployed on Linux systems; it is expected to be deployed on Debian systems, but can be easily customized to run on every Unix system, BSD included, provided that its dependencies are available.
+
+These are the software dependencies:
+
+* Ruby >= 2.0
+* PostgreSQL >= 9.2
+* libav >= 0.8.3
+* libavcodec-extra-53
+* mkvtoolnix
+* sox >= 14.4.0
+* g++
+* libsqlite3-dev
+* libpq-dev
+* imagemagick
+* Ruby Bundler gem
+* gems installed by bundler and their dependencies
+* nginx | apache
 
 == Procedure of installation
 
-DeSY was designed to be deployed on Linux systems. The ideal infastructure consists of:
 
-* a web 
 
 == Configuration
 
 DeSY can be configured through the file config/settings.yml (which must be created after the installation - see {Procedure of installation}[rdoc-label:label-Procedure+of+installation]).
+
+== Troubleshooting
