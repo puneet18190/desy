@@ -12,7 +12,7 @@ The lessons can be collected inside containers called Virtual Classrooms, which 
 
 The software architecture is composed by: 
 
-* the <b>web application</b>: developed in {Ruby}[http://www.ruby-lang.org] using the web framework {Ruby on Rails}[http://rubyonrails.org/], provides the web frontend; it uses PostgreSQL for data persistence
+* the <b>web application</b>: developed in {Ruby}[http://www.ruby-lang.org] using the web framework {Ruby on Rails}[http://rubyonrails.org/], provides the web frontend; it uses {PostgreSQL}[http://www.postgresql.org] for data persistence
 * the <b>background processes</b>: managed through the {Delayed::Job}[https://github.com/collectiveidea/delayed_job] library, they run the instances charged of uploaded media converting and editing
 * the <b>cron jobs</b>: periodically actions, like f.e. checking the size of media elements folder in order to send an alert to the maintainer
 
@@ -42,15 +42,21 @@ These are the software dependencies:
 * libpq-dev
 * imagemagick
 * Ruby Bundler gem
-* gems installed by bundler and their dependencies
+* gems installed by Bundler and their dependencies
+* PHP
 * nginx | apache
 
 == Procedure of installation
 
-
+1. Extract the DeSY copy into the destination path
+2. Install Ruby (possibly using {rbenv}[https://github.com/sstephenson/rbenv], {RVM}[https://rvm.io/], or {chruby}[https://github.com/postmodern/chruby])
+3. Install PostgreSQL
+4. Install Bundler (`gem install bundler`)
+5. +cd+ into the DeSY folder
+6. Install the required packages ( on Debian/Ubuntu: +script/system_requirements_install+ )
+...
+5. run `bundle install`
 
 == Configuration
 
 DeSY can be configured through the file config/settings.yml (which must be created after the installation - see {Procedure of installation}[rdoc-label:label-Procedure+of+installation]).
-
-== Troubleshooting

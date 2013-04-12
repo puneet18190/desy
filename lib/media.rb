@@ -15,12 +15,6 @@ module Media
   RAILS_PUBLIC_FOLDER = Rails.root.join 'public'
   TMP_PREFIX          = CONFIG.tmp_prefix
 
-  UBUNTU_REQUIRED_PACKAGES = %w( imagemagick libav-tools libavcodec-extra-53 mkvtoolnix sox )
-
-  def self.ubuntu_install
-    exec "sudo apt-get install #{UBUNTU_REQUIRED_PACKAGES.map(&:shellescape).join(' ')}"
-  end
-
 end
 
 require 'media/thread'

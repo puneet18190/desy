@@ -261,24 +261,6 @@
 
 
   
-    <!-- Method ref -->
-    <div class="sectiontitle">Methods</div>
-    <dl class="methods">
-      
-        <dt>U</dt>
-        <dd>
-          <ul>
-            
-              
-              <li>
-                <a href="#method-c-ubuntu_install">ubuntu_install</a>
-              </li>
-            
-          </ul>
-        </dd>
-      
-    </dl>
-  
 
   
 
@@ -311,18 +293,6 @@
             <td class="attr-name">TMP_PREFIX</td>
             <td>=</td>
             <td class="attr-value">CONFIG.tmp_prefix</td>
-          </tr>
-          
-            <tr valign='top'>
-              <td>&nbsp;</td>
-              <td colspan="2" class="attr-desc"></td>
-            </tr>
-          
-        
-          <tr valign='top'>
-            <td class="attr-name">UBUNTU_REQUIRED_PACKAGES</td>
-            <td>=</td>
-            <td class="attr-value">%w( imagemagick libav-tools libavcodec-extra-53 mkvtoolnix sox )</td>
           </tr>
           
             <tr valign='top'>
@@ -425,44 +395,7 @@ the configuration.</p></td>
 
 
     <!-- Methods -->
-    
-      <div class="sectiontitle">Class Public methods</div>
-      
-        <div class="method">
-          <div class="title method-title" id="method-c-ubuntu_install">
-            
-              <b>ubuntu_install</b>()
-            
-            <a href="../classes/Media.html#method-c-ubuntu_install" name="method-c-ubuntu_install" class="permalink">Link</a>
-          </div>
-          
-          
-            <div class="description">
-              
-            </div>
-          
-          
-          
-          
-          
-            
-            <div class="sourcecode">
-              
-              <p class="source-link">
-                Source: 
-                <a href="javascript:toggleSource('method-c-ubuntu_install_source')" id="l_method-c-ubuntu_install_source">show</a>
-                
-              </p>
-              <div id="method-c-ubuntu_install_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media.rb, line 20</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">ubuntu_install</span>
-  <span class="ruby-identifier">exec</span> <span class="ruby-node">&quot;sudo apt-get install #{UBUNTU_REQUIRED_PACKAGES.map(&amp;:shellescape).join(&#39; &#39;)}&quot;</span>
-<span class="ruby-keyword">end</span></pre>
               </div>
-            </div>
-            
-          </div>
-                        </div>
 
     </div>
   </body>
