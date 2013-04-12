@@ -399,23 +399,25 @@ which will be shared on the web via their respective URLs.</p>
 <ul><li>
 <p>the web application: developed in <a
 href="http://www.ruby-lang.org">Ruby</a> using the web framework <a
-href="http://rubyonrails.org/">Ruby on Rails</a>, provides the web frontend</p>
+href="http://rubyonrails.org/">Ruby on Rails</a>, provides the web
+frontend; it uses PostgreSQL for data persistence</p>
 </li><li>
 <p>the background processes: managed through the <a
 href="https://github.com/collectiveidea/delayed_job">Delayed::Job</a>
 library, they run the istances which go about the uploaded media converting
 and editing</p>
 </li><li>
-<p>the cron jobs: send notifications to the application maintainer about the
-application</p>
+<p>the cron jobs: periodically actions, like f.e. checking the size of media
+elements folder in order to send an alert to the maintainer</p>
 </li></ul>
 
 <h2 id="label-Procedure+of+installation">Procedure of installation</h2>
 
 <p>DeSY was designed to be deployed on Linux systems. The ideal infastructure
 consists of:</p>
-
-<p>*</p>
+<ul><li>
+<p>a web</p>
+</li></ul>
 
 <h2 id="label-Configuration">Configuration</h2>
 
