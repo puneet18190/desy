@@ -27,7 +27,7 @@ An adequate infastructure consists of:
 
 === Software requirements
 
-DeSY is designed to be deployed on Linux systems; it is expected to be deployed on Debian systems, but can be easily customized to run on every Unix system, BSD included, provided that its dependencies are available.
+DeSY is designed to be deployed on Linux systems; it is expected to be deployed on Debian systems, but can be easily customized to run on every Unix system, BSD included, provided that its dependencies are available on the host OS.
 
 These are the software dependencies:
 
@@ -48,14 +48,22 @@ These are the software dependencies:
 
 == Procedure of installation
 
-1. Extract the DeSY copy into the destination path
-2. Install Ruby (possibly using {rbenv}[https://github.com/sstephenson/rbenv], {RVM}[https://rvm.io/], or {chruby}[https://github.com/postmodern/chruby])
-3. Install PostgreSQL
-4. Install Bundler (`gem install bundler`)
-5. +cd+ into the DeSY folder
-6. Install the required packages ( on Debian/Ubuntu: +script/system_requirements_install+ )
-...
-5. run `bundle install`
+1.  Extract the DeSY copy into the destination path
+2.  Install Ruby (possibly using {rbenv}[https://github.com/sstephenson/rbenv], {RVM}[https://rvm.io/], or {chruby}[https://github.com/postmodern/chruby])
+3.  Install PostgreSQL
+4.  Install Bundler (<tt>gem install bundler</tt>)
+5.  +cd+ into the DeSY folder
+6.  Install the required packages (on Debian/Ubuntu: +script/system_requirements_install+)
+7.  Run <tt>bundle install</tt>
+8.  Copy +config/settings.yml.example+ to +config/settings.yml+ and customize it as needed
+9.  Copy +config/database.yml.example+ to +config/database.yml+ and customize it as needed
+9.  Copy +config/unicorn.yml.example+ to +config/unicorn.yml+ and customize it as needed
+10. Ensure the web server to serve the following MIME types:
+
+    * video/mp4   mp4
+    * audio/mp4   m4a
+    * audio/ogg   ogg
+    * video/webm  webm
 
 == Configuration
 
