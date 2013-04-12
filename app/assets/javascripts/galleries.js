@@ -24,7 +24,7 @@ There are three kinds of gallery, each of them has specific features depending o
     <b>video gallery</b>, whose occurrences are
     <ul>
       <li>in Lesson Editor, initialized by {{#crossLink "GalleriesInitializers/initializeVideoGalleryInLessonEditor:method"}}{{/crossLink}}</li>
-      <li>in the mixed gallery of Video Editor, initialized by {{#crossLink "GalleriesInitializers/initializeMixedGalleryInVideoEditor:method"}}{{/crossLink}}</li>
+      <li>in the mixed gallery of Video Editor, initialized by {{#crossLink "GalleriesInitializers/initializeMixedGalleryInVideoEditor:method"}}{{/crossLink}}.</li>
     </ul>
   </li>
 </ul>

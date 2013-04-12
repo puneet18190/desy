@@ -223,7 +223,7 @@
 
             <ul id="api-modules" class="apis modules">
             
-                <li><a href="..&#x2F;modules/administration.html">administration</a></li>
+                <li><a href="..&#x2F;modules/admin.html">admin</a></li>
             
                 <li><a href="..&#x2F;modules/ajax-loader.html">ajax-loader</a></li>
             
@@ -318,7 +318,18 @@
 
 
 <div class="box intro">
-    <p>Provides video editor ajax actions. TODO per quanto riguarda la fase di commit, copiare il paragrafo da audio e image editor e adattarlo</p>
+    <p>The Video Editor is structured as follows: centered in the middle of the Editor is located the <b>preview screen</b>, below it the <b>components timeline</b> and the <b>audio track</b>, and on the right the <b>preview column</b> which contains also global statistics about the video.
+<br/><br/>
+A video created with the Video Editor can be composed by <b>three types of components</b> (and optionally an <b>audio track</b>):</p>
+
+<ul>
+  <li>a <b>video component</b> is an element of type video extracted from the user's gallery, associated to an <b>initial</b> and <b>final point</b></li>
+  <li>a <b>image component</b> is an element of type image extracted from the user's gallery, associated to a <b>duration</b> in seconds (the image is held in the video for a number of seconds equal to the component's duration); the image is centered and cropped mantaining its original proportions, to make it fit in the video screen (which has proportions 16/9)</li>
+  <li>a <b>text component</b> is a centered title for which the user chooses a <b>background color</b>, a <b>font color</b> and a <b>duration</b> (which has the same interpretation as for image components).</li>
+</ul>
+
+<p><br/><br/>
+As for the other Element Editors (<a href="../modules/image-editor.html">image-editor</a>, <a href="../modules/audio-editor.html">audio-editor</a>) the core of the process of committing changes is handled in the module <a href="../modules/media-element-editor.html">media-element-editor</a> (more specificly in the class <a href="../classes/MediaElementEditorForms.html" class="crosslink">MediaElementEditorForms</a>); the part of this functionality specific for the Video Editor is handled in <a href="../classes/VideoEditorDocumentReady.html#method_videoEditorDocumentReadyCommit" class="crosslink">videoEditorDocumentReadyCommit</a>.</p>
 </div>
 
 

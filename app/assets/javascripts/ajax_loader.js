@@ -49,7 +49,7 @@ function unbindLoader() {
 
 
 /**
-Initializes the ajax loader. Used also in the initialization of the module {{#crossLinkModule "administration"}}{{/crossLinkModule}}.
+Initializes the ajax loader. Used also in the initialization of the module {{#crossLinkModule "admin"}}{{/crossLinkModule}}.
 @method ajaxLoaderDocumentReady
 @for AjaxLoaderDocumentReady
 **/

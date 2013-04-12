@@ -9,7 +9,7 @@
         "app/assets/javascripts/admin/functions.js": {
             "name": "app/assets/javascripts/admin/functions.js",
             "modules": {
-                "administration": 1
+                "admin": 1
             },
             "classes": {},
             "fors": {
@@ -307,8 +307,8 @@
         }
     },
     "modules": {
-        "administration": {
-            "name": "administration",
+        "admin": {
+            "name": "admin",
             "submodules": {},
             "classes": {
                 "AdminAutocomplete": 1,
@@ -324,7 +324,7 @@
             "tag": "module",
             "file": "app/assets/javascripts/admin/functions.js",
             "line": 1,
-            "description": "Functions used in the Administration section: only for this section, it's generated a separate file which doesn't merge with the regular one. The only external module loaded is {{#crossLinkModule \"ajax-loader\"}}{{/crossLinkModule}}."
+            "description": "Functions used in the Administration section: only for this section, <b>it's generated a separate file</b> which doesn't merge with the regular one. The only external module loaded is {{#crossLinkModule \"ajax-loader\"}}{{/crossLinkModule}}."
         },
         "ajax-loader": {
             "name": "ajax-loader",
@@ -454,7 +454,7 @@
             "tag": "module",
             "file": "app/assets/javascripts/galleries.js",
             "line": 1,
-            "description": "The galleries are containers of media elements, used at any time the user needs to pick an element of a specific type.\n<br/><br/>\nThere are three kinds of gallery, each of them has specific features depending on where it's used. Each instance of a gallery is provided of its specific url route, that performs the speficic javascript actions it requires. For instance, in the image gallery contained inside the {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}}, to each image popup (see also {{#crossLink \"DialogsGalleries/showImageInGalleryPopUp:method\"}}{{/crossLink}}) is attached additional HTML code that contains the input for inserting the duration of the image component. Each gallery is also provided of infinite scroll pagination, which is initialized in the methods of {{#crossLink \"GalleriesInitializers\"}}{{/crossLink}}. The complete list of galleries is:\n<br/>\n<ul>\n  <li>\n    <b>audio gallery</b>, whose occurrences are\n    <ul>\n      <li>in Audio Editor, initialized by {{#crossLink \"GalleriesInitializers/initializeAudioGalleryInAudioEditor:method\"}}{{/crossLink}}</li>\n      <li>in Lesson Editor, initialized by {{#crossLink \"GalleriesInitializers/initializeAudioGalleryInLessonEditor:method\"}}{{/crossLink}}</li>\n      <li>in Video Editor, initialized by {{#crossLink \"GalleriesInitializers/initializeAudioGalleryInVideoEditor:method\"}}{{/crossLink}}</li>\n    </ul>\n  </li>\n  <li>\n    <b>image gallery</b>, whose occurrences are\n    <ul>\n      <li>in Image Editor, initialized by {{#crossLink \"GalleriesInitializers/initializeImageGalleryInImageEditor:method\"}}{{/crossLink}}</li>\n      <li>in Lesson Editor, initialized by {{#crossLink \"GalleriesInitializers/initializeImageGalleryInLessonEditor:method\"}}{{/crossLink}}</li>\n      <li>in the mixed gallery of Video Editor, initialized by {{#crossLink \"GalleriesInitializers/initializeMixedGalleryInVideoEditor:method\"}}{{/crossLink}}</li>\n    </ul>\n  </li>\n  <li>\n    <b>video gallery</b>, whose occurrences are\n    <ul>\n      <li>in Lesson Editor, initialized by {{#crossLink \"GalleriesInitializers/initializeVideoGalleryInLessonEditor:method\"}}{{/crossLink}}</li>\n      <li>in the mixed gallery of Video Editor, initialized by {{#crossLink \"GalleriesInitializers/initializeMixedGalleryInVideoEditor:method\"}}{{/crossLink}}</li>\n    </ul>\n  </li>\n</ul>"
+            "description": "The galleries are containers of media elements, used at any time the user needs to pick an element of a specific type.\n<br/><br/>\nThere are three kinds of gallery, each of them has specific features depending on where it's used. Each instance of a gallery is provided of its specific url route, that performs the speficic javascript actions it requires. For instance, in the image gallery contained inside the {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}}, to each image popup (see also {{#crossLink \"DialogsGalleries/showImageInGalleryPopUp:method\"}}{{/crossLink}}) is attached additional HTML code that contains the input for inserting the duration of the image component. Each gallery is also provided of infinite scroll pagination, which is initialized in the methods of {{#crossLink \"GalleriesInitializers\"}}{{/crossLink}}. The complete list of galleries is:\n<br/>\n<ul>\n  <li>\n    <b>audio gallery</b>, whose occurrences are\n    <ul>\n      <li>in Audio Editor, initialized by {{#crossLink \"GalleriesInitializers/initializeAudioGalleryInAudioEditor:method\"}}{{/crossLink}}</li>\n      <li>in Lesson Editor, initialized by {{#crossLink \"GalleriesInitializers/initializeAudioGalleryInLessonEditor:method\"}}{{/crossLink}}</li>\n      <li>in Video Editor, initialized by {{#crossLink \"GalleriesInitializers/initializeAudioGalleryInVideoEditor:method\"}}{{/crossLink}}</li>\n    </ul>\n  </li>\n  <li>\n    <b>image gallery</b>, whose occurrences are\n    <ul>\n      <li>in Image Editor, initialized by {{#crossLink \"GalleriesInitializers/initializeImageGalleryInImageEditor:method\"}}{{/crossLink}}</li>\n      <li>in Lesson Editor, initialized by {{#crossLink \"GalleriesInitializers/initializeImageGalleryInLessonEditor:method\"}}{{/crossLink}}</li>\n      <li>in the mixed gallery of Video Editor, initialized by {{#crossLink \"GalleriesInitializers/initializeMixedGalleryInVideoEditor:method\"}}{{/crossLink}}</li>\n    </ul>\n  </li>\n  <li>\n    <b>video gallery</b>, whose occurrences are\n    <ul>\n      <li>in Lesson Editor, initialized by {{#crossLink \"GalleriesInitializers/initializeVideoGalleryInLessonEditor:method\"}}{{/crossLink}}</li>\n      <li>in the mixed gallery of Video Editor, initialized by {{#crossLink \"GalleriesInitializers/initializeMixedGalleryInVideoEditor:method\"}}{{/crossLink}}.</li>\n    </ul>\n  </li>\n</ul>"
         },
         "general": {
             "name": "general",
@@ -542,7 +542,7 @@
             "tag": "module",
             "file": "app/assets/javascripts/lesson_editor.js",
             "line": 1,
-            "description": "The Lesson Editor is used to add and edit slides to a private lesson.\n<br/><br/>\nWhen opening the Editor on a lesson, all its slides are appended to a queue, of which it's visible only the portion that surrounds the <b>current slide</b> (the width of such a portion depends on the screen resolution, see {{#crossLink \"LessonEditorSlidesNavigation/initLessonEditorPositions:method\"}}{{/crossLink}}, {{#crossLink \"LessonEditorDocumentReady/lessonEditorDocumentReadyResize:method\"}}{{/crossLink}} and {{#crossLink \"LessonEditorDocumentReady/lessonEditorDocumentReadyGeneral:method\"}}{{/crossLink}}). The current slide is illuminated and editable, whereas the adhiacent slides are covered by a layer with opacity that prevents the user from editing them: if the user clicks on this layer, the application takes the slide below it as new current slide and moves it to the center of the screen (see {{#crossLink \"LessonEditorDocumentReady/lessonEditorDocumentReadySlidesNavigator:method\"}}{{/crossLink}} and the methods in {{#crossLink \"LessonEditorSlidesNavigation\"}}{{/crossLink}}): only after this operation, the user can edit that particular slide. To avoid overloading when there are many slides containing media, the slides are instanced all together but their content is loaded only when the user moves to them (see the methods in {{#crossLink \"LessonEditorSlideLoading\"}}{{/crossLink}}).\n<br/><br/>\nOn the right side of each slide the user finds a list of <b>buttons</b> (initialized in {{#crossLink \"LessonEditorDocumentReady/lessonEditorDocumentReadySlideButtons:method\"}}{{/crossLink}}): each button corresponds either to an action that can be performed on the slide, either to an action that can be performed to the whole lesson (for instance, save and exit, or edit title description and tags).\n<br/><br/>\nThe tool to navigate the slides is located on the top of the editor: each small square represents a slide (with its position), and passing with the mouse over it the Editor shows a miniature of the corresponding slide (these functionalities are initialized in {{#crossLink \"LessonEditorDocumentReady/lessonEditorDocumentReadySlidesNavigator:method\"}}{{/crossLink}}). Clicking on a slide miniature, the application moves to that slide using the function {{#crossLink \"LessonEditorSlidesNavigation/slideTo:method\"}}{{/crossLink}}. The slides can be sorted dragging with the mouse (using the JQueryUi plugin, initialized in {{#crossLink \"LessonEditorDocumentReady/lessonEditorDocumentReadyJqueryAnimations:method\"}}{{/crossLink}} and {{#crossLink \"LessonEditorJqueryAnimations/initializeSortableNavs:method\"}}{{/crossLink}}).\n<br/><br/>\nInside the Editor, there are two operations that require hiding and replacement of the queue of slides: <b>adding a media element to a slide</b> and <b>choosing a new slide</b>. In both these operations, an HTML div is extracted from the main template (where it was hidden), and put in the place of the current slide, hiding the rest of the slides queue, buttons, and slides navigation (operations performed by {{#crossLink \"LessonEditorCurrentSlide/hideEverythingOutCurrentSlide:method\"}}{{/crossLink}}). For the galleries, the extracted div must be filled by an action called via Ajax (see the module {{#crossLinkModule \"galleries\"}}{{/crossLinkModule}}), whereas the div with the list of available slides is already loaded with the Editor (see {{#crossLink \"LessonEditorDocumentReady/lessonEditorDocumentReadyNewSlideChoice:method\"}}{{/crossLink}}).\n<br/><br/>\nTo add a media element to a slide, the user picks it from its specific gallery: when he clicks on the button 'plus', the system calls the corresponding subfunction in {{#crossLink \"LessonEditorDocumentReady/lessonEditorDocumentReadyAddMediaElement:method\"}}{{/crossLink}}. To avoid troubles due to the replacement of JQuery plugins, video and audio tags, etc, this method always replaces the sources of <b>audio</b> and <b>video</b> tags and calls <i>load()</i>.\n<br/><br/>\nIf the element added is of type <b>image</b>, the user may drag it inside the slide, using {{#crossLink \"LessonEditorJqueryAnimations/makeDraggable:method\"}}{{/crossLink}}. A set of methods (in the class {{#crossLink \"LessonEditorImageResizing\"}}{{/crossLink}}) is available to resize the image and the alignment chosen by the user; more specificly, the method {{#crossLink \"LessonEditorImageResizing/isHorizontalMask:method\"}}{{/crossLink}} is used to understand, depending on the type of slide and on the proportions of the image, if the image is <b>vertical</b> (and then the user can drag it vertically) or <b>horizontal</b> (the user can drag it horizontally).\n<br/><br/>\nEach slide contains a form linked to the action that updates it, there is no global saving for the whole lesson. The slide is automaticly saved (using the method {{#crossLink \"LessonEditorForms/saveCurrentSlide:method\"}}{{/crossLink}}) <i>before moving to another slide</i>, <i>before showing the options to add a new slide</i>, and <i>before changing position of a slide</i>. The same function is called by the user when he clicks on the button 'save' on the right of each slide; the buttons <b>save and exit</b> and <b>edit general info</b> are also linked to slide saving, but in this case it's performed with a callback (see again the buttons initialization in {{#crossLink \"LessonEditorDocumentReady/lessonEditorDocumentReadySlideButtons:method\"}}{{/crossLink}}).\n<br/><br/>\nThe text slides are provided of TinyMCE text editor, initialized in the methods of {{#crossLink \"LessonEditorTinyMCE\"}}{{/crossLink}}."
+            "description": "The Lesson Editor is used to add and edit slides to a private lesson.\n<br/><br/>\nWhen opening the Editor on a lesson, all its slides are appended to a queue, of which it's visible only the portion that surrounds the <b>current slide</b> (the width of such a portion depends on the screen resolution, see {{#crossLink \"LessonEditorSlidesNavigation/initLessonEditorPositions:method\"}}{{/crossLink}}, {{#crossLink \"LessonEditorDocumentReady/lessonEditorDocumentReadyResize:method\"}}{{/crossLink}} and {{#crossLink \"LessonEditorDocumentReady/lessonEditorDocumentReadyGeneral:method\"}}{{/crossLink}}). The current slide is illuminated and editable, whereas the adhiacent slides are covered by a layer with opacity that prevents the user from editing them: if the user clicks on this layer, the application takes the slide below it as new current slide and moves it to the center of the screen (see {{#crossLink \"LessonEditorDocumentReady/lessonEditorDocumentReadySlidesNavigator:method\"}}{{/crossLink}} and the methods in {{#crossLink \"LessonEditorSlidesNavigation\"}}{{/crossLink}}): only after this operation, the user can edit that particular slide. To avoid overloading when there are many slides containing media, the slides are instanced all together but their content is loaded only when the user moves to them (see the methods in {{#crossLink \"LessonEditorSlideLoading\"}}{{/crossLink}}).\n<br/><br/>\nOn the right side of each slide the user finds a list of <b>buttons</b> (initialized in {{#crossLink \"LessonEditorDocumentReady/lessonEditorDocumentReadySlideButtons:method\"}}{{/crossLink}}): each button corresponds either to an action that can be performed on the slide, either to an action that can be performed to the whole lesson (for instance, save and exit, or edit title description and tags).\n<br/><br/>\nThe <b>tool to navigate the slides</b> is located on the top of the editor: each small square represents a slide (with its position), and passing with the mouse over it the Editor shows a miniature of the corresponding slide (these functionalities are initialized in {{#crossLink \"LessonEditorDocumentReady/lessonEditorDocumentReadySlidesNavigator:method\"}}{{/crossLink}}). Clicking on a slide miniature, the application moves to that slide using the function {{#crossLink \"LessonEditorSlidesNavigation/slideTo:method\"}}{{/crossLink}}. The slides can be sorted dragging with the mouse (using the JQueryUi plugin, initialized in {{#crossLink \"LessonEditorDocumentReady/lessonEditorDocumentReadyJqueryAnimations:method\"}}{{/crossLink}} and {{#crossLink \"LessonEditorJqueryAnimations/initializeSortableNavs:method\"}}{{/crossLink}}).\n<br/><br/>\nInside the Editor, there are two operations that require hiding and replacement of the queue of slides: <b>adding a media element to a slide</b> and <b>choosing a new slide</b>. In both these operations, an HTML div is extracted from the main template (where it was hidden), and put in the place of the current slide, hiding the rest of the slides queue, buttons, and slides navigation (operations performed by {{#crossLink \"LessonEditorCurrentSlide/hideEverythingOutCurrentSlide:method\"}}{{/crossLink}}). For the galleries, the extracted div must be filled by an action called via Ajax (see the module {{#crossLinkModule \"galleries\"}}{{/crossLinkModule}}), whereas the div with the list of available slides is already loaded with the Editor (see {{#crossLink \"LessonEditorDocumentReady/lessonEditorDocumentReadyNewSlideChoice:method\"}}{{/crossLink}}).\n<br/><br/>\nTo add a media element to a slide, the user picks it from its specific gallery: when he clicks on the button 'plus', the system calls the corresponding subfunction in {{#crossLink \"LessonEditorDocumentReady/lessonEditorDocumentReadyAddMediaElement:method\"}}{{/crossLink}}. To avoid troubles due to the replacement of JQuery plugins, video and audio tags, etc, this method always replaces the sources of <b>audio</b> and <b>video</b> tags and calls <i>load()</i>.\n<br/><br/>\nIf the element added is of type <b>image</b>, the user may drag it inside the slide, using {{#crossLink \"LessonEditorJqueryAnimations/makeDraggable:method\"}}{{/crossLink}}. A set of methods (in the class {{#crossLink \"LessonEditorImageResizing\"}}{{/crossLink}}) is available to resize the image and the alignment chosen by the user; more specificly, the method {{#crossLink \"LessonEditorImageResizing/isHorizontalMask:method\"}}{{/crossLink}} is used to understand, depending on the type of slide and on the proportions of the image, if the image is <b>vertical</b> (and then the user can drag it vertically) or <b>horizontal</b> (the user can drag it horizontally).\n<br/><br/>\nEach slide contains a form linked to the action that updates it, there is no global saving for the whole lesson. The slide is automaticly saved (using the method {{#crossLink \"LessonEditorForms/saveCurrentSlide:method\"}}{{/crossLink}}) <i>before moving to another slide</i>, <i>before showing the options to add a new slide</i>, and <i>before changing position of a slide</i>. The same function is called by the user when he clicks on the button 'save' on the right of each slide; the buttons <b>save and exit</b> and <b>edit general info</b> are also linked to slide saving, but in this case it's performed with a callback (see again the buttons initialization in {{#crossLink \"LessonEditorDocumentReady/lessonEditorDocumentReadySlideButtons:method\"}}{{/crossLink}}).\n<br/><br/>\nThe text slides are provided of <b>TinyMCE</b> text editor, initialized in the methods of {{#crossLink \"LessonEditorTinyMCE\"}}{{/crossLink}}."
         },
         "lesson-viewer": {
             "name": "lesson-viewer",
@@ -649,7 +649,7 @@
             "tag": "module",
             "file": "app/assets/javascripts/players.js",
             "line": 1,
-            "description": "Media elements players: initializer, play, stop, update frame."
+            "description": "This module contains the javascript functions and initializers used in the <b>media players</b> all over the application. The model can be divided into three main classes:\n<ul>\n  <li>{{#crossLink \"PlayersGeneral\"}}{{/crossLink}}, used in the generic players, for instance in {{#crossLinkModule \"lesson-editor\"}}{{/crossLinkModule}} and {{#crossLinkModule \"lesson-viewer\"}}{{/crossLinkModule}}</li>\n  <li>{{#crossLink \"PlayersAudioEditor\"}}{{/crossLink}}, used in the players of the module {{#crossLinkModule \"audio-editor\"}}{{/crossLinkModule}} (only players of kind <b>audio</b>)</li>\n  <li>{{#crossLink \"PlayersVideoEditor\"}}{{/crossLink}}, used in the players of the module {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}} (mainly players of kind <b>video</b>, but also of kind <b>audio</b> for the background audio track).</li>\n</ul>"
         },
         "profile": {
             "name": "profile",
@@ -666,7 +666,7 @@
             "tag": "module",
             "file": "app/assets/javascripts/profile.js",
             "line": 1,
-            "description": "bla bla bla"
+            "description": "This module contains the initialization methods for <b>profiling</b> and <b>registration</b> of new users."
         },
         "search": {
             "name": "search",
@@ -681,7 +681,7 @@
             "tag": "module",
             "file": "app/assets/javascripts/search.js",
             "line": 1,
-            "description": "bla bla bla"
+            "description": "Collection of initializers for the graphical effects of the <b>search engine</b>."
         },
         "tags": {
             "name": "tags",
@@ -700,7 +700,7 @@
             "tag": "module",
             "file": "app/assets/javascripts/tags.js",
             "line": 1,
-            "description": "Tags autocomplete, _add_ and _remove_ from list."
+            "description": "The functions in this module handle two different functionalities of <b>autocomplete</b> for tags: suggestions for a research (<b>search autocomplete</b>), and suggestions for tagging lessons and media elements (<b>tagging autocomplete</b>). Both modes use the same JQuery plugin called <i>JQueryAutocomplete</i> (the same used in {{#crossLink \"AdminAutocomplete/initNotificationsAutocomplete:method\"}}{{/crossLink}}).\n<br/><br/>\nThe <b>search</b> autocomplete mode requires a simple initializer (method {{#crossLink \"TagsInitializers/initSearchTagsAutocomplete:method\"}}{{/crossLink}}), which is called for three different keyword inputs of the search engine (the general one, the one for elements and the one for lessons, see {{#crossLink \"TagsDocumentReady/tagsDocumentReady:method\"}}{{/crossLink}}).\n<br/><br/>\nThe <b>tagging</b> autocomplete mode is slightly more complicated, because it must show to the user a friendly view of the tags he added (small boxes with an 'x' to remove it) and at the same time store a string value to be send to the rails backend. The implemented solution is a <b>container</b> div that contains a list of tag <b>boxes</b> (implemented with span, see {{#crossLink \"TagsAccessories/createTagSpan:method\"}}{{/crossLink}}) and an <b>tag input</b> where the user writes; when he inserts a new tag and presses <i>enter</i> or <i>comma</i>, the tag is added to the previous line in the container; if such a line is full, the tag input is moved to the next line; when the lines in the container are over, the tag input gets disabled (see {{#crossLink \"TagsAccessories/disableTagsInputTooHigh:method\"}}{{/crossLink}}). During this whole process, a <b>hidden input</b> gets updated with a string representing the current tags separated by comma ({{#crossLink \"TagsAccessories/addToTagsValue:method\"}}{{/crossLink}}, {{#crossLink \"TagsAccessories/removeFromTagsValue:method\"}}{{/crossLink}}).\n<br/><br/>\nThe system also checks if the inserted tag is not repeated (using {{#crossLink \"TagsAccessories/checkNoTagDuplicates:method\"}}{{/crossLink}}), and assigns a different color for tags already in the database and for new ones ({{#crossLink \"TagsAccessories/addTagWithoutSuggestion:method\"}}{{/crossLink}}).\n<br/><br/>\nThe <b>tagging autocomplete mode</b> is initialized for six standard forms (see initializers in the class {{#crossLink \"TagsDocumentReady\"}}{{/crossLink}})."
         },
         "video-editor": {
             "name": "video-editor",
@@ -735,7 +735,7 @@
             "tag": "module",
             "file": "app/assets/javascripts/video_editor.js",
             "line": 1,
-            "description": "Provides video editor ajax actions. TODO per quanto riguarda la fase di commit, copiare il paragrafo da audio e image editor e adattarlo"
+            "description": "The Video Editor is structured as follows: centered in the middle of the Editor is located the <b>preview screen</b>, below it the <b>components timeline</b> and the <b>audio track</b>, and on the right the <b>preview column</b> which contains also global statistics about the video.\n<br/><br/>\nA video created with the Video Editor can be composed by <b>three types of components</b> (and optionally an <b>audio track</b>):\n<ul>\n  <li>a <b>video component</b> is an element of type video extracted from the user's gallery, associated to an <b>initial</b> and <b>final point</b></li>\n  <li>a <b>image component</b> is an element of type image extracted from the user's gallery, associated to a <b>duration</b> in seconds (the image is held in the video for a number of seconds equal to the component's duration); the image is centered and cropped mantaining its original proportions, to make it fit in the video screen (which has proportions 16/9)</li>\n  <li>a <b>text component</b> is a centered title for which the user chooses a <b>background color</b>, a <b>font color</b> and a <b>duration</b> (which has the same interpretation as for image components).</li>\n</ul>\n\n\n<br/><br/>\nAs for the other Element Editors ({{#crossLinkModule \"image-editor\"}}{{/crossLinkModule}}, {{#crossLinkModule \"audio-editor\"}}{{/crossLinkModule}}) the core of the process of committing changes is handled in the module {{#crossLinkModule \"media-element-editor\"}}{{/crossLinkModule}} (more specificly in the class {{#crossLink \"MediaElementEditorForms\"}}{{/crossLink}}); the part of this functionality specific for the Video Editor is handled in {{#crossLink \"VideoEditorDocumentReady/videoEditorDocumentReadyCommit:method\"}}{{/crossLink}}."
         },
         "virtual-classroom": {
             "name": "virtual-classroom",
@@ -768,7 +768,7 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "module": "administration",
+            "module": "admin",
             "namespace": ""
         },
         "AdminCollapsed": {
@@ -779,7 +779,7 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "module": "administration",
+            "module": "admin",
             "namespace": ""
         },
         "AdminDocumentReady": {
@@ -790,7 +790,7 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "module": "administration",
+            "module": "admin",
             "namespace": ""
         },
         "AjaxLoaderBinder": {
@@ -1748,7 +1748,7 @@
             "itemtype": "method",
             "name": "initNotificationsAutocomplete",
             "class": "AdminAutocomplete",
-            "module": "administration"
+            "module": "admin"
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
@@ -1764,7 +1764,7 @@
                 }
             ],
             "class": "AdminCollapsed",
-            "module": "administration"
+            "module": "admin"
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
@@ -1773,7 +1773,7 @@
             "itemtype": "method",
             "name": "adminBrowsersDocumentReady",
             "class": "AdminDocumentReady",
-            "module": "administration"
+            "module": "admin"
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
@@ -1782,7 +1782,7 @@
             "itemtype": "method",
             "name": "adminEffectsDocumentReady",
             "class": "AdminDocumentReady",
-            "module": "administration"
+            "module": "admin"
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
@@ -1791,7 +1791,7 @@
             "itemtype": "method",
             "name": "adminLocationsDocumentReady",
             "class": "AdminDocumentReady",
-            "module": "administration"
+            "module": "admin"
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
@@ -1800,7 +1800,7 @@
             "itemtype": "method",
             "name": "adminMediaElementsDocumentReady",
             "class": "AdminDocumentReady",
-            "module": "administration"
+            "module": "admin"
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
@@ -1809,7 +1809,7 @@
             "itemtype": "method",
             "name": "adminMiscellaneaDocumentReady",
             "class": "AdminDocumentReady",
-            "module": "administration"
+            "module": "admin"
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
@@ -1818,7 +1818,7 @@
             "itemtype": "method",
             "name": "adminSearchDocumentReady",
             "class": "AdminDocumentReady",
-            "module": "administration"
+            "module": "admin"
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
@@ -1827,7 +1827,7 @@
             "itemtype": "method",
             "name": "adminSortingDocumentReady",
             "class": "AdminDocumentReady",
-            "module": "administration"
+            "module": "admin"
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
@@ -1836,7 +1836,7 @@
             "itemtype": "method",
             "name": "adminUsersDocumentReady",
             "class": "AdminDocumentReady",
-            "module": "administration"
+            "module": "admin"
         },
         {
             "file": "app/assets/javascripts/ajax_loader.js",
@@ -1859,7 +1859,7 @@
         {
             "file": "app/assets/javascripts/ajax_loader.js",
             "line": 51,
-            "description": "Initializes the ajax loader. Used also in the initialization of the module {{#crossLinkModule \"administration\"}}{{/crossLinkModule}}.",
+            "description": "Initializes the ajax loader. Used also in the initialization of the module {{#crossLinkModule \"admin\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "ajaxLoaderDocumentReady",
             "class": "AjaxLoaderDocumentReady",
@@ -4874,61 +4874,145 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 10,
+            "line": 15,
+            "description": "This method is fired each time the audio component player receives an event of <b>timeupdate</b>. There are two cases of use of this method:\n<ul>\n  <li>if the Audio Editor <b>is not in preview mode</b>, it operates as a normal player (see {{#crossLink \"PlayersGeneral/initializeActionOfMediaTimeUpdater:method\"}}{{/crossLink}}), with very slight differences due to the different environment</li>\n  <li>if we are <b>in preview mode</b>, the method acts as a counterpart of {{#crossLink \"AudioEditorPreview/startAudioEditorPreview:method\"}}{{/crossLink}}: at any time the seconds increase, the method updates the timer using {{#crossLink \"AudioEditorPreview/increaseAudioEditorPreviewTimer:method\"}}{{/crossLink}}; when the audio is over, if it's not playing the last component, the method calls {{#crossLink \"AudioEditorPreview/startAudioEditorPreview:method\"}}{{/crossLink}} for the following one.</li>\n</ul>",
             "itemtype": "method",
             "name": "initializeActionOfMediaTimeUpdaterInAudioEditor",
+            "params": [
+                {
+                    "name": "media",
+                    "description": "HTML selector for the audio",
+                    "type": "String"
+                },
+                {
+                    "name": "identifier",
+                    "description": "unique identifier for the audio component (see {{#crossLinkModule \"audio-editor\"}}{{/crossLinkModule}})",
+                    "type": "Number"
+                },
+                {
+                    "name": "force_parsed_int",
+                    "description": "forces the last second of the audio; normally it's <i>false</i>, except the case in which the duration of the audio is very close to the biggest lower integer (for instance, the duration is 10.01, which is very close to 10): in this case, the signal that the audio ended <b>is not received directly by the current method</b>, but rather by the event handler <b>ended</b> initialized in the end of {{#crossLink \"PlayersAudioEditor/initializeAudioEditorCutter:method\"}}{{/crossLink}}",
+                    "type": "Boolean"
+                }
+            ],
             "class": "PlayersAudioEditor",
             "module": "players"
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 61,
-            "description": "bla bla bla",
+            "line": 74,
+            "description": "Initializes two sliders: one (JQueryUi single slider) for the <b>cursor</b>, and one (JQueryUi double slider) for the <b>cutting handles</b>. It also initializes how to handle the event <b>ended</b> associated to the audio.",
             "itemtype": "method",
             "name": "initializeAudioEditorCutter",
+            "params": [
+                {
+                    "name": "identifier",
+                    "description": "the unique identifier of the audio component (see {{#crossLinkModule \"audio-editor\"}}{{/crossLinkModule}})",
+                    "type": "Number"
+                }
+            ],
             "class": "PlayersAudioEditor",
             "module": "players"
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 151,
-            "description": "bla bla bla",
+            "line": 165,
+            "description": "This is the method that associates {{#crossLink \"PlayersAudioEditor/initializeActionOfMediaTimeUpdaterInAudioEditor:method\"}}{{/crossLink}} to the event of <b>timeupdate</b>. Notice that the method waits until he receives the event <b>loadedmetadata</b> before working.",
             "itemtype": "method",
             "name": "initializeMediaTimeUpdaterInAudioEditor",
-            "class": "PlayersAudioEditor",
-            "module": "players"
-        },
-        {
-            "file": "app/assets/javascripts/players.js",
-            "line": 171,
-            "description": "bla bla bla",
-            "itemtype": "method",
-            "name": "selectAudioComponentCutterHandle",
+            "params": [
+                {
+                    "name": "identifier",
+                    "description": "the unique identifier of the audio component (see {{#crossLinkModule \"audio-editor\"}}{{/crossLinkModule}})",
+                    "type": "Number"
+                }
+            ],
             "class": "PlayersAudioEditor",
             "module": "players"
         },
         {
             "file": "app/assets/javascripts/players.js",
             "line": 186,
-            "description": "bla bla bla",
+            "description": "Method that <b>updates the audio cursor</b>, in case one of the two handles passes over the cursor (the cursor must follow the handle).",
+            "itemtype": "method",
+            "name": "selectAudioComponentCutterHandle",
+            "params": [
+                {
+                    "name": "component",
+                    "description": "the JQuery object representing the component",
+                    "type": "Object"
+                },
+                {
+                    "name": "val",
+                    "description": "the value to be assigned",
+                    "type": "Number"
+                }
+            ],
+            "class": "PlayersAudioEditor",
+            "module": "players"
+        },
+        {
+            "file": "app/assets/javascripts/players.js",
+            "line": 203,
+            "description": "Method that logs all the possible events of a given media.",
+            "itemtype": "method",
+            "name": "mediaEventsLogger",
+            "params": [
+                {
+                    "name": "media",
+                    "description": "the jquery object representing a <b>video</b> or an <b>audio</b> tag",
+                    "type": "Object"
+                }
+            ],
+            "class": "PlayersCommon",
+            "module": "players"
+        },
+        {
+            "file": "app/assets/javascripts/players.js",
+            "line": 234,
+            "description": "Sets a time to any media in any environment. Notice that the method waits until he receives the event <b>loadedmetadata</b> before working.",
             "itemtype": "method",
             "name": "setCurrentTimeToMedia",
+            "params": [
+                {
+                    "name": "media",
+                    "description": "the jquery object representing a <b>video</b> or an <b>audio</b> tag",
+                    "type": "Object"
+                },
+                {
+                    "name": "seek",
+                    "description": "the time to be set",
+                    "type": "Float"
+                }
+            ],
             "class": "PlayersCommon",
             "module": "players"
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 201,
-            "description": "bla bla bla",
+            "line": 251,
+            "description": "It shows an alert with error details, in case a media returned error.",
             "itemtype": "method",
             "name": "showLoadingMediaErrorPopup",
+            "params": [
+                {
+                    "name": "code",
+                    "description": "the code associated to the error (it can be 1, 2, 3 or 4)",
+                    "type": "Number"
+                },
+                {
+                    "name": "type",
+                    "description": "either <b>'audio'</b> or <b>'video'</b>",
+                    "type": "String"
+                }
+            ],
             "class": "PlayersCommon",
             "module": "players"
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 215,
-            "description": "bla bla bla",
+            "line": 267,
+            "description": "Stops all media in the page.",
             "itemtype": "method",
             "name": "stopAllMedia",
             "class": "PlayersCommon",
@@ -4936,17 +5020,29 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 226,
-            "description": "IE SI ARRABBIA SE GLI SETTI UN VALORE DI SEEK NON COMPRESO TRA L'INIZIO E LA FINE DEI VALORI SEEKABLE",
+            "line": 278,
+            "description": "Submethod of {{#crossLink \"PlayersCommon/setCurrentTimeToMedia:method\"}}{{/crossLink}}, used because some browsers (Internet Explorer for instance), get broken if the value of seek is not included in the <b>seekable interval</b>.",
             "itemtype": "method",
             "name": "validSeek",
+            "params": [
+                {
+                    "name": "media",
+                    "description": "the jquery object representing a <b>video</b> or an <b>audio</b> tag",
+                    "type": "Object"
+                },
+                {
+                    "name": "seek",
+                    "description": "the value to be assigned to the media",
+                    "type": "Float"
+                }
+            ],
             "class": "PlayersCommon",
             "module": "players"
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 247,
-            "description": "bla bla bla",
+            "line": 301,
+            "description": "Global initializer for players.",
             "itemtype": "method",
             "name": "playersDocumentReady",
             "class": "PlayersDocumentReady",
@@ -4954,8 +5050,8 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 258,
-            "description": "bla bla bla",
+            "line": 312,
+            "description": "Initializer for buttons inside a cutter in {{#crossLinkModule \"audio-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "playersDocumentReadyAudioEditor",
             "class": "PlayersDocumentReady",
@@ -4963,8 +5059,8 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 322,
-            "description": "bla bla bla",
+            "line": 376,
+            "description": "Initializer for buttons inside any player.",
             "itemtype": "method",
             "name": "playersDocumentReadyGeneral",
             "class": "PlayersDocumentReady",
@@ -4972,8 +5068,8 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 355,
-            "description": "bla bla bla",
+            "line": 409,
+            "description": "Initializer for buttons inside a cutter in {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "playersDocumentReadyVideoEditor",
             "class": "PlayersDocumentReady",
@@ -4981,46 +5077,19 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 426,
-            "description": "bla bla bla",
-            "itemtype": "method",
-            "name": "mediaEventsLogger",
-            "class": "PlayersGeneral",
-            "module": "players"
-        },
-        {
-            "file": "app/assets/javascripts/players.js",
-            "line": 456,
-            "description": "bla bla bla",
+            "line": 480,
+            "description": "Method that handles the event <b>timeupdate</b> for general audio or video players: if we got to the last second, the method rewinds the media, otherwise sets the time to the slider (this happens even if the slider already had that value, unlike the methods {{#crossLink \"PlayersAudioEditor/initializeActionOfMediaTimeUpdaterInAudioEditor:method\"}}{{/crossLink}} and {{#crossLink \"PlayersVideoEditor/initializeActionOfMediaTimeUpdaterInVideoEditor:method\"}}{{/crossLink}} during <b>preview mode</b>).",
             "itemtype": "method",
             "name": "initializeActionOfMediaTimeUpdater",
-            "class": "PlayersGeneral",
-            "module": "players"
-        },
-        {
-            "file": "app/assets/javascripts/players.js",
-            "line": 476,
-            "description": "bla bla bla",
-            "itemtype": "method",
-            "name": "initializeMedia",
-            "class": "PlayersGeneral",
-            "module": "players"
-        },
-        {
-            "file": "app/assets/javascripts/players.js",
-            "line": 502,
-            "description": "bla bla bla",
-            "itemtype": "method",
-            "name": "initializeMediaTimeUpdater",
             "params": [
                 {
                     "name": "media",
-                    "description": "media element selector class or id",
+                    "description": "HTML selector for the audio or video",
                     "type": "String"
                 },
                 {
                     "name": "reference_id",
-                    "description": "",
+                    "description": "HTML id of the unique container of the audio or video",
                     "type": "String"
                 }
             ],
@@ -5029,62 +5098,166 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 524,
-            "description": "bla bla bla",
+            "line": 502,
+            "description": "Initializes the media player for a generic audio or video.",
             "itemtype": "method",
-            "name": "stopMedia",
+            "name": "initializeMedia",
+            "params": [
+                {
+                    "name": "content_id",
+                    "description": "the HTML id of the unique container of the media",
+                    "type": "String"
+                },
+                {
+                    "name": "type",
+                    "description": "it can be either <b>'audio'</b> or <b>'video'</b>",
+                    "type": "String"
+                }
+            ],
             "class": "PlayersGeneral",
             "module": "players"
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 555,
-            "description": "bla bla bla",
+            "line": 530,
+            "description": "This is the method that associates {{#crossLink \"PlayersGeneral/initializeActionOfMediaTimeUpdater:method\"}}{{/crossLink}} to the event of <b>timeupdate</b>. Notice that the method waits until he receives the event <b>loadedmetadata</b> before working.",
+            "itemtype": "method",
+            "name": "initializeMediaTimeUpdater",
+            "params": [
+                {
+                    "name": "media",
+                    "description": "HTML selector for the audio or video",
+                    "type": "String"
+                },
+                {
+                    "name": "reference_id",
+                    "description": "HTML id of the unique container of the audio or video",
+                    "type": "String"
+                }
+            ],
+            "class": "PlayersGeneral",
+            "module": "players"
+        },
+        {
+            "file": "app/assets/javascripts/players.js",
+            "line": 552,
+            "description": "Stops a generic media, logging errors in the console.",
+            "itemtype": "method",
+            "name": "stopMedia",
+            "params": [
+                {
+                    "name": "media",
+                    "description": "HTML selector for the audio or video",
+                    "type": "String"
+                }
+            ],
+            "class": "PlayersGeneral",
+            "module": "players"
+        },
+        {
+            "file": "app/assets/javascripts/players.js",
+            "line": 584,
+            "description": "This method has the same cases of use of {{#crossLink \"PlayersAudioEditor/initializeActionOfMediaTimeUpdaterInAudioEditor:method\"}}{{/crossLink}}, with a couple of details more due to the more complicated environment present in {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}}:\n<ul>\n  <li>the passage from a component to another (the method called in this case is {{#crossLink \"VideoEditorPreview/playVideoEditorComponent:method\"}}{{/crossLink}}) must handle a <b>transition</b> of one second</li>\n  <li>it's necessary to hide and show the preview <b>progress bar</b> (see {{#crossLink \"VideoEditorPreviewAccessories/showVideoEditorPreviewComponentProgressBar:method\"}}{{/crossLink}}) positioning it with the help of the methods in {{#crossLink \"MediaElementEditorHorizontalTimelines\"}}{{/crossLink}}</li>\n  <li>the method needs also to update the <b>background audio track</b>, but only if it's present and if the <b>global preview time</b> is not greater than its duration.</li>\n</ul>",
             "itemtype": "method",
             "name": "initializeActionOfMediaTimeUpdaterInVideoEditor",
+            "params": [
+                {
+                    "name": "media",
+                    "description": "HTML selector for the video",
+                    "type": "String"
+                },
+                {
+                    "name": "identifier",
+                    "description": "unique identifier for the video component (see {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}})",
+                    "type": "Number"
+                },
+                {
+                    "name": "force_parsed_int",
+                    "description": "forces the last second of the video; normally it's <i>false</i>, except the case in which the duration of the video is very close to the biggest lower integer (for instance, the duration is 10.01, which is very close to 10): in this case, the signal that the video ended <b>is not received directly by the current method</b>, but rather by the event handler <b>ended</b> initialized in the end of {{#crossLink \"PlayersVideoEditor/initializeVideoInVideoEditorPreview:method\"}}{{/crossLink}}",
+                    "type": "Boolean"
+                }
+            ],
             "class": "PlayersVideoEditor",
             "module": "players"
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 629,
-            "description": "bla bla bla",
+            "line": 666,
+            "description": "This is the method that associates {{#crossLink \"PlayersVideoEditor/initializeActionOfMediaTimeUpdaterInVideoEditor:method\"}}{{/crossLink}} to the event of <b>timeupdate</b>. Notice that the method waits until he receives the event <b>loadedmetadata</b> before working.",
             "itemtype": "method",
             "name": "initializeMediaTimeUpdaterInVideoEditor",
+            "params": [
+                {
+                    "name": "media",
+                    "description": "HTML selector for the audio or video",
+                    "type": "String"
+                },
+                {
+                    "name": "identifier",
+                    "description": "unique identifier of a video component (see {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}})",
+                    "type": "Number"
+                }
+            ],
             "class": "PlayersVideoEditor",
             "module": "players"
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 649,
-            "description": "bla bla bla",
+            "line": 688,
+            "description": "Initializes two sliders: one (JQueryUi single slider) for the <b>cursor</b>, and one (JQueryUi double slider) for the <b>cutting handles</b>. It also initializes how to handle the event <b>ended</b> associated to the video.",
             "itemtype": "method",
             "name": "initializeVideoInVideoEditorPreview",
+            "params": [
+                {
+                    "name": "identifier",
+                    "description": "the unique identifier of the video component (see {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}})",
+                    "type": "Number"
+                }
+            ],
             "class": "PlayersVideoEditor",
             "module": "players"
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 728,
-            "description": "bla bla bla",
+            "line": 767,
+            "description": "Method that <b>updates the video cursor</b>, in case one of the two handles passes over the cursor (the cursor must follow the handle).",
             "itemtype": "method",
             "name": "selectVideoComponentCutterHandle",
+            "params": [
+                {
+                    "name": "cutter",
+                    "description": "the JQuery object representing the cutter for that particular component (see {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}})",
+                    "type": "Object"
+                },
+                {
+                    "name": "val",
+                    "description": "the value to be assigned",
+                    "type": "Number"
+                }
+            ],
             "class": "PlayersVideoEditor",
             "module": "players"
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 738,
-            "description": "bla bla bla",
+            "line": 779,
+            "description": "Specific method to call if the event <b>ended</b> is fired on the video and we are not in the {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}} preview mode (unlike in {{#crossLink \"PlayersAudioEditor\"}}{{/crossLink}}, in this case it's separated by the method {{#crossLink \"PlayersVideoEditor/initializeVideoInVideoEditorPreview:method\"}}{{/crossLink}}, since it's more complicated.",
             "itemtype": "method",
             "name": "stopVideoInVideoEditorPreview",
+            "params": [
+                {
+                    "name": "identifier",
+                    "description": "the unique identifier of the video component",
+                    "type": "Number"
+                }
+            ],
             "class": "PlayersVideoEditor",
             "module": "players"
         },
         {
             "file": "app/assets/javascripts/profile.js",
             "line": 10,
-            "description": "bla bla bla",
+            "description": "Initializes the action that shows automaticly the login form when somebody opens the maing page of the application without being logged.",
             "itemtype": "method",
             "name": "automaticLoginDocumentReady",
             "class": "ProfilePrelogin",
@@ -5093,7 +5266,7 @@
         {
             "file": "app/assets/javascripts/profile.js",
             "line": 24,
-            "description": "bla bla bla",
+            "description": "Initializes the handler of the login form.",
             "itemtype": "method",
             "name": "preloginDocumentReady",
             "class": "ProfilePrelogin",
@@ -5102,7 +5275,7 @@
         {
             "file": "app/assets/javascripts/profile.js",
             "line": 48,
-            "description": "bla bla bla",
+            "description": "Initializes the javascript effects of the registration / modify profile form.",
             "itemtype": "method",
             "name": "profileDocumentReady",
             "class": "ProfileUsers",
@@ -5111,7 +5284,7 @@
         {
             "file": "app/assets/javascripts/search.js",
             "line": 10,
-            "description": "bla bla bla",
+            "description": "Global initializer for the search engine.",
             "itemtype": "method",
             "name": "searchDocumentReady",
             "class": "SearchDocumentReady",
@@ -5120,7 +5293,7 @@
         {
             "file": "app/assets/javascripts/search.js",
             "line": 21,
-            "description": "bla bla bla",
+            "description": "Initializes the <b>clickable tags</b> allowing a filter on a research.",
             "itemtype": "method",
             "name": "searchDocumentReadyFilterByTag",
             "class": "SearchDocumentReady",
@@ -5129,7 +5302,7 @@
         {
             "file": "app/assets/javascripts/search.js",
             "line": 43,
-            "description": "bla bla bla",
+            "description": "Initializer for generic effects.",
             "itemtype": "method",
             "name": "searchDocumentReadyGeneral",
             "class": "SearchDocumentReady",
@@ -5138,7 +5311,7 @@
         {
             "file": "app/assets/javascripts/search.js",
             "line": 88,
-            "description": "bla bla bla",
+            "description": "Initializer for <b>search keyword</b> placeholders.",
             "itemtype": "method",
             "name": "searchDocumentReadyPlaceholders",
             "class": "SearchDocumentReady",
@@ -5146,24 +5319,24 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 10,
-            "description": "Handle adding tag not in the autocomplete data list",
+            "line": 18,
+            "description": "Adds a tag without using the suggestion (the case with the suggestion is handled by {{#crossLink \"TagsInitializers/initTagsAutocomplete:method\"}}{{/crossLink}}). In the particular case in which the user adds the tag <b>before</b> the autocomplete has shown the list of matches, this method calls a route from the backend that checks if the tag was present in the database: if yes, the tag gets colored differently.",
             "itemtype": "method",
             "name": "addTagWithoutSuggestion",
             "params": [
                 {
                     "name": "input",
-                    "description": "input selector for tag, class or id",
+                    "description": "HTML selector for the tag input",
                     "type": "String"
                 },
                 {
                     "name": "container_selector",
-                    "description": "added tags container selector, class or id",
+                    "description": "HTML selector for the container",
                     "type": "String"
                 },
                 {
                     "name": "tags_value_selector",
-                    "description": "hidden input field for tags value selector",
+                    "description": "HTML selector for the hidden input",
                     "type": "String"
                 }
             ],
@@ -5172,19 +5345,19 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 45,
-            "description": "Add tag word to hidden field with tags values",
+            "line": 53,
+            "description": "Adds a tag to the <b>hidden input</b>.",
             "itemtype": "method",
             "name": "addToTagsValue",
             "params": [
                 {
                     "name": "word",
-                    "description": "tag name",
+                    "description": "tag to be inserted",
                     "type": "String"
                 },
                 {
                     "name": "value_selector",
-                    "description": "hidden input field for tags value selector",
+                    "description": "HTML selector for the hidden input",
                     "type": "String"
                 }
             ],
@@ -5193,19 +5366,19 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 62,
-            "description": "Checks if a tag word is present in the tags container.",
+            "line": 70,
+            "description": "Checks if a tag is already present in the hidden input.",
             "itemtype": "method",
             "name": "checkNoTagDuplicates",
             "params": [
                 {
                     "name": "word",
-                    "description": "tag name",
+                    "description": "tag to be checked",
                     "type": "String"
                 },
                 {
                     "name": "container_selector",
-                    "description": "tags container selector",
+                    "description": "HTML selector for the container",
                     "type": "String"
                 }
             ],
@@ -5218,19 +5391,19 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 80,
-            "description": "Creates a new span element for a new tag.",
+            "line": 88,
+            "description": "Creates a new span box for a tag.",
             "itemtype": "method",
             "name": "createTagSpan",
             "params": [
                 {
                     "name": "word",
-                    "description": "tag name",
+                    "description": "tag to be created",
                     "type": "String"
                 },
                 {
                     "name": "new_tag",
-                    "description": "flag true if it's a new tag, false otherwise",
+                    "description": "true if it must be colored as a tag not present in the database yet",
                     "type": "Boolean"
                 }
             ],
@@ -5243,19 +5416,19 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 97,
-            "description": "Disable insert new tag when tags container is full.",
+            "line": 105,
+            "description": "Disables the tag input if the container is full.",
             "itemtype": "method",
             "name": "disableTagsInputTooHigh",
             "params": [
                 {
                     "name": "container_selector",
-                    "description": "tags container selector, class or id",
+                    "description": "HTML selector for the container",
                     "type": "String"
                 },
                 {
                     "name": "input_selector",
-                    "description": "new tag input selector, class or id",
+                    "description": "HTML selector for the tag input",
                     "type": "String"
                 }
             ],
@@ -5264,19 +5437,19 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 110,
-            "description": "Generates a name_aware class for a given tag",
+            "line": 118,
+            "description": "Generates a unique class for a given tag (containing underscores, and taking into consideration special characters).",
             "itemtype": "method",
             "name": "getUnivoqueClassForTag",
             "params": [
                 {
                     "name": "word",
-                    "description": "tag name",
+                    "description": "tag",
                     "type": "String"
                 }
             ],
             "return": {
-                "description": "i.e. w_a_t_e_r_",
+                "description": "unique class for that tag",
                 "type": "String"
             },
             "class": "TagsAccessories",
@@ -5284,19 +5457,19 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 125,
-            "description": "Remove tag word to hidden field with tags values",
+            "line": 133,
+            "description": "Removes a tag from the <b>hidden input</b>.",
             "itemtype": "method",
             "name": "removeFromTagsValue",
             "params": [
                 {
                     "name": "word",
-                    "description": "tag name",
+                    "description": "tag to be removed",
                     "type": "String"
                 },
                 {
                     "name": "value_selector",
-                    "description": "hidden input field for tags value selector",
+                    "description": "HTML selector for the hidden input",
                     "type": "String"
                 }
             ],
@@ -5305,8 +5478,8 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 142,
-            "description": "bla bla bla",
+            "line": 150,
+            "description": "Global initializer for all instances of search autocomplete and tagging autocomplete.",
             "itemtype": "method",
             "name": "tagsDocumentReady",
             "class": "TagsDocumentReady",
@@ -5314,8 +5487,8 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 159,
-            "description": "bla bla bla",
+            "line": 167,
+            "description": "Initializer for tagging autocomplete in the form to <b>change the general information of a media element</b> (see {{#crossLink \"DialogsWithForm/showMediaElementInfoPopUp:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "tagsDocumentReadyChangeMediaElementInfo",
             "class": "TagsDocumentReady",
@@ -5323,8 +5496,8 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 204,
-            "description": "bla bla bla",
+            "line": 212,
+            "description": "Initializer for tagging autocomplete in the form to <b>upload a new media element</b> (see {{#crossLink \"DialogsWithForm/showLoadMediaElementPopUp:method\"}}{{/crossLink}} and the module {{#crossLinkModule \"media-element-loader\"}}{{/crossLinkModule}}).",
             "itemtype": "method",
             "name": "tagsDocumentReadyMediaElementLoader",
             "class": "TagsDocumentReady",
@@ -5332,8 +5505,8 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 239,
-            "description": "bla bla bla",
+            "line": 247,
+            "description": "Initializer for tagging autocomplete in the form to <b>create a new lesson</b>.",
             "itemtype": "method",
             "name": "tagsDocumentReadyNewLesson",
             "class": "TagsDocumentReady",
@@ -5341,8 +5514,8 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 274,
-            "description": "bla bla bla",
+            "line": 282,
+            "description": "Initializer for tagging autocomplete in the form to <b>save as new an element in the {{#crossLinkModule \"media-element-editor\"}}{{/crossLinkModule}}</b> (see the method {{#crossLink \"MediaElementEditorForms/resetMediaElementEditorForms:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "tagsDocumentReadyNewMediaElement",
             "class": "TagsDocumentReady",
@@ -5350,8 +5523,8 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 309,
-            "description": "bla bla bla",
+            "line": 317,
+            "description": "Initializer for tagging autocomplete in the form to <b>overwrite an element in the {{#crossLinkModule \"media-element-editor\"}}{{/crossLinkModule}}</b> (see the method {{#crossLink \"MediaElementEditorForms/resetMediaElementEditorForms:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "tagsDocumentReadyOvervriteMediaElement",
             "class": "TagsDocumentReady",
@@ -5359,8 +5532,8 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 347,
-            "description": "bla bla bla",
+            "line": 355,
+            "description": "Initializer for tagging autocomplete in the form to <b>update the general information of a lesson</b>.",
             "itemtype": "method",
             "name": "tagsDocumentReadyUpdateLesson",
             "class": "TagsDocumentReady",
@@ -5368,14 +5541,14 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 388,
-            "description": "Initialize jQueryUI _autocomplete_ for tags in search input Uses: [unbindLoader](../classes/unbindLoader.html#method_unbindLoader) and [bindLoader](../classes/bindLoader.html#method_bindLoader)",
+            "line": 396,
+            "description": "Initializer for search autocompĺete.",
             "itemtype": "method",
             "name": "initSearchTagsAutocomplete",
             "params": [
                 {
                     "name": "input",
-                    "description": "search by tag input selector, class or id",
+                    "description": "HTML selector for the input",
                     "type": "String"
                 }
             ],
@@ -5384,14 +5557,14 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 418,
-            "description": "Initialize jQueryUI _autocomplete_ for tags in lessons and elements form",
+            "line": 426,
+            "description": "Initializer for tagging autocompĺete.",
             "itemtype": "method",
             "name": "initTagsAutocomplete",
             "params": [
                 {
                     "name": "scope",
-                    "description": "tags container scope, class or id",
+                    "description": "HTML scope for the tag container",
                     "type": "String"
                 }
             ],
@@ -5400,7 +5573,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 10,
+            "line": 21,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "addImageComponentInVideoEditor",
@@ -5409,7 +5582,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 74,
+            "line": 85,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "addTextComponentInVideoEditor",
@@ -5418,7 +5591,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 145,
+            "line": 156,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "addVideoComponentInVideoEditor",
@@ -5427,7 +5600,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 223,
+            "line": 234,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "changeDurationVideoEditorComponent",
@@ -5436,7 +5609,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 247,
+            "line": 258,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "clearSpecificVideoEditorComponentParameters",
@@ -5445,7 +5618,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 264,
+            "line": 275,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "fillVideoEditorSingleParameter",
@@ -5454,7 +5627,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 273,
+            "line": 284,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "highlightAndUpdateVideoComponentIcon",
@@ -5463,7 +5636,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 282,
+            "line": 293,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "reloadVideoEditorComponentPositions",
@@ -5472,7 +5645,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 296,
+            "line": 307,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "resetVisibilityOfVideoEditorTransitions",
@@ -5481,7 +5654,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 312,
+            "line": 323,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "startVideoEditorPreviewClipWithDelay",
@@ -5490,7 +5663,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 330,
+            "line": 341,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "closeGenericVideoComponentCutter",
@@ -5510,7 +5683,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 353,
+            "line": 364,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "commitVideoComponentVideoCutter",
@@ -5519,7 +5692,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 370,
+            "line": 381,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "cutVideoComponentLeftSide",
@@ -5528,7 +5701,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 381,
+            "line": 392,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "cutVideoComponentRightSide",
@@ -5537,7 +5710,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 392,
+            "line": 403,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "showVideoEditorCutter",
@@ -5546,7 +5719,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 412,
+            "line": 423,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "startVideoEditorPreviewClip",
@@ -5555,7 +5728,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 427,
+            "line": 438,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "videoEditorDocumentReady",
@@ -5564,7 +5737,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 445,
+            "line": 456,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "videoEditorDocumentReadyAddComponent",
@@ -5573,7 +5746,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 528,
+            "line": 539,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "videoEditorDocumentReadyAudioTrack",
@@ -5582,7 +5755,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 568,
+            "line": 579,
             "description": "bla bla bla -- TODO copiare dagli analoghi in image editor e audio editor",
             "itemtype": "method",
             "name": "videoEditorDocumentReadyCommit",
@@ -5591,7 +5764,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 668,
+            "line": 679,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "videoEditorDocumentReadyComponentsCommon",
@@ -5600,7 +5773,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 697,
+            "line": 708,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "videoEditorDocumentReadyCutters",
@@ -5609,7 +5782,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 813,
+            "line": 824,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "videoEditorDocumentReadyGalleries",
@@ -5618,7 +5791,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 874,
+            "line": 885,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "videoEditorDocumentReadyInitialization",
@@ -5627,7 +5800,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 919,
+            "line": 930,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "videoEditorDocumentReadyPreview",
@@ -5636,7 +5809,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1025,
+            "line": 1036,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "videoEditorDocumentReadyRemoveComponent",
@@ -5645,7 +5818,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1056,
+            "line": 1067,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "videoEditorDocumentReadyTextComponentEditor",
@@ -5654,7 +5827,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1085,
+            "line": 1096,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "calculateNewPositionGalleriesInVideoEditor",
@@ -5663,7 +5836,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1095,
+            "line": 1106,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "closeGalleryInVideoEditor",
@@ -5672,7 +5845,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1108,
+            "line": 1119,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "showGalleryInVideoEditor",
@@ -5681,7 +5854,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1121,
+            "line": 1132,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "switchToOtherGalleryInMixedGalleryInVideoEditor",
@@ -5690,7 +5863,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1146,
+            "line": 1157,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "getFirstVideoEditorComponent",
@@ -5699,7 +5872,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1155,
+            "line": 1166,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "getLastVideoEditorComponent",
@@ -5708,7 +5881,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1165,
+            "line": 1176,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "getVideoComponentIdentifier",
@@ -5717,7 +5890,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1179,
+            "line": 1190,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "loadVideoComponentIfNotLoadedYet",
@@ -5726,7 +5899,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1195,
+            "line": 1206,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "videoEditorWithAudioTrack",
@@ -5735,7 +5908,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1208,
+            "line": 1219,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "automaticIncreaseVideoEditorPreviewTimer",
@@ -5744,7 +5917,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1226,
+            "line": 1237,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "increaseVideoEditorPreviewTimer",
@@ -5753,7 +5926,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1248,
+            "line": 1259,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "openPreviewModeInVideoEditor",
@@ -5762,7 +5935,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1291,
+            "line": 1302,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "playVideoEditorComponent",
@@ -5771,7 +5944,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1361,
+            "line": 1372,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "startVideoEditorGlobalPreview",
@@ -5780,7 +5953,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1392,
+            "line": 1403,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "calculateVideoComponentStartSecondInVideoEditor",
@@ -5789,7 +5962,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1414,
+            "line": 1425,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "hideVideoEditorPreviewComponentProgressBar",
@@ -5798,7 +5971,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1424,
+            "line": 1435,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "selectVideoComponentInPreview",
@@ -5807,7 +5980,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1440,
+            "line": 1451,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "setVisualTimesVideoEditorPreview",
@@ -5816,7 +5989,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1469,
+            "line": 1480,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "showVideoEditorPreviewArrowToComponents",
@@ -5825,7 +5998,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1487,
+            "line": 1498,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "showVideoEditorPreviewComponentProgressBar",
@@ -5834,7 +6007,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1519,
+            "line": 1530,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "replaceImageComponentInVideoEditor",
@@ -5843,7 +6016,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1554,
+            "line": 1565,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "replaceTextComponentInVideoEditor",
@@ -5852,7 +6025,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1596,
+            "line": 1607,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "replaceVideoComponentInVideoEditor",
@@ -5861,7 +6034,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1645,
+            "line": 1656,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "followPreviewComponentsWithHorizontalScrollInVideoEditor",
@@ -5870,7 +6043,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1695,
+            "line": 1706,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "resetVideoEditorTextComponent",
@@ -5879,7 +6052,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1710,
+            "line": 1721,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "switchTextComponentBackgroundColor",
@@ -5888,7 +6061,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1722,
+            "line": 1733,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "switchTextComponentTextColor",

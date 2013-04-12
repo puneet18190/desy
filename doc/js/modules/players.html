@@ -223,7 +223,7 @@
 
             <ul id="api-modules" class="apis modules">
             
-                <li><a href="..&#x2F;modules/administration.html">administration</a></li>
+                <li><a href="..&#x2F;modules/admin.html">admin</a></li>
             
                 <li><a href="..&#x2F;modules/ajax-loader.html">ajax-loader</a></li>
             
@@ -318,7 +318,13 @@
 
 
 <div class="box intro">
-    <p>Media elements players: initializer, play, stop, update frame.</p>
+    <p>This module contains the javascript functions and initializers used in the <b>media players</b> all over the application. The model can be divided into three main classes:</p>
+
+<ul>
+  <li><a href="../classes/PlayersGeneral.html" class="crosslink">PlayersGeneral</a>, used in the generic players, for instance in <a href="../modules/lesson-editor.html">lesson-editor</a> and <a href="../modules/lesson-viewer.html">lesson-viewer</a></li>
+  <li><a href="../classes/PlayersAudioEditor.html" class="crosslink">PlayersAudioEditor</a>, used in the players of the module <a href="../modules/audio-editor.html">audio-editor</a> (only players of kind <b>audio</b>)</li>
+  <li><a href="../classes/PlayersVideoEditor.html" class="crosslink">PlayersVideoEditor</a>, used in the players of the module <a href="../modules/video-editor.html">video-editor</a> (mainly players of kind <b>video</b>, but also of kind <b>audio</b> for the background audio track).</li>
+</ul>
 </div>
 
 

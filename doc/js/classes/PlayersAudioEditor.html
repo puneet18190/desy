@@ -223,7 +223,7 @@
 
             <ul id="api-modules" class="apis modules">
             
-                <li><a href="..&#x2F;modules/administration.html">administration</a></li>
+                <li><a href="..&#x2F;modules/admin.html">admin</a></li>
             
                 <li><a href="..&#x2F;modules/ajax-loader.html">ajax-loader</a></li>
             
@@ -395,7 +395,29 @@
     <h3 class="name"><code>initializeActionOfMediaTimeUpdaterInAudioEditor</code></h3>
 
     
-        <span class="paren">()</span>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>media</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>identifier</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>force_parsed_int</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
     
 
     
@@ -423,7 +445,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_players.js.html#l10"><code>app&#x2F;assets&#x2F;javascripts&#x2F;players.js:10</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_players.js.html#l15"><code>app&#x2F;assets&#x2F;javascripts&#x2F;players.js:15</code></a>
         
         </p>
 
@@ -434,9 +456,67 @@
     </div>
 
     <div class="description">
-        
+        <p>This method is fired each time the audio component player receives an event of <b>timeupdate</b>. There are two cases of use of this method:</p>
+
+<ul>
+  <li>if the Audio Editor <b>is not in preview mode</b>, it operates as a normal player (see <a href="../classes/PlayersGeneral.html#method_initializeActionOfMediaTimeUpdater" class="crosslink">initializeActionOfMediaTimeUpdater</a>), with very slight differences due to the different environment</li>
+  <li>if we are <b>in preview mode</b>, the method acts as a counterpart of <a href="../classes/AudioEditorPreview.html#method_startAudioEditorPreview" class="crosslink">startAudioEditorPreview</a>: at any time the seconds increase, the method updates the timer using <a href="../classes/AudioEditorPreview.html#method_increaseAudioEditorPreviewTimer" class="crosslink">increaseAudioEditorPreviewTimer</a>; when the audio is over, if it's not playing the last component, the method calls <a href="../classes/AudioEditorPreview.html#method_startAudioEditorPreview" class="crosslink">startAudioEditorPreview</a> for the following one.</li>
+</ul>
     </div>
 
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">media</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>HTML selector for the audio</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">identifier</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>unique identifier for the audio component (see <a href="../modules/audio-editor.html">audio-editor</a>)</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">force_parsed_int</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>forces the last second of the audio; normally it's <i>false</i>, except the case in which the duration of the audio is very close to the biggest lower integer (for instance, the duration is 10.01, which is very close to 10): in this case, the signal that the audio ended <b>is not received directly by the current method</b>, but rather by the event handler <b>ended</b> initialized in the end of <a href="../classes/PlayersAudioEditor.html#method_initializeAudioEditorCutter" class="crosslink">initializeAudioEditorCutter</a></p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
     
 
     
@@ -449,7 +529,17 @@
     <h3 class="name"><code>initializeAudioEditorCutter</code></h3>
 
     
-        <span class="paren">()</span>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>identifier</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
     
 
     
@@ -477,7 +567,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_players.js.html#l61"><code>app&#x2F;assets&#x2F;javascripts&#x2F;players.js:61</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_players.js.html#l74"><code>app&#x2F;assets&#x2F;javascripts&#x2F;players.js:74</code></a>
         
         </p>
 
@@ -488,9 +578,32 @@
     </div>
 
     <div class="description">
-        <p>bla bla bla</p>
+        <p>Initializes two sliders: one (JQueryUi single slider) for the <b>cursor</b>, and one (JQueryUi double slider) for the <b>cutting handles</b>. It also initializes how to handle the event <b>ended</b> associated to the audio.</p>
     </div>
 
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">identifier</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>the unique identifier of the audio component (see <a href="../modules/audio-editor.html">audio-editor</a>)</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
     
 
     
@@ -503,7 +616,17 @@
     <h3 class="name"><code>initializeMediaTimeUpdaterInAudioEditor</code></h3>
 
     
-        <span class="paren">()</span>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>identifier</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
     
 
     
@@ -531,7 +654,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_players.js.html#l151"><code>app&#x2F;assets&#x2F;javascripts&#x2F;players.js:151</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_players.js.html#l165"><code>app&#x2F;assets&#x2F;javascripts&#x2F;players.js:165</code></a>
         
         </p>
 
@@ -542,9 +665,32 @@
     </div>
 
     <div class="description">
-        <p>bla bla bla</p>
+        <p>This is the method that associates <a href="../classes/PlayersAudioEditor.html#method_initializeActionOfMediaTimeUpdaterInAudioEditor" class="crosslink">initializeActionOfMediaTimeUpdaterInAudioEditor</a> to the event of <b>timeupdate</b>. Notice that the method waits until he receives the event <b>loadedmetadata</b> before working.</p>
     </div>
 
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">identifier</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>the unique identifier of the audio component (see <a href="../modules/audio-editor.html">audio-editor</a>)</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
     
 
     
@@ -557,7 +703,23 @@
     <h3 class="name"><code>selectAudioComponentCutterHandle</code></h3>
 
     
-        <span class="paren">()</span>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>component</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>val</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
     
 
     
@@ -585,7 +747,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_players.js.html#l171"><code>app&#x2F;assets&#x2F;javascripts&#x2F;players.js:171</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_players.js.html#l186"><code>app&#x2F;assets&#x2F;javascripts&#x2F;players.js:186</code></a>
         
         </p>
 
@@ -596,9 +758,47 @@
     </div>
 
     <div class="description">
-        <p>bla bla bla</p>
+        <p>Method that <b>updates the audio cursor</b>, in case one of the two handles passes over the cursor (the cursor must follow the handle).</p>
     </div>
 
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">component</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>the JQuery object representing the component</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">val</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>the value to be assigned</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
     
 
     

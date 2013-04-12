@@ -223,7 +223,7 @@
 
             <ul id="api-modules" class="apis modules">
             
-                <li><a href="..&#x2F;modules/administration.html">administration</a></li>
+                <li><a href="..&#x2F;modules/admin.html">admin</a></li>
             
                 <li><a href="..&#x2F;modules/ajax-loader.html">ajax-loader</a></li>
             
@@ -305,7 +305,18 @@
 <div class="file">
     <pre class="code prettyprint linenums">
 &#x2F;**
-Provides video editor ajax actions. TODO per quanto riguarda la fase di commit, copiare il paragrafo da audio e image editor e adattarlo
+The Video Editor is structured as follows: centered in the middle of the Editor is located the &lt;b&gt;preview screen&lt;&#x2F;b&gt;, below it the &lt;b&gt;components timeline&lt;&#x2F;b&gt; and the &lt;b&gt;audio track&lt;&#x2F;b&gt;, and on the right the &lt;b&gt;preview column&lt;&#x2F;b&gt; which contains also global statistics about the video.
+&lt;br&#x2F;&gt;&lt;br&#x2F;&gt;
+A video created with the Video Editor can be composed by &lt;b&gt;three types of components&lt;&#x2F;b&gt; (and optionally an &lt;b&gt;audio track&lt;&#x2F;b&gt;):
+&lt;ul&gt;
+  &lt;li&gt;a &lt;b&gt;video component&lt;&#x2F;b&gt; is an element of type video extracted from the user&#x27;s gallery, associated to an &lt;b&gt;initial&lt;&#x2F;b&gt; and &lt;b&gt;final point&lt;&#x2F;b&gt;&lt;&#x2F;li&gt;
+  &lt;li&gt;a &lt;b&gt;image component&lt;&#x2F;b&gt; is an element of type image extracted from the user&#x27;s gallery, associated to a &lt;b&gt;duration&lt;&#x2F;b&gt; in seconds (the image is held in the video for a number of seconds equal to the component&#x27;s duration); the image is centered and cropped mantaining its original proportions, to make it fit in the video screen (which has proportions 16&#x2F;9)&lt;&#x2F;li&gt;
+  &lt;li&gt;a &lt;b&gt;text component&lt;&#x2F;b&gt; is a centered title for which the user chooses a &lt;b&gt;background color&lt;&#x2F;b&gt;, a &lt;b&gt;font color&lt;&#x2F;b&gt; and a &lt;b&gt;duration&lt;&#x2F;b&gt; (which has the same interpretation as for image components).&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+
+
+&lt;br&#x2F;&gt;&lt;br&#x2F;&gt;
+As for the other Element Editors ({{#crossLinkModule &quot;image-editor&quot;}}{{&#x2F;crossLinkModule}}, {{#crossLinkModule &quot;audio-editor&quot;}}{{&#x2F;crossLinkModule}}) the core of the process of committing changes is handled in the module {{#crossLinkModule &quot;media-element-editor&quot;}}{{&#x2F;crossLinkModule}} (more specificly in the class {{#crossLink &quot;MediaElementEditorForms&quot;}}{{&#x2F;crossLink}}); the part of this functionality specific for the Video Editor is handled in {{#crossLink &quot;VideoEditorDocumentReady&#x2F;videoEditorDocumentReadyCommit:method&quot;}}{{&#x2F;crossLink}}.
 @module video-editor
 **&#x2F;
 

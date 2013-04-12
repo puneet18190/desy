@@ -1,5 +1,13 @@
 /**
-Tags autocomplete, _add_ and _remove_ from list.
+The functions in this module handle two different functionalities of <b>autocomplete</b> for tags: suggestions for a research (<b>search autocomplete</b>), and suggestions for tagging lessons and media elements (<b>tagging autocomplete</b>). Both modes use the same JQuery plugin called <i>JQueryAutocomplete</i> (the same used in {{#crossLink "AdminAutocomplete/initNotificationsAutocomplete:method"}}{{/crossLink}}).
+<br/><br/>
+The <b>search</b> autocomplete mode requires a simple initializer (method {{#crossLink "TagsInitializers/initSearchTagsAutocomplete:method"}}{{/crossLink}}), which is called for three different keyword inputs of the search engine (the general one, the one for elements and the one for lessons, see {{#crossLink "TagsDocumentReady/tagsDocumentReady:method"}}{{/crossLink}}).
+<br/><br/>
+The <b>tagging</b> autocomplete mode is slightly more complicated, because it must show to the user a friendly view of the tags he added (small boxes with an 'x' to remove it) and at the same time store a string value to be send to the rails backend. The implemented solution is a <b>container</b> div that contains a list of tag <b>boxes</b> (implemented with span, see {{#crossLink "TagsAccessories/createTagSpan:method"}}{{/crossLink}}) and an <b>tag input</b> where the user writes; when he inserts a new tag and presses <i>enter</i> or <i>comma</i>, the tag is added to the previous line in the container; if such a line is full, the tag input is moved to the next line; when the lines in the container are over, the tag input gets disabled (see {{#crossLink "TagsAccessories/disableTagsInputTooHigh:method"}}{{/crossLink}}). During this whole process, a <b>hidden input</b> gets updated with a string representing the current tags separated by comma ({{#crossLink "TagsAccessories/addToTagsValue:method"}}{{/crossLink}}, {{#crossLink "TagsAccessories/removeFromTagsValue:method"}}{{/crossLink}}).
+<br/><br/>
+The system also checks if the inserted tag is not repeated (using {{#crossLink "TagsAccessories/checkNoTagDuplicates:method"}}{{/crossLink}}), and assigns a different color for tags already in the database and for new ones ({{#crossLink "TagsAccessories/addTagWithoutSuggestion:method"}}{{/crossLink}}).
+<br/><br/>
+The <b>tagging autocomplete mode</b> is initialized for six standard forms (see initializers in the class {{#crossLink "TagsDocumentReady"}}{{/crossLink}}).
 @module tags
 **/
 
@@ -8,12 +16,12 @@ Tags autocomplete, _add_ and _remove_ from list.
 
 
 /**
-Handle adding tag not in the autocomplete data list
+Adds a tag without using the suggestion (the case with the suggestion is handled by {{#crossLink "TagsInitializers/initTagsAutocomplete:method"}}{{/crossLink}}). In the particular case in which the user adds the tag <b>before</b> the autocomplete has shown the list of matches, this method calls a route from the backend that checks if the tag was present in the database: if yes, the tag gets colored differently.
 @method addTagWithoutSuggestion
 @for TagsAccessories
-@param input {String} input selector for tag, class or id
-@param container_selector {String} added tags container selector, class or id
-@param tags_value_selector {String} hidden input field for tags value selector
+@param input {String} HTML selector for the tag input
+@param container_selector {String} HTML selector for the container
+@param tags_value_selector {String} HTML selector for the hidden input
 **/
 function addTagWithoutSuggestion(input, container_selector, tags_value_selector) {
   var my_val = $.trim($(input).val()).toLowerCase();
@@ -43,11 +51,11 @@ function addTagWithoutSuggestion(input, container_selector, tags_value_selector)
 }
 
 /**
-Add tag word to hidden field with tags values
+Adds a tag to the <b>hidden input</b>.
 @method addToTagsValue
 @for TagsAccessories
-@param word {String} tag name
-@param value_selector {String} hidden input field for tags value selector
+@param word {String} tag to be inserted
+@param value_selector {String} HTML selector for the hidden input
 **/
 function addToTagsValue(word, value_selector) {
   var old_value = $(value_selector).val();
@@ -60,11 +68,11 @@ function addToTagsValue(word, value_selector) {
 }
 
 /**
-Checks if a tag word is present in the tags container.
+Checks if a tag is already present in the hidden input.
 @method checkNoTagDuplicates
 @for TagsAccessories
-@param word {String} tag name
-@param container_selector {String} tags container selector
+@param word {String} tag to be checked
+@param container_selector {String} HTML selector for the container
 @return {Boolean}
 **/
 function checkNoTagDuplicates(word, container_selector) {
@@ -78,11 +86,11 @@ function checkNoTagDuplicates(word, container_selector) {
 }
 
 /**
-Creates a new span element for a new tag.
+Creates a new span box for a tag.
 @method createTagSpan
 @for TagsAccessories
-@param word {String} tag name
-@param new_tag {Boolean} flag true if it's a new tag, false otherwise
+@param word {String} tag to be created
+@param new_tag {Boolean} true if it must be colored as a tag not present in the database yet
 @return {Object} span element
 **/
 function createTagSpan(word, new_tag) {
@@ -95,11 +103,11 @@ function createTagSpan(word, new_tag) {
 }
 
 /**
-Disable insert new tag when tags container is full.
+Disables the tag input if the container is full.
 @method disableTagsInputTooHigh
 @for TagsAccessories
-@param container_selector {String} tags container selector, class or id
-@param input_selector {String} new tag input selector, class or id
+@param container_selector {String} HTML selector for the container
+@param input_selector {String} HTML selector for the tag input
 **/
 function disableTagsInputTooHigh(container_selector, input_selector) {
   if($(container_selector)[0].scrollHeight > $(container_selector).height()) {
@@ -108,11 +116,11 @@ function disableTagsInputTooHigh(container_selector, input_selector) {
 }
 
 /**
-Generates a name_aware class for a given tag
+Generates a unique class for a given tag (containing underscores, and taking into consideration special characters).
 @method getUnivoqueClassForTag
 @for TagsAccessories
-@param word {String} tag name
-@return {String} i.e. w_a_t_e_r_
+@param word {String} tag
+@return {String} unique class for that tag
 **/
 function getUnivoqueClassForTag(word) {
   var resp = '';
@@ -123,11 +131,11 @@ function getUnivoqueClassForTag(word) {
 }
 
 /**
-Remove tag word to hidden field with tags values
+Removes a tag from the <b>hidden input</b>.
 @method removeFromTagsValue
 @for TagsAccessories
-@param word {String} tag name
-@param value_selector {String} hidden input field for tags value selector
+@param word {String} tag to be removed
+@param value_selector {String} HTML selector for the hidden input
 **/
 function removeFromTagsValue(word, value_selector) {
   var old_value = $(value_selector).val();
@@ -140,7 +148,7 @@ function removeFromTagsValue(word, value_selector) {
 
 
 /**
-bla bla bla
+Global initializer for all instances of search autocomplete and tagging autocomplete.
 @method tagsDocumentReady
 @for TagsDocumentReady
 **/
@@ -157,7 +165,7 @@ function tagsDocumentReady() {
 }
 
 /**
-bla bla bla
+Initializer for tagging autocomplete in the form to <b>change the general information of a media element</b> (see {{#crossLink "DialogsWithForm/showMediaElementInfoPopUp:method"}}{{/crossLink}}).
 @method tagsDocumentReadyChangeMediaElementInfo
 @for TagsDocumentReady
 **/
@@ -202,7 +210,7 @@ function tagsDocumentReadyChangeMediaElementInfo() {
 }
 
 /**
-bla bla bla
+Initializer for tagging autocomplete in the form to <b>upload a new media element</b> (see {{#crossLink "DialogsWithForm/showLoadMediaElementPopUp:method"}}{{/crossLink}} and the module {{#crossLinkModule "media-element-loader"}}{{/crossLinkModule}}).
 @method tagsDocumentReadyMediaElementLoader
 @for TagsDocumentReady
 **/
@@ -237,7 +245,7 @@ function tagsDocumentReadyMediaElementLoader() {
 }
 
 /**
-bla bla bla
+Initializer for tagging autocomplete in the form to <b>create a new lesson</b>.
 @method tagsDocumentReadyNewLesson
 @for TagsDocumentReady
 **/
@@ -272,7 +280,7 @@ function tagsDocumentReadyNewLesson() {
 }
 
 /**
-bla bla bla
+Initializer for tagging autocomplete in the form to <b>save as new an element in the {{#crossLinkModule "media-element-editor"}}{{/crossLinkModule}}</b> (see the method {{#crossLink "MediaElementEditorForms/resetMediaElementEditorForms:method"}}{{/crossLink}}).
 @method tagsDocumentReadyNewMediaElement
 @for TagsDocumentReady
 **/
@@ -307,7 +315,7 @@ function tagsDocumentReadyNewMediaElement() {
 }
 
 /**
-bla bla bla
+Initializer for tagging autocomplete in the form to <b>overwrite an element in the {{#crossLinkModule "media-element-editor"}}{{/crossLinkModule}}</b> (see the method {{#crossLink "MediaElementEditorForms/resetMediaElementEditorForms:method"}}{{/crossLink}}).
 @method tagsDocumentReadyOvervriteMediaElement
 @for TagsDocumentReady
 **/
@@ -345,7 +353,7 @@ function tagsDocumentReadyOvervriteMediaElement() {
 }
 
 /**
-bla bla bla
+Initializer for tagging autocomplete in the form to <b>update the general information of a lesson</b>.
 @method tagsDocumentReadyUpdateLesson
 @for TagsDocumentReady
 **/
@@ -386,10 +394,10 @@ function tagsDocumentReadyUpdateLesson() {
 
 
 /**
-Initialize jQueryUI _autocomplete_ for tags in search input Uses: [unbindLoader](../classes/unbindLoader.html#method_unbindLoader) and [bindLoader](../classes/bindLoader.html#method_bindLoader)
+Initializer for search autocompĺete.
 @method initSearchTagsAutocomplete
 @for TagsInitializers
-@param input {String} search by tag input selector, class or id
+@param input {String} HTML selector for the input
 **/
 function initSearchTagsAutocomplete(input) {
   var cache = {};
@@ -416,10 +424,10 @@ function initSearchTagsAutocomplete(input) {
 }
 
 /**
-Initialize jQueryUI _autocomplete_ for tags in lessons and elements form
+Initializer for tagging autocompĺete.
 @method initTagsAutocomplete
 @for TagsInitializers
-@param scope {String} tags container scope, class or id
+@param scope {String} HTML scope for the tag container
 **/
 function initTagsAutocomplete(scope) {
   var input_selector = scope + ' #tags';
@@ -440,9 +448,9 @@ function initTagsAutocomplete(scope) {
   $(input_selector).autocomplete({
     source: function(request, response) {
       $.ajax({
-        dataType: "json",
+        dataType: 'json',
         beforeSend: unbindLoader(),
-        url: "/tags/get_list",
+        url: '/tags/get_list',
         data: {term: request.term},
         success: response
       }).always(bindLoader);

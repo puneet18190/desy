@@ -1,5 +1,10 @@
 /**
-Media elements players: initializer, play, stop, update frame.
+This module contains the javascript functions and initializers used in the <b>media players</b> all over the application. The model can be divided into three main classes:
+<ul>
+  <li>{{#crossLink "PlayersGeneral"}}{{/crossLink}}, used in the generic players, for instance in {{#crossLinkModule "lesson-editor"}}{{/crossLinkModule}} and {{#crossLinkModule "lesson-viewer"}}{{/crossLinkModule}}</li>
+  <li>{{#crossLink "PlayersAudioEditor"}}{{/crossLink}}, used in the players of the module {{#crossLinkModule "audio-editor"}}{{/crossLinkModule}} (only players of kind <b>audio</b>)</li>
+  <li>{{#crossLink "PlayersVideoEditor"}}{{/crossLink}}, used in the players of the module {{#crossLinkModule "video-editor"}}{{/crossLinkModule}} (mainly players of kind <b>video</b>, but also of kind <b>audio</b> for the background audio track).</li>
+</ul>
 @module players
 **/
 
@@ -8,8 +13,16 @@ Media elements players: initializer, play, stop, update frame.
 
 
 /**
+This method is fired each time the audio component player receives an event of <b>timeupdate</b>. There are two cases of use of this method:
+<ul>
+  <li>if the Audio Editor <b>is not in preview mode</b>, it operates as a normal player (see {{#crossLink "PlayersGeneral/initializeActionOfMediaTimeUpdater:method"}}{{/crossLink}}), with very slight differences due to the different environment</li>
+  <li>if we are <b>in preview mode</b>, the method acts as a counterpart of {{#crossLink "AudioEditorPreview/startAudioEditorPreview:method"}}{{/crossLink}}: at any time the seconds increase, the method updates the timer using {{#crossLink "AudioEditorPreview/increaseAudioEditorPreviewTimer:method"}}{{/crossLink}}; when the audio is over, if it's not playing the last component, the method calls {{#crossLink "AudioEditorPreview/startAudioEditorPreview:method"}}{{/crossLink}} for the following one.</li>
+</ul>
 @method initializeActionOfMediaTimeUpdaterInAudioEditor
 @for PlayersAudioEditor
+@param media {String} HTML selector for the audio
+@param identifier {Number} unique identifier for the audio component (see {{#crossLinkModule "audio-editor"}}{{/crossLinkModule}})
+@param force_parsed_int {Boolean} forces the last second of the audio; normally it's <i>false</i>, except the case in which the duration of the audio is very close to the biggest lower integer (for instance, the duration is 10.01, which is very close to 10): in this case, the signal that the audio ended <b>is not received directly by the current method</b>, but rather by the event handler <b>ended</b> initialized in the end of {{#crossLink "PlayersAudioEditor/initializeAudioEditorCutter:method"}}{{/crossLink}}
 **/
 function initializeActionOfMediaTimeUpdaterInAudioEditor(media, identifier, force_parsed_int) {
   var component = $('#audio_component_' + identifier);
@@ -59,9 +72,10 @@ function initializeActionOfMediaTimeUpdaterInAudioEditor(media, identifier, forc
 }
 
 /**
-bla bla bla
+Initializes two sliders: one (JQueryUi single slider) for the <b>cursor</b>, and one (JQueryUi double slider) for the <b>cutting handles</b>. It also initializes how to handle the event <b>ended</b> associated to the audio.
 @method initializeAudioEditorCutter
 @for PlayersAudioEditor
+@param identifier {Number} the unique identifier of the audio component (see {{#crossLinkModule "audio-editor"}}{{/crossLinkModule}})
 **/
 function initializeAudioEditorCutter(identifier) {
   var component = $('#audio_component_' + identifier);
@@ -149,9 +163,10 @@ function initializeAudioEditorCutter(identifier) {
 }
 
 /**
-bla bla bla
+This is the method that associates {{#crossLink "PlayersAudioEditor/initializeActionOfMediaTimeUpdaterInAudioEditor:method"}}{{/crossLink}} to the event of <b>timeupdate</b>. Notice that the method waits until he receives the event <b>loadedmetadata</b> before working.
 @method initializeMediaTimeUpdaterInAudioEditor
 @for PlayersAudioEditor
+@param identifier {Number} the unique identifier of the audio component (see {{#crossLinkModule "audio-editor"}}{{/crossLinkModule}})
 **/
 function initializeMediaTimeUpdaterInAudioEditor(identifier) {
   media = $('#audio_component_' + identifier + ' audio');
@@ -169,9 +184,11 @@ function initializeMediaTimeUpdaterInAudioEditor(identifier) {
 }
 
 /**
-bla bla bla
+Method that <b>updates the audio cursor</b>, in case one of the two handles passes over the cursor (the cursor must follow the handle).
 @method selectAudioComponentCutterHandle
 @for PlayersAudioEditor
+@param component {Object} the JQuery object representing the component
+@param val {Number} the value to be assigned
 **/
 function selectAudioComponentCutterHandle(component, val) {
   setCurrentTimeToMedia(component.find('audio'), val);
@@ -184,9 +201,42 @@ function selectAudioComponentCutterHandle(component, val) {
 
 
 /**
-bla bla bla
+Method that logs all the possible events of a given media.
+@method mediaEventsLogger
+@for PlayersCommon
+@param media {Object} the jquery object representing a <b>video</b> or an <b>audio</b> tag
+**/
+function mediaEventsLogger(media) {
+  media.on('loadstart', function() {console.log('loadstart');});
+  media.on('progress', function() {console.log('progress');});
+  media.on('suspend', function() {console.log('suspend');});
+  media.on('abort', function() {console.log('abort');});
+  media.on('error', function() {console.log('error');});
+  media.on('emptied', function() {console.log('emptied');});
+  media.on('stalled', function() {console.log('stalled');});
+  media.on('loadedmetadata', function() {console.log('loadedmetadata');});
+  media.on('loadeddata', function() {console.log('loadeddata');});
+  media.on('canplay', function() {console.log('canplay');});
+  media.on('canplaythrough', function() {console.log('canplaythrough');});
+  media.on('playing', function() {console.log('playing');});
+  media.on('waiting', function() {console.log('waiting');});
+  media.on('seeking', function() {console.log('seeking');});
+  media.on('seeked', function() {console.log('seeked');});
+  media.on('ended', function() {console.log('ended');});
+  media.on('durationchange', function() {console.log('durationchange');});
+  media.on('timeupdate', function() {console.log('timeupdate');});
+  media.on('play', function() {console.log('play');});
+  media.on('pause', function() {console.log('pause');});
+  media.on('ratechange', function() {console.log('ratechange');});
+  media.on('volumechange', function() {console.log('volumechange');});
+}
+
+/**
+Sets a time to any media in any environment. Notice that the method waits until he receives the event <b>loadedmetadata</b> before working.
 @method setCurrentTimeToMedia
 @for PlayersCommon
+@param media {Object} the jquery object representing a <b>video</b> or an <b>audio</b> tag
+@param seek {Float} the time to be set
 **/
 function setCurrentTimeToMedia(media, seek) {
   if(media[0].readyState != 0) {
@@ -199,9 +249,11 @@ function setCurrentTimeToMedia(media, seek) {
 }
 
 /**
-bla bla bla
+It shows an alert with error details, in case a media returned error.
 @method showLoadingMediaErrorPopup
 @for PlayersCommon
+@param code {Number} the code associated to the error (it can be 1, 2, 3 or 4)
+@param type {String} either <b>'audio'</b> or <b>'video'</b>
 **/
 function showLoadingMediaErrorPopup(code, type) {
   var captions = $('#popup_captions_container');
@@ -213,7 +265,7 @@ function showLoadingMediaErrorPopup(code, type) {
 }
 
 /**
-bla bla bla
+Stops all media in the page.
 @method stopAllMedia
 @for PlayersCommon
 **/
@@ -224,16 +276,18 @@ function stopAllMedia() {
 }
 
 /**
-IE SI ARRABBIA SE GLI SETTI UN VALORE DI SEEK NON COMPRESO TRA L'INIZIO E LA FINE DEI VALORI SEEKABLE
+Submethod of {{#crossLink "PlayersCommon/setCurrentTimeToMedia:method"}}{{/crossLink}}, used because some browsers (Internet Explorer for instance), get broken if the value of seek is not included in the <b>seekable interval</b>.
 @method validSeek
 @for PlayersCommon
+@param media {Object} the jquery object representing a <b>video</b> or an <b>audio</b> tag
+@param seek {Float} the value to be assigned to the media
 **/
 function validSeek(media, seek) {
   var confidence = 0.001;
   var minStart = media[0].seekable.start(0);
   var maxEnd = media[0].seekable.end(0);
   if (seek < minStart) {
-    seek = minStart+confidence;
+    seek = minStart + confidence;
   } else if (seek > maxEnd) {
     seek = maxEnd - confidence;
   }
@@ -245,7 +299,7 @@ function validSeek(media, seek) {
 
 
 /**
-bla bla bla
+Global initializer for players.
 @method playersDocumentReady
 @for PlayersDocumentReady
 **/
@@ -256,7 +310,7 @@ function playersDocumentReady() {
 }
 
 /**
-bla bla bla
+Initializer for buttons inside a cutter in {{#crossLinkModule "audio-editor"}}{{/crossLinkModule}}.
 @method playersDocumentReadyAudioEditor
 @for PlayersDocumentReady
 **/
@@ -320,7 +374,7 @@ function playersDocumentReadyAudioEditor() {
 }
 
 /**
-bla bla bla
+Initializer for buttons inside any player.
 @method playersDocumentReadyGeneral
 @for PlayersDocumentReady
 **/
@@ -353,7 +407,7 @@ function playersDocumentReadyGeneral() {
 }
 
 /**
-bla bla bla
+Initializer for buttons inside a cutter in {{#crossLinkModule "video-editor"}}{{/crossLinkModule}}.
 @method playersDocumentReadyVideoEditor
 @for PlayersDocumentReady
 **/
@@ -424,39 +478,11 @@ function playersDocumentReadyVideoEditor() {
 
 
 /**
-bla bla bla
-@method mediaEventsLogger
-@for PlayersGeneral
-**/
-function mediaEventsLogger(media) {
-  media.on('loadstart', function() {console.log('loadstart');});
-  media.on('progress', function() {console.log('progress');});
-  media.on('suspend', function() {console.log('suspend');});
-  media.on('abort', function() {console.log('abort');});
-  media.on('error', function() {console.log('error');});
-  media.on('emptied', function() {console.log('emptied');});
-  media.on('stalled', function() {console.log('stalled');});
-  media.on('loadedmetadata', function() {console.log('loadedmetadata');});
-  media.on('loadeddata', function() {console.log('loadeddata');});
-  media.on('canplay', function() {console.log('canplay');});
-  media.on('canplaythrough', function() {console.log('canplaythrough');});
-  media.on('playing', function() {console.log('playing');});
-  media.on('waiting', function() {console.log('waiting');});
-  media.on('seeking', function() {console.log('seeking');});
-  media.on('seeked', function() {console.log('seeked');});
-  media.on('ended', function() {console.log('ended');});
-  media.on('durationchange', function() {console.log('durationchange');});
-  media.on('timeupdate', function() {console.log('timeupdate');});
-  media.on('play', function() {console.log('play');});
-  media.on('pause', function() {console.log('pause');});
-  media.on('ratechange', function() {console.log('ratechange');});
-  media.on('volumechange', function() {console.log('volumechange');});
-}
-
-/**
-bla bla bla
+Method that handles the event <b>timeupdate</b> for general audio or video players: if we got to the last second, the method rewinds the media, otherwise sets the time to the slider (this happens even if the slider already had that value, unlike the methods {{#crossLink "PlayersAudioEditor/initializeActionOfMediaTimeUpdaterInAudioEditor:method"}}{{/crossLink}} and {{#crossLink "PlayersVideoEditor/initializeActionOfMediaTimeUpdaterInVideoEditor:method"}}{{/crossLink}} during <b>preview mode</b>).
 @method initializeActionOfMediaTimeUpdater
 @for PlayersGeneral
+@param media {String} HTML selector for the audio or video
+@param reference_id {String} HTML id of the unique container of the audio or video
 **/
 function initializeActionOfMediaTimeUpdater(media, reference_id) {
   var duration = $('#' + reference_id).data('duration');
@@ -474,9 +500,11 @@ function initializeActionOfMediaTimeUpdater(media, reference_id) {
 }
 
 /**
-bla bla bla
+Initializes the media player for a generic audio or video.
 @method initializeMedia
 @for PlayersGeneral
+@param content_id {String} the HTML id of the unique container of the media
+@param type {String} it can be either <b>'audio'</b> or <b>'video'</b>
 **/
 function initializeMedia(content_id, type) {
   var duration = $('#' + content_id).data('duration');
@@ -500,11 +528,11 @@ function initializeMedia(content_id, type) {
 }
 
 /**
-bla bla bla
+This is the method that associates {{#crossLink "PlayersGeneral/initializeActionOfMediaTimeUpdater:method"}}{{/crossLink}} to the event of <b>timeupdate</b>. Notice that the method waits until he receives the event <b>loadedmetadata</b> before working.
 @method initializeMediaTimeUpdater
 @for PlayersGeneral
-@param media {String} media element selector class or id
-@param reference_id {String}
+@param media {String} HTML selector for the audio or video
+@param reference_id {String} HTML id of the unique container of the audio or video
 **/
 function initializeMediaTimeUpdater(media, reference_id) {
   media = $(media);
@@ -522,9 +550,10 @@ function initializeMediaTimeUpdater(media, reference_id) {
 }
 
 /**
-bla bla bla
+Stops a generic media, logging errors in the console.
 @method stopMedia
 @for PlayersGeneral
+@param media {String} HTML selector for the audio or video
 **/
 function stopMedia(media) {
   try {
@@ -553,9 +582,17 @@ function stopMedia(media) {
 
 
 /**
-bla bla bla
+This method has the same cases of use of {{#crossLink "PlayersAudioEditor/initializeActionOfMediaTimeUpdaterInAudioEditor:method"}}{{/crossLink}}, with a couple of details more due to the more complicated environment present in {{#crossLinkModule "video-editor"}}{{/crossLinkModule}}:
+<ul>
+  <li>the passage from a component to another (the method called in this case is {{#crossLink "VideoEditorPreview/playVideoEditorComponent:method"}}{{/crossLink}}) must handle a <b>transition</b> of one second</li>
+  <li>it's necessary to hide and show the preview <b>progress bar</b> (see {{#crossLink "VideoEditorPreviewAccessories/showVideoEditorPreviewComponentProgressBar:method"}}{{/crossLink}}) positioning it with the help of the methods in {{#crossLink "MediaElementEditorHorizontalTimelines"}}{{/crossLink}}</li>
+  <li>the method needs also to update the <b>background audio track</b>, but only if it's present and if the <b>global preview time</b> is not greater than its duration.</li>
+</ul>
 @method initializeActionOfMediaTimeUpdaterInVideoEditor
 @for PlayersVideoEditor
+@param media {String} HTML selector for the video
+@param identifier {Number} unique identifier for the video component (see {{#crossLinkModule "video-editor"}}{{/crossLinkModule}})
+@param force_parsed_int {Boolean} forces the last second of the video; normally it's <i>false</i>, except the case in which the duration of the video is very close to the biggest lower integer (for instance, the duration is 10.01, which is very close to 10): in this case, the signal that the video ended <b>is not received directly by the current method</b>, but rather by the event handler <b>ended</b> initialized in the end of {{#crossLink "PlayersVideoEditor/initializeVideoInVideoEditorPreview:method"}}{{/crossLink}}
 **/
 function initializeActionOfMediaTimeUpdaterInVideoEditor(media, identifier, force_parsed_int) {
   var video_cut_to = $('#video_component_' + identifier + '_cutter').data('to');
@@ -627,9 +664,11 @@ function initializeActionOfMediaTimeUpdaterInVideoEditor(media, identifier, forc
 }
 
 /**
-bla bla bla
+This is the method that associates {{#crossLink "PlayersVideoEditor/initializeActionOfMediaTimeUpdaterInVideoEditor:method"}}{{/crossLink}} to the event of <b>timeupdate</b>. Notice that the method waits until he receives the event <b>loadedmetadata</b> before working.
 @method initializeMediaTimeUpdaterInVideoEditor
 @for PlayersVideoEditor
+@param media {String} HTML selector for the audio or video
+@param identifier {Number} unique identifier of a video component (see {{#crossLinkModule "video-editor"}}{{/crossLinkModule}})
 **/
 function initializeMediaTimeUpdaterInVideoEditor(media, identifier) {
   media = $(media);
@@ -647,9 +686,10 @@ function initializeMediaTimeUpdaterInVideoEditor(media, identifier) {
 }
 
 /**
-bla bla bla
+Initializes two sliders: one (JQueryUi single slider) for the <b>cursor</b>, and one (JQueryUi double slider) for the <b>cutting handles</b>. It also initializes how to handle the event <b>ended</b> associated to the video.
 @method initializeVideoInVideoEditorPreview
 @for PlayersVideoEditor
+@param identifier {Number} the unique identifier of the video component (see {{#crossLinkModule "video-editor"}}{{/crossLinkModule}})
 **/
 function initializeVideoInVideoEditorPreview(identifier) {
   var my_cutter = $('#video_component_' + identifier + '_cutter');
@@ -721,14 +761,15 @@ function initializeVideoInVideoEditorPreview(identifier) {
     } else {
       stopVideoInVideoEditorPreview(identifier);
     }
-    
   });
 }
 
 /**
-bla bla bla
+Method that <b>updates the video cursor</b>, in case one of the two handles passes over the cursor (the cursor must follow the handle).
 @method selectVideoComponentCutterHandle
 @for PlayersVideoEditor
+@param cutter {Object} the JQuery object representing the cutter for that particular component (see {{#crossLinkModule "video-editor"}}{{/crossLinkModule}})
+@param val {Number} the value to be assigned
 **/
 function selectVideoComponentCutterHandle(cutter, val) {
   setCurrentTimeToMedia($('#' + cutter.attr('id').replace('cutter', 'preview') + ' video'), val);
@@ -736,9 +777,10 @@ function selectVideoComponentCutterHandle(cutter, val) {
 }
 
 /**
-bla bla bla
+Specific method to call if the event <b>ended</b> is fired on the video and we are not in the {{#crossLinkModule "video-editor"}}{{/crossLinkModule}} preview mode (unlike in {{#crossLink "PlayersAudioEditor"}}{{/crossLink}}, in this case it's separated by the method {{#crossLink "PlayersVideoEditor/initializeVideoInVideoEditorPreview:method"}}{{/crossLink}}, since it's more complicated.
 @method stopVideoInVideoEditorPreview
 @for PlayersVideoEditor
+@param identifier {Number} the unique identifier of the video component
 **/
 function stopVideoInVideoEditorPreview(identifier) {
   try {

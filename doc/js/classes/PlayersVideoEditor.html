@@ -223,7 +223,7 @@
 
             <ul id="api-modules" class="apis modules">
             
-                <li><a href="..&#x2F;modules/administration.html">administration</a></li>
+                <li><a href="..&#x2F;modules/admin.html">admin</a></li>
             
                 <li><a href="..&#x2F;modules/ajax-loader.html">ajax-loader</a></li>
             
@@ -402,7 +402,29 @@
     <h3 class="name"><code>initializeActionOfMediaTimeUpdaterInVideoEditor</code></h3>
 
     
-        <span class="paren">()</span>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>media</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>identifier</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>force_parsed_int</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
     
 
     
@@ -430,7 +452,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_players.js.html#l555"><code>app&#x2F;assets&#x2F;javascripts&#x2F;players.js:555</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_players.js.html#l584"><code>app&#x2F;assets&#x2F;javascripts&#x2F;players.js:584</code></a>
         
         </p>
 
@@ -441,9 +463,68 @@
     </div>
 
     <div class="description">
-        <p>bla bla bla</p>
+        <p>This method has the same cases of use of <a href="../classes/PlayersAudioEditor.html#method_initializeActionOfMediaTimeUpdaterInAudioEditor" class="crosslink">initializeActionOfMediaTimeUpdaterInAudioEditor</a>, with a couple of details more due to the more complicated environment present in <a href="../modules/video-editor.html">video-editor</a>:</p>
+
+<ul>
+  <li>the passage from a component to another (the method called in this case is <a href="../classes/VideoEditorPreview.html#method_playVideoEditorComponent" class="crosslink">playVideoEditorComponent</a>) must handle a <b>transition</b> of one second</li>
+  <li>it's necessary to hide and show the preview <b>progress bar</b> (see <a href="../classes/VideoEditorPreviewAccessories.html#method_showVideoEditorPreviewComponentProgressBar" class="crosslink">showVideoEditorPreviewComponentProgressBar</a>) positioning it with the help of the methods in <a href="../classes/MediaElementEditorHorizontalTimelines.html" class="crosslink">MediaElementEditorHorizontalTimelines</a></li>
+  <li>the method needs also to update the <b>background audio track</b>, but only if it's present and if the <b>global preview time</b> is not greater than its duration.</li>
+</ul>
     </div>
 
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">media</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>HTML selector for the video</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">identifier</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>unique identifier for the video component (see <a href="../modules/video-editor.html">video-editor</a>)</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">force_parsed_int</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>forces the last second of the video; normally it's <i>false</i>, except the case in which the duration of the video is very close to the biggest lower integer (for instance, the duration is 10.01, which is very close to 10): in this case, the signal that the video ended <b>is not received directly by the current method</b>, but rather by the event handler <b>ended</b> initialized in the end of <a href="../classes/PlayersVideoEditor.html#method_initializeVideoInVideoEditorPreview" class="crosslink">initializeVideoInVideoEditorPreview</a></p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
     
 
     
@@ -456,7 +537,23 @@
     <h3 class="name"><code>initializeMediaTimeUpdaterInVideoEditor</code></h3>
 
     
-        <span class="paren">()</span>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>media</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>identifier</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
     
 
     
@@ -484,7 +581,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_players.js.html#l629"><code>app&#x2F;assets&#x2F;javascripts&#x2F;players.js:629</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_players.js.html#l666"><code>app&#x2F;assets&#x2F;javascripts&#x2F;players.js:666</code></a>
         
         </p>
 
@@ -495,9 +592,47 @@
     </div>
 
     <div class="description">
-        <p>bla bla bla</p>
+        <p>This is the method that associates <a href="../classes/PlayersVideoEditor.html#method_initializeActionOfMediaTimeUpdaterInVideoEditor" class="crosslink">initializeActionOfMediaTimeUpdaterInVideoEditor</a> to the event of <b>timeupdate</b>. Notice that the method waits until he receives the event <b>loadedmetadata</b> before working.</p>
     </div>
 
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">media</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>HTML selector for the audio or video</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">identifier</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>unique identifier of a video component (see <a href="../modules/video-editor.html">video-editor</a>)</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
     
 
     
@@ -510,7 +645,17 @@
     <h3 class="name"><code>initializeVideoInVideoEditorPreview</code></h3>
 
     
-        <span class="paren">()</span>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>identifier</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
     
 
     
@@ -538,7 +683,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_players.js.html#l649"><code>app&#x2F;assets&#x2F;javascripts&#x2F;players.js:649</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_players.js.html#l688"><code>app&#x2F;assets&#x2F;javascripts&#x2F;players.js:688</code></a>
         
         </p>
 
@@ -549,9 +694,32 @@
     </div>
 
     <div class="description">
-        <p>bla bla bla</p>
+        <p>Initializes two sliders: one (JQueryUi single slider) for the <b>cursor</b>, and one (JQueryUi double slider) for the <b>cutting handles</b>. It also initializes how to handle the event <b>ended</b> associated to the video.</p>
     </div>
 
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">identifier</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>the unique identifier of the video component (see <a href="../modules/video-editor.html">video-editor</a>)</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
     
 
     
@@ -564,7 +732,23 @@
     <h3 class="name"><code>selectVideoComponentCutterHandle</code></h3>
 
     
-        <span class="paren">()</span>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>cutter</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>val</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
     
 
     
@@ -592,7 +776,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_players.js.html#l728"><code>app&#x2F;assets&#x2F;javascripts&#x2F;players.js:728</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_players.js.html#l767"><code>app&#x2F;assets&#x2F;javascripts&#x2F;players.js:767</code></a>
         
         </p>
 
@@ -603,9 +787,47 @@
     </div>
 
     <div class="description">
-        <p>bla bla bla</p>
+        <p>Method that <b>updates the video cursor</b>, in case one of the two handles passes over the cursor (the cursor must follow the handle).</p>
     </div>
 
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">cutter</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>the JQuery object representing the cutter for that particular component (see <a href="../modules/video-editor.html">video-editor</a>)</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">val</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>the value to be assigned</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
     
 
     
@@ -618,7 +840,17 @@
     <h3 class="name"><code>stopVideoInVideoEditorPreview</code></h3>
 
     
-        <span class="paren">()</span>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>identifier</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
     
 
     
@@ -646,7 +878,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_players.js.html#l738"><code>app&#x2F;assets&#x2F;javascripts&#x2F;players.js:738</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_players.js.html#l779"><code>app&#x2F;assets&#x2F;javascripts&#x2F;players.js:779</code></a>
         
         </p>
 
@@ -657,9 +889,32 @@
     </div>
 
     <div class="description">
-        <p>bla bla bla</p>
+        <p>Specific method to call if the event <b>ended</b> is fired on the video and we are not in the <a href="../modules/video-editor.html">video-editor</a> preview mode (unlike in <a href="../classes/PlayersAudioEditor.html" class="crosslink">PlayersAudioEditor</a>, in this case it's separated by the method <a href="../classes/PlayersVideoEditor.html#method_initializeVideoInVideoEditorPreview" class="crosslink">initializeVideoInVideoEditorPreview</a>, since it's more complicated.</p>
     </div>
 
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">identifier</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>the unique identifier of the video component</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
     
 
     
