@@ -332,6 +332,8 @@ Each component is provided of its own &lt;b&gt;identifier&lt;&#x2F;b&gt; (the sa
   &lt;&#x2F;li&gt;
 &lt;&#x2F;ul&gt;
 The method that &lt;b&gt;extracts the identifier from a component&lt;&#x2F;b&gt; is {{#crossLink &quot;VideoEditorGeneral&#x2F;getVideoComponentIdentifier:method&quot;}}{{&#x2F;crossLink}} (it works receiving as parameter either the component or its cutter or preview clip).
+&lt;br&#x2F;&gt;&lt;br&#x2F;&gt;
+While the user is working, the &lt;b&gt;preview clip&lt;&#x2F;b&gt; visible in the preview screen corresponds to the last component &lt;b&gt;selected&lt;&#x2F;b&gt; by the user. A component gets selected either if the user keeps the mouse on it for more than half a second (using the method {{#crossLink &quot;VideoEditorComponents&#x2F;startVideoEditorPreviewClipWithDelay:method&quot;}}{{&#x2F;crossLink}}, which avoids compulsive changes inside the preview screen when the user passes with the mouse over the timeline), or immediately on the actions of &lt;b&gt;sorting&lt;&#x2F;b&gt; and &lt;b&gt;cutting&lt;&#x2F;b&gt; (using the method {{#crossLink &quot;VideoEditorCutters&#x2F;startVideoEditorPreviewClip:method&quot;}}{{&#x2F;crossLink}}): both behaviors are initialized in {{#crossLink &quot;VideoEditorDocumentReady&#x2F;videoEditorDocumentReadyComponentsCommon:method&quot;}}{{&#x2F;crossLink}}. To the &lt;b&gt;preview clip&lt;&#x2F;b&gt; of a video component is also associated a method ({{#crossLink &quot;VideoEditorGeneral&#x2F;loadVideoComponentIfNotLoadedYet:method&quot;}}{{&#x2F;crossLink}}) that loads the HTML5 video tag only when necessary: this, similarly to {{#crossLinkModule &quot;audio-editor&quot;}}{{&#x2F;crossLinkModule}}, avoids overloading of the HTML.
 
 
 &lt;br&#x2F;&gt;&lt;br&#x2F;&gt;
