@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>Media::Shared::InstanceMethods</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../css/github.css" type="text/css" media="screen" />
+<script src="../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Module</span> 
+            Media::Shared::InstanceMethods 
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/lib/media/shared_rb.html">lib/media/shared.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>C</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-cannot_destroy_while_converting">cannot_destroy_while_converting</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-composed-3F">composed?</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>M</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-media">media</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-media-3D">media=</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-modified-3F">modified?</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>O</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-overwrite-21">overwrite!</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>R</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-reload">reload</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-reload_media">reload_media</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>U</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-uploaded-3F">uploaded?</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+        
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-cannot_destroy_while_converting">
+            
+              <b>cannot_destroy_while_converting</b>()
+            
+            <a href="../../../classes/Media/Shared/InstanceMethods.html#method-i-cannot_destroy_while_converting" name="method-i-cannot_destroy_while_converting" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-cannot_destroy_while_converting_source')" id="l_method-i-cannot_destroy_while_converting_source">show</a>
+                
+              </p>
+              <div id="method-i-cannot_destroy_while_converting_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/media/shared.rb, line 43</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">cannot_destroy_while_converting</span>
+  <span class="ruby-identifier">destroyable_even_if_not_converted</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">converted?</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-composed-3F">
+            
+              <b>composed?</b>()
+            
+            <a href="../../../classes/Media/Shared/InstanceMethods.html#method-i-composed-3F" name="method-i-composed-3F" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-composed-3F_source')" id="l_method-i-composed-3F_source">show</a>
+                
+              </p>
+              <div id="method-i-composed-3F_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/media/shared.rb, line 15</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">composed?</span>
+  <span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">creation_mode</span> <span class="ruby-operator">==</span> <span class="ruby-constant">COMPOSED</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-media">
+            
+              <b>media</b>()
+            
+            <a href="../../../classes/Media/Shared/InstanceMethods.html#method-i-media" name="method-i-media" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-media_source')" id="l_method-i-media_source">show</a>
+                
+              </p>
+              <div id="method-i-media_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/media/shared.rb, line 23</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">media</span>
+  <span class="ruby-ivar">@media</span> <span class="ruby-operator">||</span> ( 
+    <span class="ruby-identifier">media</span> = <span class="ruby-identifier">read_attribute</span>(<span class="ruby-value">:media</span>)
+    <span class="ruby-identifier">media</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span><span class="ruby-operator">::</span><span class="ruby-constant">UPLOADER</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">self</span>, <span class="ruby-value">:media</span>, <span class="ruby-identifier">media</span>) <span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span> 
+  )
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-media-3D">
+            
+              <b>media=</b>(media)
+            
+            <a href="../../../classes/Media/Shared/InstanceMethods.html#method-i-media-3D" name="method-i-media-3D" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-media-3D_source')" id="l_method-i-media-3D_source">show</a>
+                
+              </p>
+              <div id="method-i-media-3D_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/media/shared.rb, line 30</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">media=</span>(<span class="ruby-identifier">media</span>)
+  <span class="ruby-ivar">@media</span> = <span class="ruby-identifier">write_attribute</span> <span class="ruby-value">:media</span>, (<span class="ruby-identifier">media</span>.<span class="ruby-identifier">present?</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span><span class="ruby-operator">::</span><span class="ruby-constant">UPLOADER</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">self</span>, <span class="ruby-value">:media</span>, <span class="ruby-identifier">media</span>) <span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-modified-3F">
+            
+              <b>modified?</b>()
+            
+            <a href="../../../classes/Media/Shared/InstanceMethods.html#method-i-modified-3F" name="method-i-modified-3F" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-modified-3F_source')" id="l_method-i-modified-3F_source">show</a>
+                
+              </p>
+              <div id="method-i-modified-3F_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/media/shared.rb, line 19</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">modified?</span>
+  <span class="ruby-identifier">created_at</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">updated_at</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-overwrite-21">
+            
+              <b>overwrite!</b>()
+            
+            <a href="../../../classes/Media/Shared/InstanceMethods.html#method-i-overwrite-21" name="method-i-overwrite-21" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-overwrite-21_source')" id="l_method-i-overwrite-21_source">show</a>
+                
+              </p>
+              <div id="method-i-overwrite-21_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/media/shared.rb, line 47</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">overwrite!</span>
+  <span class="ruby-comment"># tags non è un attributo, per cui non risulta tra i cambi; </span>
+  <span class="ruby-comment"># me lo prendo dall&#39;associazione taggings_tags, visto che non è cambiata</span>
+  <span class="ruby-identifier">old_fields</span> = <span class="ruby-constant">Hash</span>[ <span class="ruby-keyword">self</span>.<span class="ruby-identifier">changes</span>.<span class="ruby-identifier">map</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">col</span>, (<span class="ruby-identifier">old</span>)<span class="ruby-operator">|</span> [<span class="ruby-identifier">col</span>, <span class="ruby-identifier">old</span>] } <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-string">&#39;tags&#39;</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">taggings_tags</span>.<span class="ruby-identifier">map</span>(&amp;<span class="ruby-value">:word</span>).<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;, &#39;</span>)] ]
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">old_fields</span> = <span class="ruby-identifier">old_fields</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">converted</span> = <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">transaction</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">save!</span>
+    <span class="ruby-identifier">disable_lessons_containing_me</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-reload">
+            
+              <b>reload</b>()
+            
+            <a href="../../../classes/Media/Shared/InstanceMethods.html#method-i-reload" name="method-i-reload" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-reload_source')" id="l_method-i-reload_source">show</a>
+                
+              </p>
+              <div id="method-i-reload_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/media/shared.rb, line 34</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">reload</span>
+  <span class="ruby-ivar">@media</span> = <span class="ruby-ivar">@skip_conversion</span> = <span class="ruby-ivar">@rename_media</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-keyword">super</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-reload_media">
+            
+              <b>reload_media</b>()
+            
+            <a href="../../../classes/Media/Shared/InstanceMethods.html#method-i-reload_media" name="method-i-reload_media" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-reload_media_source')" id="l_method-i-reload_media_source">show</a>
+                
+              </p>
+              <div id="method-i-reload_media_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/media/shared.rb, line 39</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">reload_media</span>
+  <span class="ruby-ivar">@media</span> = <span class="ruby-keyword">nil</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-uploaded-3F">
+            
+              <b>uploaded?</b>()
+            
+            <a href="../../../classes/Media/Shared/InstanceMethods.html#method-i-uploaded-3F" name="method-i-uploaded-3F" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-uploaded-3F_source')" id="l_method-i-uploaded-3F_source">show</a>
+                
+              </p>
+              <div id="method-i-uploaded-3F_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/media/shared.rb, line 11</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">uploaded?</span>
+  <span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">creation_mode</span> <span class="ruby-operator">==</span> <span class="ruby-constant">UPLOADED</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                    </div>
+
+    </div>
+  </body>
+</html>    

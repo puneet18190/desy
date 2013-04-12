@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>Media::Image::Editing::Cmd::TextToImage</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../../../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../../../css/github.css" type="text/css" media="screen" />
+<script src="../../../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Class</span> 
+            Media::Image::Editing::Cmd::TextToImage 
+            
+                <span class="parent">&lt; 
+                    
+                    <a href="../Cmd.html">Media::Image::Editing::Cmd</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../../../files/lib/media/image/editing/cmd/text_to_image_rb.html">lib/media/image/editing/cmd/text_to_image.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>N</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-c-new">new</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+      <!-- Section constants -->
+      <div class="sectiontitle">Constants</div>
+      <table border='0' cellpadding='5'>
+        
+          <tr valign='top'>
+            <td class="attr-name">OPTIONS_AND_DEFAULTS</td>
+            <td>=</td>
+            <td class="attr-value">{ width:            960, 
+height:           540, 
+color:            &#x27;black&#x27;,
+background_color: &#x27;white&#x27;,
+font:             Rails.root.join(&#x27;vendor/fonts/DroidSansFallback.ttf&#x27;), 
+gravity:          &#x27;Center&#x27;, 
+pointsize:        48        }</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"></td>
+            </tr>
+          
+        
+          <tr valign='top'>
+            <td class="attr-name">OPTIONS</td>
+            <td>=</td>
+            <td class="attr-value">OPTIONS_AND_DEFAULTS.keys</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"></td>
+            </tr>
+          
+        
+      </table>
+    
+
+
+    
+      <!-- Section attributes -->
+      <div class="sectiontitle">Attributes</div>
+      <table border='0' cellpadding='5'>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
+              [R]
+            </td>
+            <td class='attr-name'>output</td>
+            <td class='attr-desc'></td>
+          </tr>
+        
+      </table>
+    
+
+
+    <!-- Methods -->
+    
+      <div class="sectiontitle">Class Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-c-new">
+            
+              <b>new</b>(text, output, options = {})
+            
+            <a href="../../../../../classes/Media/Image/Editing/Cmd/TextToImage.html#method-c-new" name="method-c-new" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>text can be a File, a Tempfile or a Pathname: if so, its contents will be
+used as text for the image</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-new_source')" id="l_method-c-new_source">show</a>
+                
+              </p>
+              <div id="method-c-new_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/media/image/editing/cmd/text_to_image.rb, line 25</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize</span>(<span class="ruby-identifier">text</span>, <span class="ruby-identifier">output</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-keyword">if</span> (<span class="ruby-identifier">options</span>.<span class="ruby-identifier">keys</span> <span class="ruby-operator">-</span> <span class="ruby-constant">OPTIONS</span>).<span class="ruby-identifier">present?</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">Error</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;options keys must be included into #{OPTIONS.inspect}&quot;</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-ivar">@text</span>, <span class="ruby-ivar">@output</span> = <span class="ruby-identifier">text</span>, <span class="ruby-identifier">output</span>
+
+  <span class="ruby-constant">OPTIONS_AND_DEFAULTS</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">option</span>, <span class="ruby-identifier">default_value</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">instance_variable_set</span> <span class="ruby-value">:&quot;@#{option}&quot;</span>, <span class="ruby-identifier">options</span>[<span class="ruby-identifier">option</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">default_value</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                        </div>
+
+    </div>
+  </body>
+</html>    
