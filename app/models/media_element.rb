@@ -3,7 +3,7 @@ require 'lessons_media_elements_shared'
 
 # == Description
 #
-# ActiveRecord class that corresponds to the table +media_elements+; this model has single table inheritance on the field +sti_type+ (see the models Image, Audio and Video). Audios and videos have shared behaviours, defined in Media::Shared.
+# ActiveRecord class that corresponds to the table +media_elements+; this model has single table inheritance on the field +sti_type+ (see the models Image, Audio and Video). Audios and videos have shared behaviors, defined in Media::Shared.
 #
 # == Fields
 #

@@ -338,6 +338,13 @@ While the user is working, the &lt;b&gt;preview clip&lt;&#x2F;b&gt; visible in t
 The &lt;b&gt;component gallery&lt;&#x2F;b&gt; used inside the Video Editor (initialized in {{#crossLink &quot;GalleriesInitializers&#x2F;initializeMixedGalleryInVideoEditor:method&quot;}}{{&#x2F;crossLink}}) is the only gallery in the application which contains mixed types of elements. It&#x27;s divided into three sections, one for each kind of component: the sections for &lt;b&gt;video&lt;&#x2F;b&gt; and &lt;b&gt;image&lt;&#x2F;b&gt; components have the same external behavior of normal image and video galleries (see the module {{#crossLinkModule &quot;galleries&quot;}}{{&#x2F;crossLinkModule}}), whereas the section for &lt;b&gt;text&lt;&#x2F;b&gt; components is a peculiar text editor (see the class {{#crossLink &quot;VideoEditorTextComponentEditor&quot;}}{{&#x2F;crossLink}}). The component gallery (together with the regular audio gallery for the &lt;b&gt;audio track&lt;&#x2F;b&gt;) is initialized in {{#crossLink &quot;VideoEditorDocumentReady&#x2F;videoEditorDocumentReadyGalleries:method&quot;}}{{&#x2F;crossLink}}, and its functionality defined in the methods of {{#crossLink &quot;VideoEditorGalleries&quot;}}{{&#x2F;crossLink}} (for instance, the method to switch from a section to another).
 &lt;br&#x2F;&gt;&lt;br&#x2F;&gt;
 The method {{#crossLink &quot;VideoEditorDocumentReady&#x2F;videoEditorDocumentReadyAddComponent:method&quot;}}{{&#x2F;crossLink}} initializes the general procedure to &lt;b&gt;add or replace a component&lt;&#x2F;b&gt;. The system sets a HTML &lt;i&gt;data&lt;&#x2F;i&gt; that records if the component gallery was opened to &lt;b&gt;replace&lt;&#x2F;b&gt; or &lt;b&gt;add&lt;&#x2F;b&gt; a component: depending on this data, when the user picks a component from the gallery it&#x27;s called the corresponding method in {{#crossLink &quot;VideoEditorAddComponents&quot;}}{{&#x2F;crossLink}} or in {{#crossLink &quot;VideoEditorReplaceComponents&quot;}}{{&#x2F;crossLink}}.
+&lt;br&#x2F;&gt;&lt;br&#x2F;&gt;
+When the user adds a component, the system makes a copy of an &lt;b&gt;empty hidden component&lt;&#x2F;b&gt; and fills it with the new data. This behavior is quite similar to the one in {{#crossLinkModule &quot;audio-editor&quot;}}{{&#x2F;crossLinkModule}}, but in the case of Video Editor the procedure is slightly more complicated, due to the following reasons:
+&lt;ul&gt;
+  &lt;li&gt;there are &lt;b&gt;three empty items&lt;&#x2F;b&gt; (empty component, empty cutter, empty preview clip) for each type of component, &lt;b&gt;for a total of nine&lt;&#x2F;b&gt;&lt;&#x2F;li&gt;
+  &lt;li&gt;unlike {{#crossLinkModule &quot;audio-editor&quot;}}{{&#x2F;crossLinkModule}}, in the Video Editor each component needs a &lt;b&gt;miniature&lt;&#x2F;b&gt;, that necessarily must be inserted in the empty component together with the rest of the data. For text components, the miniature is constructed in the moment of the creation (there is an &lt;b&gt;empty text miniature&lt;&#x2F;b&gt; hidden in the template of &lt;b&gt;text component editor&lt;&#x2F;b&gt; (see {{#crossLink &quot;VideoEditorTextComponentEditor&quot;}}{{&#x2F;crossLink}}); for video and image components, the miniatures are loaded together with the &lt;b&gt;mixed gallery&lt;&#x2F;b&gt; and stored &lt;b&gt;in the popup of each element&lt;&#x2F;b&gt; (see module {{#crossLinkModule &quot;galleries&quot;}}{{&#x2F;crossLinkModule}}, and especially the &lt;i&gt;js.erb&lt;&#x2F;i&gt; templates associated to the routes of the mixed gallery)
+  &lt;li&gt;sempre a differenza dell&#x27;audio, qui c&#x27;è la possibilità di rimpiazzare la componente, infatti gli input sono tutti fuori.(TODO tre links uno a fill, uno a reset, uno a change durations)&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
 
 
 &lt;br&#x2F;&gt;&lt;br&#x2F;&gt;
@@ -604,7 +611,7 @@ function clearSpecificVideoEditorComponentParameters(component_id) {
 }
 
 &#x2F;**
-bla bla bla
+bla bla bla # TODO quando arrivo qui metti il link all&#x27;analogo in audio editor, e torna in audio editor e assicurati che ci sia un link opposto che redireziona qui
 @method fillVideoEditorSingleParameter
 @for VideoEditorComponents
 **&#x2F;
