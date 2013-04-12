@@ -349,9 +349,10 @@ Besides the durations, two graphical details are peculiar to each component: the
 &lt;br&#x2F;&gt;&lt;br&#x2F;&gt;
 A video component cutter (or simply &lt;b&gt;cutter&lt;&#x2F;b&gt;) is an instrument used to change the initial and final second of a component of type video: it&#x27;s very similar to the audio cutter, and its functionalities (JQueryUi sliders, players, etc) are defined in {{#crossLink &quot;PlayersVideoEditor&#x2F;initializeVideoInVideoEditorPreview:method&quot;}}{{&#x2F;crossLink}} and {{#crossLink &quot;PlayersDocumentReady&#x2F;playersDocumentReadyVideoEditor:method&quot;}}{{&#x2F;crossLink}}. A property that is worth mentioning is the &lt;b&gt;automatic return to the previous integer second&lt;&#x2F;b&gt; when pausing: this is a functionality of both cutters and global reproduction (see {{#crossLink &quot;VideoEditorDocumentReady&#x2F;videoEditorDocumentReadyPreview:method&quot;}}{{&#x2F;crossLink}} and {{#crossLink &quot;VideoEditorPreview&quot;}}{{&#x2F;crossLink}}), necessary to set with precision the current time of the &lt;b&gt;preview screen&lt;&#x2F;b&gt;, in order to simulate faithfully the effect of transitions and the correspondance with the optional audio track.
 &lt;br&#x2F;&gt;&lt;br&#x2F;&gt;
-TODO cutters image e text, menziona change duration
+For image and text components, a cutter is simply a small form where the user may insert a new duration (the associated callback is {{#crossLink &quot;VideoEditorComponents&#x2F;changeDurationVideoEditorComponent:method&quot;}}{{&#x2F;crossLink}}. Since it doesn&#x27;t fit the whole timeline, this paraticular cutter must be aligned to the JScrollPain: this is done with the functions of the class {{#crossLink &quot;MediaElementEditorHorizontalTimelines&quot;}}{{&#x2F;crossLink}}.
 &lt;br&#x2F;&gt;&lt;br&#x2F;&gt;
-TODO tutti i cutters sono inizializzati in bla bla bla e la loro classe specifica è (see {{#crossLink &quot;AudioEditorCutters&quot;}}{{&#x2F;crossLink}})
+All the cutters are initialized in {{#crossLink &quot;VideoEditorDocumentReady&#x2F;videoEditorDocumentReadyCutters:method&quot;}}{{&#x2F;crossLink}}, and their functionalities included in the class {{#crossLink &quot;AudioEditorCutters&quot;}}{{&#x2F;crossLink}}.
+&lt;br&#x2F;&gt;&lt;br&#x2F;&gt;
 
 
 &lt;br&#x2F;&gt;&lt;br&#x2F;&gt;
