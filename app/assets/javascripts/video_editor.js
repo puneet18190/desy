@@ -35,9 +35,9 @@ The method {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyAddCom
 <br/><br/>
 Similarly to the {{#crossLinkModule "audio-editor"}}{{/crossLinkModule}}, when a component is added or replaced the system makes a copy of an <b>empty hidden component</b> and fills it with the new data. In the case of Video Editor, this procedure is slightly more complicated:
 <ul>
-  1) ci sono tre oggetti vuoti per ogni tipo di componente, in totale nove
-  2) a differenza dell'audio, qui c'è anche la clip da inserire nella componente (lì c'era solo il titolo), e anche la clip necessita di una bozza da tenere pronta (questa è nascosta nelle gallerie, metti riferimento vedi foglio)
-  3) sempre a differenza dell'audio, qui c'è la possibilità di rimpiazzare la componente, infatti gli input sono tutti fuori
+  <li>there are <b>three empty items</b> (empty component, empty cutter, empty preview clip) for each type of component, for a total of nine</li>
+  <li>unlike {{#crossLinkModule "audio-editor"}}{{/crossLinkModule}}, for Video Editor it's necessary to FIXME a differenza dell'audio, qui c'è anche la clip da inserire nella componente (lì c'era solo il titolo), e anche la clip necessita di una bozza da tenere pronta (questa è nascosta nelle gallerie, metti riferimento vedi foglio)</li>
+  <li>sempre a differenza dell'audio, qui c'è la possibilità di rimpiazzare la componente, infatti gli input sono tutti fuori.</li>
 </ul>
 
 
