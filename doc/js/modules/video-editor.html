@@ -337,6 +337,21 @@ A video created with the Video Editor can be composed by <b>three types of compo
   <li><b>cut</b> a video component (change its initial and final point) or <b>change duration</b> of an image or text compoent (both these functionalities are initialized in <a href="../classes/VideoEditorDocumentReady.html#method_videoEditorDocumentReadyCutters" class="crosslink">videoEditorDocumentReadyCutters</a> and implemented in the class <a href="../classes/VideoEditorCutters.html" class="crosslink">VideoEditorCutters</a>).</li>
 </ul>
 
+<p>Each component is provided of its own <b>identifier</b> (the same used in <a href="../modules/audio-editor.html">audio-editor</a>), that is unique and doesn't change on any operation performed by the user. Moreover, regardless of its type, a component is strictly linked with two <b>external accessories</b>:</p>
+
+<ul>
+  <li>a <b>cutter</b> (whose HTML id is <i>video component [identifier] cutter</i>): this item is normally hidden, when requested it appears below the timeline and is used to cut a video component or change the duration of an image or text component (class <a href="../classes/VideoEditorCutters.html" class="crosslink">VideoEditorCutters</a>)</li>
+  <li>a <b>preview clip</b> (whose HTML id is <i>video component [identifier] preview</i>): this item is hidden inside the <b>preview screen</b>, and it's used
+    <ul>
+      <li>to provide the user of a big clip of the component while handling it (functionality initialized in <a href="../classes/VideoEditorDocumentReady.html#method_videoEditorDocumentReadyComponentsCommon" class="crosslink">videoEditorDocumentReadyComponentsCommon</a>)</li>
+      <li>to play a video component while cutting it (initialized in the method <a href="../classes/PlayersDocumentReady.html#method_playersDocumentReadyVideoEditor" class="crosslink">playersDocumentReadyVideoEditor</a> in the module <a href="../modules/players.html">players</a>)</li>
+      <li>to be shown in the <b>global preview</b> (see class <a href="../classes/VideoEditorPreview.html" class="crosslink">VideoEditorPreview</a>).</li>
+    </ul>
+  </li>
+</ul>
+
+<p>The method that <b>extracts the identifier from a component</b> is <a href="../classes/VideoEditorGeneral.html#method_getVideoComponentIdentifier" class="crosslink">getVideoComponentIdentifier</a> (it works receiving as parameter either the component or its cutter or preview clip).</p>
+
 <p><br/><br/>
 As for the other Element Editors (<a href="../modules/image-editor.html">image-editor</a>, <a href="../modules/audio-editor.html">audio-editor</a>) the core of the process of committing changes is handled in the module <a href="../modules/media-element-editor.html">media-element-editor</a> (more specificly in the class <a href="../classes/MediaElementEditorForms.html" class="crosslink">MediaElementEditorForms</a>); the part of this functionality specific for the Video Editor is handled in <a href="../classes/VideoEditorDocumentReady.html#method_videoEditorDocumentReadyCommit" class="crosslink">videoEditorDocumentReadyCommit</a>.</p>
 </div>
