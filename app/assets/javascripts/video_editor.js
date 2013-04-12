@@ -1,5 +1,9 @@
 /**
-Provides video editor ajax actions. TODO per quanto riguarda la fase di commit, copiare il paragrafo da audio e image editor e adattarlo
+
+
+
+<br/><br/>
+As for the other Element Editors ({{#crossLinkModule "image-editor"}}{{/crossLinkModule}}, {{#crossLinkModule "audio-editor"}}{{/crossLinkModule}}) the core of the process of committing changes is handled in the module {{#crossLinkModule "media-element-editor"}}{{/crossLinkModule}} (more specificly in the class {{#crossLink "MediaElementEditorForms"}}{{/crossLink}}); the part of this functionality specific for the Video Editor is handled in {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyCommit:method"}}{{/crossLink}}.
 @module video-editor
 **/
 
