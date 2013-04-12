@@ -43,9 +43,10 @@ Besides the durations, two graphical details are peculiar to each component: the
 <br/><br/>
 A video component cutter (or simply <b>cutter</b>) is an instrument used to change the initial and final second of a component of type video: it's very similar to the audio cutter, and its functionalities (JQueryUi sliders, players, etc) are defined in {{#crossLink "PlayersVideoEditor/initializeVideoInVideoEditorPreview:method"}}{{/crossLink}} and {{#crossLink "PlayersDocumentReady/playersDocumentReadyVideoEditor:method"}}{{/crossLink}}. A property that is worth mentioning is the <b>automatic return to the previous integer second</b> when pausing: this is a functionality of both cutters and global reproduction (see {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyPreview:method"}}{{/crossLink}} and {{#crossLink "VideoEditorPreview"}}{{/crossLink}}), necessary to set with precision the current time of the <b>preview screen</b>, in order to simulate faithfully the effect of transitions and the correspondance with the optional audio track.
 <br/><br/>
-TODO cutters image e text, menziona change duration
+For image and text components, a cutter is simply a small form where the user may insert a new duration (the associated callback is {{#crossLink "VideoEditorComponents/changeDurationVideoEditorComponent:method"}}{{/crossLink}}. Since it doesn't fit the whole timeline, this paraticular cutter must be aligned to the JScrollPain: this is done with the functions of the class {{#crossLink "MediaElementEditorHorizontalTimelines"}}{{/crossLink}}.
 <br/><br/>
-TODO tutti i cutters sono inizializzati in bla bla bla e la loro classe specifica è (see {{#crossLink "AudioEditorCutters"}}{{/crossLink}})
+All the cutters are initialized in {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyCutters:method"}}{{/crossLink}}, and their functionalities included in the class {{#crossLink "AudioEditorCutters"}}{{/crossLink}}.
+<br/><br/>
 
 
 <br/><br/>
