@@ -310,8 +310,15 @@ The Video Editor is structured as follows: centered in the middle of the Editor 
 A video created with the Video Editor can be composed by &lt;b&gt;three types of components&lt;&#x2F;b&gt; (and optionally an &lt;b&gt;audio track&lt;&#x2F;b&gt;):
 &lt;ul&gt;
   &lt;li&gt;a &lt;b&gt;video component&lt;&#x2F;b&gt; is an element of type video extracted from the user&#x27;s gallery, associated to an &lt;b&gt;initial&lt;&#x2F;b&gt; and &lt;b&gt;final point&lt;&#x2F;b&gt;&lt;&#x2F;li&gt;
-  &lt;li&gt;a &lt;b&gt;image component&lt;&#x2F;b&gt; is an element of type image extracted from the user&#x27;s gallery, associated to a &lt;b&gt;duration&lt;&#x2F;b&gt; in seconds (the image is held in the video for a number of seconds equal to the component&#x27;s duration); the image is centered and cropped mantaining its original proportions, to make it fit in the video screen (which has proportions 16&#x2F;9)&lt;&#x2F;li&gt;
+  &lt;li&gt;a &lt;b&gt;image component&lt;&#x2F;b&gt; is an element of type image extracted from the user&#x27;s gallery, associated to a &lt;b&gt;duration&lt;&#x2F;b&gt; in seconds (the image is held in the video for a number of seconds equal to the component&#x27;s duration); the image is centered and cropped maintaining its original proportions, to make it fit in the video screen (which has proportions 16&#x2F;9)&lt;&#x2F;li&gt;
   &lt;li&gt;a &lt;b&gt;text component&lt;&#x2F;b&gt; is a centered title for which the user chooses a &lt;b&gt;background color&lt;&#x2F;b&gt;, a &lt;b&gt;font color&lt;&#x2F;b&gt; and a &lt;b&gt;duration&lt;&#x2F;b&gt; (which has the same interpretation as for image components).&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+The resulting video will be the concatenation of all the components inside the timeline, with optionally the chosen audio track as background audio. On the &lt;b&gt;timeline&lt;&#x2F;b&gt; the user may perform the following actions:
+&lt;ul&gt;
+  &lt;li&gt;&lt;b&gt;add&lt;&#x2F;b&gt; a new component (see class {{#crossLink &quot;VideoEditorAddComponents&quot;}}{{&#x2F;crossLink}}) or &lt;b&gt;replace&lt;&#x2F;b&gt; an existing one, even without maintaining its original type (see class {{#crossLink &quot;VideoEditorReplaceComponents&quot;}}{{&#x2F;crossLink}}: these functionalities are initialized in {{#crossLink &quot;VideoEditorDocumentReady&#x2F;videoEditorDocumentReadyAddComponent:method&quot;}}{{&#x2F;crossLink}}&lt;&#x2F;li&gt;
+  &lt;li&gt;&lt;b&gt;remove&lt;&#x2F;b&gt; a component from the timeline (initialized in {{#crossLink &quot;VideoEditorDocumentReady&#x2F;videoEditorDocumentReadyRemoveComponent:method&quot;}}{{&#x2F;crossLink}})&lt;&#x2F;li&gt;
+  &lt;li&gt;&lt;b&gt;sort&lt;&#x2F;b&gt; and change the order of the components (initialized in {{#crossLink &quot;VideoEditorDocumentReady&#x2F;videoEditorDocumentReadyInitialization:method&quot;}}{{&#x2F;crossLink}})&lt;&#x2F;li&gt;
+  &lt;li&gt;&lt;b&gt;cut&lt;&#x2F;b&gt; a video component (change its initial and final point) or &lt;b&gt;change duration&lt;&#x2F;b&gt; of an image or text compoent (both these functionalities are initialized in {{#crossLink &quot;VideoEditorDocumentReady&#x2F;videoEditorDocumentReadyCutters:method&quot;}}{{&#x2F;crossLink}} and implemented in the class {{#crossLink &quot;VideoEditorCutters&quot;}}{{&#x2F;crossLink}}).&lt;&#x2F;li&gt;
 &lt;&#x2F;ul&gt;
 
 
