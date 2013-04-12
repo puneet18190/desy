@@ -23,7 +23,7 @@
         </h1>
         <ul class="files">
             <li>doc/README.rdoc</li>
-            <li>Last modified: 2013-04-12 11:54:37 +0200</li>
+            <li>Last modified: 2013-04-12 16:26:54 +0200</li>
         </ul>
     </div>
 
@@ -53,7 +53,8 @@ which will be shared on the web via their respective URLs.</p>
 <p>the <strong>web application</strong>: developed in <a
 href="http://www.ruby-lang.org">Ruby</a> using the web framework <a
 href="http://rubyonrails.org/">Ruby on Rails</a>, provides the web
-frontend; it uses PostgreSQL for data persistence</p>
+frontend; it uses <a href="http://www.postgresql.org">PostgreSQL</a> for
+data persistence</p>
 </li><li>
 <p>the <strong>background processes</strong>: managed through the <a
 href="https://github.com/collectiveidea/delayed_job">Delayed::Job</a>
@@ -110,20 +111,42 @@ Unix system, BSD included, provided that its dependencies are available.</p>
 </li><li>
 <p>Ruby Bundler gem</p>
 </li><li>
-<p>gems installed by bundler and their dependencies</p>
+<p>gems installed by Bundler and their dependencies</p>
+</li><li>
+<p>PHP</p>
 </li><li>
 <p>nginx | apache</p>
 </li></ul>
 
 <h2 id="label-Procedure+of+installation">Procedure of installation</h2>
+<ol><li>
+<p>Extract the DeSY copy into the destination path</p>
+</li><li>
+<p>Install Ruby (possibly using <a
+href="https://github.com/sstephenson/rbenv">rbenv</a>, <a
+href="https://rvm.io/">RVM</a>, or <a
+href="https://github.com/postmodern/chruby">chruby</a>)</p>
+</li><li>
+<p>Install PostgreSQL</p>
+</li><li>
+<p>Install Bundler (`gem install bundler`)</p>
+</li><li>
+<p><code>cd</code> into the DeSY folder</p>
+</li><li>
+<p>Install the required packages ( on Debian/Ubuntu:
+<code>script/system_requirements_install</code> )</p>
+</li></ol>
+
+<p>…</p>
+<ol><li>
+<p>run `bundle install`</p>
+</li></ol>
 
 <h2 id="label-Configuration">Configuration</h2>
 
 <p>DeSY can be configured through the file config/settings.yml (which must be
 created after the installation - see <a
 href="#label-Procedure+of+installation">Procedure of installation</a></p>
-
-<h2 id="label-Troubleshooting">Troubleshooting</h2>
 
     </div>
   
