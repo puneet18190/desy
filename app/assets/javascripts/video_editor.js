@@ -32,6 +32,13 @@ While the user is working, the <b>preview clip</b> visible in the preview screen
 The <b>component gallery</b> used inside the Video Editor (initialized in {{#crossLink "GalleriesInitializers/initializeMixedGalleryInVideoEditor:method"}}{{/crossLink}}) is the only gallery in the application which contains mixed types of elements. It's divided into three sections, one for each kind of component: the sections for <b>video</b> and <b>image</b> components have the same external behavior of normal image and video galleries (see the module {{#crossLinkModule "galleries"}}{{/crossLinkModule}}), whereas the section for <b>text</b> components is a peculiar text editor (see the class {{#crossLink "VideoEditorTextComponentEditor"}}{{/crossLink}}). The component gallery (together with the regular audio gallery for the <b>audio track</b>) is initialized in {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyGalleries:method"}}{{/crossLink}}, and its functionality defined in the methods of {{#crossLink "VideoEditorGalleries"}}{{/crossLink}} (for instance, the method to switch from a section to another).
 <br/><br/>
 The method {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyAddComponent:method"}}{{/crossLink}} initializes the general procedure to <b>add or replace a component</b>. The system sets a HTML <i>data</i> that records if the component gallery was opened to <b>replace</b> or <b>add</b> a component: depending on this data, when the user picks a component from the gallery it's called the corresponding method in {{#crossLink "VideoEditorAddComponents"}}{{/crossLink}} or in {{#crossLink "VideoEditorReplaceComponents"}}{{/crossLink}}.
+<br/><br/>
+Similarly to the {{#crossLinkModule "audio-editor"}}{{/crossLinkModule}}, when a component is added or replaced the system makes a copy of an <b>empty hidden component</b> and fills it with the new data. In the case of Video Editor, this procedure is slightly more complicated:
+<ul>
+  1) ci sono tre oggetti vuoti per ogni tipo di componente, in totale nove
+  2) a differenza dell'audio, qui c'è anche la clip da inserire nella componente (lì c'era solo il titolo), e anche la clip necessita di una bozza da tenere pronta (questa è nascosta nelle gallerie, metti riferimento vedi foglio)
+  3) sempre a differenza dell'audio, qui c'è la possibilità di rimpiazzare la componente, infatti gli input sono tutti fuori
+</ul>
 
 
 <br/><br/>
@@ -298,7 +305,7 @@ function clearSpecificVideoEditorComponentParameters(component_id) {
 }
 
 /**
-bla bla bla
+bla bla bla # TODO quando arrivo qui metti il link all'analogo in audio editor, e torna in audio editor e assicurati che ci sia un link opposto che redireziona qui
 @method fillVideoEditorSingleParameter
 @for VideoEditorComponents
 **/
