@@ -36,8 +36,8 @@ The method {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyAddCom
 Similarly to the {{#crossLinkModule "audio-editor"}}{{/crossLinkModule}}, when a component is added or replaced the system makes a copy of an <b>empty hidden component</b> and fills it with the new data. In the case of Video Editor, this procedure is slightly more complicated:
 <ul>
   <li>there are <b>three empty items</b> (empty component, empty cutter, empty preview clip) for each type of component, for a total of nine</li>
-  <li>unlike {{#crossLinkModule "audio-editor"}}{{/crossLinkModule}}, for Video Editor it's necessary to FIXME a differenza dell'audio, qui c'è anche la clip da inserire nella componente (lì c'era solo il titolo), e anche la clip necessita di una bozza da tenere pronta (questa è nascosta nelle gallerie, metti riferimento vedi foglio)</li>
-  <li>sempre a differenza dell'audio, qui c'è la possibilità di rimpiazzare la componente, infatti gli input sono tutti fuori.</li>
+  <li>unlike {{#crossLinkModule "audio-editor"}}{{/crossLinkModule}}, in the Video Editor each component needs a <b>miniature</b>, that necessarily must be inserted in the empty component together with the rest of the data. For text components, the miniature is constructed in the moment of the creation (there is an <b>empty text miniature</b> hidden in the template of <b>text component editor</b> (see {{#crossLink "VideoEditorTextComponentEditor"}}{{/crossLink}}); for video and image components, the miniatures are loaded together with the <b>mixed gallery</b> and stored <b>in the popup of each element</b> (see module {{#crossLinkModule "galleries"}}{{/crossLinkModule}}, and especially the <i>js.erb</i> templates associated to the routes of the mixed gallery)
+  <li>sempre a differenza dell'audio, qui c'è la possibilità di rimpiazzare la componente, infatti gli input sono tutti fuori.(TODO tre links uno a fill, uno a reset, uno a change durations)</li>
 </ul>
 
 
