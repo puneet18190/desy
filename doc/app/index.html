@@ -397,33 +397,80 @@ which will be shared on the web via their respective URLs.</p>
 
 <p>The software architecture is composed by:</p>
 <ul><li>
-<p>the web application: developed in <a
+<p>the <strong>web application</strong>: developed in <a
 href="http://www.ruby-lang.org">Ruby</a> using the web framework <a
 href="http://rubyonrails.org/">Ruby on Rails</a>, provides the web
 frontend; it uses PostgreSQL for data persistence</p>
 </li><li>
-<p>the background processes: managed through the <a
+<p>the <strong>background processes</strong>: managed through the <a
 href="https://github.com/collectiveidea/delayed_job">Delayed::Job</a>
-library, they run the istances which go about the uploaded media converting
-and editing</p>
+library, they run the instances charged of uploaded media converting and
+editing</p>
 </li><li>
-<p>the cron jobs: periodically actions, like f.e. checking the size of media
-elements folder in order to send an alert to the maintainer</p>
+<p>the <strong>cron jobs</strong>: periodically actions, like f.e. checking
+the size of media elements folder in order to send an alert to the
+maintainer</p>
+</li></ul>
+
+<h2 id="label-Requirements">Requirements</h2>
+
+<h3 id="label-Hardware+requirements">Hardware requirements</h3>
+
+<p>An adequate infastructure consists of:</p>
+<ul><li>
+<p>a web server: it runs the web application and the database, and hosts the
+media elements; it requires of enough CPU and RAM for running the processes
+instances, and enough disk space to host the media files</p>
+</li><li>
+<p>a media processing server: it runs the media processing jobs, and requires
+of a discrete amount of CPU and RAM in order to process the media files; it
+should be designated to run the cron jobs too</p>
+</li></ul>
+
+<h3 id="label-Software+requirements">Software requirements</h3>
+
+<p>DeSY is designed to be deployed on Linux systems; it is expected to be
+deployed on Debian systems, but can be easily customized to run on every
+Unix system, BSD included, provided that its dependencies are available.</p>
+
+<p>These are the software dependencies:</p>
+<ul><li>
+<p>Ruby &gt;= 2.0</p>
+</li><li>
+<p>PostgreSQL &gt;= 9.2</p>
+</li><li>
+<p>libav &gt;= 0.8.3</p>
+</li><li>
+<p>libavcodec-extra-53</p>
+</li><li>
+<p>mkvtoolnix</p>
+</li><li>
+<p>sox &gt;= 14.4.0</p>
+</li><li>
+<p>g++</p>
+</li><li>
+<p>libsqlite3-dev</p>
+</li><li>
+<p>libpq-dev</p>
+</li><li>
+<p>imagemagick</p>
+</li><li>
+<p>Ruby Bundler gem</p>
+</li><li>
+<p>gems installed by bundler and their dependencies</p>
+</li><li>
+<p>nginx | apache</p>
 </li></ul>
 
 <h2 id="label-Procedure+of+installation">Procedure of installation</h2>
-
-<p>DeSY was designed to be deployed on Linux systems. The ideal infastructure
-consists of:</p>
-<ul><li>
-<p>a web</p>
-</li></ul>
 
 <h2 id="label-Configuration">Configuration</h2>
 
 <p>DeSY can be configured through the file config/settings.yml (which must be
 created after the installation - see <a
 href="#label-Procedure+of+installation">Procedure of installation</a></p>
+
+<h2 id="label-Troubleshooting">Troubleshooting</h2>
 
 </div>
 
