@@ -31,7 +31,15 @@ While the user is working, the <b>preview clip</b> visible in the preview screen
 <br/><br/>
 The <b>component gallery</b> used inside the Video Editor (initialized in {{#crossLink "GalleriesInitializers/initializeMixedGalleryInVideoEditor:method"}}{{/crossLink}}) is the only gallery in the application which contains mixed types of elements. It's divided into three sections, one for each kind of component: the sections for <b>video</b> and <b>image</b> components have the same external behavior of normal image and video galleries (see the module {{#crossLinkModule "galleries"}}{{/crossLinkModule}}), whereas the section for <b>text</b> components is a peculiar text editor (see the class {{#crossLink "VideoEditorTextComponentEditor"}}{{/crossLink}}). The component gallery (together with the regular audio gallery for the <b>audio track</b>) is initialized in {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyGalleries:method"}}{{/crossLink}}, and its functionality defined in the methods of {{#crossLink "VideoEditorGalleries"}}{{/crossLink}} (for instance, the method to switch from a section to another).
 <br/><br/>
-The method {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyAddComponent:method"}}{{/crossLink}} initializes the general procedure to <b>add or replace a component</b>: it sets a <i>data</i> in the HTML that records [TODO spiegare e continuare con i links delle due classi]
+The method {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyAddComponent:method"}}{{/crossLink}} initializes the general procedure to <b>add or replace a component</b>. The system sets a HTML <i>data</i> that records if the component gallery was opened to <b>replace</b> or <b>add</b> a component: depending on this data, when the user picks a component from the gallery it's called the corresponding method in {{#crossLink "VideoEditorAddComponents"}}{{/crossLink}} or in {{#crossLink "VideoEditorReplaceComponents"}}{{/crossLink}}.
+<br/><br/>
+When the user adds a component, the system makes a copy of an <b>empty hidden component</b> and fills it with the new data. This behavior is quite similar to the one in {{#crossLinkModule "audio-editor"}}{{/crossLinkModule}}, but in the case of Video Editor the procedure is slightly more complicated, due to the following reasons:
+<ul>
+  <li>there are <b>three empty items</b> (empty component, empty cutter, empty preview clip) for each type of component, <b>for a total of nine</b></li>
+  <li>unlike {{#crossLinkModule "audio-editor"}}{{/crossLinkModule}}, in the Video Editor each component needs a <b>miniature</b>, that necessarily must be inserted in the empty component <b>together with the rest of the data</b>. For text components, the miniature is built in the moment of the component's creation (there is an <b>empty text miniature</b> hidden in the template of text component editor, see {{#crossLink "VideoEditorTextComponentEditor"}}{{/crossLink}}); for video and image components, the miniatures are loaded together with the <b>mixed gallery</b> and stored <b>in the popup of each element</b> (see module {{#crossLinkModule "galleries"}}{{/crossLinkModule}}, and especially the <i>js.erb</i> templates associated to the routes of the mixed gallery)
+  <li>in the Video Editor it's possible to <b>replace</b> a component: when the system does this, it's not enough to fill the inputs of the previous component (with {{#crossLink "VideoEditorComponents/fillVideoEditorSingleParameter:method"}}{{/crossLink}}): it's additionally necessary to <b>reset the inputs</b> of the previous component, thing done by the method {{#crossLink "VideoEditorComponents/clearSpecificVideoEditorComponentParameters:method"}}{{/crossLink}}. Moreover, when replacing a component, the duration is updated using {{#crossLink "VideoEditorComponents/changeDurationVideoEditorComponent:method"}}{{/crossLink}}.</li>
+</ul>
+Besides the durations, two graphical details are peculiar to each component: the <b>position</b>, handled by {{#crossLink "VideoEditorComponents/reloadVideoEditorComponentPositions:method"}}{{/crossLink}}; and the <b>transition</b>, a small icon representing the <b>fade transition</b> of one second between a component and the following, that must be visible <i>after all components except for the last one</i> (see {{#crossLink "VideoEditorComponents/resetVisibilityOfVideoEditorTransitions:method"}}{{/crossLink}}). The operations in which callback it's necessary to reset transitions and positions are <b>sorting</b> ({{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyInitialization:method"}}{{/crossLink}}) and <b>removing</b> ({{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyRemoveComponent:method"}}{{/crossLink}}).
 
 
 <br/><br/>
@@ -298,7 +306,7 @@ function clearSpecificVideoEditorComponentParameters(component_id) {
 }
 
 /**
-bla bla bla
+bla bla bla # TODO quando arrivo qui metti il link all'analogo in audio editor, e torna in audio editor e assicurati che ci sia un link opposto che redireziona qui
 @method fillVideoEditorSingleParameter
 @for VideoEditorComponents
 **/
