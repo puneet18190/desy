@@ -92,7 +92,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "VirtualClassroomSendLink"
     ],
     "modules": [
-        "administration",
+        "admin",
         "ajax-loader",
         "audio-editor",
         "buttons",
@@ -116,8 +116,8 @@ YUI.add("yuidoc-meta", function(Y) {
     ],
     "allModules": [
         {
-            "displayName": "administration",
-            "name": "administration",
+            "displayName": "admin",
+            "name": "admin",
             "description": "Functions used in the Administration section: only for this section, <b>it's generated a separate file</b> which doesn't merge with the regular one. The only external module loaded is {{#crossLinkModule \"ajax-loader\"}}{{/crossLinkModule}}."
         },
         {
@@ -208,7 +208,7 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "tags",
             "name": "tags",
-            "description": "Tags autocomplete, _add_ and _remove_ from list."
+            "description": "The functions in this module handle two different functionalities of <b>autocomplete</b> for tags: suggestions for a research (<b>search autocomplete</b>, and suggestions for tagging lessons and media elements (<b>tagging autocomplete</b>). Both modes use the same JQuery plugin called <i>JQueryAutocomplete</i> (the same used in {{#crossLink \"AdminAutocomplete/initNotificationsAutocomplete:method\"}}{{/crossLink}}).\n<br/><br/>\nThe <b>search</b> autocomplete mode requires a simple initializer (method {{#crossLink \"TagsInitializers/initSearchTagsAutocomplete:method\"}}{{/crossLink}}), which is initialized in three different keyword inputs of the search engine (the general one, the one for elements and the one for lessons, see {{#crossLink \"TagsDocumentReady/tagsDocumentReady:method\"}}{{/crossLink}})."
         },
         {
             "displayName": "video-editor",

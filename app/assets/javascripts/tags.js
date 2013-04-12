@@ -1,5 +1,7 @@
 /**
-Tags autocomplete, _add_ and _remove_ from list.
+The functions in this module handle two different functionalities of <b>autocomplete</b> for tags: suggestions for a research (<b>search autocomplete</b>, and suggestions for tagging lessons and media elements (<b>tagging autocomplete</b>). Both modes use the same JQuery plugin called <i>JQueryAutocomplete</i> (the same used in {{#crossLink "AdminAutocomplete/initNotificationsAutocomplete:method"}}{{/crossLink}}).
+<br/><br/>
+The <b>search</b> autocomplete mode requires a simple initializer (method {{#crossLink "TagsInitializers/initSearchTagsAutocomplete:method"}}{{/crossLink}}), which is initialized in three different keyword inputs of the search engine (the general one, the one for elements and the one for lessons, see {{#crossLink "TagsDocumentReady/tagsDocumentReady:method"}}{{/crossLink}}).
 @module tags
 **/
 
@@ -440,9 +442,9 @@ function initTagsAutocomplete(scope) {
   $(input_selector).autocomplete({
     source: function(request, response) {
       $.ajax({
-        dataType: "json",
+        dataType: 'json',
         beforeSend: unbindLoader(),
-        url: "/tags/get_list",
+        url: '/tags/get_list',
         data: {term: request.term},
         success: response
       }).always(bindLoader);

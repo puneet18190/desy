@@ -9,7 +9,7 @@
         "app/assets/javascripts/admin/functions.js": {
             "name": "app/assets/javascripts/admin/functions.js",
             "modules": {
-                "administration": 1
+                "admin": 1
             },
             "classes": {},
             "fors": {
@@ -307,8 +307,8 @@
         }
     },
     "modules": {
-        "administration": {
-            "name": "administration",
+        "admin": {
+            "name": "admin",
             "submodules": {},
             "classes": {
                 "AdminAutocomplete": 1,
@@ -700,7 +700,7 @@
             "tag": "module",
             "file": "app/assets/javascripts/tags.js",
             "line": 1,
-            "description": "Tags autocomplete, _add_ and _remove_ from list."
+            "description": "The functions in this module handle two different functionalities of <b>autocomplete</b> for tags: suggestions for a research (<b>search autocomplete</b>, and suggestions for tagging lessons and media elements (<b>tagging autocomplete</b>). Both modes use the same JQuery plugin called <i>JQueryAutocomplete</i> (the same used in {{#crossLink \"AdminAutocomplete/initNotificationsAutocomplete:method\"}}{{/crossLink}}).\n<br/><br/>\nThe <b>search</b> autocomplete mode requires a simple initializer (method {{#crossLink \"TagsInitializers/initSearchTagsAutocomplete:method\"}}{{/crossLink}}), which is initialized in three different keyword inputs of the search engine (the general one, the one for elements and the one for lessons, see {{#crossLink \"TagsDocumentReady/tagsDocumentReady:method\"}}{{/crossLink}})."
         },
         "video-editor": {
             "name": "video-editor",
@@ -768,7 +768,7 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "module": "administration",
+            "module": "admin",
             "namespace": ""
         },
         "AdminCollapsed": {
@@ -779,7 +779,7 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "module": "administration",
+            "module": "admin",
             "namespace": ""
         },
         "AdminDocumentReady": {
@@ -790,7 +790,7 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "module": "administration",
+            "module": "admin",
             "namespace": ""
         },
         "AjaxLoaderBinder": {
@@ -1748,7 +1748,7 @@
             "itemtype": "method",
             "name": "initNotificationsAutocomplete",
             "class": "AdminAutocomplete",
-            "module": "administration"
+            "module": "admin"
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
@@ -1764,7 +1764,7 @@
                 }
             ],
             "class": "AdminCollapsed",
-            "module": "administration"
+            "module": "admin"
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
@@ -1773,7 +1773,7 @@
             "itemtype": "method",
             "name": "adminBrowsersDocumentReady",
             "class": "AdminDocumentReady",
-            "module": "administration"
+            "module": "admin"
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
@@ -1782,7 +1782,7 @@
             "itemtype": "method",
             "name": "adminEffectsDocumentReady",
             "class": "AdminDocumentReady",
-            "module": "administration"
+            "module": "admin"
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
@@ -1791,7 +1791,7 @@
             "itemtype": "method",
             "name": "adminLocationsDocumentReady",
             "class": "AdminDocumentReady",
-            "module": "administration"
+            "module": "admin"
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
@@ -1800,7 +1800,7 @@
             "itemtype": "method",
             "name": "adminMediaElementsDocumentReady",
             "class": "AdminDocumentReady",
-            "module": "administration"
+            "module": "admin"
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
@@ -1809,7 +1809,7 @@
             "itemtype": "method",
             "name": "adminMiscellaneaDocumentReady",
             "class": "AdminDocumentReady",
-            "module": "administration"
+            "module": "admin"
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
@@ -1818,7 +1818,7 @@
             "itemtype": "method",
             "name": "adminSearchDocumentReady",
             "class": "AdminDocumentReady",
-            "module": "administration"
+            "module": "admin"
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
@@ -1827,7 +1827,7 @@
             "itemtype": "method",
             "name": "adminSortingDocumentReady",
             "class": "AdminDocumentReady",
-            "module": "administration"
+            "module": "admin"
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
@@ -1836,7 +1836,7 @@
             "itemtype": "method",
             "name": "adminUsersDocumentReady",
             "class": "AdminDocumentReady",
-            "module": "administration"
+            "module": "admin"
         },
         {
             "file": "app/assets/javascripts/ajax_loader.js",
@@ -1859,7 +1859,7 @@
         {
             "file": "app/assets/javascripts/ajax_loader.js",
             "line": 51,
-            "description": "Initializes the ajax loader. Used also in the initialization of the module {{#crossLinkModule \"administration\"}}{{/crossLinkModule}}.",
+            "description": "Initializes the ajax loader. Used also in the initialization of the module {{#crossLinkModule \"admin\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "ajaxLoaderDocumentReady",
             "class": "AjaxLoaderDocumentReady",
@@ -5319,7 +5319,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 10,
+            "line": 12,
             "description": "Handle adding tag not in the autocomplete data list",
             "itemtype": "method",
             "name": "addTagWithoutSuggestion",
@@ -5345,7 +5345,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 45,
+            "line": 47,
             "description": "Add tag word to hidden field with tags values",
             "itemtype": "method",
             "name": "addToTagsValue",
@@ -5366,7 +5366,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 62,
+            "line": 64,
             "description": "Checks if a tag word is present in the tags container.",
             "itemtype": "method",
             "name": "checkNoTagDuplicates",
@@ -5391,7 +5391,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 80,
+            "line": 82,
             "description": "Creates a new span element for a new tag.",
             "itemtype": "method",
             "name": "createTagSpan",
@@ -5416,7 +5416,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 97,
+            "line": 99,
             "description": "Disable insert new tag when tags container is full.",
             "itemtype": "method",
             "name": "disableTagsInputTooHigh",
@@ -5437,7 +5437,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 110,
+            "line": 112,
             "description": "Generates a name_aware class for a given tag",
             "itemtype": "method",
             "name": "getUnivoqueClassForTag",
@@ -5457,7 +5457,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 125,
+            "line": 127,
             "description": "Remove tag word to hidden field with tags values",
             "itemtype": "method",
             "name": "removeFromTagsValue",
@@ -5478,7 +5478,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 142,
+            "line": 144,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "tagsDocumentReady",
@@ -5487,7 +5487,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 159,
+            "line": 161,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "tagsDocumentReadyChangeMediaElementInfo",
@@ -5496,7 +5496,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 204,
+            "line": 206,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "tagsDocumentReadyMediaElementLoader",
@@ -5505,7 +5505,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 239,
+            "line": 241,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "tagsDocumentReadyNewLesson",
@@ -5514,7 +5514,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 274,
+            "line": 276,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "tagsDocumentReadyNewMediaElement",
@@ -5523,7 +5523,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 309,
+            "line": 311,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "tagsDocumentReadyOvervriteMediaElement",
@@ -5532,7 +5532,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 347,
+            "line": 349,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "tagsDocumentReadyUpdateLesson",
@@ -5541,7 +5541,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 388,
+            "line": 390,
             "description": "Initialize jQueryUI _autocomplete_ for tags in search input Uses: [unbindLoader](../classes/unbindLoader.html#method_unbindLoader) and [bindLoader](../classes/bindLoader.html#method_bindLoader)",
             "itemtype": "method",
             "name": "initSearchTagsAutocomplete",
@@ -5557,7 +5557,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 418,
+            "line": 420,
             "description": "Initialize jQueryUI _autocomplete_ for tags in lessons and elements form",
             "itemtype": "method",
             "name": "initTagsAutocomplete",

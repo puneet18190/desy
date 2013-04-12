@@ -223,7 +223,7 @@
 
             <ul id="api-modules" class="apis modules">
             
-                <li><a href="..&#x2F;modules/administration.html">administration</a></li>
+                <li><a href="..&#x2F;modules/admin.html">admin</a></li>
             
                 <li><a href="..&#x2F;modules/ajax-loader.html">ajax-loader</a></li>
             
@@ -305,7 +305,9 @@
 <div class="file">
     <pre class="code prettyprint linenums">
 &#x2F;**
-Tags autocomplete, _add_ and _remove_ from list.
+The functions in this module handle two different functionalities of &lt;b&gt;autocomplete&lt;&#x2F;b&gt; for tags: suggestions for a research (&lt;b&gt;search autocomplete&lt;&#x2F;b&gt;, and suggestions for tagging lessons and media elements (&lt;b&gt;tagging autocomplete&lt;&#x2F;b&gt;). Both modes use the same JQuery plugin called &lt;i&gt;JQueryAutocomplete&lt;&#x2F;i&gt; (the same used in {{#crossLink &quot;AdminAutocomplete&#x2F;initNotificationsAutocomplete:method&quot;}}{{&#x2F;crossLink}}).
+&lt;br&#x2F;&gt;&lt;br&#x2F;&gt;
+The &lt;b&gt;search&lt;&#x2F;b&gt; autocomplete mode requires a simple initializer (method {{#crossLink &quot;TagsInitializers&#x2F;initSearchTagsAutocomplete:method&quot;}}{{&#x2F;crossLink}}), which is initialized in three different keyword inputs of the search engine (the general one, the one for elements and the one for lessons, see {{#crossLink &quot;TagsDocumentReady&#x2F;tagsDocumentReady:method&quot;}}{{&#x2F;crossLink}}).
 @module tags
 **&#x2F;
 
@@ -746,9 +748,9 @@ function initTagsAutocomplete(scope) {
   $(input_selector).autocomplete({
     source: function(request, response) {
       $.ajax({
-        dataType: &quot;json&quot;,
+        dataType: &#x27;json&#x27;,
         beforeSend: unbindLoader(),
-        url: &quot;&#x2F;tags&#x2F;get_list&quot;,
+        url: &#x27;&#x2F;tags&#x2F;get_list&#x27;,
         data: {term: request.term},
         success: response
       }).always(bindLoader);
