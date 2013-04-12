@@ -14,6 +14,18 @@ The resulting video will be the concatenation of all the components inside the t
   <li><b>sort</b> and change the order of the components (initialized in {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyInitialization:method"}}{{/crossLink}})</li>
   <li><b>cut</b> a video component (change its initial and final point) or <b>change duration</b> of an image or text compoent (both these functionalities are initialized in {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyCutters:method"}}{{/crossLink}} and implemented in the class {{#crossLink "VideoEditorCutters"}}{{/crossLink}}).</li>
 </ul>
+Each component is provided of its own <b>identifier</b> (the same used in {{#crossLinkModule "audio-editor"}}{{/crossLinkModule}}), that is unique and doesn't change on any operation performed by the user. Moreover, regardless of its type, a component is strictly linked with two <b>external accessories</b>:
+<ul>
+  <li>a <b>cutter</b> (whose HTML id is <i>video component [identifier] cutter</i>): this item is normally hidden, when requested it appears below the timeline and is used to cut a video component or change the duration of an image or text component (class {{#crossLink "VideoEditorCutters"}}{{/crossLink}})</li>
+  <li>a <b>preview clip</b> (whose HTML id is <i>video component [identifier] preview</i>): this item is hidden inside the <b>preview screen</b>, and it's used
+    <ul>
+      <li>to provide the user of a big clip of the component while handling it (functionality initialized in {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyComponentsCommon:method"}}{{/crossLink}})</li>
+      <li>to play a video component while cutting it (initialized in the method {{#crossLink "PlayersDocumentReady/playersDocumentReadyVideoEditor:method"}}{{/crossLink}} in the module {{#crossLinkModule "players"}}{{/crossLinkModule}})</li>
+      <li>to be shown in the <b>global preview</b> (see class {{#crossLink "VideoEditorPreview"}}{{/crossLink}}).</li>
+    </ul>
+  </li>
+</ul>
+The method that <b>extracts the identifier from a component</b> is {{#crossLink "VideoEditorGeneral/getVideoComponentIdentifier:method"}}{{/crossLink}} (it works receiving as parameter either the component or its cutter or preview clip).
 
 
 <br/><br/>
