@@ -25,9 +25,9 @@ group :development do
   # Basta assets che monopolizzano il log dell'application server!
   gem 'quiet_assets'
   gem 'irb-benchmark'
-  gem 'sdoc'
 end
 
+gem 'sdoc'
 gem 'irbtools', group: 'irbtools', platforms: :ruby
 
 group :development, :test do
