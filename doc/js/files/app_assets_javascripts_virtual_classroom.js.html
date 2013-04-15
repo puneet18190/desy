@@ -305,7 +305,11 @@
 <div class="file">
     <pre class="code prettyprint linenums">
 &#x2F;**
-It&#x27;s where users can share their lessons. It handles share lessons link and add to playlist actions.
+The &lt;b&gt;Virtual Classroom&lt;&#x2F;b&gt; is a container where the user can collect and visualize lessons. In the left part of the screen is located the list of lessons (with pagination), on the right there is the playlist.
+&lt;br&#x2F;&gt;&lt;br&#x2F;&gt;
+On each lesson, there are buttons to perform actions (see {{#crossLink &quot;VirtualClassroomDocumentReady&#x2F;virtualClassroomDocumentReadyIconsAndButtons:method&quot;}}{{&#x2F;crossLink}}). Furthermore, each lesson can be dragged using &lt;i&gt;JQueryUi draggable&lt;&#x2F;i&gt; and dropped inside the playlist (see {{#crossLink &quot;VirtualClassroomJavaScriptAnimations&#x2F;initializeDraggableVirtualClassroomLesson:method&quot;}}{{&#x2F;crossLink}}).
+&lt;br&#x2F;&gt;&lt;br&#x2F;&gt;
+One of the buttons in the header opens a popup for loading multiple lessons (initialized in {{#crossLink &quot;VirtualClassroomDocumentReady&#x2F;virtualClassroomDocumentReadyMultipleLessonLoading:method&quot;}}{{&#x2F;crossLink}}, see also {{#crossLink &quot;VirtualClassroomMultipleLoading&quot;}}{{&#x2F;crossLink}}); another functionality is the popup to send the public link of a lesson (initialized in {{#crossLink &quot;VirtualClassroomDocumentReady&#x2F;virtualClassroomDocumentReadySendLink:method&quot;}}{{&#x2F;crossLink}}, see also {{#crossLink &quot;VirtualClassroomSendLink&quot;}}{{&#x2F;crossLink}}).
 @module virtual-classroom
 **&#x2F;
 
