@@ -359,6 +359,12 @@ The &lt;b&gt;optional audio track&lt;&#x2F;b&gt; is added clicking on the button
 &lt;br&#x2F;&gt;&lt;br&#x2F;&gt;
 The audio track is handled while playing a video component inside the video cutter (class {{#crossLink &quot;VideoEditorCutters&quot;}}{{&#x2F;crossLink}}): the system ensures that the starting of the audio corresponds to the position of the selected video component inside the whole video, using the methods {{#crossLink &quot;PlayersDocumentReady&#x2F;playersDocumentReadyVideoEditor:method&quot;}}{{&#x2F;crossLink}} and {{#crossLink &quot;PlayersVideoEditor&#x2F;initializeActionOfMediaTimeUpdaterInVideoEditor:method&quot;}}{{&#x2F;crossLink}} of the module {{#crossLinkModule &quot;players&quot;}}{{&#x2F;crossLinkModule}}.
 &lt;br&#x2F;&gt;&lt;br&#x2F;&gt;
+Unlike the {{#crossLinkModule &quot;audio-editor&quot;}}{{&#x2F;crossLinkModule}}, in Video Editor the &lt;b&gt;preview mode&lt;&#x2F;b&gt; is not left automatically when the user stops the global preview. The system has different behaviors for each item in the editor while being in preview mode, and records this event in the HTML data &lt;b&gt;preview mode in-use&lt;&#x2F;b&gt;.
+&lt;br&#x2F;&gt;&lt;br&#x2F;&gt;
+While in preview mode, the &lt;b&gt;preview&lt;&#x2F;b&gt; button in the right column is substituted by a button &lt;b&gt;play &#x2F; pause&lt;&#x2F;b&gt;; the &lt;i&gt;arrow&lt;&#x2F;i&gt; on the bottom used to commit changes (see {{#crossLink &quot;VideoEditorDocumentReady&#x2F;videoEditorDocumentReadyCommit:method&quot;}}{{&#x2F;crossLink}}) is replaced by &lt;b&gt;a button &#x27;X&#x27;&lt;&#x2F;b&gt; that is used to leave the preview mode. Furthermore, in preview mode many graphical details are slightly changed respect to the normal mode (for instance it&#x27;s not possible to open the cutters, remove components, etc).
+&lt;br&#x2F;&gt;&lt;br&#x2F;&gt;
+The general methods relative to the preview mode are contained in {{#crossLink &quot;VideoEditorPreview&quot;}}{{&#x2F;crossLink}}; the method to enter in preview mode is {{#crossLink &quot;VideoEditorPreview&#x2F;openPreviewModeInVideoEditor:method&quot;}}{{&#x2F;crossLink}}; the initializer, which contains also the functionality of &lt;b&gt;leaving&lt;&#x2F;b&gt; the preview mode, is {{#crossLink &quot;VideoEditorDocumentReady&#x2F;videoEditorDocumentReadyPreview:method&quot;}}{{&#x2F;crossLink}}.
+&lt;br&#x2F;&gt;&lt;br&#x2F;&gt;
 
 
 &lt;br&#x2F;&gt;&lt;br&#x2F;&gt;

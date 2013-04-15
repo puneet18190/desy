@@ -53,6 +53,12 @@ The <b>optional audio track</b> is added clicking on the button on the bottom. W
 <br/><br/>
 The audio track is handled while playing a video component inside the video cutter (class {{#crossLink "VideoEditorCutters"}}{{/crossLink}}): the system ensures that the starting of the audio corresponds to the position of the selected video component inside the whole video, using the methods {{#crossLink "PlayersDocumentReady/playersDocumentReadyVideoEditor:method"}}{{/crossLink}} and {{#crossLink "PlayersVideoEditor/initializeActionOfMediaTimeUpdaterInVideoEditor:method"}}{{/crossLink}} of the module {{#crossLinkModule "players"}}{{/crossLinkModule}}.
 <br/><br/>
+Unlike the {{#crossLinkModule "audio-editor"}}{{/crossLinkModule}}, in Video Editor the <b>preview mode</b> is not left automatically when the user stops the global preview. The system has different behaviors for each item in the editor while being in preview mode, and records this event in the HTML data <b>preview mode in-use</b>.
+<br/><br/>
+While in preview mode, the <b>preview</b> button in the right column is substituted by a button <b>play / pause</b>; the <i>arrow</i> on the bottom used to commit changes (see {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyCommit:method"}}{{/crossLink}}) is replaced by <b>a button 'X'</b> that is used to leave the preview mode. Furthermore, in preview mode many graphical details are slightly changed respect to the normal mode (for instance it's not possible to open the cutters, remove components, etc).
+<br/><br/>
+The general methods relative to the preview mode are contained in {{#crossLink "VideoEditorPreview"}}{{/crossLink}}; the method to enter in preview mode is {{#crossLink "VideoEditorPreview/openPreviewModeInVideoEditor:method"}}{{/crossLink}}; the initializer, which contains also the functionality of <b>leaving</b> the preview mode, is {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyPreview:method"}}{{/crossLink}}.
+<br/><br/>
 
 
 <br/><br/>
