@@ -115,6 +115,8 @@
             
                 <li><a href="..&#x2F;classes/ImageEditorTexts.html">ImageEditorTexts</a></li>
             
+                <li><a href="..&#x2F;classes/JqueryPatchesBrowsers.html">JqueryPatchesBrowsers</a></li>
+            
                 <li><a href="..&#x2F;classes/LessonEditorCurrentSlide.html">LessonEditorCurrentSlide</a></li>
             
                 <li><a href="..&#x2F;classes/LessonEditorDocumentReady.html">LessonEditorDocumentReady</a></li>
@@ -221,7 +223,7 @@
 
             <ul id="api-modules" class="apis modules">
             
-                <li><a href="..&#x2F;modules/administration.html">administration</a></li>
+                <li><a href="..&#x2F;modules/admin.html">admin</a></li>
             
                 <li><a href="..&#x2F;modules/ajax-loader.html">ajax-loader</a></li>
             
@@ -238,6 +240,8 @@
                 <li><a href="..&#x2F;modules/general.html">general</a></li>
             
                 <li><a href="..&#x2F;modules/image-editor.html">image-editor</a></li>
+            
+                <li><a href="..&#x2F;modules/jquery-patches.html">jquery-patches</a></li>
             
                 <li><a href="..&#x2F;modules/lesson-editor.html">lesson-editor</a></li>
             
@@ -432,7 +436,7 @@
     </div>
 
     <div class="description">
-        <p>Image popup for image gallery Uses: <a href="../classes/resizedWidthForImageGallery.html#method_resizedWidthForImageGallery">resizedWidthForImageGallery</a> and <a href="../classes/customOverlayClose.html#method_customOverlayClose">customOverlayClose</a> and <a href="../classes/removeCustomOverlayClose.html#method_removeCustomOverlayClose">removeCustomOverlayClose</a></p>
+        <p>Dialog for the image gallery.</p>
     </div>
 
     
@@ -450,7 +454,7 @@
                     
 
                     <div class="param-description">
-                        <p>image id</p>
+                        <p>id in the database of the image, which is used to extract the HTML id of the dialog</p>
                     </div>
 
                     
@@ -465,7 +469,7 @@
                     
 
                     <div class="param-description">
-                        <p>callback function</p>
+                        <p>callback function (it depends on the gallery, see module <a href="../modules/galleries.html">galleries</a></p>
                     </div>
 
                     
@@ -534,7 +538,7 @@
     </div>
 
     <div class="description">
-        <p>Video popup for video gallery Uses: <a href="../classes/customOverlayClose.html#method_customOverlayClose">customOverlayClose</a> and <a href="../classes/initializeMedia.html#method_initializeMedia">initializeMedia</a> and <a href="../classes/stopMedia.html#method_stopMedia">stopMedia</a> and <a href="../classes/removeCustomOverlayClose.html#method_removeCustomOverlayClose">removeCustomOverlayClose</a></p>
+        <p>Dialog for the video gallery (notice that the video is initialized in the moment the dialog gets opened.</p>
     </div>
 
     
@@ -552,7 +556,7 @@
                     
 
                     <div class="param-description">
-                        <p>video id</p>
+                        <p>id in the database of the video, which is used to extract the HTML id of the dialog</p>
                     </div>
 
                     

@@ -4,7 +4,7 @@ $(document).ready(function() {
   ajaxLoaderDocumentReady();
   defaultValueJavaScriptAnimationsDocumentReady();
   dashboardDocumentReady();
-  formsDocumentReady();
+  reportsDocumentReady();
   filtersDocumentReady();
   expandedItemsDocumentReady();
   galleriesDocumentReady();

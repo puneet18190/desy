@@ -1,0 +1,25 @@
+#!/usr/bin/env ruby
+
+# Script for the installation of DeSY system dependencies
+
+require 'shellwords'
+
+system_requirements_source_file = File.expand_path('../lib/system_requirements', __dir__)
+require system_requirements_source_file
+
+supported_distros = SYSTEM_REQUIREMENTS.keys
+
+distro_info = `lsb_release -d 2> /dev/null`.chop.downcase
+abort 'operative system unknown or unsupported' if distro_info !~ /(#{ supported_distros.map{ |d| Regexp.escape d }.join('|') })/
+system_requirements = SYSTEM_REQUIREMENTS[$1.to_sym].values.flatten.join(' ')
+
+sudo = ( `which sudo 2> /dev/null` and $?.exitstatus == 0 )
+requirements_install_command = "apt-get install #{system_requirements}"
+requirements_install_command = 
+  if sudo
+    "sudo #{requirements_install_command}"
+  else
+    "su -c '#{requirements_install_command}'"
+  end
+
+Process.wait spawn(requirements_install_command)

@@ -9,40 +9,12 @@ application:
   maintainer:
     emails: ['maintainer@morganspa.com']
 
-# The order is important!!!
-location_types: ['Province', 'Town', 'School']
-
-# TODO spostarlo in un file esterno? tipo un CSV?
-locations:
-  Lazio:
-    Frosinone:
-      ['Scuola 1', 'Scuola 2']
-    Latina:
-      ['Scuola 3', 'Scuola 4']
-    Rieti:
-      ['Scuola 5', 'Scuola 6']
-    Roma:
-      ['Scuola 7', 'Scuola 8']
-    Viterbo:
-      ['Scuola 9', 'Scuola 10']
-  Puglia:
-    Bari:
-      ['Scuola 11', 'Scuola 12']
-    Barletta-Andria-Trani:
-      ['Scuola 13', 'Scuola 14']
-    Brindisi:
-      ['Scuola 15', 'Scuola 16']
-    Foggia:
-      ['Scuola 17', 'Scuola 18']
-    Lecce:
-      ['Scuola 19', 'Scuola 20']
-    Taranto:
-      ['Scuola 21', 'Scuola 22']
+# Types of the locations related to Desy
+# The order is important: it determines the parent->child relation
+# The last location is the one associated the the user
+location_types: ['Province', 'City', 'County']
 
 # SEEDS
-# locations: ['Shanghai', 'Guangzhou', 'Wuhan', 'Beijing', 'Tianjin', 'Shenzhen', 'Nanjing'] # possibly, link here an external file with the list of locations
-subjects: ['Mathematics', 'Natural Sciences', 'Geography', 'History', 'Visive Arts', 'Music', 'Phisycal Education', 'Computer Science', 'Languages', 'Literature', 'Chemistry']
-school_levels: ['Primary School', 'Secondary School', 'Undergraduate']
 admin:
   name: 'DESY'
   surname: 'Admin User'
@@ -116,3 +88,9 @@ minimum_password_length: 8
 maximum_password_length:
 # MAXIMUM SIZE OF AN ELEMENT (IN MEGABYTES)
 max_media_size: 50
+# MAXIMUM SIZE OF THE MEDIA ELEMENTS FOLDER (IN GIGABYTES)
+maximum_media_elements_folder_size: 20
+# COOKIE KEY
+cookie_key: '_desy_session'
+# SESSION TIMEOUT (IN HOURS)
+session_timeout: 48

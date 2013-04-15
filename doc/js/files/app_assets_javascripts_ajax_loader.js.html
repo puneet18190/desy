@@ -115,6 +115,8 @@
             
                 <li><a href="..&#x2F;classes/ImageEditorTexts.html">ImageEditorTexts</a></li>
             
+                <li><a href="..&#x2F;classes/JqueryPatchesBrowsers.html">JqueryPatchesBrowsers</a></li>
+            
                 <li><a href="..&#x2F;classes/LessonEditorCurrentSlide.html">LessonEditorCurrentSlide</a></li>
             
                 <li><a href="..&#x2F;classes/LessonEditorDocumentReady.html">LessonEditorDocumentReady</a></li>
@@ -221,7 +223,7 @@
 
             <ul id="api-modules" class="apis modules">
             
-                <li><a href="..&#x2F;modules/administration.html">administration</a></li>
+                <li><a href="..&#x2F;modules/admin.html">admin</a></li>
             
                 <li><a href="..&#x2F;modules/ajax-loader.html">ajax-loader</a></li>
             
@@ -238,6 +240,8 @@
                 <li><a href="..&#x2F;modules/general.html">general</a></li>
             
                 <li><a href="..&#x2F;modules/image-editor.html">image-editor</a></li>
+            
+                <li><a href="..&#x2F;modules/jquery-patches.html">jquery-patches</a></li>
             
                 <li><a href="..&#x2F;modules/lesson-editor.html">lesson-editor</a></li>
             
@@ -301,7 +305,7 @@
 <div class="file">
     <pre class="code prettyprint linenums">
 &#x2F;**
-Shows a loading image while page is loading, it handles ajax calls too.
+Here it&#x27;s defined the general &lt;b&gt;ajax loader&lt;&#x2F;b&gt; of the application.
 @module ajax-loader
 **&#x2F;
 
@@ -338,7 +342,7 @@ function bindLoader() {
 }
 
 &#x2F;**
-Unbind Loader, unbind loader for ajaxStart and ajaxStop.
+Unbind Loader, unbind loader for ajaxStart and ajaxStop. Used occasionally, when the loader is not necessary (for instance in {{#crossLinkModule &quot;lesson-editor&quot;}}{{&#x2F;crossLinkModule}})
 @method unbindLoader
 @for AjaxLoaderBinder
 **&#x2F;
@@ -351,7 +355,7 @@ function unbindLoader() {
 
 
 &#x2F;**
-Initializes the ajax loader. Used also in {{#crossLinkModule &quot;administration&quot;}}{{&#x2F;crossLinkModule}}.
+Initializes the ajax loader. Used also in the initialization of the module {{#crossLinkModule &quot;admin&quot;}}{{&#x2F;crossLinkModule}}.
 @method ajaxLoaderDocumentReady
 @for AjaxLoaderDocumentReady
 **&#x2F;
@@ -364,7 +368,7 @@ function ajaxLoaderDocumentReady() {
 
 
 &#x2F;**
-Hide Loader, force loader to hide.
+Hides the loader without binding or unbinding it.
 @method hideLoader
 @for AjaxLoaderVisibility
 **&#x2F;
@@ -373,7 +377,7 @@ function hideLoader() {
 }
 
 &#x2F;**
-Show Loader, force loader to show. It comes with timeout (default=5000) to force loader to hide [hideLoader](..&#x2F;classes&#x2F;hideLoader.html#method_hideLoader)
+Shows the loader without binding or unbinding it (it has a timeout of 5000).
 @method showLoader
 @for AjaxLoaderVisibility
 **&#x2F;

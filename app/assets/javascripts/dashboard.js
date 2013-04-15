@@ -1,5 +1,7 @@
 /**
-Dashboard is the welcome page of DESY where you find shared lessons and elements. This handles elements interaction events.
+The dashboard is the home page of DESY: the page is divided in two sections, one for <b>suggested elements</b> and one for <b>suggested lessons</b>. Each of these two sections is split into three pages of lessons and elements. When the server loads the dashboard, all the six pages (three for lessons, three for elements) are loaded together, and all the operations are handled with javascript functions.
+<br/><br/>
+There are two simple functions that switch between the pages for lessons and elements (see both methods of {{#crossLink "DashboardGeneral"}}{{/crossLink}}). A bit more complicated are the functions to pass from a page to another (all contained in the class {{#crossLink "DashboardPagination"}}{{/crossLink}}): the core of such an asynchronous pagination is the method {{#crossLink "DashboardPagination/getHtmlPagination:method"}}{{/crossLink}} that reconstructs the normal pagination without calling the corresponding partial in <i>views/shared/pagination.html.erb</i>: this pagination is unique for both elements and lessons, and it is reloaded each time the user changes page using the functions {{#crossLink "DashboardPagination/reloadLessonsDashboardPagination:method"}}{{/crossLink}} and {{#crossLink "DashboardPagination/reloadMediaElementsDashboardPagination:method"}}{{/crossLink}}.
 @module dashboard
 **/
 
@@ -8,7 +10,7 @@ Dashboard is the welcome page of DESY where you find shared lessons and elements
 
 
 /**
-bla bla bla
+Initializer for the animation effects of the Dashboard.
 @method dashboardDocumentReady
 @for DashboardDocumentReady
 **/
@@ -41,7 +43,7 @@ function dashboardDocumentReady() {
 
 
 /**
-Switch to suggested lessons page in dashboard. Uses: [reloadMediaLessonsDashboardPagination](../classes/reloadMediaLessonsDashboardPagination.html#method_reloadMediaLessonsDashboardPagination)
+This function switched to the page of suggested lessons, and reloads the pagination (if there are no suggested lessons the pagination is removed).
 @method switchToSuggestedLessons
 @for DashboardGeneral
 **/
@@ -59,7 +61,7 @@ function switchToSuggestedLessons() {
 }
 
 /**
-Switch to suggested elements page in dashboard. Uses: [reloadMediaElementsDashboardPagination](../classes/reloadMediaElementsDashboardPagination.html#method_reloadMediaElementsDashboardPagination)
+This function switches to the page of suggested elements, and reloads the pagination (if there are no suggested elements the pagination is removed).
 @method switchToSuggestedMediaElements
 @for DashboardGeneral
 **/
@@ -81,12 +83,12 @@ function switchToSuggestedMediaElements() {
 
 
 /**
-Change lessons page in dashboard. Uses: [reloadLessonsDashboardPagination](../classes/reloadLessonsDashboardPagination.html#method_reloadLessonsDashboardPagination)
+This function changes page of the section containing suggested lessons. As already mentioned, the method reloads the pagination using {{#crossLink "DashboardPagination/reloadLessonsDashboardPagination:method"}}{{/crossLink}}.
 @method changePageDashboardLessons
 @for DashboardPagination
-@param old_pos {Number} pagination old position
-@param pos {Number} pagination position
-@param poges_amount {Number} pagination pages amount
+@param old_pos {Number} old page
+@param pos {Number} new page
+@param poges_amount {Number} amount of pages of lessons
 **/
 function changePageDashboardLessons(old_pos, pos, pages_amount) {
   $('#suggested_lessons_' + (old_pos)).hide('fade', {}, 500, function() {
@@ -97,12 +99,12 @@ function changePageDashboardLessons(old_pos, pos, pages_amount) {
 }
 
 /**
-Change media elements page in dashboard. Uses: [reloadMediaElementsDashboardPagination](../classes/reloadMediaElementsDashboardPagination.html#method_reloadMediaElementsDashboardPagination)
+This function changes page of the section containing suggested elements. As already mentioned, the method reloads the pagination using {{#crossLink "DashboardPagination/reloadMediaElementsDashboardPagination:method"}}{{/crossLink}}.
 @method changePageDashboardMediaElements
 @for DashboardPagination
-@param old_pos {Number} pagination old position
-@param pos {Number} pagination position
-@param poges_amount {Number} pagination pages amount
+@param old_pos {Number} old page
+@param pos {Number} new page
+@param poges_amount {Number} amount of pages of elements
 **/
 function changePageDashboardMediaElements(old_pos, pos, pages_amount) {
   $('#suggested_media_elements_' + (old_pos)).hide('fade', {}, 500, function() {
@@ -113,12 +115,12 @@ function changePageDashboardMediaElements(old_pos, pos, pages_amount) {
 }
 
 /**
-Pagination html generator
+This function generates HTML code with the same functionality of the one defined in the partial <i>views/shared/pagination.html.erb</i>.
 @method getHtmlPagination
 @for DashboardPagination
-@param pos {Number} current position
-@param pages_amount {Number} number of pages
-@return {Object} pagination html elements  
+@param pos {Number} selected page
+@param pages_amount {Number} total amount of pages
+@return {Object} JQuery HTML element to be attached to the document
 **/
 function getHtmlPagination(pos, pages_amount) {
   var prev_attrs = {};
@@ -154,9 +156,11 @@ function getHtmlPagination(pos, pages_amount) {
 }
 
 /**
-Reload Dashboard content on page change, using bottom pagination.
+This function sets the current pages of lessons and elements, without loading the pagination. It's only used in the index.js.erb for pagination.
 @method reloadDashboardPages
 @for DashboardPagination
+@param lessons_page {Number} page to be selected for lessons
+@param media_elements_page {Number} page to be selected for media elements
 **/
 function reloadDashboardPages(lessons_page, media_elements_page) {
   $('#suggested_media_elements_1').hide();
@@ -166,11 +170,11 @@ function reloadDashboardPages(lessons_page, media_elements_page) {
 }
 
 /**
-Realod pagination html for lessons. Uses: [changePageDashboardLessons](../classes/changePageDashboardLessons.html#method_changePageDashboardLessons)
+This function reloads the pagination for lessons (it uses {{#crossLink "DashboardPagination/getHtmlPagination:method"}}{{/crossLink}}).
 @method reloadLessonsDashboardPagination
 @for DashboardPagination
-@param pos {Number} pagination position
-@param poges_amount {Number} pagination pages amount
+@param pos {Number} current page
+@param poges_amount {Number} amount of pages for lessons
 **/
 function reloadLessonsDashboardPagination(pos, pages_amount) {
   if(pages_amount == 0) {
@@ -194,11 +198,11 @@ function reloadLessonsDashboardPagination(pos, pages_amount) {
 }
 
 /**
-Realod pagination html for media elements. Uses: [changePageDashboardMediaElements](../classes/changePageDashboardMediaElements.html#method_changePageDashboardMediaElements)
+This function reloads the pagination for media elements (it uses {{#crossLink "DashboardPagination/getHtmlPagination:method"}}{{/crossLink}}).
 @method reloadMediaElementsDashboardPagination
 @for DashboardPagination
-@param pos {Number} pagination position
-@param poges_amount {Number} pagination pages amount
+@param pos {Number} current page
+@param poges_amount {Number} amount of pages for elements
 **/
 function reloadMediaElementsDashboardPagination(pos, pages_amount) {
   if(pages_amount == 0) {

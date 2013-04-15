@@ -1,5 +1,21 @@
 /**
-Lesson editor functions, it handles visual effects, CRUD actions on single slides and lessons, it handles tinyMCE editor too.
+The Lesson Editor is used to add and edit slides to a private lesson.
+<br/><br/>
+When opening the Editor on a lesson, all its slides are appended to a queue, of which it's visible only the portion that surrounds the <b>current slide</b> (the width of such a portion depends on the screen resolution, see {{#crossLink "LessonEditorSlidesNavigation/initLessonEditorPositions:method"}}{{/crossLink}}, {{#crossLink "LessonEditorDocumentReady/lessonEditorDocumentReadyResize:method"}}{{/crossLink}} and {{#crossLink "LessonEditorDocumentReady/lessonEditorDocumentReadyGeneral:method"}}{{/crossLink}}). The current slide is illuminated and editable, whereas the adhiacent slides are covered by a layer with opacity that prevents the user from editing them: if the user clicks on this layer, the application takes the slide below it as new current slide and moves it to the center of the screen (see {{#crossLink "LessonEditorDocumentReady/lessonEditorDocumentReadySlidesNavigator:method"}}{{/crossLink}} and the methods in {{#crossLink "LessonEditorSlidesNavigation"}}{{/crossLink}}): only after this operation, the user can edit that particular slide. To avoid overloading when there are many slides containing media, the slides are instanced all together but their content is loaded only when the user moves to them (see the methods in {{#crossLink "LessonEditorSlideLoading"}}{{/crossLink}}).
+<br/><br/>
+On the right side of each slide the user finds a list of <b>buttons</b> (initialized in {{#crossLink "LessonEditorDocumentReady/lessonEditorDocumentReadySlideButtons:method"}}{{/crossLink}}): each button corresponds either to an action that can be performed on the slide, either to an action that can be performed to the whole lesson (for instance, save and exit, or edit title description and tags).
+<br/><br/>
+The <b>tool to navigate the slides</b> is located on the top of the editor: each small square represents a slide (with its position), and passing with the mouse over it the Editor shows a miniature of the corresponding slide (these functionalities are initialized in {{#crossLink "LessonEditorDocumentReady/lessonEditorDocumentReadySlidesNavigator:method"}}{{/crossLink}}). Clicking on a slide miniature, the application moves to that slide using the function {{#crossLink "LessonEditorSlidesNavigation/slideTo:method"}}{{/crossLink}}. The slides can be sorted dragging with the mouse (using the JQueryUi plugin, initialized in {{#crossLink "LessonEditorDocumentReady/lessonEditorDocumentReadyJqueryAnimations:method"}}{{/crossLink}} and {{#crossLink "LessonEditorJqueryAnimations/initializeSortableNavs:method"}}{{/crossLink}}).
+<br/><br/>
+Inside the Editor, there are two operations that require hiding and replacement of the queue of slides: <b>adding a media element to a slide</b> and <b>choosing a new slide</b>. In both these operations, an HTML div is extracted from the main template (where it was hidden), and put in the place of the current slide, hiding the rest of the slides queue, buttons, and slides navigation (operations performed by {{#crossLink "LessonEditorCurrentSlide/hideEverythingOutCurrentSlide:method"}}{{/crossLink}}). For the galleries, the extracted div must be filled by an action called via Ajax (see the module {{#crossLinkModule "galleries"}}{{/crossLinkModule}}), whereas the div with the list of available slides is already loaded with the Editor (see {{#crossLink "LessonEditorDocumentReady/lessonEditorDocumentReadyNewSlideChoice:method"}}{{/crossLink}}).
+<br/><br/>
+To add a media element to a slide, the user picks it from its specific gallery: when he clicks on the button 'plus', the system calls the corresponding subfunction in {{#crossLink "LessonEditorDocumentReady/lessonEditorDocumentReadyAddMediaElement:method"}}{{/crossLink}}. To avoid troubles due to the replacement of JQuery plugins, video and audio tags, etc, this method always replaces the sources of <b>audio</b> and <b>video</b> tags and calls <i>load()</i>.
+<br/><br/>
+If the element added is of type <b>image</b>, the user may drag it inside the slide, using {{#crossLink "LessonEditorJqueryAnimations/makeDraggable:method"}}{{/crossLink}}. A set of methods (in the class {{#crossLink "LessonEditorImageResizing"}}{{/crossLink}}) is available to resize the image and the alignment chosen by the user; more specificly, the method {{#crossLink "LessonEditorImageResizing/isHorizontalMask:method"}}{{/crossLink}} is used to understand, depending on the type of slide and on the proportions of the image, if the image is <b>vertical</b> (and then the user can drag it vertically) or <b>horizontal</b> (the user can drag it horizontally).
+<br/><br/>
+Each slide contains a form linked to the action that updates it, there is no global saving for the whole lesson. The slide is automaticly saved (using the method {{#crossLink "LessonEditorForms/saveCurrentSlide:method"}}{{/crossLink}}) <i>before moving to another slide</i>, <i>before showing the options to add a new slide</i>, and <i>before changing position of a slide</i>. The same function is called by the user when he clicks on the button 'save' on the right of each slide; the buttons <b>save and exit</b> and <b>edit general info</b> are also linked to slide saving, but in this case it's performed with a callback (see again the buttons initialization in {{#crossLink "LessonEditorDocumentReady/lessonEditorDocumentReadySlideButtons:method"}}{{/crossLink}}).
+<br/><br/>
+The text slides are provided of <b>TinyMCE</b> text editor, initialized in the methods of {{#crossLink "LessonEditorTinyMCE"}}{{/crossLink}}.
 @module lesson-editor
 **/
 
@@ -8,7 +24,7 @@ Lesson editor functions, it handles visual effects, CRUD actions on single slide
 
 
 /**
-Hide page elements around current slide on new slide selection
+Hides buttons, adhiacent slides and slide navigation (used before {{#crossLink "LessonEditorDocumentReady/lessonEditorDocumentReadyNewSlideChoice:method"}}{{/crossLink}} and {{#crossLink "LessonEditorGalleries/showGalleryInLessonEditor:method"}}{{/crossLink}}).
 @method hideEverythingOutCurrentSlide
 @for LessonEditorCurrentSlide
 **/
@@ -21,7 +37,7 @@ function hideEverythingOutCurrentSlide() {
 }
 
 /**
-Hide new slide selection
+Hides the template for selection of new slides.
 @method hideNewSlideChoice
 @for LessonEditorCurrentSlide
 **/
@@ -34,7 +50,7 @@ function hideNewSlideChoice() {
 }
 
 /**
-Restore page elements around current slide after new slide selection
+Opposite of {{#crossLink "LessonEditorCurrentSlide/hideEverythingOutCurrentSlide:method"}}{{/crossLink}}.
 @method showEverythingOutCurrentSlide
 @for LessonEditorCurrentSlide
 **/
@@ -47,8 +63,8 @@ function showEverythingOutCurrentSlide() {
 }
 
 /**
-Hide new slide selection
-@method showNewSlideChoice
+Shows the template for selection of new slides.
+@method showNewSlideOptions
 @for LessonEditorCurrentSlide
 **/
 function showNewSlideOptions() {
@@ -62,7 +78,7 @@ function showNewSlideOptions() {
 }
 
 /**
-Stop video and audio playing into current slide, usually only one kind of media is present into current slide
+Stop video and audio playing into the current slide (used before changing slide with {{#crossLink "LessonEditorSlidesNavigation/slideTo:method"}}{{/crossLink}}).
 @method stopMediaInCurrentSlide
 @for LessonEditorCurrentSlide
 **/
@@ -77,7 +93,7 @@ function stopMediaInCurrentSlide() {
 
 
 /**
-bla bla bla
+General initialization of Lesson Editor.
 @method lessonEditorDocumentReady
 @for LessonEditorDocumentReady
 **/
@@ -95,7 +111,7 @@ function lessonEditorDocumentReady() {
 }
 
 /**
-bla bla bla
+Initializer of the three functionalities to add an element (image, audio, video).
 @method lessonEditorDocumentReadyAddMediaElement
 @for LessonEditorDocumentReady
 **/
@@ -211,7 +227,7 @@ function lessonEditorDocumentReadyAddMediaElement() {
 }
 
 /**
-bla bla bla
+Initializer for galleries.
 @method lessonEditorDocumentReadyGalleries
 @for LessonEditorDocumentReady
 **/
@@ -248,7 +264,7 @@ function lessonEditorDocumentReadyGalleries() {
 }
 
 /**
-bla bla bla
+General initialization of position (used together with {{#crossLink "LessonEditorSlidesNavigation/initLessonEditorPositions:method"}}{{/crossLink}}).
 @method lessonEditorDocumentReadyGeneral
 @for LessonEditorDocumentReady
 **/
@@ -260,7 +276,7 @@ function lessonEditorDocumentReadyGeneral() {
 }
 
 /**
-bla bla bla
+Initializer for JQueryUi animations defined in the class {{#crossLink "LessonEditorJqueryAnimations"}}{{/crossLink}}.
 @method lessonEditorDocumentReadyJqueryAnimations
 @for LessonEditorDocumentReady
 **/
@@ -277,7 +293,7 @@ function lessonEditorDocumentReadyJqueryAnimations() {
 }
 
 /**
-bla bla bla
+Initializer for the template that contains the list of possible slides to be added.
 @method lessonEditorDocumentReadyNewSlideChoice
 @for LessonEditorDocumentReady
 **/
@@ -297,7 +313,7 @@ function lessonEditorDocumentReadyNewSlideChoice() {
 }
 
 /**
-bla bla bla
+Initializer for the mouseover and mouseout to replace a media element already added.
 @method lessonEditorDocumentReadyReplaceMediaElement
 @for LessonEditorDocumentReady
 **/
@@ -321,7 +337,7 @@ function lessonEditorDocumentReadyReplaceMediaElement() {
 }
 
 /**
-bla bla bla
+Initializer for window resize.
 @method lessonEditorDocumentReadyResize
 @for LessonEditorDocumentReady
 **/
@@ -338,7 +354,7 @@ function lessonEditorDocumentReadyResize() {
 }
 
 /**
-bla bla bla
+Initializer for the buttons on the right side of each slide.
 @method lessonEditorDocumentReadySlideButtons
 @for LessonEditorDocumentReady
 **/
@@ -417,7 +433,7 @@ function lessonEditorDocumentReadySlideButtons() {
 }
 
 /**
-bla bla bla
+Initializer for the scroll and all the actions of the slide navigator (see the class {{#crossLink "LessonEditorSlidesNavigation"}}{{/crossLink}}).
 @method lessonEditorDocumentReadySlidesNavigator
 @for LessonEditorDocumentReady
 **/
@@ -465,7 +481,7 @@ function lessonEditorDocumentReadySlidesNavigator() {
 }
 
 /**
-bla bla bla
+Initializer for the placeholders of text inputs throughout the Lesson Editor.
 @method lessonEditorDocumentReadyTextFields
 @for LessonEditorDocumentReady
 **/
@@ -507,7 +523,7 @@ function lessonEditorDocumentReadyTextFields() {
 
 
 /**
-Save current slide. It sends tinyMCE editor content to form data to be serialized, it handles form placeholders. Uses: [submitCurrentSlideForm](../classes/submitCurrentSlideForm.html#method_submitCurrentSlideForm)
+Save current slide. It sends tinyMCE editor content to form data to be serialized, it handles form placeholders.
 @method saveCurrentSlide
 @for LessonEditorForms
 **/
@@ -533,7 +549,7 @@ function saveCurrentSlide() {
 }
 
 /**
-Submit serialized form data for current slide
+Submit serialized form data for current slide (used in {{#crossLink "LessonEditorForms/saveCurrentSlide:method"}}{{/crossLink}}).
 @method submitCurrentSlideForm
 @for LessonEditorForms
 **/
@@ -541,7 +557,7 @@ function submitCurrentSlideForm() {
   $.ajax({
     type: 'post',
     url: $('._lesson_editor_current_slide form').attr('action'),
-    timeout:5000,
+    timeout: 5000,
     data: $('._lesson_editor_current_slide form').serialize(),
     beforeSend: unbindLoader()
   }).always(bindLoader);
@@ -552,7 +568,7 @@ function submitCurrentSlideForm() {
 
 
 /**
-Hide media gallery for selected type
+Hides media gallery for selected type.
 @method removeGalleryInLessonEditor
 @for LessonEditorGalleries
 @param sty_type {String} gallery type
@@ -564,10 +580,10 @@ function removeGalleryInLessonEditor(sti_type) {
 }
 
 /**
-Show media gallery for selected type clicking on slide green plus button
+Shows media gallery for selected type.
 @method showGalleryInLessonEditor
 @for LessonEditorGalleries
-@param obj {String} gallery type
+@param obj {String} HTML selector for the button that opens the gallery (used to extract the position of the current slide)
 @param sty_type {String} gallery type
 **/
 function showGalleryInLessonEditor(obj, sti_type) {
@@ -593,13 +609,13 @@ function showGalleryInLessonEditor(obj, sti_type) {
 
 
 /**
-Check if image ratio is bigger then kind ratio
+Check if image ratio is bigger then kind ratio.
 @method isHorizontalMask
 @for LessonEditorImageResizing
-@param image_width {Number}
-@param image_height {Number}
-@param kind {String} type image into slide, acceptes values: cover, image1, image2, image3, image4
-@return {Boolean} true if image ratio is bigger then kind ratio
+@param image_width {Number} width of the image
+@param image_height {Number} height of the image
+@param kind {String} type image into slide, accepts values: cover, image1, image2, image3, image4
+@return {Boolean} true if the image is horizontal, false if vertical
 **/
 function isHorizontalMask(image_width, image_height, kind) {
   var ratio = image_width / image_height;
@@ -621,12 +637,12 @@ function isHorizontalMask(image_width, image_height, kind) {
 }
 
 /**
-Sets scaled height to slide images
+Gets scaled height to slide images.
 @method resizeHeight
 @for LessonEditorImageResizing
-@param image_width {Number}
-@param image_height {Number}
-@param kind {String} type image into slide, acceptes values: cover, image1, image2, image3, image4
+@param image_width {Number} width of the image
+@param image_height {Number} height of the image
+@param kind {String} type image into slide, accepts values: cover, image1, image2, image3, image4
 @return {Number} scaled height
 **/
 function resizeHeight(width, height, kind) {
@@ -647,12 +663,12 @@ function resizeHeight(width, height, kind) {
 }
 
 /**
-Sets scaled width to slide images
+Gets scaled width to slide images.
 @method resizeWidth
 @for LessonEditorImageResizing
-@param image_width {Number}
-@param image_height {Number}
-@param kind {String} type image into slide, acceptes values: cover, image1, image2, image3, image4
+@param image_width {Number} width of the image
+@param image_height {Number} height of the image
+@param kind {String} type image into slide, accepts values: cover, image1, image2, image3, image4
 @return {Number} scaled width
 **/
 function resizeWidth(width, height, kind) {
@@ -677,7 +693,7 @@ function resizeWidth(width, height, kind) {
 
 
 /**
-Inizialize jQueryUI _sortable_ function on top navigation numbers, so that they can be sorted
+Inizializes jQueryUI <b>sortable</b> function on top navigation numbers, so that they can be sorted (see also {{#crossLink "LessonEditorDocumentReady/lessonEditorDocumentReadySlidesNavigator:method"}}{{/crossLink}} and {{#crossLink "LessonEditorSlidesNavigation"}}{{/crossLink}}).
 @method initializeSortableNavs
 @for LessonEditorJqueryAnimations
 **/
@@ -722,10 +738,10 @@ function initializeSortableNavs() {
 }
 
 /**
-Inizialize jQueryUI _draggable_ function on slide image containers.
+Inizializes jQueryUI <b>draggable</b> function on slide image containers (to understand if the draggable is vertical or horizontal it uses {{#crossLink "LessonEditorImageResizing/isHorizontalMask:method"}}{{/crossLink}}).
 @method makeDraggable
 @for LessonEditorJqueryAnimations
-@param place_id {Number} media element id
+@param place_id {String} HTML id for the container to make draggable
 **/
 function makeDraggable(place_id) {
   var full_place = $('#' + place_id + ' ._full_image_in_slide');
@@ -794,10 +810,10 @@ function makeDraggable(place_id) {
 
 
 /**
-Asynchronously loads current slide, previous and following if any of these aren't loaded yet. Uses: [loadSlideInLessonEditor](../classes/loadSlideInLessonEditor.html#method_loadSlideInLessonEditor)
+Asynchronously loads current slide, previous and following.
 @method loadSlideAndAdhiacentInLessonEditor
 @for LessonEditorSlideLoading
-@param slide_id {Number} slide id
+@param slide_id {Number} id in the database of the current slide, used to extract the HTML id
 **/
 function loadSlideAndAdhiacentInLessonEditor(slide_id) {
   var slide = $('#slide_in_lesson_editor_' + slide_id);
@@ -807,10 +823,10 @@ function loadSlideAndAdhiacentInLessonEditor(slide_id) {
 }
 
 /**
-Asynchronous slide loading. It is called when the current slide is not loaded yet.
+Asynchronous slide loading. It checks if the slide has been loaded or not.
 @method loadSlideInLessonEditor
 @for LessonEditorSlideLoading
-@param slide {String} slide object id
+@param slide {Object} slide to be loaded
 **/
 function loadSlideInLessonEditor(slide) {
   if(slide.length > 0 && !slide.data('loaded')) {
@@ -826,7 +842,7 @@ function loadSlideInLessonEditor(slide) {
 
 
 /**
-Initialize slides position to center
+Initialize slides position to center.
 @method initLessonEditorPositions
 @for LessonEditorSlidesNavigation
 **/
@@ -845,7 +861,7 @@ function initLessonEditorPositions() {
 }
 
 /**
-Re-initialize slides position to center after ajax events
+Re-initialize slides position to center after ajax events.
 @method reInitializeSlidePositionsInLessonEditor
 @for LessonEditorSlidesNavigation
 **/
@@ -857,10 +873,11 @@ function reInitializeSlidePositionsInLessonEditor() {
 }
 
 /**
-Update top scrollPane when moving to another slide
+Scrolls navigation scrollPane ({{#crossLink "LessonEditorSlidesNavigation"}}{{/crossLink}}) when moving to another slide.
 @method scrollPaneUpdate
 @for LessonEditorSlidesNavigation
-@param trigger_element {String} element which triggers the scroll, class or id
+@param trigger_element {String} HTML selector for the element which triggers the scroll
+@return {Boolean} false, probably to stop further actions
 **/
 function scrollPaneUpdate(trigger_element) {
   var not_current = $(trigger_element);
@@ -873,11 +890,11 @@ function scrollPaneUpdate(trigger_element) {
 }
 
 /**
-Slide to current slide, update current slide in top navigation. Uses: [loadSlideAndAdhiacentInLessonEditor](../classes/loadSlideAndAdhiacentInLessonEditor.html#method_loadSlideAndAdhiacentInLessonEditor)
+Moves to a slide, update current slide in top navigation.
 @method slideTo
 @for LessonEditorSlidesNavigation
-@param slide_id {Number} slide id
-@param callback {Object} callback function
+@param slide_id {Number} id in the database of the slide, used to extract the HTML id
+@param callback {Object} callback function, to be executed after the slide (for instance, this function is used to call {{#crossLink "LessonEditorCurrentSlide/showNewSlideOptions:method"}}{{/crossLink}})
 **/
 function slideTo(slide_id, callback) {
   loadSlideAndAdhiacentInLessonEditor(slide_id);
@@ -912,7 +929,7 @@ function slideTo(slide_id, callback) {
   $('ul#slides li:eq(' + (position - 1) + ')').animate({
     opacity: 1,
   }, 500, function() {
-    $(this).find(".buttons").fadeIn();
+    $(this).find('.buttons').fadeIn();
     $(this).find('layer').remove();
     $('li._lesson_editor_current_slide').removeClass('_lesson_editor_current_slide active');
     $('#slide_in_lesson_editor_' + slide_id).addClass('_lesson_editor_current_slide active');
@@ -924,10 +941,10 @@ function slideTo(slide_id, callback) {
 
 
 /**
-Initialize tinyMCE editor for a single textarea Uses: [tinyMceKeyDownCallbacks](../classes/tinyMceKeyDownCallbacks.html#method_tinyMceKeyDownCallbacks) and [tinyMceCallbacks](../classes/tinyMceCallbacks.html#method_tinyMceCallbacks) 
+Initialize tinyMCE editor for a single textarea.
 @method initTinymce
 @for LessonEditorTinyMCE
-@param tiny_id {Number} tinyMCE textarea id
+@param tiny_id {String} HTML id of the tinyMCE textarea
 **/
 function initTinymce(tiny_id) {
   var plugins = 'pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,';
@@ -968,13 +985,13 @@ function initTinymce(tiny_id) {
 }
 
 /**
-TinyMCE callback to show warning when texearea content exceeds the available space. Add a red border to the textarea. Add this function on tinyMCE setup.
+TinyMCE callback to show warning when texearea content exceeds the available space. Adds a red border to the textarea.This function is used in tinyMCE setup ({{#crossLink "LessonEditorTinyMCE/initTinymce:method"}}{{/crossLink}}).
 @method tinyMceCallbacks
 @for LessonEditorTinyMCE
 @param inst {Object} tinyMCE body instance
-@param tiny_id {Number} tinyMCE textarea id
+@param tiny_id {Number} HTML id of the tinyMCE textarea
 **/
-function tinyMceCallbacks(inst,tiny_id) {
+function tinyMceCallbacks(inst, tiny_id) {
   var maxH = 422;
   if($('textarea#' + tiny_id).parent('.audio-content').length > 0) {
     maxH = 324;
@@ -987,15 +1004,15 @@ function tinyMceCallbacks(inst,tiny_id) {
 }
 
 /**
-TinyMCE keyDown callback to fix list item style. It adds same style of list item text to list numbers or dots. Add this function on tinyMCE setup.
+TinyMCE keyDown callback to fix list item style. It adds same style of list item text to list numbers or dots. This function is used in tinyMCE setup ({{#crossLink "LessonEditorTinyMCE/initTinymce:method"}}{{/crossLink}}).
 @method tinyMceKeyDownCallbacks
 @for LessonEditorTinyMCE
 @param inst {Object} tinyMCE body instance
-@param tiny_id {Number} tinyMCE textarea id
+@param tiny_id {Number} HTML id of the tinyMCE textarea
 **/
-function tinyMceKeyDownCallbacks(inst,tiny_id){
+function tinyMceKeyDownCallbacks(inst, tiny_id) {
   var spans = $(inst.getBody()).find('li span');
-  spans.each(function(){
+  spans.each(function() {
     var span = $(this);
     span.parents('li').removeAttr('class');
     span.parents('li').addClass(span.attr('class'));

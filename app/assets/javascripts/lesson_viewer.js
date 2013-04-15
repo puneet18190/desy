@@ -1,13 +1,16 @@
-/*
-  NOTA DI ADRIANO: FIXME metti questa nota nella descrizione del modulo
-    ci sono tre bug conosciuti e dovuti al malfunzionamento di JScrollPane:
-     (1) quando passo dalla prima slide della terza lezione all'ultima slide della seconda lezione, lo scroll non segue la selezione della lezione in basso
-     (2) quando passo dall'ultima slide dell'ultima lezione alla prima slide della prima lezione, idem
-     (3) se, dopo aver aperto la prima volta il menu delle lezioni, (SOLO LA PRIMA VOLTA), clicco su una delle lezioni entro due secondi, si rompe il menu
-*/
-
 /**
-Lesson viewer, it handles slides switching and playlist menu effects.
+The Lesson Viewer is the instrument to reporoduce single and multiple lessons (playlists). The Viewer provides the user of a screen containing the current slide with <b>two arrows</b> to switch to the next one. If the lesson is being reproduced inside a playlist, it's additionally available a <b>playlst menu</b> (opened on the bottom of the current slide).
+<br/><br/>
+The main methods of this module are {{#crossLink "LessonViewerSlidesNavigation/slideToInLessonViewer:method"}}{{/crossLink}} (moves to a given slide) and {{#crossLink "LessonViewerPlaylist/switchLessonInPlaylistMenuLessonViewer:method"}}{{/crossLink}} (moves to the first slide of a given lesson and updates the selected lesson in the menu). The first method can be used separately if there is no playlist, or together with the second one if there is one (they are called together inside {{#crossLink "LessonViewerSlidesNavigation/slideToInLessonViewerWithLessonSwitch:method"}}{{/crossLink}}).
+<br/><br/>
+Additionally, {{#crossLink "LessonViewerPlaylist/switchLessonInPlaylistMenuLessonViewer:method"}}{{/crossLink}} can be provided of a callback that is passed to {{#crossLink "LessonViewerPlaylist/selectComponentInLessonViewerPlaylistMenu:method"}}{{/crossLink}} and executed after the animation of the scroll inside the lesson menu: the callback is used when the user selects a lesson directly from the menu, and {{#crossLink "LessonViewerSlidesNavigation/slideToInLessonViewer:method"}}{{/crossLink}} is executed to get to the cover of the selected lesson after that the menu has been closed.
+<br/><br/>
+There are <b>three known bugs</b> due to the bad quality of the plugin <b>JScrollPain</b>:
+<ul>
+  <li>When the user passes from <i>the first slide of the third lesson</i> to <i>the last slide of the second lesson</i>, the scroll doesn't follow the selection of the new lesson</li>
+  <li>Same problem when the user passes from <i>the last slide of the last lesson</i> to <i>the first slide of the first lesson</i></li>
+  <li>If, after having opened <b>for the first time</b> (and only for that time) the playlist menu, I click before two seconds on a lesson, the menu gets broken</li>
+</ul>
 @module lesson-viewer
 **/
 
@@ -16,7 +19,7 @@ Lesson viewer, it handles slides switching and playlist menu effects.
 
 
 /**
-bla bla bla
+Global initializer.
 @method lessonViewerDocumentReady
 @for LessonViewerDocumentReady
 **/
@@ -27,7 +30,7 @@ function lessonViewerDocumentReady() {
 }
 
 /**
-bla bla bla
+Initializer for functionalities of the playlist menu.
 @method lessonViewerDocumentReadyPlaylist
 @for LessonViewerDocumentReady
 **/
@@ -63,7 +66,7 @@ function lessonViewerDocumentReadyPlaylist() {
 }
 
 /**
-bla bla bla
+Initializer for slides navigation.
 @method lessonViewerDocumentReadySlidesNavigation
 @for LessonViewerDocumentReady
 **/
@@ -96,17 +99,17 @@ function lessonViewerDocumentReadySlidesNavigation() {
 
 
 /**
-Gets the current slide id
+Gets the HTML id of the current slide (marked with the class <b>lesson viewer current slide</b>).
 @method getLessonViewerCurrentSlide
 @for LessonViewerGeneral
-@return {Number} current slide id
+@return {String} HTML id of the current slide
 **/
 function getLessonViewerCurrentSlide() {
   return $('#' + $('._lesson_viewer_current_slide').attr('id'));
 }
 
 /**
-Handle playlist menu on lesson viewer startup Uses: [selectComponentInLessonViewerPlaylistMenu](../classes/selectComponentInLessonViewerPlaylistMenu.html#method_selectComponentInLessonViewerPlaylistMenu)
+Initializes the positions, and selects the right lesson in the playlist menu. Called in {{#crossLink "LessonViewerDocumentReady/lessonViewerDocumentReady:method"}}{{/crossLink}}.
 @method initializeLessonViewer
 @for LessonViewerGeneral
 **/
@@ -122,7 +125,7 @@ function initializeLessonViewer() {
 }
 
 /**
-Stop media playling in current slide in lesson viewer
+Stops media playing in current slide.
 @method stopMediaInLessonViewer
 @for LessonViewerGeneral
 **/
@@ -130,6 +133,13 @@ function stopMediaInLessonViewer() {
   var current_slide_id = $('._lesson_viewer_current_slide').attr('id');
   stopMedia('#' + current_slide_id + ' audio');
   stopMedia('#' + current_slide_id + ' video');
+  var media_audio = $('#' + current_slide_id + ' audio');
+  var media_video = $('#' + current_slide_id + ' video');
+  if(media_audio.length > 0) {
+    setCurrentTimeToMedia(media_audio, 0);
+  } else if(media_video.length > 0){
+    setCurrentTimeToMedia(media_video, 0);
+  }
 }
 
 
@@ -137,7 +147,7 @@ function stopMediaInLessonViewer() {
 
 
 /**
-Hide slides navigation arrows in lesson viewer
+Hides slides navigation arrows.
 @method hideArrowsInLessonViewer
 @for LessonViewerGraphics
 **/
@@ -146,7 +156,7 @@ function hideArrowsInLessonViewer() {
 }
 
 /**
-Show slides navigation arrows in lesson viewer
+Shows slides navigation arrows.
 @method showArrowsInLessonViewer
 @for LessonViewerGraphics
 **/
@@ -159,10 +169,10 @@ function showArrowsInLessonViewer() {
 
 
 /**
-Open playlist menu, show lessons cover list and change playlist toggle label Uses: [showArrowsInLessonViewer](../classes/showArrowsInLessonViewer.html#method_showArrowsInLessonViewer)
+Closes the playlist menu and executes a callback.
 @method closePlaylistMenuInLessonViewer
 @for LessonViewerPlaylist
-@param callback {Object} to call after effect is complete
+@param callback {Function} to call after effect is complete
 **/
 function closePlaylistMenuInLessonViewer(callback) {
   $('.playlistMenu').slideUp('slow', function() {
@@ -174,7 +184,7 @@ function closePlaylistMenuInLessonViewer(callback) {
 }
 
 /**
-Open playlist menu, show lessons conver list and change playlist toggle label Uses: [hideArrowsInLessonViewer](../classes/hideArrowsInLessonViewer.html#method_hideArrowsInLessonViewer)
+Opposite of {{#crossLink "LessonViewerPlaylist/closePlaylistMenuInLessonViewer:method"}}{{/crossLink}}.
 @method openPlaylistMenuInLessonViewer
 @for LessonViewerPlaylist
 **/
@@ -186,11 +196,11 @@ function openPlaylistMenuInLessonViewer() {
 }
 
 /**
-Sets selected lesson from playlist menu
+Huge method that replaces missing functionalities of the bad plugin JScrollPain. The aim of this method is to select a lesson in the menu, adapt the size of the scroll pane, and if required scroll and execute a callback.
 @method selectComponentInLessonViewerPlaylistMenu
 @for LessonViewerPlaylist
 @param component {Object} selected lesson
-@param callback {Object} to call after function is complete
+@param callback {Function} to call after function is complete (optional)
 **/
 function selectComponentInLessonViewerPlaylistMenu(component, callback) {
   $('._playlist_menu_item').css('margin', '2px 60px 2px 0').css('border', 0);
@@ -276,11 +286,15 @@ function selectComponentInLessonViewerPlaylistMenu(component, callback) {
 }
 
 /**
-Open playlist menu, show lessons conver list and change playlist toggle label Uses: [selectComponentInLessonViewerPlaylistMenu](../classes/selectComponentInLessonViewerPlaylistMenu.html#method_selectComponentInLessonViewerPlaylistMenu)
+This method can be used in two ways:
+<ul>
+  <li><b>with callback</b>, if the user clicks on a lesson in the menu</li>
+  <li><b>without callback</b>, if the user gets to a new lesson while navigating normally (he clicks only on <i>next slide</i> and <i>prev slide</i>, see {{#crossLink "LessonViewerSlidesNavigation/slideToInLessonViewerWithLessonSwitch:method"}}{{/crossLink}})</li>
+</ul>
 @method switchLessonInPlaylistMenuLessonViewer
 @for LessonViewerPlaylist
-@param lesson_id {Number} lesson id to switch to
-@param callback {Object} callback after function is complete
+@param lesson_id {Number} id in the database of the lesson, used to extract the HTML id
+@param callback {Function} callback after function is complete (optional)
 **/
 function switchLessonInPlaylistMenuLessonViewer(lesson_id, callback) {
   if($('._lesson_title_in_playlist').data('lesson-id') != lesson_id) {
@@ -295,7 +309,7 @@ function switchLessonInPlaylistMenuLessonViewer(lesson_id, callback) {
 
 
 /**
-Go to next slide in lesson viewer, if last slide it goes to first one. Uses: [slideToInLessonViewerWithLessonSwitch](../classes/slideToInLessonViewerWithLessonSwitch.html#method_slideToInLessonViewerWithLessonSwitch)
+Goes to next slide using {{#crossLink "LessonViewerSlidesNavigation/slideToInLessonViewer:method"}}{{/crossLink}}.
 @method goToNextSlideInLessonViewer
 @for LessonViewerSlidesNavigation
 **/
@@ -309,7 +323,7 @@ function goToNextSlideInLessonViewer() {
 }
 
 /**
-Go to previous slide in lesson viewer, if first slide it goes to last one. Uses: [slideToInLessonViewerWithLessonSwitch](../classes/slideToInLessonViewerWithLessonSwitch.html#method_slideToInLessonViewerWithLessonSwitch)
+Goes to previous slide using {{#crossLink "LessonViewerSlidesNavigation/slideToInLessonViewer:method"}}{{/crossLink}}.
 @method goToPrevSlideInLessonViewer
 @for LessonViewerSlidesNavigation
 **/
@@ -323,10 +337,10 @@ function goToPrevSlideInLessonViewer() {
 }
 
 /**
-Slide to given slide Uses: [stopMediaInLessonViewer](../classes/stopMediaInLessonViewer.html#method_stopMediaInLessonViewer) and [getLessonViewerCurrentSlide](../classes/getLessonViewerCurrentSlide.html#method_getLessonViewerCurrentSlide) and [unbindLoader](../classes/unbindLoader.html#method_unbindLoader) and [bindLoader](../classes/bindLoader.html#method_bindLoader)
+Goes to a given slide. If the new slide contains a media and the browser is not an iPad (see {{#crossLink "JqueryPatchesBrowsers/iPadDetection:method"}}{{/crossLink}}) the media is automaticly played.
 @method slideToInLessonViewer
 @for LessonViewerSlidesNavigation
-@param to {Object} slide to slide to
+@param to {Object} destination slide
 **/
 function slideToInLessonViewer(to) {
   stopMediaInLessonViewer();
@@ -335,34 +349,42 @@ function slideToInLessonViewer(to) {
   to.addClass('_lesson_viewer_current_slide');
   from.hide('fade', {}, 500, function() {
     to.show();
-    if(!to.data('loaded')) {
+    var to_prev = to.prev();
+    if(to_prev.length == 0) {
+      to_prev = $('._slide_in_lesson_viewer').last();
+    }
+    var to_next = to.next();
+    if(to_next.length == 0) {
+      to_next = $('._slide_in_lesson_viewer').first();
+    }
+    var loading_url = '/lessons/' + to.data('lesson-id') + '/view/slides/' + to.data('slide-id') + '/load?token=' + to.data('lesson-token');
+    if($('._lesson_title_in_playlist').length > 0) {
+      loading_url += '&with_playlist=true';
+    }
+    if(!to_prev.data('loaded') || !to.data('loaded') || !to_next.data('loaded')) {
       $.ajax({
         type: 'get',
         beforeSend: unbindLoader(),
-        url: '/lessons/' + to.data('lesson-id') + '/view/slides/' + to.data('slide-id') + '/load?token=' + to.data('lesson-token'),
+        url: loading_url,
         success: function() {
           $('#left_scroll, #right_scroll').removeClass('disabled');
-          var media = to.find('._instance_of_player');
-          if(media.length > 0) {
-            media.find('._media_player_play').click();
-          }
         }
       }).always(bindLoader);
     } else {
       $('#left_scroll, #right_scroll').removeClass('disabled');
-      var media = to.find('._instance_of_player');
-      if(media.length > 0) {
-        media.find('._media_player_play').click();
-      }
+    }
+    var media = to.find('._instance_of_player');
+    if(media.length > 0 && !$.browser.ipad) {
+      media.find('._media_player_play').click();
     }
   });
 }
 
 /**
-Open playlist menu, show lessons conver list and change playlist toggle label Uses: [slideToInLessonViewer](../classes/slideToInLessonViewer.html#method_slideToInLessonViewer) and [switchLessonInPlaylistMenuLessonViewer](../classes/switchLessonInPlaylistMenuLessonViewer.html#method_switchLessonInPlaylistMenuLessonViewer)
+Goes to a slide (using {{#crossLink "LessonViewerSlidesNavigation/slideToInLessonViewer:method"}}{{/crossLink}}) and updates the lesson in playlist menu (using {{#crossLink "LessonViewerPlaylist/switchLessonInPlaylistMenuLessonViewer:method"}}{{/crossLink}} without callbacks).
 @method slideToInLessonViewerWithLessonSwitch
 @for LessonViewerSlidesNavigation
-@param component {Object} slide to slide to
+@param component {Object} destination slide
 **/
 function slideToInLessonViewerWithLessonSwitch(component) {
   slideToInLessonViewer(component);

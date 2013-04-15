@@ -569,6 +569,10 @@ en:
       # The user didn't select a file to be uploaded
       # 1 - controllers/application_controller.rb
       media_blank: "No file uploaded"
+      # TODO
+      # The media elements folder exceeded the maximum size available
+      # 1 - controllers/application_controller.rb
+      media_folder_size_exceeded: "Media uploading is temporarly disabled; please try again later"
       # The user tried to upload an attachment whose format is not supported
       # 1 - controllers/application_controller.rb
       # 2 - controllers/application_controller.rb
@@ -2231,13 +2235,13 @@ en:
     # 2 - app/models/location.rb
     labels: [
         'Province',
-        'Town',
-        'School'
+        'City',
+        'County'
       ]
     # This is the label used when the application needs to resume the chain of higher locations corresponding to a lower one: if for instance for a user we have the field 'Shanghai district - Shanghai province', an appropriate label for it (to be configured here) would be 'District / province'
     # 1 - views/admin/users/show.html.erb
     # 2 - views/admin/users/_list.html.erb
-    parents_label: "Town / province"
+    parents_label: "Province / City"
     # Caption inside the select of each location type (the variable %{location} is replaced by the name of the location type, ex City, Province, District)
     # 1 - views/admin/users/_locations_list.html.erb
     # 2 - views/users/_locations_list.html.erb

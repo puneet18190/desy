@@ -115,6 +115,8 @@
             
                 <li><a href="..&#x2F;classes/ImageEditorTexts.html">ImageEditorTexts</a></li>
             
+                <li><a href="..&#x2F;classes/JqueryPatchesBrowsers.html">JqueryPatchesBrowsers</a></li>
+            
                 <li><a href="..&#x2F;classes/LessonEditorCurrentSlide.html">LessonEditorCurrentSlide</a></li>
             
                 <li><a href="..&#x2F;classes/LessonEditorDocumentReady.html">LessonEditorDocumentReady</a></li>
@@ -221,7 +223,7 @@
 
             <ul id="api-modules" class="apis modules">
             
-                <li><a href="..&#x2F;modules/administration.html">administration</a></li>
+                <li><a href="..&#x2F;modules/admin.html">admin</a></li>
             
                 <li><a href="..&#x2F;modules/ajax-loader.html">ajax-loader</a></li>
             
@@ -238,6 +240,8 @@
                 <li><a href="..&#x2F;modules/general.html">general</a></li>
             
                 <li><a href="..&#x2F;modules/image-editor.html">image-editor</a></li>
+            
+                <li><a href="..&#x2F;modules/jquery-patches.html">jquery-patches</a></li>
             
                 <li><a href="..&#x2F;modules/lesson-editor.html">lesson-editor</a></li>
             
@@ -429,7 +433,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_lesson_viewer.js.html#l161"><code>app&#x2F;assets&#x2F;javascripts&#x2F;lesson_viewer.js:161</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_lesson_viewer.js.html#l171"><code>app&#x2F;assets&#x2F;javascripts&#x2F;lesson_viewer.js:171</code></a>
         
         </p>
 
@@ -440,7 +444,7 @@
     </div>
 
     <div class="description">
-        <p>Open playlist menu, show lessons cover list and change playlist toggle label Uses: <a href="../classes/showArrowsInLessonViewer.html#method_showArrowsInLessonViewer">showArrowsInLessonViewer</a></p>
+        <p>Closes the playlist menu and executes a callback.</p>
     </div>
 
     
@@ -452,7 +456,7 @@
                 <li class="param">
                     
                         <code class="param-name">callback</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
                     
 
                     
@@ -506,7 +510,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_lesson_viewer.js.html#l176"><code>app&#x2F;assets&#x2F;javascripts&#x2F;lesson_viewer.js:176</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_lesson_viewer.js.html#l186"><code>app&#x2F;assets&#x2F;javascripts&#x2F;lesson_viewer.js:186</code></a>
         
         </p>
 
@@ -517,7 +521,7 @@
     </div>
 
     <div class="description">
-        <p>Open playlist menu, show lessons conver list and change playlist toggle label Uses: <a href="../classes/hideArrowsInLessonViewer.html#method_hideArrowsInLessonViewer">hideArrowsInLessonViewer</a></p>
+        <p>Opposite of <a href="../classes/LessonViewerPlaylist.html#method_closePlaylistMenuInLessonViewer" class="crosslink">closePlaylistMenuInLessonViewer</a>.</p>
     </div>
 
     
@@ -576,7 +580,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_lesson_viewer.js.html#l188"><code>app&#x2F;assets&#x2F;javascripts&#x2F;lesson_viewer.js:188</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_lesson_viewer.js.html#l198"><code>app&#x2F;assets&#x2F;javascripts&#x2F;lesson_viewer.js:198</code></a>
         
         </p>
 
@@ -587,7 +591,7 @@
     </div>
 
     <div class="description">
-        <p>Sets selected lesson from playlist menu</p>
+        <p>Huge method that replaces missing functionalities of the bad plugin JScrollPain. The aim of this method is to select a lesson in the menu, adapt the size of the scroll pane, and if required scroll and execute a callback.</p>
     </div>
 
     
@@ -614,13 +618,13 @@
                 <li class="param">
                     
                         <code class="param-name">callback</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>to call after function is complete</p>
+                        <p>to call after function is complete (optional)</p>
                     </div>
 
                     
@@ -684,7 +688,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_lesson_viewer.js.html#l278"><code>app&#x2F;assets&#x2F;javascripts&#x2F;lesson_viewer.js:278</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_lesson_viewer.js.html#l288"><code>app&#x2F;assets&#x2F;javascripts&#x2F;lesson_viewer.js:288</code></a>
         
         </p>
 
@@ -695,7 +699,12 @@
     </div>
 
     <div class="description">
-        <p>Open playlist menu, show lessons conver list and change playlist toggle label Uses: <a href="../classes/selectComponentInLessonViewerPlaylistMenu.html#method_selectComponentInLessonViewerPlaylistMenu">selectComponentInLessonViewerPlaylistMenu</a></p>
+        <p>This method can be used in two ways:</p>
+
+<ul>
+  <li><b>with callback</b>, if the user clicks on a lesson in the menu</li>
+  <li><b>without callback</b>, if the user gets to a new lesson while navigating normally (he clicks only on <i>next slide</i> and <i>prev slide</i>, see <a href="../classes/LessonViewerSlidesNavigation.html#method_slideToInLessonViewerWithLessonSwitch" class="crosslink">slideToInLessonViewerWithLessonSwitch</a>)</li>
+</ul>
     </div>
 
     
@@ -713,7 +722,7 @@
                     
 
                     <div class="param-description">
-                        <p>lesson id to switch to</p>
+                        <p>id in the database of the lesson, used to extract the HTML id</p>
                     </div>
 
                     
@@ -722,13 +731,13 @@
                 <li class="param">
                     
                         <code class="param-name">callback</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>callback after function is complete</p>
+                        <p>callback after function is complete (optional)</p>
                     </div>
 
                     

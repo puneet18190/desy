@@ -1,5 +1,13 @@
 /**
-bla bla bla
+This module contains javascript functions used to animate the Audio Editor. The editing of an audio consists in cutting and connecting together different elements of type audio (referred to as <b>audio components</b>): each component has a unique <b>identifier</b>, to be distinguished by the ID in the database of the corresponding audio.
+<br/><br/>
+Each audio component contains a <b>cutter</b> (used to select a portion of the original audio), the standard player controls, and a <b>sorting handle</b>. To use the controls of a component, first it must be <b>selected</b> (using the function {{#crossLink "AudioEditorComponents/selectAudioEditorComponent:method"}}{{/crossLink}}): if a component is not selected, it's shown with opacity and without the player controls. The functionality of sorting components is handled in {{#crossLink "AudioEditorDocumentReady/audioEditorDocumentReadyGeneral:method"}}{{/crossLink}}; the functionalities of player commands, together with the most important functionalities of the cutter, are located in the module {{#crossLinkModule "players"}}{{/crossLinkModule}} (class {{#crossLink "PlayersAudioEditor"}}{{/crossLink}}); the only functionalities of the cutter located in this module are found in the class {{#crossLink "AudioEditorCutters"}}{{/crossLink}} and in the method {{#crossLink "AudioEditorDocumentReady/audioEditorDocumentReadyCutters:method"}}{{/crossLink}} (functionality of precision arrows).
+<br/><br/>
+On the top of the right column are positioned the time durations (updated with {{#crossLink "AudioEditorComponents/changeDurationAudioEditorComponent:method"}}{{/crossLink}}), ad the button 'plus' used to open the audio gallery (see the class {{#crossLink "AudioEditorGalleries"}}{{/crossLink}} and the method {{#crossLink "AudioEditorDocumentReady/audioEditorDocumentReadyGeneral:method"}}{{/crossLink}}).
+<br/><br/>
+On the bottom of the right column are positioned the controls for the <b>global preview</b> (which plays all the components globally). Similarly to the module {{#crossLinkModule "video-editor"}}{{/crossLinkModule}}, before playing the global preview the system must enter in <b>preview mode</b>: the difference is that in the Audio Editor this mode is switched automatically by the system, whereas in the Video Editor it's the user who decides to enter and leave the preview mode. To enter in preview mode we use the method {{#crossLink "AudioEditorPreview/enterAudioEditorPreviewMode:method"}}{{/crossLink}}, which calls {{#crossLink "AudioEditorPreview/switchAudioComponentsToPreviewMode:method"}}{{/crossLink}} or each component. A component in preview mode can be <b>selected</b> (using a differente method respect to the normal component selection: see {{#crossLink "AudioEditorPreview/selectAudioEditorComponentInPreviewMode:method"}}{{/crossLink}}). Each component in the global preview is played using the method {{#crossLink "AudioEditorPreview/startAudioEditorPreview:method"}}{{/crossLink}} (to which we pass the component to start with); the main part of the functionality of passing from a component to the next one during the global preview is handled in the module {{#crossLinkModule "players"}}{{/crossLinkModule}} (more specificly, in the method {{#crossLink "PlayersAudioEditor/initializeActionOfMediaTimeUpdaterInAudioEditor:method"}}{{/crossLink}}.
+<br/><br/>
+As for the other Element Editors ({{#crossLinkModule "image-editor"}}{{/crossLinkModule}}, {{#crossLinkModule "video-editor"}}{{/crossLinkModule}}) the core of the process of committing changes is handled in the module {{#crossLinkModule "media-element-editor"}}{{/crossLinkModule}} (more specificly in the class {{#crossLink "MediaElementEditorForms"}}{{/crossLink}}); the part of this functionality specific for the Audio Editor is handled in {{#crossLink "AudioEditorDocumentReady/audioEditorDocumentReadyCommit:method"}}{{/crossLink}}.
 @module audio-editor
 **/
 
@@ -8,9 +16,14 @@ bla bla bla
 
 
 /**
-bla bla bla
+This function adds a new audio component to the timeline: it extracts the empty audio component hidden in the template, replaces in it the values of the new audio component, and appends it right after the selected component. If there are no selected components, the new one is appended at the end of the timeline.
 @method addComponentInAudioEditor
 @for AudioEditorComponents
+@param audio_id {Number} the ID of the audio in the database
+@param ogg {String} the path of the attached audio in format ogg
+@param m4a {String} the path of the attached audio in format mp4
+@param duration {Number} the integer duration of the audio
+@param title {String} the title of the audio extracted from the database
 **/
 function addComponentInAudioEditor(audio_id, ogg, m4a, duration, title) {
   var next_position = $('#info_container').data('last-component-id') + 1;
@@ -58,9 +71,11 @@ function addComponentInAudioEditor(audio_id, ogg, m4a, duration, title) {
 }
 
 /**
-bla bla bla
+This function changes the duration of a component, and updates the global durations.
 @method changeDurationAudioEditorComponent
 @for AudioEditorComponents
+@param component {Object} the component
+@param new_duration {Number} the new duration
 **/
 function changeDurationAudioEditorComponent(component, new_duration) {
   var old_duration = component.data('duration');
@@ -73,7 +88,7 @@ function changeDurationAudioEditorComponent(component, new_duration) {
 }
 
 /**
-bla bla bla
+Function that deselects all the audio components.
 @method deselectAllAudioEditorComponents
 @for AudioEditorComponents
 **/
@@ -96,18 +111,23 @@ function deselectAllAudioEditorComponents() {
 }
 
 /**
-bla bla bla
+Function that creates a single input field to be inserted in the empty audio component during the process of construction of a new one (used in {{#crossLink "AudioEditorComponents/addComponentInAudioEditor:method"}}{{/crossLink}}).
 @method fillAudioEditorSingleParameter
 @for AudioEditorComponents
+@param input {String} the specific input to be filled (for example, <i>audio_id</i>, <i>from</i>, or <i>to</i>)
+@param identifier {Number} the identifier of the component
+@param value {String} the HTML value to be assigned to the input
+@return {String} the resulting input written in HTML
 **/
 function fillAudioEditorSingleParameter(input, identifier, value) {
   return '<input id="' + input + '_' + identifier + '" class="_audio_component_input_' + input + '" type="hidden" value="' + value + '" name="' + input + '_' + identifier + '">';
 }
 
 /**
-bla bla bla
+An HTML5 audio is loaded only when necessary: this function extracts from the data the sources of the audio, and loads it (unless the component had already been loaded previously)
 @method loadAudioComponentIfNotLoadedYet
 @for AudioEditorComponents
+@param component {Object} the component to load
 **/
 function loadAudioComponentIfNotLoadedYet(component) {
   if(!component.data('loaded')) {
@@ -121,7 +141,7 @@ function loadAudioComponentIfNotLoadedYet(component) {
 }
 
 /**
-bla bla bla
+Reloads the correct positions of the components after sorting them.
 @method reloadAudioEditorComponentPositions
 @for AudioEditorComponents
 **/
@@ -135,9 +155,10 @@ function reloadAudioEditorComponentPositions() {
 }
 
 /**
-bla bla bla
+Removes a component from the timeline.
 @method removeAudioEditorComponent
 @for AudioEditorComponents
+@param component {Object} the component to be removed
 **/
 function removeAudioEditorComponent(component) {
   if(component.hasClass('_selected')) {
@@ -155,7 +176,7 @@ function removeAudioEditorComponent(component) {
 }
 
 /**
-bla bla bla
+This function removes the margin bottom from the last component in the timeline: this is necessary to handle with precision the JScrollPain (see {{#crossLink "AudioEditorScrollpain"}}{{/crossLink}}).
 @method resizeLastComponentInAudioEditor
 @for AudioEditorComponents
 **/
@@ -165,9 +186,10 @@ function resizeLastComponentInAudioEditor() {
 }
 
 /**
-bla bla bla
+Function that selects an audio component.
 @method selectAudioEditorComponent
 @for AudioEditorComponents
+@param component {Object} the component to be selected
 **/
 function selectAudioEditorComponent(component) {
   loadAudioComponentIfNotLoadedYet(component);
@@ -189,9 +211,11 @@ function selectAudioEditorComponent(component) {
 
 
 /**
-bla bla bla
+Changes the value of the left margin of an audio component, and updates its duration using {{#crossLink "AudioEditorComponents/changeDurationAudioEditorComponent:method"}}{{/crossLink}}.
 @method cutAudioComponentLeftSide
 @for AudioEditorCutters
+@param identifier {Number} the unique identifier of the component
+@param pos {Number} the new position of the left margin of the component (input <i>from</i>)
 **/
 function cutAudioComponentLeftSide(identifier, pos) {
   var component = $('#audio_component_' + identifier);
@@ -203,9 +227,11 @@ function cutAudioComponentLeftSide(identifier, pos) {
 }
 
 /**
-bla bla bla
+Changes the value of the right margin of an audio component, and updates its duration using {{#crossLink "AudioEditorComponents/changeDurationAudioEditorComponent:method"}}{{/crossLink}}.
 @method cutAudioComponentRightSide
 @for AudioEditorCutters
+@param identifier {Number} the unique identifier of the component
+@param pos {Number} the new position of the right margin of the component (input <i>to</i>)
 **/
 function cutAudioComponentRightSide(identifier, pos) {
   var component = $('#audio_component_' + identifier);
@@ -217,9 +243,10 @@ function cutAudioComponentRightSide(identifier, pos) {
 }
 
 /**
-bla bla bla
+Deselects all the cursors in a component.
 @method deselectAllAudioEditorCursors
 @for AudioEditorCutters
+@param id {Number} the unique identifier of the component
 **/
 function deselectAllAudioEditorCursors(id) {
   $('#audio_component_' + id + ' .ui-slider-handle').removeClass('selected');
@@ -227,9 +254,10 @@ function deselectAllAudioEditorCursors(id) {
 }
 
 /**
-bla bla bla
+Selects the central cursor of an audio component.
 @method selectAudioEditorCursor
 @for AudioEditorCutters
+@param id {Number} the unique identifier of the component
 **/
 function selectAudioEditorCursor(id) {
   deselectAllAudioEditorCursors(id);
@@ -238,9 +266,10 @@ function selectAudioEditorCursor(id) {
 }
 
 /**
-bla bla bla
+Selects the left handle of an audio component.
 @method selectAudioEditorLeftHandle
 @for AudioEditorCutters
+@param id {Number} the unique identifier of the component
 **/
 function selectAudioEditorLeftHandle(id) {
   deselectAllAudioEditorCursors(id);
@@ -249,9 +278,10 @@ function selectAudioEditorLeftHandle(id) {
 }
 
 /**
-bla bla bla
+Selects the right handle of an audio component.
 @method selectAudioEditorRightHandle
 @for AudioEditorCutters
+@param id {Number} the unique identifier of the component
 **/
 function selectAudioEditorRightHandle(id) {
   deselectAllAudioEditorCursors(id);
@@ -264,7 +294,7 @@ function selectAudioEditorRightHandle(id) {
 
 
 /**
-bla bla bla
+Initializes the whole Audio Editor, calling all the subinitializers
 @method audioEditorDocumentReady
 @for AudioEditorDocumentReady
 **/
@@ -276,7 +306,7 @@ function audioEditorDocumentReady() {
 }
 
 /**
-bla bla bla
+Initializer for the functionalities of committing changes (click on 'commit', on 'cancel', popup asking to overwrite, etc). For other functionalities common to all the Element Editors, see {{#crossLink "MediaElementEditorForms"}}{{/crossLink}}.
 @method audioEditorDocumentReadyCommit
 @for AudioEditorDocumentReady
 **/
@@ -371,7 +401,7 @@ function audioEditorDocumentReadyCommit() {
 }
 
 /**
-bla bla bla
+Initializer for the precision arrows in the cutters. For the other functionalities related to cutters, see {{#crossLink "PlayersAudioEditor"}}{{/crossLink}}.
 @method audioEditorDocumentReadyCutters
 @for AudioEditorDocumentReady
 **/
@@ -434,11 +464,14 @@ function audioEditorDocumentReadyCutters() {
 }
 
 /**
-bla bla bla
+Initializes the JQueryUi animations (sorting components), and all the effects of selection of components (see {{#crossLink "AudioEditorComponents/selectAudioEditorComponent:method"}}{{/crossLink}} and similar methods).
 @method audioEditorDocumentReadyGeneral
 @for AudioEditorDocumentReady
 **/
 function audioEditorDocumentReadyGeneral() {
+  if($.browser === 'msie') {
+    $('._audio_editor_component ._double_slider .ui-slider-range').css('opacity', 0.4);
+  }
   $('body').on('mouseover', '._audio_editor_component ._box_ghost', function() {
     $(this).parent().find('._sort_handle').addClass('current');
   });
@@ -512,7 +545,7 @@ function audioEditorDocumentReadyGeneral() {
 }
 
 /**
-bla bla bla
+Initializes the functionalities of the preview (see also {{#crossLink "AudioEditorPreview"}}{{/crossLink}}).
 @method audioEditorDocumentReadyPreview
 @for AudioEditorDocumentReady
 **/
@@ -546,7 +579,7 @@ function audioEditorDocumentReadyPreview() {
 
 
 /**
-bla bla bla
+Sets the correct position of the gallery: used while showing and closing the audio gallery (see respectively {{#crossLink "AudioEditorGalleries/showGalleryInAudioEditor:method"}}{{/crossLink}} and {{#crossLink "AudioEditorGalleries/closeGalleryInAudioEditor:method"}}{{/crossLink}}.
 @method calculateNewPositionGalleriesInAudioEditor
 @for AudioEditorGalleries
 **/
@@ -555,7 +588,7 @@ function calculateNewPositionGalleriesInAudioEditor() {
 }
 
 /**
-bla bla bla
+Closes the gallery.
 @method closeGalleryInAudioEditor
 @for AudioEditorGalleries
 **/
@@ -567,7 +600,7 @@ function closeGalleryInAudioEditor() {
 }
 
 /**
-bla bla bla
+Shows the gallery.
 @method showGalleryInAudioEditor
 @for AudioEditorGalleries
 **/
@@ -583,9 +616,11 @@ function showGalleryInAudioEditor() {
 
 
 /**
-bla bla bla
+Extracts the unique identifier of a component using its HTML id.
 @method getAudioComponentIdentifier
 @for AudioEditorGeneral
+@param component {Object} the component from which we want to extract the identifier
+@return {Number} the identifier.
 **/
 function getAudioComponentIdentifier(component) {
   var id = component.attr('id').split('_');
@@ -597,7 +632,7 @@ function getAudioComponentIdentifier(component) {
 
 
 /**
-bla bla bla
+Disables the buttons <i>commit</i> and <i>prewiev</i>.
 @method disableCommitAndPreviewInAudioEditor
 @for AudioEditorGraphics
 **/
@@ -609,7 +644,7 @@ function disableCommitAndPreviewInAudioEditor() {
 }
 
 /**
-bla bla bla
+Enables the buttons <i>commit</i> and <i>preview</i>.
 @method enableCommitAndPreviewInAudioEditor
 @for AudioEditorGraphics
 **/
@@ -621,9 +656,10 @@ function enableCommitAndPreviewInAudioEditor() {
 }
 
 /**
-bla bla bla
+Hides the commit form for overwrite or for new element (depending on the parameter).
 @method hideCommitAudioEditorForm
 @for AudioEditorGraphics
+@param scope {String} it can be either 'overwrite' or 'new'
 **/
 function hideCommitAudioEditorForm(scope) {
   $('._audio_editor_bottom_bar').show();
@@ -632,7 +668,7 @@ function hideCommitAudioEditorForm(scope) {
 }
 
 /**
-bla bla bla
+Function that sets the correct value to all the z-indexes: there are in total three hidden layers for each component, one global, plus two sliders in each cutter, and each of them needs its specific z-index. Used at any time the components are hidden and need to be shown (for instance {{#crossLink "AudioEditorGalleries/showGalleryInAudioEditor:method"}}{{/crossLink}}).
 @method setBackAllZIndexesInAudioEditor
 @for AudioEditorGraphics
 **/
@@ -646,7 +682,7 @@ function setBackAllZIndexesInAudioEditor() {
 }
 
 /**
-bla bla bla
+Function that sets to zero the value to all the z-indexes: there are in total three hidden layers for each component, one global, plus two sliders in each cutter, and each of them needs its specific z-index. Used at any time the components are shown and need to be hidden (for instance {{#crossLink "AudioEditorGalleries/closeGalleryInAudioEditor:method"}}{{/crossLink}}).
 @method setToZeroAllZIndexesInAudioEditor
 @for AudioEditorGraphics
 **/
@@ -660,9 +696,10 @@ function setToZeroAllZIndexesInAudioEditor() {
 }
 
 /**
-bla bla bla
+Shows the commit form for overwrite or for new element (depending on the parameter).
 @method showCommitAudioEditorForm
 @for AudioEditorGraphics
+@param scope {String} it can be either 'overwrite' or 'new'
 **/
 function showCommitAudioEditorForm(scope) {
   $('._audio_editor_bottom_bar').hide();
@@ -675,7 +712,7 @@ function showCommitAudioEditorForm(scope) {
 
 
 /**
-bla bla bla
+Deselects all the components in preview mode (it corresponds to {{#crossLink "AudioEditorComponents/deselectAllAudioEditorComponents:method"}}{{/crossLink}}).
 @method deselectAllAudioEditorComponentsInPreviewMode
 @for AudioEditorPreview
 **/
@@ -691,7 +728,7 @@ function deselectAllAudioEditorComponentsInPreviewMode() {
 }
 
 /**
-bla bla bla
+Function that sets all the graphical details that characterize the preview mode. It automatically calls the function {{#crossLink "AudioEditorPreview/startAudioEditorPreview:method"}}{{/crossLink}}, passing it as parameter the selected component, or the first one if there is no selected component.
 @method enterAudioEditorPreviewMode
 @for AudioEditorPreview
 **/
@@ -732,7 +769,7 @@ function enterAudioEditorPreviewMode() {
 }
 
 /**
-bla bla bla
+Gets the current time in the global preview, using the information relative to the selected component and the position of the cursor inside its cutter.
 @method getAudioEditorGlobalPreviewTime
 @for AudioEditorPreview
 **/
@@ -756,7 +793,7 @@ function getAudioEditorGlobalPreviewTime() {
 }
 
 /**
-bla bla bla
+Increases of one second the global preview timer.
 @method increaseAudioEditorPreviewTimer
 @for AudioEditorPreview
 **/
@@ -768,9 +805,10 @@ function increaseAudioEditorPreviewTimer() {
 }
 
 /**
-bla bla bla
+Function that sets back to the regular value all the graphical details that characterize the preview mode.
 @method leaveAudioEditorPreviewMode
 @for AudioEditorPreview
+@param forced_component {Object} the component that must be selected after leaving the preview mode: if not specified, the function selects the first component.
 **/
 function leaveAudioEditorPreviewMode(forced_component) {
   var selected_component = $('#' + $('._audio_editor_component._selected').attr('id'));
@@ -800,9 +838,10 @@ function leaveAudioEditorPreviewMode(forced_component) {
 }
 
 /**
-bla bla bla
+Selects a component in preview mode (it corresponds to {{#crossLink "AudioEditorComponents/selectAudioEditorComponent:method"}}{{/crossLink}}).
 @method selectAudioEditorComponentInPreviewMode
 @for AudioEditorPreview
+@param component {Object} the component to be selected
 **/
 function selectAudioEditorComponentInPreviewMode(component) {
   component.addClass('_selected');
@@ -814,9 +853,10 @@ function selectAudioEditorComponentInPreviewMode(component) {
 }
 
 /**
-bla bla bla
+Starts the preview from a given component.
 @method startAudioEditorPreview
 @for AudioEditorPreview
+@param component {Object} the component from which the preview starts.
 **/
 function startAudioEditorPreview(component) {
   selectAudioEditorComponentInPreviewMode(component);
@@ -831,7 +871,7 @@ function startAudioEditorPreview(component) {
 }
 
 /**
-bla bla bla
+Switches all the components in preview mode.
 @method switchAudioComponentsToPreviewMode
 @for AudioEditorPreview
 **/
@@ -845,7 +885,7 @@ function switchAudioComponentsToPreviewMode() {
 }
 
 /**
-bla bla bla
+Switches all the components back to regular mode.
 @method switchBackAudioComponentsFromPreviewMode
 @for AudioEditorPreview
 **/
@@ -863,7 +903,7 @@ function switchBackAudioComponentsFromPreviewMode() {
 
 
 /**
-bla bla bla
+Function used to keep updated the position of the scroll with the current component played in the global preview. It checks a condition and then uses {{#crossLink "AudioEditorScrollpain/scrollToFirstSelectedAudioEditorComponent:method"}}{{/crossLink}}.
 @method followPreviewComponentsWithVerticalScrollInAudioEditor
 @for AudioEditorScrollpain
 **/
@@ -874,9 +914,10 @@ function followPreviewComponentsWithVerticalScrollInAudioEditor() {
 }
 
 /**
-bla bla bla
+Hand made function that simply scrolls to a component and executes a callback. This function needed to be written since the original JScrollPain doesn't provide it (!).
 @method scrollToFirstSelectedAudioEditorComponent
 @for AudioEditorScrollpain
+@param callback {Function} the callback to be executed after scrolling
 **/
 function scrollToFirstSelectedAudioEditorComponent(callback) {
   var selected_component = $('._audio_editor_component._selected');

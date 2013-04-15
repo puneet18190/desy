@@ -71,4 +71,5 @@ module Desy
   end
 
   MORE_THAN_ONE_LANGUAGE = SETTINGS['languages'].size > 1
+
 end

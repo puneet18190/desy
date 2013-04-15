@@ -8,9 +8,11 @@ Lessons and Elements actions triggered via buttons.
 
 
 /**
-Add item removed from a view to the current destination url
+Add the url parameter 'delete_item' to an url (this parameter is used to delete an item while reloading the page).
 @method addDeleteItemToCurrentUrl
 @for ButtonsAccessories
+@param current_url {String} the initial url
+@param delete_item {String} the value to be assigned to the url parameter 'delete_item'
 @return {String} updated url
 **/
 function addDeleteItemToCurrentUrl(current_url, delete_item) {
@@ -29,7 +31,7 @@ function addDeleteItemToCurrentUrl(current_url, delete_item) {
 
 
 /**
-bla bla bla
+Initializes all the buttons available for lessons.
 @method lessonButtonsDocumentReady
 @for ButtonsDocumentReady
 **/
@@ -154,7 +156,7 @@ function lessonButtonsDocumentReady() {
 }
 
 /**
-bla bla bla
+Initializes all the buttons for media elements.
 @method mediaElementButtonsDocumentReady
 @for ButtonsDocumentReady
 **/
@@ -232,13 +234,13 @@ function mediaElementButtonsDocumentReady() {
 
 
 /**
-Add lessons from dashboard to my lessons. Uses [addDeleteItemToCurrentUrl](../classes/addDeleteItemToCurrentUrl.html#method_addDeleteItemToCurrentUrl) and [showErrorPopUp](../classes/showErrorPopUp.html#method_showErrorPopUp)
+Calls the url to add the link of a lesson. It can either reload the item or remove it from the page.
 @method addLesson
 @for ButtonsLesson
-@param lessons_id {Number} lesson id
-@param destination {String} destination view
+@param lesson_id {Number} id of the lesson in the database
+@param destination {String} destination (used to pick the HTML id of the lesson)
 @param current_url {String} url where the lesson is added from
-@param reload {Boolean}
+@param reload {Boolean} true if the item must be reloaded, false if it must be removed
 **/
 function addLesson(lesson_id, destination, current_url, reload) {
   if(reload) {
@@ -268,11 +270,11 @@ function addLesson(lesson_id, destination, current_url, reload) {
 }
 
 /**
-Make the lesson available in the virtual classroom
+Calls the url to add a lesson to my Virtual Classroom. It reloads the item.
 @method addLessonToVirtualClassroom
 @for ButtonsLesson
-@param lessons_id {Number} lesson id
-@param destination {String} destination view
+@param lesson_id {Number} id of the lesson in the database
+@param destination {String} destination (used to pick the HTML id of the lesson)
 **/
 function addLessonToVirtualClassroom(lesson_id, destination) {
   $.ajax({
@@ -282,11 +284,11 @@ function addLessonToVirtualClassroom(lesson_id, destination) {
 }
 
 /**
-Create user own copy of the lesson
+Calls the url to copy a lesson.
 @method copyLesson
 @for ButtonsLesson
-@param lessons_id {Number} lesson id
-@param destination {String} destination view
+@param lesson_id {Number} id of the lesson in the database
+@param destination {String} destination (used to pick the HTML id of the lesson)
 **/
 function copyLesson(lesson_id, destination) {
   $.ajax({
@@ -296,11 +298,11 @@ function copyLesson(lesson_id, destination) {
 }
 
 /**
-Destroy lessons lesson Uses [addDeleteItemToCurrentUrl](../classes/addDeleteItemToCurrentUrl.html#method_addDeleteItemToCurrentUrl) and [showConfirmPopUp](../classes/showConfirmPopUp.html#method_showConfirmPopUp) and [showErrorPopUp](../classes/showErrorPopUp.html#method_showErrorPopUp)
+Calls the url to destroy a lesson. It removes the lesson from the page.
 @method destroyLesson
 @for ButtonsLesson
-@param lessons_id {Number} lesson id
-@param destination {String} destination view
+@param lesson_id {Number} id of the lesson in the database
+@param destination {String} destination (used to pick the HTML id of the lesson)
 @param current_url {String} url where the lesson is added from
 **/
 function destroyLesson(lesson_id, destination, current_url) {
@@ -330,11 +332,11 @@ function destroyLesson(lesson_id, destination, current_url) {
 }
 
 /**
-Remove like from a lesson
+Calls the url to remove the 'I like it' from a lesson. It reloads the item.
 @method dislikeLesson
 @for ButtonsLesson
-@param lessons_id {Number} lesson id
-@param destination {String} destination view
+@param lesson_id {Number} id of the lesson in the database
+@param destination {String} destination (used to pick the HTML id of the lesson)
 **/
 function dislikeLesson(lesson_id, destination) {
   $.ajax({
@@ -344,11 +346,11 @@ function dislikeLesson(lesson_id, destination) {
 }
 
 /**
-Add like to a lesson
+Calls the url to add a 'I like it' to a lesson. It reloads the item.
 @method likeLesson
 @for ButtonsLesson
-@param lessons_id {Number} lesson id
-@param destination {String} destination view
+@param lesson_id {Number} id of the lesson in the database
+@param destination {String} destination (used to pick the HTML id of the lesson)
 **/
 function likeLesson(lesson_id, destination) {
   $.ajax({
@@ -358,11 +360,11 @@ function likeLesson(lesson_id, destination) {
 }
 
 /**
-View lesson link
+Calls the url that opens the lesson viewer for this lesson.
 @method previewLesson
 @for ButtonsLesson
-@param lessons_id {Number} lesson id
-@param redirect_to {String} link url to come back from lesson viewer 
+@param lesson_id {Number} id of the lesson in the database
+@param redirect_to {String} url to be redirected when leaving the Lesson Viewer
 **/
 function previewLesson(lesson_id, redirect_to) {
   var parser = UrlParser.parse(redirect_to);
@@ -380,11 +382,11 @@ function previewLesson(lesson_id, redirect_to) {
 }
 
 /**
-Make a lesson public Uses [showConfirmPopUp](../classes/showConfirmPopUp.html#method_showConfirmPopUp) and [closePopUp](../classes/closePopUp.html#method_closePopUp)
+Calls the url to publish a lesson. It reloads the item.
 @method publishLesson
 @for ButtonsLesson
-@param lessons_id {Number} lesson id
-@param destination {String} destination view
+@param lesson_id {Number} id of the lesson in the database
+@param destination {String} destination (used to pick the HTML id of the lesson)
 **/
 function publishLesson(lesson_id, destination) {
   var captions = $('#popup_captions_container');
@@ -401,13 +403,13 @@ function publishLesson(lesson_id, destination) {
 }
 
 /**
-Remove a lesson from yours (unlink).Uses [addDeleteItemToCurrentUrl](../classes/addDeleteItemToCurrentUrl.html#method_addDeleteItemToCurrentUrl) and [showErrorPopUp](../classes/showErrorPopUp.html#method_showErrorPopUp)
+Calls the url to remove a link of a lesson. It can either reload the item or remove it from the page.
 @method removeLesson
 @for ButtonsLesson
-@param lessons_id {Number} lesson id
-@param destination {String} destination view
+@param lesson_id {Number} id of the lesson in the database
+@param destination {String} destination (used to pick the HTML id of the lesson)
 @param current_url {String} url where the lesson is added from
-@param reload {Boolean}
+@param reload {Boolean} true if the item must be reloaded, false if it must be removed
 **/
 function removeLesson(lesson_id, destination, current_url, reload) {
   if(reload) {
@@ -437,11 +439,11 @@ function removeLesson(lesson_id, destination, current_url, reload) {
 }
 
 /**
-Remove lesson availability in the virtual classroom
+Calls the url to remove a lesson from my Virtual Classroom. It reloads the item.
 @method removeLessonFromVirtualClassroom
 @for ButtonsLesson
-@param lessons_id {Number} lesson_id
-@param destination {String} destination view
+@param lesson_id {Number} id of the lesson in the database
+@param destination {String} destination (used to pick the HTML id of the lesson)
 **/
 function removeLessonFromVirtualClassroom(lesson_id, destination) {
   $.ajax({
@@ -451,11 +453,11 @@ function removeLessonFromVirtualClassroom(lesson_id, destination) {
 }
 
 /**
-Make a lesson private Uses [showConfirmPopUp](../classes/showConfirmPopUp.html#method_showConfirmPopUp) and [closePopUp](../classes/closePopUp.html#method_closePopUp)
+Calls the url to unpublish a lesson. It reloads the item.
 @method unpublishLesson
 @for ButtonsLesson
-@param lessons_id {Number} lesson id
-@param destination {String} destination view
+@param lesson_id {Number} id of the lesson in the database
+@param destination {String} destination (used to pick the HTML id of the lesson)
 **/
 function unpublishLesson(lesson_id, destination) {
   var captions = $('#popup_captions_container');
@@ -476,13 +478,13 @@ function unpublishLesson(lesson_id, destination) {
 
 
 /**
-Add media element from dashboard to my lessons Uses [addDeleteItemToCurrentUrl](../classes/addDeleteItemToCurrentUrl.html#method_addDeleteItemToCurrentUrl) and [showErrorPopUp](../classes/showErrorPopUp.html#method_showErrorPopUp)
+Calls the url to add the link of a media element. It can either reload the item or remove it from the page.
 @method addMediaElement
 @for ButtonsMediaElement
-@param media_element_id {Number} media_element id
-@param destination {String} destination view
-@param current_url {String} url where the lesson is added from
-@param reload {Boolean}
+@param media_element_id {Number} id of the element in the database
+@param destination {String} destination (used to pick the HTML id of the element)
+@param current_url {String} url where the element is added from
+@param reload {Boolean} true if the item must be reloaded, false if it must be removed
 **/
 function addMediaElement(media_element_id, destination, current_url, reload) {
   if(reload) {
@@ -512,13 +514,13 @@ function addMediaElement(media_element_id, destination, current_url, reload) {
 }
 
 /**
-Destroy Media Element Uses [addDeleteItemToCurrentUrl](../classes/addDeleteItemToCurrentUrl.html#method_addDeleteItemToCurrentUrl) and [showConfirmPopUp](../classes/showConfirmPopUp.html#method_showConfirmPopUp) and [showErrorPopUp](../classes/showErrorPopUp.html#method_showErrorPopUp) and [closePopUp](../classes/closePopUp.html#method_closePopUp)
+Calls the url to destroy a media element. It removes the element from the page.
 @method destroyMediaElement
 @for ButtonsMediaElement
-@param lessons_id {Number} lesson_id
-@param destination {String} destination view
-@param current_url {String} url where the lesson is added from
-@param used_in_private_lessons {Boolean}
+@param media_element_id {Number} id of the element in the database
+@param destination {String} destination (used to pick the HTML id of the element)
+@param current_url {String} url where the element is added from
+@param used_in_private_lessons {Boolean} if true, the application writes in the confirmation popup that the user is going to remove the same element from his private lessons
 **/
 function destroyMediaElement(media_element_id, destination, current_url, used_in_private_lessons) {
   var captions = $('#popup_captions_container');
@@ -554,13 +556,13 @@ function destroyMediaElement(media_element_id, destination, current_url, used_in
 }
 
 /**
-Remove a media element from yours (unlink). Uses [addDeleteItemToCurrentUrl](../classes/addDeleteItemToCurrentUrl.html#method_addDeleteItemToCurrentUrl) and [showErrorPopUp](../classes/showErrorPopUp.html#method_showErrorPopUp)
+Calls the url to remove a link of an element. It can either reload the item or remove it from the page.
 @method removeMediaElement
 @for ButtonsMediaElement
-@param media_element_id {Number} media element id
-@param destination {String} destination view
-@param current_url {String} url where the lesson is added from
-@param reload {Boolean}
+@param media_element_id {Number} id of the element in the database
+@param destination {String} destination (used to pick the HTML id of the element)
+@param current_url {String} url where the element is added from
+@param reload {Boolean} true if the item must be reloaded, false if it must be removed
 **/
 function removeMediaElement(media_element_id, destination, current_url, reload) {
   if(reload) {

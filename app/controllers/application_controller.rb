@@ -202,6 +202,8 @@ class ApplicationController < ActionController::Base
   
   # Used for errors in forms of element uploader: converts an item of type ActiveModel::Errors into a translated message for the user.
   def convert_media_element_uploader_messages(errors) # :doc:
+    return [t('forms.error_captions.media_folder_size_exceeded')] if errors.added? :media, :folder_size_exceeded
+
     resp = convert_item_error_messages errors.messages
     if errors.messages.has_key? :media && errors.messages[:media].any?
       return ([t('forms.error_captions.media_blank')] + resp) if errors.added? :media, :blank

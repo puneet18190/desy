@@ -1,19 +1,19 @@
 id,email,name,surname,school_level_id,encrypted_password,confirmed,location_id,active
-1,desy@morganspa.com,DESY,Admin User,1,$2a$10$M8TPIXnTViIJM/Rw.WxUf.JC7CQ06z4s5S946X7MK5dkCyNHezCEG,t,8,t
-2,paparesta@figc.it,Luca,Paparesta,1,$2a$10$trtnzHHFCi5WMxlTHYxQqe3Tl75OBvVJxrUm6oEoRBK.kfnBASiRS,t,8,t
-3,banti@figc.it,Giorgio,Banti,1,$2a$10$vu196rlMVa16Qkt6Z/XUZ.4vSrQLOkKK1gkSi4BTBD4Ss6ps4u.ze,t,8,t
-4,valeri@figc.it,Marco,Valeri,1,$2a$10$7jJ9zIFmyS0EZi4si0kAUOHxdM1ydeBUQ6/e06OjkiICLWJNONYP6,t,8,t
-5,giannoccaro@figc.it,Adolfo,Giannoccaro,1,$2a$10$5/yRYwGT3nOBusJixXp5lOjLaalNugZ3LQvI.UX1M4sj8qB7d4mPe,t,8,t
-6,trefoloni@figc.it,Umberto,Trefoloni,1,$2a$10$5nXlgSto6CRqwZNbtQyAzuGmkNgSHPnqc2l/Zq0qM2i6..qzyV3Qe,t,8,t
-7,de_sanctis@figc.it,Massimo,De Sanctis,1,$2a$10$khCwJkIvr5DyVHckZuniOO5JfPtuhL3t6pSL5P8qDbMIgkDl3P5jW,t,8,t
-8,mazzini@figc.it,Luigi,Mazzini,1,$2a$10$/b4wvE6kOI/k0wUJMwrkyOWkFpkbOYBbngt.nCdpVo5gRYD6nnUFW,t,8,t
-9,carraro@figc.it,Franco,Carraro,1,$2a$10$37Li2CzrrfhIMG8Klb96.OgtLCX7rstvKgneJVpcntq.9NMQB5JDG,t,8,t
-10,pairetto@figc.it,Fabio,Pairetto,1,$2a$10$9kLBFqIc9iJ4XQeIXg7MqOEDjEYZFoPURIeWBGSglXw86FN4hJTcW,t,8,t
-11,bergamo@figc.it,Ernesto,Bergamo,1,$2a$10$QDdcbNSGKdfZRgz8wRes3OwnB3xYsQdn4HzvuD0Yu3/R8oUzhjmxC,t,8,t
-12,celi@figc.it,Giangiorgio,Celi,1,$2a$10$x8qxdDAo/NajrQb71DmThugt5b3t8y9EOOD7rvw12kp5YWgAwam2m,t,8,t
-13,collina@figc.it,Pierluigi,Collina,1,$2a$10$3y7GEFukDx1PdLd4cufuleW6RjSCOAzwmD57ZTwAqYt/nA24AtEti,t,8,t
-14,lotito@figc.it,Claudio,Lotito,1,$2a$10$j/6iB3fgh4w.opEA4WDU4Od5DU0x.fZbUonO6Ptz.pQoWio8u3XvO,t,8,t
-15,della_valle@figc.it,Luca,Della Valle,1,$2a$10$h6bzfZF3x2WWEBn5NTHRvukfwPGXvrC1jxSSt/TN7Ul.id2DJUkY6,t,8,t
-16,moggi@figc.it,Luciano,Moggi,1,$2a$10$FpYZvsojoZjTEXxkWUb9T.rAC3iGf9L8M/OpZRxLezGc7FZcqPVse,t,8,t
-17,galliani@figc.it,Adriano,Galliani,1,$2a$10$u2qMg.OmhuMdThKSUBLmsuu5iycYDgAsNOjvd4S1P//1.lXvBel3C,t,8,t
-18,assunzioni@pippo.it,Giorgio,Mastrota,1,$2a$10$v2kdFBm3bWrmaeEFJHa3HOdlIUy/aCvnGpWtlSbiR2i1awZW3Cb/C,t,8,t
+1,desy@morganspa.com,DESY,Admin User,1,$2a$10$M8TPIXnTViIJM/Rw.WxUf.JC7CQ06z4s5S946X7MK5dkCyNHezCEG,t,6,t
+2,paparesta@figc.it,Luca,Paparesta,1,$2a$10$trtnzHHFCi5WMxlTHYxQqe3Tl75OBvVJxrUm6oEoRBK.kfnBASiRS,t,6,t
+3,banti@figc.it,Giorgio,Banti,1,$2a$10$vu196rlMVa16Qkt6Z/XUZ.4vSrQLOkKK1gkSi4BTBD4Ss6ps4u.ze,t,6,t
+4,valeri@figc.it,Marco,Valeri,1,$2a$10$7jJ9zIFmyS0EZi4si0kAUOHxdM1ydeBUQ6/e06OjkiICLWJNONYP6,t,6,t
+5,giannoccaro@figc.it,Adolfo,Giannoccaro,1,$2a$10$5/yRYwGT3nOBusJixXp5lOjLaalNugZ3LQvI.UX1M4sj8qB7d4mPe,t,6,t
+6,trefoloni@figc.it,Umberto,Trefoloni,1,$2a$10$5nXlgSto6CRqwZNbtQyAzuGmkNgSHPnqc2l/Zq0qM2i6..qzyV3Qe,t,6,t
+7,de_sanctis@figc.it,Massimo,De Sanctis,1,$2a$10$khCwJkIvr5DyVHckZuniOO5JfPtuhL3t6pSL5P8qDbMIgkDl3P5jW,t,6,t
+8,mazzini@figc.it,Luigi,Mazzini,1,$2a$10$/b4wvE6kOI/k0wUJMwrkyOWkFpkbOYBbngt.nCdpVo5gRYD6nnUFW,t,6,t
+9,carraro@figc.it,Franco,Carraro,1,$2a$10$37Li2CzrrfhIMG8Klb96.OgtLCX7rstvKgneJVpcntq.9NMQB5JDG,t,6,t
+10,pairetto@figc.it,Fabio,Pairetto,1,$2a$10$9kLBFqIc9iJ4XQeIXg7MqOEDjEYZFoPURIeWBGSglXw86FN4hJTcW,t,6,t
+11,bergamo@figc.it,Ernesto,Bergamo,1,$2a$10$QDdcbNSGKdfZRgz8wRes3OwnB3xYsQdn4HzvuD0Yu3/R8oUzhjmxC,t,6,t
+12,celi@figc.it,Giangiorgio,Celi,1,$2a$10$x8qxdDAo/NajrQb71DmThugt5b3t8y9EOOD7rvw12kp5YWgAwam2m,t,6,t
+13,collina@figc.it,Pierluigi,Collina,1,$2a$10$3y7GEFukDx1PdLd4cufuleW6RjSCOAzwmD57ZTwAqYt/nA24AtEti,t,6,t
+14,lotito@figc.it,Claudio,Lotito,1,$2a$10$j/6iB3fgh4w.opEA4WDU4Od5DU0x.fZbUonO6Ptz.pQoWio8u3XvO,t,6,t
+15,della_valle@figc.it,Luca,Della Valle,1,$2a$10$h6bzfZF3x2WWEBn5NTHRvukfwPGXvrC1jxSSt/TN7Ul.id2DJUkY6,t,6,t
+16,moggi@figc.it,Luciano,Moggi,1,$2a$10$FpYZvsojoZjTEXxkWUb9T.rAC3iGf9L8M/OpZRxLezGc7FZcqPVse,t,6,t
+17,galliani@figc.it,Adriano,Galliani,1,$2a$10$u2qMg.OmhuMdThKSUBLmsuu5iycYDgAsNOjvd4S1P//1.lXvBel3C,t,6,t
+18,assunzioni@pippo.it,Giorgio,Mastrota,1,$2a$10$v2kdFBm3bWrmaeEFJHa3HOdlIUy/aCvnGpWtlSbiR2i1awZW3Cb/C,t,6,t

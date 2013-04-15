@@ -115,6 +115,8 @@
             
                 <li><a href="..&#x2F;classes/ImageEditorTexts.html">ImageEditorTexts</a></li>
             
+                <li><a href="..&#x2F;classes/JqueryPatchesBrowsers.html">JqueryPatchesBrowsers</a></li>
+            
                 <li><a href="..&#x2F;classes/LessonEditorCurrentSlide.html">LessonEditorCurrentSlide</a></li>
             
                 <li><a href="..&#x2F;classes/LessonEditorDocumentReady.html">LessonEditorDocumentReady</a></li>
@@ -221,7 +223,7 @@
 
             <ul id="api-modules" class="apis modules">
             
-                <li><a href="..&#x2F;modules/administration.html">administration</a></li>
+                <li><a href="..&#x2F;modules/admin.html">admin</a></li>
             
                 <li><a href="..&#x2F;modules/ajax-loader.html">ajax-loader</a></li>
             
@@ -238,6 +240,8 @@
                 <li><a href="..&#x2F;modules/general.html">general</a></li>
             
                 <li><a href="..&#x2F;modules/image-editor.html">image-editor</a></li>
+            
+                <li><a href="..&#x2F;modules/jquery-patches.html">jquery-patches</a></li>
             
                 <li><a href="..&#x2F;modules/lesson-editor.html">lesson-editor</a></li>
             
@@ -426,7 +430,41 @@
     <h3 class="name"><code>addComponentInAudioEditor</code></h3>
 
     
-        <span class="paren">()</span>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>audio_id</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>ogg</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>m4a</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>duration</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>title</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
     
 
     
@@ -454,7 +492,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_audio_editor.js.html#l10"><code>app&#x2F;assets&#x2F;javascripts&#x2F;audio_editor.js:10</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_audio_editor.js.html#l18"><code>app&#x2F;assets&#x2F;javascripts&#x2F;audio_editor.js:18</code></a>
         
         </p>
 
@@ -465,9 +503,92 @@
     </div>
 
     <div class="description">
-        <p>bla bla bla</p>
+        <p>This function adds a new audio component to the timeline: it extracts the empty audio component hidden in the template, replaces in it the values of the new audio component, and appends it right after the selected component. If there are no selected components, the new one is appended at the end of the timeline.</p>
     </div>
 
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">audio_id</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>the ID of the audio in the database</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">ogg</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>the path of the attached audio in format ogg</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">m4a</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>the path of the attached audio in format mp4</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">duration</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>the integer duration of the audio</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">title</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>the title of the audio extracted from the database</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
     
 
     
@@ -480,7 +601,23 @@
     <h3 class="name"><code>changeDurationAudioEditorComponent</code></h3>
 
     
-        <span class="paren">()</span>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>component</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>new_duration</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
     
 
     
@@ -508,7 +645,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_audio_editor.js.html#l60"><code>app&#x2F;assets&#x2F;javascripts&#x2F;audio_editor.js:60</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_audio_editor.js.html#l73"><code>app&#x2F;assets&#x2F;javascripts&#x2F;audio_editor.js:73</code></a>
         
         </p>
 
@@ -519,9 +656,47 @@
     </div>
 
     <div class="description">
-        <p>bla bla bla</p>
+        <p>This function changes the duration of a component, and updates the global durations.</p>
     </div>
 
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">component</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>the component</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">new_duration</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>the new duration</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
     
 
     
@@ -562,7 +737,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_audio_editor.js.html#l75"><code>app&#x2F;assets&#x2F;javascripts&#x2F;audio_editor.js:75</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_audio_editor.js.html#l90"><code>app&#x2F;assets&#x2F;javascripts&#x2F;audio_editor.js:90</code></a>
         
         </p>
 
@@ -573,7 +748,7 @@
     </div>
 
     <div class="description">
-        <p>bla bla bla</p>
+        <p>Function that deselects all the audio components.</p>
     </div>
 
     
@@ -588,9 +763,35 @@
     <h3 class="name"><code>fillAudioEditorSingleParameter</code></h3>
 
     
-        <span class="paren">()</span>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>input</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>identifier</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>value</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
     
 
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+        </span>
     
 
     
@@ -616,7 +817,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_audio_editor.js.html#l98"><code>app&#x2F;assets&#x2F;javascripts&#x2F;audio_editor.js:98</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_audio_editor.js.html#l113"><code>app&#x2F;assets&#x2F;javascripts&#x2F;audio_editor.js:113</code></a>
         
         </p>
 
@@ -627,11 +828,77 @@
     </div>
 
     <div class="description">
-        <p>bla bla bla</p>
+        <p>Function that creates a single input field to be inserted in the empty audio component during the process of construction of a new one (used in <a href="../classes/AudioEditorComponents.html#method_addComponentInAudioEditor" class="crosslink">addComponentInAudioEditor</a>).</p>
     </div>
 
     
+        <div class="params">
+            <h4>Parameters:</h4>
 
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">input</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>the specific input to be filled (for example, <i>audio_id</i>, <i>from</i>, or <i>to</i>)</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">identifier</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>the identifier of the component</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">value</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>the HTML value to be assigned to the input</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
+                    
+                    the resulting input written in HTML
+                
+            </div>
+        </div>
     
 
     
@@ -642,7 +909,17 @@
     <h3 class="name"><code>loadAudioComponentIfNotLoadedYet</code></h3>
 
     
-        <span class="paren">()</span>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>component</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
     
 
     
@@ -670,7 +947,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_audio_editor.js.html#l107"><code>app&#x2F;assets&#x2F;javascripts&#x2F;audio_editor.js:107</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_audio_editor.js.html#l126"><code>app&#x2F;assets&#x2F;javascripts&#x2F;audio_editor.js:126</code></a>
         
         </p>
 
@@ -681,9 +958,32 @@
     </div>
 
     <div class="description">
-        <p>bla bla bla</p>
+        <p>An HTML5 audio is loaded only when necessary: this function extracts from the data the sources of the audio, and loads it (unless the component had already been loaded previously)</p>
     </div>
 
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">component</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>the component to load</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
     
 
     
@@ -724,7 +1024,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_audio_editor.js.html#l123"><code>app&#x2F;assets&#x2F;javascripts&#x2F;audio_editor.js:123</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_audio_editor.js.html#l143"><code>app&#x2F;assets&#x2F;javascripts&#x2F;audio_editor.js:143</code></a>
         
         </p>
 
@@ -735,7 +1035,7 @@
     </div>
 
     <div class="description">
-        <p>bla bla bla</p>
+        <p>Reloads the correct positions of the components after sorting them.</p>
     </div>
 
     
@@ -750,7 +1050,17 @@
     <h3 class="name"><code>removeAudioEditorComponent</code></h3>
 
     
-        <span class="paren">()</span>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>component</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
     
 
     
@@ -778,7 +1088,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_audio_editor.js.html#l137"><code>app&#x2F;assets&#x2F;javascripts&#x2F;audio_editor.js:137</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_audio_editor.js.html#l157"><code>app&#x2F;assets&#x2F;javascripts&#x2F;audio_editor.js:157</code></a>
         
         </p>
 
@@ -789,9 +1099,32 @@
     </div>
 
     <div class="description">
-        <p>bla bla bla</p>
+        <p>Removes a component from the timeline.</p>
     </div>
 
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">component</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>the component to be removed</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
     
 
     
@@ -832,7 +1165,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_audio_editor.js.html#l157"><code>app&#x2F;assets&#x2F;javascripts&#x2F;audio_editor.js:157</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_audio_editor.js.html#l178"><code>app&#x2F;assets&#x2F;javascripts&#x2F;audio_editor.js:178</code></a>
         
         </p>
 
@@ -843,7 +1176,7 @@
     </div>
 
     <div class="description">
-        <p>bla bla bla</p>
+        <p>This function removes the margin bottom from the last component in the timeline: this is necessary to handle with precision the JScrollPain (see <a href="../classes/AudioEditorScrollpain.html" class="crosslink">AudioEditorScrollpain</a>).</p>
     </div>
 
     
@@ -858,7 +1191,17 @@
     <h3 class="name"><code>selectAudioEditorComponent</code></h3>
 
     
-        <span class="paren">()</span>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>component</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
     
 
     
@@ -886,7 +1229,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_audio_editor.js.html#l167"><code>app&#x2F;assets&#x2F;javascripts&#x2F;audio_editor.js:167</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_audio_editor.js.html#l188"><code>app&#x2F;assets&#x2F;javascripts&#x2F;audio_editor.js:188</code></a>
         
         </p>
 
@@ -897,9 +1240,32 @@
     </div>
 
     <div class="description">
-        <p>bla bla bla</p>
+        <p>Function that selects an audio component.</p>
     </div>
 
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">component</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>the component to be selected</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
     
 
     

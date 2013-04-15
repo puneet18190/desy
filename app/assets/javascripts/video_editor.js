@@ -1,5 +1,56 @@
 /**
-Provides video editor ajax actions.
+The Video Editor is structured as follows: centered in the middle of the Editor is located the <b>preview screen</b>, below it the <b>components timeline</b> and the <b>audio track</b>, and on the right the <b>preview column</b> which contains also global statistics about the video.
+<br/><br/>
+A video created with the Video Editor can be composed by <b>three types of components</b> (and optionally an <b>audio track</b>):
+<ul>
+  <li>a <b>video component</b> is an element of type video extracted from the user's gallery, associated to an <b>initial</b> and <b>final point</b></li>
+  <li>a <b>image component</b> is an element of type image extracted from the user's gallery, associated to a <b>duration</b> in seconds (the image is held in the video for a number of seconds equal to the component's duration); the image is centered and cropped maintaining its original proportions, to make it fit in the video screen (which has proportions 16/9)</li>
+  <li>a <b>text component</b> is a centered title for which the user chooses a <b>background color</b>, a <b>font color</b> and a <b>duration</b> (which has the same interpretation as for image components).</li>
+</ul>
+The resulting video will be the concatenation of all the components inside the timeline, with optionally the chosen audio track as background audio. On the <b>timeline</b> the user may perform the following actions:
+<ul>
+  <li><b>add</b> a new component (see class {{#crossLink "VideoEditorAddComponents"}}{{/crossLink}}) or <b>replace</b> an existing one, even without maintaining its original type (see class {{#crossLink "VideoEditorReplaceComponents"}}{{/crossLink}}): these functionalities are initialized in {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyAddComponent:method"}}{{/crossLink}}</li>
+  <li><b>remove</b> a component from the timeline (initialized in {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyRemoveComponent:method"}}{{/crossLink}})</li>
+  <li><b>sort</b> and change the order of the components (initialized in {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyInitialization:method"}}{{/crossLink}})</li>
+  <li><b>cut</b> a video component (change its initial and final point) or <b>change duration</b> of an image or text compoent (both these functionalities are initialized in {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyCutters:method"}}{{/crossLink}} and implemented in the class {{#crossLink "VideoEditorCutters"}}{{/crossLink}}).</li>
+</ul>
+Each component is provided of its own <b>identifier</b> (the same used in {{#crossLinkModule "audio-editor"}}{{/crossLinkModule}}), that is unique and doesn't change on any operation performed by the user. Moreover, regardless of its type, a component is strictly linked with two <b>external accessories</b>:
+<ul>
+  <li>a <b>cutter</b> (whose HTML id is <i>video component [identifier] cutter</i>): this item is normally hidden, when requested it appears below the timeline and is used to cut a video component or change the duration of an image or text component (class {{#crossLink "VideoEditorCutters"}}{{/crossLink}})</li>
+  <li>a <b>preview clip</b> (whose HTML id is <i>video component [identifier] preview</i>): this item is hidden inside the <b>preview screen</b>, and it's used
+    <ul>
+      <li>to provide the user of a big clip of the component while handling it (functionality initialized in {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyComponentsCommon:method"}}{{/crossLink}})</li>
+      <li>to play a video component while cutting it (initialized in the method {{#crossLink "PlayersDocumentReady/playersDocumentReadyVideoEditor:method"}}{{/crossLink}} in the module {{#crossLinkModule "players"}}{{/crossLinkModule}})</li>
+      <li>to be shown in the <b>global preview</b> (see class {{#crossLink "VideoEditorPreview"}}{{/crossLink}}).</li>
+    </ul>
+  </li>
+</ul>
+The method that <b>extracts the identifier from a component</b> is {{#crossLink "VideoEditorGeneral/getVideoComponentIdentifier:method"}}{{/crossLink}} (it works receiving as parameter either the component or its cutter or preview clip).
+<br/><br/>
+While the user is working, the <b>preview clip</b> visible in the preview screen corresponds to the last component <b>selected</b> by the user. A component gets selected either if the user keeps the mouse on it for more than half a second (using the method {{#crossLink "VideoEditorComponents/startVideoEditorPreviewClipWithDelay:method"}}{{/crossLink}}, which avoids compulsive changes inside the preview screen when the user passes with the mouse over the timeline), or immediately on the actions of <b>sorting</b> and <b>cutting</b> (using the method {{#crossLink "VideoEditorCutters/startVideoEditorPreviewClip:method"}}{{/crossLink}}): both behaviors are initialized in {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyComponentsCommon:method"}}{{/crossLink}}. To the <b>preview clip</b> of a video component is also associated a method ({{#crossLink "VideoEditorGeneral/loadVideoComponentIfNotLoadedYet:method"}}{{/crossLink}}) that loads the HTML5 video tag only when necessary: this, similarly to {{#crossLinkModule "audio-editor"}}{{/crossLinkModule}}, avoids overloading of the HTML.
+<br/><br/>
+The <b>component gallery</b> used inside the Video Editor (initialized in {{#crossLink "GalleriesInitializers/initializeMixedGalleryInVideoEditor:method"}}{{/crossLink}}) is the only gallery in the application which contains mixed types of elements. It's divided into three sections, one for each kind of component: the sections for <b>video</b> and <b>image</b> components have the same external behavior of normal image and video galleries (see the module {{#crossLinkModule "galleries"}}{{/crossLinkModule}}), whereas the section for <b>text</b> components is a peculiar text editor (see the class {{#crossLink "VideoEditorTextComponentEditor"}}{{/crossLink}}). The component gallery (together with the regular audio gallery for the <b>audio track</b>) is initialized in {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyGalleries:method"}}{{/crossLink}}, and its functionality defined in the methods of {{#crossLink "VideoEditorGalleries"}}{{/crossLink}} (for instance, the method to switch from a section to another).
+<br/><br/>
+The method {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyAddComponent:method"}}{{/crossLink}} initializes the general procedure to <b>add or replace a component</b>. The system sets a HTML <i>data</i> that records if the component gallery was opened to <b>replace</b> or <b>add</b> a component: depending on this data, when the user picks a component from the gallery it's called the corresponding method in {{#crossLink "VideoEditorAddComponents"}}{{/crossLink}} or in {{#crossLink "VideoEditorReplaceComponents"}}{{/crossLink}}.
+<br/><br/>
+When the user adds a component, the system makes a copy of an <b>empty hidden component</b> and fills it with the new data. This behavior is quite similar to the one in {{#crossLinkModule "audio-editor"}}{{/crossLinkModule}}, but in the case of Video Editor the procedure is slightly more complicated, due to the following reasons:
+<ul>
+  <li>there are <b>three empty items</b> (empty component, empty cutter, empty preview clip) for each type of component, <b>for a total of nine</b></li>
+  <li>unlike {{#crossLinkModule "audio-editor"}}{{/crossLinkModule}}, in the Video Editor each component needs a <b>miniature</b>, that necessarily must be inserted in the empty component <b>together with the rest of the data</b>. For text components, the miniature is built in the moment of the component's creation (there is an <b>empty text miniature</b> hidden in the template of text component editor, see {{#crossLink "VideoEditorTextComponentEditor"}}{{/crossLink}}); for video and image components, the miniatures are loaded together with the <b>mixed gallery</b> and stored <b>in the popup of each element</b> (see module {{#crossLinkModule "galleries"}}{{/crossLinkModule}}, and especially the <i>js.erb</i> templates associated to the routes of the mixed gallery)
+  <li>in the Video Editor it's possible to <b>replace</b> a component: when the system does this, it's not enough to fill the inputs of the previous component (with {{#crossLink "VideoEditorComponents/fillVideoEditorSingleParameter:method"}}{{/crossLink}}): it's additionally necessary to <b>reset the inputs</b> of the previous component, thing done by the method {{#crossLink "VideoEditorComponents/clearSpecificVideoEditorComponentParameters:method"}}{{/crossLink}}. Moreover, when replacing a component, the duration is updated using {{#crossLink "VideoEditorComponents/changeDurationVideoEditorComponent:method"}}{{/crossLink}}.</li>
+</ul>
+Besides the durations, two graphical details are peculiar to each component: the <b>position</b>, handled by {{#crossLink "VideoEditorComponents/reloadVideoEditorComponentPositions:method"}}{{/crossLink}}; and the <b>transition</b>, a small icon representing the <b>fade transition</b> of one second between a component and the following, that must be visible <i>after all components except for the last one</i> (see {{#crossLink "VideoEditorComponents/resetVisibilityOfVideoEditorTransitions:method"}}{{/crossLink}}). The operations in which callback it's necessary to reset transitions and positions are <b>sorting</b> ({{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyInitialization:method"}}{{/crossLink}}) and <b>removing</b> ({{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyRemoveComponent:method"}}{{/crossLink}}).
+<br/><br/>
+A video component cutter (or simply <b>cutter</b>) is an instrument used to change the initial and final second of a component of type video: it's very similar to the audio cutter, and its functionalities (JQueryUi sliders, players, etc) are defined in {{#crossLink "PlayersVideoEditor/initializeVideoInVideoEditorPreview:method"}}{{/crossLink}} and {{#crossLink "PlayersDocumentReady/playersDocumentReadyVideoEditor:method"}}{{/crossLink}}. A property that is worth mentioning is the <b>automatic return to the previous integer second</b> when pausing: this is a functionality of both cutters and global reproduction (see {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyPreview:method"}}{{/crossLink}} and {{#crossLink "VideoEditorPreview"}}{{/crossLink}}), necessary to set with precision the current time of the <b>preview screen</b>, in order to simulate faithfully the effect of transitions and the correspondance with the optional audio track.
+<br/><br/>
+For image and text components, a cutter is simply a small form where the user may insert a new duration (the associated callback is {{#crossLink "VideoEditorComponents/changeDurationVideoEditorComponent:method"}}{{/crossLink}}. Since it doesn't fit the whole timeline, this paraticular cutter must be aligned to the JScrollPain: this is done with the functions of the class {{#crossLink "MediaElementEditorHorizontalTimelines"}}{{/crossLink}}.
+<br/><br/>
+All the cutters are initialized in {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyCutters:method"}}{{/crossLink}}, and their functionalities included in the class {{#crossLink "AudioEditorCutters"}}{{/crossLink}}.
+<br/><br/>
+
+
+<br/><br/>
+As for the other Element Editors ({{#crossLinkModule "image-editor"}}{{/crossLinkModule}}, {{#crossLinkModule "audio-editor"}}{{/crossLinkModule}}) the core of the process of committing changes is handled in the module {{#crossLinkModule "media-element-editor"}}{{/crossLinkModule}} (more specificly in the class {{#crossLink "MediaElementEditorForms"}}{{/crossLink}}); the part of this functionality specific for the Video Editor is handled in {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyCommit:method"}}{{/crossLink}}.
 @module video-editor
 **/
 
@@ -262,7 +313,7 @@ function clearSpecificVideoEditorComponentParameters(component_id) {
 }
 
 /**
-bla bla bla
+bla bla bla # TODO quando arrivo qui metti il link all'analogo in audio editor, e torna in audio editor e assicurati che ci sia un link opposto che redireziona qui
 @method fillVideoEditorSingleParameter
 @for VideoEditorComponents
 **/
@@ -566,7 +617,7 @@ function videoEditorDocumentReadyAudioTrack() {
 }
 
 /**
-bla bla bla
+bla bla bla -- TODO copiare dagli analoghi in image editor e audio editor
 @method videoEditorDocumentReadyCommit
 @for VideoEditorDocumentReady
 **/
@@ -1370,7 +1421,7 @@ function startVideoEditorGlobalPreview() {
   var actual_audio_track_time = calculateVideoComponentStartSecondInVideoEditor(current_identifier) + current_component.data('current-preview-time');
   if(videoEditorWithAudioTrack() && actual_audio_track_time < $('#full_audio_track_placeholder_in_video_editor').data('duration')) {
     var audio_track = $('#video_editor_preview_container audio');
-    if(media[0].error) {
+    if(audio_track[0].error) {
       showLoadingMediaErrorPopup(audio_track[0].error.code, 'audio');
     } else {
       setCurrentTimeToMedia(audio_track, actual_audio_track_time);

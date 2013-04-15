@@ -115,6 +115,8 @@
             
                 <li><a href="..&#x2F;classes/ImageEditorTexts.html">ImageEditorTexts</a></li>
             
+                <li><a href="..&#x2F;classes/JqueryPatchesBrowsers.html">JqueryPatchesBrowsers</a></li>
+            
                 <li><a href="..&#x2F;classes/LessonEditorCurrentSlide.html">LessonEditorCurrentSlide</a></li>
             
                 <li><a href="..&#x2F;classes/LessonEditorDocumentReady.html">LessonEditorDocumentReady</a></li>
@@ -221,7 +223,7 @@
 
             <ul id="api-modules" class="apis modules">
             
-                <li><a href="..&#x2F;modules/administration.html">administration</a></li>
+                <li><a href="..&#x2F;modules/admin.html">admin</a></li>
             
                 <li><a href="..&#x2F;modules/ajax-loader.html">ajax-loader</a></li>
             
@@ -238,6 +240,8 @@
                 <li><a href="..&#x2F;modules/general.html">general</a></li>
             
                 <li><a href="..&#x2F;modules/image-editor.html">image-editor</a></li>
+            
+                <li><a href="..&#x2F;modules/jquery-patches.html">jquery-patches</a></li>
             
                 <li><a href="..&#x2F;modules/lesson-editor.html">lesson-editor</a></li>
             
@@ -301,7 +305,7 @@
 <div class="file">
     <pre class="code prettyprint linenums">
 &#x2F;**
-bla bla bla
+This module contains javascript functions common to all the editors ({{#crossLinkModule &quot;audio-editor&quot;}}{{&#x2F;crossLinkModule}}, {{#crossLinkModule &quot;image-editor&quot;}}{{&#x2F;crossLinkModule}}, {{#crossLinkModule &quot;video-editor&quot;}}{{&#x2F;crossLinkModule}}).
 @module media-element-editor
 **&#x2F;
 
@@ -310,7 +314,7 @@ bla bla bla
 
 
 &#x2F;**
-bla bla bla
+One step of the repeated &lt;b&gt;cache&lt;&#x2F;b&gt; saving (used in {{#crossLinkModule &quot;image-editor&quot;}}{{&#x2F;crossLinkModule}} and {{#crossLinkModule &quot;video-editor&quot;}}{{&#x2F;crossLinkModule}})
 @method saveCacheLoop
 @for MediaElementEditorCache
 **&#x2F;
@@ -332,7 +336,7 @@ function saveCacheLoop() {
 }
 
 &#x2F;**
-bla bla bla
+Initializes the &lt;b&gt;cache loop&lt;&#x2F;b&gt; and starts it calling {{#crossLink &quot;MediaElementEditorCache&#x2F;saveCacheLoop:method&quot;}}{{&#x2F;crossLink}}.
 @method startCacheLoop
 @for MediaElementEditorCache
 **&#x2F;
@@ -342,7 +346,7 @@ function startCacheLoop() {
 }
 
 &#x2F;**
-bla bla bla
+Stops the cache loop.
 @method stopCacheLoop
 @for MediaElementEditorCache
 **&#x2F;
@@ -352,7 +356,7 @@ function stopCacheLoop() {
 }
 
 &#x2F;**
-bla bla bla
+Submethod of {{#crossLink &quot;MediaElementEditorCache&#x2F;saveCacheLoop:method&quot;}}{{&#x2F;crossLink}}.
 @method submitMediaElementEditorCacheForm
 @for MediaElementEditorCache
 **&#x2F;
@@ -371,7 +375,7 @@ function submitMediaElementEditorCacheForm(form) {
 
 
 &#x2F;**
-bla bla bla
+Initializes the placeholder of the &lt;b&gt;commit forms&lt;&#x2F;b&gt; used in {{#crossLinkModule &quot;audio-editor&quot;}}{{&#x2F;crossLinkModule}}, {{#crossLinkModule &quot;image-editor&quot;}}{{&#x2F;crossLinkModule}} and {{#crossLinkModule &quot;video-editor&quot;}}{{&#x2F;crossLinkModule}}.
 @method mediaElementEditorDocumentReady
 @for MediaElementEditorDocumentReady
 **&#x2F;
@@ -395,7 +399,7 @@ function mediaElementEditorDocumentReady() {
 
 
 &#x2F;**
-bla bla bla
+Resets the &lt;b&gt;commit forms&lt;&#x2F;b&gt; used in {{#crossLinkModule &quot;audio-editor&quot;}}{{&#x2F;crossLinkModule}}, {{#crossLinkModule &quot;image-editor&quot;}}{{&#x2F;crossLinkModule}} and {{#crossLinkModule &quot;video-editor&quot;}}{{&#x2F;crossLinkModule}}. This method is associated to the button &#x27;cancel&#x27; in these forms (see {{#crossLink &quot;AudioEditorDocumentReady&#x2F;audioEditorDocumentReadyCommit:method&quot;}}{{&#x2F;crossLink}}, {{#crossLink &quot;ImageEditorDocumentReady&#x2F;imageEditorDocumentReadyCommit:method&quot;}}{{&#x2F;crossLink}} and {{#crossLink &quot;VideoEditorDocumentReady&#x2F;videoEditorDocumentReadyCommit:method&quot;}}{{&#x2F;crossLink}}).
 @method resetMediaElementEditorForms
 @for MediaElementEditorForms
 **&#x2F;
@@ -433,9 +437,12 @@ function resetMediaElementEditorForms() {
 
 
 &#x2F;**
-bla bla bla
+Submethod used in the methods of {{#crossLink &quot;VideoEditorScrollPain&quot;}}{{&#x2F;crossLink}}: calculates the correct movement that a horizontal &lt;b&gt;left&lt;&#x2F;b&gt; scroll must do taking into consideration the space available (thing that obviously JScrollPain doesn&#x27;t do itself).
 @method calculateCorrectMovementHorizontalScrollLeft
 @for MediaElementEditorHorizontalTimelines
+@param hidden {Float} the portion of the scroll hidden on the left
+@param movement {Float} the required movement
+@return {Float} the correct movement to do
 **&#x2F;
 function calculateCorrectMovementHorizontalScrollLeft(hidden, movement) {
   if(movement &gt; hidden) {
@@ -446,18 +453,26 @@ function calculateCorrectMovementHorizontalScrollLeft(hidden, movement) {
 }
 
 &#x2F;**
-bla bla bla
+Submethod used in the methods of {{#crossLink &quot;VideoEditorScrollPain&quot;}}{{&#x2F;crossLink}}: calculates the correct movement that a horizontal &lt;b&gt;right&lt;&#x2F;b&gt; scroll must do taking into consideration the space available (thing that obviously JScrollPain doesn&#x27;t do itself).
 @method calculateCorrectMovementHorizontalScrollRight
 @for MediaElementEditorHorizontalTimelines
+@param hidden {Float} the portion of the scroll hidden on the left
+@param movement {Float} the required movement
+@return {Float} the correct movement to do
 **&#x2F;
 function calculateCorrectMovementHorizontalScrollRight(hidden, movement, tot, visible) {
   return calculateCorrectMovementHorizontalScrollLeft(tot - hidden - visible, movement);
 }
 
 &#x2F;**
-bla bla bla
+Submethod used in the methods of {{#crossLink &quot;VideoEditorScrollPain&quot;}}{{&#x2F;crossLink}}: calculates the absolute position to be assigned to &lt;b&gt;a div that must be aligned to the component&lt;&#x2F;b&gt; after having been moved to first position.
 @method getAbsolutePositionTimelineHorizontalScrollPane
 @for MediaElementEditorHorizontalTimelines
+@param jscrollpane_id {String} the HTML id of the scroll pane
+@param component_width {Number} the width in pixels of a single component
+@param component_position {Number} the position among the other components
+@param components_visible_number {Number} how many components are visible at the same time in the scroll pane
+@return {Number} the correct position of the div in pixels (it&#x27;s not float because we pass to the method only integers, unlike {{#crossLink &quot;MediaElementEditorHorizontalTimelines&#x2F;calculateCorrectMovementHorizontalScrollRight:method&quot;}}{{&#x2F;crossLink}} and {{#crossLink &quot;MediaElementEditorHorizontalTimelines&#x2F;calculateCorrectMovementHorizontalScrollRight:method&quot;}}{{&#x2F;crossLink}} that are defined generally)
 **&#x2F;
 function getAbsolutePositionTimelineHorizontalScrollPane(jscrollpane_id, component_width, component_position, components_visible_number) {
   var how_many_hidden_to_left = getHowManyComponentsHiddenToLeftTimelineHorizontalScrollPane(jscrollpane_id, component_width);
@@ -472,9 +487,12 @@ function getAbsolutePositionTimelineHorizontalScrollPane(jscrollpane_id, compone
 }
 
 &#x2F;**
-bla bla bla
+Submethod used in the methods of {{#crossLink &quot;VideoEditorScrollPain&quot;}}{{&#x2F;crossLink}}: gets how many components are hidden to the left of the scroll pane.
 @method getHowManyComponentsHiddenToLeftTimelineHorizontalScrollPane
 @for MediaElementEditorHorizontalTimelines
+@param jscrollpane_id {String} the HTML id of the scroll pane
+@param component_width {Number} the width in pixels of a single component
+@return {Number} the number of components hidden to the left
 **&#x2F;
 function getHowManyComponentsHiddenToLeftTimelineHorizontalScrollPane(jscrollpane_id, component_width) {
   var hidden_to_left = $(&#x27;#&#x27; + jscrollpane_id).data(&#x27;jsp&#x27;).getContentPositionX();
@@ -482,9 +500,14 @@ function getHowManyComponentsHiddenToLeftTimelineHorizontalScrollPane(jscrollpan
 }
 
 &#x2F;**
-bla bla bla
+Submethod used in the methods of {{#crossLink &quot;VideoEditorScrollPain&quot;}}{{&#x2F;crossLink}}: exactly the same as {{#crossLink &quot;MediaElementEditorHorizontalTimelines&#x2F;getAbsolutePositionTimelineHorizontalScrollPane:method&quot;}}{{&#x2F;crossLink}}, but &lt;b&gt;it returns the position of the scroll pane&lt;&#x2F;b&gt; instead of the absolute pixels for an external div.
 @method getNormalizedPositionTimelineHorizontalScrollPane
 @for MediaElementEditorHorizontalTimelines
+@param jscrollpane_id {String} the HTML id of the scroll pane
+@param component_width {Number} the width in pixels of a single component
+@param component_position {Number} the position among the other components
+@param components_visible_number {Number} how many components are visible at the same time in the scroll pane
+@return {Number} the correct position of the scroll in pixels
 **&#x2F;
 function getNormalizedPositionTimelineHorizontalScrollPane(jscrollpane_id, component_width, component_position, components_visible_number) {
   var how_many_hidden_to_left = getHowManyComponentsHiddenToLeftTimelineHorizontalScrollPane(jscrollpane_id, component_width);

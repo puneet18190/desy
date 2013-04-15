@@ -115,6 +115,8 @@
             
                 <li><a href="..&#x2F;classes/ImageEditorTexts.html">ImageEditorTexts</a></li>
             
+                <li><a href="..&#x2F;classes/JqueryPatchesBrowsers.html">JqueryPatchesBrowsers</a></li>
+            
                 <li><a href="..&#x2F;classes/LessonEditorCurrentSlide.html">LessonEditorCurrentSlide</a></li>
             
                 <li><a href="..&#x2F;classes/LessonEditorDocumentReady.html">LessonEditorDocumentReady</a></li>
@@ -221,7 +223,7 @@
 
             <ul id="api-modules" class="apis modules">
             
-                <li><a href="..&#x2F;modules/administration.html">administration</a></li>
+                <li><a href="..&#x2F;modules/admin.html">admin</a></li>
             
                 <li><a href="..&#x2F;modules/ajax-loader.html">ajax-loader</a></li>
             
@@ -238,6 +240,8 @@
                 <li><a href="..&#x2F;modules/general.html">general</a></li>
             
                 <li><a href="..&#x2F;modules/image-editor.html">image-editor</a></li>
+            
+                <li><a href="..&#x2F;modules/jquery-patches.html">jquery-patches</a></li>
             
                 <li><a href="..&#x2F;modules/lesson-editor.html">lesson-editor</a></li>
             
@@ -301,7 +305,7 @@
 <div class="file">
     <pre class="code prettyprint linenums">
 &#x2F;**
-Dialogs, model and popup interaction. Open, close content management. Uses jQueryUI _dialog_
+This module contains the javascript functions that use JQueryUi dialogs. Some of them are closed with a time delay (class {{#crossLink &quot;DialogsTimed&quot;}}{{&#x2F;crossLink}}), other are closed with buttons by the user (class {{#crossLink &quot;DialogsConfirmation&quot;}}{{&#x2F;crossLink}}), and other ones contain a form to be filled in by the user (class {{#crossLink &quot;DialogsWithForm&quot;}}{{&#x2F;crossLink}}).
 @module dialogs
 **&#x2F;
 
@@ -310,17 +314,17 @@ Dialogs, model and popup interaction. Open, close content management. Uses jQuer
 
 
 &#x2F;**
-Close popup with given id
+Close a dialog with given HTML id.
 @method closePopUp
 @for DialogsAccessories
-@param id {String} popup selector id
+@param id {String} HTML id of the dialog
 **&#x2F;
 function closePopUp(id) {
   $(&#x27;#&#x27; + id).dialog(&#x27;close&#x27;);
 }
 
 &#x2F;**
-Add close popup functionality to widget overlay layer. Triggered on popup blur.
+Adds the class &lt;i&gt;close on click out&lt;&#x2F;i&gt; to the widget overlay: this function is called on the callbacks of dialog functions, to allow the user to close the dialog directly clicking out.
 @method customOverlayClose
 @for DialogsAccessories
 **&#x2F;
@@ -330,10 +334,10 @@ function customOverlayClose() {
 }
 
 &#x2F;**
-Destroy given media element popup
+Close and successively remove HTML for a given media element popup.
 @method removeCompletelyMediaElementPopup
 @for DialogsAccessories
-@param media_element_id {Number} media element id
+@param media_element_id {Number} id of the element in the database, used to extract the HTML id of the dialog
 **&#x2F;
 function removeCompletelyMediaElementPopup(media_element_id) {
   var obj = $(&#x27;#dialog-media-element-&#x27; + media_element_id);
@@ -347,7 +351,7 @@ function removeCompletelyMediaElementPopup(media_element_id) {
 }
 
 &#x2F;**
-Remove close popup functionality to widget overlay layer.
+Opposite of {{#crossLink &quot;DialogsAccessories&#x2F;customOverlayClose:method&quot;}}{{&#x2F;crossLink}}. Remember that the widget-overlay object is unique for every dialog built with JQueryUi, thus it&#x27;s compulsory to remove the class &lt;i&gt;close on click out&lt;&#x2F;i&gt; before opening a new dialog.
 @method removeCustomOverlayClose
 @for DialogsAccessories
 **&#x2F;
@@ -360,15 +364,15 @@ function removeCustomOverlayClose() {
 
 
 &#x2F;**
-Generic popup for confirmation prompt
+Generic confirmation dialog.
 @method showConfirmPopUp
 @for DialogsConfirmation
-@param title {String} popup title
-@param content {String} popup content
-@param msg_ok {String} text for ok button
-@param msg_no {String} text for cancel button
-@param callback_ok {Object} ok callback function
-@param callback_no {Object} cancel callback function
+@param title {String} title
+@param content {String} text
+@param msg_ok {String} caption for the button &#x27;ok&#x27; (on the left side of the dialog)
+@param msg_no {String} caption for the button &#x27;cancel&#x27; (on the right side of the dialog)
+@param callback_ok {Function} callback associated to the button &#x27;ok&#x27;
+@param callback_no {Function} callback associated to the button &#x27;cancel&#x27;
 **&#x2F;
 function showConfirmPopUp(title, content, msg_ok, msg_no, callback_ok, callback_no) {
   var obj = $(&#x27;#dialog-confirm&#x27;);
@@ -396,11 +400,11 @@ function showConfirmPopUp(title, content, msg_ok, msg_no, callback_ok, callback_
 }
 
 &#x2F;**
-Modal for media element editor, asking whether or not restore cached content. Available for audio and video editor only.
+Dialog used in {{#crossLinkModule &quot;audio-editor&quot;}}{{&#x2F;crossLinkModule}} and in {{#crossLinkModule &quot;video-editor&quot;}}{{&#x2F;crossLinkModule}}, that asks the user if he wants to restore the cache or not. Specificly, it&#x27;s used in the generic function {{#crossLink &quot;MediaElementEditorCache&#x2F;startCacheLoop:method&quot;}}{{&#x2F;crossLink}}.
 @method showRestoreCacheMediaElementEditorPopUp
 @for DialogsConfirmation
-@param callback_ok {Object} restore callback function
-@param callback_no {Object} don&#x27;t restore callback function
+@param callback_ok {Function} callback function to restore the cache
+@param callback_no {Function} callback function that removes the cache and opens the requested page
 **&#x2F;
 function showRestoreCacheMediaElementEditorPopUp(callback_ok, callback_no) {
   var obj = $(&#x27;#dialog-restore-cache-media-element-editor&#x27;);
@@ -445,11 +449,11 @@ function showRestoreCacheMediaElementEditorPopUp(callback_ok, callback_no) {
 
 
 &#x2F;**
-Image popup for image gallery Uses: [resizedWidthForImageGallery](..&#x2F;classes&#x2F;resizedWidthForImageGallery.html#method_resizedWidthForImageGallery) and [customOverlayClose](..&#x2F;classes&#x2F;customOverlayClose.html#method_customOverlayClose) and [removeCustomOverlayClose](..&#x2F;classes&#x2F;removeCustomOverlayClose.html#method_removeCustomOverlayClose)
+Dialog for the image gallery.
 @method showImageInGalleryPopUp
 @for DialogsGalleries
-@param image_id {Number} image id
-@param callback {Object} callback function
+@param image_id {Number} id in the database of the image, which is used to extract the HTML id of the dialog
+@param callback {Object} callback function (it depends on the gallery, see module {{#crossLinkModule &quot;galleries&quot;}}{{&#x2F;crossLinkModule}}
 **&#x2F;
 function showImageInGalleryPopUp(image_id, callback) {
   var obj = $(&#x27;#dialog-image-gallery-&#x27; + image_id);
@@ -485,10 +489,10 @@ function showImageInGalleryPopUp(image_id, callback) {
 }
 
 &#x2F;**
-Video popup for video gallery Uses: [customOverlayClose](..&#x2F;classes&#x2F;customOverlayClose.html#method_customOverlayClose) and [initializeMedia](..&#x2F;classes&#x2F;initializeMedia.html#method_initializeMedia) and [stopMedia](..&#x2F;classes&#x2F;stopMedia.html#method_stopMedia) and [removeCustomOverlayClose](..&#x2F;classes&#x2F;removeCustomOverlayClose.html#method_removeCustomOverlayClose)
+Dialog for the video gallery (notice that the video is initialized in the moment the dialog gets opened.
 @method showVideoInGalleryPopUp
 @for DialogsGalleries
-@param video_id {Number} video id
+@param video_id {Number} id in the database of the video, which is used to extract the HTML id of the dialog
 **&#x2F;
 function showVideoInGalleryPopUp(video_id) {
   var obj = $(&#x27;#dialog-video-gallery-&#x27; + video_id);
@@ -536,10 +540,10 @@ function showVideoInGalleryPopUp(video_id) {
 
 
 &#x2F;**
-Modal with error icon and custom content Uses: [showTimedPopUp](..&#x2F;classes&#x2F;showTimedPopUp.html#method_showTimedPopUp)
+Timed dialog for errors. It uses the general {{#crossLink &quot;DialogsTimed&#x2F;showTimedPopUp:method&quot;}}{{&#x2F;crossLink}}.
 @method showErrorPopUp
 @for DialogsTimed
-@param content {Object} modal text content
+@param content {String} the text content of the dialog
 **&#x2F;
 function showErrorPopUp(content) {
   var new_content = &#x27;&lt;img src=&quot;&#x2F;assets&#x2F;unsuccess.png&quot;&#x2F;&gt;&lt;h1&gt;&#x27; + content + &#x27;&lt;&#x2F;h1&gt;&#x27;;
@@ -547,10 +551,10 @@ function showErrorPopUp(content) {
 }
 
 &#x2F;**
-Modal with ok icon and custom content Uses: [showTimedPopUp](..&#x2F;classes&#x2F;showTimedPopUp.html#method_showTimedPopUp)
+Timed dialog for success. It uses the general {{#crossLink &quot;DialogsTimed&#x2F;showTimedPopUp:method&quot;}}{{&#x2F;crossLink}}.
 @method showOkPopUp
 @for DialogsTimed
-@param content {Object} modal text content
+@param content {String} the text content of the dialog
 **&#x2F;
 function showOkPopUp(content) {
   var new_content = &#x27;&lt;img src=&quot;&#x2F;assets&#x2F;success.png&quot;&#x2F;&gt;&lt;h1&gt;&#x27; + content + &#x27;&lt;&#x2F;h1&gt;&#x27;;
@@ -558,11 +562,11 @@ function showOkPopUp(content) {
 }
 
 &#x2F;**
-Show timed popup that auto close after _n_ seconds. Timeout is handled with data-timeout into &#x60;_popup_parameters_container_&#x60; Uses: [closePopUp](..&#x2F;classes&#x2F;closePopUp.html#method_closePopUp)
+General function that opens a dialog, fills it with HTML content and closes it after a configured time.
 @method showTimedPopUp
 @for DialogsTimed
-@param content {Object} lessons list partial
-@param id {String} dialog select id 
+@param content {String} HTML content
+@param id {String} HTML id of the dialog
 **&#x2F;
 function showTimedPopUp(content, id) {
   var obj = $(&#x27;#&#x27; + id);
@@ -592,10 +596,10 @@ function showTimedPopUp(content, id) {
 
 
 &#x2F;**
-Modal warning on unpublish lesson.
+Dialog containing a form used to send a notification about modifications of a public lesson.
 @method showLessonNotificationPopUp
 @for DialogsWithForm
-@param lesson_id {Number} lesson id
+@param lesson_id {Number} id in the database of the lesson
 **&#x2F;
 function showLessonNotificationPopUp(lesson_id) {
   var lesson_id_number = lesson_id.split(&#x27;_&#x27;);
@@ -627,7 +631,7 @@ function showLessonNotificationPopUp(lesson_id) {
 }
 
 &#x2F;**
-Modal for new media element form
+Dialog containing the form to upload a new media element. This function interacts with the module {{#crossLinkModule &quot;media-element-loader&quot;}}{{&#x2F;crossLinkModule}}.
 @method showLoadMediaElementPopUp
 @for DialogsWithForm
 **&#x2F;
@@ -665,10 +669,10 @@ function showLoadMediaElementPopUp() {
 }
 
 &#x2F;**
-Modal for media element update form Uses: [customOverlayClose](..&#x2F;classes&#x2F;customOverlayClose.html#method_customOverlayClose) and [removeCustomOverlayClose](..&#x2F;classes&#x2F;removeCustomOverlayClose.html#method_removeCustomOverlayClose) and [resetMediaElementChangeInfo](..&#x2F;classes&#x2F;resetMediaElementChangeInfo.html#method_resetMediaElementChangeInfo) and [stopMedia](..&#x2F;classes&#x2F;stopMedia.html#method_stopMedia)
+Dialog containing the media element general information. If the element is private, this same dialog contains the form to change title, description and tags (see the method {{#crossLink &quot;MediaElementLoaderGeneral&#x2F;resetMediaElementChangeInfo:method&quot;}}{{&#x2F;crossLink}}).
 @method showMediaElementInfoPopUp
 @for DialogsWithForm
-@param media_element_id {Number} media element id
+@param media_element_id {Number} id in the database of the media element
 **&#x2F;
 function showMediaElementInfoPopUp(media_element_id) {
   var obj = $(&#x27;#dialog-media-element-&#x27; + media_element_id);
@@ -717,10 +721,10 @@ function showMediaElementInfoPopUp(media_element_id) {
 }
 
 &#x2F;**
-Share lesson link popup in virtual classroom 
+Dialog containing the form to send the public link of a lesson. Used in {{#crossLink &quot;VirtualClassroomSendLink&quot;}}{{&#x2F;crossLink}}.
 @method showSendLessonLinkPopUp
 @for DialogsWithForm
-@param lesson_id {Number} lesson id
+@param lesson_id {Number} id in the database of the lesson
 **&#x2F;
 function showSendLessonLinkPopUp(lesson_id) {
   var obj = $(&#x27;#dialog-virtual-classroom-send-link&#x27;);
@@ -761,10 +765,10 @@ function showSendLessonLinkPopUp(lesson_id) {
 }
 
 &#x2F;**
-Modal with lessons to add to virtual classroom. Uses: [showOkPopUp](..&#x2F;classes&#x2F;showOkPopUp.html#method_showOkPopUp) and [showErrorPopUp](..&#x2F;classes&#x2F;showErrorPopUp.html#method_showErrorPopUp)
+Dialog containing a list of lessons to be loaded in the Virtual Classroom. Used in {{#crossLink &quot;VirtualClassroomMultipleLoading&quot;}}{{&#x2F;crossLink}}.
 @method showVirtualClassroomQuickSelectPopUp
 @for DialogsWithForm
-@param content {Object} lessons list partial
+@param content {Object} HTML content for the list of lessons
 **&#x2F;
 function showVirtualClassroomQuickSelectPopUp(content) {
   var obj = $(&#x27;#dialog-virtual-classroom-quick-select&#x27;);

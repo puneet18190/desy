@@ -1,5 +1,5 @@
 /**
-New media element popup handler, form validation errors handling.
+Javascript functions used in the media element loader.
 @module media-element-loader
 **/
 
@@ -8,7 +8,7 @@ New media element popup handler, form validation errors handling.
 
 
 /**
-bla bla bla
+Initializer for the loading form.
 @method mediaElementLoaderDocumentReady
 @for MediaElementLoaderDocumentReady
 **/
@@ -52,9 +52,10 @@ function mediaElementLoaderDocumentReady() {
 
 
 /**
-Handle 413 status error, file too large
+Handles 413 status error, file too large.
 @method uploadDone
 @for MediaElementLoaderDone
+@return {Boolean} false, for some reason
 **/
 function uploadDone() {
   var ret = document.getElementById('upload_target').contentWindow.document.title;
@@ -67,7 +68,7 @@ function uploadDone() {
 }
 
 /**
-Reload media elements page after new media element is successfully loaded.
+Reloads media elements page after new media element is successfully loaded.
 @method uploadMediaElementLoadeDoneRedirect
 @for MediaElementLoaderDone
 **/
@@ -83,10 +84,10 @@ function uploadMediaElementLoadeDoneRedirect() {
 
 
 /**
-Update form fields with error labels
+Update form fields with error labels.
 @method uploadMediaElementLoaderError
 @for MediaElementLoaderErrors
-@param errors {Object} errors list
+@param errors {Array} errors list
 **/
 function uploadMediaElementLoaderError(errors) {
   for (var i = 0; i < errors.length; i++) {
@@ -112,7 +113,7 @@ function uploadMediaElementLoaderError(errors) {
 
 
 /**
-Set iframe as target for form submit, added a callback function to control 413 status error. Uses: [uploadDone](../classes/uploadDone.html#method_uploadDone)
+Sets iframe as target for form submit, and adds a callback function to control 413 status error; notice that <b>upload target</b> is the HTML id of the frame.
 @method initMediaElementLoader
 @for MediaElementLoaderGeneral
 **/
@@ -120,16 +121,16 @@ function initMediaElementLoader() {
   document.getElementById('new_media_element').onsubmit=function() {
     $('.form_error').removeClass('form_error');
     $('.too_large').remove();
-    document.getElementById('new_media_element').target = 'upload_target'; //'upload_target' is the name of the iframe
-    document.getElementById("upload_target").onload = uploadDone;
+    document.getElementById('new_media_element').target = 'upload_target';
+    document.getElementById('upload_target').onload = uploadDone;
   }
 }
 
 /**
-Fill in media element update form with media element values.
+Resets the media element loading form; used in {{#crossLink "DialogsWithForm/showLoadMediaElementPopUp:method"}}{{/crossLink}}.
 @method resetMediaElementChangeInfo
 @for MediaElementLoaderGeneral
-@param media_element_id {Number} media element id
+@param media_element_id {Number} id of the element in the database, used to extract the HTML id
 **/
 function resetMediaElementChangeInfo(media_element_id) {
   var container = $('#dialog-media-element-' + media_element_id + ' ._change_info_container');

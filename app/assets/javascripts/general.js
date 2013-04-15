@@ -1,5 +1,5 @@
 /**
-Generic shared javascript functions
+Generic javascript functions user throughout the application.
 @module general
 **/
 
@@ -8,36 +8,36 @@ Generic shared javascript functions
 
 
 /**
-Center a div into current window
+Centers a div into the current window.
 @method centerThis
 @for GeneralCentering
-@param div {String} div selector to center, class or id
+@param div {String} HTML selector to be centered
 **/
 function centerThis(div) {
   var winH = $(window).height();
   var winW = $(window).width();
   var centerDiv = $(div);
-  centerDiv.css('top', winH/2-centerDiv.height()/2);
-  centerDiv.css('left', winW/2-centerDiv.width()/2);
+  centerDiv.css('top', winH/2 - centerDiv.height()/2);
+  centerDiv.css('left', winW/2 - centerDiv.width()/2);
 }
 
 /**
-Center a div into a given container
+Centers a div into a given container.
 @method centerThisInContainer
 @for GeneralCentering
-@param div {String} div selector to center, class or id
-@param container {String} container selector to center div into, class or id
+@param div {String} HTML selector to be centered
+@param container {String} HTML selector that represents the container in which the div must be centered
 **/
-function centerThisInContainer(div,container) {
+function centerThisInContainer(div, container) {
   var contH = $(container).height();
   var contW = $(container).width();
   var centerDiv = $(div);
-  centerDiv.css('top', (contH/2-centerDiv.height()/2)+$(container).position().top);
-  centerDiv.css('left', (contW/2-centerDiv.width()/2)+$(container).position().left);
+  centerDiv.css('top', (contH/2 - centerDiv.height()/2) + $(container).position().top);
+  centerDiv.css('left', (contW/2 - centerDiv.width()/2) + $(container).position().left);
 }
 
 /**
-bla bla bla
+Recenters the media elements according to their number and the screen resolution.
 @method recenterMyMediaElements
 @for GeneralCentering
 **/
@@ -52,26 +52,21 @@ function recenterMyMediaElements() {
 
 
 /**
-bla bla bla
+This function guesses the browser and writes it in a class of the tag 'html'.
 @method browsersDocumentReady
 @for GeneralDocumentReady
 **/
 function browsersDocumentReady() {
-  (function(){
-    var name = $.grep(_.keys($.browser), function(el, i) {
-      return el !== 'version';
-    })[0];
-    if(name) {
-      $('html').addClass(name);
-    }
-    if($('html').hasClass('msie')) {
-      $('._audio_editor_component ._double_slider .ui-slider-range').css('opacity', 0.4);
-    }
-  })();
+  var name = $.grep(_.keys($.browser), function(el, i) {
+    return el !== 'version';
+  })[0];
+  if(name) {
+    $('html').addClass(name);
+  }
 }
 
 /**
-bla bla bla
+This function sets the default values of SelectBoxe all around the application. This function is necessary because otherwise the original value wouldn't be set, since we use a JQuery plugin to design selects.
 @method defaultValueJavaScriptAnimationsDocumentReady
 @for GeneralDocumentReady
 **/
@@ -88,7 +83,7 @@ function defaultValueJavaScriptAnimationsDocumentReady() {
 }
 
 /**
-bla bla bla
+Initialization for all the functionalities of expanded lessons and media element popup (see also {{#crossLink "DialogsWithForm/showMediaElementInfoPopUp:method"}}{{/crossLink}}).
 @method expandedItemsDocumentReady
 @for GeneralDocumentReady
 **/
@@ -151,7 +146,7 @@ function expandedItemsDocumentReady() {
 }
 
 /**
-bla bla bla
+Similar to {{#crossLink "GeneralDocumentReady/defaultValueJavaScriptAnimationsDocumentReady:method"}}{{/crossLink}}, this function initializes the initial value of the raio buttons styled using a javascript plugin.
 @method filtersDocumentReady
 @for GeneralDocumentReady
 **/
@@ -174,11 +169,85 @@ function filtersDocumentReady() {
 }
 
 /**
-bla bla bla
-@method formsDocumentReady
+Initializer for consequences of window resizing.
+@method generalWindowResizeDocumentReady
 @for GeneralDocumentReady
 **/
-function formsDocumentReady() {
+function generalWindowResizeDocumentReady() {
+  $(window).resize(function() {
+    if($('#my_media_elements').length > 0 || $('#media_elements_in_dashboard').length > 0) {
+      recenterMyMediaElements();
+    }
+  });
+  var hac = $('.home-action .container');
+  var widc = $('.what_is_desy-action .container');
+  if($(window).height()>hac.height()){
+    hac.css('margin-top', ($(window).height() - hac.height())/2 + 'px');
+  }
+  if($(window).height()>widc.height()){
+    widc.css('margin-top', ($(window).height() - widc.height())/2 + 'px');
+  }
+}
+
+/**
+Initializer for all javascript and JQuery plugins.
+@method javaScriptAnimationsDocumentReady
+@for GeneralDocumentReady
+**/
+function javaScriptAnimationsDocumentReady() {
+  $('#notifications_list').jScrollPane({
+    autoReinitialise: true
+  });
+  $('#select_lesson_list').selectbox();
+  $('#which_item_to_search').selectbox();
+  $('#filter_lessons').selectbox();
+  $('#filter_search_lessons').selectbox();
+  $('#filter_search_lessons_subject').selectbox();
+  $('#profile_school_level').selectbox();
+  $('#profile_region').selectbox();
+  $('#for_page_media_elements').selectbox();
+  $('#filter_media_elements').selectbox();
+  $('#filter_search_media_elements').selectbox();
+  $('#user_school_level_id').selectbox();
+  $('body').on('keyup blur', 'input[maxlength], textarea[maxlength]', function () {
+    var myself = $(this);
+    var len = myself.val().length;
+    var maxlength = myself.attr('maxlength')
+    if (maxlength && len > maxlength) {
+      myself.val(myself.val().slice(0, maxlength));
+    }
+  });
+}
+
+/**
+Initializer for locations automatic filling.
+@method locationsDocumentReady
+@for GeneralDocumentReady
+**/
+function locationsDocumentReady() {
+  $('._location_select_box').each(function() {
+    $('#' + $(this).attr('id')).selectbox();
+  });
+  $('._location_select_box').on('change', function() {
+    if(!$(this).data('is-last')) {
+      if($(this).val() == '0') {
+        $(this).parents('._location_selector').nextAll().find('select').html('');
+      } else {
+        $.ajax({
+          url: '/locations/' + $(this).val() + '/find',
+          type: 'get'
+        });
+      }
+    }
+  });
+}
+
+/**
+Initializes reports forms for both lessons and media elements.
+@method reportsDocumentReady
+@for GeneralDocumentReady
+**/
+function reportsDocumentReady() {
   $('body').on('mouseover', '._report_lesson_click', function() {
     var obj = $('#' + this.id + ' a._reportable_icon');
     if(!obj.hasClass('_report_selected')) {
@@ -242,86 +311,12 @@ function formsDocumentReady() {
   });
 }
 
-/**
-bla bla bla
-@method generalWindowResizeDocumentReady
-@for GeneralDocumentReady
-**/
-function generalWindowResizeDocumentReady() {
-  $(window).resize(function() {
-    if($('#my_media_elements').length > 0 || $('#media_elements_in_dashboard').length > 0){
-      recenterMyMediaElements();
-    }
-  });
-  var hac = $('.home-action .container');
-  var widc = $('.what_is_desy-action .container');
-  if($(window).height()>hac.height()){
-    hac.css('margin-top',($(window).height() - hac.height())/2 + 'px');
-  }
-  if($(window).height()>widc.height()){
-    widc.css('margin-top',($(window).height() - widc.height())/2 + 'px');
-  }
-}
-
-/**
-bla bla bla
-@method javaScriptAnimationsDocumentReady
-@for GeneralDocumentReady
-**/
-function javaScriptAnimationsDocumentReady() {
-  $('#notifications_list').jScrollPane({
-    autoReinitialise: true
-  });
-  $('#select_lesson_list').selectbox();
-  $('#which_item_to_search').selectbox();
-  $('#filter_lessons').selectbox();
-  $('#filter_search_lessons').selectbox();
-  $('#filter_search_lessons_subject').selectbox();
-  $('#profile_school_level').selectbox();
-  $('#profile_region').selectbox();
-  $('#for_page_media_elements').selectbox();
-  $('#filter_media_elements').selectbox();
-  $('#filter_search_media_elements').selectbox();
-  $('#user_school_level_id').selectbox();
-  $('body').on('keyup blur', 'input[maxlength], textarea[maxlength]', function () {
-    var myself = $(this);
-    var len = myself.val().length;
-    var maxlength = myself.attr('maxlength')
-    if (maxlength && len > maxlength) {
-      myself.val(myself.val().slice(0, maxlength));
-    }
-  });
-}
-
-/**
-ba bla bla bla
-@method locationsDocumentReady
-@for GeneralDocumentReady
-**/
-function locationsDocumentReady() {
-  $('._location_select_box').each(function() {
-    $('#' + $(this).attr('id')).selectbox();
-  });
-  $('._location_select_box').on('change', function() {
-    if(!$(this).data('is-last')) {
-      if($(this).val() == '0') {
-        $(this).parents('._location_selector').nextAll().find('select').html('');
-      } else {
-        $.ajax({
-          url: '/locations/' + $(this).val() + '/find',
-          type: 'get'
-        });
-      }
-    }
-  });
-}
-
 
 
 
 
 /**
-bla bla bla
+Gets the requested format to visualize media elements.
 @method getMediaElementsFormat
 @for GeneralMiscellanea
 **/
@@ -334,7 +329,7 @@ function getMediaElementsFormat() {
 }
 
 /**
-Shows error icon when somethings goes wrong
+Shows a red error icon when somethings goes wrong. Widely used in {{#crossLinkModule "lesson-editor"}}{{/crossLinkModule}} and in {{#crossLinkModule "image-editor"}}{{/crossLinkModule}}.
 @method redError
 @for GeneralMiscellanea
 **/
@@ -345,9 +340,10 @@ function redError() {
 }
 
 /**
-bla bla bla
+Function to convert seconds into a time string of the kind <i>02:35</i>; used in {{#crossLinkModule "video-editor"}}{{/crossLinkModule}} and in {{#crossLinkModule "audio-editor"}}{{/crossLinkModule}}.
 @method secondsToDateString
 @for GeneralMiscellanea
+@param seconds {Number} the seconds to be converted
 **/
 function secondsToDateString(seconds) {
   var mm = parseInt(seconds / 60);
@@ -376,9 +372,10 @@ function secondsToDateString(seconds) {
 
 
 /**
-bla bla bla
+This function returns an url for media elements without the parameter 'filter'. The original url is extracted by the method {{#crossLink "GeneralMiscellanea/getMediaElementsFormat:method"}}{{/crossLink}}.
 @method getCompleteMediaElementsUrlWithoutFilter
 @for GeneralUrls
+@return {String} the current url without the parameter 'filter'
 **/
 function getCompleteMediaElementsUrlWithoutFilter() {
   var param_format = getMediaElementsFormat();
@@ -387,9 +384,10 @@ function getCompleteMediaElementsUrlWithoutFilter() {
 }
 
 /**
-bla bla bla
+This function returns an url for media elements without the parameter 'for_page'. The original url is extracted by the method {{#crossLink "GeneralMiscellanea/getMediaElementsFormat:method"}}{{/crossLink}}.
 @method getCompleteMediaElementsUrlWithoutForPage
 @for GeneralUrls
+@return {String} the current url without the parameter 'for_page'
 **/
 function getCompleteMediaElementsUrlWithoutForPage() {
   var param_format = getMediaElementsFormat();
@@ -398,12 +396,12 @@ function getCompleteMediaElementsUrlWithoutForPage() {
 }
 
 /**
-Remove a param from url
+Removes a parameter from an url.
 @method removeURLParameter
 @for GeneralUrls
-@param url {String} starting url
+@param url {String} initial url
 @param param {String} param to remove
-@return {String} update url
+@return {String} updated url
 **/
 function removeURLParameter(url, param) {
   var newAdditionalURL = '';
@@ -424,12 +422,12 @@ function removeURLParameter(url, param) {
 }
 
 /**
-Add new parameters to an url
+Adds or update new parameters to an url.
 @method updateURLParameter
 @for GeneralUrls
-@param url {String} starting url
-@param param {String} new param
-@param paramVal {String} new param value
+@param url {String} initial url
+@param param {String} parameter
+@param paramVal {String} new value for the parameter
 @return {String} updated url
 **/
 function updateURLParameter(url, param, paramVal) {

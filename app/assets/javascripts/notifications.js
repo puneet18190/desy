@@ -1,5 +1,5 @@
 /**
-Notification info and help assistant messages handler.
+Javascript functions used to handle notifications.
 @module notifications
 **/
 
@@ -8,7 +8,7 @@ Notification info and help assistant messages handler.
 
 
 /**
-Empty and hide expanded notifications.
+Closes the div containig an expanded notification.
 @method hideExpandedNotification
 @for NotificationsAccessories
 **/
@@ -18,7 +18,7 @@ function hideExpandedNotification() {
 }
 
 /**
-Hide help button.
+Hides the help button.
 @method hideHelpButton
 @for NotificationsAccessories
 **/
@@ -27,7 +27,7 @@ function hideHelpButton() {
 }
 
 /**
-Hide help tooltip.
+Hides the help tooltip.
 @method hideHelpTooltip
 @for NotificationsAccessories
 **/
@@ -36,7 +36,7 @@ function hideHelpTooltip() {
 }
 
 /**
-Hide notifications button.
+Hides the notifications button.
 @method hideNotificationsButton
 @for NotificationsAccessories
 **/
@@ -45,7 +45,7 @@ function hideNotificationsButton() {
 }
 
 /**
-Hide notifications balloon.
+Hides the notifications orange icon over the notifications button.
 @method hideNotificationsFumetto
 @for NotificationsAccessories
 **/
@@ -54,7 +54,7 @@ function hideNotificationsFumetto() {
 }
 
 /**
-Hide notifications tooltip. Uses: [hideExpandedNotification](../classes/hideExpandedNotification.html#method_hideExpandedNotification)
+Hides the notifications tooltip.
 @method hideNotificationsTooltip
 @for NotificationsAccessories
 **/
@@ -64,7 +64,7 @@ function hideNotificationsTooltip() {
 }
 
 /**
-Show help button.
+Shows the help button.
 @method showHelpButton
 @for NotificationsAccessories
 **/
@@ -73,7 +73,7 @@ function showHelpButton() {
 }
 
 /**
-Show help tooltip.
+Shows the help tooltip.
 @method showHelpTooltip
 @for NotificationsAccessories
 **/
@@ -82,7 +82,7 @@ function showHelpTooltip() {
 }
 
 /**
-Show notifications button.
+Shows the notifications button.
 @method showNotificationsButton
 @for NotificationsAccessories
 **/
@@ -91,7 +91,7 @@ function showNotificationsButton() {
 }
 
 /**
-Show notifications fumetto.
+Shows the notifications orange icon over the notifications button.
 @method showNotificationsFumetto
 @for NotificationsAccessories
 **/
@@ -100,7 +100,7 @@ function showNotificationsFumetto() {
 }
 
 /**
-Show notifications tooltip.
+Shows the notifications tooltip.
 @method showNotificationsTooltip
 @for NotificationsAccessories
 **/
@@ -113,7 +113,7 @@ function showNotificationsTooltip() {
 
 
 /**
-bla bla bla
+Global initializer for notifications and help
 @method notificationsDocumentReady
 @for NotificationsDocumentReady
 **/
@@ -123,7 +123,7 @@ function notificationsDocumentReady() {
 }
 
 /**
-bla bla bla
+Initializes the form for notifying a lesson's modifications. These actions are linked on the button {{#crossLink "ButtonsLesson/unpublishLesson:method"}}{{/crossLink}}, provided that it has the class <i>lesson change not notified</i>.
 @method notificationsDocumentReadyLessonModification
 @for NotificationsDocumentReady
 **/
@@ -151,7 +151,7 @@ function notificationsDocumentReadyLessonModification() {
 }
 
 /**
-bla bla bla
+General initializer for help and notifications tooltips.
 @method notificationsDocumentReadyTooltips
 @for NotificationsDocumentReady
 **/
@@ -177,7 +177,7 @@ function notificationsDocumentReadyTooltips() {
 
 
 /**
-Checks if any help is available and initialize them. Handles help show/hide effects.
+Initializes the graphical tools of the <b>help tooltip</b>.
 @method initializeHelp
 @for NotificationsGraphics
 **/
@@ -205,7 +205,7 @@ function initializeHelp() {
 }
 
 /**
-Checks if any notification is available and initialize unread notification counter. Handles notifications show/hide effects.
+Initializes the graphical tools and the routes attached to the <b>notifications tooltip</b>.
 @method initializeNotifications
 @for NotificationsGraphics
 **/

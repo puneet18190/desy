@@ -1290,7 +1290,7 @@ it:
       # 2 - views/lesson_editor/slides/_video1.html.erb
       # 3 - views/lesson_editor/slides/_image1.html.erb
       # 4 - views/lesson_editor/slides/_audio.html.erb
-      text: "Scrivi del testo qui"
+      text: "Inserisci un testo"
       # Placeholder for the title of a slide
       # 1 - views/lesson_editor/slides/_text.html.erb
       # 2 - views/lesson_editor/slides/_title.html.erb
@@ -1939,7 +1939,7 @@ it:
       image:
         # Caption for the selector of duration of an image component
         # 1 - views/galleries/mixed_for_video_editor.js.erb
-        time: "Tempo"
+        time: "Durata"
       # Captions for text components
       text:
         # Choose a background color
@@ -1950,7 +1950,7 @@ it:
         color: "Colore del testo"
         # Button to insert the component, once color and text are chosen
         # 1 - views/video_editor/_text_component_editor.html.erb
-        done: "Inserisci"
+        done: "Fatto"
         # Placeholder for the text field
         # 1 - views/video_editor/_text_component_editor.html.erb
         # 2 - views/video_editor/_text_component_editor.html.erb
@@ -1958,7 +1958,7 @@ it:
         insert: "Inserisci il testo"
         # Caption of the duration selector for a text component
         # 1 - views/video_editor/_text_component_editor.html.erb
-        time: "Tempo"
+        time: "Durata"
     # Captions for 'cutters' of a component (the instruments used to modify the duration of a text / image component, or to cut a video component)
     cutters:
       # Caption for the button that makes the modifications
@@ -1969,11 +1969,11 @@ it:
       # Caption to indicate the previous duration of a text / image component
       # 1 - views/video_editor/cutters/_text.html.erb
       # 2 - views/video_editor/cutters/_image.html.erb
-      old_time: "Tempo"
+      old_time: "Durata"
       # Caption for the field where the user inserts the new duration of a text / image component
       # 1 - views/video_editor/cutters/_text.html.erb
       # 2 - views/video_editor/cutters/_image.html.erb
-      time: "Nuovo tempo"
+      time: "Nuova durata"
       # Caption for the total length of the original video inside a video component
       # 1 - views/video_editor/cutters/_video.html.erb
       total_length: "Lunghezza totale della clip"
@@ -2002,7 +2002,7 @@ it:
       play: "Play"
     # Inside Video Editor there is a special gallery where it's possible to choose between the three kinds of components (image, video, text): this is the caption for the buttons used to switch between these components
     # 1 - views/galleries/_mixed_video_image_text.html.erb
-    select_component_to_add: "Seleziona un componente da aggiungere"
+    select_component_to_add: "Che tipo di componente vuoi aggiungere?"
     # Caption for the overall length of the video that the user is composing
     # 1 - views/video_editor/edit.html.erb
     total_length: "Durata"
@@ -2232,16 +2232,16 @@ it:
     labels: [
         'Provincia',
         'Città',
-        'Scuola'
+        'Contea'
       ]
     # This is the label used when the application needs to resume the chain of higher locations corresponding to a lower one: if for instance for a user we have the field 'Shanghai district - Shanghai province', an appropriate label for it (to be configured here) would be 'District / province'
     # 1 - views/admin/users/show.html.erb
     # 2 - views/admin/users/_list.html.erb
-    parents_label: "Città / provincia"
+    parents_label: "Provincia / Città"
     # Caption inside the select of each location type (the variable %{location} is replaced by the name of the location type, ex City, Province, District)
     # 1 - views/admin/users/_locations_list.html.erb
     # 2 - views/users/_locations_list.html.erb
-    placeholder: "Seleziona %{location}"
+    placeholder: "Seleziona una %{location}"
   
   
   # SECTION 3.4: Media formats

@@ -4,12 +4,10 @@ module ApplicationHelper
     "<option value=\"\">#{t('forms.placeholders.subject_id')}</option>#{options_from_collection_for_select(subjects, 'id', 'description')}".html_safe
   end
   
-  def standard_form_error_messages(errors, color='white')
-    msg = "<img src='/assets/puntoesclamativo.png' style='margin: 0 5px -3px 0' /><span class=\"lower\" style=\"color:#{color}\">"
-    errors.each do |val|
-      msg << "#{val}; "
-    end
-    return "#{msg[0..-3]}</span>".html_safe
+  def standard_form_error_messages(errors, color = 'white')
+    msg = "<img src='/assets/puntoesclamativo.png' style='margin: 0 5px -3px 0' /><span class=\"lower\" style=\"color:#{h color}\">"
+    msg << errors.map{ |e| h e }.join('; ')
+    return "#{msg}</span>".html_safe
   end
   
   def seconds_to_time(seconds)

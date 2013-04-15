@@ -115,6 +115,8 @@
             
                 <li><a href="..&#x2F;classes/ImageEditorTexts.html">ImageEditorTexts</a></li>
             
+                <li><a href="..&#x2F;classes/JqueryPatchesBrowsers.html">JqueryPatchesBrowsers</a></li>
+            
                 <li><a href="..&#x2F;classes/LessonEditorCurrentSlide.html">LessonEditorCurrentSlide</a></li>
             
                 <li><a href="..&#x2F;classes/LessonEditorDocumentReady.html">LessonEditorDocumentReady</a></li>
@@ -221,7 +223,7 @@
 
             <ul id="api-modules" class="apis modules">
             
-                <li><a href="..&#x2F;modules/administration.html">administration</a></li>
+                <li><a href="..&#x2F;modules/admin.html">admin</a></li>
             
                 <li><a href="..&#x2F;modules/ajax-loader.html">ajax-loader</a></li>
             
@@ -238,6 +240,8 @@
                 <li><a href="..&#x2F;modules/general.html">general</a></li>
             
                 <li><a href="..&#x2F;modules/image-editor.html">image-editor</a></li>
+            
+                <li><a href="..&#x2F;modules/jquery-patches.html">jquery-patches</a></li>
             
                 <li><a href="..&#x2F;modules/lesson-editor.html">lesson-editor</a></li>
             
@@ -365,7 +369,7 @@
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_showNewSlideChoice">showNewSlideChoice</a>
+                                <a href="#method_showNewSlideOptions">showNewSlideOptions</a>
 
                                 
                                 
@@ -426,7 +430,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_lesson_editor.js.html#l10"><code>app&#x2F;assets&#x2F;javascripts&#x2F;lesson_editor.js:10</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_lesson_editor.js.html#l26"><code>app&#x2F;assets&#x2F;javascripts&#x2F;lesson_editor.js:26</code></a>
         
         </p>
 
@@ -437,7 +441,7 @@
     </div>
 
     <div class="description">
-        <p>Hide page elements around current slide on new slide selection</p>
+        <p>Hides buttons, adhiacent slides and slide navigation (used before <a href="../classes/LessonEditorDocumentReady.html#method_lessonEditorDocumentReadyNewSlideChoice" class="crosslink">lessonEditorDocumentReadyNewSlideChoice</a> and <a href="../classes/LessonEditorGalleries.html#method_showGalleryInLessonEditor" class="crosslink">showGalleryInLessonEditor</a>).</p>
     </div>
 
     
@@ -480,7 +484,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_lesson_editor.js.html#l23"><code>app&#x2F;assets&#x2F;javascripts&#x2F;lesson_editor.js:23</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_lesson_editor.js.html#l39"><code>app&#x2F;assets&#x2F;javascripts&#x2F;lesson_editor.js:39</code></a>
         
         </p>
 
@@ -491,7 +495,7 @@
     </div>
 
     <div class="description">
-        <p>Hide new slide selection</p>
+        <p>Hides the template for selection of new slides.</p>
     </div>
 
     
@@ -534,7 +538,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_lesson_editor.js.html#l36"><code>app&#x2F;assets&#x2F;javascripts&#x2F;lesson_editor.js:36</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_lesson_editor.js.html#l52"><code>app&#x2F;assets&#x2F;javascripts&#x2F;lesson_editor.js:52</code></a>
         
         </p>
 
@@ -545,7 +549,7 @@
     </div>
 
     <div class="description">
-        <p>Restore page elements around current slide after new slide selection</p>
+        <p>Opposite of <a href="../classes/LessonEditorCurrentSlide.html#method_hideEverythingOutCurrentSlide" class="crosslink">hideEverythingOutCurrentSlide</a>.</p>
     </div>
 
     
@@ -556,8 +560,8 @@
 </div>
 
                 
-                    <div id="method_showNewSlideChoice" class="method item">
-    <h3 class="name"><code>showNewSlideChoice</code></h3>
+                    <div id="method_showNewSlideOptions" class="method item">
+    <h3 class="name"><code>showNewSlideOptions</code></h3>
 
     
         <span class="paren">()</span>
@@ -588,7 +592,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_lesson_editor.js.html#l49"><code>app&#x2F;assets&#x2F;javascripts&#x2F;lesson_editor.js:49</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_lesson_editor.js.html#l65"><code>app&#x2F;assets&#x2F;javascripts&#x2F;lesson_editor.js:65</code></a>
         
         </p>
 
@@ -599,7 +603,7 @@
     </div>
 
     <div class="description">
-        <p>Hide new slide selection</p>
+        <p>Shows the template for selection of new slides.</p>
     </div>
 
     
@@ -642,7 +646,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_lesson_editor.js.html#l64"><code>app&#x2F;assets&#x2F;javascripts&#x2F;lesson_editor.js:64</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_lesson_editor.js.html#l80"><code>app&#x2F;assets&#x2F;javascripts&#x2F;lesson_editor.js:80</code></a>
         
         </p>
 
@@ -653,7 +657,7 @@
     </div>
 
     <div class="description">
-        <p>Stop video and audio playing into current slide, usually only one kind of media is present into current slide</p>
+        <p>Stop video and audio playing into the current slide (used before changing slide with <a href="../classes/LessonEditorSlidesNavigation.html#method_slideTo" class="crosslink">slideTo</a>).</p>
     </div>
 
     

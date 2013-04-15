@@ -37,10 +37,6 @@ module Media
           def amap
             '-map 0:a:0'
           end
-
-          def achannels
-            '-ac 2'
-          end
           
         end
       end

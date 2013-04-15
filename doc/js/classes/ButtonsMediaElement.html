@@ -115,6 +115,8 @@
             
                 <li><a href="..&#x2F;classes/ImageEditorTexts.html">ImageEditorTexts</a></li>
             
+                <li><a href="..&#x2F;classes/JqueryPatchesBrowsers.html">JqueryPatchesBrowsers</a></li>
+            
                 <li><a href="..&#x2F;classes/LessonEditorCurrentSlide.html">LessonEditorCurrentSlide</a></li>
             
                 <li><a href="..&#x2F;classes/LessonEditorDocumentReady.html">LessonEditorDocumentReady</a></li>
@@ -221,7 +223,7 @@
 
             <ul id="api-modules" class="apis modules">
             
-                <li><a href="..&#x2F;modules/administration.html">administration</a></li>
+                <li><a href="..&#x2F;modules/admin.html">admin</a></li>
             
                 <li><a href="..&#x2F;modules/ajax-loader.html">ajax-loader</a></li>
             
@@ -238,6 +240,8 @@
                 <li><a href="..&#x2F;modules/general.html">general</a></li>
             
                 <li><a href="..&#x2F;modules/image-editor.html">image-editor</a></li>
+            
+                <li><a href="..&#x2F;modules/jquery-patches.html">jquery-patches</a></li>
             
                 <li><a href="..&#x2F;modules/lesson-editor.html">lesson-editor</a></li>
             
@@ -440,7 +444,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_buttons.js.html#l478"><code>app&#x2F;assets&#x2F;javascripts&#x2F;buttons.js:478</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_buttons.js.html#l480"><code>app&#x2F;assets&#x2F;javascripts&#x2F;buttons.js:480</code></a>
         
         </p>
 
@@ -451,7 +455,7 @@
     </div>
 
     <div class="description">
-        <p>Add media element from dashboard to my lessons Uses <a href="../classes/addDeleteItemToCurrentUrl.html#method_addDeleteItemToCurrentUrl">addDeleteItemToCurrentUrl</a> and <a href="../classes/showErrorPopUp.html#method_showErrorPopUp">showErrorPopUp</a></p>
+        <p>Calls the url to add the link of a media element. It can either reload the item or remove it from the page.</p>
     </div>
 
     
@@ -469,7 +473,7 @@
                     
 
                     <div class="param-description">
-                        <p>media_element id</p>
+                        <p>id of the element in the database</p>
                     </div>
 
                     
@@ -484,7 +488,7 @@
                     
 
                     <div class="param-description">
-                        <p>destination view</p>
+                        <p>destination (used to pick the HTML id of the element)</p>
                     </div>
 
                     
@@ -499,7 +503,7 @@
                     
 
                     <div class="param-description">
-                        <p>url where the lesson is added from</p>
+                        <p>url where the element is added from</p>
                     </div>
 
                     
@@ -514,7 +518,7 @@
                     
 
                     <div class="param-description">
-                         
+                        <p>true if the item must be reloaded, false if it must be removed</p>
                     </div>
 
                     
@@ -539,7 +543,7 @@
             
                 <li class="arg">
                     
-                        <code>lessons_id</code>
+                        <code>media_element_id</code>
                     
                 </li>
             
@@ -590,7 +594,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_buttons.js.html#l514"><code>app&#x2F;assets&#x2F;javascripts&#x2F;buttons.js:514</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_buttons.js.html#l516"><code>app&#x2F;assets&#x2F;javascripts&#x2F;buttons.js:516</code></a>
         
         </p>
 
@@ -601,7 +605,7 @@
     </div>
 
     <div class="description">
-        <p>Destroy Media Element Uses <a href="../classes/addDeleteItemToCurrentUrl.html#method_addDeleteItemToCurrentUrl">addDeleteItemToCurrentUrl</a> and <a href="../classes/showConfirmPopUp.html#method_showConfirmPopUp">showConfirmPopUp</a> and <a href="../classes/showErrorPopUp.html#method_showErrorPopUp">showErrorPopUp</a> and <a href="../classes/closePopUp.html#method_closePopUp">closePopUp</a></p>
+        <p>Calls the url to destroy a media element. It removes the element from the page.</p>
     </div>
 
     
@@ -612,14 +616,14 @@
             
                 <li class="param">
                     
-                        <code class="param-name">lessons_id</code>
+                        <code class="param-name">media_element_id</code>
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>lesson_id</p>
+                        <p>id of the element in the database</p>
                     </div>
 
                     
@@ -634,7 +638,7 @@
                     
 
                     <div class="param-description">
-                        <p>destination view</p>
+                        <p>destination (used to pick the HTML id of the element)</p>
                     </div>
 
                     
@@ -649,7 +653,7 @@
                     
 
                     <div class="param-description">
-                        <p>url where the lesson is added from</p>
+                        <p>url where the element is added from</p>
                     </div>
 
                     
@@ -664,7 +668,7 @@
                     
 
                     <div class="param-description">
-                         
+                        <p>if true, the application writes in the confirmation popup that the user is going to remove the same element from his private lessons</p>
                     </div>
 
                     
@@ -740,7 +744,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_buttons.js.html#l556"><code>app&#x2F;assets&#x2F;javascripts&#x2F;buttons.js:556</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_buttons.js.html#l558"><code>app&#x2F;assets&#x2F;javascripts&#x2F;buttons.js:558</code></a>
         
         </p>
 
@@ -751,7 +755,7 @@
     </div>
 
     <div class="description">
-        <p>Remove a media element from yours (unlink). Uses <a href="../classes/addDeleteItemToCurrentUrl.html#method_addDeleteItemToCurrentUrl">addDeleteItemToCurrentUrl</a> and <a href="../classes/showErrorPopUp.html#method_showErrorPopUp">showErrorPopUp</a></p>
+        <p>Calls the url to remove a link of an element. It can either reload the item or remove it from the page.</p>
     </div>
 
     
@@ -769,7 +773,7 @@
                     
 
                     <div class="param-description">
-                        <p>media element id</p>
+                        <p>id of the element in the database</p>
                     </div>
 
                     
@@ -784,7 +788,7 @@
                     
 
                     <div class="param-description">
-                        <p>destination view</p>
+                        <p>destination (used to pick the HTML id of the element)</p>
                     </div>
 
                     
@@ -799,7 +803,7 @@
                     
 
                     <div class="param-description">
-                        <p>url where the lesson is added from</p>
+                        <p>url where the element is added from</p>
                     </div>
 
                     
@@ -814,7 +818,7 @@
                     
 
                     <div class="param-description">
-                         
+                        <p>true if the item must be reloaded, false if it must be removed</p>
                     </div>
 
                     

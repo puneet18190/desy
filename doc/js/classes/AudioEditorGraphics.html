@@ -115,6 +115,8 @@
             
                 <li><a href="..&#x2F;classes/ImageEditorTexts.html">ImageEditorTexts</a></li>
             
+                <li><a href="..&#x2F;classes/JqueryPatchesBrowsers.html">JqueryPatchesBrowsers</a></li>
+            
                 <li><a href="..&#x2F;classes/LessonEditorCurrentSlide.html">LessonEditorCurrentSlide</a></li>
             
                 <li><a href="..&#x2F;classes/LessonEditorDocumentReady.html">LessonEditorDocumentReady</a></li>
@@ -221,7 +223,7 @@
 
             <ul id="api-modules" class="apis modules">
             
-                <li><a href="..&#x2F;modules/administration.html">administration</a></li>
+                <li><a href="..&#x2F;modules/admin.html">admin</a></li>
             
                 <li><a href="..&#x2F;modules/ajax-loader.html">ajax-loader</a></li>
             
@@ -238,6 +240,8 @@
                 <li><a href="..&#x2F;modules/general.html">general</a></li>
             
                 <li><a href="..&#x2F;modules/image-editor.html">image-editor</a></li>
+            
+                <li><a href="..&#x2F;modules/jquery-patches.html">jquery-patches</a></li>
             
                 <li><a href="..&#x2F;modules/lesson-editor.html">lesson-editor</a></li>
             
@@ -433,7 +437,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_audio_editor.js.html#l599"><code>app&#x2F;assets&#x2F;javascripts&#x2F;audio_editor.js:599</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_audio_editor.js.html#l634"><code>app&#x2F;assets&#x2F;javascripts&#x2F;audio_editor.js:634</code></a>
         
         </p>
 
@@ -444,7 +448,7 @@
     </div>
 
     <div class="description">
-        <p>bla bla bla</p>
+        <p>Disables the buttons <i>commit</i> and <i>prewiev</i>.</p>
     </div>
 
     
@@ -487,7 +491,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_audio_editor.js.html#l611"><code>app&#x2F;assets&#x2F;javascripts&#x2F;audio_editor.js:611</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_audio_editor.js.html#l646"><code>app&#x2F;assets&#x2F;javascripts&#x2F;audio_editor.js:646</code></a>
         
         </p>
 
@@ -498,7 +502,7 @@
     </div>
 
     <div class="description">
-        <p>bla bla bla</p>
+        <p>Enables the buttons <i>commit</i> and <i>preview</i>.</p>
     </div>
 
     
@@ -513,7 +517,17 @@
     <h3 class="name"><code>hideCommitAudioEditorForm</code></h3>
 
     
-        <span class="paren">()</span>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>scope</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
     
 
     
@@ -541,7 +555,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_audio_editor.js.html#l623"><code>app&#x2F;assets&#x2F;javascripts&#x2F;audio_editor.js:623</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_audio_editor.js.html#l658"><code>app&#x2F;assets&#x2F;javascripts&#x2F;audio_editor.js:658</code></a>
         
         </p>
 
@@ -552,9 +566,32 @@
     </div>
 
     <div class="description">
-        <p>bla bla bla</p>
+        <p>Hides the commit form for overwrite or for new element (depending on the parameter).</p>
     </div>
 
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">scope</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>it can be either 'overwrite' or 'new'</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
     
 
     
@@ -595,7 +632,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_audio_editor.js.html#l634"><code>app&#x2F;assets&#x2F;javascripts&#x2F;audio_editor.js:634</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_audio_editor.js.html#l670"><code>app&#x2F;assets&#x2F;javascripts&#x2F;audio_editor.js:670</code></a>
         
         </p>
 
@@ -606,7 +643,7 @@
     </div>
 
     <div class="description">
-        <p>bla bla bla</p>
+        <p>Function that sets the correct value to all the z-indexes: there are in total three hidden layers for each component, one global, plus two sliders in each cutter, and each of them needs its specific z-index. Used at any time the components are hidden and need to be shown (for instance <a href="../classes/AudioEditorGalleries.html#method_showGalleryInAudioEditor" class="crosslink">showGalleryInAudioEditor</a>).</p>
     </div>
 
     
@@ -649,7 +686,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_audio_editor.js.html#l648"><code>app&#x2F;assets&#x2F;javascripts&#x2F;audio_editor.js:648</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_audio_editor.js.html#l684"><code>app&#x2F;assets&#x2F;javascripts&#x2F;audio_editor.js:684</code></a>
         
         </p>
 
@@ -660,7 +697,7 @@
     </div>
 
     <div class="description">
-        <p>bla bla bla</p>
+        <p>Function that sets to zero the value to all the z-indexes: there are in total three hidden layers for each component, one global, plus two sliders in each cutter, and each of them needs its specific z-index. Used at any time the components are shown and need to be hidden (for instance <a href="../classes/AudioEditorGalleries.html#method_closeGalleryInAudioEditor" class="crosslink">closeGalleryInAudioEditor</a>).</p>
     </div>
 
     
@@ -675,7 +712,17 @@
     <h3 class="name"><code>showCommitAudioEditorForm</code></h3>
 
     
-        <span class="paren">()</span>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>scope</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
     
 
     
@@ -703,7 +750,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_audio_editor.js.html#l662"><code>app&#x2F;assets&#x2F;javascripts&#x2F;audio_editor.js:662</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_audio_editor.js.html#l698"><code>app&#x2F;assets&#x2F;javascripts&#x2F;audio_editor.js:698</code></a>
         
         </p>
 
@@ -714,9 +761,32 @@
     </div>
 
     <div class="description">
-        <p>bla bla bla</p>
+        <p>Shows the commit form for overwrite or for new element (depending on the parameter).</p>
     </div>
 
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">scope</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>it can be either 'overwrite' or 'new'</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
     
 
     

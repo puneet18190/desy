@@ -115,6 +115,8 @@
             
                 <li><a href="..&#x2F;classes/ImageEditorTexts.html">ImageEditorTexts</a></li>
             
+                <li><a href="..&#x2F;classes/JqueryPatchesBrowsers.html">JqueryPatchesBrowsers</a></li>
+            
                 <li><a href="..&#x2F;classes/LessonEditorCurrentSlide.html">LessonEditorCurrentSlide</a></li>
             
                 <li><a href="..&#x2F;classes/LessonEditorDocumentReady.html">LessonEditorDocumentReady</a></li>
@@ -221,7 +223,7 @@
 
             <ul id="api-modules" class="apis modules">
             
-                <li><a href="..&#x2F;modules/administration.html">administration</a></li>
+                <li><a href="..&#x2F;modules/admin.html">admin</a></li>
             
                 <li><a href="..&#x2F;modules/ajax-loader.html">ajax-loader</a></li>
             
@@ -238,6 +240,8 @@
                 <li><a href="..&#x2F;modules/general.html">general</a></li>
             
                 <li><a href="..&#x2F;modules/image-editor.html">image-editor</a></li>
+            
+                <li><a href="..&#x2F;modules/jquery-patches.html">jquery-patches</a></li>
             
                 <li><a href="..&#x2F;modules/lesson-editor.html">lesson-editor</a></li>
             
@@ -314,7 +318,23 @@
 
 
 <div class="box intro">
-    <p>Lesson editor functions, it handles visual effects, CRUD actions on single slides and lessons, it handles tinyMCE editor too.</p>
+    <p>The Lesson Editor is used to add and edit slides to a private lesson.
+<br/><br/>
+When opening the Editor on a lesson, all its slides are appended to a queue, of which it's visible only the portion that surrounds the <b>current slide</b> (the width of such a portion depends on the screen resolution, see <a href="../classes/LessonEditorSlidesNavigation.html#method_initLessonEditorPositions" class="crosslink">initLessonEditorPositions</a>, <a href="../classes/LessonEditorDocumentReady.html#method_lessonEditorDocumentReadyResize" class="crosslink">lessonEditorDocumentReadyResize</a> and <a href="../classes/LessonEditorDocumentReady.html#method_lessonEditorDocumentReadyGeneral" class="crosslink">lessonEditorDocumentReadyGeneral</a>). The current slide is illuminated and editable, whereas the adhiacent slides are covered by a layer with opacity that prevents the user from editing them: if the user clicks on this layer, the application takes the slide below it as new current slide and moves it to the center of the screen (see <a href="../classes/LessonEditorDocumentReady.html#method_lessonEditorDocumentReadySlidesNavigator" class="crosslink">lessonEditorDocumentReadySlidesNavigator</a> and the methods in <a href="../classes/LessonEditorSlidesNavigation.html" class="crosslink">LessonEditorSlidesNavigation</a>): only after this operation, the user can edit that particular slide. To avoid overloading when there are many slides containing media, the slides are instanced all together but their content is loaded only when the user moves to them (see the methods in <a href="../classes/LessonEditorSlideLoading.html" class="crosslink">LessonEditorSlideLoading</a>).
+<br/><br/>
+On the right side of each slide the user finds a list of <b>buttons</b> (initialized in <a href="../classes/LessonEditorDocumentReady.html#method_lessonEditorDocumentReadySlideButtons" class="crosslink">lessonEditorDocumentReadySlideButtons</a>): each button corresponds either to an action that can be performed on the slide, either to an action that can be performed to the whole lesson (for instance, save and exit, or edit title description and tags).
+<br/><br/>
+The <b>tool to navigate the slides</b> is located on the top of the editor: each small square represents a slide (with its position), and passing with the mouse over it the Editor shows a miniature of the corresponding slide (these functionalities are initialized in <a href="../classes/LessonEditorDocumentReady.html#method_lessonEditorDocumentReadySlidesNavigator" class="crosslink">lessonEditorDocumentReadySlidesNavigator</a>). Clicking on a slide miniature, the application moves to that slide using the function <a href="../classes/LessonEditorSlidesNavigation.html#method_slideTo" class="crosslink">slideTo</a>. The slides can be sorted dragging with the mouse (using the JQueryUi plugin, initialized in <a href="../classes/LessonEditorDocumentReady.html#method_lessonEditorDocumentReadyJqueryAnimations" class="crosslink">lessonEditorDocumentReadyJqueryAnimations</a> and <a href="../classes/LessonEditorJqueryAnimations.html#method_initializeSortableNavs" class="crosslink">initializeSortableNavs</a>).
+<br/><br/>
+Inside the Editor, there are two operations that require hiding and replacement of the queue of slides: <b>adding a media element to a slide</b> and <b>choosing a new slide</b>. In both these operations, an HTML div is extracted from the main template (where it was hidden), and put in the place of the current slide, hiding the rest of the slides queue, buttons, and slides navigation (operations performed by <a href="../classes/LessonEditorCurrentSlide.html#method_hideEverythingOutCurrentSlide" class="crosslink">hideEverythingOutCurrentSlide</a>). For the galleries, the extracted div must be filled by an action called via Ajax (see the module <a href="../modules/galleries.html">galleries</a>), whereas the div with the list of available slides is already loaded with the Editor (see <a href="../classes/LessonEditorDocumentReady.html#method_lessonEditorDocumentReadyNewSlideChoice" class="crosslink">lessonEditorDocumentReadyNewSlideChoice</a>).
+<br/><br/>
+To add a media element to a slide, the user picks it from its specific gallery: when he clicks on the button 'plus', the system calls the corresponding subfunction in <a href="../classes/LessonEditorDocumentReady.html#method_lessonEditorDocumentReadyAddMediaElement" class="crosslink">lessonEditorDocumentReadyAddMediaElement</a>. To avoid troubles due to the replacement of JQuery plugins, video and audio tags, etc, this method always replaces the sources of <b>audio</b> and <b>video</b> tags and calls <i>load()</i>.
+<br/><br/>
+If the element added is of type <b>image</b>, the user may drag it inside the slide, using <a href="../classes/LessonEditorJqueryAnimations.html#method_makeDraggable" class="crosslink">makeDraggable</a>. A set of methods (in the class <a href="../classes/LessonEditorImageResizing.html" class="crosslink">LessonEditorImageResizing</a>) is available to resize the image and the alignment chosen by the user; more specificly, the method <a href="../classes/LessonEditorImageResizing.html#method_isHorizontalMask" class="crosslink">isHorizontalMask</a> is used to understand, depending on the type of slide and on the proportions of the image, if the image is <b>vertical</b> (and then the user can drag it vertically) or <b>horizontal</b> (the user can drag it horizontally).
+<br/><br/>
+Each slide contains a form linked to the action that updates it, there is no global saving for the whole lesson. The slide is automaticly saved (using the method <a href="../classes/LessonEditorForms.html#method_saveCurrentSlide" class="crosslink">saveCurrentSlide</a>) <i>before moving to another slide</i>, <i>before showing the options to add a new slide</i>, and <i>before changing position of a slide</i>. The same function is called by the user when he clicks on the button 'save' on the right of each slide; the buttons <b>save and exit</b> and <b>edit general info</b> are also linked to slide saving, but in this case it's performed with a callback (see again the buttons initialization in <a href="../classes/LessonEditorDocumentReady.html#method_lessonEditorDocumentReadySlideButtons" class="crosslink">lessonEditorDocumentReadySlideButtons</a>).
+<br/><br/>
+The text slides are provided of <b>TinyMCE</b> text editor, initialized in the methods of <a href="../classes/LessonEditorTinyMCE.html" class="crosslink">LessonEditorTinyMCE</a>.</p>
 </div>
 
 

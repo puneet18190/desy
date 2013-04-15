@@ -115,6 +115,8 @@
             
                 <li><a href="..&#x2F;classes/ImageEditorTexts.html">ImageEditorTexts</a></li>
             
+                <li><a href="..&#x2F;classes/JqueryPatchesBrowsers.html">JqueryPatchesBrowsers</a></li>
+            
                 <li><a href="..&#x2F;classes/LessonEditorCurrentSlide.html">LessonEditorCurrentSlide</a></li>
             
                 <li><a href="..&#x2F;classes/LessonEditorDocumentReady.html">LessonEditorDocumentReady</a></li>
@@ -221,7 +223,7 @@
 
             <ul id="api-modules" class="apis modules">
             
-                <li><a href="..&#x2F;modules/administration.html">administration</a></li>
+                <li><a href="..&#x2F;modules/admin.html">admin</a></li>
             
                 <li><a href="..&#x2F;modules/ajax-loader.html">ajax-loader</a></li>
             
@@ -238,6 +240,8 @@
                 <li><a href="..&#x2F;modules/general.html">general</a></li>
             
                 <li><a href="..&#x2F;modules/image-editor.html">image-editor</a></li>
+            
+                <li><a href="..&#x2F;modules/jquery-patches.html">jquery-patches</a></li>
             
                 <li><a href="..&#x2F;modules/lesson-editor.html">lesson-editor</a></li>
             
@@ -415,7 +419,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_lesson_editor.js.html#l796"><code>app&#x2F;assets&#x2F;javascripts&#x2F;lesson_editor.js:796</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_lesson_editor.js.html#l812"><code>app&#x2F;assets&#x2F;javascripts&#x2F;lesson_editor.js:812</code></a>
         
         </p>
 
@@ -426,7 +430,7 @@
     </div>
 
     <div class="description">
-        <p>Asynchronously loads current slide, previous and following if any of these aren't loaded yet. Uses: <a href="../classes/loadSlideInLessonEditor.html#method_loadSlideInLessonEditor">loadSlideInLessonEditor</a></p>
+        <p>Asynchronously loads current slide, previous and following.</p>
     </div>
 
     
@@ -444,7 +448,7 @@
                     
 
                     <div class="param-description">
-                        <p>slide id</p>
+                        <p>id in the database of the current slide, used to extract the HTML id</p>
                     </div>
 
                     
@@ -502,7 +506,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_lesson_editor.js.html#l809"><code>app&#x2F;assets&#x2F;javascripts&#x2F;lesson_editor.js:809</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_lesson_editor.js.html#l825"><code>app&#x2F;assets&#x2F;javascripts&#x2F;lesson_editor.js:825</code></a>
         
         </p>
 
@@ -513,7 +517,7 @@
     </div>
 
     <div class="description">
-        <p>Asynchronous slide loading. It is called when the current slide is not loaded yet.</p>
+        <p>Asynchronous slide loading. It checks if the slide has been loaded or not.</p>
     </div>
 
     
@@ -525,13 +529,13 @@
                 <li class="param">
                     
                         <code class="param-name">slide</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>slide object id</p>
+                        <p>slide to be loaded</p>
                     </div>
 
                     

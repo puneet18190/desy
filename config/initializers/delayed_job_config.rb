@@ -6,5 +6,5 @@ require 'notifications_job'
 require 'eventmachine'
 
 # Delayed Jobs configuration
-Delayed::Worker.destroy_failed_jobs = false
+Delayed::Worker.destroy_failed_jobs = Rails.env.production?
 Delayed::Worker.delay_jobs = !Rails.env.test?

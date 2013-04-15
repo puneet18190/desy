@@ -115,6 +115,8 @@
             
                 <li><a href="..&#x2F;classes/ImageEditorTexts.html">ImageEditorTexts</a></li>
             
+                <li><a href="..&#x2F;classes/JqueryPatchesBrowsers.html">JqueryPatchesBrowsers</a></li>
+            
                 <li><a href="..&#x2F;classes/LessonEditorCurrentSlide.html">LessonEditorCurrentSlide</a></li>
             
                 <li><a href="..&#x2F;classes/LessonEditorDocumentReady.html">LessonEditorDocumentReady</a></li>
@@ -221,7 +223,7 @@
 
             <ul id="api-modules" class="apis modules">
             
-                <li><a href="..&#x2F;modules/administration.html">administration</a></li>
+                <li><a href="..&#x2F;modules/admin.html">admin</a></li>
             
                 <li><a href="..&#x2F;modules/ajax-loader.html">ajax-loader</a></li>
             
@@ -238,6 +240,8 @@
                 <li><a href="..&#x2F;modules/general.html">general</a></li>
             
                 <li><a href="..&#x2F;modules/image-editor.html">image-editor</a></li>
+            
+                <li><a href="..&#x2F;modules/jquery-patches.html">jquery-patches</a></li>
             
                 <li><a href="..&#x2F;modules/lesson-editor.html">lesson-editor</a></li>
             
@@ -447,7 +451,7 @@
     </div>
 
     <div class="description">
-        <p>Modal warning on unpublish lesson.</p>
+        <p>Dialog containing a form used to send a notification about modifications of a public lesson.</p>
     </div>
 
     
@@ -465,7 +469,7 @@
                     
 
                     <div class="param-description">
-                        <p>lesson id</p>
+                        <p>id in the database of the lesson</p>
                     </div>
 
                     
@@ -524,7 +528,7 @@
     </div>
 
     <div class="description">
-        <p>Modal for new media element form</p>
+        <p>Dialog containing the form to upload a new media element. This function interacts with the module <a href="../modules/media-element-loader.html">media-element-loader</a>.</p>
     </div>
 
     
@@ -588,7 +592,7 @@
     </div>
 
     <div class="description">
-        <p>Modal for media element update form Uses: <a href="../classes/customOverlayClose.html#method_customOverlayClose">customOverlayClose</a> and <a href="../classes/removeCustomOverlayClose.html#method_removeCustomOverlayClose">removeCustomOverlayClose</a> and <a href="../classes/resetMediaElementChangeInfo.html#method_resetMediaElementChangeInfo">resetMediaElementChangeInfo</a> and <a href="../classes/stopMedia.html#method_stopMedia">stopMedia</a></p>
+        <p>Dialog containing the media element general information. If the element is private, this same dialog contains the form to change title, description and tags (see the method <a href="../classes/MediaElementLoaderGeneral.html#method_resetMediaElementChangeInfo" class="crosslink">resetMediaElementChangeInfo</a>).</p>
     </div>
 
     
@@ -606,7 +610,7 @@
                     
 
                     <div class="param-description">
-                        <p>media element id</p>
+                        <p>id in the database of the media element</p>
                     </div>
 
                     
@@ -675,7 +679,7 @@
     </div>
 
     <div class="description">
-        <p>Share lesson link popup in virtual classroom</p>
+        <p>Dialog containing the form to send the public link of a lesson. Used in <a href="../classes/VirtualClassroomSendLink.html" class="crosslink">VirtualClassroomSendLink</a>.</p>
     </div>
 
     
@@ -693,7 +697,7 @@
                     
 
                     <div class="param-description">
-                        <p>lesson id</p>
+                        <p>id in the database of the lesson</p>
                     </div>
 
                     
@@ -762,7 +766,7 @@
     </div>
 
     <div class="description">
-        <p>Modal with lessons to add to virtual classroom. Uses: <a href="../classes/showOkPopUp.html#method_showOkPopUp">showOkPopUp</a> and <a href="../classes/showErrorPopUp.html#method_showErrorPopUp">showErrorPopUp</a></p>
+        <p>Dialog containing a list of lessons to be loaded in the Virtual Classroom. Used in <a href="../classes/VirtualClassroomMultipleLoading.html" class="crosslink">VirtualClassroomMultipleLoading</a>.</p>
     </div>
 
     
@@ -780,7 +784,7 @@
                     
 
                     <div class="param-description">
-                        <p>lessons list partial</p>
+                        <p>HTML content for the list of lessons</p>
                     </div>
 
                     

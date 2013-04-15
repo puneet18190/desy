@@ -1,0 +1,62 @@
+= DESY - Digital Educational SYstem
+
+== Description
+
+DESY - Digital Educational SYstem is a web application thought to create and share on-line multimedia lessons.
+
+The lessons are created by the application users; users can also upload media elements, which can be included in their lessons and shared with other users.
+
+The lessons can be collected inside containers called Virtual Classrooms, which will be shared on the web via their respective URLs.
+
+== Architecture
+
+The software architecture is composed by: 
+
+* the <b>web application</b>: developed in {Ruby}[http://www.ruby-lang.org] using the web framework {Ruby on Rails}[http://rubyonrails.org/], provides the web frontend; it uses {PostgreSQL}[http://www.postgresql.org] for data persistence
+* the <b>background processes</b>: managed through the {Delayed::Job}[https://github.com/collectiveidea/delayed_job] library, they run the instances charged of uploaded media converting and editing
+* the <b>cron jobs</b>: periodically actions, like f.e. checking the size of media elements folder in order to send an alert to the maintainer
+
+== Requirements
+
+=== Hardware requirements
+
+An adequate infastructure consists of:
+
+* a web server: it runs the web application and the database, and hosts the media elements; it requires of enough CPU and RAM for running the processes instances, and enough disk space to host the media files
+* a media processing server: it runs the media processing jobs, and requires of a discrete amount of CPU and RAM in order to process the media files; it should be designated to run the cron jobs too
+
+=== Software requirements
+
+DeSY is designed to be deployed on Linux systems; it is expected to be deployed on Debian systems, but can be easily customized to run on every Unix system, BSD included, provided that its dependencies are available.
+
+These are the software dependencies:
+
+* Ruby >= 2.0
+* PostgreSQL >= 9.2
+* libav >= 0.8.3
+* libavcodec-extra-53
+* mkvtoolnix
+* sox >= 14.4.0
+* g++
+* libsqlite3-dev
+* libpq-dev
+* imagemagick
+* Ruby Bundler gem
+* gems installed by Bundler and their dependencies
+* PHP
+* nginx | apache
+
+== Procedure of installation
+
+1. Extract the DeSY copy into the destination path
+2. Install Ruby (possibly using {rbenv}[https://github.com/sstephenson/rbenv], {RVM}[https://rvm.io/], or {chruby}[https://github.com/postmodern/chruby])
+3. Install PostgreSQL
+4. Install Bundler (`gem install bundler`)
+5. +cd+ into the DeSY folder
+6. Install the required packages ( on Debian/Ubuntu: +script/system_requirements_install+ )
+...
+5. run `bundle install`
+
+== Configuration
+
+DeSY can be configured through the file config/settings.yml (which must be created after the installation - see {Procedure of installation}[rdoc-label:label-Procedure+of+installation]).

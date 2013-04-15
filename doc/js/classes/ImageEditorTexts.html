@@ -115,6 +115,8 @@
             
                 <li><a href="..&#x2F;classes/ImageEditorTexts.html">ImageEditorTexts</a></li>
             
+                <li><a href="..&#x2F;classes/JqueryPatchesBrowsers.html">JqueryPatchesBrowsers</a></li>
+            
                 <li><a href="..&#x2F;classes/LessonEditorCurrentSlide.html">LessonEditorCurrentSlide</a></li>
             
                 <li><a href="..&#x2F;classes/LessonEditorDocumentReady.html">LessonEditorDocumentReady</a></li>
@@ -221,7 +223,7 @@
 
             <ul id="api-modules" class="apis modules">
             
-                <li><a href="..&#x2F;modules/administration.html">administration</a></li>
+                <li><a href="..&#x2F;modules/admin.html">admin</a></li>
             
                 <li><a href="..&#x2F;modules/ajax-loader.html">ajax-loader</a></li>
             
@@ -238,6 +240,8 @@
                 <li><a href="..&#x2F;modules/general.html">general</a></li>
             
                 <li><a href="..&#x2F;modules/image-editor.html">image-editor</a></li>
+            
+                <li><a href="..&#x2F;modules/jquery-patches.html">jquery-patches</a></li>
             
                 <li><a href="..&#x2F;modules/lesson-editor.html">lesson-editor</a></li>
             
@@ -429,7 +433,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_image_editor.js.html#l343"><code>app&#x2F;assets&#x2F;javascripts&#x2F;image_editor.js:343</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_image_editor.js.html#l351"><code>app&#x2F;assets&#x2F;javascripts&#x2F;image_editor.js:351</code></a>
         
         </p>
 
@@ -440,7 +444,7 @@
     </div>
 
     <div class="description">
-        <p>Sets current textarea to active.</p>
+        <p>Selects a text area (this function is called when the user clicks on a textarea in the image).</p>
     </div>
 
     
@@ -458,7 +462,7 @@
                     
 
                     <div class="param-description">
-                        <p>identifier for textarea to set current</p>
+                        <p>unique identifier for the textarea, used to extract its HTML id</p>
                     </div>
 
                     
@@ -520,7 +524,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_image_editor.js.html#l355"><code>app&#x2F;assets&#x2F;javascripts&#x2F;image_editor.js:355</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_image_editor.js.html#l363"><code>app&#x2F;assets&#x2F;javascripts&#x2F;image_editor.js:363</code></a>
         
         </p>
 
@@ -531,7 +535,7 @@
     </div>
 
     <div class="description">
-        <p>Get textarea coordinates while dragging</p>
+        <p>Gets the coordinates of a textarea while dragging.</p>
     </div>
 
     
@@ -568,7 +572,7 @@
                     
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>:
                     
-                    two items array with X,Y coords in px
+                    two items array with X,Y coordinates in pixels
                 
             </div>
         </div>
@@ -610,7 +614,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_image_editor.js.html#l373"><code>app&#x2F;assets&#x2F;javascripts&#x2F;image_editor.js:373</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_image_editor.js.html#l381"><code>app&#x2F;assets&#x2F;javascripts&#x2F;image_editor.js:381</code></a>
         
         </p>
 
@@ -621,7 +625,7 @@
     </div>
 
     <div class="description">
-        <p>Disable textareas, typically applied to all textareas, removes the current flag to active textarea.</p>
+        <p>Used together with ImageEditorTexts/enlightTextAreas:method, it disables all text areas in the image.</p>
     </div>
 
     
@@ -657,7 +661,7 @@
 
     
         <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
         </span>
     
 
@@ -684,7 +688,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_image_editor.js.html#l384"><code>app&#x2F;assets&#x2F;javascripts&#x2F;image_editor.js:384</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_image_editor.js.html#l392"><code>app&#x2F;assets&#x2F;javascripts&#x2F;image_editor.js:392</code></a>
         
         </p>
 
@@ -695,7 +699,7 @@
     </div>
 
     <div class="description">
-        <p>Append new textarea to image editor container</p>
+        <p>Extracts a new empty textarea, and appends it to the image at given coordinates.</p>
     </div>
 
     
@@ -728,7 +732,7 @@
                     
 
                     <div class="param-description">
-                        <p>textarea container id</p>
+                        <p>unique identifier for the textarea, used to extract its HTML id</p>
                     </div>
 
                     
@@ -745,9 +749,9 @@
             <div class="returns-description">
                 
                     
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>:
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
                     
-                    new textarea container
+                    HTML of the new textarea container
                 
             </div>
         </div>
