@@ -6186,7 +6186,7 @@
                 },
                 {
                     "name": "with_scroll",
-                    "description": "if true, i uses {{#crossLink \"VideoEditorScrollPain/followPreviewComponentsWithHorizontalScrollInVideoEditor:method\"}}{{/crossLink}} to follow the timeline with the scroll.",
+                    "description": "if true, it uses {{#crossLink \"VideoEditorScrollPain/followPreviewComponentsWithHorizontalScrollInVideoEditor:method\"}}{{/crossLink}} to follow the timeline with the scroll.",
                     "type": "Boolean"
                 }
             ],

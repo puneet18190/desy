@@ -1411,7 +1411,7 @@ Plays a component and handles the transition to the next one (if there is any). 
 @method playVideoEditorComponent
 @for VideoEditorPreview
 @param component {Object} the component to be played
-@param with_scroll {Boolean} if true, i uses {{#crossLink "VideoEditorScrollPain/followPreviewComponentsWithHorizontalScrollInVideoEditor:method"}}{{/crossLink}} to follow the timeline with the scroll.
+@param with_scroll {Boolean} if true, it uses {{#crossLink "VideoEditorScrollPain/followPreviewComponentsWithHorizontalScrollInVideoEditor:method"}}{{/crossLink}} to follow the timeline with the scroll.
 **/
 function playVideoEditorComponent(component, with_scroll) {
   if(with_scroll) {
