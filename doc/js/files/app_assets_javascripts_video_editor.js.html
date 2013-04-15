@@ -391,9 +391,13 @@ As for the other Element Editors ({{#crossLinkModule &quot;image-editor&quot;}}{
 
 
 &#x2F;**
-bla bla bla
+Adds an image component to the timeline, contructing an empty &lt;b&gt;preview&lt;&#x2F;b&gt;, &lt;b&gt;cutter&lt;&#x2F;b&gt; and &lt;b&gt;component&lt;&#x2F;b&gt;, and then filling them (see the commentaries inside the code). This method is called by {{#crossLink &quot;VideoEditorDocumentReady&#x2F;videoEditorDocumentReadyAddComponent:method&quot;}}{{&#x2F;crossLink}}.
 @method addImageComponentInVideoEditor
 @for VideoEditorAddComponents
+@param image_id {Number} the id of the image in the database
+@param component {String} HTML code corresponding to the already built &lt;b&gt;miniature&lt;&#x2F;b&gt; of the image
+@param preview {String} HTML code corresponding to the already built &lt;b&gt;content of the preview&lt;&#x2F;b&gt; for the image
+@param duration {Number} the duration in seconds of the image component
 **&#x2F;
 function addImageComponentInVideoEditor(image_id, component, preview, duration) {
   $(&#x27;._new_component_in_video_editor_hover a&#x27;).removeClass(&#x27;current&#x27;);
@@ -455,9 +459,14 @@ function addImageComponentInVideoEditor(image_id, component, preview, duration) 
 }
 
 &#x2F;**
-bla bla bla
+Adds a text component to the timeline, contructing an empty &lt;b&gt;preview&lt;&#x2F;b&gt;, &lt;b&gt;cutter&lt;&#x2F;b&gt; and &lt;b&gt;component&lt;&#x2F;b&gt;, and then filling them (see the commentaries inside the code). This method is called by {{#crossLink &quot;VideoEditorDocumentReady&#x2F;videoEditorDocumentReadyAddComponent:method&quot;}}{{&#x2F;crossLink}}.
 @method addTextComponentInVideoEditor
 @for VideoEditorAddComponents
+@param component {String} HTML code corresponding to the already built &lt;b&gt;miniature&lt;&#x2F;b&gt; of the text
+@param content {String} the text content
+@param duration {Number} the duration in seconds of the image component
+@param background_color {String} the class corresponding to the color chosen for the background
+@param text_color {String} the class corresponding to the color chosen for the text font
 **&#x2F;
 function addTextComponentInVideoEditor(component, content, duration, background_color, text_color) {
   $(&#x27;._new_component_in_video_editor_hover a&#x27;).removeClass(&#x27;current&#x27;);
@@ -526,9 +535,14 @@ function addTextComponentInVideoEditor(component, content, duration, background_
 }
 
 &#x2F;**
-bla bla bla
+Adds a video component to the timeline, contructing an empty &lt;b&gt;preview&lt;&#x2F;b&gt;, &lt;b&gt;cutter&lt;&#x2F;b&gt; and &lt;b&gt;component&lt;&#x2F;b&gt;, and then filling them (see the commentaries inside the code). This method is called by {{#crossLink &quot;VideoEditorDocumentReady&#x2F;videoEditorDocumentReadyAddComponent:method&quot;}}{{&#x2F;crossLink}}.
 @method addVideoComponentInVideoEditor
 @for VideoEditorAddComponents
+@param video_id {Number} the id of the video in the database
+@param webm {String} path of the webm attached of the video
+@param mp4 {String} path of the mp4 attached of the video
+@param component {String} HTML code corresponding to the already built &lt;b&gt;miniature&lt;&#x2F;b&gt; of the image
+@param duration {Number} the duration in seconds of the video component (initially the values &lt;b&gt;from&lt;&#x2F;b&gt; and &lt;b&gt;to&lt;&#x2F;b&gt; are respectively &lt;b&gt;0&lt;&#x2F;b&gt; and &lt;b&gt;duration&lt;&#x2F;b&gt;)
 **&#x2F;
 function addVideoComponentInVideoEditor(video_id, webm, mp4, component, duration) {
   $(&#x27;._new_component_in_video_editor_hover a&#x27;).removeClass(&#x27;current&#x27;);
