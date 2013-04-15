@@ -312,9 +312,11 @@ function addVideoComponentInVideoEditor(video_id, webm, mp4, component, duration
 
 
 /**
-bla bla bla
+Changes the duration of a given component, and updates all the global durations and data.
 @method changeDurationVideoEditorComponent
 @for VideoEditorComponents
+@param component_id {String} the HTML id of the component
+@param new_duration {Number} the new duration (the old one is stored as data inside the HTML of the component)
 **/
 function changeDurationVideoEditorComponent(component_id, new_duration) {
   var old_duration = $('#' + component_id).data('duration');
@@ -336,9 +338,10 @@ function changeDurationVideoEditorComponent(component_id, new_duration) {
 }
 
 /**
-bla bla bla
+Clears all the inputs of a component which refer to specific types (this is used in {{#crossLink "VideoEditorReplaceComponents"}}{{/crossLink}}, when the user replaces a component with another of a different type).
 @method clearSpecificVideoEditorComponentParameters
 @for VideoEditorComponents
+@param component_id {String} the HTML id of the component
 **/
 function clearSpecificVideoEditorComponentParameters(component_id) {
   var huge_selector = '#' + component_id + ' ._video_component_input_content';
@@ -353,9 +356,13 @@ function clearSpecificVideoEditorComponentParameters(component_id) {
 }
 
 /**
-bla bla bla # TODO quando arrivo qui metti il link all'analogo in audio editor, e torna in audio editor e assicurati che ci sia un link opposto che redireziona qui
+Function that creates a single input field to be inserted in the empty audio component during the process of construction of a new one (similar to {{#crossLink "AudioEditorComponents/fillAudioEditorSingleParameter:method"}}{{/crossLink}}).
 @method fillVideoEditorSingleParameter
 @for VideoEditorComponents
+@param input {String} the specific input to be filled (for example, <i>video_id</i>, <i>from</i>, <i>duration</i>, or <i>to</i>)
+@param identifier {Number} the identifier of the component
+@param value {String} the HTML value to be assigned to the input
+@return {String} the resulting input written in HTML
 **/
 function fillVideoEditorSingleParameter(input, identifier, value) {
   return '<input id="' + input + '_' + identifier + '" class="_video_component_input_' + input + '" type="hidden" value="' + value + '" name="' + input + '_' + identifier + '">';
@@ -1114,7 +1121,7 @@ function videoEditorDocumentReadyPreview() {
 }
 
 /**
-bla bla bla
+bla bla bla TODO dire che chiamo set duration con zero
 @method videoEditorDocumentReadyRemoveComponent
 @for VideoEditorDocumentReady
 **/
@@ -1254,7 +1261,7 @@ function getLastVideoEditorComponent() {
 }
 
 /**
-bla bla bla
+Method that extracts the <b>unique identifier</b> of a component, starting indifferently from the component id, the cutter id, or the preview id.
 @method getVideoComponentIdentifier
 @for VideoEditorGeneral
 **/

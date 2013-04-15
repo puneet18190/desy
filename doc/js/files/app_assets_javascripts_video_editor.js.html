@@ -618,9 +618,11 @@ function addVideoComponentInVideoEditor(video_id, webm, mp4, component, duration
 
 
 &#x2F;**
-bla bla bla
+Changes the duration of a given component, and updates all the global durations and data.
 @method changeDurationVideoEditorComponent
 @for VideoEditorComponents
+@param component_id {String} the HTML id of the component
+@param new_duration {Number} the new duration (the old one is stored as data inside the HTML of the component)
 **&#x2F;
 function changeDurationVideoEditorComponent(component_id, new_duration) {
   var old_duration = $(&#x27;#&#x27; + component_id).data(&#x27;duration&#x27;);
@@ -642,9 +644,10 @@ function changeDurationVideoEditorComponent(component_id, new_duration) {
 }
 
 &#x2F;**
-bla bla bla
+Clears all the inputs of a component which refer to specific types (this is used in {{#crossLink &quot;VideoEditorReplaceComponents&quot;}}{{&#x2F;crossLink}}, when the user replaces a component with another of a different type).
 @method clearSpecificVideoEditorComponentParameters
 @for VideoEditorComponents
+@param component_id {String} the HTML id of the component
 **&#x2F;
 function clearSpecificVideoEditorComponentParameters(component_id) {
   var huge_selector = &#x27;#&#x27; + component_id + &#x27; ._video_component_input_content&#x27;;
@@ -659,9 +662,13 @@ function clearSpecificVideoEditorComponentParameters(component_id) {
 }
 
 &#x2F;**
-bla bla bla # TODO quando arrivo qui metti il link all&#x27;analogo in audio editor, e torna in audio editor e assicurati che ci sia un link opposto che redireziona qui
+Function that creates a single input field to be inserted in the empty audio component during the process of construction of a new one (similar to {{#crossLink &quot;AudioEditorComponents&#x2F;fillAudioEditorSingleParameter:method&quot;}}{{&#x2F;crossLink}}).
 @method fillVideoEditorSingleParameter
 @for VideoEditorComponents
+@param input {String} the specific input to be filled (for example, &lt;i&gt;video_id&lt;&#x2F;i&gt;, &lt;i&gt;from&lt;&#x2F;i&gt;, &lt;i&gt;duration&lt;&#x2F;i&gt;, or &lt;i&gt;to&lt;&#x2F;i&gt;)
+@param identifier {Number} the identifier of the component
+@param value {String} the HTML value to be assigned to the input
+@return {String} the resulting input written in HTML
 **&#x2F;
 function fillVideoEditorSingleParameter(input, identifier, value) {
   return &#x27;&lt;input id=&quot;&#x27; + input + &#x27;_&#x27; + identifier + &#x27;&quot; class=&quot;_video_component_input_&#x27; + input + &#x27;&quot; type=&quot;hidden&quot; value=&quot;&#x27; + value + &#x27;&quot; name=&quot;&#x27; + input + &#x27;_&#x27; + identifier + &#x27;&quot;&gt;&#x27;;
@@ -1420,7 +1427,7 @@ function videoEditorDocumentReadyPreview() {
 }
 
 &#x2F;**
-bla bla bla
+bla bla bla TODO dire che chiamo set duration con zero
 @method videoEditorDocumentReadyRemoveComponent
 @for VideoEditorDocumentReady
 **&#x2F;
@@ -1560,7 +1567,7 @@ function getLastVideoEditorComponent() {
 }
 
 &#x2F;**
-bla bla bla
+Method that extracts the &lt;b&gt;unique identifier&lt;&#x2F;b&gt; of a component, starting indifferently from the component id, the cutter id, or the preview id.
 @method getVideoComponentIdentifier
 @for VideoEditorGeneral
 **&#x2F;
