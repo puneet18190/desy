@@ -380,8 +380,7 @@ Both precision instruments use the general method {{#crossLink &quot;VideoEditor
 &lt;br&#x2F;&gt;&lt;br&#x2F;&gt;
 To include the &lt;b&gt;background audio track&lt;&#x2F;b&gt; in the global preview, the system uses the method {{#crossLink &quot;VideoEditorPreviewAccessories&#x2F;calculateVideoComponentStartSecondInVideoEditor:method&quot;}}{{&#x2F;crossLink}}, which calculates &lt;b&gt;the total amount of seconds&lt;&#x2F;b&gt; until the selected point, including the time necessary for the transitions.
 &lt;br&#x2F;&gt;&lt;br&#x2F;&gt;
-
-
+Finally, let&#x27;s have a look at the functionalities of the JScrollPain: the method {{#crossLink &quot;VideoEditorScrollPain&#x2F;followPreviewComponentsWithHorizontalScrollInVideoEditor:method&quot;}}{{&#x2F;crossLink}} is called at any time the selected component changes inside the preview mode (that is, either while reproducing the global preview, or if the user changes component using the arrows); this method re-implements many functionalities that were badly implemented or absent in the original plugin, such as for instance the uniform speed to scroll different amounts of components. The method uses the class {{#crossLink &quot;MediaElementEditorHorizontalTimelines&quot;}}{{&#x2F;crossLink}}
 &lt;br&#x2F;&gt;&lt;br&#x2F;&gt;
 As for the other Element Editors ({{#crossLinkModule &quot;image-editor&quot;}}{{&#x2F;crossLinkModule}}, {{#crossLinkModule &quot;audio-editor&quot;}}{{&#x2F;crossLinkModule}}) the core of the process of committing changes is handled in the module {{#crossLinkModule &quot;media-element-editor&quot;}}{{&#x2F;crossLinkModule}} (more specificly in the class {{#crossLink &quot;MediaElementEditorForms&quot;}}{{&#x2F;crossLink}}); the part of this functionality specific for the Video Editor is handled in {{#crossLink &quot;VideoEditorDocumentReady&#x2F;videoEditorDocumentReadyCommit:method&quot;}}{{&#x2F;crossLink}}.
 @module video-editor

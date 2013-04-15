@@ -402,9 +402,9 @@ In the class <a href="../classes/VideoEditorPreviewAccessories.html" class="cros
 <p>Both precision instruments use the general method <a href="../classes/VideoEditorPreviewAccessories.html#method_selectVideoComponentInPreview" class="crosslink">selectVideoComponentInPreview</a>, that allows to select a component at a specific time.
 <br/><br/>
 To include the <b>background audio track</b> in the global preview, the system uses the method <a href="../classes/VideoEditorPreviewAccessories.html#method_calculateVideoComponentStartSecondInVideoEditor" class="crosslink">calculateVideoComponentStartSecondInVideoEditor</a>, which calculates <b>the total amount of seconds</b> until the selected point, including the time necessary for the transitions.
-<br/><br/></p>
-
-<p><br/><br/>
+<br/><br/>
+Finally, let's have a look at the functionalities of the JScrollPain: the method <a href="../classes/VideoEditorScrollPain.html#method_followPreviewComponentsWithHorizontalScrollInVideoEditor" class="crosslink">followPreviewComponentsWithHorizontalScrollInVideoEditor</a> is called at any time the selected component changes inside the preview mode (that is, either while reproducing the global preview, or if the user changes component using the arrows); this method re-implements many functionalities that were badly implemented or absent in the original plugin, such as for instance the uniform speed to scroll different amounts of components. The method uses the class <a href="../classes/MediaElementEditorHorizontalTimelines.html" class="crosslink">MediaElementEditorHorizontalTimelines</a>
+<br/><br/>
 As for the other Element Editors (<a href="../modules/image-editor.html">image-editor</a>, <a href="../modules/audio-editor.html">audio-editor</a>) the core of the process of committing changes is handled in the module <a href="../modules/media-element-editor.html">media-element-editor</a> (more specificly in the class <a href="../classes/MediaElementEditorForms.html" class="crosslink">MediaElementEditorForms</a>); the part of this functionality specific for the Video Editor is handled in <a href="../classes/VideoEditorDocumentReady.html#method_videoEditorDocumentReadyCommit" class="crosslink">videoEditorDocumentReadyCommit</a>.</p>
 </div>
 

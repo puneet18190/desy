@@ -74,8 +74,7 @@ Both precision instruments use the general method {{#crossLink "VideoEditorPrevi
 <br/><br/>
 To include the <b>background audio track</b> in the global preview, the system uses the method {{#crossLink "VideoEditorPreviewAccessories/calculateVideoComponentStartSecondInVideoEditor:method"}}{{/crossLink}}, which calculates <b>the total amount of seconds</b> until the selected point, including the time necessary for the transitions.
 <br/><br/>
-
-
+Finally, let's have a look at the functionalities of the JScrollPain: the method {{#crossLink "VideoEditorScrollPain/followPreviewComponentsWithHorizontalScrollInVideoEditor:method"}}{{/crossLink}} is called at any time the selected component changes inside the preview mode (that is, either while reproducing the global preview, or if the user changes component using the arrows); this method re-implements many functionalities that were badly implemented or absent in the original plugin, such as for instance the uniform speed to scroll different amounts of components. The method uses the class {{#crossLink "MediaElementEditorHorizontalTimelines"}}{{/crossLink}}
 <br/><br/>
 As for the other Element Editors ({{#crossLinkModule "image-editor"}}{{/crossLinkModule}}, {{#crossLinkModule "audio-editor"}}{{/crossLinkModule}}) the core of the process of committing changes is handled in the module {{#crossLinkModule "media-element-editor"}}{{/crossLinkModule}} (more specificly in the class {{#crossLink "MediaElementEditorForms"}}{{/crossLink}}); the part of this functionality specific for the Video Editor is handled in {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyCommit:method"}}{{/crossLink}}.
 @module video-editor
