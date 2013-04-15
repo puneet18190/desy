@@ -12,7 +12,7 @@ One of the buttons in the header opens a popup for loading multiple lessons (ini
 
 
 /**
-bla bla bla
+Global initializer.
 @method virtualClassroomDocumentReady
 @for VirtualClassroomDocumentReady
 **/
@@ -25,7 +25,7 @@ function virtualClassroomDocumentReady() {
 }
 
 /**
-bla bla bla
+Initializer for icons and buttons.
 @method virtualClassroomDocumentReadyIconsAndButtons
 @for VirtualClassroomDocumentReady
 **/
@@ -80,7 +80,7 @@ function virtualClassroomDocumentReadyIconsAndButtons() {
 }
 
 /**
-bla bla bla
+Initializer for multiple lessons loading.
 @method virtualClassroomDocumentReadyMultipleLessonLoading
 @for VirtualClassroomDocumentReady
 **/
@@ -128,7 +128,7 @@ function virtualClassroomDocumentReadyMultipleLessonLoading() {
 }
 
 /**
-bla bla bla
+Initializer for playlist.
 @method virtualClassroomDocumentReadyPlaylist
 @for VirtualClassroomDocumentReady
 **/
@@ -168,7 +168,7 @@ function virtualClassroomDocumentReadyPlaylist() {
 }
 
 /**
-bla bla bla
+Initializer for popup sending the public link of a lesson.
 @method virtualClassroomDocumentReadySendLink
 @for VirtualClassroomDocumentReady
 **/
@@ -245,10 +245,10 @@ function virtualClassroomDocumentReadySendLink() {
 
 
 /**
-Get highest zIndex value, among elements of a given class
+Gets the highest zIndex value among elements of a given class.
 @method getMaximumZIndex
 @for VirtualClassroomJavaScriptAnimations
-@param a_class {String} css class name
+@param a_class {String} HTML class name
 @return {Number} highest zIndex value
 **/
 function getMaximumZIndex(a_class) {
@@ -263,9 +263,10 @@ function getMaximumZIndex(a_class) {
 }
 
 /**
-bla bla bla
+Initializes the functionality of dragging a single lesson into the playlist.
 @method initializeDraggableVirtualClassroomLesson
 @for VirtualClassroomJavaScriptAnimations
+@param id {String} HTML id of the lesson
 **/
 function initializeDraggableVirtualClassroomLesson(id) {
   var lesson_cover = $('#' + id + ' ._lesson_thumb');
@@ -303,7 +304,7 @@ function initializeDraggableVirtualClassroomLesson(id) {
 }
 
 /**
-Initialize playlist container and jScrollPane Uses: [getMaximumZIndex](../classes/getMaximumZIndex.html#method_getMaximumZIndex)
+Initialize playlist container (using <i>JQueryUi sortable</i>)and jScrollPane.
 @method initializePlaylist
 @for VirtualClassroomJavaScriptAnimations
 **/
@@ -364,7 +365,7 @@ function initializePlaylist() {
 }
 
 /**
-bla bla bla
+Uses together {{#crossLink "VirtualClassroomJavaScriptAnimations/initializeDraggableVirtualClassroomLesson:method"}}{{/crossLink}} and {{#crossLink "VirtualClassroomJavaScriptAnimations/initializePlaylist:method"}}{{/crossLink}}.
 @method initializeVirtualClassroom
 @for VirtualClassroomJavaScriptAnimations
 **/
@@ -384,7 +385,7 @@ function initializeVirtualClassroom() {
 
 
 /**
-bla bla bla
+Initializer for lessons that can't be loaded from the multiple lessons loader.
 @method initializeNotAvailableLessonsToLoadQuick
 @for VirtualClassroomMultipleLoading
 **/
@@ -397,7 +398,7 @@ function initializeNotAvailableLessonsToLoadQuick() {
 }
 
 /**
-bla bla bla
+Initializer for the JScrollPain in the multiple lessons loader (event infinite scroll to load more lessons).
 @method initializeScrollPaneQuickLessonSelector
 @for VirtualClassroomMultipleLoading
 **/
