@@ -569,6 +569,11 @@ it:
       # The user didn't select a file to be uploaded
       # 1 - controllers/application_controller.rb
       media_blank: "Nessun file caricato"
+      # The media elements folder exceeded the maximum size available
+      # 1 - controllers/application_controller.rb
+      # 2 - controllers/video_editor_controller.rb
+      # 3 - controllers/video_editor_controller.rb
+      media_folder_size_exceeded: "Il caricamento dei media è temporaneamente disabliltato, roprovare più tardi"
       # The user tried to upload an attachment whose format is not supported
       # 1 - controllers/application_controller.rb
       # 2 - controllers/application_controller.rb

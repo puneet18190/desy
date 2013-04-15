@@ -569,6 +569,11 @@ cn:
       # The user didn't select a file to be uploaded
       # 1 - controllers/application_controller.rb
       media_blank: "没有文件上传"
+      # The media elements folder exceeded the maximum size available
+      # 1 - controllers/application_controller.rb
+      # 2 - controllers/video_editor_controller.rb
+      # 3 - controllers/video_editor_controller.rb
+      media_folder_size_exceeded: "Media uploading is temporarly disabled; please try again later" # TODO
       # The user tried to upload an attachment whose format is not supported
       # 1 - controllers/application_controller.rb
       # 2 - controllers/application_controller.rb
@@ -1794,10 +1799,6 @@ cn:
         new_password_confirmation: "新密码确认"
         # 1 - views/users/_personal_info.html.erb
         school_level_id: "学校标准"
-        # 1 - views/users/_personal_info.html.erb
-        town: "城镇"
-        # 1 - views/users/_personal_info.html.erb
-        province: "省份"
     # Section 2: mailing lists
     mailing_list:
       # Caption of the link inside the user's profile menu
