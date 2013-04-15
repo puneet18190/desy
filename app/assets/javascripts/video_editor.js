@@ -1510,9 +1510,11 @@ function startVideoEditorGlobalPreview() {
 
 
 /**
-bla bla bla
+Calculates the amount of seconds before the current position in the global preview (used for {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyAudioTrack:method"}}{{/crossLink}}).
 @method calculateVideoComponentStartSecondInVideoEditor
 @for VideoEditorPreviewAccessories
+@param identifier {Number} the unique identifier of the current component in preview mode
+@return {Number} the amount of seconds before the current global time in preview
 **/
 function calculateVideoComponentStartSecondInVideoEditor(identifier) {
   var duration = 0;
@@ -1532,7 +1534,7 @@ function calculateVideoComponentStartSecondInVideoEditor(identifier) {
 }
 
 /**
-bla bla bla
+Hides the component progress bar.
 @method hideVideoEditorPreviewComponentProgressBar
 @for VideoEditorPreviewAccessories
 **/
@@ -1542,9 +1544,11 @@ function hideVideoEditorPreviewComponentProgressBar() {
 }
 
 /**
-bla bla bla
+Selects a video component with a specific time in preview mode.
 @method selectVideoComponentInPreview
 @for VideoEditorPreviewAccessories
+@param component {Object} the component
+@param time {Number} the local time to be selected
 **/
 function selectVideoComponentInPreview(component, time) {
   $('._video_component_preview').hide();
@@ -1558,9 +1562,11 @@ function selectVideoComponentInPreview(component, time) {
 }
 
 /**
-bla bla bla
+Sets the times of all previous and following components. The normal status of the global preview is with time = 0 for each component which is not selected.
 @method setVisualTimesVideoEditorPreview
 @for VideoEditorPreviewAccessories
+@param component {Object} the selected component
+@param time {Object} the time to be set in the selected component
 **/
 function setVisualTimesVideoEditorPreview(component, time) {
   var identifier = getVideoComponentIdentifier(component.attr('id'));
@@ -1587,7 +1593,7 @@ function setVisualTimesVideoEditorPreview(component, time) {
 }
 
 /**
-bla bla bla
+Shows the arrows to switch between components in preview mode.
 @method showVideoEditorPreviewArrowToComponents
 @for VideoEditorPreviewAccessories
 **/
@@ -1605,9 +1611,11 @@ function showVideoEditorPreviewArrowToComponents() {
 }
 
 /**
-bla bla bla
+Shows the progress bar for a given component. This bar is used to set the time of the component (using {{#crossLink "VideoEditorPreviewAccessories/selectVideoComponentInPreview:method"}}{{/crossLink}}), and while the preview is playing to show the progress of the component. Remember that the progress bar is the same for each component, and it is initialized and destroyed each time. This method uses {{#crossLink "MediaElementEditorHorizontalTimelines"}}{{/crossLink}} for the correct positioning of the progress bar.
 @method showVideoEditorPreviewComponentProgressBar
 @for VideoEditorPreviewAccessories
+@param identifier {Number} the unique identifier of the component
+@param position {Number} the position (1...5) of the progress bar
 **/
 function showVideoEditorPreviewComponentProgressBar(identifier, position) {
   var component = $('#video_component_' + identifier);

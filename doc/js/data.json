@@ -6205,16 +6205,27 @@
         {
             "file": "app/assets/javascripts/video_editor.js",
             "line": 1512,
-            "description": "bla bla bla",
+            "description": "Calculates the amount of seconds before the current position in the global preview (used for {{#crossLink \"VideoEditorDocumentReady/videoEditorDocumentReadyAudioTrack:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "calculateVideoComponentStartSecondInVideoEditor",
+            "params": [
+                {
+                    "name": "identifier",
+                    "description": "the unique identifier of the current component in preview mode",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "the amount of seconds before the current global time in preview",
+                "type": "Number"
+            },
             "class": "VideoEditorPreviewAccessories",
             "module": "video-editor"
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1534,
-            "description": "bla bla bla",
+            "line": 1536,
+            "description": "Hides the component progress bar.",
             "itemtype": "method",
             "name": "hideVideoEditorPreviewComponentProgressBar",
             "class": "VideoEditorPreviewAccessories",
@@ -6222,26 +6233,50 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1544,
-            "description": "bla bla bla",
+            "line": 1546,
+            "description": "Selects a video component with a specific time in preview mode.",
             "itemtype": "method",
             "name": "selectVideoComponentInPreview",
+            "params": [
+                {
+                    "name": "component",
+                    "description": "the component",
+                    "type": "Object"
+                },
+                {
+                    "name": "time",
+                    "description": "the local time to be selected",
+                    "type": "Number"
+                }
+            ],
             "class": "VideoEditorPreviewAccessories",
             "module": "video-editor"
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1560,
-            "description": "bla bla bla",
+            "line": 1564,
+            "description": "Sets the times of all previous and following components. The normal status of the global preview is with time = 0 for each component which is not selected.",
             "itemtype": "method",
             "name": "setVisualTimesVideoEditorPreview",
+            "params": [
+                {
+                    "name": "component",
+                    "description": "the selected component",
+                    "type": "Object"
+                },
+                {
+                    "name": "time",
+                    "description": "the time to be set in the selected component",
+                    "type": "Object"
+                }
+            ],
             "class": "VideoEditorPreviewAccessories",
             "module": "video-editor"
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1589,
-            "description": "bla bla bla",
+            "line": 1595,
+            "description": "Shows the arrows to switch between components in preview mode.",
             "itemtype": "method",
             "name": "showVideoEditorPreviewArrowToComponents",
             "class": "VideoEditorPreviewAccessories",
@@ -6249,16 +6284,28 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1607,
-            "description": "bla bla bla",
+            "line": 1613,
+            "description": "Shows the progress bar for a given component. This bar is used to set the time of the component (using {{#crossLink \"VideoEditorPreviewAccessories/selectVideoComponentInPreview:method\"}}{{/crossLink}}), and while the preview is playing to show the progress of the component. Remember that the progress bar is the same for each component, and it is initialized and destroyed each time. This method uses {{#crossLink \"MediaElementEditorHorizontalTimelines\"}}{{/crossLink}} for the correct positioning of the progress bar.",
             "itemtype": "method",
             "name": "showVideoEditorPreviewComponentProgressBar",
+            "params": [
+                {
+                    "name": "identifier",
+                    "description": "the unique identifier of the component",
+                    "type": "Number"
+                },
+                {
+                    "name": "position",
+                    "description": "the position (1...5) of the progress bar",
+                    "type": "Number"
+                }
+            ],
             "class": "VideoEditorPreviewAccessories",
             "module": "video-editor"
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1639,
+            "line": 1647,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "replaceImageComponentInVideoEditor",
@@ -6267,7 +6314,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1674,
+            "line": 1682,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "replaceTextComponentInVideoEditor",
@@ -6276,7 +6323,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1716,
+            "line": 1724,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "replaceVideoComponentInVideoEditor",
@@ -6285,7 +6332,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1765,
+            "line": 1773,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "followPreviewComponentsWithHorizontalScrollInVideoEditor",
@@ -6294,7 +6341,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1815,
+            "line": 1823,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "resetVideoEditorTextComponent",
@@ -6303,7 +6350,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1830,
+            "line": 1838,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "switchTextComponentBackgroundColor",
@@ -6312,7 +6359,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1842,
+            "line": 1850,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "switchTextComponentTextColor",
