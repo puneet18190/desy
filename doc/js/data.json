@@ -5662,7 +5662,7 @@
                 },
                 {
                     "name": "component",
-                    "description": "HTML code corresponding to the already built <b>miniature</b> of the image",
+                    "description": "HTML code corresponding to the already built <b>miniature</b> of the video",
                     "type": "String"
                 },
                 {

@@ -235,7 +235,7 @@ Adds a video component to the timeline, contructing an empty <b>preview</b>, <b>
 @param video_id {Number} the id of the video in the database
 @param webm {String} path of the webm attached of the video
 @param mp4 {String} path of the mp4 attached of the video
-@param component {String} HTML code corresponding to the already built <b>miniature</b> of the image
+@param component {String} HTML code corresponding to the already built <b>miniature</b> of the video
 @param duration {Number} the duration in seconds of the video component (initially the values <b>from</b> and <b>to</b> are respectively <b>0</b> and <b>duration</b>)
 **/
 function addVideoComponentInVideoEditor(video_id, webm, mp4, component, duration) {
