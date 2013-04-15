@@ -23,7 +23,7 @@
         </h1>
         <ul class="files">
             <li>doc/README.rdoc</li>
-            <li>Last modified: 2013-04-12 16:26:54 +0200</li>
+            <li>Last modified: 2013-04-12 18:03:21 +0200</li>
         </ul>
     </div>
 
@@ -85,7 +85,8 @@ should be designated to run the cron jobs too</p>
 
 <p>DeSY is designed to be deployed on Linux systems; it is expected to be
 deployed on Debian systems, but can be easily customized to run on every
-Unix system, BSD included, provided that its dependencies are available.</p>
+Unix system, BSD included, provided that its dependencies are available on
+the host OS.</p>
 
 <p>These are the software dependencies:</p>
 <ul><li>
@@ -129,17 +130,34 @@ href="https://github.com/postmodern/chruby">chruby</a>)</p>
 </li><li>
 <p>Install PostgreSQL</p>
 </li><li>
-<p>Install Bundler (`gem install bundler`)</p>
+<p>Install Bundler (<code>gem install bundler</code>)</p>
 </li><li>
 <p><code>cd</code> into the DeSY folder</p>
 </li><li>
-<p>Install the required packages ( on Debian/Ubuntu:
-<code>script/system_requirements_install</code> )</p>
-</li></ol>
-
-<p>…</p>
-<ol><li>
-<p>run `bundle install`</p>
+<p>Install the required packages (on Debian/Ubuntu:
+<code>script/system_requirements_install</code>)</p>
+</li><li>
+<p>Run <code>bundle install</code></p>
+</li><li>
+<p>Copy <code>config/settings.yml.example</code> to
+<code>config/settings.yml</code> and customize it as needed</p>
+</li><li>
+<p>Copy <code>config/database.yml.example</code> to
+<code>config/database.yml</code> and customize it as needed</p>
+</li><li>
+<p>Copy <code>config/unicorn.yml.example</code> to
+<code>config/unicorn.yml</code> and customize it as needed</p>
+</li><li>
+<p>Ensure the web server to serve the following MIME types:</p>
+<ul><li>
+<p>video/mp4   mp4</p>
+</li><li>
+<p>audio/mp4   m4a</p>
+</li><li>
+<p>audio/ogg   ogg</p>
+</li><li>
+<p>video/webm  webm</p>
+</li></ul>
 </li></ol>
 
 <h2 id="label-Configuration">Configuration</h2>

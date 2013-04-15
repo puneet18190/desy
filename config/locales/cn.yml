@@ -569,6 +569,11 @@ cn:
       # The user didn't select a file to be uploaded
       # 1 - controllers/application_controller.rb
       media_blank: "没有文件上传"
+      # The media elements folder exceeded the maximum size available
+      # 1 - controllers/application_controller.rb
+      # 2 - controllers/video_editor_controller.rb
+      # 3 - controllers/video_editor_controller.rb
+      media_folder_size_exceeded: "Media uploading is temporarly disabled; please try again later" # TODO
       # The user tried to upload an attachment whose format is not supported
       # 1 - controllers/application_controller.rb
       # 2 - controllers/application_controller.rb
@@ -1151,9 +1156,9 @@ cn:
     # Caption of the link opening the lesson editor, containing a prompt for the user (this is used only in the case there are no suggested lessons in the Dashboard: in this case the application invites the user to create a lesson right now)
     # 1 - views/dashboard/_lessons_empty.html.erb
     create_new_lesson_now: "现在建立课程"
-    # Caption of the link to download the user manual (bottom right in the page)
+    # Caption of the link to download the user guide (bottom right in the page)
     # 1 - views/dashboard/index.html.erb
-    download_manual: "下载用户手册"
+    download_manual: "下载用户手册" # TODO
     # Caption which appears if there are no suggested lessons inside the Dashboard, because the user picked all the lessons the application suggested him
     # 1 - views/dashboard/_lessons_empty.html.erb
     emptied_lessons: "你已选择所有被推荐的课程"
@@ -1166,7 +1171,7 @@ cn:
     # Caption which appears if for the user there are no suggested elements inside the database
     # 1 - views/dashboard/_media_elements_empty.html.erb
     empty_media_elements: "这里没有推荐的单元给你"
-    # Title of the link 'Download the user manual' (bottom right in the page)
+    # Title of the link 'Download the user guide' (bottom right in the page)
     # 1 - views/dashboard/index.html.erb
     help_using_desy: "需要%{desy}帮助吗？"
     # Caption of the link opening the window to load a new element (in each page of elements inside the Dashboard, after the last element there is a button with a 'plus' which opens the window)
@@ -1794,10 +1799,6 @@ cn:
         new_password_confirmation: "新密码确认"
         # 1 - views/users/_personal_info.html.erb
         school_level_id: "学校标准"
-        # 1 - views/users/_personal_info.html.erb
-        town: "城镇"
-        # 1 - views/users/_personal_info.html.erb
-        province: "省份"
     # Section 2: mailing lists
     mailing_list:
       # Caption of the link inside the user's profile menu
@@ -2234,14 +2235,14 @@ cn:
     # 1 - app/models/location.rb
     # 2 - app/models/location.rb
     labels: [
-        '省份',
-        '城镇',
-        '學校'
-      ]
+        "省份",
+        "城镇",
+        "學校"
+      ] # TODO
     # This is the label used when the application needs to resume the chain of higher locations corresponding to a lower one: if for instance for a user we have the field 'Shanghai district - Shanghai province', an appropriate label for it (to be configured here) would be 'District / province'
     # 1 - views/admin/users/show.html.erb
     # 2 - views/admin/users/_list.html.erb
-    parents_label: "城镇/省份"
+    parents_label: "城镇/省份" # TODO
     # Caption inside the select of each location type (the variable %{location} is replaced by the name of the location type, ex City, Province, District)
     # 1 - views/admin/users/_locations_list.html.erb
     # 2 - views/users/_locations_list.html.erb
