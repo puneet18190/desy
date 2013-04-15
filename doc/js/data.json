@@ -5861,7 +5861,7 @@
         {
             "file": "app/assets/javascripts/video_editor.js",
             "line": 495,
-            "description": "Scrolls (using {{#crossLink \"MediaElementEditorHorisontalTimelines\"}}{{/crossLink}}) and shows the cutter for a <b>video</b> component. The similar functionality for <b>image</b> and <b>text</b> components is initialized in {{#crossLink \"VideoEditorDocumentReady/videoEditorDocumentReadyCutters:method\"}}{{/crossLink}}.",
+            "description": "Scrolls (using {{#crossLink \"MediaElementEditorHorizontalTimelines\"}}{{/crossLink}}) and shows the cutter for a <b>video</b> component. The similar functionality for <b>image</b> and <b>text</b> components is initialized in {{#crossLink \"VideoEditorDocumentReady/videoEditorDocumentReadyCutters:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "showVideoEditorCutter",
             "params": [

@@ -493,7 +493,7 @@ function cutVideoComponentRightSide(identifier, pos) {
 }
 
 /**
-Scrolls (using {{#crossLink "MediaElementEditorHorisontalTimelines"}}{{/crossLink}}) and shows the cutter for a <b>video</b> component. The similar functionality for <b>image</b> and <b>text</b> components is initialized in {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyCutters:method"}}{{/crossLink}}.
+Scrolls (using {{#crossLink "MediaElementEditorHorizontalTimelines"}}{{/crossLink}}) and shows the cutter for a <b>video</b> component. The similar functionality for <b>image</b> and <b>text</b> components is initialized in {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyCutters:method"}}{{/crossLink}}.
 @method showVideoEditorCutter
 @for VideoEditorCutters
 @param component_id {String} the HTML id of the component
