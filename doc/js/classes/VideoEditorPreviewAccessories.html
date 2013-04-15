@@ -409,9 +409,23 @@
     <h3 class="name"><code>calculateVideoComponentStartSecondInVideoEditor</code></h3>
 
     
-        <span class="paren">()</span>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>identifier</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
     
 
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+        </span>
     
 
     
@@ -437,7 +451,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_video_editor.js.html#l1497"><code>app&#x2F;assets&#x2F;javascripts&#x2F;video_editor.js:1497</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_video_editor.js.html#l1512"><code>app&#x2F;assets&#x2F;javascripts&#x2F;video_editor.js:1512</code></a>
         
         </p>
 
@@ -448,11 +462,47 @@
     </div>
 
     <div class="description">
-        <p>bla bla bla</p>
+        <p>Calculates the amount of seconds before the current position in the global preview (used for <a href="../classes/VideoEditorDocumentReady.html#method_videoEditorDocumentReadyAudioTrack" class="crosslink">videoEditorDocumentReadyAudioTrack</a>).</p>
     </div>
 
     
+        <div class="params">
+            <h4>Parameters:</h4>
 
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">identifier</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>the unique identifier of the current component in preview mode</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>:
+                    
+                    the amount of seconds before the current global time in preview
+                
+            </div>
+        </div>
     
 
     
@@ -491,7 +541,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_video_editor.js.html#l1519"><code>app&#x2F;assets&#x2F;javascripts&#x2F;video_editor.js:1519</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_video_editor.js.html#l1536"><code>app&#x2F;assets&#x2F;javascripts&#x2F;video_editor.js:1536</code></a>
         
         </p>
 
@@ -502,7 +552,7 @@
     </div>
 
     <div class="description">
-        <p>bla bla bla</p>
+        <p>Hides the component progress bar.</p>
     </div>
 
     
@@ -517,7 +567,23 @@
     <h3 class="name"><code>selectVideoComponentInPreview</code></h3>
 
     
-        <span class="paren">()</span>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>component</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>time</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
     
 
     
@@ -545,7 +611,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_video_editor.js.html#l1529"><code>app&#x2F;assets&#x2F;javascripts&#x2F;video_editor.js:1529</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_video_editor.js.html#l1546"><code>app&#x2F;assets&#x2F;javascripts&#x2F;video_editor.js:1546</code></a>
         
         </p>
 
@@ -556,9 +622,47 @@
     </div>
 
     <div class="description">
-        <p>bla bla bla</p>
+        <p>Selects a video component with a specific time in preview mode.</p>
     </div>
 
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">component</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>the component</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">time</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>the local time to be selected</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
     
 
     
@@ -571,7 +675,23 @@
     <h3 class="name"><code>setVisualTimesVideoEditorPreview</code></h3>
 
     
-        <span class="paren">()</span>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>component</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>time</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
     
 
     
@@ -599,7 +719,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_video_editor.js.html#l1545"><code>app&#x2F;assets&#x2F;javascripts&#x2F;video_editor.js:1545</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_video_editor.js.html#l1564"><code>app&#x2F;assets&#x2F;javascripts&#x2F;video_editor.js:1564</code></a>
         
         </p>
 
@@ -610,9 +730,47 @@
     </div>
 
     <div class="description">
-        <p>bla bla bla</p>
+        <p>Sets the times of all previous and following components. The normal status of the global preview is with time = 0 for each component which is not selected.</p>
     </div>
 
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">component</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>the selected component</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">time</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>the time to be set in the selected component</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
     
 
     
@@ -653,7 +811,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_video_editor.js.html#l1574"><code>app&#x2F;assets&#x2F;javascripts&#x2F;video_editor.js:1574</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_video_editor.js.html#l1595"><code>app&#x2F;assets&#x2F;javascripts&#x2F;video_editor.js:1595</code></a>
         
         </p>
 
@@ -664,7 +822,7 @@
     </div>
 
     <div class="description">
-        <p>bla bla bla</p>
+        <p>Shows the arrows to switch between components in preview mode.</p>
     </div>
 
     
@@ -679,7 +837,23 @@
     <h3 class="name"><code>showVideoEditorPreviewComponentProgressBar</code></h3>
 
     
-        <span class="paren">()</span>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>identifier</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>position</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
     
 
     
@@ -707,7 +881,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_video_editor.js.html#l1592"><code>app&#x2F;assets&#x2F;javascripts&#x2F;video_editor.js:1592</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_video_editor.js.html#l1613"><code>app&#x2F;assets&#x2F;javascripts&#x2F;video_editor.js:1613</code></a>
         
         </p>
 
@@ -718,9 +892,47 @@
     </div>
 
     <div class="description">
-        <p>bla bla bla</p>
+        <p>Shows the progress bar for a given component. This bar is used to set the time of the component (using <a href="../classes/VideoEditorPreviewAccessories.html#method_selectVideoComponentInPreview" class="crosslink">selectVideoComponentInPreview</a>), and while the preview is playing to show the progress of the component. Remember that the progress bar is the same for each component, and it is initialized and destroyed each time. This method uses <a href="../classes/MediaElementEditorHorizontalTimelines.html" class="crosslink">MediaElementEditorHorizontalTimelines</a> for the correct positioning of the progress bar.</p>
     </div>
 
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">identifier</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>the unique identifier of the component</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">position</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>the position (1...5) of the progress bar</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
     
 
     

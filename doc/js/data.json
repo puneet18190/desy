@@ -5992,7 +5992,7 @@
         {
             "file": "app/assets/javascripts/video_editor.js",
             "line": 1190,
-            "description": "bla bla bla",
+            "description": "Centers the gallery when shown.",
             "itemtype": "method",
             "name": "calculateNewPositionGalleriesInVideoEditor",
             "class": "VideoEditorGalleries",
@@ -6001,97 +6001,172 @@
         {
             "file": "app/assets/javascripts/video_editor.js",
             "line": 1200,
-            "description": "bla bla bla",
+            "description": "Opposite of {{#crossLink \"VideoEditorGalleries/showGalleryInVideoEditor:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "closeGalleryInVideoEditor",
+            "params": [
+                {
+                    "name": "type",
+                    "description": "it can be either 'mixed' or 'audio'",
+                    "type": "String"
+                }
+            ],
             "class": "VideoEditorGalleries",
             "module": "video-editor"
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1213,
-            "description": "bla bla bla",
+            "line": 1214,
+            "description": "Opens a chosen gallery.",
             "itemtype": "method",
             "name": "showGalleryInVideoEditor",
+            "params": [
+                {
+                    "name": "type",
+                    "description": "it can be either 'mixed' or 'audio'",
+                    "type": "String"
+                }
+            ],
             "class": "VideoEditorGalleries",
             "module": "video-editor"
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1226,
-            "description": "bla bla bla",
+            "line": 1228,
+            "description": "Switches between <b>video gallery</b>, <b>image gallery</b> and <b>text component editor</b> in the component editor.",
             "itemtype": "method",
             "name": "switchToOtherGalleryInMixedGalleryInVideoEditor",
+            "params": [
+                {
+                    "name": "type",
+                    "description": "it can be either 'mixed' or 'audio'",
+                    "type": "String"
+                }
+            ],
             "class": "VideoEditorGalleries",
             "module": "video-editor"
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1251,
-            "description": "bla bla bla",
+            "line": 1254,
+            "description": "Returns the first component in the timeline.",
             "itemtype": "method",
             "name": "getFirstVideoEditorComponent",
+            "return": {
+                "description": "the first component",
+                "type": "Object"
+            },
             "class": "VideoEditorGeneral",
             "module": "video-editor"
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1260,
-            "description": "bla bla bla",
+            "line": 1264,
+            "description": "Returns the last component in the timeline.",
             "itemtype": "method",
             "name": "getLastVideoEditorComponent",
+            "return": {
+                "description": "the last component",
+                "type": "Object"
+            },
             "class": "VideoEditorGeneral",
             "module": "video-editor"
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1270,
+            "line": 1275,
             "description": "Method that extracts the <b>unique identifier</b> of a component, starting indifferently from the component id, the cutter id, or the preview id.",
             "itemtype": "method",
             "name": "getVideoComponentIdentifier",
+            "params": [
+                {
+                    "name": "item_id",
+                    "description": "the HTML id of either the <i>component</i>, the <i>preview</i> or the <i>cutter</i>",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "the unique identifier of the component",
+                "type": "Number"
+            },
             "class": "VideoEditorGeneral",
             "module": "video-editor"
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1284,
-            "description": "bla bla bla",
+            "line": 1291,
+            "description": "Checks if the HTML5 video inside a <b>video component</b> has been loaded, and if not it loads it.",
             "itemtype": "method",
             "name": "loadVideoComponentIfNotLoadedYet",
+            "params": [
+                {
+                    "name": "component_id",
+                    "description": "the HTML id of the video component",
+                    "type": "String"
+                }
+            ],
             "class": "VideoEditorGeneral",
             "module": "video-editor"
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1300,
-            "description": "bla bla bla",
+            "line": 1308,
+            "description": "Checks if an optional audio track has been set by the user.",
             "itemtype": "method",
             "name": "videoEditorWithAudioTrack",
+            "return": {
+                "description": "true if there is an audio track",
+                "type": "Boolean"
+            },
             "class": "VideoEditorGeneral",
             "module": "video-editor"
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1313,
-            "description": "bla bla bla",
+            "line": 1322,
+            "description": "Automatic increase for the global preview current time (used when playing image or text components).",
             "itemtype": "method",
             "name": "automaticIncreaseVideoEditorPreviewTimer",
+            "params": [
+                {
+                    "name": "time",
+                    "description": "the global time before calling the method",
+                    "type": "Number"
+                },
+                {
+                    "name": "total_length",
+                    "description": "the total length of the component",
+                    "type": "Number"
+                },
+                {
+                    "name": "callback",
+                    "description": "the callback to be executed after the time update",
+                    "type": "Function"
+                }
+            ],
             "class": "VideoEditorPreview",
             "module": "video-editor"
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1331,
-            "description": "bla bla bla",
+            "line": 1343,
+            "description": "Increases of one step the global preview time (typically used in {{#crossLink \"PlayersVideoEditor/initializeActionOfMediaTimeUpdaterInVideoEditor:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "increaseVideoEditorPreviewTimer",
+            "params": [
+                {
+                    "name": "with_component",
+                    "description": "if true, it updates also the local time of the selected component",
+                    "type": "Boolean"
+                }
+            ],
             "class": "VideoEditorPreview",
             "module": "video-editor"
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1353,
-            "description": "bla bla bla",
+            "line": 1366,
+            "description": "Opens the preview mode with all its graphical effects. The similar functionality to close the preview mode is initialized in {{#crossLink \"VideoEditorDocumentReady/videoEditorDocumentReadyPreview:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "openPreviewModeInVideoEditor",
             "class": "VideoEditorPreview",
@@ -6099,17 +6174,29 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1396,
-            "description": "bla bla bla",
+            "line": 1409,
+            "description": "Plays a component and handles the transition to the next one (if there is any). In case the component is of type <b>image</b> or <b>text</b>, the time increase is handled by {{#crossLink \"VideoEditorPreview/automaticIncreaseVideoEditorPreviewTimer:method\"}}{{/crossLink}}; if the component is of type <b>video</b> the transition is handled by {{#crossLink \"PlayersVideoEditor/initializeActionOfMediaTimeUpdaterInVideoEditor:method\"}}{{/crossLink}} and the time increase by {{#crossLink \"VideoEditorPreview/increaseVideoEditorPreviewTimer:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "playVideoEditorComponent",
+            "params": [
+                {
+                    "name": "component",
+                    "description": "the component to be played",
+                    "type": "Object"
+                },
+                {
+                    "name": "with_scroll",
+                    "description": "if true, it uses {{#crossLink \"VideoEditorScrollPain/followPreviewComponentsWithHorizontalScrollInVideoEditor:method\"}}{{/crossLink}} to follow the timeline with the scroll.",
+                    "type": "Boolean"
+                }
+            ],
             "class": "VideoEditorPreview",
             "module": "video-editor"
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1466,
-            "description": "bla bla bla",
+            "line": 1481,
+            "description": "Starts the preview from the selected component.",
             "itemtype": "method",
             "name": "startVideoEditorGlobalPreview",
             "class": "VideoEditorPreview",
@@ -6117,17 +6204,28 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1497,
-            "description": "bla bla bla",
+            "line": 1512,
+            "description": "Calculates the amount of seconds before the current position in the global preview (used for {{#crossLink \"VideoEditorDocumentReady/videoEditorDocumentReadyAudioTrack:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "calculateVideoComponentStartSecondInVideoEditor",
+            "params": [
+                {
+                    "name": "identifier",
+                    "description": "the unique identifier of the current component in preview mode",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "the amount of seconds before the current global time in preview",
+                "type": "Number"
+            },
             "class": "VideoEditorPreviewAccessories",
             "module": "video-editor"
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1519,
-            "description": "bla bla bla",
+            "line": 1536,
+            "description": "Hides the component progress bar.",
             "itemtype": "method",
             "name": "hideVideoEditorPreviewComponentProgressBar",
             "class": "VideoEditorPreviewAccessories",
@@ -6135,26 +6233,50 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1529,
-            "description": "bla bla bla",
+            "line": 1546,
+            "description": "Selects a video component with a specific time in preview mode.",
             "itemtype": "method",
             "name": "selectVideoComponentInPreview",
+            "params": [
+                {
+                    "name": "component",
+                    "description": "the component",
+                    "type": "Object"
+                },
+                {
+                    "name": "time",
+                    "description": "the local time to be selected",
+                    "type": "Number"
+                }
+            ],
             "class": "VideoEditorPreviewAccessories",
             "module": "video-editor"
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1545,
-            "description": "bla bla bla",
+            "line": 1564,
+            "description": "Sets the times of all previous and following components. The normal status of the global preview is with time = 0 for each component which is not selected.",
             "itemtype": "method",
             "name": "setVisualTimesVideoEditorPreview",
+            "params": [
+                {
+                    "name": "component",
+                    "description": "the selected component",
+                    "type": "Object"
+                },
+                {
+                    "name": "time",
+                    "description": "the time to be set in the selected component",
+                    "type": "Object"
+                }
+            ],
             "class": "VideoEditorPreviewAccessories",
             "module": "video-editor"
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1574,
-            "description": "bla bla bla",
+            "line": 1595,
+            "description": "Shows the arrows to switch between components in preview mode.",
             "itemtype": "method",
             "name": "showVideoEditorPreviewArrowToComponents",
             "class": "VideoEditorPreviewAccessories",
@@ -6162,44 +6284,147 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1592,
-            "description": "bla bla bla",
+            "line": 1613,
+            "description": "Shows the progress bar for a given component. This bar is used to set the time of the component (using {{#crossLink \"VideoEditorPreviewAccessories/selectVideoComponentInPreview:method\"}}{{/crossLink}}), and while the preview is playing to show the progress of the component. Remember that the progress bar is the same for each component, and it is initialized and destroyed each time. This method uses {{#crossLink \"MediaElementEditorHorizontalTimelines\"}}{{/crossLink}} for the correct positioning of the progress bar.",
             "itemtype": "method",
             "name": "showVideoEditorPreviewComponentProgressBar",
+            "params": [
+                {
+                    "name": "identifier",
+                    "description": "the unique identifier of the component",
+                    "type": "Number"
+                },
+                {
+                    "name": "position",
+                    "description": "the position (1...5) of the progress bar",
+                    "type": "Number"
+                }
+            ],
             "class": "VideoEditorPreviewAccessories",
             "module": "video-editor"
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1624,
-            "description": "bla bla bla",
+            "line": 1647,
+            "description": "Replaces a generig component with an image component, contructing an empty <b>preview</b>, <b>cutter</b> and editing the <b>component</b> (see the commentaries inside the code). This method is called by {{#crossLink \"VideoEditorDocumentReady/videoEditorDocumentReadyAddComponent:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "replaceImageComponentInVideoEditor",
+            "params": [
+                {
+                    "name": "image_id",
+                    "description": "the id of the image in the database",
+                    "type": "Number"
+                },
+                {
+                    "name": "component",
+                    "description": "HTML code corresponding to the already built <b>miniature</b> of the image",
+                    "type": "String"
+                },
+                {
+                    "name": "preview",
+                    "description": "HTML code corresponding to the already built <b>content of the preview</b> for the image",
+                    "type": "String"
+                },
+                {
+                    "name": "position",
+                    "description": "HTML identifier for the replaced component",
+                    "type": "String"
+                },
+                {
+                    "name": "duration",
+                    "description": "the duration in seconds of the image component",
+                    "type": "Number"
+                }
+            ],
             "class": "VideoEditorReplaceComponents",
             "module": "video-editor"
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1659,
-            "description": "bla bla bla",
+            "line": 1687,
+            "description": "Replaces a generic component with a text component, contructing an empty <b>preview</b>, <b>cutter</b> and editing the <b>component</b> (see the commentaries inside the code). This method is called by {{#crossLink \"VideoEditorDocumentReady/videoEditorDocumentReadyAddComponent:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "replaceTextComponentInVideoEditor",
+            "params": [
+                {
+                    "name": "component",
+                    "description": "HTML code corresponding to the already built <b>miniature</b> of the text",
+                    "type": "String"
+                },
+                {
+                    "name": "content",
+                    "description": "the text content",
+                    "type": "String"
+                },
+                {
+                    "name": "position",
+                    "description": "HTML identifier for the replaced component",
+                    "type": "String"
+                },
+                {
+                    "name": "duration",
+                    "description": "the duration in seconds of the image component",
+                    "type": "Number"
+                },
+                {
+                    "name": "background_color",
+                    "description": "the class corresponding to the color chosen for the background",
+                    "type": "String"
+                },
+                {
+                    "name": "text_color",
+                    "description": "the class corresponding to the color chosen for the text font",
+                    "type": "String"
+                }
+            ],
             "class": "VideoEditorReplaceComponents",
             "module": "video-editor"
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1701,
-            "description": "bla bla bla",
+            "line": 1735,
+            "description": "Replaces a generic component with a video component, contructing an empty <b>preview</b>, <b>cutter</b> and editing the <b>component</b> (see the commentaries inside the code). This method is called by {{#crossLink \"VideoEditorDocumentReady/videoEditorDocumentReadyAddComponent:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "replaceVideoComponentInVideoEditor",
+            "params": [
+                {
+                    "name": "video_id",
+                    "description": "the id of the video in the database",
+                    "type": "Number"
+                },
+                {
+                    "name": "webm",
+                    "description": "path of the webm attached of the video",
+                    "type": "String"
+                },
+                {
+                    "name": "mp4",
+                    "description": "path of the mp4 attached of the video",
+                    "type": "String"
+                },
+                {
+                    "name": "component",
+                    "description": "HTML code corresponding to the already built <b>miniature</b> of the video",
+                    "type": "String"
+                },
+                {
+                    "name": "position",
+                    "description": "HTML identifier for the replaced component",
+                    "type": "String"
+                },
+                {
+                    "name": "duration",
+                    "description": "the duration in seconds of the video component (initially the values <b>from</b> and <b>to</b> are respectively <b>0</b> and <b>duration</b>)",
+                    "type": "Number"
+                }
+            ],
             "class": "VideoEditorReplaceComponents",
             "module": "video-editor"
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1750,
-            "description": "bla bla bla",
+            "line": 1790,
+            "description": "Method that uses the scroll to keep visible the current component in the timeline. It uses {{#crossLink \"MediaElementEditorHorizontalTimelines\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "followPreviewComponentsWithHorizontalScrollInVideoEditor",
             "class": "VideoEditorScrollPain",
@@ -6207,8 +6432,8 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1800,
-            "description": "bla bla bla",
+            "line": 1840,
+            "description": "Resets the text component editor when it's closed.",
             "itemtype": "method",
             "name": "resetVideoEditorTextComponent",
             "class": "VideoEditorTextComponentEditor",
@@ -6216,19 +6441,43 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1815,
-            "description": "bla bla bla",
+            "line": 1855,
+            "description": "Switches to a different background color the text component editor.",
             "itemtype": "method",
             "name": "switchTextComponentBackgroundColor",
+            "params": [
+                {
+                    "name": "old_color",
+                    "description": "the class corresponding to the old color chosen for the background",
+                    "type": "String"
+                },
+                {
+                    "name": "new_color",
+                    "description": "the class corresponding to the new color chosen for the background",
+                    "type": "String"
+                }
+            ],
             "class": "VideoEditorTextComponentEditor",
             "module": "video-editor"
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1827,
-            "description": "bla bla bla",
+            "line": 1869,
+            "description": "Switches to a different text color the text component editor.",
             "itemtype": "method",
             "name": "switchTextComponentTextColor",
+            "params": [
+                {
+                    "name": "old_color",
+                    "description": "the class corresponding to the old color chosen for the text font",
+                    "type": "String"
+                },
+                {
+                    "name": "new_color",
+                    "description": "the class corresponding to the new color chosen for the text font",
+                    "type": "String"
+                }
+            ],
             "class": "VideoEditorTextComponentEditor",
             "module": "video-editor"
         },

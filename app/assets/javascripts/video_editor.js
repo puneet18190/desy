@@ -1188,7 +1188,7 @@ function videoEditorDocumentReadyTextComponentEditor() {
 
 
 /**
-bla bla bla
+Centers the gallery when shown.
 @method calculateNewPositionGalleriesInVideoEditor
 @for VideoEditorGalleries
 **/
@@ -1198,9 +1198,10 @@ function calculateNewPositionGalleriesInVideoEditor() {
 }
 
 /**
-bla bla bla
+Opposite of {{#crossLink "VideoEditorGalleries/showGalleryInVideoEditor:method"}}{{/crossLink}}.
 @method closeGalleryInVideoEditor
 @for VideoEditorGalleries
+@param type {String} it can be either 'mixed' or 'audio'
 **/
 function closeGalleryInVideoEditor(type) {
   $('#video_editor_' + type + '_gallery_container').hide('fade', {}, 250, function() {
@@ -1211,9 +1212,10 @@ function closeGalleryInVideoEditor(type) {
 }
 
 /**
-bla bla bla
+Opens a chosen gallery.
 @method showGalleryInVideoEditor
 @for VideoEditorGalleries
+@param type {String} it can be either 'mixed' or 'audio'
 **/
 function showGalleryInVideoEditor(type) {
   $('#media_elements_list_in_video_editor .jspHorizontalBar').css('visibility', 'hidden');
@@ -1224,9 +1226,10 @@ function showGalleryInVideoEditor(type) {
 }
 
 /**
-bla bla bla
+Switches between <b>video gallery</b>, <b>image gallery</b> and <b>text component editor</b> in the component editor.
 @method switchToOtherGalleryInMixedGalleryInVideoEditor
 @for VideoEditorGalleries
+@param type {String} it can be either 'mixed' or 'audio'
 **/
 function switchToOtherGalleryInMixedGalleryInVideoEditor(type) {
   if(!$('#video_editor_mixed_gallery_container ' + type).is(':visible')) {
@@ -1249,18 +1252,20 @@ function switchToOtherGalleryInMixedGalleryInVideoEditor(type) {
 
 
 /**
-bla bla bla
+Returns the first component in the timeline.
 @method getFirstVideoEditorComponent
 @for VideoEditorGeneral
+@return {Object} the first component
 **/
 function getFirstVideoEditorComponent() {
   return $('._video_editor_component').first();
 }
 
 /**
-bla bla bla
+Returns the last component in the timeline.
 @method getLastVideoEditorComponent
 @for VideoEditorGeneral
+@return {Object} the last component
 **/
 function getLastVideoEditorComponent() {
   var components = $('._video_editor_component');
@@ -1271,6 +1276,8 @@ function getLastVideoEditorComponent() {
 Method that extracts the <b>unique identifier</b> of a component, starting indifferently from the component id, the cutter id, or the preview id.
 @method getVideoComponentIdentifier
 @for VideoEditorGeneral
+@param item_id {String} the HTML id of either the <i>component</i>, the <i>preview</i> or the <i>cutter</i>
+@return {Number} the unique identifier of the component
 **/
 function getVideoComponentIdentifier(item_id) {
   var resp = item_id.split('_');
@@ -1282,9 +1289,10 @@ function getVideoComponentIdentifier(item_id) {
 }
 
 /**
-bla bla bla
+Checks if the HTML5 video inside a <b>video component</b> has been loaded, and if not it loads it.
 @method loadVideoComponentIfNotLoadedYet
 @for VideoEditorGeneral
+@param component_id {String} the HTML id of the video component
 **/
 function loadVideoComponentIfNotLoadedYet(component_id) {
   if(!$('#' + component_id + '_preview').data('loaded')) {
@@ -1298,9 +1306,10 @@ function loadVideoComponentIfNotLoadedYet(component_id) {
 }
 
 /**
-bla bla bla
+Checks if an optional audio track has been set by the user.
 @method videoEditorWithAudioTrack
 @for VideoEditorGeneral
+@return {Boolean} true if there is an audio track
 **/
 function videoEditorWithAudioTrack() {
   return $('#audio_track_in_video_editor_input').val() != '';
@@ -1311,9 +1320,12 @@ function videoEditorWithAudioTrack() {
 
 
 /**
-bla bla bla
+Automatic increase for the global preview current time (used when playing image or text components).
 @method automaticIncreaseVideoEditorPreviewTimer
 @for VideoEditorPreview
+@param time {Number} the global time before calling the method
+@param total_length {Number} the total length of the component
+@param callback {Function} the callback to be executed after the time update
 **/
 function automaticIncreaseVideoEditorPreviewTimer(time, total_length, callback) {
   setTimeout(function() {
@@ -1329,9 +1341,10 @@ function automaticIncreaseVideoEditorPreviewTimer(time, total_length, callback) 
 }
 
 /**
-bla bla bla
+Increases of one step the global preview time (typically used in {{#crossLink "PlayersVideoEditor/initializeActionOfMediaTimeUpdaterInVideoEditor:method"}}{{/crossLink}}).
 @method increaseVideoEditorPreviewTimer
 @for VideoEditorPreview
+@param with_component {Boolean} if true, it updates also the local time of the selected component
 **/
 function increaseVideoEditorPreviewTimer(with_component) {
   var data_container = $('#video_editor_global_preview');
@@ -1351,7 +1364,7 @@ function increaseVideoEditorPreviewTimer(with_component) {
 }
 
 /**
-bla bla bla
+Opens the preview mode with all its graphical effects. The similar functionality to close the preview mode is initialized in {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyPreview:method"}}{{/crossLink}}.
 @method openPreviewModeInVideoEditor
 @for VideoEditorPreview
 **/
@@ -1394,9 +1407,11 @@ function openPreviewModeInVideoEditor() {
 }
 
 /**
-bla bla bla
+Plays a component and handles the transition to the next one (if there is any). In case the component is of type <b>image</b> or <b>text</b>, the time increase is handled by {{#crossLink "VideoEditorPreview/automaticIncreaseVideoEditorPreviewTimer:method"}}{{/crossLink}}; if the component is of type <b>video</b> the transition is handled by {{#crossLink "PlayersVideoEditor/initializeActionOfMediaTimeUpdaterInVideoEditor:method"}}{{/crossLink}} and the time increase by {{#crossLink "VideoEditorPreview/increaseVideoEditorPreviewTimer:method"}}{{/crossLink}}.
 @method playVideoEditorComponent
 @for VideoEditorPreview
+@param component {Object} the component to be played
+@param with_scroll {Boolean} if true, it uses {{#crossLink "VideoEditorScrollPain/followPreviewComponentsWithHorizontalScrollInVideoEditor:method"}}{{/crossLink}} to follow the timeline with the scroll.
 **/
 function playVideoEditorComponent(component, with_scroll) {
   if(with_scroll) {
@@ -1464,7 +1479,7 @@ function playVideoEditorComponent(component, with_scroll) {
 }
 
 /**
-bla bla bla
+Starts the preview from the selected component.
 @method startVideoEditorGlobalPreview
 @for VideoEditorPreview
 **/
@@ -1495,9 +1510,11 @@ function startVideoEditorGlobalPreview() {
 
 
 /**
-bla bla bla
+Calculates the amount of seconds before the current position in the global preview (used for {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyAudioTrack:method"}}{{/crossLink}}).
 @method calculateVideoComponentStartSecondInVideoEditor
 @for VideoEditorPreviewAccessories
+@param identifier {Number} the unique identifier of the current component in preview mode
+@return {Number} the amount of seconds before the current global time in preview
 **/
 function calculateVideoComponentStartSecondInVideoEditor(identifier) {
   var duration = 0;
@@ -1517,7 +1534,7 @@ function calculateVideoComponentStartSecondInVideoEditor(identifier) {
 }
 
 /**
-bla bla bla
+Hides the component progress bar.
 @method hideVideoEditorPreviewComponentProgressBar
 @for VideoEditorPreviewAccessories
 **/
@@ -1527,9 +1544,11 @@ function hideVideoEditorPreviewComponentProgressBar() {
 }
 
 /**
-bla bla bla
+Selects a video component with a specific time in preview mode.
 @method selectVideoComponentInPreview
 @for VideoEditorPreviewAccessories
+@param component {Object} the component
+@param time {Number} the local time to be selected
 **/
 function selectVideoComponentInPreview(component, time) {
   $('._video_component_preview').hide();
@@ -1543,9 +1562,11 @@ function selectVideoComponentInPreview(component, time) {
 }
 
 /**
-bla bla bla
+Sets the times of all previous and following components. The normal status of the global preview is with time = 0 for each component which is not selected.
 @method setVisualTimesVideoEditorPreview
 @for VideoEditorPreviewAccessories
+@param component {Object} the selected component
+@param time {Object} the time to be set in the selected component
 **/
 function setVisualTimesVideoEditorPreview(component, time) {
   var identifier = getVideoComponentIdentifier(component.attr('id'));
@@ -1572,7 +1593,7 @@ function setVisualTimesVideoEditorPreview(component, time) {
 }
 
 /**
-bla bla bla
+Shows the arrows to switch between components in preview mode.
 @method showVideoEditorPreviewArrowToComponents
 @for VideoEditorPreviewAccessories
 **/
@@ -1590,9 +1611,11 @@ function showVideoEditorPreviewArrowToComponents() {
 }
 
 /**
-bla bla bla
+Shows the progress bar for a given component. This bar is used to set the time of the component (using {{#crossLink "VideoEditorPreviewAccessories/selectVideoComponentInPreview:method"}}{{/crossLink}}), and while the preview is playing to show the progress of the component. Remember that the progress bar is the same for each component, and it is initialized and destroyed each time. This method uses {{#crossLink "MediaElementEditorHorizontalTimelines"}}{{/crossLink}} for the correct positioning of the progress bar.
 @method showVideoEditorPreviewComponentProgressBar
 @for VideoEditorPreviewAccessories
+@param identifier {Number} the unique identifier of the component
+@param position {Number} the position (1...5) of the progress bar
 **/
 function showVideoEditorPreviewComponentProgressBar(identifier, position) {
   var component = $('#video_component_' + identifier);
@@ -1622,9 +1645,14 @@ function showVideoEditorPreviewComponentProgressBar(identifier, position) {
 
 
 /**
-bla bla bla
+Replaces a generig component with an image component, contructing an empty <b>preview</b>, <b>cutter</b> and editing the <b>component</b> (see the commentaries inside the code). This method is called by {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyAddComponent:method"}}{{/crossLink}}.
 @method replaceImageComponentInVideoEditor
 @for VideoEditorReplaceComponents
+@param image_id {Number} the id of the image in the database
+@param component {String} HTML code corresponding to the already built <b>miniature</b> of the image
+@param preview {String} HTML code corresponding to the already built <b>content of the preview</b> for the image
+@param position {String} HTML identifier for the replaced component
+@param duration {Number} the duration in seconds of the image component
 **/
 function replaceImageComponentInVideoEditor(image_id, component, preview, position, duration) {
   var identifier = getVideoComponentIdentifier(position);
@@ -1657,9 +1685,15 @@ function replaceImageComponentInVideoEditor(image_id, component, preview, positi
 }
 
 /**
-bla bla bla
+Replaces a generic component with a text component, contructing an empty <b>preview</b>, <b>cutter</b> and editing the <b>component</b> (see the commentaries inside the code). This method is called by {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyAddComponent:method"}}{{/crossLink}}.
 @method replaceTextComponentInVideoEditor
 @for VideoEditorReplaceComponents
+@param component {String} HTML code corresponding to the already built <b>miniature</b> of the text
+@param content {String} the text content
+@param position {String} HTML identifier for the replaced component
+@param duration {Number} the duration in seconds of the image component
+@param background_color {String} the class corresponding to the color chosen for the background
+@param text_color {String} the class corresponding to the color chosen for the text font
 **/
 function replaceTextComponentInVideoEditor(component, content, position, duration, background_color, text_color) {
   var identifier = getVideoComponentIdentifier(position);
@@ -1699,9 +1733,15 @@ function replaceTextComponentInVideoEditor(component, content, position, duratio
 }
 
 /**
-bla bla bla
+Replaces a generic component with a video component, contructing an empty <b>preview</b>, <b>cutter</b> and editing the <b>component</b> (see the commentaries inside the code). This method is called by {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyAddComponent:method"}}{{/crossLink}}.
 @method replaceVideoComponentInVideoEditor
 @for VideoEditorReplaceComponents
+@param video_id {Number} the id of the video in the database
+@param webm {String} path of the webm attached of the video
+@param mp4 {String} path of the mp4 attached of the video
+@param component {String} HTML code corresponding to the already built <b>miniature</b> of the video
+@param position {String} HTML identifier for the replaced component
+@param duration {Number} the duration in seconds of the video component (initially the values <b>from</b> and <b>to</b> are respectively <b>0</b> and <b>duration</b>)
 **/
 function replaceVideoComponentInVideoEditor(video_id, webm, mp4, component, position, duration) {
   var identifier = getVideoComponentIdentifier(position);
@@ -1748,7 +1788,7 @@ function replaceVideoComponentInVideoEditor(video_id, webm, mp4, component, posi
 
 
 /**
-bla bla bla
+Method that uses the scroll to keep visible the current component in the timeline. It uses {{#crossLink "MediaElementEditorHorizontalTimelines"}}{{/crossLink}}.
 @method followPreviewComponentsWithHorizontalScrollInVideoEditor
 @for VideoEditorScrollPain
 **/
@@ -1798,7 +1838,7 @@ function followPreviewComponentsWithHorizontalScrollInVideoEditor() {
 
 
 /**
-bla bla bla
+Resets the text component editor when it's closed.
 @method resetVideoEditorTextComponent
 @for VideoEditorTextComponentEditor
 **/
@@ -1813,9 +1853,11 @@ function resetVideoEditorTextComponent() {
 }
 
 /**
-bla bla bla
+Switches to a different background color the text component editor.
 @method switchTextComponentBackgroundColor
 @for VideoEditorTextComponentEditor
+@param old_color {String} the class corresponding to the old color chosen for the background
+@param new_color {String} the class corresponding to the new color chosen for the background
 **/
 function switchTextComponentBackgroundColor(old_color, new_color) {
   $('#text_component_preview').removeClass('background_color_' + old_color).addClass('background_color_' + new_color);
@@ -1825,9 +1867,11 @@ function switchTextComponentBackgroundColor(old_color, new_color) {
 }
 
 /**
-bla bla bla
+Switches to a different text color the text component editor.
 @method switchTextComponentTextColor
 @for VideoEditorTextComponentEditor
+@param old_color {String} the class corresponding to the old color chosen for the text font
+@param new_color {String} the class corresponding to the new color chosen for the text font
 **/
 function switchTextComponentTextColor(old_color, new_color) {
   $('#text_component_preview textarea').removeClass('color_' + old_color).addClass('color_' + new_color);
