@@ -68,7 +68,7 @@ Another important difference with {{#crossLinkModule "audio-editor"}}{{/crossLin
 In the class {{#crossLink "VideoEditorPreviewAccessories"}}{{/crossLink}} are stored the methods to handle the instruments available for the user to get to a specific position inside the timeline during preview mode. Such instruments (initialized in {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyPreview:method"}}{{/crossLink}}) are:
 <ul>
   <li>the <b>arrows</b> that allow the user to pass from a component to another</li>
-  <li>the <b>precision bar</b> that allows the user to select a specific point inside the selected component: notice that this bar is implemented with a <i>JQueryUi slider</i> which is destroyed and re-initialized at each component change (using the methods {{#crossLink "VideoEditorPreviewAccessories/showVideoEditorPreviewComponentProgressBar:method""}}{{/crossLink}} and {{#crossLink "VideoEditorPreviewAccessories/hideVideoEditorPreviewComponentProgressBar:method""}}{{/crossLink}}).</li>
+  <li>the <b>precision bar</b> that allows the user to select a specific point inside the selected component: notice that this bar is implemented with a <i>JQueryUi slider</i> which is destroyed and re-initialized at each component change (using the methods {{#crossLink "VideoEditorPreviewAccessories/showVideoEditorPreviewComponentProgressBar:method"}}{{/crossLink}} and {{#crossLink "VideoEditorPreviewAccessories/hideVideoEditorPreviewComponentProgressBar:method"}}{{/crossLink}}).</li>
 </ul>
 Both precision instruments use the general method {{#crossLink "VideoEditorPreviewAccessories/selectVideoComponentInPreview:method"}}{{/crossLink}}, that allows to select a component at a specific time.
 <br/><br/>

@@ -373,9 +373,13 @@ Another important difference with {{#crossLinkModule &quot;audio-editor&quot;}}{
 &lt;br&#x2F;&gt;&lt;br&#x2F;&gt;
 In the class {{#crossLink &quot;VideoEditorPreviewAccessories&quot;}}{{&#x2F;crossLink}} are stored the methods to handle the instruments available for the user to get to a specific position inside the timeline during preview mode. Such instruments (initialized in {{#crossLink &quot;VideoEditorDocumentReady&#x2F;videoEditorDocumentReadyPreview:method&quot;}}{{&#x2F;crossLink}}) are:
 &lt;ul&gt;
-  &lt;li&gt;freccette&lt;&#x2F;li&gt;
-  &lt;li&gt;mini slides (dire che vengono distrutte ogni volta).&lt;&#x2F;li&gt;
+  &lt;li&gt;the &lt;b&gt;arrows&lt;&#x2F;b&gt; that allow the user to pass from a component to another&lt;&#x2F;li&gt;
+  &lt;li&gt;the &lt;b&gt;precision bar&lt;&#x2F;b&gt; that allows the user to select a specific point inside the selected component: notice that this bar is implemented with a &lt;i&gt;JQueryUi slider&lt;&#x2F;i&gt; which is destroyed and re-initialized at each component change (using the methods {{#crossLink &quot;VideoEditorPreviewAccessories&#x2F;showVideoEditorPreviewComponentProgressBar:method&quot;}}{{&#x2F;crossLink}} and {{#crossLink &quot;VideoEditorPreviewAccessories&#x2F;hideVideoEditorPreviewComponentProgressBar:method&quot;}}{{&#x2F;crossLink}}).&lt;&#x2F;li&gt;
 &lt;&#x2F;ul&gt;
+Both precision instruments use the general method {{#crossLink &quot;VideoEditorPreviewAccessories&#x2F;selectVideoComponentInPreview:method&quot;}}{{&#x2F;crossLink}}, that allows to select a component at a specific time.
+&lt;br&#x2F;&gt;&lt;br&#x2F;&gt;
+To include the &lt;b&gt;background audio track&lt;&#x2F;b&gt; in the global preview, the system uses the method {{#crossLink &quot;VideoEditorPreviewAccessories&#x2F;calculateVideoComponentStartSecondInVideoEditor:method&quot;}}{{&#x2F;crossLink}}, which calculates &lt;b&gt;the total amount of seconds&lt;&#x2F;b&gt; until the selected point, including the time necessary for the transitions.
+&lt;br&#x2F;&gt;&lt;br&#x2F;&gt;
 
 
 &lt;br&#x2F;&gt;&lt;br&#x2F;&gt;
