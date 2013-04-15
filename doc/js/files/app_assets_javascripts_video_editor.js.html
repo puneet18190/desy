@@ -1626,9 +1626,12 @@ function videoEditorWithAudioTrack() {
 
 
 &#x2F;**
-bla bla bla
+Automatic increase for the global preview current time (used when playing image or text components).
 @method automaticIncreaseVideoEditorPreviewTimer
 @for VideoEditorPreview
+@param time {Number} the global time before calling the method
+@param total_length {Number} the total length of the component
+@param callback {Function} the callback to be executed after the time update
 **&#x2F;
 function automaticIncreaseVideoEditorPreviewTimer(time, total_length, callback) {
   setTimeout(function() {
@@ -1644,9 +1647,10 @@ function automaticIncreaseVideoEditorPreviewTimer(time, total_length, callback) 
 }
 
 &#x2F;**
-bla bla bla
+Increases of one step the global preview time (typically used in {{#crossLink &quot;PlayersVideoEditor&#x2F;initializeActionOfMediaTimeUpdaterInVideoEditor:method&quot;}}{{&#x2F;crossLink}}).
 @method increaseVideoEditorPreviewTimer
 @for VideoEditorPreview
+@param with_component {Boolean} if true, it updates also the local time of the selected component
 **&#x2F;
 function increaseVideoEditorPreviewTimer(with_component) {
   var data_container = $(&#x27;#video_editor_global_preview&#x27;);
@@ -1666,7 +1670,7 @@ function increaseVideoEditorPreviewTimer(with_component) {
 }
 
 &#x2F;**
-bla bla bla
+Opens the preview mode with all its graphical effects. The similar functionality to close the preview mode is initialized in {{#crossLink &quot;VideoEditorDocuemntReady&#x2F;videoEditorDocumentReadyPreview:method&quot;}}{{&#x2F;crossLink}}.
 @method openPreviewModeInVideoEditor
 @for VideoEditorPreview
 **&#x2F;
@@ -1709,9 +1713,11 @@ function openPreviewModeInVideoEditor() {
 }
 
 &#x2F;**
-bla bla bla
+Plays a component and handles the transition to the next one (if there is any). In case the component is of type &lt;b&gt;image&lt;&#x2F;b&gt; or &lt;b&gt;text&lt;&#x2F;b&gt;, the time increase is handled by {{#crossLink &quot;VideoEditorPreview&#x2F;automaticIncreaseVideoEditorPreviewTimer:method&quot;}}{{&#x2F;crossLink}}; if the component is of type &lt;b&gt;video&lt;&#x2F;b&gt; the transition is handled by {{#crossLink &quot;PlayersVideoEditor&#x2F;initializeActionOfMediaTimeUpdaterInVideoEditor:method&quot;}}{{&#x2F;crossLink}} and the time increase by {{#crossLink &quot;VideoEditorPreview&#x2F;increaseVideoEditorPreviewTimer:method&quot;}}{{&#x2F;crossLink}}.
 @method playVideoEditorComponent
 @for VideoEditorPreview
+@param component {Object} the component to be played
+@param with_scroll {Boolean} if true, i uses {{#crossLink &quot;VideoEditorScrollPain&#x2F;followPreviewComponentsWithHorizontalScrollInVideoEditor:method&quot;}}{{&#x2F;crossLink}} to follow the timeline with the scroll.
 **&#x2F;
 function playVideoEditorComponent(component, with_scroll) {
   if(with_scroll) {
@@ -1779,7 +1785,7 @@ function playVideoEditorComponent(component, with_scroll) {
 }
 
 &#x2F;**
-bla bla bla
+Starts the preview from the selected component.
 @method startVideoEditorGlobalPreview
 @for VideoEditorPreview
 **&#x2F;

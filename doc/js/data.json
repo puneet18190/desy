@@ -6124,25 +6124,49 @@
         {
             "file": "app/assets/javascripts/video_editor.js",
             "line": 1322,
-            "description": "bla bla bla",
+            "description": "Automatic increase for the global preview current time (used when playing image or text components).",
             "itemtype": "method",
             "name": "automaticIncreaseVideoEditorPreviewTimer",
+            "params": [
+                {
+                    "name": "time",
+                    "description": "the global time before calling the method",
+                    "type": "Number"
+                },
+                {
+                    "name": "total_length",
+                    "description": "the total length of the component",
+                    "type": "Number"
+                },
+                {
+                    "name": "callback",
+                    "description": "the callback to be executed after the time update",
+                    "type": "Function"
+                }
+            ],
             "class": "VideoEditorPreview",
             "module": "video-editor"
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1340,
-            "description": "bla bla bla",
+            "line": 1343,
+            "description": "Increases of one step the global preview time (typically used in {{#crossLink \"PlayersVideoEditor/initializeActionOfMediaTimeUpdaterInVideoEditor:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "increaseVideoEditorPreviewTimer",
+            "params": [
+                {
+                    "name": "with_component",
+                    "description": "if true, it updates also the local time of the selected component",
+                    "type": "Boolean"
+                }
+            ],
             "class": "VideoEditorPreview",
             "module": "video-editor"
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1362,
-            "description": "bla bla bla",
+            "line": 1366,
+            "description": "Opens the preview mode with all its graphical effects. The similar functionality to close the preview mode is initialized in {{#crossLink \"VideoEditorDocuemntReady/videoEditorDocumentReadyPreview:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "openPreviewModeInVideoEditor",
             "class": "VideoEditorPreview",
@@ -6150,17 +6174,29 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1405,
-            "description": "bla bla bla",
+            "line": 1409,
+            "description": "Plays a component and handles the transition to the next one (if there is any). In case the component is of type <b>image</b> or <b>text</b>, the time increase is handled by {{#crossLink \"VideoEditorPreview/automaticIncreaseVideoEditorPreviewTimer:method\"}}{{/crossLink}}; if the component is of type <b>video</b> the transition is handled by {{#crossLink \"PlayersVideoEditor/initializeActionOfMediaTimeUpdaterInVideoEditor:method\"}}{{/crossLink}} and the time increase by {{#crossLink \"VideoEditorPreview/increaseVideoEditorPreviewTimer:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "playVideoEditorComponent",
+            "params": [
+                {
+                    "name": "component",
+                    "description": "the component to be played",
+                    "type": "Object"
+                },
+                {
+                    "name": "with_scroll",
+                    "description": "if true, i uses {{#crossLink \"VideoEditorScrollPain/followPreviewComponentsWithHorizontalScrollInVideoEditor:method\"}}{{/crossLink}} to follow the timeline with the scroll.",
+                    "type": "Boolean"
+                }
+            ],
             "class": "VideoEditorPreview",
             "module": "video-editor"
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1475,
-            "description": "bla bla bla",
+            "line": 1481,
+            "description": "Starts the preview from the selected component.",
             "itemtype": "method",
             "name": "startVideoEditorGlobalPreview",
             "class": "VideoEditorPreview",
@@ -6168,7 +6204,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1506,
+            "line": 1512,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "calculateVideoComponentStartSecondInVideoEditor",
@@ -6177,7 +6213,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1528,
+            "line": 1534,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "hideVideoEditorPreviewComponentProgressBar",
@@ -6186,7 +6222,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1538,
+            "line": 1544,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "selectVideoComponentInPreview",
@@ -6195,7 +6231,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1554,
+            "line": 1560,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "setVisualTimesVideoEditorPreview",
@@ -6204,7 +6240,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1583,
+            "line": 1589,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "showVideoEditorPreviewArrowToComponents",
@@ -6213,7 +6249,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1601,
+            "line": 1607,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "showVideoEditorPreviewComponentProgressBar",
@@ -6222,7 +6258,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1633,
+            "line": 1639,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "replaceImageComponentInVideoEditor",
@@ -6231,7 +6267,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1668,
+            "line": 1674,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "replaceTextComponentInVideoEditor",
@@ -6240,7 +6276,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1710,
+            "line": 1716,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "replaceVideoComponentInVideoEditor",
@@ -6249,7 +6285,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1759,
+            "line": 1765,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "followPreviewComponentsWithHorizontalScrollInVideoEditor",
@@ -6258,7 +6294,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1809,
+            "line": 1815,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "resetVideoEditorTextComponent",
@@ -6267,7 +6303,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1824,
+            "line": 1830,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "switchTextComponentBackgroundColor",
@@ -6276,7 +6312,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1836,
+            "line": 1842,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "switchTextComponentTextColor",
