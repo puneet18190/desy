@@ -5760,7 +5760,7 @@
         {
             "file": "app/assets/javascripts/video_editor.js",
             "line": 381,
-            "description": "Reloads all the positions of components in the timeline; used in {{#crossLink \"VideoEditorDocumentReady/videoEditorDocumentReadyRemoveComponent:method\"}}{{/crossLink}} (removing a component) and in {{#crossLink \"VideoEditorDocumentReady/videoEditorDocumentReadyInitialization:method\"}}{{/crossLink}} (sorting components)",
+            "description": "Reloads all the positions of components in the timeline; used in {{#crossLink \"VideoEditorDocumentReady/videoEditorDocumentReadyRemoveComponent:method\"}}{{/crossLink}} (removing a component) and in {{#crossLink \"VideoEditorDocumentReady/videoEditorDocumentReadyInitialization:method\"}}{{/crossLink}} (sorting components).",
             "itemtype": "method",
             "name": "reloadVideoEditorComponentPositions",
             "class": "VideoEditorComponents",
@@ -5778,7 +5778,7 @@
         {
             "file": "app/assets/javascripts/video_editor.js",
             "line": 411,
-            "description": "Selects the component with the delay, after passing with the mouse.",
+            "description": "Selects the component with a delay, after passing with the mouse.",
             "itemtype": "method",
             "name": "startVideoEditorPreviewClipWithDelay",
             "params": [

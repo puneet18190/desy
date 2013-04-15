@@ -379,7 +379,7 @@ function highlightAndUpdateVideoComponentIcon(component_id) {
 }
 
 /**
-Reloads all the positions of components in the timeline; used in {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyRemoveComponent:method"}}{{/crossLink}} (removing a component) and in {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyInitialization:method"}}{{/crossLink}} (sorting components)
+Reloads all the positions of components in the timeline; used in {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyRemoveComponent:method"}}{{/crossLink}} (removing a component) and in {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyInitialization:method"}}{{/crossLink}} (sorting components).
 @method reloadVideoEditorComponentPositions
 @for VideoEditorComponents
 **/
@@ -409,7 +409,7 @@ function resetVisibilityOfVideoEditorTransitions() {
 }
 
 /**
-Selects the component with the delay, after passing with the mouse.
+Selects the component with a delay, after passing with the mouse.
 @method startVideoEditorPreviewClipWithDelay
 @for VideoEditorComponents
 @param component_id {string} the HTML id of the component
