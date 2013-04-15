@@ -715,7 +715,7 @@ function resetVisibilityOfVideoEditorTransitions() {
 }
 
 &#x2F;**
-Selects the component with a delay, after passing with the mouse.
+Selects the component with a delay, after passing with the mouse. Used in {{#crossLink &quot;VideoEditorDocumentReady&#x2F;videoEditorDocumentReadyComponentsCommon:method&quot;}}{{&#x2F;crossLink}}.
 @method startVideoEditorPreviewClipWithDelay
 @for VideoEditorComponents
 @param component_id {string} the HTML id of the component
@@ -836,7 +836,7 @@ function startVideoEditorPreviewClip(component_id) {
 
 
 &#x2F;**
-bla bla bla
+Global initializer.
 @method videoEditorDocumentReady
 @for VideoEditorDocumentReady
 **&#x2F;
@@ -854,7 +854,7 @@ function videoEditorDocumentReady() {
 }
 
 &#x2F;**
-bla bla bla
+Initializer for adding components (this method calls both classes {{#crossLink &quot;VideoEditorAddComponents&quot;}}{{&#x2F;crossLink}} and {{#crossLink &quot;VideoEditorReplaceComponents&quot;}}{{&#x2F;crossLink}}).
 @method videoEditorDocumentReadyAddComponent
 @for VideoEditorDocumentReady
 **&#x2F;
@@ -937,7 +937,7 @@ function videoEditorDocumentReadyAddComponent() {
 }
 
 &#x2F;**
-bla bla bla
+Initializes functionality for audio track.
 @method videoEditorDocumentReadyAudioTrack
 @for VideoEditorDocumentReady
 **&#x2F;
@@ -977,7 +977,7 @@ function videoEditorDocumentReadyAudioTrack() {
 }
 
 &#x2F;**
-bla bla bla -- TODO copiare dagli analoghi in image editor e audio editor
+Initializer for the functionalities of committing changes (click on &#x27;commit&#x27;, on &#x27;cancel&#x27;, popup asking to overwrite, etc). For other functionalities common to all the Element Editors, see {{#crossLink &quot;MediaElementEditorForms&quot;}}{{&#x2F;crossLink}}.
 @method videoEditorDocumentReadyCommit
 @for VideoEditorDocumentReady
 **&#x2F;
@@ -1077,7 +1077,7 @@ function videoEditorDocumentReadyCommit() {
 }
 
 &#x2F;**
-bla bla bla
+Initializer for functionalities common to all types of components.
 @method videoEditorDocumentReadyComponentsCommon
 @for VideoEditorDocumentReady
 **&#x2F;
@@ -1106,7 +1106,7 @@ function videoEditorDocumentReadyComponentsCommon() {
 }
 
 &#x2F;**
-bla bla bla
+Initializer for cutters.
 @method videoEditorDocumentReadyCutters
 @for VideoEditorDocumentReady
 **&#x2F;
@@ -1222,7 +1222,7 @@ function videoEditorDocumentReadyCutters() {
 }
 
 &#x2F;**
-bla bla bla
+Initializer for galleries.
 @method videoEditorDocumentReadyGalleries
 @for VideoEditorDocumentReady
 **&#x2F;
@@ -1283,7 +1283,7 @@ function videoEditorDocumentReadyGalleries() {
 }
 
 &#x2F;**
-bla bla bla
+Initializer for sorting and other JQueryUi plugins.
 @method videoEditorDocumentReadyInitialization
 @for VideoEditorDocumentReady
 **&#x2F;
@@ -1328,7 +1328,7 @@ function videoEditorDocumentReadyInitialization() {
 }
 
 &#x2F;**
-bla bla bla
+Initializer for preview mode (see {{#crossLink &quot;VideoEditorPreview&quot;}}{{&#x2F;crossLink}} and {{#crossLink &quot;VideoEditorPreviewAccessories&quot;}}{{&#x2F;crossLink}}).
 @method videoEditorDocumentReadyPreview
 @for VideoEditorDocumentReady
 **&#x2F;
@@ -1434,7 +1434,7 @@ function videoEditorDocumentReadyPreview() {
 }
 
 &#x2F;**
-bla bla bla TODO dire che chiamo set duration con zero
+Initializer for the functionality of &lt;b&gt;removing a component&lt;&#x2F;b&gt; from the timeline (is uses {{#crossLink &quot;VideoEditorComponents&#x2F;changeDurationVideoEditorComponent:method&quot;}}{{&#x2F;crossLink}} passing &lt;i&gt;new duration = 0&lt;&#x2F;i&gt;.
 @method videoEditorDocumentReadyRemoveComponent
 @for VideoEditorDocumentReady
 **&#x2F;
@@ -1465,7 +1465,7 @@ function videoEditorDocumentReadyRemoveComponent() {
 }
 
 &#x2F;**
-bla bla bla
+Initializes the &lt;b&gt;text component editor&lt;&#x2F;b&gt; (see {{#crossLink &quot;VideoEditorTextComponentEditor&quot;}}{{&#x2F;crossLink}}).
 @method videoEditorDocumentReadyTextComponentEditor
 @for VideoEditorDocumentReady
 **&#x2F;

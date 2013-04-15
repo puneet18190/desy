@@ -5778,7 +5778,7 @@
         {
             "file": "app/assets/javascripts/video_editor.js",
             "line": 411,
-            "description": "Selects the component with a delay, after passing with the mouse.",
+            "description": "Selects the component with a delay, after passing with the mouse. Used in {{#crossLink \"VideoEditorDocumentReady/videoEditorDocumentReadyComponentsCommon:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "startVideoEditorPreviewClipWithDelay",
             "params": [
@@ -5893,7 +5893,7 @@
         {
             "file": "app/assets/javascripts/video_editor.js",
             "line": 532,
-            "description": "bla bla bla",
+            "description": "Global initializer.",
             "itemtype": "method",
             "name": "videoEditorDocumentReady",
             "class": "VideoEditorDocumentReady",
@@ -5902,7 +5902,7 @@
         {
             "file": "app/assets/javascripts/video_editor.js",
             "line": 550,
-            "description": "bla bla bla",
+            "description": "Initializer for adding components (this method calls both classes {{#crossLink \"VideoEditorAddComponents\"}}{{/crossLink}} and {{#crossLink \"VideoEditorReplaceComponents\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "videoEditorDocumentReadyAddComponent",
             "class": "VideoEditorDocumentReady",
@@ -5911,7 +5911,7 @@
         {
             "file": "app/assets/javascripts/video_editor.js",
             "line": 633,
-            "description": "bla bla bla",
+            "description": "Initializes functionality for audio track.",
             "itemtype": "method",
             "name": "videoEditorDocumentReadyAudioTrack",
             "class": "VideoEditorDocumentReady",
@@ -5920,7 +5920,7 @@
         {
             "file": "app/assets/javascripts/video_editor.js",
             "line": 673,
-            "description": "bla bla bla -- TODO copiare dagli analoghi in image editor e audio editor",
+            "description": "Initializer for the functionalities of committing changes (click on 'commit', on 'cancel', popup asking to overwrite, etc). For other functionalities common to all the Element Editors, see {{#crossLink \"MediaElementEditorForms\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "videoEditorDocumentReadyCommit",
             "class": "VideoEditorDocumentReady",
@@ -5929,7 +5929,7 @@
         {
             "file": "app/assets/javascripts/video_editor.js",
             "line": 773,
-            "description": "bla bla bla",
+            "description": "Initializer for functionalities common to all types of components.",
             "itemtype": "method",
             "name": "videoEditorDocumentReadyComponentsCommon",
             "class": "VideoEditorDocumentReady",
@@ -5938,7 +5938,7 @@
         {
             "file": "app/assets/javascripts/video_editor.js",
             "line": 802,
-            "description": "bla bla bla",
+            "description": "Initializer for cutters.",
             "itemtype": "method",
             "name": "videoEditorDocumentReadyCutters",
             "class": "VideoEditorDocumentReady",
@@ -5947,7 +5947,7 @@
         {
             "file": "app/assets/javascripts/video_editor.js",
             "line": 918,
-            "description": "bla bla bla",
+            "description": "Initializer for galleries.",
             "itemtype": "method",
             "name": "videoEditorDocumentReadyGalleries",
             "class": "VideoEditorDocumentReady",
@@ -5956,7 +5956,7 @@
         {
             "file": "app/assets/javascripts/video_editor.js",
             "line": 979,
-            "description": "bla bla bla",
+            "description": "Initializer for sorting and other JQueryUi plugins.",
             "itemtype": "method",
             "name": "videoEditorDocumentReadyInitialization",
             "class": "VideoEditorDocumentReady",
@@ -5965,7 +5965,7 @@
         {
             "file": "app/assets/javascripts/video_editor.js",
             "line": 1024,
-            "description": "bla bla bla",
+            "description": "Initializer for preview mode (see {{#crossLink \"VideoEditorPreview\"}}{{/crossLink}} and {{#crossLink \"VideoEditorPreviewAccessories\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "videoEditorDocumentReadyPreview",
             "class": "VideoEditorDocumentReady",
@@ -5974,7 +5974,7 @@
         {
             "file": "app/assets/javascripts/video_editor.js",
             "line": 1130,
-            "description": "bla bla bla TODO dire che chiamo set duration con zero",
+            "description": "Initializer for the functionality of <b>removing a component</b> from the timeline (is uses {{#crossLink \"VideoEditorComponents/changeDurationVideoEditorComponent:method\"}}{{/crossLink}} passing <i>new duration = 0</i>.",
             "itemtype": "method",
             "name": "videoEditorDocumentReadyRemoveComponent",
             "class": "VideoEditorDocumentReady",
@@ -5983,7 +5983,7 @@
         {
             "file": "app/assets/javascripts/video_editor.js",
             "line": 1161,
-            "description": "bla bla bla",
+            "description": "Initializes the <b>text component editor</b> (see {{#crossLink \"VideoEditorTextComponentEditor\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "videoEditorDocumentReadyTextComponentEditor",
             "class": "VideoEditorDocumentReady",
