@@ -67,9 +67,13 @@ Another important difference with {{#crossLinkModule "audio-editor"}}{{/crossLin
 <br/><br/>
 In the class {{#crossLink "VideoEditorPreviewAccessories"}}{{/crossLink}} are stored the methods to handle the instruments available for the user to get to a specific position inside the timeline during preview mode. Such instruments (initialized in {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyPreview:method"}}{{/crossLink}}) are:
 <ul>
-  <li>freccette</li>
-  <li>mini slides (dire che vengono distrutte ogni volta).</li>
+  <li>the <b>arrows</b> that allow the user to pass from a component to another</li>
+  <li>the <b>precision bar</b> that allows the user to select a specific point inside the selected component: notice that this bar is implemented with a <i>JQueryUi slider</i> which is destroyed and re-initialized at each component change (using the methods {{#crossLink "VideoEditorPreviewAccessories/showVideoEditorPreviewComponentProgressBar:method""}}{{/crossLink}} and {{#crossLink "VideoEditorPreviewAccessories/hideVideoEditorPreviewComponentProgressBar:method""}}{{/crossLink}}).</li>
 </ul>
+Both precision instruments use the general method {{#crossLink "VideoEditorPreviewAccessories/selectVideoComponentInPreview:method"}}{{/crossLink}}, that allows to select a component at a specific time.
+<br/><br/>
+To include the <b>background audio track</b> in the global preview, the system uses the method {{#crossLink "VideoEditorPreviewAccessories/calculateVideoComponentStartSecondInVideoEditor:method"}}{{/crossLink}}, which calculates <b>the total amount of seconds</b> until the selected point, including the time necessary for the transitions.
+<br/><br/>
 
 
 <br/><br/>
