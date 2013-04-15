@@ -2094,7 +2094,7 @@ function replaceVideoComponentInVideoEditor(video_id, webm, mp4, component, posi
 
 
 &#x2F;**
-bla bla bla
+Method that uses the scroll to keep visible the current component in the timeline. It uses {{#crossLink &quot;MediaElementEditorHorizontalTimelines&quot;}}{{&#x2F;crossLink}}.
 @method followPreviewComponentsWithHorizontalScrollInVideoEditor
 @for VideoEditorScrollPain
 **&#x2F;
@@ -2144,7 +2144,7 @@ function followPreviewComponentsWithHorizontalScrollInVideoEditor() {
 
 
 &#x2F;**
-bla bla bla
+Resets the text component editor when it&#x27;s closed.
 @method resetVideoEditorTextComponent
 @for VideoEditorTextComponentEditor
 **&#x2F;
@@ -2159,9 +2159,11 @@ function resetVideoEditorTextComponent() {
 }
 
 &#x2F;**
-bla bla bla
+Switches to a different background color the text component editor.
 @method switchTextComponentBackgroundColor
 @for VideoEditorTextComponentEditor
+@param old_color {String} the class corresponding to the old color chosen for the background
+@param new_color {String} the class corresponding to the new color chosen for the background
 **&#x2F;
 function switchTextComponentBackgroundColor(old_color, new_color) {
   $(&#x27;#text_component_preview&#x27;).removeClass(&#x27;background_color_&#x27; + old_color).addClass(&#x27;background_color_&#x27; + new_color);
@@ -2171,9 +2173,11 @@ function switchTextComponentBackgroundColor(old_color, new_color) {
 }
 
 &#x2F;**
-bla bla bla
+Switches to a different text color the text component editor.
 @method switchTextComponentTextColor
 @for VideoEditorTextComponentEditor
+@param old_color {String} the class corresponding to the old color chosen for the text font
+@param new_color {String} the class corresponding to the new color chosen for the text font
 **&#x2F;
 function switchTextComponentTextColor(old_color, new_color) {
   $(&#x27;#text_component_preview textarea&#x27;).removeClass(&#x27;color_&#x27; + old_color).addClass(&#x27;color_&#x27; + new_color);

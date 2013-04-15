@@ -6424,7 +6424,7 @@
         {
             "file": "app/assets/javascripts/video_editor.js",
             "line": 1790,
-            "description": "bla bla bla",
+            "description": "Method that uses the scroll to keep visible the current component in the timeline. It uses {{#crossLink \"MediaElementEditorHorizontalTimelines\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "followPreviewComponentsWithHorizontalScrollInVideoEditor",
             "class": "VideoEditorScrollPain",
@@ -6433,7 +6433,7 @@
         {
             "file": "app/assets/javascripts/video_editor.js",
             "line": 1840,
-            "description": "bla bla bla",
+            "description": "Resets the text component editor when it's closed.",
             "itemtype": "method",
             "name": "resetVideoEditorTextComponent",
             "class": "VideoEditorTextComponentEditor",
@@ -6442,18 +6442,42 @@
         {
             "file": "app/assets/javascripts/video_editor.js",
             "line": 1855,
-            "description": "bla bla bla",
+            "description": "Switches to a different background color the text component editor.",
             "itemtype": "method",
             "name": "switchTextComponentBackgroundColor",
+            "params": [
+                {
+                    "name": "old_color",
+                    "description": "the class corresponding to the old color chosen for the background",
+                    "type": "String"
+                },
+                {
+                    "name": "new_color",
+                    "description": "the class corresponding to the new color chosen for the background",
+                    "type": "String"
+                }
+            ],
             "class": "VideoEditorTextComponentEditor",
             "module": "video-editor"
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1867,
-            "description": "bla bla bla",
+            "line": 1869,
+            "description": "Switches to a different text color the text component editor.",
             "itemtype": "method",
             "name": "switchTextComponentTextColor",
+            "params": [
+                {
+                    "name": "old_color",
+                    "description": "the class corresponding to the old color chosen for the text font",
+                    "type": "String"
+                },
+                {
+                    "name": "new_color",
+                    "description": "the class corresponding to the new color chosen for the text font",
+                    "type": "String"
+                }
+            ],
             "class": "VideoEditorTextComponentEditor",
             "module": "video-editor"
         },
