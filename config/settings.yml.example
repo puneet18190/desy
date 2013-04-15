@@ -40,28 +40,35 @@ lessons_for_page_in_dashboard: 5
 lesson_pages_in_dashboard: 3
 media_elements_for_page_in_dashboard: 13
 media_element_pages_in_dashboard: 3
-# LESSONS PAGINATTION EVERYWHERE OUT OF DASHBOARD
+# Pagination of lessons, in sections (1) Lessons and (2) Search engine
 compact_lesson_pagination: 18
-# MEDIA ELEMENT PAGINATION EVERYWHERE OUT OF DASHBOARD
+# Pagination of compact media elements, in sections (1) Elements and (2) Search engine
 compact_media_element_pagination: 18
+# Options for pagination of compact media elements, in sections (1) Elements and (2) Search engine
 compact_media_element_pagination_options: [18, 27, 36]
+# Pagination of expanded media elements, in sections (1) Elements and (2) Search engine
 expanded_media_element_pagination: 14
+# Options for pagination of expanded media elements, in sections (1) Elements and (2) Search engine
 expanded_media_element_pagination_options: [14, 21, 28]
-# NOTIFICATIONS
+# Number of notifications loaded together (pagination of notifications done with infinite scroll)
 notifications_loaded_together: 8
-# SLIDES
+# Maximum number of slides in a lesson
 max_number_slides_in_a_lesson: 99
-# VIRTUAL CLASSROOM
+# Pagination of lessons in Virtual Classroom
 lessons_for_page_in_virtual_classroom: 10
+# Number of lessons in the playlist
 lessons_in_playlist: 20
+# Number of lessons for page in the multiple lessons loader (pagination made with infinite scroll)
 lessons_in_quick_loader: 18
-# GALLERIES
+# Pagination for image gallery (pagination made with infinite scroll)
 images_for_page_in_gallery: 42
+# Pagination for video gallery (pagination made with infinite scroll)
 videos_for_page_in_gallery: 18
+# Pagination for audio gallery (pagination made with infinite scroll)
 audios_for_page_in_gallery: 12
-# ADMIN
+# Pagination for sections in admin
 admin_general_pagination: 20
-# APP COLORS
+# Application colors with codes, keywords and positions
 colors:
   red:
     pos: 3
@@ -81,16 +88,17 @@ colors:
   black:
     pos: 1
     code: '#373737'
-# USER REGISTRATION POLICIES
+# Configurable registration policies (the names correspond to keys in the translation file)
 user_registration_policies: ['policy_1', 'policy_2']
-# USER PASSWORD CONSTRAINTS
+# Minimum length for the users' password
 minimum_password_length: 8
+# Maximum length for the users' password (if nil there is no maximum limitation)
 maximum_password_length:
-# MAXIMUM SIZE OF AN ELEMENT (IN MEGABYTES)
+# Maximum size of a media element (in megabytes)
 max_media_size: 50
-# MAXIMUM SIZE OF THE MEDIA ELEMENTS FOLDER (IN GIGABYTES)
+# Maximum size of the media elements folder (in gigabytes)
 maximum_media_elements_folder_size: 20
-# COOKIE KEY
+# Cookie key
 cookie_key: '_desy_session'
-# SESSION TIMEOUT (IN HOURS)
+# Session timeout (in hours)
 session_timeout: 48
