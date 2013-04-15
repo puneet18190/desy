@@ -1364,7 +1364,7 @@ function increaseVideoEditorPreviewTimer(with_component) {
 }
 
 /**
-Opens the preview mode with all its graphical effects. The similar functionality to close the preview mode is initialized in {{#crossLink "VideoEditorDocuemntReady/videoEditorDocumentReadyPreview:method"}}{{/crossLink}}.
+Opens the preview mode with all its graphical effects. The similar functionality to close the preview mode is initialized in {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyPreview:method"}}{{/crossLink}}.
 @method openPreviewModeInVideoEditor
 @for VideoEditorPreview
 **/

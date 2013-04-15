@@ -6166,7 +6166,7 @@
         {
             "file": "app/assets/javascripts/video_editor.js",
             "line": 1366,
-            "description": "Opens the preview mode with all its graphical effects. The similar functionality to close the preview mode is initialized in {{#crossLink \"VideoEditorDocuemntReady/videoEditorDocumentReadyPreview:method\"}}{{/crossLink}}.",
+            "description": "Opens the preview mode with all its graphical effects. The similar functionality to close the preview mode is initialized in {{#crossLink \"VideoEditorDocumentReady/videoEditorDocumentReadyPreview:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "openPreviewModeInVideoEditor",
             "class": "VideoEditorPreview",
