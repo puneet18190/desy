@@ -281,18 +281,18 @@ function adminSearchDocumentReady() {
     var selected = $(this).find('option:selected').first();
     var text = selected.text().replace(/\s+/g, ' ');
     var select_id = $(this).attr('id');
-    if($('._filter_select.'+select_id).length > 0){
+    if($('._filter_select.' + select_id).length > 0){
       if(selected.val().length > 0) {
         if(selected.val() != 0){
-          $('.'+select_id+' span').text(text);
+          $('.' + select_id + ' span').text(text);
         } else {
-          $('#'+select_id).parents('.control-group').nextAll().find('select').each(function(){
-            $('.'+$(this).attr('id')).remove();
+          $('#' + select_id).parents('.control-group').nextAll().find('select').each(function(){
+            $('.' + $(this).attr('id')).remove();
           });
-          $('.'+select_id).remove();
+          $('.' + select_id).remove();
         }
       } else {
-        $('.'+select_id).remove();
+        $('.' + select_id).remove();
       }
     } else {
       $('<div class="label _filter_select ' + select_id + '">').html('<span>' + text + '</span>').prependTo('#log');
@@ -302,11 +302,11 @@ function adminSearchDocumentReady() {
   $('#all_users').change(function() {
       if(this.checked) {
         $('._filter_and_send').removeClass('disabled');
-        $("input#contact-recipients").val('');
-        $("input#contact-recipients").attr('disabled',true);
-        $("#log").html('');
-        $("._users_count_label").text($("._users_count_label").data('all-selected'));
-        $("#filter-users select").each(function(){
+        $('input#contact-recipients').val('');
+        $('input#contact-recipients').attr('disabled',true);
+        $('#log').html('');
+        $('._users_count_label').text($('._users_count_label').data('all-selected'));
+        $('#filter-users select').each(function(){
           $this = $(this);
           $this.find('option:selected').removeAttr('selected');
           $this.attr('disabled',true);
@@ -316,7 +316,7 @@ function adminSearchDocumentReady() {
         $('._filter_and_send').addClass('disabled');
         $('input#contact-recipients').attr('disabled', false);
         $('#filter-users select').attr('disabled', false);
-        $("._users_count_label").text($("._users_count_label").data('zero-selected'));
+        $('._users_count_label').text($('._users_count_label').data('zero-selected'));
       }
   });
 }
@@ -329,26 +329,26 @@ Initializes effects for sorting in administration search engine.
 function adminSortingDocumentReady() {
   $('body').on('click', 'table#lessons-list thead tr th a', function(e) {
     e.preventDefault();
-    $("input#search_ordering").val($(this).data('ordering'));
-    $("input#search_desc").val($(this).data('desc'));
+    $('input#search_ordering').val($(this).data('ordering'));
+    $('input#search_desc').val($(this).data('desc'));
     $('#admin-search-lessons').submit();
   });
   $('body').on('click', 'table#elements-list thead tr th a', function(e) {
     e.preventDefault();
-    $("input#search_ordering").val($(this).data('ordering'));
-    $("input#search_desc").val($(this).data('desc'));
+    $('input#search_ordering').val($(this).data('ordering'));
+    $('input#search_desc').val($(this).data('desc'));
     $('#admin-search-elements').submit();
   });
   $('body').on('click', 'table#users-list thead tr th a', function(e) {
     e.preventDefault();
-    $("input#search_ordering").val($(this).data('ordering'));
-    $("input#search_desc").val($(this).data('desc'));
+    $('input#search_ordering').val($(this).data('ordering'));
+    $('input#search_desc').val($(this).data('desc'));
     $('#admin-search-users').submit();
   });
   $('body').on('click', 'table#tags-list thead tr th a', function(e) {
     e.preventDefault();
-    $("input#search_ordering").val($(this).data('ordering'));
-    $("input#search_desc").val($(this).data('desc'));
+    $('input#search_ordering').val($(this).data('ordering'));
+    $('input#search_desc').val($(this).data('desc'));
     $('#admin-search-tags').submit();
   });
 }
@@ -368,7 +368,7 @@ function adminUsersDocumentReady() {
     }
     $.ajax({
       url: '/admin/users/' + link.data('param') + '/set_status?active=' + status,
-      type: "put"
+      type: 'put'
     });
   });
 }
