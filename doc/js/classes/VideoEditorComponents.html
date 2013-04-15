@@ -416,7 +416,23 @@
     <h3 class="name"><code>changeDurationVideoEditorComponent</code></h3>
 
     
-        <span class="paren">()</span>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>component_id</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>new_duration</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
     
 
     
@@ -444,7 +460,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_video_editor.js.html#l274"><code>app&#x2F;assets&#x2F;javascripts&#x2F;video_editor.js:274</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_video_editor.js.html#l314"><code>app&#x2F;assets&#x2F;javascripts&#x2F;video_editor.js:314</code></a>
         
         </p>
 
@@ -455,9 +471,47 @@
     </div>
 
     <div class="description">
-        <p>bla bla bla</p>
+        <p>Changes the duration of a given component, and updates all the global durations and data.</p>
     </div>
 
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">component_id</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>the HTML id of the component</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">new_duration</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>the new duration (the old one is stored as data inside the HTML of the component)</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
     
 
     
@@ -470,7 +524,17 @@
     <h3 class="name"><code>clearSpecificVideoEditorComponentParameters</code></h3>
 
     
-        <span class="paren">()</span>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>component_id</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
     
 
     
@@ -498,7 +562,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_video_editor.js.html#l298"><code>app&#x2F;assets&#x2F;javascripts&#x2F;video_editor.js:298</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_video_editor.js.html#l340"><code>app&#x2F;assets&#x2F;javascripts&#x2F;video_editor.js:340</code></a>
         
         </p>
 
@@ -509,9 +573,32 @@
     </div>
 
     <div class="description">
-        <p>bla bla bla</p>
+        <p>Clears all the inputs of a component which refer to specific types (this is used in <a href="../classes/VideoEditorReplaceComponents.html" class="crosslink">VideoEditorReplaceComponents</a>, when the user replaces a component with another of a different type).</p>
     </div>
 
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">component_id</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>the HTML id of the component</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
     
 
     
@@ -524,9 +611,35 @@
     <h3 class="name"><code>fillVideoEditorSingleParameter</code></h3>
 
     
-        <span class="paren">()</span>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>input</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>identifier</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>value</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
     
 
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+        </span>
     
 
     
@@ -552,7 +665,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_video_editor.js.html#l315"><code>app&#x2F;assets&#x2F;javascripts&#x2F;video_editor.js:315</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_video_editor.js.html#l358"><code>app&#x2F;assets&#x2F;javascripts&#x2F;video_editor.js:358</code></a>
         
         </p>
 
@@ -563,11 +676,77 @@
     </div>
 
     <div class="description">
-        <p>bla bla bla # TODO quando arrivo qui metti il link all'analogo in audio editor, e torna in audio editor e assicurati che ci sia un link opposto che redireziona qui</p>
+        <p>Function that creates a single input field to be inserted in the empty audio component during the process of construction of a new one (similar to <a href="../classes/AudioEditorComponents.html#method_fillAudioEditorSingleParameter" class="crosslink">fillAudioEditorSingleParameter</a>).</p>
     </div>
 
     
+        <div class="params">
+            <h4>Parameters:</h4>
 
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">input</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>the specific input to be filled (for example, <i>video_id</i>, <i>from</i>, <i>duration</i>, or <i>to</i>)</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">identifier</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>the identifier of the component</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">value</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>the HTML value to be assigned to the input</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
+                    
+                    the resulting input written in HTML
+                
+            </div>
+        </div>
     
 
     
@@ -578,7 +757,17 @@
     <h3 class="name"><code>highlightAndUpdateVideoComponentIcon</code></h3>
 
     
-        <span class="paren">()</span>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>component_id</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
     
 
     
@@ -606,7 +795,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_video_editor.js.html#l324"><code>app&#x2F;assets&#x2F;javascripts&#x2F;video_editor.js:324</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_video_editor.js.html#l371"><code>app&#x2F;assets&#x2F;javascripts&#x2F;video_editor.js:371</code></a>
         
         </p>
 
@@ -617,9 +806,32 @@
     </div>
 
     <div class="description">
-        <p>bla bla bla</p>
+        <p>Highlights the small header of a component.</p>
     </div>
 
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">component_id</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>the HTML id of the component</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
     
 
     
@@ -660,7 +872,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_video_editor.js.html#l333"><code>app&#x2F;assets&#x2F;javascripts&#x2F;video_editor.js:333</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_video_editor.js.html#l381"><code>app&#x2F;assets&#x2F;javascripts&#x2F;video_editor.js:381</code></a>
         
         </p>
 
@@ -671,7 +883,7 @@
     </div>
 
     <div class="description">
-        <p>bla bla bla</p>
+        <p>Reloads all the positions of components in the timeline; used in <a href="../classes/VideoEditorDocumentReady.html#method_videoEditorDocumentReadyRemoveComponent" class="crosslink">videoEditorDocumentReadyRemoveComponent</a> (removing a component) and in <a href="../classes/VideoEditorDocumentReady.html#method_videoEditorDocumentReadyInitialization" class="crosslink">videoEditorDocumentReadyInitialization</a> (sorting components).</p>
     </div>
 
     
@@ -714,7 +926,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_video_editor.js.html#l347"><code>app&#x2F;assets&#x2F;javascripts&#x2F;video_editor.js:347</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_video_editor.js.html#l395"><code>app&#x2F;assets&#x2F;javascripts&#x2F;video_editor.js:395</code></a>
         
         </p>
 
@@ -725,7 +937,7 @@
     </div>
 
     <div class="description">
-        <p>bla bla bla</p>
+        <p>Resets the visibility of all the transitions between components (because the last transition is not visible); used in <a href="../classes/VideoEditorDocumentReady.html#method_videoEditorDocumentReadyRemoveComponent" class="crosslink">videoEditorDocumentReadyRemoveComponent</a> (removing a component) and in <a href="../classes/VideoEditorDocumentReady.html#method_videoEditorDocumentReadyInitialization" class="crosslink">videoEditorDocumentReadyInitialization</a> (sorting components).</p>
     </div>
 
     
@@ -740,7 +952,17 @@
     <h3 class="name"><code>startVideoEditorPreviewClipWithDelay</code></h3>
 
     
-        <span class="paren">()</span>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>component_id</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
     
 
     
@@ -768,7 +990,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_video_editor.js.html#l363"><code>app&#x2F;assets&#x2F;javascripts&#x2F;video_editor.js:363</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_video_editor.js.html#l411"><code>app&#x2F;assets&#x2F;javascripts&#x2F;video_editor.js:411</code></a>
         
         </p>
 
@@ -779,9 +1001,32 @@
     </div>
 
     <div class="description">
-        <p>bla bla bla</p>
+        <p>Selects the component with a delay, after passing with the mouse. Used in <a href="../classes/VideoEditorDocumentReady.html#method_videoEditorDocumentReadyComponentsCommon" class="crosslink">videoEditorDocumentReadyComponentsCommon</a>.</p>
     </div>
 
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">component_id</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>the HTML id of the component</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
     
 
     

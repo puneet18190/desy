@@ -3,7 +3,7 @@ The Video Editor is structured as follows: centered in the middle of the Editor 
 <br/><br/>
 A video created with the Video Editor can be composed by <b>three types of components</b> (and optionally an <b>audio track</b>):
 <ul>
-  <li>a <b>video component</b> is an element of type video extracted from the user's gallery, associated to an <b>initial</b> and <b>final point</b></li>
+  <li>a <b>video component</b> is an element of type video extracted from the user's gallery, associated to an <b>initial</b> and <b>final time</b></li>
   <li>a <b>image component</b> is an element of type image extracted from the user's gallery, associated to a <b>duration</b> in seconds (the image is held in the video for a number of seconds equal to the component's duration); the image is centered and cropped maintaining its original proportions, to make it fit in the video screen (which has proportions 16/9)</li>
   <li>a <b>text component</b> is a centered title for which the user chooses a <b>background color</b>, a <b>font color</b> and a <b>duration</b> (which has the same interpretation as for image components).</li>
 </ul>
@@ -14,7 +14,7 @@ The resulting video will be the concatenation of all the components inside the t
   <li><b>sort</b> and change the order of the components (initialized in {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyInitialization:method"}}{{/crossLink}})</li>
   <li><b>cut</b> a video component (change its initial and final point) or <b>change duration</b> of an image or text compoent (both these functionalities are initialized in {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyCutters:method"}}{{/crossLink}} and implemented in the class {{#crossLink "VideoEditorCutters"}}{{/crossLink}}).</li>
 </ul>
-Each component is provided of its own <b>identifier</b> (the same used in {{#crossLinkModule "audio-editor"}}{{/crossLinkModule}}), that is unique and doesn't change on any operation performed by the user. Moreover, regardless of its type, a component is strictly linked with two <b>external accessories</b>:
+Each component is provided of its own <b>identifier</b> (similar to the one used in {{#crossLinkModule "audio-editor"}}{{/crossLinkModule}}), that is unique and doesn't change on any operation performed by the user. Moreover, regardless of its type, a component is strictly linked with two <b>external accessories</b>:
 <ul>
   <li>a <b>cutter</b> (whose HTML id is <i>video component [identifier] cutter</i>): this item is normally hidden, when requested it appears below the timeline and is used to cut a video component or change the duration of an image or text component (class {{#crossLink "VideoEditorCutters"}}{{/crossLink}})</li>
   <li>a <b>preview clip</b> (whose HTML id is <i>video component [identifier] preview</i>): this item is hidden inside the <b>preview screen</b>, and it's used
@@ -47,8 +47,34 @@ For image and text components, a cutter is simply a small form where the user ma
 <br/><br/>
 All the cutters are initialized in {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyCutters:method"}}{{/crossLink}}, and their functionalities included in the class {{#crossLink "AudioEditorCutters"}}{{/crossLink}}.
 <br/><br/>
-
-
+The <b>text component editor</b> can be opened clicking on the icon 'T' in the header of the component editor (see method {{#crossLink "VideoEditorGalleries/switchToOtherGalleryInMixedGalleryInVideoEditor:method"}}{{/crossLink}}). The user can insert a text and choose background and text color: the functionality is initialized in {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyTextComponentEditor:method"}}{{/crossLink}}, and the main methods are contained in the class {{#crossLink "VideoEditorTextComponentEditor"}}{{/crossLink}}. Notice that, unlike image and video components, the <b>miniature</b> of a text component is created in the moment of the insertion of the compoent (see both {{#crossLink "VideoEditorAddComponents/addTextComponentInVideoEditor:method"}}{{/crossLink}} and {{#crossLink "VideoEditorReplaceComponents/replaceTextComponentInVideoEditor:method"}}{{/crossLink}}).
+<br/><br/>
+The <b>optional audio track</b> is added clicking on the button on the bottom. When the user opens the audio gallery and selects an audio, the system automatically sets <i>muted</i> as <i>true</i> in all the video components ({{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyAudioTrack:method"}}{{/crossLink}}); when adding or replacing a video component (see both {{#crossLink "VideoEditorAddComponents/addVideoComponentInVideoEditor:method"}}{{/crossLink}} and {{#crossLink "VideoEditorReplaceComponents/replaceVideoComponentInVideoEditor:method"}}{{/crossLink}}) the attribute <i>muted</i> is inserted if an audio track is present.
+<br/><br/>
+The audio track is handled while playing a video component inside the video cutter (class {{#crossLink "VideoEditorCutters"}}{{/crossLink}}): the system ensures that the starting of the audio corresponds to the position of the selected video component inside the whole video, using the methods {{#crossLink "PlayersDocumentReady/playersDocumentReadyVideoEditor:method"}}{{/crossLink}} and {{#crossLink "PlayersVideoEditor/initializeActionOfMediaTimeUpdaterInVideoEditor:method"}}{{/crossLink}} of the module {{#crossLinkModule "players"}}{{/crossLinkModule}}.
+<br/><br/>
+Unlike the {{#crossLinkModule "audio-editor"}}{{/crossLinkModule}}, in Video Editor the <b>preview mode</b> is not left automatically when the user stops the global preview: The system has different behaviors for each item in the editor while being in preview mode. While the global preview is playing it sets to true the HTML data <b>preview mode in-use</b>.
+<br/><br/>
+While in preview mode, the <b>preview</b> button in the right column is substituted by a button <b>play / pause</b>; the <i>arrow</i> on the bottom used to commit changes (see {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyCommit:method"}}{{/crossLink}}) is replaced by <b>a button 'X'</b> that is used to leave the preview mode. Furthermore, in preview mode many graphical details are slightly changed respect to the normal mode (for instance it's not possible to open the cutters, remove components, etc).
+<br/><br/>
+The general methods relative to the preview mode are contained in {{#crossLink "VideoEditorPreview"}}{{/crossLink}}; the method to enter in preview mode is {{#crossLink "VideoEditorPreview/openPreviewModeInVideoEditor:method"}}{{/crossLink}}; the initializer, which contains also the functionality of <b>leaving</b> the preview mode, is {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyPreview:method"}}{{/crossLink}}.
+<br/><br/>
+While in preview mode, it's possible to start the global preview (starting <b>from the selected component at the selected second</b>) using the method {{#crossLink "VideoEditorPreview/startVideoEditorGlobalPreview:method"}}{{/crossLink}}: this method is automatically fired with the first component selectedm when the user opens the preview mode for the first time. The method to <b>play a component</b> is {{#crossLink "VideoEditorPreview/playVideoEditorComponent:method"}}{{/crossLink}}; the functionality of passing from a component to another is placed in the last method (if the last component was of type <b>image</b> or <b>text</b>), and in {{#crossLink "PlayersVideoEditor/initializeActionOfMediaTimeUpdaterInVideoEditor:method"}}{{/crossLink}} (it it's of type <b>video</b>, in which case the behavior differs slightly).
+<br/><br/>
+Unlike in {{#crossLinkModule "audio-editor"}}{{/crossLinkModule}}, there are <b>two methods for increasing the global time</b>: the regular one is {{#crossLink "VideoEditorPreview/increaseVideoEditorPreviewTimer:method"}}{{/crossLink}} (used to increase the time according to the <b>currentTime</b> of a video component), and the automatic one is {{#crossLink "VideoEditorPreview/automaticIncreaseVideoEditorPreviewTimer:method"}}{{/crossLink}} (used for automatic increase while playing image and text components).
+<br/><br/>
+Another important difference with {{#crossLinkModule "audio-editor"}}{{/crossLinkModule}} is the reproduction of the <b>one second transitions</b> between two components: if the user clicks on <i>pause</i> while the global preview is playing a transition, the method that is playing the component (as we have already seen, it can be either {{#crossLink "VideoEditorPreview/playVideoEditorComponent:method"}}{{/crossLink}} or {{#crossLink "PlayersVideoEditor/initializeActionOfMediaTimeUpdaterInVideoEditor:method"}}{{/crossLink}}) waits until the transition is over to stop the reproduction.
+<br/><br/>
+In the class {{#crossLink "VideoEditorPreviewAccessories"}}{{/crossLink}} are stored the methods to handle the instruments available for the user to get to a specific position inside the timeline during preview mode. Such instruments (initialized in {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyPreview:method"}}{{/crossLink}}) are:
+<ul>
+  <li>the <b>arrows</b> that allow the user to pass from a component to another</li>
+  <li>the <b>precision bar</b> that allows the user to select a specific point inside the selected component: notice that this bar is implemented with a <i>JQueryUi slider</i> which is destroyed and re-initialized at each component change (using the methods {{#crossLink "VideoEditorPreviewAccessories/showVideoEditorPreviewComponentProgressBar:method"}}{{/crossLink}} and {{#crossLink "VideoEditorPreviewAccessories/hideVideoEditorPreviewComponentProgressBar:method"}}{{/crossLink}}).</li>
+</ul>
+Both precision instruments use the general method {{#crossLink "VideoEditorPreviewAccessories/selectVideoComponentInPreview:method"}}{{/crossLink}}, that allows to select a component at a specific time.
+<br/><br/>
+To include the <b>background audio track</b> in the global preview, the system uses the method {{#crossLink "VideoEditorPreviewAccessories/calculateVideoComponentStartSecondInVideoEditor:method"}}{{/crossLink}}, which calculates <b>the total amount of seconds</b> until the selected point, including the time necessary for the transitions.
+<br/><br/>
+Finally, let's have a look at the functionalities of the JScrollPain: the method {{#crossLink "VideoEditorScrollPain/followPreviewComponentsWithHorizontalScrollInVideoEditor:method"}}{{/crossLink}} is called at any time the selected component changes inside the preview mode (that is, either while reproducing the global preview, or if the user changes component using the arrows); this method re-implements many functionalities that were badly implemented or absent in the original plugin, such as for instance the uniform speed to scroll different amounts of components. The method uses the class {{#crossLink "MediaElementEditorHorizontalTimelines"}}{{/crossLink}}
 <br/><br/>
 As for the other Element Editors ({{#crossLinkModule "image-editor"}}{{/crossLinkModule}}, {{#crossLinkModule "audio-editor"}}{{/crossLinkModule}}) the core of the process of committing changes is handled in the module {{#crossLinkModule "media-element-editor"}}{{/crossLinkModule}} (more specificly in the class {{#crossLink "MediaElementEditorForms"}}{{/crossLink}}); the part of this functionality specific for the Video Editor is handled in {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyCommit:method"}}{{/crossLink}}.
 @module video-editor
@@ -59,9 +85,13 @@ As for the other Element Editors ({{#crossLinkModule "image-editor"}}{{/crossLin
 
 
 /**
-bla bla bla
+Adds an image component to the timeline, contructing an empty <b>preview</b>, <b>cutter</b> and <b>component</b>, and then filling them (see the commentaries inside the code). This method is called by {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyAddComponent:method"}}{{/crossLink}}.
 @method addImageComponentInVideoEditor
 @for VideoEditorAddComponents
+@param image_id {Number} the id of the image in the database
+@param component {String} HTML code corresponding to the already built <b>miniature</b> of the image
+@param preview {String} HTML code corresponding to the already built <b>content of the preview</b> for the image
+@param duration {Number} the duration in seconds of the image component
 **/
 function addImageComponentInVideoEditor(image_id, component, preview, duration) {
   $('._new_component_in_video_editor_hover a').removeClass('current');
@@ -123,9 +153,14 @@ function addImageComponentInVideoEditor(image_id, component, preview, duration) 
 }
 
 /**
-bla bla bla
+Adds a text component to the timeline, contructing an empty <b>preview</b>, <b>cutter</b> and <b>component</b>, and then filling them (see the commentaries inside the code). This method is called by {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyAddComponent:method"}}{{/crossLink}}.
 @method addTextComponentInVideoEditor
 @for VideoEditorAddComponents
+@param component {String} HTML code corresponding to the already built <b>miniature</b> of the text
+@param content {String} the text content
+@param duration {Number} the duration in seconds of the image component
+@param background_color {String} the class corresponding to the color chosen for the background
+@param text_color {String} the class corresponding to the color chosen for the text font
 **/
 function addTextComponentInVideoEditor(component, content, duration, background_color, text_color) {
   $('._new_component_in_video_editor_hover a').removeClass('current');
@@ -194,9 +229,14 @@ function addTextComponentInVideoEditor(component, content, duration, background_
 }
 
 /**
-bla bla bla
+Adds a video component to the timeline, contructing an empty <b>preview</b>, <b>cutter</b> and <b>component</b>, and then filling them (see the commentaries inside the code). This method is called by {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyAddComponent:method"}}{{/crossLink}}.
 @method addVideoComponentInVideoEditor
 @for VideoEditorAddComponents
+@param video_id {Number} the id of the video in the database
+@param webm {String} path of the webm attached of the video
+@param mp4 {String} path of the mp4 attached of the video
+@param component {String} HTML code corresponding to the already built <b>miniature</b> of the video
+@param duration {Number} the duration in seconds of the video component (initially the values <b>from</b> and <b>to</b> are respectively <b>0</b> and <b>duration</b>)
 **/
 function addVideoComponentInVideoEditor(video_id, webm, mp4, component, duration) {
   $('._new_component_in_video_editor_hover a').removeClass('current');
@@ -272,9 +312,11 @@ function addVideoComponentInVideoEditor(video_id, webm, mp4, component, duration
 
 
 /**
-bla bla bla
+Changes the duration of a given component, and updates all the global durations and data.
 @method changeDurationVideoEditorComponent
 @for VideoEditorComponents
+@param component_id {String} the HTML id of the component
+@param new_duration {Number} the new duration (the old one is stored as data inside the HTML of the component)
 **/
 function changeDurationVideoEditorComponent(component_id, new_duration) {
   var old_duration = $('#' + component_id).data('duration');
@@ -296,9 +338,10 @@ function changeDurationVideoEditorComponent(component_id, new_duration) {
 }
 
 /**
-bla bla bla
+Clears all the inputs of a component which refer to specific types (this is used in {{#crossLink "VideoEditorReplaceComponents"}}{{/crossLink}}, when the user replaces a component with another of a different type).
 @method clearSpecificVideoEditorComponentParameters
 @for VideoEditorComponents
+@param component_id {String} the HTML id of the component
 **/
 function clearSpecificVideoEditorComponentParameters(component_id) {
   var huge_selector = '#' + component_id + ' ._video_component_input_content';
@@ -313,25 +356,30 @@ function clearSpecificVideoEditorComponentParameters(component_id) {
 }
 
 /**
-bla bla bla # TODO quando arrivo qui metti il link all'analogo in audio editor, e torna in audio editor e assicurati che ci sia un link opposto che redireziona qui
+Function that creates a single input field to be inserted in the empty audio component during the process of construction of a new one (similar to {{#crossLink "AudioEditorComponents/fillAudioEditorSingleParameter:method"}}{{/crossLink}}).
 @method fillVideoEditorSingleParameter
 @for VideoEditorComponents
+@param input {String} the specific input to be filled (for example, <i>video_id</i>, <i>from</i>, <i>duration</i>, or <i>to</i>)
+@param identifier {Number} the identifier of the component
+@param value {String} the HTML value to be assigned to the input
+@return {String} the resulting input written in HTML
 **/
 function fillVideoEditorSingleParameter(input, identifier, value) {
   return '<input id="' + input + '_' + identifier + '" class="_video_component_input_' + input + '" type="hidden" value="' + value + '" name="' + input + '_' + identifier + '">';
 }
 
 /**
-bla bla bla
+Highlights the small header of a component.
 @method highlightAndUpdateVideoComponentIcon
 @for VideoEditorComponents
+@param component_id {string} the HTML id of the component
 **/
 function highlightAndUpdateVideoComponentIcon(component_id) {
   $('#' + component_id + ' ._video_component_icon').effect('highlight', {color: '#41A62A'}, 1500);
 }
 
 /**
-bla bla bla
+Reloads all the positions of components in the timeline; used in {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyRemoveComponent:method"}}{{/crossLink}} (removing a component) and in {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyInitialization:method"}}{{/crossLink}} (sorting components).
 @method reloadVideoEditorComponentPositions
 @for VideoEditorComponents
 **/
@@ -345,7 +393,7 @@ function reloadVideoEditorComponentPositions() {
 }
 
 /**
-bla bla bla
+Resets the visibility of all the transitions between components (because the last transition is not visible); used in {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyRemoveComponent:method"}}{{/crossLink}} (removing a component) and in {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyInitialization:method"}}{{/crossLink}} (sorting components).
 @method resetVisibilityOfVideoEditorTransitions
 @for VideoEditorComponents
 **/
@@ -361,9 +409,10 @@ function resetVisibilityOfVideoEditorTransitions() {
 }
 
 /**
-bla bla bla
+Selects the component with a delay, after passing with the mouse. Used in {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyComponentsCommon:method"}}{{/crossLink}}.
 @method startVideoEditorPreviewClipWithDelay
 @for VideoEditorComponents
+@param component_id {string} the HTML id of the component
 **/
 function startVideoEditorPreviewClipWithDelay(component_id) {
   setTimeout(function() {
@@ -379,11 +428,9 @@ function startVideoEditorPreviewClipWithDelay(component_id) {
 
 
 /**
-bla bla bla
+Closes the cutter that is visible at the moment, regardless of its type.
 @method closeGenericVideoComponentCutter
 @for VideoEditorCutters
-@param name {String} An attribute name or object property path.
-@return {String} Unique clientId.
 **/
 function closeGenericVideoComponentCutter() {
   $('._video_component_cutter_arrow').hide('fade', {}, 250);
@@ -402,9 +449,10 @@ function closeGenericVideoComponentCutter() {
 }
 
 /**
-bla bla bla
+Commits the changes of a generic cutter.
 @method commitVideoComponentVideoCutter
 @for VideoEditorCutters
+@param identifier {Number} the unique identifier of the component
 **/
 function commitVideoComponentVideoCutter(identifier) {
   var from = $('#video_component_' + identifier + '_cutter').data('from');
@@ -419,9 +467,11 @@ function commitVideoComponentVideoCutter(identifier) {
 }
 
 /**
-bla bla bla
+Cuts the left side of a video component.
 @method cutVideoComponentLeftSide
 @for VideoEditorCutters
+@param identifier {Number} the unique identifier of the video component
+@param pos {Number} the new value for the input <i>from</i>
 **/
 function cutVideoComponentLeftSide(identifier, pos) {
   $('#video_component_' + identifier + '_cutter').data('from', pos);
@@ -430,9 +480,11 @@ function cutVideoComponentLeftSide(identifier, pos) {
 }
 
 /**
-bla bla bla
+Cuts the right side of a video component.
 @method cutVideoComponentRightSide
 @for VideoEditorCutters
+@param identifier {Number} the unique identifier of the video component
+@param pos {Number} the new value for the input <i>to</i>
 **/
 function cutVideoComponentRightSide(identifier, pos) {
   $('#video_component_' + identifier + '_cutter').data('to', pos);
@@ -441,9 +493,10 @@ function cutVideoComponentRightSide(identifier, pos) {
 }
 
 /**
-bla bla bla
+Scrolls (using {{#crossLink "MediaElementEditorHorizontalTimelines"}}{{/crossLink}}) and shows the cutter for a <b>video</b> component. The similar functionality for <b>image</b> and <b>text</b> components is initialized in {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyCutters:method"}}{{/crossLink}}.
 @method showVideoEditorCutter
 @for VideoEditorCutters
+@param component_id {String} the HTML id of the component
 **/
 function showVideoEditorCutter(component_id) {
   $('._video_editor_bottom_bar').css('visibility', 'hidden');
@@ -461,9 +514,10 @@ function showVideoEditorCutter(component_id) {
 }
 
 /**
-bla bla bla
+Similar to {{#crossLink "VideoEditorComponents/startVideoEditorPreviewClipWithDelay:method"}}{{/crossLink}}, but without delay (used for sorting and opening cutter).
 @method startVideoEditorPreviewClip
 @for VideoEditorCutters
+@param component_id {String} the HTML id of the component
 **/
 function startVideoEditorPreviewClip(component_id) {
   $('._video_component_preview').hide();
@@ -476,7 +530,7 @@ function startVideoEditorPreviewClip(component_id) {
 
 
 /**
-bla bla bla
+Global initializer.
 @method videoEditorDocumentReady
 @for VideoEditorDocumentReady
 **/
@@ -494,7 +548,7 @@ function videoEditorDocumentReady() {
 }
 
 /**
-bla bla bla
+Initializer for adding components (this method calls both classes {{#crossLink "VideoEditorAddComponents"}}{{/crossLink}} and {{#crossLink "VideoEditorReplaceComponents"}}{{/crossLink}}).
 @method videoEditorDocumentReadyAddComponent
 @for VideoEditorDocumentReady
 **/
@@ -577,7 +631,7 @@ function videoEditorDocumentReadyAddComponent() {
 }
 
 /**
-bla bla bla
+Initializes functionality for audio track.
 @method videoEditorDocumentReadyAudioTrack
 @for VideoEditorDocumentReady
 **/
@@ -617,7 +671,7 @@ function videoEditorDocumentReadyAudioTrack() {
 }
 
 /**
-bla bla bla -- TODO copiare dagli analoghi in image editor e audio editor
+Initializer for the functionalities of committing changes (click on 'commit', on 'cancel', popup asking to overwrite, etc). For other functionalities common to all the Element Editors, see {{#crossLink "MediaElementEditorForms"}}{{/crossLink}}.
 @method videoEditorDocumentReadyCommit
 @for VideoEditorDocumentReady
 **/
@@ -717,7 +771,7 @@ function videoEditorDocumentReadyCommit() {
 }
 
 /**
-bla bla bla
+Initializer for functionalities common to all types of components.
 @method videoEditorDocumentReadyComponentsCommon
 @for VideoEditorDocumentReady
 **/
@@ -746,7 +800,7 @@ function videoEditorDocumentReadyComponentsCommon() {
 }
 
 /**
-bla bla bla
+Initializer for cutters.
 @method videoEditorDocumentReadyCutters
 @for VideoEditorDocumentReady
 **/
@@ -862,7 +916,7 @@ function videoEditorDocumentReadyCutters() {
 }
 
 /**
-bla bla bla
+Initializer for galleries.
 @method videoEditorDocumentReadyGalleries
 @for VideoEditorDocumentReady
 **/
@@ -923,7 +977,7 @@ function videoEditorDocumentReadyGalleries() {
 }
 
 /**
-bla bla bla
+Initializer for sorting and other JQueryUi plugins.
 @method videoEditorDocumentReadyInitialization
 @for VideoEditorDocumentReady
 **/
@@ -968,7 +1022,7 @@ function videoEditorDocumentReadyInitialization() {
 }
 
 /**
-bla bla bla
+Initializer for preview mode (see {{#crossLink "VideoEditorPreview"}}{{/crossLink}} and {{#crossLink "VideoEditorPreviewAccessories"}}{{/crossLink}}).
 @method videoEditorDocumentReadyPreview
 @for VideoEditorDocumentReady
 **/
@@ -1074,7 +1128,7 @@ function videoEditorDocumentReadyPreview() {
 }
 
 /**
-bla bla bla
+Initializer for the functionality of <b>removing a component</b> from the timeline (is uses {{#crossLink "VideoEditorComponents/changeDurationVideoEditorComponent:method"}}{{/crossLink}} passing <i>new duration = 0</i>.
 @method videoEditorDocumentReadyRemoveComponent
 @for VideoEditorDocumentReady
 **/
@@ -1105,7 +1159,7 @@ function videoEditorDocumentReadyRemoveComponent() {
 }
 
 /**
-bla bla bla
+Initializes the <b>text component editor</b> (see {{#crossLink "VideoEditorTextComponentEditor"}}{{/crossLink}}).
 @method videoEditorDocumentReadyTextComponentEditor
 @for VideoEditorDocumentReady
 **/
@@ -1214,7 +1268,7 @@ function getLastVideoEditorComponent() {
 }
 
 /**
-bla bla bla
+Method that extracts the <b>unique identifier</b> of a component, starting indifferently from the component id, the cutter id, or the preview id.
 @method getVideoComponentIdentifier
 @for VideoEditorGeneral
 **/
