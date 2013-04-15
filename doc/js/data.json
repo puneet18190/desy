@@ -6306,7 +6306,7 @@
         {
             "file": "app/assets/javascripts/video_editor.js",
             "line": 1647,
-            "description": "Replaces a generig component with an image component, contructing an empty <b>preview</b>, <b>cutter</b> and <b>component</b>, and then filling them (see the commentaries inside the code). This method is called by {{#crossLink \"VideoEditorDocumentReady/videoEditorDocumentReadyAddComponent:method\"}}{{/crossLink}}.",
+            "description": "Replaces a generig component with an image component, contructing an empty <b>preview</b>, <b>cutter</b> and editing the <b>component</b> (see the commentaries inside the code). This method is called by {{#crossLink \"VideoEditorDocumentReady/videoEditorDocumentReadyAddComponent:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "replaceImageComponentInVideoEditor",
             "params": [
@@ -6342,7 +6342,7 @@
         {
             "file": "app/assets/javascripts/video_editor.js",
             "line": 1687,
-            "description": "Replaces a generic component with a text component, contructing an empty <b>preview</b>, <b>cutter</b> and <b>component</b>, and then filling them (see the commentaries inside the code). This method is called by {{#crossLink \"VideoEditorDocumentReady/videoEditorDocumentReadyAddComponent:method\"}}{{/crossLink}}.",
+            "description": "Replaces a generic component with a text component, contructing an empty <b>preview</b>, <b>cutter</b> and editing the <b>component</b> (see the commentaries inside the code). This method is called by {{#crossLink \"VideoEditorDocumentReady/videoEditorDocumentReadyAddComponent:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "replaceTextComponentInVideoEditor",
             "params": [
@@ -6383,7 +6383,7 @@
         {
             "file": "app/assets/javascripts/video_editor.js",
             "line": 1735,
-            "description": "Replaces a generic component with a video component, contructing an empty <b>preview</b>, <b>cutter</b> and <b>component</b>, and then filling them (see the commentaries inside the code). This method is called by {{#crossLink \"VideoEditorDocumentReady/videoEditorDocumentReadyAddComponent:method\"}}{{/crossLink}}.",
+            "description": "Replaces a generic component with a video component, contructing an empty <b>preview</b>, <b>cutter</b> and editing the <b>component</b> (see the commentaries inside the code). This method is called by {{#crossLink \"VideoEditorDocumentReady/videoEditorDocumentReadyAddComponent:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "replaceVideoComponentInVideoEditor",
             "params": [

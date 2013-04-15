@@ -1645,7 +1645,7 @@ function showVideoEditorPreviewComponentProgressBar(identifier, position) {
 
 
 /**
-Replaces a generig component with an image component, contructing an empty <b>preview</b>, <b>cutter</b> and <b>component</b>, and then filling them (see the commentaries inside the code). This method is called by {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyAddComponent:method"}}{{/crossLink}}.
+Replaces a generig component with an image component, contructing an empty <b>preview</b>, <b>cutter</b> and editing the <b>component</b> (see the commentaries inside the code). This method is called by {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyAddComponent:method"}}{{/crossLink}}.
 @method replaceImageComponentInVideoEditor
 @for VideoEditorReplaceComponents
 @param image_id {Number} the id of the image in the database
@@ -1685,7 +1685,7 @@ function replaceImageComponentInVideoEditor(image_id, component, preview, positi
 }
 
 /**
-Replaces a generic component with a text component, contructing an empty <b>preview</b>, <b>cutter</b> and <b>component</b>, and then filling them (see the commentaries inside the code). This method is called by {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyAddComponent:method"}}{{/crossLink}}.
+Replaces a generic component with a text component, contructing an empty <b>preview</b>, <b>cutter</b> and editing the <b>component</b> (see the commentaries inside the code). This method is called by {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyAddComponent:method"}}{{/crossLink}}.
 @method replaceTextComponentInVideoEditor
 @for VideoEditorReplaceComponents
 @param component {String} HTML code corresponding to the already built <b>miniature</b> of the text
@@ -1733,7 +1733,7 @@ function replaceTextComponentInVideoEditor(component, content, position, duratio
 }
 
 /**
-Replaces a generic component with a video component, contructing an empty <b>preview</b>, <b>cutter</b> and <b>component</b>, and then filling them (see the commentaries inside the code). This method is called by {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyAddComponent:method"}}{{/crossLink}}.
+Replaces a generic component with a video component, contructing an empty <b>preview</b>, <b>cutter</b> and editing the <b>component</b> (see the commentaries inside the code). This method is called by {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyAddComponent:method"}}{{/crossLink}}.
 @method replaceVideoComponentInVideoEditor
 @for VideoEditorReplaceComponents
 @param video_id {Number} the id of the video in the database
