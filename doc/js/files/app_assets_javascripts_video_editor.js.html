@@ -675,16 +675,17 @@ function fillVideoEditorSingleParameter(input, identifier, value) {
 }
 
 &#x2F;**
-bla bla bla
+Highlights the small header of a component.
 @method highlightAndUpdateVideoComponentIcon
 @for VideoEditorComponents
+@param component_id {string} the HTML id of the component
 **&#x2F;
 function highlightAndUpdateVideoComponentIcon(component_id) {
   $(&#x27;#&#x27; + component_id + &#x27; ._video_component_icon&#x27;).effect(&#x27;highlight&#x27;, {color: &#x27;#41A62A&#x27;}, 1500);
 }
 
 &#x2F;**
-bla bla bla
+Reloads all the positions of components in the timeline; used in {{#crossLink &quot;VideoEditorDocumentReady&#x2F;videoEditorDocumentReadyRemoveComponent:method&quot;}}{{&#x2F;crossLink}} (removing a component) and in {{#crossLink &quot;VideoEditorDocumentReady&#x2F;videoEditorDocumentReadyInitialization:method&quot;}}{{&#x2F;crossLink}} (sorting components)
 @method reloadVideoEditorComponentPositions
 @for VideoEditorComponents
 **&#x2F;
@@ -698,7 +699,7 @@ function reloadVideoEditorComponentPositions() {
 }
 
 &#x2F;**
-bla bla bla
+Resets the visibility of all the transitions between components (because the last transition is not visible); used in {{#crossLink &quot;VideoEditorDocumentReady&#x2F;videoEditorDocumentReadyRemoveComponent:method&quot;}}{{&#x2F;crossLink}} (removing a component) and in {{#crossLink &quot;VideoEditorDocumentReady&#x2F;videoEditorDocumentReadyInitialization:method&quot;}}{{&#x2F;crossLink}} (sorting components).
 @method resetVisibilityOfVideoEditorTransitions
 @for VideoEditorComponents
 **&#x2F;
@@ -714,9 +715,10 @@ function resetVisibilityOfVideoEditorTransitions() {
 }
 
 &#x2F;**
-bla bla bla
+Selects the component with the delay, after passing with the mouse.
 @method startVideoEditorPreviewClipWithDelay
 @for VideoEditorComponents
+@param component_id {string} the HTML id of the component
 **&#x2F;
 function startVideoEditorPreviewClipWithDelay(component_id) {
   setTimeout(function() {
