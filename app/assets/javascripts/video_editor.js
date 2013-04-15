@@ -1252,18 +1252,20 @@ function switchToOtherGalleryInMixedGalleryInVideoEditor(type) {
 
 
 /**
-bla bla bla
+Returns the first component in the timeline.
 @method getFirstVideoEditorComponent
 @for VideoEditorGeneral
+@return {Object} the first component
 **/
 function getFirstVideoEditorComponent() {
   return $('._video_editor_component').first();
 }
 
 /**
-bla bla bla
+Returns the last component in the timeline.
 @method getLastVideoEditorComponent
 @for VideoEditorGeneral
+@return {Object} the last component
 **/
 function getLastVideoEditorComponent() {
   var components = $('._video_editor_component');
@@ -1274,6 +1276,8 @@ function getLastVideoEditorComponent() {
 Method that extracts the <b>unique identifier</b> of a component, starting indifferently from the component id, the cutter id, or the preview id.
 @method getVideoComponentIdentifier
 @for VideoEditorGeneral
+@param item_id {String} the HTML id of either the <i>component</i>, the <i>preview</i> or the <i>cutter</i>
+@return {Number} the unique identifier of the component
 **/
 function getVideoComponentIdentifier(item_id) {
   var resp = item_id.split('_');
@@ -1285,9 +1289,10 @@ function getVideoComponentIdentifier(item_id) {
 }
 
 /**
-bla bla bla
+Checks if the HTML5 video inside a <b>video component</b> has been loaded, and if not it loads it.
 @method loadVideoComponentIfNotLoadedYet
 @for VideoEditorGeneral
+@param component_id {String} the HTML id of the video component
 **/
 function loadVideoComponentIfNotLoadedYet(component_id) {
   if(!$('#' + component_id + '_preview').data('loaded')) {
@@ -1301,9 +1306,10 @@ function loadVideoComponentIfNotLoadedYet(component_id) {
 }
 
 /**
-bla bla bla
+Checks if an optional audio track has been set by the user.
 @method videoEditorWithAudioTrack
 @for VideoEditorGeneral
+@return {Boolean} true if there is an audio track
 **/
 function videoEditorWithAudioTrack() {
   return $('#audio_track_in_video_editor_input').val() != '';

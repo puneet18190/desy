@@ -406,6 +406,10 @@
     
 
     
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+        </span>
+    
 
     
 
@@ -441,11 +445,24 @@
     </div>
 
     <div class="description">
-        <p>bla bla bla</p>
+        <p>Returns the first component in the timeline.</p>
     </div>
 
     
 
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>:
+                    
+                    the first component
+                
+            </div>
+        </div>
     
 
     
@@ -460,6 +477,10 @@
     
 
     
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+        </span>
+    
 
     
 
@@ -484,7 +505,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_video_editor.js.html#l1263"><code>app&#x2F;assets&#x2F;javascripts&#x2F;video_editor.js:1263</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_video_editor.js.html#l1264"><code>app&#x2F;assets&#x2F;javascripts&#x2F;video_editor.js:1264</code></a>
         
         </p>
 
@@ -495,11 +516,24 @@
     </div>
 
     <div class="description">
-        <p>bla bla bla</p>
+        <p>Returns the last component in the timeline.</p>
     </div>
 
     
 
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>:
+                    
+                    the last component
+                
+            </div>
+        </div>
     
 
     
@@ -510,9 +544,23 @@
     <h3 class="name"><code>getVideoComponentIdentifier</code></h3>
 
     
-        <span class="paren">()</span>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>item_id</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
     
 
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+        </span>
     
 
     
@@ -538,7 +586,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_video_editor.js.html#l1273"><code>app&#x2F;assets&#x2F;javascripts&#x2F;video_editor.js:1273</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_video_editor.js.html#l1275"><code>app&#x2F;assets&#x2F;javascripts&#x2F;video_editor.js:1275</code></a>
         
         </p>
 
@@ -553,7 +601,43 @@
     </div>
 
     
+        <div class="params">
+            <h4>Parameters:</h4>
 
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">item_id</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>the HTML id of either the <i>component</i>, the <i>preview</i> or the <i>cutter</i></p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>:
+                    
+                    the unique identifier of the component
+                
+            </div>
+        </div>
     
 
     
@@ -564,7 +648,17 @@
     <h3 class="name"><code>loadVideoComponentIfNotLoadedYet</code></h3>
 
     
-        <span class="paren">()</span>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>component_id</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
     
 
     
@@ -592,7 +686,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_video_editor.js.html#l1287"><code>app&#x2F;assets&#x2F;javascripts&#x2F;video_editor.js:1287</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_video_editor.js.html#l1291"><code>app&#x2F;assets&#x2F;javascripts&#x2F;video_editor.js:1291</code></a>
         
         </p>
 
@@ -603,9 +697,32 @@
     </div>
 
     <div class="description">
-        <p>bla bla bla</p>
+        <p>Checks if the HTML5 video inside a <b>video component</b> has been loaded, and if not it loads it.</p>
     </div>
 
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">component_id</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>the HTML id of the video component</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
     
 
     
@@ -622,6 +739,10 @@
     
 
     
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+        </span>
+    
 
     
 
@@ -646,7 +767,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_video_editor.js.html#l1303"><code>app&#x2F;assets&#x2F;javascripts&#x2F;video_editor.js:1303</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_video_editor.js.html#l1308"><code>app&#x2F;assets&#x2F;javascripts&#x2F;video_editor.js:1308</code></a>
         
         </p>
 
@@ -657,11 +778,24 @@
     </div>
 
     <div class="description">
-        <p>bla bla bla</p>
+        <p>Checks if an optional audio track has been set by the user.</p>
     </div>
 
     
 
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>:
+                    
+                    true if there is an audio track
+                
+            </div>
+        </div>
     
 
     

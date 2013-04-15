@@ -1558,18 +1558,20 @@ function switchToOtherGalleryInMixedGalleryInVideoEditor(type) {
 
 
 &#x2F;**
-bla bla bla
+Returns the first component in the timeline.
 @method getFirstVideoEditorComponent
 @for VideoEditorGeneral
+@return {Object} the first component
 **&#x2F;
 function getFirstVideoEditorComponent() {
   return $(&#x27;._video_editor_component&#x27;).first();
 }
 
 &#x2F;**
-bla bla bla
+Returns the last component in the timeline.
 @method getLastVideoEditorComponent
 @for VideoEditorGeneral
+@return {Object} the last component
 **&#x2F;
 function getLastVideoEditorComponent() {
   var components = $(&#x27;._video_editor_component&#x27;);
@@ -1580,6 +1582,8 @@ function getLastVideoEditorComponent() {
 Method that extracts the &lt;b&gt;unique identifier&lt;&#x2F;b&gt; of a component, starting indifferently from the component id, the cutter id, or the preview id.
 @method getVideoComponentIdentifier
 @for VideoEditorGeneral
+@param item_id {String} the HTML id of either the &lt;i&gt;component&lt;&#x2F;i&gt;, the &lt;i&gt;preview&lt;&#x2F;i&gt; or the &lt;i&gt;cutter&lt;&#x2F;i&gt;
+@return {Number} the unique identifier of the component
 **&#x2F;
 function getVideoComponentIdentifier(item_id) {
   var resp = item_id.split(&#x27;_&#x27;);
@@ -1591,9 +1595,10 @@ function getVideoComponentIdentifier(item_id) {
 }
 
 &#x2F;**
-bla bla bla
+Checks if the HTML5 video inside a &lt;b&gt;video component&lt;&#x2F;b&gt; has been loaded, and if not it loads it.
 @method loadVideoComponentIfNotLoadedYet
 @for VideoEditorGeneral
+@param component_id {String} the HTML id of the video component
 **&#x2F;
 function loadVideoComponentIfNotLoadedYet(component_id) {
   if(!$(&#x27;#&#x27; + component_id + &#x27;_preview&#x27;).data(&#x27;loaded&#x27;)) {
@@ -1607,9 +1612,10 @@ function loadVideoComponentIfNotLoadedYet(component_id) {
 }
 
 &#x2F;**
-bla bla bla
+Checks if an optional audio track has been set by the user.
 @method videoEditorWithAudioTrack
 @for VideoEditorGeneral
+@return {Boolean} true if there is an audio track
 **&#x2F;
 function videoEditorWithAudioTrack() {
   return $(&#x27;#audio_track_in_video_editor_input&#x27;).val() != &#x27;&#x27;;
