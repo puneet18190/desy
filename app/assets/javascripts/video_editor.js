@@ -1188,7 +1188,7 @@ function videoEditorDocumentReadyTextComponentEditor() {
 
 
 /**
-bla bla bla
+Centers the gallery when shown.
 @method calculateNewPositionGalleriesInVideoEditor
 @for VideoEditorGalleries
 **/
@@ -1198,9 +1198,10 @@ function calculateNewPositionGalleriesInVideoEditor() {
 }
 
 /**
-bla bla bla
+Opposite of {{#crossLink "VideoEditorGalleries/showGalleryInVideoEditor:method"}}{{/crossLink}}.
 @method closeGalleryInVideoEditor
 @for VideoEditorGalleries
+@param type {String} it can be either 'mixed' or 'audio'
 **/
 function closeGalleryInVideoEditor(type) {
   $('#video_editor_' + type + '_gallery_container').hide('fade', {}, 250, function() {
@@ -1211,9 +1212,10 @@ function closeGalleryInVideoEditor(type) {
 }
 
 /**
-bla bla bla
+Opens a chosen gallery.
 @method showGalleryInVideoEditor
 @for VideoEditorGalleries
+@param type {String} it can be either 'mixed' or 'audio'
 **/
 function showGalleryInVideoEditor(type) {
   $('#media_elements_list_in_video_editor .jspHorizontalBar').css('visibility', 'hidden');
@@ -1224,9 +1226,10 @@ function showGalleryInVideoEditor(type) {
 }
 
 /**
-bla bla bla
+Switches between <b>video gallery</b>, <b>image gallery</b> and <b>text component editor</b> in the component editor.
 @method switchToOtherGalleryInMixedGalleryInVideoEditor
 @for VideoEditorGalleries
+@param type {String} it can be either 'mixed' or 'audio'
 **/
 function switchToOtherGalleryInMixedGalleryInVideoEditor(type) {
   if(!$('#video_editor_mixed_gallery_container ' + type).is(':visible')) {
