@@ -63,6 +63,13 @@ While in preview mode, it's possible to start the global preview (starting <b>fr
 <br/><br/>
 Unlike in {{#crossLinkModule "audio-editor"}}{{/crossLinkModule}}, there are <b>two methods for increasing the global time</b>: the regular one is {{#crossLink "VideoEditorPreview/increaseVideoEditorPreviewTimer:method"}}{{/crossLink}} (used to increase the time according to the <b>currentTime</b> of a video component), and the automatic one is {{#crossLink "VideoEditorPreview/automaticIncreaseVideoEditorPreviewTimer:method"}}{{/crossLink}} (used for automatic increase while playing image and text components).
 <br/><br/>
+Another important difference with {{#crossLinkModule "audio-editor"}}{{/crossLinkModule}} is the reproduction of the <b>one second transitions</b> between two components: if the user clicks on <i>pause</i> while the global preview is playing a transition, the method that is playing the component (as we have already seen, it can be either {{#crossLink "VideoEditorPreview/playVideoEditorComponent:method"}}{{/crossLink}} or {{#crossLink "PlayersVideoEditor/initializeActionOfMediaTimeUpdaterInVideoEditor:method"}}{{/crossLink}}) waits until the transition is over to stop the reproduction.
+<br/><br/>
+In the class {{#crossLink "VideoEditorPreviewAccessories"}}{{/crossLink}} are stored the methods to handle the instruments available for the user to get to a specific position inside the timeline during preview mode. Such instruments (initialized in {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyPreview:method"}}{{/crossLink}}) are:
+<ul>
+  <li>freccette</li>
+  <li>mini slides (dire che vengono distrutte ogni volta).</li>
+</ul>
 
 
 <br/><br/>

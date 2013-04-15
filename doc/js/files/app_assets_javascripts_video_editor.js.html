@@ -369,6 +369,13 @@ While in preview mode, it&#x27;s possible to start the global preview (starting 
 &lt;br&#x2F;&gt;&lt;br&#x2F;&gt;
 Unlike in {{#crossLinkModule &quot;audio-editor&quot;}}{{&#x2F;crossLinkModule}}, there are &lt;b&gt;two methods for increasing the global time&lt;&#x2F;b&gt;: the regular one is {{#crossLink &quot;VideoEditorPreview&#x2F;increaseVideoEditorPreviewTimer:method&quot;}}{{&#x2F;crossLink}} (used to increase the time according to the &lt;b&gt;currentTime&lt;&#x2F;b&gt; of a video component), and the automatic one is {{#crossLink &quot;VideoEditorPreview&#x2F;automaticIncreaseVideoEditorPreviewTimer:method&quot;}}{{&#x2F;crossLink}} (used for automatic increase while playing image and text components).
 &lt;br&#x2F;&gt;&lt;br&#x2F;&gt;
+Another important difference with {{#crossLinkModule &quot;audio-editor&quot;}}{{&#x2F;crossLinkModule}} is the reproduction of the &lt;b&gt;one second transitions&lt;&#x2F;b&gt; between two components: if the user clicks on &lt;i&gt;pause&lt;&#x2F;i&gt; while the global preview is playing a transition, the method that is playing the component (as we have already seen, it can be either {{#crossLink &quot;VideoEditorPreview&#x2F;playVideoEditorComponent:method&quot;}}{{&#x2F;crossLink}} or {{#crossLink &quot;PlayersVideoEditor&#x2F;initializeActionOfMediaTimeUpdaterInVideoEditor:method&quot;}}{{&#x2F;crossLink}}) waits until the transition is over to stop the reproduction.
+&lt;br&#x2F;&gt;&lt;br&#x2F;&gt;
+In the class {{#crossLink &quot;VideoEditorPreviewAccessories&quot;}}{{&#x2F;crossLink}} are stored the methods to handle the instruments available for the user to get to a specific position inside the timeline during preview mode. Such instruments (initialized in {{#crossLink &quot;VideoEditorDocumentReady&#x2F;videoEditorDocumentReadyPreview:method&quot;}}{{&#x2F;crossLink}}) are:
+&lt;ul&gt;
+  &lt;li&gt;freccette&lt;&#x2F;li&gt;
+  &lt;li&gt;mini slides (dire che vengono distrutte ogni volta).&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
 
 
 &lt;br&#x2F;&gt;&lt;br&#x2F;&gt;
