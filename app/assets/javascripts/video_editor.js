@@ -47,7 +47,9 @@ For image and text components, a cutter is simply a small form where the user ma
 <br/><br/>
 All the cutters are initialized in {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyCutters:method"}}{{/crossLink}}, and their functionalities included in the class {{#crossLink "AudioEditorCutters"}}{{/crossLink}}.
 <br/><br/>
-
+The <b>text component editor</b> can be opened clicking on the icon 'T' in the header of the component editor (see method {{#crossLink "VideoEditorGalleries/switchToOtherGalleryInMixedGalleryInVideoEditor:method"}}{{/crossLink}}). The user can insert a text and choose background and text color: the functionality is initialized in {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyTextComponentEditor:method"}}{{/crossLink}}, and the main methods are contained in the class {{#crossLink "VideoEditorTextComponentEditor"}}{{/crossLink}}. Notice that, unlike image and video components, the <b>miniature</b> of a text component is created in the moment of the insertion of the compoent (see both {{#crossLink "VideoEditorAddComponents/addTextComponentInVideoEditor:method"}}{{/crossLink}} and {{#crossLink "VideoEditorReplaceComponents/replaceTextComponentInVideoEditor:method"}}{{/crossLink}}).
+<br/><br/>
+The <b>optional audio track</b>
 
 <br/><br/>
 As for the other Element Editors ({{#crossLinkModule "image-editor"}}{{/crossLinkModule}}, {{#crossLinkModule "audio-editor"}}{{/crossLinkModule}}) the core of the process of committing changes is handled in the module {{#crossLinkModule "media-element-editor"}}{{/crossLinkModule}} (more specificly in the class {{#crossLink "MediaElementEditorForms"}}{{/crossLink}}); the part of this functionality specific for the Video Editor is handled in {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyCommit:method"}}{{/crossLink}}.
