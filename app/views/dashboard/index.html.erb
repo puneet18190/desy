@@ -19,7 +19,7 @@
   <br class="clearfloat">
   <div class="boxContentIndex">
     <p><%= t('dashboard.help_using_desy', :desy => SETTINGS['application_name']) %></br>
-    <a><%= t('dashboard.download_manual') %></a>
+    <%= link_to t('dashboard.download_manual'), "/user_guide.pdf", :format => 'pdf', :target => "_blank" %>
   </div>
   <div class="boxContentIndex" style="float:right">
     <p><%= t('dashboard.talk_with_desy', :desy => SETTINGS['application_name']) %><br>
