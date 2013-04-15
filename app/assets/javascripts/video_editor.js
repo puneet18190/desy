@@ -1645,9 +1645,14 @@ function showVideoEditorPreviewComponentProgressBar(identifier, position) {
 
 
 /**
-bla bla bla
+Replaces a generig component with an image component, contructing an empty <b>preview</b>, <b>cutter</b> and <b>component</b>, and then filling them (see the commentaries inside the code). This method is called by {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyAddComponent:method"}}{{/crossLink}}.
 @method replaceImageComponentInVideoEditor
 @for VideoEditorReplaceComponents
+@param image_id {Number} the id of the image in the database
+@param component {String} HTML code corresponding to the already built <b>miniature</b> of the image
+@param preview {String} HTML code corresponding to the already built <b>content of the preview</b> for the image
+@param position {String} HTML identifier for the replaced component
+@param duration {Number} the duration in seconds of the image component
 **/
 function replaceImageComponentInVideoEditor(image_id, component, preview, position, duration) {
   var identifier = getVideoComponentIdentifier(position);
@@ -1680,9 +1685,15 @@ function replaceImageComponentInVideoEditor(image_id, component, preview, positi
 }
 
 /**
-bla bla bla
+Replaces a generic component with a text component, contructing an empty <b>preview</b>, <b>cutter</b> and <b>component</b>, and then filling them (see the commentaries inside the code). This method is called by {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyAddComponent:method"}}{{/crossLink}}.
 @method replaceTextComponentInVideoEditor
 @for VideoEditorReplaceComponents
+@param component {String} HTML code corresponding to the already built <b>miniature</b> of the text
+@param content {String} the text content
+@param position {String} HTML identifier for the replaced component
+@param duration {Number} the duration in seconds of the image component
+@param background_color {String} the class corresponding to the color chosen for the background
+@param text_color {String} the class corresponding to the color chosen for the text font
 **/
 function replaceTextComponentInVideoEditor(component, content, position, duration, background_color, text_color) {
   var identifier = getVideoComponentIdentifier(position);
@@ -1722,9 +1733,15 @@ function replaceTextComponentInVideoEditor(component, content, position, duratio
 }
 
 /**
-bla bla bla
+Replaces a generic component with a video component, contructing an empty <b>preview</b>, <b>cutter</b> and <b>component</b>, and then filling them (see the commentaries inside the code). This method is called by {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyAddComponent:method"}}{{/crossLink}}.
 @method replaceVideoComponentInVideoEditor
 @for VideoEditorReplaceComponents
+@param video_id {Number} the id of the video in the database
+@param webm {String} path of the webm attached of the video
+@param mp4 {String} path of the mp4 attached of the video
+@param component {String} HTML code corresponding to the already built <b>miniature</b> of the video
+@param position {String} HTML identifier for the replaced component
+@param duration {Number} the duration in seconds of the video component (initially the values <b>from</b> and <b>to</b> are respectively <b>0</b> and <b>duration</b>)
 **/
 function replaceVideoComponentInVideoEditor(video_id, webm, mp4, component, position, duration) {
   var identifier = getVideoComponentIdentifier(position);

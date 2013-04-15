@@ -6306,33 +6306,124 @@
         {
             "file": "app/assets/javascripts/video_editor.js",
             "line": 1647,
-            "description": "bla bla bla",
+            "description": "Replaces a generig component with an image component, contructing an empty <b>preview</b>, <b>cutter</b> and <b>component</b>, and then filling them (see the commentaries inside the code). This method is called by {{#crossLink \"VideoEditorDocumentReady/videoEditorDocumentReadyAddComponent:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "replaceImageComponentInVideoEditor",
+            "params": [
+                {
+                    "name": "image_id",
+                    "description": "the id of the image in the database",
+                    "type": "Number"
+                },
+                {
+                    "name": "component",
+                    "description": "HTML code corresponding to the already built <b>miniature</b> of the image",
+                    "type": "String"
+                },
+                {
+                    "name": "preview",
+                    "description": "HTML code corresponding to the already built <b>content of the preview</b> for the image",
+                    "type": "String"
+                },
+                {
+                    "name": "position",
+                    "description": "HTML identifier for the replaced component",
+                    "type": "String"
+                },
+                {
+                    "name": "duration",
+                    "description": "the duration in seconds of the image component",
+                    "type": "Number"
+                }
+            ],
             "class": "VideoEditorReplaceComponents",
             "module": "video-editor"
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1682,
-            "description": "bla bla bla",
+            "line": 1687,
+            "description": "Replaces a generic component with a text component, contructing an empty <b>preview</b>, <b>cutter</b> and <b>component</b>, and then filling them (see the commentaries inside the code). This method is called by {{#crossLink \"VideoEditorDocumentReady/videoEditorDocumentReadyAddComponent:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "replaceTextComponentInVideoEditor",
+            "params": [
+                {
+                    "name": "component",
+                    "description": "HTML code corresponding to the already built <b>miniature</b> of the text",
+                    "type": "String"
+                },
+                {
+                    "name": "content",
+                    "description": "the text content",
+                    "type": "String"
+                },
+                {
+                    "name": "position",
+                    "description": "HTML identifier for the replaced component",
+                    "type": "String"
+                },
+                {
+                    "name": "duration",
+                    "description": "the duration in seconds of the image component",
+                    "type": "Number"
+                },
+                {
+                    "name": "background_color",
+                    "description": "the class corresponding to the color chosen for the background",
+                    "type": "String"
+                },
+                {
+                    "name": "text_color",
+                    "description": "the class corresponding to the color chosen for the text font",
+                    "type": "String"
+                }
+            ],
             "class": "VideoEditorReplaceComponents",
             "module": "video-editor"
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1724,
-            "description": "bla bla bla",
+            "line": 1735,
+            "description": "Replaces a generic component with a video component, contructing an empty <b>preview</b>, <b>cutter</b> and <b>component</b>, and then filling them (see the commentaries inside the code). This method is called by {{#crossLink \"VideoEditorDocumentReady/videoEditorDocumentReadyAddComponent:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "replaceVideoComponentInVideoEditor",
+            "params": [
+                {
+                    "name": "video_id",
+                    "description": "the id of the video in the database",
+                    "type": "Number"
+                },
+                {
+                    "name": "webm",
+                    "description": "path of the webm attached of the video",
+                    "type": "String"
+                },
+                {
+                    "name": "mp4",
+                    "description": "path of the mp4 attached of the video",
+                    "type": "String"
+                },
+                {
+                    "name": "component",
+                    "description": "HTML code corresponding to the already built <b>miniature</b> of the video",
+                    "type": "String"
+                },
+                {
+                    "name": "position",
+                    "description": "HTML identifier for the replaced component",
+                    "type": "String"
+                },
+                {
+                    "name": "duration",
+                    "description": "the duration in seconds of the video component (initially the values <b>from</b> and <b>to</b> are respectively <b>0</b> and <b>duration</b>)",
+                    "type": "Number"
+                }
+            ],
             "class": "VideoEditorReplaceComponents",
             "module": "video-editor"
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1773,
+            "line": 1790,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "followPreviewComponentsWithHorizontalScrollInVideoEditor",
@@ -6341,7 +6432,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1823,
+            "line": 1840,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "resetVideoEditorTextComponent",
@@ -6350,7 +6441,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1838,
+            "line": 1855,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "switchTextComponentBackgroundColor",
@@ -6359,7 +6450,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1850,
+            "line": 1867,
             "description": "bla bla bla",
             "itemtype": "method",
             "name": "switchTextComponentTextColor",
