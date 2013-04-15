@@ -1128,7 +1128,7 @@ function videoEditorDocumentReadyPreview() {
 }
 
 /**
-Initializer for the functionality of <b>removing a component</b> from the timeline (is uses {{#crossLink "VideoEditorComponents/changeDurationVideoEditorComponent:method"}}{{/crossLink}} passing <i>new duration = 0</i>.
+Initializer for the functionality of <b>removing a component</b> from the timeline (is uses {{#crossLink "VideoEditorComponents/changeDurationVideoEditorComponent:method"}}{{/crossLink}} passing <i>new duration = 0</i>).
 @method videoEditorDocumentReadyRemoveComponent
 @for VideoEditorDocumentReady
 **/
