@@ -428,11 +428,9 @@ function startVideoEditorPreviewClipWithDelay(component_id) {
 
 
 /**
-bla bla bla
+Closes the cutter that is visible at the moment, regardless of its type.
 @method closeGenericVideoComponentCutter
 @for VideoEditorCutters
-@param name {String} An attribute name or object property path.
-@return {String} Unique clientId.
 **/
 function closeGenericVideoComponentCutter() {
   $('._video_component_cutter_arrow').hide('fade', {}, 250);
@@ -451,9 +449,10 @@ function closeGenericVideoComponentCutter() {
 }
 
 /**
-bla bla bla
+Commits the changes of a generic cutter.
 @method commitVideoComponentVideoCutter
 @for VideoEditorCutters
+@param identifier {Number} the unique identifier of the component
 **/
 function commitVideoComponentVideoCutter(identifier) {
   var from = $('#video_component_' + identifier + '_cutter').data('from');
@@ -468,9 +467,11 @@ function commitVideoComponentVideoCutter(identifier) {
 }
 
 /**
-bla bla bla
+Cuts the left side of a video component.
 @method cutVideoComponentLeftSide
 @for VideoEditorCutters
+@param identifier {Number} the unique identifier of the video component
+@param pos {Number} the new value for the input <i>from</i>
 **/
 function cutVideoComponentLeftSide(identifier, pos) {
   $('#video_component_' + identifier + '_cutter').data('from', pos);
@@ -479,9 +480,11 @@ function cutVideoComponentLeftSide(identifier, pos) {
 }
 
 /**
-bla bla bla
+Cuts the right side of a video component.
 @method cutVideoComponentRightSide
 @for VideoEditorCutters
+@param identifier {Number} the unique identifier of the video component
+@param pos {Number} the new value for the input <i>to</i>
 **/
 function cutVideoComponentRightSide(identifier, pos) {
   $('#video_component_' + identifier + '_cutter').data('to', pos);
@@ -490,9 +493,10 @@ function cutVideoComponentRightSide(identifier, pos) {
 }
 
 /**
-bla bla bla
+Scrolls (using {{#crossLink "MediaElementEditorHorisontalTimelines"}}{{/crossLink}}) and shows the cutter for a <b>video</b> component. The similar functionality for <b>image</b> and <b>text</b> components is initialized in {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyCutters:method"}}{{/crossLink}}.
 @method showVideoEditorCutter
 @for VideoEditorCutters
+@param component_id {String} the HTML id of the component
 **/
 function showVideoEditorCutter(component_id) {
   $('._video_editor_bottom_bar').css('visibility', 'hidden');
@@ -510,9 +514,10 @@ function showVideoEditorCutter(component_id) {
 }
 
 /**
-bla bla bla
+Similar to {{#crossLink "VideoEditorComponents/startVideoEditorPreviewClipWithDelay:method"}}{{/crossLink}}, but without delay (used for sorting and opening cutter).
 @method startVideoEditorPreviewClip
 @for VideoEditorCutters
+@param component_id {String} the HTML id of the component
 **/
 function startVideoEditorPreviewClip(component_id) {
   $('._video_component_preview').hide();

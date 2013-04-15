@@ -734,11 +734,9 @@ function startVideoEditorPreviewClipWithDelay(component_id) {
 
 
 &#x2F;**
-bla bla bla
+Closes the cutter that is visible at the moment, regardless of its type.
 @method closeGenericVideoComponentCutter
 @for VideoEditorCutters
-@param name {String} An attribute name or object property path.
-@return {String} Unique clientId.
 **&#x2F;
 function closeGenericVideoComponentCutter() {
   $(&#x27;._video_component_cutter_arrow&#x27;).hide(&#x27;fade&#x27;, {}, 250);
@@ -757,9 +755,10 @@ function closeGenericVideoComponentCutter() {
 }
 
 &#x2F;**
-bla bla bla
+Commits the changes of a generic cutter.
 @method commitVideoComponentVideoCutter
 @for VideoEditorCutters
+@param identifier {Number} the unique identifier of the component
 **&#x2F;
 function commitVideoComponentVideoCutter(identifier) {
   var from = $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter&#x27;).data(&#x27;from&#x27;);
@@ -774,9 +773,11 @@ function commitVideoComponentVideoCutter(identifier) {
 }
 
 &#x2F;**
-bla bla bla
+Cuts the left side of a video component.
 @method cutVideoComponentLeftSide
 @for VideoEditorCutters
+@param identifier {Number} the unique identifier of the video component
+@param pos {Number} the new value for the input &lt;i&gt;from&lt;&#x2F;i&gt;
 **&#x2F;
 function cutVideoComponentLeftSide(identifier, pos) {
   $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter&#x27;).data(&#x27;from&#x27;, pos);
@@ -785,9 +786,11 @@ function cutVideoComponentLeftSide(identifier, pos) {
 }
 
 &#x2F;**
-bla bla bla
+Cuts the right side of a video component.
 @method cutVideoComponentRightSide
 @for VideoEditorCutters
+@param identifier {Number} the unique identifier of the video component
+@param pos {Number} the new value for the input &lt;i&gt;to&lt;&#x2F;i&gt;
 **&#x2F;
 function cutVideoComponentRightSide(identifier, pos) {
   $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter&#x27;).data(&#x27;to&#x27;, pos);
@@ -796,9 +799,10 @@ function cutVideoComponentRightSide(identifier, pos) {
 }
 
 &#x2F;**
-bla bla bla
+Scrolls (using {{#crossLink &quot;MediaElementEditorHorisontalTimelines&quot;}}{{&#x2F;crossLink}}) and shows the cutter for a &lt;b&gt;video&lt;&#x2F;b&gt; component. The similar functionality for &lt;b&gt;image&lt;&#x2F;b&gt; and &lt;b&gt;text&lt;&#x2F;b&gt; components is initialized in {{#crossLink &quot;VideoEditorDocumentReady&#x2F;videoEditorDocumentReadyCutters:method&quot;}}{{&#x2F;crossLink}}.
 @method showVideoEditorCutter
 @for VideoEditorCutters
+@param component_id {String} the HTML id of the component
 **&#x2F;
 function showVideoEditorCutter(component_id) {
   $(&#x27;._video_editor_bottom_bar&#x27;).css(&#x27;visibility&#x27;, &#x27;hidden&#x27;);
@@ -816,9 +820,10 @@ function showVideoEditorCutter(component_id) {
 }
 
 &#x2F;**
-bla bla bla
+Similar to {{#crossLink &quot;VideoEditorComponents&#x2F;startVideoEditorPreviewClipWithDelay:method&quot;}}{{&#x2F;crossLink}}, but without delay (used for sorting and opening cutter).
 @method startVideoEditorPreviewClip
 @for VideoEditorCutters
+@param component_id {String} the HTML id of the component
 **&#x2F;
 function startVideoEditorPreviewClip(component_id) {
   $(&#x27;._video_component_preview&#x27;).hide();
