@@ -111,7 +111,7 @@ function deselectAllAudioEditorComponents() {
 }
 
 /**
-Function that creates a single input field to be inserted in the empty audio component during the process of construction of a new one (used in {{#crossLink "AudioEditorComponents/addComponentInAudioEditor:method"}}{{/crossLink}}).
+Function that creates a single input field to be inserted in the empty audio component during the process of construction of a new one (similar to {{#crossLink "VideoEditorComponents/fillVideoEditorSingleParameter:method"}}{{/crossLink}}; used in {{#crossLink "AudioEditorComponents/addComponentInAudioEditor:method"}}{{/crossLink}}).
 @method fillAudioEditorSingleParameter
 @for AudioEditorComponents
 @param input {String} the specific input to be filled (for example, <i>audio_id</i>, <i>from</i>, or <i>to</i>)
@@ -620,7 +620,7 @@ Extracts the unique identifier of a component using its HTML id.
 @method getAudioComponentIdentifier
 @for AudioEditorGeneral
 @param component {Object} the component from which we want to extract the identifier
-@return {Number} the identifier.
+@return {Number} the identifier
 **/
 function getAudioComponentIdentifier(component) {
   var id = component.attr('id').split('_');
