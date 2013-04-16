@@ -573,7 +573,7 @@ cn:
       # 1 - controllers/application_controller.rb
       # 2 - controllers/video_editor_controller.rb
       # 3 - controllers/video_editor_controller.rb
-      media_folder_size_exceeded: "Media uploading is temporarly disabled; please try again later" # TODO
+      media_folder_size_exceeded: "媒体上传临时中止，请稍后再试。"
       # The user tried to upload an attachment whose format is not supported
       # 1 - controllers/application_controller.rb
       # 2 - controllers/application_controller.rb
@@ -1158,7 +1158,7 @@ cn:
     create_new_lesson_now: "现在建立课程"
     # Caption of the link to download the user guide (bottom right in the page)
     # 1 - views/dashboard/index.html.erb
-    download_manual: "下载用户手册" # TODO
+    download_manual: "下载用户指南"
     # Caption which appears if there are no suggested lessons inside the Dashboard, because the user picked all the lessons the application suggested him
     # 1 - views/dashboard/_lessons_empty.html.erb
     emptied_lessons: "你已选择所有被推荐的课程"
@@ -2235,14 +2235,14 @@ cn:
     # 1 - app/models/location.rb
     # 2 - app/models/location.rb
     labels: [
-        "省份",
-        "城镇",
-        "學校"
-      ] # TODO
+        "省",
+        "市",
+        "县"
+      ]
     # This is the label used when the application needs to resume the chain of higher locations corresponding to a lower one: if for instance for a user we have the field 'Shanghai district - Shanghai province', an appropriate label for it (to be configured here) would be 'District / province'
     # 1 - views/admin/users/show.html.erb
     # 2 - views/admin/users/_list.html.erb
-    parents_label: "城镇/省份" # TODO
+    parents_label: "省/市"
     # Caption inside the select of each location type (the variable %{location} is replaced by the name of the location type, ex City, Province, District)
     # 1 - views/admin/users/_locations_list.html.erb
     # 2 - views/users/_locations_list.html.erb
