@@ -1,4 +1,4 @@
-<li id="gallery_image_<%= image.id %>" class="_image_gallery_thumb" data-image-id="<%= image.id %>" title="<%= image.title %>">
+<div id="gallery_image_<%= image.id %>" class="_image_gallery_thumb pseudo-li" data-image-id="<%= image.id %>" title="<%= image.title %>">
   <a><%= image_tag image.thumb_url, :width => '111' %></a>
   <div class="imageInGalleryPopUp" id="dialog-image-gallery-<%= image.id %>" data-image-id="<%= image.id %>">
     <%= image_tag image.url, :class => "popup_expanded", :style => "max-height: 420px; max-width: 420px" %>
@@ -10,4 +10,4 @@
       <a class="addButtonContent current _select_image_from_gallery image-<%= image.id %>" data-image-id="<%= image.id %>" data-url="<%= image.url %>" data-width="<%= image.width %>" data-height="<%= image.height %>" style="float:right"  title="<%= t('titles.galleries.add_image') %>"></a>
     </div>
   </div>
-</li>
+</div>

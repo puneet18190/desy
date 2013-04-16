@@ -2,7 +2,7 @@
   disabled = !video.converted?
   additional_class = disabled ? '_disabled'.html_safe : '_enabled'.html_safe
 %>
-<li id="gallery_video_<%= video.id %>" class="_video_gallery_thumb <%= additional_class %>" data-video-id="<%= video.id %>">
+<div id="gallery_video_<%= video.id %>" class="_video_gallery_thumb <%= additional_class %> pseudo-li" data-video-id="<%= video.id %>">
   <% if disabled %>
     <a><%= image_tag video.placeholder_url(:gallery), :width => '250', :height => '140', :title => t('titles.not_available.video', :title => video.title) %></a>
   <% else %>
@@ -15,4 +15,4 @@
       <a class="addButtonContent current _select_video_from_gallery video-<%= video.id %>" data-video-id="<%= video.id %>" data-mp4="<%= video.mp4_url %>" data-webm="<%= video.webm_url %>" data-duration="<%= video.min_duration %>" style="float:right"  title="<%= t('titles.galleries.add_video') %>"></a>
     </div>
   <% end %>
-</li>
+</div>

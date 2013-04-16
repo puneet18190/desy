@@ -1,13 +1,13 @@
-<ul id="image_gallery_content" class="scrollVerde">
+<div id="image_gallery_content" class="scrollVerde pseudo-ul">
   <div class="scroll-pane">
     <% if images.empty? %>
-    <div class="emptyGalleryImageEditor">
-      <p><%= t('galleries.empty.image') %></p>
-    </div>
+      <div class="emptyGalleryImageEditor">
+        <p><%= t('galleries.empty.image') %></p>
+      </div>
     <% else %>
       <% images.each do |image| %>
-        <%= render :partial => "galleries/thumbs/image", :locals => {:image => image} %>
+        <%= render :partial => 'galleries/thumbs/image', :locals => {:image => image} %>
       <% end %>
     <% end %>
   </div>
-</ul>
+</div>
