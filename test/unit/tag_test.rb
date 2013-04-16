@@ -98,10 +98,9 @@ class TagTest < ActiveSupport::TestCase
     end
     Lesson.find([1, 2]).each do |l|
       assert !l.is_public && l.user_id == 1
-      v = Video.new :title => l.title, :description => l.description
+      media = {:mp4 => Rails.root.join('test/samples/one.mp4').to_s, :webm => Rails.root.join('test/samples/one.webm').to_s, :filename => 'video_test'}
+      v = Video.new :description => l.description, :title => l.title, :media => media, :tags => l.tags
       v.user_id = 1
-      v.tags = l.tags
-      v.media = {:mp4 => Rails.root.join("test/samples/one.mp4").to_s, :webm => Rails.root.join("test/samples/one.webm").to_s, :filename => "video_test"}
       assert_obj_saved v
     end
     assert_tags_ordered user.search_lessons('pa', 1, 20)[:tags], ['pa', 'pane', 'pagliaccio', 'pagnotta', 'paniere', 'paglierino', 'pappardelle', 'pane e salame']
