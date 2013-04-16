@@ -1,10 +1,14 @@
 <%
   personal_margin = ''
-  personal_margin = "style=\"margin-top:1px\"".html_safe if index < 7
-  personal_margin = "style=\"margin-bottom:1px\"".html_safe if index > 13
+  classs = ''
+  personal_margin = "style=\"margin-top:1px\"".html_safe if index < 7 && !force_margin_top
+  if index > count
+    personal_margin = "style=\"margin-bottom:1px\"".html_safe
+    classs = '_with_margin_bottom'
+  end
 %>
 
-<div id="gallery_image_<%= image.id %>" class="_image_gallery_thumb pseudo-li" data-image-id="<%= image.id %>" title="<%= image.title %>" <%= personal_margin %>>
+<div id="gallery_image_<%= image.id %>" class="_image_gallery_thumb pseudo-li <%= classs %>" data-image-id="<%= image.id %>" title="<%= image.title %>" <%= personal_margin %>>
   <a><%= image_tag image.thumb_url, :width => '111' %></a>
   <div class="imageInGalleryPopUp" id="dialog-image-gallery-<%= image.id %>" data-image-id="<%= image.id %>">
     <%= image_tag image.url, :class => "popup_expanded", :style => "max-height: 420px; max-width: 420px" %>
