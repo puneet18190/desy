@@ -150,12 +150,22 @@ function galleriesDocumentReadyOpen() {
           setTimeout(function() {
             var jsp_handler = $('#audio_gallery_content > div').data('jsp');
             if(jsp_handler == undefined) {
-              console.log('caso in cui devo cambiare dimensione al div, vedi appunti per i dettagli');
-            } else if(!was_open) {
+              console.log('caso in cui devo cambiare dimensione al div, vedi appunti per i dettagli'); // FIXME usare was_open!!!!
+            } else {
               var hidden_pixels = jsp_handler.getContentPositionY();
-              var hidden_elements = parseInt(hidden_pixels / 52);
+              var elements_before = 0;
+              var looking = true
+              $('._audio_gallery_thumb').each(function() {
+                if(looking) {
+                  if($(this).attr('id') == parent_id) {
+                    looking = false;
+                  } else {
+                    elements_before += 1;
+                  }
+                }
+              });
               // This is the result of the calculation 52X + 44 + 52 - 304
-              var scroll_destination = hidden_elements * 52 - 208;
+              var scroll_destination = elements_before * 52 - 208;
               if(hidden_pixels < scroll_destination) {
                 // This excludes automatically the case in which scroll_destination < 0
                 jsp_handler.scrollToY(scroll_destination, true);
