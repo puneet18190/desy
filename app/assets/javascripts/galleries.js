@@ -276,6 +276,8 @@ function initializeMixedGalleryInVideoEditor() {
         $.get('/videos/galleries/image/new_block?page=' + (page + 1));
       }
     });
+  } else {
+    $('.image_gallery .scroll-pane').css('overflow', 'hidden');
   }
 }
 

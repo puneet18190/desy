@@ -5,8 +5,10 @@
   </div>
 </div>
 
-<% if @images.count > 21 %>
-  <script type="text/javascript" charset="utf-8">
+<script type="text/javascript" charset="utf-8">
+  <% if @images.count > 21 %>
     initializeImageGalleryInImageEditor();
-  </script>
-<% end %>
+  <% else %>
+    $('.image_gallery .scroll-pane').css('overflow', 'hidden');
+  <% end %>
+</script>
