@@ -312,7 +312,6 @@ html.media_element_editor-layout {
       }
     }
     .mediaEditorListaElementi {
-      /*position:absolute; */
       width:906px;
       margin-left:36px;
       position:relative;
@@ -323,8 +322,8 @@ html.media_element_editor-layout {
   
   .mediaElementGalleryContainer {
     width: 890px;
-    height:545px;
-    padding:25px;
+    height: 545px;
+    padding: 25px;
     position: absolute;
     -webkit-box-shadow: 0px 6px 10px #161515;
     box-shadow: 0px 6px 10px #161515;
@@ -334,7 +333,7 @@ html.media_element_editor-layout {
       margin-left: 20px;
       width: 870px;
       position: absolute;
-      top: 190px;
+      top: 150px;
     }
     
     
@@ -345,9 +344,7 @@ html.media_element_editor-layout {
       &.video-kind {
         .pseudo-ul {
           .pseudo-li {
-            width: 250px;
-            height: 140px;
-            margin: 5px 30px 25px 6px;
+            margin: 26px 30px 0 6px;
           }
         }
       }
@@ -357,7 +354,14 @@ html.media_element_editor-layout {
       width: 876px;
       .scroll-pane {
         margin-left: 20px;
-        top: 140px;
+      }
+      &.image-kind {
+        .pseudo-ul {
+          .pseudo-li {
+            margin-right: 3px;
+            margin-left: 3px;
+          }
+        }
       }
     }
     .audio_gallery {
