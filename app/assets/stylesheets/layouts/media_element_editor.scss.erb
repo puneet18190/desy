@@ -330,19 +330,21 @@ html.media_element_editor-layout {
     box-shadow: 0px 6px 10px #161515;
     background-color:#252323;
     top: 65px;
-    .scroll-pane{
-      margin-left:20px;    
+    .scroll-pane {
+      margin-left: 20px;
       width: 870px;
-      position:absolute;
-      top:190px;
-      
+      position: absolute;
+      top: 190px;
     }
+    
+    
+    
     .video_gallery {
       height: 486px;
-      width:876px;
+      width: 876px;
       &.video-kind {
-        ul{
-          li{
+        .pseudo-ul {
+          .pseudo-li {
             width: 250px;
             height: 140px;
             margin: 5px 30px 25px 6px;
@@ -350,36 +352,26 @@ html.media_element_editor-layout {
         }
       }
     }
-
     .image_gallery {
       height: 486px;
-      width:876px;
+      width: 876px;
       .scroll-pane {
         margin-left: 20px;
         height:357px;
         top:140px;
       }
-      &.video-kind {
-        ul{
-          li{
-            width: 250px;
-             margin: 5px;
-          }
-        }
-      }
-      
     }
-    
     .audio_gallery {
       height: 486px;
       width:876px;
       .audioTrackCompact {
         width:840px;
       }
-    } 
-
+    }
+    
+    
+    
     .mediaEditorListaElementi {
-      /*position:absolute; */
       width:906px;
       margin-left:40px;
     }
