@@ -5,8 +5,12 @@
         <p><%= t('galleries.empty.video') %></p>
       </div>
     <% else %>
-      <% videos.each do |video| %>
-        <%= render :partial => 'galleries/thumbs/video', :locals => {:video => video} %>
+      <%
+        videos_count = videos.count
+        videos_count = ((videos_count % 3 == 0) ? (videos_count - 4) : ((videos_count / 3) * 3 - 1))
+      %>
+      <% videos.each_with_index do |video, index| %>
+        <%= render :partial => 'galleries/thumbs/video', :locals => {:video => video, :index => index, :count => videos_count, :force_margin_top => false} %>
       <% end %>
     <% end %>
   </div>

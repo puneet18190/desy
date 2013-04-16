@@ -35,4 +35,8 @@ var temporary_invisible_div = '<div class="_temporary" style="display:none">';
   $('#dialog-video-gallery-<%= video.id %>').append(temporary_invisible_div + mini_video + '</div>');
 <% end %>
 
+<% if @videos.count <= 6 %>
+  $('#info_container').addClass('_dont_initialize_video_gallery');
+<% end %>
+
 initializeMixedGalleryInVideoEditor();
