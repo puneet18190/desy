@@ -53,7 +53,7 @@ class ActiveSupport::TestCase
         MediaElement.where(:id => x).update_all(:is_public => false)
         was_public = true
       end
-      v.media = {:mp4 => Rails.root.join("test/samples/one.mp4").to_s, :webm => Rails.root.join("test/samples/one.webm").to_s, :filename => "video_test"}
+      v.media = {:mp4 => Rails.root.join('test/samples/one.mp4').to_s, :webm => Rails.root.join('test/samples/one.webm').to_s, :filename => 'video_test'}
       assert_obj_saved v
       if was_public
         MediaElement.where(:id => x).update_all(:is_public => true)
@@ -66,7 +66,7 @@ class ActiveSupport::TestCase
         MediaElement.where(:id => x).update_all(:is_public => false)
         was_public = true
       end
-      a.media = {:m4a => Rails.root.join("test/samples/one.m4a").to_s, :ogg => Rails.root.join("test/samples/one.ogg").to_s, :filename => "audio_test"}
+      a.media = {:m4a => Rails.root.join('test/samples/one.m4a').to_s, :ogg => Rails.root.join('test/samples/one.ogg').to_s, :filename => 'audio_test'}
       assert_obj_saved a
       if was_public
         MediaElement.where(:id => x).update_all(:is_public => true)
@@ -79,7 +79,7 @@ class ActiveSupport::TestCase
         MediaElement.where(:id => x).update_all(:is_public => false)
         was_public = true
       end
-      i.media = File.open(Rails.root.join("test/samples/one.jpg"))
+      i.media = File.open(Rails.root.join('test/samples/one.jpg'))
       assert_obj_saved i
       if was_public
         MediaElement.where(:id => x).update_all(:is_public => true)
