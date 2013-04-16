@@ -8,7 +8,6 @@
       position: absolute;
       .pseudo-li {
         float: left;
-        margin: 0;
       }
     }
   }
@@ -61,6 +60,9 @@
 
 
 .image_gallery {
+  .jspVerticalBar {
+    top: 0;
+  }
   @include boxShadow;
   display: block;
   .gallery-header {
@@ -75,10 +77,11 @@
   }
   .scroll-pane {
     top: 140px;
-    height: 350px;
+    height: 344px;
     .pseudo-li {
       width: 111px;
-      margin: 2px 2px;
+      height: 111px;
+      margin: 4px 2px 0 2px;
     }
   }
   @include ulGallery;
@@ -91,8 +94,8 @@
       max-width: 420px;
     }
     .caption {
-     margin: 0;
-     padding: 0;
+      margin: 0;
+      padding: 0;
     }
     a.aggiungiImgButton {
       outline: none;

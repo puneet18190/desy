@@ -5,8 +5,8 @@
         <p><%= t('galleries.empty.image') %></p>
       </div>
     <% else %>
-      <% images.each do |image| %>
-        <%= render :partial => 'galleries/thumbs/image', :locals => {:image => image} %>
+      <% images.each_with_index do |image, index| %>
+        <%= render :partial => 'galleries/thumbs/image', :locals => {:image => image, :index => index} %>
       <% end %>
     <% end %>
   </div>

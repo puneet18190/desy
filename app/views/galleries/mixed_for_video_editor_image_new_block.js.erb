@@ -1,7 +1,7 @@
+$('#video_editor_mixed_gallery_container ._image_gallery_thumb').css('margin-bottom', '0');
 var temporary_invisible_div = '<div class="_temporary" style="display:none">';
-
 <% @images.each do |image| %>
-  $('#video_editor_mixed_gallery_container #image_gallery_content .jspPane').append('<%= j(render(:partial => "galleries/thumbs/image", :locals => {:image => image})) %>');
+  $('#video_editor_mixed_gallery_container #image_gallery_content .jspPane').append('<%= j(render(:partial => "galleries/thumbs/image", :locals => {:image => image, :index => 7})) %>');
   var mini_image = '<%= j(render(:partial => "video_editor/components/thumbs/image", :locals => {:image => image})) %>';
   var preview_image = '<%= j(render(:partial => "video_editor/previews/image_thumb", :locals => {:image => image})) %>';
   preview_image = '<div class="_image_preview_in_video_editor_gallery" style="display:none">' + preview_image + '</div>';

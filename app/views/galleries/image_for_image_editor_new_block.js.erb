@@ -1,5 +1,6 @@
+$('#image_gallery_for_image_editor ._image_gallery_thumb').css('margin-bottom', '0');
 <% @images.each do |image| %>
-  $('#image_gallery_for_image_editor #image_gallery_content .jspPane').append('<%= j(render(:partial => "galleries/thumbs/image", :locals => {:image => image})) %>');
+  $('#image_gallery_for_image_editor #image_gallery_content .jspPane').append('<%= j(render(:partial => "galleries/thumbs/image", :locals => {:image => image, :index => 7})) %>');
 <% end %>
 $('#image_gallery_for_image_editor').data('page', <%= @page %>);
 $('#image_gallery_for_image_editor ._select_image_from_gallery').addClass('_add_image_to_image_editor');
