@@ -265,16 +265,18 @@ function initializeMixedGalleryInVideoEditor() {
       $.get('/videos/galleries/video/new_block?page=' + (page + 1));
     }
   });
-  $('#video_editor_mixed_gallery_container #image_gallery_content > div').jScrollPane({
-    autoReinitialise: true
-  });
-  $('#video_editor_mixed_gallery_container #image_gallery_content .scroll-pane').bind('jsp-arrow-change', function(event, isAtTop, isAtBottom, isAtLeft, isAtRight) {
-    var page = $('#video_editor_mixed_gallery_container').data('image-page');
-    var tot_pages = $('#video_editor_mixed_gallery_container').data('image-tot-pages');
-    if(isAtBottom && (page < tot_pages)) {
-      $.get('/videos/galleries/image/new_block?page=' + (page + 1));
-    }
-  });
+  if(!$('#info_container').hasClass('_dont_initialize_image_gallery')) {
+    $('#video_editor_mixed_gallery_container #image_gallery_content > div').jScrollPane({
+      autoReinitialise: true
+    });
+    $('#video_editor_mixed_gallery_container #image_gallery_content .scroll-pane').bind('jsp-arrow-change', function(event, isAtTop, isAtBottom, isAtLeft, isAtRight) {
+      var page = $('#video_editor_mixed_gallery_container').data('image-page');
+      var tot_pages = $('#video_editor_mixed_gallery_container').data('image-tot-pages');
+      if(isAtBottom && (page < tot_pages)) {
+        $.get('/videos/galleries/image/new_block?page=' + (page + 1));
+      }
+    });
+  }
 }
 
 /**

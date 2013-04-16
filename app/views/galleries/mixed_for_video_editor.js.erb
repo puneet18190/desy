@@ -26,6 +26,10 @@ var temporary_invisible_div = '<div class="_temporary" style="display:none">';
   $('#dialog-image-gallery-<%= image.id %>').append(temporary_invisible_div + mini_image + preview_image + '</div>').append(duration_selector);
 <% end %>
 
+<% if @images.count < 21 %>
+  $('#info_container').addClass('_dont_initialize_image_gallery');
+<% end %>
+
 <% @videos.each do |video| %>
   var mini_video = '<%= j(render(:partial => "video_editor/components/thumbs/video", :locals => {:video => video})) %>';
   $('#dialog-video-gallery-<%= video.id %>').append(temporary_invisible_div + mini_video + '</div>');

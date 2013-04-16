@@ -4,6 +4,9 @@
     <%= render :partial => 'galleries/image', :locals => {:images => @images} %>
   </div>
 </div>
-<script type="text/javascript" charset="utf-8">
-  initializeImageGalleryInImageEditor();
-</script>
+
+<% if @images.count > 21 %>
+  <script type="text/javascript" charset="utf-8">
+    initializeImageGalleryInImageEditor();
+  </script>
+<% end %>
