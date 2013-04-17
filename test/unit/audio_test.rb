@@ -86,9 +86,9 @@ class AudioTest < ActiveSupport::TestCase
     assert_nil Audio.convert_parameters(@parameters, 2)
     @parameters[:components][0][:from] = 2
     assert_nil Audio.convert_parameters(@parameters, 2)
-    @parameters[:components][0][:to] = 31
+    @parameters[:components][0][:to] = 195
     assert_nil Audio.convert_parameters(@parameters, 2)
-    @parameters[:components][0][:to] = 30
+    @parameters[:components][0][:to] = 194
     assert_not_nil Audio.convert_parameters(@parameters, 2)
     @parameters[:components][0][:from] = -1
     assert_nil Audio.convert_parameters(@parameters, 2)
