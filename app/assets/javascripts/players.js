@@ -596,9 +596,12 @@ This method has the same cases of use of {{#crossLink "PlayersAudioEditor/initia
 **/
 function initializeActionOfMediaTimeUpdaterInVideoEditor(media, identifier, force_parsed_int) {
   var video_cut_to = $('#video_component_' + identifier + '_cutter').data('to');
-  var parsed_int = parseInt(media.currentTime);
-  if(force_parsed_int) {
+  var not_parsed_int = media.currentTime;
+  var parsed_int = parseInt(not_parsed_int);
+  if(force_parsed_int || (not_parsed_int < video_cut_to && (video_cut_to - not_parsed_int) <= 0.2)) {
     parsed_int = video_cut_to;
+    $(media).data('dont-update-time', true);
+    setCurrentTimeToMedia($('#video_component_' + identifier + '_preview video'), video_cut_to);
   }
   if($('#video_editor_global_preview').data('in-use')) {
     var component = $('#video_component_' + identifier);
@@ -661,6 +664,7 @@ function initializeActionOfMediaTimeUpdaterInVideoEditor(media, identifier, forc
       $('#video_component_' + identifier + '_cutter ._media_player_slider').slider('value', parsed_int);
     }
   }
+  $(media).data('dont-update-time', false);
 }
 
 /**
@@ -674,12 +678,16 @@ function initializeMediaTimeUpdaterInVideoEditor(media, identifier) {
   media = $(media);
   if(media.readyState != 0) {
     media[0].addEventListener('timeupdate', function() {
-      initializeActionOfMediaTimeUpdaterInVideoEditor(this, identifier, false);
+      if(!$(media).data('dont-update-time')) {
+        initializeActionOfMediaTimeUpdaterInVideoEditor(this, identifier, false);
+      }
     }, false);
   } else {
     media.on('loadedmetadata', function() {
       media[0].addEventListener('timeupdate', function() {
-        initializeActionOfMediaTimeUpdaterInVideoEditor(this, identifier, false);
+        if(!$(media).data('dont-update-time')) {
+          initializeActionOfMediaTimeUpdaterInVideoEditor(this, identifier, false);
+        }
       }, false);
     });
   }
