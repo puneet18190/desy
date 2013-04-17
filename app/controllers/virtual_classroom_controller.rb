@@ -312,10 +312,10 @@ class VirtualClassroomController < ApplicationController
   
   private
   
-  # Initializes the lesson and checks that it belongs to the current user and it's in the Virtual Classroom
+  # Initializes the lesson and checks that it's in the Virtual Classroom
   def initialize_lesson_for_sending_link # :doc:
     initialize_lesson
-    update_ok(@lesson && @lesson.user_id == current_user.id && @lesson.in_virtual_classroom?(current_user.id))
+    update_ok(@lesson && @lesson.in_virtual_classroom?(current_user.id))
   end
   
   # Initializes the lessons just loaded in the multiple loader

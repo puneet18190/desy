@@ -6,9 +6,7 @@
     <br class="clearfloat">
     <div class="menuLessonVirtualClassroom">
       <a class="_virtual_classroom_preview preview" data-lesson-id="<%= lesson.id %>" title="<%= t('titles.virtual_classroom.preview') %>"></a>
-      <% if lesson.user_id == current_user.id %>
-        <a class="_send_lesson_link sendTo" data-lesson-id="<%= lesson.id %>" title="<%= t('titles.virtual_classroom.send_link') %>"></a>
-      <% end %>
+      <a class="_send_lesson_link sendTo" data-lesson-id="<%= lesson.id %>" title="<%= t('titles.virtual_classroom.send_link') %>"></a>
       <a class="_remove_lesson_from_inside_virtual_classroom remove" data-clickparam="<%= lesson.id %>" title="<%= t('titles.virtual_classroom.remove') %>"></a>
     </div>
   </div>
