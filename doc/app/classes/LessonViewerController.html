@@ -198,7 +198,7 @@ href="ApplicationController.html#method-i-authenticate">ApplicationController#au
     <span class="ruby-identifier">redirect_to</span> <span class="ruby-string">&#39;/dashboard&#39;</span>
   <span class="ruby-keyword">else</span>
     <span class="ruby-ivar">@is_back</span> = (<span class="ruby-operator">!</span><span class="ruby-identifier">params</span>[<span class="ruby-value">:back</span>].<span class="ruby-identifier">nil?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">params</span>[<span class="ruby-value">:back</span>].<span class="ruby-identifier">empty?</span>)
-    <span class="ruby-ivar">@with_exit</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:token</span>].<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:token</span>].<span class="ruby-identifier">empty?</span>
+    <span class="ruby-ivar">@with_exit</span> = <span class="ruby-identifier">logged_in?</span>
     <span class="ruby-ivar">@back</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:back</span>]
     <span class="ruby-ivar">@slides</span> = <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">slides</span>.<span class="ruby-identifier">order</span>(<span class="ruby-value">:position</span>)
   <span class="ruby-keyword">end</span>
