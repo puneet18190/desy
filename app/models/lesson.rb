@@ -47,7 +47,7 @@ require 'lessons_media_elements_shared'
 # * *uniqueness* of the couple [+parent_id+, +user_id+] <b>if +parent_id+ is not null</b>
 # * *if* *new* *record* +is_public+ must be false
 # * *if* *public* +copied_not_modified+ must be false. <b>This validation is not fired if skip_public_validations is +true+</b>
-# * *modifications* *not* *available* for the +user_id+, +parent_id+, +token+
+# * *modifications* *not* *available* for the +user_id+, +parent_id+, +token+, +linked_token+
 # * *minimum* *number* of tags (configurated in settings.yml), <b>only if the attribute validating_in_form is set as +true+</b>
 #
 # == Callbacks
@@ -865,10 +865,11 @@ class Lesson < ActiveRecord::Base
     errors.add(:copied_not_modified, :cant_be_true_if_public) if self.is_public && self.copied_not_modified
   end
   
-  # Validates that if the lesson is not new record the fields +token+, +user_id+, +parent_id+ cannot be changed
+  # Validates that if the lesson is not new record the fields +token+, +linked_token+, +user_id+, +parent_id+ cannot be changed
   def validate_impossible_changes # :doc:
     if @lesson
       errors.add(:token, :cant_be_changed) if @lesson.token != self.token
+      errors.add(:linked_token, :cant_be_changed) if @lesson.linked_token != self.linked_token
       errors.add(:user_id, :cant_be_changed) if @lesson.user_id != self.user_id
       errors.add(:parent_id, :cant_be_changed) if self.parent_id && @lesson.parent_id != self.parent_id
     end

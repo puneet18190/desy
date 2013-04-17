@@ -177,7 +177,7 @@ is <code>true</code></strong></p>
 </li><li>
 <p><strong>modifications</strong> <strong>not</strong>
 <strong>available</strong> for the <code>user_id</code>,
-<code>parent_id</code>, <code>token</code></p>
+<code>parent_id</code>, <code>token</code>, <code>linked_token</code></p>
 </li><li>
 <p><strong>minimum</strong> <strong>number</strong> of tags (configurated in
 settings.yml), <strong>only if the attribute <a
@@ -724,7 +724,7 @@ href="DashboardController.html#method-i-index">DashboardController#index</a>).</
                 
               </p>
               <div id="method-c-test_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/lesson.rb, line 884</span>
+                <pre><span class="ruby-comment"># File app/models/lesson.rb, line 885</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">test</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">l</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">admin</span>.<span class="ruby-identifier">create_lesson</span>(<span class="ruby-string">&#39;test title&#39;</span>, <span class="ruby-string">&#39;test description&#39;</span>, <span class="ruby-number">1</span>, <span class="ruby-string">&quot;asd, o, mar, rio, mare, test&quot;</span>)
   <span class="ruby-identifier">l</span> = <span class="ruby-identifier">find</span> <span class="ruby-identifier">l</span>.<span class="ruby-identifier">id</span>
@@ -2230,7 +2230,7 @@ href="MediaElement.html#method-i-visive_tags">MediaElement#visive_tags</a>)</p>
                 
               </p>
               <div id="method-i-create_tokens_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/lesson.rb, line 878</span>
+                <pre><span class="ruby-comment"># File app/models/lesson.rb, line 879</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">create_tokens</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">token</span> = <span class="ruby-constant">SecureRandom</span>.<span class="ruby-identifier">urlsafe_base64</span>(<span class="ruby-number">16</span>)
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">linked_token</span> = <span class="ruby-constant">SecureRandom</span>.<span class="ruby-identifier">urlsafe_base64</span>(<span class="ruby-number">16</span>)
@@ -2327,7 +2327,7 @@ It&#39;s initialized also the private attribute <code>inner_tags</code></p>
                 
               </p>
               <div id="method-i-initialize_metadata_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/lesson.rb, line 891</span>
+                <pre><span class="ruby-comment"># File app/models/lesson.rb, line 892</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize_metadata</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">available_video</span> = <span class="ruby-keyword">true</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">available_audio</span> = <span class="ruby-keyword">true</span>
@@ -2548,8 +2548,8 @@ created</p>
           
             <div class="description">
               <p>Validates that if the lesson is not new record the fields
-<code>token</code>, <code>user_id</code>, <code>parent_id</code> cannot be
-changed</p>
+<code>token</code>, <code>linked_token</code>, <code>user_id</code>,
+<code>parent_id</code> cannot be changed</p>
             </div>
           
           
@@ -2569,6 +2569,7 @@ changed</p>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">validate_impossible_changes</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@lesson</span>
     <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:token</span>, <span class="ruby-value">:cant_be_changed</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">token</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">token</span>
+    <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:linked_token</span>, <span class="ruby-value">:cant_be_changed</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">linked_token</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">linked_token</span>
     <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:user_id</span>, <span class="ruby-value">:cant_be_changed</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">user_id</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">user_id</span>
     <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:parent_id</span>, <span class="ruby-value">:cant_be_changed</span>) <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">parent_id</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">parent_id</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">parent_id</span>
   <span class="ruby-keyword">end</span>
