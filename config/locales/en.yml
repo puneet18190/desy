@@ -787,7 +787,10 @@ en:
     lesson_editor:
       # Button '+' to add a new slide
       # 1 - views/lesson_editor/_slide_buttons.html.erb
+      # 2 - views/lesson_editor/_slide_buttons.html.erb
       add_slide: "Add new slide"
+      # 1 - views/lesson_editor/_slide_buttons.html.erb
+      add_slide_cancel: "Cancel"
       # Button '+' to replace an audio in the audio slide
       # 1 - views/lesson_editor/slides/parts/_audio.html.erb
       change_audio: "Replace audio"
