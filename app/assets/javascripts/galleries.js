@@ -125,9 +125,12 @@ function galleriesDocumentReadyOpen() {
         $('#' + parent_id).removeClass('_audio_expanded_in_gallery');
         stopMedia('#' + parent_id + ' audio');
         if($('._audio_gallery_thumb').length == 6) {
-          $('.audio_gallery .scroll-pane').css('height', 304);
+          obj.hide('blind', {}, 500, function() {
+            $('.audio_gallery .scroll-pane').css('height', 304);
+          });
+        } else {
+          obj.hide('blind', {}, 500);
         }
-        obj.hide('blind', {}, 500);
       } else {
         var currently_open = $('._audio_expanded_in_gallery');
         if(currently_open.length != 0) {
