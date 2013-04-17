@@ -3111,7 +3111,7 @@
         },
         {
             "file": "app/assets/javascripts/dialogs.js",
-            "line": 145,
+            "line": 147,
             "description": "Dialog for the image gallery.",
             "itemtype": "method",
             "name": "showImageInGalleryPopUp",
@@ -3132,7 +3132,7 @@
         },
         {
             "file": "app/assets/javascripts/dialogs.js",
-            "line": 185,
+            "line": 187,
             "description": "Dialog for the video gallery (notice that the video is initialized in the moment the dialog gets opened.",
             "itemtype": "method",
             "name": "showVideoInGalleryPopUp",
@@ -3148,7 +3148,7 @@
         },
         {
             "file": "app/assets/javascripts/dialogs.js",
-            "line": 236,
+            "line": 238,
             "description": "Timed dialog for errors. It uses the general {{#crossLink \"DialogsTimed/showTimedPopUp:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "showErrorPopUp",
@@ -3164,7 +3164,7 @@
         },
         {
             "file": "app/assets/javascripts/dialogs.js",
-            "line": 247,
+            "line": 249,
             "description": "Timed dialog for success. It uses the general {{#crossLink \"DialogsTimed/showTimedPopUp:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "showOkPopUp",
@@ -3180,7 +3180,7 @@
         },
         {
             "file": "app/assets/javascripts/dialogs.js",
-            "line": 258,
+            "line": 260,
             "description": "General function that opens a dialog, fills it with HTML content and closes it after a configured time.",
             "itemtype": "method",
             "name": "showTimedPopUp",
@@ -3201,7 +3201,7 @@
         },
         {
             "file": "app/assets/javascripts/dialogs.js",
-            "line": 292,
+            "line": 294,
             "description": "Dialog containing a form used to send a notification about modifications of a public lesson.",
             "itemtype": "method",
             "name": "showLessonNotificationPopUp",
@@ -3217,7 +3217,7 @@
         },
         {
             "file": "app/assets/javascripts/dialogs.js",
-            "line": 327,
+            "line": 329,
             "description": "Dialog containing the form to upload a new media element. This function interacts with the module {{#crossLinkModule \"media-element-loader\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "showLoadMediaElementPopUp",
@@ -3226,7 +3226,7 @@
         },
         {
             "file": "app/assets/javascripts/dialogs.js",
-            "line": 365,
+            "line": 367,
             "description": "Dialog containing the media element general information. If the element is private, this same dialog contains the form to change title, description and tags (see the method {{#crossLink \"MediaElementLoaderGeneral/resetMediaElementChangeInfo:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "showMediaElementInfoPopUp",
@@ -3242,7 +3242,7 @@
         },
         {
             "file": "app/assets/javascripts/dialogs.js",
-            "line": 417,
+            "line": 419,
             "description": "Dialog containing the form to send the public link of a lesson. Used in {{#crossLink \"VirtualClassroomSendLink\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "showSendLessonLinkPopUp",
@@ -3258,7 +3258,7 @@
         },
         {
             "file": "app/assets/javascripts/dialogs.js",
-            "line": 461,
+            "line": 463,
             "description": "Dialog containing a list of lessons to be loaded in the Virtual Classroom. Used in {{#crossLink \"VirtualClassroomMultipleLoading\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "showVirtualClassroomQuickSelectPopUp",
@@ -3821,7 +3821,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 52,
+            "line": 54,
             "description": "Opposite of {{#crossLink \"LessonEditorCurrentSlide/hideEverythingOutCurrentSlide:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "showEverythingOutCurrentSlide",
@@ -3830,7 +3830,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 65,
+            "line": 67,
             "description": "Shows the template for selection of new slides.",
             "itemtype": "method",
             "name": "showNewSlideOptions",
@@ -3839,7 +3839,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 80,
+            "line": 84,
             "description": "Stop video and audio playing into the current slide (used before changing slide with {{#crossLink \"LessonEditorSlidesNavigation/slideTo:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "stopMediaInCurrentSlide",
@@ -3848,7 +3848,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 95,
+            "line": 99,
             "description": "General initialization of Lesson Editor.",
             "itemtype": "method",
             "name": "lessonEditorDocumentReady",
@@ -3857,7 +3857,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 113,
+            "line": 117,
             "description": "Initializer of the three functionalities to add an element (image, audio, video).",
             "itemtype": "method",
             "name": "lessonEditorDocumentReadyAddMediaElement",
@@ -3866,7 +3866,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 229,
+            "line": 233,
             "description": "Initializer for galleries.",
             "itemtype": "method",
             "name": "lessonEditorDocumentReadyGalleries",
@@ -3875,7 +3875,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 266,
+            "line": 270,
             "description": "General initialization of position (used together with {{#crossLink \"LessonEditorSlidesNavigation/initLessonEditorPositions:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "lessonEditorDocumentReadyGeneral",
@@ -3884,7 +3884,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 278,
+            "line": 282,
             "description": "Initializer for JQueryUi animations defined in the class {{#crossLink \"LessonEditorJqueryAnimations\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "lessonEditorDocumentReadyJqueryAnimations",
@@ -3893,7 +3893,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 295,
+            "line": 299,
             "description": "Initializer for the template that contains the list of possible slides to be added.",
             "itemtype": "method",
             "name": "lessonEditorDocumentReadyNewSlideChoice",
@@ -3902,7 +3902,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 315,
+            "line": 319,
             "description": "Initializer for the mouseover and mouseout to replace a media element already added.",
             "itemtype": "method",
             "name": "lessonEditorDocumentReadyReplaceMediaElement",
@@ -3911,7 +3911,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 339,
+            "line": 343,
             "description": "Initializer for window resize.",
             "itemtype": "method",
             "name": "lessonEditorDocumentReadyResize",
@@ -3920,7 +3920,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 356,
+            "line": 360,
             "description": "Initializer for the buttons on the right side of each slide.",
             "itemtype": "method",
             "name": "lessonEditorDocumentReadySlideButtons",
@@ -3929,7 +3929,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 435,
+            "line": 439,
             "description": "Initializer for the scroll and all the actions of the slide navigator (see the class {{#crossLink \"LessonEditorSlidesNavigation\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "lessonEditorDocumentReadySlidesNavigator",
@@ -3938,7 +3938,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 483,
+            "line": 487,
             "description": "Initializer for the placeholders of text inputs throughout the Lesson Editor.",
             "itemtype": "method",
             "name": "lessonEditorDocumentReadyTextFields",
@@ -3947,7 +3947,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 525,
+            "line": 529,
             "description": "Save current slide. It sends tinyMCE editor content to form data to be serialized, it handles form placeholders.",
             "itemtype": "method",
             "name": "saveCurrentSlide",
@@ -3956,7 +3956,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 551,
+            "line": 555,
             "description": "Submit serialized form data for current slide (used in {{#crossLink \"LessonEditorForms/saveCurrentSlide:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "submitCurrentSlideForm",
@@ -3965,7 +3965,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 570,
+            "line": 574,
             "description": "Hides media gallery for selected type.",
             "itemtype": "method",
             "name": "removeGalleryInLessonEditor",
@@ -3981,7 +3981,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 582,
+            "line": 586,
             "description": "Shows media gallery for selected type.",
             "itemtype": "method",
             "name": "showGalleryInLessonEditor",
@@ -4002,7 +4002,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 611,
+            "line": 615,
             "description": "Check if image ratio is bigger then kind ratio.",
             "itemtype": "method",
             "name": "isHorizontalMask",
@@ -4032,7 +4032,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 639,
+            "line": 643,
             "description": "Gets scaled height to slide images.",
             "itemtype": "method",
             "name": "resizeHeight",
@@ -4062,7 +4062,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 665,
+            "line": 669,
             "description": "Gets scaled width to slide images.",
             "itemtype": "method",
             "name": "resizeWidth",
@@ -4092,7 +4092,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 695,
+            "line": 699,
             "description": "Inizializes jQueryUI <b>sortable</b> function on top navigation numbers, so that they can be sorted (see also {{#crossLink \"LessonEditorDocumentReady/lessonEditorDocumentReadySlidesNavigator:method\"}}{{/crossLink}} and {{#crossLink \"LessonEditorSlidesNavigation\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "initializeSortableNavs",
@@ -4101,7 +4101,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 740,
+            "line": 744,
             "description": "Inizializes jQueryUI <b>draggable</b> function on slide image containers (to understand if the draggable is vertical or horizontal it uses {{#crossLink \"LessonEditorImageResizing/isHorizontalMask:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "makeDraggable",
@@ -4117,7 +4117,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 812,
+            "line": 816,
             "description": "Asynchronously loads current slide, previous and following.",
             "itemtype": "method",
             "name": "loadSlideAndAdhiacentInLessonEditor",
@@ -4133,7 +4133,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 825,
+            "line": 829,
             "description": "Asynchronous slide loading. It checks if the slide has been loaded or not.",
             "itemtype": "method",
             "name": "loadSlideInLessonEditor",
@@ -4149,7 +4149,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 844,
+            "line": 848,
             "description": "Initialize slides position to center.",
             "itemtype": "method",
             "name": "initLessonEditorPositions",
@@ -4158,7 +4158,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 863,
+            "line": 867,
             "description": "Re-initialize slides position to center after ajax events.",
             "itemtype": "method",
             "name": "reInitializeSlidePositionsInLessonEditor",
@@ -4167,7 +4167,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 875,
+            "line": 879,
             "description": "Scrolls navigation scrollPane ({{#crossLink \"LessonEditorSlidesNavigation\"}}{{/crossLink}}) when moving to another slide.",
             "itemtype": "method",
             "name": "scrollPaneUpdate",
@@ -4187,7 +4187,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 892,
+            "line": 896,
             "description": "Moves to a slide, update current slide in top navigation.",
             "itemtype": "method",
             "name": "slideTo",
@@ -4208,7 +4208,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 943,
+            "line": 947,
             "description": "Initialize tinyMCE editor for a single textarea.",
             "itemtype": "method",
             "name": "initTinymce",
@@ -4224,7 +4224,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 987,
+            "line": 991,
             "description": "TinyMCE callback to show warning when texearea content exceeds the available space. Adds a red border to the textarea.This function is used in tinyMCE setup ({{#crossLink \"LessonEditorTinyMCE/initTinymce:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "tinyMceCallbacks",
@@ -4245,7 +4245,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1006,
+            "line": 1010,
             "description": "TinyMCE keyDown callback to fix list item style. It adds same style of list item text to list numbers or dots. This function is used in tinyMCE setup ({{#crossLink \"LessonEditorTinyMCE/initTinymce:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "tinyMceKeyDownCallbacks",
@@ -5182,7 +5182,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 666,
+            "line": 670,
             "description": "This is the method that associates {{#crossLink \"PlayersVideoEditor/initializeActionOfMediaTimeUpdaterInVideoEditor:method\"}}{{/crossLink}} to the event of <b>timeupdate</b>. Notice that the method waits until he receives the event <b>loadedmetadata</b> before working.",
             "itemtype": "method",
             "name": "initializeMediaTimeUpdaterInVideoEditor",
@@ -5203,7 +5203,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 688,
+            "line": 696,
             "description": "Initializes two sliders: one (JQueryUi single slider) for the <b>cursor</b>, and one (JQueryUi double slider) for the <b>cutting handles</b>. It also initializes how to handle the event <b>ended</b> associated to the video.",
             "itemtype": "method",
             "name": "initializeVideoInVideoEditorPreview",
@@ -5219,7 +5219,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 767,
+            "line": 775,
             "description": "Method that <b>updates the video cursor</b>, in case one of the two handles passes over the cursor (the cursor must follow the handle).",
             "itemtype": "method",
             "name": "selectVideoComponentCutterHandle",
@@ -5240,7 +5240,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 779,
+            "line": 787,
             "description": "Specific method to call if the event <b>ended</b> is fired on the video and we are not in the {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}} preview mode (unlike in {{#crossLink \"PlayersAudioEditor\"}}{{/crossLink}}, in this case it's separated by the method {{#crossLink \"PlayersVideoEditor/initializeVideoInVideoEditorPreview:method\"}}{{/crossLink}}, since it's more complicated.",
             "itemtype": "method",
             "name": "stopVideoInVideoEditorPreview",
@@ -6510,7 +6510,7 @@
         },
         {
             "file": "app/assets/javascripts/virtual_classroom.js",
-            "line": 130,
+            "line": 131,
             "description": "Initializer for playlist.",
             "itemtype": "method",
             "name": "virtualClassroomDocumentReadyPlaylist",
@@ -6519,7 +6519,7 @@
         },
         {
             "file": "app/assets/javascripts/virtual_classroom.js",
-            "line": 170,
+            "line": 171,
             "description": "Initializer for popup sending the public link of a lesson.",
             "itemtype": "method",
             "name": "virtualClassroomDocumentReadySendLink",
@@ -6528,7 +6528,7 @@
         },
         {
             "file": "app/assets/javascripts/virtual_classroom.js",
-            "line": 247,
+            "line": 248,
             "description": "Gets the highest zIndex value among elements of a given class.",
             "itemtype": "method",
             "name": "getMaximumZIndex",
@@ -6548,7 +6548,7 @@
         },
         {
             "file": "app/assets/javascripts/virtual_classroom.js",
-            "line": 265,
+            "line": 266,
             "description": "Initializes the functionality of dragging a single lesson into the playlist.",
             "itemtype": "method",
             "name": "initializeDraggableVirtualClassroomLesson",
@@ -6564,7 +6564,7 @@
         },
         {
             "file": "app/assets/javascripts/virtual_classroom.js",
-            "line": 306,
+            "line": 307,
             "description": "Initialize playlist container (using <i>JQueryUi sortable</i>)and jScrollPane.",
             "itemtype": "method",
             "name": "initializePlaylist",
@@ -6573,7 +6573,7 @@
         },
         {
             "file": "app/assets/javascripts/virtual_classroom.js",
-            "line": 367,
+            "line": 368,
             "description": "Uses together {{#crossLink \"VirtualClassroomJavaScriptAnimations/initializeDraggableVirtualClassroomLesson:method\"}}{{/crossLink}} and {{#crossLink \"VirtualClassroomJavaScriptAnimations/initializePlaylist:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "initializeVirtualClassroom",
@@ -6582,7 +6582,7 @@
         },
         {
             "file": "app/assets/javascripts/virtual_classroom.js",
-            "line": 387,
+            "line": 388,
             "description": "Initializer for lessons that can't be loaded from the multiple lessons loader.",
             "itemtype": "method",
             "name": "initializeNotAvailableLessonsToLoadQuick",
@@ -6591,7 +6591,7 @@
         },
         {
             "file": "app/assets/javascripts/virtual_classroom.js",
-            "line": 400,
+            "line": 401,
             "description": "Initializer for the JScrollPain in the multiple lessons loader (event infinite scroll to load more lessons).",
             "itemtype": "method",
             "name": "initializeScrollPaneQuickLessonSelector",
@@ -6600,7 +6600,7 @@
         },
         {
             "file": "app/assets/javascripts/virtual_classroom.js",
-            "line": 419,
+            "line": 420,
             "description": "Add email to recipients list on email add button (+).",
             "itemtype": "method",
             "name": "addEmailToVirtualClassroomSendLessonLinkSelector",

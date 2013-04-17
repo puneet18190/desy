@@ -352,6 +352,8 @@ function hideNewSlideChoice() {
   current_slide.find(&#x27;div.slide-content&#x27;).addClass(current_slide.data(&#x27;kind&#x27;));
   current_slide.find(&#x27;.box.new_slide&#x27;).remove();
   current_slide.find(&#x27;._hide_add_new_slide_options&#x27;).removeAttr(&#x27;class&#x27;).addClass(&#x27;addButtonOrange _add_new_slide_options&#x27;);
+  var new_title = current_slide.find(&#x27;._add_new_slide_options&#x27;).data(&#x27;title&#x27;);
+  current_slide.find(&#x27;._add_new_slide_options&#x27;).removeAttr(&#x27;title&#x27;).attr(&#x27;title&#x27;, new_title);
   showEverythingOutCurrentSlide();
 }
 
@@ -380,6 +382,8 @@ function showNewSlideOptions() {
   var html_to_be_replaced = $(&#x27;#new_slide_option_list&#x27;).html();
   current_slide_content.prepend(html_to_be_replaced);
   current_slide_content.siblings(&#x27;.buttons&#x27;).find(&#x27;._add_new_slide_options&#x27;).removeAttr(&#x27;class&#x27;).addClass(&#x27;minusButtonOrange _hide_add_slide _hide_add_new_slide_options&#x27;);
+  var new_title = current_slide_content.siblings(&#x27;.buttons&#x27;).find(&#x27;._hide_add_new_slide_options&#x27;).data(&#x27;other-title&#x27;);
+  current_slide_content.siblings(&#x27;.buttons&#x27;).find(&#x27;._hide_add_new_slide_options&#x27;).removeAttr(&#x27;title&#x27;).attr(&#x27;title&#x27;, new_title);
   hideEverythingOutCurrentSlide();
 }
 

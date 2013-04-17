@@ -433,9 +433,11 @@ function showRestoreCacheMediaElementEditorPopUp(callback_ok, callback_no) {
       open: function(event, ui) {
         var overlay = obj.parent().prev();
         overlay.addClass(&#x27;dialog_opaco&#x27;);
+        $(&#x27;.ui-widget-overlay&#x27;).css(&#x27;opacity&#x27;, 0.9);
       },
       beforeClose: function() {
         $(&#x27;.dialog_opaco&#x27;).removeClass(&#x27;dialog_opaco&#x27;);
+        $(&#x27;.ui-widget-overlay&#x27;).css(&#x27;opacity&#x27;, 0);
       },
       create:function () {
         $(this).closest(&#x27;.ui-dialog&#x27;).find(&#x27;.ui-button&#x27;).addClass(&#x27;upper&#x27;).addClass(&#x27;schiacciato&#x27;);
@@ -787,6 +789,7 @@ function showVirtualClassroomQuickSelectPopUp(content) {
       open: function(event, ui) {
         var overlay = obj.parent().prev();
         overlay.addClass(&#x27;dialog_opaco&#x27;);
+        $(&#x27;.ui-widget-overlay&#x27;).css(&#x27;opacity&#x27;, 0.9);
       },
       close: function() {
         if(obj.data(&#x27;loaded&#x27;)) {
