@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130417090559) do
+ActiveRecord::Schema.define(:version => 20130131094635) do
 
   create_table "locations", :force => true do |t|
     t.string   "name",       :null => false
@@ -89,7 +89,6 @@ ActiveRecord::Schema.define(:version => 20130417090559) do
     t.boolean  "notified",            :default => true,  :null => false
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
-    t.string   "linked_token",                           :null => false
     t.index ["parent_id"], :name => "fk__lessons_parent_id", :order => {"parent_id" => :asc}
     t.index ["school_level_id"], :name => "fk__lessons_school_level_id", :order => {"school_level_id" => :asc}
     t.index ["subject_id"], :name => "fk__lessons_subject_id", :order => {"subject_id" => :asc}

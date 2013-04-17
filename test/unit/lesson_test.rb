@@ -161,11 +161,6 @@ class LessonTest < ActiveSupport::TestCase
     different_token = last_char == 'a' ? "#{old_token.chop}b" : "#{old_token.chop}a"
     assert different_token != old_token
     assert_invalid @lesson, :token, different_token, old_token, :cant_be_changed
-    old_linked_token = @lesson.linked_token
-    last_char = old_linked_token.split(old_linked_token.chop)[1]
-    different_linked_token = last_char == 'a' ? "#{old_linked_token.chop}b" : "#{old_linked_token.chop}a"
-    assert different_linked_token != old_linked_token
-    assert_invalid @lesson, :linked_token, different_linked_token, old_linked_token, :cant_be_changed
     assert_invalid @lesson, :parent_id, 2, 1, :cant_be_changed
     assert_obj_saved @lesson
   end

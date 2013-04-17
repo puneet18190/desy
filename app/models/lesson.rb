@@ -15,7 +15,6 @@ require 'lessons_media_elements_shared'
 # * *parent_id*: reference to another lesson, from which the current lesson has been copied. The value is +nil+ if the lesson hasn't been copied
 # * *copied_not_modified*: boolean, set to +true+ only for lessons just copied and not modified yet
 # * *token*: token used in the public url of the lesson. Without this token, if the lesson is private, the only user who can see it is the creator
-# * *linked_token*: token used in the public url of the lesson, <b>for linked lessons</b>. It works like +token+, but it doesn't allow access if the lesson has been turned back into private by its creator
 # * *metadata*: contains two keys:
 #   * +available_video+: true if the lesson doesn't contain any video in conversion
 #   * +available_audio+: true if the lesson doesn't contain any audio in conversion
@@ -47,7 +46,7 @@ require 'lessons_media_elements_shared'
 # * *uniqueness* of the couple [+parent_id+, +user_id+] <b>if +parent_id+ is not null</b>
 # * *if* *new* *record* +is_public+ must be false
 # * *if* *public* +copied_not_modified+ must be false. <b>This validation is not fired if skip_public_validations is +true+</b>
-# * *modifications* *not* *available* for the +user_id+, +parent_id+, +token+, +linked_token+
+# * *modifications* *not* *available* for the +user_id+, +parent_id+, +token+
 # * *minimum* *number* of tags (configurated in settings.yml), <b>only if the attribute validating_in_form is set as +true+</b>
 #
 # == Callbacks
@@ -56,7 +55,7 @@ require 'lessons_media_elements_shared'
 # 2. *before_destroy* destroys associated reports (see Report)
 # 3. *before_destroy* destroys associated taggings (see Tagging)
 # 4. *before_create* initializes both metadata values to +true+
-# 5. *before_create* creates two random encoded strings and writes them in +token+ and +linked_token+
+# 5. *before_create* creates a random encoded string and writes it in +token+
 # 6. *after_save* creates or updates the cover slide. <b>This callback is not fired if skip_cover_creation is +true+</b>
 # 7. *after_save* updates taggings associated to the lesson (see Tagging). If a Tag doesn't exist yet, it is created too. The tags are stored before the validation in the private attribute +inner_tags+
 #
@@ -117,7 +116,7 @@ class Lesson < ActiveRecord::Base
   validate :validate_associations, :validate_public, :validate_copied_not_modified_and_public, :validate_impossible_changes, :validate_tags_length
   
   before_validation :init_validation
-  before_create :initialize_metadata, :create_tokens
+  before_create :initialize_metadata, :create_token
   after_save :create_or_update_cover, :update_or_create_tags
   
   scope :of, ->(user_or_user_id) do
@@ -865,20 +864,18 @@ class Lesson < ActiveRecord::Base
     errors.add(:copied_not_modified, :cant_be_true_if_public) if self.is_public && self.copied_not_modified
   end
   
-  # Validates that if the lesson is not new record the fields +token+, +linked_token+, +user_id+, +parent_id+ cannot be changed
+  # Validates that if the lesson is not new record the fields +token+, +user_id+, +parent_id+ cannot be changed
   def validate_impossible_changes # :doc:
     if @lesson
       errors.add(:token, :cant_be_changed) if @lesson.token != self.token
-      errors.add(:linked_token, :cant_be_changed) if @lesson.linked_token != self.linked_token
       errors.add(:user_id, :cant_be_changed) if @lesson.user_id != self.user_id
       errors.add(:parent_id, :cant_be_changed) if self.parent_id && @lesson.parent_id != self.parent_id
     end
   end
   
-  # Callback that creates two random secure tokens and sets them as the +token+ and +linked_token+ of the lesson
-  def create_tokens # :doc:
+  # Callback that creates a random secure token and sets is as the +token+ of the lesson
+  def create_token # :doc:
     self.token = SecureRandom.urlsafe_base64(16)
-    self.linked_token = SecureRandom.urlsafe_base64(16)
     true
   end
   

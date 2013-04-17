@@ -132,8 +132,7 @@ CREATE TABLE lessons (
     metadata text,
     notified boolean DEFAULT true NOT NULL,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    linked_token character varying(255) NOT NULL
+    updated_at timestamp without time zone NOT NULL
 );
 
 
@@ -1509,5 +1508,3 @@ INSERT INTO schema_migrations (version) VALUES ('20130115155629');
 INSERT INTO schema_migrations (version) VALUES ('20130131093624');
 
 INSERT INTO schema_migrations (version) VALUES ('20130131094635');
-
-INSERT INTO schema_migrations (version) VALUES ('20130417090559');

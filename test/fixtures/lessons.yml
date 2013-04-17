@@ -8,7 +8,6 @@ one:
   is_public: false
   copied_not_modified: false
   token: 'qwertyuiopqwertyuiop'
-  linked_token: 'qwertyuiopqwertyuiop'
   updated_at: '2012-01-01 20:00:00'
 
 two:
@@ -21,5 +20,4 @@ two:
   is_public: true
   copied_not_modified: false
   token: 'qwertyuiopqwertyuiop'
-  linked_token: 'qwertyuiopqwertyuiop'
   updated_at: '2012-01-01 19:00:00'
