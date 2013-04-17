@@ -2354,9 +2354,6 @@ it:
         users: "Utenti con più 'Mi piace'"
       # Statistics about users
       users:
-        # List of users on line
-        # 1 - views/admin/dashboard/index.html.erb
-        online: "Utenti online"
         # List of the last users who signed up in the application
         # 1 - views/admin/dashboard/index.html.erb
         new: "Ultimi utenti registrati"

@@ -2354,9 +2354,6 @@ cn:
         users: "有更多我喜欢你的用户"
       # Statistics about users
       users:
-        # List of users on line
-        # 1 - views/admin/dashboard/index.html.erb
-        online: "用户上线"
         # List of the last users who signed up in the application
         # 1 - views/admin/dashboard/index.html.erb
         new: "上一用户"
