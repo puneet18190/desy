@@ -2,7 +2,7 @@
   <div class="contenitore">
   <h1 class="fltlft upper"><%= t('image_editor.label') %></h1>
     <div id="image_editor_title" class="testo fltlft">
-      <% if (image.nil? || image.is_public) %>
+      <% if (image.nil? || is_public) %>
         <span class="_untitled">
           <%= t('media_elements.editor.new_untitled') %>
         </span>
