@@ -124,6 +124,9 @@ function galleriesDocumentReadyOpen() {
       if(obj.is(':visible')) {
         $('#' + parent_id).removeClass('_audio_expanded_in_gallery');
         stopMedia('#' + parent_id + ' audio');
+        if($('._audio_gallery_thumb').length == 6) {
+          $('.audio_gallery .scroll-pane').css('height', 304);
+        }
         obj.hide('blind', {}, 500);
       } else {
         var currently_open = $('._audio_expanded_in_gallery');
@@ -148,7 +151,11 @@ function galleriesDocumentReadyOpen() {
         }
         var jsp_handler = $('#audio_gallery_content > div').data('jsp');
         if(jsp_handler == undefined) {
-          console.log('caso in cui devo cambiare dimensione al div, vedi appunti per i dettagli'); // FIXME usare was_open!!!!
+          if($('._audio_gallery_thumb').length == 6 && !was_open) {
+            // the calculation was 304 + 52
+            $('.audio_gallery .scroll-pane').css('height', 356);
+          }
+          obj.show('blind', {}, 500);
         } else {
           obj.show('blind', {}, 500, function() {
             setTimeout(function() {
