@@ -1,21 +1,21 @@
-id,user_id,school_level_id,subject_id,title,description,is_public,parent_id,copied_not_modified,token,notified,linked_token
-1,6,1,5,J.M.Basquiat-Plush safe he think..,"Jean-Michel Basquiat, born in Brooklyn, New York after the death of his brother Max, was the second of four children of Matilda Andrades (July 28, 1934 – November 17, 2008) and Gerard Basquiat (born 1930).",t,,f,uGnYAt0Aiysxujl_ayoLJg,t,2avvKYP8w2YZhp7YBTKbnQ
-2,6,1,10,Welcome in London,"The etymology of London is uncertain. It is an ancient name and can be found in sources from the 2nd century. It is recorded c. 121 as Londinium, which points to Romano-British origin.",t,,f,8ZVYoicIuBxJl3n_yZEEwQ,t,NiAND9uQC-3ZlLSkbPncNQ
-3,2,2,2,2012 phenomenon,The 2012 phenomenon comprises a range of eschatological beliefs according to which cataclysmic or transformative events will occur on 21 December 2012,t,,f,9U2OEXRXaRQSC5EoS_F9Yg,t,-TiVQrP54k553XbG62f8yg
-4,7,3,3,The big apple,"New York is the most populous city in the United States and the center of the New York Metropolitan Area, one of the most populous metropolitan areas in the world.",t,,f,3Cpwg_Sa5ReDsb3Uk8PB3w,t,vBLHhUsyAkvpHsodOOmaZA
-5,7,3,5,Life is pop!,Pop art is an art movement that emerged in the mid 1950s in Britain and in the late 1950s in the United States.,t,,f,8dQgKXju1fbmC4WcKhOO7w,t,FPvGVbCbF_Pnm_Es8g2H4g
-6,3,3,2,Egon Schiele,One of the major figurative painter of the early 20th century.,t,,f,giw9iKFvP5JktEhs9gTVfA,t,-gwQf06p7uzYZ7bSLfwbZQ
-7,2,2,2,Rene Magritte and his paintings,"Rene Magritte was born in Lessines, in the province of Hainaut, in 1898, the eldest son of Leopold Magritte, who was a tailor and textile merchant, and Regina (nee Bertinchamps), a milliner until her marriage.",t,,f,3Prk0ZDBi4e-FGbNZ84Mjg,t,OL2i4ztEOuIyWo1UfmC5tQ
-8,7,3,2,Every man for himself ...,A lesson to learn about the animal world.,t,,f,txL-_TMZc9ZszMdXr_i0aw,t,n6D3oVVPCozmOzTkNviB5w
-9,3,3,11,Sebastião Salgado,"Sebastião Salgado (born February 8, 1944) is a Brazilian social documentary photographer and photojournalist.",t,,f,9UUJVusWVUHGR213s29EOA,t,XhATOoC_CFu4TcxjIflo-w
-11,7,3,1,Maths,"The word mathematics comes from the Greek μάθημα (máthēma), which, in the ancient Greek language, means ""what one learns"", ""what one gets to know"", hence also ""study"" and ""science"", and in modern Greek just ""lesson"".",f,,f,ghrOurxo6BUd5kDGzYMBCQ,t,r6jQ_OX3SOl2RTXMwrVcUg
-12,3,3,11,Josef Koudelka,Josef Koudelka is a Czech photographer.,t,,f,TZylkSxqsjH8goBrxamByg,t,Sr7eIHkbxg5Au8uTTSoYVA
-14,8,1,9,Chinese,it is ok,f,,f,rRfi9l2M9DEUxiWeyfK5wg,t,ayK7zKCqSwouwiZbrvQONA
-15,8,1,9,Chinese,it is ok,f,,f,mnN_H2u4ax_Y-uGyf7roVQ,t,DxnsKrTtoKU8td_GUV4XvA
-16,8,1,9,Chinese,it is ok,f,,f,pcfAhBowfUneA5MzP0SapQ,t,yJOpOeQTNn6nEQv0DaB_2A
-17,8,1,9,Chinese,it is ok,f,,f,0t_S15iJa80xTuxaPM615w,t,RKRzODmFOXjODDxpp7z7dA
-19,2,2,1,Lezione 1,description (max 280 characters),f,,f,aevXs_XlrtWNE1ivNnqPcg,t,0UIs1J8AZzD31SApWdh-ww
-20,7,3,6,Lezione di prova,dkidjjehdjdhj edhjedhjehdje edhejdhe edhejhed edhjjed,f,,f,AvzHfhH1zUeugwXEOQWfKg,t,HyNaqN2EOkthdKiIipJ-mg
-21,1,1,11,weref,"sdsfdsdfsdf,affa",f,,f,p6E-oKMYAWgjRpuPKa90bA,t,QPENsM53ktRbVe1y2x0_2A
-22,5,1,5,J.M.Basquiat-Plush safe he think..,"Jean-Michel Basquiat, born in Brooklyn, New York after the death of his brother Max, was the second of four children of Matilda Andrades (July 28, 1934 – November 17, 2008) and Gerard Basquiat (born 1930).",f,1,f,IeSyoCoVY01GqOukYGbhxA,t,ORUJpLqB_WgbYh6oBSDWiQ
-23,7,3,5,Visive arts,A virtual journey into the history of the visual arts.,f,,f,jfvYqCNpM9KHEmnMsA0Iaw,t,I-tXWS7ebN-UmDrFw7AhBQ
+id,user_id,school_level_id,subject_id,title,description,is_public,parent_id,copied_not_modified,token,notified
+1,6,1,5,J.M.Basquiat-Plush safe he think..,"Jean-Michel Basquiat, born in Brooklyn, New York after the death of his brother Max, was the second of four children of Matilda Andrades (July 28, 1934 – November 17, 2008) and Gerard Basquiat (born 1930).",t,,f,uGnYAt0Aiysxujl_ayoLJg,t
+2,6,1,10,Welcome in London,"The etymology of London is uncertain. It is an ancient name and can be found in sources from the 2nd century. It is recorded c. 121 as Londinium, which points to Romano-British origin.",t,,f,8ZVYoicIuBxJl3n_yZEEwQ,t
+3,2,2,2,2012 phenomenon,The 2012 phenomenon comprises a range of eschatological beliefs according to which cataclysmic or transformative events will occur on 21 December 2012,t,,f,9U2OEXRXaRQSC5EoS_F9Yg,t
+4,7,3,3,The big apple,"New York is the most populous city in the United States and the center of the New York Metropolitan Area, one of the most populous metropolitan areas in the world.",t,,f,3Cpwg_Sa5ReDsb3Uk8PB3w,t
+5,7,3,5,Life is pop!,Pop art is an art movement that emerged in the mid 1950s in Britain and in the late 1950s in the United States.,t,,f,8dQgKXju1fbmC4WcKhOO7w,t
+6,3,3,2,Egon Schiele,One of the major figurative painter of the early 20th century.,t,,f,giw9iKFvP5JktEhs9gTVfA,t
+7,2,2,2,Rene Magritte and his paintings,"Rene Magritte was born in Lessines, in the province of Hainaut, in 1898, the eldest son of Leopold Magritte, who was a tailor and textile merchant, and Regina (nee Bertinchamps), a milliner until her marriage.",t,,f,3Prk0ZDBi4e-FGbNZ84Mjg,t
+8,7,3,2,Every man for himself ...,A lesson to learn about the animal world.,t,,f,txL-_TMZc9ZszMdXr_i0aw,t
+9,3,3,11,Sebastião Salgado,"Sebastião Salgado (born February 8, 1944) is a Brazilian social documentary photographer and photojournalist.",t,,f,9UUJVusWVUHGR213s29EOA,t
+11,7,3,1,Maths,"The word mathematics comes from the Greek μάθημα (máthēma), which, in the ancient Greek language, means ""what one learns"", ""what one gets to know"", hence also ""study"" and ""science"", and in modern Greek just ""lesson"".",f,,f,ghrOurxo6BUd5kDGzYMBCQ,t
+12,3,3,11,Josef Koudelka,Josef Koudelka is a Czech photographer.,t,,f,TZylkSxqsjH8goBrxamByg,t
+14,8,1,9,Chinese,it is ok,f,,f,rRfi9l2M9DEUxiWeyfK5wg,t
+15,8,1,9,Chinese,it is ok,f,,f,mnN_H2u4ax_Y-uGyf7roVQ,t
+16,8,1,9,Chinese,it is ok,f,,f,pcfAhBowfUneA5MzP0SapQ,t
+17,8,1,9,Chinese,it is ok,f,,f,0t_S15iJa80xTuxaPM615w,t
+19,2,2,1,Lezione 1,description (max 280 characters),f,,f,aevXs_XlrtWNE1ivNnqPcg,t
+20,7,3,6,Lezione di prova,dkidjjehdjdhj edhjedhjehdje edhejdhe edhejhed edhjjed,f,,f,AvzHfhH1zUeugwXEOQWfKg,t
+21,1,1,11,weref,"sdsfdsdfsdf,affa",f,,f,p6E-oKMYAWgjRpuPKa90bA,t
+22,5,1,5,J.M.Basquiat-Plush safe he think..,"Jean-Michel Basquiat, born in Brooklyn, New York after the death of his brother Max, was the second of four children of Matilda Andrades (July 28, 1934 – November 17, 2008) and Gerard Basquiat (born 1930).",f,1,f,IeSyoCoVY01GqOukYGbhxA,t
+23,7,3,5,Visive arts,A virtual journey into the history of the visual arts.,f,,f,jfvYqCNpM9KHEmnMsA0Iaw,t
