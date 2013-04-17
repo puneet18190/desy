@@ -820,10 +820,14 @@ en:
     not_available:
       # 1 - views/lesson_viewer/slides/_audio.html.erb
       # 2 - views/galleries/thumbs/_audio.html.erb
+      # 3 - views/media_elements/view_single_compact.html.erb
+      # 4 - views/media_elements/view_single_expanded.html.erb
       audio: "The audio %{title} is in conversion and not available now"
       # 1 - views/lesson_viewer/slides/_video1.html.erb
       # 2 - views/lesson_viewer/slides/_video2.html.erb
       # 3 - views/galleries/thumbs/_video.html.erb
+      # 4 - views/media_elements/view_single_compact.html.erb
+      # 5 - views/media_elements/view_single_expanded.html.erb
       video: "The video %{title} is in conversion and not available now"
     notifications:
       # Icon that opens the notifications
