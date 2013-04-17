@@ -123,6 +123,7 @@ function virtualClassroomDocumentReadyMultipleLessonLoading() {
   });
   $('body').on('click', '#virtual_classroom_quick_select_close', function() {
     $('.dialog_opaco').removeClass('dialog_opaco');
+    $('.ui-widget-overlay').css('opacity', 0);
     closePopUp('dialog-virtual-classroom-quick-select');
   });
 }
