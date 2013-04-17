@@ -3322,7 +3322,7 @@
         },
         {
             "file": "app/assets/javascripts/galleries.js",
-            "line": 162,
+            "line": 195,
             "description": "Initialize audio gallery in {{#crossLinkModule \"audio-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "initializeAudioGalleryInAudioEditor",
@@ -3331,7 +3331,7 @@
         },
         {
             "file": "app/assets/javascripts/galleries.js",
-            "line": 180,
+            "line": 213,
             "description": "Initialize audio gallery in {{#crossLinkModule \"lesson-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "initializeAudioGalleryInLessonEditor",
@@ -3340,7 +3340,7 @@
         },
         {
             "file": "app/assets/javascripts/galleries.js",
-            "line": 198,
+            "line": 231,
             "description": "Initialize audio gallery in {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "initializeAudioGalleryInVideoEditor",
@@ -3349,7 +3349,7 @@
         },
         {
             "file": "app/assets/javascripts/galleries.js",
-            "line": 216,
+            "line": 249,
             "description": "Initialize image gallery in {{#crossLinkModule \"image-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "initializeImageGalleryInImageEditor",
@@ -3358,7 +3358,7 @@
         },
         {
             "file": "app/assets/javascripts/galleries.js",
-            "line": 234,
+            "line": 267,
             "description": "Initialize image gallery in {{#crossLinkModule \"lesson-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "initializeImageGalleryInLessonEditor",
@@ -3367,7 +3367,7 @@
         },
         {
             "file": "app/assets/javascripts/galleries.js",
-            "line": 252,
+            "line": 285,
             "description": "Initialize mixed gallery in {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "initializeMixedGalleryInVideoEditor",
@@ -3376,7 +3376,7 @@
         },
         {
             "file": "app/assets/javascripts/galleries.js",
-            "line": 280,
+            "line": 321,
             "description": "Initialize video gallery in {{#crossLinkModule \"lesson-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "initializeVideoGalleryInLessonEditor",
