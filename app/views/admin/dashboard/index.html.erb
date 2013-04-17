@@ -53,27 +53,24 @@
                 </tbody>
               </table>
             </tr>
+            <tr>
+              <table class="table" style="margin-bottom:0">
+                <thead>
+                  <th><h4><%= t('admin.dashboard.users.new') %></h4></th>
+                  <th></th>
+                </thead>
+                <tbody>
+                  <% @users.each do |user| %>
+                    <tr>
+                      <td><%= link_to "#{user.name} #{user.surname}", admin_user_path(user) %></td>
+                      <td style="text-align:right"><span class="counter-label"><%= TimeConvert.to_string user.created_at %></span></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </tr>
           </tbody>
         </table>
-      </div>
-      <div class="row-fluid">
-        <div class="span6 widget">
-          <h4><%= t('admin.dashboard.users.online') %></h4>
-          <!-- TODO (where login_time > logout_time)-->
-          <ul class="list">
-            <% @users.each do |user| %>
-              <li><%= link_to "#{user.name} #{user.surname}", admin_user_path(user) %></li>
-            <% end %>
-          </ul>
-        </div>
-        <div class="span6 widget">
-          <h4><%= t('admin.dashboard.users.new') %></h4>
-          <ul class="list">
-            <% @users.each do |user| %>
-              <li><%= link_to "#{user.name} #{user.surname}", admin_user_path(user) %><span class=" pull-right"><%= TimeConvert.to_string user.created_at %></span></li>
-            <% end %>
-          </ul>
-        </div>
       </div>
     </div>
   </div>
