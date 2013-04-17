@@ -146,12 +146,12 @@ function galleriesDocumentReadyOpen() {
           $('#' + instance_id).removeClass('_empty_audio_player').addClass('_instance_of_player');
           initializeMedia(instance_id, 'audio');
         }
-            var jsp_handler = $('#audio_gallery_content > div').data('jsp');
-            if(jsp_handler == undefined) {
-              console.log('caso in cui devo cambiare dimensione al div, vedi appunti per i dettagli'); // FIXME usare was_open!!!!
-            } else {
-        obj.show('blind', {}, 500, function() {
-          setTimeout(function() {
+        var jsp_handler = $('#audio_gallery_content > div').data('jsp');
+        if(jsp_handler == undefined) {
+          console.log('caso in cui devo cambiare dimensione al div, vedi appunti per i dettagli'); // FIXME usare was_open!!!!
+        } else {
+          obj.show('blind', {}, 500, function() {
+            setTimeout(function() {
               var hidden_pixels = jsp_handler.getContentPositionY();
               var elements_before = 0;
               var looking = true
@@ -170,9 +170,9 @@ function galleriesDocumentReadyOpen() {
                 // This excludes automatically the case in which scroll_destination < 0
                 jsp_handler.scrollToY(scroll_destination, true);
               }
-          }, 300);
-        });
-            }
+            }, 300);
+          });
+        }
       }
     }
   });
