@@ -241,8 +241,11 @@ class UsersController < ApplicationController
     @all_shared_lessons  = Statistics.all_shared_lessons
     @all_users           = Statistics.all_users
     @all_users_like      = Statistics.all_users_like(3)
-    @all_subjects_chart  = Statistics.all_subjects_chart[0].split(',')
-    @all_subjects_desc   = Statistics.all_subjects_chart[1].split(',')
+    @subjects_chart       = {
+      :data   => Statistics.subjects_chart,
+      :texts  => Statistics.subjects,
+      :colors => Subject.chart_colors
+    }
   end
   
   private
