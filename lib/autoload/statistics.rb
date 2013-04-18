@@ -91,7 +91,7 @@ module Statistics
     # Submethod for chart percentages
     def percentage(val, tot) # :doc:
       res = (val.to_f * 100) / tot.to_f
-      res.round(3)
+      res.round(2)
     end
     
   end

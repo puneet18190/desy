@@ -92,9 +92,8 @@
                 <% end %>
               </td>
               <td>
-                <span class="pie" data-text="<%= @subjects_chart[:texts].join(',') %>" data-diameter="250" class="fltrt">
-                  <%= @subjects_chart[:data].join(',') %>
-                </span>
+                <% texts = "\"#{@subjects_chart[:texts].join("\", \"")}\"" %>
+                <span class="pie" data-text="[<%= texts %>]" data-diameter="250" class="fltrt"><%= @subjects_chart[:data].join(', ') %></span>
               </td>
             </tr>
           </tbody>
@@ -158,9 +157,8 @@
                 <% end %>
               </td>
               <td>
-                <span class="pie" data-text="<%= @hard_disk_chart[:texts].join(',') %>" data-diameter="250" class="fltrt">
-                  <%= @hard_disk_chart[:data].join(',') %>
-                </span>
+                <% texts = "\"#{@subjects_chart[:texts].join("\", \"")}\"" %>
+                <span class="pie" data-text="[<%= texts %>]" data-diameter="250" class="fltrt"><%= @hard_disk_chart[:data].join(',') %></span>
               </td>
             </tr>
           </tbody>
