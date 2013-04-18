@@ -2360,6 +2360,18 @@ cn:
       # statistics about subject distribution among lessons (a graph)
       # 1 - views/admin/dashboard/index.html.erb
       subjects: "课程中科目分配"
+      # Statistics about available space in media elements folder
+      hard_disk:
+        # 1 - views/admin/dashboard/index.html.erb
+        title: "Space in the hard disk" # TODO
+        # 1 - controllers/admin/dashboard_controller.rb
+        images: "Images" # TODO
+        # 1 - controllers/admin/dashboard_controller.rb
+        audios: "Audios" # TODO
+        # 1 - controllers/admin/dashboard_controller.rb
+        videos: "Videos" # TODO
+        # 1 - controllers/admin/dashboard_controller.rb
+        remaining: "Remaining space" # TODO
     # General captions, used throughout the Administrator
     general:
       # Link to switch all the items in a list to the compact status

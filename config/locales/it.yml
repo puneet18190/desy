@@ -2360,6 +2360,18 @@ it:
       # statistics about subject distribution among lessons (a graph)
       # 1 - views/admin/dashboard/index.html.erb
       subjects: "Distribuzione delle materie sulle lezioni"
+      # Statistics about available space in media elements folder
+      hard_disk:
+        # 1 - views/admin/dashboard/index.html.erb
+        title: "Spazio nell'hard disk"
+        # 1 - controllers/admin/dashboard_controller.rb
+        images: "Immagini"
+        # 1 - controllers/admin/dashboard_controller.rb
+        audios: "Audio"
+        # 1 - controllers/admin/dashboard_controller.rb
+        videos: "Video"
+        # 1 - controllers/admin/dashboard_controller.rb
+        remaining: "Spazio rimanente"
     # General captions, used throughout the Administrator
     general:
       # Link to switch all the items in a list to the compact status
