@@ -8259,7 +8259,31 @@ $.widget("ui.dialog", {
 			// ensure that the titlebar is never outside the document
 			using: function( pos ) {
 				var topOffset = $( this ).css( pos ).offset().top;
+				
+				
+				
+				// FIXME patch importante by Adriano, per risolvere il problema dello spazio in basso per le popups
+				var mozillone = $('html').hasClass('mozilla');
+				if(mozillone) {
+					$( this ).css( "position", "absolute" );
+					$( this ).css( "top", topOffset  );
+				}
+				// FIXME FINO A QUI
+				
+				
+				
 				if ( topOffset < 0 ) {
+					
+					
+					
+					// FIXME STESSO PATCH DI SOPRA
+					if(mozillone) {
+						$( this ).css( "position", "relative" );
+					}
+					// FIXME FINO A QUI
+					
+					
+					
 					$( this ).css( "top", pos.top - topOffset );
 				}
 			}

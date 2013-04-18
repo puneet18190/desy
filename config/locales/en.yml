@@ -787,7 +787,10 @@ en:
     lesson_editor:
       # Button '+' to add a new slide
       # 1 - views/lesson_editor/_slide_buttons.html.erb
+      # 2 - views/lesson_editor/_slide_buttons.html.erb
       add_slide: "Add new slide"
+      # 1 - views/lesson_editor/_slide_buttons.html.erb
+      add_slide_cancel: "Cancel"
       # Button '+' to replace an audio in the audio slide
       # 1 - views/lesson_editor/slides/parts/_audio.html.erb
       change_audio: "Replace audio"
@@ -820,10 +823,14 @@ en:
     not_available:
       # 1 - views/lesson_viewer/slides/_audio.html.erb
       # 2 - views/galleries/thumbs/_audio.html.erb
+      # 3 - views/media_elements/view_single_compact.html.erb
+      # 4 - views/media_elements/view_single_expanded.html.erb
       audio: "The audio %{title} is in conversion and not available now"
       # 1 - views/lesson_viewer/slides/_video1.html.erb
       # 2 - views/lesson_viewer/slides/_video2.html.erb
       # 3 - views/galleries/thumbs/_video.html.erb
+      # 4 - views/media_elements/view_single_compact.html.erb
+      # 5 - views/media_elements/view_single_expanded.html.erb
       video: "The video %{title} is in conversion and not available now"
     notifications:
       # Icon that opens the notifications
@@ -2206,9 +2213,15 @@ en:
       # 7 - views/lesson_editor/slides/_audio.html.erb
       length_title: 35
       # Maximum number of characters allowed in the caption of an image inside a slide
-      # 1 - models/media_elements_slide.rb
-      # 2 - views/lesson_editor/slides/parts/_image.html.erb
-      length_caption: 35
+      length_caption:
+        # 1 - views/lesson_editor/slides/parts/_image.html.erb
+        image1: 35
+        # 1 - views/lesson_editor/slides/parts/_image.html.erb
+        image2: 35
+        # 1 - views/lesson_editor/slides/parts/_image.html.erb
+        image3: 70
+        # 1 - views/lesson_editor/slides/parts/_image.html.erb
+        image4: 35
     video_editor:
       # Maximum number of characters allowed in the text component of Video Editor
       # 1 - views/video_editor/_text_component_editor.html.erb
@@ -2341,9 +2354,6 @@ en:
         users: "Users with more 'I like you'"
       # Statistics about users
       users:
-        # List of users on line
-        # 1 - views/admin/dashboard/index.html.erb
-        online: "Users online"
         # List of the last users who signed up in the application
         # 1 - views/admin/dashboard/index.html.erb
         new: "Last users"

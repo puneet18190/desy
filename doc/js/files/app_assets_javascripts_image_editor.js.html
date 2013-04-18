@@ -469,7 +469,7 @@ function imageEditorDocumentReadyGeneral() {
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._add_image_to_image_editor&#x27;, function() {
     var parser = document.createElement(&#x27;a&#x27;);
     parser.href = $(&#x27;._exit_url&#x27;).attr(&#x27;href&#x27;);
-    window.location = &#x27;&#x2F;images&#x2F;&#x27; + $(this).data(&#x27;image-id&#x27;) + &#x27;&#x2F;edit?back=&#x27; + encodeURIComponent(parser.pathname+parser.search+parser.hash);
+    window.location = &#x27;&#x2F;images&#x2F;&#x27; + $(this).data(&#x27;image-id&#x27;) + &#x27;&#x2F;edit?from_gallery=true&amp;back=&#x27; + encodeURIComponent(parser.pathname+parser.search+parser.hash);
   });
 }
 

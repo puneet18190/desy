@@ -573,7 +573,7 @@ cn:
       # 1 - controllers/application_controller.rb
       # 2 - controllers/video_editor_controller.rb
       # 3 - controllers/video_editor_controller.rb
-      media_folder_size_exceeded: "Media uploading is temporarly disabled; please try again later" # TODO
+      media_folder_size_exceeded: "媒体上传临时中止，请稍后再试。"
       # The user tried to upload an attachment whose format is not supported
       # 1 - controllers/application_controller.rb
       # 2 - controllers/application_controller.rb
@@ -787,7 +787,10 @@ cn:
     lesson_editor:
       # Button '+' to add a new slide
       # 1 - views/lesson_editor/_slide_buttons.html.erb
+      # 2 - views/lesson_editor/_slide_buttons.html.erb
       add_slide: "增加新幻灯片"
+      # 1 - views/lesson_editor/_slide_buttons.html.erb
+      add_slide_cancel: "终止"
       # Button '+' to replace an audio in the audio slide
       # 1 - views/lesson_editor/slides/parts/_audio.html.erb
       change_audio: "替换音频"
@@ -820,10 +823,14 @@ cn:
     not_available:
       # 1 - views/lesson_viewer/slides/_audio.html.erb
       # 2 - views/galleries/thumbs/_audio.html.erb
+      # 3 - views/media_elements/view_single_compact.html.erb
+      # 4 - views/media_elements/view_single_expanded.html.erb
       audio: "音频%{title}正在转换，现在不能提供"
       # 1 - views/lesson_viewer/slides/_video1.html.erb
       # 2 - views/lesson_viewer/slides/_video2.html.erb
       # 3 - views/galleries/thumbs/_video.html.erb
+      # 4 - views/media_elements/view_single_compact.html.erb
+      # 5 - views/media_elements/view_single_expanded.html.erb
       video: "视频%{title}正在转换，现在不能提供"
     notifications:
       # Icon that opens the notifications
@@ -1158,7 +1165,7 @@ cn:
     create_new_lesson_now: "现在建立课程"
     # Caption of the link to download the user guide (bottom right in the page)
     # 1 - views/dashboard/index.html.erb
-    download_manual: "下载用户手册" # TODO
+    download_manual: "下载用户指南"
     # Caption which appears if there are no suggested lessons inside the Dashboard, because the user picked all the lessons the application suggested him
     # 1 - views/dashboard/_lessons_empty.html.erb
     emptied_lessons: "你已选择所有被推荐的课程"
@@ -2206,9 +2213,15 @@ cn:
       # 7 - views/lesson_editor/slides/_audio.html.erb
       length_title: 35
       # Maximum number of characters allowed in the caption of an image inside a slide
-      # 1 - models/media_elements_slide.rb
-      # 2 - views/lesson_editor/slides/parts/_image.html.erb
-      length_caption: 35
+      length_caption:
+        # 1 - views/lesson_editor/slides/parts/_image.html.erb
+        image1: 35
+        # 1 - views/lesson_editor/slides/parts/_image.html.erb
+        image2: 35
+        # 1 - views/lesson_editor/slides/parts/_image.html.erb
+        image3: 70
+        # 1 - views/lesson_editor/slides/parts/_image.html.erb
+        image4: 35
     video_editor:
       # Maximum number of characters allowed in the text component of Video Editor
       # 1 - views/video_editor/_text_component_editor.html.erb
@@ -2235,14 +2248,14 @@ cn:
     # 1 - app/models/location.rb
     # 2 - app/models/location.rb
     labels: [
-        "省份",
-        "城镇",
-        "學校"
-      ] # TODO
+        "省",
+        "市",
+        "县"
+      ]
     # This is the label used when the application needs to resume the chain of higher locations corresponding to a lower one: if for instance for a user we have the field 'Shanghai district - Shanghai province', an appropriate label for it (to be configured here) would be 'District / province'
     # 1 - views/admin/users/show.html.erb
     # 2 - views/admin/users/_list.html.erb
-    parents_label: "城镇/省份" # TODO
+    parents_label: "省/市"
     # Caption inside the select of each location type (the variable %{location} is replaced by the name of the location type, ex City, Province, District)
     # 1 - views/admin/users/_locations_list.html.erb
     # 2 - views/users/_locations_list.html.erb
@@ -2341,9 +2354,6 @@ cn:
         users: "有更多我喜欢你的用户"
       # Statistics about users
       users:
-        # List of users on line
-        # 1 - views/admin/dashboard/index.html.erb
-        online: "用户上线"
         # List of the last users who signed up in the application
         # 1 - views/admin/dashboard/index.html.erb
         new: "上一用户"

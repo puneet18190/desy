@@ -1088,8 +1088,7 @@ lists (see <a href="MailingListGroup.html">MailingListGroup</a>)</p>
           
           
             <div class="description">
-              <p>Initializes the lesson and checks that it belongs to the current user and
-it&#39;s in the Virtual Classroom</p>
+              <p>Initializes the lesson and checks that it&#39;s in the Virtual Classroom</p>
             </div>
           
           
@@ -1108,7 +1107,7 @@ it&#39;s in the Virtual Classroom</p>
                 <pre><span class="ruby-comment"># File app/controllers/virtual_classroom_controller.rb, line 316</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize_lesson_for_sending_link</span> <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">initialize_lesson</span>
-  <span class="ruby-identifier">update_ok</span>(<span class="ruby-ivar">@lesson</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">user_id</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">in_virtual_classroom?</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>))
+  <span class="ruby-identifier">update_ok</span>(<span class="ruby-ivar">@lesson</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">in_virtual_classroom?</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>))
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>

@@ -1,26 +1,23 @@
-
 @mixin ulGallery {
-  ul {
+  .pseudo-ul {
     padding: 0;
-    margin:0;
-    list-style:none;
-    .scroll-pane{
-      margin-left:35px;    
+    margin: 0;
+    .scroll-pane {
+      margin-left: 35px;
       width: 840px;
-      position:absolute;
-      
-      li{
-        float:left; 
-        
+      position: absolute;
+      .pseudo-li {
+        float: left;
       }
     }
   }
 }
+
+
 @mixin boxShadow {
-  
   height: 590px;
   width: 900px;
-  background-color:#252323;
+  background-color: #252323;
 }
 
 
@@ -32,193 +29,165 @@
     background-image: url(<%= asset_path 'icone-player.svg' %>);
     background-repeat: no-repeat;
     background-size: ($button-size*5) ($button-size*4);
-    padding:0;
+    padding: 0;
   }
-  
   &:hover {
     cursor: pointer;
   }
-  
   &.creaNuovoButton {
     background-position: (-$button-size*4) (-$button-size*2);
-    opacity:0.3;
+    opacity: 0.3;
   }
   &.creaNuovoButton:hover {
     background-position: (-$button-size*4) 0;
-    opacity:1;
+    opacity: 1;
   }
 }
+
+
 .gallery-header {
-  position:absolute;
-  top:40px; left:40px;
+  position: absolute;
+  top: 40px;
+  left: 40px;
   padding: 0px;
-  display:inline-block;
-  h3{
+  display: inline-block;
+  h3 {
     color: #666;
-    padding-top:18px;
-    padding-right:15px;
+    padding-top: 18px;
+    padding-right: 15px;
   }
 }
+
+
 .image_gallery {
+  .jspVerticalBar {
+    top: 0;
+  }
   @include boxShadow;
-  
-  display:block;
-  .gallery-header{
-    
-    h3{
+  display: block;
+  .gallery-header {
+    h3 {
       color: #666;
-      padding-top:18px;
-      padding-right:15px;
-    }  
+      padding-top: 18px;
+      padding-right: 15px;
+    }
     .photoIcon {
-      font-size:0.7em;
+      font-size: 0.7em;
     }
   }
   .scroll-pane {
-    top:140px;
-    height:350px;
-    li {
-     width: 111px;
-     margin: 2px 2px;
+    top: 140px;
+    height: 343px;
+    .pseudo-li {
+      width: 111px;
+      height: 111px;
+      margin: 4px 2px 0 2px;
     }
   }
   @include ulGallery;
-  
-   
   .imageInGalleryPopUp {
-    display:none;
-    background-color:#48484a;
+    display: none;
+    background-color: #48484a;
     color: #fff;
-    
-    img{
+    img {
       max-height: 420px;
       max-width: 420px;
-
     }
-    .caption{
-     margin:0;
-     padding:0;
+    .caption {
+      margin: 0;
+      padding: 0;
     }
-    a.aggiungiImgButton{
-      outline:none;
+    a.aggiungiImgButton {
+      outline: none;
     }
   }
   img:hover {
-    outline:1px solid white;
+    outline: 1px solid white;
   };
 }
 
 
 .audio_gallery {
+  .jspVerticalBar {
+    top: 0;
+  }
   background-color: #252323;
   @include boxShadow;
-  
-  display:block;
-  .gallery-header{
-    
-   h3{
-     color: #666;
-     padding-top:18px;
-     padding-right:15px;
-   } 
+  display: block;
+  .gallery-header {
+    h3 {
+      color: #666;
+      padding-top: 18px;
+      padding-right: 15px;
+    }
     .audioIcon {
-      font-size:0.7em;
-    } 
+      font-size: 0.7em;
+    }
   }
-  
   .audioTrackCompact._enabled {
-    width:820px;
-    
+    width: 820px;
     .audioTrackContent {
-      background-color:#4a4a4a;
-      padding:5px 10px;
-      height:34px;
-      margin-top:8px;
-      
+      background-color: #4a4a4a;
+      padding: 5px 10px;
+      height: 34px;
+      margin-top: 8px;
       &:hover {
-        cursor:pointer;
-        background-color:#403f3f;
+        cursor: pointer;
+        background-color: #403f3f;
       }
-      
       .infoTrack {
-        float:left; 
-        padding:5px 10px;
-        border-left:1px solid #2d2d2d;
-        height:26px;
+        float: left;
+        padding: 5px 10px;
+        border-left: 1px solid #2d2d2d;
+        height: 26px;
         a {
-          color:#fff;
+          color: #fff;
         }
       }
-      
     }
     .audioTrackExpanded {
-      background-color:#3b3a3b;
-      text-align:left;
-      padding:10px 20px;
-      position:relative;
-      
+      background-color: #3b3a3b;
+      text-align: left;
+      height: 32px;
+      padding: 10px 20px;
+      position: relative;
     }
   }
-  
-  
   .audioTrackCompact._disabled {
-    width:820px;
-    opacity:0.2;
+    width: 820px;
+    opacity: 0.2;
     a {
       cursor: default;
     }
-    
     .audioTrackContent {
-      background-color:#4a4a4a;
-      padding:5px 10px;
-      height:34px;
-      margin-top:8px;
-      
+      background-color: #4a4a4a;
+      padding: 5px 10px;
+      height: 34px;
+      margin-top: 8px;
       .infoTrack {
-        float:left; 
-        padding:5px 10px;
-        border-left:1px solid #2d2d2d;
-        height:26px;
+        float: left;
+        padding: 5px 10px;
+        border-left: 1px solid #2d2d2d;
+        height: 26px;
         a {
-          color:#fff;
+          color: #fff;
         }
       }
-      
-    }
-    .audioTrackExpanded {
-      background-color:#3b3a3b;
-      text-align:left;
-      padding:10px 20px;
-      position:relative;
-      
     }
   }
-  
-  
   .titleTrack {
     text-align:left;
-    padding:8px 8px;
+    padding: 8px 8px;
     float:left;
   }
   @include ulGallery;
   .scroll-pane {
-    top:190px;
-    height:316px;
+    top: 190px;
+    height: 304px;
   }
-
-  &.audio-kind {
-    ul{
-      li{
-        width: 250px;
-        height: 140px;
-        margin: 0 20px 20px 0;
-      }
-    }
-  }
-  
   .audioInGalleryPopUp {
-    display:none;
-    background-color:#fff;
+    display: none;
+    background-color: #fff;
     color: #666;
     max-height: 420px;
     max-width: 420px;
@@ -226,221 +195,187 @@
       max-height: 420px;
       max-width: 420px;
     }
-    .caption{
-     margin:0;
-     padding:0;
+    .caption {
+     margin: 0;
+     padding: 0;
     }
-    a.aggiungiImgButton{
-      outline:none;
+    a.aggiungiImgButton {
+      outline: none;
     }
   }
-.addButtonContent {
-  margin-top: 5px;
-}
+  .addButtonContent {
+    margin-top: 5px;
+  }
 }
 
 
 .video_gallery {
-  
+  .jspVerticalBar {
+    top: 0;
+  }
   @include boxShadow;
   display:block;
-  
-  
   .gallery-header{
-    
-    h3{
+    h3 {
       color: #666;
-      padding-top:18px;
-      padding-right:15px;
+      padding-top: 18px;
+      padding-right: 15px;
     }
     .videoIcon {
-      font-size:0.7em;
+      font-size: 0.7em;
     }
   }
-  
   @include ulGallery;
   .scroll-pane {
-    top:190px;
-    height: 320px;
-    li {
+    top: 190px;
+    height: 308px;
+    .pseudo-li {
       width: 250px;
       margin: 0px 36px 36px 0;
     }
   }
-  
-
   &.video-kind {
-    ul{
-      li{
+    .pseudo-ul {
+      .pseudo-li {
         width: 250px;
         height: 140px;
-        margin: 5px 20px 21px 6px;
+        margin: 26px 20px 0 6px;
       }
-      li._enabled {
+      .pseudo-li._enabled {
         img:hover {
-          outline:1px solid white;
+          outline: 1px solid white;
         };
       }
-      li._disabled a {
+      .pseudo-li._disabled a {
         cursor: default;
       }
     }
   }
-  
   .videoInGalleryPopUp {
-    display:none;
-    background-color:#fff;
+    display: none;
+    background-color: #fff;
     color: #666;
     max-height: 420px;
     max-width: 420px;
-    
-    img{
+    img {
       max-height: 420px;
       max-width: 420px;
     }
-    .caption{
-     margin:0;
-     padding:0;
+    .caption {
+      margin: 0;
+      padding: 0;
     }
-    
-    a.aggiungiImgButton{
-      outline:none;
+    a.aggiungiImgButton {
+      outline: none;
     }
-    
   }
 }
-@mixin stileElementiSceltaColori{
-  padding:5px;
-  outline:1px solid #e6e6e6;
-  cursor:pointer;
-  float:left;
-  margin-left:8px;
-  margin-top:2px;
+
+
+@mixin stileElementiSceltaColori {
+  padding: 5px;
+  outline: 1px solid #e6e6e6;
+  cursor: pointer;
+  float: left;
+  margin-left: 8px;
+  margin-top: 2px;
   &:hover, &.current {
-       outline:2px solid #fff;
-     }
+    outline: 2px solid #fff;
+  }
 }
-/*testo*/
+
+
 ._texts {
   @include boxShadow;
   height: 486px;
   display: block;
   font: 90% 'Nunito', sans-serif;
-  /*content inserimento testo*/
   .contentInsertText {
-    width:604px;
-    height:330px;
-    position:absolute;
-    top:90px;
-    left:140px;
-    margin:20px auto;
-    padding:10px;
+    width: 604px;
+    height: 330px;
+    position: absolute;
+    top: 90px;
+    left: 140px;
+    margin: 20px auto;
+    padding: 10px;
     -webkit-box-shadow: 0px 6px 16px #121111;
     box-shadow: 0px 6px 16px #121111;
     textarea {
       font: 230% 'Droid Sans', sans-serif;
-      
-      padding-top:147px;
-      background-color:transparent;
-      text-align:center;
-      border:none;
+      padding-top: 147px;
+      background-color: transparent;
+      text-align: center;
+      border: none;
     }
-    
   }
   .menuTexts {
-    position:absolute; 
-    bottom:90px; 
-    left:140px; 
-    width:624px;
-    font-size:85%;
-    .elementoGrigio  {
-      width:31%;
+    position: absolute;
+    bottom: 90px;
+    left: 140px;
+    width: 624px;
+    font-size: 85%;
+    .elementoGrigio {
+      width: 31%;
     }
-    /*content scelta colore background*/
     .scegliBgColor {
       p {
-        float:left;
-        width:85px;
-      }
-      & > div {
-       @include stileElementiSceltaColori;
-       }
-    }
-    /*content scelta colore testo*/
-    .scegliTxtColor {
-      p {
-        float:left;
-        width:85px;
+        float: left;
+        width: 85px;
       }
       & > div {
         @include stileElementiSceltaColori;
       }
     }
-    
+    .scegliTxtColor {
+      p {
+        float: left;
+        width: 85px;
+      }
+      & > div {
+        @include stileElementiSceltaColori;
+      }
+    }
   }
   .bottoniVerdi {
-    margin-top:10px;
+    margin-top: 10px;
     a {
-      font-size:11px;
+      font-size: 11px;
     }
   }
 }
-/*#video_gallery_content{
-  .scroll-pane {
-    width:870px;
-    position:absolute;
-    top:190px;
-    
-  }
-  
-  
-}*/
-/*#image_gallery_content {
-  .scroll-pane {
-    width:840px;
-    position:absolute;
-    top:190px;
-    padding-left:20px;
-  }
-}*/
 
-	
-#image_gallery_for_image_editor{
+
+#image_gallery_for_image_editor {
   margin-top: 20px;
-  .gallery-header{
+  .gallery-header {
     position: absolute;
     top: 100px;
   }
-
-  .mediaEditorElementContainer{
+  .mediaEditorElementContainer {
     width: 890px;
     height: 545px;
     padding: 25px;
-    
     -webkit-box-shadow: 0px 6px 10px #161515;
     box-shadow: 0px 6px 10px #161515;
     background-color: #252323;
     .image_gallery {
       height: 486px;
-      
       .scroll-pane {
         width: 870px;
-        margin: 60px 0 0 20px;
-        height:358px;
+        margin: 110px 0 0 20px;
       }
     }
-
   }
-  ._close_image_gallery{
-    display:none;
+  ._close_image_gallery {
+    display: none;
   }
 }
 
-.gallery-footer{
+
+.gallery-footer {
   display: inline-block;
   color: white;
   position: absolute;
   bottom: 30px;
   right: 18px;
 }
-

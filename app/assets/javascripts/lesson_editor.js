@@ -46,6 +46,8 @@ function hideNewSlideChoice() {
   current_slide.find('div.slide-content').addClass(current_slide.data('kind'));
   current_slide.find('.box.new_slide').remove();
   current_slide.find('._hide_add_new_slide_options').removeAttr('class').addClass('addButtonOrange _add_new_slide_options');
+  var new_title = current_slide.find('._add_new_slide_options').data('title');
+  current_slide.find('._add_new_slide_options').removeAttr('title').attr('title', new_title);
   showEverythingOutCurrentSlide();
 }
 
@@ -74,6 +76,8 @@ function showNewSlideOptions() {
   var html_to_be_replaced = $('#new_slide_option_list').html();
   current_slide_content.prepend(html_to_be_replaced);
   current_slide_content.siblings('.buttons').find('._add_new_slide_options').removeAttr('class').addClass('minusButtonOrange _hide_add_slide _hide_add_new_slide_options');
+  var new_title = current_slide_content.siblings('.buttons').find('._hide_add_new_slide_options').data('other-title');
+  current_slide_content.siblings('.buttons').find('._hide_add_new_slide_options').removeAttr('title').attr('title', new_title);
   hideEverythingOutCurrentSlide();
 }
 

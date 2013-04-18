@@ -1,6 +1,7 @@
 # encoding: utf-8
 
 require 'env_relative_path'
+require 'find'
 require 'media'
 
 class ImageUploader < CarrierWave::Uploader::Base
@@ -24,6 +25,11 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   def self.remove_folder!
     FileUtils.rm_rf FOLDER
+  end
+
+  def self.folder_size
+    return 0 unless Dir.exists? FOLDER
+    Find.find(FOLDER).sum { |f| File.stat(f).size }
   end
 
   # Override the directory where uploaded files will be stored.

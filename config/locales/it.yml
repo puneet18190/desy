@@ -787,7 +787,10 @@ it:
     lesson_editor:
       # Button '+' to add a new slide
       # 1 - views/lesson_editor/_slide_buttons.html.erb
+      # 2 - views/lesson_editor/_slide_buttons.html.erb
       add_slide: "Aggiungi una nuova diapositiva"
+      # 1 - views/lesson_editor/_slide_buttons.html.erb
+      add_slide_cancel: "Annulla"
       # Button '+' to replace an audio in the audio slide
       # 1 - views/lesson_editor/slides/parts/_audio.html.erb
       change_audio: "Sostituisci l'audio"
@@ -820,10 +823,14 @@ it:
     not_available:
       # 1 - views/lesson_viewer/slides/_audio.html.erb
       # 2 - views/galleries/thumbs/_audio.html.erb
+      # 3 - views/media_elements/view_single_compact.html.erb
+      # 4 - views/media_elements/view_single_expanded.html.erb
       audio: "La traccia audio %{title} è in fase di conversione e per il momento non è disponibile"
       # 1 - views/lesson_viewer/slides/_video1.html.erb
       # 2 - views/lesson_viewer/slides/_video2.html.erb
       # 3 - views/galleries/thumbs/_video.html.erb
+      # 4 - views/media_elements/view_single_compact.html.erb
+      # 5 - views/media_elements/view_single_expanded.html.erb
       video: "Il video %{title} è in fase di conversione e per il momento non è disponibile"
     notifications:
       # Icon that opens the notifications
@@ -2206,9 +2213,15 @@ it:
       # 7 - views/lesson_editor/slides/_audio.html.erb
       length_title: 35
       # Maximum number of characters allowed in the caption of an image inside a slide
-      # 1 - models/media_elements_slide.rb
-      # 2 - views/lesson_editor/slides/parts/_image.html.erb
-      length_caption: 35
+      length_caption:
+        # 1 - views/lesson_editor/slides/parts/_image.html.erb
+        image1: 35
+        # 1 - views/lesson_editor/slides/parts/_image.html.erb
+        image2: 35
+        # 1 - views/lesson_editor/slides/parts/_image.html.erb
+        image3: 70
+        # 1 - views/lesson_editor/slides/parts/_image.html.erb
+        image4: 35
     video_editor:
       # Maximum number of characters allowed in the text component of Video Editor
       # 1 - views/video_editor/_text_component_editor.html.erb
@@ -2341,9 +2354,6 @@ it:
         users: "Utenti con più 'Mi piace'"
       # Statistics about users
       users:
-        # List of users on line
-        # 1 - views/admin/dashboard/index.html.erb
-        online: "Utenti online"
         # List of the last users who signed up in the application
         # 1 - views/admin/dashboard/index.html.erb
         new: "Ultimi utenti registrati"

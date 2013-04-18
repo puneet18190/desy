@@ -1,11 +1,11 @@
 one:
   id: 1
   name: 'Roma'
-  sti_type: 'School'
+  sti_type: 'County'
   ancestry: nil
 
 two:
   id: 2
   name: 'Milano'
-  sti_type: 'School'
+  sti_type: 'County'
   ancestry: nil

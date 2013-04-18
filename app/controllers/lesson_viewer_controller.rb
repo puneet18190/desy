@@ -34,7 +34,7 @@ class LessonViewerController < ApplicationController
       redirect_to '/dashboard'
     else
       @is_back = (!params[:back].nil? && !params[:back].empty?)
-      @with_exit = params[:token].nil? || params[:token].empty?
+      @with_exit = logged_in?
       @back = params[:back]
       @slides = @lesson.slides.order(:position)
     end

@@ -902,9 +902,12 @@ This method has the same cases of use of {{#crossLink &quot;PlayersAudioEditor&#
 **&#x2F;
 function initializeActionOfMediaTimeUpdaterInVideoEditor(media, identifier, force_parsed_int) {
   var video_cut_to = $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter&#x27;).data(&#x27;to&#x27;);
-  var parsed_int = parseInt(media.currentTime);
-  if(force_parsed_int) {
+  var not_parsed_int = media.currentTime;
+  var parsed_int = parseInt(not_parsed_int);
+  if(force_parsed_int || (not_parsed_int &lt; video_cut_to &amp;&amp; (video_cut_to - not_parsed_int) &lt;= 0.2)) {
     parsed_int = video_cut_to;
+    $(media).data(&#x27;dont-update-time&#x27;, true);
+    setCurrentTimeToMedia($(&#x27;#video_component_&#x27; + identifier + &#x27;_preview video&#x27;), video_cut_to);
   }
   if($(&#x27;#video_editor_global_preview&#x27;).data(&#x27;in-use&#x27;)) {
     var component = $(&#x27;#video_component_&#x27; + identifier);
@@ -967,6 +970,7 @@ function initializeActionOfMediaTimeUpdaterInVideoEditor(media, identifier, forc
       $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter ._media_player_slider&#x27;).slider(&#x27;value&#x27;, parsed_int);
     }
   }
+  $(media).data(&#x27;dont-update-time&#x27;, false);
 }
 
 &#x2F;**
@@ -980,12 +984,16 @@ function initializeMediaTimeUpdaterInVideoEditor(media, identifier) {
   media = $(media);
   if(media.readyState != 0) {
     media[0].addEventListener(&#x27;timeupdate&#x27;, function() {
-      initializeActionOfMediaTimeUpdaterInVideoEditor(this, identifier, false);
+      if(!$(media).data(&#x27;dont-update-time&#x27;)) {
+        initializeActionOfMediaTimeUpdaterInVideoEditor(this, identifier, false);
+      }
     }, false);
   } else {
     media.on(&#x27;loadedmetadata&#x27;, function() {
       media[0].addEventListener(&#x27;timeupdate&#x27;, function() {
-        initializeActionOfMediaTimeUpdaterInVideoEditor(this, identifier, false);
+        if(!$(media).data(&#x27;dont-update-time&#x27;)) {
+          initializeActionOfMediaTimeUpdaterInVideoEditor(this, identifier, false);
+        }
       }, false);
     });
   }

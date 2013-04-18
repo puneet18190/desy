@@ -10,4 +10,8 @@ container.data('page', 1);
 container.data('tot-pages', <%= @tot_pages %>);
 $('._close_image_gallery').addClass('_close_image_gallery_in_lesson_editor');
 $('._select_image_from_gallery').addClass('_add_image_to_slide');
-initializeImageGalleryInLessonEditor();
+<% if @images.count > 21 %>
+  initializeImageGalleryInLessonEditor();
+<% else %>
+  $('.image_gallery .scroll-pane').css('overflow', 'hidden');
+<% end %>

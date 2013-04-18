@@ -1,4 +1,4 @@
-<%= render :partial => 'image_editor/header', :locals => {:image => @image} %>
+<%= render :partial => 'image_editor/header', :locals => {:image => @image, :is_public => @is_public} %>
 
 <div class="mediaEditorElementContainer image_editor_only" id="image_editor">
   
@@ -21,7 +21,7 @@
         <input type="hidden" name="x2" value="" class="_coord"/>
         <input type="hidden" name="y2" value="" class="_coord"/>
         <%= render :partial => 'media_elements/info_form_in_editor/new', :locals => {:sti_type => @image.sti_type } %>
-        <% if !@image.is_public %>
+        <% if !@is_public %>
           <%= render :partial => 'media_elements/info_form_in_editor/edit', :locals => {:media_element => @image} %>
         <% end %>
       </form>
@@ -59,7 +59,7 @@
     <p id="image_editor_real_dimensions"><%= t('image_editor.original_size') %>: <%= @image.width %>x<%= @image.height %>px</p>
     <div class="fltrt">
       <div class="fltrt">
-        <a id="commit_image_editor" class="nextButton <%= @image.is_public ? '' : '_with_choice'.html_safe %>" title="<%= t('titles.image_editor.commit') %>"></a>
+        <a id="commit_image_editor" class="nextButton <%= @is_public ? '' : '_with_choice'.html_safe %>" title="<%= t('titles.image_editor.commit') %>"></a>
       </div>
     </div>
     <br class="clearfloat">

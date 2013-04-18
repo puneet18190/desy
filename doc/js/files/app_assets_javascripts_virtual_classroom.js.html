@@ -429,6 +429,7 @@ function virtualClassroomDocumentReadyMultipleLessonLoading() {
   });
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#virtual_classroom_quick_select_close&#x27;, function() {
     $(&#x27;.dialog_opaco&#x27;).removeClass(&#x27;dialog_opaco&#x27;);
+    $(&#x27;.ui-widget-overlay&#x27;).css(&#x27;opacity&#x27;, 0);
     closePopUp(&#x27;dialog-virtual-classroom-quick-select&#x27;);
   });
 }
@@ -588,7 +589,7 @@ function initializeDraggableVirtualClassroomLesson(id) {
       helper: function() {
         var current_z_index = getMaximumZIndex(&#x27;_virtual_classroom_lesson&#x27;) + 1;
         var div_to_return = $(&#x27;#&#x27; + this.id + &#x27; ._lesson_thumb&#x27;)[0].outerHTML;
-        div_to_return = &#x27;&lt;div &#x27; + &#x27;style=&quot;&#x27; + current_z_index + &#x27;;outline:1px solid white&quot; &#x27; + div_to_return.substr(5,div_to_return.length);
+        div_to_return = &#x27;&lt;div &#x27; + &#x27;style=&quot;&#x27; + current_z_index + &#x27;;outline:1px solid white&quot; &#x27; + div_to_return.substr(5, div_to_return.length);
         return div_to_return;
       },
       start: function() {

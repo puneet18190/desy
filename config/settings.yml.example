@@ -4,7 +4,7 @@ application_full_name: 'DESY - Digital Education System'
 application_extended_name: 'Digital Education System'
 application:
   smtp:
-    address: 'smtp.example.com'
+    :address: 'smtp.example.com'
   email: 'noreply@desy.morganspa.com'
   maintainer:
     emails: ['maintainer@morganspa.com']
