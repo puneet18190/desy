@@ -28,18 +28,6 @@ en:
     # The user forgot to insert an email
     # 1 - controllers/users_controller.rb
     email_is_blank: "Email is blank"
-    # This message appears if a user tries to click on a confirmation link which is no longer valid
-    # 1 - controllers/users_controller.rb
-    failed_confirmation: "The link you submitted is no longer valid"
-    # The user lost the password and asked for a new one: this message appears when the password has been successfully reset
-    # 1 - controllers/users_controller.rb
-    password_reset_successfully: "Password reset successfully"
-    # The user filled his sign up form, and there were no errors: the application sent him an email with a link to confirm his account
-    # 1 - controllers/users_controller.rb
-    successful_registration: "Registration was completed successfully. Check your email address in order to confirm it"
-    # The user clicked on the confirmation link he received by email: he is redirected to the main page of the application, with this message (to log in he still needs to write username and password, he is not automatically logged in)
-    # 1 - controllers/users_controller.rb
-    successful_confirmation: "Your account was confirmed successfully. Insert your username and password in order to sign in"
   # Messages shown inside a popup, all over the application
   other_popup_messages:
     correct:
@@ -1072,6 +1060,50 @@ en:
       description: "The technologies used in our application wouldn't work properly in your browser. To use %{desy} you need to update your browser, or download a newer one."
     # Links where it's possible to download updated browsers
     links: "Links to update your browser"
+  
+  
+  # SECTION 1.8: Contents of fullpage notifications related to users registration and reset password
+  
+  fullpage_notifications:
+    # Title for the link used to go back to the homepage
+    # 1 - views/users/fullpage_notifications/reset_password/received.html.erb
+    # 2 - views/users/fullpage_notifications/reset_password/email_sent.html.erb
+    # 3 - views/users/fullpage_notifications/confirmation/received.html.erb
+    # 4 - views/users/fullpage_notifications/confirmation/email_sent.html.erb
+    # 5 - views/users/fullpage_notifications/expired_link.html.erb
+    back: "Back to home page"
+    # This message appears if a user tries to click on a confirmation link (or a reset password link) which is no longer valid
+    expired_link:
+      # 1 - views/users/fullpage_notifications/expired_link.html.erb
+      title: "Error!"
+      # 1 - views/users/fullpage_notifications/expired_link.html.erb
+      description: "The link you submitted is no longer valid"
+    reset_password:
+      # The user lost his password and asked for a new one: he received an email with a special link to reset the password
+      email_sent:
+        # 1 - views/users/fullpage_notifications/reset_password/email_sent.html.erb
+        title: "Reset password"
+        # 1 - views/users/fullpage_notifications/reset_password/email_sent.html.erb
+        description: "We sent, to the address that you inserted, an email containing the link to reset your password"
+      # The user lost the password and asked for a new one: this message appears when the password has been successfully reset
+      received:
+        # 1 - views/users/fullpage_notifications/reset_password/received.html.erb
+        title: "Reset password"
+        # 1 - views/users/fullpage_notifications/reset_password/received.html.erb
+        description: "Password reset successfully! We sent you an email containing a temporary password: with such a password you can login, and choose a new password in your personal profile"
+    confirmation:
+      # The user filled his sign up form, and there were no errors: the application sent him an email with a link to confirm his account
+      email_sent:
+        # 1 - views/users/fullpage_notifications/confirmation/email_sent.html.erb
+        title: "Registration"
+        # 1 - views/users/fullpage_notifications/confirmation/email_sent.html.erb
+        description: "The registration was completed successfully: check your email address in order to confirm it"
+      # The user clicked on the confirmation link he received by email: he is redirected to the main page of the application, with this message (to log in he still needs to write username and password, he is not automatically logged in)
+      received:
+        # 1 - views/users/fullpage_notifications/confirmation/received.html.erb
+        title: "Account confirmed"
+        # 1 - views/users/fullpage_notifications/confirmation/received.html.erb
+        description: "Your account has been successfully confirmed"
   
   
   
