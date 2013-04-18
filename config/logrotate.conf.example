@@ -1,0 +1,21 @@
+# Various logs
+"$app_path"/log/*.log {
+  compress
+  delaycompress
+  missingok
+  weekly
+  rotate 52
+  notifempty
+  copytruncate
+}
+
+# Media editing logs
+"$app_path"/log/media/*.log "$app_path"/log/media/*/*.log "$app_path"/log/media/*/*/*.log "$app_path"/log/media/*/*/*/*.log "$app_path"/log/media/*/*/*/*/*.log "$app_path"/log/media/*/*/*/*/*/*.log "$app_path"/log/media/*/*/*/*/*/*/*.log "$app_path"/log/media/*/*/*/*/*/*/*/*.log "$app_path"/log/media/*/*/*/*/*/*/*/*/*.log {
+  compress
+  delaycompress
+  missingok
+  monthly
+  rotate 12
+  ifempty
+  nocreate
+}

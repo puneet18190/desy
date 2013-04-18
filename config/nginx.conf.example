@@ -1,18 +1,18 @@
-upstream webmaster_desy {
+upstream $username_$appname {
   # fail_timeout=0 means we always retry an upstream even if it failed
   # to return a good HTTP response (in case the Unicorn master nukes a
   # single worker for timing out).
 
   # for UNIX domain socket setups:
-  server unix:/tmp/webmaster.desy.production.sock fail_timeout=0;
+  server unix:/tmp/$username.$appname.production.sock fail_timeout=0;
 }
 
 server {
   listen 80;
-  server_name desy.example.com;
+  server_name $servername;
 
   # path for static files
-  root /path/to/desy/public;
+  root $path_to_application/public;
   
   # Prefer to serve static files directly from nginx to avoid unnecessary
   # data copies from the application server.
@@ -28,7 +28,7 @@ server {
 
   # WIRIS PHP
   location ~ ^/assets/tinymce/plugins/tiny_mce_wiris/integration/(.*\.php)$ {
-    alias /path/to/desy/vendor/assets/javascripts/tinymce/plugins/tiny_mce_wiris/integration;
+    alias $path_to_application/vendor/assets/javascripts/tinymce/plugins/tiny_mce_wiris/integration;
     
     fastcgi_split_path_info ^(.+\.php)(/.+)$;
     # # NOTE: You should have "cgi.fix_pathinfo = 0;" in php.ini
@@ -75,19 +75,19 @@ server {
     # redirects, we set the Host: header above already.
     proxy_redirect off;
 
-    proxy_pass http://webmaster_desy;
+    proxy_pass http://$username_$appname;
   }
 
   # Rails error pages
   error_page 404 /404.html;
   location = /404.html {
-    root /path/to/desy/public;
+    root $path_to_application/public;
     internal;
   }
 
   error_page 500 502 503 504 /500.html;
     location = /500.html {
-    root /path/to/desy/public;
+    root $path_to_application/public;
     internal;
   }
 }
