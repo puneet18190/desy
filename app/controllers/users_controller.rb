@@ -241,7 +241,7 @@ class UsersController < ApplicationController
     @all_shared_lessons  = Statistics.all_shared_lessons
     @all_users           = Statistics.all_users
     @all_users_like      = Statistics.all_users_like(3)
-    @subjects_chart       = {
+    @subjects_chart      = {
       :data   => Statistics.subjects_chart,
       :texts  => Statistics.subjects,
       :colors => Subject.chart_colors
