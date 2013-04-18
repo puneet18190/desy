@@ -463,7 +463,15 @@ en:
       subject: "%{desy} - New password"
       # Message
       # 1 - mailers/user_mailer.rb
-      message: "<h1>%{name},</h1><p>we received your password reset request; this is your new password: <b>%{password}</b></p><p>You can login into %{desy} now using the new password, at the URL below.</p><p>you will be able to set another password of your choice once logged in, in the 'Profile' section.</p>"
+      message: "<h1>%{name},</h1><p>we received your password reset request. To confirm your email address and receive a new password, click on the url below:</p>"
+    # Mail containing new temporary password
+    reset_password_confirmed:
+      # Subject
+      # 1 - mailers/user_mailer.rb
+      subject: "%{desy} - New password"
+      # Message
+      # 1 - mailers/user_mailer.rb
+      message: "<h1>%{name},</h1><p>this is your new password: <b>%{password}</b></p><p>You can login into %{desy} now using the new password, at the URL below.</p><p>you will be able to set another password of your choice once logged in, in the 'Profile' section.</p>"
     # Email containing the public link of a lesson (when a user wants to share his lesson outside the application)
     see_my_lesson:
       # Subject

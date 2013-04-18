@@ -463,7 +463,15 @@ it:
       subject: "%{desy} - Nuova password"
       # Message
       # 1 - mailers/user_mailer.rb
-      message: "<h1>%{name},</h1><p>abbiamo ricevuto la tua richiesta di modifica della password; questa è la tua nuova password: <b>%{password}</b></p><p>Ora puoi effettuare l'accesso a %{desy} usando la nuova password, alla seguente URL.</p><p>Potrai impostare una nuova password a vostra scelta, una volta effettuato l'accesso, nella sezione 'Profilo'.</p>"
+      message: "<h1>%{name},</h1><p>abbiamo ricevuto la tua richiesta di modifica della password. Per confermare il tuo indirizzo email address e ricevere una nuova password, clicca sulla seguente URL:</p>"
+    # Mail containing new temporary password
+    reset_password_confirmed:
+      # Subject
+      # 1 - mailers/user_mailer.rb
+      subject: "%{desy} - Nuova password"
+      # Message
+      # 1 - mailers/user_mailer.rb
+      message: "<h1>%{name},</h1><p>questa è la tua nuova password: <b>%{password}</b></p><p>Ora puoi effettuare l'accesso a %{desy} usando la nuova password, alla seguente URL.</p><p>Potrai impostare una nuova password a vostra scelta, una volta effettuato l'accesso, nella sezione 'Profilo'.</p>"
     # Email containing the public link of a lesson (when a user wants to share his lesson outside the application)
     see_my_lesson:
       # Subject
