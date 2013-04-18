@@ -48,7 +48,7 @@ These are the software dependencies:
 
 == Procedure of installation
 
-1.  Extract the DeSY copy into the destination path
+1.  Extract the DeSY copy into the destination path (it should be somewhere inside the home of the user which runs the app)
 2.  Install Ruby (possibly using {rbenv}[https://github.com/sstephenson/rbenv], {RVM}[https://rvm.io/], or {chruby}[https://github.com/postmodern/chruby])
 3.  Install PostgreSQL
 4.  Install Bundler (<tt>gem install bundler</tt>)
@@ -61,9 +61,13 @@ These are the software dependencies:
 10. Ensure the web server to serve the following MIME types:
 
     * video/mp4   mp4
+    * video/webm  webm
     * audio/mp4   m4a
     * audio/ogg   ogg
-    * video/webm  webm
+
+11. If nginx web server is used, you can use +config/nginx.conf.example+ as start for the DeSY site configuration file
+12. 
+
 
 == Configuration
 

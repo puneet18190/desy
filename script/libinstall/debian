@@ -1,0 +1,303 @@
+#!/bin/bash
+
+PREREQUIRED_PACKAGES=( git curl xz-utils )
+RUBY_REQUIRED_PACKAGES=( gcc make zlib1g-dev libyaml-dev libssl-dev libgdbm-dev libreadline-dev libncurses5-dev libffi-dev )
+
+function suc () {
+  su --command "$1" "$username"
+}
+
+function update_apt_and_install_prerequirements_and_dependencies () {
+  echo '  Updating APT packages db'
+  apt-get update
+
+  echo '  Installing prerequirements'
+  apt-get --assume-yes install ${PREREQUIRED_PACKAGES[@]}
+
+  echo '  Installing Ruby requirements'
+  apt-get --assume-yes install ${RUBY_REQUIRED_PACKAGES[@]}
+}
+
+function install_rbenv_and_ruby () {
+  echo '  Installing rbenv'
+
+  # Creating profile file as user if doesn't exist
+  suc 'touch $HOME/.profile'
+
+  # Compile flags
+  # echo "" >> $HOME/.profile
+  # echo 'export CFLAGS="-march=native -O2 -pipe"' >> $HOME/.profile
+
+  suc 'git clone https://github.com/sstephenson/rbenv.git $HOME/.rbenv'
+  suc 'git clone https://github.com/sstephenson/ruby-build.git $HOME/.rbenv/plugins/ruby-build'
+
+  suc "echo '' >> \$HOME/.profile"
+  suc "echo '# rbenv' >> \$HOME/.profile"
+  suc "echo 'export PATH=\"\$HOME/.rbenv/bin:\$PATH\"' >> \$HOME/.profile"
+  suc "echo 'eval \"\$(rbenv init -)\"' >> \$HOME/.profile"
+
+  echo '  Installing Ruby 2.0.0-p0'
+  suc 'export CFLAGS="-march=native -O2 -pipe" && rbenv install 2.0.0-p0'
+  suc 'rbenv global 2.0.0-p0'
+
+  # Dont install rdoc and ri for gems
+  # maybe: --with-cflags="-02 -pipe -march=native -w"
+  suc 'echo "gem: --no-rdoc --no-ri" > $HOME/.gemrc'
+
+  # Ruby GC-tweaks
+  suc "echo '' >> \$HOME/.profile"
+  suc "echo '# Ruby GC-tweaks' >> \$HOME/.profile"
+  suc "echo 'export RUBY_HEAP_MIN_SLOTS=1000000' >> \$HOME/.profile"
+  suc "echo 'export RUBY_HEAP_SLOTS_INCREMENT=1000000' >> \$HOME/.profile"
+  suc "echo 'export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1' >> \$HOME/.profile"
+  suc "echo 'export RUBY_GC_MALLOC_LIMIT=1000000000' >> \$HOME/.profile"
+  suc "echo 'export RUBY_HEAP_FREE_MIN=500000' >> \$HOME/.profile"
+}
+
+function pg_last_version_of_package () {
+  # grep example: echo 'Version: 9.2.4-0ppa1~quantal' | grep --perl-regexp --only-matching '(?<=^Version: ).*' #=> 9.2.4-0ppa1~quantal
+  apt-cache show "$1" 2> /dev/null                                                    \
+   | grep --perl-regexp --only-matching '(?<=^Version: )9\.[23456789].*' 2> /dev/null \
+   | sort                                                                             \
+   | tail --lines=1
+}
+
+function add_postgresql_apt_repository () {
+  local distro_codename=$(lsb_release --codename --short)
+
+  rm -f "/etc/apt/sources.list.d/pitti-postgresql-$distro_codename.list"
+
+  echo "deb http://apt.postgresql.org/pub/repos/apt/ $distro_codename-pgdg main" > /etc/apt/sources.list.d/pgdg.list
+
+  curl --silent --location http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | apt-key add -
+
+  apt-get update
+  apt-get --assume-yes install pgdg-keyring
+}
+
+function install_postgresql () {
+  echo '  Installing postgresql 9.2 or newer'
+
+  local pg_packages=(postgresql postgresql-9.2)
+  local pg_installed=false
+  local pg_version=''
+
+  for pg_package in "${pg_packages[@]}"; do
+    set +e
+    pg_version=`pg_last_version_of_package "$pg_package"`
+    set -e
+
+    if [ -n "$pg_version" ]; then
+      apt-get --assume-yes install "$pg_version"
+      pg_installed=true
+      break
+    fi
+  done
+
+  if [ "$pg_installed" = false ]; then
+    add_postgresql_apt_repository
+    install_postgresql
+  fi
+}
+
+function install_libpq_dev () {
+  echo '  Installing libpq-dev 9.2 or newer'
+
+  local pg_packages=(libpq-dev libpq-dev-9.2)
+  local pg_installed=false
+  local pg_version=''
+
+  for pg_package in "${pg_packages[@]}"; do
+    set +e
+    pg_version=`pg_last_version_of_package "$pg_package"`
+    set -e
+
+    if [ -n "$pg_version" ]; then
+      apt-get --assume-yes install "$pg_version"
+      pg_installed=true
+      break
+    fi
+  done
+
+  if [ "$pg_installed" = false ]; then
+    add_postgresql_apt_repository
+    install_libpq_dev
+  fi
+}
+
+function install_application_and_media_editing_dependencies () {
+  echo '  Installing application and media editing dependencies'
+
+  # DeSY requirements:
+  # 
+  #   application:   php5-fpm g++ libsqlite3-dev
+  #   media editing: imagemagick libav-tools libavcodec-extra-53 mkvtoolnix sox
+  apt-get --assume-yes install g++ libsqlite3-dev imagemagick libav-tools libavcodec-extra-53 mkvtoolnix sox
+}
+
+function install_nginx_and_configure_it () {
+  echo '  Installing nginx and configuring for DeSY'
+
+  apt-get --assume-yes nginx
+
+  local nginx_conf_src_path="$app_path/config/nginx.conf.example"
+  local nginx_conf_dst_path="/etc/nginx/conf/sites-available/$username_$appname"
+
+  sed --expression="s/\$username/$username/g" "nginx_conf_src_path"      \
+   | sed --expression="s/\$appname/$appname/g"                           \
+   | sed --expression="s/\$path_to_application/"${app_path//\//\\/}"/g" \
+   > "nginx_conf_dst_path"
+
+  ln --symbolic "nginx_conf_dst_path" /etc/nginx/conf/sites-enabled
+
+  add_mime_type_to_nginx video/mp4 mp4
+  add_mime_type_to_nginx audio/mp4 m4a
+  add_mime_type_to_nginx audio/ogg ogg
+  add_mime_type_to_nginx video/webm webm
+
+  service nginx restart
+}
+
+function add_mime_type_to_nginx () {
+  local $nginx_mime_types = /etc/nginx/mime.types
+
+  local mime=$1
+  local ext=$2
+
+  if grep "$mime" "$nginx_mime_types" > /dev/null ; then
+    grep "$mime.*$ext" "$nginx_mime_types" || sed --expression="s@$mime\(.*\);@$mime\1 $ext;@" --in-place="$nginx_mime_types"
+  else
+    sed --expression='s@\}@        $mime $ext;\n}@' --in-place="$nginx_mime_types"
+  fi
+}
+
+function install_php_and_configure_it () {
+  apt-get --assume-yes php5-fpm
+}
+
+function configure_unicorn_service () {
+  cp "$app_path"/config/unicorn.init.d.example /etc/init.d/unicorn
+  chmod +x /etc/init.d/unicorn
+
+  mkdir /etc/unicorn
+  cat "$app_path"/config/unicorn.conf.example    \
+   | sed --expression="s/\$username/$username/g" \
+   | sed --expression="s/\$app_path/$app_path/g" \
+   > "/etc/unicorn/$username:$appname"
+}
+
+function configure_delayed_job_service () {
+  cp "$app_path"/config/delayed_job.init.d.example /etc/init.d/delayed_job
+  chmod +x /etc/init.d/delayed_job
+
+  mkdir /etc/delayed_job
+  cat "$app_path"/config/delayed_job.conf.example \
+   | sed --expression="s/\$username/$username/g"  \
+   | sed --expression="s/\$groupname/$groupname/g"  \
+   | sed --expression="s/\$app_path/$app_path/g"  \
+   > "/etc/delayed_job/$username:$appname"
+}
+
+function configure_desy () {
+  echo '  Configuring DeSY'
+  cp "$app_path"/settings.yml.example "$app_path"/settings.yml
+  cp "$app_path"/database.yml.example "$app_path"/database.yml
+}
+
+function install_bundle () {
+  echo '  Installing Bundler'
+  suc "gem install bundler"
+
+  echo '  Installing bundle'
+  suc "cd \"$app_path\" && bundle install --deployment --without development test irbtools"
+}
+
+function configure_cron_service () {
+  echo '  Configuring cron actions'
+  suc 'cd \"$app_path\" && bundle exec whenever --update 2>&1 > /dev/null'
+}
+
+function configure_logrotate () {
+  echo '  Configuring log rotatings'
+  suc "mkdir \"$app_path\"/log/media"
+  cat "$app_path"/config/logrotate.conf.example  \
+   | sed --expression="s/\$app_path/$app_path/g" \
+   > "/etc/logrotate.d/$username_$appname"
+}
+
+function create_app_user () {
+  echo "  Creating DeSY user ($username)"
+
+  groupadd --force "$groupname"
+  useradd --create-home --gid "$groupname" --shell /bin/bash "$username"
+  local user_home=`suc 'echo $HOME'`
+  local app_path="$user_home/www/desy"
+}
+
+function extract_app_archive () {
+  echo "  Extracting DeSY into the destination folder"
+
+  suc "mkdir -p \"$app_path\""
+  local user_apparchive="$user_home/$(basename "$apparchive")"
+  cp "$apparchive" "$user_apparchive"
+  chmod +r "$user_apparchive"
+  suc "tar --extract --xz --file \"$user_apparchive\" --directory \"$app_path\""
+  rm "$user_apparchive"
+}
+
+function distro_install () {
+  set -e
+
+  echo 'DeSY installation script - Debian/Ubuntu version'
+  echo
+
+  if [[ -z "$1" || "$2" != 'web_server' || "$2" != 'jobs_server' ]]; then
+    echo '  Please provide the right options. Usage: '
+    echo 
+    echo "    $(readlink --canonicalize $(dirname "$0")/../install) DESY_ARCHIVE { web_server | jobs_server }" 1>&2
+    exit 1
+  fi
+
+  if [[ $EUID -ne 0 ]]; then
+    echo "  This script must be run as root" 1>&2
+    exit 1
+  fi
+  
+  local username='webmaster'
+  local groupname='www-data'
+  local apparchive="$1"
+  local role="$2"
+  local appname='desy'
+
+  update_apt_and_install_prerequirements_and_dependencies
+  create_app_user # defines $app_path
+  extract_app_archive
+  install_rbenv_and_ruby
+  install_application_and_media_editing_dependencies
+  install_libpq_dev
+  install_bundle
+
+  if [ "$role" = 'web_server' ]; then
+    install_php_and_configure_it
+    install_nginx_and_configure_it
+    # PostgreSQL requires manual configuration
+    install_postgresql
+    configure_unicorn_service
+  else
+    configure_delayed_job_service
+    configure_cron_service
+  fi
+
+  configure_desy
+  configure_logrotate
+
+  echo "  DeSY installation finished; DeSY was installed into \"$app_path\" . Some steps are required to be done manually:"
+  echo '    * configure PostgreSQL (editing PostgreSQL configuration and config/database.yml)'
+  echo '    * configure DeSY (editing config/settings.yml)'
+  if [ "$role" = 'web_server' ]; then
+    echo '    * execute `export RAILS_ENV=production && rake db:structure:load && rake db:seed && rake assets:precompile`'
+    echo '    * execute (as root) `service unicorn start webmaster:desy`'
+  else
+    echo '    * execute (as root) `service delayed_job start webmaster:desy`'
+  fi
+}
