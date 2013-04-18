@@ -147,6 +147,7 @@ Desy::Application.routes.draw do
   post 'sign_up'              => 'users#create',                 :as => :users
   get  'users/confirm/:token' => 'users#confirm',                :as => :user_confirm
   get  'users/password'       => 'users#request_reset_password', :as => :user_request_reset_password
+  get  'users/password/send'  => 'users#send_reset_password'
   post 'users/password'       => 'users#reset_password',         :as => :user_reset_password
   get  'what_is_desy'         => 'prelogin#what_is_desy',        :as => :what_is_desy
   

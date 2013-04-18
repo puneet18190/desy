@@ -47,13 +47,16 @@ class Subject < ActiveRecord::Base
   # Used to generate a graph of the distribution of the subjects among the lessons in the application. Used in UsersController#statistics and in Statistics
   #
   def self.chart_colors
+    colors = SETTINGS['graph_colors'].clone
     tot = self.find(Lesson.pluck(:subject_id).uniq).count
-    part = (255.to_f/tot).floor
-    colors = []
-    (0..tot-1).each do |index|
-      colors << "rgb(255,#{part*index},0)"
+    while tot > colors.length
+      new_color = "##{("%06x" % (rand * 0xffffff))}"
+      while colors.include? new_color
+        new_color = "##{("%06x" % (rand * 0xffffff))}"
+      end
+      colors << new_color
     end
-    return colors
+    colors[0..(tot - 1)]
   end
   
   # === Description

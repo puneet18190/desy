@@ -186,13 +186,16 @@ and in <a href="Statistics.html">Statistics</a></p>
               <div id="method-c-chart_colors_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/models/subject.rb, line 49</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">chart_colors</span>
+  <span class="ruby-identifier">colors</span> = <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;graph_colors&#39;</span>].<span class="ruby-identifier">clone</span>
   <span class="ruby-identifier">tot</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">find</span>(<span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">pluck</span>(<span class="ruby-value">:subject_id</span>).<span class="ruby-identifier">uniq</span>).<span class="ruby-identifier">count</span>
-  <span class="ruby-identifier">part</span> = (<span class="ruby-number">255</span>.<span class="ruby-identifier">to_f</span><span class="ruby-operator">/</span><span class="ruby-identifier">tot</span>).<span class="ruby-identifier">floor</span>
-  <span class="ruby-identifier">colors</span> = []
-  (<span class="ruby-number">0</span><span class="ruby-operator">..</span><span class="ruby-identifier">tot</span><span class="ruby-operator">-</span><span class="ruby-number">1</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">index</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">colors</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;rgb(255,#{part*index},0)&quot;</span>
+  <span class="ruby-keyword">while</span> <span class="ruby-identifier">tot</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">colors</span>.<span class="ruby-identifier">length</span>
+    <span class="ruby-identifier">new_color</span> = <span class="ruby-node">&quot;##{(&quot;%06x&quot; % (rand * 0xffffff))}&quot;</span>
+    <span class="ruby-keyword">while</span> <span class="ruby-identifier">colors</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">new_color</span>
+      <span class="ruby-identifier">new_color</span> = <span class="ruby-node">&quot;##{(&quot;%06x&quot; % (rand * 0xffffff))}&quot;</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">colors</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">new_color</span>
   <span class="ruby-keyword">end</span>
-  <span class="ruby-keyword">return</span> <span class="ruby-identifier">colors</span>
+  <span class="ruby-identifier">colors</span>[<span class="ruby-number">0</span><span class="ruby-operator">..</span>(<span class="ruby-identifier">tot</span> <span class="ruby-operator">-</span> <span class="ruby-number">1</span>)]
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -235,7 +238,7 @@ href="Admin/SettingsController.html#method-i-subjects">Admin::SettingsController
                 
               </p>
               <div id="method-i-is_deletable-3F_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/subject.rb, line 67</span>
+                <pre><span class="ruby-comment"># File app/models/subject.rb, line 70</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">is_deletable?</span>
   <span class="ruby-constant">UsersSubject</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:subject_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">empty?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:subject_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">empty?</span>
 <span class="ruby-keyword">end</span></pre>

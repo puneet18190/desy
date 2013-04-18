@@ -163,7 +163,7 @@ function imageEditorDocumentReadyGeneral() {
   $('body').on('click', '._add_image_to_image_editor', function() {
     var parser = document.createElement('a');
     parser.href = $('._exit_url').attr('href');
-    window.location = '/images/' + $(this).data('image-id') + '/edit?back=' + encodeURIComponent(parser.pathname+parser.search+parser.hash);
+    window.location = '/images/' + $(this).data('image-id') + '/edit?from_gallery=true&back=' + encodeURIComponent(parser.pathname+parser.search+parser.hash);
   });
 }
 

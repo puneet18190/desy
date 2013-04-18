@@ -587,18 +587,18 @@ function adminSearchDocumentReady() {
     var selected = $(this).find(&#x27;option:selected&#x27;).first();
     var text = selected.text().replace(&#x2F;\s+&#x2F;g, &#x27; &#x27;);
     var select_id = $(this).attr(&#x27;id&#x27;);
-    if($(&#x27;._filter_select.&#x27;+select_id).length &gt; 0){
+    if($(&#x27;._filter_select.&#x27; + select_id).length &gt; 0){
       if(selected.val().length &gt; 0) {
         if(selected.val() != 0){
-          $(&#x27;.&#x27;+select_id+&#x27; span&#x27;).text(text);
+          $(&#x27;.&#x27; + select_id + &#x27; span&#x27;).text(text);
         } else {
-          $(&#x27;#&#x27;+select_id).parents(&#x27;.control-group&#x27;).nextAll().find(&#x27;select&#x27;).each(function(){
-            $(&#x27;.&#x27;+$(this).attr(&#x27;id&#x27;)).remove();
+          $(&#x27;#&#x27; + select_id).parents(&#x27;.control-group&#x27;).nextAll().find(&#x27;select&#x27;).each(function(){
+            $(&#x27;.&#x27; + $(this).attr(&#x27;id&#x27;)).remove();
           });
-          $(&#x27;.&#x27;+select_id).remove();
+          $(&#x27;.&#x27; + select_id).remove();
         }
       } else {
-        $(&#x27;.&#x27;+select_id).remove();
+        $(&#x27;.&#x27; + select_id).remove();
       }
     } else {
       $(&#x27;&lt;div class=&quot;label _filter_select &#x27; + select_id + &#x27;&quot;&gt;&#x27;).html(&#x27;&lt;span&gt;&#x27; + text + &#x27;&lt;&#x2F;span&gt;&#x27;).prependTo(&#x27;#log&#x27;);
@@ -608,11 +608,11 @@ function adminSearchDocumentReady() {
   $(&#x27;#all_users&#x27;).change(function() {
       if(this.checked) {
         $(&#x27;._filter_and_send&#x27;).removeClass(&#x27;disabled&#x27;);
-        $(&quot;input#contact-recipients&quot;).val(&#x27;&#x27;);
-        $(&quot;input#contact-recipients&quot;).attr(&#x27;disabled&#x27;,true);
-        $(&quot;#log&quot;).html(&#x27;&#x27;);
-        $(&quot;._users_count_label&quot;).text($(&quot;._users_count_label&quot;).data(&#x27;all-selected&#x27;));
-        $(&quot;#filter-users select&quot;).each(function(){
+        $(&#x27;input#contact-recipients&#x27;).val(&#x27;&#x27;);
+        $(&#x27;input#contact-recipients&#x27;).attr(&#x27;disabled&#x27;,true);
+        $(&#x27;#log&#x27;).html(&#x27;&#x27;);
+        $(&#x27;._users_count_label&#x27;).text($(&#x27;._users_count_label&#x27;).data(&#x27;all-selected&#x27;));
+        $(&#x27;#filter-users select&#x27;).each(function(){
           $this = $(this);
           $this.find(&#x27;option:selected&#x27;).removeAttr(&#x27;selected&#x27;);
           $this.attr(&#x27;disabled&#x27;,true);
@@ -622,7 +622,7 @@ function adminSearchDocumentReady() {
         $(&#x27;._filter_and_send&#x27;).addClass(&#x27;disabled&#x27;);
         $(&#x27;input#contact-recipients&#x27;).attr(&#x27;disabled&#x27;, false);
         $(&#x27;#filter-users select&#x27;).attr(&#x27;disabled&#x27;, false);
-        $(&quot;._users_count_label&quot;).text($(&quot;._users_count_label&quot;).data(&#x27;zero-selected&#x27;));
+        $(&#x27;._users_count_label&#x27;).text($(&#x27;._users_count_label&#x27;).data(&#x27;zero-selected&#x27;));
       }
   });
 }
@@ -635,26 +635,26 @@ Initializes effects for sorting in administration search engine.
 function adminSortingDocumentReady() {
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;table#lessons-list thead tr th a&#x27;, function(e) {
     e.preventDefault();
-    $(&quot;input#search_ordering&quot;).val($(this).data(&#x27;ordering&#x27;));
-    $(&quot;input#search_desc&quot;).val($(this).data(&#x27;desc&#x27;));
+    $(&#x27;input#search_ordering&#x27;).val($(this).data(&#x27;ordering&#x27;));
+    $(&#x27;input#search_desc&#x27;).val($(this).data(&#x27;desc&#x27;));
     $(&#x27;#admin-search-lessons&#x27;).submit();
   });
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;table#elements-list thead tr th a&#x27;, function(e) {
     e.preventDefault();
-    $(&quot;input#search_ordering&quot;).val($(this).data(&#x27;ordering&#x27;));
-    $(&quot;input#search_desc&quot;).val($(this).data(&#x27;desc&#x27;));
+    $(&#x27;input#search_ordering&#x27;).val($(this).data(&#x27;ordering&#x27;));
+    $(&#x27;input#search_desc&#x27;).val($(this).data(&#x27;desc&#x27;));
     $(&#x27;#admin-search-elements&#x27;).submit();
   });
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;table#users-list thead tr th a&#x27;, function(e) {
     e.preventDefault();
-    $(&quot;input#search_ordering&quot;).val($(this).data(&#x27;ordering&#x27;));
-    $(&quot;input#search_desc&quot;).val($(this).data(&#x27;desc&#x27;));
+    $(&#x27;input#search_ordering&#x27;).val($(this).data(&#x27;ordering&#x27;));
+    $(&#x27;input#search_desc&#x27;).val($(this).data(&#x27;desc&#x27;));
     $(&#x27;#admin-search-users&#x27;).submit();
   });
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;table#tags-list thead tr th a&#x27;, function(e) {
     e.preventDefault();
-    $(&quot;input#search_ordering&quot;).val($(this).data(&#x27;ordering&#x27;));
-    $(&quot;input#search_desc&quot;).val($(this).data(&#x27;desc&#x27;));
+    $(&#x27;input#search_ordering&#x27;).val($(this).data(&#x27;ordering&#x27;));
+    $(&#x27;input#search_desc&#x27;).val($(this).data(&#x27;desc&#x27;));
     $(&#x27;#admin-search-tags&#x27;).submit();
   });
 }
@@ -674,7 +674,7 @@ function adminUsersDocumentReady() {
     }
     $.ajax({
       url: &#x27;&#x2F;admin&#x2F;users&#x2F;&#x27; + link.data(&#x27;param&#x27;) + &#x27;&#x2F;set_status?active=&#x27; + status,
-      type: &quot;put&quot;
+      type: &#x27;put&#x27;
     });
   });
 }

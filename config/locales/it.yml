@@ -28,18 +28,6 @@ it:
     # The user forgot to insert an email
     # 1 - controllers/users_controller.rb
     email_is_blank: "Il campo Email non è valorizzato"
-    # This message appears if a user tries to click on a confirmation link which is no longer valid
-    # 1 - controllers/users_controller.rb
-    failed_confirmation: "La pagina richiesta non è più valida"
-    # The user lost the password and asked for a new one: this message appears when the password has been successfully reset
-    # 1 - controllers/users_controller.rb
-    password_reset_successfully: "Password reimpostata con successo"
-    # The user filled his sign up form, and there were no errors: the application sent him an email with a link to confirm his account
-    # 1 - controllers/users_controller.rb
-    successful_registration: "La registrazione è stata completata con successo. Controlla la tua e-mail per confermarla"
-    # The user clicked on the confirmation link he received by email: he is redirected to the main page of the application, with this message (to log in he still needs to write username and password, he is not automatically logged in)
-    # 1 - controllers/users_controller.rb
-    successful_confirmation: "Il tuo account è stato confermato con successo. Inserisci il tuo nome utente e la password per l'accesso"
   # Messages shown inside a popup, all over the application
   other_popup_messages:
     correct:
@@ -475,7 +463,15 @@ it:
       subject: "%{desy} - Nuova password"
       # Message
       # 1 - mailers/user_mailer.rb
-      message: "<h1>%{name},</h1><p>abbiamo ricevuto la tua richiesta di modifica della password; questa è la tua nuova password: <b>%{password}</b></p><p>Ora puoi effettuare l'accesso a %{desy} usando la nuova password, alla seguente URL.</p><p>Potrai impostare una nuova password a vostra scelta, una volta effettuato l'accesso, nella sezione 'Profilo'.</p>"
+      message: "<h1>%{name},</h1><p>abbiamo ricevuto la tua richiesta di modifica della password. Per confermare il tuo indirizzo email address e ricevere una nuova password, clicca sulla seguente URL:</p>"
+    # Mail containing new temporary password
+    reset_password_confirmed:
+      # Subject
+      # 1 - mailers/user_mailer.rb
+      subject: "%{desy} - Nuova password"
+      # Message
+      # 1 - mailers/user_mailer.rb
+      message: "<h1>%{name},</h1><p>questa è la tua nuova password: <b>%{password}</b></p><p>Ora puoi effettuare l'accesso a %{desy} usando la nuova password, alla seguente URL.</p><p>Potrai impostare una nuova password a vostra scelta, una volta effettuato l'accesso, nella sezione 'Profilo'.</p>"
     # Email containing the public link of a lesson (when a user wants to share his lesson outside the application)
     see_my_lesson:
       # Subject
@@ -569,6 +565,11 @@ it:
       # The user didn't select a file to be uploaded
       # 1 - controllers/application_controller.rb
       media_blank: "Nessun file caricato"
+      # The media elements folder exceeded the maximum size available
+      # 1 - controllers/application_controller.rb
+      # 2 - controllers/video_editor_controller.rb
+      # 3 - controllers/video_editor_controller.rb
+      media_folder_size_exceeded: "Il caricamento dei media è temporaneamente disabliltato, roprovare più tardi"
       # The user tried to upload an attachment whose format is not supported
       # 1 - controllers/application_controller.rb
       # 2 - controllers/application_controller.rb
@@ -782,7 +783,10 @@ it:
     lesson_editor:
       # Button '+' to add a new slide
       # 1 - views/lesson_editor/_slide_buttons.html.erb
+      # 2 - views/lesson_editor/_slide_buttons.html.erb
       add_slide: "Aggiungi una nuova diapositiva"
+      # 1 - views/lesson_editor/_slide_buttons.html.erb
+      add_slide_cancel: "Annulla"
       # Button '+' to replace an audio in the audio slide
       # 1 - views/lesson_editor/slides/parts/_audio.html.erb
       change_audio: "Sostituisci l'audio"
@@ -815,10 +819,14 @@ it:
     not_available:
       # 1 - views/lesson_viewer/slides/_audio.html.erb
       # 2 - views/galleries/thumbs/_audio.html.erb
+      # 3 - views/media_elements/view_single_compact.html.erb
+      # 4 - views/media_elements/view_single_expanded.html.erb
       audio: "La traccia audio %{title} è in fase di conversione e per il momento non è disponibile"
       # 1 - views/lesson_viewer/slides/_video1.html.erb
       # 2 - views/lesson_viewer/slides/_video2.html.erb
       # 3 - views/galleries/thumbs/_video.html.erb
+      # 4 - views/media_elements/view_single_compact.html.erb
+      # 5 - views/media_elements/view_single_expanded.html.erb
       video: "Il video %{title} è in fase di conversione e per il momento non è disponibile"
     notifications:
       # Icon that opens the notifications
@@ -1049,6 +1057,63 @@ it:
         content: "L'icona \"busta\" che si trova sotto ogni lezione, apre una finestra dove è possibile selezionare una lista di indirizzi e-mail: clicca sul pulsante \"invia\" per spedire una email contenete un indirizzo internet pubblico della tua lezione (utilizzando questo link i tuoi studenti sono in grado di visualizzare la lezione senza essere iscritti a %{desy})."
   
   
+  # SECTION 1.7: Page rendered if the browser is not supported by the application
+  
+  browsers:
+    # Title of the page
+    title: "Browser non supportato"
+    # Content of the page
+    content:
+      title: "%{desy} non support il tuo browser!"
+      description: "Le tecnologie usate nell'applicazione non funzionerebbero correttamente sul tuo browser. Per usare %{desy} è necessario aggiornare il browser, o scaricarne l'ultima versione."
+    # Links where it's possible to download updated browsers
+    links: "Links per aggiornare il tuo browser"
+  
+  
+  # SECTION 1.8: Contents of fullpage notifications related to users registration and reset password
+  
+  fullpage_notifications:
+    # Title for the link used to go back to the homepage
+    # 1 - views/users/fullpage_notifications/reset_password/received.html.erb
+    # 2 - views/users/fullpage_notifications/reset_password/email_sent.html.erb
+    # 3 - views/users/fullpage_notifications/confirmation/received.html.erb
+    # 4 - views/users/fullpage_notifications/confirmation/email_sent.html.erb
+    # 5 - views/users/fullpage_notifications/expired_link.html.erb
+    back: "Torna alla home page"
+    # This message appears if a user tries to click on a confirmation link (or a reset password link) which is no longer valid
+    expired_link:
+      # 1 - views/users/fullpage_notifications/expired_link.html.erb
+      title: "Errore!"
+      # 1 - views/users/fullpage_notifications/expired_link.html.erb
+      description: "Il link è scaduto"
+    reset_password:
+      # The user lost his password and asked for a new one: he received an email with a special link to reset the password
+      email_sent:
+        # 1 - views/users/fullpage_notifications/reset_password/email_sent.html.erb
+        title: "Ripristino password"
+        # 1 - views/users/fullpage_notifications/reset_password/email_sent.html.erb
+        description: "Abbiamo inviato, all'indirizzo da te fornitoci, una email contenente il link per cambiare la tua password"
+      # The user lost the password and asked for a new one: this message appears when the password has been successfully reset
+      received:
+        # 1 - views/users/fullpage_notifications/reset_password/received.html.erb
+        title: "Ripristino password"
+        # 1 - views/users/fullpage_notifications/reset_password/received.html.erb
+        description: "La password è stata ripristinata! Ti abbiamo inviato una mail contenente una password temporanea: con tale password puoi entrare nell'applicazione e scegliere una nuova password nel tuo profilo personale"
+    confirmation:
+      # The user filled his sign up form, and there were no errors: the application sent him an email with a link to confirm his account
+      email_sent:
+        # 1 - views/users/fullpage_notifications/confirmation/email_sent.html.erb
+        title: "Registrazione"
+        # 1 - views/users/fullpage_notifications/confirmation/email_sent.html.erb
+        description: "La registrazione è stata portata a termine con successo: per confermarla controlla il tuo indirizzo email"
+      # The user clicked on the confirmation link he received by email: he is redirected to the main page of the application, with this message (to log in he still needs to write username and password, he is not automatically logged in)
+      received:
+        # 1 - views/users/fullpage_notifications/confirmation/received.html.erb
+        title: "Account confermato"
+        # 1 - views/users/fullpage_notifications/confirmation/received.html.erb
+        description: "Il tuo account è stato confermato con successo"
+  
+  
   
   # PART 2 -- LABELS AND CAPTIONS
   
@@ -1151,9 +1216,9 @@ it:
     # Caption of the link opening the lesson editor, containing a prompt for the user (this is used only in the case there are no suggested lessons in the Dashboard: in this case the application invites the user to create a lesson right now)
     # 1 - views/dashboard/_lessons_empty.html.erb
     create_new_lesson_now: "Crea una lezione ora"
-    # Caption of the link to download the user manual (bottom right in the page)
+    # Caption of the link to download the user guide (bottom right in the page)
     # 1 - views/dashboard/index.html.erb
-    download_manual: "Scarica il manuale utente"
+    download_manual: "Scarica la guida per gli utenti"
     # Caption which appears if there are no suggested lessons inside the Dashboard, because the user picked all the lessons the application suggested him
     # 1 - views/dashboard/_lessons_empty.html.erb
     emptied_lessons: "Hai scelto tutte le lezioni suggerite"
@@ -1166,7 +1231,7 @@ it:
     # Caption which appears if for the user there are no suggested elements inside the database
     # 1 - views/dashboard/_media_elements_empty.html.erb
     empty_media_elements: "Non ci sono elementi didattici suggeriti per te"
-    # Title of the link 'Download the user manual' (bottom right in the page)
+    # Title of the link 'Download the user guide' (bottom right in the page)
     # 1 - views/dashboard/index.html.erb
     help_using_desy: "Hai bisogno di aiuto per usare %{desy}?"
     # Caption of the link opening the window to load a new element (in each page of elements inside the Dashboard, after the last element there is a button with a 'plus' which opens the window)
@@ -2201,9 +2266,15 @@ it:
       # 7 - views/lesson_editor/slides/_audio.html.erb
       length_title: 35
       # Maximum number of characters allowed in the caption of an image inside a slide
-      # 1 - models/media_elements_slide.rb
-      # 2 - views/lesson_editor/slides/parts/_image.html.erb
-      length_caption: 35
+      length_caption:
+        # 1 - views/lesson_editor/slides/parts/_image.html.erb
+        image1: 35
+        # 1 - views/lesson_editor/slides/parts/_image.html.erb
+        image2: 35
+        # 1 - views/lesson_editor/slides/parts/_image.html.erb
+        image3: 70
+        # 1 - views/lesson_editor/slides/parts/_image.html.erb
+        image4: 35
     video_editor:
       # Maximum number of characters allowed in the text component of Video Editor
       # 1 - views/video_editor/_text_component_editor.html.erb
@@ -2230,9 +2301,9 @@ it:
     # 1 - app/models/location.rb
     # 2 - app/models/location.rb
     labels: [
-        'Provincia',
-        'Città',
-        'Contea'
+        "Provincia",
+        "Città",
+        "Contea"
       ]
     # This is the label used when the application needs to resume the chain of higher locations corresponding to a lower one: if for instance for a user we have the field 'Shanghai district - Shanghai province', an appropriate label for it (to be configured here) would be 'District / province'
     # 1 - views/admin/users/show.html.erb
@@ -2336,15 +2407,24 @@ it:
         users: "Utenti con più 'Mi piace'"
       # Statistics about users
       users:
-        # List of users on line
-        # 1 - views/admin/dashboard/index.html.erb
-        online: "Utenti online"
         # List of the last users who signed up in the application
         # 1 - views/admin/dashboard/index.html.erb
         new: "Ultimi utenti registrati"
       # statistics about subject distribution among lessons (a graph)
       # 1 - views/admin/dashboard/index.html.erb
       subjects: "Distribuzione delle materie sulle lezioni"
+      # Statistics about available space in media elements folder
+      hard_disk:
+        # 1 - views/admin/dashboard/index.html.erb
+        title: "Spazio nell'hard disk"
+        # 1 - controllers/admin/dashboard_controller.rb
+        images: "Immagini"
+        # 1 - controllers/admin/dashboard_controller.rb
+        audios: "Audio"
+        # 1 - controllers/admin/dashboard_controller.rb
+        videos: "Video"
+        # 1 - controllers/admin/dashboard_controller.rb
+        remaining: "Spazio rimanente"
     # General captions, used throughout the Administrator
     general:
       # Link to switch all the items in a list to the compact status

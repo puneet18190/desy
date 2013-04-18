@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html class="prelogin-layout ad-hoc">
+  <%= render :partial => "shared/head" %>
+  <body>
+    
+    <div class="container">
+      <%= render partial: 'layouts/flash', locals: { flash: flash } %>
+      <%= yield %>
+
+    </div>
+
+  </body>
+</html>

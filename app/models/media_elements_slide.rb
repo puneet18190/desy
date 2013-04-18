@@ -21,7 +21,6 @@
 # * *presence* with numericality and existence of associated record for +media_element_id+ and +slide_id+
 # * *numericality* allowing +nil+ values for +alignment+
 # * *inclusion* of +position+ in [1, 2, 3, 4]
-# * *length* of +caption+, with maximum configured in the translation file; allows +nil+ values
 # * *uniqueness* of the triple [+position+, +media_element_id+, +slide_id+]
 # * *coherence* of the type of the Slide with the MediaElement
 # * *coherence* of the +position+ with the type of the Slide (if the slide is of kind image1 it may have for instance only position = 1)
@@ -49,7 +48,6 @@ class MediaElementsSlide < ActiveRecord::Base
   validates_numericality_of :media_element_id, :slide_id, :only_integer => true, :greater_than => 0
   validates_numericality_of :alignment, :only_integer => true, :allow_nil => true
   validates_inclusion_of :position, :in => [1, 2, 3, 4]
-  validates_length_of :caption, :maximum => I18n.t('language_parameters.slide.length_caption'), :allow_nil => true
   validates_uniqueness_of :position, :scope => [:media_element_id, :slide_id]
   validate :validate_associations, :validate_type_in_slide, :validate_position, :validate_media_element, :validate_impossible_changes, :validate_image_properties
   

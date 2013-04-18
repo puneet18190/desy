@@ -28,18 +28,6 @@ cn:
     # The user forgot to insert an email
     # 1 - controllers/users_controller.rb
     email_is_blank: "邮件地址是空的"
-    # This message appears if a user tries to click on a confirmation link which is no longer valid
-    # 1 - controllers/users_controller.rb
-    failed_confirmation: "你提交的链接不再合法"
-    # The user lost the password and asked for a new one: this message appears when the password has been successfully reset
-    # 1 - controllers/users_controller.rb
-    password_reset_successfully: "口令重置成功"
-    # The user filled his sign up form, and there were no errors: the application sent him an email with a link to confirm his account
-    # 1 - controllers/users_controller.rb
-    successful_registration: "注册已完成。为了确认，请检查你的邮件。"
-    # The user clicked on the confirmation link he received by email: he is redirected to the main page of the application, with this message (to log in he still needs to write username and password, he is not automatically logged in)
-    # 1 - controllers/users_controller.rb
-    successful_confirmation: "你的账号成功确认。输入你的用户名及密码登陆"
   # Messages shown inside a popup, all over the application
   other_popup_messages:
     correct:
@@ -475,7 +463,15 @@ cn:
       subject: "%{desy} - 新密码"
       # Message
       # 1 - mailers/user_mailer.rb
-      message: "<h1>恭喜%{name},</h1><p>我们已接收你重置了的密码; 这是你的新密码: <b>%{password}</b></p><p>在以下URL,现在用新的密码你能登陆%{desy}.</p><p>在“个人资料”里，当已登录，你能设置另一个密码.</p>"
+      message: "<h1>%{name},</h1><p>we received your password reset request. To confirm your email address and receive a new password, click on the url below:</p>" # TODO
+    # Mail containing new temporary password
+    reset_password_confirmed:
+      # Subject
+      # 1 - mailers/user_mailer.rb
+      subject: "%{desy} - 新密码"
+      # Message
+      # 1 - mailers/user_mailer.rb
+      message: "<h1>%{name},</h1><p>this is your new password: <b>%{password}</b></p><p>You can login into %{desy} now using the new password, at the URL below.</p><p>you will be able to set another password of your choice once logged in, in the 'Profile' section.</p>" # TODO
     # Email containing the public link of a lesson (when a user wants to share his lesson outside the application)
     see_my_lesson:
       # Subject
@@ -569,6 +565,11 @@ cn:
       # The user didn't select a file to be uploaded
       # 1 - controllers/application_controller.rb
       media_blank: "没有文件上传"
+      # The media elements folder exceeded the maximum size available
+      # 1 - controllers/application_controller.rb
+      # 2 - controllers/video_editor_controller.rb
+      # 3 - controllers/video_editor_controller.rb
+      media_folder_size_exceeded: "媒体上传临时中止，请稍后再试。"
       # The user tried to upload an attachment whose format is not supported
       # 1 - controllers/application_controller.rb
       # 2 - controllers/application_controller.rb
@@ -782,7 +783,10 @@ cn:
     lesson_editor:
       # Button '+' to add a new slide
       # 1 - views/lesson_editor/_slide_buttons.html.erb
+      # 2 - views/lesson_editor/_slide_buttons.html.erb
       add_slide: "增加新幻灯片"
+      # 1 - views/lesson_editor/_slide_buttons.html.erb
+      add_slide_cancel: "终止"
       # Button '+' to replace an audio in the audio slide
       # 1 - views/lesson_editor/slides/parts/_audio.html.erb
       change_audio: "替换音频"
@@ -815,10 +819,14 @@ cn:
     not_available:
       # 1 - views/lesson_viewer/slides/_audio.html.erb
       # 2 - views/galleries/thumbs/_audio.html.erb
+      # 3 - views/media_elements/view_single_compact.html.erb
+      # 4 - views/media_elements/view_single_expanded.html.erb
       audio: "音频%{title}正在转换，现在不能提供"
       # 1 - views/lesson_viewer/slides/_video1.html.erb
       # 2 - views/lesson_viewer/slides/_video2.html.erb
       # 3 - views/galleries/thumbs/_video.html.erb
+      # 4 - views/media_elements/view_single_compact.html.erb
+      # 5 - views/media_elements/view_single_expanded.html.erb
       video: "视频%{title}正在转换，现在不能提供"
     notifications:
       # Icon that opens the notifications
@@ -1049,6 +1057,63 @@ cn:
         content: "位于每一课程下边的那个\"信箱\"图标打开一个窗口，在那里你能选择e-mail地址列表：点击那个按钮\"发送\"包含你课程的公共链接的邮件（使用这个链接，你的学生能可视化不用在%{desy}中注册课程）。"
   
   
+  # SECTION 1.7: Page rendered if the browser is not supported by the application
+  
+  browsers:
+    # Title of the page
+    title: "Browser not supported" # TODO
+    # Content of the page
+    content:
+      title: "%{desy} doesn't support your browser!" # TODO
+      description: "The technologies used in our application wouldn't work properly in your browser. To use %{desy} you need to update your browser, or download a newer one." # TODO
+    # Links where it's possible to download updated browsers
+    links: "Links to update your browser" # TODO
+  
+  
+  # SECTION 1.8: Contents of fullpage notifications related to users registration and reset password
+  
+  fullpage_notifications:
+    # Title for the link used to go back to the homepage
+    # 1 - views/users/fullpage_notifications/reset_password/received.html.erb
+    # 2 - views/users/fullpage_notifications/reset_password/email_sent.html.erb
+    # 3 - views/users/fullpage_notifications/confirmation/received.html.erb
+    # 4 - views/users/fullpage_notifications/confirmation/email_sent.html.erb
+    # 5 - views/users/fullpage_notifications/expired_link.html.erb
+    back: "Back to home page" # TODO
+    # This message appears if a user tries to click on a confirmation link (or a reset password link) which is no longer valid
+    expired_link:
+      # 1 - views/users/fullpage_notifications/expired_link.html.erb
+      title: "Error!" # TODO
+      # 1 - views/users/fullpage_notifications/expired_link.html.erb
+      description: "The link you submitted is no longer valid" # TODO
+    reset_password:
+      # The user lost his password and asked for a new one: he received an email with a special link to reset the password
+      email_sent:
+        # 1 - views/users/fullpage_notifications/reset_password/email_sent.html.erb
+        title: "Reset password" # TODO
+        # 1 - views/users/fullpage_notifications/reset_password/email_sent.html.erb
+        description: "We sent, to the address that you inserted, an email containing the link to reset your password" # TODO
+      # The user lost the password and asked for a new one: this message appears when the password has been successfully reset
+      received:
+        # 1 - views/users/fullpage_notifications/reset_password/received.html.erb
+        title: "Reset password" # TODO
+        # 1 - views/users/fullpage_notifications/reset_password/received.html.erb
+        description: "Password reset successfully! We sent you an email containing a temporary password: with such a password you can login, and choose a new password in your personal profile" # TODO
+    confirmation:
+      # The user filled his sign up form, and there were no errors: the application sent him an email with a link to confirm his account
+      email_sent:
+        # 1 - views/users/fullpage_notifications/confirmation/email_sent.html.erb
+        title: "Registration" # TODO
+        # 1 - views/users/fullpage_notifications/confirmation/email_sent.html.erb
+        description: "The registration was completed successfully: check your email address in order to confirm it" # TODO
+      # The user clicked on the confirmation link he received by email: he is redirected to the main page of the application, with this message (to log in he still needs to write username and password, he is not automatically logged in)
+      received:
+        # 1 - views/users/fullpage_notifications/confirmation/received.html.erb
+        title: "Account confirmed" # TODO
+        # 1 - views/users/fullpage_notifications/confirmation/received.html.erb
+        description: "Your account has been successfully confirmed" # TODO
+  
+  
   
   # PART 2 -- LABELS AND CAPTIONS
   
@@ -1151,9 +1216,9 @@ cn:
     # Caption of the link opening the lesson editor, containing a prompt for the user (this is used only in the case there are no suggested lessons in the Dashboard: in this case the application invites the user to create a lesson right now)
     # 1 - views/dashboard/_lessons_empty.html.erb
     create_new_lesson_now: "现在建立课程"
-    # Caption of the link to download the user manual (bottom right in the page)
+    # Caption of the link to download the user guide (bottom right in the page)
     # 1 - views/dashboard/index.html.erb
-    download_manual: "下载用户手册"
+    download_manual: "下载用户指南"
     # Caption which appears if there are no suggested lessons inside the Dashboard, because the user picked all the lessons the application suggested him
     # 1 - views/dashboard/_lessons_empty.html.erb
     emptied_lessons: "你已选择所有被推荐的课程"
@@ -1166,7 +1231,7 @@ cn:
     # Caption which appears if for the user there are no suggested elements inside the database
     # 1 - views/dashboard/_media_elements_empty.html.erb
     empty_media_elements: "这里没有推荐的单元给你"
-    # Title of the link 'Download the user manual' (bottom right in the page)
+    # Title of the link 'Download the user guide' (bottom right in the page)
     # 1 - views/dashboard/index.html.erb
     help_using_desy: "需要%{desy}帮助吗？"
     # Caption of the link opening the window to load a new element (in each page of elements inside the Dashboard, after the last element there is a button with a 'plus' which opens the window)
@@ -1794,10 +1859,6 @@ cn:
         new_password_confirmation: "新密码确认"
         # 1 - views/users/_personal_info.html.erb
         school_level_id: "学校标准"
-        # 1 - views/users/_personal_info.html.erb
-        town: "城镇"
-        # 1 - views/users/_personal_info.html.erb
-        province: "省份"
     # Section 2: mailing lists
     mailing_list:
       # Caption of the link inside the user's profile menu
@@ -2205,9 +2266,15 @@ cn:
       # 7 - views/lesson_editor/slides/_audio.html.erb
       length_title: 35
       # Maximum number of characters allowed in the caption of an image inside a slide
-      # 1 - models/media_elements_slide.rb
-      # 2 - views/lesson_editor/slides/parts/_image.html.erb
-      length_caption: 35
+      length_caption:
+        # 1 - views/lesson_editor/slides/parts/_image.html.erb
+        image1: 35
+        # 1 - views/lesson_editor/slides/parts/_image.html.erb
+        image2: 35
+        # 1 - views/lesson_editor/slides/parts/_image.html.erb
+        image3: 70
+        # 1 - views/lesson_editor/slides/parts/_image.html.erb
+        image4: 35
     video_editor:
       # Maximum number of characters allowed in the text component of Video Editor
       # 1 - views/video_editor/_text_component_editor.html.erb
@@ -2234,14 +2301,14 @@ cn:
     # 1 - app/models/location.rb
     # 2 - app/models/location.rb
     labels: [
-        '省份',
-        '城镇',
-        '學校'
+        "省",
+        "市",
+        "县"
       ]
     # This is the label used when the application needs to resume the chain of higher locations corresponding to a lower one: if for instance for a user we have the field 'Shanghai district - Shanghai province', an appropriate label for it (to be configured here) would be 'District / province'
     # 1 - views/admin/users/show.html.erb
     # 2 - views/admin/users/_list.html.erb
-    parents_label: "城镇/省份"
+    parents_label: "省/市"
     # Caption inside the select of each location type (the variable %{location} is replaced by the name of the location type, ex City, Province, District)
     # 1 - views/admin/users/_locations_list.html.erb
     # 2 - views/users/_locations_list.html.erb
@@ -2340,15 +2407,24 @@ cn:
         users: "有更多我喜欢你的用户"
       # Statistics about users
       users:
-        # List of users on line
-        # 1 - views/admin/dashboard/index.html.erb
-        online: "用户上线"
         # List of the last users who signed up in the application
         # 1 - views/admin/dashboard/index.html.erb
         new: "上一用户"
       # statistics about subject distribution among lessons (a graph)
       # 1 - views/admin/dashboard/index.html.erb
       subjects: "课程中科目分配"
+      # Statistics about available space in media elements folder
+      hard_disk:
+        # 1 - views/admin/dashboard/index.html.erb
+        title: "Space in the hard disk" # TODO
+        # 1 - controllers/admin/dashboard_controller.rb
+        images: "Images" # TODO
+        # 1 - controllers/admin/dashboard_controller.rb
+        audios: "Audios" # TODO
+        # 1 - controllers/admin/dashboard_controller.rb
+        videos: "Videos" # TODO
+        # 1 - controllers/admin/dashboard_controller.rb
+        remaining: "Remaining space" # TODO
     # General captions, used throughout the Administrator
     general:
       # Link to switch all the items in a list to the compact status

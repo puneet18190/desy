@@ -7,11 +7,9 @@ class MediaElementTest < ActiveSupport::TestCase
     @max_title = I18n.t('language_parameters.media_element.length_title')
     @max_description = I18n.t('language_parameters.media_element.length_description')
     begin
-      @media_element = MediaElement.new :description => 'Scuola Primaria', :title => 'Scuola'
+      media = {:mp4 => Rails.root.join('test/samples/one.mp4').to_s, :webm => Rails.root.join('test/samples/one.webm').to_s, :filename => 'video_test'}
+      @media_element = Video.new :description => 'Scuola Primaria', :title => 'Scuola', :media => media, :tags => 'ciao, come, stai, tu?'
       @media_element.user_id = 1
-      @media_element.sti_type = 'Video'
-      @media_element.tags = 'ciao, come, stai, tu?'
-      @media_element.media = {:mp4 => Rails.root.join("test/samples/one.mp4").to_s, :webm => Rails.root.join("test/samples/one.webm").to_s, :filename => "video_test"}
     rescue ActiveModel::MassAssignmentSecurity::Error
       @media_element = nil
     end

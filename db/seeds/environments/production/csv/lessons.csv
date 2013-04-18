@@ -1,21 +1,21 @@
 id,user_id,school_level_id,subject_id,title,description,is_public,parent_id,copied_not_modified,token,notified
-1,6,1,5,J.M.Basquiat-Plush safe he think..,"Jean-Michel Basquiat, born in Brooklyn, New York after the death of his brother Max, was the second of four children of Matilda Andrades (July 28, 1934 – November 17, 2008) and Gerard Basquiat (born 1930).",t,,f,28939098499059100000,t
-2,6,1,10,Welcome in London,"The etymology of London is uncertain. It is an ancient name and can be found in sources from the 2nd century. It is recorded c. 121 as Londinium, which points to Romano-British origin.",t,,f,50572365536783400000,t
-3,2,2,2,2012 phenomenon,The 2012 phenomenon comprises a range of eschatological beliefs according to which cataclysmic or transformative events will occur on 21 December 2012,t,,f,52974534581267800000,t
-4,7,3,3,The big apple,"New York is the most populous city in the United States and the center of the New York Metropolitan Area, one of the most populous metropolitan areas in the world.",t,,f,44870738148570900000,t
-5,7,3,5,Life is pop!,Pop art is an art movement that emerged in the mid 1950s in Britain and in the late 1950s in the United States.,t,,f,71207469104431800000,t
-6,3,3,2,Egon Schiele,One of the major figurative painter of the early 20th century.,t,,f,66907608385189900000,t
-7,2,2,2,Rene Magritte and his paintings,"Rene Magritte was born in Lessines, in the province of Hainaut, in 1898, the eldest son of Leopold Magritte, who was a tailor and textile merchant, and Regina (nee Bertinchamps), a milliner until her marriage.",t,,f,31715540526392300000,t
-8,7,3,2,Every man for himself ...,A lesson to learn about the animal world.,t,,f,61261424691130500000,t
-9,3,3,11,Sebastião Salgado,"Sebastião Salgado (born February 8, 1944) is a Brazilian social documentary photographer and photojournalist.",t,,f,524541867610369000,t
-11,7,3,1,Maths,"The word mathematics comes from the Greek μάθημα (máthēma), which, in the ancient Greek language, means ""what one learns"", ""what one gets to know"", hence also ""study"" and ""science"", and in modern Greek just ""lesson"".",f,,f,57922812017565000000,t
-12,3,3,11,Josef Koudelka,Josef Koudelka is a Czech photographer.,t,,f,71622718813711700000,t
-14,8,1,9,Chinese,it is ok,f,,f,13959958164025300000,t
-15,8,1,9,Chinese,it is ok,f,,f,7572333623608280000,t
-16,8,1,9,Chinese,it is ok,f,,f,15239086293687700000,t
-17,8,1,9,Chinese,it is ok,f,,f,33273250434887100000,t
-19,2,2,1,Lezione 1,description (max 280 characters),f,,f,71530982926304600000,t
-20,7,3,6,Lezione di prova,dkidjjehdjdhj edhjedhjehdje edhejdhe edhejhed edhjjed,f,,f,57235586725133400000,t
-21,1,1,11,weref,"sdsfdsdfsdf,affa",f,,f,10328708033264700000,t
-22,5,1,5,J.M.Basquiat-Plush safe he think..,"Jean-Michel Basquiat, born in Brooklyn, New York after the death of his brother Max, was the second of four children of Matilda Andrades (July 28, 1934 – November 17, 2008) and Gerard Basquiat (born 1930).",f,1,f,53962834489938600000,t
-23,7,3,5,Visive arts,A virtual journey into the history of the visual arts.,f,,f,85149039689945400000,t
+1,6,1,5,J.M.Basquiat-Plush safe he think..,"Jean-Michel Basquiat, born in Brooklyn, New York after the death of his brother Max, was the second of four children of Matilda Andrades (July 28, 1934 – November 17, 2008) and Gerard Basquiat (born 1930).",t,,f,uGnYAt0Aiysxujl_ayoLJg,t
+2,6,1,10,Welcome in London,"The etymology of London is uncertain. It is an ancient name and can be found in sources from the 2nd century. It is recorded c. 121 as Londinium, which points to Romano-British origin.",t,,f,8ZVYoicIuBxJl3n_yZEEwQ,t
+3,2,2,2,2012 phenomenon,The 2012 phenomenon comprises a range of eschatological beliefs according to which cataclysmic or transformative events will occur on 21 December 2012,t,,f,9U2OEXRXaRQSC5EoS_F9Yg,t
+4,7,3,3,The big apple,"New York is the most populous city in the United States and the center of the New York Metropolitan Area, one of the most populous metropolitan areas in the world.",t,,f,3Cpwg_Sa5ReDsb3Uk8PB3w,t
+5,7,3,5,Life is pop!,Pop art is an art movement that emerged in the mid 1950s in Britain and in the late 1950s in the United States.,t,,f,8dQgKXju1fbmC4WcKhOO7w,t
+6,3,3,2,Egon Schiele,One of the major figurative painter of the early 20th century.,t,,f,giw9iKFvP5JktEhs9gTVfA,t
+7,2,2,2,Rene Magritte and his paintings,"Rene Magritte was born in Lessines, in the province of Hainaut, in 1898, the eldest son of Leopold Magritte, who was a tailor and textile merchant, and Regina (nee Bertinchamps), a milliner until her marriage.",t,,f,3Prk0ZDBi4e-FGbNZ84Mjg,t
+8,7,3,2,Every man for himself ...,A lesson to learn about the animal world.,t,,f,txL-_TMZc9ZszMdXr_i0aw,t
+9,3,3,11,Sebastião Salgado,"Sebastião Salgado (born February 8, 1944) is a Brazilian social documentary photographer and photojournalist.",t,,f,9UUJVusWVUHGR213s29EOA,t
+11,7,3,1,Maths,"The word mathematics comes from the Greek μάθημα (máthēma), which, in the ancient Greek language, means ""what one learns"", ""what one gets to know"", hence also ""study"" and ""science"", and in modern Greek just ""lesson"".",f,,f,ghrOurxo6BUd5kDGzYMBCQ,t
+12,3,3,11,Josef Koudelka,Josef Koudelka is a Czech photographer.,t,,f,TZylkSxqsjH8goBrxamByg,t
+14,8,1,9,Chinese,it is ok,f,,f,rRfi9l2M9DEUxiWeyfK5wg,t
+15,8,1,9,Chinese,it is ok,f,,f,mnN_H2u4ax_Y-uGyf7roVQ,t
+16,8,1,9,Chinese,it is ok,f,,f,pcfAhBowfUneA5MzP0SapQ,t
+17,8,1,9,Chinese,it is ok,f,,f,0t_S15iJa80xTuxaPM615w,t
+19,2,2,1,Lezione 1,description (max 280 characters),f,,f,aevXs_XlrtWNE1ivNnqPcg,t
+20,7,3,6,Lezione di prova,dkidjjehdjdhj edhjedhjehdje edhejdhe edhejhed edhjjed,f,,f,AvzHfhH1zUeugwXEOQWfKg,t
+21,1,1,11,weref,"sdsfdsdfsdf,affa",f,,f,p6E-oKMYAWgjRpuPKa90bA,t
+22,5,1,5,J.M.Basquiat-Plush safe he think..,"Jean-Michel Basquiat, born in Brooklyn, New York after the death of his brother Max, was the second of four children of Matilda Andrades (July 28, 1934 – November 17, 2008) and Gerard Basquiat (born 1930).",f,1,f,IeSyoCoVY01GqOukYGbhxA,t
+23,7,3,5,Visive arts,A virtual journey into the history of the visual arts.,f,,f,jfvYqCNpM9KHEmnMsA0Iaw,t

@@ -32,6 +32,7 @@ class ImageEditorController < ApplicationController
     @back = params[:back] if params[:back].present?
     @image.leave_edit_mode current_user.id
     @image.enter_edit_mode current_user.id
+    @is_public = params[:from_gallery].present? ? true : @image.is_public
   end
   
   # === Description

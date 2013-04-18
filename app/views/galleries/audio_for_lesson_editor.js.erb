@@ -10,4 +10,8 @@ container.data('page', 1);
 container.data('tot-pages', <%= @tot_pages %>);
 $('._close_audio_gallery').addClass('_close_audio_gallery_in_lesson_editor');
 $('._select_audio_from_gallery').addClass('_add_audio_to_slide');
-initializeAudioGalleryInLessonEditor();
+<% if @audios.count > 6 %>
+  initializeAudioGalleryInLessonEditor();
+<% else %>
+  $('.audio_gallery .scroll-pane').css('overflow', 'hidden');
+<% end %>

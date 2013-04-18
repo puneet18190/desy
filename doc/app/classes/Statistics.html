@@ -81,17 +81,24 @@ href="Admin/UsersController.html#method-i-show">Admin::UsersController#show</a><
             
               
               <li>
-                <a href="#method-c-all_subjects_chart">all_subjects_chart</a>,
-              </li>
-            
-              
-              <li>
                 <a href="#method-c-all_users">all_users</a>,
               </li>
             
               
               <li>
                 <a href="#method-c-all_users_like">all_users_like</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>H</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-c-hard_disk_chart">hard_disk_chart</a>
               </li>
             
           </ul>
@@ -129,13 +136,30 @@ href="Admin/UsersController.html#method-i-show">Admin::UsersController#show</a><
           </ul>
         </dd>
       
+        <dt>P</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-c-percentage">percentage</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
         <dt>S</dt>
         <dd>
           <ul>
             
               
               <li>
-                <a href="#method-c-sbj_to_percentage">sbj_to_percentage</a>
+                <a href="#method-c-subjects">subjects</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-c-subjects_chart">subjects_chart</a>
               </li>
             
           </ul>
@@ -284,49 +308,6 @@ href="Admin/UsersController.html#method-i-show">Admin::UsersController#show</a><
           </div>
         
         <div class="method">
-          <div class="title method-title" id="method-c-all_subjects_chart">
-            
-              <b>all_subjects_chart</b>()
-            
-            <a href="../classes/Statistics.html#method-c-all_subjects_chart" name="method-c-all_subjects_chart" class="permalink">Link</a>
-          </div>
-          
-          
-            <div class="description">
-              <p>Chart representing the distribution of subjects among lessons</p>
-            </div>
-          
-          
-          
-          
-          
-            
-            <div class="sourcecode">
-              
-              <p class="source-link">
-                Source: 
-                <a href="javascript:toggleSource('method-c-all_subjects_chart_source')" id="l_method-c-all_subjects_chart_source">show</a>
-                
-              </p>
-              <div id="method-c-all_subjects_chart_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/autoload/statistics.rb, line 60</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">all_subjects_chart</span>
-  <span class="ruby-identifier">amt</span> = <span class="ruby-string">&#39;&#39;</span>
-  <span class="ruby-identifier">desc</span> = <span class="ruby-string">&#39;&#39;</span>
-  <span class="ruby-constant">Subject</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">sbj</span><span class="ruby-operator">|</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-identifier">sbj</span>.<span class="ruby-identifier">lessons</span>.<span class="ruby-identifier">count</span> <span class="ruby-operator">&gt;</span> <span class="ruby-number">0</span>
-      <span class="ruby-identifier">amt</span> = <span class="ruby-identifier">amt</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">sbj_to_percentage</span>(<span class="ruby-identifier">sbj</span>.<span class="ruby-identifier">lessons</span>.<span class="ruby-identifier">count</span>).<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> <span class="ruby-string">&#39;,&#39;</span>
-    <span class="ruby-keyword">end</span>
-    <span class="ruby-identifier">desc</span> = <span class="ruby-identifier">desc</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">sbj</span>.<span class="ruby-identifier">description</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> <span class="ruby-string">&#39;,&#39;</span>
-  <span class="ruby-keyword">end</span>
-  <span class="ruby-keyword">return</span> [<span class="ruby-identifier">amt</span>.<span class="ruby-identifier">to_s</span>[<span class="ruby-number">0</span><span class="ruby-operator">..</span><span class="ruby-number">-2</span>], <span class="ruby-identifier">desc</span>.<span class="ruby-identifier">to_s</span>[<span class="ruby-number">0</span><span class="ruby-operator">..</span><span class="ruby-number">-2</span>]]
-<span class="ruby-keyword">end</span></pre>
-              </div>
-            </div>
-            
-          </div>
-        
-        <div class="method">
           <div class="title method-title" id="method-c-all_users">
             
               <b>all_users</b>()
@@ -390,6 +371,48 @@ href="Admin/UsersController.html#method-i-show">Admin::UsersController#show</a><
                 <pre><span class="ruby-comment"># File lib/autoload/statistics.rb, line 20</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">all_users_like</span>(<span class="ruby-identifier">first_n</span>)
   <span class="ruby-constant">Like</span>.<span class="ruby-identifier">joins</span>(<span class="ruby-value">:lesson</span>, <span class="ruby-value">:lesson</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:user</span>).<span class="ruby-identifier">group</span>(<span class="ruby-string">&#39;users.id&#39;</span>).<span class="ruby-identifier">select</span>(<span class="ruby-string">&#39;users.id, users.name, users.surname, COUNT(*) AS likes_count&#39;</span>).<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;likes_count DESC, users.created_at DESC&#39;</span>).<span class="ruby-identifier">limit</span>(<span class="ruby-identifier">first_n</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-c-hard_disk_chart">
+            
+              <b>hard_disk_chart</b>()
+            
+            <a href="../classes/Statistics.html#method-c-hard_disk_chart" name="method-c-hard_disk_chart" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Chart representing the size occupation of the folder
+&#39;public/media_elements&#39;</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-hard_disk_chart_source')" id="l_method-c-hard_disk_chart_source">show</a>
+                
+              </p>
+              <div id="method-c-hard_disk_chart_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/autoload/statistics.rb, line 79</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">hard_disk_chart</span>
+  <span class="ruby-identifier">resp</span> = []
+  <span class="ruby-identifier">max</span> = <span class="ruby-constant">Media</span><span class="ruby-operator">::</span><span class="ruby-constant">Uploader</span><span class="ruby-operator">::</span><span class="ruby-constant">MAXIMUM_MEDIA_ELEMENTS_FOLDER_SIZE</span>
+  <span class="ruby-identifier">resp</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">percentage</span>(<span class="ruby-constant">Media</span><span class="ruby-operator">::</span><span class="ruby-constant">Video</span><span class="ruby-operator">::</span><span class="ruby-constant">Uploader</span>.<span class="ruby-identifier">folder_size</span>, <span class="ruby-identifier">max</span>)
+  <span class="ruby-identifier">resp</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">percentage</span>(<span class="ruby-constant">Media</span><span class="ruby-operator">::</span><span class="ruby-constant">Audio</span><span class="ruby-operator">::</span><span class="ruby-constant">Uploader</span>.<span class="ruby-identifier">folder_size</span>, <span class="ruby-identifier">max</span>)
+  <span class="ruby-identifier">resp</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">percentage</span>(<span class="ruby-constant">ImageUploader</span>.<span class="ruby-identifier">folder_size</span>, <span class="ruby-identifier">max</span>)
+  <span class="ruby-identifier">resp</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">percentage</span>(<span class="ruby-identifier">max</span> <span class="ruby-operator">-</span> <span class="ruby-constant">Media</span><span class="ruby-operator">::</span><span class="ruby-constant">Video</span><span class="ruby-operator">::</span><span class="ruby-constant">Uploader</span>.<span class="ruby-identifier">folder_size</span> <span class="ruby-operator">-</span> <span class="ruby-constant">Media</span><span class="ruby-operator">::</span><span class="ruby-constant">Audio</span><span class="ruby-operator">::</span><span class="ruby-constant">Uploader</span>.<span class="ruby-identifier">folder_size</span> <span class="ruby-operator">-</span> <span class="ruby-constant">ImageUploader</span>.<span class="ruby-identifier">folder_size</span>, <span class="ruby-identifier">max</span>)
+  <span class="ruby-identifier">resp</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -574,20 +597,18 @@ received</p>
             </div>
             
           </div>
-              
-      <div class="sectiontitle">Class Private methods</div>
-      
+        
         <div class="method">
-          <div class="title method-title" id="method-c-sbj_to_percentage">
+          <div class="title method-title" id="method-c-subjects">
             
-              <b>sbj_to_percentage</b>(val)
+              <b>subjects</b>()
             
-            <a href="../classes/Statistics.html#method-c-sbj_to_percentage" name="method-c-sbj_to_percentage" class="permalink">Link</a>
+            <a href="../classes/Statistics.html#method-c-subjects" name="method-c-subjects" class="permalink">Link</a>
           </div>
           
           
             <div class="description">
-              <p>Used as a submethod of Statistics#all_subjects_chart</p>
+              <p>Descriptions for Statistics#subjects_chart</p>
             </div>
           
           
@@ -599,15 +620,95 @@ received</p>
               
               <p class="source-link">
                 Source: 
-                <a href="javascript:toggleSource('method-c-sbj_to_percentage_source')" id="l_method-c-sbj_to_percentage_source">show</a>
+                <a href="javascript:toggleSource('method-c-subjects_source')" id="l_method-c-subjects_source">show</a>
                 
               </p>
-              <div id="method-c-sbj_to_percentage_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/autoload/statistics.rb, line 75</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">sbj_to_percentage</span>(<span class="ruby-identifier">val</span>) <span class="ruby-comment"># :doc:</span>
+              <div id="method-c-subjects_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/autoload/statistics.rb, line 70</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">subjects</span>
+  <span class="ruby-identifier">resp</span> = []
+  <span class="ruby-constant">Subject</span>.<span class="ruby-identifier">joins</span>(<span class="ruby-value">:lessons</span>).<span class="ruby-identifier">group</span>(<span class="ruby-string">&#39;subjects.id&#39;</span>).<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;subjects.description ASC&#39;</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">resp</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">s</span>.<span class="ruby-identifier">description</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">resp</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-c-subjects_chart">
+            
+              <b>subjects_chart</b>()
+            
+            <a href="../classes/Statistics.html#method-c-subjects_chart" name="method-c-subjects_chart" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Chart representing the distribution of subjects among lessons</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-subjects_chart_source')" id="l_method-c-subjects_chart_source">show</a>
+                
+              </p>
+              <div id="method-c-subjects_chart_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/autoload/statistics.rb, line 60</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">subjects_chart</span>
   <span class="ruby-identifier">tot</span> = <span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">count</span>
+  <span class="ruby-identifier">resp</span> = []
+  <span class="ruby-constant">Subject</span>.<span class="ruby-identifier">joins</span>(<span class="ruby-value">:lessons</span>).<span class="ruby-identifier">group</span>(<span class="ruby-string">&#39;subjects.id&#39;</span>).<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;subjects.description ASC&#39;</span>).<span class="ruby-identifier">count</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">id</span>, <span class="ruby-identifier">num</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">resp</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">percentage</span>(<span class="ruby-identifier">num</span>, <span class="ruby-identifier">tot</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">resp</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+              
+      <div class="sectiontitle">Class Private methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-c-percentage">
+            
+              <b>percentage</b>(val, tot)
+            
+            <a href="../classes/Statistics.html#method-c-percentage" name="method-c-percentage" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Submethod for chart percentages</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-percentage_source')" id="l_method-c-percentage_source">show</a>
+                
+              </p>
+              <div id="method-c-percentage_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/autoload/statistics.rb, line 92</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">percentage</span>(<span class="ruby-identifier">val</span>, <span class="ruby-identifier">tot</span>) <span class="ruby-comment"># :doc:</span>
   <span class="ruby-identifier">res</span> = (<span class="ruby-identifier">val</span>.<span class="ruby-identifier">to_f</span> * <span class="ruby-number">100</span>) <span class="ruby-operator">/</span> <span class="ruby-identifier">tot</span>.<span class="ruby-identifier">to_f</span>
-  <span class="ruby-identifier">res</span>.<span class="ruby-identifier">round</span>(<span class="ruby-number">2</span>)
+  <span class="ruby-identifier">res</span>.<span class="ruby-identifier">round</span>(<span class="ruby-number">3</span>)
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
