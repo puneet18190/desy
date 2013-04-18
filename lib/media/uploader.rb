@@ -18,6 +18,11 @@ module Media
       FileUtils.rm_rf self::FOLDER
     end
 
+    def self.folder_size
+      return 0 unless Dir.exists? self::FOLDER
+      Find.find(self::FOLDER).sum { |f| File.stat(f).size }
+    end
+
     def self.media_elements_folder_size
       return 0 unless Dir.exists? MEDIA_ELEMENTS_FOLDER
       Find.find(MEDIA_ELEMENTS_FOLDER).sum { |f| File.stat(f).size }
