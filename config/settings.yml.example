@@ -88,6 +88,8 @@ colors:
   black:
     pos: 1
     code: '#373737'
+# Random colors used in graphs
+graph_colors: ['#ec008c', '#b1538b', '#2e3192', '#696bcd', '#a8a9e2', '#d0d1e4', '#9c9c9c', '#6a6a6c', '#434345', '#f7941d', '#ffcb05', '#f2d772', '#eee4bd', '#00a651', '#1deb81', '#2a6d4a', '#58595b', '#b0b0b0', '#d8dff1', '#acc2ff']
 # Configurable registration policies (the names correspond to keys in the translation file)
 user_registration_policies: ['policy_1', 'policy_2']
 # Minimum length for the users' password
