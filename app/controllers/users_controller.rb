@@ -16,7 +16,7 @@
 #
 class UsersController < ApplicationController
   
-  skip_before_filter :authenticate, :only => [:create, :confirm, :request_reset_password, :reset_password, :find_locations]
+  skip_before_filter :authenticate, :only => [:create, :confirm, :request_reset_password, :reset_password, :send_reset_password, :find_locations]
   before_filter :initialize_layout, :only => [:edit, :update, :subjects, :statistics, :mailing_lists]
   layout 'prelogin', :only => [:create, :request_reset_password]
   
@@ -38,8 +38,8 @@ class UsersController < ApplicationController
       user.email = email
     end
     if @user.save
-      redirect_to root_path(login: true), { flash: { notice: t('flash.successful_registration') } }
       UserMailer.account_confirmation(@user, request.host, request.port).deliver
+      render 'users/fullpage_notifications/confirmation/email_sent', :layout => 'prelogin'
     else
       @errors = convert_user_error_messages @user.errors
       @locations = [Location.roots]
@@ -64,15 +64,15 @@ class UsersController < ApplicationController
   #
   def confirm
     if User.confirm!(params[:token])
-      redirect_to root_path(login: true), { flash: { notice: t('flash.successful_confirmation') } }
+      render 'users/fullpage_notifications/confirmation/received', :layout => 'prelogin'
     else
-      redirect_to root_path, { flash: { alert: t('flash.failed_confirmation') } }
+      render 'users/fullpage_notifications/expired_link', :layout => 'prelogin'
     end
   end
   
   # === Description
   #
-  # TODO questa descrizione andrà aggiornata poi
+  # Opens the page where the user writes an email to reset the password
   #
   # === Mode
   #
@@ -87,7 +87,31 @@ class UsersController < ApplicationController
   
   # === Description
   #
-  # TODO questa descrizione andrà aggiornata poi
+  # Sends to the user an email containing the reset password token
+  #
+  # === Mode
+  #
+  # Html
+  #
+  # === Skipped filters
+  #
+  # * ApplicationController#authenticate
+  #
+  def send_reset_password
+    email = params[:email]
+    if email.blank?
+      redirect_to user_request_reset_password_path, { flash: { alert: t('flash.email_is_blank') } }
+      return
+    end
+    if user = User.active.confirmed.where(email: email).first
+      # TODO mandare mail con il token
+    end
+    render 'users/fullpage_notifications/reset_password/email_sent', :layout => 'prelogin'
+  end
+  
+  # === Description
+  #
+  # Checks the token and resets the password; sends to the user an email containing the new password
   #
   # === Mode
   #
@@ -98,16 +122,13 @@ class UsersController < ApplicationController
   # * ApplicationController#authenticate
   #
   def reset_password
-    email = params[:email]
-    if email.blank?
-      redirect_to user_request_reset_password_path, { flash: { alert: t('flash.email_is_blank') } } 
-      return
-    end
+    # TODO CONTROLLARE IL TOKEN e renderizzare render 'users/fullpage_notifications/expired_link', :layout => 'prelogin' se sbagliato
     if user = User.active.confirmed.where(email: email).first
+      # TODO cancella il token
       new_password = user.reset_password!
       UserMailer.new_password(user, new_password, request.host, request.port).deliver
     end
-    redirect_to root_path, { flash: { notice: t('flash.password_reset_successfully') } }
+    render 'users/fullpage_notifications/reset_password/received', :layout => 'prelogin'
   end
   
   # === Description
