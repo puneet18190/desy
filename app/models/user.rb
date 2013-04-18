@@ -13,6 +13,7 @@
 # * *active*: boolean, false if the user is banned
 # * *location_id*: location of the user
 # * *confirmation_token*: token used for confirmation, generated automaticly
+# * *password_token*: token used for resetting the password, generated automaticly
 # * *metadata*:
 #   * +video_editor_cache+: cache of the Video Editor (screenshot of the last video edited)
 #   * +audio_editor_cache+: cache of the Audio Editor (screenshot of the last audio edited)
@@ -246,20 +247,6 @@ class User < ActiveRecord::Base
   #
   def registration_policies
     REGISTRATION_POLICIES
-  end
-  
-  # === Description
-  #
-  # Resets the attributes +password+ e +password_confirmation+ with a new random string (used in UsersController#reset_password)
-  #
-  # === Returns
-  #
-  # A string (the new password)
-  #
-  def reset_password!
-    new_password = SecureRandom.urlsafe_base64(10)
-    update_attributes!(:password => new_password, :password_confirmation => new_password)
-    new_password
   end
   
   # === Description

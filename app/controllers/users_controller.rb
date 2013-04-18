@@ -104,7 +104,8 @@ class UsersController < ApplicationController
       return
     end
     if user = User.active.confirmed.where(email: email).first
-      # TODO mandare mail con il token
+      user.password_token!
+      UserMailer.new_password(user, request.host, request.port).deliver
     end
     render 'users/fullpage_notifications/reset_password/email_sent', :layout => 'prelogin'
   end
@@ -122,13 +123,13 @@ class UsersController < ApplicationController
   # * ApplicationController#authenticate
   #
   def reset_password
-    # TODO CONTROLLARE IL TOKEN e renderizzare render 'users/fullpage_notifications/expired_link', :layout => 'prelogin' se sbagliato
-    if user = User.active.confirmed.where(email: email).first
-      # TODO cancella il token
-      new_password = user.reset_password!
-      UserMailer.new_password(user, new_password, request.host, request.port).deliver
+    new_password = user.reset_password!(params[:token])
+    if new_password
+      UserMailer.new_password_confirmed(user, new_password, request.host, request.port).deliver
+      render 'users/fullpage_notifications/reset_password/received', :layout => 'prelogin'
+    else
+      render 'users/fullpage_notifications/expired_link', :layout => 'prelogin'
     end
-    render 'users/fullpage_notifications/reset_password/received', :layout => 'prelogin'
   end
   
   # === Description
