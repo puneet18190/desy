@@ -123,7 +123,7 @@ class UsersController < ApplicationController
   # * ApplicationController#authenticate
   #
   def reset_password
-    new_password = user.reset_password!(params[:token])
+    new_password, user = *User.reset_password!(params[:token])
     if new_password
       UserMailer.new_password_confirmed(user, new_password, request.host, request.port).deliver
       render 'users/fullpage_notifications/reset_password/received', :layout => 'prelogin'

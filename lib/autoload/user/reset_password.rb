@@ -15,13 +15,13 @@ module User::ResetPassword
     def reset_password!(token)
       user = User.where(:password_token => token).first
       return nil unless user
-      if self.password_token
-        self.password_token = nil
+      if user.password_token
+        user.password_token = nil
         new_password = SecureRandom.urlsafe_base64(10)
-        self.password = new_password
-        self.password_confirmation = new_password
-        self.save!
-        return new_password
+        user.password = new_password
+        user.password_confirmation = new_password
+        user.save!
+        return [new_password, user]
       end
     end
     

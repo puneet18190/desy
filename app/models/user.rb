@@ -61,6 +61,7 @@ class User < ActiveRecord::Base
   require 'user/confirmation'
   include Authentication
   include Confirmation
+  include ResetPassword
   
   # List of registration policies, configured in settings.yml
   REGISTRATION_POLICIES = SETTINGS['user_registration_policies'].map(&:to_sym)
