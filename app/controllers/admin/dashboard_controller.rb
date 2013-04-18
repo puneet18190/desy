@@ -27,13 +27,26 @@ class Admin::DashboardController < AdminController
     @users = User.order('created_at DESC').limit(5)
     @elements_reports = Report.order('created_at DESC').where(:reportable_type => 'MediaElement').limit(5)
     @lessons_reports = Report.order('created_at DESC').where(:reportable_type => 'Lesson').limit(5)
-    @all_liked_lessons   = Statistics.all_liked_lessons(3)
-    @all_shared_elements = Statistics.all_shared_elements
-    @all_shared_lessons  = Statistics.all_shared_lessons
-    @all_users           = Statistics.all_users
-    @all_users_like      = Statistics.all_users_like(3)
-    @all_subjects_chart  = Statistics.all_subjects_chart[0].split(',')
-    @all_subjects_desc   = Statistics.all_subjects_chart[1].split(',')
+    @all_liked_lessons    = Statistics.all_liked_lessons(3)
+    @all_shared_elements  = Statistics.all_shared_elements
+    @all_shared_lessons   = Statistics.all_shared_lessons
+    @all_users            = Statistics.all_users
+    @all_users_like       = Statistics.all_users_like(3)
+    @subjects_chart       = {
+      :data   => Statistics.subjects_chart,
+      :texts  => Statistics.subjects,
+      :colors => Subject.chart_colors
+    }
+    @hard_disk_chart      = {
+      :data   => Statistics.hard_disk_chart,
+      :texts  => [
+        t('admin.dashboard.hard_disk.videos'),
+        t('admin.dashboard.hard_disk.audios'),
+        t('admin.dashboard.hard_disk.images'),
+        t('admin.dashboard.hard_disk.remaining')
+      ],
+      :colors => SETTINGS['graph_colors'][0..3]
+    }
     respond_to do |wants|
       wants.html
       wants.xml {render :xml => @elements}

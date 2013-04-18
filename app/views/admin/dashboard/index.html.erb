@@ -84,14 +84,18 @@
           <tbody>
             <tr>
               <td>
-                <% (0..@all_subjects_chart.length - 1).each do |index| %>
-                  <blockquote class="legend" style="border-color: <%= Subject.chart_colors[index] %>">
-                    <div class="pull-left"><%= @all_subjects_desc[index] %></div>
-                    <div class="pull-right"><%= @all_subjects_chart[index] %></div>
+                <% @subjects_chart[:data].each_with_index do |s, i| %>
+                  <blockquote class="legend" style="border-color: <%= @subjects_chart[:colors][i] %>">
+                    <div class="pull-left"><%= @subjects_chart[:texts][i] %></div>
+                    <div class="pull-right"><%= "#{s} %" %></div>
                   </blockquote>
                 <% end %>
               </td>
-              <td><span class="pie" data-text="<%= @all_subjects_desc %>" data-diameter="250" class="fltrt"><%= @all_subjects_chart.to_s[1..-2].gsub('"','') %></span></td>
+              <td>
+                <span class="pie" data-text="<%= @subjects_chart[:texts].join(',') %>" data-diameter="250" class="fltrt">
+                  <%= @subjects_chart[:data].join(',') %>
+                </span>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -146,24 +150,18 @@
           <tbody>
             <tr>
               <td>
-                <blockquote class="legend" style="border-color:blue">
-                  <div class="pull-left"><%= t('admin.dashboard.hard_disk.images') %></div>
-                  <div class="pull-right"><%= 4444 %></div>
-                </blockquote>
-                <blockquote class="legend" style="border-color:green">
-                  <div class="pull-left"><%= t('admin.dashboard.hard_disk.audios') %></div>
-                  <div class="pull-right"><%= 4444 %></div>
-                </blockquote>
-                <blockquote class="legend" style="border-color:yellow">
-                  <div class="pull-left"><%= t('admin.dashboard.hard_disk.videos') %></div>
-                  <div class="pull-right"><%= 4444 %></div>
-                </blockquote>
-                <blockquote class="legend" style="border-color:red">
-                  <div class="pull-left"><%= t('admin.dashboard.hard_disk.remaining') %></div>
-                  <div class="pull-right"><%= 4444 %></div>
-                </blockquote>
+                <% @hard_disk_chart[:data].each_with_index do |s, i| %>
+                  <blockquote class="legend" style="border-color: <%= @hard_disk_chart[:colors][i] %>">
+                    <div class="pull-left"><%= @hard_disk_chart[:texts][i] %></div>
+                    <div class="pull-right"><%= "#{s} %" %></div>
+                  </blockquote>
+                <% end %>
               </td>
-              <td><span class="pie" data-text="<%= @all_subjects_desc %>" data-diameter="250" class="fltrt"><%= @all_subjects_chart.to_s[1..-2].gsub('"','') %></span></td>
+              <td>
+                <span class="pie" data-text="<%= @hard_disk_chart[:texts].join(',') %>" data-diameter="250" class="fltrt">
+                  <%= @hard_disk_chart[:data].join(',') %>
+                </span>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -172,9 +170,10 @@
   </div>
 </div>
 
+
 <script type="text/javascript" charset="utf-8">
   $.fn.peity.defaults.pie = {
-    colours: <%= Subject.chart_colors.to_json.html_safe %>,
+    colours: <%= @subjects_chart[:colors].to_json.html_safe %>,
     diameter: 250
   }
   $('span.pie').peity('pie');
