@@ -1061,6 +1061,19 @@ it:
         content: "L'icona \"busta\" che si trova sotto ogni lezione, apre una finestra dove è possibile selezionare una lista di indirizzi e-mail: clicca sul pulsante \"invia\" per spedire una email contenete un indirizzo internet pubblico della tua lezione (utilizzando questo link i tuoi studenti sono in grado di visualizzare la lezione senza essere iscritti a %{desy})."
   
   
+  # SECTION 1.7: Page rendered if the browser is not supported by the application
+  
+  browsers:
+    # Title of the page
+    title: "Browser non supportato"
+    # Content of the page
+    content:
+      title: "%{desy} non support il tuo browser!"
+      description: "Le tecnologie usate nell'applicazione non funzionerebbero correttamente sul tuo browser. Per usare %{desy} è necessario aggiornare il browser, o scaricarne l'ultima versione."
+    # Links where it's possible to download updated browsers
+    links: "Links per aggiornare il tuo browser"
+  
+  
   
   # PART 2 -- LABELS AND CAPTIONS
   
@@ -2272,19 +2285,6 @@ it:
     image: "Immagine"
     # 1 - models/media_element.rb
     video: "Video"
-  
-  
-  # SECTION 3.5: Page rendered if the browser is not supported by the application
-  
-  browsers:
-    # Title of the page
-    title: "Browser non supportato"
-    # Content of the page
-    content:
-      title: "%{desy} non support il tuo browser!"
-      description: "Le tecnologie usate nell'applicazione non funzionerebbero correttamente sul tuo browser. Per usare %{desy} è necessario aggiornare il browser, o scaricarne l'ultima versione."
-    # Links where it's possible to download updated browsers
-    links: "Links per aggiornare il tuo browser"
   
   
   

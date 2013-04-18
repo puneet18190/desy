@@ -1061,6 +1061,19 @@ cn:
         content: "位于每一课程下边的那个\"信箱\"图标打开一个窗口，在那里你能选择e-mail地址列表：点击那个按钮\"发送\"包含你课程的公共链接的邮件（使用这个链接，你的学生能可视化不用在%{desy}中注册课程）。"
   
   
+  # SECTION 1.7: Page rendered if the browser is not supported by the application
+  
+  browsers:
+    # Title of the page
+    title: "Browser not supported" # TODO
+    # Content of the page
+    content:
+      title: "%{desy} doesn't support your browser!" # TODO
+      description: "The technologies used in our application wouldn't work properly in your browser. To use %{desy} you need to update your browser, or download a newer one." # TODO
+    # Links where it's possible to download updated browsers
+    links: "Links to update your browser" # TODO
+  
+  
   
   # PART 2 -- LABELS AND CAPTIONS
   
@@ -2272,19 +2285,6 @@ cn:
     image: "图像"
     # 1 - models/media_element.rb
     video: "视频"
-  
-  
-  # SECTION 3.5: Page rendered if the browser is not supported by the application
-  
-  browsers:
-    # Title of the page
-    title: "Browser not supported" # TODO
-    # Content of the page
-    content:
-      title: "%{desy} doesn't support your browser!" # TODO
-      description: "The technologies used in our application wouldn't work properly in your browser. To use %{desy} you need to update your browser, or download a newer one." # TODO
-    # Links where it's possible to download updated browsers
-    links: "Links to update your browser" # TODO
   
   
   

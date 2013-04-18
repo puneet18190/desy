@@ -1061,6 +1061,19 @@ en:
         content: "The \"envelope\" icon located below each lesson opens a window where you can select a list of e-mail addresses: click on the button \"send\" to send an email containing the public link of your lessons (using this link your students are able to visualize the lesson without being registered in %{desy})."
   
   
+  # SECTION 1.7: Page rendered if the browser is not supported by the application
+  
+  browsers:
+    # Title of the page
+    title: "Browser not supported"
+    # Content of the page
+    content:
+      title: "%{desy} doesn't support your browser!"
+      description: "The technologies used in our application wouldn't work properly in your browser. To use %{desy} you need to update your browser, or download a newer one."
+    # Links where it's possible to download updated browsers
+    links: "Links to update your browser"
+  
+  
   
   # PART 2 -- LABELS AND CAPTIONS
   
@@ -2272,19 +2285,6 @@ en:
     image: "Image"
     # 1 - models/media_element.rb
     video: "Video"
-  
-  
-  # SECTION 3.5: Page rendered if the browser is not supported by the application
-  
-  browsers:
-    # Title of the page
-    title: "Browser not supported"
-    # Content of the page
-    content:
-      title: "%{desy} doesn't support your browser!"
-      description: "The technologies used in our application wouldn't work properly in your browser. To use %{desy} you need to update your browser, or download a newer one."
-    # Links where it's possible to download updated browsers
-    links: "Links to update your browser"
   
   
   
