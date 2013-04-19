@@ -1079,6 +1079,7 @@ en:
     # 3 - views/users/fullpage_notifications/confirmation/received.html.erb
     # 4 - views/users/fullpage_notifications/confirmation/email_sent.html.erb
     # 5 - views/users/fullpage_notifications/expired_link.html.erb
+    # 6 - views/users/request_reset_password.html.erb
     back: "Back to home page"
     # This message appears if a user tries to click on a confirmation link (or a reset password link) which is no longer valid
     expired_link:
