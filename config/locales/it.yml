@@ -463,7 +463,7 @@ it:
       subject: "%{desy} - Nuova password"
       # Message
       # 1 - mailers/user_mailer.rb
-      message: "<h1>%{name},</h1><p>abbiamo ricevuto la tua richiesta di modifica della password. Per confermare il tuo indirizzo email address e ricevere una nuova password, clicca sulla seguente URL:</p>"
+      message: "<h1>%{name},</h1><p>abbiamo ricevuto la tua richiesta di modifica della password. Per confermare il tuo indirizzo email e ricevere una nuova password, clicca sulla seguente URL:</p>"
     # Mail containing new temporary password
     reset_password_confirmed:
       # Subject
