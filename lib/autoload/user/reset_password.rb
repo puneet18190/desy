@@ -14,7 +14,7 @@ module User::ResetPassword
     
     def reset_password!(token)
       user = User.where(:password_token => token).first
-      return nil unless user
+      return [nil, nil] unless user
       if user.password_token
         user.password_token = nil
         new_password = SecureRandom.urlsafe_base64(10)
@@ -32,7 +32,7 @@ module User::ResetPassword
     
     def password_token!
       self.password_token = self.class.generate_password_token
-      self.save
+      self.save!
     end
     
   end

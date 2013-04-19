@@ -12,7 +12,7 @@ module User::Confirmation
     end
 
     def confirm!(token)
-      user = User.active.not_confirmed.where(confirmation_token: token).first 
+      user = User.active.not_confirmed.where(confirmation_token: token).first
       return nil unless user
       user.confirmed = true
       user.save
