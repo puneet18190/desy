@@ -1098,7 +1098,7 @@ it:
         # 1 - views/users/fullpage_notifications/reset_password/received.html.erb
         title: "Ripristino password"
         # 1 - views/users/fullpage_notifications/reset_password/received.html.erb
-        description: "La password è stata ripristinata! Ti abbiamo inviato una mail contenente una password temporanea: con tale password puoi entrare nell'applicazione e scegliere una nuova password nel tuo profilo personale"
+        description: "La password è stata ripristinata! Ti abbiamo inviato una mail contenente una password temporanea:<br/>con tale password puoi entrare nell'applicazione e scegliere una nuova password nel tuo profilo personale"
     confirmation:
       # The user filled his sign up form, and there were no errors: the application sent him an email with a link to confirm his account
       email_sent:
