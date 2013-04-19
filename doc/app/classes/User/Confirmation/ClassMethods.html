@@ -124,7 +124,7 @@
               <div id="method-i-confirm-21_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File lib/autoload/user/confirmation.rb, line 14</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">confirm!</span>(<span class="ruby-identifier">token</span>)
-  <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">active</span>.<span class="ruby-identifier">not_confirmed</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">confirmation_token</span><span class="ruby-operator">:</span> <span class="ruby-identifier">token</span>).<span class="ruby-identifier">first</span> 
+  <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">active</span>.<span class="ruby-identifier">not_confirmed</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">confirmation_token</span><span class="ruby-operator">:</span> <span class="ruby-identifier">token</span>).<span class="ruby-identifier">first</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">user</span>
   <span class="ruby-identifier">user</span>.<span class="ruby-identifier">confirmed</span> = <span class="ruby-keyword">true</span>
   <span class="ruby-identifier">user</span>.<span class="ruby-identifier">save</span>

@@ -23,7 +23,7 @@
         </h1>
         <ul class="files">
             <li>doc/README.rdoc</li>
-            <li>Last modified: 2013-04-17 14:38:35 +0200</li>
+            <li>Last modified: 2013-04-18 18:22:21 +0200</li>
         </ul>
     </div>
 
@@ -121,7 +121,8 @@ the host OS.</p>
 
 <h2 id="label-Procedure+of+installation">Procedure of installation</h2>
 <ol><li>
-<p>Extract the DeSY copy into the destination path</p>
+<p>Extract the DeSY copy into the destination path (it should be somewhere
+inside the home of the user which runs the app)</p>
 </li><li>
 <p>Install Ruby (possibly using <a
 href="https://github.com/sstephenson/rbenv">rbenv</a>, <a
@@ -152,13 +153,19 @@ href="https://github.com/postmodern/chruby">chruby</a>)</p>
 <ul><li>
 <p>video/mp4   mp4</p>
 </li><li>
+<p>video/webm  webm</p>
+</li><li>
 <p>audio/mp4   m4a</p>
 </li><li>
 <p>audio/ogg   ogg</p>
-</li><li>
-<p>video/webm  webm</p>
 </li></ul>
+</li><li>
+<p>If nginx web server is used, you can use
+<code>config/nginx.conf.example</code> as start for the DeSY site
+configuration file</p>
 </li></ol>
+
+<p>12.</p>
 
 <h2 id="label-Configuration">Configuration</h2>
 

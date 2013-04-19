@@ -1,4 +1,4 @@
-Thu, 18 Apr 2013 12:33:54 +0200
+Fri, 19 Apr 2013 09:53:30 +0200
 app/controllers/admin/dashboard_controller.rb	Thu, 18 Apr 2013 12:31:31 +0200
 app/controllers/admin/lessons_controller.rb	Wed, 17 Apr 2013 14:38:25 +0200
 app/controllers/admin/media_elements_controller.rb	Wed, 17 Apr 2013 14:38:25 +0200
@@ -23,14 +23,14 @@ app/controllers/reports_controller.rb	Wed, 17 Apr 2013 14:38:25 +0200
 app/controllers/search_controller.rb	Wed, 17 Apr 2013 14:38:25 +0200
 app/controllers/tags_controller.rb	Wed, 17 Apr 2013 14:38:25 +0200
 app/controllers/users/sessions_controller.rb	Wed, 17 Apr 2013 14:38:25 +0200
-app/controllers/users_controller.rb	Wed, 17 Apr 2013 14:38:25 +0200
+app/controllers/users_controller.rb	Thu, 18 Apr 2013 18:09:01 +0200
 app/controllers/video_editor_controller.rb	Wed, 17 Apr 2013 14:38:25 +0200
 app/controllers/virtual_classroom_controller.rb	Wed, 17 Apr 2013 14:38:25 +0200
 app/helpers/admin_helper.rb	Wed, 17 Apr 2013 14:38:25 +0200
 app/helpers/application_helper.rb	Wed, 17 Apr 2013 14:38:25 +0200
 app/helpers/mailer_helper.rb	Wed, 17 Apr 2013 14:38:25 +0200
 app/mailers/maintainer_notifications_mailer.rb	Wed, 17 Apr 2013 14:38:25 +0200
-app/mailers/user_mailer.rb	Wed, 17 Apr 2013 14:38:25 +0200
+app/mailers/user_mailer.rb	Thu, 18 Apr 2013 17:11:16 +0200
 app/models/admin_search_form.rb	Wed, 17 Apr 2013 14:38:25 +0200
 app/models/audio.rb	Wed, 17 Apr 2013 14:38:25 +0200
 app/models/bookmark.rb	Wed, 17 Apr 2013 14:38:25 +0200
@@ -46,10 +46,10 @@ app/models/notification.rb	Wed, 17 Apr 2013 14:38:25 +0200
 app/models/report.rb	Wed, 17 Apr 2013 14:38:25 +0200
 app/models/school_level.rb	Wed, 17 Apr 2013 14:38:25 +0200
 app/models/slide.rb	Wed, 17 Apr 2013 14:38:25 +0200
-app/models/subject.rb	Thu, 18 Apr 2013 12:05:06 +0200
+app/models/subject.rb	Thu, 18 Apr 2013 12:34:48 +0200
 app/models/tag.rb	Wed, 17 Apr 2013 14:38:25 +0200
 app/models/tagging.rb	Wed, 17 Apr 2013 14:38:25 +0200
-app/models/user.rb	Wed, 17 Apr 2013 14:38:25 +0200
+app/models/user.rb	Thu, 18 Apr 2013 18:02:09 +0200
 app/models/users_subject.rb	Wed, 17 Apr 2013 14:38:25 +0200
 app/models/video.rb	Wed, 17 Apr 2013 14:38:25 +0200
 app/models/virtual_classroom_lesson.rb	Wed, 17 Apr 2013 14:38:25 +0200
@@ -61,11 +61,12 @@ lib/autoload/filename_token.rb	Wed, 17 Apr 2013 14:38:35 +0200
 lib/autoload/filters.rb	Wed, 17 Apr 2013 14:38:35 +0200
 lib/autoload/lessons_media_elements_shared.rb	Wed, 17 Apr 2013 14:38:35 +0200
 lib/autoload/search_orders.rb	Wed, 17 Apr 2013 14:38:35 +0200
-lib/autoload/statistics.rb	Thu, 18 Apr 2013 12:24:25 +0200
+lib/autoload/statistics.rb	Thu, 18 Apr 2013 12:43:52 +0200
 lib/autoload/statuses.rb	Wed, 17 Apr 2013 14:38:35 +0200
 lib/autoload/time_convert.rb	Wed, 17 Apr 2013 14:38:35 +0200
 lib/autoload/user/authentication.rb	Wed, 17 Apr 2013 14:38:35 +0200
-lib/autoload/user/confirmation.rb	Wed, 17 Apr 2013 14:38:35 +0200
+lib/autoload/user/confirmation.rb	Fri, 19 Apr 2013 09:38:19 +0200
+lib/autoload/user/reset_password.rb	Fri, 19 Apr 2013 09:45:04 +0200
 lib/autoload/valid.rb	Wed, 17 Apr 2013 14:38:35 +0200
 lib/controller_info.rb	Wed, 17 Apr 2013 14:38:35 +0200
 lib/dumpable.rb	Wed, 17 Apr 2013 14:38:35 +0200
@@ -142,5 +143,4 @@ lib/media/video/editing/transition.rb	Wed, 17 Apr 2013 14:38:35 +0200
 lib/media/video/uploader.rb	Thu, 18 Apr 2013 09:47:54 +0200
 lib/media/video/uploader/validation.rb	Wed, 17 Apr 2013 14:38:35 +0200
 lib/notifications_job.rb	Wed, 17 Apr 2013 14:38:35 +0200
-lib/system_requirements.rb	Wed, 17 Apr 2013 14:38:35 +0200
-doc/README.rdoc	Wed, 17 Apr 2013 14:38:35 +0200
+doc/README.rdoc	Thu, 18 Apr 2013 18:22:21 +0200
