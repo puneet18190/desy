@@ -463,7 +463,7 @@ cn:
       subject: "%{desy} - 新密码"
       # Message
       # 1 - mailers/user_mailer.rb
-      message: "<h1>%{name},</h1><p>we received your password reset request. To confirm your email address and receive a new password, click on the url below:</p>" # TODO
+      message: "<h1>%{name},</h1><p>我们已接收你的密码重置请求. 为了确认你的邮件地址并接收新的口令，请点击下面的链接:</p>"
     # Mail containing new temporary password
     reset_password_confirmed:
       # Subject
@@ -471,7 +471,7 @@ cn:
       subject: "%{desy} - 新密码"
       # Message
       # 1 - mailers/user_mailer.rb
-      message: "<h1>%{name},</h1><p>this is your new password: <b>%{password}</b></p><p>You can login into %{desy} now using the new password, at the URL below.</p><p>you will be able to set another password of your choice once logged in, in the 'Profile' section.</p>" # TODO
+      message: "<h1>%{name},</h1><p>这是你的新口令: <b>%{password}</b></p><p>在下面的这个链接你能使用新口令接登录到 %{desy}.</p><p>在个人资料里，当登陆以后，你能重置选择另一密码."
     # Email containing the public link of a lesson (when a user wants to share his lesson outside the application)
     see_my_lesson:
       # Subject
@@ -1061,13 +1061,13 @@ cn:
   
   browsers:
     # Title of the page
-    title: "Browser not supported" # TODO
+    title: "浏览器不支持"
     # Content of the page
     content:
-      title: "%{desy} doesn't support your browser!" # TODO
-      description: "The technologies used in our application wouldn't work properly in your browser. To use %{desy} you need to update your browser, or download a newer one." # TODO
+      title: "%{desy}不支持该浏览器"
+      description: "我们的应用使用该浏览器不能适合工作。为了使用%{desy}，你需要更新你的浏览器，或下载新的浏览器。"
     # Links where it's possible to download updated browsers
-    links: "Links to update your browser" # TODO
+    links: "你能更新的浏览器列表"
   
   
   # SECTION 1.8: Contents of fullpage notifications related to users registration and reset password
@@ -1079,39 +1079,39 @@ cn:
     # 3 - views/users/fullpage_notifications/confirmation/received.html.erb
     # 4 - views/users/fullpage_notifications/confirmation/email_sent.html.erb
     # 5 - views/users/fullpage_notifications/expired_link.html.erb
-    back: "Back to home page" # TODO
+    back: "回到主页"
     # This message appears if a user tries to click on a confirmation link (or a reset password link) which is no longer valid
     expired_link:
       # 1 - views/users/fullpage_notifications/expired_link.html.erb
-      title: "Error!" # TODO
+      title: "错误"
       # 1 - views/users/fullpage_notifications/expired_link.html.erb
-      description: "The link you submitted is no longer valid" # TODO
+      description: "你提交的链接不再合法"
     reset_password:
       # The user lost his password and asked for a new one: he received an email with a special link to reset the password
       email_sent:
         # 1 - views/users/fullpage_notifications/reset_password/email_sent.html.erb
-        title: "Reset password" # TODO
+        title: "密码重置"
         # 1 - views/users/fullpage_notifications/reset_password/email_sent.html.erb
-        description: "We sent, to the address that you inserted, an email containing the link to reset your password" # TODO
+        description: "我们已发送重置密码的链接到你的邮箱"
       # The user lost the password and asked for a new one: this message appears when the password has been successfully reset
       received:
         # 1 - views/users/fullpage_notifications/reset_password/received.html.erb
-        title: "Reset password" # TODO
+        title: "密码重置"
         # 1 - views/users/fullpage_notifications/reset_password/received.html.erb
-        description: "Password reset successfully! We sent you an email containing a temporary password: with such a password you can login, and choose a new password in your personal profile" # TODO
+        description: "口令重置成功！我们已把临时密码发到你的邮箱：<br/>你能使用该密码登陆，并在你的个人资料中修改临时密码作为你的登陆密码"
     confirmation:
       # The user filled his sign up form, and there were no errors: the application sent him an email with a link to confirm his account
       email_sent:
         # 1 - views/users/fullpage_notifications/confirmation/email_sent.html.erb
-        title: "Registration" # TODO
+        title: "注册"
         # 1 - views/users/fullpage_notifications/confirmation/email_sent.html.erb
-        description: "The registration was completed successfully: check your email address in order to confirm it" # TODO
+        description: "成功完成注册：为了确认，请检查你的邮件"
       # The user clicked on the confirmation link he received by email: he is redirected to the main page of the application, with this message (to log in he still needs to write username and password, he is not automatically logged in)
       received:
         # 1 - views/users/fullpage_notifications/confirmation/received.html.erb
-        title: "Account confirmed" # TODO
+        title: "帐号已确认"
         # 1 - views/users/fullpage_notifications/confirmation/received.html.erb
-        description: "Your account has been successfully confirmed" # TODO
+        description: "你的帐号成功确认"
   
   
   
@@ -2416,15 +2416,15 @@ cn:
       # Statistics about available space in media elements folder
       hard_disk:
         # 1 - views/admin/dashboard/index.html.erb
-        title: "Space in the hard disk" # TODO
+        title: "硬盘上的空间"
         # 1 - controllers/admin/dashboard_controller.rb
-        images: "Images" # TODO
+        images: "图像"
         # 1 - controllers/admin/dashboard_controller.rb
-        audios: "Audios" # TODO
+        audios: "音频"
         # 1 - controllers/admin/dashboard_controller.rb
-        videos: "Videos" # TODO
+        videos: "视频"
         # 1 - controllers/admin/dashboard_controller.rb
-        remaining: "Remaining space" # TODO
+        remaining: "剩余空间"
     # General captions, used throughout the Administrator
     general:
       # Link to switch all the items in a list to the compact status
