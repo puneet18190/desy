@@ -1449,7 +1449,7 @@ it:
   media_elements:
     # Used as a caption to select how many elements to show inside each page
     # 1 - views/media_elements/_title_bar.html.erb
-    display: "Mostra"
+    display: "Visualizza"
     # Caption of the buttons used to choose between size display (compact or extended mode)
     display_mode:
       # 1 - views/media_elements/_title_bar.html.erb
