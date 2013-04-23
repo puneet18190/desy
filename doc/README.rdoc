@@ -48,6 +48,11 @@ These are the software dependencies:
 
 == Procedure of installation
 
+# TODO explain script/install
+If DeSY is going to be installed on a dedicated clean machine, you can run `script/install ...`
+
+Otherwise you can proceed with a manual installation:
+
 1.  Extract the DeSY copy into the destination path (it should be somewhere inside the home of the user which runs the app)
 2.  Install Ruby (possibly using {rbenv}[https://github.com/sstephenson/rbenv], {RVM}[https://rvm.io/], or {chruby}[https://github.com/postmodern/chruby])
 3.  Install PostgreSQL

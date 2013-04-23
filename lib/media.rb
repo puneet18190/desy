@@ -12,7 +12,9 @@ module Media
   # It defines CONFIG
   require 'media/config'
 
+  # The folder where are located the static files
   RAILS_PUBLIC_FOLDER = Rails.root.join 'public'
+  # The prefix of the temporary files created by the media processings
   TMP_PREFIX          = CONFIG.tmp_prefix
 
 end
