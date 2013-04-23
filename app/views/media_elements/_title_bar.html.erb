@@ -14,7 +14,7 @@
     </div>
   </div>
   <div>
-    <h2 style="padding-right:10px"><%= t('captions.show') %></h2>
+    <h2 style="padding-right:10px" class="lower"><%= t('captions.show') %></h2>
     <select name="ricerca" id="filter_media_elements">
       <% Filters::MEDIA_ELEMENTS_SET.each do |f| %>
         <option value="<%= f %>" <%= (@filter == f) ? "selected=\"selected\"".html_safe : '' %>><%= MediaElement.filter(f) %></option>

@@ -90,7 +90,12 @@
             
               
               <li>
-                <a href="#method-i-folder">folder</a>
+                <a href="#method-i-folder">folder</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-c-folder_size">folder_size</a>
               </li>
             
           </ul>
@@ -259,6 +264,42 @@
       <div class="sectiontitle">Class Public methods</div>
       
         <div class="method">
+          <div class="title method-title" id="method-c-folder_size">
+            
+              <b>folder_size</b>()
+            
+            <a href="../classes/ImageUploader.html#method-c-folder_size" name="method-c-folder_size" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-folder_size_source')" id="l_method-c-folder_size_source">show</a>
+                
+              </p>
+              <div id="method-c-folder_size_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/uploaders/image_uploader.rb, line 29</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">folder_size</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-number">0</span> <span class="ruby-keyword">unless</span> <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">exists?</span> <span class="ruby-constant">FOLDER</span>
+  <span class="ruby-constant">Find</span>.<span class="ruby-identifier">find</span>(<span class="ruby-constant">FOLDER</span>).<span class="ruby-identifier">sum</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">stat</span>(<span class="ruby-identifier">f</span>).<span class="ruby-identifier">size</span> }
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
           <div class="title method-title" id="method-c-remove_folder-21">
             
               <b>remove_folder!</b>()
@@ -284,7 +325,7 @@
                 
               </p>
               <div id="method-c-remove_folder-21_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/uploaders/image_uploader.rb, line 24</span>
+                <pre><span class="ruby-comment"># File app/uploaders/image_uploader.rb, line 25</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">remove_folder!</span>
   <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">rm_rf</span> <span class="ruby-constant">FOLDER</span>
 <span class="ruby-keyword">end</span></pre>
@@ -321,7 +362,7 @@
                 
               </p>
               <div id="method-i-cache_dir_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/uploaders/image_uploader.rb, line 35</span>
+                <pre><span class="ruby-comment"># File app/uploaders/image_uploader.rb, line 41</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">cache_dir</span>
   <span class="ruby-constant">Rails</span>.<span class="ruby-identifier">root</span>.<span class="ruby-identifier">join</span> <span class="ruby-string">&#39;tmp/media_elements/images&#39;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -357,7 +398,7 @@ you might use something like this:</p>
                 
               </p>
               <div id="method-i-extension_white_list_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/uploaders/image_uploader.rb, line 66</span>
+                <pre><span class="ruby-comment"># File app/uploaders/image_uploader.rb, line 72</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">extension_white_list</span>
   <span class="ruby-constant">EXTENSION_WHITE_LIST</span>
 <span class="ruby-keyword">end</span></pre>
@@ -393,7 +434,7 @@ version_name here, see uploader/store.rb for details.</p>
                 
               </p>
               <div id="method-i-filename_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/uploaders/image_uploader.rb, line 96</span>
+                <pre><span class="ruby-comment"># File app/uploaders/image_uploader.rb, line 102</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">filename</span>
   <span class="ruby-node">&quot;#{original_filename_without_extension.parameterize}_#{model.filename_token}#{original_extension}&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">original_filename</span>
 <span class="ruby-keyword">end</span></pre>
@@ -428,7 +469,7 @@ version_name here, see uploader/store.rb for details.</p>
                 
               </p>
               <div id="method-i-folder_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/uploaders/image_uploader.rb, line 82</span>
+                <pre><span class="ruby-comment"># File app/uploaders/image_uploader.rb, line 88</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">folder</span>
   <span class="ruby-constant">File</span>.<span class="ruby-identifier">dirname</span> <span class="ruby-identifier">path</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">path</span>
 <span class="ruby-keyword">end</span></pre>
@@ -463,7 +504,7 @@ version_name here, see uploader/store.rb for details.</p>
                 
               </p>
               <div id="method-i-height_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/uploaders/image_uploader.rb, line 78</span>
+                <pre><span class="ruby-comment"># File app/uploaders/image_uploader.rb, line 84</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">height</span>
   <span class="ruby-identifier">image</span>[<span class="ruby-value">:height</span>]
 <span class="ruby-keyword">end</span></pre>
@@ -498,7 +539,7 @@ version_name here, see uploader/store.rb for details.</p>
                 
               </p>
               <div id="method-i-image_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/uploaders/image_uploader.rb, line 70</span>
+                <pre><span class="ruby-comment"># File app/uploaders/image_uploader.rb, line 76</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">image</span>
   <span class="ruby-ivar">@image</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">MiniMagick</span><span class="ruby-operator">::</span><span class="ruby-constant">Image</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">path</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -533,7 +574,7 @@ version_name here, see uploader/store.rb for details.</p>
                 
               </p>
               <div id="method-i-original_extension_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/uploaders/image_uploader.rb, line 86</span>
+                <pre><span class="ruby-comment"># File app/uploaders/image_uploader.rb, line 92</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">original_extension</span>
   <span class="ruby-constant">File</span>.<span class="ruby-identifier">extname</span>(<span class="ruby-identifier">original_filename</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -568,7 +609,7 @@ version_name here, see uploader/store.rb for details.</p>
                 
               </p>
               <div id="method-i-original_filename_without_extension_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/uploaders/image_uploader.rb, line 90</span>
+                <pre><span class="ruby-comment"># File app/uploaders/image_uploader.rb, line 96</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">original_filename_without_extension</span>
   <span class="ruby-constant">File</span>.<span class="ruby-identifier">basename</span>(<span class="ruby-identifier">original_filename</span>, <span class="ruby-identifier">original_extension</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -605,7 +646,7 @@ omologarla agli altri uploaders (relatività con Rails.env)</p>
                 
               </p>
               <div id="method-i-store_dir_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/uploaders/image_uploader.rb, line 31</span>
+                <pre><span class="ruby-comment"># File app/uploaders/image_uploader.rb, line 37</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">store_dir</span>
   <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span> <span class="ruby-constant">STORE_DIR</span>, <span class="ruby-node">&quot;#{model.id}&quot;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -640,7 +681,7 @@ omologarla agli altri uploaders (relatività con Rails.env)</p>
                 
               </p>
               <div id="method-i-width_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/uploaders/image_uploader.rb, line 74</span>
+                <pre><span class="ruby-comment"># File app/uploaders/image_uploader.rb, line 80</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">width</span>
   <span class="ruby-identifier">image</span>[<span class="ruby-value">:width</span>]
 <span class="ruby-keyword">end</span></pre>

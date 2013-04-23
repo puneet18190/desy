@@ -95,7 +95,12 @@
             
               
               <li>
-                <a href="#method-i-folder">folder</a>
+                <a href="#method-i-folder">folder</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-c-folder_size">folder_size</a>
               </li>
             
           </ul>
@@ -388,6 +393,42 @@ href="Uploader.html#method-c-media_elements_folder_size">::media_elements_folder
       <div class="sectiontitle">Class Public methods</div>
       
         <div class="method">
+          <div class="title method-title" id="method-c-folder_size">
+            
+              <b>folder_size</b>()
+            
+            <a href="../../classes/Media/Uploader.html#method-c-folder_size" name="method-c-folder_size" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-folder_size_source')" id="l_method-c-folder_size_source">show</a>
+                
+              </p>
+              <div id="method-c-folder_size_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/media/uploader.rb, line 21</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">folder_size</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-number">0</span> <span class="ruby-keyword">unless</span> <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">exists?</span> <span class="ruby-keyword">self</span><span class="ruby-operator">::</span><span class="ruby-constant">FOLDER</span>
+  <span class="ruby-constant">Find</span>.<span class="ruby-identifier">find</span>(<span class="ruby-keyword">self</span><span class="ruby-operator">::</span><span class="ruby-constant">FOLDER</span>).<span class="ruby-identifier">sum</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">stat</span>(<span class="ruby-identifier">f</span>).<span class="ruby-identifier">size</span> }
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
           <div class="title method-title" id="method-c-maximum_media_elements_folder_size_exceeded-3F">
             
               <b>maximum_media_elements_folder_size_exceeded?</b>()
@@ -413,7 +454,7 @@ href="Uploader.html#method-c-media_elements_folder_size">::media_elements_folder
                 
               </p>
               <div id="method-c-maximum_media_elements_folder_size_exceeded-3F_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/uploader.rb, line 26</span>
+                <pre><span class="ruby-comment"># File lib/media/uploader.rb, line 31</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">maximum_media_elements_folder_size_exceeded?</span>
   <span class="ruby-identifier">media_elements_folder_size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-constant">MAXIMUM_MEDIA_ELEMENTS_FOLDER_SIZE</span>
 <span class="ruby-keyword">end</span></pre>
@@ -448,7 +489,7 @@ href="Uploader.html#method-c-media_elements_folder_size">::media_elements_folder
                 
               </p>
               <div id="method-c-media_elements_folder_size_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/uploader.rb, line 21</span>
+                <pre><span class="ruby-comment"># File lib/media/uploader.rb, line 26</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">media_elements_folder_size</span>
   <span class="ruby-keyword">return</span> <span class="ruby-number">0</span> <span class="ruby-keyword">unless</span> <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">exists?</span> <span class="ruby-constant">MEDIA_ELEMENTS_FOLDER</span>
   <span class="ruby-constant">Find</span>.<span class="ruby-identifier">find</span>(<span class="ruby-constant">MEDIA_ELEMENTS_FOLDER</span>).<span class="ruby-identifier">sum</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">stat</span>(<span class="ruby-identifier">f</span>).<span class="ruby-identifier">size</span> }
@@ -484,7 +525,7 @@ href="Uploader.html#method-c-media_elements_folder_size">::media_elements_folder
                 
               </p>
               <div id="method-c-new_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/uploader.rb, line 30</span>
+                <pre><span class="ruby-comment"># File lib/media/uploader.rb, line 35</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize</span>(<span class="ruby-identifier">model</span>, <span class="ruby-identifier">column</span>, <span class="ruby-identifier">value</span>)
   <span class="ruby-ivar">@model</span>, <span class="ruby-ivar">@column</span>, <span class="ruby-ivar">@value</span> = <span class="ruby-identifier">model</span>, <span class="ruby-identifier">column</span>, <span class="ruby-identifier">value</span>
 
@@ -574,7 +615,7 @@ href="Uploader.html#method-c-media_elements_folder_size">::media_elements_folder
                 
               </p>
               <div id="method-i-blank-3F_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/uploader.rb, line 86</span>
+                <pre><span class="ruby-comment"># File lib/media/uploader.rb, line 91</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">blank?</span>
   <span class="ruby-keyword">false</span>
 <span class="ruby-keyword">end</span></pre>
@@ -609,7 +650,7 @@ href="Uploader.html#method-c-media_elements_folder_size">::media_elements_folder
                 
               </p>
               <div id="method-i-column_changed-3F_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/uploader.rb, line 123</span>
+                <pre><span class="ruby-comment"># File lib/media/uploader.rb, line 128</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">column_changed?</span>
   <span class="ruby-identifier">model</span>.<span class="ruby-identifier">send</span>(<span class="ruby-value">:&quot;#{column}_changed?&quot;</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -644,7 +685,7 @@ href="Uploader.html#method-c-media_elements_folder_size">::media_elements_folder
                 
               </p>
               <div id="method-i-filename_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/uploader.rb, line 52</span>
+                <pre><span class="ruby-comment"># File lib/media/uploader.rb, line 57</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">filename</span>(<span class="ruby-identifier">format</span>)
   <span class="ruby-node">&quot;#{filename_without_extension}.#{format}&quot;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -679,7 +720,7 @@ href="Uploader.html#method-c-media_elements_folder_size">::media_elements_folder
                 
               </p>
               <div id="method-i-filename_without_extension_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/uploader.rb, line 56</span>
+                <pre><span class="ruby-comment"># File lib/media/uploader.rb, line 61</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">filename_without_extension</span>
   (<span class="ruby-ivar">@filename_without_extension</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">original_filename_without_extension</span>).<span class="ruby-identifier">to_s</span>
 <span class="ruby-keyword">end</span></pre>
@@ -718,7 +759,7 @@ href="Uploader.html#method-c-media_elements_folder_size">::media_elements_folder
                 
               </p>
               <div id="method-i-folder_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/uploader.rb, line 110</span>
+                <pre><span class="ruby-comment"># File lib/media/uploader.rb, line 115</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">folder</span>
   <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span><span class="ruby-operator">::</span><span class="ruby-constant">FOLDER</span>, <span class="ruby-identifier">model_id</span>.<span class="ruby-identifier">to_s</span>
 <span class="ruby-keyword">end</span></pre>
@@ -772,7 +813,7 @@ href="Uploader.html#method-c-media_elements_folder_size">::media_elements_folder
                 
               </p>
               <div id="method-i-model_id_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/uploader.rb, line 119</span>
+                <pre><span class="ruby-comment"># File lib/media/uploader.rb, line 124</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">model_id</span>
   <span class="ruby-identifier">model</span>.<span class="ruby-identifier">id</span>
 <span class="ruby-keyword">end</span></pre>
@@ -807,7 +848,7 @@ href="Uploader.html#method-c-media_elements_folder_size">::media_elements_folder
                 
               </p>
               <div id="method-i-original_filename_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/uploader.rb, line 78</span>
+                <pre><span class="ruby-comment"># File lib/media/uploader.rb, line 83</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">original_filename</span>
   <span class="ruby-constant">File</span>.<span class="ruby-identifier">basename</span>(<span class="ruby-ivar">@original_filename</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -842,7 +883,7 @@ href="Uploader.html#method-c-media_elements_folder_size">::media_elements_folder
                 
               </p>
               <div id="method-i-original_filename_extension_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/uploader.rb, line 82</span>
+                <pre><span class="ruby-comment"># File lib/media/uploader.rb, line 87</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">original_filename_extension</span>
   <span class="ruby-constant">File</span>.<span class="ruby-identifier">extname</span>(<span class="ruby-ivar">@original_filename</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -877,7 +918,7 @@ href="Uploader.html#method-c-media_elements_folder_size">::media_elements_folder
                 
               </p>
               <div id="method-i-original_filename_without_extension_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/uploader.rb, line 74</span>
+                <pre><span class="ruby-comment"># File lib/media/uploader.rb, line 79</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">original_filename_without_extension</span>
   <span class="ruby-ivar">@original_filename_without_extension</span> <span class="ruby-operator">||</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">basename</span>(<span class="ruby-identifier">original_filename</span>, <span class="ruby-identifier">original_filename_extension</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -931,7 +972,7 @@ href="Uploader.html#method-c-media_elements_folder_size">::media_elements_folder
                 
               </p>
               <div id="method-i-output_path_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/uploader.rb, line 106</span>
+                <pre><span class="ruby-comment"># File lib/media/uploader.rb, line 111</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">output_path</span>(<span class="ruby-identifier">format</span>)
   <span class="ruby-node">&quot;#{output_path_without_extension}.#{format}&quot;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -966,7 +1007,7 @@ href="Uploader.html#method-c-media_elements_folder_size">::media_elements_folder
                 
               </p>
               <div id="method-i-output_path_without_extension_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/uploader.rb, line 102</span>
+                <pre><span class="ruby-comment"># File lib/media/uploader.rb, line 107</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">output_path_without_extension</span>
   <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span> <span class="ruby-identifier">output_folder</span>, <span class="ruby-identifier">processed_original_filename_without_extension</span>
 <span class="ruby-keyword">end</span></pre>
@@ -1001,7 +1042,7 @@ href="Uploader.html#method-c-media_elements_folder_size">::media_elements_folder
                 
               </p>
               <div id="method-i-path_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/uploader.rb, line 156</span>
+                <pre><span class="ruby-comment"># File lib/media/uploader.rb, line 161</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">path</span>(<span class="ruby-identifier">format</span>)
   <span class="ruby-keyword">case</span> <span class="ruby-identifier">format</span>
   <span class="ruby-keyword">when</span> *<span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span><span class="ruby-operator">::</span><span class="ruby-constant">FORMATS</span>
@@ -1041,7 +1082,7 @@ href="Uploader.html#method-c-media_elements_folder_size">::media_elements_folder
                 
               </p>
               <div id="method-i-paths_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/uploader.rb, line 165</span>
+                <pre><span class="ruby-comment"># File lib/media/uploader.rb, line 170</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">paths</span>
   <span class="ruby-constant">Hash</span>[ (<span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span><span class="ruby-operator">::</span><span class="ruby-constant">FORMATS</span> <span class="ruby-operator">+</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span><span class="ruby-operator">::</span><span class="ruby-constant">VERSION_FORMATS</span>.<span class="ruby-identifier">keys</span>).<span class="ruby-identifier">map</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">f</span>, <span class="ruby-identifier">path</span>(<span class="ruby-identifier">f</span>)] } ]
 <span class="ruby-keyword">end</span></pre>
@@ -1076,7 +1117,7 @@ href="Uploader.html#method-c-media_elements_folder_size">::media_elements_folder
                 
               </p>
               <div id="method-i-process_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/uploader.rb, line 60</span>
+                <pre><span class="ruby-comment"># File lib/media/uploader.rb, line 65</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">process</span>(<span class="ruby-identifier">filename</span>, <span class="ruby-identifier">extension</span> = <span class="ruby-keyword">nil</span>)
   <span class="ruby-identifier">filename</span> = <span class="ruby-node">&quot;#{filename.parameterize}_#{model.filename_token}&quot;</span>
   <span class="ruby-identifier">filename</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;.#{extension}&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">extension</span>
@@ -1113,7 +1154,7 @@ href="Uploader.html#method-c-media_elements_folder_size">::media_elements_folder
                 
               </p>
               <div id="method-i-processed_original_filename_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/uploader.rb, line 66</span>
+                <pre><span class="ruby-comment"># File lib/media/uploader.rb, line 71</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">processed_original_filename</span>
   <span class="ruby-identifier">process</span>(<span class="ruby-identifier">original_filename_without_extension</span>, <span class="ruby-identifier">original_filename_extension</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -1148,7 +1189,7 @@ href="Uploader.html#method-c-media_elements_folder_size">::media_elements_folder
                 
               </p>
               <div id="method-i-processed_original_filename_without_extension_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/uploader.rb, line 70</span>
+                <pre><span class="ruby-comment"># File lib/media/uploader.rb, line 75</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">processed_original_filename_without_extension</span>
   <span class="ruby-identifier">process</span>(<span class="ruby-identifier">original_filename_without_extension</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -1183,7 +1224,7 @@ href="Uploader.html#method-c-media_elements_folder_size">::media_elements_folder
                 
               </p>
               <div id="method-i-public_relative_folder_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/uploader.rb, line 115</span>
+                <pre><span class="ruby-comment"># File lib/media/uploader.rb, line 120</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">public_relative_folder</span>
   <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span> <span class="ruby-string">&#39;/&#39;</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span><span class="ruby-operator">::</span><span class="ruby-constant">PUBLIC_RELATIVE_FOLDER</span>, <span class="ruby-identifier">model_id</span>.<span class="ruby-identifier">to_s</span>
 <span class="ruby-keyword">end</span></pre>
@@ -1222,7 +1263,7 @@ href="Uploader.html#method-c-media_elements_folder_size">::media_elements_folder
                 
               </p>
               <div id="method-i-public_relative_path_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/uploader.rb, line 140</span>
+                <pre><span class="ruby-comment"># File lib/media/uploader.rb, line 145</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">public_relative_path</span>(<span class="ruby-identifier">format</span> = <span class="ruby-keyword">nil</span>)
   <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span> <span class="ruby-identifier">public_relative_folder</span>, (
     <span class="ruby-keyword">case</span> <span class="ruby-identifier">format</span>
@@ -1268,7 +1309,7 @@ href="Uploader.html#method-c-media_elements_folder_size">::media_elements_folder
                 
               </p>
               <div id="method-i-rename-3F_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/uploader.rb, line 127</span>
+                <pre><span class="ruby-comment"># File lib/media/uploader.rb, line 132</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">rename?</span>
   <span class="ruby-identifier">model</span>.<span class="ruby-identifier">send</span>(<span class="ruby-value">:&quot;rename_#{column}&quot;</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -1303,7 +1344,7 @@ href="Uploader.html#method-c-media_elements_folder_size">::media_elements_folder
                 
               </p>
               <div id="method-i-to_hash_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/uploader.rb, line 169</span>
+                <pre><span class="ruby-comment"># File lib/media/uploader.rb, line 174</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">to_hash</span>
   <span class="ruby-constant">Hash</span>[ <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span><span class="ruby-operator">::</span><span class="ruby-constant">FORMATS</span>.<span class="ruby-identifier">map</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">f</span>, <span class="ruby-identifier">path</span>(<span class="ruby-identifier">f</span>)] } ].<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">filename</span><span class="ruby-operator">:</span> <span class="ruby-identifier">filename_without_extension</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -1342,7 +1383,7 @@ href="Uploader.html#method-c-media_elements_folder_size">::media_elements_folder
                 
               </p>
               <div id="method-i-to_s_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/uploader.rb, line 131</span>
+                <pre><span class="ruby-comment"># File lib/media/uploader.rb, line 136</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">to_s</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">column_changed?</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">rename?</span>
     <span class="ruby-identifier">process</span>(<span class="ruby-ivar">@value</span>.<span class="ruby-identifier">to_s</span>)
@@ -1381,7 +1422,7 @@ href="Uploader.html#method-c-media_elements_folder_size">::media_elements_folder
                 
               </p>
               <div id="method-i-upload_or_copy_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/uploader.rb, line 90</span>
+                <pre><span class="ruby-comment"># File lib/media/uploader.rb, line 95</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">upload_or_copy</span>
   <span class="ruby-identifier">raise</span> <span class="ruby-constant">Error</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;model_id cannot be blank&#39;</span>, <span class="ruby-identifier">model</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@model</span>, <span class="ruby-identifier">column</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@column</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@value</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">model_id</span>.<span class="ruby-identifier">blank?</span>
 

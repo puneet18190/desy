@@ -69,15 +69,16 @@
                 <th><%= t('users.statistics.general.percentual_lessons_subject.subject') %></th>
                 <th><%= t('users.statistics.general.percentual_lessons_subject.value') %></th>
               </tr>
-              <% (0..@all_subjects_chart.count - 1).each do |index| %>
+              <% @subjects_chart[:data].each_with_index do |s, i| %>
                 <tr>
-                  <td width="10%" border="1" style="background-color:<%=Subject.chart_colors[index]%>"></td>
-                  <td width="70%"><%= @all_subjects_desc[index] %></td>
-                  <td width="20%"><%= @all_subjects_chart[index] %>%</td>
+                  <td width="10%" border="1" style="background-color:<%= @subjects_chart[:colors][i] %>"></td>
+                  <td width="70%"><%= @subjects_chart[:texts][i] %></td>
+                  <td width="20%"><%= "#{s} %" %></td>
                 </tr>
               <% end %>
             </table>
-            <span class="pie" data-text="<%= @all_subjects_desc %>" data-diameter="250" class="fltrt"><%= @all_subjects_chart.to_s[1..-2].gsub('"','') %></span>
+            <% texts = "\"#{@subjects_chart[:texts].join("\", \"")}\"" %>
+            <span class="pie" data-text="[<%= texts %>]" data-diameter="250" class="fltrt"><%= @subjects_chart[:data].join(', ') %></span>
             <br style="clear:both" />
           </li>
         </ul>

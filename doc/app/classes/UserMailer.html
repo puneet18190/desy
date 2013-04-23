@@ -73,7 +73,12 @@
             
               
               <li>
-                <a href="#method-i-new_password">new_password</a>
+                <a href="#method-i-new_password">new_password</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-new_password_confirmed">new_password_confirmed</a>
               </li>
             
           </ul>
@@ -176,7 +181,7 @@
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">account_confirmation</span>(<span class="ruby-identifier">user</span>, <span class="ruby-identifier">host</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">port</span> = <span class="ruby-keyword">nil</span>)
   <span class="ruby-identifier">host_and_port!</span>(<span class="ruby-identifier">host</span>, <span class="ruby-identifier">port</span>)
   <span class="ruby-ivar">@user</span> = <span class="ruby-identifier">user</span>
-  <span class="ruby-ivar">@mail_content</span> = <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;mailer.account_confirmation.message&#39;</span>, <span class="ruby-value">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">full_name</span>, <span class="ruby-value">:desy</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;application_name&#39;</span>]).<span class="ruby-identifier">html_safe</span>
+  <span class="ruby-ivar">@mail_content</span> = <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;mailer.account_confirmation.message&#39;</span>, <span class="ruby-value">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">full_name</span>, <span class="ruby-value">:desy</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">APPLICATION_NAME</span>).<span class="ruby-identifier">html_safe</span>
   <span class="ruby-identifier">mail</span> <span class="ruby-identifier">to</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">email</span>, <span class="ruby-identifier">subject</span><span class="ruby-operator">:</span> <span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;mailer.account_confirmation.subject&#39;</span>, <span class="ruby-value">:desy</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">APPLICATION_NAME</span>)
 <span class="ruby-keyword">end</span></pre>
               </div>
@@ -187,7 +192,7 @@
         <div class="method">
           <div class="title method-title" id="method-i-new_password">
             
-              <b>new_password</b>(user, password, host = nil, port = nil)
+              <b>new_password</b>(user, host = nil, port = nil)
             
             <a href="../classes/UserMailer.html#method-i-new_password" name="method-i-new_password" class="permalink">Link</a>
           </div>
@@ -211,11 +216,49 @@
               </p>
               <div id="method-i-new_password_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/mailers/user_mailer.rb, line 28</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">new_password</span>(<span class="ruby-identifier">user</span>, <span class="ruby-identifier">password</span>, <span class="ruby-identifier">host</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">port</span> = <span class="ruby-keyword">nil</span>)
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">new_password</span>(<span class="ruby-identifier">user</span>, <span class="ruby-identifier">host</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">port</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">host_and_port!</span>(<span class="ruby-identifier">host</span>, <span class="ruby-identifier">port</span>)
+  <span class="ruby-ivar">@user</span> = <span class="ruby-identifier">user</span>
+  <span class="ruby-ivar">@mail_content</span> = <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;mailer.reset_password.message&#39;</span>, <span class="ruby-value">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">full_name</span>, <span class="ruby-value">:desy</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">APPLICATION_NAME</span>).<span class="ruby-identifier">html_safe</span>
+  <span class="ruby-identifier">mail</span> <span class="ruby-identifier">to</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">email</span>, <span class="ruby-identifier">subject</span><span class="ruby-operator">:</span> <span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;mailer.reset_password.subject&#39;</span>, <span class="ruby-value">:desy</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">APPLICATION_NAME</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-new_password_confirmed">
+            
+              <b>new_password_confirmed</b>(user, password, host = nil, port = nil)
+            
+            <a href="../classes/UserMailer.html#method-i-new_password_confirmed" name="method-i-new_password_confirmed" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-new_password_confirmed_source')" id="l_method-i-new_password_confirmed_source">show</a>
+                
+              </p>
+              <div id="method-i-new_password_confirmed_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/mailers/user_mailer.rb, line 35</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">new_password_confirmed</span>(<span class="ruby-identifier">user</span>, <span class="ruby-identifier">password</span>, <span class="ruby-identifier">host</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">port</span> = <span class="ruby-keyword">nil</span>)
   <span class="ruby-identifier">host_and_port!</span>(<span class="ruby-identifier">host</span>, <span class="ruby-identifier">port</span>)
   <span class="ruby-ivar">@user</span>, <span class="ruby-ivar">@password</span> = <span class="ruby-identifier">user</span>, <span class="ruby-identifier">password</span>
-  <span class="ruby-ivar">@mail_content</span> = <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;mailer.reset_password.message&#39;</span>, <span class="ruby-value">:password</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@password</span>, <span class="ruby-value">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">full_name</span>, <span class="ruby-value">:desy</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;application_name&#39;</span>]).<span class="ruby-identifier">html_safe</span>
-  <span class="ruby-identifier">mail</span> <span class="ruby-identifier">to</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">email</span>, <span class="ruby-identifier">subject</span><span class="ruby-operator">:</span> <span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;mailer.reset_password.subject&#39;</span>, <span class="ruby-value">:desy</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">APPLICATION_NAME</span>)
+  <span class="ruby-ivar">@mail_content</span> = <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;mailer.reset_password_confirmed.message&#39;</span>, <span class="ruby-value">:password</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@password</span>, <span class="ruby-value">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">full_name</span>, <span class="ruby-value">:desy</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">APPLICATION_NAME</span>).<span class="ruby-identifier">html_safe</span>
+  <span class="ruby-identifier">mail</span> <span class="ruby-identifier">to</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">email</span>, <span class="ruby-identifier">subject</span><span class="ruby-operator">:</span> <span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;mailer.reset_password_confirmed.subject&#39;</span>, <span class="ruby-value">:desy</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">APPLICATION_NAME</span>)
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -254,7 +297,7 @@
   <span class="ruby-ivar">@sender</span> = <span class="ruby-identifier">sender</span>
   <span class="ruby-ivar">@message</span> = <span class="ruby-identifier">message</span>
   <span class="ruby-ivar">@lesson_link</span> = <span class="ruby-identifier">sender</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">lesson</span>.<span class="ruby-identifier">user_id</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">lesson_viewer_url</span>(*<span class="ruby-identifier">host_and_port</span>(<span class="ruby-identifier">lesson</span>.<span class="ruby-identifier">id</span>, <span class="ruby-identifier">token</span><span class="ruby-operator">:</span> <span class="ruby-identifier">lesson</span>.<span class="ruby-identifier">token</span>)) <span class="ruby-operator">:</span> <span class="ruby-identifier">lesson_viewer_url</span>(*<span class="ruby-identifier">host_and_port</span>(<span class="ruby-identifier">lesson</span>.<span class="ruby-identifier">id</span>))
-  <span class="ruby-ivar">@mail_content</span> = <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;mailer.see_my_lesson.message&#39;</span>, <span class="ruby-value">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@sender</span>.<span class="ruby-identifier">full_name</span>, <span class="ruby-value">:message</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@message</span>, <span class="ruby-value">:desy</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;application_name&#39;</span>]).<span class="ruby-identifier">html_safe</span>
+  <span class="ruby-ivar">@mail_content</span> = <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;mailer.see_my_lesson.message&#39;</span>, <span class="ruby-value">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@sender</span>.<span class="ruby-identifier">full_name</span>, <span class="ruby-value">:message</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@message</span>, <span class="ruby-value">:desy</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">APPLICATION_NAME</span>).<span class="ruby-identifier">html_safe</span>
   <span class="ruby-identifier">mail</span> <span class="ruby-identifier">to</span><span class="ruby-operator">:</span> <span class="ruby-identifier">emails</span>, <span class="ruby-identifier">subject</span><span class="ruby-operator">:</span> <span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;mailer.see_my_lesson.subject&#39;</span>, <span class="ruby-value">:desy</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">APPLICATION_NAME</span>)
 <span class="ruby-keyword">end</span></pre>
               </div>

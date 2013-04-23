@@ -1,44 +1,57 @@
-application_copyright: '©2013 DESY. All rights reserved'
+# Name of the application
 application_name: 'DESY'
+# Full name of the application
 application_full_name: 'DESY - Digital Education System'
+# extended name of the application
 application_extended_name: 'Digital Education System'
+# Copyright of the application (it's displayed in the HTML footer)
+application_copyright: '©2013 DESY. All rights reserved'
+
 application:
   smtp:
     :address: 'smtp.example.com'
   email: 'noreply@desy.morganspa.com'
   maintainer:
     emails: ['maintainer@morganspa.com']
-
 # Types of the locations related to Desy
 # The order is important: it determines the parent->child relation
 # The last location is the one associated the the user
 location_types: ['Province', 'City', 'County']
 
-# SEEDS
+# Initial attributes of the super-admin user
 admin:
   name: 'DESY'
   surname: 'Admin User'
   email: 'desy@morganspa.com'
   password: 'desymorgan'
-# TAGS
+# Minimum length of a tag (in characters)
 min_tag_length: 1
+# Maximu length of a tag (in characters)
 max_tag_length: 25
+# Minimum amount of tags for an item (lesson or media element)
 min_tags_for_item: 4
+# Minimum amount of characters needed to activate js autocomplete
 min_characters_to_search_tags: 2
+# Amount of tags to be shown in js autocomplete
 how_many_tags_for_block_in_autocomplete: 20
+# Amount of tags shown in the search engine
 tags_limit_in_search_engine: 20
-# AVAILABLE LANGUAGES - THE FIRST IS THE DEFAULT ONE
+# Available languages: the first one is default
 languages:
 - :en
 - :it
 - :cn
-# TIMES
+# Seconds necessary to fade out a dialog
 seconds_for_timeout_dialogs: 2500
+# Seconds between each ajax call that saves the cache in Video Editor and Audio Editor
 seconds_for_saving_cache: 60000
-# DASHBOARD PAGINATION
+# Lessons for page in dashboard
 lessons_for_page_in_dashboard: 5
+# Pages of lessons in dashboard
 lesson_pages_in_dashboard: 3
+# Media elements for page in dashboard
 media_elements_for_page_in_dashboard: 13
+# Pages of media elements in dashboard
 media_element_pages_in_dashboard: 3
 # Pagination of lessons, in sections (1) Lessons and (2) Search engine
 compact_lesson_pagination: 18
@@ -88,6 +101,8 @@ colors:
   black:
     pos: 1
     code: '#373737'
+# Random colors used in graphs
+graph_colors: ['#ec008c', '#b1538b', '#2e3192', '#696bcd', '#a8a9e2', '#d0d1e4', '#9c9c9c', '#6a6a6c', '#434345', '#f7941d', '#ffcb05', '#f2d772', '#eee4bd', '#00a651', '#1deb81', '#2a6d4a', '#58595b', '#b0b0b0', '#d8dff1', '#acc2ff']
 # Configurable registration policies (the names correspond to keys in the translation file)
 user_registration_policies: ['policy_1', 'policy_2']
 # Minimum length for the users' password

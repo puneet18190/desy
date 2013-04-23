@@ -150,13 +150,26 @@ href="../ApplicationController.html#method-i-admin_authenticate">ApplicationCont
   <span class="ruby-ivar">@users</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;created_at DESC&#39;</span>).<span class="ruby-identifier">limit</span>(<span class="ruby-number">5</span>)
   <span class="ruby-ivar">@elements_reports</span> = <span class="ruby-constant">Report</span>.<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;created_at DESC&#39;</span>).<span class="ruby-identifier">where</span>(<span class="ruby-value">:reportable_type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;MediaElement&#39;</span>).<span class="ruby-identifier">limit</span>(<span class="ruby-number">5</span>)
   <span class="ruby-ivar">@lessons_reports</span> = <span class="ruby-constant">Report</span>.<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;created_at DESC&#39;</span>).<span class="ruby-identifier">where</span>(<span class="ruby-value">:reportable_type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Lesson&#39;</span>).<span class="ruby-identifier">limit</span>(<span class="ruby-number">5</span>)
-  <span class="ruby-ivar">@all_liked_lessons</span>   = <span class="ruby-constant">Statistics</span>.<span class="ruby-identifier">all_liked_lessons</span>(<span class="ruby-number">3</span>)
-  <span class="ruby-ivar">@all_shared_elements</span> = <span class="ruby-constant">Statistics</span>.<span class="ruby-identifier">all_shared_elements</span>
-  <span class="ruby-ivar">@all_shared_lessons</span>  = <span class="ruby-constant">Statistics</span>.<span class="ruby-identifier">all_shared_lessons</span>
-  <span class="ruby-ivar">@all_users</span>           = <span class="ruby-constant">Statistics</span>.<span class="ruby-identifier">all_users</span>
-  <span class="ruby-ivar">@all_users_like</span>      = <span class="ruby-constant">Statistics</span>.<span class="ruby-identifier">all_users_like</span>(<span class="ruby-number">3</span>)
-  <span class="ruby-ivar">@all_subjects_chart</span>  = <span class="ruby-constant">Statistics</span>.<span class="ruby-identifier">all_subjects_chart</span>[<span class="ruby-number">0</span>].<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;,&#39;</span>)
-  <span class="ruby-ivar">@all_subjects_desc</span>   = <span class="ruby-constant">Statistics</span>.<span class="ruby-identifier">all_subjects_chart</span>[<span class="ruby-number">1</span>].<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;,&#39;</span>)
+  <span class="ruby-ivar">@all_liked_lessons</span>    = <span class="ruby-constant">Statistics</span>.<span class="ruby-identifier">all_liked_lessons</span>(<span class="ruby-number">3</span>)
+  <span class="ruby-ivar">@all_shared_elements</span>  = <span class="ruby-constant">Statistics</span>.<span class="ruby-identifier">all_shared_elements</span>
+  <span class="ruby-ivar">@all_shared_lessons</span>   = <span class="ruby-constant">Statistics</span>.<span class="ruby-identifier">all_shared_lessons</span>
+  <span class="ruby-ivar">@all_users</span>            = <span class="ruby-constant">Statistics</span>.<span class="ruby-identifier">all_users</span>
+  <span class="ruby-ivar">@all_users_like</span>       = <span class="ruby-constant">Statistics</span>.<span class="ruby-identifier">all_users_like</span>(<span class="ruby-number">3</span>)
+  <span class="ruby-ivar">@subjects_chart</span>       = {
+    <span class="ruby-value">:data</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Statistics</span>.<span class="ruby-identifier">subjects_chart</span>,
+    <span class="ruby-value">:texts</span>  =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Statistics</span>.<span class="ruby-identifier">subjects</span>,
+    <span class="ruby-value">:colors</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Subject</span>.<span class="ruby-identifier">chart_colors</span>
+  }
+  <span class="ruby-ivar">@hard_disk_chart</span>      = {
+    <span class="ruby-value">:data</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Statistics</span>.<span class="ruby-identifier">hard_disk_chart</span>,
+    <span class="ruby-value">:texts</span>  =<span class="ruby-operator">&gt;</span> [
+      <span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;admin.dashboard.hard_disk.videos&#39;</span>),
+      <span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;admin.dashboard.hard_disk.audios&#39;</span>),
+      <span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;admin.dashboard.hard_disk.images&#39;</span>),
+      <span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;admin.dashboard.hard_disk.remaining&#39;</span>)
+    ],
+    <span class="ruby-value">:colors</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;graph_colors&#39;</span>][<span class="ruby-number">0</span><span class="ruby-operator">..</span><span class="ruby-number">3</span>]
+  }
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">wants</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">wants</span>.<span class="ruby-identifier">html</span>
     <span class="ruby-identifier">wants</span>.<span class="ruby-identifier">xml</span> {<span class="ruby-identifier">render</span> <span class="ruby-value">:xml</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@elements</span>}

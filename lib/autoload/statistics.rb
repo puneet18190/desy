@@ -57,23 +57,39 @@ module Statistics
     end
     
     # Chart representing the distribution of subjects among lessons
-    def all_subjects_chart
-      amt = ''
-      desc = ''
-      Subject.all.each do |sbj|
-        if sbj.lessons.count > 0
-          amt = amt + sbj_to_percentage(sbj.lessons.count).to_s + ','
-        end
-        desc = desc + sbj.description.to_s + ','
+    def subjects_chart
+      tot = Lesson.count
+      resp = []
+      Subject.joins(:lessons).group('subjects.id').order('subjects.description ASC').count.each do |id, num|
+        resp << percentage(num, tot)
       end
-      return [amt.to_s[0..-2], desc.to_s[0..-2]]
+      resp
+    end
+    
+    # Descriptions for Statistics#subjects_chart
+    def subjects
+      resp = []
+      Subject.joins(:lessons).group('subjects.id').order('subjects.description ASC').each do |s|
+        resp << s.description
+      end
+      resp
+    end
+    
+    # Chart representing the size occupation of the folder 'public/media_elements'
+    def hard_disk_chart
+      resp = []
+      max = Media::Uploader::MAXIMUM_MEDIA_ELEMENTS_FOLDER_SIZE
+      resp << percentage(Media::Video::Uploader.folder_size, max)
+      resp << percentage(Media::Audio::Uploader.folder_size, max)
+      resp << percentage(ImageUploader.folder_size, max)
+      resp << percentage(max - Media::Video::Uploader.folder_size - Media::Audio::Uploader.folder_size - ImageUploader.folder_size, max)
+      resp
     end
     
     private
     
-    # Used as a submethod of Statistics#all_subjects_chart
-    def sbj_to_percentage(val) # :doc:
-      tot = Lesson.count
+    # Submethod for chart percentages
+    def percentage(val, tot) # :doc:
       res = (val.to_f * 100) / tot.to_f
       res.round(2)
     end

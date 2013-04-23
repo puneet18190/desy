@@ -28,18 +28,6 @@ it:
     # The user forgot to insert an email
     # 1 - controllers/users_controller.rb
     email_is_blank: "Il campo Email non è valorizzato"
-    # This message appears if a user tries to click on a confirmation link which is no longer valid
-    # 1 - controllers/users_controller.rb
-    failed_confirmation: "La pagina richiesta non è più valida"
-    # The user lost the password and asked for a new one: this message appears when the password has been successfully reset
-    # 1 - controllers/users_controller.rb
-    password_reset_successfully: "Password reimpostata con successo"
-    # The user filled his sign up form, and there were no errors: the application sent him an email with a link to confirm his account
-    # 1 - controllers/users_controller.rb
-    successful_registration: "La registrazione è stata completata con successo. Controlla la tua e-mail per confermarla"
-    # The user clicked on the confirmation link he received by email: he is redirected to the main page of the application, with this message (to log in he still needs to write username and password, he is not automatically logged in)
-    # 1 - controllers/users_controller.rb
-    successful_confirmation: "Il tuo account è stato confermato con successo. Inserisci il tuo nome utente e la password per l'accesso"
   # Messages shown inside a popup, all over the application
   other_popup_messages:
     correct:
@@ -285,7 +273,7 @@ it:
       do: "Pubblicare questa lezione"
       # Button to cancel
       # 1 - views/shared/_popups.html.erb
-      cancel: "Cancella"
+      cancel: "Annulla"
     # The application asks for confirmation about turning a shared lesson back into private
     unpublish:
       # Message (the application tells the user that if he turns the lesson back into private anyone who is following it will lose its link)
@@ -299,7 +287,7 @@ it:
       do: "Si, sono sicuro"
       # Button to cancel
       # 1 - views/shared/_popups.html.erb
-      cancel: "Cancella"
+      cancel: "Annulla"
     destroy:
       # The application asks for confirmation about deleting a lesson
       lesson:
@@ -314,7 +302,7 @@ it:
         do: "Cancella la lezione"
         # Button to cancel
         # 1 - views/shared/_popups.html.erb
-        cancel: "Cancella"
+        cancel: "Annulla"
       # The application asks for confirmation about deleting an element
       media_element:
         # Message
@@ -331,7 +319,7 @@ it:
         do: "Cancella l'elemento"
         # Button to cancel
         # 1 - views/shared/_popups.html.erb
-        cancel: "Cancella"
+        cancel: "Annulla"
     # After having copied a lesson, the application asks the user what hw would like to do (go and immediately edit the lesson he copied, or stay on the page and do it later)
     after_copy:
       # Title
@@ -370,7 +358,7 @@ it:
       do: "Si"
       # Button to cancel
       # 1 - views/shared/_popups.html.erb
-      cancel: "Cancella"
+      cancel: "Annulla"
     # Popup asking for confirmation to the user if he clicks on the button 'empty virtual classroom' inside the Virtual Classroom
     empty_virtual_classroom:
       # Title
@@ -384,7 +372,7 @@ it:
       do: "Si"
       # Button to cancel
       # 1 - views/shared/_popups.html.erb
-      cancel: "Cancella"
+      cancel: "Annulla"
     # When the user clicks on the 'exit' button inside the video editor, the application asks for confirmation (if the user confirms, the application deletes his current working session)
     exit_video_editor:
       # Title
@@ -440,7 +428,7 @@ it:
       do: "Sovrascrivi"
       # Button to cancel
       # 1 - views/shared/_popups.html.erb
-      cancel: "Cancella"
+      cancel: "Annulla"
     # The user may send an email to a list of friends containing a direct link to a lesson
     send_lesson_link:
       # Title
@@ -454,7 +442,7 @@ it:
       do: "Invia"
       # Button to cancel
       # 1 - views/virtual_classroom/_popups.html.erb
-      cancel: "Cancella"
+      cancel: "Annulla"
   
   
   # SECTION 1.3: contents of emails automatically sent by the application; the variables %{name}, %{password}, %{message} and similar will be replaced by the application, depending on the user
@@ -475,7 +463,15 @@ it:
       subject: "%{desy} - Nuova password"
       # Message
       # 1 - mailers/user_mailer.rb
-      message: "<h1>%{name},</h1><p>abbiamo ricevuto la tua richiesta di modifica della password; questa è la tua nuova password: <b>%{password}</b></p><p>Ora puoi effettuare l'accesso a %{desy} usando la nuova password, alla seguente URL.</p><p>Potrai impostare una nuova password a vostra scelta, una volta effettuato l'accesso, nella sezione 'Profilo'.</p>"
+      message: "<h1>%{name},</h1><p>abbiamo ricevuto la tua richiesta di modifica della password. Per confermare il tuo indirizzo email e ricevere una nuova password, clicca sulla seguente URL:</p>"
+    # Mail containing new temporary password
+    reset_password_confirmed:
+      # Subject
+      # 1 - mailers/user_mailer.rb
+      subject: "%{desy} - Nuova password"
+      # Message
+      # 1 - mailers/user_mailer.rb
+      message: "<h1>%{name},</h1><p>questa è la tua nuova password: <b>%{password}</b></p><p>Ora puoi effettuare l'accesso a %{desy} usando la nuova password, alla seguente URL.</p><p>Potrai impostare una nuova password a vostra scelta, una volta effettuato l'accesso, nella sezione 'Profilo'.</p>"
     # Email containing the public link of a lesson (when a user wants to share his lesson outside the application)
     see_my_lesson:
       # Subject
@@ -1061,6 +1057,64 @@ it:
         content: "L'icona \"busta\" che si trova sotto ogni lezione, apre una finestra dove è possibile selezionare una lista di indirizzi e-mail: clicca sul pulsante \"invia\" per spedire una email contenete un indirizzo internet pubblico della tua lezione (utilizzando questo link i tuoi studenti sono in grado di visualizzare la lezione senza essere iscritti a %{desy})."
   
   
+  # SECTION 1.7: Page rendered if the browser is not supported by the application
+  
+  browsers:
+    # Title of the page
+    title: "Browser non supportato"
+    # Content of the page
+    content:
+      title: "%{desy} non support il tuo browser!"
+      description: "Le tecnologie usate nell'applicazione non funzionerebbero correttamente sul tuo browser. Per usare %{desy} è necessario aggiornare il browser, o scaricarne l'ultima versione."
+    # Links where it's possible to download updated browsers
+    links: "Links per aggiornare il tuo browser"
+  
+  
+  # SECTION 1.8: Contents of fullpage notifications related to users registration and reset password
+  
+  fullpage_notifications:
+    # Title for the link used to go back to the homepage
+    # 1 - views/users/fullpage_notifications/reset_password/received.html.erb
+    # 2 - views/users/fullpage_notifications/reset_password/email_sent.html.erb
+    # 3 - views/users/fullpage_notifications/confirmation/received.html.erb
+    # 4 - views/users/fullpage_notifications/confirmation/email_sent.html.erb
+    # 5 - views/users/fullpage_notifications/expired_link.html.erb
+    # 6 - views/users/request_reset_password.html.erb
+    back: "Torna alla home page"
+    # This message appears if a user tries to click on a confirmation link (or a reset password link) which is no longer valid
+    expired_link:
+      # 1 - views/users/fullpage_notifications/expired_link.html.erb
+      title: "Errore!"
+      # 1 - views/users/fullpage_notifications/expired_link.html.erb
+      description: "Il link è scaduto"
+    reset_password:
+      # The user lost his password and asked for a new one: he received an email with a special link to reset the password
+      email_sent:
+        # 1 - views/users/fullpage_notifications/reset_password/email_sent.html.erb
+        title: "Ripristino password"
+        # 1 - views/users/fullpage_notifications/reset_password/email_sent.html.erb
+        description: "Abbiamo inviato, all'indirizzo da te fornitoci, una email contenente il link per cambiare la tua password"
+      # The user lost the password and asked for a new one: this message appears when the password has been successfully reset
+      received:
+        # 1 - views/users/fullpage_notifications/reset_password/received.html.erb
+        title: "Ripristino password"
+        # 1 - views/users/fullpage_notifications/reset_password/received.html.erb
+        description: "La password è stata ripristinata! Ti abbiamo inviato una mail contenente una password temporanea:<br/>con tale password puoi entrare nell'applicazione e scegliere una nuova password nel tuo profilo personale"
+    confirmation:
+      # The user filled his sign up form, and there were no errors: the application sent him an email with a link to confirm his account
+      email_sent:
+        # 1 - views/users/fullpage_notifications/confirmation/email_sent.html.erb
+        title: "Registrazione"
+        # 1 - views/users/fullpage_notifications/confirmation/email_sent.html.erb
+        description: "La registrazione è stata portata a termine con successo: per confermarla controlla il tuo indirizzo email"
+      # The user clicked on the confirmation link he received by email: he is redirected to the main page of the application, with this message (to log in he still needs to write username and password, he is not automatically logged in)
+      received:
+        # 1 - views/users/fullpage_notifications/confirmation/received.html.erb
+        title: "Account confermato"
+        # 1 - views/users/fullpage_notifications/confirmation/received.html.erb
+        description: "Il tuo account è stato confermato con successo"
+  
+  
   
   # PART 2 -- LABELS AND CAPTIONS
   
@@ -1233,11 +1287,11 @@ it:
     # Captions when the user is in 'crop' mode: the instructions appear below the image in editing: on its right there is a button to do the action and another to cancel
     crop:
       # 1 - views/image_editor/edit.html.erb
-      cancel: "Cancella"
+      cancel: "Annulla"
       # 1 - views/image_editor/edit.html.erb
       done: "Taglia"
       # 1 - views/image_editor/edit.html.erb
-      instructions: "Drag on the image to make a selection"
+      instructions: "Trascina il mouse per selezionare parte dell'immagine"
     # Instructions on the left column (title plus description)
     left_column:
       # 1 - views/image_editor/edit.html.erb
@@ -1258,7 +1312,7 @@ it:
     # Instructions and label of 'do' and 'cancel' buttons when the user is in 'add text' mode (same structure of 'crop', see above)
     text:
       # 1 - views/image_editor/edit.html.erb
-      cancel: "Cancella"
+      cancel: "Annulla"
       # 1 - views/image_editor/edit.html.erb
       done: "Applica"
       # 1 - views/image_editor/edit.html.erb
@@ -1270,7 +1324,7 @@ it:
       sample_letter: "A"
     # Caption of the button 'undo'
     # 1 - views/image_editor/edit.html.erb
-    undo: "Annulla"
+    undo: "Indietro"
   
   
   # SECTION 2.6: Captions used inside the Lesson Editor
@@ -1395,7 +1449,7 @@ it:
   media_elements:
     # Used as a caption to select how many elements to show inside each page
     # 1 - views/media_elements/_title_bar.html.erb
-    display: "Mostra"
+    display: "Visualizza"
     # Caption of the buttons used to choose between size display (compact or extended mode)
     display_mode:
       # 1 - views/media_elements/_title_bar.html.erb
@@ -2030,7 +2084,7 @@ it:
     select_lessons:
       # Button to close the window without adding lessons
       # 1 - views/virtual_classroom/_select_lessons_popup.html.erb
-      cancel: "Cancella"
+      cancel: "Annulla"
       # Button to add the selected lessons
       # 1 - views/virtual_classroom/_select_lessons_popup.html.erb
       done: "Carica"
@@ -2360,6 +2414,18 @@ it:
       # statistics about subject distribution among lessons (a graph)
       # 1 - views/admin/dashboard/index.html.erb
       subjects: "Distribuzione delle materie sulle lezioni"
+      # Statistics about available space in media elements folder
+      hard_disk:
+        # 1 - views/admin/dashboard/index.html.erb
+        title: "Spazio nell'hard disk"
+        # 1 - controllers/admin/dashboard_controller.rb
+        images: "Immagini"
+        # 1 - controllers/admin/dashboard_controller.rb
+        audios: "Audio"
+        # 1 - controllers/admin/dashboard_controller.rb
+        videos: "Video"
+        # 1 - controllers/admin/dashboard_controller.rb
+        remaining: "Spazio rimanente"
     # General captions, used throughout the Administrator
     general:
       # Link to switch all the items in a list to the compact status

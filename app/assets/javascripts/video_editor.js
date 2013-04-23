@@ -574,11 +574,17 @@ function videoEditorDocumentReadyAddComponent() {
       addVideoComponentInVideoEditor(video_id, webm, mp4, component, duration);
     }
   });
+  $('body').on('keydown', '.imageInGalleryPopUp ._duration_selector input', function(e) {
+    if(e.which === 13) {
+      $(this).parents('._duration_selector').find('._add_image_component_to_video_editor_after_select_duration').click();
+    }
+  });
   $('body').on('click', '._add_image_component_to_video_editor', function() {
     var popup_id = 'dialog-image-gallery-' + $(this).data('image-id');
     $('#' + popup_id + ' ._bottom_of_image_popup_in_gallery').hide();
     $('#' + popup_id + ' ._duration_selector').show();
     $('#' + popup_id + ' ._duration_selector input').val('');
+    $('#' + popup_id + ' ._duration_selector input').focus();
   });
   $('body').on('click', '._add_image_component_to_video_editor_after_select_duration', function() {
     var image_id = $(this).data('image-id')

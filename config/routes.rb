@@ -142,13 +142,14 @@ Desy::Application.routes.draw do
   delete 'users_session'  => 'users/sessions#destroy'
   
   # USER NOT LOGGED
-  get  'home'                 => 'prelogin#home',                :as => :home
-  get  'sign_up'              => 'prelogin#registration',        :as => :sign_up
-  post 'sign_up'              => 'users#create',                 :as => :users
-  get  'users/confirm/:token' => 'users#confirm',                :as => :user_confirm
-  get  'users/password'       => 'users#request_reset_password', :as => :user_request_reset_password
-  post 'users/password'       => 'users#reset_password',         :as => :user_reset_password
-  get  'what_is_desy'         => 'prelogin#what_is_desy',        :as => :what_is_desy
+  get  'home'                        => 'prelogin#home',                :as => :home
+  get  'sign_up'                     => 'prelogin#registration',        :as => :sign_up
+  post 'sign_up'                     => 'users#create',                 :as => :users
+  get  'users/confirm/:token'        => 'users#confirm',                :as => :user_confirm
+  get  'users/password'              => 'users#request_reset_password', :as => :user_request_reset_password
+  post 'users/password/send'         => 'users#send_reset_password',    :as => :user_send_reset_password
+  get  'users/password/reset/:token' => 'users#reset_password',         :as => :user_reset_password
+  get  'what_is_desy'                => 'prelogin#what_is_desy',        :as => :what_is_desy
   
   # APPLICATION ROOT
   root :to => 'prelogin#home'
