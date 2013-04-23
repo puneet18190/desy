@@ -92,10 +92,10 @@ it:
     virtual_classroom_lessons:
       # Inside the Virtual Classroom, it's possible to open a window for lesson multiple loading: this is the message shown when the user successfully loaded some lessons
       # 1 - views/virtual_classroom/load_lessons.js.erb
-      loaded_ok: "Caricato correttamente le tue lezioni!"
+      loaded_ok: "Caricamento riuscito!"
       # In the same situation, for some reason not all the selected lessons were loaded (the variable %{number} represents the number of lessons which couldn't be loaded)
       # 1 - views/virtual_classroom/load_lessons.js.erb
-      loaded_error: "Si è verificato un problema, %{number} delle tue lezioni non sono state caricate"
+      loaded_error: "Si è verificato un problema: %{number} lezioni non sono state caricate"
   activerecord:
     errors:
       models:
