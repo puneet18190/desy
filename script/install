@@ -27,7 +27,7 @@ function main () {
   fi
 
   set +e
-  distro_info=`lsb_release --description --short 2> /dev/null | tr '[:upper:]' '[:lower:]'`
+  local distro_info=`lsb_release --description --short 2> /dev/null | tr '[:upper:]' '[:lower:]'`
   set -e
 
   local distro=''

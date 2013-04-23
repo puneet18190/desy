@@ -50,7 +50,7 @@ function test_suc () {
   local prev="$username"
   username="$USER"
 
-  assertEquals "hello by $USER" "`suc 'echo hello by \$USER'`"
+  assertEquals "hello from $USER" "`suc 'echo hello from \$USER'`"
 
   username="$prev"
 }

@@ -342,16 +342,14 @@ function distro_install () {
   echo
 
   if [ -z "$1" ] || [ "$2" != 'jobs_server' -a "$2" != 'web_server' ] || [ "$2" = 'web_server' -a -z "$3" ] ; then
-
     command_line_args_fail
   fi
 
   if [[ $EUID -ne 0 ]]; then
-    echo "  This script must be run as root" 1>&2
+    echo "  This script needs to be ran as root" 1>&2
     exit 1
   fi
   
-
   local username='webmaster'
   local password='password'
   local groupname='www-data'
@@ -372,8 +370,8 @@ function distro_install () {
   configure_logrotate
 
   if role_web_server; then
-    install_and_configure_php
     install_and_configure_nginx
+    install_and_configure_php
     install_postgresql            # PostgreSQL requires manual configuration
     configure_unicorn_service
   else
@@ -381,12 +379,11 @@ function distro_install () {
     configure_cron_service
   fi
 
-
   echo -n "  DeSY installation finished: a new user called $username with password $password was created and the application was installed into \"$app_path\" ."
-  echo    " Some steps are required to be done manually:"
-  echo "    * change the password for user $username (running \`passwd $username\`)"
-  echo '    * configure PostgreSQL (editing PostgreSQL configuration and config/database.yml)'
-  echo '    * configure DeSY (editing config/settings.yml)'
+  echo    "  Some steps are required to be done manually:"
+  echo    "    * change the password for user $username (running \`passwd $username\`)"
+  echo    '    * configure PostgreSQL (editing PostgreSQL configuration and config/database.yml)'
+  echo    '    * configure DeSY (editing config/settings.yml)'
   if role_web_server; then
     echo '    * execute `export RAILS_ENV=production && rake db:structure:load && rake db:seed && rake assets:precompile`'
     echo '    * execute (as root) `service unicorn start webmaster:desy`'
