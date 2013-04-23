@@ -1,4 +1,4 @@
-Tue, 23 Apr 2013 15:30:39 +0200
+Tue, 23 Apr 2013 15:46:15 +0200
 app/controllers/admin/dashboard_controller.rb	Thu, 18 Apr 2013 17:51:00 +0200
 app/controllers/admin/lessons_controller.rb	Mon, 08 Apr 2013 11:29:47 +0200
 app/controllers/admin/media_elements_controller.rb	Mon, 08 Apr 2013 11:29:47 +0200
@@ -143,4 +143,4 @@ lib/media/video/editing/transition.rb	Mon, 08 Apr 2013 11:29:59 +0200
 lib/media/video/uploader.rb	Mon, 08 Apr 2013 11:29:59 +0200
 lib/media/video/uploader/validation.rb	Mon, 08 Apr 2013 11:29:59 +0200
 lib/notifications_job.rb	Mon, 08 Apr 2013 11:29:59 +0200
-doc/README.rdoc	Tue, 23 Apr 2013 15:30:19 +0200
+doc/README.rdoc	Tue, 23 Apr 2013 15:46:09 +0200

@@ -23,7 +23,7 @@
         </h1>
         <ul class="files">
             <li>doc/README.rdoc</li>
-            <li>Last modified: 2013-04-23 15:30:19 +0200</li>
+            <li>Last modified: 2013-04-23 15:46:09 +0200</li>
         </ul>
     </div>
 
@@ -119,7 +119,7 @@ the host OS.</p>
 <p>nginx | apache</p>
 </li></ul>
 
-<h2 id="label-Procedure+of+installation">Procedure of installation</h2>
+<h2 id="label-Installation">Installation</h2>
 
 <p>If DeSY is going to be installed on a dedicated clean machine, you can run
 <code>script/install DESY_ARCHIVE { web_server SERVER_NAME | jobs_server
@@ -170,29 +170,47 @@ install --deployment --without development test irbtools</code>)</p>
 </li></ul>
 </li><li>
 <p>If it is a web server installation:</p>
-
-<pre>1. Install and configure PHP in order to serve WIRIS pages (an example of web server configuration is inside +config/nginx.conf.example+)
-2. Install and configure the web server (nginx is preferred, but not required)
-3. Ensure the web server to serve the following MIME types (if nginx web server is used, you can use +config/nginx.conf.example+ as start for the DeSY site configuration file):
-
-    * video/mp4   mp4
-    * video/webm  webm
-    * audio/mp4   m4a
-    * audio/ogg   ogg
-
-1. Configure Unicorn as application server (you can use +config/unicorn.init.d.example+ as init script and +config/unicorn.conf.example+ as service configuration, while +config/unicorn.rb.example+ as Unicorn processes configuration)</pre>
+<ol><li>
+<p>Install and configure PHP in order to serve WIRIS pages (an example of web
+server configuration is inside <code>config/nginx.conf.example</code>)</p>
+</li><li>
+<p>Install and configure the web server (nginx is preferred, but not required)</p>
+</li><li>
+<p>Ensure the web server to serve the following MIME types (if nginx web
+server is used, you can use <code>config/nginx.conf.example</code> as start
+for the DeSY site configuration file):</p>
+<ul><li>
+<p>video/mp4   mp4</p>
+</li><li>
+<p>video/webm  webm</p>
+</li><li>
+<p>audio/mp4   m4a</p>
+</li><li>
+<p>audio/ogg   ogg</p>
+</li></ul>
+</li><li>
+<p>Configure Unicorn as application server (you can use
+<code>config/unicorn.init.d.example</code> as init script and
+<code>config/unicorn.conf.example</code> as service configuration, while
+<code>config/unicorn.rb.example</code> as Unicorn processes configuration)</p>
+</li></ol>
 
 <p>Otherwise, if it is a job server installation:</p>
-
-<pre>1. Configure DelayedJob (you can use +config/delayed_job.init.d.example+ as init script and +config/delayed_job.conf.example+ as service configuration)
-2. Configure the cron jobs (executing &lt;tt&gt;bundle exec whenever --update-crontab&lt;/tt&gt;)</pre>
+<ol><li>
+<p>Configure DelayedJob (you can use
+<code>config/delayed_job.init.d.example</code> as init script and
+<code>config/delayed_job.conf.example</code> as service configuration)</p>
+</li><li>
+<p>Configure the cron jobs (executing <code>bundle exec whenever
+--update-crontab</code>)</p>
+</li></ol>
 </li></ol>
 
 <h2 id="label-Configuration">Configuration</h2>
 
 <p>DeSY can be configured through the file <code>config/settings.yml</code>
 (which must be created after the installation - see <a
-href="#label-Procedure+of+installation">Procedure of installation</a></p>
+href="#label-Installation">Installation</a></p>
 
     </div>
   
