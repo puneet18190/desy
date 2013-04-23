@@ -246,14 +246,17 @@ function test_install_postgresql () {
 function test_configure_unicorn_service () {
   update-rc.d unicorn remove -f > /dev/null
   rm -f /etc/init.d/unicorn
+  rm -f "$app_path/config/unicorn.rb"
   rm -rf /etc/unicorn
 
   _assertFalse "[ -f \"/etc/init.d/unicorn\" ]"
+  _assertFalse "[ -f \"$app_path/config/unicorn.rb\" ]"
   _assertFalse "[ -d \"/etc/unicorn\" ]"
 
   configure_unicorn_service > /dev/null 2>&1
 
   _assertTrue "[ -f \"/etc/init.d/unicorn\" ]"
+  _assertTrue "[ -f \"$app_path/config/unicorn.rb\" ]"
   _assertTrue "[ -d \"/etc/unicorn\" ]"
   assertEquals "`cat \"$app_root\"/script/libinstall/test/unicorn.conf.diff`" "`diff \"$app_root\"/config/unicorn.conf.example /etc/unicorn/testuser\:desy`"
 }

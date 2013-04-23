@@ -68,7 +68,7 @@ function install_rbenv_and_ruby () {
   suc "echo 'export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1' >> \$HOME/.profile"
   suc "echo 'export RUBY_GC_MALLOC_LIMIT=1000000000' >> \$HOME/.profile"
   suc "echo 'export RUBY_HEAP_FREE_MIN=500000' >> \$HOME/.profile"
-    
+
   # fi
 }
 
@@ -243,12 +243,13 @@ function configure_unicorn_service () {
   echo '  Configuring Unicorn service'
 
   cp "$app_path"/config/unicorn.init.d.example /etc/init.d/unicorn
+  suc "cp \"$app_path/config/unicorn.rb.example\" \"$app_path/config/unicorn.rb\""
+  mkdir /etc/unicorn
 
   chmod +x /etc/init.d/unicorn
 
   update-rc.d unicorn defaults > /dev/null
 
-  mkdir /etc/unicorn
   cat "$app_path"/config/unicorn.conf.example                \
    | sed --expression="s/\$username/$username/g"             \
    | sed --expression="s/\$app_path/"${app_path//\//\\/}"/g" \
