@@ -48,32 +48,42 @@ These are the software dependencies:
 
 == Procedure of installation
 
-# TODO explain script/install
-If DeSY is going to be installed on a dedicated clean machine, you can run `script/install ...`
+If DeSY is going to be installed on a dedicated clean machine, you can run <tt>script/install DESY_ARCHIVE { web_server SERVER_NAME | jobs_server }</tt>, where +DESY_ARCHIVE+ is the path to the DeSY archive, while +web_server+ or +jobs_server+ is the role of the server (whether it is dedicated to serve the web application or executing the background jobs, such the media conversions and editing processings); if its role is +web_server+, you must specify +SERVER_NAME+, which is the server name that will be written inside the nginx virtual host configuration.
 
-Otherwise you can proceed with a manual installation:
+After executing the installation script follow the post-script instructions in order to get a running production environment.
 
-1.  Extract the DeSY copy into the destination path (it should be somewhere inside the home of the user which runs the app)
+Otherwise you can proceed with the manual installation:
+
+1. Install prerequirements and Ruby dependencies (on a Debian/Ubuntu system: <tt>git gcc make zlib1g-dev libyaml-dev libssl-dev libgdbm-dev libreadline-dev libncurses5-dev libffi-dev</tt>)
 2.  Install Ruby (possibly using {rbenv}[https://github.com/sstephenson/rbenv], {RVM}[https://rvm.io/], or {chruby}[https://github.com/postmodern/chruby])
-3.  Install PostgreSQL
-4.  Install Bundler (<tt>gem install bundler</tt>)
-5.  +cd+ into the DeSY folder
-6.  Install the required packages (on Debian/Ubuntu: +script/system_requirements_install+)
-7.  Run <tt>bundle install</tt>
-8.  Copy +config/settings.yml.example+ to +config/settings.yml+ and customize it as needed
-9.  Copy +config/database.yml.example+ to +config/database.yml+ and customize it as needed
-9.  Copy +config/unicorn.yml.example+ to +config/unicorn.yml+ and customize it as needed
-10. Ensure the web server to serve the following MIME types:
+3.  Extract the DeSY copy into the destination path (it should be somewhere inside the home of the user which runs the app)
+4.  Install application dependencies (on a Debian/Ubuntu system: <tt>libpq-dev g++ libsqlite3-dev imagemagick libav-tools libavcodec-extra-53 mkvtoolnix sox</tt> - +libpq-dev version should be > 9.2)
+5.  Install Bundler (<tt>gem install bundler</tt>)
+6.  +cd+ into the DeSY folder and install the bundle (<tt>bundle install --deployment --without development test irbtools</tt>)
+7.  Copy and customize as needed the following configuration files:
 
-    * video/mp4   mp4
-    * video/webm  webm
-    * audio/mp4   m4a
-    * audio/ogg   ogg
+    * +config/settings.yml.example+ to +config/settings.yml+
+    * +config/database.yml.example+ to +config/database.yml+
+    * +config/logrotate.conf.example+ to +/etc/lograte.d/+
 
-11. If nginx web server is used, you can use +config/nginx.conf.example+ as start for the DeSY site configuration file
-12. 
+8. If it is a web server installation:
 
+    1. Install and configure PHP in order to serve WIRIS pages (an example of web server configuration is inside +config/nginx.conf.example+)
+    2. Install and configure the web server (nginx is preferred, but not required)
+    3. Ensure the web server to serve the following MIME types (if nginx web server is used, you can use +config/nginx.conf.example+ as start for the DeSY site configuration file):
+
+        * video/mp4   mp4
+        * video/webm  webm
+        * audio/mp4   m4a
+        * audio/ogg   ogg
+
+    1. Configure Unicorn as application server (you can use +config/unicorn.init.d.example+ as init script and +config/unicorn.conf.example+ as service configuration, while +config/unicorn.rb.example+ as Unicorn processes configuration)
+
+   Otherwise, if it is a job server installation:
+
+    1. Configure DelayedJob (you can use +config/delayed_job.init.d.example+ as init script and +config/delayed_job.conf.example+ as service configuration)
+    2. Configure the cron jobs (executing <tt>bundle exec whenever --update-crontab</tt>)
 
 == Configuration
 
-DeSY can be configured through the file config/settings.yml (which must be created after the installation - see {Procedure of installation}[rdoc-label:label-Procedure+of+installation]).
+DeSY can be configured through the file +config/settings.yml+ (which must be created after the installation - see {Procedure of installation}[rdoc-label:label-Procedure+of+installation]).

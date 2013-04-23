@@ -23,7 +23,7 @@
         </h1>
         <ul class="files">
             <li>doc/README.rdoc</li>
-            <li>Last modified: 2013-04-18 18:22:21 +0200</li>
+            <li>Last modified: 2013-04-23 15:30:19 +0200</li>
         </ul>
     </div>
 
@@ -120,57 +120,78 @@ the host OS.</p>
 </li></ul>
 
 <h2 id="label-Procedure+of+installation">Procedure of installation</h2>
+
+<p>If DeSY is going to be installed on a dedicated clean machine, you can run
+<code>script/install DESY_ARCHIVE { web_server SERVER_NAME | jobs_server
+}</code>, where <code>DESY_ARCHIVE</code> is the path to the DeSY archive,
+while <code>web_server</code> or <code>jobs_server</code> is the role of
+the server (whether it is dedicated to serve the web application or
+executing the background jobs, such the media conversions and editing
+processings); if its role is <code>web_server</code>, you must specify
+<code>SERVER_NAME</code>, which is the server name that will be written
+inside the nginx virtual host configuration.</p>
+
+<p>After executing the installation script follow the post-script instructions
+in order to get a running production environment.</p>
+
+<p>Otherwise you can proceed with the manual installation:</p>
 <ol><li>
-<p>Extract the DeSY copy into the destination path (it should be somewhere
-inside the home of the user which runs the app)</p>
+<p>Install prerequirements and Ruby dependencies (on a Debian/Ubuntu system:
+<code>git gcc make zlib1g-dev libyaml-dev libssl-dev libgdbm-dev
+libreadline-dev libncurses5-dev libffi-dev</code>)</p>
 </li><li>
 <p>Install Ruby (possibly using <a
 href="https://github.com/sstephenson/rbenv">rbenv</a>, <a
 href="https://rvm.io/">RVM</a>, or <a
 href="https://github.com/postmodern/chruby">chruby</a>)</p>
 </li><li>
-<p>Install PostgreSQL</p>
+<p>Extract the DeSY copy into the destination path (it should be somewhere
+inside the home of the user which runs the app)</p>
+</li><li>
+<p>Install application dependencies (on a Debian/Ubuntu system:
+<code>libpq-dev g++ libsqlite3-dev imagemagick libav-tools
+libavcodec-extra-53 mkvtoolnix sox</code> - +libpq-dev version should be
+&gt; 9.2)</p>
 </li><li>
 <p>Install Bundler (<code>gem install bundler</code>)</p>
 </li><li>
-<p><code>cd</code> into the DeSY folder</p>
+<p><code>cd</code> into the DeSY folder and install the bundle (<code>bundle
+install --deployment --without development test irbtools</code>)</p>
 </li><li>
-<p>Install the required packages (on Debian/Ubuntu:
-<code>script/system_requirements_install</code>)</p>
-</li><li>
-<p>Run <code>bundle install</code></p>
-</li><li>
-<p>Copy <code>config/settings.yml.example</code> to
-<code>config/settings.yml</code> and customize it as needed</p>
-</li><li>
-<p>Copy <code>config/database.yml.example</code> to
-<code>config/database.yml</code> and customize it as needed</p>
-</li><li>
-<p>Copy <code>config/unicorn.yml.example</code> to
-<code>config/unicorn.yml</code> and customize it as needed</p>
-</li><li>
-<p>Ensure the web server to serve the following MIME types:</p>
+<p>Copy and customize as needed the following configuration files:</p>
 <ul><li>
-<p>video/mp4   mp4</p>
+<p><code>config/settings.yml.example</code> to
+<code>config/settings.yml</code></p>
 </li><li>
-<p>video/webm  webm</p>
+<p><code>config/database.yml.example</code> to
+<code>config/database.yml</code></p>
 </li><li>
-<p>audio/mp4   m4a</p>
-</li><li>
-<p>audio/ogg   ogg</p>
+<p><code>config/logrotate.conf.example</code> to <code>/etc/lograte.d/</code></p>
 </li></ul>
 </li><li>
-<p>If nginx web server is used, you can use
-<code>config/nginx.conf.example</code> as start for the DeSY site
-configuration file</p>
-</li></ol>
+<p>If it is a web server installation:</p>
 
-<p>12.</p>
+<pre>1. Install and configure PHP in order to serve WIRIS pages (an example of web server configuration is inside +config/nginx.conf.example+)
+2. Install and configure the web server (nginx is preferred, but not required)
+3. Ensure the web server to serve the following MIME types (if nginx web server is used, you can use +config/nginx.conf.example+ as start for the DeSY site configuration file):
+
+    * video/mp4   mp4
+    * video/webm  webm
+    * audio/mp4   m4a
+    * audio/ogg   ogg
+
+1. Configure Unicorn as application server (you can use +config/unicorn.init.d.example+ as init script and +config/unicorn.conf.example+ as service configuration, while +config/unicorn.rb.example+ as Unicorn processes configuration)</pre>
+
+<p>Otherwise, if it is a job server installation:</p>
+
+<pre>1. Configure DelayedJob (you can use +config/delayed_job.init.d.example+ as init script and +config/delayed_job.conf.example+ as service configuration)
+2. Configure the cron jobs (executing &lt;tt&gt;bundle exec whenever --update-crontab&lt;/tt&gt;)</pre>
+</li></ol>
 
 <h2 id="label-Configuration">Configuration</h2>
 
-<p>DeSY can be configured through the file config/settings.yml (which must be
-created after the installation - see <a
+<p>DeSY can be configured through the file <code>config/settings.yml</code>
+(which must be created after the installation - see <a
 href="#label-Procedure+of+installation">Procedure of installation</a></p>
 
     </div>
