@@ -1,20 +1,24 @@
-application_copyright: '©2013 DESY. All rights reserved'
+# Name of the application
 application_name: 'DESY'
+# Full name of the application
 application_full_name: 'DESY - Digital Education System'
+# extended name of the application
 application_extended_name: 'Digital Education System'
+# Copyright of the application (it's displayed in the HTML footer)
+application_copyright: '©2013 DESY. All rights reserved'
+
 application:
   smtp:
     :address: 'smtp.example.com'
   email: 'noreply@desy.morganspa.com'
   maintainer:
     emails: ['maintainer@morganspa.com']
-
 # Types of the locations related to Desy
 # The order is important: it determines the parent->child relation
 # The last location is the one associated the the user
 location_types: ['Province', 'City', 'County']
 
-# SEEDS
+# Initial attributes of the super-admin user
 admin:
   name: 'DESY'
   surname: 'Admin User'
