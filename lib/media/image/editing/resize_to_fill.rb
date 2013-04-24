@@ -6,12 +6,15 @@ require 'mini_magick'
 module Media
   module Image
     module Editing
+      # Resizes the image to fill the Image Editor
       class ResizeToFill
-
+        
+        # Initializer
         def initialize(input, output, width, height)
           @input, @output, @width, @height = input, output, width, height
         end
-
+        
+        # Runs the action
         def run
           input_image = ::MiniMagick::Image.open(@input)
           cols, rows = input_image[:dimensions]

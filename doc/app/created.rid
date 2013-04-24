@@ -1,4 +1,4 @@
-Wed, 24 Apr 2013 17:43:44 +0200
+Wed, 24 Apr 2013 17:47:03 +0200
 app/controllers/admin/dashboard_controller.rb	Thu, 18 Apr 2013 12:31:31 +0200
 app/controllers/admin/lessons_controller.rb	Wed, 17 Apr 2013 14:38:25 +0200
 app/controllers/admin/media_elements_controller.rb	Wed, 17 Apr 2013 14:38:25 +0200
@@ -100,9 +100,9 @@ lib/media/image.rb	Wed, 24 Apr 2013 17:18:36 +0200
 lib/media/image/editing.rb	Wed, 24 Apr 2013 17:29:29 +0200
 lib/media/image/editing/add_text_to_image.rb	Wed, 24 Apr 2013 17:36:27 +0200
 lib/media/image/editing/cmd.rb	Wed, 24 Apr 2013 17:40:19 +0200
-lib/media/image/editing/cmd/text_to_image.rb	Wed, 17 Apr 2013 14:38:35 +0200
+lib/media/image/editing/cmd/text_to_image.rb	Wed, 24 Apr 2013 17:46:53 +0200
 lib/media/image/editing/crop.rb	Wed, 24 Apr 2013 17:43:38 +0200
-lib/media/image/editing/resize_to_fill.rb	Wed, 17 Apr 2013 11:56:45 +0200
+lib/media/image/editing/resize_to_fill.rb	Wed, 24 Apr 2013 17:45:05 +0200
 lib/media/in_tmp_dir.rb	Wed, 24 Apr 2013 17:18:36 +0200
 lib/media/info.rb	Wed, 24 Apr 2013 17:18:36 +0200
 lib/media/logging.rb	Wed, 24 Apr 2013 17:18:36 +0200

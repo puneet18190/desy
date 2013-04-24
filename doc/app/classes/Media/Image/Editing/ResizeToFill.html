@@ -38,6 +38,12 @@
     <div id="bodyContent">
         <div id="content">
   
+    <div class="description">
+      
+<p>Resizes the image to fill the <a href="../../Image.html">Image</a> Editor</p>
+
+    </div>
+  
 
 
   
@@ -112,7 +118,7 @@
           
           
             <div class="description">
-              
+              <p>Initializer</p>
             </div>
           
           
@@ -128,7 +134,7 @@
                 
               </p>
               <div id="method-c-new_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/image/editing/resize_to_fill.rb, line 11</span>
+                <pre><span class="ruby-comment"># File lib/media/image/editing/resize_to_fill.rb, line 13</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize</span>(<span class="ruby-identifier">input</span>, <span class="ruby-identifier">output</span>, <span class="ruby-identifier">width</span>, <span class="ruby-identifier">height</span>)
   <span class="ruby-ivar">@input</span>, <span class="ruby-ivar">@output</span>, <span class="ruby-ivar">@width</span>, <span class="ruby-ivar">@height</span> = <span class="ruby-identifier">input</span>, <span class="ruby-identifier">output</span>, <span class="ruby-identifier">width</span>, <span class="ruby-identifier">height</span>
 <span class="ruby-keyword">end</span></pre>
@@ -149,7 +155,7 @@
           
           
             <div class="description">
-              
+              <p>Runs the action</p>
             </div>
           
           
@@ -165,7 +171,7 @@
                 
               </p>
               <div id="method-i-run_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/image/editing/resize_to_fill.rb, line 15</span>
+                <pre><span class="ruby-comment"># File lib/media/image/editing/resize_to_fill.rb, line 18</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">run</span>
   <span class="ruby-identifier">input_image</span> = <span class="ruby-operator">::</span><span class="ruby-constant">MiniMagick</span><span class="ruby-operator">::</span><span class="ruby-constant">Image</span>.<span class="ruby-identifier">open</span>(<span class="ruby-ivar">@input</span>)
   <span class="ruby-identifier">cols</span>, <span class="ruby-identifier">rows</span> = <span class="ruby-identifier">input_image</span>[<span class="ruby-value">:dimensions</span>]
