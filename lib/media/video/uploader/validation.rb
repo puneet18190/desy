@@ -5,12 +5,15 @@ require 'media/video/uploader'
 module Media
   module Video
     class Uploader
+      # Module containing methods for validation of a Video
       module Validation
+        # Adds the new errors to the original model
         def validation
           error_message = self.error_message
           model.errors.add :media, error_message if error_message
         end
 
+        # Generates the error message
         def error_message
           if @converted_files
             error_message_for_converted_files
@@ -26,7 +29,9 @@ module Media
         end
 
         private
-        def error_message_for_file_to_convert
+        
+        # Error messages for an original file not yet converted
+        def error_message_for_file_to_convert # :doc:
           if not self.class::EXTENSION_WHITE_LIST_WITH_DOT.include?(original_filename_extension)
             'unsupported format'
           else
@@ -41,7 +46,8 @@ module Media
           end
         end
 
-        def error_message_for_converted_files
+        # Error message for already converted files
+        def error_message_for_converted_files # :doc:
           mp4_path, webm_path = @converted_files[:mp4], @converted_files[:webm]
           if !@original_filename_without_extension.is_a?(String)
             'invalid filename'
