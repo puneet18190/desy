@@ -1,2 +1,2 @@
 id,email,name,surname,school_level_id,encrypted_password,confirmed,location_id,active
-1,desy@morganspa.com,DESY,Admin User,1,$2a$10$9WpmYauBd7wshDIs1slKEuMnx.7n.mpxozghxiwRMszYdNGiMhSY.,t,3,t
+1,desy@morganspa.com,DESY,Admin User,1,$2a$10$9WpmYauBd7wshDIs1slKEuMnx.7n.mpxozghxiwRMszYdNGiMhSY.,t,40,t
