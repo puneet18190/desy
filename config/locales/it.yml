@@ -92,10 +92,10 @@ it:
     virtual_classroom_lessons:
       # Inside the Virtual Classroom, it's possible to open a window for lesson multiple loading: this is the message shown when the user successfully loaded some lessons
       # 1 - views/virtual_classroom/load_lessons.js.erb
-      loaded_ok: "Caricato correttamente le tue lezioni!"
+      loaded_ok: "Caricamento riuscito!"
       # In the same situation, for some reason not all the selected lessons were loaded (the variable %{number} represents the number of lessons which couldn't be loaded)
       # 1 - views/virtual_classroom/load_lessons.js.erb
-      loaded_error: "Si è verificato un problema, %{number} delle tue lezioni non sono state caricate"
+      loaded_error: "Si è verificato un problema: %{number} lezioni non sono state caricate"
   activerecord:
     errors:
       models:
@@ -2304,12 +2304,13 @@ it:
     labels: [
         "Provincia",
         "Città",
-        "Contea"
+        "Contea",
+        "Scuola"
       ]
     # This is the label used when the application needs to resume the chain of higher locations corresponding to a lower one: if for instance for a user we have the field 'Shanghai district - Shanghai province', an appropriate label for it (to be configured here) would be 'District / province'
     # 1 - views/admin/users/show.html.erb
     # 2 - views/admin/users/_list.html.erb
-    parents_label: "Provincia / Città"
+    parents_label: "Provincia / Città / Contea"
     # Caption inside the select of each location type (the variable %{location} is replaced by the name of the location type, ex City, Province, District)
     # 1 - views/admin/users/_locations_list.html.erb
     # 2 - views/users/_locations_list.html.erb
