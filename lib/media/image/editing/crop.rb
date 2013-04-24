@@ -6,14 +6,15 @@ require 'mini_magick'
 module Media
   module Image
     module Editing
+      # Class containing methods to crop an image
       class Crop
         
-        #input: image
-        #output: saving folder
+        # Initializes the crop
         def initialize(input, output, x1, y1, x2, y2)
           @input, @output, @x1, @y1, @x2, @y2 = input, output, x1, y1, x2, y2
         end
         
+        # Runs the crop
         def run
           w = @x2.to_i - @x1.to_i
           h = @y2.to_i - @y1.to_i

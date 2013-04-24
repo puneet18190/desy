@@ -3,6 +3,7 @@ require 'media/image'
 
 module Media
   module Image
+    # Module containing logics for image editing
     module Editing
     end
   end
