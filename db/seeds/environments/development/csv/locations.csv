@@ -96,7 +96,11 @@ id,name,sti_type,ancestry
 95,云溪第二中学,School,19/33/34
 96,岳阳一中,School,19/33/35
 97,岳阳二中,School,19/33/35
-98,,School,
-99,,School,
-100,,School,
-101,,School,
+98,临湘一中,School,19/33/36
+99,临湘二中,School,19/33/36
+100,汨罗一小,School,19/33/37
+101,汨罗二小,School,19/33/37
+102,岳阳中学,School,19/33/38
+103,岳阳二中,School,19/33/38
+104,湘阴中学,School,19/33/39
+105,湘阴二小,School,19/33/39
