@@ -1,10 +1,12 @@
 require 'securerandom'
 
+# Provides the User logics for resetting the password of a user
 module User::ResetPassword
   
-  
+  # Module containing the class methods
   module ClassMethods
     
+    # Generates the token to reset the password
     def generate_password_token
       loop do
         token = SecureRandom.urlsafe_base64(16)
@@ -12,6 +14,7 @@ module User::ResetPassword
       end
     end
     
+    # Resets the password, together with the password token
     def reset_password!(token)
       user = User.where(:password_token => token).first
       return [nil, nil] unless user
@@ -27,9 +30,10 @@ module User::ResetPassword
     
   end
   
-  
+  # Module containing the instance methods
   module InstanceMethods
     
+    # Sets the password token using the automatic generator
     def password_token!
       self.password_token = self.class.generate_password_token
       self.save!
@@ -37,7 +41,7 @@ module User::ResetPassword
     
   end
   
-  
+  # Initializes the methods
   def self.included(receiver)
     receiver.extend         ClassMethods
     receiver.send :include, InstanceMethods

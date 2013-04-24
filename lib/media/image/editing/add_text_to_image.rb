@@ -6,18 +6,21 @@ require 'media/image/editing/cmd'
 module Media
   module Image
     module Editing
+      # Class that contains the methods for adding multiple texts (see Image, ImageEditorController)
       class AddTextToImage < Cmd
-
+        
+        # Path of the font
         FONT_PATH = Rails.root.join('vendor/fonts/DroidSansFallback.ttf').to_s
         
-        #img is a mini_magick object
+        # Initializes the instance of this class; img is a mini_magick object
         def initialize(img, color_hex, font_size, coord_x, coord_y, text_value)
           @img, @color_hex, @font_size, @coord_x, @coord_y, @text = img, color_hex, font_size, coord_x, coord_y, text_value
         end
         
         private
         
-        def cmd!
+        # Overwrites the method Media::Cmd#cmd! for this specific task
+        def cmd! # :doc:
         %Q[ mogrify
               -fill      #{@color_hex.to_s.shellescape}
               -stroke    none
@@ -28,7 +31,8 @@ module Media
               #{@img.to_s.shellescape} ].squish
         end
         
-        def shellescaped_text
+        # Extracts a shellescaped text
+        def shellescaped_text # :doc:
           case @text
           when File, Tempfile
             "@#{@text.path.shellescape}"

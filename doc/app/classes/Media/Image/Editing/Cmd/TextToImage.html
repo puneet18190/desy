@@ -38,6 +38,15 @@
     <div id="bodyContent">
         <div id="content">
   
+    <div class="description">
+      
+<p>Class that converts a text into an image, used for <a
+href="../../../Video.html">Video</a> Editor (see <a
+href="../../../../VideoEditorController.html">VideoEditorController</a>, <a
+href="../../../Video/Editing.html">Media::Video::Editing</a>)</p>
+
+    </div>
+  
 
 
   
@@ -55,6 +64,18 @@
     <div class="sectiontitle">Methods</div>
     <dl class="methods">
       
+        <dt>C</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-cmd-21">cmd!</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
         <dt>N</dt>
         <dd>
           <ul>
@@ -62,6 +83,18 @@
               
               <li>
                 <a href="#method-c-new">new</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>S</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-shellescaped_text">shellescaped_text</a>
               </li>
             
           </ul>
@@ -99,7 +132,7 @@ pointsize:        48        }</td>
           
             <tr valign='top'>
               <td>&nbsp;</td>
-              <td colspan="2" class="attr-desc"></td>
+              <td colspan="2" class="attr-desc"><p>Default options</p></td>
             </tr>
           
         
@@ -111,7 +144,7 @@ pointsize:        48        }</td>
           
             <tr valign='top'>
               <td>&nbsp;</td>
-              <td colspan="2" class="attr-desc"></td>
+              <td colspan="2" class="attr-desc"><p>Keys of the options</p></td>
             </tr>
           
         
@@ -129,7 +162,7 @@ pointsize:        48        }</td>
               [R]
             </td>
             <td class='attr-name'>output</td>
-            <td class='attr-desc'></td>
+            <td class='attr-desc'><p>The output</p></td>
           </tr>
         
       </table>
@@ -150,8 +183,8 @@ pointsize:        48        }</td>
           
           
             <div class="description">
-              <p>text can be a File, a Tempfile or a Pathname: if so, its contents will be
-used as text for the image</p>
+              <p>The text can be a File, a Tempfile or a Pathname: if so, its contents will
+be used as text for the image</p>
             </div>
           
           
@@ -167,7 +200,7 @@ used as text for the image</p>
                 
               </p>
               <div id="method-c-new_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/image/editing/cmd/text_to_image.rb, line 25</span>
+                <pre><span class="ruby-comment"># File lib/media/image/editing/cmd/text_to_image.rb, line 29</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize</span>(<span class="ruby-identifier">text</span>, <span class="ruby-identifier">output</span>, <span class="ruby-identifier">options</span> = {})
   <span class="ruby-keyword">if</span> (<span class="ruby-identifier">options</span>.<span class="ruby-identifier">keys</span> <span class="ruby-operator">-</span> <span class="ruby-constant">OPTIONS</span>).<span class="ruby-identifier">present?</span>
     <span class="ruby-identifier">raise</span> <span class="ruby-constant">Error</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;options keys must be included into #{OPTIONS.inspect}&quot;</span>)
@@ -183,7 +216,94 @@ used as text for the image</p>
             </div>
             
           </div>
-                        </div>
+                  
+      <div class="sectiontitle">Instance Private methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-cmd-21">
+            
+              <b>cmd!</b>()
+            
+            <a href="../../../../../classes/Media/Image/Editing/Cmd/TextToImage.html#method-i-cmd-21" name="method-i-cmd-21" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Command used in MiniMagick</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-cmd-21_source')" id="l_method-i-cmd-21_source">show</a>
+                
+              </p>
+              <div id="method-i-cmd-21_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/media/image/editing/cmd/text_to_image.rb, line 56</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">cmd!</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-node">%Q[ convert
+        -size       #{width.to_s.shellescape}x#{height.to_s.shellescape}
+        -background #{background_color.to_s.shellescape}
+        -fill       #{color.to_s.shellescape}
+        -font       #{font.to_s.shellescape}
+        -pointsize  #{pointsize.to_s.shellescape}
+        -gravity    #{gravity.to_s.shellescape}
+        label:#{shellescaped_text}
+        #{output.shellescape} ]</span>.<span class="ruby-identifier">squish</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-shellescaped_text">
+            
+              <b>shellescaped_text</b>()
+            
+            <a href="../../../../../classes/Media/Image/Editing/Cmd/TextToImage.html#method-i-shellescaped_text" name="method-i-shellescaped_text" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>The shellescaped text</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-shellescaped_text_source')" id="l_method-i-shellescaped_text_source">show</a>
+                
+              </p>
+              <div id="method-i-shellescaped_text_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/media/image/editing/cmd/text_to_image.rb, line 44</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">shellescaped_text</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-keyword">case</span> <span class="ruby-ivar">@text</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-constant">File</span>, <span class="ruby-constant">Tempfile</span>
+    <span class="ruby-node">&quot;@#{@text.path.shellescape}&quot;</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-constant">Pathname</span>
+    <span class="ruby-node">&quot;@#{@text.to_s.shellescape}&quot;</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-ivar">@text</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">shellescape</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                    </div>
 
     </div>
   </body>

@@ -1,4 +1,4 @@
-Wed, 24 Apr 2013 18:02:04 +0200
+Wed, 24 Apr 2013 18:02:37 +0200
 app/controllers/admin/dashboard_controller.rb	Thu, 18 Apr 2013 17:51:00 +0200
 app/controllers/admin/lessons_controller.rb	Mon, 08 Apr 2013 11:29:47 +0200
 app/controllers/admin/media_elements_controller.rb	Mon, 08 Apr 2013 11:29:47 +0200
@@ -66,7 +66,7 @@ lib/autoload/statuses.rb	Mon, 08 Apr 2013 11:29:59 +0200
 lib/autoload/time_convert.rb	Mon, 08 Apr 2013 11:29:59 +0200
 lib/autoload/user/authentication.rb	Tue, 23 Apr 2013 18:13:39 +0200
 lib/autoload/user/confirmation.rb	Tue, 23 Apr 2013 18:21:21 +0200
-lib/autoload/user/reset_password.rb	Tue, 23 Apr 2013 11:53:23 +0200
+lib/autoload/user/reset_password.rb	Wed, 24 Apr 2013 18:02:31 +0200
 lib/autoload/valid.rb	Mon, 08 Apr 2013 11:29:59 +0200
 lib/controller_info.rb	Wed, 24 Apr 2013 15:08:43 +0200
 lib/dumpable.rb	Wed, 24 Apr 2013 15:13:42 +0200
@@ -90,19 +90,19 @@ lib/media/audio/editing/conversion/job.rb	Mon, 08 Apr 2013 11:29:59 +0200
 lib/media/audio/editing/crop.rb	Mon, 08 Apr 2013 11:29:59 +0200
 lib/media/audio/editing/parameters.rb	Mon, 08 Apr 2013 11:29:59 +0200
 lib/media/audio/uploader.rb	Mon, 08 Apr 2013 11:29:59 +0200
-lib/media/audio/uploader/validation.rb	Wed, 10 Apr 2013 12:23:41 +0200
+lib/media/audio/uploader/validation.rb	Wed, 24 Apr 2013 18:02:31 +0200
 lib/media/cmd.rb	Wed, 24 Apr 2013 11:32:26 +0200
 lib/media/cmd/avconv.rb	Thu, 11 Apr 2013 15:02:07 +0200
 lib/media/cmd/avprobe.rb	Mon, 08 Apr 2013 11:29:59 +0200
 lib/media/config.rb	Tue, 23 Apr 2013 17:19:22 +0200
 lib/media/error.rb	Wed, 24 Apr 2013 11:41:17 +0200
 lib/media/image.rb	Wed, 24 Apr 2013 11:43:00 +0200
-lib/media/image/editing.rb	Mon, 08 Apr 2013 11:29:59 +0200
-lib/media/image/editing/add_text_to_image.rb	Mon, 08 Apr 2013 11:29:59 +0200
-lib/media/image/editing/cmd.rb	Mon, 08 Apr 2013 11:29:59 +0200
-lib/media/image/editing/cmd/text_to_image.rb	Mon, 08 Apr 2013 11:29:59 +0200
-lib/media/image/editing/crop.rb	Mon, 08 Apr 2013 11:29:59 +0200
-lib/media/image/editing/resize_to_fill.rb	Mon, 08 Apr 2013 11:29:59 +0200
+lib/media/image/editing.rb	Wed, 24 Apr 2013 18:02:31 +0200
+lib/media/image/editing/add_text_to_image.rb	Wed, 24 Apr 2013 18:02:31 +0200
+lib/media/image/editing/cmd.rb	Wed, 24 Apr 2013 18:02:31 +0200
+lib/media/image/editing/cmd/text_to_image.rb	Wed, 24 Apr 2013 18:02:31 +0200
+lib/media/image/editing/crop.rb	Wed, 24 Apr 2013 18:02:31 +0200
+lib/media/image/editing/resize_to_fill.rb	Wed, 24 Apr 2013 18:02:31 +0200
 lib/media/in_tmp_dir.rb	Wed, 24 Apr 2013 11:57:14 +0200
 lib/media/info.rb	Wed, 24 Apr 2013 12:20:09 +0200
 lib/media/logging.rb	Wed, 24 Apr 2013 12:59:38 +0200
@@ -141,6 +141,6 @@ lib/media/video/editing/replace_audio.rb	Mon, 08 Apr 2013 11:29:59 +0200
 lib/media/video/editing/text_to_video.rb	Mon, 08 Apr 2013 11:29:59 +0200
 lib/media/video/editing/transition.rb	Mon, 08 Apr 2013 11:29:59 +0200
 lib/media/video/uploader.rb	Mon, 08 Apr 2013 11:29:59 +0200
-lib/media/video/uploader/validation.rb	Mon, 08 Apr 2013 11:29:59 +0200
+lib/media/video/uploader/validation.rb	Wed, 24 Apr 2013 18:02:31 +0200
 lib/notifications_job.rb	Wed, 24 Apr 2013 15:18:16 +0200
 doc/README.rdoc	Tue, 23 Apr 2013 16:02:34 +0200
