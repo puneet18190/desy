@@ -16,7 +16,7 @@ application:
 # Types of the locations related to Desy
 # The order is important: it determines the parent->child relation
 # The last location is the one associated the the user
-location_types: ['Province', 'City', 'County']
+location_types: ['Province', 'City', 'County', 'School']
 
 # Initial attributes of the super-admin user
 admin:
