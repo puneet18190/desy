@@ -38,6 +38,13 @@
     <div id="bodyContent">
         <div id="content">
   
+    <div class="description">
+      
+<p><a href="../EnhancedThread.html">EnhancedThread</a> version used for
+executing media processings</p>
+
+    </div>
+  
 
 
   
@@ -100,7 +107,10 @@
           
           
             <div class="description">
-              
+              <p>overwrites <a
+href="../EnhancedThread.html#method-c-join">EnhancedThread.join</a> in
+order to sett always <code>close_connection_before_execution</code> to
+<code>true</code></p>
             </div>
           
           
@@ -116,7 +126,7 @@
                 
               </p>
               <div id="method-c-join_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/thread.rb, line 6</span>
+                <pre><span class="ruby-comment"># File lib/media/thread.rb, line 10</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">join</span>(*<span class="ruby-identifier">procs</span>)
   <span class="ruby-comment"># maintains compatibility with super method arguments</span>
   <span class="ruby-identifier">procs</span>.<span class="ruby-identifier">pop</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">procs</span>.<span class="ruby-identifier">last</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">Hash</span>

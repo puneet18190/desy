@@ -4,34 +4,52 @@ require 'securerandom'
 require 'find'
 
 module Media
+
+  # Media uploading abstract class; ancestor of Media::Video::Uploader and Media::Audio::Uploader
   class Uploader < String
     include SimilarDurations
 
-    attr_reader :model, :column, :value
-    # cattr_accessor :media_elements_folder_size
+    # Record instance of the media
+    attr_reader :model
+    # Table column which will contain the media name
+    attr_reader :column
+    # Media value
+    attr_reader :value
 
+    # Media folder (relative to the app public/ folder, for using in URLs)
     PUBLIC_RELATIVE_MEDIA_ELEMENTS_FOLDER = 'media_elements'
+    # Absolute path to the media folders (for using in paths)
     MEDIA_ELEMENTS_FOLDER                 = RAILS_PUBLIC_FOLDER.join PUBLIC_RELATIVE_MEDIA_ELEMENTS_FOLDER
+    # Maximum allowed size for media elements folder; if exceeded, upload gets disabled
     MAXIMUM_MEDIA_ELEMENTS_FOLDER_SIZE    = SETTINGS['maximum_media_elements_folder_size'].gigabytes.to_i
 
+    # Remove media folder (descendants)
     def self.remove_folder!
       FileUtils.rm_rf self::FOLDER
     end
 
+    # Media folder size (descendants)
     def self.folder_size
       return 0 unless Dir.exists? self::FOLDER
       Find.find(self::FOLDER).sum { |f| File.stat(f).size }
     end
 
+    # Media folder size
     def self.media_elements_folder_size
       return 0 unless Dir.exists? MEDIA_ELEMENTS_FOLDER
       Find.find(MEDIA_ELEMENTS_FOLDER).sum { |f| File.stat(f).size }
     end
 
+    # Whether the media folder size exceeds the maximum size or not
     def self.maximum_media_elements_folder_size_exceeded?
       media_elements_folder_size > MAXIMUM_MEDIA_ELEMENTS_FOLDER_SIZE
     end
 
+    # Called by the relative model attribute setter and getter; it currently supports instances of the following classes:
+    # * +String+
+    # * +File+
+    # * +ActionDispatch::Http::UploadedFile+
+    # * +Hash+
     def initialize(model, column, value)
       @model, @column, @value = model, column, value
 

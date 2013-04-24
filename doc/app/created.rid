@@ -1,4 +1,4 @@
-Wed, 24 Apr 2013 15:18:32 +0200
+Wed, 24 Apr 2013 16:28:03 +0200
 app/controllers/admin/dashboard_controller.rb	Thu, 18 Apr 2013 17:51:00 +0200
 app/controllers/admin/lessons_controller.rb	Mon, 08 Apr 2013 11:29:47 +0200
 app/controllers/admin/media_elements_controller.rb	Mon, 08 Apr 2013 11:29:47 +0200
@@ -107,9 +107,9 @@ lib/media/in_tmp_dir.rb	Wed, 24 Apr 2013 11:57:14 +0200
 lib/media/info.rb	Wed, 24 Apr 2013 12:20:09 +0200
 lib/media/logging.rb	Wed, 24 Apr 2013 12:59:38 +0200
 lib/media/shared.rb	Wed, 24 Apr 2013 15:02:11 +0200
-lib/media/similar_durations.rb	Mon, 08 Apr 2013 11:29:59 +0200
-lib/media/thread.rb	Mon, 08 Apr 2013 11:29:59 +0200
-lib/media/uploader.rb	Thu, 18 Apr 2013 17:51:00 +0200
+lib/media/similar_durations.rb	Wed, 24 Apr 2013 15:40:30 +0200
+lib/media/thread.rb	Wed, 24 Apr 2013 15:43:15 +0200
+lib/media/uploader.rb	Wed, 24 Apr 2013 16:07:35 +0200
 lib/media/video.rb	Tue, 23 Apr 2013 18:32:53 +0200
 lib/media/video/editing.rb	Mon, 08 Apr 2013 11:29:59 +0200
 lib/media/video/editing/cmd.rb	Mon, 08 Apr 2013 11:29:59 +0200
