@@ -5,12 +5,15 @@ require 'media/audio/uploader'
 module Media
   module Audio
     class Uploader
+      # Module containing methods to validate format of an audio
       module Validation
+        # Method that adds the validation to the normal errors of the model Audio
         def validation
           error_message = self.error_message
           model.errors.add :media, error_message if error_message
         end
 
+        # Generates the error message
         def error_message
           if @converted_files
             error_message_for_converted_files
@@ -26,7 +29,9 @@ module Media
         end
 
         private
-        def error_message_for_file_to_convert
+        
+        # Generates the error message for the original file not yet converted (a possible problem can be the wrong duration)
+        def error_message_for_file_to_convert # :doc:
           if not self.class::EXTENSION_WHITE_LIST_WITH_DOT.include?(original_filename_extension)
             'unsupported format'
           else
@@ -39,7 +44,8 @@ module Media
           end
         end
 
-        def error_message_for_converted_files
+        # Generates the error messages for already converted files (invalid filename, invalid extension, etc)
+        def error_message_for_converted_files # :doc:
           m4a_path, ogg_path = @converted_files[:m4a], @converted_files[:ogg]
           if !@original_filename_without_extension.is_a?(String)
             'invalid filename'
