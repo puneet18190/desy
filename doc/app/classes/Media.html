@@ -172,9 +172,10 @@
       
 <h2 id="label-Description">Description</h2>
 
-<p>Main module of the media managing and editing implementation.</p>
+<p>Main module of the media elements management, processing and editing
+implementation.</p>
 
-<h3 id="label-Configuration">Configuration</h3>
+<h2 id="label-Configuration">Configuration</h2>
 
 <p>For details about the configuration, see Media::CONFIG .</p>
 
@@ -382,8 +383,191 @@ duration_threshold: 1
           
             <tr valign='top'>
               <td>&nbsp;</td>
-              <td colspan="2" class="attr-desc"><p>See <a href="Media.html">Media</a> section: configuration for details about
-the configuration.</p></td>
+              <td colspan="2" class="attr-desc"><p>It declares the configuration attributes of media related processings. In
+detail:</p>
+<dl class="rdoc-list note-list"><dt>tmp_prefix
+<dd>
+<p>prefix of the temporary files created by the media processings</p>
+</dd><dt>avtools
+<dd>
+<p>settings related to libav</p>
+<dl class="rdoc-list note-list"><dt>avprobe
+<dd>
+<p>settings related to the libav tool avprobe (see <code>man avprobe for
+further informations</code>)</p>
+<dl class="rdoc-list note-list"><dt>cmd
+<dd>
+<p>settings related to the command line</p>
+<dl class="rdoc-list note-list"><dt>sh_vars
+<dd>
+<p>shell environment variables set when the related command is executed</p>
+</dd><dt>bin
+<dd>
+<p>the executable related to the command</p>
+</dd><dt>subexec_timeout
+<dd>
+<p>the command execution timeout used by Subexec (in seconds); if exceeded,
+the command execution will be interrupted and exit with an error</p>
+</dd></dl>
+</dd></dl>
+</dd><dt>avconv
+<dd>
+<p>settings related to the libav tool avconv (see <code>man avconv for further
+informations</code>)</p>
+<dl class="rdoc-list note-list"><dt>cmd
+<dd>
+<p>settings related to the command line</p>
+<dl class="rdoc-list note-list"><dt>sh_vars
+<dd>
+<p>as for <strong>avtools.avprobe.cmd.sh_vars</strong></p>
+</dd><dt>bin
+<dd>
+<p>as for <strong>avtools.avprobe.cmd.bin</strong></p>
+</dd><dt>timeout
+<dd>
+<p>the command execution timeout used by avconv (in seconds); if exceeded, the
+command execution will be interrupted and exit with an error</p>
+</dd></dl>
+</dd><dt>video
+<dd>
+<p>settings related to the video processing</p>
+<dl class="rdoc-list note-list"><dt>formats
+<dd>
+<p>settings related to the output video formats</p>
+<dl class="rdoc-list note-list"><dt>mp4
+<dd>
+<p>settings related to the video mp4 format</p>
+<dl class="rdoc-list note-list"><dt>codecs
+<dd>
+<p>the video and the audio codecs</p>
+</dd><dt>threads
+<dd>
+<p>the encoding execution threads amount</p>
+</dd><dt>qa
+<dd>
+<p>the audio quality</p>
+</dd><dt>default_bitrates
+<dd>
+<p>the encoding default bitrates</p>
+</dd></dl>
+</dd><dt>webm
+<dd>
+<p>settings related to the video webm format</p>
+<dl class="rdoc-list note-list"><dt>codecs
+<dd>
+<p>as for <strong>avconv.video.formats.mp4.codecs</strong></p>
+</dd><dt>threads
+<dd>
+<p>as for <strong>avconv.video.formats.mp4.threads</strong></p>
+</dd><dt>qa
+<dd>
+<p>as for <strong>avconv.video.formats.mp4.qa</strong></p>
+</dd><dt>default_bitrates
+<dd>
+<p>as for <strong>avconv.video.formats.mp4.default_bitrates</strong></p>
+</dd></dl>
+</dd></dl>
+</dd><dt>output
+<dd>
+<p>settings related to the output videos</p>
+<dl class="rdoc-list note-list"><dt>width
+<dd>
+<p>width of the output videos</p>
+</dd><dt>height
+<dd>
+<p>height of the output videos</p>
+</dd></dl>
+</dd></dl>
+</dd><dt>audio
+<dd>
+<p>settings related to the audio processing</p>
+<dl class="rdoc-list note-list"><dt>formats
+<dd>
+<p>settings related to the audio output formats</p>
+<dl class="rdoc-list note-list"><dt>m4a
+<dd>
+<p>settings related to the audio m4a format</p>
+<dl class="rdoc-list note-list"><dt>codecs
+<dd>
+<p>as for <strong>avconv.video.formats.mp4.codecs</strong> (video codec is
+null)</p>
+</dd><dt>threads
+<dd>
+<p>as for <strong>avconv.video.formats.mp4.threads</strong></p>
+</dd><dt>qa
+<dd>
+<p>as for <strong>avconv.video.formats.mp4.qa</strong></p>
+</dd><dt>default_bitrates
+<dd>
+<p>as for <strong>avconv.video.formats.mp4.default_bitrates</strong></p>
+</dd></dl>
+</dd><dt>ogg
+<dd>
+<p>settings related to the video ogg format</p>
+<dl class="rdoc-list note-list"><dt>codecs
+<dd>
+<p>as for <strong>avconv.video.formats.mp4.codecs</strong> (video codec is
+null)</p>
+</dd><dt>threads
+<dd>
+<p>as for <strong>avconv.video.formats.mp4.threads</strong></p>
+</dd><dt>qa
+<dd>
+<p>as for <strong>avconv.video.formats.mp4.qa</strong></p>
+</dd><dt>default_bitrates
+<dd>
+<p>as for <strong>avconv.video.formats.mp4.default_bitrates</strong></p>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd><dt>sox
+<dd>
+<p>settings related to sox</p>
+<dl class="rdoc-list note-list"><dt>cmd
+<dd>
+<p>settings related to the command line</p>
+<dl class="rdoc-list note-list"><dt>bin
+<dd>
+<p>as for <strong>avtools.avprobe.cmd.bin</strong></p>
+</dd><dt>global_options
+<dd>
+<p>common sox options used when sox commands are launched</p>
+</dd></dl>
+</dd></dl>
+</dd><dt>imagemagick
+<dd>
+<p>settings related to imagemagick</p>
+<dl class="rdoc-list note-list"><dt>convert
+<dd>
+<p>settings related to imagemagick convert</p>
+<dl class="rdoc-list note-list"><dt>cmd
+<dd>
+<p>settings related to the command line</p>
+<dl class="rdoc-list note-list"><dt>bin
+<dd>
+<p>as for <strong>avtools.avprobe.cmd.bin</strong></p>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd><dt>video
+<dd>
+<p>settings related to the output videos</p>
+<dl class="rdoc-list note-list"><dt>cover_format
+<dd>
+<p>filename format of the video cover image</p>
+</dd><dt>thumb_format
+<dd>
+<p>filename format of the video thumb image</p>
+</dd><dt>thumb_sizes
+<dd>
+<p>video thumb image sizes</p>
+</dd></dl>
+</dd><dt>duration_threshold
+<dd>
+<p>maximum difference of duration between the generated videos</p>
+</dd></dl></td>
             </tr>
           
         

@@ -94,7 +94,23 @@
           
           
             <div class="description">
-              
+              <p>Returns the class log folder which will contain the instances log folders.
+The naming of the folder is elaborated considering the first 4 nestings (3
+if <code>folder_name</code> is supplied) of the module in which the method
+is called - see <a href="#method-i-log_folder-label-Examples">Examples</a></p>
+
+<h3 id="method-i-log_folder-label-Args">Args</h3>
+<ul><li>
+<p><strong>folder_name</strong>: if present, it will be used instead of the
+name of the module included - see <a
+href="#method-i-log_folder-label-Examples">Examples</a></p>
+</li></ul>
+
+<h3 id="method-i-log_folder-label-Examples">Examples</h3>
+
+<pre class="ruby"><span class="ruby-constant">Media</span><span class="ruby-operator">::</span><span class="ruby-constant">A</span><span class="ruby-operator">::</span><span class="ruby-constant">B</span><span class="ruby-operator">::</span><span class="ruby-constant">C</span>.<span class="ruby-identifier">log_folder</span>        <span class="ruby-comment">#=&gt; &quot;/path/to/app/log/media/a/b/c&quot;</span>
+<span class="ruby-constant">Media</span><span class="ruby-operator">::</span><span class="ruby-constant">A</span><span class="ruby-operator">::</span><span class="ruby-constant">B</span><span class="ruby-operator">::</span><span class="ruby-constant">C</span>.<span class="ruby-identifier">log_folder</span>(<span class="ruby-string">&#39;asd&#39;</span>) <span class="ruby-comment">#=&gt; &quot;/path/to/app/log/media/a/b/asd&quot;</span>
+</pre>
             </div>
           
           
@@ -110,7 +126,7 @@
                 
               </p>
               <div id="method-i-log_folder_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/logging.rb, line 17</span>
+                <pre><span class="ruby-comment"># File lib/media/logging.rb, line 33</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">log_folder</span>(<span class="ruby-identifier">folder_name</span> = <span class="ruby-keyword">nil</span>)
   <span class="ruby-identifier">nesting</span> = <span class="ruby-identifier">folder_name</span> <span class="ruby-operator">?</span> <span class="ruby-number">3</span> <span class="ruby-operator">:</span> <span class="ruby-number">4</span>
   <span class="ruby-identifier">log_folder_const</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;::&#39;</span>).<span class="ruby-identifier">take</span>(<span class="ruby-identifier">nesting</span>).<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;::&#39;</span>).<span class="ruby-identifier">underscore</span>

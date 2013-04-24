@@ -38,6 +38,13 @@
     <div id="bodyContent">
         <div id="content">
   
+    <div class="description">
+      
+<p><code>DelayedJob</code> job which sends the mail notifications of the
+errors occured</p>
+
+    </div>
+  
 
 
   
@@ -116,7 +123,7 @@
                 
               </p>
               <div id="method-i-perform_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/exception_notifier_job.rb, line 2</span>
+                <pre><span class="ruby-comment"># File lib/exception_notifier_job.rb, line 3</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">perform</span>
   <span class="ruby-constant">ExceptionNotifier</span><span class="ruby-operator">::</span><span class="ruby-constant">Notifier</span>.<span class="ruby-identifier">exception_notification</span>(<span class="ruby-identifier">env</span>, <span class="ruby-identifier">exception</span>).<span class="ruby-identifier">deliver</span>
 <span class="ruby-keyword">end</span></pre>

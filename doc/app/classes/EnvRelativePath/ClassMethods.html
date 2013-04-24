@@ -94,12 +94,7 @@
           
           
             <div class="description">
-              <p>Path scoped in a folder named `Rails.env` unless the env is production
-Example: <a
-href="ClassMethods.html#method-i-env_relative_path">#env_relative_path</a>(&#39;log/media/video/editing/conversions&#39;)</p>
-
-<pre>Rails.env == development: &#39;log/media/video/editing/conversions/development&#39;
-Rails.env == production:  &#39;log/media/video/editing/conversions&#39;</pre>
+              <p>See <a href="../EnvRelativePath.html">EnvRelativePath</a></p>
             </div>
           
           
@@ -115,7 +110,7 @@ Rails.env == production:  &#39;log/media/video/editing/conversions&#39;</pre>
                 
               </p>
               <div id="method-i-env_relative_path_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/env_relative_path.rb, line 7</span>
+                <pre><span class="ruby-comment"># File lib/env_relative_path.rb, line 16</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">env_relative_path</span>(*<span class="ruby-identifier">paths</span>)
   <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-constant">Rails</span>.<span class="ruby-identifier">env</span>.<span class="ruby-identifier">production?</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">paths</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">paths</span> <span class="ruby-operator">+</span> [<span class="ruby-constant">Rails</span>.<span class="ruby-identifier">env</span>])
 <span class="ruby-keyword">end</span></pre>

@@ -32,6 +32,13 @@
     <div id="bodyContent">
         <div id="content">
   
+    <div class="description">
+      
+<p>Included in both <a href="Audio.html">Audio</a> and <a
+href="Video.html">Video</a> models</p>
+
+    </div>
+  
 
 
   
@@ -98,7 +105,7 @@
           
             <tr valign='top'>
               <td>&nbsp;</td>
-              <td colspan="2" class="attr-desc"></td>
+              <td colspan="2" class="attr-desc"><p>Types of media model creation</p></td>
             </tr>
           
         
@@ -135,7 +142,32 @@
           
           
             <div class="description">
-              
+              <p>Set <a
+href="Shared/InstanceMethods.html#method-i-set_creation_mode">Media::Shared::InstanceMethods#set_creation_mode</a>
+as <code>before_create</code>, <a
+href="Shared/InstanceMethods.html#method-i-upload_or_copy">Media::Shared::InstanceMethods#upload_or_copy</a>
+as <code>after_save</code>, <a
+href="Shared/InstanceMethods.html#method-i-cannot_destroy_while_converting">Media::Shared::InstanceMethods#cannot_destroy_while_converting</a>
+as <code>before_destroy</code>, <a
+href="Shared/InstanceMethods.html#method-i-clean">Media::Shared::InstanceMethods#clean</a>
+as <code>after_destroy</code>, <a
+href="Shared/InstanceMethods.html#method-i-media_validation">Media::Shared::InstanceMethods#media_validation</a>
+as <code>validate</code> method</p>
+
+<p>Declares as <code>attr_accessor</code>:</p>
+<dl class="rdoc-list note-list"><dt>skip_conversion
+<dd>
+<p>skips the conversion processing</p>
+</dd><dt>rename_media
+<dd>
+<p>allows the renaming of a media</p>
+</dd><dt>composing
+<dd>
+<p>whether the media is going to be conmposed or not</p>
+</dd><dt>destroyable_even_if_not_converted
+<dd>
+<p>allows the destroying of a media even if it is set as not converted</p>
+</dd></dl>
             </div>
           
           
@@ -151,7 +183,7 @@
                 
               </p>
               <div id="method-c-included_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/shared.rb, line 81</span>
+                <pre><span class="ruby-comment"># File lib/media/shared.rb, line 106</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">included</span>(<span class="ruby-identifier">receiver</span>)
   <span class="ruby-identifier">receiver</span>.<span class="ruby-identifier">extend</span>         <span class="ruby-constant">ClassMethods</span>
   <span class="ruby-identifier">receiver</span>.<span class="ruby-identifier">send</span> <span class="ruby-value">:include</span>, <span class="ruby-constant">InstanceMethods</span>

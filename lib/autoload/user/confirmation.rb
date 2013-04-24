@@ -1,18 +1,25 @@
 require 'securerandom'
 
+# Provides the User confirmation logic
 module User::Confirmation
 
   module ClassMethods
+
+    # Generate a confirmation token by looping and ensuring does not already exist
     def generate_confirmation_token
-      # Generate a token by looping and ensuring does not already exist.
       loop do
         token = SecureRandom.urlsafe_base64(16)
         break token unless where(confirmation_token: token).first
       end
     end
 
+    # Searches for a user with a confirmation_token equals to the token arg; if found confirms it
+    #
+    # === Returns
+    #
+    # The matched user if found; +nil+ otherwise
     def confirm!(token)
-      user = User.active.not_confirmed.where(confirmation_token: token).first
+      user = active.not_confirmed.where(confirmation_token: token).first
       return nil unless user
       user.confirmed = true
       user.save
@@ -20,6 +27,7 @@ module User::Confirmation
   end
   
   module InstanceMethods
+    # If the user is confirmed deletes the confirmation_token attribute; sets it otherwise
     def confirmation_token!
       if confirmed?
         self.confirmation_token = nil
@@ -30,6 +38,7 @@ module User::Confirmation
     end
   end
   
+  # When included, sets User::Confirmation::InstanceMethods#confirmation_token! as +before_save+
   def self.included(receiver)
     receiver.extend         ClassMethods
     receiver.send :include, InstanceMethods

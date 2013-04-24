@@ -57,7 +57,7 @@ Otherwise you can proceed with the manual installation:
 1.  Install prerequirements and Ruby dependencies (on a Debian/Ubuntu system: <tt>git gcc make zlib1g-dev libyaml-dev libssl-dev libgdbm-dev libreadline-dev libncurses5-dev libffi-dev</tt>)
 2.  Install Ruby (possibly using {rbenv}[https://github.com/sstephenson/rbenv], {RVM}[https://rvm.io/], or {chruby}[https://github.com/postmodern/chruby])
 3.  Extract the DeSY copy into the destination path (it should be somewhere inside the home of the user which runs the app)
-4.  Install application dependencies (on a Debian/Ubuntu system: <tt>libpq-dev g++ libsqlite3-dev imagemagick libav-tools libavcodec-extra-53 mkvtoolnix sox</tt> - +libpq-dev version should be > 9.2)
+4.  Install application dependencies (on a Debian/Ubuntu system: <tt>libpq-dev g++ libsqlite3-dev imagemagick libav-tools libavcodec-extra-53 mkvtoolnix sox</tt> - <b>libpq-dev version should be >= 9.2</b>)
 5.  Install Bundler (<tt>gem install bundler</tt>)
 6.  +cd+ into the DeSY folder and install the bundle (<tt>bundle install --deployment --without development test irbtools</tt>)
 7.  Copy and customize as needed the following configuration files:
@@ -78,7 +78,7 @@ Otherwise you can proceed with the manual installation:
        * audio/ogg   ogg
 
     4. Configure Unicorn as application server (you can use +config/unicorn.init.d.example+ as init script and +config/unicorn.conf.example+ as service configuration, while +config/unicorn.rb.example+ as Unicorn processes configuration)
-    5. Install and configure PostgreSQL (version > 9.2)
+    5. Install and configure PostgreSQL (<b>PostgreSQL version should >= 9.2</b>)
 
     Otherwise, if it is a job server installation:
 
@@ -87,4 +87,4 @@ Otherwise you can proceed with the manual installation:
 
 == Configuration
 
-DeSY can be configured through the file +config/settings.yml+ (which must be created after the installation - see {Installation}[rdoc-label:label-Installation]).
+DeSY can be configured through the file +config/settings.yml+ (which must be created after the installation - see {Installation}[rdoc-label:label-Installation]). See the contents of the example file (+config/settings.yml.example+) for details.

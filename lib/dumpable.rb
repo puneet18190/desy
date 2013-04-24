@@ -1,4 +1,7 @@
+# Provides a methods to convert exceptions and hashes to dumpable objects, filtering the associated objects that are not <tt>marshal_dump</tt>able
 module Dumpable
+
+  # Provides a dumpable version of NoMethodError
   class NoMethodError < ::NoMethodError
     attr_reader :message, :name, :args, :backtrace
     def initialize(e)
@@ -12,6 +15,7 @@ module Dumpable
     end
   end
 
+  # converts an exception to a dumpable one
   def self.exception(e)
     case e
     when ::NoMethodError
@@ -33,6 +37,8 @@ module Dumpable
     end
   end
 
+  # converts an hash to a dumpable version of it
+  # XXX it's recursive so prone to a +stack level too deep+ error :-/ this is not Haskell!
   def self.hash(hash)
     Hash[ hash.map do |k, v|
       [ k,

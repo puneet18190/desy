@@ -38,6 +38,13 @@
     <div id="bodyContent">
         <div id="content">
   
+    <div class="description">
+      
+<p>Standard class of media errors. It can take an <code>Hash</code> of objects
+which will be logged with the error</p>
+
+    </div>
+  
 
 
   
@@ -54,6 +61,18 @@
     <!-- Method ref -->
     <div class="sectiontitle">Methods</div>
     <dl class="methods">
+      
+        <dt>D</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-data">data</a>
+              </li>
+            
+          </ul>
+        </dd>
       
         <dt>N</dt>
         <dd>
@@ -112,7 +131,15 @@
           
           
             <div class="description">
-              
+              <p>Construct a new Exception object, passing a message and optionally debug
+data</p>
+
+<h3 id="method-c-new-label-Args">Args</h3>
+<ul><li>
+<p><strong>msg</strong>: error message</p>
+</li><li>
+<p><strong>data</strong>: data useful for debugging</p>
+</li></ul>
             </div>
           
           
@@ -128,7 +155,7 @@
                 
               </p>
               <div id="method-c-new_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/error.rb, line 6</span>
+                <pre><span class="ruby-comment"># File lib/media/error.rb, line 14</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize</span>(<span class="ruby-identifier">msg</span>, <span class="ruby-identifier">data</span> = {})
   <span class="ruby-ivar">@msg</span>, <span class="ruby-ivar">@data</span> = <span class="ruby-identifier">msg</span>, <span class="ruby-identifier">data</span>
 <span class="ruby-keyword">end</span></pre>
@@ -149,7 +176,8 @@
           
           
             <div class="description">
-              
+              <p>The error message plus the data informations (taken calling <a
+href="Error.html#method-i-data">#data</a>)</p>
             </div>
           
           
@@ -165,9 +193,46 @@
                 
               </p>
               <div id="method-i-to_s_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/error.rb, line 10</span>
+                <pre><span class="ruby-comment"># File lib/media/error.rb, line 19</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">to_s</span>
   <span class="ruby-node">&quot;#{@msg}#{data}&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+              
+      <div class="sectiontitle">Instance Private methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-data">
+            
+              <b>data</b>()
+            
+            <a href="../../classes/Media/Error.html#method-i-data" name="method-i-data" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Formats <code>@data</code> for the error message</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-data_source')" id="l_method-i-data_source">show</a>
+                
+              </p>
+              <div id="method-i-data_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/media/error.rb, line 25</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">data</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-ivar">@data</span>.<span class="ruby-identifier">map</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>, <span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-node">&quot;\n  #{k}: #{v.is_a?(String) ? v : v.inspect}&quot;</span> }.<span class="ruby-identifier">join</span> <span class="ruby-string">&#39;&#39;</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>

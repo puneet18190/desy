@@ -61,6 +61,18 @@
           </ul>
         </dd>
       
+        <dt>R</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-reset_filename_token">reset_filename_token</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
     </dl>
   
 
@@ -94,7 +106,7 @@
           
           
             <div class="description">
-              
+              <p>Sets/retrieves the <code>@filename_token</code> instance variable</p>
             </div>
           
           
@@ -110,9 +122,46 @@
                 
               </p>
               <div id="method-i-filename_token_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/autoload/filename_token.rb, line 4</span>
+                <pre><span class="ruby-comment"># File lib/autoload/filename_token.rb, line 6</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">filename_token</span>
   <span class="ruby-ivar">@filename_token</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">SecureRandom</span>.<span class="ruby-identifier">urlsafe_base64</span>(<span class="ruby-number">16</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+              
+      <div class="sectiontitle">Instance Private methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-reset_filename_token">
+            
+              <b>reset_filename_token</b>()
+            
+            <a href="../../classes/FilenameToken/InstanceMethods.html#method-i-reset_filename_token" name="method-i-reset_filename_token" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Resets the <code>@filename_token</code> instance variable</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-reset_filename_token_source')" id="l_method-i-reset_filename_token_source">show</a>
+                
+              </p>
+              <div id="method-i-reset_filename_token_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/autoload/filename_token.rb, line 12</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">reset_filename_token</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-ivar">@filename_token</span> = <span class="ruby-keyword">nil</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>

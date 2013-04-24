@@ -32,6 +32,12 @@
     <div id="bodyContent">
         <div id="content">
   
+    <div class="description">
+      
+<p>Provides the <a href="../User.html">User</a> confirmation logic</p>
+
+    </div>
+  
 
 
   
@@ -110,7 +116,9 @@
           
           
             <div class="description">
-              
+              <p>When included, sets <a
+href="Confirmation/InstanceMethods.html#method-i-confirmation_token-21">User::Confirmation::InstanceMethods#confirmation_token!</a>
+as <code>before_save</code></p>
             </div>
           
           
@@ -126,7 +134,7 @@
                 
               </p>
               <div id="method-c-included_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/autoload/user/confirmation.rb, line 33</span>
+                <pre><span class="ruby-comment"># File lib/autoload/user/confirmation.rb, line 42</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">included</span>(<span class="ruby-identifier">receiver</span>)
   <span class="ruby-identifier">receiver</span>.<span class="ruby-identifier">extend</span>         <span class="ruby-constant">ClassMethods</span>
   <span class="ruby-identifier">receiver</span>.<span class="ruby-identifier">send</span> <span class="ruby-value">:include</span>, <span class="ruby-constant">InstanceMethods</span>

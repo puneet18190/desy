@@ -60,6 +60,11 @@
             
               
               <li>
+                <a href="#method-i-clean">clean</a>,
+              </li>
+            
+              
+              <li>
                 <a href="#method-i-composed-3F">composed?</a>
               </li>
             
@@ -78,6 +83,11 @@
               
               <li>
                 <a href="#method-i-media-3D">media=</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-media_validation">media_validation</a>,
               </li>
             
               
@@ -117,9 +127,26 @@
           </ul>
         </dd>
       
+        <dt>S</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-set_creation_mode">set_creation_mode</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
         <dt>U</dt>
         <dd>
           <ul>
+            
+              
+              <li>
+                <a href="#method-i-upload_or_copy">upload_or_copy</a>,
+              </li>
             
               
               <li>
@@ -162,7 +189,9 @@
           
           
             <div class="description">
-              
+              <p>Return <code>true</code> if the instance is set as
+<code>destroyable_even_if_not_converted</code> or if it is not in a
+conversion state</p>
             </div>
           
           
@@ -178,7 +207,7 @@
                 
               </p>
               <div id="method-i-cannot_destroy_while_converting_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/shared.rb, line 43</span>
+                <pre><span class="ruby-comment"># File lib/media/shared.rb, line 55</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">cannot_destroy_while_converting</span>
   <span class="ruby-identifier">destroyable_even_if_not_converted</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">converted?</span>
 <span class="ruby-keyword">end</span></pre>
@@ -197,7 +226,8 @@
           
           
             <div class="description">
-              
+              <p>Returns <code>true</code> if the model was created with a composing action,
+otherwise <code>false</code></p>
             </div>
           
           
@@ -213,7 +243,7 @@
                 
               </p>
               <div id="method-i-composed-3F_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/shared.rb, line 15</span>
+                <pre><span class="ruby-comment"># File lib/media/shared.rb, line 21</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">composed?</span>
   <span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">creation_mode</span> <span class="ruby-operator">==</span> <span class="ruby-constant">COMPOSED</span>
 <span class="ruby-keyword">end</span></pre>
@@ -232,7 +262,11 @@
           
           
             <div class="description">
-              
+              <p><a href="../../Media.html">Media</a> attribute getter; returns the media
+instance associated if present (either an instance of <a
+href="../Video/Uploader.html">Media::Video::Uploader</a> or <a
+href="../Audio/Uploader.html">Media::Audio::Uploader</a>), otherwise
+<code>nil</code></p>
             </div>
           
           
@@ -248,7 +282,7 @@
                 
               </p>
               <div id="method-i-media_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/shared.rb, line 23</span>
+                <pre><span class="ruby-comment"># File lib/media/shared.rb, line 31</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">media</span>
   <span class="ruby-ivar">@media</span> <span class="ruby-operator">||</span> ( 
     <span class="ruby-identifier">media</span> = <span class="ruby-identifier">read_attribute</span>(<span class="ruby-value">:media</span>)
@@ -270,7 +304,8 @@
           
           
             <div class="description">
-              
+              <p><a href="../../Media.html">Media</a> attribute setter; passes the supplied
+value to the relative class uploader</p>
             </div>
           
           
@@ -286,7 +321,7 @@
                 
               </p>
               <div id="method-i-media-3D_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/shared.rb, line 30</span>
+                <pre><span class="ruby-comment"># File lib/media/shared.rb, line 39</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">media=</span>(<span class="ruby-identifier">media</span>)
   <span class="ruby-ivar">@media</span> = <span class="ruby-identifier">write_attribute</span> <span class="ruby-value">:media</span>, (<span class="ruby-identifier">media</span>.<span class="ruby-identifier">present?</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span><span class="ruby-operator">::</span><span class="ruby-constant">UPLOADER</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">self</span>, <span class="ruby-value">:media</span>, <span class="ruby-identifier">media</span>) <span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -305,7 +340,8 @@
           
           
             <div class="description">
-              
+              <p>Returns <code>true</code> if the model has already been modified at least
+one time, otherwise <code>false</code></p>
             </div>
           
           
@@ -321,7 +357,7 @@
                 
               </p>
               <div id="method-i-modified-3F_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/shared.rb, line 19</span>
+                <pre><span class="ruby-comment"># File lib/media/shared.rb, line 26</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">modified?</span>
   <span class="ruby-identifier">created_at</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">updated_at</span>
 <span class="ruby-keyword">end</span></pre>
@@ -340,7 +376,7 @@
           
           
             <div class="description">
-              
+              <p>Prepare the record for the media overwriting operation</p>
             </div>
           
           
@@ -356,10 +392,10 @@
                 
               </p>
               <div id="method-i-overwrite-21_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/shared.rb, line 47</span>
+                <pre><span class="ruby-comment"># File lib/media/shared.rb, line 60</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">overwrite!</span>
-  <span class="ruby-comment"># tags non è un attributo, per cui non risulta tra i cambi; </span>
-  <span class="ruby-comment"># me lo prendo dall&#39;associazione taggings_tags, visto che non è cambiata</span>
+  <span class="ruby-comment"># tags is not an attribute, so it doesn&#39;t result in the changes; </span>
+  <span class="ruby-comment"># using taggings_tags that is not yet changed</span>
   <span class="ruby-identifier">old_fields</span> = <span class="ruby-constant">Hash</span>[ <span class="ruby-keyword">self</span>.<span class="ruby-identifier">changes</span>.<span class="ruby-identifier">map</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">col</span>, (<span class="ruby-identifier">old</span>)<span class="ruby-operator">|</span> [<span class="ruby-identifier">col</span>, <span class="ruby-identifier">old</span>] } <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-string">&#39;tags&#39;</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">taggings_tags</span>.<span class="ruby-identifier">map</span>(&amp;<span class="ruby-value">:word</span>).<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;, &#39;</span>)] ]
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">old_fields</span> = <span class="ruby-identifier">old_fields</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">converted</span> = <span class="ruby-keyword">false</span>
@@ -383,7 +419,7 @@
           
           
             <div class="description">
-              
+              <p>Reload the instance taking care of clearing instance variables</p>
             </div>
           
           
@@ -399,7 +435,7 @@
                 
               </p>
               <div id="method-i-reload_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/shared.rb, line 34</span>
+                <pre><span class="ruby-comment"># File lib/media/shared.rb, line 44</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">reload</span>
   <span class="ruby-ivar">@media</span> = <span class="ruby-ivar">@skip_conversion</span> = <span class="ruby-ivar">@rename_media</span> = <span class="ruby-keyword">nil</span>
   <span class="ruby-keyword">super</span>
@@ -419,7 +455,7 @@
           
           
             <div class="description">
-              
+              <p>Clear the <code>@media</code> instance variable</p>
             </div>
           
           
@@ -435,7 +471,7 @@
                 
               </p>
               <div id="method-i-reload_media_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/shared.rb, line 39</span>
+                <pre><span class="ruby-comment"># File lib/media/shared.rb, line 50</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">reload_media</span>
   <span class="ruby-ivar">@media</span> = <span class="ruby-keyword">nil</span>
 <span class="ruby-keyword">end</span></pre>
@@ -454,7 +490,8 @@
           
           
             <div class="description">
-              
+              <p>Returns <code>true</code> if the model was created with an upload action,
+otherwise <code>false</code></p>
             </div>
           
           
@@ -470,9 +507,155 @@
                 
               </p>
               <div id="method-i-uploaded-3F_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/shared.rb, line 11</span>
+                <pre><span class="ruby-comment"># File lib/media/shared.rb, line 16</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">uploaded?</span>
   <span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">creation_mode</span> <span class="ruby-operator">==</span> <span class="ruby-constant">UPLOADED</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+              
+      <div class="sectiontitle">Instance Private methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-clean">
+            
+              <b>clean</b>()
+            
+            <a href="../../../classes/Media/Shared/InstanceMethods.html#method-i-clean" name="method-i-clean" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Clean the media folder</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-clean_source')" id="l_method-i-clean_source">show</a>
+                
+              </p>
+              <div id="method-i-clean_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/media/shared.rb, line 91</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">clean</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-identifier">folder</span> = <span class="ruby-identifier">media</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:folder</span>)
+  <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">rm_rf</span> <span class="ruby-identifier">folder</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">folder</span>
+  <span class="ruby-keyword">true</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-media_validation">
+            
+              <b>media_validation</b>()
+            
+            <a href="../../../classes/Media/Shared/InstanceMethods.html#method-i-media_validation" name="method-i-media_validation" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Execute the media validation</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-media_validation_source')" id="l_method-i-media_validation_source">show</a>
+                
+              </p>
+              <div id="method-i-media_validation_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/media/shared.rb, line 80</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">media_validation</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-identifier">media</span>.<span class="ruby-identifier">validation</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">media</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-set_creation_mode">
+            
+              <b>set_creation_mode</b>()
+            
+            <a href="../../../classes/Media/Shared/InstanceMethods.html#method-i-set_creation_mode" name="method-i-set_creation_mode" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Set the creation mode</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-set_creation_mode_source')" id="l_method-i-set_creation_mode_source">show</a>
+                
+              </p>
+              <div id="method-i-set_creation_mode_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/media/shared.rb, line 74</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">set_creation_mode</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">creation_mode</span> = <span class="ruby-identifier">media</span>.<span class="ruby-identifier">present?</span> <span class="ruby-operator">?</span> <span class="ruby-constant">UPLOADED</span> <span class="ruby-operator">:</span> <span class="ruby-constant">COMPOSED</span>
+  <span class="ruby-keyword">true</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-upload_or_copy">
+            
+              <b>upload_or_copy</b>()
+            
+            <a href="../../../classes/Media/Shared/InstanceMethods.html#method-i-upload_or_copy" name="method-i-upload_or_copy" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Execute the media upload/copy operation</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-upload_or_copy_source')" id="l_method-i-upload_or_copy_source">show</a>
+                
+              </p>
+              <div id="method-i-upload_or_copy_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/media/shared.rb, line 85</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">upload_or_copy</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-identifier">media</span>.<span class="ruby-identifier">upload_or_copy</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">media</span>
+  <span class="ruby-keyword">true</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>

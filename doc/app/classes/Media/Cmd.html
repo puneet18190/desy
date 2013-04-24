@@ -42,6 +42,14 @@
     <div id="bodyContent">
         <div id="content">
   
+    <div class="description">
+      
+<p><a href="Cmd.html">Media::Cmd</a> is an interface for running shell
+commands using <a href="https://github.com/nulayer/subexec">Subexec</a>; it
+supports logging for <code>stdout</code> and <code>stderr</code></p>
+
+    </div>
+  
 
 
   
@@ -81,6 +89,11 @@
             
               
               <li>
+                <a href="#method-i-cmd">cmd</a>,
+              </li>
+            
+              
+              <li>
                 <a href="#method-i-cmd-21">cmd!</a>
               </li>
             
@@ -116,6 +129,18 @@
           </ul>
         </dd>
       
+        <dt>T</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-to_s">to_s</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
     </dl>
   
 
@@ -141,24 +166,8 @@
             <td class='attr-rw'>
               [R]
             </td>
-            <td class='attr-name'>cmd</td>
-            <td class='attr-desc'></td>
-          </tr>
-        
-          <tr valign='top'>
-            <td class='attr-rw'>
-              [R]
-            </td>
             <td class='attr-name'>subexec</td>
-            <td class='attr-desc'></td>
-          </tr>
-        
-          <tr valign='top'>
-            <td class='attr-rw'>
-              [R]
-            </td>
-            <td class='attr-name'>to_s</td>
-            <td class='attr-desc'></td>
+            <td class='attr-desc'><p><code>Subexec</code> instance returned by the execution</p></td>
           </tr>
         
       </table>
@@ -170,6 +179,46 @@
       <div class="sectiontitle">Instance Public methods</div>
       
         <div class="method">
+          <div class="title method-title" id="method-i-cmd">
+            
+              <b>cmd</b>()
+            
+            <a href="../../classes/Media/Cmd.html#method-i-cmd" name="method-i-cmd" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>the <code>@cmd</code> instance variable (sets it calling <a
+href="Cmd.html#method-i-cmd-21">#cmd!</a> if not yet set)</p>
+            </div>
+          
+          
+          
+            <div class="aka">
+              Also aliased as: <a href="Cmd.html#method-i-to_s">to_s</a>
+            </div>
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-cmd_source')" id="l_method-i-cmd_source">show</a>
+                
+              </p>
+              <div id="method-i-cmd_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/media/cmd.rb, line 46</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">cmd</span>
+  <span class="ruby-ivar">@cmd</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">cmd!</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
           <div class="title method-title" id="method-i-cmd-21">
             
               <b>cmd!</b>()
@@ -179,7 +228,7 @@
           
           
             <div class="description">
-              
+              <p>The command string</p>
             </div>
           
           
@@ -195,7 +244,7 @@
                 
               </p>
               <div id="method-i-cmd-21_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/cmd.rb, line 34</span>
+                <pre><span class="ruby-comment"># File lib/media/cmd.rb, line 54</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">cmd!</span>
   <span class="ruby-string">&#39;&#39;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -214,7 +263,8 @@
           
           
             <div class="description">
-              
+              <p>Returns the exit status of the last execution (<code>nil</code> if not
+executed)</p>
             </div>
           
           
@@ -230,7 +280,7 @@
                 
               </p>
               <div id="method-i-exitstatus_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/cmd.rb, line 25</span>
+                <pre><span class="ruby-comment"># File lib/media/cmd.rb, line 41</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">exitstatus</span>
   <span class="ruby-identifier">subexec</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:exitstatus</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -249,7 +299,22 @@
           
           
             <div class="description">
-              
+              <p>It runs the supplied command, logging</p>
+
+<h3 id="method-i-run-label-Args">Args</h3>
+<ul><li>
+<p><strong>stdout</strong>: a valid <code>Subexec</code> value for stdout
+logging; if <code>:dev_null</code> discards the output. Defaults to
+<code>:dev_null</code></p>
+</li><li>
+<p><strong>stderr</strong>: a valid <code>Subexec</code> value for stderr
+logging; if <code>:dev_null</code> discards the output. Defaults to
+<code>:dev_null</code></p>
+</li></ul>
+
+<h3 id="method-i-run-label-Returns">Returns</h3>
+
+<p>The executed <code>Subexec</code> instance</p>
             </div>
           
           
@@ -265,7 +330,7 @@
                 
               </p>
               <div id="method-i-run_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/cmd.rb, line 11</span>
+                <pre><span class="ruby-comment"># File lib/media/cmd.rb, line 25</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">run</span>(<span class="ruby-identifier">stdout</span> = <span class="ruby-value">:dev_null</span>, <span class="ruby-identifier">stderr</span> = <span class="ruby-value">:dev_null</span>)
   <span class="ruby-identifier">stdout</span> = <span class="ruby-node">%w(/dev/null w)</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">stdout</span> <span class="ruby-operator">==</span> <span class="ruby-value">:dev_null</span>
   <span class="ruby-identifier">stderr</span> = <span class="ruby-node">%w(/dev/null w)</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">stderr</span> <span class="ruby-operator">==</span> <span class="ruby-value">:dev_null</span>
@@ -289,7 +354,8 @@
           
           
             <div class="description">
-              
+              <p>As <a href="Cmd.html#method-i-run">#run</a>, but raises a <a
+href="Error.html">Media::Error</a> if the command execution fails</p>
             </div>
           
           
@@ -305,7 +371,7 @@
                 
               </p>
               <div id="method-i-run-21_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/cmd.rb, line 20</span>
+                <pre><span class="ruby-comment"># File lib/media/cmd.rb, line 35</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">run!</span>(<span class="ruby-identifier">stdout</span> = <span class="ruby-value">:dev_null</span>, <span class="ruby-identifier">stderr</span> = <span class="ruby-value">:dev_null</span>)
   <span class="ruby-identifier">run</span>(<span class="ruby-identifier">stdout</span>, <span class="ruby-identifier">stderr</span>)
   <span class="ruby-identifier">raise</span> <span class="ruby-constant">Error</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;command failed&#39;</span>, <span class="ruby-identifier">cmd</span><span class="ruby-operator">:</span> <span class="ruby-identifier">cmd</span>, <span class="ruby-identifier">exitstatus</span><span class="ruby-operator">:</span> <span class="ruby-identifier">exitstatus</span>, <span class="ruby-identifier">output</span><span class="ruby-operator">:</span> <span class="ruby-identifier">subexec</span>.<span class="ruby-identifier">output</span>, <span class="ruby-identifier">stdout</span><span class="ruby-operator">:</span> <span class="ruby-identifier">stdout</span>, <span class="ruby-identifier">stderr</span><span class="ruby-operator">:</span> <span class="ruby-identifier">stderr</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">exitstatus</span> <span class="ruby-operator">!=</span> <span class="ruby-number">0</span>
@@ -313,6 +379,25 @@
               </div>
             </div>
             
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-to_s">
+            
+              <b>to_s</b>()
+            
+            <a href="../../classes/Media/Cmd.html#method-i-to_s" name="method-i-to_s" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>alias to <a href="Cmd.html#method-i-cmd">#cmd</a></p>
+            </div>
+          
+          
+          
+          
+          
           </div>
                     </div>
 

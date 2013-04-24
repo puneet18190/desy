@@ -32,6 +32,12 @@
     <div id="bodyContent">
         <div id="content">
   
+    <div class="description">
+      
+<p>Provides support for instance- and/or thread-relative logging</p>
+
+    </div>
+  
 
 
   
@@ -129,7 +135,7 @@
           
             <tr valign='top'>
               <td>&nbsp;</td>
-              <td colspan="2" class="attr-desc"></td>
+              <td colspan="2" class="attr-desc"><p>Filename of the stdout log</p></td>
             </tr>
           
         
@@ -141,7 +147,7 @@
           
             <tr valign='top'>
               <td>&nbsp;</td>
-              <td colspan="2" class="attr-desc"></td>
+              <td colspan="2" class="attr-desc"><p>Filename of the stderr log</p></td>
             </tr>
           
         
@@ -166,7 +172,8 @@
           
           
             <div class="description">
-              
+              <p>The modules which include this module will include <a
+href="../EnvRelativePath.html">EnvRelativePath</a> too</p>
             </div>
           
           
@@ -182,7 +189,7 @@
                 
               </p>
               <div id="method-c-included_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/logging.rb, line 72</span>
+                <pre><span class="ruby-comment"># File lib/media/logging.rb, line 97</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">included</span>(<span class="ruby-identifier">receiver</span>)
   <span class="ruby-identifier">receiver</span>.<span class="ruby-identifier">extend</span>         <span class="ruby-constant">ClassMethods</span>
   <span class="ruby-identifier">receiver</span>.<span class="ruby-identifier">send</span> <span class="ruby-value">:include</span>, <span class="ruby-constant">EnvRelativePath</span>
@@ -203,7 +210,7 @@
           
           
             <div class="description">
-              
+              <p>Remove the log folder</p>
             </div>
           
           
@@ -219,7 +226,7 @@
                 
               </p>
               <div id="method-c-remove_folder-21_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/logging.rb, line 12</span>
+                <pre><span class="ruby-comment"># File lib/media/logging.rb, line 17</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">remove_folder!</span>
   <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">rm_rf</span> <span class="ruby-constant">Rails</span>.<span class="ruby-identifier">root</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;log&#39;</span>, <span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;::&#39;</span>).<span class="ruby-identifier">take</span>(<span class="ruby-number">1</span>).<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;::&#39;</span>).<span class="ruby-identifier">underscore</span>).<span class="ruby-identifier">to_s</span>
 <span class="ruby-keyword">end</span></pre>

@@ -23,7 +23,7 @@
         </h1>
         <ul class="files">
             <li>doc/README.rdoc</li>
-            <li>Last modified: 2013-04-23 15:46:09 +0200</li>
+            <li>Last modified: 2013-04-23 16:02:34 +0200</li>
         </ul>
     </div>
 
@@ -150,8 +150,8 @@ inside the home of the user which runs the app)</p>
 </li><li>
 <p>Install application dependencies (on a Debian/Ubuntu system:
 <code>libpq-dev g++ libsqlite3-dev imagemagick libav-tools
-libavcodec-extra-53 mkvtoolnix sox</code> - +libpq-dev version should be
-&gt; 9.2)</p>
+libavcodec-extra-53 mkvtoolnix sox</code> - <strong>libpq-dev version
+should be &gt;= 9.2</strong>)</p>
 </li><li>
 <p>Install Bundler (<code>gem install bundler</code>)</p>
 </li><li>
@@ -193,6 +193,9 @@ for the DeSY site configuration file):</p>
 <code>config/unicorn.init.d.example</code> as init script and
 <code>config/unicorn.conf.example</code> as service configuration, while
 <code>config/unicorn.rb.example</code> as Unicorn processes configuration)</p>
+</li><li>
+<p>Install and configure PostgreSQL (<strong>PostgreSQL version should &gt;=
+9.2</strong>)</p>
 </li></ol>
 
 <p>Otherwise, if it is a job server installation:</p>
@@ -210,7 +213,8 @@ for the DeSY site configuration file):</p>
 
 <p>DeSY can be configured through the file <code>config/settings.yml</code>
 (which must be created after the installation - see <a
-href="#label-Installation">Installation</a></p>
+href="#label-Installation">Installation</a> See the contents of the example
+file (<code>config/settings.yml.example</code>) for details.</p>
 
     </div>
   

@@ -38,6 +38,14 @@
     <div id="bodyContent">
         <div id="content">
   
+    <div class="description">
+      
+<p>Child of Thread class which raises an exception if an error occurs and
+releases the database connection at the begin or at the end of the
+execution</p>
+
+    </div>
+  
 
 
   
@@ -105,7 +113,8 @@
           
             <tr valign='top'>
               <td>&nbsp;</td>
-              <td colspan="2" class="attr-desc"></td>
+              <td colspan="2" class="attr-desc"><p>Number of the maximum database pools (taken from the database
+configuration)</p></td>
             </tr>
           
         
@@ -117,7 +126,7 @@
           
             <tr valign='top'>
               <td>&nbsp;</td>
-              <td colspan="2" class="attr-desc"></td>
+              <td colspan="2" class="attr-desc"><p>Minimum amount of execution threads</p></td>
             </tr>
           
         
@@ -129,7 +138,8 @@
           
             <tr valign='top'>
               <td>&nbsp;</td>
-              <td colspan="2" class="attr-desc"></td>
+              <td colspan="2" class="attr-desc"><p>Maximum amount of execution threads (corresponding to the number of
+processors * 2)</p></td>
             </tr>
           
         
@@ -146,7 +156,7 @@ end
           
             <tr valign='top'>
               <td>&nbsp;</td>
-              <td colspan="2" class="attr-desc"></td>
+              <td colspan="2" class="attr-desc"><p>proc used in order to close the database connection</p></td>
             </tr>
           
         
@@ -171,7 +181,24 @@ end
           
           
             <div class="description">
-              
+              <h3 id="method-c-join-label-Description">Description</h3>
+
+<p>Executes each of the passed <code>proc</code> arguments in an <a
+href="EnhancedThread.html">EnhancedThread</a> instance, caring the amount
+of threads executed in parallel to not exceed the amount of the database
+pools (which would cause an error)</p>
+
+<h3 id="method-c-join-label-Args">Args</h3>
+<ul><li>
+<p><strong>*thread_blocks</strong>: the procs which will be executed</p>
+</li><li>
+<p><strong>close_connection_before_execution:</strong> see <a
+href="EnhancedThread.html#method-c-new">::new</a></p>
+</li></ul>
+
+<h3 id="method-c-join-label-Example">Example</h3>
+
+<pre>EnhancedThread.join(proc{ puts &#39;thread 1&#39; }, proc{ puts &#39;thread 2&#39; }, proc{ puts &#39;thread 3&#39; }, close_connection_before_execution: true)</pre>
             </div>
           
           
@@ -187,7 +214,7 @@ end
                 
               </p>
               <div id="method-c-join_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/autoload/enhanced_thread.rb, line 13</span>
+                <pre><span class="ruby-comment"># File lib/autoload/enhanced_thread.rb, line 30</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">join</span>(*<span class="ruby-identifier">thread_blocks</span>, <span class="ruby-identifier">close_connection_before_execution</span><span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>)
   <span class="ruby-identifier">n</span> = <span class="ruby-constant">DATABASE_POOL</span><span class="ruby-operator">-</span><span class="ruby-constant">Thread</span>.<span class="ruby-identifier">list</span>.<span class="ruby-identifier">count</span>
 
@@ -220,7 +247,22 @@ end
           
           
             <div class="description">
-              
+              <h3 id="method-c-new-label-Description">Description</h3>
+
+<p>Creates a new <a href="EnhancedThread.html">EnhancedThread</a> instance</p>
+
+<h3 id="method-c-new-label-Args">Args</h3>
+<ul><li>
+<p><strong>close_connection_before_execution</strong>: if <code>false</code>
+closes the database connection before the thread execution, otherwise
+after; defaults to <code>false</code></p>
+</li></ul>
+
+<h3 id="method-c-new-label-Example">Example</h3>
+
+<pre>EnhancedThread.new        { User.first } # works, since the database connection gets closed after of the execution
+EnhancedThread.new(false) { User.first } # same as above
+EnhancedThread.new(true)  { User.first } # raises an error</pre>
             </div>
           
           
@@ -236,7 +278,7 @@ end
                 
               </p>
               <div id="method-c-new_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/autoload/enhanced_thread.rb, line 31</span>
+                <pre><span class="ruby-comment"># File lib/autoload/enhanced_thread.rb, line 61</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize</span>(<span class="ruby-identifier">close_connection_before_execution</span> = <span class="ruby-keyword">false</span>, &amp;<span class="ruby-identifier">block</span>)
   <span class="ruby-identifier">thread_block</span> = 
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">close_connection_before_execution</span>

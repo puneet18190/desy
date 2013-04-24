@@ -32,6 +32,12 @@
     <div id="bodyContent">
         <div id="content">
   
+    <div class="description">
+      
+<p>Provides the <a href="../User.html">User</a> authentication logic</p>
+
+    </div>
+  
 
 
   
@@ -103,7 +109,7 @@
           
             <tr valign='top'>
               <td>&nbsp;</td>
-              <td colspan="2" class="attr-desc"></td>
+              <td colspan="2" class="attr-desc"><p>Path to the file which contains the pepper key</p></td>
             </tr>
           
         
@@ -121,7 +127,7 @@ SecureRandom.hex(64).tap{ |token| PEPPER_PATH.open(&#x27;w&#x27;){ |io| io.write
           
             <tr valign='top'>
               <td>&nbsp;</td>
-              <td colspan="2" class="attr-desc"></td>
+              <td colspan="2" class="attr-desc"><p>Pepper key</p></td>
             </tr>
           
         
@@ -133,7 +139,7 @@ SecureRandom.hex(64).tap{ |token| PEPPER_PATH.open(&#x27;w&#x27;){ |io| io.write
           
             <tr valign='top'>
               <td>&nbsp;</td>
-              <td colspan="2" class="attr-desc"></td>
+              <td colspan="2" class="attr-desc"><p>BCrypt processing cost</p></td>
             </tr>
           
         
@@ -158,7 +164,11 @@ SecureRandom.hex(64).tap{ |token| PEPPER_PATH.open(&#x27;w&#x27;){ |io| io.write
           
           
             <div class="description">
-              
+              <p>When included, sets <a
+href="Authentication/InstanceMethods.html#method-i-encrypt_password">User::Authentication::InstanceMethods#encrypt_password</a>
+as <code>before_save</code> and <a
+href="Authentication/InstanceMethods.html#method-i-clear_password_and_password_confirmation">User::Authentication::InstanceMethods#clear_password_and_password_confirmation</a>
+as <code>after_save</code></p>
             </div>
           
           
@@ -174,7 +184,7 @@ SecureRandom.hex(64).tap{ |token| PEPPER_PATH.open(&#x27;w&#x27;){ |io| io.write
                 
               </p>
               <div id="method-c-included_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/autoload/user/authentication.rb, line 55</span>
+                <pre><span class="ruby-comment"># File lib/autoload/user/authentication.rb, line 77</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">included</span>(<span class="ruby-identifier">receiver</span>)
   <span class="ruby-identifier">receiver</span>.<span class="ruby-identifier">extend</span>         <span class="ruby-constant">ClassMethods</span>
   <span class="ruby-identifier">receiver</span>.<span class="ruby-identifier">send</span> <span class="ruby-value">:include</span>, <span class="ruby-constant">InstanceMethods</span>

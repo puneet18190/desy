@@ -38,6 +38,13 @@
     <div id="bodyContent">
         <div id="content">
   
+    <div class="description">
+      
+<p>Provides informations about media files parsing the output of
+<code>avprobe</code></p>
+
+    </div>
+  
 
 
   
@@ -86,6 +93,18 @@
               
               <li>
                 <a href="#method-c-new">new</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>P</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-parse_video_stream">parse_video_stream</a>
               </li>
             
           </ul>
@@ -177,7 +196,7 @@
           
             <tr valign='top'>
               <td>&nbsp;</td>
-              <td colspan="2" class="attr-desc"></td>
+              <td colspan="2" class="attr-desc"><p>Regular expression for media duration matching</p></td>
             </tr>
           
         
@@ -189,7 +208,7 @@
           
             <tr valign='top'>
               <td>&nbsp;</td>
-              <td colspan="2" class="attr-desc"></td>
+              <td colspan="2" class="attr-desc"><p>Supported stream types</p></td>
             </tr>
           
         
@@ -201,7 +220,7 @@
           
             <tr valign='top'>
               <td>&nbsp;</td>
-              <td colspan="2" class="attr-desc"></td>
+              <td colspan="2" class="attr-desc"><p>Regular expression for stream infos matching</p></td>
             </tr>
           
         
@@ -213,7 +232,7 @@
           
             <tr valign='top'>
               <td>&nbsp;</td>
-              <td colspan="2" class="attr-desc"></td>
+              <td colspan="2" class="attr-desc"><p>Regular expression for the codecs matching</p></td>
             </tr>
           
         
@@ -225,7 +244,7 @@
           
             <tr valign='top'>
               <td>&nbsp;</td>
-              <td colspan="2" class="attr-desc"></td>
+              <td colspan="2" class="attr-desc"><p>Regular expression for bitrates matching</p></td>
             </tr>
           
         
@@ -237,7 +256,7 @@
           
             <tr valign='top'>
               <td>&nbsp;</td>
-              <td colspan="2" class="attr-desc"></td>
+              <td colspan="2" class="attr-desc"><p>Regular expression for video sizes matching</p></td>
             </tr>
           
         
@@ -249,7 +268,8 @@
           
             <tr valign='top'>
               <td>&nbsp;</td>
-              <td colspan="2" class="attr-desc"></td>
+              <td colspan="2" class="attr-desc"><p>Maximum difference of duration between the generated videos (if exceeded
+two medias are considered different)</p></td>
             </tr>
           
         
@@ -261,7 +281,8 @@
           
             <tr valign='top'>
               <td>&nbsp;</td>
-              <td colspan="2" class="attr-desc"></td>
+              <td colspan="2" class="attr-desc"><p>Maximum difference of bitrate between the generated videos (if exceeded two
+medias are considered different)</p></td>
             </tr>
           
         
@@ -279,7 +300,7 @@
               [R]
             </td>
             <td class='attr-name'>path</td>
-            <td class='attr-desc'></td>
+            <td class='attr-desc'><p>Supplied path to the media file</p></td>
           </tr>
         
       </table>
@@ -300,7 +321,14 @@
           
           
             <div class="description">
-              
+              <h3 id="method-c-new-label-Args">Args</h3>
+<ul><li>
+<p><strong>path</strong>: path to a media file</p>
+</li><li>
+<p><strong>raise_if_invalid</strong>: if <code>true</code>, raises a <a
+href="Error.html">Media::Error</a> when <code>avprobe</code> doesn&#39;t
+consider the supplied media valid</p>
+</li></ul>
             </div>
           
           
@@ -316,7 +344,7 @@
                 
               </p>
               <div id="method-c-new_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/info.rb, line 22</span>
+                <pre><span class="ruby-comment"># File lib/media/info.rb, line 37</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">raise_if_invalid</span> = <span class="ruby-keyword">true</span>)
   <span class="ruby-ivar">@path</span>      = <span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span> <span class="ruby-identifier">path</span>
   <span class="ruby-ivar">@cmd</span>       = <span class="ruby-constant">Cmd</span><span class="ruby-operator">::</span><span class="ruby-constant">Avprobe</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">path</span>)
@@ -348,7 +376,8 @@
           
           
             <div class="description">
-              
+              <p>Returns an array containing the audio streams infos when the media is
+valid, <code>nil</code> otherwise</p>
             </div>
           
           
@@ -364,7 +393,7 @@
                 
               </p>
               <div id="method-i-audio_streams_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/info.rb, line 123</span>
+                <pre><span class="ruby-comment"># File lib/media/info.rb, line 154</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">audio_streams</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">valid?</span>
 
@@ -385,7 +414,8 @@
           
           
             <div class="description">
-              
+              <p>Returns the media duration (in seconds) when the media is valid,
+<code>nil</code> otherwise</p>
             </div>
           
           
@@ -401,7 +431,7 @@
                 
               </p>
               <div id="method-i-duration_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/info.rb, line 68</span>
+                <pre><span class="ruby-comment"># File lib/media/info.rb, line 96</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">duration</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">valid?</span>
 
@@ -432,7 +462,24 @@
           
           
             <div class="description">
-              
+              <p>Compares two media info hashes (should be retrieved using <a
+href="Info.html#method-i-to_hash">#to_hash</a>), returning
+<code>true</code> if they are considered similar, <code>false</code>
+otherwise</p>
+
+<h3 id="method-i-similar_to-3F-label-Args">Args</h3>
+<ul><li>
+<p><strong>other_infos_hash</strong>: hash of another media file infos</p>
+</li><li>
+<p><strong>ignore_bitrate</strong>: when <code>true</code> the bitrates are
+not compared</p>
+</li></ul>
+
+<h3 id="method-i-similar_to-3F-label-Examples">Examples</h3>
+
+<pre class="ruby"><span class="ruby-constant">Media</span><span class="ruby-operator">::</span><span class="ruby-constant">Info</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;video1.webm&#39;</span>).<span class="ruby-identifier">similar_to?</span> <span class="ruby-constant">Media</span><span class="ruby-operator">::</span><span class="ruby-constant">Info</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;video1.webm&#39;</span>).<span class="ruby-identifier">to_hash</span> <span class="ruby-comment">#=&gt; true</span>
+<span class="ruby-constant">Media</span><span class="ruby-operator">::</span><span class="ruby-constant">Info</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;video1.webm&#39;</span>).<span class="ruby-identifier">similar_to?</span> <span class="ruby-constant">Media</span><span class="ruby-operator">::</span><span class="ruby-constant">Info</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;video1.mp4&#39;</span>).<span class="ruby-identifier">to_hash</span>  <span class="ruby-comment">#=&gt; false</span>
+</pre>
             </div>
           
           
@@ -448,7 +495,7 @@
                 
               </p>
               <div id="method-i-similar_to-3F_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/info.rb, line 41</span>
+                <pre><span class="ruby-comment"># File lib/media/info.rb, line 68</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">similar_to?</span>(<span class="ruby-identifier">other_infos_hash</span>, <span class="ruby-identifier">ignore_bitrate</span> = <span class="ruby-keyword">false</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">other_infos_hash</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hash</span>)
 
@@ -490,23 +537,8 @@
           
           
             <div class="description">
-              <p>Il parsing delle informazioni degli streams è un po&#39; complesso: da un
-input di questo tipo</p>
-
-<pre>Stream #0.0: Video: h264 (Main), yuv420p, 320x240, 445 kb/s, 29.97 tbr, 1k tbn, 59.94 tbc
-Stream #0.1: Audio: aac, 44100 Hz, mono, s16, 78 kb/s</pre>
-
-<p>Devo ottenere un output di questo tipo:</p>
-
-<pre class="ruby">{
-  :<span class="ruby-identifier">video</span> =<span class="ruby-operator">&gt;</span> { 
-    [ { <span class="ruby-identifier">codec</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;h264&#39;</span>, <span class="ruby-identifier">bitrate</span><span class="ruby-operator">:</span> <span class="ruby-value">445</span> } ]
-  },
-  :<span class="ruby-identifier">audio</span> =<span class="ruby-operator">&gt;</span> {
-    [ { <span class="ruby-identifier">codec</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;aac&#39;</span>, <span class="ruby-identifier">bitrate</span><span class="ruby-operator">:</span> <span class="ruby-value">78</span> } ]
-  }
-}
-</pre>
+              <p>Returns an hash containing the streams infos when the media is valid,
+<code>nil</code> otherwise</p>
             </div>
           
           
@@ -522,10 +554,25 @@ Stream #0.1: Audio: aac, 44100 Hz, mono, s16, 78 kb/s</pre>
                 
               </p>
               <div id="method-i-streams_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/info.rb, line 99</span>
+                <pre><span class="ruby-comment"># File lib/media/info.rb, line 113</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">streams</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">valid?</span>
 
+  <span class="ruby-comment"># The streams infos parsing is a bit tricky: from an input like this</span>
+  <span class="ruby-comment">#</span>
+  <span class="ruby-comment">#     Stream #0.0: Video: h264 (Main), yuv420p, 320x240, 445 kb/s, 29.97 tbr, 1k tbn, 59.94 tbc</span>
+  <span class="ruby-comment">#     Stream #0.1: Audio: aac, 44100 Hz, mono, s16, 78 kb/s</span>
+  <span class="ruby-comment">#</span>
+  <span class="ruby-comment"># I need to obtain an output like this:</span>
+  <span class="ruby-comment">#</span>
+  <span class="ruby-comment">#     {</span>
+  <span class="ruby-comment">#       :video =&gt; { </span>
+  <span class="ruby-comment">#         [ { codec: &#39;h264&#39;, bitrate: 445 } ]</span>
+  <span class="ruby-comment">#       },</span>
+  <span class="ruby-comment">#       :audio =&gt; {</span>
+  <span class="ruby-comment">#         [ { codec: &#39;aac&#39;, bitrate: 78 } ]</span>
+  <span class="ruby-comment">#       }</span>
+  <span class="ruby-comment">#     }</span>
   <span class="ruby-ivar">@streams</span> <span class="ruby-operator">||=</span>
     {}.<span class="ruby-identifier">tap</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">streams</span><span class="ruby-operator">|</span>
       <span class="ruby-constant">STREAMS</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">stream_type</span><span class="ruby-operator">|</span>
@@ -555,7 +602,8 @@ Stream #0.1: Audio: aac, 44100 Hz, mono, s16, 78 kb/s</pre>
           
           
             <div class="description">
-              
+              <p>Returns an hash with the media infos when the media is valid,
+<code>nil</code> otherwise</p>
             </div>
           
           
@@ -571,7 +619,7 @@ Stream #0.1: Audio: aac, 44100 Hz, mono, s16, 78 kb/s</pre>
                 
               </p>
               <div id="method-i-to_hash_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/info.rb, line 129</span>
+                <pre><span class="ruby-comment"># File lib/media/info.rb, line 161</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">to_hash</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">valid?</span>
   
@@ -592,7 +640,7 @@ Stream #0.1: Audio: aac, 44100 Hz, mono, s16, 78 kb/s</pre>
           
           
             <div class="description">
-              
+              <p><code>true</code> if the media is valid, <code>false</code> otherwise</p>
             </div>
           
           
@@ -608,7 +656,7 @@ Stream #0.1: Audio: aac, 44100 Hz, mono, s16, 78 kb/s</pre>
                 
               </p>
               <div id="method-i-valid-3F_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/info.rb, line 37</span>
+                <pre><span class="ruby-comment"># File lib/media/info.rb, line 53</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">valid?</span>
   <span class="ruby-keyword">not</span> <span class="ruby-ivar">@invalid</span>
 <span class="ruby-keyword">end</span></pre>
@@ -627,7 +675,8 @@ Stream #0.1: Audio: aac, 44100 Hz, mono, s16, 78 kb/s</pre>
           
           
             <div class="description">
-              
+              <p>Returns an array containing the video streams infos when the media is
+valid, <code>nil</code> otherwise</p>
             </div>
           
           
@@ -643,11 +692,62 @@ Stream #0.1: Audio: aac, 44100 Hz, mono, s16, 78 kb/s</pre>
                 
               </p>
               <div id="method-i-video_streams_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/info.rb, line 117</span>
+                <pre><span class="ruby-comment"># File lib/media/info.rb, line 147</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">video_streams</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">valid?</span>
 
   <span class="ruby-identifier">streams</span>[<span class="ruby-value">:video</span>]
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+              
+      <div class="sectiontitle">Instance Private methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-parse_video_stream">
+            
+              <b>parse_video_stream</b>(scan_data)
+            
+            <a href="../../classes/Media/Info.html#method-i-parse_video_stream" name="method-i-parse_video_stream" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Used by <a href="Info.html#method-i-streams">#streams</a>, processes the
+video streams parsing in order to return the infos</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-parse_video_stream_source')" id="l_method-i-parse_video_stream_source">show</a>
+                
+              </p>
+              <div id="method-i-parse_video_stream_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/media/info.rb, line 169</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">parse_video_stream</span>(<span class="ruby-identifier">scan_data</span>) <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-identifier">stream_data</span> = <span class="ruby-identifier">scan_data</span>[<span class="ruby-number">0</span>]
+
+  <span class="ruby-identifier">codec_match</span>   = <span class="ruby-identifier">stream_data</span>.<span class="ruby-identifier">match</span> <span class="ruby-constant">CODEC_MATCH_REGEX</span>
+  <span class="ruby-identifier">sizes_match</span>   = <span class="ruby-identifier">stream_data</span>.<span class="ruby-identifier">match</span> <span class="ruby-constant">SIZES_MATCH_REGEX</span>
+  <span class="ruby-identifier">bitrate_match</span> = <span class="ruby-identifier">stream_data</span>.<span class="ruby-identifier">match</span> <span class="ruby-constant">BITRATE_MATCH_REGEX</span>
+
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">sizes_match</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">Error</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;not parsable video sizes&#39;</span>, <span class="ruby-identifier">cmd</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@cmd</span>, <span class="ruby-identifier">output</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@output</span>)
+  <span class="ruby-keyword">end</span>
+
+  { <span class="ruby-identifier">codec</span><span class="ruby-operator">:</span>     <span class="ruby-identifier">codec_match</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:[]</span>, <span class="ruby-value">:codec</span>  ),
+    <span class="ruby-identifier">width</span><span class="ruby-operator">:</span>     <span class="ruby-identifier">sizes_match</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:[]</span>, <span class="ruby-value">:width</span>  ).<span class="ruby-identifier">try</span>(<span class="ruby-value">:to_i</span>),
+    <span class="ruby-identifier">height</span><span class="ruby-operator">:</span>    <span class="ruby-identifier">sizes_match</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:[]</span>, <span class="ruby-value">:height</span> ).<span class="ruby-identifier">try</span>(<span class="ruby-value">:to_i</span>),
+    <span class="ruby-identifier">bitrate</span><span class="ruby-operator">:</span> <span class="ruby-identifier">bitrate_match</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:[]</span>, <span class="ruby-value">:bitrate</span>).<span class="ruby-identifier">try</span>(<span class="ruby-value">:to_i</span>)  }
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>

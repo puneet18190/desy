@@ -38,6 +38,12 @@
     <div id="bodyContent">
         <div id="content">
   
+    <div class="description">
+      
+<p><code>DelayedJob</code> job which sends the user web notifications</p>
+
+    </div>
+  
 
 
   
@@ -116,7 +122,7 @@
                 
               </p>
               <div id="method-i-perform_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/notifications_job.rb, line 4</span>
+                <pre><span class="ruby-comment"># File lib/notifications_job.rb, line 5</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">perform</span>
   <span class="ruby-identifier">user_ids</span>.<span class="ruby-identifier">each</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">id</span><span class="ruby-operator">|</span> <span class="ruby-constant">Notification</span>.<span class="ruby-identifier">send_to</span>(<span class="ruby-identifier">id</span>, <span class="ruby-identifier">message</span>) }
 <span class="ruby-keyword">end</span></pre>

@@ -38,6 +38,13 @@
     <div id="bodyContent">
         <div id="content">
   
+    <div class="description">
+      
+<p>Provides a dumpable version of <a
+href="NoMethodError.html">NoMethodError</a></p>
+
+    </div>
+  
 
 
   
@@ -166,7 +173,7 @@
                 
               </p>
               <div id="method-c-new_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/dumpable.rb, line 4</span>
+                <pre><span class="ruby-comment"># File lib/dumpable.rb, line 7</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize</span>(<span class="ruby-identifier">e</span>)
   <span class="ruby-ivar">@message</span>, <span class="ruby-ivar">@name</span>, <span class="ruby-ivar">@args</span>, <span class="ruby-ivar">@backtrace</span> = <span class="ruby-identifier">e</span>.<span class="ruby-identifier">message</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-identifier">e</span>.<span class="ruby-identifier">name</span>, <span class="ruby-identifier">e</span>.<span class="ruby-identifier">args</span>, <span class="ruby-identifier">e</span>.<span class="ruby-identifier">backtrace</span>
 <span class="ruby-keyword">end</span></pre>
@@ -203,7 +210,7 @@
                 
               </p>
               <div id="method-i-encode_with_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/dumpable.rb, line 8</span>
+                <pre><span class="ruby-comment"># File lib/dumpable.rb, line 11</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">encode_with</span>(<span class="ruby-identifier">coder</span>)
   <span class="ruby-identifier">instance_variables</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">iv</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">coder</span>[<span class="ruby-node">&quot;#{iv.to_s.sub(/^@/, &#39;&#39;)}&quot;</span>] = <span class="ruby-identifier">instance_variable_get</span>(<span class="ruby-identifier">iv</span>)

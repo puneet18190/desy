@@ -32,6 +32,13 @@
     <div id="bodyContent">
         <div id="content">
   
+    <div class="description">
+      
+<p>Provides a methods to convert exceptions and hashes to dumpable objects,
+filtering the associated objects that are not <code>marshal_dump</code>able</p>
+
+    </div>
+  
 
 
   
@@ -117,7 +124,7 @@
           
           
             <div class="description">
-              
+              <p>converts an exception to a dumpable one</p>
             </div>
           
           
@@ -133,7 +140,7 @@
                 
               </p>
               <div id="method-c-exception_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/dumpable.rb, line 15</span>
+                <pre><span class="ruby-comment"># File lib/dumpable.rb, line 19</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">exception</span>(<span class="ruby-identifier">e</span>)
   <span class="ruby-keyword">case</span> <span class="ruby-identifier">e</span>
   <span class="ruby-keyword">when</span> <span class="ruby-operator">::</span><span class="ruby-constant">NoMethodError</span>
@@ -169,7 +176,8 @@
           
           
             <div class="description">
-              
+              <p>converts an hash to a dumpable version of it XXX it&#39;s recursive so
+prone to a +stack level too deep+ error :-/ this is not Haskell!</p>
             </div>
           
           
@@ -185,7 +193,7 @@
                 
               </p>
               <div id="method-c-hash_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/dumpable.rb, line 36</span>
+                <pre><span class="ruby-comment"># File lib/dumpable.rb, line 42</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">hash</span>(<span class="ruby-identifier">hash</span>)
   <span class="ruby-constant">Hash</span>[ <span class="ruby-identifier">hash</span>.<span class="ruby-identifier">map</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>, <span class="ruby-identifier">v</span><span class="ruby-operator">|</span>
     [ <span class="ruby-identifier">k</span>,

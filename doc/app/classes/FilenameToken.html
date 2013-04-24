@@ -32,6 +32,13 @@
     <div id="bodyContent">
         <div id="content">
   
+    <div class="description">
+      
+<p>Provides methods for a model which can be used to set a token good to be
+used in a filename which will be served by a web server</p>
+
+    </div>
+  
 
 
   
@@ -105,7 +112,9 @@
           
           
             <div class="description">
-              
+              <p>When included, sets <a
+href="FilenameToken/InstanceMethods.html#method-i-reset_filename_token">FilenameToken::InstanceMethods#reset_filename_token</a>
+as <code>before_save</code></p>
             </div>
           
           
@@ -121,10 +130,9 @@
                 
               </p>
               <div id="method-c-included_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/autoload/filename_token.rb, line 14</span>
+                <pre><span class="ruby-comment"># File lib/autoload/filename_token.rb, line 18</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">included</span>(<span class="ruby-identifier">receiver</span>)
   <span class="ruby-identifier">receiver</span>.<span class="ruby-identifier">send</span> <span class="ruby-value">:include</span>, <span class="ruby-constant">InstanceMethods</span>
-
   <span class="ruby-identifier">receiver</span>.<span class="ruby-identifier">instance_eval</span> <span class="ruby-keyword">do</span>
     <span class="ruby-identifier">before_save</span> <span class="ruby-value">:reset_filename_token</span>
   <span class="ruby-keyword">end</span>

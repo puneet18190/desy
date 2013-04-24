@@ -23,12 +23,33 @@
         </h1>
         <ul class="files">
             <li>lib/env_relative_path.rb</li>
-            <li>Last modified: 2013-04-08 11:29:59 +0200</li>
+            <li>Last modified: 2013-04-24 15:06:12 +0200</li>
         </ul>
     </div>
 
     <div id="bodyContent">
         <div id="content">
+  
+    <div class="description">
+      
+<p>Provides a way to get the right path for the Rails environment according to
+this rule:</p>
+<ul><li>
+<p>if Rails environment is production, the path remains unaltered</p>
+</li><li>
+<p>otherwise the path becomes relative to the enviroment string</p>
+</li></ul>
+
+<h3 id="label-Examples">Examples</h3>
+
+<pre class="ruby"><span class="ruby-comment"># Rails.env == &quot;production&quot;</span>
+<span class="ruby-identifier">env_relative_path</span>(<span class="ruby-string">&#39;asd&#39;</span>) <span class="ruby-comment">#=&gt; &#39;asd&#39;</span>
+
+<span class="ruby-comment"># Rails.env == &quot;development&quot;</span>
+<span class="ruby-identifier">env_relative_path</span>(<span class="ruby-string">&#39;asd&#39;</span>) <span class="ruby-comment">#=&gt; &#39;development/asd&#39;</span>
+</pre>
+
+    </div>
   
 
 
