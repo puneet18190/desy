@@ -32,6 +32,12 @@
     <div id="bodyContent">
         <div id="content">
   
+    <div class="description">
+      
+<p>Module containing the class methods</p>
+
+    </div>
+  
 
 
   
@@ -106,7 +112,7 @@
           
           
             <div class="description">
-              
+              <p>Generates the token to reset the password</p>
             </div>
           
           
@@ -122,7 +128,7 @@
                 
               </p>
               <div id="method-i-generate_password_token_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/autoload/user/reset_password.rb, line 8</span>
+                <pre><span class="ruby-comment"># File lib/autoload/user/reset_password.rb, line 10</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">generate_password_token</span>
   <span class="ruby-identifier">loop</span> <span class="ruby-keyword">do</span>
     <span class="ruby-identifier">token</span> = <span class="ruby-constant">SecureRandom</span>.<span class="ruby-identifier">urlsafe_base64</span>(<span class="ruby-number">16</span>)
@@ -144,7 +150,7 @@
           
           
             <div class="description">
-              
+              <p>Resets the password, together with the password token</p>
             </div>
           
           
@@ -160,7 +166,7 @@
                 
               </p>
               <div id="method-i-reset_password-21_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/autoload/user/reset_password.rb, line 15</span>
+                <pre><span class="ruby-comment"># File lib/autoload/user/reset_password.rb, line 18</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">reset_password!</span>(<span class="ruby-identifier">token</span>)
   <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:password_token</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">token</span>).<span class="ruby-identifier">first</span>
   <span class="ruby-keyword">return</span> [<span class="ruby-keyword">nil</span>, <span class="ruby-keyword">nil</span>] <span class="ruby-keyword">unless</span> <span class="ruby-identifier">user</span>

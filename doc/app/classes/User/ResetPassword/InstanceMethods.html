@@ -32,6 +32,12 @@
     <div id="bodyContent">
         <div id="content">
   
+    <div class="description">
+      
+<p>Module containing the instance methods</p>
+
+    </div>
+  
 
 
   
@@ -94,7 +100,7 @@
           
           
             <div class="description">
-              
+              <p>Sets the password token using the automatic generator</p>
             </div>
           
           
@@ -110,7 +116,7 @@
                 
               </p>
               <div id="method-i-password_token-21_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/autoload/user/reset_password.rb, line 33</span>
+                <pre><span class="ruby-comment"># File lib/autoload/user/reset_password.rb, line 37</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">password_token!</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">password_token</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">generate_password_token</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">save!</span>
