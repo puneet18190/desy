@@ -19,18 +19,33 @@ module Media
         include Logging
         include InTmpDir
   
+        # Filename of a m4a format concatenation intermediate instance
         CONCAT_M4A_FORMAT      = 'concat%i.m4a'
+        # Filename of a wav format concatenation intermediate instance
         CONCAT_WAV_FORMAT      = 'concat%i.wav'
+        # Filename of the intermediate wav file
         FINAL_WAV              = 'final.wav'
+        # Filename of the intermediate webm file without the audio track
         FINAL_WEBM_NO_AUDIO    = 'final_webm_no_audio.webm'
+        # Filename of the output video (mp4 format)
         OUTPUT_MP4_FORMAT      = '%s.mp4'
+        # Filename of the output video (webm format)
         OUTPUT_WEBM_FORMAT     = '%s.webm'
         
-        # Usage example:
+        # Creates a new Media::Video::Editing::Concat instance, which can be used to concatenate various video files.
         #
-        # Concat.new([ { webm: 'input.webm', mp4: 'input.mp4'}, { webm: 'input2.webm', mp4: 'input2.mp4'} ], '/output/without/extension').run 
+        # === Arguments
         #
-        #   #=> { mp4:'/output/without/extension.mp4', webm:'/output/without/extension.webm' }
+        # * *inputs*: an array with hash values containing the video files per format
+        # * *output_without_extension*: output path without extension
+        # * *log_folder* _optional_: Custom log folder path
+        # 
+        # See {Examples}[rdoc-label:method-c-new-label-Examples] for usage examples.
+        #
+        # === Examples
+        #
+        #  Concat.new([ { webm: 'input.webm', mp4: 'input.mp4'}, { webm: 'input2.webm', mp4: 'input2.mp4'} ], '/output/without/extension').run 
+        #  #=> { mp4:'/output/without/extension.mp4', webm:'/output/without/extension.webm' }
         #
         def initialize(inputs, output_without_extension, log_folder = nil)
           unless inputs.is_a?(Array) &&
@@ -58,9 +73,10 @@ module Media
           @log_folder = log_folder
         end
   
+        # Runs the concatenation processing
         def run
-          # Posso controllare mp4_inputs per sapere quante coppie di video ho, perché ho già visto che mp4_inputs.size == webm_inputs.size
-          # Caso speciale: se ho una sola coppia di input copio i due video nei rispettivi output e li ritorno
+          # In order to check how many video pairs we have we can check mp4_inputs, because we already checked that mp4_inputs.size == webm_inputs.size inside the initialization
+          # Edge case: if there is just one inputs hash we can just copy the inputs to their respective outputs
           return copy_first_inputs_to_outputs if mp4_inputs.size == 1
   
           mp4_inputs_infos = mp4_inputs.map{ |input| Info.new(input) }
@@ -73,7 +89,8 @@ module Media
         end
   
         private
-        def copy_first_inputs_to_outputs
+        # Edge case management: when there is just one inputs hash we just copy the inputs to their respective outputs
+        def copy_first_inputs_to_outputs # :doc:
           Hash[
             @inputs.first.map do |format, input|
               output = outputs[format]
@@ -83,15 +100,21 @@ module Media
           ]
         end
   
-        # Core della concatenazione
+        # Concatenation core processing
         #
-        #   1. se c'è almeno uno stream audio
-        #     a. genero il file wav dell'audio
-        #     b. altrimenti no
-        #   2. genero la traccia video concatenando le tracce video dei webm e scartando le relative tracce audio; dopo questa
-        #      operazione avrò la traccia audio in formato wav e la traccia video in formato webm dei video finale
-        #   3. genero i video mp4 e webm unendo le due tracce e convertendo la traccia video e l'eventuale traccia audio
-        def concat(mp4_inputs_infos, paddings)
+        # === Logic
+        #
+        # 1. If there is at least one audio streamse c'è almeno uno stream audio:
+        #    a. we generate its wav file
+        #    b. otherwise we don't
+        # 2. We generate the video track concatenating the webm video tracks and discarding their audio tracks; after this operation we have the final audio track in wav format and the final video track in web format
+        # 3. We generate the mp4 and the webm videos joining and converting the two tracks
+        #
+        # === Arguments
+        #
+        # * *mp4_inputs_infos*: Media::Info instances about the mp4 input files
+        # * *paddings*: an array with the paddings which should be between an audio track and another
+        def concat(mp4_inputs_infos, paddings) # :doc:
           create_log_folder
   
           final_wav = 
@@ -115,21 +138,26 @@ module Media
           outputs
         end
   
-        # Generazione traccia audio
+        # Final wav track file generation
         #
-        #   1. estraggo gli m4a dagli mp4
-        #   2. li converto in wav (le operazioni di taglia e cuci sono più precise se effettuate su formati lossless)
-        #   3. aumento l'rpadding nel caso la traccia wave sia sensibilmente più corta della traccia video corrispondente
-        #   4. associo il wav ai paddings corrispondenti
-        #   5. concateno i wavs aggiungendo i paddings
-        def final_wav(mp4_inputs_infos, paddings)
+        # === Logic
+        #
+        # 1. Extracting the m4a from the mp4
+        # 2. Converting them to wav (cut-join operations are more precise using lossless formats)
+        # 3. Increasing the audio right padding when the wav track is considerably shorter than the respective video track
+        # 4. Associating the wavs to the respective paddings
+        # 5. Concatenating the wavs adding the paddings
+        #
+        # \1., 2., 3., 4. steps are executed by the Media::Video::Editing::Concat#wavs_with_paddings method
+        def final_wav(mp4_inputs_infos, paddings) # :doc:
           wavs_with_paddings = wavs_with_paddings(mp4_inputs_infos, paddings)
           final_wav = tmp_path FINAL_WAV
           Audio::Editing::Cmd::Concat.new(wavs_with_paddings, final_wav).run! *logs('2_concat_with_paddings') # 5.
           final_wav
         end
 
-        def wavs_with_paddings(mp4_inputs_infos, paddings)
+        # Responsible of the 1., 2., 3., 4. steps of the Media::Video::Editing::Concat#final_wav logic (step 3. is delegated to Media::Video::Editing::Concat#increase_rpadding_depending_on_video_overflow )
+        def wavs_with_paddings(mp4_inputs_infos, paddings) # :doc:
           Hash[ {}.tap do |unordered_wavs_with_paddings|
             Thread.join *mp4_inputs_infos.select{ |info| info.audio_streams.present? }.each_with_index.map { |video_info, i|
               proc {
@@ -140,8 +168,7 @@ module Media
                 wav = tmp_path(CONCAT_WAV_FORMAT % i)
                 Cmd::M4aToWav.new(m4a, wav).run! *logs("1_m4a_to_wav_#{i}") # 2.
                 
-                # aumento l'rpadding nel caso che la traccia video sia sensibilmente più lunga della traccia audio
-                # tenendo in considerazione che l'operazione di encoding aggiunge un rpadding di suo
+                # Increase of right padding when the wav track is considerably shorter than the respective video track, considering that the encoding operation can add a padding by itself
                 increase_rpadding_depending_on_video_overflow video_info, wav, paddings[i] # 3.
           
                 unordered_wavs_with_paddings[i] = wav, paddings[i] # 4.
@@ -150,26 +177,25 @@ module Media
           end.sort.map{ |_, wavs_with_paddings| wavs_with_paddings } ]
         end
   
-        def increase_rpadding_depending_on_video_overflow(video_info, wav, paddings)
+        # Responsible of the step 3. of the Media::Video::Editing::Concat#final_wav logic
+        def increase_rpadding_depending_on_video_overflow(video_info, wav, paddings) # :doc:
           wav_info = Info.new(wav)
           overflow = video_info.duration - wav_info.duration
           paddings[1] += overflow if overflow > 0
         end
   
-        # Lo scopo di questo metodo è di calcolare i paddings (i delays) da dare alle tracce audio estratte
-        # in modo da avere come risultato una traccia audio lunga quanto la somma della durata dei video
-        # e che sia sincronizzata con i video. Es.:
-        #
-        #                        VIDEO
-        #
-        # |----|-----|----|---|----|------|------|----|-----|   TRACCE VIDEO
-        #      |-a0--|    |a1-|-a2-|             |-a3-|         TRACCE AUDIO
-        #   p0         p1    p2=0         p3             p4       PADDINGS
-        #
-        #              a0      a1        a2      a3
-        #    ->   [ [p0,p1], [0,p2=0], [0,p3], [0,p4] ]           RISULTATO
-        #
-        def paddings(infos)
+        # Calculates the audio tracks paddings in order to have as result an audio track whose duration equals the sum of the video durations and synchronized with them. Example:
+        # 
+        #                         VIDEO
+        # 
+        #  |----|-----|----|---|----|------|------|----|-----|   VIDEO TRACKS
+        #       |-a0--|    |a1-|-a2-|             |-a3-|         AUDIO TRACKS
+        #    p0         p1    p2=0         p3             p4       PADDINGS
+        # 
+        #               a0      a1        a2      a3
+        #     ->   [ [p0,p1], [0,p2=0], [0,p3], [0,p4] ]           RESULT
+        # 
+        def paddings(infos) # :doc:
           paddings, lpadding = [], 0
   
           infos.each do |info|
@@ -189,23 +215,28 @@ module Media
           paddings
         end
   
-        def mp4_inputs
+        # array of mp4 inputs
+        def mp4_inputs # :doc:
           @mp4_inputs ||= @inputs.map{ |input| input[:mp4] }
         end
   
-        def webm_inputs
+        # array of the webm inputs
+        def webm_inputs # :doc:
           @webm_inputs ||= @inputs.map{ |input| input[:webm] }
         end
   
-        def mp4_output
+        # mp4 output filename
+        def mp4_output # :doc:
           OUTPUT_MP4_FORMAT % @output_without_extension
         end
   
-        def webm_output
+        # webm output filename
+        def webm_output # :doc:
           OUTPUT_WEBM_FORMAT % @output_without_extension
         end
   
-        def outputs
+        # outputs per format
+        def outputs # :doc:
           { mp4: mp4_output, webm: webm_output }
         end
   

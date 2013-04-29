@@ -13,7 +13,7 @@ module Media
         VIDEO_COMPONENT = 'video'
         
         # Keyword for a text component
-        TEXT_COMPONENT= 'text'
+        TEXT_COMPONENT = 'text'
         
         # Keyword for an image component
         IMAGE_COMPONENT = 'image'

@@ -20,33 +20,38 @@ module Media
         include InTmpDir
         include Logging
 
+        # Composing processings main log folder
         def self.log_folder
           super 'composings'
         end
 
+        # Create a new Media::Video::Editing::Composer instance, which processes video composings. +params+ should be created using Media::Video::Editing::Parameters#convert_to_primitive_parameters . Example of the +params+ hash:
+        #
         #  {
         #    :initial_video => {
-        #      :id => VIDEO ID
+        #      :id => 123 # initial video id
         #    },
-        #    :audio_track_id => AUDIO ID or NIL,
+        #    :audio_track_id => audio_track_id, # audio track id (can be nil),
+
+        #    # video components (the components which will be manipulated in order to produce the new video)
         #    :components => [
         #      {
-        #        :type => VIDEO_COMPONENT,
-        #        :video => VIDEO ID,
-        #        :from => 12,
-        #        :to => 24
+        #        :type => Media::Video::Editing::Parameters::VIDEO_COMPONENT, # component type (one between Media::Video::Editing::Parameters::COMPONENTS)
+        #        :video => 321 # video id
+        #        :from => 12, # start of the video in seconds (the new video will contain the component video starting from this second)
+        #        :to => 24, # end of the video in seconds (the new video will contain the component video ending to this second)
         #      },
         #      {
-        #        :type => TEXT_COMPONENT,
-        #        :content => 'Titolo titolo titolo',
-        #        :duration => 14,
-        #        :background_color => 'red',
-        #        :text_color => 'white'
+        #        :type => Media::Video::Editing::Parameters::TEXT_COMPONENT, # as above
+        #        :content => 'Some text', # Contents of the text which will be converted to video
+        #        :duration => 14, # Duration of the displaying
+        #        :background_color => 'red', # Background color
+        #        :text_color => 'white' # Text color
         #      },
         #      {
-        #        :type => IMAGE_COMPONENT,
-        #        :image => IMAGE ID,
-        #        :duration => 2
+        #        :type => Media::Video::Editing::Parameters::IMAGE_COMPONENT, # as above
+        #        :image => 456, # image id which will be converted to video
+        #        :duration => 2 # Duration of the displaying
         #      }
         #    ]
         #  }
@@ -54,6 +59,7 @@ module Media
           @params = params
         end
 
+        # Execute the composing processing; if it works, a success notification will be sent to the user; otherwise a fail notification will be sent to the user and the video will be destroyed
         def run
           @old_media = video.media.try(:dup)
           compose
@@ -79,6 +85,7 @@ module Media
           raise e
         end
 
+        # Composing of a single component
         def compose
           create_log_folder
           in_tmp_dir do
@@ -132,30 +139,36 @@ module Media
         end
 
         private
-        def log_folder(*folders)
+        # Instance-relative log folder
+        def log_folder(*folders) # :doc:
           File.join(@log_folder, *folders)
         end
 
-        def log_folder_name
+        # Instance-model-thread relative log folder
+        def log_folder_name # :doc:
           File.join self.class.log_folder, video.id.to_s, "#{Time.now.utc.strftime("%Y-%m-%d_%H-%M-%S")}_#{::Thread.main.object_id}"
         end
 
-        def create_log_folder
+        # Create the log folder
+        def create_log_folder # :doc:
           @log_folder = FileUtils.mkdir_p(log_folder_name).first
         end
 
-        def compose_text(text, duration, color, background_color, i)
+        # Text component composing
+        def compose_text(text, duration, color, background_color, i) # :doc:
           text_file = Pathname.new tmp_path "text_#{i}.txt"
           text_file.open('w') { |f| f.write text }
           TextToVideo.new(text_file, output_without_extension(i), duration, { color: color, background_color: background_color }, log_folder('components', "#{i}_text")).run
         end
 
-        def compose_image(image_id, duration, i)
+        # Image component composing
+        def compose_image(image_id, duration, i) # :doc:
           image = ::Image.find image_id
           ImageToVideo.new(image.media.path, output_without_extension(i), duration, log_folder('components', "#{i}_image")).run
         end
 
-        def compose_video(video_id, from, to, i)
+        # Video component composing
+        def compose_video(video_id, from, to, i) # :doc:
           video = ::Video.find video_id
           inputs = Hash[ FORMATS.map{ |f| [f, video.media.path(f)] } ]
 
@@ -169,11 +182,13 @@ module Media
           end
         end
 
-        def notification_translation_key
+        # Locale key depending of the composing action type
+        def notification_translation_key # :doc:
           @old_media ? 'update' : 'create'
         end
 
-        def video_copy(input, output)
+        # Video file copy
+        def video_copy(input, output) # :doc:
           if audio
             # scarto gli stream audio, così poi non perdo tempo a processare le tracce audio inutilmente
             Cmd::VideoStreamToFile.new(input, output).run!
@@ -182,15 +197,18 @@ module Media
           end
         end
 
-        def output_without_extension(i)
+        # Temporary output path without extension
+        def output_without_extension(i) # :doc:
           tmp_path i.to_s
         end
 
-        def video
+        # Initial video instance
+        def video # :doc:
           @video ||= ::Video.find @params[:initial_video][:id]
         end
 
-        def audio
+        # Audio track instance (+nil+ if <tt>params[:id]</tt> is not provided)
+        def audio # :doc:
           @audio ||= (
             id = @params[:audio_track]
             ::Audio.find(id) if id
