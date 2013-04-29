@@ -296,6 +296,16 @@ href="Audio/Uploader.html">Media::Audio::Uploader</a></p>
             
               
               <li>
+                <a href="#method-i-upload">upload</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-upload_copy_and_job">upload_copy_and_job</a>,
+              </li>
+            
+              
+              <li>
                 <a href="#method-i-upload_or_copy">upload_or_copy</a>,
               </li>
             
@@ -1609,6 +1619,85 @@ needed (used by <a href="Uploader.html#method-i-copy">#copy</a>)</p>
               <div id="method-i-extract_versions_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File lib/media/uploader.rb, line 256</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">extract_versions</span>(<span class="ruby-identifier">infos</span>) <span class="ruby-comment"># :doc:</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-upload">
+            
+              <b>upload</b>()
+            
+            <a href="../../classes/Media/Uploader.html#method-i-upload" name="method-i-upload" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Executes the upload process</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-upload_source')" id="l_method-i-upload_source">show</a>
+                
+              </p>
+              <div id="method-i-upload_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/media/uploader.rb, line 266</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">upload</span> <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">model</span>.<span class="ruby-identifier">skip_conversion</span>
+
+  <span class="ruby-identifier">conversion_temp_path</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span><span class="ruby-operator">::</span><span class="ruby-constant">CONVERSION_CLASS</span>.<span class="ruby-identifier">temp_path</span>(<span class="ruby-identifier">model_id</span>, <span class="ruby-identifier">original_filename</span>)
+
+  <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">mkdir_p</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">dirname</span>(<span class="ruby-identifier">conversion_temp_path</span>)
+
+  <span class="ruby-comment"># FIXME Test environment doesn&#39;t use delayed_job, so parallel execution breaks tests</span>
+  <span class="ruby-constant">Rails</span>.<span class="ruby-identifier">env</span>.<span class="ruby-identifier">test?</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">upload_copy_and_job</span>(<span class="ruby-identifier">conversion_temp_path</span>) <span class="ruby-operator">:</span> <span class="ruby-constant">EnhancedThread</span>.<span class="ruby-identifier">new</span>{ <span class="ruby-identifier">upload_copy_and_job</span>(<span class="ruby-identifier">conversion_temp_path</span>) }
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-upload_copy_and_job">
+            
+              <b>upload_copy_and_job</b>(conversion_temp_path)
+            
+            <a href="../../classes/Media/Uploader.html#method-i-upload_copy_and_job" name="method-i-upload_copy_and_job" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Executes the copy of the uploaded file to the temporary folder and add
+related job to the jobs queue</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-upload_copy_and_job_source')" id="l_method-i-upload_copy_and_job_source">show</a>
+                
+              </p>
+              <div id="method-i-upload_copy_and_job_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/media/uploader.rb, line 260</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">upload_copy_and_job</span>(<span class="ruby-identifier">conversion_temp_path</span>) <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">cp</span> <span class="ruby-ivar">@original_file</span>.<span class="ruby-identifier">path</span>, <span class="ruby-identifier">conversion_temp_path</span>
+  <span class="ruby-constant">Delayed</span><span class="ruby-operator">::</span><span class="ruby-constant">Job</span>.<span class="ruby-identifier">enqueue</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span><span class="ruby-operator">::</span><span class="ruby-constant">CONVERSION_CLASS</span><span class="ruby-operator">::</span><span class="ruby-constant">Job</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@original_file</span>.<span class="ruby-identifier">path</span>, <span class="ruby-identifier">output_path_without_extension</span>, <span class="ruby-identifier">original_filename</span>, <span class="ruby-identifier">model_id</span>)
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>

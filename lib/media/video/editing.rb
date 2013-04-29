@@ -7,17 +7,26 @@ module Media
   module Video
     module Editing
       
+      # +avprobe+ executable path
       AVPROBE_BIN = CONFIG.avtools.avprobe.cmd.bin
   
+      # +avconv+ codecs 
       AVCONV_CODECS            = Hash[ FORMATS.map{ |f| [f, CONFIG.avtools.avconv.video.formats.send(f).codecs] } ]
+      # +avconv+ default bitrates
       AVCONV_DEFAULT_BITRATES  = Hash[ FORMATS.map{ |f| [f, CONFIG.avtools.avconv.video.formats.send(f).default_bitrates] } ]
   
+      # +avconv+ output width
       AVCONV_OUTPUT_WIDTH        = CONFIG.avtools.avconv.video.output.width
+      # +avconv+ output height
       AVCONV_OUTPUT_HEIGHT       = CONFIG.avtools.avconv.video.output.height
+      # +avconv+ output aspect ratio
       AVCONV_OUTPUT_ASPECT_RATIO = Rational(AVCONV_OUTPUT_WIDTH, AVCONV_OUTPUT_HEIGHT)
+      # +avconv+ output encoding threads (per codec)
       AVCONV_OUTPUT_THREADS      = Hash[ FORMATS.map{ |f| [f, CONFIG.avtools.avconv.video.formats.send(f).threads] } ]
+      # +avconv+ output audio quality (per codec)
       AVCONV_OUTPUT_QA           = Hash[ FORMATS.map{ |f| [f, CONFIG.avtools.avconv.video.formats.send(f).qa] } ]
   
+      # ImageMagick +convert+ executable path
       IMAGEMAGICK_CONVERT_BIN = CONFIG.imagemagick.convert.cmd.bin
   
     end

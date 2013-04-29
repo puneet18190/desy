@@ -257,13 +257,13 @@ module Media
     end
 
     # Executes the copy of the uploaded file to the temporary folder and add related job to the jobs queue
-    def upload_copy_and_job(conversion_temp_path)
+    def upload_copy_and_job(conversion_temp_path) # :doc:
       FileUtils.cp @original_file.path, conversion_temp_path
       Delayed::Job.enqueue self.class::CONVERSION_CLASS::Job.new(@original_file.path, output_path_without_extension, original_filename, model_id)
     end
 
     # Executes the upload process
-    def upload
+    def upload # :doc:
       return if model.skip_conversion
 
       conversion_temp_path = self.class::CONVERSION_CLASS.temp_path(model_id, original_filename)
