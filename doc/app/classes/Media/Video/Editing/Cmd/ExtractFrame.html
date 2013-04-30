@@ -38,6 +38,13 @@
     <div id="bodyContent">
         <div id="content">
   
+    <div class="description">
+      
+<p>CLI for exporting a video frame as image (avconv example: <code>avconv -i
+input.webm -ss 38.70 -frames:v 1 frame.jpg</code>)</p>
+
+    </div>
+  
 
 
   
@@ -141,7 +148,7 @@
           
           
             <div class="description">
-              <p>avconv -i arbitro.webm -ss 38.70 -frames:v 1 arbitro.jpg</p>
+              
             </div>
           
           
@@ -157,7 +164,7 @@
                 
               </p>
               <div id="method-c-new_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/extract_frame.rb, line 14</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/extract_frame.rb, line 15</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize</span>(<span class="ruby-identifier">input</span>, <span class="ruby-identifier">output</span>, <span class="ruby-identifier">_seek</span>)
   <span class="ruby-ivar">@input</span>, <span class="ruby-ivar">@output</span>, <span class="ruby-ivar">@seek</span> = <span class="ruby-identifier">input</span>, <span class="ruby-identifier">output</span>, <span class="ruby-identifier">_seek</span>
   <span class="ruby-keyword">super</span> [<span class="ruby-ivar">@input</span>], <span class="ruby-ivar">@output</span>
@@ -180,7 +187,7 @@
           
           
             <div class="description">
-              
+              <p><a href="../../../Video.html">Video</a> quality (not set)</p>
             </div>
           
           
@@ -196,7 +203,7 @@
                 
               </p>
               <div id="method-i-qv_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/extract_frame.rb, line 29</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/extract_frame.rb, line 33</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">qv</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
@@ -214,7 +221,7 @@
           
           
             <div class="description">
-              
+              <p>Frame seek</p>
             </div>
           
           
@@ -230,7 +237,7 @@
                 
               </p>
               <div id="method-i-seek_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/extract_frame.rb, line 21</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/extract_frame.rb, line 23</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">seek</span>
   <span class="ruby-node">&quot;-ss #{@seek.to_s.shellescape}&quot;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -249,7 +256,7 @@
           
           
             <div class="description">
-              
+              <p>Subtitles disabling (not set, unuseful)</p>
             </div>
           
           
@@ -265,7 +272,7 @@
                 
               </p>
               <div id="method-i-sn_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/extract_frame.rb, line 32</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/extract_frame.rb, line 37</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">sn</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
@@ -283,7 +290,7 @@
           
           
             <div class="description">
-              
+              <p>Frames amount (1)</p>
             </div>
           
           
@@ -299,7 +306,7 @@
                 
               </p>
               <div id="method-i-vframes_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/extract_frame.rb, line 25</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/extract_frame.rb, line 28</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">vframes</span>
   <span class="ruby-string">&quot;-frames:v 1&quot;</span>
 <span class="ruby-keyword">end</span></pre>

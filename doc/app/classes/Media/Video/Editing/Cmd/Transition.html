@@ -38,6 +38,14 @@
     <div id="bodyContent">
         <div id="content">
   
+    <div class="description">
+      
+<p>CLI for creating video transitions from input transition frames (command
+example: <code>avconv -r 25 -i ../transition-%d.jpg -c:v libx264 -q 1 
+transition.r25.mp4</code>)</p>
+
+    </div>
+  
 
 
   
@@ -124,7 +132,7 @@
           
           
             <div class="description">
-              <p>avconv -r 25 -i ../trans-%d.jpg -c:v libx264 -q 1  trans.r25.mp4</p>
+              
             </div>
           
           
@@ -164,7 +172,7 @@
           
           
             <div class="description">
-              
+              <p>Frame rate</p>
             </div>
           
           
@@ -180,7 +188,7 @@
                 
               </p>
               <div id="method-i-frame_rate_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/transition.rb, line 22</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/transition.rb, line 23</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">frame_rate</span>
   <span class="ruby-node">&quot;-r #{@frame_rate.to_s.shellescape}&quot;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -199,7 +207,7 @@
           
           
             <div class="description">
-              
+              <p><a href="../../../Audio.html">Audio</a> quality (not set, unuseful)</p>
             </div>
           
           
@@ -215,7 +223,7 @@
                 
               </p>
               <div id="method-i-qa_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/transition.rb, line 26</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/transition.rb, line 28</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">qa</span>
 <span class="ruby-keyword">end</span></pre>
               </div>

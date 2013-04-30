@@ -38,6 +38,14 @@
     <div id="bodyContent">
         <div id="content">
   
+    <div class="description">
+      
+<p>CLI for generating transition frames given a starting frame and an ending
+frame (command line example: <code>convert start_frame.jpg end_frame.jpg
+-morph 23 transition_frame-%d.jpg</code>)</p>
+
+    </div>
+  
 
 
   
@@ -146,7 +154,7 @@
           
             <tr valign='top'>
               <td>&nbsp;</td>
-              <td colspan="2" class="attr-desc"></td>
+              <td colspan="2" class="attr-desc"><p>ImageMagick convert executable</p></td>
             </tr>
           
         
@@ -171,7 +179,7 @@
           
           
             <div class="description">
-              <p>convert arbitro.jpg piscina.jpg -morph 23 trans.jpg</p>
+              
             </div>
           
           
@@ -187,7 +195,7 @@
                 
               </p>
               <div id="method-c-new_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/generate_transition_frames.rb, line 15</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/generate_transition_frames.rb, line 17</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize</span>(<span class="ruby-identifier">start_frame</span>, <span class="ruby-identifier">end_frame</span>, <span class="ruby-identifier">frames_format</span>, <span class="ruby-identifier">frames_amount</span>)
   <span class="ruby-ivar">@start_frame</span>, <span class="ruby-ivar">@end_frame</span>, <span class="ruby-ivar">@frames_format</span>, <span class="ruby-ivar">@frames_amount</span> = <span class="ruby-identifier">start_frame</span>, <span class="ruby-identifier">end_frame</span>, <span class="ruby-identifier">frames_format</span>, <span class="ruby-identifier">frames_amount</span>
 <span class="ruby-keyword">end</span></pre>
@@ -208,7 +216,7 @@
           
           
             <div class="description">
-              
+              <p>Command string</p>
             </div>
           
           
@@ -224,7 +232,7 @@
                 
               </p>
               <div id="method-i-cmd-21_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/generate_transition_frames.rb, line 20</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/generate_transition_frames.rb, line 23</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">cmd!</span>
   <span class="ruby-node">&quot;#{BIN} #{start_frame} #{end_frame} -morph #{frames_amount} #{frames_format}&quot;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -243,7 +251,7 @@
           
           
             <div class="description">
-              
+              <p>End frame image path</p>
             </div>
           
           
@@ -259,7 +267,7 @@
                 
               </p>
               <div id="method-i-end_frame_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/generate_transition_frames.rb, line 28</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/generate_transition_frames.rb, line 33</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">end_frame</span>
   <span class="ruby-ivar">@end_frame</span>.<span class="ruby-identifier">shellescape</span>
 <span class="ruby-keyword">end</span></pre>
@@ -278,7 +286,7 @@
           
           
             <div class="description">
-              
+              <p>Frames amount</p>
             </div>
           
           
@@ -294,7 +302,7 @@
                 
               </p>
               <div id="method-i-frames_amount_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/generate_transition_frames.rb, line 32</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/generate_transition_frames.rb, line 38</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">frames_amount</span>
   <span class="ruby-ivar">@frames_amount</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">shellescape</span>
 <span class="ruby-keyword">end</span></pre>
@@ -313,7 +321,7 @@
           
           
             <div class="description">
-              
+              <p><a href="Transition.html">Transition</a> frames filename format</p>
             </div>
           
           
@@ -329,7 +337,7 @@
                 
               </p>
               <div id="method-i-frames_format_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/generate_transition_frames.rb, line 36</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/generate_transition_frames.rb, line 43</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">frames_format</span>
   <span class="ruby-ivar">@frames_format</span>.<span class="ruby-identifier">shellescape</span>
 <span class="ruby-keyword">end</span></pre>
@@ -348,7 +356,7 @@
           
           
             <div class="description">
-              
+              <p>Start frame image path</p>
             </div>
           
           
@@ -364,7 +372,7 @@
                 
               </p>
               <div id="method-i-start_frame_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/generate_transition_frames.rb, line 24</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/generate_transition_frames.rb, line 28</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">start_frame</span>
   <span class="ruby-ivar">@start_frame</span>.<span class="ruby-identifier">shellescape</span>
 <span class="ruby-keyword">end</span></pre>

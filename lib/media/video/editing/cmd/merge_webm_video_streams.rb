@@ -8,6 +8,7 @@ module Media
   module Video
     module Editing
       class Cmd
+        # CLI for merging webm video streams
         class MergeWebmVideoStreams < Cmd
   
           def initialize(inputs, output)
@@ -15,6 +16,7 @@ module Media
           end
   
           private
+          # Command string
           def cmd!
             inputs = @inputs.map{ |input| "--no-audio #{input.shellescape}" }.join(' + ')
             output = @output.shellescape

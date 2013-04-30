@@ -8,9 +8,10 @@ module Media
   module Video
     module Editing
       class Cmd
+        # CLI for converting a m4a file to wav
         class M4aToWav < Avconv
 
-          self.output_qa      = nil
+          self.output_qa = nil
   
           def initialize(input_file, output_file)
             super([input_file], output_file, nil)
@@ -18,22 +19,25 @@ module Media
             output_options [ acodec, amap ]
           end
 
+          # Discarding subtitles (not set, unuseful)
           def sn
-            nil
           end
 
+          # Video quality (not set, unuseful)
           def qv
-            nil
           end
 
+          # Audio map
           def amap
             '-map 0:a:0'
           end
 
+          # Audio codec
           def acodec
             '-c:a pcm_s16le'
           end
 
+          # Output threads amount
           def output_threads
             '-threads auto'
           end

@@ -1,4 +1,4 @@
-Tue, 30 Apr 2013 17:38:18 +0200
+Tue, 30 Apr 2013 18:03:08 +0200
 app/controllers/admin/dashboard_controller.rb	Mon, 29 Apr 2013 14:48:09 +0200
 app/controllers/admin/lessons_controller.rb	Mon, 29 Apr 2013 14:48:09 +0200
 app/controllers/admin/media_elements_controller.rb	Mon, 29 Apr 2013 14:48:09 +0200
@@ -119,16 +119,16 @@ lib/media/video/editing/cmd/concat.rb	Tue, 30 Apr 2013 17:13:37 +0200
 lib/media/video/editing/cmd/concat/mp4.rb	Tue, 30 Apr 2013 17:15:22 +0200
 lib/media/video/editing/cmd/concat/webm.rb	Tue, 30 Apr 2013 17:15:56 +0200
 lib/media/video/editing/cmd/conversion.rb	Tue, 30 Apr 2013 17:38:09 +0200
-lib/media/video/editing/cmd/crop.rb	Mon, 29 Apr 2013 14:48:13 +0200
-lib/media/video/editing/cmd/extract_frame.rb	Mon, 29 Apr 2013 14:48:13 +0200
-lib/media/video/editing/cmd/generate_transition_frames.rb	Mon, 29 Apr 2013 14:48:13 +0200
-lib/media/video/editing/cmd/image_to_video.rb	Mon, 29 Apr 2013 14:48:13 +0200
-lib/media/video/editing/cmd/m4a_to_wav.rb	Mon, 29 Apr 2013 14:48:13 +0200
-lib/media/video/editing/cmd/merge_webm_video_streams.rb	Mon, 29 Apr 2013 14:48:13 +0200
-lib/media/video/editing/cmd/replace_audio.rb	Mon, 29 Apr 2013 14:48:13 +0200
-lib/media/video/editing/cmd/transition.rb	Mon, 29 Apr 2013 14:48:13 +0200
-lib/media/video/editing/cmd/trim_audio_file.rb	Mon, 29 Apr 2013 14:48:13 +0200
-lib/media/video/editing/cmd/video_stream_to_file.rb	Mon, 29 Apr 2013 14:48:13 +0200
+lib/media/video/editing/cmd/crop.rb	Tue, 30 Apr 2013 17:47:40 +0200
+lib/media/video/editing/cmd/extract_frame.rb	Tue, 30 Apr 2013 17:54:36 +0200
+lib/media/video/editing/cmd/generate_transition_frames.rb	Tue, 30 Apr 2013 17:54:24 +0200
+lib/media/video/editing/cmd/image_to_video.rb	Tue, 30 Apr 2013 17:55:32 +0200
+lib/media/video/editing/cmd/m4a_to_wav.rb	Tue, 30 Apr 2013 17:57:25 +0200
+lib/media/video/editing/cmd/merge_webm_video_streams.rb	Tue, 30 Apr 2013 17:57:55 +0200
+lib/media/video/editing/cmd/replace_audio.rb	Tue, 30 Apr 2013 17:59:07 +0200
+lib/media/video/editing/cmd/transition.rb	Tue, 30 Apr 2013 18:00:54 +0200
+lib/media/video/editing/cmd/trim_audio_file.rb	Tue, 30 Apr 2013 18:01:54 +0200
+lib/media/video/editing/cmd/video_stream_to_file.rb	Tue, 30 Apr 2013 18:02:49 +0200
 lib/media/video/editing/composer.rb	Tue, 30 Apr 2013 15:02:02 +0200
 lib/media/video/editing/composer/job.rb	Mon, 29 Apr 2013 14:48:13 +0200
 lib/media/video/editing/concat.rb	Tue, 30 Apr 2013 15:03:19 +0200

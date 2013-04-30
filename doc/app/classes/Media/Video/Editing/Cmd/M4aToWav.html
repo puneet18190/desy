@@ -38,6 +38,12 @@
     <div id="bodyContent">
         <div id="content">
   
+    <div class="description">
+      
+<p>CLI for converting a m4a file to wav</p>
+
+    </div>
+  
 
 
   
@@ -169,7 +175,7 @@
                 
               </p>
               <div id="method-c-new_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/m4a_to_wav.rb, line 15</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/m4a_to_wav.rb, line 16</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize</span>(<span class="ruby-identifier">input_file</span>, <span class="ruby-identifier">output_file</span>)
   <span class="ruby-keyword">super</span>([<span class="ruby-identifier">input_file</span>], <span class="ruby-identifier">output_file</span>, <span class="ruby-keyword">nil</span>)
 
@@ -192,7 +198,7 @@
           
           
             <div class="description">
-              
+              <p><a href="../../../Audio.html">Audio</a> codec</p>
             </div>
           
           
@@ -208,7 +214,7 @@
                 
               </p>
               <div id="method-i-acodec_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/m4a_to_wav.rb, line 33</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/m4a_to_wav.rb, line 36</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">acodec</span>
   <span class="ruby-string">&#39;-c:a pcm_s16le&#39;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -227,7 +233,7 @@
           
           
             <div class="description">
-              
+              <p><a href="../../../Audio.html">Audio</a> map</p>
             </div>
           
           
@@ -243,7 +249,7 @@
                 
               </p>
               <div id="method-i-amap_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/m4a_to_wav.rb, line 29</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/m4a_to_wav.rb, line 31</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">amap</span>
   <span class="ruby-string">&#39;-map 0:a:0&#39;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -262,7 +268,7 @@
           
           
             <div class="description">
-              
+              <p>Output threads amount</p>
             </div>
           
           
@@ -278,7 +284,7 @@
                 
               </p>
               <div id="method-i-output_threads_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/m4a_to_wav.rb, line 37</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/m4a_to_wav.rb, line 41</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">output_threads</span>
   <span class="ruby-string">&#39;-threads auto&#39;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -297,7 +303,7 @@
           
           
             <div class="description">
-              
+              <p><a href="../../../Video.html">Video</a> quality (not set, unuseful)</p>
             </div>
           
           
@@ -313,9 +319,8 @@
                 
               </p>
               <div id="method-i-qv_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/m4a_to_wav.rb, line 25</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/m4a_to_wav.rb, line 27</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">qv</span>
-  <span class="ruby-keyword">nil</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -332,7 +337,7 @@
           
           
             <div class="description">
-              
+              <p>Discarding subtitles (not set, unuseful)</p>
             </div>
           
           
@@ -348,9 +353,8 @@
                 
               </p>
               <div id="method-i-sn_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/m4a_to_wav.rb, line 21</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/m4a_to_wav.rb, line 23</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">sn</span>
-  <span class="ruby-keyword">nil</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>

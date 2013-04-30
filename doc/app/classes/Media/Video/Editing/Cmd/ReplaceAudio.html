@@ -38,6 +38,12 @@
     <div id="bodyContent">
         <div id="content">
   
+    <div class="description">
+      
+<p>CLI for replacing the audio track of a video file</p>
+
+    </div>
+  
 
 
   
@@ -176,7 +182,7 @@
                 
               </p>
               <div id="method-c-new_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/replace_audio.rb, line 13</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/replace_audio.rb, line 14</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize</span>(<span class="ruby-identifier">video_input</span>, <span class="ruby-identifier">audio_input</span>, <span class="ruby-identifier">_duration</span>, <span class="ruby-identifier">output</span>, <span class="ruby-identifier">format</span>)
   <span class="ruby-ivar">@video_input</span>, <span class="ruby-ivar">@audio_input</span>, <span class="ruby-ivar">@duration</span>, <span class="ruby-ivar">@output</span> = <span class="ruby-identifier">video_input</span>, <span class="ruby-identifier">audio_input</span>, <span class="ruby-identifier">_duration</span>, <span class="ruby-identifier">output</span>
   <span class="ruby-identifier">inputs</span> = [<span class="ruby-ivar">@video_input</span>, <span class="ruby-ivar">@audio_input</span>]
@@ -200,7 +206,7 @@
           
           
             <div class="description">
-              
+              <p><a href="../../../Audio.html">Audio</a> codec</p>
             </div>
           
           
@@ -216,7 +222,7 @@
                 
               </p>
               <div id="method-i-acodec_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/replace_audio.rb, line 33</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/replace_audio.rb, line 38</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">acodec</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@format</span> <span class="ruby-operator">==</span> <span class="ruby-value">:webm</span>
     <span class="ruby-string">&#39;-c:a libvorbis&#39;</span>
@@ -239,7 +245,7 @@
           
           
             <div class="description">
-              
+              <p>Output duration</p>
             </div>
           
           
@@ -255,7 +261,7 @@
                 
               </p>
               <div id="method-i-duration_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/replace_audio.rb, line 21</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/replace_audio.rb, line 23</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">duration</span>
   <span class="ruby-node">&quot;-t #{@duration.round(2).to_s.shellescape}&quot;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -274,7 +280,7 @@
           
           
             <div class="description">
-              
+              <p><a href="../../../Video.html">Video</a> and audio maps</p>
             </div>
           
           
@@ -290,7 +296,7 @@
                 
               </p>
               <div id="method-i-maps_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/replace_audio.rb, line 25</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/replace_audio.rb, line 28</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">maps</span>
   <span class="ruby-string">&#39;-map 0:v:0 -map 1:a:0&#39;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -309,7 +315,7 @@
           
           
             <div class="description">
-              
+              <p><a href="../../../Audio.html">Audio</a> quality</p>
             </div>
           
           
@@ -325,7 +331,7 @@
                 
               </p>
               <div id="method-i-qa_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/replace_audio.rb, line 41</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/replace_audio.rb, line 47</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">qa</span>
   <span class="ruby-keyword">super</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@format</span> <span class="ruby-operator">==</span> <span class="ruby-value">:webm</span>
 <span class="ruby-keyword">end</span></pre>
@@ -344,7 +350,7 @@
           
           
             <div class="description">
-              
+              <p><a href="../../../Video.html">Video</a> codec</p>
             </div>
           
           
@@ -360,7 +366,7 @@
                 
               </p>
               <div id="method-i-vcodec_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/replace_audio.rb, line 29</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/replace_audio.rb, line 33</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">vcodec</span>
   <span class="ruby-string">&#39;-c:v copy&#39;</span>
 <span class="ruby-keyword">end</span></pre>

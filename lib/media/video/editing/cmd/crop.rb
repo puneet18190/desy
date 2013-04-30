@@ -9,6 +9,7 @@ module Media
   module Video
     module Editing
       class Cmd
+        # CLI for video cropping
         class Crop < Cmd::Avconv
           def initialize(input, output, _start, _duration, format)
             inputs = [input]
@@ -18,9 +19,11 @@ module Media
           end
   
           private
+          # Output video start seek
           def start
             "-ss #{@start.round(2).to_s.shellescape}"
           end
+          # Output video duration
           def duration
             "-t #{@duration.round(2).to_s.shellescape}"
           end

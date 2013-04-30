@@ -10,6 +10,7 @@ module Media
   module Video
     module Editing
       class Cmd
+        # CLI for trimming an audio file
         class TrimAudioFile < Cmd::Sox
   
           def initialize(input, output, ltrim, rtrim)
@@ -17,26 +18,32 @@ module Media
           end
   
           private
+          # Command string
           def cmd!
             "#{BIN_AND_GLOBAL_OPTIONS} #{input} #{output} trim #{ltrim} #{rtrim}"
           end
   
+          # input file path
           def input
             @input.shellescape
           end
   
+          # output file path
           def output
             @output.shellescape
           end
   
+          # left trim
           def ltrim
             shellescaped_trim(@ltrim)
           end
   
+          # right trim
           def rtrim
             shellescaped_trim(@rtrim)
           end
   
+          # Shell-escape a trim value
           def shellescaped_trim(value)
             value.round(2).to_s.shellescape
           end

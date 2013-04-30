@@ -38,6 +38,12 @@
     <div id="bodyContent">
         <div id="content">
   
+    <div class="description">
+      
+<p>CLI for merging webm video streams</p>
+
+    </div>
+  
 
 
   
@@ -128,7 +134,7 @@
                 
               </p>
               <div id="method-c-new_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/merge_webm_video_streams.rb, line 13</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/merge_webm_video_streams.rb, line 14</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize</span>(<span class="ruby-identifier">inputs</span>, <span class="ruby-identifier">output</span>)
   <span class="ruby-ivar">@inputs</span>, <span class="ruby-ivar">@output</span> = <span class="ruby-identifier">inputs</span>, <span class="ruby-identifier">output</span>
 <span class="ruby-keyword">end</span></pre>
@@ -149,7 +155,7 @@
           
           
             <div class="description">
-              
+              <p>Command string</p>
             </div>
           
           
@@ -165,7 +171,7 @@
                 
               </p>
               <div id="method-i-cmd-21_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/merge_webm_video_streams.rb, line 18</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/merge_webm_video_streams.rb, line 20</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">cmd!</span>
   <span class="ruby-identifier">inputs</span> = <span class="ruby-ivar">@inputs</span>.<span class="ruby-identifier">map</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">input</span><span class="ruby-operator">|</span> <span class="ruby-node">&quot;--no-audio #{input.shellescape}&quot;</span> }.<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39; + &#39;</span>)
   <span class="ruby-identifier">output</span> = <span class="ruby-ivar">@output</span>.<span class="ruby-identifier">shellescape</span>

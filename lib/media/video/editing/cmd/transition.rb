@@ -8,9 +8,9 @@ module Media
   module Video
     module Editing
       class Cmd
+        # CLI for creating video transitions from input transition frames (command example: <tt>avconv -r 25 -i ../transition-%d.jpg -c:v libx264 -q 1  transition.r25.mp4</tt>)
         class Transition < Cmd::Avconv
   
-          # avconv -r 25 -i ../trans-%d.jpg -c:v libx264 -q 1  trans.r25.mp4
           def initialize(transitions, output, _frame_rate, format)
             @transitions, @output, @frame_rate, @format = transitions, output, _frame_rate, format
             super [@transitions], @output, format
@@ -19,10 +19,12 @@ module Media
           end
   
           private
+          # Frame rate
           def frame_rate
             "-r #{@frame_rate.to_s.shellescape}"
           end
   
+          # Audio quality (not set, unuseful)
           def qa
           end
   

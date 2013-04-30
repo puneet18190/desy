@@ -8,6 +8,7 @@ module Media
   module Video
     module Editing
       class Cmd
+        # CLI for replacing the audio track of a video file
         class ReplaceAudio < Cmd::Avconv
   
           def initialize(video_input, audio_input, _duration, output, format)
@@ -18,18 +19,22 @@ module Media
           end
   
           private
+          # Output duration
           def duration
             "-t #{@duration.round(2).to_s.shellescape}"
           end
   
+          # Video and audio maps
           def maps
             '-map 0:v:0 -map 1:a:0'
           end
   
+          # Video codec
           def vcodec
             '-c:v copy'
           end
   
+          # Audio codec
           def acodec
             if @format == :webm
               '-c:a libvorbis'
@@ -38,6 +43,7 @@ module Media
             end
           end
   
+          # Audio quality
           def qa
             super if @format == :webm
           end
