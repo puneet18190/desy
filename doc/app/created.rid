@@ -1,4 +1,4 @@
-Tue, 30 Apr 2013 16:38:20 +0200
+Tue, 30 Apr 2013 17:38:18 +0200
 app/controllers/admin/dashboard_controller.rb	Mon, 29 Apr 2013 14:48:09 +0200
 app/controllers/admin/lessons_controller.rb	Mon, 29 Apr 2013 14:48:09 +0200
 app/controllers/admin/media_elements_controller.rb	Mon, 29 Apr 2013 14:48:09 +0200
@@ -113,12 +113,12 @@ lib/media/uploader.rb	Tue, 30 Apr 2013 14:55:23 +0200
 lib/media/video.rb	Mon, 29 Apr 2013 14:48:13 +0200
 lib/media/video/editing.rb	Mon, 29 Apr 2013 15:35:09 +0200
 lib/media/video/editing/cmd.rb	Mon, 29 Apr 2013 16:07:49 +0200
-lib/media/video/editing/cmd/audio_stream_to_file.rb	Mon, 29 Apr 2013 14:48:13 +0200
-lib/media/video/editing/cmd/avconv.rb	Mon, 29 Apr 2013 14:48:13 +0200
-lib/media/video/editing/cmd/concat.rb	Mon, 29 Apr 2013 14:48:13 +0200
-lib/media/video/editing/cmd/concat/mp4.rb	Mon, 29 Apr 2013 14:48:13 +0200
-lib/media/video/editing/cmd/concat/webm.rb	Mon, 29 Apr 2013 14:48:13 +0200
-lib/media/video/editing/cmd/conversion.rb	Mon, 29 Apr 2013 14:48:13 +0200
+lib/media/video/editing/cmd/audio_stream_to_file.rb	Tue, 30 Apr 2013 17:18:05 +0200
+lib/media/video/editing/cmd/avconv.rb	Tue, 30 Apr 2013 17:17:40 +0200
+lib/media/video/editing/cmd/concat.rb	Tue, 30 Apr 2013 17:13:37 +0200
+lib/media/video/editing/cmd/concat/mp4.rb	Tue, 30 Apr 2013 17:15:22 +0200
+lib/media/video/editing/cmd/concat/webm.rb	Tue, 30 Apr 2013 17:15:56 +0200
+lib/media/video/editing/cmd/conversion.rb	Tue, 30 Apr 2013 17:38:09 +0200
 lib/media/video/editing/cmd/crop.rb	Mon, 29 Apr 2013 14:48:13 +0200
 lib/media/video/editing/cmd/extract_frame.rb	Mon, 29 Apr 2013 14:48:13 +0200
 lib/media/video/editing/cmd/generate_transition_frames.rb	Mon, 29 Apr 2013 14:48:13 +0200

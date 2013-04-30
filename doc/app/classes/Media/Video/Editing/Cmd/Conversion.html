@@ -38,6 +38,12 @@
     <div id="bodyContent">
         <div id="content">
   
+    <div class="description">
+      
+<p>CLI for video conversions</p>
+
+    </div>
+  
 
 
   
@@ -125,14 +131,38 @@
       <table border='0' cellpadding='5'>
         
           <tr valign='top'>
-            <td class="attr-name">OAR</td>
+            <td class="attr-name">OW</td>
             <td>=</td>
-            <td class="attr-value">AVCONV_OUTPUT_WIDTH, AVCONV_OUTPUT_HEIGHT, AVCONV_OUTPUT_ASPECT_RATIO</td>
+            <td class="attr-value">AVCONV_OUTPUT_WIDTH</td>
           </tr>
           
             <tr valign='top'>
               <td>&nbsp;</td>
-              <td colspan="2" class="attr-desc"></td>
+              <td colspan="2" class="attr-desc"><p>Output video width</p></td>
+            </tr>
+          
+        
+          <tr valign='top'>
+            <td class="attr-name">OH</td>
+            <td>=</td>
+            <td class="attr-value">AVCONV_OUTPUT_HEIGHT</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"><p>Output video height</p></td>
+            </tr>
+          
+        
+          <tr valign='top'>
+            <td class="attr-name">OAR</td>
+            <td>=</td>
+            <td class="attr-value">AVCONV_OUTPUT_ASPECT_RATIO</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"><p>Output video aspect ratio</p></td>
             </tr>
           
         
@@ -173,7 +203,7 @@
                 
               </p>
               <div id="method-c-new_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/conversion.rb, line 22</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/conversion.rb, line 27</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize</span>(<span class="ruby-identifier">input_file</span>, <span class="ruby-identifier">output_file</span>, <span class="ruby-identifier">format</span>, <span class="ruby-identifier">input_file_info</span> = <span class="ruby-keyword">nil</span>)
   <span class="ruby-keyword">super</span>([<span class="ruby-identifier">input_file</span>], <span class="ruby-identifier">output_file</span>, <span class="ruby-identifier">format</span>)
   
@@ -202,7 +232,7 @@
           
           
             <div class="description">
-              
+              <p>input audios filtering</p>
             </div>
           
           
@@ -218,7 +248,7 @@
                 
               </p>
               <div id="method-i-amap_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/conversion.rb, line 79</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/conversion.rb, line 90</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">amap</span>
   <span class="ruby-identifier">astreams</span>.<span class="ruby-identifier">present?</span> <span class="ruby-operator">?</span> <span class="ruby-string">&#39;-map 0:a:0&#39;</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>
 <span class="ruby-keyword">end</span></pre>
@@ -237,7 +267,7 @@
           
           
             <div class="description">
-              
+              <p>input audio streams (not used by the command)</p>
             </div>
           
           
@@ -253,7 +283,7 @@
                 
               </p>
               <div id="method-i-astreams_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/conversion.rb, line 71</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/conversion.rb, line 80</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">astreams</span>
   <span class="ruby-ivar">@input_file_info</span>.<span class="ruby-identifier">audio_streams</span>
 <span class="ruby-keyword">end</span></pre>
@@ -272,15 +302,17 @@
           
           
             <div class="description">
-              <p>The goal here is to resize the input video keeping the original ratio to a
+              <p>avconv video filters option (<code>-vf</code>)</p>
+
+<p>The goal here is to resize the input video keeping the original ratio to a
 size  which fills in OUTPUT_WIDTH and OUTPUT_HEIGHT values, and then
 eventually crop  the parts of the input video which exceed in order to
 obtain an output video of OUTPUT_WIDTH and OUTPUT_HEIGHT sizes.</p>
 
 <p>In order to reach our goal, we apply two avconv filters; in order to
 understand  how they work, you should read carefully AVConv manual before
-(`man avconv`),  expecially sections &#39;EXPRESSION EVALUATION&#39; and
-&#39;VIDEO FILTERS&#39;.</p>
+(<code>man avconv</code>), expecially sections &#39;EXPRESSION
+EVALUATION&#39; and &#39;VIDEO FILTERS&#39;.</p>
 
 <p>We apply two filters:</p>
 
@@ -316,7 +348,7 @@ understand  how they work, you should read carefully AVConv manual before
                 
               </p>
               <div id="method-i-vfilters_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/conversion.rb, line 63</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/conversion.rb, line 70</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">vfilters</span>
   <span class="ruby-node">%Q[-vf &#39;scale=lt(iw/ih\\,#{OAR})*#{OW}+gte(iw/ih\\,#{OAR})*-1:lt(iw/ih\\,#{OAR})*-1+gte(iw/ih\\,#{OAR})*#{OH},crop=#{OW}:#{OH}:(iw-ow)/2:(ih-oh)/2&#39;]</span>
 <span class="ruby-keyword">end</span></pre>
@@ -335,7 +367,7 @@ understand  how they work, you should read carefully AVConv manual before
           
           
             <div class="description">
-              
+              <p>input videos filtering</p>
             </div>
           
           
@@ -351,7 +383,7 @@ understand  how they work, you should read carefully AVConv manual before
                 
               </p>
               <div id="method-i-vmap_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/conversion.rb, line 75</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/conversion.rb, line 85</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">vmap</span>
   <span class="ruby-string">&#39;-map 0:v:0&#39;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -370,7 +402,7 @@ understand  how they work, you should read carefully AVConv manual before
           
           
             <div class="description">
-              
+              <p>input video streams (not used by the command)</p>
             </div>
           
           
@@ -386,7 +418,7 @@ understand  how they work, you should read carefully AVConv manual before
                 
               </p>
               <div id="method-i-vstreams_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/conversion.rb, line 67</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/conversion.rb, line 75</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">vstreams</span>
   <span class="ruby-ivar">@input_file_info</span>.<span class="ruby-identifier">video_streams</span>
 <span class="ruby-keyword">end</span></pre>

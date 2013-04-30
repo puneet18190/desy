@@ -38,6 +38,14 @@
     <div id="bodyContent">
         <div id="content">
   
+    <div class="description">
+      
+<p>CLI for <a href="../../Concat.html">Media::Video::Editing::Concat</a>
+processings, webm format - see <a
+href="../Concat.html">Media::Video::Editing::Cmd::Concat</a></p>
+
+    </div>
+  
 
 
   
@@ -189,7 +197,7 @@
           
           
             <div class="description">
-              
+              <p>audio codec</p>
             </div>
           
           
@@ -205,7 +213,7 @@
                 
               </p>
               <div id="method-i-acodec_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/concat/webm.rb, line 33</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/concat/webm.rb, line 36</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">acodec</span>
   <span class="ruby-keyword">super</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@audio_input</span>
 <span class="ruby-keyword">end</span></pre>
@@ -224,7 +232,7 @@
           
           
             <div class="description">
-              
+              <p>output duration</p>
             </div>
           
           
@@ -240,7 +248,7 @@
                 
               </p>
               <div id="method-i-duration_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/concat/webm.rb, line 25</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/concat/webm.rb, line 26</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">duration</span>
   <span class="ruby-node">&quot;-t #{@duration.round(2).to_s.shellescape}&quot;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -259,7 +267,7 @@
           
           
             <div class="description">
-              
+              <p>cuts the outputs to the shortest stream duration</p>
             </div>
           
           
@@ -275,7 +283,7 @@
                 
               </p>
               <div id="method-i-shortest_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/concat/webm.rb, line 37</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/concat/webm.rb, line 41</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">shortest</span>
   <span class="ruby-string">&#39;-shortest&#39;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -294,7 +302,7 @@
           
           
             <div class="description">
-              
+              <p>video codec</p>
             </div>
           
           
@@ -310,7 +318,7 @@
                 
               </p>
               <div id="method-i-vcodec_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/concat/webm.rb, line 29</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/concat/webm.rb, line 31</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">vcodec</span>
   <span class="ruby-string">&#39;-c:v copy&#39;</span>
 <span class="ruby-keyword">end</span></pre>

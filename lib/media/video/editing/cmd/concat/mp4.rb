@@ -12,6 +12,7 @@ module Media
       class Cmd
         class Concat
   
+          # CLI for Media::Video::Editing::Concat processings, mp4 format - see Media::Video::Editing::Cmd::Concat
           class Mp4 < Cmd::Avconv
             def initialize(video_input, audio_input, _duration, output)
               @video_input, @audio_input, @duration, @output = video_input, audio_input, _duration, output
@@ -22,14 +23,17 @@ module Media
             end
   
             private
+            # output duration
             def duration
               "-t #{@duration.round(2).to_s.shellescape}"
             end
-  
+
+            # audio codec
             def acodec
               super if @audio_input
             end
   
+            # cuts the outputs to the shortest stream duration
             def shortest
               '-shortest'
             end

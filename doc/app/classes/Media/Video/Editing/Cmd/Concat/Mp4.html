@@ -38,6 +38,14 @@
     <div id="bodyContent">
         <div id="content">
   
+    <div class="description">
+      
+<p>CLI for <a href="../../Concat.html">Media::Video::Editing::Concat</a>
+processings, mp4 format - see <a
+href="../Concat.html">Media::Video::Editing::Cmd::Concat</a></p>
+
+    </div>
+  
 
 
   
@@ -152,7 +160,7 @@
                 
               </p>
               <div id="method-c-new_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/concat/mp4.rb, line 16</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/concat/mp4.rb, line 17</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize</span>(<span class="ruby-identifier">video_input</span>, <span class="ruby-identifier">audio_input</span>, <span class="ruby-identifier">_duration</span>, <span class="ruby-identifier">output</span>)
   <span class="ruby-ivar">@video_input</span>, <span class="ruby-ivar">@audio_input</span>, <span class="ruby-ivar">@duration</span>, <span class="ruby-ivar">@output</span> = <span class="ruby-identifier">video_input</span>, <span class="ruby-identifier">audio_input</span>, <span class="ruby-identifier">_duration</span>, <span class="ruby-identifier">output</span>
   <span class="ruby-identifier">inputs</span> = [<span class="ruby-ivar">@video_input</span>]
@@ -177,7 +185,7 @@
           
           
             <div class="description">
-              
+              <p>audio codec</p>
             </div>
           
           
@@ -193,7 +201,7 @@
                 
               </p>
               <div id="method-i-acodec_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/concat/mp4.rb, line 29</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/concat/mp4.rb, line 32</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">acodec</span>
   <span class="ruby-keyword">super</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@audio_input</span>
 <span class="ruby-keyword">end</span></pre>
@@ -212,7 +220,7 @@
           
           
             <div class="description">
-              
+              <p>output duration</p>
             </div>
           
           
@@ -228,7 +236,7 @@
                 
               </p>
               <div id="method-i-duration_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/concat/mp4.rb, line 25</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/concat/mp4.rb, line 27</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">duration</span>
   <span class="ruby-node">&quot;-t #{@duration.round(2).to_s.shellescape}&quot;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -247,7 +255,7 @@
           
           
             <div class="description">
-              
+              <p>cuts the outputs to the shortest stream duration</p>
             </div>
           
           
@@ -263,7 +271,7 @@
                 
               </p>
               <div id="method-i-shortest_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/concat/mp4.rb, line 33</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/concat/mp4.rb, line 37</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">shortest</span>
   <span class="ruby-string">&#39;-shortest&#39;</span>
 <span class="ruby-keyword">end</span></pre>

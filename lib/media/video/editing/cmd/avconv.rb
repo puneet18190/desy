@@ -10,6 +10,7 @@ module Media
   module Video
     module Editing
       class Cmd
+        # CLI for video editing using avconv
         class Avconv < Avconv
           self.formats        = FORMATS
           self.codecs         = AVCONV_CODECS
