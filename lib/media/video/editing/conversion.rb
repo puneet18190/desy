@@ -18,28 +18,46 @@ module Media
         include Logging
         include SimilarDurations
   
+        # Temporary conversion files folder path
         TEMP_FOLDER        = Rails.root.join(env_relative_path('tmp/media/video/editing/conversions')).to_s
+        # Maximum duration difference between two converted files allowed
         DURATION_THRESHOLD = CONFIG.duration_threshold
 
+        # Remove the temporary folder
         def self.remove_folder!
           FileUtils.rm_rf TEMP_FOLDER
         end
   
+        # Log files folder path
         def self.log_folder
           super 'conversions'
         end
 
+        # Model-relative temporary folder path
         def self.temp_folder(model_id)
           File.join TEMP_FOLDER, model_id.to_s
         end
 
+        # Model-relative temporary file path
         def self.temp_path(model_id, original_filename)
           File.join temp_folder(model_id), original_filename
         end
   
-        attr_reader :model_id, :uploaded_path
+        # Id of the model to be converted
+        attr_reader :model_id
+        # Uploaded file path
+        attr_reader :uploaded_path
   
-        # Example: new('/tmp/path.abcdef', '/path/to/desy/public/media_elements/13/valid-video', 'valid video.flv', 13)
+        # Create a new Media::Video::Editing::Conversion instance
+        #
+        # === Arguments
+        #
+        # * *uploaded_path*: path to the file to be converted. The file will be moved to the temporary path and removed after the conversion
+        # * *output_path_without_extension*: output path without the extension (it will be added automatically by the conversion for each output format)
+        #
+        # === Examples
+        #
+        #   Media::Video::Editing::Conversion.new('/tmp/path.abcdef', '/path/to/desy/public/media_elements/13/valid-video', 'valid video.flv', 13)
         def initialize(uploaded_path, output_path_without_extension, original_filename, model_id)
           @model_id = model_id
           init_model
@@ -49,6 +67,7 @@ module Media
           @original_filename             = original_filename
         end
   
+        # Execute the conversion processing: it converts the media the output formats, creates the other versions (thumb, cover...) and sends a notification of success to the user who uploaded the file. If an error occurs, destroys the record and sends a notification of failure the user who uploaded the file.
         def run
           begin
             prepare_for_conversion
@@ -102,10 +121,12 @@ module Media
           Notification.send_to model.user_id, I18n.t('notifications.video.upload.ok', item: model.title)
         end
   
+        # Generates the thumb version
         def extract_thumb(input, output, width, height)
           Image::Editing::ResizeToFill.new(input, output, width, height).run
         end
   
+        # Generates the cover version
         def extract_cover(input, output, duration)
           seek = duration / 2
           Cmd::ExtractFrame.new(input, output, seek).run! %W(#{stdout_log} a), %W(#{stderr_log} a)
@@ -115,6 +136,7 @@ module Media
           end
         end
   
+        # Manages the conversion processing
         def convert_to(format)
           prepare_for_conversion unless @prepare_for_conversion
           output_path = output_path(format)
@@ -129,7 +151,8 @@ module Media
         end
 
         private
-        def prepare_for_conversion
+        # Prepares for the conversion processing
+        def prepare_for_conversion # :doc:
           if !File.exists?(uploaded_path) && !File.exists?(temp_path)
             raise Error.new( "at least one between uploaded_path and temp_path must exist", 
                              temp_path: temp_path, uploaded_path: uploaded_path )
@@ -146,35 +169,43 @@ module Media
           @prepare_for_conversion = true
         end
 
-        def output_path(format)
+        # Format-relative output path
+        def output_path(format) # :doc:
           "#{@output_path_without_extension}.#{format}"
         end
   
-        def uploaded_path_extension
+        # Uploaded path extension
+        def uploaded_path_extension # :doc:
           File.extname @uploaded_path
         end
   
-        def output_filename_without_extension
+        # Output filename without extension
+        def output_filename_without_extension # :doc:
           File.basename @output_path_without_extension
         end
   
-        def output_folder
+        # Output folder path
+        def output_folder # :doc:
           File.dirname @output_path_without_extension
         end
   
-        def temp_path
+        # Model-relative temporary path
+        def temp_path # :doc:
           self.class.temp_path(model_id, @original_filename)
         end
-  
-        def temp_folder
+
+        # Temporary folder path  
+        def temp_folder # :doc:
           File.dirname temp_path
         end
   
-        def log_folder(_ = nil)
+        # Model-relative log folder path (the argument is ignored, it is specified just for ancestor method compatibility)
+        def log_folder(_ = nil) # :doc:
           super model_id.to_s
         end
   
-        def model
+        # Model to be converted
+        def model # :doc:
           @model ||= ::Video.find model_id
         end
         alias init_model model

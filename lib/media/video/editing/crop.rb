@@ -12,9 +12,22 @@ module Media
   
         include Logging
 
+        # Output formats
         FORMATS  = FORMATS
-        CROP_CMD = Cmd::Crop
   
+        # Create a new Media::Video::Editing::Crop instance
+        #
+        # === Arguments
+        #
+        # * *inputs*: hash with the input paths per video format
+        # * *output_without_extension*: output path without the extension (it will be added automatically by the conversion for each output format)
+        # * *start*: start crop point (in seconds)
+        # * *duration*: duration of the cropped file (in seconds)
+        # * *log_folder* _optional_: log folder path
+        #
+        # === Examples
+        #
+        #  Media::Video::Editing::Crop.new({ mp4: '/path/to/media.mp4', webm: '/path/to/media.webm' }, '/path/to/cropped/files', 13, 20)
         def initialize(inputs, output_without_extension, start, duration, log_folder = nil)
           unless inputs.is_a?(Hash)                           and 
                  inputs.keys.sort == self.class::FORMATS.sort and
@@ -38,23 +51,27 @@ module Media
 
           @log_folder = log_folder
         end
-  
+
+        # Execute the crop processing returning the output paths
         def run
           Thread.join *self.class::FORMATS.map{ |format| proc{ crop(format) } }
           outputs
         end
   
         private
-        def crop(format)
+        # Format-relative crop processing
+        def crop(format) # :doc:
           create_log_folder
-          self.class::CROP_CMD.new(@inputs[format], output(format), @start, @duration, format).run! *logs
+          self.class::Cmd::Crop.new(@inputs[format], output(format), @start, @duration, format).run! *logs
         end
 
-        def output(format)
+        # Format-relative output path
+        def output(format) # :doc:
           "#{@output_without_extension}.#{format}"
         end
   
-        def outputs
+        # Output paths hash per format
+        def outputs # :doc:
           Hash[ self.class::FORMATS.map{ |format| [format, output(format)] } ]
         end
       end
