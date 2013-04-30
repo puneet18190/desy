@@ -281,14 +281,14 @@ class MediaElementsController < ApplicationController
   private
   
   # Gets media elements using User#own_media_elements
-  def get_own_media_elements # :doc:
+  def get_own_media_elements
     current_user_own_media_elements = current_user.own_media_elements(@page, @for_page, @filter)
     @media_elements = current_user_own_media_elements[:records]
     @pages_amount = current_user_own_media_elements[:pages_amount]
   end
   
   # Initializes pagination parameters and filters
-  def initialize_paginator # :doc:
+  def initialize_paginator
     @page = correct_integer?(params[:page]) ? params[:page].to_i : 1
     @display = [MediaElement::DISPLAY_MODES[:compact], MediaElement::DISPLAY_MODES[:expanded]].include?(params[:display]) ? params[:display] : MediaElement::DISPLAY_MODES[:expanded]
     @for_page_options = @display == MediaElement::DISPLAY_MODES[:compact] ? FOR_PAGE_COMPACT_OPTIONS : FOR_PAGE_EXPANDED_OPTIONS

@@ -353,7 +353,7 @@ href="NotificationsController.html#method-i-initialize_notification_with_owner">
               </p>
               <div id="method-i-initialize_notification_offset_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/controllers/notifications_controller.rb, line 85</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize_notification_offset</span> <span class="ruby-comment"># :doc:</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize_notification_offset</span>
   <span class="ruby-ivar">@offset_notifications</span> = (<span class="ruby-identifier">correct_integer?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:offset</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:offset</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-constant">NOTIFICATIONS_LOADED_TOGETHER</span>)
 <span class="ruby-keyword">end</span></pre>
               </div>
@@ -388,7 +388,7 @@ href="NotificationsController.html#method-i-initialize_notification_with_owner">
               </p>
               <div id="method-i-initialize_notification_with_owner_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/controllers/notifications_controller.rb, line 90</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize_notification_with_owner</span> <span class="ruby-comment"># :doc:</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize_notification_with_owner</span>
   <span class="ruby-ivar">@notification_id</span> = <span class="ruby-identifier">correct_integer?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:notification_id</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:notification_id</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-number">0</span>
   <span class="ruby-ivar">@notification</span> = <span class="ruby-constant">Notification</span>.<span class="ruby-identifier">find_by_id</span> <span class="ruby-ivar">@notification_id</span>
   <span class="ruby-identifier">update_ok</span>(<span class="ruby-operator">!</span><span class="ruby-ivar">@notification</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">==</span> <span class="ruby-ivar">@notification</span>.<span class="ruby-identifier">user_id</span>)

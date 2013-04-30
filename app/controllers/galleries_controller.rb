@@ -309,27 +309,27 @@ class GalleriesController < ApplicationController
   private
   
   # Initializes the parameter +page+ used in all the actions getting new blocks in the gallery
-  def initialize_page # :doc:
+  def initialize_page
     @page = correct_integer?(params[:page]) ? params[:page].to_i : 0
     update_ok(@page > 0)
   end
   
   # Gets the audios, using User#own_media_elements with +filter+ = +audio+
-  def get_audios(page) # :doc:
+  def get_audios(page)
     x = current_user.own_media_elements(page, AUDIOS_FOR_PAGE, Filters::AUDIO)
     @audios = x[:records]
     @tot_pages = x[:pages_amount]
   end
   
   # Gets the videos, using User#own_media_elements with +filter+ = +video+
-  def get_videos(page) # :doc:
+  def get_videos(page)
     x = current_user.own_media_elements(page, VIDEOS_FOR_PAGE, Filters::VIDEO)
     @videos = x[:records]
     @tot_pages = x[:pages_amount]
   end
   
   # Gets the images, using User#own_media_elements with +filter+ = +image+
-  def get_images(page) # :doc:
+  def get_images(page)
     x = current_user.own_media_elements(page, IMAGES_FOR_PAGE, Filters::IMAGE)
     @images = x[:records]
     @tot_pages = x[:pages_amount]

@@ -176,7 +176,7 @@ nil if <code>object</code> is new record and the object itself otherwise.</p>
               </p>
               <div id="method-i-get_class_from_column_name_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File lib/autoload/valid.rb, line 22</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">get_class_from_column_name</span>(<span class="ruby-identifier">x</span>) <span class="ruby-comment"># :doc:</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">get_class_from_column_name</span>(<span class="ruby-identifier">x</span>)
   <span class="ruby-identifier">resp</span> = <span class="ruby-string">&#39;&#39;</span>
   <span class="ruby-identifier">x</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;_&#39;</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">my_split</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">my_split</span> <span class="ruby-operator">!=</span> <span class="ruby-string">&#39;id&#39;</span>

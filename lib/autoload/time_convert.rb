@@ -22,7 +22,7 @@ module TimeConvert
     private
     
     # Convert a time according to standard english format
-    def convert_in_english(a_time) # :doc:
+    def convert_in_english(a_time)
       day = a_time.day
       month = a_time.month
       year = a_time.year
@@ -30,7 +30,7 @@ module TimeConvert
     end
     
     # Suffix for the english days
-    def english_day_suffix(x) # :doc:
+    def english_day_suffix(x)
       if [1, 21, 31].include? x
         return 'st'
       elsif [2, 22].include? x
@@ -43,7 +43,7 @@ module TimeConvert
     end
     
     # English translations for the month
-    def english_month(x) # :doc:
+    def english_month(x)
       case x
         when 1
           return 'January'
@@ -75,7 +75,7 @@ module TimeConvert
     end
     
     # Italian translation for the month
-    def italian_month(x) # :doc:
+    def italian_month(x)
       case x
         when 1
           return 'gennaio'
@@ -107,7 +107,7 @@ module TimeConvert
     end
     
     # Convert a time according to standard chinese format
-    def convert_in_chinese(a_time) # :doc:
+    def convert_in_chinese(a_time)
       day = a_time.day
       month = a_time.month
       year = a_time.year
@@ -115,7 +115,7 @@ module TimeConvert
     end
     
     # Convert a time according to standard italian format
-    def convert_in_italian(a_time) # :doc:
+    def convert_in_italian(a_time)
       day = a_time.day
       month = a_time.month
       year = a_time.year

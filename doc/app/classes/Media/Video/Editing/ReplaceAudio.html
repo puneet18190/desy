@@ -38,6 +38,12 @@
     <div id="bodyContent">
         <div id="content">
   
+    <div class="description">
+      
+<p>Replace the audio of a video file</p>
+
+    </div>
+  
 
 
   
@@ -67,13 +73,47 @@
           </ul>
         </dd>
       
+        <dt>O</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-output">output</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-outputs">outputs</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
         <dt>R</dt>
         <dd>
           <ul>
             
               
               <li>
+                <a href="#method-i-replace_audio">replace_audio</a>,
+              </li>
+            
+              
+              <li>
                 <a href="#method-i-run">run</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>V</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-video_stream_duration">video_stream_duration</a>
               </li>
             
           </ul>
@@ -127,7 +167,7 @@
           
             <tr valign='top'>
               <td>&nbsp;</td>
-              <td colspan="2" class="attr-desc"></td>
+              <td colspan="2" class="attr-desc"><p><a href="../../Audio.html">Audio</a> formats per video format</p></td>
             </tr>
           
         
@@ -152,7 +192,25 @@
           
           
             <div class="description">
-              
+              <p>Create a new <a
+href="ReplaceAudio.html">Media::Video::Editing::ReplaceAudio</a> instance</p>
+
+<h3 id="method-c-new-label-Arguments">Arguments</h3>
+<ul><li>
+<p><strong>video_inputs</strong>: hash with the input paths per video format</p>
+</li><li>
+<p><strong>audio_inputs</strong>: hash with the audio paths which will replace
+the original audios per video format</p>
+</li><li>
+<p><strong>output_without_extension</strong>: output path without the
+extension</p>
+</li><li>
+<p><strong>log_folder</strong> <em>optional</em>: log folder path</p>
+</li></ul>
+
+<h3 id="method-c-new-label-Examples">Examples</h3>
+
+<pre>Media::Video::Editing::ImageToVideo.new({ mp4: &#39;/path/to/media.mp4&#39;, webm: &#39;/path/to/media.webm&#39; }, { m4a: &#39;/path/to/media.m4a&#39;, ogg: &#39;/path/to/media.ogg&#39; }, &#39;/path/to/new/video/files&#39;)</pre>
             </div>
           
           
@@ -168,7 +226,7 @@
                 
               </p>
               <div id="method-c-new_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/replace_audio.rb, line 21</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/replace_audio.rb, line 35</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize</span>(<span class="ruby-identifier">video_inputs</span>, <span class="ruby-identifier">audio_inputs</span>, <span class="ruby-identifier">output_without_extension</span>, <span class="ruby-identifier">log_folder</span> = <span class="ruby-keyword">nil</span>)
   <span class="ruby-keyword">unless</span> <span class="ruby-identifier">video_inputs</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hash</span>)                       <span class="ruby-keyword">and</span> 
          <span class="ruby-identifier">video_inputs</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">sort</span> <span class="ruby-operator">==</span> <span class="ruby-constant">FORMATS</span>.<span class="ruby-identifier">sort</span>         <span class="ruby-keyword">and</span>
@@ -207,7 +265,7 @@
           
           
             <div class="description">
-              
+              <p>Execute the video creation processing</p>
             </div>
           
           
@@ -223,11 +281,164 @@
                 
               </p>
               <div id="method-i-run_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/replace_audio.rb, line 43</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/replace_audio.rb, line 58</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">run</span>
   <span class="ruby-identifier">create_log_folder</span>
   <span class="ruby-identifier">in_tmp_dir</span> { <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">join</span> *<span class="ruby-constant">FORMATS</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span> <span class="ruby-identifier">proc</span> { <span class="ruby-identifier">replace_audio</span>(<span class="ruby-identifier">format</span>) } } }
   <span class="ruby-identifier">outputs</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+              
+      <div class="sectiontitle">Instance Private methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-output">
+            
+              <b>output</b>(format)
+            
+            <a href="../../../../classes/Media/Video/Editing/ReplaceAudio.html#method-i-output" name="method-i-output" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Format-relative output path</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-output_source')" id="l_method-i-output_source">show</a>
+                
+              </p>
+              <div id="method-i-output_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/media/video/editing/replace_audio.rb, line 86</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">output</span>(<span class="ruby-identifier">format</span>)
+  <span class="ruby-node">&quot;#{@output_without_extension}.#{format}&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-outputs">
+            
+              <b>outputs</b>()
+            
+            <a href="../../../../classes/Media/Video/Editing/ReplaceAudio.html#method-i-outputs" name="method-i-outputs" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Output paths hash per format</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-outputs_source')" id="l_method-i-outputs_source">show</a>
+                
+              </p>
+              <div id="method-i-outputs_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/media/video/editing/replace_audio.rb, line 91</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">outputs</span>
+  <span class="ruby-constant">Hash</span>[ <span class="ruby-constant">FORMATS</span>.<span class="ruby-identifier">map</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">format</span>, <span class="ruby-identifier">output</span>(<span class="ruby-identifier">format</span>)] } ]
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-replace_audio">
+            
+              <b>replace_audio</b>(format)
+            
+            <a href="../../../../classes/Media/Video/Editing/ReplaceAudio.html#method-i-replace_audio" name="method-i-replace_audio" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Format-relative processing</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-replace_audio_source')" id="l_method-i-replace_audio_source">show</a>
+                
+              </p>
+              <div id="method-i-replace_audio_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/media/video/editing/replace_audio.rb, line 66</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">replace_audio</span>(<span class="ruby-identifier">format</span>)
+  <span class="ruby-identifier">video_input</span>, <span class="ruby-identifier">audio_input</span> = <span class="ruby-ivar">@video_inputs</span>[<span class="ruby-identifier">format</span>], <span class="ruby-ivar">@audio_inputs</span>[ <span class="ruby-constant">CORRESPONDING_AUDIO_FORMATS</span>[<span class="ruby-identifier">format</span>] ]
+  <span class="ruby-constant">Cmd</span><span class="ruby-operator">::</span><span class="ruby-constant">ReplaceAudio</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">video_input</span>, <span class="ruby-identifier">audio_input</span>, <span class="ruby-identifier">video_stream_duration</span>(<span class="ruby-identifier">video_input</span>), <span class="ruby-identifier">output</span>(<span class="ruby-identifier">format</span>), <span class="ruby-identifier">format</span>).<span class="ruby-identifier">run!</span> *<span class="ruby-identifier">logs</span>(<span class="ruby-node">&quot;1_#{format}&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-video_stream_duration">
+            
+              <b>video_stream_duration</b>(video_input)
+            
+            <a href="../../../../classes/Media/Video/Editing/ReplaceAudio.html#method-i-video_stream_duration" name="method-i-video_stream_duration" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Extracts the video tracks from <code>video_input</code> and returns its
+duration</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-video_stream_duration_source')" id="l_method-i-video_stream_duration_source">show</a>
+                
+              </p>
+              <div id="method-i-video_stream_duration_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/media/video/editing/replace_audio.rb, line 72</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">video_stream_duration</span>(<span class="ruby-identifier">video_input</span>)
+  <span class="ruby-identifier">video_input_info</span> = <span class="ruby-constant">Info</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">video_input</span>
+  
+  <span class="ruby-identifier">video_input_no_audio_duration</span> =
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">video_input_info</span>.<span class="ruby-identifier">audio_streams</span>.<span class="ruby-identifier">blank?</span>
+      <span class="ruby-identifier">video_input_info</span>.<span class="ruby-identifier">duration</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">video_input_no_audio</span> = <span class="ruby-identifier">tmp_path</span> <span class="ruby-node">&quot;video_no_audio.#{File.extname video_input}&quot;</span>
+      <span class="ruby-constant">Cmd</span><span class="ruby-operator">::</span><span class="ruby-constant">VideoStreamToFile</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">video_input</span>, <span class="ruby-identifier">video_input_no_audio</span>).<span class="ruby-identifier">run!</span> *<span class="ruby-identifier">logs</span>(<span class="ruby-string">&#39;0_video_stream_to_file&#39;</span>)
+      <span class="ruby-constant">Info</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">video_input_no_audio</span>).<span class="ruby-identifier">duration</span>
+    <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>

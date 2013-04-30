@@ -290,7 +290,7 @@ value</p></td>
               </p>
               <div id="method-i-extract_cover_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File lib/media/video/uploader.rb, line 53</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">extract_cover</span>(<span class="ruby-identifier">input</span>, <span class="ruby-identifier">output</span>, <span class="ruby-identifier">duration</span>) <span class="ruby-comment"># :doc:</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">extract_cover</span>(<span class="ruby-identifier">input</span>, <span class="ruby-identifier">output</span>, <span class="ruby-identifier">duration</span>)
   <span class="ruby-identifier">seek</span> = <span class="ruby-identifier">duration</span> <span class="ruby-operator">/</span> <span class="ruby-number">2</span>
   <span class="ruby-constant">Editing</span><span class="ruby-operator">::</span><span class="ruby-constant">Cmd</span><span class="ruby-operator">::</span><span class="ruby-constant">ExtractFrame</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">input</span>, <span class="ruby-identifier">output</span>, <span class="ruby-identifier">seek</span>).<span class="ruby-identifier">run!</span>
   <span class="ruby-identifier">raise</span> <span class="ruby-constant">StandardError</span>, <span class="ruby-string">&#39;unable to create cover&#39;</span> <span class="ruby-keyword">unless</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span> <span class="ruby-identifier">output</span>
@@ -327,7 +327,7 @@ value</p></td>
               </p>
               <div id="method-i-extract_thumb_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File lib/media/video/uploader.rb, line 60</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">extract_thumb</span>(<span class="ruby-identifier">input</span>, <span class="ruby-identifier">output</span>, <span class="ruby-identifier">width</span>, <span class="ruby-identifier">height</span>) <span class="ruby-comment"># :doc:</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">extract_thumb</span>(<span class="ruby-identifier">input</span>, <span class="ruby-identifier">output</span>, <span class="ruby-identifier">width</span>, <span class="ruby-identifier">height</span>)
   <span class="ruby-constant">Image</span><span class="ruby-operator">::</span><span class="ruby-constant">Editing</span><span class="ruby-operator">::</span><span class="ruby-constant">ResizeToFill</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">input</span>, <span class="ruby-identifier">output</span>, <span class="ruby-identifier">width</span>, <span class="ruby-identifier">height</span>).<span class="ruby-identifier">run</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
@@ -362,7 +362,7 @@ value</p></td>
               </p>
               <div id="method-i-extract_versions_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File lib/media/video/uploader.rb, line 44</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">extract_versions</span>(<span class="ruby-identifier">infos</span>) <span class="ruby-comment"># :doc:</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">extract_versions</span>(<span class="ruby-identifier">infos</span>)
   <span class="ruby-identifier">cover_path</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span> <span class="ruby-identifier">output_folder</span>, <span class="ruby-constant">COVER_FORMAT</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">processed_original_filename_without_extension</span>
   <span class="ruby-identifier">extract_cover</span> <span class="ruby-ivar">@converted_files</span>[<span class="ruby-value">:mp4</span>], <span class="ruby-identifier">cover_path</span>, <span class="ruby-identifier">infos</span>[<span class="ruby-value">:mp4</span>].<span class="ruby-identifier">duration</span>
 

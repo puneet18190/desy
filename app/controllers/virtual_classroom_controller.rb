@@ -313,13 +313,13 @@ class VirtualClassroomController < ApplicationController
   private
   
   # Initializes the lesson and checks that it's in the Virtual Classroom
-  def initialize_lesson_for_sending_link # :doc:
+  def initialize_lesson_for_sending_link
     initialize_lesson
     update_ok(@lesson && @lesson.in_virtual_classroom?(current_user.id))
   end
   
   # Initializes the lessons just loaded in the multiple loader
-  def initialize_loaded_lessons # :doc:
+  def initialize_loaded_lessons
     @load_lessons = []
     param_name = 'virtual_classroom_quick_loaded_lesson_name'
     params.each do |k, v|
@@ -332,13 +332,13 @@ class VirtualClassroomController < ApplicationController
   end
   
   # Initializes the page parameter
-  def initialize_page # :doc:
+  def initialize_page
     @page = correct_integer?(params[:page]) ? params[:page].to_i : 0
     update_ok(@page > 0)
   end
   
   # Initializes the list of the emails, from a mix of single emails and mailing lists (see MailingListGroup)
-  def initialize_emails # :doc:
+  def initialize_emails
     emails_hash = {}
     @original_emails_number = params[:emails].split(',').length
     params[:emails].split(',').each do |email|
@@ -351,21 +351,21 @@ class VirtualClassroomController < ApplicationController
   end
   
   # Initializes a lesson for the Virtual Classroom (checks that it's included in the section 'lessons' of the current user)
-  def initialize_virtual_classroom_lesson # :doc:
+  def initialize_virtual_classroom_lesson
     @lesson_id = correct_integer?(params[:lesson_id]) ? params[:lesson_id].to_i : 0
     @virtual_classroom_lesson = VirtualClassroomLesson.where(:lesson_id => @lesson_id, :user_id => current_user.id).first
     update_ok(!@virtual_classroom_lesson.nil?)
   end
   
   # Gets lessons, using User#full_virtual_classroom
-  def get_lessons # :doc:
+  def get_lessons
     current_user_virtual_classroom_lessons = current_user.full_virtual_classroom(@page, @for_page)
     @lessons = current_user_virtual_classroom_lessons[:records]
     @pages_amount = current_user_virtual_classroom_lessons[:pages_amount]
   end
   
   # Initializes paginator parameters
-  def initialize_paginator # :doc:
+  def initialize_paginator
     @page = correct_integer?(params[:page]) ? params[:page].to_i : 1
     @for_page = FOR_PAGE
   end

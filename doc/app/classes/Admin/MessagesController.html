@@ -341,7 +341,7 @@ send multiple messages organizing them in different threads</p>
               </p>
               <div id="method-i-send_notifications_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/controllers/admin/messages_controller.rb, line 90</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">send_notifications</span>(<span class="ruby-identifier">users_ids</span>, <span class="ruby-identifier">message</span>) <span class="ruby-comment"># :doc:</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">send_notifications</span>(<span class="ruby-identifier">users_ids</span>, <span class="ruby-identifier">message</span>)
   <span class="ruby-constant">Notification</span>.<span class="ruby-identifier">send_to</span>(<span class="ruby-identifier">users_ids</span>, <span class="ruby-identifier">message</span>)
 <span class="ruby-keyword">end</span></pre>
               </div>

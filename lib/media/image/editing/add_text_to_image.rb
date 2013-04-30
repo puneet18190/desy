@@ -20,7 +20,7 @@ module Media
         private
         
         # Overwrites the method Media::Cmd#cmd! for this specific task
-        def cmd! # :doc:
+        def cmd!
         %Q[ mogrify
               -fill      #{@color_hex.to_s.shellescape}
               -stroke    none
@@ -32,7 +32,7 @@ module Media
         end
         
         # Extracts a shellescaped text
-        def shellescaped_text # :doc:
+        def shellescaped_text
           case @text
           when File, Tempfile
             "@#{@text.path.shellescape}"

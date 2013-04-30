@@ -231,7 +231,7 @@ href="Error.html#method-i-data">#data</a>)</p>
               </p>
               <div id="method-i-data_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File lib/media/error.rb, line 25</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">data</span> <span class="ruby-comment"># :doc:</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">data</span>
   <span class="ruby-ivar">@data</span>.<span class="ruby-identifier">map</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>, <span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-node">&quot;\n  #{k}: #{v.is_a?(String) ? v : v.inspect}&quot;</span> }.<span class="ruby-identifier">join</span> <span class="ruby-string">&#39;&#39;</span>
 <span class="ruby-keyword">end</span></pre>
               </div>

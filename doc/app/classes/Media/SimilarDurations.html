@@ -120,7 +120,7 @@ constant, <code>false</code> otherwise</p>
               </p>
               <div id="method-i-similar_durations-3F_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File lib/media/similar_durations.rb, line 10</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">similar_durations?</span>(<span class="ruby-identifier">duration</span>, <span class="ruby-identifier">other_duration</span>) <span class="ruby-comment"># :doc:</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">similar_durations?</span>(<span class="ruby-identifier">duration</span>, <span class="ruby-identifier">other_duration</span>)
   ((<span class="ruby-identifier">duration</span><span class="ruby-operator">-</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span><span class="ruby-operator">::</span><span class="ruby-constant">DURATION_THRESHOLD</span>)<span class="ruby-operator">..</span>(<span class="ruby-identifier">duration</span><span class="ruby-operator">+</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span><span class="ruby-operator">::</span><span class="ruby-constant">DURATION_THRESHOLD</span>)).<span class="ruby-identifier">include?</span> <span class="ruby-identifier">other_duration</span>
 <span class="ruby-keyword">end</span></pre>
               </div>

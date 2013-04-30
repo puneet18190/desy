@@ -206,7 +206,7 @@ task</p>
               </p>
               <div id="method-i-cmd-21_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File lib/media/image/editing/add_text_to_image.rb, line 23</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">cmd!</span> <span class="ruby-comment"># :doc:</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">cmd!</span>
 <span class="ruby-node">%Q[ mogrify
       -fill      #{@color_hex.to_s.shellescape}
       -stroke    none
@@ -248,7 +248,7 @@ task</p>
               </p>
               <div id="method-i-shellescaped_text_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File lib/media/image/editing/add_text_to_image.rb, line 35</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">shellescaped_text</span> <span class="ruby-comment"># :doc:</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">shellescaped_text</span>
   <span class="ruby-keyword">case</span> <span class="ruby-ivar">@text</span>
   <span class="ruby-keyword">when</span> <span class="ruby-constant">File</span>, <span class="ruby-constant">Tempfile</span>
     <span class="ruby-node">&quot;@#{@text.path.shellescape}&quot;</span>

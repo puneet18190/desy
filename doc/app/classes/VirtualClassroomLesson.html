@@ -648,7 +648,7 @@ href="Valid.html#method-c-get_association">Valid.get_association</a>)</p>
               </p>
               <div id="method-i-init_validation_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/models/virtual_classroom_lesson.rb, line 231</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">init_validation</span> <span class="ruby-comment"># :doc:</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">init_validation</span>
   <span class="ruby-ivar">@virtual_classroom_lesson</span> = <span class="ruby-constant">Valid</span>.<span class="ruby-identifier">get_association</span> <span class="ruby-keyword">self</span>, <span class="ruby-value">:id</span>
   <span class="ruby-ivar">@lesson</span> = <span class="ruby-constant">Valid</span>.<span class="ruby-identifier">get_association</span> <span class="ruby-keyword">self</span>, <span class="ruby-value">:lesson_id</span>
   <span class="ruby-ivar">@user</span> = <span class="ruby-constant">Valid</span>.<span class="ruby-identifier">get_association</span> <span class="ruby-keyword">self</span>, <span class="ruby-value">:user_id</span>
@@ -685,7 +685,7 @@ href="Valid.html#method-c-get_association">Valid.get_association</a>)</p>
               </p>
               <div id="method-i-validate_associations_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/models/virtual_classroom_lesson.rb, line 238</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">validate_associations</span> <span class="ruby-comment"># :doc:</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">validate_associations</span>
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:user_id</span>, <span class="ruby-value">:doesnt_exist</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">nil?</span>
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:lesson_id</span>, <span class="ruby-value">:doesnt_exist</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">nil?</span>
 <span class="ruby-keyword">end</span></pre>
@@ -721,7 +721,7 @@ href="Valid.html#method-c-get_association">Valid.get_association</a>)</p>
               </p>
               <div id="method-i-validate_availability_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/models/virtual_classroom_lesson.rb, line 244</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">validate_availability</span> <span class="ruby-comment"># :doc:</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">validate_availability</span>
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:lesson_id</span>, <span class="ruby-value">:is_not_available</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@lesson</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@user</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">user_id</span> <span class="ruby-operator">!=</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">bookmarked?</span>(<span class="ruby-ivar">@user</span>.<span class="ruby-identifier">id</span>)
 <span class="ruby-keyword">end</span></pre>
               </div>
@@ -756,7 +756,7 @@ href="Valid.html#method-c-get_association">Valid.get_association</a>)</p>
               </p>
               <div id="method-i-validate_copied_not_modified_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/models/virtual_classroom_lesson.rb, line 249</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">validate_copied_not_modified</span> <span class="ruby-comment"># :doc:</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">validate_copied_not_modified</span>
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:lesson_id</span>, <span class="ruby-value">:just_been_copied</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@lesson</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">copied_not_modified</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
@@ -792,7 +792,7 @@ href="Valid.html#method-c-get_association">Valid.get_association</a>)</p>
               </p>
               <div id="method-i-validate_impossible_changes_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/models/virtual_classroom_lesson.rb, line 259</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">validate_impossible_changes</span> <span class="ruby-comment"># :doc:</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">validate_impossible_changes</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@virtual_classroom_lesson</span>
     <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:user_id</span>, <span class="ruby-value">:cant_be_changed</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@virtual_classroom_lesson</span>.<span class="ruby-identifier">user_id</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">user_id</span>
     <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:lesson_id</span>, <span class="ruby-value">:cant_be_changed</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@virtual_classroom_lesson</span>.<span class="ruby-identifier">lesson_id</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">lesson_id</span>
@@ -831,7 +831,7 @@ settings.yml)</p>
               </p>
               <div id="method-i-validate_playlist_length_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/models/virtual_classroom_lesson.rb, line 226</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">validate_playlist_length</span> <span class="ruby-comment"># :doc:</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">validate_playlist_length</span>
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:position</span>, <span class="ruby-value">:reached_maximum_in_playlist</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@virtual_classroom_lesson</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@virtual_classroom_lesson</span>.<span class="ruby-identifier">position</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">position</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-constant">VirtualClassroomLesson</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&#39;user_id = ? AND position IS NOT NULL&#39;</span>, <span class="ruby-ivar">@virtual_classroom_lesson</span>.<span class="ruby-identifier">user_id</span>).<span class="ruby-identifier">count</span> <span class="ruby-operator">==</span> <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;lessons_in_playlist&#39;</span>]
 <span class="ruby-keyword">end</span></pre>
               </div>
@@ -867,7 +867,7 @@ the lesson is new record</p>
               </p>
               <div id="method-i-validate_positions_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/models/virtual_classroom_lesson.rb, line 254</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">validate_positions</span> <span class="ruby-comment"># :doc:</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">validate_positions</span>
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:position</span>, <span class="ruby-value">:must_be_null_if_new_record</span>) <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">position</span>
 <span class="ruby-keyword">end</span></pre>
               </div>

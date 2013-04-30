@@ -38,6 +38,13 @@
     <div id="bodyContent">
         <div id="content">
   
+    <div class="description">
+      
+<p><a href="Crop.html">Crop</a> the input videos supplied producing shorter
+output videos</p>
+
+    </div>
+  
 
 
   
@@ -152,6 +159,20 @@
             </tr>
           
         
+          <tr valign='top'>
+            <td class="attr-name">CROP_CMD</td>
+            <td>=</td>
+            <td class="attr-value">Cmd::Crop</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"><p><a href="Crop.html">Crop</a> command class (needed by <a
+href="../../Audio/Editing/Crop.html">Media::Audio::Editing::Crop</a> which
+is a descendant of this class)</p></td>
+            </tr>
+          
+        
       </table>
     
 
@@ -180,8 +201,7 @@
 <p><strong>inputs</strong>: hash with the input paths per video format</p>
 </li><li>
 <p><strong>output_without_extension</strong>: output path without the
-extension (it will be added automatically by the conversion for each output
-format)</p>
+extension</p>
 </li><li>
 <p><strong>start</strong>: start crop point (in seconds)</p>
 </li><li>
@@ -208,7 +228,7 @@ format)</p>
                 
               </p>
               <div id="method-c-new_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/crop.rb, line 31</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/crop.rb, line 34</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize</span>(<span class="ruby-identifier">inputs</span>, <span class="ruby-identifier">output_without_extension</span>, <span class="ruby-identifier">start</span>, <span class="ruby-identifier">duration</span>, <span class="ruby-identifier">log_folder</span> = <span class="ruby-keyword">nil</span>)
   <span class="ruby-keyword">unless</span> <span class="ruby-identifier">inputs</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hash</span>)                           <span class="ruby-keyword">and</span> 
          <span class="ruby-identifier">inputs</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">sort</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span><span class="ruby-operator">::</span><span class="ruby-constant">FORMATS</span>.<span class="ruby-identifier">sort</span> <span class="ruby-keyword">and</span>
@@ -265,7 +285,7 @@ format)</p>
                 
               </p>
               <div id="method-i-run_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/crop.rb, line 56</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/crop.rb, line 59</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">run</span>
   <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">join</span> *<span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span><span class="ruby-operator">::</span><span class="ruby-constant">FORMATS</span>.<span class="ruby-identifier">map</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span> <span class="ruby-identifier">proc</span>{ <span class="ruby-identifier">crop</span>(<span class="ruby-identifier">format</span>) } }
   <span class="ruby-identifier">outputs</span>
@@ -303,10 +323,10 @@ format)</p>
                 
               </p>
               <div id="method-i-crop_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/crop.rb, line 63</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">crop</span>(<span class="ruby-identifier">format</span>) <span class="ruby-comment"># :doc:</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/crop.rb, line 66</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">crop</span>(<span class="ruby-identifier">format</span>)
   <span class="ruby-identifier">create_log_folder</span>
-  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span><span class="ruby-operator">::</span><span class="ruby-constant">Cmd</span><span class="ruby-operator">::</span><span class="ruby-constant">Crop</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@inputs</span>[<span class="ruby-identifier">format</span>], <span class="ruby-identifier">output</span>(<span class="ruby-identifier">format</span>), <span class="ruby-ivar">@start</span>, <span class="ruby-ivar">@duration</span>, <span class="ruby-identifier">format</span>).<span class="ruby-identifier">run!</span> *<span class="ruby-identifier">logs</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span><span class="ruby-operator">::</span><span class="ruby-constant">CROP_CMD</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@inputs</span>[<span class="ruby-identifier">format</span>], <span class="ruby-identifier">output</span>(<span class="ruby-identifier">format</span>), <span class="ruby-ivar">@start</span>, <span class="ruby-ivar">@duration</span>, <span class="ruby-identifier">format</span>).<span class="ruby-identifier">run!</span> *<span class="ruby-identifier">logs</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -339,8 +359,8 @@ format)</p>
                 
               </p>
               <div id="method-i-output_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/crop.rb, line 69</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">output</span>(<span class="ruby-identifier">format</span>) <span class="ruby-comment"># :doc:</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/crop.rb, line 72</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">output</span>(<span class="ruby-identifier">format</span>)
   <span class="ruby-node">&quot;#{@output_without_extension}.#{format}&quot;</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
@@ -374,8 +394,8 @@ format)</p>
                 
               </p>
               <div id="method-i-outputs_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/crop.rb, line 74</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">outputs</span> <span class="ruby-comment"># :doc:</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/crop.rb, line 77</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">outputs</span>
   <span class="ruby-constant">Hash</span>[ <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span><span class="ruby-operator">::</span><span class="ruby-constant">FORMATS</span>.<span class="ruby-identifier">map</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">format</span>, <span class="ruby-identifier">output</span>(<span class="ruby-identifier">format</span>)] } ]
 <span class="ruby-keyword">end</span></pre>
               </div>

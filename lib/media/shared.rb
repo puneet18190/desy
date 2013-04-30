@@ -71,24 +71,24 @@ module Media
 
       private
       # Set the creation mode
-      def set_creation_mode # :doc:
+      def set_creation_mode
         self.metadata.creation_mode = media.present? ? UPLOADED : COMPOSED
         true
       end
 
       # Execute the media validation
-      def media_validation # :doc:
+      def media_validation
         media.validation if media
       end
 
       # Execute the media upload/copy operation
-      def upload_or_copy # :doc:
+      def upload_or_copy
         media.upload_or_copy if media
         true
       end
 
       # Clean the media folder
-      def clean # :doc:
+      def clean
         folder = media.try(:folder)
         FileUtils.rm_rf folder if folder
         true

@@ -55,6 +55,52 @@
     <div class="sectiontitle">Methods</div>
     <dl class="methods">
       
+        <dt>C</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-concat">concat</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-copy_first_inputs_to_outputs">copy_first_inputs_to_outputs</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>I</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-inputs">inputs</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>M</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-m4a_inputs">m4a_inputs</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-m4a_output">m4a_output</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
         <dt>N</dt>
         <dd>
           <ul>
@@ -62,6 +108,28 @@
               
               <li>
                 <a href="#method-c-new">new</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>O</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-ogg_inputs">ogg_inputs</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-ogg_output">ogg_output</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-outputs">outputs</a>
               </li>
             
           </ul>
@@ -254,6 +322,295 @@ m4a: &#39;input.m4a&#39;}, { ogg: &#39;input2.ogg&#39;, m4a:
   
   <span class="ruby-identifier">in_tmp_dir</span> { <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">join</span> *<span class="ruby-constant">FORMATS</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span> <span class="ruby-identifier">proc</span>{ <span class="ruby-identifier">concat</span>(<span class="ruby-identifier">format</span>) } } }
   <span class="ruby-identifier">outputs</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+              
+      <div class="sectiontitle">Instance Private methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-concat">
+            
+              <b>concat</b>(format)
+            
+            <a href="../../../../classes/Media/Audio/Editing/Concat.html#method-i-concat" name="method-i-concat" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-concat_source')" id="l_method-i-concat_source">show</a>
+                
+              </p>
+              <div id="method-i-concat_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/concat.rb, line 61</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">concat</span>(<span class="ruby-identifier">format</span>)
+  <span class="ruby-identifier">create_log_folder</span>
+  <span class="ruby-constant">Cmd</span><span class="ruby-operator">::</span><span class="ruby-constant">Concat</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">inputs</span>[<span class="ruby-identifier">format</span>], <span class="ruby-identifier">outputs</span>[<span class="ruby-identifier">format</span>], <span class="ruby-identifier">format</span>).<span class="ruby-identifier">run!</span> *<span class="ruby-identifier">logs</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-copy_first_inputs_to_outputs">
+            
+              <b>copy_first_inputs_to_outputs</b>()
+            
+            <a href="../../../../classes/Media/Audio/Editing/Concat.html#method-i-copy_first_inputs_to_outputs" name="method-i-copy_first_inputs_to_outputs" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-copy_first_inputs_to_outputs_source')" id="l_method-i-copy_first_inputs_to_outputs_source">show</a>
+                
+              </p>
+              <div id="method-i-copy_first_inputs_to_outputs_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/concat.rb, line 90</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">copy_first_inputs_to_outputs</span>
+  <span class="ruby-constant">Hash</span>[
+    <span class="ruby-ivar">@inputs</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">map</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span>, <span class="ruby-identifier">input</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">output</span> = <span class="ruby-identifier">outputs</span>[<span class="ruby-identifier">format</span>]
+      <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">cp</span> <span class="ruby-identifier">input</span>, <span class="ruby-identifier">output</span>
+      [<span class="ruby-identifier">format</span>, <span class="ruby-identifier">output</span>]
+    <span class="ruby-keyword">end</span>
+  ]
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-inputs">
+            
+              <b>inputs</b>()
+            
+            <a href="../../../../classes/Media/Audio/Editing/Concat.html#method-i-inputs" name="method-i-inputs" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-inputs_source')" id="l_method-i-inputs_source">show</a>
+                
+              </p>
+              <div id="method-i-inputs_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/concat.rb, line 78</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">inputs</span>
+  <span class="ruby-ivar">@_inputs</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Hash</span>[ <span class="ruby-constant">FORMATS</span>.<span class="ruby-identifier">map</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">f</span>, <span class="ruby-ivar">@inputs</span>.<span class="ruby-identifier">map</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">input</span><span class="ruby-operator">|</span> <span class="ruby-identifier">input</span>[<span class="ruby-identifier">f</span>] } ] } ]
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-m4a_inputs">
+            
+              <b>m4a_inputs</b>()
+            
+            <a href="../../../../classes/Media/Audio/Editing/Concat.html#method-i-m4a_inputs" name="method-i-m4a_inputs" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-m4a_inputs_source')" id="l_method-i-m4a_inputs_source">show</a>
+                
+              </p>
+              <div id="method-i-m4a_inputs_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/concat.rb, line 82</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">m4a_inputs</span>
+  <span class="ruby-ivar">@inputs</span>.<span class="ruby-identifier">map</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">input</span><span class="ruby-operator">|</span> <span class="ruby-identifier">input</span>[<span class="ruby-value">:m4a</span>] }
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-m4a_output">
+            
+              <b>m4a_output</b>()
+            
+            <a href="../../../../classes/Media/Audio/Editing/Concat.html#method-i-m4a_output" name="method-i-m4a_output" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-m4a_output_source')" id="l_method-i-m4a_output_source">show</a>
+                
+              </p>
+              <div id="method-i-m4a_output_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/concat.rb, line 66</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">m4a_output</span>
+  <span class="ruby-constant">OUTPUT_M4A_FORMAT</span> <span class="ruby-operator">%</span> <span class="ruby-ivar">@output_without_extension</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-ogg_inputs">
+            
+              <b>ogg_inputs</b>()
+            
+            <a href="../../../../classes/Media/Audio/Editing/Concat.html#method-i-ogg_inputs" name="method-i-ogg_inputs" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-ogg_inputs_source')" id="l_method-i-ogg_inputs_source">show</a>
+                
+              </p>
+              <div id="method-i-ogg_inputs_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/concat.rb, line 86</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">ogg_inputs</span>
+  <span class="ruby-ivar">@inputs</span>.<span class="ruby-identifier">map</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">input</span><span class="ruby-operator">|</span> <span class="ruby-identifier">input</span>[<span class="ruby-value">:ogg</span>] }
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-ogg_output">
+            
+              <b>ogg_output</b>()
+            
+            <a href="../../../../classes/Media/Audio/Editing/Concat.html#method-i-ogg_output" name="method-i-ogg_output" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-ogg_output_source')" id="l_method-i-ogg_output_source">show</a>
+                
+              </p>
+              <div id="method-i-ogg_output_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/concat.rb, line 70</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">ogg_output</span>
+  <span class="ruby-constant">OUTPUT_OGG_FORMAT</span> <span class="ruby-operator">%</span> <span class="ruby-ivar">@output_without_extension</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-outputs">
+            
+              <b>outputs</b>()
+            
+            <a href="../../../../classes/Media/Audio/Editing/Concat.html#method-i-outputs" name="method-i-outputs" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-outputs_source')" id="l_method-i-outputs_source">show</a>
+                
+              </p>
+              <div id="method-i-outputs_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/concat.rb, line 74</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">outputs</span>
+  { <span class="ruby-identifier">m4a</span><span class="ruby-operator">:</span> <span class="ruby-identifier">m4a_output</span>, <span class="ruby-identifier">ogg</span><span class="ruby-operator">:</span> <span class="ruby-identifier">ogg_output</span> }
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>

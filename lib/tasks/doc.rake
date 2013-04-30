@@ -3,7 +3,6 @@ Rake::Task["doc:app"].clear
 Rake::Task["doc/app"].clear
 Rake::Task["doc/app/index.html"].clear
 
-
 namespace :doc do
 
   desc "Generate documentation for the application"
@@ -17,6 +16,7 @@ namespace :doc do
 
     rdoc.options << '--fmt' << 'sdoc'
     rdoc.options << '--charset' << 'utf-8'
+    rdoc.options << '--all'
 
     rdoc.rdoc_files.include('app/**/*.rb')
     rdoc.rdoc_files.include('lib/**/*.rb')

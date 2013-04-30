@@ -31,7 +31,7 @@ module Media
         private
         
         # Error messages for an original file not yet converted
-        def error_message_for_file_to_convert # :doc:
+        def error_message_for_file_to_convert
           if not self.class::EXTENSION_WHITE_LIST_WITH_DOT.include?(original_filename_extension)
             'unsupported format'
           else
@@ -47,7 +47,7 @@ module Media
         end
 
         # Error message for already converted files
-        def error_message_for_converted_files # :doc:
+        def error_message_for_converted_files
           mp4_path, webm_path = @converted_files[:mp4], @converted_files[:webm]
           if !@original_filename_without_extension.is_a?(String)
             'invalid filename'

@@ -46,7 +46,7 @@ class Bookmark < ActiveRecord::Base
   private
   
   # Initializes validation objects (see Valid.get_association)
-  def init_validation # :doc:
+  def init_validation
     @user = Valid.get_association self, :user_id
     @bookmark = Valid.get_association self, :id
     @lesson = self.bookmarkable_type == 'Lesson' ? Valid.get_association(self, :bookmarkable_id, Lesson) : nil
@@ -54,12 +54,12 @@ class Bookmark < ActiveRecord::Base
   end
   
   # True if +bookmarkable_type+ is in the correct syntax
-  def good_bookmarkable_type # :doc:
+  def good_bookmarkable_type
     ['Lesson', 'MediaElement'].include? self.bookmarkable_type
   end
   
   # Validates the presence of all the associated objects
-  def validate_associations # :doc:
+  def validate_associations
     errors.add(:user_id, :doesnt_exist) if @user.nil?
     errors.add(:bookmarkable_id, :lesson_doesnt_exist) if self.bookmarkable_type == 'Lesson' && @lesson.nil?
     errors.add(:bookmarkable_id, :media_element_doesnt_exist) if self.bookmarkable_type == 'MediaElement' && @media_element.nil?
@@ -67,13 +67,13 @@ class Bookmark < ActiveRecord::Base
   
   # For lessons, validates that it doesn't belong to the user and that it's public
   # For elements, it validates that the element is public
-  def validate_availability # :doc:
+  def validate_availability
     errors.add(:bookmarkable_id, :lesson_not_available_for_bookmarks) if @lesson && (@lesson.user_id == self.user_id || !@lesson.is_public)
     errors.add(:bookmarkable_id, :media_element_not_available_for_bookmarks) if @media_element && !@media_element.is_public
   end
   
   # Callback that destroys the associated record of VirtualClassroomLesson
-  def destroy_virtual_classroom # :doc:
+  def destroy_virtual_classroom
     return if self.new_record?
     bookmark_me = Bookmark.find self.id
     return if bookmark_me.bookmarkable_type != 'Lesson'
@@ -84,7 +84,7 @@ class Bookmark < ActiveRecord::Base
   end
   
   # If not new record, none of the fields can be changed
-  def validate_impossible_changes # :doc:
+  def validate_impossible_changes
     if @bookmark
       errors.add(:user_id, :cant_be_changed) if self.user_id != @bookmark.user_id
       errors.add(:bookmarkable_id, :cant_be_changed) if self.bookmarkable_id != @bookmark.bookmarkable_id

@@ -11,13 +11,27 @@ require 'media/video/editing/cmd/replace_audio'
 module Media
   module Video
     module Editing
+      # Replace the audio of a video file
       class ReplaceAudio
         
         include Logging
         include InTmpDir
   
+        # Audio formats per video format
         CORRESPONDING_AUDIO_FORMATS = { mp4: :m4a, webm: :ogg }
   
+        # Create a new Media::Video::Editing::ReplaceAudio instance
+        #
+        # === Arguments
+        #
+        # * *video_inputs*: hash with the input paths per video format
+        # * *audio_inputs*: hash with the audio paths which will replace the original audios per video format
+        # * *output_without_extension*: output path without the extension
+        # * *log_folder* _optional_: log folder path
+        #
+        # === Examples
+        #
+        #  Media::Video::Editing::ImageToVideo.new({ mp4: '/path/to/media.mp4', webm: '/path/to/media.webm' }, { m4a: '/path/to/media.m4a', ogg: '/path/to/media.ogg' }, '/path/to/new/video/files')
         def initialize(video_inputs, audio_inputs, output_without_extension, log_folder = nil)
           unless video_inputs.is_a?(Hash)                       and 
                  video_inputs.keys.sort == FORMATS.sort         and
@@ -40,6 +54,7 @@ module Media
           @log_folder = log_folder
         end
   
+        # Execute the video creation processing
         def run
           create_log_folder
           in_tmp_dir { Thread.join *FORMATS.map { |format| proc { replace_audio(format) } } }
@@ -47,11 +62,13 @@ module Media
         end
   
         private
+        # Format-relative processing
         def replace_audio(format)
           video_input, audio_input = @video_inputs[format], @audio_inputs[ CORRESPONDING_AUDIO_FORMATS[format] ]
           Cmd::ReplaceAudio.new(video_input, audio_input, video_stream_duration(video_input), output(format), format).run! *logs("1_#{format}")
         end
   
+        # Extracts the video tracks from +video_input+ and returns its duration
         def video_stream_duration(video_input)
           video_input_info = Info.new video_input
   
@@ -65,10 +82,12 @@ module Media
             end
         end
   
+        # Format-relative output path
         def output(format)
           "#{@output_without_extension}.#{format}"
         end
   
+        # Output paths hash per format
         def outputs
           Hash[ FORMATS.map{ |format| [format, output(format)] } ]
         end

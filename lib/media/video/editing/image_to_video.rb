@@ -11,15 +11,34 @@ require 'media/thread'
 module Media
   module Video
     module Editing
+      # Convert the supplied image file to videos of the supplied duration
       class ImageToVideo
   
         include Logging
         include InTmpDir
   
+        # Processed images output path format
         PROCESSED_IMAGE_PATH_FORMAT = 'processed_image.%s'
   
-        attr_reader :input_path, :output_without_extension, :duration
+        # Input path
+        attr_reader :input_path
+        # Output path without extension
+        attr_reader :output_without_extension
+        # Output video uration
+        attr_reader :duration
   
+        # Create a new Media::Video::Editing::ImageToVideo instance
+        #
+        # === Arguments
+        #
+        # * *inputs*: hash with the input paths per video format
+        # * *output_without_extension*: output path without the extension
+        # * *duration*: duration of the output videos (in seconds)
+        # * *log_folder* _optional_: log folder path
+        #
+        # === Examples
+        #
+        #  Media::Video::Editing::ImageToVideo.new({ mp4: '/path/to/media.mp4', webm: '/path/to/media.webm' }, '/path/to/new/video/files', 15)
         def initialize(input_path, output_without_extension, duration, log_folder = nil)
           raise Error.new('duration must be a Numeric > 0', duration: duration) unless duration.is_a? Numeric and duration > 0
 
@@ -28,6 +47,7 @@ module Media
           @log_folder = log_folder
         end
   
+        # Execute the video creation processing
         def run
           in_tmp_dir do
             processed_image_path = tmp_path( PROCESSED_IMAGE_PATH_FORMAT % File.extname(input_path) )
@@ -49,6 +69,7 @@ module Media
         end
   
         private
+        # Format-relative processing
         def convert_to(processed_image_path, format)
           output_path = output_path(format)
   
@@ -63,31 +84,37 @@ module Media
           end
         end
   
+        # MP4 output path
         def mp4_output_path
           output_path(:mp4)
         end
   
+        # Webm output path
         def webm_output_path
           output_path(:webm)
         end
   
+        # Format-relative output path
         def output_path(format)
           "#{output_without_extension}.#{format}"
         end
   
+        # +MiniMagick::Image+ instance of the input image file
         def input
           @input ||= MiniMagick::Image.open(input_path)
         end
   
+        # Input image width
         def input_width
           input[:width]
         end
   
+        # Input image height
         def input_height
           input[:height]
         end
   
-        # resize and crop
+        # Processes the image in order to resize it to the default video sizes
         def image_process(processed_image_path)
           input.combine_options do |cmd|
             cmd.resize  "#{AVCONV_OUTPUT_WIDTH}x#{AVCONV_OUTPUT_HEIGHT}^"

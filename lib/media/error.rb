@@ -22,7 +22,7 @@ module Media
 
     private
     # Formats <tt>@data</tt> for the error message
-    def data # :doc:
+    def data
       @data.map{ |k, v| "\n  #{k}: #{v.is_a?(String) ? v : v.inspect}" }.join ''
     end
 

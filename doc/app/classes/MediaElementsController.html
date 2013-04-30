@@ -878,7 +878,7 @@ href="User.html#method-i-own_media_elements">User#own_media_elements</a></p>
               </p>
               <div id="method-i-get_own_media_elements_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/controllers/media_elements_controller.rb, line 284</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">get_own_media_elements</span> <span class="ruby-comment"># :doc:</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">get_own_media_elements</span>
   <span class="ruby-identifier">current_user_own_media_elements</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">own_media_elements</span>(<span class="ruby-ivar">@page</span>, <span class="ruby-ivar">@for_page</span>, <span class="ruby-ivar">@filter</span>)
   <span class="ruby-ivar">@media_elements</span> = <span class="ruby-identifier">current_user_own_media_elements</span>[<span class="ruby-value">:records</span>]
   <span class="ruby-ivar">@pages_amount</span> = <span class="ruby-identifier">current_user_own_media_elements</span>[<span class="ruby-value">:pages_amount</span>]
@@ -915,7 +915,7 @@ href="User.html#method-i-own_media_elements">User#own_media_elements</a></p>
               </p>
               <div id="method-i-initialize_paginator_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/controllers/media_elements_controller.rb, line 291</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize_paginator</span> <span class="ruby-comment"># :doc:</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize_paginator</span>
   <span class="ruby-ivar">@page</span> = <span class="ruby-identifier">correct_integer?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-number">1</span>
   <span class="ruby-ivar">@display</span> = [<span class="ruby-constant">MediaElement</span><span class="ruby-operator">::</span><span class="ruby-constant">DISPLAY_MODES</span>[<span class="ruby-value">:compact</span>], <span class="ruby-constant">MediaElement</span><span class="ruby-operator">::</span><span class="ruby-constant">DISPLAY_MODES</span>[<span class="ruby-value">:expanded</span>]].<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:display</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:display</span>] <span class="ruby-operator">:</span> <span class="ruby-constant">MediaElement</span><span class="ruby-operator">::</span><span class="ruby-constant">DISPLAY_MODES</span>[<span class="ruby-value">:expanded</span>]
   <span class="ruby-ivar">@for_page_options</span> = <span class="ruby-ivar">@display</span> <span class="ruby-operator">==</span> <span class="ruby-constant">MediaElement</span><span class="ruby-operator">::</span><span class="ruby-constant">DISPLAY_MODES</span>[<span class="ruby-value">:compact</span>] <span class="ruby-operator">?</span> <span class="ruby-constant">FOR_PAGE_COMPACT_OPTIONS</span> <span class="ruby-operator">:</span> <span class="ruby-constant">FOR_PAGE_EXPANDED_OPTIONS</span>

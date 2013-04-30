@@ -60,12 +60,12 @@ class Users::SessionsController < ApplicationController
   private
   
   # Extracts the arguments of the url to be redirected to in case of failed authentication
-  def failed_authentication_redirect_args(path_params, error) # :doc:
+  def failed_authentication_redirect_args(path_params, error)
     [ root_path(path_params), { flash: { alert: error } } ]
   end
   
   # Used to extract the correct url to redirect after a successfull authentication: +invalid_components_indexes+ are Scheme, Userinfo, Host, Port, Registry, Opaque; +valid_components_indexes+ are Path, Query (Fragment is useless and thus ignored)
-  def uri_path_and_query(url) # :doc:
+  def uri_path_and_query(url)
     return nil unless url
     components = URI.split url
     invalid_components_indexes = [0, 1, 2, 3, 4, 6]

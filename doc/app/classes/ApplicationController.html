@@ -442,7 +442,7 @@ href="User.html#method-i-admin-3F">User#admin?</a>)</p>
               </p>
               <div id="method-i-admin_authenticate_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 148</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">admin_authenticate</span> <span class="ruby-comment"># :doc:</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">admin_authenticate</span>
   <span class="ruby-keyword">return</span> <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">root_path</span>(<span class="ruby-identifier">redirect_to</span><span class="ruby-operator">:</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">fullpath</span>, <span class="ruby-identifier">login</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>) <span class="ruby-keyword">if</span> <span class="ruby-keyword">not</span> <span class="ruby-identifier">current_user</span> <span class="ruby-keyword">or</span> <span class="ruby-keyword">not</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">admin?</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
@@ -477,7 +477,7 @@ href="User.html#method-i-admin-3F">User#admin?</a>)</p>
               </p>
               <div id="method-i-authenticate_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 143</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">authenticate</span> <span class="ruby-comment"># :doc:</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">authenticate</span>
   <span class="ruby-keyword">return</span> <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">root_path</span>(<span class="ruby-identifier">redirect_to</span><span class="ruby-operator">:</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">fullpath</span>, <span class="ruby-identifier">login</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">current_user</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
@@ -514,7 +514,7 @@ message for the user.</p>
               </p>
               <div id="method-i-convert_item_error_messages_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 180</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">convert_item_error_messages</span>(<span class="ruby-identifier">errors</span>) <span class="ruby-comment"># :doc:</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">convert_item_error_messages</span>(<span class="ruby-identifier">errors</span>)
   <span class="ruby-identifier">resp</span> = []
   <span class="ruby-identifier">media_errors</span> = <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-value">:media</span>)
   <span class="ruby-identifier">sti_type_errors</span> = <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-value">:sti_type</span>)
@@ -563,7 +563,7 @@ message for the user.</p>
               </p>
               <div id="method-i-convert_lesson_editor_messages_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 197</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">convert_lesson_editor_messages</span>(<span class="ruby-identifier">errors</span>) <span class="ruby-comment"># :doc:</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">convert_lesson_editor_messages</span>(<span class="ruby-identifier">errors</span>)
   <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">convert_item_error_messages</span> <span class="ruby-identifier">errors</span>
   <span class="ruby-identifier">resp</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;forms.error_captions.subject_missing_in_lesson&#39;</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">has_key?</span> <span class="ruby-value">:subject_id</span>
   <span class="ruby-identifier">resp</span>
@@ -601,7 +601,7 @@ ActiveModel::Errors into a translated message for the user.</p>
               </p>
               <div id="method-i-convert_media_element_uploader_messages_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 204</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">convert_media_element_uploader_messages</span>(<span class="ruby-identifier">errors</span>) <span class="ruby-comment"># :doc:</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">convert_media_element_uploader_messages</span>(<span class="ruby-identifier">errors</span>)
   <span class="ruby-keyword">return</span> [<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;forms.error_captions.media_folder_size_exceeded&#39;</span>)] <span class="ruby-keyword">if</span> <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">added?</span> <span class="ruby-value">:media</span>, <span class="ruby-value">:folder_size_exceeded</span>
 
   <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">convert_item_error_messages</span> <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">messages</span>
@@ -652,7 +652,7 @@ ActiveModel::Errors into a translated message for the user.</p>
               </p>
               <div id="method-i-convert_user_error_messages_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 224</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">convert_user_error_messages</span>(<span class="ruby-identifier">errors</span>) <span class="ruby-comment"># :doc:</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">convert_user_error_messages</span>(<span class="ruby-identifier">errors</span>)
   <span class="ruby-identifier">pas_min</span> = <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;minimum_password_length&#39;</span>]
   <span class="ruby-identifier">pas_max</span> = <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;maximum_password_length&#39;</span>]
   <span class="ruby-identifier">resp</span> = {
@@ -720,7 +720,7 @@ integer</p>
               </p>
               <div id="method-i-correct_integer-3F_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 169</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">correct_integer?</span>(<span class="ruby-identifier">x</span>) <span class="ruby-comment"># :doc:</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">correct_integer?</span>(<span class="ruby-identifier">x</span>)
   <span class="ruby-identifier">x</span>.<span class="ruby-identifier">class</span> <span class="ruby-operator">==</span> <span class="ruby-constant">String</span> <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-identifier">x</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/\A\d+\Z/</span>) <span class="ruby-operator">==</span> <span class="ruby-number">0</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
@@ -756,7 +756,7 @@ href="ApplicationController.html#attribute-i-current_user">#current_user</a></p>
               </p>
               <div id="method-i-current_user-3D_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 158</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">current_user=</span>(<span class="ruby-identifier">user</span>) <span class="ruby-comment"># :doc:</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">current_user=</span>(<span class="ruby-identifier">user</span>)
   <span class="ruby-identifier">session</span>[<span class="ruby-value">:user_id</span>] = <span class="ruby-identifier">user</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>
   <span class="ruby-ivar">@current_user</span> = <span class="ruby-identifier">user</span>
 <span class="ruby-keyword">end</span></pre>
@@ -793,7 +793,7 @@ href="ApplicationController.html#method-i-set_locale">#set_locale</a>)</p>
               </p>
               <div id="method-i-get_locale_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 43</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">get_locale</span> <span class="ruby-comment"># :doc:</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">get_locale</span>
   <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">locale</span> = <span class="ruby-identifier">session</span>[<span class="ruby-value">:locale</span>] <span class="ruby-operator">||</span> <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">default_locale</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
@@ -832,7 +832,7 @@ effect of removing a lesson or an element from the page</p>
               </p>
               <div id="method-i-initialize_layout_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 127</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize_layout</span> <span class="ruby-comment"># :doc:</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize_layout</span>
   <span class="ruby-ivar">@delete_item</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:delete_item</span>]
   <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">request</span>.<span class="ruby-identifier">xhr?</span>
     <span class="ruby-ivar">@notifications</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">notifications_visible_block</span> <span class="ruby-number">0</span>, <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;notifications_loaded_together&#39;</span>]
@@ -874,7 +874,7 @@ corresponding lesson exists</p>
               </p>
               <div id="method-i-initialize_lesson_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 77</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize_lesson</span> <span class="ruby-comment"># :doc:</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize_lesson</span>
   <span class="ruby-ivar">@lesson_id</span> = <span class="ruby-identifier">correct_integer?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:lesson_id</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:lesson_id</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-number">0</span>
   <span class="ruby-ivar">@lesson</span> = <span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">find_by_id</span> <span class="ruby-ivar">@lesson_id</span>
   <span class="ruby-identifier">update_ok</span>(<span class="ruby-operator">!</span><span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">nil?</span>)
@@ -913,7 +913,7 @@ href="ButtonDestinations.html">ButtonDestinations</a>)</p>
               </p>
               <div id="method-i-initialize_lesson_destination_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 84</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize_lesson_destination</span> <span class="ruby-comment"># :doc:</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize_lesson_destination</span>
   <span class="ruby-ivar">@destination</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:destination</span>]
   <span class="ruby-identifier">update_ok</span>(<span class="ruby-constant">ButtonDestinations</span><span class="ruby-operator">::</span><span class="ruby-constant">LESSONS</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-ivar">@destination</span>))
 <span class="ruby-keyword">end</span></pre>
@@ -951,7 +951,7 @@ and additionally checks if the logged user owns the lesson</p>
               </p>
               <div id="method-i-initialize_lesson_with_owner_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 71</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize_lesson_with_owner</span> <span class="ruby-comment"># :doc:</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize_lesson_with_owner</span>
   <span class="ruby-identifier">initialize_lesson</span>
   <span class="ruby-identifier">update_ok</span>(<span class="ruby-ivar">@lesson</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">==</span> <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">user_id</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -988,7 +988,7 @@ controller who called the action</p>
               </p>
               <div id="method-i-initialize_location_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 138</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize_location</span> <span class="ruby-comment"># :doc:</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize_location</span>
   <span class="ruby-ivar">@where</span> = <span class="ruby-identifier">controller_name</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
@@ -1024,7 +1024,7 @@ corresponding element exists</p>
               </p>
               <div id="method-i-initialize_media_element_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 108</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize_media_element</span> <span class="ruby-comment"># :doc:</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize_media_element</span>
   <span class="ruby-ivar">@media_element_id</span> = <span class="ruby-identifier">correct_integer?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:media_element_id</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:media_element_id</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-number">0</span>
   <span class="ruby-ivar">@media_element</span> = <span class="ruby-constant">MediaElement</span>.<span class="ruby-identifier">find_by_id</span> <span class="ruby-ivar">@media_element_id</span>
   <span class="ruby-identifier">update_ok</span>(<span class="ruby-operator">!</span><span class="ruby-ivar">@media_element</span>.<span class="ruby-identifier">nil?</span>)
@@ -1063,7 +1063,7 @@ href="ButtonDestinations.html">ButtonDestinations</a>)</p>
               </p>
               <div id="method-i-initialize_media_element_destination_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 115</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize_media_element_destination</span> <span class="ruby-comment"># :doc:</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize_media_element_destination</span>
   <span class="ruby-ivar">@destination</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:destination</span>]
   <span class="ruby-identifier">update_ok</span>(<span class="ruby-constant">ButtonDestinations</span><span class="ruby-operator">::</span><span class="ruby-constant">MEDIA_ELEMENTS</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-ivar">@destination</span>))
 <span class="ruby-keyword">end</span></pre>
@@ -1101,7 +1101,7 @@ and returns true if additionally the logged user owns the element</p>
               </p>
               <div id="method-i-initialize_media_element_with_owner_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 102</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize_media_element_with_owner</span> <span class="ruby-comment"># :doc:</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize_media_element_with_owner</span>
   <span class="ruby-identifier">initialize_media_element</span>
   <span class="ruby-identifier">update_ok</span>(<span class="ruby-ivar">@media_element</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">==</span> <span class="ruby-ivar">@media_element</span>.<span class="ruby-identifier">user_id</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -1139,7 +1139,7 @@ and returns true if additionally the element is private</p>
               </p>
               <div id="method-i-initialize_media_element_with_owner_and_private_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 96</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize_media_element_with_owner_and_private</span> <span class="ruby-comment"># :doc:</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize_media_element_with_owner_and_private</span>
   <span class="ruby-identifier">initialize_media_element_with_owner</span>
   <span class="ruby-identifier">update_ok</span>(<span class="ruby-ivar">@media_element</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@media_element</span>.<span class="ruby-identifier">is_public</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -1178,7 +1178,7 @@ element is public</p>
               </p>
               <div id="method-i-initialize_media_element_with_owner_or_public_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 90</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize_media_element_with_owner_or_public</span> <span class="ruby-comment"># :doc:</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize_media_element_with_owner_or_public</span>
   <span class="ruby-identifier">initialize_media_element</span>
   <span class="ruby-identifier">update_ok</span>(<span class="ruby-ivar">@media_element</span> <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-ivar">@media_element</span>.<span class="ruby-identifier">is_public</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">==</span> <span class="ruby-ivar">@media_element</span>.<span class="ruby-identifier">user_id</span>))
 <span class="ruby-keyword">end</span></pre>
@@ -1217,7 +1217,7 @@ in the same page</p>
               </p>
               <div id="method-i-initialize_players_counter_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 49</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize_players_counter</span> <span class="ruby-comment"># :doc:</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize_players_counter</span>
   <span class="ruby-ivar">@video_counter</span> = [<span class="ruby-constant">SecureRandom</span>.<span class="ruby-identifier">urlsafe_base64</span>(<span class="ruby-number">16</span>), <span class="ruby-number">1</span>]
   <span class="ruby-ivar">@audio_counter</span> = [<span class="ruby-constant">SecureRandom</span>.<span class="ruby-identifier">urlsafe_base64</span>(<span class="ruby-number">16</span>), <span class="ruby-number">1</span>]
 <span class="ruby-keyword">end</span></pre>
@@ -1254,7 +1254,7 @@ in the same page</p>
               </p>
               <div id="method-i-initialize_position_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 121</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize_position</span> <span class="ruby-comment"># :doc:</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize_position</span>
   <span class="ruby-ivar">@position</span> = <span class="ruby-identifier">correct_integer?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:position</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:position</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-number">0</span>
   <span class="ruby-identifier">update_ok</span>(<span class="ruby-ivar">@position</span> <span class="ruby-operator">&gt;</span> <span class="ruby-number">0</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -1290,7 +1290,7 @@ in the same page</p>
               </p>
               <div id="method-i-logged_in-3F_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 259</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">logged_in?</span> <span class="ruby-comment"># :doc:</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">logged_in?</span>
   <span class="ruby-identifier">current_user</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
@@ -1327,7 +1327,7 @@ actions</p>
               </p>
               <div id="method-i-prepare_lesson_for_js_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 55</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">prepare_lesson_for_js</span> <span class="ruby-comment"># :doc:</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">prepare_lesson_for_js</span>
   <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">nil?</span>
     <span class="ruby-ivar">@lesson</span> = <span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">find_by_id</span> <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">id</span>
     <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">set_status</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>
@@ -1367,7 +1367,7 @@ actions</p>
               </p>
               <div id="method-i-prepare_media_element_for_js_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 63</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">prepare_media_element_for_js</span> <span class="ruby-comment"># :doc:</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">prepare_media_element_for_js</span>
   <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@media_element</span>.<span class="ruby-identifier">nil?</span>
     <span class="ruby-ivar">@media_element</span> = <span class="ruby-constant">MediaElement</span>.<span class="ruby-identifier">find_by_id</span> <span class="ruby-ivar">@media_element</span>.<span class="ruby-identifier">id</span>
     <span class="ruby-ivar">@media_element</span>.<span class="ruby-identifier">set_status</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>
@@ -1407,7 +1407,7 @@ href="DashboardController.html#method-i-index">DashboardController#index</a>)</p
               </p>
               <div id="method-i-render_js_or_html_index_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 164</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">render_js_or_html_index</span> <span class="ruby-comment"># :doc:</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">render_js_or_html_index</span>
   <span class="ruby-identifier">render</span> <span class="ruby-string">&#39;index&#39;</span>, <span class="ruby-identifier">formats</span><span class="ruby-operator">:</span> [<span class="ruby-identifier">request</span>.<span class="ruby-identifier">xhr?</span> <span class="ruby-operator">?</span> <span class="ruby-value">:js</span> <span class="ruby-operator">:</span> <span class="ruby-value">:html</span>]
 <span class="ruby-keyword">end</span></pre>
               </div>
@@ -1446,7 +1446,7 @@ initialized</p>
               </p>
               <div id="method-i-update_ok_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 174</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">update_ok</span>(<span class="ruby-identifier">condition</span>) <span class="ruby-comment"># :doc:</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">update_ok</span>(<span class="ruby-identifier">condition</span>)
   <span class="ruby-ivar">@ok</span> = <span class="ruby-keyword">true</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>.<span class="ruby-identifier">nil?</span>
   <span class="ruby-ivar">@ok</span> = <span class="ruby-ivar">@ok</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">condition</span>
 <span class="ruby-keyword">end</span></pre>

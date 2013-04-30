@@ -15,6 +15,7 @@ require 'media/audio'
 module Media
   module Video
     module Editing
+      # Compose the components supplied (videos, text, images) in order to create a new video based on them
       class Composer
 
         include InTmpDir
@@ -140,35 +141,35 @@ module Media
 
         private
         # Instance-relative log folder
-        def log_folder(*folders) # :doc:
+        def log_folder(*folders)
           File.join(@log_folder, *folders)
         end
 
         # Instance-model-thread relative log folder
-        def log_folder_name # :doc:
+        def log_folder_name
           File.join self.class.log_folder, video.id.to_s, "#{Time.now.utc.strftime("%Y-%m-%d_%H-%M-%S")}_#{::Thread.main.object_id}"
         end
 
         # Create the log folder
-        def create_log_folder # :doc:
+        def create_log_folder
           @log_folder = FileUtils.mkdir_p(log_folder_name).first
         end
 
         # Text component composing
-        def compose_text(text, duration, color, background_color, i) # :doc:
+        def compose_text(text, duration, color, background_color, i)
           text_file = Pathname.new tmp_path "text_#{i}.txt"
           text_file.open('w') { |f| f.write text }
           TextToVideo.new(text_file, output_without_extension(i), duration, { color: color, background_color: background_color }, log_folder('components', "#{i}_text")).run
         end
 
         # Image component composing
-        def compose_image(image_id, duration, i) # :doc:
+        def compose_image(image_id, duration, i)
           image = ::Image.find image_id
           ImageToVideo.new(image.media.path, output_without_extension(i), duration, log_folder('components', "#{i}_image")).run
         end
 
         # Video component composing
-        def compose_video(video_id, from, to, i) # :doc:
+        def compose_video(video_id, from, to, i)
           video = ::Video.find video_id
           inputs = Hash[ FORMATS.map{ |f| [f, video.media.path(f)] } ]
 
@@ -183,12 +184,12 @@ module Media
         end
 
         # Locale key depending of the composing action type
-        def notification_translation_key # :doc:
+        def notification_translation_key
           @old_media ? 'update' : 'create'
         end
 
         # Video file copy
-        def video_copy(input, output) # :doc:
+        def video_copy(input, output)
           if audio
             # scarto gli stream audio, così poi non perdo tempo a processare le tracce audio inutilmente
             Cmd::VideoStreamToFile.new(input, output).run!
@@ -198,17 +199,17 @@ module Media
         end
 
         # Temporary output path without extension
-        def output_without_extension(i) # :doc:
+        def output_without_extension(i)
           tmp_path i.to_s
         end
 
         # Initial video instance
-        def video # :doc:
+        def video
           @video ||= ::Video.find @params[:initial_video][:id]
         end
 
         # Audio track instance (+nil+ if <tt>params[:id]</tt> is not provided)
-        def audio # :doc:
+        def audio
           @audio ||= (
             id = @params[:audio_track]
             ::Audio.find(id) if id

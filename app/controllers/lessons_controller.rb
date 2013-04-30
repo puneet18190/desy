@@ -348,7 +348,7 @@ class LessonsController < ApplicationController
   private
   
   # Checks if the lesson is available (it doesn't contain any audio or video in conversion)
-  def check_available_for_user # :doc:
+  def check_available_for_user
     l = Lesson.find_by_id params[:lesson_id]
     if l && !l.available?
       render :nothing => true
@@ -357,14 +357,14 @@ class LessonsController < ApplicationController
   end
   
   # Gets the lessons using User#own_lessons
-  def get_own_lessons # :doc:
+  def get_own_lessons
     current_user_own_lessons = current_user.own_lessons(@page, @for_page, @filter)
     @lessons = current_user_own_lessons[:records]
     @pages_amount = current_user_own_lessons[:pages_amount]
   end
   
   # Initializes pagination parameters and filters
-  def initialize_paginator # :doc:
+  def initialize_paginator
     @page = correct_integer?(params[:page]) ? params[:page].to_i : 1
     @for_page = FOR_PAGE
     @filter = params[:filter]

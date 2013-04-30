@@ -283,7 +283,7 @@ class LessonEditorController < ApplicationController
   private
   
   # Checks if the lesson editor is not locked for the user
-  def check_available_for_user # :doc:
+  def check_available_for_user
     @lesson = Lesson.find_by_id params[:lesson_id]
     if @lesson && !@lesson.available?
       render 'not_available'
@@ -292,13 +292,13 @@ class LessonEditorController < ApplicationController
   end
   
   # Initializes the kind of a new slide, taking it from the url parameters
-  def initialize_kind # :doc:
+  def initialize_kind
     @kind = Slide::KINDS_WITHOUT_COVER.include?(params[:kind]) ? params[:kind] : ''
     update_ok(!@kind.blank?)
   end
   
   # Calls ApplicationController#initialize_lesson_with_owner, and additionally checks if the slide corresponds to the lesson
-  def initialize_lesson_with_owner_and_slide # :doc:
+  def initialize_lesson_with_owner_and_slide
     initialize_lesson_with_owner
     @slide_id = correct_integer?(params[:slide_id]) ? params[:slide_id].to_i : 0
     @slide = Slide.find_by_id @slide_id
@@ -306,7 +306,7 @@ class LessonEditorController < ApplicationController
   end
   
   # Initializes the subjects
-  def initialize_subjects # :doc:
+  def initialize_subjects
     @subjects = []
     UsersSubject.joins(:subject).where(:user_id => current_user.id).order('subjects.description ASC').each do |sbj|
       @subjects << sbj.subject
@@ -315,7 +315,7 @@ class LessonEditorController < ApplicationController
   end
   
   # Saves the current slide, using Slide#update_with_media_elements
-  def save_current_slide # :doc:
+  def save_current_slide
     media_elements_params = {}
     (1...5).each do |i|
       if !params["media_element_#{i}"].blank?

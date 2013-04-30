@@ -223,7 +223,7 @@ module Media
 
     private
     # Executes the copy process
-    def copy # :doc:
+    def copy
       FileUtils.mkdir_p output_folder unless Dir.exists? output_folder
       
       infos = {}
@@ -253,17 +253,17 @@ module Media
     end
 
     # Implemented by the descendant classes in order to extract the versions needed (used by Media::Uploader.copy)
-    def extract_versions(infos) # :doc:
+    def extract_versions(infos)
     end
 
     # Executes the copy of the uploaded file to the temporary folder and add related job to the jobs queue
-    def upload_copy_and_job(conversion_temp_path) # :doc:
+    def upload_copy_and_job(conversion_temp_path)
       FileUtils.cp @original_file.path, conversion_temp_path
       Delayed::Job.enqueue self.class::CONVERSION_CLASS::Job.new(@original_file.path, output_path_without_extension, original_filename, model_id)
     end
 
     # Executes the upload process
-    def upload # :doc:
+    def upload
       return if model.skip_conversion
 
       conversion_temp_path = self.class::CONVERSION_CLASS.temp_path(model_id, original_filename)

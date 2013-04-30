@@ -571,7 +571,7 @@ href="ImageEditorController.html#method-i-initialize_image_with_owner_or_public"
               </p>
               <div id="method-i-extract_textareas_params_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/controllers/image_editor_controller.rb, line 189</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">extract_textareas_params</span>(<span class="ruby-identifier">params</span>) <span class="ruby-comment"># :doc:</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">extract_textareas_params</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">resp</span> = {}
   <span class="ruby-identifier">fonts</span> = {<span class="ruby-string">&#39;small_font&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-number">15</span>, <span class="ruby-string">&#39;medium_font&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-number">25</span>, <span class="ruby-string">&#39;big_font&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-number">35</span>}
   <span class="ruby-identifier">params</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>, <span class="ruby-identifier">v</span><span class="ruby-operator">|</span>
@@ -639,7 +639,7 @@ href="Media/Video/Editing/Parameters.html">Media::Video::Editing::Parameters</a>
               </p>
               <div id="method-i-initialize_image_with_owner_and_private_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/controllers/image_editor_controller.rb, line 226</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize_image_with_owner_and_private</span> <span class="ruby-comment"># :doc:</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize_image_with_owner_and_private</span>
   <span class="ruby-ivar">@image_id</span> = <span class="ruby-identifier">correct_integer?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:image_id</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:image_id</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-number">0</span>
   <span class="ruby-ivar">@image</span> = <span class="ruby-constant">Image</span>.<span class="ruby-identifier">find_by_id</span> <span class="ruby-ivar">@image_id</span>
   <span class="ruby-identifier">update_ok</span>(<span class="ruby-operator">!</span><span class="ruby-ivar">@image</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@image</span>.<span class="ruby-identifier">is_public</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">==</span> <span class="ruby-ivar">@image</span>.<span class="ruby-identifier">user_id</span>)
@@ -678,7 +678,7 @@ visualize the image)</p>
               </p>
               <div id="method-i-initialize_image_with_owner_or_public_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/controllers/image_editor_controller.rb, line 219</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize_image_with_owner_or_public</span> <span class="ruby-comment"># :doc:</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize_image_with_owner_or_public</span>
   <span class="ruby-ivar">@image_id</span> = <span class="ruby-identifier">correct_integer?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:image_id</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:image_id</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-number">0</span>
   <span class="ruby-ivar">@image</span> = <span class="ruby-constant">Image</span>.<span class="ruby-identifier">find_by_id</span> <span class="ruby-ivar">@image_id</span>
   <span class="ruby-identifier">update_ok</span>(<span class="ruby-operator">!</span><span class="ruby-ivar">@image</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-ivar">@image</span>.<span class="ruby-identifier">is_public</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">==</span> <span class="ruby-ivar">@image</span>.<span class="ruby-identifier">user_id</span>))

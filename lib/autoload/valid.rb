@@ -19,7 +19,7 @@ module Valid
     private
     
     # Submethod of Validness#get
-    def get_class_from_column_name(x) # :doc:
+    def get_class_from_column_name(x)
       resp = ''
       x.split('_').each do |my_split|
         if my_split != 'id'

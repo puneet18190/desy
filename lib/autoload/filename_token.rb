@@ -9,7 +9,7 @@ module FilenameToken
 
     private
     # Resets the <tt>@filename_token</tt> instance variable
-    def reset_filename_token # :doc:
+    def reset_filename_token
       @filename_token = nil
     end
   end

@@ -38,6 +38,12 @@
     <div id="bodyContent">
         <div id="content">
   
+    <div class="description">
+      
+<p>Concatenate an array of video files producing a new video as output</p>
+
+    </div>
+  
 
 
   
@@ -351,7 +357,7 @@ files per format</p>
                 
               </p>
               <div id="method-c-new_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/concat.rb, line 50</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/concat.rb, line 51</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize</span>(<span class="ruby-identifier">inputs</span>, <span class="ruby-identifier">output_without_extension</span>, <span class="ruby-identifier">log_folder</span> = <span class="ruby-keyword">nil</span>)
   <span class="ruby-keyword">unless</span> <span class="ruby-identifier">inputs</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Array</span>) <span class="ruby-operator">&amp;&amp;</span>
          <span class="ruby-identifier">inputs</span>.<span class="ruby-identifier">present?</span>     <span class="ruby-operator">&amp;&amp;</span>
@@ -410,7 +416,7 @@ files per format</p>
                 
               </p>
               <div id="method-i-run_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/concat.rb, line 77</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/concat.rb, line 78</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">run</span>
   <span class="ruby-comment"># In order to check how many video pairs we have we can check mp4_inputs, because we already checked that mp4_inputs.size == webm_inputs.size inside the initialization</span>
   <span class="ruby-comment"># Edge case: if there is just one inputs hash we can just copy the inputs to their respective outputs</span>
@@ -483,8 +489,8 @@ between an audio track and another</p>
                 
               </p>
               <div id="method-i-concat_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/concat.rb, line 117</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">concat</span>(<span class="ruby-identifier">mp4_inputs_infos</span>, <span class="ruby-identifier">paddings</span>) <span class="ruby-comment"># :doc:</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/concat.rb, line 118</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">concat</span>(<span class="ruby-identifier">mp4_inputs_infos</span>, <span class="ruby-identifier">paddings</span>)
   <span class="ruby-identifier">create_log_folder</span>
   
   <span class="ruby-identifier">final_wav</span> = 
@@ -539,8 +545,8 @@ inputs to their respective outputs</p>
                 
               </p>
               <div id="method-i-copy_first_inputs_to_outputs_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/concat.rb, line 93</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">copy_first_inputs_to_outputs</span> <span class="ruby-comment"># :doc:</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/concat.rb, line 94</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">copy_first_inputs_to_outputs</span>
   <span class="ruby-constant">Hash</span>[
     <span class="ruby-ivar">@inputs</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">map</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span>, <span class="ruby-identifier">input</span><span class="ruby-operator">|</span>
       <span class="ruby-identifier">output</span> = <span class="ruby-identifier">outputs</span>[<span class="ruby-identifier">format</span>]
@@ -599,8 +605,8 @@ method</p>
                 
               </p>
               <div id="method-i-final_wav_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/concat.rb, line 152</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">final_wav</span>(<span class="ruby-identifier">mp4_inputs_infos</span>, <span class="ruby-identifier">paddings</span>) <span class="ruby-comment"># :doc:</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/concat.rb, line 153</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">final_wav</span>(<span class="ruby-identifier">mp4_inputs_infos</span>, <span class="ruby-identifier">paddings</span>)
   <span class="ruby-identifier">wavs_with_paddings</span> = <span class="ruby-identifier">wavs_with_paddings</span>(<span class="ruby-identifier">mp4_inputs_infos</span>, <span class="ruby-identifier">paddings</span>)
   <span class="ruby-identifier">final_wav</span> = <span class="ruby-identifier">tmp_path</span> <span class="ruby-constant">FINAL_WAV</span>
   <span class="ruby-constant">Audio</span><span class="ruby-operator">::</span><span class="ruby-constant">Editing</span><span class="ruby-operator">::</span><span class="ruby-constant">Cmd</span><span class="ruby-operator">::</span><span class="ruby-constant">Concat</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">wavs_with_paddings</span>, <span class="ruby-identifier">final_wav</span>).<span class="ruby-identifier">run!</span> *<span class="ruby-identifier">logs</span>(<span class="ruby-string">&#39;2_concat_with_paddings&#39;</span>) <span class="ruby-comment"># 5.</span>
@@ -638,8 +644,8 @@ href="Concat.html#method-i-final_wav">#final_wav</a> logic</p>
                 
               </p>
               <div id="method-i-increase_rpadding_depending_on_video_overflow_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/concat.rb, line 181</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">increase_rpadding_depending_on_video_overflow</span>(<span class="ruby-identifier">video_info</span>, <span class="ruby-identifier">wav</span>, <span class="ruby-identifier">paddings</span>) <span class="ruby-comment"># :doc:</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/concat.rb, line 182</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">increase_rpadding_depending_on_video_overflow</span>(<span class="ruby-identifier">video_info</span>, <span class="ruby-identifier">wav</span>, <span class="ruby-identifier">paddings</span>)
   <span class="ruby-identifier">wav_info</span> = <span class="ruby-constant">Info</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">wav</span>)
   <span class="ruby-identifier">overflow</span> = <span class="ruby-identifier">video_info</span>.<span class="ruby-identifier">duration</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">wav_info</span>.<span class="ruby-identifier">duration</span>
   <span class="ruby-identifier">paddings</span>[<span class="ruby-number">1</span>] <span class="ruby-operator">+=</span> <span class="ruby-identifier">overflow</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">overflow</span> <span class="ruby-operator">&gt;</span> <span class="ruby-number">0</span>
@@ -675,8 +681,8 @@ href="Concat.html#method-i-final_wav">#final_wav</a> logic</p>
                 
               </p>
               <div id="method-i-mp4_inputs_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/concat.rb, line 219</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">mp4_inputs</span> <span class="ruby-comment"># :doc:</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/concat.rb, line 220</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">mp4_inputs</span>
   <span class="ruby-ivar">@mp4_inputs</span> <span class="ruby-operator">||=</span> <span class="ruby-ivar">@inputs</span>.<span class="ruby-identifier">map</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">input</span><span class="ruby-operator">|</span> <span class="ruby-identifier">input</span>[<span class="ruby-value">:mp4</span>] }
 <span class="ruby-keyword">end</span></pre>
               </div>
@@ -710,8 +716,8 @@ href="Concat.html#method-i-final_wav">#final_wav</a> logic</p>
                 
               </p>
               <div id="method-i-mp4_output_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/concat.rb, line 229</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">mp4_output</span> <span class="ruby-comment"># :doc:</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/concat.rb, line 230</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">mp4_output</span>
   <span class="ruby-constant">OUTPUT_MP4_FORMAT</span> <span class="ruby-operator">%</span> <span class="ruby-ivar">@output_without_extension</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
@@ -745,8 +751,8 @@ href="Concat.html#method-i-final_wav">#final_wav</a> logic</p>
                 
               </p>
               <div id="method-i-outputs_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/concat.rb, line 239</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">outputs</span> <span class="ruby-comment"># :doc:</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/concat.rb, line 240</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">outputs</span>
   { <span class="ruby-identifier">mp4</span><span class="ruby-operator">:</span> <span class="ruby-identifier">mp4_output</span>, <span class="ruby-identifier">webm</span><span class="ruby-operator">:</span> <span class="ruby-identifier">webm_output</span> }
 <span class="ruby-keyword">end</span></pre>
               </div>
@@ -791,8 +797,8 @@ with them. Example:</p>
                 
               </p>
               <div id="method-i-paddings_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/concat.rb, line 198</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">paddings</span>(<span class="ruby-identifier">infos</span>) <span class="ruby-comment"># :doc:</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/concat.rb, line 199</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">paddings</span>(<span class="ruby-identifier">infos</span>)
   <span class="ruby-identifier">paddings</span>, <span class="ruby-identifier">lpadding</span> = [], <span class="ruby-number">0</span>
   
   <span class="ruby-identifier">infos</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">info</span><span class="ruby-operator">|</span>
@@ -846,8 +852,8 @@ href="Concat.html#method-i-increase_rpadding_depending_on_video_overflow">#incre
                 
               </p>
               <div id="method-i-wavs_with_paddings_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/concat.rb, line 160</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">wavs_with_paddings</span>(<span class="ruby-identifier">mp4_inputs_infos</span>, <span class="ruby-identifier">paddings</span>) <span class="ruby-comment"># :doc:</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/concat.rb, line 161</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">wavs_with_paddings</span>(<span class="ruby-identifier">mp4_inputs_infos</span>, <span class="ruby-identifier">paddings</span>)
   <span class="ruby-constant">Hash</span>[ {}.<span class="ruby-identifier">tap</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">unordered_wavs_with_paddings</span><span class="ruby-operator">|</span>
     <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">join</span> *<span class="ruby-identifier">mp4_inputs_infos</span>.<span class="ruby-identifier">select</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">info</span><span class="ruby-operator">|</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">audio_streams</span>.<span class="ruby-identifier">present?</span> }.<span class="ruby-identifier">each_with_index</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">video_info</span>, <span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
       <span class="ruby-identifier">proc</span> {
@@ -897,8 +903,8 @@ href="Concat.html#method-i-increase_rpadding_depending_on_video_overflow">#incre
                 
               </p>
               <div id="method-i-webm_inputs_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/concat.rb, line 224</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">webm_inputs</span> <span class="ruby-comment"># :doc:</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/concat.rb, line 225</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">webm_inputs</span>
   <span class="ruby-ivar">@webm_inputs</span> <span class="ruby-operator">||=</span> <span class="ruby-ivar">@inputs</span>.<span class="ruby-identifier">map</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">input</span><span class="ruby-operator">|</span> <span class="ruby-identifier">input</span>[<span class="ruby-value">:webm</span>] }
 <span class="ruby-keyword">end</span></pre>
               </div>
@@ -932,8 +938,8 @@ href="Concat.html#method-i-increase_rpadding_depending_on_video_overflow">#incre
                 
               </p>
               <div id="method-i-webm_output_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/concat.rb, line 234</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">webm_output</span> <span class="ruby-comment"># :doc:</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/concat.rb, line 235</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">webm_output</span>
   <span class="ruby-constant">OUTPUT_WEBM_FORMAT</span> <span class="ruby-operator">%</span> <span class="ruby-ivar">@output_without_extension</span>
 <span class="ruby-keyword">end</span></pre>
               </div>

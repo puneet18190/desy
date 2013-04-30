@@ -55,6 +55,47 @@
     <div class="sectiontitle">Methods</div>
     <dl class="methods">
       
+        <dt>C</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-cmd-21">cmd!</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>E</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-end_frame">end_frame</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>F</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-frames_amount">frames_amount</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-frames_format">frames_format</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
         <dt>N</dt>
         <dd>
           <ul>
@@ -62,6 +103,18 @@
               
               <li>
                 <a href="#method-c-new">new</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>S</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-start_frame">start_frame</a>
               </li>
             
           </ul>
@@ -142,7 +195,184 @@
             </div>
             
           </div>
-                        </div>
+                  
+      <div class="sectiontitle">Instance Private methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-cmd-21">
+            
+              <b>cmd!</b>()
+            
+            <a href="../../../../../classes/Media/Video/Editing/Cmd/GenerateTransitionFrames.html#method-i-cmd-21" name="method-i-cmd-21" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-cmd-21_source')" id="l_method-i-cmd-21_source">show</a>
+                
+              </p>
+              <div id="method-i-cmd-21_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/generate_transition_frames.rb, line 20</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">cmd!</span>
+  <span class="ruby-node">&quot;#{BIN} #{start_frame} #{end_frame} -morph #{frames_amount} #{frames_format}&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-end_frame">
+            
+              <b>end_frame</b>()
+            
+            <a href="../../../../../classes/Media/Video/Editing/Cmd/GenerateTransitionFrames.html#method-i-end_frame" name="method-i-end_frame" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-end_frame_source')" id="l_method-i-end_frame_source">show</a>
+                
+              </p>
+              <div id="method-i-end_frame_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/generate_transition_frames.rb, line 28</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">end_frame</span>
+  <span class="ruby-ivar">@end_frame</span>.<span class="ruby-identifier">shellescape</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-frames_amount">
+            
+              <b>frames_amount</b>()
+            
+            <a href="../../../../../classes/Media/Video/Editing/Cmd/GenerateTransitionFrames.html#method-i-frames_amount" name="method-i-frames_amount" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-frames_amount_source')" id="l_method-i-frames_amount_source">show</a>
+                
+              </p>
+              <div id="method-i-frames_amount_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/generate_transition_frames.rb, line 32</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">frames_amount</span>
+  <span class="ruby-ivar">@frames_amount</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">shellescape</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-frames_format">
+            
+              <b>frames_format</b>()
+            
+            <a href="../../../../../classes/Media/Video/Editing/Cmd/GenerateTransitionFrames.html#method-i-frames_format" name="method-i-frames_format" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-frames_format_source')" id="l_method-i-frames_format_source">show</a>
+                
+              </p>
+              <div id="method-i-frames_format_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/generate_transition_frames.rb, line 36</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">frames_format</span>
+  <span class="ruby-ivar">@frames_format</span>.<span class="ruby-identifier">shellescape</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-start_frame">
+            
+              <b>start_frame</b>()
+            
+            <a href="../../../../../classes/Media/Video/Editing/Cmd/GenerateTransitionFrames.html#method-i-start_frame" name="method-i-start_frame" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-start_frame_source')" id="l_method-i-start_frame_source">show</a>
+                
+              </p>
+              <div id="method-i-start_frame_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/generate_transition_frames.rb, line 24</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">start_frame</span>
+  <span class="ruby-ivar">@start_frame</span>.<span class="ruby-identifier">shellescape</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                    </div>
 
     </div>
   </body>

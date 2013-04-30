@@ -40,6 +40,12 @@
     <div id="bodyContent">
         <div id="content">
   
+    <div class="description">
+      
+<p>Convert a video to formats playable by HTML5 capable browsers</p>
+
+    </div>
+  
 
 
   
@@ -92,6 +98,18 @@
               
               <li>
                 <a href="#method-i-extract_thumb">extract_thumb</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>I</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-init_model">init_model</a>
               </li>
             
           </ul>
@@ -359,7 +377,7 @@
                 
               </p>
               <div id="method-c-log_folder_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/conversion.rb, line 32</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/conversion.rb, line 33</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">log_folder</span>
   <span class="ruby-keyword">super</span> <span class="ruby-string">&#39;conversions&#39;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -411,7 +429,7 @@ format)</p>
                 
               </p>
               <div id="method-c-new_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/conversion.rb, line 61</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/conversion.rb, line 62</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize</span>(<span class="ruby-identifier">uploaded_path</span>, <span class="ruby-identifier">output_path_without_extension</span>, <span class="ruby-identifier">original_filename</span>, <span class="ruby-identifier">model_id</span>)
   <span class="ruby-ivar">@model_id</span> = <span class="ruby-identifier">model_id</span>
   <span class="ruby-identifier">init_model</span>
@@ -451,7 +469,7 @@ format)</p>
                 
               </p>
               <div id="method-c-remove_folder-21_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/conversion.rb, line 27</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/conversion.rb, line 28</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">remove_folder!</span>
   <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">rm_rf</span> <span class="ruby-constant">TEMP_FOLDER</span>
 <span class="ruby-keyword">end</span></pre>
@@ -486,7 +504,7 @@ format)</p>
                 
               </p>
               <div id="method-c-temp_folder_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/conversion.rb, line 37</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/conversion.rb, line 38</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">temp_folder</span>(<span class="ruby-identifier">model_id</span>)
   <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span> <span class="ruby-constant">TEMP_FOLDER</span>, <span class="ruby-identifier">model_id</span>.<span class="ruby-identifier">to_s</span>
 <span class="ruby-keyword">end</span></pre>
@@ -521,7 +539,7 @@ format)</p>
                 
               </p>
               <div id="method-c-temp_path_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/conversion.rb, line 42</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/conversion.rb, line 43</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">temp_path</span>(<span class="ruby-identifier">model_id</span>, <span class="ruby-identifier">original_filename</span>)
   <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span> <span class="ruby-identifier">temp_folder</span>(<span class="ruby-identifier">model_id</span>), <span class="ruby-identifier">original_filename</span>
 <span class="ruby-keyword">end</span></pre>
@@ -558,7 +576,7 @@ format)</p>
                 
               </p>
               <div id="method-i-convert_to_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/conversion.rb, line 140</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/conversion.rb, line 141</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">convert_to</span>(<span class="ruby-identifier">format</span>)
   <span class="ruby-identifier">prepare_for_conversion</span> <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@prepare_for_conversion</span>
   <span class="ruby-identifier">output_path</span> = <span class="ruby-identifier">output_path</span>(<span class="ruby-identifier">format</span>)
@@ -602,7 +620,7 @@ format)</p>
                 
               </p>
               <div id="method-i-extract_cover_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/conversion.rb, line 130</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/conversion.rb, line 131</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">extract_cover</span>(<span class="ruby-identifier">input</span>, <span class="ruby-identifier">output</span>, <span class="ruby-identifier">duration</span>)
   <span class="ruby-identifier">seek</span> = <span class="ruby-identifier">duration</span> <span class="ruby-operator">/</span> <span class="ruby-number">2</span>
   <span class="ruby-constant">Cmd</span><span class="ruby-operator">::</span><span class="ruby-constant">ExtractFrame</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">input</span>, <span class="ruby-identifier">output</span>, <span class="ruby-identifier">seek</span>).<span class="ruby-identifier">run!</span> <span class="ruby-node">%W(#{stdout_log} a)</span>, <span class="ruby-node">%W(#{stderr_log} a)</span>
@@ -642,7 +660,7 @@ format)</p>
                 
               </p>
               <div id="method-i-extract_thumb_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/conversion.rb, line 125</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/conversion.rb, line 126</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">extract_thumb</span>(<span class="ruby-identifier">input</span>, <span class="ruby-identifier">output</span>, <span class="ruby-identifier">width</span>, <span class="ruby-identifier">height</span>)
   <span class="ruby-constant">Image</span><span class="ruby-operator">::</span><span class="ruby-constant">Editing</span><span class="ruby-operator">::</span><span class="ruby-constant">ResizeToFill</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">input</span>, <span class="ruby-identifier">output</span>, <span class="ruby-identifier">width</span>, <span class="ruby-identifier">height</span>).<span class="ruby-identifier">run</span>
 <span class="ruby-keyword">end</span></pre>
@@ -681,7 +699,7 @@ who uploaded the file.</p>
                 
               </p>
               <div id="method-i-run_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/conversion.rb, line 71</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/conversion.rb, line 72</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">run</span>
   <span class="ruby-keyword">begin</span>
     <span class="ruby-identifier">prepare_for_conversion</span>
@@ -742,6 +760,25 @@ who uploaded the file.</p>
       <div class="sectiontitle">Instance Private methods</div>
       
         <div class="method">
+          <div class="title method-title" id="method-i-init_model">
+            
+              <b>init_model</b>()
+            
+            <a href="../../../../classes/Media/Video/Editing/Conversion.html#method-i-init_model" name="method-i-init_model" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+          </div>
+        
+        <div class="method">
           <div class="title method-title" id="method-i-log_folder">
             
               <b>log_folder</b>(_ = nil)
@@ -768,8 +805,8 @@ just for ancestor method compatibility)</p>
                 
               </p>
               <div id="method-i-log_folder_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/conversion.rb, line 203</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">log_folder</span>(<span class="ruby-identifier">_</span> = <span class="ruby-keyword">nil</span>) <span class="ruby-comment"># :doc:</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/conversion.rb, line 204</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">log_folder</span>(<span class="ruby-identifier">_</span> = <span class="ruby-keyword">nil</span>)
   <span class="ruby-keyword">super</span> <span class="ruby-identifier">model_id</span>.<span class="ruby-identifier">to_s</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
@@ -807,8 +844,8 @@ just for ancestor method compatibility)</p>
                 
               </p>
               <div id="method-i-model_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/conversion.rb, line 208</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">model</span> <span class="ruby-comment"># :doc:</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/conversion.rb, line 209</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">model</span>
   <span class="ruby-ivar">@model</span> <span class="ruby-operator">||=</span> <span class="ruby-operator">::</span><span class="ruby-constant">Video</span>.<span class="ruby-identifier">find</span> <span class="ruby-identifier">model_id</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
@@ -842,8 +879,8 @@ just for ancestor method compatibility)</p>
                 
               </p>
               <div id="method-i-output_filename_without_extension_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/conversion.rb, line 183</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">output_filename_without_extension</span> <span class="ruby-comment"># :doc:</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/conversion.rb, line 184</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">output_filename_without_extension</span>
   <span class="ruby-constant">File</span>.<span class="ruby-identifier">basename</span> <span class="ruby-ivar">@output_path_without_extension</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
@@ -877,8 +914,8 @@ just for ancestor method compatibility)</p>
                 
               </p>
               <div id="method-i-output_folder_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/conversion.rb, line 188</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">output_folder</span> <span class="ruby-comment"># :doc:</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/conversion.rb, line 189</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">output_folder</span>
   <span class="ruby-constant">File</span>.<span class="ruby-identifier">dirname</span> <span class="ruby-ivar">@output_path_without_extension</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
@@ -912,8 +949,8 @@ just for ancestor method compatibility)</p>
                 
               </p>
               <div id="method-i-output_path_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/conversion.rb, line 173</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">output_path</span>(<span class="ruby-identifier">format</span>) <span class="ruby-comment"># :doc:</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/conversion.rb, line 174</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">output_path</span>(<span class="ruby-identifier">format</span>)
   <span class="ruby-node">&quot;#{@output_path_without_extension}.#{format}&quot;</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
@@ -947,8 +984,8 @@ just for ancestor method compatibility)</p>
                 
               </p>
               <div id="method-i-prepare_for_conversion_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/conversion.rb, line 155</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">prepare_for_conversion</span> <span class="ruby-comment"># :doc:</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/conversion.rb, line 156</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">prepare_for_conversion</span>
   <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-identifier">uploaded_path</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-identifier">temp_path</span>)
     <span class="ruby-identifier">raise</span> <span class="ruby-constant">Error</span>.<span class="ruby-identifier">new</span>( <span class="ruby-string">&quot;at least one between uploaded_path and temp_path must exist&quot;</span>, 
                      <span class="ruby-identifier">temp_path</span><span class="ruby-operator">:</span> <span class="ruby-identifier">temp_path</span>, <span class="ruby-identifier">uploaded_path</span><span class="ruby-operator">:</span> <span class="ruby-identifier">uploaded_path</span> )
@@ -995,8 +1032,8 @@ just for ancestor method compatibility)</p>
                 
               </p>
               <div id="method-i-temp_folder_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/conversion.rb, line 198</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">temp_folder</span> <span class="ruby-comment"># :doc:</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/conversion.rb, line 199</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">temp_folder</span>
   <span class="ruby-constant">File</span>.<span class="ruby-identifier">dirname</span> <span class="ruby-identifier">temp_path</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
@@ -1030,8 +1067,8 @@ just for ancestor method compatibility)</p>
                 
               </p>
               <div id="method-i-temp_path_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/conversion.rb, line 193</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">temp_path</span> <span class="ruby-comment"># :doc:</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/conversion.rb, line 194</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">temp_path</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">temp_path</span>(<span class="ruby-identifier">model_id</span>, <span class="ruby-ivar">@original_filename</span>)
 <span class="ruby-keyword">end</span></pre>
               </div>
@@ -1065,8 +1102,8 @@ just for ancestor method compatibility)</p>
                 
               </p>
               <div id="method-i-uploaded_path_extension_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/conversion.rb, line 178</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">uploaded_path_extension</span> <span class="ruby-comment"># :doc:</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/conversion.rb, line 179</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">uploaded_path_extension</span>
   <span class="ruby-constant">File</span>.<span class="ruby-identifier">extname</span> <span class="ruby-ivar">@uploaded_path</span>
 <span class="ruby-keyword">end</span></pre>
               </div>

@@ -58,7 +58,7 @@ class MediaElementsSlide < ActiveRecord::Base
   private
   
   # Callback that restores as available = true the associated lesson, if this instance of the element was the last one locking it
-  def restore_lesson_availability # :doc:
+  def restore_lesson_availability
     if media_element && 
        !media_element.converted? &&
        lesson &&
@@ -70,43 +70,43 @@ class MediaElementsSlide < ActiveRecord::Base
   end
   
   # Initializes validation objects (see Valid.get_association)
-  def init_validation # :doc:
+  def init_validation
     @media_elements_slide = Valid.get_association self, :id
     @slide = Valid.get_association self, :slide_id
     @media_element = Valid.get_association self, :media_element_id
   end
   
   # Validates that if the associated element is an image, the fields +alignment+ and +caption+ can't be null; if it's audio or video, the same fields must be null
-  def validate_image_properties # :doc:
+  def validate_image_properties
     errors.add(:alignment, :must_be_null_if_not_image) if @media_element && !@media_element.image? && !self.alignment.nil?
     errors.add(:alignment, :cant_be_null_if_image) if @media_element && @media_element.image? && self.alignment.nil?
     errors.add(:caption, :must_be_null_if_not_image) if @media_element && !@media_element.image? && !self.caption.blank?
   end
   
   # Validates the presence of all the associated objects
-  def validate_associations # :doc:
+  def validate_associations
     errors.add(:media_element_id, :doesnt_exist) if @media_element.nil?
     errors.add(:slide_id, :doesnt_exist) if @slide.nil?
   end
   
   # It validates the coherence of the type of the attached element with the type of the Slide
-  def validate_type_in_slide # :doc:
+  def validate_type_in_slide
     errors.add(:media_element_id, :is_not_compatible_with_slide) if @media_element && @slide && @slide.accepted_media_element_sti_type != @media_element.sti_type
   end
   
   # Validates the maximum position according to the type of Slide
-  def validate_position # :doc:
+  def validate_position
     errors.add(:position, :cant_have_two_elements_in_this_slide) if @media_element && @slide && self.position == 2 && ![Slide::IMAGE2, Slide::IMAGE4].include?(@slide.kind)
     errors.add(:position, :cant_have_more_than_two_elements_in_this_slide) if @media_element && @slide && [3, 4].include?(self.position) && @slide.kind != Slide::IMAGE4
   end
   
   # Validates the availability of the attached element (it must be either public or mine)
-  def validate_media_element # :doc:
+  def validate_media_element
     errors.add(:media_element_id, :is_not_available) if @media_element && @slide && !@media_element.is_public && @media_element.user_id != @slide.lesson.user_id
   end
   
   # If new record, it validates that +slide_id+ can't be changed
-  def validate_impossible_changes # :doc:
+  def validate_impossible_changes
     if @media_elements_slide
       errors.add(:slide_id, :cant_be_changed) if @media_elements_slide.slide_id != self.slide_id
     end

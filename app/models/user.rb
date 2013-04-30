@@ -1101,7 +1101,7 @@ class User < ActiveRecord::Base
   private
   
   # Submethod of User#search_lessons. It returns the first +n+ tags associated to the result of the research, ordered by number of occurrences of these tags among the results; if the +word+ corresponds to a tag, this tag is put in the first place of the result even if it wouldn't be first according to the normal ordering.
-  def get_tags_associated_to_lesson_search(word, filter, subject_id) # :doc:
+  def get_tags_associated_to_lesson_search(word, filter, subject_id)
     filter = Filters::ALL_LESSONS if filter.nil? || !Filters::LESSONS_SEARCH_SET.include?(filter)
     subject_id = nil if ![NilClass, Fixnum].include?(subject_id.class)
     limit = SETTINGS['tags_limit_in_search_engine']
@@ -1143,7 +1143,7 @@ class User < ActiveRecord::Base
   end
   
   # Submethod of User#search_media_elements. It returns the first +n+ tags associated to the result of the research, ordered by number of occurrences of these tags among the results; if the +word+ corresponds to a tag, this tag is put in the first place of the result even if it wouldn't be first according to the normal ordering.
-  def get_tags_associated_to_media_element_search(word, filter) # :doc:
+  def get_tags_associated_to_media_element_search(word, filter)
     limit = SETTINGS['tags_limit_in_search_engine']
     filter = Filters::ALL_MEDIA_ELEMENTS if filter.nil? || !Filters::MEDIA_ELEMENTS_SEARCH_SET.include?(filter)
     resp = []
@@ -1173,7 +1173,7 @@ class User < ActiveRecord::Base
   end
   
   # Submethod of User.search_media_elements: if +word+ is a Fixnum, it extracts all the elements associated to that word, otherwise it extracts all the elements whose tags match the +word+. Results are filtered by the +filter+ (chosen among the ones in Filters), and ordered by +order_by+ (chosen among SearchOrders)
-  def search_media_elements_with_tag(word, offset, limit, filter, order_by) # :doc:
+  def search_media_elements_with_tag(word, offset, limit, filter, order_by)
     resp = {}
     params = ["#{word}%", true, self.id]
     joins = "INNER JOIN tags ON (tags.id = taggings.tag_id) INNER JOIN media_elements ON (taggings.taggable_type = 'MediaElement' AND taggings.taggable_id = media_elements.id)"
@@ -1210,7 +1210,7 @@ class User < ActiveRecord::Base
   end
   
   # Submethod of User#search_media_elements. It returns all the elements in the database, filtered by +filter+ (chosen among the ones in Filters), and ordered by +order_by+ (chosen among the ones in SearchOrders)
-  def search_media_elements_without_tag(offset, limit, filter, order_by) # :doc:
+  def search_media_elements_without_tag(offset, limit, filter, order_by)
     resp = {}
     order = ''
     case order_by
@@ -1246,7 +1246,7 @@ class User < ActiveRecord::Base
   end
   
   # Submethod of User.search_lessons: if +word+ is a Fixnum, it extracts all the lessons associated to that word, otherwise it extracts all the lessons whose tags match the +word+. Results are filtered by the +filter+ (chosen among the ones in Filters) and by +subject_id+, and ordered by +order_by+ (chosen among SearchOrders)
-  def search_lessons_with_tag(word, offset, limit, filter, subject_id, order_by) # :doc:
+  def search_lessons_with_tag(word, offset, limit, filter, subject_id, order_by)
     resp = {}
     params = ["#{word}%"]
     select = 'lessons.id AS lesson_id'
@@ -1299,7 +1299,7 @@ class User < ActiveRecord::Base
   end
   
   # Submethod of User#search_lessons. It returns all the lessons in the database, filtered by +filter+ (chosen among the ones in Filters) and by +subject_id+, and ordered by +order_by+ (chosen among the ones in SearchOrders)
-  def search_lessons_without_tag(offset, limit, filter, subject_id, order_by) # :doc:
+  def search_lessons_without_tag(offset, limit, filter, subject_id, order_by)
     resp = {}
     params = []
     select = 'lessons.id AS lesson_id'
@@ -1346,25 +1346,25 @@ class User < ActiveRecord::Base
   end
   
   # Initializes validation objects (see Valid.get_association)
-  def init_validation # :doc:
+  def init_validation
     @user = Valid.get_association self, :id
     @school_level = Valid.get_association self, :school_level_id
   end
   
   # Validates the presence of all the associated objects
-  def validate_associations # :doc:
+  def validate_associations
     errors.add :school_level_id, :doesnt_exist if @school_level.nil?
     @location = Valid.get_association self, :location_id
     errors.add :location_id, :doesnt_exist if @location.nil? || @location.sti_type != SETTINGS['location_types'].last
   end
   
   # If the user is not new, it validates that the email didn't change
-  def validate_email_not_changed # :doc:
+  def validate_email_not_changed
     errors.add :email, :changed if changed.include? 'email'
   end
   
   # Validates the correct format of the email (see Valid.email?)
-  def validate_email # :doc:
+  def validate_email
     return if self.email.blank?
     errors.add(:email, :not_a_valid_email) if !Valid.email?(self.email)
   end

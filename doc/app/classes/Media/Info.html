@@ -104,6 +104,11 @@
             
               
               <li>
+                <a href="#method-i-parse_audio_stream">parse_audio_stream</a>,
+              </li>
+            
+              
+              <li>
                 <a href="#method-i-parse_video_stream">parse_video_stream</a>
               </li>
             
@@ -706,6 +711,48 @@ valid, <code>nil</code> otherwise</p>
       <div class="sectiontitle">Instance Private methods</div>
       
         <div class="method">
+          <div class="title method-title" id="method-i-parse_audio_stream">
+            
+              <b>parse_audio_stream</b>(scan_data)
+            
+            <a href="../../classes/Media/Info.html#method-i-parse_audio_stream" name="method-i-parse_audio_stream" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Used by <a href="Info.html#method-i-streams">#streams</a>, processes the
+audio streams parsing in order to return the infos</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-parse_audio_stream_source')" id="l_method-i-parse_audio_stream_source">show</a>
+                
+              </p>
+              <div id="method-i-parse_audio_stream_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/media/info.rb, line 187</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">parse_audio_stream</span>(<span class="ruby-identifier">scan_data</span>)
+  <span class="ruby-identifier">stream_data</span> = <span class="ruby-identifier">scan_data</span>[<span class="ruby-number">0</span>]
+
+  <span class="ruby-identifier">codec_match</span>   = <span class="ruby-identifier">stream_data</span>.<span class="ruby-identifier">match</span> <span class="ruby-constant">CODEC_MATCH_REGEX</span>
+  <span class="ruby-identifier">bitrate_match</span> = <span class="ruby-identifier">stream_data</span>.<span class="ruby-identifier">match</span> <span class="ruby-constant">BITRATE_MATCH_REGEX</span>
+
+  { <span class="ruby-identifier">codec</span><span class="ruby-operator">:</span>     <span class="ruby-identifier">codec_match</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:[]</span>, <span class="ruby-value">:codec</span>  ),
+    <span class="ruby-identifier">bitrate</span><span class="ruby-operator">:</span> <span class="ruby-identifier">bitrate_match</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:[]</span>, <span class="ruby-value">:bitrate</span>).<span class="ruby-identifier">try</span>(<span class="ruby-value">:to_i</span>)  }
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
           <div class="title method-title" id="method-i-parse_video_stream">
             
               <b>parse_video_stream</b>(scan_data)
@@ -733,7 +780,7 @@ video streams parsing in order to return the infos</p>
               </p>
               <div id="method-i-parse_video_stream_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File lib/media/info.rb, line 169</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">parse_video_stream</span>(<span class="ruby-identifier">scan_data</span>) <span class="ruby-comment"># :doc:</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">parse_video_stream</span>(<span class="ruby-identifier">scan_data</span>)
   <span class="ruby-identifier">stream_data</span> = <span class="ruby-identifier">scan_data</span>[<span class="ruby-number">0</span>]
 
   <span class="ruby-identifier">codec_match</span>   = <span class="ruby-identifier">stream_data</span>.<span class="ruby-identifier">match</span> <span class="ruby-constant">CODEC_MATCH_REGEX</span>

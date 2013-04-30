@@ -1024,7 +1024,7 @@ href="User.html#method-i-full_virtual_classroom">User#full_virtual_classroom</a>
               </p>
               <div id="method-i-get_lessons_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/controllers/virtual_classroom_controller.rb, line 361</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">get_lessons</span> <span class="ruby-comment"># :doc:</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">get_lessons</span>
   <span class="ruby-identifier">current_user_virtual_classroom_lessons</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">full_virtual_classroom</span>(<span class="ruby-ivar">@page</span>, <span class="ruby-ivar">@for_page</span>)
   <span class="ruby-ivar">@lessons</span> = <span class="ruby-identifier">current_user_virtual_classroom_lessons</span>[<span class="ruby-value">:records</span>]
   <span class="ruby-ivar">@pages_amount</span> = <span class="ruby-identifier">current_user_virtual_classroom_lessons</span>[<span class="ruby-value">:pages_amount</span>]
@@ -1062,7 +1062,7 @@ lists (see <a href="MailingListGroup.html">MailingListGroup</a>)</p>
               </p>
               <div id="method-i-initialize_emails_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/controllers/virtual_classroom_controller.rb, line 341</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize_emails</span> <span class="ruby-comment"># :doc:</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize_emails</span>
   <span class="ruby-identifier">emails_hash</span> = {}
   <span class="ruby-ivar">@original_emails_number</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:emails</span>].<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;,&#39;</span>).<span class="ruby-identifier">length</span>
   <span class="ruby-identifier">params</span>[<span class="ruby-value">:emails</span>].<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;,&#39;</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">email</span><span class="ruby-operator">|</span>
@@ -1105,7 +1105,7 @@ lists (see <a href="MailingListGroup.html">MailingListGroup</a>)</p>
               </p>
               <div id="method-i-initialize_lesson_for_sending_link_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/controllers/virtual_classroom_controller.rb, line 316</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize_lesson_for_sending_link</span> <span class="ruby-comment"># :doc:</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize_lesson_for_sending_link</span>
   <span class="ruby-identifier">initialize_lesson</span>
   <span class="ruby-identifier">update_ok</span>(<span class="ruby-ivar">@lesson</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">in_virtual_classroom?</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>))
 <span class="ruby-keyword">end</span></pre>
@@ -1141,7 +1141,7 @@ lists (see <a href="MailingListGroup.html">MailingListGroup</a>)</p>
               </p>
               <div id="method-i-initialize_loaded_lessons_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/controllers/virtual_classroom_controller.rb, line 322</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize_loaded_lessons</span> <span class="ruby-comment"># :doc:</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize_loaded_lessons</span>
   <span class="ruby-ivar">@load_lessons</span> = []
   <span class="ruby-identifier">param_name</span> = <span class="ruby-string">&#39;virtual_classroom_quick_loaded_lesson_name&#39;</span>
   <span class="ruby-identifier">params</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>, <span class="ruby-identifier">v</span><span class="ruby-operator">|</span>
@@ -1184,7 +1184,7 @@ lists (see <a href="MailingListGroup.html">MailingListGroup</a>)</p>
               </p>
               <div id="method-i-initialize_page_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/controllers/virtual_classroom_controller.rb, line 335</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize_page</span> <span class="ruby-comment"># :doc:</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize_page</span>
   <span class="ruby-ivar">@page</span> = <span class="ruby-identifier">correct_integer?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-number">0</span>
   <span class="ruby-identifier">update_ok</span>(<span class="ruby-ivar">@page</span> <span class="ruby-operator">&gt;</span> <span class="ruby-number">0</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -1220,7 +1220,7 @@ lists (see <a href="MailingListGroup.html">MailingListGroup</a>)</p>
               </p>
               <div id="method-i-initialize_paginator_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/controllers/virtual_classroom_controller.rb, line 368</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize_paginator</span> <span class="ruby-comment"># :doc:</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize_paginator</span>
   <span class="ruby-ivar">@page</span> = <span class="ruby-identifier">correct_integer?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-number">1</span>
   <span class="ruby-ivar">@for_page</span> = <span class="ruby-constant">FOR_PAGE</span>
 <span class="ruby-keyword">end</span></pre>
@@ -1257,7 +1257,7 @@ included in the section &#39;lessons&#39; of the current user)</p>
               </p>
               <div id="method-i-initialize_virtual_classroom_lesson_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/controllers/virtual_classroom_controller.rb, line 354</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize_virtual_classroom_lesson</span> <span class="ruby-comment"># :doc:</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize_virtual_classroom_lesson</span>
   <span class="ruby-ivar">@lesson_id</span> = <span class="ruby-identifier">correct_integer?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:lesson_id</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:lesson_id</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-number">0</span>
   <span class="ruby-ivar">@virtual_classroom_lesson</span> = <span class="ruby-constant">VirtualClassroomLesson</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:lesson_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@lesson_id</span>, <span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">first</span>
   <span class="ruby-identifier">update_ok</span>(<span class="ruby-operator">!</span><span class="ruby-ivar">@virtual_classroom_lesson</span>.<span class="ruby-identifier">nil?</span>)

@@ -40,6 +40,13 @@
     <div id="bodyContent">
         <div id="content">
   
+    <div class="description">
+      
+<p>Compose the components supplied (videos, text, images) in order to create a
+new video based on them</p>
+
+    </div>
+  
 
 
   
@@ -263,7 +270,7 @@
                 
               </p>
               <div id="method-c-log_folder_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/composer.rb, line 24</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/composer.rb, line 25</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">log_folder</span>
   <span class="ruby-keyword">super</span> <span class="ruby-string">&#39;composings&#39;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -321,7 +328,7 @@
                 
               </p>
               <div id="method-c-new_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/composer.rb, line 58</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/composer.rb, line 59</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-ivar">@params</span> = <span class="ruby-identifier">params</span>
 <span class="ruby-keyword">end</span></pre>
@@ -358,7 +365,7 @@
                 
               </p>
               <div id="method-i-compose_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/composer.rb, line 89</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/composer.rb, line 90</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">compose</span>
   <span class="ruby-identifier">create_log_folder</span>
   <span class="ruby-identifier">in_tmp_dir</span> <span class="ruby-keyword">do</span>
@@ -443,7 +450,7 @@ and the video will be destroyed</p>
                 
               </p>
               <div id="method-i-run_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/composer.rb, line 63</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/composer.rb, line 64</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">run</span>
   <span class="ruby-ivar">@old_media</span> = <span class="ruby-identifier">video</span>.<span class="ruby-identifier">media</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:dup</span>)
   <span class="ruby-identifier">compose</span>
@@ -502,8 +509,8 @@ and the video will be destroyed</p>
                 
               </p>
               <div id="method-i-audio_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/composer.rb, line 211</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">audio</span> <span class="ruby-comment"># :doc:</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/composer.rb, line 212</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">audio</span>
   <span class="ruby-ivar">@audio</span> <span class="ruby-operator">||=</span> (
     <span class="ruby-identifier">id</span> = <span class="ruby-ivar">@params</span>[<span class="ruby-value">:audio_track</span>]
     <span class="ruby-operator">::</span><span class="ruby-constant">Audio</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">id</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">id</span>
@@ -540,8 +547,8 @@ and the video will be destroyed</p>
                 
               </p>
               <div id="method-i-compose_image_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/composer.rb, line 165</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">compose_image</span>(<span class="ruby-identifier">image_id</span>, <span class="ruby-identifier">duration</span>, <span class="ruby-identifier">i</span>) <span class="ruby-comment"># :doc:</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/composer.rb, line 166</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">compose_image</span>(<span class="ruby-identifier">image_id</span>, <span class="ruby-identifier">duration</span>, <span class="ruby-identifier">i</span>)
   <span class="ruby-identifier">image</span> = <span class="ruby-operator">::</span><span class="ruby-constant">Image</span>.<span class="ruby-identifier">find</span> <span class="ruby-identifier">image_id</span>
   <span class="ruby-constant">ImageToVideo</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">image</span>.<span class="ruby-identifier">media</span>.<span class="ruby-identifier">path</span>, <span class="ruby-identifier">output_without_extension</span>(<span class="ruby-identifier">i</span>), <span class="ruby-identifier">duration</span>, <span class="ruby-identifier">log_folder</span>(<span class="ruby-string">&#39;components&#39;</span>, <span class="ruby-node">&quot;#{i}_image&quot;</span>)).<span class="ruby-identifier">run</span>
 <span class="ruby-keyword">end</span></pre>
@@ -576,8 +583,8 @@ and the video will be destroyed</p>
                 
               </p>
               <div id="method-i-compose_text_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/composer.rb, line 158</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">compose_text</span>(<span class="ruby-identifier">text</span>, <span class="ruby-identifier">duration</span>, <span class="ruby-identifier">color</span>, <span class="ruby-identifier">background_color</span>, <span class="ruby-identifier">i</span>) <span class="ruby-comment"># :doc:</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/composer.rb, line 159</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">compose_text</span>(<span class="ruby-identifier">text</span>, <span class="ruby-identifier">duration</span>, <span class="ruby-identifier">color</span>, <span class="ruby-identifier">background_color</span>, <span class="ruby-identifier">i</span>)
   <span class="ruby-identifier">text_file</span> = <span class="ruby-constant">Pathname</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">tmp_path</span> <span class="ruby-node">&quot;text_#{i}.txt&quot;</span>
   <span class="ruby-identifier">text_file</span>.<span class="ruby-identifier">open</span>(<span class="ruby-string">&#39;w&#39;</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span> <span class="ruby-identifier">f</span>.<span class="ruby-identifier">write</span> <span class="ruby-identifier">text</span> }
   <span class="ruby-constant">TextToVideo</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">text_file</span>, <span class="ruby-identifier">output_without_extension</span>(<span class="ruby-identifier">i</span>), <span class="ruby-identifier">duration</span>, { <span class="ruby-identifier">color</span><span class="ruby-operator">:</span> <span class="ruby-identifier">color</span>, <span class="ruby-identifier">background_color</span><span class="ruby-operator">:</span> <span class="ruby-identifier">background_color</span> }, <span class="ruby-identifier">log_folder</span>(<span class="ruby-string">&#39;components&#39;</span>, <span class="ruby-node">&quot;#{i}_text&quot;</span>)).<span class="ruby-identifier">run</span>
@@ -613,8 +620,8 @@ and the video will be destroyed</p>
                 
               </p>
               <div id="method-i-compose_video_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/composer.rb, line 171</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">compose_video</span>(<span class="ruby-identifier">video_id</span>, <span class="ruby-identifier">from</span>, <span class="ruby-identifier">to</span>, <span class="ruby-identifier">i</span>) <span class="ruby-comment"># :doc:</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/composer.rb, line 172</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">compose_video</span>(<span class="ruby-identifier">video_id</span>, <span class="ruby-identifier">from</span>, <span class="ruby-identifier">to</span>, <span class="ruby-identifier">i</span>)
   <span class="ruby-identifier">video</span> = <span class="ruby-operator">::</span><span class="ruby-constant">Video</span>.<span class="ruby-identifier">find</span> <span class="ruby-identifier">video_id</span>
   <span class="ruby-identifier">inputs</span> = <span class="ruby-constant">Hash</span>[ <span class="ruby-constant">FORMATS</span>.<span class="ruby-identifier">map</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">f</span>, <span class="ruby-identifier">video</span>.<span class="ruby-identifier">media</span>.<span class="ruby-identifier">path</span>(<span class="ruby-identifier">f</span>)] } ]
 
@@ -658,8 +665,8 @@ and the video will be destroyed</p>
                 
               </p>
               <div id="method-i-create_log_folder_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/composer.rb, line 153</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">create_log_folder</span> <span class="ruby-comment"># :doc:</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/composer.rb, line 154</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">create_log_folder</span>
   <span class="ruby-ivar">@log_folder</span> = <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">mkdir_p</span>(<span class="ruby-identifier">log_folder_name</span>).<span class="ruby-identifier">first</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
@@ -693,8 +700,8 @@ and the video will be destroyed</p>
                 
               </p>
               <div id="method-i-log_folder_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/composer.rb, line 143</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">log_folder</span>(*<span class="ruby-identifier">folders</span>) <span class="ruby-comment"># :doc:</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/composer.rb, line 144</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">log_folder</span>(*<span class="ruby-identifier">folders</span>)
   <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-ivar">@log_folder</span>, *<span class="ruby-identifier">folders</span>)
 <span class="ruby-keyword">end</span></pre>
               </div>
@@ -728,8 +735,8 @@ and the video will be destroyed</p>
                 
               </p>
               <div id="method-i-log_folder_name_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/composer.rb, line 148</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">log_folder_name</span> <span class="ruby-comment"># :doc:</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/composer.rb, line 149</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">log_folder_name</span>
   <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">log_folder</span>, <span class="ruby-identifier">video</span>.<span class="ruby-identifier">id</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-node">&quot;#{Time.now.utc.strftime(&quot;%Y-%m-%d_%H-%M-%S&quot;)}_#{::Thread.main.object_id}&quot;</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
@@ -763,8 +770,8 @@ and the video will be destroyed</p>
                 
               </p>
               <div id="method-i-notification_translation_key_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/composer.rb, line 186</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">notification_translation_key</span> <span class="ruby-comment"># :doc:</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/composer.rb, line 187</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">notification_translation_key</span>
   <span class="ruby-ivar">@old_media</span> <span class="ruby-operator">?</span> <span class="ruby-string">&#39;update&#39;</span> <span class="ruby-operator">:</span> <span class="ruby-string">&#39;create&#39;</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
@@ -798,8 +805,8 @@ and the video will be destroyed</p>
                 
               </p>
               <div id="method-i-output_without_extension_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/composer.rb, line 201</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">output_without_extension</span>(<span class="ruby-identifier">i</span>) <span class="ruby-comment"># :doc:</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/composer.rb, line 202</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">output_without_extension</span>(<span class="ruby-identifier">i</span>)
   <span class="ruby-identifier">tmp_path</span> <span class="ruby-identifier">i</span>.<span class="ruby-identifier">to_s</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
@@ -833,8 +840,8 @@ and the video will be destroyed</p>
                 
               </p>
               <div id="method-i-video_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/composer.rb, line 206</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">video</span> <span class="ruby-comment"># :doc:</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/composer.rb, line 207</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">video</span>
   <span class="ruby-ivar">@video</span> <span class="ruby-operator">||=</span> <span class="ruby-operator">::</span><span class="ruby-constant">Video</span>.<span class="ruby-identifier">find</span> <span class="ruby-ivar">@params</span>[<span class="ruby-value">:initial_video</span>][<span class="ruby-value">:id</span>]
 <span class="ruby-keyword">end</span></pre>
               </div>
@@ -868,8 +875,8 @@ and the video will be destroyed</p>
                 
               </p>
               <div id="method-i-video_copy_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/composer.rb, line 191</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">video_copy</span>(<span class="ruby-identifier">input</span>, <span class="ruby-identifier">output</span>) <span class="ruby-comment"># :doc:</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/composer.rb, line 192</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">video_copy</span>(<span class="ruby-identifier">input</span>, <span class="ruby-identifier">output</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">audio</span>
     <span class="ruby-comment"># scarto gli stream audio, così poi non perdo tempo a processare le tracce audio inutilmente</span>
     <span class="ruby-constant">Cmd</span><span class="ruby-operator">::</span><span class="ruby-constant">VideoStreamToFile</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">input</span>, <span class="ruby-identifier">output</span>).<span class="ruby-identifier">run!</span>

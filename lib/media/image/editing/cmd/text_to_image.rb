@@ -41,7 +41,7 @@ module Media
           private
           
           # The shellescaped text
-          def shellescaped_text # :doc:
+          def shellescaped_text
             case @text
             when File, Tempfile
               "@#{@text.path.shellescape}"
@@ -53,7 +53,7 @@ module Media
           end
 
           # Command used in MiniMagick
-          def cmd! # :doc:
+          def cmd!
             %Q[ convert
                   -size       #{width.to_s.shellescape}x#{height.to_s.shellescape}
                   -background #{background_color.to_s.shellescape}

@@ -166,7 +166,7 @@ module Media
 
     private
     # Used by Media::Info#streams, processes the video streams parsing in order to return the infos
-    def parse_video_stream(scan_data) # :doc:
+    def parse_video_stream(scan_data)
       stream_data = scan_data[0]
 
       codec_match   = stream_data.match CODEC_MATCH_REGEX

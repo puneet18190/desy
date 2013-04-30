@@ -67,6 +67,18 @@
           </ul>
         </dd>
       
+        <dt>H</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-host_and_port-21">host_and_port!</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
         <dt>N</dt>
         <dd>
           <ul>
@@ -299,6 +311,43 @@
   <span class="ruby-ivar">@lesson_link</span> = <span class="ruby-identifier">sender</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">lesson</span>.<span class="ruby-identifier">user_id</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">lesson_viewer_url</span>(*<span class="ruby-identifier">host_and_port</span>(<span class="ruby-identifier">lesson</span>.<span class="ruby-identifier">id</span>, <span class="ruby-identifier">token</span><span class="ruby-operator">:</span> <span class="ruby-identifier">lesson</span>.<span class="ruby-identifier">token</span>)) <span class="ruby-operator">:</span> <span class="ruby-identifier">lesson_viewer_url</span>(*<span class="ruby-identifier">host_and_port</span>(<span class="ruby-identifier">lesson</span>.<span class="ruby-identifier">id</span>))
   <span class="ruby-ivar">@mail_content</span> = <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;mailer.see_my_lesson.message&#39;</span>, <span class="ruby-value">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@sender</span>.<span class="ruby-identifier">full_name</span>, <span class="ruby-value">:message</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@message</span>, <span class="ruby-value">:desy</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">APPLICATION_NAME</span>).<span class="ruby-identifier">html_safe</span>
   <span class="ruby-identifier">mail</span> <span class="ruby-identifier">to</span><span class="ruby-operator">:</span> <span class="ruby-identifier">emails</span>, <span class="ruby-identifier">subject</span><span class="ruby-operator">:</span> <span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;mailer.see_my_lesson.subject&#39;</span>, <span class="ruby-value">:desy</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">APPLICATION_NAME</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+              
+      <div class="sectiontitle">Instance Private methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-host_and_port-21">
+            
+              <b>host_and_port!</b>(host, port)
+            
+            <a href="../classes/UserMailer.html#method-i-host_and_port-21" name="method-i-host_and_port-21" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-host_and_port-21_source')" id="l_method-i-host_and_port-21_source">show</a>
+                
+              </p>
+              <div id="method-i-host_and_port-21_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/mailers/user_mailer.rb, line 44</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">host_and_port!</span>(<span class="ruby-identifier">host</span>, <span class="ruby-identifier">port</span>)
+  <span class="ruby-ivar">@host</span>, <span class="ruby-ivar">@port</span> = <span class="ruby-identifier">host</span>, <span class="ruby-identifier">port</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>

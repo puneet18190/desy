@@ -82,7 +82,7 @@ class LessonViewerController < ApplicationController
   private
   
   # It uses LessonViewerController#skip_authenticate_user_if_token, and moreover checks that the slide belongs to the lesson; moreover, it extracts the adhiacent slides using Slide#get_adhiacent_slide_in_lesson_viewer
-  def skip_authenticate_user_if_token_with_three_slides # :doc:
+  def skip_authenticate_user_if_token_with_three_slides
     skip_authenticate_user_if_token
     @slide_id = correct_integer?(params[:slide_id]) ? params[:slide_id].to_i : 0
     @slide = Slide.find_by_id @slide_id
@@ -98,7 +98,7 @@ class LessonViewerController < ApplicationController
   end
   
   # If the user has the token, it's not necessary to check that the lesson is public
-  def skip_authenticate_user_if_token # :doc:
+  def skip_authenticate_user_if_token
     initialize_lesson
     update_ok(@lesson.is_public || (logged_in? && session[:user_id].to_i == @lesson.user_id)) if @ok && @lesson.token != params[:token]
   end

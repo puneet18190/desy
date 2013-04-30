@@ -41,7 +41,7 @@ module Media
       private
 
       # Generate the additional versions
-      def extract_versions(infos) # :doc:
+      def extract_versions(infos)
         cover_path = File.join output_folder, COVER_FORMAT % processed_original_filename_without_extension
         extract_cover @converted_files[:mp4], cover_path, infos[:mp4].duration
 
@@ -50,14 +50,14 @@ module Media
       end
 
       # Generate the additional cover versions
-      def extract_cover(input, output, duration) # :doc:
+      def extract_cover(input, output, duration)
         seek = duration / 2
         Editing::Cmd::ExtractFrame.new(input, output, seek).run!
         raise StandardError, 'unable to create cover' unless File.exists? output
       end
 
       # Generate the additional thumb versions
-      def extract_thumb(input, output, width, height) # :doc:
+      def extract_thumb(input, output, width, height)
         Image::Editing::ResizeToFill.new(input, output, width, height).run
       end
     end

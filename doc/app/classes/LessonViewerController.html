@@ -340,7 +340,7 @@ is public</p>
               </p>
               <div id="method-i-skip_authenticate_user_if_token_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/controllers/lesson_viewer_controller.rb, line 101</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">skip_authenticate_user_if_token</span> <span class="ruby-comment"># :doc:</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">skip_authenticate_user_if_token</span>
   <span class="ruby-identifier">initialize_lesson</span>
   <span class="ruby-identifier">update_ok</span>(<span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">is_public</span> <span class="ruby-operator">||</span> (<span class="ruby-identifier">logged_in?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">session</span>[<span class="ruby-value">:user_id</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">==</span> <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">user_id</span>)) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">token</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:token</span>]
 <span class="ruby-keyword">end</span></pre>
@@ -380,7 +380,7 @@ href="Slide.html#method-i-get_adhiacent_slide_in_lesson_viewer">Slide#get_adhiac
               </p>
               <div id="method-i-skip_authenticate_user_if_token_with_three_slides_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/controllers/lesson_viewer_controller.rb, line 85</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">skip_authenticate_user_if_token_with_three_slides</span> <span class="ruby-comment"># :doc:</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">skip_authenticate_user_if_token_with_three_slides</span>
   <span class="ruby-identifier">skip_authenticate_user_if_token</span>
   <span class="ruby-ivar">@slide_id</span> = <span class="ruby-identifier">correct_integer?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:slide_id</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:slide_id</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-number">0</span>
   <span class="ruby-ivar">@slide</span> = <span class="ruby-constant">Slide</span>.<span class="ruby-identifier">find_by_id</span> <span class="ruby-ivar">@slide_id</span>

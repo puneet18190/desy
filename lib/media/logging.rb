@@ -74,7 +74,7 @@ module Media
 
       private
       # thread-relative log folder name
-      def thread_relative_log_folder_name # :doc:
+      def thread_relative_log_folder_name
         if Thread.current == Thread.main
           :@log_folder
         else

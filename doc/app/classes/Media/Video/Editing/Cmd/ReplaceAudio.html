@@ -55,6 +55,42 @@
     <div class="sectiontitle">Methods</div>
     <dl class="methods">
       
+        <dt>A</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-acodec">acodec</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>D</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-duration">duration</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>M</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-maps">maps</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
         <dt>N</dt>
         <dd>
           <ul>
@@ -62,6 +98,30 @@
               
               <li>
                 <a href="#method-c-new">new</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>Q</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-qa">qa</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>V</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-vcodec">vcodec</a>
               </li>
             
           </ul>
@@ -127,7 +187,188 @@
             </div>
             
           </div>
-                        </div>
+                  
+      <div class="sectiontitle">Instance Private methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-acodec">
+            
+              <b>acodec</b>()
+            
+            <a href="../../../../../classes/Media/Video/Editing/Cmd/ReplaceAudio.html#method-i-acodec" name="method-i-acodec" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-acodec_source')" id="l_method-i-acodec_source">show</a>
+                
+              </p>
+              <div id="method-i-acodec_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/replace_audio.rb, line 33</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">acodec</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@format</span> <span class="ruby-operator">==</span> <span class="ruby-value">:webm</span>
+    <span class="ruby-string">&#39;-c:a libvorbis&#39;</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-string">&#39;-c:a copy&#39;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-duration">
+            
+              <b>duration</b>()
+            
+            <a href="../../../../../classes/Media/Video/Editing/Cmd/ReplaceAudio.html#method-i-duration" name="method-i-duration" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-duration_source')" id="l_method-i-duration_source">show</a>
+                
+              </p>
+              <div id="method-i-duration_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/replace_audio.rb, line 21</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">duration</span>
+  <span class="ruby-node">&quot;-t #{@duration.round(2).to_s.shellescape}&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-maps">
+            
+              <b>maps</b>()
+            
+            <a href="../../../../../classes/Media/Video/Editing/Cmd/ReplaceAudio.html#method-i-maps" name="method-i-maps" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-maps_source')" id="l_method-i-maps_source">show</a>
+                
+              </p>
+              <div id="method-i-maps_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/replace_audio.rb, line 25</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">maps</span>
+  <span class="ruby-string">&#39;-map 0:v:0 -map 1:a:0&#39;</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-qa">
+            
+              <b>qa</b>()
+            
+            <a href="../../../../../classes/Media/Video/Editing/Cmd/ReplaceAudio.html#method-i-qa" name="method-i-qa" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-qa_source')" id="l_method-i-qa_source">show</a>
+                
+              </p>
+              <div id="method-i-qa_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/replace_audio.rb, line 41</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">qa</span>
+  <span class="ruby-keyword">super</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@format</span> <span class="ruby-operator">==</span> <span class="ruby-value">:webm</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-vcodec">
+            
+              <b>vcodec</b>()
+            
+            <a href="../../../../../classes/Media/Video/Editing/Cmd/ReplaceAudio.html#method-i-vcodec" name="method-i-vcodec" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-vcodec_source')" id="l_method-i-vcodec_source">show</a>
+                
+              </p>
+              <div id="method-i-vcodec_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/replace_audio.rb, line 29</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">vcodec</span>
+  <span class="ruby-string">&#39;-c:v copy&#39;</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                    </div>
 
     </div>
   </body>

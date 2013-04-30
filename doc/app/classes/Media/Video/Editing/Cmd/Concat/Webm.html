@@ -55,6 +55,30 @@
     <div class="sectiontitle">Methods</div>
     <dl class="methods">
       
+        <dt>A</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-acodec">acodec</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>D</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-duration">duration</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
         <dt>N</dt>
         <dd>
           <ul>
@@ -62,6 +86,30 @@
               
               <li>
                 <a href="#method-c-new">new</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>S</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-shortest">shortest</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>V</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-vcodec">vcodec</a>
               </li>
             
           </ul>
@@ -128,7 +176,149 @@
             </div>
             
           </div>
-                        </div>
+                  
+      <div class="sectiontitle">Instance Private methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-acodec">
+            
+              <b>acodec</b>()
+            
+            <a href="../../../../../../classes/Media/Video/Editing/Cmd/Concat/Webm.html#method-i-acodec" name="method-i-acodec" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-acodec_source')" id="l_method-i-acodec_source">show</a>
+                
+              </p>
+              <div id="method-i-acodec_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/concat/webm.rb, line 33</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">acodec</span>
+  <span class="ruby-keyword">super</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@audio_input</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-duration">
+            
+              <b>duration</b>()
+            
+            <a href="../../../../../../classes/Media/Video/Editing/Cmd/Concat/Webm.html#method-i-duration" name="method-i-duration" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-duration_source')" id="l_method-i-duration_source">show</a>
+                
+              </p>
+              <div id="method-i-duration_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/concat/webm.rb, line 25</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">duration</span>
+  <span class="ruby-node">&quot;-t #{@duration.round(2).to_s.shellescape}&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-shortest">
+            
+              <b>shortest</b>()
+            
+            <a href="../../../../../../classes/Media/Video/Editing/Cmd/Concat/Webm.html#method-i-shortest" name="method-i-shortest" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-shortest_source')" id="l_method-i-shortest_source">show</a>
+                
+              </p>
+              <div id="method-i-shortest_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/concat/webm.rb, line 37</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">shortest</span>
+  <span class="ruby-string">&#39;-shortest&#39;</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-vcodec">
+            
+              <b>vcodec</b>()
+            
+            <a href="../../../../../../classes/Media/Video/Editing/Cmd/Concat/Webm.html#method-i-vcodec" name="method-i-vcodec" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-vcodec_source')" id="l_method-i-vcodec_source">show</a>
+                
+              </p>
+              <div id="method-i-vcodec_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/concat/webm.rb, line 29</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">vcodec</span>
+  <span class="ruby-string">&#39;-c:v copy&#39;</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                    </div>
 
     </div>
   </body>

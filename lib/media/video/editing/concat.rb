@@ -14,6 +14,7 @@ require 'media/video/editing/cmd/concat'
 module Media
   module Video
     module Editing
+      # Concatenate an array of video files producing a new video as output
       class Concat
   
         include Logging
@@ -90,7 +91,7 @@ module Media
   
         private
         # Edge case management: when there is just one inputs hash we just copy the inputs to their respective outputs
-        def copy_first_inputs_to_outputs # :doc:
+        def copy_first_inputs_to_outputs
           Hash[
             @inputs.first.map do |format, input|
               output = outputs[format]
@@ -114,7 +115,7 @@ module Media
         #
         # * *mp4_inputs_infos*: Media::Info instances about the mp4 input files
         # * *paddings*: an array with the paddings which should be between an audio track and another
-        def concat(mp4_inputs_infos, paddings) # :doc:
+        def concat(mp4_inputs_infos, paddings)
           create_log_folder
   
           final_wav = 
@@ -149,7 +150,7 @@ module Media
         # 5. Concatenating the wavs adding the paddings
         #
         # \1., 2., 3., 4. steps are executed by the Media::Video::Editing::Concat#wavs_with_paddings method
-        def final_wav(mp4_inputs_infos, paddings) # :doc:
+        def final_wav(mp4_inputs_infos, paddings)
           wavs_with_paddings = wavs_with_paddings(mp4_inputs_infos, paddings)
           final_wav = tmp_path FINAL_WAV
           Audio::Editing::Cmd::Concat.new(wavs_with_paddings, final_wav).run! *logs('2_concat_with_paddings') # 5.
@@ -157,7 +158,7 @@ module Media
         end
 
         # Responsible of the 1., 2., 3., 4. steps of the Media::Video::Editing::Concat#final_wav logic (step 3. is delegated to Media::Video::Editing::Concat#increase_rpadding_depending_on_video_overflow )
-        def wavs_with_paddings(mp4_inputs_infos, paddings) # :doc:
+        def wavs_with_paddings(mp4_inputs_infos, paddings)
           Hash[ {}.tap do |unordered_wavs_with_paddings|
             Thread.join *mp4_inputs_infos.select{ |info| info.audio_streams.present? }.each_with_index.map { |video_info, i|
               proc {
@@ -178,7 +179,7 @@ module Media
         end
   
         # Responsible of the step 3. of the Media::Video::Editing::Concat#final_wav logic
-        def increase_rpadding_depending_on_video_overflow(video_info, wav, paddings) # :doc:
+        def increase_rpadding_depending_on_video_overflow(video_info, wav, paddings)
           wav_info = Info.new(wav)
           overflow = video_info.duration - wav_info.duration
           paddings[1] += overflow if overflow > 0
@@ -195,7 +196,7 @@ module Media
         #               a0      a1        a2      a3
         #     ->   [ [p0,p1], [0,p2=0], [0,p3], [0,p4] ]           RESULT
         # 
-        def paddings(infos) # :doc:
+        def paddings(infos)
           paddings, lpadding = [], 0
   
           infos.each do |info|
@@ -216,27 +217,27 @@ module Media
         end
   
         # array of mp4 inputs
-        def mp4_inputs # :doc:
+        def mp4_inputs
           @mp4_inputs ||= @inputs.map{ |input| input[:mp4] }
         end
   
         # array of the webm inputs
-        def webm_inputs # :doc:
+        def webm_inputs
           @webm_inputs ||= @inputs.map{ |input| input[:webm] }
         end
   
         # mp4 output filename
-        def mp4_output # :doc:
+        def mp4_output
           OUTPUT_MP4_FORMAT % @output_without_extension
         end
   
         # webm output filename
-        def webm_output # :doc:
+        def webm_output
           OUTPUT_WEBM_FORMAT % @output_without_extension
         end
   
         # outputs per format
-        def outputs # :doc:
+        def outputs
           { mp4: mp4_output, webm: webm_output }
         end
   

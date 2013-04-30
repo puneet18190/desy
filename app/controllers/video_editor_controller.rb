@@ -208,13 +208,13 @@ class VideoEditorController < ApplicationController
   private
   
   # Checks if the video is being used in private lessons
-  def used_in_private_lessons # :doc:
+  def used_in_private_lessons
     return false if @parameters[:initial_video].nil?
     @parameters[:initial_video].media_elements_slides.any?
   end
   
   # Checks if the video editor is available for the user (see User#video_editor_available)
-  def check_available_for_user # :doc:
+  def check_available_for_user
     if !current_user.video_editor_available
       render 'not_available'
       return
@@ -222,7 +222,7 @@ class VideoEditorController < ApplicationController
   end
   
   # Extracts parameters from the form, and converts them into the format of Media::Video::Editing::Parameters
-  def extract_single_form_parameter(p, value) # :doc:
+  def extract_single_form_parameter(p, value)
     if ['type', 'content', 'background_color', 'text_color'].include? p
       return value
     elsif ['position', 'video_id', 'image_id', 'from', 'to', 'duration'].include? p
@@ -232,7 +232,7 @@ class VideoEditorController < ApplicationController
     end
   end
   
-  def extract_form_parameters # :doc:
+  def extract_form_parameters
     unordered_resp = {}
     ordered_resp = {}
     resp = {
@@ -264,7 +264,7 @@ class VideoEditorController < ApplicationController
   end
   
   # Converts a single video in a cache in the format of Media::Video::Editing::Parameters
-  def convert_video_to_parameters # :doc:
+  def convert_video_to_parameters
     resp = {}
     resp[:initial_video_id] = @video.is_public ? nil : @video.id
     resp[:audio_id] = nil
@@ -278,7 +278,7 @@ class VideoEditorController < ApplicationController
   end
   
   # Gets a set of parameters in the format of Media::Video::Editing::Parameters from an empty video editor
-  def empty_parameters # :doc:
+  def empty_parameters
     resp = {}
     resp[:initial_video] = nil
     resp[:audio_track] = nil
@@ -287,12 +287,12 @@ class VideoEditorController < ApplicationController
   end
   
   # Extracts the cache and converts it
-  def extract_cache # :doc:
+  def extract_cache
     @cache = Video.convert_parameters current_user.video_editor_cache, current_user.id
   end
   
   # Initializes the given video, and returns true if current_user owns it or it's public (these are the conditions for the user to visualize the video, but not modify it)
-  def initialize_video_with_owner_or_public # :doc:
+  def initialize_video_with_owner_or_public
     @video_id = correct_integer?(params[:video_id]) ? params[:video_id].to_i : 0
     @video = Video.find_by_id @video_id
     update_ok(!@video.nil? && (@video.is_public || current_user.id == @video.user_id))

@@ -101,6 +101,16 @@
             
               
               <li>
+                <a href="#method-i-thread_relative_log_folder">thread_relative_log_folder</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-thread_relative_log_folder-3D">thread_relative_log_folder=</a>,
+              </li>
+            
+              
+              <li>
                 <a href="#method-i-thread_relative_log_folder_name">thread_relative_log_folder_name</a>
               </li>
             
@@ -326,6 +336,76 @@ will be prefixed to the filename</p>
       <div class="sectiontitle">Instance Private methods</div>
       
         <div class="method">
+          <div class="title method-title" id="method-i-thread_relative_log_folder">
+            
+              <b>thread_relative_log_folder</b>()
+            
+            <a href="../../../classes/Media/Logging/InstanceMethods.html#method-i-thread_relative_log_folder" name="method-i-thread_relative_log_folder" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>thread-relative log folder getter</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-thread_relative_log_folder_source')" id="l_method-i-thread_relative_log_folder_source">show</a>
+                
+              </p>
+              <div id="method-i-thread_relative_log_folder_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/media/logging.rb, line 86</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">thread_relative_log_folder</span>
+  <span class="ruby-identifier">instance_variable_get</span> <span class="ruby-identifier">thread_relative_log_folder_name</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-thread_relative_log_folder-3D">
+            
+              <b>thread_relative_log_folder=</b>(thread_relative_log_folder)
+            
+            <a href="../../../classes/Media/Logging/InstanceMethods.html#method-i-thread_relative_log_folder-3D" name="method-i-thread_relative_log_folder-3D" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>thread-relative log folder setter</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-thread_relative_log_folder-3D_source')" id="l_method-i-thread_relative_log_folder-3D_source">show</a>
+                
+              </p>
+              <div id="method-i-thread_relative_log_folder-3D_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/media/logging.rb, line 91</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">thread_relative_log_folder=</span>(<span class="ruby-identifier">thread_relative_log_folder</span>)
+  <span class="ruby-identifier">instance_variable_set</span> <span class="ruby-identifier">thread_relative_log_folder_name</span>, <span class="ruby-identifier">thread_relative_log_folder</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
           <div class="title method-title" id="method-i-thread_relative_log_folder_name">
             
               <b>thread_relative_log_folder_name</b>()
@@ -352,7 +432,7 @@ will be prefixed to the filename</p>
               </p>
               <div id="method-i-thread_relative_log_folder_name_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File lib/media/logging.rb, line 77</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">thread_relative_log_folder_name</span> <span class="ruby-comment"># :doc:</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">thread_relative_log_folder_name</span>
   <span class="ruby-keyword">if</span> <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">current</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">main</span>
     <span class="ruby-value">:@log_folder</span>
   <span class="ruby-keyword">else</span>

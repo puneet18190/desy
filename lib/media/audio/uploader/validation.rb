@@ -31,7 +31,7 @@ module Media
         private
         
         # Generates the error message for the original file not yet converted (a possible problem can be the wrong duration)
-        def error_message_for_file_to_convert # :doc:
+        def error_message_for_file_to_convert
           if not self.class::EXTENSION_WHITE_LIST_WITH_DOT.include?(original_filename_extension)
             'unsupported format'
           else
@@ -45,7 +45,7 @@ module Media
         end
 
         # Generates the error messages for already converted files (invalid filename, invalid extension, etc)
-        def error_message_for_converted_files # :doc:
+        def error_message_for_converted_files
           m4a_path, ogg_path = @converted_files[:m4a], @converted_files[:ogg]
           if !@original_filename_without_extension.is_a?(String)
             'invalid filename'

@@ -82,12 +82,12 @@ class NotificationsController < ApplicationController
   private
   
   # Initializes the notifications offset
-  def initialize_notification_offset # :doc:
+  def initialize_notification_offset
     @offset_notifications = (correct_integer?(params[:offset]) ? params[:offset].to_i : NOTIFICATIONS_LOADED_TOGETHER)
   end
   
   # Checks if the owner of the notification is correct
-  def initialize_notification_with_owner # :doc:
+  def initialize_notification_with_owner
     @notification_id = correct_integer?(params[:notification_id]) ? params[:notification_id].to_i : 0
     @notification = Notification.find_by_id @notification_id
     update_ok(!@notification.nil? && current_user.id == @notification.user_id)

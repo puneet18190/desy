@@ -12,6 +12,7 @@ require 'media/image/editing/resize_to_fill'
 module Media
   module Video
     module Editing
+      # Convert a video to formats playable by HTML5 capable browsers
       class Conversion
   
         include EnvRelativePath
@@ -152,7 +153,7 @@ module Media
 
         private
         # Prepares for the conversion processing
-        def prepare_for_conversion # :doc:
+        def prepare_for_conversion
           if !File.exists?(uploaded_path) && !File.exists?(temp_path)
             raise Error.new( "at least one between uploaded_path and temp_path must exist", 
                              temp_path: temp_path, uploaded_path: uploaded_path )
@@ -170,42 +171,42 @@ module Media
         end
 
         # Format-relative output path
-        def output_path(format) # :doc:
+        def output_path(format)
           "#{@output_path_without_extension}.#{format}"
         end
   
         # Uploaded path extension
-        def uploaded_path_extension # :doc:
+        def uploaded_path_extension
           File.extname @uploaded_path
         end
   
         # Output filename without extension
-        def output_filename_without_extension # :doc:
+        def output_filename_without_extension
           File.basename @output_path_without_extension
         end
   
         # Output folder path
-        def output_folder # :doc:
+        def output_folder
           File.dirname @output_path_without_extension
         end
   
         # Model-relative temporary path
-        def temp_path # :doc:
+        def temp_path
           self.class.temp_path(model_id, @original_filename)
         end
 
         # Temporary folder path  
-        def temp_folder # :doc:
+        def temp_folder
           File.dirname temp_path
         end
   
         # Model-relative log folder path (the argument is ignored, it is specified just for ancestor method compatibility)
-        def log_folder(_ = nil) # :doc:
+        def log_folder(_ = nil)
           super model_id.to_s
         end
   
         # Model to be converted
-        def model # :doc:
+        def model
           @model ||= ::Video.find model_id
         end
         alias init_model model

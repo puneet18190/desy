@@ -38,6 +38,12 @@
     <div id="bodyContent">
         <div id="content">
   
+    <div class="description">
+      
+<p>Convert a text to videos of the supplied duration</p>
+
+    </div>
+  
 
 
   
@@ -119,7 +125,9 @@
           
             <tr valign='top'>
               <td>&nbsp;</td>
-              <td colspan="2" class="attr-desc"></td>
+              <td colspan="2" class="attr-desc"><p><a
+href="../../Image/Editing/Cmd/TextToImage.html">Media::Image::Editing::Cmd::TextToImage</a>
+command options</p></td>
             </tr>
           
         
@@ -137,7 +145,7 @@
               [R]
             </td>
             <td class='attr-name'>duration</td>
-            <td class='attr-desc'></td>
+            <td class='attr-desc'><p>Duration of the generated video</p></td>
           </tr>
         
           <tr valign='top'>
@@ -145,7 +153,7 @@
               [R]
             </td>
             <td class='attr-name'>text</td>
-            <td class='attr-desc'></td>
+            <td class='attr-desc'><p>Text which will be displayed in the video</p></td>
           </tr>
         
       </table>
@@ -166,7 +174,27 @@
           
           
             <div class="description">
-              
+              <p>Create a new <a
+href="TextToVideo.html">Media::Video::Editing::TextToVideo</a> instance</p>
+
+<h3 id="method-c-new-label-Arguments">Arguments</h3>
+<ul><li>
+<p><strong>text</strong>: text which will be displayed in the video</p>
+</li><li>
+<p><strong>output_without_extension</strong>: output path without the
+extension</p>
+</li><li>
+<p><strong>duration</strong>: duration of the generated videos</p>
+</li><li>
+<p><strong>options</strong>: hash with the options to be passed to <a
+href="../../Image/Editing/Cmd/TextToImage.html">Media::Image::Editing::Cmd::TextToImage</a></p>
+</li><li>
+<p><strong>log_folder</strong> <em>optional</em>: log folder path</p>
+</li></ul>
+
+<h3 id="method-c-new-label-Examples">Examples</h3>
+
+<pre>Media::Video::Editing::TextToVideo.new(&#39;Hello&#39;, &#39;/path/to/new/video/files&#39;, 3, { width: 100, height: 200 })</pre>
             </div>
           
           
@@ -182,7 +210,7 @@
                 
               </p>
               <div id="method-c-new_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/text_to_video.rb, line 18</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/text_to_video.rb, line 38</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize</span>(<span class="ruby-identifier">text</span>, <span class="ruby-identifier">output_without_extension</span>, <span class="ruby-identifier">duration</span>, <span class="ruby-identifier">options</span> = {}, <span class="ruby-identifier">log_folder</span> = <span class="ruby-keyword">nil</span>)
   <span class="ruby-keyword">unless</span> <span class="ruby-identifier">output_without_extension</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">String</span>)
     <span class="ruby-identifier">raise</span> <span class="ruby-constant">Error</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;output_without_extension must be a String&#39;</span>, <span class="ruby-identifier">output_without_extension</span><span class="ruby-operator">:</span> <span class="ruby-identifier">output_without_extension</span>)
@@ -213,7 +241,7 @@
           
           
             <div class="description">
-              
+              <p>Execute the video creation processing</p>
             </div>
           
           
@@ -229,7 +257,7 @@
                 
               </p>
               <div id="method-i-run_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/text_to_video.rb, line 32</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/text_to_video.rb, line 53</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">run</span>
   <span class="ruby-identifier">outputs</span> = <span class="ruby-keyword">nil</span>
   

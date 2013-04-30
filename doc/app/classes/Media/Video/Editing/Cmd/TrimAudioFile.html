@@ -55,6 +55,42 @@
     <div class="sectiontitle">Methods</div>
     <dl class="methods">
       
+        <dt>C</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-cmd-21">cmd!</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>I</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-input">input</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>L</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-ltrim">ltrim</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
         <dt>N</dt>
         <dd>
           <ul>
@@ -62,6 +98,42 @@
               
               <li>
                 <a href="#method-c-new">new</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>O</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-output">output</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>R</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-rtrim">rtrim</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>S</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-shellescaped_trim">shellescaped_trim</a>
               </li>
             
           </ul>
@@ -124,7 +196,219 @@
             </div>
             
           </div>
-                        </div>
+                  
+      <div class="sectiontitle">Instance Private methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-cmd-21">
+            
+              <b>cmd!</b>()
+            
+            <a href="../../../../../classes/Media/Video/Editing/Cmd/TrimAudioFile.html#method-i-cmd-21" name="method-i-cmd-21" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-cmd-21_source')" id="l_method-i-cmd-21_source">show</a>
+                
+              </p>
+              <div id="method-i-cmd-21_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/trim_audio_file.rb, line 20</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">cmd!</span>
+  <span class="ruby-node">&quot;#{BIN_AND_GLOBAL_OPTIONS} #{input} #{output} trim #{ltrim} #{rtrim}&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-input">
+            
+              <b>input</b>()
+            
+            <a href="../../../../../classes/Media/Video/Editing/Cmd/TrimAudioFile.html#method-i-input" name="method-i-input" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-input_source')" id="l_method-i-input_source">show</a>
+                
+              </p>
+              <div id="method-i-input_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/trim_audio_file.rb, line 24</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">input</span>
+  <span class="ruby-ivar">@input</span>.<span class="ruby-identifier">shellescape</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-ltrim">
+            
+              <b>ltrim</b>()
+            
+            <a href="../../../../../classes/Media/Video/Editing/Cmd/TrimAudioFile.html#method-i-ltrim" name="method-i-ltrim" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-ltrim_source')" id="l_method-i-ltrim_source">show</a>
+                
+              </p>
+              <div id="method-i-ltrim_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/trim_audio_file.rb, line 32</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">ltrim</span>
+  <span class="ruby-identifier">shellescaped_trim</span>(<span class="ruby-ivar">@ltrim</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-output">
+            
+              <b>output</b>()
+            
+            <a href="../../../../../classes/Media/Video/Editing/Cmd/TrimAudioFile.html#method-i-output" name="method-i-output" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-output_source')" id="l_method-i-output_source">show</a>
+                
+              </p>
+              <div id="method-i-output_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/trim_audio_file.rb, line 28</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">output</span>
+  <span class="ruby-ivar">@output</span>.<span class="ruby-identifier">shellescape</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-rtrim">
+            
+              <b>rtrim</b>()
+            
+            <a href="../../../../../classes/Media/Video/Editing/Cmd/TrimAudioFile.html#method-i-rtrim" name="method-i-rtrim" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-rtrim_source')" id="l_method-i-rtrim_source">show</a>
+                
+              </p>
+              <div id="method-i-rtrim_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/trim_audio_file.rb, line 36</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">rtrim</span>
+  <span class="ruby-identifier">shellescaped_trim</span>(<span class="ruby-ivar">@rtrim</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-shellescaped_trim">
+            
+              <b>shellescaped_trim</b>(value)
+            
+            <a href="../../../../../classes/Media/Video/Editing/Cmd/TrimAudioFile.html#method-i-shellescaped_trim" name="method-i-shellescaped_trim" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-shellescaped_trim_source')" id="l_method-i-shellescaped_trim_source">show</a>
+                
+              </p>
+              <div id="method-i-shellescaped_trim_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/media/video/editing/cmd/trim_audio_file.rb, line 40</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">shellescaped_trim</span>(<span class="ruby-identifier">value</span>)
+  <span class="ruby-identifier">value</span>.<span class="ruby-identifier">round</span>(<span class="ruby-number">2</span>).<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">shellescape</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                    </div>
 
     </div>
   </body>

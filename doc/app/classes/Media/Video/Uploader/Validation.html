@@ -223,7 +223,7 @@ href="../../Video.html">Video</a></p>
               </p>
               <div id="method-i-error_message_for_converted_files_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File lib/media/video/uploader/validation.rb, line 50</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">error_message_for_converted_files</span> <span class="ruby-comment"># :doc:</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">error_message_for_converted_files</span>
   <span class="ruby-identifier">mp4_path</span>, <span class="ruby-identifier">webm_path</span> = <span class="ruby-ivar">@converted_files</span>[<span class="ruby-value">:mp4</span>], <span class="ruby-ivar">@converted_files</span>[<span class="ruby-value">:webm</span>]
   <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@original_filename_without_extension</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">String</span>)
     <span class="ruby-string">&#39;invalid filename&#39;</span>
@@ -272,7 +272,7 @@ converted</p>
               </p>
               <div id="method-i-error_message_for_file_to_convert_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File lib/media/video/uploader/validation.rb, line 34</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">error_message_for_file_to_convert</span> <span class="ruby-comment"># :doc:</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">error_message_for_file_to_convert</span>
   <span class="ruby-keyword">if</span> <span class="ruby-keyword">not</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span><span class="ruby-operator">::</span><span class="ruby-constant">EXTENSION_WHITE_LIST_WITH_DOT</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">original_filename_extension</span>)
     <span class="ruby-string">&#39;unsupported format&#39;</span>
   <span class="ruby-keyword">else</span>

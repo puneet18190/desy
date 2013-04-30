@@ -8,19 +8,22 @@ require 'media/thread'
 module Media
   module Video
     module Editing
+      # Crop the input videos supplied producing shorter output videos
       class Crop
   
         include Logging
 
         # Output formats
         FORMATS  = FORMATS
+        # Crop command class (needed by Media::Audio::Editing::Crop which is a descendant of this class)
+        CROP_CMD = Cmd::Crop
   
         # Create a new Media::Video::Editing::Crop instance
         #
         # === Arguments
         #
         # * *inputs*: hash with the input paths per video format
-        # * *output_without_extension*: output path without the extension (it will be added automatically by the conversion for each output format)
+        # * *output_without_extension*: output path without the extension
         # * *start*: start crop point (in seconds)
         # * *duration*: duration of the cropped file (in seconds)
         # * *log_folder* _optional_: log folder path
@@ -60,18 +63,18 @@ module Media
   
         private
         # Format-relative crop processing
-        def crop(format) # :doc:
+        def crop(format)
           create_log_folder
-          self.class::Cmd::Crop.new(@inputs[format], output(format), @start, @duration, format).run! *logs
+          self.class::CROP_CMD.new(@inputs[format], output(format), @start, @duration, format).run! *logs
         end
 
         # Format-relative output path
-        def output(format) # :doc:
+        def output(format)
           "#{@output_without_extension}.#{format}"
         end
   
         # Output paths hash per format
-        def outputs # :doc:
+        def outputs
           Hash[ self.class::FORMATS.map{ |format| [format, output(format)] } ]
         end
       end

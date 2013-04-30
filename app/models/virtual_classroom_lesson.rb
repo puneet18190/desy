@@ -223,40 +223,40 @@ class VirtualClassroomLesson < ActiveRecord::Base
   private
   
   # Validates the length of the playlist (compared to the one configured in settings.yml)
-  def validate_playlist_length # :doc:
+  def validate_playlist_length
     errors.add(:position, :reached_maximum_in_playlist) if @virtual_classroom_lesson && @virtual_classroom_lesson.position.nil? && !self.position.nil? && VirtualClassroomLesson.where('user_id = ? AND position IS NOT NULL', @virtual_classroom_lesson.user_id).count == SETTINGS['lessons_in_playlist']
   end
   
   # Initializes validation objects (see Valid.get_association)
-  def init_validation # :doc:
+  def init_validation
     @virtual_classroom_lesson = Valid.get_association self, :id
     @lesson = Valid.get_association self, :lesson_id
     @user = Valid.get_association self, :user_id
   end
   
   # Validates the presence of all the associated objects
-  def validate_associations # :doc:
+  def validate_associations
     errors.add(:user_id, :doesnt_exist) if @user.nil?
     errors.add(:lesson_id, :doesnt_exist) if @lesson.nil?
   end
   
   # Validates that the lesson is in the user's section 'lessons'
-  def validate_availability # :doc:
+  def validate_availability
     errors.add(:lesson_id, :is_not_available) if @lesson && @user && @lesson.user_id != @user.id && !@lesson.bookmarked?(@user.id)
   end
   
   # It validates that the lesson hasn't just been copied
-  def validate_copied_not_modified # :doc:
+  def validate_copied_not_modified
     errors.add(:lesson_id, :just_been_copied) if @lesson && @lesson.copied_not_modified
   end
   
   # Validates that the position can't be different by +nil+ if the lesson is new record
-  def validate_positions # :doc:
+  def validate_positions
     errors.add(:position, :must_be_null_if_new_record) if self.new_record? && self.position
   end
   
   # If the lesson is not anymore a new record, +user_id+ and +lesson_id+ can't be changed
-  def validate_impossible_changes # :doc:
+  def validate_impossible_changes
     if @virtual_classroom_lesson
       errors.add(:user_id, :cant_be_changed) if @virtual_classroom_lesson.user_id != self.user_id
       errors.add(:lesson_id, :cant_be_changed) if @virtual_classroom_lesson.lesson_id != self.lesson_id
