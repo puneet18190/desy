@@ -1,3 +1,5 @@
+$VERBOSE = ENV['VERBOSE']
+
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
@@ -40,4 +42,3 @@ RSpec.configure do |config|
 end
 
 [ Media::Video::Uploader, Media::Audio::Uploader, ImageUploader, Media::Audio::Editing::Conversion, Media::Video::Editing::Conversion, Media::Logging ].each{ |u| u.remove_folder! }
-# $VERBOSE = nil
