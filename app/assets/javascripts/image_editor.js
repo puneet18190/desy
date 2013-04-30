@@ -199,7 +199,7 @@ function imageEditorDocumentReadyTexts() {
     $('#image_editor_text_' + textCount).draggable({
       containment: 'parent',
       handle: '._move',
-      cursor: '-webkit-grabbing',
+      cursor: 'move',
       stop: function() {
         coords = getDragPosition($(this));
         $('#image_editor_textarea_' + textCount).data('coords', coords[0] + ',' + coords[1]);

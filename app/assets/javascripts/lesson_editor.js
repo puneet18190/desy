@@ -769,6 +769,7 @@ function makeDraggable(place_id) {
   }
   $('#' + place_id + ' ._full_image_in_slide ._rolloverable').draggable({
     axis: axe,
+    cursor: 'move',
     distance: 10,
     start: function() {
       $('#' + place_id + ' ._rolloverable').data('rolloverable', false);
