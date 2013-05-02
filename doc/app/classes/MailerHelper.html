@@ -32,6 +32,12 @@
     <div id="bodyContent">
         <div id="content">
   
+    <div class="description">
+      
+<p>Module containing helpers for mailer</p>
+
+    </div>
+  
 
 
   
@@ -94,7 +100,7 @@
           
           
             <div class="description">
-              
+              <p>Extracts data used in urls</p>
             </div>
           
           
@@ -110,15 +116,13 @@
                 
               </p>
               <div id="method-i-host_and_port_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/helpers/mailer_helper.rb, line 2</span>
+                <pre><span class="ruby-comment"># File app/helpers/mailer_helper.rb, line 5</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">host_and_port</span>(*<span class="ruby-identifier">url_for_args</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-identifier">url_for_args</span> <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@host</span>
-
   <span class="ruby-identifier">host_port</span> = { <span class="ruby-identifier">host</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@host</span> }
   <span class="ruby-identifier">host_port</span>[<span class="ruby-value">:port</span>] = <span class="ruby-ivar">@port</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@port</span> <span class="ruby-operator">!=</span> <span class="ruby-number">80</span>
   <span class="ruby-identifier">last</span> = <span class="ruby-identifier">url_for_args</span>.<span class="ruby-identifier">last</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">last</span>.<span class="ruby-identifier">instance_of?</span> <span class="ruby-constant">Hash</span>
-    
     <span class="ruby-identifier">url_for_args</span>[<span class="ruby-number">0</span>, <span class="ruby-identifier">url_for_args</span>.<span class="ruby-identifier">size</span><span class="ruby-operator">-</span><span class="ruby-number">1</span>] <span class="ruby-operator">+</span> [<span class="ruby-identifier">last</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">host_port</span>)]
   <span class="ruby-keyword">else</span>
     <span class="ruby-identifier">url_for_args</span> <span class="ruby-operator">+</span> [<span class="ruby-identifier">host_port</span>]

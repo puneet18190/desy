@@ -1,50 +1,50 @@
+# Global helpers
 module ApplicationHelper
   
+  # Select for a list of subjects.
   def select_your_subjects(subjects)
     "<option value=\"\">#{t('forms.placeholders.subject_id')}</option>#{options_from_collection_for_select(subjects, 'id', 'description')}".html_safe
   end
   
+  # Standard form error message, it attaches the image to the message and includes it in an error frame. Used after ApplicationController#convert_item_error_messages and similar methods.
   def standard_form_error_messages(errors, color = 'white')
     msg = "<img src='/assets/puntoesclamativo.png' style='margin: 0 5px -3px 0' /><span class=\"lower\" style=\"color:#{h color}\">"
     msg << errors.map{ |e| h e }.join('; ')
     return "#{msg}</span>".html_safe
   end
   
+  # Extracts the time from seconds
   def seconds_to_time(seconds)
     Time.at(seconds).utc.strftime(seconds >= 3600 ? '%T' : '%M:%S')
   end
   
+  # Gets the html class to scope css (controller)
   def controller_html_class
     "#{h controller_path}-controller"
   end
   
+  # Gets the html class to scope css (action)
   def action_html_class
     "#{h action_name}-action"
   end
-
+  
+  # Manipulates the url, adding or removing parameters
   def manipulate_url(options = {})
     param_to_remove = options[:remove_query_param]
     page            = options[:page]
     escape          = options[:escape]
     path            = options[:path] || request.path
-
     query_params = request.query_parameters.deep_dup
-
     query_params.delete(param_to_remove.to_s) if param_to_remove && query_params.present?
-
     query_params[:page] = page if page
-
     query_string = get_recursive_array_from_params(query_params).join('&')
-
     return path if query_string.blank?
-
     url = "#{path}?#{query_string}"
-    
     escape ? CGI.escape(url) : url
   end
   
+  # Used to give an orientation on images
   def is_horizontal?(width, height, kind)
-    # width.to_f / height.to_f : ratio
     ( width.to_f / height.to_f ) >
       case kind
       when 'cover'                                      then 1.6
@@ -55,6 +55,7 @@ module ApplicationHelper
       end
   end
   
+  # Resizes the width of an image
   def resize_width(width, height, kind)
     width *
       case kind
@@ -67,11 +68,13 @@ module ApplicationHelper
       end / height
   end
   
+  # Removes the title of a notification. Used in NotificationsController.
   def remove_title_from_notification(notification)
      x = (notification =~ /<\/div>/)
      x.nil? ? notification : notification[x + 6, notification.length]
   end
   
+  # Resizes the height of an image
   def resize_height(width, height, kind)
     height *
       case kind
@@ -83,7 +86,7 @@ module ApplicationHelper
       end / width
   end
   
-  # Metodo per aiutare il debug nelle viste
+  # Method to help debugging views
   if Rails.env.production?
     def jsd(object)
     end
@@ -95,6 +98,7 @@ module ApplicationHelper
   
   private
   
+  # Submethod of #manipulate_url, that takes into consideration nested url parameters
   def get_recursive_array_from_params(params)
     return params if !params.kind_of?(Hash)
     resp = []

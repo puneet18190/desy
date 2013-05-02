@@ -1,5 +1,7 @@
+# Helper methods for administration section
 module AdminHelper
   
+  # Counter used in pagination
   def page_items_counter(items)
     if items.length > 0
       from = 1
