@@ -772,10 +772,12 @@ function makeDraggable(place_id) {
     cursor: 'move',
     distance: 10,
     start: function() {
+      $('#' + place_id + ' ._full_image_in_slide img').css('cursor', 'move');
       $('#' + place_id + ' ._rolloverable').data('rolloverable', false);
       $('#' + place_id + ' span').hide();
     },
     stop: function() {
+      $('#' + place_id + ' ._full_image_in_slide img').css('cursor', 'url(https://mail.google.com/mail/images/2/openhand.cur), move');
       $('#' + place_id + ' ._rolloverable').data('rolloverable', true);
       $('#' + place_id + ' span').show();
       var thisDrag = $(this);
