@@ -7,7 +7,9 @@ module Media
   module Audio
     module Editing
       class Composer
+        # DelayedJob for composing processings
         class Job < Struct.new(:params)
+          # Performs the job
           def perform
             Composer.new(params).run
           end

@@ -1,4 +1,4 @@
-Thu, 02 May 2013 16:39:27 +0200
+Thu, 02 May 2013 16:44:39 +0200
 app/controllers/admin/dashboard_controller.rb	Mon, 29 Apr 2013 14:48:09 +0200
 app/controllers/admin/lessons_controller.rb	Mon, 29 Apr 2013 14:48:09 +0200
 app/controllers/admin/media_elements_controller.rb	Mon, 29 Apr 2013 14:48:09 +0200
@@ -83,10 +83,10 @@ lib/media/audio/editing/cmd/conversion.rb	Thu, 02 May 2013 16:36:26 +0200
 lib/media/audio/editing/cmd/crop.rb	Thu, 02 May 2013 16:37:55 +0200
 lib/media/audio/editing/cmd/sox.rb	Thu, 02 May 2013 16:39:08 +0200
 lib/media/audio/editing/composer.rb	Thu, 02 May 2013 12:41:42 +0200
-lib/media/audio/editing/composer/job.rb	Mon, 29 Apr 2013 14:48:13 +0200
+lib/media/audio/editing/composer/job.rb	Thu, 02 May 2013 16:44:04 +0200
 lib/media/audio/editing/concat.rb	Thu, 02 May 2013 12:48:48 +0200
 lib/media/audio/editing/conversion.rb	Thu, 02 May 2013 15:47:19 +0200
-lib/media/audio/editing/conversion/job.rb	Mon, 29 Apr 2013 14:48:13 +0200
+lib/media/audio/editing/conversion/job.rb	Thu, 02 May 2013 16:44:32 +0200
 lib/media/audio/editing/crop.rb	Tue, 30 Apr 2013 16:13:30 +0200
 lib/media/audio/editing/parameters.rb	Mon, 29 Apr 2013 14:48:13 +0200
 lib/media/audio/uploader.rb	Thu, 02 May 2013 10:09:18 +0200
