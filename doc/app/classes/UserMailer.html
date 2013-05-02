@@ -38,6 +38,12 @@
     <div id="bodyContent">
         <div id="content">
   
+    <div class="description">
+      
+<p>Regular mailer</p>
+
+    </div>
+  
 
 
   
@@ -148,7 +154,7 @@
           
             <tr valign='top'>
               <td>&nbsp;</td>
-              <td colspan="2" class="attr-desc"></td>
+              <td colspan="2" class="attr-desc"><p>The name of the application, configured in settings.yml</p></td>
             </tr>
           
         
@@ -173,7 +179,7 @@
           
           
             <div class="description">
-              
+              <p>Mail sent to confirm a new user account</p>
             </div>
           
           
@@ -189,7 +195,7 @@
                 
               </p>
               <div id="method-i-account_confirmation_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/mailers/user_mailer.rb, line 12</span>
+                <pre><span class="ruby-comment"># File app/mailers/user_mailer.rb, line 15</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">account_confirmation</span>(<span class="ruby-identifier">user</span>, <span class="ruby-identifier">host</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">port</span> = <span class="ruby-keyword">nil</span>)
   <span class="ruby-identifier">host_and_port!</span>(<span class="ruby-identifier">host</span>, <span class="ruby-identifier">port</span>)
   <span class="ruby-ivar">@user</span> = <span class="ruby-identifier">user</span>
@@ -211,7 +217,7 @@
           
           
             <div class="description">
-              
+              <p>Mail to reset password</p>
             </div>
           
           
@@ -227,7 +233,7 @@
                 
               </p>
               <div id="method-i-new_password_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/mailers/user_mailer.rb, line 28</span>
+                <pre><span class="ruby-comment"># File app/mailers/user_mailer.rb, line 33</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">new_password</span>(<span class="ruby-identifier">user</span>, <span class="ruby-identifier">host</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">port</span> = <span class="ruby-keyword">nil</span>)
   <span class="ruby-identifier">host_and_port!</span>(<span class="ruby-identifier">host</span>, <span class="ruby-identifier">port</span>)
   <span class="ruby-ivar">@user</span> = <span class="ruby-identifier">user</span>
@@ -249,7 +255,7 @@
           
           
             <div class="description">
-              
+              <p>Mail to reset password, part 2</p>
             </div>
           
           
@@ -265,7 +271,7 @@
                 
               </p>
               <div id="method-i-new_password_confirmed_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/mailers/user_mailer.rb, line 35</span>
+                <pre><span class="ruby-comment"># File app/mailers/user_mailer.rb, line 41</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">new_password_confirmed</span>(<span class="ruby-identifier">user</span>, <span class="ruby-identifier">password</span>, <span class="ruby-identifier">host</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">port</span> = <span class="ruby-keyword">nil</span>)
   <span class="ruby-identifier">host_and_port!</span>(<span class="ruby-identifier">host</span>, <span class="ruby-identifier">port</span>)
   <span class="ruby-ivar">@user</span>, <span class="ruby-ivar">@password</span> = <span class="ruby-identifier">user</span>, <span class="ruby-identifier">password</span>
@@ -287,7 +293,7 @@
           
           
             <div class="description">
-              
+              <p>Mail containing the link of a lesson</p>
             </div>
           
           
@@ -303,7 +309,7 @@
                 
               </p>
               <div id="method-i-see_my_lesson_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/mailers/user_mailer.rb, line 19</span>
+                <pre><span class="ruby-comment"># File app/mailers/user_mailer.rb, line 23</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">see_my_lesson</span>(<span class="ruby-identifier">emails</span>, <span class="ruby-identifier">sender</span>, <span class="ruby-identifier">lesson</span>, <span class="ruby-identifier">message</span>, <span class="ruby-identifier">host</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">port</span> = <span class="ruby-keyword">nil</span>)
   <span class="ruby-identifier">host_and_port!</span>(<span class="ruby-identifier">host</span>, <span class="ruby-identifier">port</span>)
   <span class="ruby-ivar">@sender</span> = <span class="ruby-identifier">sender</span>
@@ -329,7 +335,7 @@
           
           
             <div class="description">
-              
+              <p>Extracts host and port</p>
             </div>
           
           
@@ -345,7 +351,7 @@
                 
               </p>
               <div id="method-i-host_and_port-21_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/mailers/user_mailer.rb, line 44</span>
+                <pre><span class="ruby-comment"># File app/mailers/user_mailer.rb, line 51</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">host_and_port!</span>(<span class="ruby-identifier">host</span>, <span class="ruby-identifier">port</span>)
   <span class="ruby-ivar">@host</span>, <span class="ruby-ivar">@port</span> = <span class="ruby-identifier">host</span>, <span class="ruby-identifier">port</span>
 <span class="ruby-keyword">end</span></pre>

@@ -1,14 +1,17 @@
+# Regular mailer
 class UserMailer < ActionMailer::Base
   
   include MailerHelper
   helper MailerHelper
   
+  # The name of the application, configured in settings.yml
   APPLICATION_NAME = SETTINGS['application_name']
   
   layout 'shared/mailer'
   
   default :from => SETTINGS['admin']['email']
   
+  # Mail sent to confirm a new user account
   def account_confirmation(user, host = nil, port = nil)
     host_and_port!(host, port)
     @user = user
@@ -16,6 +19,7 @@ class UserMailer < ActionMailer::Base
     mail to: @user.email, subject: t('mailer.account_confirmation.subject', :desy => APPLICATION_NAME)
   end
   
+  # Mail containing the link of a lesson
   def see_my_lesson(emails, sender, lesson, message, host = nil, port = nil)
     host_and_port!(host, port)
     @sender = sender
@@ -25,6 +29,7 @@ class UserMailer < ActionMailer::Base
     mail to: emails, subject: t('mailer.see_my_lesson.subject', :desy => APPLICATION_NAME)
   end
   
+  # Mail to reset password
   def new_password(user, host = nil, port = nil)
     host_and_port!(host, port)
     @user = user
@@ -32,6 +37,7 @@ class UserMailer < ActionMailer::Base
     mail to: @user.email, subject: t('mailer.reset_password.subject', :desy => APPLICATION_NAME)
   end
   
+  # Mail to reset password, part 2
   def new_password_confirmed(user, password, host = nil, port = nil)
     host_and_port!(host, port)
     @user, @password = user, password
@@ -41,6 +47,7 @@ class UserMailer < ActionMailer::Base
   
   private
   
+  # Extracts host and port
   def host_and_port!(host, port)
     @host, @port = host, port
   end

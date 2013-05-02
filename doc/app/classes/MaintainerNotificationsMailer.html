@@ -38,6 +38,12 @@
     <div id="bodyContent">
         <div id="content">
   
+    <div class="description">
+      
+<p>Specific mailer for administration</p>
+
+    </div>
+  
 
 
   
@@ -100,7 +106,7 @@
           
           
             <div class="description">
-              
+              <p>It sends an email if the media elements hard disk is getting full</p>
             </div>
           
           
@@ -116,7 +122,7 @@
                 
               </p>
               <div id="method-i-media_elements_folder_size_alert_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/mailers/maintainer_notifications_mailer.rb, line 7</span>
+                <pre><span class="ruby-comment"># File app/mailers/maintainer_notifications_mailer.rb, line 9</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">media_elements_folder_size_alert</span>(<span class="ruby-identifier">current_media_elements_folder_size</span>, <span class="ruby-identifier">maximum_media_elements_folder_size</span>)
   <span class="ruby-ivar">@current_media_elements_folder_size_in_gigabytes</span> = <span class="ruby-identifier">current_media_elements_folder_size</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">/</span> <span class="ruby-number">1024</span><span class="ruby-operator">**</span><span class="ruby-number">3</span>
   <span class="ruby-ivar">@maximum_media_elements_folder_size_in_gigabytes</span> = <span class="ruby-identifier">maximum_media_elements_folder_size</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">/</span> <span class="ruby-number">1024</span><span class="ruby-operator">**</span><span class="ruby-number">3</span>

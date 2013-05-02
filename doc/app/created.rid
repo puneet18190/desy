@@ -1,4 +1,4 @@
-Thu, 02 May 2013 16:02:38 +0200
+Thu, 02 May 2013 16:05:26 +0200
 app/controllers/admin/dashboard_controller.rb	Mon, 29 Apr 2013 12:27:25 +0200
 app/controllers/admin/lessons_controller.rb	Mon, 29 Apr 2013 12:27:25 +0200
 app/controllers/admin/media_elements_controller.rb	Mon, 29 Apr 2013 12:27:25 +0200
@@ -29,8 +29,8 @@ app/controllers/virtual_classroom_controller.rb	Tue, 30 Apr 2013 17:43:55 +0200
 app/helpers/admin_helper.rb	Thu, 02 May 2013 16:02:34 +0200
 app/helpers/application_helper.rb	Thu, 02 May 2013 16:00:58 +0200
 app/helpers/mailer_helper.rb	Thu, 02 May 2013 15:55:08 +0200
-app/mailers/maintainer_notifications_mailer.rb	Mon, 29 Apr 2013 12:27:25 +0200
-app/mailers/user_mailer.rb	Mon, 29 Apr 2013 12:27:25 +0200
+app/mailers/maintainer_notifications_mailer.rb	Thu, 02 May 2013 16:05:21 +0200
+app/mailers/user_mailer.rb	Thu, 02 May 2013 16:04:28 +0200
 app/models/admin_search_form.rb	Mon, 29 Apr 2013 12:27:25 +0200
 app/models/audio.rb	Mon, 29 Apr 2013 12:27:25 +0200
 app/models/bookmark.rb	Tue, 30 Apr 2013 17:43:55 +0200
