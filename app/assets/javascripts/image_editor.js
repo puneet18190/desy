@@ -200,7 +200,11 @@ function imageEditorDocumentReadyTexts() {
       containment: 'parent',
       handle: '._move',
       cursor: 'move',
+      start: function() {
+        $('#image_editor_text_' + textCount + ' ._move').css('cursor', 'move');
+      },
       stop: function() {
+        $('#image_editor_text_' + textCount + ' ._move').css('cursor', 'url(https://mail.google.com/mail/images/2/openhand.cur), move');
         coords = getDragPosition($(this));
         $('#image_editor_textarea_' + textCount).data('coords', coords[0] + ',' + coords[1]);
       }
