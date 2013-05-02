@@ -93,7 +93,7 @@
               </td>
               <td>
                 <% texts = "\"#{@subjects_chart[:texts].join("\", \"")}\"" %>
-                <span class="pie" data-text="[<%= texts %>]" data-diameter="250" class="fltrt"><%= @subjects_chart[:data].join(', ') %></span>
+                <span class="pie_subjects" data-text="[<%= texts %>]" data-diameter="250" class="fltrt"><%= @subjects_chart[:data].join(', ') %></span>
               </td>
             </tr>
           </tbody>
@@ -158,7 +158,7 @@
               </td>
               <td>
                 <% texts = "\"#{@subjects_chart[:texts].join("\", \"")}\"" %>
-                <span class="pie" data-text="[<%= texts %>]" data-diameter="250" class="fltrt"><%= @hard_disk_chart[:data].join(',') %></span>
+                <span class="pie_hard_disk" data-text="[<%= texts %>]" data-diameter="250" class="fltrt"><%= @hard_disk_chart[:data].join(',') %></span>
               </td>
             </tr>
           </tbody>
@@ -174,5 +174,10 @@
     colours: <%= @subjects_chart[:colors].to_json.html_safe %>,
     diameter: 250
   }
-  $('span.pie').peity('pie');
+  $('span.pie_subjects').peity('pie');
+  $.fn.peity.defaults.pie = {
+    colours: <%= @hard_disk_chart[:colors].to_json.html_safe %>,
+    diameter: 250
+  }
+  $('span.pie_hard_disk').peity('pie');
 </script>
