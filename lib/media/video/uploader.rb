@@ -10,6 +10,8 @@ require 'env_relative_path'
 
 module Media
   module Video
+
+    # Video uploading class; descendant of Media::Uploader
     class Uploader < Uploader
 
       require 'media/video/uploader/validation'

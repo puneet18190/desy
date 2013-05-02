@@ -45,7 +45,7 @@ module Media
         #
         # === Examples
         #
-        #  Concat.new([ { webm: 'input.webm', mp4: 'input.mp4'}, { webm: 'input2.webm', mp4: 'input2.mp4'} ], '/output/without/extension').run 
+        #  Media::Video::Editing::Concat.new([ { webm: 'input.webm', mp4: 'input.mp4'}, { webm: 'input2.webm', mp4: 'input2.mp4'} ], '/output/without/extension').run 
         #  #=> { mp4:'/output/without/extension.mp4', webm:'/output/without/extension.webm' }
         #
         def initialize(inputs, output_without_extension, log_folder = nil)

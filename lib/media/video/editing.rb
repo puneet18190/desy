@@ -5,9 +5,10 @@ require 'shellwords'
 
 module Media
   module Video
+    # Module relative to video editing
     module Editing
       
-      # +avprobe+ executable path
+      # +avprobe+ executable
       AVPROBE_BIN = CONFIG.avtools.avprobe.cmd.bin
   
       # +avconv+ codecs 
@@ -26,7 +27,7 @@ module Media
       # +avconv+ output audio quality (per codec)
       AVCONV_OUTPUT_QA           = Hash[ FORMATS.map{ |f| [f, CONFIG.avtools.avconv.video.formats.send(f).qa] } ]
   
-      # ImageMagick +convert+ executable path
+      # ImageMagick +convert+ executable
       IMAGEMAGICK_CONVERT_BIN = CONFIG.imagemagick.convert.cmd.bin
   
     end

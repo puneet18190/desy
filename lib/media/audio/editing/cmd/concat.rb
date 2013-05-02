@@ -9,15 +9,30 @@ module Media
   module Audio
     module Editing
       class Cmd
+        # CLI for Media::Audio::Editing::Concat processings, joins the audios producing one audio output
         class Concat < Cmd::Sox
 
+          # Extensions not supported by sox
           UNSUPPORTED_FORMATS = [:m4a]
   
+          # Instances a new Media::Audio::Editing::Cmd::Concat object
+          #
+          # === Arguments
+          #
+          # * *audios_with_paddings*: audios with their possible relative paddings
+          # * *output*: output path with the extension
+          # * *format*: input files format
+          #
+          # === Examples
+          #
+          #  Media::Audio::Editing::Cmd.new([ ['concat 0.wav', [1.234, 5.678] ], ['concat 1.wav', [8.765, 4.321] ] ], 'output.wav')
+          #  Media::Audio::Editing::Cmd.new([ ['concat 0.m4a', [1.234, 5.678] ], ['concat 1.m4a', [8.765, 4.321] ] ], 'output.m4a', :m4a)
           def initialize(audios_with_paddings, output, format = nil)
             @audios_with_paddings, @output, @format = audios_with_paddings, output, format
           end
   
           private
+          # Command string
           def cmd!
             output = @output.shellescape
             audios_with_paddings_length = @audios_with_paddings.length
@@ -26,7 +41,8 @@ module Media
               cmd_entry(audio.shellescape, output, audios_with_paddings_length, paddings, i)
             end
 
-            # ( ( avconv -i c1.m4a -f sox - | sox -p -p pad 5 5) ; ( avconv -i c2.m4a -f sox - | sox -p -p pad 5 5 ); ( avconv -i c1.m4a -f sox - | sox -p pad 5 5 ) ; ( avconv -i c2.m4a -f sox - | sox -p -p pad 5 5 ) ) | sox -p -p | avconv -f sox -i - -strict experimental -c:a aac prova.m4a
+            # Shell command example:
+            #  ( ( avconv -i c1.m4a -f sox - | sox -p -p pad 5 5) ; ( avconv -i c2.m4a -f sox - | sox -p -p pad 5 5 ); ( avconv -i c1.m4a -f sox - | sox -p pad 5 5 ) ; ( avconv -i c2.m4a -f sox - | sox -p -p pad 5 5 ) ) | sox -p -p | avconv -f sox -i - -strict experimental -c:a aac prova.m4a
             if unsupported_format?
               "( #{cmd_entries.join(' ; ')} ) | sox -p -p | avconv -f sox -i - -strict experimental -c:a aac #{output}"
             else
@@ -34,6 +50,7 @@ module Media
             end
           end
 
+          # Sub-command for each input entry; if the input format is not supported by Sox, uses avconv in order to convert the input to a sox pipe and passing it at sox, so it can add the pads
           def cmd_entry(input, output, audios_with_paddings_length, paddings, i)
             pad = sox_pad(paddings)
 
@@ -42,21 +59,24 @@ module Media
               "( avconv -i #{input} -f sox - #{pad_with_pipe})"
             else
               cmds = [ BIN_AND_GLOBAL_OPTIONS, sox_input(input, i), sox_output(output, audios_with_paddings_length, i) ]
-              pad ? cmds << pad : cmds
+              cmds << pad if pad
               cmds.join(' ')
             end
           end
   
+          # Input option for Sox
           def sox_input(input, i)
-            # se è il primo è un input normale, altrimenti è una sox pipe
+            # If it is the first input it is a normal input, otherwise it is a sox pipe
             i == 0 ? input : "-p #{input}"
           end
   
+          # Output option for Sox
           def sox_output(output, audios_with_paddings_length, i)
-            # se è l'ultimo è una audio pipe, altrimenti è una sox pipe
+            # If it is the last input is is and audio pipe, otherwise it is a sox pipe
             i == audios_with_paddings_length-1 ? output : '-p'
           end
 
+          # Pad option for Sox
           def sox_pad(paddings)
             if paddings
               lpad, rpad = paddings
@@ -67,6 +87,7 @@ module Media
             end
           end
 
+          # Whether the supplied format is supported by Sox or not
           def unsupported_format?
             case @format
             when *UNSUPPORTED_FORMATS then true

@@ -24,6 +24,14 @@ module Media
           self.output_qa      = Hash[ FORMATS.map{ |f| [f, CONFIG.avtools.avconv.video.formats.send(f).qa] } ] 
           self.output_threads = Hash[ FORMATS.map{ |f| [f, CONFIG.avtools.avconv.video.formats.send(f).threads] } ]
 
+          # Creates a new Media::Video::Editing::Cmd::Conversion instance
+          #
+          # === Arguments
+          #
+          # * *input_file*: the path of file to be converted
+          # * *output_file*: the output path
+          # * *format*: the output format
+          # * *input_file_info* _optional_: the Media::Info of the input file
           def initialize(input_file, output_file, format, input_file_info = nil)
             super([input_file], output_file, format)
   

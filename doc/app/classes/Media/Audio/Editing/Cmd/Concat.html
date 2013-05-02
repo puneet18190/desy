@@ -38,6 +38,13 @@
     <div id="bodyContent">
         <div id="content">
   
+    <div class="description">
+      
+<p>CLI for <a href="../Concat.html">Media::Audio::Editing::Concat</a>
+processings, joins the audios producing one audio output</p>
+
+    </div>
+  
 
 
   
@@ -144,7 +151,7 @@
           
             <tr valign='top'>
               <td>&nbsp;</td>
-              <td colspan="2" class="attr-desc"></td>
+              <td colspan="2" class="attr-desc"><p>Extensions not supported by sox</p></td>
             </tr>
           
         
@@ -169,7 +176,23 @@
           
           
             <div class="description">
-              
+              <p>Instances a new <a
+href="Concat.html">Media::Audio::Editing::Cmd::Concat</a> object</p>
+
+<h3 id="method-c-new-label-Arguments">Arguments</h3>
+<ul><li>
+<p><strong>audios_with_paddings</strong>: audios with their possible relative
+paddings</p>
+</li><li>
+<p><strong>output</strong>: output path with the extension</p>
+</li><li>
+<p><strong>format</strong>: input files format</p>
+</li></ul>
+
+<h3 id="method-c-new-label-Examples">Examples</h3>
+
+<pre>Media::Audio::Editing::Cmd.new([ [&#39;concat 0.wav&#39;, [1.234, 5.678] ], [&#39;concat 1.wav&#39;, [8.765, 4.321] ] ], &#39;output.wav&#39;)
+Media::Audio::Editing::Cmd.new([ [&#39;concat 0.m4a&#39;, [1.234, 5.678] ], [&#39;concat 1.m4a&#39;, [8.765, 4.321] ] ], &#39;output.m4a&#39;, :m4a)</pre>
             </div>
           
           
@@ -185,7 +208,7 @@
                 
               </p>
               <div id="method-c-new_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/audio/editing/cmd/concat.rb, line 16</span>
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/cmd/concat.rb, line 30</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize</span>(<span class="ruby-identifier">audios_with_paddings</span>, <span class="ruby-identifier">output</span>, <span class="ruby-identifier">format</span> = <span class="ruby-keyword">nil</span>)
   <span class="ruby-ivar">@audios_with_paddings</span>, <span class="ruby-ivar">@output</span>, <span class="ruby-ivar">@format</span> = <span class="ruby-identifier">audios_with_paddings</span>, <span class="ruby-identifier">output</span>, <span class="ruby-identifier">format</span>
 <span class="ruby-keyword">end</span></pre>
@@ -206,7 +229,7 @@
           
           
             <div class="description">
-              
+              <p>Command string</p>
             </div>
           
           
@@ -222,7 +245,7 @@
                 
               </p>
               <div id="method-i-cmd-21_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/audio/editing/cmd/concat.rb, line 21</span>
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/cmd/concat.rb, line 36</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">cmd!</span>
   <span class="ruby-identifier">output</span> = <span class="ruby-ivar">@output</span>.<span class="ruby-identifier">shellescape</span>
   <span class="ruby-identifier">audios_with_paddings_length</span> = <span class="ruby-ivar">@audios_with_paddings</span>.<span class="ruby-identifier">length</span>
@@ -231,7 +254,8 @@
     <span class="ruby-identifier">cmd_entry</span>(<span class="ruby-identifier">audio</span>.<span class="ruby-identifier">shellescape</span>, <span class="ruby-identifier">output</span>, <span class="ruby-identifier">audios_with_paddings_length</span>, <span class="ruby-identifier">paddings</span>, <span class="ruby-identifier">i</span>)
   <span class="ruby-keyword">end</span>
 
-  <span class="ruby-comment"># ( ( avconv -i c1.m4a -f sox - | sox -p -p pad 5 5) ; ( avconv -i c2.m4a -f sox - | sox -p -p pad 5 5 ); ( avconv -i c1.m4a -f sox - | sox -p pad 5 5 ) ; ( avconv -i c2.m4a -f sox - | sox -p -p pad 5 5 ) ) | sox -p -p | avconv -f sox -i - -strict experimental -c:a aac prova.m4a</span>
+  <span class="ruby-comment"># Shell command example:</span>
+  <span class="ruby-comment">#  ( ( avconv -i c1.m4a -f sox - | sox -p -p pad 5 5) ; ( avconv -i c2.m4a -f sox - | sox -p -p pad 5 5 ); ( avconv -i c1.m4a -f sox - | sox -p pad 5 5 ) ; ( avconv -i c2.m4a -f sox - | sox -p -p pad 5 5 ) ) | sox -p -p | avconv -f sox -i - -strict experimental -c:a aac prova.m4a</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">unsupported_format?</span>
     <span class="ruby-node">&quot;( #{cmd_entries.join(&#39; ; &#39;)} ) | sox -p -p | avconv -f sox -i - -strict experimental -c:a aac #{output}&quot;</span>
   <span class="ruby-keyword">else</span>
@@ -253,7 +277,9 @@
           
           
             <div class="description">
-              
+              <p>Sub-command for each input entry; if the input format is not supported by
+<a href="Sox.html">Sox</a>, uses avconv in order to convert the input to a
+sox pipe and passing it at sox, so it can add the pads</p>
             </div>
           
           
@@ -269,7 +295,7 @@
                 
               </p>
               <div id="method-i-cmd_entry_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/audio/editing/cmd/concat.rb, line 37</span>
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/cmd/concat.rb, line 54</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">cmd_entry</span>(<span class="ruby-identifier">input</span>, <span class="ruby-identifier">output</span>, <span class="ruby-identifier">audios_with_paddings_length</span>, <span class="ruby-identifier">paddings</span>, <span class="ruby-identifier">i</span>)
   <span class="ruby-identifier">pad</span> = <span class="ruby-identifier">sox_pad</span>(<span class="ruby-identifier">paddings</span>)
 
@@ -278,7 +304,7 @@
     <span class="ruby-node">&quot;( avconv -i #{input} -f sox - #{pad_with_pipe})&quot;</span>
   <span class="ruby-keyword">else</span>
     <span class="ruby-identifier">cmds</span> = [ <span class="ruby-constant">BIN_AND_GLOBAL_OPTIONS</span>, <span class="ruby-identifier">sox_input</span>(<span class="ruby-identifier">input</span>, <span class="ruby-identifier">i</span>), <span class="ruby-identifier">sox_output</span>(<span class="ruby-identifier">output</span>, <span class="ruby-identifier">audios_with_paddings_length</span>, <span class="ruby-identifier">i</span>) ]
-    <span class="ruby-identifier">pad</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">cmds</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">pad</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">cmds</span>
+    <span class="ruby-identifier">cmds</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">pad</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">pad</span>
     <span class="ruby-identifier">cmds</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39; &#39;</span>)
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
@@ -297,7 +323,7 @@
           
           
             <div class="description">
-              
+              <p>Input option for <a href="Sox.html">Sox</a></p>
             </div>
           
           
@@ -313,9 +339,9 @@
                 
               </p>
               <div id="method-i-sox_input_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/audio/editing/cmd/concat.rb, line 50</span>
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/cmd/concat.rb, line 68</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">sox_input</span>(<span class="ruby-identifier">input</span>, <span class="ruby-identifier">i</span>)
-  <span class="ruby-comment"># se è il primo è un input normale, altrimenti è una sox pipe</span>
+  <span class="ruby-comment"># If it is the first input it is a normal input, otherwise it is a sox pipe</span>
   <span class="ruby-identifier">i</span> <span class="ruby-operator">==</span> <span class="ruby-number">0</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">input</span> <span class="ruby-operator">:</span> <span class="ruby-node">&quot;-p #{input}&quot;</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
@@ -333,7 +359,7 @@
           
           
             <div class="description">
-              
+              <p>Output option for <a href="Sox.html">Sox</a></p>
             </div>
           
           
@@ -349,9 +375,9 @@
                 
               </p>
               <div id="method-i-sox_output_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/audio/editing/cmd/concat.rb, line 55</span>
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/cmd/concat.rb, line 74</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">sox_output</span>(<span class="ruby-identifier">output</span>, <span class="ruby-identifier">audios_with_paddings_length</span>, <span class="ruby-identifier">i</span>)
-  <span class="ruby-comment"># se è l&#39;ultimo è una audio pipe, altrimenti è una sox pipe</span>
+  <span class="ruby-comment"># If it is the last input is is and audio pipe, otherwise it is a sox pipe</span>
   <span class="ruby-identifier">i</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">audios_with_paddings_length</span><span class="ruby-operator">-</span><span class="ruby-number">1</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">output</span> <span class="ruby-operator">:</span> <span class="ruby-string">&#39;-p&#39;</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
@@ -369,7 +395,7 @@
           
           
             <div class="description">
-              
+              <p>Pad option for <a href="Sox.html">Sox</a></p>
             </div>
           
           
@@ -385,7 +411,7 @@
                 
               </p>
               <div id="method-i-sox_pad_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/audio/editing/cmd/concat.rb, line 60</span>
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/cmd/concat.rb, line 80</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">sox_pad</span>(<span class="ruby-identifier">paddings</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">paddings</span>
     <span class="ruby-identifier">lpad</span>, <span class="ruby-identifier">rpad</span> = <span class="ruby-identifier">paddings</span>
@@ -410,7 +436,8 @@
           
           
             <div class="description">
-              
+              <p>Whether the supplied format is supported by <a href="Sox.html">Sox</a> or
+not</p>
             </div>
           
           
@@ -426,7 +453,7 @@
                 
               </p>
               <div id="method-i-unsupported_format-3F_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/audio/editing/cmd/concat.rb, line 70</span>
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/cmd/concat.rb, line 91</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">unsupported_format?</span>
   <span class="ruby-keyword">case</span> <span class="ruby-ivar">@format</span>
   <span class="ruby-keyword">when</span> *<span class="ruby-constant">UNSUPPORTED_FORMATS</span> <span class="ruby-keyword">then</span> <span class="ruby-keyword">true</span>

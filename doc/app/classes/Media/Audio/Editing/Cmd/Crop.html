@@ -38,6 +38,12 @@
     <div id="bodyContent">
         <div id="content">
   
+    <div class="description">
+      
+<p>CLI for audio cropping</p>
+
+    </div>
+  
 
 
   
@@ -140,7 +146,7 @@
                 
               </p>
               <div id="method-c-new_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/audio/editing/cmd/crop.rb, line 13</span>
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/cmd/crop.rb, line 14</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize</span>(<span class="ruby-identifier">input</span>, <span class="ruby-identifier">output</span>, <span class="ruby-identifier">_start</span>, <span class="ruby-identifier">_duration</span>, <span class="ruby-identifier">format</span>)
   <span class="ruby-identifier">inputs</span> = [<span class="ruby-identifier">input</span>]
   <span class="ruby-keyword">super</span> <span class="ruby-identifier">inputs</span>, <span class="ruby-identifier">output</span>, <span class="ruby-identifier">format</span>
@@ -164,7 +170,7 @@
           
           
             <div class="description">
-              
+              <p>Output video duration</p>
             </div>
           
           
@@ -180,7 +186,7 @@
                 
               </p>
               <div id="method-i-duration_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/audio/editing/cmd/crop.rb, line 24</span>
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/cmd/crop.rb, line 27</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">duration</span>
   <span class="ruby-node">&quot;-t #{@duration.round(2).to_s.shellescape}&quot;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -199,7 +205,7 @@
           
           
             <div class="description">
-              
+              <p>Output video start seek</p>
             </div>
           
           
@@ -215,7 +221,7 @@
                 
               </p>
               <div id="method-i-start_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/audio/editing/cmd/crop.rb, line 21</span>
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/cmd/crop.rb, line 23</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">start</span>
   <span class="ruby-node">&quot;-ss #{@start.round(2).to_s.shellescape}&quot;</span>
 <span class="ruby-keyword">end</span></pre>

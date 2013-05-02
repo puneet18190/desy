@@ -10,6 +10,7 @@ module Media
   module Audio
     module Editing
       class Cmd
+        # CLI for audio editing using avconv
         class Avconv < Avconv
           self.formats        = FORMATS
           self.codecs         = AVCONV_CODECS

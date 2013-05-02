@@ -9,25 +9,29 @@ require 'media/audio/editing/concat'
 module Media
   module Audio
     module Editing
+      # Compose the components supplied (audios) in order to create a new audio based on them
       class Composer
 
         include InTmpDir
         include Logging
 
+        # Composing processings main log folder
         def self.log_folder
           super 'composings'
         end
 
+        # Create a new Media::Audio::Editing::Composer instance, which processes audio composings. +params+ should be created using Media::Audio::Editing::Parameters#convert_to_primitive_parameters . Example of the +params+ hash:
+        #
         #  {
-        #    :initial_audio => OBJECT OF TYPE AUDIO or NIL,
+        #    :initial_audio => 12 # initial audio id,
         #    :components => [
         #      {
-        #        :audio => OBJECT OF TYPE AUDIO,
-        #        :from => 12,
-        #        :to => 24
+        #        :audio => 123, # audio id
+        #        :from => 12, # start of the audio in seconds (the new audio will contain the audio component starting from this second)
+        #        :to => 24 # end of the audio in seconds (the new audio will contain the audio component ending to this second)
         #      },
         #      {
-        #        etc...
+        #        # etc...
         #      }
         #    ]
         #  }
@@ -35,6 +39,7 @@ module Media
           @params = params
         end
 
+        # Execute the composing processing; if it works, a success notification will be sent to the user; otherwise a fail notification will be sent to the user and the media record will be destroyed
         def run
           @old_media = audio.media.try(:dup)
           compose
@@ -59,6 +64,7 @@ module Media
           raise e
         end
 
+        # Composing of a single component
         def compose
           create_log_folder
           in_tmp_dir do
@@ -85,18 +91,22 @@ module Media
         end
 
         private
+        # Instance-relative log folder
         def log_folder(*folders)
           File.join(@log_folder, *folders)
         end
 
+        # Instance-model-thread relative log folder
         def log_folder_name
           File.join self.class.log_folder, audio.id.to_s, "#{Time.now.utc.strftime("%Y-%m-%d_%H-%M-%S")}_#{::Thread.main.object_id}"
         end
 
+        # Create the log folder
         def create_log_folder
           @log_folder = FileUtils.mkdir_p(log_folder_name).first
         end
 
+        # Audio component composing
         def compose_audio(audio_id, from, to, i)
           audio = ::Audio.find audio_id
           inputs = Hash[ FORMATS.map{ |f| [f, audio.media.path(f)] } ]
@@ -111,18 +121,22 @@ module Media
           end
         end
 
+        # Audio file copy
         def audio_copy(input, output)
           FileUtils.cp(input, output)
         end
 
+        # Locale key depending of the composing action type
         def notification_translation_key
           @old_media ? 'update' : 'create'
         end
 
+        # Temporary output path without extension
         def output_without_extension(i)
           tmp_path i.to_s
         end
 
+        # Initial audio instance
         def audio
           @audio ||= ::Audio.find @params[:initial_audio][:id]
         end

@@ -40,6 +40,13 @@
     <div id="bodyContent">
         <div id="content">
   
+    <div class="description">
+      
+<p>Compose the components supplied (audios) in order to create a new audio
+based on them</p>
+
+    </div>
+  
 
 
   
@@ -225,7 +232,7 @@
           
           
             <div class="description">
-              
+              <p>Composing processings main log folder</p>
             </div>
           
           
@@ -241,7 +248,7 @@
                 
               </p>
               <div id="method-c-log_folder_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/audio/editing/composer.rb, line 17</span>
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/composer.rb, line 19</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">log_folder</span>
   <span class="ruby-keyword">super</span> <span class="ruby-string">&#39;composings&#39;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -260,22 +267,26 @@
           
           
             <div class="description">
-              <p>{</p>
+              <p>Create a new <a href="Composer.html">Media::Audio::Editing::Composer</a>
+instance, which processes audio composings. <code>params</code> should be
+created using <a
+href="Parameters.html#method-i-convert_to_primitive_parameters">Media::Audio::Editing::Parameters#convert_to_primitive_parameters</a>
+. Example of the <code>params</code> hash:</p>
 
-<pre class="ruby">:<span class="ruby-identifier">initial_audio</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">OBJECT</span> <span class="ruby-constant">OF</span> <span class="ruby-constant">TYPE</span> <span class="ruby-constant">AUDIO</span> <span class="ruby-keyword">or</span> <span class="ruby-constant">NIL</span>,
-:<span class="ruby-identifier">components</span> =<span class="ruby-operator">&gt;</span> [
-  {
-    :<span class="ruby-identifier">audio</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">OBJECT</span> <span class="ruby-constant">OF</span> <span class="ruby-constant">TYPE</span> <span class="ruby-constant">AUDIO</span>,
-    :<span class="ruby-identifier">from</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">12</span>,
-    :<span class="ruby-identifier">to</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">24</span>
-  },
-  {
-    <span class="ruby-identifier">etc</span><span class="ruby-operator">...</span>
-  }
-]
+<pre class="ruby">{
+  :<span class="ruby-identifier">initial_audio</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">12</span> <span class="ruby-comment"># initial audio id,</span>
+  :<span class="ruby-identifier">components</span> =<span class="ruby-operator">&gt;</span> [
+    {
+      :<span class="ruby-identifier">audio</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">123</span>, <span class="ruby-comment"># audio id</span>
+      :<span class="ruby-identifier">from</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">12</span>, <span class="ruby-comment"># start of the audio in seconds (the new audio will contain the audio component starting from this second)</span>
+      :<span class="ruby-identifier">to</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">24</span> <span class="ruby-comment"># end of the audio in seconds (the new audio will contain the audio component ending to this second)</span>
+    },
+    {
+      <span class="ruby-comment"># etc...</span>
+    }
+  ]
+}
 </pre>
-
-<p>}</p>
             </div>
           
           
@@ -291,7 +302,7 @@
                 
               </p>
               <div id="method-c-new_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/audio/editing/composer.rb, line 34</span>
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/composer.rb, line 38</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-ivar">@params</span> = <span class="ruby-identifier">params</span>
 <span class="ruby-keyword">end</span></pre>
@@ -312,7 +323,7 @@
           
           
             <div class="description">
-              
+              <p>Composing of a single component</p>
             </div>
           
           
@@ -328,7 +339,7 @@
                 
               </p>
               <div id="method-i-compose_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/audio/editing/composer.rb, line 62</span>
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/composer.rb, line 68</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">compose</span>
   <span class="ruby-identifier">create_log_folder</span>
   <span class="ruby-identifier">in_tmp_dir</span> <span class="ruby-keyword">do</span>
@@ -368,7 +379,9 @@
           
           
             <div class="description">
-              
+              <p>Execute the composing processing; if it works, a success notification will
+be sent to the user; otherwise a fail notification will be sent to the user
+and the media record will be destroyed</p>
             </div>
           
           
@@ -384,7 +397,7 @@
                 
               </p>
               <div id="method-i-run_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/audio/editing/composer.rb, line 38</span>
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/composer.rb, line 43</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">run</span>
   <span class="ruby-ivar">@old_media</span> = <span class="ruby-identifier">audio</span>.<span class="ruby-identifier">media</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:dup</span>)
   <span class="ruby-identifier">compose</span>
@@ -425,7 +438,7 @@
           
           
             <div class="description">
-              
+              <p>Initial audio instance</p>
             </div>
           
           
@@ -441,7 +454,7 @@
                 
               </p>
               <div id="method-i-audio_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/audio/editing/composer.rb, line 126</span>
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/composer.rb, line 140</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">audio</span>
   <span class="ruby-ivar">@audio</span> <span class="ruby-operator">||=</span> <span class="ruby-operator">::</span><span class="ruby-constant">Audio</span>.<span class="ruby-identifier">find</span> <span class="ruby-ivar">@params</span>[<span class="ruby-value">:initial_audio</span>][<span class="ruby-value">:id</span>]
 <span class="ruby-keyword">end</span></pre>
@@ -460,7 +473,7 @@
           
           
             <div class="description">
-              
+              <p><a href="../../Audio.html">Audio</a> file copy</p>
             </div>
           
           
@@ -476,7 +489,7 @@
                 
               </p>
               <div id="method-i-audio_copy_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/audio/editing/composer.rb, line 114</span>
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/composer.rb, line 125</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">audio_copy</span>(<span class="ruby-identifier">input</span>, <span class="ruby-identifier">output</span>)
   <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">cp</span>(<span class="ruby-identifier">input</span>, <span class="ruby-identifier">output</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -495,7 +508,7 @@
           
           
             <div class="description">
-              
+              <p><a href="../../Audio.html">Audio</a> component composing</p>
             </div>
           
           
@@ -511,7 +524,7 @@
                 
               </p>
               <div id="method-i-compose_audio_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/audio/editing/composer.rb, line 100</span>
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/composer.rb, line 110</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">compose_audio</span>(<span class="ruby-identifier">audio_id</span>, <span class="ruby-identifier">from</span>, <span class="ruby-identifier">to</span>, <span class="ruby-identifier">i</span>)
   <span class="ruby-identifier">audio</span> = <span class="ruby-operator">::</span><span class="ruby-constant">Audio</span>.<span class="ruby-identifier">find</span> <span class="ruby-identifier">audio_id</span>
   <span class="ruby-identifier">inputs</span> = <span class="ruby-constant">Hash</span>[ <span class="ruby-constant">FORMATS</span>.<span class="ruby-identifier">map</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">f</span>, <span class="ruby-identifier">audio</span>.<span class="ruby-identifier">media</span>.<span class="ruby-identifier">path</span>(<span class="ruby-identifier">f</span>)] } ]
@@ -540,7 +553,7 @@
           
           
             <div class="description">
-              
+              <p>Create the log folder</p>
             </div>
           
           
@@ -556,7 +569,7 @@
                 
               </p>
               <div id="method-i-create_log_folder_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/audio/editing/composer.rb, line 96</span>
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/composer.rb, line 105</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">create_log_folder</span>
   <span class="ruby-ivar">@log_folder</span> = <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">mkdir_p</span>(<span class="ruby-identifier">log_folder_name</span>).<span class="ruby-identifier">first</span>
 <span class="ruby-keyword">end</span></pre>
@@ -575,7 +588,7 @@
           
           
             <div class="description">
-              
+              <p>Instance-relative log folder</p>
             </div>
           
           
@@ -591,7 +604,7 @@
                 
               </p>
               <div id="method-i-log_folder_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/audio/editing/composer.rb, line 88</span>
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/composer.rb, line 95</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">log_folder</span>(*<span class="ruby-identifier">folders</span>)
   <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-ivar">@log_folder</span>, *<span class="ruby-identifier">folders</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -610,7 +623,7 @@
           
           
             <div class="description">
-              
+              <p>Instance-model-thread relative log folder</p>
             </div>
           
           
@@ -626,7 +639,7 @@
                 
               </p>
               <div id="method-i-log_folder_name_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/audio/editing/composer.rb, line 92</span>
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/composer.rb, line 100</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">log_folder_name</span>
   <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">log_folder</span>, <span class="ruby-identifier">audio</span>.<span class="ruby-identifier">id</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-node">&quot;#{Time.now.utc.strftime(&quot;%Y-%m-%d_%H-%M-%S&quot;)}_#{::Thread.main.object_id}&quot;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -645,7 +658,7 @@
           
           
             <div class="description">
-              
+              <p>Locale key depending of the composing action type</p>
             </div>
           
           
@@ -661,7 +674,7 @@
                 
               </p>
               <div id="method-i-notification_translation_key_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/audio/editing/composer.rb, line 118</span>
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/composer.rb, line 130</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">notification_translation_key</span>
   <span class="ruby-ivar">@old_media</span> <span class="ruby-operator">?</span> <span class="ruby-string">&#39;update&#39;</span> <span class="ruby-operator">:</span> <span class="ruby-string">&#39;create&#39;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -680,7 +693,7 @@
           
           
             <div class="description">
-              
+              <p>Temporary output path without extension</p>
             </div>
           
           
@@ -696,7 +709,7 @@
                 
               </p>
               <div id="method-i-output_without_extension_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/audio/editing/composer.rb, line 122</span>
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/composer.rb, line 135</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">output_without_extension</span>(<span class="ruby-identifier">i</span>)
   <span class="ruby-identifier">tmp_path</span> <span class="ruby-identifier">i</span>.<span class="ruby-identifier">to_s</span>
 <span class="ruby-keyword">end</span></pre>

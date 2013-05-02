@@ -8,6 +8,7 @@ module Media
   module Audio
     module Editing
       class Cmd
+        # CLI for audio conversions
         class Conversion < Avconv
   
           self.formats        = FORMATS
@@ -15,7 +16,14 @@ module Media
           self.output_qa      = Hash[ FORMATS.map{ |f| [f, CONFIG.avtools.avconv.audio.formats.send(f).qa] } ] 
           self.output_threads = Hash[ FORMATS.map{ |f| [f, CONFIG.avtools.avconv.audio.formats.send(f).threads] } ]
 
-  
+          # Creates a new Media::Audio::Editing::Cmd::Conversion instance
+          #
+          # === Arguments
+          #
+          # * *input_file*: the path of file to be converted
+          # * *output_file*: the output path
+          # * *format*: the output format
+          # * *input_file_info* _optional_: the Media::Info of the input file
           def initialize(input_file, output_file, format, input_file_info = nil)
             super([input_file], output_file, format)
   
@@ -29,11 +37,12 @@ module Media
           end
   
           private
-        
+          # input audio streams (not used by the command)
           def astreams
             @input_file_info.audio_streams
           end
   
+          # input audios filtering
           def amap
             '-map 0:a:0'
           end

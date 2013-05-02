@@ -294,8 +294,8 @@ new video based on them</p>
   {
     :<span class="ruby-identifier">type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Media</span><span class="ruby-operator">::</span><span class="ruby-constant">Video</span><span class="ruby-operator">::</span><span class="ruby-constant">Editing</span><span class="ruby-operator">::</span><span class="ruby-constant">Parameters</span><span class="ruby-operator">::</span><span class="ruby-constant">VIDEO_COMPONENT</span>, <span class="ruby-comment"># component type (one between Media::Video::Editing::Parameters::COMPONENTS)</span>
     :<span class="ruby-identifier">video</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">321</span> <span class="ruby-comment"># video id</span>
-    :<span class="ruby-identifier">from</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">12</span>, <span class="ruby-comment"># start of the video in seconds (the new video will contain the component video starting from this second)</span>
-    :<span class="ruby-identifier">to</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">24</span>, <span class="ruby-comment"># end of the video in seconds (the new video will contain the component video ending to this second)</span>
+    :<span class="ruby-identifier">from</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">12</span>, <span class="ruby-comment"># start of the video in seconds (the new video will contain the video component starting from this second)</span>
+    :<span class="ruby-identifier">to</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">24</span>, <span class="ruby-comment"># end of the video in seconds (the new video will contain the video component ending to this second)</span>
   },
   {
     :<span class="ruby-identifier">type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Media</span><span class="ruby-operator">::</span><span class="ruby-constant">Video</span><span class="ruby-operator">::</span><span class="ruby-constant">Editing</span><span class="ruby-operator">::</span><span class="ruby-constant">Parameters</span><span class="ruby-operator">::</span><span class="ruby-constant">TEXT_COMPONENT</span>, <span class="ruby-comment"># as above</span>
@@ -434,7 +434,7 @@ new video based on them</p>
             <div class="description">
               <p>Execute the composing processing; if it works, a success notification will
 be sent to the user; otherwise a fail notification will be sent to the user
-and the video will be destroyed</p>
+and the media record will be destroyed</p>
             </div>
           
           

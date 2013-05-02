@@ -195,7 +195,7 @@ module Media
           self.class.temp_path(model_id, @original_filename)
         end
 
-        # Temporary folder path  
+        # Temporary folder path
         def temp_folder
           File.dirname temp_path
         end

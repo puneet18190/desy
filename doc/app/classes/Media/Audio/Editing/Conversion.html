@@ -40,6 +40,12 @@
     <div id="bodyContent">
         <div id="content">
   
+    <div class="description">
+      
+<p>Convert an audio to formats playable by HTML5 capable browsers</p>
+
+    </div>
+  
 
 
   
@@ -279,7 +285,7 @@
           
             <tr valign='top'>
               <td>&nbsp;</td>
-              <td colspan="2" class="attr-desc"></td>
+              <td colspan="2" class="attr-desc"><p>Temporary conversion files folder path</p></td>
             </tr>
           
         
@@ -291,7 +297,7 @@
           
             <tr valign='top'>
               <td>&nbsp;</td>
-              <td colspan="2" class="attr-desc"></td>
+              <td colspan="2" class="attr-desc"><p>Maximum duration difference between two converted files allowed</p></td>
             </tr>
           
         
@@ -309,7 +315,7 @@
               [R]
             </td>
             <td class='attr-name'>model_id</td>
-            <td class='attr-desc'></td>
+            <td class='attr-desc'><p>Id of the model to be converted</p></td>
           </tr>
         
           <tr valign='top'>
@@ -317,7 +323,7 @@
               [R]
             </td>
             <td class='attr-name'>uploaded_path</td>
-            <td class='attr-desc'></td>
+            <td class='attr-desc'><p>Uploaded file path</p></td>
           </tr>
         
       </table>
@@ -338,7 +344,7 @@
           
           
             <div class="description">
-              
+              <p>Log files folder path</p>
             </div>
           
           
@@ -354,7 +360,7 @@
                 
               </p>
               <div id="method-c-log_folder_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/audio/editing/conversion.rb, line 28</span>
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/conversion.rb, line 32</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">log_folder</span>
   <span class="ruby-keyword">super</span> <span class="ruby-string">&#39;conversions&#39;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -373,9 +379,24 @@
           
           
             <div class="description">
-              <p>Example: new(&#39;/tmp/path.abcdef&#39;,
-&#39;/path/to/desy/public/media_elements/13/valid-audio&#39;, &#39;valid
-audio.m4a&#39;, 13)</p>
+              <p>Create a new <a
+href="Conversion.html">Media::Audio::Editing::Conversion</a> instance</p>
+
+<h3 id="method-c-new-label-Arguments">Arguments</h3>
+<ul><li>
+<p><strong><a
+href="Conversion.html#attribute-i-uploaded_path">#uploaded_path</a></strong>:
+path to the file to be converted. The file will be moved to the temporary
+path and removed after the conversion</p>
+</li><li>
+<p><strong>output_path_without_extension</strong>: output path without the
+extension (it will be added automatically by the conversion for each output
+format)</p>
+</li></ul>
+
+<h3 id="method-c-new-label-Examples">Examples</h3>
+
+<pre>Media::Audio::Editing::Conversion.new(&#39;/tmp/path.abcdef&#39;, &#39;/path/to/desy/public/media_elements/13/valid-audio&#39;, &#39;valid audio.flv&#39;, 13)</pre>
             </div>
           
           
@@ -391,7 +412,7 @@ audio.m4a&#39;, 13)</p>
                 
               </p>
               <div id="method-c-new_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/audio/editing/conversion.rb, line 43</span>
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/conversion.rb, line 61</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize</span>(<span class="ruby-identifier">uploaded_path</span>, <span class="ruby-identifier">output_path_without_extension</span>, <span class="ruby-identifier">original_filename</span>, <span class="ruby-identifier">model_id</span>)
   <span class="ruby-ivar">@model_id</span> = <span class="ruby-identifier">model_id</span>
   <span class="ruby-identifier">init_model</span>
@@ -415,7 +436,7 @@ audio.m4a&#39;, 13)</p>
           
           
             <div class="description">
-              
+              <p>Remove the temporary folder</p>
             </div>
           
           
@@ -431,7 +452,7 @@ audio.m4a&#39;, 13)</p>
                 
               </p>
               <div id="method-c-remove_folder-21_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/audio/editing/conversion.rb, line 24</span>
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/conversion.rb, line 27</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">remove_folder!</span>
   <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">rm_rf</span> <span class="ruby-constant">TEMP_FOLDER</span>
 <span class="ruby-keyword">end</span></pre>
@@ -450,7 +471,7 @@ audio.m4a&#39;, 13)</p>
           
           
             <div class="description">
-              
+              <p>Model-relative temporary folder path</p>
             </div>
           
           
@@ -466,7 +487,7 @@ audio.m4a&#39;, 13)</p>
                 
               </p>
               <div id="method-c-temp_folder_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/audio/editing/conversion.rb, line 32</span>
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/conversion.rb, line 37</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">temp_folder</span>(<span class="ruby-identifier">model_id</span>)
   <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span> <span class="ruby-constant">TEMP_FOLDER</span>, <span class="ruby-identifier">model_id</span>.<span class="ruby-identifier">to_s</span>
 <span class="ruby-keyword">end</span></pre>
@@ -485,7 +506,7 @@ audio.m4a&#39;, 13)</p>
           
           
             <div class="description">
-              
+              <p>Model-relative temporary file path</p>
             </div>
           
           
@@ -501,7 +522,7 @@ audio.m4a&#39;, 13)</p>
                 
               </p>
               <div id="method-c-temp_path_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/audio/editing/conversion.rb, line 36</span>
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/conversion.rb, line 42</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">temp_path</span>(<span class="ruby-identifier">model_id</span>, <span class="ruby-identifier">original_filename</span>)
   <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span> <span class="ruby-identifier">temp_folder</span>(<span class="ruby-identifier">model_id</span>), <span class="ruby-identifier">original_filename</span>
 <span class="ruby-keyword">end</span></pre>
@@ -522,7 +543,7 @@ audio.m4a&#39;, 13)</p>
           
           
             <div class="description">
-              
+              <p>Manages the conversion processing</p>
             </div>
           
           
@@ -538,7 +559,7 @@ audio.m4a&#39;, 13)</p>
                 
               </p>
               <div id="method-i-convert_to_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/audio/editing/conversion.rb, line 99</span>
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/conversion.rb, line 119</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">convert_to</span>(<span class="ruby-identifier">format</span>)
   <span class="ruby-identifier">prepare_for_conversion</span> <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@prepare_for_conversion</span>
 
@@ -567,7 +588,10 @@ audio.m4a&#39;, 13)</p>
           
           
             <div class="description">
-              
+              <p>Execute the conversion processing: it converts the media the output formats
+and sends a notification of success to the user who uploaded the file. If
+an error occurs, destroys the record and sends a notification of failure
+the user who uploaded the file.</p>
             </div>
           
           
@@ -583,7 +607,7 @@ audio.m4a&#39;, 13)</p>
                 
               </p>
               <div id="method-i-run_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/audio/editing/conversion.rb, line 52</span>
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/conversion.rb, line 71</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">run</span>
   <span class="ruby-keyword">begin</span>
     <span class="ruby-identifier">prepare_for_conversion</span>
@@ -666,7 +690,8 @@ audio.m4a&#39;, 13)</p>
           
           
             <div class="description">
-              
+              <p>Model-relative log folder path (the argument is ignored, it is specified
+just for ancestor method compatibility)</p>
             </div>
           
           
@@ -682,7 +707,7 @@ audio.m4a&#39;, 13)</p>
                 
               </p>
               <div id="method-i-log_folder_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/audio/editing/conversion.rb, line 155</span>
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/conversion.rb, line 183</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">log_folder</span>(<span class="ruby-identifier">_</span> = <span class="ruby-keyword">nil</span>)
   <span class="ruby-keyword">super</span> <span class="ruby-identifier">model_id</span>.<span class="ruby-identifier">to_s</span>
 <span class="ruby-keyword">end</span></pre>
@@ -701,7 +726,7 @@ audio.m4a&#39;, 13)</p>
           
           
             <div class="description">
-              
+              <p>Model to be converted</p>
             </div>
           
           
@@ -721,7 +746,7 @@ audio.m4a&#39;, 13)</p>
                 
               </p>
               <div id="method-i-model_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/audio/editing/conversion.rb, line 159</span>
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/conversion.rb, line 188</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">model</span>
   <span class="ruby-ivar">@model</span> <span class="ruby-operator">||=</span> <span class="ruby-operator">::</span><span class="ruby-constant">Audio</span>.<span class="ruby-identifier">find</span> <span class="ruby-identifier">model_id</span>
 <span class="ruby-keyword">end</span></pre>
@@ -740,7 +765,7 @@ audio.m4a&#39;, 13)</p>
           
           
             <div class="description">
-              
+              <p>Output filename without extension</p>
             </div>
           
           
@@ -756,7 +781,7 @@ audio.m4a&#39;, 13)</p>
                 
               </p>
               <div id="method-i-output_filename_without_extension_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/audio/editing/conversion.rb, line 139</span>
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/conversion.rb, line 163</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">output_filename_without_extension</span>
   <span class="ruby-constant">File</span>.<span class="ruby-identifier">basename</span> <span class="ruby-ivar">@output_path_without_extension</span>
 <span class="ruby-keyword">end</span></pre>
@@ -775,7 +800,7 @@ audio.m4a&#39;, 13)</p>
           
           
             <div class="description">
-              
+              <p>Output folder path</p>
             </div>
           
           
@@ -791,7 +816,7 @@ audio.m4a&#39;, 13)</p>
                 
               </p>
               <div id="method-i-output_folder_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/audio/editing/conversion.rb, line 143</span>
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/conversion.rb, line 168</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">output_folder</span>
   <span class="ruby-constant">File</span>.<span class="ruby-identifier">dirname</span> <span class="ruby-ivar">@output_path_without_extension</span>
 <span class="ruby-keyword">end</span></pre>
@@ -810,7 +835,7 @@ audio.m4a&#39;, 13)</p>
           
           
             <div class="description">
-              
+              <p>Format-relative output path</p>
             </div>
           
           
@@ -826,7 +851,7 @@ audio.m4a&#39;, 13)</p>
                 
               </p>
               <div id="method-i-output_path_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/audio/editing/conversion.rb, line 131</span>
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/conversion.rb, line 153</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">output_path</span>(<span class="ruby-identifier">format</span>)
   <span class="ruby-node">&quot;#{@output_path_without_extension}.#{format}&quot;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -845,7 +870,7 @@ audio.m4a&#39;, 13)</p>
           
           
             <div class="description">
-              
+              <p>Prepares for the conversion processing</p>
             </div>
           
           
@@ -861,7 +886,7 @@ audio.m4a&#39;, 13)</p>
                 
               </p>
               <div id="method-i-prepare_for_conversion_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/audio/editing/conversion.rb, line 114</span>
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/conversion.rb, line 135</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">prepare_for_conversion</span>
   <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-identifier">uploaded_path</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-identifier">temp_path</span>)
     <span class="ruby-identifier">raise</span> <span class="ruby-constant">Error</span>.<span class="ruby-identifier">new</span>( <span class="ruby-string">&quot;at least one between uploaded_path and temp_path must exist&quot;</span>, 
@@ -893,7 +918,7 @@ audio.m4a&#39;, 13)</p>
           
           
             <div class="description">
-              
+              <p>Temporary folder path</p>
             </div>
           
           
@@ -909,7 +934,7 @@ audio.m4a&#39;, 13)</p>
                 
               </p>
               <div id="method-i-temp_folder_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/audio/editing/conversion.rb, line 151</span>
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/conversion.rb, line 178</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">temp_folder</span>
   <span class="ruby-constant">File</span>.<span class="ruby-identifier">dirname</span> <span class="ruby-identifier">temp_path</span>
 <span class="ruby-keyword">end</span></pre>
@@ -928,7 +953,7 @@ audio.m4a&#39;, 13)</p>
           
           
             <div class="description">
-              
+              <p>Model-relative temporary path</p>
             </div>
           
           
@@ -944,7 +969,7 @@ audio.m4a&#39;, 13)</p>
                 
               </p>
               <div id="method-i-temp_path_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/audio/editing/conversion.rb, line 147</span>
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/conversion.rb, line 173</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">temp_path</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">temp_path</span>(<span class="ruby-identifier">model_id</span>, <span class="ruby-ivar">@original_filename</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -963,7 +988,7 @@ audio.m4a&#39;, 13)</p>
           
           
             <div class="description">
-              
+              <p>Uploaded path extension</p>
             </div>
           
           
@@ -979,7 +1004,7 @@ audio.m4a&#39;, 13)</p>
                 
               </p>
               <div id="method-i-uploaded_path_extension_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/audio/editing/conversion.rb, line 135</span>
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/conversion.rb, line 158</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">uploaded_path_extension</span>
   <span class="ruby-constant">File</span>.<span class="ruby-identifier">extname</span> <span class="ruby-ivar">@uploaded_path</span>
 <span class="ruby-keyword">end</span></pre>

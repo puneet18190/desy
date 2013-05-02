@@ -39,8 +39,8 @@ module Media
         #      {
         #        :type => Media::Video::Editing::Parameters::VIDEO_COMPONENT, # component type (one between Media::Video::Editing::Parameters::COMPONENTS)
         #        :video => 321 # video id
-        #        :from => 12, # start of the video in seconds (the new video will contain the component video starting from this second)
-        #        :to => 24, # end of the video in seconds (the new video will contain the component video ending to this second)
+        #        :from => 12, # start of the video in seconds (the new video will contain the video component starting from this second)
+        #        :to => 24, # end of the video in seconds (the new video will contain the video component ending to this second)
         #      },
         #      {
         #        :type => Media::Video::Editing::Parameters::TEXT_COMPONENT, # as above
@@ -60,7 +60,7 @@ module Media
           @params = params
         end
 
-        # Execute the composing processing; if it works, a success notification will be sent to the user; otherwise a fail notification will be sent to the user and the video will be destroyed
+        # Execute the composing processing; if it works, a success notification will be sent to the user; otherwise a fail notification will be sent to the user and the media record will be destroyed
         def run
           @old_media = video.media.try(:dup)
           compose
