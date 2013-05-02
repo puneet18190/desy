@@ -33,24 +33,7 @@ module Valid
   
   # Method that validates the format of an e-mail address (used in User and MailingListAddress)
   def self.email?(email)
-    flag = false
-    flag = true if !(/ / =~ email).nil?
-    x = email.split('@')
-    if x.length == 2
-      flag = true if x[0].blank?
-      x = x[1].split('.')
-      if x.length > 1
-        x.each do |comp|
-          flag = true if comp.blank?
-        end
-        flag = true if x.last.length < 2
-      else
-        flag = true
-      end
-    else
-      flag = true
-    end
-    !flag
+    email =~ /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
   end
   
   # Method that uses Validness to validate and extract the object associated to a field

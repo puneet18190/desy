@@ -43,7 +43,6 @@ gem 'tinymce-rails'
 gem 'tinymce-rails-langs'
 gem 'kaminari'
 gem 'bcrypt-ruby', '~> 3.0.0'
-gem 'validates_email_format_of'
 gem 'unicorn', :platforms => :ruby
 gem 'daemons'
 gem 'eventmachine'
