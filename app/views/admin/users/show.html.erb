@@ -60,7 +60,7 @@
   </div>
 </div>
 <div class="row-fluid">
-  <div class="span6 widget">
+  <div class="span6 widget scope-cane">
     <table class="table white">
       <thead>
         <th><h4><%= t('admin.users.statistics.lessons.title') %></h4></th>
@@ -82,7 +82,7 @@
             <tbody>
               <% @my_liked_lessons.each do |liked| %>
                 <tr>
-                  <td><%= liked.title %></td>
+                  <td><%= link_to liked.title, "/admin/lessons?utf8=%E2%9C%93&search[search_type]=lessons&search[ordering]=&search[desc]=&search[id]=#{liked.id}&search[title]=&search[subject_id]=&search[user]=&search[date_range_field]=&search[province]=0" %></td>
                   <td width="50"><span class="counter-label lessons"><%= format('%02d', liked.likes_count) %></span></td>
                 </tr>
               <% end %>

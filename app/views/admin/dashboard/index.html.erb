@@ -2,7 +2,7 @@
 <div class="row-fluid">
   <div class="span6">
     <div class="row-fluid">
-      <div class="span12 widget">
+      <div class="span12 widget scope-cane">
         <table class="table">
           <thead>
             <th><h4><%= t('admin.dashboard.general.title') %></h4></th>
@@ -46,7 +46,7 @@
                 <tbody>
                   <% @all_users_like.each do |u| %>
                     <tr>
-                      <td><%= u.name %> <%= u.surname %></td>
+                      <td><%= link_to "#{u.name} #{u.surname}", admin_user_path(u.id) %></td>
                       <td width="50"><span class="counter-label"><%= format('%02d', u.likes_count) %></span></td>
                     </tr>
                   <% end %>
