@@ -448,4 +448,58 @@
       }
     }
   }
+  
+  .img_expanded {
+    float:left;
+    padding:0;
+    color:#fff;
+    font-size:100%;
+    position:relative;
+    .cover {
+      width: 247px;
+      height: 143px;
+      overflow: hidden;
+      position: relative;
+      
+      img {
+        position:absolute;
+      }
+
+    }
+    .lessonSubject {
+      background-color:#fff;
+      font-size:80%;
+      color:#373737;
+      padding:3px 10px;
+      clear: both;
+      width:227px;
+      span {
+        float:right
+      }
+      strong {
+        color:#F29400;
+        font-weight:normal;
+      }
+
+    }
+    .bg_text {
+      padding:0px 20px 0px 7px;
+      background-color: rgba(242, 148, 0, 0.95);
+      height:35px;
+      position:absolute;
+      bottom:17px;
+      left:0px;
+      width:220px;
+     .lessonTitle {
+        font: 100% 'Nunito', sans-serif;
+        color:#fff;
+        padding:5px;
+        line-height:1em;
+      }
+    }
+  }
+  
+  .img-polaroid.lesson-thumbnail {
+    height: 164px;
+  }
 }
