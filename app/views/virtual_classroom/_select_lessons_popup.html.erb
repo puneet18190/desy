@@ -1,8 +1,8 @@
 <h3><%= t('virtual_classroom.select_lessons.description') %></h3>
 <div id="virtual_classroom_quick_select_container" class="contentPopUp scroll-pane" data-tot-pages="<%= tot_pages %>" data-page="1">
   <%= form_tag load_lessons_path, :remote => true do %>
-    <% lessons.each do |l| %>
-      <%= render :partial => 'virtual_classroom/view_single_in_quick_load', :locals => {:lesson => l} %>
+    <% lessons.each_with_index do |l, index| %>
+      <%= render :partial => 'virtual_classroom/view_single_in_quick_load', :locals => {:lesson => l, :index => index} %>
     <% end %>
   <% end %>
 </div>
