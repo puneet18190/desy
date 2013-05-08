@@ -148,7 +148,7 @@ class UsersController < ApplicationController
   def edit
     @user = current_user
     @school_level_ids = SchoolLevel.order(:description).map{ |sl| [sl.to_s, sl.id] }
-    fill_locations
+    @locations = @user.location.get_filled_select_for_personal_info
   end
   
   # === Description
@@ -210,6 +210,12 @@ class UsersController < ApplicationController
         params[:user].delete(:password_confirmation)
       end
     end
+    key_last_location = SETTINGS['location_types'].last.downcase
+    if params.has_key?(:location) && params[:location].has_key?(key_last_location)
+      params[:user][:location_id] = params[:location][key_last_location]
+    else
+      params[:user][:location_id] = 0
+    end
     if @user.update_attributes(params[:user])
       redirect_to in_subjects ? my_subjects_path : my_profile_path
     else
@@ -218,7 +224,7 @@ class UsersController < ApplicationController
         @subjects = Subject.order(:description)
         render :subjects
       else
-        fill_locations
+        @locations = Location.get_from_chain_params(params[:location]).get_filled_select_for_personal_info
         @school_level_ids = SchoolLevel.order(:description).map{ |sl| [sl.to_s, sl.id] }
         render :edit
       end
@@ -269,19 +275,6 @@ class UsersController < ApplicationController
       :texts  => Statistics.subjects,
       :colors => Subject.chart_colors
     }
-  end
-  
-  private
-  
-  # Fills the locations
-  def fill_locations
-    @user_location = {}
-    prev_location = User.find(current_user.id).location
-    SETTINGS['location_types'].reverse.each do |l|
-      @user_location[l.downcase] = prev_location.id
-      prev_location = prev_location.parent
-    end
-    @locations = Location.get_from_chain_params(@user_location).get_filled_select
   end
   
 end
