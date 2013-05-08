@@ -1647,7 +1647,7 @@ en:
     subtitle: "Discover the benefits of %{desy}"
     # Text describing the registration benefits
     # 1 - views/prelogin/registration.html.erb
-    description: "Create your own multimedia lessons with audio, video or images. Share them with other teachers %{desy}. Use or modify to suit your needs the lessons of other teachers who use %{desy}. Organize your lessons in your virtual classroom and discover a new way of teaching."
+    description: "Create your own multimedia lessons containing audio, video or images. Share them with other teachers in %{desy}. Use lessons of other teachers, or modify them to suit your needs. Organize your lessons in your Virtual Classroom and discover a new way of teaching."
     # Button to submit the registration form
     # 1 - views/prelogin/registration.html.erb
     done: "Sign up"
