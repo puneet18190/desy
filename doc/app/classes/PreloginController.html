@@ -238,7 +238,7 @@ href="PreloginController.html#method-i-redirect_to_dashboard_if_logged_in">#redi
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">registration</span>
   <span class="ruby-ivar">@user</span>             = <span class="ruby-constant">User</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:user</span>])
   <span class="ruby-ivar">@school_level_ids</span> = <span class="ruby-constant">SchoolLevel</span>.<span class="ruby-identifier">order</span>(<span class="ruby-value">:description</span>).<span class="ruby-identifier">map</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">sl</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">sl</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-identifier">sl</span>.<span class="ruby-identifier">id</span>] }
-  <span class="ruby-ivar">@locations</span>        = [<span class="ruby-constant">Location</span>.<span class="ruby-identifier">roots</span>]
+  <span class="ruby-ivar">@locations</span>        = [{<span class="ruby-value">:selected</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-number">0</span>, <span class="ruby-value">:content</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Location</span>.<span class="ruby-identifier">roots</span>}]
   <span class="ruby-ivar">@user_location</span>    = {}
   <span class="ruby-ivar">@subjects</span>         = <span class="ruby-constant">Subject</span>.<span class="ruby-identifier">order</span>(<span class="ruby-value">:description</span>)
 <span class="ruby-keyword">end</span></pre>

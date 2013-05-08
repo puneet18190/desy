@@ -133,6 +133,11 @@ the location (ex. “1/5/13/18”)</p>
             
               
               <li>
+                <a href="#method-i-get_filled_select_for_personal_info">get_filled_select_for_personal_info</a>,
+              </li>
+            
+              
+              <li>
                 <a href="#method-c-get_from_chain_params">get_from_chain_params</a>
               </li>
             
@@ -293,7 +298,7 @@ keys</p>
                 
               </p>
               <div id="method-c-get_from_chain_params_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/location.rb, line 141</span>
+                <pre><span class="ruby-comment"># File app/models/location.rb, line 159</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">get_from_chain_params</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">flag</span> = <span class="ruby-keyword">true</span>
   <span class="ruby-identifier">index</span> = <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;location_types&#39;</span>].<span class="ruby-identifier">length</span> <span class="ruby-operator">-</span> <span class="ruby-number">1</span>
@@ -445,6 +450,55 @@ associated to this particular location</p>
     <span class="ruby-identifier">resp</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">anc</span>.<span class="ruby-identifier">siblings</span>
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">resp</span> <span class="ruby-operator">+</span> [<span class="ruby-keyword">self</span>.<span class="ruby-identifier">siblings</span>]
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-get_filled_select_for_personal_info">
+            
+              <b>get_filled_select_for_personal_info</b>()
+            
+            <a href="../classes/Location.html#method-i-get_filled_select_for_personal_info" name="method-i-get_filled_select_for_personal_info" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <h3 id="method-i-get_filled_select_for_personal_info-label-Description">Description</h3>
+
+<p>Used in the front end, to fill the list of tags <code>select</code>
+associated to this particular location – only for registration and personal
+info</p>
+
+<h3 id="method-i-get_filled_select_for_personal_info-label-Returns">Returns</h3>
+
+<p>An array of hashes</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-get_filled_select_for_personal_info_source')" id="l_method-i-get_filled_select_for_personal_info_source">show</a>
+                
+              </p>
+              <div id="method-i-get_filled_select_for_personal_info_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/models/location.rb, line 137</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">get_filled_select_for_personal_info</span>
+  <span class="ruby-identifier">resp</span> = []
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">ancestors</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">anc</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">resp</span> <span class="ruby-operator">&lt;&lt;</span> {<span class="ruby-value">:selected</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">anc</span>.<span class="ruby-identifier">id</span>, <span class="ruby-value">:content</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">anc</span>.<span class="ruby-identifier">siblings</span>}
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">resp</span> <span class="ruby-operator">&lt;&lt;</span> {<span class="ruby-value">:selected</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>, <span class="ruby-value">:content</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">siblings</span>}
+  <span class="ruby-identifier">resp</span> <span class="ruby-operator">&lt;&lt;</span> {<span class="ruby-value">:selected</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-number">0</span>, <span class="ruby-value">:content</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">children</span>} <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">!=</span> <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;location_types&#39;</span>].<span class="ruby-identifier">last</span>
+  <span class="ruby-identifier">resp</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
