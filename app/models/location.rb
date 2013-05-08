@@ -128,6 +128,24 @@ class Location < ActiveRecord::Base
   
   # === Description
   #
+  # Used in the front end, to fill the list of tags +select+ associated to this particular location -- only for registration and personal info
+  #
+  # === Returns
+  #
+  # An array of hashes
+  #
+  def get_filled_select_for_personal_info
+    resp = []
+    self.ancestors.each do |anc|
+      resp << {:selected => anc.id, :content => anc.siblings}
+    end
+    resp << {:selected => self.id, :content => self.siblings}
+    resp << {:selected => 0, :content => self.children} if self.class.to_s != SETTINGS['location_types'].last
+    resp
+  end
+  
+  # === Description
+  #
   # Given a hash of parameters with the names of the categories as keys, this method returns the Location corresponding to the last parameter (from parent to son) which is not null. Used in AdminSearchForm.
   #
   # === Args

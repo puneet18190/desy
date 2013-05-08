@@ -36,14 +36,15 @@ class UsersController < ApplicationController
     email = params[:user].try(:delete, :email)
     @user = User.active.not_confirmed.new(params[:user]) do |user|
       user.email = email
+      user.location_id = params[:location][SETTINGS['location_types'].last.downcase] if params[:location].has_key? SETTINGS['location_types'].last.downcase
     end
     if @user.save
       UserMailer.account_confirmation(@user, request.host, request.port).deliver
       render 'users/fullpage_notifications/confirmation/email_sent', :layout => 'ad_hoc'
     else
       @errors = convert_user_error_messages @user.errors
-      @locations = [Location.roots]
-      @user_location = {}
+      location = Location.get_from_chain_params params[:location]
+      @locations = location.nil? ? [{:selected => 0, :content => Location.roots}] : location.get_filled_select_for_personal_info
       @school_level_ids = SchoolLevel.order(:description).map{ |sl| [sl.to_s, sl.id] }
       @subjects         = Subject.order(:description)
       render 'prelogin/registration'

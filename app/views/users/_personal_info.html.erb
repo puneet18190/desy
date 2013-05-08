@@ -53,22 +53,18 @@
   <fieldset class="insert-content">
     
     <% SETTINGS['location_types'].each_with_index do |location, index| %>
+      <%
+        is_last = (index == SETTINGS['location_types'].length - 1)
+        my_array_is_empty = is_last ? user.errors.include?(:location_id) : locations[index + 1].to_a.empty?
+        my_own_locations = locations[index].nil? ? {:selected => 0, :content => []} : locations[index]
+      %>
       <div class="inputElement">
-        <% if (index == SETTINGS['location_types'].length - 1) %>
-          <div class="_location_selector <%= user.errors.include?(:location_id) ? 'field_with_errors'.html_safe : '' %>">
-            <%= Location.label_at(index) %><br>
-            <select id="<%= location.downcase %>_id" class="_location_select_box" data-is-last="true" name="user[location_id]">
-              <%= render :partial => 'users/locations_list', :locals => {:locations => locations[index].to_a, :selected => user_location[location.downcase], :edit => edit} %>
-            </select>
-          </div>
-        <% else %>
-          <div class="_location_selector">
-            <%= Location.label_at(index) %><br>
-            <select id="<%= location.downcase %>_id" class="_location_select_box" data-is-last="false">
-              <%= render :partial => 'users/locations_list', :locals => {:locations => locations[index].to_a, :selected => user_location[location.downcase], :edit => edit} %>
-            </select>
-          </div>
-        <% end %>
+        <div class="_location_selector <%= my_array_is_empty ? 'field_with_errors'.html_safe : '' %>">
+          <%= Location.label_at(index) %><br>
+          <select id="<%= location.downcase %>_id" class="_location_select_box" data-is-last="<%= is_last %>" name="location[<%= location.downcase %>]">
+            <%= render :partial => 'users/locations_list', :locals => {:locations => my_own_locations[:content], :selected => my_own_locations[:selected], :edit => edit} %>
+          </select>
+        </div>
       </div>
     <% end %>
     
