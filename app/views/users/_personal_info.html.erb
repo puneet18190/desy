@@ -53,11 +53,15 @@
 
 <fieldset class="insert-content">
   
-  <% location_with_errors = user.errors.include?(:location_id) %>
+  <%
+    location_with_errors = user.errors.include?(:location_id)
+    last_correct_location_index = -1
+  %>
   <% SETTINGS['location_types'].each_with_index do |location, index| %>
     <%
       is_last = (index == SETTINGS['location_types'].length - 1)
       local_location_with_errors = location_with_errors ? locations[index + 1].to_a.empty? : false
+      last_correct_location_index = index if !local_location_with_errors
       my_own_locations = locations[index].nil? ? {:selected => 0, :content => []} : locations[index]
     %>
     <div class="inputElement">
@@ -74,7 +78,7 @@
   
   <ul class="listaErrori">
     <% location_errors.each do |err| %>
-      <li><%= err %></li>
+      <li><%= err.gsub('%{location}', SETTINGS['location_types'][last_correct_location_index + 1].downcase) %></li>
     <% end %>
   </ul>
   
