@@ -40,6 +40,7 @@ module ApplicationHelper
     query_string = get_recursive_array_from_params(query_params).join('&')
     return path if query_string.blank?
     url = "#{path}?#{query_string}"
+    url = URI.escape(url)
     escape ? CGI.escape(url) : url
   end
   
