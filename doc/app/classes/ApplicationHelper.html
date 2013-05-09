@@ -290,7 +290,7 @@
                 
               </p>
               <div id="method-i-is_horizontal-3F_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 47</span>
+                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 48</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">is_horizontal?</span>(<span class="ruby-identifier">width</span>, <span class="ruby-identifier">height</span>, <span class="ruby-identifier">kind</span>)
   ( <span class="ruby-identifier">width</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">/</span> <span class="ruby-identifier">height</span>.<span class="ruby-identifier">to_f</span> ) <span class="ruby-operator">&gt;</span>
     <span class="ruby-keyword">case</span> <span class="ruby-identifier">kind</span>
@@ -332,7 +332,7 @@
                 
               </p>
               <div id="method-i-jsd_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 91</span>
+                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 92</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">jsd</span>(<span class="ruby-identifier">object</span>)
 <span class="ruby-keyword">end</span></pre>
               </div>
@@ -378,6 +378,7 @@
   <span class="ruby-identifier">query_string</span> = <span class="ruby-identifier">get_recursive_array_from_params</span>(<span class="ruby-identifier">query_params</span>).<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;&amp;&#39;</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-identifier">path</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">query_string</span>.<span class="ruby-identifier">blank?</span>
   <span class="ruby-identifier">url</span> = <span class="ruby-node">&quot;#{path}?#{query_string}&quot;</span>
+  <span class="ruby-identifier">url</span> = <span class="ruby-constant">URI</span>.<span class="ruby-identifier">escape</span>(<span class="ruby-identifier">url</span>)
   <span class="ruby-identifier">escape</span> <span class="ruby-operator">?</span> <span class="ruby-constant">CGI</span>.<span class="ruby-identifier">escape</span>(<span class="ruby-identifier">url</span>) <span class="ruby-operator">:</span> <span class="ruby-identifier">url</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
@@ -412,7 +413,7 @@ href="NotificationsController.html">NotificationsController</a>.</p>
                 
               </p>
               <div id="method-i-remove_title_from_notification_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 72</span>
+                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 73</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">remove_title_from_notification</span>(<span class="ruby-identifier">notification</span>)
    <span class="ruby-identifier">x</span> = (<span class="ruby-identifier">notification</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/&lt;\/div&gt;/</span>)
    <span class="ruby-identifier">x</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">notification</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">notification</span>[<span class="ruby-identifier">x</span> <span class="ruby-operator">+</span> <span class="ruby-number">6</span>, <span class="ruby-identifier">notification</span>.<span class="ruby-identifier">length</span>]
@@ -448,7 +449,7 @@ href="NotificationsController.html">NotificationsController</a>.</p>
                 
               </p>
               <div id="method-i-resize_height_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 78</span>
+                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 79</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">resize_height</span>(<span class="ruby-identifier">width</span>, <span class="ruby-identifier">height</span>, <span class="ruby-identifier">kind</span>)
   <span class="ruby-identifier">height</span> *
     <span class="ruby-keyword">case</span> <span class="ruby-identifier">kind</span>
@@ -490,7 +491,7 @@ href="NotificationsController.html">NotificationsController</a>.</p>
                 
               </p>
               <div id="method-i-resize_width_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 59</span>
+                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 60</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">resize_width</span>(<span class="ruby-identifier">width</span>, <span class="ruby-identifier">height</span>, <span class="ruby-identifier">kind</span>)
   <span class="ruby-identifier">width</span> *
     <span class="ruby-keyword">case</span> <span class="ruby-identifier">kind</span>
@@ -647,7 +648,7 @@ that takes into consideration nested url parameters</p>
                 
               </p>
               <div id="method-i-get_recursive_array_from_params_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 102</span>
+                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 103</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">get_recursive_array_from_params</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-identifier">params</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">params</span>.<span class="ruby-identifier">kind_of?</span>(<span class="ruby-constant">Hash</span>)
   <span class="ruby-identifier">resp</span> = []
