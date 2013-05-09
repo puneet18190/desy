@@ -84,10 +84,17 @@ server {
     root $path_to_application/public;
     internal;
   }
-
+  
+  error_page 413 /413.html;
+  location = /413.html {
+    root $path_to_application/public;
+    internal;
+  }
+  
   error_page 500 502 503 504 /500.html;
     location = /500.html {
     root $path_to_application/public;
     internal;
   }
+  
 }
