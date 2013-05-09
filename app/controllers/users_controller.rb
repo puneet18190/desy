@@ -204,17 +204,17 @@ class UsersController < ApplicationController
       params[:user] ||= HashWithIndifferentAccess.new
       params[:user][:subject_ids] ||= []
     else
+      key_last_location = SETTINGS['location_types'].last.downcase
+      if params.has_key?(:location) && params[:location].has_key?(key_last_location)
+        params[:user][:location_id] = params[:location][key_last_location]
+      else
+        params[:user][:location_id] = 0
+      end
       password = params[:user].try(:[], :password)
       if !password || password.empty?
         params[:user].delete(:password)
         params[:user].delete(:password_confirmation)
       end
-    end
-    key_last_location = SETTINGS['location_types'].last.downcase
-    if params.has_key?(:location) && params[:location].has_key?(key_last_location)
-      params[:user][:location_id] = params[:location][key_last_location]
-    else
-      params[:user][:location_id] = 0
     end
     if @user.update_attributes(params[:user])
       redirect_to in_subjects ? my_subjects_path : my_profile_path
