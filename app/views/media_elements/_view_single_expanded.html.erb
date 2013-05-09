@@ -4,7 +4,7 @@
   disabled_title = ''
   if disabled
     additional_class = '_disabled'.html_safe
-    disabled_title = "title=\"#{t("titles.not_available.#{media_element.sti_type.downcase}", :title => media_element.title)}\"".html_safe
+    disabled_title = sanitize("title=\"#{t("titles.not_available.#{media_element.sti_type.downcase}", :title => media_element.title)}\"").html_safe
   end
 %>
 
