@@ -38,6 +38,7 @@
 # 1. *cascade* *destruction* for the associated table MediaElementsSlide
 #
 class Slide < ActiveRecord::Base
+  include ActionView::Helpers
   
   attr_accessible :position, :title, :text
   
@@ -112,6 +113,12 @@ class Slide < ActiveRecord::Base
   
   before_validation :init_validation
   before_destroy :stop_if_cover
+  
+  # Used to sanitize texts from TinyMCE
+  def text=(text)
+    text = text.nil? ? nil : text.to_s
+    write_attribute(:text, sanitize(text))
+  end
   
   # === Description
   #
