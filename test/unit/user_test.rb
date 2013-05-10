@@ -44,7 +44,7 @@ class UserTest < ActiveSupport::TestCase
   
   test 'associations' do
     l = Location.new
-    l.sti_type = 'School'
+    l.sti_type = 'County'
     l.ancestry = nil
     l.name = 'Dogville'
     assert_obj_saved l
