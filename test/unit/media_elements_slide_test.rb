@@ -3,7 +3,6 @@ require 'test_helper'
 class MediaElementsSlideTest < ActiveSupport::TestCase
   
   def get_new_slide kind
-    @max_caption = I18n.t('language_parameters.slide.length_caption')
     if @position == nil
       @position = 2
     else
@@ -49,7 +48,6 @@ class MediaElementsSlideTest < ActiveSupport::TestCase
     @media_elements_slide.media_element_id = 6
     assert_invalid @media_elements_slide, :alignment, 'r', 1, :not_a_number
     assert_invalid @media_elements_slide, :alignment, 5.5, 1, :not_an_integer
-    assert_invalid @media_elements_slide, :caption, long_string(@max_caption + 1), long_string(@max_caption), :too_long, {:count => @max_caption}
     @media_elements_slide.alignment = 0
     assert @media_elements_slide.valid?
     @media_elements_slide.alignment = -8
