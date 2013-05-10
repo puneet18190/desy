@@ -5,7 +5,7 @@ module I18n
     
     def translate_with_html_escaping(*args)
       if args[-1].is_a?(Hash)
-        args[-1] = Hash[ args[-1].map{ |k,v| [k, ([:locale, :throw, :raise].include?(k) ? v : ERB::Util.h(v)) ] } ]
+        args[-1] = Hash[ args[-1].map{ |k,v| [k, ([:locale, :throw, :raise, :link].include?(k) ? v : ERB::Util.h(v)) ] } ]
       end
       translate_without_html_escaping(*args)
     end
