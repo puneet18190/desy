@@ -1745,10 +1745,10 @@ en:
       result_with_tags: "Found %{num} results (refine your search selecting among the tags below)"
       # General captions for the results that the engine retrieved (the variable %{num} is replaced by the number of results found, spiegare %{tag})
       # 1 - views/search/lessons/_amount.html.erb
-      result_filtered_by_tag: "Found %{num} results (only items associated to the tag <%{tag}>)"
+      result_filtered_by_tag: "Found %{num} results (only items associated to the tag &lt%{tag}&gt)"
       # Response if the result was empty (%{word} is replaced by the search word inserted by the user)
       # 1 - views/search/lessons/_empty.html.erb
-      empty_word: "No lessons were found associated to tags containing <%{word}>: try entering a shorter word, or changing your search parameters"
+      empty_word: "No lessons were found associated to tags containing &lt%{word}&gt: try entering a shorter word, or changing your search parameters"
       # Response if the filters the user applied are too strict and this makes the result to be empty
       # 1 - views/search/lessons/_empty.html.erb
       empty_filter: "No lesson was found with the filters you chose"
@@ -1787,10 +1787,10 @@ en:
       result_with_tags: "Found %{num} results (refine your search selecting among the tags below)"
       # General captions for the results that the engine retrieved (the variable %{num} is replaced by the number of results found, spiegare %{tag})
       # 1 - views/search/lessons/_amount.html.erb
-      result_filtered_by_tag: "Found %{num} results (only items associated to the tag <%{tag}>)"
+      result_filtered_by_tag: "Found %{num} results (only items associated to the tag &lt%{tag}&gt)"
       # Response if the result was empty (%{word} is replaced by the search word inserted by the user)
       # 1 - views/search/media_elements/_empty.html.erb
-      empty_word: "No elements were found associated to tags containing <%{word}>: try entering a shorter word, or changing your search parameters"
+      empty_word: "No elements were found associated to tags containing &lt%{word}&gt: try entering a shorter word, or changing your search parameters"
       # Response if the filters the user applied are too strict and this makes the result to be empty
       # 1 - views/search/media_elements/_empty.html.erb
       empty_filter: "No element was found with the filters you chose"

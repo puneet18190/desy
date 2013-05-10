@@ -1,5 +1,5 @@
 <% if word.blank? %>
   <div class="emptyFilter"><h1><%= t('search.lessons.empty_filter') %></h1></div>
 <% else %>
-  <div class="emptyFilter"><h1><%= t('search.lessons.empty_word', :word => word) %></h1></div>
+  <div class="emptyFilter"><h1><%= t('search.lessons.empty_word', :word => word).html_safe %></h1></div>
 <% end %>

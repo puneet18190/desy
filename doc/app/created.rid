@@ -1,4 +1,4 @@
-Thu, 09 May 2013 16:55:42 +0200
+Fri, 10 May 2013 10:18:50 +0200
 app/controllers/admin/dashboard_controller.rb	Mon, 29 Apr 2013 12:27:25 +0200
 app/controllers/admin/lessons_controller.rb	Mon, 29 Apr 2013 12:27:25 +0200
 app/controllers/admin/media_elements_controller.rb	Mon, 29 Apr 2013 12:27:25 +0200
@@ -8,7 +8,7 @@ app/controllers/admin/settings_controller.rb	Mon, 29 Apr 2013 12:27:25 +0200
 app/controllers/admin/users_controller.rb	Mon, 29 Apr 2013 12:27:25 +0200
 app/controllers/admin_controller.rb	Mon, 29 Apr 2013 12:27:25 +0200
 app/controllers/application_controller.rb	Wed, 08 May 2013 16:29:24 +0200
-app/controllers/audio_editor_controller.rb	Tue, 30 Apr 2013 17:43:55 +0200
+app/controllers/audio_editor_controller.rb	Thu, 09 May 2013 18:01:45 +0200
 app/controllers/dashboard_controller.rb	Tue, 30 Apr 2013 17:43:55 +0200
 app/controllers/galleries_controller.rb	Tue, 30 Apr 2013 17:43:55 +0200
 app/controllers/image_editor_controller.rb	Tue, 30 Apr 2013 17:43:55 +0200
@@ -24,10 +24,10 @@ app/controllers/search_controller.rb	Tue, 30 Apr 2013 17:43:55 +0200
 app/controllers/tags_controller.rb	Mon, 29 Apr 2013 12:27:25 +0200
 app/controllers/users/sessions_controller.rb	Tue, 30 Apr 2013 17:43:55 +0200
 app/controllers/users_controller.rb	Thu, 09 May 2013 12:13:35 +0200
-app/controllers/video_editor_controller.rb	Tue, 30 Apr 2013 17:43:55 +0200
+app/controllers/video_editor_controller.rb	Thu, 09 May 2013 18:07:23 +0200
 app/controllers/virtual_classroom_controller.rb	Tue, 30 Apr 2013 17:43:55 +0200
 app/helpers/admin_helper.rb	Thu, 02 May 2013 16:02:34 +0200
-app/helpers/application_helper.rb	Thu, 09 May 2013 16:06:43 +0200
+app/helpers/application_helper.rb	Thu, 09 May 2013 18:26:18 +0200
 app/helpers/mailer_helper.rb	Tue, 07 May 2013 15:11:16 +0200
 app/mailers/maintainer_notifications_mailer.rb	Thu, 02 May 2013 16:05:21 +0200
 app/mailers/user_mailer.rb	Thu, 02 May 2013 16:04:28 +0200
@@ -35,7 +35,7 @@ app/models/admin_search_form.rb	Mon, 29 Apr 2013 12:27:25 +0200
 app/models/audio.rb	Mon, 29 Apr 2013 12:27:25 +0200
 app/models/bookmark.rb	Tue, 30 Apr 2013 17:43:55 +0200
 app/models/image.rb	Tue, 30 Apr 2013 17:43:55 +0200
-app/models/lesson.rb	Tue, 30 Apr 2013 17:43:55 +0200
+app/models/lesson.rb	Thu, 09 May 2013 17:59:23 +0200
 app/models/like.rb	Tue, 30 Apr 2013 17:43:55 +0200
 app/models/location.rb	Wed, 08 May 2013 16:04:24 +0200
 app/models/mailing_list_address.rb	Tue, 30 Apr 2013 17:43:55 +0200

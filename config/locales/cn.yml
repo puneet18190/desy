@@ -1745,10 +1745,10 @@ cn:
       result_with_tags: "发现%{num}结果（在以下标签中选择精准查找）"
       # General captions for the results that the engine retrieved (the variable %{num} is replaced by the number of results found, spiegare %{tag})
       # 1 - views/search/lessons/_amount.html.erb
-      result_filtered_by_tag: "发现%{num}结果（仅仅跟标签<%{tag}>相关）"
+      result_filtered_by_tag: "发现%{num}结果（仅仅跟标签&lt%{tag}&gt相关）"
       # Response if the result was empty (%{word} is replaced by the search word inserted by the user)
       # 1 - views/search/lessons/_empty.html.erb
-      empty_word: "跟标签<%{word}>相关的课程没有发现：重新输入比较短的字符，或改变你的搜寻参数"
+      empty_word: "跟标签&lt%{word}&gt相关的课程没有发现：重新输入比较短的字符，或改变你的搜寻参数"
       # Response if the filters the user applied are too strict and this makes the result to be empty
       # 1 - views/search/lessons/_empty.html.erb
       empty_filter: "用你选择的过滤器没有课程发现"
@@ -1787,10 +1787,10 @@ cn:
       result_with_tags: "发现%{num}结果（在以下标签中精炼的查找）"
       # General captions for the results that the engine retrieved (the variable %{num} is replaced by the number of results found, spiegare %{tag})
       # 1 - views/search/lessons/_amount.html.erb
-      result_filtered_by_tag: "发现%{num}结果（仅跟标签<%{tag}>相关的项目）"
+      result_filtered_by_tag: "发现%{num}结果（仅跟标签&lt%{tag}&gt相关的项目）"
       # Response if the result was empty (%{word} is replaced by the search word inserted by the user)
       # 1 - views/search/media_elements/_empty.html.erb
-      empty_word: "没有发现包含<%{word}>标签的相关课程"
+      empty_word: "没有发现包含&lt%{word}&gt标签的相关课程"
       # Response if the filters the user applied are too strict and this makes the result to be empty
       # 1 - views/search/media_elements/_empty.html.erb
       empty_filter: "用你选择的过滤器没有发现单元"
