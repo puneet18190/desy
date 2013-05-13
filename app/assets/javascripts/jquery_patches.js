@@ -10,13 +10,41 @@ So far the only class present in the module is {{#crossLink "JqueryPatchesBrowse
 
 
 /**
-Detects if the browser is an iPad, and saves the result in <b>$.browser.ipad</b>.
-@method iPadDetection
+Detects if the browser is an iPad, or iPhone, or other mobile browsers, and saves the result in <b>$.browser.[mobile_kind]</b>.
+@method mobileDetection
 @for JqueryPatchesBrowsers
 **/
 (function() {
   var ua = navigator.userAgent.toLowerCase();
   if(ua.indexOf('ipad') >= 0) {
     $.browser.ipad = true;
+  } else if(ua.indexOf('iphone') >= 0) {
+    $.browser.iphone = true;
   }
 })();
+
+
+
+
+
+/**
+Checks if the application must autoplay media
+@method mustAutoplayMediaInLessonViewer
+@for JqueryPatchesBrowsers
+**/
+function mustAutoplayMediaInLessonViewer() {
+  return (!$.browser.ipad && !$.browser.iphone);
+}
+
+
+
+
+
+/**
+Checks if the application must show the drop effect
+@method mustUseDropEffectInLessonViewer
+@for JqueryPatchesBrowsers
+**/
+function mustUseDropEffectInLessonViewer() {
+  return ($.browser.ipad || $.browser.iphone);
+}

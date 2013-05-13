@@ -343,7 +343,7 @@ function goToPrevSlideInLessonViewer() {
 }
 
 /**
-Goes to a given slide. If the new slide contains a media and the browser is not an iPad (see {{#crossLink "JqueryPatchesBrowsers/iPadDetection:method"}}{{/crossLink}}) the media is automaticly played.
+Goes to a given slide. If the new slide contains a media and the browser is not a mobile the media is automaticly played.
 @method slideToInLessonViewer
 @for LessonViewerSlidesNavigation
 @param to {Object} destination slide
@@ -389,7 +389,8 @@ function slideToInLessonViewer(to, with_drop, to_right) {
       $('#left_scroll, #right_scroll').removeClass('disabled');
     }
     var media = to.find('._instance_of_player');
-    if(media.length > 0 && !$.browser.ipad) {
+    var with_autoplay = mustAutoplayMediaInLessonViewer();
+    if(media.length > 0 && with_autoplay) {
       media.find('._media_player_play').click();
     }
   });
@@ -402,6 +403,7 @@ Goes to a slide (using {{#crossLink "LessonViewerSlidesNavigation/slideToInLesso
 @param component {Object} destination slide
 **/
 function slideToInLessonViewerWithLessonSwitch(component, to_right) {
-  slideToInLessonViewer(component, $.browser.ipad, to_right);
+  var with_drop = mustUseDropEffectInLessonViewer();
+  slideToInLessonViewer(component, with_drop, to_right);
   switchLessonInPlaylistMenuLessonViewer(component.data('lesson-id'));
 }
