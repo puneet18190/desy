@@ -379,30 +379,30 @@ Initializer for slides navigation.
 function lessonViewerDocumentReadySlidesNavigation() {
   $(document.documentElement).keyup(function(e) {
     if(e.keyCode == 37) {
-      goToPrevSlideInLessonViewer();
+      goToPrevSlideInLessonViewer(false);
     } else if(e.keyCode == 39) {
-      goToNextSlideInLessonViewer();
+      goToNextSlideInLessonViewer(false);
     }
   });
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#right_scroll&#x27;, function(e) {
     e.preventDefault();
     if(!$(this).hasClass(&#x27;disabled&#x27;)) {
       $(this).addClass(&#x27;disabled&#x27;);
-      goToNextSlideInLessonViewer();
+      goToNextSlideInLessonViewer(false);
     }
   });
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#left_scroll&#x27;, function(e) {
     e.preventDefault();
     if(!$(this).hasClass(&#x27;disabled&#x27;)) {
       $(this).addClass(&#x27;disabled&#x27;);
-      goToPrevSlideInLessonViewer();
+      goToPrevSlideInLessonViewer(false);
     }
   });
   $(&#x27;.lesson-viewer-layout&#x27;).on(&#x27;swipeleft&#x27;, function() {
-    goToNextSlideInLessonViewer();
+    goToNextSlideInLessonViewer(true);
   });
   $(&#x27;.lesson-viewer-layout&#x27;).on(&#x27;swiperight&#x27;, function() {
-    goToPrevSlideInLessonViewer();
+    goToPrevSlideInLessonViewer(true);
   });
 }
 
@@ -625,12 +625,12 @@ Goes to next slide using {{#crossLink &quot;LessonViewerSlidesNavigation/slideTo
 @method goToNextSlideInLessonViewer
 @for LessonViewerSlidesNavigation
 **/
-function goToNextSlideInLessonViewer() {
+function goToNextSlideInLessonViewer(with_drop) {
   var next_slide = getLessonViewerCurrentSlide().next();
   if(next_slide.length == 0) {
-    slideToInLessonViewerWithLessonSwitch($(&#x27;._slide_in_lesson_viewer&#x27;).first(), true);
+    slideToInLessonViewerWithLessonSwitch($(&#x27;._slide_in_lesson_viewer&#x27;).first(), with_drop, true);
   } else {
-    slideToInLessonViewerWithLessonSwitch(next_slide, true);
+    slideToInLessonViewerWithLessonSwitch(next_slide, with_drop, true);
   }
 }
 
@@ -639,12 +639,12 @@ Goes to previous slide using {{#crossLink &quot;LessonViewerSlidesNavigation/sli
 @method goToPrevSlideInLessonViewer
 @for LessonViewerSlidesNavigation
 **/
-function goToPrevSlideInLessonViewer() {
+function goToPrevSlideInLessonViewer(with_drop) {
   var prev_slide = getLessonViewerCurrentSlide().prev();
   if(prev_slide.length == 0) {
-    slideToInLessonViewerWithLessonSwitch($(&#x27;._slide_in_lesson_viewer&#x27;).last(), false);
+    slideToInLessonViewerWithLessonSwitch($(&#x27;._slide_in_lesson_viewer&#x27;).last(), with_drop, false);
   } else {
-    slideToInLessonViewerWithLessonSwitch(prev_slide, false);
+    slideToInLessonViewerWithLessonSwitch(prev_slide, with_drop, false);
   }
 }
 
@@ -708,8 +708,7 @@ Goes to a slide (using {{#crossLink &quot;LessonViewerSlidesNavigation/slideToIn
 @for LessonViewerSlidesNavigation
 @param component {Object} destination slide
 **/
-function slideToInLessonViewerWithLessonSwitch(component, to_right) {
-  var with_drop = mustUseDropEffectInLessonViewer();
+function slideToInLessonViewerWithLessonSwitch(component, with_drop, to_right) {
   slideToInLessonViewer(component, with_drop, to_right);
   switchLessonInPlaylistMenuLessonViewer(component.data(&#x27;lesson-id&#x27;));
 }

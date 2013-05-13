@@ -3811,15 +3811,6 @@
             "module": "jquery-patches"
         },
         {
-            "file": "app/assets/javascripts/jquery_patches.js",
-            "line": 43,
-            "description": "Checks if the application must show the drop effect",
-            "itemtype": "method",
-            "name": "mustUseDropEffectInLessonViewer",
-            "class": "JqueryPatchesBrowsers",
-            "module": "jquery-patches"
-        },
-        {
             "file": "app/assets/javascripts/lesson_editor.js",
             "line": 26,
             "description": "Hides buttons, adhiacent slides and slide navigation (used before {{#crossLink \"LessonEditorDocumentReady/lessonEditorDocumentReadyNewSlideChoice:method\"}}{{/crossLink}} and {{#crossLink \"LessonEditorGalleries/showGalleryInLessonEditor:method\"}}{{/crossLink}}).",
