@@ -92,6 +92,12 @@ function lessonViewerDocumentReadySlidesNavigation() {
       goToPrevSlideInLessonViewer();
     }
   });
+  $('.lesson-viewer-layout').on('swipeleft', function() {
+    goToNextSlideInLessonViewer();
+  });
+  $('.lesson-viewer-layout').on('swiperight', function() {
+    goToPrevSlideInLessonViewer();
+  });
 }
 
 
