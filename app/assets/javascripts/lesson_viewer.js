@@ -45,7 +45,7 @@ function lessonViewerDocumentReadyPlaylist() {
     var lesson_id = $(this).data('lesson-id');
     switchLessonInPlaylistMenuLessonViewer(lesson_id, function() {
       closePlaylistMenuInLessonViewer(function() {
-        slideToInLessonViewer($('._cover_bookmark_for_lesson_viewer_' + lesson_id));
+        slideToInLessonViewer($('._cover_bookmark_for_lesson_viewer_' + lesson_id, false));
       });
     });
   });
@@ -322,9 +322,9 @@ Goes to next slide using {{#crossLink "LessonViewerSlidesNavigation/slideToInLes
 function goToNextSlideInLessonViewer() {
   var next_slide = getLessonViewerCurrentSlide().next();
   if(next_slide.length == 0) {
-    slideToInLessonViewerWithLessonSwitch($('._slide_in_lesson_viewer').first());
+    slideToInLessonViewerWithLessonSwitch($('._slide_in_lesson_viewer').first(), true);
   } else {
-    slideToInLessonViewerWithLessonSwitch(next_slide);
+    slideToInLessonViewerWithLessonSwitch(next_slide, true);
   }
 }
 
@@ -336,9 +336,9 @@ Goes to previous slide using {{#crossLink "LessonViewerSlidesNavigation/slideToI
 function goToPrevSlideInLessonViewer() {
   var prev_slide = getLessonViewerCurrentSlide().prev();
   if(prev_slide.length == 0) {
-    slideToInLessonViewerWithLessonSwitch($('._slide_in_lesson_viewer').last());
+    slideToInLessonViewerWithLessonSwitch($('._slide_in_lesson_viewer').last(), false);
   } else {
-    slideToInLessonViewerWithLessonSwitch(prev_slide);
+    slideToInLessonViewerWithLessonSwitch(prev_slide, false);
   }
 }
 
@@ -348,12 +348,21 @@ Goes to a given slide. If the new slide contains a media and the browser is not 
 @for LessonViewerSlidesNavigation
 @param to {Object} destination slide
 **/
-function slideToInLessonViewer(to) {
+function slideToInLessonViewer(to, with_drop, to_right) {
   stopMediaInLessonViewer();
   var from = getLessonViewerCurrentSlide();
   from.removeClass('_lesson_viewer_current_slide');
   to.addClass('_lesson_viewer_current_slide');
-  from.hide('fade', {}, 500, function() {
+  var my_effect = 'fade';
+  var my_options = {};
+  if(with_drop) {
+    my_effect = 'drop';
+    my_options = {direction: 'right'};
+    if(to_right) {
+      my_options = {direction: 'left'};
+    }
+  }
+  from.hide(my_effect, my_options, 500, function() {
     to.show();
     var to_prev = to.prev();
     if(to_prev.length == 0) {
@@ -392,7 +401,7 @@ Goes to a slide (using {{#crossLink "LessonViewerSlidesNavigation/slideToInLesso
 @for LessonViewerSlidesNavigation
 @param component {Object} destination slide
 **/
-function slideToInLessonViewerWithLessonSwitch(component) {
-  slideToInLessonViewer(component);
+function slideToInLessonViewerWithLessonSwitch(component, to_right) {
+  slideToInLessonViewer(component, $.browser.ipad, to_right);
   switchLessonInPlaylistMenuLessonViewer(component.data('lesson-id'));
 }
