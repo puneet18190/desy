@@ -73,30 +73,30 @@ Initializer for slides navigation.
 function lessonViewerDocumentReadySlidesNavigation() {
   $(document.documentElement).keyup(function(e) {
     if(e.keyCode == 37) {
-      goToPrevSlideInLessonViewer();
+      goToPrevSlideInLessonViewer(false);
     } else if(e.keyCode == 39) {
-      goToNextSlideInLessonViewer();
+      goToNextSlideInLessonViewer(false);
     }
   });
   $('body').on('click', '#right_scroll', function(e) {
     e.preventDefault();
     if(!$(this).hasClass('disabled')) {
       $(this).addClass('disabled');
-      goToNextSlideInLessonViewer();
+      goToNextSlideInLessonViewer(false);
     }
   });
   $('body').on('click', '#left_scroll', function(e) {
     e.preventDefault();
     if(!$(this).hasClass('disabled')) {
       $(this).addClass('disabled');
-      goToPrevSlideInLessonViewer();
+      goToPrevSlideInLessonViewer(false);
     }
   });
   $('.lesson-viewer-layout').on('swipeleft', function() {
-    goToNextSlideInLessonViewer();
+    goToNextSlideInLessonViewer(true);
   });
   $('.lesson-viewer-layout').on('swiperight', function() {
-    goToPrevSlideInLessonViewer();
+    goToPrevSlideInLessonViewer(true);
   });
 }
 
@@ -319,12 +319,12 @@ Goes to next slide using {{#crossLink "LessonViewerSlidesNavigation/slideToInLes
 @method goToNextSlideInLessonViewer
 @for LessonViewerSlidesNavigation
 **/
-function goToNextSlideInLessonViewer() {
+function goToNextSlideInLessonViewer(with_drop) {
   var next_slide = getLessonViewerCurrentSlide().next();
   if(next_slide.length == 0) {
-    slideToInLessonViewerWithLessonSwitch($('._slide_in_lesson_viewer').first(), true);
+    slideToInLessonViewerWithLessonSwitch($('._slide_in_lesson_viewer').first(), with_drop, true);
   } else {
-    slideToInLessonViewerWithLessonSwitch(next_slide, true);
+    slideToInLessonViewerWithLessonSwitch(next_slide, with_drop, true);
   }
 }
 
@@ -333,12 +333,12 @@ Goes to previous slide using {{#crossLink "LessonViewerSlidesNavigation/slideToI
 @method goToPrevSlideInLessonViewer
 @for LessonViewerSlidesNavigation
 **/
-function goToPrevSlideInLessonViewer() {
+function goToPrevSlideInLessonViewer(with_drop) {
   var prev_slide = getLessonViewerCurrentSlide().prev();
   if(prev_slide.length == 0) {
-    slideToInLessonViewerWithLessonSwitch($('._slide_in_lesson_viewer').last(), false);
+    slideToInLessonViewerWithLessonSwitch($('._slide_in_lesson_viewer').last(), with_drop, false);
   } else {
-    slideToInLessonViewerWithLessonSwitch(prev_slide, false);
+    slideToInLessonViewerWithLessonSwitch(prev_slide, with_drop, false);
   }
 }
 
@@ -402,8 +402,7 @@ Goes to a slide (using {{#crossLink "LessonViewerSlidesNavigation/slideToInLesso
 @for LessonViewerSlidesNavigation
 @param component {Object} destination slide
 **/
-function slideToInLessonViewerWithLessonSwitch(component, to_right) {
-  var with_drop = mustUseDropEffectInLessonViewer();
+function slideToInLessonViewerWithLessonSwitch(component, with_drop, to_right) {
   slideToInLessonViewer(component, with_drop, to_right);
   switchLessonInPlaylistMenuLessonViewer(component.data('lesson-id'));
 }

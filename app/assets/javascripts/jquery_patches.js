@@ -35,16 +35,3 @@ Checks if the application must autoplay media
 function mustAutoplayMediaInLessonViewer() {
   return (!$.browser.ipad && !$.browser.iphone);
 }
-
-
-
-
-
-/**
-Checks if the application must show the drop effect
-@method mustUseDropEffectInLessonViewer
-@for JqueryPatchesBrowsers
-**/
-function mustUseDropEffectInLessonViewer() {
-  return ($.browser.ipad || $.browser.iphone);
-}
