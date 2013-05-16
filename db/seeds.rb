@@ -11,6 +11,9 @@ class Seeds
   OLD_PUBLIC_MEDIA_ELEMENTS_FOLDERS = Hash[ PUBLIC_MEDIA_ELEMENTS_FOLDERS.map{ |f| [ f, "#{f}.old" ] } ]
 
   MEDIA_ELEMENTS_FOLDER = Rails.root.join "db/seeds/environments/#{Rails.env}/media_elements"
+
+  PEPPER = '3e0e6d5ebaa86768a0a51be98fce6367e44352d31685debf797b9f6ccb7e2dd0f5139170376240945fcfae8222ff640756dd42645336f8b56cdfe634144dfa7d'
+
   # AUDIOS_FOLDER, VIDEOS_FOLDER, IMAGES_FOLDER
   %w(audios videos images).each do |media_folder|
     const_set :"#{media_folder.upcase}_FOLDER", Pathname.new(env_relative_path MEDIA_ELEMENTS_FOLDER, media_folder)
@@ -34,6 +37,8 @@ class Seeds
       remove_old_media_elements_folders
     end
 
+    substitute_pepper
+
     puts 'End.'
   rescue StandardError => e
     restore_old_media_elements_folders
@@ -42,6 +47,21 @@ class Seeds
   end
 
   private
+  def substitute_pepper
+    return if User::Authentication::PEPPER == PEPPER
+
+    old_pepper = "#{User::Authentication::PEPPER_PATH}.old"
+    pepper = User::Authentication::PEPPER_PATH
+
+    warn "The pepper doesn't correspond to the seeds pepper; substituting it" 
+    warn "Moving #{pepper} to #{old_pepper}"
+
+    FileUtils.mv pepper, old_pepper
+
+    pepper.open('w'){ |io| io.write PEPPER }
+    User::Authentication.const_set :PEPPER, PEPPER
+  end
+
   def backup_old_media_elements_folders
     remove_old_media_elements_folders
     

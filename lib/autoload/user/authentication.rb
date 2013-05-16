@@ -5,6 +5,7 @@ module User::Authentication
 
   # Path to the file which contains the pepper key
   PEPPER_PATH = Rails.root.join('config/pepper')
+
   # Pepper key
   PEPPER      = (PEPPER_PATH.exist? and PEPPER_PATH.read.chomp) or (
     warn "The file #{PEPPER_PATH} does not exists or is empty."
