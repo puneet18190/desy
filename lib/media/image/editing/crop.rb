@@ -18,7 +18,7 @@ module Media
         def run
           w = @x2.to_i - @x1.to_i
           h = @y2.to_i - @y1.to_i
-          crop_params = "#{w}x#{h}+#{@x1}+#{@y1}"
+          crop_params = "#{w}x#{h}+#{@x1.to_i}+#{@y1.to_i}"
           @input.crop(crop_params)
           @input.write @output
         end
