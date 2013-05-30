@@ -287,19 +287,8 @@ class Image < MediaElement
   # A float.
   #
   def self.ratio_value(w, h, value)
-    to_ratio = 660.to_f / 500.to_f
-    origin_ratio = w.to_f / h.to_f
-    if origin_ratio > to_ratio
-      h = w
-      w = 660
-    else
-      w = 500
-    end
-    if (h.to_i > w.to_i )
-      return value.to_f * (h.to_f / w.to_f)
-    else
-      return value
-    end
+    return value if h < 500 && w < 660
+    value.to_f * (((w.to_f / h.to_f) > (660.0 / 500.0)) ? (w / 660.0) : (h / 500.0))
   end
   
   private
