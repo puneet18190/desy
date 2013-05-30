@@ -6,11 +6,11 @@ module Media
     # Module containing logics for image editing
     module Editing
 
-      # Ratio X
-      RATIO_X = 660
+      # Ratio X      
+      RATIO_X = 660.0
 
       # Ratio Y
-      RATIO_Y = 500
+      RATIO_Y = 500.0
 
       # === Description
       #
@@ -27,20 +27,14 @@ module Media
       # A float.
       #
       def self.ratio_value(w, h, value)
-        w, h = w.to_f, h.to_f
+        return value if h < RATIO_Y && w < RATIO_Y
 
-        to_ratio = RATIO_X / RATIO_Y
-        origin_ratio = w / h
-
-        w =
-          if origin_ratio > to_ratio
-            h = w
-            RATIO_X
+        value.to_f *
+          if ( w.to_f / h.to_f ) > ( RATIO_X / RATIO_Y )
+            w / RATIO_X
           else
-            RATIO_Y
+            h / RATIO_Y
           end
-
-        return h.to_i > w.to_i ? value * (h / w) : value
       end
     end
   end

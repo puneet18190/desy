@@ -27,12 +27,14 @@ module Media
         def run
           w = @x2.to_i - @x1.to_i
           h = @y2.to_i - @y1.to_i
-          crop_params = "#{w}x#{h}+#{@x1}+#{@y1}"
+
+          crop_params = "#{w}x#{h}+#{@x1.to_i}+#{@y1.to_i}"
 
           @mm_input.combine_options do |c|
             c.crop(crop_params)
             c << '+repage'
           end
+          
           @mm_input.write @output
         end
         
