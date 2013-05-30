@@ -1,4 +1,5 @@
 require 'shellwords'
+require 'media/image/editing'
 require 'media/image/editing/add_text_to_image'
 require 'media/image/editing/crop'
 
@@ -231,9 +232,9 @@ class Image < MediaElement
     return false if !self.in_edit_mode? || !self.save_editing_prev
     img = MiniMagick::Image.open self.current_editing_image
     texts.each do |t|
-      font_size = Image.ratio_value img[:width], img[:height], t[:font_size]
-      coord_x = Image.ratio_value img[:width], img[:height], t[:coord_x]
-      coord_y = Image.ratio_value img[:width], img[:height], t[:coord_y]
+      font_size = Media::Image::Editing.ratio_value img[:width], img[:height], t[:font_size]
+      coord_x = Media::Image::Editing.ratio_value img[:width], img[:height], t[:coord_x]
+      coord_y = Media::Image::Editing.ratio_value img[:width], img[:height], t[:coord_y]
       tmp_file = Tempfile.new('textarea')
       begin
         tmp_file.write(t[:text])
@@ -262,44 +263,9 @@ class Image < MediaElement
   # A boolean.
   #
   def crop(x1, y1, x2, y2)
-    return false if !self.in_edit_mode? || !self.save_editing_prev
-    img = MiniMagick::Image.open self.current_editing_image
-    x1 = Image.ratio_value img[:width], img[:height], x1
-    y1 = Image.ratio_value img[:width], img[:height], y1
-    x2 = Image.ratio_value img[:width], img[:height], x2
-    y2 = Image.ratio_value img[:width], img[:height], y2
-    Media::Image::Editing::Crop.new(img, self.current_editing_image, x1, y1, x2, y2).run
+    return false if !in_edit_mode? || !save_editing_prev
+    Media::Image::Editing::Crop.new(current_editing_image, current_editing_image, x1, y1, x2, y2).run
     true
-  end
-  
-  # === Description
-  #
-  # Returns the original value of a coordinate, given the actual value and the size of the image
-  #
-  # === Arguments
-  #
-  # * *w*: width of the image
-  # * *h*: height of the image
-  # * *value*: value to be scaled
-  #
-  # === Returns
-  #
-  # A float.
-  #
-  def self.ratio_value(w, h, value)
-    to_ratio = 660.to_f / 500.to_f
-    origin_ratio = w.to_f / h.to_f
-    if origin_ratio > to_ratio
-      h = w
-      w = 660
-    else
-      w = 500
-    end
-    if (h.to_i > w.to_i )
-      return value.to_f * (h.to_f / w.to_f)
-    else
-      return value
-    end
   end
   
   private
