@@ -958,7 +958,7 @@ function initTinymce(tiny_id) {
   plugins += 'insertdatetime,preview,media,searchreplace,print,paste,directionality,fullscreen,';
   plugins += 'noneditable,visualchars,nonbreaking,xhtmlxtras,template,tiny_mce_wiris';
   var buttons = 'fontsizeselect,forecolor,justifyleft,justifycenter,justifyright,justifyfull,';
-  buttons += 'bold,italic,underline,numlist,bullist,link,unlink,tiny_mce_wiris_formulaEditor';
+  buttons += 'bold,italic,underline,numlist,bullist,link,unlink,charmap,tiny_mce_wiris_formulaEditor';
   tinyMCE.init({
     mode: 'exact',
     elements: tiny_id,
