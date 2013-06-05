@@ -2,7 +2,9 @@
 <html class="prelogin-layout <%= controller_html_class %> <%= action_html_class %>">
   <%= render :partial => "shared/head" %>
   <body>
-    
+
+    <%= render :partial => "shared/browser_support_script" %>
+
     <div class="container">
       <%= render partial: 'layouts/flash', locals: { flash: flash } %>
       <%= yield %>

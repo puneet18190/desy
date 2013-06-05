@@ -2,8 +2,11 @@
 <html class="application-layout <%= controller_html_class %> <%= action_html_class %>">
   <%= render :partial => "shared/head" %>
   <body>
+
+    <%= render :partial => "shared/browser_support_script" %>
     <%= render :partial => 'shared/popups' %>
     <%= render :partial => 'shared/loading' %>
+    
     <div class="container">
       <%= render :partial => 'shared/header' %>
       <div class="content">

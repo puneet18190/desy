@@ -19,6 +19,17 @@
             },
             "namespaces": {}
         },
+        "app/assets/javascripts/browser_not_supported/application.js": {
+            "name": "app/assets/javascripts/browser_not_supported/application.js",
+            "modules": {
+                "browser-support": 1
+            },
+            "classes": {},
+            "fors": {
+                "BrowserSupportMain": 1
+            },
+            "namespaces": {}
+        },
         "app/assets/javascripts/ajax_loader.js": {
             "name": "app/assets/javascripts/ajax_loader.js",
             "modules": {
@@ -325,6 +336,21 @@
             "file": "app/assets/javascripts/admin/functions.js",
             "line": 1,
             "description": "Functions used in the Administration section: only for this section, <b>it's generated a separate file</b> which doesn't merge with the regular one. The only external module loaded is {{#crossLinkModule \"ajax-loader\"}}{{/crossLinkModule}}."
+        },
+        "browser-support": {
+            "name": "browser-support",
+            "submodules": {},
+            "classes": {
+                "BrowserSupportMain": 1
+            },
+            "fors": {
+                "BrowserSupportMain": 1
+            },
+            "namespaces": {},
+            "tag": "module",
+            "file": "app/assets/javascripts/browser_not_supported/application.js",
+            "line": 1,
+            "description": "Browser supoprt checking functions"
         },
         "ajax-loader": {
             "name": "ajax-loader",
@@ -791,6 +817,17 @@
             "plugin_for": [],
             "extension_for": [],
             "module": "admin",
+            "namespace": ""
+        },
+        "BrowserSupportMain": {
+            "name": "BrowserSupportMain",
+            "shortname": "BrowserSupportMain",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "browser-support",
             "namespace": ""
         },
         "AjaxLoaderBinder": {
@@ -1837,6 +1874,15 @@
             "name": "adminUsersDocumentReady",
             "class": "AdminDocumentReady",
             "module": "admin"
+        },
+        {
+            "file": "app/assets/javascripts/browser_not_supported/application.js",
+            "line": 6,
+            "description": "Browser support checking, not supported browsers version. It substitutes the page body with the not supported browser HTML. The supported browsers version is implemented {{#crossLink \"GeneralMiscellanea/browserSupport:method\"}}here{{/crossLink}}",
+            "itemtype": "method",
+            "name": "browserSupport",
+            "class": "BrowserSupportMain",
+            "module": "browser-support"
         },
         {
             "file": "app/assets/javascripts/ajax_loader.js",
@@ -3385,7 +3431,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 10,
+            "line": 6,
             "description": "Centers a div into the current window.",
             "itemtype": "method",
             "name": "centerThis",
@@ -3401,7 +3447,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 24,
+            "line": 20,
             "description": "Centers a div into a given container.",
             "itemtype": "method",
             "name": "centerThisInContainer",
@@ -3422,7 +3468,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 39,
+            "line": 35,
             "description": "Recenters the media elements according to their number and the screen resolution.",
             "itemtype": "method",
             "name": "recenterMyMediaElements",
@@ -3431,7 +3477,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 54,
+            "line": 50,
             "description": "This function guesses the browser and writes it in a class of the tag 'html'.",
             "itemtype": "method",
             "name": "browsersDocumentReady",
@@ -3440,7 +3486,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 68,
+            "line": 64,
             "description": "This function sets the default values of SelectBoxe all around the application. This function is necessary because otherwise the original value wouldn't be set, since we use a JQuery plugin to design selects.",
             "itemtype": "method",
             "name": "defaultValueJavaScriptAnimationsDocumentReady",
@@ -3449,7 +3495,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 85,
+            "line": 81,
             "description": "Initialization for all the functionalities of expanded lessons and media element popup (see also {{#crossLink \"DialogsWithForm/showMediaElementInfoPopUp:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "expandedItemsDocumentReady",
@@ -3458,7 +3504,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 148,
+            "line": 144,
             "description": "Similar to {{#crossLink \"GeneralDocumentReady/defaultValueJavaScriptAnimationsDocumentReady:method\"}}{{/crossLink}}, this function initializes the initial value of the raio buttons styled using a javascript plugin.",
             "itemtype": "method",
             "name": "filtersDocumentReady",
@@ -3467,7 +3513,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 171,
+            "line": 167,
             "description": "Initializer for consequences of window resizing.",
             "itemtype": "method",
             "name": "generalWindowResizeDocumentReady",
@@ -3476,7 +3522,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 192,
+            "line": 188,
             "description": "Initializer for all javascript and JQuery plugins.",
             "itemtype": "method",
             "name": "javaScriptAnimationsDocumentReady",
@@ -3485,7 +3531,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 222,
+            "line": 218,
             "description": "Initializer for locations automatic filling.",
             "itemtype": "method",
             "name": "locationsDocumentReady",
@@ -3494,7 +3540,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 245,
+            "line": 241,
             "description": "Initializes reports forms for both lessons and media elements.",
             "itemtype": "method",
             "name": "reportsDocumentReady",
@@ -3503,7 +3549,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 318,
+            "line": 314,
             "description": "Gets the requested format to visualize media elements.",
             "itemtype": "method",
             "name": "getMediaElementsFormat",
@@ -3512,7 +3558,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 331,
+            "line": 327,
             "description": "Shows a red error icon when somethings goes wrong. Widely used in {{#crossLinkModule \"lesson-editor\"}}{{/crossLinkModule}} and in {{#crossLinkModule \"image-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "redError",
@@ -3521,7 +3567,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 342,
+            "line": 338,
             "description": "Function to convert seconds into a time string of the kind <i>02:35</i>; used in {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}} and in {{#crossLinkModule \"audio-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "secondsToDateString",
@@ -3537,7 +3583,16 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 374,
+            "line": 366,
+            "description": "Browser support checking, supported browsers version. It is empty. The not supported browsers version is implemented {{#crossLink \"BrowserSupportMain/browserSupport:method\"}}here{{/crossLink}}",
+            "itemtype": "method",
+            "name": "browserSupport",
+            "class": "GeneralMiscellanea",
+            "module": "general"
+        },
+        {
+            "file": "app/assets/javascripts/general.js",
+            "line": 375,
             "description": "This function returns an url for media elements without the parameter 'filter'. The original url is extracted by the method {{#crossLink \"GeneralMiscellanea/getMediaElementsFormat:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "getCompleteMediaElementsUrlWithoutFilter",
@@ -3550,7 +3605,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 386,
+            "line": 387,
             "description": "This function returns an url for media elements without the parameter 'for_page'. The original url is extracted by the method {{#crossLink \"GeneralMiscellanea/getMediaElementsFormat:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "getCompleteMediaElementsUrlWithoutForPage",
@@ -3563,7 +3618,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 398,
+            "line": 399,
             "description": "Removes a parameter from an url.",
             "itemtype": "method",
             "name": "removeURLParameter",
@@ -3588,7 +3643,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 424,
+            "line": 425,
             "description": "Adds or update new parameters to an url.",
             "itemtype": "method",
             "name": "updateURLParameter",

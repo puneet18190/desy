@@ -60,6 +60,9 @@ Desy::Application.configure do
                                   tinymce/plugins/tiny_mce_wiris/core/core.js
                                   tinymce/plugins/tiny_mce_wiris/core/editor.js
                                   tinymce/plugins/tiny_mce_wiris/lang/en/strings.js
+
+                                  browser_not_supported/application.css
+                                  browser_not_supported/application.js
                                 )
 
   # Disable delivery errors, bad email addresses will be ignored

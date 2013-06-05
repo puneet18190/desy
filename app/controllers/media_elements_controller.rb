@@ -25,13 +25,13 @@ class MediaElementsController < ApplicationController
   # Options of possible elements in expanded mode to be shown in a single page (configured in settings.yml)
   FOR_PAGE_EXPANDED_OPTIONS = SETTINGS['expanded_media_element_pagination_options']
   
-  skip_before_filter :authenticate, :initialize_location, :initialize_players_counter, :only => :videos_test
+  # skip_before_filter :authenticate, :initialize_location, :initialize_players_counter, :only => :videos_test
+  # before_filter :admin_authenticate, :only => :videos_test
   before_filter :initialize_media_element, :only => [:add, :remove]
   before_filter :initialize_media_element_with_owner, :only => :destroy
   before_filter :initialize_media_element_with_owner_and_private, :only => :update
   before_filter :initialize_layout, :initialize_paginator, :only => :index
   before_filter :initialize_media_element_destination, :only => [:add, :remove, :destroy]
-  before_filter :admin_authenticate, :only => :videos_test
   layout false, :only => :videos_test
   
   # === Description
@@ -52,8 +52,8 @@ class MediaElementsController < ApplicationController
   # * ApplicationController#initialize_location
   # * ApplicationController#initialize_players_counter
   #
-  def videos_test
-  end
+  # def videos_test
+  # end
   
   # === Description
   #

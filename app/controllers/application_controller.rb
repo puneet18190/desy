@@ -8,10 +8,11 @@
 class ApplicationController < ActionController::Base
   
   # List of actions that in no case require the autentication.
-  OUT_OF_AUTHENTICATION_ACTIONS = [:page_not_found]
+  OUT_OF_AUTHENTICATION_ACTIONS = [:page_not_found, :browser_not_supported]
   OUT_OF_AUTHENTICATION_ACTIONS << :set_locale if Desy::MORE_THAN_ONE_LANGUAGE
   
   protect_from_forgery
+  #before_filter :verify_authenticity_token, only: :browser_not_supported
   
   before_filter :get_locale if Desy::MORE_THAN_ONE_LANGUAGE
   before_filter :authenticate, :initialize_location, :initialize_players_counter, :except => OUT_OF_AUTHENTICATION_ACTIONS
@@ -25,6 +26,10 @@ class ApplicationController < ActionController::Base
     render :text => '<h1>Page not found</h1>', :status => 404, :layout => false
   end
   
+  def browser_not_supported
+    render :partial => 'shared/browser_not_supported', :layout => false
+  end 
+
   if Desy::MORE_THAN_ONE_LANGUAGE
     # Action that sets the current language of the application
     def set_locale

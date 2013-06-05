@@ -3,10 +3,6 @@ Generic javascript functions user throughout the application.
 @module general
 **/
 
-
-
-
-
 /**
 Centers a div into the current window.
 @method centerThis
@@ -367,9 +363,14 @@ function secondsToDateString(seconds) {
   return resp;
 }
 
-
-
-
+/**
+Browser support checking, supported browsers version. It is empty. The not supported browsers version is implemented {{#crossLink "BrowserSupportMain/browserSupport:method"}}here{{/crossLink}}
+@method browserSupport
+@for GeneralMiscellanea
+**/
+function browserSupport() {
+  // no-op
+}
 
 /**
 This function returns an url for media elements without the parameter 'filter'. The original url is extracted by the method {{#crossLink "GeneralMiscellanea/getMediaElementsFormat:method"}}{{/crossLink}}.

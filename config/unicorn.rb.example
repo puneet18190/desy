@@ -1,5 +1,5 @@
 require 'pathname'
-require 'shellwords'
+require 'etc'
 
 app_root = Pathname.new('../..').expand_path(__FILE__)
 app_env  = ENV['RACK_ENV'] || ENV['RAILS_ENV'] || 'development'
@@ -32,10 +32,9 @@ username =
   end
 
 if username && ( !ENV['USER'] || ENV['USER'] == 'root' )
-  groupname = `id --group --name #{username.shellescape}`
+  groupname = Etc.getgrgid(Etc.getpwnam(username).gid).name
   user username, groupname
 end
-
 
 # Help ensure your application will always spawn in the symlinked
 # "current" directory that Capistrano sets up.

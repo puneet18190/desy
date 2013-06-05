@@ -372,3 +372,12 @@ function adminUsersDocumentReady() {
     });
   });
 }
+
+/**
+Browser support checking, supported browsers version. It is empty. The not supported browsers version is implemented {{#crossLink "BrowserSupportMain/browserSupport:method"}}here{{/crossLink}}
+@method adminBrowserSupport
+@for browserSupport
+**/
+function browserSupport() {
+  // no-op
+}
