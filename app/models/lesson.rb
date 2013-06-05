@@ -304,6 +304,7 @@ class Lesson < ActiveRecord::Base
   #
   def set_status(an_user_id)
     return if self.new_record?
+
     if !self.is_public && !self.copied_not_modified && an_user_id == self.user_id
       @status = Statuses::PRIVATE
       @is_reportable = false
@@ -323,8 +324,10 @@ class Lesson < ActiveRecord::Base
       @status = nil
       @is_reportable = nil
     end
+
     @in_vc = self.in_virtual_classroom?(an_user_id)
     @liked = self.liked?(an_user_id)
+    
     true
   end
   

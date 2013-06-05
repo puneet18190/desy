@@ -21,7 +21,7 @@
     <%= render :partial => "lessons/my_lessons" %>
     <div id="info_container" style="display:none" data-currenturl="<%= request.url %>"></div>
     <br class="clearfloat">
-    <% if @lessons.any? %>
+    <% if @lessons.present? %>
       <%= render :partial => 'shared/pagination', :locals => {:page => @page, :pages_amount => @pages_amount} %>
     <% end %>
   </div>
