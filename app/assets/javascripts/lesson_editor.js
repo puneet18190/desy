@@ -1006,10 +1006,10 @@ function tinyMceCallbacks(inst, tiny_id) {
   if($('textarea#' + tiny_id).parent('.audio-content').length > 0) {
     maxH = 324;
   }
-  if (inst.getBody().scrollHeight > maxH) {
-    $(inst.getBody()).parentsUntil('table.mceLayout').css('border', '1px solid red');
+  if(inst.getBody().scrollHeight > maxH) {
+    $('#' + tiny_id + '_tbl').css('border', '1px solid red');
   } else {
-    $(inst.getBody()).parentsUntil('table.mceLayout').css('border', '1px solid white');
+    $('#' + tiny_id + '_tbl').css('border-left', '1px solid #EFEFEF').css('border-right', '1px solid #EFEFEF').css('border-top', '0').css('border-bottom', '0');
   }
 }
 
