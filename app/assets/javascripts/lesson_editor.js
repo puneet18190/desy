@@ -977,10 +977,10 @@ function initTinymce(tiny_id) {
     theme_advanced_resizing: true,
     setup: function(ed) {
       ed.onKeyUp.add(function(ed, e) {
-        tinyMceCallbacks(ed,tiny_id);
+        tinyMceCallbacks(ed, tiny_id);
       });
       ed.onKeyDown.add(function(ed, e) {
-        tinyMceKeyDownCallbacks(ed,tiny_id);
+        tinyMceKeyDownCallbacks(ed, tiny_id);
       });
       ed.onClick.add(function(ed, e) {
         var textarea = $('#' + tiny_id);
