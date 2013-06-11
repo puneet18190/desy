@@ -15,7 +15,8 @@
             "fors": {
                 "AdminAutocomplete": 1,
                 "AdminCollapsed": 1,
-                "AdminDocumentReady": 1
+                "AdminDocumentReady": 1,
+                "browserSupport": 1
             },
             "namespaces": {}
         },
@@ -324,12 +325,14 @@
             "classes": {
                 "AdminAutocomplete": 1,
                 "AdminCollapsed": 1,
-                "AdminDocumentReady": 1
+                "AdminDocumentReady": 1,
+                "browserSupport": 1
             },
             "fors": {
                 "AdminAutocomplete": 1,
                 "AdminCollapsed": 1,
-                "AdminDocumentReady": 1
+                "AdminDocumentReady": 1,
+                "browserSupport": 1
             },
             "namespaces": {},
             "tag": "module",
@@ -811,6 +814,17 @@
         "AdminDocumentReady": {
             "name": "AdminDocumentReady",
             "shortname": "AdminDocumentReady",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "admin",
+            "namespace": ""
+        },
+        "browserSupport": {
+            "name": "browserSupport",
+            "shortname": "browserSupport",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -1873,6 +1887,15 @@
             "itemtype": "method",
             "name": "adminUsersDocumentReady",
             "class": "AdminDocumentReady",
+            "module": "admin"
+        },
+        {
+            "file": "app/assets/javascripts/admin/functions.js",
+            "line": 376,
+            "description": "Browser support checking, supported browsers version. It is empty. The not supported browsers version is implemented {{#crossLink \"BrowserSupportMain/browserSupport:method\"}}here{{/crossLink}}",
+            "itemtype": "method",
+            "name": "adminBrowserSupport",
+            "class": "browserSupport",
             "module": "admin"
         },
         {
@@ -4288,7 +4311,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 994,
+            "line": 996,
             "description": "TinyMCE callback to show warning when texearea content exceeds the available space. Adds a red border to the textarea.This function is used in tinyMCE setup ({{#crossLink \"LessonEditorTinyMCE/initTinymce:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "tinyMceCallbacks",
@@ -4309,7 +4332,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1013,
+            "line": 1015,
             "description": "TinyMCE keyDown callback to fix list item style. It adds same style of list item text to list numbers or dots. This function is used in tinyMCE setup ({{#crossLink \"LessonEditorTinyMCE/initTinymce:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "tinyMceKeyDownCallbacks",
@@ -4323,6 +4346,27 @@
                     "name": "tiny_id",
                     "description": "HTML id of the tinyMCE textarea",
                     "type": "Number"
+                }
+            ],
+            "class": "LessonEditorTinyMCE",
+            "module": "lesson-editor"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_editor.js",
+            "line": 1032,
+            "description": "Function to strip tags in a text pasted inside TinyMCE.",
+            "itemtype": "method",
+            "name": "stripTagsForCutAndPaste",
+            "params": [
+                {
+                    "name": "str",
+                    "description": "string to be stripped",
+                    "type": "String"
+                },
+                {
+                    "name": "allowed_tags",
+                    "description": "allowed HTML tags",
+                    "type": "Array"
                 }
             ],
             "class": "LessonEditorTinyMCE",

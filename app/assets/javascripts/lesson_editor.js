@@ -967,6 +967,9 @@ function initTinymce(tiny_id) {
     skin: 'desy',
     content_css: '/assets/tiny_mce_desy.css',
     plugins: plugins,
+    paste_preprocess: function(pl, o) {
+      o.content = stripTagsForCutAndPaste(o.content, '');
+    },
     theme_advanced_buttons1: buttons,
     theme_advanced_toolbar_location: 'external',
     theme_advanced_toolbar_align: 'left',
@@ -1024,4 +1027,57 @@ function tinyMceKeyDownCallbacks(inst, tiny_id) {
     span.parents('li').addClass(span.attr('class'));
     span.parentsUntil('li').attr('style', span.attr('style'));
   });
+}
+
+/**
+Function to strip tags in a text pasted inside TinyMCE.
+@method stripTagsForCutAndPaste
+@for LessonEditorTinyMCE
+@param str {String} string to be stripped
+@param allowed_tags {Array} allowed HTML tags
+**/
+function stripTagsForCutAndPaste(str, allowed_tags) {
+  var key = '', allowed = false;
+  var matches = [];
+  var allowed_array = [];
+  var allowed_tag = '';
+  var i = 0;
+  var k = '';
+  var html = '';
+  var replacer = function (search, replace, str) {
+    return str.split(search).join(replace);
+  };
+  if (allowed_tags) {
+    allowed_array = allowed_tags.match(/([a-zA-Z0-9]+)/gi);
+  }
+  str += '';
+  matches = str.match(/(<\/?[\S][^>]*>)/gi);
+  for(key in matches) {
+    if(isNaN(key)) {
+      continue;
+    }
+    html = matches[key].toString();
+    allowed = false;
+    for(k in allowed_array) {
+      allowed_tag = allowed_array[k];
+      i = -1;
+      if(i != 0) {
+        i = html.toLowerCase().indexOf('<' + allowed_tag + '>');
+      }
+      if(i != 0) {
+        i = html.toLowerCase().indexOf('<' + allowed_tag + ' ');
+      }
+      if(i != 0) {
+        i = html.toLowerCase().indexOf('</' + allowed_tag);
+      }
+      if(i == 0) {
+        allowed = true;
+        break;
+      }
+    }
+    if(!allowed) {
+      str = replacer(html, '', str);
+    }
+  }
+  return str;
 }
