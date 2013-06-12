@@ -39,29 +39,39 @@ html.lesson-viewer-layout{
   }
 
   h2 {
+    
     font-size: 54px;
     font-weight: normal;
-    padding: 11px 11px 7px;
+    padding: 20px 10px 0 10px;
     margin: 0px 0px 20px 0px;
     overflow: hidden;
-  
+    height: 94px;
+    
   }
-  @mixin formatList{
+  
+  @mixin formatList {
+    
     ol {
+      
       display: block;
       list-style-type: decimal;
-      padding:10px 26px;
-      margin:0 1em;
+      padding: 10px 26px;
+      margin: 0 1em;
       
     }
+    
     ul {
+      
       display: block;
       list-style-type: disc;
-      padding:0px 26px;
-      margin:0 1em;
-      font-size:13px;
+      padding: 0px 26px;
+      margin: 0 1em;
+      font-size: 13px;
+      
     }
+    
   }
+  
   .top {
     margin-bottom: -220px;
     background: transparent;
@@ -267,56 +277,69 @@ html.lesson-viewer-layout{
         }
       }
   }
-  /*slide title*/
-  .slideTitle{
+  
+  .slideTitle {
+    
     @include formatElement;
     
-    text-align:center;
-    display:table;
+    text-align: center;
+    display: table;
+    
     h2 {
-      display:table-cell; 
-      vertical-align:middle;
-      padding:0px 100px;
-      line-height:70px;
+      display: table-cell;
+      vertical-align: middle;
+      padding: 0px 100px;
+      line-height: 70px;
+      
     }
+    
   }
-  /*slide image*/
-  .slideImage{
+  
+  .slideImage {
+    
     @include formatElement;
-    h2 {
-      height:93px;
+    
+    img {
+      
+      position: absolute;
+      
     }
-    img{
-      position:absolute;
-    }
+    
   }
-  /*slide text*/
-  .slideText{
+  
+  .slideText {
+    
     @include formatElement;
-    h2 {
-      height:93px;
-    }
     @include formatList;
+    
   }
-  /*slide video*/
-  .slideVideo{
+  
+  .slideVideo {
+    
     @include formatElement;
-    h2 {
-      height:93px;
-    }
+    
   }
-  /*slide audio*/
-  .slideAudio{
+  
+  .slideAudio {
+    
     @include formatElement;
+    
     h2 {
-      height:100px;
+      
+      height: 100px;
+      
     }
+    
     .contentText {
-      height:295px;
- 
+      
+      height: 295px;
+      
     }
+    
     @include formatList;
+    
   }
+  
   .boxFissoImage {
     width:420px;
     height:265px;
@@ -493,42 +516,46 @@ html.lesson-viewer-layout{
       width:410px;
     }
   }
+  
   .textRightContent {
-    float:right;
-    padding:0px 10px;
-    width:400px;
-    height:420px;
-    overflow:hidden;
-    font-size:13px;
-    a  {
+    
+    float: right;
+    padding: 8px;
+    width: 402px;
+    height: 420px;
+    overflow: hidden;
+    font-size: 13px;
+    
+    a {
+      
       color: $orange;
-      text-decoration:underline;  
+      text-decoration: underline;
+      
     }
-    p {
-      margin-top:0.8em;
-      margin-bottom:0.8em;
-      line-height:14px;
-    }
+    
     @include formatList;
   }
+  
   .textRightVideoContent {
-    float:right;
-    padding:0px 10px;
-    width:400px;
-    height:420px;
-    overflow:hidden;
-    font-size:13px;
-    a  {
+    
+    float: right;
+    padding: 8px;
+    width: 402px;
+    height: 420px;
+    overflow: hidden;
+    font-size: 13px;
+    
+    a {
+      
       color: $orange;
-      text-decoration:underline;  
+      text-decoration: underline;
+      
     }
-    p {
-      margin-top:0.8em;
-      margin-bottom:0.8em;
-      line-height:14px;
-    }
+    
     @include formatList;
+    
   }
+  
   .contentText {
     width:840px;
     height:405px;
@@ -628,38 +655,38 @@ html.lesson-viewer-layout{
   }
   
   .size1 {
-    font-size: 120%;
-    line-height: 100%;
+    font-size: 10px;
+    line-height: 11px;
   }
   
   .size2 {
-    font-size: 160%;
-    line-height: 110%;
+    font-size: 13px;
+    line-height: 14px;
   }
   
   .size3 {
-    font-size: 200%;
-    line-height: 120%;
+    font-size: 17px;
+    line-height: 19px;
   }
   
   .size4 {
-    font-size: 240%;
-    line-height: 130%;
+    font-size: 21px;
+    line-height: 23px;
   }
   
   .size5 {
-    font-size: 280%;
-    line-height: 140%;
+    font-size: 25px;
+    line-height: 27px;
   }
   
   .size6 {
-    font-size: 340%;
-    line-height: 150%;
+    font-size: 29px;
+    line-height: 32px;
   }
   
   .size7 {
-    font-size: 400%;
-    line-height: 160%;
+    font-size: 35px;
+    line-height: 39px;
   }
   
 }
