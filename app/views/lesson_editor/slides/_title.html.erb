@@ -1,5 +1,12 @@
-<%= form_tag save_slide_path(slide.lesson_id, slide.id), :method => :post, :remote => true, :id => "form-#{slide.id}" do %>
+<%
+  lines = (slide.title.nil? ? 1 : slide.title.count("\n") + 1)
+  style = "padding-top: 220px; padding-bottom: 80px"
+  style = "padding-top: 185px; padding-bottom: 115px" if lines == 2
+  style = "padding-top: 150px; padding-bottom: 150px" if lines == 3
+%>
+
+<%= form_tag save_slide_path(slide.lesson_id, slide.id), :method => :post, :remote => true, :id => "form-#{slide.id}", :autocomplete => 'off' do %>
   <h2 class="only-title">
-    <%= text_area_tag :title, (slide.title.blank? ? t('lesson_editor.placeholders.title') : slide.title), :class => '_lesson_editor_placeholder', :data => {:placeholder => slide.title.blank?}, :maxlength => t('language_parameters.slide.length_title'), :id => "title_slide_content_#{slide.id}" %>
+    <%= text_area_tag :title, (slide.title.blank? ? t('lesson_editor.placeholders.title') : slide.title), :class => '_lesson_editor_placeholder', :data => {:placeholder => slide.title.blank?, :lines => lines}, :maxlength => t('language_parameters.slide.length_title'), :id => "title_slide_content_#{slide.id}", :rows => 3, :style => style %>
   </h2>
 <% end %>
