@@ -433,6 +433,7 @@ class Slide < ActiveRecord::Base
   private
   
   def pre_sanitize(text, pos)
+    return nil if text.nil?
     return text if (/style=\"color/ =~ text[pos, text.length - pos]).nil?
     p1 = pos + (/style=\"color/ =~ text[pos, text.length - pos])
     color = text[p1 + 15, 6]
@@ -455,6 +456,7 @@ class Slide < ActiveRecord::Base
   end
   
   def post_sanitize(text, pos)
+    return nil if text.nil?
     pos += 1 while pos < text.length && text[pos, 7] != "class=\""
     return text.gsub(" class=\"\"", '') if pos == text.length
     pos += 7
