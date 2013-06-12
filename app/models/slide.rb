@@ -117,7 +117,7 @@ class Slide < ActiveRecord::Base
   # Used to sanitize texts from TinyMCE
   def text=(text)
     text = text.nil? ? nil : text.to_s
-    write_attribute(:text, post_sanitize(sanitize(pre_sanitize(text, 0)), 0))
+    write_attribute(:text, sanitize(text, attributes: (HTML::WhiteListSanitizer.allowed_attributes + ['style'])))
   end
   
   # === Description
@@ -431,46 +431,6 @@ class Slide < ActiveRecord::Base
   end
   
   private
-  
-  def pre_sanitize(text, pos)
-    return nil if text.nil?
-    return text if (/style=\"color/ =~ text[pos, text.length - pos]).nil?
-    p1 = pos + (/style=\"color/ =~ text[pos, text.length - pos])
-    color = text[p1 + 15, 6]
-    i = p1
-    i -= 1 while i >= 0 && text[i] != '<'
-    p2 = (/class=\"/ =~ text[i, p1 - i - 1])
-    if p2.nil?
-      i += 1 while i < p1 && text[i] != ' '
-      text = "#{text[0, i]} class=\"color_#{color}\" #{text[i + 1, text.length - i - 1]}"
-      pos = p1 + 23 + 21
-    else
-      p2 += i
-      p2 += 1 while p2 < p1 && text[p2] != "\""
-      p2 += 1
-      p2 += 1 while p2 < p1 && text[p2] != "\""
-      text = "#{text[0, p2]} color_#{color}\"#{text[p2 + 1, text.length - p2 - 1]}"
-      pos = p1 + 23 + 13
-    end
-    return pre_sanitize(text, pos)
-  end
-  
-  def post_sanitize(text, pos)
-    return nil if text.nil?
-    pos += 1 while pos < text.length && text[pos, 7] != "class=\""
-    return text.gsub(" class=\"\"", '') if pos == text.length
-    pos += 7
-    pos += 1 while pos < text.length && text[pos, 6] != "color_"
-    return text.gsub(" class=\"\"", '') if pos == text.length
-    color = text[pos + 6, 6]
-    text = "#{text[0, pos - 1]}#{text[pos + 12, text.length - pos - 12]}"
-    if !(text =~ /class=\"#{text[pos]}/).nil?
-      text = "#{text[0, pos]}\"#{text[pos, text.length - pos]}"
-      pos += 1
-    end
-    text = "#{text[0, pos]} style=\"color: ##{color};\"#{text[pos, text.length - pos]}"
-    return post_sanitize(text, pos + 24)
-  end
   
   # Submethod of Slide#get_adhiacent_slide_in_lesson_viewer
   def get_last_or_first(query, last)
