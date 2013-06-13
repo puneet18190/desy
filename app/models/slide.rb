@@ -114,6 +114,11 @@ class Slide < ActiveRecord::Base
   before_validation :init_validation
   before_destroy :stop_if_cover
   
+  def title=(title)
+    title = title.nil? ? nil : title.to_s
+    write_attribute(:title, sanitize(title).gsub("\r\n", '<br/>'))
+  end
+  
   # Used to sanitize texts from TinyMCE
   def text=(text)
     text = text.nil? ? nil : text.to_s
