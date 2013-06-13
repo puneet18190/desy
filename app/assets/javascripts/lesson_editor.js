@@ -278,27 +278,8 @@ function lessonEditorDocumentReadyGeneral() {
   $('.slide-content.cover .title').css('margin-left', 'auto');
   $('html.lesson-editor-layout ul#slides input').attr('autocomplete', 'off');
   $('body').on('keydown blur', 'textarea[rows]', function(e) {
-    if($(this).parent().hasClass('only-title')) {
-      var splitted = $(this).val().split("\n");
-      var numberRows = splitted.length;
-      if(splitted.length > 1 && splitted[splitted.length - 1] == '') {
-        numberRows -= 1;
-      }
-      if(e.which == 13) {
-        if(numberRows >= $(this).attr('rows')) {
-          return false;
-        } else {
-          $(this).data('lines', $(this).data('lines') + 1);
-          $(this).css('padding-top', (parseInt($(this).css('padding-top')) - 35) + 'px');
-          $(this).css('padding-bottom', (parseInt($(this).css('padding-bottom')) + 35) + 'px');
-        }
-      } else if(e.which == 8 || e.which == 46) {
-        if(numberRows < $(this).data('lines')) {
-          $(this).data('lines', numberRows);
-          $(this).css('padding-top', (parseInt($(this).css('padding-top')) + 35) + 'px');
-          $(this).css('padding-bottom', (parseInt($(this).css('padding-bottom')) - 35) + 'px');
-        }
-      }
+    if($(this).parent().hasClass('only-title') && e.which == 13 && $(this).val().split("\n").length >= $(this).attr('rows')) {
+      return false;
     }
   });
 }
