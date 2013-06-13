@@ -1,105 +1,151 @@
 $orange: #f29400;
+
 @mixin colorLink {
+  
   a  {
-  color: $orange;
-  text-decoration:underline;  
+    
+    color: $orange;
+    text-decoration: underline;
+    
   }
+  
 }
+
 @mixin formatElement {
-  width:860px;
-  height:550px;
+  
+  width: 860px;
+  height: 550px;
   padding: 20px;
-  display:inline-block;
-  background-color:#fff;
-  position:absolute;
-  top:0;
+  display: inline-block;
+  background-color: #fff;
+  position: absolute;
+  top: 0;
+  
 }
+
 @mixin photoIconFormat {
-  font-size:2.8em;
+  
+  font-size: 2.8em;
   background-position: -11.6em -11.6em;
-  opacity:0.1;
-  width:180px;
-  height:180px;
+  opacity: 0.1;
+  width: 180px;
+  height: 180px;
+  
 }
+
 @mixin videoIconFormat {
-  font-size:2.8em;
+  
+  font-size: 2.8em;
   background-position: -11.6em -0.3em;
-  opacity:0.1;
-  width:180px;
-  height:180px;
+  opacity: 0.1;
+  width: 180px;
+  height: 180px;
+  
 }
+
 @mixin audioIconFormat {
-  font-size:0.45em;
+  
+  font-size: 0.45em;
   background-position: -11.6em -5.5em;
-  opacity:0.1;
+  opacity: 0.1;
+  
 }
+
 @mixin styleCaption {
-  font-family:"Nunito", sans-serif;
+  
+  font-family: "Nunito", sans-serif;
   background-color: rgba(50, 50, 50, 0.7);
   color: #FAFAFA;
-  height:35px;
+  height: 35px;
   display: block;
   position: absolute;
   left: auto;
   bottom: 0px;
   padding: 0 5px;
   line-height: 35px;
-  font-size:13px;
+  font-size: 13px;
+  
 }
+
 @mixin formatList {
+  
   ol {
+    
     display: block;
     list-style-type: decimal;
-    padding:10px 40px;
-    margin:0 1em;
+    padding: 10px 40px;
+    margin: 0 1em;
     
   }
+  
   ul {
+    
     display: block;
     list-style-type: disc;
-    padding:10px 40px;
-    margin:0 1em;
-    float:none;
+    padding: 10px 40px;
+    margin: 0 1em;
+    float: none;
+    
   }
-  li {
-    float:none;
-  }
-}
-.zoomOutThumb {
-  zoom:27%;
-  -moz-transform: scale(0.27);
   
-  position:absolute;
-  /*copertina*/
-  .slideCover{
-    height:590px;
-    position:absolute;
+  li {
+    
+    float: none;
+    
+  }
+  
+}
+
+.zoomOutThumb {
+  
+  zoom: 27%;
+  -moz-transform: scale(0.27);
+  position: absolute;
+  
+  .slideCover {
+    
+    height: 590px;
+    position: absolute;
+    
     .cover {
-      width:900px;
-      height:560px;
-      overflow:hidden;
+      
+      width: 900px;
+      height: 560px;
+      overflow: hidden;
       position: relative;
-      img{
-        position:absolute;
+      
+      img {
+        
+        position: absolute;
+        
       }
+      
     }
+    
     .bg_text {
+      
       background-color: rgba(242, 148, 0, 0.95);
       height: 130px;
       width: 860px;
       padding: 0px 20px;
-      position:absolute;
-      top:430px;
-      left:0px;
+      position: absolute;
+      top: 430px;
+      left: 0px;
+      
       .lessonTitle {
+        
         font: 100% 'Nunito', sans-serif;
-        color:#fff;
-        line-height:50px;
+        color: #fff;
+        line-height: 50px;
         font-size: 50px;
-        margin:30px 0px 0px 0px;
-       }
+        margin: 30px 0px 0px 0px;
+        
+      }
+      
     }
-  .cover-slide-footer{
+    
+    .cover-slide-footer {
+      
       clear: both;
       background-color: white;
       color: #373737;
@@ -108,143 +154,230 @@ $orange: #f29400;
       padding: 7px 15px;
       font-size: 13px;
       
-      .subject .h3{
+      .subject .h3 {
+        
         font-family: Arial, sans-serif;
         color: #373737;
+        
       }
-      .author .name{
+      
+      .author .name {
+        
         color: $orange;
+        
       }
+      
     }
+    
   }
-  /*slide video*/
+  
   .slideVideo {
+    
     @include formatElement;
     display: inline-block;
     background-color: white;
+    
     h2 {
+      
       height: 86px;
+      
     }
-    /*video grande*/
+    
     .videoBig {
+      
       @include formatElement;
-      padding:0px;
-      background-color:#f1f1f1;
-      position:relative;
+      padding: 0px;
+      background-color: #f1f1f1;
+      position: relative;
+      
       .bulletPointVideo {
-        top:166px;
-        text-align:center;
+        
+        top: 166px;
+        text-align: center;
+        
       }
+      
       .videoIcon {
+        
         @include videoIconFormat;
-        margin-top:178px;
-        margin-left:328px;
+        margin-top: 178px;
+        margin-left: 328px;
+        
       }
+      
     }
-     /*slide video + testo*/
-     .videoMedium {
-       width:420px;
-       height:420px;
-       background-color:#f1f1f1;
-       float:left;
-       position:relative;
+    
+    .videoMedium {
+      
+      width: 420px;
+      height: 420px;
+      background-color: #f1f1f1;
+      float: left;
+      position: relative;
+      
       .videoIcon {
+        
         @include videoIconFormat;
-        margin-top:125px;
-        margin-left:120px;
+        margin-top: 125px;
+        margin-left: 120px;
+        
       }
-     }
-     .textRightVideoContent {
-       float:right;
-       padding:0px 10px;
-       width:400px;
-       height:400px;
-       overflow:hidden;
-       a  {
-         color: $orange;
-         text-decoration:underline; 
-       }
-       p {
-         margin-top:0.8em;
-         margin-bottom:0.8em;
+      
+    }
+    
+    .textRightVideoContent {
+      
+      float: right;
+      padding: 0px 10px;
+      width: 400px;
+      height: 400px;
+      overflow: hidden;
+      
+      a  {
+        
+        color: $orange;
+        text-decoration: underline;
+        
       }
-      @include formatList;
-    }
-  }
-  /*slide audio*/
-  .slideAudio{
-    @include formatElement;
-    h2 {
-      height:100px;
-    }
-    .contentText {
-      height:310px;
-      overflow:hidden;
+      
       p {
+        
+        margin-top: 0.8em;
+        margin-bottom: 0.8em;
+        
+      }
+      
+      @include formatList;
+      
+    }
+    
+  }
+  
+  
+  .slideAudio {
+    
+    @include formatElement;
+    
+    h2 {
+      
+      height: 100px;
+      
+    }
+    
+    .contentText {
+      
+      height: 310px;
+      overflow: hidden;
+      
+      p {
+        
         margin-top: 0.3em;
         margin-bottom: 0.8em;
+        
       }
+      
       @include formatList;
+      
     }
+    
     .audioBig {
-      width:auto;
-      height:71px;
+      
+      width: auto;
+      height: 71px;
       margin: 5px 0 20px 0px;
-      background-color:#f1f1f1;
+      background-color: #f1f1f1;
+      
       .audioIcon {
-        margin-top:20px;
+        
+        margin-top: 20px;
         @include audioIconFormat;
-        margin-left:408px;
+        margin-left: 408px;
+        
       }
+      
+      &.with_title {
+        
+        background-color: black;
+        
+      }
+      
       p {
-        text-align:center;
-        padding-top:30px;
+        
+        text-align: center;
+        padding-top: 30px;
+        
       }
-    }   
+      
+    }
+    
   }
-  /*slide title*/
-  .slideTitle{
+  
+  .slideTitle {
+    
    @include formatElement;
-   text-align:center;
-   display:table;
+   text-align: center;
+   display: table;
+   
    h2 {
-     display:table-cell; 
-     vertical-align:middle;
-     padding:0px 100px;
-     font-size:70px;
-     line-height:70px;
+     
+     display: table-cell;
+     vertical-align: middle;
+     padding: 0px 100px;
+     font-size: 70px;
+     line-height: 70px;
+     
    }
+   
   }
-  /*slide text*/
+  
   .slideText {
+    
     @include formatElement;
     display: inline-block;
     background-color: white;
+    
     h2 {
-      height:93px;
+      
+      height: 93px;
+      
     }
+    
     .contentText {
+      
       width: 840px;
       height: 400px;
       margin: 0;
       padding: 0px 10px;
       overflow: hidden;
       @include colorLink;
+      
       p {
+        
         margin-top: 0.3em;
         margin-bottom: 0.3em;
+        
       }
+      
       @include formatList;
+      
     }
+    
   }
-  /*slide image*/
-  .slideImage{
-  @include formatElement;
+  
+  .slideImage {
+    
+    @include formatElement;
+    
     h2 {
-      height:87px;
+      
+      height: 87px;
+      
     }
-    img{
-      position:absolute;
+    
+    img {
+      
+      position: absolute;
+      
     }
     .big {
       float:left;
