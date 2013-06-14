@@ -1,5 +1,6 @@
-https = RbConfig::CONFIG['host_os'] !~ /mswin|mingw|cygwin/
-source https ? 'https://rubygems.org': 'http://rubygems.org'
+windows = RbConfig::CONFIG['host_os'] !~ /mswin|mingw|cygwin/
+
+source windows ? 'https://rubygems.org': 'http://rubygems.org'
 
 gem 'rails', '3.2.13'
 gem 'pg'
@@ -18,7 +19,7 @@ end
 
 group :development do
   gem 'rails-erd'
-  gem 'mailcatcher'
+  gem 'mailcatcher', platforms: :ruby
   # Basta assets che monopolizzano il log dell'application server!
   gem 'quiet_assets'
   gem 'irb-benchmark'
@@ -45,9 +46,10 @@ gem 'kaminari'
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'unicorn', :platforms => :ruby
 gem 'daemons'
-gem 'eventmachine'
+gem 'eventmachine', platforms: :ruby
 gem 'delayed_job_active_record'
 gem 'ancestry'
 gem 'exception_notification', :github => "ProGNOMmers/exception_notification", :group => :production
 gem 'facter'
 gem 'whenever', :require => false
+gem 'win32-dir', platforms: :mingw
