@@ -1,19 +1,21 @@
-<%= form_tag save_slide_path(slide.lesson_id, slide.id), :method => :post, :remote => true, :id => "form-#{slide.id}" do %>
-  
-  <div class="item image-container">
-    <%= render :partial => 'lesson_editor/slides/parts/image', :locals => {:slide => slide, :position => 1, :image => slide.image_at(1)} %>
-  </div>
-  
-  <div class="item image-container">
-    <%= render :partial => 'lesson_editor/slides/parts/image', :locals => {:slide => slide, :position => 2, :image => slide.image_at(2)} %>
-  </div>
-  
-  <div class="item image-container">
-    <%= render :partial => 'lesson_editor/slides/parts/image', :locals => {:slide => slide, :position => 3, :image => slide.image_at(3)} %>
-  </div>
-  
-  <div class="item image-container">
-    <%= render :partial => 'lesson_editor/slides/parts/image', :locals => {:slide => slide, :position => 4, :image => slide.image_at(4)} %>
-  </div>
-  
-<% end %>
+<div class="slide-content image4">
+  <%= form_tag save_slide_path(slide.lesson_id, slide.id), :method => :post, :remote => true, :id => "form-#{slide.id}" do %>
+    
+    <div class="item image-container">
+      <%= render :partial => 'lesson_editor/slides/parts/image', :locals => {:slide => slide, :position => 1, :image => slide.image_at(1)} %>
+    </div>
+    
+    <div class="item image-container">
+      <%= render :partial => 'lesson_editor/slides/parts/image', :locals => {:slide => slide, :position => 2, :image => slide.image_at(2)} %>
+    </div>
+    
+    <div class="item image-container">
+      <%= render :partial => 'lesson_editor/slides/parts/image', :locals => {:slide => slide, :position => 3, :image => slide.image_at(3)} %>
+    </div>
+    
+    <div class="item image-container">
+      <%= render :partial => 'lesson_editor/slides/parts/image', :locals => {:slide => slide, :position => 4, :image => slide.image_at(4)} %>
+    </div>
+    
+  <% end %>
+</div>

@@ -1,18 +1,20 @@
-<%= form_tag save_slide_path(slide.lesson_id, slide.id), :method => :post, :remote => true, :id => "form-#{slide.id}" do %>
-  
-  <div class="item title-container">
-    <%= text_field_tag :title, (slide.title.blank? ? t('lesson_editor.placeholders.title') : slide.title), :class => '_lesson_editor_placeholder', :data => {:placeholder => slide.title.blank?}, :maxlength => t('language_parameters.slide.length_title') %>
-  </div>
-  
-  <div class="item audio-container">
-    <%= render :partial => 'lesson_editor/slides/parts/audio', :locals => {:slide => slide, :position => 1, :audio => slide.audio_at(1)} %>
-  </div>
-  
-  <div class="item text-container">
-    <%= text_area_tag :text, (slide.text.blank? ? t('lesson_editor.placeholders.text') : slide.text.html_safe), :id => "ta-#{slide.id}", :class => 'tinymce _lesson_editor_placeholder', :data => {:placeholder => slide.text.blank?} %>
-  </div>
-  
-<% end %>
+<div class="slide-content audio">
+  <%= form_tag save_slide_path(slide.lesson_id, slide.id), :method => :post, :remote => true, :id => "form-#{slide.id}" do %>
+    
+    <div class="item title-container">
+      <%= text_field_tag :title, (slide.title.blank? ? t('lesson_editor.placeholders.title') : slide.title), :class => '_lesson_editor_placeholder', :data => {:placeholder => slide.title.blank?}, :maxlength => t('language_parameters.slide.length_title') %>
+    </div>
+    
+    <div class="item audio-container">
+      <%= render :partial => 'lesson_editor/slides/parts/audio', :locals => {:slide => slide, :position => 1, :audio => slide.audio_at(1)} %>
+    </div>
+    
+    <div class="item text-container">
+      <%= text_area_tag :text, (slide.text.blank? ? t('lesson_editor.placeholders.text') : slide.text.html_safe), :id => "ta-#{slide.id}", :class => 'tinymce _lesson_editor_placeholder', :data => {:placeholder => slide.text.blank?} %>
+    </div>
+    
+  <% end %>
+</div>
 
 
 <script type="text/javascript">
