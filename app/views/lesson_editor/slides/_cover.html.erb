@@ -41,15 +41,15 @@
           <%= hidden_field_tag "media_element_#{position}", '', :class => 'image-id' %>
         <% end %>
         
-        <div class="mask <%= slide.kind %>-p<%= position %> <%= mask %>" style="display:<%= image.nil? ? 'none'.html_safe : 'block'.html_safe %>">
+        <div class="mask <%= mask %> <%= image.nil? ? 'hidden' : 'visible' %>">
           <div class="_rolloverable" style="<%= style %>" data-slide-id="<%= slide.id %>" data-position="<%= position %>" data-rolloverable="true">
-            <img src="<%= url %>" class="_slide_image <%= slide.kind %>-p<%= position %>" <%= orientation.nil? ? '' : orientation.html_safe %>/>
+            <img src="<%= url %>" class="_slide_image <%= slide.kind %>-p<%= position %>" <%= orientation.nil? ? '' : orientation %>/>
           </div>
           <span class="add-image _show_image_gallery_in_lesson_editor _lesson_editor_rollover_content" data-position="<%= position %>" style="display:none" title="<%= t('titles.lesson_editor.change_image') %>"></span>
           <%= text_field_tag "caption_#{position}", ((image.nil? || image.caption.blank?) ? t('lesson_editor.placeholders.image_caption') : image.caption), :class => 'caption _lesson_editor_placeholder', :maxlength => t("language_parameters.slide.length_caption.#{slide.kind}"), :data => {:placeholder => (image.nil? || image.caption.blank?)} %>
         </div>
         
-        <div class="<%= empty_mask_class.html_safe %>" style="display:<%= image.nil? ? 'block'.html_safe : 'none'.html_safe %>">
+        <div class="<%= empty_mask_class %> <%= image.nil? ? 'visible' : 'block' %>">
           <a class="_show_image_gallery_in_lesson_editor" data-position="<%= position %>"></a>
           <br/>
           <p class="lower"><%= t('lesson_editor.choose_image') %></p>
