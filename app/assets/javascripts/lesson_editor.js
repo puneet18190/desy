@@ -133,7 +133,7 @@ function lessonEditorDocumentReadyAddMediaElement() {
     var image_url = $(this).data('url');
     var image_width = $(this).data('width');
     var image_height = $(this).data('height');
-    var full_place = $('#' + place_id + ' ._full_image_in_slide');
+    var full_place = $('#' + place_id + ' .mask');
     if(!full_place.is(':visible')) {
       full_place.show();
       $('#' + place_id + ' ._empty_image_in_slide').hide();
@@ -153,7 +153,7 @@ function lessonEditorDocumentReadyAddMediaElement() {
       to_make_draggable = 'x';
     }
     full_place.addClass(new_mask).removeClass(old_mask);
-    var img_tag = $('#' + place_id + ' ._full_image_in_slide img');
+    var img_tag = $('#' + place_id + ' .mask img');
     img_tag.attr('src', image_url);
     img_tag.parent().css('left', 0);
     img_tag.parent().css('top', 0);
@@ -326,7 +326,7 @@ Initializer for the mouseover and mouseout to replace a media element already ad
 @for LessonEditorDocumentReady
 **/
 function lessonEditorDocumentReadyReplaceMediaElement() {
-  $('body').on('mouseover', '._full_image_in_slide, ._full_video_in_slide', function() {
+  $('body').on('mouseover', '.slide-content .image.editable .mask, ._full_video_in_slide', function() {
     var obj = $('#' + $(this).parent().attr('id') + ' ._rolloverable');
     var slide_id = obj.data('slide-id');
     var position = obj.data('position');
@@ -334,7 +334,7 @@ function lessonEditorDocumentReadyReplaceMediaElement() {
       $('#media_element_' + position + '_in_slide_' + slide_id + ' ._lesson_editor_rollover_content').show();
     }
   });
-  $('body').on('mouseout', '._full_image_in_slide, ._full_video_in_slide', function() {
+  $('body').on('mouseout', '.slide-content .image.editable .mask, ._full_video_in_slide', function() {
     var obj = $('#' + $(this).parent().attr('id') + ' ._rolloverable');
     var slide_id = obj.data('slide-id');
     var position = obj.data('position');
@@ -752,12 +752,12 @@ Inizializes jQueryUI <b>draggable</b> function on slide image containers (to und
 @param place_id {String} HTML id for the container to make draggable
 **/
 function makeDraggable(place_id) {
-  var full_place = $('#' + place_id + ' ._full_image_in_slide');
+  var full_place = $('#' + place_id + ' .mask');
   var axe = 'x';
   if(full_place.hasClass('_mask_y')) {
     axe = 'y';
   }
-  var image = $('#' + place_id + '  ._full_image_in_slide img');
+  var image = $('#' + place_id + ' .mask img');
   var side = '';
   var maskedImgWidth;
   var maskedImgHeight;
@@ -771,17 +771,17 @@ function makeDraggable(place_id) {
     side = 'top';
     dist = maskedImgHeight - full_place.height();
   }
-  $('#' + place_id + ' ._full_image_in_slide ._rolloverable').draggable({
+  $('#' + place_id + ' .mask ._rolloverable').draggable({
     axis: axe,
     cursor: 'move',
     distance: 10,
     start: function() {
-      $('#' + place_id + ' ._full_image_in_slide img').css('cursor', 'move');
+      $('#' + place_id + ' .mask img').css('cursor', 'move');
       $('#' + place_id + ' ._rolloverable').data('rolloverable', false);
       $('#' + place_id + ' span').hide();
     },
     stop: function() {
-      $('#' + place_id + ' ._full_image_in_slide img').css('cursor', 'url(https://mail.google.com/mail/images/2/openhand.cur), move');
+      $('#' + place_id + ' .mask img').css('cursor', 'url(https://mail.google.com/mail/images/2/openhand.cur), move');
       $('#' + place_id + ' ._rolloverable').data('rolloverable', true);
       $('#' + place_id + ' span').show();
       var thisDrag = $(this);

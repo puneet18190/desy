@@ -29,7 +29,7 @@
     <%= hidden_field_tag "media_element_#{position}", '', :class => 'image-id' %>
   <% end %>
   
-  <div class="mask <%= slide.kind %>-p<%= position %> <%= mask %> _full_image_in_slide" style="display:<%= image.nil? ? 'none'.html_safe : 'block'.html_safe %>">
+  <div class="mask <%= slide.kind %>-p<%= position %> <%= mask %>" style="display:<%= image.nil? ? 'none'.html_safe : 'block'.html_safe %>">
     <div class="_rolloverable" style="<%= style %>" data-slide-id="<%= slide.id %>" data-position="<%= position %>" data-rolloverable="true">
       <img src="<%= url %>" class="_slide_image <%= slide.kind %>-p<%= position %>" <%= orientation.nil? ? '' : orientation.html_safe %>/>
     </div>
