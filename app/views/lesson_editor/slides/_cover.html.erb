@@ -41,10 +41,10 @@
         <% end %>
         
         <div class="mask <%= orientation %> <%= image.nil? ? 'hidden' : 'visible' %>">
-          <div class="alignable" style="<%= alignment %>" data-slide-id="<%= slide.id %>" data-position="<%= position %>" data-rolloverable="true">
+          <div class="alignable" style="<%= alignment %>" data-rolloverable="true">
             <img src="<%= url %>" <%= resize %>/>
           </div>
-          <span class="add    _lesson_editor_rollover_content" data-position="<%= position %>" style="display:none" title="<%= t('titles.lesson_editor.change_image') %>"></span>
+          <span class="add hidden" data-position="<%= position %>" title="<%= t('titles.lesson_editor.change_image') %>"></span>
           <%= text_field_tag "caption_#{position}", ((image.nil? || image.caption.blank?) ? t('lesson_editor.placeholders.image_caption') : image.caption), :class => 'caption _lesson_editor_placeholder', :maxlength => t("language_parameters.slide.length_caption.#{slide.kind}"), :data => {:placeholder => (image.nil? || image.caption.blank?)} %>
         </div>
         

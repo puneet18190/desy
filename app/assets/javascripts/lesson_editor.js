@@ -326,19 +326,13 @@ Initializer for the mouseover and mouseout to replace a media element already ad
 **/
 function lessonEditorDocumentReadyReplaceMediaElement() {
   $('body').on('mouseover', '.slide-content .image.editable .mask', function() {
-    var obj = $('#' + $(this).parent().attr('id') + ' .alignable');
-    var slide_id = obj.data('slide-id');
-    var position = obj.data('position');
-    if(obj.data('rolloverable')) {
-      $('#media_element_' + position + '_in_slide_' + slide_id + ' ._lesson_editor_rollover_content').show();
+    if($(this).find('.alignable').data('rolloverable')) {
+      $(this).find('.add').show();
     }
   });
   $('body').on('mouseout', '.slide-content .image.editable .mask', function() {
-    var obj = $('#' + $(this).parent().attr('id') + ' .alignable');
-    var slide_id = obj.data('slide-id');
-    var position = obj.data('position');
-    if(obj.data('rolloverable')) {
-      $('#media_element_' + position + '_in_slide_' + slide_id + ' ._lesson_editor_rollover_content').hide();
+    if($(this).find('.alignable').data('rolloverable')) {
+      $(this).find('.add').hide();
     }
   });
   $('body').on('mouseover', '._full_video_in_slide', function() {
@@ -799,7 +793,7 @@ function makeDraggable(place_id) {
       var offset = thisDrag.css(side);
       if(parseInt(offset) > 0) {
         offset = 0;
-        if(side=='left') {
+        if(side == 'left') {
           thisDrag.animate({
             left: '0'
           }, 100);
@@ -811,7 +805,7 @@ function makeDraggable(place_id) {
       } else {
         if(parseInt(offset) < -(parseInt(dist))) {
           offset = -parseInt(dist);
-          if(side=='left') {
+          if(side == 'left') {
             thisDrag.animate({
               left: '-' + dist + 'px'
             }, 100);
