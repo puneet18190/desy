@@ -191,7 +191,6 @@ function lessonEditorDocumentReadyAddMediaElement() {
       video_player.data('duration', duration);
       initializeMedia(video_player.attr('id'), 'video');
     }
-    $('#' + place_id + ' ._rolloverable').data('rolloverable', true);
   });
   $('body').on('click', '._add_audio_to_slide', function(e) {
     e.preventDefault();
@@ -326,21 +325,33 @@ Initializer for the mouseover and mouseout to replace a media element already ad
 @for LessonEditorDocumentReady
 **/
 function lessonEditorDocumentReadyReplaceMediaElement() {
-  $('body').on('mouseover', '.slide-content .image.editable .mask, ._full_video_in_slide', function() {
-    var obj = $('#' + $(this).parent().attr('id') + ' ._rolloverable');
+  $('body').on('mouseover', '.slide-content .image.editable .mask', function() {
+    var obj = $('#' + $(this).parent().attr('id') + ' .alignable');
     var slide_id = obj.data('slide-id');
     var position = obj.data('position');
     if(obj.data('rolloverable')) {
       $('#media_element_' + position + '_in_slide_' + slide_id + ' ._lesson_editor_rollover_content').show();
     }
   });
-  $('body').on('mouseout', '.slide-content .image.editable .mask, ._full_video_in_slide', function() {
-    var obj = $('#' + $(this).parent().attr('id') + ' ._rolloverable');
+  $('body').on('mouseout', '.slide-content .image.editable .mask', function() {
+    var obj = $('#' + $(this).parent().attr('id') + ' .alignable');
     var slide_id = obj.data('slide-id');
     var position = obj.data('position');
     if(obj.data('rolloverable')) {
       $('#media_element_' + position + '_in_slide_' + slide_id + ' ._lesson_editor_rollover_content').hide();
     }
+  });
+  $('body').on('mouseover', '._full_video_in_slide', function() {
+    var obj = $('#' + $(this).parent().attr('id') + ' ._rolloverable');
+    var slide_id = obj.data('slide-id');
+    var position = obj.data('position');
+    $('#media_element_' + position + '_in_slide_' + slide_id + ' ._lesson_editor_rollover_content').show();
+  });
+  $('body').on('mouseout', '._full_video_in_slide', function() {
+    var obj = $('#' + $(this).parent().attr('id') + ' ._rolloverable');
+    var slide_id = obj.data('slide-id');
+    var position = obj.data('position');
+    $('#media_element_' + position + '_in_slide_' + slide_id + ' ._lesson_editor_rollover_content').hide();
   });
 }
 
@@ -771,18 +782,18 @@ function makeDraggable(place_id) {
     side = 'top';
     dist = maskedImgHeight - full_place.height();
   }
-  $('#' + place_id + ' .mask ._rolloverable').draggable({
+  $('#' + place_id + ' .mask .alignable').draggable({
     axis: axe,
     cursor: 'move',
     distance: 10,
     start: function() {
       $('#' + place_id + ' .mask img').css('cursor', 'move');
-      $('#' + place_id + ' ._rolloverable').data('rolloverable', false);
+      $('#' + place_id + ' .alignable').data('rolloverable', false);
       $('#' + place_id + ' span').hide();
     },
     stop: function() {
       $('#' + place_id + ' .mask img').css('cursor', 'url(https://mail.google.com/mail/images/2/openhand.cur), move');
-      $('#' + place_id + ' ._rolloverable').data('rolloverable', true);
+      $('#' + place_id + ' .alignable').data('rolloverable', true);
       $('#' + place_id + ' span').show();
       var thisDrag = $(this);
       var offset = thisDrag.css(side);

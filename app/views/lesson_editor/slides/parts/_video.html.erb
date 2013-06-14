@@ -12,7 +12,7 @@
   <% end %>
   
   <div class="<%= slide.kind %>-p<%= position %> _full_video_in_slide" style="display:<%= video.nil? ? 'none'.html_safe : 'block'.html_safe %>">
-    <div class="_rolloverable" data-slide-id="<%= slide.id %>" data-position="<%= position %>" data-rolloverable="true">
+    <div class="_rolloverable" data-slide-id="<%= slide.id %>" data-position="<%= position %>">
       <%= render(:partial => 'shared/players/video', :locals => {:video => video, :initialize_now => true}) %>
     </div>
     <span class="add-video _show_video_gallery_in_lesson_editor _lesson_editor_rollover_content" data-position="<%= position %>" style="display:none" title="<%= t('titles.lesson_editor.change_video') %>"></span>
