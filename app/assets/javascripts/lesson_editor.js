@@ -136,7 +136,7 @@ function lessonEditorDocumentReadyAddMediaElement() {
     var full_place = $('#' + place_id + ' .mask');
     if(!full_place.is(':visible')) {
       full_place.show();
-      $('#' + place_id + ' ._empty_image_in_slide').hide();
+      $('#' + place_id + ' .empty-mask').hide();
     }
     var old_mask = 'horizontal';
     var new_mask = 'vertical';

@@ -11,7 +11,6 @@
       
       
       <%
-        empty_mask_class = "cover-choose-image _empty_image_in_slide"
         resize = ''
         alignment = ''
         if image
@@ -47,7 +46,7 @@
           <span class="add hidden" data-position="<%= position %>" title="<%= t('titles.lesson_editor.change_image') %>"></span>
         </div>
         
-        <div class="<%= empty_mask_class %> <%= image.nil? ? 'visible' : 'block' %>">
+        <div class="empty-mask <%= image.nil? ? 'visible' : 'hidden' %>">
           <a class="add" data-position="<%= position %>"></a>
           <br/>
           <p class="lower"><%= t('lesson_editor.choose_image') %></p>

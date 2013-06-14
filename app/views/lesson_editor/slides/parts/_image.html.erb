@@ -1,5 +1,4 @@
 <%
-  empty_mask_class = "cover-choose-image _empty_image_in_slide"
   resize = ''
   alignment = ''
   if image
@@ -36,7 +35,7 @@
     <%= text_field_tag "caption_#{position}", ((image.nil? || image.caption.blank?) ? t('lesson_editor.placeholders.image_caption') : image.caption), :class => 'caption _lesson_editor_placeholder', :maxlength => t("language_parameters.slide.length_caption.#{slide.kind}"), :data => {:placeholder => (image.nil? || image.caption.blank?)} %>
   </div>
   
-  <div class="<%= empty_mask_class %> <%= image.nil? ? 'visible' : 'block' %>">
+  <div class="empty-mask <%= image.nil? ? 'visible' : 'hidden' %>">
     <a class="add" data-position="<%= position %>"></a>
     <br/>
     <p class="lower"><%= t('lesson_editor.choose_image') %></p>
