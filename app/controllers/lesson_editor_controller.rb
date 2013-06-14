@@ -82,16 +82,18 @@ class LessonEditorController < ApplicationController
   # * LessonEditorController#check_available_for_user
   #
   def create
-    title = params[:title_placeholder] != '0' ? '' : params[:title]
-    description = params[:description_placeholder] != '0' ? '' : params[:description]
-    tags = params[:tags_value]
-    new_lesson = current_user.create_lesson title, description, params[:subject], tags
+    # title = params[:title_placeholder] != '0' ? '' : params[:title]
+    # description = params[:description_placeholder] != '0' ? '' : params[:description]
+    # tags = params[:tags_value]
+    # new_lesson = current_user.create_lesson title, description, params[:subject], tags
+    new_lesson = current_user.create_lesson "Io coppa in faccia, tu razzo in faccia", "123 stella, 123 bum razzo in faccia", "2", ",razzo,faccia,bum,in faccia,"
     if new_lesson.instance_of?(Lesson)
       @lesson = new_lesson
     else
       @errors = convert_lesson_editor_messages new_lesson.messages
       @error_fields = new_lesson.keys
     end
+    p new_lesson
   end
   
   # === Description
