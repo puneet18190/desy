@@ -275,7 +275,6 @@ General initialization of position (used together with {{#crossLink "LessonEdito
 function lessonEditorDocumentReadyGeneral() {
   $('html.lesson-editor-layout ul#slides').css('margin-top', ((($(window).height() - 590) / 2) - 40) + 'px');
   $('html.lesson-editor-layout ul#slides.new').css('margin-top', ((($(window).height() - 590) / 2)) + 'px');
-  $('.slide-content.cover .title').css('margin-left', 'auto');
   $('html.lesson-editor-layout ul#slides input').attr('autocomplete', 'off');
   $('body').on('keydown blur', 'textarea[rows]', function(e) {
     if($(this).parent().hasClass('only-title') && e.which == 13 && $(this).val().split("\n").length >= $(this).attr('rows')) {
