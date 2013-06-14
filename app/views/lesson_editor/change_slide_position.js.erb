@@ -24,7 +24,7 @@
     target_slide.after(html_to_move);
   }
   
-  $(html_to_move).find('._image_container_in_lesson_editor').each(function() {
+  $(html_to_move).find('.slide-content .image.editable').each(function() {
     makeDraggable($(this).attr('id'));
   });
   

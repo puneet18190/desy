@@ -4,7 +4,7 @@
   slide.find('.slide-not-loaded').removeClass('slide-not-loaded').addClass('slide-content');
   slide.data('loaded', true);
   $('html.lesson-editor-layout ul#slides input').attr('autocomplete', 'off');
-  slide.find('._image_container_in_lesson_editor').each(function() {
+  slide.find('.slide-content .image.editable').each(function() {
     makeDraggable($(this).attr('id'));
   });
 <% end %>

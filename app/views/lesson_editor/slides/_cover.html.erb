@@ -3,7 +3,73 @@
     
     <div class="image-container">
       <%= hidden_field_tag :title, slide.title %>
+      
+      
+      
+      
+      
+      
+      
+      <%
+        empty_mask_class = "cover-choose-image _empty_image_in_slide"
+        resized_width = ''
+        resized_height = ''
+        orientation = nil
+        if image
+          width = image.media_element.width
+          height = image.media_element.height
+          url = image.media_element.url
+          mask = '_mask_y'
+          style = "top:#{image.alignment}px"
+          orientation = "height=\"#{resize_height(width, height, slide.kind)}\""
+          if is_horizontal?(width, height, slide.kind)
+            mask = '_mask_x'
+            style = "left:#{image.alignment}px"
+            orientation = "width=\"#{resize_width(width, height, slide.kind)}\""
+          end
+        end
+      %>
+      
+      
+      <div id="media_element_1_in_slide_<%= slide.id %>" class="image editable">
+        
+        <% if image %>
+          <%= hidden_field_tag "media_element_align_#{position}", image.alignment.to_s, :class => 'align' %>
+          <%= hidden_field_tag "media_element_#{position}", image.media_element_id, :class => "media-tag-#{position} _input_image_id" %>
+        <% else %>
+          <%= hidden_field_tag "media_element_align_#{position}", '0', :class => 'align' %>
+          <%= hidden_field_tag "media_element_#{position}", '', :class => "media-tag-#{position} _input_image_id" %>
+        <% end %>
+        
+        <div class="mask <%= slide.kind %>-p<%= position %> <%= mask %> _full_image_in_slide" style="display:<%= image.nil? ? 'none'.html_safe : 'block'.html_safe %>">
+          <div class="_rolloverable" style="<%= style %>" data-slide-id="<%= slide.id %>" data-position="<%= position %>" data-rolloverable="true">
+            <img src="<%= url %>" class="_slide_image <%= slide.kind %>-p<%= position %>" <%= orientation.nil? ? '' : orientation.html_safe %>/>
+          </div>
+          <span class="add-image _show_image_gallery_in_lesson_editor _lesson_editor_rollover_content" data-position="<%= position %>" style="display:none" title="<%= t('titles.lesson_editor.change_image') %>"></span>
+          <%= text_field_tag "caption_#{position}", ((image.nil? || image.caption.blank?) ? t('lesson_editor.placeholders.image_caption') : image.caption), :class => 'caption _lesson_editor_placeholder', :maxlength => t("language_parameters.slide.length_caption.#{slide.kind}"), :data => {:placeholder => (image.nil? || image.caption.blank?)} %>
+        </div>
+        
+        <div class="<%= empty_mask_class.html_safe %>" style="display:<%= image.nil? ? 'block'.html_safe : 'none'.html_safe %>">
+          <a class="_show_image_gallery_in_lesson_editor" data-position="<%= position %>"></a>
+          <br/>
+          <p class="lower"><%= t('lesson_editor.choose_image') %></p>
+        </div>
+        
+      </div>
+      
+      
+      
+      
+      
+      
+      
+      
+      
       <%= render :partial => 'lesson_editor/slides/parts/image', :locals => {:slide => slide, :position => 1, :image => slide.image_at(1), :classes => ''} %>
+      
+      
+      
+      
       
       <div class="title-container">
         <%= slide.title %>

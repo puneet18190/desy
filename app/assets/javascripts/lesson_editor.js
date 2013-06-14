@@ -129,7 +129,7 @@ function lessonEditorDocumentReadyAddMediaElement() {
     var position = $('#info_container').data('current-media-element-position');
     var place_id = 'media_element_' + position + '_in_slide_' + current_slide.data('slide-id');
     $('#' + place_id + ' ._input_image_id').val(image_id);
-    $('#' + place_id + ' ._input_align').val('0');
+    $('#' + place_id + ' .align').val('0');
     var image_url = $(this).data('url');
     var image_width = $(this).data('width');
     var image_height = $(this).data('height');
@@ -289,7 +289,7 @@ Initializer for JQueryUi animations defined in the class {{#crossLink "LessonEdi
 @for LessonEditorDocumentReady
 **/
 function lessonEditorDocumentReadyJqueryAnimations() {
-  $('._image_container_in_lesson_editor').each(function() {
+  $('.slide-content .image.editable').each(function() {
     makeDraggable($(this).attr('id'));
   });
   initializeSortableNavs();
@@ -811,7 +811,7 @@ function makeDraggable(place_id) {
           }
         }
       }
-      $('#' + place_id + ' ._input_align').val(parseInt(offset));
+      $('#' + place_id + ' .align').val(parseInt(offset));
     }
   });
 }
