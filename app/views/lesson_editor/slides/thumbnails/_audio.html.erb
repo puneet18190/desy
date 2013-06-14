@@ -1,16 +1,28 @@
-<% audio = slide.audio_at(1) %>
-<div class="bigViewLesson slideAudio">
-<h2><%= slide.title %></h2>
-<% if audio.nil? %>
-  <div class="audioBig">
-    <div class="audioIcon"></div>
+<%
+  audio = slide.audio_at(1)
+%>
+
+
+<div class="slide-content audio">
+  
+  <div class="item title-container">
+    <%= slide.title %>
   </div>
-<% else %>
-  <div class="audioBig with_title">
-    <p><%= audio.title %></p>
+  
+  <div class="item audio-container">
+    <% if audio.nil? %>
+      <div class="audioBig">
+        <div class="audioIcon"></div>
+      </div>
+    <% else %>
+      <div class="audioBig with_title">
+        <p><%= audio.title %></p>
+      </div>
+    <% end %>
   </div>
-<% end %>
- <div class="contentText">
+  
+  <div class="item text-container">
     <%= slide.text.html_safe if slide.text %>
- </div>
+  </div>
+  
 </div>

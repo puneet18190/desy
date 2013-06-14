@@ -2,8 +2,14 @@
   video = slide.video_at(1)
 %>
 
-<div class="bigViewLesson slideVideo">
-  <h2><%= slide.title %></h2>
+
+<div class="slide-content video1">
+  
+  <div class="item title-container">
+    <%= slide.title %>
+  </div>
+  
+  <div class="item video-container">
     <% if video.nil? %>
       <div class="videoMedium">
         <div class="videoIcon"></div>
@@ -17,7 +23,10 @@
         <% end %>
       </div>
     <% end %>
-  <div class="textRightVideoContent">
+  </div>
+  
+  <div class="item text-container">
     <%= slide.text.html_safe if slide.text %>
   </div>
+  
 </div>

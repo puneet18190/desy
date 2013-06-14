@@ -6,8 +6,10 @@
   image_width = resize_width(image.media_element.width,image.media_element.height,"cover") if !image.nil?
 %>
 
-<div class="bigViewLesson slideCover">
-  <div class="cover">
+
+<div class="slide-content cover">
+  
+  <div class="image-container">
     <% if image %>
       <% if is_horizontal?(image.media_element.width,image.media_element.height,"cover")%>
         <%= image_tag image.media_element.url, :style => "left:#{image.alignment}px; height: 540px; width: #{image_width}px" %>
@@ -15,11 +17,14 @@
         <%= image_tag image.media_element.url, :style => "top:#{image.alignment}px; width: 900px;height: #{image_height}px" %>
       <% end %>
     <% end %>
+    
+    <div class="title-container">
+      <div class="lessonTitle"><%= slide.lesson.title %></div>
+    </div>
+    
   </div>
-  <div class="bg_text">
-    <div class="lessonTitle"><%= slide.lesson.title %></div>
-  </div>
-  <div class="cover-slide-footer">
+  
+  <div class="footer-container">
     <div class="subject pull-left">
       <%= subject.description %>
     </div>
@@ -27,4 +32,5 @@
       <%= t('lessons.author') %>: <span class="name"><%= author.full_name %></span>
     </div>
   </div>
+  
 </div>

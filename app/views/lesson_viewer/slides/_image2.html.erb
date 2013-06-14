@@ -7,8 +7,10 @@
   image_width2 = resize_width(image2.media_element.width,image2.media_element.height,"image2") if !image2.nil?
 %>
 
-<div class="bigViewLesson slideImage">
-  <div class="mediumHeight">
+
+<div class="slide-content image2">
+  
+  <div class="item image-container">
     <% if image2.nil? %>
       <div class="photoIcon"></div>
     <% else %>
@@ -22,7 +24,8 @@
       <% end %>
     <% end %>
   </div>
-  <div class="mediumHeight">
+  
+  <div class="item image-container">
     <% if image1.nil? %>
       <div class="photoIcon"></div>
     <% else %>
@@ -36,4 +39,5 @@
       <% end %>
     <% end %>
   </div>
+  
 </div>

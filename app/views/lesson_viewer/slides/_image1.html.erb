@@ -4,9 +4,14 @@
   image_width = resize_width(image.media_element.width,image.media_element.height,"image1") if !image.nil?
 %>
 
-<div class="bigViewLesson slideImage">
-  <h2><%= slide.title %></h2>
-  <div class="medium" >
+
+<div class="slide-content image1">
+  
+  <div class="item title-container">
+    <%= slide.title %>
+  </div>
+  
+  <div class="item image-container">
     <% if image.nil? %>
       <div class="photoIcon"></div>
     <% else %>
@@ -20,7 +25,9 @@
       <% end %>
     <% end %>
   </div>
-  <div class="textRightContent">
+  
+  <div class="item text-container">
     <%= slide.text.html_safe if slide.text %>
   </div>
+  
 </div>

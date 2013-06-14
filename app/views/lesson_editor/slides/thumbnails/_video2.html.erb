@@ -1,6 +1,11 @@
-<% video = slide.video_at(1) %>
-<div class="bigViewLesson slideVideo ">
-  <div class="videoBig">
+<%
+  video = slide.video_at(1)
+%>
+
+
+<div class="slide-content video2">
+  
+  <div class="item video-container">
     <% if video.nil? %>
       <div class="videoIcon"></div>
     <% else %>
@@ -10,4 +15,5 @@
       </div>
     <% end %>
   </div>
+  
 </div>

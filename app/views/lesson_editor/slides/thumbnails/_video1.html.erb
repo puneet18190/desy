@@ -1,19 +1,27 @@
-<% video = slide.video_at(1) %>
-<div class="bigViewLesson slideVideo ">
-  <h2><%= slide.title %></h2>
-  <div class="videoMedium">
+<%
+  video = slide.video_at(1)
+%>
+
+
+<div class="slide-content video1">
+  
+  <div class="item title-container">
+    <%= slide.title %>
+  </div>
+  
+  <div class="item video-container">
     <% if video.nil? %>
       <div class="videoIcon"></div>
-      
     <% else %>
       <%= image_tag video.cover_url, :width => "420" if video %>
       <div class="bulletPointVideo">
          <img alt="Bullet_video" src="/assets/bullet_video.svg" style="width:40%">
       </div>
-      
     <% end %>
   </div>
-  <div class="textRightVideoContent">
+  
+  <div class="item text-container">
     <%= slide.text.html_safe if slide.text %>
   </div>
+  
 </div>

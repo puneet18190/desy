@@ -2,9 +2,14 @@
   audio = slide.audio_at(1)
 %>
 
-<div class="bigViewLesson slideAudio">
-  <h2><%= slide.title %></h2>
-  <div class="audioBig">
+
+<div class="slide-content audio">
+  
+  <div class="item title-container">
+    <%= slide.title %>
+  </div>
+  
+  <div class="item audio-container">
     <% if audio.nil? %>
       <div class="audioIcon"></div>
     <% else %>
@@ -15,7 +20,9 @@
       <% end %>
     <% end %>
   </div>
-  <div class="contentText">
+  
+  <div class="item text-container">
     <%= slide.text.html_safe if slide.text %>
   </div>
+  
 </div>
