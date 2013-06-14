@@ -76,6 +76,9 @@ server {
     proxy_redirect off;
 
     proxy_pass http://$username_$appname;
+
+    # intercept upstream errors: we manage them using error_page
+    proxy_intercept_errors on;
   }
 
   # Rails error pages

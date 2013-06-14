@@ -1,6 +1,4 @@
-windows = RbConfig::CONFIG['host_os'] !~ /mswin|mingw|cygwin/
-
-source windows ? 'https://rubygems.org': 'http://rubygems.org'
+source 'https://rubygems.org'
 
 gem 'rails', '3.2.13'
 gem 'pg'
@@ -38,7 +36,7 @@ gem 'jquery-rails', '~> 2.1.4'
 gem 'schema_plus'
 gem 'recursive-open-struct'
 gem "subexec", :github => "ProGNOMmers/subexec"
-gem 'mini_magick'
+gem 'mini_magick', :git => 'git://github.com/minimagick/minimagick.git', :ref => '6d0f8f953112cce6324a524d76c7e126ee14f392'
 gem 'carrierwave'
 gem 'tinymce-rails'
 gem 'tinymce-rails-langs'

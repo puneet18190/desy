@@ -275,7 +275,6 @@ General initialization of position (used together with {{#crossLink "LessonEdito
 function lessonEditorDocumentReadyGeneral() {
   $('html.lesson-editor-layout ul#slides').css('margin-top', ((($(window).height() - 590) / 2) - 40) + 'px');
   $('html.lesson-editor-layout ul#slides.new').css('margin-top', ((($(window).height() - 590) / 2)) + 'px');
-  $('.slide-content.cover .title').css('margin-left', 'auto');
   $('html.lesson-editor-layout ul#slides input').attr('autocomplete', 'off');
   $('body').on('keydown blur', 'textarea[rows]', function(e) {
     if($(this).parent().hasClass('only-title') && e.which == 13 && $(this).val().split("\n").length >= $(this).attr('rows')) {
@@ -982,6 +981,9 @@ function initTinymce(tiny_id) {
     theme_advanced_resizing: true,
     theme_advanced_font_sizes: '10px=.size1,13px=.size2,17px=.size3,21px=.size4,25px=.size5,29px=.size6,35px=.size7',
     setup: function(ed) {
+      ed.onInit.add(function(ed, e) {
+        $('#' + tiny_id + '_ifr').attr('scrolling', 'no');
+      });
       ed.onKeyUp.add(function(ed, e) {
         tinyMceCallbacks(ed, tiny_id);
       });
