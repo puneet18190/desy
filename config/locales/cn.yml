@@ -2241,7 +2241,7 @@ cn:
       # 1 - models/lesson.rb
       # 2 - models/lesson.rb
       # 3 - views/lesson_editor/new.html.erb
-      length_title: 35
+      length_title: 18
     media_element:
       # Maximum number of characters allowed in the description of an element
       # 1 - models/media_element.rb
@@ -2265,7 +2265,7 @@ cn:
       # 5 - views/lesson_editor/slides/_video1.html.erb
       # 6 - views/lesson_editor/slides/_image1.html.erb
       # 7 - views/lesson_editor/slides/_audio.html.erb
-      length_title: 35
+      length_title: 16
       # Maximum number of characters allowed in the caption of an image inside a slide
       length_caption:
         # 1 - views/lesson_editor/slides/parts/_image.html.erb

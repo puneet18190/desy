@@ -1,16 +1,19 @@
-html.lesson-editor-layout{
-
-  height:auto;
-  margin:0;
+html.lesson-editor-layout {
+  
+  height: auto;
+  margin: 0;
   min-height: 100%;
   $orange: #f29400;
-  *{
+  
+  * {
+    
     outline: none;
-
+    
   }
-
+  
   body {
-    direction:ltr;
+    
+    direction: ltr;
     // @media (max-width: 1024px) {
     //   font-size: 13px;
     // }
@@ -21,92 +24,142 @@ html.lesson-editor-layout{
     margin: 0;
     padding: 0;
     display: block;
-    overflow:hidden;
+    overflow: hidden;
     background-image: url(<%= asset_path 'bg_tile_editor.gif' %>);
     background-repeat: repeat-x;
     background-position: top left;
-    background-color:#5f5f5f;
+    background-color: #5f5f5f;
+    
   }
-
+  
   a {
+    
     color: white;
     text-decoration: none;
+    
     &:hover {
+      
       color: #dedede;
+      
     }
+    
   }
-
+  
   h1, h2, h3, h4, h5, h6 {
+    
     font-family: "Nunito", Helvetica, sans-serif;
     color: $orange;
+    
   }
-
+  
   h2 {
     
     font-size: 50px;
-    /*text-align: left;*/
     font-weight: normal;
     line-height: 50px;
-    margin:20px;
+    margin: 20px;
+    
   }
   
-  /** Page navigation **/
-
   .emptyGalleryAudioEditor {
-    padding-top:180px;
+    
+    padding-top: 180px;
+    
   }
-
+  
   .emptyGalleryVideoEditor {
-     
-      padding-top:180px;
-        
-    }
-    .emptyGalleryImageEditor {
-     
-      padding-top:180px;
-        
-    }  
+    
+    padding-top: 180px;
+    
+  }
+  
+  .emptyGalleryImageEditor {
+    
+    padding-top:180px;
+    
+  }
   
   #heading {
+    
     padding: 10px;
     height: 20px;
     display: block;
-    width:100%;
+    width: 100%;
     
     .horizontal-only {
-      height:230px;
+      
+      height: 230px;
       z-index: 99999;
+      
     }
+    
     .scroll-pane {
-      overflow-y:visible;
+      
+      overflow-y: visible;
+      
     }
+    
     .scrollOrange {
+      
       .jspTrack {
+        
         background: #3f3f3f;
         z-index: 99999;
+        
       }
+      
       .jspHorizontalBar {
-        height:5px;
+        
+        height: 5px;
         top: 23px;
-        position:absolute;
+        position: absolute;
+        
       }
+      
       .jspPane {
         z-index: 99999;
       }
+      
       .jspDrag {
+        
         background: $orange;
         z-index: 99999;
+        
       }
+      
     }
-  }  
-
+    
+  }
+  
   #slide-numbers {
+    
     list-style: none;
     margin-left: 10px;
     width: 3500px;
+    
     li.navNumbers {
+      
       float: left;
+      
+      h2 {
+        
+        font-size: 54px;
+        font-weight: normal;
+        padding: 11px 11px 7px;
+        margin: 0px 0px 20px 0px;
+        overflow: hidden;
+        height: 93px;
+        
+      }
+      
+      .slideAudio h2 {
+        
+        height: 100px;
+        
+      }
+      
       a._slide_nav {
+        
         float: left;
         width: 20px;
         height: 14px;
@@ -119,176 +172,240 @@ html.lesson-editor-layout{
         background-color: rgba(45,45,45,0.5);
         
         &:hover {
+          
           background-color: white;
           border: 1px solid white;
+          
         }
+        
         &.active {
+          
           background-color: $orange;
           border: 1px solid $orange;
           color: white;
+          
         }
+        
         &.add-slide {
+          
           border: none;
           background-color: transparent;
           padding-top: 0;
+          
           &:hover {
+            
             border: none;
             background-color: transparent;
             padding-top: 0;
+            
           }
+          
         }
+        
       }
+      
     }
+    
   }
   
-  .contentLessonNotAvailable{
-    width:600px;
-    height:550px;
+  .contentLessonNotAvailable {
+    
+    width: 600px;
+    height: 550px;
     margin: 0 auto;
-    text-align:center;
-    display:table;
+    text-align: center;
+    display: table;
+    
     .contentTitle {
-      display:table-cell; 
-      vertical-align:middle;
+      
+      display: table-cell;
+      vertical-align: middle;
+      
       h1 {
-        text-align:left;
-        color:#F29400;
-        font-size:30px;
-        font-weight:normal;
-        margin:0px;
+        
+        text-align: left;
+        color: #F29400;
+        font-size: 30px;
+        font-weight: normal;
+        margin: 0px;
+        
       }
+      
       h2 {
+        
         text-align: left;
         color: #fff;
         font-size: 18px;
         font-weight: normal;
-        margin:0px;
-        line-height:25px;
+        margin: 0px;
+        line-height: 25px;
+        
       }
+      
     }
+    
   }
-  .add-small{
-    position:absolute;
-    top:10px;
+  
+  .add-small {
+    
+    position: absolute;
+    top: 10px;
     right: 10px;
     text-indent: -9999999px;
-    border:none;
-    padding:0;
+    border: none;
+    padding: 0;
     height: 17px;
     width: 17px;
     background: url('/assets/add_small_on_off.png') top center no-repeat transparent;
-    z-index:100000;
+    z-index: 100000;
     
   }
-  .add-small:hover{
-    background-color:transparent;
+  
+  .add-small:hover {
+    
+    background-color: transparent;
     background-position: bottom center;
     border: none;
+    
   }
-  ._add_new_slide_options_in_last_position.disabled{
+  
+  ._add_new_slide_options_in_last_position.disabled {
+    
     background: url('/assets/add_small_on_off.png') top center no-repeat transparent;
-    opacity:0.3;
-    cursor:default;
+    opacity: 0.3;
+    cursor: default;
+    
     &:hover {
+      
       background: url('/assets/add_small_on_off.png') top center no-repeat transparent;
-      opacity:0.3;
-      cursor:default;
+      opacity: 0.3;
+      cursor: default;
+      
     }
+    
   }
-   ._add_new_slide_options.disabled {
-      opacity:0.070;
-      cursor:default;
-      &:hover {
-        float: left;
-        width: 6em;
-        height: 6em;
-        background-image: url(/assets/set-icone-editor.svg);
-        background-repeat: no-repeat;
-        background-size: 24em 60em;
-        padding: 0;
-        font-size: 0.75em;
-        background-position: 0 -6em;
-      };
-   }
-/*THUMBNAILS*/
+  
+  ._add_new_slide_options.disabled {
+    
+    opacity: 0.070;
+    cursor: default;
+    
+    &:hover {
+      
+      float: left;
+      width: 6em;
+      height: 6em;
+      background-image: url(/assets/set-icone-editor.svg);
+      background-repeat: no-repeat;
+      background-size: 24em 60em;
+      padding: 0;
+      font-size: 0.75em;
+      background-position: 0 -6em;
+    };
+  
+  }
+  
   .slide-tooltip {
+    
     width: 250px;
-    height:156px;
+    height: 156px;
     display: none;
-    z-index:9999999999;
+    z-index: 9999999999;
     margin: 20px 0 0 -27px;
     position: absolute;
     padding: 20px 20px 25px 25px;
     background: url("/assets/lesson-editor-tooltip-bg.png") top left no-repeat;
+    
   }
+  
   .slide-tooltip-to-left {
+    
     width: 300px;
     display: none;
-    z-index:9999999999;
+    z-index: 9999999999;
     margin: 20px 0 0 -247px;
     position: absolute;
     padding: 20px 20px 25px 25px;
     background: url("/assets/lesson-editor-tooltip-bg-to-left.png") top left no-repeat;
+    
   }
   
-  
-
-  /** main container **/
-
   #container {
+    
     height: 100%;
     text-align: center;
     margin: 0 auto -45px;
+    
   }
-
+  
   #main {
+    
     width: 100%;
     display: block;
+    
   }
-
+  
   ul#slides {
+    
     display: block;
-
-    /*position: absolute;*/
-
-    z-index:-9999;
+    z-index: -9999;
     height: 590px;
+    
     .box {
-      position:relative;
+      
+      position: relative;
+      
     }
+    
     li.slides {
+      
       .desySkin table.mceLayout {
+        
         border-left: 1px solid #EFEFEF;
         border-right: 1px solid #EFEFEF;
+        
       }
+      
       .desySkin .mceIframeContainer {
+        
         border-bottom: 1px solid #EFEFEF;
         border-top: 1px solid #EFEFEF;
+        
       }
+      
       opacity: 0.4;
-      &.active{
+      
+      &.active {
+        
         opacity: 1;
+        
       }
-      input, textarea{
+      
+      input, textarea {
+        
         color: $orange;
         border: 1px solid #efefef;
-        resize:none;
-        font-size:13px;
+        resize: none;
+        font-size: 13px;
+        
       }
       
-      textarea{
-        overflow:hidden;
+      textarea {
+        
+        overflow: hidden;
+        
       }
       
-      input.caption{
-        font-family:"Nunito", sans-serif;
+      input.caption {
+        
+        font-family: "Nunito", sans-serif;
         border: 1px solid transparent;
         outline: none;
         width: 890px;
         height: 35px;
         background-color: rgba(50,50,50,0.7);
         color: rgba(250,250,250,1);
-        display:block;
+        display: block;
         position: absolute;
         left: auto;
         top: 515px;
@@ -298,406 +415,617 @@ html.lesson-editor-layout{
       }
       
       &.active {
+        
         width: 960px;
         height: 590px;
+        
       }
+      
       float: left;
       display: block;
       height: 590px;
       width: 960px;
       padding: 0;
       margin-left: 50px;
-      &.cover{
-        .title{
+      
+      &.cover {
+        
+        .title {
+          
           background-color: rgba(242,148,0,0.95);
           height: 130px;
-          padding: 0px 20px 0px 0px;
-          width: 880px;
+          padding: 0;
+          width: 900px;
           position: absolute;
           left: auto;
           top: 430px;
-          h2{
+          
+          h2 {
+            
             color: rgba(255,255,255,1);
+            
           }
+          
         }
-        .mask{
+        
+        .mask {
+          
           width: 900px;
           height: 560px;
-          margin:0;
-          padding:0;
-          overflow:hidden;
-          position:relative;
-          img{
-            display:block;
+          margin: 0;
+          padding: 0;
+          overflow: hidden;
+          position: relative;
+          
+          img {
+            
+            display: block;
             cursor: url(https://mail.google.com/mail/images/2/openhand.cur), move;
+            
           }
+          
         }
-        /*roll-over span*/
-        span.add-image{
+        
+        span.add-image {
+          
           width: 130px;
           height: 130px;
           font-size: 130px;
           margin: 210px 0 0 387px;
-          display:block;
-          background:url('/assets/icone_piene.svg') -260px center no-repeat transparent;
+          display: block;
+          background: url('/assets/icone_piene.svg') -260px center no-repeat transparent;
           background-size: 780px 130px;
           cursor: pointer;
-          position:absolute;
-          top:0;
-          left:0;
-          opacity:0.80;
+          position: absolute;
+          top: 0;
+          left: 0;
+          opacity: 0.80;
+          
         }
-        span.add-image:hover{
+        
+        span.add-image:hover {
+          
           background-position: -390px center;
+          
         }
-        ._mask_x{
-          img{
+        
+        ._mask_x {
+          
+          img {
+            
             height: 560px;
-            left:0;
+            left: 0;
+            
           }
+          
         }
-        ._mask_y{
-          img{
+        
+        ._mask_y {
+          
+          img {
+            
             width: 900px;
-            top:0;
+            top: 0;
+            
           }
+          
         }
-        input.caption{
-          display:none;
+        
+        input.caption {
+          
+          display: none;
+          
         }
-        .cover-slide-footer{
-          clear:both;
+        
+        .cover-slide-footer {
+          
+          clear: both;
           background-color: #fff;
           color: #373737;
           height: 16px;
           width: 870px;
           padding: 7px 15px;
           font-size: 13px;
-          .subject .h3{
+          
+          .subject .h3 {
+            
             font-family: Arial, sans-serif;
             color: #373737;
+            
           }
-          .author .name{
+          
+          .author .name {
+            
             color: $orange;
+            
           }
+          
         }
         
       }
       
-      .slide-content{
+      .slide-content {
+        
         width: 900px;
         height: 590px;
-        margin-left:0px;
+        margin-left: 0px;
         background-color: white;
-        overflow:hidden;
+        overflow: hidden;
         -webkit-box-shadow: 0px 6px 16px #161515;
         box-shadow: 0px 6px 16px #161515;
-        h2 input{
+        
+        h2 input {
+          
           font-family: "Nunito", Helvetica, sans-serif;
+          
         }
-        &.title{
-          .only-title textarea{
-            padding:150px 100px;
+        
+        &.title {
+          
+          .only-title textarea {
+            
+            padding: 150px 100px;
             width: 655px;
-            height:250px;
+            height: 250px;
             margin: 0px;
-            text-align:center;
+            text-align: center;
             font-size: 70px;
-            line-height:70px;
+            line-height: 70px;
             color: $orange;
             font-family: "Nunito", sans-serif;
-          }
-        }
-        &.text{
-          width: 900px;
-          height:590px;
-          
-          h2.text input{
-              font-size: 70px;
-              padding: 10px;
-              width: 840px;
-              font-family: "Nunito", sans-serif;
-          }
-          .text-content{
-            margin-left:20px;
             
-            textarea{
+          }
+          
+        }
+        
+        &.text {
+          
+          width: 900px;
+          height: 590px;
+          
+          h2.text input {
+            
+            font-size: 54px;
+            padding: 10px;
+            width: 840px;
+            height: 94px;
+            font-family: "Nunito", sans-serif;
+            
+          }
+          
+          .text-content {
+            
+            margin-left: 20px;
+            
+            textarea {
+              
               padding: 10px;
               width: 840px;
               height: 395px;
-              overflow:hidden;
+              overflow: hidden;
               
             }
             
           }
-          .cover-choose-image{
+          
+          .cover-choose-image {
+            
             margin: 0 20px;
             width: 860px;
             height: 405px;
             padding: 145px 0 0;
-            a{
+            
+            a {
+              
               margin: 0 auto 0;
+              
             }
+            
           }
+          
         }
-        &.audio{
+        
+        &.audio {
+          
           padding: 0;
           height: 590px;
           width: 900px;
           
-          h2 input{
-            font-size: 70px;
+          h2 input {
+            
+            font-size: 54px;
             padding: 10px;
             width: 840px;
+            height: 94px;
+            
           }
-          .audio-content{
+          
+          .audio-content {
+            
             width: 860px;
             margin: 0 0 0 20px;
-            display:block;
+            display: block;
             
-            textarea{
+            textarea {
+              
               margin-top: 20px;
               width: 840px;
               height: 300px;
               padding: 10px;
+              
             }
+            
           }
-          .cover-choose-image{
+          
+          .cover-choose-image {
+            
             margin: 5px 0 20px 20px;
             width: 860px;
             height: 61px;
-            padding-top:10px;
-            display:block;
+            padding-top: 10px;
+            display: block;
             font-size: 10px;
             
-            a{
+            a {
+              
               width: 35px;
               height: 35px;
               background-position: 0 center;
               background-size: 210px 35px;
+              
             }
-            a:hover{
+            
+            a:hover {
+              
               background-position: -105px center;
+              
             }
+            
           }
-          /*roll-over span*/
-
-          span.add-audio{
+          
+          span.add-audio {
+            
             $button-sizeAudio: 2.5rem;
             width: $button-sizeAudio;
             height: $button-sizeAudio;
-            background:url('/assets/add_audio_plus.svg') 0  no-repeat transparent;
+            background: url('/assets/add_audio_plus.svg') 0  no-repeat transparent;
             background-size: ($button-sizeAudio*2);
             cursor: pointer;
-            position:absolute;
-            top:20px;
-            right:25px;
-            opacity:1;
-            font-size:1.6em;
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            opacity: 1;
+            font-size: 1.6em;
+            
             &:hover {
+              
               background-position: (-$button-sizeAudio);
+              
             }
+            
           }
           
         }
-
-        &.video2{
+        
+        &.video2 {
+          
           padding: 0px;
           height: 590px;
           width: 900px;
-          display:block;
-          position:relative;
+          display: block;
+          position: relative;
           
           .videoPlayer {
+            
             height: 548px;
             margin: 20px 20px 0px 20px;
-            a.play {margin-left:10px}
-            a.pause {margin-left:10px}
-            a.fullScreen {margin-right:10px}
-            .videoSlider {width:70%}
-          }
-          video{
-            margin-bottom:10px;
-            width:860px;
-            height: 484px;
+            
+            a.play {
+              
+              margin-left: 10px;
+              
+            }
+            
+            a.pause {
+              
+              margin-left: 10px;
+              
+            }
+            
+            a.fullScreen {
+              
+              margin-right: 10px;
+              
+            }
+            
+            .videoSlider {
+              
+              width: 70%;
+              
+            }
+            
           }
           
-          .cover-choose-image{
+          video {
+            
+            margin-bottom: 10px;
+            width: 860px;
+            height: 484px;
+            
+          }
+          
+          .cover-choose-image {
+            
             margin: 20px 20px;
             width: 860px;
             height: 410px;
             height: 356px;
             padding: 194px 0 0;
-            display:block;
-            a{
+            display: block;
+            
+            a {
+              
               background-position: -130px center;
+              
             }
-            a:hover{
+            
+            a:hover {
+              
               background-position: -390px center;
+              
             }
+            
           }
           
-          /*roll-over span*/
-          span.add-video{
+          span.add-video {
+            
             width: 130px;
             height: 130px;
             font-size: 130px;
             margin: 210px 0 0 387px;
-            display:block;
-            background:url('/assets/icone_piene.svg') -128px center no-repeat transparent;
+            display: block;
+            background: url('/assets/icone_piene.svg') -128px center no-repeat transparent;
             background-size: 780px 130px;
             cursor: pointer;
-            position:absolute;
-            top:0;
-            left:0;
-            opacity:0.80;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0.80;
+            
           }
-          span.add-video:hover{
+          
+          span.add-video:hover {
+            
             background-position: -388px center;
+            
           }
+          
         }
-        &.video1{
+        
+        &.video1 {
+          
           padding: 0;
           height: 590px;
           width: 900px;
           
           .video1-p1 {
-            position:relative;
+            
+            position: relative;
             
             .videoPlayer {
+              
               width: 420px;
               margin: 0px 0px 0px 20px;
-              float:left;
-              a.play {margin-left:10px}
-              a.pause {margin-left:10px}
-              a.fullScreen {margin-right:10px}
-              .videoSlider {width:55%; margin-right:10px; margin-left:10px;}
+              float: left;
+              
+              a.play {
+                
+                margin-left: 10px;
+                
+              }
+              
+              a.pause {
+                
+                margin-left: 10px;
+                
+              }
+              
+              a.fullScreen {
+                
+                margin-right: 10px;
+                
+              }
+              
+              .videoSlider {
+                
+                width: 55%;
+                margin-right: 10px;
+                margin-left: 10px;
+                
+              }
               
             }
             
-          /*roll-over span*/
-          span.add-video{
-            width: 130px;
-            height: 130px;
-            font-size: 130px;
-            margin: 70px 0 0 160px;
-            display:block;
-            background:url('/assets/icone_piene.svg') -130px center no-repeat transparent;
-            background-size: 780px 130px;
-            cursor: pointer;
-            position:absolute;
-            top:0;
-            left:0;
-            opacity: 0.80;
+            span.add-video {
+              
+              width: 130px;
+              height: 130px;
+              font-size: 130px;
+              margin: 70px 0 0 160px;
+              display: block;
+              background: url('/assets/icone_piene.svg') -130px center no-repeat transparent;
+              background-size: 780px 130px;
+              cursor: pointer;
+              position: absolute;
+              top: 0;
+              left: 0;
+              opacity: 0.80;
+              
+            }
+            
+            span.add-video:hover {
+              
+              background-position: -390px center;
+              
+            }
+            
           }
-          span.add-video:hover{
-            background-position: -390px center;
-          }
-        }
-          video{
+          
+          video {
+            
             width: 420px;
             height: 236px;
             margin-bottom: 5px;
-            float:left;
-          }
-          h2 input{
-            font-size: 70px;
-            padding: 10px;
+            float: left;
             
-            width: 840px;
           }
-          .video1-content{
+          
+          h2 input {
+            
+            font-size: 54px;
+            padding: 10px;
+            width: 840px;
+            height: 94px;
+            
+          }
+          
+          .video1-content {
+            
             float: right;
             margin: 0 20px 0 0;
-            display:block;
-            textarea{
+            display: block;
+            
+            textarea {
+              
               width: 398px;
               height: 396px;
               padding: 10px;
+              
             }
           
           }
-          .cover-choose-image{
+          
+          .cover-choose-image {
+            
             margin: 0 0 0 20px;
             width: 420px;
             height: 280px;
-            display:block;
-            a{
+            display: block;
+            
+            a {
+              
               background-position: -130px center;
+              
             }
-            a:hover{
+            
+            a:hover {
+              
               background-position: -390px center;
+              
             }
+            
           }
           
         }
-        &.image4{
-          .mask.image4-p1,.mask.image4-p2,.mask.image4-p3,.mask.image4-p4{
-            display:block;
+        
+        &.image4 {
+          
+          .mask.image4-p1,.mask.image4-p2,.mask.image4-p3,.mask.image4-p4 {
+            
+            display: block;
             width: 420px;
             height: 265px;
-            margin:0;
+            margin: 0;
             padding: 0;
-            float:left;
+            float: left;
+            
           }
-          .mask{
+          
+          .mask {
+            
             width: 420px;
             height: 265px;
             padding: 0;
             margin: 0;
-            overflow:hidden;
-            position:relative;
-            img{
-              display:block;
-              cursor: url(https://mail.google.com/mail/images/2/openhand.cur), move;
-            }
-            &.image4-p1,&.image4-p3{
-              float:right;
-              margin: 20px 20px 0 0;
-            }
-            &.image4-p2,&.image4-p4{
-              float:left;
-              margin: 20px 0 0 20px;
-            }
-          }
-          /*roll-over span*/
-            span.add-image{
-              background-attachment: scroll;
-              background-clip: border-box;
-              background-color: transparent;
-              background-image: url("/assets/icone_piene.svg");
-              background-origin: padding-box;
-              background-position: -2em center;
-              background-repeat: no-repeat;
-              background-size: 6em 1em;
-              cursor: pointer;
+            overflow: hidden;
+            position: relative;
+            
+            img {
+              
               display: block;
-              font-size: 8em;
-              height: 1em;
-              left: 0;
-              margin: 0.8em 0 0 1.7em;
-              opacity: 0.8;
-              position: absolute;
-              top: 0;
-              width: 1em;
+              cursor: url(https://mail.google.com/mail/images/2/openhand.cur), move;
               
             }
-           span.add-image:hover{
-             background-position: -3em center;
-           }
-          ._mask_x{
-            img{
+            
+            &.image4-p1,&.image4-p3 {
+              
+              float: right;
+              margin: 20px 20px 0 0;
+              
+            }
+            
+            &.image4-p2,&.image4-p4 {
+              
+              float: left;
+              margin: 20px 0 0 20px;
+              
+            }
+            
+          }
+          
+          span.add-image {
+            
+            background-attachment: scroll;
+            background-clip: border-box;
+            background-color: transparent;
+            background-image: url("/assets/icone_piene.svg");
+            background-origin: padding-box;
+            background-position: -2em center;
+            background-repeat: no-repeat;
+            background-size: 6em 1em;
+            cursor: pointer;
+            display: block;
+            font-size: 8em;
+            height: 1em;
+            left: 0;
+            margin: 0.8em 0 0 1.7em;
+            opacity: 0.8;
+            position: absolute;
+            top: 0;
+            width: 1em;
+            
+          }
+          
+          span.add-image:hover {
+            
+            background-position: -3em center;
+            
+          }
+          
+          ._mask_x {
+            
+            img {
+              
               height: 265px;
-              left:0;
+              left: 0;
+              
             }
+            
           }
-          ._mask_y{
-            img{
+          
+          ._mask_y {
+            
+            img {
+              
               width: 420px;
-              top:0;
+              top: 0;
+              
             }
+            
           }
-          input.caption{
+          
+          input.caption {
+            
             top: 230px;
             width: 420px;
           }
@@ -833,18 +1161,22 @@ html.lesson-editor-layout{
           width: 900px;
           
           
-          h2 input{
-            font-size: 70px;
+          h2 input {
+            
+            font-size: 54px;
             padding: 10px;
-            width:840px;
+            width: 840px;
+            height: 94px;
+            
           }
+          
           .mask{
             width: 420px;
             height: 420px;
-            overflow:hidden;
-            position:relative;
-            float:left;
-            margin-left:20px;
+            overflow: hidden;
+            position: relative;
+            float: left;
+            margin-left: 20px;
             
             img{
               display:block;

@@ -2265,7 +2265,7 @@ en:
       # 5 - views/lesson_editor/slides/_video1.html.erb
       # 6 - views/lesson_editor/slides/_image1.html.erb
       # 7 - views/lesson_editor/slides/_audio.html.erb
-      length_title: 35
+      length_title: 32
       # Maximum number of characters allowed in the caption of an image inside a slide
       length_caption:
         # 1 - views/lesson_editor/slides/parts/_image.html.erb

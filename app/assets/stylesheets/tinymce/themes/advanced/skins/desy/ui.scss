@@ -5,7 +5,7 @@
 
 /* Containers */
 .desySkin table {direction:ltr;background:white}
-.desySkin iframe {display:block; background-color: white;}
+.desySkin iframe {display:block; background-color: white; overflow: hidden;}
 .desySkin .mceToolbar {height:26px; background-color: white;-webkit-box-shadow:  5px 5px 20px 3px #dddddd; box-shadow:  5px 5px 20px 3px #dddddd;}
 .desySkin .mceLeft {text-align:left;}
 .desySkin .mceRight {text-align:right;}

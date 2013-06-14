@@ -333,7 +333,7 @@ it:
       stay_in_page: "Rimani in questa pagina"
       # Button to edit the lesson now
       # 1 - views/lessons/copy.js.erb
-      go_to_editor: "Adesso modifica la lezione"
+      go_to_editor: "Edita la lezione"
     # When entering the audio or video editor, the application detects if the user left an uncompleted session; if this is the case, the application asks to the user if he wants to delete his old work or restore it
     restore_cache_media_element_editor:
       # Message
@@ -2265,7 +2265,7 @@ it:
       # 5 - views/lesson_editor/slides/_video1.html.erb
       # 6 - views/lesson_editor/slides/_image1.html.erb
       # 7 - views/lesson_editor/slides/_audio.html.erb
-      length_title: 35
+      length_title: 32
       # Maximum number of characters allowed in the caption of an image inside a slide
       length_caption:
         # 1 - views/lesson_editor/slides/parts/_image.html.erb

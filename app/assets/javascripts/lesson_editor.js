@@ -275,8 +275,12 @@ General initialization of position (used together with {{#crossLink "LessonEdito
 function lessonEditorDocumentReadyGeneral() {
   $('html.lesson-editor-layout ul#slides').css('margin-top', ((($(window).height() - 590) / 2) - 40) + 'px');
   $('html.lesson-editor-layout ul#slides.new').css('margin-top', ((($(window).height() - 590) / 2)) + 'px');
-  $('.slide-content.cover .title').css('margin-left', 'auto');
   $('html.lesson-editor-layout ul#slides input').attr('autocomplete', 'off');
+  $('body').on('keydown blur', 'textarea[rows]', function(e) {
+    if($(this).parent().hasClass('only-title') && e.which == 13 && $(this).val().split("\n").length >= $(this).attr('rows')) {
+      return false;
+    }
+  });
 }
 
 /**
@@ -967,18 +971,24 @@ function initTinymce(tiny_id) {
     skin: 'desy',
     content_css: '/assets/tiny_mce_desy.css',
     plugins: plugins,
+    paste_preprocess: function(pl, o) {
+      o.content = stripTagsForCutAndPaste(o.content, '');
+    },
     theme_advanced_buttons1: buttons,
     theme_advanced_toolbar_location: 'external',
     theme_advanced_toolbar_align: 'left',
     theme_advanced_statusbar_location: false,
     theme_advanced_resizing: true,
-    theme_advanced_font_sizes: '1em=.size1,2em=.size2,3em=.size3,4em=.size4,5em=.size5,6em=.size6,7em=.size7',
+    theme_advanced_font_sizes: '10px=.size1,13px=.size2,17px=.size3,21px=.size4,25px=.size5,29px=.size6,35px=.size7',
     setup: function(ed) {
+      ed.onInit.add(function(ed, e) {
+        $('#' + tiny_id + '_ifr').attr('scrolling', 'no');
+      });
       ed.onKeyUp.add(function(ed, e) {
-        tinyMceCallbacks(ed,tiny_id);
+        tinyMceCallbacks(ed, tiny_id);
       });
       ed.onKeyDown.add(function(ed, e) {
-        tinyMceKeyDownCallbacks(ed,tiny_id);
+        tinyMceKeyDownCallbacks(ed, tiny_id);
       });
       ed.onClick.add(function(ed, e) {
         var textarea = $('#' + tiny_id);
@@ -1003,10 +1013,10 @@ function tinyMceCallbacks(inst, tiny_id) {
   if($('textarea#' + tiny_id).parent('.audio-content').length > 0) {
     maxH = 324;
   }
-  if (inst.getBody().scrollHeight > maxH) {
-    $(inst.getBody()).parentsUntil('table.mceLayout').css('border', '1px solid red');
+  if(inst.getBody().scrollHeight > maxH) {
+    $('#' + tiny_id + '_tbl').css('border', '1px solid red');
   } else {
-    $(inst.getBody()).parentsUntil('table.mceLayout').css('border', '1px solid white');
+    $('#' + tiny_id + '_tbl').css('border-left', '1px solid #EFEFEF').css('border-right', '1px solid #EFEFEF').css('border-top', '0').css('border-bottom', '0');
   }
 }
 
@@ -1025,4 +1035,57 @@ function tinyMceKeyDownCallbacks(inst, tiny_id) {
     span.parents('li').addClass(span.attr('class'));
     span.parentsUntil('li').attr('style', span.attr('style'));
   });
+}
+
+/**
+Function to strip tags in a text pasted inside TinyMCE.
+@method stripTagsForCutAndPaste
+@for LessonEditorTinyMCE
+@param str {String} string to be stripped
+@param allowed_tags {Array} allowed HTML tags
+**/
+function stripTagsForCutAndPaste(str, allowed_tags) {
+  var key = '', allowed = false;
+  var matches = [];
+  var allowed_array = [];
+  var allowed_tag = '';
+  var i = 0;
+  var k = '';
+  var html = '';
+  var replacer = function (search, replace, str) {
+    return str.split(search).join(replace);
+  };
+  if (allowed_tags) {
+    allowed_array = allowed_tags.match(/([a-zA-Z0-9]+)/gi);
+  }
+  str += '';
+  matches = str.match(/(<\/?[\S][^>]*>)/gi);
+  for(key in matches) {
+    if(isNaN(key)) {
+      continue;
+    }
+    html = matches[key].toString();
+    allowed = false;
+    for(k in allowed_array) {
+      allowed_tag = allowed_array[k];
+      i = -1;
+      if(i != 0) {
+        i = html.toLowerCase().indexOf('<' + allowed_tag + '>');
+      }
+      if(i != 0) {
+        i = html.toLowerCase().indexOf('<' + allowed_tag + ' ');
+      }
+      if(i != 0) {
+        i = html.toLowerCase().indexOf('</' + allowed_tag);
+      }
+      if(i == 0) {
+        allowed = true;
+        break;
+      }
+    }
+    if(!allowed) {
+      str = replacer(html, '', str);
+    }
+  }
+  return str;
 }

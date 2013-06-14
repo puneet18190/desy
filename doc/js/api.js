@@ -90,7 +90,8 @@ YUI.add("yuidoc-meta", function(Y) {
         "VirtualClassroomDocumentReady",
         "VirtualClassroomJavaScriptAnimations",
         "VirtualClassroomMultipleLoading",
-        "VirtualClassroomSendLink"
+        "VirtualClassroomSendLink",
+        "browserSupport"
     ],
     "modules": [
         "admin",
