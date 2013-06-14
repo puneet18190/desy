@@ -30,13 +30,13 @@
   
   <div class="mask <%= orientation %> <%= image.nil? ? 'hidden' : 'visible' %>">
     <div class="alignable" style="<%= alignment %>" data-slide-id="<%= slide.id %>" data-position="<%= position %>" data-rolloverable="true">
-      <img src="<%= url %>" class="_slide_image" <%= resize %>/>
+      <img src="<%= url %>" <%= resize %>/>
     </div>
-    <span class="add-image _show_image_gallery_in_lesson_editor _lesson_editor_rollover_content" data-position="<%= position %>" style="display:none" title="<%= t('titles.lesson_editor.change_image') %>"></span>
+    <span class="add    _lesson_editor_rollover_content" data-position="<%= position %>" style="display:none" title="<%= t('titles.lesson_editor.change_image') %>"></span>
     <%= text_field_tag "caption_#{position}", ((image.nil? || image.caption.blank?) ? t('lesson_editor.placeholders.image_caption') : image.caption), :class => 'caption _lesson_editor_placeholder', :maxlength => t("language_parameters.slide.length_caption.#{slide.kind}"), :data => {:placeholder => (image.nil? || image.caption.blank?)} %>
   </div>
   
-  <div class="<%= empty_mask_class %> <%= image.nil? ? 'visible' : 'block' %>">
+  <div class="add    <%= empty_mask_class %> <%= image.nil? ? 'visible' : 'block' %>">
     <a class="_show_image_gallery_in_lesson_editor" data-position="<%= position %>"></a>
     <br/>
     <p class="lower"><%= t('lesson_editor.choose_image') %></p>

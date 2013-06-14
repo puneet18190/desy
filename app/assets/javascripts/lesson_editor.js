@@ -235,7 +235,7 @@ Initializer for galleries.
 @for LessonEditorDocumentReady
 **/
 function lessonEditorDocumentReadyGalleries() {
-  $('body').on('click', '._show_image_gallery_in_lesson_editor', function() {
+  $('body').on('click', '.slide-content .image.editable .add', function() {
     showGalleryInLessonEditor(this, 'image');
   });
   $('body').on('click', '._show_audio_gallery_in_lesson_editor', function() {
