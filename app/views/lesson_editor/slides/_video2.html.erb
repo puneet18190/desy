@@ -1,3 +1,7 @@
 <%= form_tag save_slide_path(slide.lesson_id, slide.id), :method => :post, :remote => true, :id => "form-#{slide.id}" do %>
-    <%= render :partial => 'lesson_editor/slides/parts/video', :locals => {:slide => slide, :position => 1, :video => slide.video_at(1), :classes => ''} %>
+  
+  <div class="item video-container">
+    <%= render :partial => 'lesson_editor/slides/parts/video', :locals => {:slide => slide, :position => 1, :video => slide.video_at(1)} %>
+  </div>
+  
 <% end %>

@@ -1,9 +1,7 @@
-<%
-  title_content = slide.title.blank? ? t('lesson_editor.placeholders.title') : slide.title.gsub('<br/>', "\n").gsub('<br />', "\n").html_safe
-%>
-
 <%= form_tag save_slide_path(slide.lesson_id, slide.id), :method => :post, :remote => true, :id => "form-#{slide.id}", :autocomplete => 'off' do %>
-  <h2 class="only-title">
-    <%= text_area_tag :title, title_content, :class => '_lesson_editor_placeholder', :data => {:placeholder => slide.title.blank?}, :maxlength => t('language_parameters.slide.length_title'), :id => "title_slide_content_#{slide.id}", :rows => 3 %>
-  </h2>
+  
+  <div class="item title-container">
+    <%= text_area_tag :title, (slide.title.blank? ? t('lesson_editor.placeholders.title') : slide.title.gsub('<br/>', "\n").gsub('<br />', "\n").html_safe), :class => '_lesson_editor_placeholder', :data => {:placeholder => slide.title.blank?}, :maxlength => t('language_parameters.slide.length_title'), :id => "title_slide_content_#{slide.id}", :rows => 3 %>
+  </div>
+  
 <% end %>

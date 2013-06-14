@@ -1,18 +1,22 @@
-<div class="box">
-  <%= form_tag save_slide_path(slide.lesson_id, slide.id), :method => :post, :remote => true, :id => "form-#{slide.id}" do %>
+<%= form_tag save_slide_path(slide.lesson_id, slide.id), :method => :post, :remote => true, :id => "form-#{slide.id}" do %>
+  
+  <div class="image-container">
     <%= hidden_field_tag :title, slide.title %>
     <%= render :partial => 'lesson_editor/slides/parts/image', :locals => {:slide => slide, :position => 1, :image => slide.image_at(1), :classes => ''} %>
-  <% end %>
-  <div class="title">
-    <h2><%= slide.title %></h2>
+    
+    <div class="title-container">
+      <%= slide.title %>
+    </div>
+    
   </div>
-</div>
-
-<div class="cover-slide-footer">
-  <div class="subject pull-left">
-    <%= slide.lesson.subject.description %>
+  
+  <div class="footer-container">
+    <div class="subject pull-left">
+      <%= slide.lesson.subject.description %>
+    </div>
+    <div class="author pull-right">
+      <%= t('lessons.author') %>: <span class="name"><%=  current_user.full_name %></span>
+    </div>
   </div>
-  <div class="author pull-right">
-    <%= t('lessons.author') %>: <span class="name"><%=  current_user.full_name %></span>
-  </div>
-</div>
+  
+<% end %>

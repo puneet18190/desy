@@ -1,5 +1,11 @@
 <%= form_tag save_slide_path(slide.lesson_id, slide.id), :method => :post, :remote => true, :id => "form-#{slide.id}" do %>
-  <span class="spacer20"></span>
-  <%= render :partial => 'lesson_editor/slides/parts/image', :locals => {:slide => slide, :position => 1, :image => slide.image_at(1), :classes => 'cover-choose-image-right'} %>
-  <%= render :partial => 'lesson_editor/slides/parts/image', :locals => {:slide => slide, :position => 2, :image => slide.image_at(2), :classes => 'cover-choose-image-left'} %>
+  
+  <div class="item image-container">
+    <%= render :partial => 'lesson_editor/slides/parts/image', :locals => {:slide => slide, :position => 1, :image => slide.image_at(1)} %>
+  </div>
+  
+  <div class="item image-container">
+    <%= render :partial => 'lesson_editor/slides/parts/image', :locals => {:slide => slide, :position => 2, :image => slide.image_at(2)} %>
+  </div>
+  
 <% end %>
