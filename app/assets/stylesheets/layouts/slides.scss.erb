@@ -1,0 +1,2099 @@
+$orange: #f29400;
+
+@mixin colorLink {
+  
+  a  {
+    
+    color: $orange;
+    text-decoration: underline;
+    
+  }
+  
+}
+
+@mixin formatElement {
+  
+  width: 860px;
+  height: 550px;
+  padding: 20px;
+  display: inline-block;
+  background-color: #fff;
+  position: absolute;
+  top: 0;
+  
+}
+
+@mixin photoIconFormat {
+  
+  font-size: 2.8em;
+  background-position: -11.6em -11.6em;
+  opacity: 0.1;
+  width: 180px;
+  height: 180px;
+  
+}
+
+@mixin videoIconFormat {
+  
+  font-size: 2.8em;
+  background-position: -11.6em -0.3em;
+  opacity: 0.1;
+  width: 180px;
+  height: 180px;
+  
+}
+
+@mixin audioIconFormat {
+  
+  font-size: 0.45em;
+  background-position: -11.6em -5.5em;
+  opacity: 0.1;
+  
+}
+
+@mixin styleCaption {
+  
+  font-family: "Nunito", sans-serif;
+  background-color: rgba(50, 50, 50, 0.7);
+  color: #FAFAFA;
+  height: 35px;
+  display: block;
+  position: absolute;
+  left: auto;
+  bottom: 0px;
+  padding: 0 5px;
+  line-height: 35px;
+  font-size: 13px;
+  
+}
+
+@mixin formatList {
+  
+  ol {
+    
+    display: block;
+    list-style-type: decimal;
+    padding: 10px 40px;
+    margin: 0 1em;
+    
+  }
+  
+  ul {
+    
+    display: block;
+    list-style-type: disc;
+    padding: 10px 40px;
+    margin: 0 1em;
+    float: none;
+    
+  }
+  
+  li {
+    
+    float: none;
+    
+  }
+  
+}
+
+.zoomOutThumb {
+  
+  zoom: 27%;
+  -moz-transform: scale(0.27);
+  position: absolute;
+  
+  .slideCover {
+    
+    height: 590px;
+    position: absolute;
+    
+    .cover {
+      
+      width: 900px;
+      height: 560px;
+      overflow: hidden;
+      position: relative;
+      
+      img {
+        
+        position: absolute;
+        
+      }
+      
+    }
+    
+    .bg_text {
+      
+      background-color: rgba(242, 148, 0, 0.95);
+      height: 130px;
+      width: 860px;
+      padding: 0px 20px;
+      position: absolute;
+      top: 430px;
+      left: 0px;
+      
+      .lessonTitle {
+        
+        font: 100% 'Nunito', sans-serif;
+        color: #fff;
+        line-height: 50px;
+        font-size: 50px;
+        margin: 30px 0px 0px 0px;
+        
+      }
+      
+    }
+    
+    .cover-slide-footer {
+      
+      clear: both;
+      background-color: white;
+      color: #373737;
+      height: 16px;
+      width: 870px;
+      padding: 7px 15px;
+      font-size: 13px;
+      
+      .subject .h3 {
+        
+        font-family: Arial, sans-serif;
+        color: #373737;
+        
+      }
+      
+      .author .name {
+        
+        color: $orange;
+        
+      }
+      
+    }
+    
+  }
+  
+  .slideVideo {
+    
+    @include formatElement;
+    display: inline-block;
+    background-color: white;
+    
+    h2 {
+      
+      height: 86px;
+      
+    }
+    
+    .videoBig {
+      
+      @include formatElement;
+      padding: 0px;
+      background-color: #f1f1f1;
+      position: relative;
+      
+      .bulletPointVideo {
+        
+        top: 166px;
+        text-align: center;
+        
+      }
+      
+      .videoIcon {
+        
+        @include videoIconFormat;
+        margin-top: 178px;
+        margin-left: 328px;
+        
+      }
+      
+    }
+    
+    .videoMedium {
+      
+      width: 420px;
+      height: 420px;
+      background-color: #f1f1f1;
+      float: left;
+      position: relative;
+      
+      .videoIcon {
+        
+        @include videoIconFormat;
+        margin-top: 125px;
+        margin-left: 120px;
+        
+      }
+      
+    }
+    
+    .textRightVideoContent {
+      
+      float: right;
+      padding: 0px 10px;
+      width: 400px;
+      height: 400px;
+      overflow: hidden;
+      
+      a  {
+        
+        color: $orange;
+        text-decoration: underline;
+        
+      }
+      
+      p {
+        
+        margin-top: 0.8em;
+        margin-bottom: 0.8em;
+        
+      }
+      
+      @include formatList;
+      
+    }
+    
+  }
+  
+  
+  .slideAudio {
+    
+    @include formatElement;
+    
+    h2 {
+      
+      height: 100px;
+      
+    }
+    
+    .contentText {
+      
+      height: 310px;
+      overflow: hidden;
+      
+      p {
+        
+        margin-top: 0.3em;
+        margin-bottom: 0.8em;
+        
+      }
+      
+      @include formatList;
+      
+    }
+    
+    .audioBig {
+      
+      width: auto;
+      height: 71px;
+      margin: 5px 0 20px 0px;
+      background-color: #f1f1f1;
+      
+      .audioIcon {
+        
+        margin-top: 20px;
+        @include audioIconFormat;
+        margin-left: 408px;
+        
+      }
+      
+      &.with_title {
+        
+        background-color: black;
+        
+      }
+      
+      p {
+        
+        text-align: center;
+        padding-top: 30px;
+        
+      }
+      
+    }
+    
+  }
+  
+  .slideTitle {
+    
+    @include formatElement;
+    text-align: center;
+    display: table;
+    
+    h2 {
+      
+      display: table-cell;
+      vertical-align: middle;
+      padding: 0px 100px;
+      font-size: 70px;
+      line-height: 70px;
+      
+    }
+    
+  }
+  
+  .slideText {
+    
+    @include formatElement;
+    display: inline-block;
+    background-color: white;
+    
+    h2 {
+      
+      height: 93px;
+      
+    }
+    
+    .contentText {
+      
+      width: 840px;
+      height: 400px;
+      margin: 0;
+      padding: 0px 10px;
+      overflow: hidden;
+      @include colorLink;
+      
+      p {
+        
+        margin-top: 0.3em;
+        margin-bottom: 0.3em;
+        
+      }
+      
+      @include formatList;
+      
+    }
+    
+  }
+  
+  .slideImage {
+    
+    @include formatElement;
+    
+    h2 {
+      
+      height: 87px;
+      
+    }
+    
+    img {
+      
+      position: absolute;
+      
+    }
+    .big {
+      float:left;
+      width:860px;
+      height:550px;
+      background-color:#f1f1f1;
+      overflow:hidden;
+      position:relative;
+      .photoIcon {
+         @include photoIconFormat;
+         margin-top:178px;
+         margin-left:328px;
+      }
+     .caption {
+       @include styleCaption;
+       width:860px;
+     }
+    }
+    .boxFissoImage {
+      width:420px;
+      height:265px;
+      display:block;
+      }
+      .small {
+      background-color:#f1f1f1;
+      width:420px;
+      height:265px;
+      overflow:hidden;
+      position:relative;
+      .photoIcon {
+        @include photoIconFormat;
+        background-position: -11.6em -11.6em;
+        margin-top:70px;
+        margin-left:137px;
+        font-size:2em;
+        width:140px;
+        height:140px;
+      }
+      .caption {
+        @include styleCaption;
+        width:410px;
+      }
+    }
+  .medium {
+    float:left;
+    width:420px;
+    height:420px;
+    margin-right:20px;
+    margin-top:3px;
+    background-color:#f1f1f1;
+    overflow:hidden;
+    position:relative;
+    .photoIcon {
+      @include photoIconFormat;
+      margin-top:125px;
+      margin-left:125px;
+    }
+    .caption {
+      @include styleCaption;
+      width:410px;
+    }
+    &:last-child {
+      margin-right:0px;
+    }
+  }
+  .textRightContent {
+    float:right;
+    padding:0px 10px;
+    width:400px;
+    height:400px;
+    overflow:hidden;
+    @include formatList;
+    a {
+      color: $orange;
+      text-decoration:underline;  
+    }
+    p {
+      margin-top:0.8em;
+      margin-bottom:0.8em;
+    }
+  }
+  .mediumHeight {
+    float:left;
+    width:420px;
+    height:550px;
+    margin-right:20px;
+    background-color:#f1f1f1;
+    overflow:hidden;
+    position:relative;
+    .photoIcon {
+      @include photoIconFormat;
+      margin-top:194px;
+      margin-left:110px;
+    }
+    .caption {
+      @include styleCaption;
+      width:410px;
+    }
+    &:last-child {
+      margin-right:0px;
+    }
+    }
+  }
+}
+
+
+
+
+@mixin formatElement {
+    
+    width: 860px;
+    height: 550px;
+    padding: 20px;
+    display: inline-block;
+    background-color: #fff;
+    
+  }
+  
+  @mixin photoIconFormat {
+    
+    font-size: 2.8em;
+    background-position: -11.6em -11.6em;
+    opacity: 0.1;
+    width: 180px;
+    height: 180px;
+    
+  }
+  
+  @mixin videoIconFormat {
+    
+    font-size: 2.8em;
+    background-position: -11.6em -0.3em;
+    opacity: 0.1;
+    width: 180px;
+    height: 180px;
+    
+  }
+  
+  @mixin audioIconFormat {
+    
+    font-size: 0.45em;
+    background-position: -11.6em -5.5em;
+    opacity: 0.1;
+    
+  }
+  
+  @mixin styleCaption {
+    
+    font-family: "Nunito", sans-serif;
+    background-color: rgba(50, 50, 50, 0.7);
+    color: #FAFAFA;
+    height: 35px;
+    display: block;
+    position: absolute;
+    left: auto;
+    bottom: 0px;
+    padding: 0 5px;
+    line-height: 35px;
+    font-size: 13px;
+    
+  }
+  
+  .slideCover {
+    
+    height: 590px;
+    
+    .cover {
+      
+      width: 900px;
+      height: 560px;
+      overflow: hidden;
+      position: relative;
+      
+      img {
+        
+        position: absolute;
+        
+      }
+      
+    }
+    
+    .cover-slide-footer {
+      
+      clear: both;
+      background-color: white;
+      color: #373737;
+      height: 16px;
+      width: 870px;
+      padding: 7px 15px;
+      font-size: 13px;
+      
+      .author .name {
+        
+        color: $orange;
+        
+      }
+      
+    }
+    
+  }
+  
+  .slideTitle {
+    
+    @include formatElement;
+    
+    text-align: center;
+    display: table;
+    
+    h2 {
+      
+      display: table-cell;
+      vertical-align: middle;
+      padding: 0px 100px;
+      line-height: 70px;
+      font-size: 70px;
+      
+    }
+    
+  }
+  
+  .slideImage {
+    
+    @include formatElement;
+    
+    .medium {
+      
+      margin-top: 1px;
+      
+    }
+    
+    h2 {
+      
+      margin-bottom: 18px;
+      border-top: 1px solid white;
+      
+    }
+    
+    img {
+      
+      position: absolute;
+      
+    }
+    
+  }
+  
+  .slideText {
+    
+    @include formatElement;
+    @include formatList;
+    
+    h2 {
+      
+      margin-bottom: 18px;
+      
+    }
+    
+  }
+  
+  .slideVideo {
+    
+    @include formatElement;
+    
+    h2 {
+      
+      margin-bottom: 18px;
+      
+    }
+    
+  }
+  
+  .slideAudio {
+    
+    @include formatElement;
+    
+    h2 {
+      
+      height: 100px;
+      margin-bottom: 17px;
+      
+    }
+    
+    .contentText {
+      
+      height: 295px;
+      border-top: 2px solid white;
+      
+    }
+    
+    @include formatList;
+    
+  }
+  
+  .boxFissoImage {
+    
+    width: 420px;
+    height: 265px;
+    display: block;
+    
+  }
+  
+  .big {
+    
+    float: left;
+    width: 860px;
+    height: 550px;
+    background-color: #f1f1f1;
+    overflow: hidden;
+    position: relative;
+    
+    .photoIcon {
+      
+      @include photoIconFormat;
+      margin-top: 178px;
+      margin-left: 328px;
+      
+    }
+    
+    .caption {
+      
+      @include styleCaption;
+      width: 860px;
+      
+    }
+    
+  }
+  
+  .videoBig {
+    
+    width: 860px;
+    height: 550px;
+    background-color: #f1f1f1;
+    
+    .videoPlayer {
+      
+      height: 548px;
+      
+      a.play {
+        
+        margin-left: 10px;
+        
+      }
+      
+      a.pause {
+        
+        margin-left: 10px;
+        
+      }
+      
+      a.fullScreen {
+        
+        margin-right: 10px;
+        
+      }
+      
+      .videoSlider {
+        
+        width: 70%;
+        
+      }
+      
+    }
+    
+    .videoIcon {
+      
+      @include videoIconFormat;
+      margin-top: 178px;
+      margin-left: 328px;
+      
+    }
+    
+    video {
+      
+      width: 860px;
+      height: 484px;
+      margin-bottom: 10px;
+      
+    }
+    
+  }
+  
+  .videoMedium {
+    
+    width: 420px;
+    height: 420px;
+    background-color: #f1f1f1;
+    margin-top: 1px;
+    float: left;
+    
+    .videoPlayer {
+      
+      width: 420px;
+      margin: 0px;
+      
+      a.play {
+        
+        margin-left: 10px;
+        
+      }
+      
+      a.pause {
+        
+        margin-left: 10px;
+        
+      }
+      
+      a.fullScreen {
+        
+        margin-right: 10px;
+        
+      }
+      
+      .videoSlider {
+        
+        width: 55%;
+        margin-right: 10px;
+        margin-left: 10px;
+        
+      }
+      
+     }
+     
+    .videoIcon {
+      
+      @include videoIconFormat;
+      margin-top: 125px;
+      margin-left: 120px;
+      
+    }
+    
+    video {
+      
+      width: 420px;
+      height: 236px;
+      margin-bottom: 5px;
+      
+    }
+    
+    .video {
+      
+      width: 420px;
+      height: 243px;
+      background-color: #fff;
+      padding-bottom: 197px;
+      
+    }
+    
+  }
+  
+  .audioBig {
+    
+    width: auto;
+    height: 69px;
+    margin: 5px 0 20px 0px;
+    background-color: #f1f1f1;
+    
+    .audioIcon {
+      
+      margin-top: 20px;
+      @include audioIconFormat;
+      margin-left: 408px;
+      
+    }
+    
+    .audio {
+      
+      width: 860px;
+      padding-bottom: 5px;
+      background-color: #fff;
+      
+    }
+    
+    .audioPlayer {
+      
+      padding: 19px 20px 5px 18px;
+      margin: 0;
+      width: 822px;
+      position: relative;
+      
+    }
+    
+  }
+  
+  .medium {
+    
+    float: left;
+    width: 420px;
+    height: 420px;
+    margin-right: 20px;
+    margin-top: 3px;
+    background-color: #f1f1f1;
+    overflow: hidden;
+    position: relative;
+    
+    .photoIcon {
+      
+      @include photoIconFormat;
+      margin-top: 125px;
+      margin-left: 125px;
+      
+    }
+    
+    .caption {
+      
+      @include styleCaption;
+      width: 410px;
+      
+    }
+    
+    &:last-child {
+      
+      margin-right: 0px;
+      
+    }
+    
+  }
+  
+  .mediumHeight {
+    
+    float: left;
+    width: 420px;
+    height: 550px;
+    margin-right: 20px;
+    background-color: #f1f1f1;
+    overflow: hidden;
+    position: relative;
+    
+    .photoIcon {
+      
+      @include photoIconFormat;
+      margin-top: 194px;
+      margin-left: 110px;
+      
+    }
+    
+    .caption {
+      
+      @include styleCaption;
+      width: 410px;
+      
+    }
+    
+    &:last-child {
+      
+      margin-right: 0px;
+      
+    }
+  }
+  
+  .bigViewLesson {
+    
+    float: left;
+    padding: 0;
+    position: relative;
+    
+    .bg_text {
+      
+      background-color: rgba(242, 148, 0, 0.95);
+      height: 130px;
+      width: 900px;
+      padding: 0;
+      position: absolute;
+      top: 430px;
+      left: 0px;
+      
+      .lessonTitle {
+        
+        font: 100% 'Nunito', sans-serif;
+        color: #fff;
+        line-height: 50px;
+        font-size: 50px;
+        margin: 20px;
+        
+      }
+      
+    }
+    
+    .lessonSubject {
+      
+      font-size: 13px;
+      clear: both;
+      width: 870px;
+      padding: 6px 15px;
+      position: absolute;
+      bottom: 0;
+      background-color: #fff;
+      
+      span {
+        
+        float: right;
+        
+      }
+      
+    }
+    
+  }
+  
+  .small {
+    
+    background-color: #f1f1f1;
+    width: 420px;
+    height: 265px;
+    overflow: hidden;
+    position: relative;
+    
+    .photoIcon {
+      
+      @include photoIconFormat;
+      background-position: -11.6em -11.6em;
+      margin-top: 70px;
+      margin-left: 137px;
+      font-size: 2em;
+      width: 140px;
+      height: 140px;
+      
+    }
+    
+    .caption {
+      
+      @include styleCaption;
+      width: 410px;
+      
+    }
+    
+  }
+  
+  .textRightContent {
+    
+    float: right;
+    padding: 8px;
+    width: 402px;
+    height: 420px;
+    overflow: hidden;
+    font-size: 13px;
+    border: 1px solid white;
+    margin-top: 1px;
+    
+    a {
+      
+      color: $orange;
+      text-decoration: underline;
+      
+    }
+    
+    @include formatList;
+    
+  }
+  
+  .textRightVideoContent {
+    
+    float: right;
+    padding: 8px;
+    width: 402px;
+    height: 402px;
+    overflow: hidden;
+    font-size: 13px;
+    border: 1px solid white;
+    
+    a {
+      
+      color: $orange;
+      text-decoration: underline;
+      
+    }
+    
+    @include formatList;
+    
+  }
+  
+  .contentText {
+    
+    width: 841px;
+    height: 405px;
+    margin: 0;
+    padding: 8px;
+    line-height: 13px;
+    overflow: hidden;
+    border: 1px solid white;
+    
+    a  {
+      
+      color: $orange;
+      text-decoration: underline;
+      
+    }
+    
+    p {
+      
+      margin-bottom: 13px;
+      
+    }
+    
+  }
+  
+  
+  
+  .size1 {
+    
+    font-size: 10px;
+    line-height: 11px;
+    
+  }
+  
+  .size2 {
+    
+    font-size: 13px;
+    line-height: 14px;
+    
+  }
+  
+  .size3 {
+    
+    font-size: 17px;
+    line-height: 19px;
+    
+  }
+  
+  .size4 {
+    
+    font-size: 21px;
+    line-height: 23px;
+    
+  }
+  
+  .size5 {
+    
+    font-size: 25px;
+    line-height: 27px;
+    
+  }
+  
+  .size6 {
+    
+    font-size: 29px;
+    line-height: 32px;
+    
+  }
+  
+  .size7 {
+    
+    font-size: 35px;
+    line-height: 39px;
+    
+  }
+  
+  /* dentro ul.slides
+  .desySkin table.mceLayout {
+        
+        border-left: 1px solid #EFEFEF;
+        border-right: 1px solid #EFEFEF;
+        
+      }
+      
+      .desySkin .mceIframeContainer {
+        
+        border-bottom: 1px solid #EFEFEF;
+        border-top: 1px solid #EFEFEF;
+        
+        
+              input, textarea {
+        
+        color: $orange;
+        border: 1px solid #efefef;
+        resize: none;
+        font-size: 13px;
+        
+      }
+      
+      textarea {
+        
+        overflow: hidden;
+        
+      }
+      
+      input.caption {
+        
+        font-family: "Nunito", sans-serif;
+        border: 1px solid transparent;
+        outline: none;
+        width: 890px;
+        height: 35px;
+        background-color: rgba(50,50,50,0.7);
+        color: rgba(250,250,250,1);
+        display: block;
+        position: absolute;
+        left: auto;
+        top: 515px;
+        padding: 0 5px;
+        line-height: 35px;
+
+
+
+      &.cover {
+        
+        .title {
+          
+          background-color: rgba(242,148,0,0.95);
+          height: 130px;
+          padding: 0;
+          width: 900px;
+          position: absolute;
+          left: auto;
+          top: 430px;
+          
+          h2 {
+            
+            color: rgba(255,255,255,1);
+            
+          }
+          
+        }
+        
+        .mask {
+          
+          width: 900px;
+          height: 560px;
+          margin: 0;
+          padding: 0;
+          overflow: hidden;
+          position: relative;
+          
+          img {
+            
+            display: block;
+            cursor: url(https://mail.google.com/mail/images/2/openhand.cur), move;
+            
+          }
+          
+        }
+        
+        span.add-image {
+          
+          width: 130px;
+          height: 130px;
+          font-size: 130px;
+          margin: 210px 0 0 387px;
+          display: block;
+          background: url('/assets/icone_piene.svg') -260px center no-repeat transparent;
+          background-size: 780px 130px;
+          cursor: pointer;
+          position: absolute;
+          top: 0;
+          left: 0;
+          opacity: 0.80;
+          
+        }
+        
+        span.add-image:hover {
+          
+          background-position: -390px center;
+          
+        }
+        
+        ._mask_x {
+          
+          img {
+            
+            height: 560px;
+            left: 0;
+            
+          }
+          
+        }
+        
+        ._mask_y {
+          
+          img {
+            
+            width: 900px;
+            top: 0;
+            
+          }
+          
+        }
+        
+        input.caption {
+          
+          display: none;
+          
+        }
+        
+        .cover-slide-footer {
+          
+          clear: both;
+          background-color: #fff;
+          color: #373737;
+          height: 16px;
+          width: 870px;
+          padding: 7px 15px;
+          font-size: 13px;
+          
+          .subject .h3 {
+            
+            font-family: Arial, sans-serif;
+            color: #373737;
+            
+          }
+          
+          .author .name {
+            
+            color: $orange;
+            
+          }
+          
+        }
+        
+      }
+
+
+
+        
+      }
+
+        
+      } 
+      
+      
+      
+      
+      .slide-content {
+        
+        width: 900px;
+        height: 590px;
+        margin-left: 0px;
+        background-color: white;
+        overflow: hidden;
+        -webkit-box-shadow: 0px 6px 16px #161515;
+        box-shadow: 0px 6px 16px #161515;
+        
+        h2 input {
+          
+          font-family: "Nunito", Helvetica, sans-serif;
+          
+        }
+        
+        &.title {
+          
+          .only-title textarea {
+            
+            padding: 150px 100px;
+            width: 655px;
+            height: 250px;
+            margin: 0px;
+            text-align: center;
+            font-size: 70px;
+            line-height: 70px;
+            color: $orange;
+            font-family: "Nunito", sans-serif;
+            
+          }
+          
+        }
+        
+        &.text {
+          
+          width: 900px;
+          height: 590px;
+          
+          h2.text input {
+            
+            font-size: 54px;
+            padding: 10px;
+            width: 840px;
+            height: 94px;
+            font-family: "Nunito", sans-serif;
+            
+          }
+          
+          .text-content {
+            
+            margin-left: 20px;
+            
+            textarea {
+              
+              padding: 10px;
+              width: 840px;
+              height: 395px;
+              overflow: hidden;
+              
+            }
+            
+          }
+          
+          .cover-choose-image {
+            
+            margin: 0 20px;
+            width: 860px;
+            height: 405px;
+            padding: 145px 0 0;
+            
+            a {
+              
+              margin: 0 auto 0;
+              
+            }
+            
+          }
+          
+        }
+        
+        &.audio {
+          
+          padding: 0;
+          height: 590px;
+          width: 900px;
+          
+          h2 input {
+            
+            font-size: 54px;
+            padding: 10px;
+            width: 840px;
+            height: 94px;
+            
+          }
+          
+          .audio-content {
+            
+            width: 860px;
+            margin: 0 0 0 20px;
+            display: block;
+            
+            textarea {
+              
+              margin-top: 20px;
+              width: 840px;
+              height: 300px;
+              padding: 10px;
+              
+            }
+            
+          }
+          
+          .cover-choose-image {
+            
+            margin: 5px 0 20px 20px;
+            width: 860px;
+            height: 61px;
+            padding-top: 10px;
+            display: block;
+            font-size: 10px;
+            
+            a {
+              
+              width: 35px;
+              height: 35px;
+              background-position: 0 center;
+              background-size: 210px 35px;
+              
+            }
+            
+            a:hover {
+              
+              background-position: -105px center;
+              
+            }
+            
+          }
+          
+          span.add-audio {
+            
+            $button-sizeAudio: 2.5rem;
+            width: $button-sizeAudio;
+            height: $button-sizeAudio;
+            background: url('/assets/add_audio_plus.svg') 0  no-repeat transparent;
+            background-size: ($button-sizeAudio*2);
+            cursor: pointer;
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            opacity: 1;
+            font-size: 1.6em;
+            
+            &:hover {
+              
+              background-position: (-$button-sizeAudio);
+              
+            }
+            
+          }
+          
+        }
+        
+        &.video2 {
+          
+          padding: 0px;
+          height: 590px;
+          width: 900px;
+          display: block;
+          position: relative;
+          
+          .videoPlayer {
+            
+            height: 548px;
+            margin: 20px 20px 0px 20px;
+            
+            a.play {
+              
+              margin-left: 10px;
+              
+            }
+            
+            a.pause {
+              
+              margin-left: 10px;
+              
+            }
+            
+            a.fullScreen {
+              
+              margin-right: 10px;
+              
+            }
+            
+            .videoSlider {
+              
+              width: 70%;
+              
+            }
+            
+          }
+          
+          video {
+            
+            margin-bottom: 10px;
+            width: 860px;
+            height: 484px;
+            
+          }
+          
+          .cover-choose-image {
+            
+            margin: 20px 20px;
+            width: 860px;
+            height: 410px;
+            height: 356px;
+            padding: 194px 0 0;
+            display: block;
+            
+            a {
+              
+              background-position: -130px center;
+              
+            }
+            
+            a:hover {
+              
+              background-position: -390px center;
+              
+            }
+            
+          }
+          
+          span.add-video {
+            
+            width: 130px;
+            height: 130px;
+            font-size: 130px;
+            margin: 210px 0 0 387px;
+            display: block;
+            background: url('/assets/icone_piene.svg') -128px center no-repeat transparent;
+            background-size: 780px 130px;
+            cursor: pointer;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0.80;
+            
+          }
+          
+          span.add-video:hover {
+            
+            background-position: -388px center;
+            
+          }
+          
+        }
+        
+        &.video1 {
+          
+          padding: 0;
+          height: 590px;
+          width: 900px;
+          
+          .video1-p1 {
+            
+            position: relative;
+            
+            .videoPlayer {
+              
+              width: 420px;
+              margin: 0px 0px 0px 20px;
+              float: left;
+              
+              a.play {
+                
+                margin-left: 10px;
+                
+              }
+              
+              a.pause {
+                
+                margin-left: 10px;
+                
+              }
+              
+              a.fullScreen {
+                
+                margin-right: 10px;
+                
+              }
+              
+              .videoSlider {
+                
+                width: 55%;
+                margin-right: 10px;
+                margin-left: 10px;
+                
+              }
+              
+            }
+            
+            span.add-video {
+              
+              width: 130px;
+              height: 130px;
+              font-size: 130px;
+              margin: 70px 0 0 160px;
+              display: block;
+              background: url('/assets/icone_piene.svg') -130px center no-repeat transparent;
+              background-size: 780px 130px;
+              cursor: pointer;
+              position: absolute;
+              top: 0;
+              left: 0;
+              opacity: 0.80;
+              
+            }
+            
+            span.add-video:hover {
+              
+              background-position: -390px center;
+              
+            }
+            
+          }
+          
+          video {
+            
+            width: 420px;
+            height: 236px;
+            margin-bottom: 5px;
+            float: left;
+            
+          }
+          
+          h2 input {
+            
+            font-size: 54px;
+            padding: 10px;
+            width: 840px;
+            height: 94px;
+            
+          }
+          
+          .video1-content {
+            
+            float: right;
+            margin: 0 20px 0 0;
+            display: block;
+            
+            textarea {
+              
+              width: 398px;
+              height: 396px;
+              padding: 10px;
+              
+            }
+          
+          }
+          
+          .cover-choose-image {
+            
+            margin: 0 0 0 20px;
+            width: 420px;
+            height: 280px;
+            display: block;
+            
+            a {
+              
+              background-position: -130px center;
+              
+            }
+            
+            a:hover {
+              
+              background-position: -390px center;
+              
+            }
+            
+          }
+          
+        }
+        
+        &.image4 {
+          
+          .mask.image4-p1,.mask.image4-p2,.mask.image4-p3,.mask.image4-p4 {
+            
+            display: block;
+            width: 420px;
+            height: 265px;
+            margin: 0;
+            padding: 0;
+            float: left;
+            
+          }
+          
+          .mask {
+            
+            width: 420px;
+            height: 265px;
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+            position: relative;
+            
+            img {
+              
+              display: block;
+              cursor: url(https://mail.google.com/mail/images/2/openhand.cur), move;
+              
+            }
+            
+            &.image4-p1,&.image4-p3 {
+              
+              float: right;
+              margin: 20px 20px 0 0;
+              
+            }
+            
+            &.image4-p2,&.image4-p4 {
+              
+              float: left;
+              margin: 20px 0 0 20px;
+              
+            }
+            
+          }
+          
+          span.add-image {
+            
+            background-attachment: scroll;
+            background-clip: border-box;
+            background-color: transparent;
+            background-image: url("/assets/icone_piene.svg");
+            background-origin: padding-box;
+            background-position: -2em center;
+            background-repeat: no-repeat;
+            background-size: 6em 1em;
+            cursor: pointer;
+            display: block;
+            font-size: 8em;
+            height: 1em;
+            left: 0;
+            margin: 0.8em 0 0 1.7em;
+            opacity: 0.8;
+            position: absolute;
+            top: 0;
+            width: 1em;
+            
+          }
+          
+          span.add-image:hover {
+            
+            background-position: -3em center;
+            
+          }
+          
+          ._mask_x {
+            
+            img {
+              
+              height: 265px;
+              left: 0;
+              
+            }
+            
+          }
+          
+          ._mask_y {
+            
+            img {
+              
+              width: 420px;
+              top: 0;
+              
+            }
+            
+          }
+          
+          input.caption {
+            
+            top: 230px;
+            width: 420px;
+          }
+        }
+        &.image3{
+          padding: 0;
+          height: 590px;
+          width: 900px;
+          display:block;
+          .mask{
+            width: 860px;
+            height: 550px;
+            padding: 0;
+            margin: 0 20px;
+            overflow:hidden;
+            position:relative;
+            img{
+              display:block;
+              cursor: url(https://mail.google.com/mail/images/2/openhand.cur), move;
+            }
+          }
+            span.add-image{
+              width: 130px;
+              height: 130px;
+              font-size: 130px;
+              margin: 210px 0 0 387px;
+              display:block;
+              background:url('/assets/icone_piene.svg') -260px center no-repeat transparent;
+              background-size: 780px 130px;
+              cursor: pointer;
+              position:absolute;
+              top:0;
+              left:0;
+              opacity:0.80;
+            }
+           span.add-image:hover{
+             background-position: -390px center;
+           }
+          ._mask_x{
+            img{
+              height: 550px;
+              left:0;
+            }
+          }
+          ._mask_y{
+            img{
+              width: 860px;
+              top:0;
+            }
+          }
+          .cover-choose-image{
+            margin: 0 20px;
+            width: 860px;
+            height: 356px;
+            padding: 194px 0 0;
+            a{
+              margin-top:0;
+            }
+          }
+        }
+        
+        &.image2{
+          padding: 0;
+          height: 590px;
+          width: 900px;
+          position:relative;
+          .mask{
+            width: 420px;
+            height: 550px;
+            padding: 0;
+            overflow:hidden;
+            position:relative;
+            &.image2-p1{
+              float:right;
+              margin: 0 20px 0 0;
+            }
+            &.image2-p2{
+              float:left;
+              margin: 0 0 0 20px;
+            }
+            img{
+              display:block;
+              cursor: url(https://mail.google.com/mail/images/2/openhand.cur), move;
+            }
+
+            span.add-image{
+              width: 130px;
+              height: 130px;
+              font-size: 130px;
+              margin: 190px 0 0 150px;
+              display:block;
+              background:url('/assets/icone_piene.svg') -260px center no-repeat transparent;
+              background-size: 780px 130px;
+              cursor: pointer;
+              position:absolute;
+              top:0;
+              left:0;
+              opacity:0.80;
+            }
+           span.add-image:hover{
+             background-position: -390px center;
+           }
+          }
+          ._mask_x{
+            img{
+              height: 550px;
+              left:0;
+            }
+          }
+          ._mask_y{
+            img{
+              width: 420px;
+              top:0;
+            }
+          }
+          .cover-choose-image{
+            width: 420px;
+            height: 410px;
+            a{
+              margin: 70px auto 0;
+            }
+          }
+          .cover-choose-image-right{
+            margin: 0 20px 0 0;
+          }
+          .cover-choose-image-left{
+            margin: 0 0 0 20px;
+          }
+        }
+        &.image1{
+          height: 590px;
+          width: 900px;
+          
+          
+          h2 input {
+            
+            font-size: 54px;
+            padding: 10px;
+            width: 840px;
+            height: 94px;
+            
+          }
+          
+          .mask{
+            width: 420px;
+            height: 420px;
+            overflow: hidden;
+            position: relative;
+            float: left;
+            margin-left: 20px;
+            
+            img{
+              display:block;
+              cursor: url(https://mail.google.com/mail/images/2/openhand.cur), move;
+            }
+          }
+
+          span.add-image{
+            width: 130px;
+            height: 130px;
+            font-size: 130px;
+            margin: 145px 0 0 150px;
+            display:block;
+            background:url('/assets/icone_piene.svg') -260px center no-repeat transparent;
+            background-size: 780px 130px;
+            cursor: pointer;
+            position:absolute;
+            top:0;
+            left:0;
+            opacity:0.80;
+           }
+           span.add-image:hover{
+             background-position: -390px center;
+           }
+          ._mask_x{
+            img{
+              height: 420px;
+              left:0;
+            }
+          }
+          ._mask_y{
+            img{
+              width: 420px;
+              top:0;
+            }
+          }
+          
+          .cover-choose-image{
+            margin: 0px;
+            width: 420px;
+            height: 280px;
+            display:block;
+            margin-left:20px;
+            a{
+              font-size: 100px;
+            }  
+          }
+          
+          input.caption{
+            top: 385px;
+            width: 440px;
+          }
+          
+          .image1-content{
+            float:right;
+            margin-right: 20px;
+            textarea{
+              padding: 10px;
+              width: 398px;
+              height: 396px;
+            }
+          }
+        }
+        
+        .new_slide{
+          position:absolute;
+          z-index:9999;
+          height: 570px;
+          width: 860px;
+          background-color: $orange;
+          padding: 20px 0 0 40px;
+          opacity: 1;
+          a img{
+            -moz-opacity: .50;
+            filter: alpha(opacity = 50);
+            opacity: .50;
+          }
+          a:hover img{
+            -moz-opacity: 1;
+            filter: alpha(opacity = 100);
+            opacity: 1;
+          }
+        }
+      }
+      
+      
+      .cover-choose-image {
+    
+    text-align: center;
+    display: block;
+    width: 900px;
+    height: 420px;
+    color: #999;
+    background-color: #f1f1f1;
+    font-size: 16px;
+    padding-top: 140px;
+    
+    a {
+      
+      width: 1em;
+      height: 1em;
+      display: block;
+      padding: 0;
+      margin: 0 auto 10px;
+      background: url('/assets/icone_piene.svg');
+      background-position: -2em center;
+      background-size: 6em 1em;
+      background-repeat: no-repeat;
+      background-color: transparent;
+      font-size: 130px;
+      
+    }
+    
+    a:hover {
+      
+      background-position: -3em center;
+      
+    }
+    
+    img {
+      display:none;
+    }
+    &.choose-small{
+      padding: 0;
+      margin:20px 0 0;
+      width: 420px;
+      height: 265px;
+      text-align:center;
+      a{
+        margin-top:1em;
+        width: 1em;
+        height: 1em;
+        font-size: 80px;
+        background-size: 6em 1em;
+        background-position: -2em center;
+        background-repeat: no-repeat;
+        background-color: transparent;
+      }
+      a:hover{
+        background-position: -3em center;
+      }
+      img{
+        display:none;
+      }
+      &.cover-choose-image-left{
+        margin-left: 20px;
+      }
+      &.cover-choose-image-right{
+        margin-right: 20px;
+      }
+    }
+    &.cover-choose-image-left{
+      float:left;
+    }
+    &.cover-choose-image-right{
+      float:right;
+    }
+  }
+
+      
+      
+      */
+      
+      /** tinyMce style **/
+.tinymce{
+  margin-left: 20px;
+}
+
+      
