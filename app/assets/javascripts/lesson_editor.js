@@ -138,15 +138,15 @@ function lessonEditorDocumentReadyAddMediaElement() {
       full_place.show();
       $('#' + place_id + ' ._empty_image_in_slide').hide();
     }
-    var old_mask = '_mask_x';
-    var new_mask = '_mask_y';
+    var old_mask = 'horizontal';
+    var new_mask = 'vertical';
     var old_orientation = 'width';
     var orientation = 'height';
     var orientation_val = resizeHeight(image_width, image_height, current_slide.data('kind'));
     var to_make_draggable = 'y';
     if(isHorizontalMask(image_width, image_height, current_slide.data('kind'))) {
-      old_mask = '_mask_y';
-      new_mask = '_mask_x';
+      old_mask = 'vertical';
+      new_mask = 'horizontal';
       old_orientation = 'height';
       orientation = 'width';
       orientation_val = resizeWidth(image_width, image_height, current_slide.data('kind'));
@@ -754,7 +754,7 @@ Inizializes jQueryUI <b>draggable</b> function on slide image containers (to und
 function makeDraggable(place_id) {
   var full_place = $('#' + place_id + ' .mask');
   var axe = 'x';
-  if(full_place.hasClass('_mask_y')) {
+  if(full_place.hasClass('vertical')) {
     axe = 'y';
   }
   var image = $('#' + place_id + ' .mask img');

@@ -5,11 +5,11 @@
     width = image.media_element.width
     height = image.media_element.height
     url = image.media_element.url
-    mask = '_mask_y'
+    orientation = 'vertical'
     style = "top:#{image.alignment}px"
     resize = "height=\"#{resize_height(width, height, slide.kind)}\""
     if is_horizontal?(width, height, slide.kind)
-      mask = '_mask_x'
+      orientation = 'horizontal'
       style = "left:#{image.alignment}px"
       resize = "width=\"#{resize_width(width, height, slide.kind)}\""
     end
@@ -27,7 +27,7 @@
     <%= hidden_field_tag "media_element_#{position}", '', :class => 'image-id' %>
   <% end %>
   
-  <div class="mask <%= mask %> <%= image.nil? ? 'hidden' : 'visible' %>">
+  <div class="mask <%= orientation %> <%= image.nil? ? 'hidden' : 'visible' %>">
     <div class="_rolloverable" style="<%= style %>" data-slide-id="<%= slide.id %>" data-position="<%= position %>" data-rolloverable="true">
       <img src="<%= url %>" class="_slide_image" <%= resize %>/>
     </div>
