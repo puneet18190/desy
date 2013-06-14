@@ -128,7 +128,7 @@ function lessonEditorDocumentReadyAddMediaElement() {
     var current_slide = $('li._lesson_editor_current_slide');
     var position = $('#info_container').data('current-media-element-position');
     var place_id = 'media_element_' + position + '_in_slide_' + current_slide.data('slide-id');
-    $('#' + place_id + ' ._input_image_id').val(image_id);
+    $('#' + place_id + ' .image-id').val(image_id);
     $('#' + place_id + ' .align').val('0');
     var image_url = $(this).data('url');
     var image_width = $(this).data('width');

@@ -35,10 +35,10 @@
         
         <% if image %>
           <%= hidden_field_tag "media_element_align_#{position}", image.alignment.to_s, :class => 'align' %>
-          <%= hidden_field_tag "media_element_#{position}", image.media_element_id, :class => "media-tag-#{position} _input_image_id" %>
+          <%= hidden_field_tag "media_element_#{position}", image.media_element_id, :class => 'image-id' %>
         <% else %>
           <%= hidden_field_tag "media_element_align_#{position}", '0', :class => 'align' %>
-          <%= hidden_field_tag "media_element_#{position}", '', :class => "media-tag-#{position} _input_image_id" %>
+          <%= hidden_field_tag "media_element_#{position}", '', :class => 'image-id' %>
         <% end %>
         
         <div class="mask <%= slide.kind %>-p<%= position %> <%= mask %> _full_image_in_slide" style="display:<%= image.nil? ? 'none'.html_safe : 'block'.html_safe %>">
