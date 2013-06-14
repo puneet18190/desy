@@ -982,6 +982,9 @@ function initTinymce(tiny_id) {
     theme_advanced_resizing: true,
     theme_advanced_font_sizes: '10px=.size1,13px=.size2,17px=.size3,21px=.size4,25px=.size5,29px=.size6,35px=.size7',
     setup: function(ed) {
+      ed.onInit.add(function(ed, e) {
+        $('#' + tiny_id + '_ifr').attr('scrolling', 'no');
+      });
       ed.onKeyUp.add(function(ed, e) {
         tinyMceCallbacks(ed, tiny_id);
       });
