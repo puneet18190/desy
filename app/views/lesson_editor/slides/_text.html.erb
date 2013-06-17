@@ -6,7 +6,7 @@
     </div>
     
     <div class="item text-container">
-      <%= text_area_tag :text, (slide.text.blank? ? t('lesson_editor.placeholders.text') : slide.text.html_safe), :id => "ta-#{slide.id}", :class => 'tinymce _lesson_editor_placeholder', :data => {:placeholder => slide.text.blank?} %>
+      <%= text_area_tag :text, (slide.text.blank? ? t('lesson_editor.placeholders.text') : slide.text.html_safe), :id => "ta-#{slide.id}", :class => '_lesson_editor_placeholder', :data => {:placeholder => slide.text.blank?} %>
     </div>
     
   <% end %>
