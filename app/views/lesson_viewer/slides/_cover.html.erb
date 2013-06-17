@@ -2,21 +2,24 @@
   image = slide.image_at(1)
   author = slide.lesson.user
   subject = slide.lesson.subject
-  image_height = resize_height(image.media_element.width,image.media_element.height,"cover") if !image.nil?
-  image_width = resize_width(image.media_element.width,image.media_element.height,"cover") if !image.nil?
+  image_height = resize_height(image.media_element.width,image.media_element.height,"cover") if image
+  image_width = resize_width(image.media_element.width,image.media_element.height,"cover") if image
 %>
 
 
 <div class="slide-content cover">
   
   <div class="image-container">
-    <% if image %>
-      <% if is_horizontal?(image.media_element.width,image.media_element.height,"cover")%>
-        <%= image_tag image.media_element.url, :style => "left:#{image.alignment}px; height: 540px; width: #{image_width}px" %>
-      <% else %>
-        <%= image_tag image.media_element.url, :style => "top:#{image.alignment}px; width: 900px;height: #{image_height}px" %>
+    
+    <div class="image not-editable">
+      <% if image %>
+        <% if is_horizontal?(image.media_element.width,image.media_element.height,"cover")%>
+          <%= image_tag image.media_element.url, :style => "left:#{image.alignment}px; height: 540px; width: #{image_width}px" %>
+        <% else %>
+          <%= image_tag image.media_element.url, :style => "top:#{image.alignment}px; width: 900px;height: #{image_height}px" %>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
     
     <div class="title-container">
       <div class="lessonTitle"><%= slide.lesson.title %></div>

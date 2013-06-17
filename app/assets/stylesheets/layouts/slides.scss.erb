@@ -66,8 +66,8 @@
   
   &.cover {
     
-    height: 590px;
     width: 900px;
+    height: 590px;
     padding: 0;
     
     .image-container {
@@ -75,6 +75,21 @@
       height: 560px;
       
       .image {
+        
+        &.not-editable {
+          
+          width: 900px;
+          height: 560px;
+          overflow: hidden;
+          position: relative;
+          
+          img {
+            
+            position: absolute;
+            
+          }
+          
+        }
         
         &.editable {
           
@@ -2341,11 +2356,11 @@ $orange: #f29400;
 
       
       
-      */
+ 
       
-      /** tinyMce style **/
+
 .tinymce{
   margin-left: 20px;
 }
 
-      
+           */
