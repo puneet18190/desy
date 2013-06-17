@@ -1,5 +1,4 @@
-https = RbConfig::CONFIG['host_os'] !~ /mswin|mingw|cygwin/
-source https ? 'https://rubygems.org': 'http://rubygems.org'
+source 'https://rubygems.org'
 
 gem 'rails', '3.2.13'
 gem 'pg'
@@ -18,7 +17,7 @@ end
 
 group :development do
   gem 'rails-erd'
-  gem 'mailcatcher'
+  gem 'mailcatcher', platforms: :ruby
   # Basta assets che monopolizzano il log dell'application server!
   gem 'quiet_assets'
   gem 'irb-benchmark'
@@ -37,7 +36,7 @@ gem 'jquery-rails', '~> 2.1.4'
 gem 'schema_plus'
 gem 'recursive-open-struct'
 gem "subexec", :github => "ProGNOMmers/subexec"
-gem 'mini_magick'
+gem 'mini_magick', :git => 'git://github.com/minimagick/minimagick.git', :ref => '6d0f8f953112cce6324a524d76c7e126ee14f392'
 gem 'carrierwave'
 gem 'tinymce-rails'
 gem 'tinymce-rails-langs'
@@ -45,9 +44,10 @@ gem 'kaminari'
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'unicorn', :platforms => :ruby
 gem 'daemons'
-gem 'eventmachine'
+gem 'eventmachine', platforms: :ruby
 gem 'delayed_job_active_record'
 gem 'ancestry'
 gem 'exception_notification', :github => "ProGNOMmers/exception_notification", :group => :production
 gem 'facter'
 gem 'whenever', :require => false
+gem 'win32-dir', platforms: :mingw
