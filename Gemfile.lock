@@ -7,9 +7,9 @@ GIT
 
 GIT
   remote: git://github.com/ProGNOMmers/subexec.git
-  revision: ccd3f062dd513a8d6bbe1de01e97224d2ef830c8
+  revision: a22d9d56c666f081ac1f9b6bab11e641c9e3274d
   specs:
-    subexec (0.2.2)
+    subexec (0.2.3)
 
 GIT
   remote: git://github.com/minimagick/minimagick.git
