@@ -31,7 +31,7 @@
  *= require profile
  *= require icon_button_popup
  *= require layouts/lesson_editor
- *= require layouts/lesson_editor_thumbnails
+ *= require layouts/slides
  *= require layouts/lesson_viewer
  *= require layouts/media_element_editor
  *= require tags_container

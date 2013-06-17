@@ -1,8 +1,19 @@
+@mixin photoIconFormat {
+  
+  font-size: 2.8em;
+  background-position: -11.6em -11.6em;
+  width: 180px;
+  height: 180px;
+  
+}
+
 .slide-content {
   
   height: 550px;
   width: 860px;
   padding: 20px;
+  -webkit-box-shadow: 0px 6px 16px #161515;
+  box-shadow: 0px 6px 16px #161515;
   
   .item {
     
@@ -59,6 +70,45 @@
       
       height: 560px;
       width: auto;
+      
+      .image {
+        
+        &.editable {
+          
+          .mask {
+            
+            position: relative;
+            overflow: hidden;
+            
+            .alignable {
+              
+              position: relative;
+              
+              img {
+                
+                cursor: url("https://mail.google.com/mail/images/2/openhand.cur"), move;
+                
+              }
+              
+            }
+            
+          }
+          
+        }
+        
+      }
+      
+      .add {
+        
+        @include photoIconFormat;
+        display: block;
+        cursor: pointer;
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0.80;
+        
+      }
       
     }
     
@@ -235,20 +285,22 @@ $orange: #f29400;
   padding: 20px;
   display: inline-block;
   background-color: #fff;
+  
+}
+
+@mixin formatElement {
+  
+  width: 860px;
+  height: 550px;
+  padding: 20px;
+  display: inline-block;
+  background-color: #fff;
   position: absolute;
   top: 0;
   
 }
 
-@mixin photoIconFormat {
-  
-  font-size: 2.8em;
-  background-position: -11.6em -11.6em;
-  opacity: 0.1;
-  width: 180px;
-  height: 180px;
-  
-}
+
 
 @mixin videoIconFormat {
   
@@ -704,16 +756,7 @@ $orange: #f29400;
 
 
 
-@mixin formatElement {
-    
-    width: 860px;
-    height: 550px;
-    padding: 20px;
-    display: inline-block;
-    background-color: #fff;
-    
-  }
-  
+
   @mixin photoIconFormat {
     
     font-size: 2.8em;
@@ -1425,28 +1468,7 @@ $orange: #f29400;
           
         }
         
-        span.add-image TODO DEVO FARLO CON LO SCOPE A MASK E NON A EMPTY-MASK, importante ... adesso entrambe si chiamano add TODO  {
-          
-          width: 130px;
-          height: 130px;
-          font-size: 130px;
-          margin: 210px 0 0 387px;
-          display: block;
-          background: url('/assets/icone_piene.svg') -260px center no-repeat transparent;
-          background-size: 780px 130px;
-          cursor: pointer;
-          position: absolute;
-          top: 0;
-          left: 0;
-          opacity: 0.80;
-          
-        }
-        
-        span.add-image TODO DEVO FARLO CON LO SCOPE A MASK E NON A EMPTY-MASK, importante ... adesso entrambe si chiamano add TODO :hover {
-          
-          background-position: -390px center;
-          
-        }
+
         
         ._maskh TODO x {
           
@@ -1521,8 +1543,7 @@ $orange: #f29400;
         margin-left: 0px;
         background-color: white;
         overflow: hidden;
-        -webkit-box-shadow: 0px 6px 16px #161515;
-        box-shadow: 0px 6px 16px #161515;
+        
         
         h2 input {
           
