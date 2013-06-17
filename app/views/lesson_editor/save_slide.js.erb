@@ -1,7 +1,9 @@
 <% if @ok %>
   $('body').prepend('<span class="_saved"></span>');
   centerThis('._saved');
-  $('._saved').fadeTo('fast', 0).fadeTo('fast', 0.7).fadeTo('fast', 0.3).fadeOut();
+  $('._saved').fadeTo('fast', 0).fadeTo('fast', 0.7).fadeTo('fast', 0.3).fadeOut(function() {
+    $('._saved').remove();
+  });
   var thumb_div = $('#slide_in_nav_lesson_editor_' + <%= @slide.id %>).siblings('.slide-tooltip');
   <% if @slide.cover? %>
     thumb_div.html('<%= j(render :partial => "lessons/thumbnail", :locals => {:lesson => @slide.lesson}) %>');

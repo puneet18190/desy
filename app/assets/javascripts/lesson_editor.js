@@ -72,7 +72,6 @@ Shows the template for selection of new slides.
 function showNewSlideOptions() {
   stopMediaInCurrentSlide();
   var current_slide_content = $('li._lesson_editor_current_slide .slide-content');
-  current_slide_content.removeClass('cover title video1 video2 audio image1 image2 image3 image4 text');
   var html_to_be_replaced = $('#new_slide_option_list').html();
   current_slide_content.prepend(html_to_be_replaced);
   current_slide_content.siblings('.buttons').find('._add_new_slide_options').removeAttr('class').addClass('minusButtonOrange _hide_add_slide _hide_add_new_slide_options');
