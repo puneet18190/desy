@@ -1,9 +1,15 @@
-@mixin photoIconFormat {
+@mixin plus-icon {
   
-  font-size: 2.8em;
-  background-position: -11.6em -11.6em;
-  width: 180px;
-  height: 180px;
+  background-position: -3em center;
+  
+}
+
+@mixin photo-icon {
+  
+  font-size: 130px;
+  background: url('/assets/icone_piene.svg') no-repeat scroll -2em center / 6em 1em transparent;
+  width: 130px;
+  height: 130px;
   
 }
 
@@ -37,7 +43,6 @@
     
     .title-container {
       
-      width: auto;
       height: 110px;
       margin-bottom: 20px;
       
@@ -45,7 +50,6 @@
     
     .audio-container {
       
-      width: auto;
       height: 71px;
       margin-bottom: 20px;
       
@@ -53,7 +57,6 @@
     
     .text-container {
       
-      width: auto;
       height: 329px;
       
     }
@@ -69,7 +72,6 @@
     .image-container {
       
       height: 560px;
-      width: auto;
       
       .image {
         
@@ -94,19 +96,40 @@
             
           }
           
+          .empty-mask {
+            
+            width: 900px;
+            height: 560px;
+            text-align: center;
+            color: #999999;
+            background-color: #f1f1f1;
+            font-size: 16px;
+            
+            p {
+              
+              margin-top: 280px;
+              
+            }
+            
+          }
+          
         }
         
       }
       
       .add {
         
-        @include photoIconFormat;
-        display: block;
+        @include photo-icon;
         cursor: pointer;
         position: absolute;
-        top: 0;
-        left: 0;
-        opacity: 0.80;
+        top: 140px;
+        left: 385px;
+        
+        &:hover {
+          
+          @include plus-icon;
+          
+        }
         
       }
       
@@ -114,15 +137,50 @@
     
     .title-container {
       
-      height: 130px;
-      width: auto;
+      height: 110px;
+      width: 880px;
+      font-family: "Nunito", Helvetica, sans-serif;
+      background-color: rgba(242,148,0,0.95);
+      position: absolute;
+      top: 430px;
+      color: #fff;
+      font-size: 50px;
+      font-weight: normal;
+      line-height: 50px;
+      padding-top: 20px;
+      padding-left: 20px;
       
     }
     
     .footer-container {
       
-      height: 40px;
-      width: auto;
+      height: 30px;
+      background-color: white;
+      color: #373737;
+      height: 16px;
+      width: 870px;
+      padding: 7px 15px;
+      font-size: 13px;
+      font-family: Arial, sans-serif;
+      
+      .subject {
+        
+        float: left;
+        
+      }
+      
+      .author {
+        
+        float: right;
+        
+        .name {
+          
+          color: #F29400;
+          
+        }
+        
+      }
+      
       
     }
     
@@ -132,7 +190,6 @@
     
     .title-container {
       
-      width: auto;
       height: 110px;
       margin-bottom: 20px;
       
@@ -160,7 +217,6 @@
     .image-container {
       
       width: 420px;
-      height: auto;
       margin-right: 20px;
       
     }
@@ -170,9 +226,6 @@
   &.image3 {
     
     .image-container {
-      
-      width: auto;
-      height: auto;
       
     }
     
@@ -195,7 +248,6 @@
     
     .title-container {
       
-      width: auto;
       height: 110px;
       margin-bottom: 20px;
       
@@ -203,7 +255,6 @@
     
     .text-container {
       
-      width: auto;
       height: 420px;
       
     }
@@ -226,7 +277,6 @@
     
     .title-container {
       
-      width: auto;
       height: 110px;
       margin-bottom: 20px;
       
@@ -252,9 +302,6 @@
   &.video2 {
     
     .video-container {
-      
-      width: auto;
-      height: auto;
       
     }
     
@@ -1430,25 +1477,7 @@ $orange: #f29400;
 
 
 
-      &.cover {
-        
-        .title {
-          
-          background-color: rgba(242,148,0,0.95);
-          height: 130px;
-          padding: 0;
-          width: 900px;
-          position: absolute;
-          left: auto;
-          top: 430px;
-          
-          h2 {
-            
-            color: rgba(255,255,255,1);
-            
-          }
-          
-        }
+
         
         .mask {
           
@@ -2255,30 +2284,7 @@ $orange: #f29400;
       
       .cover-choose-image TODO  {
     
-    text-align: center;
-    display: block;
-    width: 900px;
-    height: 420px;
-    color: #999;
-    background-color: #f1f1f1;
-    font-size: 16px;
-    padding-top: 140px;
-    
-    a {
-      
-      width: 1em;
-      height: 1em;
-      display: block;
-      padding: 0;
-      margin: 0 auto 10px;
-      background: url('/assets/icone_piene.svg');
-      background-position: -2em center;
-      background-size: 6em 1em;
-      background-repeat: no-repeat;
-      background-color: transparent;
-      font-size: 130px;
-      
-    }
+
     
     a:hover {
       
