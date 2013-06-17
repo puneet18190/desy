@@ -58,7 +58,7 @@ module ApplicationHelper
   
   # Resizes the width of an image
   def resize_width(width, height, kind)
-    width *
+    width.to_f *
       case kind
       when 'cover'                   then 560
       when 'image1'                  then 420
@@ -77,7 +77,7 @@ module ApplicationHelper
   
   # Resizes the height of an image
   def resize_height(width, height, kind)
-    height *
+    height.to_f *
       case kind
       when 'cover'                      then 900
       when 'image1', 'image2', 'image4' then 420
