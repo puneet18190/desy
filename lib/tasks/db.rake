@@ -1,3 +1,7 @@
+# clear the doc:app task et al so we can rewrite them
+Rake::Task["db:reset"].clear
+# Rake::Task["doc/app"].clear
+
 namespace :db do
 
   desc "Performs an ANALYZE"
@@ -44,6 +48,9 @@ namespace :db do
   desc "Rebuild database and schemas after a structural change, updating schema.rb, regardless of the configuration"
   task :rebuild => %w( db:drop db:create db:migrate db:seed db:analyze tmp:clear db:test:prepare db:structure:dump db:schema:dump )
   
+  desc "Recreate the database, load the schema, and initialize with the seed data"
+  task :reset => %w( db:drop db:create db:structure:load db:seed )
+
   desc "empties all notifications"
   task :empty_notifications => :environment do
     Notification.all.each do |l|
