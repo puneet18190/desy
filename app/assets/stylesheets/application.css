@@ -40,5 +40,6 @@
  *= require layouts/prelogin
  *= require layouts/virtualclassroom
  *= require audio_editor
+ *= require tiny_mce_desy
  *= require msie
  */

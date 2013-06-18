@@ -5,15 +5,33 @@ $cover-height: 590px;
 $cover-image-height: 560px;
 $slide-title-height: 110px;
 
-@mixin slide-title {
+@mixin slide-title-common {
   
   font-size: 54px;
-  padding: 10px;
-  width: 840px;
-  height: 90px;
+  margin: 0;
+  height: 88px;
+  line-height: 88px;
   font-family: "Nunito", sans-serif;
   color: #F29400;
+  
+}
+
+@mixin slide-title-editor {
+  
+  @include slide-title-common;
+  width: 838px;
+  padding: 10px;
   border: 1px solid #EFEFEF;
+  
+}
+
+@mixin slide-title-viewer {
+  
+  @include slide-title-common;
+  width: 836px;
+  padding: 10px 11px 10px 11px;
+  border: 1px solid white;
+  overflow: hidden;
   
 }
 
@@ -69,7 +87,13 @@ $slide-title-height: 110px;
       
       input {
         
-        @include slide-title;
+        @include slide-title-editor;
+        
+      }
+      
+      h2 {
+        
+        @include slide-title-viewer;
         
       }
       
@@ -244,7 +268,13 @@ $slide-title-height: 110px;
       
       input {
         
-        @include slide-title;
+        @include slide-title-editor;
+        
+      }
+      
+      h2 {
+        
+        @include slide-title-viewer;
         
       }
       
@@ -308,7 +338,13 @@ $slide-title-height: 110px;
       
       input {
         
-        @include slide-title;
+        @include slide-title-editor;
+        
+      }
+      
+      h2 {
+        
+        @include slide-title-viewer;
         
       }
       
@@ -350,7 +386,13 @@ $slide-title-height: 110px;
       
       input {
         
-        @include slide-title;
+        @include slide-title-editor;
+        
+      }
+      
+      h2 {
+        
+        @include slide-title-viewer;
         
       }
       
