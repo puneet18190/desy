@@ -71,8 +71,10 @@ module Media
         @original_filename = @value.original_filename
         model.converted    = false
       when Hash
-        @converted_files                     = @value.select{ |k| self.class::FORMATS.include? k }
+        @converted_files                     = @value.select{ |k| formats.include? k }
         @original_filename_without_extension = @value[:filename]
+        formats.each{ |f| instance_variable_set :"@#{duration_keys[f]}", @value[ duration_keys[f] ] }
+        version_formats.each{ |v, _| instance_variable_set :"@#{version_input_path_keys[v]}", @value[ version_input_path_keys[v] ] }
       else
         @filename_without_extension ||= ''
       end
@@ -190,7 +192,7 @@ module Media
         case format
         when ->(f) { f.blank? }
           filename_without_extension
-        when *self.class::FORMATS
+        when *formats
           filename(format)
         when *self.class::VERSION_FORMATS.keys
           self.class::VERSION_FORMATS[format] % filename_without_extension
@@ -204,24 +206,64 @@ module Media
     # Absolute path of the file, related to the supplied +format+ (+format+ required)
     def path(format)
       case format
-      when *self.class::FORMATS
+      when *formats
         File.join folder, filename(format)
       when *self.class::VERSION_FORMATS.keys
         File.join folder, self.class::VERSION_FORMATS[format] % filename_without_extension
       end
     end
 
-    # An hash where the keys are the supported formats (version formats included) and the values the absolute paths of the media files
+    # Hash where the keys are the supported formats (version formats included) and the values the absolute paths of the media files
     def paths
-      Hash[ (self.class::FORMATS + self.class::VERSION_FORMATS.keys).map{ |f| [f, path(f)] } ]
+      Hash[ (formats + self.class::VERSION_FORMATS.keys).map{ |f| [f, path(f)] } ]
     end
 
-    # An hash where the keys are the supported formats (version formats excluded) plus a pair key => value where the key is +:filename+ and the value Media::Uploader#filename_without_extension
+    # Hash where the keys are the supported formats (version formats excluded) plus a pair key => value where the key is +:filename+ and the value Media::Uploader#filename_without_extension
     def to_hash
-      Hash[ self.class::FORMATS.map{ |f| [f, path(f)] } ].merge(filename: filename_without_extension)
+      Hash[ formats.map{ |f| [f, path(f)] } ].merge(filename: filename_without_extension)
     end
 
     private
+    # Instance-level alias of +self.class::VERSION_FORMATS+
+    def version_formats
+      self.class::VERSION_FORMATS
+    end
+
+    # Hash where the keys are the versions and the values are the keys to be used in the initializer in order to submit the version input paths
+    def version_input_path_keys
+      @version_input_path_keys ||= Hash[ version_formats.map{ |v, _| [ v, :"#{v}" ] } ]
+    end
+
+    # Hash where the keys are the versions and the values are the respective instance variable values
+    def version_input_paths
+      @version_input_paths ||= Hash[ version_input_path_keys.map{ |v, k| [ v, instance_variable_get(:"@#{k}") ] } ]
+    end
+
+    # Whether the version input paths have been provided or not
+    def version_input_paths?
+      version_input_paths.all?{ |_, version_input_path| version_input_path.present? }
+    end
+
+    # Instance-level alias of +self.class::FORMATS+
+    def formats
+      self.class::FORMATS
+    end
+
+    # Hash where the keys are the formats and the values are the keys to be used in the initializer in order to submit the durations
+    def duration_keys
+      @duration_keys ||= Hash[ formats.map{ |f| [ f, :"#{f}_duration" ] } ]
+    end
+
+    # Hash where the keys are the versions and the values are the respective instance variable values
+    def durations
+      @durations ||= Hash[ duration_keys.map{ |f, k| [ f, instance_variable_get(:"@#{k}") ] } ]
+    end
+
+    # Whether the durations have been provided or not
+    def durations?
+      durations.all?{ |_, duration| duration.present? }
+    end
+
     # Executes the copy process
     def copy
       FileUtils.mkdir_p output_folder unless Dir.exists? output_folder
@@ -232,9 +274,15 @@ module Media
         # se il percorso del file è uguale a quello vecchio è lo stesso file; per cui non copio
         # (è un caso che si verifica p.e. nel caso di un errore nel Composer, che ripristina il file vecchio)
         FileUtils.cp input_path, output_path if input_path != output_path
-        info = Info.new(output_path)
-        infos[format] = info
-        model.send :"#{format}_duration=", info.duration
+
+        model.send :"#{format}_duration=", 
+          if durations?
+            durations[format]
+          else
+            info = Info.new(output_path)
+            infos[format] = info
+            info.duration
+          end
       end
 
       extract_versions(infos)
@@ -254,6 +302,7 @@ module Media
 
     # Implemented by the descendant classes in order to extract the versions needed (used by Media::Uploader.copy)
     def extract_versions(infos)
+      raise NotImplementedError
     end
 
     # Executes the copy of the uploaded file to the temporary folder and add related job to the jobs queue

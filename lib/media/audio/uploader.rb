@@ -37,6 +37,11 @@ module Media
       # Ruby class responsible of the conversion process
       CONVERSION_CLASS              = Editing::Conversion
 
+      private
+      # Since audio media don't have versions, it does nothing
+      def extract_versions(infos)
+      end
+
     end
   end
 end

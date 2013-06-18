@@ -53,13 +53,26 @@ module Media
             'invalid paths'
           elsif [m4a_path, ogg_path].map{ |p| File.extname(p) } != %w(.m4a .ogg)
             'invalid extension'
-          elsif !(m4a_info = Info.new(m4a_path, false)).valid? || !(ogg_info = Info.new(ogg_path, false)).valid?
-            'invalid audio'
-          elsif [m4a_info.duration, ogg_info.duration].min < self.class::MIN_DURATION
-            'invalid duration'
-          elsif !similar_durations?(m4a_info.duration, ogg_info.duration)
-            'invalid duration difference'
-          end
+            else
+
+              m4a_duration, ogg_duration = 
+                if durations?
+                  [ durations[:m4a], durations[:ogg] ]
+                else
+                  if !(m4a_info = Info.new(m4a_path, false)).valid? || !(ogg_info = Info.new(ogg_path, false)).valid?
+                    return 'invalid video'
+                  end
+                  [ m4a_info.duration, ogg_info.duration ]
+                end
+
+              if [m4a_duration, ogg_duration].min < self.class::MIN_DURATION
+                'invalid duration'
+              elsif !similar_durations?(m4a_duration, ogg_duration)
+                'invalid duration difference'
+              end
+
+            end
+
         end
       end
     end

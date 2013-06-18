@@ -49,18 +49,31 @@ module Media
         # Error message for already converted files
         def error_message_for_converted_files
           mp4_path, webm_path = @converted_files[:mp4], @converted_files[:webm]
+
           if !@original_filename_without_extension.is_a?(String)
             'invalid filename'
           elsif !mp4_path.instance_of?(String) || !webm_path.instance_of?(String)
             'invalid paths'
           elsif [mp4_path, webm_path].map{ |p| File.extname(p) } != %w(.mp4 .webm)
             'invalid extension'
-          elsif !(mp4_info = Info.new(mp4_path, false)).valid? || !(webm_info = Info.new(webm_path, false)).valid?
-            'invalid video'
-          elsif [mp4_info.duration, webm_info.duration].min < self.class::MIN_DURATION
-            'invalid duration'
-          elsif not similar_durations?(mp4_info.duration, webm_info.duration)
-            'invalid duration difference'
+          else
+
+            mp4_duration, webm_duration = 
+              if durations?
+                [ durations[:mp4], durations[:webm] ]
+              else
+                if !(mp4_info = Info.new(mp4_path, false)).valid? || !(webm_info = Info.new(webm_path, false)).valid?
+                  return 'invalid video'
+                end
+                [ mp4_info.duration, webm_info.duration ]
+              end
+
+            if [mp4_duration, webm_duration].min < self.class::MIN_DURATION
+              'invalid duration'
+            elsif !similar_durations?(mp4_duration, webm_duration)
+              'invalid duration difference'
+            end
+
           end
         end
       end

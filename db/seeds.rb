@@ -37,7 +37,7 @@ class Seeds
       remove_old_media_elements_folders
     end
 
-    substitute_pepper
+    replace_pepper
 
     puts 'End.'
   rescue StandardError => e
@@ -47,13 +47,13 @@ class Seeds
   end
 
   private
-  def substitute_pepper
+  def replace_pepper
     return if User::Authentication::PEPPER == PEPPER
 
     old_pepper = "#{User::Authentication::PEPPER_PATH}.old"
     pepper = User::Authentication::PEPPER_PATH
 
-    warn "The pepper doesn't correspond to the seeds pepper; substituting it" 
+    warn "The pepper doesn't correspond to the seeds pepper; replacing" 
     warn "Moving #{pepper} to #{old_pepper}"
 
     FileUtils.mv pepper, old_pepper
@@ -123,8 +123,7 @@ class Seeds
     csv_open(csv_path('taggings')).each.select do |row|
       row['taggable_type'] == type && row['taggable_id'] == id.to_s
     end.map do |taggable_row|
-      csv_open(csv_path('tags')).each.
-        detect{ |tags_row| taggable_row['tag_id'] == tags_row['id'] }['word']
+      csv_open(csv_path('tags')).each.find{ |tags_row| taggable_row['tag_id'] == tags_row['id'] }['word']
     end.join(',')
   end
 

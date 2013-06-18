@@ -35,20 +35,23 @@ module Media
       FORMATS                       = FORMATS
       # Allowed keys when initializing a new Media::Video::Uploader instance with an hash as value
       ALLOWED_KEYS                  = [:filename] + FORMATS
-      # Output versiosn formats (thumb, cover...)
+      # Output versions formats (thumb, cover...)
       VERSION_FORMATS               = VERSION_FORMATS
       # Ruby class responsible of the conversion process
       CONVERSION_CLASS              = Editing::Conversion
 
       private
 
-      # Generate the additional versions
+      # Generate the additional versions; it copies the files if their input paths have been provided before
       def extract_versions(infos)
-        cover_path = File.join output_folder, COVER_FORMAT % processed_original_filename_without_extension
-        extract_cover @converted_files[:mp4], cover_path, infos[:mp4].duration
-
-        thumb_path = File.join output_folder, THUMB_FORMAT % processed_original_filename_without_extension
-        extract_thumb cover_path, thumb_path, *THUMB_SIZES
+        if version_input_paths?
+          version_input_paths.each do |version, input|
+            FileUtils.cp input, send(:"#{version}_output_path")
+          end
+        else
+          extract_cover @converted_files[:mp4], cover_output_path, infos[:mp4].duration
+          extract_thumb cover_output_path, thumb_output_path, *THUMB_SIZES
+        end
       end
 
       # Generate the additional cover versions
@@ -61,6 +64,16 @@ module Media
       # Generate the additional thumb versions
       def extract_thumb(input, output, width, height)
         Image::Editing::ResizeToFill.new(input, output, width, height).run
+      end
+
+      # Cover file output path
+      def cover_output_path
+        File.join output_folder, COVER_FORMAT % processed_original_filename_without_extension
+      end
+
+      # Thumb file output path
+      def thumb_output_path
+        File.join output_folder, THUMB_FORMAT % processed_original_filename_without_extension
       end
     end
   end

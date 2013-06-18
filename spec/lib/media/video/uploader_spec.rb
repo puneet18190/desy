@@ -8,10 +8,16 @@ module Media
       let(:valid_video_path)        { media_folder.join('valid video.flv').to_s }
       let(:tmp_valid_video_path)    { media_folder.join('tmp.valid video.flv').to_s }
       let(:media_file)              { File.open(tmp_valid_video_path) }
-      let(:media_uploaded)          do 
+      let(:media_uploaded)          do
         ActionDispatch::Http::UploadedFile.new(filename: File.basename(tmp_valid_video_path), tempfile: File.open(tmp_valid_video_path))
       end
       let(:media_hash)              { { filename: 'tmp.valid video', mp4: "#{media_without_extension}.mp4", webm: "#{media_without_extension}.webm" } }
+      let(:media_hash_full)         do 
+        media_hash.merge( mp4_duration:  Info.new(media_hash[:mp4]).duration        ,
+                          webm_duration: Info.new(media_hash[:webm]).duration       ,
+                          cover:         media_folder.join('con verted cover.jpg').to_s ,
+                          thumb:         media_folder.join('con verted thumb.jpg').to_s )
+      end
       
       describe 'saving the associated model' do
         before(:all) do
@@ -44,11 +50,32 @@ module Media
         end
 
         context 'with a Hash' do
-          let(:video) { ::Video.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_hash) { |v| v.user = User.admin } }
+          context 'without durations and version paths' do
+            let(:video) { ::Video.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_hash) { |v| v.user = User.admin } }
 
-          before(:all) { video.save! }
+            before(:all) { video.save! }
 
-          include_examples 'after saving a video with a valid not converted media'
+            include_examples 'after saving a video with a valid not converted media'
+          end
+
+          context 'with durations and version paths' do
+            let(:video) { ::Video.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_hash_full) { |v| v.user = User.admin } }
+
+            before(:all) { video }
+
+            it "uses metadata durations provided by the hash" do
+              Media::Info.should_not_receive(:new)
+              video.save!
+            end
+
+            context 'after saving' do
+              let(:video) { ::Video.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_hash_full) { |v| v.user = User.admin } }
+
+              before(:all) { video.save! }
+
+              include_examples 'after saving a video with a valid not converted media'
+            end
+          end
         end
         
         after(:all) do

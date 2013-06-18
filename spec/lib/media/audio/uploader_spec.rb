@@ -13,6 +13,10 @@ module Media
         ActionDispatch::Http::UploadedFile.new(filename: File.basename(tmp_valid_audio_path), tempfile: File.open(tmp_valid_audio_path))
       end
       let(:media_hash)              { { filename: 'tmp.valid audio', m4a: "#{media_without_extension}.m4a", ogg: "#{media_without_extension}.ogg" } }
+      let(:media_hash_full)         do 
+        media_hash.merge( m4a_duration: Info.new(media_hash[:m4a]).duration ,
+                          ogg_duration: Info.new(media_hash[:ogg]).duration )
+      end
       
       describe 'saving the associated model' do
         before(:all) do
@@ -45,11 +49,35 @@ module Media
         end
 
         context 'with a Hash' do
-          let(:audio) { ::Audio.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_hash) { |v| v.user = User.admin } }
+          context 'without durations and version paths' do
+            let(:audio) { ::Audio.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_hash) { |v| v.user = User.admin } }
 
-          before(:all) { audio.save! }
+            before(:all) { audio.save! }
 
-          include_examples 'after saving an audio with a valid not converted media'
+            include_examples 'after saving an audio with a valid not converted media'
+          end
+
+          context 'with durations and version paths' do
+
+            let(:audio) { ::Audio.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_hash_full) { |v| v.user = User.admin } }
+
+            before(:all) { audio }
+
+            it "uses metadata durations provided by the hash" do
+              Media::Info.should_not_receive(:new)
+              audio.save!
+            end
+
+            context 'after saving' do
+
+              let(:audio) { ::Audio.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_hash_full) { |v| v.user = User.admin } }
+
+              before(:all) { audio.save! }
+
+              include_examples 'after saving an audio with a valid not converted media'
+
+            end
+          end
         end
         
         after(:all) do
