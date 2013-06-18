@@ -973,7 +973,6 @@ function initTinymce(tiny_id) {
     theme: 'advanced',
     editor_selector: 'tinymce',
     skin: 'desy',
-    content_css: '/assets/tiny_mce_desy.css',
     plugins: plugins,
     paste_preprocess: function(pl, o) {
       o.content = stripTagsForCutAndPaste(o.content, '');
