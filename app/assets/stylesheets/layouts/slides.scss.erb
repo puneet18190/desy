@@ -1,3 +1,22 @@
+$slide-width: 860px;
+$slide-height: 550px;
+$cover-width: 900px;
+$cover-height: 590px;
+$cover-image-height: 560px;
+$slide-title-height: 110px;
+
+@mixin slide-title {
+  
+  font-size: 54px;
+  padding: 10px;
+  width: 840px;
+  height: 90px;
+  font-family: "Nunito", sans-serif;
+  color: #F29400;
+  border: 1px solid #EFEFEF;
+  
+}
+
 @mixin photo-icon {
   
   font-size: 130px;
@@ -15,8 +34,8 @@
 
 .slide-content {
   
-  height: 550px;
-  width: 860px;
+  height: $slide-height;
+  width: $slide-width;
   padding: 20px;
   font-family: Arial,Verdana,sans-serif;
   background-color: white;
@@ -41,83 +60,18 @@
     
   }
   
-  .text-container {
-    
-    p {
-      
-      
-      
-    }
-    
-    li {
-      
-      
-      
-    }
-    
-    a {
-      
-      
-      
-    }
-    
-    .size1 {
-      
-      font-size: 10px;
-      line-height: 11px;
-      
-    }
-    
-    .size2 {
-      
-      font-size: 13px;
-      line-height: 14px;
-      
-    }
-    
-    .size3 {
-      
-      font-size: 17px;
-      line-height: 19px;
-      
-    }
-    
-    .size4 {
-      
-      font-size: 21px;
-      line-height: 23px;
-      
-    }
-    
-    .size5 {
-      
-      font-size: 25px;
-      line-height: 27px;
-      
-    }
-    
-    .size6 {
-      
-      font-size: 29px;
-      line-height: 32px;
-      
-    }
-    
-    .size7 {
-      
-      font-size: 35px;
-      line-height: 39px;
-      
-    }
-    
-  }
-  
   &.audio {
     
     .title-container {
       
-      height: 110px;
+      height: $slide-title-height;
       margin-bottom: 20px;
+      
+      input {
+        
+        @include slide-title;
+        
+      }
       
     }
     
@@ -138,20 +92,20 @@
   
   &.cover {
     
-    width: 900px;
-    height: 590px;
+    width: $cover-width;
+    height: $cover-height;
     padding: 0;
     
     .image-container {
       
-      height: 560px;
+      height: $cover-image-height;
       
       .image {
         
         &.not-editable {
           
-          width: 900px;
-          height: 560px;
+          width: $cover-width;
+          height: $cover-image-height;
           overflow: hidden;
           position: relative;
           
@@ -167,13 +121,14 @@
           
           .mask {
             
-            width: 900px;
-            height: 560px;
+            width: $cover-width;
+            height: $cover-image-height;
             overflow: hidden;
             
             .alignable {
               
               position: relative;
+              width: $cover-width;
               
               img {
                 
@@ -194,8 +149,8 @@
           
           .empty-mask {
             
-            width: 900px;
-            height: 560px;
+            width: $cover-width;
+            height: $cover-image-height;
             text-align: center;
             color: #999999;
             background-color: #f1f1f1;
@@ -284,8 +239,14 @@
     
     .title-container {
       
-      height: 110px;
+      height: $slide-title-height;
       margin-bottom: 20px;
+      
+      input {
+        
+        @include slide-title;
+        
+      }
       
     }
     
@@ -342,8 +303,14 @@
     
     .title-container {
       
-      height: 110px;
+      height: $slide-title-height;
       margin-bottom: 20px;
+      
+      input {
+        
+        @include slide-title;
+        
+      }
       
     }
     
@@ -378,8 +345,14 @@
     
     .title-container {
       
-      height: 110px;
+      height: $slide-title-height;
       margin-bottom: 20px;
+      
+      input {
+        
+        @include slide-title;
+        
+      }
       
     }
     
@@ -410,6 +383,13 @@
   
 }
 
+.zoomOutThumb {
+  
+  zoom: 27%;
+  -moz-transform: scale(0.27);
+  position: absolute;
+  
+}
 
 /*
 
@@ -1485,33 +1465,7 @@ $orange: #f29400;
   
   
   /* dentro ul.slides
-  .desySkin table.mceLayout {
-        
-        border-left: 1px solid #EFEFEF;
-        border-right: 1px solid #EFEFEF;
-        
-      }
-      
-      .desySkin .mceIframeContainer {
-        
-        border-bottom: 1px solid #EFEFEF;
-        border-top: 1px solid #EFEFEF;
-        
-        
-              input, textarea {
-        
-        color: $orange;
-        border: 1px solid #efefef;
-        resize: none;
-        font-size: 13px;
-        
-      }
-      
-      textarea {
-        
-        overflow: hidden;
-        
-      }
+  
       
       input.caption {
         
@@ -1657,15 +1611,7 @@ $orange: #f29400;
           width: 900px;
           height: 590px;
           
-          h2.text input {
-            
-            font-size: 54px;
-            padding: 10px;
-            width: 840px;
-            height: 94px;
-            font-family: "Nunito", sans-serif;
-            
-          }
+
           
           .text-content {
             

@@ -58,7 +58,7 @@ module ApplicationHelper
   
   # Resizes the width of an image
   def resize_width(width, height, kind)
-    width.to_f *
+    (width.to_f *
       case kind
       when 'cover'                   then 560
       when 'image1'                  then 420
@@ -66,7 +66,7 @@ module ApplicationHelper
       when 'image4'                  then 265
       when 'video_component'         then 88
       when 'video_component_preview' then 360
-      end / height
+      end / height).to_i + 1
   end
   
   # Removes the title of a notification. Used in NotificationsController.
@@ -77,14 +77,14 @@ module ApplicationHelper
   
   # Resizes the height of an image
   def resize_height(width, height, kind)
-    height.to_f *
+    (height.to_f *
       case kind
       when 'cover'                      then 900
       when 'image1', 'image2', 'image4' then 420
       when 'image3'                     then 860
       when 'video_component'            then 156
       when 'video_component_preview'    then 640
-      end / width
+      end / width).to_i + 1
   end
   
   # Method to help debugging views
