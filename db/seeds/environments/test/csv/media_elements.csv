@@ -1,1 +1,1 @@
-id,user_id,title,description,sti_type,is_public,publication_date
+id,user_id,title,description,sti_type,is_public,publication_date,mp4_duration,webm_duration,m4a_duration,ogg_duration

@@ -106,14 +106,19 @@ class Seeds
     end
   end
 
-  def media(record)
+  def media(record, row)
     case record
     when Audio
       v = Pathname.glob(AUDIOS_FOLDER.join record.id.to_s, '*.m4a').first
-      { m4a: v.to_s, ogg: v.sub(/\.m4a$/, '.ogg').to_s, filename: v.basename(v.extname).to_s }
+      { m4a: v.to_s, ogg: v.sub(/\.m4a$/, '.ogg').to_s, filename: v.basename(v.extname).to_s, 
+        m4a_duration: row['m4a_duration'].try(:to_f), ogg_duration: row['ogg_duration'].try(:to_f) }
     when Video
-      v = Pathname.glob(VIDEOS_FOLDER.join record.id.to_s, '*.mp4').first
-      { mp4: v.to_s, webm: v.sub(/\.mp4$/, '.webm').to_s, filename: v.basename(v.extname).to_s }
+      f = VIDEOS_FOLDER.join record.id.to_s
+      v = Pathname.glob(f.join '*.mp4').first
+      c = Pathname.glob(f.join 'cover_*.jpg').first.try(:to_s)
+      t = Pathname.glob(f.join 'thumb_*.jpg').first.try(:to_s)
+      { mp4: v.to_s, webm: v.sub(/\.mp4$/, '.webm').to_s, filename: v.basename(v.extname).to_s,
+        mp4_duration: row['mp4_duration'].try(:to_f), webm_duration: row['webm_duration'].try(:to_f), cover: c, thumb: t }
     when Image
       File.open Pathname.glob(IMAGES_FOLDER.join(record.id.to_s, Image::EXTENSIONS_GLOB), File::FNM_CASEFOLD).first
     end
@@ -127,9 +132,9 @@ class Seeds
     end.join(',')
   end
 
-  def csv_row_to_record(row, model = @model)
+  def csv_row_to_record(row, model = @model, skip = [])
     model.new do |record|
-      row.headers.each { |header| record.send :"#{header}=", row[header] }
+      row.headers.reject{ |h| skip.include? h }.each{ |header| record.send :"#{header}=", row[header] }
     end
   end
 
@@ -187,8 +192,8 @@ class Seeds
   def media_elements!
     csv_open.each.each_with_index do |row, i|
       progress(i)
-      record = csv_row_to_record(row, row['sti_type'].constantize)
-      record.media                   = media(record)
+      record = csv_row_to_record row, row['sti_type'].constantize, %w(mp4_duration webm_duration m4a_duration ogg_duration)
+      record.media                   = media(record, row)
       record.skip_public_validations = true
       record.tags                    = tags(record.id, 'MediaElement')
       record.save!
