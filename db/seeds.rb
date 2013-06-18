@@ -80,6 +80,7 @@ class Seeds
   def restore_old_media_elements_folders
     OLD_PUBLIC_MEDIA_ELEMENTS_FOLDERS.each do |f, of|
       begin
+        FileUtils.rm_rf f
         FileUtils.mv of, f
       rescue Errno::ENOENT
       end
