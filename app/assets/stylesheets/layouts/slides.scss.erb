@@ -1,10 +1,31 @@
-$slide-width: 860px;
-$slide-height: 550px;
-$cover-width: 900px;
-$cover-height: 590px;
-$cover-image-height: 560px;
-$slide-title-height: 110px;
+$slide-width: 900px;
+$slide-height: 590px;
+$slide-inner-padding: 20px;
+$slide-inner-width: $slide-width - $slide-inner-padding - $slide-inner-padding;
+$slide-inner-height: $slide-height - $slide-inner-padding - $slide-inner-padding;
 
+$footer-height-in-cover: 30px;
+$image-height-in-cover: $slide-height - $footer-height-in-cover;
+$title-height-in-cover: 130px;
+$title-left-and-top-padding-in-cover: 20px;
+$title-inner-height-in-cover: $title-height-in-cover - $title-left-and-top-padding-in-cover;
+$title-inner-width-in-cover: $slide-width - $title-left-and-top-padding-in-cover;
+$title-top-offset-in-cover: $image-height-in-cover - $title-height-in-cover;
+$footer-vertical-padding-in-cover: 7px;
+$footer-horizontal-padding-in-cover: 7px;
+$footer-inner-height-in-cover: $footer-height-in-cover - $footer-vertical-padding-in-cover - $footer-vertical-padding-in-cover;
+$footer-inner-width-in-cover: $slide-width - $footer-horizontal-padding-in-cover - $footer-horizontal-padding-in-cover;
+
+$slide-title-height: 110px;
+$slide-title-border: 1px;
+$slide-title-inner-height: $slide-title-height - $slide-title-border - $slide-title-border;
+$slide-title-padding: 10px;
+$slide-title-read-only-lateral-padding: 11px;
+$slide-title-inner-width: $slide-inner-width - $slide-title-padding - $slide-title-padding;
+$slide-title-inner-read-only-width: $slide-inner-width - $slide-title-read-only-lateral-padding - $slide-title-read-only-lateral-padding;
+$slide-title-line-height: 88px;
+
+/* tenere allineato con content.css; le differenze con tale file sono sottolineate nei commenti */
 @mixin read-only-tiny-mce {
   
   /* in content.css è < body, td, pre > */
@@ -208,8 +229,8 @@ $slide-title-height: 110px;
   
   font-size: 54px;
   margin: 0;
-  height: 88px;
-  line-height: 88px;
+  height: $slide-title-inner-height;
+  line-height: $slide-title-line-height;
   font-family: "Nunito", sans-serif;
   color: #F29400;
   
@@ -218,18 +239,18 @@ $slide-title-height: 110px;
 @mixin slide-title-editor {
   
   @include slide-title-common;
-  width: 838px;
-  padding: 10px;
-  border: 1px solid #EFEFEF;
+  width: $slide-title-inner-width;
+  padding: $slide-title-padding;
+  border: $slide-title-border solid #EFEFEF;
   
 }
 
 @mixin slide-title-viewer {
   
   @include slide-title-common;
-  width: 836px;
-  padding: 10px 11px 10px 11px;
-  border: 1px solid white;
+  width: $slide-title-inner-read-only-width;
+  padding: $slide-title-padding $slide-title-read-only-lateral-padding;
+  border: $slide-title-border solid white;
   overflow: hidden;
   
 }
@@ -251,9 +272,9 @@ $slide-title-height: 110px;
 
 .slide-content {
   
-  height: $slide-height;
-  width: $slide-width;
-  padding: 20px;
+  height: $slide-inner-height;
+  width: $slide-inner-width;
+  padding: $slide-inner-padding;
   font-family: Arial,Verdana,sans-serif;
   background-color: white;
   -webkit-box-shadow: 0px 6px 16px #161515;
@@ -289,7 +310,7 @@ $slide-title-height: 110px;
     .title-container {
       
       height: $slide-title-height;
-      margin-bottom: 20px;
+      margin-bottom: $slide-inner-padding;
       
       input {
         
@@ -308,7 +329,7 @@ $slide-title-height: 110px;
     .audio-container {
       
       height: 71px;
-      margin-bottom: 20px;
+      margin-bottom: $slide-inner-padding;
       
     }
     
@@ -322,8 +343,8 @@ $slide-title-height: 110px;
   
   &.cover {
     
-    width: $cover-width;
-    height: $cover-height;
+    width: $slide-width;
+    height: $slide-height;
     padding: 0;
     
     .image-container {
@@ -334,8 +355,8 @@ $slide-title-height: 110px;
         
         &.not-editable {
           
-          width: $cover-width;
-          height: $cover-image-height;
+          width: $slide-width;
+          height: $image-height-in-cover;
           overflow: hidden;
           position: relative;
           
@@ -351,14 +372,14 @@ $slide-title-height: 110px;
           
           .mask {
             
-            width: $cover-width;
-            height: $cover-image-height;
+            width: $slide-width;
+            height: $image-height-in-cover;
             overflow: hidden;
             
             .alignable {
               
               position: relative;
-              width: $cover-width;
+              width: $slide-width;
               
               img {
                 
@@ -379,8 +400,8 @@ $slide-title-height: 110px;
           
           .empty-mask {
             
-            width: $cover-width;
-            height: $cover-image-height;
+            width: $slide-width;
+            height: $image-height-in-cover;
             text-align: center;
             color: #999999;
             background-color: #f1f1f1;
@@ -418,12 +439,12 @@ $slide-title-height: 110px;
     
     .title-container {
       
-      height: 110px;
-      width: 880px;
-      top: 430px;
+      height: $title-inner-height-in-cover;
+      width: $title-inner-width-in-cover;
+      top: $title-top-offset-in-cover;
       position: absolute;
-      padding-top: 20px;
-      padding-left: 20px;
+      padding-top: $title-left-and-top-padding-in-cover;
+      padding-left: $title-left-and-top-padding-in-cover;
       font-family: "Nunito", Helvetica, sans-serif;
       background-color: rgba(242,148,0,0.95);
       color: #fff;
@@ -437,9 +458,9 @@ $slide-title-height: 110px;
       
       background-color: white;
       color: #373737;
-      height: 16px;
-      width: 870px;
-      padding: 7px 15px;
+      height: $footer-inner-height-in-cover;
+      width: $footer-inner-width-in-cover;
+      padding: $footer-vertical-padding-in-cover $footer-horizontal-padding-in-cover;
       font-size: 13px;
       font-family: Arial, sans-serif;
       
@@ -470,7 +491,7 @@ $slide-title-height: 110px;
     .title-container {
       
       height: $slide-title-height;
-      margin-bottom: 20px;
+      margin-bottom: $slide-inner-padding;
       
       input {
         
@@ -490,7 +511,7 @@ $slide-title-height: 110px;
       
       width: 420px;
       height: 420px;
-      margin-right: 20px;
+      margin-right: $slide-inner-padding;
       
     }
     
@@ -508,7 +529,7 @@ $slide-title-height: 110px;
     .image-container {
       
       width: 420px;
-      margin-right: 20px;
+      margin-right: $slide-inner-padding;
       
     }
     
@@ -528,8 +549,8 @@ $slide-title-height: 110px;
       
       width: 420px;
       height: 265px;
-      margin-right: 20px;
-      margin-bottom: 20px;
+      margin-right: $slide-inner-padding;
+      margin-bottom: $slide-inner-padding;
       
     }
     
@@ -540,7 +561,7 @@ $slide-title-height: 110px;
     .title-container {
       
       height: $slide-title-height;
-      margin-bottom: 20px;
+      margin-bottom: $slide-inner-padding;
       
       input {
         
@@ -595,7 +616,7 @@ $slide-title-height: 110px;
     .title-container {
       
       height: $slide-title-height;
-      margin-bottom: 20px;
+      margin-bottom: $slide-inner-padding;
       
       input {
         
@@ -615,7 +636,7 @@ $slide-title-height: 110px;
       
       width: 420px;
       height: 420px;
-      margin-right: 20px;
+      margin-right: $slide-inner-padding;
       
     }
     
