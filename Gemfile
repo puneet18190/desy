@@ -31,7 +31,7 @@ group :development, :test do
   gem 'colorize'
 end
 
-gem 'oj', platforms: :ruby
+gem 'oj'
 gem 'jquery-rails', '~> 2.1.4'
 gem 'schema_plus'
 gem 'recursive-open-struct'
