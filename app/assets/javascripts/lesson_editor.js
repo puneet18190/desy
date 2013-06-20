@@ -671,7 +671,7 @@ function resizeHeight(width, height, kind) {
    break;
    default: slideWidth = 900;
   }
-  return (height * slideWidth) / width;
+  return parseInt((height * slideWidth) / width) + 1;
 }
 
 /**
@@ -697,7 +697,7 @@ function resizeWidth(width, height, kind) {
    break;
    default: slideHeight = 590;
   }
-  return (width * slideHeight) / height;
+  return parseInt((width * slideHeight) / height) + 1;
 }
 
 
