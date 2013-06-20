@@ -36,6 +36,8 @@ $footer-horizontal-padding-in-cover: 7px;
 $footer-inner-height-in-cover: $footer-height-in-cover - $footer-vertical-padding-in-cover - $footer-vertical-padding-in-cover;
 /* larghezza interna del footer della copertina: larghezza della slide meno due volte padding orizzontale */
 $footer-inner-width-in-cover: $slide-width - $footer-horizontal-padding-in-cover - $footer-horizontal-padding-in-cover;
+/* font size del footer nella copertina */
+$footer-font-size-in-cover: 13px;
 /* altezza del titolo generale (presente in slides di tipo 'audio', 'image1', 'text', 'video1') */
 $slide-title-height: 110px;
 /* bordo del titolo, applicato sia in fase di editing (lesson editor) che in fase di read-only (lesson viewer) */
@@ -82,6 +84,10 @@ $big-icon-top-position-in-full-cover: ($image-height-in-cover - $big-icon-dimens
 $big-icon-top-position-in-empty-cover: (($image-height-in-cover - $title-height-in-cover - $big-icon-dimension) / 2) - 10px;
 /* posizione left nella copertina dell'icona (uguale se piena o vuota): larghezza immagine (uguale a larghezza slide) meno larghezza icona diviso 2 */
 $big-icon-left-position-in-cover: ($slide-width - $big-icon-dimension) / 2;
+/* font-size della label dell'icona aggiungi nuova immagine nella copertina */
+$big-icon-label-font-size: 16px;
+/* posizione della label dell'icona aggiungi nuova immagine nella copertina */
+$big-icon-label-margin-top-in-cover: 280px;
 
 /* tenere allineato con content.css; le differenze con tale file sono sottolineate nei commenti */
 @mixin read-only-tiny-mce {
@@ -483,12 +489,12 @@ $big-icon-left-position-in-cover: ($slide-width - $big-icon-dimension) / 2;
             height: $image-height-in-cover;
             text-align: center;
             color: #999999;
-            background-color: #f1f1f1;
-            font-size: 16px;
+            background-color: #F1F1F1;
+            font-size: $big-icon-label-font-size;
             
             p {
               
-              margin-top: 280px;
+              margin-top: $big-icon-label-margin-top-in-cover;
               
             }
             
@@ -541,7 +547,7 @@ $big-icon-left-position-in-cover: ($slide-width - $big-icon-dimension) / 2;
       height: $footer-inner-height-in-cover;
       width: $footer-inner-width-in-cover;
       padding: $footer-vertical-padding-in-cover $footer-horizontal-padding-in-cover;
-      font-size: 13px;
+      font-size: $footer-font-size-in-cover;
       font-family: Arial, sans-serif;
       
       .subject {
@@ -900,30 +906,7 @@ $big-icon-left-position-in-cover: ($slide-width - $big-icon-dimension) / 2;
       
     }
     
-    .cover-slide-footer {
-      
-      clear: both;
-      background-color: white;
-      color: #373737;
-      height: 16px;
-      width: 870px;
-      padding: 7px 15px;
-      font-size: 13px;
-      
-      .subject .h3 {
-        
-        font-family: Arial, sans-serif;
-        color: #373737;
-        
-      }
-      
-      .author .name {
-        
-        color: $orange;
-        
-      }
-      
-    }
+    
     
   }
   
@@ -1306,23 +1289,7 @@ $big-icon-left-position-in-cover: ($slide-width - $big-icon-dimension) / 2;
       
     }
     
-    .cover-slide-footer {
-      
-      clear: both;
-      background-color: white;
-      color: #373737;
-      height: 16px;
-      width: 870px;
-      padding: 7px 15px;
-      font-size: 13px;
-      
-      .author .name {
-        
-        color: $orange;
-        
-      }
-      
-    }
+  
     
   }
   
@@ -1872,30 +1839,7 @@ $big-icon-left-position-in-cover: ($slide-width - $big-icon-dimension) / 2;
           
         }
         
-        .cover-slide-footer {
-          
-          clear: both;
-          background-color: #fff;
-          color: #373737;
-          height: 16px;
-          width: 870px;
-          padding: 7px 15px;
-          font-size: 13px;
-          
-          .subject .h3 {
-            
-            font-family: Arial, sans-serif;
-            color: #373737;
-            
-          }
-          
-          .author .name {
-            
-            color: $orange;
-            
-          }
-          
-        }
+    
         
       }
 
@@ -2247,26 +2191,6 @@ $big-icon-left-position-in-cover: ($slide-width - $big-icon-dimension) / 2;
           
           }
           
-          .cover-choose-image TODO  {
-            
-            margin: 0 0 0 20px;
-            width: 420px;
-            height: 280px;
-            display: block;
-            
-            a {
-              
-              background-position: -130px center;
-              
-            }
-            
-            a:hover {
-              
-              background-position: -390px center;
-              
-            }
-            
-          }
           
         }
         
@@ -2534,29 +2458,6 @@ $big-icon-left-position-in-cover: ($slide-width - $big-icon-dimension) / 2;
            span.add-image TODO DEVO FARLO CON LO SCOPE A MASK E NON A EMPTY-MASK, importante ... adesso entrambe si chiamano add TODO :hover{
              background-position: -390px center;
            }
-          ._maskh TODO x{
-            img{
-              height: 420px;
-              left:0;
-            }
-          }
-          ._maskh TODO y{
-            img{
-              width: 420px;
-              top:0;
-            }
-          }
-          
-          .cover-choose-image TODO {
-            margin: 0px;
-            width: 420px;
-            height: 280px;
-            display:block;
-            margin-left:20px;
-            a{
-              font-size: 100px;
-            }  
-          }
           
           input.caption{
             top: 385px;
@@ -2581,52 +2482,4 @@ $big-icon-left-position-in-cover: ($slide-width - $big-icon-dimension) / 2;
     
 
     
-    a:hover {
-      
-      background-position: -3em center;
-      
-    }
-    
-    img {
-      display:none;
-    }
-    &.choose-small{
-      padding: 0;
-      margin:20px 0 0;
-      width: 420px;
-      height: 265px;
-      text-align:center;
-      a{
-        margin-top:1em;
-        width: 1em;
-        height: 1em;
-        font-size: 80px;
-        background-size: 6em 1em;
-        background-position: -2em center;
-        background-repeat: no-repeat;
-        background-color: transparent;
-      }
-      a:hover{
-        background-position: -3em center;
-      }
-      img{
-        display:none;
-      }
-      &.cover-choose-image TODO -left{
-        margin-left: 20px;
-      }
-      &.cover-choose-image TODO -right{
-        margin-right: 20px;
-      }
-    }
-    &.cover-choose-image TODO -left{
-      float:left;
-    }
-    &.cover-choose-image TODO -right{
-      float:right;
-    }
-  }
-
-
-
            */
