@@ -1,29 +1,59 @@
+/* codice colore associato alle lezioni */
+$orange: #F29400;
+/* larghezza standard della slide */
 $slide-width: 900px;
+/* altezza standard della slide */
 $slide-height: 590px;
+/* padding interno che separa tutte le componenti della slide */
 $slide-inner-padding: 20px;
+/* larghezza interna della slide: larghezza esterna meno due volte il padding */
 $slide-inner-width: $slide-width - $slide-inner-padding - $slide-inner-padding;
+/* altezza interna della slide: altezza esterna meno due volte il padding */
 $slide-inner-height: $slide-height - $slide-inner-padding - $slide-inner-padding;
-
+/* altezza complessiva del footer della copertina (la copertina è l'unica slide senza padding interno) */
 $footer-height-in-cover: 30px;
+/* altezza dell'immagine di sfondo della copertina: altezza slide meno altezza footer */
 $image-height-in-cover: $slide-height - $footer-height-in-cover;
+/* altezza del titolo nella copertina (che va in sovraimpressione sopra l'immagine di sfondo) */
 $title-height-in-cover: 130px;
+/* padding per centrare il titolo della copertina nell'apposito contenitore (padding da applicare a left e top) */
 $title-left-and-top-padding-in-cover: 20px;
+/* altezza interna del titolo, uguale ad altezza globale meno una volta il padding interno (è applicato solo a left) */
 $title-inner-height-in-cover: $title-height-in-cover - $title-left-and-top-padding-in-cover;
+/* larghezza interna del titolo, uguale a larghezza della slide meno una volta il padding interno (è applicato solo a left) */
 $title-inner-width-in-cover: $slide-width - $title-left-and-top-padding-in-cover;
+/* posizionamento del titolo all'interno della slide: deve essere aderente al footer, pertanto è uguale ad altezza immagine meno altezza titolo */
 $title-top-offset-in-cover: $image-height-in-cover - $title-height-in-cover;
+/* line-height del titolo nella copertina */
+$title-line-height-in-cover: 50px;
+/* font-size del titolo nella copertina */
+$title-font-size-in-cover: 50px;
+/* padding verticale del footer della copertina */
 $footer-vertical-padding-in-cover: 7px;
+/* padding orizzontale del footer della copertina */
 $footer-horizontal-padding-in-cover: 7px;
+/* altezza interna del footer della copertina: altezza del footer meno due volte padding verticale */
 $footer-inner-height-in-cover: $footer-height-in-cover - $footer-vertical-padding-in-cover - $footer-vertical-padding-in-cover;
+/* larghezza interna del footer della copertina: larghezza della slide meno due volte padding orizzontale */
 $footer-inner-width-in-cover: $slide-width - $footer-horizontal-padding-in-cover - $footer-horizontal-padding-in-cover;
-
+/* altezza del titolo generale (presente in slides di tipo 'audio', 'image1', 'text', 'video1') */
 $slide-title-height: 110px;
+/* bordo del titolo, applicato sia in fase di editing (lesson editor) che in fase di read-only (lesson viewer) */
 $slide-title-border: 1px;
-$slide-title-inner-height: $slide-title-height - $slide-title-border - $slide-title-border;
+/* padding del titolo, valido in verticale sia per editing che per read-only, e verticalmente solamente per editing */
 $slide-title-padding: 10px;
+/* altezza interna del titolo: altezza globale meno due volte il bordo meno due volte il padding verticale (che non cambia tra editing e read-only) */
+$slide-title-inner-height: $slide-title-height - $slide-title-border - $slide-title-border - $slide-title-padding - $slide-title-padding;
+/* padding orizzontale da usare in caso di read-only: c'è un pixel in più che rimpiazza lo spazio riservato alla barra di posizionamento dell'editing */
 $slide-title-read-only-lateral-padding: 11px;
-$slide-title-inner-width: $slide-inner-width - $slide-title-padding - $slide-title-padding;
-$slide-title-inner-read-only-width: $slide-inner-width - $slide-title-read-only-lateral-padding - $slide-title-read-only-lateral-padding;
+/* larghezza interna del titolo in fase editing: larghezza interna della slide meno due volte il bordo meno due volte il padding normale */
+$slide-title-inner-width: $slide-inner-width - $slide-title-padding - $slide-title-padding - $slide-title-border - $slide-title-border;
+/* larghezza interna del titolo in fase read only: larghezza interna della slide meno due volte il bordo meno due volte il padding per read only */
+$slide-title-inner-read-only-width: $slide-inner-width - $slide-title-read-only-lateral-padding - $slide-title-read-only-lateral-padding - $slide-title-border - $slide-title-border;
+/* line-height del titolo (sempre uguale) */
 $slide-title-line-height: 88px;
+/* font-size del titolo (sempre uguale) */
+$slide-title-font-size: 54px;
 
 /* tenere allineato con content.css; le differenze con tale file sono sottolineate nei commenti */
 @mixin read-only-tiny-mce {
@@ -53,12 +83,11 @@ $slide-title-line-height: 88px;
   }
   
   a {
-    color: #f29400;
+    color: $orange;
     text-decoration: none;
   }
   
   a:hover {
-    color: #f29400;
     text-decoration: underline;
     cursor: pointer;
   }
@@ -227,12 +256,12 @@ $slide-title-line-height: 88px;
 
 @mixin slide-title-common {
   
-  font-size: 54px;
+  font-size: $slide-title-font-size;
   margin: 0;
   height: $slide-title-inner-height;
   line-height: $slide-title-line-height;
   font-family: "Nunito", sans-serif;
-  color: #F29400;
+  color: $orange;
   
 }
 
@@ -446,11 +475,12 @@ $slide-title-line-height: 88px;
       padding-top: $title-left-and-top-padding-in-cover;
       padding-left: $title-left-and-top-padding-in-cover;
       font-family: "Nunito", Helvetica, sans-serif;
-      background-color: rgba(242,148,0,0.95);
+      background-color: $orange;
+      opacity: 0.95;
       color: #fff;
-      font-size: 50px;
+      font-size: $title-font-size-in-cover;
       font-weight: normal;
-      line-height: 50px;
+      line-height: $title-line-height-in-cover;
       
     }
     
@@ -476,7 +506,7 @@ $slide-title-line-height: 88px;
         
         .name {
           
-          color: #F29400;
+          color: $orange;
           
         }
         
@@ -669,8 +699,6 @@ $slide-title-line-height: 88px;
 
 /*
 
-$orange: #f29400;
-
 @mixin colorLink {
   
   a  {
@@ -791,28 +819,6 @@ $orange: #f29400;
       img {
         
         position: absolute;
-        
-      }
-      
-    }
-    
-    .bg_text {
-      
-      background-color: rgba(242, 148, 0, 0.95);
-      height: 130px;
-      width: 860px;
-      padding: 0px 20px;
-      position: absolute;
-      top: 430px;
-      left: 0px;
-      
-      .lessonTitle {
-        
-        font: 100% 'Nunito', sans-serif;
-        color: #fff;
-        line-height: 50px;
-        font-size: 50px;
-        margin: 30px 0px 0px 0px;
         
       }
       
@@ -1597,27 +1603,6 @@ $orange: #f29400;
     padding: 0;
     position: relative;
     
-    .bg_text {
-      
-      background-color: rgba(242, 148, 0, 0.95);
-      height: 130px;
-      width: 900px;
-      padding: 0;
-      position: absolute;
-      top: 430px;
-      left: 0px;
-      
-      .lessonTitle {
-        
-        font: 100% 'Nunito', sans-serif;
-        color: #fff;
-        line-height: 50px;
-        font-size: 50px;
-        margin: 20px;
-        
-      }
-      
-    }
     
     .lessonSubject {
       
@@ -1927,14 +1912,7 @@ $orange: #f29400;
           height: 590px;
           width: 900px;
           
-          h2 input {
-            
-            font-size: 54px;
-            padding: 10px;
-            width: 840px;
-            height: 94px;
-            
-          }
+
           
           .audio-content {
             
@@ -2176,14 +2154,6 @@ $orange: #f29400;
             
           }
           
-          h2 input {
-            
-            font-size: 54px;
-            padding: 10px;
-            width: 840px;
-            height: 94px;
-            
-          }
           
           .video1-content {
             
@@ -2456,14 +2426,6 @@ $orange: #f29400;
           width: 900px;
           
           
-          h2 input {
-            
-            font-size: 54px;
-            padding: 10px;
-            width: 840px;
-            height: 94px;
-            
-          }
           
           .mask{
             width: 420px;
