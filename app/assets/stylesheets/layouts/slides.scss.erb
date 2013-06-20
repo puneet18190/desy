@@ -59,7 +59,7 @@ $slide-text-full-width: $slide-inner-width;
 /* altezza in full-slide di un cmapo testo: altezza interna della slide meno altgezza titolo meno padding interno che le separa */
 $slide-text-full-height: $slide-inner-height - $slide-title-height - $slide-inner-padding;
 /* larghezza in half-slide di un campo testo */
-$slide-text-half-width: 420px;
+$slide-text-half-width: ($slide-inner-width - $slide-inner-padding) / 2;
 /* padding di un campo testo in read-only, che sopperisce a un margin interno di 8px di tinyMCE, e al bordo di 1px sempre di tinyMCE */
 $slide-text-read-only-padding: 9px;
 /* altezza read-only per full slide text: altezza full-slide meno due volte il padding read-only */
@@ -74,6 +74,14 @@ $audio-placeholder-height: 71px;
 $slide-text-height-for-audio: $slide-text-full-height - $audio-placeholder-height - $slide-inner-padding;
 /* altezza read-only in di un cmapo testo nella slide di tipo 'audio': altezza di riferimento meno due volte padding read-only */
 $slide-text-read-only-height-for-audio: $slide-text-height-for-audio - $slide-text-read-only-padding - $slide-text-read-only-padding;
+/* dimensioni dell'icona grande (usata per video e immagini) */
+$big-icon-dimension: 130px;
+/* posizione top nella copertina piena dell'icona (in questo case immagine): altezza immagine (senza considerare titolo) meno altezza icona diviso 2 */
+$big-icon-top-position-in-full-cover: ($image-height-in-cover - $big-icon-dimension) / 2;
+/* posizione top nella copertina vuota dell'icona: altezza immagine meno altezza titolo meno altezza icona diviso 2, tutto meno 10px per lasciare spazio alla label */
+$big-icon-top-position-in-empty-cover: (($image-height-in-cover - $title-height-in-cover - $big-icon-dimension) / 2) - 10px;
+/* posizione left nella copertina dell'icona (uguale se piena o vuota): larghezza immagine (uguale a larghezza slide) meno larghezza icona diviso 2 */
+$big-icon-left-position-in-cover: ($slide-width - $big-icon-dimension) / 2;
 
 /* tenere allineato con content.css; le differenze con tale file sono sottolineate nei commenti */
 @mixin read-only-tiny-mce {
@@ -303,12 +311,21 @@ $slide-text-read-only-height-for-audio: $slide-text-height-for-audio - $slide-te
   
 }
 
-@mixin photo-icon {
+@mixin image-icon {
   
-  font-size: 130px;
+  font-size: $big-icon-dimension;
   background: url('/assets/icone_piene.svg') no-repeat scroll -2em center / 6em 1em transparent;
-  width: 130px;
-  height: 130px;
+  width: $big-icon-dimension;
+  height: $big-icon-dimension;
+  
+}
+
+@mixin video-icon {
+  
+  font-size: $big-icon-dimension;
+  /*background: url('/assets/icone_piene.svg') no-repeat scroll -2em center / 6em 1em transparent; TODO */
+  width: $big-icon-dimension;
+  height: $big-icon-dimension;
   
 }
 
@@ -453,7 +470,7 @@ $slide-text-read-only-height-for-audio: $slide-text-height-for-audio - $slide-te
             
             .add {
               
-              top: 215px;
+              top: $big-icon-top-position-in-full-cover;
               opacity: 0.8;
               
             }
@@ -483,11 +500,11 @@ $slide-text-read-only-height-for-audio: $slide-text-height-for-audio - $slide-te
       
       .add {
         
-        @include photo-icon;
+        @include image-icon;
         cursor: pointer;
         position: absolute;
-        top: 140px;
-        left: 385px;
+        top: $big-icon-top-position-in-empty-cover;
+        left: $big-icon-left-position-in-cover;
         
         &:hover {
           
