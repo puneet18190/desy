@@ -88,6 +88,16 @@ $big-icon-left-position-in-cover: ($slide-width - $big-icon-dimension) / 2;
 $big-icon-label-font-size: 16px;
 /* posizione della label dell'icona aggiungi nuova immagine nella copertina */
 $big-icon-label-margin-top-in-cover: 280px;
+/* larghezza piena dell'immagine: come la larghezza interna della slide */
+$slide-image-full-width: $slide-inner-width;
+/* larghezza a metà slide dell'immagine: larghezza interna meno il padding interno diviso due */
+$slide-image-half-width: ($slide-inner-width - $slide-inner-padding) / 2;
+/* altezza piena dell'immagine: come l'altezza interna della slide */
+$slide-image-full-height: $slide-inner-height;
+/* altezza a metà slide dell'immagine: altezza interna meno il padding interno diviso due */
+$slide-image-half-height: ($slide-inner-height - $slide-inner-padding) / 2;
+/* altezza a piena con titolo dell'immagine: altezza interna meno altezza titolo meno padding interno */
+$slide-image-full-height-with-title: $slide-inner-height - $slide-title-height - $slide-inner-padding;
 
 /* tenere allineato con content.css; le differenze con tale file sono sottolineate nei commenti */
 @mixin read-only-tiny-mce {
@@ -595,8 +605,8 @@ $big-icon-label-margin-top-in-cover: 280px;
     
     .image-container {
       
-      width: 420px;
-      height: 420px;
+      width: $slide-image-half-width;
+      height: $slide-image-full-height-with-title;
       margin-right: $slide-inner-padding;
       
     }
@@ -627,7 +637,8 @@ $big-icon-label-margin-top-in-cover: 280px;
     
     .image-container {
       
-      width: 420px;
+      width: $slide-image-half-width;
+      height: $slide-image-full-height;
       margin-right: $slide-inner-padding;
       
     }
@@ -638,6 +649,9 @@ $big-icon-label-margin-top-in-cover: 280px;
     
     .image-container {
       
+      width: $slide-image-full-width;
+      height: $slide-image-full-height;
+      
     }
     
   }
@@ -646,8 +660,8 @@ $big-icon-label-margin-top-in-cover: 280px;
     
     .image-container {
       
-      width: 420px;
-      height: 265px;
+      width: $slide-image-half-width;
+      height: $slide-image-half-height;
       margin-right: $slide-inner-padding;
       margin-bottom: $slide-inner-padding;
       
