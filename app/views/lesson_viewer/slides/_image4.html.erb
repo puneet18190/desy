@@ -17,12 +17,12 @@
 <div class="slide-content image4">
   
   <div class="item image-container">
-    <div class="image not-editable">
+    <div class="image read-only">
       <% if image1 %>
         <% if is_horizontal?(image1.media_element.width, image1.media_element.height, 'image4') %>
-          <%= image_tag image1.media_element.url, :style => "left:#{image1.alignment}px; height: 265px; width: #{image_width1}px" %>
+          <%= image_tag image1.media_element.url, :style => "left:#{image1.alignment}px; width:#{image_width1}px" %>
         <% else %>
-          <%= image_tag image1.media_element.url, :style => "top:#{image1.alignment}px; width: 420px; height: #{image_height1}px" %>
+          <%= image_tag image1.media_element.url, :style => "top:#{image1.alignment}px; height:#{image_height1}px" %>
         <% end %>
         <% if !image1.caption.blank? %>
           <div class="caption"><%= image1.caption %></div>
@@ -32,12 +32,12 @@
   </div>
   
   <div class="item image-container" style="margin-right:0">
-    <div class="image not-editable">
+    <div class="image read-only">
       <% if image2 %>
         <% if is_horizontal?(image2.media_element.width, image2.media_element.height, 'image4') %>
-          <%= image_tag image2.media_element.url, :style => "left:#{image2.alignment}px; height: 265px; width: #{image_width2}px" %>
+          <%= image_tag image2.media_element.url, :style => "left:#{image2.alignment}px; width:#{image_width2}px" %>
         <% else %>
-          <%= image_tag image2.media_element.url, :style => "top:#{image2.alignment}px; width: 420px; height: #{image_height2}px" %>
+          <%= image_tag image2.media_element.url, :style => "top:#{image2.alignment}px; height:#{image_height2}px" %>
         <% end %>
         <% if !image2.caption.blank? %>
           <div class="caption"><%= image2.caption %></div>
@@ -47,12 +47,12 @@
   </div>
   
   <div class="item image-container" style="margin-bottom:0">
-    <div class="image not-editable">
+    <div class="image read-only">
       <% if image3 %>
         <% if is_horizontal?(image3.media_element.width, image3.media_element.height, 'image4') %>
-          <%= image_tag image3.media_element.url, :style => "left:#{image3.alignment}px; height: 265px; width: #{image_width3}px" %>
+          <%= image_tag image3.media_element.url, :style => "left:#{image3.alignment}px; width:#{image_width3}px" %>
         <% else %>
-          <%= image_tag image3.media_element.url, :style => "top:#{image3.alignment}px; width: 420px; height: #{image_height3}px" %>
+          <%= image_tag image3.media_element.url, :style => "top:#{image3.alignment}px; height:#{image_height3}px" %>
         <% end %>
         <% if !image3.caption.blank? %>
           <div class="caption"><%= image3.caption %></div>
@@ -62,12 +62,12 @@
   </div>
   
   <div class="item image-container" style="margin-right:0; margin-bottom:0">
-    <div class="image not-editable">
+    <div class="image read-only">
       <% if image4 %>
         <% if is_horizontal?(image4.media_element.width, image4.media_element.height, 'image4') %>
-          <%= image_tag image4.media_element.url, :style => "left:#{image4.alignment}px; height: 265px; width: #{image_width4}px" %>
+          <%= image_tag image4.media_element.url, :style => "left:#{image4.alignment}px; width:#{image_width4}px" %>
         <% else %>
-          <%= image_tag image4.media_element.url, :style => "top:#{image4.alignment}px; width: 420px; height: #{image_height4}px" %>
+          <%= image_tag image4.media_element.url, :style => "top:#{image4.alignment}px; height:#{image_height4}px" %>
         <% end %>
         <% if !image4.caption.blank? %>
           <div class="caption"><%= image4.caption %></div>

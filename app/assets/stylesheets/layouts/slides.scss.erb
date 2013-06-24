@@ -132,10 +132,16 @@ $image-caption-line-height: 35px;
 $image-caption-height: 35px;
 /* padding laterale della caption */
 $image-caption-lateral-padding: 5px;
+/* padding laterale da usare in caso di read-only: c'è un pixel in più che rimpiazza lo spazio riservato alla barra di posizionamento dell'editing */
+$image-caption-read-only-lateral-padding: 6px;
 /* metà larghezza caption: metà larghezza immagine meno due volte padding laterale */
 $image-caption-half-width: $slide-image-half-width - $image-caption-lateral-padding - $image-caption-lateral-padding;
 /* larghezza piena caption: larghezza piena immagine meno due volte padding laterale */
 $image-caption-full-width: $slide-image-full-width - $image-caption-lateral-padding - $image-caption-lateral-padding;
+/* metà larghezza caption: metà larghezza immagine meno due volte padding laterale (caso read-only, padding diverso) */
+$image-caption-read-only-half-width: $slide-image-half-width - $image-caption-read-only-lateral-padding - $image-caption-read-only-lateral-padding;
+/* larghezza piena caption: larghezza piena immagine meno due volte padding laterale (caso read-only, padding diverso) */
+$image-caption-read-only-full-width: $slide-image-full-width - $image-caption-read-only-lateral-padding - $image-caption-read-only-lateral-padding;
 
 /* tenere allineato con content.css; le differenze con tale file sono sottolineate nei commenti */
 @mixin read-only-tiny-mce {
@@ -437,7 +443,6 @@ $image-caption-full-width: $slide-image-full-width - $image-caption-lateral-padd
   position: absolute;
   left: auto;
   bottom: 0;
-  padding: 0 $image-caption-lateral-padding;
   line-height: $image-caption-line-height;
   font-size: $image-caption-font-size;
   
@@ -540,7 +545,7 @@ $image-caption-full-width: $slide-image-full-width - $image-caption-lateral-padd
       
       .image {
         
-        &.not-editable {
+        &.read-only {
           
           width: $slide-width;
           height: $image-height-in-cover;
@@ -697,10 +702,17 @@ $image-caption-full-width: $slide-image-full-width - $image-caption-lateral-padd
       width: $slide-image-half-width;
       height: $slide-image-full-height-with-title;
       margin-right: $slide-inner-padding;
+      position: relative;
       
       .image {
         
-        &.not-editable {
+        .caption {
+          
+          @include image-caption;
+          
+        }
+        
+        &.read-only {
           
           width: $slide-image-half-width;
           height: $slide-image-full-height-with-title;
@@ -710,6 +722,13 @@ $image-caption-full-width: $slide-image-full-width - $image-caption-lateral-padd
           img {
             
             position: absolute;
+            
+          }
+          
+          .caption {
+            
+            padding: 0 $image-caption-read-only-lateral-padding;
+            width: $image-caption-read-only-half-width;
             
           }
           
@@ -746,7 +765,7 @@ $image-caption-full-width: $slide-image-full-width - $image-caption-lateral-padd
             
             .caption {
               
-              @include image-caption;
+              padding: 0 $image-caption-lateral-padding;
               width: $image-caption-half-width;
               
             }
