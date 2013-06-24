@@ -78,16 +78,14 @@ $slide-text-height-for-audio: $slide-text-full-height - $audio-placeholder-heigh
 $slide-text-read-only-height-for-audio: $slide-text-height-for-audio - $slide-text-read-only-padding - $slide-text-read-only-padding;
 /* dimensioni dell'icona grande (usata per video e immagini) */
 $big-icon-dimension: 130px;
+/* dimensioni dell'icona piccola (usata per video e immagini) */
+$small-icon-dimension: 100px;
 /* posizione top nella copertina piena dell'icona (in questo case immagine): altezza immagine (senza considerare titolo) meno altezza icona diviso 2 */
 $big-icon-top-position-in-full-cover: ($image-height-in-cover - $big-icon-dimension) / 2;
 /* posizione top nella copertina vuota dell'icona: altezza immagine meno altezza titolo meno altezza icona diviso 2, tutto meno 10px per lasciare spazio alla label */
 $big-icon-top-position-in-empty-cover: (($image-height-in-cover - $title-height-in-cover - $big-icon-dimension) / 2) - 10px;
 /* posizione left nella copertina dell'icona (uguale se piena o vuota): larghezza immagine (uguale a larghezza slide) meno larghezza icona diviso 2 */
 $big-icon-left-position-in-cover: ($slide-width - $big-icon-dimension) / 2;
-/* font-size della label dell'icona aggiungi nuova immagine nella copertina */
-$big-icon-label-font-size: 16px;
-/* posizione della label dell'icona aggiungi nuova immagine nella copertina */
-$big-icon-label-margin-top-in-cover: 280px;
 /* larghezza piena dell'immagine: come la larghezza interna della slide */
 $slide-image-full-width: $slide-inner-width;
 /* larghezza a metà slide dell'immagine: larghezza interna meno il padding interno diviso due */
@@ -98,6 +96,28 @@ $slide-image-full-height: $slide-inner-height;
 $slide-image-half-height: ($slide-inner-height - $slide-inner-padding) / 2;
 /* altezza a piena con titolo dell'immagine: altezza interna meno altezza titolo meno padding interno */
 $slide-image-full-height-with-title: $slide-inner-height - $slide-title-height - $slide-inner-padding;
+/* posizione top dell'icona immagine in altezza piena: altezza corrispondente immagine meno dimensione icona diviso 2 */
+$big-icon-top-position-in-full-height-image: ($slide-image-full-height - $big-icon-dimension) / 2;
+/* posizione left dell'icona immagine in larghezza piena: larghezza corrispondente immagine meno dimensione icona diviso 2 */
+$big-icon-left-position-in-full-width-image: ($slide-image-full-width - $big-icon-dimension) / 2;
+/* posizione left dell'icona immagine in metà larghezza: larghezza corrispondente immagine meno dimensione icona diviso 2 */
+$big-icon-left-position-in-half-width-image: ($slide-image-half-width - $big-icon-dimension) / 2;
+/* posizione top dell'icona piccola immagine in metà altezza: altezza corrispondente immagine meno dimensione icona diviso 2 */
+$small-icon-top-position-in-half-height-image: ($slide-image-half-height - $small-icon-dimension) / 2;
+/* posizione left dell'icona piccola immagine in metà larghezza: larghezza corrispondente immagine meno dimensione icona diviso 2 */
+$small-icon-left-position-in-half-width-image: ($slide-image-half-width - $small-icon-dimension) / 2;
+/* posizione top dell'icona piccola immagine in altezza piena con titolo: altezza corrispondente immagine meno dimensione icona diviso 2 */
+$small-icon-top-position-in-full-height-image-with-title: (($slide-image-full-height-with-title - $small-icon-dimension) / 2) - 15px;
+/* font-size della label dell'icona aggiungi nuova immagine nella copertina */
+$big-icon-label-font-size: 16px;
+/* posizione della label dell'icona aggiungi nuova immagine nella copertina */
+$big-icon-label-margin-top-in-cover: 280px;
+/* posizione della label dell'icona aggiungi nuova immagine nella slide altezza piena */
+$big-icon-label-margin-top-in-full-height-image: 280px;
+/* posizione della label dell'icona aggiungi nuova immagine nella slide metà altezza */
+$big-icon-label-margin-top-in-half-height-image: 280px;
+/* posizione della label dell'icona aggiungi nuova immagine nella slide altezza piena con titolo */
+$big-icon-label-margin-top-in-full-height-image-with-title: 255px;
 
 /* tenere allineato con content.css; le differenze con tale file sono sottolineate nei commenti */
 @mixin read-only-tiny-mce {
@@ -329,25 +349,64 @@ $slide-image-full-height-with-title: $slide-inner-height - $slide-title-height -
 
 @mixin image-icon {
   
-  font-size: $big-icon-dimension;
   background: url('/assets/icone_piene.svg') no-repeat scroll -2em center / 6em 1em transparent;
+  
+}
+
+@mixin image-icon-big {
+  
+  @include image-icon;
+  font-size: $big-icon-dimension;
   width: $big-icon-dimension;
   height: $big-icon-dimension;
   
 }
 
+@mixin image-icon-small {
+  
+  @include image-icon;
+  font-size: $small-icon-dimension;
+  width: $small-icon-dimension;
+  height: $small-icon-dimension;
+  
+}
+
 @mixin video-icon {
   
-  font-size: $big-icon-dimension;
   /*background: url('/assets/icone_piene.svg') no-repeat scroll -2em center / 6em 1em transparent; TODO */
+  
+}
+
+@mixin video-icon-big {
+  
+  @include video-icon;
+  font-size: $big-icon-dimension;
   width: $big-icon-dimension;
   height: $big-icon-dimension;
+  
+}
+
+@mixin video-icon-small {
+  
+  @include video-icon;
+  font-size: $small-icon-dimension;
+  width: $small-icon-dimension;
+  height: $small-icon-dimension;
   
 }
 
 @mixin plus-icon {
   
   background-position: -3em center;
+  
+}
+
+@mixin general-empty-mask {
+  
+  color: #999999;
+  background-color: #F1F1F1;
+  font-size: $big-icon-label-font-size;
+  text-align: center;
   
 }
 
@@ -495,12 +554,9 @@ $slide-image-full-height-with-title: $slide-inner-height - $slide-title-height -
           
           .empty-mask {
             
+            @include general-empty-mask;
             width: $slide-width;
             height: $image-height-in-cover;
-            text-align: center;
-            color: #999999;
-            background-color: #F1F1F1;
-            font-size: $big-icon-label-font-size;
             
             p {
               
@@ -516,7 +572,7 @@ $slide-image-full-height-with-title: $slide-inner-height - $slide-title-height -
       
       .add {
         
-        @include image-icon;
+        @include image-icon-big;
         cursor: pointer;
         position: absolute;
         top: $big-icon-top-position-in-empty-cover;
@@ -608,6 +664,87 @@ $slide-image-full-height-with-title: $slide-inner-height - $slide-title-height -
       width: $slide-image-half-width;
       height: $slide-image-full-height-with-title;
       margin-right: $slide-inner-padding;
+      
+      .image {
+        
+        &.not-editable {
+          
+          width: $slide-image-half-width;
+          height: $slide-image-full-height-with-title;
+          overflow: hidden;
+          position: relative;
+          
+          img {
+            
+            position: absolute;
+            
+          }
+          
+        }
+        
+        &.editable {
+          
+          .mask {
+            
+            width: $slide-image-half-width;
+            height: $slide-image-full-height-with-title;
+            overflow: hidden;
+            
+            .alignable {
+              
+              position: relative;
+              width: $slide-image-half-width;
+              
+              img {
+                
+                cursor: url("https://mail.google.com/mail/images/2/openhand.cur"), move;
+                
+              }
+              
+            }
+            
+            .add {
+              
+              opacity: 0.8;
+              
+            }
+            
+          }
+          
+          .empty-mask {
+            
+            @include general-empty-mask;
+            width: $slide-image-half-width;
+            height: $slide-image-full-height-with-title;
+            position: relative;
+            
+            p {
+              
+              margin-top: $big-icon-label-margin-top-in-full-height-image-with-title;
+              
+            }
+            
+          }
+          
+        }
+        
+      }
+      
+      .add {
+        
+        @include image-icon-small;
+        cursor: pointer;
+        position: absolute;
+        top: $small-icon-top-position-in-full-height-image-with-title;
+        left: $small-icon-left-position-in-half-width-image;
+        
+        &:hover {
+          
+          @include plus-icon;
+          
+        }
+        
+      }
       
     }
     
