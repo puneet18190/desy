@@ -953,6 +953,110 @@ $image-caption-read-only-full-width: $slide-image-full-width - $image-caption-re
       
       width: $slide-image-full-width;
       height: $slide-image-full-height;
+      position: relative;
+      
+      .image {
+        
+        .caption {
+          
+          @include image-caption;
+          
+        }
+        
+        &.read-only {
+          
+          width: $slide-image-full-width;
+          height: $slide-image-full-height;
+          overflow: hidden;
+          position: relative;
+          
+          img {
+            
+            position: absolute;
+            
+          }
+          
+          .caption {
+            
+            padding: 0 $image-caption-read-only-lateral-padding;
+            width: $image-caption-read-only-full-width;
+            
+          }
+          
+        }
+        
+        &.editable {
+          
+          .mask {
+            
+            width: $slide-image-full-width;
+            height: $slide-image-full-height;
+            overflow: hidden;
+            position: relative;
+            
+            .alignable {
+              
+              position: relative;
+              width: $slide-image-full-width;
+              
+              img {
+                
+                cursor: url("https://mail.google.com/mail/images/2/openhand.cur"), move;
+                
+              }
+              
+            }
+            
+            .add {
+              
+              top: $big-icon-top-position-in-full-height-image;
+              opacity: 0.8;
+              
+            }
+            
+            .caption {
+              
+              padding: 0 $image-caption-lateral-padding;
+              width: $image-caption-full-width;
+              
+            }
+            
+          }
+          
+          .empty-mask {
+            
+            @include general-empty-mask;
+            width: $slide-image-full-width;
+            height: $slide-image-full-height;
+            position: relative;
+            
+            p {
+              
+              margin-top: $icon-label-margin-top-in-full-height-image;
+              
+            }
+            
+          }
+          
+        }
+        
+      }
+      
+      .add {
+        
+        @include image-icon-big;
+        cursor: pointer;
+        position: absolute;
+        top: $big-icon-top-position-in-full-height-image-empty;
+        left: $big-icon-left-position-in-full-width-image;
+        
+        &:hover {
+          
+          @include plus-icon;
+          
+        }
+        
+      }
       
     }
     
@@ -2307,43 +2411,6 @@ $image-caption-read-only-full-width: $slide-image-full-width - $image-caption-re
           
         }
         
-        }
-        &.image3{
-          padding: 0;
-          height: 590px;
-          width: 900px;
-          display:block;
-          .mask{
-            width: 860px;
-            height: 550px;
-            padding: 0;
-            margin: 0 20px;
-            overflow:hidden;
-            position:relative;
-            img{
-              display:block;
-              cursor: url(https://mail.google.com/mail/images/2/openhand.cur), move;
-            }
-          }
-     
-        &.image1{
-          height: 590px;
-          width: 900px;
-          
-          
-          
-          .mask{
-            width: 420px;
-            height: 420px;
-            overflow: hidden;
-            position: relative;
-            float: left;
-            margin-left: 20px;
-            
-            img{
-              display:block;
-              cursor: url(https://mail.google.com/mail/images/2/openhand.cur), move;
-            }
-          }
+
 
       }  */
