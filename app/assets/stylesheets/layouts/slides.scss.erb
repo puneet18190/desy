@@ -119,7 +119,7 @@ $icon-label-font-size: 16px;
 /* posizione della label dell'icona aggiungi nuova immagine nella copertina */
 $icon-label-margin-top-in-cover: 280px;
 /* posizione della label dell'icona aggiungi nuova immagine nella slide altezza piena */
-$icon-label-margin-top-in-full-height-image: 280px;
+$icon-label-margin-top-in-full-height-image: 330px;
 /* posizione della label dell'icona aggiungi nuova immagine nella slide metà altezza */
 $icon-label-margin-top-in-half-height-image: 280px;
 /* posizione della label dell'icona aggiungi nuova immagine nella slide altezza piena con titolo */
@@ -894,7 +894,7 @@ $image-caption-read-only-full-width: $slide-image-full-width - $image-caption-re
             
             .add {
               
-              top: $small-icon-top-position-in-full-height-image-with-title; /* TODO */
+              top: $big-icon-top-position-in-full-height-image;
               opacity: 0.8;
               
             }
@@ -917,7 +917,7 @@ $image-caption-read-only-full-width: $slide-image-full-width - $image-caption-re
             
             p {
               
-              margin-top: $icon-label-margin-top-in-full-height-image-with-title; /* TODO */
+              margin-top: $icon-label-margin-top-in-full-height-image;
               
             }
             
@@ -932,8 +932,8 @@ $image-caption-read-only-full-width: $slide-image-full-width - $image-caption-re
         @include image-icon-big;
         cursor: pointer;
         position: absolute;
-        top: $small-icon-top-position-in-full-height-image-with-title-empty; /* TODO */
-        left: $small-icon-left-position-in-half-width-image; /* TODO */
+        top: $big-icon-top-position-in-full-height-image-empty;
+        left: $big-icon-left-position-in-half-width-image;
         
         &:hover {
           
