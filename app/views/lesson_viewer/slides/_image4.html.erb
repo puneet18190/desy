@@ -3,42 +3,23 @@
   image2 = slide.image_at(2)
   image3 = slide.image_at(3)
   image4 = slide.image_at(4)
-  image_height1 = resize_height(image1.media_element.width,image1.media_element.height,"image4") if !image1.nil?
-  image_width1 = resize_width(image1.media_element.width,image1.media_element.height,"image4") if !image1.nil?
-  image_height2 = resize_height(image2.media_element.width,image2.media_element.height,"image4") if !image2.nil?
-  image_width2 = resize_width(image2.media_element.width,image2.media_element.height,"image4") if !image2.nil?
-  image_height3 = resize_height(image3.media_element.width,image3.media_element.height,"image4") if !image3.nil?
-  image_width3 = resize_width(image3.media_element.width,image3.media_element.height,"image4") if !image3.nil?
-  image_height4 = resize_height(image4.media_element.width,image4.media_element.height,"image4") if !image4.nil?
-  image_width4 = resize_width(image4.media_element.width,image4.media_element.height,"image4") if !image4.nil?
+  image_height1 = resize_height(image1.media_element.width, image1.media_element.height, 'image4') if !image1.nil?
+  image_width1 = resize_width(image1.media_element.width, image1.media_element.height, 'image4') if !image1.nil?
+  image_height2 = resize_height(image2.media_element.width, image2.media_element.height, 'image4') if !image2.nil?
+  image_width2 = resize_width(image2.media_element.width, image2.media_element.height, 'image4') if !image2.nil?
+  image_height3 = resize_height(image3.media_element.width, image3.media_element.height, 'image4') if !image3.nil?
+  image_width3 = resize_width(image3.media_element.width, image3.media_element.height, 'image4') if !image3.nil?
+  image_height4 = resize_height(image4.media_element.width, image4.media_element.height, 'image4') if !image4.nil?
+  image_width4 = resize_width(image4.media_element.width, image4.media_element.height, 'image4') if !image4.nil?
 %>
 
 
 <div class="slide-content image4">
   
   <div class="item image-container">
-    <div class="small">
-      <% if image2.nil? %>
-        <div class="photoIcon"></div>
-      <% else %>
-        <% if is_horizontal?(image2.media_element.width,image2.media_element.height,"image4")%>
-          <%= image_tag image2.media_element.url, :style => "left:#{image2.alignment}px; height: 265px; width: #{image_width2}px" %>
-        <% else %>
-          <%= image_tag image2.media_element.url, :style => "top:#{image2.alignment}px; width: 420px; height: #{image_height2}px" %>
-        <% end %>
-        <% if !image2.caption.blank? %>
-          <div class="caption"><%= image2.caption %></div>
-        <% end %>
-      <% end %>
-    </div>
-  </div>
-  
-  <div class="item image-container" style="margin-right:0">
-    <div class="small">
-      <% if image1.nil? %>
-        <div class="photoIcon"></div>
-      <% else %>
-        <% if is_horizontal?(image1.media_element.width,image1.media_element.height,"image4")%>
+    <div class="image not-editable">
+      <% if image1 %>
+        <% if is_horizontal?(image1.media_element.width, image1.media_element.height, 'image4') %>
           <%= image_tag image1.media_element.url, :style => "left:#{image1.alignment}px; height: 265px; width: #{image_width1}px" %>
         <% else %>
           <%= image_tag image1.media_element.url, :style => "top:#{image1.alignment}px; width: 420px; height: #{image_height1}px" %>
@@ -50,35 +31,46 @@
     </div>
   </div>
   
-  <div class="item image-container" style="margin-bottom:0">
-    <div class="small">
-      <% if image4.nil? %>
-        <div class="photoIcon"></div>
-      <% else %>
-        <% if is_horizontal?(image4.media_element.width,image4.media_element.height,"image4")%>
-          <%= image_tag image4.media_element.url, :style => "left:#{image4.alignment}px; height: 265px; width: #{image_width4}px" %>
+  <div class="item image-container" style="margin-right:0">
+    <div class="image not-editable">
+      <% if image2 %>
+        <% if is_horizontal?(image2.media_element.width, image2.media_element.height, 'image4') %>
+          <%= image_tag image2.media_element.url, :style => "left:#{image2.alignment}px; height: 265px; width: #{image_width2}px" %>
         <% else %>
-          <%= image_tag image4.media_element.url, :style => "top:#{image4.alignment}px; width: 420px; height: #{image_height4}px" %>
+          <%= image_tag image2.media_element.url, :style => "top:#{image2.alignment}px; width: 420px; height: #{image_height2}px" %>
         <% end %>
-        <% if !image4.caption.blank? %>
-          <div class="caption"><%= image4.caption %></div>
+        <% if !image2.caption.blank? %>
+          <div class="caption"><%= image2.caption %></div>
         <% end %>
       <% end %>
     </div>
   </div>
   
-  <div class="item image-container" style="margin-right:0; margin-bottom:0">
-    <div class="small">
-      <% if image3.nil? %>
-        <div class="photoIcon"></div>
-      <% else %>
-        <% if is_horizontal?(image3.media_element.width,image3.media_element.height,"image4")%>
+  <div class="item image-container" style="margin-bottom:0">
+    <div class="image not-editable">
+      <% if image3 %>
+        <% if is_horizontal?(image3.media_element.width, image3.media_element.height, 'image4') %>
           <%= image_tag image3.media_element.url, :style => "left:#{image3.alignment}px; height: 265px; width: #{image_width3}px" %>
         <% else %>
           <%= image_tag image3.media_element.url, :style => "top:#{image3.alignment}px; width: 420px; height: #{image_height3}px" %>
         <% end %>
         <% if !image3.caption.blank? %>
           <div class="caption"><%= image3.caption %></div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  
+  <div class="item image-container" style="margin-right:0; margin-bottom:0">
+    <div class="image not-editable">
+      <% if image4 %>
+        <% if is_horizontal?(image4.media_element.width, image4.media_element.height, 'image4') %>
+          <%= image_tag image4.media_element.url, :style => "left:#{image4.alignment}px; height: 265px; width: #{image_width4}px" %>
+        <% else %>
+          <%= image_tag image4.media_element.url, :style => "top:#{image4.alignment}px; width: 420px; height: #{image_height4}px" %>
+        <% end %>
+        <% if !image4.caption.blank? %>
+          <div class="caption"><%= image4.caption %></div>
         <% end %>
       <% end %>
     </div>
