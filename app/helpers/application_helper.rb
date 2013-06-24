@@ -46,7 +46,7 @@ module ApplicationHelper
   
   # Used to give an orientation on images
   def is_horizontal?(width, height, kind)
-    ( width.to_f / height.to_f ) >
+    ( width.to_f / height.to_f ) >=
       case kind
       when 'cover'                                      then 1.6
       when 'image1'                                     then 1
