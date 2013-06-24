@@ -107,7 +107,13 @@ $small-icon-top-position-in-half-height-image: ($slide-image-half-height - $smal
 /* posizione left dell'icona piccola immagine in metà larghezza: larghezza corrispondente immagine meno dimensione icona diviso 2 */
 $small-icon-left-position-in-half-width-image: ($slide-image-half-width - $small-icon-dimension) / 2;
 /* posizione top dell'icona piccola immagine in altezza piena con titolo: altezza corrispondente immagine meno dimensione icona diviso 2 */
-$small-icon-top-position-in-full-height-image-with-title: (($slide-image-full-height-with-title - $small-icon-dimension) / 2) - 15px;
+$small-icon-top-position-in-full-height-image-with-title: ($slide-image-full-height-with-title - $small-icon-dimension) / 2;
+/* posizione top dell'icona immagine (vuota) in altezza piena: altezza corrispondente immagine meno dimensione icona diviso 2 meno 15 per la label */
+$big-icon-top-position-in-full-height-image-empty: (($slide-image-full-height - $big-icon-dimension) / 2) - 15px;
+/* posizione top dell'icona piccola immagine (vuota) in metà altezza: altezza corrispondente immagine meno dimensione icona diviso 2 meno 15 per la label */
+$small-icon-top-position-in-half-height-image-empty: (($slide-image-half-height - $small-icon-dimension) / 2) - 15px;
+/* posizione top dell'icona piccola immagine (vuota) in altezza piena con titolo: altezza corrispondente immagine meno dimensione icona diviso 2 meno 15 per la label */
+$small-icon-top-position-in-full-height-image-with-title-empty: (($slide-image-full-height-with-title - $small-icon-dimension) / 2) - 15px;
 /* font-size della label dell'icona aggiungi nuova immagine nella copertina */
 $big-icon-label-font-size: 16px;
 /* posizione della label dell'icona aggiungi nuova immagine nella copertina */
@@ -689,6 +695,7 @@ $big-icon-label-margin-top-in-full-height-image-with-title: 255px;
             width: $slide-image-half-width;
             height: $slide-image-full-height-with-title;
             overflow: hidden;
+            position: relative;
             
             .alignable {
               
@@ -705,6 +712,7 @@ $big-icon-label-margin-top-in-full-height-image-with-title: 255px;
             
             .add {
               
+              top: $small-icon-top-position-in-full-height-image-with-title;
               opacity: 0.8;
               
             }
@@ -735,7 +743,7 @@ $big-icon-label-margin-top-in-full-height-image-with-title: 255px;
         @include image-icon-small;
         cursor: pointer;
         position: absolute;
-        top: $small-icon-top-position-in-full-height-image-with-title;
+        top: $small-icon-top-position-in-full-height-image-with-title-empty;
         left: $small-icon-left-position-in-half-width-image;
         
         &:hover {
