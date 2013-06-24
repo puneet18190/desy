@@ -153,7 +153,7 @@ $slide-video-half-width: $slide-image-half-width;
 /* video ad altezza piena: stesso calcolo di immagine */
 $slide-video-full-height: $slide-image-full-height;
 /* video ad altezza piena con titolo: stesso calcolo di immagine */
-$slide-video-full-height-with-title: 55px/* TODO */;
+$slide-video-full-height-with-title: 281px;
 /* video ad altezza piena con titolo con un video caricato (è più basso perché deve rimanere in proporzione) */
 $slide-video-full-height-with-title-empty: $slide-image-full-height-with-title;
 /* posizione top dell'icona video in altezza piena: altezza corrispondente video meno dimensione icona diviso 2 */
@@ -172,6 +172,12 @@ $small-icon-top-position-in-full-height-video-with-title-empty: (($slide-video-f
 $icon-label-margin-top-in-full-height-video: $icon-label-margin-top-in-full-height-image;
 /* posizione della label dell'icona aggiungi nuovo video nella slide altezza piena con titolo */
 $icon-label-margin-top-in-full-height-video-with-title: $icon-label-margin-top-in-full-height-image-with-title;
+/* altezza del footer del player video */
+$slide-video-player-footer-height: 44px;
+/* altezza contenuto video player altezza piena (si esclude il footer) */
+$slide-video-player-content-full-height: $slide-video-full-height - $slide-video-player-footer-height;
+/* altezza contenuto video player altezza piena con titolo (si esclude il footer) */
+$slide-video-player-content-full-height-with-title: $slide-video-full-height-with-title - $slide-video-player-footer-height;
 
 /* tenere allineato con content.css; le differenze con tale file sono sottolineate nei commenti */
 @mixin read-only-tiny-mce {
@@ -1301,6 +1307,56 @@ $icon-label-margin-top-in-full-height-video-with-title: $icon-label-margin-top-i
       margin-right: $slide-inner-padding;
       position: relative;
       
+      ._instance_of_player {
+        
+        width: $slide-video-half-width;
+        height: $slide-video-full-height-with-title;
+        
+        video {
+          
+          width: $slide-video-half-width;
+          height: $slide-video-player-content-full-height-with-title;
+          
+        }
+        
+        a.play, a.pause {
+          
+          height: 30px;
+          width: 30px;
+          margin: 2px 0 0 10px;
+          
+        }
+        
+        a.fullScreen {
+          
+          width: 30px;
+          height: 30px;
+          margin: 2px 10px 0 0;
+          
+        }
+        
+        .secondTime {
+          
+          margin-top: 11px;
+          width: 46px;
+          
+        }
+        
+        .videoSlider {
+          
+          width: 230px;
+          margin: 13px 8px 0 8px;
+          
+          .ui-slider-handle {
+            
+            top: -4px;
+            
+          }
+          
+        }
+        
+      }
+      
       .video {
         
         &.read-only { /* TODO */
@@ -1325,12 +1381,6 @@ $icon-label-margin-top-in-full-height-video-with-title: $icon-label-margin-top-i
               
               position: relative;
               width: $slide-video-half-width;
-              
-              img {
-                
-                cursor: url("https://mail.google.com/mail/images/2/openhand.cur"), move;
-                
-              }
               
             }
             
@@ -1745,13 +1795,7 @@ $icon-label-margin-top-in-full-height-video-with-title: $icon-label-margin-top-i
       
     }
     
-    video {
-      
-      width: 860px;
-      height: 484px;
-      margin-bottom: 10px;
-      
-    }
+
     
   }
   
