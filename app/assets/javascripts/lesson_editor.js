@@ -45,6 +45,9 @@ function hideNewSlideChoice() {
   var current_slide = $('li._lesson_editor_current_slide');
   current_slide.find('div.slide-content').addClass(current_slide.data('kind'));
   current_slide.find('.box.new_slide').remove();
+  if(!current_slide.find('.slide-content').hasClass('cover')) {
+    current_slide.find('.slide-content').css('padding', '20px');
+  }
   current_slide.find('._hide_add_new_slide_options').removeAttr('class').addClass('addButtonOrange _add_new_slide_options');
   var new_title = current_slide.find('._add_new_slide_options').data('title');
   current_slide.find('._add_new_slide_options').removeAttr('title').attr('title', new_title);
@@ -72,6 +75,9 @@ Shows the template for selection of new slides.
 function showNewSlideOptions() {
   stopMediaInCurrentSlide();
   var current_slide_content = $('li._lesson_editor_current_slide .slide-content');
+  if(!current_slide_content.hasClass('cover')) {
+    current_slide_content.css('padding', '0');
+  }
   var html_to_be_replaced = $('#new_slide_option_list').html();
   current_slide_content.prepend(html_to_be_replaced);
   current_slide_content.siblings('.buttons').find('._add_new_slide_options').removeAttr('class').addClass('minusButtonOrange _hide_add_slide _hide_add_new_slide_options');
