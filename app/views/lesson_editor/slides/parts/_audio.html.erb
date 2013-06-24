@@ -1,9 +1,9 @@
 <div id="media_element_<%= position %>_in_slide_<%= slide.id %>" class="_audio_container_in_lesson_editor audioPlayerInLessonsEditor">
   
   <% if audio %>
-    <%= hidden_field_tag "media_element_#{position}", audio.id, :class => "media-tag-cover-#{position} _input_audio_id" %>
+    <%= hidden_field_tag "media_element_#{position}", audio.id, :class => "_input_audio_id" %>
   <% else %>
-    <%= hidden_field_tag "media_element_#{position}", "", :class => "media-tag-cover-#{position} _input_audio_id" %>
+    <%= hidden_field_tag "media_element_#{position}", "", :class => "_input_audio_id" %>
   <% end %>
   
   <div class="<%= slide.kind %>-p<%= position %> _full_audio_in_slide" style="display:<%= audio.nil? ? 'none'.html_safe : 'block'.html_safe %>">
