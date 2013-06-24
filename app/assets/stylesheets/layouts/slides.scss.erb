@@ -115,15 +115,15 @@ $small-icon-top-position-in-half-height-image-empty: (($slide-image-half-height 
 /* posizione top dell'icona piccola immagine (vuota) in altezza piena con titolo: altezza corrispondente immagine meno dimensione icona diviso 2 meno 15 per la label */
 $small-icon-top-position-in-full-height-image-with-title-empty: (($slide-image-full-height-with-title - $small-icon-dimension) / 2) - 15px;
 /* font-size della label dell'icona aggiungi nuova immagine nella copertina */
-$big-icon-label-font-size: 16px;
+$icon-label-font-size: 16px;
 /* posizione della label dell'icona aggiungi nuova immagine nella copertina */
-$big-icon-label-margin-top-in-cover: 280px;
+$icon-label-margin-top-in-cover: 280px;
 /* posizione della label dell'icona aggiungi nuova immagine nella slide altezza piena */
-$big-icon-label-margin-top-in-full-height-image: 280px;
+$icon-label-margin-top-in-full-height-image: 280px;
 /* posizione della label dell'icona aggiungi nuova immagine nella slide metà altezza */
-$big-icon-label-margin-top-in-half-height-image: 280px;
+$icon-label-margin-top-in-half-height-image: 280px;
 /* posizione della label dell'icona aggiungi nuova immagine nella slide altezza piena con titolo */
-$big-icon-label-margin-top-in-full-height-image-with-title: 255px;
+$icon-label-margin-top-in-full-height-image-with-title: 255px;
 /* font size della caption */
 $image-caption-font-size: 13px;
 /* line height della caption */
@@ -429,7 +429,7 @@ $image-caption-read-only-full-width: $slide-image-full-width - $image-caption-re
   
   color: #999999;
   background-color: #F1F1F1;
-  font-size: $big-icon-label-font-size;
+  font-size: $icon-label-font-size;
   text-align: center;
   
 }
@@ -598,7 +598,7 @@ $image-caption-read-only-full-width: $slide-image-full-width - $image-caption-re
             
             p {
               
-              margin-top: $big-icon-label-margin-top-in-cover;
+              margin-top: $icon-label-margin-top-in-cover;
               
             }
             
@@ -781,7 +781,7 @@ $image-caption-read-only-full-width: $slide-image-full-width - $image-caption-re
             
             p {
               
-              margin-top: $big-icon-label-margin-top-in-full-height-image-with-title;
+              margin-top: $icon-label-margin-top-in-full-height-image-with-title;
               
             }
             
@@ -838,6 +838,110 @@ $image-caption-read-only-full-width: $slide-image-full-width - $image-caption-re
       width: $slide-image-half-width;
       height: $slide-image-full-height;
       margin-right: $slide-inner-padding;
+      position: relative;
+      
+      .image {
+        
+        .caption {
+          
+          @include image-caption;
+          
+        }
+        
+        &.read-only {
+          
+          width: $slide-image-half-width;
+          height: $slide-image-full-height;
+          overflow: hidden;
+          position: relative;
+          
+          img {
+            
+            position: absolute;
+            
+          }
+          
+          .caption {
+            
+            padding: 0 $image-caption-read-only-lateral-padding;
+            width: $image-caption-read-only-half-width;
+            
+          }
+          
+        }
+        
+        &.editable {
+          
+          .mask {
+            
+            width: $slide-image-half-width;
+            height: $slide-image-full-height;
+            overflow: hidden;
+            position: relative;
+            
+            .alignable {
+              
+              position: relative;
+              width: $slide-image-half-width;
+              
+              img {
+                
+                cursor: url("https://mail.google.com/mail/images/2/openhand.cur"), move;
+                
+              }
+              
+            }
+            
+            .add {
+              
+              top: $small-icon-top-position-in-full-height-image-with-title; /* TODO */
+              opacity: 0.8;
+              
+            }
+            
+            .caption {
+              
+              padding: 0 $image-caption-lateral-padding;
+              width: $image-caption-half-width;
+              
+            }
+            
+          }
+          
+          .empty-mask {
+            
+            @include general-empty-mask;
+            width: $slide-image-half-width;
+            height: $slide-image-full-height;
+            position: relative;
+            
+            p {
+              
+              margin-top: $icon-label-margin-top-in-full-height-image-with-title; /* TODO */
+              
+            }
+            
+          }
+          
+        }
+        
+      }
+      
+      .add {
+        
+        @include image-icon-big;
+        cursor: pointer;
+        position: absolute;
+        top: $small-icon-top-position-in-full-height-image-with-title-empty; /* TODO */
+        left: $small-icon-left-position-in-half-width-image; /* TODO */
+        
+        &:hover {
+          
+          @include plus-icon;
+          
+        }
+        
+      }
       
     }
     
