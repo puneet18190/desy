@@ -175,6 +175,7 @@ function lessonEditorDocumentReadyAddMediaElement() {
     var position = $('#info_container').data('current-media-element-position');
     var place_id = 'media_element_' + position + '_in_slide_' + current_slide.data('slide-id');
     $('#' + place_id + ' .video-id').val(video_id);
+    $('#' + place_id + ' .mask .add').hide();
     var video_mp4 = $(this).data('mp4');
     var video_webm = $(this).data('webm');
     var duration = $(this).data('duration');
