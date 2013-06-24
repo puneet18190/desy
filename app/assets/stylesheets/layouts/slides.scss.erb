@@ -124,6 +124,18 @@ $big-icon-label-margin-top-in-full-height-image: 280px;
 $big-icon-label-margin-top-in-half-height-image: 280px;
 /* posizione della label dell'icona aggiungi nuova immagine nella slide altezza piena con titolo */
 $big-icon-label-margin-top-in-full-height-image-with-title: 255px;
+/* font size della caption */
+$image-caption-font-size: 13px;
+/* line height della caption */
+$image-caption-line-height: 35px;
+/* altezza della caption */
+$image-caption-height: 35px;
+/* padding laterale della caption */
+$image-caption-lateral-padding: 5px;
+/* metà larghezza caption: metà larghezza immagine meno due volte padding laterale */
+$image-caption-half-width: $slide-image-half-width - $image-caption-lateral-padding - $image-caption-lateral-padding;
+/* larghezza piena caption: larghezza piena immagine meno due volte padding laterale */
+$image-caption-full-width: $slide-image-full-width - $image-caption-lateral-padding - $image-caption-lateral-padding;
 
 /* tenere allineato con content.css; le differenze con tale file sono sottolineate nei commenti */
 @mixin read-only-tiny-mce {
@@ -413,6 +425,21 @@ $big-icon-label-margin-top-in-full-height-image-with-title: 255px;
   background-color: #F1F1F1;
   font-size: $big-icon-label-font-size;
   text-align: center;
+  
+}
+
+@mixin image-caption {
+  
+  font-family: "Nunito", sans-serif;
+  background-color: rgba(50, 50, 50, 0.7);
+  color: #FAFAFA;
+  height: $image-caption-height;
+  position: absolute;
+  left: auto;
+  bottom: 0;
+  padding: 0 $image-caption-lateral-padding;
+  line-height: $image-caption-line-height;
+  font-size: $image-caption-font-size;
   
 }
 
@@ -717,6 +744,13 @@ $big-icon-label-margin-top-in-full-height-image-with-title: 255px;
               
             }
             
+            .caption {
+              
+              @include image-caption;
+              width: $image-caption-half-width;
+              
+            }
+            
           }
           
           .empty-mask {
@@ -993,21 +1027,7 @@ $big-icon-label-margin-top-in-full-height-image-with-title: 255px;
   
 }
 
-@mixin styleCaption {
-  
-  font-family: "Nunito", sans-serif;
-  background-color: rgba(50, 50, 50, 0.7);
-  color: #FAFAFA;
-  height: 35px;
-  display: block;
-  position: absolute;
-  left: auto;
-  bottom: 0px;
-  padding: 0 5px;
-  line-height: 35px;
-  font-size: 13px;
-  
-}
+
 
 @mixin formatList {
   
@@ -1262,195 +1282,6 @@ $big-icon-label-margin-top-in-full-height-image-with-title: 255px;
     
   }
   
-  .slideImage {
-    
-    @include formatElement;
-    
-    h2 {
-      
-      height: 87px;
-      
-    }
-    
-    img {
-      
-      position: absolute;
-      
-    }
-    .big {
-      float:left;
-      width:860px;
-      height:550px;
-      background-color:#f1f1f1;
-      overflow:hidden;
-      position:relative;
-      .photoIcon {
-         @include photoIconFormat;
-         margin-top:178px;
-         margin-left:328px;
-      }
-     .caption {
-       @include styleCaption;
-       width:860px;
-     }
-    }
-    .boxFissoImage {
-      width:420px;
-      height:265px;
-      display:block;
-      }
-      .small {
-      background-color:#f1f1f1;
-      width:420px;
-      height:265px;
-      overflow:hidden;
-      position:relative;
-      .photoIcon {
-        @include photoIconFormat;
-        background-position: -11.6em -11.6em;
-        margin-top:70px;
-        margin-left:137px;
-        font-size:2em;
-        width:140px;
-        height:140px;
-      }
-      .caption {
-        @include styleCaption;
-        width:410px;
-      }
-    }
-  .medium {
-    float:left;
-    width:420px;
-    height:420px;
-    margin-right:20px;
-    margin-top:3px;
-    background-color:#f1f1f1;
-    overflow:hidden;
-    position:relative;
-    .photoIcon {
-      @include photoIconFormat;
-      margin-top:125px;
-      margin-left:125px;
-    }
-    .caption {
-      @include styleCaption;
-      width:410px;
-    }
-    &:last-child {
-      margin-right:0px;
-    }
-  }
-  .textRightContent {
-    float:right;
-    padding:0px 10px;
-    width:400px;
-    height:400px;
-    overflow:hidden;
-    @include formatList;
-    a {
-      color: $orange;
-      text-decoration:underline;  
-    }
-    p {
-      margin-top:0.8em;
-      margin-bottom:0.8em;
-    }
-  }
-  .mediumHeight {
-    float:left;
-    width:420px;
-    height:550px;
-    margin-right:20px;
-    background-color:#f1f1f1;
-    overflow:hidden;
-    position:relative;
-    .photoIcon {
-      @include photoIconFormat;
-      margin-top:194px;
-      margin-left:110px;
-    }
-    .caption {
-      @include styleCaption;
-      width:410px;
-    }
-    &:last-child {
-      margin-right:0px;
-    }
-    }
-  }
-}
-
-
-
-
-
-  @mixin photoIconFormat {
-    
-    font-size: 2.8em;
-    background-position: -11.6em -11.6em;
-    opacity: 0.1;
-    width: 180px;
-    height: 180px;
-    
-  }
-  
-  @mixin videoIconFormat {
-    
-    font-size: 2.8em;
-    background-position: -11.6em -0.3em;
-    opacity: 0.1;
-    width: 180px;
-    height: 180px;
-    
-  }
-  
-  @mixin audioIconFormat {
-    
-    font-size: 0.45em;
-    background-position: -11.6em -5.5em;
-    opacity: 0.1;
-    
-  }
-  
-  @mixin styleCaption {
-    
-    font-family: "Nunito", sans-serif;
-    background-color: rgba(50, 50, 50, 0.7);
-    color: #FAFAFA;
-    height: 35px;
-    display: block;
-    position: absolute;
-    left: auto;
-    bottom: 0px;
-    padding: 0 5px;
-    line-height: 35px;
-    font-size: 13px;
-    
-  }
-  
-  .slideCover {
-    
-    height: 590px;
-    
-    .cover {
-      
-      width: 900px;
-      height: 560px;
-      overflow: hidden;
-      position: relative;
-      
-      img {
-        
-        position: absolute;
-        
-      }
-      
-    }
-    
-  
-    
-  }
   
   .slideTitle {
     
@@ -2353,107 +2184,6 @@ $big-icon-label-margin-top-in-full-height-image-with-title: 255px;
           
         }
         
-        &.image4 {
-          
-          .mask.image4-p1,.mask.image4-p2,.mask.image4-p3,.mask.image4-p4 { TODO TODO TODO 
-            
-            display: block;
-            width: 420px;
-            height: 265px;
-            margin: 0;
-            padding: 0;
-            float: left;
-            
-          }
-          
-          .mask {
-            
-            width: 420px;
-            height: 265px;
-            padding: 0;
-            margin: 0;
-            overflow: hidden;
-            position: relative;
-            
-            img {
-              
-              display: block;
-              cursor: url(https://mail.google.com/mail/images/2/openhand.cur), move;
-              
-            }
-            
-            &.image4-p1,&.image4-p3 { TODO TODO TODO 
-              
-              float: right;
-              margin: 20px 20px 0 0;
-              
-            }
-            
-            &.image4-p2,&.image4-p4 { TODO TODO TODO 
-              
-              float: left;
-              margin: 20px 0 0 20px;
-              
-            }
-            
-          }
-          
-          span.add-image TODO DEVO FARLO CON LO SCOPE A MASK E NON A EMPTY-MASK, importante ... adesso entrambe si chiamano add TODO  {
-            
-            background-attachment: scroll;
-            background-clip: border-box;
-            background-color: transparent;
-            background-image: url("/assets/icone_piene.svg");
-            background-origin: padding-box;
-            background-position: -2em center;
-            background-repeat: no-repeat;
-            background-size: 6em 1em;
-            cursor: pointer;
-            display: block;
-            font-size: 8em;
-            height: 1em;
-            left: 0;
-            margin: 0.8em 0 0 1.7em;
-            opacity: 0.8;
-            position: absolute;
-            top: 0;
-            width: 1em;
-            
-          }
-          
-          span.add-image TODO DEVO FARLO CON LO SCOPE A MASK E NON A EMPTY-MASK, importante ... adesso entrambe si chiamano add TODO :hover {
-            
-            background-position: -3em center;
-            
-          }
-          
-          ._maskh TODO x {
-            
-            img {
-              
-              height: 265px;
-              left: 0;
-              
-            }
-            
-          }
-          
-          ._maskh TODO y {
-            
-            img {
-              
-              width: 420px;
-              top: 0;
-              
-            }
-            
-          }
-          
-          input.caption {
-            
-            top: 230px;
-            width: 420px;
-          }
         }
         &.image3{
           padding: 0;
@@ -2472,114 +2202,7 @@ $big-icon-label-margin-top-in-full-height-image-with-title: 255px;
               cursor: url(https://mail.google.com/mail/images/2/openhand.cur), move;
             }
           }
-            span.add-image TODO DEVO FARLO CON LO SCOPE A MASK E NON A EMPTY-MASK, importante ... adesso entrambe si chiamano add TODO {
-              width: 130px;
-              height: 130px;
-              font-size: 130px;
-              margin: 210px 0 0 387px;
-              display:block;
-              background:url('/assets/icone_piene.svg') -260px center no-repeat transparent;
-              background-size: 780px 130px;
-              cursor: pointer;
-              position:absolute;
-              top:0;
-              left:0;
-              opacity:0.80;
-            }
-           span.add-image TODO DEVO FARLO CON LO SCOPE A MASK E NON A EMPTY-MASK, importante ... adesso entrambe si chiamano add TODO :hover{
-             background-position: -390px center;
-           }
-          ._maskh TODO x{
-            img{
-              height: 550px;
-              left:0;
-            }
-          }
-          ._maskh TODO y{
-            img{
-              width: 860px;
-              top:0;
-            }
-          }
-          .cover-choose-image TODO {
-            margin: 0 20px;
-            width: 860px;
-            height: 356px;
-            padding: 194px 0 0;
-            a{
-              margin-top:0;
-            }
-          }
-        }
-        
-        &.image2{
-          padding: 0;
-          height: 590px;
-          width: 900px;
-          position:relative;
-          .mask{
-            width: 420px;
-            height: 550px;
-            padding: 0;
-            overflow:hidden;
-            position:relative;
-            &.image2-p1{ TODO TODO TODO 
-              float:right;
-              margin: 0 20px 0 0;
-            }
-            &.image2-p2{ TODO TODO TODO 
-              float:left;
-              margin: 0 0 0 20px;
-            }
-            img{
-              display:block;
-              cursor: url(https://mail.google.com/mail/images/2/openhand.cur), move;
-            }
-
-            span.add-image TODO DEVO FARLO CON LO SCOPE A MASK E NON A EMPTY-MASK, importante ... adesso entrambe si chiamano add TODO {
-              width: 130px;
-              height: 130px;
-              font-size: 130px;
-              margin: 190px 0 0 150px;
-              display:block;
-              background:url('/assets/icone_piene.svg') -260px center no-repeat transparent;
-              background-size: 780px 130px;
-              cursor: pointer;
-              position:absolute;
-              top:0;
-              left:0;
-              opacity:0.80;
-            }
-           span.add-image TODO DEVO FARLO CON LO SCOPE A MASK E NON A EMPTY-MASK, importante ... adesso entrambe si chiamano add TODO :hover{
-             background-position: -390px center;
-           }
-          }
-          ._maskh TODO x{
-            img{
-              height: 550px;
-              left:0;
-            }
-          }
-          ._maskh TODO y{
-            img{
-              width: 420px;
-              top:0;
-            }
-          }
-          .cover-choose-image TODO {
-            width: 420px;
-            height: 410px;
-            a{
-              margin: 70px auto 0;
-            }
-          }
-          .cover-choose-image TODO -right{
-            margin: 0 20px 0 0;
-          }
-          .cover-choose-image TODO -left{
-            margin: 0 0 0 20px;
-          }
-        }
+     
         &.image1{
           height: 590px;
           width: 900px;
@@ -2600,45 +2223,4 @@ $big-icon-label-margin-top-in-full-height-image-with-title: 255px;
             }
           }
 
-          span.add-image TODO DEVO FARLO CON LO SCOPE A MASK E NON A EMPTY-MASK, importante ... adesso entrambe si chiamano add TODO {
-            width: 130px;
-            height: 130px;
-            font-size: 130px;
-            margin: 145px 0 0 150px;
-            display:block;
-            background:url('/assets/icone_piene.svg') -260px center no-repeat transparent;
-            background-size: 780px 130px;
-            cursor: pointer;
-            position:absolute;
-            top:0;
-            left:0;
-            opacity:0.80;
-           }
-           span.add-image TODO DEVO FARLO CON LO SCOPE A MASK E NON A EMPTY-MASK, importante ... adesso entrambe si chiamano add TODO :hover{
-             background-position: -390px center;
-           }
-          
-          input.caption{
-            top: 385px;
-            width: 440px;
-          }
-          
-          .image1-content{
-            float:right;
-            margin-right: 20px;
-            textarea{
-              padding: 10px;
-              width: 398px;
-              height: 396px;
-            }
-          }
-        }
-
-      }
-      
-      
-      .cover-choose-image TODO  {
-    
-
-    
-           */
+      }  */
