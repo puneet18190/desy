@@ -1318,17 +1318,6 @@ $image-caption-read-only-full-width: $slide-image-full-width - $image-caption-re
 
 /*
 
-@mixin colorLink {
-  
-  a  {
-    
-    color: $orange;
-    text-decoration: underline;
-    
-  }
-  
-}
-
 @mixin formatElement {
   
   width: 860px;
@@ -1351,8 +1340,6 @@ $image-caption-read-only-full-width: $slide-image-full-width - $image-caption-re
   
 }
 
-
-
 @mixin videoIconFormat {
   
   font-size: 2.8em;
@@ -1371,63 +1358,13 @@ $image-caption-read-only-full-width: $slide-image-full-width - $image-caption-re
   
 }
 
-
-
-@mixin formatList {
-  
-  ol {
-    
-    display: block;
-    list-style-type: decimal;
-    padding: 10px 40px;
-    margin: 0 1em;
-    
-  }
-  
-  ul {
-    
-    display: block;
-    list-style-type: disc;
-    padding: 10px 40px;
-    margin: 0 1em;
-    float: none;
-    
-  }
-  
-  li {
-    
-    float: none;
-    
-  }
-  
-}
-
-
 .zoomOutThumb {
   
   zoom: 27%;
   -moz-transform: scale(0.27);
   position: absolute;
   
-  .slideCover {
-    
-    height: 590px;
-    position: absolute;
-    
-    .cover {
-      
-      width: 900px;
-      height: 560px;
-      overflow: hidden;
-      position: relative;
-      
-      img {
-        
-        position: absolute;
-        
-      }
-      
-    }
+  .
     
     
     
@@ -1487,32 +1424,7 @@ $image-caption-read-only-full-width: $slide-image-full-width - $image-caption-re
       
     }
     
-    .textRightVideoContent {
-      
-      float: right;
-      padding: 0px 10px;
-      width: 400px;
-      height: 400px;
-      overflow: hidden;
-      
-      a  {
-        
-        color: $orange;
-        text-decoration: underline;
-        
-      }
-      
-      p {
-        
-        margin-top: 0.8em;
-        margin-bottom: 0.8em;
-        
-      }
-      
-      @include formatList;
-      
-    }
-    
+   
   }
   
   
@@ -1526,21 +1438,6 @@ $image-caption-read-only-full-width: $slide-image-full-width - $image-caption-re
       
     }
     
-    .contentText {
-      
-      height: 310px;
-      overflow: hidden;
-      
-      p {
-        
-        margin-top: 0.3em;
-        margin-bottom: 0.8em;
-        
-      }
-      
-      @include formatList;
-      
-    }
     
     .audioBig {
       
@@ -1569,58 +1466,6 @@ $image-caption-read-only-full-width: $slide-image-full-width - $image-caption-re
         padding-top: 30px;
         
       }
-      
-    }
-    
-  }
-  
-  .slideTitle {
-    
-    @include formatElement;
-    text-align: center;
-    display: table;
-    
-    h2 {
-      
-      display: table-cell;
-      vertical-align: middle;
-      padding: 0px 100px;
-      font-size: 70px;
-      line-height: 70px;
-      
-    }
-    
-  }
-  
-  .slideText {
-    
-    @include formatElement;
-    display: inline-block;
-    background-color: white;
-    
-    h2 {
-      
-      height: 93px;
-      
-    }
-    
-    .contentText {
-      
-      width: 840px;
-      height: 400px;
-      margin: 0;
-      padding: 0px 10px;
-      overflow: hidden;
-      @include colorLink;
-      
-      p {
-        
-        margin-top: 0.3em;
-        margin-bottom: 0.3em;
-        
-      }
-      
-      @include formatList;
       
     }
     
@@ -2436,43 +2281,7 @@ $image-caption-read-only-full-width: $slide-image-full-width - $image-caption-re
           height: 590px;
           width: 900px;
           
-          .video1-p1 { TODO TODO TODO rimosso
-            
-            position: relative;
-            
-            .videoPlayer {
-              
-              width: 420px;
-              margin: 0px 0px 0px 20px;
-              float: left;
-              
-              a.play {
-                
-                margin-left: 10px;
-                
-              }
-              
-              a.pause {
-                
-                margin-left: 10px;
-                
-              }
-              
-              a.fullScreen {
-                
-                margin-right: 10px;
-                
-              }
-              
-              .videoSlider {
-                
-                width: 55%;
-                margin-right: 10px;
-                margin-left: 10px;
-                
-              }
-              
-            }
+          .
             
             span.add-video {
               

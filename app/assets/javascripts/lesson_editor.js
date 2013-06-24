@@ -178,13 +178,13 @@ function lessonEditorDocumentReadyAddMediaElement() {
     var video_mp4 = $(this).data('mp4');
     var video_webm = $(this).data('webm');
     var duration = $(this).data('duration');
-    var full_place = $('#' + place_id + ' ._full_video_in_slide');
+    var full_place = $('#' + place_id + ' .mask');
     if(!full_place.is(':visible')) {
       full_place.show();
-      $('#' + place_id + ' ._empty_video_in_slide').hide();
+      $('#' + place_id + ' .empty-mask').hide();
     }
-    $('#' + place_id + ' ._full_video_in_slide source[type="video/mp4"]').attr('src', video_mp4);
-    $('#' + place_id + ' ._full_video_in_slide source[type="video/webm"]').attr('src', video_webm);
+    $('#' + place_id + ' .mask source[type="video/mp4"]').attr('src', video_mp4);
+    $('#' + place_id + ' .mask source[type="video/webm"]').attr('src', video_webm);
     $('#' + place_id + ' video').load();
     $('#' + place_id + ' ._media_player_total_time').html(secondsToDateString(duration));
     var video_player = $('#' + place_id + ' ._empty_video_player, #' + place_id + ' ._instance_of_player');
@@ -247,7 +247,7 @@ function lessonEditorDocumentReadyGalleries() {
     stopMediaInCurrentSlide();
     showGalleryInLessonEditor(this, 'audio');
   });
-  $('body').on('click', '._show_video_gallery_in_lesson_editor', function() {
+  $('body').on('click', '.slide-content .video.editable .add', function() {
     stopMediaInCurrentSlide();
     showGalleryInLessonEditor(this, 'video');
   });
@@ -340,17 +340,15 @@ function lessonEditorDocumentReadyReplaceMediaElement() {
       $(this).find('.add').hide();
     }
   });
-  $('body').on('mouseover', '._full_video_in_slide', function() {
-    var obj = $('#' + $(this).parent().attr('id') + ' ._rolloverable');
-    var slide_id = obj.data('slide-id');
-    var position = obj.data('position');
-    $('#media_element_' + position + '_in_slide_' + slide_id + ' ._lesson_editor_rollover_content').show();
+  $('body').on('mouseover', '.slide-content .video.editable .mask', function() {
+    if($(this).find('.alignable').data('rolloverable')) {
+      $(this).find('.add').show();
+    }
   });
-  $('body').on('mouseout', '._full_video_in_slide', function() {
-    var obj = $('#' + $(this).parent().attr('id') + ' ._rolloverable');
-    var slide_id = obj.data('slide-id');
-    var position = obj.data('position');
-    $('#media_element_' + position + '_in_slide_' + slide_id + ' ._lesson_editor_rollover_content').hide();
+  $('body').on('mouseout', '.slide-content .video.editable .mask', function() {
+    if($(this).find('.alignable').data('rolloverable')) {
+      $(this).find('.add').hide();
+    }
   });
 }
 
