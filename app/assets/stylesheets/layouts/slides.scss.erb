@@ -146,6 +146,32 @@ $image-caption-full-width: $slide-image-full-width - $image-caption-lateral-padd
 $image-caption-read-only-half-width: $slide-image-half-width - $image-caption-read-only-lateral-padding - $image-caption-read-only-lateral-padding;
 /* larghezza piena caption: larghezza piena immagine meno due volte padding laterale (caso read-only, padding diverso) */
 $image-caption-read-only-full-width: $slide-image-full-width - $image-caption-read-only-lateral-padding - $image-caption-read-only-lateral-padding;
+/* video a larghezza piena: stesso calcolo di immagine */
+$slide-video-full-width: $slide-image-full-width;
+/* video a metà larghezza: stesso calcolo di immagine */
+$slide-video-half-width: $slide-image-half-width;
+/* video ad altezza piena: stesso calcolo di immagine */
+$slide-video-full-height: $slide-image-full-height;
+/* video ad altezza piena con titolo: stesso calcolo di immagine */
+$slide-video-full-height-with-title: 55px/* TODO */;
+/* video ad altezza piena con titolo con un video caricato (è più basso perché deve rimanere in proporzione) */
+$slide-video-full-height-with-title-empty: $slide-image-full-height-with-title;
+/* posizione top dell'icona video in altezza piena: altezza corrispondente video meno dimensione icona diviso 2 */
+$big-icon-top-position-in-full-height-video: ($slide-video-full-height - $big-icon-dimension) / 2;
+/* posizione left dell'icona video in larghezza piena: larghezza corrispondente video meno dimensione icona diviso 2 */
+$big-icon-left-position-in-full-width-video: ($slide-video-full-width - $big-icon-dimension) / 2;
+/* posizione left dell'icona piccola video in metà larghezza: larghezza corrispondente video meno dimensione icona diviso 2 */
+$small-icon-left-position-in-half-width-video: ($slide-video-half-width - $small-icon-dimension) / 2;
+/* posizione top dell'icona piccola video in altezza piena con titolo: altezza corrispondente video meno dimensione icona diviso 2 */
+$small-icon-top-position-in-full-height-video-with-title: ($slide-video-full-height-with-title - $small-icon-dimension) / 2;
+/* posizione top dell'icona video (vuota) in altezza piena: altezza corrispondente video meno dimensione icona diviso 2 meno 15 per la label */
+$big-icon-top-position-in-full-height-video-empty: (($slide-video-full-height - $big-icon-dimension) / 2) - 15px;
+/* posizione top dell'icona piccola video (vuota) in altezza piena con titolo: altezza corrispondente video meno dimensione icona diviso 2 meno 15 per la label */
+$small-icon-top-position-in-full-height-video-with-title-empty: (($slide-video-full-height-with-title-empty - $small-icon-dimension) / 2) - 15px;
+/* posizione della label dell'icona aggiungi nuovo video nella slide altezza piena */
+$icon-label-margin-top-in-full-height-video: $icon-label-margin-top-in-full-height-image;
+/* posizione della label dell'icona aggiungi nuovo video nella slide altezza piena con titolo */
+$icon-label-margin-top-in-full-height-video-with-title: $icon-label-margin-top-in-full-height-image-with-title;
 
 /* tenere allineato con content.css; le differenze con tale file sono sottolineate nei commenti */
 @mixin read-only-tiny-mce {
@@ -410,7 +436,7 @@ $image-caption-read-only-full-width: $slide-image-full-width - $image-caption-re
 
 @mixin video-icon {
   
-  /*background: url('/assets/icone_piene.svg') no-repeat scroll -2em center / 6em 1em transparent; TODO */
+  background: url("/assets/icone_piene.svg") no-repeat scroll -2em center / 6em 1em transparent;
   
 }
 
@@ -1270,9 +1296,87 @@ $image-caption-read-only-full-width: $slide-image-full-width - $image-caption-re
     
     .video-container {
       
-      width: 420px;
-      height: 420px;
+      width: $slide-video-half-width;
+      height: $slide-video-full-height-with-title;
       margin-right: $slide-inner-padding;
+      position: relative;
+      
+      .video {
+        
+        &.read-only { /* TODO */
+          
+          width: $slide-video-half-width;
+          height: $slide-video-full-height-with-title;
+          overflow: hidden;
+          position: relative;
+          
+        }
+        
+        &.editable {
+          
+          .mask {
+            
+            width: $slide-video-half-width;
+            height: $slide-video-full-height-with-title;
+            overflow: hidden;
+            position: relative;
+            
+            .alignable {
+              
+              position: relative;
+              width: $slide-video-half-width;
+              
+              img {
+                
+                cursor: url("https://mail.google.com/mail/images/2/openhand.cur"), move;
+                
+              }
+              
+            }
+            
+            .add {
+              
+              top: $small-icon-top-position-in-full-height-video-with-title;
+              opacity: 0.8;
+              
+            }
+            
+          }
+          
+          .empty-mask {
+            
+            @include general-empty-mask;
+            width: $slide-video-half-width;
+            height: $slide-video-full-height-with-title-empty;
+            position: relative;
+            
+            p {
+              
+              margin-top: $icon-label-margin-top-in-full-height-video-with-title;
+              
+            }
+            
+          }
+          
+        }
+        
+      }
+      
+      .add {
+        
+        @include video-icon-small;
+        cursor: pointer;
+        position: absolute;
+        top: $small-icon-top-position-in-full-height-video-with-title-empty;
+        left: $small-icon-left-position-in-half-width-video;
+        
+        &:hover {
+          
+          @include plus-icon;
+          
+        }
+        
+      }
       
     }
     
