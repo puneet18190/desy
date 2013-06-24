@@ -1070,6 +1070,110 @@ $image-caption-read-only-full-width: $slide-image-full-width - $image-caption-re
       height: $slide-image-half-height;
       margin-right: $slide-inner-padding;
       margin-bottom: $slide-inner-padding;
+      position: relative;
+      
+      .image {
+        
+        .caption {
+          
+          @include image-caption;
+          
+        }
+        
+        &.read-only {
+          
+          width: $slide-image-half-width;
+          height: $slide-image-half-height;
+          overflow: hidden;
+          position: relative;
+          
+          img {
+            
+            position: absolute;
+            
+          }
+          
+          .caption {
+            
+            padding: 0 $image-caption-read-only-lateral-padding;
+            width: $image-caption-read-only-half-width;
+            
+          }
+          
+        }
+        
+        &.editable {
+          
+          .mask {
+            
+            width: $slide-image-half-width;
+            height: $slide-image-half-height;
+            overflow: hidden;
+            position: relative;
+            
+            .alignable {
+              
+              position: relative;
+              width: $slide-image-half-width;
+              
+              img {
+                
+                cursor: url("https://mail.google.com/mail/images/2/openhand.cur"), move;
+                
+              }
+              
+            }
+            
+            .add {
+              
+              top: $small-icon-top-position-in-half-height-image;
+              opacity: 0.8;
+              
+            }
+            
+            .caption {
+              
+              padding: 0 $image-caption-lateral-padding;
+              width: $image-caption-half-width;
+              
+            }
+            
+          }
+          
+          .empty-mask {
+            
+            @include general-empty-mask;
+            width: $slide-image-half-width;
+            height: $slide-image-half-height;
+            position: relative;
+            
+            p {
+              
+              margin-top: $icon-label-margin-top-in-half-height-image;
+              
+            }
+            
+          }
+          
+        }
+        
+      }
+      
+      .add {
+        
+        @include image-icon-small;
+        cursor: pointer;
+        position: absolute;
+        top: $small-icon-top-position-in-half-height-image-empty;
+        left: $small-icon-left-position-in-half-width-image;
+        
+        &:hover {
+          
+          @include plus-icon;
+          
+        }
+        
+      }
       
     }
     
