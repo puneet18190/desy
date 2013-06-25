@@ -16,7 +16,7 @@ ol, ul {
 }
 
 ul {
-  list-style-type: disc;
+  list-style-image: url(img/tiny_pallino.svg);
 }
 
 a {
