@@ -448,7 +448,7 @@ $slide-video-player-content-full-height-with-title: $slide-video-full-height-wit
 
 @mixin video-icon {
   
-  background: url('/assets/icone_piene.svg') no-repeat scroll -2em center / 6em 1em transparent;
+  background: url('/assets/icone_piene.svg') no-repeat scroll -1em center / 6em 1em transparent;
   
 }
 
@@ -467,6 +467,15 @@ $slide-video-player-content-full-height-with-title: $slide-video-full-height-wit
   font-size: $small-icon-dimension;
   width: $small-icon-dimension;
   height: $small-icon-dimension;
+  
+}
+
+@mixin audio-icon {
+  
+  background: url('/assets/icone_piene.svg') no-repeat scroll 0em center / 6em 1em transparent;
+  font-size: 30px; /* TODO */
+  width: 30px; /* TODO */
+  height: 30px; /* TODO */
   
 }
 
@@ -558,8 +567,118 @@ $slide-video-player-content-full-height-with-title: $slide-video-full-height-wit
     
     .audio-container {
       
+      width: $slide-inner-width;
       height: $audio-placeholder-height;
       margin-bottom: $slide-inner-padding;
+      position: relative;
+      
+      ._instance_of_player {
+        
+        width: $slide-inner-width;
+        height: $audio-placeholder-height;
+        
+        a.play, a.pause { /* TODO */
+          
+          height: 30px;
+          width: 30px;
+          margin: 13px 0 0 10px;
+          
+        }
+        
+        .secondTime {  /* TODO */
+          
+          margin-top: 23px;
+          width: 85px;
+          
+        }
+        
+        .audioSlider {  /* TODO */
+          
+          width: 600px;
+          margin: 24px 0 0 0;
+          
+          .ui-slider-handle {
+            
+            top: -4px;
+            
+          }
+          
+        }
+        
+        .sliderDisabler {
+          
+          position: absolute;
+          top: 494px;
+          left: 78px;
+          width: 700px;
+          height: 40px;
+          
+        }
+        
+      }
+      
+      .audio {
+        
+        &.read-only {
+          
+          width: $slide-inner-width;
+          height: $audio-placeholder-height;
+          overflow: hidden;
+          
+        }
+        
+        &.editable {
+          
+          .mask {
+            
+            width: $slide-inner-width;
+            height: $audio-placeholder-height;
+            overflow: hidden;
+            position: relative;
+            
+            .add {
+              
+              top: $big-icon-top-position-in-full-height-video; /* TODO */
+              left: $big-icon-top-position-in-full-height-video; /* TODO */
+              
+            }
+            
+          }
+          
+          .empty-mask {
+            
+            @include general-empty-mask;
+            width: $slide-inner-width;
+            height: $audio-placeholder-height;
+            position: relative;
+            
+            p {
+              
+              margin-top: $icon-label-margin-top-in-full-height-video; /* TODO */
+              
+            }
+            
+          }
+          
+        }
+        
+      }
+      
+      .add {
+        
+        @include audio-icon;
+        cursor: pointer;
+        position: absolute;
+        top: $big-icon-top-position-in-full-height-video-empty; /* TODO */
+        left: $big-icon-left-position-in-full-width-video; /* TODO */
+        
+        &:hover {
+          
+          @include plus-icon;
+          
+        }
+        
+      }
       
     }
     
