@@ -184,19 +184,18 @@ $slide-video-player-content-full-height-with-title: $slide-video-full-height-wit
 $audio-small-icon-dimension: 30px;
 /* dimensione icona audio grande (nell'audio vuoto) */
 $audio-big-icon-dimension: 35px;
-
-
-
-
-
-$audio-icon-top-position: 1px; /* TODO */
-$audio-icon-left-position: 1px; /* TODO */
-$audio-icon-top-position-empty: 1px; /* TODO */
-$audio-icon-left-position-empty: 1px; /* TODO */
-$icon-label-margin-top-in-audio: 1px; /* TODO */
-
-
-
+/* posizione top icona audio: altezza placeholder meno dimensione icona piccola diviso due */
+$audio-icon-top-position: ($audio-placeholder-height - $audio-small-icon-dimension) / 2;
+/* quando l'audio è pieno l'icona è posizionata alla destra: slide width meno dimensione icona piccola meno un tot a scelta (margine destra) */
+$audio-icon-left-position: $slide-inner-width - $audio-small-icon-dimension;
+/* posizione top icona audio vuoto: altezza placeholder meno dimensione icona grande diviso due meno un pezzettino */
+$audio-icon-top-position-empty: (($audio-placeholder-height - $audio-big-icon-dimension) / 2) - 8px;
+/* quando è empty è al centro, icona audio posizione left */
+$audio-icon-left-position-empty: ($slide-inner-width - $audio-big-icon-dimension) / 2;
+/* posizione top label audio vuoto */
+$icon-label-margin-top-in-audio: 34px;
+/* label icona audio è piccola */
+$icon-label-font-size-in-audio: 10px;
 
 /* tenere allineato con content.css; le differenze con tale file sono sottolineate nei commenti */
 @mixin read-only-tiny-mce {
@@ -696,6 +695,7 @@ $icon-label-margin-top-in-audio: 1px; /* TODO */
             p {
               
               margin-top: $icon-label-margin-top-in-audio;
+              font-size: $icon-label-font-size-in-audio;
               
             }
             
