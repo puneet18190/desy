@@ -10,15 +10,15 @@
   </div>
   
   <div class="item audio-container">
-    <% if audio.nil? %>
-      <div class="audioIcon"></div>
-    <% else %>
-      <% if audio.converted? %>
-        <%= render :partial => 'shared/players/audio', :locals => {:audio => audio, :initialize_now => true} %>
-      <% else %>
-        <%= image_tag audio.placeholder_url(:lesson_viewer), :title => t('titles.not_available.audio', :title => audio.title) %>
+    <div class="audio read-only">
+      <% if audio %>
+        <% if audio.converted? %>
+          <%= render :partial => 'shared/players/audio', :locals => {:audio => audio, :initialize_now => true} %>
+        <% else %>
+          <%= image_tag audio.placeholder_url(:lesson_viewer), :title => t('titles.not_available.audio', :title => audio.title) %>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
   </div>
   
   <div class="item text-container read-only">
