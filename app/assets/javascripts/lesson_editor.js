@@ -222,7 +222,7 @@ function lessonEditorDocumentReadyAddMediaElement() {
     $('#' + place_id + ' .mask source[type="audio/ogg"]').attr('src', audio_ogg);
     $('#' + place_id + ' audio').load();
     $('#' + place_id + ' ._media_player_total_time').html(secondsToDateString(duration));
-    $('#' + place_id + ' .mask .audio_title').text(new_audio_title);
+    $('#' + place_id + ' .mask .title').text(new_audio_title);
     var audio_player = $('#' + place_id + ' ._empty_audio_player, #' + place_id + ' ._instance_of_player');
     if(audio_player.data('initialized')) {
       audio_player.data('duration', duration);

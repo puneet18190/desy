@@ -1,5 +1,6 @@
 <%
   audio = slide.audio_at(1)
+  title = audio.nil? ? '' : audio.title
 %>
 
 <div class="slide-content audio">
@@ -19,6 +20,8 @@
         <div class="mask <%= audio.nil? ? 'hidden' : 'visible' %>">
           <%= render(:partial => 'shared/players/audio', :locals => {:audio => audio, :initialize_now => true}) %>
           <span class="add" data-position="1" title="<%= t('titles.lesson_editor.change_audio') %>"></span>
+          <br/>
+          <div class="title"><%= title %></div>
         </div>
         <div class="empty-mask <%= audio.nil? ? 'visible' : 'hidden' %>">
           <a class="add" data-position="1"></a>
