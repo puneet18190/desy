@@ -213,16 +213,16 @@ function lessonEditorDocumentReadyAddMediaElement() {
     var audio_m4a = $(this).data('m4a');
     var audio_ogg = $(this).data('ogg');
     var duration = $(this).data('duration');
-    var full_place = $('#' + place_id + ' ._full_audio_in_slide');
+    var full_place = $('#' + place_id + ' .mask');
     if(!full_place.is(':visible')) {
       full_place.show();
       $('#' + place_id + ' ._empty_audio_in_slide').hide();
     }
-    $('#' + place_id + ' ._full_audio_in_slide source[type="audio/mp4"]').attr('src', audio_m4a);
-    $('#' + place_id + ' ._full_audio_in_slide source[type="audio/ogg"]').attr('src', audio_ogg);
+    $('#' + place_id + ' .mask source[type="audio/mp4"]').attr('src', audio_m4a);
+    $('#' + place_id + ' .mask source[type="audio/ogg"]').attr('src', audio_ogg);
     $('#' + place_id + ' audio').load();
     $('#' + place_id + ' ._media_player_total_time').html(secondsToDateString(duration));
-    $('#' + place_id + ' ._full_audio_in_slide .audio_title').text(new_audio_title);
+    $('#' + place_id + ' .mask .audio_title').text(new_audio_title);
     var audio_player = $('#' + place_id + ' ._empty_audio_player, #' + place_id + ' ._instance_of_player');
     if(audio_player.data('initialized')) {
       audio_player.data('duration', duration);
@@ -244,7 +244,7 @@ function lessonEditorDocumentReadyGalleries() {
   $('body').on('click', '.slide-content .image.editable .add', function() {
     showGalleryInLessonEditor(this, 'image');
   });
-  $('body').on('click', '._show_audio_gallery_in_lesson_editor', function() {
+  $('body').on('click', '.slide-content .audio.editable .add', function() {
     stopMediaInCurrentSlide();
     showGalleryInLessonEditor(this, 'audio');
   });

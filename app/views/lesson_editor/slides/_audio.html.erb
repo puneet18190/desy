@@ -1,3 +1,7 @@
+<%
+  audio = slide.audio_at(1)
+%>
+
 <div class="slide-content audio">
   <%= form_tag save_slide_path(slide.lesson_id, slide.id), :method => :post, :remote => true, :id => "form-#{slide.id}" do %>
     
@@ -6,7 +10,22 @@
     </div>
     
     <div class="item audio-container">
-      <%= render :partial => 'lesson_editor/slides/parts/audio', :locals => {:slide => slide, :position => 1, :audio => slide.audio_at(1)} %>
+      <div id="media_element_1_in_slide_<%= slide.id %>" class="audio editable">
+        <% if audio %>
+          <%= hidden_field_tag 'media_element_1', audio.id, :class => "_input_audio_id" %>
+        <% else %>
+          <%= hidden_field_tag 'media_element_1', "", :class => "_input_audio_id" %>
+        <% end %>
+        <div class="mask <%= audio.nil? ? 'hidden' : 'visible' %>">
+          <%= render(:partial => 'shared/players/audio', :locals => {:audio => audio, :initialize_now => true}) %>
+          <span class="add" data-position="1" title="<%= t('titles.lesson_editor.change_audio') %>"></span>
+        </div>
+        <div class="empty-mask <%= audio.nil? ? 'visible' : 'hidden' %>">
+          <a class="add" data-position="1"></a>
+          <p class="lower"><%= t('lesson_editor.choose_audio') %></p>
+        </div>
+      </div>
+      
     </div>
     
     <div class="item text-container">
