@@ -1052,9 +1052,13 @@ function tinyMceCallbacks(inst, tiny_id) {
     maxH = 324;
   }
   if(inst.getBody().scrollHeight > maxH) {
-    $('#' + tiny_id + '_tbl').css('border', '1px solid red');
+    $('#' + tiny_id + '_tbl').css('border-left', '1px solid red').css('border-right', '1px solid red');
+    $('#' + tiny_id + '_tbl tr.mceFirst td').css('border-top', '1px solid red');
+    $('#' + tiny_id + '_tbl tr.mceLast td').css('border-bottom', '1px solid red');
   } else {
-    $('#' + tiny_id + '_tbl').css('border-left', '1px solid #EFEFEF').css('border-right', '1px solid #EFEFEF').css('border-top', '0').css('border-bottom', '0');
+    $('#' + tiny_id + '_tbl').css('border-left', '1px solid #EFEFEF').css('border-right', '1px solid #EFEFEF');
+    $('#' + tiny_id + '_tbl tr.mceFirst td').css('border-top', '1px solid #EFEFEF');
+    $('#' + tiny_id + '_tbl tr.mceLast td').css('border-bottom', '1px solid #EFEFEF');
   }
 }
 
