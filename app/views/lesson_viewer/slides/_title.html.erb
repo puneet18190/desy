@@ -1,7 +1,11 @@
 <div class="slide-content title">
   
   <div class="item title-container">
-    <%= slide.title.blank? ? '' : slide.title.html_safe %>
+    <div class="title read-only">
+      <div class="mask">
+        <%= slide.title.blank? ? '' : slide.title.html_safe %>
+      </div>
+    </div>
   </div>
   
 </div>
