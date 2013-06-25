@@ -180,6 +180,23 @@ $slide-video-player-footer-height-big: 66px;
 $slide-video-player-content-full-height: $slide-video-full-height - $slide-video-player-footer-height-big;
 /* altezza contenuto video player altezza piena con titolo (si esclude il footer) */
 $slide-video-player-content-full-height-with-title: $slide-video-full-height-with-title - $slide-video-player-footer-height-small;
+/* dimensione icona audio piccola (nell'audio pieno) */
+$audio-small-icon-dimension: 30px;
+/* dimensione icona audio grande (nell'audio vuoto) */
+$audio-big-icon-dimension: 35px;
+
+
+
+
+
+$audio-icon-top-position: 1px; /* TODO */
+$audio-icon-left-position: 1px; /* TODO */
+$audio-icon-top-position-empty: 1px; /* TODO */
+$audio-icon-left-position-empty: 1px; /* TODO */
+$icon-label-margin-top-in-audio: 1px; /* TODO */
+
+
+
 
 /* tenere allineato con content.css; le differenze con tale file sono sottolineate nei commenti */
 @mixin read-only-tiny-mce {
@@ -473,9 +490,24 @@ $slide-video-player-content-full-height-with-title: $slide-video-full-height-wit
 @mixin audio-icon {
   
   background: url('/assets/icone_piene.svg') no-repeat scroll 0em center / 6em 1em transparent;
-  font-size: 30px; /* TODO */
-  width: 30px; /* TODO */
-  height: 30px; /* TODO */
+  
+}
+
+@mixin audio-icon-big {
+  
+  @include audio-icon;
+  font-size: $audio-big-icon-dimension;
+  width: $audio-big-icon-dimension;
+  height: $audio-big-icon-dimension;
+  
+}
+
+@mixin audio-icon-small {
+  
+  @include audio-icon;
+  font-size: $audio-small-icon-dimension;
+  width: $audio-small-icon-dimension;
+  height: $audio-small-icon-dimension;
   
 }
 
@@ -638,8 +670,11 @@ $slide-video-player-content-full-height-with-title: $slide-video-full-height-wit
             
             .add {
               
-              top: $big-icon-top-position-in-full-height-video; /* TODO */
-              left: $big-icon-top-position-in-full-height-video; /* TODO */
+              @include audio-icon-small;
+              cursor: pointer;
+              position: absolute;
+              top: $audio-icon-top-position;
+              left: $audio-icon-left-position;
               
             }
             
@@ -652,9 +687,19 @@ $slide-video-player-content-full-height-with-title: $slide-video-full-height-wit
             height: $audio-placeholder-height;
             position: relative;
             
+            .add {
+              
+              @include audio-icon-big;
+              cursor: pointer;
+              position: absolute;
+              top: $audio-icon-top-position-empty;
+              left: $audio-icon-left-position-empty;
+              
+            }
+            
             p {
               
-              margin-top: $icon-label-margin-top-in-full-height-video; /* TODO */
+              margin-top: $icon-label-margin-top-in-audio;
               
             }
             
@@ -664,19 +709,9 @@ $slide-video-player-content-full-height-with-title: $slide-video-full-height-wit
         
       }
       
-      .add {
+      .add:hover {
         
-        @include audio-icon;
-        cursor: pointer;
-        position: absolute;
-        top: $big-icon-top-position-in-full-height-video-empty; /* TODO */
-        left: $big-icon-left-position-in-full-width-video; /* TODO */
-        
-        &:hover {
-          
-          @include plus-icon;
-          
-        }
+        @include plus-icon;
         
       }
       

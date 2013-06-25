@@ -12,9 +12,9 @@
     <div class="item audio-container">
       <div id="media_element_1_in_slide_<%= slide.id %>" class="audio editable">
         <% if audio %>
-          <%= hidden_field_tag 'media_element_1', audio.id, :class => "_input_audio_id" %>
+          <%= hidden_field_tag 'media_element_1', audio.id, :class => 'audio-id' %>
         <% else %>
-          <%= hidden_field_tag 'media_element_1', "", :class => "_input_audio_id" %>
+          <%= hidden_field_tag 'media_element_1', '', :class => 'audio-id' %>
         <% end %>
         <div class="mask <%= audio.nil? ? 'hidden' : 'visible' %>">
           <%= render(:partial => 'shared/players/audio', :locals => {:audio => audio, :initialize_now => true}) %>

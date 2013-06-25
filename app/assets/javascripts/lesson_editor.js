@@ -209,7 +209,7 @@ function lessonEditorDocumentReadyAddMediaElement() {
     var current_slide = $('li._lesson_editor_current_slide');
     var position = $('#info_container').data('current-media-element-position');
     var place_id = 'media_element_' + position + '_in_slide_' + current_slide.data('slide-id');
-    $('#' + place_id + ' ._input_audio_id').val(audio_id);
+    $('#' + place_id + ' .audio-id').val(audio_id);
     var audio_m4a = $(this).data('m4a');
     var audio_ogg = $(this).data('ogg');
     var duration = $(this).data('duration');
