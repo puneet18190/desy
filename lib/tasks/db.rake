@@ -11,6 +11,7 @@ namespace :db do
 
   # Warning: the config/pepper file must be the same of the one used when passwords are dumped; otherwise
   # users authentication will not work
+  # FIXME BROKEN!!! should be updated in order to add the duration columns to media_elements.csv
   desc 'dumps the current database to CSV files for seeding usage'
   task :csv_dump => :environment do
     models_with_columns = {
