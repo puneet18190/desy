@@ -6,15 +6,15 @@
 <div class="slide-content video2">
   
   <div class="item video-container">
-    <% if video.nil? %>
-      <div class="videoIcon"></div>
-    <% else %>
-      <% if video.converted? %>
-        <%= render :partial => 'shared/players/video', :locals => {:video => video, :initialize_now => true} %>
-      <% else %>
-        <%= image_tag video.placeholder_url(:lesson_viewer_big), :title => t('titles.not_available.video', :title => video.title) %>
+    <div class="video read-only">
+      <% if video %>
+        <% if video.converted? %>
+          <%= render :partial => 'shared/players/video', :locals => {:video => video, :initialize_now => true} %>
+        <% else %>
+          <%= image_tag video.placeholder_url(:lesson_viewer_big), :title => t('titles.not_available.video', :title => video.title) %>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
   </div>
   
 </div>
