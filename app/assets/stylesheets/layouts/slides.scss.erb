@@ -196,6 +196,24 @@ $audio-icon-left-position-empty: ($slide-inner-width - $audio-big-icon-dimension
 $icon-label-margin-top-in-audio: 34px;
 /* label icona audio è piccola */
 $icon-label-font-size-in-audio: 10px;
+/* bordo del contenuto della slide titolo */
+$title-slide-border: 1px;
+/* larghezza del contenuto della slide titolo: larghezza slide meno due volte bordo */
+$title-slide-width: $slide-inner-width - $title-slide-border - $title-slide-border;
+/* altezza del contenuto della slide titolo: altezza slide meno due volte bordo */
+$title-slide-height: $slide-inner-height - $title-slide-border - $title-slide-border;
+/* font-size del titolo */
+$title-slide-font-size: 70px;
+/* line-height del titolo: uguale a font-size */
+$title-slide-line-height: $title-slide-font-size;
+/* altezza contenuto titolo: line height per tre */
+$title-slide-content-height: $title-slide-line-height * 3;
+/* larghezza  contenuto titolo */
+$title-slide-content-width: 660px;
+/* margin top contenuto titolo: altezza interna titolo (che già calcola in meno il bordo dall'altezza interna della slide) meno altezza contenuto titolo diviso due */
+$title-slide-content-margin-top: ($title-slide-height - $title-slide-content-height) / 2;
+/* margin left contenuto titolo: larghezza interna titolo (che già calcola in meno il bordo dalla larghezza interna della slide) meno larghezza contenuto titolo diviso due */
+$title-slide-content-margin-left: ($title-slide-width - $title-slide-content-width) / 2;
 
 /* tenere allineato con content.css; le differenze con tale file sono sottolineate nei commenti */
 @mixin read-only-tiny-mce {
@@ -1446,9 +1464,47 @@ $icon-label-font-size-in-audio: 10px;
     
     .title-container {
       
-      padding: 170px 100px;
-      width: 660px;
-      height: 210px;
+      width: $slide-inner-width;
+      height: $slide-inner-height;
+      
+      .title {
+        
+        width: $title-slide-width;
+        height: $title-slide-height;
+        
+        &.read-only {
+          
+          display: table;
+          text-align: center;
+          border: $title-slide-border solid white;
+          
+          .mask {
+            
+            display: table-cell;
+            vertical-align: middle;
+            
+          }
+          
+        }
+        
+        &.editable {
+          
+          border: $title-slide-border solid #EFEFEF;
+          
+        }
+        
+        .mask {
+          
+          width: $title-slide-content-width;
+          height: $title-slide-content-height;
+          margin-top: $title-slide-content-margin-top;
+          margin-left: $title-slide-content-margin-left;
+          line-height: $title-slide-line-height;
+          font-size: $title-slide-font-size;
+          
+        }
+        
+      }
       
     }
     
@@ -1787,28 +1843,3 @@ $icon-label-font-size-in-audio: 10px;
   position: absolute;
   
 }
-
-
-
-/*
-
-.slideTitle {
-  
-  @include formatElement;
-  
-  text-align: center;
-  display: table;
-  
-  h2 {
-    
-    display: table-cell;
-    vertical-align: middle;
-    padding: 0px 100px;
-    line-height: 70px;
-    font-size: 70px;
-    
-  }
-  
-}
-
-*/
