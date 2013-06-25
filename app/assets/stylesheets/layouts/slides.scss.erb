@@ -187,7 +187,7 @@ $audio-big-icon-dimension: 35px;
 /* posizione top icona audio: altezza placeholder meno dimensione icona piccola diviso due */
 $audio-icon-top-position: ($audio-placeholder-height - $audio-small-icon-dimension) / 2;
 /* quando l'audio è pieno l'icona è posizionata alla destra: slide width meno dimensione icona piccola meno un tot a scelta (margine destra) */
-$audio-icon-left-position: $slide-inner-width - $audio-small-icon-dimension;
+$audio-icon-left-position: $slide-inner-width - $audio-small-icon-dimension - 15px;
 /* posizione top icona audio vuoto: altezza placeholder meno dimensione icona grande diviso due meno un pezzettino */
 $audio-icon-top-position-empty: (($audio-placeholder-height - $audio-big-icon-dimension) / 2) - 8px;
 /* quando è empty è al centro, icona audio posizione left */
@@ -489,6 +489,8 @@ $icon-label-font-size-in-audio: 10px;
 @mixin audio-icon {
   
   background: url('/assets/icone_piene.svg') no-repeat scroll 0em center / 6em 1em transparent;
+  cursor: pointer;
+  position: absolute;
   
 }
 
@@ -608,25 +610,25 @@ $icon-label-font-size-in-audio: 10px;
         width: $slide-inner-width;
         height: $audio-placeholder-height;
         
-        a.play, a.pause { /* TODO */
+        a.play, a.pause {
           
           height: 30px;
           width: 30px;
-          margin: 13px 0 0 10px;
+          margin: 18px 0 0 12px;
           
         }
         
-        .secondTime {  /* TODO */
+        .secondTime {
           
-          margin-top: 23px;
+          margin-top: 28px;
           width: 85px;
           
         }
         
-        .audioSlider {  /* TODO */
+        .audioSlider {
           
           width: 600px;
-          margin: 24px 0 0 0;
+          margin: 30px 0 0 0;
           
           .ui-slider-handle {
             
@@ -673,6 +675,12 @@ $icon-label-font-size-in-audio: 10px;
               top: $audio-icon-top-position;
               left: $audio-icon-left-position;
               
+              &:hover {
+                
+                @include plus-icon;
+                
+              }
+              
             }
             
           }
@@ -690,6 +698,12 @@ $icon-label-font-size-in-audio: 10px;
               top: $audio-icon-top-position-empty;
               left: $audio-icon-left-position-empty;
               
+              &:hover {
+                
+                @include plus-icon;
+                
+              }
+              
             }
             
             p {
@@ -703,18 +717,6 @@ $icon-label-font-size-in-audio: 10px;
           
         }
         
-      }
-      
-      .add {
-        
-        cursor: pointer;
-        position: absolute;
-        
-        &:hover {
-          
-          @include plus-icon;
-          
-        }
       }
       
     }

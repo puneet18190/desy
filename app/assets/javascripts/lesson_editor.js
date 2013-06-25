@@ -216,7 +216,7 @@ function lessonEditorDocumentReadyAddMediaElement() {
     var full_place = $('#' + place_id + ' .mask');
     if(!full_place.is(':visible')) {
       full_place.show();
-      $('#' + place_id + ' ._empty_audio_in_slide').hide();
+      $('#' + place_id + ' .empty-mask').hide();
     }
     $('#' + place_id + ' .mask source[type="audio/mp4"]').attr('src', audio_m4a);
     $('#' + place_id + ' .mask source[type="audio/ogg"]').attr('src', audio_ogg);
