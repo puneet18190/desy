@@ -343,15 +343,15 @@ function lessonEditorDocumentReadyReplaceMediaElement() {
   });
   $('body').on('mouseover', '.slide-content .video.editable .mask video', function(e) {
     var position = $(this).offset();
-    var top = position.top + 89;
-    var right = position.left + 261;
-    var bottom = position.top + 192;
-    var left = position.left + 159;
+    var top = position.top + 59;
+    var right = position.left + 291;
+    var bottom = position.top + 222;
+    var left = position.left + 129;
     if($(this).width() > 420) {
-      top = position.top + 209;
-      right = position.left + 496;
-      bottom = position.top + 341;
-      left = position.left + 364;
+      top = position.top + 179;
+      right = position.left + 526;
+      bottom = position.top + 371;
+      left = position.left + 334;
     }
     if(left <= e.clientX && e.clientX <= right && top <= e.clientY && e.clientY <= bottom) {
       return;
@@ -363,15 +363,15 @@ function lessonEditorDocumentReadyReplaceMediaElement() {
   });
   $('body').on('mouseout', '.slide-content .video.editable .mask video', function(e) {
     var position = $(this).offset();
-    var top = position.top + 89;
-    var right = position.left + 261;
-    var bottom = position.top + 192;
-    var left = position.left + 159;
+    var top = position.top + 59;
+    var right = position.left + 291;
+    var bottom = position.top + 222;
+    var left = position.left + 129;
     if($(this).width() > 420) {
-      top = position.top + 209;
-      right = position.left + 496;
-      bottom = position.top + 341;
-      left = position.left + 364;
+      top = position.top + 179;
+      right = position.left + 526;
+      bottom = position.top + 371;
+      left = position.left + 334;
     }
     if(left <= e.clientX && e.clientX <= right && top <= e.clientY && e.clientY <= bottom) {
       return;
