@@ -3,7 +3,7 @@ require 'media'
 require 'exception_notifier/notifier'
 require 'exception_notifier_job'
 require 'notifications_job'
-require 'eventmachine'
+require 'eventmachine' unless WINDOWS
 
 # Delayed Jobs configuration
 Delayed::Worker.destroy_failed_jobs = Rails.env.production?
