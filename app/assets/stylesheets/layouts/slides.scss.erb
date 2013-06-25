@@ -671,8 +671,6 @@ $icon-label-margin-top-in-audio: 1px; /* TODO */
             .add {
               
               @include audio-icon-small;
-              cursor: pointer;
-              position: absolute;
               top: $audio-icon-top-position;
               left: $audio-icon-left-position;
               
@@ -690,8 +688,6 @@ $icon-label-margin-top-in-audio: 1px; /* TODO */
             .add {
               
               @include audio-icon-big;
-              cursor: pointer;
-              position: absolute;
               top: $audio-icon-top-position-empty;
               left: $audio-icon-left-position-empty;
               
@@ -709,10 +705,16 @@ $icon-label-margin-top-in-audio: 1px; /* TODO */
         
       }
       
-      .add:hover {
+      .add {
         
-        @include plus-icon;
+        cursor: pointer;
+        position: absolute;
         
+        &:hover {
+          
+          @include plus-icon;
+          
+        }
       }
       
     }
