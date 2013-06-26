@@ -545,7 +545,7 @@ function saveCurrentSlide(action_suffix, with_loader) {
   var temporary_title = '';
   if(current_slide.find('.slide-content').hasClass('title')) {
     temporary_title = title_textarea.val();
-    if($(this).data('placeholder')) {
+    if(title_textarea.data('placeholder')) {
       title_textarea.val('');
     } else {
       title_textarea.val(temporary_title.replace(/\r\n|\r|\n/g, "<br/>"));
