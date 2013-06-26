@@ -1,9 +1,14 @@
+<%
+  my_title = slide.title.blank? ? t('lesson_editor.placeholders.title') : slide.title.gsub('<br/>', "\n").gsub('<br />', "\n").html_safe
+%>
+
 <div class="slide-content title">
   <%= form_tag save_slide_path(slide.lesson_id, slide.id), :method => :post, :remote => true, :id => "form-#{slide.id}", :autocomplete => 'off' do %>
     
     <div class="item title-container">
       <div class="title editable">
-        <%= text_area_tag :title, (slide.title.blank? ? t('lesson_editor.placeholders.title') : slide.title.gsub('<br/>', "\n").gsub('<br />', "\n").html_safe), :class => 'mask _lesson_editor_placeholder', :data => {:placeholder => slide.title.blank?}, :maxlength => t('language_parameters.slide.length_title'), :id => "title_slide_content_#{slide.id}", :rows => 3 %>
+        <%= text_area_tag :title, my_title, :class => 'mask _lesson_editor_placeholder', :data => {:placeholder => slide.title.blank?, :lines => 0}, :maxlength => t('language_parameters.slide.length_title'), :id => "title_slide_content_#{slide.id}" %>
+        <div class="temporary mask" style="display:none; height:auto"><%= my_title %></textarea>
       </div>
     </div>
     

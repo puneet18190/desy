@@ -284,16 +284,31 @@ function lessonEditorDocumentReadyGeneral() {
   $('body').on('keyup blur', '.slide-content.title .title.editable textarea.mask', function(e) {
     var temporary = $(this).parent().find('.temporary');
     var x = $(this).val().replace(/\r\n|\r|\n/g, "<br/>");
-    
-    //console.log('' + x[x.length - 5] + x[x.length - 4] + x[x.length - 3] + x[x.length - 2] + x[x.length - 1]);
-    
     if(x[x.length - 1] == '>' && x[x.length - 2] == '/' && x[x.length - 3] == 'r' && x[x.length - 4] == 'b' && x[x.length - 5] == '<') {
       x += 'a';
     }
+    if(x[0] == '<' && x[1] == 'b' && 'r/>a') {
+      x = 'a<br/>a';
+    }
     temporary.html(x);
-    
-    //console.log(temporary.height());
-    
+    var lines_before = $(this).data('lines');
+    var lines_after = (temporary.height() / 70);
+    $(this).data('lines', lines_after);
+    if(lines_before != 0 && lines_after != 0) {
+      if(lines_before < lines_after) {
+        if(lines_after > 3) {
+          $(this).parent().css('border-color', 'red');
+        } else {
+          $(this).css('height', 70 * lines_after).css('margin-top', (548 - 70 * lines_after) / 2);
+        }
+      } else if(lines_before > lines_after) {
+        if(lines_after == 3) {
+          $(this).parent().css('border-color', '#EFEFEF');
+        } else if(lines_after < 3) {
+          $(this).css('height', 70 * lines_after).css('margin-top', (548 - 70 * lines_after) / 2);
+        }
+      }
+    }
   });
 }
 
