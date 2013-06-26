@@ -11,7 +11,7 @@
           <%= render :partial => "lessons/thumbnail", :locals => {:lesson => slide.lesson} %>
         <% else %>
           <div class="zoomOutThumb">
-            <%= render :partial => "lesson_editor/slides/choose_thumbnail", :locals => {:slide => slide} %>
+            <%= render :partial => "lesson_editor/thumbnails/#{slide.kind}", :locals => {:slide => slide} %>
           </div>
         <% end %>
       </div>

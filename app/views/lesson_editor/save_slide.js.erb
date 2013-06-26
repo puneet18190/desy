@@ -8,7 +8,7 @@
   <% if @slide.cover? %>
     thumb_div.html('<%= j(render :partial => "lessons/thumbnail", :locals => {:lesson => @slide.lesson}) %>');
   <% else %>
-    thumb_div.find('.zoomOutThumb').html('<%= j(render :partial => "lesson_editor/slides/choose_thumbnail", :locals => {:slide => @slide}) %>')
+    thumb_div.find('.zoomOutThumb').html('<%= j(render :partial => "lesson_editor/thumbnails/#{slide.kind}", :locals => {:slide => @slide}) %>')
   <% end %>
 <% else %>
   redError();
