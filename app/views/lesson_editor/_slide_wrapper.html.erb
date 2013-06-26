@@ -1,6 +1,6 @@
 <li id="slide_in_lesson_editor_<%= slide.id %>" class="<%= class_slide %>" data-slide-id="<%= slide.id %>" data-kind="<%= slide.kind %>" data-position="<%= slide.position %>" data-loaded="<%= loaded %>">
   <%= div_covering.html_safe %>
-  <%= render :partial => "slide_buttons", :locals => {:slide => slide} %>
+  <%= render :partial => "slide_buttons", :locals => {:slide => slide, :show_now => (!first_time || slide.cover?)} %>
   <% if loaded %>
     <%= render :partial => "lesson_editor/slides/#{slide.kind}", :locals => {:slide => slide} %>
   <% else %>
