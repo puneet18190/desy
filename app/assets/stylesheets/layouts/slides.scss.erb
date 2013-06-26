@@ -199,17 +199,21 @@ $icon-label-font-size-in-audio: 10px;
 /* bordo del contenuto della slide titolo */
 $title-slide-content-border: 1px;
 /* font-size del titolo */
-$title-slide-font-size: 70px;
+$title-slide-font-size: 60px;
 /* line-height del titolo: uguale a font-size */
-$title-slide-line-height: $title-slide-font-size;
+$title-slide-line-height: 70px;
+/* padding del contenuto del titolo */
+$title-slide-content-padding: 20px;
+/* padding del contenuto del titolo in modalità read-only */
+$title-slide-content-padding-read-only: 21px;
 /* altezza contenuto titolo: line height */
 $title-slide-content-height: $title-slide-line-height;
-/* larghezza  contenuto titolo */
-$title-slide-content-width: 800px;
-/* margin top contenuto titolo: altezza interna slide meno altezza contenuto titolo meno due volte bordo diviso due */
-$title-slide-content-margin-top: ($slide-inner-height - $title-slide-content-height - $title-slide-content-border - $title-slide-content-border) / 2;
-/* margin left contenuto titolo: larghezza interna slide meno larghezza contenuto titolo meno due volte bordo diviso due */
-$title-slide-content-margin-left: ($slide-inner-width - $title-slide-content-width - $title-slide-content-border - $title-slide-content-border) / 2;
+/* larghezza  contenuto titolo: laghezza interna slide meno due volte padding meno due volte bordo */
+$title-slide-content-width: $slide-inner-width - (2 * $title-slide-content-padding) - (2 * $title-slide-content-border);
+/* larghezza  contenuto titolo read-only: laghezza interna slide meno due volte padding read-only meno due volte bordo */
+$title-slide-content-width-read-only: $slide-inner-width - (2 * $title-slide-content-padding-read-only) - (2 * $title-slide-content-border);
+/* margin top contenuto titolo: altezza interna slide meno altezza contenuto titolo meno due volte bordo meno due volte padding diviso due */
+$title-slide-content-margin-top: ($slide-inner-height - $title-slide-content-height - (2 * $title-slide-content-border) - (2 * $title-slide-content-padding)) / 2;
 
 /* tenere allineato con content.css; le differenze con tale file sono sottolineate nei commenti */
 @mixin read-only-tiny-mce {
@@ -1465,11 +1469,8 @@ $title-slide-content-margin-left: ($slide-inner-width - $title-slide-content-wid
       
       .title {
         
-        width: $title-slide-content-width;
         height: $title-slide-content-height;
         margin-top: $title-slide-content-margin-top;
-        margin-left: $title-slide-content-margin-left;
-        border: $title-slide-content-border solid #EFEFEF;
         font-size: $title-slide-font-size;
         line-height: $title-slide-line-height;
         text-align: center;
@@ -1478,12 +1479,17 @@ $title-slide-content-margin-left: ($slide-inner-width - $title-slide-content-wid
         
         &.read-only {
           
-          
+          padding: $title-slide-content-padding $title-slide-content-padding-read-only;
+          width: $title-slide-content-width-read-only;
+          border: $title-slide-content-border solid white;
           
         }
         
         &.editable {
           
+          padding: $title-slide-content-padding;
+          width: $title-slide-content-width;
+          border: $title-slide-content-border solid #EFEFEF;
           
         }
         
