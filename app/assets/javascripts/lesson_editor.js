@@ -282,13 +282,18 @@ function lessonEditorDocumentReadyGeneral() {
   $('html.lesson-editor-layout ul#slides.new').css('margin-top', ((($(window).height() - 590) / 2)) + 'px');
   $('html.lesson-editor-layout ul#slides input').attr('autocomplete', 'off');
   $('body').on('keyup blur', '.slide-content.title .title.editable textarea.mask', function(e) {
-    if($(this).data('resized')) {
-      var temporary = $(this).parent().find('.temporary');
-      temporary.html($(this).val().replace(/\r\n|\r|\n/g, "<br/>"));
-      
-      console.log(temporary.height()); // TODO TODO TODO finire qui
-      
+    var temporary = $(this).parent().find('.temporary');
+    var x = $(this).val().replace(/\r\n|\r|\n/g, "<br/>");
+    
+    //console.log('' + x[x.length - 5] + x[x.length - 4] + x[x.length - 3] + x[x.length - 2] + x[x.length - 1]);
+    
+    if(x[x.length - 1] == '>' && x[x.length - 2] == '/' && x[x.length - 3] == 'r' && x[x.length - 4] == 'b' && x[x.length - 5] == '<') {
+      x += 'a';
     }
+    temporary.html(x);
+    
+    //console.log(temporary.height());
+    
   });
 }
 
