@@ -281,35 +281,6 @@ function lessonEditorDocumentReadyGeneral() {
   $('html.lesson-editor-layout ul#slides').css('margin-top', ((($(window).height() - 590) / 2) - 40) + 'px');
   $('html.lesson-editor-layout ul#slides.new').css('margin-top', ((($(window).height() - 590) / 2)) + 'px');
   $('html.lesson-editor-layout ul#slides input').attr('autocomplete', 'off');
-  $('body').on('keyup blur', '.slide-content.title .title.editable textarea.mask', function(e) {
-    var temporary = $(this).parent().find('.temporary');
-    var x = $(this).val().replace(/\r\n|\r|\n/g, "<br/>");
-    if(x[x.length - 1] == '>' && x[x.length - 2] == '/' && x[x.length - 3] == 'r' && x[x.length - 4] == 'b' && x[x.length - 5] == '<') {
-      x += 'a';
-    }
-    if(x[0] == '<' && x[1] == 'b' && 'r/>a') {
-      x = 'a<br/>a';
-    }
-    temporary.html(x);
-    var lines_before = $(this).data('lines');
-    var lines_after = (temporary.height() / 70);
-    $(this).data('lines', lines_after);
-    if(lines_before != 0 && lines_after != 0) {
-      if(lines_before < lines_after) {
-        if(lines_after > 3) {
-          $(this).parent().css('border-color', 'red');
-        } else {
-          $(this).css('height', 70 * lines_after).css('margin-top', (548 - 70 * lines_after) / 2);
-        }
-      } else if(lines_before > lines_after) {
-        if(lines_after == 3) {
-          $(this).parent().css('border-color', '#EFEFEF');
-        } else if(lines_after < 3) {
-          $(this).css('height', 70 * lines_after).css('margin-top', (548 - 70 * lines_after) / 2);
-        }
-      }
-    }
-  });
 }
 
 /**
@@ -561,24 +532,13 @@ function saveCurrentSlide(action_suffix, with_loader) {
   var temporary = new Array();
   var temp_counter = 0;
   var current_slide = $('._lesson_editor_current_slide');
-  var title_textarea = current_slide.find('.slide-content.title .title.editable textarea');
-  var temporary_title = '';
-  if(current_slide.find('.slide-content').hasClass('title')) {
-    temporary_title = title_textarea.val();
-    if(title_textarea.data('placeholder')) {
-      title_textarea.val('');
-    } else {
-      title_textarea.val(temporary_title.replace(/\r\n|\r|\n/g, "<br/>"));
+  current_slide.find('._lesson_editor_placeholder').each(function() {
+    if($(this).data('placeholder')) {
+      temporary[temp_counter] = $(this).val();
+      temp_counter++;
+      $(this).val('');
     }
-  } else {
-    current_slide.find('._lesson_editor_placeholder').each(function() {
-      if($(this).data('placeholder')) {
-        temporary[temp_counter] = $(this).val();
-        temp_counter++;
-        $(this).val('');
-      }
-    });
-  }
+  });
   if(with_loader) {
     $.ajax({
       type: 'post',
@@ -596,16 +556,12 @@ function saveCurrentSlide(action_suffix, with_loader) {
     }).always(bindLoader);
   }
   temp_counter = 0;
-  if(current_slide.find('.slide-content').hasClass('title')) {
-    title_textarea.val(temporary_title);
-  } else {
-    current_slide.find('._lesson_editor_placeholder').each(function() {
-      if($(this).data('placeholder')) {
-        $(this).val(temporary[temp_counter]);
-        temp_counter++;
-      }
-    });
-  }
+  current_slide.find('._lesson_editor_placeholder').each(function() {
+    if($(this).data('placeholder')) {
+      $(this).val(temporary[temp_counter]);
+      temp_counter++;
+    }
+  });
 }
 
 
