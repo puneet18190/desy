@@ -284,7 +284,7 @@ function lessonEditorDocumentReadyGeneral() {
   $('body').on('keyup blur', '.slide-content.title .title.editable textarea.mask', function(e) {
     if($(this).data('resized')) {
       var temporary = $(this).parent().find('.temporary');
-      temporary.html($(this).val().replace(/\r\n|\r|\n/g, "<br/>");
+      temporary.html($(this).val().replace(/\r\n|\r|\n/g, "<br/>"));
       
       console.log(temporary.height()); // TODO TODO TODO finire qui
       
@@ -540,36 +540,52 @@ function saveCurrentSlide(action_suffix, with_loader) {
   tinyMCE.triggerSave();
   var temporary = new Array();
   var temp_counter = 0;
-  $('._lesson_editor_current_slide ._lesson_editor_placeholder').each(function() {
+  var current_slide = $('._lesson_editor_current_slide');
+  var title_textarea = current_slide.find('.slide-content.title .title.editable textarea');
+  var temporary_title = '';
+  if(current_slide.find('.slide-content').hasClass('title')) {
+    temporary_title = title_textarea.val();
     if($(this).data('placeholder')) {
-      temporary[temp_counter] = $(this).val();
-      temp_counter++;
-      $(this).val('');
+      title_textarea.val('');
+    } else {
+      title_textarea.val(temporary_title.replace(/\r\n|\r|\n/g, "<br/>"));
     }
-  });
+  } else {
+    current_slide.find('._lesson_editor_placeholder').each(function() {
+      if($(this).data('placeholder')) {
+        temporary[temp_counter] = $(this).val();
+        temp_counter++;
+        $(this).val('');
+      }
+    });
+  }
   if(with_loader) {
     $.ajax({
       type: 'post',
-      url: $('._lesson_editor_current_slide form').attr('action') + action_suffix,
+      url: current_slide.find('form').attr('action') + action_suffix,
       timeout: 5000,
-      data: $('._lesson_editor_current_slide form').serialize()
+      data: current_slide.find('form').serialize()
     });
   } else {
     $.ajax({
       type: 'post',
-      url: $('._lesson_editor_current_slide form').attr('action') + action_suffix,
+      url: current_slide.find('form').attr('action') + action_suffix,
       timeout: 5000,
-      data: $('._lesson_editor_current_slide form').serialize(),
+      data: current_slide.find('form').serialize(),
       beforeSend: unbindLoader()
     }).always(bindLoader);
   }
   temp_counter = 0;
-  $('._lesson_editor_current_slide ._lesson_editor_placeholder').each(function() {
-    if($(this).data('placeholder')) {
-      $(this).val(temporary[temp_counter]);
-      temp_counter++;
-    }
-  });
+  if(current_slide.find('.slide-content').hasClass('title')) {
+    title_textarea.val(temporary_title);
+  } else {
+    current_slide.find('._lesson_editor_placeholder').each(function() {
+      if($(this).data('placeholder')) {
+        $(this).val(temporary[temp_counter]);
+        temp_counter++;
+      }
+    });
+  }
 }
 
 
