@@ -1,3 +1,17 @@
+@mixin slide-miniature {
+  
+  width: 243px; /* 900 scalato al 27% */
+  height: 159px; /* 590 scalato al 27%, sarebbe 159.3 ma il 0.3 lo nascondo */
+  padding: 21px 26px 26px 26px; /* top: 11 + 10; tutti gli altri: 16 + 10 */
+  display: none;
+  z-index: 9999999999;
+  margin-top: 20px; /* per staccarsi dalle <a> */
+  margin-right: 0;
+  margin-bottom: 0;
+  position: absolute;
+  
+}
+
 html.lesson-editor-layout {
   
   .content {
@@ -311,30 +325,59 @@ html.lesson-editor-layout {
   
   }
   
+  
+  
+  
+  
+  
+  
+  
+  
   .slide-tooltip {
     
-    width: 250px;
-    height: 156px;
-    display: none;
-    z-index: 9999999999;
-    margin: 20px 0 0 -27px;
-    position: absolute;
-    padding: 20px 20px 25px 25px;
+    @include slide-miniature;
+    margin-left: -27px;
     background: url("/assets/lesson-editor-tooltip-bg.png") top left no-repeat;
     
   }
   
   .slide-tooltip-to-left {
     
-    width: 300px;
-    display: none;
-    z-index: 9999999999;
-    margin: 20px 0 0 -247px;
-    position: absolute;
-    padding: 20px 20px 25px 25px;
+    @include slide-miniature;
+    margin-left: -247px;
     background: url("/assets/lesson-editor-tooltip-bg-to-left.png") top left no-repeat;
     
   }
+  
+  .slide-tooltip, .slide-tooltip-to-left {
+    
+    .miniature-container {
+      
+      width: 243px;
+      height: 159px;
+      overflow: hidden;
+      
+      .zoomOutThumb {
+        
+        zoom: 27%;
+        -moz-transform: scale(0.27);
+        position: absolute;
+        
+      }
+      
+    }
+    
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   #container {
     

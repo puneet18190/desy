@@ -10,8 +10,10 @@
         <% if slide.cover? %>
           <%= render :partial => "lessons/thumbnail", :locals => {:lesson => slide.lesson} %>
         <% else %>
-          <div class="zoomOutThumb">
-            <%= render :partial => "lesson_editor/thumbnails/#{slide.kind}", :locals => {:slide => slide} %>
+          <div class="miniature-container">
+            <div class="zoomOutThumb">
+              <%= render :partial => "lesson_editor/thumbnails/#{slide.kind}", :locals => {:slide => slide} %>
+            </div>
           </div>
         <% end %>
       </div>
