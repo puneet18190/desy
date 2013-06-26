@@ -106,8 +106,9 @@ class Slide < ActiveRecord::Base
   
   validates_presence_of :lesson_id, :position
   validates_numericality_of :lesson_id, :position, :only_integer => true, :greater_than => 0
-  validates_length_of :title, :maximum => MAX_TITLE_LENGTH, :allow_nil => true, unless: proc{ cover? }
+  validates_length_of :title, :maximum => MAX_TITLE_LENGTH, :allow_nil => true, unless: proc{ cover? || self.kind == TITLE }
   validates_length_of :title, :maximum => MAX_COVER_TITLE_LENGTH, :allow_nil => true, if: proc{ cover? }
+  validates_length_of :title, :maximum => 255, :allow_nil => true, if: proc{ self.kind == TITLE }
   validates_inclusion_of :kind, :in => KINDS
   validates_uniqueness_of :position, :scope => :lesson_id
   validates_uniqueness_of :kind, :scope => :lesson_id, :if => :is_cover
