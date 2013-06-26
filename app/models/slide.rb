@@ -117,8 +117,12 @@ class Slide < ActiveRecord::Base
   before_destroy :stop_if_cover
   
   def title=(title)
-    title = title.nil? ? nil : title.to_s.gsub("\r\n", '<br/>')
-    write_attribute(:title, sanitize(title))
+    if self.kind == TITLE
+      title = title.nil? ? nil : title.to_s
+      write_attribute(:title, sanitize(title))
+    else
+      write_attribute(:title, title)
+    end
   end
   
   # Used to sanitize texts from TinyMCE
