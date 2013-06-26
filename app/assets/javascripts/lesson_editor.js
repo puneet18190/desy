@@ -1001,10 +1001,13 @@ TinyMCE callback to show warning when texearea content exceeds the available spa
 @param tiny_id {Number} HTML id of the tinyMCE textarea
 **/
 function tinyMceCallbacks(inst, tiny_id) {
-  var maxH = 422;
-  if($('textarea#' + tiny_id).parent('.audio-content').length > 0) {
-    maxH = 324;
+  var maxH = 420;
+  if($('textarea#' + tiny_id).parents('.slide-content.audio').length > 0) {
+    maxH = 329;
   }
+  
+  console.log(inst.getBody().scrollHeight);
+  
   if(inst.getBody().scrollHeight > maxH) {
     $('#' + tiny_id + '_tbl').css('border-left', '1px solid red').css('border-right', '1px solid red');
     $('#' + tiny_id + '_tbl tr.mceFirst td').css('border-top', '1px solid red');
