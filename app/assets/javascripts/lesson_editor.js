@@ -281,9 +281,13 @@ function lessonEditorDocumentReadyGeneral() {
   $('html.lesson-editor-layout ul#slides').css('margin-top', ((($(window).height() - 590) / 2) - 40) + 'px');
   $('html.lesson-editor-layout ul#slides.new').css('margin-top', ((($(window).height() - 590) / 2)) + 'px');
   $('html.lesson-editor-layout ul#slides input').attr('autocomplete', 'off');
-  $('body').on('keydown blur', 'textarea[rows]', function(e) {
-    if($(this).parent().hasClass('only-title') && e.which == 13 && $(this).val().split("\n").length >= $(this).attr('rows')) {
-      return false;
+  $('body').on('keyup blur', '.slide-content.title .title.editable textarea.mask', function(e) {
+    if($(this).data('resized')) {
+      var temporary = $(this).parent().find('.temporary');
+      temporary.html($(this).val().replace(/\r\n|\r|\n/g, "<br/>");
+      
+      console.log(temporary.height()); // TODO TODO TODO finire qui
+      
     }
   });
 }
@@ -410,61 +414,17 @@ function lessonEditorDocumentReadySlideButtons() {
     hideNewSlideChoice();
   });
   $('body').on('click', '._save_slide', function(e) {
-    saveCurrentSlide();
+    saveCurrentSlide('', false);
   });
   $('body').on('click', '._save_slide_and_exit', function() {
-    tinyMCE.triggerSave();
-    var temporary = new Array();
-    var temp_counter = 0;
-    $('._lesson_editor_current_slide ._lesson_editor_placeholder').each(function() {
-      if($(this).data('placeholder')) {
-        temporary[temp_counter] = $(this).val();
-        temp_counter++;
-        $(this).val('');
-      }
-    });
-    $.ajax({
-      type: 'post',
-      url: $('._lesson_editor_current_slide form').attr('action') + '_and_exit',
-      timeout: 5000,
-      data: $('._lesson_editor_current_slide form').serialize()
-    });
-    temp_counter = 0;
-    $('._lesson_editor_current_slide ._lesson_editor_placeholder').each(function() {
-      if($(this).data('placeholder')) {
-        $(this).val(temporary[temp_counter]);
-        temp_counter++;
-      }
-    });
+    saveCurrentSlide('_and_exit', true);
   });
   $('body').on('click', '._save_slide_and_edit', function() {
-    tinyMCE.triggerSave();
-    var temporary = new Array();
-    var temp_counter = 0;
-    $('._lesson_editor_current_slide ._lesson_editor_placeholder').each(function() {
-      if($(this).data('placeholder')) {
-        temporary[temp_counter] = $(this).val();
-        temp_counter++;
-        $(this).val('');
-      }
-    });
-    $.ajax({
-      type: 'post',
-      url: $('._lesson_editor_current_slide form').attr('action') + '_and_edit',
-      timeout: 5000,
-      data: $('._lesson_editor_current_slide form').serialize()
-    });
-    temp_counter = 0;
-    $('._lesson_editor_current_slide ._lesson_editor_placeholder').each(function() {
-      if($(this).data('placeholder')) {
-        $(this).val(temporary[temp_counter]);
-        temp_counter++;
-      }
-    });
+    saveCurrentSlide('_and_edit', true);
   });
   $('body').on('click', '._add_new_slide_options', function() {
     if(!$(this).hasClass('disabled')) {
-      saveCurrentSlide();
+      saveCurrentSlide('', false);
       showNewSlideOptions();
     }
   });
@@ -503,19 +463,19 @@ function lessonEditorDocumentReadySlidesNavigator() {
   $('body').on('click', '._slide_nav:not(._lesson_editor_current_slide_nav)', function(e) {
     e.preventDefault();
     stopMediaInCurrentSlide();
-    saveCurrentSlide();
+    saveCurrentSlide('', false);
     slideTo($(this).data('slide-id'));
   });
   $('body').on('click', '._not_current_slide', function(e) {
     e.preventDefault();
-    saveCurrentSlide();
+    saveCurrentSlide('', false);
     stopMediaInCurrentSlide();
     slideTo($(this).parent().data('slide-id'));
     scrollPaneUpdate(this);
   });
   $('body').on('click', '._add_new_slide_options_in_last_position', function() {
     if(!$(this).hasClass('disabled')) {
-      saveCurrentSlide();
+      saveCurrentSlide('', false);
       var last_slide_id = $("#slide-numbers li.navNumbers:last").find('a').data('slide-id');
       $('#nav_list_menu').data('jsp').scrollToPercentX(100, true);
       if($('#slide_in_lesson_editor_' + last_slide_id).hasClass('_lesson_editor_current_slide')) {
@@ -573,8 +533,10 @@ function lessonEditorDocumentReadyTextFields() {
 Save current slide. It sends tinyMCE editor content to form data to be serialized, it handles form placeholders.
 @method saveCurrentSlide
 @for LessonEditorForms
+@param action_suffix {String} action suffix to be appended after 'save' (it can be 'save_and_edit' or 'save_and_exit', or just 'save', see also {{#crossLink "LessonEditorDocumentReady/lessonEditorDocumentReadySlideButtons:merthod"}}{{/crossLink}})
+@param with_loader {Boolean} if true shows the loader while calling ajax
 **/
-function saveCurrentSlide() {
+function saveCurrentSlide(action_suffix, with_loader) {
   tinyMCE.triggerSave();
   var temporary = new Array();
   var temp_counter = 0;
@@ -585,7 +547,22 @@ function saveCurrentSlide() {
       $(this).val('');
     }
   });
-  submitCurrentSlideForm();
+  if(with_loader) {
+    $.ajax({
+      type: 'post',
+      url: $('._lesson_editor_current_slide form').attr('action') + action_suffix,
+      timeout: 5000,
+      data: $('._lesson_editor_current_slide form').serialize()
+    });
+  } else {
+    $.ajax({
+      type: 'post',
+      url: $('._lesson_editor_current_slide form').attr('action') + action_suffix,
+      timeout: 5000,
+      data: $('._lesson_editor_current_slide form').serialize(),
+      beforeSend: unbindLoader()
+    }).always(bindLoader);
+  }
   temp_counter = 0;
   $('._lesson_editor_current_slide ._lesson_editor_placeholder').each(function() {
     if($(this).data('placeholder')) {
@@ -593,21 +570,6 @@ function saveCurrentSlide() {
       temp_counter++;
     }
   });
-}
-
-/**
-Submit serialized form data for current slide (used in {{#crossLink "LessonEditorForms/saveCurrentSlide:method"}}{{/crossLink}}).
-@method submitCurrentSlideForm
-@for LessonEditorForms
-**/
-function submitCurrentSlideForm() {
-  $.ajax({
-    type: 'post',
-    url: $('._lesson_editor_current_slide form').attr('action'),
-    timeout: 5000,
-    data: $('._lesson_editor_current_slide form').serialize(),
-    beforeSend: unbindLoader()
-  }).always(bindLoader);
 }
 
 
@@ -618,7 +580,7 @@ function submitCurrentSlideForm() {
 Hides media gallery for selected type.
 @method removeGalleryInLessonEditor
 @for LessonEditorGalleries
-@param sty_type {String} gallery type
+@param sti_type {String} gallery type
 **/
 function removeGalleryInLessonEditor(sti_type) {
   $('#lesson_editor_' + sti_type + '_gallery_container').hide();
@@ -770,7 +732,7 @@ function initializeSortableNavs() {
           new_position = previous_item_position;
         }
       }
-      saveCurrentSlide();
+      saveCurrentSlide('', false);
       if(old_position != new_position) {
         stopMediaInCurrentSlide();
         $.ajax({
