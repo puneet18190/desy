@@ -447,7 +447,7 @@ function lessonEditorDocumentReadySlidesNavigator() {
     }
   });
   $('body').on('mouseout', '#slide-numbers li.navNumbers:not(._add_new_slide_options_in_last_position)', function(e) {
-    var this_tooltip =$(this).children('.slide-tooltip');
+    var this_tooltip = $(this).children('.slide-tooltip');
     this_tooltip.removeClass('slide-tooltip-to-left');
     this_tooltip.hide();
   });
