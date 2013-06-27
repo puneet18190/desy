@@ -585,6 +585,54 @@ $title-slide-content-margin-top: ($slide-inner-height - $title-slide-content-hei
     top: 0;
     left: 0;
     
+    .image-container .image .add, .audio-container .audio .add, .video-container .video .add {
+      
+      cursor: default;
+      
+    }
+    
+    .image-container {
+      
+      .image {
+        
+        .add:hover {
+          
+          background: url('/assets/icone_piene.svg') no-repeat scroll -2em center / 6em 1em transparent;
+          
+        }
+        
+      }
+      
+    }
+    
+    .video-container {
+      
+      .video {
+        
+        .add:hover {
+          
+          background: url('/assets/icone_piene.svg') no-repeat scroll -1em center / 6em 1em transparent;
+          
+        }
+        
+      }
+      
+    }
+    
+    .audio-container {
+      
+      .audio {
+        
+        .add:hover {
+          
+          background: url('/assets/icone_piene.svg') no-repeat scroll 0em center / 6em 1em transparent;
+          
+        }
+        
+      }
+      
+    }
+    
   }
   
   height: $slide-inner-height;
