@@ -1,28 +1,2 @@
-<%
-  audio = slide.audio_at(1)
-%>
-
-
-<div class="slide-content audio">
-  
-  <div class="item title-container">
-    <%= slide.title %>
-  </div>
-  
-  <div class="item audio-container">
-    <% if audio.nil? %>
-      <div class="audioBig">
-        <div class="audioIcon"></div>
-      </div>
-    <% else %>
-      <div class="audioBig with_title">
-        <p><%= audio.title %></p>
-      </div>
-    <% end %>
-  </div>
-  
-  <div class="item text-container">
-    <%= slide.text.html_safe if slide.text %>
-  </div>
-  
+<div class="slide-content audio small-size">
 </div>
