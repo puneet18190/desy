@@ -101,12 +101,10 @@ class Slide < ActiveRecord::Base
   KINDS = KINDS_WITHOUT_COVER + [COVER]
   
   # Maximum length of the title
-  MAX_TITLE_LENGTH = (I18n.t('language_parameters.slide.length_title') > 255 ? 255 : I18n.t('language_parameters.slide.length_title'))
   MAX_COVER_TITLE_LENGTH = (I18n.t('language_parameters.lesson.length_title') > 255 ? 255 : I18n.t('language_parameters.lesson.length_title'))
   
   validates_presence_of :lesson_id, :position
   validates_numericality_of :lesson_id, :position, :only_integer => true, :greater_than => 0
-  validates_length_of :title, :maximum => MAX_TITLE_LENGTH, :allow_nil => true, unless: proc{ cover? }
   validates_length_of :title, :maximum => MAX_COVER_TITLE_LENGTH, :allow_nil => true, if: proc{ cover? }
   validates_inclusion_of :kind, :in => KINDS
   validates_uniqueness_of :position, :scope => :lesson_id
