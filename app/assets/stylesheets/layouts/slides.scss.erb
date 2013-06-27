@@ -47,15 +47,15 @@ $slide-title-padding: 10px;
 /* altezza interna del titolo: altezza globale meno due volte il bordo meno due volte il padding verticale (che non cambia tra editing e read-only) */
 $slide-title-inner-height: $slide-title-height - $slide-title-border - $slide-title-border - $slide-title-padding - $slide-title-padding;
 /* padding orizzontale da usare in caso di read-only: c'è un pixel in più che rimpiazza lo spazio riservato alla barra di posizionamento dell'editing */
-$slide-title-read-only-lateral-padding: 11px;
+$slide-title-read-only-left-padding: 11px;
 /* larghezza interna del titolo in fase editing: larghezza interna della slide meno due volte il bordo meno due volte il padding normale */
 $slide-title-inner-width: $slide-inner-width - $slide-title-padding - $slide-title-padding - $slide-title-border - $slide-title-border;
-/* larghezza interna del titolo in fase read only: larghezza interna della slide meno due volte il bordo meno due volte il padding per read only */
-$slide-title-inner-read-only-width: $slide-inner-width - $slide-title-read-only-lateral-padding - $slide-title-read-only-lateral-padding - $slide-title-border - $slide-title-border;
+/* larghezza interna del titolo in fase read only: larghezza interna della slide meno due volte il bordo meno i paddings per read only */
+$slide-title-inner-read-only-width: $slide-inner-width - $slide-title-read-only-left-padding - $slide-title-padding - $slide-title-border - $slide-title-border;
 /* line-height del titolo (sempre uguale) */
 $slide-title-line-height: 88px;
 /* font-size del titolo (sempre uguale) */
-$slide-title-font-size: 54px;
+$slide-title-font-size: 48px;
 /* larghezza in full slide di un campo testo: larghezza slide meno due volte il padding interno (coincide con la larghezza interna della slide) */
 $slide-text-full-width: $slide-inner-width;
 /* altezza in full-slide di un campo testo: altezza interna della slide meno altgezza titolo meno padding interno che le separa */
@@ -427,6 +427,7 @@ $title-slide-content-margin-top: ($slide-inner-height - $title-slide-content-hei
   line-height: $slide-title-line-height;
   font-family: "Nunito", Helvetica, sans-serif;
   color: $orange;
+  letter-spacing: -4px;
   
 }
 
@@ -443,9 +444,8 @@ $title-slide-content-margin-top: ($slide-inner-height - $title-slide-content-hei
   
   @include slide-title-common;
   width: $slide-title-inner-read-only-width;
-  padding: $slide-title-padding $slide-title-read-only-lateral-padding;
+  padding: $slide-title-padding $slide-title-padding $slide-title-padding $slide-title-read-only-left-padding;
   border: $slide-title-border solid white;
-  overflow: hidden;
   
 }
 
@@ -598,7 +598,6 @@ $title-slide-content-margin-top: ($slide-inner-height - $title-slide-content-hei
       .text-container {
         
         border-color: #EFEFEF;
-        margin: 0; /* questo serve per sovrascrivere un margin 20px definito in lesson editor layout e non in lesson viewer layout */
         
       }
       
@@ -608,10 +607,9 @@ $title-slide-content-margin-top: ($slide-inner-height - $title-slide-content-hei
       
       .title-container {
         
-        h2 {
+        .title-h2 {
           
           border-color: #EFEFEF;
-          margin: 0; /* questo serve per sovrascrivere un margin 20px definito in lesson editor layout e non in lesson viewer layout */
           
         }
         
@@ -709,9 +707,18 @@ $title-slide-content-margin-top: ($slide-inner-height - $title-slide-content-hei
         
       }
       
-      h2 {
+      .title-h2 {
         
         @include slide-title-viewer;
+        
+        .title-h2-content {
+          
+          width: $slide-title-inner-read-only-width;
+          height: $slide-title-inner-height;
+          overflow: hidden;
+          white-space: nowrap;
+          
+        }
         
       }
       
@@ -1028,9 +1035,18 @@ $title-slide-content-margin-top: ($slide-inner-height - $title-slide-content-hei
         
       }
       
-      h2 {
+      .title-h2 {
         
         @include slide-title-viewer;
+        
+        .title-h2-content {
+          
+          width: $slide-title-inner-read-only-width;
+          height: $slide-title-inner-height;
+          overflow: hidden;
+          white-space: nowrap;
+          
+        }
         
       }
       
@@ -1531,9 +1547,18 @@ $title-slide-content-margin-top: ($slide-inner-height - $title-slide-content-hei
         
       }
       
-      h2 {
+      .title-h2 {
         
         @include slide-title-viewer;
+        
+        .title-h2-content {
+          
+          width: $slide-title-inner-read-only-width;
+          height: $slide-title-inner-height;
+          overflow: hidden;
+          white-space: nowrap;
+          
+        }
         
       }
       
@@ -1613,9 +1638,18 @@ $title-slide-content-margin-top: ($slide-inner-height - $title-slide-content-hei
         
       }
       
-      h2 {
+      .title-h2 {
         
         @include slide-title-viewer;
+        
+        .title-h2-content {
+          
+          width: $slide-title-inner-read-only-width;
+          height: $slide-title-inner-height;
+          overflow: hidden;
+          white-space: nowrap;
+          
+        }
         
       }
       
