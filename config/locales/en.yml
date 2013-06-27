@@ -2258,17 +2258,6 @@ en:
       # 4 - views/media_elements/info_form_in_editor/_new.html.erb
       # 5 - views/admin/media_elements/new.html.erb
       length_title: 35
-    slide:
-      # Maximum number of characters allowed in the caption of an image inside a slide
-      length_caption:
-        # 1 - views/lesson_editor/slides/parts/_image.html.erb
-        image1: 35
-        # 1 - views/lesson_editor/slides/parts/_image.html.erb
-        image2: 35
-        # 1 - views/lesson_editor/slides/parts/_image.html.erb
-        image3: 70
-        # 1 - views/lesson_editor/slides/parts/_image.html.erb
-        image4: 35
     video_editor:
       # Maximum number of characters allowed in the text component of Video Editor
       # 1 - views/video_editor/_text_component_editor.html.erb
