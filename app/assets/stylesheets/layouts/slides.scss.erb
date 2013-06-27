@@ -593,9 +593,29 @@ $title-slide-content-margin-top: ($slide-inner-height - $title-slide-content-hei
       
     }
     
-    .text-container {
+    &.text, &.image1, &.audio, &.video1 {
       
-      /* TODO TODO TODO bordo grigietto */
+      .text-container {
+        
+        border-color: #EFEFEF;
+        margin: 0;
+        
+      }
+      
+    }
+    
+    &.text, &.image1, &.audio, &.video1, &.title {
+      
+      .title-container {
+        
+        h2 {
+          
+          border-color: #EFEFEF;
+          margin: 0;
+          
+        }
+        
+      }
       
     }
     
