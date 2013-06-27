@@ -20,39 +20,13 @@
         <% end %>
       </div>
     <% else %>
-
-
-
-
-<!-- TODO DA QUI
-
-
-        <div id="media_element_1_in_slide_<%= slide.id %>" class="image editable">
-        <% if image %>
-          <%= hidden_field_tag "media_element_align_1", image.alignment.to_s, :class => 'align' %>
-          <%= hidden_field_tag "media_element_1", image.media_element_id, :class => 'image-id' %>
-        <% else %>
-          <%= hidden_field_tag "media_element_align_1", '0', :class => 'align' %>
-          <%= hidden_field_tag "media_element_1", '', :class => 'image-id' %>
-        <% end %>
-        <div class="mask <%= orientation %> <%= image.nil? ? 'hidden' : 'visible' %>">
-          <div class="alignable" style="<%= alignment %>" data-rolloverable="true">
-            <img src="<%= url %>" <%= resize.html_safe %>/>
-          </div>
-          <a class="add hidden" data-position="1" title="<%= t('titles.lesson_editor.change_image') %>"></a>
-        </div>
-        <div class="empty-mask <%= image.nil? ? 'visible' : 'hidden' %>">
+      <div class="image editable">
+        <div class="empty-mask">
           <a class="add" data-position="1"></a>
           <br/>
           <p class="lower"><%= t('lesson_editor.choose_image') %></p>
         </div>
       </div>
-
-TODO A QUI -->
-
-
-    
-    
     <% end %>
     
     <div class="title-container">
