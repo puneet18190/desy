@@ -203,17 +203,13 @@ $title-slide-content-border: 1px;
 /* font-size del titolo */
 $title-slide-font-size: 60px;
 /* line-height del titolo: uguale a font-size */
-$title-slide-line-height: 70px;
+$title-slide-line-height: 65px;
 /* padding del contenuto del titolo */
 $title-slide-content-padding: 20px;
-/* padding del contenuto del titolo in modalità read-only */
-$title-slide-content-padding-read-only: 21px;
 /* altezza contenuto titolo: line height */
-$title-slide-content-height: $title-slide-line-height;
+$title-slide-content-height: $title-slide-line-height * 3;
 /* larghezza  contenuto titolo: laghezza interna slide meno due volte padding meno due volte bordo */
 $title-slide-content-width: $slide-inner-width - (2 * $title-slide-content-padding) - (2 * $title-slide-content-border);
-/* larghezza  contenuto titolo read-only: laghezza interna slide meno due volte padding read-only meno due volte bordo */
-$title-slide-content-width-read-only: $slide-inner-width - (2 * $title-slide-content-padding-read-only) - (2 * $title-slide-content-border);
 /* margin top contenuto titolo: altezza interna slide meno altezza contenuto titolo meno due volte bordo meno due volte padding diviso due */
 $title-slide-content-margin-top: ($slide-inner-height - $title-slide-content-height - (2 * $title-slide-content-border) - (2 * $title-slide-content-padding)) / 2;
 
@@ -1603,19 +1599,18 @@ $title-slide-content-margin-top: ($slide-inner-height - $title-slide-content-hei
         text-align: center;
         color: $orange;
         font-family: "Nunito", Helvetica sans-serif;
+        padding: $title-slide-content-padding;
+        width: $title-slide-content-width;
+        letter-spacing: -3px;
         
         &.read-only {
           
-          padding: $title-slide-content-padding $title-slide-content-padding-read-only;
-          width: $title-slide-content-width-read-only;
           border: $title-slide-content-border solid white;
           
         }
         
         &.editable {
           
-          padding: $title-slide-content-padding;
-          width: $title-slide-content-width;
           border: $title-slide-content-border solid #EFEFEF;
           
         }

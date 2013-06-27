@@ -115,6 +115,16 @@ class Slide < ActiveRecord::Base
   before_validation :init_validation
   before_destroy :stop_if_cover
   
+  # Used to sanitize titles from slide of kind 'title'
+  def title=(title)
+    if self.kind == TITLE
+      title = title.nil? ? nil : title.to_s
+      write_attribute(:title, sanitize(title))
+    else
+      write_attribute(:title, title)
+    end
+  end
+  
   # Used to sanitize texts from TinyMCE
   def text=(text)
     text = text.nil? ? nil : text.to_s
