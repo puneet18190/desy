@@ -137,17 +137,17 @@ $image-caption-line-height: 35px;
 /* altezza della caption */
 $image-caption-height: 35px;
 /* padding laterale della caption */
-$image-caption-lateral-padding: 5px;
+$image-caption-left-padding: 5px;
 /* padding laterale da usare in caso di read-only: c'è un pixel in più che rimpiazza lo spazio riservato alla barra di posizionamento dell'editing */
-$image-caption-read-only-lateral-padding: 6px;
-/* metà larghezza caption: metà larghezza immagine meno due volte padding laterale */
-$image-caption-half-width: $slide-image-half-width - $image-caption-lateral-padding - $image-caption-lateral-padding;
-/* larghezza piena caption: larghezza piena immagine meno due volte padding laterale */
-$image-caption-full-width: $slide-image-full-width - $image-caption-lateral-padding - $image-caption-lateral-padding;
-/* metà larghezza caption: metà larghezza immagine meno due volte padding laterale (caso read-only, padding diverso) */
-$image-caption-read-only-half-width: $slide-image-half-width - $image-caption-read-only-lateral-padding - $image-caption-read-only-lateral-padding;
-/* larghezza piena caption: larghezza piena immagine meno due volte padding laterale (caso read-only, padding diverso) */
-$image-caption-read-only-full-width: $slide-image-full-width - $image-caption-read-only-lateral-padding - $image-caption-read-only-lateral-padding;
+$image-caption-read-only-left-padding: 6px;
+/* metà larghezza caption: metà larghezza immagine meno padding sx */
+$image-caption-half-width: $slide-image-half-width - $image-caption-left-padding;
+/* larghezza piena caption: larghezza piena immagine meno padding sx */
+$image-caption-full-width: $slide-image-full-width - $image-caption-left-padding;
+/* metà larghezza caption: metà larghezza immagine meno padding sx (caso read-only, padding diverso) */
+$image-caption-read-only-half-width: $slide-image-half-width - $image-caption-read-only-left-padding;
+/* larghezza piena caption: larghezza piena immagine meno padding sx (caso read-only, padding diverso) */
+$image-caption-read-only-full-width: $slide-image-full-width - $image-caption-read-only-left-padding;
 /* video a larghezza piena: stesso calcolo di immagine */
 $slide-video-full-width: $slide-image-full-width;
 /* video a metà larghezza: stesso calcolo di immagine */
@@ -558,6 +558,7 @@ $title-slide-content-margin-top: ($slide-inner-height - $title-slide-content-hei
   bottom: 0;
   line-height: $image-caption-line-height;
   font-size: $image-caption-font-size;
+  white-space: nowrap;
   
 }
 
@@ -1082,7 +1083,7 @@ $title-slide-content-margin-top: ($slide-inner-height - $title-slide-content-hei
           
           .caption {
             
-            padding: 0 $image-caption-read-only-lateral-padding;
+            padding: 0 0 0 $image-caption-read-only-left-padding;
             width: $image-caption-read-only-half-width;
             
           }
@@ -1120,7 +1121,7 @@ $title-slide-content-margin-top: ($slide-inner-height - $title-slide-content-hei
             
             .caption {
               
-              padding: 0 $image-caption-lateral-padding;
+              padding: 0 0 0 $image-caption-left-padding;
               width: $image-caption-half-width;
               
             }
@@ -1218,7 +1219,7 @@ $title-slide-content-margin-top: ($slide-inner-height - $title-slide-content-hei
           
           .caption {
             
-            padding: 0 $image-caption-read-only-lateral-padding;
+            padding: 0 0 0 $image-caption-read-only-left-padding;
             width: $image-caption-read-only-half-width;
             
           }
@@ -1256,7 +1257,7 @@ $title-slide-content-margin-top: ($slide-inner-height - $title-slide-content-hei
             
             .caption {
               
-              padding: 0 $image-caption-lateral-padding;
+              padding: 0 0 0 $image-caption-left-padding;
               width: $image-caption-half-width;
               
             }
@@ -1333,7 +1334,7 @@ $title-slide-content-margin-top: ($slide-inner-height - $title-slide-content-hei
           
           .caption {
             
-            padding: 0 $image-caption-read-only-lateral-padding;
+            padding: 0 0 0 $image-caption-read-only-left-padding;
             width: $image-caption-read-only-full-width;
             
           }
@@ -1371,7 +1372,7 @@ $title-slide-content-margin-top: ($slide-inner-height - $title-slide-content-hei
             
             .caption {
               
-              padding: 0 $image-caption-lateral-padding;
+              padding: 0 0 0 $image-caption-left-padding;
               width: $image-caption-full-width;
               
             }
@@ -1450,7 +1451,7 @@ $title-slide-content-margin-top: ($slide-inner-height - $title-slide-content-hei
           
           .caption {
             
-            padding: 0 $image-caption-read-only-lateral-padding;
+            padding: 0 0 0 $image-caption-read-only-left-padding;
             width: $image-caption-read-only-half-width;
             
           }
@@ -1488,7 +1489,7 @@ $title-slide-content-margin-top: ($slide-inner-height - $title-slide-content-hei
             
             .caption {
               
-              padding: 0 $image-caption-lateral-padding;
+              padding: 0 0 0 $image-caption-left-padding;
               width: $image-caption-half-width;
               
             }
