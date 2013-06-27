@@ -22,7 +22,7 @@
   <%= form_tag save_slide_path(slide.lesson_id, slide.id), :method => :post, :remote => true, :id => "form-#{slide.id}" do %>
     
     <div class="image-container item">
-      <%= hidden_field_tag :title, slide.title %>
+      
       <div id="media_element_1_in_slide_<%= slide.id %>" class="image editable">
         <% if image %>
           <%= hidden_field_tag "media_element_align_1", image.alignment.to_s, :class => 'align' %>
@@ -46,6 +46,7 @@
       
       <div class="title-container">
         <%= slide.title %>
+        <%= hidden_field_tag :title, slide.title %>
       </div>
       
     </div>
