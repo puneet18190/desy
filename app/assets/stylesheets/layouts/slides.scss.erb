@@ -58,24 +58,26 @@ $slide-title-line-height: 88px;
 $slide-title-font-size: 54px;
 /* larghezza in full slide di un campo testo: larghezza slide meno due volte il padding interno (coincide con la larghezza interna della slide) */
 $slide-text-full-width: $slide-inner-width;
-/* altezza in full-slide di un cmapo testo: altezza interna della slide meno altgezza titolo meno padding interno che le separa */
+/* altezza in full-slide di un campo testo: altezza interna della slide meno altgezza titolo meno padding interno che le separa */
 $slide-text-full-height: $slide-inner-height - $slide-title-height - $slide-inner-padding;
 /* larghezza in half-slide di un campo testo */
 $slide-text-half-width: ($slide-inner-width - $slide-inner-padding) / 2;
-/* padding di un campo testo in read-only, che sopperisce a un margin interno di 8px di tinyMCE, e al bordo di 1px sempre di tinyMCE */
-$slide-text-read-only-padding: 9px;
-/* altezza read-only per full slide text: altezza full-slide meno due volte il padding read-only */
-$slide-text-read-only-full-height: $slide-text-full-height - $slide-text-read-only-padding - $slide-text-read-only-padding;
-/* larghezza read-only per full slide text: larghezza full-slide meno due volte il padding read-only */
-$slide-text-read-only-full-width: $slide-text-full-width - $slide-text-read-only-padding - $slide-text-read-only-padding;
-/* larghezza read-only per half slide text: larghezza half-slide meno due volte il padding read-only */
-$slide-text-read-only-half-width: $slide-text-half-width - $slide-text-read-only-padding - $slide-text-read-only-padding;
+/* padding di un campo testo in read-only, che sopperisce a un margin interno di 8px di tinyMCE */
+$slide-text-read-only-padding: 8px;
+/* border di un campo testo in read-only, che sopperisce al bordo di 1px sempre di tinyMCE */
+$slide-text-read-only-border: 1px;
+/* altezza read-only per full slide text: altezza full-slide meno due volte il padding read-only e border read-only */
+$slide-text-read-only-full-height: $slide-text-full-height - (2 * $slide-text-read-only-padding) - (2 * $slide-text-read-only-border);
+/* larghezza read-only per full slide text: larghezza full-slide meno due volte il padding read-only e border read-only */
+$slide-text-read-only-full-width: $slide-text-full-width - (2 * $slide-text-read-only-padding) - (2 * $slide-text-read-only-border);
+/* larghezza read-only per half slide text: larghezza half-slide meno due volte il padding read-only e border read-only */
+$slide-text-read-only-half-width: $slide-text-half-width - (2 * $slide-text-read-only-padding) - (2 * $slide-text-read-only-border);
 /* altezza del placeholder audio in una slide di tipo 'audio' */
 $audio-placeholder-height: 71px;
-/* altezza in di un cmapo testo nella slide di tipo 'audio': altezza in full slide meno altezza placeholder audio meno padding interno che le separa */
+/* altezza in di un campo testo nella slide di tipo 'audio': altezza in full slide meno altezza placeholder audio meno padding interno che le separa */
 $slide-text-height-for-audio: $slide-text-full-height - $audio-placeholder-height - $slide-inner-padding;
-/* altezza read-only in di un cmapo testo nella slide di tipo 'audio': altezza di riferimento meno due volte padding read-only */
-$slide-text-read-only-height-for-audio: $slide-text-height-for-audio - $slide-text-read-only-padding - $slide-text-read-only-padding;
+/* altezza read-only in di un campo testo nella slide di tipo 'audio': altezza di riferimento meno due volte padding read-only */
+$slide-text-read-only-height-for-audio: $slide-text-height-for-audio - (2 * $slide-text-read-only-padding) - (2 * $slide-text-read-only-border);
 /* dimensioni dell'icona grande (usata per video e immagini) */
 $big-icon-dimension: 130px;
 /* dimensioni dell'icona piccola (usata per video e immagini) */
@@ -591,6 +593,12 @@ $title-slide-content-margin-top: ($slide-inner-height - $title-slide-content-hei
       
     }
     
+    .text-container {
+      
+      /* TODO TODO TODO bordo grigietto */
+      
+    }
+    
     .image-container {
       
       .image {
@@ -662,6 +670,7 @@ $title-slide-content-margin-top: ($slide-inner-height - $title-slide-content-hei
   .text-container.read-only {
     
     padding: $slide-text-read-only-padding;
+    border: $slide-text-read-only-border solid white;
     overflow: hidden;
     @include read-only-tiny-mce;
     

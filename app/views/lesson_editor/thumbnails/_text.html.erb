@@ -1,2 +1,13 @@
 <div class="slide-content text small-size">
+  
+  <div class="item title-container">
+    <h2>
+      <%= slide.title.blank? ? t('lesson_editor.placeholders.title') : slide.title %>
+    </h2>
+  </div>
+  
+  <div class="item text-container read-only">
+    <%= slide.text.blank? ? t('lesson_editor.placeholders.text') : slide.text.html_safe %>
+  </div>
+  
 </div>
