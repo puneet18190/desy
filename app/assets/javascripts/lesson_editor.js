@@ -280,7 +280,6 @@ General initialization of position (used together with {{#crossLink "LessonEdito
 function lessonEditorDocumentReadyGeneral() {
   $('html.lesson-editor-layout ul#slides').css('margin-top', ((($(window).height() - 590) / 2) - 40) + 'px');
   $('html.lesson-editor-layout ul#slides.new').css('margin-top', ((($(window).height() - 590) / 2)) + 'px');
-  $('html.lesson-editor-layout ul#slides input').attr('autocomplete', 'off');
 }
 
 /**
@@ -951,8 +950,8 @@ TinyMCE callback to clean spans containing classes for font size: these classes 
 @param editor {Object} tinyMCE instance
 **/
 function cleanTinyMCESpanTagsFontSize(editor) {
-  var spans = $(editor.getBody()).find('span.size1, span.size2, span.size3, span.size4, span.size5, span.size6, span.size7');
-  var sizes = ['size1', 'size2', 'size3', 'size4', 'size5', 'size6', 'size7'];
+  var spans = $(editor.getBody()).find('span.size1, span.size2, span.size3, span.size4, span.size5, span.size6');
+  var sizes = ['size1', 'size2', 'size3', 'size4', 'size5', 'size6'];
   var sizes_class = sizes.join(' ');
   if(spans.length > 0) {
     spans.each(function() {
@@ -992,7 +991,7 @@ function initTinymce(tiny_id) {
     theme_advanced_toolbar_align: 'left',
     theme_advanced_statusbar_location: false,
     theme_advanced_resizing: true,
-    theme_advanced_font_sizes: '10px=.size1,13px=.size2,17px=.size3,21px=.size4,25px=.size5,29px=.size6,35px=.size7',
+    theme_advanced_font_sizes: '13px=.size1,17px=.size2,21px=.size3,25px=.size4,29px=.size5,35px=.size6',
     setup: function(ed) {
       ed.onInit.add(function(ed, e) {
         $('#' + tiny_id + '_ifr').attr('scrolling', 'no');

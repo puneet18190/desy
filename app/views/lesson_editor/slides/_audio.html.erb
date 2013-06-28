@@ -5,7 +5,7 @@
 %>
 
 <div class="slide-content audio normal-size">
-  <%= form_tag save_slide_path(slide.lesson_id, slide.id), :method => :post, :remote => true, :id => "form-#{slide.id}" do %>
+  <%= form_tag save_slide_path(slide.lesson_id, slide.id), :method => :post, :remote => true, :id => "form-#{slide.id}", :autocomplete => 'off' do %>
     
     <div class="item title-container">
       <%= text_field_tag :title, slide_title, :class => 'title _lesson_editor_placeholder', :data => {:placeholder => slide.title.blank?} %>
