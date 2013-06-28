@@ -115,6 +115,15 @@ class Slide < ActiveRecord::Base
   before_validation :init_validation
   before_destroy :stop_if_cover
   
+  # Used to center vertically the title
+  def title=(title)
+    if self.kind == TITLE && !title.blank? && title.first == "\r"
+      write_attribute(:title, " #{title}")
+    else
+      write_attribute(:title, title)
+    end
+  end
+  
   # Used to sanitize texts from TinyMCE
   def text=(text)
     text = text.nil? ? nil : text.to_s
