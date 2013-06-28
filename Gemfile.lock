@@ -305,8 +305,8 @@ DEPENDENCIES
   sdoc
   subexec!
   therubyracer
-  tinymce-rails
-  tinymce-rails-langs
+  tinymce-rails (= 3.5.8.2)
+  tinymce-rails-langs (= 0.1)
   uglifier (>= 1.0.3)
   unicorn
   whenever

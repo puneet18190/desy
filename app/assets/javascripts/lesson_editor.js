@@ -528,9 +528,6 @@ Save current slide. It sends tinyMCE editor content to form data to be serialize
 @param with_loader {Boolean} if true shows the loader while calling ajax
 **/
 function saveCurrentSlide(action_suffix, with_loader) {
-  
-  console.log('sto triggerando');
-  
   tinyMCE.triggerSave();
   var temporary = new Array();
   var temp_counter = 0;
@@ -1002,26 +999,32 @@ function initTinymce(tiny_id) {
   });
 }
 
-
+/**
+TinyMCE callback to clean spans containing classes for font size: these classes are attached to the first <ol>, <ul>, <p>
+@method cleanTinyMCESpanTagsFontSize
+@for LessonEditorTinyMCE
+@param editor {Object} tinyMCE instance
+**/
 function cleanTinyMCESpanTagsFontSize(editor) {
   var spans = $(editor.getBody()).find('span.size1, span.size2, span.size3, span.size4, span.size5, span.size6, span.size7');
   var sizes = ['size1', 'size2', 'size3', 'size4', 'size5', 'size6', 'size7'];
+  var sizes_class = sizes.join(' ');
   if(spans.length > 0) {
     spans.each(function() {
       var my_sizes = $(this).attr('class').split(' ').filter(function(i) {
         return sizes.indexOf(i) > -1;
       }).join(' ');
-      console.log(my_sizes);
+      $(this).removeClass(my_sizes);
+      $(this).parents('.mceContentBody ul, .mceContentBody ol, .mceContentBody p').removeClass(sizes_class).addClass(my_sizes);
     });
   }
 }
-
 
 /**
 TinyMCE callback to show warning when texearea content exceeds the available space. Adds a red border to the textarea.This function is used in tinyMCE setup ({{#crossLink "LessonEditorTinyMCE/initTinymce:method"}}{{/crossLink}}).
 @method tinyMceCallbacks
 @for LessonEditorTinyMCE
-@param inst {Object} tinyMCE body instance
+@param inst {Object} tinyMCE instance
 @param tiny_id {Number} HTML id of the tinyMCE textarea
 **/
 function tinyMceCallbacks(inst, tiny_id) {
@@ -1044,7 +1047,7 @@ function tinyMceCallbacks(inst, tiny_id) {
 TinyMCE keyDown callback to fix list item style. It adds same style of list item text to list numbers or dots. This function is used in tinyMCE setup ({{#crossLink "LessonEditorTinyMCE/initTinymce:method"}}{{/crossLink}}).
 @method tinyMceKeyDownCallbacks
 @for LessonEditorTinyMCE
-@param inst {Object} tinyMCE body instance
+@param inst {Object} tinyMCE instance
 @param tiny_id {Number} HTML id of the tinyMCE textarea
 **/
 function tinyMceKeyDownCallbacks(inst, tiny_id) {

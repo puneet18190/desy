@@ -593,15 +593,6 @@ function lessonEditorDocumentReadyGeneral() {
   $(&#x27;html.lesson-editor-layout ul#slides&#x27;).css(&#x27;margin-top&#x27;, ((($(window).height() - 590) / 2) - 40) + &#x27;px&#x27;);
   $(&#x27;html.lesson-editor-layout ul#slides.new&#x27;).css(&#x27;margin-top&#x27;, ((($(window).height() - 590) / 2)) + &#x27;px&#x27;);
   $(&#x27;html.lesson-editor-layout ul#slides input&#x27;).attr(&#x27;autocomplete&#x27;, &#x27;off&#x27;);
-  $(&#x27;body&#x27;).on(&#x27;keyup blur&#x27;, &#x27;.slide-content.title .title.editable textarea.mask&#x27;, function(e) {
-    if($(this).data(&#x27;resized&#x27;)) {
-      var temporary = $(this).parent().find(&#x27;.temporary&#x27;);
-      temporary.html($(this).val().replace(/\r\n|\r|\n/g, &quot;&lt;br/&gt;&quot;);
-      
-      console.log(temporary.height()); // TODO TODO TODO finire qui
-      
-    }
-  });
 }
 
 /**
@@ -768,7 +759,7 @@ function lessonEditorDocumentReadySlidesNavigator() {
     }
   });
   $(&#x27;body&#x27;).on(&#x27;mouseout&#x27;, &#x27;#slide-numbers li.navNumbers:not(._add_new_slide_options_in_last_position)&#x27;, function(e) {
-    var this_tooltip =$(this).children(&#x27;.slide-tooltip&#x27;);
+    var this_tooltip = $(this).children(&#x27;.slide-tooltip&#x27;);
     this_tooltip.removeClass(&#x27;slide-tooltip-to-left&#x27;);
     this_tooltip.hide();
   });
@@ -852,7 +843,8 @@ function saveCurrentSlide(action_suffix, with_loader) {
   tinyMCE.triggerSave();
   var temporary = new Array();
   var temp_counter = 0;
-  $(&#x27;._lesson_editor_current_slide ._lesson_editor_placeholder&#x27;).each(function() {
+  var current_slide = $(&#x27;._lesson_editor_current_slide&#x27;);
+  current_slide.find(&#x27;._lesson_editor_placeholder&#x27;).each(function() {
     if($(this).data(&#x27;placeholder&#x27;)) {
       temporary[temp_counter] = $(this).val();
       temp_counter++;
@@ -862,21 +854,21 @@ function saveCurrentSlide(action_suffix, with_loader) {
   if(with_loader) {
     $.ajax({
       type: &#x27;post&#x27;,
-      url: $(&#x27;._lesson_editor_current_slide form&#x27;).attr(&#x27;action&#x27;) + action_suffix,
+      url: current_slide.find(&#x27;form&#x27;).attr(&#x27;action&#x27;) + action_suffix,
       timeout: 5000,
-      data: $(&#x27;._lesson_editor_current_slide form&#x27;).serialize()
+      data: current_slide.find(&#x27;form&#x27;).serialize()
     });
   } else {
     $.ajax({
       type: &#x27;post&#x27;,
-      url: $(&#x27;._lesson_editor_current_slide form&#x27;).attr(&#x27;action&#x27;) + action_suffix,
+      url: current_slide.find(&#x27;form&#x27;).attr(&#x27;action&#x27;) + action_suffix,
       timeout: 5000,
-      data: $(&#x27;._lesson_editor_current_slide form&#x27;).serialize(),
+      data: current_slide.find(&#x27;form&#x27;).serialize(),
       beforeSend: unbindLoader()
     }).always(bindLoader);
   }
   temp_counter = 0;
-  $(&#x27;._lesson_editor_current_slide ._lesson_editor_placeholder&#x27;).each(function() {
+  current_slide.find(&#x27;._lesson_editor_placeholder&#x27;).each(function() {
     if($(this).data(&#x27;placeholder&#x27;)) {
       $(this).val(temporary[temp_counter]);
       temp_counter++;
@@ -1295,11 +1287,17 @@ function initTinymce(tiny_id) {
     setup: function(ed) {
       ed.onInit.add(function(ed, e) {
         $(&#x27;#&#x27; + tiny_id + &#x27;_ifr&#x27;).attr(&#x27;scrolling&#x27;, &#x27;no&#x27;);
+        var dom = ed.dom;
+        var doc = ed.getDoc();
+        tinymce.dom.Event.add(doc, &#x27;blur&#x27;, function(e) {
+          cleanTinyMCESpanTagsFontSize(ed);
+        });
       });
       ed.onKeyUp.add(function(ed, e) {
         tinyMceCallbacks(ed, tiny_id);
       });
       ed.onKeyDown.add(function(ed, e) {
+        cleanTinyMCESpanTagsFontSize(ed);
         tinyMceKeyDownCallbacks(ed, tiny_id);
       });
       ed.onClick.add(function(ed, e) {
@@ -1314,16 +1312,37 @@ function initTinymce(tiny_id) {
 }
 
 /**
+TinyMCE callback to clean spans containing classes for font size: these classes are attached to the first &lt;ol&gt;, &lt;ul&gt;, &lt;p&gt;
+@method cleanTinyMCESpanTagsFontSize
+@for LessonEditorTinyMCE
+@param editor {Object} tinyMCE instance
+**/
+function cleanTinyMCESpanTagsFontSize(editor) {
+  var spans = $(editor.getBody()).find(&#x27;span.size1, span.size2, span.size3, span.size4, span.size5, span.size6, span.size7&#x27;);
+  var sizes = [&#x27;size1&#x27;, &#x27;size2&#x27;, &#x27;size3&#x27;, &#x27;size4&#x27;, &#x27;size5&#x27;, &#x27;size6&#x27;, &#x27;size7&#x27;];
+  var sizes_class = sizes.join(&#x27; &#x27;);
+  if(spans.length &gt; 0) {
+    spans.each(function() {
+      var my_sizes = $(this).attr(&#x27;class&#x27;).split(&#x27; &#x27;).filter(function(i) {
+        return sizes.indexOf(i) &gt; -1;
+      }).join(&#x27; &#x27;);
+      $(this).removeClass(my_sizes);
+      $(this).parents(&#x27;.mceContentBody ul, .mceContentBody ol, .mceContentBody p&#x27;).removeClass(sizes_class).addClass(my_sizes);
+    });
+  }
+}
+
+/**
 TinyMCE callback to show warning when texearea content exceeds the available space. Adds a red border to the textarea.This function is used in tinyMCE setup ({{#crossLink &quot;LessonEditorTinyMCE/initTinymce:method&quot;}}{{/crossLink}}).
 @method tinyMceCallbacks
 @for LessonEditorTinyMCE
-@param inst {Object} tinyMCE body instance
+@param inst {Object} tinyMCE instance
 @param tiny_id {Number} HTML id of the tinyMCE textarea
 **/
 function tinyMceCallbacks(inst, tiny_id) {
-  var maxH = 422;
-  if($(&#x27;textarea#&#x27; + tiny_id).parent(&#x27;.audio-content&#x27;).length &gt; 0) {
-    maxH = 324;
+  var maxH = 420;
+  if($(&#x27;textarea#&#x27; + tiny_id).parents(&#x27;.slide-content.audio&#x27;).length &gt; 0) {
+    maxH = 329;
   }
   if(inst.getBody().scrollHeight &gt; maxH) {
     $(&#x27;#&#x27; + tiny_id + &#x27;_tbl&#x27;).css(&#x27;border-left&#x27;, &#x27;1px solid red&#x27;).css(&#x27;border-right&#x27;, &#x27;1px solid red&#x27;);
@@ -1340,7 +1359,7 @@ function tinyMceCallbacks(inst, tiny_id) {
 TinyMCE keyDown callback to fix list item style. It adds same style of list item text to list numbers or dots. This function is used in tinyMCE setup ({{#crossLink &quot;LessonEditorTinyMCE/initTinymce:method&quot;}}{{/crossLink}}).
 @method tinyMceKeyDownCallbacks
 @for LessonEditorTinyMCE
-@param inst {Object} tinyMCE body instance
+@param inst {Object} tinyMCE instance
 @param tiny_id {Number} HTML id of the tinyMCE textarea
 **/
 function tinyMceKeyDownCallbacks(inst, tiny_id) {
