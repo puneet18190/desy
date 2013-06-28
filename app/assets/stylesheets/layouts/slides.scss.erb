@@ -521,7 +521,7 @@ $title-slide-content-margin-top: ($slide-inner-height - $title-slide-content-hei
 
 @mixin image-caption {
   
-  font-family: "Nunito", Helvetica sans-serif;
+  font-family: "Nunito", Helvetica, sans-serif;
   background-color: rgba(50, 50, 50, 0.7);
   color: #FAFAFA;
   height: $image-caption-height;
@@ -1489,26 +1489,22 @@ $title-slide-content-margin-top: ($slide-inner-height - $title-slide-content-hei
       
       .title {
         
+        width: $title-slide-content-width;
         height: $title-slide-content-height;
+        padding: $title-slide-content-padding;
         margin-top: $title-slide-content-margin-top;
+        border: $title-slide-content-border solid #EFEFEF;
         font-size: $title-slide-font-size;
         line-height: $title-slide-line-height;
         text-align: center;
         color: $orange;
-        font-family: "Nunito", Helvetica sans-serif;
-        padding: $title-slide-content-padding;
-        width: $title-slide-content-width;
+        font-family: "Nunito", Helvetica, sans-serif;
+        background-color: white;
         letter-spacing: -3px;
         
         &.read-only {
           
-          border: $title-slide-content-border solid white;
-          
-        }
-        
-        &.editable {
-          
-          border: $title-slide-content-border solid #EFEFEF;
+          border-color: white;
           
         }
         
