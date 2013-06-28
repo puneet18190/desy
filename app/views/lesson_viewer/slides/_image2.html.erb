@@ -19,7 +19,7 @@
           <%= image_tag image1.media_element.url, :style => "top:#{image1.alignment}px; height:#{image_height1}px" %>
         <% end %>
         <% if !image1.caption.blank? %>
-          <div class="caption"><%= image1.caption %></div>
+          <input class="caption" type="text" value="<%= image1.caption %>" disabled="disabled">
         <% end %>
       <% end %>
     </div>
@@ -34,7 +34,7 @@
           <%= image_tag image2.media_element.url, :style => "top:#{image2.alignment}px; height:#{image_height2}px" %>
         <% end %>
         <% if !image2.caption.blank? %>
-          <div class="caption"><%= image2.caption %></div>
+          <input class="caption" type="text" value="<%= image2.caption %>" disabled="disabled">
         <% end %>
       <% end %>
     </div>

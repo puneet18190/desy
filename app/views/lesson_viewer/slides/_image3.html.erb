@@ -16,7 +16,7 @@
           <%= image_tag image.media_element.url, :style => "top:#{image.alignment}px; height:#{image_height}px" %>
         <% end %>
         <% if !image.caption.blank? %>
-          <div class="caption"><%= image.caption %></div>
+          <input class="caption" type="text" value="<%= image.caption %>" disabled="disabled">
         <% end %>
       <% end %>
     </div>

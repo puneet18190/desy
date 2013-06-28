@@ -133,17 +133,11 @@ $image-caption-line-height: 35px;
 /* altezza della caption */
 $image-caption-height: 35px;
 /* padding laterale della caption */
-$image-caption-left-padding: 5px;
-/* padding laterale da usare in caso di read-only: c'è un pixel in più che rimpiazza lo spazio riservato alla barra di posizionamento dell'editing */
-$image-caption-read-only-left-padding: 6px;
-/* metà larghezza caption: metà larghezza immagine meno padding sx */
-$image-caption-half-width: $slide-image-half-width - $image-caption-left-padding;
-/* larghezza piena caption: larghezza piena immagine meno padding sx */
-$image-caption-full-width: $slide-image-full-width - $image-caption-left-padding;
-/* metà larghezza caption: metà larghezza immagine meno padding sx (caso read-only, padding diverso) */
-$image-caption-read-only-half-width: $slide-image-half-width - $image-caption-read-only-left-padding;
-/* larghezza piena caption: larghezza piena immagine meno padding sx (caso read-only, padding diverso) */
-$image-caption-read-only-full-width: $slide-image-full-width - $image-caption-read-only-left-padding;
+$image-caption-horizontal-padding: 5px;
+/* metà larghezza caption: metà larghezza immagine meno due volte padding orizzontale */
+$image-caption-half-width: $slide-image-half-width - (2 * $image-caption-horizontal-padding);
+/* larghezza piena caption: larghezza piena immagine meno due volte padding orizzontale */
+$image-caption-full-width: $slide-image-full-width - (2 * $image-caption-horizontal-padding);
 /* video a larghezza piena: stesso calcolo di immagine */
 $slide-video-full-width: $slide-image-full-width;
 /* video a metà larghezza: stesso calcolo di immagine */
@@ -531,12 +525,12 @@ $title-slide-content-margin-top: ($slide-inner-height - $title-slide-content-hei
   background-color: rgba(50, 50, 50, 0.7);
   color: #FAFAFA;
   height: $image-caption-height;
+  padding: 0 $image-caption-horizontal-padding;
   position: absolute;
   left: auto;
   bottom: 0;
   line-height: $image-caption-line-height;
   font-size: $image-caption-font-size;
-  white-space: nowrap;
   
 }
 
@@ -1025,6 +1019,7 @@ $title-slide-content-margin-top: ($slide-inner-height - $title-slide-content-hei
         .caption {
           
           @include image-caption;
+          width: $image-caption-half-width;
           
         }
         
@@ -1038,13 +1033,6 @@ $title-slide-content-margin-top: ($slide-inner-height - $title-slide-content-hei
           img {
             
             position: absolute;
-            
-          }
-          
-          .caption {
-            
-            padding: 0 0 0 $image-caption-read-only-left-padding;
-            width: $image-caption-read-only-half-width;
             
           }
           
@@ -1076,13 +1064,6 @@ $title-slide-content-margin-top: ($slide-inner-height - $title-slide-content-hei
               
               top: $small-icon-top-position-in-full-height-image-with-title;
               opacity: 0.8;
-              
-            }
-            
-            .caption {
-              
-              padding: 0 0 0 $image-caption-left-padding;
-              width: $image-caption-half-width;
               
             }
             
@@ -1161,6 +1142,7 @@ $title-slide-content-margin-top: ($slide-inner-height - $title-slide-content-hei
         .caption {
           
           @include image-caption;
+          width: $image-caption-half-width;
           
         }
         
@@ -1174,13 +1156,6 @@ $title-slide-content-margin-top: ($slide-inner-height - $title-slide-content-hei
           img {
             
             position: absolute;
-            
-          }
-          
-          .caption {
-            
-            padding: 0 0 0 $image-caption-read-only-left-padding;
-            width: $image-caption-read-only-half-width;
             
           }
           
@@ -1212,13 +1187,6 @@ $title-slide-content-margin-top: ($slide-inner-height - $title-slide-content-hei
               
               top: $big-icon-top-position-in-full-height-image;
               opacity: 0.8;
-              
-            }
-            
-            .caption {
-              
-              padding: 0 0 0 $image-caption-left-padding;
-              width: $image-caption-half-width;
               
             }
             
@@ -1276,6 +1244,7 @@ $title-slide-content-margin-top: ($slide-inner-height - $title-slide-content-hei
         .caption {
           
           @include image-caption;
+          width: $image-caption-full-width;
           
         }
         
@@ -1289,13 +1258,6 @@ $title-slide-content-margin-top: ($slide-inner-height - $title-slide-content-hei
           img {
             
             position: absolute;
-            
-          }
-          
-          .caption {
-            
-            padding: 0 0 0 $image-caption-read-only-left-padding;
-            width: $image-caption-read-only-full-width;
             
           }
           
@@ -1327,13 +1289,6 @@ $title-slide-content-margin-top: ($slide-inner-height - $title-slide-content-hei
               
               top: $big-icon-top-position-in-full-height-image;
               opacity: 0.8;
-              
-            }
-            
-            .caption {
-              
-              padding: 0 0 0 $image-caption-left-padding;
-              width: $image-caption-full-width;
               
             }
             
@@ -1393,6 +1348,7 @@ $title-slide-content-margin-top: ($slide-inner-height - $title-slide-content-hei
         .caption {
           
           @include image-caption;
+          width: $image-caption-half-width;
           
         }
         
@@ -1406,13 +1362,6 @@ $title-slide-content-margin-top: ($slide-inner-height - $title-slide-content-hei
           img {
             
             position: absolute;
-            
-          }
-          
-          .caption {
-            
-            padding: 0 0 0 $image-caption-read-only-left-padding;
-            width: $image-caption-read-only-half-width;
             
           }
           
@@ -1444,13 +1393,6 @@ $title-slide-content-margin-top: ($slide-inner-height - $title-slide-content-hei
               
               top: $tiny-icon-top-position-in-half-height-image;
               opacity: 0.8;
-              
-            }
-            
-            .caption {
-              
-              padding: 0 0 0 $image-caption-left-padding;
-              width: $image-caption-half-width;
               
             }
             
