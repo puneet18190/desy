@@ -40,18 +40,14 @@ $footer-inner-width-in-cover: $slide-width - $footer-horizontal-padding-in-cover
 $footer-font-size-in-cover: 13px;
 /* altezza del titolo generale (presente in slides di tipo 'audio', 'image1', 'text', 'video1') */
 $slide-title-height: 110px;
-/* bordo del titolo, applicato sia in fase di editing (lesson editor) che in fase di read-only (lesson viewer) */
+/* bordo del titolo */
 $slide-title-border: 1px;
-/* padding del titolo, valido in verticale sia per editing che per read-only, e verticalmente solamente per editing */
+/* padding del titolo */
 $slide-title-padding: 10px;
-/* altezza interna del titolo: altezza globale meno due volte il bordo meno due volte il padding verticale (che non cambia tra editing e read-only) */
+/* altezza interna del titolo: altezza globale meno due volte il bordo meno due volte il padding verticale */
 $slide-title-inner-height: $slide-title-height - $slide-title-border - $slide-title-border - $slide-title-padding - $slide-title-padding;
-/* padding orizzontale da usare in caso di read-only: c'è un pixel in più che rimpiazza lo spazio riservato alla barra di posizionamento dell'editing */
-$slide-title-read-only-left-padding: 11px;
 /* larghezza interna del titolo in fase editing: larghezza interna della slide meno due volte il bordo meno due volte il padding normale */
 $slide-title-inner-width: $slide-inner-width - $slide-title-padding - $slide-title-padding - $slide-title-border - $slide-title-border;
-/* larghezza interna del titolo in fase read only: larghezza interna della slide meno due volte il bordo meno i paddings per read only */
-$slide-title-inner-read-only-width: $slide-inner-width - $slide-title-read-only-left-padding - $slide-title-padding - $slide-title-border - $slide-title-border;
 /* line-height del titolo (sempre uguale) */
 $slide-title-line-height: 88px;
 /* font-size del titolo (sempre uguale) */
@@ -419,29 +415,15 @@ $title-slide-content-margin-top: ($slide-inner-height - $title-slide-content-hei
 @mixin slide-title-common {
   
   font-size: $slide-title-font-size;
+  width: $slide-title-inner-width;
   height: $slide-title-inner-height;
+  padding: $slide-title-padding;
   line-height: $slide-title-line-height;
   font-family: "Nunito", Helvetica, sans-serif;
+  border: $slide-title-border solid #EFEFEF;
   color: $orange;
   letter-spacing: -4px;
-  
-}
-
-@mixin slide-title-editor {
-  
-  @include slide-title-common;
-  width: $slide-title-inner-width;
-  padding: $slide-title-padding;
-  border: $slide-title-border solid #EFEFEF;
-  
-}
-
-@mixin slide-title-viewer {
-  
-  @include slide-title-common;
-  width: $slide-title-inner-read-only-width;
-  padding: $slide-title-padding $slide-title-padding $slide-title-padding $slide-title-read-only-left-padding;
-  border: $slide-title-border solid white;
+  background-color: white;
   
 }
 
@@ -604,7 +586,7 @@ $title-slide-content-margin-top: ($slide-inner-height - $title-slide-content-hei
       
       .title-container {
         
-        .title-h2 {
+        h2 {
           
           border-color: #EFEFEF;
           
@@ -698,22 +680,13 @@ $title-slide-content-margin-top: ($slide-inner-height - $title-slide-content-hei
       height: $slide-title-height;
       margin-bottom: $slide-inner-padding;
       
-      input {
+      .title {
         
-        @include slide-title-editor;
+        @include slide-title-common;
         
-      }
-      
-      .title-h2 {
-        
-        @include slide-title-viewer;
-        
-        .title-h2-content {
+        &.read-only {
           
-          width: $slide-title-inner-read-only-width;
-          height: $slide-title-inner-height;
-          overflow: hidden;
-          white-space: nowrap;
+          border-color: white;
           
         }
         
@@ -1026,22 +999,13 @@ $title-slide-content-margin-top: ($slide-inner-height - $title-slide-content-hei
       height: $slide-title-height;
       margin-bottom: $slide-inner-padding;
       
-      input {
+      .title {
         
-        @include slide-title-editor;
+        @include slide-title-common;
         
-      }
-      
-      .title-h2 {
-        
-        @include slide-title-viewer;
-        
-        .title-h2-content {
+        &.read-only {
           
-          width: $slide-title-inner-read-only-width;
-          height: $slide-title-inner-height;
-          overflow: hidden;
-          white-space: nowrap;
+          border-color: white;
           
         }
         
@@ -1538,22 +1502,13 @@ $title-slide-content-margin-top: ($slide-inner-height - $title-slide-content-hei
       height: $slide-title-height;
       margin-bottom: $slide-inner-padding;
       
-      input {
+      .title {
         
-        @include slide-title-editor;
+        @include slide-title-common;
         
-      }
-      
-      .title-h2 {
-        
-        @include slide-title-viewer;
-        
-        .title-h2-content {
+        &.read-only {
           
-          width: $slide-title-inner-read-only-width;
-          height: $slide-title-inner-height;
-          overflow: hidden;
-          white-space: nowrap;
+          border-color: white;
           
         }
         
@@ -1628,22 +1583,13 @@ $title-slide-content-margin-top: ($slide-inner-height - $title-slide-content-hei
       height: $slide-title-height;
       margin-bottom: $slide-inner-padding;
       
-      input {
+      .title {
         
-        @include slide-title-editor;
+        @include slide-title-common;
         
-      }
-      
-      .title-h2 {
-        
-        @include slide-title-viewer;
-        
-        .title-h2-content {
+        &.read-only {
           
-          width: $slide-title-inner-read-only-width;
-          height: $slide-title-inner-height;
-          overflow: hidden;
-          white-space: nowrap;
+          border-color: white;
           
         }
         

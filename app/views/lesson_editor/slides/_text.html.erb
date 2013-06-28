@@ -6,7 +6,7 @@
   <%= form_tag save_slide_path(slide.lesson_id, slide.id), :method => "post", :remote => true, :id => "form-#{slide.id}" do %>
     
     <div class="item title-container">
-      <%= text_field_tag :title, slide_title, :class => '_lesson_editor_placeholder', :data => {:placeholder => slide.title.blank?} %>
+      <%= text_field_tag :title, slide_title, :class => 'title _lesson_editor_placeholder', :data => {:placeholder => slide.title.blank?} %>
     </div>
     
     <div class="item text-container">
