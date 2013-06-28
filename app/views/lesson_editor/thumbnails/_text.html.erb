@@ -1,11 +1,7 @@
 <div class="slide-content text small-size">
   
   <div class="item title-container">
-    <div class="title-h2">
-      <div class="title-h2-content">
-        <%= slide.title.blank? ? t('lesson_editor.placeholders.title') : slide.title %>
-      </div>
-    </div>
+    <input class="title read-only" type="text" value="<%= slide.title.blank? ? t('lesson_editor.placeholders.title') : slide.title %>" disabled="disabled">
   </div>
   
   <div class="item text-container read-only">
