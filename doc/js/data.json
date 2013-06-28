@@ -4299,22 +4299,6 @@
         {
             "file": "app/assets/javascripts/lesson_editor.js",
             "line": 947,
-            "description": "Initialize tinyMCE editor for a single textarea.",
-            "itemtype": "method",
-            "name": "initTinymce",
-            "params": [
-                {
-                    "name": "tiny_id",
-                    "description": "HTML id of the tinyMCE textarea",
-                    "type": "String"
-                }
-            ],
-            "class": "LessonEditorTinyMCE",
-            "module": "lesson-editor"
-        },
-        {
-            "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1002,
             "description": "TinyMCE callback to clean spans containing classes for font size: these classes are attached to the first <ol>, <ul>, <p>",
             "itemtype": "method",
             "name": "cleanTinyMCESpanTagsFontSize",
@@ -4323,6 +4307,22 @@
                     "name": "editor",
                     "description": "tinyMCE instance",
                     "type": "Object"
+                }
+            ],
+            "class": "LessonEditorTinyMCE",
+            "module": "lesson-editor"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_editor.js",
+            "line": 968,
+            "description": "Initialize tinyMCE editor for a single textarea.",
+            "itemtype": "method",
+            "name": "initTinymce",
+            "params": [
+                {
+                    "name": "tiny_id",
+                    "description": "HTML id of the tinyMCE textarea",
+                    "type": "String"
                 }
             ],
             "class": "LessonEditorTinyMCE",

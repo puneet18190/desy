@@ -945,6 +945,27 @@ function slideTo(slide_id, callback) {
 
 
 /**
+TinyMCE callback to clean spans containing classes for font size: these classes are attached to the first <ol>, <ul>, <p>
+@method cleanTinyMCESpanTagsFontSize
+@for LessonEditorTinyMCE
+@param editor {Object} tinyMCE instance
+**/
+function cleanTinyMCESpanTagsFontSize(editor) {
+  var spans = $(editor.getBody()).find('span.size1, span.size2, span.size3, span.size4, span.size5, span.size6, span.size7');
+  var sizes = ['size1', 'size2', 'size3', 'size4', 'size5', 'size6', 'size7'];
+  var sizes_class = sizes.join(' ');
+  if(spans.length > 0) {
+    spans.each(function() {
+      var my_sizes = $(this).attr('class').split(' ').filter(function(i) {
+        return sizes.indexOf(i) > -1;
+      }).join(' ');
+      $(this).removeClass(my_sizes);
+      $(this).parents('.mceContentBody ul, .mceContentBody ol, .mceContentBody p').removeClass(sizes_class).addClass(my_sizes);
+    });
+  }
+}
+
+/**
 Initialize tinyMCE editor for a single textarea.
 @method initTinymce
 @for LessonEditorTinyMCE
@@ -997,27 +1018,6 @@ function initTinymce(tiny_id) {
       });
     }
   });
-}
-
-/**
-TinyMCE callback to clean spans containing classes for font size: these classes are attached to the first <ol>, <ul>, <p>
-@method cleanTinyMCESpanTagsFontSize
-@for LessonEditorTinyMCE
-@param editor {Object} tinyMCE instance
-**/
-function cleanTinyMCESpanTagsFontSize(editor) {
-  var spans = $(editor.getBody()).find('span.size1, span.size2, span.size3, span.size4, span.size5, span.size6, span.size7');
-  var sizes = ['size1', 'size2', 'size3', 'size4', 'size5', 'size6', 'size7'];
-  var sizes_class = sizes.join(' ');
-  if(spans.length > 0) {
-    spans.each(function() {
-      var my_sizes = $(this).attr('class').split(' ').filter(function(i) {
-        return sizes.indexOf(i) > -1;
-      }).join(' ');
-      $(this).removeClass(my_sizes);
-      $(this).parents('.mceContentBody ul, .mceContentBody ol, .mceContentBody p').removeClass(sizes_class).addClass(my_sizes);
-    });
-  }
 }
 
 /**
