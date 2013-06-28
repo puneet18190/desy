@@ -4,6 +4,7 @@
   image_width = resize_width(image.media_element.width, image.media_element.height, 'image1') if !image.nil?
 %>
 
+
 <div class="slide-content image1 small-size">
   
   <div class="item title-container">
@@ -13,7 +14,7 @@
   <div class="image-container item">
     <% if image %>
       <div class="image read-only">
-        <% if is_horizontal?(image.media_element.width, image.media_element.height, 'cover') %>
+        <% if is_horizontal?(image.media_element.width, image.media_element.height, 'image1') %>
           <%= image_tag image.media_element.url, :style => "left:#{image.alignment}px; width:#{image_width}px" %>
         <% else %>
           <%= image_tag image.media_element.url, :style => "top:#{image.alignment}px; height:#{image_height}px" %>
