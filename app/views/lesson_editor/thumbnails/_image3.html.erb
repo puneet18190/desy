@@ -15,7 +15,7 @@
         <% else %>
           <%= image_tag image.media_element.url, :style => "top:#{image.alignment}px; height:#{image_height}px" %>
         <% end %>
-        <input class="caption" type="text" value="<%= image.caption %>" disabled="disabled">
+        <input class="caption" type="text" value="<%= image.caption.blank? ? t('lesson_editor.placeholders.image_caption') : image.caption %>" disabled="disabled">
       </div>
     <% else %>
       <div class="image editable">

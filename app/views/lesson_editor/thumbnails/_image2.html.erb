@@ -18,7 +18,7 @@
         <% else %>
           <%= image_tag image1.media_element.url, :style => "top:#{image1.alignment}px; height:#{image_height1}px" %>
         <% end %>
-        <input class="caption" type="text" value="<%= image1.caption %>" disabled="disabled">
+        <input class="caption" type="text" value="<%= image1.caption.blank? ? t('lesson_editor.placeholders.image_caption') : image1.caption %>" disabled="disabled">
       </div>
     <% else %>
       <div class="image editable">
@@ -39,7 +39,7 @@
         <% else %>
           <%= image_tag image2.media_element.url, :style => "top:#{image2.alignment}px; height:#{image_height2}px" %>
         <% end %>
-        <input class="caption" type="text" value="<%= image2.caption %>" disabled="disabled">
+        <input class="caption" type="text" value="<%= image2.caption.blank? ? t('lesson_editor.placeholders.image_caption') : image2.caption %>" disabled="disabled">
       </div>
     <% else %>
       <div class="image editable">
