@@ -996,17 +996,14 @@ function initTinymce(tiny_id) {
     setup: function(ed) {
       ed.onInit.add(function(ed, e) {
         $('#' + tiny_id + '_ifr').attr('scrolling', 'no');
-        var dom = ed.dom;
-        var doc = ed.getDoc();
-        tinymce.dom.Event.add(doc, 'blur', function(e) {
-          cleanTinyMCESpanTagsFontSize(ed);
-        });
+      });
+      ed.onNodeChange.add(function(ed, cm, e) {
+        cleanTinyMCESpanTagsFontSize(ed);
       });
       ed.onKeyUp.add(function(ed, e) {
         tinyMceCallbacks(ed, tiny_id);
       });
       ed.onKeyDown.add(function(ed, e) {
-        cleanTinyMCESpanTagsFontSize(ed);
         tinyMceKeyDownCallbacks(ed, tiny_id);
       });
       ed.onClick.add(function(ed, e) {
