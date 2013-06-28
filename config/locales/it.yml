@@ -1879,7 +1879,7 @@ it:
       add: "Aggiungi un nuovo gruppo"
       # Caption of the link which adds a new email address to the current mailing list
       # 1 - views/mailing_lists/_group.html.erb
-      add_address: "Aggiungi un indirizzo email al gruppo"
+      add_address: "Aggiungi un indirizzo email"
       # Caption of the link which deletes a mailing list
       # 1 - views/mailing_lists/_group.html.erb
       delete: "Cancella gruppo"
