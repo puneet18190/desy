@@ -72,11 +72,11 @@ $slide-text-read-only-half-width: $slide-text-half-width - (2 * $slide-text-read
 $audio-placeholder-height: 71px;
 /* altezza in di un campo testo nella slide di tipo 'audio': altezza in full slide meno altezza placeholder audio meno padding interno che le separa */
 $slide-text-height-for-audio: $slide-text-full-height - $audio-placeholder-height - $slide-inner-padding;
-/* larghezza della textarea piena: tolgo i bordi */
+/* larghezza della textarea piena: tolgo i bordi - importante, leggi nei commenti di desySkin/ui.css il motivo per cui qui non calcolo i bordi, deve rimanere allineato */
 $slide-text-content-full-width: $slide-text-full-width;
 /* altezza della textarea piena: tolgo i bordi */
 $slide-text-content-full-height: $slide-text-full-height - (2 * $slide-text-read-only-border);
-/* larghezza della textarea a metà: tolgo i bordi */
+/* larghezza della textarea a metà: tolgo i bordi - importante, leggi nei commenti di desySkin/ui.css il motivo per cui qui non calcolo i bordi, deve rimanere allineato */
 $slide-text-content-half-width: $slide-text-half-width;
 /* altezza della textarea in slide audio: tolgo i bordi */
 $slide-text-content-height-for-audio: $slide-text-height-for-audio - (2 * $slide-text-read-only-border);

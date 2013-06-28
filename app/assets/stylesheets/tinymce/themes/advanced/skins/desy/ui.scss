@@ -37,6 +37,46 @@
   overflow: hidden;
 }
 
+/* stili per forzare le giuste dimensioni a TinyMCE: devono rimanere allineati con quelli definiti per le textarea in layouts/slides.scss */
+
+.text-container.audio .desySkin iframe {
+  height: 327px !important;
+}
+
+.text-container.audio table.mceLayout {
+  width: 860px !important;
+  height: 327px !important;
+}
+
+.text-container.image1 .desySkin iframe {
+  height: 418px !important;
+}
+
+.text-container.image1 table.mceLayout {
+  width: 420px !important;
+  height: 418px !important;
+}
+
+.text-container.text .desySkin iframe {
+  height: 418px !important;
+}
+
+.text-container.text table.mceLayout {
+  width: 860px !important;
+  height: 418px !important;
+}
+
+.text-container.video1 .desySkin iframe {
+  height: 418px !important;
+}
+
+.text-container.video1 table.mceLayout {
+  width: 420px !important;
+  height: 418px !important;
+}
+
+/* fino a qui */
+
 .desySkin .mceToolbar {
   height: 26px;
   background-color: white;
