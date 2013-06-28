@@ -72,6 +72,14 @@ $slide-text-read-only-half-width: $slide-text-half-width - (2 * $slide-text-read
 $audio-placeholder-height: 71px;
 /* altezza in di un campo testo nella slide di tipo 'audio': altezza in full slide meno altezza placeholder audio meno padding interno che le separa */
 $slide-text-height-for-audio: $slide-text-full-height - $audio-placeholder-height - $slide-inner-padding;
+/* larghezza della textarea piena: tolgo i bordi */
+$slide-text-content-full-width: $slide-text-full-width - (2 * $slide-text-read-only-border);
+/* altezza della textarea piena: tolgo i bordi */
+$slide-text-content-full-height: $slide-text-full-height - (2 * $slide-text-read-only-border);
+/* larghezza della textarea a metà: tolgo i bordi */
+$slide-text-content-half-width: $slide-text-half-width - (2 * $slide-text-read-only-border);
+/* altezza della textarea in slide audio: tolgo i bordi */
+$slide-text-content-height-for-audio: $slide-text-height-for-audio - (2 * $slide-text-read-only-border);
 /* altezza read-only in di un campo testo nella slide di tipo 'audio': altezza di riferimento meno due volte padding read-only */
 $slide-text-read-only-height-for-audio: $slide-text-height-for-audio - (2 * $slide-text-read-only-padding) - (2 * $slide-text-read-only-border);
 /* dimensioni dell'icona grande (usata per video e immagini) */
@@ -819,11 +827,12 @@ $title-slide-content-margin-top: ($slide-inner-height - $title-slide-content-hei
     .text-container {
       
       height: $slide-text-height-for-audio;
+      width: $slide-text-full-width;
       
       textarea {
         
-        width: $slide-text-full-width;
-        height: $slide-text-height-for-audio;
+        width: $slide-text-content-full-width;
+        height: $slide-text-content-height-for-audio;
         
       }
       
@@ -1104,11 +1113,12 @@ $title-slide-content-margin-top: ($slide-inner-height - $title-slide-content-hei
     .text-container {
       
       height: $slide-text-full-height;
+      width: $slide-text-half-width;
       
       textarea {
         
-        width: $slide-text-half-width;
-        height: $slide-text-full-height;
+        width: $slide-text-content-half-width;
+        height: $slide-text-content-full-height;
         
       }
       
@@ -1456,11 +1466,12 @@ $title-slide-content-margin-top: ($slide-inner-height - $title-slide-content-hei
     .text-container {
       
       height: $slide-text-full-height;
+      width: $slide-text-full-width;
       
       textarea {
         
-        width: $slide-text-full-width;
-        height: $slide-text-full-height;
+        width: $slide-text-content-full-width;
+        height: $slide-text-content-full-height;
         
       }
       
@@ -1672,11 +1683,12 @@ $title-slide-content-margin-top: ($slide-inner-height - $title-slide-content-hei
     .text-container {
       
       height: $slide-text-full-height;
+      width: $slide-text-half-width;
       
       textarea {
         
-        width: $slide-text-half-width;
-        height: $slide-text-full-height;
+        width: $slide-text-content-half-width;
+        height: $slide-text-content-full-height;
         
       }
       
