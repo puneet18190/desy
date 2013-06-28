@@ -528,6 +528,9 @@ Save current slide. It sends tinyMCE editor content to form data to be serialize
 @param with_loader {Boolean} if true shows the loader while calling ajax
 **/
 function saveCurrentSlide(action_suffix, with_loader) {
+  
+  console.log('sto triggerando');
+  
   tinyMCE.triggerSave();
   var temporary = new Array();
   var temp_counter = 0;
@@ -975,11 +978,17 @@ function initTinymce(tiny_id) {
     setup: function(ed) {
       ed.onInit.add(function(ed, e) {
         $('#' + tiny_id + '_ifr').attr('scrolling', 'no');
+        var dom = ed.dom;
+        var doc = ed.getDoc();
+        tinymce.dom.Event.add(doc, 'blur', function(e) {
+          cleanTinyMCESpanTagsFontSize(ed);
+        });
       });
       ed.onKeyUp.add(function(ed, e) {
         tinyMceCallbacks(ed, tiny_id);
       });
       ed.onKeyDown.add(function(ed, e) {
+        cleanTinyMCESpanTagsFontSize(ed);
         tinyMceKeyDownCallbacks(ed, tiny_id);
       });
       ed.onClick.add(function(ed, e) {
@@ -993,6 +1002,21 @@ function initTinymce(tiny_id) {
   });
 }
 
+
+function cleanTinyMCESpanTagsFontSize(editor) {
+  var spans = $(editor.getBody()).find('span.size1, span.size2, span.size3, span.size4, span.size5, span.size6, span.size7');
+  var sizes = ['size1', 'size2', 'size3', 'size4', 'size5', 'size6', 'size7'];
+  if(spans.length > 0) {
+    spans.each(function() {
+      var my_sizes = $(this).attr('class').split(' ').filter(function(i) {
+        return sizes.indexOf(i) > -1;
+      }).join(' ');
+      console.log(my_sizes);
+    });
+  }
+}
+
+
 /**
 TinyMCE callback to show warning when texearea content exceeds the available space. Adds a red border to the textarea.This function is used in tinyMCE setup ({{#crossLink "LessonEditorTinyMCE/initTinymce:method"}}{{/crossLink}}).
 @method tinyMceCallbacks
@@ -1005,9 +1029,6 @@ function tinyMceCallbacks(inst, tiny_id) {
   if($('textarea#' + tiny_id).parents('.slide-content.audio').length > 0) {
     maxH = 329;
   }
-  
-  console.log(inst.getBody().scrollHeight);
-  
   if(inst.getBody().scrollHeight > maxH) {
     $('#' + tiny_id + '_tbl').css('border-left', '1px solid red').css('border-right', '1px solid red');
     $('#' + tiny_id + '_tbl tr.mceFirst td').css('border-top', '1px solid red');
