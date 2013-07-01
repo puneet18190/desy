@@ -45,9 +45,9 @@ $slide-title-border: 1px;
 /* padding del titolo */
 $slide-title-padding: 10px;
 /* altezza interna del titolo: altezza globale meno due volte il bordo meno due volte il padding verticale */
-$slide-title-inner-height: $slide-title-height - $slide-title-border - $slide-title-border - $slide-title-padding - $slide-title-padding;
-/* larghezza interna del titolo in fase editing: larghezza interna della slide meno due volte il bordo meno due volte il padding normale */
-$slide-title-inner-width: $slide-inner-width - $slide-title-padding - $slide-title-padding - $slide-title-border - $slide-title-border;
+$slide-title-inner-height: $slide-title-height - (2 * $slide-title-border) - (2 * $slide-title-padding);
+/* larghezza interna del titolo: larghezza interna della slide meno due volte il bordo meno due volte il padding normale */
+$slide-title-inner-width: $slide-inner-width - (2 * $slide-title-border) - (2 * $slide-title-padding);
 /* line-height del titolo (sempre uguale) */
 $slide-title-line-height: 88px;
 /* font-size del titolo (sempre uguale) */
@@ -210,6 +210,18 @@ $title-slide-content-height: $title-slide-line-height * 3;
 $title-slide-content-width: $slide-inner-width - (2 * $title-slide-content-padding) - (2 * $title-slide-content-border);
 /* margin top contenuto titolo: altezza interna slide meno altezza contenuto titolo meno due volte bordo meno due volte padding diviso due */
 $title-slide-content-margin-top: ($slide-inner-height - $title-slide-content-height - (2 * $title-slide-content-border) - (2 * $title-slide-content-padding)) / 2;
+/* bordo del titolo per la miniatura */
+$miniature-slide-title-border: 4px;
+/* padding del titolo per la miniatura */
+$miniature-slide-title-padding: 7px;
+/* bordo del contenuto della slide titolo */
+$miniature-title-slide-content-border: 4px;
+/* padding del contenuto del titolo */
+$miniature-title-slide-content-padding: 17px;
+/* border di un campo testo in read-only, che sopperisce al bordo di 1px sempre di tinyMCE */
+$miniature-slide-text-read-only-border: 4px;
+/* padding di un campo testo in read-only, che sopperisce a un margin interno di 8px di tinyMCE */
+$miniature-slide-text-read-only-padding: 5px;
 
 /* tenere allineato con content.css; le differenze con tale file sono sottolineate nei commenti */
 @mixin read-only-tiny-mce {
@@ -573,19 +585,36 @@ $title-slide-content-margin-top: ($slide-inner-height - $title-slide-content-hei
       
       .text-container {
         
-        border-color: #EFEFEF;
+        padding: $miniature-slide-text-read-only-padding;
+        border: $miniature-slide-text-read-only-border solid #EFEFEF;
         
       }
       
     }
     
-    &.text, &.image1, &.audio, &.video1, &.title {
+    &.text, &.image1, &.audio, &.video1 {
       
       .title-container {
         
         .title.read-only {
           
-          border-color: #EFEFEF;
+          padding: $miniature-slide-title-padding;
+          border: $miniature-slide-title-border solid #EFEFEF;
+          
+        }
+        
+      }
+      
+    }
+    
+    &.title {
+      
+      .title-container {
+        
+        .title.read-only {
+          
+          padding: $miniature-title-slide-content-padding;
+          border: $miniature-title-slide-content-border solid #EFEFEF;
           
         }
         
