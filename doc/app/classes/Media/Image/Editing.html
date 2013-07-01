@@ -87,6 +87,24 @@
 
 
   
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>R</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-c-ratio_value">ratio_value</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
 
   
 
@@ -98,6 +116,36 @@
 
     
 
+    
+      <!-- Section constants -->
+      <div class="sectiontitle">Constants</div>
+      <table border='0' cellpadding='5'>
+        
+          <tr valign='top'>
+            <td class="attr-name">RATIO_X</td>
+            <td>=</td>
+            <td class="attr-value">660.0</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"><p>Ratio X</p></td>
+            </tr>
+          
+        
+          <tr valign='top'>
+            <td class="attr-name">RATIO_Y</td>
+            <td>=</td>
+            <td class="attr-value">500.0</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"><p>Ratio Y</p></td>
+            </tr>
+          
+        
+      </table>
     
 
 
@@ -105,7 +153,67 @@
 
 
     <!-- Methods -->
+    
+      <div class="sectiontitle">Class Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-c-ratio_value">
+            
+              <b>ratio_value</b>(w, h, value)
+            
+            <a href="../../../classes/Media/Image/Editing.html#method-c-ratio_value" name="method-c-ratio_value" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <h3 id="method-c-ratio_value-label-Description">Description</h3>
+
+<p>Returns the original value of a coordinate, given the actual value and the
+size of the image</p>
+
+<h3 id="method-c-ratio_value-label-Arguments">Arguments</h3>
+<ul><li>
+<p><strong>w</strong>: width of the image</p>
+</li><li>
+<p><strong>h</strong>: height of the image</p>
+</li><li>
+<p><strong>value</strong>: value to be scaled</p>
+</li></ul>
+
+<h3 id="method-c-ratio_value-label-Returns">Returns</h3>
+
+<p>A float.</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-ratio_value_source')" id="l_method-c-ratio_value_source">show</a>
+                
+              </p>
+              <div id="method-c-ratio_value_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/media/image/editing.rb, line 29</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">ratio_value</span>(<span class="ruby-identifier">w</span>, <span class="ruby-identifier">h</span>, <span class="ruby-identifier">value</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">value</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">h</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">RATIO_Y</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">w</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">RATIO_Y</span>
+
+  <span class="ruby-identifier">value</span>.<span class="ruby-identifier">to_f</span> *
+    <span class="ruby-keyword">if</span> ( <span class="ruby-identifier">w</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">/</span> <span class="ruby-identifier">h</span>.<span class="ruby-identifier">to_f</span> ) <span class="ruby-operator">&gt;</span> ( <span class="ruby-constant">RATIO_X</span> <span class="ruby-operator">/</span> <span class="ruby-constant">RATIO_Y</span> )
+      <span class="ruby-identifier">w</span> <span class="ruby-operator">/</span> <span class="ruby-constant">RATIO_X</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">h</span> <span class="ruby-operator">/</span> <span class="ruby-constant">RATIO_Y</span>
+    <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
               </div>
+            </div>
+            
+          </div>
+                        </div>
 
     </div>
   </body>

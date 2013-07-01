@@ -290,7 +290,12 @@ table <a href="MediaElementsSlide.html">MediaElementsSlide</a></p>
             
               
               <li>
-                <a href="#method-i-text-3D">text=</a>
+                <a href="#method-i-text-3D">text=</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-title-3D">title=</a>
               </li>
             
           </ul>
@@ -574,9 +579,9 @@ author, <a href="Subject.html">Subject</a></p>
           
         
           <tr valign='top'>
-            <td class="attr-name">MAX_TITLE_LENGTH</td>
+            <td class="attr-name">MAX_COVER_TITLE_LENGTH</td>
             <td>=</td>
-            <td class="attr-value">(I18n.t(&#x27;language_parameters.slide.length_title&#x27;) &gt; 255 ? 255 : I18n.t(&#x27;language_parameters.slide.length_title&#x27;))</td>
+            <td class="attr-value">(I18n.t(&#x27;language_parameters.lesson.length_title&#x27;) &gt; 255 ? 255 : I18n.t(&#x27;language_parameters.lesson.length_title&#x27;))</td>
           </tr>
           
             <tr valign='top'>
@@ -633,7 +638,7 @@ sti_types, or nil</p>
                 
               </p>
               <div id="method-i-accepted_media_element_sti_type_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/slide.rb, line 173</span>
+                <pre><span class="ruby-comment"># File app/models/slide.rb, line 183</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">accepted_media_element_sti_type</span>
   <span class="ruby-keyword">case</span> <span class="ruby-identifier">kind</span>
   <span class="ruby-keyword">when</span> <span class="ruby-constant">COVER</span>, <span class="ruby-constant">IMAGE1</span>, <span class="ruby-constant">IMAGE2</span>, <span class="ruby-constant">IMAGE3</span>, <span class="ruby-constant">IMAGE4</span>
@@ -684,7 +689,7 @@ validations of this model).</p>
                 
               </p>
               <div id="method-i-allows_text-3F_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/slide.rb, line 158</span>
+                <pre><span class="ruby-comment"># File app/models/slide.rb, line 168</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">allows_text?</span>
   <span class="ruby-keyword">case</span> <span class="ruby-identifier">kind</span>
   <span class="ruby-keyword">when</span> <span class="ruby-constant">TEXT</span>, <span class="ruby-constant">IMAGE1</span>, <span class="ruby-constant">AUDIO</span>, <span class="ruby-constant">VIDEO1</span> <span class="ruby-keyword">then</span> <span class="ruby-keyword">true</span>
@@ -729,7 +734,7 @@ validations of this model).</p>
                 
               </p>
               <div id="method-i-allows_title-3F_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/slide.rb, line 143</span>
+                <pre><span class="ruby-comment"># File app/models/slide.rb, line 153</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">allows_title?</span>
   <span class="ruby-keyword">case</span> <span class="ruby-identifier">kind</span>
   <span class="ruby-keyword">when</span> <span class="ruby-constant">COVER</span>, <span class="ruby-constant">IMAGE1</span>, <span class="ruby-constant">AUDIO</span>, <span class="ruby-constant">VIDEO1</span>, <span class="ruby-constant">TITLE</span>, <span class="ruby-constant">TEXT</span> <span class="ruby-keyword">then</span> <span class="ruby-keyword">true</span>
@@ -782,7 +787,7 @@ position, it returns <code>nil</code></p>
                 
               </p>
               <div id="method-i-audio_at_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/slide.rb, line 286</span>
+                <pre><span class="ruby-comment"># File app/models/slide.rb, line 296</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">audio_at</span>(<span class="ruby-identifier">position</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">accepted_media_element_sti_type</span> <span class="ruby-operator">!=</span> <span class="ruby-constant">MediaElement</span><span class="ruby-operator">::</span><span class="ruby-constant">AUDIO_TYPE</span>
   <span class="ruby-identifier">x</span> = <span class="ruby-identifier">media_element_at</span> <span class="ruby-identifier">position</span>
@@ -833,7 +838,7 @@ href="LessonEditorController.html#method-i-change_slide_position">LessonEditorCo
                 
               </p>
               <div id="method-i-change_position_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/slide.rb, line 376</span>
+                <pre><span class="ruby-comment"># File app/models/slide.rb, line 386</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">change_position</span>(<span class="ruby-identifier">x</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">class</span> <span class="ruby-operator">!=</span> <span class="ruby-constant">Fixnum</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">x</span> <span class="ruby-operator">&lt;</span> <span class="ruby-number">1</span>
@@ -899,7 +904,7 @@ href="LessonEditorController.html#method-i-change_slide_position">LessonEditorCo
                 
               </p>
               <div id="method-i-cover-3F_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/slide.rb, line 131</span>
+                <pre><span class="ruby-comment"># File app/models/slide.rb, line 141</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">cover?</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">kind</span> <span class="ruby-operator">==</span> <span class="ruby-constant">COVER</span>
 <span class="ruby-keyword">end</span></pre>
@@ -943,7 +948,7 @@ href="LessonEditorController.html#method-i-delete_slide">LessonEditorController#
                 
               </p>
               <div id="method-i-destroy_with_positions_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/slide.rb, line 342</span>
+                <pre><span class="ruby-comment"># File app/models/slide.rb, line 352</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">destroy_with_positions</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">kind</span> <span class="ruby-operator">==</span> <span class="ruby-constant">COVER</span>
@@ -1002,7 +1007,7 @@ href="LessonEditorController.html#method-i-delete_slide">LessonEditorController#
                 
               </p>
               <div id="method-i-following_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/slide.rb, line 330</span>
+                <pre><span class="ruby-comment"># File app/models/slide.rb, line 340</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">following</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">nil</span> <span class="ruby-operator">:</span> <span class="ruby-constant">Slide</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:lesson_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">lesson_id</span>, <span class="ruby-value">:position</span> =<span class="ruby-operator">&gt;</span> (<span class="ruby-keyword">self</span>.<span class="ruby-identifier">position</span> <span class="ruby-operator">+</span> <span class="ruby-number">1</span>)).<span class="ruby-identifier">first</span>
 <span class="ruby-keyword">end</span></pre>
@@ -1066,7 +1071,7 @@ this slide belongs is not included in the user&#39;s virtual classroom)</p>
                 
               </p>
               <div id="method-i-get_adhiacent_slide_in_lesson_viewer_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/slide.rb, line 419</span>
+                <pre><span class="ruby-comment"># File app/models/slide.rb, line 429</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">get_adhiacent_slide_in_lesson_viewer</span>(<span class="ruby-identifier">an_user_id</span>, <span class="ruby-identifier">with_playlist</span>, <span class="ruby-identifier">is_previous</span>)
   <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">is_previous</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">previous</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">following</span>
   <span class="ruby-keyword">return</span> <span class="ruby-identifier">resp</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">resp</span>.<span class="ruby-identifier">nil?</span>
@@ -1079,6 +1084,42 @@ this slide belongs is not included in the user&#39;s virtual classroom)</p>
     <span class="ruby-keyword">return</span> <span class="ruby-identifier">get_last_or_first</span>(<span class="ruby-identifier">new_vcl</span>.<span class="ruby-identifier">lesson</span>.<span class="ruby-identifier">slides</span>.<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;position ASC&#39;</span>), <span class="ruby-identifier">is_previous</span>)
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">get_last_or_first</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">lesson</span>.<span class="ruby-identifier">slides</span>.<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;position ASC&#39;</span>), <span class="ruby-identifier">is_previous</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-get_last_or_first">
+            
+              <b>get_last_or_first</b>(query, last)
+            
+            <a href="../classes/Slide.html#method-i-get_last_or_first" name="method-i-get_last_or_first" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Submethod of <a
+href="Slide.html#method-i-get_adhiacent_slide_in_lesson_viewer">#get_adhiacent_slide_in_lesson_viewer</a></p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-get_last_or_first_source')" id="l_method-i-get_last_or_first_source">show</a>
+                
+              </p>
+              <div id="method-i-get_last_or_first_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/models/slide.rb, line 446</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">get_last_or_first</span>(<span class="ruby-identifier">query</span>, <span class="ruby-identifier">last</span>)
+  <span class="ruby-identifier">last</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">query</span>.<span class="ruby-identifier">last</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">query</span>.<span class="ruby-identifier">first</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -1130,11 +1171,118 @@ href="MediaElementsSlide.html">MediaElementsSlide</a>, or <code>nil</code></p>
                 
               </p>
               <div id="method-i-image_at_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/slide.rb, line 304</span>
+                <pre><span class="ruby-comment"># File app/models/slide.rb, line 314</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">image_at</span>(<span class="ruby-identifier">position</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">accepted_media_element_sti_type</span> <span class="ruby-operator">!=</span> <span class="ruby-constant">MediaElement</span><span class="ruby-operator">::</span><span class="ruby-constant">IMAGE_TYPE</span>
   <span class="ruby-identifier">x</span> = <span class="ruby-identifier">media_element_at</span> <span class="ruby-identifier">position</span>
   <span class="ruby-identifier">x</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">nil</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">x</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-init_validation">
+            
+              <b>init_validation</b>()
+            
+            <a href="../classes/Slide.html#method-i-init_validation" name="method-i-init_validation" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Initializes validation objects (see <a
+href="Valid.html#method-c-get_association">Valid.get_association</a>)</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-init_validation_source')" id="l_method-i-init_validation_source">show</a>
+                
+              </p>
+              <div id="method-i-init_validation_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/models/slide.rb, line 476</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">init_validation</span>
+  <span class="ruby-ivar">@slide</span> = <span class="ruby-constant">Valid</span>.<span class="ruby-identifier">get_association</span> <span class="ruby-keyword">self</span>, <span class="ruby-value">:id</span>
+  <span class="ruby-ivar">@lesson</span> = <span class="ruby-constant">Valid</span>.<span class="ruby-identifier">get_association</span> <span class="ruby-keyword">self</span>, <span class="ruby-value">:lesson_id</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-is_cover">
+            
+              <b>is_cover</b>()
+            
+            <a href="../classes/Slide.html#method-i-is_cover" name="method-i-is_cover" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Checks if the slide is the cover of the lesson</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-is_cover_source')" id="l_method-i-is_cover_source">show</a>
+                
+              </p>
+              <div id="method-i-is_cover_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/models/slide.rb, line 471</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">is_cover</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">kind</span> <span class="ruby-operator">==</span> <span class="ruby-constant">COVER</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-media_element_at">
+            
+              <b>media_element_at</b>(position)
+            
+            <a href="../classes/Slide.html#method-i-media_element_at" name="method-i-media_element_at" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Extracts the media element at a given position</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-media_element_at_source')" id="l_method-i-media_element_at_source">show</a>
+                
+              </p>
+              <div id="method-i-media_element_at_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/models/slide.rb, line 456</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">media_element_at</span>(<span class="ruby-identifier">position</span>)
+  <span class="ruby-constant">MediaElementsSlide</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:slide_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>, <span class="ruby-value">:position</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">position</span>).<span class="ruby-identifier">first</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -1173,9 +1321,46 @@ href="MediaElementsSlide.html">MediaElementsSlide</a>, or <code>nil</code></p>
                 
               </p>
               <div id="method-i-previous_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/slide.rb, line 318</span>
+                <pre><span class="ruby-comment"># File app/models/slide.rb, line 328</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">previous</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">nil</span> <span class="ruby-operator">:</span> <span class="ruby-constant">Slide</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:lesson_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">lesson_id</span>, <span class="ruby-value">:position</span> =<span class="ruby-operator">&gt;</span> (<span class="ruby-keyword">self</span>.<span class="ruby-identifier">position</span> <span class="ruby-operator">-</span> <span class="ruby-number">1</span>)).<span class="ruby-identifier">first</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-stop_if_cover">
+            
+              <b>stop_if_cover</b>()
+            
+            <a href="../classes/Slide.html#method-i-stop_if_cover" name="method-i-stop_if_cover" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-stop_if_cover_source')" id="l_method-i-stop_if_cover_source">show</a>
+                
+              </p>
+              <div id="method-i-stop_if_cover_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/models/slide.rb, line 500</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">stop_if_cover</span>
+  <span class="ruby-ivar">@slide</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">nil</span> <span class="ruby-operator">:</span> <span class="ruby-constant">Slide</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">first</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@slide</span>.<span class="ruby-identifier">nil?</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-ivar">@slide</span>.<span class="ruby-identifier">kind</span> <span class="ruby-operator">!=</span> <span class="ruby-constant">COVER</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -1208,10 +1393,49 @@ href="MediaElementsSlide.html">MediaElementsSlide</a>, or <code>nil</code></p>
                 
               </p>
               <div id="method-i-text-3D_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/slide.rb, line 118</span>
+                <pre><span class="ruby-comment"># File app/models/slide.rb, line 128</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">text=</span>(<span class="ruby-identifier">text</span>)
   <span class="ruby-identifier">text</span> = <span class="ruby-identifier">text</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">nil</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">text</span>.<span class="ruby-identifier">to_s</span>
-  <span class="ruby-identifier">write_attribute</span>(<span class="ruby-value">:text</span>, <span class="ruby-identifier">sanitize</span>(<span class="ruby-identifier">text</span>))
+  <span class="ruby-identifier">write_attribute</span>(<span class="ruby-value">:text</span>, <span class="ruby-identifier">sanitize</span>(<span class="ruby-identifier">text</span>, <span class="ruby-identifier">attributes</span><span class="ruby-operator">:</span> (<span class="ruby-constant">HTML</span><span class="ruby-operator">::</span><span class="ruby-constant">WhiteListSanitizer</span>.<span class="ruby-identifier">allowed_attributes</span> <span class="ruby-operator">+</span> [<span class="ruby-string">&#39;style&#39;</span>])))
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-title-3D">
+            
+              <b>title=</b>(title)
+            
+            <a href="../classes/Slide.html#method-i-title-3D" name="method-i-title-3D" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Used to center vertically the title</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-title-3D_source')" id="l_method-i-title-3D_source">show</a>
+                
+              </p>
+              <div id="method-i-title-3D_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/models/slide.rb, line 119</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">title=</span>(<span class="ruby-identifier">title</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">kind</span> <span class="ruby-operator">==</span> <span class="ruby-constant">TITLE</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">title</span>.<span class="ruby-identifier">blank?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">title</span>.<span class="ruby-identifier">first</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;\r&quot;</span>
+    <span class="ruby-identifier">write_attribute</span>(<span class="ruby-value">:title</span>, <span class="ruby-node">&quot; #{title}&quot;</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">write_attribute</span>(<span class="ruby-value">:title</span>, <span class="ruby-identifier">title</span>)
+  <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -1294,7 +1518,7 @@ href="LessonEditorController.html#method-i-save_slide_and_edit">LessonEditorCont
                 
               </p>
               <div id="method-i-update_with_media_elements_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/slide.rb, line 212</span>
+                <pre><span class="ruby-comment"># File app/models/slide.rb, line 222</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">update_with_media_elements</span>(<span class="ruby-identifier">title</span>, <span class="ruby-identifier">text</span>, <span class="ruby-identifier">media_elements</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span>
   <span class="ruby-identifier">resp</span> = <span class="ruby-keyword">false</span>
@@ -1344,6 +1568,225 @@ href="LessonEditorController.html#method-i-save_slide_and_edit">LessonEditorCont
           </div>
         
         <div class="method">
+          <div class="title method-title" id="method-i-validate_associations">
+            
+              <b>validate_associations</b>()
+            
+            <a href="../classes/Slide.html#method-i-validate_associations" name="method-i-validate_associations" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Validates the presence of all the associated objects</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-validate_associations_source')" id="l_method-i-validate_associations_source">show</a>
+                
+              </p>
+              <div id="method-i-validate_associations_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/models/slide.rb, line 482</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">validate_associations</span>
+  <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:lesson_id</span>, <span class="ruby-value">:doesnt_exist</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">nil?</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-validate_cover">
+            
+              <b>validate_cover</b>()
+            
+            <a href="../classes/Slide.html#method-i-validate_cover" name="method-i-validate_cover" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-validate_cover_source')" id="l_method-i-validate_cover_source">show</a>
+                
+              </p>
+              <div id="method-i-validate_cover_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/models/slide.rb, line 495</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">validate_cover</span>
+  <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:position</span>, <span class="ruby-value">:cover_must_be_first_slide</span>) <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">kind</span> <span class="ruby-operator">==</span> <span class="ruby-constant">COVER</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">position</span> <span class="ruby-operator">!=</span> <span class="ruby-number">1</span>
+  <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:position</span>, <span class="ruby-value">:if_not_cover_cant_be_first_slide</span>) <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">kind</span> <span class="ruby-operator">!=</span> <span class="ruby-constant">COVER</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">position</span> <span class="ruby-operator">==</span> <span class="ruby-number">1</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-validate_impossible_changes">
+            
+              <b>validate_impossible_changes</b>()
+            
+            <a href="../classes/Slide.html#method-i-validate_impossible_changes" name="method-i-validate_impossible_changes" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>If the slide is not a new record, <code>lesson_id</code> and
+<code>kind</code> can&#39;t be changed; moreover, if it&#39;s the cover,
+the title can&#39;t be different by the title of the lesson</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-validate_impossible_changes_source')" id="l_method-i-validate_impossible_changes_source">show</a>
+                
+              </p>
+              <div id="method-i-validate_impossible_changes_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/models/slide.rb, line 487</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">validate_impossible_changes</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@slide</span>
+    <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:lesson_id</span>, <span class="ruby-value">:cant_be_changed</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@slide</span>.<span class="ruby-identifier">lesson_id</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">lesson_id</span>
+    <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:kind</span>, <span class="ruby-value">:cant_be_changed</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@slide</span>.<span class="ruby-identifier">kind</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">kind</span>
+    <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:title</span>, <span class="ruby-value">:in_cover_it_cant_be_different_by_lessons_title</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@lesson</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">cover?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@slide</span>.<span class="ruby-identifier">title</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">title</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">title</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">title</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-validate_max_number_slides">
+            
+              <b>validate_max_number_slides</b>()
+            
+            <a href="../classes/Slide.html#method-i-validate_max_number_slides" name="method-i-validate_max_number_slides" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Validates that the lesson is not exceeding the maximum number of slides</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-validate_max_number_slides_source')" id="l_method-i-validate_max_number_slides_source">show</a>
+                
+              </p>
+              <div id="method-i-validate_max_number_slides_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/models/slide.rb, line 451</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">validate_max_number_slides</span>
+  <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:base</span>, <span class="ruby-value">:too_many_slides</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@lesson</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@slide</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-constant">Slide</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:lesson_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">count</span> <span class="ruby-operator">==</span> <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;max_number_slides_in_a_lesson&#39;</span>]
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-validate_text">
+            
+              <b>validate_text</b>()
+            
+            <a href="../classes/Slide.html#method-i-validate_text" name="method-i-validate_text" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Validates that if the slide doesn&#39;t allow the <code>text</code>, it
+must be <code>nil</code></p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-validate_text_source')" id="l_method-i-validate_text_source">show</a>
+                
+              </p>
+              <div id="method-i-validate_text_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/models/slide.rb, line 466</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">validate_text</span>
+  <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:text</span>, <span class="ruby-value">:must_be_null_in_this_slide</span>) <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">allows_text?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">text</span>.<span class="ruby-identifier">nil?</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-validate_title">
+            
+              <b>validate_title</b>()
+            
+            <a href="../classes/Slide.html#method-i-validate_title" name="method-i-validate_title" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Validates that if the slide doesn&#39;t allow the <code>title</code>, it
+must be <code>nil</code></p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-validate_title_source')" id="l_method-i-validate_title_source">show</a>
+                
+              </p>
+              <div id="method-i-validate_title_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/models/slide.rb, line 461</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">validate_title</span>
+  <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:title</span>, <span class="ruby-value">:must_be_null_in_this_slide</span>) <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">allows_title?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">title</span>.<span class="ruby-identifier">nil?</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
           <div class="title method-title" id="method-i-video_at">
             
               <b>video_at</b>(position)
@@ -1384,412 +1827,11 @@ position, it returns <code>nil</code></p>
                 
               </p>
               <div id="method-i-video_at_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/slide.rb, line 268</span>
+                <pre><span class="ruby-comment"># File app/models/slide.rb, line 278</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">video_at</span>(<span class="ruby-identifier">position</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">accepted_media_element_sti_type</span> <span class="ruby-operator">!=</span> <span class="ruby-constant">MediaElement</span><span class="ruby-operator">::</span><span class="ruby-constant">VIDEO_TYPE</span>
   <span class="ruby-identifier">x</span> = <span class="ruby-identifier">media_element_at</span> <span class="ruby-identifier">position</span>
   <span class="ruby-identifier">x</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">nil</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">media_element</span>
-<span class="ruby-keyword">end</span></pre>
-              </div>
-            </div>
-            
-          </div>
-              
-      <div class="sectiontitle">Instance Private methods</div>
-      
-        <div class="method">
-          <div class="title method-title" id="method-i-get_last_or_first">
-            
-              <b>get_last_or_first</b>(query, last)
-            
-            <a href="../classes/Slide.html#method-i-get_last_or_first" name="method-i-get_last_or_first" class="permalink">Link</a>
-          </div>
-          
-          
-            <div class="description">
-              <p>Submethod of <a
-href="Slide.html#method-i-get_adhiacent_slide_in_lesson_viewer">#get_adhiacent_slide_in_lesson_viewer</a></p>
-            </div>
-          
-          
-          
-          
-          
-            
-            <div class="sourcecode">
-              
-              <p class="source-link">
-                Source: 
-                <a href="javascript:toggleSource('method-i-get_last_or_first_source')" id="l_method-i-get_last_or_first_source">show</a>
-                
-              </p>
-              <div id="method-i-get_last_or_first_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/slide.rb, line 436</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">get_last_or_first</span>(<span class="ruby-identifier">query</span>, <span class="ruby-identifier">last</span>)
-  <span class="ruby-identifier">last</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">query</span>.<span class="ruby-identifier">last</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">query</span>.<span class="ruby-identifier">first</span>
-<span class="ruby-keyword">end</span></pre>
-              </div>
-            </div>
-            
-          </div>
-        
-        <div class="method">
-          <div class="title method-title" id="method-i-init_validation">
-            
-              <b>init_validation</b>()
-            
-            <a href="../classes/Slide.html#method-i-init_validation" name="method-i-init_validation" class="permalink">Link</a>
-          </div>
-          
-          
-            <div class="description">
-              <p>Initializes validation objects (see <a
-href="Valid.html#method-c-get_association">Valid.get_association</a>)</p>
-            </div>
-          
-          
-          
-          
-          
-            
-            <div class="sourcecode">
-              
-              <p class="source-link">
-                Source: 
-                <a href="javascript:toggleSource('method-i-init_validation_source')" id="l_method-i-init_validation_source">show</a>
-                
-              </p>
-              <div id="method-i-init_validation_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/slide.rb, line 466</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">init_validation</span>
-  <span class="ruby-ivar">@slide</span> = <span class="ruby-constant">Valid</span>.<span class="ruby-identifier">get_association</span> <span class="ruby-keyword">self</span>, <span class="ruby-value">:id</span>
-  <span class="ruby-ivar">@lesson</span> = <span class="ruby-constant">Valid</span>.<span class="ruby-identifier">get_association</span> <span class="ruby-keyword">self</span>, <span class="ruby-value">:lesson_id</span>
-<span class="ruby-keyword">end</span></pre>
-              </div>
-            </div>
-            
-          </div>
-        
-        <div class="method">
-          <div class="title method-title" id="method-i-is_cover">
-            
-              <b>is_cover</b>()
-            
-            <a href="../classes/Slide.html#method-i-is_cover" name="method-i-is_cover" class="permalink">Link</a>
-          </div>
-          
-          
-            <div class="description">
-              <p>Checks if the slide is the cover of the lesson</p>
-            </div>
-          
-          
-          
-          
-          
-            
-            <div class="sourcecode">
-              
-              <p class="source-link">
-                Source: 
-                <a href="javascript:toggleSource('method-i-is_cover_source')" id="l_method-i-is_cover_source">show</a>
-                
-              </p>
-              <div id="method-i-is_cover_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/slide.rb, line 461</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">is_cover</span>
-  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">kind</span> <span class="ruby-operator">==</span> <span class="ruby-constant">COVER</span>
-<span class="ruby-keyword">end</span></pre>
-              </div>
-            </div>
-            
-          </div>
-        
-        <div class="method">
-          <div class="title method-title" id="method-i-media_element_at">
-            
-              <b>media_element_at</b>(position)
-            
-            <a href="../classes/Slide.html#method-i-media_element_at" name="method-i-media_element_at" class="permalink">Link</a>
-          </div>
-          
-          
-            <div class="description">
-              <p>Extracts the media element at a given position</p>
-            </div>
-          
-          
-          
-          
-          
-            
-            <div class="sourcecode">
-              
-              <p class="source-link">
-                Source: 
-                <a href="javascript:toggleSource('method-i-media_element_at_source')" id="l_method-i-media_element_at_source">show</a>
-                
-              </p>
-              <div id="method-i-media_element_at_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/slide.rb, line 446</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">media_element_at</span>(<span class="ruby-identifier">position</span>)
-  <span class="ruby-constant">MediaElementsSlide</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:slide_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>, <span class="ruby-value">:position</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">position</span>).<span class="ruby-identifier">first</span>
-<span class="ruby-keyword">end</span></pre>
-              </div>
-            </div>
-            
-          </div>
-        
-        <div class="method">
-          <div class="title method-title" id="method-i-stop_if_cover">
-            
-              <b>stop_if_cover</b>()
-            
-            <a href="../classes/Slide.html#method-i-stop_if_cover" name="method-i-stop_if_cover" class="permalink">Link</a>
-          </div>
-          
-          
-            <div class="description">
-              
-            </div>
-          
-          
-          
-          
-          
-            
-            <div class="sourcecode">
-              
-              <p class="source-link">
-                Source: 
-                <a href="javascript:toggleSource('method-i-stop_if_cover_source')" id="l_method-i-stop_if_cover_source">show</a>
-                
-              </p>
-              <div id="method-i-stop_if_cover_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/slide.rb, line 490</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">stop_if_cover</span>
-  <span class="ruby-ivar">@slide</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">nil</span> <span class="ruby-operator">:</span> <span class="ruby-constant">Slide</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">first</span>
-  <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@slide</span>.<span class="ruby-identifier">nil?</span>
-  <span class="ruby-keyword">return</span> <span class="ruby-ivar">@slide</span>.<span class="ruby-identifier">kind</span> <span class="ruby-operator">!=</span> <span class="ruby-constant">COVER</span>
-<span class="ruby-keyword">end</span></pre>
-              </div>
-            </div>
-            
-          </div>
-        
-        <div class="method">
-          <div class="title method-title" id="method-i-validate_associations">
-            
-              <b>validate_associations</b>()
-            
-            <a href="../classes/Slide.html#method-i-validate_associations" name="method-i-validate_associations" class="permalink">Link</a>
-          </div>
-          
-          
-            <div class="description">
-              <p>Validates the presence of all the associated objects</p>
-            </div>
-          
-          
-          
-          
-          
-            
-            <div class="sourcecode">
-              
-              <p class="source-link">
-                Source: 
-                <a href="javascript:toggleSource('method-i-validate_associations_source')" id="l_method-i-validate_associations_source">show</a>
-                
-              </p>
-              <div id="method-i-validate_associations_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/slide.rb, line 472</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">validate_associations</span>
-  <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:lesson_id</span>, <span class="ruby-value">:doesnt_exist</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">nil?</span>
-<span class="ruby-keyword">end</span></pre>
-              </div>
-            </div>
-            
-          </div>
-        
-        <div class="method">
-          <div class="title method-title" id="method-i-validate_cover">
-            
-              <b>validate_cover</b>()
-            
-            <a href="../classes/Slide.html#method-i-validate_cover" name="method-i-validate_cover" class="permalink">Link</a>
-          </div>
-          
-          
-            <div class="description">
-              
-            </div>
-          
-          
-          
-          
-          
-            
-            <div class="sourcecode">
-              
-              <p class="source-link">
-                Source: 
-                <a href="javascript:toggleSource('method-i-validate_cover_source')" id="l_method-i-validate_cover_source">show</a>
-                
-              </p>
-              <div id="method-i-validate_cover_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/slide.rb, line 485</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">validate_cover</span>
-  <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:position</span>, <span class="ruby-value">:cover_must_be_first_slide</span>) <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">kind</span> <span class="ruby-operator">==</span> <span class="ruby-constant">COVER</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">position</span> <span class="ruby-operator">!=</span> <span class="ruby-number">1</span>
-  <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:position</span>, <span class="ruby-value">:if_not_cover_cant_be_first_slide</span>) <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">kind</span> <span class="ruby-operator">!=</span> <span class="ruby-constant">COVER</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">position</span> <span class="ruby-operator">==</span> <span class="ruby-number">1</span>
-<span class="ruby-keyword">end</span></pre>
-              </div>
-            </div>
-            
-          </div>
-        
-        <div class="method">
-          <div class="title method-title" id="method-i-validate_impossible_changes">
-            
-              <b>validate_impossible_changes</b>()
-            
-            <a href="../classes/Slide.html#method-i-validate_impossible_changes" name="method-i-validate_impossible_changes" class="permalink">Link</a>
-          </div>
-          
-          
-            <div class="description">
-              <p>If the slide is not a new record, <code>lesson_id</code> and
-<code>kind</code> can&#39;t be changed; moreover, if it&#39;s the cover,
-the title can&#39;t be different by the title of the lesson</p>
-            </div>
-          
-          
-          
-          
-          
-            
-            <div class="sourcecode">
-              
-              <p class="source-link">
-                Source: 
-                <a href="javascript:toggleSource('method-i-validate_impossible_changes_source')" id="l_method-i-validate_impossible_changes_source">show</a>
-                
-              </p>
-              <div id="method-i-validate_impossible_changes_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/slide.rb, line 477</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">validate_impossible_changes</span>
-  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@slide</span>
-    <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:lesson_id</span>, <span class="ruby-value">:cant_be_changed</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@slide</span>.<span class="ruby-identifier">lesson_id</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">lesson_id</span>
-    <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:kind</span>, <span class="ruby-value">:cant_be_changed</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@slide</span>.<span class="ruby-identifier">kind</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">kind</span>
-    <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:title</span>, <span class="ruby-value">:in_cover_it_cant_be_different_by_lessons_title</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@lesson</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">cover?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@slide</span>.<span class="ruby-identifier">title</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">title</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">title</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">title</span>
-  <span class="ruby-keyword">end</span>
-<span class="ruby-keyword">end</span></pre>
-              </div>
-            </div>
-            
-          </div>
-        
-        <div class="method">
-          <div class="title method-title" id="method-i-validate_max_number_slides">
-            
-              <b>validate_max_number_slides</b>()
-            
-            <a href="../classes/Slide.html#method-i-validate_max_number_slides" name="method-i-validate_max_number_slides" class="permalink">Link</a>
-          </div>
-          
-          
-            <div class="description">
-              <p>Validates that the lesson is not exceeding the maximum number of slides</p>
-            </div>
-          
-          
-          
-          
-          
-            
-            <div class="sourcecode">
-              
-              <p class="source-link">
-                Source: 
-                <a href="javascript:toggleSource('method-i-validate_max_number_slides_source')" id="l_method-i-validate_max_number_slides_source">show</a>
-                
-              </p>
-              <div id="method-i-validate_max_number_slides_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/slide.rb, line 441</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">validate_max_number_slides</span>
-  <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:base</span>, <span class="ruby-value">:too_many_slides</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@lesson</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@slide</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-constant">Slide</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:lesson_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">count</span> <span class="ruby-operator">==</span> <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;max_number_slides_in_a_lesson&#39;</span>]
-<span class="ruby-keyword">end</span></pre>
-              </div>
-            </div>
-            
-          </div>
-        
-        <div class="method">
-          <div class="title method-title" id="method-i-validate_text">
-            
-              <b>validate_text</b>()
-            
-            <a href="../classes/Slide.html#method-i-validate_text" name="method-i-validate_text" class="permalink">Link</a>
-          </div>
-          
-          
-            <div class="description">
-              <p>Validates that if the slide doesn&#39;t allow the <code>text</code>, it
-must be <code>nil</code></p>
-            </div>
-          
-          
-          
-          
-          
-            
-            <div class="sourcecode">
-              
-              <p class="source-link">
-                Source: 
-                <a href="javascript:toggleSource('method-i-validate_text_source')" id="l_method-i-validate_text_source">show</a>
-                
-              </p>
-              <div id="method-i-validate_text_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/slide.rb, line 456</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">validate_text</span>
-  <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:text</span>, <span class="ruby-value">:must_be_null_in_this_slide</span>) <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">allows_text?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">text</span>.<span class="ruby-identifier">nil?</span>
-<span class="ruby-keyword">end</span></pre>
-              </div>
-            </div>
-            
-          </div>
-        
-        <div class="method">
-          <div class="title method-title" id="method-i-validate_title">
-            
-              <b>validate_title</b>()
-            
-            <a href="../classes/Slide.html#method-i-validate_title" name="method-i-validate_title" class="permalink">Link</a>
-          </div>
-          
-          
-            <div class="description">
-              <p>Validates that if the slide doesn&#39;t allow the <code>title</code>, it
-must be <code>nil</code></p>
-            </div>
-          
-          
-          
-          
-          
-            
-            <div class="sourcecode">
-              
-              <p class="source-link">
-                Source: 
-                <a href="javascript:toggleSource('method-i-validate_title_source')" id="l_method-i-validate_title_source">show</a>
-                
-              </p>
-              <div id="method-i-validate_title_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/slide.rb, line 451</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">validate_title</span>
-  <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:title</span>, <span class="ruby-value">:must_be_null_in_this_slide</span>) <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">allows_title?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">title</span>.<span class="ruby-identifier">nil?</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>

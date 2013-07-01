@@ -1922,7 +1922,7 @@ href="NotificationsController.html#method-i-seen">NotificationsController#seen</
         <div class="method">
           <div class="title method-title" id="method-i-own_lessons">
             
-              <b>own_lessons</b>(page, per_page, filter=Filters::ALL_LESSONS)
+              <b>own_lessons</b>(page, per_page, filter = Filters::ALL_LESSONS)
             
             <a href="../classes/User.html#method-i-own_lessons" name="method-i-own_lessons" class="permalink">Link</a>
           </div>
@@ -1974,7 +1974,7 @@ method&#39;s result</p>
               </p>
               <div id="method-i-own_lessons_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/models/user.rb, line 609</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">own_lessons</span>(<span class="ruby-identifier">page</span>, <span class="ruby-identifier">per_page</span>, <span class="ruby-identifier">filter</span>=<span class="ruby-constant">Filters</span><span class="ruby-operator">::</span><span class="ruby-constant">ALL_LESSONS</span>)
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">own_lessons</span>(<span class="ruby-identifier">page</span>, <span class="ruby-identifier">per_page</span>, <span class="ruby-identifier">filter</span> = <span class="ruby-constant">Filters</span><span class="ruby-operator">::</span><span class="ruby-constant">ALL_LESSONS</span>)
   <span class="ruby-identifier">page</span> = <span class="ruby-number">1</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">page</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Fixnum</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">page</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-number">0</span>
   <span class="ruby-identifier">for_page</span> = <span class="ruby-number">1</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">for_page</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Fixnum</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">for_page</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-number">0</span>
   <span class="ruby-identifier">offset</span> = (<span class="ruby-identifier">page</span> <span class="ruby-operator">-</span> <span class="ruby-number">1</span>) * <span class="ruby-identifier">per_page</span>

@@ -592,7 +592,6 @@ General initialization of position (used together with {{#crossLink &quot;Lesson
 function lessonEditorDocumentReadyGeneral() {
   $(&#x27;html.lesson-editor-layout ul#slides&#x27;).css(&#x27;margin-top&#x27;, ((($(window).height() - 590) / 2) - 40) + &#x27;px&#x27;);
   $(&#x27;html.lesson-editor-layout ul#slides.new&#x27;).css(&#x27;margin-top&#x27;, ((($(window).height() - 590) / 2)) + &#x27;px&#x27;);
-  $(&#x27;html.lesson-editor-layout ul#slides input&#x27;).attr(&#x27;autocomplete&#x27;, &#x27;off&#x27;);
 }
 
 /**
@@ -1263,8 +1262,8 @@ TinyMCE callback to clean spans containing classes for font size: these classes 
 @param editor {Object} tinyMCE instance
 **/
 function cleanTinyMCESpanTagsFontSize(editor) {
-  var spans = $(editor.getBody()).find(&#x27;span.size1, span.size2, span.size3, span.size4, span.size5, span.size6, span.size7&#x27;);
-  var sizes = [&#x27;size1&#x27;, &#x27;size2&#x27;, &#x27;size3&#x27;, &#x27;size4&#x27;, &#x27;size5&#x27;, &#x27;size6&#x27;, &#x27;size7&#x27;];
+  var spans = $(editor.getBody()).find(&#x27;span.size1, span.size2, span.size3, span.size4, span.size5, span.size6&#x27;);
+  var sizes = [&#x27;size1&#x27;, &#x27;size2&#x27;, &#x27;size3&#x27;, &#x27;size4&#x27;, &#x27;size5&#x27;, &#x27;size6&#x27;];
   var sizes_class = sizes.join(&#x27; &#x27;);
   if(spans.length &gt; 0) {
     spans.each(function() {
@@ -1304,21 +1303,18 @@ function initTinymce(tiny_id) {
     theme_advanced_toolbar_align: &#x27;left&#x27;,
     theme_advanced_statusbar_location: false,
     theme_advanced_resizing: true,
-    theme_advanced_font_sizes: &#x27;10px=.size1,13px=.size2,17px=.size3,21px=.size4,25px=.size5,29px=.size6,35px=.size7&#x27;,
+    theme_advanced_font_sizes: &#x27;13px=.size1,17px=.size2,21px=.size3,25px=.size4,29px=.size5,35px=.size6&#x27;,
     setup: function(ed) {
       ed.onInit.add(function(ed, e) {
         $(&#x27;#&#x27; + tiny_id + &#x27;_ifr&#x27;).attr(&#x27;scrolling&#x27;, &#x27;no&#x27;);
-        var dom = ed.dom;
-        var doc = ed.getDoc();
-        tinymce.dom.Event.add(doc, &#x27;blur&#x27;, function(e) {
-          cleanTinyMCESpanTagsFontSize(ed);
-        });
+      });
+      ed.onNodeChange.add(function(ed, cm, e) {
+        cleanTinyMCESpanTagsFontSize(ed);
       });
       ed.onKeyUp.add(function(ed, e) {
         tinyMceCallbacks(ed, tiny_id);
       });
       ed.onKeyDown.add(function(ed, e) {
-        cleanTinyMCESpanTagsFontSize(ed);
         tinyMceKeyDownCallbacks(ed, tiny_id);
       });
       ed.onClick.add(function(ed, e) {
