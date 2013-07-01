@@ -12,11 +12,7 @@
   <div class="item video-container">
     <% if video %>
       <div class="video read-only">
-        <% if video.converted? %>
-          <%= render :partial => 'lesson_editor/thumbnails/fake_players/video', :locals => {:video => video} %>
-        <% else %>
-          <%= image_tag video.placeholder_url(:lesson_viewer_small), :title => t('titles.not_available.video', :title => video.title) %>
-        <% end %>
+        <%= render :partial => 'lesson_editor/thumbnails/fake_players/video', :locals => {:video => video} %>
       </div>
     <% else %>
       <div class="video editable">
