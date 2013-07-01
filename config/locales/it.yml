@@ -1350,12 +1350,24 @@ it:
     placeholders:
       # Placeholder for the caption of an image
       # 1 - views/lesson_editor/slides/parts/_image.html.erb
+      # 2 - views/lesson_editor/thumbnails/_image1.html.erb
+      # 3 - views/lesson_editor/thumbnails/_image2.html.erb
+      # 4 - views/lesson_editor/thumbnails/_image2.html.erb
+      # 5 - views/lesson_editor/thumbnails/_image3.html.erb
+      # 6 - views/lesson_editor/thumbnails/_image4.html.erb
+      # 7 - views/lesson_editor/thumbnails/_image4.html.erb
+      # 8 - views/lesson_editor/thumbnails/_image4.html.erb
+      # 9 - views/lesson_editor/thumbnails/_image4.html.erb
       image_caption: "Scrivi una didascalia"
       # Placeholder for a text area (slide title + text, video + text, audio + text, image + text)
       # 1 - views/lesson_editor/slides/_text.html.erb
       # 2 - views/lesson_editor/slides/_video1.html.erb
       # 3 - views/lesson_editor/slides/_image1.html.erb
       # 4 - views/lesson_editor/slides/_audio.html.erb
+      # 5 - views/lesson_editor/thumbnails/_text.html.erb
+      # 6 - views/lesson_editor/thumbnails/_audio.html.erb
+      # 7 - views/lesson_editor/thumbnails/_image1.html.erb
+      # 8 - views/lesson_editor/thumbnails/_video1.html.erb
       text: "Inserisci un testo"
       # Placeholder for the title of a slide
       # 1 - views/lesson_editor/slides/_text.html.erb
@@ -1363,6 +1375,11 @@ it:
       # 3 - views/lesson_editor/slides/_video1.html.erb
       # 4 - views/lesson_editor/slides/_image1.html.erb
       # 5 - views/lesson_editor/slides/_audio.html.erb
+      # 6 - views/lesson_editor/thumbnails/_text.html.erb
+      # 7 - views/lesson_editor/thumbnails/_audio.html.erb
+      # 8 - views/lesson_editor/thumbnails/_image1.html.erb
+      # 9 - views/lesson_editor/thumbnails/_video1.html.erb
+      # 10- views/lesson_editor/thumbnails/_title.html.erb
       title: "Inserisci un titolo"
   
   
