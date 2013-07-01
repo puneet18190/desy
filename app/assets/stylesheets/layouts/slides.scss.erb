@@ -650,13 +650,19 @@ $miniature-slide-text-read-only-padding: 5px;
       
     }
     
-    .audio-container {
+    &.audio .audio-container {
       
-      .audio {
+      .audio.editable .mask, .audio.editable .empty-mask {
         
-        .add:hover {
+        .add {
           
-          background: url('/assets/icone_piene.svg') no-repeat scroll 0em center / 6em 1em transparent;
+          cursor: default;
+          
+          &:hover {
+            
+            background: url('/assets/icone_piene.svg') no-repeat scroll 0em center / 6em 1em transparent;
+            
+          }
           
         }
         
@@ -680,7 +686,7 @@ $miniature-slide-text-read-only-padding: 5px;
     
     &.video1, &.video2, &.audio {
       
-      .video-container {
+      .video-container, .audio-container {
         
         a.play {
           
