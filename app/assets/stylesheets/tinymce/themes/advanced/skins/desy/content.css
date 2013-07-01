@@ -19,6 +19,14 @@ ul {
   list-style-image: url(img/tiny_pallino.svg);
 }
 
+strong, b {
+  font-weight: bold;
+}
+
+i, cite, em, var, address, dfn {
+  font-style: italic;
+}
+
 a {
   color: #f29400;
   text-decoration: none;
