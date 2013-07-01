@@ -39,38 +39,38 @@
 
 /* stili per forzare le giuste dimensioni a TinyMCE: devono rimanere allineati con quelli definiti per le textarea in layouts/slides.scss */
 
-.text-container.audio .desySkin iframe {
+.slide-content.audio .text-container .desySkin iframe {
   height: 327px !important;
 }
 
-.text-container.audio table.mceLayout {
+.slide-content.audio .text-container table.mceLayout {
   width: 860px !important;
   height: 327px !important;
 }
 
-.text-container.image1 .desySkin iframe {
+.slide-content.image1 .text-container .desySkin iframe {
   height: 418px !important;
 }
 
-.text-container.image1 table.mceLayout {
+.slide-content.image1 .text-container table.mceLayout {
   width: 420px !important;
   height: 418px !important;
 }
 
-.text-container.text .desySkin iframe {
+.slide-content.text .text-container .desySkin iframe {
   height: 418px !important;
 }
 
-.text-container.text table.mceLayout {
+.slide-content.text .text-container table.mceLayout {
   width: 860px !important;
   height: 418px !important;
 }
 
-.text-container.video1 .desySkin iframe {
+.slide-content.video1 .text-container .desySkin iframe {
   height: 418px !important;
 }
 
-.text-container.video1 table.mceLayout {
+.slide-content.video1 .text-container table.mceLayout {
   width: 420px !important;
   height: 418px !important;
 }
