@@ -240,10 +240,10 @@ GEM
       rack (>= 1.0.0)
     thor (0.18.1)
     tilt (1.4.1)
-    tinymce-rails (4.0.1)
+    tinymce-rails (3.5.8.3)
       railties (>= 3.1.1)
-    tinymce-rails-langs (4.20130625)
-      tinymce-rails (~> 4.0)
+    tinymce-rails-langs (3.20130625)
+      tinymce-rails (~> 3.5, >= 3.5.8.3)
     treetop (1.4.14)
       polyglot
       polyglot (>= 0.3.1)
@@ -299,7 +299,7 @@ DEPENDENCIES
   sdoc
   subexec!
   therubyracer
-  tinymce-rails
+  tinymce-rails (~> 3.0)
   tinymce-rails-langs
   uglifier (>= 1.0.3)
   unicorn
