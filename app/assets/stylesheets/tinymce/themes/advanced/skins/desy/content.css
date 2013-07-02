@@ -1,3 +1,7 @@
+html {
+  overflow: hidden;
+}
+
 body, td, pre {
   color: #5d5c5c;
   font-size: 13px;

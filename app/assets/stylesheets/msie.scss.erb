@@ -1,84 +1,17 @@
 .msie {
-  @mixin dimIconThumb {
-    background-image: url(<%= asset_path 'icone_editor_elementi.svg' %>);
-    background-repeat: no-repeat;
-    background-size:16.8em 22.4em;
-    opacity:1;
-  }
-  .slide-tooltip .zoomOutThumb {
-    .slideCover {
-      position:static; 
+  
+  .slide-tooltip, .slide-tooltip-to-left {
+    
+    .miniature-container {
       
-      .cover {
-        position:static;
-        img {
-          position:static;
-        }
+      .zoomOutThumb {
+        
+        zoom: 27%;
+        
       }
+      
     }
-    .slideVideo {
-      position:static; 
-      .videoBig {
-          position:static;
-          .videoIcon {
-            @include dimIconThumb;
-            background-position: -6em -0.3em;
-          }
-        }
-      .videoMedium {
-          position:static;
-          .videoIcon {
-            @include dimIconThumb;
-            background-position: -6em -0.3em;
-          }
-      }
-    }
-    .slideAudio {
-      position:static; 
-      .audioIcon {
-        @include dimIconThumb;
-        background-position: -6em -5.5em;
-      }
-    }
-    .slideTitle {
-      position:static;
-    }
-    .slideText {
-      position:static;
-    }
-    .slideImage {
-      position:static;
-      img {
-        position:static;
-      }
-      .big {
-        position:static;
-        .photoIcon {
-         @include dimIconThumb;
-         background-position: -6em -11.6em;
-        }
-      }
-      .mediumHeight {
-        position:static;
-        .photoIcon {
-         @include dimIconThumb;
-         background-position: -6em -11.6em;
-        }
-      }
-      .medium {
-        position:static;
-        .photoIcon {
-         @include dimIconThumb;
-         background-position: -6em -11.6em;
-        }
-      }
-      .small {
-        position:static;
-        .photoIcon {
-         @include dimIconThumb;
-         background-position: -6em -11.6em;
-        }
-      }
-    }
+    
   }
+  
 }
