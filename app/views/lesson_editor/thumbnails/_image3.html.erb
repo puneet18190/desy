@@ -1,0 +1,31 @@
+<%
+  image = slide.image_at(1)
+  image_height = resize_height(image.media_element.width, image.media_element.height, 'image3') if !image.nil?
+  image_width = resize_width(image.media_element.width, image.media_element.height, 'image3') if !image.nil?
+%>
+
+
+<div class="slide-content image3 small-size">
+  
+  <div class="image-container item">
+    <% if image %>
+      <div class="image read-only">
+        <% if is_horizontal?(image.media_element.width, image.media_element.height, 'image3') %>
+          <%= image_tag image.media_element.url, :style => "left:#{image.alignment}px; width:#{image_width}px" %>
+        <% else %>
+          <%= image_tag image.media_element.url, :style => "top:#{image.alignment}px; height:#{image_height}px" %>
+        <% end %>
+        <input class="caption" type="text" value="<%= image.caption.blank? ? t('lesson_editor.placeholders.image_caption') : image.caption %>" disabled="disabled">
+      </div>
+    <% else %>
+      <div class="image editable">
+        <div class="empty-mask">
+          <a class="add" data-position="1"></a>
+          <br/>
+          <p class="lower"><%= t('lesson_editor.choose_image') %></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  
+</div>

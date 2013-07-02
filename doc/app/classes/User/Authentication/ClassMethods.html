@@ -126,7 +126,7 @@
                 
               </p>
               <div id="method-i-authenticate_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/autoload/user/authentication.rb, line 25</span>
+                <pre><span class="ruby-comment"># File lib/autoload/user/authentication.rb, line 26</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">authenticate</span>(<span class="ruby-identifier">email</span>, <span class="ruby-identifier">password</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">email</span>.<span class="ruby-identifier">blank?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">password</span>.<span class="ruby-identifier">blank?</span>
   <span class="ruby-identifier">user</span> = <span class="ruby-identifier">active</span>.<span class="ruby-identifier">confirmed</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">email</span><span class="ruby-operator">:</span> <span class="ruby-identifier">email</span>).<span class="ruby-identifier">first</span>
@@ -168,7 +168,7 @@
                 
               </p>
               <div id="method-i-secure_compare_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/autoload/user/authentication.rb, line 37</span>
+                <pre><span class="ruby-comment"># File lib/autoload/user/authentication.rb, line 38</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">secure_compare</span>(<span class="ruby-identifier">a</span>, <span class="ruby-identifier">b</span>)
   <span class="ruby-comment"># constant-time comparison algorithm to prevent timing attacks</span>
 

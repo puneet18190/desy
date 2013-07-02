@@ -357,6 +357,9 @@ function hideNewSlideChoice() {
   var current_slide = $(&#x27;li._lesson_editor_current_slide&#x27;);
   current_slide.find(&#x27;div.slide-content&#x27;).addClass(current_slide.data(&#x27;kind&#x27;));
   current_slide.find(&#x27;.box.new_slide&#x27;).remove();
+  if(!current_slide.find(&#x27;.slide-content&#x27;).hasClass(&#x27;cover&#x27;)) {
+    current_slide.find(&#x27;.slide-content&#x27;).css(&#x27;padding&#x27;, &#x27;20px&#x27;);
+  }
   current_slide.find(&#x27;._hide_add_new_slide_options&#x27;).removeAttr(&#x27;class&#x27;).addClass(&#x27;addButtonOrange _add_new_slide_options&#x27;);
   var new_title = current_slide.find(&#x27;._add_new_slide_options&#x27;).data(&#x27;title&#x27;);
   current_slide.find(&#x27;._add_new_slide_options&#x27;).removeAttr(&#x27;title&#x27;).attr(&#x27;title&#x27;, new_title);
@@ -384,7 +387,9 @@ Shows the template for selection of new slides.
 function showNewSlideOptions() {
   stopMediaInCurrentSlide();
   var current_slide_content = $(&#x27;li._lesson_editor_current_slide .slide-content&#x27;);
-  current_slide_content.removeClass(&#x27;cover title video1 video2 audio image1 image2 image3 image4 text&#x27;);
+  if(!current_slide_content.hasClass(&#x27;cover&#x27;)) {
+    current_slide_content.css(&#x27;padding&#x27;, &#x27;0&#x27;);
+  }
   var html_to_be_replaced = $(&#x27;#new_slide_option_list&#x27;).html();
   current_slide_content.prepend(html_to_be_replaced);
   current_slide_content.siblings(&#x27;.buttons&#x27;).find(&#x27;._add_new_slide_options&#x27;).removeAttr(&#x27;class&#x27;).addClass(&#x27;minusButtonOrange _hide_add_slide _hide_add_new_slide_options&#x27;);
@@ -440,32 +445,32 @@ function lessonEditorDocumentReadyAddMediaElement() {
     var current_slide = $(&#x27;li._lesson_editor_current_slide&#x27;);
     var position = $(&#x27;#info_container&#x27;).data(&#x27;current-media-element-position&#x27;);
     var place_id = &#x27;media_element_&#x27; + position + &#x27;_in_slide_&#x27; + current_slide.data(&#x27;slide-id&#x27;);
-    $(&#x27;#&#x27; + place_id + &#x27; ._input_image_id&#x27;).val(image_id);
-    $(&#x27;#&#x27; + place_id + &#x27; ._input_align&#x27;).val(&#x27;0&#x27;);
+    $(&#x27;#&#x27; + place_id + &#x27; .image-id&#x27;).val(image_id);
+    $(&#x27;#&#x27; + place_id + &#x27; .align&#x27;).val(&#x27;0&#x27;);
     var image_url = $(this).data(&#x27;url&#x27;);
     var image_width = $(this).data(&#x27;width&#x27;);
     var image_height = $(this).data(&#x27;height&#x27;);
-    var full_place = $(&#x27;#&#x27; + place_id + &#x27; ._full_image_in_slide&#x27;);
+    var full_place = $(&#x27;#&#x27; + place_id + &#x27; .mask&#x27;);
     if(!full_place.is(&#x27;:visible&#x27;)) {
       full_place.show();
-      $(&#x27;#&#x27; + place_id + &#x27; ._empty_image_in_slide&#x27;).hide();
+      $(&#x27;#&#x27; + place_id + &#x27; .empty-mask&#x27;).hide();
     }
-    var old_mask = &#x27;_mask_x&#x27;;
-    var new_mask = &#x27;_mask_y&#x27;;
+    var old_mask = &#x27;horizontal&#x27;;
+    var new_mask = &#x27;vertical&#x27;;
     var old_orientation = &#x27;width&#x27;;
     var orientation = &#x27;height&#x27;;
     var orientation_val = resizeHeight(image_width, image_height, current_slide.data(&#x27;kind&#x27;));
     var to_make_draggable = &#x27;y&#x27;;
     if(isHorizontalMask(image_width, image_height, current_slide.data(&#x27;kind&#x27;))) {
-      old_mask = &#x27;_mask_y&#x27;;
-      new_mask = &#x27;_mask_x&#x27;;
+      old_mask = &#x27;vertical&#x27;;
+      new_mask = &#x27;horizontal&#x27;;
       old_orientation = &#x27;height&#x27;;
       orientation = &#x27;width&#x27;;
       orientation_val = resizeWidth(image_width, image_height, current_slide.data(&#x27;kind&#x27;));
       to_make_draggable = &#x27;x&#x27;;
     }
     full_place.addClass(new_mask).removeClass(old_mask);
-    var img_tag = $(&#x27;#&#x27; + place_id + &#x27; ._full_image_in_slide img&#x27;);
+    var img_tag = $(&#x27;#&#x27; + place_id + &#x27; .mask img&#x27;);
     img_tag.attr(&#x27;src&#x27;, image_url);
     img_tag.parent().css(&#x27;left&#x27;, 0);
     img_tag.parent().css(&#x27;top&#x27;, 0);
@@ -481,17 +486,18 @@ function lessonEditorDocumentReadyAddMediaElement() {
     var current_slide = $(&#x27;li._lesson_editor_current_slide&#x27;);
     var position = $(&#x27;#info_container&#x27;).data(&#x27;current-media-element-position&#x27;);
     var place_id = &#x27;media_element_&#x27; + position + &#x27;_in_slide_&#x27; + current_slide.data(&#x27;slide-id&#x27;);
-    $(&#x27;#&#x27; + place_id + &#x27; ._input_video_id&#x27;).val(video_id);
+    $(&#x27;#&#x27; + place_id + &#x27; .video-id&#x27;).val(video_id);
+    $(&#x27;#&#x27; + place_id + &#x27; .mask .add&#x27;).hide();
     var video_mp4 = $(this).data(&#x27;mp4&#x27;);
     var video_webm = $(this).data(&#x27;webm&#x27;);
     var duration = $(this).data(&#x27;duration&#x27;);
-    var full_place = $(&#x27;#&#x27; + place_id + &#x27; ._full_video_in_slide&#x27;);
+    var full_place = $(&#x27;#&#x27; + place_id + &#x27; .mask&#x27;);
     if(!full_place.is(&#x27;:visible&#x27;)) {
       full_place.show();
-      $(&#x27;#&#x27; + place_id + &#x27; ._empty_video_in_slide&#x27;).hide();
+      $(&#x27;#&#x27; + place_id + &#x27; .empty-mask&#x27;).hide();
     }
-    $(&#x27;#&#x27; + place_id + &#x27; ._full_video_in_slide source[type=&quot;video/mp4&quot;]&#x27;).attr(&#x27;src&#x27;, video_mp4);
-    $(&#x27;#&#x27; + place_id + &#x27; ._full_video_in_slide source[type=&quot;video/webm&quot;]&#x27;).attr(&#x27;src&#x27;, video_webm);
+    $(&#x27;#&#x27; + place_id + &#x27; .mask source[type=&quot;video/mp4&quot;]&#x27;).attr(&#x27;src&#x27;, video_mp4);
+    $(&#x27;#&#x27; + place_id + &#x27; .mask source[type=&quot;video/webm&quot;]&#x27;).attr(&#x27;src&#x27;, video_webm);
     $(&#x27;#&#x27; + place_id + &#x27; video&#x27;).load();
     $(&#x27;#&#x27; + place_id + &#x27; ._media_player_total_time&#x27;).html(secondsToDateString(duration));
     var video_player = $(&#x27;#&#x27; + place_id + &#x27; ._empty_video_player, #&#x27; + place_id + &#x27; ._instance_of_player&#x27;);
@@ -503,7 +509,6 @@ function lessonEditorDocumentReadyAddMediaElement() {
       video_player.data(&#x27;duration&#x27;, duration);
       initializeMedia(video_player.attr(&#x27;id&#x27;), &#x27;video&#x27;);
     }
-    $(&#x27;#&#x27; + place_id + &#x27; ._rolloverable&#x27;).data(&#x27;rolloverable&#x27;, true);
   });
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._add_audio_to_slide&#x27;, function(e) {
     e.preventDefault();
@@ -516,20 +521,20 @@ function lessonEditorDocumentReadyAddMediaElement() {
     var current_slide = $(&#x27;li._lesson_editor_current_slide&#x27;);
     var position = $(&#x27;#info_container&#x27;).data(&#x27;current-media-element-position&#x27;);
     var place_id = &#x27;media_element_&#x27; + position + &#x27;_in_slide_&#x27; + current_slide.data(&#x27;slide-id&#x27;);
-    $(&#x27;#&#x27; + place_id + &#x27; ._input_audio_id&#x27;).val(audio_id);
+    $(&#x27;#&#x27; + place_id + &#x27; .audio-id&#x27;).val(audio_id);
     var audio_m4a = $(this).data(&#x27;m4a&#x27;);
     var audio_ogg = $(this).data(&#x27;ogg&#x27;);
     var duration = $(this).data(&#x27;duration&#x27;);
-    var full_place = $(&#x27;#&#x27; + place_id + &#x27; ._full_audio_in_slide&#x27;);
+    var full_place = $(&#x27;#&#x27; + place_id + &#x27; .mask&#x27;);
     if(!full_place.is(&#x27;:visible&#x27;)) {
       full_place.show();
-      $(&#x27;#&#x27; + place_id + &#x27; ._empty_audio_in_slide&#x27;).hide();
+      $(&#x27;#&#x27; + place_id + &#x27; .empty-mask&#x27;).hide();
     }
-    $(&#x27;#&#x27; + place_id + &#x27; ._full_audio_in_slide source[type=&quot;audio/mp4&quot;]&#x27;).attr(&#x27;src&#x27;, audio_m4a);
-    $(&#x27;#&#x27; + place_id + &#x27; ._full_audio_in_slide source[type=&quot;audio/ogg&quot;]&#x27;).attr(&#x27;src&#x27;, audio_ogg);
+    $(&#x27;#&#x27; + place_id + &#x27; .mask source[type=&quot;audio/mp4&quot;]&#x27;).attr(&#x27;src&#x27;, audio_m4a);
+    $(&#x27;#&#x27; + place_id + &#x27; .mask source[type=&quot;audio/ogg&quot;]&#x27;).attr(&#x27;src&#x27;, audio_ogg);
     $(&#x27;#&#x27; + place_id + &#x27; audio&#x27;).load();
     $(&#x27;#&#x27; + place_id + &#x27; ._media_player_total_time&#x27;).html(secondsToDateString(duration));
-    $(&#x27;#&#x27; + place_id + &#x27; ._full_audio_in_slide .audio_title&#x27;).text(new_audio_title);
+    $(&#x27;#&#x27; + place_id + &#x27; .mask .title&#x27;).text(new_audio_title);
     var audio_player = $(&#x27;#&#x27; + place_id + &#x27; ._empty_audio_player, #&#x27; + place_id + &#x27; ._instance_of_player&#x27;);
     if(audio_player.data(&#x27;initialized&#x27;)) {
       audio_player.data(&#x27;duration&#x27;, duration);
@@ -548,14 +553,14 @@ Initializer for galleries.
 @for LessonEditorDocumentReady
 **/
 function lessonEditorDocumentReadyGalleries() {
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._show_image_gallery_in_lesson_editor&#x27;, function() {
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;.slide-content .image.editable .add&#x27;, function() {
     showGalleryInLessonEditor(this, &#x27;image&#x27;);
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._show_audio_gallery_in_lesson_editor&#x27;, function() {
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;.slide-content .audio.editable .add&#x27;, function() {
     stopMediaInCurrentSlide();
     showGalleryInLessonEditor(this, &#x27;audio&#x27;);
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._show_video_gallery_in_lesson_editor&#x27;, function() {
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;.slide-content .video.editable .add&#x27;, function() {
     stopMediaInCurrentSlide();
     showGalleryInLessonEditor(this, &#x27;video&#x27;);
   });
@@ -587,8 +592,6 @@ General initialization of position (used together with {{#crossLink &quot;Lesson
 function lessonEditorDocumentReadyGeneral() {
   $(&#x27;html.lesson-editor-layout ul#slides&#x27;).css(&#x27;margin-top&#x27;, ((($(window).height() - 590) / 2) - 40) + &#x27;px&#x27;);
   $(&#x27;html.lesson-editor-layout ul#slides.new&#x27;).css(&#x27;margin-top&#x27;, ((($(window).height() - 590) / 2)) + &#x27;px&#x27;);
-  $(&#x27;.slide-content.cover .title&#x27;).css(&#x27;margin-left&#x27;, &#x27;auto&#x27;);
-  $(&#x27;html.lesson-editor-layout ul#slides input&#x27;).attr(&#x27;autocomplete&#x27;, &#x27;off&#x27;);
 }
 
 /**
@@ -597,7 +600,7 @@ Initializer for JQueryUi animations defined in the class {{#crossLink &quot;Less
 @for LessonEditorDocumentReady
 **/
 function lessonEditorDocumentReadyJqueryAnimations() {
-  $(&#x27;._image_container_in_lesson_editor&#x27;).each(function() {
+  $(&#x27;.slide-content .image.editable&#x27;).each(function() {
     makeDraggable($(this).attr(&#x27;id&#x27;));
   });
   initializeSortableNavs();
@@ -634,20 +637,54 @@ Initializer for the mouseover and mouseout to replace a media element already ad
 @for LessonEditorDocumentReady
 **/
 function lessonEditorDocumentReadyReplaceMediaElement() {
-  $(&#x27;body&#x27;).on(&#x27;mouseover&#x27;, &#x27;._full_image_in_slide, ._full_video_in_slide&#x27;, function() {
-    var obj = $(&#x27;#&#x27; + $(this).parent().attr(&#x27;id&#x27;) + &#x27; ._rolloverable&#x27;);
-    var slide_id = obj.data(&#x27;slide-id&#x27;);
-    var position = obj.data(&#x27;position&#x27;);
-    if(obj.data(&#x27;rolloverable&#x27;)) {
-      $(&#x27;#media_element_&#x27; + position + &#x27;_in_slide_&#x27; + slide_id + &#x27; ._lesson_editor_rollover_content&#x27;).show();
+  $(&#x27;body&#x27;).on(&#x27;mouseover&#x27;, &#x27;.slide-content .image.editable .mask&#x27;, function() {
+    if($(this).find(&#x27;.alignable&#x27;).data(&#x27;rolloverable&#x27;)) {
+      $(this).find(&#x27;.add&#x27;).show();
     }
   });
-  $(&#x27;body&#x27;).on(&#x27;mouseout&#x27;, &#x27;._full_image_in_slide, ._full_video_in_slide&#x27;, function() {
-    var obj = $(&#x27;#&#x27; + $(this).parent().attr(&#x27;id&#x27;) + &#x27; ._rolloverable&#x27;);
-    var slide_id = obj.data(&#x27;slide-id&#x27;);
-    var position = obj.data(&#x27;position&#x27;);
-    if(obj.data(&#x27;rolloverable&#x27;)) {
-      $(&#x27;#media_element_&#x27; + position + &#x27;_in_slide_&#x27; + slide_id + &#x27; ._lesson_editor_rollover_content&#x27;).hide();
+  $(&#x27;body&#x27;).on(&#x27;mouseout&#x27;, &#x27;.slide-content .image.editable .mask&#x27;, function() {
+    if($(this).find(&#x27;.alignable&#x27;).data(&#x27;rolloverable&#x27;)) {
+      $(this).find(&#x27;.add&#x27;).hide();
+    }
+  });
+  $(&#x27;body&#x27;).on(&#x27;mouseover&#x27;, &#x27;.slide-content .video.editable .mask video&#x27;, function(e) {
+    var position = $(this).offset();
+    var top = position.top + 59;
+    var right = position.left + 291;
+    var bottom = position.top + 222;
+    var left = position.left + 129;
+    if($(this).width() &gt; 420) {
+      top = position.top + 179;
+      right = position.left + 526;
+      bottom = position.top + 371;
+      left = position.left + 334;
+    }
+    if(left &lt;= e.clientX &amp;&amp; e.clientX &lt;= right &amp;&amp; top &lt;= e.clientY &amp;&amp; e.clientY &lt;= bottom) {
+      return;
+    }
+    var granpa = $(this).parents(&#x27;.mask&#x27;);
+    if(granpa.find(&#x27;.alignable&#x27;).data(&#x27;rolloverable&#x27;)) {
+      granpa.find(&#x27;.add&#x27;).show();
+    }
+  });
+  $(&#x27;body&#x27;).on(&#x27;mouseout&#x27;, &#x27;.slide-content .video.editable .mask video&#x27;, function(e) {
+    var position = $(this).offset();
+    var top = position.top + 59;
+    var right = position.left + 291;
+    var bottom = position.top + 222;
+    var left = position.left + 129;
+    if($(this).width() &gt; 420) {
+      top = position.top + 179;
+      right = position.left + 526;
+      bottom = position.top + 371;
+      left = position.left + 334;
+    }
+    if(left &lt;= e.clientX &amp;&amp; e.clientX &lt;= right &amp;&amp; top &lt;= e.clientY &amp;&amp; e.clientY &lt;= bottom) {
+      return;
+    }
+    var granpa = $(this).parents(&#x27;.mask&#x27;);
+    if(granpa.find(&#x27;.alignable&#x27;).data(&#x27;rolloverable&#x27;)) {
+      granpa.find(&#x27;.add&#x27;).hide();
     }
   });
 }
@@ -679,61 +716,17 @@ function lessonEditorDocumentReadySlideButtons() {
     hideNewSlideChoice();
   });
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._save_slide&#x27;, function(e) {
-    saveCurrentSlide();
+    saveCurrentSlide(&#x27;&#x27;, false);
   });
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._save_slide_and_exit&#x27;, function() {
-    tinyMCE.triggerSave();
-    var temporary = new Array();
-    var temp_counter = 0;
-    $(&#x27;._lesson_editor_current_slide ._lesson_editor_placeholder&#x27;).each(function() {
-      if($(this).data(&#x27;placeholder&#x27;)) {
-        temporary[temp_counter] = $(this).val();
-        temp_counter++;
-        $(this).val(&#x27;&#x27;);
-      }
-    });
-    $.ajax({
-      type: &#x27;post&#x27;,
-      url: $(&#x27;._lesson_editor_current_slide form&#x27;).attr(&#x27;action&#x27;) + &#x27;_and_exit&#x27;,
-      timeout: 5000,
-      data: $(&#x27;._lesson_editor_current_slide form&#x27;).serialize()
-    });
-    temp_counter = 0;
-    $(&#x27;._lesson_editor_current_slide ._lesson_editor_placeholder&#x27;).each(function() {
-      if($(this).data(&#x27;placeholder&#x27;)) {
-        $(this).val(temporary[temp_counter]);
-        temp_counter++;
-      }
-    });
+    saveCurrentSlide(&#x27;_and_exit&#x27;, true);
   });
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._save_slide_and_edit&#x27;, function() {
-    tinyMCE.triggerSave();
-    var temporary = new Array();
-    var temp_counter = 0;
-    $(&#x27;._lesson_editor_current_slide ._lesson_editor_placeholder&#x27;).each(function() {
-      if($(this).data(&#x27;placeholder&#x27;)) {
-        temporary[temp_counter] = $(this).val();
-        temp_counter++;
-        $(this).val(&#x27;&#x27;);
-      }
-    });
-    $.ajax({
-      type: &#x27;post&#x27;,
-      url: $(&#x27;._lesson_editor_current_slide form&#x27;).attr(&#x27;action&#x27;) + &#x27;_and_edit&#x27;,
-      timeout: 5000,
-      data: $(&#x27;._lesson_editor_current_slide form&#x27;).serialize()
-    });
-    temp_counter = 0;
-    $(&#x27;._lesson_editor_current_slide ._lesson_editor_placeholder&#x27;).each(function() {
-      if($(this).data(&#x27;placeholder&#x27;)) {
-        $(this).val(temporary[temp_counter]);
-        temp_counter++;
-      }
-    });
+    saveCurrentSlide(&#x27;_and_edit&#x27;, true);
   });
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._add_new_slide_options&#x27;, function() {
     if(!$(this).hasClass(&#x27;disabled&#x27;)) {
-      saveCurrentSlide();
+      saveCurrentSlide(&#x27;&#x27;, false);
       showNewSlideOptions();
     }
   });
@@ -765,26 +758,26 @@ function lessonEditorDocumentReadySlidesNavigator() {
     }
   });
   $(&#x27;body&#x27;).on(&#x27;mouseout&#x27;, &#x27;#slide-numbers li.navNumbers:not(._add_new_slide_options_in_last_position)&#x27;, function(e) {
-    var this_tooltip =$(this).children(&#x27;.slide-tooltip&#x27;);
+    var this_tooltip = $(this).children(&#x27;.slide-tooltip&#x27;);
     this_tooltip.removeClass(&#x27;slide-tooltip-to-left&#x27;);
     this_tooltip.hide();
   });
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._slide_nav:not(._lesson_editor_current_slide_nav)&#x27;, function(e) {
     e.preventDefault();
     stopMediaInCurrentSlide();
-    saveCurrentSlide();
+    saveCurrentSlide(&#x27;&#x27;, false);
     slideTo($(this).data(&#x27;slide-id&#x27;));
   });
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._not_current_slide&#x27;, function(e) {
     e.preventDefault();
-    saveCurrentSlide();
+    saveCurrentSlide(&#x27;&#x27;, false);
     stopMediaInCurrentSlide();
     slideTo($(this).parent().data(&#x27;slide-id&#x27;));
     scrollPaneUpdate(this);
   });
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._add_new_slide_options_in_last_position&#x27;, function() {
     if(!$(this).hasClass(&#x27;disabled&#x27;)) {
-      saveCurrentSlide();
+      saveCurrentSlide(&#x27;&#x27;, false);
       var last_slide_id = $(&quot;#slide-numbers li.navNumbers:last&quot;).find(&#x27;a&#x27;).data(&#x27;slide-id&#x27;);
       $(&#x27;#nav_list_menu&#x27;).data(&#x27;jsp&#x27;).scrollToPercentX(100, true);
       if($(&#x27;#slide_in_lesson_editor_&#x27; + last_slide_id).hasClass(&#x27;_lesson_editor_current_slide&#x27;)) {
@@ -842,41 +835,44 @@ function lessonEditorDocumentReadyTextFields() {
 Save current slide. It sends tinyMCE editor content to form data to be serialized, it handles form placeholders.
 @method saveCurrentSlide
 @for LessonEditorForms
+@param action_suffix {String} action suffix to be appended after &#x27;save&#x27; (it can be &#x27;save_and_edit&#x27; or &#x27;save_and_exit&#x27;, or just &#x27;save&#x27;, see also {{#crossLink &quot;LessonEditorDocumentReady/lessonEditorDocumentReadySlideButtons:merthod&quot;}}{{/crossLink}})
+@param with_loader {Boolean} if true shows the loader while calling ajax
 **/
-function saveCurrentSlide() {
+function saveCurrentSlide(action_suffix, with_loader) {
   tinyMCE.triggerSave();
   var temporary = new Array();
   var temp_counter = 0;
-  $(&#x27;._lesson_editor_current_slide ._lesson_editor_placeholder&#x27;).each(function() {
+  var current_slide = $(&#x27;._lesson_editor_current_slide&#x27;);
+  current_slide.find(&#x27;._lesson_editor_placeholder&#x27;).each(function() {
     if($(this).data(&#x27;placeholder&#x27;)) {
       temporary[temp_counter] = $(this).val();
       temp_counter++;
       $(this).val(&#x27;&#x27;);
     }
   });
-  submitCurrentSlideForm();
+  if(with_loader) {
+    $.ajax({
+      type: &#x27;post&#x27;,
+      url: current_slide.find(&#x27;form&#x27;).attr(&#x27;action&#x27;) + action_suffix,
+      timeout: 5000,
+      data: current_slide.find(&#x27;form&#x27;).serialize()
+    });
+  } else {
+    $.ajax({
+      type: &#x27;post&#x27;,
+      url: current_slide.find(&#x27;form&#x27;).attr(&#x27;action&#x27;) + action_suffix,
+      timeout: 5000,
+      data: current_slide.find(&#x27;form&#x27;).serialize(),
+      beforeSend: unbindLoader()
+    }).always(bindLoader);
+  }
   temp_counter = 0;
-  $(&#x27;._lesson_editor_current_slide ._lesson_editor_placeholder&#x27;).each(function() {
+  current_slide.find(&#x27;._lesson_editor_placeholder&#x27;).each(function() {
     if($(this).data(&#x27;placeholder&#x27;)) {
       $(this).val(temporary[temp_counter]);
       temp_counter++;
     }
   });
-}
-
-/**
-Submit serialized form data for current slide (used in {{#crossLink &quot;LessonEditorForms/saveCurrentSlide:method&quot;}}{{/crossLink}}).
-@method submitCurrentSlideForm
-@for LessonEditorForms
-**/
-function submitCurrentSlideForm() {
-  $.ajax({
-    type: &#x27;post&#x27;,
-    url: $(&#x27;._lesson_editor_current_slide form&#x27;).attr(&#x27;action&#x27;),
-    timeout: 5000,
-    data: $(&#x27;._lesson_editor_current_slide form&#x27;).serialize(),
-    beforeSend: unbindLoader()
-  }).always(bindLoader);
 }
 
 
@@ -887,7 +883,7 @@ function submitCurrentSlideForm() {
 Hides media gallery for selected type.
 @method removeGalleryInLessonEditor
 @for LessonEditorGalleries
-@param sty_type {String} gallery type
+@param sti_type {String} gallery type
 **/
 function removeGalleryInLessonEditor(sti_type) {
   $(&#x27;#lesson_editor_&#x27; + sti_type + &#x27;_gallery_container&#x27;).hide();
@@ -963,19 +959,19 @@ Gets scaled height to slide images.
 **/
 function resizeHeight(width, height, kind) {
   switch(kind) {
-   case &#x27;cover&#x27;: slideWidth = 900;
-   break;
-   case &#x27;image1&#x27;: slideWidth = 420;
-   break;
-   case &#x27;image2&#x27;: slideWidth = 420;
-   break;
-   case &#x27;image3&#x27;: slideWidth = 860;
-   break;
-   case &#x27;image4&#x27;: slideWidth = 420;
-   break;
-   default: slideWidth = 900;
+    case &#x27;cover&#x27;: slideWidth = 900;
+    break;
+    case &#x27;image1&#x27;: slideWidth = 420;
+    break;
+    case &#x27;image2&#x27;: slideWidth = 420;
+    break;
+    case &#x27;image3&#x27;: slideWidth = 860;
+    break;
+    case &#x27;image4&#x27;: slideWidth = 420;
+    break;
+    default: slideWidth = 900;
   }
-  return (height * slideWidth) / width;
+  return parseInt((height * slideWidth) / width) + 1;
 }
 
 /**
@@ -989,19 +985,19 @@ Gets scaled width to slide images.
 **/
 function resizeWidth(width, height, kind) {
   switch(kind) {
-   case &#x27;cover&#x27;: slideHeight = 560;
-   break;
-   case &#x27;image1&#x27;: slideHeight = 420;
-   break;
-   case &#x27;image2&#x27;: slideHeight = 550;
-   break;
-   case &#x27;image3&#x27;: slideHeight = 550;
-   break;
-   case &#x27;image4&#x27;: slideHeight = 265;
-   break;
-   default: slideHeight = 590;
+    case &#x27;cover&#x27;: slideHeight = 560;
+    break;
+    case &#x27;image1&#x27;: slideHeight = 420;
+    break;
+    case &#x27;image2&#x27;: slideHeight = 550;
+    break;
+    case &#x27;image3&#x27;: slideHeight = 550;
+    break;
+    case &#x27;image4&#x27;: slideHeight = 265;
+    break;
+    default: slideHeight = 590;
   }
-  return (width * slideHeight) / height;
+  return parseInt((width * slideHeight) / height) + 1;
 }
 
 
@@ -1039,7 +1035,7 @@ function initializeSortableNavs() {
           new_position = previous_item_position;
         }
       }
-      saveCurrentSlide();
+      saveCurrentSlide(&#x27;&#x27;, false);
       if(old_position != new_position) {
         stopMediaInCurrentSlide();
         $.ajax({
@@ -1060,12 +1056,12 @@ Inizializes jQueryUI &lt;b&gt;draggable&lt;/b&gt; function on slide image contai
 @param place_id {String} HTML id for the container to make draggable
 **/
 function makeDraggable(place_id) {
-  var full_place = $(&#x27;#&#x27; + place_id + &#x27; ._full_image_in_slide&#x27;);
+  var full_place = $(&#x27;#&#x27; + place_id + &#x27; .mask&#x27;);
   var axe = &#x27;x&#x27;;
-  if(full_place.hasClass(&#x27;_mask_y&#x27;)) {
+  if(full_place.hasClass(&#x27;vertical&#x27;)) {
     axe = &#x27;y&#x27;;
   }
-  var image = $(&#x27;#&#x27; + place_id + &#x27;  ._full_image_in_slide img&#x27;);
+  var image = $(&#x27;#&#x27; + place_id + &#x27; .mask img&#x27;);
   var side = &#x27;&#x27;;
   var maskedImgWidth;
   var maskedImgHeight;
@@ -1079,24 +1075,24 @@ function makeDraggable(place_id) {
     side = &#x27;top&#x27;;
     dist = maskedImgHeight - full_place.height();
   }
-  $(&#x27;#&#x27; + place_id + &#x27; ._full_image_in_slide ._rolloverable&#x27;).draggable({
+  $(&#x27;#&#x27; + place_id + &#x27; .mask .alignable&#x27;).draggable({
     axis: axe,
     cursor: &#x27;move&#x27;,
     distance: 10,
     start: function() {
-      $(&#x27;#&#x27; + place_id + &#x27; ._full_image_in_slide img&#x27;).css(&#x27;cursor&#x27;, &#x27;move&#x27;);
-      $(&#x27;#&#x27; + place_id + &#x27; ._rolloverable&#x27;).data(&#x27;rolloverable&#x27;, false);
+      $(&#x27;#&#x27; + place_id + &#x27; .mask img&#x27;).css(&#x27;cursor&#x27;, &#x27;move&#x27;);
+      $(&#x27;#&#x27; + place_id + &#x27; .alignable&#x27;).data(&#x27;rolloverable&#x27;, false);
       $(&#x27;#&#x27; + place_id + &#x27; span&#x27;).hide();
     },
     stop: function() {
-      $(&#x27;#&#x27; + place_id + &#x27; ._full_image_in_slide img&#x27;).css(&#x27;cursor&#x27;, &#x27;url(https://mail.google.com/mail/images/2/openhand.cur), move&#x27;);
-      $(&#x27;#&#x27; + place_id + &#x27; ._rolloverable&#x27;).data(&#x27;rolloverable&#x27;, true);
+      $(&#x27;#&#x27; + place_id + &#x27; .mask img&#x27;).css(&#x27;cursor&#x27;, &#x27;url(https://mail.google.com/mail/images/2/openhand.cur), move&#x27;);
+      $(&#x27;#&#x27; + place_id + &#x27; .alignable&#x27;).data(&#x27;rolloverable&#x27;, true);
       $(&#x27;#&#x27; + place_id + &#x27; span&#x27;).show();
       var thisDrag = $(this);
       var offset = thisDrag.css(side);
       if(parseInt(offset) &gt; 0) {
         offset = 0;
-        if(side==&#x27;left&#x27;) {
+        if(side == &#x27;left&#x27;) {
           thisDrag.animate({
             left: &#x27;0&#x27;
           }, 100);
@@ -1108,7 +1104,7 @@ function makeDraggable(place_id) {
       } else {
         if(parseInt(offset) &lt; -(parseInt(dist))) {
           offset = -parseInt(dist);
-          if(side==&#x27;left&#x27;) {
+          if(side == &#x27;left&#x27;) {
             thisDrag.animate({
               left: &#x27;-&#x27; + dist + &#x27;px&#x27;
             }, 100);
@@ -1119,7 +1115,7 @@ function makeDraggable(place_id) {
           }
         }
       }
-      $(&#x27;#&#x27; + place_id + &#x27; ._input_align&#x27;).val(parseInt(offset));
+      $(&#x27;#&#x27; + place_id + &#x27; .align&#x27;).val(parseInt(offset));
     }
   });
 }
@@ -1260,6 +1256,27 @@ function slideTo(slide_id, callback) {
 
 
 /**
+TinyMCE callback to clean spans containing classes for font size: these classes are attached to the first &lt;ol&gt;, &lt;ul&gt;, &lt;p&gt;
+@method cleanTinyMCESpanTagsFontSize
+@for LessonEditorTinyMCE
+@param editor {Object} tinyMCE instance
+**/
+function cleanTinyMCESpanTagsFontSize(editor) {
+  var spans = $(editor.getBody()).find(&#x27;span.size1, span.size2, span.size3, span.size4, span.size5, span.size6&#x27;);
+  var sizes = [&#x27;size1&#x27;, &#x27;size2&#x27;, &#x27;size3&#x27;, &#x27;size4&#x27;, &#x27;size5&#x27;, &#x27;size6&#x27;];
+  var sizes_class = sizes.join(&#x27; &#x27;);
+  if(spans.length &gt; 0) {
+    spans.each(function() {
+      var my_sizes = $(this).attr(&#x27;class&#x27;).split(&#x27; &#x27;).filter(function(i) {
+        return sizes.indexOf(i) &gt; -1;
+      }).join(&#x27; &#x27;);
+      $(this).removeClass(my_sizes);
+      $(this).parents(&#x27;.mceContentBody ul, .mceContentBody ol, .mceContentBody p&#x27;).removeClass(sizes_class).addClass(my_sizes);
+    });
+  }
+}
+
+/**
 Initialize tinyMCE editor for a single textarea.
 @method initTinymce
 @for LessonEditorTinyMCE
@@ -1277,7 +1294,6 @@ function initTinymce(tiny_id) {
     theme: &#x27;advanced&#x27;,
     editor_selector: &#x27;tinymce&#x27;,
     skin: &#x27;desy&#x27;,
-    content_css: &#x27;/assets/tiny_mce_desy.css&#x27;,
     plugins: plugins,
     paste_preprocess: function(pl, o) {
       o.content = stripTagsForCutAndPaste(o.content, &#x27;&#x27;);
@@ -1287,12 +1303,19 @@ function initTinymce(tiny_id) {
     theme_advanced_toolbar_align: &#x27;left&#x27;,
     theme_advanced_statusbar_location: false,
     theme_advanced_resizing: true,
+    theme_advanced_font_sizes: &#x27;13px=.size1,17px=.size2,21px=.size3,25px=.size4,29px=.size5,35px=.size6&#x27;,
     setup: function(ed) {
+      ed.onInit.add(function(ed, e) {
+        $(&#x27;#&#x27; + tiny_id + &#x27;_ifr&#x27;).attr(&#x27;scrolling&#x27;, &#x27;no&#x27;);
+      });
+      ed.onNodeChange.add(function(ed, cm, e) {
+        cleanTinyMCESpanTagsFontSize(ed);
+      });
       ed.onKeyUp.add(function(ed, e) {
-        tinyMceCallbacks(ed,tiny_id);
+        tinyMceCallbacks(ed, tiny_id);
       });
       ed.onKeyDown.add(function(ed, e) {
-        tinyMceKeyDownCallbacks(ed,tiny_id);
+        tinyMceKeyDownCallbacks(ed, tiny_id);
       });
       ed.onClick.add(function(ed, e) {
         var textarea = $(&#x27;#&#x27; + tiny_id);
@@ -1309,18 +1332,22 @@ function initTinymce(tiny_id) {
 TinyMCE callback to show warning when texearea content exceeds the available space. Adds a red border to the textarea.This function is used in tinyMCE setup ({{#crossLink &quot;LessonEditorTinyMCE/initTinymce:method&quot;}}{{/crossLink}}).
 @method tinyMceCallbacks
 @for LessonEditorTinyMCE
-@param inst {Object} tinyMCE body instance
+@param inst {Object} tinyMCE instance
 @param tiny_id {Number} HTML id of the tinyMCE textarea
 **/
 function tinyMceCallbacks(inst, tiny_id) {
-  var maxH = 422;
-  if($(&#x27;textarea#&#x27; + tiny_id).parent(&#x27;.audio-content&#x27;).length &gt; 0) {
-    maxH = 324;
+  var maxH = 420;
+  if($(&#x27;textarea#&#x27; + tiny_id).parents(&#x27;.slide-content.audio&#x27;).length &gt; 0) {
+    maxH = 329;
   }
-  if (inst.getBody().scrollHeight &gt; maxH) {
-    $(inst.getBody()).parentsUntil(&#x27;table.mceLayout&#x27;).css(&#x27;border&#x27;, &#x27;1px solid red&#x27;);
+  if(inst.getBody().scrollHeight &gt; maxH) {
+    $(&#x27;#&#x27; + tiny_id + &#x27;_tbl&#x27;).css(&#x27;border-left&#x27;, &#x27;1px solid red&#x27;).css(&#x27;border-right&#x27;, &#x27;1px solid red&#x27;);
+    $(&#x27;#&#x27; + tiny_id + &#x27;_tbl tr.mceFirst td&#x27;).css(&#x27;border-top&#x27;, &#x27;1px solid red&#x27;);
+    $(&#x27;#&#x27; + tiny_id + &#x27;_tbl tr.mceLast td&#x27;).css(&#x27;border-bottom&#x27;, &#x27;1px solid red&#x27;);
   } else {
-    $(inst.getBody()).parentsUntil(&#x27;table.mceLayout&#x27;).css(&#x27;border&#x27;, &#x27;1px solid white&#x27;);
+    $(&#x27;#&#x27; + tiny_id + &#x27;_tbl&#x27;).css(&#x27;border-left&#x27;, &#x27;1px solid #EFEFEF&#x27;).css(&#x27;border-right&#x27;, &#x27;1px solid #EFEFEF&#x27;);
+    $(&#x27;#&#x27; + tiny_id + &#x27;_tbl tr.mceFirst td&#x27;).css(&#x27;border-top&#x27;, &#x27;1px solid #EFEFEF&#x27;);
+    $(&#x27;#&#x27; + tiny_id + &#x27;_tbl tr.mceLast td&#x27;).css(&#x27;border-bottom&#x27;, &#x27;1px solid #EFEFEF&#x27;);
   }
 }
 
@@ -1328,7 +1355,7 @@ function tinyMceCallbacks(inst, tiny_id) {
 TinyMCE keyDown callback to fix list item style. It adds same style of list item text to list numbers or dots. This function is used in tinyMCE setup ({{#crossLink &quot;LessonEditorTinyMCE/initTinymce:method&quot;}}{{/crossLink}}).
 @method tinyMceKeyDownCallbacks
 @for LessonEditorTinyMCE
-@param inst {Object} tinyMCE body instance
+@param inst {Object} tinyMCE instance
 @param tiny_id {Number} HTML id of the tinyMCE textarea
 **/
 function tinyMceKeyDownCallbacks(inst, tiny_id) {

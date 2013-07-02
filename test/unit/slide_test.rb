@@ -3,7 +3,6 @@ require 'test_helper'
 class SlideTest < ActiveSupport::TestCase
   
   def setup
-    @max_title = I18n.t('language_parameters.slide.length_title')
     begin
       @slide = Slide.new :position => 2, :title => 'Titolo', :text => 'Testo testo testo'
       @slide.lesson_id = 1
@@ -35,7 +34,7 @@ class SlideTest < ActiveSupport::TestCase
     assert @slide.errors.added? :kind, :inclusion
     @slide.kind = 'video1'
     assert @slide.valid?, "Slide not valid: #{@slide.errors.inspect}"
-    assert_invalid @slide, :title, long_string(@max_title + 1), long_string(@max_title), :too_long, {:count => @max_title}
+    assert_invalid @slide, :title, long_string(256), long_string(255), :too_long, {:count => 255}
     @slide.title = nil
     assert_obj_saved @slide
   end

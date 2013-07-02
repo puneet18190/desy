@@ -1,4 +1,4 @@
-<div class="buttons pull-right">
+<div class="buttons pull-right" style="display:<%= show_now ? 'block' : 'none' %>">
   <% if !slide.cover? %>
     <a class ="deleteButtonOrange _delete_slide" title="<%= t('titles.lesson_editor.delete_slide') %>"></a>
   <% end %>

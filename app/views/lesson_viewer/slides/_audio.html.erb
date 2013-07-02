@@ -2,20 +2,27 @@
   audio = slide.audio_at(1)
 %>
 
-<div class="bigViewLesson slideAudio">
-  <h2><%= slide.title %></h2>
-  <div class="audioBig">
-    <% if audio.nil? %>
-      <div class="audioIcon"></div>
-    <% else %>
-      <% if audio.converted? %>
-        <%= render :partial => 'shared/players/audio', :locals => {:audio => audio, :initialize_now => true} %>
-      <% else %>
-        <%= image_tag audio.placeholder_url(:lesson_viewer), :title => t('titles.not_available.audio', :title => audio.title) %>
-      <% end %>
-    <% end %>
+
+<div class="slide-content audio normal-size">
+  
+  <div class="item title-container">
+    <input class="title read-only" type="text" value="<%= slide.title %>" disabled="disabled">
   </div>
-  <div class="contentText">
+  
+  <div class="item audio-container">
+    <div class="audio read-only">
+      <% if audio %>
+        <% if audio.converted? %>
+          <%= render :partial => 'shared/players/audio', :locals => {:audio => audio, :initialize_now => true} %>
+        <% else %>
+          <%= image_tag audio.placeholder_url(:lesson_viewer), :title => t('titles.not_available.audio', :title => audio.title) %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  
+  <div class="item text-container read-only">
     <%= slide.text.html_safe if slide.text %>
   </div>
+  
 </div>

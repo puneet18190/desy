@@ -93,10 +93,14 @@ function lessonViewerDocumentReadySlidesNavigation() {
     }
   });
   $('.lesson-viewer-layout').on('swipeleft', function() {
-    goToNextSlideInLessonViewer(true);
+    if(mustReactToSwipe()) {
+      goToNextSlideInLessonViewer(true);
+    }
   });
   $('.lesson-viewer-layout').on('swiperight', function() {
-    goToPrevSlideInLessonViewer(true);
+    if(mustReactToSwipe()) {
+      goToPrevSlideInLessonViewer(true);
+    }
   });
 }
 

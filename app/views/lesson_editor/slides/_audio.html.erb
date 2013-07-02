@@ -1,12 +1,45 @@
-<%= form_tag save_slide_path(slide.lesson_id, slide.id), :method => :post, :remote => true, :id => "form-#{slide.id}" do %>
-  <h2 class="text">
-    <%= text_field_tag :title, (slide.title.blank? ? t('lesson_editor.placeholders.title') : slide.title), :class => '_lesson_editor_placeholder', :data => {:placeholder => slide.title.blank?}, :maxlength => t('language_parameters.slide.length_title') %>
-  </h2>
-  <%= render :partial => 'lesson_editor/slides/parts/audio', :locals => {:slide => slide, :position => 1, :audio => slide.audio_at(1)} %>
-  <div class="audio-content">
-    <%= text_area_tag :text, (slide.text.blank? ? t('lesson_editor.placeholders.text') : slide.text.html_safe), :id => "ta-#{slide.id}", :class => 'tinymce _lesson_editor_placeholder', :data => {:placeholder => slide.text.blank?} %>
-  </div>
-<% end %>
+<%
+  audio = slide.audio_at(1)
+  audio_title = audio.nil? ? '' : audio.title
+  slide_title = slide.title.blank? ? t('lesson_editor.placeholders.title') : slide.title
+%>
+
+<div class="slide-content audio normal-size">
+  <%= form_tag save_slide_path(slide.lesson_id, slide.id), :method => :post, :remote => true, :id => "form-#{slide.id}", :autocomplete => 'off' do %>
+    
+    <div class="item title-container">
+      <%= text_field_tag :title, slide_title, :class => 'title _lesson_editor_placeholder', :data => {:placeholder => slide.title.blank?} %>
+    </div>
+    
+    <div class="item audio-container">
+      <div id="media_element_1_in_slide_<%= slide.id %>" class="audio editable">
+        <% if audio %>
+          <%= hidden_field_tag 'media_element_1', audio.id, :class => 'audio-id' %>
+        <% else %>
+          <%= hidden_field_tag 'media_element_1', '', :class => 'audio-id' %>
+        <% end %>
+        <div class="mask <%= audio.nil? ? 'hidden' : 'visible' %>">
+          <%= render(:partial => 'shared/players/audio', :locals => {:audio => audio, :initialize_now => true}) %>
+          <span class="add" data-position="1" title="<%= t('titles.lesson_editor.change_audio') %>"></span>
+          <br/>
+          <div class="title"><%= audio_title %></div>
+        </div>
+        <div class="empty-mask <%= audio.nil? ? 'visible' : 'hidden' %>">
+          <a class="add" data-position="1"></a>
+          <br/>
+          <p class="lower"><%= t('lesson_editor.choose_audio') %></p>
+        </div>
+      </div>
+      
+    </div>
+    
+    <div class="item text-container">
+      <%= text_area_tag :text, (slide.text.blank? ? t('lesson_editor.placeholders.text') : slide.text.html_safe), :id => "ta-#{slide.id}", :class => 'tinymce _lesson_editor_placeholder', :data => {:placeholder => slide.text.blank?} %>
+    </div>
+    
+  <% end %>
+</div>
+
 
 <script type="text/javascript">
   initTinymce('ta-<%= slide.id %>');

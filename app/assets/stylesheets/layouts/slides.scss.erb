@@ -1,0 +1,1939 @@
+/* codice colore associato alle lezioni */
+$orange: #F29400;
+/* larghezza standard della slide */
+$slide-width: 900px;
+/* altezza standard della slide */
+$slide-height: 590px;
+/* padding interno che separa tutte le componenti della slide */
+$slide-inner-padding: 20px;
+/* larghezza interna della slide: larghezza esterna meno due volte il padding */
+$slide-inner-width: $slide-width - $slide-inner-padding - $slide-inner-padding;
+/* altezza interna della slide: altezza esterna meno due volte il padding */
+$slide-inner-height: $slide-height - $slide-inner-padding - $slide-inner-padding;
+/* altezza complessiva del footer della copertina (la copertina è l'unica slide senza padding interno) */
+$footer-height-in-cover: 30px;
+/* altezza dell'immagine di sfondo della copertina: altezza slide meno altezza footer */
+$image-height-in-cover: $slide-height - $footer-height-in-cover;
+/* altezza del titolo nella copertina (che va in sovraimpressione sopra l'immagine di sfondo) */
+$title-height-in-cover: 130px;
+/* padding per centrare il titolo della copertina nell'apposito contenitore (padding da applicare a left e top) */
+$title-left-and-top-padding-in-cover: 20px;
+/* altezza interna del titolo, uguale ad altezza globale meno una volta il padding interno (è applicato solo a left) */
+$title-inner-height-in-cover: $title-height-in-cover - $title-left-and-top-padding-in-cover;
+/* larghezza interna del titolo, uguale a larghezza della slide meno una volta il padding interno (è applicato solo a left) */
+$title-inner-width-in-cover: $slide-width - $title-left-and-top-padding-in-cover;
+/* posizionamento del titolo all'interno della slide: deve essere aderente al footer, pertanto è uguale ad altezza immagine meno altezza titolo */
+$title-top-offset-in-cover: $image-height-in-cover - $title-height-in-cover;
+/* line-height del titolo nella copertina */
+$title-line-height-in-cover: 50px;
+/* font-size del titolo nella copertina */
+$title-font-size-in-cover: 50px;
+/* padding verticale del footer della copertina */
+$footer-vertical-padding-in-cover: 7px;
+/* padding orizzontale del footer della copertina */
+$footer-horizontal-padding-in-cover: 7px;
+/* altezza interna del footer della copertina: altezza del footer meno due volte padding verticale */
+$footer-inner-height-in-cover: $footer-height-in-cover - $footer-vertical-padding-in-cover - $footer-vertical-padding-in-cover;
+/* larghezza interna del footer della copertina: larghezza della slide meno due volte padding orizzontale */
+$footer-inner-width-in-cover: $slide-width - $footer-horizontal-padding-in-cover - $footer-horizontal-padding-in-cover;
+/* font size del footer nella copertina */
+$footer-font-size-in-cover: 13px;
+/* altezza del titolo generale (presente in slides di tipo 'audio', 'image1', 'text', 'video1') */
+$slide-title-height: 110px;
+/* bordo del titolo */
+$slide-title-border: 1px;
+/* padding del titolo */
+$slide-title-padding: 10px;
+/* altezza interna del titolo: altezza globale meno due volte il bordo meno due volte il padding verticale */
+$slide-title-inner-height: $slide-title-height - (2 * $slide-title-border) - (2 * $slide-title-padding);
+/* larghezza interna del titolo: larghezza interna della slide meno due volte il bordo meno due volte il padding normale */
+$slide-title-inner-width: $slide-inner-width - (2 * $slide-title-border) - (2 * $slide-title-padding);
+/* line-height del titolo (sempre uguale) */
+$slide-title-line-height: 88px;
+/* font-size del titolo (sempre uguale) */
+$slide-title-font-size: 48px;
+/* larghezza in full slide di un campo testo: larghezza slide meno due volte il padding interno (coincide con la larghezza interna della slide) */
+$slide-text-full-width: $slide-inner-width;
+/* altezza in full-slide di un campo testo: altezza interna della slide meno altgezza titolo meno padding interno che le separa */
+$slide-text-full-height: $slide-inner-height - $slide-title-height - $slide-inner-padding;
+/* larghezza in half-slide di un campo testo */
+$slide-text-half-width: ($slide-inner-width - $slide-inner-padding) / 2;
+/* padding di un campo testo in read-only, che sopperisce a un margin interno di 8px di tinyMCE */
+$slide-text-read-only-padding: 8px;
+/* border di un campo testo in read-only, che sopperisce al bordo di 1px sempre di tinyMCE */
+$slide-text-read-only-border: 1px;
+/* altezza read-only per full slide text: altezza full-slide meno due volte il padding read-only e border read-only */
+$slide-text-read-only-full-height: $slide-text-full-height - (2 * $slide-text-read-only-padding) - (2 * $slide-text-read-only-border);
+/* larghezza read-only per full slide text: larghezza full-slide meno due volte il padding read-only e border read-only */
+$slide-text-read-only-full-width: $slide-text-full-width - (2 * $slide-text-read-only-padding) - (2 * $slide-text-read-only-border);
+/* larghezza read-only per half slide text: larghezza half-slide meno due volte il padding read-only e border read-only */
+$slide-text-read-only-half-width: $slide-text-half-width - (2 * $slide-text-read-only-padding) - (2 * $slide-text-read-only-border);
+/* altezza del placeholder audio in una slide di tipo 'audio' */
+$audio-placeholder-height: 71px;
+/* altezza in di un campo testo nella slide di tipo 'audio': altezza in full slide meno altezza placeholder audio meno padding interno che le separa */
+$slide-text-height-for-audio: $slide-text-full-height - $audio-placeholder-height - $slide-inner-padding;
+/* larghezza della textarea piena: tolgo i bordi - importante, leggi nei commenti di desySkin/ui.css il motivo per cui qui non calcolo i bordi, deve rimanere allineato */
+$slide-text-content-full-width: $slide-text-full-width;
+/* altezza della textarea piena: tolgo i bordi */
+$slide-text-content-full-height: $slide-text-full-height - (2 * $slide-text-read-only-border);
+/* larghezza della textarea a metà: tolgo i bordi - importante, leggi nei commenti di desySkin/ui.css il motivo per cui qui non calcolo i bordi, deve rimanere allineato */
+$slide-text-content-half-width: $slide-text-half-width;
+/* altezza della textarea in slide audio: tolgo i bordi */
+$slide-text-content-height-for-audio: $slide-text-height-for-audio - (2 * $slide-text-read-only-border);
+/* altezza read-only in di un campo testo nella slide di tipo 'audio': altezza di riferimento meno due volte padding read-only */
+$slide-text-read-only-height-for-audio: $slide-text-height-for-audio - (2 * $slide-text-read-only-padding) - (2 * $slide-text-read-only-border);
+/* dimensioni dell'icona grande (usata per video e immagini) */
+$big-icon-dimension: 130px;
+/* dimensioni dell'icona piccola (usata per video e immagini) */
+$small-icon-dimension: 100px;
+/* dimensioni dell'icona minuscola (usata solo per image4) */
+$tiny-icon-dimension: 80px;
+/* posizione top nella copertina piena dell'icona (in questo case immagine): altezza immagine (senza considerare titolo) meno altezza icona diviso 2 */
+$big-icon-top-position-in-full-cover: ($image-height-in-cover - $big-icon-dimension) / 2;
+/* posizione top nella copertina vuota dell'icona: altezza immagine meno altezza titolo meno altezza icona diviso 2, tutto meno 10px per lasciare spazio alla label */
+$big-icon-top-position-in-empty-cover: (($image-height-in-cover - $title-height-in-cover - $big-icon-dimension) / 2) - 10px;
+/* posizione left nella copertina dell'icona (uguale se piena o vuota): larghezza immagine (uguale a larghezza slide) meno larghezza icona diviso 2 */
+$big-icon-left-position-in-cover: ($slide-width - $big-icon-dimension) / 2;
+/* larghezza piena dell'immagine: come la larghezza interna della slide */
+$slide-image-full-width: $slide-inner-width;
+/* larghezza a metà slide dell'immagine: larghezza interna meno il padding interno diviso due */
+$slide-image-half-width: ($slide-inner-width - $slide-inner-padding) / 2;
+/* altezza piena dell'immagine: come l'altezza interna della slide */
+$slide-image-full-height: $slide-inner-height;
+/* altezza a metà slide dell'immagine: altezza interna meno il padding interno diviso due */
+$slide-image-half-height: ($slide-inner-height - $slide-inner-padding) / 2;
+/* altezza a piena con titolo dell'immagine: altezza interna meno altezza titolo meno padding interno */
+$slide-image-full-height-with-title: $slide-inner-height - $slide-title-height - $slide-inner-padding;
+/* posizione top dell'icona immagine in altezza piena: altezza corrispondente immagine meno dimensione icona diviso 2 */
+$big-icon-top-position-in-full-height-image: ($slide-image-full-height - $big-icon-dimension) / 2;
+/* posizione left dell'icona immagine in larghezza piena: larghezza corrispondente immagine meno dimensione icona diviso 2 */
+$big-icon-left-position-in-full-width-image: ($slide-image-full-width - $big-icon-dimension) / 2;
+/* posizione left dell'icona immagine in metà larghezza: larghezza corrispondente immagine meno dimensione icona diviso 2 */
+$big-icon-left-position-in-half-width-image: ($slide-image-half-width - $big-icon-dimension) / 2;
+/* posizione top dell'icona minuscola (image4) immagine in metà altezza: altezza corrispondente immagine meno dimensione icona diviso 2 */
+$tiny-icon-top-position-in-half-height-image: ($slide-image-half-height - $tiny-icon-dimension) / 2;
+/* posizione left dell'icona piccola immagine in metà larghezza: larghezza corrispondente immagine meno dimensione icona diviso 2 */
+$small-icon-left-position-in-half-width-image: ($slide-image-half-width - $small-icon-dimension) / 2;
+/* posizione top dell'icona piccola immagine in altezza piena con titolo: altezza corrispondente immagine meno dimensione icona diviso 2 */
+$small-icon-top-position-in-full-height-image-with-title: ($slide-image-full-height-with-title - $small-icon-dimension) / 2;
+/* posizione left dell'icona minuscola (image4) immagine in metà larghezza: larghezza corrispondente immagine meno dimensione icona diviso 2 */
+$tiny-icon-left-position-in-half-width-image: ($slide-image-half-width - $tiny-icon-dimension) / 2;
+/* posizione top dell'icona immagine (vuota) in altezza piena: altezza corrispondente immagine meno dimensione icona diviso 2 meno 15 per la label */
+$big-icon-top-position-in-full-height-image-empty: (($slide-image-full-height - $big-icon-dimension) / 2) - 15px;
+/* posizione top dell'icona minuscola (image4) immagine (vuota) in metà altezza: altezza corrispondente immagine meno dimensione icona diviso 2 meno 15 per la label */
+$tiny-icon-top-position-in-half-height-image-empty: (($slide-image-half-height - $tiny-icon-dimension) / 2) - 13px;
+/* posizione top dell'icona piccola immagine (vuota) in altezza piena con titolo: altezza corrispondente immagine meno dimensione icona diviso 2 meno 15 per la label */
+$small-icon-top-position-in-full-height-image-with-title-empty: (($slide-image-full-height-with-title - $small-icon-dimension) / 2) - 15px;
+/* font-size della label dell'icona aggiungi nuova immagine nella copertina */
+$icon-label-font-size: 16px;
+/* posizione della label dell'icona aggiungi nuova immagine nella copertina */
+$icon-label-margin-top-in-cover: 280px;
+/* posizione della label dell'icona aggiungi nuova immagine nella slide altezza piena */
+$icon-label-margin-top-in-full-height-image: 330px;
+/* posizione della label dell'icona aggiungi nuova immagine nella slide metà altezza */
+$icon-label-margin-top-in-half-height-image: 170px;
+/* posizione della label dell'icona aggiungi nuova immagine nella slide altezza piena con titolo */
+$icon-label-margin-top-in-full-height-image-with-title: 255px;
+/* font size della caption */
+$image-caption-font-size: 13px;
+/* line height della caption */
+$image-caption-line-height: 35px;
+/* altezza della caption */
+$image-caption-height: 35px;
+/* padding laterale della caption */
+$image-caption-horizontal-padding: 5px;
+/* metà larghezza caption: metà larghezza immagine meno due volte padding orizzontale */
+$image-caption-half-width: $slide-image-half-width - (2 * $image-caption-horizontal-padding);
+/* larghezza piena caption: larghezza piena immagine meno due volte padding orizzontale */
+$image-caption-full-width: $slide-image-full-width - (2 * $image-caption-horizontal-padding);
+/* video a larghezza piena: stesso calcolo di immagine */
+$slide-video-full-width: $slide-image-full-width;
+/* video a metà larghezza: stesso calcolo di immagine */
+$slide-video-half-width: $slide-image-half-width;
+/* video ad altezza piena: stesso calcolo di immagine */
+$slide-video-full-height: $slide-image-full-height;
+/* video ad altezza piena con titolo: stesso calcolo di immagine */
+$slide-video-full-height-with-title: 281px;
+/* video ad altezza piena con titolo con un video caricato (è più basso perché deve rimanere in proporzione) */
+$slide-video-full-height-with-title-empty: $slide-image-full-height-with-title;
+/* posizione top dell'icona video in altezza piena: altezza corrispondente video meno dimensione icona diviso 2 */
+$big-icon-top-position-in-full-height-video: ($slide-video-full-height - $big-icon-dimension) / 2;
+/* posizione left dell'icona video in larghezza piena: larghezza corrispondente video meno dimensione icona diviso 2 */
+$big-icon-left-position-in-full-width-video: ($slide-video-full-width - $big-icon-dimension) / 2;
+/* posizione left dell'icona piccola video in metà larghezza: larghezza corrispondente video meno dimensione icona diviso 2 */
+$small-icon-left-position-in-half-width-video: ($slide-video-half-width - $small-icon-dimension) / 2;
+/* posizione top dell'icona piccola video in altezza piena con titolo: altezza corrispondente video meno dimensione icona diviso 2 */
+$small-icon-top-position-in-full-height-video-with-title: ($slide-video-full-height-with-title - $small-icon-dimension) / 2;
+/* posizione top dell'icona video (vuota) in altezza piena: altezza corrispondente video meno dimensione icona diviso 2 meno 15 per la label */
+$big-icon-top-position-in-full-height-video-empty: (($slide-video-full-height - $big-icon-dimension) / 2) - 15px;
+/* posizione top dell'icona piccola video (vuota) in altezza piena con titolo: altezza corrispondente video meno dimensione icona diviso 2 meno 15 per la label */
+$small-icon-top-position-in-full-height-video-with-title-empty: (($slide-video-full-height-with-title-empty - $small-icon-dimension) / 2) - 15px;
+/* posizione della label dell'icona aggiungi nuovo video nella slide altezza piena */
+$icon-label-margin-top-in-full-height-video: $icon-label-margin-top-in-full-height-image;
+/* posizione della label dell'icona aggiungi nuovo video nella slide altezza piena con titolo */
+$icon-label-margin-top-in-full-height-video-with-title: $icon-label-margin-top-in-full-height-image-with-title;
+/* altezza del footer del player video piccolo */
+$slide-video-player-footer-height-small: 44px;
+/* altezza del footer del player video grande */
+$slide-video-player-footer-height-big: 66px;
+/* altezza contenuto video player altezza piena (si esclude il footer) */
+$slide-video-player-content-full-height: $slide-video-full-height - $slide-video-player-footer-height-big;
+/* altezza contenuto video player altezza piena con titolo (si esclude il footer) */
+$slide-video-player-content-full-height-with-title: $slide-video-full-height-with-title - $slide-video-player-footer-height-small;
+/* dimensione icona audio piccola (nell'audio pieno) */
+$audio-small-icon-dimension: 30px;
+/* dimensione icona audio grande (nell'audio vuoto) */
+$audio-big-icon-dimension: 35px;
+/* posizione top icona audio: altezza placeholder meno dimensione icona piccola diviso due */
+$audio-icon-top-position: ($audio-placeholder-height - $audio-small-icon-dimension) / 2;
+/* quando l'audio è pieno l'icona è posizionata alla destra: slide width meno dimensione icona piccola meno un tot a scelta (margine destra) */
+$audio-icon-left-position: $slide-inner-width - $audio-small-icon-dimension - 15px;
+/* posizione top icona audio vuoto: altezza placeholder meno dimensione icona grande diviso due meno un pezzettino */
+$audio-icon-top-position-empty: (($audio-placeholder-height - $audio-big-icon-dimension) / 2) - 8px;
+/* quando è empty è al centro, icona audio posizione left */
+$audio-icon-left-position-empty: ($slide-inner-width - $audio-big-icon-dimension) / 2;
+/* posizione top label audio vuoto */
+$icon-label-margin-top-in-audio: 34px;
+/* label icona audio è piccola */
+$icon-label-font-size-in-audio: 10px;
+/* bordo del contenuto della slide titolo */
+$title-slide-content-border: 1px;
+/* font-size del titolo */
+$title-slide-font-size: 60px;
+/* line-height del titolo: uguale a font-size */
+$title-slide-line-height: 65px;
+/* padding del contenuto del titolo */
+$title-slide-content-padding: 20px;
+/* altezza contenuto titolo: line height */
+$title-slide-content-height: $title-slide-line-height * 3;
+/* larghezza  contenuto titolo: laghezza interna slide meno due volte padding meno due volte bordo */
+$title-slide-content-width: $slide-inner-width - (2 * $title-slide-content-padding) - (2 * $title-slide-content-border);
+/* margin top contenuto titolo: altezza interna slide meno altezza contenuto titolo meno due volte bordo meno due volte padding diviso due */
+$title-slide-content-margin-top: ($slide-inner-height - $title-slide-content-height - (2 * $title-slide-content-border) - (2 * $title-slide-content-padding)) / 2;
+/* bordo del titolo per la miniatura */
+$miniature-slide-title-border: 4px;
+/* padding del titolo per la miniatura */
+$miniature-slide-title-padding: 7px;
+/* bordo del contenuto della slide titolo */
+$miniature-title-slide-content-border: 4px;
+/* padding del contenuto del titolo */
+$miniature-title-slide-content-padding: 17px;
+/* border di un campo testo in read-only, che sopperisce al bordo di 1px sempre di tinyMCE */
+$miniature-slide-text-read-only-border: 4px;
+/* padding di un campo testo in read-only, che sopperisce a un margin interno di 8px di tinyMCE */
+$miniature-slide-text-read-only-padding: 5px;
+
+/* tenere allineato con content.css; le differenze con tale file sono sottolineate nei commenti */
+@mixin read-only-tiny-mce {
+  
+  /* in content.css è < body, td, pre > */
+  /* è anche stato rimosso html overflow: hidden che è stato messo solo per IE */
+  color: #5d5c5c;
+  font-size: 13px;
+  font-family: Arial, Verdana, Helvetica, sans-serif;
+  line-height: 14px;
+  text-align: left;
+  
+  td, pre {
+    color: #5d5c5c;
+    font-size: 13px;
+    font-family: Arial, Verdana, Helvetica, sans-serif;
+    margin: 8px;
+    line-height: 14px;
+    text-align: left;
+  }
+  
+  p, ol, ul {
+    margin: 0 0 10px 0;
+  }
+  
+  ol, ul {
+    padding-left: 40px;
+  }
+  
+  ul {
+    list-style-image: url('/assets/pallino.svg'); /* questo ha nome diverso, esistono due duplicati del pallino */
+  }
+  
+  strong, b {
+    font-weight: bold;
+  }
+  
+  i, cite, em, var, address, dfn {
+    font-style: italic;
+  }
+  
+  a {
+    color: $orange;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  
+  .size1 {
+    font-size: 13px;
+    line-height: 14px;
+  }
+  
+  .size2 {
+    font-size: 17px;
+    line-height: 19px;
+  }
+  
+  .size3 {
+    font-size: 21px;
+    line-height: 23px;
+  }
+  
+  .size4 {
+    font-size: 25px;
+    line-height: 27px;
+  }
+  
+  .size5 {
+    font-size: 29px;
+    line-height: 32px;
+  }
+  
+  .size6 {
+    font-size: 35px;
+    line-height: 39px;
+  }
+  
+  body {
+    background: #FFF;
+  }
+  
+  body.mceForceColors {
+    background: #FFF;
+    color: #000;
+  }
+  
+  body.mceBrowserDefaults {
+    background: transparent;
+    color: inherit;
+    font-size: inherit;
+    font-family: inherit;
+  }
+  
+  h1 {
+    font-size: 2em;
+  }
+  
+  h2 {
+    font-size: 1.5em;
+  }
+  
+  h3 {
+    font-size: 1.17em;
+  }
+  
+  h4 {
+    font-size: 1em;
+  }
+  
+  h5 {
+    font-size: .83em;
+  }
+  
+  h6 {
+    font-size: .75em;
+  }
+  
+  .mceItemTable, .mceItemTable td, .mceItemTable th, .mceItemTable caption, .mceItemVisualAid {
+    border: 1px dashed #BBB;
+  }
+  
+  a.mceItemAnchor {
+    display: inline-block;
+    -webkit-user-select: all;
+    -webkit-user-modify: read-only;
+    -moz-user-select: all;
+    -moz-user-modify: read-only;
+    width: 11px !important;
+    height: 11px !important;
+    background: url(img/items.gif) no-repeat center center;
+  }
+  
+  span.mceItemNbsp {
+    background: #DDD;
+  }
+  
+  td.mceSelected, th.mceSelected {
+    background-color: #3399ff !important;
+  }
+  
+  img {
+    border: 0;
+  }
+  
+  table, img, hr, .mceItemAnchor {
+    cursor: default;
+  }
+  
+  table td, table th {
+    cursor: text;
+  }
+  
+  ins {
+    border-bottom: 1px solid green;
+    text-decoration: none;
+    color: green;
+  }
+  
+  del {
+    color: red;
+    text-decoration: line-through;
+  }
+  
+  cite {
+    border-bottom: 1px dashed blue;
+  }
+  
+  acronym {
+    border-bottom: 1px dotted #CCC;
+    cursor: help;
+  }
+  
+  abbr {
+    border-bottom: 1px dashed #CCC;
+    cursor: help;
+  }
+  
+  * html body {
+    scrollbar-3dlight-color: #F0F0EE;
+    scrollbar-arrow-color: #676662;
+    scrollbar-base-color: #F0F0EE;
+    scrollbar-darkshadow-color: #DDD;
+    scrollbar-face-color: #E0E0DD;
+    scrollbar-highlight-color: #F0F0EE;
+    scrollbar-shadow-color: #F0F0EE;
+    scrollbar-track-color: #F5F5F5;
+  }
+  
+  img:-moz-broken {
+    -moz-force-broken-image-icon: 1;
+    width: 24px;
+    height: 24px;
+  }
+  
+  font[face=mceinline] {
+    font-family: inherit !important;
+  }
+  
+  *[contentEditable]:focus {
+    outline: 0;
+  }
+  
+}
+
+@mixin slide-title-common {
+  
+  font-size: $slide-title-font-size;
+  width: $slide-title-inner-width;
+  height: $slide-title-inner-height;
+  padding: $slide-title-padding;
+  line-height: $slide-title-line-height;
+  font-family: "Nunito", Helvetica, sans-serif;
+  border: $slide-title-border solid #EFEFEF;
+  color: $orange;
+  letter-spacing: -4px;
+  background-color: white;
+  
+}
+
+@mixin image-icon {
+  
+  background: url('/assets/icone_piene.svg') no-repeat scroll -2em center / 6em 1em transparent;
+  
+}
+
+@mixin image-icon-big {
+  
+  @include image-icon;
+  font-size: $big-icon-dimension;
+  width: $big-icon-dimension;
+  height: $big-icon-dimension;
+  
+}
+
+@mixin image-icon-small {
+  
+  @include image-icon;
+  font-size: $small-icon-dimension;
+  width: $small-icon-dimension;
+  height: $small-icon-dimension;
+  
+}
+
+@mixin image-icon-tiny {
+  
+  @include image-icon;
+  font-size: $tiny-icon-dimension;
+  width: $tiny-icon-dimension;
+  height: $tiny-icon-dimension;
+  
+}
+
+@mixin video-icon {
+  
+  background: url('/assets/icone_piene.svg') no-repeat scroll -1em center / 6em 1em transparent;
+  
+}
+
+@mixin video-icon-big {
+  
+  @include video-icon;
+  font-size: $big-icon-dimension;
+  width: $big-icon-dimension;
+  height: $big-icon-dimension;
+  
+}
+
+@mixin video-icon-small {
+  
+  @include video-icon;
+  font-size: $small-icon-dimension;
+  width: $small-icon-dimension;
+  height: $small-icon-dimension;
+  
+}
+
+@mixin audio-icon {
+  
+  background: url('/assets/icone_piene.svg') no-repeat scroll 0em center / 6em 1em transparent;
+  cursor: pointer;
+  position: absolute;
+  
+}
+
+@mixin audio-icon-big {
+  
+  @include audio-icon;
+  font-size: $audio-big-icon-dimension;
+  width: $audio-big-icon-dimension;
+  height: $audio-big-icon-dimension;
+  
+}
+
+@mixin audio-icon-small {
+  
+  @include audio-icon;
+  font-size: $audio-small-icon-dimension;
+  width: $audio-small-icon-dimension;
+  height: $audio-small-icon-dimension;
+  
+}
+
+@mixin plus-icon {
+  
+  background-position: -3em center;
+  
+}
+
+@mixin general-empty-mask {
+  
+  color: #999999;
+  background-color: #F1F1F1;
+  font-size: $icon-label-font-size;
+  text-align: center;
+  
+}
+
+@mixin image-caption {
+  
+  font-family: "Nunito", Helvetica, sans-serif;
+  background-color: rgba(50, 50, 50, 0.7);
+  color: #FAFAFA;
+  height: $image-caption-height;
+  padding: 0 $image-caption-horizontal-padding;
+  position: absolute;
+  left: auto;
+  bottom: 0;
+  line-height: $image-caption-line-height;
+  font-size: $image-caption-font-size;
+  
+}
+
+.slide-not-loaded {
+  
+  height: $slide-inner-height;
+  width: $slide-inner-width;
+  padding: $slide-inner-padding;
+  background-color: white;
+  -webkit-box-shadow: 0px 6px 16px #161515;
+  box-shadow: 0px 6px 16px #161515;
+  
+}
+
+.slide-content {
+  
+  &.normal-size {
+    
+    -webkit-box-shadow: 0px 6px 16px #161515;
+    box-shadow: 0px 6px 16px #161515;
+    
+  }
+  
+  &.small-size {
+    
+    position: absolute;
+    top: 0;
+    left: 0;
+    
+    .image-container .image .add, .audio-container .audio .add, .video-container .video .add {
+      
+      cursor: default;
+      
+    }
+    
+    &.text, &.image1, &.audio, &.video1 {
+      
+      .text-container {
+        
+        padding: $miniature-slide-text-read-only-padding;
+        border: $miniature-slide-text-read-only-border solid #EFEFEF;
+        
+      }
+      
+    }
+    
+    &.text, &.image1, &.audio, &.video1 {
+      
+      .title-container {
+        
+        .title.read-only {
+          
+          padding: $miniature-slide-title-padding;
+          border: $miniature-slide-title-border solid #EFEFEF;
+          
+        }
+        
+      }
+      
+    }
+    
+    &.title {
+      
+      .title-container {
+        
+        .title.read-only {
+          
+          padding: $miniature-title-slide-content-padding;
+          border: $miniature-title-slide-content-border solid #EFEFEF;
+          
+        }
+        
+      }
+      
+    }
+    
+    .image-container {
+      
+      .image {
+        
+        .add:hover {
+          
+          background: url('/assets/icone_piene.svg') no-repeat scroll -2em center / 6em 1em transparent;
+          
+        }
+        
+      }
+      
+    }
+    
+    .video-container {
+      
+      .video {
+        
+        .add:hover {
+          
+          background: url('/assets/icone_piene.svg') no-repeat scroll -1em center / 6em 1em transparent;
+          
+        }
+        
+      }
+      
+    }
+    
+    &.audio .audio-container {
+      
+      .audio.editable .mask, .audio.editable .empty-mask {
+        
+        .add {
+          
+          cursor: default;
+          
+          &:hover {
+            
+            background: url('/assets/icone_piene.svg') no-repeat scroll 0em center / 6em 1em transparent;
+            
+          }
+          
+        }
+        
+      }
+      
+    }
+    
+    &.video1 .video-container .fake_video {
+      
+      width: $slide-video-half-width;
+      height: $slide-video-player-content-full-height-with-title;
+      
+    }
+    
+    &.video2 .video-container .fake_video {
+      
+      width: $slide-video-full-width;
+      height: $slide-video-player-content-full-height;
+      
+    }
+    
+    &.video1, &.video2, &.audio {
+      
+      .video-container, .audio-container {
+        
+        a.play {
+          
+          background-position: 0 0;
+          opacity: 1;
+          cursor: default;
+          
+        }
+        
+        a.fullScreen {
+          
+          background-position: -7.2em 0;
+          opacity: 1;
+          cursor: default;
+          
+        }
+        
+      }
+      
+    }
+    
+  }
+  
+  height: $slide-inner-height;
+  width: $slide-inner-width;
+  padding: $slide-inner-padding;
+  font-family: Arial,Verdana,sans-serif;
+  background-color: white;
+  
+  .item {
+    
+    float: left;
+    
+  }
+  
+  .visible {
+    
+    display: block;
+    
+  }
+  
+  .hidden {
+    
+    display: none;
+    
+  }
+  
+  .text-container.read-only {
+    
+    padding: $slide-text-read-only-padding;
+    border: $slide-text-read-only-border solid white;
+    overflow: hidden;
+    @include read-only-tiny-mce;
+    
+  }
+  
+  &.audio {
+    
+    .title-container {
+      
+      height: $slide-title-height;
+      margin-bottom: $slide-inner-padding;
+      
+      .title {
+        
+        @include slide-title-common;
+        
+        &.read-only {
+          
+          border-color: white;
+          
+        }
+        
+      }
+      
+    }
+    
+    .audio-container {
+      
+      width: $slide-inner-width;
+      height: $audio-placeholder-height;
+      margin-bottom: $slide-inner-padding;
+      position: relative;
+      
+      ._instance_of_player {
+        
+        width: $slide-inner-width;
+        height: $audio-placeholder-height;
+        
+        a.play, a.pause {
+          
+          height: 30px;
+          width: 30px;
+          margin: 18px 0 0 12px;
+          
+        }
+        
+        .secondTime {
+          
+          margin-top: 28px;
+          width: 85px;
+          font-size: 12px;
+          
+        }
+        
+        .audioSlider {
+          
+          width: 600px;
+          margin: 30px 0 0 0;
+          
+          .ui-slider-handle {
+            
+            top: -4px;
+            height: 12px;
+            width: 12px;
+            
+          }
+          
+        }
+        
+        .sliderDisabler {
+          
+          position: absolute;
+          top: 14px;
+          left: 78px;
+          width: 700px;
+          height: 40px;
+          
+        }
+        
+      }
+      
+      .audio {
+        
+        &.read-only {
+          
+          width: $slide-inner-width;
+          height: $audio-placeholder-height;
+          overflow: hidden;
+          
+        }
+        
+        &.editable {
+          
+          .mask {
+            
+            width: $slide-inner-width;
+            height: $audio-placeholder-height;
+            overflow: hidden;
+            position: relative;
+            
+            .add {
+              
+              @include audio-icon-small;
+              top: $audio-icon-top-position;
+              left: $audio-icon-left-position;
+              
+              &:hover {
+                
+                @include plus-icon;
+                
+              }
+              
+            }
+            
+            .title {
+              
+              position: absolute;
+              top: 48px;
+              width: 860px;
+              text-align: center;
+              height: 20px;
+              
+            }
+            
+          }
+          
+          .empty-mask {
+            
+            @include general-empty-mask;
+            width: $slide-inner-width;
+            height: $audio-placeholder-height;
+            position: relative;
+            
+            .add {
+              
+              @include audio-icon-big;
+              top: $audio-icon-top-position-empty;
+              left: $audio-icon-left-position-empty;
+              
+              &:hover {
+                
+                @include plus-icon;
+                
+              }
+              
+            }
+            
+            p {
+              
+              margin-top: $icon-label-margin-top-in-audio;
+              font-size: $icon-label-font-size-in-audio;
+              
+            }
+            
+          }
+          
+        }
+        
+      }
+      
+    }
+    
+    .text-container {
+      
+      height: $slide-text-height-for-audio;
+      width: $slide-text-full-width;
+      
+      textarea {
+        
+        width: $slide-text-content-full-width;
+        height: $slide-text-content-height-for-audio;
+        
+      }
+      
+      &.read-only {
+        
+        width: $slide-text-read-only-full-width;
+        height: $slide-text-read-only-height-for-audio;
+        
+      }
+      
+    }
+    
+  }
+  
+  &.cover {
+    
+    width: $slide-width;
+    height: $slide-height;
+    padding: 0;
+    
+    .image-container {
+      
+      height: $image-height-in-cover;
+      
+      .image {
+        
+        &.read-only {
+          
+          width: $slide-width;
+          height: $image-height-in-cover;
+          overflow: hidden;
+          position: relative;
+          
+          img {
+            
+            position: absolute;
+            
+          }
+          
+        }
+        
+        &.editable {
+          
+          .mask {
+            
+            width: $slide-width;
+            height: $image-height-in-cover;
+            overflow: hidden;
+            
+            .alignable {
+              
+              position: relative;
+              width: $slide-width;
+              
+              img {
+                
+                cursor: url("https://mail.google.com/mail/images/2/openhand.cur"), move;
+                
+              }
+              
+            }
+            
+            .add {
+              
+              top: $big-icon-top-position-in-full-cover;
+              opacity: 0.8;
+              
+            }
+            
+          }
+          
+          .empty-mask {
+            
+            @include general-empty-mask;
+            width: $slide-width;
+            height: $image-height-in-cover;
+            
+            p {
+              
+              margin-top: $icon-label-margin-top-in-cover;
+              
+            }
+            
+          }
+          
+        }
+        
+      }
+      
+      .add {
+        
+        @include image-icon-big;
+        cursor: pointer;
+        position: absolute;
+        top: $big-icon-top-position-in-empty-cover;
+        left: $big-icon-left-position-in-cover;
+        
+        &:hover {
+          
+          @include plus-icon;
+          
+        }
+        
+      }
+      
+    }
+    
+    .title-container {
+      
+      height: $title-inner-height-in-cover;
+      width: $title-inner-width-in-cover;
+      top: $title-top-offset-in-cover;
+      position: absolute;
+      padding-top: $title-left-and-top-padding-in-cover;
+      padding-left: $title-left-and-top-padding-in-cover;
+      font-family: "Nunito", Helvetica, sans-serif;
+      background-color: $orange;
+      opacity: 0.95;
+      color: #fff;
+      font-size: $title-font-size-in-cover;
+      font-weight: normal;
+      line-height: $title-line-height-in-cover;
+      
+    }
+    
+    .footer-container {
+      
+      background-color: white;
+      color: #373737;
+      height: $footer-inner-height-in-cover;
+      width: $footer-inner-width-in-cover;
+      padding: $footer-vertical-padding-in-cover $footer-horizontal-padding-in-cover;
+      font-size: $footer-font-size-in-cover;
+      font-family: Arial, sans-serif;
+      
+      .subject {
+        
+        float: left;
+        
+      }
+      
+      .author {
+        
+        float: right;
+        
+        .name {
+          
+          color: $orange;
+          
+        }
+        
+      }
+      
+    }
+    
+  }
+  
+  &.image1 {
+    
+    .title-container {
+      
+      height: $slide-title-height;
+      margin-bottom: $slide-inner-padding;
+      
+      .title {
+        
+        @include slide-title-common;
+        
+        &.read-only {
+          
+          border-color: white;
+          
+        }
+        
+      }
+      
+    }
+    
+    .image-container {
+      
+      width: $slide-image-half-width;
+      height: $slide-image-full-height-with-title;
+      margin-right: $slide-inner-padding;
+      position: relative;
+      
+      .image {
+        
+        .caption {
+          
+          @include image-caption;
+          width: $image-caption-half-width;
+          
+        }
+        
+        &.read-only {
+          
+          width: $slide-image-half-width;
+          height: $slide-image-full-height-with-title;
+          overflow: hidden;
+          position: relative;
+          
+          img {
+            
+            position: absolute;
+            
+          }
+          
+        }
+        
+        &.editable {
+          
+          .mask {
+            
+            width: $slide-image-half-width;
+            height: $slide-image-full-height-with-title;
+            overflow: hidden;
+            position: relative;
+            
+            .alignable {
+              
+              position: relative;
+              width: $slide-image-half-width;
+              
+              img {
+                
+                cursor: url("https://mail.google.com/mail/images/2/openhand.cur"), move;
+                
+              }
+              
+            }
+            
+            .add {
+              
+              top: $small-icon-top-position-in-full-height-image-with-title;
+              opacity: 0.8;
+              
+            }
+            
+          }
+          
+          .empty-mask {
+            
+            @include general-empty-mask;
+            width: $slide-image-half-width;
+            height: $slide-image-full-height-with-title;
+            position: relative;
+            
+            p {
+              
+              margin-top: $icon-label-margin-top-in-full-height-image-with-title;
+              
+            }
+            
+          }
+          
+        }
+        
+      }
+      
+      .add {
+        
+        @include image-icon-small;
+        cursor: pointer;
+        position: absolute;
+        top: $small-icon-top-position-in-full-height-image-with-title-empty;
+        left: $small-icon-left-position-in-half-width-image;
+        
+        &:hover {
+          
+          @include plus-icon;
+          
+        }
+        
+      }
+      
+    }
+    
+    .text-container {
+      
+      height: $slide-text-full-height;
+      width: $slide-text-half-width;
+      
+      textarea {
+        
+        width: $slide-text-content-half-width;
+        height: $slide-text-content-full-height;
+        
+      }
+      
+      &.read-only {
+        
+        width: $slide-text-read-only-half-width;
+        height: $slide-text-read-only-full-height;
+        
+      }
+      
+    }
+    
+  }
+  
+  &.image2 {
+    
+    .image-container {
+      
+      width: $slide-image-half-width;
+      height: $slide-image-full-height;
+      margin-right: $slide-inner-padding;
+      position: relative;
+      
+      .image {
+        
+        .caption {
+          
+          @include image-caption;
+          width: $image-caption-half-width;
+          
+        }
+        
+        &.read-only {
+          
+          width: $slide-image-half-width;
+          height: $slide-image-full-height;
+          overflow: hidden;
+          position: relative;
+          
+          img {
+            
+            position: absolute;
+            
+          }
+          
+        }
+        
+        &.editable {
+          
+          .mask {
+            
+            width: $slide-image-half-width;
+            height: $slide-image-full-height;
+            overflow: hidden;
+            position: relative;
+            
+            .alignable {
+              
+              position: relative;
+              width: $slide-image-half-width;
+              
+              img {
+                
+                cursor: url("https://mail.google.com/mail/images/2/openhand.cur"), move;
+                
+              }
+              
+            }
+            
+            .add {
+              
+              top: $big-icon-top-position-in-full-height-image;
+              opacity: 0.8;
+              
+            }
+            
+          }
+          
+          .empty-mask {
+            
+            @include general-empty-mask;
+            width: $slide-image-half-width;
+            height: $slide-image-full-height;
+            position: relative;
+            
+            p {
+              
+              margin-top: $icon-label-margin-top-in-full-height-image;
+              
+            }
+            
+          }
+          
+        }
+        
+      }
+      
+      .add {
+        
+        @include image-icon-big;
+        cursor: pointer;
+        position: absolute;
+        top: $big-icon-top-position-in-full-height-image-empty;
+        left: $big-icon-left-position-in-half-width-image;
+        
+        &:hover {
+          
+          @include plus-icon;
+          
+        }
+        
+      }
+      
+    }
+    
+  }
+  
+  &.image3 {
+    
+    .image-container {
+      
+      width: $slide-image-full-width;
+      height: $slide-image-full-height;
+      position: relative;
+      
+      .image {
+        
+        .caption {
+          
+          @include image-caption;
+          width: $image-caption-full-width;
+          
+        }
+        
+        &.read-only {
+          
+          width: $slide-image-full-width;
+          height: $slide-image-full-height;
+          overflow: hidden;
+          position: relative;
+          
+          img {
+            
+            position: absolute;
+            
+          }
+          
+        }
+        
+        &.editable {
+          
+          .mask {
+            
+            width: $slide-image-full-width;
+            height: $slide-image-full-height;
+            overflow: hidden;
+            position: relative;
+            
+            .alignable {
+              
+              position: relative;
+              width: $slide-image-full-width;
+              
+              img {
+                
+                cursor: url("https://mail.google.com/mail/images/2/openhand.cur"), move;
+                
+              }
+              
+            }
+            
+            .add {
+              
+              top: $big-icon-top-position-in-full-height-image;
+              opacity: 0.8;
+              
+            }
+            
+          }
+          
+          .empty-mask {
+            
+            @include general-empty-mask;
+            width: $slide-image-full-width;
+            height: $slide-image-full-height;
+            position: relative;
+            
+            p {
+              
+              margin-top: $icon-label-margin-top-in-full-height-image;
+              
+            }
+            
+          }
+          
+        }
+        
+      }
+      
+      .add {
+        
+        @include image-icon-big;
+        cursor: pointer;
+        position: absolute;
+        top: $big-icon-top-position-in-full-height-image-empty;
+        left: $big-icon-left-position-in-full-width-image;
+        
+        &:hover {
+          
+          @include plus-icon;
+          
+        }
+        
+      }
+      
+    }
+    
+  }
+  
+  &.image4 {
+    
+    .image-container {
+      
+      width: $slide-image-half-width;
+      height: $slide-image-half-height;
+      margin-right: $slide-inner-padding;
+      margin-bottom: $slide-inner-padding;
+      position: relative;
+      
+      .image {
+        
+        .caption {
+          
+          @include image-caption;
+          width: $image-caption-half-width;
+          
+        }
+        
+        &.read-only {
+          
+          width: $slide-image-half-width;
+          height: $slide-image-half-height;
+          overflow: hidden;
+          position: relative;
+          
+          img {
+            
+            position: absolute;
+            
+          }
+          
+        }
+        
+        &.editable {
+          
+          .mask {
+            
+            width: $slide-image-half-width;
+            height: $slide-image-half-height;
+            overflow: hidden;
+            position: relative;
+            
+            .alignable {
+              
+              position: relative;
+              width: $slide-image-half-width;
+              
+              img {
+                
+                cursor: url("https://mail.google.com/mail/images/2/openhand.cur"), move;
+                
+              }
+              
+            }
+            
+            .add {
+              
+              top: $tiny-icon-top-position-in-half-height-image;
+              opacity: 0.8;
+              
+            }
+            
+          }
+          
+          .empty-mask {
+            
+            @include general-empty-mask;
+            width: $slide-image-half-width;
+            height: $slide-image-half-height;
+            position: relative;
+            
+            p {
+              
+              margin-top: $icon-label-margin-top-in-half-height-image;
+              
+            }
+            
+          }
+          
+        }
+        
+      }
+      
+      .add {
+        
+        @include image-icon-tiny;
+        cursor: pointer;
+        position: absolute;
+        top: $tiny-icon-top-position-in-half-height-image-empty;
+        left: $tiny-icon-left-position-in-half-width-image;
+        
+        &:hover {
+          
+          @include plus-icon;
+          
+        }
+        
+      }
+      
+    }
+    
+  }
+  
+  &.text {
+    
+    .title-container {
+      
+      height: $slide-title-height;
+      margin-bottom: $slide-inner-padding;
+      
+      .title {
+        
+        @include slide-title-common;
+        
+        &.read-only {
+          
+          border-color: white;
+          
+        }
+        
+      }
+      
+    }
+    
+    .text-container {
+      
+      height: $slide-text-full-height;
+      width: $slide-text-full-width;
+      
+      textarea {
+        
+        width: $slide-text-content-full-width;
+        height: $slide-text-content-full-height;
+        
+      }
+      
+      &.read-only {
+        
+        width: $slide-text-read-only-full-width;
+        height: $slide-text-read-only-full-height;
+        
+      }
+      
+    }
+    
+  }
+  
+  &.title {
+    
+    .title-container {
+      
+      width: $slide-inner-width;
+      height: $slide-inner-height;
+      
+      .title {
+        
+        width: $title-slide-content-width;
+        height: $title-slide-content-height;
+        padding: $title-slide-content-padding;
+        margin-top: $title-slide-content-margin-top;
+        border: $title-slide-content-border solid #EFEFEF;
+        font-size: $title-slide-font-size;
+        line-height: $title-slide-line-height;
+        text-align: center;
+        color: $orange;
+        font-family: "Nunito", Helvetica, sans-serif;
+        background-color: white;
+        letter-spacing: -3px;
+        
+        &.read-only {
+          
+          border-color: white;
+          
+        }
+        
+      }
+      
+    }
+    
+  }
+  
+  &.video1 {
+    
+    .title-container {
+      
+      height: $slide-title-height;
+      margin-bottom: $slide-inner-padding;
+      
+      .title {
+        
+        @include slide-title-common;
+        
+        &.read-only {
+          
+          border-color: white;
+          
+        }
+        
+      }
+      
+    }
+    
+    .video-container {
+      
+      width: $slide-video-half-width;
+      height: $slide-video-full-height-with-title;
+      margin-right: $slide-inner-padding;
+      position: relative;
+      
+      ._instance_of_player {
+        
+        width: $slide-video-half-width;
+        height: $slide-video-full-height-with-title;
+        
+        video {
+          
+          width: $slide-video-half-width;
+          height: $slide-video-player-content-full-height-with-title;
+          
+        }
+        
+        a.play, a.pause {
+          
+          height: 30px;
+          width: 30px;
+          margin: 2px 0 0 10px;
+          
+        }
+        
+        a.fullScreen {
+          
+          width: 30px;
+          height: 30px;
+          margin: 2px 10px 0 0;
+          
+        }
+        
+        .secondTime {
+          
+          margin-top: 11px;
+          width: 46px;
+          font-size: 11px;
+          
+        }
+        
+        .videoSlider {
+          
+          width: 230px;
+          margin: 13px 8px 0 8px;
+          
+          .ui-slider-handle {
+            
+            top: -4px;
+            height: 12px;
+            width: 12px;
+            
+          }
+          
+        }
+        
+        .sliderDisabler {
+          
+          position: absolute;
+          top: 242px;
+          left: 62px;
+          width: 296px;
+          height: 32px;
+          
+        }
+        
+      }
+      
+      .video {
+        
+        &.read-only {
+          
+          width: $slide-video-half-width;
+          height: $slide-video-full-height-with-title;
+          overflow: hidden;
+          
+        }
+        
+        &.editable {
+          
+          .mask {
+            
+            width: $slide-video-half-width;
+            height: $slide-video-full-height-with-title;
+            overflow: hidden;
+            position: relative;
+            
+            .alignable {
+              
+              position: relative;
+              width: $slide-video-half-width;
+              
+            }
+            
+            .add {
+              
+              top: $small-icon-top-position-in-full-height-video-with-title;
+              opacity: 0.8;
+              
+            }
+            
+          }
+          
+          .empty-mask {
+            
+            @include general-empty-mask;
+            width: $slide-video-half-width;
+            height: $slide-video-full-height-with-title-empty;
+            position: relative;
+            
+            p {
+              
+              margin-top: $icon-label-margin-top-in-full-height-video-with-title;
+              
+            }
+            
+          }
+          
+        }
+        
+      }
+      
+      .add {
+        
+        @include video-icon-small;
+        cursor: pointer;
+        position: absolute;
+        top: $small-icon-top-position-in-full-height-video-with-title-empty;
+        left: $small-icon-left-position-in-half-width-video;
+        
+        &:hover {
+          
+          @include plus-icon;
+          
+        }
+        
+      }
+      
+    }
+    
+    .text-container {
+      
+      height: $slide-text-full-height;
+      width: $slide-text-half-width;
+      
+      textarea {
+        
+        width: $slide-text-content-half-width;
+        height: $slide-text-content-full-height;
+        
+      }
+      
+      &.read-only {
+        
+        width: $slide-text-read-only-half-width;
+        height: $slide-text-read-only-full-height;
+        
+      }
+      
+    }
+    
+  }
+  
+  &.video2 {
+    
+    .video-container {
+      
+      width: $slide-video-full-width;
+      height: $slide-video-full-height;
+      position: relative;
+      
+      ._instance_of_player {
+        
+        width: $slide-video-full-width;
+        height: $slide-video-full-height;
+        
+        video {
+          
+          width: $slide-video-full-width;
+          height: $slide-video-player-content-full-height;
+          
+        }
+        
+        a.play, a.pause {
+          
+          height: 30px;
+          width: 30px;
+          margin: 13px 0 0 10px;
+          
+        }
+        
+        a.fullScreen {
+          
+          width: 30px;
+          height: 30px;
+          margin: 13px 10px 0 0;
+          
+        }
+        
+        .secondTime {
+          
+          margin-top: 23px;
+          width: 85px;
+          font-size: 12px;
+          
+        }
+        
+        .videoSlider {
+          
+          width: 600px;
+          margin: 24px 0 0 0;
+          
+          .ui-slider-handle {
+            
+            top: -4px;
+            height: 12px;
+            width: 12px;
+            
+          }
+          
+        }
+        
+        .sliderDisabler {
+          
+          position: absolute;
+          top: 494px;
+          left: 78px;
+          width: 700px;
+          height: 40px;
+          
+        }
+        
+      }
+      
+      .video {
+        
+        &.read-only {
+          
+          width: $slide-video-full-width;
+          height: $slide-video-full-height;
+          overflow: hidden;
+          
+        }
+        
+        &.editable {
+          
+          .mask {
+            
+            width: $slide-video-full-width;
+            height: $slide-video-full-height;
+            overflow: hidden;
+            position: relative;
+            
+            .alignable {
+              
+              position: relative;
+              width: $slide-video-full-width;
+              
+            }
+            
+            .add {
+              
+              top: $big-icon-top-position-in-full-height-video;
+              opacity: 0.8;
+              
+            }
+            
+          }
+          
+          .empty-mask {
+            
+            @include general-empty-mask;
+            width: $slide-video-full-width;
+            height: $slide-video-full-height;
+            position: relative;
+            
+            p {
+              
+              margin-top: $icon-label-margin-top-in-full-height-video;
+              
+            }
+            
+          }
+          
+        }
+        
+      }
+      
+      .add {
+        
+        @include video-icon-big;
+        cursor: pointer;
+        position: absolute;
+        top: $big-icon-top-position-in-full-height-video-empty;
+        left: $big-icon-left-position-in-full-width-video;
+        
+        &:hover {
+          
+          @include plus-icon;
+          
+        }
+        
+      }
+      
+    }
+    
+  }
+  
+}

@@ -1,432 +1,634 @@
-//ELEMENTI IN COMUNE TRA EDITOR E PLAYER//
 @mixin sharedElements {
+  
   background-size: 11.3em 22.7em;
   background-image: url(<%= asset_path 'icone_editor_elementi.svg' %>);
   background-repeat: no-repeat;
-  background-position:0 0;
-  padding:0;
+  background-position: 0 0;
+  padding: 0;
+  
 }
 
 .iconMediaElements {
+  
   .audio {
+    
     @include sharedElements;
     background-position: 0 -2.5em;
+    
   }
+  
 }
+
 .scrollVerde {
+  
   .jspTrack {
-   background: #3f3f3f;
+    
+    background: #3f3f3f;
+    
   }
+  
   .jspHorizontalBar {
-   height:8px;
- }
- .jspDrag {
-  background: #41a62a;
- }
- 
+    height: 8px;
+    
+  }
+  
+  .jspDrag {
+    
+    background: #41a62a;
+    
+  }
+  
 }
 
 .scrollBlu {
+  
   .jspTrack {
-   background: #3f3f3f;
+    
+    background: #3f3f3f;
+    
   }
+  
   .jspHorizontalBar {
-   height:8px;
- }
- .jspDrag {
-  background: #2EAADC;
- }
- 
+    
+    height: 8px;
+  }
+  
+  .jspDrag {
+    
+    background: #2EAADC;
+    
+  }
+  
 }
 
-
 $icon-size: 5.6em;
-/*ICONOGRAFIA PER DISTINGUERE GLI ELEMENTI DIDATTICI*/
+
 @mixin iconEditorElement($font-size: 0.5em) {
   
   & {
-    float:left;
     
+    float: left;
     width: $icon-size;
     height: $icon-size;
     background-image: url(<%= asset_path 'icone_editor_elementi.svg' %>);
     background-repeat: no-repeat;
     background-size: ($icon-size*3) ($icon-size*4);
-    padding:0;
+    padding: 0;
     font-size: $font-size;
+    
   }
-}
-.videoButton {
-  @include iconEditorElement(0.7em);
-  margin-right:0px;
-  background-position: (-$icon-size) 0;
-  opacity:0.3;
-  cursor:pointer;
-  &:hover, &.current {
-    background-position: 0 0;
-    opacity:1;
-  }
- }
-.photoButton {
-  @include iconEditorElement(0.7em);
-  margin-right:0px;
-  background-position: (-$icon-size) (-$icon-size*2);
-  opacity:0.3;
-  cursor:pointer;
-  &:hover, &.current {
-    background-position: 0 (-$icon-size*2);
-    opacity:1;
-  }
-}
-.audioButton {
-  @include iconEditorElement(0.7em);
-  margin-right:0px;
-  background-position: (-$icon-size*2) (-$icon-size);
-  opacity:0.1;
-  cursor:pointer;
-  &:hover, &.current {
-    background-position: 0 (-$icon-size);
-    opacity:1;
-  }
-}
-.textButton {
-  @include iconEditorElement(0.7em);
-  margin-right:0px;
-  background-position: (-$icon-size) (-$icon-size*3);
-  opacity:0.3;
-  cursor:pointer;
-  &:hover, &.current {
-    background-position: 0 (-$icon-size*3);
-    opacity:1;
-  }
-}
-.photoIcon {
-   @include iconEditorElement(0.4em);
-   margin-right:5px;
-   background-position: 0 (-$icon-size*2);
-    opacity:1;
-}
-.imageIcon {
-   @include iconEditorElement(0.4em);
-   margin-right:5px;
-   background-position: 0 (-$icon-size*2);
-    opacity:1;
-}
-.videoIcon {
-   @include iconEditorElement(0.4em);
-   background-position: 0 0;
-    opacity:1;
-}
-.audioIcon {
-  @include iconEditorElement(0.4em);
-  margin-right:5px;
-  background-position: 0 (-$icon-size);
-  opacity:1;
-}
-.textIcon {
-  @include iconEditorElement(0.4em);
-  margin-right:5px;
-  background-position: 0 (-$icon-size*3);
-  opacity:1;
+  
 }
 
+.videoButton {
+  
+  @include iconEditorElement(0.7em);
+  margin-right: 0px;
+  background-position: (-$icon-size) 0;
+  opacity: 0.3;
+  cursor: pointer;
+  
+  &:hover, &.current {
+    
+    background-position: 0 0;
+    opacity: 1;
+    
+  }
+  
+}
+
+.photoButton {
+  
+  @include iconEditorElement(0.7em);
+  margin-right: 0px;
+  background-position: (-$icon-size) (-$icon-size*2);
+  opacity: 0.3;
+  cursor: pointer;
+  
+  &:hover, &.current {
+    
+    background-position: 0 (-$icon-size*2);
+    opacity: 1;
+    
+  }
+  
+}
+
+.audioButton {
+  
+  @include iconEditorElement(0.7em);
+  margin-right: 0px;
+  background-position: (-$icon-size*2) (-$icon-size);
+  opacity: 0.1;
+  cursor: pointer;
+  
+  &:hover, &.current {
+    
+    background-position: 0 (-$icon-size);
+    opacity: 1;
+    
+  }
+  
+}
+
+.textButton {
+  
+  @include iconEditorElement(0.7em);
+  margin-right: 0px;
+  background-position: (-$icon-size) (-$icon-size*3);
+  opacity: 0.3;
+  cursor: pointer;
+  
+  &:hover, &.current {
+    
+    background-position: 0 (-$icon-size*3);
+    opacity: 1;
+    
+  }
+  
+}
+
+.photoIcon {
+  
+  @include iconEditorElement(0.4em);
+  margin-right: 5px;
+  background-position: 0 (-$icon-size*2);
+  opacity: 1;
+  
+}
+
+.imageIcon {
+  
+  @include iconEditorElement(0.4em);
+  margin-right: 5px;
+  background-position: 0 (-$icon-size*2);
+  opacity: 1;
+  
+}
+
+.videoIcon {
+  
+  @include iconEditorElement(0.4em);
+  background-position: 0 0;
+  opacity: 1;
+  
+}
+
+.audioIcon {
+  
+  @include iconEditorElement(0.4em);
+  margin-right: 5px;
+  background-position: 0 (-$icon-size);
+  opacity: 1;
+  
+}
+
+.textIcon {
+  
+  @include iconEditorElement(0.4em);
+  margin-right: 5px;
+  background-position: 0 (-$icon-size*3);
+  opacity: 1;
+  
+}
 
 $button-size: 6em;
 
-/*MENU CONDIVISO EDITOR LESSON ED EDITOR ELEMENTS*/
 @mixin menuCondivisoElementLessonEditor($font-size: 0.9em) {
+  
   & {
-    float:left;
+    
+    float: left;
     width: $button-size;
     height: $button-size;
     background-image: url(<%= asset_path 'set-icone-editor.svg' %>);
     background-repeat: no-repeat;
     background-size: ($button-size*4) ($button-size*10);
-    padding:0;
+    padding: 0;
     font-size: $font-size;
+    
   }
+  
   &:hover {
+    
     cursor: pointer;
   }
+  
 }
 
 .creaNuovoButton {
-  @include  menuCondivisoElementLessonEditor(0.7em);
+  
+  @include menuCondivisoElementLessonEditor(0.7em);
   background-position: (-$button-size*2) (-$button-size);
-  opacity:0.2;
+  opacity: 0.2;
+  
   &:hover, &.current {
+    
     font-size: 0.7em;
     background-position: (-$button-size*3) (-$button-size);
-    opacity:1;
-   }
+    opacity: 1;
+    
+  }
+  
 }
 
 .deleteButtonOrange {
-  @include  menuCondivisoElementLessonEditor(0.75em);
+  
+  @include menuCondivisoElementLessonEditor(0.75em);
   background-position: 0 0;
-  opacity:0.2;
+  opacity: 0.2;
+  
   &:hover, &.current {
+    
     background-position: (-$button-size) 0;
-    opacity:1;
+    opacity: 1;
+    
   }
+  
 }
 
 .addButtonOrange {
-  @include  menuCondivisoElementLessonEditor(0.75em);
+  
+  @include menuCondivisoElementLessonEditor(0.75em);
   background-position: 0 (-$button-size);
-  opacity:0.2;
+  opacity: 0.2;
+  
   &:hover, &.current {
+    
     background-position: (-$button-size) (-$button-size);
-    opacity:1;
+    opacity: 1;
+    
   }
+  
 }
 
 .minusButtonOrange {
-  @include  menuCondivisoElementLessonEditor(0.75em);
+  
+  @include menuCondivisoElementLessonEditor(0.75em);
   background-position: (-$button-size) (-$button-size*8);
-  opacity:1;
+  opacity: 1;
+  
   &:hover, &.current {
+    
     background-position: 0 (-$button-size*8);
-    opacity:0.2;
+    opacity: 0.2;
+    
   }
+  
 }
 
-
 .infoButtonWhite {
-  @include  menuCondivisoElementLessonEditor(0.75em);
+  
+  @include menuCondivisoElementLessonEditor(0.75em);
   background-position: 0 (-$button-size*2);
-  opacity:1;
+  opacity: 1;
+  
 }
 
 .infoButtonOrange {
+  
   @include  menuCondivisoElementLessonEditor(0.75em);
   background-position: 0 (-$button-size*2);
-  opacity:0.2;
+  opacity: 0.2;
+  
   &:hover, &.current {
+    
     background-position: (-$button-size) (-$button-size*2);
-    opacity:1;
+    opacity: 1;
+    
   }
+  
 }
 
 .exitButtonOrange {
+  
   @include  menuCondivisoElementLessonEditor(0.75em);
   background-image: url(<%= asset_path 'esci-rounded.svg' %>);
   background-repeat: no-repeat;
   background-size: ($button-size*4) ($button-size);
-  padding:0;
+  padding: 0;
   font-size: $button-size;
   background-position: 0 (-$button-size*3);
-  opacity:0.2;
+  opacity: 0.2;
+  
   &:hover, &.current {
+    
     background-position: (-$button-size) (-$button-size*3);
-    opacity:1;
+    opacity: 1;
+    
   }
+  
 }
 
 .saveButtonOrange {
+  
   @include  menuCondivisoElementLessonEditor(0.75em);
   background-position: 0 (-$button-size*3);
-  opacity:0.2;
+  opacity: 0.2;
+  
   &:hover, &.current {
+    
     background-position: (-$button-size) (-$button-size*3);
-    opacity:1;
+    opacity: 1;
+    
   }
+  
 }
 
 .exitButtonOrange {
+  
   background-image: url(<%= asset_path 'esci-rounded.svg' %>);
   background-repeat: no-repeat;
   background-size: 240px 60px;
   background-position: -180px 0;
-  opacity:0.2;
+  opacity: 0.2;
+  
   &:hover, &.current {
+    
     background-position: -60px 0;
-    opacity:1;
+    opacity: 1;
+    
   }
+  
 }
 
 .aggiungiImgButton {
+  
   @include  menuCondivisoElementLessonEditor(0.4em);
   background-position: (-$button-size*2) (-$button-size);
-  opacity:0.2;
+  opacity: 0.2;
+  
   &:hover, &.current {
+    
     background-position: (-$button-size*3) (-$button-size);
-    opacity:1;
+    opacity: 1;
+    
   }
+  
 }
+
 .saveButton {
+  
   @include  menuCondivisoElementLessonEditor(0.6em);
   background-position: 0 (-$button-size*3);
-  opacity:0.2;
+  opacity: 0.2;
+  
   &:hover, &.current {
+    
     background-position: (-$button-size*3) (-$button-size*3);
-    opacity:1;
+    opacity: 1;
+    
   }
+  
 }
+
 .playButton {
+  
   @include  menuCondivisoElementLessonEditor(0.6em);
   background-position: 0 (-$button-size*5);
-  opacity:0.2;
+  opacity: 0.2;
+  
   &:hover, &.current {
+    
     background-position: (-$button-size*3) (-$button-size*5);
-    opacity:1;
+    opacity: 1;
+    
   }
+  
 }
+
 .closeButton {
+  
   @include  menuCondivisoElementLessonEditor(0.6em);
   background-position: 0 0;
-  opacity:0.2;
-  &.closeButtonSmall{
+  opacity: 0.2;
+  
+  &.closeButtonSmall {
+    
     font-size: 0.25em;
-    opacity:0.5;
+    opacity: 0.5;
+    
   }
+  
   &:hover, &.current {
+    
     background-position: (-$button-size*3) 0;
-    opacity:1;
+    opacity: 1;
+    
   }
+  
 }
-/*MENU EDIT IMAGES*/
 
- @mixin menuEditImages {
+@mixin menuEditImages {
+  
   $button-size: 6em;
+  
   & {
+    
     width: $button-size;
     height: $button-size;
     background-image: url(<%= asset_path 'set-icone-editor.svg' %>);
     background-repeat: no-repeat;
     background-size: ($button-size*4) ($button-size*10);
-    padding:2.3em 3em;
-    font-size:0.7em;
+    padding: 2.3em 3em;
+    font-size: 0.7em;
+    
   }
+  
   &:hover {
+    
     cursor: pointer;
+    
   }
+  
 }
+
 .cutButton {
+  
   @include menuEditImages;
   background-position: 0 (-$button-size*7);
-  opacity:0.2;
+  opacity: 0.2;
+  
   &:hover, &.current {
+    
     background-position: (-$button-size*3) (-$button-size*7);
-    opacity:1;
+    opacity: 1;
+    
   }
+  
   &.current:hover {
-    cursor:default;
+    
+    cursor: default;
+    
   }
-}  
+}
+
 .abcButton {
+  
   @include menuEditImages;
   background-position: 0 (-$button-size*9);
-  opacity:0.2;
+  opacity: 0.2;
+  
   &:hover, &.current {
+    
     background-position: (-$button-size*3) (-$button-size*9);
-    opacity:1;
+    opacity: 1;
+    
   }
+  
   &.current:hover {
-    cursor:default;
+    
+    cursor: default;
+    
   }
-} 
- 
-/*MENU*/
-  @mixin buttonExitElement {
+  
+}
+
+@mixin buttonExitElement {
+  
   $button-size: 4.5em;
+  
   & {
+    
     display: block;
     width: $button-size;
     height: $button-size;
     background-image: url(<%= asset_path 'set-icone-editor.svg' %>);
     background-repeat: no-repeat;
     background-size: ($button-size*4) ($button-size*10);
-    padding:0;
+    padding: 0;
+    
   }
+  
   &:hover {
+    
     cursor: pointer;
+    
   }
+  
 }
- /*FINE MENU*/
- .exitContent {
-    padding-top:7px;
-    a {
-      @include buttonExitElement;
-    }
+
+.exitContent {
+  
+  padding-top: 7px;
+  
+  a {
+    
+    @include buttonExitElement;
   }
-  .exitButton {
-   @include buttonExitElement;
-   font-size: 0.3em;
-   background-position: (-$button-size*2) 0;
-   opacity:0.2;
- }
- @mixin addElementInGallery {
+  
+}
+
+.exitButton {
+  
+  @include buttonExitElement;
+  font-size: 0.3em;
+  background-position: (-$button-size*2) 0;
+  opacity: 0.2;
+  
+}
+
+@mixin addElementInGallery {
+  
   $button-size: 2em;
+  
   & {
+    
     width: $button-size;
     height: $button-size;
     background-image: url(<%= asset_path 'icone-player.svg' %>);
     background-repeat: no-repeat;
     background-size: ($button-size*5) ($button-size*4);
     background-position: -8em -4em;
-    padding:0;
-    opacity:0.5;
-    margin-top:5px;
+    padding: 0;
+    opacity: 0.5;
+    margin-top: 5px;
+    
   }
   
   &:hover {
+    
     cursor: pointer;
     background-position: -8em 0em;
-    opacity:1;
+    opacity: 1;
+    
   }
-} 
+  
+}
+
 a.addButtonContent {
+  
   @include addElementInGallery;
-  float:left;
-  margin-top:0px;
-}  
+  float: left;
+  margin-top: 0;
+  
+}
+
 .esciButton {
+  
   background-image: url(<%= asset_path 'esci.svg' %>);
   background-repeat: no-repeat;
   background-size: 12em 6em;
   background-position: 0em -1em;
-  padding:0;
-  float:right;
-  font-size:0.4em;
+  padding: 0;
+  float: right;
+  font-size: 0.4em;
   width: 5.8em;
   height: 4em;
-  margin-top:6px;
+  margin-top: 6px;
+  
   &:hover {
+    
     background-position: -6em -1em;
+    
   };
+  
 }
+
 .exitGallery {
+  
   background-image: url(<%= asset_path 'x.svg' %>);
   background-repeat: no-repeat;
   background-size: 23.8em 3.4em;
   background-position: -7.1em 0em;
-  float:right;
-  font-size:0.5em;
+  float: right;
+  font-size: 0.5em;
   width: 3em;
   height: 3em;
+  
   &:hover {
+    
     background-position: -10.5em 0em;
+    
   };
-} 
+  
+}
+
 .nextButton {
+  
   background-image: url(<%= asset_path 'next.svg' %>);
   background-repeat: no-repeat;
   background-size: 12em 6em;
   background-position: 0em 0em;
-  padding:0;
-  font-size:0.6em;
+  padding: 0;
+  font-size: 0.6em;
   width: 6em;
-  float:right;
+  float: right;
   height: 6em;
   opacity: 0.2;
+  
   &:hover {
+    
     background-position: -6.1em 0em;
-    font-size:0.6em;
-    opacity:1;
+    font-size: 0.6em;
+    opacity: 1;
+    
   };
+  
 }
+
 .okButtonContent {
+  
   width: 6.2em;
   height: 6.3em;
   background-image: url(/assets/v.svg);
@@ -436,68 +638,49 @@ a.addButtonContent {
   padding: 0;
   opacity: 0.5;
   margin-top: 5px;
-  font-size:0.6em;
+  font-size: 0.6em;
+  
   &:hover {
-    opacity:1;
+    
+    opacity: 1;
     background-position: -7.1em 0em;
+    
   };
-} 
- /* TINYMCE SIZES */
- .size1{
-   font-size: 120%;
-   line-height: 102%;
- }              
-                 
- .size2{        
-   font-size: 140%;
-   line-height: 104%;
- }              
-                
- .size3{        
-   font-size: 160%;
-   line-height: 106%;
- }              
-                
- .size4{        
-   font-size: 175%;
-   line-height: 107%;
- }              
-                
- .size5{        
-   font-size: 190%;
-   line-height: 109%;
- }              
-                
- .size6{        
-   font-size: 205%;
-   line-height: 115%;
- }              
-                
- .size7{        
-   font-size: 220%;
-   line-height: 120%;
- }
-.navLeft {
-  background: url(<%= asset_path 'nav_left.png' %>) center left no-repeat;
-  opacity:0.6;
-  position:absolute; 
-  left:0%; 
-  bottom:50%;
-  width:46px;
-  height:59px;
-  &:hover {
-    opacity:1;
-  };
+  
 }
-.navRight {
-  background: url(<%= asset_path 'nav_right.png' %>) center left no-repeat;
-  opacity:0.6;
-  position:absolute; 
-  right:0%; 
-  bottom:50%;
-  width:46px;
-  height:59px;
-   &:hover {
-    opacity:1;
+
+.navLeft {
+  
+  background: url(<%= asset_path 'nav_left.png' %>) center left no-repeat;
+  opacity: 0.6;
+  position: absolute;
+  left: 0%;
+  bottom: 50%;
+  width: 46px;
+  height: 59px;
+  
+  &:hover {
+    
+    opacity: 1;
+    
   };
-} 
+  
+}
+
+.navRight {
+  
+  background: url(<%= asset_path 'nav_right.png' %>) center left no-repeat;
+  opacity: 0.6;
+  position: absolute;
+  right: 0%;
+  bottom: 50%;
+  width: 46px;
+  height: 59px;
+  
+  &:hover {
+    
+    opacity: 1;
+    
+  };
+  
+}

@@ -23,10 +23,6 @@ Detects if the browser is an iPad, or iPhone, or other mobile browsers, and save
   }
 })();
 
-
-
-
-
 /**
 Checks if the application must autoplay media
 @method mustAutoplayMediaInLessonViewer
@@ -34,4 +30,13 @@ Checks if the application must autoplay media
 **/
 function mustAutoplayMediaInLessonViewer() {
   return (!$.browser.ipad && !$.browser.iphone);
+}
+
+/**
+Checks if the application must react to swipe
+@method mustReactToSwipe
+@for JqueryPatchesBrowsers
+**/
+function mustReactToSwipe() {
+  return ($.browser.ipad || $.browser.iphone);
 }

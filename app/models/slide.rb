@@ -101,12 +101,11 @@ class Slide < ActiveRecord::Base
   KINDS = KINDS_WITHOUT_COVER + [COVER]
   
   # Maximum length of the title
-  MAX_TITLE_LENGTH = (I18n.t('language_parameters.slide.length_title') > 255 ? 255 : I18n.t('language_parameters.slide.length_title'))
   MAX_COVER_TITLE_LENGTH = (I18n.t('language_parameters.lesson.length_title') > 255 ? 255 : I18n.t('language_parameters.lesson.length_title'))
   
   validates_presence_of :lesson_id, :position
   validates_numericality_of :lesson_id, :position, :only_integer => true, :greater_than => 0
-  validates_length_of :title, :maximum => MAX_TITLE_LENGTH, :allow_nil => true, unless: proc{ cover? }
+  validates_length_of :title, :maximum => 255, :allow_nil => true, unless: proc{ cover? }
   validates_length_of :title, :maximum => MAX_COVER_TITLE_LENGTH, :allow_nil => true, if: proc{ cover? }
   validates_inclusion_of :kind, :in => KINDS
   validates_uniqueness_of :position, :scope => :lesson_id
@@ -116,9 +115,13 @@ class Slide < ActiveRecord::Base
   before_validation :init_validation
   before_destroy :stop_if_cover
   
+  # Used to center vertically the title
   def title=(title)
-    title = title.nil? ? nil : title.to_s.gsub("\r\n", '<br/>')
-    write_attribute(:title, sanitize(title))
+    if self.kind == TITLE && !title.blank? && title.first == "\r"
+      write_attribute(:title, " #{title}")
+    else
+      write_attribute(:title, title)
+    end
   end
   
   # Used to sanitize texts from TinyMCE

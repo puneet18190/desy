@@ -405,10 +405,14 @@ function lessonViewerDocumentReadySlidesNavigation() {
     }
   });
   $(&#x27;.lesson-viewer-layout&#x27;).on(&#x27;swipeleft&#x27;, function() {
-    goToNextSlideInLessonViewer(true);
+    if(mustReactToSwipe()) {
+      goToNextSlideInLessonViewer(true);
+    }
   });
   $(&#x27;.lesson-viewer-layout&#x27;).on(&#x27;swiperight&#x27;, function() {
-    goToPrevSlideInLessonViewer(true);
+    if(mustReactToSwipe()) {
+      goToPrevSlideInLessonViewer(true);
+    }
   });
 }
 

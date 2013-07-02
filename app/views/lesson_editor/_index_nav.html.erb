@@ -7,13 +7,11 @@
     <li class="navNumbers <%= slide.cover? ? '' : '_slide_nav_sortable'.html_safe %>">
       <a id="slide_in_nav_lesson_editor_<%= slide.id %>" class="<%= nav_class.html_safe %>" data-slide-id="<%= slide.id %>"><%= slide.position %></a>
       <div class="slide-tooltip">
-        <% if slide.cover? %>
-          <%= render :partial => "lessons/thumbnail", :locals => {:lesson => slide.lesson} %>
-        <% else %>
+        <div class="miniature-container">
           <div class="zoomOutThumb">
-            <%= render :partial => "lesson_editor/slides/choose_thumbnail", :locals => {:slide => slide} %>
+            <%= render :partial => "lesson_editor/thumbnails/#{slide.kind}", :locals => {:slide => slide} %>
           </div>
-        <% end %>
+        </div>
       </div>
     </li>
   <% end %>

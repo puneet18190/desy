@@ -788,7 +788,8 @@ en:
       # 1 - views/lesson_editor/_slide_buttons.html.erb
       add_slide_cancel: "Cancel"
       # Button '+' to replace an audio in the audio slide
-      # 1 - views/lesson_editor/slides/parts/_audio.html.erb
+      # 1 - views/lesson_editor/slides/_audio.html.erb
+      # 2 - views/lesson_editor/thumbnails/_audio.html.erb
       change_audio: "Replace audio"
       # Button '+' to replace an image in the image slide
       # 1 - views/lesson_editor/slides/parts/_image.html.erb
@@ -1331,13 +1332,26 @@ en:
   
   lesson_editor:
     # Placeholder to add an audio to a slide
-    # 1 - views/lesson_editor/slides/parts/_audio.html.erb
+    # 1 - views/lesson_editor/slides/_audio.html.erb
+    # 2 - views/lesson_editor/thumbnails/_audio.html.erb
     choose_audio: "Click here to add an audio"
     # Placeholder to add an image to a slide
     # 1 - views/lesson_editor/slides/parts/_image.html.erb
+    # 2 - views/lesson_editor/slides/_cover.html.erb
+    # 3 - views/lesson_editor/thumbnails/_image2.html.erb
+    # 4 - views/lesson_editor/thumbnails/_image2.html.erb
+    # 5 - views/lesson_editor/thumbnails/_image3.html.erb
+    # 6 - views/lesson_editor/thumbnails/_image4.html.erb
+    # 7 - views/lesson_editor/thumbnails/_image4.html.erb
+    # 8 - views/lesson_editor/thumbnails/_image4.html.erb
+    # 9 - views/lesson_editor/thumbnails/_image4.html.erb
+    # 10- views/lesson_editor/thumbnails/_cover.html.erb
+    # 11- views/lesson_editor/thumbnails/_image1.html.erb
     choose_image: "Click here to add an image"
     # Placeholder to add a video to a slide
     # 1 - views/lesson_editor/slides/parts/_video.html.erb
+    # 2 - views/lesson_editor/thumbnails/_video2.html.erb
+    # 3 - views/lesson_editor/thumbnails/_video1.html.erb
     choose_video: "Click here to add a video"
     # The Lesson Editor is not available if the user started an audio (or video) editing process which overwrites an audio (or a video) used inside a lesson. The Editor is not avilable only to edit that particular lesson, in this case the application shows a page with title and description
     not_available:
@@ -1350,12 +1364,24 @@ en:
     placeholders:
       # Placeholder for the caption of an image
       # 1 - views/lesson_editor/slides/parts/_image.html.erb
+      # 2 - views/lesson_editor/thumbnails/_image1.html.erb
+      # 3 - views/lesson_editor/thumbnails/_image2.html.erb
+      # 4 - views/lesson_editor/thumbnails/_image2.html.erb
+      # 5 - views/lesson_editor/thumbnails/_image3.html.erb
+      # 6 - views/lesson_editor/thumbnails/_image4.html.erb
+      # 7 - views/lesson_editor/thumbnails/_image4.html.erb
+      # 8 - views/lesson_editor/thumbnails/_image4.html.erb
+      # 9 - views/lesson_editor/thumbnails/_image4.html.erb
       image_caption: "Write a caption"
       # Placeholder for a text area (slide title + text, video + text, audio + text, image + text)
       # 1 - views/lesson_editor/slides/_text.html.erb
       # 2 - views/lesson_editor/slides/_video1.html.erb
       # 3 - views/lesson_editor/slides/_image1.html.erb
       # 4 - views/lesson_editor/slides/_audio.html.erb
+      # 5 - views/lesson_editor/thumbnails/_text.html.erb
+      # 6 - views/lesson_editor/thumbnails/_audio.html.erb
+      # 7 - views/lesson_editor/thumbnails/_image1.html.erb
+      # 8 - views/lesson_editor/thumbnails/_video1.html.erb
       text: "Write a text here"
       # Placeholder for the title of a slide
       # 1 - views/lesson_editor/slides/_text.html.erb
@@ -1363,6 +1389,11 @@ en:
       # 3 - views/lesson_editor/slides/_video1.html.erb
       # 4 - views/lesson_editor/slides/_image1.html.erb
       # 5 - views/lesson_editor/slides/_audio.html.erb
+      # 6 - views/lesson_editor/thumbnails/_text.html.erb
+      # 7 - views/lesson_editor/thumbnails/_audio.html.erb
+      # 8 - views/lesson_editor/thumbnails/_image1.html.erb
+      # 9 - views/lesson_editor/thumbnails/_video1.html.erb
+      # 10- views/lesson_editor/thumbnails/_title.html.erb
       title: "Enter title"
   
   
@@ -1376,6 +1407,7 @@ en:
     # 4 - views/lesson_editor/new.html.erb
     # 5 - views/lesson_editor/slides/_cover.html.erb
     # 6 - views/lesson_editor/edit.html.erb
+    # 7 - views/lesson_editor/thumbnails/_cover.html.erb
     author: "Author"
     # Caption which indicates the date in which a lesson is created
     # 1 - views/lessons/_view_single_compact.html.erb
@@ -2258,26 +2290,6 @@ en:
       # 4 - views/media_elements/info_form_in_editor/_new.html.erb
       # 5 - views/admin/media_elements/new.html.erb
       length_title: 35
-    slide:
-      # Maximum number of characters allowed in the title of a slide
-      # 1 - models/slide.rb
-      # 2 - models/slide.rb
-      # 3 - views/lesson_editor/slides/_text.html.erb
-      # 4 - views/lesson_editor/slides/_title.html.erb
-      # 5 - views/lesson_editor/slides/_video1.html.erb
-      # 6 - views/lesson_editor/slides/_image1.html.erb
-      # 7 - views/lesson_editor/slides/_audio.html.erb
-      length_title: 32
-      # Maximum number of characters allowed in the caption of an image inside a slide
-      length_caption:
-        # 1 - views/lesson_editor/slides/parts/_image.html.erb
-        image1: 35
-        # 1 - views/lesson_editor/slides/parts/_image.html.erb
-        image2: 35
-        # 1 - views/lesson_editor/slides/parts/_image.html.erb
-        image3: 70
-        # 1 - views/lesson_editor/slides/parts/_image.html.erb
-        image4: 35
     video_editor:
       # Maximum number of characters allowed in the text component of Video Editor
       # 1 - views/video_editor/_text_component_editor.html.erb

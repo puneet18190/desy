@@ -1,6 +1,11 @@
-<div class="bigViewLesson slideText">
-  <h2><%= slide.title %></h2>
-  <div class="contentText">
+<div class="slide-content text normal-size">
+  
+  <div class="item title-container">
+    <input class="title read-only" type="text" value="<%= slide.title %>" disabled="disabled">
+  </div>
+  
+  <div class="item text-container read-only">
     <%= slide.text.html_safe if slide.text %>
   </div>
+  
 </div>

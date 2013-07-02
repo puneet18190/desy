@@ -1,26 +1,33 @@
 <%
   image = slide.image_at(1)
-  image_height = resize_height(image.media_element.width,image.media_element.height,"image1") if !image.nil?
-  image_width = resize_width(image.media_element.width,image.media_element.height,"image1") if !image.nil?
+  image_height = resize_height(image.media_element.width, image.media_element.height, 'image1') if !image.nil?
+  image_width = resize_width(image.media_element.width, image.media_element.height, 'image1') if !image.nil?
 %>
 
-<div class="bigViewLesson slideImage">
-  <h2><%= slide.title %></h2>
-  <div class="medium" >
-    <% if image.nil? %>
-      <div class="photoIcon"></div>
-    <% else %>
-      <% if is_horizontal?(image.media_element.width,image.media_element.height,"image1")%>
-        <%= image_tag image.media_element.url, :style => "left:#{image.alignment}px; height: 420px; width: #{image_width}px" %>
-      <% else %>
-        <%= image_tag image.media_element.url, :style => "top:#{image.alignment}px; width: 420px; height: #{image_height}px" %>
-      <% end %>
-      <% if !image.caption.blank? %>
-        <div class="caption"><%= image.caption %></div>
-      <% end %>
-    <% end %>
+
+<div class="slide-content image1 normal-size">
+  
+  <div class="item title-container">
+    <input class="title read-only" type="text" value="<%= slide.title %>" disabled="disabled">
   </div>
-  <div class="textRightContent">
+  
+  <div class="item image-container">
+    <div class="image read-only">
+      <% if image %>
+        <% if is_horizontal?(image.media_element.width, image.media_element.height, 'image1') %>
+          <%= image_tag image.media_element.url, :style => "left:#{image.alignment}px; width:#{image_width}px" %>
+        <% else %>
+          <%= image_tag image.media_element.url, :style => "top:#{image.alignment}px; height:#{image_height}px" %>
+        <% end %>
+        <% if !image.caption.blank? %>
+          <input class="caption" type="text" value="<%= image.caption %>" disabled="disabled">
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  
+  <div class="item text-container read-only">
     <%= slide.text.html_safe if slide.text %>
   </div>
+  
 </div>

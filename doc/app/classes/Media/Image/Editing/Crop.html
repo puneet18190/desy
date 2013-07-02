@@ -61,6 +61,18 @@
     <div class="sectiontitle">Methods</div>
     <dl class="methods">
       
+        <dt>M</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-mm_input">mm_input</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
         <dt>N</dt>
         <dd>
           <ul>
@@ -136,7 +148,12 @@
               <div id="method-c-new_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File lib/media/image/editing/crop.rb, line 13</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize</span>(<span class="ruby-identifier">input</span>, <span class="ruby-identifier">output</span>, <span class="ruby-identifier">x1</span>, <span class="ruby-identifier">y1</span>, <span class="ruby-identifier">x2</span>, <span class="ruby-identifier">y2</span>)
-  <span class="ruby-ivar">@input</span>, <span class="ruby-ivar">@output</span>, <span class="ruby-ivar">@x1</span>, <span class="ruby-ivar">@y1</span>, <span class="ruby-ivar">@x2</span>, <span class="ruby-ivar">@y2</span> = <span class="ruby-identifier">input</span>, <span class="ruby-identifier">output</span>, <span class="ruby-identifier">x1</span>, <span class="ruby-identifier">y1</span>, <span class="ruby-identifier">x2</span>, <span class="ruby-identifier">y2</span>
+  <span class="ruby-ivar">@input</span>, <span class="ruby-ivar">@output</span> = <span class="ruby-identifier">input</span>, <span class="ruby-identifier">output</span>
+
+  <span class="ruby-ivar">@x1</span> = <span class="ruby-constant">Editing</span>.<span class="ruby-identifier">ratio_value</span> <span class="ruby-identifier">mm_input</span>[<span class="ruby-value">:width</span>], <span class="ruby-identifier">mm_input</span>[<span class="ruby-value">:height</span>], <span class="ruby-identifier">x1</span>
+  <span class="ruby-ivar">@y1</span> = <span class="ruby-constant">Editing</span>.<span class="ruby-identifier">ratio_value</span> <span class="ruby-identifier">mm_input</span>[<span class="ruby-value">:width</span>], <span class="ruby-identifier">mm_input</span>[<span class="ruby-value">:height</span>], <span class="ruby-identifier">y1</span>
+  <span class="ruby-ivar">@x2</span> = <span class="ruby-constant">Editing</span>.<span class="ruby-identifier">ratio_value</span> <span class="ruby-identifier">mm_input</span>[<span class="ruby-value">:width</span>], <span class="ruby-identifier">mm_input</span>[<span class="ruby-value">:height</span>], <span class="ruby-identifier">x2</span>
+  <span class="ruby-ivar">@y2</span> = <span class="ruby-constant">Editing</span>.<span class="ruby-identifier">ratio_value</span> <span class="ruby-identifier">mm_input</span>[<span class="ruby-value">:width</span>], <span class="ruby-identifier">mm_input</span>[<span class="ruby-value">:height</span>], <span class="ruby-identifier">y2</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -145,6 +162,41 @@
                   
       <div class="sectiontitle">Instance Public methods</div>
       
+        <div class="method">
+          <div class="title method-title" id="method-i-mm_input">
+            
+              <b>mm_input</b>()
+            
+            <a href="../../../../classes/Media/Image/Editing/Crop.html#method-i-mm_input" name="method-i-mm_input" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-mm_input_source')" id="l_method-i-mm_input_source">show</a>
+                
+              </p>
+              <div id="method-i-mm_input_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/media/image/editing/crop.rb, line 22</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">mm_input</span>
+  <span class="ruby-ivar">@mm_input</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">MiniMagick</span><span class="ruby-operator">::</span><span class="ruby-constant">Image</span>.<span class="ruby-identifier">open</span> <span class="ruby-ivar">@input</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
         <div class="method">
           <div class="title method-title" id="method-i-run">
             
@@ -171,13 +223,19 @@
                 
               </p>
               <div id="method-i-run_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/image/editing/crop.rb, line 18</span>
+                <pre><span class="ruby-comment"># File lib/media/image/editing/crop.rb, line 27</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">run</span>
   <span class="ruby-identifier">w</span> = <span class="ruby-ivar">@x2</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-operator">-</span> <span class="ruby-ivar">@x1</span>.<span class="ruby-identifier">to_i</span>
   <span class="ruby-identifier">h</span> = <span class="ruby-ivar">@y2</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-operator">-</span> <span class="ruby-ivar">@y1</span>.<span class="ruby-identifier">to_i</span>
-  <span class="ruby-identifier">crop_params</span> = <span class="ruby-node">&quot;#{w}x#{h}+#{@x1}+#{@y1}&quot;</span>
-  <span class="ruby-ivar">@input</span>.<span class="ruby-identifier">crop</span>(<span class="ruby-identifier">crop_params</span>)
-  <span class="ruby-ivar">@input</span>.<span class="ruby-identifier">write</span> <span class="ruby-ivar">@output</span>
+
+  <span class="ruby-identifier">crop_params</span> = <span class="ruby-node">&quot;#{w}x#{h}+#{@x1.to_i}+#{@y1.to_i}&quot;</span>
+
+  <span class="ruby-ivar">@mm_input</span>.<span class="ruby-identifier">combine_options</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">c</span>.<span class="ruby-identifier">crop</span>(<span class="ruby-identifier">crop_params</span>)
+    <span class="ruby-identifier">c</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39;+repage&#39;</span>
+  <span class="ruby-keyword">end</span>
+  
+  <span class="ruby-ivar">@mm_input</span>.<span class="ruby-identifier">write</span> <span class="ruby-ivar">@output</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>

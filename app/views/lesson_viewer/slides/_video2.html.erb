@@ -2,16 +2,19 @@
   video = slide.video_at(1)
 %>
 
-<div class="bigViewLesson slideVideo">
-  <div class="videoBig">
-    <% if video.nil? %>
-      <div class="videoIcon"></div>
-    <% else %>
-      <% if video.converted? %>
-        <%= render :partial => 'shared/players/video', :locals => {:video => video, :initialize_now => true} %>
-      <% else %>
-        <%= image_tag video.placeholder_url(:lesson_viewer_big), :title => t('titles.not_available.video', :title => video.title) %>
+
+<div class="slide-content video2 normal-size">
+  
+  <div class="item video-container">
+    <div class="video read-only">
+      <% if video %>
+        <% if video.converted? %>
+          <%= render :partial => 'shared/players/video', :locals => {:video => video, :initialize_now => true} %>
+        <% else %>
+          <%= image_tag video.placeholder_url(:lesson_viewer_big), :title => t('titles.not_available.video', :title => video.title) %>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
   </div>
+  
 </div>

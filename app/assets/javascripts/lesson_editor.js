@@ -45,6 +45,9 @@ function hideNewSlideChoice() {
   var current_slide = $('li._lesson_editor_current_slide');
   current_slide.find('div.slide-content').addClass(current_slide.data('kind'));
   current_slide.find('.box.new_slide').remove();
+  if(!current_slide.find('.slide-content').hasClass('cover')) {
+    current_slide.find('.slide-content').css('padding', '20px');
+  }
   current_slide.find('._hide_add_new_slide_options').removeAttr('class').addClass('addButtonOrange _add_new_slide_options');
   var new_title = current_slide.find('._add_new_slide_options').data('title');
   current_slide.find('._add_new_slide_options').removeAttr('title').attr('title', new_title);
@@ -72,7 +75,9 @@ Shows the template for selection of new slides.
 function showNewSlideOptions() {
   stopMediaInCurrentSlide();
   var current_slide_content = $('li._lesson_editor_current_slide .slide-content');
-  current_slide_content.removeClass('cover title video1 video2 audio image1 image2 image3 image4 text');
+  if(!current_slide_content.hasClass('cover')) {
+    current_slide_content.css('padding', '0');
+  }
   var html_to_be_replaced = $('#new_slide_option_list').html();
   current_slide_content.prepend(html_to_be_replaced);
   current_slide_content.siblings('.buttons').find('._add_new_slide_options').removeAttr('class').addClass('minusButtonOrange _hide_add_slide _hide_add_new_slide_options');
@@ -128,32 +133,32 @@ function lessonEditorDocumentReadyAddMediaElement() {
     var current_slide = $('li._lesson_editor_current_slide');
     var position = $('#info_container').data('current-media-element-position');
     var place_id = 'media_element_' + position + '_in_slide_' + current_slide.data('slide-id');
-    $('#' + place_id + ' ._input_image_id').val(image_id);
-    $('#' + place_id + ' ._input_align').val('0');
+    $('#' + place_id + ' .image-id').val(image_id);
+    $('#' + place_id + ' .align').val('0');
     var image_url = $(this).data('url');
     var image_width = $(this).data('width');
     var image_height = $(this).data('height');
-    var full_place = $('#' + place_id + ' ._full_image_in_slide');
+    var full_place = $('#' + place_id + ' .mask');
     if(!full_place.is(':visible')) {
       full_place.show();
-      $('#' + place_id + ' ._empty_image_in_slide').hide();
+      $('#' + place_id + ' .empty-mask').hide();
     }
-    var old_mask = '_mask_x';
-    var new_mask = '_mask_y';
+    var old_mask = 'horizontal';
+    var new_mask = 'vertical';
     var old_orientation = 'width';
     var orientation = 'height';
     var orientation_val = resizeHeight(image_width, image_height, current_slide.data('kind'));
     var to_make_draggable = 'y';
     if(isHorizontalMask(image_width, image_height, current_slide.data('kind'))) {
-      old_mask = '_mask_y';
-      new_mask = '_mask_x';
+      old_mask = 'vertical';
+      new_mask = 'horizontal';
       old_orientation = 'height';
       orientation = 'width';
       orientation_val = resizeWidth(image_width, image_height, current_slide.data('kind'));
       to_make_draggable = 'x';
     }
     full_place.addClass(new_mask).removeClass(old_mask);
-    var img_tag = $('#' + place_id + ' ._full_image_in_slide img');
+    var img_tag = $('#' + place_id + ' .mask img');
     img_tag.attr('src', image_url);
     img_tag.parent().css('left', 0);
     img_tag.parent().css('top', 0);
@@ -169,17 +174,18 @@ function lessonEditorDocumentReadyAddMediaElement() {
     var current_slide = $('li._lesson_editor_current_slide');
     var position = $('#info_container').data('current-media-element-position');
     var place_id = 'media_element_' + position + '_in_slide_' + current_slide.data('slide-id');
-    $('#' + place_id + ' ._input_video_id').val(video_id);
+    $('#' + place_id + ' .video-id').val(video_id);
+    $('#' + place_id + ' .mask .add').hide();
     var video_mp4 = $(this).data('mp4');
     var video_webm = $(this).data('webm');
     var duration = $(this).data('duration');
-    var full_place = $('#' + place_id + ' ._full_video_in_slide');
+    var full_place = $('#' + place_id + ' .mask');
     if(!full_place.is(':visible')) {
       full_place.show();
-      $('#' + place_id + ' ._empty_video_in_slide').hide();
+      $('#' + place_id + ' .empty-mask').hide();
     }
-    $('#' + place_id + ' ._full_video_in_slide source[type="video/mp4"]').attr('src', video_mp4);
-    $('#' + place_id + ' ._full_video_in_slide source[type="video/webm"]').attr('src', video_webm);
+    $('#' + place_id + ' .mask source[type="video/mp4"]').attr('src', video_mp4);
+    $('#' + place_id + ' .mask source[type="video/webm"]').attr('src', video_webm);
     $('#' + place_id + ' video').load();
     $('#' + place_id + ' ._media_player_total_time').html(secondsToDateString(duration));
     var video_player = $('#' + place_id + ' ._empty_video_player, #' + place_id + ' ._instance_of_player');
@@ -191,7 +197,6 @@ function lessonEditorDocumentReadyAddMediaElement() {
       video_player.data('duration', duration);
       initializeMedia(video_player.attr('id'), 'video');
     }
-    $('#' + place_id + ' ._rolloverable').data('rolloverable', true);
   });
   $('body').on('click', '._add_audio_to_slide', function(e) {
     e.preventDefault();
@@ -204,20 +209,20 @@ function lessonEditorDocumentReadyAddMediaElement() {
     var current_slide = $('li._lesson_editor_current_slide');
     var position = $('#info_container').data('current-media-element-position');
     var place_id = 'media_element_' + position + '_in_slide_' + current_slide.data('slide-id');
-    $('#' + place_id + ' ._input_audio_id').val(audio_id);
+    $('#' + place_id + ' .audio-id').val(audio_id);
     var audio_m4a = $(this).data('m4a');
     var audio_ogg = $(this).data('ogg');
     var duration = $(this).data('duration');
-    var full_place = $('#' + place_id + ' ._full_audio_in_slide');
+    var full_place = $('#' + place_id + ' .mask');
     if(!full_place.is(':visible')) {
       full_place.show();
-      $('#' + place_id + ' ._empty_audio_in_slide').hide();
+      $('#' + place_id + ' .empty-mask').hide();
     }
-    $('#' + place_id + ' ._full_audio_in_slide source[type="audio/mp4"]').attr('src', audio_m4a);
-    $('#' + place_id + ' ._full_audio_in_slide source[type="audio/ogg"]').attr('src', audio_ogg);
+    $('#' + place_id + ' .mask source[type="audio/mp4"]').attr('src', audio_m4a);
+    $('#' + place_id + ' .mask source[type="audio/ogg"]').attr('src', audio_ogg);
     $('#' + place_id + ' audio').load();
     $('#' + place_id + ' ._media_player_total_time').html(secondsToDateString(duration));
-    $('#' + place_id + ' ._full_audio_in_slide .audio_title').text(new_audio_title);
+    $('#' + place_id + ' .mask .title').text(new_audio_title);
     var audio_player = $('#' + place_id + ' ._empty_audio_player, #' + place_id + ' ._instance_of_player');
     if(audio_player.data('initialized')) {
       audio_player.data('duration', duration);
@@ -236,14 +241,14 @@ Initializer for galleries.
 @for LessonEditorDocumentReady
 **/
 function lessonEditorDocumentReadyGalleries() {
-  $('body').on('click', '._show_image_gallery_in_lesson_editor', function() {
+  $('body').on('click', '.slide-content .image.editable .add', function() {
     showGalleryInLessonEditor(this, 'image');
   });
-  $('body').on('click', '._show_audio_gallery_in_lesson_editor', function() {
+  $('body').on('click', '.slide-content .audio.editable .add', function() {
     stopMediaInCurrentSlide();
     showGalleryInLessonEditor(this, 'audio');
   });
-  $('body').on('click', '._show_video_gallery_in_lesson_editor', function() {
+  $('body').on('click', '.slide-content .video.editable .add', function() {
     stopMediaInCurrentSlide();
     showGalleryInLessonEditor(this, 'video');
   });
@@ -275,12 +280,6 @@ General initialization of position (used together with {{#crossLink "LessonEdito
 function lessonEditorDocumentReadyGeneral() {
   $('html.lesson-editor-layout ul#slides').css('margin-top', ((($(window).height() - 590) / 2) - 40) + 'px');
   $('html.lesson-editor-layout ul#slides.new').css('margin-top', ((($(window).height() - 590) / 2)) + 'px');
-  $('html.lesson-editor-layout ul#slides input').attr('autocomplete', 'off');
-  $('body').on('keydown blur', 'textarea[rows]', function(e) {
-    if($(this).parent().hasClass('only-title') && e.which == 13 && $(this).val().split("\n").length >= $(this).attr('rows')) {
-      return false;
-    }
-  });
 }
 
 /**
@@ -289,7 +288,7 @@ Initializer for JQueryUi animations defined in the class {{#crossLink "LessonEdi
 @for LessonEditorDocumentReady
 **/
 function lessonEditorDocumentReadyJqueryAnimations() {
-  $('._image_container_in_lesson_editor').each(function() {
+  $('.slide-content .image.editable').each(function() {
     makeDraggable($(this).attr('id'));
   });
   initializeSortableNavs();
@@ -326,20 +325,54 @@ Initializer for the mouseover and mouseout to replace a media element already ad
 @for LessonEditorDocumentReady
 **/
 function lessonEditorDocumentReadyReplaceMediaElement() {
-  $('body').on('mouseover', '._full_image_in_slide, ._full_video_in_slide', function() {
-    var obj = $('#' + $(this).parent().attr('id') + ' ._rolloverable');
-    var slide_id = obj.data('slide-id');
-    var position = obj.data('position');
-    if(obj.data('rolloverable')) {
-      $('#media_element_' + position + '_in_slide_' + slide_id + ' ._lesson_editor_rollover_content').show();
+  $('body').on('mouseover', '.slide-content .image.editable .mask', function() {
+    if($(this).find('.alignable').data('rolloverable')) {
+      $(this).find('.add').show();
     }
   });
-  $('body').on('mouseout', '._full_image_in_slide, ._full_video_in_slide', function() {
-    var obj = $('#' + $(this).parent().attr('id') + ' ._rolloverable');
-    var slide_id = obj.data('slide-id');
-    var position = obj.data('position');
-    if(obj.data('rolloverable')) {
-      $('#media_element_' + position + '_in_slide_' + slide_id + ' ._lesson_editor_rollover_content').hide();
+  $('body').on('mouseout', '.slide-content .image.editable .mask', function() {
+    if($(this).find('.alignable').data('rolloverable')) {
+      $(this).find('.add').hide();
+    }
+  });
+  $('body').on('mouseover', '.slide-content .video.editable .mask video', function(e) {
+    var position = $(this).offset();
+    var top = position.top + 59;
+    var right = position.left + 291;
+    var bottom = position.top + 222;
+    var left = position.left + 129;
+    if($(this).width() > 420) {
+      top = position.top + 179;
+      right = position.left + 526;
+      bottom = position.top + 371;
+      left = position.left + 334;
+    }
+    if(left <= e.clientX && e.clientX <= right && top <= e.clientY && e.clientY <= bottom) {
+      return;
+    }
+    var granpa = $(this).parents('.mask');
+    if(granpa.find('.alignable').data('rolloverable')) {
+      granpa.find('.add').show();
+    }
+  });
+  $('body').on('mouseout', '.slide-content .video.editable .mask video', function(e) {
+    var position = $(this).offset();
+    var top = position.top + 59;
+    var right = position.left + 291;
+    var bottom = position.top + 222;
+    var left = position.left + 129;
+    if($(this).width() > 420) {
+      top = position.top + 179;
+      right = position.left + 526;
+      bottom = position.top + 371;
+      left = position.left + 334;
+    }
+    if(left <= e.clientX && e.clientX <= right && top <= e.clientY && e.clientY <= bottom) {
+      return;
+    }
+    var granpa = $(this).parents('.mask');
+    if(granpa.find('.alignable').data('rolloverable')) {
+      granpa.find('.add').hide();
     }
   });
 }
@@ -371,61 +404,17 @@ function lessonEditorDocumentReadySlideButtons() {
     hideNewSlideChoice();
   });
   $('body').on('click', '._save_slide', function(e) {
-    saveCurrentSlide();
+    saveCurrentSlide('', false);
   });
   $('body').on('click', '._save_slide_and_exit', function() {
-    tinyMCE.triggerSave();
-    var temporary = new Array();
-    var temp_counter = 0;
-    $('._lesson_editor_current_slide ._lesson_editor_placeholder').each(function() {
-      if($(this).data('placeholder')) {
-        temporary[temp_counter] = $(this).val();
-        temp_counter++;
-        $(this).val('');
-      }
-    });
-    $.ajax({
-      type: 'post',
-      url: $('._lesson_editor_current_slide form').attr('action') + '_and_exit',
-      timeout: 5000,
-      data: $('._lesson_editor_current_slide form').serialize()
-    });
-    temp_counter = 0;
-    $('._lesson_editor_current_slide ._lesson_editor_placeholder').each(function() {
-      if($(this).data('placeholder')) {
-        $(this).val(temporary[temp_counter]);
-        temp_counter++;
-      }
-    });
+    saveCurrentSlide('_and_exit', true);
   });
   $('body').on('click', '._save_slide_and_edit', function() {
-    tinyMCE.triggerSave();
-    var temporary = new Array();
-    var temp_counter = 0;
-    $('._lesson_editor_current_slide ._lesson_editor_placeholder').each(function() {
-      if($(this).data('placeholder')) {
-        temporary[temp_counter] = $(this).val();
-        temp_counter++;
-        $(this).val('');
-      }
-    });
-    $.ajax({
-      type: 'post',
-      url: $('._lesson_editor_current_slide form').attr('action') + '_and_edit',
-      timeout: 5000,
-      data: $('._lesson_editor_current_slide form').serialize()
-    });
-    temp_counter = 0;
-    $('._lesson_editor_current_slide ._lesson_editor_placeholder').each(function() {
-      if($(this).data('placeholder')) {
-        $(this).val(temporary[temp_counter]);
-        temp_counter++;
-      }
-    });
+    saveCurrentSlide('_and_edit', true);
   });
   $('body').on('click', '._add_new_slide_options', function() {
     if(!$(this).hasClass('disabled')) {
-      saveCurrentSlide();
+      saveCurrentSlide('', false);
       showNewSlideOptions();
     }
   });
@@ -457,26 +446,26 @@ function lessonEditorDocumentReadySlidesNavigator() {
     }
   });
   $('body').on('mouseout', '#slide-numbers li.navNumbers:not(._add_new_slide_options_in_last_position)', function(e) {
-    var this_tooltip =$(this).children('.slide-tooltip');
+    var this_tooltip = $(this).children('.slide-tooltip');
     this_tooltip.removeClass('slide-tooltip-to-left');
     this_tooltip.hide();
   });
   $('body').on('click', '._slide_nav:not(._lesson_editor_current_slide_nav)', function(e) {
     e.preventDefault();
     stopMediaInCurrentSlide();
-    saveCurrentSlide();
+    saveCurrentSlide('', false);
     slideTo($(this).data('slide-id'));
   });
   $('body').on('click', '._not_current_slide', function(e) {
     e.preventDefault();
-    saveCurrentSlide();
+    saveCurrentSlide('', false);
     stopMediaInCurrentSlide();
     slideTo($(this).parent().data('slide-id'));
     scrollPaneUpdate(this);
   });
   $('body').on('click', '._add_new_slide_options_in_last_position', function() {
     if(!$(this).hasClass('disabled')) {
-      saveCurrentSlide();
+      saveCurrentSlide('', false);
       var last_slide_id = $("#slide-numbers li.navNumbers:last").find('a').data('slide-id');
       $('#nav_list_menu').data('jsp').scrollToPercentX(100, true);
       if($('#slide_in_lesson_editor_' + last_slide_id).hasClass('_lesson_editor_current_slide')) {
@@ -534,41 +523,44 @@ function lessonEditorDocumentReadyTextFields() {
 Save current slide. It sends tinyMCE editor content to form data to be serialized, it handles form placeholders.
 @method saveCurrentSlide
 @for LessonEditorForms
+@param action_suffix {String} action suffix to be appended after 'save' (it can be 'save_and_edit' or 'save_and_exit', or just 'save', see also {{#crossLink "LessonEditorDocumentReady/lessonEditorDocumentReadySlideButtons:merthod"}}{{/crossLink}})
+@param with_loader {Boolean} if true shows the loader while calling ajax
 **/
-function saveCurrentSlide() {
+function saveCurrentSlide(action_suffix, with_loader) {
   tinyMCE.triggerSave();
   var temporary = new Array();
   var temp_counter = 0;
-  $('._lesson_editor_current_slide ._lesson_editor_placeholder').each(function() {
+  var current_slide = $('._lesson_editor_current_slide');
+  current_slide.find('._lesson_editor_placeholder').each(function() {
     if($(this).data('placeholder')) {
       temporary[temp_counter] = $(this).val();
       temp_counter++;
       $(this).val('');
     }
   });
-  submitCurrentSlideForm();
+  if(with_loader) {
+    $.ajax({
+      type: 'post',
+      url: current_slide.find('form').attr('action') + action_suffix,
+      timeout: 5000,
+      data: current_slide.find('form').serialize()
+    });
+  } else {
+    $.ajax({
+      type: 'post',
+      url: current_slide.find('form').attr('action') + action_suffix,
+      timeout: 5000,
+      data: current_slide.find('form').serialize(),
+      beforeSend: unbindLoader()
+    }).always(bindLoader);
+  }
   temp_counter = 0;
-  $('._lesson_editor_current_slide ._lesson_editor_placeholder').each(function() {
+  current_slide.find('._lesson_editor_placeholder').each(function() {
     if($(this).data('placeholder')) {
       $(this).val(temporary[temp_counter]);
       temp_counter++;
     }
   });
-}
-
-/**
-Submit serialized form data for current slide (used in {{#crossLink "LessonEditorForms/saveCurrentSlide:method"}}{{/crossLink}}).
-@method submitCurrentSlideForm
-@for LessonEditorForms
-**/
-function submitCurrentSlideForm() {
-  $.ajax({
-    type: 'post',
-    url: $('._lesson_editor_current_slide form').attr('action'),
-    timeout: 5000,
-    data: $('._lesson_editor_current_slide form').serialize(),
-    beforeSend: unbindLoader()
-  }).always(bindLoader);
 }
 
 
@@ -579,7 +571,7 @@ function submitCurrentSlideForm() {
 Hides media gallery for selected type.
 @method removeGalleryInLessonEditor
 @for LessonEditorGalleries
-@param sty_type {String} gallery type
+@param sti_type {String} gallery type
 **/
 function removeGalleryInLessonEditor(sti_type) {
   $('#lesson_editor_' + sti_type + '_gallery_container').hide();
@@ -655,19 +647,19 @@ Gets scaled height to slide images.
 **/
 function resizeHeight(width, height, kind) {
   switch(kind) {
-   case 'cover': slideWidth = 900;
-   break;
-   case 'image1': slideWidth = 420;
-   break;
-   case 'image2': slideWidth = 420;
-   break;
-   case 'image3': slideWidth = 860;
-   break;
-   case 'image4': slideWidth = 420;
-   break;
-   default: slideWidth = 900;
+    case 'cover': slideWidth = 900;
+    break;
+    case 'image1': slideWidth = 420;
+    break;
+    case 'image2': slideWidth = 420;
+    break;
+    case 'image3': slideWidth = 860;
+    break;
+    case 'image4': slideWidth = 420;
+    break;
+    default: slideWidth = 900;
   }
-  return (height * slideWidth) / width;
+  return parseInt((height * slideWidth) / width) + 1;
 }
 
 /**
@@ -681,19 +673,19 @@ Gets scaled width to slide images.
 **/
 function resizeWidth(width, height, kind) {
   switch(kind) {
-   case 'cover': slideHeight = 560;
-   break;
-   case 'image1': slideHeight = 420;
-   break;
-   case 'image2': slideHeight = 550;
-   break;
-   case 'image3': slideHeight = 550;
-   break;
-   case 'image4': slideHeight = 265;
-   break;
-   default: slideHeight = 590;
+    case 'cover': slideHeight = 560;
+    break;
+    case 'image1': slideHeight = 420;
+    break;
+    case 'image2': slideHeight = 550;
+    break;
+    case 'image3': slideHeight = 550;
+    break;
+    case 'image4': slideHeight = 265;
+    break;
+    default: slideHeight = 590;
   }
-  return (width * slideHeight) / height;
+  return parseInt((width * slideHeight) / height) + 1;
 }
 
 
@@ -731,7 +723,7 @@ function initializeSortableNavs() {
           new_position = previous_item_position;
         }
       }
-      saveCurrentSlide();
+      saveCurrentSlide('', false);
       if(old_position != new_position) {
         stopMediaInCurrentSlide();
         $.ajax({
@@ -752,12 +744,12 @@ Inizializes jQueryUI <b>draggable</b> function on slide image containers (to und
 @param place_id {String} HTML id for the container to make draggable
 **/
 function makeDraggable(place_id) {
-  var full_place = $('#' + place_id + ' ._full_image_in_slide');
+  var full_place = $('#' + place_id + ' .mask');
   var axe = 'x';
-  if(full_place.hasClass('_mask_y')) {
+  if(full_place.hasClass('vertical')) {
     axe = 'y';
   }
-  var image = $('#' + place_id + '  ._full_image_in_slide img');
+  var image = $('#' + place_id + ' .mask img');
   var side = '';
   var maskedImgWidth;
   var maskedImgHeight;
@@ -771,24 +763,24 @@ function makeDraggable(place_id) {
     side = 'top';
     dist = maskedImgHeight - full_place.height();
   }
-  $('#' + place_id + ' ._full_image_in_slide ._rolloverable').draggable({
+  $('#' + place_id + ' .mask .alignable').draggable({
     axis: axe,
     cursor: 'move',
     distance: 10,
     start: function() {
-      $('#' + place_id + ' ._full_image_in_slide img').css('cursor', 'move');
-      $('#' + place_id + ' ._rolloverable').data('rolloverable', false);
+      $('#' + place_id + ' .mask img').css('cursor', 'move');
+      $('#' + place_id + ' .alignable').data('rolloverable', false);
       $('#' + place_id + ' span').hide();
     },
     stop: function() {
-      $('#' + place_id + ' ._full_image_in_slide img').css('cursor', 'url(https://mail.google.com/mail/images/2/openhand.cur), move');
-      $('#' + place_id + ' ._rolloverable').data('rolloverable', true);
+      $('#' + place_id + ' .mask img').css('cursor', 'url(https://mail.google.com/mail/images/2/openhand.cur), move');
+      $('#' + place_id + ' .alignable').data('rolloverable', true);
       $('#' + place_id + ' span').show();
       var thisDrag = $(this);
       var offset = thisDrag.css(side);
       if(parseInt(offset) > 0) {
         offset = 0;
-        if(side=='left') {
+        if(side == 'left') {
           thisDrag.animate({
             left: '0'
           }, 100);
@@ -800,7 +792,7 @@ function makeDraggable(place_id) {
       } else {
         if(parseInt(offset) < -(parseInt(dist))) {
           offset = -parseInt(dist);
-          if(side=='left') {
+          if(side == 'left') {
             thisDrag.animate({
               left: '-' + dist + 'px'
             }, 100);
@@ -811,7 +803,7 @@ function makeDraggable(place_id) {
           }
         }
       }
-      $('#' + place_id + ' ._input_align').val(parseInt(offset));
+      $('#' + place_id + ' .align').val(parseInt(offset));
     }
   });
 }
@@ -952,6 +944,27 @@ function slideTo(slide_id, callback) {
 
 
 /**
+TinyMCE callback to clean spans containing classes for font size: these classes are attached to the first <ol>, <ul>, <p>
+@method cleanTinyMCESpanTagsFontSize
+@for LessonEditorTinyMCE
+@param editor {Object} tinyMCE instance
+**/
+function cleanTinyMCESpanTagsFontSize(editor) {
+  var spans = $(editor.getBody()).find('span.size1, span.size2, span.size3, span.size4, span.size5, span.size6');
+  var sizes = ['size1', 'size2', 'size3', 'size4', 'size5', 'size6'];
+  var sizes_class = sizes.join(' ');
+  if(spans.length > 0) {
+    spans.each(function() {
+      var my_sizes = $(this).attr('class').split(' ').filter(function(i) {
+        return sizes.indexOf(i) > -1;
+      }).join(' ');
+      $(this).removeClass(my_sizes);
+      $(this).parents('.mceContentBody ul, .mceContentBody ol, .mceContentBody p').removeClass(sizes_class).addClass(my_sizes);
+    });
+  }
+}
+
+/**
 Initialize tinyMCE editor for a single textarea.
 @method initTinymce
 @for LessonEditorTinyMCE
@@ -969,7 +982,6 @@ function initTinymce(tiny_id) {
     theme: 'advanced',
     editor_selector: 'tinymce',
     skin: 'desy',
-    content_css: '/assets/tiny_mce_desy.css',
     plugins: plugins,
     paste_preprocess: function(pl, o) {
       o.content = stripTagsForCutAndPaste(o.content, '');
@@ -979,10 +991,13 @@ function initTinymce(tiny_id) {
     theme_advanced_toolbar_align: 'left',
     theme_advanced_statusbar_location: false,
     theme_advanced_resizing: true,
-    theme_advanced_font_sizes: '10px=.size1,13px=.size2,17px=.size3,21px=.size4,25px=.size5,29px=.size6,35px=.size7',
+    theme_advanced_font_sizes: '13px=.size1,17px=.size2,21px=.size3,25px=.size4,29px=.size5,35px=.size6',
     setup: function(ed) {
       ed.onInit.add(function(ed, e) {
         $('#' + tiny_id + '_ifr').attr('scrolling', 'no');
+      });
+      ed.onNodeChange.add(function(ed, cm, e) {
+        cleanTinyMCESpanTagsFontSize(ed);
       });
       ed.onKeyUp.add(function(ed, e) {
         tinyMceCallbacks(ed, tiny_id);
@@ -1005,18 +1020,22 @@ function initTinymce(tiny_id) {
 TinyMCE callback to show warning when texearea content exceeds the available space. Adds a red border to the textarea.This function is used in tinyMCE setup ({{#crossLink "LessonEditorTinyMCE/initTinymce:method"}}{{/crossLink}}).
 @method tinyMceCallbacks
 @for LessonEditorTinyMCE
-@param inst {Object} tinyMCE body instance
+@param inst {Object} tinyMCE instance
 @param tiny_id {Number} HTML id of the tinyMCE textarea
 **/
 function tinyMceCallbacks(inst, tiny_id) {
-  var maxH = 422;
-  if($('textarea#' + tiny_id).parent('.audio-content').length > 0) {
-    maxH = 324;
+  var maxH = 420;
+  if($('textarea#' + tiny_id).parents('.slide-content.audio').length > 0) {
+    maxH = 329;
   }
   if(inst.getBody().scrollHeight > maxH) {
-    $('#' + tiny_id + '_tbl').css('border', '1px solid red');
+    $('#' + tiny_id + '_tbl').css('border-left', '1px solid red').css('border-right', '1px solid red');
+    $('#' + tiny_id + '_tbl tr.mceFirst td').css('border-top', '1px solid red');
+    $('#' + tiny_id + '_tbl tr.mceLast td').css('border-bottom', '1px solid red');
   } else {
-    $('#' + tiny_id + '_tbl').css('border-left', '1px solid #EFEFEF').css('border-right', '1px solid #EFEFEF').css('border-top', '0').css('border-bottom', '0');
+    $('#' + tiny_id + '_tbl').css('border-left', '1px solid #EFEFEF').css('border-right', '1px solid #EFEFEF');
+    $('#' + tiny_id + '_tbl tr.mceFirst td').css('border-top', '1px solid #EFEFEF');
+    $('#' + tiny_id + '_tbl tr.mceLast td').css('border-bottom', '1px solid #EFEFEF');
   }
 }
 
@@ -1024,7 +1043,7 @@ function tinyMceCallbacks(inst, tiny_id) {
 TinyMCE keyDown callback to fix list item style. It adds same style of list item text to list numbers or dots. This function is used in tinyMCE setup ({{#crossLink "LessonEditorTinyMCE/initTinymce:method"}}{{/crossLink}}).
 @method tinyMceKeyDownCallbacks
 @for LessonEditorTinyMCE
-@param inst {Object} tinyMCE body instance
+@param inst {Object} tinyMCE instance
 @param tiny_id {Number} HTML id of the tinyMCE textarea
 **/
 function tinyMceKeyDownCallbacks(inst, tiny_id) {
