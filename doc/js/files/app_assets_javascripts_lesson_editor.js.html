@@ -1312,10 +1312,7 @@ function initTinymce(tiny_id) {
         cleanTinyMCESpanTagsFontSize(ed);
       });
       ed.onKeyUp.add(function(ed, e) {
-        tinyMceCallbacks(ed, tiny_id);
-      });
-      ed.onKeyDown.add(function(ed, e) {
-        tinyMceKeyDownCallbacks(ed, tiny_id);
+        handleTinyMCEOveflow(ed, tiny_id);
       });
       ed.onClick.add(function(ed, e) {
         var textarea = $(&#x27;#&#x27; + tiny_id);
@@ -1330,12 +1327,12 @@ function initTinymce(tiny_id) {
 
 /**
 TinyMCE callback to show warning when texearea content exceeds the available space. Adds a red border to the textarea.This function is used in tinyMCE setup ({{#crossLink &quot;LessonEditorTinyMCE/initTinymce:method&quot;}}{{/crossLink}}).
-@method tinyMceCallbacks
+@method handleTinyMCEOveflow
 @for LessonEditorTinyMCE
 @param inst {Object} tinyMCE instance
 @param tiny_id {Number} HTML id of the tinyMCE textarea
 **/
-function tinyMceCallbacks(inst, tiny_id) {
+function handleTinyMCEOveflow(inst, tiny_id) {
   var maxH = 420;
   if($(&#x27;textarea#&#x27; + tiny_id).parents(&#x27;.slide-content.audio&#x27;).length &gt; 0) {
     maxH = 329;
@@ -1349,23 +1346,6 @@ function tinyMceCallbacks(inst, tiny_id) {
     $(&#x27;#&#x27; + tiny_id + &#x27;_tbl tr.mceFirst td&#x27;).css(&#x27;border-top&#x27;, &#x27;1px solid #EFEFEF&#x27;);
     $(&#x27;#&#x27; + tiny_id + &#x27;_tbl tr.mceLast td&#x27;).css(&#x27;border-bottom&#x27;, &#x27;1px solid #EFEFEF&#x27;);
   }
-}
-
-/**
-TinyMCE keyDown callback to fix list item style. It adds same style of list item text to list numbers or dots. This function is used in tinyMCE setup ({{#crossLink &quot;LessonEditorTinyMCE/initTinymce:method&quot;}}{{/crossLink}}).
-@method tinyMceKeyDownCallbacks
-@for LessonEditorTinyMCE
-@param inst {Object} tinyMCE instance
-@param tiny_id {Number} HTML id of the tinyMCE textarea
-**/
-function tinyMceKeyDownCallbacks(inst, tiny_id) {
-  var spans = $(inst.getBody()).find(&#x27;li span&#x27;);
-  spans.each(function() {
-    var span = $(this);
-    span.parents(&#x27;li&#x27;).removeAttr(&#x27;class&#x27;);
-    span.parents(&#x27;li&#x27;).addClass(span.attr(&#x27;class&#x27;));
-    span.parentsUntil(&#x27;li&#x27;).attr(&#x27;style&#x27;, span.attr(&#x27;style&#x27;));
-  });
 }
 
 /**

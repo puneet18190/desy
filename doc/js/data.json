@@ -4339,10 +4339,10 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1019,
+            "line": 1016,
             "description": "TinyMCE callback to show warning when texearea content exceeds the available space. Adds a red border to the textarea.This function is used in tinyMCE setup ({{#crossLink \"LessonEditorTinyMCE/initTinymce:method\"}}{{/crossLink}}).",
             "itemtype": "method",
-            "name": "tinyMceCallbacks",
+            "name": "handleTinyMCEOveflow",
             "params": [
                 {
                     "name": "inst",
@@ -4360,28 +4360,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1042,
-            "description": "TinyMCE keyDown callback to fix list item style. It adds same style of list item text to list numbers or dots. This function is used in tinyMCE setup ({{#crossLink \"LessonEditorTinyMCE/initTinymce:method\"}}{{/crossLink}}).",
-            "itemtype": "method",
-            "name": "tinyMceKeyDownCallbacks",
-            "params": [
-                {
-                    "name": "inst",
-                    "description": "tinyMCE instance",
-                    "type": "Object"
-                },
-                {
-                    "name": "tiny_id",
-                    "description": "HTML id of the tinyMCE textarea",
-                    "type": "Number"
-                }
-            ],
-            "class": "LessonEditorTinyMCE",
-            "module": "lesson-editor"
-        },
-        {
-            "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1059,
+            "line": 1039,
             "description": "Function to strip tags in a text pasted inside TinyMCE.",
             "itemtype": "method",
             "name": "stripTagsForCutAndPaste",

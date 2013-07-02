@@ -1000,10 +1000,7 @@ function initTinymce(tiny_id) {
         cleanTinyMCESpanTagsFontSize(ed);
       });
       ed.onKeyUp.add(function(ed, e) {
-        tinyMceCallbacks(ed, tiny_id);
-      });
-      ed.onKeyDown.add(function(ed, e) {
-        tinyMceKeyDownCallbacks(ed, tiny_id);
+        handleTinyMCEOveflow(ed, tiny_id);
       });
       ed.onClick.add(function(ed, e) {
         var textarea = $('#' + tiny_id);
@@ -1018,12 +1015,12 @@ function initTinymce(tiny_id) {
 
 /**
 TinyMCE callback to show warning when texearea content exceeds the available space. Adds a red border to the textarea.This function is used in tinyMCE setup ({{#crossLink "LessonEditorTinyMCE/initTinymce:method"}}{{/crossLink}}).
-@method tinyMceCallbacks
+@method handleTinyMCEOveflow
 @for LessonEditorTinyMCE
 @param inst {Object} tinyMCE instance
 @param tiny_id {Number} HTML id of the tinyMCE textarea
 **/
-function tinyMceCallbacks(inst, tiny_id) {
+function handleTinyMCEOveflow(inst, tiny_id) {
   var maxH = 420;
   if($('textarea#' + tiny_id).parents('.slide-content.audio').length > 0) {
     maxH = 329;
@@ -1037,23 +1034,6 @@ function tinyMceCallbacks(inst, tiny_id) {
     $('#' + tiny_id + '_tbl tr.mceFirst td').css('border-top', '1px solid #EFEFEF');
     $('#' + tiny_id + '_tbl tr.mceLast td').css('border-bottom', '1px solid #EFEFEF');
   }
-}
-
-/**
-TinyMCE keyDown callback to fix list item style. It adds same style of list item text to list numbers or dots. This function is used in tinyMCE setup ({{#crossLink "LessonEditorTinyMCE/initTinymce:method"}}{{/crossLink}}).
-@method tinyMceKeyDownCallbacks
-@for LessonEditorTinyMCE
-@param inst {Object} tinyMCE instance
-@param tiny_id {Number} HTML id of the tinyMCE textarea
-**/
-function tinyMceKeyDownCallbacks(inst, tiny_id) {
-  var spans = $(inst.getBody()).find('li span');
-  spans.each(function() {
-    var span = $(this);
-    span.parents('li').removeAttr('class');
-    span.parents('li').addClass(span.attr('class'));
-    span.parentsUntil('li').attr('style', span.attr('style'));
-  });
 }
 
 /**
