@@ -1,100 +1,140 @@
-html.prelogin-layout .header,
-html.home-layout .header {
-  background-image:url(<%= asset_path 'bg_prelogin.jpg' %>);
-  background-repeat:no-repeat;
+html.prelogin-layout .header, html.home-layout .header {
+  
+  background-image: url(<%= asset_path 'bg_prelogin.jpg' %>);
+  background-repeat: no-repeat;
   background-position: top center;
   padding: 25px 18px 352px 18px;
   font-family: 'Nunito', sans-serif;
   
   .headerMenu {
-    padding:5px 5px 5px 20px;
-    background-color:#fff;
-    float:left;
-    width:922px;
+    
+    padding: 5px 5px 5px 20px;
+    background-color: #fff;
+    float: left;
+    width: 922px;
     
     ul {
-      margin:0;
-      float:left;
-      padding-top:7px;
-        li {
-          display: inline;
-          list-style-type: none;
-          padding-right: 20px;
-        }
-      }
-      a {
-        color:#777779;
-        &:hover {
-          color:#fdb525;
-        }
-        &.current {
-          color:#fdb525;
-        }
-      }
-    }
-    .login {
-      float:right;
-      color:rgb(136, 134, 134);
-      font-size:95%;
-      width:30%;
-      p {
-        float:left; 
-        padding-top:8px;
-      }
-      input[type="submit"] {
-        font-size: 100%;
-        padding:0;
-        margin:0;
-        color: #f29400;
-        background-color: transparent;
-        cursor:pointer;
-      }
-     .button a {
-        float:right;
-        padding:5px 15px 5px 15px;
-        background-color:#4bab36;
-        text-align:center;
-        font-weight:bold;
-        font-size:120%;
-        color:#fff;
-        &:hover {
-          background-color:#282828;
-        }
-      }
-      .tooltip {
-        border:none;
-        top: 70px;
-        right:20px;
-        width:196px;
-        background-color:#2f2e2e;
-        padding:15px 20px 15px 20px;
+      
+      margin: 0;
+      float: left;
+      padding-top: 7px;
+      
+      li {
         
-        a {
-          color:#f29400;
-          font-size:120%;
-        }
-       .text {
-          border:1px solid #424141;
-          width:184px; 
-          height:29px;
-          background-color:#2e2c2d;
-          border-radius: 6px;
-          -webkit-border-radius: 4px;
-          margin-right:0px;
-          margin-top:5px;
-          color:#fff;
-          padding:0px;
-          margin-bottom:10px;
-          padding-left:10px;
-          font-size:120%;
-       }
-      .callout {
-         top: -8px;
-         z-index:20;
-         position:absolute;
-         border:0;
-         right:30px;
-      }  
+        display: inline;
+        list-style-type: none;
+        padding-right: 20px;
+        
+      }
     }
+    
+    a {
+      
+      color: #777779;
+      
+      &:hover {
+        
+        color: #fdb525;
+        
+      }
+      
+      &.current {
+        color:#fdb525;
+      }
+      
+    }
+    
   }
+  
+  .login {
+    
+    float: right;
+    color: rgb(136, 134, 134);
+    font-size: 95%;
+    width: 30%;
+    
+    p {
+      
+      float: left;
+      padding-top: 8px;
+      
+    }
+    
+    input[type="submit"] {
+      
+      font-size: 100%;
+      padding: 0;
+      margin: 0;
+      color: #f29400;
+      background-color: transparent;
+      cursor: pointer;
+      
+    }
+    
+    .button a {
+      
+      float: right;
+      padding: 5px 15px 5px 15px;
+      background-color: #4bab36;
+      text-align: center;
+      font-weight: bold;
+      font-size: 120%;
+      color: #fff;
+      
+      &:hover {
+        
+        background-color:#282828;
+        
+      }
+      
+    }
+    
+    .tooltip {
+      
+      border: none;
+      top: 70px;
+      right: 20px;
+      width: 196px;
+      background-color: #2f2e2e;
+      padding: 15px 20px 15px 20px;
+      
+      a {
+        
+        color: #f29400;
+        font-size: 120%;
+        
+      }
+      
+      .text {
+        
+        border: 1px solid #424141;
+        width: 184px;
+        height: 29px;
+        background-color: #2e2c2d;
+        border-radius: 6px;
+        -webkit-border-radius: 4px;
+        margin-right: 0px;
+        margin-top: 5px;
+        color: #fff;
+        padding: 0px;
+        margin-bottom: 10px;
+        padding-left: 10px;
+        font-size: 120%;
+        
+      }
+      
+      .callout {
+        
+        top: -8px;
+        z-index: 20;
+        position: absolute;
+        border: 0;
+        right: 30px;
+        
+      }
+      
+    }
+    
+  }
+  
 }
