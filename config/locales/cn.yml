@@ -1167,6 +1167,23 @@ cn:
     # 1 - views/lessons/index.html.erb
     # 2 - views/media_elements/_title_bar.html.erb
     show: "显示"
+    # titles of the tab for each section
+    titles:
+      # 1 - helpers/application_helper.rb
+      admin: "%{desy} - 管理"
+      # 1 - helpers/application_helper.rb
+      default: "%{desy}"
+      # 1 - helpers/application_helper.rb
+      lessons: "%{desy} - 课程"
+      # 1 - helpers/application_helper.rb
+      media_elements: "%{desy} - 单元"
+      # 1 - helpers/application_helper.rb
+      profile: "%{desy} - 个人资料"
+      # 1 - helpers/application_helper.rb
+      single_lesson: "%{desy} - %{lesson}"
+      # 1 - helpers/application_helper.rb
+      # 2 - helpers/application_helper.rb
+      virtual_classroom: "%{desy} - 虚拟教室"
     # Caption for Virtual Classroom
     # 1 - views/shared/_menu.html.erb
     # 2 - views/virtual_classroom/index.html.erb

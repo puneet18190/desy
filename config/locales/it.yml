@@ -1167,6 +1167,23 @@ it:
     # 1 - views/lessons/index.html.erb
     # 2 - views/media_elements/_title_bar.html.erb
     show: "Mostra"
+    # titles of the tab for each section
+    titles:
+      # 1 - helpers/application_helper.rb
+      admin: "%{desy} - admin"
+      # 1 - helpers/application_helper.rb
+      default: "%{desy}"
+      # 1 - helpers/application_helper.rb
+      lessons: "%{desy} - lezioni"
+      # 1 - helpers/application_helper.rb
+      media_elements: "%{desy} - elementi"
+      # 1 - helpers/application_helper.rb
+      profile: "%{desy} - profilo"
+      # 1 - helpers/application_helper.rb
+      single_lesson: "%{desy} - %{lesson}"
+      # 1 - helpers/application_helper.rb
+      # 2 - helpers/application_helper.rb
+      virtual_classroom: "%{desy} - virtual classroom"
     # Caption for Virtual Classroom
     # 1 - views/shared/_menu.html.erb
     # 2 - views/virtual_classroom/index.html.erb
