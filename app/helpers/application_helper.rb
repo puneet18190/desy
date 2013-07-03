@@ -121,4 +121,25 @@ module ApplicationHelper
     resp
   end
   
+  def html_title(slides)
+    controller = controller_path
+    action = action_name
+    return t('shared.titles.admin', :desy => SETTINGS['application_name']) if controller[0, 6] == 'admin/'
+    return t('shared.titles.lessons', :desy => SETTINGS['application_name']) if ['lessons', 'lesson_editor'].include? controller
+    return t('shared.titles.media_elements', :desy => SETTINGS['application_name']) if ['audio_editor', 'image_editor', 'video_editor', 'media_elements'].include? controller
+    return t('shared.titles.profile', :desy => SETTINGS['application_name']) if controller == 'users'
+    if controller == 'lesson_viewer'
+      return t('shared.titles.virtual_classroom', :desy => SETTINGS['application_name']) if action == 'playlist'
+      if action == 'index'
+        return t('shared.titles.lessons', :desy => SETTINGS['application_name']) if slides.nil? || slides.first.nil?
+        if slides.first.lesson.is_public
+          return t('shared.titles.single_lesson', :desy => SETTINGS['application_name'], :lesson => slides.first.lesson.title)
+        else
+          return t('shared.titles.lessons', :desy => SETTINGS['application_name'])
+        end
+      end
+    end
+    t('shared.titles.default', :desy => SETTINGS['application_name'])
+  end
+  
 end
