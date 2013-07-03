@@ -1,4 +1,4 @@
-Mon, 01 Jul 2013 11:45:22 +0200
+Wed, 03 Jul 2013 18:27:44 +0200
 app/controllers/admin/dashboard_controller.rb	Mon, 29 Apr 2013 12:27:25 +0200
 app/controllers/admin/lessons_controller.rb	Mon, 29 Apr 2013 12:27:25 +0200
 app/controllers/admin/media_elements_controller.rb	Mon, 29 Apr 2013 12:27:25 +0200
@@ -13,7 +13,7 @@ app/controllers/dashboard_controller.rb	Tue, 30 Apr 2013 17:43:55 +0200
 app/controllers/galleries_controller.rb	Tue, 30 Apr 2013 17:43:55 +0200
 app/controllers/image_editor_controller.rb	Tue, 30 Apr 2013 17:43:55 +0200
 app/controllers/lesson_editor_controller.rb	Mon, 17 Jun 2013 10:23:16 +0200
-app/controllers/lesson_viewer_controller.rb	Tue, 30 Apr 2013 17:43:55 +0200
+app/controllers/lesson_viewer_controller.rb	Wed, 03 Jul 2013 17:20:40 +0200
 app/controllers/lessons_controller.rb	Tue, 30 Apr 2013 17:43:55 +0200
 app/controllers/mailing_lists_controller.rb	Tue, 30 Apr 2013 17:43:55 +0200
 app/controllers/media_elements_controller.rb	Tue, 11 Jun 2013 15:03:35 +0200
@@ -27,7 +27,7 @@ app/controllers/users_controller.rb	Thu, 09 May 2013 12:13:35 +0200
 app/controllers/video_editor_controller.rb	Thu, 09 May 2013 18:07:23 +0200
 app/controllers/virtual_classroom_controller.rb	Tue, 30 Apr 2013 17:43:55 +0200
 app/helpers/admin_helper.rb	Thu, 02 May 2013 16:02:34 +0200
-app/helpers/application_helper.rb	Mon, 24 Jun 2013 12:31:00 +0200
+app/helpers/application_helper.rb	Wed, 03 Jul 2013 18:27:18 +0200
 app/helpers/mailer_helper.rb	Tue, 07 May 2013 15:11:16 +0200
 app/mailers/maintainer_notifications_mailer.rb	Thu, 02 May 2013 16:05:21 +0200
 app/mailers/user_mailer.rb	Thu, 02 May 2013 16:04:28 +0200
@@ -45,7 +45,7 @@ app/models/media_elements_slide.rb	Tue, 30 Apr 2013 17:43:55 +0200
 app/models/notification.rb	Tue, 30 Apr 2013 17:43:55 +0200
 app/models/report.rb	Tue, 30 Apr 2013 17:43:55 +0200
 app/models/school_level.rb	Mon, 29 Apr 2013 12:27:25 +0200
-app/models/slide.rb	Fri, 28 Jun 2013 11:00:14 +0200
+app/models/slide.rb	Tue, 02 Jul 2013 12:08:34 +0200
 app/models/subject.rb	Mon, 29 Apr 2013 12:27:25 +0200
 app/models/tag.rb	Tue, 30 Apr 2013 17:43:55 +0200
 app/models/tagging.rb	Tue, 30 Apr 2013 17:43:55 +0200
@@ -89,8 +89,8 @@ lib/media/audio/editing/conversion.rb	Tue, 07 May 2013 15:11:16 +0200
 lib/media/audio/editing/conversion/job.rb	Tue, 07 May 2013 15:11:16 +0200
 lib/media/audio/editing/crop.rb	Tue, 30 Apr 2013 17:43:55 +0200
 lib/media/audio/editing/parameters.rb	Mon, 29 Apr 2013 12:27:31 +0200
-lib/media/audio/uploader.rb	Tue, 07 May 2013 15:11:16 +0200
-lib/media/audio/uploader/validation.rb	Tue, 30 Apr 2013 17:43:55 +0200
+lib/media/audio/uploader.rb	Tue, 02 Jul 2013 12:08:17 +0200
+lib/media/audio/uploader/validation.rb	Tue, 02 Jul 2013 12:08:17 +0200
 lib/media/cmd.rb	Mon, 29 Apr 2013 12:27:31 +0200
 lib/media/cmd/avconv.rb	Mon, 29 Apr 2013 12:27:31 +0200
 lib/media/cmd/avprobe.rb	Mon, 29 Apr 2013 12:27:31 +0200
@@ -109,7 +109,7 @@ lib/media/logging.rb	Tue, 30 Apr 2013 17:43:55 +0200
 lib/media/shared.rb	Tue, 30 Apr 2013 17:43:55 +0200
 lib/media/similar_durations.rb	Tue, 30 Apr 2013 17:43:55 +0200
 lib/media/thread.rb	Mon, 29 Apr 2013 12:27:31 +0200
-lib/media/uploader.rb	Tue, 30 Apr 2013 17:43:55 +0200
+lib/media/uploader.rb	Tue, 02 Jul 2013 12:08:17 +0200
 lib/media/video.rb	Mon, 29 Apr 2013 12:27:31 +0200
 lib/media/video/editing.rb	Tue, 07 May 2013 15:11:16 +0200
 lib/media/video/editing/cmd.rb	Tue, 30 Apr 2013 17:43:55 +0200
@@ -140,7 +140,7 @@ lib/media/video/editing/parameters.rb	Tue, 30 Apr 2013 17:43:55 +0200
 lib/media/video/editing/replace_audio.rb	Tue, 30 Apr 2013 17:43:55 +0200
 lib/media/video/editing/text_to_video.rb	Tue, 30 Apr 2013 17:43:55 +0200
 lib/media/video/editing/transition.rb	Tue, 30 Apr 2013 17:43:55 +0200
-lib/media/video/uploader.rb	Tue, 07 May 2013 15:11:16 +0200
-lib/media/video/uploader/validation.rb	Tue, 30 Apr 2013 17:43:55 +0200
+lib/media/video/uploader.rb	Tue, 02 Jul 2013 12:08:17 +0200
+lib/media/video/uploader/validation.rb	Tue, 02 Jul 2013 12:08:17 +0200
 lib/notifications_job.rb	Mon, 29 Apr 2013 12:27:31 +0200
 doc/README.rdoc	Mon, 29 Apr 2013 12:27:31 +0200

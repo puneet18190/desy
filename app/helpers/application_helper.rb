@@ -121,19 +121,21 @@ module ApplicationHelper
     resp
   end
   
+  # method to create the title of the html tab
   def html_title(slides)
     controller = controller_path
     action = action_name
-    return t('captions.titles.admin', :desy => SETTINGS['application_name']) if controller[0, 6] == 'admin/'
-    return t('captions.titles.lessons', :desy => SETTINGS['application_name']) if ['lessons', 'lesson_editor'].include? controller
-    return t('captions.titles.media_elements', :desy => SETTINGS['application_name']) if ['audio_editor', 'image_editor', 'video_editor', 'media_elements'].include? controller
-    return t('captions.titles.profile', :desy => SETTINGS['application_name']) if controller == 'users'
-    return t('captions.titles.virtual_classroom', :desy => SETTINGS['application_name']) if controller == 'virtual_classroom'
+    desy = SETTINGS['application_name']
+    return t('captions.titles.admin', :desy => desy) if controller[0, 6] == 'admin/'
+    return t('captions.titles.lessons', :desy => desy) if ['lessons', 'lesson_editor'].include? controller
+    return t('captions.titles.media_elements', :desy => desy) if ['audio_editor', 'image_editor', 'video_editor', 'media_elements'].include? controller
+    return t('captions.titles.profile', :desy => desy) if controller == 'users'
+    return t('captions.titles.virtual_classroom', :desy => desy) if controller == 'virtual_classroom'
     if controller == 'lesson_viewer'
-      return t('captions.titles.virtual_classroom', :desy => SETTINGS['application_name']) if action == 'playlist'
-      return t('captions.titles.single_lesson', :desy => SETTINGS['application_name'], :lesson => slides.first.lesson.title) if action == 'index'
+      return t('captions.titles.virtual_classroom', :desy => desy) if action == 'playlist'
+      return t('captions.titles.single_lesson', :desy => desy, :lesson => slides.first.lesson.title) if action == 'index'
     end
-    t('captions.titles.default', :desy => SETTINGS['application_name'])
+    t('captions.titles.default', :desy => desy)
   end
   
 end

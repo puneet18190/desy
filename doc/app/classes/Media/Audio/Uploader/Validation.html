@@ -232,13 +232,26 @@ invalid extension, etc)</p>
     <span class="ruby-string">&#39;invalid paths&#39;</span>
   <span class="ruby-keyword">elsif</span> [<span class="ruby-identifier">m4a_path</span>, <span class="ruby-identifier">ogg_path</span>].<span class="ruby-identifier">map</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">p</span><span class="ruby-operator">|</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">extname</span>(<span class="ruby-identifier">p</span>) } <span class="ruby-operator">!=</span> <span class="ruby-node">%w(.m4a .ogg)</span>
     <span class="ruby-string">&#39;invalid extension&#39;</span>
-  <span class="ruby-keyword">elsif</span> <span class="ruby-operator">!</span>(<span class="ruby-identifier">m4a_info</span> = <span class="ruby-constant">Info</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">m4a_path</span>, <span class="ruby-keyword">false</span>)).<span class="ruby-identifier">valid?</span> <span class="ruby-operator">||</span> <span class="ruby-operator">!</span>(<span class="ruby-identifier">ogg_info</span> = <span class="ruby-constant">Info</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">ogg_path</span>, <span class="ruby-keyword">false</span>)).<span class="ruby-identifier">valid?</span>
-    <span class="ruby-string">&#39;invalid audio&#39;</span>
-  <span class="ruby-keyword">elsif</span> [<span class="ruby-identifier">m4a_info</span>.<span class="ruby-identifier">duration</span>, <span class="ruby-identifier">ogg_info</span>.<span class="ruby-identifier">duration</span>].<span class="ruby-identifier">min</span> <span class="ruby-operator">&lt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span><span class="ruby-operator">::</span><span class="ruby-constant">MIN_DURATION</span>
-    <span class="ruby-string">&#39;invalid duration&#39;</span>
-  <span class="ruby-keyword">elsif</span> <span class="ruby-operator">!</span><span class="ruby-identifier">similar_durations?</span>(<span class="ruby-identifier">m4a_info</span>.<span class="ruby-identifier">duration</span>, <span class="ruby-identifier">ogg_info</span>.<span class="ruby-identifier">duration</span>)
-    <span class="ruby-string">&#39;invalid duration difference&#39;</span>
-  <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">else</span>
+
+      <span class="ruby-identifier">m4a_duration</span>, <span class="ruby-identifier">ogg_duration</span> = 
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">durations?</span>
+          [ <span class="ruby-identifier">durations</span>[<span class="ruby-value">:m4a</span>], <span class="ruby-identifier">durations</span>[<span class="ruby-value">:ogg</span>] ]
+        <span class="ruby-keyword">else</span>
+          <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span>(<span class="ruby-identifier">m4a_info</span> = <span class="ruby-constant">Info</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">m4a_path</span>, <span class="ruby-keyword">false</span>)).<span class="ruby-identifier">valid?</span> <span class="ruby-operator">||</span> <span class="ruby-operator">!</span>(<span class="ruby-identifier">ogg_info</span> = <span class="ruby-constant">Info</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">ogg_path</span>, <span class="ruby-keyword">false</span>)).<span class="ruby-identifier">valid?</span>
+            <span class="ruby-keyword">return</span> <span class="ruby-string">&#39;invalid video&#39;</span>
+          <span class="ruby-keyword">end</span>
+          [ <span class="ruby-identifier">m4a_info</span>.<span class="ruby-identifier">duration</span>, <span class="ruby-identifier">ogg_info</span>.<span class="ruby-identifier">duration</span> ]
+        <span class="ruby-keyword">end</span>
+
+      <span class="ruby-keyword">if</span> [<span class="ruby-identifier">m4a_duration</span>, <span class="ruby-identifier">ogg_duration</span>].<span class="ruby-identifier">min</span> <span class="ruby-operator">&lt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span><span class="ruby-operator">::</span><span class="ruby-constant">MIN_DURATION</span>
+        <span class="ruby-string">&#39;invalid duration&#39;</span>
+      <span class="ruby-keyword">elsif</span> <span class="ruby-operator">!</span><span class="ruby-identifier">similar_durations?</span>(<span class="ruby-identifier">m4a_duration</span>, <span class="ruby-identifier">ogg_duration</span>)
+        <span class="ruby-string">&#39;invalid duration difference&#39;</span>
+      <span class="ruby-keyword">end</span>
+
+    <span class="ruby-keyword">end</span>
+
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>

@@ -225,18 +225,31 @@ href="../../Video.html">Video</a></p>
                 <pre><span class="ruby-comment"># File lib/media/video/uploader/validation.rb, line 50</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">error_message_for_converted_files</span>
   <span class="ruby-identifier">mp4_path</span>, <span class="ruby-identifier">webm_path</span> = <span class="ruby-ivar">@converted_files</span>[<span class="ruby-value">:mp4</span>], <span class="ruby-ivar">@converted_files</span>[<span class="ruby-value">:webm</span>]
+
   <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@original_filename_without_extension</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">String</span>)
     <span class="ruby-string">&#39;invalid filename&#39;</span>
   <span class="ruby-keyword">elsif</span> <span class="ruby-operator">!</span><span class="ruby-identifier">mp4_path</span>.<span class="ruby-identifier">instance_of?</span>(<span class="ruby-constant">String</span>) <span class="ruby-operator">||</span> <span class="ruby-operator">!</span><span class="ruby-identifier">webm_path</span>.<span class="ruby-identifier">instance_of?</span>(<span class="ruby-constant">String</span>)
     <span class="ruby-string">&#39;invalid paths&#39;</span>
   <span class="ruby-keyword">elsif</span> [<span class="ruby-identifier">mp4_path</span>, <span class="ruby-identifier">webm_path</span>].<span class="ruby-identifier">map</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">p</span><span class="ruby-operator">|</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">extname</span>(<span class="ruby-identifier">p</span>) } <span class="ruby-operator">!=</span> <span class="ruby-node">%w(.mp4 .webm)</span>
     <span class="ruby-string">&#39;invalid extension&#39;</span>
-  <span class="ruby-keyword">elsif</span> <span class="ruby-operator">!</span>(<span class="ruby-identifier">mp4_info</span> = <span class="ruby-constant">Info</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">mp4_path</span>, <span class="ruby-keyword">false</span>)).<span class="ruby-identifier">valid?</span> <span class="ruby-operator">||</span> <span class="ruby-operator">!</span>(<span class="ruby-identifier">webm_info</span> = <span class="ruby-constant">Info</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">webm_path</span>, <span class="ruby-keyword">false</span>)).<span class="ruby-identifier">valid?</span>
-    <span class="ruby-string">&#39;invalid video&#39;</span>
-  <span class="ruby-keyword">elsif</span> [<span class="ruby-identifier">mp4_info</span>.<span class="ruby-identifier">duration</span>, <span class="ruby-identifier">webm_info</span>.<span class="ruby-identifier">duration</span>].<span class="ruby-identifier">min</span> <span class="ruby-operator">&lt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span><span class="ruby-operator">::</span><span class="ruby-constant">MIN_DURATION</span>
-    <span class="ruby-string">&#39;invalid duration&#39;</span>
-  <span class="ruby-keyword">elsif</span> <span class="ruby-keyword">not</span> <span class="ruby-identifier">similar_durations?</span>(<span class="ruby-identifier">mp4_info</span>.<span class="ruby-identifier">duration</span>, <span class="ruby-identifier">webm_info</span>.<span class="ruby-identifier">duration</span>)
-    <span class="ruby-string">&#39;invalid duration difference&#39;</span>
+  <span class="ruby-keyword">else</span>
+
+    <span class="ruby-identifier">mp4_duration</span>, <span class="ruby-identifier">webm_duration</span> = 
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">durations?</span>
+        [ <span class="ruby-identifier">durations</span>[<span class="ruby-value">:mp4</span>], <span class="ruby-identifier">durations</span>[<span class="ruby-value">:webm</span>] ]
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span>(<span class="ruby-identifier">mp4_info</span> = <span class="ruby-constant">Info</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">mp4_path</span>, <span class="ruby-keyword">false</span>)).<span class="ruby-identifier">valid?</span> <span class="ruby-operator">||</span> <span class="ruby-operator">!</span>(<span class="ruby-identifier">webm_info</span> = <span class="ruby-constant">Info</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">webm_path</span>, <span class="ruby-keyword">false</span>)).<span class="ruby-identifier">valid?</span>
+          <span class="ruby-keyword">return</span> <span class="ruby-string">&#39;invalid video&#39;</span>
+        <span class="ruby-keyword">end</span>
+        [ <span class="ruby-identifier">mp4_info</span>.<span class="ruby-identifier">duration</span>, <span class="ruby-identifier">webm_info</span>.<span class="ruby-identifier">duration</span> ]
+      <span class="ruby-keyword">end</span>
+
+    <span class="ruby-keyword">if</span> [<span class="ruby-identifier">mp4_duration</span>, <span class="ruby-identifier">webm_duration</span>].<span class="ruby-identifier">min</span> <span class="ruby-operator">&lt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span><span class="ruby-operator">::</span><span class="ruby-constant">MIN_DURATION</span>
+      <span class="ruby-string">&#39;invalid duration&#39;</span>
+    <span class="ruby-keyword">elsif</span> <span class="ruby-operator">!</span><span class="ruby-identifier">similar_durations?</span>(<span class="ruby-identifier">mp4_duration</span>, <span class="ruby-identifier">webm_duration</span>)
+      <span class="ruby-string">&#39;invalid duration difference&#39;</span>
+    <span class="ruby-keyword">end</span>
+
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
               </div>

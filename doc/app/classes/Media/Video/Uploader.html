@@ -75,6 +75,18 @@ href="../Uploader.html">Media::Uploader</a></p>
     <div class="sectiontitle">Methods</div>
     <dl class="methods">
       
+        <dt>C</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-cover_output_path">cover_output_path</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
         <dt>E</dt>
         <dd>
           <ul>
@@ -92,6 +104,18 @@ href="../Uploader.html">Media::Uploader</a></p>
               
               <li>
                 <a href="#method-i-extract_versions">extract_versions</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>T</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-thumb_output_path">thumb_output_path</a>
               </li>
             
           </ul>
@@ -243,7 +267,7 @@ value</p></td>
           
             <tr valign='top'>
               <td>&nbsp;</td>
-              <td colspan="2" class="attr-desc"><p>Output versiosn formats (thumb, cover…)</p></td>
+              <td colspan="2" class="attr-desc"><p>Output versions formats (thumb, cover…)</p></td>
             </tr>
           
         
@@ -271,6 +295,41 @@ value</p></td>
       <div class="sectiontitle">Instance Private methods</div>
       
         <div class="method">
+          <div class="title method-title" id="method-i-cover_output_path">
+            
+              <b>cover_output_path</b>()
+            
+            <a href="../../../classes/Media/Video/Uploader.html#method-i-cover_output_path" name="method-i-cover_output_path" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Cover file output path</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-cover_output_path_source')" id="l_method-i-cover_output_path_source">show</a>
+                
+              </p>
+              <div id="method-i-cover_output_path_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/media/video/uploader.rb, line 70</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">cover_output_path</span>
+  <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span> <span class="ruby-identifier">output_folder</span>, <span class="ruby-constant">COVER_FORMAT</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">processed_original_filename_without_extension</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
           <div class="title method-title" id="method-i-extract_cover">
             
               <b>extract_cover</b>(input, output, duration)
@@ -296,7 +355,7 @@ value</p></td>
                 
               </p>
               <div id="method-i-extract_cover_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/uploader.rb, line 55</span>
+                <pre><span class="ruby-comment"># File lib/media/video/uploader.rb, line 58</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">extract_cover</span>(<span class="ruby-identifier">input</span>, <span class="ruby-identifier">output</span>, <span class="ruby-identifier">duration</span>)
   <span class="ruby-identifier">seek</span> = <span class="ruby-identifier">duration</span> <span class="ruby-operator">/</span> <span class="ruby-number">2</span>
   <span class="ruby-constant">Editing</span><span class="ruby-operator">::</span><span class="ruby-constant">Cmd</span><span class="ruby-operator">::</span><span class="ruby-constant">ExtractFrame</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">input</span>, <span class="ruby-identifier">output</span>, <span class="ruby-identifier">seek</span>).<span class="ruby-identifier">run!</span>
@@ -333,7 +392,7 @@ value</p></td>
                 
               </p>
               <div id="method-i-extract_thumb_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/uploader.rb, line 62</span>
+                <pre><span class="ruby-comment"># File lib/media/video/uploader.rb, line 65</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">extract_thumb</span>(<span class="ruby-identifier">input</span>, <span class="ruby-identifier">output</span>, <span class="ruby-identifier">width</span>, <span class="ruby-identifier">height</span>)
   <span class="ruby-constant">Image</span><span class="ruby-operator">::</span><span class="ruby-constant">Editing</span><span class="ruby-operator">::</span><span class="ruby-constant">ResizeToFill</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">input</span>, <span class="ruby-identifier">output</span>, <span class="ruby-identifier">width</span>, <span class="ruby-identifier">height</span>).<span class="ruby-identifier">run</span>
 <span class="ruby-keyword">end</span></pre>
@@ -352,7 +411,8 @@ value</p></td>
           
           
             <div class="description">
-              <p>Generate the additional versions</p>
+              <p>Generate the additional versions; it copies the files if their input paths
+have been provided before</p>
             </div>
           
           
@@ -370,11 +430,49 @@ value</p></td>
               <div id="method-i-extract_versions_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File lib/media/video/uploader.rb, line 46</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">extract_versions</span>(<span class="ruby-identifier">infos</span>)
-  <span class="ruby-identifier">cover_path</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span> <span class="ruby-identifier">output_folder</span>, <span class="ruby-constant">COVER_FORMAT</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">processed_original_filename_without_extension</span>
-  <span class="ruby-identifier">extract_cover</span> <span class="ruby-ivar">@converted_files</span>[<span class="ruby-value">:mp4</span>], <span class="ruby-identifier">cover_path</span>, <span class="ruby-identifier">infos</span>[<span class="ruby-value">:mp4</span>].<span class="ruby-identifier">duration</span>
-
-  <span class="ruby-identifier">thumb_path</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span> <span class="ruby-identifier">output_folder</span>, <span class="ruby-constant">THUMB_FORMAT</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">processed_original_filename_without_extension</span>
-  <span class="ruby-identifier">extract_thumb</span> <span class="ruby-identifier">cover_path</span>, <span class="ruby-identifier">thumb_path</span>, *<span class="ruby-constant">THUMB_SIZES</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">version_input_paths?</span>
+    <span class="ruby-identifier">version_input_paths</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">version</span>, <span class="ruby-identifier">input</span><span class="ruby-operator">|</span>
+      <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">cp</span> <span class="ruby-identifier">input</span>, <span class="ruby-identifier">send</span>(<span class="ruby-value">:&quot;#{version}_output_path&quot;</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">extract_cover</span> <span class="ruby-ivar">@converted_files</span>[<span class="ruby-value">:mp4</span>], <span class="ruby-identifier">cover_output_path</span>, <span class="ruby-identifier">infos</span>[<span class="ruby-value">:mp4</span>].<span class="ruby-identifier">duration</span>
+    <span class="ruby-identifier">extract_thumb</span> <span class="ruby-identifier">cover_output_path</span>, <span class="ruby-identifier">thumb_output_path</span>, *<span class="ruby-constant">THUMB_SIZES</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-thumb_output_path">
+            
+              <b>thumb_output_path</b>()
+            
+            <a href="../../../classes/Media/Video/Uploader.html#method-i-thumb_output_path" name="method-i-thumb_output_path" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Thumb file output path</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-thumb_output_path_source')" id="l_method-i-thumb_output_path_source">show</a>
+                
+              </p>
+              <div id="method-i-thumb_output_path_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/media/video/uploader.rb, line 75</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">thumb_output_path</span>
+  <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span> <span class="ruby-identifier">output_folder</span>, <span class="ruby-constant">THUMB_FORMAT</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">processed_original_filename_without_extension</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
