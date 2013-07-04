@@ -3,7 +3,7 @@
   data = {
     :url => lesson_viewer_url(lesson.id),
     :description => lesson.description,
-    :image => cover_img.nil? ? nil : full_url cover_img.media_element.thumb_url
+    :image => cover_img.nil? ? nil : full_url(cover_img.media_element.thumb_url)
   }
 %>
 
