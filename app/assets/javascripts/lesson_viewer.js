@@ -27,6 +27,7 @@ function lessonViewerDocumentReady() {
   initializeLessonViewer();
   lessonViewerDocumentReadyPlaylist();
   lessonViewerDocumentReadySlidesNavigation();
+  lessonViewerDocumentReadySocialNetworks();
 }
 
 /**
@@ -102,6 +103,15 @@ function lessonViewerDocumentReadySlidesNavigation() {
       goToPrevSlideInLessonViewer(true);
     }
   });
+}
+
+/**
+Initializer for functionality of sharing the lesson in social networks.
+@method lessonViewerDocumentReadySocialNetworks
+@for LessonViewerDocumentReady
+**/
+function lessonViewerDocumentReadySocialNetworks() {
+  
 }
 
 

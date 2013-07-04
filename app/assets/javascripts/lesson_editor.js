@@ -944,7 +944,7 @@ function slideTo(slide_id, callback) {
 
 
 /**
-TinyMCE callback to clean spans containing classes for font size: these classes are attached to the first <ol>, <ul>, <p>
+TinyMCE callback to clean spans containing classes for font size: these classes are attached to the first ol, ul, p
 @method cleanTinyMCESpanTagsFontSize
 @for LessonEditorTinyMCE
 @param editor {Object} tinyMCE instance
