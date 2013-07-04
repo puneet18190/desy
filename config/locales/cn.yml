@@ -728,14 +728,17 @@ cn:
     # 1 - views/media_elements/_popup.html.erb
     close: "关闭"
     # Icon of a small door with an arrow going out: it represents the exit from the current section, all over the application
-    # 1 - views/media_elements/new.html.erb
+    # 1 - views/video_editor/not_available.html.erb
     # 2 - views/lesson_viewer/_lesson_slides.html.erb
-    # 3 - views/image_editor/_header.html.erb
-    # 4 - views/video_editor/not_available.html.erb
-    # 5 - views/video_editor/_header.html.erb
-    # 6 - views/audio_editor/not_available.html.erb
-    # 7 - views/audio_editor/_header.html.erb
-    exit: "不保存退出"
+    # 3 - views/lesson_viewer/playlist.html.erb
+    # 4 - views/audio_editor/not_available.html.erb
+    # 5 - views/media_elements/new.html.erb
+    exit: "出口"
+    # Same as above, but exit without saving
+    # 1 - views/audio_editor/_header.html.erb
+    # 2 - views/image_editor/_header.html.erb
+    # 3 - views/video_editor/_header.html.erb
+    exit_without_saving: "不保存退出"
     # Tooltips inside the media galleries (audio, image and video gallery)
     galleries:
       # Icon 'plus' in audio gallery
