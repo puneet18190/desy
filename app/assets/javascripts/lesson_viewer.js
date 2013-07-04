@@ -129,9 +129,9 @@ function lessonViewerDocumentReadySocialNetworks() {
   });
   $('body').on('click', '#social_networks .facebook', function() {
     var fb_url = 'https://www.facebook.com/sharer/sharer.php?p[url]=' + encodeURIComponent($(this).data('url'));
-    fb_url += '&p[summary]=' + $(this).data('description');
-    fb_url += '&p[images][0]=' + $(this).data('image');
-    fb_url += '&p[title]=' + $(this).data('title');
+    fb_url += '&p[summary]=' + encodeURIComponent($(this).data('description'));
+    fb_url += '&p[images][0]=' + encodeURIComponent($(this).data('image'));
+    fb_url += '&p[title]=' + encodeURIComponent($(this).data('title'));
     window.open(
       fb_url,
       'facebook-share-dialog',
