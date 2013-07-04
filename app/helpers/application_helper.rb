@@ -124,18 +124,21 @@ module ApplicationHelper
   # method to create the title of the html tab
   def html_title(slides)
     controller = controller_path
-    action = action_name
     desy = SETTINGS['application_name']
     return t('captions.titles.admin', :desy => desy) if controller[0, 6] == 'admin/'
-    return t('captions.titles.lessons', :desy => desy) if ['lessons', 'lesson_editor'].include? controller
-    return t('captions.titles.media_elements', :desy => desy) if ['audio_editor', 'image_editor', 'video_editor', 'media_elements'].include? controller
-    return t('captions.titles.profile', :desy => desy) if controller == 'users'
-    return t('captions.titles.virtual_classroom', :desy => desy) if controller == 'virtual_classroom'
-    if controller == 'lesson_viewer'
-      return t('captions.titles.virtual_classroom', :desy => desy) if action == 'playlist'
-      return t('captions.titles.single_lesson', :desy => desy, :lesson => slides.first.lesson.title) if action == 'index'
+    case controller
+    when 'lessons', 'lesson_editor'                                       then t('captions.titles.lessons', :desy => desy)
+    when 'audio_editor', 'image_editor', 'video_editor', 'media_elements' then t('captions.titles.media_elements', :desy => desy)
+    when 'users'                                                          then t('captions.titles.profile', :desy => desy)
+    when 'virtual_classroom'                                              then t('captions.titles.virtual_classroom', :desy => desy)
+    when 'lesson_viewer'                                                  then
+      if action_name == 'index'
+        t('captions.titles.single_lesson', :desy => desy, :lesson => slides.first.lesson.title)
+      else
+        t('captions.titles.virtual_classroom', :desy => desy)
+      end
+    else                                                                       t('captions.titles.default', :desy => desy)
     end
-    t('captions.titles.default', :desy => desy)
   end
   
 end
