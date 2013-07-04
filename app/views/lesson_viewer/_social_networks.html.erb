@@ -11,11 +11,15 @@
 %>
 
 <div id="social_networks" style="display:none">
-  <%= link_to 'fb', '', :class => 'facebook', :data => data_fb %>
+  <%= link_to 'fb', 'javascript:;', :class => 'facebook', :data => data_fb %>
   <br/>
-  <%= link_to 'tw', '', :class => 'twitter', :data => data_tw %>
+  <%= link_to 'tw', 'javascript:;', :class => 'twitter', :data => data_tw %>
   <br/>
-  <%= link_to 'g+', '', :class => 'google-plus' %>
+  
+  <script src="https://apis.google.com/js/plusone.js"></script>
+  <g:plus action="share"></g:plus>
+  
+  <%= link_to 'g+', 'javascript:;', :class => 'google-plus' %>
 </div>
 
 <a id="open_social_networks"></a>
