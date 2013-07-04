@@ -423,7 +423,59 @@ Initializer for functionality of sharing the lesson in social networks.
 @for LessonViewerDocumentReady
 **/
 function lessonViewerDocumentReadySocialNetworks() {
-  
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#open_social_networks&#x27;, function() {
+    $(this).hide();
+    $(&#x27;#social_networks&#x27;).show();
+  });
+  $(&#x27;body&#x27;).on(&#x27;mouseout&#x27;, &#x27;#social_networks&#x27;, function(e) {
+    var position = $(this).offset();
+    var top = position.top;
+    var right = position.left + 197;
+    var bottom = position.top + 214;
+    var left = position.left;
+    if(left &lt;= e.clientX &amp;&amp; e.clientX &lt;= right &amp;&amp; top &lt;= e.clientY &amp;&amp; e.clientY &lt;= bottom) {
+      return;
+    }
+    $(this).hide();
+    $(&#x27;#open_social_networks&#x27;).show();
+  });
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#social_networks .facebook&#x27;, function() {
+    $(&#x27;#social_networks&#x27;).hide();
+    $(&#x27;#open_social_networks&#x27;).show();
+    var fb_url = &#x27;https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=&#x27; + encodeURIComponent($(this).data(&#x27;url&#x27;));
+    fb_url += &#x27;&amp;p[summary]=&#x27; + encodeURIComponent($(this).data(&#x27;description&#x27;));
+    fb_url += &#x27;&amp;p[title]=&#x27; + encodeURIComponent($(&#x27;title&#x27;).html());
+    if($(this).data(&#x27;image&#x27;) != undefined) {
+      fb_url += &#x27;&amp;p[images][0]=&#x27; + encodeURIComponent($(this).data(&#x27;image&#x27;));
+    }
+    window.open(
+      fb_url,
+      &#x27;facebook-share-dialog&#x27;,
+      &#x27;width=626,height=436&#x27;
+    );
+  });
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#social_networks .twitter&#x27;, function() {
+    $(&#x27;#social_networks&#x27;).hide();
+    $(&#x27;#open_social_networks&#x27;).show();
+    var tw_url = &#x27;https://twitter.com/intent/tweet?original_referer=&#x27; + encodeURIComponent($(this).data(&#x27;url&#x27;));
+    tw_url += &#x27;&amp;text=&#x27; + encodeURIComponent($(&#x27;title&#x27;).html());
+    tw_url += &#x27;&amp;tw_p=tweetbutton&amp;url=&#x27; + encodeURIComponent($(this).data(&#x27;url&#x27;));
+    window.open(
+      tw_url,
+      &#x27;twitter-share-dialog&#x27;,
+      &#x27;width=626,height=436&#x27;
+    );
+  });
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#social_networks .google-plus&#x27;, function() {
+    $(&#x27;#social_networks&#x27;).hide();
+    $(&#x27;#open_social_networks&#x27;).show();
+    var gp_url = &#x27;https://plus.google.com/share?url=&#x27; + encodeURIComponent($(this).data(&#x27;url&#x27;));
+    window.open(
+      gp_url,
+      &#x27;google-plus-share-dialog&#x27;,
+      &#x27;width=626,height=436&#x27;
+    );
+  });
 }
 
 

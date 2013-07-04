@@ -79,6 +79,18 @@
           </ul>
         </dd>
       
+        <dt>F</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-full_url">full_url</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
         <dt>G</dt>
         <dd>
           <ul>
@@ -632,6 +644,48 @@ and similar methods.</p>
               
       <div class="sectiontitle">Instance Private methods</div>
       
+        <div class="method">
+          <div class="title method-title" id="method-i-full_url">
+            
+              <b>full_url</b>(path)
+            
+            <a href="../classes/ApplicationHelper.html#method-i-full_url" name="method-i-full_url" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p><code>path</code> must be an absolute path</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-full_url_source')" id="l_method-i-full_url_source">show</a>
+                
+              </p>
+              <div id="method-i-full_url_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 145</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">full_url</span>(<span class="ruby-identifier">path</span>)
+  <span class="ruby-identifier">uri</span> = <span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span> <span class="ruby-identifier">path</span>
+
+  <span class="ruby-identifier">scheme</span>, <span class="ruby-identifier">host</span>, <span class="ruby-identifier">port</span> = <span class="ruby-identifier">request</span>.<span class="ruby-identifier">scheme</span>, <span class="ruby-identifier">request</span>.<span class="ruby-identifier">host</span>, <span class="ruby-identifier">request</span>.<span class="ruby-identifier">port</span>
+  <span class="ruby-identifier">port</span> = <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">port</span> <span class="ruby-operator">==</span> <span class="ruby-number">80</span>
+  
+  <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">scheme</span>, <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">host</span>, <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">port</span> = <span class="ruby-identifier">scheme</span>, <span class="ruby-identifier">host</span>, <span class="ruby-identifier">port</span>
+  
+  <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">to_s</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
         <div class="method">
           <div class="title method-title" id="method-i-get_recursive_array_from_params">
             
