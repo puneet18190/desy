@@ -862,6 +862,9 @@ it:
     # Icon with a lens in the main sections
     # 1 - views/shared/_search.html.erb
     search: "Cerca"
+    # Icon to share a lesson throughout social networks
+    # 1 - views/lesson_viewer/_social_networks.html.erb
+    share: "Condividi"
     slides:
       # Arrow to the left, pointing to the previous slide
       # 1 - views/layouts/lesson_viewer.html.erb
@@ -1166,6 +1169,9 @@ it:
     # 3 - views/video_editor/cutters/_image.html.erb
     # 4 - views/video_editor/_text_component_editor.html.erb
     seconds_shortened: "Sec"
+    # Used to share things on social networks
+    # 1 - views/lesson_viewer/_social_networks.html.erb
+    share: "Condividi"
     # Used as a caption to select filters inside the sections 'my lessons' and 'my elements'
     # 1 - views/lessons/index.html.erb
     # 2 - views/media_elements/_title_bar.html.erb
