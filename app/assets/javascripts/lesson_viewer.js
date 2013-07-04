@@ -142,6 +142,18 @@ function lessonViewerDocumentReadySocialNetworks() {
       'width=626,height=436'
     );
   });
+  $('body').on('click', '#social_networks .twitter', function() {
+    $('#social_networks').hide();
+    $('#open_social_networks').show();
+    var tw_url = 'https://twitter.com/intent/tweet?original_referer=' + encodeURIComponent($(this).data('url'));
+    tw_url += '&text=' + encodeURIComponent($('title').html());
+    tw_url += '&tw_p=tweetbutton&url=' + encodeURIComponent($(this).data('url'));
+    window.open(
+      tw_url,
+      'twitter-share-dialog',
+      'width=626,height=436'
+    );
+  });
 }
 
 
