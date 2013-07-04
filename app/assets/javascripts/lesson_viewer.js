@@ -115,10 +115,27 @@ function lessonViewerDocumentReadySocialNetworks() {
     $(this).hide();
     $('#social_networks').show();
   });
-  $('body').on('mouseout', '#social_networks', function() {
+  $('body').on('mouseout', '#social_networks', function(e) {
+    var position = $(this).offset();
+    var top = position.top;
+    var right = position.left + 199;
+    var bottom = position.top + 216;
+    var left = position.left;
+    if(left <= e.clientX && e.clientX <= right && top <= e.clientY && e.clientY <= bottom) {
+      return;
+    }
     $(this).hide();
     $('#open_social_networks').show();
   });
+  
+  $('body').on('click', '#social_networks .facebook', function() {
+    window.open(
+      'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(location.href),
+      'facebook-share-dialog',
+      'width=626,height=436'
+    );
+  });
+  
 }
 
 
