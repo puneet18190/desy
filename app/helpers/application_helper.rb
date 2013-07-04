@@ -141,4 +141,16 @@ module ApplicationHelper
     end
   end
   
+  # +path+ must be an absolute path
+  def full_url(path)
+    uri = URI.parse path
+  
+    scheme, host, port = request.scheme, request.host, request.port
+    port = nil if port == 80
+    
+    uri.scheme, uri.host, uri.port = scheme, host, port
+    
+    uri.to_s
+  end
+  
 end

@@ -1,5 +1,14 @@
+<%
+  cover_img = lesson.cover.media_elements_slides.first
+  data = {
+    :url => lesson_viewer_url(lesson.id),
+    :description => lesson.description,
+    :image => cover_img.nil? ? nil : full_url cover_img.media_element.thumb_url
+  }
+%>
+
 <div id="social_networks" style="display:none">
-  <a class="facebook" data-image="<%= lesson.cover.media_elements_slides.first.media_element.url %>" data-description="<%= lesson.description %>" data-title="<%= lesson.title %>" data-url="<%= lesson_viewer_url(lesson.id) %>">fb</a>
+  <%= link_to 'fb', '', :class => 'facebook', :data => data %>
 </div>
 
 <a id="open_social_networks"></a>
