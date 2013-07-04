@@ -9,7 +9,6 @@
       <% if !cover_img.nil? %>
         <img itemprop="image" src="<%= full_url cover_img.media_element.thumb_url %>"/>
       <% end %>
-      <p itemprop="description"><%= @slides.first.lesson.description %></p>
     <% end %>
     <%= render :partial => 'shared/browser_support_script' %>
     <%= render :partial => 'shared/popups' %>
