@@ -128,8 +128,12 @@ function lessonViewerDocumentReadySocialNetworks() {
     $('#open_social_networks').show();
   });
   $('body').on('click', '#social_networks .facebook', function() {
+    var fb_url = 'https://www.facebook.com/sharer/sharer.php?p[url]=' + encodeURIComponent($(this).data('url'));
+    fb_url += '&p[summary]=' + $(this).data('description');
+    fb_url += '&p[images][0]=' + $(this).data('image');
+    fb_url += '&p[title]=' + $(this).data('title');
     window.open(
-      'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(removeURLParameter(location.href, 'back')),
+      fb_url,
       'facebook-share-dialog',
       'width=626,height=436'
     );

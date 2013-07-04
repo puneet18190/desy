@@ -31,7 +31,7 @@
 </div>
 
 <% if !from_playlist && slides.first.lesson.is_public %>
-  <%= render :partial => 'lesson_viewer/social_networks', :lesson => slides.first.lesson %>
+  <%= render :partial => 'lesson_viewer/social_networks', :locals => {:lesson => slides.first.lesson} %>
 <% end %>
 
 <a class="esciButton fltrt" title="<%= t('titles.exit') %>" href="#" style="margin-top:20px; display:none"></a>
