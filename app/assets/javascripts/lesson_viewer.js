@@ -154,6 +154,16 @@ function lessonViewerDocumentReadySocialNetworks() {
       'width=626,height=436'
     );
   });
+  $('body').on('click', '#social_networks .google-plus', function() {
+    $('#social_networks').hide();
+    $('#open_social_networks').show();
+    var gp_url = 'https://plus.google.com/share?url=' + encodeURIComponent($(this).data('url'));
+    window.open(
+      gp_url,
+      'google-plus-share-dialog',
+      'width=626,height=436'
+    );
+  });
 }
 
 

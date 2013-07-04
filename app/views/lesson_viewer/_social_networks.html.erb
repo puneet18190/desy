@@ -8,6 +8,9 @@
   data_tw = {
     :url => lesson_viewer_url(lesson.id)
   }
+  data_gp = {
+    :url => lesson_viewer_url(lesson.id)
+  }
 %>
 
 <div id="social_networks" style="display:none">
@@ -15,11 +18,7 @@
   <br/>
   <%= link_to 'tw', 'javascript:;', :class => 'twitter', :data => data_tw %>
   <br/>
-  
-  <script src="https://apis.google.com/js/plusone.js"></script>
-  <g:plus action="share"></g:plus>
-  
-  <%= link_to 'g+', 'javascript:;', :class => 'google-plus' %>
+  <%= link_to 'g+', 'javascript:;', :class => 'google-plus', :data => data_gp %>
 </div>
 
 <a id="open_social_networks"></a>
