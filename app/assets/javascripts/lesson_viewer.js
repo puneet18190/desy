@@ -128,6 +128,8 @@ function lessonViewerDocumentReadySocialNetworks() {
     $('#open_social_networks').show();
   });
   $('body').on('click', '#social_networks .facebook', function() {
+    $('#social_networks').hide();
+    $('#open_social_networks').show();
     var fb_url = 'https://www.facebook.com/sharer/sharer.php?s=100&p[url]=' + encodeURIComponent($(this).data('url'));
     fb_url += '&p[summary]=' + encodeURIComponent($(this).data('description'));
     fb_url += '&p[title]=' + encodeURIComponent($('title').html());

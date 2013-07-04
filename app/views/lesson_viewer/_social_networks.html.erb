@@ -1,6 +1,6 @@
 <%
   cover_img = lesson.cover.media_elements_slides.first
-  data = {
+  data_fb = {
     :url => lesson_viewer_url(lesson.id),
     :description => lesson.description,
     :image => cover_img.nil? ? nil : full_url(cover_img.media_element.thumb_url)
@@ -8,7 +8,22 @@
 %>
 
 <div id="social_networks" style="display:none">
-  <%= link_to 'fb', '', :class => 'facebook', :data => data %>
+  <%= link_to 'fb', '', :class => 'facebook', :data => data_fb %>
+  
+  <a href="https://twitter.com/share" class="twitter-share-button" data-lang="en">tw</a>
+  <script>
+    !function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if(!d.getElementById(id)) {
+        js = d.createElement(s);
+        js.id = id;
+        js.src = 'https://platform.twitter.com/widgets.js';
+        fjs.parentNode.insertBefore(js, fjs);
+      }
+    }(document, 'script', 'twitter-wjs');
+  </script>
+  
+  <%= link_to 'g+', '', :class => 'google-plus' %>
 </div>
 
 <a id="open_social_networks"></a>
