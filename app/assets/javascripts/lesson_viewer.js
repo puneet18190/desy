@@ -127,15 +127,13 @@ function lessonViewerDocumentReadySocialNetworks() {
     $(this).hide();
     $('#open_social_networks').show();
   });
-  
   $('body').on('click', '#social_networks .facebook', function() {
     window.open(
-      'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(location.href),
+      'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(removeURLParameter(location.href, 'back')),
       'facebook-share-dialog',
       'width=626,height=436'
     );
   });
-  
 }
 
 
