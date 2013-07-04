@@ -3,7 +3,14 @@
   
   <%= render :partial => 'shared/head' %>
   
-  <body>
+  <body itemscope itemtype="http://schema.org/Product">
+    <% if controller_path == 'lesson_viewer' && action_name == 'index' %>
+      <% cover_img = @slides.first.media_elements_slides.first %>
+      <% if !cover_img.nil? %>
+        <img itemprop="image" src="<%= full_url cover_img.media_element.thumb_url %>"/>
+      <% end %>
+      <p itemprop="description"><%= @slides.first.lesson.description %></p>
+    <% end %>
     <%= render :partial => 'shared/browser_support_script' %>
     <%= render :partial => 'shared/popups' %>
     <%= render :partial => 'shared/loading' %>
