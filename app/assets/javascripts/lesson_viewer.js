@@ -111,7 +111,14 @@ Initializer for functionality of sharing the lesson in social networks.
 @for LessonViewerDocumentReady
 **/
 function lessonViewerDocumentReadySocialNetworks() {
-  
+  $('body').on('click', '#open_social_networks', function() {
+    $(this).hide();
+    $('#social_networks').show();
+  });
+  $('body').on('mouseout', '#social_networks', function() {
+    $(this).hide();
+    $('#open_social_networks').show();
+  });
 }
 
 
