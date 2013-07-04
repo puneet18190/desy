@@ -1,73 +1,109 @@
 @mixin button {
+  
   $button-size: 3.8em;
+  
   & {
+    
     display: inline-block;
     width: $button-size;
     height: $button-size;
     background-image: url(<%= asset_path 'icone_menu_preview.svg' %>);
     background-repeat: no-repeat;
     background-size: ($button-size*2) ($button-size*5);
-    padding:0;
-    margin-right:8px;
+    padding: 0;
+    margin-right: 8px;
+    
   }
   
   &:hover {
+    
     cursor: pointer;
+    
   }
   
   &.edit {
+    
     background-position: 0 (-$button-size*2);
     
   }
+  
   &.edit:hover {
+    
     background-position: (-$button-size) (-$button-size*2);
+    
   }
+  
   &.report {
+    
     background-position: 0 0;
     
   }
+  
   &.report:hover {
+    
     background-position: (-$button-size) 0;
+    
   }
+  
   &.report_light {
+    
     background-position: (-$button-size) 0;
+    
   }
   
   &.close {
+    
     background-position: 0 (-$button-size);
     
   }
-  &.close:hover {
-    background-position: (-$button-size) (-$button-size);
-  }
   
+  &.close:hover {
+    
+    background-position: (-$button-size) (-$button-size);
+    
+  }
   
   &.change_info {
+    
     background-position: 0 (-$button-size*3);
+    
   }
+  
   &.change_info:hover {
+    
     background-position: (-$button-size) (-$button-size*3);
+    
   }
+  
   &.change_info_light {
+    
     background-position: (-$button-size) (-$button-size*3);
+    
   }
   
 }
+
 .menuPopUp {
-  float:left; 
-  width:100%; 
-  background-color:#fff;
+  
+  float: left;
+  width: 100%;
+  background-color: #fff;
   
   .menuIconButton {
-    background-color:#fff;
-    padding: 5px; 
-    color:#cbcbcb;
-    font-size:75%;
+    
+    background-color: #fff;
+    padding: 5px;
+    color: #cbcbcb;
+    font-size: 75%;
     display: block;
-    border:none;
+    border: none;
     
     a {
+      
       @include button;
+      
     }
+    
   }
+  
 }
