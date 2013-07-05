@@ -1961,7 +1961,7 @@ en:
        title: "Forgot your password?"
        # Instructions
        # 1 - views/users/request_reset_password.html.erb
-       description: "Insert your email to receive receive a new password"
+       description: "Insert your email to receive a new password"
        # Button to send reset
        # 1 - views/users/request_reset_password.html.erb
        done: "Reset password"

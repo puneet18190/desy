@@ -1,244 +1,317 @@
+$canvasSize: 450%;
+
 @mixin misc {
-  position:absolute;
-  margin:0px;
-  z-index:10;
-  border-radius:3px;
+  
+  position: absolute;
+  margin: 0px;
+  z-index: 10;
+  border-radius: 3px;
   -webkit-border-radius: 3px;
   
+}
+
+@mixin call {
+  
+  z-index: 20;
+  position: absolute;
+  border: 0;
+  right: -6px;
   
 }
-@mixin call {
-  z-index:20;
-  position:absolute;
-  border:0;
-  right:-6px;
-}
+
 @mixin inputSend {
+  
   input[type="submit"] {
-    font:  140% 'Nunito', sans-serif;
+    
+    font: 140% 'Nunito', sans-serif;
     color: #5D5C5C;
     background-color: transparent;
-    cursor:pointer;
+    cursor: pointer;
+    
   }
+  
 }
+
+@mixin elementiComuni {
+  
+  display: none;
+  padding: 10px;
+  float: right;
+  background-color: #fbfbfb;
+  color: #c0c0c0;
+  border: 1px solid #c6c5c3;
+  width: 350px;
+  
+  .text {
+    
+    margin: 10px 0 10px 0;
+    width: 336px;
+    overflow: hidden;
+    padding-top: 0px;
+    padding-bottom: 50px;
+    border: 1px solid #f0e5e5;
+    
+  }
+  
+}
+
 .tooltip {
-  display:none; 
+  
+  display: none;
   @include misc;
-  padding:2px 5px 2px 5px;
-  right:110%;
-  top:-9px;
-  width:218%;
-  background-color:#fff;
-  border:1px solid #e8e8e8;
+  padding: 2px 5px 2px 5px;
+  right: 110%;
+  top: -9px;
+  width: 218%;
+  background-color: #fff;
+  border: 1px solid #e8e8e8;
   
   .list ul {
+    
     margin: 0;
     padding: 0;
     list-style-type: none;
-    span  { 
-      color:#5d5c5c;
-      font-weight:bold;
+    
+    span {
+      
+      color: #5d5c5c;
+      font-weight: bold;
+      
     }
-    li { 
+    
+    li {
+      
       margin: 5px 0 5px 0;
-      padding:0%;
-      position:relative;
+      padding: 0%;
+      position: relative;
       
       .cancelTooltip {
-        position:absolute;
-        right:0.1em;
-        top:0.1em;
+        
+        position: absolute;
+        right: 0.1em;
+        top: 0.1em;
         background-image: url(<%= asset_path 'cancel_tooltip_notice.png' %>);
-        background-position:center center;
-        background-repeat:no-repeat;
-        padding:10px;
-        background-color:transparent;
+        background-position: center center;
+        background-repeat: no-repeat;
+        padding: 10px;
+        background-color: transparent;
         cursor: pointer;
+        
       }
+      
       .cancelTooltip:hover {
+        
         background-image: url(<%= asset_path 'cancel_tooltip_notice_on.png' %>);
+        
       }
+      
     }
+    
     .notification_gatto {
+      
       display: block;
       background-color: #c1e6f6;
       background-image: url(<%= asset_path 'arrow_tooltip_notice.png' %>);
-      background-position:0.3em center;
-      background-repeat:no-repeat;
-      border-radius:3px;
+      background-position: 0.3em center;
+      background-repeat: no-repeat;
+      border-radius: 3px;
       -webkit-border-radius: 3px;
       border-radius: 3px;
       margin-right: 0;
-      padding:10px;
-      
+      padding: 10px;
       
     }
+    
     .notification_gatto.expanded {
+      
       display: block;
-      background-image:none;
+      background-image: none;
       background-image: url(<%= asset_path 'arrow_tooltip_notice.png' %>);
-      background-position:0.3em center;
-      background-repeat:no-repeat;
-      border-radius:3px;
+      background-position: 0.3em center;
+      background-repeat: no-repeat;
+      border-radius: 3px;
       -webkit-border-radius: 3px;
       margin-right: 0;
-      padding:10px 10px 10px 20px;
-      margin-bottom:10px;
-      color:#5d5c5c;
+      padding: 10px 10px 10px 20px;
+      margin-bottom: 10px;
+      color: #5d5c5c;
+      
     }
+    
     .notification_gatto:hover {
+      
       cursor: pointer;
+      
     }
+    
     .notification_gatto:link, .navlist .notification_gatto:visited {
+      
       text-decoration: none;
+      
     }
-    .current {background-image:none; background-color:#f5f5f5}
+    
+    .current {
+      
+      background-image: none;
+      background-color: #f5f5f5;
+      
+    }
+    
   }
+  
 }
-
-
 
 .tooltipArancione {
+  
   display: none;
   @include misc;
-  padding:7px;
-  right:110%;
-  top:0px;
-  color:#fff;
-  background-color:#f29400;
+  padding: 7px;
+  right: 110%;
+  top: 0px;
+  color: #fff;
+  background-color: #f29400;
+  
 }
-/*TOOLTIP HELP*/
-$canvasSize: 450%;
-
 
 .tooltipHelp {
-  display:none; 
-  @include misc;
-  padding:2.5% 10% 2.5% 10%;
   
-  right:70%;
-  top:-9px;
-  float:right;
-  background-color:#fff;
-  border:1px solid #e8e8e8;
-  width:520%;
+  display: none;
+  @include misc;
+  padding: 2.5% 10% 2.5% 10%;
+  right: 70%;
+  top: -9px;
+  float: right;
+  background-color: #fff;
+  border: 1px solid #e8e8e8;
+  width: 520%;
+  
   strong {
-    color:#f29400;
+    
+    color: #f29400;
     font-size: 110%;
+    
   }
+  
   p {
-    display:inline-block; 
-    width:30%;
-    padding:1%;
+    
+    display: inline-block;
+    width: 30%;
+    padding: 1%;
     vertical-align: top;
-    color:#5D5C5C;
+    color: #5D5C5C;
+    
   }
+  
 }
 
-/*TOOLTIP REPORT ABUSE*/
-$canvasSize: 450%;
-@mixin elementiComuni {
-  display:none;
-  padding:10px;
-  float:right;
-  background-color:#fbfbfb;
-  color:#c0c0c0;
-  border:1px solid #c6c5c3;
-  width:350px;
-  .text {
-    margin:10px 0 10px 0;
-    width: 336px;
-    overflow:hidden;
-    padding-top:0px;
-    padding-bottom:50px;
-    border:1px solid #f0e5e5;
-  }
-}
 .lesson_tooltipForm {
+  
   @include misc;
   @include elementiComuni;
-  left:0.2em;
-  bottom:3.3em;
+  left: 0.2em;
+  bottom: 3.3em;
   @include inputSend;
+  
   h3 {
-    font:  120% 'Nunito', sans-serif;
+    
+    font: 120% 'Nunito', sans-serif;
     color: #5d5c5c;
+    
   }
+  
   .calloutForm {
+    
     bottom: -8px;
-    z-index:20;
-    position:absolute;
-    border:0;
-    left:8px;
+    z-index: 20;
+    position: absolute;
+    border: 0;
+    left: 8px;
+    
   }
   
 }
 
 .media_element_tooltipForm {
+  
   @include misc;
   @include elementiComuni;
-  right:4px;
-  bottom:41px;
+  right: 4px;
+  bottom: 41px;
   @include inputSend;
+  
   h3 {
-    font:  140% 'Nunito', sans-serif;
+    
+    font: 140% 'Nunito', sans-serif;
     color: #5d5c5c;
+    
   }
+  
   .calloutForm {
+    
     bottom: -7px;
-    z-index:20;
-    position:absolute;
-    border:0;
-    right:59px;
+    z-index: 20;
+    position: absolute;
+    border: 0;
+    right: 59px;
+    
   }
+  
 }
 
 .callout {
+  
   top: 15px;
   @include call;
   
 }
+
 .calloutTooltipArancione {
+  
   top: 4px;
   @include call;
+  
 }
 
-
 .scroll-pane {
+  
   width: 100%;
   height: 305px;
   overflow: auto;
+  
 }
 
-
 #expanded_notification {
-  margin:0px;
-  z-index:30;
-  border-radius:3px 0 0 3px;
+  
+  margin: 0px;
+  z-index: 30;
+  border-radius: 3px 0 0 3px;
   border-radius: 3px 0 0 3px;
   -webkit-border-radius: 3px 0 0 3px;
-  position:absolute;
-  right:336%;
-  top:-9px;
-  overflow:hidden;
-  width:430px;
-  height:309px;
-  background-color:#fff;
-  border-top:1px solid #e8e8e8;
-  border-left:1px solid #e8e8e8;
-  border-bottom:1px solid #e8e8e8;
-  color:#5D5C5C;
+  position: absolute;
+  right: 336%;
+  top: -9px;
+  overflow: hidden;
+  width: 430px;
+  height: 309px;
+  background-color: #fff;
+  border-top: 1px solid #e8e8e8;
+  border-left: 1px solid #e8e8e8;
+  border-bottom: 1px solid #e8e8e8;
+  color: #5D5C5C;
   
   .title {
+    
     padding: 20px;
     height: 20px;
     font: 155% 'Nunito', sans-serif;
     letter-spacing: -1px;
     font-weight: bold;
     color: #2FAADC;
+    
   }
   
   .content {
+    
     padding-top: 0;
     padding-left: 20px;
     padding-right: 20px;
@@ -246,22 +319,29 @@ $canvasSize: 450%;
     height: 176px;
     
     .link {
+      
       color: #2FAADC;
       font-weight: bold;
       padding: 0;
+      
     }
     
     .message {
+      
       font-style: italic;
+      
     }
     
   }
   
   .variable {
+    
     font-weight: bold;
+    
   }
   
   .basement {
+    
     margin-left: 20px;
     padding: 10px;
     width: 86%;
@@ -269,25 +349,31 @@ $canvasSize: 450%;
     background-color: #FBFAFB;
     
     span {
+      
       float: left;
       font-weight: bold;
+      
     }
     
     a.preview {
+      
       float: right;
       width: 3.5em;
       height: 3.5em;
       background-image: url(<%= asset_path 'action_buttons.svg' %>);
       background-repeat: no-repeat;
       background-size: 7em 35em;
-      background-position:0 -24.5em;
-      padding:0;
-      font-size:0.7em;
-      margin-top:-7px;
+      background-position: 0 -24.5em;
+      padding: 0;
+      font-size: 0.7em;
+      margin-top: -7px;
+      
     }
     
     a.preview:hover {
-      background-position:-3.5em -24.5em;
+      
+      background-position: -3.5em -24.5em;
+      
     }
   }
   
