@@ -1,67 +1,98 @@
 html.audio_editor-controller {
-  .dialog_opaco {
-    z-index:103;  
-  }
-    
- .mediaEditorAudioContainer {
   
+  .dialog_opaco {
+    
+    z-index: 103;
+    
+  }
+  
+  .mediaEditorAudioContainer {
+    
     .info {
-      width:97px;
+      
+      width: 97px;
       height: 433px;
-      background-color:#504f50;
-      padding:20px 10px;
-      top:0;
+      background-color: #504f50;
+      padding: 20px 10px;
+      top: 0;
       right: 29px;
-      background-image:url(<%= asset_path 'tile_colonna_info_audio.gif' %>);
-      background-repeat:repeat-x;
+      background-image: url(<%= asset_path 'tile_colonna_info_audio.gif' %>);
+      background-repeat: repeat-x;
       background-position: top left;
-      font-size:12px;
-      text-align:center;
+      font-size: 12px;
+      text-align: center;
+      
       a.addButtonContent {
-        font-size:2.2em;
-        margin-bottom:20px;
-        float:none;
-        padding:0.4em 1em;
+        
+        font-size: 2.2em;
+        margin-bottom: 20px;
+        float: none;
+        padding: 0.4em 1em;
+        
       }
+      
       p {
+        
         margin-top: 30px;
-        text-align:left;
+        text-align: left;
+        
       }
+      
       .bottoniVerdi {
+        
         margin-top: 0;
         margin-bottom: 0;
+        
         a {
-          width:auto;
-          margin:0;
+          
+          width: auto;
+          margin: 0;
+          
         }
+        
       }
+      
       .audioLateralControls {
-        padding-top:14px;
-        display:inline-block;
-         a.rewind {
+        
+        padding-top: 14px;
+        display: inline-block;
+        
+        a.rewind {
+          
           float: left;
           background-image: none;
-          margin-right:12px;
-          background: url(<%= asset_path 'rew_laterale.png' %>) top left  no-repeat;  
+          margin-right: 12px;
+          background: url(<%= asset_path 'rew_laterale.png' %>) top left no-repeat;
           width: 35px;
           height: 35px;
+          
           &:hover {
-            opacity:0.3;
+            
+            opacity: 0.3;
+            
           };
+          
         }
+        
         a.play {
+          
           float: right;
           background: url(<%= asset_path 'play_lateral.png' %>) top left  no-repeat;
           width: 35px;
           height: 35px;
-          opacity:1;
+          opacity: 1;
           background-size: 35px 35px;
+          
           &:hover {
-            opacity:0.3;
+            
+            opacity: 0.3;
+            
           };
           
         }
+        
         a.pause {
+          
           float: left;
           background: url(<%= asset_path 'pause_lateral.png' %>) top left  no-repeat;
           width: 35px;
@@ -70,120 +101,179 @@ html.audio_editor-controller {
           background-size: 35px 35px;
           
         }
+        
         a.disabled {
-          opacity:0.3;
-          cursor:default; 
+          
+          opacity: 0.3;
+          cursor: default;
+          
         }
+        
       }
-    }
-    .addAudioandSave {
-      border-top: 10px solid #504f50;
-      margin-left:56px;
-    }
-    .audioComponentContent {
-      float:left;
-      margin: 0px;
-      text-align:left;
-      width:617px;
-      height:103px;
       
     }
+    
+    .addAudioandSave {
+      
+      border-top: 10px solid #504f50;
+      margin-left: 56px;
+      
+    }
+    
+    .audioComponentContent {
+      
+      float: left;
+      margin: 0px;
+      text-align: left;
+      width: 617px;
+      height: 103px;
+      
+    }
+    
     .audioContent {
+      
       float: left;
       padding: 0px;
       border: 1px solid #686969;
-      margin-left:10px;
+      margin-left: 10px;
       -webkit-box-shadow: 0px 2px 6px rgba(22, 21, 21, 0.6);
       box-shadow: 0px 2px 6px rgba(22, 21, 21, 0.6);
-      width:710px;
-      background-color:#232323;
+      width: 710px;
+      background-color: #232323;
+      
       .manigliaAudio {
+        
         float: left;
         width: 93px;
         height: 103px;
         margin: 0px;
-        background-image:url(<%= asset_path 'maniglia_audio_off.gif' %>);
-        background-repeat:no-repeat;
+        background-image: url(<%= asset_path 'maniglia_audio_off.gif' %>);
+        background-repeat: no-repeat;
         background-position: top left;
+        
         &.current {
-          background-image:url(<%= asset_path 'maniglia_audio_on.gif' %>);
+          
+          background-image: url(<%= asset_path 'maniglia_audio_on.gif' %>);
+          
         }
+        
         &:hover {
-          background-image:url(<%= asset_path 'maniglia_audio_on.gif' %>);
+          
+          background-image: url(<%= asset_path 'maniglia_audio_on.gif' %>);
           cursor: move;
+          
         }
+        
       }
+      
       &.current {
+        
         border: 1px solid #fff;
+        
       }
+      
       .audioComponentTitle {
+        
         width: auto;
         background-color: #424343;
         padding: 5px 0px 5px 20px;
-        color:white;
-        height:20px;
+        color: white;
+        height: 20px;
+        
       }
+      
       .audioComponentPlayer {
+        
         height: 46px;
         background-color: #303030;
+        padding:0;
+        width: 617px;
+        position: absolute;
+        top: 31px;
+        font: 10px 'Nunito', sans-serif;
+        color: #787575;
+        text-align: left;
+        
         .audioSlider, .audioDoubleSlider {
+          
           margin-top: 0;
-          width:75%;
+          width: 75%;
           position: absolute;
           left: 72px;
+          
         }
-          padding:0;
-          width:617px;
-          position:absolute;
-          top:31px;
-          font: 10px 'Nunito', sans-serif;
-          color:#787575;
-          text-align: left;
+        
         span._current_time {
-          position:absolute;
-          top:20px;
-          left:10px;
+          
+          position: absolute;
+          top: 20px;
+          left: 10px;
+          
           &.selected {
-            color: #fff
+            
+            color: #fff;
+            
           }
+          
         }
+        
         span._total_length {
-          position:absolute;
-          top:20px;
-          right:10px;
+          
+          position: absolute;
+          top: 20px;
+          right: 10px;
+          
           &.selected {
-            color: #fff
+            
+            color: #fff;
+            
           }
+          
         }
+        
         .cutter {
+          
           padding-top: 18px;
-          padding-left:50px;
-          height:28px;
-          margin-bottom:10px;
-          width:510px;
+          padding-left: 50px;
+          height: 28px;
+          margin-bottom: 10px;
+          width: 510px;
+          
           .audioSlider {
+            
             cursor: pointer;
             z-index: 96;
+            
             .ui-slider-handle {
+              
               cursor: default;
               position: absolute;
               background-color: #787575;
-              border-radius:0%;
+              border-radius: 0%;
               height: 44px;
               width: 0;
               top: -18px;
               margin-left: 0;
-              border:1px solid #787575;
+              border: 1px solid #787575;
+              
               &.selected {
-                background-color:#fff;
-                border:1px solid #fff;
+                
+                background-color: #fff;
+                border: 1px solid #fff;
+                
               }
+              
             }
+            
           }
+          
           .audioDoubleSlider {
+            
             cursor: pointer;
             z-index: 98;
+            
             .ui-slider-handle {
+              
               cursor: pointer;
               position: absolute;
               background-color: #43A848;
@@ -196,75 +286,113 @@ html.audio_editor-controller {
               border-right: 7px solid rgb(70, 70, 70);
               border-top: 1px solid rgb(70, 70, 70);
               border-bottom: 1px solid rgb(70, 70, 70);
+              
               &:hover {
-                border-left:4px solid rgb(141, 141, 141);
-                border-right:4px solid rgb(141, 141, 141);
-                border-top:1px solid rgb(141, 141, 141);
-                border-bottom:1px solid rgb(141, 141, 141);
+                
+                border-left: 4px solid rgb(141, 141, 141);
+                border-right: 4px solid rgb(141, 141, 141);
+                border-top: 1px solid rgb(141, 141, 141);
+                border-bottom: 1px solid rgb(141, 141, 141);
+                
               }
+              
               &.selected {
-                 border-left:1px solid rgb(20, 20, 20);
-                border-right:7px solid #fff;
-                border-top:1px solid #fff;
-                border-bottom:1px solid #fff;
+                
+                border-left: 1px solid rgb(20, 20, 20);
+                border-right: 7px solid #fff;
+                border-top: 1px solid #fff;
+                border-bottom: 1px solid #fff;
+                
               }
+              
             }
+            
             .ui-slider-range {
+              
               position: absolute;
               background: url(<%= asset_path 'bg_ui_slider_horizontal.png' %>) top left repeat-x;
+              
             }
+            
           }
           
           .ui-slider-horizontal {
-            height:13px;
+            
+            height: 13px;
             background-color: #000;
+            
           }
+          
         }
+        
       }
+      
       .audioComponentBottom {
-        padding:0px 0px 13px 8px;
-        height:5px;
-        font-size:10px;
-        font-family:'Nunito', sans-serif;
-        color:#787575;
-        position:absolute;
-        top:78px;
-        width:552px;
+        
+        padding: 0px 0px 13px 8px;
+        height: 5px;
+        font-size: 10px;
+        font-family: 'Nunito', sans-serif;
+        color: #787575;
+        position: absolute;
+        top: 78px;
+        width: 552px;
+        
         .audioComponentDurations {
+          
           width: 260px;
           float: left;
-          padding-top:7px;
+          padding-top: 7px;
+          
           span.selected {
-            color:#fff;
+            
+            color: #fff;
+            
           }
+          
         }
+        
         .audioComponentControls {
-          padding-top:4px;
+          
+          padding-top: 4px;
           float: right;
-           a.rewind {
+          
+          a.rewind {
+            
             float: left;
             background-image: none;
-            margin-right:12px;
+            margin-right: 12px;
             background: url(<%= asset_path 'rew.png' %>) top left  no-repeat;  
             width: 18px;
             height: 18px;
+            
             &:hover {
-              opacity:0.3;
+              
+              opacity: 0.3;
+              
             };
+            
           }
+          
           a.play {
+            
             float: right;
             background: url(<%= asset_path 'play.png' %>) top left  no-repeat;
             width: 18px;
             height: 18px;
-            opacity:1;
+            opacity: 1;
             background-size: 18px 18px;
+            
             &:hover {
-              opacity:0.3;
+              
+              opacity: 0.3;
+              
             };
             
           }
+          
           a.pause {
+            
             float: left;
             background: url(<%= asset_path 'pause.png' %>) top left  no-repeat;
             width: 18px;
@@ -273,24 +401,37 @@ html.audio_editor-controller {
             background-size: 18px 18px;
             
           }
+          
         }
         
       }
+      
     }
+    
     .contatore {
+      
       float: left;
       margin: 5px;
       width: 18px;
+      
     }
+    
   }
+  
   ._audio_editor_component {
+    
     position: relative;
     width: 756px;
     height: 113px;
+    
     &._last {
+      
       height: 109px;
+      
     }
+    
     .boxGhost {
+      
       height: 103px;
       width: 617px;
       position: absolute;
@@ -298,29 +439,40 @@ html.audio_editor-controller {
       top: 1px;
       left: 132px;
       cursor: pointer;
-      background-color:black;
-      opacity:0;
+      background-color: black;
+      opacity: 0;
+      
     }
+    
     a.exitButton {
+      
       position: absolute;
       z-index: 101;
-      float:right;
+      float: right;
       background-position: 0em 0;
       top: 82px;
       right: 10px;
+      
       &:hover {
-        opacity:1;
+        
+        opacity: 1;
+        
       };
+      
     }
     
   }
   
   .sliderDisabler, .underDoubleSlider {
+    
     position: absolute;
-    background-color:#000;
-    opacity:0;
+    background-color: #000;
+    opacity: 0;
+    
   }
+  
   .sliderDisabler {
+    
     z-index: 99;
     height: 46px;
     width: 617px;
@@ -328,71 +480,90 @@ html.audio_editor-controller {
     top: 0;
     
   }
+  
   .underDoubleSlider {
+    
     z-index: 97;
     width: 469px;
     height: 46px;
     left: 72px;
     top: 0;
     
-
   }
   
   #audio_editor_timeline {
+    
     margin-left: 30px;
     margin-bottom: 30px;
+    
   }
   
   #audio_editor_box_ghost {
+    
     position: absolute;
     z-index: 102;
     left: 30px;
-    background-color:#000;
-    opacity:0;
+    background-color: #000;
+    opacity: 0;
+    
   }
   
   #audio_editor_timeline, #audio_editor_box_ghost {
+    
     height: 448px;
     width: 768px;
-
+    
   }
   
   .jspVerticalBar {
+    
     top: 0;
+    
   }
   
   .jspTrack {
+    
     background-color: #3F3F3F;
+    
   }
   
   .jspDrag {
+    
     background-color: #43A848;
+    
   }
   
   #add_new_audio_component_in_audio_editor.disabled:hover {
+    
     background-position: -8em -4em;
     opacity: 0.5;
     cursor: default;
+    
   }
   
   .emptyAudioEditor {
+    
     background: url(<%= asset_path 'empty_audio_editor.png' %>) center center no-repeat;
-    padding:60px 290px;
-    position:absolute;
+    padding: 60px 290px;
+    position: absolute;
     right: 190px;
     
     p {
+      
       padding: 220px 0px 0px 0px;
-      width:199px;
-      color:#727377;
+      width: 199px;
+      color: #727377;
       text-align: right;
       
     }
+    
   }
   
   .lateralContentGatto {
+    
     width: 98px;
     height: 295px;
+    
   }
   
 }
