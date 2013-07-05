@@ -118,7 +118,7 @@ function lessonViewerDocumentReadySocialNetworks() {
   $('body').on('mouseout', '#social_networks', function(e) {
     var position = $(this).offset();
     var top = position.top;
-    var right = position.left + 197;
+    var right = position.left + 158;
     var bottom = position.top + 214;
     var left = position.left;
     if(left <= e.clientX && e.clientX <= right && top <= e.clientY && e.clientY <= bottom) {
