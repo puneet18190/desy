@@ -14,13 +14,10 @@
 %>
 
 <div id="social_networks" style="display:none">
-  <p>share</p>
-  
-  <%= link_to 'Facebook', 'javascript:;', :class => 'facebook', :data => data_fb %> 
-  
-  <%= link_to 'Twitter', 'javascript:;', :class => 'twitter', :data => data_tw %> 
-  
-  <%= link_to 'Google+', 'javascript:;', :class => 'google-plus', :data => data_gp %> 
+  <p><%= t('captions.share') %></p>
+  <%= link_to 'Facebook', 'javascript:;', :class => 'facebook', :data => data_fb %>
+  <%= link_to 'Twitter', 'javascript:;', :class => 'twitter', :data => data_tw %>
+  <%= link_to 'Google+', 'javascript:;', :class => 'google-plus', :data => data_gp %>
 </div>
 
-<a id="open_social_networks"></a>
+<a id="open_social_networks" title="<%= t('titles.share') %>"></a>
