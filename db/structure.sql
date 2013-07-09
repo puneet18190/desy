@@ -121,8 +121,8 @@ ALTER SEQUENCE delayed_jobs_id_seq OWNED BY delayed_jobs.id;
 CREATE TABLE documents (
     id integer NOT NULL,
     user_id integer NOT NULL,
-    title character varying(255) NOT NULL,
-    description text NOT NULL,
+    title character varying(255),
+    description text,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );
@@ -153,7 +153,7 @@ ALTER SEQUENCE documents_id_seq OWNED BY documents.id;
 
 CREATE TABLE documents_slides (
     id integer NOT NULL,
-    user_id integer NOT NULL,
+    document_id integer NOT NULL,
     slide_id integer NOT NULL,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
@@ -1144,17 +1144,17 @@ CREATE INDEX fk__bookmarks_user_id ON bookmarks USING btree (user_id);
 
 
 --
+-- Name: fk__documents_slides_document_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX fk__documents_slides_document_id ON documents_slides USING btree (document_id);
+
+
+--
 -- Name: fk__documents_slides_slide_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX fk__documents_slides_slide_id ON documents_slides USING btree (slide_id);
-
-
---
--- Name: fk__documents_slides_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX fk__documents_slides_user_id ON documents_slides USING btree (user_id);
 
 
 --
@@ -1418,19 +1418,19 @@ ALTER TABLE ONLY bookmarks
 
 
 --
+-- Name: fk_documents_slides_document_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY documents_slides
+    ADD CONSTRAINT fk_documents_slides_document_id FOREIGN KEY (document_id) REFERENCES documents(id);
+
+
+--
 -- Name: fk_documents_slides_slide_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY documents_slides
     ADD CONSTRAINT fk_documents_slides_slide_id FOREIGN KEY (slide_id) REFERENCES slides(id);
-
-
---
--- Name: fk_documents_slides_user_id; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY documents_slides
-    ADD CONSTRAINT fk_documents_slides_user_id FOREIGN KEY (user_id) REFERENCES users(id);
 
 
 --

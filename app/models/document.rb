@@ -38,7 +38,7 @@ class Document < ActiveRecord::Base
   belongs_to :user
   has_many :documents_slides
   
-  validates_presence_of :user_id, :title, :description
+  validates_presence_of :user_id
   validates_numericality_of :user_id, :only_integer => true, :greater_than => 0
   validates_length_of :title, :maximum => MAX_TITLE_LENGTH
   validates_length_of :description, :maximum => I18n.t('language_parameters.document.length_description')

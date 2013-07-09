@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130418143554) do
+ActiveRecord::Schema.define(:version => 20130709121200) do
 
   create_table "locations", :force => true do |t|
     t.string   "name",       :null => false
@@ -71,6 +71,16 @@ ActiveRecord::Schema.define(:version => 20130418143554) do
     t.index ["priority", "run_at"], :name => "delayed_jobs_priority", :order => {"priority" => :asc, "run_at" => :asc}
   end
 
+  create_table "documents", :force => true do |t|
+    t.integer  "user_id",     :null => false
+    t.string   "title"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.index ["user_id"], :name => "fk__documents_user_id", :order => {"user_id" => :asc}
+    t.foreign_key ["user_id"], "users", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_documents_user_id"
+  end
+
   create_table "subjects", :force => true do |t|
     t.string   "description", :null => false
     t.datetime "created_at",  :null => false
@@ -99,6 +109,20 @@ ActiveRecord::Schema.define(:version => 20130418143554) do
     t.foreign_key ["school_level_id"], "school_levels", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_lessons_school_level_id"
     t.foreign_key ["subject_id"], "subjects", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_lessons_subject_id"
     t.foreign_key ["user_id"], "users", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_lessons_user_id"
+  end
+
+# Could not dump table "slides" because of following StandardError
+#   Unknown type 'slide_type' for column 'kind'
+
+  create_table "documents_slides", :force => true do |t|
+    t.integer  "document_id", :null => false
+    t.integer  "slide_id",    :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.index ["document_id"], :name => "fk__documents_slides_document_id", :order => {"document_id" => :asc}
+    t.index ["slide_id"], :name => "fk__documents_slides_slide_id", :order => {"slide_id" => :asc}
+    t.foreign_key ["document_id"], "documents", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_documents_slides_document_id"
+    t.foreign_key ["slide_id"], "slides", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_documents_slides_slide_id"
   end
 
   create_table "likes", :force => true do |t|
@@ -146,9 +170,6 @@ ActiveRecord::Schema.define(:version => 20130418143554) do
     t.index ["user_id"], :name => "fk__media_elements_user_id", :order => {"user_id" => :asc}
     t.foreign_key ["user_id"], "users", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_media_elements_user_id"
   end
-
-# Could not dump table "slides" because of following StandardError
-#   Unknown type 'slide_type' for column 'kind'
 
   create_table "media_elements_slides", :force => true do |t|
     t.integer  "media_element_id", :null => false
