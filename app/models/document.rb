@@ -26,7 +26,7 @@
 #
 # == Database callbacks
 #
-# None
+# 1. *cascade* *destruction* for the associated table DocumentsSlide
 #
 class Document < ActiveRecord::Base
   

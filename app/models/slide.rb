@@ -37,6 +37,7 @@
 # == Database callbacks
 #
 # 1. *cascade* *destruction* for the associated table MediaElementsSlide
+# 2. *cascade* *destruction* for the associated table DocumentsSlide
 #
 class Slide < ActiveRecord::Base
   include ActionView::Helpers

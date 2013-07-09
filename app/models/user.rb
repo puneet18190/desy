@@ -940,6 +940,9 @@ class User < ActiveRecord::Base
         UsersSubject.where(:user_id => self.id).each do |us|
           us.destroy
         end
+        Document.where(:user_id => self.id).each do |d|
+          d.destroy
+        end
         MediaElement.where(:user_id => self.id).each do |me|
           if me.is_public
             me.user_id = User.admin.id
