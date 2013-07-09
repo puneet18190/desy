@@ -23,7 +23,7 @@
         </h1>
         <ul class="files">
             <li>app/models/slide.rb</li>
-            <li>Last modified: 2013-07-02 12:08:34 +0200</li>
+            <li>Last modified: 2013-07-09 17:12:35 +0200</li>
         </ul>
     </div>
 
@@ -62,6 +62,11 @@ href="../../../classes/Lesson.html">Lesson</a> where the slide is contained
 href="../../../classes/MediaElement.html">MediaElement</a> contained in
 this slide (see <a
 href="../../../classes/MediaElementsSlide.html">MediaElementsSlide</a>)
+(<strong>has_many</strong>)</p>
+</li><li>
+<p><strong>documents_slides</strong>: instances of <a
+href="../../../classes/Document.html">Document</a> contained in this slide
+(see <a href="../../../classes/DocumentsSlide.html">DocumentsSlide</a>)
 (<strong>has_many</strong>)</p>
 </li></ul>
 
@@ -115,6 +120,9 @@ kind &#39;cover&#39;</p>
 <p><strong>cascade</strong> <strong>destruction</strong> for the associated
 table <a
 href="../../../classes/MediaElementsSlide.html">MediaElementsSlide</a></p>
+</li><li>
+<p><strong>cascade</strong> <strong>destruction</strong> for the associated
+table <a href="../../../classes/DocumentsSlide.html">DocumentsSlide</a></p>
 </li></ol>
 
     </div>

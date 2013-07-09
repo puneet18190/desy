@@ -14,6 +14,7 @@
 #
 # * *lesson*: reference to the Lesson where the slide is contained (*belongs_to*)
 # * *media_elements_slides*: instances of MediaElement contained in this slide (see MediaElementsSlide) (*has_many*)
+# * *documents_slides*: instances of Document contained in this slide (see DocumentsSlide) (*has_many*)
 #
 # == Validations
 #
@@ -36,6 +37,7 @@
 # == Database callbacks
 #
 # 1. *cascade* *destruction* for the associated table MediaElementsSlide
+# 2. *cascade* *destruction* for the associated table DocumentsSlide
 #
 class Slide < ActiveRecord::Base
   include ActionView::Helpers
@@ -44,6 +46,7 @@ class Slide < ActiveRecord::Base
   
   has_many :media_elements_slides
   belongs_to :lesson
+  has_many :documents_slides
   
   # Slide of kind 'audio': it contains
   # 1. a title

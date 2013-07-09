@@ -2299,6 +2299,14 @@ it:
       # 4 - models/slide.rb
       # 5 - views/lesson_editor/new.html.erb
       length_title: 35
+    document:
+      # Maximum number of characters allowed in the description of a document
+      # 1 - models/document.rb
+      length_description: 280
+      # Maximum number of characters allowed in the title of a document
+      # 1 - models/document.rb
+      # 2 - models/document.rb
+      length_title: 35
     media_element:
       # Maximum number of characters allowed in the description of an element
       # 1 - models/media_element.rb
