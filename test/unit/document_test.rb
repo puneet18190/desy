@@ -35,6 +35,7 @@ class DocumentTest < ActiveSupport::TestCase
   
   test 'association_methods' do
     assert_nothing_raised {@document.user}
+    assert_nothing_raised {@document.documents_slides}
   end
   
   test 'associations' do

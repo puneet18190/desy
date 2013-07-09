@@ -11,6 +11,7 @@
 # == Associations
 #
 # * *user*: reference to the User who created the document (*belongs_to*)
+# * *documents_slides*: instances of this Document contained in a slide (see DocumentsSlide) (*has_many*)
 #
 # == Validations
 #
@@ -35,6 +36,7 @@ class Document < ActiveRecord::Base
   attr_accessible :title, :description
   
   belongs_to :user
+  has_many :documents_slides
   
   validates_presence_of :user_id, :title, :description
   validates_numericality_of :user_id, :only_integer => true, :greater_than => 0
