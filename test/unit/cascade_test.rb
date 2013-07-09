@@ -37,13 +37,16 @@ class CascadeTest < ActiveSupport::TestCase
     assert_nil MailingListAddress.find_by_id address2
     assert_not_nil MailingListGroup.find_by_id mg1
     assert_not_nil MailingListAddress.find_by_id address1
+    assert_not_nil Document.find_by_id 1
     User.find(1).destroy_with_dependencies
     assert_nil User.find_by_id 1
     assert_nil MailingListGroup.find_by_id mg1
+    assert_nil Document.find_by_id 1
     assert_nil MailingListAddress.find_by_id address1
   end
   
   test 'lesson_cascade' do
+    assert_equal 2, DocumentsSlide.count
     @lesson = Lesson.find 2
     @copied_lesson = Lesson.new :subject_id => 1, :school_level_id => 2, :title => 'Fernandello mio', :description => 'Voglio divenire uno scienziaaato'
     @copied_lesson.copied_not_modified = false
@@ -104,6 +107,10 @@ class CascadeTest < ActiveSupport::TestCase
     assert_nil Tag.find_by_word('pluto')
     assert_nil Tag.find_by_word('paperino')
     assert_not_nil Tag.find_by_word('topolino')
+    assert_equal 1, DocumentsSlide.count
+    x = DocumentsSlide.last
+    x.document.destroy
+    assert_equal 0, DocumentsSlide.count
   end
   
   test 'media_element_cascade' do

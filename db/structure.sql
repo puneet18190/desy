@@ -1422,7 +1422,7 @@ ALTER TABLE ONLY bookmarks
 --
 
 ALTER TABLE ONLY documents_slides
-    ADD CONSTRAINT fk_documents_slides_document_id FOREIGN KEY (document_id) REFERENCES documents(id);
+    ADD CONSTRAINT fk_documents_slides_document_id FOREIGN KEY (document_id) REFERENCES documents(id) ON DELETE CASCADE;
 
 
 --
@@ -1430,7 +1430,7 @@ ALTER TABLE ONLY documents_slides
 --
 
 ALTER TABLE ONLY documents_slides
-    ADD CONSTRAINT fk_documents_slides_slide_id FOREIGN KEY (slide_id) REFERENCES slides(id);
+    ADD CONSTRAINT fk_documents_slides_slide_id FOREIGN KEY (slide_id) REFERENCES slides(id) ON DELETE CASCADE;
 
 
 --

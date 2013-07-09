@@ -121,8 +121,8 @@ ActiveRecord::Schema.define(:version => 20130709121200) do
     t.datetime "updated_at",  :null => false
     t.index ["document_id"], :name => "fk__documents_slides_document_id", :order => {"document_id" => :asc}
     t.index ["slide_id"], :name => "fk__documents_slides_slide_id", :order => {"slide_id" => :asc}
-    t.foreign_key ["document_id"], "documents", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_documents_slides_document_id"
-    t.foreign_key ["slide_id"], "slides", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_documents_slides_slide_id"
+    t.foreign_key ["document_id"], "documents", ["id"], :on_update => :no_action, :on_delete => :cascade, :name => "fk_documents_slides_document_id"
+    t.foreign_key ["slide_id"], "slides", ["id"], :on_update => :no_action, :on_delete => :cascade, :name => "fk_documents_slides_slide_id"
   end
 
   create_table "likes", :force => true do |t|
