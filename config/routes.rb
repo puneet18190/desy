@@ -189,7 +189,10 @@ Desy::Application.routes.draw do
   
   # UTILITIES
   get  ':locale'               => 'application#set_locale', constraints: { locale: /(en|cn|it)/ } if Desy::MORE_THAN_ONE_LANGUAGE
-  # get  'videos_test'           => 'media_elements#videos_test'
+  if MEDIA_TEST
+    get  'videos_test'           => 'media_elements#videos_test'
+    get  'audios_test'           => 'media_elements#audios_test'
+  end
   post 'browser_not_supported' => 'application#browser_not_supported'
   match '*path',  :to => 'application#page_not_found' unless Rails.application.config.consider_all_requests_local
   

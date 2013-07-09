@@ -25,36 +25,41 @@ class MediaElementsController < ApplicationController
   # Options of possible elements in expanded mode to be shown in a single page (configured in settings.yml)
   FOR_PAGE_EXPANDED_OPTIONS = SETTINGS['expanded_media_element_pagination_options']
   
-  # skip_before_filter :authenticate, :initialize_location, :initialize_players_counter, :only => :videos_test
-  # before_filter :admin_authenticate, :only => :videos_test
   before_filter :initialize_media_element, :only => [:add, :remove]
   before_filter :initialize_media_element_with_owner, :only => :destroy
   before_filter :initialize_media_element_with_owner_and_private, :only => :update
   before_filter :initialize_layout, :initialize_paginator, :only => :index
   before_filter :initialize_media_element_destination, :only => [:add, :remove, :destroy]
-  layout false, :only => :videos_test
   
-  # === Description
-  #
-  # Test useful to check correctness of conversion and cross browser visibility of all elements of kind Video
-  #
-  # === Mode
-  #
-  # Html
-  #
-  # === Specific filters
-  #
-  # * ApplicationController#admin_authenticate
-  #
-  # === Skipped filters
-  #
-  # * ApplicationController#authenticate
-  # * ApplicationController#initialize_location
-  # * ApplicationController#initialize_players_counter
-  #
-  # def videos_test
-  # end
-  
+  if MEDIA_TEST
+    skip_before_filter :authenticate, :initialize_location, :initialize_players_counter, :only => [:videos_test, :audios_test]
+    before_filter :admin_authenticate, :only => [:videos_test, :audios_test]
+    layout false, :only => [:videos_test, :audios_test]
+
+    # === Description
+    #
+    # Test useful to check correctness of conversion and cross browser visibility of all elements of kind Video
+    #
+    # === Mode
+    #
+    # Html
+    #
+    # === Specific filters
+    #
+    # * ApplicationController#admin_authenticate
+    #
+    # === Skipped filters
+    #
+    # * ApplicationController#authenticate
+    # * ApplicationController#initialize_location
+    # * ApplicationController#initialize_players_counter
+    #
+    def videos_test
+    end
+    def audios_test
+    end
+  end
+
   # === Description
   #
   # Main page of the section 'elements'. When it's called via ajax it's because of the application of filters, paginations, or after an operation that changed the number of items in the page.
