@@ -148,6 +148,38 @@ ALTER SEQUENCE documents_id_seq OWNED BY documents.id;
 
 
 --
+-- Name: documents_slides; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE documents_slides (
+    id integer NOT NULL,
+    user_id integer NOT NULL,
+    slide_id integer NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: documents_slides_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE documents_slides_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: documents_slides_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE documents_slides_id_seq OWNED BY documents_slides.id;
+
+
+--
 -- Name: lessons; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -792,6 +824,13 @@ ALTER TABLE ONLY documents ALTER COLUMN id SET DEFAULT nextval('documents_id_seq
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY documents_slides ALTER COLUMN id SET DEFAULT nextval('documents_slides_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY lessons ALTER COLUMN id SET DEFAULT nextval('lessons_id_seq'::regclass);
 
 
@@ -936,6 +975,14 @@ ALTER TABLE ONLY delayed_jobs
 
 ALTER TABLE ONLY documents
     ADD CONSTRAINT documents_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: documents_slides_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY documents_slides
+    ADD CONSTRAINT documents_slides_pkey PRIMARY KEY (id);
 
 
 --
@@ -1094,6 +1141,20 @@ CREATE INDEX delayed_jobs_priority ON delayed_jobs USING btree (priority, run_at
 --
 
 CREATE INDEX fk__bookmarks_user_id ON bookmarks USING btree (user_id);
+
+
+--
+-- Name: fk__documents_slides_slide_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX fk__documents_slides_slide_id ON documents_slides USING btree (slide_id);
+
+
+--
+-- Name: fk__documents_slides_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX fk__documents_slides_user_id ON documents_slides USING btree (user_id);
 
 
 --
@@ -1357,6 +1418,22 @@ ALTER TABLE ONLY bookmarks
 
 
 --
+-- Name: fk_documents_slides_slide_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY documents_slides
+    ADD CONSTRAINT fk_documents_slides_slide_id FOREIGN KEY (slide_id) REFERENCES slides(id);
+
+
+--
+-- Name: fk_documents_slides_user_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY documents_slides
+    ADD CONSTRAINT fk_documents_slides_user_id FOREIGN KEY (user_id) REFERENCES users(id);
+
+
+--
 -- Name: fk_documents_user_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1583,3 +1660,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130131094635');
 INSERT INTO schema_migrations (version) VALUES ('20130418143554');
 
 INSERT INTO schema_migrations (version) VALUES ('20130709101814');
+
+INSERT INTO schema_migrations (version) VALUES ('20130709121200');
