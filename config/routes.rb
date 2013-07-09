@@ -189,7 +189,7 @@ Desy::Application.routes.draw do
   
   # UTILITIES
   get  ':locale'               => 'application#set_locale', constraints: { locale: /(en|cn|it)/ } if Desy::MORE_THAN_ONE_LANGUAGE
-  if MEDIA_TEST
+  if SETTINGS['media_test']
     get  'videos_test'           => 'media_elements#videos_test'
     get  'audios_test'           => 'media_elements#audios_test'
   end
