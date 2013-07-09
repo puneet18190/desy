@@ -32,6 +32,7 @@
 # * *mailing_list_groups*: all the mailing list groups that this user created (see MailingListGroup) (*has_many*)
 # * *school_level*: the SchoolLevel associated to this user (*belongs_to*)
 # * *location*: the Location associated to this user (*belongs_to*)
+# * *documents*: documents uploaded by the user (see Document) (*has_many*)
 #
 # == Validations
 #
@@ -104,6 +105,7 @@ class User < ActiveRecord::Base
   has_many :subjects, :through => :users_subjects
   has_many :virtual_classroom_lessons
   has_many :mailing_list_groups
+  has_many :documents
   belongs_to :school_level
   belongs_to :location, :class_name => location_association_class
   
