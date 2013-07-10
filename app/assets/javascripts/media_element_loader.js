@@ -159,28 +159,33 @@ function mediaElementLoaderConversionOverview(list, time) {
     var my_id = $(this).find('._Image_button_preview, ._Audio_button_preview, ._Video_button_preview').data('clickparam');
     if(list.indexOf(my_id) == -1) {
       list.push(my_id);
-      mediaElementLoaderConversionLoop(my_id, time);
     }
   });
-  setTimeout(function() {
-    mediaElementLoaderConversionOverview(list, time);
-  }, time);
-}
-
-/**
-@method mediaElementLoaderConversionLoop
-@for MediaElementLoaderConversion
-**/
-function mediaElementLoaderConversionLoop(id, time) {
+  var black_list = new Array();
+  for(var i = 0; i < list.length; i ++) {
+    var id = list[i];
+    var me = $('#expanded_media_element_' + id + ', #compact_media_element_' + id + ', #found_media_element_' + id);
+    if(!(me.length == 0 || (me.hasClass('_disabled') && !me.hasClass('_locked')))) {
+      black_list.push(id);
+    }
+  }
+  for(var i = 0; i < black_list.length; i ++) {
+    var j = list.indexOf(black_list[i]);
+    list.splice(j, 1);
+  }
+  var ajax_url = '/media_elements/conversion/check?';
+  for(var i = 0; i < list.length; i ++) {
+    ajax_url += ('me' + list[i] + '=true');
+    if(i != list.length - 1) {
+      ajax_url += '&';
+    }
+  }
   $.ajax({
-    url: '/media_elements/' + id + '/conversion/check',
+    url: ajax_url,
     type: 'get',
     beforeSend: unbindLoader()
   }).always(bindLoader);
   setTimeout(function() {
-    var me = $('#expanded_media_element_' + id + ', #compact_media_element_' + id + ', #found_media_element_' + id);
-    if(me.length == 0 || (me.hasClass('_disabled') && !me.hasClass('_locked'))) {
-      mediaElementLoaderConversionLoop(id, time);
-    }
+    mediaElementLoaderConversionOverview(list, time);
   }, time);
 }
