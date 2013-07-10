@@ -173,18 +173,20 @@ function mediaElementLoaderConversionOverview(list, time) {
     var j = list.indexOf(black_list[i]);
     list.splice(j, 1);
   }
-  var ajax_url = '/media_elements/conversion/check?';
-  for(var i = 0; i < list.length; i ++) {
-    ajax_url += ('me' + list[i] + '=true');
-    if(i != list.length - 1) {
-      ajax_url += '&';
+  if(list.length > 0) {
+    var ajax_url = '/media_elements/conversion/check?';
+    for(var i = 0; i < list.length; i ++) {
+      ajax_url += ('me' + list[i] + '=true');
+      if(i != list.length - 1) {
+        ajax_url += '&';
+      }
     }
+    $.ajax({
+      url: ajax_url,
+      type: 'get',
+      beforeSend: unbindLoader()
+    }).always(bindLoader);
   }
-  $.ajax({
-    url: ajax_url,
-    type: 'get',
-    beforeSend: unbindLoader()
-  }).always(bindLoader);
   setTimeout(function() {
     mediaElementLoaderConversionOverview(list, time);
   }, time);
