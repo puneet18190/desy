@@ -27,7 +27,7 @@ class MediaElementsController < ApplicationController
   
   before_filter :initialize_media_element, :only => [:add, :remove]
   before_filter :initialize_media_element_with_owner, :only => :destroy
-  before_filter :initialize_media_element_with_owner_and_private, :only => :update
+  before_filter :initialize_media_element_with_owner_and_private, :only => [:update, :check_conversion]
   before_filter :initialize_layout, :initialize_paginator, :only => :index
   before_filter :initialize_media_element_destination, :only => [:add, :remove, :destroy]
   
@@ -280,6 +280,24 @@ class MediaElementsController < ApplicationController
       @media_element.set_status current_user.id
     else
       @ok = false
+    end
+  end
+  
+  # === Description
+  #
+  # Reloads the element if it's in conversion
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  def check_conversion
+    @media_element.set_status current_user.id if @ok
+    if !@ok || @media_element.converted?
+      @notifications = current_user.notifications_visible_block 0, SETTINGS['notifications_loaded_together']
+      @new_notifications = current_user.number_notifications_not_seen
+      @offset_notifications = @notifications.length
+      @tot_notifications = current_user.tot_notifications_number
     end
   end
   

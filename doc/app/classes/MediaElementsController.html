@@ -92,7 +92,12 @@ href="DashboardController.html">DashboardController</a>)</p>
             
               
               <li>
-                <a href="#method-i-add">add</a>
+                <a href="#method-i-add">add</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-audios_test">audios_test</a>
               </li>
             
           </ul>
@@ -194,6 +199,18 @@ href="DashboardController.html">DashboardController</a>)</p>
               
               <li>
                 <a href="#method-i-update">update</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>V</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-videos_test">videos_test</a>
               </li>
             
           </ul>
@@ -328,7 +345,7 @@ href="ApplicationController.html#method-i-initialize_media_element_destination">
                 
               </p>
               <div id="method-i-add_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/media_elements_controller.rb, line 148</span>
+                <pre><span class="ruby-comment"># File app/controllers/media_elements_controller.rb, line 153</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">add</span>
   <span class="ruby-ivar">@ok_msg</span> = <span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;other_popup_messages.correct.add.media_element&#39;</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
@@ -345,6 +362,40 @@ href="ApplicationController.html#method-i-initialize_media_element_destination">
   <span class="ruby-keyword">else</span>
     <span class="ruby-identifier">render</span> <span class="ruby-value">:json</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-value">:ok</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@ok</span>, <span class="ruby-value">:msg</span> =<span class="ruby-operator">&gt;</span> (<span class="ruby-ivar">@ok</span> <span class="ruby-operator">?</span> <span class="ruby-ivar">@ok_msg</span> <span class="ruby-operator">:</span> <span class="ruby-ivar">@error</span>)}
   <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-audios_test">
+            
+              <b>audios_test</b>()
+            
+            <a href="../classes/MediaElementsController.html#method-i-audios_test" name="method-i-audios_test" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-audios_test_source')" id="l_method-i-audios_test_source">show</a>
+                
+              </p>
+              <div id="method-i-audios_test_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/media_elements_controller.rb, line 59</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">audios_test</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -383,7 +434,7 @@ href="ApplicationController.html#method-i-initialize_media_element_destination">
                 
               </p>
               <div id="method-i-create_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/media_elements_controller.rb, line 103</span>
+                <pre><span class="ruby-comment"># File app/controllers/media_elements_controller.rb, line 108</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">create</span>
   <span class="ruby-identifier">media</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:media</span>]
   <span class="ruby-identifier">record</span> = <span class="ruby-constant">MediaElement</span>.<span class="ruby-identifier">new</span> <span class="ruby-value">:media</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">media</span>
@@ -465,7 +516,7 @@ href="ApplicationController.html#method-i-initialize_media_element_destination">
                 
               </p>
               <div id="method-i-destroy_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/media_elements_controller.rb, line 182</span>
+                <pre><span class="ruby-comment"># File app/controllers/media_elements_controller.rb, line 187</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">destroy</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
     <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@media_element</span>.<span class="ruby-identifier">check_and_destroy</span>
@@ -525,7 +576,7 @@ href="MediaElementsController.html#method-i-initialize_paginator">#initialize_pa
                 
               </p>
               <div id="method-i-index_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/media_elements_controller.rb, line 71</span>
+                <pre><span class="ruby-comment"># File app/controllers/media_elements_controller.rb, line 76</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">index</span>
   <span class="ruby-identifier">get_own_media_elements</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@page</span> <span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@pages_amount</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@pages_amount</span> <span class="ruby-operator">!=</span> <span class="ruby-number">0</span>
@@ -571,7 +622,7 @@ href="MediaElementsController.html#method-i-initialize_paginator">#initialize_pa
                 
               </p>
               <div id="method-i-load_preview_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/media_elements_controller.rb, line 270</span>
+                <pre><span class="ruby-comment"># File app/controllers/media_elements_controller.rb, line 275</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">load_preview</span>
   <span class="ruby-ivar">@media_element_id</span> = <span class="ruby-identifier">correct_integer?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:media_element_id</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:media_element_id</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-number">0</span>
   <span class="ruby-ivar">@media_element</span> = <span class="ruby-constant">MediaElement</span>.<span class="ruby-identifier">find_by_id</span> <span class="ruby-ivar">@media_element_id</span>
@@ -631,7 +682,7 @@ href="ImageEditorController.html#method-i-edit">ImageEditorController#edit</a>)<
                 
               </p>
               <div id="method-i-new_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/media_elements_controller.rb, line 91</span>
+                <pre><span class="ruby-comment"># File app/controllers/media_elements_controller.rb, line 96</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">new</span>
   <span class="ruby-identifier">render</span> <span class="ruby-value">:layout</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;media_element_editor&#39;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -688,7 +739,7 @@ href="ApplicationController.html#method-i-initialize_media_element_destination">
                 
               </p>
               <div id="method-i-remove_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/media_elements_controller.rb, line 210</span>
+                <pre><span class="ruby-comment"># File app/controllers/media_elements_controller.rb, line 215</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">remove</span>
   <span class="ruby-ivar">@ok_msg</span> = <span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;other_popup_messages.correct.remove.media_element&#39;</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
@@ -757,7 +808,7 @@ href="ApplicationController.html#method-i-initialize_media_element_with_owner_an
                 
               </p>
               <div id="method-i-update_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/media_elements_controller.rb, line 247</span>
+                <pre><span class="ruby-comment"># File app/controllers/media_elements_controller.rb, line 252</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">update</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
     <span class="ruby-ivar">@media_element</span>.<span class="ruby-identifier">title</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:title</span>]
@@ -771,6 +822,65 @@ href="ApplicationController.html#method-i-initialize_media_element_with_owner_an
       <span class="ruby-ivar">@media_element</span>.<span class="ruby-identifier">set_status</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>
     <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-videos_test">
+            
+              <b>videos_test</b>()
+            
+            <a href="../classes/MediaElementsController.html#method-i-videos_test" name="method-i-videos_test" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <h3 id="method-i-videos_test-label-Description">Description</h3>
+
+<p>Test useful to check correctness of conversion and cross browser visibility
+of all elements of kind <a href="Video.html">Video</a></p>
+
+<h3 id="method-i-videos_test-label-Mode">Mode</h3>
+
+<p>Html</p>
+
+<h3 id="method-i-videos_test-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p><a
+href="ApplicationController.html#method-i-admin_authenticate">ApplicationController#admin_authenticate</a></p>
+</li></ul>
+
+<h3 id="method-i-videos_test-label-Skipped+filters">Skipped filters</h3>
+<ul><li>
+<p><a
+href="ApplicationController.html#method-i-authenticate">ApplicationController#authenticate</a></p>
+</li><li>
+<p><a
+href="ApplicationController.html#method-i-initialize_location">ApplicationController#initialize_location</a></p>
+</li><li>
+<p><a
+href="ApplicationController.html#method-i-initialize_players_counter">ApplicationController#initialize_players_counter</a></p>
+</li></ul>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-videos_test_source')" id="l_method-i-videos_test_source">show</a>
+                
+              </p>
+              <div id="method-i-videos_test_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/media_elements_controller.rb, line 57</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">videos_test</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -806,7 +916,7 @@ href="User.html#method-i-own_media_elements">User#own_media_elements</a></p>
                 
               </p>
               <div id="method-i-get_own_media_elements_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/media_elements_controller.rb, line 284</span>
+                <pre><span class="ruby-comment"># File app/controllers/media_elements_controller.rb, line 289</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">get_own_media_elements</span>
   <span class="ruby-identifier">current_user_own_media_elements</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">own_media_elements</span>(<span class="ruby-ivar">@page</span>, <span class="ruby-ivar">@for_page</span>, <span class="ruby-ivar">@filter</span>)
   <span class="ruby-ivar">@media_elements</span> = <span class="ruby-identifier">current_user_own_media_elements</span>[<span class="ruby-value">:records</span>]
@@ -843,7 +953,7 @@ href="User.html#method-i-own_media_elements">User#own_media_elements</a></p>
                 
               </p>
               <div id="method-i-initialize_paginator_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/media_elements_controller.rb, line 291</span>
+                <pre><span class="ruby-comment"># File app/controllers/media_elements_controller.rb, line 296</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize_paginator</span>
   <span class="ruby-ivar">@page</span> = <span class="ruby-identifier">correct_integer?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-number">1</span>
   <span class="ruby-ivar">@display</span> = [<span class="ruby-constant">MediaElement</span><span class="ruby-operator">::</span><span class="ruby-constant">DISPLAY_MODES</span>[<span class="ruby-value">:compact</span>], <span class="ruby-constant">MediaElement</span><span class="ruby-operator">::</span><span class="ruby-constant">DISPLAY_MODES</span>[<span class="ruby-value">:expanded</span>]].<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:display</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:display</span>] <span class="ruby-operator">:</span> <span class="ruby-constant">MediaElement</span><span class="ruby-operator">::</span><span class="ruby-constant">DISPLAY_MODES</span>[<span class="ruby-value">:expanded</span>]

@@ -67,6 +67,7 @@ class UserTest < ActiveSupport::TestCase
     assert_nothing_raised {@user.virtual_classroom_lessons}
     assert_nothing_raised {@user.school_level}
     assert_nothing_raised {@user.location}
+    assert_nothing_raised {@user.documents}
   end
   
 end

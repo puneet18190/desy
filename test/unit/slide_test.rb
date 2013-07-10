@@ -42,6 +42,7 @@ class SlideTest < ActiveSupport::TestCase
   test 'association_methods' do
     assert_nothing_raised {@slide.media_elements_slides}
     assert_nothing_raised {@slide.lesson}
+    assert_nothing_raised {@slide.documents_slides}
   end
   
   test 'uniqueness' do
