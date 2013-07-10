@@ -292,6 +292,7 @@ class MediaElementsController < ApplicationController
   # Ajax
   #
   def check_conversion
+    @media_element.set_status current_user.id if @ok
     if !@ok || @media_element.converted?
       @notifications = current_user.notifications_visible_block 0, SETTINGS['notifications_loaded_together']
       @new_notifications = current_user.number_notifications_not_seen
