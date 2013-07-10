@@ -151,6 +151,7 @@ function resetMediaElementChangeInfo(media_element_id) {
 
 
 /**
+Function that checks the conversion of the unconverted media elements in the page.
 @method mediaElementLoaderConversionOverview
 @for MediaElementLoaderConversion
 **/

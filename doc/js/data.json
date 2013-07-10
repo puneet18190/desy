@@ -214,7 +214,8 @@
                 "MediaElementLoaderDocumentReady": 1,
                 "MediaElementLoaderDone": 1,
                 "MediaElementLoaderErrors": 1,
-                "MediaElementLoaderGeneral": 1
+                "MediaElementLoaderGeneral": 1,
+                "MediaElementLoaderConversion": 1
             },
             "namespaces": {}
         },
@@ -624,13 +625,15 @@
                 "MediaElementLoaderDocumentReady": 1,
                 "MediaElementLoaderDone": 1,
                 "MediaElementLoaderErrors": 1,
-                "MediaElementLoaderGeneral": 1
+                "MediaElementLoaderGeneral": 1,
+                "MediaElementLoaderConversion": 1
             },
             "fors": {
                 "MediaElementLoaderDocumentReady": 1,
                 "MediaElementLoaderDone": 1,
                 "MediaElementLoaderErrors": 1,
-                "MediaElementLoaderGeneral": 1
+                "MediaElementLoaderGeneral": 1,
+                "MediaElementLoaderConversion": 1
             },
             "namespaces": {},
             "tag": "module",
@@ -1463,6 +1466,17 @@
         "MediaElementLoaderGeneral": {
             "name": "MediaElementLoaderGeneral",
             "shortname": "MediaElementLoaderGeneral",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "media-element-loader",
+            "namespace": ""
+        },
+        "MediaElementLoaderConversion": {
+            "name": "MediaElementLoaderConversion",
+            "shortname": "MediaElementLoaderConversion",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -4850,6 +4864,15 @@
                 }
             ],
             "class": "MediaElementLoaderGeneral",
+            "module": "media-element-loader"
+        },
+        {
+            "file": "app/assets/javascripts/media_element_loader.js",
+            "line": 153,
+            "description": "Function that checks the conversion of the unconverted media elements in the page.",
+            "itemtype": "method",
+            "name": "mediaElementLoaderConversionOverview",
+            "class": "MediaElementLoaderConversion",
             "module": "media-element-loader"
         },
         {

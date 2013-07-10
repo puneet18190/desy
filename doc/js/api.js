@@ -58,6 +58,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "MediaElementEditorDocumentReady",
         "MediaElementEditorForms",
         "MediaElementEditorHorizontalTimelines",
+        "MediaElementLoaderConversion",
         "MediaElementLoaderDocumentReady",
         "MediaElementLoaderDone",
         "MediaElementLoaderErrors",
