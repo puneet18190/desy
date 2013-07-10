@@ -18,7 +18,16 @@
   <% if !me[:ok] %>
     
     if(item.length > 0) {
-      // fai le cose qui, distinguendo tra compatto ed esteso
+      item.addClass('_locked');
+      item.find('._expanded_media_element_internal_container').attr('title', 'TODO TODO TODO'); // TODO
+      var destination = item.attr('id').split('_')[0];
+      if(destination == 'expanded') {
+        item.find('.thumbnail-container').html('<%= image_tag "unsuccess_conversion.gif" %>');
+      } else if(destination == 'compact') {
+        // TODO manca
+      } else {
+        // TODO manca
+      }
     }
     
   <% elsif me[:media_element].converted? %>
