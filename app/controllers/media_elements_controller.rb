@@ -27,7 +27,7 @@ class MediaElementsController < ApplicationController
   
   before_filter :initialize_media_element, :only => [:add, :remove]
   before_filter :initialize_media_element_with_owner, :only => :destroy
-  before_filter :initialize_media_element_with_owner_and_private, :only => :update
+  before_filter :initialize_media_element_with_owner_and_private, :only => [:update, :check_conversion]
   before_filter :initialize_layout, :initialize_paginator, :only => :index
   before_filter :initialize_media_element_destination, :only => [:add, :remove, :destroy]
   
@@ -281,6 +281,9 @@ class MediaElementsController < ApplicationController
     else
       @ok = false
     end
+  end
+  
+  def check_conversion
   end
   
   private

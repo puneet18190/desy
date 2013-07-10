@@ -145,3 +145,38 @@ function resetMediaElementChangeInfo(media_element_id) {
   });
   container.find('#tags_value').val(container.data('tags'));
 }
+
+
+
+
+
+/**
+@method mediaElementLoaderConversionOverview
+@for MediaElementLoaderConversion
+**/
+function mediaElementLoaderConversionOverview(list, time) {
+  $('._media_element_item._disabled').each(function() {
+    var my_id = $(this).find('._Image_button_preview, ._Audio_button_preview, ._Video_button_preview').data('clickparam');
+    if(list.indexOf(my_id) == -1) {
+      list.push(my_id);
+      mediaElementLoaderConversionLoop(my_id, time);
+    }
+  });
+  setTimeout(function() {
+    mediaElementLoaderConversionOverview(list, time);
+  }, time);
+}
+
+/**
+@method mediaElementLoaderConversionLoop
+@for MediaElementLoaderConversion
+**/
+function mediaElementLoaderConversionLoop(id, time) {
+  $.get('/media_elements/' + id + '/conversion/check');
+  setTimeout(function() {
+    var me = $('#expanded_media_element_' + id + ', #compact_media_element_' + id + ', #found_media_element_' + id);
+    if(me.length == 0 || (me.hasClass('_disabled') && !me.hasClass('_locked'))) {
+      mediaElementLoaderConversionLoop(id, time);
+    }
+  }, time);
+}
