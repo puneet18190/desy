@@ -165,7 +165,7 @@ function mediaElementLoaderConversionOverview(list, time) {
   for(var i = 0; i < list.length; i ++) {
     var id = list[i];
     var me = $('#expanded_media_element_' + id + ', #compact_media_element_' + id + ', #found_media_element_' + id);
-    if(!(me.length == 0 || (me.hasClass('_disabled') && !me.hasClass('_locked')))) {
+    if((me.length > 0 && !me.hasClass('_disabled')) || (me.length == 0 && $('#info_container').data('failed-conversion-' + id))) {
       black_list.push(id);
     }
   }

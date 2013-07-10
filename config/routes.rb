@@ -26,6 +26,7 @@ Desy::Application.routes.draw do
   post      'media_elements/:media_element_id'              => 'media_elements#update',          :as => :media_element
   post      'media_elements/:media_element_id/add'          => 'media_elements#add'
   post      'media_elements/:media_element_id/destroy'      => 'media_elements#destroy'
+  post      'media_elements/:media_element_id/destroy/fake' => 'media_elements#destroy_fake'
   post      'media_elements/:media_element_id/remove'       => 'media_elements#remove'
   get       'media_elements/:media_element_id/preview/load' => 'media_elements#load_preview'
   get       'media_elements/conversion/check'               => 'media_elements#check_conversion'

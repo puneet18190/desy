@@ -29,7 +29,7 @@ class MediaElementsController < ApplicationController
   before_filter :initialize_media_element_with_owner, :only => :destroy
   before_filter :initialize_media_element_with_owner_and_private, :only => :update
   before_filter :initialize_layout, :initialize_paginator, :only => :index
-  before_filter :initialize_media_element_destination, :only => [:add, :remove, :destroy]
+  before_filter :initialize_media_element_destination, :only => [:add, :remove, :destroy, :destroy_fake]
   
   if SETTINGS['media_test']
     skip_before_filter :authenticate, :initialize_location, :initialize_players_counter, :only => [:videos_test, :audios_test]
@@ -315,6 +315,22 @@ class MediaElementsController < ApplicationController
       @offset_notifications = @notifications.length
       @tot_notifications = current_user.tot_notifications_number
     end
+  end
+  
+  # === Description
+  #
+  # Deletes an element which has not been correctly converted
+  #
+  # === Mode
+  #
+  # Json
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#initialize_media_element_destination
+  #
+  def destroy_fake
+    render :json => {:ok => true, :msg => nil}
   end
   
   private

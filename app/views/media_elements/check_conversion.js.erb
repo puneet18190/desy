@@ -18,16 +18,21 @@
   <% if !me[:ok] %>
     
     if(item.length > 0) {
-      item.addClass('_locked');
-      item.find('._expanded_media_element_internal_container').attr('title', 'TODO TODO TODO'); // TODO
       var destination = item.attr('id').split('_')[0];
-      if(destination == 'expanded') {
-        item.find('.thumbnail-container').html('<%= image_tag "unsuccess_conversion.gif" %>');
-      } else if(destination == 'compact') {
-        // TODO manca
-      } else {
-        // TODO manca
-      }
+      var current_url = $('#info_container').data('currenturl');
+      var redirect_url = addDeleteItemToCurrentUrl(current_url, (destination + '_' + id));
+      $.ajax({
+        type: 'post',
+        dataType: 'json',
+        url: '/media_elements/' + id + '/destroy/fake?destination=' + destination,
+        success: function() {
+          $('#info_container').data(('failed-conversion-' + id), true);
+          $.ajax({
+            type: 'get',
+            url: redirect_url
+          });
+        }
+      });
     }
     
   <% elsif me[:media_element].converted? %>
