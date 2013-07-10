@@ -172,7 +172,11 @@ function mediaElementLoaderConversionOverview(list, time) {
 @for MediaElementLoaderConversion
 **/
 function mediaElementLoaderConversionLoop(id, time) {
-  $.get('/media_elements/' + id + '/conversion/check');
+  $.ajax({
+    url: '/media_elements/' + id + '/conversion/check',
+    type: 'get',
+    beforeSend: unbindLoader()
+  }).always(bindLoader);
   setTimeout(function() {
     var me = $('#expanded_media_element_' + id + ', #compact_media_element_' + id + ', #found_media_element_' + id);
     if(me.length == 0 || (me.hasClass('_disabled') && !me.hasClass('_locked'))) {
