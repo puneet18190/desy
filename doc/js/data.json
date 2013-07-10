@@ -211,11 +211,11 @@
             },
             "classes": {},
             "fors": {
+                "MediaElementLoaderConversion": 1,
                 "MediaElementLoaderDocumentReady": 1,
                 "MediaElementLoaderDone": 1,
                 "MediaElementLoaderErrors": 1,
-                "MediaElementLoaderGeneral": 1,
-                "MediaElementLoaderConversion": 1
+                "MediaElementLoaderGeneral": 1
             },
             "namespaces": {}
         },
@@ -622,18 +622,18 @@
             "name": "media-element-loader",
             "submodules": {},
             "classes": {
+                "MediaElementLoaderConversion": 1,
                 "MediaElementLoaderDocumentReady": 1,
                 "MediaElementLoaderDone": 1,
                 "MediaElementLoaderErrors": 1,
-                "MediaElementLoaderGeneral": 1,
-                "MediaElementLoaderConversion": 1
+                "MediaElementLoaderGeneral": 1
             },
             "fors": {
+                "MediaElementLoaderConversion": 1,
                 "MediaElementLoaderDocumentReady": 1,
                 "MediaElementLoaderDone": 1,
                 "MediaElementLoaderErrors": 1,
-                "MediaElementLoaderGeneral": 1,
-                "MediaElementLoaderConversion": 1
+                "MediaElementLoaderGeneral": 1
             },
             "namespaces": {},
             "tag": "module",
@@ -1430,6 +1430,17 @@
             "module": "media-element-editor",
             "namespace": ""
         },
+        "MediaElementLoaderConversion": {
+            "name": "MediaElementLoaderConversion",
+            "shortname": "MediaElementLoaderConversion",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "media-element-loader",
+            "namespace": ""
+        },
         "MediaElementLoaderDocumentReady": {
             "name": "MediaElementLoaderDocumentReady",
             "shortname": "MediaElementLoaderDocumentReady",
@@ -1466,17 +1477,6 @@
         "MediaElementLoaderGeneral": {
             "name": "MediaElementLoaderGeneral",
             "shortname": "MediaElementLoaderGeneral",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "media-element-loader",
-            "namespace": ""
-        },
-        "MediaElementLoaderConversion": {
-            "name": "MediaElementLoaderConversion",
-            "shortname": "MediaElementLoaderConversion",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -4797,6 +4797,15 @@
         {
             "file": "app/assets/javascripts/media_element_loader.js",
             "line": 10,
+            "description": "Function that checks the conversion of the unconverted media elements in the page.",
+            "itemtype": "method",
+            "name": "mediaElementLoaderConversionOverview",
+            "class": "MediaElementLoaderConversion",
+            "module": "media-element-loader"
+        },
+        {
+            "file": "app/assets/javascripts/media_element_loader.js",
+            "line": 57,
             "description": "Initializer for the loading form.",
             "itemtype": "method",
             "name": "mediaElementLoaderDocumentReady",
@@ -4805,7 +4814,7 @@
         },
         {
             "file": "app/assets/javascripts/media_element_loader.js",
-            "line": 54,
+            "line": 101,
             "description": "Handles 413 status error, file too large.",
             "itemtype": "method",
             "name": "uploadDone",
@@ -4818,7 +4827,7 @@
         },
         {
             "file": "app/assets/javascripts/media_element_loader.js",
-            "line": 70,
+            "line": 117,
             "description": "Reloads media elements page after new media element is successfully loaded.",
             "itemtype": "method",
             "name": "uploadMediaElementLoadeDoneRedirect",
@@ -4827,7 +4836,7 @@
         },
         {
             "file": "app/assets/javascripts/media_element_loader.js",
-            "line": 86,
+            "line": 133,
             "description": "Update form fields with error labels.",
             "itemtype": "method",
             "name": "uploadMediaElementLoaderError",
@@ -4843,7 +4852,7 @@
         },
         {
             "file": "app/assets/javascripts/media_element_loader.js",
-            "line": 115,
+            "line": 162,
             "description": "Sets iframe as target for form submit, and adds a callback function to control 413 status error; notice that <b>upload target</b> is the HTML id of the frame.",
             "itemtype": "method",
             "name": "initMediaElementLoader",
@@ -4852,7 +4861,7 @@
         },
         {
             "file": "app/assets/javascripts/media_element_loader.js",
-            "line": 129,
+            "line": 176,
             "description": "Resets the media element loading form; used in {{#crossLink \"DialogsWithForm/showLoadMediaElementPopUp:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "resetMediaElementChangeInfo",
@@ -4864,15 +4873,6 @@
                 }
             ],
             "class": "MediaElementLoaderGeneral",
-            "module": "media-element-loader"
-        },
-        {
-            "file": "app/assets/javascripts/media_element_loader.js",
-            "line": 153,
-            "description": "Function that checks the conversion of the unconverted media elements in the page.",
-            "itemtype": "method",
-            "name": "mediaElementLoaderConversionOverview",
-            "class": "MediaElementLoaderConversion",
             "module": "media-element-loader"
         },
         {
