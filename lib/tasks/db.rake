@@ -4,6 +4,9 @@ Rake::Task["db:setup"].clear
 
 namespace :db do
 
+  desc "Load structure and seed"
+  task :load_structure_and_seed => %w( db:structure:load db:seed )
+
   desc "Performs an ANALYZE"
   task :analyze => :environment do
     ActiveRecord::Base.connection.execute 'ANALYZE'
