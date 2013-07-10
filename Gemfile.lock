@@ -6,18 +6,18 @@ GIT
       actionmailer (>= 3.0.4)
 
 GIT
+  remote: git://github.com/ProGNOMmers/minimagick.git
+  revision: 87503073be84f64817fcf34e04fc6e361d41ab62
+  branch: batch_compatibility
+  specs:
+    mini_magick (3.6.0)
+      subexec (~> 0.2.1)
+
+GIT
   remote: git://github.com/ProGNOMmers/subexec.git
   revision: a22d9d56c666f081ac1f9b6bab11e641c9e3274d
   specs:
     subexec (0.2.3)
-
-GIT
-  remote: git://github.com/minimagick/minimagick.git
-  revision: 6d0f8f953112cce6324a524d76c7e126ee14f392
-  ref: 6d0f8f953112cce6324a524d76c7e126ee14f392
-  specs:
-    mini_magick (3.6.0)
-      subexec (~> 0.2.1)
 
 GEM
   remote: https://rubygems.org/
