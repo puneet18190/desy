@@ -283,7 +283,21 @@ class MediaElementsController < ApplicationController
     end
   end
   
+  # === Description
+  #
+  # Reloads the element if it's in conversion
+  #
+  # === Mode
+  #
+  # Ajax
+  #
   def check_conversion
+    if !@ok || @media_element.converted?
+      @notifications = current_user.notifications_visible_block 0, SETTINGS['notifications_loaded_together']
+      @new_notifications = current_user.number_notifications_not_seen
+      @offset_notifications = @notifications.length
+      @tot_notifications = current_user.tot_notifications_number
+    end
   end
   
   private
