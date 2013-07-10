@@ -35,8 +35,8 @@ gem 'oj'
 gem 'jquery-rails', '~> 2.1.4'
 gem 'schema_plus'
 gem 'recursive-open-struct'
-gem "subexec", :github => "ProGNOMmers/subexec"
-gem 'mini_magick', :git => 'git://github.com/minimagick/minimagick.git', :ref => '6d0f8f953112cce6324a524d76c7e126ee14f392'
+gem "subexec", github: "ProGNOMmers/subexec"
+gem 'mini_magick', github: 'ProGNOMmers/minimagick', branch: 'batch_compatibility'
 gem 'carrierwave'
 gem 'tinymce-rails', '~> 3.0'
 gem 'tinymce-rails-langs'
@@ -47,7 +47,7 @@ gem 'daemons'
 gem 'eventmachine', platforms: :ruby
 gem 'delayed_job_active_record'
 gem 'ancestry'
-gem 'exception_notification', :github => "ProGNOMmers/exception_notification", :group => :production
+gem 'exception_notification', github: "ProGNOMmers/exception_notification", group: :production
 gem 'facter'
 gem 'whenever', :require => false
 gem 'win32-dir', platforms: :mingw
