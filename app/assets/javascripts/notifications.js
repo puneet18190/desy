@@ -185,7 +185,7 @@ Initializer for the loop that updates the notifications
 **/
 function notificationsDocumentReadyLoop(time) {
   $.ajax({
-    url: ajax_url,
+    url: '/notifications/reload',
     type: 'get',
     beforeSend: unbindLoader()
   }).always(bindLoader);
