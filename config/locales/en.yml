@@ -1220,8 +1220,7 @@ en:
     # 2 - views/virtual_classroom/index.html.erb
     virtual_classroom: "Virtual Classroom"
     # Used in the login, before the logged user's name
-    # 1 - views/shared/_logout.html.erb
-    # 2 - views/admin/_header.html.erb
+    # 1 - views/admin/_header.html.erb
     welcome: "Welcome"
   
   
