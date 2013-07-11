@@ -156,6 +156,23 @@ function notificationsDocumentReadyLessonModification() {
 }
 
 /**
+Initializer for the loop that updates the notifications
+@method notificationsDocumentReadyLoop
+@for NotificationsDocumentReady
+@param time {Number} the time to iterate the loop
+**/
+function notificationsDocumentReadyLoop(time) {
+  $.ajax({
+    url: '/notifications/reload',
+    type: 'get',
+    beforeSend: unbindLoader()
+  }).always(bindLoader);
+  setTimeout(function() {
+    notificationsDocumentReadyLoop(time);
+  }, time);
+}
+
+/**
 General initializer for help and notifications tooltips.
 @method notificationsDocumentReadyTooltips
 @for NotificationsDocumentReady
@@ -175,23 +192,6 @@ function notificationsDocumentReadyTooltips() {
     var offset = $('#tooltip_content').data('offset');
     $.post('/notifications/' + my_id + '/destroy?offset=' + offset);
   });
-}
-
-/**
-Initializer for the loop that updates the notifications
-@method notificationsDocumentReadyLoop
-@for NotificationsDocumentReady
-@param time {Number} the time to iterate the loop
-**/
-function notificationsDocumentReadyLoop(time) {
-  $.ajax({
-    url: '/notifications/reload',
-    type: 'get',
-    beforeSend: unbindLoader()
-  }).always(bindLoader);
-  setTimeout(function() {
-    notificationsDocumentReadyLoop(time);
-  }, time);
 }
 
 

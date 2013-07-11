@@ -5007,15 +5007,6 @@
         {
             "file": "app/assets/javascripts/notifications.js",
             "line": 158,
-            "description": "General initializer for help and notifications tooltips.",
-            "itemtype": "method",
-            "name": "notificationsDocumentReadyTooltips",
-            "class": "NotificationsDocumentReady",
-            "module": "notifications"
-        },
-        {
-            "file": "app/assets/javascripts/notifications.js",
-            "line": 180,
             "description": "Initializer for the loop that updates the notifications",
             "itemtype": "method",
             "name": "notificationsDocumentReadyLoop",
@@ -5026,6 +5017,15 @@
                     "type": "Number"
                 }
             ],
+            "class": "NotificationsDocumentReady",
+            "module": "notifications"
+        },
+        {
+            "file": "app/assets/javascripts/notifications.js",
+            "line": 175,
+            "description": "General initializer for help and notifications tooltips.",
+            "itemtype": "method",
+            "name": "notificationsDocumentReadyTooltips",
             "class": "NotificationsDocumentReady",
             "module": "notifications"
         },
