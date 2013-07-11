@@ -4800,12 +4800,24 @@
             "description": "Function that checks the conversion of the unconverted media elements in the page.",
             "itemtype": "method",
             "name": "mediaElementLoaderConversionOverview",
+            "params": [
+                {
+                    "name": "list",
+                    "description": "list of media elements that are being checked",
+                    "type": "Array"
+                },
+                {
+                    "name": "time",
+                    "description": "time to iterate the loop",
+                    "type": "Number"
+                }
+            ],
             "class": "MediaElementLoaderConversion",
             "module": "media-element-loader"
         },
         {
             "file": "app/assets/javascripts/media_element_loader.js",
-            "line": 57,
+            "line": 52,
             "description": "Initializer for the loading form.",
             "itemtype": "method",
             "name": "mediaElementLoaderDocumentReady",
@@ -4814,7 +4826,7 @@
         },
         {
             "file": "app/assets/javascripts/media_element_loader.js",
-            "line": 101,
+            "line": 96,
             "description": "Handles 413 status error, file too large.",
             "itemtype": "method",
             "name": "uploadDone",
@@ -4827,7 +4839,7 @@
         },
         {
             "file": "app/assets/javascripts/media_element_loader.js",
-            "line": 117,
+            "line": 112,
             "description": "Reloads media elements page after new media element is successfully loaded.",
             "itemtype": "method",
             "name": "uploadMediaElementLoadeDoneRedirect",
@@ -4836,7 +4848,7 @@
         },
         {
             "file": "app/assets/javascripts/media_element_loader.js",
-            "line": 133,
+            "line": 128,
             "description": "Update form fields with error labels.",
             "itemtype": "method",
             "name": "uploadMediaElementLoaderError",
@@ -4852,7 +4864,7 @@
         },
         {
             "file": "app/assets/javascripts/media_element_loader.js",
-            "line": 162,
+            "line": 157,
             "description": "Sets iframe as target for form submit, and adds a callback function to control 413 status error; notice that <b>upload target</b> is the HTML id of the frame.",
             "itemtype": "method",
             "name": "initMediaElementLoader",
@@ -4861,7 +4873,7 @@
         },
         {
             "file": "app/assets/javascripts/media_element_loader.js",
-            "line": 176,
+            "line": 171,
             "description": "Resets the media element loading form; used in {{#crossLink \"DialogsWithForm/showLoadMediaElementPopUp:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "resetMediaElementChangeInfo",
@@ -4977,7 +4989,7 @@
         {
             "file": "app/assets/javascripts/notifications.js",
             "line": 115,
-            "description": "Global initializer for notifications and help",
+            "description": "Global initializer for notifications and help. The function {{#crossLink \"NotificationsDocumentReady/notificationsDocumentReadyLoop:method\"}}{{/crossLink}} is called after a time of 2500 not to be called at the same time of {{#crossLink \"MediaElementLoaderConversion/mediaElementLoaderConversionOverview:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "notificationsDocumentReady",
             "class": "NotificationsDocumentReady",
@@ -4985,7 +4997,7 @@
         },
         {
             "file": "app/assets/javascripts/notifications.js",
-            "line": 125,
+            "line": 130,
             "description": "Initializes the form for notifying a lesson's modifications. These actions are linked on the button {{#crossLink \"ButtonsLesson/unpublishLesson:method\"}}{{/crossLink}}, provided that it has the class <i>lesson change not notified</i>.",
             "itemtype": "method",
             "name": "notificationsDocumentReadyLessonModification",
@@ -4994,7 +5006,7 @@
         },
         {
             "file": "app/assets/javascripts/notifications.js",
-            "line": 153,
+            "line": 158,
             "description": "General initializer for help and notifications tooltips.",
             "itemtype": "method",
             "name": "notificationsDocumentReadyTooltips",
@@ -5003,7 +5015,23 @@
         },
         {
             "file": "app/assets/javascripts/notifications.js",
-            "line": 179,
+            "line": 180,
+            "description": "Initializer for the loop that updates the notifications",
+            "itemtype": "method",
+            "name": "notificationsDocumentReadyLoop",
+            "params": [
+                {
+                    "name": "time",
+                    "description": "the time to iterate the loop",
+                    "type": "Number"
+                }
+            ],
+            "class": "NotificationsDocumentReady",
+            "module": "notifications"
+        },
+        {
+            "file": "app/assets/javascripts/notifications.js",
+            "line": 201,
             "description": "Initializes the graphical tools of the <b>help tooltip</b>.",
             "itemtype": "method",
             "name": "initializeHelp",
@@ -5012,7 +5040,7 @@
         },
         {
             "file": "app/assets/javascripts/notifications.js",
-            "line": 207,
+            "line": 229,
             "description": "Initializes the graphical tools and the routes attached to the <b>notifications tooltip</b>.",
             "itemtype": "method",
             "name": "initializeNotifications",

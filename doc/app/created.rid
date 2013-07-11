@@ -1,4 +1,4 @@
-Wed, 10 Jul 2013 17:43:06 +0200
+Thu, 11 Jul 2013 09:59:45 +0200
 app/controllers/admin/dashboard_controller.rb	Mon, 29 Apr 2013 12:27:25 +0200
 app/controllers/admin/lessons_controller.rb	Mon, 29 Apr 2013 12:27:25 +0200
 app/controllers/admin/media_elements_controller.rb	Mon, 29 Apr 2013 12:27:25 +0200
@@ -7,7 +7,7 @@ app/controllers/admin/reports_controller.rb	Mon, 29 Apr 2013 12:27:25 +0200
 app/controllers/admin/settings_controller.rb	Mon, 29 Apr 2013 12:27:25 +0200
 app/controllers/admin/users_controller.rb	Mon, 29 Apr 2013 12:27:25 +0200
 app/controllers/admin_controller.rb	Mon, 29 Apr 2013 12:27:25 +0200
-app/controllers/application_controller.rb	Tue, 11 Jun 2013 15:03:35 +0200
+app/controllers/application_controller.rb	Thu, 11 Jul 2013 09:35:19 +0200
 app/controllers/audio_editor_controller.rb	Thu, 09 May 2013 18:01:45 +0200
 app/controllers/dashboard_controller.rb	Tue, 30 Apr 2013 17:43:55 +0200
 app/controllers/galleries_controller.rb	Tue, 30 Apr 2013 17:43:55 +0200
@@ -16,8 +16,8 @@ app/controllers/lesson_editor_controller.rb	Mon, 17 Jun 2013 10:23:16 +0200
 app/controllers/lesson_viewer_controller.rb	Wed, 03 Jul 2013 17:20:40 +0200
 app/controllers/lessons_controller.rb	Tue, 30 Apr 2013 17:43:55 +0200
 app/controllers/mailing_lists_controller.rb	Tue, 30 Apr 2013 17:43:55 +0200
-app/controllers/media_elements_controller.rb	Wed, 10 Jul 2013 17:01:40 +0200
-app/controllers/notifications_controller.rb	Tue, 30 Apr 2013 17:43:55 +0200
+app/controllers/media_elements_controller.rb	Thu, 11 Jul 2013 09:34:25 +0200
+app/controllers/notifications_controller.rb	Thu, 11 Jul 2013 09:35:30 +0200
 app/controllers/prelogin_controller.rb	Wed, 08 May 2013 16:02:08 +0200
 app/controllers/reports_controller.rb	Mon, 29 Apr 2013 12:27:25 +0200
 app/controllers/search_controller.rb	Tue, 30 Apr 2013 17:43:55 +0200

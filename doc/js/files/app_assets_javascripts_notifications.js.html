@@ -427,13 +427,18 @@ function showNotificationsTooltip() {
 
 
 /**
-Global initializer for notifications and help
+Global initializer for notifications and help. The function {{#crossLink &quot;NotificationsDocumentReady/notificationsDocumentReadyLoop:method&quot;}}{{/crossLink}} is called after a time of 2500 not to be called at the same time of {{#crossLink &quot;MediaElementLoaderConversion/mediaElementLoaderConversionOverview:method&quot;}}{{/crossLink}}.
 @method notificationsDocumentReady
 @for NotificationsDocumentReady
 **/
 function notificationsDocumentReady() {
   notificationsDocumentReadyTooltips();
   notificationsDocumentReadyLessonModification();
+  if($(&#x27;#notifications_main&#x27;).length &gt; 0) {
+    setTimeout(function() {
+      notificationsDocumentReadyLoop(5000);
+    }, 2500);
+  }
 }
 
 /**
@@ -484,6 +489,23 @@ function notificationsDocumentReadyTooltips() {
     var offset = $(&#x27;#tooltip_content&#x27;).data(&#x27;offset&#x27;);
     $.post(&#x27;/notifications/&#x27; + my_id + &#x27;/destroy?offset=&#x27; + offset);
   });
+}
+
+/**
+Initializer for the loop that updates the notifications
+@method notificationsDocumentReadyLoop
+@for NotificationsDocumentReady
+@param time {Number} the time to iterate the loop
+**/
+function notificationsDocumentReadyLoop(time) {
+  $.ajax({
+    url: &#x27;/notifications/reload&#x27;,
+    type: &#x27;get&#x27;,
+    beforeSend: unbindLoader()
+  }).always(bindLoader);
+  setTimeout(function() {
+    notificationsDocumentReadyLoop(time);
+  }, time);
 }
 
 

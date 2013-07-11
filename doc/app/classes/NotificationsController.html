@@ -109,6 +109,18 @@
           </ul>
         </dd>
       
+        <dt>R</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-reload">reload</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
         <dt>S</dt>
         <dd>
           <ul>
@@ -274,6 +286,50 @@ href="NotificationsController.html#method-i-initialize_notification_offset">#ini
           </div>
         
         <div class="method">
+          <div class="title method-title" id="method-i-reload">
+            
+              <b>reload</b>()
+            
+            <a href="../classes/NotificationsController.html#method-i-reload" name="method-i-reload" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <h3 id="method-i-reload-label-Description">Description</h3>
+
+<p>Reloads the notifications</p>
+
+<h3 id="method-i-reload-label-Mode">Mode</h3>
+
+<p>Ajax</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-reload_source')" id="l_method-i-reload_source">show</a>
+                
+              </p>
+              <div id="method-i-reload_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/notifications_controller.rb, line 90</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">reload</span>
+  <span class="ruby-ivar">@notifications</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">notifications_visible_block</span> <span class="ruby-number">0</span>, <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;notifications_loaded_together&#39;</span>]
+  <span class="ruby-ivar">@new_notifications</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">number_notifications_not_seen</span>
+  <span class="ruby-ivar">@offset_notifications</span> = <span class="ruby-ivar">@notifications</span>.<span class="ruby-identifier">length</span>
+  <span class="ruby-ivar">@tot_notifications</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">tot_notifications_number</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
           <div class="title method-title" id="method-i-seen">
             
               <b>seen</b>()
@@ -352,7 +408,7 @@ href="NotificationsController.html#method-i-initialize_notification_with_owner">
                 
               </p>
               <div id="method-i-initialize_notification_offset_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/notifications_controller.rb, line 85</span>
+                <pre><span class="ruby-comment"># File app/controllers/notifications_controller.rb, line 100</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize_notification_offset</span>
   <span class="ruby-ivar">@offset_notifications</span> = (<span class="ruby-identifier">correct_integer?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:offset</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:offset</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-constant">NOTIFICATIONS_LOADED_TOGETHER</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -387,7 +443,7 @@ href="NotificationsController.html#method-i-initialize_notification_with_owner">
                 
               </p>
               <div id="method-i-initialize_notification_with_owner_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/notifications_controller.rb, line 90</span>
+                <pre><span class="ruby-comment"># File app/controllers/notifications_controller.rb, line 105</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize_notification_with_owner</span>
   <span class="ruby-ivar">@notification_id</span> = <span class="ruby-identifier">correct_integer?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:notification_id</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:notification_id</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-number">0</span>
   <span class="ruby-ivar">@notification</span> = <span class="ruby-constant">Notification</span>.<span class="ruby-identifier">find_by_id</span> <span class="ruby-ivar">@notification_id</span>
