@@ -1132,6 +1132,9 @@ it:
     # Used in the general footer of the application, to redirect to the main page
     # 1 - views/shared/_footer.html.erb
     back_to_dashboard: "Torna alla Bacheca"
+    # Used to refer to the user's documents
+    # 1 - views/documents/index.html.erb
+    documents: "Documenti"
     # Used as a placeholder in any <video> HTML tag, if the browser doesn't support either .webm or .mp4
     # 1 - views/shared/players/_video.html.erb
     # 2 - views/video_editor/previews/_video.html.erb
@@ -1173,6 +1176,9 @@ it:
     # 1 - views/lessons/index.html.erb
     # 2 - views/media_elements/_title_bar.html.erb
     show: "Mostra"
+    # Used as a caption to select order inside the main sections (used only in 'documents')
+    # 1 - views/documents/index.html.erb
+    sort: "Ordina per"
     # titles of the tab for each section
     titles:
       # 1 - helpers/application_helper.rb
@@ -2285,6 +2291,9 @@ it:
     not_mine: "Non create da te"
   # Possible parameters to sort lessons or media elements
   orders:
+    # Date of creation
+    # 1 - views/documents/index.html.erb
+    created_at: "Data di creazione"
     # Date of last modification
     # 1 - ../lib/autoload/lessons_media_elements_shared.rb
     updated_at: "Data ultima modifica"
@@ -2293,6 +2302,7 @@ it:
     likes: "Numero di 'Mi piace'"
     # Alphabetical order
     # 1 - ../lib/autoload/lessons_media_elements_shared.rb
+    # 2 - views/documents/index.html.erb
     title: "Alfabetico"
   
   
