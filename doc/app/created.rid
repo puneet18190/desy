@@ -1,4 +1,4 @@
-Thu, 11 Jul 2013 09:59:45 +0200
+Thu, 11 Jul 2013 12:55:13 +0200
 app/controllers/admin/dashboard_controller.rb	Mon, 29 Apr 2013 12:27:25 +0200
 app/controllers/admin/lessons_controller.rb	Mon, 29 Apr 2013 12:27:25 +0200
 app/controllers/admin/media_elements_controller.rb	Mon, 29 Apr 2013 12:27:25 +0200
@@ -44,7 +44,7 @@ app/models/mailing_list_address.rb	Tue, 30 Apr 2013 17:43:55 +0200
 app/models/mailing_list_group.rb	Tue, 30 Apr 2013 17:43:55 +0200
 app/models/media_element.rb	Tue, 30 Apr 2013 17:43:55 +0200
 app/models/media_elements_slide.rb	Tue, 30 Apr 2013 17:43:55 +0200
-app/models/notification.rb	Tue, 30 Apr 2013 17:43:55 +0200
+app/models/notification.rb	Thu, 11 Jul 2013 12:52:35 +0200
 app/models/report.rb	Tue, 30 Apr 2013 17:43:55 +0200
 app/models/school_level.rb	Mon, 29 Apr 2013 12:27:25 +0200
 app/models/slide.rb	Tue, 09 Jul 2013 17:12:35 +0200
@@ -84,10 +84,10 @@ lib/media/audio/editing/cmd/concat.rb	Tue, 07 May 2013 15:11:16 +0200
 lib/media/audio/editing/cmd/conversion.rb	Tue, 07 May 2013 15:11:16 +0200
 lib/media/audio/editing/cmd/crop.rb	Tue, 07 May 2013 15:11:16 +0200
 lib/media/audio/editing/cmd/sox.rb	Tue, 07 May 2013 15:11:16 +0200
-lib/media/audio/editing/composer.rb	Tue, 07 May 2013 15:11:16 +0200
+lib/media/audio/editing/composer.rb	Thu, 11 Jul 2013 10:40:37 +0200
 lib/media/audio/editing/composer/job.rb	Tue, 07 May 2013 15:11:16 +0200
 lib/media/audio/editing/concat.rb	Tue, 07 May 2013 15:11:16 +0200
-lib/media/audio/editing/conversion.rb	Tue, 07 May 2013 15:11:16 +0200
+lib/media/audio/editing/conversion.rb	Thu, 11 Jul 2013 10:40:33 +0200
 lib/media/audio/editing/conversion/job.rb	Tue, 07 May 2013 15:11:16 +0200
 lib/media/audio/editing/crop.rb	Tue, 30 Apr 2013 17:43:55 +0200
 lib/media/audio/editing/parameters.rb	Mon, 29 Apr 2013 12:27:31 +0200
@@ -131,10 +131,10 @@ lib/media/video/editing/cmd/replace_audio.rb	Thu, 02 May 2013 09:25:05 +0200
 lib/media/video/editing/cmd/transition.rb	Thu, 02 May 2013 09:25:05 +0200
 lib/media/video/editing/cmd/trim_audio_file.rb	Thu, 02 May 2013 09:25:05 +0200
 lib/media/video/editing/cmd/video_stream_to_file.rb	Thu, 02 May 2013 09:25:05 +0200
-lib/media/video/editing/composer.rb	Wed, 10 Jul 2013 17:41:55 +0200
+lib/media/video/editing/composer.rb	Thu, 11 Jul 2013 10:40:24 +0200
 lib/media/video/editing/composer/job.rb	Tue, 07 May 2013 15:11:16 +0200
 lib/media/video/editing/concat.rb	Tue, 07 May 2013 15:11:16 +0200
-lib/media/video/editing/conversion.rb	Wed, 10 Jul 2013 17:42:21 +0200
+lib/media/video/editing/conversion.rb	Thu, 11 Jul 2013 10:53:08 +0200
 lib/media/video/editing/conversion/job.rb	Tue, 07 May 2013 15:11:16 +0200
 lib/media/video/editing/crop.rb	Tue, 30 Apr 2013 17:43:55 +0200
 lib/media/video/editing/image_to_video.rb	Tue, 30 Apr 2013 17:43:55 +0200
