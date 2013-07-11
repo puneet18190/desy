@@ -981,6 +981,22 @@ cn:
         title: "为你选择 - 课程"
         # 1 - views/notifications/_tooltip_help.html.erb
         content: "在这个栏目中，%{desy}保存你感兴趣的所有新课程。在这时，如果没有新课程提供，你能点击在每一页发现的那个 \"建立新课程\"按钮建立你自己的新课程：你将重定向到那个课程编辑器。在使用课程编辑器之前，确保有足够的课程单元。"
+    documents:
+      first:
+        # 1 - views/notifications/_tooltip_help.html.erb
+        title: "Tanto x chiarire l'inconfutabile..." # TODO
+        # 1 - views/notifications/_tooltip_help.html.erb
+        content: "Avete vinto la coppa Italia...bravi l'avete meritata(e son sincero). Giusto il festeggiare e lo sbeffeggiare finché potete...(lecito). Però i fatti son questi: Siete nati 27 anni prima, voi avete 113 anni noi 86... Se volessimo fare un paragone a parità di anni..ergo di possibilità... Nei primi vostri 86 anni avete vinto solo 1 scudetto e 1 coppa Italia...giusto x darvi l'idea di quanto la Roma abbia fatto meglio a parità di anni. Nei totali 113 avete comunque meno trofei nazionali...e 1 in più in Europa..." # TODO
+      second:
+        # 1 - views/notifications/_tooltip_help.html.erb
+        title: "Come società avete meno tifosi" # TODO
+        # 1 - views/notifications/_tooltip_help.html.erb
+        content: "avete meno abbonati, avete meno appeal con tv,giornali,sponsor, avete meno valore in borsa e come capitale sociale... Noi siamo x il 40% si in mano ad una Banca..ma è la più grande d'Europa...voi x 20 anni siete in mano al fisco..." # TODO
+      third:
+        # 1 - views/notifications/_tooltip_help.html.erb
+        title: "Nonostante i 113 anni avete meno presenze in A" # TODO
+        # 1 - views/notifications/_tooltip_help.html.erb
+        content: "meno piazzamenti nei primi 3, avete meno presenze in competizioni Europee, e avete più presenze in B, avete vinto meno derby, e siete arrivati dietro di noi in campionato quasi il 65% delle volte... Quindi coppa in faccia si..... ma sempre piccoli restate" # TODO
     lessons:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
