@@ -75,7 +75,28 @@ class Notification < ActiveRecord::Base
     self.save
   end
   
+  # === Description
+  #
+  # Renders the message with the time
+  #
+  def message_with_time
+    time_difference = time_difference_to_s(Time.zone.now - self.created_at)
+    self.message.gsub("</div><div class=\"content\">", "</div><p class=\"time\">#{time_difference}</p><div class=\"content\">")
+  end
+  
   private
+  
+  # Converts seconds into a nice time difference
+  def time_difference_to_s(seconds)
+    case seconds.to_i
+      when (0...60)             then t('notifications.time_difference.seconds')
+      when (60...3600)          then t('notifications.time_difference.minutes', :minutes => 1)
+      when (3600...86400)       then t('notifications.time_difference.hours', :hours => 1)
+      when (86400...2629800)    then t('notifications.time_difference.days', :days => 1)
+      when (2629800...31557600) then t('notifications.time_difference.months', :months => 1)
+      else                           t('notifications.time_difference.years', :years => 1)
+    end
+  end
   
   # Initializes validation objects (see Valid.get_association)
   def init_validation
