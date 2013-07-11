@@ -594,7 +594,7 @@ class User < ActiveRecord::Base
   
   # === Description
   #
-  # Extracts the lessons present in the user's personal section (see LessonsController#index, and GalleriesController): the method uses the scope +of+ defined in Lesson, and applies filters on it. Each lesson has its status set with Lesson#set_status.
+  # Extracts the lessons present in the user's personal section (see LessonsController#index): the method uses the scope +of+ defined in Lesson, and applies filters on it. Each lesson has its status set with Lesson#set_status.
   #
   # === Args
   #
@@ -636,6 +636,47 @@ class User < ActiveRecord::Base
       resp << lesson
     end
     {:records => resp, :pages_amount => pages_amount}
+  end
+  
+  # === Description
+  #
+  # Extracts the documents present in the user's personal section (see DocumentsController#index).
+  #
+  # === Args
+  #
+  # * *page*: pagination parameter
+  # * *per_page*: pagination parameter
+  # * *order_by*: order, from SearchOrders
+  # * *word*: keyword, if any
+  #
+  # === Returns
+  #
+  # A hash with the following keys:
+  # * *records*: the effective content of the research, an array of object of type Document
+  # * *pages_amount*: an integer, the total number of pages in the method's result
+  #
+  def own_documents(page, per_page, order_by = SearchOrders::CREATED_AT, word = nil)
+    page = 1 if !page.is_a?(Fixnum) || page <= 0
+    for_page = 1 if !for_page.is_a?(Fixnum) || for_page <= 0
+    offset = (page - 1) * per_page
+    word = word.to_s if !word.nil?
+    order = ''
+    case order_by
+      when SearchOrders::CREATED_AT
+        order = 'created_at DESC'
+      when SearchOrders::TITLE
+        order = 'title ASC, created_at DESC'
+    end
+    relation = nil
+    if word.nil?
+      relation = Document.where(:user_id => self.id).order(order)
+    else
+      relation = Document.where('user_id = ? AND title ILIKE ?', self.id, "%#{word}%").order(order)
+    end
+    {
+      :records => relation.limit(per_page).offset(offset),
+      :pages_amount => Rational(relation.count, per_page).ceil
+    }
   end
   
   # === Description
