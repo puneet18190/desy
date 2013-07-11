@@ -212,6 +212,14 @@ class Seeds
     end
   end
 
+  def documents!
+    csv_open.each.each_with_index do |row, i|
+      progress(i)
+      record = csv_row_to_record(row)
+      record.save!
+    end
+  end
+
   def slides!
     csv_open.each.each_with_index do |row, i|
       progress(i)
