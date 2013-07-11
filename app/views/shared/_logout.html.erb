@@ -10,7 +10,7 @@
     </div>
     <div id="profile_link" class="fltrt">
       <%= image_tag('logo_profile.png') %>
-      <span class="profileLink fltrt"><%= link_to(t('captions.profile'), my_profile_path, :class => (@where == 'users' ? 'current' : '')) %></span>
+      <span class="profileLink fltrt"><%= link_to t('captions.profile'), my_profile_path %></span>
     </div>
   </div>
 </div>
