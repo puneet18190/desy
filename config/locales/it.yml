@@ -1149,7 +1149,8 @@ it:
     # 1 - views/shared/_footer.html.erb
     back_to_dashboard: "Torna alla Bacheca"
     # Used to refer to the user's documents
-    # 1 - views/documents/index.html.erb
+    # 1 - views/shared/_menu.html.erb
+    # 2 - views/documents/index.html.erb
     documents: "Documenti"
     # Used as a placeholder in any <video> HTML tag, if the browser doesn't support either .webm or .mp4
     # 1 - views/shared/players/_video.html.erb
@@ -1176,7 +1177,7 @@ it:
     # 5 - views/search/_item_selector.html.erb
     media_elements: "Elementi"
     # Used to refer to the user's personal profile
-    # 1 - views/shared/_menu.html.erb
+    # 1 - views/shared/_logout.html.erb
     # 2 - views/users/statistics.html.erb
     # 3 - views/users/mailing_lists.html.erb
     # 4 - views/users/edit.html.erb
@@ -1201,6 +1202,8 @@ it:
       admin: "%{desy} - admin"
       # 1 - helpers/application_helper.rb
       default: "%{desy}"
+      # 1 - helpers/application_helper.rb
+      documents: "%{desy} - documenti"
       # 1 - helpers/application_helper.rb
       lessons: "%{desy} - lezioni"
       # 1 - helpers/application_helper.rb

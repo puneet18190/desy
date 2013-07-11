@@ -127,6 +127,7 @@ module ApplicationHelper
     desy = SETTINGS['application_name']
     return t('captions.titles.admin', :desy => desy) if controller[0, 6] == 'admin/'
     case controller
+    when 'documents'                                                      then t('captions.titles.documents', :desy => desy)
     when 'lessons', 'lesson_editor'                                       then t('captions.titles.lessons', :desy => desy)
     when 'audio_editor', 'image_editor', 'video_editor', 'media_elements' then t('captions.titles.media_elements', :desy => desy)
     when 'users'                                                          then t('captions.titles.profile', :desy => desy)
