@@ -1,12 +1,16 @@
 <div class="logout">
-  <span class="nome"><%= current_user.name %></span>
-  <span class="cognome"><%= current_user.surname %></span>
-  <br class="clearfloat">
-  <%= link_to t('registration.logout'), users_session_path, method: :delete %>
-  <% if current_user.admin? %>
-    | <%= link_to t('admin.general.link'), '/admin' %>
-  <% end %>
-  <div id="profile_link">
-    <%= link_to(t('captions.profile'), my_profile_path, :class => (@where == 'users' ? 'current' : '')) %>
+  <div class="fltlft">
+    <span class="nome"><%= current_user.name %></span>
+    <span class="cognome"><%= current_user.surname %></span>
+   <br class="clearfloat">
+    <%= link_to t('registration.logout'), users_session_path, method: :delete %>
+    <% if current_user.admin? %>
+      | <%= link_to t('admin.general.link'), '/admin' %>
+    <% end %>
+    </div>
+    <div id="profile_link" class="fltrt">
+      <%= image_tag('logo_profile.png') %>
+      <span class="profileLink fltrt"><%= link_to(t('captions.profile'), my_profile_path, :class => (@where == 'users' ? 'current' : '')) %></span>
+    </div>
   </div>
 </div>
