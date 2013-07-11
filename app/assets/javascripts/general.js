@@ -71,6 +71,7 @@ function defaultValueJavaScriptAnimationsDocumentReady() {
   $('#for_page_media_elements option[selected]').first().attr('selected', 'selected');
   $('#filter_media_elements option[selected]').first().attr('selected', 'selected');
   $('#filter_lessons option[selected]').first().attr('selected', 'selected');
+  $('#order_documents option[selected]').first().attr('selected', 'selected');
   $('#filter_search_lessons option[selected]').first().attr('selected', 'selected');
   $('#filter_search_media_elements option[selected]').first().attr('selected', 'selected');
   $('#filter_search_lessons_subject option[selected]').first().attr('selected', 'selected');
@@ -197,6 +198,7 @@ function javaScriptAnimationsDocumentReady() {
   $('#select_lesson_list').selectbox();
   $('#which_item_to_search').selectbox();
   $('#filter_lessons').selectbox();
+  $('#order_documents').selectbox();
   $('#filter_search_lessons').selectbox();
   $('#filter_search_lessons_subject').selectbox();
   $('#profile_school_level').selectbox();
