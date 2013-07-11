@@ -35,6 +35,7 @@ Desy::Application.routes.draw do
   post 'notifications/:notification_id/seen'    => 'notifications#seen'
   post 'notifications/:notification_id/destroy' => 'notifications#destroy'
   get  'notifications/get_new_block'            => 'notifications#get_new_block'
+  get  'notifications/reload'                   => 'notifications#reload'
   
   # REPORTS
   post 'reports/lesson'        => 'reports#lesson'

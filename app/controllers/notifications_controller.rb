@@ -79,6 +79,21 @@ class NotificationsController < ApplicationController
     @offset_notifications += @notifications.length
   end
   
+  # === Description
+  #
+  # Reloads the notifications
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  def reload
+    @notifications = current_user.notifications_visible_block 0, SETTINGS['notifications_loaded_together']
+    @new_notifications = current_user.number_notifications_not_seen
+    @offset_notifications = @notifications.length
+    @tot_notifications = current_user.tot_notifications_number
+  end
+  
   private
   
   # Initializes the notifications offset
