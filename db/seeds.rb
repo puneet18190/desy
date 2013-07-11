@@ -19,7 +19,7 @@ class Seeds
     const_set :"#{media_folder.upcase}_FOLDER", Pathname.new(env_relative_path MEDIA_ELEMENTS_FOLDER, media_folder)
   end
 
-  MODELS = [ Location, SchoolLevel, Subject, User, MediaElement, Lesson, Slide, MediaElementsSlide, Like, Bookmark ]
+  MODELS = [ Location, SchoolLevel, Subject, User, Document, MediaElement, Lesson, Slide, MediaElementsSlide, Like, Bookmark ]
 
   def run
     puts "Applying #{Rails.env} seeds (#{MODELS.map{ |m| humanize_table_name(m.table_name) }.join(', ')})"
@@ -135,7 +135,7 @@ class Seeds
 
   def csv_row_to_record(row, model = @model, skip = [])
     model.new do |record|
-      row.headers.reject{ |h| skip.include? h }.each{ |header| record.send :"#{header}=", row[header] }
+      row.headers.reject{ |h| skip.include? h }.each { |header| record.send :"#{header}=", row[header] }
     end
   end
 
