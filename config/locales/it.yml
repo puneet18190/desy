@@ -1555,6 +1555,31 @@ it:
     # Caption of the user's notifications window if there are no notifications
     # 1 - views/notifications/_empty.html.erb
     empty: "Non hai notifiche"
+    # Time difference to string
+    time_difference:
+      # 1 - models/notification.rb
+      # 2 - models/notification.rb
+      seconds: "Pochi secondi fa"
+      # 1 - models/notification.rb
+      minute: "Un minuto fa"
+      # 1 - models/notification.rb
+      minutes: "%{minutes} minuti fa"
+      # 1 - models/notification.rb
+      hour:  "Un'ora fa"
+      # 1 - models/notification.rb
+      hours:  "%{hours} ore fa"
+      # 1 - models/notification.rb
+      day: "Un giorno fa"
+      # 1 - models/notification.rb
+      days: "%{days} giorni fa"
+      # 1 - models/notification.rb
+      month: "Un mese fa"
+      # 1 - models/notification.rb
+      months: "%{months} mesi fa"
+      # 1 - models/notification.rb
+      year: "Un anno fa"
+      # 1 - models/notification.rb
+      years: "%{years} anni fa"
     lessons:
       # Message sent to a user who has the lesson link, in case the creator of that lesson deleted it (the variable %{user_name} is replaced by the name of the author of the lesson, %{lesson_title} by the title of the lesson)
       # 1 - models/lesson.rb

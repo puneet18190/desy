@@ -1555,6 +1555,31 @@ cn:
     # Caption of the user's notifications window if there are no notifications
     # 1 - views/notifications/_empty.html.erb
     empty: "你没有得到任何的通知"
+    # Time difference to string
+    time_difference:
+      # 1 - models/notification.rb
+      # 2 - models/notification.rb
+      seconds: "A few seconds ago" # TODO
+      # 1 - models/notification.rb
+      minute: "A minute ago" # TODO
+      # 1 - models/notification.rb
+      minutes: "%{minutes} minutes ago" # TODO
+      # 1 - models/notification.rb
+      hour:  "An hour ago" # TODO
+      # 1 - models/notification.rb
+      hours:  "%{hours} hours ago" # TODO
+      # 1 - models/notification.rb
+      day: "A day ago" # TODO
+      # 1 - models/notification.rb
+      days: "%{days} days ago" # TODO
+      # 1 - models/notification.rb
+      month: "A month ago" # TODO
+      # 1 - models/notification.rb
+      months: "%{months} months ago" # TODO
+      # 1 - models/notification.rb
+      year: "A year ago" # TODO
+      # 1 - models/notification.rb
+      years: "%{years} years ago" # TODO
     lessons:
       # Message sent to a user who has the lesson link, in case the creator of that lesson deleted it (the variable %{user_name} is replaced by the name of the author of the lesson, %{lesson_title} by the title of the lesson)
       # 1 - models/lesson.rb
