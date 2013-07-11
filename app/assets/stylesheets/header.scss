@@ -1,46 +1,39 @@
 .header {
-  
   background-color: #373737;
   padding: 23px 52px 20px 39px;
   height:33px;
-  
   .logout {
     float: right;
     color: #a09f9f;
     font-weight: bold;
     font-size: 87.5%;
-   line-height:15px; 
-  }
-  
-  img {
-    margin-right:1px;
-  }
-  a {
-    
-    color: #a7a9ac;
-    font-weight: normal;
-    margin-top:5px;
-  }
-  
-  span {
-   color: #fff;
-   &.nome, &.cognome {
-    font-size:120%;
-   }
-  }
- 
-  
-  img {
-    
-    float: left;
-    
-  }
-  span.profileLink { 
-    padding:10px 20px 0 20px; 
-    background-color:#58585a; 
-    height:22px; 
-    a {
-    color: #fff;
+    line-height:15px; 
+    img {
+      margin-right:1px;
+      float: left;
     }
-  }
+    a {
+      color: #a7a9ac;
+      font-weight: normal;
+      margin-top:5px;
+    }
+    span {
+      color: #fff;
+      &.nome, &.cognome {
+        font-size:120%;
+      }
+      &.profileLink {
+        padding:10px 20px 0 20px; 
+        background-color:#58585a;
+        cursor:pointer;
+        height:22px;
+        &:hover {
+          background-color:#999;
+        }
+      a {
+        color: #fff;
+        }
+      }
+    }
+  } 
 }
