@@ -4,6 +4,9 @@ module SearchOrders
   # Sort by descending +updated_at+
   UPDATED_AT = 'updated_at'
   
+  # Sort by descending +created_at+
+  CREATED_AT = 'created_at'
+  
   # Sort by descending sum of likes (available only for lessons)
   LIKES = 'likes'
   
@@ -15,5 +18,8 @@ module SearchOrders
   
   # List of orders available for elements
   MEDIA_ELEMENTS_SET = [UPDATED_AT, TITLE]
+  
+  # List of orders available for documents
+  DOCUMENTS_SET = [CREATED_AT, TITLE]
   
 end

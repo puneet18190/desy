@@ -64,6 +64,8 @@ compact_media_element_pagination_options: [18, 27, 36]
 expanded_media_element_pagination: 14
 # Options for pagination of expanded media elements, in sections (1) Elements and (2) Search engine
 expanded_media_element_pagination_options: [14, 21, 28]
+# Pagination of documents, in section my documents
+documents_pagination: 18
 # Number of notifications loaded together (pagination of notifications done with infinite scroll)
 notifications_loaded_together: 8
 # Maximum number of slides in a lesson

@@ -5,6 +5,7 @@ Desy::Application.routes.draw do
   get  'lessons'           => 'lessons#index',           :as => :my_lessons
   get  'media_elements'    => 'media_elements#index',    :as => :my_media_elements
   get  'virtual_classroom' => 'virtual_classroom#index', :as => :my_virtual_classroom
+  get  'documents'         => 'documents#index',         :as => :documents
   
   # LESSONS
   post 'lessons/:lesson_id/add'                      => 'lessons#add'
@@ -30,6 +31,9 @@ Desy::Application.routes.draw do
   post      'media_elements/:media_element_id/remove'       => 'media_elements#remove'
   get       'media_elements/:media_element_id/preview/load' => 'media_elements#load_preview'
   get       'media_elements/conversion/check'               => 'media_elements#check_conversion'
+  
+  # DOCUMENTS
+  post 'documents/:document_id/destroy'                  => 'documents#destroy'
   
   # NOTIFICATIONS
   post 'notifications/:notification_id/seen'    => 'notifications#seen'
