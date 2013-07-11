@@ -2,9 +2,9 @@
   <form class="_quick_load_creation_form">
     <% if element.video? %>
       <div style="position:relative">
-        <%= image_tag element.thumb_url, :style => 'margin-bottom:0' %>
-        <div style="position:absolute; top:0px; left:101px; width:200px; height:200px;">
-          <%= image_tag('bullet_video2.png') %>
+        <div style="width: 200px; text-align: center; position: relative; display: inline-block;">
+          <%= image_tag element.thumb_url, :style => 'margin-bottom:0' %>
+          <%= image_tag 'bullet_video2.png', :style => 'position:absolute; width:200px; height:200px; left:0' %>
         </div>
       </div>
     <% else %>
