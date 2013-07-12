@@ -27,4 +27,5 @@ $(document).ready(function() {
   automaticLoginDocumentReady();
   tagsDocumentReady();
   locationsDocumentReady();
+  documentsDocumentReady();
 });
