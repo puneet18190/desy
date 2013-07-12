@@ -872,7 +872,6 @@ it:
     report: "Segnala contenuti non appropriati"
     # Icon with a lens in the main sections
     # 1 - views/shared/_search.html.erb
-    # 2 - views/documents/_search.html.erb
     search: "Cerca"
     # Icon to share a lesson throughout social networks
     # 1 - views/lesson_viewer/_social_networks.html.erb
@@ -2264,9 +2263,6 @@ it:
     # The system prompts the user to upload a new document, if his section is empty
     # 1 - views/documents/_empty.html.erb
     upload_now: "Carica un documento ora"
-    # Placeholder to search a document
-    # 1 - views/documents/_search.html.erb
-    search: "Cerca documenti"
     # Header elements for the list of documents
     headers:
       # Extension of the document
