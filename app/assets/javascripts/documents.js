@@ -19,7 +19,7 @@ function documentsDocumentReady() {
   $('body').on('mouseout', '._empty_documents', function() {
     $(this).find('._empty_documents_hover').removeClass('current');
   });
-  $('body').on('click', '._empty_documents', function() {
+  $('body').on('click', '._empty_documents, #upload_document', function() {
     openNewDocumentLoader();
   });
 }
