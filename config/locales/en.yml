@@ -2237,6 +2237,20 @@ en:
       empty_message: "[no message given]"
   
   
+  # SECTION 2.18: labels in the section 'documents'
+  
+  documents:
+    # When there are no documents in your section
+    # 1 - views/documents/_empty.html.erb
+    empty: "You don't have any document"
+    # When the document search produced no results
+    # 1 - views/documents/_empty_word.html.erb
+    empty_word: "No documents found matching <%{word}%>"
+    # The system prompts the user to upload a new document, if his section is empty
+    # 1 - views/documents/_empty.html.erb
+    upload_now: "Upload a new document now"
+  
+  
   
   # PART 3 -- Parameters and constants
   
