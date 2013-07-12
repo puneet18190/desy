@@ -42,8 +42,7 @@ class DocumentsController < ApplicationController
     @page = correct_integer?(params[:page]) ? params[:page].to_i : 1
     @for_page = FOR_PAGE
     @order = SearchOrders::DOCUMENTS_SET.include?(params[:order]) ? params[:order] : SearchOrders::CREATED_AT
-    @word = params[:word]
-    @word = nil if params[:word_placeholder].blank? || params[:word].blank?
+    @word = params[:word].blank? ? nil : params[:word]
   end
   
 end

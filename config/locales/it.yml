@@ -2263,6 +2263,9 @@ it:
     # The system prompts the user to upload a new document, if his section is empty
     # 1 - views/documents/_empty.html.erb
     upload_now: "Carica un documento ora"
+    # Placeholder to search a document
+    # 1 - views/documents/_search.html.erb
+    search: "Filtra per parola:"
     # Header elements for the list of documents
     headers:
       # Extension of the document

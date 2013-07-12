@@ -70,15 +70,17 @@ Initializer for documents functionality (search and placeholders javascripts).
 @for DocumentsDocumentReady
 **/
 function documentsDocumentReadySearch() {
-  $('body').on('click', '#search_documents_submit', function() {
-    $('#search_documents').submit();
-  });
-  $('body').on('focus', '#search_documents ._word_input', function() {
-    if($('#search_documents_placeholder').val() == '') {
-      $(this).val('');
-      $(this).css('color', '#939393');
-      $('#search_documents_placeholder').val('0');
-    }
+  $('body').on('keydown', '#search_documents ._word_input', function() {
+    var letters = $(this).data('letters');
+    letters += 1;
+    $(this).data('letters', letters);
+    $('#search_documents ._loader').show();
+    setTimeout(function() {
+      if($('#search_documents ._word_input').data('letters') == letters) {
+        $('#search_documents ._loader').hide();
+        $('#search_documents').submit();
+      }
+    }, 1500);
   });
 }
 
