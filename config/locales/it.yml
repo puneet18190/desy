@@ -2245,7 +2245,7 @@ it:
     empty: "Non hai nessun documento"
     # When the document search produced no results
     # 1 - views/documents/_empty_word.html.erb
-    empty_word: "Non sono stati trovati documenti contenenti <%{word}%>"
+    empty_word: "Non sono stati trovati documenti contenenti <%{word}>"
     # The system prompts the user to upload a new document, if his section is empty
     # 1 - views/documents/_empty.html.erb
     upload_now: "Carica un documento ora"

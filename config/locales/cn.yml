@@ -2245,7 +2245,7 @@ cn:
     empty: "You don't have any document" # TODO
     # When the document search produced no results
     # 1 - views/documents/_empty_word.html.erb
-    empty_word: "No documents found matching <%{word}%>" # TODO
+    empty_word: "No documents found matching <%{word}>" # TODO
     # The system prompts the user to upload a new document, if his section is empty
     # 1 - views/documents/_empty.html.erb
     upload_now: "Upload a new document now" # TODO
