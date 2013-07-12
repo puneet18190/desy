@@ -724,6 +724,17 @@ en:
       # 1 - views/shared/buttons/_unpublish.html.erb
       # 2 - views/shared/_popups.html.erb
       unpublish: "Turn back your lesson into private"
+      # Buttons specific for documents
+      documents:
+        # Destroy a document
+        # 1 - views/documents/_view_single_compact.html.erb
+        destroy: "Delete"
+        # Download a document
+        # 1 - views/documents/_view_single_compact.html.erb
+        download: "Download"
+        # Edit title and description of a document
+        # 1 - views/documents/_view_single_compact.html.erb
+        edit: "Edit title and description"
     # To close the preview of a media element (big 'x' on the bottom right of the preview)
     # 1 - views/media_elements/_popup.html.erb
     close: "Close"
@@ -2249,6 +2260,14 @@ en:
     # The system prompts the user to upload a new document, if his section is empty
     # 1 - views/documents/_empty.html.erb
     upload_now: "Upload a new document now"
+    # Header elements for the list of documents
+    headers:
+      # Extension of the document
+      # 1 - views/documents/index.html.erb
+      extension: "Extension"
+      # Size of the document
+      # 1 - views/documents/index.html.erb
+      size: "Size"
   
   
   

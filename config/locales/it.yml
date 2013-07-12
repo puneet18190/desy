@@ -724,6 +724,17 @@ it:
       # 1 - views/shared/buttons/_unpublish.html.erb
       # 2 - views/shared/_popups.html.erb
       unpublish: "Cambia lo stato della lezione da pubblica a privata"
+      # Buttons specific for documents
+      documents:
+        # Destroy a document
+        # 1 - views/documents/_view_single_compact.html.erb
+        destroy: "Cancella"
+        # Download a document
+        # 1 - views/documents/_view_single_compact.html.erb
+        download: "Scarica"
+        # Edit title and description of a document
+        # 1 - views/documents/_view_single_compact.html.erb
+        edit: "Modifica titolo e descrizione"
     # To close the preview of a media element (big 'x' on the bottom right of the preview)
     # 1 - views/media_elements/_popup.html.erb
     close: "Chiudi"
@@ -2249,6 +2260,14 @@ it:
     # The system prompts the user to upload a new document, if his section is empty
     # 1 - views/documents/_empty.html.erb
     upload_now: "Carica un documento ora"
+    # Header elements for the list of documents
+    headers:
+      # Extension of the document
+      # 1 - views/documents/index.html.erb
+      extension: "Estensione"
+      # Size of the document
+      # 1 - views/documents/index.html.erb
+      size: "Dimensione"
   
   
   

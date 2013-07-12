@@ -1,5 +1,11 @@
 <div id="document_<%= document.id %>" class="boxViewSingleDocument">
-  <!-- manca l'icona TODO -->
+  <img src="" /> <!-- manca l'icona TODO -->
   <h3><%= document.title %></h3>
-  <!-- mancano i bottoni TODO -->
+  <p>.odt</p> <!-- TODO metti estensione -->
+  <p>334 MB</p> <!-- TODO metti dimensione -->
+  <div class="menuController buttons">
+    <a title="<%= t('titles.buttons.documents.download') %>" data-document-id="<%= document.id %>" class="preview"></a>
+    <a title="<%= t('titles.buttons.documents.edit') %>" data-document-id="<%= document.id %>" class="edit"></a>
+    <a title="<%= t('titles.buttons.documents.destroy') %>" data-document-id="<%= document.id %>" class="destroy"></a>
+  </div>
 </div>
