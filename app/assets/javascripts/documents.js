@@ -15,6 +15,30 @@ Initializer for documents functionality.
 function documentsDocumentReady() {
   documentsDocumentReadyGeneral();
   documentsDocumentReadySearch();
+  documentsDocumentReadyButtons();
+}
+
+/**
+Initializer for documents functionality (buttons javascripts).
+@method documentsDocumentReadyButtons
+@for DocumentsDocumentReady
+**/
+function documentsDocumentReadyButtons() {
+  $('body').on('click', '#my_documents .buttons .preview', function() {
+    
+    alert('previewing document ' + $(this).data('document-id')); // TODO
+    
+  });
+  $('body').on('click', '#my_documents .buttons .edit', function() {
+    
+    alert('editing document ' + $(this).data('document-id')); // TODO
+    
+  });
+  $('body').on('click', '#my_documents .buttons .destroy', function() {
+    
+    alert('destroying document ' + $(this).data('document-id')); // TODO
+    
+  });
 }
 
 /**
@@ -41,14 +65,10 @@ Initializer for documents functionality (search and placeholders javascripts).
 **/
 function documentsDocumentReadySearch() {
   $('body').on('click', '#search_documents_submit', function() {
-    if(!$(this).hasClass('current')) {
-      $('#search_documents').submit();
-      $(this).addClass('current');
-    }
+    $('#search_documents').submit();
   });
   $('body').on('focus', '#search_documents ._word_input', function() {
     if($('#search_documents_placeholder').val() == '') {
-      $('#search_documents_submit').removeClass('current');
       $(this).val('');
       $(this).css('color', '#939393');
       $('#search_documents_placeholder').val('0');
