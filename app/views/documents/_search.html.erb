@@ -5,6 +5,7 @@
         <td style="width:210px">
           <input type="text" name="word" value="<%= t('documents.search') %>" class="text lower _word_input" style="color:#999">
           <%= hidden_field_tag 'word_placeholder', '', :id => 'search_documents_placeholder' %>
+          <%= hidden_field_tag 'order', '', :id => 'search_documents_hidden_order' %>
         </td>
         <td><a id="search_documents_submit" class="cerca" title="<%= t('titles.search') %>">&nbsp;</a></td>
       </tr>

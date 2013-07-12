@@ -375,6 +375,18 @@ function browserSupport() {
 }
 
 /**
+This function returns an url for media elements without the parameter 'for_page'. The original url is extracted by the method {{#crossLink "GeneralMiscellanea/getMediaElementsFormat:method"}}{{/crossLink}}.
+@method getCompleteMediaElementsUrlWithoutForPage
+@for GeneralUrls
+@return {String} the current url without the parameter 'for_page'
+**/
+function getCompleteMediaElementsUrlWithoutForPage() {
+  var param_format = getMediaElementsFormat();
+  var param_filter = 'filter=' + $('#filter_media_elements option:selected').val();
+  return '/media_elements?' + param_format + '&' + param_filter;
+}
+
+/**
 This function returns an url for media elements without the parameter 'filter'. The original url is extracted by the method {{#crossLink "GeneralMiscellanea/getMediaElementsFormat:method"}}{{/crossLink}}.
 @method getCompleteMediaElementsUrlWithoutFilter
 @for GeneralUrls
@@ -387,15 +399,14 @@ function getCompleteMediaElementsUrlWithoutFilter() {
 }
 
 /**
-This function returns an url for media elements without the parameter 'for_page'. The original url is extracted by the method {{#crossLink "GeneralMiscellanea/getMediaElementsFormat:method"}}{{/crossLink}}.
-@method getCompleteMediaElementsUrlWithoutForPage
+This function returns an url for documents without the parameter 'order'. The original url is extracted by the method {{#crossLink "GeneralMiscellanea/getMediaElementsFormat:method"}}{{/crossLink}}.
+@method getCompleteDocumentsUrlWithoutOrder
 @for GeneralUrls
-@return {String} the current url without the parameter 'for_page'
+@return {String} the current url without the parameter 'order'
 **/
-function getCompleteMediaElementsUrlWithoutForPage() {
-  var param_format = getMediaElementsFormat();
-  var param_filter = 'filter=' + $('#filter_media_elements option:selected').val();
-  return '/media_elements?' + param_format + '&' + param_filter;
+function getCompleteDocumentsUrlWithoutOrder() {
+  var param_word = 'word=' + $('#search_documents ._word_input').val() + '&word_placeholder=' + $('#search_documents_placeholder').val();
+  return '/documents?' + param_word;
 }
 
 /**

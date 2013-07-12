@@ -56,6 +56,12 @@ function documentsDocumentReadyGeneral() {
   $('body').on('click', '._empty_documents, #upload_document', function() {
     openNewDocumentLoader();
   });
+  $('body').on('change', '#order_documents', function() {
+    var order = $('#order_documents option:selected').val();
+    var redirect_url = getCompleteDocumentsUrlWithoutOrder() + '&order=' + order;
+    $('#search_documents_hidden_order').val(order);
+    $.get(redirect_url);
+  });
 }
 
 /**
