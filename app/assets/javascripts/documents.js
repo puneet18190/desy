@@ -29,11 +29,6 @@ function documentsDocumentReadyButtons() {
     alert('previewing document ' + $(this).data('document-id')); // TODO
     
   });
-  $('body').on('click', '#my_documents .buttons .edit', function() {
-    
-    alert('editing document ' + $(this).data('document-id')); // TODO
-    
-  });
   $('body').on('click', '#my_documents .buttons .destroy', function() {
     
     alert('destroying document ' + $(this).data('document-id')); // TODO
