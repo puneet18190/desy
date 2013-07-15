@@ -6,15 +6,7 @@
   <div class="documents-content">
     <div class="title-bar">
       <h1 class="lower"><%= t('captions.documents') %></h1>
-      <div style="float:right; padding-right:20px">
-        <form id="search_documents" class="search-form" method="get" action="/documents" data-remote="true">
-          <h2><%= t('documents.search') %></h2>
-          <input type="text" name="word" value="" class="text lower _word_input" data-letters="0" style="color:#999">
-          <%= image_tag 'cerca_documenti.gif', :class => '_loader', :style => 'display:none' %>
-          <%= hidden_field_tag 'order', '', :id => 'search_documents_hidden_order' %>
-        </form>
-      </div>
-      <div style="float:right">
+      <div>
         <h2 style="padding-right:10px"><%= t('captions.sort') %></h2>
         <select name="ricerca" id="order_documents">
           <% SearchOrders::DOCUMENTS_SET.each do |so| %>
@@ -22,6 +14,15 @@
           <% end %>
         </select>
       </div>
+      <div style="width:360px">
+        <form id="search_documents" class="search-form" method="get" action="/documents" data-remote="true">
+          <h2><%= t('documents.search') %></h2>
+          <input type="text" name="word" value="" class="text lower _word_input" data-letters="0" style="color:#999;">
+         <%= image_tag 'cerca_documenti.gif', :class => '_loader', :style => 'display:none; ' %>
+          <%= hidden_field_tag 'order', '', :id => 'search_documents_hidden_order' %>
+        </form>
+      </div>
+      
     </div>
     <br class="clearfloat">
     <%= render :partial => 'documents/my_documents' %>
