@@ -62,10 +62,16 @@ class Document < ActiveRecord::Base
       when '.ppt' then 'documents/ppt.png'
       when '.doc', '.docx', '.pages', '.odt', '.txt' then 'documents/doc.png'
       when '.gz', '.zip' then 'documents/zip.png'
-      when '.xls', '.xlsx', '.numbers', '.ods' then 'documents/xls.png'
+      when '.xls', '.xlsx', '.numbers', '.ods' then 'documents/exc.png'
       when '.pdf', '.ps' then 'documents/pdf.png'
-      else 'documents/unknown.png' # TODO
+      else 'documents/unknown.png'
     end
+  end
+  
+  # Returns the title associated to the icon
+  def icon_title # TODO
+    my_title = self.icon_path.split('/').last.split('.').first
+    I18n.t("titles.documents.#{my_title}")
   end
   
   # Returns the extension of the attached file from metadata

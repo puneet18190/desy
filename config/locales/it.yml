@@ -735,6 +735,26 @@ it:
     # To close the preview of a media element (big 'x' on the bottom right of the preview)
     # 1 - views/media_elements/_popup.html.erb
     close: "Chiudi"
+    # Titles for the icons of documents
+    documents:
+      # Includes .doc, .odt
+      # 1 - models/document.rb
+      doc: "Documento regolare"
+      # Includes .ppt
+      # 1 - models/document.rb
+      ppt: "Presentazione di diapositive"
+      # Includes .zip, .gz
+      # 1 - models/document.rb
+      zip: "Documento compresso"
+      # Includes .xls, .ods
+      # 1 - models/document.rb
+      exc: "Tabella"
+      # Includes .pdf, .ps
+      # 1 - models/document.rb
+      pdf: "Documento vettoriale"
+      # All not recognized formats
+      # 1 - models/document.rb
+      unknown: "Documento in un formato non standard"
     # Icon of a small door with an arrow going out: it represents the exit from the current section, all over the application
     # 1 - views/video_editor/not_available.html.erb
     # 2 - views/lesson_viewer/_lesson_slides.html.erb
