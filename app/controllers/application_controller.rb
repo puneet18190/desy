@@ -103,6 +103,13 @@ class ApplicationController < ActionController::Base
     update_ok(@media_element && !@media_element.is_public)
   end
   
+  # Checks if the parameter +document_id+ is correct and a corresponding document exists, and it belongs to the current user
+  def initialize_document
+    @document_id = correct_integer?(params[:document_id]) ? params[:document_id].to_i : 0
+    @document = Document.find_by_id @document_id
+    update_ok(@document && current_user.id == @document.user_id)
+  end
+  
   # Uses ApplicationController#initialize_media_element and returns true if additionally the logged user owns the element
   def initialize_media_element_with_owner
     initialize_media_element
