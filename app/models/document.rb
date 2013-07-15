@@ -29,6 +29,7 @@
 # 1. *cascade* *destruction* for the associated table DocumentsSlide
 #
 class Document < ActiveRecord::Base
+  include ActionView::Helpers
   
   # Maximum length of the title
   MAX_TITLE_LENGTH = (I18n.t('language_parameters.document.length_title') > 255 ? 255 : I18n.t('language_parameters.document.length_title'))
@@ -46,6 +47,12 @@ class Document < ActiveRecord::Base
   
   before_validation :init_validation, :set_title_from_file
   
+  # Used to sanitize title
+  def title=(title)
+    title = title.nil? ? nil : title.to_s
+    write_attribute(:title, sanitize(title))
+  end
+  
   # Returns the size and extension in a nice way for the views
   def size_and_extension
     "#{self.extension}, #{self.size}"
@@ -60,12 +67,18 @@ class Document < ActiveRecord::Base
   def icon_path # TODO
     case self.extension
       when '.ppt' then 'documents/ppt.png'
-      when '.doc', '.docx', '.pages', '.odt' then 'documents/doc.png'
+      when '.doc', '.docx', '.pages', '.odt', '.txt' then 'documents/doc.png'
       when '.gz', '.zip' then 'documents/zip.png'
-      when '.xls', '.xlsx', '.numbers', '.ods' then 'documents/xls.png'
+      when '.xls', '.xlsx', '.numbers', '.ods' then 'documents/exc.png'
       when '.pdf', '.ps' then 'documents/pdf.png'
-      else 'documents/unknown.png' # TODO
+      else 'documents/unknown.png'
     end
+  end
+  
+  # Returns the title associated to the icon
+  def icon_title # TODO
+    my_title = self.icon_path.split('/').last.split('.').first
+    I18n.t("titles.documents.#{my_title}")
   end
   
   # Returns the extension of the attached file from metadata
@@ -80,8 +93,41 @@ class Document < ActiveRecord::Base
       when 6 then '.pages'
       when 7 then '.ods'
       when 8 then '.xls'
-      when 9 then '.xlsx'
+      when 9 then '.svg'
     end
+  end
+  
+  # === Description
+  #
+  # Destroys the document and sends notifications to the users who had a Lesson containing it.
+  #
+  # === Returns
+  #
+  # A boolean
+  #
+  def destroy_with_notifications
+    errors.clear
+    if self.new_record?
+      errors.add(:base, :problem_destroying)
+      return false
+    end
+    resp = false
+    ActiveRecord::Base.transaction do
+      DocumentsSlide.joins(:slide, {:slide => :lesson}).select('lessons.user_id AS my_user_id, lessons.title AS lesson_title, lessons.id AS lesson_id').group('lessons.id').where('documents_slides.document_id = ? AND lessons.user_id != ?', self.id, self.user_id).each do |ds|
+        if !Notification.send_to ds.my_user_id.to_i, I18n.t('notifications.document.destroyed', :lesson_title => ds.lesson_title, :document_title => self.title, :link => lesson_viewer_path(ds.lesson_id.to_i))
+          errors.add(:base, :problem_destroying)
+          raise ActiveRecord::Rollback
+        end
+      end
+      begin
+        self.destroy
+      rescue StandardError
+        errors.add(:base, :problem_destroying)
+        raise ActiveRecord::Rollback
+      end
+      resp = true
+    end
+    resp
   end
   
   private

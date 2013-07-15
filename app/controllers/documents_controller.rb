@@ -28,6 +28,30 @@ class DocumentsController < ApplicationController
     render_js_or_html_index
   end
   
+  # === Description
+  #
+  # Deletes definitively a document.
+  #
+  # === Mode
+  #
+  # Json
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#initialize_document
+  #
+  def destroy
+    if @ok
+      if !@document.destroy_with_notifications
+        @ok = false
+        @error = I18n.t('activerecord.errors.models.document.problem_destroying')
+      end
+    else
+      @error = I18n.t('activerecord.errors.models.document.problem_destroying')
+    end
+    render :json => {:ok => @ok, :msg => @error}
+  end
+  
   private
   
   # Gets the documents using User#own_documents

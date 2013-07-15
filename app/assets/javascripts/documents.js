@@ -30,9 +30,38 @@ function documentsDocumentReadyButtons() {
     
   });
   $('body').on('click', '#my_documents .buttons .destroy', function() {
-    
-    alert('destroying document ' + $(this).data('document-id')); // TODO
-    
+    var current_url = $('#info_container').data('currenturl');
+    var document_id = $(this).data('document-id');
+    var captions = $('#popup_captions_container');
+    var title = captions.data('destroy-document-title');
+    var confirm = captions.data('destroy-document-confirm');
+    var yes = captions.data('destroy-document-yes');
+    var no = captions.data('destroy-document-no');
+    if($(this).data('document-used-in-your-lessons')) {
+      confirm = captions.data('destroy-document-confirm-bis');
+    }
+    showConfirmPopUp(title, confirm, yes, no, function() {
+      $('#dialog-confirm').hide();
+      var redirect_url = addDeleteItemToCurrentUrl(current_url, 'document_' + document_id);
+      $.ajax({
+        type: 'post',
+        dataType: 'json',
+        url: '/documents/' + document_id + '/destroy',
+        success: function(data) {
+          if(data.ok) {
+            $.ajax({
+              type: 'get',
+              url: redirect_url
+            });
+          } else {
+            showErrorPopUp(data.msg);
+          }
+        }
+      });
+      closePopUp('dialog-confirm');
+    }, function() {
+      closePopUp('dialog-confirm');
+    });
   });
 }
 
@@ -65,17 +94,21 @@ Initializer for documents functionality (search and placeholders javascripts).
 @for DocumentsDocumentReady
 **/
 function documentsDocumentReadySearch() {
-  $('body').on('keydown', '#search_documents ._word_input', function() {
-    var letters = $(this).data('letters');
-    letters += 1;
-    $(this).data('letters', letters);
-    $('#search_documents ._loader').show();
-    setTimeout(function() {
-      if($('#search_documents ._word_input').data('letters') == letters) {
-        $('#search_documents ._loader').hide();
-        $('#search_documents').submit();
-      }
-    }, 1500);
+  $('body').on('keydown', '#search_documents ._word_input', function(e) {
+    if(e.which == 13) {
+      e.preventDefault();
+    } else if(e.which != 39 && e.which != 37) {
+      var letters = $(this).data('letters');
+      letters += 1;
+      $(this).data('letters', letters);
+      $('#search_documents ._loader').show();
+      setTimeout(function() {
+        if($('#search_documents ._word_input').data('letters') == letters) {
+          $('#search_documents ._loader').hide();
+          $('#search_documents').submit();
+        }
+      }, 1500);
+    }
   });
 }
 

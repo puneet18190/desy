@@ -1,8 +1,13 @@
+<%
+  my_title = document.title
+  my_title = my_title.gsub(/(#{word})/i) { |s| "<b style=\"text-decoration:underline\">#{s}</b>" } if !word.blank?
+%>
+
 <div id="document_<%= document.id %>" class="boxViewSingleDocument">
   <div class="contentInterno">
     <div class="documentsIcon">
-      <%= image_tag document.icon_path, :class=> "fltlft" %>
-      <h3><%= document.title %></h3>
+      <%= image_tag document.icon_path, :class=> "fltlft", :title => document.icon_title %>
+      <h3><%= my_title.html_safe %></h3>
     </div>
      <p><%= document.size_and_extension %></p>
     <div class="menuController buttons">
