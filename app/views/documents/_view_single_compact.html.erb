@@ -1,9 +1,9 @@
 <div id="document_<%= document.id %>" class="boxViewSingleDocument">
   <div class="contentInterno">
     <div class="documentsIcon">
-      <%= image_tag 'documents/doc.png', :class=> "fltlft" %> <!-- manca l'icona TODO -->
+      <%= image_tag document.icon_path, :class=> "fltlft" %>
       <h3><%= document.title %></h3>
-      <p>.odt, 334 MB</p> <!-- TODO metti estensione e dimensione da DB -->
+      <p><%= document.size_and_extension %></p>
     </div>
     <div class="menuController buttons">
       <a title="<%= t('titles.buttons.documents.download') %>" data-document-id="<%= document.id %>" class="preview"></a>
