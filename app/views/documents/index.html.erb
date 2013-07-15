@@ -14,11 +14,11 @@
           <% end %>
         </select>
       </div>
-      <div style="width:360px">
+      <div style="width:310px;margin-right:10px">
         <form id="search_documents" class="search-form" method="get" action="/documents" data-remote="true">
           <h2><%= t('documents.search') %></h2>
           <input type="text" name="word" value="" class="text lower _word_input" data-letters="0" style="color:#999;">
-         <%= image_tag 'cerca_documenti.gif', :class => '_loader', :style => 'display:none; ' %>
+         <%= image_tag 'cerca_documenti.gif', :class => '_loader', :style => 'display:none; float:right ' %>
           <%= hidden_field_tag 'order', '', :id => 'search_documents_hidden_order' %>
         </form>
       </div>
