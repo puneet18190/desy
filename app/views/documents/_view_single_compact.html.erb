@@ -1,6 +1,6 @@
 <%
   my_title = document.title
-  my_title = my_title.gsub(word, "<b style=\"text-decoration:underline\">#{word}</b>") if !word.blank?
+  my_title = my_title.gsub(/(#{word})/i) { |s| "<b style=\"text-decoration:underline\">#{s}</b>" } if !word.blank?
 %>
 
 <div id="document_<%= document.id %>" class="boxViewSingleDocument">
