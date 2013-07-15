@@ -23,18 +23,19 @@
   </div>
   <div class="span9 new_elements_well">
     <div class="row-fluid">
-    <h3><%= t('admin.media_elements.new.content_title') %></h3>
-    <div id="new_elements_preview" class="well">
-      <% if @files.empty? %>
-        <div id="empty_files_in_admin_media_element_uploader">
-          <%= t('admin.media_elements.empty_files') %>
-        </div>
-      <% else %>
-        <% @files.each do |file| %>
-          <%= render :partial => 'media_element_upload', :locals => {:file => file, :colspan => 4} %>
+      <h3><%= t('admin.media_elements.new.content_title') %></h3>
+      <div id="new_elements_preview" class="well">
+        <% if @files.empty? %>
+          <div id="empty_files_in_admin_media_element_uploader">
+            <%= t('admin.media_elements.empty_files') %>
+          </div>
+        <% else %>
+          <% @files.each do |file| %>
+            <%= render :partial => 'media_element_upload', :locals => {:file => file, :colspan => 4} %>
+          <% end %>
         <% end %>
-      <% end %>
-      <div style="clear:both">
+        <div class="clearfloat"></div>
+      </div>
     </div>
   </div>
 </div>
