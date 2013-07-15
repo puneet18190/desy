@@ -3,8 +3,8 @@
     <div class="documentsIcon">
       <%= image_tag document.icon_path, :class=> "fltlft" %>
       <h3><%= document.title %></h3>
-      <p><%= document.size_and_extension %></p>
     </div>
+     <p><%= document.size_and_extension %></p>
     <div class="menuController buttons">
       <a title="<%= t('titles.buttons.documents.download') %>" data-document-id="<%= document.id %>" class="preview"></a>
       <a title="<%= t('titles.buttons.documents.destroy') %>" data-document-id="<%= document.id %>" class="destroy"></a>
