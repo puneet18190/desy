@@ -16,13 +16,13 @@
 # == Validations
 #
 # * *presence* with numericality and existence of associated record for +user_id+
-# * *presence* for +title+ and +description+
+# * *presence* for +title+
 # * *length* of +title+ and +description+ (values configured in the I18n translation file; only for title, if the value is greater than 255 it's set to 255)
 # * *modifications* *not* *available* for the +user_id+
 #
 # == Callbacks
 #
-# None
+# 1. *before_validation* saves the +title+ from the attached file if it's not present
 #
 # == Database callbacks
 #
@@ -38,15 +38,58 @@ class Document < ActiveRecord::Base
   belongs_to :user
   has_many :documents_slides
   
-  validates_presence_of :user_id
+  validates_presence_of :user_id, :title
   validates_numericality_of :user_id, :only_integer => true, :greater_than => 0
   validates_length_of :title, :maximum => MAX_TITLE_LENGTH
   validates_length_of :description, :maximum => I18n.t('language_parameters.document.length_description')
   validate :validate_associations, :validate_impossible_changes
   
-  before_validation :init_validation
+  before_validation :init_validation, :set_title_from_file
+  
+  # Returns the size and extension in a nice way for the views
+  def size_and_extension
+    "#{self.extension}, #{self.size}"
+  end
+  
+  # Returns the size of the attached file
+  def size # TODO
+    self.title.length.to_s + ' kb'
+  end
+  
+  # Returns the icon, depending on the extension
+  def icon_path # TODO
+    case self.extension
+      when '.ppt' then 'documents/ppt.png'
+      when '.doc', '.docx', '.pages', '.odt' then 'documents/doc.png'
+      when '.gz', '.zip' then 'documents/zip.png'
+      when '.xls', '.xlsx', '.numbers', '.ods' then 'documents/xls.png'
+      when '.pdf', '.ps' then 'documents/pdf.png'
+      else 'documents/unknown.png' # TODO
+    end
+  end
+  
+  # Returns the extension of the attached file from metadata
+  def extension # TODO
+    case (self.id % 10)
+      when 0 then '.ppt'
+      when 1 then '.pdf'
+      when 2 then '.doc'
+      when 3 then '.docx'
+      when 4 then '.odt'
+      when 5 then '.zip'
+      when 6 then '.pages'
+      when 7 then '.ods'
+      when 8 then '.xls'
+      when 9 then '.xlsx'
+    end
+  end
   
   private
+  
+  # Sets automatically the title from the file title if it's nil
+  def set_title_from_file
+    self.title = "file_title.txt" if self.title.blank? # TODO rimpiazzarlo con titolo vero del file
+  end
   
   # Validates the presence of all the associated objects
   def validate_associations
