@@ -16,7 +16,9 @@ class DocumentTest < ActiveSupport::TestCase
   
   test 'empty_and_defaults' do
     @document = Document.new
+    assert_nil @document.title
     assert_error_size 3, @document
+    assert_not_nil @document.title
   end
   
   test 'attr_accessible' do
