@@ -118,6 +118,14 @@ cn:
           # 2 - controllers/media_elements_controller.rb
           # 3 - controllers/media_elements_controller.rb
           problem_destroying_for_media_element: "不能移去单元"
+        document:
+          # There was a problem while destroying a document
+          # 1 - controllers/documents_controller.rb
+          # 2 - controllers/documents_controller.rb
+          # 3 - models/document.rb
+          # 4 - models/document.rb
+          # 5 - models/document.rb
+          problem_destroying: "The document couldn't be destroyed" # TODO
         lesson:
           # There was an error while trying to copy the lesson
           # 1 - controllers/lessons_controller.rb
@@ -289,6 +297,23 @@ cn:
       # 1 - views/shared/_popups.html.erb
       cancel: "终止"
     destroy:
+      # The application asks for confirmation about deleting an document
+      document:
+        # Message
+        # 1 - views/shared/_popups.html.erb
+        confirm: "Are you sure you want to delete it?" # TODO
+        # Message if you are using the document in some of your lessons: it will be removed from each of his instances
+        # 1 - views/shared/_popups.html.erb
+        confirm_bis: "You are attaching it in some of your lessons, it will be deleted in each of its instances" # TODO
+        # Title
+        # 1 - views/shared/_popups.html.erb
+        title: "Delete this document?" # TODO
+        # Button to confirm
+        # 1 - views/shared/_popups.html.erb
+        do: "Delete the document" # TODO
+        # Button to cancel
+        # 1 - views/shared/_popups.html.erb
+        cancel: "Cancel" # TODO
       # The application asks for confirmation about deleting a lesson
       lesson:
         # Message (if anybody is following the lesson, he will lose its link)
@@ -1632,6 +1657,10 @@ cn:
       year: "A year ago" # TODO
       # 1 - models/notification.rb
       years: "%{years} years ago" # TODO
+    documents:
+      # Notification sent by a user who destroyed a document attached to a lesson coped by somebody else, to inform all its followers (the variable %{lesson_title} is replaced by the title of the lesson, %{document_title} by the title of the document, and %{link} by the link to the lesson viewer for that lesson)
+      # 1 - models/document.rb
+      destroyed: "<div class=\"title\">Warning!</div><div class=\"content\">The document <span class=\"variable\">%{document_title}</span> has been removed by its owner: this affects your lesson <span class=\"variable\">%{document_title}</span></div><div class=\"basement\"><span>%{lesson_title}</span><a href=\"%{link}\" class=\"preview\"></a></div>" # TODO
     lessons:
       # Message sent to a user who has the lesson link, in case the creator of that lesson deleted it (the variable %{user_name} is replaced by the name of the author of the lesson, %{lesson_title} by the title of the lesson)
       # 1 - models/lesson.rb

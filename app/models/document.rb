@@ -97,6 +97,39 @@ class Document < ActiveRecord::Base
     end
   end
   
+  # === Description
+  #
+  # Destroys the document and sends notifications to the users who had a Lesson containing it.
+  #
+  # === Returns
+  #
+  # A boolean
+  #
+  def destroy_with_notifications
+    errors.clear
+    if self.new_record?
+      errors.add(:base, :problem_destroying)
+      return false
+    end
+    resp = false
+    ActiveRecord::Base.transaction do
+      DocumentsSlide.joins(:slide, {:slide => :lesson}).select('lessons.user_id AS my_user_id, lessons.title AS lesson_title, lessons.id AS lesson_id').group('lessons.id').where('documents_slides.document_id = ? AND lessons.user_id != ?', self.id, self.user_id).each do |ds|
+        if !Notification.send_to ds.my_user_id.to_i, I18n.t('notifications.document.destroyed', :lesson_title => ds.lesson_title, :document_title => self.title, :link => lesson_viewer_path(ds.lesson_id.to_i))
+          errors.add(:base, :problem_destroying)
+          raise ActiveRecord::Rollback
+        end
+      end
+      begin
+        self.destroy
+      rescue StandardError
+        errors.add(:base, :problem_destroying)
+        raise ActiveRecord::Rollback
+      end
+      resp = true
+    end
+    resp
+  end
+  
   private
   
   # Sets automatically the title from the file title if it's nil
