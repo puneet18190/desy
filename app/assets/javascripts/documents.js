@@ -65,17 +65,21 @@ Initializer for documents functionality (search and placeholders javascripts).
 @for DocumentsDocumentReady
 **/
 function documentsDocumentReadySearch() {
-  $('body').on('keydown', '#search_documents ._word_input', function() {
-    var letters = $(this).data('letters');
-    letters += 1;
-    $(this).data('letters', letters);
-    $('#search_documents ._loader').show();
-    setTimeout(function() {
-      if($('#search_documents ._word_input').data('letters') == letters) {
-        $('#search_documents ._loader').hide();
-        $('#search_documents').submit();
-      }
-    }, 1500);
+  $('body').on('keydown', '#search_documents ._word_input', function(e) {
+    if(e.which == 13) {
+      e.preventDefault();
+    } else if(e.which != 39 && e.which != 37) {
+      var letters = $(this).data('letters');
+      letters += 1;
+      $(this).data('letters', letters);
+      $('#search_documents ._loader').show();
+      setTimeout(function() {
+        if($('#search_documents ._word_input').data('letters') == letters) {
+          $('#search_documents ._loader').hide();
+          $('#search_documents').submit();
+        }
+      }, 1500);
+    }
   });
 }
 

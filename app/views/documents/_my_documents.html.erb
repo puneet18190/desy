@@ -7,7 +7,7 @@
     <% end %>
   <% else %>
     <% @documents.each do |document| %>
-      <%= render :partial => 'documents/view_single_compact', :locals => {:document => document} %>
+      <%= render :partial => 'documents/view_single_compact', :locals => {:document => document, :word => @word} %>
     <% end %>
   <% end %>
 </div>

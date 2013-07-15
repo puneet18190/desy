@@ -29,6 +29,7 @@
 # 1. *cascade* *destruction* for the associated table DocumentsSlide
 #
 class Document < ActiveRecord::Base
+  include ActionView::Helpers
   
   # Maximum length of the title
   MAX_TITLE_LENGTH = (I18n.t('language_parameters.document.length_title') > 255 ? 255 : I18n.t('language_parameters.document.length_title'))
@@ -45,6 +46,12 @@ class Document < ActiveRecord::Base
   validate :validate_associations, :validate_impossible_changes
   
   before_validation :init_validation, :set_title_from_file
+  
+  # Used to sanitize title
+  def title=(title)
+    title = title.nil? ? nil : title.to_s
+    write_attribute(:title, sanitize(title))
+  end
   
   # Returns the size and extension in a nice way for the views
   def size_and_extension
