@@ -2263,14 +2263,6 @@ it:
     # Placeholder to search a document
     # 1 - views/documents/_search.html.erb
     search: "Filtra per parola:"
-    # Header elements for the list of documents
-    headers:
-      # Extension of the document
-      # 1 - views/documents/index.html.erb
-      extension: "Estensione"
-      # Size of the document
-      # 1 - views/documents/index.html.erb
-      size: "Dimensione"
   
   
   
