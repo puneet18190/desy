@@ -1,11 +1,11 @@
 @mixin title-bar {
   
-  padding: 0.3% 1% 0.3% 1%;
+  padding: 0 1% 0 1%;
   margin-bottom: 12px;
   float: left;
   width: 98%;
   color: #fff;
-  
+  /*height: 35px;*/
 }
 
 @mixin float-content {
@@ -63,8 +63,8 @@
     font: 120% 'Nunito', sans-serif;
     color: #fff;
     float: left;
-    padding: 0px;
-    margin: 0px;
+    padding-top: 0.7%;
+    margin-right: 10px;
     
   }
 }
@@ -91,47 +91,38 @@
         cursor: default;
       }
     }
+    h1{
+      padding-top:0.3%;
+    }
     div {
-      padding-top: 0.5%;
+      padding: 0.5% 0;
     }
     .sbHolder {
       width: 179px;
-      height: 14px;
-      background-color: #5ab046;
+      height: 23px;
+      background-color: #6d6c6c;
       border-radius: 2px;
       -webkit-border-radius: 2px;
     }
-    
-    .selectDisplay .sbHolder {
-      
-      width: 60px;
-      height: 14px;
-      background-color: #5ab046;
-      border-radius: 2px;
-      -webkit-border-radius: 2px;
-      
-    }
-    
-    .selectDisplay .sbSelector {
-      
-      height: 18px;
-      line-height: 20px;
-      width: 60px;
-      
-    }
-    
-    .selectDisplay .sbOptions {
-      
-      width: 60px;
-      left: 0px;
+    input.text {
+      padding: 3px 5px;
+      background-color: #6d6c6c;
+      font-size: 12px;
       border: none;
-      
+      width: 149px;
+      height: 20px;
+      border-radius: 4px;
+      -webkit-border-radius: 4px;
+      margin-right: 10px;
+      box-shadow: 0 1px 2px rgba(50, 50, 50, 0.2) inset;
     }
+    
+    
     
     .sbSelector {
       
-      height: 18px;
-      line-height: 20px;
+      height: 23px;
+      line-height: 26px;
       width: 179px;
       
     }
@@ -141,24 +132,25 @@
       color: #fff;
       text-shadow: none;
       letter-spacing: 1px;
-      
+      line-height:26px;
     }
     
     .sbToggle {
       
-      background: url(<%= asset_path 'select-icons-elements.png' %>) 0 -123px no-repeat;
+      background: url(<%= asset_path 'select-icons-documents.png' %>) 0 -123px no-repeat;
+      top: 5px;
       
     }
     
     .sbToggle:hover {
       
-      background: url(<%= asset_path 'select-icons-elements.png' %>) 0 -123px no-repeat;
+      background: url(<%= asset_path 'select-icons-documents.png' %>) 0 -123px no-repeat;
       
     }
     
     .sbToggleOpen {
       
-      background: url(<%= asset_path 'select-icons-elements.png' %>) 0 -22px no-repeat;
+      background: url(<%= asset_path 'select-icons-documents.png' %>) 0 -22px no-repeat;
       
     }
     
@@ -194,7 +186,7 @@
     .sbOptions a:hover, .sbOptions a:focus, .sbOptions a.sbFocus {
       
       color: #fff;
-      background-color: #41a62a;
+      background-color: #6d6c6c;
       
     }
   }
@@ -212,9 +204,11 @@
       width: 99%;
       padding: 0.3% 0% 0.3% 1%;
       h3 {
-        color: #41a62a;
-        font-size: 90%;
-        padding-bottom: 0%;
+        color: #6d6c6c;
+        font-size: 100%;
+        padding-top: 7px;
+        padding-left:10px;
+        float:left;
       }
       .documentsIcon {
         width: 40%; 
@@ -231,7 +225,7 @@
         text-align: left;
       }
       p {
-        font-size: 80%;
+        font-size: 10 0%;
         padding-top: 0.6%;
       }
     }
