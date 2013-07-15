@@ -16,6 +16,8 @@
 #
 # * *presence* with numericality and existence of associated record for +document_id+ and +slide_id+
 # * *modifications* *not* *available* for the +document_id+ and +slide_id+
+# * *uniqueness* of the couple +document_id+ and +slide_id+
+# * *the* *slide* must allow +title+
 #
 # == Callbacks
 #
@@ -33,7 +35,7 @@ class DocumentsSlide < ActiveRecord::Base
   validates_presence_of :document_id, :slide_id
   validates_numericality_of :document_id, :slide_id, :only_integer => true, :greater_than => 0
   validates_uniqueness_of :document_id, :scope => :slide_id
-  validate :validate_associations, :validate_impossible_changes
+  validate :validate_associations, :validate_impossible_changes, :validate_slide_type
   
   before_validation :init_validation
   
@@ -58,6 +60,11 @@ class DocumentsSlide < ActiveRecord::Base
       errors.add(:document_id, :cant_be_changed) if @documents_slide.document_id != self.document_id
       errors.add(:slide_id, :cant_be_changed) if @documents_slide.slide_id != self.slide_id
     end
+  end
+  
+  # Validates that the slide type is coherent with an attached document (it must allow title)
+  def validate_slide_type
+    errors.add(:slide_id, :doesnt_allow_documents) if @slide && !@slide.allows_document?
   end
   
 end

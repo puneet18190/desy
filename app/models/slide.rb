@@ -162,6 +162,18 @@ class Slide < ActiveRecord::Base
   
   # === Description
   #
+  # Checks if the +kind+ of this slide allows an attached document (see DocumentsSlide).
+  #
+  # === Returns
+  #
+  # A boolean
+  #
+  def allows_document?
+    self.allows_title? && ![TITLE, COVER].include?(self.kind)
+  end
+  
+  # === Description
+  #
   # Checks if the +kind+ of this slide allows a text (used in the validations of this model).
   #
   # === Returns
