@@ -60,7 +60,7 @@ class Document < ActiveRecord::Base
   def icon_path # TODO
     case self.extension
       when '.ppt' then 'documents/ppt.png'
-      when '.doc', '.docx', '.pages', '.odt' then 'documents/doc.png'
+      when '.doc', '.docx', '.pages', '.odt', '.txt' then 'documents/doc.png'
       when '.gz', '.zip' then 'documents/zip.png'
       when '.xls', '.xlsx', '.numbers', '.ods' then 'documents/xls.png'
       when '.pdf', '.ps' then 'documents/pdf.png'
@@ -80,7 +80,7 @@ class Document < ActiveRecord::Base
       when 6 then '.pages'
       when 7 then '.ods'
       when 8 then '.xls'
-      when 9 then '.xlsx'
+      when 9 then '.svg'
     end
   end
   
