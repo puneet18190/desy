@@ -199,37 +199,42 @@
     }
   }
   
-/*DOCUMENTS*/
-.boxViewSingleDocument {
-  width: 100%;
-  padding: 0;
-  color: #c0c0c0;
-  @include contentLayout;
-  background-color: #FBFAFB;
-  float: left;
-  .contentInterno {
-    
+  /*VIEW SINGLE DOCUMENTS*/
+  .boxViewSingleDocument {
+    width: 100%;
+    padding: 0;
+    color: #c0c0c0;
+    @include contentLayout;
+    background-color: #FBFAFB;
     float: left;
-    width: 99%;
-    padding: 0.3% 0% 0.3% 1%;
-    .documentsIcon {
-      width: 40%; 
-      float: left; 
-      padding: 4px 0px 2px 0px; 
-      display: inline-block; 
-      margin-right: 1.8%; 
-    }
-    @include float-content;
-    .menuController {
-      padding: 0px;
-      border-top: none;
-      background-color: transparent;
-      text-align: left;
-    }
-    p {
-      font-size: 80%;
-      padding-top: 0.6%;
+    .contentInterno {
+      float: left;
+      width: 99%;
+      padding: 0.3% 0% 0.3% 1%;
+      h3 {
+        color: #41a62a;
+        font-size: 90%;
+        padding-bottom: 0%;
+      }
+      .documentsIcon {
+        width: 40%; 
+        float: left; 
+        padding: 4px 0px 2px 0px; 
+        display: inline-block; 
+        margin-right: 1.8%; 
+      }
+      @include float-content;
+      .menuController {
+        padding: 0px;
+        border-top: none;
+        background-color: transparent;
+        text-align: left;
+      }
+      p {
+        font-size: 80%;
+        padding-top: 0.6%;
+      }
     }
   }
-}
+  /*END VIEW DOCUMENTS*/
 }
