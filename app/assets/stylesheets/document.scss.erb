@@ -1,0 +1,235 @@
+@mixin title-bar {
+  
+  padding: 0.3% 1% 0.3% 1%;
+  margin-bottom: 12px;
+  float: left;
+  width: 98%;
+  color: #fff;
+  
+}
+
+@mixin float-content {
+  
+  p {
+    
+    text-align: center;
+    float: left;
+    
+  }
+  
+  div {
+    
+    float: right;
+    
+  }
+  
+}
+@mixin contentLayout {
+  
+  margin-bottom: 1%;
+  -webkit-box-shadow: 0px 3px 4px #d3d3d3;
+  box-shadow: 0px 3px 4px #d3d3d3;
+  
+  h1 {
+    
+    font:  110% 'Nunito', sans-serif;
+    color: #f29400;
+    padding: 0px;
+    
+  }
+  
+  h2 {
+    
+    font: 140% 'Nunito', sans-serif;
+    
+  }
+  
+}
+@mixin tag-formatting {
+  
+  h1 {
+    
+    color: #fff;
+    padding: 0;
+    margin: 0;
+    font: 200% 'Nunito', sans-serif;
+    float: left;
+    width: 39%;
+    
+  }
+  
+  h2 {
+    
+    font: 120% 'Nunito', sans-serif;
+    color: #fff;
+    float: left;
+    padding: 0px;
+    margin: 0px;
+    
+  }
+}
+
+.documents-content {
+  float: left;
+  width: 99.5%;
+  margin-bottom: 3%;
+  .title-bar {
+    @include title-bar;
+    @include float-content;
+    @include tag-formatting;
+    background-color: #5d5c5c;
+    p {
+      padding-top: 0.5%;
+    }
+    a {
+      color: #9EDA90;
+      &:hover {
+        color: #fff;
+      }
+      &.current {
+        color: #fff;
+        cursor: default;
+      }
+    }
+    div {
+      padding-top: 0.5%;
+    }
+    .sbHolder {
+      width: 179px;
+      height: 14px;
+      background-color: #5ab046;
+      border-radius: 2px;
+      -webkit-border-radius: 2px;
+    }
+    
+    .selectDisplay .sbHolder {
+      
+      width: 60px;
+      height: 14px;
+      background-color: #5ab046;
+      border-radius: 2px;
+      -webkit-border-radius: 2px;
+      
+    }
+    
+    .selectDisplay .sbSelector {
+      
+      height: 18px;
+      line-height: 20px;
+      width: 60px;
+      
+    }
+    
+    .selectDisplay .sbOptions {
+      
+      width: 60px;
+      left: 0px;
+      border: none;
+      
+    }
+    
+    .sbSelector {
+      
+      height: 18px;
+      line-height: 20px;
+      width: 179px;
+      
+    }
+    
+    .sbSelector:link, .sbSelector:visited, .sbSelector:hover {
+      
+      color: #fff;
+      text-shadow: none;
+      letter-spacing: 1px;
+      
+    }
+    
+    .sbToggle {
+      
+      background: url(<%= asset_path 'select-icons-elements.png' %>) 0 -123px no-repeat;
+      
+    }
+    
+    .sbToggle:hover {
+      
+      background: url(<%= asset_path 'select-icons-elements.png' %>) 0 -123px no-repeat;
+      
+    }
+    
+    .sbToggleOpen {
+      
+      background: url(<%= asset_path 'select-icons-elements.png' %>) 0 -22px no-repeat;
+      
+    }
+    
+    .sbOptions {
+      
+      width: 179px;
+      left: 0px;
+      border: none;
+      
+    }
+    
+    .sbOptions li {
+      
+      padding: 7px;
+      
+    }
+    
+    .sbOptions a {
+      
+      text-shadow: none;
+      padding: 7px;
+      font-weight: bold;
+      
+    }
+    
+    .sbOptions a:link, .sbOptions a:visited {
+      
+      color: #939393;
+      text-decoration: none;
+      
+    }
+    
+    .sbOptions a:hover, .sbOptions a:focus, .sbOptions a.sbFocus {
+      
+      color: #fff;
+      background-color: #41a62a;
+      
+    }
+  }
+  
+/*DOCUMENTS*/
+.boxViewSingleDocument {
+  width: 100%;
+  padding: 0;
+  color: #c0c0c0;
+  @include contentLayout;
+  background-color: #FBFAFB;
+  float: left;
+  .contentInterno {
+    
+    float: left;
+    width: 99%;
+    padding: 0.3% 0% 0.3% 1%;
+    .documentsIcon {
+      width: 40%; 
+      float: left; 
+      padding: 4px 0px 2px 0px; 
+      display: inline-block; 
+      margin-right: 1.8%; 
+    }
+    @include float-content;
+    .menuController {
+      padding: 0px;
+      border-top: none;
+      background-color: transparent;
+      text-align: left;
+    }
+    p {
+      font-size: 80%;
+      padding-top: 0.6%;
+    }
+  }
+}
+}

@@ -28,6 +28,7 @@
  *= require dots_pagination
  *= require lessons
  *= require elements
+ *= require document
  *= require profile
  *= require icon_button_popup
  *= require layouts/lesson_editor

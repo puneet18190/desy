@@ -1,9 +1,13 @@
 <div id="document_<%= document.id %>" class="boxViewSingleDocument">
-  <%= image_tag 'add_small_on_off.png' %> <!-- manca l'icona TODO -->
-  <h3><%= document.title %></h3>
-  <p>.odt, 334 MB</p> <!-- TODO metti estensione e dimensione da DB -->
-  <div class="menuController buttons">
-    <a title="<%= t('titles.buttons.documents.download') %>" data-document-id="<%= document.id %>" class="preview"></a>
-    <a title="<%= t('titles.buttons.documents.destroy') %>" data-document-id="<%= document.id %>" class="destroy"></a>
+  <div class="contentInterno">
+    <div class="documentsIcon">
+      <%= image_tag 'documents/doc.png', :class=> "fltlft" %> <!-- manca l'icona TODO -->
+      <h3><%= document.title %></h3>
+      <p>.odt, 334 MB</p> <!-- TODO metti estensione e dimensione da DB -->
+    </div>
+    <div class="menuController buttons">
+      <a title="<%= t('titles.buttons.documents.download') %>" data-document-id="<%= document.id %>" class="preview"></a>
+      <a title="<%= t('titles.buttons.documents.destroy') %>" data-document-id="<%= document.id %>" class="destroy"></a>
+    </div>
   </div>
 </div>
