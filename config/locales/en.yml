@@ -1664,7 +1664,7 @@ en:
       destroyed: "<div class=\"title\">Warning!</div><div class=\"content\">The document <span class=\"variable\">%{document_title}</span> has been removed by its owner: this affects your lesson <span class=\"variable\">%{lesson_title}</span></div><div class=\"basement\"><span>%{lesson_title}</span><a href=\"%{link}\" class=\"preview\"></a></div>"
       # Message attached to the notification of modifications automatically sent to users who have a link to a lesson containig a document which has been deleted (%{document_title} is  replaced by the title of the document)
       # 1 - models/document.rb
-      standard_message_for_linked_lessons: "I removed the attached document %{document_title}"
+      standard_message_for_linked_lessons: "I removed the attached document «%{document_title}»"
     lessons:
       # Message sent to a user who has the lesson link, in case the creator of that lesson deleted it (the variable %{user_name} is replaced by the name of the author of the lesson, %{lesson_title} by the title of the lesson)
       # 1 - models/lesson.rb
@@ -1674,6 +1674,8 @@ en:
       link_sent: "<div class=\"title\">Link sent!</div><div class=\"content\">You sent the link of the lesson <span class=\"variable\">%{title}</span> to the following emails: <br/><br/><span class=\"message\">%{emails}</span><br/><br/>The message you attached is<br/><br/><span class=\"message\">\"%{message}\"</div>"
       # Notification sent by a user who modified a shared lesson, to inform all its followers about the nature of modifications made (the variable %{lesson_title} is replaced by the title of the lesson, %{message} by the message containing a better description of the modifications, and %{link} by the link to the lesson viewer for that lesson)
       # 1 - models/lesson.rb
+      # 2 - models/lesson.rb
+      # 3 - models/document.rb
       modified: "<div class=\"title\">News for you!</div><div class=\"content\">The lesson <span class=\"variable\">%{lesson_title}</span> has undergone some changes by the author: the detail of the changes are<br/><br/><span class=\"message\">\"%{message}\"</span></div><div class=\"basement\"><span>%{lesson_title}</span><a href=\"%{link}\" class=\"preview\"></a></div>"
       # Message sent to a user who has the link of a lesson, in case the creator of that lesson turned it back into private (in this case the follower loses his link as if the lesson was deleted) (the variable %{user_name} is replaced by the name of the author of the lesson, %{lesson_title} by the title of the lesson)
       # 1 - models/lesson.rb
