@@ -29,6 +29,7 @@
 # 1. *cascade* *destruction* for the associated table DocumentsSlide
 #
 class Document < ActiveRecord::Base
+  include Rails.application.routes.url_helpers
   include ActionView::Helpers
   
   # Maximum length of the title
@@ -114,7 +115,7 @@ class Document < ActiveRecord::Base
     resp = false
     ActiveRecord::Base.transaction do
       DocumentsSlide.joins(:slide, {:slide => :lesson}).select('lessons.user_id AS my_user_id, lessons.title AS lesson_title, lessons.id AS lesson_id').group('lessons.id').where('documents_slides.document_id = ? AND lessons.user_id != ?', self.id, self.user_id).each do |ds|
-        if !Notification.send_to ds.my_user_id.to_i, I18n.t('notifications.document.destroyed', :lesson_title => ds.lesson_title, :document_title => self.title, :link => lesson_viewer_path(ds.lesson_id.to_i))
+        if !Notification.send_to ds.my_user_id.to_i, I18n.t('notifications.documents.destroyed', :lesson_title => ds.lesson_title, :document_title => self.title, :link => lesson_viewer_path(ds.lesson_id.to_i))
           errors.add(:base, :problem_destroying)
           raise ActiveRecord::Rollback
         end

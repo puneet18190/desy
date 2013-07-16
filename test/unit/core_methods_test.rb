@@ -206,6 +206,37 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert !Lesson.exists?(2)
   end
   
+  test 'destroy_document_with_notifications' do
+    Document.all.each do |d|
+      assert d.valid?
+    end
+    x = Document.new
+    assert !x.destroy_with_notifications
+    assert_equal 1, x.errors.messages[:base].length
+    assert x.errors.added? :base, :problem_destroying
+    d2 = Document.find_by_id 2
+    sd2 = DocumentsSlide.find_by_id 2
+    n_count = Notification.count
+    assert_not_nil sd2
+    assert_not_nil d2
+    assert d2.destroy_with_notifications
+    assert_nil Document.find_by_id 2
+    assert_nil DocumentsSlide.find_by_id 2
+    assert_equal n_count, Notification.count
+    n_last = Notification.order('id ASC').last.id
+    d1 = Document.find_by_id 1
+    sd1 = DocumentsSlide.find_by_id 1
+    assert_not_nil d1
+    assert_not_nil sd1
+    assert d1.destroy_with_notifications
+    notif_new = Notification.where('id > ?', n_last)
+    assert_equal 1, notif_new.length
+    assert_equal I18n.t('notifications.documents.destroyed', :lesson_title => 'string', :document_title => 'Documento 1', :link => '/lessons/2/view'), notif_new.first.message
+    assert_equal 2, notif_new.first.user_id
+    assert_nil Document.find_by_id 1
+    assert_nil DocumentsSlide.find_by_id 1
+  end
+  
   test 'change_slide_position' do
     uu = Slide.new
     assert !uu.change_position(1)
