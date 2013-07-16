@@ -173,11 +173,6 @@ record for <code>user_id</code></p>
             
               
               <li>
-                <a href="#method-c-test_all_to">test_all_to</a>,
-              </li>
-            
-              
-              <li>
                 <a href="#method-i-time_difference_single">time_difference_single</a>,
               </li>
             
@@ -307,63 +302,6 @@ and uses thread to send them</p>
             </div>
             
           </div>
-        
-        <div class="method">
-          <div class="title method-title" id="method-c-test_all_to">
-            
-              <b>test_all_to</b>(an_user_id)
-            
-            <a href="../classes/Notification.html#method-c-test_all_to" name="method-c-test_all_to" class="permalink">Link</a>
-          </div>
-          
-          
-            <div class="description">
-              <p>Function to test all types of notifications</p>
-            </div>
-          
-          
-          
-          
-          
-            
-            <div class="sourcecode">
-              
-              <p class="source-link">
-                Source: 
-                <a href="javascript:toggleSource('method-c-test_all_to_source')" id="l_method-c-test_all_to_source">show</a>
-                
-              </p>
-              <div id="method-c-test_all_to_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/notification.rb, line 69</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">test_all_to</span>(<span class="ruby-identifier">an_user_id</span>)
-  <span class="ruby-constant">Notification</span>.<span class="ruby-identifier">delete_all</span>
-  <span class="ruby-constant">Notification</span>.<span class="ruby-identifier">send_to</span> <span class="ruby-identifier">an_user_id</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;notifications.lessons.destroyed&#39;</span>, <span class="ruby-value">:user_name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Luciano Moggi&#39;</span>, <span class="ruby-value">:lesson_title</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Gelato al cioccolato&#39;</span>)
-  <span class="ruby-constant">Notification</span>.<span class="ruby-identifier">send_to</span> <span class="ruby-identifier">an_user_id</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;notifications.lessons.link_sent&#39;</span>, <span class="ruby-value">:title</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Gelato al cioccolato&#39;</span>, <span class="ruby-value">:message</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Guardate che bella lezione!&#39;</span>, <span class="ruby-value">:emails</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;moggi@figc.it, carraro@figc.it&#39;</span>)
-  <span class="ruby-constant">Notification</span>.<span class="ruby-identifier">send_to</span> <span class="ruby-identifier">an_user_id</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;notifications.lessons.modified&#39;</span>, <span class="ruby-value">:lesson_title</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Gelato al cioccolato&#39;</span>, <span class="ruby-value">:message</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Ho aggiornato le ultime slides&#39;</span>, <span class="ruby-value">:link</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;www.google.com&#39;</span>)
-  <span class="ruby-constant">Notification</span>.<span class="ruby-identifier">send_to</span> <span class="ruby-identifier">an_user_id</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;notifications.lessons.unpublished&#39;</span>, <span class="ruby-value">:user_name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Luciano Moggi&#39;</span>, <span class="ruby-value">:lesson_title</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Gelato al cioccolato&#39;</span>)
-  <span class="ruby-constant">Notification</span>.<span class="ruby-identifier">send_to</span> <span class="ruby-identifier">an_user_id</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;notifications.audio.compose.update.started&#39;</span>, <span class="ruby-value">:item</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Gelato al cioccolato&#39;</span>)
-  <span class="ruby-constant">Notification</span>.<span class="ruby-identifier">send_to</span> <span class="ruby-identifier">an_user_id</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;notifications.audio.compose.update.ok&#39;</span>, <span class="ruby-value">:item</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Gelato al cioccolato&#39;</span>)
-  <span class="ruby-constant">Notification</span>.<span class="ruby-identifier">send_to</span> <span class="ruby-identifier">an_user_id</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;notifications.audio.compose.update.failed&#39;</span>, <span class="ruby-value">:item</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Gelato al cioccolato&#39;</span>, <span class="ruby-value">:link</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;www.google.com&#39;</span>)
-  <span class="ruby-constant">Notification</span>.<span class="ruby-identifier">send_to</span> <span class="ruby-identifier">an_user_id</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;notifications.audio.compose.create.started&#39;</span>, <span class="ruby-value">:item</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Gelato al cioccolato&#39;</span>)
-  <span class="ruby-constant">Notification</span>.<span class="ruby-identifier">send_to</span> <span class="ruby-identifier">an_user_id</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;notifications.audio.compose.create.ok&#39;</span>, <span class="ruby-value">:item</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Gelato al cioccolato&#39;</span>)
-  <span class="ruby-constant">Notification</span>.<span class="ruby-identifier">send_to</span> <span class="ruby-identifier">an_user_id</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;notifications.audio.compose.create.failed&#39;</span>, <span class="ruby-value">:item</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Gelato al cioccolato&#39;</span>, <span class="ruby-value">:link</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;www.google.com&#39;</span>)
-  <span class="ruby-constant">Notification</span>.<span class="ruby-identifier">send_to</span> <span class="ruby-identifier">an_user_id</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;notifications.audio.upload.started&#39;</span>, <span class="ruby-value">:item</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Gelato al cioccolato&#39;</span>)
-  <span class="ruby-constant">Notification</span>.<span class="ruby-identifier">send_to</span> <span class="ruby-identifier">an_user_id</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;notifications.audio.upload.ok&#39;</span>, <span class="ruby-value">:item</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Gelato al cioccolato&#39;</span>)
-  <span class="ruby-constant">Notification</span>.<span class="ruby-identifier">send_to</span> <span class="ruby-identifier">an_user_id</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;notifications.audio.upload.failed&#39;</span>, <span class="ruby-value">:item</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Gelato al cioccolato&#39;</span>)
-  <span class="ruby-constant">Notification</span>.<span class="ruby-identifier">send_to</span> <span class="ruby-identifier">an_user_id</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;notifications.video.compose.update.started&#39;</span>, <span class="ruby-value">:item</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Gelato al cioccolato&#39;</span>)
-  <span class="ruby-constant">Notification</span>.<span class="ruby-identifier">send_to</span> <span class="ruby-identifier">an_user_id</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;notifications.video.compose.update.ok&#39;</span>, <span class="ruby-value">:item</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Gelato al cioccolato&#39;</span>)
-  <span class="ruby-constant">Notification</span>.<span class="ruby-identifier">send_to</span> <span class="ruby-identifier">an_user_id</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;notifications.video.compose.update.failed&#39;</span>, <span class="ruby-value">:item</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Gelato al cioccolato&#39;</span>, <span class="ruby-value">:link</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;www.google.com&#39;</span>)
-  <span class="ruby-constant">Notification</span>.<span class="ruby-identifier">send_to</span> <span class="ruby-identifier">an_user_id</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;notifications.video.compose.create.started&#39;</span>, <span class="ruby-value">:item</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Gelato al cioccolato&#39;</span>)
-  <span class="ruby-constant">Notification</span>.<span class="ruby-identifier">send_to</span> <span class="ruby-identifier">an_user_id</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;notifications.video.compose.create.ok&#39;</span>, <span class="ruby-value">:item</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Gelato al cioccolato&#39;</span>)
-  <span class="ruby-constant">Notification</span>.<span class="ruby-identifier">send_to</span> <span class="ruby-identifier">an_user_id</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;notifications.video.compose.create.failed&#39;</span>, <span class="ruby-value">:item</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Gelato al cioccolato&#39;</span>, <span class="ruby-value">:link</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;www.google.com&#39;</span>)
-  <span class="ruby-constant">Notification</span>.<span class="ruby-identifier">send_to</span> <span class="ruby-identifier">an_user_id</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;notifications.video.upload.started&#39;</span>, <span class="ruby-value">:item</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Gelato al cioccolato&#39;</span>)
-  <span class="ruby-constant">Notification</span>.<span class="ruby-identifier">send_to</span> <span class="ruby-identifier">an_user_id</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;notifications.video.upload.ok&#39;</span>, <span class="ruby-value">:item</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Gelato al cioccolato&#39;</span>)
-  <span class="ruby-constant">Notification</span>.<span class="ruby-identifier">send_to</span> <span class="ruby-identifier">an_user_id</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;notifications.video.upload.failed&#39;</span>, <span class="ruby-value">:item</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Gelato al cioccolato&#39;</span>)
-<span class="ruby-keyword">end</span></pre>
-              </div>
-            </div>
-            
-          </div>
                   
       <div class="sectiontitle">Instance Public methods</div>
       
@@ -396,7 +334,7 @@ href="NotificationsController.html#method-i-seen">NotificationsController#seen</
                 
               </p>
               <div id="method-i-has_been_seen_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/notification.rb, line 99</span>
+                <pre><span class="ruby-comment"># File app/models/notification.rb, line 72</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">has_been_seen</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">seen</span> = <span class="ruby-keyword">true</span>
@@ -435,7 +373,7 @@ href="NotificationsController.html#method-i-seen">NotificationsController#seen</
                 
               </p>
               <div id="method-i-message_with_time_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/notification.rb, line 109</span>
+                <pre><span class="ruby-comment"># File app/models/notification.rb, line 82</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">message_with_time</span>
   <span class="ruby-identifier">time_difference</span> = <span class="ruby-identifier">time_difference_to_s</span>(<span class="ruby-constant">Time</span>.<span class="ruby-identifier">zone</span>.<span class="ruby-identifier">now</span> <span class="ruby-operator">-</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">created_at</span>)
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">message</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-string">&quot;&lt;/div&gt;&lt;div class=\&quot;content\&quot;&gt;&quot;</span>, <span class="ruby-node">&quot;&lt;/div&gt;&lt;p class=\&quot;time _notification_time_#{self.id}\&quot;&gt;#{time_difference}&lt;/p&gt;&lt;div class=\&quot;content\&quot;&gt;&quot;</span>)
@@ -473,7 +411,7 @@ href="NotificationsController.html#method-i-seen">NotificationsController#seen</
                 
               </p>
               <div id="method-i-only_time_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/notification.rb, line 118</span>
+                <pre><span class="ruby-comment"># File app/models/notification.rb, line 91</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">only_time</span>
   <span class="ruby-identifier">time_difference_to_s</span>(<span class="ruby-constant">Time</span>.<span class="ruby-identifier">zone</span>.<span class="ruby-identifier">now</span> <span class="ruby-operator">-</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">created_at</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -511,7 +449,7 @@ href="Valid.html#method-c-get_association">Valid.get_association</a>)</p>
                 
               </p>
               <div id="method-i-init_validation_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/notification.rb, line 148</span>
+                <pre><span class="ruby-comment"># File app/models/notification.rb, line 121</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">init_validation</span>
   <span class="ruby-ivar">@notification</span> = <span class="ruby-constant">Valid</span>.<span class="ruby-identifier">get_association</span> <span class="ruby-keyword">self</span>, <span class="ruby-value">:id</span>
   <span class="ruby-ivar">@user</span> = <span class="ruby-constant">Valid</span>.<span class="ruby-identifier">get_association</span> <span class="ruby-keyword">self</span>, <span class="ruby-value">:user_id</span>
@@ -547,7 +485,7 @@ href="Valid.html#method-c-get_association">Valid.get_association</a>)</p>
                 
               </p>
               <div id="method-i-time_difference_single_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/notification.rb, line 138</span>
+                <pre><span class="ruby-comment"># File app/models/notification.rb, line 111</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">time_difference_single</span>(<span class="ruby-identifier">symbol</span>, <span class="ruby-identifier">seconds</span>, <span class="ruby-identifier">offset</span>)
   <span class="ruby-identifier">items</span> = <span class="ruby-identifier">seconds</span> <span class="ruby-operator">/</span> <span class="ruby-identifier">offset</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">items</span> <span class="ruby-operator">==</span> <span class="ruby-number">1</span>
@@ -587,7 +525,7 @@ href="Valid.html#method-c-get_association">Valid.get_association</a>)</p>
                 
               </p>
               <div id="method-i-time_difference_to_s_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/notification.rb, line 125</span>
+                <pre><span class="ruby-comment"># File app/models/notification.rb, line 98</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">time_difference_to_s</span>(<span class="ruby-identifier">seconds</span>)
   <span class="ruby-identifier">seconds</span> = <span class="ruby-identifier">seconds</span>.<span class="ruby-identifier">to_i</span>
   <span class="ruby-keyword">return</span> <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;notifications.time_difference.seconds&#39;</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">seconds</span> <span class="ruby-operator">&lt;</span> <span class="ruby-number">0</span>
@@ -631,7 +569,7 @@ href="Valid.html#method-c-get_association">Valid.get_association</a>)</p>
                 
               </p>
               <div id="method-i-validate_associations_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/notification.rb, line 154</span>
+                <pre><span class="ruby-comment"># File app/models/notification.rb, line 127</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">validate_associations</span>
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:user_id</span>, <span class="ruby-value">:doesnt_exist</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">nil?</span>
 <span class="ruby-keyword">end</span></pre>
@@ -666,7 +604,7 @@ href="Valid.html#method-c-get_association">Valid.get_association</a>)</p>
                 
               </p>
               <div id="method-i-validate_impossible_changes_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/notification.rb, line 164</span>
+                <pre><span class="ruby-comment"># File app/models/notification.rb, line 137</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">validate_impossible_changes</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@notification</span>
     <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:seen</span>, <span class="ruby-value">:cant_be_switched_from_true_to_false</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@notification</span>.<span class="ruby-identifier">seen</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">seen</span>
@@ -706,7 +644,7 @@ record</p>
                 
               </p>
               <div id="method-i-validate_seen_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/notification.rb, line 159</span>
+                <pre><span class="ruby-comment"># File app/models/notification.rb, line 132</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">validate_seen</span>
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:seen</span>, <span class="ruby-value">:must_be_false_if_new_record</span>) <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@notification</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">seen</span>
 <span class="ruby-keyword">end</span></pre>

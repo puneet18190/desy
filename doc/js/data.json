@@ -104,6 +104,18 @@
             },
             "namespaces": {}
         },
+        "app/assets/javascripts/documents.js": {
+            "name": "app/assets/javascripts/documents.js",
+            "modules": {
+                "documents": 1
+            },
+            "classes": {},
+            "fors": {
+                "DocumentsDocumentReady": 1,
+                "DocumentsLoader": 1
+            },
+            "namespaces": {}
+        },
         "app/assets/javascripts/galleries.js": {
             "name": "app/assets/javascripts/galleries.js",
             "modules": {
@@ -466,6 +478,23 @@
             "file": "app/assets/javascripts/dialogs.js",
             "line": 1,
             "description": "This module contains the javascript functions that use JQueryUi dialogs. Some of them are closed with a time delay (class {{#crossLink \"DialogsTimed\"}}{{/crossLink}}), other are closed with buttons by the user (class {{#crossLink \"DialogsConfirmation\"}}{{/crossLink}}), and other ones contain a form to be filled in by the user (class {{#crossLink \"DialogsWithForm\"}}{{/crossLink}})."
+        },
+        "documents": {
+            "name": "documents",
+            "submodules": {},
+            "classes": {
+                "DocumentsDocumentReady": 1,
+                "DocumentsLoader": 1
+            },
+            "fors": {
+                "DocumentsDocumentReady": 1,
+                "DocumentsLoader": 1
+            },
+            "namespaces": {},
+            "tag": "module",
+            "file": "app/assets/javascripts/documents.js",
+            "line": 1,
+            "description": "Javascript  functions to be used in the section 'documents'."
         },
         "galleries": {
             "name": "galleries",
@@ -1098,6 +1127,28 @@
             "plugin_for": [],
             "extension_for": [],
             "module": "dialogs",
+            "namespace": ""
+        },
+        "DocumentsDocumentReady": {
+            "name": "DocumentsDocumentReady",
+            "shortname": "DocumentsDocumentReady",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "documents",
+            "namespace": ""
+        },
+        "DocumentsLoader": {
+            "name": "DocumentsLoader",
+            "shortname": "DocumentsLoader",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "documents",
             "namespace": ""
         },
         "GalleriesAccessories": {
@@ -1842,7 +1893,7 @@
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
-            "line": 85,
+            "line": 87,
             "description": "Initializes the effects of collapse and change date.",
             "itemtype": "method",
             "name": "adminEffectsDocumentReady",
@@ -1851,7 +1902,7 @@
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
-            "line": 144,
+            "line": 146,
             "description": "Initializes the locations filling. See similar {{#crossLink \"GeneralDocumentReady/locationsDocumentReady:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "adminLocationsDocumentReady",
@@ -1860,7 +1911,7 @@
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
-            "line": 164,
+            "line": 166,
             "description": "Initializes effects for MediaElement.",
             "itemtype": "method",
             "name": "adminMediaElementsDocumentReady",
@@ -1869,7 +1920,7 @@
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
-            "line": 230,
+            "line": 253,
             "description": "Initializes actions for less important tables, such as Tag, Subject, SchoolLevel",
             "itemtype": "method",
             "name": "adminMiscellaneaDocumentReady",
@@ -1878,7 +1929,7 @@
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
-            "line": 263,
+            "line": 286,
             "description": "Initializes effects for the administration search engine.",
             "itemtype": "method",
             "name": "adminSearchDocumentReady",
@@ -1887,7 +1938,7 @@
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
-            "line": 324,
+            "line": 347,
             "description": "Initializes effects for sorting in administration search engine.",
             "itemtype": "method",
             "name": "adminSortingDocumentReady",
@@ -1896,7 +1947,7 @@
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
-            "line": 356,
+            "line": 379,
             "description": "Initializes effects for User.",
             "itemtype": "method",
             "name": "adminUsersDocumentReady",
@@ -1905,7 +1956,7 @@
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
-            "line": 376,
+            "line": 399,
             "description": "Browser support checking, supported browsers version. It is empty. The not supported browsers version is implemented {{#crossLink \"BrowserSupportMain/browserSupport:method\"}}here{{/crossLink}}",
             "itemtype": "method",
             "name": "adminBrowserSupport",
@@ -3356,6 +3407,51 @@
             "module": "dialogs"
         },
         {
+            "file": "app/assets/javascripts/documents.js",
+            "line": 10,
+            "description": "Initializer for documents functionality.",
+            "itemtype": "method",
+            "name": "documentsDocumentReady",
+            "class": "DocumentsDocumentReady",
+            "module": "documents"
+        },
+        {
+            "file": "app/assets/javascripts/documents.js",
+            "line": 21,
+            "description": "Initializer for documents functionality (buttons javascripts).",
+            "itemtype": "method",
+            "name": "documentsDocumentReadyButtons",
+            "class": "DocumentsDocumentReady",
+            "module": "documents"
+        },
+        {
+            "file": "app/assets/javascripts/documents.js",
+            "line": 90,
+            "description": "Initializer for documents functionality (general javascripts).",
+            "itemtype": "method",
+            "name": "documentsDocumentReadyGeneral",
+            "class": "DocumentsDocumentReady",
+            "module": "documents"
+        },
+        {
+            "file": "app/assets/javascripts/documents.js",
+            "line": 113,
+            "description": "Initializer for documents functionality (search and placeholders javascripts).",
+            "itemtype": "method",
+            "name": "documentsDocumentReadySearch",
+            "class": "DocumentsDocumentReady",
+            "module": "documents"
+        },
+        {
+            "file": "app/assets/javascripts/documents.js",
+            "line": 141,
+            "description": "Initializer for documents functionality.",
+            "itemtype": "method",
+            "name": "openNewDocumentLoader",
+            "class": "DocumentsLoader",
+            "module": "documents"
+        },
+        {
             "file": "app/assets/javascripts/galleries.js",
             "line": 38,
             "description": "Scale image size form image gallery popup.",
@@ -3396,7 +3492,7 @@
         },
         {
             "file": "app/assets/javascripts/galleries.js",
-            "line": 103,
+            "line": 98,
             "description": "Initializer for effects of opening a gallery and opening the individual dialog of an element in a gallery: this method calls methods belonging to the class {{#crossLink \"DialogsGalleries\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "galleriesDocumentReadyOpen",
@@ -3405,7 +3501,7 @@
         },
         {
             "file": "app/assets/javascripts/galleries.js",
-            "line": 195,
+            "line": 190,
             "description": "Initialize audio gallery in {{#crossLinkModule \"audio-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "initializeAudioGalleryInAudioEditor",
@@ -3414,7 +3510,7 @@
         },
         {
             "file": "app/assets/javascripts/galleries.js",
-            "line": 213,
+            "line": 208,
             "description": "Initialize audio gallery in {{#crossLinkModule \"lesson-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "initializeAudioGalleryInLessonEditor",
@@ -3423,7 +3519,7 @@
         },
         {
             "file": "app/assets/javascripts/galleries.js",
-            "line": 231,
+            "line": 226,
             "description": "Initialize audio gallery in {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "initializeAudioGalleryInVideoEditor",
@@ -3432,7 +3528,7 @@
         },
         {
             "file": "app/assets/javascripts/galleries.js",
-            "line": 249,
+            "line": 244,
             "description": "Initialize image gallery in {{#crossLinkModule \"image-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "initializeImageGalleryInImageEditor",
@@ -3441,7 +3537,7 @@
         },
         {
             "file": "app/assets/javascripts/galleries.js",
-            "line": 267,
+            "line": 262,
             "description": "Initialize image gallery in {{#crossLinkModule \"lesson-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "initializeImageGalleryInLessonEditor",
@@ -3450,7 +3546,7 @@
         },
         {
             "file": "app/assets/javascripts/galleries.js",
-            "line": 285,
+            "line": 280,
             "description": "Initialize mixed gallery in {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "initializeMixedGalleryInVideoEditor",
@@ -3459,7 +3555,7 @@
         },
         {
             "file": "app/assets/javascripts/galleries.js",
-            "line": 321,
+            "line": 316,
             "description": "Initialize video gallery in {{#crossLinkModule \"lesson-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "initializeVideoGalleryInLessonEditor",
@@ -3532,7 +3628,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 81,
+            "line": 82,
             "description": "Initialization for all the functionalities of expanded lessons and media element popup (see also {{#crossLink \"DialogsWithForm/showMediaElementInfoPopUp:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "expandedItemsDocumentReady",
@@ -3541,7 +3637,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 144,
+            "line": 150,
             "description": "Similar to {{#crossLink \"GeneralDocumentReady/defaultValueJavaScriptAnimationsDocumentReady:method\"}}{{/crossLink}}, this function initializes the initial value of the raio buttons styled using a javascript plugin.",
             "itemtype": "method",
             "name": "filtersDocumentReady",
@@ -3550,7 +3646,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 167,
+            "line": 173,
             "description": "Initializer for consequences of window resizing.",
             "itemtype": "method",
             "name": "generalWindowResizeDocumentReady",
@@ -3559,7 +3655,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 188,
+            "line": 194,
             "description": "Initializer for all javascript and JQuery plugins.",
             "itemtype": "method",
             "name": "javaScriptAnimationsDocumentReady",
@@ -3568,7 +3664,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 218,
+            "line": 225,
             "description": "Initializer for locations automatic filling.",
             "itemtype": "method",
             "name": "locationsDocumentReady",
@@ -3577,7 +3673,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 241,
+            "line": 248,
             "description": "Initializes reports forms for both lessons and media elements.",
             "itemtype": "method",
             "name": "reportsDocumentReady",
@@ -3586,7 +3682,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 314,
+            "line": 321,
             "description": "Gets the requested format to visualize media elements.",
             "itemtype": "method",
             "name": "getMediaElementsFormat",
@@ -3595,7 +3691,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 327,
+            "line": 334,
             "description": "Shows a red error icon when somethings goes wrong. Widely used in {{#crossLinkModule \"lesson-editor\"}}{{/crossLinkModule}} and in {{#crossLinkModule \"image-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "redError",
@@ -3604,7 +3700,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 338,
+            "line": 345,
             "description": "Function to convert seconds into a time string of the kind <i>02:35</i>; used in {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}} and in {{#crossLinkModule \"audio-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "secondsToDateString",
@@ -3620,7 +3716,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 366,
+            "line": 373,
             "description": "Browser support checking, supported browsers version. It is empty. The not supported browsers version is implemented {{#crossLink \"BrowserSupportMain/browserSupport:method\"}}here{{/crossLink}}",
             "itemtype": "method",
             "name": "browserSupport",
@@ -3629,20 +3725,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 375,
-            "description": "This function returns an url for media elements without the parameter 'filter'. The original url is extracted by the method {{#crossLink \"GeneralMiscellanea/getMediaElementsFormat:method\"}}{{/crossLink}}.",
-            "itemtype": "method",
-            "name": "getCompleteMediaElementsUrlWithoutFilter",
-            "return": {
-                "description": "the current url without the parameter 'filter'",
-                "type": "String"
-            },
-            "class": "GeneralUrls",
-            "module": "general"
-        },
-        {
-            "file": "app/assets/javascripts/general.js",
-            "line": 387,
+            "line": 382,
             "description": "This function returns an url for media elements without the parameter 'for_page'. The original url is extracted by the method {{#crossLink \"GeneralMiscellanea/getMediaElementsFormat:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "getCompleteMediaElementsUrlWithoutForPage",
@@ -3655,7 +3738,33 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 399,
+            "line": 394,
+            "description": "This function returns an url for media elements without the parameter 'filter'. The original url is extracted by the method {{#crossLink \"GeneralMiscellanea/getMediaElementsFormat:method\"}}{{/crossLink}}.",
+            "itemtype": "method",
+            "name": "getCompleteMediaElementsUrlWithoutFilter",
+            "return": {
+                "description": "the current url without the parameter 'filter'",
+                "type": "String"
+            },
+            "class": "GeneralUrls",
+            "module": "general"
+        },
+        {
+            "file": "app/assets/javascripts/general.js",
+            "line": 406,
+            "description": "This function returns an url for documents without the parameter 'order'. The original url is extracted by the method {{#crossLink \"GeneralMiscellanea/getMediaElementsFormat:method\"}}{{/crossLink}}.",
+            "itemtype": "method",
+            "name": "getCompleteDocumentsUrlWithoutOrder",
+            "return": {
+                "description": "the current url without the parameter 'order'",
+                "type": "String"
+            },
+            "class": "GeneralUrls",
+            "module": "general"
+        },
+        {
+            "file": "app/assets/javascripts/general.js",
+            "line": 417,
             "description": "Removes a parameter from an url.",
             "itemtype": "method",
             "name": "removeURLParameter",
@@ -3680,7 +3789,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 425,
+            "line": 443,
             "description": "Adds or update new parameters to an url.",
             "itemtype": "method",
             "name": "updateURLParameter",
