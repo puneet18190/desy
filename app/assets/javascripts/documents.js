@@ -118,6 +118,11 @@ function documentsDocumentReadyGeneral() {
   $('body').on('blur', '.documentInfoPopUp ._doc_description, .documentInfoPopUp ._doc_title', function() {
     $('#dialog-document-' + $(this).data('document-id') + ' form').submit();
   });
+  $('body').on('click', '.documentInfoPopUp ._download', function() {
+    
+    alert('scaricando il documento id ' + $(this).data('document-id')); // TODO
+    
+  });
 }
 
 /**

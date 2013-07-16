@@ -36,7 +36,7 @@
         <%= hidden_field_tag 'description_placeholder', (document.description.blank? ? '1' : ''), :class => '_doc_description_placeholder' %>
         <br>
         <div class="fltrt" style="margin-top:5px">
-          <a class="lower buttonForm"><%= t('documents.download') %></a>
+          <a class="lower buttonForm _download" data-document-id="<%= document.id %>"><%= t('documents.download') %></a>
         </div>
       <% end %>
     </div>
