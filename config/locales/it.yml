@@ -1661,7 +1661,7 @@ it:
     documents:
       # Notification sent by a user who destroyed a document attached to a lesson coped by somebody else, to inform all its followers (the variable %{lesson_title} is replaced by the title of the lesson, %{document_title} by the title of the document, and %{link} by the link to the lesson viewer for that lesson)
       # 1 - models/document.rb
-      destroyed: "<div class=\"title\">Warning!</div><div class=\"content\">Il documento <span class=\"variable\">%{document_title}</span> è stato rimosso dal suo proprietario: questo cambiamento ha interessato la tua lezione <span class=\"variable\">%{document_title}</span></div><div class=\"basement\"><span>%{lesson_title}</span><a href=\"%{link}\" class=\"preview\"></a></div>"
+      destroyed: "<div class=\"title\">Warning!</div><div class=\"content\">Il documento <span class=\"variable\">%{document_title}</span> è stato rimosso dal suo proprietario: questo cambiamento ha interessato la tua lezione <span class=\"variable\">%{lesson_title}</span></div><div class=\"basement\"><span>%{lesson_title}</span><a href=\"%{link}\" class=\"preview\"></a></div>"
       # Message attached to the notification of modifications automatically sent to users who have a link to a lesson containig a document which has been deleted (%{document_title} is  replaced by the title of the document)
       # 1 - models/document.rb
       standard_message_for_linked_lessons: "Ho rimosso il documento allegato %{document_title}"
