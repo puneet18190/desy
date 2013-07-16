@@ -2724,6 +2724,9 @@ en:
       name: "Elements"
       # The labels below are used in the section where the administrator can upload and save multiple elements
       new:
+        # Used to submit manually a file, in IE
+        # 1 - views/admin/media_elements/new.html.erb
+        ie_submit: "Load your file"
         # Title
         # 1 - views/admin/media_elements/new.html.erb
         title: "Upload new elements"
