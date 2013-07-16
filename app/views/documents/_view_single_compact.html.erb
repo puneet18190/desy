@@ -17,15 +17,20 @@
     </div>
   </div>
   
-  <div class="documentInfoPopUp" id="dialog-document-<%= document.id %>" style="display:none">
-    <div class="documentPopUpContainer">
-      <%= image_tag document.icon_path_big %>
-      <%= document.size_and_extension %>
-      <%= form_tag document_path(document.id), :remote => true do %>
-        <h3><%= text_field_tag 'title', document.title %></h3>
-        <p><%= text_field_tag 'description', document.description %></p>
+  <div class="documentInfoPopUp" id="dialog-document-<%= document.id %>" style="display:none;">
+    <div class="documentPopUpContainer" style="display:inline-block">
+      <div class="cols fltlft"><%= image_tag document.icon_path %></div>
+      <div class="cols fltrt" style="text-align:right; margin-top:1.250em"><%= document.size_and_extension %></div>
+      <br class="clearfloat">
+      <%= form_tag document_path(document.id), :class =>"formDocuments", :remote => true do %>
+        <%= text_field_tag 'title', document.title %>
+        <p><%= text_area_tag 'description', document.description %></p>
+        <br>
+        <div class="fltrt" style="margin-top:5px"><a class="lower buttonForm" >Download</a></div>
+        
       <% end %>
     </div>
+    
     <div class="menuPopUp">
       <div class="menuIconButton" style="float:right">
         <a class="close _close_document_preview_popup" data-document-id="<%= document.id %>" title="<%= t('titles.close') %>"></a>

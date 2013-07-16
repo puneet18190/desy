@@ -64,20 +64,16 @@ class Document < ActiveRecord::Base
     self.title.length.to_s + ' kb'
   end
   
-  # Returns the big icon, depending on the extension
-  def icon_path_big
-    self.icon_path.gsub('documents/', 'documents/big/')
-  end
-  
+   
   # Returns the icon, depending on the extension
   def icon_path # TODO
     case self.extension
-      when '.ppt' then 'documents/ppt.png'
-      when '.doc', '.docx', '.pages', '.odt', '.txt' then 'documents/doc.png'
-      when '.gz', '.zip' then 'documents/zip.png'
-      when '.xls', '.xlsx', '.numbers', '.ods' then 'documents/exc.png'
-      when '.pdf', '.ps' then 'documents/pdf.png'
-      else 'documents/unknown.png'
+      when '.ppt' then 'documents/ppt.svg'
+      when '.doc', '.docx', '.pages', '.odt', '.txt' then 'documents/doc.svg'
+      when '.gz', '.zip' then 'documents/zip.svg'
+      when '.xls', '.xlsx', '.numbers', '.ods' then 'documents/exc.svg'
+      when '.pdf', '.ps' then 'documents/pdf.svg'
+      else 'documents/unknown.svg'
     end
   end
   
