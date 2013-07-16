@@ -124,9 +124,9 @@ class Admin::MediaElementsController < AdminController
     filename = File.basename(params[:media])
     if !filename.nil?
       me = MediaElement.new :media => File.open(Rails.root.join("public/admin/#{current_user.id}/#{filename}"))
-      me.title = params[:title]
-      me.description = params[:description]
-      me.tags = params[:tags]
+      me.title = params[:title_placeholder].blank? ? params[:title] : ''
+      me.description = params[:description_placeholder].blank? ? params[:description] : ''
+      me.tags = params[:tags_placeholder].blank? ? params[:tags] : ''
       me.user_id = current_user.id
       me.validating_in_form = true
       @saved = me.save
