@@ -119,9 +119,8 @@ class Document < ActiveRecord::Base
           errors.add(:base, :problem_destroying)
           raise ActiveRecord::Rollback
         end
-        my_user = User.find(ds.my_user_id.to_i)
         Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => ds.lesson_id.to_i).each do |b|
-          if !Notification.send_to(b.user_id, I18n.t('notifications.lessons.modified', :user_name => my_user.full_name, :lesson_title => ds.lesson_title, :link => lesson_viewer_path(ds.lesson_id.to_i), :message => I18n.t('notifications.documents.standard_message_for_linked_lessons', :document_title => self.title)))
+          if !Notification.send_to(b.user_id, I18n.t('notifications.lessons.modified', :lesson_title => ds.lesson_title, :link => lesson_viewer_path(ds.lesson_id.to_i), :message => I18n.t('notifications.documents.standard_message_for_linked_lessons', :document_title => self.title)))
             errors.add(:base, :problem_destroying)
             raise ActiveRecord::Rollback
           end
