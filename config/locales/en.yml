@@ -760,6 +760,7 @@ en:
         download: "Download"
     # To close the preview of a media element (big 'x' on the bottom right of the preview)
     # 1 - views/media_elements/_popup.html.erb
+    # 2 - views/documents/_view_single_compact.html.erb
     close: "Close"
     # Titles for the icons of documents
     documents:
@@ -2303,6 +2304,12 @@ en:
   # SECTION 2.18: labels in the section 'documents'
   
   documents:
+    # Placeholder in the form to change description and title (the variable %{num} is replaced by the maximum number of characters allowed)
+    # 1 - views/documents/_view_single_compact.html.erb
+    description_placeholder: "Insert a description (max %{num} characters)"
+    # Button to download a document
+    # 1 - views/documents/_view_single_compact.html.erb
+    download: "Download"
     # When there are no documents in your section
     # 1 - views/documents/_empty.html.erb
     empty: "You don't have any document"
@@ -2438,6 +2445,7 @@ en:
     document:
       # Maximum number of characters allowed in the description of a document
       # 1 - models/document.rb
+      # 2 - views/documents/_view_single_compact.html.erb
       length_description: 280
       # Maximum number of characters allowed in the title of a document
       # 1 - models/document.rb

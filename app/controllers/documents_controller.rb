@@ -3,7 +3,7 @@ class DocumentsController < ApplicationController
   # Number of documents for each page
   FOR_PAGE = SETTINGS['documents_pagination']
   
-  before_filter :initialize_document, :only => :destroy
+  before_filter :initialize_document, :only => [:destroy, :update]
   before_filter :initialize_layout, :initialize_paginator, :only => :index
   
   # === Description
@@ -50,6 +50,31 @@ class DocumentsController < ApplicationController
       @error = I18n.t('activerecord.errors.models.document.problem_destroying')
     end
     render :json => {:ok => @ok, :msg => @error}
+  end
+  
+  # === Description
+  #
+  # Updates the general information of the document (title and description)
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#initialize_document
+  #
+  def update
+    if @ok
+      @document.title = params[:title]
+      @document.description = params[:description]
+      if !@document.save
+        @errors = convert_item_error_messages @document.errors.messages
+        @error_fields = @document.errors.messages.keys
+      else
+        @document.set_status current_user.id
+      end
+    end
   end
   
   private

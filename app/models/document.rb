@@ -146,7 +146,7 @@ class Document < ActiveRecord::Base
   
   # Sets automatically the title from the file title if it's nil
   def set_title_from_file
-    self.title = "file_title.txt" if self.title.blank? # TODO rimpiazzarlo con titolo vero del file
+    self.title = "file_title.txt" if self.title.blank? # TODO rimpiazzarlo con titolo vero del file, limitato con [0, MAX_TITLE_LENGTH]
   end
   
   # Validates the presence of all the associated objects

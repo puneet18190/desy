@@ -1,6 +1,8 @@
 <%
   my_title = document.title
   my_title = my_title.gsub(/(#{word})/i) { |s| "<b style=\"text-decoration:underline\">#{s}</b>" } if !word.blank?
+  popup_description = document.description
+  popup_description = t('documents.description_placeholder', :num => t('language_parameters.document.length_description')) if popup_description.blank?
 %>
 
 <div id="document_<%= document.id %>" class="boxViewSingleDocument">
@@ -19,19 +21,25 @@
   
   <div class="documentInfoPopUp" id="dialog-document-<%= document.id %>" style="display:none;">
     <div class="documentPopUpContainer" style="display:inline-block">
-      <div class="cols fltlft"><%= image_tag document.icon_path %></div>
-      <div class="cols fltrt" style="text-align:right; margin-top:1.250em"><%= document.size_and_extension %></div>
+      <div class="cols fltlft">
+        <%= image_tag document.icon_path %>
+      </div>
+      <div class="cols fltrt" style="text-align:right; margin-top:1.250em">
+        <%= document.size_and_extension %>
+      </div>
       <br class="clearfloat">
-      <%= form_tag document_path(document.id), :class =>"formDocuments", :remote => true do %>
-        <%= text_field_tag 'title', document.title %>
-        <p><%= text_area_tag 'description', document.description %></p>
+      <%= form_tag document_path(document.id), :class => 'formDocuments', :remote => true do %>
+        <input class="_doc_title" type="text" value="<%= document.title %>" name="title" data-document-id="<%= document.id %>">
+        <p>
+          <textarea class="_doc_description" name="description" data-document-id="<%= document.id %>"><%= popup_description %></textarea>
+        </p>
+        <%= hidden_field_tag 'description_placeholder', (document.description.blank? ? '1' : ''), :class => '_doc_description_placeholder' %>
         <br>
         <div class="fltrt" style="margin-top:5px">
-          <a class="lower buttonForm">Download</a>
+          <a class="lower buttonForm"><%= t('documents.download') %></a>
         </div>
       <% end %>
     </div>
-    
     <div class="menuPopUp">
       <div class="menuIconButton" style="float:right">
         <a class="close _close_document_preview_popup" data-document-id="<%= document.id %>" title="<%= t('titles.close') %>"></a>

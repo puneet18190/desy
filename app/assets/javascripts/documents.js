@@ -108,6 +108,16 @@ function documentsDocumentReadyGeneral() {
     $('#search_documents_hidden_order').val(order);
     $.get(redirect_url);
   });
+  $('body').on('focus', '.documentInfoPopUp ._doc_description', function() {
+    var placeholder = $('#dialog-document-' + $(this).data('document-id') + ' ._doc_description_placeholder');
+    if(placeholder.val() != '') {
+      placeholder.val('');
+      $(this).val('');
+    }
+  });
+  $('body').on('blur', '.documentInfoPopUp ._doc_description, .documentInfoPopUp ._doc_title', function() {
+    $('#dialog-document-' + $(this).data('document-id') + ' form').submit();
+  });
 }
 
 /**
