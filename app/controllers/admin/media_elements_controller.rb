@@ -81,7 +81,12 @@ class Admin::MediaElementsController < AdminController
   # * ApplicationController#admin_authenticate
   #
   def quick_upload
-    @file = current_user.save_in_admin_quick_uploading_cache params[:media], params[:title], params[:description], params[:tags]
+    if params.has_key? :from_ie
+      @file = current_user.save_in_admin_quick_uploading_cache params[:media], params[:title], params[:description], params[:tags] if params.has_key? :media
+      redirect_to '/admin/media_elements/new' 
+    else
+      @file = current_user.save_in_admin_quick_uploading_cache params[:media], params[:title], params[:description], params[:tags]
+    end
   end
   
   # === Description

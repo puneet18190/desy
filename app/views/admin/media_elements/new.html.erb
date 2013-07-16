@@ -7,17 +7,17 @@
 <div class="row-fluid">
   <div class="span3">
     <h3><%= t('admin.media_elements.new.title')%></h3>
-    <%= form_tag '/admin/media_elements/quick_upload', :method => :post, :id => 'new-elements', :multipart => true do %>
+    <%= form_tag '/admin/media_elements/quick_upload', :method => :post, :id => 'admin-media-elements-quick-upload-form', :multipart => true do %>
       <label for="title"><%= title_max %></label>
       <%= text_field_tag 'title', '' %><br/>
       <label for="description"><%= description_max %></label>
       <%= text_area_tag 'description', '' %><br/>
       <label for="tags"><%= tags_max %></label>
-      <%= text_area_tag 'tags', '', :maxlength => SETTINGS['max_tag_length'], :class => 'lower' %><br/>
+      <%= text_area_tag 'tags', '', :class => 'lower' %><br/>
       <label for="file"><%= t('admin.media_elements.new.file_to_upload')%></label> <%= file_field_tag "media", multiple: true %><br/>
-      <%= submit_tag '', :class => 'btn _new_element_form_submit lower', :style => 'display:none' %>
+      <%= submit_tag t('admin.media_elements.new.ie_submit'), :class => 'btn _new_element_form_submit lower', :style => 'display:none; margin-top:15px' %>
     <% end %>
-    <blockquote>
+    <blockquote id="hint_not_for_ie">
       <%= t('admin.media_elements.new.upload_hint') %>
     </blockquote>
   </div>

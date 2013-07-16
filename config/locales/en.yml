@@ -1038,19 +1038,19 @@ en:
     documents:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Tanto x chiarire l'inconfutabile..." # TODO
+        title: "Lorem ipsum dolor" # TODO
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "Avete vinto la coppa Italia...bravi l'avete meritata(e son sincero). Giusto il festeggiare e lo sbeffeggiare finché potete...(lecito). Però i fatti son questi: Siete nati 27 anni prima, voi avete 113 anni noi 86... Se volessimo fare un paragone a parità di anni..ergo di possibilità... Nei primi vostri 86 anni avete vinto solo 1 scudetto e 1 coppa Italia...giusto x darvi l'idea di quanto la Roma abbia fatto meglio a parità di anni. Nei totali 113 avete comunque meno trofei nazionali...e 1 in più in Europa..." # TODO
+        content: "Esistono innumerevoli variazioni dei passaggi del Lorem Ipsum, ma la maggior parte hanno subito delle variazioni del tempo, a causa dell’inserimento di passaggi ironici, o di sequenze casuali di caratteri palesemente poco verosimili." # TODO
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Come società avete meno tifosi" # TODO
+        title: "Lorem ipsum dolor" # TODO
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "avete meno abbonati, avete meno appeal con tv,giornali,sponsor, avete meno valore in borsa e come capitale sociale... Noi siamo x il 40% si in mano ad una Banca..ma è la più grande d'Europa...voi x 20 anni siete in mano al fisco..." # TODO
+        content: "Esistono innumerevoli variazioni dei passaggi del Lorem Ipsum, ma la maggior parte hanno subito delle variazioni del tempo, a causa dell’inserimento di passaggi ironici, o di sequenze casuali di caratteri palesemente poco verosimili." # TODO
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Nonostante i 113 anni avete meno presenze in A" # TODO
+        title: "Lorem ipsum dolor" # TODO
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "meno piazzamenti nei primi 3, avete meno presenze in competizioni Europee, e avete più presenze in B, avete vinto meno derby, e siete arrivati dietro di noi in campionato quasi il 65% delle volte... Quindi coppa in faccia si..... ma sempre piccoli restate" # TODO
+        content: "Esistono innumerevoli variazioni dei passaggi del Lorem Ipsum, ma la maggior parte hanno subito delle variazioni del tempo, a causa dell’inserimento di passaggi ironici, o di sequenze casuali di caratteri palesemente poco verosimili." # TODO
     lessons:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
@@ -2724,6 +2724,9 @@ en:
       name: "Elements"
       # The labels below are used in the section where the administrator can upload and save multiple elements
       new:
+        # Used to submit manually a file, in IE
+        # 1 - views/admin/media_elements/new.html.erb
+        ie_submit: "Load your file"
         # Title
         # 1 - views/admin/media_elements/new.html.erb
         title: "Upload new elements"

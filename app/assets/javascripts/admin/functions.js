@@ -76,8 +76,10 @@ Initializes the browser classes in the tag html. Same functionality as {{#crossL
 **/
 function adminBrowsersDocumentReady() {
   if(!$.browser.msie) {
-    $('#new-elements').fileupload();
+    $('#admin-media-elements-quick-upload-form').fileupload();
   } else {
+    $('#admin-media-elements-quick-upload-form').append($('<input name="from_ie" val="true" style="display:none" />'));
+    $('#hint_not_for_ie').hide();
     $('._new_element_form_submit').show();
   }
 }
