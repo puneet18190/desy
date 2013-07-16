@@ -71,8 +71,6 @@ class DocumentsController < ApplicationController
       if !@document.save
         @errors = convert_item_error_messages @document.errors.messages
         @error_fields = @document.errors.messages.keys
-      else
-        @document.set_status current_user.id
       end
     end
   end
