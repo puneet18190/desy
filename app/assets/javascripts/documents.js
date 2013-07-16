@@ -37,7 +37,7 @@ function documentsDocumentReadyButtons() {
     var confirm = captions.data('destroy-document-confirm');
     var yes = captions.data('destroy-document-yes');
     var no = captions.data('destroy-document-no');
-    if($(this).data('document-used-in-your-lessons')) {
+    if($(this).data('used-in-your-lessons')) {
       confirm = captions.data('destroy-document-confirm-bis');
     }
     showConfirmPopUp(title, confirm, yes, no, function() {

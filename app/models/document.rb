@@ -114,10 +114,17 @@ class Document < ActiveRecord::Base
     end
     resp = false
     ActiveRecord::Base.transaction do
-      DocumentsSlide.joins(:slide, {:slide => :lesson}).select('lessons.user_id AS my_user_id, lessons.title AS lesson_title, lessons.id AS lesson_id').group('lessons.id').where('documents_slides.document_id = ? AND lessons.user_id != ?', self.id, self.user_id).each do |ds|
-        if !Notification.send_to ds.my_user_id.to_i, I18n.t('notifications.documents.destroyed', :lesson_title => ds.lesson_title, :document_title => self.title, :link => lesson_viewer_path(ds.lesson_id.to_i))
+      DocumentsSlide.joins(:slide, {:slide => :lesson}).select('lessons.user_id AS my_user_id, lessons.title AS lesson_title, lessons.id AS lesson_id').group('lessons.id').where('documents_slides.document_id = ?', self.id).each do |ds|
+        if ds.my_user_id.to_i != self.user_id && !Notification.send_to(ds.my_user_id.to_i, I18n.t('notifications.documents.destroyed', :lesson_title => ds.lesson_title, :document_title => self.title, :link => lesson_viewer_path(ds.lesson_id.to_i)))
           errors.add(:base, :problem_destroying)
           raise ActiveRecord::Rollback
+        end
+        my_user = User.find(ds.my_user_id.to_i)
+        Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => ds.lesson_id.to_i).each do |b|
+          if !Notification.send_to(b.user_id, I18n.t('notifications.lessons.modified', :user_name => my_user.full_name, :lesson_title => ds.lesson_title, :link => lesson_viewer_path(ds.lesson_id.to_i), :message => I18n.t('notifications.documents.standard_message_for_linked_lessons', :document_title => self.title)))
+            errors.add(:base, :problem_destroying)
+            raise ActiveRecord::Rollback
+          end
         end
       end
       begin
@@ -129,6 +136,11 @@ class Document < ActiveRecord::Base
       resp = true
     end
     resp
+  end
+  
+  # Returns true if the document has been attached to your own lessons
+  def used_in_your_lessons?
+    DocumentsSlide.joins(:slide, {:slide => :lesson}).where(:documents_slides => {:document_id => self.id}, :lessons => {:user_id => self.user_id}).any?
   end
   
   private

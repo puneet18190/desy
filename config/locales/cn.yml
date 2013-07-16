@@ -125,6 +125,7 @@ cn:
           # 3 - models/document.rb
           # 4 - models/document.rb
           # 5 - models/document.rb
+          # 6 - models/document.rb
           problem_destroying: "The document couldn't be destroyed" # TODO
         lesson:
           # There was an error while trying to copy the lesson
@@ -1661,6 +1662,9 @@ cn:
       # Notification sent by a user who destroyed a document attached to a lesson coped by somebody else, to inform all its followers (the variable %{lesson_title} is replaced by the title of the lesson, %{document_title} by the title of the document, and %{link} by the link to the lesson viewer for that lesson)
       # 1 - models/document.rb
       destroyed: "<div class=\"title\">Warning!</div><div class=\"content\">The document <span class=\"variable\">%{document_title}</span> has been removed by its owner: this affects your lesson <span class=\"variable\">%{document_title}</span></div><div class=\"basement\"><span>%{lesson_title}</span><a href=\"%{link}\" class=\"preview\"></a></div>" # TODO
+      # Message attached to the notification of modifications automatically sent to users who have a link to a lesson containig a document which has been deleted (%{document_title} is  replaced by the title of the document)
+      # 1 - models/document.rb
+      standard_message_for_linked_lessons: "I removed the attached document %{document_title}" # TODO
     lessons:
       # Message sent to a user who has the lesson link, in case the creator of that lesson deleted it (the variable %{user_name} is replaced by the name of the author of the lesson, %{lesson_title} by the title of the lesson)
       # 1 - models/lesson.rb

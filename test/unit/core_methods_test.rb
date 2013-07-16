@@ -219,10 +219,15 @@ class CoreMethodsTest < ActiveSupport::TestCase
     n_count = Notification.count
     assert_not_nil sd2
     assert_not_nil d2
+    n_last = Notification.order('id ASC').last.id
     assert d2.destroy_with_notifications
     assert_nil Document.find_by_id 2
     assert_nil DocumentsSlide.find_by_id 2
-    assert_equal n_count, Notification.count
+    assert_equal (n_count + 1), Notification.count
+    notif_new = Notification.where('id > ?', n_last)
+    assert_equal 1, notif_new.length
+    assert_equal I18n.t('notifications.lessons.modified', :user_name => 'eef fuu', :lesson_title => 'string', :link => '/lessons/2/view', :message => I18n.t('notifications.documents.standard_message_for_linked_lessons', :document_title => 'Documento 2')), notif_new.first.message
+    assert_equal 1, notif_new.first.user_id
     n_last = Notification.order('id ASC').last.id
     d1 = Document.find_by_id 1
     sd1 = DocumentsSlide.find_by_id 1
@@ -230,9 +235,11 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert_not_nil sd1
     assert d1.destroy_with_notifications
     notif_new = Notification.where('id > ?', n_last)
-    assert_equal 1, notif_new.length
-    assert_equal I18n.t('notifications.documents.destroyed', :lesson_title => 'string', :document_title => 'Documento 1', :link => '/lessons/2/view'), notif_new.first.message
-    assert_equal 2, notif_new.first.user_id
+    assert_equal 2, notif_new.length
+    assert_equal 1, notif_new.where(:user_id => 1).length
+    assert_equal I18n.t('notifications.lessons.modified', :user_name => 'eef fuu', :lesson_title => 'string', :link => '/lessons/2/view', :message => I18n.t('notifications.documents.standard_message_for_linked_lessons', :document_title => 'Documento 1')), notif_new.where(:user_id => 1).first.message
+    assert_equal 1, notif_new.where(:user_id => 2).length
+    assert_equal I18n.t('notifications.documents.destroyed', :lesson_title => 'string', :document_title => 'Documento 1', :link => '/lessons/2/view'), notif_new.where(:user_id => 2).first.message
     assert_nil Document.find_by_id 1
     assert_nil DocumentsSlide.find_by_id 1
   end
