@@ -34,6 +34,7 @@ Desy::Application.routes.draw do
   
   # DOCUMENTS
   post 'documents/:document_id/destroy'                  => 'documents#destroy'
+  post 'documents/:document_id'                          => 'documents#update',  :as => :document
   
   # NOTIFICATIONS
   post 'notifications/:notification_id/seen'    => 'notifications#seen'

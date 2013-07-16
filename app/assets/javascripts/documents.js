@@ -24,10 +24,32 @@ Initializer for documents functionality (buttons javascripts).
 @for DocumentsDocumentReady
 **/
 function documentsDocumentReadyButtons() {
+  $('body').on('click', '._close_document_preview_popup', function() {
+    var document_id = $(this).data('document-id');
+    closePopUp('dialog-document-' + document_id);
+  });
   $('body').on('click', '#my_documents .buttons .preview', function() {
-    
-    alert('previewing document ' + $(this).data('document-id')); // TODO
-    
+    var document_id = $(this).data('document-id');
+    var obj = $('#dialog-document-' + document_id);
+    if(obj.data('dialog')) {
+      obj.dialog('open');
+    } else {
+      obj.show();
+      obj.dialog({
+        modal: true,
+        resizable: false,
+        draggable: false,
+        width: 874,
+        show: 'fade',
+        hide: {effect: 'fade'},
+        open: function() {
+          customOverlayClose();
+        },
+        beforeClose: function() {
+          removeCustomOverlayClose();
+        }
+      });
+    }
   });
   $('body').on('click', '#my_documents .buttons .destroy', function() {
     var current_url = $('#info_container').data('currenturl');

@@ -64,6 +64,11 @@ class Document < ActiveRecord::Base
     self.title.length.to_s + ' kb'
   end
   
+  # Returns the big icon, depending on the extension
+  def icon_path_big
+    self.icon_path.gsub('documents/', 'documents/big/')
+  end
+  
   # Returns the icon, depending on the extension
   def icon_path # TODO
     case self.extension

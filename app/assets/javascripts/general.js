@@ -140,6 +140,11 @@ function expandedItemsDocumentReady() {
     $(this).addClass('change_info_light');
     $('#dialog-media-element-' + $(this).data('param') + ' ._audio_preview_in_media_element_popup').hide();
   });
+  $('body').on('click', '._close_on_click_out', function() {
+    $('.ui-dialog-content:visible').each(function() {
+      closePopUp($(this).attr('id'));
+    });
+  });
 }
 
 /**

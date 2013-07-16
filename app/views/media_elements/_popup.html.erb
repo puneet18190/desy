@@ -10,11 +10,11 @@
           <div class="_change_info_container ChangeInfoContainer" style="display:none;" data-param="<%= media_element.id %>" data-title="<%= media_element.title %>" data-description="<%= media_element.description %>" data-tags="<%= media_element.tags %>">
             <h1><%= t('forms.change_info_media_element.title') %></h1>
             <p><%= t('forms.change_info_media_element.description') %></p>
-            <%= form_tag media_element_path(media_element.id), :remote => true, :class => "formModifyInfo" do %>
+            <%= form_tag media_element_path(media_element.id), :remote => true, :class => 'formModifyInfo' do %>
               <div class="cols" style="float:left">
                 <input id="title" type="text" class="title" name="title" value="<%= media_element.title %>">
                 <br>
-                <%= text_area_tag 'description', media_element.description, :class => "description" %>
+                <%= text_area_tag 'description', media_element.description, :class => 'description' %>
               </div>
               <div class="cols fltrt">
                 <div class="_tags_placeholder" style="display:none">
@@ -41,7 +41,7 @@
         <% end %>
         
         <% if !media_element.audio? %>
-          <%= render :partial => "media_elements/previews/#{media_element.sti_type.downcase}", :locals =>{:media_element => media_element} %>
+          <%= render :partial => "media_elements/previews/#{media_element.sti_type.downcase}", :locals => {:media_element => media_element} %>
         <% end %>
         
         <div <%= media_element.audio? ? "style=\"max-width:800px;\"".html_safe : "class=\"fltlft\" style=\"max-width:210px;\"".html_safe %>>
@@ -52,7 +52,7 @@
         
         <% if media_element.audio? %>
           <div class="contentAudioElement _audio_preview_in_media_element_popup">
-            <%= render :partial => "media_elements/previews/audio", :locals =>{:media_element => media_element} %>
+            <%= render :partial => "media_elements/previews/audio", :locals => {:media_element => media_element} %>
           </div>
         <% end %>
         
@@ -68,7 +68,7 @@
         </div>
         <div class="menuIconButton" style="float:right">
           <% if media_element.is_reportable %>
-            <%= render :partial => "reports/media_element", :locals => {:media_element => media_element} %>
+            <%= render :partial => 'reports/media_element', :locals => {:media_element => media_element} %>
           <% end %>
           <a class="close _close_media_element_preview_popup" data-param="<%= media_element.id %>" title="<%= t('titles.close') %>"></a>
         </div>
