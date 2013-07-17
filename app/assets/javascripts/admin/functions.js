@@ -80,7 +80,9 @@ function adminBrowsersDocumentReady() {
   } else {
     $('#admin-media-elements-quick-upload-form').append($('<input name="from_ie" val="true" style="display:none" />'));
     $('#hint_not_for_ie').hide();
-    $('._new_element_form_submit').show();
+    $('#qume_file').change(function() {
+      $('#admin-media-elements-quick-upload-form').submit();
+    });
   }
 }
 

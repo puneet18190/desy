@@ -2732,9 +2732,6 @@ cn:
       name: "单元"
       # The labels below are used in the section where the administrator can upload and save multiple elements
       new:
-        # Used to submit manually a file, in IE
-        # 1 - views/admin/media_elements/new.html.erb
-        ie_submit: "Load your file" # TODO
         # Title
         # 1 - views/admin/media_elements/new.html.erb
         title: "上传新单元"

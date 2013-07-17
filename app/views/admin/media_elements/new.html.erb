@@ -14,8 +14,8 @@
       <%= text_area_tag 'description', '' %><br/>
       <label for="tags"><%= tags_max %></label>
       <%= text_area_tag 'tags', '', :class => 'lower' %><br/>
-      <label for="file"><%= t('admin.media_elements.new.file_to_upload')%></label> <%= file_field_tag "media", multiple: true %><br/>
-      <%= submit_tag t('admin.media_elements.new.ie_submit'), :class => 'btn _new_element_form_submit lower', :style => 'display:none; margin-top:15px' %>
+      <label for="file"><%= t('admin.media_elements.new.file_to_upload') %></label> <%= file_field_tag 'media', :id => 'qume_file', multiple: true %><br/>
+      <%= submit_tag '', :class => 'btn _new_element_form_submit lower', :style => 'display:none' %>
     <% end %>
     <blockquote id="hint_not_for_ie">
       <%= t('admin.media_elements.new.upload_hint') %>

@@ -2732,9 +2732,6 @@ it:
       name: "Elementi"
       # The labels below are used in the section where the administrator can upload and save multiple elements
       new:
-        # Used to submit manually a file, in IE
-        # 1 - views/admin/media_elements/new.html.erb
-        ie_submit: "Carica il file"
         # Title
         # 1 - views/admin/media_elements/new.html.erb
         title: "Carica nuovi elementi"

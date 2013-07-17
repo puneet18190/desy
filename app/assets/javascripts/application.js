@@ -24,6 +24,7 @@
 //= require jquery-ui-1.9.0.custom
 //= require jquery.imgareaselect
 //= require jquery.peity
+//= require jquery-fileupload/basic
 //= require tinymce-jquery
 //= require dots_pagination
 //= require url_parser
