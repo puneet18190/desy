@@ -1,6 +1,8 @@
 <%
   my_title = document.title
   my_title = my_title.gsub(/(#{word})/i) { |s| "<b style=\"text-decoration:underline\">#{s}</b>" } if !word.blank?
+  popup_readonly_description = document.description
+  popup_readonly_description = t('documents.description_readonly_placeholder') if popup_readonly_description.blank?
   popup_description = document.description
   popup_description = t('documents.description_placeholder', :num => t('language_parameters.document.length_description')) if popup_description.blank?
 %>
@@ -48,6 +50,8 @@
       <div class="cols fltrt" style="text-align:right; margin-top:1.250em">
         <%= document.size_and_extension %>
       </div>
+      <%= document.title %>
+      <%= popup_readonly_description %>
       <div class="fltrt" style="margin-top:5px">
         <a class="lower buttonForm _download" data-document-id="<%= document.id %>"><%= t('documents.download') %></a>
       </div>
