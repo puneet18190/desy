@@ -32,28 +32,31 @@
             <textarea class="_doc_description" name="description" data-document-id="<%= document.id %>"><%= popup_description %></textarea>
           </p>
           <%= hidden_field_tag 'description_placeholder', (document.description.blank? ? '1' : ''), :class => '_doc_description_placeholder' %>
-          <br>
-          <div class="fltlft" style="margin-top:5px">
-            <a class="lower _cancel buttonForm" data-document-id="<%= document.id %>">
-              CANCEL
-            </a>
-          </div>
           <div class="fltrt">
+            <div class="fltlft" style="margin-top:5px">
+              <a class="lower _cancel buttonForm" data-document-id="<%= document.id %>">
+                CANCEL
+              </a>
+            </div>
+            <div class="fltrt">
             <%= submit_tag 'SALVA', :class => 'lower' %>
+          </div>
           </div>
         <% end %>
       </div>
       
-      <div class="cols fltlft">
+      <div class="cols fltlft text-centered">
         <%= image_tag document.icon_path %>
+        <p style="margin-top:50px">
+          <a class="upper buttonDownload _download" data-document-id="<%= document.id %>"><%= t('documents.download') %></a>
+        </p>
+        <p>
+          <%= document.size_and_extension %>
+        </p>
       </div>
-      <div class="cols fltrt" style="text-align:right; margin-top:1.250em">
-        <%= document.size_and_extension %>
-      </div>
-      <%= document.title %>
-      <%= popup_readonly_description %>
-      <div class="fltrt" style="margin-top:5px">
-        <a class="lower buttonForm _download" data-document-id="<%= document.id %>"><%= t('documents.download') %></a>
+      <div class="cols fltlft" style="width:280px">
+        <h1><%= document.title %></h1>
+        <p><%= popup_readonly_description %></p>
       </div>
       
     </div>
