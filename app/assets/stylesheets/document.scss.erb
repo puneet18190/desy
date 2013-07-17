@@ -71,22 +71,34 @@
 .documentInfoPopUp {
   .documentPopUpContainer {
     width: 91%;
-    height: 339px;
-    padding: 1.875em;
+    height: 246px;
+    padding: 3.750em 1.875em 1.875em;
+    color:#c2c1c2;
     .cols {
       width:224px;
-      
+      p{
+        padding-top:1.250em;
+      }
+    }
+    img {
+      width:110px;
+      height:110px;
+    }
+    h1 {
+      color: #fff;
+      font: 17px 'Nunito', sans-serif;
     }
     .documentPopUpChangeInfoContainer {
       z-index: 10;
       position: absolute;
       background-color: #373737;
       width: 534px;
-      height: 320px;
-      padding: 20px 0;
+      /*height: 320px;
+      padding: 1.250em 0;*/
+
     }
     .formDocuments {
-      padding-top: 20px;
+      padding-top: 1.250em;
       float: left;
       width: 100%;
       input[type="text"] {
@@ -97,6 +109,24 @@
         width: 92%;
         font: 1.063em Arial, Helvetica, sans-serif;
         color: #fff;
+      }
+      input[type="submit"] {
+    
+        padding: 5px 30px ;
+        width: 130px;
+        height: 34px;
+        font: 18px 'Nunito', sans-serif;
+        color: #fff;
+        background-color:#41a62a;
+        border: 0px solid #4fc356;
+        
+        &:hover {
+          
+          background-color: #67b855;
+          cursor: pointer;
+          
+        }
+        
       }
       textarea {
         border-color: #373737;
@@ -109,7 +139,7 @@
         height: 119px;
         color: #c6c5c6;
         resize: none;
-        margin-bottom: 20px;
+        margin-bottom: 0.625em;
       }
       .buttonForm {
         color: #5d5c5c;
