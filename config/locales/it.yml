@@ -2310,6 +2310,9 @@ it:
     # Placeholder in the form to change description and title (the variable %{num} is replaced by the maximum number of characters allowed)
     # 1 - views/documents/_view_single_compact.html.erb
     description_placeholder: "Inserisci una descrizione (max %{num} caratteri)"
+    # Placeholder in the popup not editable
+    # 1 - views/documents/_view_single_compact.html.erb
+    description_readonly_placeholder: "[Nessuna descrizione inserita]"
     # Button to download a document
     # 1 - views/documents/_view_single_compact.html.erb
     download: "Scarica"
