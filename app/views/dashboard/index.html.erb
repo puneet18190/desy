@@ -5,7 +5,13 @@
 %>
 
 <div class="gray-bar">
-  <%= render :partial => "dashboard/graybar_left" %>
+  
+  <p class="fltlft lower titleSelected"><%= t('dashboard.selected_for_you') %></p>
+  <ul class="navlist">
+    <li><a id="switch_to_lessons" class="current lower"><%= t('captions.lessons') %></a></li>
+    <li><a id="switch_to_media_elements" class="lower"><%= t('captions.media_elements') %></a></li>
+  </ul>
+
   <%= render :partial => "shared/search" %>
 </div>
 <br class="clearfloat">

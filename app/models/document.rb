@@ -80,6 +80,7 @@ class Document < ActiveRecord::Base
   end
   
   # Sets metadata
+  # TODO
   def set_metadata(extension, filename, size)
     self.metadata.extension = extension
     self.metadata.filename = filename
