@@ -43,6 +43,16 @@ function documentsDocumentReadyButtons() {
         },
         beforeClose: function() {
           removeCustomOverlayClose();
+        },
+        close: function() {
+          var container = $('#dialog-document-' + document_id + ' ._document_change_info_container');
+          container.find('._doc_title').val(container.data('title'));
+          container.find('._doc_description').val(container.data('description'));
+          container.find('.form_error').removeClass('form_error');
+          container.find('._error_messages').html('');
+          $('#dialog-document-' + document_id + ' ._document_change_info_container').hide();
+          var change_info_button = $('#dialog-document-' + document_id + ' ._document_change_info_to_pick');
+          change_info_button.addClass('change_info').removeClass('change_info_light');
         }
       });
     }
@@ -118,7 +128,7 @@ function documentsDocumentReadyGeneral() {
   $('body').on('click', '._document_change_info_container ._cancel, ._document_change_info_to_pick.change_info_light', function() {
     var document_id = $(this).data('document-id');
     $('#dialog-document-' + document_id + ' ._document_change_info_container').hide('fade', {}, 500, function() {
-      var icon = $('#dialog-media-element-' + document_id + ' ._document_change_info_to_pick');
+      var icon = $('#dialog-document-' + document_id + ' ._document_change_info_to_pick');
       icon.addClass('change_info');
       icon.removeClass('change_info_light');
       var container = $('#dialog-document-' + document_id + ' ._document_change_info_container');

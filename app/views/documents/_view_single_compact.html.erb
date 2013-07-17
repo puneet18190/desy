@@ -32,7 +32,7 @@
           <%= hidden_field_tag 'description_placeholder', (document.description.blank? ? '1' : ''), :class => '_doc_description_placeholder' %>
           <br>
           <div class="fltlft" style="margin-top:5px">
-            <a class="lower _cancel buttonForm" data-param="<%= media_element.id %>">
+            <a class="lower _cancel buttonForm" data-document-id="<%= document.id %>">
               CANCEL
             </a>
           </div>

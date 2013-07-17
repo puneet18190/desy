@@ -406,10 +406,7 @@ function showMediaElementInfoPopUp(media_element_id) {
           $('#dialog-media-element-' + media_element_id + ' ._audio_preview_in_media_element_popup').show();
           $('#dialog-media-element-' + media_element_id + ' ._change_info_container').hide();
           var change_info_button = $('#dialog-media-element-' + media_element_id + ' ._change_info_to_pick');
-          if(change_info_button.hasClass('change_info_light')) {
-            change_info_button.addClass('change_info');
-            change_info_button.removeClass('change_info_light');
-          }
+          change_info_button.addClass('change_info').removeClass('change_info_light');
         }
       });
     }
