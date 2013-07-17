@@ -28,13 +28,13 @@
  *= require dots_pagination
  *= require lessons
  *= require elements
- *= require document
  *= require profile
  *= require icon_button_popup
  *= require layouts/lesson_editor
  *= require layouts/slides
  *= require layouts/lesson_viewer
  *= require layouts/media_element_editor
+ *= require layouts/document
  *= require tags_container
  *= require layouts/header_home
  *= require layouts/home

@@ -1,0 +1,337 @@
+@mixin title-bar {
+  
+  padding: 0 1% 0 1%;
+  margin-bottom: 12px;
+  float: left;
+  width: 98%;
+  color: #fff;
+  /*height: 35px;*/
+}
+
+@mixin float-content {
+  
+  p {
+    
+    text-align: center;
+    float: left;
+    
+  }
+  
+  div {
+    
+    float: right;
+    
+  }
+  
+}
+@mixin contentLayout {
+  
+  margin-bottom: 1%;
+  -webkit-box-shadow: 0px 3px 4px #d3d3d3;
+  box-shadow: 0px 3px 4px #d3d3d3;
+  
+  h1 {
+    
+    font:  110% 'Nunito', sans-serif;
+    color: #f29400;
+    padding: 0px;
+    
+  }
+  
+  h2 {
+    
+    font: 140% 'Nunito', sans-serif;
+    
+  }
+  
+}
+@mixin tag-formatting {
+  
+  h1 {
+    
+    color: #fff;
+    padding: 0;
+    margin: 0;
+    font: 200% 'Nunito', sans-serif;
+    float: left;
+    width: 39%;
+    
+  }
+  
+  h2 {
+    
+    font: 120% 'Nunito', sans-serif;
+    color: #fff;
+    float: left;
+    padding-top: 0.7%;
+    margin-right: 10px;
+    
+  }
+}
+html.documents-controller {
+  .gray-bar {
+    ul.navlist {
+     margin: -3px 10px 10px 0;
+    }
+    p {
+      float:left;
+    }
+  }
+
+  .documentInfoPopUp {
+    .documentPopUpContainer {
+      width: 91%;
+      height: 268px;
+      padding: 2.750em 1.875em 1.875em;
+      color:#c2c1c2;
+      .cols {
+        width:224px;
+        p{
+          padding-top:1.250em;
+        }
+      }
+      img {
+        width:110px;
+        height:110px;
+      }
+      h1 {
+        color: #fff;
+        font: 30px 'Nunito', sans-serif;
+        padding:0;
+      }
+      h2 {
+        color: #fff;
+        font: 17px 'Nunito', sans-serif;
+      }
+      ._error_messages {
+        width: 372px;
+        img {
+          width:17px;
+          height:17px;
+        }
+      }
+      .documentPopUpChangeInfoContainer {
+        z-index: 10;
+        position: absolute;
+        background-color: #373737;
+        width: 534px;
+        .buttonForm {
+          padding:5px 10px;
+        }
+      }
+      .formDocuments {
+        padding-top: 0.5em;
+        float: left;
+        width: 100%;
+        
+        input[type="text"] {
+          border-radius: 10px;
+          box-shadow: 0px 2px 2px rgba(10, 10, 10, 0.2) inset;
+          background-color: #454343;
+          padding: 2% 4%;
+          width: 92%;
+          font: 1.063em Arial, Helvetica, sans-serif;
+          color: #fff;
+        }
+        input[type="submit"] {
+          padding: 5px 10px ;
+          width: 72px;
+          height: 34px;
+          font: 18px 'Nunito', sans-serif;
+          color: #fff;
+          background-color:#5d5c5c;
+          border: 0px solid #4fc356;
+          &:hover {
+            background-color: #908f8f;
+            cursor: pointer;
+          }
+        }
+        textarea {
+          border-color: #373737;
+          border-radius: 10px;
+          box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2) inset;
+          background-color: #454343;
+          font: 95% Arial, Helvetica, sans-serif;
+          padding: 2% 4%;
+          width: 92%;
+          height: 119px;
+          color: #c6c5c6;
+          resize: none;
+          margin-bottom: 0.625em;
+          &.form_error {
+            border: 3px solid rgba(250, 0, 0, 0.5);
+          }
+        }
+        .buttonForm {
+          color: #5d5c5c;
+          &:hover {
+            color:white;
+            background-color: #908f8f; 
+          }
+        }
+      }
+    }
+  }
+  .documents-content {
+    float: left;
+    width: 99.5%;
+    margin-bottom: 3%;
+    .title-bar {
+      @include title-bar;
+      @include float-content;
+      @include tag-formatting;
+      background-color: #5d5c5c;
+      p {
+        padding-top: 0.5%;
+      }
+      a {
+        color: #9EDA90;
+        &:hover {
+          color: #fff;
+        }
+        &.current {
+          color: #fff;
+          cursor: default;
+        }
+      }
+      h1{
+        padding-top:0.3%;
+      }
+      div {
+        padding: 0.5% 0;
+      }
+      .sbHolder {
+        width: 179px;
+        height: 23px;
+        background-color: #6d6c6c;
+        border-radius: 2px;
+        -webkit-border-radius: 2px;
+      }
+      input.text {
+        padding: 3px 5px;
+        background-color: #6d6c6c;
+        font-size: 12px;
+        border: none;
+        width: 149px;
+        height: 20px;
+        border-radius: 4px;
+        -webkit-border-radius: 4px;
+        margin-right: 10px;
+        box-shadow: 0 1px 2px rgba(50, 50, 50, 0.2) inset;
+      }
+     
+      .sbSelector {
+        height: 23px;
+        line-height: 26px;
+        width: 179px;
+        
+      }
+      .sbSelector:link, .sbSelector:visited, .sbSelector:hover {
+        
+        color: #fff;
+        text-shadow: none;
+        letter-spacing: 1px;
+        line-height:26px;
+      }
+    
+      .sbToggle {
+        
+        background: url(<%= asset_path 'select-icons-documents.png' %>) 0 -123px no-repeat;
+        top: 5px;
+        
+      }
+    
+      .sbToggle:hover {
+        
+        background: url(<%= asset_path 'select-icons-documents.png' %>) 0 -123px no-repeat;
+        
+      }
+    
+      .sbToggleOpen {
+        
+        background: url(<%= asset_path 'select-icons-documents.png' %>) 0 -22px no-repeat;
+        
+      }
+    
+      .sbOptions {
+        
+        width: 179px;
+        left: 0px;
+        border: none;
+        
+      }
+    
+      .sbOptions li {
+        
+        padding: 7px;
+        
+      }
+    
+      .sbOptions a {
+        
+        text-shadow: none;
+        padding: 7px;
+        font-weight: bold;
+        
+      }
+    
+      .sbOptions a:link, .sbOptions a:visited {
+        
+        color: #939393;
+        text-decoration: none;
+        
+      }
+    
+      .sbOptions a:hover, .sbOptions a:focus, .sbOptions a.sbFocus {
+        
+        color: #fff;
+        background-color: #6d6c6c;
+        
+      }
+    }
+  
+    /*VIEW SINGLE DOCUMENTS*/
+    .boxViewSingleDocument {
+      width: 100%;
+      padding: 0;
+      color: #c0c0c0;
+      @include contentLayout;
+      background-color: #FBFAFB;
+      float: left;
+      .contentInterno {
+        float: left;
+        width: 99%;
+        padding: 0.3% 0% 0.3% 1%;
+        h3 {
+          color: #6d6c6c;
+          font-size: 100%;
+          padding-top: 7px;
+          padding-left:10px;
+          float:left;
+        }
+        .documentsIcon {
+          width: 48%; 
+          float: left; 
+          padding: 4px 0px 2px 0px; 
+          display: inline-block; 
+          margin-right: 1.8%;
+          img {
+            width:30px;
+            height:30px;
+          }
+        }
+        @include float-content;
+        .menuController {
+          padding: 0px;
+          border-top: none;
+          background-color: transparent;
+          text-align: left;
+        }
+        p {
+          padding-top: 0.6%;
+        }
+      }
+    }
+    /*END VIEW DOCUMENTS*/
+  }
+ }

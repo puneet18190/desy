@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130709121200) do
+ActiveRecord::Schema.define(:version => 20130717100238) do
 
   create_table "locations", :force => true do |t|
     t.string   "name",       :null => false
@@ -77,6 +77,8 @@ ActiveRecord::Schema.define(:version => 20130709121200) do
     t.text     "description"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.text     "metadata"
+    t.string   "attached"
     t.index ["user_id"], :name => "fk__documents_user_id", :order => {"user_id" => :asc}
     t.foreign_key ["user_id"], "users", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_documents_user_id"
   end
