@@ -99,14 +99,23 @@ Initializer for documents functionality (general javascripts).
 @for DocumentsDocumentReady
 **/
 function documentsDocumentReadyGeneral() {
+  if(!$.browser.msie) {
+    $('upload_document').fileupload();
+  } else {
+    $('#document_hint').hide();
+    $('#document_hint_ie').show();
+  }
+  $('#upload_document ._attached').change(function() {
+    $('#upload_document').submit();
+  });
   $('body').on('mouseover', '._empty_documents', function() {
     $(this).find('._empty_documents_hover').addClass('current');
   });
   $('body').on('mouseout', '._empty_documents', function() {
     $(this).find('._empty_documents_hover').removeClass('current');
   });
-  $('body').on('click', '._empty_documents, #upload_document', function() {
-    openNewDocumentLoader();
+  $('body').on('click', '._empty_documents, #upload_document a', function() {
+    $('#upload_document ._attached').click();
   });
   $('body').on('change', '#order_documents', function() {
     var order = $('#order_documents option:selected').val();
@@ -173,19 +182,4 @@ function documentsDocumentReadySearch() {
       }, 1500);
     }
   });
-}
-
-
-
-
-
-/**
-Initializer for documents functionality.
-@method openNewDocumentLoader
-@for DocumentsLoader
-**/
-function openNewDocumentLoader() {
-  
-  alert('sto aprendo il DOCUMENT LOADER'); // TODO
-  
 }

@@ -35,7 +35,9 @@ class Document < ActiveRecord::Base
   # Maximum length of the title
   MAX_TITLE_LENGTH = (I18n.t('language_parameters.document.length_title') > 255 ? 255 : I18n.t('language_parameters.document.length_title'))
   
-  attr_accessible :title, :description
+  serialize :metadata, OpenStruct
+  
+  attr_accessible :title, :description, :media
   
   belongs_to :user
   has_many :documents_slides
@@ -59,13 +61,8 @@ class Document < ActiveRecord::Base
     "#{self.extension}, #{self.size}"
   end
   
-  # Returns the size of the attached file
-  def size # TODO
-    self.title.length.to_s + ' kb'
-  end
-  
   # Returns the icon, depending on the extension
-  def icon_path # TODO
+  def icon_path # TODO controllarlo e completarlo
     case self.extension
       when '.ppt' then 'documents/ppt.svg'
       when '.doc', '.docx', '.pages', '.odt', '.txt' then 'documents/doc.svg'
@@ -77,25 +74,31 @@ class Document < ActiveRecord::Base
   end
   
   # Returns the title associated to the icon
-  def icon_title # TODO
+  def icon_title
     my_title = self.icon_path.split('/').last.split('.').first
     I18n.t("titles.documents.#{my_title}")
   end
   
+  # Sets metadata
+  def set_metadata(extension, filename, size)
+    self.metadata.extension = extension
+    self.metadata.filename = filename
+    self.metadata.size = size
+  end
+  
+  # Returns the name of the attached file from metadata
+  def filename
+    self.try(:metadata).try(:filename)
+  end
+  
   # Returns the extension of the attached file from metadata
-  def extension # TODO
-    case (self.id % 10)
-      when 0 then '.ppt'
-      when 1 then '.pdf'
-      when 2 then '.doc'
-      when 3 then '.docx'
-      when 4 then '.odt'
-      when 5 then '.zip'
-      when 6 then '.pages'
-      when 7 then '.ods'
-      when 8 then '.xls'
-      when 9 then '.svg'
-    end
+  def extension
+    self.try(:metadata).try(:extension)
+  end
+  
+  # Returns the size of the attached file
+  def size # TODO manca mettere in bella forma 
+    self.try(:metadata).try(:size)
   end
   
   # === Description
@@ -146,7 +149,7 @@ class Document < ActiveRecord::Base
   
   # Sets automatically the title from the file title if it's nil
   def set_title_from_file
-    self.title = "file_title.txt" if self.title.blank? # TODO rimpiazzarlo con titolo vero del file, limitato con [0, MAX_TITLE_LENGTH]
+    self.title = self.filename[0, MAX_TITLE_LENGTH] if self.title.blank?
   end
   
   # Validates the presence of all the associated objects

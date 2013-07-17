@@ -33,8 +33,9 @@ Desy::Application.routes.draw do
   get       'media_elements/conversion/check'               => 'media_elements#check_conversion'
   
   # DOCUMENTS
-  post 'documents/:document_id/destroy'                  => 'documents#destroy'
-  post 'documents/:document_id'                          => 'documents#update',  :as => :document
+  resources :documents,                                 :only => :create
+  post      'documents/:document_id/destroy'                  => 'documents#destroy'
+  post      'documents/:document_id'                          => 'documents#update',  :as => :document
   
   # NOTIFICATIONS
   post 'notifications/:notification_id/seen'    => 'notifications#seen'
