@@ -752,6 +752,9 @@ en:
       unpublish: "Turn back your lesson into private"
       # Buttons specific for documents
       documents:
+        # Modify title and description of the document
+        # 1 - views/documents/_view_single_compact.html.erb
+        change_info: "Modify title and description of the document"
         # Destroy a document
         # 1 - views/documents/_view_single_compact.html.erb
         destroy: "Delete"

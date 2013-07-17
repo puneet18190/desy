@@ -24,10 +24,6 @@ Initializer for documents functionality (buttons javascripts).
 @for DocumentsDocumentReady
 **/
 function documentsDocumentReadyButtons() {
-  $('body').on('click', '._close_document_preview_popup', function() {
-    var document_id = $(this).data('document-id');
-    closePopUp('dialog-document-' + document_id);
-  });
   $('body').on('click', '#my_documents .buttons .preview', function() {
     var document_id = $(this).data('document-id');
     var obj = $('#dialog-document-' + document_id);
@@ -108,14 +104,37 @@ function documentsDocumentReadyGeneral() {
     $('#search_documents_hidden_order').val(order);
     $.get(redirect_url);
   });
-  $('body').on('focus', '.documentInfoPopUp ._doc_description', function() {
+  $('body').on('focus', '._document_change_info_container ._doc_description', function() {
     var placeholder = $('#dialog-document-' + $(this).data('document-id') + ' ._doc_description_placeholder');
     if(placeholder.val() != '') {
       placeholder.val('');
       $(this).val('');
     }
   });
-  $('body').on('click', '.documentInfoPopUp ._download', function() {
+  $('body').on('click', '._close_document_preview_popup', function() {
+    var document_id = $(this).data('document-id');
+    closePopUp('dialog-document-' + document_id);
+  });
+  $('body').on('click', '._document_change_info_container ._cancel, ._document_change_info_to_pick.change_info_light', function() {
+    var document_id = $(this).data('document-id');
+    $('#dialog-document-' + document_id + ' ._document_change_info_container').hide('fade', {}, 500, function() {
+      var icon = $('#dialog-media-element-' + document_id + ' ._document_change_info_to_pick');
+      icon.addClass('change_info');
+      icon.removeClass('change_info_light');
+      var container = $('#dialog-document-' + document_id + ' ._document_change_info_container');
+      container.find('._doc_title').val(container.data('title'));
+      container.find('._doc_description').val(container.data('description'));
+      container.find('.form_error').removeClass('form_error');
+      container.find('._error_messages').html('');
+    });
+  });
+  $('body').on('click', '._document_change_info_to_pick.change_info', function() {
+    var document_id = $(this).data('document-id');
+    $('#dialog-document-' + document_id + ' ._document_change_info_container').show('fade', {}, 500);
+    $(this).removeClass('change_info');
+    $(this).addClass('change_info_light');
+  });
+  $('body').on('click', '._document_pop_up_container ._download', function() {
     
     alert('scaricando il documento id ' + $(this).data('document-id')); // TODO
     

@@ -60,7 +60,7 @@
       
       
       <div class="menuPopUp">
-        <div class="menuIconButton" style="float:left;  padding-left:10px">
+        <div class="menuIconButton" style="float:left; padding-left:10px">
           <%= render :partial => "shared/buttons/#{Buttons::EDIT}", :locals => {:item => media_element} %>
           <% if media_element.info_changeable %>
             <a class="<%= Buttons::CHANGE_INFO %> _change_info_to_pick" data-param="<%= media_element.id %>" title="<%= t('titles.media_elements.change_info') %>"></a>

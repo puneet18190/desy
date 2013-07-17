@@ -752,6 +752,9 @@ it:
       unpublish: "Cambia lo stato della lezione da pubblica a privata"
       # Buttons specific for documents
       documents:
+        # Modify title and description of the document
+        # 1 - views/documents/_view_single_compact.html.erb
+        change_info: "Modifica titolo e descrizione del documento"
         # Destroy a document
         # 1 - views/documents/_view_single_compact.html.erb
         destroy: "Cancella"

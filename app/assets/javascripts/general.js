@@ -125,10 +125,7 @@ function expandedItemsDocumentReady() {
   $('body').on('click', '._change_info_container ._cancel, ._change_info_to_pick.change_info_light', function() {
     $('#dialog-media-element-' + $(this).data('param') + ' ._audio_preview_in_media_element_popup').show();
     $('#dialog-media-element-' + $(this).data('param') + ' ._change_info_container').hide('fade', {}, 500, function() {
-      var icon = $(this);
-      if(!$(this).hasClass('_change_info_to_pick')) {
-        icon = $('#dialog-media-element-' + $(this).data('param') + ' ._change_info_to_pick');
-      }
+      var icon = $('#dialog-media-element-' + $(this).data('param') + ' ._change_info_to_pick');
       icon.addClass('change_info');
       icon.removeClass('change_info_light');
       resetMediaElementChangeInfo($(this).data('param'));

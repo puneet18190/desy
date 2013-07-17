@@ -19,32 +19,50 @@
     </div>
   </div>
   
-  <div class="documentInfoPopUp" id="dialog-document-<%= document.id %>" style="display:none;">
-    <div class="documentPopUpContainer" style="display:inline-block">
+  <div class="documentInfoPopUp" id="dialog-document-<%= document.id %>" style="display:none;" data-title="<%= document.title %>" data-description="<%= popup_description %>">
+    
+    <div class="_document_pop_up_container documentPopUpContainer" style="display:inline-block">
+      
+      <div class="_document_change_info_container documentPopUpChangeInfoContainer" style="display:none">
+        <%= form_tag document_path(document.id), :class => 'formDocuments', :remote => true do %>
+          <input class="_doc_title" type="text" value="<%= document.title %>" name="title">
+          <p>
+            <textarea class="_doc_description" name="description" data-document-id="<%= document.id %>"><%= popup_description %></textarea>
+          </p>
+          <%= hidden_field_tag 'description_placeholder', (document.description.blank? ? '1' : ''), :class => '_doc_description_placeholder' %>
+          <br>
+          <div class="fltlft" style="margin-top:5px">
+            <a class="lower _cancel buttonForm" data-param="<%= media_element.id %>">
+              CANCEL
+            </a>
+          </div>
+          <div class="fltrt">
+            <%= submit_tag 'SALVA', :class => 'lower' %>
+          </div>
+        <% end %>
+      </div>
+      
       <div class="cols fltlft">
         <%= image_tag document.icon_path %>
       </div>
       <div class="cols fltrt" style="text-align:right; margin-top:1.250em">
         <%= document.size_and_extension %>
       </div>
-      <br class="clearfloat">
-      <%= form_tag document_path(document.id), :class => 'formDocuments', :remote => true do %>
-        <input class="_doc_title" type="text" value="<%= document.title %>" name="title" data-document-id="<%= document.id %>">
-        <p>
-          <textarea class="_doc_description" name="description" data-document-id="<%= document.id %>"><%= popup_description %></textarea>
-        </p>
-        <%= hidden_field_tag 'description_placeholder', (document.description.blank? ? '1' : ''), :class => '_doc_description_placeholder' %>
-        <br>
-        <div class="fltrt" style="margin-top:5px">
-          <a class="lower buttonForm _download" data-document-id="<%= document.id %>"><%= t('documents.download') %></a>
-        </div>
-      <% end %>
+      <div class="fltrt" style="margin-top:5px">
+        <a class="lower buttonForm _download" data-document-id="<%= document.id %>"><%= t('documents.download') %></a>
+      </div>
+      
     </div>
+    
     <div class="menuPopUp">
+      <div class="menuIconButton" style="float:left; padding-left:10px">
+        <a class="<%= Buttons::CHANGE_INFO %> _document_change_info_to_pick" data-document-id="<%= document.id %>" title="<%= t('titles.buttons.documents.change_info') %>"></a>
+      </div>
       <div class="menuIconButton" style="float:right">
         <a class="close _close_document_preview_popup" data-document-id="<%= document.id %>" title="<%= t('titles.close') %>"></a>
       </div>
     </div>
+    
   </div>
   
 </div>
