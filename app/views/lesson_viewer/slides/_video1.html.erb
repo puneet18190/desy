@@ -1,4 +1,6 @@
 <%
+  url_type ||= nil
+
   video = slide.video_at(1)
 %>
 
@@ -13,9 +15,9 @@
     <div class="video read-only">
       <% if video %>
         <% if video.converted? %>
-          <%= render :partial => 'shared/players/video', :locals => {:video => video, :initialize_now => true} %>
+          <%= render :partial => 'shared/players/video', :locals => {:video => video, :initialize_now => true, url_type: url_type} %>
         <% else %>
-          <%= image_tag video.placeholder_url(:lesson_viewer_small), :title => t('titles.not_available.video', :title => video.title) %>
+          <%= image_tag video.placeholder_url(:lesson_viewer_small, url_type), :title => t('titles.not_available.video', :title => video.title) %>
         <% end %>
       <% end %>
     </div>

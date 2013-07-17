@@ -37,6 +37,7 @@ class LessonViewerController < ApplicationController
       @with_exit = logged_in?
       @back = params[:back]
       @slides = @lesson.slides.order(:position)
+      @cover_img = @slides.first.media_elements_slides.first
     end
   end
   

@@ -9,6 +9,8 @@ require 'media/image/editing/crop'
 # 
 class Image < MediaElement
   
+  include UrlByUrlType
+
   # List of accepted extensions for an image
   EXTENSION_WHITE_LIST = ImageUploader::EXTENSION_WHITE_LIST
   # Extensions globbing for finding images with <tt>Dir.glob</tt>
@@ -33,8 +35,10 @@ class Image < MediaElement
   #
   #   <%= image_tag image.url %>
   #
-  def url
-    media.url
+  def url(url_type = nil)
+    url = media.url
+
+    url_by_url_type url, url_type
   end
   
   # === Description
