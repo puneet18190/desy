@@ -67,7 +67,7 @@ class DocumentsController < ApplicationController
   def update
     if @ok
       @document.title = params[:title]
-      @document.description = params[:description]
+      @document.description = params[:description_placeholder].blank? ? params[:description] : ''
       if !@document.save
         @errors = convert_item_error_messages @document.errors.messages
         @error_fields = @document.errors.messages.keys
