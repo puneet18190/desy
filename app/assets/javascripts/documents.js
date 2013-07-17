@@ -40,6 +40,8 @@ function documentsDocumentReadyButtons() {
         hide: {effect: 'fade'},
         open: function() {
           customOverlayClose();
+          var word = $('#search_documents ._word_input').val()
+          $('#dialog-document-' + document_id + ' ._hidden_word').val(word);
         },
         beforeClose: function() {
           removeCustomOverlayClose();

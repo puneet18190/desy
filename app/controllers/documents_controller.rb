@@ -66,6 +66,7 @@ class DocumentsController < ApplicationController
   #
   def update
     if @ok
+      @word = params[:word].blank? ? nil : params[:word]
       @document.title = params[:title]
       @document.description = params[:description_placeholder].blank? ? params[:description] : ''
       if !@document.save

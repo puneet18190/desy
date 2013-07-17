@@ -28,6 +28,23 @@ function customOverlayClose() {
 }
 
 /**
+Close and successively remove HTML for a given document popup.
+@method removeCompletelyDocumentPopup
+@for DialogsAccessories
+@param document_id {Number} id of the document in the database, used to extract the HTML id of the dialog
+**/
+function removeCompletelyDocumentPopup(document_id) {
+  var obj = $('#dialog-document-' + document_id);
+  if(obj.length == 0) {
+    return;
+  }
+  if(obj.data('dialog')) {
+    obj.dialog('destroy');
+  }
+  obj.remove();
+}
+
+/**
 Close and successively remove HTML for a given media element popup.
 @method removeCompletelyMediaElementPopup
 @for DialogsAccessories
