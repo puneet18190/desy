@@ -26,6 +26,8 @@
     <div class="_document_pop_up_container documentPopUpContainer" style="display:inline-block">
       
       <div class="_document_change_info_container documentPopUpChangeInfoContainer" style="display:none">
+         
+         <h1>Change info</h1>
         <%= form_tag document_path(document.id), :class => 'formDocuments', :remote => true do %>
           <%= hidden_field_tag 'word', '', :class => '_hidden_word' %>
           <input class="_doc_title" type="text" value="<%= document.title %>" name="title">
@@ -34,6 +36,7 @@
           </p>
           <%= hidden_field_tag 'description_placeholder', (document.description.blank? ? '1' : ''), :class => '_doc_description_placeholder' %>
           <div class="fltrt">
+            <div class="_error_messages fltlft"></div>
             <div class="fltlft" style="margin-top:5px">
               <a class="lower _cancel buttonForm" data-document-id="<%= document.id %>">
                 CANCEL
@@ -44,7 +47,7 @@
           </div>
           </div>
         <% end %>
-        <div class="_error_messages"></div>
+       
       </div>
       
       <div class="cols fltlft text-centered">
@@ -57,7 +60,7 @@
         </p>
       </div>
       <div class="cols fltlft" style="width:280px">
-        <h1><%= document.title %></h1>
+        <h2><%= document.title %></h2>
         <p><%= popup_readonly_description %></p>
       </div>
       

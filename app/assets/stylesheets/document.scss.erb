@@ -68,11 +68,19 @@
     
   }
 }
+.gray-bar {
+  ul.navlist {
+    margin: -3px 10px 10px 0;
+  }
+  p {
+      float:left;
+    }
+}
 .documentInfoPopUp {
   .documentPopUpContainer {
     width: 91%;
-    height: 246px;
-    padding: 3.750em 1.875em 1.875em;
+    height: 268px;
+    padding: 2.750em 1.875em 1.875em;
     color:#c2c1c2;
     .cols {
       width:224px;
@@ -86,7 +94,20 @@
     }
     h1 {
       color: #fff;
+      font: 30px 'Nunito', sans-serif;
+      padding:0;
+    }
+    h2 {
+      color: #fff;
       font: 17px 'Nunito', sans-serif;
+    }
+    ._error_messages {
+      width: 372px;
+      img {
+        width:17px;
+        height:17px;
+      }
+      
     }
     .documentPopUpChangeInfoContainer {
       z-index: 10;
@@ -95,10 +116,13 @@
       width: 534px;
       /*height: 320px;
       padding: 1.250em 0;*/
+      .buttonForm {
+        padding:5px 10px;
+      }
 
     }
     .formDocuments {
-      padding-top: 1.250em;
+      padding-top: 0.5em;
       float: left;
       width: 100%;
       input[type="text"] {
@@ -112,8 +136,8 @@
       }
       input[type="submit"] {
     
-        padding: 5px 30px ;
-        width: 130px;
+        padding: 5px 10px ;
+        width: 72px;
         height: 34px;
         font: 18px 'Nunito', sans-serif;
         color: #fff;
@@ -140,6 +164,10 @@
         color: #c6c5c6;
         resize: none;
         margin-bottom: 0.625em;
+        /*border: 3px solid rgba(250, 0, 0, 0.5);*/
+        .form_error {
+          border: 3px solid rgba(250, 0, 0, 0.5);
+        }
       }
       .buttonForm {
         color: #5d5c5c;
