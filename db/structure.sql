@@ -124,7 +124,9 @@ CREATE TABLE documents (
     title character varying(255),
     description text,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    metadata text,
+    attached character varying(255)
 );
 
 
@@ -1662,3 +1664,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130418143554');
 INSERT INTO schema_migrations (version) VALUES ('20130709101814');
 
 INSERT INTO schema_migrations (version) VALUES ('20130709121200');
+
+INSERT INTO schema_migrations (version) VALUES ('20130717100238');

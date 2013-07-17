@@ -21,12 +21,13 @@
     </div>
   </div>
   
-  <div class="documentInfoPopUp" id="dialog-document-<%= document.id %>" style="display:none;" data-title="<%= document.title %>" data-description="<%= popup_description %>">
+  <div class="documentInfoPopUp" id="dialog-document-<%= document.id %>" style="display:none;" data-title="<%= document.title %>" data-description="<%= popup_description %>" data-description-placeholder="<%= (document.description.blank? ? '1' : '') %>">
     
     <div class="_document_pop_up_container documentPopUpContainer" style="display:inline-block">
       
       <div class="_document_change_info_container documentPopUpChangeInfoContainer" style="display:none">
         <%= form_tag document_path(document.id), :class => 'formDocuments', :remote => true do %>
+          <%= hidden_field_tag 'word', '', :class => '_hidden_word' %>
           <input class="_doc_title" type="text" value="<%= document.title %>" name="title">
           <p>
             <textarea class="_doc_description" name="description" data-document-id="<%= document.id %>"><%= popup_description %></textarea>
@@ -43,6 +44,7 @@
           </div>
           </div>
         <% end %>
+        <div class="_error_messages"></div>
       </div>
       
       <div class="cols fltlft text-centered">

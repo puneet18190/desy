@@ -40,14 +40,17 @@ function documentsDocumentReadyButtons() {
         hide: {effect: 'fade'},
         open: function() {
           customOverlayClose();
+          var word = $('#search_documents ._word_input').val()
+          $('#dialog-document-' + document_id + ' ._hidden_word').val(word);
         },
         beforeClose: function() {
           removeCustomOverlayClose();
         },
         close: function() {
-          var container = $('#dialog-document-' + document_id + ' ._document_change_info_container');
+          var container = $('#dialog-document-' + document_id);
           container.find('._doc_title').val(container.data('title'));
           container.find('._doc_description').val(container.data('description'));
+          container.find('._doc_description_placeholder').val(container.data('description-placeholder'));
           container.find('.form_error').removeClass('form_error');
           container.find('._error_messages').html('');
           $('#dialog-document-' + document_id + ' ._document_change_info_container').hide();
@@ -99,14 +102,23 @@ Initializer for documents functionality (general javascripts).
 @for DocumentsDocumentReady
 **/
 function documentsDocumentReadyGeneral() {
+  if(!$.browser.msie) {
+    $('upload_document').fileupload();
+  } else {
+    $('#document_hint').hide();
+    $('#document_hint_ie').show();
+  }
+  $('#upload_document ._attached').change(function() {
+    $('#upload_document').submit();
+  });
   $('body').on('mouseover', '._empty_documents', function() {
     $(this).find('._empty_documents_hover').addClass('current');
   });
   $('body').on('mouseout', '._empty_documents', function() {
     $(this).find('._empty_documents_hover').removeClass('current');
   });
-  $('body').on('click', '._empty_documents, #upload_document', function() {
-    openNewDocumentLoader();
+  $('body').on('click', '._empty_documents, #upload_document a', function() {
+    $('#upload_document ._attached').click();
   });
   $('body').on('change', '#order_documents', function() {
     var order = $('#order_documents option:selected').val();
@@ -131,9 +143,10 @@ function documentsDocumentReadyGeneral() {
       var icon = $('#dialog-document-' + document_id + ' ._document_change_info_to_pick');
       icon.addClass('change_info');
       icon.removeClass('change_info_light');
-      var container = $('#dialog-document-' + document_id + ' ._document_change_info_container');
+      var container = $('#dialog-document-' + document_id);
       container.find('._doc_title').val(container.data('title'));
       container.find('._doc_description').val(container.data('description'));
+      container.find('._doc_description_placeholder').val(container.data('description-placeholder'));
       container.find('.form_error').removeClass('form_error');
       container.find('._error_messages').html('');
     });
@@ -173,19 +186,4 @@ function documentsDocumentReadySearch() {
       }, 1500);
     }
   });
-}
-
-
-
-
-
-/**
-Initializer for documents functionality.
-@method openNewDocumentLoader
-@for DocumentsLoader
-**/
-function openNewDocumentLoader() {
-  
-  alert('sto aprendo il DOCUMENT LOADER'); // TODO
-  
 }
