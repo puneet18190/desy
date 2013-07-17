@@ -22,7 +22,7 @@
  *= require header
  *= require menu
  *= require notice_help
- *= require greybar
+ *= require graybar
  *= require tooltips
  *= require content
  *= require dots_pagination
