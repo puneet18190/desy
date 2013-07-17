@@ -45,9 +45,10 @@ function documentsDocumentReadyButtons() {
           removeCustomOverlayClose();
         },
         close: function() {
-          var container = $('#dialog-document-' + document_id + ' ._document_change_info_container');
+          var container = $('#dialog-document-' + document_id);
           container.find('._doc_title').val(container.data('title'));
           container.find('._doc_description').val(container.data('description'));
+          container.find('._doc_description_placeholder').val(container.data('description-placeholder'));
           container.find('.form_error').removeClass('form_error');
           container.find('._error_messages').html('');
           $('#dialog-document-' + document_id + ' ._document_change_info_container').hide();
@@ -140,9 +141,10 @@ function documentsDocumentReadyGeneral() {
       var icon = $('#dialog-document-' + document_id + ' ._document_change_info_to_pick');
       icon.addClass('change_info');
       icon.removeClass('change_info_light');
-      var container = $('#dialog-document-' + document_id + ' ._document_change_info_container');
+      var container = $('#dialog-document-' + document_id);
       container.find('._doc_title').val(container.data('title'));
       container.find('._doc_description').val(container.data('description'));
+      container.find('._doc_description_placeholder').val(container.data('description-placeholder'));
       container.find('.form_error').removeClass('form_error');
       container.find('._error_messages').html('');
     });
