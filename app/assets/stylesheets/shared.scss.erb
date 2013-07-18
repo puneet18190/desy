@@ -1,216 +1,4 @@
-@mixin button-test-hover {
-  
-  $button-size: 3.5em;
-  
-  &.preview:hover {
-    
-    background-position: (-$button-size) (-$button-size*7);
-    
-  }
-  
-  &.edit:hover {
-    
-    background-position: (-$button-size) (-$button-size*6);
-    
-  }
-  
-  &.publish:hover {
-    
-    background-position: (-$button-size) (-$button-size*4);
-    
-  }
-  
-  &.add:hover {
-    
-    background-position: (-$button-size) (-$button-size*9);
-    
-  }
-  
-  &.remove:hover {
-    
-    background-position: (-$button-size) (-$button-size*8);
-    
-  }
-  
-  &.destroy:hover {
-    
-    background-position: (-$button-size) (-$button-size);
-    
-  }
-  
-  &.like:hover {
-    
-    background-position: (-$button-size) (-$button-size*3);
-    
-  }
-  
-  &.report:hover {
-    
-    background-position: (-$button-size) 0;
-    
-  }
-  
-  &.add_virtual_classroom:hover {
-    
-    background-position: (-$button-size) (-$button-size*5);
-    
-  }
-  
-  &.copy:hover {
-    
-    background-position: (-$button-size) (-$button-size*2);
-    
-  }
-}
-
-@mixin button-test {
-  
-  $button-size: 3.5em;
-  
-  & {
-    
-    display: inline-block;
-    width: $button-size;
-    height: $button-size;
-    background-image: url(<%= asset_path 'action_buttons.svg' %>);
-    background-repeat: no-repeat;
-    background-size: ($button-size*2) ($button-size*10);
-    padding: 0;
-    margin-right: 8px;
-    font-size: 1em;
-    
-  }
-  
-  &.preview {
-    
-    background-position: 0 (-$button-size*7);
-    
-  }
-  
-  &.edit {
-    
-    background-position: 0 (-$button-size*6);
-    
-  }
-  
-  &.publish {
-    
-    background-position: 0 (-$button-size*4);
-    
-  }
-  
-  &.unpublish {
-    
-    background-position: (-$button-size) (-$button-size*4);
-    
-  }
-  
-  &.add {
-    
-    background-position: 0 (-$button-size*9);
-    
-  }
-  
-  &.remove {
-    
-    background-position: 0 (-$button-size*8);
-    
-  }
-  
-  &.destroy {
-    
-    background-position: 0 (-$button-size);
-    
-  }
-  
-  &.dislike {
-    
-    background-position: (-$button-size) (-$button-size*3);
-    
-  }
-  
-  &.like {
-    
-    background-position: 0 (-$button-size*3);
-    
-  }
-  
-  &.report {
-    
-    background-position: -0.5em 0;
-    background-size: 6em 30em;
-    
-  }
-  
-  &.report_light {
-    
-    background-position: (-$button-size) 0;
-    background-size: 6em 30em;
-    
-  }
-  
-  &.remove_virtual_classroom {
-    
-    background-position: (-$button-size) (-$button-size*5);
-    
-  }
-  
-  &.add_virtual_classroom {
-    
-    background-position: 0 (-$button-size*5);
-    
-  }
-  
-  &.copy {
-    
-    background-position: 0 (-$button-size*2);
-    
-  }
-  
-}
-
-@mixin contentLayout {
-  
-  margin-bottom: 1%;
-  -webkit-box-shadow: 0px 3px 4px #d3d3d3;
-  box-shadow: 0px 3px 4px #d3d3d3;
-  
-  h1 {
-    
-    font:  110% 'Nunito', sans-serif;
-    color: #f29400;
-    padding: 0px;
-    
-  }
-  
-  h2 {
-    
-    font: 140% 'Nunito', sans-serif;
-    
-  }
-  
-}
-
-@mixin iconeElements {
-  
-  background-size: 2.7em 8.1em;
-  width: 40%;
-  background-image: url(<%= asset_path 'icon_elements.svg' %>);
-  background-repeat: no-repeat;
-  background-position: 0 0;
-  float: left;
-  padding: 4px 0px 2px 50px;
-  display: inline-block;
-  margin-right: 1.8%;
-  
-}
-
-@mixin contentInterno {
-  
-  padding: 4%;
-  height: 110px;
-  
-}
+$button-size: 3.5em;
 
 a.cerca {
   
@@ -1148,6 +936,8 @@ a.cerca.current {
     
   }
   
+  $button-size: 10px;
+  
   #new-media-element-tags,#edit-media-element-tags {
     
     padding: 0;
@@ -1167,7 +957,6 @@ a.cerca.current {
         
         display: block;
         float: right;
-        $button-size: 10px;
         width: $button-size;
         height: $button-size;
         background-image: url(<%= asset_path 'set-icone-editor.svg' %>);
@@ -1206,25 +995,7 @@ a.cerca.current {
   
 }
 
-
 $button-size: 5em;
-
-@mixin buttonUploadElement($font-size: 1em) {
-  
-  & {
-    
-    float: left;
-    width: $button-size;
-    height: $button-size;
-    background-image: url(<%= asset_path 'icone_piene.svg' %>);
-    background-repeat: no-repeat;
-    background-size: ($button-size*6) ($button-size);
-    padding: 0;
-    font-size: $font-size;
-    
-  }
-  
-}
 
 .fk_carica_elemento_file {
   
@@ -1245,7 +1016,14 @@ label.filebutton {
   
   overflow: hidden;
   position: relative;
-  @include buttonUploadElement();
+  float: left;
+  width: $button-size;
+  height: $button-size;
+  background-image: url(<%= asset_path 'icone_piene.svg' %>);
+  background-repeat: no-repeat;
+  background-size: ($button-size*6) ($button-size);
+  padding: 0;
+  font-size: 1em;
   background-position: (-$button-size*3) 0;
   cursor: pointer;
   
@@ -1446,17 +1224,19 @@ label.filebutton span input#new_media_element_input {
   font: 18px 'Nunito', sans-serif;
   
 }
+
 .buttonDownload {
+  
   padding: 5.250em 1.875em 0 1.875em;
   color: #fff;
   font: 13px 'Nunito', sans-serif;
   background-image: url('/assets/bg_button_download.jpg');
   background-position: top center;
   background-repeat: no-repeat;
-  height:88px;
- 
-
+  height: 88px;
+  
 }
+
 .menuController {
   
   background-color: #fff;
@@ -1470,7 +1250,66 @@ label.filebutton span input#new_media_element_input {
   a {
     
     @include button-test;
-    @include button-test-hover;
+    
+    &.preview:hover {
+      
+      background-position: (-$button-size) (-$button-size*7);
+      
+    }
+    
+    &.edit:hover {
+      
+      background-position: (-$button-size) (-$button-size*6);
+      
+    }
+    
+    &.publish:hover {
+      
+      background-position: (-$button-size) (-$button-size*4);
+      
+    }
+    
+    &.add:hover {
+      
+      background-position: (-$button-size) (-$button-size*9);
+      
+    }
+    
+    &.remove:hover {
+      
+      background-position: (-$button-size) (-$button-size*8);
+      
+    }
+    
+    &.destroy:hover {
+      
+      background-position: (-$button-size) (-$button-size);
+      
+    }
+    
+    &.like:hover {
+      
+      background-position: (-$button-size) (-$button-size*3);
+      
+    }
+    
+    &.report:hover {
+      
+      background-position: (-$button-size) 0;
+      
+    }
+    
+    &.add_virtual_classroom:hover {
+      
+      background-position: (-$button-size) (-$button-size*5);
+      
+    }
+    
+    &.copy:hover {
+      
+      background-position: (-$button-size) (-$button-size*2);
+      
+    }
     
   }
   

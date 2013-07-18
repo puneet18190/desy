@@ -1,94 +1,9 @@
-@mixin tagContainer {
-  
-  display: block;
-  resize: none;
-  line-height: 20px;
-  border-radius: 10px;
-  padding: 0;
-  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2) inset;
-  color: #fff;
-  font-size: 12px;
-  font-family: Arial, sans-serif;
-  outline: none;
-  overflow: auto;
-  position: relative;
-  
-  ._placeholder {
-    
-    position: absolute;
-    top: 5px;
-    left: 10px;
-    
-  }
-  
-  span {
-    
-    border-radius: 5px;
-    padding: 0 3px;
-    margin: 5px 0 0 5px;
-    background-color: #fff;
-    float: left;
-    color: #373737;
-    
-    a {
-      
-      display: block;
-      float: right;
-      $button-size: 15px;
-      width: $button-size;
-      height: $button-size;
-      background-repeat: no-repeat;
-      margin: 2px 2px 0px 5px;
-      color: #373737;
-      background-image: url(<%= asset_path 'grigia.png' %>);
-      
-      &:hover {
-        
-        background-image: url(<%= asset_path 'bianca.png' %>);
-        
-      }
-      
-    }
-    
-  }
-  
-  span.new_tag {
-    
-    a {
-      
-      background-image: url(<%= asset_path 'grigia.png' %>);
-      
-      &:hover {
-        
-        background-image: url(<%= asset_path 'bianca.png' %>);
-        
-      }
-      
-    }
-    
-  }
-  
-  #tags {
-    
-    overflow: visible;
-    clear: both;
-    border: none;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    padding: 0 10px;
-    box-shadow: none;
-    width: 295px;
-    height: auto;
-    
-  }
-  
-}
+$button-size: 6em;
 
 .media_element_editor-layout .contentFormInfoMediaElementEditor ._tags_container {
   
   width: 336px;
   height: 170px;
-  /*border: 3px solid #43a848;*/
   background-color: #454343;
   @include tagContainer;
   

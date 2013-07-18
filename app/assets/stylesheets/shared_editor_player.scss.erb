@@ -1,18 +1,15 @@
-@mixin sharedElements {
-  
-  background-size: 11.3em 22.7em;
-  background-image: url(<%= asset_path 'icone_editor_elementi.svg' %>);
-  background-repeat: no-repeat;
-  background-position: 0 0;
-  padding: 0;
-  
-}
+$icon-size: 5.6em;
+$button-size: 6em;
 
 .iconMediaElements {
   
   .audio {
     
-    @include sharedElements;
+    background-size: 11.3em 22.7em;
+    background-image: url(<%= asset_path 'icone_editor_elementi.svg' %>);
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    padding: 0;
     background-position: 0 -2.5em;
     
   }
@@ -56,25 +53,6 @@
   .jspDrag {
     
     background: #2EAADC;
-    
-  }
-  
-}
-
-$icon-size: 5.6em;
-
-@mixin iconEditorElement($font-size: 0.5em) {
-  
-  & {
-    
-    float: left;
-    width: $icon-size;
-    height: $icon-size;
-    background-image: url(<%= asset_path 'icone_editor_elementi.svg' %>);
-    background-repeat: no-repeat;
-    background-size: ($icon-size*3) ($icon-size*4);
-    padding: 0;
-    font-size: $font-size;
     
   }
   
@@ -192,26 +170,6 @@ $icon-size: 5.6em;
   
 }
 
-$button-size: 6em;
-
-@mixin menuCondivisoElementLessonEditor($font-size: 0.9em) {
-  
-  float: left;
-  width: $button-size;
-  height: $button-size;
-  background-image: url(<%= asset_path 'set-icone-editor.svg' %>);
-  background-repeat: no-repeat;
-  background-size: ($button-size * 4) ($button-size * 11);
-  padding: 0;
-  font-size: $font-size;
-  
-  &:hover {
-    
-    cursor: pointer;
-  }
-  
-}
-
 .creaNuovoButton {
   
   @include menuCondivisoElementLessonEditor(0.7em);
@@ -303,30 +261,6 @@ $button-size: 6em;
   
 }
 
-@mixin menuEditImages {
-  
-  $button-size: 6em;
-  
-  & {
-    
-    width: $button-size;
-    height: $button-size;
-    background-image: url(<%= asset_path 'set-icone-editor.svg' %>);
-    background-repeat: no-repeat;
-    background-size: ($button-size*4) ($button-size*10);
-    padding: 2.3em 3em;
-    font-size: 0.7em;
-    
-  }
-  
-  &:hover {
-    
-    cursor: pointer;
-    
-  }
-  
-}
-
 .cutButton {
   
   @include menuEditImages;
@@ -368,29 +302,7 @@ $button-size: 6em;
   
 }
 
-@mixin buttonExitElement {
-  
-  $button-size: 4.5em;
-  
-  & {
-    
-    display: block;
-    width: $button-size;
-    height: $button-size;
-    background-image: url(<%= asset_path 'set-icone-editor.svg' %>);
-    background-repeat: no-repeat;
-    background-size: ($button-size*4) ($button-size*10);
-    padding: 0;
-    
-  }
-  
-  &:hover {
-    
-    cursor: pointer;
-    
-  }
-  
-}
+$button-size: 4.5em;
 
 .exitContent {
   
@@ -412,23 +324,20 @@ $button-size: 6em;
   
 }
 
-@mixin addElementInGallery {
+$button-size: 2em;
+
+a.addButtonContent {
   
-  $button-size: 2em;
-  
-  & {
-    
-    width: $button-size;
-    height: $button-size;
-    background-image: url(<%= asset_path 'icone-player.svg' %>);
-    background-repeat: no-repeat;
-    background-size: ($button-size*5) ($button-size*4);
-    background-position: -8em -4em;
-    padding: 0;
-    opacity: 0.5;
-    margin-top: 5px;
-    
-  }
+  width: $button-size;
+  height: $button-size;
+  background-image: url(<%= asset_path 'icone-player.svg' %>);
+  background-repeat: no-repeat;
+  background-size: ($button-size*5) ($button-size*4);
+  background-position: -8em -4em;
+  padding: 0;
+  opacity: 0.5;
+  float: left;
+  margin-top: 0;
   
   &:hover {
     
@@ -437,14 +346,6 @@ $button-size: 6em;
     opacity: 1;
     
   }
-  
-}
-
-a.addButtonContent {
-  
-  @include addElementInGallery;
-  float: left;
-  margin-top: 0;
   
 }
 
