@@ -196,18 +196,14 @@ $button-size: 6em;
 
 @mixin menuCondivisoElementLessonEditor($font-size: 0.9em) {
   
-  & {
-    
-    float: left;
-    width: $button-size;
-    height: $button-size;
-    background-image: url(<%= asset_path 'set-icone-editor.svg' %>);
-    background-repeat: no-repeat;
-    background-size: ($button-size*4) ($button-size*10);
-    padding: 0;
-    font-size: $font-size;
-    
-  }
+  float: left;
+  width: $button-size;
+  height: $button-size;
+  background-image: url(<%= asset_path 'set-icone-editor.svg' %>);
+  background-repeat: no-repeat;
+  background-size: ($button-size * 4) ($button-size * 11);
+  padding: 0;
+  font-size: $font-size;
   
   &:hover {
     
@@ -232,123 +228,11 @@ $button-size: 6em;
   
 }
 
-.deleteButtonOrange {
-  
-  @include menuCondivisoElementLessonEditor(0.75em);
-  background-position: 0 0;
-  opacity: 0.2;
-  
-  &:hover, &.current {
-    
-    background-position: (-$button-size) 0;
-    opacity: 1;
-    
-  }
-  
-}
-
-.addButtonOrange {
-  
-  @include menuCondivisoElementLessonEditor(0.75em);
-  background-position: 0 (-$button-size);
-  opacity: 0.2;
-  
-  &:hover, &.current {
-    
-    background-position: (-$button-size) (-$button-size);
-    opacity: 1;
-    
-  }
-  
-}
-
-.minusButtonOrange {
-  
-  @include menuCondivisoElementLessonEditor(0.75em);
-  background-position: (-$button-size) (-$button-size*8);
-  opacity: 1;
-  
-  &:hover, &.current {
-    
-    background-position: 0 (-$button-size*8);
-    opacity: 0.2;
-    
-  }
-  
-}
-
 .infoButtonWhite {
   
   @include menuCondivisoElementLessonEditor(0.75em);
   background-position: 0 (-$button-size*2);
   opacity: 1;
-  
-}
-
-.infoButtonOrange {
-  
-  @include  menuCondivisoElementLessonEditor(0.75em);
-  background-position: 0 (-$button-size*2);
-  opacity: 0.2;
-  
-  &:hover, &.current {
-    
-    background-position: (-$button-size) (-$button-size*2);
-    opacity: 1;
-    
-  }
-  
-}
-
-.exitButtonOrange {
-  
-  @include  menuCondivisoElementLessonEditor(0.75em);
-  background-image: url(<%= asset_path 'esci-rounded.svg' %>);
-  background-repeat: no-repeat;
-  background-size: ($button-size*4) ($button-size);
-  padding: 0;
-  font-size: $button-size;
-  background-position: 0 (-$button-size*3);
-  opacity: 0.2;
-  
-  &:hover, &.current {
-    
-    background-position: (-$button-size) (-$button-size*3);
-    opacity: 1;
-    
-  }
-  
-}
-
-.saveButtonOrange {
-  
-  @include  menuCondivisoElementLessonEditor(0.75em);
-  background-position: 0 (-$button-size*3);
-  opacity: 0.2;
-  
-  &:hover, &.current {
-    
-    background-position: (-$button-size) (-$button-size*3);
-    opacity: 1;
-    
-  }
-  
-}
-
-.exitButtonOrange {
-  
-  background-image: url(<%= asset_path 'esci-rounded.svg' %>);
-  background-repeat: no-repeat;
-  background-size: 240px 60px;
-  background-position: -180px 0;
-  opacity: 0.2;
-  
-  &:hover, &.current {
-    
-    background-position: -60px 0;
-    opacity: 1;
-    
-  }
   
 }
 

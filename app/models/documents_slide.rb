@@ -18,6 +18,7 @@
 # * *modifications* *not* *available* for the +document_id+ and +slide_id+
 # * *uniqueness* of the couple +document_id+ and +slide_id+
 # * *the* *slide* must allow +title+
+# * *maximum* number of documents in the same slide, as configured in settings.yml
 #
 # == Callbacks
 #

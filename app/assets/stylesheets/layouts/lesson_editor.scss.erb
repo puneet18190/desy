@@ -1,3 +1,5 @@
+$lesson-editor-menu-button-size: 6em;
+
 @mixin slide-miniature {
   
   width: 243px; /* 900 scalato al 27% */
@@ -394,7 +396,94 @@ html.lesson-editor-layout {
         
         a {
           
-          text-indent: -999999px;
+          width: 60px;
+          height: 60px;
+          padding: 0;
+          opacity: 0.2;
+          background-repeat: no-repeat;
+          background-image: url(<%= asset_path 'set-icone-editor.svg' %>);
+          background-size: ($lesson-editor-menu-button-size * 4) ($lesson-editor-menu-button-size * 11);
+          float: left;
+          font-size: 0.75em;
+          
+          &:hover, &.current {
+            
+            opacity: 1;
+            cursor: pointer;
+            
+          }
+          
+          &.deleteButtonOrange {
+            
+            background-position: 0 0;
+            
+            &:hover, &.current {
+              
+              background-position: (-$lesson-editor-menu-button-size) 0;
+              
+            }
+            
+          }
+          
+          &.addButtonOrange {
+            
+            background-position: 0 (-$lesson-editor-menu-button-size);
+            
+            &:hover, &.current {
+              
+              background-position: (-$lesson-editor-menu-button-size) (-$lesson-editor-menu-button-size);
+              
+            }
+            
+          }
+          
+          &.minusButtonOrange {
+            
+            background-position: (-$lesson-editor-menu-button-size) (-$lesson-editor-menu-button-size * 8);
+            
+            &:hover, &.current {
+              
+              background-position: 0 (-$lesson-editor-menu-button-size * 8);
+              
+            }
+            
+          }
+          
+          &.infoButtonOrange {
+            
+            background-position: 0 (-$lesson-editor-menu-button-size * 2);
+            
+            &:hover, &.current {
+              
+              background-position: (-$lesson-editor-menu-button-size) (-$lesson-editor-menu-button-size * 2);
+              
+            }
+            
+          }
+          
+          &.saveButtonOrange {
+            
+            background-position: 0 (-$lesson-editor-menu-button-size * 3);
+            
+            &:hover, &.current {
+              
+              background-position: (-$lesson-editor-menu-button-size) (-$lesson-editor-menu-button-size * 3);
+              
+            }
+            
+          }
+          
+          &.exitButtonOrange {
+            
+            background-position: 0 (-$lesson-editor-menu-button-size * 10);
+            
+            &:hover, &.current {
+              
+              background-position: (-$lesson-editor-menu-button-size) (-$lesson-editor-menu-button-size * 10);
+              
+            }
+            
+          }
           
         }
         
