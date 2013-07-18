@@ -845,7 +845,12 @@ cn:
       # Button '+' to add a new slide
       # 1 - views/lesson_editor/_slide_buttons.html.erb
       # 2 - views/lesson_editor/_slide_buttons.html.erb
+      # 3 - views/lesson_editor/_slide_buttons.html.erb
       add_slide: "增加新幻灯片"
+      # Add a slide in the last position
+      # 1 - views/lesson_editor/index.html.erb
+      # 2 - views/lesson_editor/index.html.erb
+      add_slide_in_last_position: "Add a slide in the last position" # TODO
       # 1 - views/lesson_editor/_slide_buttons.html.erb
       add_slide_cancel: "终止"
       # Button '+' to replace an audio in the audio slide
@@ -864,6 +869,12 @@ cn:
       # Button 'X' to remove the current slide
       # 1 - views/lesson_editor/_slide_buttons.html.erb
       delete_slide: "移除幻灯片"
+      # It's not possible to add further slides, since the maximum number has been reacher (%{num} is replaced by the maximum number of slides inside a lesson)
+      # 1 - views/lesson_editor/_slide_buttons.html.erb
+      # 2 - views/lesson_editor/_slide_buttons.html.erb
+      # 3 - views/lesson_editor/index.html.erb
+      # 4 - views/lesson_editor/index.html.erb
+      last_slide_reached: "You reached the maximum allowed number of %{num} slides" # TODO
       # Button to save the current slide
       # 1 - views/lesson_editor/_slide_buttons.html.erb
       save_slide: "保存目前的幻灯片"

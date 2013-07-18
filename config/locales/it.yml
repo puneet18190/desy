@@ -845,7 +845,12 @@ it:
       # Button '+' to add a new slide
       # 1 - views/lesson_editor/_slide_buttons.html.erb
       # 2 - views/lesson_editor/_slide_buttons.html.erb
+      # 3 - views/lesson_editor/_slide_buttons.html.erb
       add_slide: "Aggiungi una nuova diapositiva"
+      # Add a slide in the last position
+      # 1 - views/lesson_editor/index.html.erb
+      # 2 - views/lesson_editor/index.html.erb
+      add_slide_in_last_position: "Aggiungi una diapositiva in ultima posizione"
       # 1 - views/lesson_editor/_slide_buttons.html.erb
       add_slide_cancel: "Annulla"
       # Button '+' to replace an audio in the audio slide
@@ -864,6 +869,12 @@ it:
       # Button 'X' to remove the current slide
       # 1 - views/lesson_editor/_slide_buttons.html.erb
       delete_slide: "Rimuovi la diapositiva"
+      # It's not possible to add further slides, since the maximum number has been reacher (%{num} is replaced by the maximum number of slides inside a lesson)
+      # 1 - views/lesson_editor/_slide_buttons.html.erb
+      # 2 - views/lesson_editor/_slide_buttons.html.erb
+      # 3 - views/lesson_editor/index.html.erb
+      # 4 - views/lesson_editor/index.html.erb
+      last_slide_reached: "Hai raggiunto il massimo numero consentito di %{num} diapositive"
       # Button to save the current slide
       # 1 - views/lesson_editor/_slide_buttons.html.erb
       save_slide: "Salva la diapositiva"
