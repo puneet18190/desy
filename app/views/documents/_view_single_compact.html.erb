@@ -27,7 +27,7 @@
       
       <div class="_document_change_info_container documentPopUpChangeInfoContainer" style="display:none">
          
-         <h1>Change info</h1>
+         <h1><%= t('documents.change_info.title') %></h1>
         <%= form_tag document_path(document.id), :class => 'formDocuments', :remote => true do %>
           <%= hidden_field_tag 'word', '', :class => '_hidden_word' %>
           <input class="_doc_title" type="text" value="<%= document.title %>" name="title">
@@ -39,11 +39,11 @@
             <div class="_error_messages fltlft"></div>
             <div class="fltlft" style="margin-top:5px">
               <a class="lower _cancel buttonForm" data-document-id="<%= document.id %>">
-                CANCEL
+                <%= t('documents.change_info.cancel') %>
               </a>
             </div>
             <div class="fltrt">
-            <%= submit_tag 'SALVA', :class => 'lower' %>
+            <%= submit_tag t('documents.change_info.done'), :class => 'lower' %>
           </div>
           </div>
         <% end %>

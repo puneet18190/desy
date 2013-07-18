@@ -2307,6 +2307,14 @@ cn:
   # SECTION 2.18: labels in the section 'documents'
   
   documents:
+    # Form to change info
+    change_info:
+      # 1 - views/documents/_view_single_compact.html.erb
+      cancel: "Cancel" #  TODO
+      # 1 - views/documents/_view_single_compact.html.erb
+      done: "Save" # TODO
+      # 1 - views/documents/_view_single_compact.html.erb
+      title: "Change info" # TODO
     # Placeholder in the form to change description and title (the variable %{num} is replaced by the maximum number of characters allowed)
     # 1 - views/documents/_view_single_compact.html.erb
     description_placeholder: "Insert a description (max %{num} characters)" # TODO
