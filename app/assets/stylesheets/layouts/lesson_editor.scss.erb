@@ -1,4 +1,4 @@
-$lesson-editor-menu-button-size: 6em;
+$lesson-editor-menu-button-size: 60px;
 
 @mixin slide-miniature {
   
@@ -253,7 +253,6 @@ html.lesson-editor-layout {
     position: absolute;
     top: 10px;
     right: 10px;
-    text-indent: -9999999px;
     border: none;
     padding: 0;
     height: 17px;
@@ -261,51 +260,26 @@ html.lesson-editor-layout {
     background: url('/assets/add_small_on_off.png') top center no-repeat transparent;
     z-index: 100000;
     
-  }
-  
-  .add-small:hover {
-    
-    background-color: transparent;
-    background-position: bottom center;
-    border: none;
-    
-  }
-  
-  ._add_new_slide_options_in_last_position.disabled {
-    
-    background: url('/assets/add_small_on_off.png') top center no-repeat transparent;
-    opacity: 0.3;
-    cursor: default;
-    
     &:hover {
       
-      background: url('/assets/add_small_on_off.png') top center no-repeat transparent;
+      background-position: bottom center;
+      border: none;
+      
+    }
+    
+    &.disabled {
+      
       opacity: 0.3;
       cursor: default;
+    
+      &:hover {
+        
+        background-position: top center;
+        
+      }
       
     }
     
-  }
-  
-  ._add_new_slide_options.disabled {
-    
-    opacity: 0.070;
-    cursor: default;
-    
-    &:hover {
-      
-      float: left;
-      width: 6em;
-      height: 6em;
-      background-image: url(/assets/set-icone-editor.svg);
-      background-repeat: no-repeat;
-      background-size: 24em 60em;
-      padding: 0;
-      font-size: 0.75em;
-      background-position: 0 -6em;
-      
-    }
-  
   }
   
   .slide-tooltip {
@@ -396,15 +370,14 @@ html.lesson-editor-layout {
         
         a {
           
-          width: 60px;
-          height: 60px;
+          width: $lesson-editor-menu-button-size;
+          height: $lesson-editor-menu-button-size;
           padding: 0;
           opacity: 0.2;
           background-repeat: no-repeat;
           background-image: url(<%= asset_path 'set-icone-editor.svg' %>);
           background-size: ($lesson-editor-menu-button-size * 4) ($lesson-editor-menu-button-size * 11);
           float: left;
-          font-size: 0.75em;
           
           &:hover, &.current {
             
@@ -433,6 +406,19 @@ html.lesson-editor-layout {
               
               background-position: (-$lesson-editor-menu-button-size) (-$lesson-editor-menu-button-size);
               
+            }
+            
+            &.disabled {
+              
+              opacity: 0.070;
+              cursor: default;
+              
+              &:hover {
+                
+                background-position: 0 (-$lesson-editor-menu-button-size);
+                
+              }
+            
             }
             
           }
