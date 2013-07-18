@@ -12,6 +12,7 @@
  *= require jquery.jscrollpane
  *= require jquery.selectbox
  *= require jquery-ui-1.9.0.custom
+ *= require mixins
  *= require dialog_popups
  *= require global
  *= require colors
@@ -29,7 +30,6 @@
  *= require lessons
  *= require elements
  *= require profile
- *= require icon_button_popup
  *= require layouts/lesson_editor
  *= require layouts/slides
  *= require layouts/lesson_viewer

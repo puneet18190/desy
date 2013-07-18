@@ -1,66 +1,3 @@
-@mixin title-bar {
-  
-  padding: 0.3% 1% 0.3% 1%;
-  margin-bottom: 12px;
-  float: left;
-  width: 98%;
-  color: #fff;
-  
-}
-
-@mixin float-content {
-  
-  p {
-    
-    width: 10%;
-    text-align: center;
-    float: left;
-    
-  }
-  
-  div {
-    
-    float: right;
-    
-  }
-  
-}
-
-@mixin tag-formatting {
-  
-  h1 {
-    
-    color: #fff;
-    padding: 0;
-    margin: 0;
-    font: 200% 'Nunito', sans-serif;
-    float: left;
-    width: 39%;
-    
-  }
-  
-  h2 {
-    
-    font: 120% 'Nunito', sans-serif;
-    color: #fff;
-    float: left;
-    padding: 0px;
-    margin: 0px;
-    
-  }
-  
-  h3 {
-    
-    font: 120% 'Nunito', sans-serif;
-    color: #5d5c5c;
-    padding: 0px;
-    width: 38.5%;
-    float: left;
-    
-  }
-  
-}
-
 .lessons-controller {
   
   .ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset {
@@ -81,13 +18,45 @@
     
     @include title-bar;
     @include float-content;
-    @include tag-formatting;
+    padding: 0.3% 1% 0.3% 1%;
     background-color: #f29400;
     text-shadow: #d68300 0px 2px 0px;
+    
+    h1 {
+      
+      color: #fff;
+      padding: 0;
+      margin: 0;
+      font: 200% 'Nunito', sans-serif;
+      float: left;
+      width: 39%;
+      
+    }
+    
+    h2 {
+      
+      font: 120% 'Nunito', sans-serif;
+      color: #fff;
+      float: left;
+      padding: 0px;
+      margin: 0px;
+      
+    }
+    
+    h3 {
+      
+      font: 120% 'Nunito', sans-serif;
+      color: #5d5c5c;
+      padding: 0px;
+      width: 38.5%;
+      float: left;
+      
+    }
     
     p {
       
       padding-top: 0.5%;
+      width: 10%;
       
     }
     
