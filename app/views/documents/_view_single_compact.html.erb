@@ -1,6 +1,7 @@
 <%
-  my_title = document.title
-  my_title = my_title.gsub(/(#{word})/i) { |s| "<b style=\"text-decoration:underline\">#{s}</b>" } if !word.blank?
+  my_title = html_escape document.title
+  my_title.gsub! /(#{Regexp.quote word})/i, '<b><u>\1</u></b>' if word.present?
+  my_title = my_title.html_safe
   popup_readonly_description = document.description
   popup_readonly_description = t('documents.description_readonly_placeholder') if popup_readonly_description.blank?
   popup_description = document.description
@@ -12,7 +13,7 @@
   <div class="contentInterno">
     <div class="documentsIcon">
       <%= image_tag document.icon_path, :class=> "fltlft", :title => document.icon_title %>
-      <h3><%= my_title.html_safe %></h3>
+      <h3><%= my_title %></h3>
     </div>
      <p><%= document.size_and_extension %></p>
     <div class="menuController buttons">

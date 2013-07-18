@@ -1,3 +1,5 @@
+require 'filename_token'
+
 # == Description
 #
 # ActiveRecord class that corresponds to the table +documents+.
@@ -22,7 +24,7 @@
 #
 # == Callbacks
 #
-# 1. *before_validation* saves the +title+ from the attached file if it's not present
+# 1. *before_validation* saves the +title+ from the attachment if it's not present
 #
 # == Database callbacks
 #
@@ -31,75 +33,78 @@
 class Document < ActiveRecord::Base
   include Rails.application.routes.url_helpers
   include ActionView::Helpers
+  include FilenameToken
   
   # Maximum length of the title
   MAX_TITLE_LENGTH = (I18n.t('language_parameters.document.length_title') > 255 ? 255 : I18n.t('language_parameters.document.length_title'))
   
   serialize :metadata, OpenStruct
   
-  attr_accessible :title, :description, :media
+  attr_accessible :title, :description, :attachment
+
+  mount_uploader :attachment, DocumentUploader
   
   belongs_to :user
   has_many :documents_slides
   
-  validates_presence_of :user_id, :title
+  validates_presence_of :user_id, :title, :attachment
   validates_numericality_of :user_id, :only_integer => true, :greater_than => 0
   validates_length_of :title, :maximum => MAX_TITLE_LENGTH
   validates_length_of :description, :maximum => I18n.t('language_parameters.document.length_description')
   validate :validate_associations, :validate_impossible_changes
   
-  before_validation :init_validation, :set_title_from_file
-  
-  # Used to sanitize title
-  def title=(title)
-    title = title.nil? ? nil : title.to_s
-    write_attribute(:title, sanitize(title))
-  end
+  before_validation :init_validation, :set_title_from_filename
+  before_save :set_size
   
   # Returns the size and extension in a nice way for the views
   def size_and_extension
-    "#{self.extension}, #{self.size}"
+    "#{extension}, #{humanized_size}"
   end
   
   # Returns the icon, depending on the extension
   def icon_path # TODO controllarlo e completarlo
-    case self.extension
-      when '.ppt' then 'documents/ppt.svg'
+    case extension
+      when '.ppt', '.pptx'                           then 'documents/ppt.svg'
       when '.doc', '.docx', '.pages', '.odt', '.txt' then 'documents/doc.svg'
-      when '.gz', '.zip' then 'documents/zip.svg'
-      when '.xls', '.xlsx', '.numbers', '.ods' then 'documents/exc.svg'
-      when '.pdf', '.ps' then 'documents/pdf.svg'
+      when '.zip'                                    then 'documents/zip.svg'
+      when '.xls', '.xlsx', '.numbers', '.ods'       then 'documents/exc.svg'
+      when '.pdf', '.ps'                             then 'documents/pdf.svg'
       else 'documents/unknown.svg'
     end
   end
   
   # Returns the title associated to the icon
   def icon_title
-    my_title = self.icon_path.split('/').last.split('.').first
+    my_title = icon_path.split('/').last.split('.').first
     I18n.t("titles.documents.#{my_title}")
   end
   
   # Sets metadata
   # TODO
-  def set_metadata(extension, filename, size)
-    self.metadata.extension = extension
-    self.metadata.filename = filename
+  def set_metadata(size)
     self.metadata.size = size
   end
-  
-  # Returns the name of the attached file from metadata
-  def filename
-    self.try(:metadata).try(:filename)
+
+  # Returns the extension of the attachment after an upload
+  def uploaded_filename_without_extension
+    attachment.try(:original_filename_without_extension)
   end
   
-  # Returns the extension of the attached file from metadata
-  def extension
-    self.try(:metadata).try(:extension)
+  def size
+    metadata.size
   end
-  
-  # Returns the size of the attached file
-  def size # TODO manca mettere in bella forma 
-    self.try(:metadata).try(:size)
+
+  def size=(size)
+    metadata.size = size
+  end
+
+  # TODO
+  def humanized_size
+    size
+  end
+
+  def url
+    attachment.url
   end
   
   # === Description
@@ -147,10 +152,15 @@ class Document < ActiveRecord::Base
   end
   
   private
+
+  def set_size
+    self.size = attachment.size if attachment.size
+  end
   
   # Sets automatically the title from the file title if it's nil
-  def set_title_from_file
-    self.title = self.filename[0, MAX_TITLE_LENGTH] if self.title.blank?
+  def set_title_from_filename
+    self.title = uploaded_filename_without_extension.humanize[0, MAX_TITLE_LENGTH] if title.blank? && uploaded_filename_without_extension
+    true
   end
   
   # Validates the presence of all the associated objects
@@ -166,9 +176,7 @@ class Document < ActiveRecord::Base
   
   # Validates that if the document is not new record the field +user_id+ cannot be changed
   def validate_impossible_changes
-    if @document
-      errors.add(:user_id, :cant_be_changed) if @document.user_id != self.user_id
-    end
+    errors.add(:user_id, :cant_be_changed) if @document && @document.user_id != self.user_id
   end
   
 end

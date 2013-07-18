@@ -36,6 +36,9 @@
 # Media elements caricati
 /public/media_elements
 
+# Docuemnts allegati
+/public/documents
+
 # Cartella temporanea che contiene i file in caricamento multiplo dell'amministratore
 /public/admin
 
