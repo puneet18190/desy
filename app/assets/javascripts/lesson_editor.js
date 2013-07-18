@@ -97,6 +97,20 @@ function stopMediaInCurrentSlide() {
   stopMedia('#' + current_slide_id + ' video');
 }
 
+/**
+Switches the titles of disabled and enabled buttons when the user reaches the maximum number of allowed slides.
+@method switchDisabledMaximumSlideNumberLessonEditor
+@for LessonEditorCurrentSlide
+**/
+function switchDisabledMaximumSlideNumberLessonEditor() {
+  var title_disabled = $('._add_new_slide_options').attr('title');
+  var title_disabled_last_position = $('._add_new_slide_options_in_last_position').attr('title');
+  $('._add_new_slide_options').attr('title', $('._add_new_slide_options').data('disabled-title'));
+  $('._add_new_slide_options_in_last_position').attr('title', $('._add_new_slide_options_in_last_position').data('disabled-title'));
+  $('._add_new_slide_options').data('disabled-title', title_disabled);
+  $('._add_new_slide_options_in_last_position').data('disabled-title', title_disabled_last_position);
+}
+
 
 
 
