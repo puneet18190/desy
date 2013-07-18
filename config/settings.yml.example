@@ -120,6 +120,8 @@ maximum_media_elements_folder_size: 20
 cookie_key: '_desy_session'
 # Session timeout (in hours)
 session_timeout: 48
+# The maximum number of documents allowed in a slide
+max_documents_in_slide: 3
 # Enables media debugging routes and controllers /audios_test => media_elements#audios_test 
 #                                                /videos_test => media_elements#videos_test
 media_test: false

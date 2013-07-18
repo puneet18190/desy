@@ -85,4 +85,28 @@ class DocumentsSlideTest < ActiveSupport::TestCase
     assert @documents_slide.valid?
   end
   
+  test 'max_number_of_documents' do
+    assert_obj_saved @documents_slide
+    assert_equal 2, @documents_slide.slide.documents_slides.count
+    d1 = Document.new :title => 'azzzo'
+    d1.user_id = 1
+    assert_obj_saved d1
+    d2 = Document.new :title => 'azzzo2'
+    d2.user_id = 1
+    assert_obj_saved d2
+    ds1 = DocumentsSlide.new
+    ds1.document_id = d1.id
+    ds1.slide_id = @documents_slide.slide_id
+    assert_obj_saved ds1
+    ds2 = DocumentsSlide.new
+    ds2.document_id = d2.id
+    ds2.slide_id = @documents_slide.slide_id
+    assert !ds2.save, "DocumentsSlide erroneously saved - #{ds2.inspect}"
+    assert_equal 1, ds2.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{ds2.errors.inspect}"
+    assert ds2.errors.added? :base, :too_many_documents
+    ds1.destroy
+    assert_nil DocumentsSlide.find_by_id ds1.id
+    assert_obj_saved ds2
+  end
+  
 end

@@ -845,7 +845,12 @@ en:
       # Button '+' to add a new slide
       # 1 - views/lesson_editor/_slide_buttons.html.erb
       # 2 - views/lesson_editor/_slide_buttons.html.erb
+      # 3 - views/lesson_editor/_slide_buttons.html.erb
       add_slide: "Add new slide"
+      # Add a slide in the last position
+      # 1 - views/lesson_editor/index.html.erb
+      # 2 - views/lesson_editor/index.html.erb
+      add_slide_in_last_position: "Add a slide in the last position"
       # 1 - views/lesson_editor/_slide_buttons.html.erb
       add_slide_cancel: "Cancel"
       # Button '+' to replace an audio in the audio slide
@@ -864,6 +869,15 @@ en:
       # Button 'X' to remove the current slide
       # 1 - views/lesson_editor/_slide_buttons.html.erb
       delete_slide: "Remove slide"
+      # Button to insert a document
+      # 1 - views/lesson_editor/_slide_buttons.html.erb
+      document: "Attach a document" # TODO
+      # It's not possible to add further slides, since the maximum number has been reacher (%{num} is replaced by the maximum number of slides inside a lesson)
+      # 1 - views/lesson_editor/_slide_buttons.html.erb
+      # 2 - views/lesson_editor/_slide_buttons.html.erb
+      # 3 - views/lesson_editor/index.html.erb
+      # 4 - views/lesson_editor/index.html.erb
+      last_slide_reached: "You reached the maximum allowed number of %{num} slides"
       # Button to save the current slide
       # 1 - views/lesson_editor/_slide_buttons.html.erb
       save_slide: "Save current slide"
@@ -1222,13 +1236,13 @@ en:
     dont_support_audio: "Your browser does not support audios"
     # Used anywhere the application makes a distinction between 'lessons' and 'media elements' (for instance, in the search engine when the application asks where to search, or in the main page to separate suggested lessons by suggested elements)
     # 1 - views/lessons/index.html.erb
-    # 2 - views/dashboard/_graybar_left.html.erb
+    # 2 - views/dashboard/index.html.erb
     # 3 - views/shared/_menu.html.erb
     # 4 - views/shared/_search.html.erb
     # 5 - views/search/_item_selector.html.erb
     lessons: "Lessons"
     # Used anywhere the application makes a distinction between 'lessons' and 'media elements' (for examples, see 'lessons')
-    # 1 - views/dashboard/_graybar_left.html.erb
+    # 1 - views/dashboard/index.html.erb
     # 2 - views/shared/_menu.html.erb
     # 3 - views/shared/_search.html.erb
     # 4 - views/media_elements/_title_bar.html.erb
@@ -1348,7 +1362,7 @@ en:
     # 1 - views/dashboard/_media_elements_empty.html.erb
     load_new_media_element_now: "Load a new element now"
     # Caption of the buttons to switch between suggested lessons and elements ('selected for you': lessons - elements)
-    # 1 - views/dashboard/_graybar_left.html.erb
+    # 1 - views/dashboard/index.html.erb
     selected_for_you: "Selected for you"
     # Title of the link 'contact us' (bottom left in the page)
     # 1 - views/dashboard/index.html.erb
@@ -1518,7 +1532,7 @@ en:
     # 1 - views/lessons/_view_single_compact.html.erb
     created_on: "Created on"
     # Caption of the link to open the lesson editor (on the left of the bar above the lesson's list)
-    # 1 - views/lessons/_graybar_left.html.erb
+    # 1 - views/lessons/index.html.erb
     create_new: "Create a new lesson"
     # Caption which appears above a link to the lesson editor if your lesson's section is empty
     # 1 - views/lessons/_empty.html.erb
@@ -1598,7 +1612,7 @@ en:
     # Captions of the main page of the Element Editor (a page with three options: open the empty Audio Editor, open the empty Image Editor, open the empty Video Editor)
     editor:
       # Link to the main page of the Element Editor from the section 'my elements'
-      # 1 - views/media_elements/_graybar_left.html.erb
+      # 1 - views/media_elements/index.html.erb
       menu_link: "Elements editor"
       # Above the three options in the main page of Element Editor
       # 1 - views/media_elements/new.html.erb
@@ -1624,7 +1638,7 @@ en:
     # 1 - views/media_elements/_empty_filter.html.erb
     empty_filter: "The element filter produced no result"
     # Caption of the link to open the window to upload a new element (on the left of the bar above the element's list)
-    # 1 - views/media_elements/_graybar_left.html.erb
+    # 1 - views/media_elements/index.html.erb
     load_new: "Upload a new element"
     # Caption which appears above a link to the window to load a new element if your element's section is empty
     # 1 - views/media_elements/_empty.html.erb
@@ -2307,6 +2321,14 @@ en:
   # SECTION 2.18: labels in the section 'documents'
   
   documents:
+    # Form to change info
+    change_info:
+      # 1 - views/documents/_view_single_compact.html.erb
+      cancel: "Cancel"
+      # 1 - views/documents/_view_single_compact.html.erb
+      done: "Save"
+      # 1 - views/documents/_view_single_compact.html.erb
+      title: "Change info"
     # Placeholder in the form to change description and title (the variable %{num} is replaced by the maximum number of characters allowed)
     # 1 - views/documents/_view_single_compact.html.erb
     description_placeholder: "Insert a description (max %{num} characters)"
@@ -2325,16 +2347,16 @@ en:
     # Hints for multiple uploading
     hints:
       # Internet Explorer doesn't support multiple uploader
-      # 1 - views/documents/_graybar_left.html.erb
+      # 1 - views/documents/index.html.erb
       ie: "Your browser supports the uploading of only one document at a time"
       # Other browsers support multiple uploader
-      # 1 - views/documents/_graybar_left.html.erb
+      # 1 - views/documents/index.html.erb
       standard: "Your browser supports multiple uploading: use CTRL to pick more files at the same time"
     # Placeholder to search a document
     # 1 - views/documents/_search.html.erb
     search: "Filter by word:"
     # Button to upload a new document
-    # 1 - views/documents/_graybar_left.html.erb
+    # 1 - views/documents/index.html.erb
     upload: "Upload a document"
     # The system prompts the user to upload a new document, if his section is empty
     # 1 - views/documents/_empty.html.erb
