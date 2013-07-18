@@ -541,20 +541,19 @@
   margin-top: 7px;
   margin-left: 4px;
   cursor: pointer;
-  $button-size: 2.3em;
-  width: $button-size;
-  height: $button-size;
+  width: $dialog-popups-button-size;
+  height: $dialog-popups-button-size;
   background-image: url(<%= asset_path 'icone-player.svg' %>);
   background-repeat: no-repeat;
-  background-size: ($button-size*5) ($button-size*4);
-  background-position: (-$button-size*4) (-$button-size);
+  background-size: ($dialog-popups-button-size * 5) ($dialog-popups-button-size * 4);
+  background-position: (-$dialog-popups-button-size * 4) (-$dialog-popups-button-size);
   padding: 0;
   opacity: 0.1;
   
   &:hover {
     
     cursor: pointer;
-    background-position: (-$button-size*4) (-$button-size);
+    background-position: (-$dialog-popups-button-size * 4) (-$dialog-popups-button-size);
     opacity: 0.4;
     
   }

@@ -1,5 +1,3 @@
-$button-size: 3.5em;
-
 a.cerca {
   
   background-image: url(<%= asset_path 'cerca.png' %>);
@@ -936,9 +934,7 @@ a.cerca.current {
     
   }
   
-  $button-size: 10px;
-  
-  #new-media-element-tags,#edit-media-element-tags {
+  #new-media-element-tags, #edit-media-element-tags {
     
     padding: 0;
     overflow: scroll;
@@ -957,11 +953,11 @@ a.cerca.current {
         
         display: block;
         float: right;
-        width: $button-size;
-        height: $button-size;
+        width: $shared-button-size2;
+        height: $shared-button-size2;
         background-image: url(<%= asset_path 'set-icone-editor.svg' %>);
         background-repeat: no-repeat;
-        background-size: ($button-size * 4) ($button-size * 12);
+        background-size: ($shared-button-size2 * 4) ($shared-button-size2 * 12);
         background-position: -30px 0;
         margin: 2px 0;
         color: #373737;
@@ -995,8 +991,6 @@ a.cerca.current {
   
 }
 
-$button-size: 5em;
-
 .fk_carica_elemento_file {
   
   position: absolute;
@@ -1017,14 +1011,14 @@ label.filebutton {
   overflow: hidden;
   position: relative;
   float: left;
-  width: $button-size;
-  height: $button-size;
+  width: $shared-button-size3;
+  height: $shared-button-size3;
   background-image: url(<%= asset_path 'icone_piene.svg' %>);
   background-repeat: no-repeat;
-  background-size: ($button-size*6) ($button-size);
+  background-size: ($shared-button-size3*6) ($shared-button-size3);
   padding: 0;
   font-size: 1em;
-  background-position: (-$button-size*3) 0;
+  background-position: (-$shared-button-size3*3) 0;
   cursor: pointer;
   
   &:hover {
@@ -1253,61 +1247,61 @@ label.filebutton span input#new_media_element_input {
     
     &.preview:hover {
       
-      background-position: (-$button-size) (-$button-size*7);
+      background-position: (-$shared-button-size1) (-$shared-button-size1 * 7);
       
     }
     
     &.edit:hover {
       
-      background-position: (-$button-size) (-$button-size*6);
+      background-position: (-$shared-button-size1) (-$shared-button-size1 * 6);
       
     }
     
     &.publish:hover {
       
-      background-position: (-$button-size) (-$button-size*4);
+      background-position: (-$shared-button-size1) (-$shared-button-size1 * 4);
       
     }
     
     &.add:hover {
       
-      background-position: (-$button-size) (-$button-size*9);
+      background-position: (-$shared-button-size1) (-$shared-button-size1 * 9);
       
     }
     
     &.remove:hover {
       
-      background-position: (-$button-size) (-$button-size*8);
+      background-position: (-$shared-button-size1) (-$shared-button-size1 * 8);
       
     }
     
     &.destroy:hover {
       
-      background-position: (-$button-size) (-$button-size);
+      background-position: (-$shared-button-size1) (-$shared-button-size1);
       
     }
     
     &.like:hover {
       
-      background-position: (-$button-size) (-$button-size*3);
+      background-position: (-$shared-button-size1) (-$shared-button-size1 * 3);
       
     }
     
     &.report:hover {
       
-      background-position: (-$button-size) 0;
+      background-position: (-$shared-button-size1) 0;
       
     }
     
     &.add_virtual_classroom:hover {
       
-      background-position: (-$button-size) (-$button-size*5);
+      background-position: (-$shared-button-size1) (-$shared-button-size1 * 5);
       
     }
     
     &.copy:hover {
       
-      background-position: (-$button-size) (-$button-size*2);
+      background-position: (-$shared-button-size1) (-$shared-button-size1 * 2);
       
     }
     
