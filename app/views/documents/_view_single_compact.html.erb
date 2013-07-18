@@ -35,18 +35,22 @@
             <textarea class="_doc_description" name="description" data-document-id="<%= document.id %>"><%= popup_description %></textarea>
           </p>
           <%= hidden_field_tag 'description_placeholder', (document.description.blank? ? '1' : ''), :class => '_doc_description_placeholder' %>
-          <div class="fltrt">
-            <div class="fltlft" style="margin-top:5px">
+          <div class="fltrt" style="width:528px">
+             <div class="_error_messages"></div>
+              <div class="fltrt">
+            <%= submit_tag t('documents.change_info.done'), :class => 'lower' %>
+            </div>
+            <div class="fltrt" style="margin-top:5px; margin-right: 8px;">
               <a class="lower _cancel buttonForm" data-document-id="<%= document.id %>">
                 <%= t('documents.change_info.cancel') %>
               </a>
             </div>
-            <div class="fltrt">
-            <%= submit_tag t('documents.change_info.done'), :class => 'lower' %>
-            </div>
+           
+
+
+
           </div>
-          <br class="clearFloat">
-           <div class="_error_messages"></div>
+
         <% end %>
        
       </div>
