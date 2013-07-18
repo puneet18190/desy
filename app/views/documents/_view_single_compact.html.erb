@@ -36,7 +36,6 @@
           </p>
           <%= hidden_field_tag 'description_placeholder', (document.description.blank? ? '1' : ''), :class => '_doc_description_placeholder' %>
           <div class="fltrt">
-            <div class="_error_messages fltlft"></div>
             <div class="fltlft" style="margin-top:5px">
               <a class="lower _cancel buttonForm" data-document-id="<%= document.id %>">
                 <%= t('documents.change_info.cancel') %>
@@ -44,8 +43,10 @@
             </div>
             <div class="fltrt">
             <%= submit_tag t('documents.change_info.done'), :class => 'lower' %>
+            </div>
           </div>
-          </div>
+          <br class="clearFloat">
+           <div class="_error_messages"></div>
         <% end %>
        
       </div>
