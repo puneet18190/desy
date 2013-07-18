@@ -869,6 +869,9 @@ it:
       # Button 'X' to remove the current slide
       # 1 - views/lesson_editor/_slide_buttons.html.erb
       delete_slide: "Rimuovi la diapositiva"
+      # Button to insert a document
+      # 1 - views/lesson_editor/_slide_buttons.html.erb
+      document: "Allega un documento"
       # It's not possible to add further slides, since the maximum number has been reacher (%{num} is replaced by the maximum number of slides inside a lesson)
       # 1 - views/lesson_editor/_slide_buttons.html.erb
       # 2 - views/lesson_editor/_slide_buttons.html.erb

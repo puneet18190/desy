@@ -348,25 +348,42 @@ html.lesson-editor-layout {
       float: left;
       display: block;
       height: 590px;
-      width: 960px;
+      width: 965px;
       padding: 0;
-      margin-left: 50px;
+      margin-left: 45px;
       
       &.active {
         
-        width: 960px;
-        height: 590px;
         opacity: 1;
         
       }
       
       .buttons {
         
+        width: 60px;
         float: right;
-        width: 55px;
-        height: 200px;
-        margin: 145px 0 0 3px;
         display: block;
+        
+        &.buttons_x_4 {
+          
+          height: 240px; /* 60 * 4 */
+          margin-top: 175px; /* (590 - 240) / 2 */
+          
+        }
+        
+        &.buttons_x_5 {
+          
+          height: 300px; /* 60 * 5 */
+          margin-top: 145px; /* (590 - 300) / 2 */
+          
+        }
+        
+        &.buttons_x_6 {
+          
+          height: 360px; /* 60 * 6 */
+          margin-top: 115px; /* (590 - 360) / 2 */
+          
+        }
         
         a {
           
@@ -426,6 +443,18 @@ html.lesson-editor-layout {
           &.minusButtonOrange {
             
             opacity: 1;
+            background-position: (-$lesson-editor-menu-button-size) (-$lesson-editor-menu-button-size * 8);
+            
+            &:hover, &.current {
+              
+              background-position: 0 (-$lesson-editor-menu-button-size * 8);
+              
+            }
+            
+          }
+          
+          &.attacheButtonOrange {
+            
             background-position: (-$lesson-editor-menu-button-size) (-$lesson-editor-menu-button-size * 8);
             
             &:hover, &.current {
