@@ -1222,13 +1222,13 @@ it:
     dont_support_audio: "Il tuo browser non supporta gli audio"
     # Used anywhere the application makes a distinction between 'lessons' and 'media elements' (for instance, in the search engine when the application asks where to search, or in the main page to separate suggested lessons by suggested elements)
     # 1 - views/lessons/index.html.erb
-    # 2 - views/dashboard/_graybar_left.html.erb
+    # 2 - views/dashboard/index.html.erb
     # 3 - views/shared/_menu.html.erb
     # 4 - views/shared/_search.html.erb
     # 5 - views/search/_item_selector.html.erb
     lessons: "Lezioni"
     # Used anywhere the application makes a distinction between 'lessons' and 'media elements' (for examples, see 'lessons')
-    # 1 - views/dashboard/_graybar_left.html.erb
+    # 1 - views/dashboard/index.html.erb
     # 2 - views/shared/_menu.html.erb
     # 3 - views/shared/_search.html.erb
     # 4 - views/media_elements/_title_bar.html.erb
@@ -1348,7 +1348,7 @@ it:
     # 1 - views/dashboard/_media_elements_empty.html.erb
     load_new_media_element_now: "Carica un elemento"
     # Caption of the buttons to switch between suggested lessons and elements ('selected for you': lessons - elements)
-    # 1 - views/dashboard/_graybar_left.html.erb
+    # 1 - views/dashboard/index.html.erb
     selected_for_you: "Scelti per te"
     # Title of the link 'contact us' (bottom left in the page)
     # 1 - views/dashboard/index.html.erb
@@ -1518,7 +1518,7 @@ it:
     # 1 - views/lessons/_view_single_compact.html.erb
     created_on: "Creata il"
     # Caption of the link to open the lesson editor (on the left of the bar above the lesson's list)
-    # 1 - views/lessons/_graybar_left.html.erb
+    # 1 - views/lessons/index.html.erb
     create_new: "Crea una nuova lezione"
     # Caption which appears above a link to the lesson editor if your lesson's section is empty
     # 1 - views/lessons/_empty.html.erb
@@ -1598,7 +1598,7 @@ it:
     # Captions of the main page of the Element Editor (a page with three options: open the empty Audio Editor, open the empty Image Editor, open the empty Video Editor)
     editor:
       # Link to the main page of the Element Editor from the section 'my elements'
-      # 1 - views/media_elements/_graybar_left.html.erb
+      # 1 - views/media_elements/index.html.erb
       menu_link: "Editor degli elementi"
       # Above the three options in the main page of Element Editor
       # 1 - views/media_elements/new.html.erb
@@ -1624,7 +1624,7 @@ it:
     # 1 - views/media_elements/_empty_filter.html.erb
     empty_filter: "Il filtro dell'elemento non ha prodotto risultati"
     # Caption of the link to open the window to upload a new element (on the left of the bar above the element's list)
-    # 1 - views/media_elements/_graybar_left.html.erb
+    # 1 - views/media_elements/index.html.erb
     load_new: "Carica un nuovo elemento"
     # Caption which appears above a link to the window to load a new element if your element's section is empty
     # 1 - views/media_elements/_empty.html.erb
@@ -2325,16 +2325,16 @@ it:
     # Hints for multiple uploading
     hints:
       # Internet Explorer doesn't support multiple uploader
-      # 1 - views/documents/_graybar_left.html.erb
+      # 1 - views/documents/index.html.erb
       ie: "Il tuo browser supporta il caricamento di un solo documento alla volta"
       # Other browsers support multiple uploader
-      # 1 - views/documents/_graybar_left.html.erb
+      # 1 - views/documents/index.html.erb
       standard: "Il tuo browser supporta il caricamento multiplo: usa il tasto CTRL per selezionare più di un file"
     # Placeholder to search a document
     # 1 - views/documents/_search.html.erb
     search: "Filtra per parola:"
     # Button to upload a new document
-    # 1 - views/documents/_graybar_left.html.erb
+    # 1 - views/documents/index.html.erb
     upload: "Carica un documento"
     # The system prompts the user to upload a new document, if his section is empty
     # 1 - views/documents/_empty.html.erb
