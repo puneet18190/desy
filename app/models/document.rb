@@ -31,8 +31,7 @@ require 'filename_token'
 # 1. *cascade* *destruction* for the associated table DocumentsSlide
 #
 class Document < ActiveRecord::Base
-  include Rails.application.routes.url_helpers
-  include ActionView::Helpers
+  include ActionView::Helpers::NumberHelper
   include FilenameToken
   
   # Maximum length of the title
@@ -78,12 +77,6 @@ class Document < ActiveRecord::Base
     my_title = icon_path.split('/').last.split('.').first
     I18n.t("titles.documents.#{my_title}")
   end
-  
-  # Sets metadata
-  # TODO
-  def set_metadata(size)
-    self.metadata.size = size
-  end
 
   # Returns the extension of the attachment after an upload
   def uploaded_filename_without_extension
@@ -98,9 +91,8 @@ class Document < ActiveRecord::Base
     metadata.size = size
   end
 
-  # TODO
-  def humanized_size
-    size
+  def human_size
+    number_to_human_size size
   end
 
   def url
