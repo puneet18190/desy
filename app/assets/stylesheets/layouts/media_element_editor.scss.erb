@@ -3,54 +3,6 @@
 $icon-size: 5.6em;
 $button-size: 6em;
 
-@mixin iconEditorElement($font-size: 2em) {
-  
-  & {
-    
-    float: left;
-    width: $icon-size;
-    height: $icon-size;
-    background-image: url(<%= asset_path 'set-editor-elementi.svg' %>);
-    background-repeat: no-repeat;
-    background-size: ($icon-size*3) ($icon-size*4);
-    padding: 0;
-    font-size: $font-size;
-  }
-}
-
-@mixin layoutIconElements {
-  
-  margin-right: 0px;
-  position: absolute;
-  bottom: 10px;
-  right: 3px;
-  font-size: 0.3em;
-  
-}
-
-@mixin menuCondivisoElementLessonEditor($font-size: 0.9em) {
-  
-  & {
-    
-    float: left;
-    width: $button-size;
-    height: $button-size;
-    background-image: url(<%= asset_path 'set-icone-editor.svg' %>);
-    background-repeat: no-repeat;
-    background-size: ($button-size*4) ($button-size*10);
-    padding: 0;
-    font-size: $font-size;
-    
-  }
-  
-  &:hover {
-    
-    cursor: pointer;
-    
-  }
-  
-}
-
 html.media_element_editor-layout {
   
   #video_editor_preview_slider_box_ghost.boxGhost {
@@ -627,7 +579,7 @@ html.media_element_editor-layout {
       
       .videoButton {
         
-        @include iconEditorElement();
+        @include iconEditorElementInMediaElementEditor();
         background-position: (-$icon-size) 0;
         opacity: 0.4;
         cursor: pointer;
@@ -643,7 +595,7 @@ html.media_element_editor-layout {
       
       .photoButton {
         
-        @include iconEditorElement();
+        @include iconEditorElementInMediaElementEditor();
         background-position: (-$icon-size) (-$icon-size*2);
         opacity: 0.4;
         cursor: pointer;
@@ -659,7 +611,7 @@ html.media_element_editor-layout {
       
       .audioButton {
         
-        @include iconEditorElement();
+        @include iconEditorElementInMediaElementEditor();
         background-position: (-$icon-size) (-$icon-size);
         opacity: 0.4;
         cursor: pointer;
@@ -945,7 +897,15 @@ html.media_element_editor-layout {
       
       .creaNuovoButton {
         
-        @include  menuCondivisoElementLessonEditor(0.7em);
+        float: left;
+        width: $button-size;
+        height: $button-size;
+        background-image: url(<%= asset_path 'set-icone-editor.svg' %>);
+        background-repeat: no-repeat;
+        background-size: ($button-size*4) ($button-size*10);
+        padding: 0;
+        font-size: 0.7em;
+        cursor: pointer;
         background-position: (-$button-size*2) (-$button-size);
         opacity: 0.2;
         

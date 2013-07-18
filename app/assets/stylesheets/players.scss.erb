@@ -1,26 +1,5 @@
 $button-size: 2.4em;
 
-@mixin buttonPlayer {
-  
-  & {
-    
-    width: $button-size;
-    height: $button-size;
-    background-image: url(<%= asset_path 'icone-player.svg' %>);
-    background-repeat: no-repeat;
-    background-size: ($button-size*5) ($button-size*4);
-    padding: 0;
-    
-  }
-  
-  &:hover {
-    
-    cursor: pointer;
-    
-  }
-  
-}
-
 .audioPlayer {
   
   background-color: #3b3a3b;

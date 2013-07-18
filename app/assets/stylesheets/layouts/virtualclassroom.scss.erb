@@ -1,31 +1,8 @@
 $button-size: 4em;
 
-@mixin buttonPlayer {
-  
-  & {
-    
-    width: $button-size;
-    height: $button-size;
-    background-image: url(<%= asset_path 'icone_menu_virtual.svg' %>);
-    background-repeat: no-repeat;
-    background-size: ($button-size*2) ($button-size*3);
-    padding: 0;
-    font-size: 0.688em;
-    
-  }
-  
-}
-
 html.virtual_classroom-controller {
   
   height: 100%;
-  
-  @mixin hrefColorSize {
-    
-    color: #fff;
-    font-size: 90%;
-    
-  }
   
   body {
     
@@ -267,7 +244,7 @@ html.virtual_classroom-controller {
       
       .preview {
         
-        @include buttonPlayer;
+        @include buttonPlayerVirtual;
         background-position: 0 0;
         
         &:hover {
@@ -280,7 +257,7 @@ html.virtual_classroom-controller {
       
       .sendTo {
         
-        @include buttonPlayer;
+        @include buttonPlayerVirtual;
         background-position: 0 (-$button-size);
         
         &:hover {
@@ -293,7 +270,7 @@ html.virtual_classroom-controller {
       
       .remove {
         
-        @include buttonPlayer;
+        @include buttonPlayerVirtual;
         background-position: 0 (-$button-size*2);
         float: right;
         
