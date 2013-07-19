@@ -12,7 +12,7 @@
     @include title-bar;
     @include float-content;
     padding: 0.3% 1% 0.3% 1%;
-    background-color: #41a62a;
+    background-color: $green;
     text-shadow: #399125 0px 2px 0px;
     
     h1 {
@@ -179,7 +179,7 @@
     .sbOptions a:hover, .sbOptions a:focus, .sbOptions a.sbFocus {
       
       color: #fff;
-      background-color: #41a62a;
+      background-color: $green;
       
     }
   }

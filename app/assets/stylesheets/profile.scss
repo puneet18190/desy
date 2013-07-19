@@ -336,7 +336,7 @@
         
         &.email{
           
-          color: #2eaadc;
+          color: $blue;
           width: 60%;
           
           a {
@@ -539,7 +539,7 @@
         
         div {
           
-          color: #41A62A;
+          color: $green;
           
         }
         
@@ -724,7 +724,7 @@
   
   .regular-checkbox:checked + label::after {
     
-    color: #41A62A;
+    color: $green;
     padding: 3px;
     cursor: pointer;
     

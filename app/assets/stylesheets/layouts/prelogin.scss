@@ -343,7 +343,7 @@ html.prelogin-layout {
     
     .container {
       
-      background-color: #2eaadc;
+      background-color: $blue;
       padding: 0px;
       width: 984px;
       
@@ -364,7 +364,7 @@ html.prelogin-layout {
       
       .header {
         
-        background-color: #2eaadc;
+        background-color: $blue;
         
       }
       
@@ -412,7 +412,7 @@ html.prelogin-layout {
     
     input[type="submit"] {
       
-      background-color: #2eaadc;
+      background-color: $blue;
       font-size: 20px;
       font-family: 'Nunito', sans-serif;
       text-transform: none;

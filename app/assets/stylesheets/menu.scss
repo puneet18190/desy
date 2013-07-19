@@ -63,7 +63,7 @@
   
   ul.navlist li.elements a {
     
-    background-color: #41a62a;
+    background-color: $green;
     text-shadow: #368a23 0px 2px 0px;
     
     &.current {
@@ -82,7 +82,7 @@
   
   ul.navlist li.classroom a {
     
-    background-color: #2eaadc;
+    background-color: $blue;
     text-shadow: #3490b5 0px 2px 0px;
     
     &.current {
