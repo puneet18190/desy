@@ -31,7 +31,7 @@ html.media_element_editor-layout {
     
     .ui-slider-range {
       
-      background-color: #43a848;
+      background-color: $green;
       
     }
     
@@ -81,7 +81,7 @@ html.media_element_editor-layout {
   
   .header {
     
-    background-color: #43a848;
+    background-color: $green;
     padding: 5px;
     margin: 0 auto;
     height: 34px;
@@ -121,14 +121,14 @@ html.media_element_editor-layout {
   .headerEmpty {
     
     height: 44px;
-    background-color: #43a848;
+    background-color: $green;
     margin: 0 auto;
     
   }
   
   #form_info_new_media_element_in_editor.formInfoMediaElementEditor, #form_info_update_media_element_in_editor.formInfoMediaElementEditor {
     
-    background-color: #43a848;
+    background-color: $green;
     width: 990px;
     height: 600px;
     position: absolute;
@@ -234,7 +234,6 @@ html.media_element_editor-layout {
         font: 12px Arial, Helvetica, sans-serif;
         color: #fff;
         resize: none;
-        /*border: 3px solid #43a848;*/
         
       }
       
@@ -1247,7 +1246,7 @@ html.media_element_editor-layout {
           
           cursor: pointer;
           position: absolute;
-          background-color: #43A848;
+          background-color: $green;
           border-radius: 0%;
           height: 65px;
           width: 0;
@@ -1434,7 +1433,7 @@ html.media_element_editor-layout {
     h2 {
       
       font-size: 18px;
-      color: #43a848;
+      color: $green;
       
     }
     

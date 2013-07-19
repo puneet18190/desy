@@ -32,7 +32,7 @@
 
 .audioSlider .ui-slider-handle {
   
-  background-color: #43a848;
+  background-color: $green;
   top: -.2em;
   -webkit-border-radius: 50%;
   border-radius: 50%;
@@ -45,7 +45,7 @@
 
 .audioSlider .ui-slider-range-min {
   
-  background-color: #43a848;
+  background-color: $green;
   
 }
 
@@ -106,7 +106,7 @@
 
 .videoSlider .ui-slider-handle {
   
-  background-color: #43a848;
+  background-color: $green;
   top: -.2em;
   -webkit-border-radius: 50%;
   border-radius: 50%;
@@ -119,7 +119,7 @@
 
 .videoSlider .ui-slider-range-min {
   
-  background-color: #43a848;
+  background-color: $green;
   
 }
 
