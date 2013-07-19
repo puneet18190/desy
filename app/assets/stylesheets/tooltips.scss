@@ -36,7 +36,7 @@
         position: absolute;
         right: 0.1em;
         top: 0.1em;
-        background-image: url(<%= asset_path 'cancel_tooltip_notice.png' %>);
+        background-image: $assets-cancel-tooltip-notice_png;
         background-position: center center;
         background-repeat: no-repeat;
         padding: 10px;
@@ -47,7 +47,7 @@
       
       .cancelTooltip:hover {
         
-        background-image: url(<%= asset_path 'cancel_tooltip_notice_on.png' %>);
+        background-image: $assets-cancel-tooltip-notice-on_png;
         
       }
       
@@ -57,7 +57,7 @@
       
       display: block;
       background-color: #c1e6f6;
-      background-image: url(<%= asset_path 'arrow_tooltip_notice.png' %>);
+      background-image: $assets-arrow-tooltip-notice_png;
       background-position: 0.3em center;
       background-repeat: no-repeat;
       border-radius: 3px;
@@ -72,7 +72,7 @@
       
       display: block;
       background-image: none;
-      background-image: url(<%= asset_path 'arrow_tooltip_notice.png' %>);
+      background-image: $assets-arrow-tooltip-notice_png;
       background-position: 0.3em center;
       background-repeat: no-repeat;
       border-radius: 3px;

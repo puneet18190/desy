@@ -14,8 +14,10 @@
  *= require jquery-ui-1.9.0.custom
  */
 
+
 @import url(http://fonts.googleapis.com/css?family=Nunito);
 @import url(http://fonts.googleapis.com/css?family=Droid+Sans);
+
 
 $assets-title-colonna-info-audio_gif: url("<%= asset_path 'tile_colonna_info_audio.gif' %>");
 $assets-rew-laterale_png: url("<%= asset_path 'rew_laterale.png' %>");
@@ -89,6 +91,20 @@ $assets-next_svg: url("<%= asset_path 'next.svg' %>");
 $assets-v_svg: url("<%= asset_path 'v.svg' %>");
 $assets-nav-left_png: url("<%= asset_path 'nav_left.png' %>");
 $assets-nav-right_png: url("<%= asset_path 'nav_right.png' %>");
+$assets-cerca_png: url("<%= asset_path 'cerca.png' %>");
+$assets-cerca-on_png: url("<%= asset_path 'cerca_on.png' %>");
+$assets-cerca-current_png: url("<%= asset_path 'cerca_current.png' %>");
+$assets-create_png: url("<%= asset_path 'create.png' %>");
+$assets-create-white_png: url("<%= asset_path 'create_white.png' %>");
+$assets-bg-button-download_jpg: url("<%= asset_path 'bg_button_download.jpg' %>");
+$assets-lesson-modified-notice_svg: url("<%= asset_path 'lesson_modified_notice.svg' %>");
+$assets-puntoesclamativo_png: url("<%= asset_path 'puntoesclamativo.png' %>");
+$assets-big-audio_jpg: url("<%= asset_path 'big_audio.jpg' %>");
+$assets-big-video_jpg: url("<%= asset_path 'big_video.jpg' %>");
+$assets-icone-menu-preview_svg: url("<%= asset_path 'icone_menu_preview.svg' %>");
+$assets-cancel-tooltip-notice_png: url("<%= asset_path 'cancel_tooltip_notice.png' %>");
+$assets-cancel-tooltip-notice-on_png: url("<%= asset_path 'cancel_tooltip_notice_on.png' %>");
+$assets-arrow-tooltip-notice_png: url("<%= asset_path 'arrow_tooltip_notice.png' %>");
 
 
 <% SETTINGS["colors"].each do |key, value| %>
@@ -100,6 +116,7 @@ $assets-nav-right_png: url("<%= asset_path 'nav_right.png' %>");
     background-color: <%= value['code'] %>;
   }
 <% end %>
+
 
 @import 'variables';
 @import 'mixins';
