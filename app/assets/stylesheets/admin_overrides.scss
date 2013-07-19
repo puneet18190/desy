@@ -1,6 +1,3 @@
-@import url(http://fonts.googleapis.com/css?family=Nunito);
-@import url(http://fonts.googleapis.com/css?family=Raleway:400,200);
-
 .admin-layout {
   
   body {
@@ -51,7 +48,7 @@
     font-size: 12px;
     font-family: Arial, sans-serif;
     font-weight: bold;
-    color: #F29400;
+    color: $orange;
     
     img {
       
@@ -379,7 +376,7 @@
     height: 15px;
     padding: 60px 10px 10px;
     margin-right: 10px;
-    background: url('/assets/admin-menu-icons.png') 0 0;
+    background: $assets-admin-menu-icons_png 0 0;
     text-align: center;
     color: #ffffff;
     
@@ -701,7 +698,7 @@
       
       strong {
         
-        color: #F29400;
+        color: $orange;
         font-weight: normal;
         
       }
