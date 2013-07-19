@@ -1380,7 +1380,7 @@ label.filebutton span input#new_media_element_input {
 
 .emptyGalleryImageEditor {
   
-  background: url(<%= asset_path 'big_image.jpg' %>) center center no-repeat;
+  background: $assets-big-image_jpg center center no-repeat;
   margin-top: 54px;
   padding-top: 180px;
   

@@ -580,7 +580,7 @@ html.virtual_classroom-controller {
     
     color: #727377;
     padding-bottom: 46px;
-    background: url(<%= asset_path 'bg_playlist_empty.png' %>) top right no-repeat;
+    background: $assets-bg-playlist-empty_png top right no-repeat;
     
     p {
       
