@@ -196,11 +196,11 @@
 
 @mixin buttonPlayer {
   
-  width: $button-size;
-  height: $button-size;
+  width: $players-button-size;
+  height: $players-button-size;
   background-image: url(<%= asset_path 'icone-player.svg' %>);
   background-repeat: no-repeat;
-  background-size: ($button-size*5) ($button-size*4);
+  background-size: ($players-button-size * 5) ($players-button-size * 4);
   padding: 0;
   
   &:hover {
@@ -662,29 +662,29 @@
 }
 
 
-@mixin iconEditorElement($font-size: 0.5em) {
+@mixin iconEditorElement($$font-size) {
   
   float: left;
-  width: $icon-size;
-  height: $icon-size;
+  width: $shared-editor-player-icon-size;
+  height: $shared-editor-player-icon-size;
   background-image: url(<%= asset_path 'icone_editor_elementi.svg' %>);
   background-repeat: no-repeat;
-  background-size: ($icon-size*3) ($icon-size*4);
+  background-size: ($shared-editor-player-icon-size * 3) ($shared-editor-player-icon-size * 4);
   padding: 0;
-  font-size: $font-size;
+  font-size: $$font-size;
   
 }
 
-@mixin menuCondivisoElementLessonEditor($font-size: 0.9em) {
+@mixin menuCondivisoElementLessonEditor($$font-size) {
   
   float: left;
-  width: $button-size;
-  height: $button-size;
+  width: $shared-editor-player-button-size1;
+  height: $shared-editor-player-button-size1;
   background-image: url(<%= asset_path 'set-icone-editor.svg' %>);
   background-repeat: no-repeat;
-  background-size: ($button-size * 4) ($button-size * 11);
+  background-size: ($shared-editor-player-button-size1 * 4) ($shared-editor-player-button-size1 * 11);
   padding: 0;
-  font-size: $font-size;
+  font-size: $$font-size;
   
   &:hover {
     
@@ -696,11 +696,11 @@
 
 @mixin menuEditImages {
   
-  width: $button-size;
-  height: $button-size;
+  width: $shared-editor-player-button-size1;
+  height: $shared-editor-player-button-size1;
   background-image: url(<%= asset_path 'set-icone-editor.svg' %>);
   background-repeat: no-repeat;
-  background-size: ($button-size*4) ($button-size*10);
+  background-size: ($shared-editor-player-button-size1 * 4) ($shared-editor-player-button-size1 * 10);
   padding: 2.3em 3em;
   font-size: 0.7em;
   
@@ -712,14 +712,14 @@
   
 }
 
-@mixin buttonExitElement { /* solo qui dentro button-size è 4.5em */
+@mixin buttonExitElement {
   
   display: block;
-  width: $button-size;
-  height: $button-size;
+  width: $shared-editor-player-button-size2;
+  height: $shared-editor-player-button-size2;
   background-image: url(<%= asset_path 'set-icone-editor.svg' %>);
   background-repeat: no-repeat;
-  background-size: ($button-size*4) ($button-size*10);
+  background-size: ($shared-editor-player-button-size2 * 4) ($shared-editor-player-button-size2 * 10);
   padding: 0;
   
   &:hover {
