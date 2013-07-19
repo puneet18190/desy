@@ -1281,7 +1281,7 @@ html.media_element_editor-layout {
         .ui-slider-range {
           
           position: absolute;
-          background: url(<%= asset_path 'bg_ui_slider_horizontal.png' %>) top left repeat-x;
+          background: $assets-bg-ui-slider-horizontal_png top left repeat-x;
           
         }
         

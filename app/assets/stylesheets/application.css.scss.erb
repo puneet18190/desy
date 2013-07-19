@@ -17,6 +17,15 @@
 @import url(http://fonts.googleapis.com/css?family=Nunito);
 @import url(http://fonts.googleapis.com/css?family=Droid+Sans);
 
+$assets-title-colonna-info-audio_gif: url("<%= asset_path 'tile_colonna_info_audio.gif' %>");
+$assets-rew-laterale_png: url("<%= asset_path 'rew_laterale.png' %>");
+$assets-play-lateral_png: url("<%= asset_path 'play_lateral.png' %>");
+$assets-pause-lateral_png: url("<%= asset_path 'pause_lateral.png' %>");
+$assets-maniglia-audio-off_gif: url("<%= asset_path 'maniglia_audio_off.gif' %>");
+$assets-maniglia-audio-on_gif: url("<%= asset_path 'maniglia_audio_on.gif' %>");
+$assets-bg-ui-slider-horizontal_png:  url("<%= asset_path 'bg_ui_slider_horizontal.png' %>");
+
+
 <% SETTINGS["colors"].each do |key, value| %>
   $<%= key %>:<%= value['code'] %>;
   .color_<%= key %>{
@@ -31,7 +40,6 @@
 @import 'mixins';
 @import 'dialog_popups';
 @import 'global';
-@import 'colors';
 @import 'shared';
 @import 'galleries';
 @import 'players';

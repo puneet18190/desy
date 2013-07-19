@@ -19,7 +19,7 @@ html.audio_editor-controller {
       padding: 20px 10px;
       top: 0;
       right: 29px;
-      background-image: url(<%= asset_path 'tile_colonna_info_audio.gif' %>);
+      background-image: $assets-title-colonna-info-audio_gif;
       background-repeat: repeat-x;
       background-position: top left;
       font-size: 12px;
@@ -65,7 +65,7 @@ html.audio_editor-controller {
           float: left;
           background-image: none;
           margin-right: 12px;
-          background: url(<%= asset_path 'rew_laterale.png' %>) top left no-repeat;
+          background: $assets-rew-laterale_png top left no-repeat;
           width: 35px;
           height: 35px;
           
@@ -80,7 +80,7 @@ html.audio_editor-controller {
         a.play {
           
           float: right;
-          background: url(<%= asset_path 'play_lateral.png' %>) top left  no-repeat;
+          background: $assets-play-lateral_png top left  no-repeat;
           width: 35px;
           height: 35px;
           opacity: 1;
@@ -97,7 +97,7 @@ html.audio_editor-controller {
         a.pause {
           
           float: left;
-          background: url(<%= asset_path 'pause_lateral.png' %>) top left  no-repeat;
+          background: $assets-pause-lateral_png top left  no-repeat;
           width: 35px;
           height: 35px;
           opacity: 1;
@@ -150,19 +150,19 @@ html.audio_editor-controller {
         width: 93px;
         height: 103px;
         margin: 0px;
-        background-image: url(<%= asset_path 'maniglia_audio_off.gif' %>);
+        background-image: $assets-maniglia-audio-off_gif;
         background-repeat: no-repeat;
         background-position: top left;
         
         &.current {
           
-          background-image: url(<%= asset_path 'maniglia_audio_on.gif' %>);
+          background-image: $assets-maniglia-audio-on_gif;
           
         }
         
         &:hover {
           
-          background-image: url(<%= asset_path 'maniglia_audio_on.gif' %>);
+          background-image: $assets-maniglia-audio-on_gif;
           cursor: move;
           
         }
@@ -313,7 +313,7 @@ html.audio_editor-controller {
             .ui-slider-range {
               
               position: absolute;
-              background: url(<%= asset_path 'bg_ui_slider_horizontal.png' %>) top left repeat-x;
+              background: $assets-bg-ui-slider-horizontal_png top left repeat-x;
               
             }
             
