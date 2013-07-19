@@ -300,13 +300,13 @@ html.prelogin-layout {
       
       .sbToggle {
         
-        background: url(/assets/select-icons-blue.png) 0 -116px no-repeat;
+        background: $assets-select-icons-blue_png 0 -116px no-repeat;
         
       }
       
       .sbToggleOpen {
         
-        background: url(/assets/select-icons-blue.png) 0 -16px no-repeat;
+        background: $assets-select-icons-blue_png 0 -16px no-repeat;
         
       }
       
@@ -388,7 +388,7 @@ html.prelogin-layout {
       
       .containerText {
         
-        background: url(<%= asset_path 'bg_register.png' %>) top right no-repeat;
+        background: $assets-bg-register_png top right no-repeat;
         padding: 200px 90px 20px 90px;
         font-family: 'Nunito', sans-serif;
         
@@ -482,7 +482,7 @@ html.prelogin-layout {
           li {
             
             padding-left: 18px;
-            background-image: url(<%= asset_path 'arrow_yellow.png' %>);
+            background-image: $assets-arrow-yellow_png;
             background-repeat: no-repeat;
             background-position: 0 0;
             
@@ -511,7 +511,7 @@ html.prelogin-layout {
         float: right;
         margin-top: 47px;
         width: 158px;
-        background-image: url(<%= asset_path 'colonna_destra.jpg' %>);
+        background-image: $assets-colonna-destra_jpg;
         background-repeat: no-repeat;
         background-position: top left;
         padding: 118px 40px 0px 258px;

@@ -280,20 +280,20 @@ html.documents-controller {
       
       .sbToggle {
         
-        background: url(<%= asset_path 'select-icons-documents.png' %>) 0 -123px no-repeat;
+        background: $assets-select-icons-documents_png 0 -123px no-repeat;
         top: 5px;
         
       }
       
       .sbToggle:hover {
         
-        background: url(<%= asset_path 'select-icons-documents.png' %>) 0 -123px no-repeat;
+        background: $assets-select-icons-documents_png 0 -123px no-repeat;
         
       }
       
       .sbToggleOpen {
         
-        background: url(<%= asset_path 'select-icons-documents.png' %>) 0 -22px no-repeat;
+        background: $assets-select-icons-documents_png 0 -22px no-repeat;
         
       }
       

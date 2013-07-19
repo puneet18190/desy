@@ -3,7 +3,7 @@
 
 html.prelogin-layout .header, html.home-layout .header {
   
-  background-image: url(<%= asset_path 'bg_prelogin.jpg' %>);
+  background-image: $assets-bg-prelogin_jpg;
   background-repeat: no-repeat;
   background-position: top center;
   padding: 25px 18px 352px 18px;

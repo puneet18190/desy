@@ -243,7 +243,7 @@ html.lesson-editor-layout {
     padding: 0;
     height: 17px;
     width: 17px;
-    background: url('/assets/add_small_on_off.png') top center no-repeat transparent;
+    background: $assets-add-small-on-off_png top center no-repeat transparent;
     z-index: 100000;
     
     &:hover {
@@ -272,7 +272,7 @@ html.lesson-editor-layout {
     
     @include slide-miniature;
     margin-left: -27px;
-    background: url("/assets/lesson-editor-tooltip-bg.png") top left no-repeat;
+    background: $assets-lesson-editor-tooltip-bg_png top left no-repeat;
     
   }
   
@@ -280,7 +280,7 @@ html.lesson-editor-layout {
     
     @include slide-miniature;
     margin-left: -247px;
-    background: url("/assets/lesson-editor-tooltip-bg-to-left.png") top left no-repeat;
+    background: $assets-lesson-editor-tooltip-bg-to-left_png top left no-repeat;
     
   }
   
@@ -992,7 +992,7 @@ html.lesson-editor-layout {
   layer._not_current_slide:hover {
     
     cursor: pointer;
-    background: url('/assets/not_current_slide_arrows.png') no-repeat center 264px;
+    background: $assets-not-current-slide-arrows_png no-repeat center 264px;
     
   }
   
