@@ -590,7 +590,7 @@
   
 }
 
-@mixin menuCondivisoElementLessonEditor($font-size) {
+@mixin menuCondivisoElementLessonEditor($font-size) { /* TODO 11 */
   
   float: left;
   width: $shared-editor-player-button-size1;
@@ -609,7 +609,7 @@
   
 }
 
-@mixin menuEditImages {
+@mixin menuEditImages { /* TODO 9 */
   
   width: $shared-editor-player-button-size1;
   height: $shared-editor-player-button-size1;
@@ -627,7 +627,7 @@
   
 }
 
-@mixin buttonExitElement {
+@mixin buttonExitElement { /* TODO 10 */
   
   display: block;
   width: $shared-editor-player-button-size2;
@@ -923,6 +923,26 @@
     padding-top: 0px;
     padding-bottom: 50px;
     border: 1px solid #f0e5e5;
+    
+  }
+  
+}
+
+@mixin svg-circle-icon-handler($svg, $size, $how-many-h, $how-many-v, $opacity, $pos-h, $pos-v, $opacity-hover, $pos-h-hover, $pos-v-hover) {
+  
+  width: $size;
+  height: $size;
+  opacity: $opacity;
+  background-repeat: no-repeat;
+  background-image: $svg;
+  background-size: ($size * $how-many-h) ($size * $how-many-v);
+  background-position: (-$size * $pos-h) (-$size * $pos-v);
+  float: left;
+  
+  &:hover {
+    
+    opacity: $opacity-hover;
+    background-position: (-$size * $pos-h-hover) (-$size * $pos-v-hover);
     
   }
   

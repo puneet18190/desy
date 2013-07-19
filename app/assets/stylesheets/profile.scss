@@ -267,7 +267,7 @@
     height: 60px;
     display: block;
     
-    a {
+    a { /* TODO 1 */
       
       background-color: transparent;
       background-image: $assets-set-icone-editor_svg;
@@ -339,7 +339,7 @@
           color: $blue;
           width: 60%;
           
-          a {
+          a { /* TODO 3 */
             
             float: right;
             background-image: $assets-set-icone-editor_svg;
@@ -385,7 +385,7 @@
         
       }
       
-      a.selector {
+      a.selector { /* TODO 4 */
         
         background-image: $assets-set-icone-editor_svg;
         background-position: 0 -125px;
