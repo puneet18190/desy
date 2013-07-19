@@ -212,7 +212,7 @@ html.lesson-editor-layout {
       h1 {
         
         text-align: left;
-        color: #F29400;
+        color: $orange;
         font-size: 30px;
         font-weight: normal;
         margin: 0px;
@@ -634,7 +634,7 @@ html.lesson-editor-layout {
       input[type="text"], textarea, select {
         
         border-radius: 10px;
-        border: 3px solid #f29400;
+        border: 3px solid $orange;
         padding: 5px 10px;
         box-shadow: 0px 2px 2px rgba(50, 50, 50, 0.1) inset;
         

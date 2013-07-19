@@ -61,7 +61,7 @@
   .navlist a.createButtonLesson {
     
     padding: 15px 30px;
-    background-color: #f29400;
+    background-color: $orange;
     color: #fff;
     
     &:hover {
@@ -324,7 +324,7 @@
     &:hover, &.sbFocus {
       
       color: #fff;
-      background-color: #f29400;
+      background-color: $orange;
       
     }
     

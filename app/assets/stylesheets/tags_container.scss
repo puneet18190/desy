@@ -87,7 +87,7 @@
   
   width: 336px;
   height: 140px;
-  border: 3px solid #f29400;
+  border: 3px solid $orange;
   background-color: #E48D1F;
   margin-top: 30px;
   @include tagContainer;
@@ -112,7 +112,7 @@
   
   .ui-autocomplete.ui-menu .ui-menu-item a.ui-state-focus, .ui-autocomplete.ui-menu .ui-menu-item a.ui-state-active {
     
-    color: #f29400;
+    color: $orange;
     
   }
   
