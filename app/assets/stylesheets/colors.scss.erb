@@ -1,3 +1,6 @@
+@import 'variables';
+@import 'mixins';
+
 <% SETTINGS["colors"].each do |key, value| %>
   $<%= key %>:<%= value['code'] %>;
   .color_<%= key %>{
