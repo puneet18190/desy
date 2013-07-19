@@ -272,7 +272,7 @@ html.lesson-viewer-layout {
     padding: 20px;
     width: 120px;
     height: 176px;
-    background: url('/assets/tendina_share.png') no-repeat scroll 0 0 transparent;
+    background: $assets-tendina-share_png no-repeat scroll 0 0 transparent;
     position: absolute;
     top: 422px;
     left: 7px;
@@ -295,22 +295,22 @@ html.lesson-viewer-layout {
     
     .facebook {
       
-      background: url('/assets/logo_facebook.png') no-repeat scroll 0 0 transparent;
+      background: $assets-logo-facebook_png no-repeat scroll 0 0 transparent;
       
       &:hover {
         
-        background: url('/assets/logo_facebook_on.png') no-repeat scroll 0 0 transparent;
+        background: $assets-logo-facebook-on_png no-repeat scroll 0 0 transparent;
         
       }
     }
     
     .twitter {
       
-      background: url('/assets/logo_twitter.png') no-repeat scroll 0 0 transparent;
+      background: $assets-logo-twitter_png no-repeat scroll 0 0 transparent;
       
       &:hover {
         
-        background: url('/assets/logo_twitter_on.png') no-repeat scroll 0 0 transparent;
+        background: $assets-logo-twitter-on_png no-repeat scroll 0 0 transparent;
         
       }
       
@@ -318,11 +318,11 @@ html.lesson-viewer-layout {
     
     .google-plus {
      
-      background: url('/assets/logo_google_plus.png') no-repeat scroll 0 0 transparent;
+      background: $assets-logo-google-plus_png no-repeat scroll 0 0 transparent;
       
       &:hover {
         
-        background: url('/assets/logo_google_plus_on.png') no-repeat scroll 0 0 transparent;
+        background: $assets-logo-google-plus-on_png no-repeat scroll 0 0 transparent;
         
       }
      
@@ -336,12 +336,12 @@ html.lesson-viewer-layout {
     margin-left: 16px;
     width: 18px;
     height: 18px;
-    background: url('/assets/icon_share.png') no-repeat scroll 0 0 transparent;
+    background: $assets-icon-share_png no-repeat scroll 0 0 transparent;
     float: left;
     
     &:hover {
       
-      background: url('/assets/icon_share_roll.png') no-repeat scroll 0 0 transparent;
+      background: $assets-icon-share-roll_png no-repeat scroll 0 0 transparent;
       
     }
     

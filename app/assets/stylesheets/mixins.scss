@@ -101,7 +101,7 @@
   
   width: $virtual-classroom-button-size;
   height: $virtual-classroom-button-size;
-  background-image: url("<%= asset_path 'icone_menu_virtual.svg' %>");
+  background-image: $assets-icone-menu-virtual_svg;
   background-repeat: no-repeat;
   background-size: ($virtual-classroom-button-size * 2) ($virtual-classroom-button-size * 3);
   padding: 0;
@@ -131,7 +131,7 @@
   float: left;
   width: $media-element-editor-icon-size;
   height: $media-element-editor-icon-size;
-  background-image: url(<%= asset_path 'set-editor-elementi.svg' %>);
+  background-image: $assets-set-editor-elementi_svg;
   background-repeat: no-repeat;
   background-size: ($media-element-editor-icon-size * 3) ($media-element-editor-icon-size * 4);
   padding: 0;
