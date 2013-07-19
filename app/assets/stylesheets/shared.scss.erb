@@ -1414,7 +1414,80 @@ label.filebutton span input#new_media_element_input {
     
     a {
       
-      @include button;
+      display: inline-block;
+      width: $shared-button-size4;
+      height: $shared-button-size4;
+      background-image: url(<%= asset_path 'icone_menu_preview.svg' %>);
+      background-repeat: no-repeat;
+      background-size: ($shared-button-size4 * 2) ($shared-button-size4 * 5);
+      padding: 0;
+      margin-right: 8px;
+      
+      &:hover {
+        
+        cursor: pointer;
+        
+      }
+      
+      &.edit {
+        
+        background-position: 0 (-$shared-button-size4 * 2);
+        
+      }
+      
+      &.edit:hover {
+        
+        background-position: (-$shared-button-size4) (-$shared-button-size4 * 2);
+        
+      }
+      
+      &.report {
+        
+        background-position: 0 0;
+        
+      }
+      
+      &.report:hover {
+        
+        background-position: (-$shared-button-size4) 0;
+        
+      }
+      
+      &.report_light {
+        
+        background-position: (-$shared-button-size4) 0;
+        
+      }
+      
+      &.close {
+        
+        background-position: 0 (-$shared-button-size4);
+        
+      }
+      
+      &.close:hover {
+        
+        background-position: (-$shared-button-size4) (-$shared-button-size4);
+        
+      }
+      
+      &.change_info {
+        
+        background-position: 0 (-$shared-button-size4 * 3);
+        
+      }
+      
+      &.change_info:hover {
+        
+        background-position: (-$shared-button-size4) (-$shared-button-size4 * 3);
+        
+      }
+      
+      &.change_info_light {
+        
+        background-position: (-$shared-button-size4) (-$shared-button-size4 * 3);
+        
+      }
       
     }
     

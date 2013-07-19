@@ -40,7 +40,7 @@
  *= require layouts/header_home
  *= require layouts/home
  *= require layouts/prelogin
- *= require layouts/virtualclassroom
+ *= require layouts/virtual_classroom
  *= require audio_editor
  *= require msie
  */
