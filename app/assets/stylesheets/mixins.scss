@@ -577,7 +577,7 @@
 }
 
 
-@mixin iconEditorElement($$font-size) {
+@mixin iconEditorElement($font-size) {
   
   float: left;
   width: $shared-editor-player-icon-size;
@@ -586,11 +586,11 @@
   background-repeat: no-repeat;
   background-size: ($shared-editor-player-icon-size * 3) ($shared-editor-player-icon-size * 4);
   padding: 0;
-  font-size: $$font-size;
+  font-size: $font-size;
   
 }
 
-@mixin menuCondivisoElementLessonEditor($$font-size) {
+@mixin menuCondivisoElementLessonEditor($font-size) {
   
   float: left;
   width: $shared-editor-player-button-size1;
@@ -599,7 +599,7 @@
   background-repeat: no-repeat;
   background-size: ($shared-editor-player-button-size1 * 4) ($shared-editor-player-button-size1 * 11);
   padding: 0;
-  font-size: $$font-size;
+  font-size: $font-size;
   
   &:hover {
     
