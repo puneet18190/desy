@@ -12,7 +12,7 @@
     
     @include title-bar;
     padding: 0.3% 1% 0.3% 1%;
-    background-color: #5d5c5c;
+    background-color: $black;
     text-shadow: #4d4c4c 0px 2px 0px;
     
     h1 {
@@ -621,7 +621,7 @@
   h2 {
     
     font: 120% 'Nunito', sans-serif;
-    color: #5d5c5c;
+    color: $black;
     padding: 5px 10px;
     background-color: #fff;
     
@@ -630,7 +630,7 @@
   .dati {
     
     padding: 10px;
-    color: #5d5c5c;
+    color: $black;
     
     p {
       
@@ -683,7 +683,7 @@
       
       font: 160% 'Nunito', sans-serif;
       padding: 5px 15px;
-      color: #5d5c5c;
+      color: $black;
       
     }
     

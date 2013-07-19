@@ -20,7 +20,7 @@
     
     span {
       
-      color: #5d5c5c;
+      color: $black;
       font-weight: bold;
       
     }
@@ -80,7 +80,7 @@
       margin-right: 0;
       padding: 10px 10px 10px 20px;
       margin-bottom: 10px;
-      color: #5d5c5c;
+      color: $black;
       
     }
     
@@ -144,7 +144,7 @@
     width: 30%;
     padding: 1%;
     vertical-align: top;
-    color: #5D5C5C;
+    color: $black;
     
   }
   
@@ -161,7 +161,7 @@
   h3 {
     
     font: 120% 'Nunito', sans-serif;
-    color: #5d5c5c;
+    color: $black;
     
   }
   
@@ -188,7 +188,7 @@
   h3 {
     
     font: 140% 'Nunito', sans-serif;
-    color: #5d5c5c;
+    color: $black;
     
   }
   
@@ -243,7 +243,7 @@
   border-top: 1px solid #e8e8e8;
   border-left: 1px solid #e8e8e8;
   border-bottom: 1px solid #e8e8e8;
-  color: #5D5C5C;
+  color: $black;
   
   .title {
     
@@ -270,7 +270,7 @@
     
     padding: 0 20px 20px 20px;
     height: 159px;
-    color: #5D5C5C;
+    color: $black;
     
     .link {
       

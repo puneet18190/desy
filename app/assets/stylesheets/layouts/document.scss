@@ -118,7 +118,7 @@ html.documents-controller {
           height: 34px;
           font: 18px 'Nunito', sans-serif;
           color: #fff;
-          background-color: #5d5c5c;
+          background-color: $black;
           border: 0px solid #4fc356;
           
           &:hover {
@@ -154,7 +154,7 @@ html.documents-controller {
         
         .buttonForm {
           
-          color: #5d5c5c;
+          color: $black;
           
           &:hover {
             
@@ -182,7 +182,7 @@ html.documents-controller {
       @include title-bar;
       @include float-content;
       padding: 0 1% 0 1%;
-      background-color: #5d5c5c;
+      background-color: $black;
       
       h1 {
         

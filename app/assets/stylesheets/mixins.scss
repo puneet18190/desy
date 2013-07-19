@@ -154,14 +154,14 @@
   
   /* in content.css è < body, td, pre > */
   /* è anche stato rimosso html overflow: hidden che è stato messo solo per IE */
-  color: #5d5c5c;
+  color: $black;
   font-size: 13px;
   font-family: Arial, Verdana, Helvetica, sans-serif;
   line-height: 14px;
   text-align: left;
   
   td, pre {
-    color: #5d5c5c;
+    color: $black;
     font-size: 13px;
     font-family: Arial, Verdana, Helvetica, sans-serif;
     margin: 8px;
@@ -897,7 +897,7 @@
   input[type="submit"] {
     
     font: 140% 'Nunito', sans-serif;
-    color: #5D5C5C;
+    color: $black;
     background-color: transparent;
     cursor: pointer;
     
