@@ -9,8 +9,13 @@ class Seeds
 
   PUBLIC_MEDIA_ELEMENTS_FOLDERS     = [ Media::Video::Uploader, Media::Audio::Uploader, ImageUploader ].map{ |u| u.const_get(:FOLDER) }
   OLD_PUBLIC_MEDIA_ELEMENTS_FOLDERS = Hash[ PUBLIC_MEDIA_ELEMENTS_FOLDERS.map{ |f| [ f, "#{f}.old" ] } ]
-
+  
   MEDIA_ELEMENTS_FOLDER = Rails.root.join "db/seeds/environments/#{Rails.env}/media_elements"
+  
+  PUBLIC_DOCUMENTS_FOLDER     = DocumentUploader::FOLDER
+  OLD_PUBLIC_DOCUMENTS_FOLDER = "#{DocumentUploader::FOLDER}.old"
+  
+  DOCUMENTS_FOLDER = Rails.root.join "db/seeds/environments/#{Rails.env}/documents"
 
   PEPPER = '3e0e6d5ebaa86768a0a51be98fce6367e44352d31685debf797b9f6ccb7e2dd0f5139170376240945fcfae8222ff640756dd42645336f8b56cdfe634144dfa7d'
 
@@ -25,6 +30,7 @@ class Seeds
     puts "Applying #{Rails.env} seeds (#{MODELS.map{ |m| humanize_table_name(m.table_name) }.join(', ')})"
 
     backup_old_media_elements_folders
+    backup_old_documents_folder
 
     ActiveRecord::Base.transaction do
       MODELS.each do |model|
@@ -35,6 +41,7 @@ class Seeds
       end
 
       remove_old_media_elements_folders
+      remove_old_documents_folder
     end
 
     replace_pepper
@@ -42,6 +49,7 @@ class Seeds
     puts 'End.'
   rescue StandardError => e
     restore_old_media_elements_folders
+    restore_old_documents_folder
 
     raise e
   end
@@ -60,6 +68,27 @@ class Seeds
 
     pepper.open('w'){ |io| io.write PEPPER }
     User::Authentication.const_set :PEPPER, PEPPER
+  end
+
+  def backup_old_documents_folder
+    remove_old_documents_folder
+    
+    begin
+      FileUtils.mv PUBLIC_DOCUMENTS_FOLDER, OLD_PUBLIC_DOCUMENTS_FOLDER
+    rescue Errno::ENOENT
+    end
+  end
+
+  def remove_old_documents_folder
+    FileUtils.rm_rf OLD_PUBLIC_DOCUMENTS_FOLDER
+  end
+
+  def restore_old_documents_folder
+    begin
+      FileUtils.rm_rf PUBLIC_DOCUMENTS_FOLDER
+      FileUtils.mv OLD_PUBLIC_DOCUMENTS_FOLDER, PUBLIC_DOCUMENTS_FOLDER
+    rescue Errno::ENOENT
+    end
   end
 
   def backup_old_media_elements_folders
@@ -125,9 +154,13 @@ class Seeds
     end
   end
 
-  def tags(id, type)
+  def attachment
+    File.open DOCUMENTS_FOLDER.join 'presentation.ppt'
+  end
+
+  def tags(id)
     csv_open(csv_path('taggings')).each.select do |row|
-      row['taggable_type'] == type && row['taggable_id'] == id.to_s
+      row['taggable_type'] == @model.to_s && row['taggable_id'] == id.to_s
     end.map do |taggable_row|
       csv_open(csv_path('tags')).each.find{ |tags_row| taggable_row['tag_id'] == tags_row['id'] }['word']
     end.join(',')
@@ -196,7 +229,7 @@ class Seeds
       record = csv_row_to_record row, row['sti_type'].constantize, %w(mp4_duration webm_duration m4a_duration ogg_duration)
       record.media                   = media(record, row)
       record.skip_public_validations = true
-      record.tags                    = tags(record.id, 'MediaElement')
+      record.tags                    = tags(record.id)
       record.save!
     end
   end
@@ -207,7 +240,7 @@ class Seeds
       record = csv_row_to_record(row)
       record.skip_public_validations = true
       record.skip_cover_creation     = true
-      record.tags                    = tags(record.id, 'Lesson')
+      record.tags                    = tags(record.id)
       record.save!
     end
   end
@@ -216,6 +249,9 @@ class Seeds
     csv_open.each.each_with_index do |row, i|
       progress(i)
       record = csv_row_to_record(row)
+      # XXX se si vuole fare un documento diverso per record
+      # personalizzare il metodo attachment sulla falsariga del metodo media(record, row)
+      record.attachment = attachment
       record.save!
     end
   end

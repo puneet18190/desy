@@ -1,13 +1,9 @@
-# encoding: utf-8
-
 require 'env_relative_path'
 require 'find'
 require 'media'
 
 class ImageUploader < CarrierWave::Uploader::Base
 
-  # Include RMagick or MiniMagick support:
-  # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
   include EnvRelativePath
 
@@ -15,9 +11,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   # include Sprockets::Helpers::RailsHelper
   # include Sprockets::Helpers::IsolatedHelper
 
-  # Choose what kind of storage to use for this uploader:
   storage :file
-  # storage :fog
 
   STORE_DIR            = env_relative_path "media_elements/images"
   FOLDER               = Media::RAILS_PUBLIC_FOLDER.join(STORE_DIR).to_s
@@ -34,7 +28,6 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
-  # TODO omologarla agli altri uploaders (relatività con Rails.env)
   def store_dir
     File.join STORE_DIR, "#{model.id}"
   end
@@ -91,11 +84,11 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   def original_extension
-    File.extname(original_filename)
+    File.extname(original_filename) if original_filename
   end
 
   def original_filename_without_extension
-    File.basename(original_filename, original_extension)
+    File.basename(original_filename, original_extension) if original_filename
   end
 
   # Override the filename of the uploaded files:

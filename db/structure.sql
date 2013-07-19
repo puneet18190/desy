@@ -123,10 +123,10 @@ CREATE TABLE documents (
     user_id integer NOT NULL,
     title character varying(255),
     description text,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
+    attachment character varying(255),
     metadata text,
-    attached character varying(255)
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
 );
 
 
@@ -1664,5 +1664,3 @@ INSERT INTO schema_migrations (version) VALUES ('20130418143554');
 INSERT INTO schema_migrations (version) VALUES ('20130709101814');
 
 INSERT INTO schema_migrations (version) VALUES ('20130709121200');
-
-INSERT INTO schema_migrations (version) VALUES ('20130717100238');
