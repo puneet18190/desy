@@ -101,7 +101,7 @@
   
   width: $virtual-classroom-button-size;
   height: $virtual-classroom-button-size;
-  background-image: url(<%= asset_path 'icone_menu_virtual.svg' %>);
+  background-image: url("<%= asset_path 'icone_menu_virtual.svg' %>");
   background-repeat: no-repeat;
   background-size: ($virtual-classroom-button-size * 2) ($virtual-classroom-button-size * 3);
   padding: 0;
@@ -632,7 +632,7 @@
   display: block;
   width: $shared-editor-player-button-size2;
   height: $shared-editor-player-button-size2;
-  background-image: url(<%= asset_path 'set-icone-editor.svg' %>);
+  background-image: url("<%= asset_path 'set-icone-editor.svg' %>");
   background-repeat: no-repeat;
   background-size: ($shared-editor-player-button-size2 * 4) ($shared-editor-player-button-size2 * 10);
   padding: 0;
@@ -650,7 +650,7 @@
   display: inline-block;
   width: $shared-button-size1;
   height: $shared-button-size1;
-  background-image: url(<%= asset_path 'action_buttons.svg' %>);
+  background-image: url("<%= asset_path 'action_buttons.svg' %>");
   background-repeat: no-repeat;
   background-size: ($shared-button-size1 * 2) ($shared-button-size1 * 10);
   padding: 0;
