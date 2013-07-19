@@ -365,7 +365,7 @@ html.audio_editor-controller {
             float: left;
             background-image: none;
             margin-right: 12px;
-            background: url(<%= asset_path 'rew.png' %>) top left  no-repeat;  
+            background: $assets-rew_png top left no-repeat;
             width: 18px;
             height: 18px;
             
@@ -380,7 +380,7 @@ html.audio_editor-controller {
           a.play {
             
             float: right;
-            background: url(<%= asset_path 'play.png' %>) top left  no-repeat;
+            background: $assets-play_png top left no-repeat;
             width: 18px;
             height: 18px;
             opacity: 1;
@@ -397,7 +397,7 @@ html.audio_editor-controller {
           a.pause {
             
             float: left;
-            background: url(<%= asset_path 'pause.png' %>) top left  no-repeat;
+            background: $assets-pause_png top left no-repeat;
             width: 18px;
             height: 18px;
             opacity: 1;
@@ -546,7 +546,7 @@ html.audio_editor-controller {
   
   .emptyAudioEditor {
     
-    background: url(<%= asset_path 'empty_audio_editor.png' %>) center center no-repeat;
+    background: $assets-empty-audio-editor_png center center no-repeat;
     padding: 60px 290px;
     position: absolute;
     right: 190px;

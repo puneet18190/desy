@@ -1110,7 +1110,7 @@ html.media_element_editor-layout {
       bottom: -3px;
       right: 110px;
       background-image: none;
-      background: url(<%= asset_path 'rew.png' %>) top left no-repeat;
+      background: $assets-rew_png top left no-repeat;
       width: 2.4em;
       height: 2.4em;
       
@@ -1127,7 +1127,7 @@ html.media_element_editor-layout {
       position: absolute;
       bottom: -3px;
       right: 80px;
-      background: url(<%= asset_path 'play.png' %>) top left  no-repeat;
+      background: $assets-play_png top left no-repeat;
       background-size: 18px 18px;
       
       &:hover {
@@ -1143,7 +1143,7 @@ html.media_element_editor-layout {
       position: absolute;
       bottom: -3px;
       right: 80px;
-      background: url(<%= asset_path 'pause.png' %>) top left  no-repeat;
+      background: $assets-pause_png top left no-repeat;
       background-size: 18px 18px;
       
     }

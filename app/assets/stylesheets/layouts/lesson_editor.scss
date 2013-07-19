@@ -784,19 +784,19 @@ html.lesson-editor-layout {
       .sbToggle {
         
         margin-top: 10px;
-        background: url('/assets/select-icons-lessons-white.png') 0 -123px no-repeat;
+        background: $assets-select-icons-lessons-white_png 0 -123px no-repeat;
         
        }
        
        .sbToggle:hover {
          
-         background: url('/assets/select-icons-lessons-white.png') 0 -123px no-repeat;
+         background: $assets-select-icons-lessons-white_png 0 -123px no-repeat;
          
        }
        
        .sbToggleOpen {
          
-         background: url('/assets/select-icons-lessons-white.png') 0 -22px no-repeat;
+         background: $assets-select-icons-lessons-white_png 0 -22px no-repeat;
          
        }
        
