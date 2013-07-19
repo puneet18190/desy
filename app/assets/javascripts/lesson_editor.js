@@ -441,6 +441,11 @@ function lessonEditorDocumentReadySlideButtons() {
       url: '/lessons/' + $('#info_container').data('lesson-id') + '/slides/' + slide.data('slide-id') + '/delete'
     });
   });
+  $('body').on('click', '._attach_document', function() {
+    
+    alert('sto allegando un documento'); // TODO
+    
+  });
 }
 
 /**
