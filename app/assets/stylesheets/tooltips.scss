@@ -314,7 +314,7 @@
       float: right;
       width: 3.5em;
       height: 3.5em;
-      background-image: url(<%= asset_path 'action_buttons.svg' %>);
+      background-image: $assets-action-buttons_svg;
       background-repeat: no-repeat;
       background-size: 7em 35em;
       background-position: 0 -24.5em;

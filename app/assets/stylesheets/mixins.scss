@@ -178,7 +178,7 @@
   }
   
   ul {
-    list-style-image: url('/assets/pallino.svg'); /* questo ha nome diverso, esistono due duplicati del pallino */
+    list-style-image: $assets-pallino_svg; /* questo ha nome diverso, esistono due duplicati del pallino */
   }
   
   strong, b {
@@ -281,7 +281,7 @@
     -moz-user-modify: read-only;
     width: 11px !important;
     height: 11px !important;
-    background: url(img/items.gif) no-repeat center center;
+    background: $assets-tiny-items_gif no-repeat center center; /* questo ha nome diverso, esistono due duplicati di questa icona */
   }
   
   span.mceItemNbsp {
@@ -564,7 +564,7 @@
 
 @mixin background-mix {
   
-  background-image: url(<%= asset_path 'notice.png' %>);
+  background-image: $assets-notice_png;
   background-repeat: no-repeat;
   
 }
@@ -582,7 +582,7 @@
   float: left;
   width: $shared-editor-player-icon-size;
   height: $shared-editor-player-icon-size;
-  background-image: url(<%= asset_path 'icone_editor_elementi.svg' %>);
+  background-image: $assets-icone-editor-elementi_svg;
   background-repeat: no-repeat;
   background-size: ($shared-editor-player-icon-size * 3) ($shared-editor-player-icon-size * 4);
   padding: 0;
@@ -650,7 +650,7 @@
   display: inline-block;
   width: $shared-button-size1;
   height: $shared-button-size1;
-  background-image: url("<%= asset_path 'action_buttons.svg' %>");
+  background-image: $assets-action-buttons_svg;
   background-repeat: no-repeat;
   background-size: ($shared-button-size1 * 2) ($shared-button-size1 * 10);
   padding: 0;
@@ -771,7 +771,7 @@
   
   background-size: 2.7em 8.1em;
   width: 40%;
-  background-image: url(<%= asset_path 'icon_elements.svg' %>);
+  background-image: $assets-icon-elements_svg;
   background-repeat: no-repeat;
   background-position: 0 0;
   float: left;
@@ -829,7 +829,7 @@
       background-repeat: no-repeat;
       margin: 2px 2px 0px 5px;
       color: #373737;
-      background-image: url(<%= asset_path 'grigia.png' %>);
+      background-image: $assets-grigia_png;
       
       &:hover {
         
@@ -845,7 +845,7 @@
     
     a {
       
-      background-image: url(<%= asset_path 'grigia.png' %>);
+      background-image: $assets-grigia_png;
       
       &:hover {
         

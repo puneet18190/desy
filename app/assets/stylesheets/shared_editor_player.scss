@@ -6,7 +6,7 @@
   .audio {
     
     background-size: 11.3em 22.7em;
-    background-image: url(<%= asset_path 'icone_editor_elementi.svg' %>);
+    background-image: $assets-icone-editor-elementi_svg;
     background-repeat: no-repeat;
     background-position: 0 0;
     padding: 0;
@@ -347,7 +347,7 @@ a.addButtonContent {
 
 .esciButton {
   
-  background-image: url(<%= asset_path 'esci.svg' %>);
+  background-image: $assets-esci_svg;
   background-repeat: no-repeat;
   background-size: 12em 6em;
   background-position: 0em -1em;
@@ -368,7 +368,7 @@ a.addButtonContent {
 
 .exitGallery {
   
-  background-image: url(<%= asset_path 'x.svg' %>);
+  background-image: $assets-x_svg;
   background-repeat: no-repeat;
   background-size: 23.8em 3.4em;
   background-position: -7.1em 0em;
@@ -387,7 +387,7 @@ a.addButtonContent {
 
 .nextButton {
   
-  background-image: url(<%= asset_path 'next.svg' %>);
+  background-image: $assets-next_svg;
   background-repeat: no-repeat;
   background-size: 12em 6em;
   background-position: 0em 0em;
@@ -412,7 +412,7 @@ a.addButtonContent {
   
   width: 6.2em;
   height: 6.3em;
-  background-image: url(/assets/v.svg);
+  background-image: $assets-v_svg;
   background-repeat: no-repeat;
   background-size: 14em 7em;
   background-position: 0 0;
@@ -432,7 +432,7 @@ a.addButtonContent {
 
 .navLeft {
   
-  background: url(<%= asset_path 'nav_left.png' %>) center left no-repeat;
+  background: $assets-nav-left_png center left no-repeat;
   opacity: 0.6;
   position: absolute;
   left: 0%;
@@ -450,7 +450,7 @@ a.addButtonContent {
 
 .navRight {
   
-  background: url(<%= asset_path 'nav_right.png' %>) center left no-repeat;
+  background: $assets-nav-right_png center left no-repeat;
   opacity: 0.6;
   position: absolute;
   right: 0%;
