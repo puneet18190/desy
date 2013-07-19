@@ -521,7 +521,7 @@
       
       &:hover {
         
-        background-image: url(<%= asset_path 'bianca.png' %>);
+        background-image: $assets-bianca_png;
         
       }
       
@@ -546,7 +546,7 @@
   cursor: pointer;
   width: $dialog-popups-button-size;
   height: $dialog-popups-button-size;
-  background-image: url(<%= asset_path 'icone-player.svg' %>);
+  background-image: $assets-icone-player_svg;
   background-repeat: no-repeat;
   background-size: ($dialog-popups-button-size * 5) ($dialog-popups-button-size * 4);
   background-position: (-$dialog-popups-button-size * 4) (-$dialog-popups-button-size);

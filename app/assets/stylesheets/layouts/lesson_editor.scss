@@ -378,7 +378,7 @@ html.lesson-editor-layout {
           padding: 0;
           opacity: 0.2;
           background-repeat: no-repeat;
-          background-image: url(<%= asset_path 'set-icone-editor.svg' %>);
+          background-image: $assets-set-icone-editor_svg;
           background-size: ($lesson-editor-menu-button-size * 4) ($lesson-editor-menu-button-size * 11);
           float: left;
           
@@ -955,7 +955,7 @@ html.lesson-editor-layout {
     position: absolute;
     z-index: 999999999;
     font-size: 130px;
-    background-image: url("/assets/icone_piene.svg");
+    background-image: $assets-icone-piene_svg;
     width: 130px;
     height: 130px;
     background-repeat: no-repeat;

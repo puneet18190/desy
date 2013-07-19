@@ -958,7 +958,7 @@ a.cerca.current {
         float: right;
         width: $shared-button-size2;
         height: $shared-button-size2;
-        background-image: url(<%= asset_path 'set-icone-editor.svg' %>);
+        background-image: $assets-set-icone-editor_svg;
         background-repeat: no-repeat;
         background-size: ($shared-button-size2 * 4) ($shared-button-size2 * 12);
         background-position: -30px 0;
@@ -1016,7 +1016,7 @@ label.filebutton {
   float: left;
   width: $shared-button-size3;
   height: $shared-button-size3;
-  background-image: url(<%= asset_path 'icone_piene.svg' %>);
+  background-image: $assets-icone-piene_svg;
   background-repeat: no-repeat;
   background-size: ($shared-button-size3*6) ($shared-button-size3);
   padding: 0;

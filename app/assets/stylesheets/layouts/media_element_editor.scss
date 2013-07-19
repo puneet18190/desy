@@ -43,7 +43,7 @@ html.media_element_editor-layout {
     position: absolute;
     z-index: 999999999;
     font-size: 130px;
-    background-image: url("/assets/icone_piene.svg");
+    background-image: $assets-icone-piene_svg;
     width: 130px;
     height: 130px;
     background-repeat: no-repeat;
@@ -898,7 +898,7 @@ html.media_element_editor-layout {
         float: left;
         width: $media-element-editor-button-size;
         height: $media-element-editor-button-size;
-        background-image: url(<%= asset_path 'set-icone-editor.svg' %>);
+        background-image: $assets-set-icone-editor_svg;
         background-repeat: no-repeat;
         background-size: ($media-element-editor-button-size * 4) ($media-element-editor-button-size * 10);
         padding: 0;

@@ -131,19 +131,19 @@
     
     .sbToggle {
       
-      background: url(<%= asset_path 'select-icons-elements.png' %>) 0 -123px no-repeat;
+      background: $assets-select-icons-elements_png 0 -123px no-repeat;
       
     }
     
     .sbToggle:hover {
       
-      background: url(<%= asset_path 'select-icons-elements.png' %>) 0 -123px no-repeat;
+      background: $assets-select-icons-elements_png 0 -123px no-repeat;
       
     }
     
     .sbToggleOpen {
       
-      background: url(<%= asset_path 'select-icons-elements.png' %>) 0 -22px no-repeat;
+      background: $assets-select-icons-elements_png 0 -22px no-repeat;
       
     }
     

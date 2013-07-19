@@ -326,7 +326,7 @@ a.addButtonContent {
   
   width: $shared-editor-player-button-size3;
   height: $shared-editor-player-button-size3;
-  background-image: url(<%= asset_path 'icone-player.svg' %>);
+  background-image: $assets-icone-player_svg;
   background-repeat: no-repeat;
   background-size: ($shared-editor-player-button-size3 * 5) ($shared-editor-player-button-size3 * 4);
   background-position: -8em -4em;

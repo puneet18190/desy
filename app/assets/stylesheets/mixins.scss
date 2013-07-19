@@ -113,7 +113,7 @@
   
   width: $players-button-size;
   height: $players-button-size;
-  background-image: url(<%= asset_path 'icone-player.svg' %>);
+  background-image: $assets-icone-player_svg;
   background-repeat: no-repeat;
   background-size: ($players-button-size * 5) ($players-button-size * 4);
   padding: 0;
@@ -373,7 +373,7 @@
 
 @mixin image-icon {
   
-  background: url('/assets/icone_piene.svg') no-repeat scroll -2em center / 6em 1em transparent;
+  background: $assets-icone-piene_svg no-repeat scroll -2em center / 6em 1em transparent;
   
 }
 
@@ -406,7 +406,7 @@
 
 @mixin video-icon {
   
-  background: url('/assets/icone_piene.svg') no-repeat scroll -1em center / 6em 1em transparent;
+  background: $assets-icone-piene_svg no-repeat scroll -1em center / 6em 1em transparent;
   
 }
 
@@ -430,7 +430,7 @@
 
 @mixin audio-icon {
   
-  background: url('/assets/icone_piene.svg') no-repeat scroll 0em center / 6em 1em transparent;
+  background: $assets-icone-piene_svg no-repeat scroll 0em center / 6em 1em transparent;
   cursor: pointer;
   position: absolute;
   
@@ -595,7 +595,7 @@
   float: left;
   width: $shared-editor-player-button-size1;
   height: $shared-editor-player-button-size1;
-  background-image: url(<%= asset_path 'set-icone-editor.svg' %>);
+  background-image: $assets-set-icone-editor_svg;
   background-repeat: no-repeat;
   background-size: ($shared-editor-player-button-size1 * 4) ($shared-editor-player-button-size1 * 11);
   padding: 0;
@@ -613,7 +613,7 @@
   
   width: $shared-editor-player-button-size1;
   height: $shared-editor-player-button-size1;
-  background-image: url(<%= asset_path 'set-icone-editor.svg' %>);
+  background-image: $assets-set-icone-editor_svg;
   background-repeat: no-repeat;
   background-size: ($shared-editor-player-button-size1 * 4) ($shared-editor-player-button-size1 * 10);
   padding: 2.3em 3em;
@@ -632,7 +632,7 @@
   display: block;
   width: $shared-editor-player-button-size2;
   height: $shared-editor-player-button-size2;
-  background-image: url("<%= asset_path 'set-icone-editor.svg' %>");
+  background-image: $assets-set-icone-editor_svg;
   background-repeat: no-repeat;
   background-size: ($shared-editor-player-button-size2 * 4) ($shared-editor-player-button-size2 * 10);
   padding: 0;
@@ -833,7 +833,7 @@
       
       &:hover {
         
-        background-image: url(<%= asset_path 'bianca.png' %>);
+        background-image: $assets-bianca_png;
         
       }
       
@@ -849,7 +849,7 @@
       
       &:hover {
         
-        background-image: url(<%= asset_path 'bianca.png' %>);
+        background-image: $assets-bianca_png;
         
       }
       

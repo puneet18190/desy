@@ -80,7 +80,7 @@
         
         .add:hover {
           
-          background: url('/assets/icone_piene.svg') no-repeat scroll -2em center / 6em 1em transparent;
+          background: $assets-icone-piene_svg no-repeat scroll -2em center / 6em 1em transparent;
           
         }
         
@@ -94,7 +94,7 @@
         
         .add:hover {
           
-          background: url('/assets/icone_piene.svg') no-repeat scroll -1em center / 6em 1em transparent;
+          background: $assets-icone-piene_svg no-repeat scroll -1em center / 6em 1em transparent;
           
         }
         
@@ -112,7 +112,7 @@
           
           &:hover {
             
-            background: url('/assets/icone_piene.svg') no-repeat scroll 0em center / 6em 1em transparent;
+            background: $assets-icone-piene_svg no-repeat scroll 0em center / 6em 1em transparent;
             
           }
           

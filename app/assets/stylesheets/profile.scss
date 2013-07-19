@@ -270,7 +270,7 @@
     a {
       
       background-color: transparent;
-      background-image: url('set-icone-editor.svg');
+      background-image: $assets-set-icone-editor_svg;
       background-position: -100px -50px;
       background-size: 200px 600px;
       background-repeat: no-repeat;
@@ -342,7 +342,7 @@
           a {
             
             float: right;
-            background-image: url('set-icone-editor.svg');
+            background-image: $assets-set-icone-editor_svg;
             background-position: -40px 0;
             background-size: 80px 240px;
             background-repeat: no-repeat;
@@ -387,7 +387,7 @@
       
       a.selector {
         
-        background-image: url('set-icone-editor.svg');
+        background-image: $assets-set-icone-editor_svg;
         background-position: 0 -125px;
         background-size: 100px 300px;
         background-repeat: no-repeat;
@@ -463,7 +463,7 @@
       input[type=submit] {
         
         background-color: transparent;
-        background-image: url('set-icone-editor.svg');
+        background-image: $assets-set-icone-editor_svg;
         background-position: 0 -25px;
         background-size: 100px 300px;
         background-repeat: no-repeat;
