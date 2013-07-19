@@ -211,16 +211,16 @@
   
 }
 
-@mixin iconEditorElementInMediaElementEditor($font-size: 2em) {
+@mixin iconEditorElementInMediaElementEditor {
   
   float: left;
-  width: $icon-size;
-  height: $icon-size;
+  width: $media-element-editor-icon-size;
+  height: $media-element-editor-icon-size;
   background-image: url(<%= asset_path 'set-editor-elementi.svg' %>);
   background-repeat: no-repeat;
-  background-size: ($icon-size*3) ($icon-size*4);
+  background-size: ($media-element-editor-icon-size * 3) ($media-element-editor-icon-size * 4);
   padding: 0;
-  font-size: $font-size;
+  font-size: 2em;
   
 }
 
@@ -909,9 +909,8 @@
       
       display: block;
       float: right;
-      $button-size: 15px;
-      width: $button-size;
-      height: $button-size;
+      width: 15px;
+      height: 15px;
       background-repeat: no-repeat;
       margin: 2px 2px 0px 5px;
       color: #373737;

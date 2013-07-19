@@ -1,8 +1,5 @@
 @import url(http://fonts.googleapis.com/css?family=Droid+Sans);
 
-$icon-size: 5.6em;
-$button-size: 6em;
-
 html.media_element_editor-layout {
   
   #video_editor_preview_slider_box_ghost.boxGhost {
@@ -579,8 +576,8 @@ html.media_element_editor-layout {
       
       .videoButton {
         
-        @include iconEditorElementInMediaElementEditor();
-        background-position: (-$icon-size) 0;
+        @include iconEditorElementInMediaElementEditor;
+        background-position: (-$media-element-editor-icon-size) 0;
         opacity: 0.4;
         cursor: pointer;
         
@@ -595,14 +592,14 @@ html.media_element_editor-layout {
       
       .photoButton {
         
-        @include iconEditorElementInMediaElementEditor();
-        background-position: (-$icon-size) (-$icon-size*2);
+        @include iconEditorElementInMediaElementEditor;
+        background-position: (-$media-element-editor-icon-size) (-$media-element-editor-icon-size * 2);
         opacity: 0.4;
         cursor: pointer;
         
         &:hover, &.current {
           
-          background-position: 0 (-$icon-size*2);
+          background-position: 0 (-$media-element-editor-icon-size * 2);
           opacity: 1;
           
         }
@@ -611,14 +608,14 @@ html.media_element_editor-layout {
       
       .audioButton {
         
-        @include iconEditorElementInMediaElementEditor();
-        background-position: (-$icon-size) (-$icon-size);
+        @include iconEditorElementInMediaElementEditor;
+        background-position: (-$media-element-editor-icon-size) (-$media-element-editor-icon-size);
         opacity: 0.4;
         cursor: pointer;
         
         &:hover, &.current {
           
-          background-position: 0 (-$icon-size);
+          background-position: 0 (-$media-element-editor-icon-size);
           opacity: 1;
           
         }
@@ -898,21 +895,21 @@ html.media_element_editor-layout {
       .creaNuovoButton {
         
         float: left;
-        width: $button-size;
-        height: $button-size;
+        width: $media-element-editor-button-size;
+        height: $media-element-editor-button-size;
         background-image: url(<%= asset_path 'set-icone-editor.svg' %>);
         background-repeat: no-repeat;
-        background-size: ($button-size*4) ($button-size*10);
+        background-size: ($media-element-editor-button-size * 4) ($media-element-editor-button-size * 10);
         padding: 0;
         font-size: 0.7em;
         cursor: pointer;
-        background-position: (-$button-size*2) (-$button-size);
+        background-position: (-$media-element-editor-button-size * 2) (-$media-element-editor-button-size);
         opacity: 0.2;
         
         &:hover, &.current {
           
           font-size: 0.7em;
-          background-position: (-$button-size*3) (-$button-size);
+          background-position: (-$media-element-editor-button-size * 3) (-$media-element-editor-button-size);
           opacity: 1;
           
         }
