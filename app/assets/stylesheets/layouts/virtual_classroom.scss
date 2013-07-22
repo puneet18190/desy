@@ -596,7 +596,9 @@ html.virtual_classroom-controller {
     
   }
   
-  .exitButton {
+  .exitButton { /* TODO 10.3 */
+    
+  /*  @include svg-circle-icon-handler($assets-set-icone-editor_svg, 45px, 4, 12, 1, 2, 3); */
     
     position: absolute;
     right: 3px;

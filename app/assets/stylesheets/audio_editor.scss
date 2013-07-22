@@ -447,7 +447,9 @@ html.audio_editor-controller {
       
     }
     
-    a.exitButton {
+    a.exitButton { /* TODO 10.2 */
+      
+      /*  @include svg-circle-icon-handler($assets-set-icone-editor_svg, 45px, 4, 12, 1, 2, 3); */
       
       position: absolute;
       z-index: 101;

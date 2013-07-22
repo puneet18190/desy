@@ -261,28 +261,6 @@
   
 }
 
-.exitButton { /* TODO 10 */
-  
-  display: block;
-  width: 3em;
-  height: 3em;
-  background-image: $assets-set-icone-editor_svg;
-  background-repeat: no-repeat;
-  background-size: (3em * 4) (3em * 10);
-  padding: 0;
-  
-  &:hover {
-    
-    cursor: pointer;
-    
-  }
-  
-  font-size: 0.3em;
-  background-position: (-3em * 2) 0;
-  opacity: 0.2;
-  
-}
-
 a.addButtonContent {
   
   width: $shared-editor-player-button-size3;
