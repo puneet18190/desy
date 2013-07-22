@@ -814,26 +814,22 @@ html.media_element_editor-layout {
         bottom: 0px;
         background-color: rgba(47,47,47,0.93);
         
-        a {
+        a.cutButton {
           
-          &.cutButton {
-            
-            @include svg-circle-icon-handler($assets-action-fotogramma_svg, 24px, 2, 3, 0.2, 1, 2, 1, 0, 2);
-            margin-right: 7px;
-            
-          }
+          @include svg-circle-icon-handler($assets-action-fotogramma_svg, 24px, 2, 3, 0.2, 1, 2, 1, 0, 2);
+          margin-right: 7px;
           
-          &.creaNuovoButton {
-            
-            @include svg-circle-icon-handler($assets-action-fotogramma_svg, 24px, 2, 3, 0.2, 1, 1, 1, 0, 1);
-            
-          }
+        }
+        
+        a.creaNuovoButton {
           
-          &.closeButton {
-            
-            @include svg-circle-icon-handler($assets-action-fotogramma_svg, 24px, 2, 3, 0.2, 1, 0, 1, 0, 0, right);
-            
-          }
+          @include svg-circle-icon-handler($assets-action-fotogramma_svg, 24px, 2, 3, 0.2, 1, 1, 1, 0, 1);
+          
+        }
+          
+        a.closeButton {
+          
+          @include svg-circle-icon-handler($assets-action-fotogramma_svg, 24px, 2, 3, 0.2, 1, 0, 1, 0, 0, right);
           
         }
         
