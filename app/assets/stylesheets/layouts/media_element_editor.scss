@@ -814,23 +814,16 @@ html.media_element_editor-layout {
         bottom: 0px;
         background-color: rgba(47,47,47,0.93);
         
-        a { /* TODO 11.1, 11.2, 11.3 */
+        a {
           
-          
-          
-          
-          
-          
-          
-          font-size: 0.3em;
-          float: left;
-          padding: 0;
-          background-image: $assets-action-fotogramma_svg;
-          background-repeat: no-repeat;
-          background-size: 12em 18em;
-          
-          &.cutButton {
+          &.cutButton { /* TODO 11.1 */
             
+            font-size: 0.3em;
+            float: left;
+            padding: 0;
+            background-image: $assets-action-fotogramma_svg;
+            background-repeat: no-repeat;
+            background-size: 12em 18em;
             background-position: -6em -12em;
             margin-right: 2em;
             width:6em;
@@ -846,10 +839,15 @@ html.media_element_editor-layout {
             
           }
           
-          &.creaNuovoButton {
+          &.creaNuovoButton { /* TODO 11.2 */
             
             
-            
+            font-size: 0.3em;
+            float: left;
+            padding: 0;
+            background-image: $assets-action-fotogramma_svg;
+            background-repeat: no-repeat;
+            background-size: 12em 18em;
             float: left;
             width: $shared-editor-player-button-size1;
             height: $shared-editor-player-button-size1;
@@ -857,7 +855,7 @@ html.media_element_editor-layout {
             background-repeat: no-repeat;
             background-size: ($shared-editor-player-button-size1 * 4) ($shared-editor-player-button-size1 * 11);
             padding: 0;
-            font-size: $font-size;
+            font-size: 1em;
             &:hover {
               cursor: pointer;
             }
@@ -884,43 +882,7 @@ html.media_element_editor-layout {
           
           &.closeButton {
             
-            
-            
-  float: left;
-  width: $shared-editor-player-button-size1;
-  height: $shared-editor-player-button-size1;
-  background-image: $assets-set-icone-editor_svg;
-  background-repeat: no-repeat;
-  background-size: ($shared-editor-player-button-size1 * 4) ($shared-editor-player-button-size1 * 11);
-  padding: 0;
-  font-size: $font-size;
-  
-  &:hover {
-    
-    cursor: pointer;
-    
-  }
-  background-position: 0 0;
-  opacity: 0.2;
-  
-  &:hover, &.current {
-    
-    background-position: (-$shared-editor-player-button-size1 * 3) 0;
-    opacity: 1;
-    
-  }
-            
-            
-            
-            background-position: -6em 0;
-            float: right;
-            
-            &:hover {
-              
-              background-position: 0 0;
-              opacity: 1;
-              
-            }
+            @include svg-circle-icon-handler($assets-action-fotogramma_svg, 24px, 2, 3, 0.2, 1, 0, 1, 0, 0, right);
             
           }
           
@@ -986,7 +948,7 @@ html.media_element_editor-layout {
       background-repeat: no-repeat;
       background-size: ($shared-editor-player-button-size1 * 4) ($shared-editor-player-button-size1 * 11);
       padding: 0;
-      font-size: $font-size;
+      font-size: 1em;
       &:hover {
         cursor: pointer;
       }
@@ -1028,7 +990,7 @@ html.media_element_editor-layout {
   background-repeat: no-repeat;
   background-size: ($shared-editor-player-button-size1 * 4) ($shared-editor-player-button-size1 * 11);
   padding: 0;
-  font-size: $font-size;
+  font-size: 1em;
   
   &:hover {
     
@@ -1827,7 +1789,7 @@ html.media_element_editor-layout {
   background-repeat: no-repeat;
   background-size: ($shared-editor-player-button-size1 * 4) ($shared-editor-player-button-size1 * 11);
   padding: 0;
-  font-size: $font-size;
+  font-size: 1em;
   
   &:hover {
     

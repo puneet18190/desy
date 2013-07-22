@@ -489,7 +489,7 @@ html.lesson-editor-layout {
     background-repeat: no-repeat;
     background-size: ($shared-editor-player-button-size1 * 4) ($shared-editor-player-button-size1 * 11);
     padding: 0;
-    font-size: $font-size;
+    font-size: 1em;
     &:hover {
       cursor: pointer;
     }
