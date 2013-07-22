@@ -33,6 +33,13 @@ class MailingListGroupTest < ActiveSupport::TestCase
   test 'uniqueness' do
     assert_invalid @mailing_list_group, :name, 'Amici ahrahrahra', 'Amici ahrarahra', :taken
     assert_obj_saved @mailing_list_group
+    mlg2 = MailingListGroup.new
+    mlg2.user_id = 2
+    used_name = 'Amici ahrahrahra'
+    assert MailingListGroup.where(:name => used_name).any?
+    assert MailingListGroup.where(:name => used_name, :user_id => 2).empty?
+    mlg2.name = used_name
+    assert_obj_saved mlg2
   end
   
   test 'associations' do
