@@ -38,7 +38,7 @@ class MailingListGroup < ActiveRecord::Base
   validates_presence_of :name, :user_id
   validates_length_of :name, :maximum => 255
   validates_numericality_of :user_id, :only_integer => true, :greater_than => 0
-  validates_uniqueness_of :name
+  validates_uniqueness_of :name, :scope => :user_id
   validate :validate_associations
   
   before_validation :init_validation, :validate_impossible_changes
