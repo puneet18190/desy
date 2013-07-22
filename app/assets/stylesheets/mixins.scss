@@ -886,9 +886,6 @@
   
 }
 
-
-
-
 @mixin svg-circle-icon-handler($svg, $size, $how-many-h, $how-many-v, $opacity, $pos-h, $pos-v, $opacity-hover, $pos-h-hover, $pos-v-hover, $float: left) {
   
   @include svg-circle-icon-handler-without-hover($svg, $size, $how-many-h, $how-many-v, $opacity, $pos-h, $pos-v, $float);
