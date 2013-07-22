@@ -606,18 +606,15 @@ html.media_element_editor-layout {
         
       }
       
-      .audioButton {
+      .audioButton { /* TODO 11.9 */
         
         @include iconEditorElementInMediaElementEditor;
         background-position: (-$media-element-editor-icon-size) (-$media-element-editor-icon-size);
         opacity: 0.4;
         cursor: pointer;
-        
         &:hover, &.current {
-          
           background-position: 0 (-$media-element-editor-icon-size);
           opacity: 1;
-          
         }
         
       }
@@ -882,10 +879,6 @@ html.media_element_editor-layout {
     width: 900px;
     
     a.creaNuovoButton { /* TODO 11.4 */
-      
-      
-      
-      
       float: left;
       width: $shared-editor-player-button-size1;
       height: $shared-editor-player-button-size1;
@@ -904,10 +897,6 @@ html.media_element_editor-layout {
         background-position: (-$shared-editor-player-button-size1 * 3) (-$shared-editor-player-button-size1);
         opacity: 1;
       }
-      
-      
-      
-      
       font-size: 0.6em;
       float: left;
       padding: 0;
@@ -927,31 +916,23 @@ html.media_element_editor-layout {
     
     a.closeButton { /* TODO 11.5 */
       
-      
-  float: left;
-  width: $shared-editor-player-button-size1;
-  height: $shared-editor-player-button-size1;
-  background-image: $assets-set-icone-editor_svg;
-  background-repeat: no-repeat;
-  background-size: ($shared-editor-player-button-size1 * 4) ($shared-editor-player-button-size1 * 11);
-  padding: 0;
-  font-size: 1em;
-  
-  &:hover {
-    
-    cursor: pointer;
-    
-  }
-  background-position: 0 0;
-  opacity: 0.2;
-  
-  &:hover, &.current {
-    
-    background-position: (-$shared-editor-player-button-size1 * 3) 0;
-    opacity: 1;
-    
-  }
-      
+      float: left;
+      width: $shared-editor-player-button-size1;
+      height: $shared-editor-player-button-size1;
+      background-image: $assets-set-icone-editor_svg;
+      background-repeat: no-repeat;
+      background-size: ($shared-editor-player-button-size1 * 4) ($shared-editor-player-button-size1 * 11);
+      padding: 0;
+      font-size: 1em;
+      &:hover {
+        cursor: pointer;
+      }
+      background-position: 0 0;
+      opacity: 0.2;
+      &:hover, &.current {
+        background-position: (-$shared-editor-player-button-size1 * 3) 0;
+        opacity: 1;
+      }
       font-size: 0.6em;
       float: left;
       padding: 0;
@@ -960,12 +941,9 @@ html.media_element_editor-layout {
       background-repeat: no-repeat;
       background-size: 12em 18em;
       background-position: -6em 0;
-      
       &:hover {
-        
         opacity: 1;
         background-position: 0em 0;
-        
       }
       
     }
@@ -979,28 +957,31 @@ html.media_element_editor-layout {
       
     }
     
-    .audioButton {
+    .audioButton { /* TODO 11.8 */
       
+      @include iconEditorElement(0.7em);
+      margin-right: 0px;
+      background-position: (-$shared-editor-player-icon-size * 2) (-$shared-editor-player-icon-size);
+      opacity: 0.1;
+      cursor: pointer;
+      &:hover, &.current {
+        background-position: 0 (-$shared-editor-player-icon-size);
+        opacity: 1;
+      }
       font-size: 0.8em;
       background-position: -5.2em -5.3em;
       opacity: 0.2;
       float: left;
-      
-    }
-    
-    .audioButton:hover {
-      
-      background-position: 0.3em -5.3em;
-      opacity: 1;
-      
-    }
-    
-    .audioButton.current {
-      
-      font-size: 0.7em;
-      background-position: 0.3em -5.3em;
-      opacity: 1;
-      float: left;
+      &:hover {
+        background-position: 0.3em -5.3em;
+        opacity: 1;
+      }
+      &.current {
+        font-size: 0.7em;
+        background-position: 0.3em -5.3em;
+        opacity: 1;
+        float: left;
+      }
       
     }
     

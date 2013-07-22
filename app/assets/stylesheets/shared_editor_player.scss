@@ -92,23 +92,6 @@
   
 }
 
-.audioButton {
-  
-  @include iconEditorElement(0.7em);
-  margin-right: 0px;
-  background-position: (-$shared-editor-player-icon-size * 2) (-$shared-editor-player-icon-size);
-  opacity: 0.1;
-  cursor: pointer;
-  
-  &:hover, &.current {
-    
-    background-position: 0 (-$shared-editor-player-icon-size);
-    opacity: 1;
-    
-  }
-  
-}
-
 .textButton {
   
   @include iconEditorElement(0.7em);
