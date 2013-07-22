@@ -1,0 +1,922 @@
+@mixin emptyFormat {
+  
+  h1 {
+    
+    font: 180% 'Nunito', sans-serif;
+    
+  }
+}
+
+@mixin title-bar {
+  
+  margin-bottom: 12px;
+  float: left;
+  width: 98%;
+  color: #fff;
+  
+}
+
+@mixin float-content {
+  
+  p {
+    
+    text-align: center;
+    float: left;
+    
+  }
+  
+  div {
+    
+    float: right;
+    
+  }
+  
+}
+
+@mixin ulGallery {
+  
+  .pseudo-ul {
+    
+    padding: 0;
+    margin: 0;
+    
+    .scroll-pane {
+      
+      margin-left: 35px;
+      width: 840px;
+      position: absolute;
+      
+      .pseudo-li {
+        
+        float: left;
+        
+      }
+      
+    }
+    
+  }
+  
+}
+
+@mixin boxShadow {
+  
+  height: 590px;
+  width: 900px;
+  background-color: #252323;
+  
+}
+
+@mixin stileElementiSceltaColori {
+  
+  padding: 5px;
+  outline: 1px solid #e6e6e6;
+  cursor: pointer;
+  float: left;
+  margin-left: 8px;
+  margin-top: 2px;
+  
+  &:hover, &.current {
+    
+    outline: 2px solid #fff;
+    
+  }
+  
+}
+
+@mixin slide-miniature {
+  
+  width: 243px; /* 900 scalato al 27% */
+  height: 159px; /* 590 scalato al 27%, sarebbe 159.3 ma il 0.3 lo nascondo */
+  padding: 21px 26px 26px 26px; /* top: 11 + 10; tutti gli altri: 16 + 10 */
+  display: none;
+  z-index: 9999999999;
+  margin-top: 20px; /* per staccarsi dalle <a> */
+  margin-right: 0;
+  margin-bottom: 0;
+  position: absolute;
+  
+}
+
+@mixin buttonPlayerVirtual {
+  
+  width: $virtual-classroom-button-size;
+  height: $virtual-classroom-button-size;
+  background-image: $assets-icone-menu-virtual_svg;
+  background-repeat: no-repeat;
+  background-size: ($virtual-classroom-button-size * 2) ($virtual-classroom-button-size * 3);
+  padding: 0;
+  font-size: 0.688em;
+  
+}
+
+@mixin buttonPlayer {
+  
+  width: $players-button-size;
+  height: $players-button-size;
+  background-image: $assets-icone-player_svg;
+  background-repeat: no-repeat;
+  background-size: ($players-button-size * 5) ($players-button-size * 4);
+  padding: 0;
+  
+  &:hover {
+    
+    cursor: pointer;
+    
+  }
+  
+}
+
+@mixin iconEditorElementInMediaElementEditor {
+  
+  float: left;
+  width: $media-element-editor-icon-size;
+  height: $media-element-editor-icon-size;
+  background-image: $assets-set-editor-elementi_svg;
+  background-repeat: no-repeat;
+  background-size: ($media-element-editor-icon-size * 3) ($media-element-editor-icon-size * 4);
+  padding: 0;
+  font-size: 2em;
+  
+}
+
+@mixin layoutIconElements {
+  
+  margin-right: 0px;
+  position: absolute;
+  bottom: 10px;
+  right: 3px;
+  font-size: 0.3em;
+  
+}
+
+/* tenere allineato con content.css; le differenze con tale file sono sottolineate nei commenti */
+@mixin read-only-tiny-mce {
+  
+  /* in content.css è < body, td, pre > */
+  /* è anche stato rimosso html overflow: hidden che è stato messo solo per IE */
+  color: $black;
+  font-size: 13px;
+  font-family: Arial, Verdana, Helvetica, sans-serif;
+  line-height: 14px;
+  text-align: left;
+  
+  td, pre {
+    color: $black;
+    font-size: 13px;
+    font-family: Arial, Verdana, Helvetica, sans-serif;
+    margin: 8px;
+    line-height: 14px;
+    text-align: left;
+  }
+  
+  p, ol, ul {
+    margin: 0 0 10px 0;
+  }
+  
+  ol, ul {
+    padding-left: 40px;
+  }
+  
+  ul {
+    list-style-image: $assets-pallino_svg; /* questo ha nome diverso, esistono due duplicati del pallino */
+  }
+  
+  strong, b {
+    font-weight: bold;
+  }
+  
+  i, cite, em, var, address, dfn {
+    font-style: italic;
+  }
+  
+  a {
+    color: $orange;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  
+  .size1 {
+    font-size: 13px;
+    line-height: 14px;
+  }
+  
+  .size2 {
+    font-size: 17px;
+    line-height: 19px;
+  }
+  
+  .size3 {
+    font-size: 21px;
+    line-height: 23px;
+  }
+  
+  .size4 {
+    font-size: 25px;
+    line-height: 27px;
+  }
+  
+  .size5 {
+    font-size: 29px;
+    line-height: 32px;
+  }
+  
+  .size6 {
+    font-size: 35px;
+    line-height: 39px;
+  }
+  
+  body {
+    background: #FFF;
+  }
+  
+  body.mceForceColors {
+    background: #FFF;
+    color: #000;
+  }
+  
+  body.mceBrowserDefaults {
+    background: transparent;
+    color: inherit;
+    font-size: inherit;
+    font-family: inherit;
+  }
+  
+  h1 {
+    font-size: 2em;
+  }
+  
+  h2 {
+    font-size: 1.5em;
+  }
+  
+  h3 {
+    font-size: 1.17em;
+  }
+  
+  h4 {
+    font-size: 1em;
+  }
+  
+  h5 {
+    font-size: .83em;
+  }
+  
+  h6 {
+    font-size: .75em;
+  }
+  
+  .mceItemTable, .mceItemTable td, .mceItemTable th, .mceItemTable caption, .mceItemVisualAid {
+    border: 1px dashed #BBB;
+  }
+  
+  a.mceItemAnchor {
+    display: inline-block;
+    -webkit-user-select: all;
+    -webkit-user-modify: read-only;
+    -moz-user-select: all;
+    -moz-user-modify: read-only;
+    width: 11px !important;
+    height: 11px !important;
+    background: $assets-tiny-items_gif no-repeat center center; /* questo ha nome diverso, esistono due duplicati di questa icona */
+  }
+  
+  span.mceItemNbsp {
+    background: #DDD;
+  }
+  
+  td.mceSelected, th.mceSelected {
+    background-color: #3399ff !important;
+  }
+  
+  img {
+    border: 0;
+  }
+  
+  table, img, hr, .mceItemAnchor {
+    cursor: default;
+  }
+  
+  table td, table th {
+    cursor: text;
+  }
+  
+  ins {
+    border-bottom: 1px solid green;
+    text-decoration: none;
+    color: green;
+  }
+  
+  del {
+    color: red;
+    text-decoration: line-through;
+  }
+  
+  cite {
+    border-bottom: 1px dashed blue;
+  }
+  
+  acronym {
+    border-bottom: 1px dotted #CCC;
+    cursor: help;
+  }
+  
+  abbr {
+    border-bottom: 1px dashed #CCC;
+    cursor: help;
+  }
+  
+  * html body {
+    scrollbar-3dlight-color: #F0F0EE;
+    scrollbar-arrow-color: #676662;
+    scrollbar-base-color: #F0F0EE;
+    scrollbar-darkshadow-color: #DDD;
+    scrollbar-face-color: #E0E0DD;
+    scrollbar-highlight-color: #F0F0EE;
+    scrollbar-shadow-color: #F0F0EE;
+    scrollbar-track-color: #F5F5F5;
+  }
+  
+  img:-moz-broken {
+    -moz-force-broken-image-icon: 1;
+    width: 24px;
+    height: 24px;
+  }
+  
+  font[face=mceinline] {
+    font-family: inherit !important;
+  }
+  
+  *[contentEditable]:focus {
+    outline: 0;
+  }
+  
+}
+
+@mixin slide-title-common {
+  
+  font-size: $slide-title-font-size;
+  width: $slide-title-inner-width;
+  height: $slide-title-inner-height;
+  padding: $slide-title-padding;
+  line-height: $slide-title-line-height;
+  font-family: "Nunito", Helvetica, sans-serif;
+  border: $slide-title-border solid #EFEFEF;
+  color: $orange;
+  letter-spacing: -4px;
+  background-color: white;
+  
+}
+
+@mixin image-icon {
+  
+  background: $assets-icone-piene_svg no-repeat scroll -2em center / 6em 1em transparent;
+  
+}
+
+@mixin image-icon-big {
+  
+  @include image-icon;
+  font-size: $big-icon-dimension;
+  width: $big-icon-dimension;
+  height: $big-icon-dimension;
+  
+}
+
+@mixin image-icon-small {
+  
+  @include image-icon;
+  font-size: $small-icon-dimension;
+  width: $small-icon-dimension;
+  height: $small-icon-dimension;
+  
+}
+
+@mixin image-icon-tiny {
+  
+  @include image-icon;
+  font-size: $tiny-icon-dimension;
+  width: $tiny-icon-dimension;
+  height: $tiny-icon-dimension;
+  
+}
+
+@mixin video-icon {
+  
+  background: $assets-icone-piene_svg no-repeat scroll -1em center / 6em 1em transparent;
+  
+}
+
+@mixin video-icon-big {
+  
+  @include video-icon;
+  font-size: $big-icon-dimension;
+  width: $big-icon-dimension;
+  height: $big-icon-dimension;
+  
+}
+
+@mixin video-icon-small {
+  
+  @include video-icon;
+  font-size: $small-icon-dimension;
+  width: $small-icon-dimension;
+  height: $small-icon-dimension;
+  
+}
+
+@mixin audio-icon {
+  
+  background: $assets-icone-piene_svg no-repeat scroll 0em center / 6em 1em transparent;
+  cursor: pointer;
+  position: absolute;
+  
+}
+
+@mixin audio-icon-big {
+  
+  @include audio-icon;
+  font-size: $audio-big-icon-dimension;
+  width: $audio-big-icon-dimension;
+  height: $audio-big-icon-dimension;
+  
+}
+
+@mixin audio-icon-small {
+  
+  @include audio-icon;
+  font-size: $audio-small-icon-dimension;
+  width: $audio-small-icon-dimension;
+  height: $audio-small-icon-dimension;
+  
+}
+
+@mixin plus-icon {
+  
+  background-position: -3em center;
+  
+}
+
+@mixin general-empty-mask {
+  
+  color: #999999;
+  background-color: #F1F1F1;
+  font-size: $icon-label-font-size;
+  text-align: center;
+  
+}
+
+@mixin image-caption {
+  
+  font-family: "Nunito", Helvetica, sans-serif;
+  background-color: rgba(50, 50, 50, 0.7);
+  color: #FAFAFA;
+  height: $image-caption-height;
+  padding: 0 $image-caption-horizontal-padding;
+  position: absolute;
+  left: auto;
+  bottom: 0;
+  line-height: $image-caption-line-height;
+  font-size: $image-caption-font-size;
+  
+}
+
+@mixin handle-registrations {
+  
+  body {
+    
+    font-family: 'Nunito', sans-serif;
+    background: #373737;
+    color: #fff;
+    text-align: center;
+    
+  }
+  
+  .container {
+    
+    background-color: transparent;
+    display: table;
+    padding: 20px;
+    height: 90%;
+    text-align: center;
+    width: auto;
+    
+    .dialog {
+      
+      display: table-cell;
+      vertical-align: middle;
+      text-align: left;
+      padding: 20px;
+      margin: 0;
+      
+      h1 {
+        
+        font-size: 260%;
+        color: #25aae1;
+        padding: 0;
+        margin: 0;
+        
+      }
+      
+      p {
+        
+        padding: 0px;
+        margin-bottom: 30px;
+        
+      }
+      
+      label {
+        
+        font-size: 90%;
+        margin-left: 10px;
+        
+      }
+      
+      input[type="submit"] {
+        
+        font-size: 120%;
+        cursor: pointer;
+        color: #fff;
+        background-color: transparent;
+        
+      }
+      
+      input[type="email"] {
+        
+        border: 1px solid #424141;
+        box-shadow: none;
+        height: 29px;
+        background-color: #2e2c2d;
+        border-radius: 10px;
+        color: #fff;
+        font-size: 120%;
+        
+      }
+      
+    }
+    
+  }
+  
+}
+
+@mixin background-mix {
+  
+  background-image: $assets-notice_png;
+  background-repeat: no-repeat;
+  
+}
+
+@mixin border-formatting {
+  
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  
+}
+
+
+@mixin iconEditorElement($font-size) {
+  
+  float: left;
+  width: $shared-editor-player-icon-size;
+  height: $shared-editor-player-icon-size;
+  background-image: $assets-icone-editor-elementi_svg;
+  background-repeat: no-repeat;
+  background-size: ($shared-editor-player-icon-size * 3) ($shared-editor-player-icon-size * 4);
+  padding: 0;
+  font-size: $font-size;
+  
+}
+
+@mixin menuCondivisoElementLessonEditor($font-size) { /* TODO 11 */
+  
+  float: left;
+  width: $shared-editor-player-button-size1;
+  height: $shared-editor-player-button-size1;
+  background-image: $assets-set-icone-editor_svg;
+  background-repeat: no-repeat;
+  background-size: ($shared-editor-player-button-size1 * 4) ($shared-editor-player-button-size1 * 11);
+  padding: 0;
+  font-size: $font-size;
+  
+  &:hover {
+    
+    cursor: pointer;
+    
+  }
+  
+}
+
+@mixin button-test {
+  
+  display: inline-block;
+  width: $shared-button-size1;
+  height: $shared-button-size1;
+  background-image: $assets-action-buttons_svg;
+  background-repeat: no-repeat;
+  background-size: ($shared-button-size1 * 2) ($shared-button-size1 * 10);
+  padding: 0;
+  margin-right: 8px;
+  font-size: 1em;
+  
+  &.preview {
+    
+    background-position: 0 (-$shared-button-size1 * 7);
+    
+  }
+  
+  &.edit {
+    
+    background-position: 0 (-$shared-button-size1 * 6);
+    
+  }
+  
+  &.publish {
+    
+    background-position: 0 (-$shared-button-size1 * 4);
+    
+  }
+  
+  &.unpublish {
+    
+    background-position: (-$shared-button-size1) (-$shared-button-size1 * 4);
+    
+  }
+  
+  &.add {
+    
+    background-position: 0 (-$shared-button-size1 * 9);
+    
+  }
+  
+  &.remove {
+    
+    background-position: 0 (-$shared-button-size1 * 8);
+    
+  }
+  
+  &.destroy {
+    
+    background-position: 0 (-$shared-button-size1);
+    
+  }
+  
+  &.dislike {
+    
+    background-position: (-$shared-button-size1) (-$shared-button-size1 * 3);
+    
+  }
+  
+  &.like {
+    
+    background-position: 0 (-$shared-button-size1 * 3);
+    
+  }
+  
+  &.report {
+    
+    background-position: -0.5em 0;
+    background-size: 6em 30em;
+    
+  }
+  
+  &.report_light {
+    
+    background-position: (-$shared-button-size1) 0;
+    background-size: 6em 30em;
+    
+  }
+  
+  &.remove_virtual_classroom {
+    
+    background-position: (-$shared-button-size1) (-$shared-button-size1 * 5);
+    
+  }
+  
+  &.add_virtual_classroom {
+    
+    background-position: 0 (-$shared-button-size1 * 5);
+    
+  }
+  
+  &.copy {
+    
+    background-position: 0 (-$shared-button-size1 * 2);
+    
+  }
+  
+}
+
+@mixin contentLayout {
+  
+  margin-bottom: 1%;
+  -webkit-box-shadow: 0px 3px 4px #d3d3d3;
+  box-shadow: 0px 3px 4px #d3d3d3;
+  
+  h1 {
+    
+    font:  110% 'Nunito', sans-serif;
+    color: $orange;
+    padding: 0px;
+    
+  }
+  
+  h2 {
+    
+    font: 140% 'Nunito', sans-serif;
+    
+  }
+  
+}
+
+@mixin iconeElements {
+  
+  background-size: 2.7em 8.1em;
+  width: 40%;
+  background-image: $assets-icon-elements_svg;
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  float: left;
+  padding: 4px 0px 2px 50px;
+  display: inline-block;
+  margin-right: 1.8%;
+  
+}
+
+@mixin contentInterno {
+  
+  padding: 4%;
+  height: 110px;
+  
+}
+
+@mixin tagContainer {
+  
+  display: block;
+  resize: none;
+  line-height: 20px;
+  border-radius: 10px;
+  padding: 0;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2) inset;
+  color: #fff;
+  font-size: 12px;
+  font-family: Arial, sans-serif;
+  outline: none;
+  overflow: auto;
+  position: relative;
+  
+  ._placeholder {
+    
+    position: absolute;
+    top: 5px;
+    left: 10px;
+    
+  }
+  
+  span {
+    
+    border-radius: 5px;
+    padding: 0 3px;
+    margin: 5px 0 0 5px;
+    background-color: #fff;
+    float: left;
+    color: #373737;
+    
+    a {
+      
+      display: block;
+      float: right;
+      width: 15px;
+      height: 15px;
+      background-repeat: no-repeat;
+      margin: 2px 2px 0px 5px;
+      color: #373737;
+      background-image: $assets-grigia_png;
+      
+      &:hover {
+        
+        background-image: $assets-bianca_png;
+        
+      }
+      
+    }
+    
+  }
+  
+  span.new_tag {
+    
+    a {
+      
+      background-image: $assets-grigia_png;
+      
+      &:hover {
+        
+        background-image: $assets-bianca_png;
+        
+      }
+      
+    }
+    
+  }
+  
+  #tags {
+    
+    overflow: visible;
+    clear: both;
+    border: none;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 0 10px;
+    box-shadow: none;
+    width: 295px;
+    height: auto;
+    
+  }
+  
+}
+
+@mixin misc {
+  
+  position: absolute;
+  margin: 0px;
+  z-index: 10;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  
+}
+
+@mixin call {
+  
+  z-index: 20;
+  position: absolute;
+  border: 0;
+  right: -6px;
+  
+}
+
+@mixin inputSend {
+  
+  input[type="submit"] {
+    
+    font: 140% 'Nunito', sans-serif;
+    color: $black;
+    background-color: transparent;
+    cursor: pointer;
+    
+  }
+  
+}
+
+@mixin elementiComuni {
+  
+  display: none;
+  padding: 10px;
+  float: right;
+  background-color: #fbfbfb;
+  color: #c0c0c0;
+  border: 1px solid #c6c5c3;
+  width: 350px;
+  
+  .text {
+    
+    margin: 10px 0 10px 0;
+    width: 336px;
+    overflow: hidden;
+    padding-top: 0px;
+    padding-bottom: 50px;
+    border: 1px solid #f0e5e5;
+    
+  }
+  
+}
+
+@mixin svg-circle-icon-handler-without-hover($svg, $size, $how-many-h, $how-many-v, $opacity, $pos-h, $pos-v, $float: left) {
+  
+  width: $size;
+  height: $size;
+  opacity: $opacity;
+  background-repeat: no-repeat;
+  background-image: $svg;
+  background-size: ($size * $how-many-h) ($size * $how-many-v);
+  background-position: (-$size * $pos-h) (-$size * $pos-v);
+  float: $float;
+  
+}
+
+
+
+
+@mixin svg-circle-icon-handler($svg, $size, $how-many-h, $how-many-v, $opacity, $pos-h, $pos-v, $opacity-hover, $pos-h-hover, $pos-v-hover, $float: left) {
+  
+  @include svg-circle-icon-handler-without-hover($svg, $size, $how-many-h, $how-many-v, $opacity, $pos-h, $pos-v, $float);
+  
+  &:hover {
+    
+    opacity: $opacity-hover;
+    background-position: (-$size * $pos-h-hover) (-$size * $pos-v-hover);
+    
+  }
+  
+}

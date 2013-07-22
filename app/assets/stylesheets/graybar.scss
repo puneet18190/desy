@@ -1,0 +1,446 @@
+@import 'variables';
+@import 'mixins';
+
+.gray-bar {
+  
+  padding: 0.4% 1.3% 0.4% 0.6%;
+  background-color: #f5f5f5;
+  color: #727377;
+  float: left;
+  margin-bottom: 20px;
+  margin-left: 1%;
+  font: 80% 'Nunito', sans-serif;
+  width: 95.9%;
+  font-size: 120%;
+  height:55px;
+  .titleSelected {
+    
+    padding-left: 2%
+    
+  }
+  
+  ul.navlist {
+    
+    margin: 17px 0 10px 0;
+    padding: 0;
+    white-space: nowrap;
+    float: left;
+    
+  }
+  
+  .navlist li {
+    
+    display: inline;
+    list-style-type: none;
+    margin-right: 5px;
+    
+  }
+  
+  .navlist a {
+    
+    padding: 15px 30px;
+    background-color: #fafafa;
+    color: #b9b9bd;
+  }
+  
+  .navlist a:hover  {
+    
+    background-color: #fff;
+    cursor: pointer;
+    
+  }
+  
+  .navlist a.current {
+    
+    padding: 15px 30px;
+    background-color: #fff;
+    color:#727377;
+    
+  }
+  
+  .navlist a.createButtonLesson {
+    
+    padding: 15px 30px;
+    background-color: $orange;
+    color: #fff;
+    
+    &:hover {
+      
+      background-color: #f5a933;
+      
+    }
+    
+    &.current {
+      
+      background-color: #f5a933;
+      
+    }
+    
+  }
+  
+  .uploadNewDocument {
+    
+    background-color: $black;
+    color: #fff;
+    width: 175px;
+    height: 16px;
+    padding: 20px 10px;
+    text-align: center;
+    float: left;
+    margin-right: 20px;
+    
+    &:hover {
+      
+      background-color: #908f8f;
+      
+    }
+  }
+  
+  .navlist a.createButtonMediaElements {
+    
+    padding: 15px 30px;
+    background-color: $green;
+    color: #fff;
+    
+    &:hover {
+      
+      background-color: #67b855;
+      
+    }
+    &.current {
+      
+      background-color: #67b855;
+      
+    }
+    
+  }
+  
+  p {
+    
+    padding-top: 20px;
+    
+  }
+  
+  .boxCerca {
+    
+    margin: 0px;
+    float: right;
+    
+    input.text {
+      
+      width: 180px;
+      
+    }
+    
+    .sbSelector {
+      
+      width: 127px;
+      
+    }
+    
+  }
+  
+  a.advanced {
+    
+    font-size: 70%;
+    color: #999;
+    padding-left: 2%;
+    
+  }
+  
+  a.advanced:hover {
+    
+    color: #a5a4a4;
+    
+  }
+  
+  &.advancedSearch {
+    
+    .cols {
+      
+      width: 30%;
+      float: left;
+      
+    }
+    
+    div:last-child {
+      
+      float: right;
+      
+    }
+    
+    h1 {
+      
+      font: 160% 'Nunito', sans-serif;
+      color: #d1d1d1;
+      padding: 0;
+      
+    }
+    
+    p {
+      
+      font-size: 80%;
+      padding-top: 10px;
+      margin: 0;
+      color: #c0bebe;
+      
+    }
+    
+  }
+  
+}
+
+.search-switch {
+  
+  width: 25%;
+  padding: 0 3%;
+  
+  table {
+    
+    tr {
+      
+      td {
+        
+        font: 160% 'Nunito', sans-serif;
+        color: #666;
+        padding-top: 2%;
+        
+      }
+      
+    }
+    
+  }
+  
+}
+
+._keep_searching {
+  
+  background: $assets-select-icons_png 0 -123px no-repeat;
+  padding-left: 30px;
+  margin-left: -4px;
+  
+}
+
+.advanced-search-content {
+
+  .boxViewSingleLesson.current {
+    
+    background-color: #E8E8E8;
+    
+  }
+  
+  .contentSearch {
+    
+    width: 100%;
+    margin: 0 auto 0 auto;
+    
+    form {
+      
+      font: 100% 'Nunito', sans-serif;
+      padding: 1% 3%;
+      border: 1px solid #efefef;
+      
+      label {
+        
+        font-size: 10px;
+        
+      }
+      
+      input {
+        
+        border-radius: 4px;
+        box-shadow: 0 1px 2px rgba(50,50,50,0.2) inset;
+        color: #bbb;
+        font: 100% 'Nunito', sans-serif;
+        
+      }
+      
+      .sbHolder {
+        
+        width: 170px;
+        font-size: 100%;
+        
+      }
+      
+      .sbOptions {
+        
+        width: 170px;
+        
+      }
+      
+      .cerca {
+        
+        background: #555;
+        border-radius: 0;
+        color: #fff;
+        text-transform: uppercase;
+        padding: 10px 30px;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        cursor: pointer;
+        
+        &:hover {
+          
+          background: #999;
+          
+        }
+        
+        &.current, &:hover.current {
+          
+          color: #ccc;
+          background: #999;
+          
+        }
+        
+      }
+     
+   }
+  
+  }
+  
+  table {
+    
+    width: 100%;
+    padding: 10px 0 15px 0;
+    
+  }
+  
+  td {
+    
+    vertical-align: top;
+    
+  }
+  
+  .sbHolder {
+    
+    background-color: #f8f8f8;
+    
+  }
+  
+  .sbOptions a {
+    
+    color: #939393;
+    
+    &:hover, &.sbFocus {
+      
+      color: #fff;
+      background-color: $orange;
+      
+    }
+    
+  }
+  
+  input[type="text"] {
+    background-color: #f8f8f8;
+  }
+  
+}
+
+label {
+  
+  display: inline;
+  
+}
+
+.regular-radio {
+  
+  display: none;
+  
+}
+
+.regular-radio + label {
+  
+  -webkit-appearance: none;
+  background-color: #fafafa;
+  border: 1px solid #cacece;
+  padding: 7px;
+  border-radius: 50px;
+  display: inline-block;
+  position: relative;
+  
+}
+
+.regular-radio:checked + label:after {
+  
+  content: ' ';
+  width: 8px;
+  height: 8px;
+  border-radius: 50px;
+  position: absolute;
+  top: 3px;
+  background: #99a1a7;
+  text-shadow: 0px;
+  left: 3px;
+  
+}
+
+.regular-radio:checked + label {
+  
+  background-color: #e9ecee;
+  color: #99a1a7;
+  border: 1px solid #adb8c0;
+  
+}
+
+.regular-checkbox {
+  
+  display: none;
+  
+}
+
+.regular-checkbox + label {
+  
+  background-color: #fff;
+  border-top: 1px solid #d2d2d2;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+  padding: 9px;
+  border-radius: 3px;
+  display: inline-block;
+  position: relative;
+  
+}
+
+.regular-checkbox + label:active, .regular-checkbox:checked + label:active {
+  
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);
+  
+}
+
+.regular-checkbox:checked + label {
+  
+  background-color: #fff;
+  border-top: 1px solid #d2d2d2;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05), inset 15px 10px -12px rgba(255,255,255,0.1);
+  color: #99a1a7;
+  
+}
+
+.regular-checkbox:checked + label:after {
+  
+  content: '\2714';
+  font-size: 14px;
+  position: absolute;
+  top: 0px;
+  left: 3px;
+  color: #99a1a7;
+  
+}
+
+.big-checkbox + label {
+  
+  padding: 18px;
+  
+}
+
+.big-checkbox:checked + label:after {
+  
+  font-size: 28px;
+  left: 6px;
+  
+}
+
+#switch_to_lessons.current, #switch_to_media_elements.current {
+  
+  cursor: default;
+  
+}

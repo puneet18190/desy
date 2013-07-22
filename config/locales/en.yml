@@ -118,6 +118,15 @@ en:
           # 2 - controllers/media_elements_controller.rb
           # 3 - controllers/media_elements_controller.rb
           problem_destroying_for_media_element: "The element could not be removed"
+        document:
+          # There was a problem while destroying a document
+          # 1 - controllers/documents_controller.rb
+          # 2 - controllers/documents_controller.rb
+          # 3 - models/document.rb
+          # 4 - models/document.rb
+          # 5 - models/document.rb
+          # 6 - models/document.rb
+          problem_destroying: "The document couldn't be destroyed"
         lesson:
           # There was an error while trying to copy the lesson
           # 1 - controllers/lessons_controller.rb
@@ -289,6 +298,23 @@ en:
       # 1 - views/shared/_popups.html.erb
       cancel: "Cancel"
     destroy:
+      # The application asks for confirmation about deleting an document
+      document:
+        # Message
+        # 1 - views/shared/_popups.html.erb
+        confirm: "Are you sure you want to delete it?"
+        # Message if you are using the document in some of your lessons: it will be removed from each of his instances
+        # 1 - views/shared/_popups.html.erb
+        confirm_bis: "You are attaching it in some of your lessons, it will be deleted in each of its instances"
+        # Title
+        # 1 - views/shared/_popups.html.erb
+        title: "Delete this document?"
+        # Button to confirm
+        # 1 - views/shared/_popups.html.erb
+        do: "Delete the document"
+        # Button to cancel
+        # 1 - views/shared/_popups.html.erb
+        cancel: "Cancel"
       # The application asks for confirmation about deleting a lesson
       lesson:
         # Message (if anybody is following the lesson, he will lose its link)
@@ -724,9 +750,41 @@ en:
       # 1 - views/shared/buttons/_unpublish.html.erb
       # 2 - views/shared/_popups.html.erb
       unpublish: "Turn back your lesson into private"
+      # Buttons specific for documents
+      documents:
+        # Modify title and description of the document
+        # 1 - views/documents/_view_single_compact.html.erb
+        change_info: "Modify title and description of the document"
+        # Destroy a document
+        # 1 - views/documents/_view_single_compact.html.erb
+        destroy: "Delete"
+        # Download a document
+        # 1 - views/documents/_view_single_compact.html.erb
+        download: "Download"
     # To close the preview of a media element (big 'x' on the bottom right of the preview)
     # 1 - views/media_elements/_popup.html.erb
+    # 2 - views/documents/_view_single_compact.html.erb
     close: "Close"
+    # Titles for the icons of documents
+    documents:
+      # Includes .doc, .odt
+      # 1 - models/document.rb
+      doc: "Regular document"
+      # Includes .ppt
+      # 1 - models/document.rb
+      ppt: "Slide presentation"
+      # Includes .zip, .gz
+      # 1 - models/document.rb
+      zip: "Compressed document"
+      # Includes .xls, .ods
+      # 1 - models/document.rb
+      exc: "Table"
+      # Includes .pdf, .ps
+      # 1 - models/document.rb
+      pdf: "Vectorial document"
+      # All not recognized formats
+      # 1 - models/document.rb
+      unknown: "Document in a not standard format"
     # Icon of a small door with an arrow going out: it represents the exit from the current section, all over the application
     # 1 - views/video_editor/not_available.html.erb
     # 2 - views/lesson_viewer/_lesson_slides.html.erb
@@ -787,7 +845,12 @@ en:
       # Button '+' to add a new slide
       # 1 - views/lesson_editor/_slide_buttons.html.erb
       # 2 - views/lesson_editor/_slide_buttons.html.erb
+      # 3 - views/lesson_editor/_slide_buttons.html.erb
       add_slide: "Add new slide"
+      # Add a slide in the last position
+      # 1 - views/lesson_editor/index.html.erb
+      # 2 - views/lesson_editor/index.html.erb
+      add_slide_in_last_position: "Add a slide in the last position"
       # 1 - views/lesson_editor/_slide_buttons.html.erb
       add_slide_cancel: "Cancel"
       # Button '+' to replace an audio in the audio slide
@@ -806,6 +869,15 @@ en:
       # Button 'X' to remove the current slide
       # 1 - views/lesson_editor/_slide_buttons.html.erb
       delete_slide: "Remove slide"
+      # Button to insert a document
+      # 1 - views/lesson_editor/_slide_buttons.html.erb
+      document: "Attach a document" # TODO
+      # It's not possible to add further slides, since the maximum number has been reacher (%{num} is replaced by the maximum number of slides inside a lesson)
+      # 1 - views/lesson_editor/_slide_buttons.html.erb
+      # 2 - views/lesson_editor/_slide_buttons.html.erb
+      # 3 - views/lesson_editor/index.html.erb
+      # 4 - views/lesson_editor/index.html.erb
+      last_slide_reached: "You reached the maximum allowed number of %{num} slides"
       # Button to save the current slide
       # 1 - views/lesson_editor/_slide_buttons.html.erb
       save_slide: "Save current slide"
@@ -981,6 +1053,22 @@ en:
         title: "Selected for you - lessons"
         # 1 - views/notifications/_tooltip_help.html.erb
         content: "In this dashboard %{desy} stores all the new lessons that might interest you. If at this moment there are no new lessons available, you can create your own by clicking on the \"create a new lesson\" button that you find on each page: you will be redirected to the Lesson Editor. Before using the Lesson Editor make sure to have enough elements."
+    documents:
+      first:
+        # 1 - views/notifications/_tooltip_help.html.erb
+        title: "Lorem ipsum dolor" # TODO
+        # 1 - views/notifications/_tooltip_help.html.erb
+        content: "Esistono innumerevoli variazioni dei passaggi del Lorem Ipsum, ma la maggior parte hanno subito delle variazioni del tempo, a causa dell’inserimento di passaggi ironici, o di sequenze casuali di caratteri palesemente poco verosimili." # TODO
+      second:
+        # 1 - views/notifications/_tooltip_help.html.erb
+        title: "Lorem ipsum dolor" # TODO
+        # 1 - views/notifications/_tooltip_help.html.erb
+        content: "Esistono innumerevoli variazioni dei passaggi del Lorem Ipsum, ma la maggior parte hanno subito delle variazioni del tempo, a causa dell’inserimento di passaggi ironici, o di sequenze casuali di caratteri palesemente poco verosimili." # TODO
+      third:
+        # 1 - views/notifications/_tooltip_help.html.erb
+        title: "Lorem ipsum dolor" # TODO
+        # 1 - views/notifications/_tooltip_help.html.erb
+        content: "Esistono innumerevoli variazioni dei passaggi del Lorem Ipsum, ma la maggior parte hanno subito delle variazioni del tempo, a causa dell’inserimento di passaggi ironici, o di sequenze casuali di caratteri palesemente poco verosimili." # TODO
     lessons:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
@@ -1132,6 +1220,10 @@ en:
     # Used in the general footer of the application, to redirect to the main page
     # 1 - views/shared/_footer.html.erb
     back_to_dashboard: "Back to dashboard"
+    # Used to refer to the user's documents
+    # 1 - views/shared/_menu.html.erb
+    # 2 - views/documents/index.html.erb
+    documents: "Documents"
     # Used as a placeholder in any <video> HTML tag, if the browser doesn't support either .webm or .mp4
     # 1 - views/shared/players/_video.html.erb
     # 2 - views/video_editor/previews/_video.html.erb
@@ -1144,20 +1236,20 @@ en:
     dont_support_audio: "Your browser does not support audios"
     # Used anywhere the application makes a distinction between 'lessons' and 'media elements' (for instance, in the search engine when the application asks where to search, or in the main page to separate suggested lessons by suggested elements)
     # 1 - views/lessons/index.html.erb
-    # 2 - views/dashboard/_graybar_left.html.erb
+    # 2 - views/dashboard/index.html.erb
     # 3 - views/shared/_menu.html.erb
     # 4 - views/shared/_search.html.erb
     # 5 - views/search/_item_selector.html.erb
     lessons: "Lessons"
     # Used anywhere the application makes a distinction between 'lessons' and 'media elements' (for examples, see 'lessons')
-    # 1 - views/dashboard/_graybar_left.html.erb
+    # 1 - views/dashboard/index.html.erb
     # 2 - views/shared/_menu.html.erb
     # 3 - views/shared/_search.html.erb
     # 4 - views/media_elements/_title_bar.html.erb
     # 5 - views/search/_item_selector.html.erb
     media_elements: "Elements"
     # Used to refer to the user's personal profile
-    # 1 - views/shared/_menu.html.erb
+    # 1 - views/shared/_logout.html.erb
     # 2 - views/users/statistics.html.erb
     # 3 - views/users/mailing_lists.html.erb
     # 4 - views/users/edit.html.erb
@@ -1173,12 +1265,17 @@ en:
     # 1 - views/lessons/index.html.erb
     # 2 - views/media_elements/_title_bar.html.erb
     show: "Show"
+    # Used as a caption to select order inside the main sections (used only in 'documents')
+    # 1 - views/documents/index.html.erb
+    sort: "Sort by"
     # titles of the tab for each section
     titles:
       # 1 - helpers/application_helper.rb
       admin: "%{desy} - admin"
       # 1 - helpers/application_helper.rb
       default: "%{desy}"
+      # 1 - helpers/application_helper.rb
+      documents: "%{desy} - documents"
       # 1 - helpers/application_helper.rb
       lessons: "%{desy} - lessons"
       # 1 - helpers/application_helper.rb
@@ -1195,8 +1292,7 @@ en:
     # 2 - views/virtual_classroom/index.html.erb
     virtual_classroom: "Virtual Classroom"
     # Used in the login, before the logged user's name
-    # 1 - views/shared/_logout.html.erb
-    # 2 - views/admin/_header.html.erb
+    # 1 - views/admin/_header.html.erb
     welcome: "Welcome"
   
   
@@ -1266,7 +1362,7 @@ en:
     # 1 - views/dashboard/_media_elements_empty.html.erb
     load_new_media_element_now: "Load a new element now"
     # Caption of the buttons to switch between suggested lessons and elements ('selected for you': lessons - elements)
-    # 1 - views/dashboard/_graybar_left.html.erb
+    # 1 - views/dashboard/index.html.erb
     selected_for_you: "Selected for you"
     # Title of the link 'contact us' (bottom left in the page)
     # 1 - views/dashboard/index.html.erb
@@ -1436,7 +1532,7 @@ en:
     # 1 - views/lessons/_view_single_compact.html.erb
     created_on: "Created on"
     # Caption of the link to open the lesson editor (on the left of the bar above the lesson's list)
-    # 1 - views/lessons/_graybar_left.html.erb
+    # 1 - views/lessons/index.html.erb
     create_new: "Create a new lesson"
     # Caption which appears above a link to the lesson editor if your lesson's section is empty
     # 1 - views/lessons/_empty.html.erb
@@ -1516,7 +1612,7 @@ en:
     # Captions of the main page of the Element Editor (a page with three options: open the empty Audio Editor, open the empty Image Editor, open the empty Video Editor)
     editor:
       # Link to the main page of the Element Editor from the section 'my elements'
-      # 1 - views/media_elements/_graybar_left.html.erb
+      # 1 - views/media_elements/index.html.erb
       menu_link: "Elements editor"
       # Above the three options in the main page of Element Editor
       # 1 - views/media_elements/new.html.erb
@@ -1542,7 +1638,7 @@ en:
     # 1 - views/media_elements/_empty_filter.html.erb
     empty_filter: "The element filter produced no result"
     # Caption of the link to open the window to upload a new element (on the left of the bar above the element's list)
-    # 1 - views/media_elements/_graybar_left.html.erb
+    # 1 - views/media_elements/index.html.erb
     load_new: "Upload a new element"
     # Caption which appears above a link to the window to load a new element if your element's section is empty
     # 1 - views/media_elements/_empty.html.erb
@@ -1555,6 +1651,38 @@ en:
     # Caption of the user's notifications window if there are no notifications
     # 1 - views/notifications/_empty.html.erb
     empty: "You don't have any notifications"
+    # Time difference to string
+    time_difference:
+      # 1 - models/notification.rb
+      # 2 - models/notification.rb
+      seconds: "A few seconds ago"
+      # 1 - models/notification.rb
+      minute: "A minute ago"
+      # 1 - models/notification.rb
+      minutes: "%{minutes} minutes ago"
+      # 1 - models/notification.rb
+      hour:  "An hour ago"
+      # 1 - models/notification.rb
+      hours:  "%{hours} hours ago"
+      # 1 - models/notification.rb
+      day: "A day ago"
+      # 1 - models/notification.rb
+      days: "%{days} days ago"
+      # 1 - models/notification.rb
+      month: "A month ago"
+      # 1 - models/notification.rb
+      months: "%{months} months ago"
+      # 1 - models/notification.rb
+      year: "A year ago"
+      # 1 - models/notification.rb
+      years: "%{years} years ago"
+    documents:
+      # Notification sent by a user who destroyed a document attached to a lesson coped by somebody else, to inform all its followers (the variable %{lesson_title} is replaced by the title of the lesson, %{document_title} by the title of the document, and %{link} by the link to the lesson viewer for that lesson)
+      # 1 - models/document.rb
+      destroyed: "<div class=\"title\">Warning!</div><div class=\"content\">The document <span class=\"variable\">%{document_title}</span> has been removed by its owner: this affects your lesson <span class=\"variable\">%{lesson_title}</span></div><div class=\"basement\"><span>%{lesson_title}</span><a href=\"%{link}\" class=\"preview\"></a></div>"
+      # Message attached to the notification of modifications automatically sent to users who have a link to a lesson containig a document which has been deleted (%{document_title} is  replaced by the title of the document)
+      # 1 - models/document.rb
+      standard_message_for_linked_lessons: "I removed the attached document «%{document_title}»"
     lessons:
       # Message sent to a user who has the lesson link, in case the creator of that lesson deleted it (the variable %{user_name} is replaced by the name of the author of the lesson, %{lesson_title} by the title of the lesson)
       # 1 - models/lesson.rb
@@ -1564,6 +1692,8 @@ en:
       link_sent: "<div class=\"title\">Link sent!</div><div class=\"content\">You sent the link of the lesson <span class=\"variable\">%{title}</span> to the following emails: <br/><br/><span class=\"message\">%{emails}</span><br/><br/>The message you attached is<br/><br/><span class=\"message\">\"%{message}\"</div>"
       # Notification sent by a user who modified a shared lesson, to inform all its followers about the nature of modifications made (the variable %{lesson_title} is replaced by the title of the lesson, %{message} by the message containing a better description of the modifications, and %{link} by the link to the lesson viewer for that lesson)
       # 1 - models/lesson.rb
+      # 2 - models/lesson.rb
+      # 3 - models/document.rb
       modified: "<div class=\"title\">News for you!</div><div class=\"content\">The lesson <span class=\"variable\">%{lesson_title}</span> has undergone some changes by the author: the detail of the changes are<br/><br/><span class=\"message\">\"%{message}\"</span></div><div class=\"basement\"><span>%{lesson_title}</span><a href=\"%{link}\" class=\"preview\"></a></div>"
       # Message sent to a user who has the link of a lesson, in case the creator of that lesson turned it back into private (in this case the follower loses his link as if the lesson was deleted) (the variable %{user_name} is replaced by the name of the author of the lesson, %{lesson_title} by the title of the lesson)
       # 1 - models/lesson.rb
@@ -2188,6 +2318,51 @@ en:
       empty_message: "[no message given]"
   
   
+  # SECTION 2.18: labels in the section 'documents'
+  
+  documents:
+    # Form to change info
+    change_info:
+      # 1 - views/documents/_view_single_compact.html.erb
+      cancel: "Cancel"
+      # 1 - views/documents/_view_single_compact.html.erb
+      done: "Save"
+      # 1 - views/documents/_view_single_compact.html.erb
+      title: "Change info"
+    # Placeholder in the form to change description and title (the variable %{num} is replaced by the maximum number of characters allowed)
+    # 1 - views/documents/_view_single_compact.html.erb
+    description_placeholder: "Insert a description (max %{num} characters)"
+    # Placeholder in the popup not editable
+    # 1 - views/documents/_view_single_compact.html.erb
+    description_readonly_placeholder: "[No description given]"
+    # Button to download a document
+    # 1 - views/documents/_view_single_compact.html.erb
+    download: "Download"
+    # When there are no documents in your section
+    # 1 - views/documents/_empty.html.erb
+    empty: "You don't have any document"
+    # When the document search produced no results
+    # 1 - views/documents/_empty_word.html.erb
+    empty_word: "No documents found matching <%{word}>"
+    # Hints for multiple uploading
+    hints:
+      # Internet Explorer doesn't support multiple uploader
+      # 1 - views/documents/index.html.erb
+      ie: "Your browser supports the uploading of only one document at a time"
+      # Other browsers support multiple uploader
+      # 1 - views/documents/index.html.erb
+      standard: "Your browser supports multiple uploading: use CTRL to pick more files at the same time"
+    # Placeholder to search a document
+    # 1 - views/documents/_search.html.erb
+    search: "Filter by word:"
+    # Button to upload a new document
+    # 1 - views/documents/index.html.erb
+    upload: "Upload a document"
+    # The system prompts the user to upload a new document, if his section is empty
+    # 1 - views/documents/_empty.html.erb
+    upload_now: "Upload a new document now"
+  
+  
   
   # PART 3 -- Parameters and constants
   
@@ -2260,6 +2435,9 @@ en:
     not_mine: "Not created by you"
   # Possible parameters to sort lessons or media elements
   orders:
+    # Date of creation
+    # 1 - views/documents/index.html.erb
+    created_at: "Date of creation"
     # Date of last modification
     # 1 - ../lib/autoload/lessons_media_elements_shared.rb
     updated_at: "Date last modification"
@@ -2268,6 +2446,7 @@ en:
     likes: "Number of likes"
     # Alphabetical order
     # 1 - ../lib/autoload/lessons_media_elements_shared.rb
+    # 2 - views/documents/index.html.erb
     title: "Alphabetical"
   
   
@@ -2302,6 +2481,7 @@ en:
     document:
       # Maximum number of characters allowed in the description of a document
       # 1 - models/document.rb
+      # 2 - views/documents/_view_single_compact.html.erb
       length_description: 280
       # Maximum number of characters allowed in the title of a document
       # 1 - models/document.rb

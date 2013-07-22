@@ -1,0 +1,524 @@
+@import 'variables';
+@import 'mixins';
+
+.gallery-header {
+  
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  padding: 0px;
+  display: inline-block;
+  
+  h3 {
+    
+    color: #666;
+    padding-top: 18px;
+    padding-right: 15px;
+    
+  }
+  
+}
+
+.image_gallery {
+  
+  @include boxShadow;
+  @include ulGallery;
+  display: block;
+  
+  .jspVerticalBar {
+    
+    top: 0;
+    
+  }
+  
+  .gallery-header {
+    
+    h3 {
+      
+      color: #666;
+      padding-top: 18px;
+      padding-right: 15px;
+      
+    }
+    
+    .photoIcon {
+      
+      font-size: 0.7em;
+      
+    }
+    
+  }
+  
+  .scroll-pane {
+    
+    top: 140px;
+    height: 343px;
+    
+    .pseudo-li {
+      
+      width: 111px;
+      height: 111px;
+      margin: 4px 2px 0 2px;
+      
+    }
+    
+  }
+  
+  .imageInGalleryPopUp {
+    
+    display: none;
+    background-color: #48484a;
+    color: #fff;
+    
+    img {
+      
+      max-height: 420px;
+      max-width: 420px;
+      
+    }
+    
+    .caption {
+      
+      margin: 0;
+      padding: 0;
+      
+    }
+    
+    a.aggiungiImgButton {
+      
+      outline: none;
+      
+    }
+    
+  }
+  
+  img:hover {
+    
+    outline: 1px solid white;
+    
+  }
+  
+}
+
+.audio_gallery {
+  
+  background-color: #252323;
+  @include boxShadow;
+  @include ulGallery;
+  display: block;
+  
+  .jspVerticalBar {
+    
+    top: 0;
+    
+  }
+  
+  .gallery-header {
+    
+    h3 {
+      
+      color: #666;
+      padding-top: 18px;
+      padding-right: 15px;
+      
+    }
+    
+    .audioIcon {
+      
+      font-size: 0.7em;
+      
+    }
+    
+  }
+  
+  .audioTrackCompact._enabled {
+    
+    width: 820px;
+    
+    .audioTrackContent {
+      
+      background-color: #4a4a4a;
+      padding: 5px 10px;
+      height: 34px;
+      margin-top: 8px;
+      
+      &:hover {
+        
+        cursor: pointer;
+        background-color: #403f3f;
+        
+      }
+      
+      .infoTrack {
+        
+        float: left;
+        padding: 5px 10px;
+        border-left: 1px solid #2d2d2d;
+        height: 26px;
+        
+        a {
+          
+          color: #fff;
+          
+        }
+        
+      }
+      
+    }
+    
+    .audioTrackExpanded {
+      
+      background-color: #3b3a3b;
+      text-align: left;
+      height: 32px;
+      padding: 10px 20px;
+      position: relative;
+      
+    }
+    
+  }
+  
+  .audioTrackCompact._disabled {
+    
+    width: 820px;
+    opacity: 0.2;
+    
+    a {
+      
+      cursor: default;
+      
+    }
+    
+    .audioTrackContent {
+      
+      background-color: #4a4a4a;
+      padding: 5px 10px;
+      height: 34px;
+      margin-top: 8px;
+      
+      .infoTrack {
+        
+        float: left;
+        padding: 5px 10px;
+        border-left: 1px solid #2d2d2d;
+        height: 26px;
+        
+        a {
+          
+          color: #fff;
+          
+        }
+        
+      }
+      
+    }
+    
+  }
+  
+  .titleTrack {
+    
+    text-align: left;
+    padding: 8px 8px;
+    float: left;
+    
+  }
+  
+  .scroll-pane {
+    
+    top: 190px;
+    height: 304px;
+    
+  }
+  
+  .audioInGalleryPopUp {
+    
+    display: none;
+    background-color: #fff;
+    color: #666;
+    max-height: 420px;
+    max-width: 420px;
+    
+    img {
+      
+      max-height: 420px;
+      max-width: 420px;
+      
+    }
+    
+    .caption {
+      
+      margin: 0;
+      padding: 0;
+      
+    }
+    
+    a.aggiungiImgButton {
+      
+      outline: none;
+      
+    }
+    
+  }
+  
+  .addButtonContent {
+    
+    margin-top: 5px;
+    
+  }
+  
+}
+
+.video_gallery {
+  
+  @include boxShadow;
+  @include ulGallery;
+  display:block;
+  
+  .jspVerticalBar {
+    
+    top: 0;
+    
+  }
+  
+  .gallery-header {
+    
+    h3 {
+      
+      color: #666;
+      padding-top: 18px;
+      padding-right: 15px;
+      
+    }
+    
+    .videoIcon {
+      
+      font-size: 0.7em;
+      
+    }
+    
+  }
+  
+  .scroll-pane {
+    
+    top: 190px;
+    height: 308px;
+    
+    .pseudo-li {
+      
+      width: 250px;
+      margin: 0px 36px 36px 0;
+      
+    }
+    
+  }
+  
+  &.video-kind {
+    
+    .pseudo-ul {
+      
+      .pseudo-li {
+        
+        width: 250px;
+        height: 140px;
+        margin: 26px 20px 0 6px;
+        
+      }
+      
+      .pseudo-li._enabled {
+        
+        img:hover {
+          
+          outline: 1px solid white;
+          
+        }
+        
+      }
+      
+      .pseudo-li._disabled a {
+        
+        cursor: default;
+        
+      }
+      
+    }
+    
+  }
+  
+  .videoInGalleryPopUp {
+    
+    display: none;
+    background-color: #fff;
+    color: #666;
+    max-height: 420px;
+    max-width: 420px;
+    
+    img {
+      
+      max-height: 420px;
+      max-width: 420px;
+      
+    }
+    
+    .caption {
+      
+      margin: 0;
+      padding: 0;
+      
+    }
+    
+    a.aggiungiImgButton {
+      
+      outline: none;
+      
+    }
+    
+  }
+  
+}
+
+._texts {
+  
+  @include boxShadow;
+  height: 486px;
+  display: block;
+  font: 90% 'Nunito', sans-serif;
+  
+  .contentInsertText {
+    
+    width: 604px;
+    height: 330px;
+    position: absolute;
+    top: 90px;
+    left: 140px;
+    margin: 20px auto;
+    padding: 10px;
+    -webkit-box-shadow: 0px 6px 16px #121111;
+    box-shadow: 0px 6px 16px #121111;
+    
+    textarea {
+      
+      font: 230% 'Droid Sans', sans-serif;
+      padding-top: 147px;
+      background-color: transparent;
+      text-align: center;
+      border: none;
+      
+    }
+    
+  }
+  
+  .menuTexts {
+    
+    position: absolute;
+    bottom: 90px;
+    left: 140px;
+    width: 624px;
+    font-size: 85%;
+    
+    .elementoGrigio {
+      
+      width: 31%;
+      
+    }
+    
+    .scegliBgColor {
+      
+      p {
+        
+        float: left;
+        width: 85px;
+        
+      }
+      
+      & > div {
+        
+        @include stileElementiSceltaColori;
+        
+      }
+      
+    }
+    
+    .scegliTxtColor {
+      
+      p {
+        
+        float: left;
+        width: 85px;
+        
+      }
+      
+      & > div {
+        
+        @include stileElementiSceltaColori;
+        
+      }
+      
+    }
+    
+  }
+  
+  .bottoniVerdi {
+    
+    margin-top: 10px;
+    
+    a {
+      
+      font-size: 11px;
+      
+    }
+    
+  }
+  
+}
+
+#image_gallery_for_image_editor {
+  
+  margin-top: 20px;
+  
+  .gallery-header {
+    
+    position: absolute;
+    top: 100px;
+    
+  }
+  
+  .mediaEditorElementContainer {
+    
+    width: 890px;
+    height: 545px;
+    padding: 25px;
+    -webkit-box-shadow: 0px 6px 10px #161515;
+    box-shadow: 0px 6px 10px #161515;
+    background-color: #252323;
+    
+    .image_gallery {
+      
+      height: 486px;
+      
+      .scroll-pane {
+        
+        width: 870px;
+        margin: 110px 0 0 20px;
+        
+      }
+      
+    }
+    
+  }
+  
+  ._close_image_gallery {
+    
+    display: none;
+    
+  }
+}
+
+.gallery-footer {
+  
+  display: inline-block;
+  color: white;
+  position: absolute;
+  bottom: 30px;
+  right: 18px;
+  
+}

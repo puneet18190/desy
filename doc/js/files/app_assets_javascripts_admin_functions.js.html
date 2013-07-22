@@ -97,6 +97,10 @@
             
                 <li><a href="../classes/DialogsWithForm.html">DialogsWithForm</a></li>
             
+                <li><a href="../classes/DocumentsDocumentReady.html">DocumentsDocumentReady</a></li>
+            
+                <li><a href="../classes/DocumentsLoader.html">DocumentsLoader</a></li>
+            
                 <li><a href="../classes/GalleriesAccessories.html">GalleriesAccessories</a></li>
             
                 <li><a href="../classes/GalleriesDocumentReady.html">GalleriesDocumentReady</a></li>
@@ -156,6 +160,8 @@
                 <li><a href="../classes/MediaElementEditorForms.html">MediaElementEditorForms</a></li>
             
                 <li><a href="../classes/MediaElementEditorHorizontalTimelines.html">MediaElementEditorHorizontalTimelines</a></li>
+            
+                <li><a href="../classes/MediaElementLoaderConversion.html">MediaElementLoaderConversion</a></li>
             
                 <li><a href="../classes/MediaElementLoaderDocumentReady.html">MediaElementLoaderDocumentReady</a></li>
             
@@ -240,6 +246,8 @@
                 <li><a href="../modules/dashboard.html">dashboard</a></li>
             
                 <li><a href="../modules/dialogs.html">dialogs</a></li>
+            
+                <li><a href="../modules/documents.html">documents</a></li>
             
                 <li><a href="../modules/galleries.html">galleries</a></li>
             
@@ -388,8 +396,10 @@ Initializes the browser classes in the tag html. Same functionality as {{#crossL
 **/
 function adminBrowsersDocumentReady() {
   if(!$.browser.msie) {
-    $(&#x27;#new-elements&#x27;).fileupload();
+    $(&#x27;#admin-media-elements-quick-upload-form&#x27;).fileupload();
   } else {
+    $(&#x27;#admin-media-elements-quick-upload-form&#x27;).append($(&#x27;&lt;input name=&quot;from_ie&quot; val=&quot;true&quot; style=&quot;display:none&quot; /&gt;&#x27;));
+    $(&#x27;#hint_not_for_ie&#x27;).hide();
     $(&#x27;._new_element_form_submit&#x27;).show();
   }
 }
@@ -479,6 +489,27 @@ Initializes effects for MediaElement.
 @for AdminDocumentReady
 **/
 function adminMediaElementsDocumentReady() {
+  $(&#x27;body&#x27;).on(&#x27;focus&#x27;, &#x27;._quick_load_creation_form ._qume_title&#x27;, function() {
+    var placeholder = $(this).parents(&#x27;._quick_load_creation_form&#x27;).find(&#x27;._qume_title_placeholder&#x27;);
+    if(placeholder.val() != &#x27;&#x27;) {
+      placeholder.val(&#x27;&#x27;);
+      $(this).val(&#x27;&#x27;);
+    }
+  });
+  $(&#x27;body&#x27;).on(&#x27;focus&#x27;, &#x27;._quick_load_creation_form ._qume_description&#x27;, function() {
+    var placeholder = $(this).parents(&#x27;._quick_load_creation_form&#x27;).find(&#x27;._qume_description_placeholder&#x27;);
+    if(placeholder.val() != &#x27;&#x27;) {
+      placeholder.val(&#x27;&#x27;);
+      $(this).val(&#x27;&#x27;);
+    }
+  });
+  $(&#x27;body&#x27;).on(&#x27;focus&#x27;, &#x27;._quick_load_creation_form ._qume_tags&#x27;, function() {
+    var placeholder = $(this).parents(&#x27;._quick_load_creation_form&#x27;).find(&#x27;._qume_tags_placeholder&#x27;);
+    if(placeholder.val() != &#x27;&#x27;) {
+      placeholder.val(&#x27;&#x27;);
+      $(this).val(&#x27;&#x27;);
+    }
+  });
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._create_new_element&#x27;, function() {
     $.ajax({
       type: &#x27;post&#x27;,
@@ -693,6 +724,7 @@ Browser support checking, supported browsers version. It is empty. The not suppo
 function browserSupport() {
   // no-op
 }
+
     </pre>
 </div>
 

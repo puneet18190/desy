@@ -1,4 +1,5 @@
-@import url(http://fonts.googleapis.com/css?family=Nunito);
+@import 'variables';
+@import 'mixins';
 
 * {
   
@@ -19,11 +20,8 @@ body {
   background: #fff;
   margin: 0;
   padding: 0;
-  color: #5d5c5c;
+  color: $black;
   direction: ltr;
-  // @media (max-width: 1024px) {
-  //   font-size: 50%;
-  // }
   
 }
 
@@ -63,7 +61,7 @@ input {
 input[type="submit"] {
   
   font-size: 90%;
-  color: #5d5c5c;
+  color: $black;
   background-color: transparent;
   
 }
@@ -145,7 +143,7 @@ h1, h2, h3, h4, h5, h6 {
   
   margin: 0px;
   padding-bottom: 1%;
-  color: #5d5c5c;
+  color: $black;
   font-weight: normal;
   
 }
@@ -216,7 +214,9 @@ p {
   line-height: 0px;
   
 }
-
+.text-centered {
+  text-align:center;
+}
 .dots_pagination_container {
   
   padding-bottom: 15px;
@@ -246,7 +246,7 @@ p {
         
         color: #dedede;
         
-      };
+      }
       
     }
     

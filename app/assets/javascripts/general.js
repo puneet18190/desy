@@ -71,6 +71,7 @@ function defaultValueJavaScriptAnimationsDocumentReady() {
   $('#for_page_media_elements option[selected]').first().attr('selected', 'selected');
   $('#filter_media_elements option[selected]').first().attr('selected', 'selected');
   $('#filter_lessons option[selected]').first().attr('selected', 'selected');
+  $('#order_documents option[selected]').first().attr('selected', 'selected');
   $('#filter_search_lessons option[selected]').first().attr('selected', 'selected');
   $('#filter_search_media_elements option[selected]').first().attr('selected', 'selected');
   $('#filter_search_lessons_subject option[selected]').first().attr('selected', 'selected');
@@ -124,10 +125,7 @@ function expandedItemsDocumentReady() {
   $('body').on('click', '._change_info_container ._cancel, ._change_info_to_pick.change_info_light', function() {
     $('#dialog-media-element-' + $(this).data('param') + ' ._audio_preview_in_media_element_popup').show();
     $('#dialog-media-element-' + $(this).data('param') + ' ._change_info_container').hide('fade', {}, 500, function() {
-      var icon = $(this);
-      if(!$(this).hasClass('_change_info_to_pick')) {
-        icon = $('#dialog-media-element-' + $(this).data('param') + ' ._change_info_to_pick');
-      }
+      var icon = $('#dialog-media-element-' + $(this).data('param') + ' ._change_info_to_pick');
       icon.addClass('change_info');
       icon.removeClass('change_info_light');
       resetMediaElementChangeInfo($(this).data('param'));
@@ -138,6 +136,11 @@ function expandedItemsDocumentReady() {
     $(this).removeClass('change_info');
     $(this).addClass('change_info_light');
     $('#dialog-media-element-' + $(this).data('param') + ' ._audio_preview_in_media_element_popup').hide();
+  });
+  $('body').on('click', '._close_on_click_out', function() {
+    $('.ui-dialog-content:visible').each(function() {
+      closePopUp($(this).attr('id'));
+    });
   });
 }
 
@@ -197,6 +200,7 @@ function javaScriptAnimationsDocumentReady() {
   $('#select_lesson_list').selectbox();
   $('#which_item_to_search').selectbox();
   $('#filter_lessons').selectbox();
+  $('#order_documents').selectbox();
   $('#filter_search_lessons').selectbox();
   $('#filter_search_lessons_subject').selectbox();
   $('#profile_school_level').selectbox();
@@ -373,6 +377,18 @@ function browserSupport() {
 }
 
 /**
+This function returns an url for media elements without the parameter 'for_page'. The original url is extracted by the method {{#crossLink "GeneralMiscellanea/getMediaElementsFormat:method"}}{{/crossLink}}.
+@method getCompleteMediaElementsUrlWithoutForPage
+@for GeneralUrls
+@return {String} the current url without the parameter 'for_page'
+**/
+function getCompleteMediaElementsUrlWithoutForPage() {
+  var param_format = getMediaElementsFormat();
+  var param_filter = 'filter=' + $('#filter_media_elements option:selected').val();
+  return '/media_elements?' + param_format + '&' + param_filter;
+}
+
+/**
 This function returns an url for media elements without the parameter 'filter'. The original url is extracted by the method {{#crossLink "GeneralMiscellanea/getMediaElementsFormat:method"}}{{/crossLink}}.
 @method getCompleteMediaElementsUrlWithoutFilter
 @for GeneralUrls
@@ -385,15 +401,14 @@ function getCompleteMediaElementsUrlWithoutFilter() {
 }
 
 /**
-This function returns an url for media elements without the parameter 'for_page'. The original url is extracted by the method {{#crossLink "GeneralMiscellanea/getMediaElementsFormat:method"}}{{/crossLink}}.
-@method getCompleteMediaElementsUrlWithoutForPage
+This function returns an url for documents without the parameter 'order'. The original url is extracted by the method {{#crossLink "GeneralMiscellanea/getMediaElementsFormat:method"}}{{/crossLink}}.
+@method getCompleteDocumentsUrlWithoutOrder
 @for GeneralUrls
-@return {String} the current url without the parameter 'for_page'
+@return {String} the current url without the parameter 'order'
 **/
-function getCompleteMediaElementsUrlWithoutForPage() {
-  var param_format = getMediaElementsFormat();
-  var param_filter = 'filter=' + $('#filter_media_elements option:selected').val();
-  return '/media_elements?' + param_format + '&' + param_filter;
+function getCompleteDocumentsUrlWithoutOrder() {
+  var param_word = 'word=' + $('#search_documents ._word_input').val() + '&word_placeholder=' + $('#search_documents_placeholder').val();
+  return '/documents?' + param_word;
 }
 
 /**

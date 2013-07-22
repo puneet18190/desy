@@ -113,13 +113,18 @@ function showNotificationsTooltip() {
 
 
 /**
-Global initializer for notifications and help
+Global initializer for notifications and help. The function {{#crossLink "NotificationsDocumentReady/notificationsDocumentReadyLoop:method"}}{{/crossLink}} is called after a time of 2500 not to be called at the same time of {{#crossLink "MediaElementLoaderConversion/mediaElementLoaderConversionOverview:method"}}{{/crossLink}}.
 @method notificationsDocumentReady
 @for NotificationsDocumentReady
 **/
 function notificationsDocumentReady() {
   notificationsDocumentReadyTooltips();
   notificationsDocumentReadyLessonModification();
+  if($('#notifications_main').length > 0) {
+    setTimeout(function() {
+      notificationsDocumentReadyLoop(5000);
+    }, 2500);
+  }
 }
 
 /**
@@ -148,6 +153,23 @@ function notificationsDocumentReadyLessonModification() {
       $('#lesson-notification #lesson_notify_modification_details_placeholder').val('0');
     }
   });
+}
+
+/**
+Initializer for the loop that updates the notifications
+@method notificationsDocumentReadyLoop
+@for NotificationsDocumentReady
+@param time {Number} the time to iterate the loop
+**/
+function notificationsDocumentReadyLoop(time) {
+  $.ajax({
+    url: '/notifications/reload',
+    type: 'get',
+    beforeSend: unbindLoader()
+  }).always(bindLoader);
+  setTimeout(function() {
+    notificationsDocumentReadyLoop(time);
+  }, time);
 }
 
 /**

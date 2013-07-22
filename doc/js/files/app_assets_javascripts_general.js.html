@@ -97,6 +97,10 @@
             
                 <li><a href="../classes/DialogsWithForm.html">DialogsWithForm</a></li>
             
+                <li><a href="../classes/DocumentsDocumentReady.html">DocumentsDocumentReady</a></li>
+            
+                <li><a href="../classes/DocumentsLoader.html">DocumentsLoader</a></li>
+            
                 <li><a href="../classes/GalleriesAccessories.html">GalleriesAccessories</a></li>
             
                 <li><a href="../classes/GalleriesDocumentReady.html">GalleriesDocumentReady</a></li>
@@ -156,6 +160,8 @@
                 <li><a href="../classes/MediaElementEditorForms.html">MediaElementEditorForms</a></li>
             
                 <li><a href="../classes/MediaElementEditorHorizontalTimelines.html">MediaElementEditorHorizontalTimelines</a></li>
+            
+                <li><a href="../classes/MediaElementLoaderConversion.html">MediaElementLoaderConversion</a></li>
             
                 <li><a href="../classes/MediaElementLoaderDocumentReady.html">MediaElementLoaderDocumentReady</a></li>
             
@@ -240,6 +246,8 @@
                 <li><a href="../modules/dashboard.html">dashboard</a></li>
             
                 <li><a href="../modules/dialogs.html">dialogs</a></li>
+            
+                <li><a href="../modules/documents.html">documents</a></li>
             
                 <li><a href="../modules/galleries.html">galleries</a></li>
             
@@ -383,6 +391,7 @@ function defaultValueJavaScriptAnimationsDocumentReady() {
   $(&#x27;#for_page_media_elements option[selected]&#x27;).first().attr(&#x27;selected&#x27;, &#x27;selected&#x27;);
   $(&#x27;#filter_media_elements option[selected]&#x27;).first().attr(&#x27;selected&#x27;, &#x27;selected&#x27;);
   $(&#x27;#filter_lessons option[selected]&#x27;).first().attr(&#x27;selected&#x27;, &#x27;selected&#x27;);
+  $(&#x27;#order_documents option[selected]&#x27;).first().attr(&#x27;selected&#x27;, &#x27;selected&#x27;);
   $(&#x27;#filter_search_lessons option[selected]&#x27;).first().attr(&#x27;selected&#x27;, &#x27;selected&#x27;);
   $(&#x27;#filter_search_media_elements option[selected]&#x27;).first().attr(&#x27;selected&#x27;, &#x27;selected&#x27;);
   $(&#x27;#filter_search_lessons_subject option[selected]&#x27;).first().attr(&#x27;selected&#x27;, &#x27;selected&#x27;);
@@ -451,6 +460,11 @@ function expandedItemsDocumentReady() {
     $(this).addClass(&#x27;change_info_light&#x27;);
     $(&#x27;#dialog-media-element-&#x27; + $(this).data(&#x27;param&#x27;) + &#x27; ._audio_preview_in_media_element_popup&#x27;).hide();
   });
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._close_on_click_out&#x27;, function() {
+    $(&#x27;.ui-dialog-content:visible&#x27;).each(function() {
+      closePopUp($(this).attr(&#x27;id&#x27;));
+    });
+  });
 }
 
 /**
@@ -509,6 +523,7 @@ function javaScriptAnimationsDocumentReady() {
   $(&#x27;#select_lesson_list&#x27;).selectbox();
   $(&#x27;#which_item_to_search&#x27;).selectbox();
   $(&#x27;#filter_lessons&#x27;).selectbox();
+  $(&#x27;#order_documents&#x27;).selectbox();
   $(&#x27;#filter_search_lessons&#x27;).selectbox();
   $(&#x27;#filter_search_lessons_subject&#x27;).selectbox();
   $(&#x27;#profile_school_level&#x27;).selectbox();
@@ -685,6 +700,18 @@ function browserSupport() {
 }
 
 /**
+This function returns an url for media elements without the parameter &#x27;for_page&#x27;. The original url is extracted by the method {{#crossLink &quot;GeneralMiscellanea/getMediaElementsFormat:method&quot;}}{{/crossLink}}.
+@method getCompleteMediaElementsUrlWithoutForPage
+@for GeneralUrls
+@return {String} the current url without the parameter &#x27;for_page&#x27;
+**/
+function getCompleteMediaElementsUrlWithoutForPage() {
+  var param_format = getMediaElementsFormat();
+  var param_filter = &#x27;filter=&#x27; + $(&#x27;#filter_media_elements option:selected&#x27;).val();
+  return &#x27;/media_elements?&#x27; + param_format + &#x27;&amp;&#x27; + param_filter;
+}
+
+/**
 This function returns an url for media elements without the parameter &#x27;filter&#x27;. The original url is extracted by the method {{#crossLink &quot;GeneralMiscellanea/getMediaElementsFormat:method&quot;}}{{/crossLink}}.
 @method getCompleteMediaElementsUrlWithoutFilter
 @for GeneralUrls
@@ -697,15 +724,14 @@ function getCompleteMediaElementsUrlWithoutFilter() {
 }
 
 /**
-This function returns an url for media elements without the parameter &#x27;for_page&#x27;. The original url is extracted by the method {{#crossLink &quot;GeneralMiscellanea/getMediaElementsFormat:method&quot;}}{{/crossLink}}.
-@method getCompleteMediaElementsUrlWithoutForPage
+This function returns an url for documents without the parameter &#x27;order&#x27;. The original url is extracted by the method {{#crossLink &quot;GeneralMiscellanea/getMediaElementsFormat:method&quot;}}{{/crossLink}}.
+@method getCompleteDocumentsUrlWithoutOrder
 @for GeneralUrls
-@return {String} the current url without the parameter &#x27;for_page&#x27;
+@return {String} the current url without the parameter &#x27;order&#x27;
 **/
-function getCompleteMediaElementsUrlWithoutForPage() {
-  var param_format = getMediaElementsFormat();
-  var param_filter = &#x27;filter=&#x27; + $(&#x27;#filter_media_elements option:selected&#x27;).val();
-  return &#x27;/media_elements?&#x27; + param_format + &#x27;&amp;&#x27; + param_filter;
+function getCompleteDocumentsUrlWithoutOrder() {
+  var param_word = &#x27;word=&#x27; + $(&#x27;#search_documents ._word_input&#x27;).val() + &#x27;&amp;word_placeholder=&#x27; + $(&#x27;#search_documents_placeholder&#x27;).val();
+  return &#x27;/documents?&#x27; + param_word;
 }
 
 /**

@@ -8,6 +8,48 @@ Javascript functions used in the media element loader.
 
 
 /**
+Function that checks the conversion of the unconverted media elements in the page.
+@method mediaElementLoaderConversionOverview
+@for MediaElementLoaderConversion
+@param list {Array} list of media elements that are being checked
+@param time {Number} time to iterate the loop
+**/
+function mediaElementLoaderConversionOverview(list, time) {
+  $('._media_element_item._disabled').each(function() {
+    var my_id = $(this).find('._Image_button_preview, ._Audio_button_preview, ._Video_button_preview').data('clickparam');
+    if(list.indexOf(my_id) == -1) {
+      list.push(my_id);
+    }
+  });
+  var black_list = $('#info_container').data('media-elements-not-anymore-in-conversion');
+  for(var i = 0; i < black_list.length; i ++) {
+    var j = list.indexOf(black_list[i]);
+    list.splice(j, 1);
+  }
+  if(list.length > 0) {
+    var ajax_url = '/media_elements/conversion/check?';
+    for(var i = 0; i < list.length; i ++) {
+      ajax_url += ('me' + list[i] + '=true');
+      if(i != list.length - 1) {
+        ajax_url += '&';
+      }
+    }
+    $.ajax({
+      url: ajax_url,
+      type: 'get',
+      beforeSend: unbindLoader()
+    }).always(bindLoader);
+  }
+  setTimeout(function() {
+    mediaElementLoaderConversionOverview(list, time);
+  }, time);
+}
+
+
+
+
+
+/**
 Initializer for the loading form.
 @method mediaElementLoaderDocumentReady
 @for MediaElementLoaderDocumentReady
@@ -144,50 +186,4 @@ function resetMediaElementChangeInfo(media_element_id) {
     container.find('._tags_container').prepend(copy);
   });
   container.find('#tags_value').val(container.data('tags'));
-}
-
-
-
-
-
-/**
-@method mediaElementLoaderConversionOverview
-@for MediaElementLoaderConversion
-**/
-function mediaElementLoaderConversionOverview(list, time) {
-  $('._media_element_item._disabled').each(function() {
-    var my_id = $(this).find('._Image_button_preview, ._Audio_button_preview, ._Video_button_preview').data('clickparam');
-    if(list.indexOf(my_id) == -1) {
-      list.push(my_id);
-    }
-  });
-  var black_list = new Array();
-  for(var i = 0; i < list.length; i ++) {
-    var id = list[i];
-    var me = $('#expanded_media_element_' + id + ', #compact_media_element_' + id + ', #found_media_element_' + id);
-    if((me.length > 0 && !me.hasClass('_disabled')) || (me.length == 0 && $('#info_container').data('failed-conversion-' + id))) {
-      black_list.push(id);
-    }
-  }
-  for(var i = 0; i < black_list.length; i ++) {
-    var j = list.indexOf(black_list[i]);
-    list.splice(j, 1);
-  }
-  if(list.length > 0) {
-    var ajax_url = '/media_elements/conversion/check?';
-    for(var i = 0; i < list.length; i ++) {
-      ajax_url += ('me' + list[i] + '=true');
-      if(i != list.length - 1) {
-        ajax_url += '&';
-      }
-    }
-    $.ajax({
-      url: ajax_url,
-      type: 'get',
-      beforeSend: unbindLoader()
-    }).always(bindLoader);
-  }
-  setTimeout(function() {
-    mediaElementLoaderConversionOverview(list, time);
-  }, time);
 }

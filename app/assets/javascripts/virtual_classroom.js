@@ -111,10 +111,10 @@ function virtualClassroomDocumentReadyMultipleLessonLoading() {
     }
   });
   $('body').on('mouseover', '._virtual_classroom_quick_loaded_lesson ._current_inserted', function() {
-    $(this).children('a').css('background-position', '-10em -0.1em');
+    $(this).children('a').addClass('with_x');
   });
   $('body').on('mouseout', '._virtual_classroom_quick_loaded_lesson ._current_inserted', function() {
-    $(this).children('a').css('background-position', '-10em -15.2em');
+    $(this).children('a').removeClass('with_x');
   });
   $('body').on('click', '#virtual_classroom_quick_select_submit', function() {
     if(!$(this).hasClass('current')) {

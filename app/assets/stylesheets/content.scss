@@ -1,0 +1,245 @@
+@import 'variables';
+@import 'mixins';
+
+#loading {
+  
+  display: none;
+  z-index: 100000;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  opacity: 0.8;
+  text-align: center;
+  
+}
+
+.containerLoading {
+  
+  position: absolute;
+  z-index: 999999;
+  background-color: #fff;
+  border-radius: 20px;
+  
+}
+
+.content {
+  
+  padding: 20px 0 43px 0;
+  color: #939393;
+  
+}
+
+.griglia-contenuti {
+  
+  width: 97%;
+  margin: 0 auto;
+  
+}
+
+.boxContentIndex {
+  
+  padding: 2% 0 2% 2%;
+  background-color: #f7f7f7;
+  width: 47%;
+  float: left;
+  margin-bottom: 4%;
+  
+  p {
+    
+    font: 180% 'Nunito', sans-serif;
+    
+  }
+  
+  a {
+    
+    color: #2faadc;
+    
+  }
+  
+}
+
+.empty {
+  
+  margin: 0 auto;
+  padding-top: 5em;
+  padding-bottom: 10em;
+  clear: both;
+  width: 26%;
+  @include emptyFormat;
+  
+  .createButton {
+    
+    float: left;
+    
+  }
+  
+  .createButton a {
+    
+    background: $assets-add-element-off_svg bottom right no-repeat;
+    background-size: 6em;
+    padding: 1em 4em 4em 2em;
+    width: 76px;
+    
+  }
+  
+  .createButton a:hover {
+    
+    background: $assets-add-element-on_svg bottom right no-repeat;
+    background-size: 6em;
+    cursor: pointer;
+    
+  }
+  
+ .createButton  a.current {
+    
+    background: $assets-add-element-on_svg bottom right no-repeat;
+    background-size: 6em;
+    cursor: pointer;
+    
+  }
+  
+}
+
+._empty_media_elements:hover, ._empty_documents:hover {
+  
+  cursor: pointer;
+  
+}
+
+._empty_lessons:hover {
+  
+  cursor: pointer;
+  
+}
+
+.emptyFilter {
+  
+  margin: 0 auto;
+  padding-top: 5em;
+  padding-bottom: 5em;
+  text-align: center;
+  @include emptyFormat;
+  
+}
+
+.advanced-search-content {
+  
+  float: left;
+  width: 99.5%;
+  color: #999;
+  margin-bottom: 5%;
+  
+}
+
+#lessons_search_amount {
+  
+  font: 120% 'Nunito', sans-serif;
+  
+  p {
+    
+    background-color: $orange;
+    padding: 10px;
+    color: #fff;
+    
+  }
+  
+}
+
+#media_elements_search_amount {
+  
+  font: 120% 'Nunito', sans-serif;
+  
+  p {
+    
+    background-color: $green;
+    padding: 10px;
+    color: #fff;
+    clear: float;
+    
+  }
+  
+}
+
+#found_lessons, #found_media_elements {
+  
+  margin-top: 16px;
+  display: block;
+  
+}
+
+#lessons_tag_details {
+  
+  display: inline-block;
+  margin-top: 6px;
+  
+  a {
+    
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    background-color: $orange;
+    color: #fff;
+    padding: 10px 14px;
+    float: left;
+    margin-right: 10px;
+    margin-top: 10px;
+    
+    &:hover {
+      
+      background-color: #fbb23f;
+      
+    }
+    
+    &.current {
+      
+      background-color: #fbb23f;
+      
+    }
+    
+  }
+  
+}
+
+#media_elements_tag_details {
+  
+  display: inline-block;
+  margin-top: 6px;
+  
+  a {
+    
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    background-color: $green;
+    color: #fff;
+    padding: 10px 14px;
+    float: left;
+    margin-right: 10px;
+    margin-top: 10px;
+    
+    &:hover {
+      
+      background-color: #67b855;
+      
+    }
+    
+    &.current {
+      
+      background-color: #67b855;
+      
+    }
+    
+  }
+  
+}
+
+.bulletPointVideo {
+  
+  position: absolute;
+  width: 100%;
+  top: 66px;
+  cursor: pointer;
+  text-align: center;
+  
+}

@@ -131,6 +131,30 @@ record for <code>user_id</code></p>
           </ul>
         </dd>
       
+        <dt>M</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-message_with_time">message_with_time</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>O</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-only_time">only_time</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
         <dt>S</dt>
         <dd>
           <ul>
@@ -138,6 +162,23 @@ record for <code>user_id</code></p>
               
               <li>
                 <a href="#method-c-send_to">send_to</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>T</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-time_difference_single">time_difference_single</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-time_difference_to_s">time_difference_to_s</a>
               </li>
             
           </ul>
@@ -303,6 +344,81 @@ href="NotificationsController.html#method-i-seen">NotificationsController#seen</
             </div>
             
           </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-message_with_time">
+            
+              <b>message_with_time</b>()
+            
+            <a href="../classes/Notification.html#method-i-message_with_time" name="method-i-message_with_time" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <h3 id="method-i-message_with_time-label-Description">Description</h3>
+
+<p>Renders the message with the time</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-message_with_time_source')" id="l_method-i-message_with_time_source">show</a>
+                
+              </p>
+              <div id="method-i-message_with_time_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/models/notification.rb, line 82</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">message_with_time</span>
+  <span class="ruby-identifier">time_difference</span> = <span class="ruby-identifier">time_difference_to_s</span>(<span class="ruby-constant">Time</span>.<span class="ruby-identifier">zone</span>.<span class="ruby-identifier">now</span> <span class="ruby-operator">-</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">created_at</span>)
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">message</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-string">&quot;&lt;/div&gt;&lt;div class=\&quot;content\&quot;&gt;&quot;</span>, <span class="ruby-node">&quot;&lt;/div&gt;&lt;p class=\&quot;time _notification_time_#{self.id}\&quot;&gt;#{time_difference}&lt;/p&gt;&lt;div class=\&quot;content\&quot;&gt;&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-only_time">
+            
+              <b>only_time</b>()
+            
+            <a href="../classes/Notification.html#method-i-only_time" name="method-i-only_time" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <h3 id="method-i-only_time-label-Description">Description</h3>
+
+<p>Renders the time difference</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-only_time_source')" id="l_method-i-only_time_source">show</a>
+                
+              </p>
+              <div id="method-i-only_time_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/models/notification.rb, line 91</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">only_time</span>
+  <span class="ruby-identifier">time_difference_to_s</span>(<span class="ruby-constant">Time</span>.<span class="ruby-identifier">zone</span>.<span class="ruby-identifier">now</span> <span class="ruby-operator">-</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">created_at</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
               
       <div class="sectiontitle">Instance Private methods</div>
       
@@ -333,10 +449,94 @@ href="Valid.html#method-c-get_association">Valid.get_association</a>)</p>
                 
               </p>
               <div id="method-i-init_validation_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/notification.rb, line 81</span>
+                <pre><span class="ruby-comment"># File app/models/notification.rb, line 121</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">init_validation</span>
   <span class="ruby-ivar">@notification</span> = <span class="ruby-constant">Valid</span>.<span class="ruby-identifier">get_association</span> <span class="ruby-keyword">self</span>, <span class="ruby-value">:id</span>
   <span class="ruby-ivar">@user</span> = <span class="ruby-constant">Valid</span>.<span class="ruby-identifier">get_association</span> <span class="ruby-keyword">self</span>, <span class="ruby-value">:user_id</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-time_difference_single">
+            
+              <b>time_difference_single</b>(symbol, seconds, offset)
+            
+            <a href="../classes/Notification.html#method-i-time_difference_single" name="method-i-time_difference_single" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-time_difference_single_source')" id="l_method-i-time_difference_single_source">show</a>
+                
+              </p>
+              <div id="method-i-time_difference_single_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/models/notification.rb, line 111</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">time_difference_single</span>(<span class="ruby-identifier">symbol</span>, <span class="ruby-identifier">seconds</span>, <span class="ruby-identifier">offset</span>)
+  <span class="ruby-identifier">items</span> = <span class="ruby-identifier">seconds</span> <span class="ruby-operator">/</span> <span class="ruby-identifier">offset</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">items</span> <span class="ruby-operator">==</span> <span class="ruby-number">1</span>
+    <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-node">&quot;notifications.time_difference.#{symbol.chop}&quot;</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-node">&quot;notifications.time_difference.#{symbol}&quot;</span>, <span class="ruby-value">:&quot;#{symbol}&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">items</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-time_difference_to_s">
+            
+              <b>time_difference_to_s</b>(seconds)
+            
+            <a href="../classes/Notification.html#method-i-time_difference_to_s" name="method-i-time_difference_to_s" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Converts seconds into a nice time difference</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-time_difference_to_s_source')" id="l_method-i-time_difference_to_s_source">show</a>
+                
+              </p>
+              <div id="method-i-time_difference_to_s_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/models/notification.rb, line 98</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">time_difference_to_s</span>(<span class="ruby-identifier">seconds</span>)
+  <span class="ruby-identifier">seconds</span> = <span class="ruby-identifier">seconds</span>.<span class="ruby-identifier">to_i</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;notifications.time_difference.seconds&#39;</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">seconds</span> <span class="ruby-operator">&lt;</span> <span class="ruby-number">0</span>
+  <span class="ruby-keyword">case</span> <span class="ruby-identifier">seconds</span>
+    <span class="ruby-keyword">when</span> (<span class="ruby-number">0</span><span class="ruby-operator">...</span><span class="ruby-number">60</span>)             <span class="ruby-keyword">then</span> <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;notifications.time_difference.seconds&#39;</span>)
+    <span class="ruby-keyword">when</span> (<span class="ruby-number">60</span><span class="ruby-operator">...</span><span class="ruby-number">3600</span>)          <span class="ruby-keyword">then</span> <span class="ruby-identifier">time_difference_single</span>(<span class="ruby-string">&#39;minutes&#39;</span>, <span class="ruby-identifier">seconds</span>, <span class="ruby-number">60</span>)
+    <span class="ruby-keyword">when</span> (<span class="ruby-number">3600</span><span class="ruby-operator">...</span><span class="ruby-number">86400</span>)       <span class="ruby-keyword">then</span> <span class="ruby-identifier">time_difference_single</span>(<span class="ruby-string">&#39;hours&#39;</span>, <span class="ruby-identifier">seconds</span>, <span class="ruby-number">3600</span>)
+    <span class="ruby-keyword">when</span> (<span class="ruby-number">86400</span><span class="ruby-operator">...</span><span class="ruby-number">2629800</span>)    <span class="ruby-keyword">then</span> <span class="ruby-identifier">time_difference_single</span>(<span class="ruby-string">&#39;days&#39;</span>, <span class="ruby-identifier">seconds</span>, <span class="ruby-number">86400</span>)
+    <span class="ruby-keyword">when</span> (<span class="ruby-number">2629800</span><span class="ruby-operator">...</span><span class="ruby-number">31557600</span>) <span class="ruby-keyword">then</span> <span class="ruby-identifier">time_difference_single</span>(<span class="ruby-string">&#39;months&#39;</span>, <span class="ruby-identifier">seconds</span>, <span class="ruby-number">2629800</span>)
+    <span class="ruby-keyword">else</span>                           <span class="ruby-identifier">time_difference_single</span>(<span class="ruby-string">&#39;years&#39;</span>, <span class="ruby-identifier">seconds</span>, <span class="ruby-number">31557600</span>)
+  <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -369,7 +569,7 @@ href="Valid.html#method-c-get_association">Valid.get_association</a>)</p>
                 
               </p>
               <div id="method-i-validate_associations_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/notification.rb, line 87</span>
+                <pre><span class="ruby-comment"># File app/models/notification.rb, line 127</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">validate_associations</span>
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:user_id</span>, <span class="ruby-value">:doesnt_exist</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">nil?</span>
 <span class="ruby-keyword">end</span></pre>
@@ -404,7 +604,7 @@ href="Valid.html#method-c-get_association">Valid.get_association</a>)</p>
                 
               </p>
               <div id="method-i-validate_impossible_changes_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/notification.rb, line 97</span>
+                <pre><span class="ruby-comment"># File app/models/notification.rb, line 137</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">validate_impossible_changes</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@notification</span>
     <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:seen</span>, <span class="ruby-value">:cant_be_switched_from_true_to_false</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@notification</span>.<span class="ruby-identifier">seen</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">seen</span>
@@ -444,7 +644,7 @@ record</p>
                 
               </p>
               <div id="method-i-validate_seen_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/notification.rb, line 92</span>
+                <pre><span class="ruby-comment"># File app/models/notification.rb, line 132</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">validate_seen</span>
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:seen</span>, <span class="ruby-value">:must_be_false_if_new_record</span>) <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@notification</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">seen</span>
 <span class="ruby-keyword">end</span></pre>

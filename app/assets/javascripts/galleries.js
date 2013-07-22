@@ -93,11 +93,6 @@ function galleriesDocumentReadyClose() {
       $('#' + audio_id + ' ._expanded').hide();
     }
   });
-  $('body').on('click', '._close_on_click_out', function() {
-    $('.ui-dialog-content:visible').each(function() {
-      closePopUp($(this).attr('id'));
-    });
-  });
 }
 
 /**

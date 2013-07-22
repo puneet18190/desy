@@ -1,0 +1,546 @@
+@import 'variables';
+@import 'mixins';
+
+html.prelogin-layout {
+  
+  body {
+    
+    font: 80% Arial, Helvetica, sans-serif;
+    background: #248fba;
+    margin: 0;
+    color: #fff;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    
+  }
+  
+  hr {
+    
+    color: #248fba;
+    background-color: #248fba;
+    height: 1px;
+    width: 100%;
+    border: 0;
+    
+  }
+  
+  a {
+    
+    color: #fff;
+    cursor: pointer;
+    
+  }
+  
+  h1 {
+    
+    font-size: 280%;
+    color: #fff;
+    padding-top: 14px;
+    padding-bottom: 0px;
+    line-height: 100%;
+    
+  }
+  
+  h2 {
+    
+    color: #fff;
+    font-size: 130%;
+    padding: 30px 0px 0px 90px;
+    line-height: 100%;
+    
+  }
+  
+  h1 + h2 {
+    
+    color: #ffd400;
+    
+  }
+  
+  h3 {
+    
+    font-size: 110%;
+    color: #fff;
+    line-height: 100%;
+    
+  }
+  
+  .container {
+    
+    margin: 0 auto;
+    width: 944px;
+    display: inline-block;
+    text-align: left;
+    padding: 20px;
+    
+    .header {
+      
+      padding: 20px;
+      background-image: none;
+      
+    }
+    
+    .logoDesyPrelogin {
+      
+      position: relative;
+      width: 190px;
+      
+      p {
+        
+        position: absolute;
+        top: 40px;
+        left: 2px;
+        color: #dad7d7;
+        font: 9px 'Nunito', sans-serif;
+        
+      }
+      
+    }
+    
+    .containerText {
+      
+      p {
+        
+        padding-bottom: 10px;
+        
+      }
+      
+      h2 {
+        
+        padding: 0px;
+        
+      }
+      
+      ul {
+        
+        padding: 20px;
+        
+      }
+      
+      ul li {
+        
+        padding-bottom: 10px;
+        
+      }
+      
+    }
+    
+    .insert-content {
+      
+      padding: 0px 90px 0px 90px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      
+      .inputElement {
+        
+        float: left;
+        
+        label {
+          
+          margin-left: 10px;
+          
+        }
+        
+        p {
+          
+          color: #2f2e2e;
+          
+        }
+        
+      }
+      
+    }
+    
+    .contentForm {
+      
+      padding: 30px 90px 40px 90px;
+      width: auto;
+      
+      .checkbox-content {
+        
+        width: 270px;
+        
+        .checkboxElement {
+          
+          margin-bottom: 0px;
+          padding-left: 0px;
+          
+          table {
+            
+            width: auto;
+            float: none;
+            
+            td:last-child {
+              
+              padding-left: 10px;
+              
+            }
+            
+          }
+          
+          .regular-checkbox + label, label {
+            
+            box-shadow: 0 1px 1px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+            padding: 3px 9px;
+            border-radius: 3px;
+            height: 15px;
+            width: 4px;
+            
+          }
+          
+          .regular-checkbox + label:active, .regular-checkbox:checked + label:active {
+            
+            box-shadow: 0 1px 1px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);
+            
+          }
+          
+          .regular-checkbox:checked + label {
+            
+            background-color: #e9ecee;
+            box-shadow: 0 1px 1px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05), inset 15px 10px -12px rgba(255,255,255,0.1);
+            
+          }
+          
+          .regular-checkbox:checked + label:after {
+            
+            font-size: 16px;
+            position: absolute;
+            top: -3px;
+            left: 2px;
+            color: #248fba;
+            
+          }
+          
+        }
+        
+      }
+      
+    }
+    
+    .checkboxElement {
+      
+      color: #fff;
+      width: 200px;
+      font-size: 13px;
+      
+      span {
+        
+        padding: 7px 0px 0px 10px;
+        float: left;
+        
+      }
+      
+      .big-checkbox:checked + label, label {
+        
+        background-color: #248fba;
+        box-shadow: 0 1px 1px rgba(50,50,50,0.5) inset;
+        border-radius: 5px;
+        padding: 15px;
+        border-top: 0px solid #d2d2d2;
+        float: left;
+        
+        &:last-child {
+          
+          margin-right: 0;
+          
+        }
+        
+      }
+      
+      .big-checkbox:checked + label:after {
+        
+        color: #fff;
+        left: 4px;
+        top: -2px;
+        font-size: 22px;
+        
+      }
+      
+    }
+    
+    input[type="text"], input[type="password"], input[type="email"] {
+      
+      background-color: #248fba;
+      color: #fff;
+      font-size: 120%;
+      margin-top: 5px;
+      box-shadow: -1px -1px 1px 0px rgba(30,121,158,0.8), inset -1px -1px 1px rgba(128,190,215,0.8);
+      width: 227px;
+      margin-bottom: 10px;
+      margin-right: 12px;
+      
+      &.school {
+        
+        width: 485px;
+        
+      }
+      
+    }
+    
+    .sbHolder {
+      
+      width: 227px;
+      height: 29px;
+      margin-right: 16px;
+      margin-top: 5px;
+      margin-bottom: 10px;
+      background-color: #248fba;
+      
+      .sbSelector {
+        
+        width: 227px;
+        
+        &:link {
+          
+          color: #fff;
+          
+        }
+        
+      }
+      
+      .sbToggle {
+        
+        background: $assets-select-icons-blue_png 0 -116px no-repeat;
+        
+      }
+      
+      .sbToggleOpen {
+        
+        background: $assets-select-icons-blue_png 0 -16px no-repeat;
+        
+      }
+      
+      .sbOptions {
+        
+        width: 227px;
+        
+        li a {
+          
+          color: #adadad;
+          
+        }
+        
+        .sbFocus, li a:hover {
+          
+          background-color: #248fba;
+          color: #fff;
+          
+        }
+        
+        .sbFocus li a {
+          
+          color: #fff;
+          
+        }
+        
+      }
+      
+    }
+    
+  }
+  
+  &.registration-action, &.users-controller.create-action {
+    
+    .container {
+      
+      background-color: $blue;
+      padding: 0px;
+      width: 984px;
+      
+      .footer {
+        
+        padding: 10px 30px 10px 40px;
+        border-top: 7px solid #fdb525;
+        float: left;
+        background: #fff;
+        color: #cecdcd;
+        font-size: 75%;
+        text-transform: lowercase;
+        position: relative;
+        width: 914px;
+        height: 40px;
+        
+      }
+      
+      .header {
+        
+        background-color: $blue;
+        
+      }
+      
+      .header .headerMenu {
+        
+        background-color: #000;
+        
+        a {
+          
+          color: white;
+          
+          &:hover,&.current {
+            
+            color: #fdb525;
+            
+          }
+          
+        }
+        
+      }
+      
+      .containerText {
+        
+        background: $assets-bg-register_png top right no-repeat;
+        padding: 200px 90px 20px 90px;
+        font-family: 'Nunito', sans-serif;
+        
+      }
+      
+    }
+    
+    &.users-controller.create-action {
+      
+      .field_with_errors {
+        
+        input, select, .sbSelector, textarea, .regular-checkbox + label  {
+          
+          border: 2px solid #fff;
+          
+        }
+        
+      }
+      
+    }
+    
+    input[type="submit"] {
+      
+      background-color: $blue;
+      font-size: 20px;
+      font-family: 'Nunito', sans-serif;
+      text-transform: none;
+      margin: 40px 0 0 0;
+      padding: 0px;
+      cursor: pointer;
+      
+    }
+    
+  }
+  
+  &.what_is_desy-action  {
+    
+    body {
+      
+      background: #505051;
+      margin: 0;
+      color: #6d6d6e;
+      text-align: center;
+      width: 100%;
+      height: 100%;
+      
+    }
+    
+    .container {
+      
+      padding: 0;
+      width: 984px;
+      
+      .header {
+        
+        background-color: white;
+        
+      }
+      
+      .headerMenu {
+        
+        background-color: #f7f6f6;
+        
+      }
+      
+      .containerText {
+        
+        background-image: none;
+        padding: 100px 20px 20px 20px;
+        width: 47%;
+        color: #6d6d6e;
+        float: left;
+        
+        h1, h3 {
+          
+          font-family: 'Nunito', sans-serif;
+          color: #fdb525;
+          
+        }
+        
+        h3 {
+          
+          padding-bottom: 25px;
+          
+        }
+        
+        ul {
+          
+          list-style: none;
+          
+          li {
+            
+            padding-left: 18px;
+            background-image: $assets-arrow-yellow_png;
+            background-repeat: no-repeat;
+            background-position: 0 0;
+            
+          }
+          
+        }
+        
+      }
+      
+      .footer {
+        
+        padding: 10px 30px 10px 40px;
+        border-top: 7px solid #fdb525;
+        background: #fff;
+        color: #cecdcd;
+        font-size: 75%;
+        text-transform: lowercase;
+        position: relative;
+        width: 914px;
+        height: 40px;
+        
+      }
+      
+      .colDx {
+        
+        float: right;
+        margin-top: 47px;
+        width: 158px;
+        background-image: $assets-colonna-destra_jpg;
+        background-repeat: no-repeat;
+        background-position: top left;
+        padding: 118px 40px 0px 258px;
+        font-size: 10px;
+        
+        h1 {
+          
+          font-size: 18px;
+          color: #25aae1;
+          font-family: 'Nunito', sans-serif;
+          
+        }
+        
+      }
+      
+    }
+    
+  }
+  
+  &.users-controller.request_reset_password-action, &.users-controller.send_reset_password-action, &.users-controller.reset_password-action, &.users-controller.confirm-action {
+    
+    @include handle-registrations;
+    
+  }
+  
+}
+
+html.ad-hoc-layout {
+  
+  @include handle-registrations;
+  
+}

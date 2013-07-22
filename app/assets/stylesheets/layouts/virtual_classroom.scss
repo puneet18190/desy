@@ -1,0 +1,628 @@
+@import 'variables';
+@import 'mixins';
+
+html.virtual_classroom-controller {
+  
+  height: 100%;
+  
+  body {
+    
+    font: 80% Arial, Helvetica, sans-serif;
+    background: #252525;
+    margin: 0;
+    padding: 0;
+    color: #FFF;
+    direction: ltr;
+    
+  }
+  
+  .content {
+    
+    color: #fff;
+    
+  }
+  
+  .container {
+    
+    width: 100%;
+    background: #252525;
+    margin: 0 auto;
+    
+  }
+  
+  .playListContainer {
+    
+    float: right;
+    margin-right: 20px;
+    clear: right;
+    
+  }
+  
+  .listContainer {
+    
+    margin-right: 366px;
+    margin-bottom: 3%;
+    
+  }
+  
+  .bluBar {
+    
+    margin: 0 auto 24px auto;
+    float: left;
+    width: 96%;
+    padding: 0.4% 2% 0.8% 2%;
+    font: 120% 'Nunito', sans-serif;
+    background-color: $blue;
+    
+    h1 {
+      
+      color: #fff;
+      padding: 0;
+      margin-top: 5px;
+      font: 200% 'Nunito', sans-serif;
+      float: left;
+      width: 39%;
+      
+    }
+    
+    ul.navlist {
+      
+      margin: 17px 0 10px 10px;
+      padding: 0;
+      white-space: nowrap;
+      float: left;
+      
+    }
+    
+    .navlist li {
+      
+      display: inline;
+      list-style-type: none;
+      margin-right: 5px;
+      
+      &:last-child {
+        
+        margin-right: 0px;
+        
+      }
+      
+    }
+    
+    .navlist a {
+      
+      padding: 15px 30px;
+      background-color: #42b9e9;
+      color: #fff;
+      
+    }
+    
+    .navlist a:hover {
+      
+      background-color: #59c9f6;
+      
+    }
+    
+    .navlist a.current {
+      
+      background-color: #42b9e9;
+      color: $blue;
+      cursor: default;
+      
+    }
+    
+    .navlist a.disabled {
+      
+      background-color: #42b9e9;
+      color: $blue;
+      cursor: default;
+      
+    }
+    
+  }
+  
+  .uploadButtonPopUpSelectLesson {
+    
+    margin-top: 25px;
+    margin-right: 32px;
+    display: inline-block;
+    float: right;
+    width: 244px;
+    
+    #virtual_classroom_quick_select_submit.current {
+      
+      a.buttonForm {
+        
+        background-color: #494948;
+        color: #303130;
+        cursor: default;
+        
+      }
+    }
+    
+    a.buttonForm {
+      
+      margin-right: 5px;
+      background-color: #42b9e9;
+      color: #fff;
+      float: left;
+      
+      &:hover {
+        
+        background-color: #59c9f6;
+        
+      }
+      
+    }
+    
+  }
+  
+  .boxViewSingleLesson {
+    
+    float: left;
+    width: 270px;
+    margin-right: 20px;
+    margin-top: 20px;
+    margin-bottom: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    background-color: #434343;
+    
+    &:hover {
+      
+      cursor: default;
+      
+    }
+    
+    .contentInterno {
+      
+      height: 214px;
+      width: auto;
+      padding: 10px;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+      
+      .img_expanded:hover {
+        
+        background-color: #000;
+        opacity: 0.70;
+        cursor: $assets-google-open-hand, move;
+        
+      }
+      
+      .img_expanded.current {
+        
+        background-color: #000;
+        opacity: 0.20;
+        
+        &:hover {
+          
+          cursor: default;
+          
+        }
+        
+      }
+      
+      p {
+        
+        font-size: 100%;
+        width: 100%;
+        text-align: left;
+        
+      }
+      
+      a {
+        
+        color: #fff;
+        padding-left: 10px;
+        font-size: 80%;
+        
+        &:hover {
+          
+          color: $orange;
+          
+        }
+        
+      }
+      
+      div {
+        
+        float: none;
+        
+      }
+      
+    }
+    
+    .menuLessonVirtualClassroom {
+      
+      display: inline-block;
+      width: 247px;
+      
+      a {
+        
+        float: left;
+        
+      }
+      
+      .preview {
+        
+        @include buttonPlayerVirtual;
+        background-position: 0 0;
+        
+        &:hover {
+          
+          background-position: (-$virtual-classroom-button-size) 0;
+          
+        }
+        
+      }
+      
+      .sendTo {
+        
+        @include buttonPlayerVirtual;
+        background-position: 0 (-$virtual-classroom-button-size);
+        
+        &:hover {
+          
+          background-position: (-$virtual-classroom-button-size) (-$virtual-classroom-button-size);
+          
+        }
+        
+      }
+      
+      .remove {
+        
+        @include buttonPlayerVirtual;
+        background-position: 0 (-$virtual-classroom-button-size * 2);
+        float: right;
+        
+        &:hover {
+          
+          background-position: (-$virtual-classroom-button-size) (-$virtual-classroom-button-size * 2);
+          
+        }
+        
+      }
+      
+    }
+    
+  }
+  
+  .playList {
+    
+    padding: 10px;
+    background-color: #2b2929;
+    width: 316px;
+    
+    .scroll-pane {
+      
+      height: 616px;
+      
+    }
+    
+    h1 {
+      
+      color: $blue;
+      font: 120% 'Nunito', sans-serif;
+      
+    }
+    
+    h2 {
+      
+      font-size: 80%;
+      color: #373737;
+      
+    }
+    
+    .titlePlaylist {
+      
+      font-family: 'Nunito', sans-serif;
+      padding-top: 5px;
+      color: $blue;
+      
+    }
+    
+    span {
+      
+      font-size: 90%;
+      color: $blue;
+      padding: 5px 0px 15px 30px;
+      font-weight: bold;
+      
+    }
+    
+    .emptyPlayListButton {
+      
+      font-size: 80%;
+      color: #615e5e;
+      padding: 8px 34px 0px 0px;
+      
+      &:hover {
+        
+        color: $blue;
+        cursor: pointer;
+        
+      }
+      
+    }
+    
+    &.current {
+      
+      background-color: #434343;
+      
+    }
+    
+    .jspTrack {
+      
+      background-color: #434343;
+      
+    }
+    
+    .jspDrag {
+      
+      background-color: $blue;
+      
+    }
+    
+    .lista {
+      
+      padding-top: 5px;
+      padding-bottom: 5px;
+      float: left;
+      width: 288px;
+      
+      .contatore {
+        
+        float: left;
+        padding: 4px 6px 4px 6px;
+        margin-right: 15px;
+        background-color: #434343;
+        font-size: 80%;
+        text-align: center;
+        
+      }
+      
+      .description {
+        
+        width: 248px;
+        float: right;
+        position: relative;
+        
+        .title {
+          
+          background-color: $orange;
+          padding: 10px 7px 10px 7px;
+          
+        }
+        
+        .lessonType {
+          
+          background-color: #fff;
+          padding: 2px 10px;
+          
+        }
+        
+        &:hover {
+          
+          cursor: move;
+          outline: 1px solid #fff;
+          
+        }
+        
+      }
+      
+      h1 {
+        
+        font: 100% 'Nunito', sans-serif;
+        color: #fff;
+        line-height: 1em;
+        height: 25px;
+        
+      }
+      
+    }
+    
+    .lista.current .description {
+      
+      outline: 4px solid #fff;
+      
+    }
+    
+    .playInVirtualClassroom {
+      
+      padding: 8px 10px 10px 70px;
+      background: #252525 $assets-freccina-play-virtual_png 1.6em 0.6em no-repeat;
+      color: #fff;
+      font: 180% 'Nunito', sans-serif;
+      margin-bottom: 15px;
+      
+    }
+    
+    a {
+      
+      color: #fff;
+      
+      &:hover {
+        
+        cursor: pointer;
+        color: #59c9f6;
+        
+      }
+      
+    }
+    
+  }
+  
+  .empty {
+    
+    color: #727377;
+    width: 400px;
+    clear: none;
+    
+    .emptyContent {
+      
+      float: left;
+      padding-top: 0.7em;
+      
+    }
+    
+    h1 {
+      
+      font: 100% 'Nunito', sans-serif;
+      
+    }
+    
+    h2 {
+      
+      font: 240% 'Nunito', sans-serif;
+      
+    }
+    
+  }
+  
+  .createButton {
+    
+    float: left;
+    
+  }
+  
+  .createButton a {
+    
+    background: $assets-add-vc-off_svg bottom right no-repeat;
+    background-size: 8em;
+    padding: 1em 3em 6em 5em;
+    
+    &:hover {
+      
+      background: $assets-add-vc-on_svg bottom right no-repeat;
+      background-size: 8em;
+      padding: 1em 3em 6em 5em;
+      
+    }
+    
+  }
+  
+  .virtualClassroomQuickSelectPopUp {
+    
+    background-color: #373737;
+    padding: 20px 10px 15px 20px;
+    -webkit-box-shadow: 0px 6px 10px #161515;
+    box-shadow: 0px 6px 10px #161515;
+    z-index: 999;
+    
+    a {
+      
+      color: #fff;
+      
+    }
+    
+    .boxViewSingleLesson .contentInterno .img_expanded {
+      
+      cursor: pointer;
+      
+    }
+    
+    .boxViewSingleLesson .contentInterno .currentInserted {
+      
+      background-color: #373737;
+      opacity: 0.85;
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 60px 12px 12px 100px;
+      width: 135px;
+      height: 91px;
+      
+      a {
+        
+        @include svg-circle-icon-handler-without-hover($assets-set-icone-editor_svg, 45px, 4, 12, 1, 2, 3);
+        padding: 0;
+        
+        &.with_x {
+          
+          @include svg-circle-icon-handler-without-hover($assets-set-icone-editor_svg, 45px, 4, 12, 1, 2, 0);
+          
+        }
+        
+      }
+      
+    }
+    
+    h3 {
+      
+      color: #fff;
+      font-family: 'Nunito', sans-serif;
+      padding-bottom: 15px;
+      
+    }
+    
+    .contentPopUp {
+      
+      .jspTrack {
+        
+        background-color: #2b2828;
+        
+      }
+      
+      .jspDrag {
+        
+        background-color: $blue;
+        
+      }
+      
+    }
+    
+    .scroll-pane {
+      
+      height: 384px;
+      width: 880px;
+      
+    }
+    
+  }
+  
+  .emptyPlayList {
+    
+    color: #727377;
+    padding-bottom: 46px;
+    background: $assets-bg-playlist-empty_png top right no-repeat;
+    
+    p {
+      
+      padding: 120px 0px 0px 20px;
+      width: 150px;
+      text-align: right;
+      
+    }
+    
+  }
+  
+  .exitButton {
+    
+    @include svg-circle-icon-handler($assets-set-icone-editor_svg, 14px, 4, 12, 0.1, 2, 0, 0.6, 1, 0);
+    position: absolute;
+    right: 4px;
+    bottom: 2px;
+    cursor: pointer;
+    
+  }
+  
+  .dots_pagination_container .dots_pagination a {
+    
+    width: 10px;
+    height: 10px;
+    
+  }
+  
+  .footer {
+    
+    z-index: 900;
+    
+  }
+  
+}
+
+#virtual_classroom_quick_select_container .jspVerticalBar {
+  
+  top: 0;
+  
+}

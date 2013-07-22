@@ -97,6 +97,10 @@
             
                 <li><a href="../classes/DialogsWithForm.html">DialogsWithForm</a></li>
             
+                <li><a href="../classes/DocumentsDocumentReady.html">DocumentsDocumentReady</a></li>
+            
+                <li><a href="../classes/DocumentsLoader.html">DocumentsLoader</a></li>
+            
                 <li><a href="../classes/GalleriesAccessories.html">GalleriesAccessories</a></li>
             
                 <li><a href="../classes/GalleriesDocumentReady.html">GalleriesDocumentReady</a></li>
@@ -156,6 +160,8 @@
                 <li><a href="../classes/MediaElementEditorForms.html">MediaElementEditorForms</a></li>
             
                 <li><a href="../classes/MediaElementEditorHorizontalTimelines.html">MediaElementEditorHorizontalTimelines</a></li>
+            
+                <li><a href="../classes/MediaElementLoaderConversion.html">MediaElementLoaderConversion</a></li>
             
                 <li><a href="../classes/MediaElementLoaderDocumentReady.html">MediaElementLoaderDocumentReady</a></li>
             
@@ -240,6 +246,8 @@
                 <li><a href="../modules/dashboard.html">dashboard</a></li>
             
                 <li><a href="../modules/dialogs.html">dialogs</a></li>
+            
+                <li><a href="../modules/documents.html">documents</a></li>
             
                 <li><a href="../modules/galleries.html">galleries</a></li>
             
@@ -368,6 +376,13 @@
                             </li>
                         
                             <li class="index-item method">
+                                <a href="#method_notificationsDocumentReadyLoop">notificationsDocumentReadyLoop</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
                                 <a href="#method_notificationsDocumentReadyTooltips">notificationsDocumentReadyTooltips</a>
 
                                 
@@ -433,7 +448,7 @@
     </div>
 
     <div class="description">
-        <p>Global initializer for notifications and help</p>
+        <p>Global initializer for notifications and help. The function <a href="../classes/NotificationsDocumentReady.html#method_notificationsDocumentReadyLoop" class="crosslink">notificationsDocumentReadyLoop</a> is called after a time of 2500 not to be called at the same time of <a href="../classes/MediaElementLoaderConversion.html#method_mediaElementLoaderConversionOverview" class="crosslink">mediaElementLoaderConversionOverview</a>.</p>
     </div>
 
     
@@ -476,7 +491,7 @@
             
         
         
-        <a href="../files/app_assets_javascripts_notifications.js.html#l125"><code>app&#x2F;assets&#x2F;javascripts&#x2F;notifications.js:125</code></a>
+        <a href="../files/app_assets_javascripts_notifications.js.html#l130"><code>app&#x2F;assets&#x2F;javascripts&#x2F;notifications.js:130</code></a>
         
         </p>
 
@@ -490,6 +505,93 @@
         <p>Initializes the form for notifying a lesson's modifications. These actions are linked on the button <a href="../classes/ButtonsLesson.html#method_unpublishLesson" class="crosslink">unpublishLesson</a>, provided that it has the class <i>lesson change not notified</i>.</p>
     </div>
 
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_notificationsDocumentReadyLoop" class="method item">
+    <h3 class="name"><code>notificationsDocumentReadyLoop</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>time</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/app_assets_javascripts_notifications.js.html#l158"><code>app&#x2F;assets&#x2F;javascripts&#x2F;notifications.js:158</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Initializer for the loop that updates the notifications</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">time</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>the time to iterate the loop</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
     
 
     
@@ -530,7 +632,7 @@
             
         
         
-        <a href="../files/app_assets_javascripts_notifications.js.html#l153"><code>app&#x2F;assets&#x2F;javascripts&#x2F;notifications.js:153</code></a>
+        <a href="../files/app_assets_javascripts_notifications.js.html#l175"><code>app&#x2F;assets&#x2F;javascripts&#x2F;notifications.js:175</code></a>
         
         </p>
 

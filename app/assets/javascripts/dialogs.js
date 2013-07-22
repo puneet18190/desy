@@ -28,6 +28,23 @@ function customOverlayClose() {
 }
 
 /**
+Close and successively remove HTML for a given document popup.
+@method removeCompletelyDocumentPopup
+@for DialogsAccessories
+@param document_id {Number} id of the document in the database, used to extract the HTML id of the dialog
+**/
+function removeCompletelyDocumentPopup(document_id) {
+  var obj = $('#dialog-document-' + document_id);
+  if(obj.length == 0) {
+    return;
+  }
+  if(obj.data('dialog')) {
+    obj.dialog('destroy');
+  }
+  obj.remove();
+}
+
+/**
 Close and successively remove HTML for a given media element popup.
 @method removeCompletelyMediaElementPopup
 @for DialogsAccessories
@@ -406,10 +423,7 @@ function showMediaElementInfoPopUp(media_element_id) {
           $('#dialog-media-element-' + media_element_id + ' ._audio_preview_in_media_element_popup').show();
           $('#dialog-media-element-' + media_element_id + ' ._change_info_container').hide();
           var change_info_button = $('#dialog-media-element-' + media_element_id + ' ._change_info_to_pick');
-          if(change_info_button.hasClass('change_info_light')) {
-            change_info_button.addClass('change_info');
-            change_info_button.removeClass('change_info_light');
-          }
+          change_info_button.addClass('change_info').removeClass('change_info_light');
         }
       });
     }

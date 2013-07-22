@@ -1,0 +1,406 @@
+@import 'variables';
+@import 'mixins';
+
+.iconMediaElements {
+  
+  .audio {
+    
+    background-size: 11.3em 22.7em;
+    background-image: $assets-icone-editor-elementi_svg;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    padding: 0;
+    background-position: 0 -2.5em;
+    
+  }
+  
+}
+
+.scrollVerde {
+  
+  .jspTrack {
+    
+    background: #3f3f3f;
+    
+  }
+  
+  .jspHorizontalBar {
+    height: 8px;
+    
+  }
+  
+  .jspDrag {
+    
+    background: $green;
+    
+  }
+  
+}
+
+.scrollBlu {
+  
+  .jspTrack {
+    
+    background: #3f3f3f;
+    
+  }
+  
+  .jspHorizontalBar {
+    
+    height: 8px;
+  }
+  
+  .jspDrag {
+    
+    background: $blue;
+    
+  }
+  
+}
+
+.videoButton {
+  
+  @include iconEditorElement(0.7em);
+  margin-right: 0px;
+  background-position: (-$shared-editor-player-icon-size) 0;
+  opacity: 0.3;
+  cursor: pointer;
+  
+  &:hover, &.current {
+    
+    background-position: 0 0;
+    opacity: 1;
+    
+  }
+  
+}
+
+.photoButton {
+  
+  @include iconEditorElement(0.7em);
+  margin-right: 0px;
+  background-position: (-$shared-editor-player-icon-size) (-$shared-editor-player-icon-size * 2);
+  opacity: 0.3;
+  cursor: pointer;
+  
+  &:hover, &.current {
+    
+    background-position: 0 (-$shared-editor-player-icon-size * 2);
+    opacity: 1;
+    
+  }
+  
+}
+
+.audioButton {
+  
+  @include iconEditorElement(0.7em);
+  margin-right: 0px;
+  background-position: (-$shared-editor-player-icon-size * 2) (-$shared-editor-player-icon-size);
+  opacity: 0.1;
+  cursor: pointer;
+  
+  &:hover, &.current {
+    
+    background-position: 0 (-$shared-editor-player-icon-size);
+    opacity: 1;
+    
+  }
+  
+}
+
+.textButton {
+  
+  @include iconEditorElement(0.7em);
+  margin-right: 0px;
+  background-position: (-$shared-editor-player-icon-size) (-$shared-editor-player-icon-size * 3);
+  opacity: 0.3;
+  cursor: pointer;
+  
+  &:hover, &.current {
+    
+    background-position: 0 (-$shared-editor-player-icon-size * 3);
+    opacity: 1;
+    
+  }
+  
+}
+
+.photoIcon {
+  
+  @include iconEditorElement(0.4em);
+  margin-right: 5px;
+  background-position: 0 (-$shared-editor-player-icon-size * 2);
+  opacity: 1;
+  
+}
+
+.imageIcon {
+  
+  @include iconEditorElement(0.4em);
+  margin-right: 5px;
+  background-position: 0 (-$shared-editor-player-icon-size * 2);
+  opacity: 1;
+  
+}
+
+.videoIcon {
+  
+  @include iconEditorElement(0.4em);
+  background-position: 0 0;
+  opacity: 1;
+  
+}
+
+.audioIcon {
+  
+  @include iconEditorElement(0.4em);
+  margin-right: 5px;
+  background-position: 0 (-$shared-editor-player-icon-size);
+  opacity: 1;
+  
+}
+
+.textIcon {
+  
+  @include iconEditorElement(0.4em);
+  margin-right: 5px;
+  background-position: 0 (-$shared-editor-player-icon-size * 3);
+  opacity: 1;
+  
+}
+
+.creaNuovoButton {
+  
+  @include menuCondivisoElementLessonEditor(0.7em);
+  background-position: (-$shared-editor-player-button-size1 * 2) (-$shared-editor-player-button-size1);
+  opacity: 0.2;
+  
+  &:hover, &.current {
+    
+    font-size: 0.7em;
+    background-position: (-$shared-editor-player-button-size1 * 3) (-$shared-editor-player-button-size1);
+    opacity: 1;
+    
+  }
+  
+}
+
+.infoButtonWhite {
+  
+  @include menuCondivisoElementLessonEditor(0.75em);
+  background-position: 0 (-$shared-editor-player-button-size1 * 2);
+  opacity: 1;
+  
+}
+
+.aggiungiImgButton {
+  
+  @include  menuCondivisoElementLessonEditor(0.4em);
+  background-position: (-$shared-editor-player-button-size1 * 2) (-$shared-editor-player-button-size1);
+  opacity: 0.2;
+  
+  &:hover, &.current {
+    
+    background-position: (-$shared-editor-player-button-size1 * 3) (-$shared-editor-player-button-size1);
+    opacity: 1;
+    
+  }
+  
+}
+
+.saveButton {
+  
+  @include  menuCondivisoElementLessonEditor(0.6em);
+  background-position: 0 (-$shared-editor-player-button-size1 * 3);
+  opacity: 0.2;
+  
+  &:hover, &.current {
+    
+    background-position: (-$shared-editor-player-button-size1 * 3) (-$shared-editor-player-button-size1 * 3);
+    opacity: 1;
+    
+  }
+  
+}
+
+.playButton {
+  
+  @include  menuCondivisoElementLessonEditor(0.6em);
+  background-position: 0 (-$shared-editor-player-button-size1 * 5);
+  opacity: 0.2;
+  
+  &:hover, &.current {
+    
+    background-position: (-$shared-editor-player-button-size1 * 3) (-$shared-editor-player-button-size1 * 5);
+    opacity: 1;
+    
+  }
+  
+}
+
+.closeButton {
+  
+  @include  menuCondivisoElementLessonEditor(0.6em);
+  background-position: 0 0;
+  opacity: 0.2;
+  
+  &.closeButtonSmall {
+    
+    font-size: 0.25em;
+    opacity: 0.5;
+    
+  }
+  
+  &:hover, &.current {
+    
+    background-position: (-$shared-editor-player-button-size1 * 3) 0;
+    opacity: 1;
+    
+  }
+  
+}
+
+a.addButtonContent {
+  
+  width: $shared-editor-player-button-size3;
+  height: $shared-editor-player-button-size3;
+  background-image: $assets-icone-player_svg;
+  background-repeat: no-repeat;
+  background-size: ($shared-editor-player-button-size3 * 5) ($shared-editor-player-button-size3 * 4);
+  background-position: -8em -4em;
+  padding: 0;
+  opacity: 0.5;
+  float: left;
+  margin-top: 0;
+  
+  &:hover {
+    
+    cursor: pointer;
+    background-position: -8em 0em;
+    opacity: 1;
+    
+  }
+  
+}
+
+.esciButton {
+  
+  background-image: $assets-esci_svg;
+  background-repeat: no-repeat;
+  background-size: 12em 6em;
+  background-position: 0em -1em;
+  padding: 0;
+  float: right;
+  font-size: 0.4em;
+  width: 5.8em;
+  height: 4em;
+  margin-top: 6px;
+  
+  &:hover {
+    
+    background-position: -6em -1em;
+    
+  }
+  
+}
+
+.exitGallery {
+  
+  background-image: $assets-x_svg;
+  background-repeat: no-repeat;
+  background-size: 23.8em 3.4em;
+  background-position: -7.1em 0em;
+  float: right;
+  font-size: 0.5em;
+  width: 3em;
+  height: 3em;
+  
+  &:hover {
+    
+    background-position: -10.5em 0em;
+    
+  }
+  
+}
+
+.nextButton {
+  
+  background-image: $assets-next_svg;
+  background-repeat: no-repeat;
+  background-size: 12em 6em;
+  background-position: 0em 0em;
+  padding: 0;
+  font-size: 0.6em;
+  width: 6em;
+  float: right;
+  height: 6em;
+  opacity: 0.2;
+  
+  &:hover {
+    
+    background-position: -6.1em 0em;
+    font-size: 0.6em;
+    opacity: 1;
+    
+  }
+  
+}
+
+.okButtonContent {
+  
+  width: 6.2em;
+  height: 6.3em;
+  background-image: $assets-v_svg;
+  background-repeat: no-repeat;
+  background-size: 14em 7em;
+  background-position: 0 0;
+  padding: 0;
+  opacity: 0.5;
+  margin-top: 5px;
+  font-size: 0.6em;
+  
+  &:hover {
+    
+    opacity: 1;
+    background-position: -7.1em 0em;
+    
+  }
+  
+}
+
+.navLeft {
+  
+  background: $assets-nav-left_png center left no-repeat;
+  opacity: 0.6;
+  position: absolute;
+  left: 0%;
+  bottom: 50%;
+  width: 46px;
+  height: 59px;
+  
+  &:hover {
+    
+    opacity: 1;
+    
+  }
+  
+}
+
+.navRight {
+  
+  background: $assets-nav-right_png center left no-repeat;
+  opacity: 0.6;
+  position: absolute;
+  right: 0%;
+  bottom: 50%;
+  width: 46px;
+  height: 59px;
+  
+  &:hover {
+    
+    opacity: 1;
+    
+  }
+  
+}

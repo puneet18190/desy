@@ -1,9 +1,0 @@
-<% SETTINGS["colors"].each do |key, value| %>
-  $<%= key %>:<%= value['code'] %>;
-  .color_<%= key %>{
-    color: <%= value['code'] %>;
-  }
-  .background_color_<%= key %>{
-    background-color: <%= value['code'] %>;
-  }
-<%end%>

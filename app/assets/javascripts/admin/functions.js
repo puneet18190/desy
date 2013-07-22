@@ -76,9 +76,13 @@ Initializes the browser classes in the tag html. Same functionality as {{#crossL
 **/
 function adminBrowsersDocumentReady() {
   if(!$.browser.msie) {
-    $('#new-elements').fileupload();
+    $('#admin-media-elements-quick-upload-form').fileupload();
   } else {
-    $('._new_element_form_submit').show();
+    $('#admin-media-elements-quick-upload-form').append($('<input name="from_ie" val="true" style="display:none" />'));
+    $('#hint_not_for_ie').hide();
+    $('#qume_file').change(function() {
+      $('#admin-media-elements-quick-upload-form').submit();
+    });
   }
 }
 
@@ -167,6 +171,27 @@ Initializes effects for MediaElement.
 @for AdminDocumentReady
 **/
 function adminMediaElementsDocumentReady() {
+  $('body').on('focus', '._quick_load_creation_form ._qume_title', function() {
+    var placeholder = $(this).parents('._quick_load_creation_form').find('._qume_title_placeholder');
+    if(placeholder.val() != '') {
+      placeholder.val('');
+      $(this).val('');
+    }
+  });
+  $('body').on('focus', '._quick_load_creation_form ._qume_description', function() {
+    var placeholder = $(this).parents('._quick_load_creation_form').find('._qume_description_placeholder');
+    if(placeholder.val() != '') {
+      placeholder.val('');
+      $(this).val('');
+    }
+  });
+  $('body').on('focus', '._quick_load_creation_form ._qume_tags', function() {
+    var placeholder = $(this).parents('._quick_load_creation_form').find('._qume_tags_placeholder');
+    if(placeholder.val() != '') {
+      placeholder.val('');
+      $(this).val('');
+    }
+  });
   $('body').on('click', '._create_new_element', function() {
     $.ajax({
       type: 'post',

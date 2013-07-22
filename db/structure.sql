@@ -123,6 +123,8 @@ CREATE TABLE documents (
     user_id integer NOT NULL,
     title character varying(255),
     description text,
+    attachment character varying(255) NOT NULL,
+    metadata text,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );

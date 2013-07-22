@@ -97,6 +97,10 @@
             
                 <li><a href="../classes/DialogsWithForm.html">DialogsWithForm</a></li>
             
+                <li><a href="../classes/DocumentsDocumentReady.html">DocumentsDocumentReady</a></li>
+            
+                <li><a href="../classes/DocumentsLoader.html">DocumentsLoader</a></li>
+            
                 <li><a href="../classes/GalleriesAccessories.html">GalleriesAccessories</a></li>
             
                 <li><a href="../classes/GalleriesDocumentReady.html">GalleriesDocumentReady</a></li>
@@ -156,6 +160,8 @@
                 <li><a href="../classes/MediaElementEditorForms.html">MediaElementEditorForms</a></li>
             
                 <li><a href="../classes/MediaElementEditorHorizontalTimelines.html">MediaElementEditorHorizontalTimelines</a></li>
+            
+                <li><a href="../classes/MediaElementLoaderConversion.html">MediaElementLoaderConversion</a></li>
             
                 <li><a href="../classes/MediaElementLoaderDocumentReady.html">MediaElementLoaderDocumentReady</a></li>
             
@@ -240,6 +246,8 @@
                 <li><a href="../modules/dashboard.html">dashboard</a></li>
             
                 <li><a href="../modules/dialogs.html">dialogs</a></li>
+            
+                <li><a href="../modules/documents.html">documents</a></li>
             
                 <li><a href="../modules/galleries.html">galleries</a></li>
             
@@ -425,13 +433,18 @@ function showNotificationsTooltip() {
 
 
 /**
-Global initializer for notifications and help
+Global initializer for notifications and help. The function {{#crossLink &quot;NotificationsDocumentReady/notificationsDocumentReadyLoop:method&quot;}}{{/crossLink}} is called after a time of 2500 not to be called at the same time of {{#crossLink &quot;MediaElementLoaderConversion/mediaElementLoaderConversionOverview:method&quot;}}{{/crossLink}}.
 @method notificationsDocumentReady
 @for NotificationsDocumentReady
 **/
 function notificationsDocumentReady() {
   notificationsDocumentReadyTooltips();
   notificationsDocumentReadyLessonModification();
+  if($(&#x27;#notifications_main&#x27;).length &gt; 0) {
+    setTimeout(function() {
+      notificationsDocumentReadyLoop(5000);
+    }, 2500);
+  }
 }
 
 /**
@@ -460,6 +473,23 @@ function notificationsDocumentReadyLessonModification() {
       $(&#x27;#lesson-notification #lesson_notify_modification_details_placeholder&#x27;).val(&#x27;0&#x27;);
     }
   });
+}
+
+/**
+Initializer for the loop that updates the notifications
+@method notificationsDocumentReadyLoop
+@for NotificationsDocumentReady
+@param time {Number} the time to iterate the loop
+**/
+function notificationsDocumentReadyLoop(time) {
+  $.ajax({
+    url: &#x27;/notifications/reload&#x27;,
+    type: &#x27;get&#x27;,
+    beforeSend: unbindLoader()
+  }).always(bindLoader);
+  setTimeout(function() {
+    notificationsDocumentReadyLoop(time);
+  }, time);
 }
 
 /**

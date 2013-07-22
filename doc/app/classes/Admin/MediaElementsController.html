@@ -236,16 +236,16 @@ href="../ApplicationController.html#method-i-admin_authenticate">ApplicationCont
                 
               </p>
               <div id="method-i-create_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/admin/media_elements_controller.rb, line 116</span>
+                <pre><span class="ruby-comment"># File app/controllers/admin/media_elements_controller.rb, line 121</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">create</span>
   <span class="ruby-ivar">@key</span> = <span class="ruby-value">:&quot;#{params[:key]}&quot;</span>
   <span class="ruby-ivar">@ok</span> = <span class="ruby-keyword">true</span>
   <span class="ruby-identifier">filename</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">basename</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:media</span>])
   <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">filename</span>.<span class="ruby-identifier">nil?</span>
     <span class="ruby-identifier">me</span> = <span class="ruby-constant">MediaElement</span>.<span class="ruby-identifier">new</span> <span class="ruby-value">:media</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-constant">Rails</span>.<span class="ruby-identifier">root</span>.<span class="ruby-identifier">join</span>(<span class="ruby-node">&quot;public/admin/#{current_user.id}/#{filename}&quot;</span>))
-    <span class="ruby-identifier">me</span>.<span class="ruby-identifier">title</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:title</span>]
-    <span class="ruby-identifier">me</span>.<span class="ruby-identifier">description</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:description</span>]
-    <span class="ruby-identifier">me</span>.<span class="ruby-identifier">tags</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:tags</span>]
+    <span class="ruby-identifier">me</span>.<span class="ruby-identifier">title</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:title_placeholder</span>].<span class="ruby-identifier">blank?</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:title</span>] <span class="ruby-operator">:</span> <span class="ruby-string">&#39;&#39;</span>
+    <span class="ruby-identifier">me</span>.<span class="ruby-identifier">description</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:description_placeholder</span>].<span class="ruby-identifier">blank?</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:description</span>] <span class="ruby-operator">:</span> <span class="ruby-string">&#39;&#39;</span>
+    <span class="ruby-identifier">me</span>.<span class="ruby-identifier">tags</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:tags_placeholder</span>].<span class="ruby-identifier">blank?</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:tags</span>] <span class="ruby-operator">:</span> <span class="ruby-string">&#39;&#39;</span>
     <span class="ruby-identifier">me</span>.<span class="ruby-identifier">user_id</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>
     <span class="ruby-identifier">me</span>.<span class="ruby-identifier">validating_in_form</span> = <span class="ruby-keyword">true</span>
     <span class="ruby-ivar">@saved</span> = <span class="ruby-identifier">me</span>.<span class="ruby-identifier">save</span>
@@ -316,7 +316,7 @@ href="../ApplicationController.html#method-i-admin_authenticate">ApplicationCont
                 
               </p>
               <div id="method-i-destroy_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/admin/media_elements_controller.rb, line 195</span>
+                <pre><span class="ruby-comment"># File app/controllers/admin/media_elements_controller.rb, line 200</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">destroy</span>
   <span class="ruby-ivar">@element</span> = <span class="ruby-constant">MediaElement</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-ivar">@element</span>.<span class="ruby-identifier">destroyable_even_if_public</span> = <span class="ruby-keyword">true</span>
@@ -472,7 +472,7 @@ href="../ApplicationController.html#method-i-admin_authenticate">ApplicationCont
                 
               </p>
               <div id="method-i-load_media_element_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/admin/media_elements_controller.rb, line 214</span>
+                <pre><span class="ruby-comment"># File app/controllers/admin/media_elements_controller.rb, line 219</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">load_media_element</span>
   <span class="ruby-ivar">@element</span> = <span class="ruby-constant">MediaElement</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
 <span class="ruby-keyword">end</span></pre>
@@ -569,7 +569,12 @@ href="../ApplicationController.html#method-i-admin_authenticate">ApplicationCont
               <div id="method-i-quick_upload_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/controllers/admin/media_elements_controller.rb, line 83</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">quick_upload</span>
-  <span class="ruby-ivar">@file</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">save_in_admin_quick_uploading_cache</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:media</span>], <span class="ruby-identifier">params</span>[<span class="ruby-value">:title</span>], <span class="ruby-identifier">params</span>[<span class="ruby-value">:description</span>], <span class="ruby-identifier">params</span>[<span class="ruby-value">:tags</span>]
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>.<span class="ruby-identifier">has_key?</span> <span class="ruby-value">:from_ie</span>
+    <span class="ruby-ivar">@file</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">save_in_admin_quick_uploading_cache</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:media</span>], <span class="ruby-identifier">params</span>[<span class="ruby-value">:title</span>], <span class="ruby-identifier">params</span>[<span class="ruby-value">:description</span>], <span class="ruby-identifier">params</span>[<span class="ruby-value">:tags</span>] <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>.<span class="ruby-identifier">has_key?</span> <span class="ruby-value">:media</span>
+    <span class="ruby-identifier">redirect_to</span> <span class="ruby-string">&#39;/admin/media_elements/new&#39;</span> 
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-ivar">@file</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">save_in_admin_quick_uploading_cache</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:media</span>], <span class="ruby-identifier">params</span>[<span class="ruby-value">:title</span>], <span class="ruby-identifier">params</span>[<span class="ruby-value">:description</span>], <span class="ruby-identifier">params</span>[<span class="ruby-value">:tags</span>]
+  <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -614,7 +619,7 @@ href="../ApplicationController.html#method-i-admin_authenticate">ApplicationCont
                 
               </p>
               <div id="method-i-quick_upload_delete_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/admin/media_elements_controller.rb, line 99</span>
+                <pre><span class="ruby-comment"># File app/controllers/admin/media_elements_controller.rb, line 104</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">quick_upload_delete</span>
   <span class="ruby-ivar">@key</span> = <span class="ruby-value">:&quot;#{params[:key]}&quot;</span>
   <span class="ruby-ivar">@ok</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">remove_from_admin_quick_uploading_cache</span> <span class="ruby-ivar">@key</span>
@@ -665,7 +670,7 @@ href="../ApplicationController.html#method-i-initialize_media_element_with_owner
                 
               </p>
               <div id="method-i-update_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/admin/media_elements_controller.rb, line 166</span>
+                <pre><span class="ruby-comment"># File app/controllers/admin/media_elements_controller.rb, line 171</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">update</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
     <span class="ruby-ivar">@media_element</span>.<span class="ruby-identifier">title</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:title</span>]

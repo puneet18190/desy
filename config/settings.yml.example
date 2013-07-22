@@ -64,6 +64,8 @@ compact_media_element_pagination_options: [18, 27, 36]
 expanded_media_element_pagination: 14
 # Options for pagination of expanded media elements, in sections (1) Elements and (2) Search engine
 expanded_media_element_pagination_options: [14, 21, 28]
+# Pagination of documents, in section my documents
+documents_pagination: 18
 # Number of notifications loaded together (pagination of notifications done with infinite scroll)
 notifications_loaded_together: 8
 # Maximum number of slides in a lesson
@@ -118,6 +120,8 @@ maximum_media_elements_folder_size: 20
 cookie_key: '_desy_session'
 # Session timeout (in hours)
 session_timeout: 48
+# The maximum number of documents allowed in a slide
+max_documents_in_slide: 3
 # Enables media debugging routes and controllers /audios_test => media_elements#audios_test 
 #                                                /videos_test => media_elements#videos_test
 media_test: false

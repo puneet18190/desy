@@ -1,3 +1,14 @@
+<%
+  additional_class = ''
+  normal_title = t('titles.lesson_editor.add_slide_in_last_position')
+  disabled_title = t('titles.lesson_editor.last_slide_reached', :num => SETTINGS['max_number_slides_in_a_lesson'])
+  if @max_slides
+    additional_class = 'disabled'
+    normal_title = t('titles.lesson_editor.last_slide_reached', :num => SETTINGS['max_number_slides_in_a_lesson'])
+    disabled_title = t('titles.lesson_editor.add_slide_in_last_position')
+  end
+%>
+
 <% content_for :nav do %>
   <nav id="heading">
     <div class="scrollOrange">
@@ -6,7 +17,7 @@
       </div>
     </div>
   </nav>
-  <a class="add add-small _add_new_slide_options_in_last_position <%= @max_slides ? 'disabled'.html_safe : '' %>"></a>
+  <a class="add add-small _add_new_slide_options_in_last_position <%= additional_class %>" title="<%= normal_title %>" data-disabled-title="<%= disabled_title %>"></a>
 <% end %>
 
 <ul id="slides">

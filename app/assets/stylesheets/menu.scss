@@ -1,3 +1,6 @@
+@import 'variables';
+@import 'mixins';
+
 .navcontainer {
   
   margin: 0 auto;
@@ -41,7 +44,7 @@
   
   ul.navlist li.lessons a {
     
-    background-color: #f29400;
+    background-color: $orange;
     text-shadow: #d68300 0px 2px 0px;
     
     &.current {
@@ -60,7 +63,7 @@
   
   ul.navlist li.elements a {
     
-    background-color: #41a62a;
+    background-color: $green;
     text-shadow: #368a23 0px 2px 0px;
     
     &.current {
@@ -79,7 +82,7 @@
   
   ul.navlist li.classroom a {
     
-    background-color: #2eaadc;
+    background-color: $blue;
     text-shadow: #3490b5 0px 2px 0px;
     
     &.current {
@@ -98,7 +101,7 @@
   
   ul.navlist li.profile a {
     
-    background-color: #5d5c5c;
+    background-color: $black;
     text-shadow: #4e4d4d 0px 2px 0px;
     
     &.current {

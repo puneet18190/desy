@@ -97,6 +97,10 @@
             
                 <li><a href="../classes/DialogsWithForm.html">DialogsWithForm</a></li>
             
+                <li><a href="../classes/DocumentsDocumentReady.html">DocumentsDocumentReady</a></li>
+            
+                <li><a href="../classes/DocumentsLoader.html">DocumentsLoader</a></li>
+            
                 <li><a href="../classes/GalleriesAccessories.html">GalleriesAccessories</a></li>
             
                 <li><a href="../classes/GalleriesDocumentReady.html">GalleriesDocumentReady</a></li>
@@ -156,6 +160,8 @@
                 <li><a href="../classes/MediaElementEditorForms.html">MediaElementEditorForms</a></li>
             
                 <li><a href="../classes/MediaElementEditorHorizontalTimelines.html">MediaElementEditorHorizontalTimelines</a></li>
+            
+                <li><a href="../classes/MediaElementLoaderConversion.html">MediaElementLoaderConversion</a></li>
             
                 <li><a href="../classes/MediaElementLoaderDocumentReady.html">MediaElementLoaderDocumentReady</a></li>
             
@@ -241,6 +247,8 @@
             
                 <li><a href="../modules/dialogs.html">dialogs</a></li>
             
+                <li><a href="../modules/documents.html">documents</a></li>
+            
                 <li><a href="../modules/galleries.html">galleries</a></li>
             
                 <li><a href="../modules/general.html">general</a></li>
@@ -314,6 +322,48 @@
 Javascript functions used in the media element loader.
 @module media-element-loader
 **/
+
+
+
+
+
+/**
+Function that checks the conversion of the unconverted media elements in the page.
+@method mediaElementLoaderConversionOverview
+@for MediaElementLoaderConversion
+@param list {Array} list of media elements that are being checked
+@param time {Number} time to iterate the loop
+**/
+function mediaElementLoaderConversionOverview(list, time) {
+  $(&#x27;._media_element_item._disabled&#x27;).each(function() {
+    var my_id = $(this).find(&#x27;._Image_button_preview, ._Audio_button_preview, ._Video_button_preview&#x27;).data(&#x27;clickparam&#x27;);
+    if(list.indexOf(my_id) == -1) {
+      list.push(my_id);
+    }
+  });
+  var black_list = $(&#x27;#info_container&#x27;).data(&#x27;media-elements-not-anymore-in-conversion&#x27;);
+  for(var i = 0; i &lt; black_list.length; i ++) {
+    var j = list.indexOf(black_list[i]);
+    list.splice(j, 1);
+  }
+  if(list.length &gt; 0) {
+    var ajax_url = &#x27;/media_elements/conversion/check?&#x27;;
+    for(var i = 0; i &lt; list.length; i ++) {
+      ajax_url += (&#x27;me&#x27; + list[i] + &#x27;=true&#x27;);
+      if(i != list.length - 1) {
+        ajax_url += &#x27;&amp;&#x27;;
+      }
+    }
+    $.ajax({
+      url: ajax_url,
+      type: &#x27;get&#x27;,
+      beforeSend: unbindLoader()
+    }).always(bindLoader);
+  }
+  setTimeout(function() {
+    mediaElementLoaderConversionOverview(list, time);
+  }, time);
+}
 
 
 

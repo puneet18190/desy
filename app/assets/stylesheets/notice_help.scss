@@ -1,0 +1,78 @@
+@import 'variables';
+@import 'mixins';
+
+.notice-help {
+  
+  padding-right: 2%;
+  margin: 0px;
+  float: right;
+  position: relative;
+  
+  a {
+    
+    padding: 0px 18px 23px 18px;
+    margin-right: 10px;
+    
+  }
+  
+  .notice {
+    
+    padding: 0px;
+    margin: 0px;
+    float: left;
+    height: 34px;
+    
+    a {
+      
+      @include background-mix;
+      background-position: 1px 0px;
+      
+      &:hover {
+        
+        background-position: -33px 0px;
+        cursor: pointer;
+        
+      }
+      
+    }
+    
+    a.current {
+      
+      background-position: -33px 0px;
+      @include background-mix;
+      
+    }
+    
+  }
+  
+  .help {
+    
+    padding: 0px;
+    margin: 0px;
+    float: left;
+    height: 34px;
+    
+    a {
+      
+      @include background-mix;
+      background-position: -68px 0px;
+      
+      &:hover {
+        
+        background-position: -103px 0px;
+        cursor: pointer;
+        
+      }
+      
+    }
+    
+    a.current {
+      
+      background-position: -103px 0px;
+      @include background-mix;
+      
+    }
+    
+  }
+  
+}

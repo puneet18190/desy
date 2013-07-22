@@ -75,6 +75,8 @@ ActiveRecord::Schema.define(:version => 20130709121200) do
     t.integer  "user_id",     :null => false
     t.string   "title"
     t.text     "description"
+    t.string   "attachment",  :null => false
+    t.text     "metadata"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.index ["user_id"], :name => "fk__documents_user_id", :order => {"user_id" => :asc}

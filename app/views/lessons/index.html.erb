@@ -1,5 +1,9 @@
 <div class="gray-bar">
-  <%= render :partial => "lessons/graybar_left" %>
+  
+  <ul class="navlist">
+    <li><%= link_to t('lessons.create_new'), '/lessons/new', :class => "createButtonLesson lower" %></li>
+  </ul>
+
   <%= render :partial => "shared/search" %>
 </div>
 <br class="clearfloat">

@@ -46,6 +46,9 @@ class ActiveSupport::TestCase
   end
   
   def initialize_media_path_for_media_elements
+    FileUtils.rm_rf("#{Rails.root.join('public/media_elements/images/test')}/.") if Dir.exists?(Rails.root.join('public/media_elements/images/test'))
+    FileUtils.rm_rf("#{Rails.root.join('public/media_elements/audios/test')}/.") if Dir.exists?(Rails.root.join('public/media_elements/audios/test'))
+    FileUtils.rm_rf("#{Rails.root.join('public/media_elements/videos/test')}/.") if Dir.exists?(Rails.root.join('public/media_elements/videos/test'))
     [1, 2].each do |x|
       was_public = false
       v = Video.find x

@@ -74,7 +74,7 @@ class Audio < MediaElement
   
   # === Description
   #
-  # Returns the url of the thumb image used in the section "elements" (a musical note on grey bottom). If the audio is not converted, returns the animated gif from Audio#placeholder_url with +type+=+thumb+.
+  # Returns the url of the thumb image used in the section "elements" (a musical note on gray bottom). If the audio is not converted, returns the animated gif from Audio#placeholder_url with +type+=+thumb+.
   #
   # === Returns
   #

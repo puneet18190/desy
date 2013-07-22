@@ -1,0 +1,43 @@
+<div class="gray-bar">
+  <%= form_tag 'documents', :method => :post, :id => 'upload_document', :multipart => true do %>
+    <a class="uploadNewDocument">
+      <%= t('documents.upload') %>
+    </a>
+    <%= submit_tag '', :class => '_submit', :style => 'display:none' %>
+    <%= file_field_tag 'attached', :class => '_attached', :style => 'display:none', :multiple => true %>
+  <% end %>
+  <p id="document_hint"><%= t('documents.hints.standard') %></p>
+  <p id="document_hint_ie" style="display:none"><%= t('documents.hints.ie') %></p>
+</div>
+
+<br class="clearfloat">
+<div class="griglia-contenuti">
+  <div class="documents-content">
+    <div class="title-bar">
+      <h1 class="lower"><%= t('captions.documents') %></h1>
+      <div>
+        <h2 style="padding-right:10px"><%= t('captions.sort') %></h2>
+        <select name="ricerca" id="order_documents">
+          <% SearchOrders::DOCUMENTS_SET.each do |so| %>
+            <option value="<%= so %>" <%= (@order == so) ? "selected=\"selected\"".html_safe : '' %>><%= t("orders.#{so}") %></option>
+          <% end %>
+        </select>
+      </div>
+      <div style="width:310px;margin-right:10px">
+        <form id="search_documents" class="search-form" method="get" action="/documents" data-remote="true">
+          <h2><%= t('documents.search') %></h2>
+          <input type="text" name="word" value="" class="text lower _word_input" data-letters="0" style="color:#999;">
+          <%= image_tag 'cerca_documenti.gif', :class => '_loader', :style => 'display:none; float:right' %>
+          <%= hidden_field_tag 'order', '', :id => 'search_documents_hidden_order' %>
+        </form>
+      </div>
+    </div>
+    <br class="clearfloat">
+    <%= render :partial => 'documents/my_documents' %>
+    <div id="info_container" style="display:none" data-currenturl="<%= request.url %>"></div>
+    <br class="clearfloat">
+    <% if @documents.present? %>
+      <%= render :partial => 'shared/pagination', :locals => {:page => @page, :pages_amount => @pages_amount} %>
+    <% end %>
+  </div>
+</div>

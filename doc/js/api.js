@@ -28,6 +28,8 @@ YUI.add("yuidoc-meta", function(Y) {
         "DialogsGalleries",
         "DialogsTimed",
         "DialogsWithForm",
+        "DocumentsDocumentReady",
+        "DocumentsLoader",
         "GalleriesAccessories",
         "GalleriesDocumentReady",
         "GalleriesInitializers",
@@ -58,6 +60,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "MediaElementEditorDocumentReady",
         "MediaElementEditorForms",
         "MediaElementEditorHorizontalTimelines",
+        "MediaElementLoaderConversion",
         "MediaElementLoaderDocumentReady",
         "MediaElementLoaderDone",
         "MediaElementLoaderErrors",
@@ -101,6 +104,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "buttons",
         "dashboard",
         "dialogs",
+        "documents",
         "galleries",
         "general",
         "image-editor",
@@ -152,6 +156,11 @@ YUI.add("yuidoc-meta", function(Y) {
             "displayName": "dialogs",
             "name": "dialogs",
             "description": "This module contains the javascript functions that use JQueryUi dialogs. Some of them are closed with a time delay (class {{#crossLink \"DialogsTimed\"}}{{/crossLink}}), other are closed with buttons by the user (class {{#crossLink \"DialogsConfirmation\"}}{{/crossLink}}), and other ones contain a form to be filled in by the user (class {{#crossLink \"DialogsWithForm\"}}{{/crossLink}})."
+        },
+        {
+            "displayName": "documents",
+            "name": "documents",
+            "description": "Javascript  functions to be used in the section 'documents'."
         },
         {
             "displayName": "galleries",

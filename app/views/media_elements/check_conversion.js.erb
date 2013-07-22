@@ -1,22 +1,13 @@
-<% if @overall_ok %>
-  
-  $('#notifications_main').replaceWith('<%= j(render :partial => "notifications/main", :locals => {:notifications => @notifications, :news => @new_notifications, :offset => @offset_notifications, :tot => @tot_notifications}) %>');
-  $('#notifications_list').jScrollPane({
-    autoReinitialise: true
-  });
-  $('#tooltip_arancione').show();
-  $('#notifications_button').addClass('current');
-  
-<% end %>
-
+var black_list = new Array();
 
 <% @mes.each do |me| %>
-
+  
   var id = <%= me[:media_element_id] %>;
   var item = $('#expanded_media_element_' + id + ', #compact_media_element_' + id + ', #found_media_element_' + id);
-
+  
   <% if !me[:ok] %>
     
+    black_list.push(<%= me[:media_element_id] %>);
     if(item.length > 0) {
       var destination = item.attr('id').split('_')[0] + '_media_element';
       var current_url = $('#info_container').data('currenturl');
@@ -26,7 +17,6 @@
         dataType: 'json',
         url: '/media_elements/' + id + '/destroy/fake?destination=' + destination,
         success: function() {
-          $('#info_container').data(('failed-conversion-' + id), true);
           $.ajax({
             type: 'get',
             url: redirect_url
@@ -37,6 +27,7 @@
     
   <% elsif me[:media_element].converted? %>
     
+    black_list.push(<%= me[:media_element_id] %>);
     if(item.length > 0) {
       var destination = item.attr('id').split('_')[0];
       if(destination == 'expanded') {
@@ -51,3 +42,5 @@
   <% end %>
   
 <% end %>
+
+$('#info_container').data('media-elements-not-anymore-in-conversion', black_list);
