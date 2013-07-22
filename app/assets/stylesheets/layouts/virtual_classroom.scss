@@ -596,22 +596,13 @@ html.virtual_classroom-controller {
     
   }
   
-  .exitButton { /* TODO 10.3 */
+  .exitButton {
     
-  /*  @include svg-circle-icon-handler($assets-set-icone-editor_svg, 45px, 4, 12, 1, 2, 3); */
-    
+    @include svg-circle-icon-handler($assets-set-icone-editor_svg, 14px, 4, 12, 0.1, 2, 0, 0.6, 1, 0);
     position: absolute;
-    right: 3px;
-    bottom: 1px;
-    font-size: 3px;
-    opacity: 0.1;
-    
-    &:hover {
-      
-      opacity: 0.6;
-      background-position: -4.7em 0;
-      
-    }
+    right: 4px;
+    bottom: 2px;
+    cursor: pointer;
     
   }
   
