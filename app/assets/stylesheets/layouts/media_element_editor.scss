@@ -827,6 +827,9 @@ html.media_element_editor-layout {
             
             background-position: -6em -12em;
             margin-right: 2em;
+            width:6em;
+            height:6em;
+            opacity:0.2;
             
             &:hover {
               
@@ -1440,11 +1443,47 @@ html.media_element_editor-layout {
         
         list-style: none;
         margin: 0;
-        padding-bottom: 40px;
+        padding-bottom: 55px;
+
+        .cutButton {
+  
+          @include svg-circle-icon-handler($assets-set-icone-editor_svg, 55px, 4, 12, 0.2, 0, 7, 1, 3, 7);
+          
+          &.current {
+            
+            @include svg-circle-icon-handler-without-hover($assets-set-icone-editor_svg, 55px, 4, 12, 1, 3, 7);
+            
+            &:hover {
+              
+              cursor: default;
+              
+            }
+            
+          }
+        }
+
+        .abcButton {
+          
+          @include svg-circle-icon-handler($assets-set-icone-editor_svg, 55px, 4, 12, 0.2, 0, 9, 1, 3, 9);
+          
+          &.current {
+            
+            @include svg-circle-icon-handler-without-hover($assets-set-icone-editor_svg, 55px, 4, 12, 1, 3, 9);
+            
+            &:hover {
+              
+              cursor: default;
+              
+            }
+            
+          }
+          
+        }
         
       }
       
     }
+
     
   }
   
