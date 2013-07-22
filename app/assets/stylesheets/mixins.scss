@@ -928,7 +928,7 @@
   
 }
 
-@mixin svg-circle-icon-handler($svg, $size, $how-many-h, $how-many-v, $opacity, $pos-h, $pos-v, $opacity-hover, $pos-h-hover, $pos-v-hover) {
+@mixin svg-circle-icon-handler($svg, $size, $how-many-h, $how-many-v, $opacity, $pos-h, $pos-v, $opacity-hover, $pos-h-hover, $pos-v-hover, $float: left) {
   
   width: $size;
   height: $size;
@@ -937,7 +937,7 @@
   background-image: $svg;
   background-size: ($size * $how-many-h) ($size * $how-many-v);
   background-position: (-$size * $pos-h) (-$size * $pos-v);
-  float: left;
+  float: $float;
   
   &:hover {
     
