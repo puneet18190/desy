@@ -609,24 +609,6 @@
   
 }
 
-@mixin buttonExitElement { /* TODO 10 */
-  
-  display: block;
-  width: $shared-editor-player-button-size2;
-  height: $shared-editor-player-button-size2;
-  background-image: $assets-set-icone-editor_svg;
-  background-repeat: no-repeat;
-  background-size: ($shared-editor-player-button-size2 * 4) ($shared-editor-player-button-size2 * 10);
-  padding: 0;
-  
-  &:hover {
-    
-    cursor: pointer;
-    
-  }
-  
-}
-
 @mixin button-test {
   
   display: inline-block;
