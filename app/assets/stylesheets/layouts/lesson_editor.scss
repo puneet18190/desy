@@ -480,6 +480,26 @@ html.lesson-editor-layout {
     
   }
   
+  .infoButtonWhite { /* TODO 11.5 */
+    
+    float: left;
+    width: $shared-editor-player-button-size1;
+    height: $shared-editor-player-button-size1;
+    background-image: $assets-set-icone-editor_svg;
+    background-repeat: no-repeat;
+    background-size: ($shared-editor-player-button-size1 * 4) ($shared-editor-player-button-size1 * 11);
+    padding: 0;
+    font-size: $font-size;
+    &:hover {
+      cursor: pointer;
+    }
+    background-position: 0 (-$shared-editor-player-button-size1 * 2);
+    opacity: 1;
+    cursor: default;
+    margin: 5px 15px 0 0;
+    
+  }
+  
   ul#slides.new {
     
     margin-top: 30px;
@@ -497,12 +517,6 @@ html.lesson-editor-layout {
         height: 460px;
         width: 700px;
         margin: 70px 100px 30px;
-        
-        span.infoButtonWhite {
-          
-          cursor: default;
-          
-        }
         
       }
       
@@ -539,12 +553,6 @@ html.lesson-editor-layout {
     }
     
     .info {
-      
-      .infoButtonWhite {
-        
-        margin: 5px 15px 0 0;
-        
-      }
       
       opacity: 1;
       

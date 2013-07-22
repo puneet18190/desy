@@ -814,7 +814,13 @@ html.media_element_editor-layout {
         bottom: 0px;
         background-color: rgba(47,47,47,0.93);
         
-        a {
+        a { /* TODO 11.1, 11.2, 11.3 */
+          
+          
+          
+          
+          
+          
           
           font-size: 0.3em;
           float: left;
@@ -842,6 +848,29 @@ html.media_element_editor-layout {
           
           &.creaNuovoButton {
             
+            
+            
+            float: left;
+            width: $shared-editor-player-button-size1;
+            height: $shared-editor-player-button-size1;
+            background-image: $assets-set-icone-editor_svg;
+            background-repeat: no-repeat;
+            background-size: ($shared-editor-player-button-size1 * 4) ($shared-editor-player-button-size1 * 11);
+            padding: 0;
+            font-size: $font-size;
+            &:hover {
+              cursor: pointer;
+            }
+            background-position: (-$shared-editor-player-button-size1 * 2) (-$shared-editor-player-button-size1);
+            opacity: 0.2;
+            &:hover, &.current {
+              font-size: 0.7em;
+              background-position: (-$shared-editor-player-button-size1 * 3) (-$shared-editor-player-button-size1);
+              opacity: 1;
+            }
+            
+            
+            
             background-position: -6em -6em;
             
             &:hover {
@@ -854,6 +883,34 @@ html.media_element_editor-layout {
           }
           
           &.closeButton {
+            
+            
+            
+  float: left;
+  width: $shared-editor-player-button-size1;
+  height: $shared-editor-player-button-size1;
+  background-image: $assets-set-icone-editor_svg;
+  background-repeat: no-repeat;
+  background-size: ($shared-editor-player-button-size1 * 4) ($shared-editor-player-button-size1 * 11);
+  padding: 0;
+  font-size: $font-size;
+  
+  &:hover {
+    
+    cursor: pointer;
+    
+  }
+  background-position: 0 0;
+  opacity: 0.2;
+  
+  &:hover, &.current {
+    
+    background-position: (-$shared-editor-player-button-size1 * 3) 0;
+    opacity: 1;
+    
+  }
+            
+            
             
             background-position: -6em 0;
             float: right;
@@ -917,7 +974,32 @@ html.media_element_editor-layout {
     padding-top: 8px;
     width: 900px;
     
-    a.creaNuovoButton {
+    a.creaNuovoButton { /* TODO 11.4 */
+      
+      
+      
+      
+      float: left;
+      width: $shared-editor-player-button-size1;
+      height: $shared-editor-player-button-size1;
+      background-image: $assets-set-icone-editor_svg;
+      background-repeat: no-repeat;
+      background-size: ($shared-editor-player-button-size1 * 4) ($shared-editor-player-button-size1 * 11);
+      padding: 0;
+      font-size: $font-size;
+      &:hover {
+        cursor: pointer;
+      }
+      background-position: (-$shared-editor-player-button-size1 * 2) (-$shared-editor-player-button-size1);
+      opacity: 0.2;
+      &:hover, &.current {
+        font-size: 0.7em;
+        background-position: (-$shared-editor-player-button-size1 * 3) (-$shared-editor-player-button-size1);
+        opacity: 1;
+      }
+      
+      
+      
       
       font-size: 0.6em;
       float: left;
@@ -936,7 +1018,32 @@ html.media_element_editor-layout {
       
     }
     
-    a.closeButton {
+    a.closeButton { /* TODO 11.5 */
+      
+      
+  float: left;
+  width: $shared-editor-player-button-size1;
+  height: $shared-editor-player-button-size1;
+  background-image: $assets-set-icone-editor_svg;
+  background-repeat: no-repeat;
+  background-size: ($shared-editor-player-button-size1 * 4) ($shared-editor-player-button-size1 * 11);
+  padding: 0;
+  font-size: $font-size;
+  
+  &:hover {
+    
+    cursor: pointer;
+    
+  }
+  background-position: 0 0;
+  opacity: 0.2;
+  
+  &:hover, &.current {
+    
+    background-position: (-$shared-editor-player-button-size1 * 3) 0;
+    opacity: 1;
+    
+  }
       
       font-size: 0.6em;
       float: left;
@@ -1708,6 +1815,37 @@ html.media_element_editor-layout {
       cursor: $assets-google-open-hand, move;
       background: $assets-draggable-knob_png no-repeat center center;
       
+    }
+    
+    .closeButton { /* TODO 11.6 */
+    
+    
+  float: left;
+  width: $shared-editor-player-button-size1;
+  height: $shared-editor-player-button-size1;
+  background-image: $assets-set-icone-editor_svg;
+  background-repeat: no-repeat;
+  background-size: ($shared-editor-player-button-size1 * 4) ($shared-editor-player-button-size1 * 11);
+  padding: 0;
+  font-size: $font-size;
+  
+  &:hover {
+    
+    cursor: pointer;
+    
+  }
+  background-position: 0 0;
+  opacity: 0.2;
+  
+  
+  &:hover, &.current {
+    
+    background-position: (-$shared-editor-player-button-size1 * 3) 0;
+    opacity: 1;
+    
+  }
+    
+    
     }
     
   }
