@@ -263,40 +263,34 @@
 
 .cutButton {
   
-  @include menuEditImages;
-  background-position: 0 (-$shared-editor-player-button-size1 * 7);
-  opacity: 0.2;
+  @include svg-circle-icon-handler($assets-set-icone-editor_svg, 55px, 4, 12, 0.2, 0, 7, 1, 3, 7);
   
-  &:hover, &.current {
+  &.current {
     
-    background-position: (-$shared-editor-player-button-size1 * 3) (-$shared-editor-player-button-size1 * 7);
-    opacity: 1;
+    @include svg-circle-icon-handler-without-hover($assets-set-icone-editor_svg, 55px, 4, 12, 1, 3, 7);
     
-  }
-  
-  &.current:hover {
-    
-    cursor: default;
+    &:hover {
+      
+      cursor: default;
+      
+    }
     
   }
 }
 
 .abcButton {
   
-  @include menuEditImages;
-  background-position: 0 (-$shared-editor-player-button-size1 * 9);
-  opacity: 0.2;
+  @include svg-circle-icon-handler($assets-set-icone-editor_svg, 55px, 4, 12, 0.2, 0, 9, 1, 3, 9);
   
-  &:hover, &.current {
+  &.current {
     
-    background-position: (-$shared-editor-player-button-size1 * 3) (-$shared-editor-player-button-size1 * 9);
-    opacity: 1;
+    @include svg-circle-icon-handler-without-hover($assets-set-icone-editor_svg, 55px, 4, 12, 1, 3, 9);
     
-  }
-  
-  &.current:hover {
-    
-    cursor: default;
+    &:hover {
+      
+      cursor: default;
+      
+    }
     
   }
   
