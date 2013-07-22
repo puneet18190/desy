@@ -921,7 +921,7 @@ a.cerca.current {
     
   }
   
-  textarea,#new-media-element-tags,#edit-media-element-tags {
+  textarea {
     
     border-color: #373737;
     border-radius: 10px;
@@ -934,55 +934,6 @@ a.cerca.current {
     color: #fff;
     resize: none;
     margin-bottom: 20px;
-    
-  }
-  
-  #new-media-element-tags, #edit-media-element-tags {
-    
-    padding: 0;
-    overflow: scroll;
-    width: 320px;
-    
-    span {
-      
-      border-radius: 5px;
-      padding: 0 3px;
-      margin: 5px 3px 0;
-      background-color: #fff;
-      float: left;
-      color: #373737;
-      
-      a { /* TODO 2 */
-        
-        display: block;
-        float: right;
-        width: $shared-button-size2;
-        height: $shared-button-size2;
-        background-image: $assets-set-icone-editor_svg;
-        background-repeat: no-repeat;
-        background-size: ($shared-button-size2 * 4) ($shared-button-size2 * 12);
-        background-position: -30px 0;
-        margin: 2px 0;
-        color: #373737;
-        
-        &:hover {
-          
-          background-position: -20px 0;
-          opacity: 0.8;
-          
-        }
-        
-      }
-      
-    }
-    
-    input {
-      
-      box-shadow: none;
-      border: none;
-      margin-top: 5px;
-      
-    }
     
   }
   
