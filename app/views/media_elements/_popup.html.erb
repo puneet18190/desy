@@ -4,7 +4,7 @@
     
     <% if media_element.buttons.include? Buttons::PREVIEW %>
       
-      <div class="_media_element_pop_up_container MediaElementPopUpContainer" data-param="<%= media_element.id %>">
+      <div class="MediaElementPopUpContainer" data-param="<%= media_element.id %>">
         <% if media_element.info_changeable %>
           <% my_tags = Tagging.includes(:tag).where(:taggable_type => 'MediaElement', :taggable_id => media_element.id).order(:tag_id) %>
           <div class="_change_info_container ChangeInfoContainer" style="display:none;" data-param="<%= media_element.id %>" data-title="<%= media_element.title %>" data-description="<%= media_element.description %>" data-tags="<%= media_element.tags %>">

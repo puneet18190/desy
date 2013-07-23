@@ -1,7 +1,7 @@
 <style type="text/css" media="screen">
   *{
-    margin:0; 
-    padding:0; 
+    margin: 0;
+    padding: 0;
     color: white;
     font-family: Arial, sans-serif;
     font-size: 12px;
@@ -21,11 +21,6 @@
       if(top.uploadDone) top.uploadDone(); //top means parent frame.
     }
     
-    //function init() {
-    //	
-    //}
-    //window.onload=init;
-    
   </script>
   
 <% else %>
@@ -33,7 +28,7 @@
   <script type="text/javascript">
     
     window.onload = function() {
-      top.uploadMediaElementLoadeDoneRedirect();
+      top.uploadMediaElementLoaderDoneRedirect();
       if(top.uploadDone) top.uploadDone(); //top means parent frame.
     }
     

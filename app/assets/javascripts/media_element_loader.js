@@ -111,10 +111,10 @@ function uploadDone() {
 
 /**
 Reloads media elements page after new media element is successfully loaded.
-@method uploadMediaElementLoadeDoneRedirect
+@method uploadMediaElementLoaderDoneRedirect
 @for MediaElementLoaderDone
 **/
-function uploadMediaElementLoadeDoneRedirect() {
+function uploadMediaElementLoaderDoneRedirect() {
   $('.barraLoading').css('background-color', '#41A62A');
   $('.barraLoading img').hide();
   $('.barraLoading img').attr('src', '');
