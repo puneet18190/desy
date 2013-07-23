@@ -606,7 +606,7 @@ html.media_element_editor-layout {
         
       }
       
-      .audioButton { /* TODO 11.9 */
+      .audioButton { /* TODO 3 */
         
         @include iconEditorElementInMediaElementEditor;
         background-position: (-$media-element-editor-icon-size) (-$media-element-editor-icon-size);
@@ -1626,35 +1626,10 @@ html.media_element_editor-layout {
       
     }
     
-    .closeButton { /* TODO 11.6 */
-    
-    
-  float: left;
-  width: $shared-editor-player-button-size1;
-  height: $shared-editor-player-button-size1;
-  background-image: $assets-set-icone-editor_svg;
-  background-repeat: no-repeat;
-  background-size: ($shared-editor-player-button-size1 * 4) ($shared-editor-player-button-size1 * 11);
-  padding: 0;
-  font-size: 1em;
-  
-  &:hover {
-    
-    cursor: pointer;
-    
-  }
-  background-position: 0 0;
-  opacity: 0.2;
-  
-  
-  &:hover, &.current {
-    
-    background-position: (-$shared-editor-player-button-size1 * 3) 0;
-    opacity: 1;
-    
-  }
-    
-    
+    .closeButton {
+      
+      @include svg-circle-icon-handler($assets-set-icone-editor_svg, 19px, 4, 12, 0.5, 0, 0, 1, 3, 0);
+      
     }
     
   }
