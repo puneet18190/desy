@@ -962,24 +962,10 @@ a.cerca.current {
 
 label.filebutton {
   
+  @include svg-circle-icon-handler($assets-icone-piene_svg, 64px, 6, 1, 1, 3, 0, 0.8, 3, 0);
   overflow: hidden;
   position: relative;
-  float: left;
-  width: $shared-button-size2;
-  height: $shared-button-size2;
-  background-image: $assets-icone-piene_svg;
-  background-repeat: no-repeat;
-  background-size: ($shared-button-size2 * 6) ($shared-button-size2);
-  padding: 0;
-  font-size: 1em;
-  background-position: (-$shared-button-size2 * 3) 0;
   cursor: pointer;
-  
-  &:hover {
-    
-    opacity: 0.8;
-    
-  }
   
 }
 
@@ -1369,11 +1355,11 @@ label.filebutton span input#new_media_element_input {
     a {
       
       display: inline-block;
-      width: $shared-button-size3;
-      height: $shared-button-size3;
+      width: $shared-button-size2;
+      height: $shared-button-size2;
       background-image: $assets-icone-menu-preview_svg;
       background-repeat: no-repeat;
-      background-size: ($shared-button-size3 * 2) ($shared-button-size3 * 5);
+      background-size: ($shared-button-size2 * 2) ($shared-button-size2 * 5);
       padding: 0;
       margin-right: 8px;
       
@@ -1385,13 +1371,13 @@ label.filebutton span input#new_media_element_input {
       
       &.edit {
         
-        background-position: 0 (-$shared-button-size3 * 2);
+        background-position: 0 (-$shared-button-size2 * 2);
         
       }
       
       &.edit:hover {
         
-        background-position: (-$shared-button-size3) (-$shared-button-size3 * 2);
+        background-position: (-$shared-button-size2) (-$shared-button-size2 * 2);
         
       }
       
@@ -1403,43 +1389,43 @@ label.filebutton span input#new_media_element_input {
       
       &.report:hover {
         
-        background-position: (-$shared-button-size3) 0;
+        background-position: (-$shared-button-size2) 0;
         
       }
       
       &.report_light {
         
-        background-position: (-$shared-button-size3) 0;
+        background-position: (-$shared-button-size2) 0;
         
       }
       
       &.close {
         
-        background-position: 0 (-$shared-button-size3);
+        background-position: 0 (-$shared-button-size2);
         
       }
       
       &.close:hover {
         
-        background-position: (-$shared-button-size3) (-$shared-button-size3);
+        background-position: (-$shared-button-size2) (-$shared-button-size2);
         
       }
       
       &.change_info {
         
-        background-position: 0 (-$shared-button-size3 * 3);
+        background-position: 0 (-$shared-button-size2 * 3);
         
       }
       
       &.change_info:hover {
         
-        background-position: (-$shared-button-size3) (-$shared-button-size3 * 3);
+        background-position: (-$shared-button-size2) (-$shared-button-size2 * 3);
         
       }
       
       &.change_info_light {
         
-        background-position: (-$shared-button-size3) (-$shared-button-size3 * 3);
+        background-position: (-$shared-button-size2) (-$shared-button-size2 * 3);
         
       }
       
