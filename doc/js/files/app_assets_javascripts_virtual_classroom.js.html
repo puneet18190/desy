@@ -99,8 +99,6 @@
             
                 <li><a href="../classes/DocumentsDocumentReady.html">DocumentsDocumentReady</a></li>
             
-                <li><a href="../classes/DocumentsLoader.html">DocumentsLoader</a></li>
-            
                 <li><a href="../classes/GalleriesAccessories.html">GalleriesAccessories</a></li>
             
                 <li><a href="../classes/GalleriesDocumentReady.html">GalleriesDocumentReady</a></li>
@@ -431,10 +429,10 @@ function virtualClassroomDocumentReadyMultipleLessonLoading() {
     }
   });
   $(&#x27;body&#x27;).on(&#x27;mouseover&#x27;, &#x27;._virtual_classroom_quick_loaded_lesson ._current_inserted&#x27;, function() {
-    $(this).children(&#x27;a&#x27;).css(&#x27;background-position&#x27;, &#x27;-10em -0.1em&#x27;);
+    $(this).children(&#x27;a&#x27;).addClass(&#x27;with_x&#x27;);
   });
   $(&#x27;body&#x27;).on(&#x27;mouseout&#x27;, &#x27;._virtual_classroom_quick_loaded_lesson ._current_inserted&#x27;, function() {
-    $(this).children(&#x27;a&#x27;).css(&#x27;background-position&#x27;, &#x27;-10em -15.2em&#x27;);
+    $(this).children(&#x27;a&#x27;).removeClass(&#x27;with_x&#x27;);
   });
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#virtual_classroom_quick_select_submit&#x27;, function() {
     if(!$(this).hasClass(&#x27;current&#x27;)) {

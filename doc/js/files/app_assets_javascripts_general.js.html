@@ -99,8 +99,6 @@
             
                 <li><a href="../classes/DocumentsDocumentReady.html">DocumentsDocumentReady</a></li>
             
-                <li><a href="../classes/DocumentsLoader.html">DocumentsLoader</a></li>
-            
                 <li><a href="../classes/GalleriesAccessories.html">GalleriesAccessories</a></li>
             
                 <li><a href="../classes/GalleriesDocumentReady.html">GalleriesDocumentReady</a></li>
@@ -445,10 +443,7 @@ function expandedItemsDocumentReady() {
   $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._change_info_container ._cancel, ._change_info_to_pick.change_info_light&#x27;, function() {
     $(&#x27;#dialog-media-element-&#x27; + $(this).data(&#x27;param&#x27;) + &#x27; ._audio_preview_in_media_element_popup&#x27;).show();
     $(&#x27;#dialog-media-element-&#x27; + $(this).data(&#x27;param&#x27;) + &#x27; ._change_info_container&#x27;).hide(&#x27;fade&#x27;, {}, 500, function() {
-      var icon = $(this);
-      if(!$(this).hasClass(&#x27;_change_info_to_pick&#x27;)) {
-        icon = $(&#x27;#dialog-media-element-&#x27; + $(this).data(&#x27;param&#x27;) + &#x27; ._change_info_to_pick&#x27;);
-      }
+      var icon = $(&#x27;#dialog-media-element-&#x27; + $(this).data(&#x27;param&#x27;) + &#x27; ._change_info_to_pick&#x27;);
       icon.addClass(&#x27;change_info&#x27;);
       icon.removeClass(&#x27;change_info_light&#x27;);
       resetMediaElementChangeInfo($(this).data(&#x27;param&#x27;));

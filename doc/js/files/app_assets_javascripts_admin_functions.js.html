@@ -99,8 +99,6 @@
             
                 <li><a href="../classes/DocumentsDocumentReady.html">DocumentsDocumentReady</a></li>
             
-                <li><a href="../classes/DocumentsLoader.html">DocumentsLoader</a></li>
-            
                 <li><a href="../classes/GalleriesAccessories.html">GalleriesAccessories</a></li>
             
                 <li><a href="../classes/GalleriesDocumentReady.html">GalleriesDocumentReady</a></li>
@@ -400,7 +398,9 @@ function adminBrowsersDocumentReady() {
   } else {
     $(&#x27;#admin-media-elements-quick-upload-form&#x27;).append($(&#x27;&lt;input name=&quot;from_ie&quot; val=&quot;true&quot; style=&quot;display:none&quot; /&gt;&#x27;));
     $(&#x27;#hint_not_for_ie&#x27;).hide();
-    $(&#x27;._new_element_form_submit&#x27;).show();
+    $(&#x27;#qume_file&#x27;).change(function() {
+      $(&#x27;#admin-media-elements-quick-upload-form&#x27;).submit();
+    });
   }
 }
 

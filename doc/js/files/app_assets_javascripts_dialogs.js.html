@@ -99,8 +99,6 @@
             
                 <li><a href="../classes/DocumentsDocumentReady.html">DocumentsDocumentReady</a></li>
             
-                <li><a href="../classes/DocumentsLoader.html">DocumentsLoader</a></li>
-            
                 <li><a href="../classes/GalleriesAccessories.html">GalleriesAccessories</a></li>
             
                 <li><a href="../classes/GalleriesDocumentReady.html">GalleriesDocumentReady</a></li>
@@ -345,6 +343,23 @@ Adds the class &lt;i&gt;close on click out&lt;/i&gt; to the widget overlay: this
 function customOverlayClose() {
   $(&#x27;.ui-widget-overlay&#x27;).show().css(&#x27;height&#x27;, (2 * $(window).height()) + &#x27;px&#x27;);
   $(&#x27;.ui-widget-overlay&#x27;).addClass(&#x27;_close_on_click_out&#x27;);
+}
+
+/**
+Close and successively remove HTML for a given document popup.
+@method removeCompletelyDocumentPopup
+@for DialogsAccessories
+@param document_id {Number} id of the document in the database, used to extract the HTML id of the dialog
+**/
+function removeCompletelyDocumentPopup(document_id) {
+  var obj = $(&#x27;#dialog-document-&#x27; + document_id);
+  if(obj.length == 0) {
+    return;
+  }
+  if(obj.data(&#x27;dialog&#x27;)) {
+    obj.dialog(&#x27;destroy&#x27;);
+  }
+  obj.remove();
 }
 
 /**
@@ -726,10 +741,7 @@ function showMediaElementInfoPopUp(media_element_id) {
           $(&#x27;#dialog-media-element-&#x27; + media_element_id + &#x27; ._audio_preview_in_media_element_popup&#x27;).show();
           $(&#x27;#dialog-media-element-&#x27; + media_element_id + &#x27; ._change_info_container&#x27;).hide();
           var change_info_button = $(&#x27;#dialog-media-element-&#x27; + media_element_id + &#x27; ._change_info_to_pick&#x27;);
-          if(change_info_button.hasClass(&#x27;change_info_light&#x27;)) {
-            change_info_button.addClass(&#x27;change_info&#x27;);
-            change_info_button.removeClass(&#x27;change_info_light&#x27;);
-          }
+          change_info_button.addClass(&#x27;change_info&#x27;).removeClass(&#x27;change_info_light&#x27;);
         }
       });
     }

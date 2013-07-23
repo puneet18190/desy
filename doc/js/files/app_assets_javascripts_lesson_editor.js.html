@@ -99,8 +99,6 @@
             
                 <li><a href="../classes/DocumentsDocumentReady.html">DocumentsDocumentReady</a></li>
             
-                <li><a href="../classes/DocumentsLoader.html">DocumentsLoader</a></li>
-            
                 <li><a href="../classes/GalleriesAccessories.html">GalleriesAccessories</a></li>
             
                 <li><a href="../classes/GalleriesDocumentReady.html">GalleriesDocumentReady</a></li>
@@ -415,6 +413,20 @@ function stopMediaInCurrentSlide() {
   var current_slide_id = $(&#x27;li._lesson_editor_current_slide&#x27;).attr(&#x27;id&#x27;);
   stopMedia(&#x27;#&#x27; + current_slide_id + &#x27; audio&#x27;);
   stopMedia(&#x27;#&#x27; + current_slide_id + &#x27; video&#x27;);
+}
+
+/**
+Switches the titles of disabled and enabled buttons when the user reaches the maximum number of allowed slides.
+@method switchDisabledMaximumSlideNumberLessonEditor
+@for LessonEditorCurrentSlide
+**/
+function switchDisabledMaximumSlideNumberLessonEditor() {
+  var title_disabled = $(&#x27;._add_new_slide_options&#x27;).attr(&#x27;title&#x27;);
+  var title_disabled_last_position = $(&#x27;._add_new_slide_options_in_last_position&#x27;).attr(&#x27;title&#x27;);
+  $(&#x27;._add_new_slide_options&#x27;).attr(&#x27;title&#x27;, $(&#x27;._add_new_slide_options&#x27;).data(&#x27;disabled-title&#x27;));
+  $(&#x27;._add_new_slide_options_in_last_position&#x27;).attr(&#x27;title&#x27;, $(&#x27;._add_new_slide_options_in_last_position&#x27;).data(&#x27;disabled-title&#x27;));
+  $(&#x27;._add_new_slide_options&#x27;).data(&#x27;disabled-title&#x27;, title_disabled);
+  $(&#x27;._add_new_slide_options_in_last_position&#x27;).data(&#x27;disabled-title&#x27;, title_disabled_last_position);
 }
 
 
@@ -746,6 +758,11 @@ function lessonEditorDocumentReadySlideButtons() {
       type: &#x27;post&#x27;,
       url: &#x27;/lessons/&#x27; + $(&#x27;#info_container&#x27;).data(&#x27;lesson-id&#x27;) + &#x27;/slides/&#x27; + slide.data(&#x27;slide-id&#x27;) + &#x27;/delete&#x27;
     });
+  });
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._attach_document&#x27;, function() {
+    
+    alert(&#x27;sto allegando un documento&#x27;); // TODO
+    
   });
 }
 
