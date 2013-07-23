@@ -1,0 +1,47 @@
+<%
+  title_max = t('documents.title_placeholder', :num => t('language_parameters.document.length_title').to_s).downcase
+  description_max = t('documents.description_placeholder', :num => t('language_parameters.document.length_description').to_s).downcase
+%>
+
+<div id="load-document" class="documentInfoPopUp" style="display:none" data-placeholder-description="<%= description_max %>" data-placeholder-title="<%= title_max %>" data-attachment-too-large="<%= t('forms.error_captions.document_attachment_too_large') %>" data-placeholder-attachment="<%= t('documents.attachment_placeholder').downcase %>">
+  <div class="documentPopUpContainer">
+    <div class="ChangeInfoContainerLoading">
+      
+      <%= form_tag documents_path, :method => :post, :id => 'new_document', :class => 'formModifyInfo', :multipart => true do %>
+        <div id="document_attachment_show" class="fk_carica_documento_file fltrt"></div>
+        <label class="filebutton">
+          <span>
+            <input type="file" id="new_document_input" name="attachment">
+          </span>
+        </label>
+        <br class="clearfloat">
+        <br><br>
+        <%= text_field_tag 'title', '' %>
+        <%= hidden_field_tag 'title_placeholder', '' %>
+        <%= text_area_tag 'description', '' %>
+        <%= hidden_field_tag 'description_placeholder', '' %>
+        <div class="fltrt lower">
+          <div class="fltlft" style="margin-top:5px">
+            <a class="_close buttonForm" data-dialog-id="load-document">
+              <%= t('forms.upload_document.cancel') %>
+            </a>
+          </div>
+          <div class="fltrt">
+            <%= submit_tag t('forms.upload_document.done').downcase, :id => 'new_document_submit', :style => 'padding:0px;' %>
+          </div>
+        </div>
+      <% end %>
+      
+    </div>
+  </div>
+  
+  <div class="barraLoading" style="overflow:hidden;">
+    <iframe id="upload_target" width="680" height="40" frameborder="0" class="error_messages_iframe" name="upload_target" src=""></iframe>
+    <img src="" alt="loading" style="display:none">
+  </div>
+  
+</div>
+
+<script type="text/javascript">
+  window.onload = initDocumentLoader;
+</script>

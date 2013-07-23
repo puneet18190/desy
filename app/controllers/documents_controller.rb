@@ -85,32 +85,25 @@ class DocumentsController < ApplicationController
   # Html
   #
   def create
-    #media = params[:media]
-    #record = MediaElement.new :media => media
-    #record.title = params[:title_placeholder] != '0' ? '' : params[:title]
-    #record.description = params[:description_placeholder] != '0' ? '' : params[:description]
-    #record.tags = params[:tags_value]
-    #record.user_id = current_user.id
-    #record.validating_in_form = true
-    #if record.save
-    #  Notification.send_to current_user.id, t("notifications.#{record.class.to_s.downcase}.upload.started", item: record.title) if !record.image?
-    #else
-   #  if record.errors.added? :media, :too_large
-   #     return render :file => Rails.root.join('public/413.html'), :layout => false, :status => 413
-   #   end
-   #   @errors = convert_media_element_uploader_messages record.errors
-   #   fields = record.errors.messages.keys
-   #   fields.delete(:media) if fields.include?(:media) && record.errors.messages[:media].empty?
-   #   if fields.include? :sti_type
-   #     fields << :media if !fields.include? :media
-   #     fields.delete :sti_type
-   #   end
-   #   @error_fields = []
-   #   fields.each do |f|
-   #     @error_fields << f.to_s
-   #   end
-   # end
-   # render :layout => false
+    attachment = params[:attachment]
+    record = Document.new :attachment => attachment
+    record.title = params[:title_placeholder] != '0' ? '' : params[:title]
+    record.description = params[:description_placeholder] != '0' ? '' : params[:description]
+    record.tags = params[:tags_value]
+    record.user_id = current_user.id
+    record.validating_in_form = true
+    if !record.save
+      if record.errors.added? :attachment, :too_large
+        return render :file => Rails.root.join('public/413.html'), :layout => false, :status => 413
+      end
+      @errors = convert_document_uploader_messages record.errors
+      fields = record.errors.messages.keys
+      @error_fields = []
+      fields.each do |f|
+        @error_fields << f.to_s
+      end
+    end
+    render :layout => false
   end
   
   private
