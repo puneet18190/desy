@@ -884,37 +884,9 @@ html.media_element_editor-layout {
       
     }
     
-    a.closeButton { /* TODO 11.5 */
+    a.closeButton {
       
-      float: left;
-      width: $shared-editor-player-button-size1;
-      height: $shared-editor-player-button-size1;
-      background-image: $assets-set-icone-editor_svg;
-      background-repeat: no-repeat;
-      background-size: ($shared-editor-player-button-size1 * 4) ($shared-editor-player-button-size1 * 11);
-      padding: 0;
-      font-size: 1em;
-      &:hover {
-        cursor: pointer;
-      }
-      background-position: 0 0;
-      opacity: 0.2;
-      &:hover, &.current {
-        background-position: (-$shared-editor-player-button-size1 * 3) 0;
-        opacity: 1;
-      }
-      font-size: 0.6em;
-      float: left;
-      padding: 0;
-      opacity: 0.2;
-      background-image: $assets-action-fotogramma_svg;
-      background-repeat: no-repeat;
-      background-size: 12em 18em;
-      background-position: -6em 0;
-      &:hover {
-        opacity: 1;
-        background-position: 0em 0;
-      }
+      @include svg-circle-icon-handler($assets-action-fotogramma_svg, 47px, 2, 3, 0.2, 1, 0, 1, 0, 0);
       
     }
     
