@@ -6,6 +6,6 @@
     <div class="title"><h1><%= lesson.title %></h1></div>
     <div class="lessonType"><h2><%= lesson.subject.description %></h2></div>
     <!-- se si vogliono cambiare le classi del div seguente, lasciare sempre per prima '_remove_lesson_from_playlist' -->
-    <div class="_remove_lesson_from_playlist exitButton" style="display:none" data-clickparam="<%= lesson.id %>">&nbsp;</div>
+    <div class="_remove_lesson_from_playlist exitButton" style="display:none" data-clickparam="<%= lesson.id %>" title="<%= t('titles.virtual_classroom.remove_from_playlist') %>">&nbsp;</div>
   </div>
 </div>

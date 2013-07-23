@@ -1012,6 +1012,9 @@ cn:
       # 'X' icon, to remove the lesson from Virtual Classroom
       # 1 - views/virtual_classroom/_view_single.html.erb
       remove: "从你的虚拟教室中移除"
+      # Button 'x' to remove from playlist
+      # 1 - views/virtual_classroom/_view_single_playlist.html.erb
+      remove_from_playlist: "Remove from your playlist" # TODO
       # 'Mail' icon, to send the link of the lesson to your friends
       # 1 - views/virtual_classroom/_view_single.html.erb
       send_link: "送一个课程链接给你的朋友"
