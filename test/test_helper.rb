@@ -6,7 +6,7 @@ class ActiveSupport::TestCase
   
   fixtures :all
   
-  setup :initialize_media_path_for_media_elements
+  setup :initialize_media_path_for_media_elements, :initialize_attachment_path_for_documents
   
   def assert_invalid_email(object)
     valid_long_email = "#{long_string(249)}@uo.it"
@@ -87,6 +87,14 @@ class ActiveSupport::TestCase
       if was_public
         MediaElement.where(:id => x).update_all(:is_public => true)
       end
+    end
+  end
+  
+  def initialize_attachment_path_for_documents
+    [1, 2].each do |x|
+      d = Document.find x
+      d.attachment = File.open(Rails.root.join('test/samples/one.ppt'))
+      assert_obj_saved d
     end
   end
   

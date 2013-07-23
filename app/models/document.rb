@@ -9,6 +9,9 @@ require 'filename_token'
 # * *user_id*: id of the creator of the document
 # * *title*: title
 # * *description*: description
+# * *attachment*: attached file
+# * *metadata*: contains:
+#   * +size+: dimension of the attached file
 #
 # == Associations
 #
@@ -18,13 +21,14 @@ require 'filename_token'
 # == Validations
 #
 # * *presence* with numericality and existence of associated record for +user_id+
-# * *presence* for +title+
+# * *presence* for +title+ and +attachment+
 # * *length* of +title+ and +description+ (values configured in the I18n translation file; only for title, if the value is greater than 255 it's set to 255)
 # * *modifications* *not* *available* for the +user_id+
 #
 # == Callbacks
 #
 # 1. *before_validation* saves the +title+ from the attachment if it's not present
+# 2. *before_save* sets the +size+ in metadata
 #
 # == Database callbacks
 #
@@ -40,7 +44,7 @@ class Document < ActiveRecord::Base
   serialize :metadata, OpenStruct
   
   attr_accessible :title, :description, :attachment
-
+  
   mount_uploader :attachment, DocumentUploader
   
   belongs_to :user
@@ -61,7 +65,7 @@ class Document < ActiveRecord::Base
   end
   
   # Returns the icon, depending on the extension
-  def icon_path # TODO controllarlo e completarlo
+  def icon_path
     case extension
       when '.ppt', '.pptx'                           then 'documents/ppt.svg'
       when '.doc', '.docx', '.pages', '.odt', '.txt' then 'documents/doc.svg'
@@ -83,18 +87,22 @@ class Document < ActiveRecord::Base
     attachment.try(:original_filename_without_extension)
   end
   
+  # Returns the size
   def size
     metadata.size
   end
-
+  
+  # Sets the size
   def size=(size)
     metadata.size = size
   end
-
+  
+  # Renders the size with mega, giga, etc
   def human_size
     number_to_human_size size
   end
-
+  
+  # Returns the url
   def url
     attachment.url
   end
@@ -144,7 +152,8 @@ class Document < ActiveRecord::Base
   end
   
   private
-
+  
+  # Sets the size (cañback)
   def set_size
     self.size = attachment.size if attachment.size
   end

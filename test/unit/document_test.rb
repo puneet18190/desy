@@ -7,7 +7,7 @@ class DocumentTest < ActiveSupport::TestCase
     @max_title = I18n.t('language_parameters.document.length_title')
     @max_description = I18n.t('language_parameters.document.length_description')
     begin
-      @document = Document.new :title => 'Fernandello mio', :description => 'Voglio divenire uno scienziaaato'
+      @document = Document.new :title => 'Fernandello mio', :description => 'Voglio divenire uno scienziaaato', :attachment => File.open(Rails.root.join('test/samples/one.ppt'))
       @document.user_id = 1
     rescue ActiveModel::MassAssignmentSecurity::Error
       @document = nil
@@ -17,8 +17,7 @@ class DocumentTest < ActiveSupport::TestCase
   test 'empty_and_defaults' do
     @document = Document.new
     assert_nil @document.title
-    assert_error_size 3, @document
-    assert_not_nil @document.title
+    assert_error_size 5, @document
   end
   
   test 'attr_accessible' do
