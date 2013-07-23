@@ -12,7 +12,7 @@ group :assets do
   gem 'libv8', '~> 3.11.8', :platforms => :ruby
   gem 'therubyracer', :platforms => :ruby
   gem 'uglifier', '>= 1.0.3'
-  #gem "jquery-fileupload-rails"
+  gem "jquery-fileupload-rails"
 end
 
 group :development do

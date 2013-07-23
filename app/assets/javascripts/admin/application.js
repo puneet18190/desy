@@ -8,11 +8,11 @@
 //= require jquery_ujs
 //= require jquery-ui-1.9.0.custom
 //= require jquery.peity
-//= require jquery.fileupload
 //= require bootstrap
 //= require bootstrap-tooltip
 //= require bootstrap-popover
 //= require bootstrap-datepicker
+//= require jquery-fileupload/basic
 //= require ajax_loader
 //= require admin/functions
 //= require admin/document_ready
