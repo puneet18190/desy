@@ -103,15 +103,6 @@ Initializer for documents functionality (general javascripts).
 @for DocumentsDocumentReady
 **/
 function documentsDocumentReadyGeneral() {
-  if(!$.browser.msie) {
-    $('upload_document').fileupload();
-  } else {
-    $('#document_hint').hide();
-    $('#document_hint_ie').show();
-  }
-  $('#upload_document ._attached').change(function() {
-    $('#upload_document').submit();
-  });
   $('body').on('mouseover', '._empty_documents', function() {
     $(this).find('._empty_documents_hover').addClass('current');
   });

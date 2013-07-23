@@ -2347,14 +2347,6 @@ en:
     # When the document search produced no results
     # 1 - views/documents/_empty_word.html.erb
     empty_word: "No documents found matching <%{word}>"
-    # Hints for multiple uploading
-    hints:
-      # Internet Explorer doesn't support multiple uploader
-      # 1 - views/documents/index.html.erb
-      ie: "Your browser supports the uploading of only one document at a time"
-      # Other browsers support multiple uploader
-      # 1 - views/documents/index.html.erb
-      standard: "Your browser supports multiple uploading: use CTRL to pick more files at the same time"
     # Placeholder to search a document
     # 1 - views/documents/_search.html.erb
     search: "Filter by word:"
