@@ -304,7 +304,7 @@
   
 }
 
-.mediaElementInfoPopUp.ui-dialog-content, .documentInfoPopUp.ui-dialog-content {
+.mediaElementInfoPopUp.ui-dialog-content.ui-widget-content, .documentInfoPopUp.ui-dialog-content.ui-widget-content {
   
   padding: 0;
   background-color: #373737;
@@ -338,7 +338,7 @@
   
 }
 
-.imageInGalleryPopUp.ui-dialog-content {
+.imageInGalleryPopUp.ui-dialog-content.ui-widget-content {
   
   background-color: #48484a;
   padding: 10px;
@@ -370,7 +370,7 @@
   
 }
 
-.videoInGalleryPopUp.ui-dialog-content {
+.videoInGalleryPopUp.ui-dialog-content.ui-widget-content {
   
   background-color: #48484a;
   padding: 10px;
