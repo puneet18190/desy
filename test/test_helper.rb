@@ -91,6 +91,7 @@ class ActiveSupport::TestCase
   end
   
   def initialize_attachment_path_for_documents
+    FileUtils.rm_rf("#{Rails.root.join('public/documents/test')}/.") if Dir.exists?(Rails.root.join('public/documents/test'))
     [1, 2].each do |x|
       d = Document.find x
       d.attachment = File.open(Rails.root.join('test/samples/one.ppt'))
