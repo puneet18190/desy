@@ -154,8 +154,16 @@ class Seeds
     end
   end
 
-  def attachment
-    File.open DOCUMENTS_FOLDER.join 'presentation.ppt'
+  def attachment(id)
+    my_file = case id % 6
+      when 0 then 'doc1.ppt'
+      when 1 then 'doc2.pdf'
+      when 2 then 'doc3.tar.gz'
+      when 3 then 'doc4.ods'
+      when 4 then 'doc5.svg'
+      when 5 then 'doc6.txt'
+    end
+    File.open DOCUMENTS_FOLDER.join my_file
   end
 
   def tags(id)
@@ -249,9 +257,7 @@ class Seeds
     csv_open.each.each_with_index do |row, i|
       progress(i)
       record = csv_row_to_record(row)
-      # XXX se si vuole fare un documento diverso per record
-      # personalizzare il metodo attachment sulla falsariga del metodo media(record, row)
-      record.attachment = attachment
+      record.attachment = attachment(record.id)
       record.save!
     end
   end

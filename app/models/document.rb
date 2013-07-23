@@ -61,7 +61,7 @@ class Document < ActiveRecord::Base
   
   # Returns the size and extension in a nice way for the views
   def size_and_extension
-    "#{extension}, #{humanized_size}"
+    "#{extension.sub /\A\./, ''}, #{human_size}"
   end
   
   # Returns the icon, depending on the extension
@@ -69,7 +69,7 @@ class Document < ActiveRecord::Base
     case extension
       when '.ppt', '.pptx'                           then 'documents/ppt.svg'
       when '.doc', '.docx', '.pages', '.odt', '.txt' then 'documents/doc.svg'
-      when '.zip'                                    then 'documents/zip.svg'
+      when '.zip', '.gz'                             then 'documents/zip.svg'
       when '.xls', '.xlsx', '.numbers', '.ods'       then 'documents/exc.svg'
       when '.pdf', '.ps'                             then 'documents/pdf.svg'
       else 'documents/unknown.svg'
@@ -100,6 +100,10 @@ class Document < ActiveRecord::Base
   # Renders the size with mega, giga, etc
   def human_size
     number_to_human_size size
+  end
+  
+  def extension
+    attachment.original_extension || attachment ? File.extname(attachment.path) : nil
   end
   
   # Returns the url
