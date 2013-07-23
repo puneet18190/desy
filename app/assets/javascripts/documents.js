@@ -109,9 +109,6 @@ function documentsDocumentReadyGeneral() {
   $('body').on('mouseout', '._empty_documents', function() {
     $(this).find('._empty_documents_hover').removeClass('current');
   });
-  $('body').on('click', '._empty_documents, #upload_document a', function() {
-    $('#upload_document ._attached').click();
-  });
   $('body').on('change', '#order_documents', function() {
     var order = $('#order_documents option:selected').val();
     var redirect_url = getCompleteDocumentsUrlWithoutOrder() + '&order=' + order;
@@ -186,8 +183,7 @@ Initializer for the loading form.
 @for DocumentsDocumentReady
 **/
 function documentsDocumentReadyUploader() {
-  $('body').on('click', '._load_document', function(e) {
-    e.preventDefault();
+  $('body').on('click', '._empty_documents, #upload_document', function() {
     showLoadDocumentPopUp();
   });
   $('body').on('change', 'input#new_document_input', function() {

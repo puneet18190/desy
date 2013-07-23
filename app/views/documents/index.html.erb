@@ -1,11 +1,7 @@
 <div class="gray-bar">
-  <%= form_tag 'documents', :method => :post, :id => 'upload_document', :multipart => true do %>
-    <a class="uploadNewDocument">
-      <%= t('documents.upload') %>
-    </a>
-    <%= submit_tag '', :class => '_submit', :style => 'display:none' %>
-    <%= file_field_tag 'attached', :class => '_attached', :style => 'display:none', :multiple => true %>
-  <% end %>
+  <a id="upload_document" class="uploadNewDocument">
+    <%= t('documents.upload') %>
+  </a>
 </div>
 
 <br class="clearfloat">
