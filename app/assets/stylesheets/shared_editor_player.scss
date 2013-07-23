@@ -155,11 +155,11 @@
 
 a.addButtonContent {
   
-  width: $shared-editor-player-button-size3;
-  height: $shared-editor-player-button-size3;
+  width: $shared-editor-player-button-size;
+  height: $shared-editor-player-button-size;
   background-image: $assets-icone-player_svg;
   background-repeat: no-repeat;
-  background-size: ($shared-editor-player-button-size3 * 5) ($shared-editor-player-button-size3 * 4);
+  background-size: ($shared-editor-player-button-size * 5) ($shared-editor-player-button-size * 4);
   background-position: -8em -4em;
   padding: 0;
   opacity: 0.5;
