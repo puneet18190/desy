@@ -899,31 +899,10 @@ html.media_element_editor-layout {
       
     }
     
-    .audioButton { /* TODO 11.8 */
+    .audioButton {
       
-      @include iconEditorElement(0.7em);
-      margin-right: 0px;
-      background-position: (-$shared-editor-player-icon-size * 2) (-$shared-editor-player-icon-size);
-      opacity: 0.1;
+      @include svg-circle-icon-handler($assets-icone-piene_svg, 47px, 6, 1, 1, 0, 0, 1, 3, 0);
       cursor: pointer;
-      &:hover, &.current {
-        background-position: 0 (-$shared-editor-player-icon-size);
-        opacity: 1;
-      }
-      font-size: 0.8em;
-      background-position: -5.2em -5.3em;
-      opacity: 0.2;
-      float: left;
-      &:hover {
-        background-position: 0.3em -5.3em;
-        opacity: 1;
-      }
-      &.current {
-        font-size: 0.7em;
-        background-position: 0.3em -5.3em;
-        opacity: 1;
-        float: left;
-      }
       
     }
     
