@@ -81,7 +81,7 @@ class Document < ActiveRecord::Base
     my_title = icon_path.split('/').last.split('.').first
     I18n.t("titles.documents.#{my_title}")
   end
-
+  
   # Returns the extension of the attachment after an upload
   def uploaded_filename_without_extension
     attachment.try(:original_filename_without_extension)
