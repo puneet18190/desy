@@ -126,19 +126,6 @@
   
 }
 
-@mixin iconEditorElementInMediaElementEditor {
-  
-  float: left;
-  width: $media-element-editor-icon-size;
-  height: $media-element-editor-icon-size;
-  background-image: $assets-set-editor-elementi_svg;
-  background-repeat: no-repeat;
-  background-size: ($media-element-editor-icon-size * 3) ($media-element-editor-icon-size * 4);
-  padding: 0;
-  font-size: 2em;
-  
-}
-
 @mixin layoutIconElements {
   
   margin-right: 0px;
