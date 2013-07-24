@@ -220,10 +220,11 @@ class Slide < ActiveRecord::Base
   #
   # * *title*: title (it might be +nil+)
   # * *text*: text (it might be +nil+)
-  # * *media_elements*: an array of arrays. Each item of this argument represents a media element in the position given by +index+ + 1 in the array. Each small array contains (in order):
+  # * *media_elements*: a hash of arrays. Each item of this argument represents a media element in the position given by +index+ + 1 in the hash. Each small array contains (in order):
   #   * *media_element_id*: corresponds to the id of the MediaElement associated
   #   * *alignment*: corresponds to the field +alignment+ of MediaElementsSlide
   #   * *caption*: corresponds to the field +caption+ of MediaElementsSlide
+  # * *documents*: an array of integers. Each item of this argument represents a document
   #
   # === Returns
   #
@@ -234,7 +235,7 @@ class Slide < ActiveRecord::Base
   # See LessonEditorController#save_slide, LessonEditorController#save_slide_and_exit, LessonEditorController#save_slide_and_edit
   #   slide.update_with_media_elements((params[:title].blank? ? nil : params[:title]), (params[:text].blank? ? nil : params[:text]), media_elements_params)
   #
-  def update_with_media_elements(title, text, media_elements)
+  def update_with_media_elements(title, text, media_elements, documents)
     return false if self.new_record?
     resp = false
     ActiveRecord::Base.transaction do
@@ -271,6 +272,15 @@ class Slide < ActiveRecord::Base
           boo.bookmarkable_type = 'MediaElement'
           boo.bookmarkable_id = my_media_element.id
           raise ActiveRecord::Rollback if !boo.save
+        end
+      end
+      documents.each do |doc|
+        ds = DocumentsSlide.where(:slide_id => self.id, :document_id => doc).first
+        if ds.nil?
+          ds2 = DocumentsSlide.new
+          ds2.slide_id = self.id
+          ds2.document_id = doc
+          raise ActiveRecord::Rollback if !ds2.save
         end
       end
       resp = true
