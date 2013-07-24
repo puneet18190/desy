@@ -36,6 +36,7 @@ require 'filename_token'
 #
 class Document < ActiveRecord::Base
   include ActionView::Helpers::NumberHelper
+  include Rails.application.routes.url_helpers
   include FilenameToken
   
   # Maximum length of the title
