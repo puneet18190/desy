@@ -362,7 +362,7 @@ function showLoadMediaElementPopUp() {
       show: 'fade',
       hide: {effect: 'fade'},
       open: function(event, ui) {
-        $('input').blur();
+        $('#load-media-element input').blur();
         $('#load-media-element #title').val($('#load-media-element').data('placeholder-title'));
         $('#load-media-element #description').val($('#load-media-element').data('placeholder-description'));
         $('#load-media-element #title_placeholder').val('');

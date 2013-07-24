@@ -239,7 +239,7 @@ function showLoadDocumentPopUp() {
       show: 'fade',
       hide: {effect: 'fade'},
       open: function(event, ui) {
-        $('input').blur();
+        $('#load-document input').blur();
         $('#load-document #title').val($('#load-document').data('placeholder-title'));
         $('#load-document #description').val($('#load-document').data('placeholder-description'));
         $('#load-document #title_placeholder').val('');
