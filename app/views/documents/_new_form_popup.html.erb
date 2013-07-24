@@ -3,7 +3,7 @@
   description_max = t('documents.description_placeholder', :num => t('language_parameters.document.length_description').to_s).downcase
 %>
 
-<div id="load-document" class="documentInfoPopUp" style="display:none" data-placeholder-description="<%= description_max %>" data-placeholder-title="<%= title_max %>" data-attachment-too-large="<%= t('forms.error_captions.document_attachment_too_large') %>" data-placeholder-attachment="<%= t('documents.attachment_placeholder').downcase %>">
+<div id="load-document" class="documentInfoPopUp" style="display:none" data-placeholder-description="<%= description_max %>" data-placeholder-title="<%= title_max %>" data-attachment-too-large="<%= t('documents.upload_form.attachment_too_large') %>" data-placeholder-attachment="<%= t('documents.upload_form.attachment_placeholder').downcase %>">
   <div class="documentPopUpContainer">
     <div class="ChangeInfoContainerLoading">
       
@@ -23,11 +23,11 @@
         <div class="fltrt lower">
           <div class="fltlft" style="margin-top:5px">
             <a class="_close buttonForm">
-              <%= t('forms.upload_document.cancel') %>
+              <%= t('documents.upload_form.cancel') %>
             </a>
           </div>
           <div class="fltrt">
-            <%= submit_tag t('forms.upload_document.done').downcase, :id => 'new_document_submit', :style => 'padding:0px;' %>
+            <%= submit_tag t('documents.upload_form.done').downcase, :id => 'new_document_submit', :style => 'padding:0px;' %>
           </div>
         </div>
       <% end %>
