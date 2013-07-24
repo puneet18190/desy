@@ -623,6 +623,17 @@ class CoreMethodsTest < ActiveSupport::TestCase
   end
   
   test 'update_slide' do
+    d3 = Document.new :title => 'Fernandello mio', :description => 'Voglio divenire uno scienziaaato', :attachment => File.open(Rails.root.join('test/samples/one.ppt'))
+    d3.user_id = 1
+    assert_obj_saved d3
+    d4 = Document.new :title => 'Fernandello mio', :description => 'Voglio divenire uno scienziaaato', :attachment => File.open(Rails.root.join('test/samples/one.ppt'))
+    d4.user_id = 1
+    assert_obj_saved d4
+    d5 = Document.new :title => 'Fernandello mio', :description => 'Voglio divenire uno scienziaaato', :attachment => File.open(Rails.root.join('test/samples/one.ppt'))
+    d5.user_id = 1
+    assert_obj_saved d5
+    DocumentsSlide.delete_all
+    assert DocumentsSlide.all.empty?
     lesson = User.find(1).create_lesson('titolo', 'desc', 1, 'pippo, paperoga, pluto, qui quo qua')
     assert !lesson.nil?
     assert lesson.publish
@@ -681,6 +692,22 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert slide.update_with_media_elements(nil, nil, {1 => [6, 0, 'caption1'], 2 => [6, 10, 'caption2'], 3 => [5, -110, 'caption3'], 4 => [6, 4, 'caption4']}, [])
     assert_equal count_media_elements_slide, MediaElementsSlide.count
     assert_equal 6, MediaElementsSlide.find(stored_id_me).media_element_id
+    slidedd = lesson.add_slide('image1', 2)
+    assert slidedd.update_with_media_elements(nil, nil, {}, [1, 2])
+    assert_equal 2, DocumentsSlide.count
+    assert_equal 1, DocumentsSlide.where(:slide_id => slidedd.id, :document_id => 1).count
+    assert_equal 1, DocumentsSlide.where(:slide_id => slidedd.id, :document_id => 2).count
+    assert slidedd.update_with_media_elements(nil, nil, {}, [1, d3.id, d4.id])
+    assert_equal 3, DocumentsSlide.count
+    assert_equal 1, DocumentsSlide.where(:slide_id => slidedd.id, :document_id => 1).count
+    assert_equal 1, DocumentsSlide.where(:slide_id => slidedd.id, :document_id => d3.id).count
+    assert_equal 1, DocumentsSlide.where(:slide_id => slidedd.id, :document_id => d4.id).count
+    assert slidedd.update_with_media_elements(nil, nil, {}, [d5.id])
+    assert_equal 1, DocumentsSlide.count
+    assert_equal 1, DocumentsSlide.where(:slide_id => slidedd.id, :document_id => d5.id).count
+    assert !slidedd.update_with_media_elements(nil, nil, {}, [1, 2, d4.id, d5.id])
+    assert_equal 1, DocumentsSlide.count
+    assert_equal 1, DocumentsSlide.where(:slide_id => slidedd.id, :document_id => d5.id).count
   end
   
   test 'modify_lesson' do
