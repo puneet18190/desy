@@ -286,7 +286,7 @@ class Slide < ActiveRecord::Base
           raise ActiveRecord::Rollback if !ds2.save
         end
       end
-      raise ActiveRecord::Rollback if DocumentsSlide.where(:slide_id => self.id).pluck(:id).sort != documents.sort
+      raise ActiveRecord::Rollback if DocumentsSlide.where(:slide_id => self.id).pluck(:document_id).sort != documents.sort
       resp = true
     end
     resp
