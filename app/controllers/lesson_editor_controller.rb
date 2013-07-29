@@ -317,8 +317,8 @@ class LessonEditorController < ApplicationController
   
   # Saves the current slide, using Slide#update_with_media_elements
   def save_current_slide
-    media_elements_params = []
-    documents_params = {}
+    media_elements_params = {}
+    documents_params = []
     (1...5).each do |i|
       if !params["media_element_#{i}"].blank?
         media_element_id = correct_integer?(params["media_element_#{i}"]) ? params["media_element_#{i}"].to_i : 0
