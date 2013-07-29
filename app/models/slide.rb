@@ -274,7 +274,7 @@ class Slide < ActiveRecord::Base
           raise ActiveRecord::Rollback if !boo.save
         end
       end
-      DocumentsSlide.where('slide_id = ? AND document_id NOT IN (?)', self.id, documents).each do |d|
+      (documents.empty? ? DocumentsSlide.where(:slide_id => self.id) : DocumentsSlide.where('slide_id = ? AND document_id NOT IN (?)', self.id, documents)).each do |d|
         d.destroy
       end
       documents.each do |doc|
