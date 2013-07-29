@@ -455,6 +455,17 @@ class Lesson < ActiveRecord::Base
             raise ActiveRecord::Rollback
           end
         end
+        if s.allows_document?
+          DocumentsSlide.where(:slide_id => s.id).each do |ds|
+            new_document = DocumentsSlide.new
+            new_document.slide_id = new_slide.id
+            new_document.document_id = ds.document_id
+            if !new_document.save
+              errors.add(:base, :problem_copying)
+              raise ActiveRecord::Rollback
+            end
+          end
+        end
       end
       resp = lesson
     end
