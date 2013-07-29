@@ -71,6 +71,7 @@ class CoreMethodsTest < ActiveSupport::TestCase
     mediaaa.caption = 'ohlala'
     mediaaa.position = 2
     assert_obj_saved mediaaa
+    assert_equal 2, DocumentsSlide.count
     resp = x.copy(1)
     assert !resp.nil?
     # I try to copy the copy
@@ -86,6 +87,7 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert resp.copied_not_modified
     s1 = Slide.where(:lesson_id => resp.id, :position => 1).first
     assert !s1.nil?
+    assert DocumentsSlide.where(:slide_id => s1.id).empty?
     s2 = Slide.where(:lesson_id => resp.id, :position => 2).first
     assert !s2.nil?
     assert_equal 'audio', s2.kind
@@ -94,6 +96,10 @@ class CoreMethodsTest < ActiveSupport::TestCase
     med1 = MediaElementsSlide.where(:slide_id => s2.id).first
     assert !med1.nil?
     assert_equal 4, med1.media_element_id
+    docslide1 = DocumentsSlide.where(:slide_id => s2.id)
+    assert_equal 1, docslide1.length
+    docslide1 = docslide1.first
+    assert_equal 1, docslide1.document_id
     s3 = Slide.where(:lesson_id => resp.id, :position => 3).first
     assert !s3.nil?
     assert_equal 'video1', s3.kind
@@ -102,6 +108,10 @@ class CoreMethodsTest < ActiveSupport::TestCase
     med2 = MediaElementsSlide.where(:slide_id => s3.id).first
     assert !med2.nil?
     assert_equal 2, med2.media_element_id
+    docslide2 = DocumentsSlide.where(:slide_id => s3.id)
+    assert_equal 1, docslide2.length
+    docslide2 = docslide2.first
+    assert_equal 2, docslide2.document_id
     s4 = Slide.where(:lesson_id => resp.id, :position => 4).first
     assert !s4.nil?
     assert_equal 'image2', s4.kind
@@ -113,6 +123,7 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert_equal 'ohlala', meds.caption
     assert_equal 6, meds.media_element_id
     assert_equal 2, meds.position
+    assert DocumentsSlide.where(:slide_id => s4.id).empty?
     assert_tags resp, ['squalo', 'cane', 'elefante', 'gatto']
   end
   
