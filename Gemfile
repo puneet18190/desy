@@ -51,3 +51,4 @@ gem 'exception_notification', github: "ProGNOMmers/exception_notification", grou
 gem 'facter'
 gem 'whenever', :require => false
 gem 'win32-dir', platforms: :mingw
+gem 'rubyzip'

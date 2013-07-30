@@ -118,7 +118,15 @@ class Slide < ActiveRecord::Base
   
   before_validation :init_validation
   before_destroy :stop_if_cover
-  
+
+  def self.last_of_lesson(lesson)
+    order('position DESC').where(:lesson_id => lesson.id).first
+  end
+
+  def self.last_position_of_lesson(lesson)
+    last_of_lesson(lesson).position
+  end
+
   # Used to center vertically the title
   def title=(title)
     if self.kind == TITLE && !title.blank? && title.first == "\r"
@@ -277,6 +285,34 @@ class Slide < ActiveRecord::Base
       resp = true
     end
     resp
+  end
+
+  def copy(lesson = nil)
+    lesson ||= self.lesson
+    position = lesson == self.lesson ? self.class.last_position_of_lesson(lesson)+1 : self.position
+
+    new_slide = Slide.new :position => position, :title => title, :text => text
+    new_slide.lesson_id = lesson.id
+    new_slide.kind = kind
+
+    ActiveRecord::Base.transaction do
+      if !new_slide.save
+        raise ActiveRecord::Rollback
+      end
+      MediaElementsSlide.where(:slide_id => id).each do |mes|
+        new_content = MediaElementsSlide.new
+        new_content.media_element_id = mes.media_element_id
+        new_content.slide_id = new_slide.id
+        new_content.position = mes.position
+        new_content.alignment = mes.alignment
+        new_content.caption = mes.caption
+        if !new_content.save
+          raise ActiveRecord::Rollback
+        end
+      end
+    end
+
+    new_slide.persisted? and new_slide
   end
   
   # === Description

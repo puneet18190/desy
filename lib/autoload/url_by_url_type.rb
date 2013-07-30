@@ -11,7 +11,7 @@ module UrlByUrlType
     def url_by_url_type(url, url_type)
       case url_type
 
-      when URL_TYPES[:exporting]
+      when URL_TYPES[:export]
         Pathname(url).relative_path_from(Pathname('/')).to_s
       else
         url

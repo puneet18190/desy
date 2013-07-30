@@ -48,7 +48,10 @@ Desy::Application.configure do
   # config.action_controller.asset_host = "http://assets.example.com"
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
-  config.assets.precompile += %w( tiny_mce_desy.css
+  config.assets.precompile += %w( browser_not_supported/application.css
+                                  browser_not_supported/application.js
+
+                                  tiny_mce_desy.css
                                   tinymce/themes/advanced/skins/desy/content.css
                                   tinymce/themes/advanced/skins/desy/dialog.css
                                   tinymce/themes/advanced/skins/desy/ui.css
@@ -60,9 +63,6 @@ Desy::Application.configure do
                                   tinymce/plugins/tiny_mce_wiris/core/core.js
                                   tinymce/plugins/tiny_mce_wiris/core/editor.js
                                   tinymce/plugins/tiny_mce_wiris/lang/en/strings.js
-
-                                  browser_not_supported/application.css
-                                  browser_not_supported/application.js
                                 )
 
   # Disable delivery errors, bad email addresses will be ignored

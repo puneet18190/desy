@@ -2,17 +2,17 @@
   url_type ||= nil
 
   if video
-    video_class     = '_empty_video_player'
-    webm            = ''
-    mp4             = ''
-    duration        = ''
-    string_duration = ''
-  else
     video_class     = '_instance_of_player'
     webm            = video.webm_url url_type
     mp4             = video.mp4_url url_type
     duration        = video.min_duration
     string_duration = seconds_to_time(duration)
+  else
+    video_class     = '_empty_video_player'
+    webm            = ''
+    mp4             = ''
+    duration        = ''
+    string_duration = ''
   end
 %>
 
