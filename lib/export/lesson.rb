@@ -5,6 +5,6 @@ require 'export'
 require 'env_relative_path'
 
 module Export
-  class Lesson    
+  module Lesson    
   end
 end

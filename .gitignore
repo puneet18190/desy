@@ -40,10 +40,10 @@
 /public/documents
 
 ## Esportazione
-# lezioni
+# files
 /public/exports
 # assets
-/app/exports/assets
+/app/exports
 
 # Cartella temporanea che contiene i file in caricamento multiplo dell'amministratore
 /public/admin

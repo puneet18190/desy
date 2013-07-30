@@ -8,19 +8,21 @@ require 'export'
 require 'export/lesson'
 
 module Export
-  class Lesson
+  module Lesson
     class Assets
 
       FOLDER = Rails.root.join 'app', 'exports', 'lessons', 'assets'
 
-      class << self
-        def compiled?
-          new.compiled?
-        end
+      def self.remove_folder!
+        FileUtils.rm_rf FOLDER
+      end
 
-        def compile
-          new.compile
-        end
+      def self.compiled?
+        new.compiled?
+      end
+
+      def self.compile
+        new.compile
       end
 
       def compiled?
@@ -31,22 +33,18 @@ module Export
         FOLDER.rmtree if FOLDER.exist?
         FOLDER.mkpath
 
-        compile_to FOLDER
-      end
-
-      private
-
-      def compile_to(folder)
         env.each_logical_path(paths) do |logical_path|
           if asset = env.find_asset(logical_path)
-            write_asset(asset, folder)
+            write_asset(asset)
           end
         end
       end
 
-      def write_asset(asset, folder)
+      private
+
+      def write_asset(asset)
         asset.logical_path.tap do |path|
-          filename = File.join folder, path
+          filename = File.join FOLDER, path
           FileUtils.mkdir_p File.dirname filename
           asset.write_to(filename)
         end

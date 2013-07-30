@@ -12,7 +12,7 @@ require 'export/lesson'
 require 'export/lesson/assets'
 
 module Export
-  class Lesson
+  module Lesson
     class Archive
 
       include EnvRelativePath
@@ -29,9 +29,14 @@ module Export
 
       INDEX_PAGE_NAME = 'index.html'
 
+      def self.remove_folder!
+        FileUtils.rm_rf FOLDER
+      end
+
       private
       attr_reader :lesson, :index, :filename_without_extension, :archive_main_folder, :filename, :folder, :path, :assets_archive_main_folder
       public
+
 
       def initialize(lesson, index)
         @lesson, @index = lesson, index
