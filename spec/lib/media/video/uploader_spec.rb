@@ -3,20 +3,40 @@ require 'spec_helper'
 module Media
   module Video
     describe Uploader do
-      let(:media_folder)            { Rails.root.join('spec/support/samples') }
-      let(:media_without_extension) { media_folder.join('con verted').to_s }
-      let(:valid_video_path)        { media_folder.join('valid video.flv').to_s }
-      let(:tmp_valid_video_path)    { media_folder.join('tmp.valid video.flv').to_s }
-      let(:media_file)              { File.open(tmp_valid_video_path) }
-      let(:media_uploaded)          do
-        ActionDispatch::Http::UploadedFile.new(filename: File.basename(tmp_valid_video_path), tempfile: File.open(tmp_valid_video_path))
+
+      def media_folder
+        @media_folder ||= Rails.root.join('spec/support/samples')
       end
-      let(:media_hash)              { { filename: 'tmp.valid video', mp4: "#{media_without_extension}.mp4", webm: "#{media_without_extension}.webm" } }
-      let(:media_hash_full)         do 
-        media_hash.merge( mp4_duration:  Info.new(media_hash[:mp4]).duration        ,
-                          webm_duration: Info.new(media_hash[:webm]).duration       ,
-                          cover:         media_folder.join('con verted cover.jpg').to_s ,
-                          thumb:         media_folder.join('con verted thumb.jpg').to_s )
+
+      def media_without_extension
+        @media_without_extension ||= media_folder.join('con verted').to_s
+      end
+
+      def valid_video_path
+        @valid_video_path ||= media_folder.join('valid video.flv').to_s
+      end
+
+      def tmp_valid_video_path
+        @tmp_valid_video_path ||= media_folder.join('tmp.valid video.flv').to_s
+      end
+
+      def media_file
+        @media_file ||= File.open(tmp_valid_video_path)
+      end
+
+      def media_uploaded
+        @media_uploaded ||= ActionDispatch::Http::UploadedFile.new(filename: File.basename(tmp_valid_video_path), tempfile: File.open(tmp_valid_video_path))
+      end
+
+      def media_hash
+        @media_hash ||= { filename: 'tmp.valid video', mp4: "#{media_without_extension}.mp4", webm: "#{media_without_extension}.webm" }
+      end
+
+      def media_hash_full
+        @media_hash_full ||= media_hash.merge( mp4_duration:  Info.new(media_hash[:mp4]).duration            ,
+                                               webm_duration: Info.new(media_hash[:webm]).duration           ,
+                                               cover:         media_folder.join('con verted cover.jpg').to_s ,
+                                               thumb:         media_folder.join('con verted thumb.jpg').to_s )
       end
       
       describe 'saving the associated model' do
@@ -28,7 +48,9 @@ module Media
         end
         
         context 'with a File', slow: true do
-          let(:video) { ::Video.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_file) { |v| v.user = User.admin } }
+          def video
+            @video ||= ::Video.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_file) { |v| v.user = User.admin }
+          end
           
           before(:all) do
             video.save!
@@ -39,7 +61,9 @@ module Media
         end
 
         context 'with a ActionDispatch::Http::UploadedFile', slow: true do
-          let(:video) { ::Video.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_uploaded) { |v| v.user = User.admin } }
+          def video
+            @video ||= ::Video.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_uploaded) { |v| v.user = User.admin }
+          end
 
           before(:all) do
             video.save!
@@ -51,7 +75,9 @@ module Media
 
         context 'with a Hash' do
           context 'without durations and version paths' do
-            let(:video) { ::Video.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_hash) { |v| v.user = User.admin } }
+            def video
+              @video ||= ::Video.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_hash) { |v| v.user = User.admin }
+            end
 
             before(:all) { video.save! }
 
@@ -59,7 +85,9 @@ module Media
           end
 
           context 'with durations and version paths' do
-            let(:video) { ::Video.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_hash_full) { |v| v.user = User.admin } }
+            def video
+              @video ||= ::Video.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_hash_full) { |v| v.user = User.admin }
+            end
 
             before(:all) { video }
 
@@ -69,7 +97,9 @@ module Media
             end
 
             context 'after saving' do
-              let(:video) { ::Video.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_hash_full) { |v| v.user = User.admin } }
+              def video
+                @video ||= ::Video.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_hash_full) { |v| v.user = User.admin }
+              end
 
               before(:all) { video.save! }
 

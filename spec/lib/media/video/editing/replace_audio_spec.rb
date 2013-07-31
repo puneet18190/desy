@@ -89,18 +89,32 @@ module Media
           def tmp_dir
             @tmp_dir ||= Dir.mktmpdir
           end
-          let(:output) { File.join tmp_dir, 'out put' }
+
+          def output
+            @output ||= File.join tmp_dir, 'out put'
+          end
   
           MESS::REPLACE_AUDIO_VIDEOS.each do |description, other_infos|
             video_inputs, audio_inputs = other_infos[:video_inputs], other_infos[:audio_inputs]
   
             context "with #{description.to_s.gsub('_',' ')}" do
+
+              class_eval <<-RUBY
+                def video_inputs
+                  @video_inputs ||= #{video_inputs.inspect}
+                end
+                def audio_inputs
+                  @audio_inputs ||= #{audio_inputs.inspect}
+                end
+              RUBY
+
+              def replace_audio
+                @replace_audio ||= described_class.new(video_inputs, audio_inputs, output)
+              end
   
-              let(:video_inputs)  { video_inputs }
-              let(:audio_inputs)  { audio_inputs }
-              let(:replace_audio) { described_class.new(video_inputs, audio_inputs, output) }
-  
-              subject { replace_audio.run }
+              def subject
+                @subject ||= replace_audio.run
+              end
   
               before(:all) { subject }
   

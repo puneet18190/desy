@@ -8,35 +8,71 @@ module Media
   
         supported_formats = MESS::AUDIO_FORMATS
   
-        let(:uploaded_path)            { "#{MESS::SAMPLES_FOLDER}/tmp.in put.m4a" }
-        let(:filename)                 { 'in put.m4a' }
-        let(:tempfile)                 { File.open(uploaded_path) }
-        let(:uploaded)                 { ActionDispatch::Http::UploadedFile.new(filename: filename, tempfile: tempfile) }
-        let(:model)                    do
-          ::Audio.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: uploaded) do |audio|
+        def uploaded_path
+          @uploaded_path ||= "#{MESS::SAMPLES_FOLDER}/tmp.in put.m4a"
+        end
+
+        def filename
+          @filename ||= 'in put.m4a'
+        end
+
+        def tempfile
+          @tempfile ||= File.open(uploaded_path)
+        end
+
+        def uploaded
+          @uploaded ||= ActionDispatch::Http::UploadedFile.new(filename: filename, tempfile: tempfile)
+        end
+
+        def model
+          @model ||= ::Audio.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: uploaded) do |audio|
             audio.user_id = User.admin.id
           end.tap{ |v| v.skip_conversion = true; v.save!; v.media = uploaded }
         end
-        let(:temp)                     { "#{Rails.root}/tmp/media/audio/editing/conversions/#{Rails.env}/#{model.id}/#{filename}" }
-        let(:output_folder)            { "#{Rails.root}/public/media_elements/audios/#{Rails.env}/#{model.id}" }
-        let(:output_without_extension) { "#{output_folder}/in-put" }
-        let(:output)                   { "#{output_without_extension}.#{format}" }
-        let(:stdout_log)               { "#{Rails.root}/log/media/audio/editing/conversions/#{Rails.env}/#{model.id}/#{format}.stdout.log" }
-        let(:stderr_log)               { "#{Rails.root}/log/media/audio/editing/conversions/#{Rails.env}/#{model.id}/#{format}.stderr.log" }
+
+        def temp
+          @temp ||= "#{Rails.root}/tmp/media/audio/editing/conversions/#{Rails.env}/#{model.id}/#{filename}"
+        end
+
+        def output_folder
+          @output_folder ||= "#{Rails.root}/public/media_elements/audios/#{Rails.env}/#{model.id}"
+        end
+
+        def output_without_extension
+          @output_without_extension ||= "#{output_folder}/in-put"
+        end
+
+        def stdout_log
+          @stdout_log ||= "#{Rails.root}/log/media/audio/editing/conversions/#{Rails.env}/#{model.id}/#{format}.stdout.log"
+        end
+
+        def stderr_log
+          @stderr_log ||= "#{Rails.root}/log/media/audio/editing/conversions/#{Rails.env}/#{model.id}/#{format}.stderr.log"
+        end
+
+        let(:output) { "#{output_without_extension}.#{format}" }
   
         describe '#convert_to' do
   
           supported_formats.each do |format|
             context "with #{format} format", format: format do
   
-              let(:format) { format }
+              class_eval <<-RUBY
+                def format
+                  @format ||= #{format.inspect}
+                end
+              RUBY
   
               context "with a valid_audio" do
                 audio = MESS::VALID_AUDIO
 
-                let(:conversion) { described_class.new(uploaded_path, output_without_extension, filename, model.id) }
+                def conversion
+                  @conversion ||= described_class.new(uploaded_path, output_without_extension, filename, model.id)
+                end
 
-                subject { conversion.convert_to(format) }
+                def subject
+                  @subject ||= conversion.convert_to(format)
+                end
 
                 before(:all) do
                   FileUtils.cp audio, uploaded_path
@@ -113,7 +149,9 @@ module Media
   
         describe '#run' do
   
-          subject { described_class.new(uploaded_path, output_without_extension, filename, model.id) }
+          def subject
+            subject ||= described_class.new(uploaded_path, output_without_extension, filename, model.id)
+          end
   
           context 'with a valid audio' do
         
