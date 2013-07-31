@@ -11,7 +11,7 @@ module Export
   module Lesson
     class Assets
 
-      FOLDER = Rails.root.join 'app', 'exports', 'lessons', 'assets'
+      FOLDER = ASSETS_FOLDER
 
       def self.remove_folder!
         FileUtils.rm_rf FOLDER
@@ -88,6 +88,8 @@ module Export
             end
           end
 
+          bootstrap(assets)
+
           assets
         end
       end
@@ -96,11 +98,27 @@ module Export
         @paths ||= [
           ->(path) { !File.extname(path).in?(['.js', '.css']) } ,
           /(?:\/|\\|\A)application\.(css|js)$/                  ,
+          # /(?:\/|\\|\A)(?<!admin[\\\/])application\.(css|js)$/   ,
           'browser_not_supported/application.css'               ,
           'browser_not_supported/application.js'
         ]
       end
       
+      def bootstrap(assets)
+        config = Rails.application.config
+        if config.assets.compress
+          # temporarily hardcode default JS compressor to uglify. Soon, it will work
+          # the same as SCSS, where a default plugin sets the default.
+          unless config.assets.js_compressor == false
+            assets.js_compressor = Sprockets::LazyCompressor.new { Sprockets::Compressors.registered_js_compressor(config.assets.js_compressor || :uglifier) }
+          end
+
+          unless config.assets.css_compressor == false
+            assets.css_compressor = Sprockets::LazyCompressor.new { Sprockets::Compressors.registered_css_compressor(config.assets.css_compressor) }
+          end
+        end
+      end
+
     end
   end
 end

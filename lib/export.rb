@@ -3,5 +3,4 @@ module Export
 end
 
 require 'export/lesson'
-require 'export/lesson/assets'
 require 'export/lesson/archive'

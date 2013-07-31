@@ -9,7 +9,6 @@ require 'env_relative_path'
 
 require 'export'
 require 'export/lesson'
-require 'export/lesson/assets'
 
 module Export
   module Lesson
@@ -22,7 +21,6 @@ module Export
 
       FOLDER                          = env_relative_pathname RAILS_PUBLIC, 'exports', 'lessons'
       MEDIA_ELEMENTS_UPFOLDER         = RAILS_PUBLIC
-      ASSETS_FOLDER                   = Assets::FOLDER
       ASSETS_ARCHIVE_MAIN_FOLDER_NAME = 'assets'
 
       WRITE_TIME_FORMAT = '%Y%m%d_%H%M%S_%Z_%N'
@@ -62,7 +60,7 @@ module Export
         return if path.exist?
         
         # raises if export assets are not compiled
-        raise "#{ASSETS_PATH} doesn't contain compiled assets. Please create them using rake exports:lessons:assets:compile" unless Export::Lesson::Assets.compiled?
+        raise "Assets are not compiled. Please create them using rake exports:lessons:assets:compile" unless assets_compiled?
 
         folder.mkpath unless folder.exist?
         remove_other_possible_archives
@@ -70,6 +68,10 @@ module Export
       end
 
       private
+
+      def assets_compiled?
+        ASSETS_FOLDER.exist? && !ASSETS_FOLDER.entries.empty?
+      end
 
       def remove_other_possible_archives
         Pathname.glob(folder.join '*.zip').each{ |path| path.unlink }
