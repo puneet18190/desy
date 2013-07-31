@@ -6,9 +6,13 @@ module Media
       describe Concat do
   
         describe '.new' do
-          let(:output_without_extension) { 'output' }
+          def output_without_extension
+            @output_without_extension ||= 'output'
+          end
   
-          subject { described_class.new(inputs, output_without_extension) }
+          def subject
+            @subject ||= described_class.new(inputs, output_without_extension)
+          end
   
           context 'when inputs is not an Array' do
             let(:inputs) { nil }
@@ -63,13 +67,22 @@ module Media
             def tmp_dir
               @tmp_dir ||= Dir.mktmpdir
             end
-            let(:output)       { File.join tmp_dir, 'out put' }
-            let(:input_audios) do
-              MESS::CONCAT_AUDIOS[:audios][0,1]
+
+            def output
+              @output ||= File.join tmp_dir, 'out put'
             end
-            let(:concat) { described_class.new(input_audios, output) }
+
+            def input_audios
+              @input_audios ||= MESS::CONCAT_AUDIOS[:audios][0,1]
+            end
+
+            def concat
+              @concat ||= described_class.new(input_audios, output)
+            end
             
-            subject { concat.run }
+            def subject
+              @subject ||= concat.run
+            end
   
             before(:all) { subject }
   
@@ -105,13 +118,21 @@ module Media
   
           context "with two couples of input audios" do
 
-            input_audios, output_infos = MESS::CONCAT_AUDIOS[:audios], MESS::CONCAT_AUDIOS[:output_infos]
+            def input_audios
+              @input_audios ||= MESS::CONCAT_AUDIOS[:audios]
+            end
+
+            def output_infos
+              @output_infos ||= MESS::CONCAT_AUDIOS[:output_infos]
+            end
           
             def tmp_dir
               @tmp_dir ||= Dir.mktmpdir
             end
-            let(:output)       { File.join tmp_dir, 'out put' }
-            let(:input_audios) { input_audios }
+
+            def output
+              @output ||= File.join tmp_dir, 'out put'
+            end
 
             MESS::AUDIO_FORMATS.each do |format|
             
@@ -119,9 +140,14 @@ module Media
 
                 let(:format) { format }
                 let(:info)   { Info.new(subject[format]).to_hash }
-                let(:concat) { described_class.new(input_audios, output) }
+
+                def concat
+                  @concat ||= described_class.new(input_audios, output)
+                end
                 
-                subject { concat.run }
+                def subject
+                  @subject ||= concat.run
+                end
 
                 before(:all) { subject }
 

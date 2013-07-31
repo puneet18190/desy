@@ -7,13 +7,16 @@ module Media
       class Cmd
         describe TextToImage do
           context 'with valid arguments' do
+            def output
+              @output ||= Rails.root.join('tmp/test.jpg').to_s
+            end
+
             let(:text) do
               Tempfile.new('desy_spec').tap do |f|
                 f.write("Test\ntest")
                 f.close
               end
             end
-            let(:output)  { Rails.root.join('tmp/test.jpg').to_s }
 
             before(:all) do
               FileUtils.rm output if File.exists? output
