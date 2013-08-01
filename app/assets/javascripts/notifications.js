@@ -141,10 +141,10 @@ function notificationsDocumentReadyLessonModification() {
     $('#' + lesson_id + ' .unpublish').attr('title', $('#popup_captions_container').data('title-unpublish'));
     var id = lesson_id.split('_');
     id = id[id.length - 1];
+    unbindLoader();
     $.ajax({
       type: 'post',
-      url: '/lessons/' + id + '/dont_notify_modification',
-      beforeSend: unbindLoader()
+      url: '/lessons/' + id + '/dont_notify_modification'
     }).always(bindLoader);
   });
   $('body').on('focus', '#lesson-notification #lesson_notify_modification_details', function() {
@@ -162,10 +162,10 @@ Initializer for the loop that updates the notifications
 @param time {Number} the time to iterate the loop
 **/
 function notificationsDocumentReadyLoop(time) {
+  unbindLoader();
   $.ajax({
     url: '/notifications/reload',
-    type: 'get',
-    beforeSend: unbindLoader()
+    type: 'get'
   }).always(bindLoader);
   setTimeout(function() {
     notificationsDocumentReadyLoop(time);
@@ -269,8 +269,8 @@ function initializeNotifications() {
       my_expanded.show('fade', {}, 500, function() {
         my_expanded.show();
         if(!$(this).hasClass('current')) {
+          unbindLoader();
           $.ajax({
-            beforeSend: unbindLoader(),
             type: 'post',
             url: '/notifications/' + closest_li.data('param') + '/seen'
           }).always(bindLoader);
@@ -281,8 +281,8 @@ function initializeNotifications() {
         my_expanded.html(my_content);
         my_expanded.data('contentid', my_own_id);
         if(!$(this).hasClass('current')) {
+          unbindLoader();
           $.ajax({
-            beforeSend: unbindLoader(),
             type: 'post',
             url: '/notifications/' + closest_li.data('param') + '/seen'
           });

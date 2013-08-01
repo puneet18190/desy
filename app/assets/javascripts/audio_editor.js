@@ -316,10 +316,10 @@ function audioEditorDocumentReadyCommit() {
     var captions = $('#popup_captions_container');
     showConfirmPopUp(captions.data('exit-audio-editor-title'), captions.data('exit-audio-editor-confirm'), captions.data('exit-audio-editor-yes'), captions.data('exit-audio-editor-no'), function() {
       $('dialog-confirm').hide();
+      unbindLoader();
       $.ajax({
         type: 'post',
         url: '/audios/cache/empty',
-        beforeSend: unbindLoader(),
         success: function() {
           window.location = '/media_elements';
         }

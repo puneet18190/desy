@@ -55,12 +55,12 @@ Submethod of {{#crossLink "MediaElementEditorCache/saveCacheLoop:method"}}{{/cro
 @for MediaElementEditorCache
 **/
 function submitMediaElementEditorCacheForm(form) {
+  unbindLoader();
   $.ajax({
     type: 'post',
     url: form.attr('action'),
     timeout: 5000,
-    data: form.serialize(),
-    beforeSend: unbindLoader()
+    data: form.serialize()
   }).always(bindLoader);
 }
 

@@ -443,9 +443,9 @@ function slideToInLessonViewer(to, with_drop, to_right) {
       loading_url += '&with_playlist=true';
     }
     if(!to_prev.data('loaded') || !to.data('loaded') || !to_next.data('loaded')) {
+      unbindLoader();
       $.ajax({
         type: 'get',
-        beforeSend: unbindLoader(),
         url: loading_url,
         success: function() {
           $('#left_scroll, #right_scroll').removeClass('disabled');
