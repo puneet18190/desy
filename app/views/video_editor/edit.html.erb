@@ -125,10 +125,10 @@
       window.location.href = '/videos/cache/restore'
     }, function() {
       closePopUp('dialog-restore-cache-media-element-editor');
+      unbindLoader();
       $.ajax({
         type: 'post',
         url: '/videos/cache/empty',
-        beforeSend: unbindLoader(),
         success: function() {
           setTimeout(function() {
             if($('#info_container').data('cache-enabled-first-time')) {

@@ -3,90 +3,106 @@ require 'spec_helper'
 module Media
   module Video
     module Editing
-      describe Composer do
+      describe Composer, slow: true do
         self.use_transactional_fixtures = false
 
-        let(:user) { User.admin }
+        def user
+          @user ||= User.admin
+        end
 
-        let(:video) do
-          ::Video.create!(title: 'test', description: 'test', tags: 'a,b,c,d') do |v|
+        def video
+          @video ||= ::Video.create!(title: 'test', description: 'test', tags: 'a,b,c,d') do |v|
             v.user  = user
             v.media = MESS::CONVERTED_VIDEO_HASH
           end
         end
-        let(:image) do
-          ::Image.create!(title: 'test', description: 'test', tags: 'a,b,c,d') do |v|
+
+        def image
+          @image ||= ::Image.create!(title: 'test', description: 'test', tags: 'a,b,c,d') do |v|
             v.user  = user
             v.media = File.open(MESS::VALID_JPG)
           end
         end
-        let(:audio) do
-          ::Audio.create!(title: 'test', description: 'test', tags: 'a,b,c,d') do |v|
+
+        def audio
+          @audio ||= ::Audio.create!(title: 'test', description: 'test', tags: 'a,b,c,d') do |v|
             v.user  = user
             v.media = MESS::CONVERTED_AUDIO_HASH
           end
         end
-        let(:audio_long) do
-          ::Audio.create!(title: 'test', description: 'test', tags: 'a,b,c,d') do |v|
+
+        def audio_long
+          @audio_long ||= ::Audio.create!(title: 'test', description: 'test', tags: 'a,b,c,d') do |v|
             v.user  = user
             v.media = MESS::CONVERTED_AUDIO_HASH_LONG
           end
         end
 
-        let(:initial_video_attributes) { { title: 'new title', description: 'new description', tags: 'e,f,g,h' } }
+        def initial_video_attributes
+          @initial_video_attributes ||= { title: 'new title', description: 'new description', tags: 'e,f,g,h' }
+        end
 
         def info(format)
           @info ||= {}
           @info[format] ||= Info.new(initial_video.media.path(format))
         end
 
-
         describe '#run' do
-          let(:params) do
-            { audio_track: audio_track,
-              components: [
-                { type:  described_class::parent::Parameters::VIDEO_COMPONENT,
-                  video: video.id              ,
-                  from:  5                     ,
-                  to:    video.min_duration   },
-                { type:             described_class::parent::Parameters::TEXT_COMPONENT,
-                  content:          'title'              ,
-                  duration:         5                    ,
-                  background_color: 'red'                ,
-                  color:            'white'             },
-                { type:             described_class::parent::Parameters::IMAGE_COMPONENT,
-                  image:            image.id              ,
-                  duration:         10                    }
-              ] * 2
-            }
+          def params
+            @params ||= { audio_track: audio_track,
+                          components: [
+                            { type:  described_class::parent::Parameters::VIDEO_COMPONENT,
+                              video: video.id            ,
+                              from:  5                   ,
+                              to:    video.min_duration },
+                            { type:             described_class::parent::Parameters::TEXT_COMPONENT,
+                              content:          'title'  ,
+                              duration:         5        ,
+                              background_color: 'red'    ,
+                              color:            'white' },
+                            { type:             described_class::parent::Parameters::IMAGE_COMPONENT,
+                              image:            image.id ,
+                              duration:         10       }
+                          ] * 2
+                        }
           end
-          let!(:duration) do
-            params[:components].map do |c|
-              case c[:type]
-              when described_class::parent::Parameters::VIDEO_COMPONENT
-                c[:to] - c[:from]
-              when described_class::parent::Parameters::TEXT_COMPONENT, described_class::parent::Parameters::IMAGE_COMPONENT
-                c[:duration]
-              end
-            end.sum + (params[:components].size-1)
+
+          def duration
+            @duration ||= params[:components].map do |c|
+                            case c[:type]
+                            when described_class::parent::Parameters::VIDEO_COMPONENT
+                              c[:to] - c[:from]
+                            when described_class::parent::Parameters::TEXT_COMPONENT, described_class::parent::Parameters::IMAGE_COMPONENT
+                              c[:duration]
+                            end
+                          end.sum + (params[:components].size-1)
           end
+          
           def expected_infos(type, format)
             MESS::VIDEO_COMPOSING[type][format].merge(duration: duration)
           end
-          let(:params_with_initial_video) { params.merge(initial_video: { id: initial_video.id }) }
+
+          def params_with_initial_video
+            @params_with_initial_video ||= params.merge(initial_video: { id: initial_video.id })
+          end
 
           context 'without an uploaded initial video' do
 
-            let(:initial_video) do
-              ::Video.find ::Video.create!(initial_video_attributes) { |r|
+            def initial_video
+              @initial_video ||= ::Video.find ::Video.create!(initial_video_attributes) { |r|
                 r.user      = user
                 r.composing = true
               }.id
             end
             
             context 'without audio track' do
-              let(:audio_track)              { nil }
-              let(:user_notifications_count) { user.notifications.count }
+              def audio_track
+                nil
+              end
+
+              def user_notifications_count
+                @user_notifications_count ||= user.notifications.count
+              end
 
               before(:all) do
                 user.video_editor_cache!(params_with_initial_video)
@@ -116,8 +132,13 @@ module Media
             end
             
             context 'with audio track' do
-              let(:audio_track) { audio.id }
-              let(:user_notifications_count) { user.notifications.count }
+              def audio_track
+                nil
+              end
+
+              def user_notifications_count
+                @user_notifications_count ||= user.notifications.count
+              end
 
               before(:all) do
                 user.video_editor_cache!(params_with_initial_video)
@@ -147,8 +168,13 @@ module Media
             end
 
             context 'with an audio track longer than the video generated' do
-              let(:audio_track) { audio_long.id }
-              let(:user_notifications_count) { user.notifications.count }
+              def audio_track
+                @audio_track ||= audio_long.id
+              end
+
+              def user_notifications_count
+                @user_notifications_count ||= user.notifications.count
+              end
 
               before(:all) do
                 user.video_editor_cache!(params_with_initial_video)
@@ -180,18 +206,27 @@ module Media
           end
 
           context 'with an uploaded initial video' do
-            let(:initial_video) do
-              ::Video.find ::Video.create!(initial_video_attributes) { |v|
+
+            def initial_video
+              @initial_video ||= ::Video.find ::Video.create!(initial_video_attributes) { |v|
                 v.user                = user
                 v.media               = MESS::CONVERTED_VIDEO_HASH
                 v.metadata.old_fields = { title: 'old title', description: 'old description', tags: 'a,b,c,d' }
               }.id
             end
-            let(:old_files)     { initial_video.media.paths.values.dup }
+
+            def old_files
+              @old_files ||= initial_video.media.paths.values.dup
+            end
 
             context 'without audio track' do
-              let(:audio_track)              { nil }
-              let(:user_notifications_count) { user.notifications.count }
+              def audio_track
+                nil
+              end
+
+              def user_notifications_count
+                @user_notifications_count ||= user.notifications.count
+              end
 
               before(:all) do
                 old_files
@@ -230,8 +265,13 @@ module Media
             end
 
             context 'with audio track' do
-              let(:audio_track)              { audio }
-              let(:user_notifications_count) { user.notifications.count }
+              def audio_track
+                @audio_track ||= audio
+              end
+
+              def user_notifications_count
+                @user_notifications_count ||= user.notifications.count
+              end
 
               before(:all) do
                 old_files

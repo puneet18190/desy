@@ -2,11 +2,24 @@ require 'spec_helper'
 
 describe Audio, slow: true do
 
-  let(:media_folder)         { Rails.root.join('spec/support/samples') }
-  let(:valid_audio_path)     { media_folder.join 'valid audio.m4a' }
-  let(:tmp_valid_audio_path) { media_folder.join 'tmp.valid audio.m4a' }
-  let(:media)                { ActionDispatch::Http::UploadedFile.new(filename: File.basename(tmp_valid_audio_path), tempfile: File.open(tmp_valid_audio_path)) }
-  let(:user)                 { User.admin }
+  def media_folder
+    @media_folder ||= Rails.root.join('spec/support/samples')
+  end
+
+
+  def tmp_valid_audio_path
+    @tmp_valid_audio_path ||= media_folder.join 'tmp.valid audio.m4a'
+  end
+
+  def media
+    @media ||= ActionDispatch::Http::UploadedFile.new(filename: File.basename(tmp_valid_audio_path), tempfile: File.open(tmp_valid_audio_path))
+  end
+
+  def subject
+    @subject ||= described_class.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media) do |audio|
+      audio.user = User.admin
+    end
+  end
 
   def saved
     FileUtils.cp MESS::VALID_AUDIO, tmp_valid_audio_path
@@ -14,11 +27,8 @@ describe Audio, slow: true do
     subject
   end
 
-  subject do
-    described_class.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media) do |audio|
-      audio.user = User.admin
-    end
-  end
+  let(:valid_audio_path) { media_folder.join 'valid audio.m4a' }
+  let(:user)             { User.admin }
 
   describe '#save' do
     before(:all) { saved.reload }

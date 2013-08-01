@@ -546,12 +546,12 @@ function saveCurrentSlide(action_suffix, with_loader) {
       data: current_slide.find('form').serialize()
     });
   } else {
+    unbindLoader();
     $.ajax({
       type: 'post',
       url: current_slide.find('form').attr('action') + action_suffix,
       timeout: 5000,
-      data: current_slide.find('form').serialize(),
-      beforeSend: unbindLoader()
+      data: current_slide.find('form').serialize()
     }).always(bindLoader);
   }
   temp_counter = 0;

@@ -3,7 +3,7 @@ require 'spec_helper'
 module Media
   module Video
     module Editing
-      describe Concat do
+      describe Concat, slow: true do
   
         describe '.new' do
           let(:output_without_extension) { 'output' }
@@ -63,13 +63,22 @@ module Media
             def tmp_dir
               @tmp_dir ||= Dir.mktmpdir
             end
-            let(:output)       { File.join tmp_dir, 'out put' }
-            let(:input_videos) do
-              MESS::CONCAT_VIDEOS[:videos_with_some_audio_streams][:videos][0,1]
+
+            def output
+              @output ||= File.join tmp_dir, 'out put'
             end
-            let(:concat) { described_class.new(input_videos, output) }
+
+            def input_videos
+              @input_videos ||= MESS::CONCAT_VIDEOS[:videos_with_some_audio_streams][:videos][0, 1]
+            end
+
+            def concat
+              @concat ||= described_class.new(input_videos, output)
+            end
             
-            subject { concat.run }
+            def subject
+              @subject ||= concat.run
+            end
   
             before(:all) { subject }
   
@@ -107,22 +116,36 @@ module Media
             input_videos, output_infos = other_infos[:videos], other_infos[:output_infos]
   
             context "with #{description.to_s.gsub('_',' ')}" do
+
+              class_eval <<-RUBY
+                def input_videos
+                  @input_videos ||= #{other_infos[:videos].inspect}
+                end
+              RUBY
             
               def tmp_dir
                 @tmp_dir ||= Dir.mktmpdir
               end
-              let(:output)       { File.join tmp_dir, 'out put' }
-              let(:input_videos) { input_videos }
+
+              def output
+                @output ||= File.join tmp_dir, 'out put'
+              end
   
               MESS::VIDEO_FORMATS.each do |format|
   
                 context "with #{format} format", format: format do
   
+                  def concat
+                    @concat ||= described_class.new(input_videos, output)
+                  end
+
+                  def subject
+                    @subject ||= concat.run
+                  end
+                  
                   let(:format) { format }
                   let(:info)   { Info.new(subject[format]).to_hash }
-                  let(:concat) { described_class.new(input_videos, output) }
                   
-                  subject { concat.run }
   
                   before(:all) { subject }
   

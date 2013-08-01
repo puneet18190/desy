@@ -34,10 +34,10 @@ function mediaElementLoaderConversionOverview(list, time) {
         ajax_url += '&';
       }
     }
+    unbindLoader();
     $.ajax({
       url: ajax_url,
-      type: 'get',
-      beforeSend: unbindLoader()
+      type: 'get'
     }).always(bindLoader);
   }
   setTimeout(function() {

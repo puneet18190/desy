@@ -87,15 +87,28 @@ module Media
           def tmp_dir
             @tmp_dir ||= Dir.mktmpdir
           end
-          let(:output) { File.join tmp_dir, 'out put' }
+          
+          def output
+            @output ||= File.join tmp_dir, 'out put'
+          end
   
           context "with valid videos" do
   
-            let(:start_inputs) { MESS::TRANSITION_VIDEOS[:start_inputs] }
-            let(:end_inputs)   { MESS::TRANSITION_VIDEOS[:end_inputs] }
-            let(:transition)   { described_class.new(start_inputs, end_inputs, output) }
+            def start_inputs
+              @start_inputs ||= MESS::TRANSITION_VIDEOS[:start_inputs]
+            end
+
+            def end_inputs
+              @end_inputs ||= MESS::TRANSITION_VIDEOS[:end_inputs]
+            end
+
+            def transition
+              @transition ||= described_class.new(start_inputs, end_inputs, output)
+            end
   
-            subject { transition.run }
+            def subject
+              @subject ||= transition.run
+            end
   
             before(:all) { subject }
   

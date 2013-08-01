@@ -4,18 +4,37 @@ module Media
   module Audio
     describe Uploader do
 
-      let(:media_folder)            { Rails.root.join('spec/support/samples') }
-      let(:media_without_extension) { media_folder.join('con verted').to_s }
-      let(:valid_audio_path)        { media_folder.join('valid audio.m4a').to_s }
-      let(:tmp_valid_audio_path)    { media_folder.join('tmp.valid audio.m4a').to_s }
-      let(:media_file)              { File.open(tmp_valid_audio_path) }
-      let(:media_uploaded)          do 
-        ActionDispatch::Http::UploadedFile.new(filename: File.basename(tmp_valid_audio_path), tempfile: File.open(tmp_valid_audio_path))
+      def media_folder
+        @media_folder ||= Rails.root.join('spec/support/samples')
       end
-      let(:media_hash)              { { filename: 'tmp.valid audio', m4a: "#{media_without_extension}.m4a", ogg: "#{media_without_extension}.ogg" } }
-      let(:media_hash_full)         do 
-        media_hash.merge( m4a_duration: Info.new(media_hash[:m4a]).duration ,
-                          ogg_duration: Info.new(media_hash[:ogg]).duration )
+
+      def media_without_extension
+        @media_without_extension ||= media_folder.join('con verted').to_s
+      end
+
+      def valid_audio_path
+        @valid_audio_path ||= media_folder.join('valid audio.m4a').to_s
+      end
+
+      def tmp_valid_audio_path
+        @tmp_valid_audio_path ||= media_folder.join('tmp.valid audio.m4a').to_s
+      end
+
+      def media_file
+        @media_file ||= File.open(tmp_valid_audio_path)
+      end
+
+      def media_uploaded
+        @media_uploaded ||= ActionDispatch::Http::UploadedFile.new(filename: File.basename(tmp_valid_audio_path), tempfile: File.open(tmp_valid_audio_path))
+      end
+      
+      def media_hash
+        @media_hash ||= { filename: 'tmp.valid audio', m4a: "#{media_without_extension}.m4a", ogg: "#{media_without_extension}.ogg" }
+      end
+
+      def media_hash_full
+        @media_hash_full ||= media_hash.merge( m4a_duration: Info.new(media_hash[:m4a]).duration ,
+                                               ogg_duration: Info.new(media_hash[:ogg]).duration )
       end
       
       describe 'saving the associated model' do
@@ -27,7 +46,9 @@ module Media
         end
         
         context 'with a File', slow: true do
-          let(:audio) { ::Audio.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_file) { |v| v.user = User.admin } }
+          def audio
+            @audio ||= ::Audio.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_file) { |v| v.user = User.admin }
+          end
           
           before(:all) do
             audio.save!
@@ -38,7 +59,9 @@ module Media
         end
 
         context 'with a ActionDispatch::Http::UploadedFile', slow: true do
-          let(:audio) { ::Audio.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_uploaded) { |v| v.user = User.admin } }
+          def audio
+            @audio ||= ::Audio.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_uploaded) { |v| v.user = User.admin }
+          end
 
           before(:all) do
             audio.save!
@@ -50,7 +73,9 @@ module Media
 
         context 'with a Hash' do
           context 'without durations and version paths' do
-            let(:audio) { ::Audio.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_hash) { |v| v.user = User.admin } }
+            def audio
+              @audio ||= ::Audio.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_hash) { |v| v.user = User.admin }
+            end
 
             before(:all) { audio.save! }
 
@@ -59,7 +84,9 @@ module Media
 
           context 'with durations and version paths' do
 
-            let(:audio) { ::Audio.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_hash_full) { |v| v.user = User.admin } }
+            def audio
+              @audio ||= ::Audio.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_hash_full) { |v| v.user = User.admin }
+            end
 
             before(:all) { audio }
 
@@ -70,7 +97,9 @@ module Media
 
             context 'after saving' do
 
-              let(:audio) { ::Audio.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_hash_full) { |v| v.user = User.admin } }
+              def audio
+                @audio ||= ::Audio.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_hash_full) { |v| v.user = User.admin }
+              end
 
               before(:all) { audio.save! }
 
