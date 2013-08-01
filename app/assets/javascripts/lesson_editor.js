@@ -387,7 +387,7 @@ function lessonEditorDocumentReadyResize() {
     $('html.lesson-editor-layout ul#slides').css('margin-top', ((($(window).height() - 590) / 2) - 40) + 'px');
     $('html.lesson-editor-layout ul#slides.new').css('margin-top', ((($(window).height() - 590) / 2)) + 'px');
     if(WW > 1000) {
-      $('ul#slides li:first').css('margin-left', (($(window).width() - 900) / 2) + 'px')
+      $('ul#slides li:first').css('margin-left', (($(window).width() - 900) / 2) + 'px');
       $('ul#slides.new li:first').css('margin-left', (($(window).width() - 900) / 2) + 'px');
     }
     $('#footer').css('top', ($(window).height() - 40) + 'px').css('width', ($(window).width() - 24) + 'px');
@@ -836,7 +836,7 @@ function loadSlideInLessonEditor(slide) {
     $.ajax({
       type: 'get',
       url: '/lessons/' + $('#info_container').data('lesson-id') + '/slides/' + slide.data('slide-id') + '/load'
-    })
+    });
   }
 }
 
@@ -855,10 +855,10 @@ function initLessonEditorPositions() {
   $('#main').css('width', WW);
   $('ul#slides').css('width', (($('ul#slides li').length + 2) * 1000));
   $('ul#slides').css('top', ((WH / 2) - 295) + 'px');
-  $('ul#slides.new').css('top', ((WH / 2) - 335) + 'px')
-  $('#footer').css('top', (WH - 40) + 'px').css('width', (WW - 24) + 'px')
+  $('ul#slides.new').css('top', ((WH / 2) - 335) + 'px');
+  $('#footer').css('top', (WH - 40) + 'px').css('width', (WW - 24) + 'px');
   if(WW > 1000) {
-    $('ul#slides li:first').css('margin-left', ((WW - 900) / 2) + 'px')
+    $('ul#slides li:first').css('margin-left', ((WW - 900) / 2) + 'px');
     $('ul#slides.new li:first').css('margin-left', ((WW - 900) / 2) + 'px');
   }
 }
