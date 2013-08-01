@@ -32,9 +32,9 @@ function addTagWithoutSuggestion(input, container_selector, tags_value_selector)
     } else {
       addToTagsValue(my_val, (container_selector + ' ' + tags_value_selector));
       createTagSpan(my_val, true).insertBefore(input);
+      unbindLoader();
       $.ajax({
         type: 'get',
-        beforeSend: unbindLoader(),
         url: '/tags/' + my_val + '/check_presence',
         dataType: 'json',
         success: function(data) {
@@ -409,9 +409,9 @@ function initSearchTagsAutocomplete(input) {
         response(cache[term]);
         return;
       }
+      unbindLoader();
       $.ajax({
         dataType: 'json',
-        beforeSend: unbindLoader(),
         url: '/tags/get_list',
         data: request,
         success: function(data, status, xhr) {
@@ -447,9 +447,9 @@ function initTagsAutocomplete(scope) {
   }
   $(input_selector).autocomplete({
     source: function(request, response) {
+      unbindLoader();
       $.ajax({
         dataType: 'json',
-        beforeSend: unbindLoader(),
         url: '/tags/get_list',
         data: {term: request.term},
         success: response

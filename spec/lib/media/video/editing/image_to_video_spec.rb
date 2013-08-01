@@ -25,19 +25,34 @@ module Media
         end
   
         describe '#run' do
-          let(:output_prefix) { Tempfile.new(::Thread.current.object_id.to_s) }
-          let(:duration) { 10 }
+          def output_prefix
+            @output_prefix ||= Tempfile.new(::Thread.current.object_id.to_s)
+          end
+          
+          def duration
+            @duration ||= 10
+          end
           
           supported_image_formats.each do |image_format|
             context "with #{image_format} format", image_format: image_format do
+
+              class_eval <<-RUBY
+                def image_format
+                  @image_format ||= #{image_format.inspect}
+                end
+              RUBY
   
               def log_folder_children
                 Dir.glob(File.join(described_class.log_folder, '*'))
               end
   
-              let(:image_to_video) { described_class.new(MESS.const_get(:"VALID_#{image_format.upcase}"), output_prefix.path, duration) }
+              def image_to_video
+                @image_to_video ||= described_class.new(MESS.const_get(:"VALID_#{image_format.upcase}"), output_prefix.path, duration)
+              end
   
-              subject { image_to_video.run }
+              def subject
+                @subject ||= image_to_video.run
+              end
   
               before(:all) do
                 @before_log_folder_children = log_folder_children

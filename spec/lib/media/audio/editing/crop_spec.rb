@@ -63,9 +63,14 @@ module Media
           def tmp_dir
             @tmp_dir ||= Dir.mktmpdir
           end
-          let(:output) { File.join tmp_dir, 'out put' }
+
+          def output
+            @output ||= File.join tmp_dir, 'out put'
+          end
   
-          subject { described_class.new(MESS::CROP_AUDIOS, output, 10, 10).run }
+          def subject
+            @subject ||= described_class.new(MESS::CROP_AUDIOS, output, 10, 10).run
+          end
   
           before(:all) { subject }
   
