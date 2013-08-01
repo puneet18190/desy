@@ -36,7 +36,7 @@ Initializes all the buttons available for lessons.
 @for ButtonsDocumentReady
 **/
 function lessonButtonsDocumentReady() {
-  $('body').on('click', '._Lesson_button_add', function(e) {
+  $body.on('click', '._Lesson_button_add', function(e) {
     e.preventDefault();
     if(!$(this).parent().hasClass('_disabled')) {
       var my_param = $(this).data('clickparam');
@@ -47,7 +47,7 @@ function lessonButtonsDocumentReady() {
     }
     return false;
   });
-  $('body').on('click', '._Lesson_button_copy', function(e) {
+  $body.on('click', '._Lesson_button_copy', function(e) {
     e.preventDefault();
     if(!$(this).parent().hasClass('_disabled')) {
       var my_param = $(this).data('clickparam');
@@ -56,7 +56,7 @@ function lessonButtonsDocumentReady() {
     }
     return false;
   });
-  $('body').on('click', '._Lesson_button_destroy', function(e) {
+  $body.on('click', '._Lesson_button_destroy', function(e) {
     e.preventDefault();
     if(!$(this).parent().hasClass('_disabled')) {
       var my_param = $(this).data('clickparam');
@@ -66,7 +66,7 @@ function lessonButtonsDocumentReady() {
     }
     return false;
   });
-  $('body').on('click', '._Lesson_button_dislike', function(e) {
+  $body.on('click', '._Lesson_button_dislike', function(e) {
     e.preventDefault();
     if(!$(this).parent().hasClass('_disabled')) {
       var my_param = $(this).data('clickparam');
@@ -75,7 +75,7 @@ function lessonButtonsDocumentReady() {
     }
     return false;
   });
-  $('body').on('click', '._Lesson_button_like', function(e) {
+  $body.on('click', '._Lesson_button_like', function(e) {
     e.preventDefault();
     if(!$(this).parent().hasClass('_disabled')) {
       var my_param = $(this).data('clickparam');
@@ -84,7 +84,7 @@ function lessonButtonsDocumentReady() {
     }
     return false;
   });
-  $('body').on('click', '._Lesson_button_preview', function(e) {
+  $body.on('click', '._Lesson_button_preview', function(e) {
     e.preventDefault();
     if(!$(this).parent().hasClass('_disabled')) {
       var my_param = $(this).data('clickparam');
@@ -93,7 +93,7 @@ function lessonButtonsDocumentReady() {
     }
     return false;
   });
-  $('body').on('click', '._Lesson_button_publish', function(e) {
+  $body.on('click', '._Lesson_button_publish', function(e) {
     e.preventDefault();
     if(!$(this).parent().hasClass('_disabled')) {
       var my_param = $(this).data('clickparam');
@@ -102,7 +102,7 @@ function lessonButtonsDocumentReady() {
     }
     return false;
   });
-  $('body').on('click', '._Lesson_button_remove', function(e) {
+  $body.on('click', '._Lesson_button_remove', function(e) {
     e.preventDefault();
     if(!$(this).parent().hasClass('_disabled')) {
       var my_param = $(this).data('clickparam');
@@ -113,7 +113,7 @@ function lessonButtonsDocumentReady() {
     }
     return false;
   });
-  $('body').on('click', '._Lesson_button_unpublish', function(e) {
+  $body.on('click', '._Lesson_button_unpublish', function(e) {
     e.preventDefault();
     if(!$(this).parent().hasClass('_disabled')) {
       var my_param = $(this).data('clickparam');
@@ -127,7 +127,7 @@ function lessonButtonsDocumentReady() {
     }
     return false;
   });
-  $('body').on('click', '._Lesson_button_add_virtual_classroom', function(e) {
+  $body.on('click', '._Lesson_button_add_virtual_classroom', function(e) {
     e.preventDefault();
     if(!$(this).parent().hasClass('_disabled')) {
       var my_param = $(this).data('clickparam');
@@ -136,7 +136,7 @@ function lessonButtonsDocumentReady() {
     }
     return false;
   });
-  $('body').on('click', '._Lesson_button_remove_virtual_classroom', function(e) {
+  $body.on('click', '._Lesson_button_remove_virtual_classroom', function(e) {
     e.preventDefault();
     if(!$(this).parent().hasClass('_disabled')) {
       var my_param = $(this).data('clickparam');
@@ -145,7 +145,7 @@ function lessonButtonsDocumentReady() {
     }
     return false;
   });
-  $('body').on('click', '._Lesson_button_edit', function(e) {
+  $body.on('click', '._Lesson_button_edit', function(e) {
     e.preventDefault();
     if(!$(this).parent().hasClass('_disabled')) {
       var my_param = $(this).data('clickparam');
@@ -161,7 +161,7 @@ Initializes all the buttons for media elements.
 @for ButtonsDocumentReady
 **/
 function mediaElementButtonsDocumentReady() {
-  $('body').on('click', '._Video_button_add, ._Audio_button_add, ._Image_button_add', function(e) {
+  $body.on('click', '._Video_button_add, ._Audio_button_add, ._Image_button_add', function(e) {
     if(!$(this).parent().hasClass('_disabled')) {
       var my_param = $(this).data('clickparam');
       var destination = $(this).data('destination');
@@ -170,7 +170,7 @@ function mediaElementButtonsDocumentReady() {
       addMediaElement(my_param, destination, current_url, reload);
     }
   });
-  $('body').on('click', '._Video_button_destroy, ._Audio_button_destroy, ._Image_button_destroy', function(e) {
+  $body.on('click', '._Video_button_destroy, ._Audio_button_destroy, ._Image_button_destroy', function(e) {
     if(!$(this).parent().hasClass('_disabled')) {
       var my_param = $(this).data('clickparam');
       var destination = $(this).data('destination');
@@ -179,13 +179,13 @@ function mediaElementButtonsDocumentReady() {
       destroyMediaElement(my_param, destination, current_url, used_in_private_lessons);
     }
   });
-  $('body').on('click', '._Video_button_preview, ._Audio_button_preview, ._Image_button_preview', function(e) {
+  $body.on('click', '._Video_button_preview, ._Audio_button_preview, ._Image_button_preview', function(e) {
     if(!$(this).parents('._media_element_item').hasClass('_disabled')) {
       var my_param = $(this).data('clickparam');
       showMediaElementInfoPopUp(my_param);
     }
   });
-  $('body').on('click', '._Video_button_edit', function(e) {
+  $body.on('click', '._Video_button_edit', function(e) {
     if(!$(this).parent().hasClass('_disabled')) {
       e.preventDefault();
       var video_id = $(this).data('clickparam');
@@ -196,7 +196,7 @@ function mediaElementButtonsDocumentReady() {
       return false;
     }
   });
-  $('body').on('click', '._Audio_button_edit', function(e) {
+  $body.on('click', '._Audio_button_edit', function(e) {
     if(!$(this).parent().hasClass('_disabled')) {
       e.preventDefault();
       var audio_id = $(this).data('clickparam');
@@ -207,7 +207,7 @@ function mediaElementButtonsDocumentReady() {
       return false;
     }
   });
-  $('body').on('click', '._Image_button_edit', function(e) {
+  $body.on('click', '._Image_button_edit', function(e) {
     if(!$(this).parent().hasClass('_disabled')) {
       e.preventDefault();
       var image_id = $(this).data('clickparam');
@@ -218,7 +218,7 @@ function mediaElementButtonsDocumentReady() {
       return false;
     }
   });
-  $('body').on('click', '._Video_button_remove, ._Audio_button_remove, ._Image_button_remove', function(e) {
+  $body.on('click', '._Video_button_remove, ._Audio_button_remove, ._Image_button_remove', function(e) {
     if(!$(this).parent().hasClass('_disabled')) {
       var my_param = $(this).data('clickparam');
       var destination = $(this).data('destination');

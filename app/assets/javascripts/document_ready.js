@@ -1,4 +1,6 @@
 $(document).ready(function() {
+  window.$loading = $('#loading');
+  window.$body = $('body');
   browsersDocumentReady();
   generalWindowResizeDocumentReady();
   ajaxLoaderDocumentReady();
