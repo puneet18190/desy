@@ -687,10 +687,10 @@ function videoEditorDocumentReadyCommit() {
     var captions = $('#popup_captions_container');
     showConfirmPopUp(captions.data('exit-video-editor-title'), captions.data('exit-video-editor-confirm'), captions.data('exit-video-editor-yes'), captions.data('exit-video-editor-no'), function() {
       $('dialog-confirm').hide();
+      unbindLoader();
       $.ajax({
         type: 'post',
         url: '/videos/cache/empty',
-        beforeSend: unbindLoader(),
         success: function() {
           window.location = '/media_elements';
         }
