@@ -125,7 +125,7 @@ Initializer of the three functionalities to add an element (image, audio, video)
 @for LessonEditorDocumentReady
 **/
 function lessonEditorDocumentReadyAddMediaElement() {
-  $('body').on('click', '._add_image_to_slide', function(e) {
+  $body.on('click', '._add_image_to_slide', function(e) {
     e.preventDefault();
     var image_id = $(this).data('image-id');
     closePopUp('dialog-image-gallery-' + image_id);
@@ -166,7 +166,7 @@ function lessonEditorDocumentReadyAddMediaElement() {
     img_tag.attr(orientation, orientation_val);
     makeDraggable(place_id);
   });
-  $('body').on('click', '._add_video_to_slide', function(e) {
+  $body.on('click', '._add_video_to_slide', function(e) {
     e.preventDefault();
     var video_id = $(this).data('video-id');
     closePopUp('dialog-video-gallery-' + video_id);
@@ -198,7 +198,7 @@ function lessonEditorDocumentReadyAddMediaElement() {
       initializeMedia(video_player.attr('id'), 'video');
     }
   });
-  $('body').on('click', '._add_audio_to_slide', function(e) {
+  $body.on('click', '._add_audio_to_slide', function(e) {
     e.preventDefault();
     var audio_id = $(this).data('audio-id');
     var new_audio_title = $('#gallery_audio_' + audio_id+' .titleTrack').text();
@@ -241,26 +241,26 @@ Initializer for galleries.
 @for LessonEditorDocumentReady
 **/
 function lessonEditorDocumentReadyGalleries() {
-  $('body').on('click', '.slide-content .image.editable .add', function() {
+  $body.on('click', '.slide-content .image.editable .add', function() {
     showGalleryInLessonEditor(this, 'image');
   });
-  $('body').on('click', '.slide-content .audio.editable .add', function() {
+  $body.on('click', '.slide-content .audio.editable .add', function() {
     stopMediaInCurrentSlide();
     showGalleryInLessonEditor(this, 'audio');
   });
-  $('body').on('click', '.slide-content .video.editable .add', function() {
+  $body.on('click', '.slide-content .video.editable .add', function() {
     stopMediaInCurrentSlide();
     showGalleryInLessonEditor(this, 'video');
   });
-  $('body').on('click', '._close_image_gallery_in_lesson_editor', function(e) {
+  $body.on('click', '._close_image_gallery_in_lesson_editor', function(e) {
     e.preventDefault();
     removeGalleryInLessonEditor('image');
   });
-  $('body').on('click', '._close_video_gallery_in_lesson_editor', function(e) {
+  $body.on('click', '._close_video_gallery_in_lesson_editor', function(e) {
     e.preventDefault();
     removeGalleryInLessonEditor('video');
   });
-  $('body').on('click', '._close_audio_gallery_in_lesson_editor', function(e) {
+  $body.on('click', '._close_audio_gallery_in_lesson_editor', function(e) {
     e.preventDefault();
     var current_playing_audio = $('._audio_expanded_in_gallery');
     if(current_playing_audio.length != 0) {
@@ -305,7 +305,7 @@ Initializer for the template that contains the list of possible slides to be add
 @for LessonEditorDocumentReady
 **/
 function lessonEditorDocumentReadyNewSlideChoice() {
-  $('body').on('click', '._add_new_slide', function() {
+  $body.on('click', '._add_new_slide', function() {
     hideNewSlideChoice();
     var slide = $('li._lesson_editor_current_slide');
     slide.prepend('<layer class="_not_current_slide_disabled"></layer>');
@@ -325,17 +325,17 @@ Initializer for the mouseover and mouseout to replace a media element already ad
 @for LessonEditorDocumentReady
 **/
 function lessonEditorDocumentReadyReplaceMediaElement() {
-  $('body').on('mouseover', '.slide-content .image.editable .mask', function() {
+  $body.on('mouseover', '.slide-content .image.editable .mask', function() {
     if($(this).find('.alignable').data('rolloverable')) {
       $(this).find('.add').show();
     }
   });
-  $('body').on('mouseout', '.slide-content .image.editable .mask', function() {
+  $body.on('mouseout', '.slide-content .image.editable .mask', function() {
     if($(this).find('.alignable').data('rolloverable')) {
       $(this).find('.add').hide();
     }
   });
-  $('body').on('mouseover', '.slide-content .video.editable .mask video', function(e) {
+  $body.on('mouseover', '.slide-content .video.editable .mask video', function(e) {
     var position = $(this).offset();
     var top = position.top + 59;
     var right = position.left + 291;
@@ -355,7 +355,7 @@ function lessonEditorDocumentReadyReplaceMediaElement() {
       granpa.find('.add').show();
     }
   });
-  $('body').on('mouseout', '.slide-content .video.editable .mask video', function(e) {
+  $body.on('mouseout', '.slide-content .video.editable .mask video', function(e) {
     var position = $(this).offset();
     var top = position.top + 59;
     var right = position.left + 291;
@@ -400,25 +400,25 @@ Initializer for the buttons on the right side of each slide.
 @for LessonEditorDocumentReady
 **/
 function lessonEditorDocumentReadySlideButtons() {
-  $('body').on('click', '._hide_add_new_slide_options', function() {
+  $body.on('click', '._hide_add_new_slide_options', function() {
     hideNewSlideChoice();
   });
-  $('body').on('click', '._save_slide', function(e) {
+  $body.on('click', '._save_slide', function(e) {
     saveCurrentSlide('', false);
   });
-  $('body').on('click', '._save_slide_and_exit', function() {
+  $body.on('click', '._save_slide_and_exit', function() {
     saveCurrentSlide('_and_exit', true);
   });
-  $('body').on('click', '._save_slide_and_edit', function() {
+  $body.on('click', '._save_slide_and_edit', function() {
     saveCurrentSlide('_and_edit', true);
   });
-  $('body').on('click', '._add_new_slide_options', function() {
+  $body.on('click', '._add_new_slide_options', function() {
     if(!$(this).hasClass('disabled')) {
       saveCurrentSlide('', false);
       showNewSlideOptions();
     }
   });
-  $('body').on('click', '._delete_slide', function() {
+  $body.on('click', '._delete_slide', function() {
     stopMediaInCurrentSlide();
     var slide = $('li._lesson_editor_current_slide');
     slide.prepend('<layer class="_not_current_slide_disabled"></layer>');
@@ -435,7 +435,7 @@ Initializer for the scroll and all the actions of the slide navigator (see the c
 @for LessonEditorDocumentReady
 **/
 function lessonEditorDocumentReadySlidesNavigator() {
-  $('body').on('mouseover', '#slide-numbers li.navNumbers:not(._add_new_slide_options_in_last_position)', function(e) {
+  $body.on('mouseover', '#slide-numbers li.navNumbers:not(._add_new_slide_options_in_last_position)', function(e) {
     var tip = $(this);
     var this_tooltip = tip.children('.slide-tooltip');
     if(e.pageX < ($(window).width() / 2)) {
@@ -445,25 +445,25 @@ function lessonEditorDocumentReadySlidesNavigator() {
       tip.children('.slide-tooltip-to-left').show();
     }
   });
-  $('body').on('mouseout', '#slide-numbers li.navNumbers:not(._add_new_slide_options_in_last_position)', function(e) {
+  $body.on('mouseout', '#slide-numbers li.navNumbers:not(._add_new_slide_options_in_last_position)', function(e) {
     var this_tooltip = $(this).children('.slide-tooltip');
     this_tooltip.removeClass('slide-tooltip-to-left');
     this_tooltip.hide();
   });
-  $('body').on('click', '._slide_nav:not(._lesson_editor_current_slide_nav)', function(e) {
+  $body.on('click', '._slide_nav:not(._lesson_editor_current_slide_nav)', function(e) {
     e.preventDefault();
     stopMediaInCurrentSlide();
     saveCurrentSlide('', false);
     slideTo($(this).data('slide-id'));
   });
-  $('body').on('click', '._not_current_slide', function(e) {
+  $body.on('click', '._not_current_slide', function(e) {
     e.preventDefault();
     saveCurrentSlide('', false);
     stopMediaInCurrentSlide();
     slideTo($(this).parent().data('slide-id'));
     scrollPaneUpdate(this);
   });
-  $('body').on('click', '._add_new_slide_options_in_last_position', function() {
+  $body.on('click', '._add_new_slide_options_in_last_position', function() {
     if(!$(this).hasClass('disabled')) {
       saveCurrentSlide('', false);
       var last_slide_id = $("#slide-numbers li.navNumbers:last").find('a').data('slide-id');
@@ -483,31 +483,31 @@ Initializer for the placeholders of text inputs throughout the Lesson Editor.
 @for LessonEditorDocumentReady
 **/
 function lessonEditorDocumentReadyTextFields() {
-  $('body').on('focus', '._lesson_editor_placeholder', function() {
+  $body.on('focus', '._lesson_editor_placeholder', function() {
     if($(this).data('placeholder')) {
       $(this).val('');
       $(this).data('placeholder', false);
     }
   });
-  $('body').on('focus', '#slides._new #title', function() {
+  $body.on('focus', '#slides._new #title', function() {
     if($('#slides._new #title_placeholder').val() == '') {
       $(this).val('');
       $('#slides._new #title_placeholder').attr('value', '0');
     }
   });
-  $('body').on('focus', '#slides._new #description', function() {
+  $body.on('focus', '#slides._new #description', function() {
     if($('#slides._new #description_placeholder').val() == '') {
       $(this).val('');
       $('#slides._new #description_placeholder').attr('value', '0');
     }
   });
-  $('body').on('focus', '#slides._update #title', function() {
+  $body.on('focus', '#slides._update #title', function() {
     if($('#slides._update #title_placeholder').val() == '') {
       $(this).val('');
       $('#slides._update #title_placeholder').attr('value', '0');
     }
   });
-  $('body').on('focus', '#slides._update #description', function() {
+  $body.on('focus', '#slides._update #description', function() {
     if($('#slides._update #description_placeholder').val() == '') {
       $(this).val('');
       $('#slides._update #description_placeholder').attr('value', '0');

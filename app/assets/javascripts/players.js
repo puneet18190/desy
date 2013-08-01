@@ -315,7 +315,7 @@ Initializer for buttons inside a cutter in {{#crossLinkModule "audio-editor"}}{{
 @for PlayersDocumentReady
 **/
 function playersDocumentReadyAudioEditor() {
-  $('body').on('click', '._media_player_play_in_audio_editor_preview', function() {
+  $body.on('click', '._media_player_play_in_audio_editor_preview', function() {
     var component = $(this).parents('._audio_editor_component');
     var identifier = getAudioComponentIdentifier(component);
     var audio = component.find('audio');
@@ -337,7 +337,7 @@ function playersDocumentReadyAudioEditor() {
       audio[0].play();
     }
   });
-  $('body').on('click', '._media_player_pause_in_audio_editor_preview', function() {
+  $body.on('click', '._media_player_pause_in_audio_editor_preview', function() {
     $(this).hide();
     $('#start_audio_editor_preview').removeClass('disabled');
     $('#rewind_audio_editor_preview').removeClass('disabled');
@@ -353,14 +353,14 @@ function playersDocumentReadyAudioEditor() {
       setCurrentTimeToMedia(component.find('audio'), component.find('._media_player_slider').slider('value'));
     }
   });
-  $('body').on('click', '._media_player_rewind_in_audio_editor_preview', function() {
+  $body.on('click', '._media_player_rewind_in_audio_editor_preview', function() {
     var component = $(this).parents('._audio_editor_component');
     var initial_time = component.data('from');
     component.find('._media_player_slider').slider('value', initial_time);
     setCurrentTimeToMedia(component.find('audio'), initial_time);
     component.find('._current_time').html(secondsToDateString(initial_time));
   });
-  $('body').on('click', '._audio_editor_component ._double_slider .ui-slider-range', function(e) {
+  $body.on('click', '._audio_editor_component ._double_slider .ui-slider-range', function(e) {
     var component = $(this).parents('._audio_editor_component');
     var identifier = getAudioComponentIdentifier(component);
     var percent = component.data('max-to') * (e.pageX - component.find('._double_slider').offset().left) / component.find('._double_slider').width();
@@ -379,7 +379,7 @@ Initializer for buttons inside any player.
 @for PlayersDocumentReady
 **/
 function playersDocumentReadyGeneral() {
-  $('body').on('click', '._media_player_play', function() {
+  $body.on('click', '._media_player_play', function() {
     var container_id = $(this).parent().attr('id');
     var type = $(this).parent().data('media-type');
     var media = $('#' + container_id + ' ' + type);
@@ -392,7 +392,7 @@ function playersDocumentReadyGeneral() {
       media[0].play();
     }
   });
-  $('body').on('click', '._media_player_pause', function() {
+  $body.on('click', '._media_player_pause', function() {
     $(this).hide();
     var container_id = $(this).parent().attr('id');
     var type = $(this).parent().data('media-type');
@@ -400,7 +400,7 @@ function playersDocumentReadyGeneral() {
     $('#' + container_id + ' ._media_player_play').show();
     $('#' + container_id + ' ' + type)[0].pause();
   });
-  $('body').on('click', '._video_full_screen', function() {
+  $body.on('click', '._video_full_screen', function() {
     var container_id = $(this).parent().attr('id');
     $('#' + container_id + ' video').fullScreen(true);
   });
@@ -412,7 +412,7 @@ Initializer for buttons inside a cutter in {{#crossLinkModule "video-editor"}}{{
 @for PlayersDocumentReady
 **/
 function playersDocumentReadyVideoEditor() {
-  $('body').on('click', '._media_player_play_in_video_editor_preview', function() {
+  $body.on('click', '._media_player_play_in_video_editor_preview', function() {
     var identifier = getVideoComponentIdentifier($(this).parents('._video_component_cutter').attr('id'));
     var video = $('#video_component_' + identifier + '_preview video');
     if(video[0].error){
@@ -437,7 +437,7 @@ function playersDocumentReadyVideoEditor() {
       }
     }
   });
-  $('body').on('click', '._media_player_pause_in_video_editor_preview', function() {
+  $body.on('click', '._media_player_pause_in_video_editor_preview', function() {
     $(this).hide();
     $(this).parents('._video_component_cutter').data('playing', false);
     var cutter_id = $(this).parents('._video_component_cutter').attr('id');
@@ -454,13 +454,13 @@ function playersDocumentReadyVideoEditor() {
       setCurrentTimeToMedia($('#' + preview_id + ' video'), $('#' + cutter_id + ' ._media_player_slider').slider('value'));
     }
   });
-  $('body').on('click', '._media_player_rewind_in_video_editor_preview', function() {
+  $body.on('click', '._media_player_rewind_in_video_editor_preview', function() {
     var identifier = getVideoComponentIdentifier($(this).parents('._video_component_cutter').attr('id'));
     var initial_time = $('#video_component_' + identifier + '_cutter').data('from');
     $('#video_component_' + identifier + '_cutter ._media_player_slider').slider('value', initial_time);
     setCurrentTimeToMedia($('#video_component_' + identifier + '_preview video'), initial_time);
   });
-  $('body').on('click', '._video_component_cutter ._double_slider .ui-slider-range', function(e) {
+  $body.on('click', '._video_component_cutter ._double_slider .ui-slider-range', function(e) {
     var cutter = $(this).parents('._video_component_cutter');
     var percent = cutter.data('max-to') * (e.pageX - cutter.find('._double_slider').offset().left) / cutter.find('._double_slider').width();
     resp = parseInt(percent);

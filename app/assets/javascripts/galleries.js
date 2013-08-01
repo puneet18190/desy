@@ -70,10 +70,10 @@ Initializer for effects of closing a gallery. Typically, when closing a gallery 
 @for GalleriesDocumentReady
 **/
 function galleriesDocumentReadyClose() {
-  $('body').on('click', '._close_mixed_gallery_in_video_editor', function() {
+  $body.on('click', '._close_mixed_gallery_in_video_editor', function() {
     closeGalleryInVideoEditor('mixed');
   });
-  $('body').on('click', '._close_audio_gallery_in_video_editor', function() {
+  $body.on('click', '._close_audio_gallery_in_video_editor', function() {
     closeGalleryInVideoEditor('audio');
     var expanded_audio = $('._audio_expanded_in_gallery');
     if(expanded_audio.length > 0) {
@@ -83,7 +83,7 @@ function galleriesDocumentReadyClose() {
       $('#' + audio_id + ' ._expanded').hide();
     }
   });
-  $('body').on('click', '._close_audio_gallery_in_audio_editor', function() {
+  $body.on('click', '._close_audio_gallery_in_audio_editor', function() {
     closeGalleryInAudioEditor();
     var expanded_audio = $('._audio_expanded_in_gallery');
     if(expanded_audio.length > 0) {
@@ -93,7 +93,7 @@ function galleriesDocumentReadyClose() {
       $('#' + audio_id + ' ._expanded').hide();
     }
   });
-  $('body').on('click', '._close_on_click_out', function() {
+  $body.on('click', '._close_on_click_out', function() {
     $('.ui-dialog-content:visible').each(function() {
       closePopUp($(this).attr('id'));
     });
@@ -106,17 +106,17 @@ Initializer for effects of opening a gallery and opening the individual dialog o
 @for GalleriesDocumentReady
 **/
 function galleriesDocumentReadyOpen() {
-  $('body').on('click','._image_gallery_thumb', function(e) {
+  $body.on('click','._image_gallery_thumb', function(e) {
     e.preventDefault();
     showImageInGalleryPopUp($(this).data('image-id'));
   });
-  $('body').on('click','._video_gallery_thumb', function(e) {
+  $body.on('click','._video_gallery_thumb', function(e) {
     e.preventDefault();
     if(!$(this).hasClass('_disabled')) {
       showVideoInGalleryPopUp($(this).data('video-id'));
     }
   });
-  $('body').on('click', '._audio_gallery_thumb._enabled ._compact', function(e) {
+  $body.on('click', '._audio_gallery_thumb._enabled ._compact', function(e) {
     if(!$(e.target).hasClass('_select_audio_from_gallery')) {
       var parent_id = $(this).parent().attr('id');
       var was_open = false;

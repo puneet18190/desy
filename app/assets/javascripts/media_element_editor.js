@@ -74,13 +74,13 @@ Initializes the placeholder of the <b>commit forms</b> used in {{#crossLinkModul
 @for MediaElementEditorDocumentReady
 **/
 function mediaElementEditorDocumentReady() {
-  $('body').on('focus', '#form_info_new_media_element_in_editor #new_title', function() {
+  $body.on('focus', '#form_info_new_media_element_in_editor #new_title', function() {
     if($('#form_info_new_media_element_in_editor #new_title_placeholder').val() == '') {
       $(this).attr('value', '');
       $('#form_info_new_media_element_in_editor #new_title_placeholder').attr('value', '0');
     }
   });
-  $('body').on('focus', '#form_info_new_media_element_in_editor #new_description', function() {
+  $body.on('focus', '#form_info_new_media_element_in_editor #new_description', function() {
     if($('#form_info_new_media_element_in_editor #new_description_placeholder').val() == '') {
       $(this).attr('value', '');
       $('#form_info_new_media_element_in_editor #new_description_placeholder').attr('value', '0');

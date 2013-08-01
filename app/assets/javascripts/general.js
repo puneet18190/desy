@@ -85,7 +85,7 @@ Initialization for all the functionalities of expanded lessons and media element
 @for GeneralDocumentReady
 **/
 function expandedItemsDocumentReady() {
-  $('body').on('click','._lesson_compact', function() {
+  $body.on('click','._lesson_compact', function() {
     if(!$(this).parent().hasClass('_disabled')) {
       var my_id = $(this).parent().attr('id');
       var my_expanded = $('#' + my_id + ' ._lesson_expanded');
@@ -102,7 +102,7 @@ function expandedItemsDocumentReady() {
       }
     }
   });
-  $('body').on('click', '#display_expanded_media_elements', function() {
+  $body.on('click', '#display_expanded_media_elements', function() {
     if(!$(this).hasClass('current')) {
       $.ajax({
         type: 'get',
@@ -110,7 +110,7 @@ function expandedItemsDocumentReady() {
       });
     }
   });
-  $('body').on('click', '#display_compact_media_elements', function() {
+  $body.on('click', '#display_compact_media_elements', function() {
     if(!$(this).hasClass('current')) {
       $.ajax({
         type: 'get',
@@ -118,11 +118,11 @@ function expandedItemsDocumentReady() {
       });
     }
   });
-  $('body').on('click', '._close_media_element_preview_popup', function() {
+  $body.on('click', '._close_media_element_preview_popup', function() {
     var param = $(this).data('param');
     closePopUp('dialog-media-element-' + param);
   });
-  $('body').on('click', '._change_info_container ._cancel, ._change_info_to_pick.change_info_light', function() {
+  $body.on('click', '._change_info_container ._cancel, ._change_info_to_pick.change_info_light', function() {
     $('#dialog-media-element-' + $(this).data('param') + ' ._audio_preview_in_media_element_popup').show();
     $('#dialog-media-element-' + $(this).data('param') + ' ._change_info_container').hide('fade', {}, 500, function() {
       var icon = $(this);
@@ -134,7 +134,7 @@ function expandedItemsDocumentReady() {
       resetMediaElementChangeInfo($(this).data('param'));
     });
   });
-  $('body').on('click', '._change_info_to_pick.change_info', function() {
+  $body.on('click', '._change_info_to_pick.change_info', function() {
     $('#dialog-media-element-' + $(this).data('param') + ' ._change_info_container').show('fade', {}, 500);
     $(this).removeClass('change_info');
     $(this).addClass('change_info_light');
@@ -148,17 +148,17 @@ Similar to {{#crossLink "GeneralDocumentReady/defaultValueJavaScriptAnimationsDo
 @for GeneralDocumentReady
 **/
 function filtersDocumentReady() {
-  $('body').on('change', '#filter_lessons', function() {
+  $body.on('change', '#filter_lessons', function() {
     var filter = $('#filter_lessons option:selected').val();
     var redirect_url = '/lessons?filter=' + filter;
     $.get(redirect_url);
   });
-  $('body').on('change', '#filter_media_elements', function() {
+  $body.on('change', '#filter_media_elements', function() {
     var filter = $('#filter_media_elements option:selected').val();
     var redirect_url = getCompleteMediaElementsUrlWithoutFilter() + '&filter=' + filter;
     $.get(redirect_url);
   });
-  $('body').on('change', '#for_page_media_elements', function() {
+  $body.on('change', '#for_page_media_elements', function() {
     var for_page = $('#for_page_media_elements option:selected').val();
     var redirect_url = getCompleteMediaElementsUrlWithoutForPage() + '&for_page=' + for_page;
     $.get(redirect_url);
@@ -207,7 +207,7 @@ function javaScriptAnimationsDocumentReady() {
   $('#filter_media_elements').selectbox();
   $('#filter_search_media_elements').selectbox();
   $('#user_school_level_id').selectbox();
-  $('body').on('keyup blur', 'input[maxlength], textarea[maxlength]', function () {
+  $body.on('keyup blur', 'input[maxlength], textarea[maxlength]', function () {
     var myself = $(this);
     var len = myself.val().length;
     var maxlength = myself.attr('maxlength')
@@ -246,21 +246,21 @@ Initializes reports forms for both lessons and media elements.
 @for GeneralDocumentReady
 **/
 function reportsDocumentReady() {
-  $('body').on('mouseover', '._report_lesson_click', function() {
+  $body.on('mouseover', '._report_lesson_click', function() {
     var obj = $('#' + this.id + ' a._reportable_icon');
     if(!obj.hasClass('_report_selected')) {
       obj.removeClass('report');
       obj.addClass('report_light');
     }
   });
-  $('body').on('mouseout', '._report_lesson_click', function() {
+  $body.on('mouseout', '._report_lesson_click', function() {
     var obj = $('#' + this.id + ' a._reportable_icon');
     if(!obj.hasClass('_report_selected')) {
       obj.removeClass('report_light');
       obj.addClass('report');
     }
   });
-  $('body').on('click', '._report_lesson_click', function() {
+  $body.on('click', '._report_lesson_click', function() {
     var param = $(this).data('param');
     var obj = $('#lesson_report_form_' + param);
     if(!obj.is(':visible')) {
@@ -282,7 +282,7 @@ function reportsDocumentReady() {
     }
     return false;
   });
-  $('body').on('click', '._report_media_element_click', function() {
+  $body.on('click', '._report_media_element_click', function() {
     var param = $(this).data('param');
     var obj = $('#media_element_report_form_' + param);
     if(!obj.is(':visible')) {
@@ -300,11 +300,11 @@ function reportsDocumentReady() {
     }
     return false;
   });
-  $('body').on('click', '._report_form_content', function(e) {
+  $body.on('click', '._report_form_content', function(e) {
     e.preventDefault();
     return false;
   });
-  $('body').on('click', '._report_form_content ._send', function(e) {
+  $body.on('click', '._report_form_content ._send', function(e) {
     $(this).closest('form').submit();
   });
 }
@@ -332,7 +332,7 @@ Shows a red error icon when somethings goes wrong. Widely used in {{#crossLinkMo
 @for GeneralMiscellanea
 **/
 function redError() {
-  $('body').prepend('<span class="_slide_error"></span>');
+  $body.prepend('<span class="_slide_error"></span>');
   centerThis('._slide_error');
   $('._slide_error').fadeTo('fast', 0).fadeTo('fast', 0.7).fadeTo('fast', 0.3).fadeOut();
 }

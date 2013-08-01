@@ -133,7 +133,7 @@ Initializes the form for notifying a lesson's modifications. These actions are l
 @for NotificationsDocumentReady
 **/
 function notificationsDocumentReadyLessonModification() {
-  $('body').on('click', '#lesson-notification ._no', function(e) {
+  $body.on('click', '#lesson-notification ._no', function(e) {
     e.preventDefault();
     closePopUp('lesson-notification');
     var lesson_id = $('#lesson-notification').data('lesson-id');
@@ -147,7 +147,7 @@ function notificationsDocumentReadyLessonModification() {
       url: '/lessons/' + id + '/dont_notify_modification'
     }).always(bindLoader);
   });
-  $('body').on('focus', '#lesson-notification #lesson_notify_modification_details', function() {
+  $body.on('focus', '#lesson-notification #lesson_notify_modification_details', function() {
     if($('#lesson-notification #lesson_notify_modification_details_placeholder').val() === '') {
       $(this).val('');
       $('#lesson-notification #lesson_notify_modification_details_placeholder').val('0');
@@ -187,7 +187,7 @@ function notificationsDocumentReadyTooltips() {
       $.get('/notifications/get_new_block?offset=' + offset);
     }
   });
-  $('body').on('click', '._destroy_notification', function() {
+  $body.on('click', '._destroy_notification', function() {
     var my_id = $(this).data('param');
     var offset = $('#tooltip_content').data('offset');
     $.post('/notifications/' + my_id + '/destroy?offset=' + offset);
@@ -236,7 +236,7 @@ function initializeNotifications() {
     showNotificationsFumetto();
     showNotificationsButton();
   }
-  $('body').on('click', '#notifications_button', function() {
+  $body.on('click', '#notifications_button', function() {
     if(!$('#tooltip_content').is(':visible')) {
       hideHelpTooltip();
       hideHelpButton();
@@ -258,7 +258,7 @@ function initializeNotifications() {
       }
     }
   });
-  $('body').on('click', '._single_notification .notification_gatto', function() {
+  $body.on('click', '._single_notification .notification_gatto', function() {
     var closest_li = $(this).closest('li');
     var my_own_id = closest_li.attr('id')
     var my_content = $('#' + my_own_id + ' ._expanded_notification').html();

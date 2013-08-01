@@ -34,7 +34,7 @@ Initializer for the functionalities of committing changes (click on 'commit', on
 @for ImageEditorDocumentReady
 **/
 function imageEditorDocumentReadyCommit() {
-  $('body').on('click', '#commit_image_editor', function() {
+  $body.on('click', '#commit_image_editor', function() {
     if($(this).hasClass('_with_choice')) {
       var captions = $('#popup_captions_container');
       var title = captions.data('save-media-element-editor-title');
@@ -57,12 +57,12 @@ function imageEditorDocumentReadyCommit() {
       $('#image_editor #form_info_new_media_element_in_editor').show();
     }
   });
-  $('body').on('click', '#image_editor #form_info_new_media_element_in_editor ._commit', function() {
+  $body.on('click', '#image_editor #form_info_new_media_element_in_editor ._commit', function() {
     var form = $('#image_editor_form');
     form.attr('action', '/images/' + form.data('param') + '/commit/new');
     form.submit();
   });
-  $('body').on('click', '#image_editor #form_info_update_media_element_in_editor ._commit', function() {
+  $body.on('click', '#image_editor #form_info_update_media_element_in_editor ._commit', function() {
     if($('#info_container').data('used-in-private-lessons')) {
       var captions = $('#popup_captions_container');
       var title = captions.data('overwrite-media-element-editor-title');
@@ -83,7 +83,7 @@ function imageEditorDocumentReadyCommit() {
       form.submit();
     }
   });
-  $('body').on('click', '#image_editor #form_info_new_media_element_in_editor ._cancel', function() {
+  $body.on('click', '#image_editor #form_info_new_media_element_in_editor ._cancel', function() {
     resetMediaElementEditorForms();
     if($('#image_editor_title ._titled').length > 0) {
       $('#image_editor_title ._titled').show();
@@ -92,7 +92,7 @@ function imageEditorDocumentReadyCommit() {
     $('._image_editor_bottom_bar').show();
     $('#image_editor #form_info_new_media_element_in_editor').hide();
   });
-  $('body').on('click', '#image_editor #form_info_update_media_element_in_editor ._cancel', function() {
+  $body.on('click', '#image_editor #form_info_update_media_element_in_editor ._cancel', function() {
     resetMediaElementEditorForms();
     $('._image_editor_bottom_bar').show();
     $('#image_editor #form_info_update_media_element_in_editor').hide();
@@ -119,10 +119,10 @@ function imageEditorDocumentReadyCrop() {
       }
     }
   });
-  $('body').on('click', '.imgareaselect-outer', function() {
+  $body.on('click', '.imgareaselect-outer', function() {
     $('#image_editor_crop_buttons ._do').addClass('disabled');
   });
-  $('body').on('click', '#image_editor_crop_action', function() {
+  $body.on('click', '#image_editor_crop_action', function() {
     if(!$(this).hasClass('current')) {
       resetImageEditorOperationsChoice();
       resetImageEditorTexts();
@@ -137,12 +137,12 @@ function imageEditorDocumentReadyCrop() {
       });
     }
   });
-  $('body').on('click', '#image_editor_crop_buttons ._cancel', function() {
+  $body.on('click', '#image_editor_crop_buttons ._cancel', function() {
     resetImageEditorOperationsChoice();
     resetImageEditorCrop();
     $('#commit_image_editor').css('visibility', 'visible');
   });
-  $('body').on('click', '#image_editor_crop_buttons ._do', function() {
+  $body.on('click', '#image_editor_crop_buttons ._do', function() {
     if(!$(this).hasClass('disabled')) {
       var form = $('#image_editor_form');
       form.attr('action', '/images/' + form.data('param') + '/crop');
@@ -160,7 +160,7 @@ function imageEditorDocumentReadyGeneral() {
   $('.image_editor_only #form_info_new_media_element_in_editor, .image_editor_only #form_info_update_media_element_in_editor').css("left",($(window).width()/2)-495);
   $('#image_gallery_for_image_editor ._select_image_from_gallery').addClass('_add_image_to_image_editor');
   $('#image_gallery_for_image_editor .gallery-header').css('left', ($(window).width()/2) - 420);
-  $('body').on('click', '._add_image_to_image_editor', function() {
+  $body.on('click', '._add_image_to_image_editor', function() {
     var parser = document.createElement('a');
     parser.href = $('._exit_url').attr('href');
     window.location = '/images/' + $(this).data('image-id') + '/edit?from_gallery=true&back=' + encodeURIComponent(parser.pathname+parser.search+parser.hash);
@@ -173,7 +173,7 @@ Initializer for text inserting mode. It includes the initialization of JQueryUi 
 @for ImageEditorDocumentReady
 **/
 function imageEditorDocumentReadyTexts() {
-  $('body').on('click', '#image_editor_text_action', function() {
+  $body.on('click', '#image_editor_text_action', function() {
     if(!$(this).hasClass('current')) {
       resetImageEditorOperationsChoice();
       resetImageEditorCrop();
@@ -185,12 +185,12 @@ function imageEditorDocumentReadyTexts() {
       $('#image_editor_container').addClass('_text_enabled');
     }
   });
-  $('body').on('click', '#image_editor_text_buttons ._cancel', function() {
+  $body.on('click', '#image_editor_text_buttons ._cancel', function() {
     resetImageEditorOperationsChoice();
     resetImageEditorTexts();
     $('#commit_image_editor').css('visibility', 'visible');
   });
-  $('body').on('click', '#image_editor_container._text_enabled img', function(e) {
+  $body.on('click', '#image_editor_container._text_enabled img', function(e) {
     var coords = getRelativePositionInImageEditor($(this), e);
     var textCount = $('#info_container').data('current-textarea-identifier');
     $('#image_editor_text_buttons ._do').removeClass('disabled');
@@ -214,18 +214,18 @@ function imageEditorDocumentReadyTexts() {
     offlightTextareas();
     enlightTextarea(textCount);
   });
-  $('body').on('focus', '._inner_textarea', function() {
+  $body.on('focus', '._inner_textarea', function() {
     offlightTextareas();
     enlightTextarea($(this).parent().attr('id').split('_')[3]);
   });
-  $('body').on('click', 'a._delete', function() {
+  $body.on('click', 'a._delete', function() {
     var id = $(this).parent().attr('id').split('_')[4];
     $('#image_editor_text_' + id).remove();
     if($('._image_editor_text').length == 0) {
       $('#image_editor_text_buttons ._do').addClass('disabled');
     }
   });
-  $('body').on('click', '._image_editor_text .text_colors a', function() {
+  $body.on('click', '._image_editor_text .text_colors a', function() {
     if(!$(this).hasClass('current')) {
       var new_color = $(this).attr('class').replace(' ', '').replace('background_', '');
       var id = $(this).parent().parent().attr('id').split('_')[4];
@@ -238,7 +238,7 @@ function imageEditorDocumentReadyTexts() {
       textarea.removeClass(old_color).addClass(new_color);
     }
   });
-  $('body').on('click', '._image_editor_text .font_sizes a', function() {
+  $body.on('click', '._image_editor_text .font_sizes a', function() {
     if(!$(this).hasClass('current')) {
       var new_size = $(this).attr('class').replace(' ', '').replace('upper', '');
       var id = $(this).parent().parent().attr('id').split('_')[4];
@@ -251,7 +251,7 @@ function imageEditorDocumentReadyTexts() {
       textarea.removeClass(old_size).addClass(new_size);
     }
   });
-  $('body').on('click', '#image_editor_text_buttons ._do', function() {
+  $body.on('click', '#image_editor_text_buttons ._do', function() {
     if(!$(this).hasClass('disabled')) {
       var form = $('#image_editor_form');
       $('._image_editor_text ._inner_textarea').each(function() {
@@ -274,7 +274,7 @@ Initializer for the route linked to the action 'undo', that undoes the last step
 @for ImageEditorDocumentReady
 **/
 function imageEditorDocumentReadyUndo() {
-  $('body').on('click', '#image_editor_empty_buttons ._undo', function() {
+  $body.on('click', '#image_editor_empty_buttons ._undo', function() {
     $.ajax({
       url: '/images/' + $('#image_editor_form').data('param') + '/undo',
       type: 'post'

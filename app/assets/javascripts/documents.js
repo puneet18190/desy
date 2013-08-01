@@ -24,12 +24,12 @@ Initializer for documents functionality (buttons javascripts).
 @for DocumentsDocumentReady
 **/
 function documentsDocumentReadyButtons() {
-  $('body').on('click', '#my_documents .buttons .preview', function() {
+  $body.on('click', '#my_documents .buttons .preview', function() {
     
     alert('previewing document ' + $(this).data('document-id')); // TODO
     
   });
-  $('body').on('click', '#my_documents .buttons .destroy', function() {
+  $body.on('click', '#my_documents .buttons .destroy', function() {
     var current_url = $('#info_container').data('currenturl');
     var document_id = $(this).data('document-id');
     var captions = $('#popup_captions_container');
@@ -71,16 +71,16 @@ Initializer for documents functionality (general javascripts).
 @for DocumentsDocumentReady
 **/
 function documentsDocumentReadyGeneral() {
-  $('body').on('mouseover', '._empty_documents', function() {
+  $body.on('mouseover', '._empty_documents', function() {
     $(this).find('._empty_documents_hover').addClass('current');
   });
-  $('body').on('mouseout', '._empty_documents', function() {
+  $body.on('mouseout', '._empty_documents', function() {
     $(this).find('._empty_documents_hover').removeClass('current');
   });
-  $('body').on('click', '._empty_documents, #upload_document', function() {
+  $body.on('click', '._empty_documents, #upload_document', function() {
     openNewDocumentLoader();
   });
-  $('body').on('change', '#order_documents', function() {
+  $body.on('change', '#order_documents', function() {
     var order = $('#order_documents option:selected').val();
     var redirect_url = getCompleteDocumentsUrlWithoutOrder() + '&order=' + order;
     $('#search_documents_hidden_order').val(order);
@@ -94,7 +94,7 @@ Initializer for documents functionality (search and placeholders javascripts).
 @for DocumentsDocumentReady
 **/
 function documentsDocumentReadySearch() {
-  $('body').on('keydown', '#search_documents ._word_input', function(e) {
+  $body.on('keydown', '#search_documents ._word_input', function(e) {
     if(e.which == 13) {
       e.preventDefault();
     } else if(e.which != 39 && e.which != 37) {
