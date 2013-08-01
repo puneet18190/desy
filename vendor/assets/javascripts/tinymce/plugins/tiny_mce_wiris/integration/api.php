@@ -100,10 +100,12 @@ class com_wiris_plugin_PluginAPI {
 			$this->TAGS->in_appletclose = '«/applet»';			
 			$this->TAGS->in_mathopen = '«math';
 			$this->TAGS->in_mathclose = '«/math»';		
+			$this->TAGS->in_quote = '`';
 			$this->TAGS->in_double_quote = '¨';			
 			$this->TAGS->out_open = '<';
 			$this->TAGS->out_close = '>';
 			$this->TAGS->out_entity = '&';
+			$this->TAGS->out_quote = '\'';
 			$this->TAGS->out_double_quote = '"';
 		}else if ($type == 'mathml'){
 			$this->TAGS->in_open = '<';
@@ -113,10 +115,12 @@ class com_wiris_plugin_PluginAPI {
 			$this->TAGS->in_appletclose = '</applet>';			
 			$this->TAGS->in_mathopen = '<math';
 			$this->TAGS->in_mathclose = '</math>';		
+			$this->TAGS->in_quote = '\'';
 			$this->TAGS->in_double_quote = '"';
 			$this->TAGS->out_open = '<';
 			$this->TAGS->out_close = '>';
 			$this->TAGS->out_entity = '&';
+			$this->TAGS->out_quote = '\'';
 			$this->TAGS->out_double_quote = '"';
 		}
 	}        
@@ -165,6 +169,8 @@ class com_wiris_plugin_PluginAPI {
 				$sub = str_replace($this->TAGS->in_close, $this->TAGS->out_close, $sub);
 				// replacing '§' by '&'
 				$sub = str_replace($this->TAGS->in_entity, $this->TAGS->out_entity, $sub);
+				// replacing '`' by '\''
+				$sub = str_replace($this->TAGS->in_quote, $this->TAGS->out_quote, $sub);
 			}
 
 			// generate the image code
@@ -225,6 +231,8 @@ class com_wiris_plugin_PluginAPI {
 			$sub = str_replace($this->TAGS->in_open, $this->TAGS->out_open, $sub);
 			// replacing '»' by '>'
 			$sub = str_replace($this->TAGS->in_close, $this->TAGS->out_close, $sub);
+			// replacing '`' by '\''
+			$sub = str_replace($this->TAGS->in_quote, $this->TAGS->out_quote, $sub);
 
 			$output .= $sub;
 
@@ -243,10 +251,11 @@ class com_wiris_plugin_PluginAPI {
 		global $CFG;
 		$config = wrs_loadConfig(WRS_CONFIG_FILE);
 		
-		include $CFG->dirroot . '/lib/editor/tinymce/version.php';
+                include_once $CFG->dirroot . '/lib/editor/tinymce/lib.php';
+                $tinyEditor = new tinymce_texteditor();
                 
                 //Moodle older than 2.4
-                $integration_folder = "/lib/editor/tinymce/tiny_mce/" . $plugin->release . "/plugins/tiny_mce_wiris/integration";
+                $integration_folder = "/lib/editor/tinymce/tiny_mce/" . $tinyEditor->version . "/plugins/tiny_mce_wiris/integration";
                 
                 if (!file_exists($CFG->dirroot . $integration_folder)){
                     $integration_folder = "/lib/editor/tinymce/plugins/tiny_mce_wiris/integration";
@@ -261,7 +270,7 @@ class com_wiris_plugin_PluginAPI {
 		$output .= 'src="' . $src . '" ';
 		
 		if (isset($config['wirisaccessibilityenabled']) && $config['wirisaccessibilityenabled']){
-			$accessible = $this->mathml2accessible($data, $config);    
+			$accessible = htmlspecialchars($this->mathml2accessible($data, $config), ENT_COMPAT, "UTF-8");    
 			$output .= 'alt="' . $accessible . '" ';    
 		}
 
