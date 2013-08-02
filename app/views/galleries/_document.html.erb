@@ -1,0 +1,15 @@
+<div id="document_gallery" class="document_gallery document-kind">
+  <div class="gallery-footer">
+    <div class="pull-right">
+      <a class="_close_document_gallery exitGallery">ESCI GALL</a>
+    </div>
+    <div class="pull-right">
+      <a>ATTACH</a>
+    </div>
+  </div>
+  <div class="gallery-header">
+    <h3 class="pull-left">SELECT DOCUMENTS</h3>
+    <div class="audioIcon">&nbsp;</div>
+  </div>
+  <%= render :partial => 'galleries/contents/document', :locals => {:documents => documents} %>
+</div>
