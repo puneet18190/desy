@@ -101,7 +101,7 @@ Handles 413 status error, file too large.
 **/
 function uploadDone() {
   var ret = document.getElementById('upload_target').contentWindow.document.title;
-  if(ret && ret.match(/413/g)){
+  if(ret && ret.match(/413/g)) {
     $('.barraLoading img').hide();
     $('iframe').before('<p class="too_large" style="padding: 20px 0 0 40px;"><img src="/assets/puntoesclamativo.png" style="margin: 20px 5px 0 20px;"><span class="lower" style="color:black">' + $('#load-media-element').data('media-file-too-large') + '</span></p>');
     $('#media_element_media_show').text($('#load-media-element').data('placeholder-media'));
