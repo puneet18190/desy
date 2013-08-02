@@ -64,7 +64,7 @@ function documentsDocumentReadyButtons() {
   $body.on('click', '#my_documents .buttons .destroy', function() {
     var current_url = $('#info_container').data('currenturl');
     var document_id = $(this).data('document-id');
-    var captions = $('#popup_captions_container');
+    var captions = $captions;
     var title = captions.data('destroy-document-title');
     var confirm = captions.data('destroy-document-confirm');
     var yes = captions.data('destroy-document-yes');

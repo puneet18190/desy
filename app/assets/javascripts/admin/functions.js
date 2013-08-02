@@ -129,17 +129,17 @@ function adminEffectsDocumentReady() {
   $('.dropdown').click(function(e) {
     e.stopPropagation();
   });
-  $('body').on('click', 'tr.collapse', function(e) {
+  $body.on('click', 'tr.collapse', function(e) {
     var t = $(e.target);
     if(!(t.hasClass('icon-eye-open') || t.hasClass('icon-remove') || t.hasClass('icon-globe') || t.hasClass('_user_link_in_admin') || t.hasClass('_link_in_admin') || t.hasClass('_report_item') || t.hasClass('_dont_report_item'))) {
       openAndLoadNextTr($(this));
     }
   });
-  $('body').on('click', '#expand-all', function(e) {
+  $body.on('click', '#expand-all', function(e) {
    e.preventDefault();
    $('tr.collapsed').slideDown('slow');
   });
-  $('body').on('click', '#collapse-all', function(e) {
+  $body.on('click', '#collapse-all', function(e) {
    e.preventDefault();
    $('tr.collapsed').slideUp('slow');
   });
@@ -171,41 +171,41 @@ Initializes effects for MediaElement.
 @for AdminDocumentReady
 **/
 function adminMediaElementsDocumentReady() {
-  $('body').on('focus', '._quick_load_creation_form ._qume_title', function() {
+  $body.on('focus', '._quick_load_creation_form ._qume_title', function() {
     var placeholder = $(this).parents('._quick_load_creation_form').find('._qume_title_placeholder');
     if(placeholder.val() != '') {
       placeholder.val('');
       $(this).val('');
     }
   });
-  $('body').on('focus', '._quick_load_creation_form ._qume_description', function() {
+  $body.on('focus', '._quick_load_creation_form ._qume_description', function() {
     var placeholder = $(this).parents('._quick_load_creation_form').find('._qume_description_placeholder');
     if(placeholder.val() != '') {
       placeholder.val('');
       $(this).val('');
     }
   });
-  $('body').on('focus', '._quick_load_creation_form ._qume_tags', function() {
+  $body.on('focus', '._quick_load_creation_form ._qume_tags', function() {
     var placeholder = $(this).parents('._quick_load_creation_form').find('._qume_tags_placeholder');
     if(placeholder.val() != '') {
       placeholder.val('');
       $(this).val('');
     }
   });
-  $('body').on('click', '._create_new_element', function() {
+  $body.on('click', '._create_new_element', function() {
     $.ajax({
       type: 'post',
       data: $(this).parents('._quick_load_creation_form').serialize(),
       url: '/admin/media_elements/' + $(this).data('param') + '/create'
     });
   });
-  $('body').on('click', '._delete_new_element', function() {
+  $body.on('click', '._delete_new_element', function() {
     $.ajax({
       type: 'delete',
       url: '/admin/media_elements/quick_upload/' + $(this).data('param') + '/delete'
     });
   });
-  $('body').on('click','.action._publish_list_element i', function(e) {
+  $body.on('click','.action._publish_list_element i', function(e) {
     e.preventDefault();
     $.ajax({
       type: 'put',
@@ -217,14 +217,14 @@ function adminMediaElementsDocumentReady() {
       }
     });
   });
-  $('body').on('click', '._publish_private_admin_element', function() {
+  $body.on('click', '._publish_private_admin_element', function() {
     $.ajax({
       type: 'put',
       data: $(this).parents('._quick_load_creation_form').serialize(),
       url: '/admin/media_elements/' + $(this).data('param') + '/update?is_public=true'
     });
   });
-  $('body').on('click', '._update_private_admin_element', function() {
+  $body.on('click', '._update_private_admin_element', function() {
     $.ajax({
       type: 'put',
       data: $(this).parents('._quick_load_creation_form').serialize(),
@@ -232,7 +232,7 @@ function adminMediaElementsDocumentReady() {
     });
   });
   initNotificationsAutocomplete();
-  $('body').on('click', '#log .del', function(e) {
+  $body.on('click', '#log .del', function(e) {
     e.preventDefault();
     var my_div = $(this).parent('div')
     var ids_val = $('#search_users_ids').val().split(',');
@@ -241,7 +241,7 @@ function adminMediaElementsDocumentReady() {
     my_div.remove();
     $('#filter-users').submit();
   });
-  $('body').on('click','._filter_and_send', function(e) {
+  $body.on('click','._filter_and_send', function(e) {
     e.preventDefault();
     if(!$(this).hasClass('disabled')) {
       $form = $(this).parents('form');
@@ -258,26 +258,26 @@ Initializes actions for less important tables, such as Tag, Subject, SchoolLevel
 @for AdminDocumentReady
 **/
 function adminMiscellaneaDocumentReady() {
-  $('body').on('click', 'ul.subjects li a i.icon-remove', function() {
+  $body.on('click', 'ul.subjects li a i.icon-remove', function() {
     var _id = $(this).parents('li').data('param');
     $.ajax({
       type: 'delete',
       url: '/admin/settings/subjects/' + _id + '/delete'
     });
   });
-  $('body').on('click', 'ul.school_levels li a i.icon-remove', function() {
+  $body.on('click', 'ul.school_levels li a i.icon-remove', function() {
     $.ajax({
       type: 'delete',
       url: '/admin/settings/school_levels/' + $(this).parents('li').data('param') + '/delete'
     });
   });
-  $('body').on('click', '._dont_report_item', function() {
+  $body.on('click', '._dont_report_item', function() {
     $.ajax({
       type: 'delete',
       url: 'reports/' + $(this).data('report-id') + '/decline'
     });
   });
-  $('body').on('click', '._report_item', function() {
+  $body.on('click', '._report_item', function() {
     $.ajax({
       type: 'delete',
       url: 'reports/' + $(this).data('report-id') + '/accept'
@@ -302,7 +302,7 @@ function adminSearchDocumentReady() {
       $('.datepick').attr('disabled', 'disabled');
     }
   });
-  $('body').on('change', '#filter-users select', function() {
+  $body.on('change', '#filter-users select', function() {
     var selected = $(this).find('option:selected').first();
     var text = selected.text().replace(/\s+/g, ' ');
     var select_id = $(this).attr('id');
@@ -352,25 +352,25 @@ Initializes effects for sorting in administration search engine.
 @for AdminDocumentReady
 **/
 function adminSortingDocumentReady() {
-  $('body').on('click', 'table#lessons-list thead tr th a', function(e) {
+  $body.on('click', 'table#lessons-list thead tr th a', function(e) {
     e.preventDefault();
     $('input#search_ordering').val($(this).data('ordering'));
     $('input#search_desc').val($(this).data('desc'));
     $('#admin-search-lessons').submit();
   });
-  $('body').on('click', 'table#elements-list thead tr th a', function(e) {
+  $body.on('click', 'table#elements-list thead tr th a', function(e) {
     e.preventDefault();
     $('input#search_ordering').val($(this).data('ordering'));
     $('input#search_desc').val($(this).data('desc'));
     $('#admin-search-elements').submit();
   });
-  $('body').on('click', 'table#users-list thead tr th a', function(e) {
+  $body.on('click', 'table#users-list thead tr th a', function(e) {
     e.preventDefault();
     $('input#search_ordering').val($(this).data('ordering'));
     $('input#search_desc').val($(this).data('desc'));
     $('#admin-search-users').submit();
   });
-  $('body').on('click', 'table#tags-list thead tr th a', function(e) {
+  $body.on('click', 'table#tags-list thead tr th a', function(e) {
     e.preventDefault();
     $('input#search_ordering').val($(this).data('ordering'));
     $('input#search_desc').val($(this).data('desc'));
@@ -384,7 +384,7 @@ Initializes effects for User.
 @for AdminDocumentReady
 **/
 function adminUsersDocumentReady() {
-  $('body').on('click', '._active_status', function(e) {
+  $body.on('click', '._active_status', function(e) {
     e.preventDefault();
     var link = $(this);
     var status = true;

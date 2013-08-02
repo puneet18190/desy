@@ -138,7 +138,7 @@ function notificationsDocumentReadyLessonModification() {
     closePopUp('lesson-notification');
     var lesson_id = $('#lesson-notification').data('lesson-id');
     $('#' + lesson_id).removeClass('_lesson_change_not_notified');
-    $('#' + lesson_id + ' .unpublish').attr('title', $('#popup_captions_container').data('title-unpublish'));
+    $('#' + lesson_id + ' .unpublish').attr('title', $captions.data('title-unpublish'));
     var id = lesson_id.split('_');
     id = id[id.length - 1];
     unbindLoader();

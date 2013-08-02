@@ -256,7 +256,7 @@ It shows an alert with error details, in case a media returned error.
 @param type {String} either <b>'audio'</b> or <b>'video'</b>
 **/
 function showLoadingMediaErrorPopup(code, type) {
-  var captions = $('#popup_captions_container');
+  var captions = $captions;
   var message = captions.data('media-error-code-' + code);
   var popup = captions.data('media-error-' + type);
   popup = popup.replace('%{code}', '' + code);
