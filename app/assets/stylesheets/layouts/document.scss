@@ -23,10 +23,47 @@ html.documents-controller {
     
     .documentPopUpContainer {
       
-      width: 91%;
+      
       height: 300px;
       padding: 2.750em 1.875em 1.875em;
       color: #c2c1c2;
+      .ChangeInfoContainerLoading {
+        z-index: 10;
+        position: absolute;
+        width: 705px;
+        height: 320px;
+        padding: 0px;
+        .fk_carica_elemento_file {
+          left: 77px;
+        }
+        textarea {
+          margin-bottom:0;
+        }
+        input[type="submit"], .buttonForm {
+          background-color: #fff;
+          color: #333;
+          &:hover {
+            background-color: #908f8f;
+
+          }
+        }
+        label.filebutton span input#new_document_input {
+          z-index: 999;
+          line-height: 0;
+          font-size: 50px;
+          position: absolute;
+          top: -2px;
+          left: -700px;
+          opacity: 0;
+          cursor: pointer;
+          _cursor: hand;
+          margin: 0;
+          padding: 0;
+        }
+        .filebutton {
+          @include svg-circle-icon-handler($assets-bottone-add-document_svg, 64px, 1, 1, 1, 0, 0, 0.5, 0, 0)
+        }
+      }
       
       .cols {
         
@@ -39,7 +76,7 @@ html.documents-controller {
         }
         
       }
-      
+
       img {
         
         width: 110px;
@@ -50,7 +87,7 @@ html.documents-controller {
       h1 {
         
         color: #fff;
-        font: 30px 'Nunito', sans-serif;
+        font: 180% 'Nunito', sans-serif;
         padding: 0;
         
       }
@@ -168,7 +205,9 @@ html.documents-controller {
       }
       
     }
-    
+   .uploadDocuments {
+        height: 345px; padding: 20px 28px;
+      } 
   }
   
   .documents-content {
