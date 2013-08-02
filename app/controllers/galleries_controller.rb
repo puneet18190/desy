@@ -55,7 +55,7 @@ class GalleriesController < ApplicationController
     :audio_for_video_editor_new_block,
     :audio_for_audio_editor_new_block,
     :image_for_image_editor_new_block,
-    :document_new_block
+    :document_for_lesson_editor_new_block
   ]
   
   # === Description
@@ -315,7 +315,7 @@ class GalleriesController < ApplicationController
   #
   # Ajax
   #
-  def document
+  def document_for_lesson_editor
     # TODO
   end
   
@@ -331,7 +331,7 @@ class GalleriesController < ApplicationController
   #
   # * GalleriesController#initialize_page
   #
-  def document_new_block
+  def document_for_lesson_editor_new_block
     # TODO
   end
   

@@ -442,9 +442,7 @@ function lessonEditorDocumentReadySlideButtons() {
     });
   });
   $body.on('click', '._attach_document', function() {
-    
-    alert('sto allegando un documento'); // TODO
-    
+    showDocumentGalleryInLessonEditor();
   });
 }
 
@@ -596,6 +594,28 @@ function removeGalleryInLessonEditor(sti_type) {
   $('#lesson_editor_' + sti_type + '_gallery_container').hide();
   $('li._lesson_editor_current_slide .slide-content').children().show();
   showEverythingOutCurrentSlide();
+}
+
+/**
+Shows document gallery.
+@method showDocumentGalleryInLessonEditor
+@for LessonEditorGalleries
+**/
+function showDocumentGalleryInLessonEditor() {
+  var current_slide = $('li._lesson_editor_current_slide');
+  current_slide.prepend('<layer class="_not_current_slide_disabled"></layer>');
+  hideEverythingOutCurrentSlide();
+  var gallery_container = $('#lesson_editor_document_gallery_container');
+  if(gallery_container.data('loaded')) {
+    gallery_container.show();
+    $('li._lesson_editor_current_slide .slide-content').children().hide();
+    current_slide.find('layer').remove();
+  } else {
+    $.ajax({
+      type: 'get',
+      url: '/lessons/galleries/document'
+    });
+  }
 }
 
 /**
