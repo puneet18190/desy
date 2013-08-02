@@ -115,18 +115,18 @@ function documentsDocumentReadyGeneral() {
     $('#search_documents_hidden_order').val(order);
     $.get(redirect_url);
   });
-  $('body').on('focus', '._document_change_info_container ._doc_description', function() {
+  $body.on('focus', '._document_change_info_container ._doc_description', function() {
     var placeholder = $('#dialog-document-' + $(this).data('document-id') + ' ._doc_description_placeholder');
     if(placeholder.val() != '') {
       placeholder.val('');
       $(this).val('');
     }
   });
-  $('body').on('click', '._close_document_preview_popup', function() {
+  $body.on('click', '._close_document_preview_popup', function() {
     var document_id = $(this).data('document-id');
     closePopUp('dialog-document-' + document_id);
   });
-  $('body').on('click', '._document_change_info_container ._cancel, ._document_change_info_to_pick.change_info_light', function() {
+  $body.on('click', '._document_change_info_container ._cancel, ._document_change_info_to_pick.change_info_light', function() {
     var document_id = $(this).data('document-id');
     $('#dialog-document-' + document_id + ' ._document_change_info_container').hide('fade', {}, 500, function() {
       var icon = $('#dialog-document-' + document_id + ' ._document_change_info_to_pick');
@@ -140,13 +140,13 @@ function documentsDocumentReadyGeneral() {
       container.find('._error_messages').html('');
     });
   });
-  $('body').on('click', '._document_change_info_to_pick.change_info', function() {
+  $body.on('click', '._document_change_info_to_pick.change_info', function() {
     var document_id = $(this).data('document-id');
     $('#dialog-document-' + document_id + ' ._document_change_info_container').show('fade', {}, 500);
     $(this).removeClass('change_info');
     $(this).addClass('change_info_light');
   });
-  $('body').on('click', '._document_pop_up_container ._download', function() {
+  $body.on('click', '._document_pop_up_container ._download', function() {
     
     alert('scaricando il documento id ' + $(this).data('document-id')); // TODO
     
@@ -183,32 +183,32 @@ Initializer for the loading form.
 @for DocumentsDocumentReady
 **/
 function documentsDocumentReadyUploader() {
-  $('body').on('click', '._empty_documents, #upload_document', function() {
+  $body.on('click', '._empty_documents, #upload_document', function() {
     showLoadDocumentPopUp();
   });
-  $('body').on('change', 'input#new_document_input', function() {
+  $body.on('change', 'input#new_document_input', function() {
     var file_name = $(this).val().replace("C:\\fakepath\\", '');
     if(file_name.length > 20) {
       file_name = file_name.substring(0, 20) + '...';
     }
     $('#document_attachment_show').text(file_name);
   });
-  $('body').on('click', '#load-document ._close', function() {
+  $body.on('click', '#load-document ._close', function() {
     closePopUp('load-document');
   })
-  $('body').on('click', '#new_document_submit', function() {
+  $body.on('click', '#new_document_submit', function() {
     $('input,textarea').removeClass('form_error');
     $('.barraLoading img').show();
     $('.barraLoading img').attr('src', '/assets/loadingBar.gif');
     $(this).closest('#new_document').submit();
   });
-  $('body').on('focus', '#load-document #title', function() {
+  $body.on('focus', '#load-document #title', function() {
     if($('#load-document #title_placeholder').val() == '') {
       $(this).attr('value', '');
       $('#load-document #title_placeholder').attr('value', '0');
     }
   });
-  $('body').on('focus', '#load-document #description', function() {
+  $body.on('focus', '#load-document #description', function() {
     if($('#load-document #description_placeholder').val() == '') {
       $(this).attr('value', '');
       $('#load-document #description_placeholder').attr('value', '0');
