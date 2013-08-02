@@ -107,6 +107,8 @@ class Slide < ActiveRecord::Base
   # Maximum length of the title
   MAX_COVER_TITLE_LENGTH = (I18n.t('language_parameters.lesson.length_title') > 255 ? 255 : I18n.t('language_parameters.lesson.length_title'))
   
+  serialize :metadata, OpenStruct
+
   validates_presence_of :lesson_id, :position
   validates_numericality_of :lesson_id, :position, :only_integer => true, :greater_than => 0
   validates_length_of :title, :maximum => 255, :allow_nil => true, unless: proc{ cover? }
@@ -114,17 +116,28 @@ class Slide < ActiveRecord::Base
   validates_inclusion_of :kind, :in => KINDS
   validates_uniqueness_of :position, :scope => :lesson_id
   validates_uniqueness_of :kind, :scope => :lesson_id, :if => :is_cover
-  validate :validate_associations, :validate_impossible_changes, :validate_cover, :validate_text, :validate_title, :validate_max_number_slides
+  validate :validate_associations, :validate_impossible_changes, :validate_cover, :validate_text, :validate_title, :validate_max_number_slides, :validate_math_images
   
   before_validation :init_validation
-  before_destroy :stop_if_cover
+  before_update :save_math_images
+  before_create :init_math_images_copy
+  after_create :copy_math_images
+  before_destroy :stop_if_cover, :remove_math_images_folder
+
+  def math_images
+    return metadata.math_images = MathImages.new([], id) unless metadata.math_images
+
+    metadata.math_images.model_id = id if id && !metadata.math_images.model_id
+
+    metadata.math_images
+  end
+
+  def math_images=(math_images)
+    metadata.math_images = math_images.is_a?(MathImages) ? math_images : MathImages.new(math_images, id)
+  end
 
   def self.last_of_lesson(lesson)
     order('position DESC').where(:lesson_id => lesson.id).first
-  end
-
-  def self.last_position_of_lesson(lesson)
-    last_of_lesson(lesson).position
   end
 
   # Used to center vertically the title
@@ -243,7 +256,7 @@ class Slide < ActiveRecord::Base
   # See LessonEditorController#save_slide, LessonEditorController#save_slide_and_exit, LessonEditorController#save_slide_and_edit
   #   slide.update_with_media_elements((params[:title].blank? ? nil : params[:title]), (params[:text].blank? ? nil : params[:text]), media_elements_params)
   #
-  def update_with_media_elements(title, text, media_elements)
+  def update_with_media_elements(title, text, media_elements, math_images)
     return false if self.new_record?
     resp = false
     ActiveRecord::Base.transaction do
@@ -251,6 +264,7 @@ class Slide < ActiveRecord::Base
       raise ActiveRecord::Rollback if lesson.nil?
       self.title = title
       self.text = text
+      self.math_images = math_images if math_images
       raise ActiveRecord::Rollback if !lesson.modify
       raise ActiveRecord::Rollback if !self.save
       media_elements.each do |k, v|
@@ -289,11 +303,12 @@ class Slide < ActiveRecord::Base
 
   def copy(lesson = nil)
     lesson ||= self.lesson
-    position = lesson == self.lesson ? self.class.last_position_of_lesson(lesson)+1 : self.position
+    position = lesson == self.lesson ? self.class.last_of_lesson(lesson).position+1 : self.position
 
     new_slide = Slide.new :position => position, :title => title, :text => text
     new_slide.lesson_id = lesson.id
     new_slide.kind = kind
+    new_slide.math_images = math_images
 
     ActiveRecord::Base.transaction do
       if !new_slide.save
@@ -553,6 +568,38 @@ class Slide < ActiveRecord::Base
     @slide = self.new_record? ? nil : Slide.where(:id => self.id).first
     return true if @slide.nil?
     return @slide.kind != COVER
+  end
+
+  def remove_math_images_folder
+    math_images.remove_folder
+  end
+
+  def save_math_images
+    math_images.save
+    true
+  end
+
+  def validate_math_images
+    if !math_images.is_a?(MathImages)                                                  ||
+       math_images.invalid?                                                            ||
+       ( persisted? && math_images.model_id != id )                                    ||
+       ( new_record? && math_images.model_id && !Slide.exists?(math_images.model_id) )
+      errors.add :math_images, :invalid
+    end
+  end
+
+
+  def init_math_images_copy
+    if math_images.model_id
+      @math_images_copy_id = math_images.model_id
+      math_images.model_id = nil
+    end
+    true
+  end
+
+  def copy_math_images
+    return true unless @math_images_copy_id
+    self.math_images = Slide.find(@math_images_copy_id).math_images.copy_to(id)
   end
   
 end

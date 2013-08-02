@@ -628,11 +628,11 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert lesson.publish
     slide = lesson.add_slide('image1', 2)
     assert !slide.nil?
-    assert !Slide.new.update_with_media_elements('titolo', 'testo', {1 => [0, 0, 'asdgs']})
+    assert !Slide.new.update_with_media_elements('titolo', 'testo', {1 => [0, 0, 'asdgs']}, [])
     assert slide.title.blank?
     assert slide.text.blank?
     assert !MediaElement.find(5).is_public
-    assert slide.update_with_media_elements('titolo2', 'testo2', {1 => [5, 0, 'captionzz']})
+    assert slide.update_with_media_elements('titolo2', 'testo2', {1 => [5, 0, 'captionzz']}, [])
     assert MediaElement.find(5).is_public
     slide.reload
     assert_equal 'titolo2', slide.title
@@ -642,11 +642,11 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert_equal 0, mes.alignment
     assert_equal 'captionzz', mes.caption
     # video in an image slide
-    assert !slide.update_with_media_elements('titolo4', 'testo4', {1 => [1, 0, 'captionzz']})
+    assert !slide.update_with_media_elements('titolo4', 'testo4', {1 => [1, 0, 'captionzz']}, [])
     slide = Slide.find slide.id
     assert_equal 'titolo2', slide.title
     # too many elements
-    assert !slide.update_with_media_elements('titolo4', 'testo4', {1 => [5, 0, 'captionzz'], 2 => [5, 0, 'captionzz']})
+    assert !slide.update_with_media_elements('titolo4', 'testo4', {1 => [5, 0, 'captionzz'], 2 => [5, 0, 'captionzz']}, [])
     slide = Slide.find slide.id
     assert_equal 'titolo2', slide.title
     # let's try with image4
@@ -655,7 +655,7 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert slide.title.blank?
     assert slide.text.blank?
     assert MediaElementsSlide.where(:slide_id => slide.id).empty?
-    assert slide.update_with_media_elements(nil, nil, {1 => [5, 0, 'caption1'], 2 => [6, 10, 'caption2'], 3 => [5, -110, 'caption3'], 4 => [6, 4, 'caption4']})
+    assert slide.update_with_media_elements(nil, nil, {1 => [5, 0, 'caption1'], 2 => [6, 10, 'caption2'], 3 => [5, -110, 'caption3'], 4 => [6, 4, 'caption4']}, [])
     slide = Slide.find slide.id
     assert slide.title.blank?
     assert slide.text.blank?
@@ -678,7 +678,7 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert_equal 'caption4', mes.caption
     assert_equal 4, MediaElementsSlide.where(:slide_id => slide.id).count
     count_media_elements_slide = MediaElementsSlide.count
-    assert slide.update_with_media_elements(nil, nil, {1 => [6, 0, 'caption1'], 2 => [6, 10, 'caption2'], 3 => [5, -110, 'caption3'], 4 => [6, 4, 'caption4']})
+    assert slide.update_with_media_elements(nil, nil, {1 => [6, 0, 'caption1'], 2 => [6, 10, 'caption2'], 3 => [5, -110, 'caption3'], 4 => [6, 4, 'caption4']}, [])
     assert_equal count_media_elements_slide, MediaElementsSlide.count
     assert_equal 6, MediaElementsSlide.find(stored_id_me).media_element_id
   end
@@ -707,7 +707,7 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert third_copy.copied_not_modified
     assert_equal 4, Slide.where(:lesson_id => third_copy.id).count
     s = Slide.where(:position => 4, :lesson_id => third_copy.id).first
-    assert s.update_with_media_elements('blaah', nil, {})
+    assert s.update_with_media_elements('blaah', nil, {}, [])
     third_copy = Lesson.find third_copy.id
     assert !third_copy.copied_not_modified
     # FOURTH COPY

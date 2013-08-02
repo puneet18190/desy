@@ -317,16 +317,17 @@ class LessonEditorController < ApplicationController
   
   # Saves the current slide, using Slide#update_with_media_elements
   def save_current_slide
-    media_elements_params = {}
-    (1...5).each do |i|
-      if !params["media_element_#{i}"].blank?
+    math_images = params[:math_images]
+    media_elements_params = {}.tap do |hash|
+      1.upto(5) do |i|
+        next if params["media_element_#{i}"].blank?
         media_element_id = correct_integer?(params["media_element_#{i}"]) ? params["media_element_#{i}"].to_i : 0
         alignment = params["media_element_align_#{i}"].blank? ? nil : params["media_element_align_#{i}"].to_i
         caption = params["caption_#{i}"]
-        media_elements_params[i] = [media_element_id, alignment, caption]
+        hash[i] = [media_element_id, alignment, caption]
       end
     end
-    @ok = @slide.update_with_media_elements((params[:title].blank? ? nil : params[:title]), (params[:text].blank? ? nil : params[:text]), media_elements_params)
+    @ok = @slide.update_with_media_elements((params[:title].blank? ? nil : params[:title]), (params[:text].blank? ? nil : params[:text]), media_elements_params, math_images)
   end
   
 end

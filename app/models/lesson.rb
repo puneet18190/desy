@@ -101,7 +101,7 @@ class Lesson < ActiveRecord::Base
   has_many :likes
   has_many :reports, :as => :reportable, :dependent => :destroy
   has_many :taggings, :as => :taggable, :dependent => :destroy
-  has_many :slides
+  has_many :slides, :dependent => :destroy
   has_many :media_elements_slides, through: :slides
   has_many :media_elements, through: :media_elements_slides, uniq: true
   has_many :virtual_classroom_lessons
@@ -621,7 +621,7 @@ class Lesson < ActiveRecord::Base
       slide = Slide.new
       slide.kind = kind
       slide.lesson_id = self.id
-      slide.position = Slide.last_position_of_lesson(self) + 1
+      slide.position = Slide.last_of_lesson(self).position + 1
       position ||= slide.position
       raise ActiveRecord::Rollback if !slide.save || !slide.change_position(position) || !self.modify
       resp = slide

@@ -576,6 +576,7 @@ CREATE TABLE slides (
     text text,
     "position" integer NOT NULL,
     kind slide_type NOT NULL,
+    metadata text,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );
@@ -1614,6 +1615,8 @@ ALTER TABLE ONLY virtual_classroom_lessons
 --
 -- PostgreSQL database dump complete
 --
+
+SET search_path TO "$user",public;
 
 INSERT INTO schema_migrations (version) VALUES ('20120924120617');
 

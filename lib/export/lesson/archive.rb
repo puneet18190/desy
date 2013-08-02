@@ -19,9 +19,10 @@ module Export
       # STORED or DEFLATED
       COMPRESSION_METHOD = Zip::ZipEntry::STORED
 
-      FOLDER                          = env_relative_pathname RAILS_PUBLIC, 'exports', 'lessons'
-      MEDIA_ELEMENTS_UPFOLDER         = RAILS_PUBLIC
-      ASSETS_ARCHIVE_MAIN_FOLDER_NAME = 'assets'
+      FOLDER                               = env_relative_pathname RAILS_PUBLIC, 'exports', 'lessons'
+      MEDIA_ELEMENTS_UPFOLDER              = RAILS_PUBLIC
+      ASSETS_ARCHIVE_MAIN_FOLDER_NAME      = 'assets'
+      MATH_IMAGES_ARCHIVE_MAIN_FOLDER_NAME = 'math_images'
 
       WRITE_TIME_FORMAT = '%Y%m%d_%H%M%S_%Z_%N'
 
@@ -32,9 +33,9 @@ module Export
       end
 
       private
-      attr_reader :lesson, :index, :filename_without_extension, :archive_main_folder, :filename, :folder, :path, :assets_archive_main_folder
+      attr_reader :lesson, :index, 
+                  :filename_without_extension, :archive_main_folder, :filename, :folder, :path, :assets_archive_main_folder, :math_images_archive_main_folder
       public
-
 
       def initialize(lesson, index)
         @lesson, @index = lesson, index
@@ -42,12 +43,13 @@ module Export
         filename_without_extension_and_time = lesson.title.parameterize
         filename_time                       = lesson.updated_at.utc.strftime(WRITE_TIME_FORMAT)
 
-        @filename_without_extension = filename_without_extension_and_time + '_' + filename_time
-        @archive_main_folder        = filename_without_extension
-        @filename                   = "#{filename_without_extension}.zip"
-        @folder                     = FOLDER.join lesson.id.to_s
-        @path                       = folder.join filename
-        @assets_archive_main_folder = File.join archive_main_folder, ASSETS_ARCHIVE_MAIN_FOLDER_NAME
+        @filename_without_extension      = filename_without_extension_and_time + '_' + filename_time
+        @archive_main_folder             = filename_without_extension
+        @filename                        = "#{filename_without_extension}.zip"
+        @folder                          = FOLDER.join lesson.id.to_s
+        @path                            = folder.join filename
+        @assets_archive_main_folder      = File.join archive_main_folder, ASSETS_ARCHIVE_MAIN_FOLDER_NAME
+        @math_images_archive_main_folder = File.join archive_main_folder, MATH_IMAGES_ARCHIVE_MAIN_FOLDER_NAME
       end
 
       def public_path
@@ -68,6 +70,10 @@ module Export
       end
 
       private
+
+      def math_images
+        lesson.slides.map{ |s| s.math_images.to_a(:with_folder) }.flatten.uniq_by{ |v| v.basename }
+      end
 
       def assets_compiled?
         ASSETS_FOLDER.exist? && !ASSETS_FOLDER.entries.empty?
@@ -100,8 +106,15 @@ module Export
               add_entry archive, path, archive_main_folder, path.relative_path_from(MEDIA_ELEMENTS_UPFOLDER)
             end
 
+            math_images.each do |path|
+              add_entry archive, path, math_images_archive_main_folder, path.basename
+            end
+
           end
         end
+      rescue => e
+        path.unlink if path.exist?
+        raise e
       end
 
       def with_index_tmpfile
