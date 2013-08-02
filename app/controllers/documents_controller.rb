@@ -89,9 +89,7 @@ class DocumentsController < ApplicationController
     record = Document.new :attachment => attachment
     record.title = params[:title_placeholder] != '0' ? '' : params[:title]
     record.description = params[:description_placeholder] != '0' ? '' : params[:description]
-    record.tags = params[:tags_value]
     record.user_id = current_user.id
-    record.validating_in_form = true
     if !record.save
       if record.errors.added? :attachment, :too_large
         return render :file => Rails.root.join('public/413.html'), :layout => false, :status => 413

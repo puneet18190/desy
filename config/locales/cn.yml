@@ -581,6 +581,12 @@ cn:
       done: "上传"
     # Error messages shown in case the user doesn't fill the form correctly
     error_captions:
+      # The documents folder is full
+      # 1 - controllers/application_controller.rb
+      document_folder_size_exceeded: "Document uploading is temporarly disabled; please try again later" # TODO
+      # The document is blank
+      # 1 - controllers/application_controller.rb
+      document_blank: "Attachment is blank" # TODO
       # Standard error for a text field which hasn't been filled properly (i.e. exceeded max number of characters, not filled, etc.)
       # 1 - controllers/application_controller.rb
       # 2 - controllers/application_controller.rb

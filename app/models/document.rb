@@ -55,7 +55,7 @@ class Document < ActiveRecord::Base
   validates_numericality_of :user_id, :only_integer => true, :greater_than => 0
   validates_length_of :title, :maximum => MAX_TITLE_LENGTH
   validates_length_of :description, :maximum => I18n.t('language_parameters.document.length_description')
-  validate :validate_associations, :validate_impossible_changes
+  validate :validate_associations, :validate_impossible_changes, :validate_size, :validate_maximum_folder_size
   
   before_validation :init_validation, :set_title_from_filename
   before_save :set_size
@@ -157,6 +157,18 @@ class Document < ActiveRecord::Base
   end
   
   private
+  
+  # Validates the size of the attached file, comparing it to the maximum size configured in megabytes in settings.yml
+  def validate_size
+    if false # TODO per maurizio
+      errors.add(:attachment, :too_large)
+    end
+  end
+  
+  # Validates the sum of the documents folder size to don't exceed the maximum size available
+  def validate_maximum_folder_size
+    errors.add :attachment, :folder_size_exceeded if false # TODO per maurizio
+  end
   
   # Sets the size (cañback)
   def set_size
