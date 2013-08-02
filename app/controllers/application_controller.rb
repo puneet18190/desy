@@ -216,7 +216,7 @@ class ApplicationController < ActionController::Base
   def convert_media_element_uploader_messages(errors)
     return [t('forms.error_captions.media_folder_size_exceeded')] if errors.added? :media, :folder_size_exceeded
     resp = convert_item_error_messages errors.messages
-    if errors.messages.has_key? :media && errors.messages[:media].any?
+    if errors.messages.has_key?(:media) && errors.messages[:media].any?
       return ([t('forms.error_captions.media_blank')] + resp) if errors.added? :media, :blank
       if !(/unsupported format/ =~ errors.messages[:media].to_s).nil? || !(/invalid extension/ =~ errors.messages[:media].to_s).nil?
         return [t('forms.error_captions.media_unsupported_format')] + resp
