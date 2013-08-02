@@ -82,6 +82,8 @@ images_for_page_in_gallery: 42
 videos_for_page_in_gallery: 18
 # Pagination for audio gallery (pagination made with infinite scroll)
 audios_for_page_in_gallery: 12
+# Pagination for document gallery (pagination made with infinite scroll)
+documents_for_page_in_gallery: 12
 # Pagination for sections in admin
 admin_general_pagination: 20
 # Application colors with codes, keywords and positions

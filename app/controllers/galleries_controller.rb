@@ -46,6 +46,9 @@ class GalleriesController < ApplicationController
   # Number of videos for page, configured in settings.yml
   VIDEOS_FOR_PAGE = SETTINGS['videos_for_page_in_gallery']
   
+  # Number of documents for page, configured in settings.yml
+  DOCUMENTS_FOR_PAGE = SETTINGS['documents_for_page_in_gallery']
+  
   before_filter :initialize_page, :only => [
     :image_for_lesson_editor_new_block,
     :audio_for_lesson_editor_new_block,
@@ -316,7 +319,7 @@ class GalleriesController < ApplicationController
   # Ajax
   #
   def document_for_lesson_editor
-    # TODO
+    get_documents(1)
   end
   
   # === Description
@@ -332,7 +335,11 @@ class GalleriesController < ApplicationController
   # * GalleriesController#initialize_page
   #
   def document_for_lesson_editor_new_block
-    # TODO
+    if @ok
+      get_documents(@page)
+    else
+      render :nothing => true
+    end
   end
   
   private
@@ -361,6 +368,13 @@ class GalleriesController < ApplicationController
   def get_images(page)
     x = current_user.own_media_elements(page, IMAGES_FOR_PAGE, Filters::IMAGE)
     @images = x[:records]
+    @tot_pages = x[:pages_amount]
+  end
+  
+  # Gets the audios, using User#own_documents
+  def get_documents(page)
+    x = current_user.own_documents(page, DOCUMENTS_FOR_PAGE)
+    @documents = x[:records]
     @tot_pages = x[:pages_amount]
   end
   
