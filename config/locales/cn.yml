@@ -2368,9 +2368,15 @@ cn:
       # Caption to cancel the uploading
       # 1 - views/documents/_new_form_popup.html.erb
       cancel: "Cancel" # TODO
+      # Description of the popup
+      # 1 - views/documents/_new_form_popup.html.erb
+      description: "Select a file from your desktop and upload it" # TODO
       # Caption to start the uploading
       # 1 - views/documents/_new_form_popup.html.erb
       done: "Upload" # TODO
+      # Title of the popup
+      # 1 - views/documents/_new_form_popup.html.erb
+      title: "Upload a document!" # TODO
     # The system prompts the user to upload a new document, if his section is empty
     # 1 - views/documents/_empty.html.erb
     upload_now: "Upload a new document now" # TODO
