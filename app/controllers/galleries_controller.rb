@@ -54,7 +54,8 @@ class GalleriesController < ApplicationController
     :mixed_for_video_editor_video_new_block,
     :audio_for_video_editor_new_block,
     :audio_for_audio_editor_new_block,
-    :image_for_image_editor_new_block
+    :image_for_image_editor_new_block,
+    :document_new_block
   ]
   
   # === Description
@@ -304,6 +305,34 @@ class GalleriesController < ApplicationController
     else
       render :nothing => true
     end
+  end
+  
+  # === Description
+  #
+  # Gets the first block of documents for the lesson editor
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  def document
+    # TODO
+  end
+  
+  # === Description
+  #
+  # Gets following blocks of documents for the lesson editor
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # * GalleriesController#initialize_page
+  #
+  def document_new_block
+    # TODO
   end
   
   private

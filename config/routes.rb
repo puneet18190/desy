@@ -66,21 +66,23 @@ Desy::Application.routes.draw do
   get 'tags/:word/check_presence' => 'tags#check_presence'
   
   # GALLERIES
-  get 'lessons/galleries/image'           => 'galleries#image_for_lesson_editor' # image in lesson editor
-  get 'lessons/galleries/image/new_block' => 'galleries#image_for_lesson_editor_new_block'
-  get 'lessons/galleries/audio'           => 'galleries#audio_for_lesson_editor' # audio in lesson editor
-  get 'lessons/galleries/audio/new_block' => 'galleries#audio_for_lesson_editor_new_block'
-  get 'lessons/galleries/video'           => 'galleries#video_for_lesson_editor' # video in lesson editor
-  get 'lessons/galleries/video/new_block' => 'galleries#video_for_lesson_editor_new_block'
-  get 'videos/galleries'                  => 'galleries#mixed_for_video_editor' # mixed image + video + text in video editor
-  get 'videos/galleries/image/new_block'  => 'galleries#mixed_for_video_editor_image_new_block'
-  get 'videos/galleries/video/new_block'  => 'galleries#mixed_for_video_editor_video_new_block'
-  get 'videos/galleries/audio'            => 'galleries#audio_for_video_editor' # audio in video editor
-  get 'videos/galleries/audio/new_block'  => 'galleries#audio_for_video_editor_new_block'
-  get 'audios/galleries/audio'            => 'galleries#audio_for_audio_editor' # audio in audio editor
-  get 'audios/galleries/audio/new_block'  => 'galleries#audio_for_audio_editor_new_block'
-  get 'images/galleries/image'            => 'galleries#image_for_image_editor' # image in image editor
-  get 'images/galleries/image/new_block'  => 'galleries#image_for_image_editor_new_block'
+  get 'lessons/galleries/image'             => 'galleries#image_for_lesson_editor' # image in lesson editor
+  get 'lessons/galleries/image/new_block'   => 'galleries#image_for_lesson_editor_new_block'
+  get 'lessons/galleries/audio'             => 'galleries#audio_for_lesson_editor' # audio in lesson editor
+  get 'lessons/galleries/audio/new_block'   => 'galleries#audio_for_lesson_editor_new_block'
+  get 'lessons/galleries/video'             => 'galleries#video_for_lesson_editor' # video in lesson editor
+  get 'lessons/galleries/video/new_block'   => 'galleries#video_for_lesson_editor_new_block'
+  get 'videos/galleries'                    => 'galleries#mixed_for_video_editor' # mixed image + video + text in video editor
+  get 'videos/galleries/image/new_block'    => 'galleries#mixed_for_video_editor_image_new_block'
+  get 'videos/galleries/video/new_block'    => 'galleries#mixed_for_video_editor_video_new_block'
+  get 'videos/galleries/audio'              => 'galleries#audio_for_video_editor' # audio in video editor
+  get 'videos/galleries/audio/new_block'    => 'galleries#audio_for_video_editor_new_block'
+  get 'audios/galleries/audio'              => 'galleries#audio_for_audio_editor' # audio in audio editor
+  get 'audios/galleries/audio/new_block'    => 'galleries#audio_for_audio_editor_new_block'
+  get 'images/galleries/image'              => 'galleries#image_for_image_editor' # image in image editor
+  get 'images/galleries/image/new_block'    => 'galleries#image_for_image_editor_new_block'
+  get 'images/galleries/document'           => 'galleries#document' # documents in lesson editor
+  get 'images/galleries/document/new_block' => 'galleries#document_new_block'
   
   # LESSON VIEWER
   get  'lessons/view/playlist'                         => 'lesson_viewer#playlist', :as => :lesson_viewer_playlist
