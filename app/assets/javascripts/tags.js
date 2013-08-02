@@ -25,7 +25,7 @@ Adds a tag without using the suggestion (the case with the suggestion is handled
 **/
 function addTagWithoutSuggestion(input, container_selector, tags_value_selector) {
   var my_val = $.trim($(input).val()).toLowerCase();
-  if(my_val.length >= $('#popup_parameters_container').data('min-tag-length') && checkNoTagDuplicates(my_val, container_selector)) {
+  if(my_val.length >= $parameters.data('min-tag-length') && checkNoTagDuplicates(my_val, container_selector)) {
     if($('.ui-autocomplete a').first().text() == my_val) {
       addToTagsValue(my_val, (container_selector + ' ' + tags_value_selector));
       createTagSpan(my_val, false).insertBefore(input);
@@ -456,7 +456,7 @@ function initTagsAutocomplete(scope) {
       }).always(bindLoader);
     },
     search: function() {
-      if(this.value.length < $('#popup_parameters_container').data('min-length-search-tags')) {
+      if(this.value.length < $parameters.data('min-length-search-tags')) {
         return false;
       }
     },

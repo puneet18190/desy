@@ -52,7 +52,7 @@ function virtualClassroomDocumentReadyIconsAndButtons() {
   });
   $body.on('click', '#empty_virtual_classroom', function() {
     if(!$(this).hasClass('disabled')) {
-      var captions = $('#popup_captions_container');
+      var captions = $captions;
       var title = captions.data('empty-virtual-classroom-title');
       var confirm = captions.data('empty-virtual-classroom-confirm');
       var yes = captions.data('empty-virtual-classroom-yes');
@@ -151,7 +151,7 @@ function virtualClassroomDocumentReadyPlaylist() {
     });
   });
   $body.on('click', '._empty_playlist_button', function() {
-    var captions = $('#popup_captions_container');
+    var captions = $captions;
     var title = captions.data('empty-virtual-classroom-playlist-title');
     var confirm = captions.data('empty-virtual-classroom-playlist-confirm');
     var yes = captions.data('empty-virtual-classroom-playlist-yes');

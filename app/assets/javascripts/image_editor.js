@@ -36,7 +36,7 @@ Initializer for the functionalities of committing changes (click on 'commit', on
 function imageEditorDocumentReadyCommit() {
   $body.on('click', '#commit_image_editor', function() {
     if($(this).hasClass('_with_choice')) {
-      var captions = $('#popup_captions_container');
+      var captions = $captions;
       var title = captions.data('save-media-element-editor-title');
       var confirm = captions.data('save-media-element-editor-confirm');
       var yes = captions.data('save-media-element-editor-yes');
@@ -64,7 +64,7 @@ function imageEditorDocumentReadyCommit() {
   });
   $body.on('click', '#image_editor #form_info_update_media_element_in_editor ._commit', function() {
     if($('#info_container').data('used-in-private-lessons')) {
-      var captions = $('#popup_captions_container');
+      var captions = $captions;
       var title = captions.data('overwrite-media-element-editor-title');
       var confirm = captions.data('overwrite-media-element-editor-confirm');
       var yes = captions.data('overwrite-media-element-editor-yes');

@@ -313,7 +313,7 @@ Initializer for the functionalities of committing changes (click on 'commit', on
 function audioEditorDocumentReadyCommit() {
   $body.on('click', '._exit_audio_editor', function() {
     stopCacheLoop();
-    var captions = $('#popup_captions_container');
+    var captions = $captions;
     showConfirmPopUp(captions.data('exit-audio-editor-title'), captions.data('exit-audio-editor-confirm'), captions.data('exit-audio-editor-yes'), captions.data('exit-audio-editor-no'), function() {
       $('dialog-confirm').hide();
       unbindLoader();
@@ -341,7 +341,7 @@ function audioEditorDocumentReadyCommit() {
     stopCacheLoop();
     submitMediaElementEditorCacheForm($('#audio_editor_form'));
     if($(this).hasClass('_with_choice')) {
-      var captions = $('#popup_captions_container');
+      var captions = $captions;
       var title = captions.data('save-media-element-editor-title');
       var confirm = captions.data('save-media-element-editor-confirm');
       var yes = captions.data('save-media-element-editor-yes');
@@ -381,7 +381,7 @@ function audioEditorDocumentReadyCommit() {
   });
   $body.on('click', '#audio_editor #form_info_update_media_element_in_editor ._commit', function() {
     if($('#info_container').data('used-in-private-lessons')) {
-      var captions = $('#popup_captions_container');
+      var captions = $captions;
       var title = captions.data('overwrite-media-element-editor-title');
       var confirm = captions.data('overwrite-media-element-editor-confirm');
       var yes = captions.data('overwrite-media-element-editor-yes');

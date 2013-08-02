@@ -591,7 +591,7 @@ function videoEditorDocumentReadyAddComponent() {
     var popup_id = 'dialog-image-gallery-' + image_id;
     var duration = parseInt($('#' + popup_id + ' input').val());
     if(isNaN(duration) || duration < 1) {
-      showErrorPopUp($('#popup_captions_container').data('invalid-component-duration-in-video-editor'));
+      showErrorPopUp($captions.data('invalid-component-duration-in-video-editor'));
     } else {
       var component = $('#' + popup_id + ' ._temporary ._video_component_thumb')[0].outerHTML;
       var preview = $('#' + popup_id + ' ._temporary ._image_preview_in_video_editor_gallery').html();
@@ -616,9 +616,9 @@ function videoEditorDocumentReadyAddComponent() {
     var text_color = preview.data('text-color');
     var duration = parseInt($('#video_editor_mixed_gallery_container ._texts ._duration_selector input').val());
     if(isNaN(duration) || duration < 1) {
-      showErrorPopUp($('#popup_captions_container').data('invalid-component-duration-in-video-editor'));
+      showErrorPopUp($captions.data('invalid-component-duration-in-video-editor'));
     } else if(preview.data('placeholder')) {
-      showErrorPopUp($('#popup_captions_container').data('empty-text-component-in-video-editor'));
+      showErrorPopUp($captions.data('empty-text-component-in-video-editor'));
     } else {
       var content = $('#text_component_preview textarea').val().split("\n").join('<br/>');
       var component = $('#video_editor_mixed_gallery_container ._texts ._temporary').html();
@@ -684,7 +684,7 @@ Initializer for the functionalities of committing changes (click on 'commit', on
 function videoEditorDocumentReadyCommit() {
   $body.on('click', '._exit_video_editor', function() {
     stopCacheLoop();
-    var captions = $('#popup_captions_container');
+    var captions = $captions;
     showConfirmPopUp(captions.data('exit-video-editor-title'), captions.data('exit-video-editor-confirm'), captions.data('exit-video-editor-yes'), captions.data('exit-video-editor-no'), function() {
       $('dialog-confirm').hide();
       unbindLoader();
@@ -712,7 +712,7 @@ function videoEditorDocumentReadyCommit() {
     stopCacheLoop();
     submitMediaElementEditorCacheForm($('#video_editor_form'));
     if($(this).hasClass('_with_choice')) {
-      var captions = $('#popup_captions_container');
+      var captions = $captions;
       var title = captions.data('save-media-element-editor-title');
       var confirm = captions.data('save-media-element-editor-confirm');
       var yes = captions.data('save-media-element-editor-yes');
@@ -739,7 +739,7 @@ function videoEditorDocumentReadyCommit() {
   });
   $body.on('click', '#video_editor #form_info_update_media_element_in_editor ._commit', function() {
     if($('#info_container').data('used-in-private-lessons')) {
-      var captions = $('#popup_captions_container');
+      var captions = $captions;
       var title = captions.data('overwrite-media-element-editor-title');
       var confirm = captions.data('overwrite-media-element-editor-confirm');
       var yes = captions.data('overwrite-media-element-editor-yes');
@@ -852,7 +852,7 @@ function videoEditorDocumentReadyCutters() {
     } else {
       duration = parseInt(duration);
       if(isNaN(duration) || duration < 1) {
-        showErrorPopUp($('#popup_captions_container').data('invalid-component-duration-in-video-editor'));
+        showErrorPopUp($captions.data('invalid-component-duration-in-video-editor'));
       } else {
         closeGenericVideoComponentCutter();
         changeDurationVideoEditorComponent(('video_component_' + identifier), duration);

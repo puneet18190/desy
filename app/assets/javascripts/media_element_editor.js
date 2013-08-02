@@ -20,7 +20,7 @@ function saveCacheLoop() {
   if($('html').hasClass('audio_editor-controller')) {
     cache_form = $('#audio_editor_form');
   }
-  var time = $('#popup_parameters_container').data('cache-time');
+  var time = $parameters.data('cache-time');
   if(cache_form != '' && $('#info_container').data('save-cache')) {
     submitMediaElementEditorCacheForm(cache_form);
     setTimeout(function() {

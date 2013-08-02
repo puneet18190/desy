@@ -102,9 +102,9 @@ Dialog used in {{#crossLinkModule "audio-editor"}}{{/crossLinkModule}} and in {{
 **/
 function showRestoreCacheMediaElementEditorPopUp(callback_ok, callback_no) {
   var obj = $('#dialog-restore-cache-media-element-editor');
-  var caption = $('#popup_captions_container').data('restore-cache-media-element-editor-message');
-  var msg_ok = $('#popup_captions_container').data('restore-cache-media-element-editor-yes');
-  var msg_no = $('#popup_captions_container').data('restore-cache-media-element-editor-no');
+  var caption = $captions.data('restore-cache-media-element-editor-message');
+  var msg_ok = $captions.data('restore-cache-media-element-editor-yes');
+  var msg_no = $captions.data('restore-cache-media-element-editor-no');
   content = '<p class="upper">' + caption + '</p>';
   var dialog_buttons = {};
   dialog_buttons[msg_ok] = callback_ok;
@@ -281,7 +281,7 @@ function showTimedPopUp(content, id) {
       open: function(event, ui) {
         setTimeout(function() {
           closePopUp(id);
-        }, $('#popup_parameters_container').data('timeout'));
+        }, $parameters.data('timeout'));
       }
     });
   }

@@ -256,7 +256,7 @@ function addLesson(lesson_id, destination, current_url, reload) {
       url: '/lessons/' + lesson_id + '/add?destination=' + destination,
       success: function(data) {
         if(data.ok) {
-          $('#popup_captions_container').data('temporary-msg', data.msg);
+          $captions.data('temporary-msg', data.msg);
           $.ajax({
             type: 'get',
             url: redirect_url
@@ -306,7 +306,7 @@ Calls the url to destroy a lesson. It removes the lesson from the page.
 @param current_url {String} url where the lesson is added from
 **/
 function destroyLesson(lesson_id, destination, current_url) {
-  var captions = $('#popup_captions_container');
+  var captions = $captions;
   showConfirmPopUp(captions.data('destroy-lesson-title'), captions.data('destroy-lesson-confirm'), captions.data('destroy-lesson-yes'), captions.data('destroy-lesson-no'), function() {
     $('#dialog-confirm').hide();
     var redirect_url = addDeleteItemToCurrentUrl(current_url, (destination + '_' + lesson_id));
@@ -389,7 +389,7 @@ Calls the url to publish a lesson. It reloads the item.
 @param destination {String} destination (used to pick the HTML id of the lesson)
 **/
 function publishLesson(lesson_id, destination) {
-  var captions = $('#popup_captions_container');
+  var captions = $captions;
   showConfirmPopUp(captions.data('publish-title'), captions.data('publish-confirm'), captions.data('publish-yes'), captions.data('publish-no'), function() {
     $('#dialog-confirm').hide();
     $.ajax({
@@ -425,7 +425,7 @@ function removeLesson(lesson_id, destination, current_url, reload) {
       url: '/lessons/' + lesson_id + '/remove?destination=' + destination,
       success: function(data) {
         if(data.ok) {
-          $('#popup_captions_container').data('temporary-msg', data.msg);
+          $captions.data('temporary-msg', data.msg);
           $.ajax({
             type: 'get',
             url: redirect_url
@@ -460,7 +460,7 @@ Calls the url to unpublish a lesson. It reloads the item.
 @param destination {String} destination (used to pick the HTML id of the lesson)
 **/
 function unpublishLesson(lesson_id, destination) {
-  var captions = $('#popup_captions_container');
+  var captions = $captions;
   showConfirmPopUp(captions.data('unpublish-title'), captions.data('unpublish-confirm'), captions.data('unpublish-yes'), captions.data('unpublish-no'), function() {
     $('#dialog-confirm').hide();
     $.ajax({
@@ -500,7 +500,7 @@ function addMediaElement(media_element_id, destination, current_url, reload) {
       url: '/media_elements/' + media_element_id + '/add?destination=' + destination,
       success: function(data) {
         if(data.ok) {
-          $('#popup_captions_container').data('temporary-msg', data.msg);
+          $captions.data('temporary-msg', data.msg);
           $.ajax({
             type: 'get',
             url: redirect_url
@@ -523,7 +523,7 @@ Calls the url to destroy a media element. It removes the element from the page.
 @param used_in_private_lessons {Boolean} if true, the application writes in the confirmation popup that the user is going to remove the same element from his private lessons
 **/
 function destroyMediaElement(media_element_id, destination, current_url, used_in_private_lessons) {
-  var captions = $('#popup_captions_container');
+  var captions = $captions;
   var title = captions.data('destroy-media-element-title');
   var confirm = captions.data('destroy-media-element-confirm');
   var yes = captions.data('destroy-media-element-yes');
@@ -578,7 +578,7 @@ function removeMediaElement(media_element_id, destination, current_url, reload) 
       url: '/media_elements/' + media_element_id + '/remove?destination=' + destination,
       success: function(data) {
         if(data.ok) {
-          $('#popup_captions_container').data('temporary-msg', data.msg);
+          $captions.data('temporary-msg', data.msg);
           $.ajax({
             type: 'get',
             url: redirect_url
