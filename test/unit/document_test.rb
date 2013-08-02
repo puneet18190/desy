@@ -16,8 +16,7 @@ class DocumentTest < ActiveSupport::TestCase
   
   test 'empty_and_defaults' do
     @document = Document.new
-    assert_nil @document.title
-    assert_error_size 5, @document
+    assert_error_size 6, @document
   end
   
   test 'attr_accessible' do
@@ -31,8 +30,6 @@ class DocumentTest < ActiveSupport::TestCase
     assert_invalid @document, :user_id, 0.6, 1, :not_an_integer
     assert_invalid @document, :title, long_string(@max_title + 1), long_string(@max_title), :too_long, {:count => @max_title}
     assert_invalid @document, :description, long_string(@max_description + 1), long_string(@max_description), :too_long, {:count => @max_description}
-    @document.title = nil
-    @document.description = nil
     assert_obj_saved @document
   end
   

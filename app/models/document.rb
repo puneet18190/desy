@@ -51,13 +51,13 @@ class Document < ActiveRecord::Base
   belongs_to :user
   has_many :documents_slides
   
-  validates_presence_of :user_id, :title, :attachment
+  validates_presence_of :user_id, :title, :description, :attachment
   validates_numericality_of :user_id, :only_integer => true, :greater_than => 0
   validates_length_of :title, :maximum => MAX_TITLE_LENGTH
   validates_length_of :description, :maximum => I18n.t('language_parameters.document.length_description')
   validate :validate_associations, :validate_impossible_changes, :validate_size, :validate_maximum_folder_size
   
-  before_validation :init_validation, :set_title_from_filename
+  before_validation :init_validation
   before_save :set_size
   
   # Returns the size and extension in a nice way for the views
@@ -173,12 +173,6 @@ class Document < ActiveRecord::Base
   # Sets the size (cañback)
   def set_size
     self.size = attachment.size if attachment.size
-  end
-  
-  # Sets automatically the title from the file title if it's nil
-  def set_title_from_filename
-    self.title = uploaded_filename_without_extension.humanize[0, MAX_TITLE_LENGTH] if title.blank? && uploaded_filename_without_extension
-    true
   end
   
   # Validates the presence of all the associated objects

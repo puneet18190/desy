@@ -1615,6 +1615,8 @@ ALTER TABLE ONLY virtual_classroom_lessons
 -- PostgreSQL database dump complete
 --
 
+SET search_path TO "$user",public;
+
 INSERT INTO schema_migrations (version) VALUES ('20120924120617');
 
 INSERT INTO schema_migrations (version) VALUES ('20120924121212');
