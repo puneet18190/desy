@@ -170,10 +170,10 @@ class Document < ActiveRecord::Base
   
   # Validates the sum of the documents folder size to don't exceed the maximum size available
   def validate_maximum_folder_size
-    errors.add :attachment, :folder_size_exceeded if false # TODO per maurizio
+    errors.add :attachment, :folder_size_exceeded if DocumentUploader.maximum_folder_size_exceeded?
   end
   
-  # Sets the size (cañback)
+  # Sets the size (callback)
   def set_size
     self.size = attachment.size if attachment.size
   end

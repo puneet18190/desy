@@ -118,6 +118,8 @@ max_media_size: 50
 max_document_size: 50
 # Maximum size of the media elements folder (in gigabytes)
 maximum_media_elements_folder_size: 20
+# Maximum size of the documents folder (in gigabytes)
+maximum_documents_folder_size: 20
 # Cookie key
 cookie_key: '_desy_session'
 # Session timeout (in hours)
