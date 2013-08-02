@@ -85,8 +85,7 @@ class DocumentsController < ApplicationController
   # Html
   #
   def create
-    attachment = params[:attachment]
-    record = Document.new :attachment => attachment
+    record = Document.new :attachment => params[:attachment]
     record.title = params[:title_placeholder] != '0' ? '' : params[:title]
     record.description = params[:description_placeholder] != '0' ? '' : params[:description]
     record.user_id = current_user.id
@@ -98,7 +97,7 @@ class DocumentsController < ApplicationController
       fields = record.errors.messages.keys
       @error_fields = []
       fields.each do |f|
-        @error_fields << f.to_s
+        @error_fields << f.to_s if record.errors.messages[f].any?
       end
     end
     render :layout => false
