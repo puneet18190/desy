@@ -1,63 +1,27 @@
 <div id="document_gallery" class="document_gallery document-kind">
-  <div class="gallery-footer">
-    <div class="pull-right">
-      <a class="_close_document_gallery exitGallery">ESCI GALL</a>
+  
+  <% if documents.empty? %>
+    
+    <div class="emptyGalleryDocumentEditor">
+      <p>Non HAI DOCUMENTI</p>
     </div>
-    <div class="pull-right">
-      <a>ATTACH</a>
+    
+  <% else %>
+    
+    <div class="attachedExternal">
+      <div class="attachedInternal">
+        <!-- qui lista di documenti allegati e posti vuoti -->
+      </div>
     </div>
-  </div>
-  <div class="gallery-header">
-    <h3 class="pull-left">SELECT DOCUMENTS</h3>
-    <div class="audioIcon">&nbsp;</div>
-  </div>
-  <%#= render :partial => 'galleries/contents/document', :locals => {:documents => documents} %>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <div id="document_gallery_content" class="scrollVerde pseudo-ul">
-    <div class="scroll-pane">
-      <% if documents.empty? %>
-        <div class="emptyGalleryDocumentEditor">
-          <p>Non HAI DOCUMENTI</p>
-        </div>
-      <% else %>
-        <% documents.each_with_index do |document, index| %>
-          <%#= render :partial => 'galleries/thumbs/document', :locals => {:document => document, :index => index} %>
-          
-          
-          
-          <!--  DECIDERE COME GESTIRE L'ALLINEAMENTO DELLA GALLERIA  -->
-          <div id="gallery_document_<%= document.id %>" class="_document_gallery_thumb pseudo-li" data-document-id="<%= document.id %>" title="<%= document.title %>">
-            <a>DOCUMENTO</a>
-            <div class="documentInGalleryPopUp" id="dialog-document-gallery-<%= document.id %>" data-document-id="<%= document.id %>">
-              <!-- manca la popup di info -->
-            </div>
-          </div>
-          
-          
-          
-        <% end %>
-      <% end %>
+    
+    <div class="documentsExternal">
+      <!-- qui scrollpane etc... ricorda di mettere anche le popups -->
     </div>
-  </div>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+    
+    <div class="documentsFooter">
+      <!-- qui vanno fumetto, filtro, e due bottoni cancel e attach -->
+    </div>
+    
+  <% end %>
   
 </div>
