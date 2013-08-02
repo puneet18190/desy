@@ -54,7 +54,7 @@
       <div class="cols fltlft text-centered">
         <%= image_tag document.icon_path %>
         <p style="margin-top:50px">
-          <a class="upper buttonDownload _download" data-document-id="<%= document.id %>"><%= t('documents.download') %></a>
+          <a class="upper buttonDownload" href="<%= document.url %>"><%= t('documents.download') %></a>
         </p>
         <p class="upper">
           <%= document.size_and_extension %>

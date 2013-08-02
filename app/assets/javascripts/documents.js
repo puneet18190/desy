@@ -146,11 +146,6 @@ function documentsDocumentReadyGeneral() {
     $(this).removeClass('change_info');
     $(this).addClass('change_info_light');
   });
-  $body.on('click', '._document_pop_up_container ._download', function() {
-    
-    alert('scaricando il documento id ' + $(this).data('document-id')); // TODO
-    
-  });
 }
 
 /**
