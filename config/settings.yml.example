@@ -114,6 +114,8 @@ minimum_password_length: 8
 maximum_password_length:
 # Maximum size of a media element (in megabytes)
 max_media_size: 50
+# Maximum size of a document (in megabytes)
+max_document_size: 50
 # Maximum size of the media elements folder (in gigabytes)
 maximum_media_elements_folder_size: 20
 # Cookie key

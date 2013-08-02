@@ -42,6 +42,9 @@ class Document < ActiveRecord::Base
   # Maximum length of the title
   MAX_TITLE_LENGTH = (I18n.t('language_parameters.document.length_title') > 255 ? 255 : I18n.t('language_parameters.document.length_title'))
   
+  # Maximum attachment size expressed in megabytes
+  MAX_ATTACHMENT_SIZE = SETTINGS['max_document_size'].megabytes
+  
   serialize :metadata, OpenStruct
   
   attr_accessible :title, :description, :attachment
@@ -160,7 +163,7 @@ class Document < ActiveRecord::Base
   
   # Validates the size of the attached file, comparing it to the maximum size configured in megabytes in settings.yml
   def validate_size
-    if false # TODO per maurizio
+    if attachment.present? && attachment.file.size > MAX_ATTACHMENT_SIZE
       errors.add(:attachment, :too_large)
     end
   end
