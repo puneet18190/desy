@@ -234,12 +234,10 @@ class ApplicationController < ActionController::Base
   # Used for errors in forms of load documents.
   def convert_document_uploader_messages(errors)
     return [t('forms.error_captions.document_folder_size_exceeded')] if errors.added? :attachment, :folder_size_exceeded
-    resp = convert_item_error_messages errors.messages
-    if errors.messages.has_key? :attachment && errors.messages[:attachment].any?
-      return ([t('forms.error_captions.document_blank')] + resp)
-    else
-      return resp
-    end
+    resp = []
+    resp << t('forms.error_captions.fill_all_the_fields_or_too_long') if errors.messages.has_key?(:title) || errors.messages.has_key?(:description)
+    resp << t('forms.error_captions.document_blank') if errors.messages.has_key?(:attachment) && errors.messages[:attachment].any?
+    resp
   end
   
   # Used for errors in forms of user profile: converts an item of type ActiveModel::Errors into a translated message for the user.
