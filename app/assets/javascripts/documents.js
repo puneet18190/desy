@@ -246,7 +246,7 @@ function showLoadDocumentPopUp() {
         $('#load-document #description_placeholder').val('');
         $('#document_attachment_show').text($('#load-document').data('placeholder-attachment'));
         $('#load-document .form_error').removeClass('form_error');
-        $('#load-document .innerUploadFileButton').val('');
+        $('#new_document_input').val('');
       },
       close: function() {
         $('#load-document iframe').attr('src', 'about:blank');

@@ -8,7 +8,7 @@
     <div class="ChangeInfoContainerLoading">
       
       <%= form_tag documents_path, :method => :post, :id => 'new_document', :class => 'formModifyInfo', :multipart => true do %>
-       
+        
         <div class="cols fltlft" style="width:300px">
           <div id="document_attachment_show" class="fk_carica_elemento_file fltrt" style="color:white"></div>
           <label class="filebutton">
@@ -20,17 +20,12 @@
         <div class="cols fltrt" style="width:380px">
           <h1><%= t('documents.upload_form.title') %></h1>
           <p style="padding-bottom:30px; padding-top:0; color:white"><%= t('documents.upload_form.description') %></p>
-        </div>  
+        </div>
         <br class="clearfloat">
-        
-
-        
         <%= text_field_tag 'title', '' %>
         <%= hidden_field_tag 'title_placeholder', '' %>
         <%= text_area_tag 'description', '' %>
         <%= hidden_field_tag 'description_placeholder', '' %>
-        
-
         <div class="fltrt lower" style="margin-top:5px">
           <div class="fltlft" style="margin-top:5px">
             <a class="_close buttonForm">

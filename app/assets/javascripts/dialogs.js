@@ -372,7 +372,7 @@ function showLoadMediaElementPopUp() {
         $('#load-media-element ._tags_container ._placeholder').show();
         $('#media_element_media_show').text($('#load-media-element').data('placeholder-media'));
         $('#load-media-element .form_error').removeClass('form_error');
-        $('#load-media-element .innerUploadFileButton').val('');
+        $('#new_media_element_input').val('');
       },
       close: function() {
         $('#load-media-element iframe').attr('src', 'about:blank');
