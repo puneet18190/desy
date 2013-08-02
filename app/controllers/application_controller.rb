@@ -235,8 +235,8 @@ class ApplicationController < ActionController::Base
   def convert_document_uploader_messages(errors)
     return [t('forms.error_captions.document_folder_size_exceeded')] if errors.added? :attachment, :folder_size_exceeded
     resp = convert_item_error_messages errors.messages
-    if errors.messages.has_key? :attachment && errors.messages[:attachment].any?
-      return ([t('forms.error_captions.document_blank')] + resp) if errors.added? :attachment, :blank
+    if errors.messages.has_key? :attachment
+      return ([t('forms.error_captions.document_blank')] + resp)
     else
       return resp
     end
