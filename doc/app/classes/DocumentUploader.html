@@ -89,6 +89,18 @@
           </ul>
         </dd>
       
+        <dt>M</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-c-maximum_folder_size_exceeded-3F">maximum_folder_size_exceeded?</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
         <dt>O</dt>
         <dd>
           <ul>
@@ -186,6 +198,19 @@
             </tr>
           
         
+          <tr valign='top'>
+            <td class="attr-name">MAXIMUM_FOLDER_SIZE</td>
+            <td>=</td>
+            <td class="attr-value">SETTINGS[&#x27;maximum_documents_folder_size&#x27;].gigabytes.to_i</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"><p>Maximum allowed size for media elements folder; if exceeded, upload gets
+disabled</p></td>
+            </tr>
+          
+        
       </table>
     
 
@@ -237,10 +262,45 @@
                 
               </p>
               <div id="method-c-folder_size_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/uploaders/document_uploader.rb, line 24</span>
+                <pre><span class="ruby-comment"># File app/uploaders/document_uploader.rb, line 28</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">folder_size</span>
   <span class="ruby-keyword">return</span> <span class="ruby-number">0</span> <span class="ruby-keyword">unless</span> <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">exists?</span> <span class="ruby-constant">FOLDER</span>
   <span class="ruby-constant">Find</span>.<span class="ruby-identifier">find</span>(<span class="ruby-constant">FOLDER</span>).<span class="ruby-identifier">sum</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">stat</span>(<span class="ruby-identifier">f</span>).<span class="ruby-identifier">size</span> }
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-c-maximum_folder_size_exceeded-3F">
+            
+              <b>maximum_folder_size_exceeded?</b>()
+            
+            <a href="../classes/DocumentUploader.html#method-c-maximum_folder_size_exceeded-3F" name="method-c-maximum_folder_size_exceeded-3F" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Whether the media folder size exceeds the maximum size or not</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-maximum_folder_size_exceeded-3F_source')" id="l_method-c-maximum_folder_size_exceeded-3F_source">show</a>
+                
+              </p>
+              <div id="method-c-maximum_folder_size_exceeded-3F_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/uploaders/document_uploader.rb, line 34</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">maximum_folder_size_exceeded?</span>
+  <span class="ruby-identifier">folder_size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-constant">MAXIMUM_FOLDER_SIZE</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -273,7 +333,7 @@
                 
               </p>
               <div id="method-c-remove_folder-21_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/uploaders/document_uploader.rb, line 20</span>
+                <pre><span class="ruby-comment"># File app/uploaders/document_uploader.rb, line 24</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">remove_folder!</span>
   <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">rm_rf</span> <span class="ruby-constant">FOLDER</span>
 <span class="ruby-keyword">end</span></pre>
@@ -310,7 +370,7 @@
                 
               </p>
               <div id="method-i-cache_dir_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/uploaders/document_uploader.rb, line 35</span>
+                <pre><span class="ruby-comment"># File app/uploaders/document_uploader.rb, line 44</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">cache_dir</span>
   <span class="ruby-constant">Rails</span>.<span class="ruby-identifier">root</span>.<span class="ruby-identifier">join</span> <span class="ruby-string">&#39;tmp/documents&#39;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -346,7 +406,7 @@ version_name here, see uploader/store.rb for details.</p>
                 
               </p>
               <div id="method-i-filename_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/uploaders/document_uploader.rb, line 53</span>
+                <pre><span class="ruby-comment"># File app/uploaders/document_uploader.rb, line 62</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">filename</span>
   <span class="ruby-node">&quot;#{original_filename_without_extension.parameterize}_#{model.filename_token}#{original_extension}&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">original_filename</span>
 <span class="ruby-keyword">end</span></pre>
@@ -381,7 +441,7 @@ version_name here, see uploader/store.rb for details.</p>
                 
               </p>
               <div id="method-i-folder_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/uploaders/document_uploader.rb, line 39</span>
+                <pre><span class="ruby-comment"># File app/uploaders/document_uploader.rb, line 48</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">folder</span>
   <span class="ruby-constant">File</span>.<span class="ruby-identifier">dirname</span> <span class="ruby-identifier">path</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">path</span>
 <span class="ruby-keyword">end</span></pre>
@@ -416,7 +476,7 @@ version_name here, see uploader/store.rb for details.</p>
                 
               </p>
               <div id="method-i-original_extension_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/uploaders/document_uploader.rb, line 43</span>
+                <pre><span class="ruby-comment"># File app/uploaders/document_uploader.rb, line 52</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">original_extension</span>
   <span class="ruby-constant">File</span>.<span class="ruby-identifier">extname</span>(<span class="ruby-identifier">original_filename</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">original_filename</span>
 <span class="ruby-keyword">end</span></pre>
@@ -451,7 +511,7 @@ version_name here, see uploader/store.rb for details.</p>
                 
               </p>
               <div id="method-i-original_filename_without_extension_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/uploaders/document_uploader.rb, line 47</span>
+                <pre><span class="ruby-comment"># File app/uploaders/document_uploader.rb, line 56</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">original_filename_without_extension</span>
   <span class="ruby-constant">File</span>.<span class="ruby-identifier">basename</span>(<span class="ruby-identifier">original_filename</span>, <span class="ruby-identifier">original_extension</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">original_filename</span>
 <span class="ruby-keyword">end</span></pre>
@@ -487,7 +547,7 @@ sensible default for uploaders that are meant to be mounted:</p>
                 
               </p>
               <div id="method-i-store_dir_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/uploaders/document_uploader.rb, line 31</span>
+                <pre><span class="ruby-comment"># File app/uploaders/document_uploader.rb, line 40</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">store_dir</span>
   <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span> <span class="ruby-constant">STORE_DIR</span>, <span class="ruby-node">&quot;#{model.id}&quot;</span>
 <span class="ruby-keyword">end</span></pre>

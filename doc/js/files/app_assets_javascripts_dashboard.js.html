@@ -99,6 +99,8 @@
             
                 <li><a href="../classes/DocumentsDocumentReady.html">DocumentsDocumentReady</a></li>
             
+                <li><a href="../classes/DocumentsUploader.html">DocumentsUploader</a></li>
+            
                 <li><a href="../classes/GalleriesAccessories.html">GalleriesAccessories</a></li>
             
                 <li><a href="../classes/GalleriesDocumentReady.html">GalleriesDocumentReady</a></li>
@@ -333,19 +335,19 @@ Initializer for the animation effects of the Dashboard.
 @for DashboardDocumentReady
 **/
 function dashboardDocumentReady() {
-  $(&#x27;body&#x27;).on(&#x27;mouseover&#x27;, &#x27;._empty_media_elements&#x27;, function() {
+  $body.on(&#x27;mouseover&#x27;, &#x27;._empty_media_elements&#x27;, function() {
     $(this).find(&#x27;._empty_media_elements_hover&#x27;).addClass(&#x27;current&#x27;);
   });
-  $(&#x27;body&#x27;).on(&#x27;mouseout&#x27;, &#x27;._empty_media_elements&#x27;, function() {
+  $body.on(&#x27;mouseout&#x27;, &#x27;._empty_media_elements&#x27;, function() {
     $(this).find(&#x27;._empty_media_elements_hover&#x27;).removeClass(&#x27;current&#x27;);
   });
-  $(&#x27;body&#x27;).on(&#x27;mouseover&#x27;, &#x27;._empty_lessons&#x27;, function() {
+  $body.on(&#x27;mouseover&#x27;, &#x27;._empty_lessons&#x27;, function() {
     $(this).find(&#x27;._empty_lessons_hover&#x27;).addClass(&#x27;current&#x27;);
   });
-  $(&#x27;body&#x27;).on(&#x27;mouseout&#x27;, &#x27;._empty_lessons&#x27;, function() {
+  $body.on(&#x27;mouseout&#x27;, &#x27;._empty_lessons&#x27;, function() {
     $(this).find(&#x27;._empty_lessons_hover&#x27;).removeClass(&#x27;current&#x27;);
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._empty_lessons&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;._empty_lessons&#x27;, function() {
     window.location = &#x27;/lessons/new&#x27;;
   });
   $(&#x27;#switch_to_lessons&#x27;).click(function() {
@@ -449,7 +451,7 @@ function getHtmlPagination(pos, pages_amount) {
     prev_attrs.data = {
       page: pos - 1
     };
-    prev_attrs.title = $(&#x27;#popup_captions_container&#x27;).data(&#x27;title-pagination-left&#x27;);
+    prev_attrs.title = $captions.data(&#x27;title-pagination-left&#x27;);
   }
   if(pos &gt;= pages_amount) {
     next_attrs.role = &#x27;disabled&#x27;;
@@ -457,7 +459,7 @@ function getHtmlPagination(pos, pages_amount) {
     next_attrs.data = {
       page: pos + 1
     };
-    next_attrs.title = $(&#x27;#popup_captions_container&#x27;).data(&#x27;title-pagination-right&#x27;);
+    next_attrs.title = $captions.data(&#x27;title-pagination-right&#x27;);
   }
   var pagination = $(&#x27;&lt;span/&gt;&#x27;, {
     &#x27;class&#x27;: &#x27;dots_pagination&#x27;

@@ -99,6 +99,8 @@
             
                 <li><a href="../classes/DocumentsDocumentReady.html">DocumentsDocumentReady</a></li>
             
+                <li><a href="../classes/DocumentsUploader.html">DocumentsUploader</a></li>
+            
                 <li><a href="../classes/GalleriesAccessories.html">GalleriesAccessories</a></li>
             
                 <li><a href="../classes/GalleriesDocumentReady.html">GalleriesDocumentReady</a></li>
@@ -388,10 +390,10 @@ Initializer for effects of closing a gallery. Typically, when closing a gallery 
 @for GalleriesDocumentReady
 **/
 function galleriesDocumentReadyClose() {
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._close_mixed_gallery_in_video_editor&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;._close_mixed_gallery_in_video_editor&#x27;, function() {
     closeGalleryInVideoEditor(&#x27;mixed&#x27;);
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._close_audio_gallery_in_video_editor&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;._close_audio_gallery_in_video_editor&#x27;, function() {
     closeGalleryInVideoEditor(&#x27;audio&#x27;);
     var expanded_audio = $(&#x27;._audio_expanded_in_gallery&#x27;);
     if(expanded_audio.length &gt; 0) {
@@ -401,7 +403,7 @@ function galleriesDocumentReadyClose() {
       $(&#x27;#&#x27; + audio_id + &#x27; ._expanded&#x27;).hide();
     }
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._close_audio_gallery_in_audio_editor&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;._close_audio_gallery_in_audio_editor&#x27;, function() {
     closeGalleryInAudioEditor();
     var expanded_audio = $(&#x27;._audio_expanded_in_gallery&#x27;);
     if(expanded_audio.length &gt; 0) {
@@ -419,17 +421,17 @@ Initializer for effects of opening a gallery and opening the individual dialog o
 @for GalleriesDocumentReady
 **/
 function galleriesDocumentReadyOpen() {
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;,&#x27;._image_gallery_thumb&#x27;, function(e) {
+  $body.on(&#x27;click&#x27;,&#x27;._image_gallery_thumb&#x27;, function(e) {
     e.preventDefault();
     showImageInGalleryPopUp($(this).data(&#x27;image-id&#x27;));
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;,&#x27;._video_gallery_thumb&#x27;, function(e) {
+  $body.on(&#x27;click&#x27;,&#x27;._video_gallery_thumb&#x27;, function(e) {
     e.preventDefault();
     if(!$(this).hasClass(&#x27;_disabled&#x27;)) {
       showVideoInGalleryPopUp($(this).data(&#x27;video-id&#x27;));
     }
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._audio_gallery_thumb._enabled ._compact&#x27;, function(e) {
+  $body.on(&#x27;click&#x27;, &#x27;._audio_gallery_thumb._enabled ._compact&#x27;, function(e) {
     if(!$(e.target).hasClass(&#x27;_select_audio_from_gallery&#x27;)) {
       var parent_id = $(this).parent().attr(&#x27;id&#x27;);
       var was_open = false;

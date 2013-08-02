@@ -99,6 +99,8 @@
             
                 <li><a href="../classes/DocumentsDocumentReady.html">DocumentsDocumentReady</a></li>
             
+                <li><a href="../classes/DocumentsUploader.html">DocumentsUploader</a></li>
+            
                 <li><a href="../classes/GalleriesAccessories.html">GalleriesAccessories</a></li>
             
                 <li><a href="../classes/GalleriesDocumentReady.html">GalleriesDocumentReady</a></li>
@@ -437,9 +439,9 @@ Dialog used in {{#crossLinkModule &quot;audio-editor&quot;}}{{/crossLinkModule}}
 **/
 function showRestoreCacheMediaElementEditorPopUp(callback_ok, callback_no) {
   var obj = $(&#x27;#dialog-restore-cache-media-element-editor&#x27;);
-  var caption = $(&#x27;#popup_captions_container&#x27;).data(&#x27;restore-cache-media-element-editor-message&#x27;);
-  var msg_ok = $(&#x27;#popup_captions_container&#x27;).data(&#x27;restore-cache-media-element-editor-yes&#x27;);
-  var msg_no = $(&#x27;#popup_captions_container&#x27;).data(&#x27;restore-cache-media-element-editor-no&#x27;);
+  var caption = $captions.data(&#x27;restore-cache-media-element-editor-message&#x27;);
+  var msg_ok = $captions.data(&#x27;restore-cache-media-element-editor-yes&#x27;);
+  var msg_no = $captions.data(&#x27;restore-cache-media-element-editor-no&#x27;);
   content = &#x27;&lt;p class=&quot;upper&quot;&gt;&#x27; + caption + &#x27;&lt;/p&gt;&#x27;;
   var dialog_buttons = {};
   dialog_buttons[msg_ok] = callback_ok;
@@ -616,7 +618,7 @@ function showTimedPopUp(content, id) {
       open: function(event, ui) {
         setTimeout(function() {
           closePopUp(id);
-        }, $(&#x27;#popup_parameters_container&#x27;).data(&#x27;timeout&#x27;));
+        }, $parameters.data(&#x27;timeout&#x27;));
       }
     });
   }
@@ -680,7 +682,7 @@ function showLoadMediaElementPopUp() {
       show: &#x27;fade&#x27;,
       hide: {effect: &#x27;fade&#x27;},
       open: function(event, ui) {
-        $(&#x27;input&#x27;).blur();
+        $(&#x27;#load-media-element input&#x27;).blur();
         $(&#x27;#load-media-element #title&#x27;).val($(&#x27;#load-media-element&#x27;).data(&#x27;placeholder-title&#x27;));
         $(&#x27;#load-media-element #description&#x27;).val($(&#x27;#load-media-element&#x27;).data(&#x27;placeholder-description&#x27;));
         $(&#x27;#load-media-element #title_placeholder&#x27;).val(&#x27;&#x27;);
@@ -690,7 +692,7 @@ function showLoadMediaElementPopUp() {
         $(&#x27;#load-media-element ._tags_container ._placeholder&#x27;).show();
         $(&#x27;#media_element_media_show&#x27;).text($(&#x27;#load-media-element&#x27;).data(&#x27;placeholder-media&#x27;));
         $(&#x27;#load-media-element .form_error&#x27;).removeClass(&#x27;form_error&#x27;);
-        $(&#x27;#load-media-element .innerUploadFileButton&#x27;).val(&#x27;&#x27;);
+        $(&#x27;#new_media_element_input&#x27;).val(&#x27;&#x27;);
       },
       close: function() {
         $(&#x27;#load-media-element iframe&#x27;).attr(&#x27;src&#x27;, &#x27;about:blank&#x27;);

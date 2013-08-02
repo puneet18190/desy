@@ -113,6 +113,11 @@ href="ApplicationController.html#method-i-initialize_players_counter">#initializ
             
               
               <li>
+                <a href="#method-i-convert_document_uploader_messages">convert_document_uploader_messages</a>,
+              </li>
+            
+              
+              <li>
                 <a href="#method-i-convert_item_error_messages">convert_item_error_messages</a>,
               </li>
             
@@ -538,6 +543,45 @@ href="User.html#method-i-admin-3F">User#admin?</a>)</p>
           </div>
         
         <div class="method">
+          <div class="title method-title" id="method-i-convert_document_uploader_messages">
+            
+              <b>convert_document_uploader_messages</b>(errors)
+            
+            <a href="../classes/ApplicationController.html#method-i-convert_document_uploader_messages" name="method-i-convert_document_uploader_messages" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Used for errors in forms of load documents.</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-convert_document_uploader_messages_source')" id="l_method-i-convert_document_uploader_messages_source">show</a>
+                
+              </p>
+              <div id="method-i-convert_document_uploader_messages_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 235</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">convert_document_uploader_messages</span>(<span class="ruby-identifier">errors</span>)
+  <span class="ruby-keyword">return</span> [<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;forms.error_captions.document_folder_size_exceeded&#39;</span>)] <span class="ruby-keyword">if</span> <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">added?</span> <span class="ruby-value">:attachment</span>, <span class="ruby-value">:folder_size_exceeded</span>
+  <span class="ruby-identifier">resp</span> = []
+  <span class="ruby-identifier">resp</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;forms.error_captions.fill_all_the_fields_or_too_long&#39;</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">messages</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value">:title</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">messages</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value">:description</span>)
+  <span class="ruby-identifier">resp</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;forms.error_captions.document_blank&#39;</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">messages</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value">:attachment</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">messages</span>[<span class="ruby-value">:attachment</span>].<span class="ruby-identifier">any?</span>
+  <span class="ruby-identifier">resp</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
           <div class="title method-title" id="method-i-convert_item_error_messages">
             
               <b>convert_item_error_messages</b>(errors)
@@ -655,9 +699,8 @@ ActiveModel::Errors into a translated message for the user.</p>
                 <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 216</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">convert_media_element_uploader_messages</span>(<span class="ruby-identifier">errors</span>)
   <span class="ruby-keyword">return</span> [<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;forms.error_captions.media_folder_size_exceeded&#39;</span>)] <span class="ruby-keyword">if</span> <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">added?</span> <span class="ruby-value">:media</span>, <span class="ruby-value">:folder_size_exceeded</span>
-
   <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">convert_item_error_messages</span> <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">messages</span>
-  <span class="ruby-keyword">if</span> <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">messages</span>.<span class="ruby-identifier">has_key?</span> <span class="ruby-value">:media</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">messages</span>[<span class="ruby-value">:media</span>].<span class="ruby-identifier">any?</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">messages</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value">:media</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">messages</span>[<span class="ruby-value">:media</span>].<span class="ruby-identifier">any?</span>
     <span class="ruby-keyword">return</span> ([<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;forms.error_captions.media_blank&#39;</span>)] <span class="ruby-operator">+</span> <span class="ruby-identifier">resp</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">added?</span> <span class="ruby-value">:media</span>, <span class="ruby-value">:blank</span>
     <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span>(<span class="ruby-regexp">/unsupported format/</span> <span class="ruby-operator">=~</span> <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">messages</span>[<span class="ruby-value">:media</span>].<span class="ruby-identifier">to_s</span>).<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> <span class="ruby-operator">!</span>(<span class="ruby-regexp">/invalid extension/</span> <span class="ruby-operator">=~</span> <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">messages</span>[<span class="ruby-value">:media</span>].<span class="ruby-identifier">to_s</span>).<span class="ruby-identifier">nil?</span>
       <span class="ruby-keyword">return</span> [<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;forms.error_captions.media_unsupported_format&#39;</span>)] <span class="ruby-operator">+</span> <span class="ruby-identifier">resp</span>
@@ -703,7 +746,7 @@ ActiveModel::Errors into a translated message for the user.</p>
                 
               </p>
               <div id="method-i-convert_user_error_messages_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 236</span>
+                <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 244</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">convert_user_error_messages</span>(<span class="ruby-identifier">errors</span>)
   <span class="ruby-identifier">pas_min</span> = <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;minimum_password_length&#39;</span>]
   <span class="ruby-identifier">pas_max</span> = <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;maximum_password_length&#39;</span>]
@@ -1379,7 +1422,7 @@ in the same page</p>
                 
               </p>
               <div id="method-i-logged_in-3F_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 271</span>
+                <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 279</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">logged_in?</span>
   <span class="ruby-identifier">current_user</span>
 <span class="ruby-keyword">end</span></pre>

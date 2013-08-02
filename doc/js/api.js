@@ -29,6 +29,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "DialogsTimed",
         "DialogsWithForm",
         "DocumentsDocumentReady",
+        "DocumentsUploader",
         "GalleriesAccessories",
         "GalleriesDocumentReady",
         "GalleriesInitializers",

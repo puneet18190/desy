@@ -111,7 +111,8 @@
             },
             "classes": {},
             "fors": {
-                "DocumentsDocumentReady": 1
+                "DocumentsDocumentReady": 1,
+                "DocumentsUploader": 1
             },
             "namespaces": {}
         },
@@ -482,10 +483,12 @@
             "name": "documents",
             "submodules": {},
             "classes": {
-                "DocumentsDocumentReady": 1
+                "DocumentsDocumentReady": 1,
+                "DocumentsUploader": 1
             },
             "fors": {
-                "DocumentsDocumentReady": 1
+                "DocumentsDocumentReady": 1,
+                "DocumentsUploader": 1
             },
             "namespaces": {},
             "tag": "module",
@@ -1129,6 +1132,17 @@
         "DocumentsDocumentReady": {
             "name": "DocumentsDocumentReady",
             "shortname": "DocumentsDocumentReady",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "documents",
+            "namespace": ""
+        },
+        "DocumentsUploader": {
+            "name": "DocumentsUploader",
+            "shortname": "DocumentsUploader",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -3419,7 +3433,7 @@
         },
         {
             "file": "app/assets/javascripts/documents.js",
-            "line": 21,
+            "line": 22,
             "description": "Initializer for documents functionality (buttons javascripts).",
             "itemtype": "method",
             "name": "documentsDocumentReadyButtons",
@@ -3428,7 +3442,7 @@
         },
         {
             "file": "app/assets/javascripts/documents.js",
-            "line": 99,
+            "line": 100,
             "description": "Initializer for documents functionality (general javascripts).",
             "itemtype": "method",
             "name": "documentsDocumentReadyGeneral",
@@ -3437,11 +3451,76 @@
         },
         {
             "file": "app/assets/javascripts/documents.js",
-            "line": 167,
+            "line": 151,
             "description": "Initializer for documents functionality (search and placeholders javascripts).",
             "itemtype": "method",
             "name": "documentsDocumentReadySearch",
             "class": "DocumentsDocumentReady",
+            "module": "documents"
+        },
+        {
+            "file": "app/assets/javascripts/documents.js",
+            "line": 175,
+            "description": "Initializer for the loading form.",
+            "itemtype": "method",
+            "name": "documentsDocumentReadyUploader",
+            "class": "DocumentsDocumentReady",
+            "module": "documents"
+        },
+        {
+            "file": "app/assets/javascripts/documents.js",
+            "line": 218,
+            "description": "Dialog containing the form to upload a new document.",
+            "itemtype": "method",
+            "name": "showLoadDocumentPopUp",
+            "class": "DocumentsUploader",
+            "module": "documents"
+        },
+        {
+            "file": "app/assets/javascripts/documents.js",
+            "line": 253,
+            "description": "Handles 413 status error, file too large.",
+            "itemtype": "method",
+            "name": "uploadDocumentDone",
+            "return": {
+                "description": "false, for some reason",
+                "type": "Boolean"
+            },
+            "class": "DocumentsUploader",
+            "module": "documents"
+        },
+        {
+            "file": "app/assets/javascripts/documents.js",
+            "line": 269,
+            "description": "Reloads documents page after new document is successfully loaded.",
+            "itemtype": "method",
+            "name": "uploadDocumentLoaderDoneRedirect",
+            "class": "DocumentsUploader",
+            "module": "documents"
+        },
+        {
+            "file": "app/assets/javascripts/documents.js",
+            "line": 281,
+            "description": "Update form fields with error labels.",
+            "itemtype": "method",
+            "name": "uploadDocumentLoaderError",
+            "params": [
+                {
+                    "name": "errors",
+                    "description": "errors list",
+                    "type": "Array"
+                }
+            ],
+            "class": "DocumentsUploader",
+            "module": "documents"
+        },
+        {
+            "file": "app/assets/javascripts/documents.js",
+            "line": 303,
+            "description": "Sets iframe as target for form submit, and adds a callback function to control 413 status error; notice that <b>upload target</b> is the HTML id of the frame.",
+            "itemtype": "method",
+            "name": "initDocumentLoader",
+            "class": "DocumentsUploader",
             "module": "documents"
         },
         {
@@ -4150,7 +4229,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 451,
+            "line": 449,
             "description": "Initializer for the scroll and all the actions of the slide navigator (see the class {{#crossLink \"LessonEditorSlidesNavigation\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "lessonEditorDocumentReadySlidesNavigator",
@@ -4159,7 +4238,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 499,
+            "line": 497,
             "description": "Initializer for the placeholders of text inputs throughout the Lesson Editor.",
             "itemtype": "method",
             "name": "lessonEditorDocumentReadyTextFields",
@@ -4168,7 +4247,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 541,
+            "line": 539,
             "description": "Save current slide. It sends tinyMCE editor content to form data to be serialized, it handles form placeholders.",
             "itemtype": "method",
             "name": "saveCurrentSlide",
@@ -4189,7 +4268,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 589,
+            "line": 587,
             "description": "Hides media gallery for selected type.",
             "itemtype": "method",
             "name": "removeGalleryInLessonEditor",
@@ -4205,7 +4284,16 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 601,
+            "line": 599,
+            "description": "Shows document gallery.",
+            "itemtype": "method",
+            "name": "showDocumentGalleryInLessonEditor",
+            "class": "LessonEditorGalleries",
+            "module": "lesson-editor"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_editor.js",
+            "line": 621,
             "description": "Shows media gallery for selected type.",
             "itemtype": "method",
             "name": "showGalleryInLessonEditor",
@@ -4226,7 +4314,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 630,
+            "line": 650,
             "description": "Check if image ratio is bigger then kind ratio.",
             "itemtype": "method",
             "name": "isHorizontalMask",
@@ -4256,7 +4344,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 658,
+            "line": 678,
             "description": "Gets scaled height to slide images.",
             "itemtype": "method",
             "name": "resizeHeight",
@@ -4286,7 +4374,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 684,
+            "line": 704,
             "description": "Gets scaled width to slide images.",
             "itemtype": "method",
             "name": "resizeWidth",
@@ -4316,7 +4404,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 714,
+            "line": 734,
             "description": "Inizializes jQueryUI <b>sortable</b> function on top navigation numbers, so that they can be sorted (see also {{#crossLink \"LessonEditorDocumentReady/lessonEditorDocumentReadySlidesNavigator:method\"}}{{/crossLink}} and {{#crossLink \"LessonEditorSlidesNavigation\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "initializeSortableNavs",
@@ -4325,7 +4413,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 759,
+            "line": 779,
             "description": "Inizializes jQueryUI <b>draggable</b> function on slide image containers (to understand if the draggable is vertical or horizontal it uses {{#crossLink \"LessonEditorImageResizing/isHorizontalMask:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "makeDraggable",
@@ -4341,7 +4429,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 834,
+            "line": 854,
             "description": "Asynchronously loads current slide, previous and following.",
             "itemtype": "method",
             "name": "loadSlideAndAdhiacentInLessonEditor",
@@ -4357,7 +4445,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 847,
+            "line": 867,
             "description": "Asynchronous slide loading. It checks if the slide has been loaded or not.",
             "itemtype": "method",
             "name": "loadSlideInLessonEditor",
@@ -4373,7 +4461,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 866,
+            "line": 886,
             "description": "Initialize slides position to center.",
             "itemtype": "method",
             "name": "initLessonEditorPositions",
@@ -4382,7 +4470,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 885,
+            "line": 905,
             "description": "Re-initialize slides position to center after ajax events.",
             "itemtype": "method",
             "name": "reInitializeSlidePositionsInLessonEditor",
@@ -4391,7 +4479,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 897,
+            "line": 917,
             "description": "Scrolls navigation scrollPane ({{#crossLink \"LessonEditorSlidesNavigation\"}}{{/crossLink}}) when moving to another slide.",
             "itemtype": "method",
             "name": "scrollPaneUpdate",
@@ -4411,7 +4499,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 914,
+            "line": 934,
             "description": "Moves to a slide, update current slide in top navigation.",
             "itemtype": "method",
             "name": "slideTo",
@@ -4432,7 +4520,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 965,
+            "line": 985,
             "description": "TinyMCE callback to clean spans containing classes for font size: these classes are attached to the first ol, ul, p",
             "itemtype": "method",
             "name": "cleanTinyMCESpanTagsFontSize",
@@ -4448,7 +4536,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 986,
+            "line": 1006,
             "description": "Initialize tinyMCE editor for a single textarea.",
             "itemtype": "method",
             "name": "initTinymce",
@@ -4464,7 +4552,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1035,
+            "line": 1055,
             "description": "TinyMCE callback to show warning when texearea content exceeds the available space. Adds a red border to the textarea.This function is used in tinyMCE setup ({{#crossLink \"LessonEditorTinyMCE/initTinymce:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "handleTinyMCEOveflow",
@@ -4485,7 +4573,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1058,
+            "line": 1078,
             "description": "Function to strip tags in a text pasted inside TinyMCE.",
             "itemtype": "method",
             "name": "stripTagsForCutAndPaste",
@@ -4953,7 +5041,7 @@
             "line": 112,
             "description": "Reloads media elements page after new media element is successfully loaded.",
             "itemtype": "method",
-            "name": "uploadMediaElementLoadeDoneRedirect",
+            "name": "uploadMediaElementLoaderDoneRedirect",
             "class": "MediaElementLoaderDone",
             "module": "media-element-loader"
         },

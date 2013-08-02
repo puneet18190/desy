@@ -99,6 +99,8 @@
             
                 <li><a href="../classes/DocumentsDocumentReady.html">DocumentsDocumentReady</a></li>
             
+                <li><a href="../classes/DocumentsUploader.html">DocumentsUploader</a></li>
+            
                 <li><a href="../classes/GalleriesAccessories.html">GalleriesAccessories</a></li>
             
                 <li><a href="../classes/GalleriesDocumentReady.html">GalleriesDocumentReady</a></li>
@@ -352,10 +354,10 @@ function mediaElementLoaderConversionOverview(list, time) {
         ajax_url += &#x27;&amp;&#x27;;
       }
     }
+    unbindLoader();
     $.ajax({
       url: ajax_url,
-      type: &#x27;get&#x27;,
-      beforeSend: unbindLoader()
+      type: &#x27;get&#x27;
     }).always(bindLoader);
   }
   setTimeout(function() {
@@ -373,33 +375,33 @@ Initializer for the loading form.
 @for MediaElementLoaderDocumentReady
 **/
 function mediaElementLoaderDocumentReady() {
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._load_media_element&#x27;, function(e) {
+  $body.on(&#x27;click&#x27;, &#x27;._load_media_element&#x27;, function(e) {
     e.preventDefault();
     showLoadMediaElementPopUp();
   });
-  $(&#x27;body&#x27;).on(&#x27;change&#x27;, &#x27;input#new_media_element_input&#x27;, function() {
+  $body.on(&#x27;change&#x27;, &#x27;input#new_media_element_input&#x27;, function() {
     var file_name = $(this).val().replace(&quot;C:\\fakepath\\&quot;, &#x27;&#x27;);
     if(file_name.length &gt; 20) {
       file_name = file_name.substring(0, 20) + &#x27;...&#x27;;
     }
     $(&#x27;#media_element_media_show&#x27;).text(file_name);
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#load-media-element ._close&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;#load-media-element ._close&#x27;, function() {
     closePopUp(&#x27;load-media-element&#x27;);
   })
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#new_media_element_submit&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;#new_media_element_submit&#x27;, function() {
     $(&#x27;input,textarea&#x27;).removeClass(&#x27;form_error&#x27;);
     $(&#x27;.barraLoading img&#x27;).show();
     $(&#x27;.barraLoading img&#x27;).attr(&#x27;src&#x27;, &#x27;/assets/loadingBar.gif&#x27;);
     $(this).closest(&#x27;#new_media_element&#x27;).submit();
   });
-  $(&#x27;body&#x27;).on(&#x27;focus&#x27;, &#x27;#load-media-element #title&#x27;, function() {
+  $body.on(&#x27;focus&#x27;, &#x27;#load-media-element #title&#x27;, function() {
     if($(&#x27;#load-media-element #title_placeholder&#x27;).val() == &#x27;&#x27;) {
       $(this).attr(&#x27;value&#x27;, &#x27;&#x27;);
       $(&#x27;#load-media-element #title_placeholder&#x27;).attr(&#x27;value&#x27;, &#x27;0&#x27;);
     }
   });
-  $(&#x27;body&#x27;).on(&#x27;focus&#x27;, &#x27;#load-media-element #description&#x27;, function() {
+  $body.on(&#x27;focus&#x27;, &#x27;#load-media-element #description&#x27;, function() {
     if($(&#x27;#load-media-element #description_placeholder&#x27;).val() == &#x27;&#x27;) {
       $(this).attr(&#x27;value&#x27;, &#x27;&#x27;);
       $(&#x27;#load-media-element #description_placeholder&#x27;).attr(&#x27;value&#x27;, &#x27;0&#x27;);
@@ -419,7 +421,7 @@ Handles 413 status error, file too large.
 **/
 function uploadDone() {
   var ret = document.getElementById(&#x27;upload_target&#x27;).contentWindow.document.title;
-  if(ret &amp;&amp; ret.match(/413/g)){
+  if(ret &amp;&amp; ret.match(/413/g)) {
     $(&#x27;.barraLoading img&#x27;).hide();
     $(&#x27;iframe&#x27;).before(&#x27;&lt;p class=&quot;too_large&quot; style=&quot;padding: 20px 0 0 40px;&quot;&gt;&lt;img src=&quot;/assets/puntoesclamativo.png&quot; style=&quot;margin: 20px 5px 0 20px;&quot;&gt;&lt;span class=&quot;lower&quot; style=&quot;color:black&quot;&gt;&#x27; + $(&#x27;#load-media-element&#x27;).data(&#x27;media-file-too-large&#x27;) + &#x27;&lt;/span&gt;&lt;/p&gt;&#x27;);
     $(&#x27;#media_element_media_show&#x27;).text($(&#x27;#load-media-element&#x27;).data(&#x27;placeholder-media&#x27;));
@@ -429,10 +431,10 @@ function uploadDone() {
 
 /**
 Reloads media elements page after new media element is successfully loaded.
-@method uploadMediaElementLoadeDoneRedirect
+@method uploadMediaElementLoaderDoneRedirect
 @for MediaElementLoaderDone
 **/
-function uploadMediaElementLoadeDoneRedirect() {
+function uploadMediaElementLoaderDoneRedirect() {
   $(&#x27;.barraLoading&#x27;).css(&#x27;background-color&#x27;, &#x27;#41A62A&#x27;);
   $(&#x27;.barraLoading img&#x27;).hide();
   $(&#x27;.barraLoading img&#x27;).attr(&#x27;src&#x27;, &#x27;&#x27;);

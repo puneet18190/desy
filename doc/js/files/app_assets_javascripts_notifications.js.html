@@ -99,6 +99,8 @@
             
                 <li><a href="../classes/DocumentsDocumentReady.html">DocumentsDocumentReady</a></li>
             
+                <li><a href="../classes/DocumentsUploader.html">DocumentsUploader</a></li>
+            
                 <li><a href="../classes/GalleriesAccessories.html">GalleriesAccessories</a></li>
             
                 <li><a href="../classes/GalleriesDocumentReady.html">GalleriesDocumentReady</a></li>
@@ -451,21 +453,21 @@ Initializes the form for notifying a lesson&#x27;s modifications. These actions 
 @for NotificationsDocumentReady
 **/
 function notificationsDocumentReadyLessonModification() {
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#lesson-notification ._no&#x27;, function(e) {
+  $body.on(&#x27;click&#x27;, &#x27;#lesson-notification ._no&#x27;, function(e) {
     e.preventDefault();
     closePopUp(&#x27;lesson-notification&#x27;);
     var lesson_id = $(&#x27;#lesson-notification&#x27;).data(&#x27;lesson-id&#x27;);
     $(&#x27;#&#x27; + lesson_id).removeClass(&#x27;_lesson_change_not_notified&#x27;);
-    $(&#x27;#&#x27; + lesson_id + &#x27; .unpublish&#x27;).attr(&#x27;title&#x27;, $(&#x27;#popup_captions_container&#x27;).data(&#x27;title-unpublish&#x27;));
+    $(&#x27;#&#x27; + lesson_id + &#x27; .unpublish&#x27;).attr(&#x27;title&#x27;, $captions.data(&#x27;title-unpublish&#x27;));
     var id = lesson_id.split(&#x27;_&#x27;);
     id = id[id.length - 1];
+    unbindLoader();
     $.ajax({
       type: &#x27;post&#x27;,
-      url: &#x27;/lessons/&#x27; + id + &#x27;/dont_notify_modification&#x27;,
-      beforeSend: unbindLoader()
+      url: &#x27;/lessons/&#x27; + id + &#x27;/dont_notify_modification&#x27;
     }).always(bindLoader);
   });
-  $(&#x27;body&#x27;).on(&#x27;focus&#x27;, &#x27;#lesson-notification #lesson_notify_modification_details&#x27;, function() {
+  $body.on(&#x27;focus&#x27;, &#x27;#lesson-notification #lesson_notify_modification_details&#x27;, function() {
     if($(&#x27;#lesson-notification #lesson_notify_modification_details_placeholder&#x27;).val() === &#x27;&#x27;) {
       $(this).val(&#x27;&#x27;);
       $(&#x27;#lesson-notification #lesson_notify_modification_details_placeholder&#x27;).val(&#x27;0&#x27;);
@@ -480,10 +482,10 @@ Initializer for the loop that updates the notifications
 @param time {Number} the time to iterate the loop
 **/
 function notificationsDocumentReadyLoop(time) {
+  unbindLoader();
   $.ajax({
     url: &#x27;/notifications/reload&#x27;,
-    type: &#x27;get&#x27;,
-    beforeSend: unbindLoader()
+    type: &#x27;get&#x27;
   }).always(bindLoader);
   setTimeout(function() {
     notificationsDocumentReadyLoop(time);
@@ -505,7 +507,7 @@ function notificationsDocumentReadyTooltips() {
       $.get(&#x27;/notifications/get_new_block?offset=&#x27; + offset);
     }
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._destroy_notification&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;._destroy_notification&#x27;, function() {
     var my_id = $(this).data(&#x27;param&#x27;);
     var offset = $(&#x27;#tooltip_content&#x27;).data(&#x27;offset&#x27;);
     $.post(&#x27;/notifications/&#x27; + my_id + &#x27;/destroy?offset=&#x27; + offset);
@@ -554,7 +556,7 @@ function initializeNotifications() {
     showNotificationsFumetto();
     showNotificationsButton();
   }
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#notifications_button&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;#notifications_button&#x27;, function() {
     if(!$(&#x27;#tooltip_content&#x27;).is(&#x27;:visible&#x27;)) {
       hideHelpTooltip();
       hideHelpButton();
@@ -576,7 +578,7 @@ function initializeNotifications() {
       }
     }
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._single_notification .notification_gatto&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;._single_notification .notification_gatto&#x27;, function() {
     var closest_li = $(this).closest(&#x27;li&#x27;);
     var my_own_id = closest_li.attr(&#x27;id&#x27;)
     var my_content = $(&#x27;#&#x27; + my_own_id + &#x27; ._expanded_notification&#x27;).html();
@@ -587,8 +589,8 @@ function initializeNotifications() {
       my_expanded.show(&#x27;fade&#x27;, {}, 500, function() {
         my_expanded.show();
         if(!$(this).hasClass(&#x27;current&#x27;)) {
+          unbindLoader();
           $.ajax({
-            beforeSend: unbindLoader(),
             type: &#x27;post&#x27;,
             url: &#x27;/notifications/&#x27; + closest_li.data(&#x27;param&#x27;) + &#x27;/seen&#x27;
           }).always(bindLoader);
@@ -599,8 +601,8 @@ function initializeNotifications() {
         my_expanded.html(my_content);
         my_expanded.data(&#x27;contentid&#x27;, my_own_id);
         if(!$(this).hasClass(&#x27;current&#x27;)) {
+          unbindLoader();
           $.ajax({
-            beforeSend: unbindLoader(),
             type: &#x27;post&#x27;,
             url: &#x27;/notifications/&#x27; + closest_li.data(&#x27;param&#x27;) + &#x27;/seen&#x27;
           });

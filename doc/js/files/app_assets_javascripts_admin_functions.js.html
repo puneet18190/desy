@@ -99,6 +99,8 @@
             
                 <li><a href="../classes/DocumentsDocumentReady.html">DocumentsDocumentReady</a></li>
             
+                <li><a href="../classes/DocumentsUploader.html">DocumentsUploader</a></li>
+            
                 <li><a href="../classes/GalleriesAccessories.html">GalleriesAccessories</a></li>
             
                 <li><a href="../classes/GalleriesDocumentReady.html">GalleriesDocumentReady</a></li>
@@ -447,17 +449,17 @@ function adminEffectsDocumentReady() {
   $(&#x27;.dropdown&#x27;).click(function(e) {
     e.stopPropagation();
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;tr.collapse&#x27;, function(e) {
+  $body.on(&#x27;click&#x27;, &#x27;tr.collapse&#x27;, function(e) {
     var t = $(e.target);
     if(!(t.hasClass(&#x27;icon-eye-open&#x27;) || t.hasClass(&#x27;icon-remove&#x27;) || t.hasClass(&#x27;icon-globe&#x27;) || t.hasClass(&#x27;_user_link_in_admin&#x27;) || t.hasClass(&#x27;_link_in_admin&#x27;) || t.hasClass(&#x27;_report_item&#x27;) || t.hasClass(&#x27;_dont_report_item&#x27;))) {
       openAndLoadNextTr($(this));
     }
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#expand-all&#x27;, function(e) {
+  $body.on(&#x27;click&#x27;, &#x27;#expand-all&#x27;, function(e) {
    e.preventDefault();
    $(&#x27;tr.collapsed&#x27;).slideDown(&#x27;slow&#x27;);
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#collapse-all&#x27;, function(e) {
+  $body.on(&#x27;click&#x27;, &#x27;#collapse-all&#x27;, function(e) {
    e.preventDefault();
    $(&#x27;tr.collapsed&#x27;).slideUp(&#x27;slow&#x27;);
   });
@@ -489,41 +491,41 @@ Initializes effects for MediaElement.
 @for AdminDocumentReady
 **/
 function adminMediaElementsDocumentReady() {
-  $(&#x27;body&#x27;).on(&#x27;focus&#x27;, &#x27;._quick_load_creation_form ._qume_title&#x27;, function() {
+  $body.on(&#x27;focus&#x27;, &#x27;._quick_load_creation_form ._qume_title&#x27;, function() {
     var placeholder = $(this).parents(&#x27;._quick_load_creation_form&#x27;).find(&#x27;._qume_title_placeholder&#x27;);
     if(placeholder.val() != &#x27;&#x27;) {
       placeholder.val(&#x27;&#x27;);
       $(this).val(&#x27;&#x27;);
     }
   });
-  $(&#x27;body&#x27;).on(&#x27;focus&#x27;, &#x27;._quick_load_creation_form ._qume_description&#x27;, function() {
+  $body.on(&#x27;focus&#x27;, &#x27;._quick_load_creation_form ._qume_description&#x27;, function() {
     var placeholder = $(this).parents(&#x27;._quick_load_creation_form&#x27;).find(&#x27;._qume_description_placeholder&#x27;);
     if(placeholder.val() != &#x27;&#x27;) {
       placeholder.val(&#x27;&#x27;);
       $(this).val(&#x27;&#x27;);
     }
   });
-  $(&#x27;body&#x27;).on(&#x27;focus&#x27;, &#x27;._quick_load_creation_form ._qume_tags&#x27;, function() {
+  $body.on(&#x27;focus&#x27;, &#x27;._quick_load_creation_form ._qume_tags&#x27;, function() {
     var placeholder = $(this).parents(&#x27;._quick_load_creation_form&#x27;).find(&#x27;._qume_tags_placeholder&#x27;);
     if(placeholder.val() != &#x27;&#x27;) {
       placeholder.val(&#x27;&#x27;);
       $(this).val(&#x27;&#x27;);
     }
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._create_new_element&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;._create_new_element&#x27;, function() {
     $.ajax({
       type: &#x27;post&#x27;,
       data: $(this).parents(&#x27;._quick_load_creation_form&#x27;).serialize(),
       url: &#x27;/admin/media_elements/&#x27; + $(this).data(&#x27;param&#x27;) + &#x27;/create&#x27;
     });
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._delete_new_element&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;._delete_new_element&#x27;, function() {
     $.ajax({
       type: &#x27;delete&#x27;,
       url: &#x27;/admin/media_elements/quick_upload/&#x27; + $(this).data(&#x27;param&#x27;) + &#x27;/delete&#x27;
     });
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;,&#x27;.action._publish_list_element i&#x27;, function(e) {
+  $body.on(&#x27;click&#x27;,&#x27;.action._publish_list_element i&#x27;, function(e) {
     e.preventDefault();
     $.ajax({
       type: &#x27;put&#x27;,
@@ -535,14 +537,14 @@ function adminMediaElementsDocumentReady() {
       }
     });
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._publish_private_admin_element&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;._publish_private_admin_element&#x27;, function() {
     $.ajax({
       type: &#x27;put&#x27;,
       data: $(this).parents(&#x27;._quick_load_creation_form&#x27;).serialize(),
       url: &#x27;/admin/media_elements/&#x27; + $(this).data(&#x27;param&#x27;) + &#x27;/update?is_public=true&#x27;
     });
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._update_private_admin_element&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;._update_private_admin_element&#x27;, function() {
     $.ajax({
       type: &#x27;put&#x27;,
       data: $(this).parents(&#x27;._quick_load_creation_form&#x27;).serialize(),
@@ -550,7 +552,7 @@ function adminMediaElementsDocumentReady() {
     });
   });
   initNotificationsAutocomplete();
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#log .del&#x27;, function(e) {
+  $body.on(&#x27;click&#x27;, &#x27;#log .del&#x27;, function(e) {
     e.preventDefault();
     var my_div = $(this).parent(&#x27;div&#x27;)
     var ids_val = $(&#x27;#search_users_ids&#x27;).val().split(&#x27;,&#x27;);
@@ -559,7 +561,7 @@ function adminMediaElementsDocumentReady() {
     my_div.remove();
     $(&#x27;#filter-users&#x27;).submit();
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;,&#x27;._filter_and_send&#x27;, function(e) {
+  $body.on(&#x27;click&#x27;,&#x27;._filter_and_send&#x27;, function(e) {
     e.preventDefault();
     if(!$(this).hasClass(&#x27;disabled&#x27;)) {
       $form = $(this).parents(&#x27;form&#x27;);
@@ -576,26 +578,26 @@ Initializes actions for less important tables, such as Tag, Subject, SchoolLevel
 @for AdminDocumentReady
 **/
 function adminMiscellaneaDocumentReady() {
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;ul.subjects li a i.icon-remove&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;ul.subjects li a i.icon-remove&#x27;, function() {
     var _id = $(this).parents(&#x27;li&#x27;).data(&#x27;param&#x27;);
     $.ajax({
       type: &#x27;delete&#x27;,
       url: &#x27;/admin/settings/subjects/&#x27; + _id + &#x27;/delete&#x27;
     });
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;ul.school_levels li a i.icon-remove&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;ul.school_levels li a i.icon-remove&#x27;, function() {
     $.ajax({
       type: &#x27;delete&#x27;,
       url: &#x27;/admin/settings/school_levels/&#x27; + $(this).parents(&#x27;li&#x27;).data(&#x27;param&#x27;) + &#x27;/delete&#x27;
     });
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._dont_report_item&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;._dont_report_item&#x27;, function() {
     $.ajax({
       type: &#x27;delete&#x27;,
       url: &#x27;reports/&#x27; + $(this).data(&#x27;report-id&#x27;) + &#x27;/decline&#x27;
     });
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._report_item&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;._report_item&#x27;, function() {
     $.ajax({
       type: &#x27;delete&#x27;,
       url: &#x27;reports/&#x27; + $(this).data(&#x27;report-id&#x27;) + &#x27;/accept&#x27;
@@ -620,7 +622,7 @@ function adminSearchDocumentReady() {
       $(&#x27;.datepick&#x27;).attr(&#x27;disabled&#x27;, &#x27;disabled&#x27;);
     }
   });
-  $(&#x27;body&#x27;).on(&#x27;change&#x27;, &#x27;#filter-users select&#x27;, function() {
+  $body.on(&#x27;change&#x27;, &#x27;#filter-users select&#x27;, function() {
     var selected = $(this).find(&#x27;option:selected&#x27;).first();
     var text = selected.text().replace(/\s+/g, &#x27; &#x27;);
     var select_id = $(this).attr(&#x27;id&#x27;);
@@ -670,25 +672,25 @@ Initializes effects for sorting in administration search engine.
 @for AdminDocumentReady
 **/
 function adminSortingDocumentReady() {
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;table#lessons-list thead tr th a&#x27;, function(e) {
+  $body.on(&#x27;click&#x27;, &#x27;table#lessons-list thead tr th a&#x27;, function(e) {
     e.preventDefault();
     $(&#x27;input#search_ordering&#x27;).val($(this).data(&#x27;ordering&#x27;));
     $(&#x27;input#search_desc&#x27;).val($(this).data(&#x27;desc&#x27;));
     $(&#x27;#admin-search-lessons&#x27;).submit();
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;table#elements-list thead tr th a&#x27;, function(e) {
+  $body.on(&#x27;click&#x27;, &#x27;table#elements-list thead tr th a&#x27;, function(e) {
     e.preventDefault();
     $(&#x27;input#search_ordering&#x27;).val($(this).data(&#x27;ordering&#x27;));
     $(&#x27;input#search_desc&#x27;).val($(this).data(&#x27;desc&#x27;));
     $(&#x27;#admin-search-elements&#x27;).submit();
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;table#users-list thead tr th a&#x27;, function(e) {
+  $body.on(&#x27;click&#x27;, &#x27;table#users-list thead tr th a&#x27;, function(e) {
     e.preventDefault();
     $(&#x27;input#search_ordering&#x27;).val($(this).data(&#x27;ordering&#x27;));
     $(&#x27;input#search_desc&#x27;).val($(this).data(&#x27;desc&#x27;));
     $(&#x27;#admin-search-users&#x27;).submit();
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;table#tags-list thead tr th a&#x27;, function(e) {
+  $body.on(&#x27;click&#x27;, &#x27;table#tags-list thead tr th a&#x27;, function(e) {
     e.preventDefault();
     $(&#x27;input#search_ordering&#x27;).val($(this).data(&#x27;ordering&#x27;));
     $(&#x27;input#search_desc&#x27;).val($(this).data(&#x27;desc&#x27;));
@@ -702,7 +704,7 @@ Initializes effects for User.
 @for AdminDocumentReady
 **/
 function adminUsersDocumentReady() {
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._active_status&#x27;, function(e) {
+  $body.on(&#x27;click&#x27;, &#x27;._active_status&#x27;, function(e) {
     e.preventDefault();
     var link = $(this);
     var status = true;

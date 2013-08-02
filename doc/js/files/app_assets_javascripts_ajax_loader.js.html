@@ -99,6 +99,8 @@
             
                 <li><a href="../classes/DocumentsDocumentReady.html">DocumentsDocumentReady</a></li>
             
+                <li><a href="../classes/DocumentsUploader.html">DocumentsUploader</a></li>
+            
                 <li><a href="../classes/GalleriesAccessories.html">GalleriesAccessories</a></li>
             
                 <li><a href="../classes/GalleriesDocumentReady.html">GalleriesDocumentReady</a></li>
@@ -343,7 +345,7 @@ function bindLoader() {
     };
   }
   window.onload = newLoad;
-  $(&#x27;#loading&#x27;).bind({
+  $loading.bind({
     ajaxStart: function() {
       showLoader();
     },
@@ -359,7 +361,7 @@ Unbind Loader, unbind loader for ajaxStart and ajaxStop. Used occasionally, when
 @for AjaxLoaderBinder
 **/
 function unbindLoader() {
-  $(&#x27;#loading&#x27;).unbind(&#x27;ajaxStart ajaxStop&#x27;);
+  $loading.unbind(&#x27;ajaxStart ajaxStop&#x27;);
 }
 
 
@@ -385,7 +387,7 @@ Hides the loader without binding or unbinding it.
 @for AjaxLoaderVisibility
 **/
 function hideLoader() {
-  $(&#x27;#loading&#x27;).hide();
+  $loading.hide();
 }
 
 /**
@@ -394,10 +396,10 @@ Shows the loader without binding or unbinding it (it has a timeout of 5000).
 @for AjaxLoaderVisibility
 **/
 function showLoader() {
-  var loader = $(&#x27;#loading .containerLoading&#x27;);
+  var loader = $loading.find(&#x27;.containerLoading&#x27;);
   loader.css(&#x27;top&#x27;, (($(window).height() / 2) - 100) + &#x27;px&#x27;);
   loader.css(&#x27;left&#x27;, (($(window).width() / 2) - 50) + &#x27;px&#x27;);
-  $(&#x27;#loading&#x27;).show();
+  $loading.show();
   setTimeout(function() {
     hideLoader()
   }, 5000);

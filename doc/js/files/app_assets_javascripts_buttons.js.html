@@ -99,6 +99,8 @@
             
                 <li><a href="../classes/DocumentsDocumentReady.html">DocumentsDocumentReady</a></li>
             
+                <li><a href="../classes/DocumentsUploader.html">DocumentsUploader</a></li>
+            
                 <li><a href="../classes/GalleriesAccessories.html">GalleriesAccessories</a></li>
             
                 <li><a href="../classes/GalleriesDocumentReady.html">GalleriesDocumentReady</a></li>
@@ -354,7 +356,7 @@ Initializes all the buttons available for lessons.
 @for ButtonsDocumentReady
 **/
 function lessonButtonsDocumentReady() {
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._Lesson_button_add&#x27;, function(e) {
+  $body.on(&#x27;click&#x27;, &#x27;._Lesson_button_add&#x27;, function(e) {
     e.preventDefault();
     if(!$(this).parent().hasClass(&#x27;_disabled&#x27;)) {
       var my_param = $(this).data(&#x27;clickparam&#x27;);
@@ -365,7 +367,7 @@ function lessonButtonsDocumentReady() {
     }
     return false;
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._Lesson_button_copy&#x27;, function(e) {
+  $body.on(&#x27;click&#x27;, &#x27;._Lesson_button_copy&#x27;, function(e) {
     e.preventDefault();
     if(!$(this).parent().hasClass(&#x27;_disabled&#x27;)) {
       var my_param = $(this).data(&#x27;clickparam&#x27;);
@@ -374,7 +376,7 @@ function lessonButtonsDocumentReady() {
     }
     return false;
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._Lesson_button_destroy&#x27;, function(e) {
+  $body.on(&#x27;click&#x27;, &#x27;._Lesson_button_destroy&#x27;, function(e) {
     e.preventDefault();
     if(!$(this).parent().hasClass(&#x27;_disabled&#x27;)) {
       var my_param = $(this).data(&#x27;clickparam&#x27;);
@@ -384,7 +386,7 @@ function lessonButtonsDocumentReady() {
     }
     return false;
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._Lesson_button_dislike&#x27;, function(e) {
+  $body.on(&#x27;click&#x27;, &#x27;._Lesson_button_dislike&#x27;, function(e) {
     e.preventDefault();
     if(!$(this).parent().hasClass(&#x27;_disabled&#x27;)) {
       var my_param = $(this).data(&#x27;clickparam&#x27;);
@@ -393,7 +395,7 @@ function lessonButtonsDocumentReady() {
     }
     return false;
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._Lesson_button_like&#x27;, function(e) {
+  $body.on(&#x27;click&#x27;, &#x27;._Lesson_button_like&#x27;, function(e) {
     e.preventDefault();
     if(!$(this).parent().hasClass(&#x27;_disabled&#x27;)) {
       var my_param = $(this).data(&#x27;clickparam&#x27;);
@@ -402,7 +404,7 @@ function lessonButtonsDocumentReady() {
     }
     return false;
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._Lesson_button_preview&#x27;, function(e) {
+  $body.on(&#x27;click&#x27;, &#x27;._Lesson_button_preview&#x27;, function(e) {
     e.preventDefault();
     if(!$(this).parent().hasClass(&#x27;_disabled&#x27;)) {
       var my_param = $(this).data(&#x27;clickparam&#x27;);
@@ -411,7 +413,7 @@ function lessonButtonsDocumentReady() {
     }
     return false;
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._Lesson_button_publish&#x27;, function(e) {
+  $body.on(&#x27;click&#x27;, &#x27;._Lesson_button_publish&#x27;, function(e) {
     e.preventDefault();
     if(!$(this).parent().hasClass(&#x27;_disabled&#x27;)) {
       var my_param = $(this).data(&#x27;clickparam&#x27;);
@@ -420,7 +422,7 @@ function lessonButtonsDocumentReady() {
     }
     return false;
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._Lesson_button_remove&#x27;, function(e) {
+  $body.on(&#x27;click&#x27;, &#x27;._Lesson_button_remove&#x27;, function(e) {
     e.preventDefault();
     if(!$(this).parent().hasClass(&#x27;_disabled&#x27;)) {
       var my_param = $(this).data(&#x27;clickparam&#x27;);
@@ -431,7 +433,7 @@ function lessonButtonsDocumentReady() {
     }
     return false;
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._Lesson_button_unpublish&#x27;, function(e) {
+  $body.on(&#x27;click&#x27;, &#x27;._Lesson_button_unpublish&#x27;, function(e) {
     e.preventDefault();
     if(!$(this).parent().hasClass(&#x27;_disabled&#x27;)) {
       var my_param = $(this).data(&#x27;clickparam&#x27;);
@@ -445,7 +447,7 @@ function lessonButtonsDocumentReady() {
     }
     return false;
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._Lesson_button_add_virtual_classroom&#x27;, function(e) {
+  $body.on(&#x27;click&#x27;, &#x27;._Lesson_button_add_virtual_classroom&#x27;, function(e) {
     e.preventDefault();
     if(!$(this).parent().hasClass(&#x27;_disabled&#x27;)) {
       var my_param = $(this).data(&#x27;clickparam&#x27;);
@@ -454,7 +456,7 @@ function lessonButtonsDocumentReady() {
     }
     return false;
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._Lesson_button_remove_virtual_classroom&#x27;, function(e) {
+  $body.on(&#x27;click&#x27;, &#x27;._Lesson_button_remove_virtual_classroom&#x27;, function(e) {
     e.preventDefault();
     if(!$(this).parent().hasClass(&#x27;_disabled&#x27;)) {
       var my_param = $(this).data(&#x27;clickparam&#x27;);
@@ -463,7 +465,7 @@ function lessonButtonsDocumentReady() {
     }
     return false;
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._Lesson_button_edit&#x27;, function(e) {
+  $body.on(&#x27;click&#x27;, &#x27;._Lesson_button_edit&#x27;, function(e) {
     e.preventDefault();
     if(!$(this).parent().hasClass(&#x27;_disabled&#x27;)) {
       var my_param = $(this).data(&#x27;clickparam&#x27;);
@@ -479,7 +481,7 @@ Initializes all the buttons for media elements.
 @for ButtonsDocumentReady
 **/
 function mediaElementButtonsDocumentReady() {
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._Video_button_add, ._Audio_button_add, ._Image_button_add&#x27;, function(e) {
+  $body.on(&#x27;click&#x27;, &#x27;._Video_button_add, ._Audio_button_add, ._Image_button_add&#x27;, function(e) {
     if(!$(this).parent().hasClass(&#x27;_disabled&#x27;)) {
       var my_param = $(this).data(&#x27;clickparam&#x27;);
       var destination = $(this).data(&#x27;destination&#x27;);
@@ -488,7 +490,7 @@ function mediaElementButtonsDocumentReady() {
       addMediaElement(my_param, destination, current_url, reload);
     }
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._Video_button_destroy, ._Audio_button_destroy, ._Image_button_destroy&#x27;, function(e) {
+  $body.on(&#x27;click&#x27;, &#x27;._Video_button_destroy, ._Audio_button_destroy, ._Image_button_destroy&#x27;, function(e) {
     if(!$(this).parent().hasClass(&#x27;_disabled&#x27;)) {
       var my_param = $(this).data(&#x27;clickparam&#x27;);
       var destination = $(this).data(&#x27;destination&#x27;);
@@ -497,13 +499,13 @@ function mediaElementButtonsDocumentReady() {
       destroyMediaElement(my_param, destination, current_url, used_in_private_lessons);
     }
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._Video_button_preview, ._Audio_button_preview, ._Image_button_preview&#x27;, function(e) {
+  $body.on(&#x27;click&#x27;, &#x27;._Video_button_preview, ._Audio_button_preview, ._Image_button_preview&#x27;, function(e) {
     if(!$(this).parents(&#x27;._media_element_item&#x27;).hasClass(&#x27;_disabled&#x27;)) {
       var my_param = $(this).data(&#x27;clickparam&#x27;);
       showMediaElementInfoPopUp(my_param);
     }
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._Video_button_edit&#x27;, function(e) {
+  $body.on(&#x27;click&#x27;, &#x27;._Video_button_edit&#x27;, function(e) {
     if(!$(this).parent().hasClass(&#x27;_disabled&#x27;)) {
       e.preventDefault();
       var video_id = $(this).data(&#x27;clickparam&#x27;);
@@ -514,7 +516,7 @@ function mediaElementButtonsDocumentReady() {
       return false;
     }
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._Audio_button_edit&#x27;, function(e) {
+  $body.on(&#x27;click&#x27;, &#x27;._Audio_button_edit&#x27;, function(e) {
     if(!$(this).parent().hasClass(&#x27;_disabled&#x27;)) {
       e.preventDefault();
       var audio_id = $(this).data(&#x27;clickparam&#x27;);
@@ -525,7 +527,7 @@ function mediaElementButtonsDocumentReady() {
       return false;
     }
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._Image_button_edit&#x27;, function(e) {
+  $body.on(&#x27;click&#x27;, &#x27;._Image_button_edit&#x27;, function(e) {
     if(!$(this).parent().hasClass(&#x27;_disabled&#x27;)) {
       e.preventDefault();
       var image_id = $(this).data(&#x27;clickparam&#x27;);
@@ -536,7 +538,7 @@ function mediaElementButtonsDocumentReady() {
       return false;
     }
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._Video_button_remove, ._Audio_button_remove, ._Image_button_remove&#x27;, function(e) {
+  $body.on(&#x27;click&#x27;, &#x27;._Video_button_remove, ._Audio_button_remove, ._Image_button_remove&#x27;, function(e) {
     if(!$(this).parent().hasClass(&#x27;_disabled&#x27;)) {
       var my_param = $(this).data(&#x27;clickparam&#x27;);
       var destination = $(this).data(&#x27;destination&#x27;);
@@ -574,7 +576,7 @@ function addLesson(lesson_id, destination, current_url, reload) {
       url: &#x27;/lessons/&#x27; + lesson_id + &#x27;/add?destination=&#x27; + destination,
       success: function(data) {
         if(data.ok) {
-          $(&#x27;#popup_captions_container&#x27;).data(&#x27;temporary-msg&#x27;, data.msg);
+          $captions.data(&#x27;temporary-msg&#x27;, data.msg);
           $.ajax({
             type: &#x27;get&#x27;,
             url: redirect_url
@@ -624,7 +626,7 @@ Calls the url to destroy a lesson. It removes the lesson from the page.
 @param current_url {String} url where the lesson is added from
 **/
 function destroyLesson(lesson_id, destination, current_url) {
-  var captions = $(&#x27;#popup_captions_container&#x27;);
+  var captions = $captions;
   showConfirmPopUp(captions.data(&#x27;destroy-lesson-title&#x27;), captions.data(&#x27;destroy-lesson-confirm&#x27;), captions.data(&#x27;destroy-lesson-yes&#x27;), captions.data(&#x27;destroy-lesson-no&#x27;), function() {
     $(&#x27;#dialog-confirm&#x27;).hide();
     var redirect_url = addDeleteItemToCurrentUrl(current_url, (destination + &#x27;_&#x27; + lesson_id));
@@ -707,7 +709,7 @@ Calls the url to publish a lesson. It reloads the item.
 @param destination {String} destination (used to pick the HTML id of the lesson)
 **/
 function publishLesson(lesson_id, destination) {
-  var captions = $(&#x27;#popup_captions_container&#x27;);
+  var captions = $captions;
   showConfirmPopUp(captions.data(&#x27;publish-title&#x27;), captions.data(&#x27;publish-confirm&#x27;), captions.data(&#x27;publish-yes&#x27;), captions.data(&#x27;publish-no&#x27;), function() {
     $(&#x27;#dialog-confirm&#x27;).hide();
     $.ajax({
@@ -743,7 +745,7 @@ function removeLesson(lesson_id, destination, current_url, reload) {
       url: &#x27;/lessons/&#x27; + lesson_id + &#x27;/remove?destination=&#x27; + destination,
       success: function(data) {
         if(data.ok) {
-          $(&#x27;#popup_captions_container&#x27;).data(&#x27;temporary-msg&#x27;, data.msg);
+          $captions.data(&#x27;temporary-msg&#x27;, data.msg);
           $.ajax({
             type: &#x27;get&#x27;,
             url: redirect_url
@@ -778,7 +780,7 @@ Calls the url to unpublish a lesson. It reloads the item.
 @param destination {String} destination (used to pick the HTML id of the lesson)
 **/
 function unpublishLesson(lesson_id, destination) {
-  var captions = $(&#x27;#popup_captions_container&#x27;);
+  var captions = $captions;
   showConfirmPopUp(captions.data(&#x27;unpublish-title&#x27;), captions.data(&#x27;unpublish-confirm&#x27;), captions.data(&#x27;unpublish-yes&#x27;), captions.data(&#x27;unpublish-no&#x27;), function() {
     $(&#x27;#dialog-confirm&#x27;).hide();
     $.ajax({
@@ -818,7 +820,7 @@ function addMediaElement(media_element_id, destination, current_url, reload) {
       url: &#x27;/media_elements/&#x27; + media_element_id + &#x27;/add?destination=&#x27; + destination,
       success: function(data) {
         if(data.ok) {
-          $(&#x27;#popup_captions_container&#x27;).data(&#x27;temporary-msg&#x27;, data.msg);
+          $captions.data(&#x27;temporary-msg&#x27;, data.msg);
           $.ajax({
             type: &#x27;get&#x27;,
             url: redirect_url
@@ -841,7 +843,7 @@ Calls the url to destroy a media element. It removes the element from the page.
 @param used_in_private_lessons {Boolean} if true, the application writes in the confirmation popup that the user is going to remove the same element from his private lessons
 **/
 function destroyMediaElement(media_element_id, destination, current_url, used_in_private_lessons) {
-  var captions = $(&#x27;#popup_captions_container&#x27;);
+  var captions = $captions;
   var title = captions.data(&#x27;destroy-media-element-title&#x27;);
   var confirm = captions.data(&#x27;destroy-media-element-confirm&#x27;);
   var yes = captions.data(&#x27;destroy-media-element-yes&#x27;);
@@ -896,7 +898,7 @@ function removeMediaElement(media_element_id, destination, current_url, reload) 
       url: &#x27;/media_elements/&#x27; + media_element_id + &#x27;/remove?destination=&#x27; + destination,
       success: function(data) {
         if(data.ok) {
-          $(&#x27;#popup_captions_container&#x27;).data(&#x27;temporary-msg&#x27;, data.msg);
+          $captions.data(&#x27;temporary-msg&#x27;, data.msg);
           $.ajax({
             type: &#x27;get&#x27;,
             url: redirect_url

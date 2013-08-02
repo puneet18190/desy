@@ -99,6 +99,8 @@
             
                 <li><a href="../classes/DocumentsDocumentReady.html">DocumentsDocumentReady</a></li>
             
+                <li><a href="../classes/DocumentsUploader.html">DocumentsUploader</a></li>
+            
                 <li><a href="../classes/GalleriesAccessories.html">GalleriesAccessories</a></li>
             
                 <li><a href="../classes/GalleriesDocumentReady.html">GalleriesDocumentReady</a></li>
@@ -403,7 +405,7 @@ Initialization for all the functionalities of expanded lessons and media element
 @for GeneralDocumentReady
 **/
 function expandedItemsDocumentReady() {
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;,&#x27;._lesson_compact&#x27;, function() {
+  $body.on(&#x27;click&#x27;,&#x27;._lesson_compact&#x27;, function() {
     if(!$(this).parent().hasClass(&#x27;_disabled&#x27;)) {
       var my_id = $(this).parent().attr(&#x27;id&#x27;);
       var my_expanded = $(&#x27;#&#x27; + my_id + &#x27; ._lesson_expanded&#x27;);
@@ -420,7 +422,7 @@ function expandedItemsDocumentReady() {
       }
     }
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#display_expanded_media_elements&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;#display_expanded_media_elements&#x27;, function() {
     if(!$(this).hasClass(&#x27;current&#x27;)) {
       $.ajax({
         type: &#x27;get&#x27;,
@@ -428,7 +430,7 @@ function expandedItemsDocumentReady() {
       });
     }
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#display_compact_media_elements&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;#display_compact_media_elements&#x27;, function() {
     if(!$(this).hasClass(&#x27;current&#x27;)) {
       $.ajax({
         type: &#x27;get&#x27;,
@@ -436,11 +438,11 @@ function expandedItemsDocumentReady() {
       });
     }
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._close_media_element_preview_popup&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;._close_media_element_preview_popup&#x27;, function() {
     var param = $(this).data(&#x27;param&#x27;);
     closePopUp(&#x27;dialog-media-element-&#x27; + param);
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._change_info_container ._cancel, ._change_info_to_pick.change_info_light&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;._change_info_container ._cancel, ._change_info_to_pick.change_info_light&#x27;, function() {
     $(&#x27;#dialog-media-element-&#x27; + $(this).data(&#x27;param&#x27;) + &#x27; ._audio_preview_in_media_element_popup&#x27;).show();
     $(&#x27;#dialog-media-element-&#x27; + $(this).data(&#x27;param&#x27;) + &#x27; ._change_info_container&#x27;).hide(&#x27;fade&#x27;, {}, 500, function() {
       var icon = $(&#x27;#dialog-media-element-&#x27; + $(this).data(&#x27;param&#x27;) + &#x27; ._change_info_to_pick&#x27;);
@@ -449,13 +451,13 @@ function expandedItemsDocumentReady() {
       resetMediaElementChangeInfo($(this).data(&#x27;param&#x27;));
     });
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._change_info_to_pick.change_info&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;._change_info_to_pick.change_info&#x27;, function() {
     $(&#x27;#dialog-media-element-&#x27; + $(this).data(&#x27;param&#x27;) + &#x27; ._change_info_container&#x27;).show(&#x27;fade&#x27;, {}, 500);
     $(this).removeClass(&#x27;change_info&#x27;);
     $(this).addClass(&#x27;change_info_light&#x27;);
     $(&#x27;#dialog-media-element-&#x27; + $(this).data(&#x27;param&#x27;) + &#x27; ._audio_preview_in_media_element_popup&#x27;).hide();
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._close_on_click_out&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;._close_on_click_out&#x27;, function() {
     $(&#x27;.ui-dialog-content:visible&#x27;).each(function() {
       closePopUp($(this).attr(&#x27;id&#x27;));
     });
@@ -468,17 +470,17 @@ Similar to {{#crossLink &quot;GeneralDocumentReady/defaultValueJavaScriptAnimati
 @for GeneralDocumentReady
 **/
 function filtersDocumentReady() {
-  $(&#x27;body&#x27;).on(&#x27;change&#x27;, &#x27;#filter_lessons&#x27;, function() {
+  $body.on(&#x27;change&#x27;, &#x27;#filter_lessons&#x27;, function() {
     var filter = $(&#x27;#filter_lessons option:selected&#x27;).val();
     var redirect_url = &#x27;/lessons?filter=&#x27; + filter;
     $.get(redirect_url);
   });
-  $(&#x27;body&#x27;).on(&#x27;change&#x27;, &#x27;#filter_media_elements&#x27;, function() {
+  $body.on(&#x27;change&#x27;, &#x27;#filter_media_elements&#x27;, function() {
     var filter = $(&#x27;#filter_media_elements option:selected&#x27;).val();
     var redirect_url = getCompleteMediaElementsUrlWithoutFilter() + &#x27;&amp;filter=&#x27; + filter;
     $.get(redirect_url);
   });
-  $(&#x27;body&#x27;).on(&#x27;change&#x27;, &#x27;#for_page_media_elements&#x27;, function() {
+  $body.on(&#x27;change&#x27;, &#x27;#for_page_media_elements&#x27;, function() {
     var for_page = $(&#x27;#for_page_media_elements option:selected&#x27;).val();
     var redirect_url = getCompleteMediaElementsUrlWithoutForPage() + &#x27;&amp;for_page=&#x27; + for_page;
     $.get(redirect_url);
@@ -527,7 +529,7 @@ function javaScriptAnimationsDocumentReady() {
   $(&#x27;#filter_media_elements&#x27;).selectbox();
   $(&#x27;#filter_search_media_elements&#x27;).selectbox();
   $(&#x27;#user_school_level_id&#x27;).selectbox();
-  $(&#x27;body&#x27;).on(&#x27;keyup blur&#x27;, &#x27;input[maxlength], textarea[maxlength]&#x27;, function () {
+  $body.on(&#x27;keyup blur&#x27;, &#x27;input[maxlength], textarea[maxlength]&#x27;, function () {
     var myself = $(this);
     var len = myself.val().length;
     var maxlength = myself.attr(&#x27;maxlength&#x27;)
@@ -566,21 +568,21 @@ Initializes reports forms for both lessons and media elements.
 @for GeneralDocumentReady
 **/
 function reportsDocumentReady() {
-  $(&#x27;body&#x27;).on(&#x27;mouseover&#x27;, &#x27;._report_lesson_click&#x27;, function() {
+  $body.on(&#x27;mouseover&#x27;, &#x27;._report_lesson_click&#x27;, function() {
     var obj = $(&#x27;#&#x27; + this.id + &#x27; a._reportable_icon&#x27;);
     if(!obj.hasClass(&#x27;_report_selected&#x27;)) {
       obj.removeClass(&#x27;report&#x27;);
       obj.addClass(&#x27;report_light&#x27;);
     }
   });
-  $(&#x27;body&#x27;).on(&#x27;mouseout&#x27;, &#x27;._report_lesson_click&#x27;, function() {
+  $body.on(&#x27;mouseout&#x27;, &#x27;._report_lesson_click&#x27;, function() {
     var obj = $(&#x27;#&#x27; + this.id + &#x27; a._reportable_icon&#x27;);
     if(!obj.hasClass(&#x27;_report_selected&#x27;)) {
       obj.removeClass(&#x27;report_light&#x27;);
       obj.addClass(&#x27;report&#x27;);
     }
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._report_lesson_click&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;._report_lesson_click&#x27;, function() {
     var param = $(this).data(&#x27;param&#x27;);
     var obj = $(&#x27;#lesson_report_form_&#x27; + param);
     if(!obj.is(&#x27;:visible&#x27;)) {
@@ -602,7 +604,7 @@ function reportsDocumentReady() {
     }
     return false;
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._report_media_element_click&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;._report_media_element_click&#x27;, function() {
     var param = $(this).data(&#x27;param&#x27;);
     var obj = $(&#x27;#media_element_report_form_&#x27; + param);
     if(!obj.is(&#x27;:visible&#x27;)) {
@@ -620,11 +622,11 @@ function reportsDocumentReady() {
     }
     return false;
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._report_form_content&#x27;, function(e) {
+  $body.on(&#x27;click&#x27;, &#x27;._report_form_content&#x27;, function(e) {
     e.preventDefault();
     return false;
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._report_form_content ._send&#x27;, function(e) {
+  $body.on(&#x27;click&#x27;, &#x27;._report_form_content ._send&#x27;, function(e) {
     $(this).closest(&#x27;form&#x27;).submit();
   });
 }
@@ -652,7 +654,7 @@ Shows a red error icon when somethings goes wrong. Widely used in {{#crossLinkMo
 @for GeneralMiscellanea
 **/
 function redError() {
-  $(&#x27;body&#x27;).prepend(&#x27;&lt;span class=&quot;_slide_error&quot;&gt;&lt;/span&gt;&#x27;);
+  $body.prepend(&#x27;&lt;span class=&quot;_slide_error&quot;&gt;&lt;/span&gt;&#x27;);
   centerThis(&#x27;._slide_error&#x27;);
   $(&#x27;._slide_error&#x27;).fadeTo(&#x27;fast&#x27;, 0).fadeTo(&#x27;fast&#x27;, 0.7).fadeTo(&#x27;fast&#x27;, 0.3).fadeOut();
 }

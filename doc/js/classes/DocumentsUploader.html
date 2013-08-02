@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>VideoEditorPreview - DESY</title>
+    <title>DocumentsUploader - DESY</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -314,7 +314,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>VideoEditorPreview Class</h1>
+                        <h1>DocumentsUploader Class</h1>
 <div class="box meta">
     
 
@@ -324,7 +324,7 @@
 
     
         
-            Module: <a href="../modules/video-editor.html">video-editor</a>
+            Module: <a href="../modules/documents.html">documents</a>
         
     
 
@@ -362,35 +362,35 @@
                     <ul class="index-list methods">
                         
                             <li class="index-item method">
-                                <a href="#method_automaticIncreaseVideoEditorPreviewTimer">automaticIncreaseVideoEditorPreviewTimer</a>
+                                <a href="#method_initDocumentLoader">initDocumentLoader</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_increaseVideoEditorPreviewTimer">increaseVideoEditorPreviewTimer</a>
+                                <a href="#method_showLoadDocumentPopUp">showLoadDocumentPopUp</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_openPreviewModeInVideoEditor">openPreviewModeInVideoEditor</a>
+                                <a href="#method_uploadDocumentDone">uploadDocumentDone</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_playVideoEditorComponent">playVideoEditorComponent</a>
+                                <a href="#method_uploadDocumentLoaderDoneRedirect">uploadDocumentLoaderDoneRedirect</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_startVideoEditorGlobalPreview">startVideoEditorGlobalPreview</a>
+                                <a href="#method_uploadDocumentLoaderError">uploadDocumentLoaderError</a>
 
                                 
                                 
@@ -412,224 +412,8 @@
                 <h2 class="off-left">Methods</h2>
 
                 
-                    <div id="method_automaticIncreaseVideoEditorPreviewTimer" class="method item">
-    <h3 class="name"><code>automaticIncreaseVideoEditorPreviewTimer</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>time</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>total_length</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>callback</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/app_assets_javascripts_video_editor.js.html#l1328"><code>app&#x2F;assets&#x2F;javascripts&#x2F;video_editor.js:1328</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Automatic increase for the global preview current time (used when playing image or text components).</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">time</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>the global time before calling the method</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">total_length</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>the total length of the component</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">callback</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>the callback to be executed after the time update</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="method_increaseVideoEditorPreviewTimer" class="method item">
-    <h3 class="name"><code>increaseVideoEditorPreviewTimer</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>with_component</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/app_assets_javascripts_video_editor.js.html#l1349"><code>app&#x2F;assets&#x2F;javascripts&#x2F;video_editor.js:1349</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Increases of one step the global preview time (typically used in <a href="../classes/PlayersVideoEditor.html#method_initializeActionOfMediaTimeUpdaterInVideoEditor" class="crosslink">initializeActionOfMediaTimeUpdaterInVideoEditor</a>).</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">with_component</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>if true, it updates also the local time of the selected component</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="method_openPreviewModeInVideoEditor" class="method item">
-    <h3 class="name"><code>openPreviewModeInVideoEditor</code></h3>
+                    <div id="method_initDocumentLoader" class="method item">
+    <h3 class="name"><code>initDocumentLoader</code></h3>
 
     
         <span class="paren">()</span>
@@ -660,7 +444,7 @@
             
         
         
-        <a href="../files/app_assets_javascripts_video_editor.js.html#l1372"><code>app&#x2F;assets&#x2F;javascripts&#x2F;video_editor.js:1372</code></a>
+        <a href="../files/app_assets_javascripts_documents.js.html#l303"><code>app&#x2F;assets&#x2F;javascripts&#x2F;documents.js:303</code></a>
         
         </p>
 
@@ -671,7 +455,7 @@
     </div>
 
     <div class="description">
-        <p>Opens the preview mode with all its graphical effects. The similar functionality to close the preview mode is initialized in <a href="../classes/VideoEditorDocumentReady.html#method_videoEditorDocumentReadyPreview" class="crosslink">videoEditorDocumentReadyPreview</a>.</p>
+        <p>Sets iframe as target for form submit, and adds a callback function to control 413 status error; notice that <b>upload target</b> is the HTML id of the frame.</p>
     </div>
 
     
@@ -682,8 +466,187 @@
 </div>
 
                 
-                    <div id="method_playVideoEditorComponent" class="method item">
-    <h3 class="name"><code>playVideoEditorComponent</code></h3>
+                    <div id="method_showLoadDocumentPopUp" class="method item">
+    <h3 class="name"><code>showLoadDocumentPopUp</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/app_assets_javascripts_documents.js.html#l218"><code>app&#x2F;assets&#x2F;javascripts&#x2F;documents.js:218</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Dialog containing the form to upload a new document.</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_uploadDocumentDone" class="method item">
+    <h3 class="name"><code>uploadDocumentDone</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/app_assets_javascripts_documents.js.html#l253"><code>app&#x2F;assets&#x2F;javascripts&#x2F;documents.js:253</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Handles 413 status error, file too large.</p>
+    </div>
+
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>:
+                    
+                    false, for some reason
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_uploadDocumentLoaderDoneRedirect" class="method item">
+    <h3 class="name"><code>uploadDocumentLoaderDoneRedirect</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/app_assets_javascripts_documents.js.html#l269"><code>app&#x2F;assets&#x2F;javascripts&#x2F;documents.js:269</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Reloads documents page after new document is successfully loaded.</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_uploadDocumentLoaderError" class="method item">
+    <h3 class="name"><code>uploadDocumentLoaderError</code></h3>
 
     
         <div class="args">
@@ -691,13 +654,7 @@
             
                 <li class="arg">
                     
-                        <code>component</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>with_scroll</code>
+                        <code>errors</code>
                     
                 </li>
             
@@ -730,7 +687,7 @@
             
         
         
-        <a href="../files/app_assets_javascripts_video_editor.js.html#l1415"><code>app&#x2F;assets&#x2F;javascripts&#x2F;video_editor.js:1415</code></a>
+        <a href="../files/app_assets_javascripts_documents.js.html#l281"><code>app&#x2F;assets&#x2F;javascripts&#x2F;documents.js:281</code></a>
         
         </p>
 
@@ -741,7 +698,7 @@
     </div>
 
     <div class="description">
-        <p>Plays a component and handles the transition to the next one (if there is any). In case the component is of type <b>image</b> or <b>text</b>, the time increase is handled by <a href="../classes/VideoEditorPreview.html#method_automaticIncreaseVideoEditorPreviewTimer" class="crosslink">automaticIncreaseVideoEditorPreviewTimer</a>; if the component is of type <b>video</b> the transition is handled by <a href="../classes/PlayersVideoEditor.html#method_initializeActionOfMediaTimeUpdaterInVideoEditor" class="crosslink">initializeActionOfMediaTimeUpdaterInVideoEditor</a> and the time increase by <a href="../classes/VideoEditorPreview.html#method_increaseVideoEditorPreviewTimer" class="crosslink">increaseVideoEditorPreviewTimer</a>.</p>
+        <p>Update form fields with error labels.</p>
     </div>
 
     
@@ -752,29 +709,14 @@
             
                 <li class="param">
                     
-                        <code class="param-name">component</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                        <code class="param-name">errors</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>the component to be played</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">with_scroll</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>if true, it uses <a href="../classes/VideoEditorScrollPain.html#method_followPreviewComponentsWithHorizontalScrollInVideoEditor" class="crosslink">followPreviewComponentsWithHorizontalScrollInVideoEditor</a> to follow the timeline with the scroll.</p>
+                        <p>errors list</p>
                     </div>
 
                     
@@ -782,60 +724,6 @@
             
             </ul>
         </div>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="method_startVideoEditorGlobalPreview" class="method item">
-    <h3 class="name"><code>startVideoEditorGlobalPreview</code></h3>
-
-    
-        <span class="paren">()</span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/app_assets_javascripts_video_editor.js.html#l1487"><code>app&#x2F;assets&#x2F;javascripts&#x2F;video_editor.js:1487</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Starts the preview from the selected component.</p>
-    </div>
-
     
 
     

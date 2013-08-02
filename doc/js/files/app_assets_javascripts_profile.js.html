@@ -99,6 +99,8 @@
             
                 <li><a href="../classes/DocumentsDocumentReady.html">DocumentsDocumentReady</a></li>
             
+                <li><a href="../classes/DocumentsUploader.html">DocumentsUploader</a></li>
+            
                 <li><a href="../classes/GalleriesAccessories.html">GalleriesAccessories</a></li>
             
                 <li><a href="../classes/GalleriesDocumentReady.html">GalleriesDocumentReady</a></li>
@@ -345,7 +347,7 @@ Initializes the handler of the login form.
 @for ProfilePrelogin
 **/
 function preloginDocumentReady() {
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._show_login_form_container&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;._show_login_form_container&#x27;, function() {
     var form = $(&#x27;#login_form_container&#x27;);
     if(!form.is(&#x27;:visible&#x27;)) {
       form.show(&#x27;fade&#x27;, {}, 500);
@@ -354,7 +356,7 @@ function preloginDocumentReady() {
       form.hide(&#x27;fade&#x27;, {}, 500);
     }
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#submit_login_form&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;#submit_login_form&#x27;, function() {
     $(&#x27;#new_users_session_form&#x27;).submit();
   });
 }
@@ -369,27 +371,27 @@ Initializes the javascript effects of the registration / modify profile form.
 @for ProfileUsers
 **/
 function profileDocumentReady() {
-  $(&#x27;body&#x27;).on(&#x27;keypress&#x27;,&#x27;#mailing_lists_accordion .group-title&#x27;, function(event) {
+  $body.on(&#x27;keypress&#x27;,&#x27;#mailing_lists_accordion .group-title&#x27;, function(event) {
     if (event.keyCode == 10 || event.keyCode == 13){
       event.preventDefault();
     }
   });
-  $(&#x27;body&#x27;).on(&#x27;keypress&#x27;,&#x27;#mailing_lists_accordion .group-title&#x27;, function(event) {
+  $body.on(&#x27;keypress&#x27;,&#x27;#mailing_lists_accordion .group-title&#x27;, function(event) {
      if(event.which === 32){
        event.stopPropagation();
      }
   });
-  $(&#x27;body&#x27;).on(&#x27;blur&#x27;, &#x27;#mailing_lists_accordion .group-title&#x27;, function() {
+  $body.on(&#x27;blur&#x27;, &#x27;#mailing_lists_accordion .group-title&#x27;, function() {
     var group = $(this);
     $.ajax({
       type: &#x27;put&#x27;,
       url: &#x27;/mailing_lists/&#x27; + group.data(&#x27;param&#x27;) + &#x27;/update/&#x27; + group.text()
     });
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#fake_save_mailing_list&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;#fake_save_mailing_list&#x27;, function() {
     $(&#x27;.group-title&#x27;).effect(&#x27;highlight&#x27;, {color: &#x27;#41A62A&#x27;}, 1500);
   });
-  $(&#x27;body&#x27;).on(&#x27;focus&#x27;, &#x27;._input_in_mailing_list&#x27;, function() {
+  $body.on(&#x27;focus&#x27;, &#x27;._input_in_mailing_list&#x27;, function() {
     if($(this).data(&#x27;placeholder&#x27;)) {
       $(this).val(&#x27;&#x27;);
       $(this).data(&#x27;placeholder&#x27;, false);

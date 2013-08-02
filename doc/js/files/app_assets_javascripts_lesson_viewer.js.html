@@ -99,6 +99,8 @@
             
                 <li><a href="../classes/DocumentsDocumentReady.html">DocumentsDocumentReady</a></li>
             
+                <li><a href="../classes/DocumentsUploader.html">DocumentsUploader</a></li>
+            
                 <li><a href="../classes/GalleriesAccessories.html">GalleriesAccessories</a></li>
             
                 <li><a href="../classes/GalleriesDocumentReady.html">GalleriesDocumentReady</a></li>
@@ -354,13 +356,13 @@ Initializer for functionalities of the playlist menu.
 @for LessonViewerDocumentReady
 **/
 function lessonViewerDocumentReadyPlaylist() {
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#carousel_container a&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;#carousel_container a&#x27;, function() {
     var me = $(this);
     if(!me.hasClass(&#x27;esciButton&#x27;) &amp;&amp; !me.hasClass(&#x27;_playlist_menu_item&#x27;) &amp;&amp; !me.hasClass(&#x27;_open_playlist&#x27;) &amp;&amp; !me.hasClass(&#x27;_close_playlist&#x27;)) {
       closePlaylistMenuInLessonViewer(function() {});
     }
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._playlist_menu_item&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;._playlist_menu_item&#x27;, function() {
     var lesson_id = $(this).data(&#x27;lesson-id&#x27;);
     switchLessonInPlaylistMenuLessonViewer(lesson_id, function() {
       closePlaylistMenuInLessonViewer(function() {
@@ -368,7 +370,7 @@ function lessonViewerDocumentReadyPlaylist() {
       });
     });
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;a._open_playlist&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;a._open_playlist&#x27;, function() {
     if(!$(this).data(&#x27;loaded&#x27;) &amp;&amp; $(&#x27;._playlist_menu_item&#x27;).length &gt; 3) {
       $(this).data(&#x27;loaded&#x27;, true);
       $(&#x27;#playlist_menu&#x27;).jScrollPane({
@@ -379,7 +381,7 @@ function lessonViewerDocumentReadyPlaylist() {
     stopMediaInLessonViewer();
     openPlaylistMenuInLessonViewer();
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;a._close_playlist&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;a._close_playlist&#x27;, function() {
     closePlaylistMenuInLessonViewer(function() {});
   });
 }
@@ -397,14 +399,14 @@ function lessonViewerDocumentReadySlidesNavigation() {
       goToNextSlideInLessonViewer(false);
     }
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#right_scroll&#x27;, function(e) {
+  $body.on(&#x27;click&#x27;, &#x27;#right_scroll&#x27;, function(e) {
     e.preventDefault();
     if(!$(this).hasClass(&#x27;disabled&#x27;)) {
       $(this).addClass(&#x27;disabled&#x27;);
       goToNextSlideInLessonViewer(false);
     }
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#left_scroll&#x27;, function(e) {
+  $body.on(&#x27;click&#x27;, &#x27;#left_scroll&#x27;, function(e) {
     e.preventDefault();
     if(!$(this).hasClass(&#x27;disabled&#x27;)) {
       $(this).addClass(&#x27;disabled&#x27;);
@@ -429,11 +431,11 @@ Initializer for functionality of sharing the lesson in social networks.
 @for LessonViewerDocumentReady
 **/
 function lessonViewerDocumentReadySocialNetworks() {
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#open_social_networks&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;#open_social_networks&#x27;, function() {
     $(this).hide();
     $(&#x27;#social_networks&#x27;).show();
   });
-  $(&#x27;body&#x27;).on(&#x27;mouseout&#x27;, &#x27;#social_networks&#x27;, function(e) {
+  $body.on(&#x27;mouseout&#x27;, &#x27;#social_networks&#x27;, function(e) {
     var position = $(this).offset();
     var top = position.top;
     var right = position.left + 158;
@@ -445,7 +447,7 @@ function lessonViewerDocumentReadySocialNetworks() {
     $(this).hide();
     $(&#x27;#open_social_networks&#x27;).show();
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#social_networks .facebook&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;#social_networks .facebook&#x27;, function() {
     $(&#x27;#social_networks&#x27;).hide();
     $(&#x27;#open_social_networks&#x27;).show();
     var fb_url = &#x27;https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=&#x27; + encodeURIComponent($(this).data(&#x27;url&#x27;));
@@ -460,7 +462,7 @@ function lessonViewerDocumentReadySocialNetworks() {
       &#x27;width=626,height=436&#x27;
     );
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#social_networks .twitter&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;#social_networks .twitter&#x27;, function() {
     $(&#x27;#social_networks&#x27;).hide();
     $(&#x27;#open_social_networks&#x27;).show();
     var tw_url = &#x27;https://twitter.com/intent/tweet?original_referer=&#x27; + encodeURIComponent($(this).data(&#x27;url&#x27;));
@@ -472,7 +474,7 @@ function lessonViewerDocumentReadySocialNetworks() {
       &#x27;width=626,height=436&#x27;
     );
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#social_networks .google-plus&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;#social_networks .google-plus&#x27;, function() {
     $(&#x27;#social_networks&#x27;).hide();
     $(&#x27;#open_social_networks&#x27;).show();
     var gp_url = &#x27;https://plus.google.com/share?url=&#x27; + encodeURIComponent($(this).data(&#x27;url&#x27;));
@@ -761,9 +763,9 @@ function slideToInLessonViewer(to, with_drop, to_right) {
       loading_url += &#x27;&amp;with_playlist=true&#x27;;
     }
     if(!to_prev.data(&#x27;loaded&#x27;) || !to.data(&#x27;loaded&#x27;) || !to_next.data(&#x27;loaded&#x27;)) {
+      unbindLoader();
       $.ajax({
         type: &#x27;get&#x27;,
-        beforeSend: unbindLoader(),
         url: loading_url,
         success: function() {
           $(&#x27;#left_scroll, #right_scroll&#x27;).removeClass(&#x27;disabled&#x27;);

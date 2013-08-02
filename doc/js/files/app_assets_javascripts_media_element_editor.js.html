@@ -99,6 +99,8 @@
             
                 <li><a href="../classes/DocumentsDocumentReady.html">DocumentsDocumentReady</a></li>
             
+                <li><a href="../classes/DocumentsUploader.html">DocumentsUploader</a></li>
+            
                 <li><a href="../classes/GalleriesAccessories.html">GalleriesAccessories</a></li>
             
                 <li><a href="../classes/GalleriesDocumentReady.html">GalleriesDocumentReady</a></li>
@@ -338,7 +340,7 @@ function saveCacheLoop() {
   if($(&#x27;html&#x27;).hasClass(&#x27;audio_editor-controller&#x27;)) {
     cache_form = $(&#x27;#audio_editor_form&#x27;);
   }
-  var time = $(&#x27;#popup_parameters_container&#x27;).data(&#x27;cache-time&#x27;);
+  var time = $parameters.data(&#x27;cache-time&#x27;);
   if(cache_form != &#x27;&#x27; &amp;&amp; $(&#x27;#info_container&#x27;).data(&#x27;save-cache&#x27;)) {
     submitMediaElementEditorCacheForm(cache_form);
     setTimeout(function() {
@@ -373,12 +375,12 @@ Submethod of {{#crossLink &quot;MediaElementEditorCache/saveCacheLoop:method&quo
 @for MediaElementEditorCache
 **/
 function submitMediaElementEditorCacheForm(form) {
+  unbindLoader();
   $.ajax({
     type: &#x27;post&#x27;,
     url: form.attr(&#x27;action&#x27;),
     timeout: 5000,
-    data: form.serialize(),
-    beforeSend: unbindLoader()
+    data: form.serialize()
   }).always(bindLoader);
 }
 
@@ -392,13 +394,13 @@ Initializes the placeholder of the &lt;b&gt;commit forms&lt;/b&gt; used in {{#cr
 @for MediaElementEditorDocumentReady
 **/
 function mediaElementEditorDocumentReady() {
-  $(&#x27;body&#x27;).on(&#x27;focus&#x27;, &#x27;#form_info_new_media_element_in_editor #new_title&#x27;, function() {
+  $body.on(&#x27;focus&#x27;, &#x27;#form_info_new_media_element_in_editor #new_title&#x27;, function() {
     if($(&#x27;#form_info_new_media_element_in_editor #new_title_placeholder&#x27;).val() == &#x27;&#x27;) {
       $(this).attr(&#x27;value&#x27;, &#x27;&#x27;);
       $(&#x27;#form_info_new_media_element_in_editor #new_title_placeholder&#x27;).attr(&#x27;value&#x27;, &#x27;0&#x27;);
     }
   });
-  $(&#x27;body&#x27;).on(&#x27;focus&#x27;, &#x27;#form_info_new_media_element_in_editor #new_description&#x27;, function() {
+  $body.on(&#x27;focus&#x27;, &#x27;#form_info_new_media_element_in_editor #new_description&#x27;, function() {
     if($(&#x27;#form_info_new_media_element_in_editor #new_description_placeholder&#x27;).val() == &#x27;&#x27;) {
       $(this).attr(&#x27;value&#x27;, &#x27;&#x27;);
       $(&#x27;#form_info_new_media_element_in_editor #new_description_placeholder&#x27;).attr(&#x27;value&#x27;, &#x27;0&#x27;);

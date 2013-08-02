@@ -195,32 +195,22 @@
               <div id="method-i-create_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/controllers/documents_controller.rb, line 87</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">create</span>
-  <span class="ruby-comment">#media = params[:media]</span>
-  <span class="ruby-comment">#record = MediaElement.new :media =&gt; media</span>
-  <span class="ruby-comment">#record.title = params[:title_placeholder] != &#39;0&#39; ? &#39;&#39; : params[:title]</span>
-  <span class="ruby-comment">#record.description = params[:description_placeholder] != &#39;0&#39; ? &#39;&#39; : params[:description]</span>
-  <span class="ruby-comment">#record.tags = params[:tags_value]</span>
-  <span class="ruby-comment">#record.user_id = current_user.id</span>
-  <span class="ruby-comment">#record.validating_in_form = true</span>
-  <span class="ruby-comment">#if record.save</span>
-  <span class="ruby-comment">#  Notification.send_to current_user.id, t(&quot;notifications.#{record.class.to_s.downcase}.upload.started&quot;, item: record.title) if !record.image?</span>
-  <span class="ruby-comment">#else</span>
- <span class="ruby-comment">#  if record.errors.added? :media, :too_large</span>
- <span class="ruby-comment">#     return render :file =&gt; Rails.root.join(&#39;public/413.html&#39;), :layout =&gt; false, :status =&gt; 413</span>
- <span class="ruby-comment">#   end</span>
- <span class="ruby-comment">#   @errors = convert_media_element_uploader_messages record.errors</span>
- <span class="ruby-comment">#   fields = record.errors.messages.keys</span>
- <span class="ruby-comment">#   fields.delete(:media) if fields.include?(:media) &amp;&amp; record.errors.messages[:media].empty?</span>
- <span class="ruby-comment">#   if fields.include? :sti_type</span>
- <span class="ruby-comment">#     fields &lt;&lt; :media if !fields.include? :media</span>
- <span class="ruby-comment">#     fields.delete :sti_type</span>
- <span class="ruby-comment">#   end</span>
- <span class="ruby-comment">#   @error_fields = []</span>
- <span class="ruby-comment">#   fields.each do |f|</span>
- <span class="ruby-comment">#     @error_fields &lt;&lt; f.to_s</span>
- <span class="ruby-comment">#   end</span>
- <span class="ruby-comment"># end</span>
- <span class="ruby-comment"># render :layout =&gt; false</span>
+  <span class="ruby-identifier">record</span> = <span class="ruby-constant">Document</span>.<span class="ruby-identifier">new</span> <span class="ruby-value">:attachment</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:attachment</span>]
+  <span class="ruby-identifier">record</span>.<span class="ruby-identifier">title</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:title_placeholder</span>] <span class="ruby-operator">!=</span> <span class="ruby-string">&#39;0&#39;</span> <span class="ruby-operator">?</span> <span class="ruby-string">&#39;&#39;</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:title</span>]
+  <span class="ruby-identifier">record</span>.<span class="ruby-identifier">description</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:description_placeholder</span>] <span class="ruby-operator">!=</span> <span class="ruby-string">&#39;0&#39;</span> <span class="ruby-operator">?</span> <span class="ruby-string">&#39;&#39;</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:description</span>]
+  <span class="ruby-identifier">record</span>.<span class="ruby-identifier">user_id</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">record</span>.<span class="ruby-identifier">save</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">record</span>.<span class="ruby-identifier">errors</span>.<span class="ruby-identifier">added?</span> <span class="ruby-value">:attachment</span>, <span class="ruby-value">:too_large</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-identifier">render</span> <span class="ruby-operator">:</span><span class="ruby-identifier">file</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Rails</span>.<span class="ruby-identifier">root</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;public/413.html&#39;</span>), <span class="ruby-value">:layout</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>, <span class="ruby-value">:status</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-number">413</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-ivar">@errors</span> = <span class="ruby-identifier">convert_document_uploader_messages</span> <span class="ruby-identifier">record</span>.<span class="ruby-identifier">errors</span>
+    <span class="ruby-identifier">fields</span> = <span class="ruby-identifier">record</span>.<span class="ruby-identifier">errors</span>.<span class="ruby-identifier">messages</span>.<span class="ruby-identifier">keys</span>
+    <span class="ruby-ivar">@error_fields</span> = []
+    <span class="ruby-identifier">fields</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span>
+      <span class="ruby-ivar">@error_fields</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">f</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">record</span>.<span class="ruby-identifier">errors</span>.<span class="ruby-identifier">messages</span>[<span class="ruby-identifier">f</span>].<span class="ruby-identifier">any?</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">render</span> <span class="ruby-value">:layout</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -423,7 +413,7 @@ href="User.html#method-i-own_documents">User#own_documents</a></p>
                 
               </p>
               <div id="method-i-get_own_documents_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/documents_controller.rb, line 119</span>
+                <pre><span class="ruby-comment"># File app/controllers/documents_controller.rb, line 109</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">get_own_documents</span>
   <span class="ruby-identifier">current_user_own_documents</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">own_documents</span>(<span class="ruby-ivar">@page</span>, <span class="ruby-ivar">@for_page</span>, <span class="ruby-ivar">@order</span>, <span class="ruby-ivar">@word</span>)
   <span class="ruby-ivar">@documents</span> = <span class="ruby-identifier">current_user_own_documents</span>[<span class="ruby-value">:records</span>]
@@ -460,7 +450,7 @@ href="User.html#method-i-own_documents">User#own_documents</a></p>
                 
               </p>
               <div id="method-i-initialize_paginator_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/documents_controller.rb, line 126</span>
+                <pre><span class="ruby-comment"># File app/controllers/documents_controller.rb, line 116</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize_paginator</span>
   <span class="ruby-ivar">@page</span> = <span class="ruby-identifier">correct_integer?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-number">1</span>
   <span class="ruby-ivar">@for_page</span> = <span class="ruby-constant">FOR_PAGE</span>

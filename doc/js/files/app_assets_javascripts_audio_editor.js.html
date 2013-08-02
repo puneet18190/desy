@@ -99,6 +99,8 @@
             
                 <li><a href="../classes/DocumentsDocumentReady.html">DocumentsDocumentReady</a></li>
             
+                <li><a href="../classes/DocumentsUploader.html">DocumentsUploader</a></li>
+            
                 <li><a href="../classes/GalleriesAccessories.html">GalleriesAccessories</a></li>
             
                 <li><a href="../classes/GalleriesDocumentReady.html">GalleriesDocumentReady</a></li>
@@ -629,15 +631,15 @@ Initializer for the functionalities of committing changes (click on &#x27;commit
 @for AudioEditorDocumentReady
 **/
 function audioEditorDocumentReadyCommit() {
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._exit_audio_editor&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;._exit_audio_editor&#x27;, function() {
     stopCacheLoop();
-    var captions = $(&#x27;#popup_captions_container&#x27;);
+    var captions = $captions;
     showConfirmPopUp(captions.data(&#x27;exit-audio-editor-title&#x27;), captions.data(&#x27;exit-audio-editor-confirm&#x27;), captions.data(&#x27;exit-audio-editor-yes&#x27;), captions.data(&#x27;exit-audio-editor-no&#x27;), function() {
       $(&#x27;dialog-confirm&#x27;).hide();
+      unbindLoader();
       $.ajax({
         type: &#x27;post&#x27;,
         url: &#x27;/audios/cache/empty&#x27;,
-        beforeSend: unbindLoader(),
         success: function() {
           window.location = &#x27;/media_elements&#x27;;
         }
@@ -655,11 +657,11 @@ function audioEditorDocumentReadyCommit() {
       closePopUp(&#x27;dialog-confirm&#x27;);
     });
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#commit_audio_editor&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;#commit_audio_editor&#x27;, function() {
     stopCacheLoop();
     submitMediaElementEditorCacheForm($(&#x27;#audio_editor_form&#x27;));
     if($(this).hasClass(&#x27;_with_choice&#x27;)) {
-      var captions = $(&#x27;#popup_captions_container&#x27;);
+      var captions = $captions;
       var title = captions.data(&#x27;save-media-element-editor-title&#x27;);
       var confirm = captions.data(&#x27;save-media-element-editor-confirm&#x27;);
       var yes = captions.data(&#x27;save-media-element-editor-yes&#x27;);
@@ -677,7 +679,7 @@ function audioEditorDocumentReadyCommit() {
       showCommitAudioEditorForm(&#x27;new&#x27;);
     }
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#audio_editor #form_info_new_media_element_in_editor ._cancel&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;#audio_editor #form_info_new_media_element_in_editor ._cancel&#x27;, function() {
     $(&#x27;#audio_editor_form&#x27;).attr(&#x27;action&#x27;, &#x27;/audios/cache/save&#x27;);
     resetMediaElementEditorForms();
     if($(&#x27;#audio_editor_title ._titled&#x27;).length &gt; 0) {
@@ -687,19 +689,19 @@ function audioEditorDocumentReadyCommit() {
     hideCommitAudioEditorForm(&#x27;new&#x27;);
     startCacheLoop();
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#audio_editor #form_info_update_media_element_in_editor ._cancel&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;#audio_editor #form_info_update_media_element_in_editor ._cancel&#x27;, function() {
     $(&#x27;#audio_editor_form&#x27;).attr(&#x27;action&#x27;, &#x27;/audios/cache/save&#x27;);
     resetMediaElementEditorForms();
     hideCommitAudioEditorForm(&#x27;update&#x27;);
     startCacheLoop();
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#audio_editor #form_info_new_media_element_in_editor ._commit&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;#audio_editor #form_info_new_media_element_in_editor ._commit&#x27;, function() {
     $(&#x27;#audio_editor_form&#x27;).attr(&#x27;action&#x27;, &#x27;/audios/commit/new&#x27;);
     $(&#x27;#audio_editor_form&#x27;).submit();
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#audio_editor #form_info_update_media_element_in_editor ._commit&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;#audio_editor #form_info_update_media_element_in_editor ._commit&#x27;, function() {
     if($(&#x27;#info_container&#x27;).data(&#x27;used-in-private-lessons&#x27;)) {
-      var captions = $(&#x27;#popup_captions_container&#x27;);
+      var captions = $captions;
       var title = captions.data(&#x27;overwrite-media-element-editor-title&#x27;);
       var confirm = captions.data(&#x27;overwrite-media-element-editor-confirm&#x27;);
       var yes = captions.data(&#x27;overwrite-media-element-editor-yes&#x27;);
@@ -724,7 +726,7 @@ Initializer for the precision arrows in the cutters. For the other functionaliti
 @for AudioEditorDocumentReady
 **/
 function audioEditorDocumentReadyCutters() {
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._audio_editor_component ._precision_arrow_left&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;._audio_editor_component ._precision_arrow_left&#x27;, function() {
     var component = $(this).parents(&#x27;._audio_editor_component&#x27;);
     var identifier = getAudioComponentIdentifier(component);
     var single_slider = component.find(&#x27;._media_player_slider&#x27;);
@@ -751,7 +753,7 @@ function audioEditorDocumentReadyCutters() {
       }
     }
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._audio_editor_component ._precision_arrow_right&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;._audio_editor_component ._precision_arrow_right&#x27;, function() {
     var component = $(this).parents(&#x27;._audio_editor_component&#x27;);
     var identifier = getAudioComponentIdentifier(component);
     var duration = component.data(&#x27;max-to&#x27;);
@@ -790,24 +792,24 @@ function audioEditorDocumentReadyGeneral() {
   if($.browser === &#x27;msie&#x27;) {
     $(&#x27;._audio_editor_component ._double_slider .ui-slider-range&#x27;).css(&#x27;opacity&#x27;, 0.4);
   }
-  $(&#x27;body&#x27;).on(&#x27;mouseover&#x27;, &#x27;._audio_editor_component ._box_ghost&#x27;, function() {
+  $body.on(&#x27;mouseover&#x27;, &#x27;._audio_editor_component ._box_ghost&#x27;, function() {
     $(this).parent().find(&#x27;._sort_handle&#x27;).addClass(&#x27;current&#x27;);
   });
-  $(&#x27;body&#x27;).on(&#x27;mouseout&#x27;, &#x27;._audio_editor_component ._box_ghost&#x27;, function(e) {
+  $body.on(&#x27;mouseout&#x27;, &#x27;._audio_editor_component ._box_ghost&#x27;, function(e) {
     if($(this).is(&#x27;:visible&#x27;) &amp;&amp; !$(e.relatedTarget).hasClass(&#x27;_remove&#x27;)) {
       $(this).parent().find(&#x27;._sort_handle&#x27;).removeClass(&#x27;current&#x27;);
     }
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._audio_editor_component ._sort_handle&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;._audio_editor_component ._sort_handle&#x27;, function() {
     selectAudioEditorComponent($(this).parent().parent());
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._audio_editor_component ._box_ghost&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;._audio_editor_component ._box_ghost&#x27;, function() {
     selectAudioEditorComponent($(this).parent());
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._audio_editor_component ._remove&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;._audio_editor_component ._remove&#x27;, function() {
     removeAudioEditorComponent($(this).parent());
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#add_new_audio_component_in_audio_editor&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;#add_new_audio_component_in_audio_editor&#x27;, function() {
     if(!$(&#x27;#add_new_audio_component_in_audio_editor&#x27;).hasClass(&#x27;disabled&#x27;)) {
       var selected_component = $(&#x27;._audio_editor_component._selected&#x27;);
       if(selected_component.length &gt; 0) {
@@ -823,7 +825,7 @@ function audioEditorDocumentReadyGeneral() {
       }
     }
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._add_audio_component_to_audio_editor&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;._add_audio_component_to_audio_editor&#x27;, function() {
     stopMedia(&#x27;._audio_expanded_in_gallery audio&#x27;);
     $(&#x27;._audio_expanded_in_gallery ._expanded&#x27;).hide();
     $(&#x27;._audio_expanded_in_gallery&#x27;).removeClass(&#x27;_audio_expanded_in_gallery&#x27;);
@@ -868,12 +870,12 @@ Initializes the functionalities of the preview (see also {{#crossLink &quot;Audi
 @for AudioEditorDocumentReady
 **/
 function audioEditorDocumentReadyPreview() {
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#start_audio_editor_preview&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;#start_audio_editor_preview&#x27;, function() {
     if(!$(this).hasClass(&#x27;disabled&#x27;)) {
       enterAudioEditorPreviewMode();
     }
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#rewind_audio_editor_preview&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;#rewind_audio_editor_preview&#x27;, function() {
     if(!$(this).hasClass(&#x27;disabled&#x27;)) {
       var selected_component = $(&#x27;._audio_editor_component&#x27;).first();
       selectAudioEditorComponent(selected_component);
@@ -887,7 +889,7 @@ function audioEditorDocumentReadyPreview() {
       });
     }
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#stop_audio_editor_preview&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;#stop_audio_editor_preview&#x27;, function() {
     leaveAudioEditorPreviewMode();
   });
 }

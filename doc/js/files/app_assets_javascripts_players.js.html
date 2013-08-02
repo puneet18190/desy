@@ -99,6 +99,8 @@
             
                 <li><a href="../classes/DocumentsDocumentReady.html">DocumentsDocumentReady</a></li>
             
+                <li><a href="../classes/DocumentsUploader.html">DocumentsUploader</a></li>
+            
                 <li><a href="../classes/GalleriesAccessories.html">GalleriesAccessories</a></li>
             
                 <li><a href="../classes/GalleriesDocumentReady.html">GalleriesDocumentReady</a></li>
@@ -574,7 +576,7 @@ It shows an alert with error details, in case a media returned error.
 @param type {String} either &lt;b&gt;&#x27;audio&#x27;&lt;/b&gt; or &lt;b&gt;&#x27;video&#x27;&lt;/b&gt;
 **/
 function showLoadingMediaErrorPopup(code, type) {
-  var captions = $(&#x27;#popup_captions_container&#x27;);
+  var captions = $captions;
   var message = captions.data(&#x27;media-error-code-&#x27; + code);
   var popup = captions.data(&#x27;media-error-&#x27; + type);
   popup = popup.replace(&#x27;%{code}&#x27;, &#x27;&#x27; + code);
@@ -633,7 +635,7 @@ Initializer for buttons inside a cutter in {{#crossLinkModule &quot;audio-editor
 @for PlayersDocumentReady
 **/
 function playersDocumentReadyAudioEditor() {
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._media_player_play_in_audio_editor_preview&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;._media_player_play_in_audio_editor_preview&#x27;, function() {
     var component = $(this).parents(&#x27;._audio_editor_component&#x27;);
     var identifier = getAudioComponentIdentifier(component);
     var audio = component.find(&#x27;audio&#x27;);
@@ -655,7 +657,7 @@ function playersDocumentReadyAudioEditor() {
       audio[0].play();
     }
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._media_player_pause_in_audio_editor_preview&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;._media_player_pause_in_audio_editor_preview&#x27;, function() {
     $(this).hide();
     $(&#x27;#start_audio_editor_preview&#x27;).removeClass(&#x27;disabled&#x27;);
     $(&#x27;#rewind_audio_editor_preview&#x27;).removeClass(&#x27;disabled&#x27;);
@@ -671,14 +673,14 @@ function playersDocumentReadyAudioEditor() {
       setCurrentTimeToMedia(component.find(&#x27;audio&#x27;), component.find(&#x27;._media_player_slider&#x27;).slider(&#x27;value&#x27;));
     }
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._media_player_rewind_in_audio_editor_preview&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;._media_player_rewind_in_audio_editor_preview&#x27;, function() {
     var component = $(this).parents(&#x27;._audio_editor_component&#x27;);
     var initial_time = component.data(&#x27;from&#x27;);
     component.find(&#x27;._media_player_slider&#x27;).slider(&#x27;value&#x27;, initial_time);
     setCurrentTimeToMedia(component.find(&#x27;audio&#x27;), initial_time);
     component.find(&#x27;._current_time&#x27;).html(secondsToDateString(initial_time));
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._audio_editor_component ._double_slider .ui-slider-range&#x27;, function(e) {
+  $body.on(&#x27;click&#x27;, &#x27;._audio_editor_component ._double_slider .ui-slider-range&#x27;, function(e) {
     var component = $(this).parents(&#x27;._audio_editor_component&#x27;);
     var identifier = getAudioComponentIdentifier(component);
     var percent = component.data(&#x27;max-to&#x27;) * (e.pageX - component.find(&#x27;._double_slider&#x27;).offset().left) / component.find(&#x27;._double_slider&#x27;).width();
@@ -697,7 +699,7 @@ Initializer for buttons inside any player.
 @for PlayersDocumentReady
 **/
 function playersDocumentReadyGeneral() {
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._media_player_play&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;._media_player_play&#x27;, function() {
     var container_id = $(this).parent().attr(&#x27;id&#x27;);
     var type = $(this).parent().data(&#x27;media-type&#x27;);
     var media = $(&#x27;#&#x27; + container_id + &#x27; &#x27; + type);
@@ -710,7 +712,7 @@ function playersDocumentReadyGeneral() {
       media[0].play();
     }
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._media_player_pause&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;._media_player_pause&#x27;, function() {
     $(this).hide();
     var container_id = $(this).parent().attr(&#x27;id&#x27;);
     var type = $(this).parent().data(&#x27;media-type&#x27;);
@@ -718,7 +720,7 @@ function playersDocumentReadyGeneral() {
     $(&#x27;#&#x27; + container_id + &#x27; ._media_player_play&#x27;).show();
     $(&#x27;#&#x27; + container_id + &#x27; &#x27; + type)[0].pause();
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._video_full_screen&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;._video_full_screen&#x27;, function() {
     var container_id = $(this).parent().attr(&#x27;id&#x27;);
     $(&#x27;#&#x27; + container_id + &#x27; video&#x27;).fullScreen(true);
   });
@@ -730,7 +732,7 @@ Initializer for buttons inside a cutter in {{#crossLinkModule &quot;video-editor
 @for PlayersDocumentReady
 **/
 function playersDocumentReadyVideoEditor() {
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._media_player_play_in_video_editor_preview&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;._media_player_play_in_video_editor_preview&#x27;, function() {
     var identifier = getVideoComponentIdentifier($(this).parents(&#x27;._video_component_cutter&#x27;).attr(&#x27;id&#x27;));
     var video = $(&#x27;#video_component_&#x27; + identifier + &#x27;_preview video&#x27;);
     if(video[0].error){
@@ -755,7 +757,7 @@ function playersDocumentReadyVideoEditor() {
       }
     }
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._media_player_pause_in_video_editor_preview&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;._media_player_pause_in_video_editor_preview&#x27;, function() {
     $(this).hide();
     $(this).parents(&#x27;._video_component_cutter&#x27;).data(&#x27;playing&#x27;, false);
     var cutter_id = $(this).parents(&#x27;._video_component_cutter&#x27;).attr(&#x27;id&#x27;);
@@ -772,13 +774,13 @@ function playersDocumentReadyVideoEditor() {
       setCurrentTimeToMedia($(&#x27;#&#x27; + preview_id + &#x27; video&#x27;), $(&#x27;#&#x27; + cutter_id + &#x27; ._media_player_slider&#x27;).slider(&#x27;value&#x27;));
     }
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._media_player_rewind_in_video_editor_preview&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;._media_player_rewind_in_video_editor_preview&#x27;, function() {
     var identifier = getVideoComponentIdentifier($(this).parents(&#x27;._video_component_cutter&#x27;).attr(&#x27;id&#x27;));
     var initial_time = $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter&#x27;).data(&#x27;from&#x27;);
     $(&#x27;#video_component_&#x27; + identifier + &#x27;_cutter ._media_player_slider&#x27;).slider(&#x27;value&#x27;, initial_time);
     setCurrentTimeToMedia($(&#x27;#video_component_&#x27; + identifier + &#x27;_preview video&#x27;), initial_time);
   });
-  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._video_component_cutter ._double_slider .ui-slider-range&#x27;, function(e) {
+  $body.on(&#x27;click&#x27;, &#x27;._video_component_cutter ._double_slider .ui-slider-range&#x27;, function(e) {
     var cutter = $(this).parents(&#x27;._video_component_cutter&#x27;);
     var percent = cutter.data(&#x27;max-to&#x27;) * (e.pageX - cutter.find(&#x27;._double_slider&#x27;).offset().left) / cutter.find(&#x27;._double_slider&#x27;).width();
     resp = parseInt(percent);
