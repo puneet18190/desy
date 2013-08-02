@@ -85,13 +85,10 @@ class DocumentsController < ApplicationController
   # Html
   #
   def create
-    attachment = params[:attachment]
-    record = Document.new :attachment => attachment
+    record = Document.new :attachment => params[:attachment]
     record.title = params[:title_placeholder] != '0' ? '' : params[:title]
     record.description = params[:description_placeholder] != '0' ? '' : params[:description]
-    record.tags = params[:tags_value]
     record.user_id = current_user.id
-    record.validating_in_form = true
     if !record.save
       if record.errors.added? :attachment, :too_large
         return render :file => Rails.root.join('public/413.html'), :layout => false, :status => 413
@@ -100,7 +97,7 @@ class DocumentsController < ApplicationController
       fields = record.errors.messages.keys
       @error_fields = []
       fields.each do |f|
-        @error_fields << f.to_s
+        @error_fields << f.to_s if record.errors.messages[f].any?
       end
     end
     render :layout => false

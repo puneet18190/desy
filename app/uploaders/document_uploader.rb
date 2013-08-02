@@ -14,6 +14,10 @@ class DocumentUploader < CarrierWave::Uploader::Base
 
   STORE_DIR = env_relative_path "documents"
   FOLDER    = Media::RAILS_PUBLIC_FOLDER.join(STORE_DIR).to_s
+  
+  # Maximum allowed size for media elements folder; if exceeded, upload gets disabled
+  MAXIMUM_FOLDER_SIZE    = SETTINGS['maximum_documents_folder_size'].gigabytes.to_i
+
 
   attr_reader :original_filename
 
@@ -24,6 +28,11 @@ class DocumentUploader < CarrierWave::Uploader::Base
   def self.folder_size
     return 0 unless Dir.exists? FOLDER
     Find.find(FOLDER).sum { |f| File.stat(f).size }
+  end
+
+  # Whether the media folder size exceeds the maximum size or not
+  def self.maximum_folder_size_exceeded?
+    folder_size > MAXIMUM_FOLDER_SIZE
   end
 
   # Override the directory where uploaded files will be stored.

@@ -603,7 +603,7 @@ class MediaElement < ActiveRecord::Base
       l.save!
     end
   end
-
+  
   # Validates the sum of the media elements folder size to don't exceed the maximum size available
   def validate_maximum_media_elements_folder_size
     errors.add :media, :folder_size_exceeded if Media::Uploader.maximum_media_elements_folder_size_exceeded?
