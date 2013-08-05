@@ -99,6 +99,7 @@
   height: 590px;
   width: 900px;
   background-color: #252323;
+  font: 13px 'Nunito', sans-serif;
   
   .jspVerticalBar {
     
@@ -123,7 +124,30 @@
         
         width: 846px;
         height: 44px;
-        background-color: white;
+        background-color: #6D6C6C;
+        color: white;
+        
+        .document_number {
+          
+          float: left;
+          height: 25px;
+          width: 20px;
+          padding-left: 12px;
+          padding-top: 7px;
+          background-color: #252323;
+          margin-left: 13px;
+          margin-top: 6px;
+          border-radius: 16px 16px 16px 16px;
+          
+        }
+        
+        .document_placeholder {
+          
+          float: left;
+          margin-left: 20px;
+          padding-top: 13px;
+          
+        }
         
       }
       
