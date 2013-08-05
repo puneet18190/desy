@@ -260,6 +260,17 @@
     height: 72px;
     background-color: transparent;
     
+    .triangolo {
+      
+      position: absolute;
+      width: 18px;
+      height: 9px;
+      background: $assets-triangolo_png center left no-repeat;
+      top: 518px;
+      left: 45px;
+      
+    }
+    
     .footerLeft {
       
       width: 300px;
