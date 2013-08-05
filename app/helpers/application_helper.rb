@@ -125,20 +125,28 @@ module ApplicationHelper
   def html_title(slides)
     controller = controller_path
     desy = SETTINGS['application_name']
+    
     return t('captions.titles.admin', :desy => desy) if controller[0, 6] == 'admin/'
+    
     case controller
-    when 'documents'                                                      then t('captions.titles.documents', :desy => desy)
-    when 'lessons', 'lesson_editor'                                       then t('captions.titles.lessons', :desy => desy)
-    when 'audio_editor', 'image_editor', 'video_editor', 'media_elements' then t('captions.titles.media_elements', :desy => desy)
-    when 'users'                                                          then t('captions.titles.profile', :desy => desy)
-    when 'virtual_classroom'                                              then t('captions.titles.virtual_classroom', :desy => desy)
-    when 'lesson_viewer'                                                  then
+    when 'documents'
+      t('captions.titles.documents', :desy => desy)
+    when 'lessons', 'lesson_editor'
+      t('captions.titles.lessons', :desy => desy)
+    when 'audio_editor', 'image_editor', 'video_editor', 'media_elements'
+      t('captions.titles.media_elements', :desy => desy)
+    when 'users'
+      t('captions.titles.profile', :desy => desy)
+    when 'virtual_classroom'
+      t('captions.titles.virtual_classroom', :desy => desy)
+    when 'lesson_viewer'
       if action_name == 'index'
         t('captions.titles.single_lesson', :desy => desy, :lesson => slides.first.lesson.title)
       else
         t('captions.titles.virtual_classroom', :desy => desy)
       end
-    else                                                                       t('captions.titles.default', :desy => desy)
+    else
+      t('captions.titles.default', :desy => desy)
     end
   end
   
@@ -152,6 +160,10 @@ module ApplicationHelper
     uri.scheme, uri.host, uri.port = scheme, host, port
     
     uri.to_s
+  end
+
+  def url_by_url_type(url, url_type)
+    UrlByUrlType.url_by_url_type url ,url_type
   end
   
 end

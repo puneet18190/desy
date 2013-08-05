@@ -21,6 +21,7 @@ class Audio < MediaElement
   THUMB_URL = '/assets/simbolo-audio.svg'
   
   include Media::Shared
+  include UrlByUrlType
   extend Media::Audio::Editing::Parameters
   
   # === Description
@@ -37,8 +38,14 @@ class Audio < MediaElement
   #     <source src="<%= audio.m4a_url %>" type="audio/mp4">
   #   </audio>
   #
-  def m4a_url
-    media.try(:url, :m4a) if converted
+  def m4a_url(url_type = nil)
+    return nil unless converted
+
+    url = media.try(:url, :m4a)
+
+    return nil unless url
+
+    url_by_url_type url, url_type
   end
   
   # === Description
@@ -55,8 +62,14 @@ class Audio < MediaElement
   #     <source src="<%= audio.ogg_url %>" type="audio/ogg">
   #   </audio>
   #
-  def ogg_url
-    media.try(:url, :ogg) if converted
+  def ogg_url(url_type = nil)
+    return nil unless converted
+
+    url = media.try(:url, :ogg)
+
+    return nil unless url
+
+    url_by_url_type url, url_type
   end
   
   # === Description
@@ -71,8 +84,8 @@ class Audio < MediaElement
   #
   #   <%= image_tag audio.thumb_url %>
   #
-  def thumb_url
-    converted ? THUMB_URL : placeholder_url(:thumb)
+  def thumb_url(url_type = nil)
+    converted ? THUMB_URL : placeholder_url(:thumb, url_type)
   end
   
   # === Description
@@ -97,8 +110,10 @@ class Audio < MediaElement
   #     <%= image_tag audio.placeholder_url(:lesson_viewer) %>
   #   <% end %>
   #
-  def placeholder_url(type)
-    "/assets/placeholders/audio_#{type}.gif"
+  def placeholder_url(type, url_type = nil)
+    url = "/assets/placeholders/audio_#{type}.gif"
+    
+    url_by_url_type url, url_type
   end
   
   # === Description

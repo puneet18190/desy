@@ -116,7 +116,7 @@ Compilarsi il pacchetto di avconv per Ubuntu:
 
   * Rimuovere i pacchetti avconv-tools libavutil-extra-51 libswscale2
 
-  * Installare pacchetti: autoconf build-essential checkinstall git pkg-config yasm libva-dev freetype6-dev libgsm1-dev libschroedinger-dev libspeex-dev libtheora-dev libvorbis-dev libvpx-dev libdc1394-22-dev libxfixes-dev libx264-dev libfaac-dev libmp3lame-dev libvo-aacenc-dev libxvidcore-dev
+  * Installare pacchetti: autoconf build-essential checkinstall git pkg-config yasm libva-dev libfreetype6-dev libgsm1-dev libschroedinger-dev libspeex-dev libtheora-dev libvorbis-dev libvpx-dev libdc1394-22-dev libxfixes-dev libx264-dev libfaac-dev libmp3lame-dev libvo-aacenc-dev libxvidcore-dev libxext-dev
 
   * Clonare il git master di libav: git://git.libav.org/libav.git
 
@@ -124,7 +124,7 @@ Compilarsi il pacchetto di avconv per Ubuntu:
 
   * ./configure --arch=amd64 --prefix=/usr --libdir=/usr/lib/x86_64-linux-gnu --enable-vdpau --enable-bzlib --enable-libgsm --enable-libschroedinger --enable-libspeex --enable-libtheora --enable-libvorbis --enable-pthreads --enable-zlib --enable-libvpx --enable-runtime-cpudetect --enable-libfreetype --enable-vaapi --enable-gpl --enable-version3 --enable-nonfree --enable-swscale --enable-x11grab --enable-libdc1394 --enable-libx264 --enable-libfaac --enable-libmp3lame --enable-libvo-aacenc --enable-libxvid --shlibdir=/usr/lib/x86_64-linux-gnu --enable-shared --disable-static
 
-  * se installato in /opt : ./configure --arch=amd64 --prefix=/opt/libav --enable-vdpau --enable-bzlib --enable-libgsm --enable-libschroedinger --enable-libspeex --enable-libtheora --enable-libvorbis --enable-pthreads --enable-zlib --enable-libvpx --enable-runtime-cpudetect --enable-libfreetype --enable-vaapi --enable-gpl --enable-version3 --enable-nonfree --enable-swscale --enable-x11grab --enable-libdc1394 --enable-libx264 --enable-libfaac --enable-libmp3lame --enable-libvo-aacenc --enable-libxvid --enable-shared
+  * se installato in /opt : ./configure --arch=amd64 --prefix=/opt/libav --enable-vdpau --enable-bzlib --enable-libgsm --enable-libschroedinger --enable-libspeex --enable-libtheora --enable-libvorbis --enable-pthreads --enable-zlib --enable-libvpx --enable-runtime-cpudetect --enable-libfreetype --enable-vaapi --enable-gpl --enable-version3 --enable-nonfree --enable-swscale --enable-x11grab --enable-libdc1394 --enable-libx264 --enable-libfaac --enable-libmp3lame --enable-libvo-aacenc --enable-libxvid
 
   * make
 

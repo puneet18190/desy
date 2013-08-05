@@ -7,6 +7,10 @@ require 'media/shared'
 # This class inherits from MediaElement, and contains the specific methods needed for media elements of type +video+. For methods shared by elements of type +audio+ and +video+, see Media::Shared.
 # 
 class Video < MediaElement
+
+  include UrlByUrlType
+  include Media::Shared
+  extend  Media::Video::Editing::Parameters
   
   # Instance of specific uploader for a video
   UPLOADER = Media::Video::Uploader
@@ -16,9 +20,6 @@ class Video < MediaElement
   
   # Path for restoring the video editor cache
   CACHE_RESTORE_PATH = '/videos/cache/restore'
-  
-  include Media::Shared
-  extend  Media::Video::Editing::Parameters
   
   # === Description
   #
@@ -50,8 +51,14 @@ class Video < MediaElement
   #     <source src="<%= video.mp4_url %>" type="video/mp4">
   #   </video>
   #
-  def mp4_url
-    media.try(:url, :mp4) if converted
+  def mp4_url(url_type = nil)
+    return nil unless converted
+
+    url = media.try(:url, :mp4)
+
+    return nil unless url
+
+    url_by_url_type url, url_type
   end
   
   # === Description
@@ -68,8 +75,14 @@ class Video < MediaElement
   #     <source src="<%= video.webm_url %>" type="video/webm">
   #   </video>
   #
-  def webm_url
-    media.try(:url, :webm) if converted
+  def webm_url(url_type = nil)
+    return nil unless converted
+
+    url = media.try(:url, :webm)
+
+    return nil unless url
+
+    url_by_url_type url, url_type
   end
   
   # === Description
@@ -128,8 +141,8 @@ class Video < MediaElement
   #     <%= image_tag video.placeholder_url(:lesson_viewer_small) %>
   #   <% end %>
   #
-  def placeholder_url(type)
-    "/assets/placeholders/video_#{type}.gif"
+  def placeholder_url(type, url_type = nil)
+    url_by_url_type "/assets/placeholders/video_#{type}.gif", url_type
   end
   
   # === Description

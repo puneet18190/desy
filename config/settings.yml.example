@@ -131,3 +131,6 @@ max_documents_in_slide: 3
 # Enables media debugging routes and controllers /audios_test => media_elements#audios_test 
 #                                                /videos_test => media_elements#videos_test
 media_test: false
+# URL types for url retrieving
+url_types: 
+  - :export

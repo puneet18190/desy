@@ -28,7 +28,7 @@ module Facter::Util::Config
   end
 end
 
-WINDOWS = Facter.kernel == 'windows'
+WINDOWS = Facter::Util::Config.is_windows?
 
 if WINDOWS
   require 'win32/dir'

@@ -1,5 +1,12 @@
-if (typeof _wrs_baseURL == 'undefined') {
+var _wrs_baseURL;
+
+if (typeof _wrs_isMoodle24 == 'undefined') {
 	_wrs_baseURL = tinymce.baseURL;
+}else{
+	var base = tinymce.baseURL;
+	var search = 'lib/editor/tinymce';
+	var pos = base.indexOf(search);
+	_wrs_baseURL = tinymce.baseURL.substr(0, pos + search.length);
 }
 
 /* Including core.js */
@@ -29,7 +36,7 @@ var _wrs_conf_saveMode = 'tags';					// This value can be 'tags', 'xml' or 'safe
 var _wrs_conf_parseModes = ['latex'];				// This value can contain 'latex'.
 var _wrs_conf_defaultEditMode = 'images';				// This value can be 'images', 'latex' or 'iframes'.
 
-var _wrs_conf_enableAccessibility = false;
+var _wrs_conf_enableAccessibility = true;
 
 var _wrs_conf_pluginBasePath = _wrs_baseURL + '/plugins/tiny_mce_wiris';
 
@@ -94,26 +101,6 @@ if (_wrs_conf_getconfigPath.substr(_wrs_conf_getconfigPath.length - 4) == '.php'
 	}
 }
 
-function configureLatex(){
-	if (window.wrs_arrayContains){
-		if (configuration.wirisparselatex == false) {
-			var pos = wrs_arrayContains(_wrs_conf_parseModes, 'latex');
-			if (pos != -1){
-				_wrs_conf_parseModes.splice(pos, 1);
-			}
-		}else if (configuration.wirisparselatex == true) {
-			var pos = wrs_arrayContains(_wrs_conf_parseModes, 'latex');
-			if (pos == -1){
-				_wrs_conf_parseModes.push('latex');
-			}
-		}		
-	}else{
-		setTimeout(configureLatex, 50);
-	}
-}
-
-configureLatex();
-
 if ('wirisformulaeditoractive' in configuration) {
 	_wrs_conf_editorEnabled = (configuration.wirisformulaeditoractive == true);
 }
@@ -127,6 +114,11 @@ if ('wiriscasactive' in configuration) {
 		init: function (editor, url) {
 			var iframe;
 			
+			//Fix a Moodle 2.4 bug. data-mathml was lost without this.
+			if (typeof _wrs_isMoodle24 !== 'undefined' && _wrs_isMoodle24){
+				editor.settings.extended_valid_elements += ',img[*]';    
+			}
+			
 			editor.onInit.add(function (editor) {
 				var editorElement = editor.getElement();
 				var content = ('value' in editorElement) ? editorElement.value : editorElement.innerHTML;
@@ -139,6 +131,18 @@ if ('wiriscasactive' in configuration) {
 						if (editor.settings['wirisformulaeditorlang']) {
 							language = editor.settings['wirisformulaeditorlang'];
 						}
+						
+						if (configuration.wirisparselatex == false) {
+							var pos = wrs_arrayContains(_wrs_conf_parseModes, 'latex');
+							if (pos != -1){
+								_wrs_conf_parseModes.splice(pos, 1);
+							}
+						}else if (configuration.wirisparselatex == true) {
+							var pos = wrs_arrayContains(_wrs_conf_parseModes, 'latex');
+							if (pos == -1){
+								_wrs_conf_parseModes.push('latex');
+							}
+						}		
 				
 						//Bug fix: In Moodle2.x when TinyMCE is set to full screen 
 						//the content doesn't need to be filtered.

@@ -36,8 +36,14 @@
 # Media elements caricati
 /public/media_elements
 
-# Docuemnts allegati
+# Documents allegati
 /public/documents
+
+## Esportazione
+# files
+/public/exports
+# assets
+/app/exports
 
 # Cartella temporanea che contiene i file in caricamento multiplo dell'amministratore
 /public/admin

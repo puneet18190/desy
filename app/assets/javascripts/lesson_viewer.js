@@ -93,12 +93,12 @@ function lessonViewerDocumentReadySlidesNavigation() {
       goToPrevSlideInLessonViewer(false);
     }
   });
-  $('.lesson-viewer-layout').on('swipeleft', function() {
+  $('.lesson-viewer-layout, .lesson-export-layout').on('swipeleft', function() {
     if(mustReactToSwipe()) {
       goToNextSlideInLessonViewer(true);
     }
   });
-  $('.lesson-viewer-layout').on('swiperight', function() {
+  $('.lesson-viewer-layout, .lesson-export-layout').on('swiperight', function() {
     if(mustReactToSwipe()) {
       goToPrevSlideInLessonViewer(true);
     }
@@ -190,9 +190,9 @@ function initializeLessonViewer() {
   if($('._playlist_menu_item').length <= 3) {
     $('#playlist_menu').css('overflow', 'hidden');
   }
-  $('html.lesson-viewer-layout .container').css('margin-top', ($(window).height() - 590) / 2 + 'px');
+  $('.lesson-viewer-layout .container, .lesson-export-layout .container').css('margin-top', ($(window).height() - 590) / 2 + 'px');
   $(window).resize(function() {
-    $('html.lesson-viewer-layout .container').css('margin-top', ($(window).height() - 590) / 2 + 'px');
+    $('.lesson-viewer-layout .container, .lesson-export-layout .container').css('margin-top', ($(window).height() - 590) / 2 + 'px');
   });
 }
 

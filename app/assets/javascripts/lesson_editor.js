@@ -545,9 +545,24 @@ Save current slide. It sends tinyMCE editor content to form data to be serialize
 **/
 function saveCurrentSlide(action_suffix, with_loader) {
   tinyMCE.triggerSave();
-  var temporary = new Array();
+
+  var temporary = [];
   var temp_counter = 0;
+
   var current_slide = $('._lesson_editor_current_slide');
+  var $current_slide_form = current_slide.find('form');
+
+  var math_inputs_class = '_math_image';
+  var editor = tinyMCE.get( 'ta-'+current_slide.data('slideId') );
+  if (editor) {
+    $current_slide_form.find('.'+math_inputs_class).remove();
+    $(editor.getBody()).find('img.Wirisformula').each(function(i, el) {
+      var formula = UrlParser.parse( $(el).attr('src') ).searchObj.formula;
+      var $input = $( '<input type="hidden" name="math_images[]" />', { 'class': math_inputs_class } ).val( formula );
+      $current_slide_form.append( $input );
+    });
+  }
+
   current_slide.find('._lesson_editor_placeholder').each(function() {
     if($(this).data('placeholder')) {
       temporary[temp_counter] = $(this).val();
@@ -555,22 +570,19 @@ function saveCurrentSlide(action_suffix, with_loader) {
       $(this).val('');
     }
   });
-  if(with_loader) {
-    $.ajax({
+
+  var ajaxCall = $.ajax({
       type: 'post',
-      url: current_slide.find('form').attr('action') + action_suffix,
+      url: $current_slide_form.attr('action') + action_suffix,
       timeout: 5000,
-      data: current_slide.find('form').serialize()
+      data: $current_slide_form.serialize()
     });
-  } else {
+
+  if(!with_loader) {
     unbindLoader();
-    $.ajax({
-      type: 'post',
-      url: current_slide.find('form').attr('action') + action_suffix,
-      timeout: 5000,
-      data: current_slide.find('form').serialize()
-    }).always(bindLoader);
+    ajaxCall.always(bindLoader);
   }
+
   temp_counter = 0;
   current_slide.find('._lesson_editor_placeholder').each(function() {
     if($(this).data('placeholder')) {

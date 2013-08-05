@@ -576,6 +576,7 @@ CREATE TABLE slides (
     text text,
     "position" integer NOT NULL,
     kind slide_type NOT NULL,
+    metadata text,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );

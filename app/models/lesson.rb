@@ -101,9 +101,9 @@ class Lesson < ActiveRecord::Base
   has_many :likes
   has_many :reports, :as => :reportable, :dependent => :destroy
   has_many :taggings, :as => :taggable, :dependent => :destroy
-  has_many :slides
+  has_many :slides, :dependent => :destroy
   has_many :media_elements_slides, through: :slides
-  has_many :media_elements, through: :media_elements_slides
+  has_many :media_elements, through: :media_elements_slides, uniq: true
   has_many :virtual_classroom_lessons
   
   validates_presence_of :user_id, :school_level_id, :subject_id, :title, :description
@@ -436,9 +436,11 @@ class Lesson < ActiveRecord::Base
         end
       end
       Slide.where('lesson_id = ? AND position > 1', self.id).order(:position).each do |s|
+        new_slide = Slide.new
         new_slide = Slide.new :position => s.position, :title => s.title, :text => s.text
         new_slide.lesson_id = lesson.id
-        new_slide.kind = s.kind
+        new_slide.kind = kind
+        new_slide.math_images = math_images
         if !new_slide.save
           errors.add(:base, :problem_copying)
           raise ActiveRecord::Rollback
@@ -638,7 +640,7 @@ class Lesson < ActiveRecord::Base
   #
   # A boolean
   #
-  def add_slide(kind, position)
+  def add_slide(kind, position = nil)
     if self.new_record? || !Slide::KINDS_WITHOUT_COVER.include?(kind)
       return nil
     end
@@ -647,7 +649,8 @@ class Lesson < ActiveRecord::Base
       slide = Slide.new
       slide.kind = kind
       slide.lesson_id = self.id
-      slide.position = Slide.order('position DESC').where(:lesson_id => self.id).limit(1).first.position + 1
+      slide.position = Slide.last_of_lesson(self).position + 1
+      position ||= slide.position
       raise ActiveRecord::Rollback if !slide.save || !slide.change_position(position) || !self.modify
       resp = slide
     end
