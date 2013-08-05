@@ -37,6 +37,10 @@
       <%= text_area_tag :text, (slide.text.blank? ? t('lesson_editor.placeholders.text') : slide.text.html_safe), :id => "ta-#{slide.id}", :class => 'tinymce _lesson_editor_placeholder', :data => {:placeholder => slide.text.blank?} %>
     </div>
     
+    <div class="inputs_for_documents" style="display:none">
+      <!-- TODO metti i documenti caricati -->
+    </div>
+    
   <% end %>
 </div>
 

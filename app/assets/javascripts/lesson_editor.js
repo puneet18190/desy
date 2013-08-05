@@ -284,6 +284,9 @@ function lessonEditorDocumentReadyGalleries() {
     }
     removeGalleryInLessonEditor('audio');
   });
+  $body.on('click', '#document_gallery .footerButtons .cancel', function() {
+    removeGalleryInLessonEditor('document');
+  });
 }
 
 /**
