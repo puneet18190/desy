@@ -55,7 +55,12 @@
             
               
               <li>
-                <a href="#method-i-env_relative_path">env_relative_path</a>
+                <a href="#method-i-env_relative_path">env_relative_path</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-env_relative_pathname">env_relative_pathname</a>
               </li>
             
           </ul>
@@ -110,9 +115,44 @@
                 
               </p>
               <div id="method-i-env_relative_path_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/env_relative_path.rb, line 16</span>
+                <pre><span class="ruby-comment"># File lib/env_relative_path.rb, line 20</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">env_relative_path</span>(*<span class="ruby-identifier">paths</span>)
   <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-constant">Rails</span>.<span class="ruby-identifier">env</span>.<span class="ruby-identifier">production?</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">paths</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">paths</span> <span class="ruby-operator">+</span> [<span class="ruby-constant">Rails</span>.<span class="ruby-identifier">env</span>])
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-env_relative_pathname">
+            
+              <b>env_relative_pathname</b>(*paths)
+            
+            <a href="../../classes/EnvRelativePath/ClassMethods.html#method-i-env_relative_pathname" name="method-i-env_relative_pathname" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>See <a href="../EnvRelativePath.html">EnvRelativePath</a></p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-env_relative_pathname_source')" id="l_method-i-env_relative_pathname_source">show</a>
+                
+              </p>
+              <div id="method-i-env_relative_pathname_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/env_relative_path.rb, line 25</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">env_relative_pathname</span>(*<span class="ruby-identifier">paths</span>)
+  <span class="ruby-constant">Pathname</span>.<span class="ruby-identifier">new</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-constant">Rails</span>.<span class="ruby-identifier">env</span>.<span class="ruby-identifier">production?</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">paths</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">paths</span> <span class="ruby-operator">+</span> [<span class="ruby-constant">Rails</span>.<span class="ruby-identifier">env</span>])
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>

@@ -156,6 +156,14 @@ href="Media/Shared.html">Media::Shared</a>.</p>
           
         </li>
       
+        <li>
+          
+            <a href="UrlByUrlType.html">
+              UrlByUrlType
+            </a>
+          
+        </li>
+      
     </ul>
   
 
@@ -263,7 +271,7 @@ href="Media/Shared.html">Media::Shared</a>.</p>
                 
               </p>
               <div id="method-i-m4a_duration_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/audio.rb, line 112</span>
+                <pre><span class="ruby-comment"># File app/models/audio.rb, line 127</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">m4a_duration</span>
   <span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">m4a_duration</span>
 <span class="ruby-keyword">end</span></pre>
@@ -307,7 +315,7 @@ duration to be set</p>
                 
               </p>
               <div id="method-i-m4a_duration-3D_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/audio.rb, line 136</span>
+                <pre><span class="ruby-comment"># File app/models/audio.rb, line 151</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">m4a_duration=</span>(<span class="ruby-identifier">m4a_duration</span>)
   <span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">m4a_duration</span> = <span class="ruby-identifier">m4a_duration</span>
 <span class="ruby-keyword">end</span></pre>
@@ -319,7 +327,7 @@ duration to be set</p>
         <div class="method">
           <div class="title method-title" id="method-i-m4a_url">
             
-              <b>m4a_url</b>()
+              <b>m4a_url</b>(url_type = nil)
             
             <a href="../classes/Audio.html#method-i-m4a_url" name="method-i-m4a_url" class="permalink">Link</a>
           </div>
@@ -354,9 +362,15 @@ duration to be set</p>
                 
               </p>
               <div id="method-i-m4a_url_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/audio.rb, line 40</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">m4a_url</span>
-  <span class="ruby-identifier">media</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:url</span>, <span class="ruby-value">:m4a</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">converted</span>
+                <pre><span class="ruby-comment"># File app/models/audio.rb, line 41</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">m4a_url</span>(<span class="ruby-identifier">url_type</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">converted</span>
+
+  <span class="ruby-identifier">url</span> = <span class="ruby-identifier">media</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:url</span>, <span class="ruby-value">:m4a</span>)
+
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">url</span>
+
+  <span class="ruby-identifier">url_by_url_type</span> <span class="ruby-identifier">url</span>, <span class="ruby-identifier">url_type</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -402,7 +416,7 @@ used without risks.</p>
                 
               </p>
               <div id="method-i-min_duration_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/audio.rb, line 164</span>
+                <pre><span class="ruby-comment"># File app/models/audio.rb, line 179</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">min_duration</span>
   [<span class="ruby-identifier">m4a_duration</span>, <span class="ruby-identifier">ogg_duration</span>].<span class="ruby-identifier">map</span>(&amp;<span class="ruby-value">:to_i</span>).<span class="ruby-identifier">min</span>
 <span class="ruby-keyword">end</span></pre>
@@ -443,7 +457,7 @@ used without risks.</p>
                 
               </p>
               <div id="method-i-ogg_duration_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/audio.rb, line 124</span>
+                <pre><span class="ruby-comment"># File app/models/audio.rb, line 139</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">ogg_duration</span>
   <span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">ogg_duration</span>
 <span class="ruby-keyword">end</span></pre>
@@ -487,7 +501,7 @@ duration to be set</p>
                 
               </p>
               <div id="method-i-ogg_duration-3D_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/audio.rb, line 148</span>
+                <pre><span class="ruby-comment"># File app/models/audio.rb, line 163</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">ogg_duration=</span>(<span class="ruby-identifier">ogg_duration</span>)
   <span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">ogg_duration</span> = <span class="ruby-identifier">ogg_duration</span>
 <span class="ruby-keyword">end</span></pre>
@@ -499,7 +513,7 @@ duration to be set</p>
         <div class="method">
           <div class="title method-title" id="method-i-ogg_url">
             
-              <b>ogg_url</b>()
+              <b>ogg_url</b>(url_type = nil)
             
             <a href="../classes/Audio.html#method-i-ogg_url" name="method-i-ogg_url" class="permalink">Link</a>
           </div>
@@ -534,9 +548,15 @@ duration to be set</p>
                 
               </p>
               <div id="method-i-ogg_url_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/audio.rb, line 58</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">ogg_url</span>
-  <span class="ruby-identifier">media</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:url</span>, <span class="ruby-value">:ogg</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">converted</span>
+                <pre><span class="ruby-comment"># File app/models/audio.rb, line 65</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">ogg_url</span>(<span class="ruby-identifier">url_type</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">converted</span>
+
+  <span class="ruby-identifier">url</span> = <span class="ruby-identifier">media</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:url</span>, <span class="ruby-value">:ogg</span>)
+
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">url</span>
+
+  <span class="ruby-identifier">url_by_url_type</span> <span class="ruby-identifier">url</span>, <span class="ruby-identifier">url_type</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -546,7 +566,7 @@ duration to be set</p>
         <div class="method">
           <div class="title method-title" id="method-i-placeholder_url">
             
-              <b>placeholder_url</b>(type)
+              <b>placeholder_url</b>(type, url_type = nil)
             
             <a href="../classes/Audio.html#method-i-placeholder_url" name="method-i-placeholder_url" class="permalink">Link</a>
           </div>
@@ -594,9 +614,11 @@ converted (an animated gif).</p>
                 
               </p>
               <div id="method-i-placeholder_url_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/audio.rb, line 100</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">placeholder_url</span>(<span class="ruby-identifier">type</span>)
-  <span class="ruby-node">&quot;/assets/placeholders/audio_#{type}.gif&quot;</span>
+                <pre><span class="ruby-comment"># File app/models/audio.rb, line 113</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">placeholder_url</span>(<span class="ruby-identifier">type</span>, <span class="ruby-identifier">url_type</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">url</span> = <span class="ruby-node">&quot;/assets/placeholders/audio_#{type}.gif&quot;</span>
+  
+  <span class="ruby-identifier">url_by_url_type</span> <span class="ruby-identifier">url</span>, <span class="ruby-identifier">url_type</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -606,7 +628,7 @@ converted (an animated gif).</p>
         <div class="method">
           <div class="title method-title" id="method-i-thumb_url">
             
-              <b>thumb_url</b>()
+              <b>thumb_url</b>(url_type = nil)
             
             <a href="../classes/Audio.html#method-i-thumb_url" name="method-i-thumb_url" class="permalink">Link</a>
           </div>
@@ -643,9 +665,9 @@ href="Audio.html#method-i-placeholder_url">#placeholder_url</a> with
                 
               </p>
               <div id="method-i-thumb_url_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/audio.rb, line 74</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">thumb_url</span>
-  <span class="ruby-identifier">converted</span> <span class="ruby-operator">?</span> <span class="ruby-constant">THUMB_URL</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">placeholder_url</span>(<span class="ruby-value">:thumb</span>)
+                <pre><span class="ruby-comment"># File app/models/audio.rb, line 87</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">thumb_url</span>(<span class="ruby-identifier">url_type</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">converted</span> <span class="ruby-operator">?</span> <span class="ruby-constant">THUMB_URL</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">placeholder_url</span>(<span class="ruby-value">:thumb</span>, <span class="ruby-identifier">url_type</span>)
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>

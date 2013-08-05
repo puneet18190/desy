@@ -58,11 +58,12 @@ require 'lessons_media_elements_shared'
 # 5. *before_create* creates a random encoded string and writes it in +token+
 # 6. *after_save* creates or updates the cover slide. <b>This callback is not fired if skip_cover_creation is +true+</b>
 # 7. *after_save* updates taggings associated to the lesson (see Tagging). If a Tag doesn't exist yet, it is created too. The tags are stored before the validation in the private attribute +inner_tags+
+# 8. *cascade* *destruction* for Slide (this was added late to handle math images).
 #
 # == Database callbacks
 #
 # 1. *cascade* *destruction* for the associated table Like
-# 2. *cascade* *destruction* for the associated table Slide
+# 2. *cascade* *destruction* for the associated table Slide (this besides the normal destruction cascade, see above).
 # 3. *cascade* *destruction* for the associated table VirtualClassroomLesson
 # 4. *set* *null* *on* *destruction* on the column +parent_id+ of all the lessons copied by the current lesson
 #

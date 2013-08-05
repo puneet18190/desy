@@ -3,7 +3,7 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-    <title>EnvRelativePath</title>
+    <title>UrlByUrlType</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" href="../css/reset.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="../css/main.css" type="text/css" media="screen" />
@@ -20,41 +20,17 @@
         
         <h1>
             <span class="type">Module</span> 
-            EnvRelativePath 
+            UrlByUrlType 
             
         </h1>
         <ul class="files">
             
-            <li><a href="../files/lib/env_relative_path_rb.html">lib/env_relative_path.rb</a></li>
+            <li><a href="../files/lib/autoload/url_by_url_type_rb.html">lib/autoload/url_by_url_type.rb</a></li>
             
         </ul>
     </div>
     <div id="bodyContent">
         <div id="content">
-  
-    <div class="description">
-      
-<p>Provides a way to get the right path for the Rails environment according to
-this rule:</p>
-<ul><li>
-<p>if Rails environment is production, the path remains unaltered</p>
-</li><li>
-<p>otherwise the path becomes relative to the enviroment string</p>
-</li></ul>
-
-<p>The method <code>env_relative_pathname</code> returns a Pathname instance
-instead of a String.</p>
-
-<h3 id="label-Examples">Examples</h3>
-
-<pre class="ruby"><span class="ruby-comment"># Rails.env == &quot;production&quot;</span>
-<span class="ruby-identifier">env_relative_path</span>(<span class="ruby-string">&#39;asd&#39;</span>) <span class="ruby-comment">#=&gt; &#39;asd&#39;</span>
-
-<span class="ruby-comment"># Rails.env == &quot;development&quot;</span>
-<span class="ruby-identifier">env_relative_path</span>(<span class="ruby-string">&#39;asd&#39;</span>) <span class="ruby-comment">#=&gt; &#39;development/asd&#39;</span>
-</pre>
-
-    </div>
   
 
 
@@ -72,7 +48,7 @@ instead of a String.</p>
       
         <li>
           <span class="type">MODULE</span>
-          <a href="EnvRelativePath/ClassMethods.html">EnvRelativePath::ClassMethods</a>
+          <a href="UrlByUrlType/InstanceMethods.html">UrlByUrlType::InstanceMethods</a>
         </li>
       
     </ul>
@@ -110,6 +86,24 @@ instead of a String.</p>
     
 
     
+      <!-- Section constants -->
+      <div class="sectiontitle">Constants</div>
+      <table border='0' cellpadding='5'>
+        
+          <tr valign='top'>
+            <td class="attr-name">URL_TYPES</td>
+            <td>=</td>
+            <td class="attr-value">Hash[ SETTINGS[&#x27;url_types&#x27;].map{ |v| [v,v] } ]</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"></td>
+            </tr>
+          
+        
+      </table>
+    
 
 
     
@@ -124,7 +118,7 @@ instead of a String.</p>
             
               <b>included</b>(receiver)
             
-            <a href="../classes/EnvRelativePath.html#method-c-included" name="method-c-included" class="permalink">Link</a>
+            <a href="../classes/UrlByUrlType.html#method-c-included" name="method-c-included" class="permalink">Link</a>
           </div>
           
           
@@ -145,9 +139,9 @@ instead of a String.</p>
                 
               </p>
               <div id="method-c-included_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/env_relative_path.rb, line 30</span>
+                <pre><span class="ruby-comment"># File lib/autoload/url_by_url_type.rb, line 23</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">included</span>(<span class="ruby-identifier">receiver</span>)
-  <span class="ruby-identifier">receiver</span>.<span class="ruby-identifier">extend</span> <span class="ruby-constant">ClassMethods</span>
+  <span class="ruby-identifier">receiver</span>.<span class="ruby-identifier">send</span> <span class="ruby-value">:include</span>, <span class="ruby-constant">InstanceMethods</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>

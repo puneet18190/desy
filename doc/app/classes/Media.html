@@ -281,7 +281,7 @@ implementation.</p>
           <tr valign='top'>
             <td class="attr-name">RAILS_PUBLIC_FOLDER</td>
             <td>=</td>
-            <td class="attr-value">Rails.root.join &#x27;public&#x27;</td>
+            <td class="attr-value">Pathname.new Rails.public_path</td>
           </tr>
           
             <tr valign='top'>

@@ -225,6 +225,11 @@ href="GalleriesController.html#method-i-audio_for_video_editor_new_block">#audio
             
               
               <li>
+                <a href="#method-i-get_documents">get_documents</a>,
+              </li>
+            
+              
+              <li>
                 <a href="#method-i-get_images">get_images</a>,
               </li>
             
@@ -361,6 +366,18 @@ href="GalleriesController.html#method-i-audio_for_video_editor_new_block">#audio
             </tr>
           
         
+          <tr valign='top'>
+            <td class="attr-name">DOCUMENTS_FOR_PAGE</td>
+            <td>=</td>
+            <td class="attr-value">SETTINGS[&#x27;documents_for_page_in_gallery&#x27;]</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"><p>Number of documents for page, configured in settings.yml</p></td>
+            </tr>
+          
+        
       </table>
     
 
@@ -404,7 +421,7 @@ href="GalleriesController.html#method-i-audio_for_video_editor_new_block">#audio
                 
               </p>
               <div id="method-i-audio_for_audio_editor_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/galleries_controller.rb, line 252</span>
+                <pre><span class="ruby-comment"># File app/controllers/galleries_controller.rb, line 255</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">audio_for_audio_editor</span>
   <span class="ruby-identifier">get_audios</span>(<span class="ruby-number">1</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -451,7 +468,7 @@ href="GalleriesController.html#method-i-initialize_page">#initialize_page</a></p
                 
               </p>
               <div id="method-i-audio_for_audio_editor_new_block_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/galleries_controller.rb, line 268</span>
+                <pre><span class="ruby-comment"># File app/controllers/galleries_controller.rb, line 271</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">audio_for_audio_editor_new_block</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
     <span class="ruby-identifier">get_audios</span>(<span class="ruby-ivar">@page</span>)
@@ -496,7 +513,7 @@ href="GalleriesController.html#method-i-initialize_page">#initialize_page</a></p
                 
               </p>
               <div id="method-i-audio_for_lesson_editor_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/galleries_controller.rb, line 101</span>
+                <pre><span class="ruby-comment"># File app/controllers/galleries_controller.rb, line 104</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">audio_for_lesson_editor</span>
   <span class="ruby-identifier">get_audios</span>(<span class="ruby-number">1</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -543,7 +560,7 @@ href="GalleriesController.html#method-i-initialize_page">#initialize_page</a></p
                 
               </p>
               <div id="method-i-audio_for_lesson_editor_new_block_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/galleries_controller.rb, line 117</span>
+                <pre><span class="ruby-comment"># File app/controllers/galleries_controller.rb, line 120</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">audio_for_lesson_editor_new_block</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
     <span class="ruby-identifier">get_audios</span>(<span class="ruby-ivar">@page</span>)
@@ -588,7 +605,7 @@ href="GalleriesController.html#method-i-initialize_page">#initialize_page</a></p
                 
               </p>
               <div id="method-i-audio_for_video_editor_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/galleries_controller.rb, line 220</span>
+                <pre><span class="ruby-comment"># File app/controllers/galleries_controller.rb, line 223</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">audio_for_video_editor</span>
   <span class="ruby-identifier">get_audios</span>(<span class="ruby-number">1</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -635,7 +652,7 @@ href="GalleriesController.html#method-i-initialize_page">#initialize_page</a></p
                 
               </p>
               <div id="method-i-audio_for_video_editor_new_block_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/galleries_controller.rb, line 236</span>
+                <pre><span class="ruby-comment"># File app/controllers/galleries_controller.rb, line 239</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">audio_for_video_editor_new_block</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
     <span class="ruby-identifier">get_audios</span>(<span class="ruby-ivar">@page</span>)
@@ -680,9 +697,9 @@ href="GalleriesController.html#method-i-initialize_page">#initialize_page</a></p
                 
               </p>
               <div id="method-i-document_for_lesson_editor_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/galleries_controller.rb, line 318</span>
+                <pre><span class="ruby-comment"># File app/controllers/galleries_controller.rb, line 321</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">document_for_lesson_editor</span>
-  <span class="ruby-comment"># TODO</span>
+  <span class="ruby-identifier">get_documents</span>(<span class="ruby-number">1</span>)
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -727,9 +744,13 @@ href="GalleriesController.html#method-i-initialize_page">#initialize_page</a></p
                 
               </p>
               <div id="method-i-document_for_lesson_editor_new_block_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/galleries_controller.rb, line 334</span>
+                <pre><span class="ruby-comment"># File app/controllers/galleries_controller.rb, line 337</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">document_for_lesson_editor_new_block</span>
-  <span class="ruby-comment"># TODO</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
+    <span class="ruby-identifier">get_documents</span>(<span class="ruby-ivar">@page</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">render</span> <span class="ruby-value">:nothing</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -770,7 +791,7 @@ open the image editor.</p>
                 
               </p>
               <div id="method-i-image_for_image_editor_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/galleries_controller.rb, line 284</span>
+                <pre><span class="ruby-comment"># File app/controllers/galleries_controller.rb, line 287</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">image_for_image_editor</span>
   <span class="ruby-identifier">get_images</span>(<span class="ruby-number">1</span>)
   <span class="ruby-ivar">@back</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:back</span>] <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:back</span>].<span class="ruby-identifier">present?</span>
@@ -819,7 +840,7 @@ href="GalleriesController.html#method-i-initialize_page">#initialize_page</a></p
                 
               </p>
               <div id="method-i-image_for_image_editor_new_block_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/galleries_controller.rb, line 302</span>
+                <pre><span class="ruby-comment"># File app/controllers/galleries_controller.rb, line 305</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">image_for_image_editor_new_block</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
     <span class="ruby-identifier">get_images</span>(<span class="ruby-ivar">@page</span>)
@@ -864,7 +885,7 @@ href="GalleriesController.html#method-i-initialize_page">#initialize_page</a></p
                 
               </p>
               <div id="method-i-image_for_lesson_editor_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/galleries_controller.rb, line 69</span>
+                <pre><span class="ruby-comment"># File app/controllers/galleries_controller.rb, line 72</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">image_for_lesson_editor</span>
   <span class="ruby-identifier">get_images</span>(<span class="ruby-number">1</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -911,7 +932,7 @@ href="GalleriesController.html#method-i-initialize_page">#initialize_page</a></p
                 
               </p>
               <div id="method-i-image_for_lesson_editor_new_block_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/galleries_controller.rb, line 85</span>
+                <pre><span class="ruby-comment"># File app/controllers/galleries_controller.rb, line 88</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">image_for_lesson_editor_new_block</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
     <span class="ruby-identifier">get_images</span>(<span class="ruby-ivar">@page</span>)
@@ -956,7 +977,7 @@ href="GalleriesController.html#method-i-initialize_page">#initialize_page</a></p
                 
               </p>
               <div id="method-i-mixed_for_video_editor_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/galleries_controller.rb, line 165</span>
+                <pre><span class="ruby-comment"># File app/controllers/galleries_controller.rb, line 168</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">mixed_for_video_editor</span>
   <span class="ruby-identifier">get_images</span>(<span class="ruby-number">1</span>)
   <span class="ruby-ivar">@image_tot_pages</span> = <span class="ruby-ivar">@tot_pages</span>
@@ -1006,7 +1027,7 @@ href="GalleriesController.html#method-i-initialize_page">#initialize_page</a></p
                 
               </p>
               <div id="method-i-mixed_for_video_editor_image_new_block_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/galleries_controller.rb, line 184</span>
+                <pre><span class="ruby-comment"># File app/controllers/galleries_controller.rb, line 187</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">mixed_for_video_editor_image_new_block</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
     <span class="ruby-identifier">get_images</span>(<span class="ruby-ivar">@page</span>)
@@ -1057,7 +1078,7 @@ href="GalleriesController.html#method-i-initialize_page">#initialize_page</a></p
                 
               </p>
               <div id="method-i-mixed_for_video_editor_video_new_block_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/galleries_controller.rb, line 204</span>
+                <pre><span class="ruby-comment"># File app/controllers/galleries_controller.rb, line 207</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">mixed_for_video_editor_video_new_block</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
     <span class="ruby-identifier">get_videos</span>(<span class="ruby-ivar">@page</span>)
@@ -1102,7 +1123,7 @@ href="GalleriesController.html#method-i-initialize_page">#initialize_page</a></p
                 
               </p>
               <div id="method-i-video_for_lesson_editor_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/galleries_controller.rb, line 133</span>
+                <pre><span class="ruby-comment"># File app/controllers/galleries_controller.rb, line 136</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">video_for_lesson_editor</span>
   <span class="ruby-identifier">get_videos</span>(<span class="ruby-number">1</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -1149,7 +1170,7 @@ href="GalleriesController.html#method-i-initialize_page">#initialize_page</a></p
                 
               </p>
               <div id="method-i-video_for_lesson_editor_new_block_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/galleries_controller.rb, line 149</span>
+                <pre><span class="ruby-comment"># File app/controllers/galleries_controller.rb, line 152</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">video_for_lesson_editor_new_block</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
     <span class="ruby-identifier">get_videos</span>(<span class="ruby-ivar">@page</span>)
@@ -1192,10 +1213,48 @@ with <code>filter</code> = <code>audio</code></p>
                 
               </p>
               <div id="method-i-get_audios_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/galleries_controller.rb, line 347</span>
+                <pre><span class="ruby-comment"># File app/controllers/galleries_controller.rb, line 354</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">get_audios</span>(<span class="ruby-identifier">page</span>)
   <span class="ruby-identifier">x</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">own_media_elements</span>(<span class="ruby-identifier">page</span>, <span class="ruby-constant">AUDIOS_FOR_PAGE</span>, <span class="ruby-constant">Filters</span><span class="ruby-operator">::</span><span class="ruby-constant">AUDIO</span>)
   <span class="ruby-ivar">@audios</span> = <span class="ruby-identifier">x</span>[<span class="ruby-value">:records</span>]
+  <span class="ruby-ivar">@tot_pages</span> = <span class="ruby-identifier">x</span>[<span class="ruby-value">:pages_amount</span>]
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-get_documents">
+            
+              <b>get_documents</b>(page)
+            
+            <a href="../classes/GalleriesController.html#method-i-get_documents" name="method-i-get_documents" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Gets the audios, using <a
+href="User.html#method-i-own_documents">User#own_documents</a></p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-get_documents_source')" id="l_method-i-get_documents_source">show</a>
+                
+              </p>
+              <div id="method-i-get_documents_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/galleries_controller.rb, line 375</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">get_documents</span>(<span class="ruby-identifier">page</span>)
+  <span class="ruby-identifier">x</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">own_documents</span>(<span class="ruby-identifier">page</span>, <span class="ruby-constant">DOCUMENTS_FOR_PAGE</span>)
+  <span class="ruby-ivar">@documents</span> = <span class="ruby-identifier">x</span>[<span class="ruby-value">:records</span>]
   <span class="ruby-ivar">@tot_pages</span> = <span class="ruby-identifier">x</span>[<span class="ruby-value">:pages_amount</span>]
 <span class="ruby-keyword">end</span></pre>
               </div>
@@ -1231,7 +1290,7 @@ with <code>filter</code> = <code>image</code></p>
                 
               </p>
               <div id="method-i-get_images_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/galleries_controller.rb, line 361</span>
+                <pre><span class="ruby-comment"># File app/controllers/galleries_controller.rb, line 368</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">get_images</span>(<span class="ruby-identifier">page</span>)
   <span class="ruby-identifier">x</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">own_media_elements</span>(<span class="ruby-identifier">page</span>, <span class="ruby-constant">IMAGES_FOR_PAGE</span>, <span class="ruby-constant">Filters</span><span class="ruby-operator">::</span><span class="ruby-constant">IMAGE</span>)
   <span class="ruby-ivar">@images</span> = <span class="ruby-identifier">x</span>[<span class="ruby-value">:records</span>]
@@ -1270,7 +1329,7 @@ with <code>filter</code> = <code>video</code></p>
                 
               </p>
               <div id="method-i-get_videos_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/galleries_controller.rb, line 354</span>
+                <pre><span class="ruby-comment"># File app/controllers/galleries_controller.rb, line 361</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">get_videos</span>(<span class="ruby-identifier">page</span>)
   <span class="ruby-identifier">x</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">own_media_elements</span>(<span class="ruby-identifier">page</span>, <span class="ruby-constant">VIDEOS_FOR_PAGE</span>, <span class="ruby-constant">Filters</span><span class="ruby-operator">::</span><span class="ruby-constant">VIDEO</span>)
   <span class="ruby-ivar">@videos</span> = <span class="ruby-identifier">x</span>[<span class="ruby-value">:records</span>]
@@ -1308,7 +1367,7 @@ new blocks in the gallery</p>
                 
               </p>
               <div id="method-i-initialize_page_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/galleries_controller.rb, line 341</span>
+                <pre><span class="ruby-comment"># File app/controllers/galleries_controller.rb, line 348</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize_page</span>
   <span class="ruby-ivar">@page</span> = <span class="ruby-identifier">correct_integer?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-number">0</span>
   <span class="ruby-identifier">update_ok</span>(<span class="ruby-ivar">@page</span> <span class="ruby-operator">&gt;</span> <span class="ruby-number">0</span>)

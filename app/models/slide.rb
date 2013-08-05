@@ -35,6 +35,7 @@
 # == Callbacks
 #
 # 1. *before_destroy* stop the destruction if the slide is of kind 'cover'
+# 2. many callbacks related to math_formulas.
 #
 # == Database callbacks
 #
