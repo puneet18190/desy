@@ -125,23 +125,19 @@ class Slide < ActiveRecord::Base
   before_create :init_math_images_copy
   after_create :copy_math_images
   before_destroy :stop_if_cover, :remove_math_images_folder
-
+  
+  # Getter for math images
   def math_images
     return metadata.math_images = MathImages.new([], id) unless metadata.math_images
-
     metadata.math_images.model_id = id if id && !metadata.math_images.model_id
-
     metadata.math_images
   end
-
+  
+  # Setter for math images
   def math_images=(math_images)
     metadata.math_images = math_images.is_a?(MathImages) ? math_images : MathImages.new(math_images, id)
   end
-
-  def self.last_of_lesson(lesson)
-    order('position DESC').where(:lesson_id => lesson.id).first
-  end
-
+  
   # Used to center vertically the title
   def title=(title)
     if self.kind == TITLE && !title.blank? && title.first == "\r"

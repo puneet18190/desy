@@ -245,6 +245,11 @@ class Lesson < ActiveRecord::Base
     @tags
   end
   
+  # Gets the last slide of this lesson
+  def last_slide
+    Slide.order('position DESC').where(:lesson_id => self.id).first
+  end
+  
   # === Description
   #
   # Returns the cover slide of the lesson.
@@ -649,9 +654,8 @@ class Lesson < ActiveRecord::Base
       slide = Slide.new
       slide.kind = kind
       slide.lesson_id = self.id
-      slide.position = Slide.last_of_lesson(self).position + 1
-      position ||= slide.position
-      raise ActiveRecord::Rollback if !slide.save || !slide.change_position(position) || !self.modify
+      slide.position = self.last_slide.position + 1
+      raise ActiveRecord::Rollback if !slide.save || !slide.change_position(slide.position) || !self.modify
       resp = slide
     end
     resp
