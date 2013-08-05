@@ -865,9 +865,20 @@ Save current slide. It sends tinyMCE editor content to form data to be serialize
 **/
 function saveCurrentSlide(action_suffix, with_loader) {
   tinyMCE.triggerSave();
-  var temporary = new Array();
+  var temporary = [];
   var temp_counter = 0;
   var current_slide = $(&#x27;._lesson_editor_current_slide&#x27;);
+  var current_slide_form = current_slide.find(&#x27;form&#x27;);
+  var math_inputs_class = &#x27;_math_image&#x27;;
+  var editor = tinyMCE.get( &#x27;ta-&#x27; + current_slide.data(&#x27;slideId&#x27;) );
+  if (editor) {
+    current_slide_form.find(&#x27;.&#x27; + math_inputs_class).remove();
+    $(editor.getBody()).find(&#x27;img.Wirisformula&#x27;).each(function(i, el) {
+      var formula = UrlParser.parse( $(el).attr(&#x27;src&#x27;) ).searchObj.formula;
+      var input = $( &#x27;&lt;input type=&quot;hidden&quot; name=&quot;math_images[]&quot; /&gt;&#x27;, { &#x27;class&#x27;: math_inputs_class } ).val( formula );
+      current_slide_form.append(input);
+    });
+  }
   current_slide.find(&#x27;._lesson_editor_placeholder&#x27;).each(function() {
     if($(this).data(&#x27;placeholder&#x27;)) {
       temporary[temp_counter] = $(this).val();
@@ -877,18 +888,18 @@ function saveCurrentSlide(action_suffix, with_loader) {
   });
   if(with_loader) {
     $.ajax({
-      type: &#x27;post&#x27;,
-      url: current_slide.find(&#x27;form&#x27;).attr(&#x27;action&#x27;) + action_suffix,
-      timeout: 5000,
-      data: current_slide.find(&#x27;form&#x27;).serialize()
-    });
+       type: &#x27;post&#x27;,
+      url: current_slide_form.attr(&#x27;action&#x27;) + action_suffix,
+       timeout: 5000,
+      data: current_slide_form.serialize()
+     });
   } else {
     unbindLoader();
     $.ajax({
       type: &#x27;post&#x27;,
-      url: current_slide.find(&#x27;form&#x27;).attr(&#x27;action&#x27;) + action_suffix,
+      url: current_slide_form.attr(&#x27;action&#x27;) + action_suffix,
       timeout: 5000,
-      data: current_slide.find(&#x27;form&#x27;).serialize()
+      data: current_slide_form.serialize()
     }).always(bindLoader);
   }
   temp_counter = 0;

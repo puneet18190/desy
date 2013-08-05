@@ -413,12 +413,12 @@ function lessonViewerDocumentReadySlidesNavigation() {
       goToPrevSlideInLessonViewer(false);
     }
   });
-  $(&#x27;.lesson-viewer-layout&#x27;).on(&#x27;swipeleft&#x27;, function() {
+  $(&#x27;.lesson-viewer-layout, .lesson-export-layout&#x27;).on(&#x27;swipeleft&#x27;, function() {
     if(mustReactToSwipe()) {
       goToNextSlideInLessonViewer(true);
     }
   });
-  $(&#x27;.lesson-viewer-layout&#x27;).on(&#x27;swiperight&#x27;, function() {
+  $(&#x27;.lesson-viewer-layout, .lesson-export-layout&#x27;).on(&#x27;swiperight&#x27;, function() {
     if(mustReactToSwipe()) {
       goToPrevSlideInLessonViewer(true);
     }
@@ -510,9 +510,9 @@ function initializeLessonViewer() {
   if($(&#x27;._playlist_menu_item&#x27;).length &lt;= 3) {
     $(&#x27;#playlist_menu&#x27;).css(&#x27;overflow&#x27;, &#x27;hidden&#x27;);
   }
-  $(&#x27;html.lesson-viewer-layout .container&#x27;).css(&#x27;margin-top&#x27;, ($(window).height() - 590) / 2 + &#x27;px&#x27;);
+  $(&#x27;.lesson-viewer-layout .container, .lesson-export-layout .container&#x27;).css(&#x27;margin-top&#x27;, ($(window).height() - 590) / 2 + &#x27;px&#x27;);
   $(window).resize(function() {
-    $(&#x27;html.lesson-viewer-layout .container&#x27;).css(&#x27;margin-top&#x27;, ($(window).height() - 590) / 2 + &#x27;px&#x27;);
+    $(&#x27;.lesson-viewer-layout .container, .lesson-export-layout .container&#x27;).css(&#x27;margin-top&#x27;, ($(window).height() - 590) / 2 + &#x27;px&#x27;);
   });
 }
 

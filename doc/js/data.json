@@ -1983,7 +1983,7 @@
         },
         {
             "file": "app/assets/javascripts/ajax_loader.js",
-            "line": 38,
+            "line": 19,
             "description": "Unbind Loader, unbind loader for ajaxStart and ajaxStop. Used occasionally, when the loader is not necessary (for instance in {{#crossLinkModule \"lesson-editor\"}}{{/crossLinkModule}})",
             "itemtype": "method",
             "name": "unbindLoader",
@@ -1992,7 +1992,7 @@
         },
         {
             "file": "app/assets/javascripts/ajax_loader.js",
-            "line": 51,
+            "line": 32,
             "description": "Initializes the ajax loader. Used also in the initialization of the module {{#crossLinkModule \"admin\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "ajaxLoaderDocumentReady",
@@ -2001,7 +2001,7 @@
         },
         {
             "file": "app/assets/javascripts/ajax_loader.js",
-            "line": 64,
+            "line": 66,
             "description": "Hides the loader without binding or unbinding it.",
             "itemtype": "method",
             "name": "hideLoader",
@@ -2010,7 +2010,7 @@
         },
         {
             "file": "app/assets/javascripts/ajax_loader.js",
-            "line": 73,
+            "line": 75,
             "description": "Shows the loader without binding or unbinding it (it has a timeout of 5000).",
             "itemtype": "method",
             "name": "showLoader",
@@ -4268,7 +4268,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 587,
+            "line": 598,
             "description": "Hides media gallery for selected type.",
             "itemtype": "method",
             "name": "removeGalleryInLessonEditor",
@@ -4284,7 +4284,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 599,
+            "line": 610,
             "description": "Shows document gallery.",
             "itemtype": "method",
             "name": "showDocumentGalleryInLessonEditor",
@@ -4293,7 +4293,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 621,
+            "line": 632,
             "description": "Shows media gallery for selected type.",
             "itemtype": "method",
             "name": "showGalleryInLessonEditor",
@@ -4314,7 +4314,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 650,
+            "line": 661,
             "description": "Check if image ratio is bigger then kind ratio.",
             "itemtype": "method",
             "name": "isHorizontalMask",
@@ -4344,7 +4344,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 678,
+            "line": 689,
             "description": "Gets scaled height to slide images.",
             "itemtype": "method",
             "name": "resizeHeight",
@@ -4374,7 +4374,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 704,
+            "line": 715,
             "description": "Gets scaled width to slide images.",
             "itemtype": "method",
             "name": "resizeWidth",
@@ -4404,7 +4404,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 734,
+            "line": 745,
             "description": "Inizializes jQueryUI <b>sortable</b> function on top navigation numbers, so that they can be sorted (see also {{#crossLink \"LessonEditorDocumentReady/lessonEditorDocumentReadySlidesNavigator:method\"}}{{/crossLink}} and {{#crossLink \"LessonEditorSlidesNavigation\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "initializeSortableNavs",
@@ -4413,7 +4413,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 779,
+            "line": 790,
             "description": "Inizializes jQueryUI <b>draggable</b> function on slide image containers (to understand if the draggable is vertical or horizontal it uses {{#crossLink \"LessonEditorImageResizing/isHorizontalMask:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "makeDraggable",
@@ -4429,7 +4429,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 854,
+            "line": 865,
             "description": "Asynchronously loads current slide, previous and following.",
             "itemtype": "method",
             "name": "loadSlideAndAdhiacentInLessonEditor",
@@ -4445,7 +4445,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 867,
+            "line": 878,
             "description": "Asynchronous slide loading. It checks if the slide has been loaded or not.",
             "itemtype": "method",
             "name": "loadSlideInLessonEditor",
@@ -4461,7 +4461,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 886,
+            "line": 897,
             "description": "Initialize slides position to center.",
             "itemtype": "method",
             "name": "initLessonEditorPositions",
@@ -4470,7 +4470,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 905,
+            "line": 916,
             "description": "Re-initialize slides position to center after ajax events.",
             "itemtype": "method",
             "name": "reInitializeSlidePositionsInLessonEditor",
@@ -4479,7 +4479,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 917,
+            "line": 928,
             "description": "Scrolls navigation scrollPane ({{#crossLink \"LessonEditorSlidesNavigation\"}}{{/crossLink}}) when moving to another slide.",
             "itemtype": "method",
             "name": "scrollPaneUpdate",
@@ -4499,7 +4499,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 934,
+            "line": 945,
             "description": "Moves to a slide, update current slide in top navigation.",
             "itemtype": "method",
             "name": "slideTo",
@@ -4520,7 +4520,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 985,
+            "line": 996,
             "description": "TinyMCE callback to clean spans containing classes for font size: these classes are attached to the first ol, ul, p",
             "itemtype": "method",
             "name": "cleanTinyMCESpanTagsFontSize",
@@ -4536,7 +4536,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1006,
+            "line": 1017,
             "description": "Initialize tinyMCE editor for a single textarea.",
             "itemtype": "method",
             "name": "initTinymce",
@@ -4552,7 +4552,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1055,
+            "line": 1066,
             "description": "TinyMCE callback to show warning when texearea content exceeds the available space. Adds a red border to the textarea.This function is used in tinyMCE setup ({{#crossLink \"LessonEditorTinyMCE/initTinymce:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "handleTinyMCEOveflow",
@@ -4573,7 +4573,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1078,
+            "line": 1089,
             "description": "Function to strip tags in a text pasted inside TinyMCE.",
             "itemtype": "method",
             "name": "stripTagsForCutAndPaste",
