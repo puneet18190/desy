@@ -31,6 +31,7 @@
 # * *the* *text* must be +nil+ if the kind of slide doesn't contain text
 # * *the* *title* must be +nil+ if the kind of slide doesn't contain title
 # * *the* *maximum* *number* of slides must be the one configured in settings.yml. This validation uses Lesson#reached_the_maximum_of_slides?
+# * *correctness* of math images
 #
 # == Callbacks
 #
