@@ -1,4 +1,5 @@
 $(document).ready(function() {
+  window.$loaderVisible = true;
   window.$loading = $('#loading');
   window.$body = $('body');
   window.$captions = $('#popup_captions_container');

@@ -13,6 +13,28 @@ Bind Loader, show loader on ajaxStart and hide loader on ajaxStop.
 @for AjaxLoaderBinder
 **/
 function bindLoader() {
+  $loaderVisible = true;
+}
+
+/**
+Unbind Loader, unbind loader for ajaxStart and ajaxStop. Used occasionally, when the loader is not necessary (for instance in {{#crossLinkModule "lesson-editor"}}{{/crossLinkModule}})
+@method unbindLoader
+@for AjaxLoaderBinder
+**/
+function unbindLoader() {
+  $loaderVisible = false;
+}
+
+
+
+
+
+/**
+Initializes the ajax loader. Used also in the initialization of the module {{#crossLinkModule "admin"}}{{/crossLinkModule}}.
+@method ajaxLoaderDocumentReady
+@for AjaxLoaderDocumentReady
+**/
+function ajaxLoaderDocumentReady() {
   showLoader();
   var oldLoad = window.onload;
   var newLoad = function() {
@@ -27,34 +49,14 @@ function bindLoader() {
   window.onload = newLoad;
   $loading.bind({
     ajaxStart: function() {
-      showLoader();
+      if($loaderVisible) {
+        showLoader();
+      }
     },
     ajaxStop: function() {
       hideLoader();
     }
   });
-}
-
-/**
-Unbind Loader, unbind loader for ajaxStart and ajaxStop. Used occasionally, when the loader is not necessary (for instance in {{#crossLinkModule "lesson-editor"}}{{/crossLinkModule}})
-@method unbindLoader
-@for AjaxLoaderBinder
-**/
-function unbindLoader() {
-  $loading.unbind('ajaxStart ajaxStop');
-}
-
-
-
-
-
-/**
-Initializes the ajax loader. Used also in the initialization of the module {{#crossLinkModule "admin"}}{{/crossLinkModule}}.
-@method ajaxLoaderDocumentReady
-@for AjaxLoaderDocumentReady
-**/
-function ajaxLoaderDocumentReady() {
-  bindLoader();
 }
 
 
