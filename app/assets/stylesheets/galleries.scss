@@ -106,6 +106,48 @@
     
   }
   
+  .attachedExternal {
+    
+    height: 159.25px; /* 23.25 + 136 */
+    width: 873px;
+    padding: 23.25px 0 0 27px;
+    background-color: transparent;
+    
+    .attachedInternal {
+      
+      width: 846px; /* 900 - 27 - 27 */
+      height: 136px; /* 44 + 2 + 44 + 2 + 44 */
+      background-color: transparent;
+      
+      .document_attached {
+        
+        width: 846px;
+        height: 44px;
+        background-color: white;
+        
+      }
+      
+    }
+    
+  }
+  
+  .documentsExternal {
+    
+    width: 873px;
+    height: 312.25px; /* 23.25 + 44 * 6 + 5 * 5 */
+    padding: 23.25px 0 0 27px;
+    background-color: purple;
+    
+  }
+  
+  .documentsFooter {
+    
+    width: 900px;
+    height: 72px;
+    background-color: aqua;
+    
+  }
+  
 }
 
 .audio_gallery {
