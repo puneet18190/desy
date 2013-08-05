@@ -9,11 +9,13 @@
 # * *text*: text of the slide if present
 # * *position*: position respect to the other slides in the lesson
 # * *kind*: the kind of the slide (the type is an enum defined in postgrsql, in total there are 10 types)
+# * *metadata*: contains only math images.
 #
 # == Associations
 #
 # * *lesson*: reference to the Lesson where the slide is contained (*belongs_to*)
 # * *media_elements_slides*: instances of MediaElement contained in this slide (see MediaElementsSlide) (*has_many*)
+# * *media_elements*: list of media elements inside the slide (see MediaElement) (through the class MediaElementsSlide) (*has_many*)
 # * *documents_slides*: instances of Document contained in this slide (see DocumentsSlide) (*has_many*)
 #
 # == Validations
