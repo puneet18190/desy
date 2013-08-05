@@ -119,13 +119,13 @@ class Slide < ActiveRecord::Base
   validates_inclusion_of :kind, :in => KINDS
   validates_uniqueness_of :position, :scope => :lesson_id
   validates_uniqueness_of :kind, :scope => :lesson_id, :if => :is_cover
-  validate :validate_associations, :validate_impossible_changes, :validate_cover, :validate_text, :validate_title, :validate_max_number_slides, :validate_math_images
+  validate :validate_associations, :validate_impossible_changes, :validate_cover, :validate_text, :validate_title, :validate_max_number_slides#, :validate_math_images
   
   before_validation :init_validation
-  before_update :save_math_images
-  before_create :init_math_images_copy
-  after_create :copy_math_images
-  before_destroy :stop_if_cover, :remove_math_images_folder
+  #before_update :save_math_images
+  #before_create :init_math_images_copy
+  #after_create :copy_math_images
+  before_destroy :stop_if_cover#, :remove_math_images_folder
   
   # Getter for math images
   def math_images
@@ -257,7 +257,7 @@ class Slide < ActiveRecord::Base
   # See LessonEditorController#save_slide, LessonEditorController#save_slide_and_exit, LessonEditorController#save_slide_and_edit
   #   slide.update_with_media_elements((params[:title].blank? ? nil : params[:title]), (params[:text].blank? ? nil : params[:text]), media_elements_params)
   #
-  def update_with_media_elements(title, text, media_elements, documents, math_images)
+  def update_with_media_elements(title, text, media_elements, documents, math_images = nil)
     return false if self.new_record?
     resp = false
     ActiveRecord::Base.transaction do
@@ -554,16 +554,16 @@ class Slide < ActiveRecord::Base
     return true if @slide.nil?
     return @slide.kind != COVER
   end
-
+  
   def remove_math_images_folder
     math_images.remove_folder
   end
-
+  
   def save_math_images
     math_images.save
     true
   end
-
+  
   def validate_math_images
     if !math_images.is_a?(MathImages)                                                  ||
        math_images.invalid?                                                            ||
@@ -572,8 +572,7 @@ class Slide < ActiveRecord::Base
       errors.add :math_images, :invalid
     end
   end
-
-
+  
   def init_math_images_copy
     if math_images.model_id
       @math_images_copy_id = math_images.model_id
@@ -581,7 +580,7 @@ class Slide < ActiveRecord::Base
     end
     true
   end
-
+  
   def copy_math_images
     return true unless @math_images_copy_id
     self.math_images = Slide.find(@math_images_copy_id).math_images.copy_to(id)
