@@ -49,7 +49,15 @@
     </div>
     
     <div class="documentsFooter">
-      <!-- qui vanno fumetto, filtro, e due bottoni cancel e attach -->
+      <div class="footerLeft">
+        <p class="filterBy lower">Filter by</p> <!-- TODO traduzione -->
+        <input id="document_gallery_filter" type="text" value="" class="filterByInput" data-letters="0" style="color:#999">
+        <%= image_tag 'cerca_documenti.gif', :class => '_loader', :style => 'display:none; float:right' %>
+      </div>
+      <div class="footerButtons">
+        <div class="lower cancel button">Cancel</div> <!-- TODO traduzione -->
+        <div class="lower attach button">Attach</div> <!-- TODO traduzione -->
+      </div>
     </div>
     
   <% end %>

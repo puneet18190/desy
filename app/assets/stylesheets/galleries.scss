@@ -258,7 +258,81 @@
     
     width: 900px;
     height: 72px;
-    background-color: aqua;
+    background-color: transparent;
+    
+    .footerLeft {
+      
+      width: 300px;
+      float: left;
+      padding-top: 27px;
+      
+      .filterBy {
+        
+        float: left;
+        margin-left: 25px;
+        font-weight: bold;
+        
+      }
+      
+      .filterByInput {
+        
+        float: left;
+        width: 134px;
+        margin-left: 15px;
+        font: 13px 'Nunito', sans-serif;
+        font-weight: bold;
+        border-radius: 4px;
+        padding: 4px;
+        position: relative;
+        bottom: 3px;
+        color: #6D6C6C;
+        
+      }
+      
+    }
+    
+    .footerButtons {
+      
+      width: 302px;
+      float: right;
+      padding-top: 20px;
+      
+      .button {
+        
+        height: 25px;
+        padding-top: 7px;
+        font-size: 14px;
+        font-weight: bold;
+        width: 130px;
+        float: left;
+        cursor: pointer;
+        text-align: center;
+        
+        &:hover {
+          
+          background-color: #908F8F;
+          color: white;
+          
+        }
+        
+      }
+      
+      .cancel {
+        
+        background-color: white;
+        color: #5D5C5C;
+        
+      }
+      
+      .attach {
+        
+        background-color: #5D5C5C;
+        color: white;
+        margin-left: 15px;
+        
+      }
+      
+    }
     
   }
   
