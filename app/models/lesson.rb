@@ -646,7 +646,7 @@ class Lesson < ActiveRecord::Base
   #
   # A boolean
   #
-  def add_slide(kind, position = nil)
+  def add_slide(kind, position)
     if self.new_record? || !Slide::KINDS_WITHOUT_COVER.include?(kind)
       return nil
     end
@@ -656,7 +656,7 @@ class Lesson < ActiveRecord::Base
       slide.kind = kind
       slide.lesson_id = self.id
       slide.position = self.last_slide.position + 1
-      raise ActiveRecord::Rollback if !slide.save || !slide.change_position(slide.position) || !self.modify
+      raise ActiveRecord::Rollback if !slide.save || !slide.change_position(position) || !self.modify
       resp = slide
     end
     resp
