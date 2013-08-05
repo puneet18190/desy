@@ -10,7 +10,7 @@ container.data('page', 1);
 container.data('tot-pages', <%= @tot_pages %>);
 $('._close_document_gallery').addClass('_close_document_gallery_in_lesson_editor');
 <% if @documents.count > 6 %>
-  // TODO TODO TODO initializeAudioGalleryInLessonEditor();
+  initializeDocumentGalleryInLessonEditor();
 <% else %>
   $('.document_gallery .scroll-pane').css('overflow', 'hidden');
 <% end %>

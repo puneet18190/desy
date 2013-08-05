@@ -242,6 +242,27 @@ function initializeAudioGalleryInVideoEditor() {
 }
 
 /**
+Initialize audio gallery in {{#crossLinkModule "lesson-editor"}}{{/crossLinkModule}}.
+@method initializeDocumentGalleryInLessonEditor
+@for GalleriesInitializers
+**/
+function initializeDocumentGalleryInLessonEditor() {
+  $('#lesson_editor_document_gallery_container .for-scroll-pain').jScrollPane({
+    autoReinitialise: true
+  });
+  $('#lesson_editor_document_gallery_container .scroll-pane').bind('jsp-arrow-change', function(event, isAtTop, isAtBottom, isAtLeft, isAtRight) {
+    //var page = $('#lesson_editor_document_gallery_container').data('page');
+    //var tot_pages = $('#lesson_editor_document_gallery_container').data('tot-pages');
+    //if(isAtBottom && (page < tot_pages)) {
+    //  $.get('/lessons/galleries/document/new_block?page=' + (page + 1));
+    //}
+    
+    console.log('new block');
+    
+  });
+}
+
+/**
 Initialize image gallery in {{#crossLinkModule "image-editor"}}{{/crossLinkModule}}.
 @method initializeImageGalleryInImageEditor
 @for GalleriesInitializers

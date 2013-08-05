@@ -26,24 +26,26 @@
     </div>
     
     <div class="documentsExternal">
-      <% documents.each_with_index do |document, index| %>
-        <% margin = (index == 0) ? "style=\"margin-top:0\"".html_safe : '' %>
-        <div id="gallery_document_<%= document.id %>" class="documentInGallery" <%= margin %>>
-          <div class="icon">
-            <%= image_tag document.icon_path, :title => document.icon_title %>
+      <div class="for-scroll-pain">
+        <% documents.each_with_index do |document, index| %>
+          <% margin = (index == 0) ? "style=\"margin-top:0\"".html_safe : '' %>
+          <div id="gallery_document_<%= document.id %>" class="documentInGallery" <%= margin %>>
+            <div class="icon">
+              <%= image_tag document.icon_path, :title => document.icon_title %>
+            </div>
+            <div class="title">
+              <%= document.title %>
+            </div>
+            <div class="extension">
+              <%= document.size_and_extension %>
+            </div>
+            <div class="buttons">
+              <a title="preview" data-document-id="<%= document.id %>" class="preview"></a> <!-- TODO traduzione -->
+              <a title="add" data-document-id="<%= document.id %>" class="add"></a> <!-- TODO traduzione -->
+            </div>
           </div>
-          <div class="title">
-            <%= document.title %>
-          </div>
-          <div class="extension">
-            <%= document.size_and_extension %>
-          </div>
-          <div class="buttons">
-            <a title="preview" data-document-id="<%= document.id %>" class="preview"></a> <!-- TODO traduzione -->
-            <a title="add" data-document-id="<%= document.id %>" class="add"></a> <!-- TODO traduzione -->
-          </div>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
     </div>
     
     <div class="documentsFooter">
