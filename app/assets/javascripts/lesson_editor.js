@@ -405,6 +405,10 @@ function lessonEditorDocumentReadyResize() {
       $('ul#slides.new li:first').css('margin-left', (($(window).width() - 900) / 2) + 'px');
     }
     $('#footer').css('top', ($(window).height() - 40) + 'px').css('width', ($(window).width() - 24) + 'px');
+    var open_gallery = $('.lesson_editor_gallery_container:visible');
+    if(open_gallery.length > 0) {
+      centerThis(open_gallery);
+    }
   });
 }
 
