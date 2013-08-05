@@ -442,7 +442,6 @@ class Lesson < ActiveRecord::Base
         end
       end
       Slide.where('lesson_id = ? AND position > 1', self.id).order(:position).each do |s|
-        new_slide = Slide.new
         new_slide = Slide.new :position => s.position, :title => s.title, :text => s.text
         new_slide.lesson_id = self.id
         new_slide.kind = s.kind
