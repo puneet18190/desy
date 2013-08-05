@@ -167,8 +167,67 @@
       width: 846px;
       height: 44px;
       background-color: white;
-      color: #C0C0C0;
+      color: #6D6C6C;
       margin-top: 5px;
+      
+      .icon {
+        
+        width: 32px;
+        height: 32px;
+        margin-left: 13px;
+        position: relative;
+        top: 6px;
+        float: left;
+        
+        img {
+          
+          width: 32px;
+          height: 32px;
+          
+        }
+        
+      }
+      
+      .title {
+        
+        float: left;
+        width: 430px;
+        position: relative;
+        top: 13px;
+        margin-left: 20px;
+        
+      }
+      
+      .extension {
+        
+        float: left;
+        width: 276px;
+        position: relative;
+        top: 13px;
+        
+      }
+      
+      .buttons {
+        
+        float: left;
+        width: 75px;
+        position: relative;
+        top: 6px;
+        
+        .preview {
+          
+          @include svg-circle-icon-handler($assets-action-buttons_svg, 32px, 2, 10, 1, 0, 7, 1, 1, 7);
+          
+        }
+        
+        .add {
+          
+          @include svg-circle-icon-handler($assets-action-buttons_svg, 32px, 2, 10, 1, 0, 9, 1, 1, 9);
+          margin-left: 5px;
+          
+        }
+        
+      }
       
     }
     
