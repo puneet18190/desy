@@ -305,11 +305,10 @@ function lessonEditorDocumentReadyGalleries() {
       ids.push($(this).val());
     });
     $('.documentsExternal .documentInGallery.disabled').each(function() {
-      $(this).removeClass('disabled');
-      $(this).attr('title', $(this).data('title'));
+      enableDocumentInLessonEditorDocumentGallery($(this));
     });
     for(var i = 0; i < ids.length; i++) {
-      $('#gallery_document_' + ids[i]).addClass('disabled').attr('title', '');
+      disableDocumentInLessonEditorDocumentGallery($('#gallery_document_' + ids[i]));
     }
   });
   $body.on('click', '#lesson_editor_document_gallery_container .documentInGallery:not(".disabled") .add', function() {
@@ -321,7 +320,7 @@ function lessonEditorDocumentReadyGalleries() {
     var html_to_append_button = html_to_append.find('.buttons .add');
     html_to_append_button.removeClass('add').addClass('remove');
     html_to_append_button.attr('title', html_to_append_button.data('other-title'));
-    parent.addClass('disabled').attr('title', '');
+    disableDocumentInLessonEditorDocumentGallery(parent);
     $('#current_inputs_for_documents').append('<input type="text" name="' + target.attr('id').replace('_attached', '') + '" value="' + document_id + '" />');
     target.html(html_to_append);
     target.removeClass('not_full');
@@ -333,8 +332,7 @@ function lessonEditorDocumentReadyGalleries() {
     target.html($('#hidden_' + target.attr('id')).html());
     target.addClass('not_full');
     $('#current_inputs_for_documents input[name="' + target.attr('id').replace('_attached', '') + '"]').remove();
-    parent.removeClass('disabled');
-    parent.attr('title', parent.data('title'));
+    enableDocumentInLessonEditorDocumentGallery(parent);
   });
 }
 
@@ -650,6 +648,32 @@ function saveCurrentSlide(action_suffix, with_loader) {
 
 
 
+
+/**
+Disables a document in document gallery.
+@method disableDocumentInLessonEditorDocumentGallery
+@for LessonEditorGalleries
+@param item {Object} the document to be disabled
+**/
+function disableDocumentInLessonEditorDocumentGallery(item) {
+  item.addClass('disabled');
+  item.find('.buttons .add').attr('title', '');
+  item.find('.buttons .preview').attr('title', '');
+}
+
+/**
+Enables a document in document gallery
+@method enableDocumentInLessonEditorDocumentGallery
+@for LessonEditorGalleries
+@param item {Object} the document to be enabled
+**/
+function enableDocumentInLessonEditorDocumentGallery(item) {
+  item.removeClass('disabled');
+  var but_add = item.find('.buttons .add');
+  var but_preview = item.find('.buttons .preview');
+  but_add.attr('title', but_add.data('title'));
+  but_preview.attr('title', but_preview.data('title'));
+}
 
 /**
 Hides media gallery for selected type.
