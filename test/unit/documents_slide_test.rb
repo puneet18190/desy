@@ -45,6 +45,7 @@ class DocumentsSlideTest < ActiveSupport::TestCase
   test 'impossible_changes' do
     @doc = Document.new :title => 'oo', :description => 'volare'
     @doc.user_id = 1
+    @doc.attachment = File.open(Rails.root.join('test/samples/one.ppt'))
     assert_obj_saved @doc
     @slide = Lesson.last.add_slide 'audio', 2
     assert_not_nil @slide
@@ -88,10 +89,12 @@ class DocumentsSlideTest < ActiveSupport::TestCase
   test 'max_number_of_documents' do
     assert_obj_saved @documents_slide
     assert_equal 2, @documents_slide.slide.documents_slides.count
-    d1 = Document.new :title => 'azzzo'
+    d1 = Document.new :title => 'azzzo', :description => 'asgasg'
     d1.user_id = 1
+    d1.attachment = File.open(Rails.root.join('test/samples/one.ppt'))
     assert_obj_saved d1
-    d2 = Document.new :title => 'azzzo2'
+    d2 = Document.new :title => 'azzzo2', :description => 'asgasg2'
+    d2.attachment = File.open(Rails.root.join('test/samples/one.ppt'))
     d2.user_id = 1
     assert_obj_saved d2
     ds1 = DocumentsSlide.new
