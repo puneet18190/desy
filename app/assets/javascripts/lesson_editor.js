@@ -304,9 +304,12 @@ function lessonEditorDocumentReadyGalleries() {
     $('#current_inputs_for_documents input').each(function() {
       ids.push($(this).val());
     });
-    $('.documentsExternal .documentInGallery').removeClass('disabled');
+    $('.documentsExternal .documentInGallery.disabled').each(function() {
+      $(this).removeClass('disabled');
+      $(this).attr('title', $(this).data('title'));
+    });
     for(var i = 0; i < ids.length; i++) {
-      $('#gallery_document_' + ids[i]).addClass('disabled');
+      $('#gallery_document_' + ids[i]).addClass('disabled').attr('title', '');
     }
   });
   $body.on('click', '#lesson_editor_document_gallery_container .documentInGallery:not(".disabled") .add', function() {
@@ -318,7 +321,7 @@ function lessonEditorDocumentReadyGalleries() {
     var html_to_append_button = html_to_append.find('.buttons .add');
     html_to_append_button.removeClass('add').addClass('remove');
     html_to_append_button.attr('title', html_to_append_button.data('other-title'));
-    parent.addClass('disabled');
+    parent.addClass('disabled').attr('title', '');
     $('#current_inputs_for_documents').append('<input type="text" name="' + target.attr('id').replace('_attached', '') + '" value="' + document_id + '" />');
     target.html(html_to_append);
     target.removeClass('not_full');
@@ -331,6 +334,7 @@ function lessonEditorDocumentReadyGalleries() {
     target.addClass('not_full');
     $('#current_inputs_for_documents input[name="' + target.attr('id').replace('_attached', '') + '"]').remove();
     parent.removeClass('disabled');
+    parent.attr('title', parent.data('title'));
   });
 }
 

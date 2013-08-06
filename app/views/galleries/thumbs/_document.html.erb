@@ -18,9 +18,9 @@
     <%= document.size_and_extension %>
   </div>
   <div class="buttons">
-    <a class="preview" title="<%= preview %>" data-title="<%= preview %>" data-document-id="<%= document.id %>"></a>
+    <a class="preview" title="<%= disabled ? '' : preview %>" data-title="<%= preview %>" data-document-id="<%= document.id %>"></a>
     <% if attached.nil? %>
-      <a class="add" title="<%= add %>" data-title="<%= add %>" data-other-title="<%= remove %>" data-document-id="<%= document.id %>"></a>
+      <a class="add" title="<%= disabled ? '' : add %>" data-title="<%= add %>" data-other-title="<%= remove %>" data-document-id="<%= document.id %>"></a>
     <% else %>
       <a class="remove" title="<%= remove %>" data-title="<%= add %>" data-other-title="<%= remove %>" data-document-id="<%= document.id %>"></a>
     <% end %>
