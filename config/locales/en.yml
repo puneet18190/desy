@@ -1400,10 +1400,27 @@ en:
     empty:
       # 1 - views/galleries/contents/audio.html.erb
       audio: "Your audio gallery is empty!"
+      # 1 - views/galleries/_document.html.erb
+      document: "You don't have any documents!"
       # 1 - views/galleries/contents/image.html.erb
       image: "Your image gallery is empty!"
       # 1 - views/galleries/contents/video.html.erb
       video: "Your video gallery is empty!"
+    documents:
+      # The user cancels his modifications
+      # 1 - views/galleries/_document.html.erb
+      cancel: "Cancel"
+      # The user attachs the documents
+      # 1 - views/galleries/_document.html.erb
+      done: "Attach"
+      # Caption of the filter of documents
+      # 1 - views/galleries/_document.html.erb
+      filter_by: "Filter by"
+      # Placeholder for a document that has to be loaded
+      # 1 - views/galleries/_document.html.erb
+      # 2 - views/galleries/_document.html.erb
+      # 3 - views/galleries/_document.html.erb
+      placeholder: "Add a document from the list below"
     images:
       # Caption for the size (in pixels) of the image inside the gallery
       # 1 - views/galleries/popups/_image.html.erb

@@ -1400,10 +1400,27 @@ cn:
     empty:
       # 1 - views/galleries/contents/audio.html.erb
       audio: "你的音频库是空的"
+      # 1 - views/galleries/_document.html.erb
+      document: "You don't have any documents!" # TODO
       # 1 - views/galleries/contents/image.html.erb
       image: "你的图像库是空的"
       # 1 - views/galleries/contents/video.html.erb
       video: "你的视频库是空的"
+    documents:
+      # The user cancels his modifications
+      # 1 - views/galleries/_document.html.erb
+      cancel: "Cancel" # TODO
+      # The user attachs the documents
+      # 1 - views/galleries/_document.html.erb
+      done: "Attach" # TODO
+      # Caption of the filter of documents
+      # 1 - views/galleries/_document.html.erb
+      filter_by: "Filter by" # TODO
+      # Placeholder for a document that has to be loaded
+      # 1 - views/galleries/_document.html.erb
+      # 2 - views/galleries/_document.html.erb
+      # 3 - views/galleries/_document.html.erb
+      placeholder: "Add a document from the list below" # TODO
     images:
       # Caption for the size (in pixels) of the image inside the gallery
       # 1 - views/galleries/popups/_image.html.erb

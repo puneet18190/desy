@@ -3,7 +3,7 @@
   <% if documents.empty? %>
     
     <div class="emptyGalleryDocumentEditor">
-      <p>Non HAI DOCUMENTI</p>
+      <p><%= t('galleries.empty.document') %></p>
     </div>
     
   <% else %>
@@ -29,11 +29,11 @@
           <% if documents_slides[i - 1].nil? %>
             <div id="document_attached_<%= i %>" class="document_attached not_full" style="margin-bottom:2px">
               <div class="document_number"><%= i %></div>
-              <div class="document_placeholder">Add a document from the list below</div> <!-- TODO traduzione -->
+              <div class="document_placeholder"><%= t('galleries.documents.placeholder') %></div>
             </div>
             <div id="hidden_document_attached_<%= i %>" style="display:none">
               <div class="document_number"><%= i %></div>
-              <div class="document_placeholder">Add a document from the list below</div> <!-- TODO traduzione -->
+              <div class="document_placeholder"><%= t('galleries.documents.placeholder') %></div>
             </div>
             <div id="hidden_document_attached_<%= i %>_content" data-full="false" style="display:none"></div>
           <% else %>
@@ -42,7 +42,7 @@
             </div>
             <div id="hidden_document_attached_<%= i %>" style="display:none">
               <div class="document_number"><%= i %></div>
-              <div class="document_placeholder">Add a document from the list below</div> <!-- TODO traduzione -->
+              <div class="document_placeholder"><%= t('galleries.documents.placeholder') %></div>
             </div>
             <div id="hidden_document_attached_<%= i %>_content" data-full="true" style="display:none">
               <%= render :partial => 'galleries/thumbs/document', :locals => {:document => documents_slides[i - 1].document, :index => 2, :disabled => false, :attached => i, :hidden => true} %>
@@ -63,13 +63,13 @@
     <div class="documentsFooter">
       <div class="triangolo"></div>
       <div class="footerLeft">
-        <p class="filterBy lower">Filter by</p> <!-- TODO traduzione -->
+        <p class="filterBy lower"><%= t('galleries.documents.filter_by') %></p>
         <input id="document_gallery_filter" type="text" value="" class="filterByInput" data-letters="0" style="color:#999">
         <%= image_tag 'cerca_documenti.gif', :class => '_loader', :style => 'display:none; float:right' %>
       </div>
       <div class="footerButtons">
-        <div class="lower cancel button">Cancel</div> <!-- TODO traduzione -->
-        <div class="lower attach button">Attach</div> <!-- TODO traduzione -->
+        <div class="lower cancel button"><%= t('galleries.documents.cancel') %></div>
+        <div class="lower attach button"><%= t('galleries.documents.done') %></div>
       </div>
     </div>
     

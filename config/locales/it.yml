@@ -1400,10 +1400,27 @@ it:
     empty:
       # 1 - views/galleries/contents/audio.html.erb
       audio: "La tua galleria degli audio è vuota!"
+      # 1 - views/galleries/_document.html.erb
+      document: "Non hai nessun documento!"
       # 1 - views/galleries/contents/image.html.erb
       image: "La tua galleria delle immagini è vuota!"
       # 1 - views/galleries/contents/video.html.erb
       video: "La tua galleria dei video è vuota!"
+    documents:
+      # The user cancels his modifications
+      # 1 - views/galleries/_document.html.erb
+      cancel: "Annulla"
+      # The user attachs the documents
+      # 1 - views/galleries/_document.html.erb
+      done: "Allega"
+      # Caption of the filter of documents
+      # 1 - views/galleries/_document.html.erb
+      filter_by: "Filtra"
+      # Placeholder for a document that has to be loaded
+      # 1 - views/galleries/_document.html.erb
+      # 2 - views/galleries/_document.html.erb
+      # 3 - views/galleries/_document.html.erb
+      placeholder: "Aggiungi un documento dalla lista qui sotto"
     images:
       # Caption for the size (in pixels) of the image inside the gallery
       # 1 - views/galleries/popups/_image.html.erb
