@@ -766,7 +766,7 @@ it:
         destroy: "Cancella"
         # Download a document
         # 1 - views/documents/_view_single_compact.html.erb
-        download: "Scarica"
+        preview: "Anteprima"
     # To close the preview of a media element (big 'x' on the bottom right of the preview)
     # 1 - views/media_elements/_popup.html.erb
     # 2 - views/documents/_view_single_compact.html.erb
