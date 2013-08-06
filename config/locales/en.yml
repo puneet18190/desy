@@ -758,15 +758,22 @@ en:
       unpublish: "Turn back your lesson into private"
       # Buttons specific for documents
       documents:
+        # Add a document to a slide
+        # 1 - views/galleries/thumbs/_document.html.erb
+        add: "Add"
         # Modify title and description of the document
         # 1 - views/documents/_view_single_compact.html.erb
         change_info: "Modify title and description of the document"
         # Destroy a document
         # 1 - views/documents/_view_single_compact.html.erb
         destroy: "Delete"
-        # Download a document
+        # Preview a document
         # 1 - views/documents/_view_single_compact.html.erb
+        # 2 - views/galleries/thumbs/_document.html.erb
         preview: "Preview"
+        # Removes a document from a slide
+        # 1 - views/galleries/thumbs/_document.html.erb
+        remove: "Remove"
     # To close the preview of a media element (big 'x' on the bottom right of the preview)
     # 1 - views/media_elements/_popup.html.erb
     # 2 - views/documents/_view_single_compact.html.erb
