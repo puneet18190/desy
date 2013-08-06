@@ -31,10 +31,13 @@
               <div class="document_number"><%= i %></div>
               <div class="document_placeholder">Add a document from the list below</div> <!-- TODO traduzione -->
             </div>
-            <div id="hidden_document_attached_<%= i %>" style="display:none"></div>
+            <div id="hidden_document_attached_<%= i %>" style="display:none">
+              <div class="document_number"><%= i %></div>
+              <div class="document_placeholder">Add a document from the list below</div> <!-- TODO traduzione -->
+            </div>
             <div id="hidden_document_attached_<%= i %>_content" data-full="false" style="display:none"></div>
           <% else %>
-            <div id="document_attached_<%= i %>" class="document_attached not_full" style="margin-bottom:2px">
+            <div id="document_attached_<%= i %>" class="document_attached" style="margin-bottom:2px">
               <%= render :partial => 'galleries/thumbs/document', :locals => {:document => documents_slides[i - 1].document, :index => 2, :disabled => false, :attached => i, :hidden => false} %>
             </div>
             <div id="hidden_document_attached_<%= i %>" style="display:none">
