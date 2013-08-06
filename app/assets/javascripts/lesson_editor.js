@@ -286,6 +286,27 @@ function lessonEditorDocumentReadyGalleries() {
   });
   $body.on('click', '#lesson_editor_document_gallery_container #document_gallery .footerButtons .cancel', function() {
     removeGalleryInLessonEditor('document');
+    $('#current_inputs_for_documents').html($('#previous_inputs_for_documents').html());
+    $('.document_attached:not(".not_full")').each(function() {
+      var hidden = $('#hidden_' + $(this).attr('id'));
+      var hidden_content = $('#hidden_' + $(this).attr('id') + '_content');
+      if(hidden_content.data('full')) {
+        $(this).html(hidden_content.html());
+        $(this).removeClass('not_full');
+      } else {
+        $(this).html(hidden.html());
+        hidden.html('');
+        $(this).addClass('not_full');
+      }
+    });
+    var ids = new Array();
+    $('#current_inputs_for_documents input').each(function() {
+      ids.push($(this).val());
+    });
+    $('.documentsExternal .documentInGallery').removeClass('disabled');
+    for(var i = 0; i < ids.length; i++) {
+      $('#gallery_document_' + ids[i]).addClass('disabled');
+    }
   });
   $body.on('click', '#lesson_editor_document_gallery_container .documentInGallery:not(".disabled") .add', function() {
     var document_id = $(this).data('document-id');
