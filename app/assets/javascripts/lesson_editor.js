@@ -324,7 +324,7 @@ function lessonEditorDocumentReadyGalleries() {
     var target = $('.attachedExternal .document_attached.not_full').first();
     var html_to_append = $(parent[0].outerHTML);
     html_to_append.attr('id', (target.attr('id') + '_content'));
-    var html_to_append_button = html_to_append.find('.buttons .add');
+    var html_to_append_button = html_to_append.find('.dbuttons .add');
     html_to_append_button.removeClass('add').addClass('remove');
     html_to_append_button.attr('title', html_to_append_button.data('other-title'));
     disableDocumentInLessonEditorDocumentGallery(parent);
@@ -664,8 +664,8 @@ Disables a document in document gallery.
 **/
 function disableDocumentInLessonEditorDocumentGallery(item) {
   item.addClass('disabled');
-  item.find('.buttons .add').attr('title', '');
-  item.find('.buttons .preview').attr('title', '');
+  item.find('.dbuttons .add').attr('title', '');
+  item.find('.dbuttons .preview').attr('title', '');
 }
 
 /**
@@ -676,8 +676,8 @@ Enables a document in document gallery
 **/
 function enableDocumentInLessonEditorDocumentGallery(item) {
   item.removeClass('disabled');
-  var but_add = item.find('.buttons .add');
-  var but_preview = item.find('.buttons .preview');
+  var but_add = item.find('.dbuttons .add');
+  var but_preview = item.find('.dbuttons .preview');
   but_add.attr('title', but_add.data('title'));
   but_preview.attr('title', but_preview.data('title'));
 }
