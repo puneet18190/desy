@@ -695,6 +695,19 @@ function loadDocumentGalleryForSlideInLessonEditor(slide_id) {
   });
   $('#lesson_editor_document_gallery_container #document_gallery .attachedInternal').html(new_content.html());
   $('#lesson_editor_document_gallery_container').data('slide-id', slide_id);
+  var inputs = $('#slide_in_lesson_editor_' + slide_id + ' .inputs_for_documents').html();
+  $('#current_inputs_for_documents').html(inputs);
+  $('#previous_inputs_for_documents').html(inputs);
+  var ids = new Array();
+  $('#current_inputs_for_documents input').each(function() {
+    ids.push($(this).val());
+  });
+  $('.documentsExternal .documentInGallery.disabled').each(function() {
+    enableDocumentInLessonEditorDocumentGallery($(this));
+  });
+  for(var i = 0; i < ids.length; i++) {
+    disableDocumentInLessonEditorDocumentGallery($('#gallery_document_' + ids[i]));
+  }
 }
 
 /**
