@@ -28,6 +28,7 @@ class LessonEditorController < ApplicationController
   ]
   before_filter :initialize_kind, :only => :add_slide
   before_filter :initialize_position, :only => :change_slide_position
+  before_filter :initialize_documents_slides, :only => [:change_slide_position, :add_slide, :load_slide]
   layout 'lesson_editor'
   
   # === Description
@@ -162,6 +163,7 @@ class LessonEditorController < ApplicationController
   # * LessonEditorController#check_available_for_user
   # * LessonEditorController#initialize_lesson_with_owner_and_slide
   # * LessonEditorController#initialize_kind
+  # * LessonEditorController#initialize_documents_slides
   #
   def add_slide
     if @ok
@@ -255,6 +257,7 @@ class LessonEditorController < ApplicationController
   # * LessonEditorController#check_available_for_user
   # * LessonEditorController#initialize_lesson_with_owner_and_slide
   # * ApplicationController#initialize_position
+  # * LessonEditorController#initialize_documents_slides
   #
   def change_slide_position
     if @ok
@@ -277,6 +280,7 @@ class LessonEditorController < ApplicationController
   #
   # * LessonEditorController#check_available_for_user
   # * LessonEditorController#initialize_lesson_with_owner_and_slide
+  # * LessonEditorController#initialize_documents_slides
   #
   def load_slide
   end
@@ -313,6 +317,11 @@ class LessonEditorController < ApplicationController
       @subjects << sbj.subject
     end
     @subjects
+  end
+  
+  # Initializes the documents attached to the slide
+  def initialize_documents_slides
+    @documents_slides = DocumentsSlide.where(:slide_id => @slide_id) if @ok
   end
   
   # Saves the current slide, using Slide#update_with_media_elements

@@ -2,7 +2,7 @@
   <%= div_covering.html_safe %>
   <%= render :partial => "slide_buttons", :locals => {:slide => slide, :show_now => (!first_time || slide.cover?)} %>
   <% if loaded %>
-    <%= render :partial => "lesson_editor/slides/#{slide.kind}", :locals => {:slide => slide} %>
+    <%= render :partial => "lesson_editor/slides/#{slide.kind}", :locals => {:slide => slide, :documents_slides => documents_slides} %>
   <% else %>
     <%= render :partial => 'lesson_editor/slides/loading', :locals => {:kind => slide.kind} %>
   <% end %>
