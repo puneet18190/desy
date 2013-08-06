@@ -312,11 +312,18 @@ function lessonEditorDocumentReadyGalleries() {
     }
   });
   $body.on('click', '#lesson_editor_document_gallery_container #document_gallery .footerButtons .attach', function() {
-    //removeGalleryInLessonEditor('document');
-    // TODO $('#previous_inputs_for_documents').html($('#current_inputs_for_documents').html());
-    //$('#inputs_for_documents').html($('#previous_inputs_for_documents').html());
-    
-    
+    removeGalleryInLessonEditor('document');
+    var slide_id = $('#lesson_editor_document_gallery_container').data('slide-id');
+    var inputs = $('#current_inputs_for_documents').html()
+    $('#previous_inputs_for_documents').html(inputs);
+    $('#slide_in_lesson_editor_' + slide_id + ' .inputs_for_documents').html(inputs);
+    var new_content = $('<div>' + $('#lesson_editor_document_gallery_container #document_gallery .attachedInternal').html() + '</div>');
+    new_content.find('.not_for_slide').each(function() {
+      $(this).attr('id', ($(this).attr('id') + '_for_slide_' + slide_id));
+    });
+    new_content.find('.not_for_slide').removeClass('not_for_slide').addClass('for_slide');
+    $('#slide_in_lesson_editor_' + slide_id + ' .hidden_html_for_documents').html(new_content.html());
+    saveCurrentSlide('', false);
   });
   $body.on('click', '#lesson_editor_document_gallery_container .documentInGallery:not(".disabled") .add', function() {
     var document_id = $(this).data('document-id');
@@ -693,6 +700,7 @@ function loadDocumentGalleryForSlideInLessonEditor(slide_id) {
   new_content.find('.for_slide').each(function() {
     $(this).attr('id', $(this).attr('id').replace(('_for_slide_' + slide_id), ''));
   });
+  new_content.find('.for_slide').removeClass('for_slide').addClass('not_for_slide');
   $('#lesson_editor_document_gallery_container #document_gallery .attachedInternal').html(new_content.html());
   $('#lesson_editor_document_gallery_container').data('slide-id', slide_id);
   var inputs = $('#slide_in_lesson_editor_' + slide_id + ' .inputs_for_documents').html();
