@@ -311,6 +311,13 @@ function lessonEditorDocumentReadyGalleries() {
       disableDocumentInLessonEditorDocumentGallery($('#gallery_document_' + ids[i]));
     }
   });
+  $body.on('click', '#lesson_editor_document_gallery_container #document_gallery .footerButtons .attach', function() {
+    //removeGalleryInLessonEditor('document');
+    // TODO $('#previous_inputs_for_documents').html($('#current_inputs_for_documents').html());
+    //$('#inputs_for_documents').html($('#previous_inputs_for_documents').html());
+    
+    
+  });
   $body.on('click', '#lesson_editor_document_gallery_container .documentInGallery:not(".disabled") .add', function() {
     var document_id = $(this).data('document-id');
     var parent = $('#gallery_document_' + document_id);
@@ -676,6 +683,20 @@ function enableDocumentInLessonEditorDocumentGallery(item) {
 }
 
 /**
+Loads the specific gallery for documents relative to a slide. The gallery is supposed to have already been loaded previously, by {{#crossLink "LessonEditorGalleries/showDocumentGalleryInLessonEditor:method"}}{{/crossLink}}
+@method enableDocumentInLessonEditorDocumentGallery
+@for LessonEditorGalleries
+@param slide_id {Number} the id of the slide
+**/
+function loadDocumentGalleryForSlideInLessonEditor(slide_id) {
+  var new_content = $('<div>' + $('#slide_in_lesson_editor_' + slide_id + ' .hidden_html_for_documents').html() + '</div>');
+  new_content.find('.for_slide').each(function() {
+    $(this).attr('id', $(this).attr('id').reaplace(('_for_slide_' + slide_id), ''));
+  });
+  $('#lesson_editor_document_gallery_container #document_gallery .attachedInternal').html(new_content.html());
+}
+
+/**
 Hides media gallery for selected type.
 @method removeGalleryInLessonEditor
 @for LessonEditorGalleries
@@ -698,6 +719,9 @@ function showDocumentGalleryInLessonEditor() {
   hideEverythingOutCurrentSlide();
   var gallery_container = $('#lesson_editor_document_gallery_container');
   if(gallery_container.data('loaded')) {
+    if(gallery_container.data('slide-id') != current_slide.data('slide-id')) {
+      loadDocumentGalleryForSlideInLessonEditor(current_slide.data('slide-id'));
+    }
     gallery_container.show();
     $('li._lesson_editor_current_slide .slide-content').children().hide();
     current_slide.find('layer').remove();
