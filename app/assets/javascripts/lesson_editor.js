@@ -297,7 +297,6 @@ function lessonEditorDocumentReadyGalleries() {
         $(this).removeClass('not_full');
       } else {
         $(this).html(hidden.html());
-        hidden.html('');
         $(this).addClass('not_full');
       }
     });
