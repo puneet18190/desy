@@ -6,6 +6,7 @@ $('li._lesson_editor_current_slide .slide-content').children().hide();
 centerThis('#lesson_editor_document_gallery_container');
 current_slide.find('layer').remove();
 container.data('loaded', true);
+container.data('slide-id', <%= @slide_id %>);
 container.data('page', 1);
 container.data('tot-pages', <%= @tot_pages %>);
 $('._close_document_gallery').addClass('_close_document_gallery_in_lesson_editor');

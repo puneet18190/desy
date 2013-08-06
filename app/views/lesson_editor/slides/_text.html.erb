@@ -21,6 +21,10 @@
       <% end %>
     </div>
     
+    <div class="hidden_html_for_documents">
+      <%= render :partial => 'lesson_editor/documents_in_slide', :locals => {:documents_slides => documents_slides, :slide_id => slide.id} %>
+    </div>
+    
   <% end %>
 </div>
 

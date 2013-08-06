@@ -25,37 +25,14 @@
     
     <div class="attachedExternal">
       <div class="attachedInternal">
-        <% [1, 2, 3].each do |i| %>
-          <% if documents_slides[i - 1].nil? %>
-            <div id="document_attached_<%= i %>" class="document_attached not_full" style="margin-bottom:2px">
-              <div class="document_number"><%= i %></div>
-              <div class="document_placeholder"><%= t('galleries.documents.placeholder') %></div>
-            </div>
-            <div id="hidden_document_attached_<%= i %>" style="display:none">
-              <div class="document_number"><%= i %></div>
-              <div class="document_placeholder"><%= t('galleries.documents.placeholder') %></div>
-            </div>
-            <div id="hidden_document_attached_<%= i %>_content" data-full="false" style="display:none"></div>
-          <% else %>
-            <div id="document_attached_<%= i %>" class="document_attached" style="margin-bottom:2px">
-              <%= render :partial => 'galleries/thumbs/document', :locals => {:document => documents_slides[i - 1].document, :index => 2, :disabled => false, :attached => i, :hidden => false} %>
-            </div>
-            <div id="hidden_document_attached_<%= i %>" style="display:none">
-              <div class="document_number"><%= i %></div>
-              <div class="document_placeholder"><%= t('galleries.documents.placeholder') %></div>
-            </div>
-            <div id="hidden_document_attached_<%= i %>_content" data-full="true" style="display:none">
-              <%= render :partial => 'galleries/thumbs/document', :locals => {:document => documents_slides[i - 1].document, :index => 2, :disabled => false, :attached => i, :hidden => true} %>
-            </div>
-          <% end %>
-        <% end %>
+        <%= render :partial => 'lesson_editor/documents_in_slide', :locals => {:documents_slides => documents_slides, :slide_id => nil} %>
       </div>
     </div>
     
     <div class="documentsExternal">
       <div class="for-scroll-pain">
         <% documents.each_with_index do |document, index| %>
-          <%= render :partial => 'galleries/thumbs/document', :locals => {:document => document, :index => index, :disabled => documents_slides.pluck(:document_id).include?(document.id), :attached => nil, :hidden => false} %>
+          <%= render :partial => 'galleries/thumbs/document', :locals => {:document => document, :index => index, :disabled => documents_slides.pluck(:document_id).include?(document.id), :attached => nil, :hidden => false, :slide_id => nil} %>
         <% end %>
       </div>
     </div>

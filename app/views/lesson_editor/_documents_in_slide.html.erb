@@ -1,0 +1,24 @@
+<% [1, 2, 3].each do |i| %>
+  <% if documents_slides[i - 1].nil? %>
+    <div id="document_attached_<%= i %>" class="document_attached not_full" style="margin-bottom:2px">
+      <div class="document_number"><%= i %></div>
+      <div class="document_placeholder"><%= t('galleries.documents.placeholder') %></div>
+    </div>
+    <div id="hidden_document_attached_<%= i %>" style="display:none">
+      <div class="document_number"><%= i %></div>
+      <div class="document_placeholder"><%= t('galleries.documents.placeholder') %></div>
+    </div>
+    <div id="hidden_document_attached_<%= i %>_content" data-full="false" style="display:none"></div>
+  <% else %>
+    <div id="document_attached_<%= i %>" class="document_attached" style="margin-bottom:2px">
+      <%= render :partial => 'galleries/thumbs/document', :locals => {:document => documents_slides[i - 1].document, :index => 2, :disabled => false, :attached => i, :hidden => false, :slide_id => slide_id} %>
+    </div>
+    <div id="hidden_document_attached_<%= i %>" style="display:none">
+      <div class="document_number"><%= i %></div>
+      <div class="document_placeholder"><%= t('galleries.documents.placeholder') %></div>
+    </div>
+    <div id="hidden_document_attached_<%= i %>_content" data-full="true" style="display:none">
+      <%= render :partial => 'galleries/thumbs/document', :locals => {:document => documents_slides[i - 1].document, :index => 2, :disabled => false, :attached => i, :hidden => true, :slide_id => slide_id} %>
+    </div>
+  <% end %>
+<% end %>
