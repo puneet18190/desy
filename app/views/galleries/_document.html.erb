@@ -52,7 +52,7 @@
     <div class="documentsExternal">
       <div class="for-scroll-pain">
         <% documents.each_with_index do |document, index| %>
-          <%= render :partial => 'galleries/thumbs/document', :locals => {:document => document, :index => index, :disabled => @documents_slides.include?(document.id), :attached => nil, :hidden => false} %>
+          <%= render :partial => 'galleries/thumbs/document', :locals => {:document => document, :index => index, :disabled => documents_slides.pluck(:document_id).include?(document.id), :attached => nil, :hidden => false} %>
         <% end %>
       </div>
     </div>
