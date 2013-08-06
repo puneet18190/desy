@@ -318,7 +318,7 @@ function lessonEditorDocumentReadyGalleries() {
     html_to_append_button.removeClass('add').addClass('remove');
     html_to_append_button.attr('title', html_to_append_button.data('other-title'));
     parent.addClass('disabled');
-    $('#current_inputs_for_documents').append('<input type="text" name="' + target.attr('id').replace('_attached', '') + '" value="' + document_id + '">');
+    $('#current_inputs_for_documents').append('<input type="text" name="' + target.attr('id').replace('_attached', '') + '" value="' + document_id + '" />');
     $('#hidden_' + target.attr('id')).append(target.html());
     target.html(html_to_append);
     target.removeClass('not_full');
@@ -677,7 +677,7 @@ function showDocumentGalleryInLessonEditor() {
   } else {
     $.ajax({
       type: 'get',
-      url: '/lessons/galleries/document'
+      url: '/lessons/galleries/document?slide_id=' + current_slide.data('slide-id')
     });
   }
 }

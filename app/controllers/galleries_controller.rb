@@ -376,6 +376,7 @@ class GalleriesController < ApplicationController
     x = current_user.own_documents(page, DOCUMENTS_FOR_PAGE)
     @documents = x[:records]
     @tot_pages = x[:pages_amount]
+    @documents_slides = DocumentsSlide.where(:slide_id => params[:slide_id]).order('created_at DESC')
   end
   
 end

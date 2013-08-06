@@ -1,0 +1,25 @@
+<%
+  margin = (index == 0) ? "style=\"margin-top:0\"".html_safe : ''
+  id = attached.nil? ? "gallery_document_#{document.id}" : "document_attached_#{attached}_content"
+%>
+
+
+<div id="<%= id %>" class="documentInGallery <%= disabled ? 'disabled' : '' %>" <%= margin %>>
+  <div class="icon">
+    <%= image_tag document.icon_path, :title => document.icon_title %>
+  </div>
+  <div class="title">
+    <%= document.title %>
+  </div>
+  <div class="extension">
+    <%= document.size_and_extension %>
+  </div>
+  <div class="buttons">
+    <a title="preview" data-document-id="<%= document.id %>" class="preview"></a> <!-- TODO traduzione -->
+    <% if attached.nil? %>
+      <a title="add" data-other-title="remove" data-document-id="<%= document.id %>" class="add"></a> <!-- TODO traduzione --> <!-- TODO traduzione -->
+    <% else %>
+      <a title="remove" data-document-id="<%= document.id %>" class="remove"></a> <!-- TODO traduzione -->
+    <% end %>
+  </div>
+</div>
