@@ -165,7 +165,7 @@
       
     }
     
-    .buttons {
+    .dbuttons {
       
       float: left;
       width: 75px;
@@ -174,7 +174,7 @@
       
     }
     
-    &:not(.disabled) .buttons {
+    &:not(.disabled) .dbuttons {
       
       .preview {
         
@@ -202,7 +202,7 @@
       
       opacity: 0.25;
       
-      .buttons {
+      .dbuttons {
         
         .preview {
           
