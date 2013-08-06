@@ -107,9 +107,15 @@ class CascadeTest < ActiveSupport::TestCase
     assert_nil Tag.find_by_word('pluto')
     assert_nil Tag.find_by_word('paperino')
     assert_not_nil Tag.find_by_word('topolino')
-    assert_equal 1, DocumentsSlide.count
-    x = DocumentsSlide.last
-    x.document.destroy
+    assert DocumentsSlide.all.empty?
+    new_slisli = Lesson.find(1).add_slide('text', 2)
+    assert_not_nil new_slisli
+    x = DocumentsSlide.new
+    x.document_id = 1
+    x.slide_id = new_slisli.id
+    assert_obj_saved x
+    assert_equal 1, DocumentsSlide.all.count
+    Document.find(1).destroy
     assert_equal 0, DocumentsSlide.count
   end
   
