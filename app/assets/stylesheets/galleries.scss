@@ -120,6 +120,111 @@
     
   }
   
+  .documentInGallery {
+    
+    width: 846px;
+    height: 44px;
+    background-color: white;
+    color: #6D6C6C;
+    margin-top: 5px;
+    
+    .icon {
+      
+      width: 32px;
+      height: 32px;
+      margin-left: 13px;
+      position: relative;
+      top: 6px;
+      float: left;
+      
+      img {
+        
+        width: 32px;
+        height: 32px;
+        
+      }
+      
+    }
+    
+    .title {
+      
+      float: left;
+      width: 430px;
+      position: relative;
+      top: 13px;
+      margin-left: 20px;
+      
+    }
+    
+    .extension {
+      
+      float: left;
+      width: 276px;
+      position: relative;
+      top: 13px;
+      
+    }
+    
+    .buttons {
+      
+      float: left;
+      width: 75px;
+      position: relative;
+      top: 6px;
+      
+    }
+    
+    &:not(.disabled) .buttons {
+      
+      .preview {
+        
+        @include svg-circle-icon-handler($assets-action-buttons_svg, 32px, 2, 10, 1, 0, 7, 1, 1, 7);
+        
+      }
+      
+      .add {
+        
+        @include svg-circle-icon-handler($assets-action-buttons_svg, 32px, 2, 10, 1, 0, 9, 1, 1, 9);
+        margin-left: 5px;
+        
+      }
+      
+      .remove {
+        
+        @include svg-circle-icon-handler($assets-action-buttons_svg, 32px, 2, 10, 1, 0, 8, 1, 1, 8);
+        margin-left: 5px;
+        
+      }
+      
+    }
+    
+    &.disabled {
+      
+      opacity: 0.25;
+      
+      .buttons {
+        
+        .preview {
+          
+          @include svg-circle-icon-handler-without-hover($assets-action-buttons_svg, 32px, 2, 10, 1, 0, 7);
+          cursor: default;
+          
+        }
+        
+        .add {
+          
+          @include svg-circle-icon-handler-without-hover($assets-action-buttons_svg, 32px, 2, 10, 1, 0, 9);
+          margin-left: 5px;
+          cursor: default;
+          
+        }
+        
+      }
+      
+    }
+    
+  }
+  
   .attachedExternal {
     
     height: 159.25px; /* 23.25 + 136 */
@@ -162,6 +267,12 @@
           
         }
         
+        #document_attached_1_content, #document_attached_2_content, #document_attached_3_content {
+          
+          margin: 0;
+          
+        }
+        
       }
       
     }
@@ -180,75 +291,6 @@
       width: 873px;
       height: 289px;
       overflow: hidden;
-      
-    }
-    
-    .documentInGallery {
-      
-      width: 846px;
-      height: 44px;
-      background-color: white;
-      color: #6D6C6C;
-      margin-top: 5px;
-      
-      .icon {
-        
-        width: 32px;
-        height: 32px;
-        margin-left: 13px;
-        position: relative;
-        top: 6px;
-        float: left;
-        
-        img {
-          
-          width: 32px;
-          height: 32px;
-          
-        }
-        
-      }
-      
-      .title {
-        
-        float: left;
-        width: 430px;
-        position: relative;
-        top: 13px;
-        margin-left: 20px;
-        
-      }
-      
-      .extension {
-        
-        float: left;
-        width: 276px;
-        position: relative;
-        top: 13px;
-        
-      }
-      
-      .buttons {
-        
-        float: left;
-        width: 75px;
-        position: relative;
-        top: 6px;
-        
-        .preview {
-          
-          @include svg-circle-icon-handler($assets-action-buttons_svg, 32px, 2, 10, 1, 0, 7, 1, 1, 7);
-          
-        }
-        
-        .add {
-          
-          @include svg-circle-icon-handler($assets-action-buttons_svg, 32px, 2, 10, 1, 0, 9, 1, 1, 9);
-          margin-left: 5px;
-          
-        }
-        
-      }
       
     }
     
