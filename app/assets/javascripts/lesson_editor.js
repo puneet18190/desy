@@ -302,6 +302,16 @@ function lessonEditorDocumentReadyGalleries() {
     target.html(html_to_append);
     target.removeClass('not_full');
   });
+  $body.on('click', '#lesson_editor_document_gallery_container .documentInGallery .remove', function() {
+    var document_id = $(this).data('document-id');
+    var parent = $('#gallery_document_' + document_id);
+    var target = $(this).parents('.document_attached');
+    target.html($('#hidden_' + target.attr('id')).html());
+    $('#hidden_' + target.attr('id')).html('');
+    target.addClass('not_full');
+    $('#current_inputs_for_documents input[name="' + target.attr('id').replace('_attached', '') + '"]').remove();
+    parent.removeClass('disabled');
+  });
 }
 
 /**
