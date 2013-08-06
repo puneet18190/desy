@@ -691,7 +691,7 @@ Loads the specific gallery for documents relative to a slide. The gallery is sup
 function loadDocumentGalleryForSlideInLessonEditor(slide_id) {
   var new_content = $('<div>' + $('#slide_in_lesson_editor_' + slide_id + ' .hidden_html_for_documents').html() + '</div>');
   new_content.find('.for_slide').each(function() {
-    $(this).attr('id', $(this).attr('id').reaplace(('_for_slide_' + slide_id), ''));
+    $(this).attr('id', $(this).attr('id').replace(('_for_slide_' + slide_id), ''));
   });
   $('#lesson_editor_document_gallery_container #document_gallery .attachedInternal').html(new_content.html());
 }
