@@ -51,6 +51,7 @@ class LessonEditorController < ApplicationController
     else
       @slides = @lesson.slides.order(:position)
       @max_slides = @lesson.reached_the_maximum_of_slides?
+      @documents_slides = [[], DocumentsSlide.where(:slide_id => @slides[1].id)]
     end
   end
   

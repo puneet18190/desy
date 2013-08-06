@@ -14,7 +14,11 @@
     </div>
     
     <div class="inputs_for_documents" style="display:none">
-      <!-- TODO metti i documenti caricati -->
+      <% i = 1 %>
+      <% documents_slides.each do |ds| %>
+        <input type="text" name="document_<%= i %>" value="<%= ds.document_id %>" />
+        <% i += 1 %>
+      <% end %>
     </div>
     
   <% end %>
