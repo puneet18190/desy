@@ -291,7 +291,9 @@ function lessonEditorDocumentReadyGalleries() {
       var hidden = $('#hidden_' + $(this).attr('id'));
       var hidden_content = $('#hidden_' + $(this).attr('id') + '_content');
       if(hidden_content.data('full')) {
-        $(this).html(hidden_content.html());
+        var html_to_be_moved = $(hidden_content.html());
+        html_to_be_moved.attr('id', ('hidden_' + html_to_be_moved.attr('id').replace('_hidden', '')));
+        $(this).html(html_to_be_moved);
         $(this).removeClass('not_full');
       } else {
         $(this).html(hidden.html());

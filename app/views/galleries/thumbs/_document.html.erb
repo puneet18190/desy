@@ -1,6 +1,6 @@
 <%
   margin = (index == 0) ? "style=\"margin-top:0\"".html_safe : ''
-  id = attached.nil? ? "gallery_document_#{document.id}" : "document_attached_#{attached}_content"
+  id = attached.nil? ? "gallery_document_#{document.id}" : (hidden ? "document_attached_#{attached}_content_hidden" : "document_attached_#{attached}_content")
 %>
 
 

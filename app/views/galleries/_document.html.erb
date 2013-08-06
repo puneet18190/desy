@@ -8,7 +8,13 @@
     
   <% else %>
     
-    <div id="current_inputs_for_documents" style="display:none"></div>
+    <div id="current_inputs_for_documents" style="display:none">
+      <% i = 1 %>
+      <% documents_slides.each do |ds| %>
+        <input type="text" name="document_<%= i %>" value="<%= ds.document_id %>" />
+        <% i += 1 %>
+      <% end %>
+    </div>
     <div id="previous_inputs_for_documents" style="display:none">
       <% i = 1 %>
       <% documents_slides.each do |ds| %>
@@ -29,14 +35,14 @@
             <div id="hidden_document_attached_<%= i %>_content" data-full="false" style="display:none"></div>
           <% else %>
             <div id="document_attached_<%= i %>" class="document_attached not_full" style="margin-bottom:2px">
-              <%= render :partial => 'galleries/thumbs/document', :locals => {:document => documents_slides[i - 1].document, :index => 2, :disabled => false, :attached => i} %>
+              <%= render :partial => 'galleries/thumbs/document', :locals => {:document => documents_slides[i - 1].document, :index => 2, :disabled => false, :attached => i, :hidden => false} %>
             </div>
             <div id="hidden_document_attached_<%= i %>" style="display:none">
               <div class="document_number"><%= i %></div>
               <div class="document_placeholder">Add a document from the list below</div> <!-- TODO traduzione -->
             </div>
             <div id="hidden_document_attached_<%= i %>_content" data-full="true" style="display:none">
-              <%= render :partial => 'galleries/thumbs/document', :locals => {:document => documents_slides[i - 1].document, :index => 2, :disabled => false, :attached => i} %>
+              <%= render :partial => 'galleries/thumbs/document', :locals => {:document => documents_slides[i - 1].document, :index => 2, :disabled => false, :attached => i, :hidden => true} %>
             </div>
           <% end %>
         <% end %>
@@ -46,7 +52,7 @@
     <div class="documentsExternal">
       <div class="for-scroll-pain">
         <% documents.each_with_index do |document, index| %>
-          <%= render :partial => 'galleries/thumbs/document', :locals => {:document => document, :index => index, :disabled => @documents_slides.include?(document.id), :attached => nil} %>
+          <%= render :partial => 'galleries/thumbs/document', :locals => {:document => document, :index => index, :disabled => @documents_slides.include?(document.id), :attached => nil, :hidden => false} %>
         <% end %>
       </div>
     </div>
