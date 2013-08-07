@@ -284,70 +284,13 @@ function lessonEditorDocumentReadyGalleries() {
     }
     removeGalleryInLessonEditor('audio');
   });
-  $body.on('click', '#lesson_editor_document_gallery_container #document_gallery .footerButtons .cancel', function() { // TODO
+  $body.on('click', '#lesson_editor_document_gallery_container #document_gallery .footerButtons .cancel', function() {
     removeGalleryInLessonEditor('document');
-    $('#current_inputs_for_documents').html($('#previous_inputs_for_documents').html());
-    $('#lesson_editor_document_gallery_container #document_gallery .document_attached').each(function() {
-      var hidden = $('#hidden_' + $(this).attr('id'));
-      var hidden_content = $('#hidden_' + $(this).attr('id') + '_content');
-      if(hidden_content.data('full')) {
-        var html_to_be_moved = $(hidden_content.html());
-        html_to_be_moved.attr('id', html_to_be_moved.attr('id').replace('_hidden', ''));
-        $(this).html(html_to_be_moved);
-        $(this).removeClass('not_full');
-      } else {
-        $(this).html(hidden.html());
-        $(this).addClass('not_full');
-      }
-    });
-    var ids = new Array();
-    $('#current_inputs_for_documents input').each(function() {
-      ids.push($(this).val());
-    });
-    $('.documentsExternal .documentInGallery.disabled').each(function() {
-      enableDocumentInLessonEditorDocumentGallery($(this)); // TODO
-    });
-    for(var i = 0; i < ids.length; i++) { 
-      disableDocumentInLessonEditorDocumentGallery($('#gallery_document_' + ids[i])); // TODO
-    }
-    if(!$('#lesson_editor_document_gallery_container #document_gallery').data('empty')) {
-      if($('#document_attached_1_content, #document_attached_2_content, #document_attached_3_content').length == 3) {
-        $('.documentsExternal .for-scroll-pain').hide();
-        $('.documentsExternal #empty_document_gallery').show();
-        $('.documentsFooter .triangolo, .documentsFooter .footerLeft').hide();
-      } else {
-        $('.documentsExternal .for-scroll-pain').show();
-        $('.documentsExternal #empty_document_gallery').hide();
-        $('.documentsFooter .triangolo, .documentsFooter .footerLeft').show();
-      }
-    }
+    loadDocumentGalleryForSlideInLessonEditor($('#lesson_editor_document_gallery_container').data('slide-id'));
   });
-  $body.on('click', '#lesson_editor_document_gallery_container #document_gallery .footerButtons .attach', function() { // TODO
+  $body.on('click', '#lesson_editor_document_gallery_container #document_gallery .footerButtons .attach', function() {
     removeGalleryInLessonEditor('document');
-    var slide_id = $('#lesson_editor_document_gallery_container').data('slide-id');
-    var inputs = $('#current_inputs_for_documents').html()
-    $('#previous_inputs_for_documents').html(inputs);
-    $('#slide_in_lesson_editor_' + slide_id + ' .inputs_for_documents').html(inputs);
-    var counter = 1;
-    $('#lesson_editor_document_gallery_container .attachedExternal .document_attached').each(function() {
-      var matrice = $('#hidden_document_attached_' + counter + '_content');
-      if($(this).hasClass('not_full')) {
-        matrice.html('');
-        matrice.data('full', false);
-      } else {
-        var document_appendible = $('<div>' + $(this).html() + '</div>');
-        document_appendible.find('#document_attached_' + counter + '_content').attr('id', ('document_attached_' + counter + '_content_hidden'));
-        matrice.html(document_appendible.html());
-        matrice.data('full', true);
-      }
-      counter += 1;
-    });
-    var new_content = $('<div>' + $('#lesson_editor_document_gallery_container #document_gallery .attachedInternal').html() + '</div>');
-    new_content.find('.not_for_slide').each(function() {
-      $(this).attr('id', ($(this).attr('id') + '_for_slide_' + slide_id));
-    });
-    new_content.find('.not_for_slide').removeClass('not_for_slide').addClass('for_slide');
-    $('#slide_in_lesson_editor_' + slide_id + ' .hidden_html_for_documents').html(new_content.html());
+    unLoadDocumentGalleryContent($('#lesson_editor_document_gallery_container').data('slide-id'));
     saveCurrentSlide('', false);
   });
   $body.on('click', '#lesson_editor_document_gallery_container .documentInGalleryExternal .documentInGallery:not(".disabled") .add_remove', function() {
