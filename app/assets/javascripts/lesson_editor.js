@@ -314,9 +314,11 @@ function lessonEditorDocumentReadyGalleries() {
       if($('#document_attached_1_content, #document_attached_2_content, #document_attached_3_content').length == 3) {
         $('.documentsExternal .for-scroll-pain').hide();
         $('.documentsExternal #empty_document_gallery').show();
+        $('.documentsFooter .triangolo, .documentsFooter .footerLeft').hide();
       } else {
         $('.documentsExternal .for-scroll-pain').show();
         $('.documentsExternal #empty_document_gallery').hide();
+        $('.documentsFooter .triangolo, .documentsFooter .footerLeft').show();
       }
     }
   });
@@ -351,6 +353,7 @@ function lessonEditorDocumentReadyGalleries() {
       if($('#document_attached_1_content, #document_attached_2_content, #document_attached_3_content').length == 3) {
         $('.documentsExternal .for-scroll-pain').hide();
         $('.documentsExternal #empty_document_gallery').show();
+        $('.documentsFooter .triangolo, .documentsFooter .footerLeft').hide();
       }
     }
   });
@@ -366,6 +369,7 @@ function lessonEditorDocumentReadyGalleries() {
       if($('#document_attached_1_content, #document_attached_2_content, #document_attached_3_content').length == 2) {
         $('.documentsExternal .for-scroll-pain').show();
         $('.documentsExternal #empty_document_gallery').hide();
+        $('.documentsFooter .triangolo, .documentsFooter .footerLeft').show();
       }
     }
   });
@@ -760,9 +764,11 @@ function loadDocumentGalleryForSlideInLessonEditor(slide_id) {
     if($('#document_attached_1_content, #document_attached_2_content, #document_attached_3_content').length == 3) {
       $('.documentsExternal .for-scroll-pain').hide();
       $('.documentsExternal #empty_document_gallery').show();
+      $('.documentsFooter .triangolo, .documentsFooter .footerLeft').hide();
     } else {
       $('.documentsExternal .for-scroll-pain').show();
       $('.documentsExternal #empty_document_gallery').hide();
+      $('.documentsFooter .triangolo, .documentsFooter .footerLeft').show();
     }
   }
 }
