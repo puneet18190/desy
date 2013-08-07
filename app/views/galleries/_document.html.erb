@@ -1,6 +1,6 @@
 <%
   doc_empty = documents.empty?
-  display_docs = (documents_slides.length >= 3 || doc_empty) ? ['none', 'block'] : ['block', 'none']
+  display_docs = doc_empty ? ['none', 'block'] : ['block', 'none']
 %>
 
 <div id="document_gallery" class="document_gallery document-kind" data-empty="<%= doc_empty %>">

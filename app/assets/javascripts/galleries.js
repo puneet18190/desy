@@ -259,6 +259,7 @@ function initializeDocumentGalleryInLessonEditor() {
       $.get('/lessons/galleries/document/new_block?page=' + (page + 1) + '&slide_id=' + slide_id);
     }
   });
+  updateEffectsInsideDocumentGallery();
 }
 
 /**
