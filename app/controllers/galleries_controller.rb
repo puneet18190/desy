@@ -60,6 +60,7 @@ class GalleriesController < ApplicationController
     :image_for_image_editor_new_block,
     :document_for_lesson_editor_new_block
   ]
+  before_filter :initialize_slide_with_owner, :only => :document_for_lesson_editor
   
   # === Description
   #
@@ -318,10 +319,17 @@ class GalleriesController < ApplicationController
   #
   # Ajax
   #
+  # === Specific filters
+  #
+  # * GalleriesController#initialize_slide_with_owner
+  #
   def document_for_lesson_editor
-    get_documents(1)
-    @slide_id = correct_integer?(params[:slide_id]) ? params[:slide_id].to_i : 0
-    @documents_slides = DocumentsSlide.where(:slide_id => @slide_id).order('created_at DESC')
+    if @ok
+      get_documents(1)
+      @documents_slides = DocumentsSlide.where(:slide_id => @slide_id).order('created_at DESC')
+    else
+      render :nothing => true
+    end
   end
   
   # === Description
@@ -352,6 +360,13 @@ class GalleriesController < ApplicationController
     update_ok(@page > 0)
   end
   
+  # Initialize the slide with owner
+  def initialize_slide_with_owner
+    @slide_id = correct_integer?(params[:slide_id]) ? params[:slide_id].to_i : 0
+    @slide = Slide.find_by_id @slide_id
+    update_ok(@slide && @slide.lesson.user_id == current_user.id)
+  end
+  
   # Gets the audios, using User#own_media_elements with +filter+ = +audio+
   def get_audios(page)
     x = current_user.own_media_elements(page, AUDIOS_FOR_PAGE, Filters::AUDIO)
@@ -373,7 +388,7 @@ class GalleriesController < ApplicationController
     @tot_pages = x[:pages_amount]
   end
   
-  # Gets the audios, using User#own_documents
+  # Gets the documents, using User#own_documents
   def get_documents(page)
     x = current_user.own_documents(page, DOCUMENTS_FOR_PAGE)
     @documents = x[:records]
