@@ -759,7 +759,7 @@ cn:
       # Buttons specific for documents
       documents:
         # Add a document to a slide
-        # 1 - views/galleries/thumbs/_document.html.erb
+        # 1 - views/lesson_editor/index.html.erb
         add: "Add" # TODO
         # Modify title and description of the document
         # 1 - views/documents/_view_single_compact.html.erb
@@ -771,7 +771,7 @@ cn:
         # 1 - views/documents/_view_single_compact.html.erb
         preview: "Preview" # TODO
         # Removes a document from a slide
-        # 1 - views/galleries/thumbs/_document.html.erb
+        # 1 - views/lesson_editor/index.html.erb
         remove: "Remove" # TODO
     # To close the preview of a media element (big 'x' on the bottom right of the preview)
     # 1 - views/media_elements/_popup.html.erb
