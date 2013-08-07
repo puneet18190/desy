@@ -3,7 +3,7 @@ container.find('.for-scroll-pain .jspPane').html('');
 <% @documents.each_with_index do |document, index| %>
   <% margin = (index == 0) ? "style=\"margin-top:0\"".html_safe : '' %>
   var html_to_append = '<div id="gallery_document_<%= document.id %>" class="documentInGalleryExternal" <%= margin %>>';
-  html_to_append += '<%= j(render(:partial => "galleries/thumbs/document", :locals => {:document => document})) %></div>';
+  html_to_append += '<%= j(render(:partial => "galleries/thumbs/document", :locals => {:document => document, :word => @word})) %></div>';
   container.find('.for-scroll-pain .jspPane').append(html_to_append);
 <% end %>
 container.show();
