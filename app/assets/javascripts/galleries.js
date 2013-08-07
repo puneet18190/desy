@@ -250,15 +250,14 @@ function initializeDocumentGalleryInLessonEditor() {
   $('#lesson_editor_document_gallery_container .for-scroll-pain').jScrollPane({
     autoReinitialise: true
   });
-  $('#lesson_editor_document_gallery_container .scroll-pane').bind('jsp-arrow-change', function(event, isAtTop, isAtBottom, isAtLeft, isAtRight) {
-    //var page = $('#lesson_editor_document_gallery_container').data('page');
-    //var tot_pages = $('#lesson_editor_document_gallery_container').data('tot-pages');
-    //if(isAtBottom && (page < tot_pages)) {
-    //  $.get('/lessons/galleries/document/new_block?page=' + (page + 1));
-    //}
-    
-    console.log('new block');
-    
+  $('#lesson_editor_document_gallery_container .for-scroll-pain').bind('jsp-arrow-change', function(event, isAtTop, isAtBottom, isAtLeft, isAtRight) {
+    var gallery_container = $('#lesson_editor_document_gallery_container');
+    var page = gallery_container.data('page');
+    var tot_pages = gallery_container.data('tot-pages');
+    var slide_id = gallery_container.data('slide-id');
+    if(isAtBottom && (page < tot_pages)) {
+      $.get('/lessons/galleries/document/new_block?page=' + (page + 1) + '&slide_id=' + slide_id);
+    }
   });
 }
 
