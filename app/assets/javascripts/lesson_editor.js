@@ -653,9 +653,9 @@ function loadDocumentGalleryContent(slide_id) {
   for(var i = 1; i < 4; i++) {
     var doc = $('#document_' + i + '_attached_in_slide_' + slide_id);
     if(doc.length > 0) {
-      $('#document_' + i + '_attached').html(doc.html());
+      $('#document_' + i + '_attached').html(doc.html()).removeClass('not_full');
     } else {
-      $('#document_' + i + '_attached').html($('document_' + i + '_attached_empty').html());
+      $('#document_' + i + '_attached').html($('#document_' + i + '_attached_empty').html()).addClass('not_full');
     }
   }
 }
