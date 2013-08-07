@@ -769,7 +769,6 @@ cn:
         destroy: "Delete" # TODO
         # Preview a document
         # 1 - views/documents/_view_single_compact.html.erb
-        # 2 - views/galleries/thumbs/_document.html.erb
         preview: "Preview" # TODO
         # Removes a document from a slide
         # 1 - views/galleries/thumbs/_document.html.erb

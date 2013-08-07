@@ -120,16 +120,10 @@
     
   }
   
-  .documentInGalleryExternal {
+  .documentInGallery {
     
     width: 846px;
     height: 44px;
-    margin-top: 5px;
-    
-  }
-  
-  .documentInGallery {
-    
     background-color: white;
     color: #6D6C6C;
     
@@ -164,67 +158,17 @@
     .extension {
       
       float: left;
-      width: 276px;
+      width: 310px;
       position: relative;
       top: 13px;
+      color: #C0C0C0;
       
     }
     
-    .dbuttons {
+    .add_remove {
       
-      float: left;
-      width: 75px;
       position: relative;
       top: 6px;
-      
-    }
-    
-    &:not(.disabled) .dbuttons {
-      
-      .preview {
-        
-        @include svg-circle-icon-handler($assets-action-buttons_svg, 32px, 2, 10, 1, 0, 7, 1, 1, 7);
-        
-      }
-      
-      .add {
-        
-        @include svg-circle-icon-handler($assets-action-buttons_svg, 32px, 2, 10, 1, 0, 9, 1, 1, 9);
-        margin-left: 5px;
-        
-      }
-      
-      .remove {
-        
-        @include svg-circle-icon-handler($assets-action-buttons_svg, 32px, 2, 10, 1, 0, 8, 1, 1, 8);
-        margin-left: 5px;
-        
-      }
-      
-    }
-    
-    &.disabled {
-      
-      opacity: 0.25;
-      
-      .dbuttons {
-        
-        .preview {
-          
-          @include svg-circle-icon-handler-without-hover($assets-action-buttons_svg, 32px, 2, 10, 1, 0, 7);
-          cursor: default;
-          
-        }
-        
-        .add {
-          
-          @include svg-circle-icon-handler-without-hover($assets-action-buttons_svg, 32px, 2, 10, 1, 0, 9);
-          margin-left: 5px;
-          cursor: default;
-          
-        }
-        
-      }
       
     }
     
@@ -247,34 +191,39 @@
         
         width: 846px;
         height: 44px;
-        background-color: #6D6C6C;
-        color: white;
         
-        .document_number {
+        &.not_full {
           
-          float: left;
-          height: 25px;
-          width: 20px;
-          padding-left: 12px;
-          padding-top: 7px;
-          background-color: #252323;
-          margin-left: 13px;
-          margin-top: 6px;
-          border-radius: 16px 16px 16px 16px;
+          background-color: #6D6C6C;
+          color: white;
+          
+          .document_number {
+            
+            float: left;
+            height: 25px;
+            width: 20px;
+            padding-left: 12px;
+            padding-top: 7px;
+            background-color: #252323;
+            margin-left: 13px;
+            margin-top: 6px;
+            border-radius: 16px 16px 16px 16px;
+            
+          }
+          
+          .document_placeholder {
+            
+            float: left;
+            margin-left: 20px;
+            padding-top: 13px;
+            
+          }
           
         }
         
-        .document_placeholder {
+        .documentInGallery .add_remove {
           
-          float: left;
-          margin-left: 20px;
-          padding-top: 13px;
-          
-        }
-        
-        #document_attached_1_content, #document_attached_2_content, #document_attached_3_content {
-          
-          margin: 0;
+          @include svg-circle-icon-handler($assets-action-buttons_svg, 32px, 2, 10, 1, 0, 8, 1, 1, 8);
           
         }
         
@@ -296,6 +245,37 @@
       width: 873px;
       height: 289px;
       overflow: hidden;
+      
+      .documentInGalleryExternal {
+        
+        width: 846px;
+        height: 44px;
+        margin-top: 5px;
+        
+        .documentInGallery {
+          
+          &:not(.disabled) .add_remove {
+            
+            @include svg-circle-icon-handler($assets-action-buttons_svg, 32px, 2, 10, 1, 0, 9, 1, 1, 9);
+            
+          }
+          
+          &.disabled {
+            
+            opacity: 0.25;
+            
+            .add_remove {
+              
+              @include svg-circle-icon-handler-without-hover($assets-action-buttons_svg, 32px, 2, 10, 1, 0, 9);
+              cursor: default;
+              
+            }
+            
+          }
+          
+        }
+        
+      }
       
     }
     
