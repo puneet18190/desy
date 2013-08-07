@@ -328,6 +328,20 @@ function lessonEditorDocumentReadyGalleries() {
     var inputs = $('#current_inputs_for_documents').html()
     $('#previous_inputs_for_documents').html(inputs);
     $('#slide_in_lesson_editor_' + slide_id + ' .inputs_for_documents').html(inputs);
+    var counter = 1;
+    $('#lesson_editor_document_gallery_container .attachedExternal .document_attached').each(function() {
+      var matrice = $('#hidden_document_attached_' + counter + '_content');
+      if($(this).hasClass('not_full')) {
+        matrice.html('');
+        matrice.data('full', false);
+      } else {
+        var document_appendible = $('<div>' + $(this).html() + '</div>');
+        document_appendible.find('#document_attached_' + counter + '_content').attr('id', ('#document_attached_' + counter + '_content_hidden'));
+        matrice.html(document_appendible.html());
+        matrice.data('full', true);
+      }
+      counter += 1;
+    });
     var new_content = $('<div>' + $('#lesson_editor_document_gallery_container #document_gallery .attachedInternal').html() + '</div>');
     new_content.find('.not_for_slide').each(function() {
       $(this).attr('id', ($(this).attr('id') + '_for_slide_' + slide_id));
