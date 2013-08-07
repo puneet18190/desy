@@ -1422,7 +1422,6 @@ it:
       # Placeholder for a document that has to be loaded
       # 1 - views/galleries/_document.html.erb
       # 2 - views/galleries/_document.html.erb
-      # 3 - views/galleries/_document.html.erb
       placeholder: "Aggiungi un documento dalla lista qui sotto"
     images:
       # Caption for the size (in pixels) of the image inside the gallery

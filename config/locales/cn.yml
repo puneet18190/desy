@@ -1422,7 +1422,6 @@ cn:
       # Placeholder for a document that has to be loaded
       # 1 - views/galleries/_document.html.erb
       # 2 - views/galleries/_document.html.erb
-      # 3 - views/galleries/_document.html.erb
       placeholder: "Add a document from the list below" # TODO
     images:
       # Caption for the size (in pixels) of the image inside the gallery
