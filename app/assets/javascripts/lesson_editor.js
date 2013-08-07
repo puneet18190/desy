@@ -716,6 +716,14 @@ function loadDocumentGalleryForSlideInLessonEditor(slide_id) {
   for(var i = 0; i < ids.length; i++) {
     disableDocumentInLessonEditorDocumentGallery($('#gallery_document_' + ids[i]));
   }
+  if($('#document_attached_1_content, #document_attached_2_content, #document_attached_3_content').length == 3) {
+    $('.documentsExternal .for-scroll-pain').hide();
+    $('.documentsExternal #empty_document_gallery').show();
+  } else {
+    $('.documentsExternal .for-scroll-pain').show();
+    $('.documentsExternal #empty_document_gallery').hide();
+  }
+  
 }
 
 /**
