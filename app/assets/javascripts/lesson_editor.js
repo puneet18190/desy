@@ -350,31 +350,23 @@ function lessonEditorDocumentReadyGalleries() {
     $('#slide_in_lesson_editor_' + slide_id + ' .hidden_html_for_documents').html(new_content.html());
     saveCurrentSlide('', false);
   });
-  $body.on('click', '#lesson_editor_document_gallery_container .documentInGallery:not(".disabled") .add', function() {
+  $body.on('click', '#lesson_editor_document_gallery_container .documentInGalleryExternal .documentInGallery:not(".disabled") .add_remove', function() {
     var document_id = $(this).data('document-id');
     var target = $('.attachedExternal .document_attached.not_full').first()
     target.html($('#gallery_document_' + document_id).html());
-    $('#inputs_for_documents').append('<input type="text" name="' + target.attr('id').replace('_attached_empty', '') + '" value="' + document_id + '" />');
+    target.removeClass('not_full');
+    $('#inputs_for_documents').append('<input type="text" name="' + target.attr('id').replace('_attached', '') + '" value="' + document_id + '" />');
     var dbutton = html_to_append.find('.dbuttons .add');
     dbutton.removeClass('add').addClass('remove');
     dbutton.attr('title', dbutton.data('other-title'));
     updateEffectsInsideDocumentGallery();
   });
-  $body.on('click', '#lesson_editor_document_gallery_container .documentInGallery .remove', function() { // TODO
-    var document_id = $(this).data('document-id');
-    var parent = $('#gallery_document_' + document_id);
+  $body.on('click', '#lesson_editor_document_gallery_container .document_attached .documentInGallery .add_remove', function() {
     var target = $(this).parents('.document_attached');
-    target.html($('#hidden_' + target.attr('id')).html());
+    target.html($('#' + target.attr('id') + '_empty').html());
     target.addClass('not_full');
-    $('#current_inputs_for_documents input[name="' + target.attr('id').replace('_attached', '') + '"]').remove();
-    enableDocumentInLessonEditorDocumentGallery(parent);
-    if(!$('#lesson_editor_document_gallery_container #document_gallery').data('empty')) {
-      if($('#document_attached_1_content, #document_attached_2_content, #document_attached_3_content').length == 2) {
-        $('.documentsExternal .for-scroll-pain').show();
-        $('.documentsExternal #empty_document_gallery').hide();
-        $('.documentsFooter .triangolo, .documentsFooter .footerLeft').show();
-      }
-    }
+    $('#inputs_for_documents input[name="' + target.attr('id').replace('_attached', '') + '"]').remove();
+    updateEffectsInsideDocumentGallery();
   });
   $body.on('keydown', '#lesson_editor_document_gallery_container #document_gallery_filter', function(e) { // TODO
     if(e.which == 13) {
