@@ -294,6 +294,26 @@
       
     }
     
+    #empty_document_gallery {
+      
+      p {
+        
+        text-align: center;
+        width: 846px;
+        font-size: 20px;
+        color: white;
+        
+      }
+      
+      .bigDocumentIcon {
+        
+        @include svg-circle-icon-handler-without-hover($assets-set-icone-editor_svg, 90px, 4, 12, 0.2, 0, 11);
+        margin: 76px 0 10px 378px;
+        
+      }
+      
+    }
+    
   }
   
   .documentsFooter {

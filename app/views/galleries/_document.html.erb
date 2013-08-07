@@ -1,5 +1,5 @@
 <%
-  display_docs = (documents_slides.length > 3 || documents.empty?) ? ['none', 'block'] : ['block', 'none']
+  display_docs = (documents_slides.length >= 3 || documents.empty?) ? ['none', 'block'] : ['block', 'none']
 %>
 
 <div id="document_gallery" class="document_gallery document-kind">
@@ -33,6 +33,7 @@
     </div>
     <div id="empty_document_gallery" style="display:<%= display_docs[1] %>">
       <div class="bigDocumentIcon"></div>
+      <br class="clearfloat"/>
       <% if documents.empty? %>
         <p><%= t('galleries.empty.document') %></p>
       <% else %>
