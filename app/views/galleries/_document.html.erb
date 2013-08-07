@@ -23,7 +23,7 @@
           </div>
         <% else %>
           <div id="document_<%= i %>_attached" class="document_attached" style="margin-bottom:<%= (i == 3) ? '0' : '2px' %>">
-            <%= render :partial => 'galleries/thumbs/document', :locals => {:document => documents_slides[i - 1].document, :disabled => false} %>
+            <%= render :partial => 'galleries/thumbs/document', :locals => {:document => documents_slides[i - 1].document} %>
           </div>
         <% end %>
         <div id="document_<%= i %>_attached_empty" style="display:none">
@@ -37,12 +37,9 @@
   <div class="documentsExternal">
     <div class="for-scroll-pain" style="display:<%= display_docs[0] %>">
       <% documents.each_with_index do |document, index| %>
-        <%
-          margin = (index == 0) ? "style=\"margin-top:0\"".html_safe : ''
-          plucks = documents_slides.pluck(:document_id)
-        %>
+        <% margin = (index == 0) ? "style=\"margin-top:0\"".html_safe : '' %>
         <div id="gallery_document_<%= document.id %>" class="documentInGalleryExternal" <%= margin %>>
-          <%= render :partial => 'galleries/thumbs/document', :locals => {:document => document, :disabled => plucks.include?(document.id)} %>
+          <%= render :partial => 'galleries/thumbs/document', :locals => {:document => document} %>
         </div>
       <% end %>
     </div>

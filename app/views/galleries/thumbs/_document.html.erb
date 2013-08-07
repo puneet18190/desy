@@ -1,4 +1,4 @@
-<div class="documentInGallery <%= disabled ? 'disabled' : '' %>">
+<div class="documentInGallery">
   <div class="icon">
     <%= image_tag document.icon_path, :title => document.icon_title %>
   </div>
@@ -8,5 +8,5 @@
   <div class="extension">
     <%= document.size_and_extension %>
   </div>
-  <a class="add_remove" title="<%= disabled ? '' : add %>" data-title="<%= add %>" data-other-title="<%= remove %>" data-document-id="<%= document.id %>"></a>
+  <a class="add_remove" data-document-id="<%= document.id %>"></a>
 </div>

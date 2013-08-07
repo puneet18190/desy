@@ -1,4 +1,4 @@
 <% @documents.each do |document| %>
-  $('#lesson_editor_document_gallery_container #document_gallery .for-scroll-pain .jspPane').append('<%= j(render(:partial => "galleries/thumbs/document", :locals => {:document => document, :index => 1, :disabled => @documents_slides.pluck(:document_id).include?(document.id), :attached => nil, :hidden => false, :slide_id => nil})) %>');
+  $('#lesson_editor_document_gallery_container #document_gallery .for-scroll-pain .jspPane').append('<%= j(render(:partial => "galleries/thumbs/document", :locals => {:document => document})) %>');
 <% end %>
 $('#lesson_editor_document_gallery_container').data('page', <%= @page %>);
