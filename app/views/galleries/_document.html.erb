@@ -16,14 +16,16 @@
   <div class="attachedExternal">
     <div class="attachedInternal">
       <% [1, 2, 3].each do |i| %>
-        <div id="document_<%= i %>_attached" class="document_attached documentInGalleryExternal" style="margin-bottom:<%= (i == 3) ? '0' : '2px' %>">
-          <% if documents_slides[i - 1].nil? %>
+        <% if documents_slides[i - 1].nil? %>
+          <div id="document_<%= i %>_attached" class="document_attached documentInGalleryExternal not_full" style="margin-bottom:<%= (i == 3) ? '0' : '2px' %>">
             <div class="document_number"><%= i %></div>
             <div class="document_placeholder"><%= t('galleries.documents.placeholder') %></div>
-          <% else %>
+          </div>
+        <% else %>
+          <div id="document_<%= i %>_attached" class="document_attached documentInGalleryExternal" style="margin-bottom:<%= (i == 3) ? '0' : '2px' %>">
             <%= render :partial => 'galleries/thumbs/document', :locals => {:document => documents_slides[i - 1].document, :disabled => false} %>
-          <% end %>
-        </div>
+          </div>
+        <% end %>
         <div id="document_<%= i %>_attached_empty" style="display:none">
           <div class="document_number"><%= i %></div>
           <div class="document_placeholder"><%= t('galleries.documents.placeholder') %></div>

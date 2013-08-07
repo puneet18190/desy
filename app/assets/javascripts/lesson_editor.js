@@ -284,7 +284,7 @@ function lessonEditorDocumentReadyGalleries() {
     }
     removeGalleryInLessonEditor('audio');
   });
-  $body.on('click', '#lesson_editor_document_gallery_container #document_gallery .footerButtons .cancel', function() {
+  $body.on('click', '#lesson_editor_document_gallery_container #document_gallery .footerButtons .cancel', function() { // TODO
     removeGalleryInLessonEditor('document');
     $('#current_inputs_for_documents').html($('#previous_inputs_for_documents').html());
     $('#lesson_editor_document_gallery_container #document_gallery .document_attached').each(function() {
@@ -322,7 +322,7 @@ function lessonEditorDocumentReadyGalleries() {
       }
     }
   });
-  $body.on('click', '#lesson_editor_document_gallery_container #document_gallery .footerButtons .attach', function() {
+  $body.on('click', '#lesson_editor_document_gallery_container #document_gallery .footerButtons .attach', function() { // TODO
     removeGalleryInLessonEditor('document');
     var slide_id = $('#lesson_editor_document_gallery_container').data('slide-id');
     var inputs = $('#current_inputs_for_documents').html()
@@ -352,26 +352,15 @@ function lessonEditorDocumentReadyGalleries() {
   });
   $body.on('click', '#lesson_editor_document_gallery_container .documentInGallery:not(".disabled") .add', function() {
     var document_id = $(this).data('document-id');
-    var parent = $('#gallery_document_' + document_id);
-    var target = $('.attachedExternal .document_attached.not_full').first();
-    var html_to_append = $(parent[0].outerHTML);
-    html_to_append.attr('id', (target.attr('id') + '_content'));
-    var html_to_append_button = html_to_append.find('.dbuttons .add');
-    html_to_append_button.removeClass('add').addClass('remove');
-    html_to_append_button.attr('title', html_to_append_button.data('other-title'));
-    disableDocumentInLessonEditorDocumentGallery(parent);
-    $('#current_inputs_for_documents').append('<input type="text" name="' + target.attr('id').replace('_attached', '') + '" value="' + document_id + '" />');
-    target.html(html_to_append);
-    target.removeClass('not_full');
-    if(!$('#lesson_editor_document_gallery_container #document_gallery').data('empty')) {
-      if($('#document_attached_1_content, #document_attached_2_content, #document_attached_3_content').length == 3) {
-        $('.documentsExternal .for-scroll-pain').hide();
-        $('.documentsExternal #empty_document_gallery').show();
-        $('.documentsFooter .triangolo, .documentsFooter .footerLeft').hide();
-      }
-    }
+    var target = $('.attachedExternal .document_attached.not_full').first()
+    target.html($('#gallery_document_' + document_id).html());
+    $('#inputs_for_documents').append('<input type="text" name="' + target.attr('id').replace('_attached_empty', '') + '" value="' + document_id + '" />');
+    var dbutton = html_to_append.find('.dbuttons .add');
+    dbutton.removeClass('add').addClass('remove');
+    dbutton.attr('title', dbutton.data('other-title'));
+    updateEffectsInsideDocumentGallery();
   });
-  $body.on('click', '#lesson_editor_document_gallery_container .documentInGallery .remove', function() {
+  $body.on('click', '#lesson_editor_document_gallery_container .documentInGallery .remove', function() { // TODO
     var document_id = $(this).data('document-id');
     var parent = $('#gallery_document_' + document_id);
     var target = $(this).parents('.document_attached');
@@ -387,7 +376,7 @@ function lessonEditorDocumentReadyGalleries() {
       }
     }
   });
-  $body.on('keydown', '#lesson_editor_document_gallery_container #document_gallery_filter', function(e) {
+  $body.on('keydown', '#lesson_editor_document_gallery_container #document_gallery_filter', function(e) { // TODO
     if(e.which == 13) {
       e.preventDefault();
     } else if(e.which != 39 && e.which != 37) {
@@ -770,7 +759,7 @@ function unLoadDocumentGalleryContent(slide_id) {
   $('#document_1_attached_in_slide_' + slide_id + ', #document_2_attached_in_slide_' + slide_id + ', #document_3_attached_in_slide_' + slide_id).remove();
   for(var i = 1; i < 4; i++) {
     var doc = $('#document_' + i + '_attached');
-    if(doc.find('.document_number').length == 0) {
+    if(!doc.hasClass('not_full')) {
       var new_content = '<div id="document_' + i + '_attached_in_slide_' + slide_id + '">' + doc.html() + '</div>';
       $('#slide_in_lesson_editor_' + slide_id + ' .hidden_html_for_documents').append(new_content)
     }
@@ -799,9 +788,8 @@ function loadDocumentGalleryContent(slide_id) {
 Updates the faded documents and the gallery is locked if three documents are loaded.
 @method updateEffectsInsideDocumentGallery
 @for LessonEditorGalleries
-@param slide_id {Number} the id of the slide
 **/
-function updateEffectsInsideDocumentGallery(slide_id) {
+function updateEffectsInsideDocumentGallery() {
   var inputs = $('#inputs_for_documents input');
   var ids = new Array();
   inputs.each(function() {
