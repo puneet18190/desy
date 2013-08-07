@@ -120,13 +120,18 @@
     
   }
   
-  .documentInGallery {
+  .documentInGalleryExternal {
     
     width: 846px;
     height: 44px;
+    margin-top: 5px;
+    
+  }
+  
+  .documentInGallery {
+    
     background-color: white;
     color: #6D6C6C;
-    margin-top: 5px;
     
     .icon {
       

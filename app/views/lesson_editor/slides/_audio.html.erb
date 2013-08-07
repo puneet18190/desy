@@ -46,7 +46,11 @@
     </div>
     
     <div class="hidden_html_for_documents" style="display:none">
-      <%= render :partial => 'lesson_editor/documents_in_slide', :locals => {:documents_slides => documents_slides, :slide_id => slide.id} %>
+      <% documents_slides.each_with_index do |ds, index| %>
+        <div id="document_<%= index + 1 %>_attached_in_slide_<%= slide.id %>" class="document_attached documentInGalleryExternal" style="margin-bottom:<%= (index == 2) ? '0' : '2px' %>">
+          <%= render :partial => 'galleries/thumbs/document', :locals => {:document => ds.document, :disabled => false} %>
+        </div>
+      <% end %>
     </div>
     
   <% end %>

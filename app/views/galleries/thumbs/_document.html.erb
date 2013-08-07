@@ -1,18 +1,10 @@
 <%
-  margin = (index == 0) ? "style=\"margin-top:0\"".html_safe : ''
-  id = attached.nil? ? "gallery_document_#{document.id}" : (hidden ? "document_attached_#{attached}_content_hidden" : "document_attached_#{attached}_content")
-  slide_class = 'not_for_slide'
-  if !slide_id.nil?
-    id = "#{id}_for_slide_#{slide_id}"
-    slide_class = 'for_slide'
-  end
   add = t('titles.buttons.documents.add')
   preview = t('titles.buttons.documents.preview')
   remove = t('titles.buttons.documents.remove')
 %>
 
-
-<div id="<%= id %>" class="documentInGallery <%= disabled ? 'disabled' : '' %> <%= slide_class %>" <%= margin %>>
+<div class="documentInGallery <%= disabled ? 'disabled' : '' %>">
   <div class="icon">
     <%= image_tag document.icon_path, :title => document.icon_title %>
   </div>
