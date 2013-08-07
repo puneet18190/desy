@@ -754,28 +754,49 @@ Loads the specific gallery for documents relative to a slide. The gallery is sup
 @param slide_id {Number} the id of the slide
 **/
 function loadDocumentGalleryForSlideInLessonEditor(slide_id) {
-  var new_content = $('<div>' + $('#slide_in_lesson_editor_' + slide_id + ' .hidden_html_for_documents').html() + '</div>');
-  new_content.find('.for_slide').each(function() {
-    $(this).attr('id', $(this).attr('id').replace(('_for_slide_' + slide_id), ''));
-  });
-  new_content.find('.for_slide').removeClass('for_slide').addClass('not_for_slide');
-  $('#lesson_editor_document_gallery_container #document_gallery .attachedInternal').html(new_content.html());
+  loadDocumentGalleryContent(slide_id);
+  updateEffectsInsideDocumentGallery(slide_id);
   $('#lesson_editor_document_gallery_container').data('slide-id', slide_id);
-  var inputs = $('#slide_in_lesson_editor_' + slide_id + ' .inputs_for_documents').html();
-  $('#current_inputs_for_documents').html(inputs);
-  $('#previous_inputs_for_documents').html(inputs);
+}
+
+function unLoadDocumentGalleryContent(slide_id) {
+  $('#slide_in_lesson_editor_' + slide_id + ' .inputs_for_documents').html($('#inputs_for_documents').html());
+  $('#document_1_attached_in_slide_' + slide_id + ', #document_2_attached_in_slide_' + slide_id + ', #document_3_attached_in_slide_' + slide_id).remove();
+  for(var i = 1; i < 4; i++) {
+    var doc = $('#document_' + i + '_attached');
+    if(doc.find('.document_number').length == 0) {
+      var new_content = '<div id="document_' + i + '_attached_in_slide_' + slide_id + '">' + doc.html() + '</div>';
+      $('#slide_in_lesson_editor_' + slide_id + ' .hidden_html_for_documents').append(new_content)
+    }
+  }
+}
+
+function loadDocumentGalleryContent(slide_id) {
+  $('#inputs_for_documents').html($('#slide_in_lesson_editor_' + slide_id + ' .inputs_for_documents').html());
+  for(var i = 1; i < 4; i++) {
+    var doc = $('#document_' + i + '_attached_in_slide_' + slide_id);
+    if(doc.length > 0) {
+      $('#document_' + i + '_attached').html(doc.html());
+    } else {
+      $('#document_' + i + '_attached').html($('document_' + i + '_attached_empty').html());
+    }
+  }
+}
+
+function updateEffectsInsideDocumentGallery(slide_id) {
+  var inputs = $('#inputs_for_documents input');
   var ids = new Array();
-  $('#current_inputs_for_documents input').each(function() {
+  inputs.each(function() {
     ids.push($(this).val());
   });
   $('.documentsExternal .documentInGallery.disabled').each(function() {
     enableDocumentInLessonEditorDocumentGallery($(this));
   });
   for(var i = 0; i < ids.length; i++) {
-    disableDocumentInLessonEditorDocumentGallery($('#gallery_document_' + ids[i]));
+    disableDocumentInLessonEditorDocumentGallery($('#gallery_document_' + ids[i] + ' .documentInGallery'));
   }
   if(!$('#lesson_editor_document_gallery_container #document_gallery').data('empty')) {
-    if($('#document_attached_1_content, #document_attached_2_content, #document_attached_3_content').length == 3) {
+    if(inputs.length == 3) {
       $('.documentsExternal .for-scroll-pain').hide();
       $('.documentsExternal #empty_document_gallery').show();
       $('.documentsFooter .triangolo, .documentsFooter .footerLeft').hide();

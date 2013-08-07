@@ -27,7 +27,7 @@
     
     <div class="hidden_html_for_documents" style="display:none">
       <% documents_slides.each_with_index do |ds, index| %>
-        <div id="document_<%= index + 1 %>_attached_in_slide_<%= slide.id %>" class="document_attached documentInGalleryExternal" style="margin-bottom:<%= (index == 2) ? '0' : '2px' %>">
+        <div id="document_<%= index + 1 %>_attached_in_slide_<%= slide.id %>">
           <%= render :partial => 'galleries/thumbs/document', :locals => {:document => ds.document, :disabled => false} %>
         </div>
       <% end %>
