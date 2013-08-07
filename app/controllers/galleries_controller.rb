@@ -60,7 +60,11 @@ class GalleriesController < ApplicationController
     :image_for_image_editor_new_block,
     :document_for_lesson_editor_new_block
   ]
-  before_filter :initialize_slide_with_owner, :only => [:document_for_lesson_editor, :document_for_lesson_editor_new_block]
+  before_filter :initialize_slide_with_owner, :only => [
+    :document_for_lesson_editor,
+    :document_for_lesson_editor_new_block,
+    :document_for_lesson_editor_filter
+  ]
   
   # === Description
   #
@@ -354,6 +358,28 @@ class GalleriesController < ApplicationController
     end
   end
   
+  # === Description
+  #
+  # Gets documents filtered by word
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # * GalleriesController#initialize_slide_with_owner
+  #
+  def document_for_lesson_editor_filter
+    if @ok
+      @word = params[:word].blank? ? nil : params[:word]
+      get_documents(@page, @word)
+      @documents_slides = DocumentsSlide.where(:slide_id => @slide_id).order('created_at DESC')
+    else
+      render :nothing => true
+    end
+  end
+  
   private
   
   # Initializes the parameter +page+ used in all the actions getting new blocks in the gallery
@@ -391,8 +417,8 @@ class GalleriesController < ApplicationController
   end
   
   # Gets the documents, using User#own_documents
-  def get_documents(page)
-    x = current_user.own_documents(page, DOCUMENTS_FOR_PAGE)
+  def get_documents(page, word = nil)
+    x = current_user.own_documents(page, DOCUMENTS_FOR_PAGE, SearchOrders::CREATED_AT, word)
     @documents = x[:records]
     @tot_pages = x[:pages_amount]
   end

@@ -369,6 +369,25 @@ function lessonEditorDocumentReadyGalleries() {
       }
     }
   });
+  $body.on('keydown', '#lesson_editor_document_gallery_container #document_gallery_filter', function(e) {
+    if(e.which == 13) {
+      e.preventDefault();
+    } else if(e.which != 39 && e.which != 37) {
+      var loader = $('#lesson_editor_document_gallery_container .documentsFooter ._loader');
+      var letters = $(this).data('letters');
+      letters += 1;
+      $(this).data('letters', letters);
+      loader.show();
+      setTimeout(function() {
+        var input = $('#lesson_editor_document_gallery_container #document_gallery_filter');
+        var slide_id = $('#lesson_editor_document_gallery_container').data('slide-id');
+        if(input.data('letters') == letters) {
+          loader.hide();
+          $.get('/lessons/galleries/document/filter?word=' + input.val() + '&slide_id=' + slide_id);
+        }
+      }, 1500);
+    }
+  });
 }
 
 /**

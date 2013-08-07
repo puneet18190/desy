@@ -74,6 +74,7 @@ Desy::Application.routes.draw do
   get 'lessons/galleries/video/new_block'    => 'galleries#video_for_lesson_editor_new_block'
   get 'lessons/galleries/document'           => 'galleries#document_for_lesson_editor' # documents in lesson editor
   get 'lessons/galleries/document/new_block' => 'galleries#document_for_lesson_editor_new_block'
+  get 'lessons/galleries/document/filter'    => 'galleries#document_for_lesson_editor_filter'
   get 'videos/galleries'                     => 'galleries#mixed_for_video_editor' # mixed image + video + text in video editor
   get 'videos/galleries/image/new_block'     => 'galleries#mixed_for_video_editor_image_new_block'
   get 'videos/galleries/video/new_block'     => 'galleries#mixed_for_video_editor_video_new_block'
