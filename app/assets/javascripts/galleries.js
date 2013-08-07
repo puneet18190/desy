@@ -254,9 +254,8 @@ function initializeDocumentGalleryInLessonEditor() {
     var gallery_container = $('#lesson_editor_document_gallery_container');
     var page = gallery_container.data('page');
     var tot_pages = gallery_container.data('tot-pages');
-    var slide_id = gallery_container.data('slide-id');
     if(isAtBottom && (page < tot_pages)) {
-      $.get('/lessons/galleries/document/new_block?page=' + (page + 1) + '&slide_id=' + slide_id);
+      $.get('/lessons/galleries/document/new_block?page=' + (page + 1));
     }
   });
 }
