@@ -1412,7 +1412,7 @@ cn:
       cancel: "Cancel" # TODO
       # The user attachs the documents
       # 1 - views/galleries/_document.html.erb
-      done: "Attach" # TODO
+      done: "Save" # TODO
       # Caption of the filter of documents
       # 1 - views/galleries/_document.html.erb
       filter_by: "Filter by" # TODO

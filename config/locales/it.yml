@@ -1412,7 +1412,7 @@ it:
       cancel: "Annulla"
       # The user attachs the documents
       # 1 - views/galleries/_document.html.erb
-      done: "Allega"
+      done: "Salva"
       # Caption of the filter of documents
       # 1 - views/galleries/_document.html.erb
       filter_by: "Filtra"
