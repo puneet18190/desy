@@ -336,7 +336,7 @@ function lessonEditorDocumentReadyGalleries() {
         matrice.data('full', false);
       } else {
         var document_appendible = $('<div>' + $(this).html() + '</div>');
-        document_appendible.find('#document_attached_' + counter + '_content').attr('id', ('#document_attached_' + counter + '_content_hidden'));
+        document_appendible.find('#document_attached_' + counter + '_content').attr('id', ('document_attached_' + counter + '_content_hidden'));
         matrice.html(document_appendible.html());
         matrice.data('full', true);
       }
