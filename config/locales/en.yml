@@ -1416,6 +1416,9 @@ en:
       # Caption of the filter of documents
       # 1 - views/galleries/_document.html.erb
       filter_by: "Filter by"
+      # Caption used when the user attaches the maximum allowed number of documents into a slide
+      # 1 - views/galleries/_document.html.erb
+      locked: "You can't attach more than three documents"
       # Placeholder for a document that has to be loaded
       # 1 - views/galleries/_document.html.erb
       # 2 - views/galleries/_document.html.erb
