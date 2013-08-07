@@ -1,9 +1,10 @@
 var container = $('#lesson_editor_document_gallery_container');
-container.find('.for-scroll-pain').html('');
-<% @documents.each do |document| %>
-  var html_to_append = '<div id="gallery_document_<%= document.id %>" class="documentInGalleryExternal">';
+container.find('.for-scroll-pain .jspPane').html('');
+<% @documents.each_with_index do |document, index| %>
+  <% margin = (index == 0) ? "style=\"margin-top:0\"".html_safe : '' %>
+  var html_to_append = '<div id="gallery_document_<%= document.id %>" class="documentInGalleryExternal" <%= margin %>>';
   html_to_append += '<%= j(render(:partial => "galleries/thumbs/document", :locals => {:document => document})) %></div>';
-  $('#lesson_editor_document_gallery_container #document_gallery .for-scroll-pain .jspPane').append(html_to_append);
+  container.find('.for-scroll-pain .jspPane').append(html_to_append);
 <% end %>
 container.show();
 container.data('page', 1);
