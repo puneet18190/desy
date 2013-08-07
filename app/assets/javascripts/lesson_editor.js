@@ -310,6 +310,13 @@ function lessonEditorDocumentReadyGalleries() {
     for(var i = 0; i < ids.length; i++) {
       disableDocumentInLessonEditorDocumentGallery($('#gallery_document_' + ids[i]));
     }
+    if($('#document_attached_1_content, #document_attached_2_content, #document_attached_3_content').length == 3) {
+      $('.documentsExternal .for-scroll-pain').hide();
+      $('.documentsExternal #empty_document_gallery').show();
+    } else {
+      $('.documentsExternal .for-scroll-pain').show();
+      $('.documentsExternal #empty_document_gallery').hide();
+    }
   });
   $body.on('click', '#lesson_editor_document_gallery_container #document_gallery .footerButtons .attach', function() {
     removeGalleryInLessonEditor('document');
@@ -338,6 +345,10 @@ function lessonEditorDocumentReadyGalleries() {
     $('#current_inputs_for_documents').append('<input type="text" name="' + target.attr('id').replace('_attached', '') + '" value="' + document_id + '" />');
     target.html(html_to_append);
     target.removeClass('not_full');
+    if($('#document_attached_1_content, #document_attached_2_content, #document_attached_3_content').length == 3) {
+      $('.documentsExternal .for-scroll-pain').hide();
+      $('.documentsExternal #empty_document_gallery').show();
+    }
   });
   $body.on('click', '#lesson_editor_document_gallery_container .documentInGallery .remove', function() {
     var document_id = $(this).data('document-id');
@@ -347,6 +358,10 @@ function lessonEditorDocumentReadyGalleries() {
     target.addClass('not_full');
     $('#current_inputs_for_documents input[name="' + target.attr('id').replace('_attached', '') + '"]').remove();
     enableDocumentInLessonEditorDocumentGallery(parent);
+    if($('#document_attached_1_content, #document_attached_2_content, #document_attached_3_content').length == 2) {
+      $('.documentsExternal .for-scroll-pain').show();
+      $('.documentsExternal #empty_document_gallery').hide();
+    }
   });
 }
 
@@ -723,7 +738,6 @@ function loadDocumentGalleryForSlideInLessonEditor(slide_id) {
     $('.documentsExternal .for-scroll-pain').show();
     $('.documentsExternal #empty_document_gallery').hide();
   }
-  
 }
 
 /**
