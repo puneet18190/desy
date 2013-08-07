@@ -749,7 +749,7 @@ function enableDocumentInLessonEditorDocumentGallery(item) {
 
 /**
 Loads the specific gallery for documents relative to a slide. The gallery is supposed to have already been loaded previously, by {{#crossLink "LessonEditorGalleries/showDocumentGalleryInLessonEditor:method"}}{{/crossLink}}
-@method enableDocumentInLessonEditorDocumentGallery
+@method loadDocumentGalleryForSlideInLessonEditor
 @for LessonEditorGalleries
 @param slide_id {Number} the id of the slide
 **/
@@ -759,6 +759,12 @@ function loadDocumentGalleryForSlideInLessonEditor(slide_id) {
   $('#lesson_editor_document_gallery_container').data('slide-id', slide_id);
 }
 
+/**
+Unloads the documents to the slide.
+@method unLoadDocumentGalleryContent
+@for LessonEditorGalleries
+@param slide_id {Number} the id of the slide
+**/
 function unLoadDocumentGalleryContent(slide_id) {
   $('#slide_in_lesson_editor_' + slide_id + ' .inputs_for_documents').html($('#inputs_for_documents').html());
   $('#document_1_attached_in_slide_' + slide_id + ', #document_2_attached_in_slide_' + slide_id + ', #document_3_attached_in_slide_' + slide_id).remove();
@@ -771,6 +777,12 @@ function unLoadDocumentGalleryContent(slide_id) {
   }
 }
 
+/**
+Loads the documents from the slide to the gallery.
+@method loadDocumentGalleryContent
+@for LessonEditorGalleries
+@param slide_id {Number} the id of the slide
+**/
 function loadDocumentGalleryContent(slide_id) {
   $('#inputs_for_documents').html($('#slide_in_lesson_editor_' + slide_id + ' .inputs_for_documents').html());
   for(var i = 1; i < 4; i++) {
@@ -783,6 +795,12 @@ function loadDocumentGalleryContent(slide_id) {
   }
 }
 
+/**
+Updates the faded documents and the gallery is locked if three documents are loaded.
+@method updateEffectsInsideDocumentGallery
+@for LessonEditorGalleries
+@param slide_id {Number} the id of the slide
+**/
 function updateEffectsInsideDocumentGallery(slide_id) {
   var inputs = $('#inputs_for_documents input');
   var ids = new Array();
