@@ -643,36 +643,6 @@ function saveCurrentSlide(action_suffix, with_loader) {
 
 
 /**
-Loads the specific gallery for documents relative to a slide. The gallery is supposed to have already been loaded previously, by {{#crossLink "LessonEditorGalleries/showDocumentGalleryInLessonEditor:method"}}{{/crossLink}}
-@method loadDocumentGalleryForSlideInLessonEditor
-@for LessonEditorGalleries
-@param slide_id {Number} the id of the slide
-**/
-function loadDocumentGalleryForSlideInLessonEditor(slide_id) {
-  loadDocumentGalleryContent(slide_id);
-  updateEffectsInsideDocumentGallery(slide_id);
-  $('#lesson_editor_document_gallery_container').data('slide-id', slide_id);
-}
-
-/**
-Unloads the documents to the slide.
-@method unLoadDocumentGalleryContent
-@for LessonEditorGalleries
-@param slide_id {Number} the id of the slide
-**/
-function unLoadDocumentGalleryContent(slide_id) {
-  $('#slide_in_lesson_editor_' + slide_id + ' .inputs_for_documents').html($('#inputs_for_documents').html());
-  $('#document_1_attached_in_slide_' + slide_id + ', #document_2_attached_in_slide_' + slide_id + ', #document_3_attached_in_slide_' + slide_id).remove();
-  for(var i = 1; i < 4; i++) {
-    var doc = $('#document_' + i + '_attached');
-    if(!doc.hasClass('not_full')) {
-      var new_content = '<div id="document_' + i + '_attached_in_slide_' + slide_id + '">' + doc.html() + '</div>';
-      $('#slide_in_lesson_editor_' + slide_id + ' .hidden_html_for_documents').append(new_content)
-    }
-  }
-}
-
-/**
 Loads the documents from the slide to the gallery.
 @method loadDocumentGalleryContent
 @for LessonEditorGalleries
@@ -691,37 +661,15 @@ function loadDocumentGalleryContent(slide_id) {
 }
 
 /**
-Updates the faded documents and the gallery is locked if three documents are loaded.
-@method updateEffectsInsideDocumentGallery
+Loads the specific gallery for documents relative to a slide. The gallery is supposed to have already been loaded previously, by {{#crossLink "LessonEditorGalleries/showDocumentGalleryInLessonEditor:method"}}{{/crossLink}}
+@method loadDocumentGalleryForSlideInLessonEditor
 @for LessonEditorGalleries
+@param slide_id {Number} the id of the slide
 **/
-function updateEffectsInsideDocumentGallery() {
-  var inputs = $('#inputs_for_documents input');
-  var ids = new Array();
-  inputs.each(function() {
-    ids.push($(this).val());
-  });
-  $('.documentsExternal .documentInGallery.disabled').each(function() {
-    $(this).removeClass('disabled');
-  });
-  for(var i = 0; i < ids.length; i++) {
-    $('#gallery_document_' + ids[i] + ' .documentInGallery').addClass('disabled');
-  }
-  if(!$('#lesson_editor_document_gallery_container #document_gallery').data('empty')) {
-    if(inputs.length == 3) {
-      $('.documentsExternal .for-scroll-pain').hide();
-      $('.documentsExternal #empty_document_gallery').show();
-      $('.documentsFooter .triangolo, .documentsFooter .footerLeft').hide();
-    } else {
-      $('.documentsExternal .for-scroll-pain').show();
-      $('.documentsExternal #empty_document_gallery').hide();
-      $('.documentsFooter .triangolo, .documentsFooter .footerLeft').show();
-    }
-  }
-  var container = $('#lesson_editor_document_gallery_container');
-  $('.document_attached .documentInGallery .add_remove').attr('title', container.data('title-remove'));
-  $('.documentInGalleryExternal .documentInGallery:not(.disabled) .add_remove').attr('title', container.data('title-add'));
-  $('.documentInGalleryExternal .documentInGallery.disabled .add_remove').attr('title', '');
+function loadDocumentGalleryForSlideInLessonEditor(slide_id) {
+  loadDocumentGalleryContent(slide_id);
+  updateEffectsInsideDocumentGallery(slide_id);
+  $('#lesson_editor_document_gallery_container').data('slide-id', slide_id);
 }
 
 /**
@@ -784,6 +732,58 @@ function showGalleryInLessonEditor(obj, sti_type) {
       url: '/lessons/galleries/' + sti_type
     });
   }
+}
+
+/**
+Unloads the documents to the slide.
+@method unLoadDocumentGalleryContent
+@for LessonEditorGalleries
+@param slide_id {Number} the id of the slide
+**/
+function unLoadDocumentGalleryContent(slide_id) {
+  $('#slide_in_lesson_editor_' + slide_id + ' .inputs_for_documents').html($('#inputs_for_documents').html());
+  $('#document_1_attached_in_slide_' + slide_id + ', #document_2_attached_in_slide_' + slide_id + ', #document_3_attached_in_slide_' + slide_id).remove();
+  for(var i = 1; i < 4; i++) {
+    var doc = $('#document_' + i + '_attached');
+    if(!doc.hasClass('not_full')) {
+      var new_content = '<div id="document_' + i + '_attached_in_slide_' + slide_id + '">' + doc.html() + '</div>';
+      $('#slide_in_lesson_editor_' + slide_id + ' .hidden_html_for_documents').append(new_content)
+    }
+  }
+}
+
+/**
+Updates the faded documents and the gallery is locked if three documents are loaded.
+@method updateEffectsInsideDocumentGallery
+@for LessonEditorGalleries
+**/
+function updateEffectsInsideDocumentGallery() {
+  var inputs = $('#inputs_for_documents input');
+  var ids = new Array();
+  inputs.each(function() {
+    ids.push($(this).val());
+  });
+  $('.documentsExternal .documentInGallery.disabled').each(function() {
+    $(this).removeClass('disabled');
+  });
+  for(var i = 0; i < ids.length; i++) {
+    $('#gallery_document_' + ids[i] + ' .documentInGallery').addClass('disabled');
+  }
+  if(!$('#lesson_editor_document_gallery_container #document_gallery').data('empty')) {
+    if(inputs.length == 3) {
+      $('.documentsExternal .for-scroll-pain').hide();
+      $('.documentsExternal #empty_document_gallery').show();
+      $('.documentsFooter .triangolo, .documentsFooter .footerLeft').hide();
+    } else {
+      $('.documentsExternal .for-scroll-pain').show();
+      $('.documentsExternal #empty_document_gallery').hide();
+      $('.documentsFooter .triangolo, .documentsFooter .footerLeft').show();
+    }
+  }
+  var container = $('#lesson_editor_document_gallery_container');
+  $('.document_attached .documentInGallery .add_remove').attr('title', container.data('title-remove'));
+  $('.documentInGalleryExternal .documentInGallery:not(.disabled) .add_remove').attr('title', container.data('title-add'));
+  $('.documentInGalleryExternal .documentInGallery.disabled .add_remove').attr('title', '');
 }
 
 
