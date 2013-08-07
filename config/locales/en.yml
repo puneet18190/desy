@@ -1420,7 +1420,6 @@ en:
       locked: "You can't attach more than three documents"
       # Placeholder for a document that has to be loaded
       # 1 - views/galleries/_document.html.erb
-      # 2 - views/galleries/_document.html.erb
       placeholder: "Add a document from the list below"
     images:
       # Caption for the size (in pixels) of the image inside the gallery

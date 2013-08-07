@@ -5,27 +5,12 @@
 
 <div id="document_gallery" class="document_gallery document-kind" data-empty="<%= doc_empty %>">
   
-  <div id="inputs_for_documents" style="display:none">
-    <% i = 1 %>
-    <% documents_slides.each do |ds| %>
-      <input type="text" name="document_<%= i %>" value="<%= ds.document_id %>" />
-      <% i += 1 %>
-    <% end %>
-  </div>
+  <div id="inputs_for_documents" style="display:none"></div>
   
   <div class="attachedExternal">
     <div class="attachedInternal">
       <% [1, 2, 3].each do |i| %>
-        <% if documents_slides[i - 1].nil? %>
-          <div id="document_<%= i %>_attached" class="document_attached not_full" style="margin-bottom:<%= (i == 3) ? '0' : '2px' %>">
-            <div class="document_number"><%= i %></div>
-            <div class="document_placeholder"><%= t('galleries.documents.placeholder') %></div>
-          </div>
-        <% else %>
-          <div id="document_<%= i %>_attached" class="document_attached" style="margin-bottom:<%= (i == 3) ? '0' : '2px' %>">
-            <%= render :partial => 'galleries/thumbs/document', :locals => {:document => documents_slides[i - 1].document} %>
-          </div>
-        <% end %>
+        <div id="document_<%= i %>_attached" class="document_attached" style="margin-bottom:<%= (i == 3) ? '0' : '2px' %>"></div>
         <div id="document_<%= i %>_attached_empty" style="display:none">
           <div class="document_number"><%= i %></div>
           <div class="document_placeholder"><%= t('galleries.documents.placeholder') %></div>
