@@ -255,7 +255,7 @@ function initializeDocumentGalleryInLessonEditor() {
     var page = gallery_container.data('page');
     var tot_pages = gallery_container.data('tot-pages');
     if(isAtBottom && (page < tot_pages)) {
-      $.get('/lessons/galleries/document/new_block?page=' + (page + 1);
+      $.get('/lessons/galleries/document/new_block?page=' + (page + 1));
     }
   });
 }

@@ -308,7 +308,7 @@ function lessonEditorDocumentReadyGalleries() {
     $('#inputs_for_documents input[name="' + target.attr('id').replace('_attached', '') + '"]').remove();
     updateEffectsInsideDocumentGallery();
   });
-  $body.on('keydown', '#lesson_editor_document_gallery_container #document_gallery_filter', function(e) { // TODO
+  $body.on('keydown', '#lesson_editor_document_gallery_container #document_gallery_filter', function(e) {
     if(e.which == 13) {
       e.preventDefault();
     } else if(e.which != 39 && e.which != 37) {
@@ -319,10 +319,9 @@ function lessonEditorDocumentReadyGalleries() {
       loader.show();
       setTimeout(function() {
         var input = $('#lesson_editor_document_gallery_container #document_gallery_filter');
-        var slide_id = $('#lesson_editor_document_gallery_container').data('slide-id');
         if(input.data('letters') == letters) {
           loader.hide();
-          $.get('/lessons/galleries/document/filter?word=' + input.val() + '&slide_id=' + slide_id);
+          $.get('/lessons/galleries/document/filter?word=' + input.val());
         }
       }, 1500);
     }
