@@ -1,8 +1,9 @@
 <%
-  display_docs = (documents_slides.length >= 3 || documents.empty?) ? ['none', 'block'] : ['block', 'none']
+  doc_empty = documents.empty?
+  display_docs = (documents_slides.length >= 3 || doc_empty) ? ['none', 'block'] : ['block', 'none']
 %>
 
-<div id="document_gallery" class="document_gallery document-kind">
+<div id="document_gallery" class="document_gallery document-kind" data-empty="<%= doc_empty %>">
   
   <div id="current_inputs_for_documents" style="display:none">
     <% i = 1 %>
@@ -34,7 +35,7 @@
     <div id="empty_document_gallery" style="display:<%= display_docs[1] %>">
       <div class="bigDocumentIcon"></div>
       <br class="clearfloat"/>
-      <% if documents.empty? %>
+      <% if doc_empty %>
         <p><%= t('galleries.empty.document') %></p>
       <% else %>
         <p><%= t('galleries.documents.locked') %></p>
