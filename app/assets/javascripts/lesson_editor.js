@@ -305,10 +305,10 @@ function lessonEditorDocumentReadyGalleries() {
       ids.push($(this).val());
     });
     $('.documentsExternal .documentInGallery.disabled').each(function() {
-      enableDocumentInLessonEditorDocumentGallery($(this));
+      enableDocumentInLessonEditorDocumentGallery($(this)); // TODO
     });
-    for(var i = 0; i < ids.length; i++) {
-      disableDocumentInLessonEditorDocumentGallery($('#gallery_document_' + ids[i]));
+    for(var i = 0; i < ids.length; i++) { 
+      disableDocumentInLessonEditorDocumentGallery($('#gallery_document_' + ids[i])); // TODO
     }
     if(!$('#lesson_editor_document_gallery_container #document_gallery').data('empty')) {
       if($('#document_attached_1_content, #document_attached_2_content, #document_attached_3_content').length == 3) {
@@ -356,9 +356,6 @@ function lessonEditorDocumentReadyGalleries() {
     target.html($('#gallery_document_' + document_id).html());
     target.removeClass('not_full');
     $('#inputs_for_documents').append('<input type="text" name="' + target.attr('id').replace('_attached', '') + '" value="' + document_id + '" />');
-    var dbutton = html_to_append.find('.dbuttons .add');
-    dbutton.removeClass('add').addClass('remove');
-    dbutton.attr('title', dbutton.data('other-title'));
     updateEffectsInsideDocumentGallery();
   });
   $body.on('click', '#lesson_editor_document_gallery_container .document_attached .documentInGallery .add_remove', function() {
@@ -703,32 +700,6 @@ function saveCurrentSlide(action_suffix, with_loader) {
 
 
 /**
-Disables a document in document gallery.
-@method disableDocumentInLessonEditorDocumentGallery
-@for LessonEditorGalleries
-@param item {Object} the document to be disabled
-**/
-function disableDocumentInLessonEditorDocumentGallery(item) {
-  item.addClass('disabled');
-  item.find('.dbuttons .add').attr('title', '');
-  item.find('.dbuttons .preview').attr('title', '');
-}
-
-/**
-Enables a document in document gallery
-@method enableDocumentInLessonEditorDocumentGallery
-@for LessonEditorGalleries
-@param item {Object} the document to be enabled
-**/
-function enableDocumentInLessonEditorDocumentGallery(item) {
-  item.removeClass('disabled');
-  var but_add = item.find('.dbuttons .add');
-  var but_preview = item.find('.dbuttons .preview');
-  but_add.attr('title', but_add.data('title'));
-  but_preview.attr('title', but_preview.data('title'));
-}
-
-/**
 Loads the specific gallery for documents relative to a slide. The gallery is supposed to have already been loaded previously, by {{#crossLink "LessonEditorGalleries/showDocumentGalleryInLessonEditor:method"}}{{/crossLink}}
 @method loadDocumentGalleryForSlideInLessonEditor
 @for LessonEditorGalleries
@@ -788,10 +759,10 @@ function updateEffectsInsideDocumentGallery() {
     ids.push($(this).val());
   });
   $('.documentsExternal .documentInGallery.disabled').each(function() {
-    enableDocumentInLessonEditorDocumentGallery($(this));
+    $(this).removeClass('disabled');
   });
   for(var i = 0; i < ids.length; i++) {
-    disableDocumentInLessonEditorDocumentGallery($('#gallery_document_' + ids[i] + ' .documentInGallery'));
+    $('#gallery_document_' + ids[i] + ' .documentInGallery').addClass('disabled');
   }
   if(!$('#lesson_editor_document_gallery_container #document_gallery').data('empty')) {
     if(inputs.length == 3) {
@@ -804,6 +775,10 @@ function updateEffectsInsideDocumentGallery() {
       $('.documentsFooter .triangolo, .documentsFooter .footerLeft').show();
     }
   }
+  var container = $('#lesson_editor_document_gallery_container');
+  $('.document_attached .documentInGallery .add_remove').attr('title', container.data('title-remove'));
+  $('.documentInGalleryExternal .documentInGallery:not(.disabled) .add_remove').attr('title', container.data('title-add'));
+  $('.documentInGalleryExternal .documentInGallery.disabled .add_remove').attr('title', '');
 }
 
 /**
