@@ -60,7 +60,7 @@ class GalleriesController < ApplicationController
     :image_for_image_editor_new_block,
     :document_for_lesson_editor_new_block
   ]
-  before_filter :initialize_slide_with_owner, :only => :document_for_lesson_editor
+  before_filter :initialize_slide_with_owner, :only => [:document_for_lesson_editor, :document_for_lesson_editor_new_block]
   
   # === Description
   #
@@ -343,10 +343,12 @@ class GalleriesController < ApplicationController
   # === Specific filters
   #
   # * GalleriesController#initialize_page
+  # * GalleriesController#initialize_slide_with_owner
   #
   def document_for_lesson_editor_new_block
     if @ok
       get_documents(@page)
+      @documents_slides = DocumentsSlide.where(:slide_id => @slide_id).order('created_at DESC')
     else
       render :nothing => true
     end
