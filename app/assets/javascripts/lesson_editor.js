@@ -704,7 +704,7 @@ function showDocumentGalleryInLessonEditor() {
   } else {
     $.ajax({
       type: 'get',
-      url: '/lessons/galleries/document?slide_id=' + current_slide.data('slide-id')
+      url: '/lessons/galleries/document'
     });
   }
 }

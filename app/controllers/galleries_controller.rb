@@ -60,11 +60,6 @@ class GalleriesController < ApplicationController
     :image_for_image_editor_new_block,
     :document_for_lesson_editor_new_block
   ]
-  before_filter :initialize_slide_with_owner, :only => [
-    :document_for_lesson_editor,
-    :document_for_lesson_editor_new_block,
-    :document_for_lesson_editor_filter
-  ]
   
   # === Description
   #
@@ -323,17 +318,8 @@ class GalleriesController < ApplicationController
   #
   # Ajax
   #
-  # === Specific filters
-  #
-  # * GalleriesController#initialize_slide_with_owner
-  #
   def document_for_lesson_editor
-    if @ok
-      get_documents(1)
-      @documents_slides = DocumentsSlide.where(:slide_id => @slide_id).order('created_at DESC')
-    else
-      render :nothing => true
-    end
+    get_documents(1)
   end
   
   # === Description
@@ -347,12 +333,10 @@ class GalleriesController < ApplicationController
   # === Specific filters
   #
   # * GalleriesController#initialize_page
-  # * GalleriesController#initialize_slide_with_owner
   #
   def document_for_lesson_editor_new_block
     if @ok
       get_documents(@page)
-      @documents_slides = DocumentsSlide.where(:slide_id => @slide_id).order('created_at DESC')
     else
       render :nothing => true
     end
@@ -366,18 +350,9 @@ class GalleriesController < ApplicationController
   #
   # Ajax
   #
-  # === Specific filters
-  #
-  # * GalleriesController#initialize_slide_with_owner
-  #
   def document_for_lesson_editor_filter
-    if @ok
-      @word = params[:word].blank? ? nil : params[:word]
-      get_documents(@page, @word)
-      @documents_slides = DocumentsSlide.where(:slide_id => @slide_id).order('created_at DESC')
-    else
-      render :nothing => true
-    end
+    @word = params[:word].blank? ? nil : params[:word]
+    get_documents(@page, @word)
   end
   
   private
@@ -386,13 +361,6 @@ class GalleriesController < ApplicationController
   def initialize_page
     @page = correct_integer?(params[:page]) ? params[:page].to_i : 0
     update_ok(@page > 0)
-  end
-  
-  # Initialize the slide with owner
-  def initialize_slide_with_owner
-    @slide_id = correct_integer?(params[:slide_id]) ? params[:slide_id].to_i : 0
-    @slide = Slide.find_by_id @slide_id
-    update_ok(@slide && @slide.lesson.user_id == current_user.id)
   end
   
   # Gets the audios, using User#own_media_elements with +filter+ = +audio+
