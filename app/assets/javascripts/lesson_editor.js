@@ -330,8 +330,8 @@ function lessonEditorDocumentReadyGalleries() {
       }, 1500);
     }
   });
-  $body.on('mouseover', '.documentInGalleryExternal, .document_attached', function() {
-    var father = $(this);
+  $body.on('mouseover', '.barzeretti', function() {
+    var father = $(this).parent();
     if(!father.find('.documentInGallery').hasClass('disabled')) {
       father.find('.documentInGallery').data('rollovered', true);
       setTimeout(function() {
@@ -341,8 +341,8 @@ function lessonEditorDocumentReadyGalleries() {
       }, 500);
     }
   });
-  $body.on('mouseout', '.documentInGalleryExternal, .document_attached', function() {
-    var father = $(this);
+  $body.on('mouseout', '.barzeretti', function() {
+    var father = $(this).parent();
     father.find('.documentInGallery').data('rollovered', false);
     hidePopuppina(father.attr('id'));
   });

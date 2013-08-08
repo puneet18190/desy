@@ -100,6 +100,7 @@
   width: 900px;
   background-color: #252323;
   font: 13px 'Nunito', sans-serif;
+  position: relative;
   
   .jspVerticalBar {
     
@@ -235,6 +236,7 @@
     width: 873px;
     padding: 23.25px 0 0 27px;
     background-color: transparent;
+    position: relative;
     
     .attachedInternal {
       
@@ -356,6 +358,17 @@
       }
       
     }
+    
+  }
+  
+  .barzeretti {
+    
+    position: absolute;
+    width: 796px;
+    height: 44px;
+    background-color: black;
+    opacity: 0;
+    z-index: 4;
     
   }
   
