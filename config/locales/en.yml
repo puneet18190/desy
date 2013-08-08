@@ -1412,6 +1412,9 @@ en:
       # The user attachs the documents
       # 1 - views/galleries/_document.html.erb
       done: "Save"
+      # The user filtered by a word and found no result (%{word} is replaced by the word)
+      # 1 - views/galleries/document_for_lesson_editor_filter.js.erb
+      empty_filter: "You have no documents containing the word <%{word}>"
       # Caption of the filter of documents
       # 1 - views/galleries/_document.html.erb
       filter_by: "Filter by"
