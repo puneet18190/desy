@@ -295,8 +295,18 @@ function lessonEditorDocumentReadyGalleries() {
   });
   $body.on('click', '#lesson_editor_document_gallery_container .documentInGalleryExternal .documentInGallery:not(".disabled") .add_remove', function() {
     var document_id = $(this).data('document-id');
-    var target = $('.attachedExternal .document_attached.not_full').first()
-    target.html($('#gallery_document_' + document_id).html());
+    var target = $('.attachedExternal .document_attached.not_full').first();
+    var new_content = $('<div>' + $('#gallery_document_' + document_id).html() + '</div>');
+    var to_be_removed = new Array();
+    new_content.find('.to_be_removed').each(function() {
+      var replaced = $(this).find('u').html();
+      to_be_removed.push([('<b class="to_be_removed"><u>' + replaced + '</u></b>'), replaced])
+    });
+    new_content = new_content.html();
+    for(var i = 0; i < to_be_removed.length; i++) {
+      new_content.replace(ro_be_removed[i][0], to_be_removed[i][1]);
+    }
+    target.html(new_content);
     target.removeClass('not_full');
     $('#inputs_for_documents').append('<input type="text" name="' + target.attr('id').replace('_attached', '') + '" value="' + document_id + '" />');
     updateEffectsInsideDocumentGallery();
