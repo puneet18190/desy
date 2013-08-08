@@ -767,12 +767,14 @@ function showDocumentGalleryInLessonEditor() {
       $('#lesson_editor_document_gallery_container').data('slide-id', slide_id);
       resetDocumentGalleryFilter(function() {
         gallery_container.show();
+        centerThis(gallery_container);
         $('li._lesson_editor_current_slide .slide-content').children().hide();
         current_slide.find('layer').remove();
       }, updateEffectsInsideDocumentGallery);
     } else {
       resetDocumentGalleryFilter(function() {
         gallery_container.show();
+        centerThis(gallery_container);
         $('li._lesson_editor_current_slide .slide-content').children().hide();
         current_slide.find('layer').remove();
       });
@@ -800,6 +802,7 @@ function showGalleryInLessonEditor(obj, sti_type) {
   var gallery_container = $('#lesson_editor_' + sti_type + '_gallery_container');
   if(gallery_container.data('loaded')) {
     gallery_container.show();
+    centerThis(gallery_container);
     $('li._lesson_editor_current_slide .slide-content').children().hide();
     current_slide.find('layer').remove();
   } else {
