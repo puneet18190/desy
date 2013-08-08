@@ -172,6 +172,60 @@
       
     }
     
+    .popuppina {
+      
+      width: 350px;
+      position: absolute;
+      padding: 5px;
+      z-index: 3;
+      
+    }
+    
+    .popuppina-tri {
+      
+      width: 10px;
+      height: 10px;
+      position: absolute;
+      z-index: 3;
+      
+      &.doc {
+        
+        background: $assets-documents-triangles-doc_png top left no-repeat;
+        
+      }
+      
+      &.pdf {
+        
+        background: $assets-documents-triangles-pdf_png top left no-repeat;
+        
+      }
+      
+      &.ppt {
+        
+        background: $assets-documents-triangles-ppt_png top left no-repeat;
+        
+      }
+      
+      &.unknown {
+        
+        background: $assets-documents-triangles-unknown_png top left no-repeat;
+        
+      }
+      
+      &.xls {
+        
+        background: $assets-documents-triangles-xls_png top left no-repeat;
+        
+      }
+      
+      &.zip {
+        
+        background: $assets-documents-triangles-zip_png top left no-repeat;
+        
+      }
+      
+    }
+    
   }
   
   .attachedExternal {
@@ -221,10 +275,13 @@
           
         }
         
-        .documentInGallery .add_remove {
+        .documentInGallery {
           
-          @include svg-circle-icon-handler($assets-action-buttons_svg, 32px, 2, 10, 1, 0, 8, 1, 1, 8);
-          
+          .add_remove {
+            
+            @include svg-circle-icon-handler($assets-action-buttons_svg, 32px, 2, 10, 1, 0, 8, 1, 1, 8);
+            
+          }
         }
         
       }

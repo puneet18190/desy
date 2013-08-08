@@ -1,6 +1,18 @@
 # Global helpers
 module ApplicationHelper
   
+  # Gets the color of description popup into the document gallery
+  def documents_type_color(document)
+    case document.icon_path
+      when 'documents/ppt.svg'     then '#EA943B'
+      when 'documents/doc.svg'     then '#5DA3DA'
+      when 'documents/zip.svg'     then '#57585B'
+      when 'documents/exc.svg'     then '#92BD4B'
+      when 'documents/pdf.svg'     then '#C61734'
+      when 'documents/unknown.svg' then '#A7A9AC'
+    end
+  end
+  
   # Select for a list of subjects.
   def select_your_subjects(subjects)
     "<option value=\"\">#{t('forms.placeholders.subject_id')}</option>#{options_from_collection_for_select(subjects, 'id', 'description')}".html_safe
