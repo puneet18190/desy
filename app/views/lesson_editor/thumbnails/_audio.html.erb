@@ -34,4 +34,6 @@
     <%= slide.text.blank? ? t('lesson_editor.placeholders.text') : slide.text.html_safe %>
   </div>
   
+  <a class="attached_document_internal" style="display:<%= slide.documents_slides.any? ? 'block' : 'none' %>"></a>
+  
 </div>
