@@ -834,14 +834,21 @@ function showPopuppina(id) {
     triangolo.css('-ms-transform', ('rotate(180deg)'));
     triangolo.css('top', ((offset.top + 34) + 'px')).css('left', ((offset.left + 24) + 'px')).show('fade', {}, 300);
   } else {
-    var top_distance = offset.top - container.find('.for-scroll-pain').data('jsp').getContentPositionY();
+    var top_distance = offset.top;
+    if(container.find('.for-scroll-pain').hasClass('jspScrollable')) {
+      top_distance -= container.find('.for-scroll-pain').data('jsp').getContentPositionY();
+    }
     if(top_distance < (popuppina.height() + 5)) {
-      popuppina.css('top', ((offset.top + 49) + 'px')).show('fade', {}, 300);
+      var to_top = 5;
+      if(parent.prev().length == 0) {
+        to_top = 0;
+      }
+      popuppina.css('top', ((offset.top + 44 + to_top) + 'px')).show('fade', {}, 300);
       triangolo.css('-webkit-transform', ('rotate(180deg)'));
       triangolo.css('-moz-transform', ('rotate(180deg)'));
       triangolo.css('-o-transform', ('rotate(180deg)'));
       triangolo.css('-ms-transform', ('rotate(180deg)'));
-      triangolo.css('top', ((offset.top + 39) + 'px')).css('left', ((offset.left + 24) + 'px')).show('fade', {}, 300);
+      triangolo.css('top', ((offset.top + 34 + to_top) + 'px')).css('left', ((offset.left + 24) + 'px')).show('fade', {}, 300);
     } else {
       popuppina.css('top', ((offset.top - popuppina.height() - 5) + 'px')).show('fade', {}, 300);
       triangolo.css('-webkit-transform', ('rotate(0deg)'));
