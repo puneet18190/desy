@@ -688,6 +688,23 @@ function removeGalleryInLessonEditor(sti_type) {
 }
 
 /**
+Resets the filter of documents in the gallery.
+@method resetDocumentGalleryFilter
+@for LessonEditorGalleries
+@param callback {Function} to be called if there is no filter to reset
+**/
+function resetDocumentGalleryFilter(callback) {
+  var input = $('#lesson_editor_document_gallery_container #document_gallery_filter');
+  if(input.val() != '') {
+    input.val('');
+    input.data('letters', 0);
+    $.get('/lessons/galleries/document/filter?word=');
+  } else if(callback != undefined) {
+    callback();
+  }
+}
+
+/**
 Shows document gallery.
 @method showDocumentGalleryInLessonEditor
 @for LessonEditorGalleries
@@ -699,7 +716,12 @@ function showDocumentGalleryInLessonEditor() {
   var gallery_container = $('#lesson_editor_document_gallery_container');
   if(gallery_container.data('loaded')) {
     if(gallery_container.data('slide-id') != current_slide.data('slide-id')) {
-      loadDocumentGalleryForSlideInLessonEditor(current_slide.data('slide-id'));
+      var slide_id = current_slide.data('slide-id');
+      loadDocumentGalleryContent(slide_id);
+      $('#lesson_editor_document_gallery_container').data('slide-id', slide_id);
+      resetDocumentGalleryFilter(updateEffectsInsideDocumentGallery);
+    } else {
+      resetDocumentGalleryFilter();
     }
     gallery_container.show();
     $('li._lesson_editor_current_slide .slide-content').children().hide();
