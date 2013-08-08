@@ -300,7 +300,7 @@ function lessonEditorDocumentReadyGalleries() {
     new_content.find('.to_be_removed').each(function() {
       $(this).replaceWith($(this).find('u').html());
     });
-    target.html(new_content);
+    target.html(new_content.html());
     target.removeClass('not_full');
     $('#inputs_for_documents').append('<input type="text" name="' + target.attr('id').replace('_attached', '') + '" value="' + document_id + '" />');
     updateEffectsInsideDocumentGallery();
