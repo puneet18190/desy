@@ -646,6 +646,16 @@ function saveCurrentSlide(action_suffix, with_loader) {
 
 
 /**
+Hides the small popup containing the description of a document inside the document gallery.
+@method hidePopuppina
+@for LessonEditorGalleries
+@param id {String} HTML id of the document
+**/
+function hidePopuppina(id) {
+  $('#' + id + ' .popuppina, #' + id + ' .popuppina-tri').hide();
+}
+
+/**
 Loads the documents from the slide to the gallery.
 @method loadDocumentGalleryContent
 @for LessonEditorGalleries
@@ -776,6 +786,34 @@ function showGalleryInLessonEditor(obj, sti_type) {
       url: '/lessons/galleries/' + sti_type
     });
   }
+}
+
+/**
+Shows the small popup containing the description of a document inside the document gallery.
+@method showPopuppina
+@for LessonEditorGalleries
+@param id {String} HTML id of the document
+**/
+function showPopuppina(id) {
+  var container = $('#lesson_editor_document_gallery_container');
+  var parent = $('#' + id);
+  var offset = parent.position();
+  var document = parent.find('.documentInGallery');
+  var popuppina = document.find('.popuppina');
+  var triangolo = document.find('.popuppina-tri');
+  if(parent.hasClass('document_attached')) {
+    popuppina.css('top', ((offset.top + 44) + 'px')).show();
+    triangolo.css('-webkit-transform', ('rotate(180deg)'));
+    triangolo.css('-moz-transform', ('rotate(180deg)'));
+    triangolo.css('-o-transform', ('rotate(180deg)'));
+    triangolo.css('-ms-transform', ('rotate(180deg)'));
+    triangolo.css('top', ((offset.top + 34) + 'px')).css('left', ((offset.left + 24) + 'px')).show();
+  } else {
+    
+    // TODO manca
+    
+  }
+  
 }
 
 /**

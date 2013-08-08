@@ -178,6 +178,7 @@
       position: absolute;
       padding: 5px;
       z-index: 3;
+      color: white;
       
     }
     
@@ -191,6 +192,12 @@
       &.doc {
         
         background: $assets-documents-triangles-doc_png top left no-repeat;
+        
+      }
+      
+      &.exc {
+        
+        background: $assets-documents-triangles-exc_png top left no-repeat;
         
       }
       
@@ -209,12 +216,6 @@
       &.unknown {
         
         background: $assets-documents-triangles-unknown_png top left no-repeat;
-        
-      }
-      
-      &.xls {
-        
-        background: $assets-documents-triangles-xls_png top left no-repeat;
         
       }
       
