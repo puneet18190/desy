@@ -809,11 +809,19 @@ function showPopuppina(id) {
     triangolo.css('-ms-transform', ('rotate(180deg)'));
     triangolo.css('top', ((offset.top + 34) + 'px')).css('left', ((offset.left + 24) + 'px')).show();
   } else {
-    
-    // TODO manca
-    
+    var top_distance = offset.top - container.find('.for-scroll-pain').data('jsp').getContentPositionY();
+    if(top_distance < (popuppina.height() + 5)) {
+      popuppina.css('top', ((offset.top + 49) + 'px')).show();
+      triangolo.css('-webkit-transform', ('rotate(180deg)'));
+      triangolo.css('-moz-transform', ('rotate(180deg)'));
+      triangolo.css('-o-transform', ('rotate(180deg)'));
+      triangolo.css('-ms-transform', ('rotate(180deg)'));
+      triangolo.css('top', ((offset.top + 39) + 'px')).css('left', ((offset.left + 24) + 'px')).show();
+    } else {
+      popuppina.css('top', ((offset.top - popuppina.height() - 5) + 'px')).show();
+      triangolo.css('top', ((offset.top + 5) + 'px')).css('left', ((offset.left + 24) + 'px')).show();
+    }
   }
-  
 }
 
 /**
