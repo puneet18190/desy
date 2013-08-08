@@ -835,6 +835,10 @@ function showPopuppina(id) {
       triangolo.css('top', ((offset.top + 39) + 'px')).css('left', ((offset.left + 24) + 'px')).show('fade', {}, 300);
     } else {
       popuppina.css('top', ((offset.top - popuppina.height() - 5) + 'px')).show('fade', {}, 300);
+      triangolo.css('-webkit-transform', ('rotate(0deg)'));
+      triangolo.css('-moz-transform', ('rotate(0deg)'));
+      triangolo.css('-o-transform', ('rotate(0deg)'));
+      triangolo.css('-ms-transform', ('rotate(0deg)'));
       triangolo.css('top', ((offset.top + 5) + 'px')).css('left', ((offset.left + 24) + 'px')).show('fade', {}, 300);
     }
   }
