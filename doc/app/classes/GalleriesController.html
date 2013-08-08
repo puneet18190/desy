@@ -208,6 +208,11 @@ href="GalleriesController.html#method-i-audio_for_video_editor_new_block">#audio
             
               
               <li>
+                <a href="#method-i-document_for_lesson_editor_filter">document_for_lesson_editor_filter</a>,
+              </li>
+            
+              
+              <li>
                 <a href="#method-i-document_for_lesson_editor_new_block">document_for_lesson_editor_new_block</a>
               </li>
             
@@ -707,6 +712,48 @@ href="GalleriesController.html#method-i-initialize_page">#initialize_page</a></p
           </div>
         
         <div class="method">
+          <div class="title method-title" id="method-i-document_for_lesson_editor_filter">
+            
+              <b>document_for_lesson_editor_filter</b>()
+            
+            <a href="../classes/GalleriesController.html#method-i-document_for_lesson_editor_filter" name="method-i-document_for_lesson_editor_filter" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <h3 id="method-i-document_for_lesson_editor_filter-label-Description">Description</h3>
+
+<p>Gets documents filtered by word</p>
+
+<h3 id="method-i-document_for_lesson_editor_filter-label-Mode">Mode</h3>
+
+<p>Ajax</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-document_for_lesson_editor_filter_source')" id="l_method-i-document_for_lesson_editor_filter_source">show</a>
+                
+              </p>
+              <div id="method-i-document_for_lesson_editor_filter_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/galleries_controller.rb, line 354</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">document_for_lesson_editor_filter</span>
+  <span class="ruby-ivar">@word</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:word</span>].<span class="ruby-identifier">blank?</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">nil</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:word</span>]
+  <span class="ruby-identifier">get_documents</span>(<span class="ruby-ivar">@page</span>, <span class="ruby-ivar">@word</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
           <div class="title method-title" id="method-i-document_for_lesson_editor_new_block">
             
               <b>document_for_lesson_editor_new_block</b>()
@@ -747,7 +794,8 @@ href="GalleriesController.html#method-i-initialize_page">#initialize_page</a></p
                 <pre><span class="ruby-comment"># File app/controllers/galleries_controller.rb, line 337</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">document_for_lesson_editor_new_block</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
-    <span class="ruby-identifier">get_documents</span>(<span class="ruby-ivar">@page</span>)
+    <span class="ruby-ivar">@word</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:word</span>].<span class="ruby-identifier">blank?</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">nil</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:word</span>]
+    <span class="ruby-identifier">get_documents</span>(<span class="ruby-ivar">@page</span>, <span class="ruby-ivar">@word</span>)
   <span class="ruby-keyword">else</span>
     <span class="ruby-identifier">render</span> <span class="ruby-value">:nothing</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>
   <span class="ruby-keyword">end</span>
@@ -1213,7 +1261,7 @@ with <code>filter</code> = <code>audio</code></p>
                 
               </p>
               <div id="method-i-get_audios_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/galleries_controller.rb, line 354</span>
+                <pre><span class="ruby-comment"># File app/controllers/galleries_controller.rb, line 368</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">get_audios</span>(<span class="ruby-identifier">page</span>)
   <span class="ruby-identifier">x</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">own_media_elements</span>(<span class="ruby-identifier">page</span>, <span class="ruby-constant">AUDIOS_FOR_PAGE</span>, <span class="ruby-constant">Filters</span><span class="ruby-operator">::</span><span class="ruby-constant">AUDIO</span>)
   <span class="ruby-ivar">@audios</span> = <span class="ruby-identifier">x</span>[<span class="ruby-value">:records</span>]
@@ -1227,14 +1275,14 @@ with <code>filter</code> = <code>audio</code></p>
         <div class="method">
           <div class="title method-title" id="method-i-get_documents">
             
-              <b>get_documents</b>(page)
+              <b>get_documents</b>(page, word = nil)
             
             <a href="../classes/GalleriesController.html#method-i-get_documents" name="method-i-get_documents" class="permalink">Link</a>
           </div>
           
           
             <div class="description">
-              <p>Gets the audios, using <a
+              <p>Gets the documents, using <a
 href="User.html#method-i-own_documents">User#own_documents</a></p>
             </div>
           
@@ -1251,9 +1299,9 @@ href="User.html#method-i-own_documents">User#own_documents</a></p>
                 
               </p>
               <div id="method-i-get_documents_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/galleries_controller.rb, line 375</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">get_documents</span>(<span class="ruby-identifier">page</span>)
-  <span class="ruby-identifier">x</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">own_documents</span>(<span class="ruby-identifier">page</span>, <span class="ruby-constant">DOCUMENTS_FOR_PAGE</span>)
+                <pre><span class="ruby-comment"># File app/controllers/galleries_controller.rb, line 389</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">get_documents</span>(<span class="ruby-identifier">page</span>, <span class="ruby-identifier">word</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">x</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">own_documents</span>(<span class="ruby-identifier">page</span>, <span class="ruby-constant">DOCUMENTS_FOR_PAGE</span>, <span class="ruby-constant">SearchOrders</span><span class="ruby-operator">::</span><span class="ruby-constant">CREATED_AT</span>, <span class="ruby-identifier">word</span>)
   <span class="ruby-ivar">@documents</span> = <span class="ruby-identifier">x</span>[<span class="ruby-value">:records</span>]
   <span class="ruby-ivar">@tot_pages</span> = <span class="ruby-identifier">x</span>[<span class="ruby-value">:pages_amount</span>]
 <span class="ruby-keyword">end</span></pre>
@@ -1290,7 +1338,7 @@ with <code>filter</code> = <code>image</code></p>
                 
               </p>
               <div id="method-i-get_images_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/galleries_controller.rb, line 368</span>
+                <pre><span class="ruby-comment"># File app/controllers/galleries_controller.rb, line 382</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">get_images</span>(<span class="ruby-identifier">page</span>)
   <span class="ruby-identifier">x</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">own_media_elements</span>(<span class="ruby-identifier">page</span>, <span class="ruby-constant">IMAGES_FOR_PAGE</span>, <span class="ruby-constant">Filters</span><span class="ruby-operator">::</span><span class="ruby-constant">IMAGE</span>)
   <span class="ruby-ivar">@images</span> = <span class="ruby-identifier">x</span>[<span class="ruby-value">:records</span>]
@@ -1329,7 +1377,7 @@ with <code>filter</code> = <code>video</code></p>
                 
               </p>
               <div id="method-i-get_videos_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/galleries_controller.rb, line 361</span>
+                <pre><span class="ruby-comment"># File app/controllers/galleries_controller.rb, line 375</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">get_videos</span>(<span class="ruby-identifier">page</span>)
   <span class="ruby-identifier">x</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">own_media_elements</span>(<span class="ruby-identifier">page</span>, <span class="ruby-constant">VIDEOS_FOR_PAGE</span>, <span class="ruby-constant">Filters</span><span class="ruby-operator">::</span><span class="ruby-constant">VIDEO</span>)
   <span class="ruby-ivar">@videos</span> = <span class="ruby-identifier">x</span>[<span class="ruby-value">:records</span>]
@@ -1367,7 +1415,7 @@ new blocks in the gallery</p>
                 
               </p>
               <div id="method-i-initialize_page_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/galleries_controller.rb, line 348</span>
+                <pre><span class="ruby-comment"># File app/controllers/galleries_controller.rb, line 362</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize_page</span>
   <span class="ruby-ivar">@page</span> = <span class="ruby-identifier">correct_integer?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-number">0</span>
   <span class="ruby-identifier">update_ok</span>(<span class="ruby-ivar">@page</span> <span class="ruby-operator">&gt;</span> <span class="ruby-number">0</span>)

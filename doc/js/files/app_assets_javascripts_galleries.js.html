@@ -562,6 +562,26 @@ function initializeAudioGalleryInVideoEditor() {
 }
 
 /**
+Initialize audio gallery in {{#crossLinkModule &quot;lesson-editor&quot;}}{{/crossLinkModule}}.
+@method initializeDocumentGalleryInLessonEditor
+@for GalleriesInitializers
+**/
+function initializeDocumentGalleryInLessonEditor() {
+  $(&#x27;#lesson_editor_document_gallery_container .for-scroll-pain&#x27;).jScrollPane({
+    autoReinitialise: true
+  });
+  $(&#x27;#lesson_editor_document_gallery_container .for-scroll-pain&#x27;).bind(&#x27;jsp-arrow-change&#x27;, function(event, isAtTop, isAtBottom, isAtLeft, isAtRight) {
+    var gallery_container = $(&#x27;#lesson_editor_document_gallery_container&#x27;);
+    var input = gallery_container.find(&#x27;#document_gallery_filter&#x27;);
+    var page = gallery_container.data(&#x27;page&#x27;);
+    var tot_pages = gallery_container.data(&#x27;tot-pages&#x27;);
+    if(isAtBottom &amp;&amp; (page &lt; tot_pages)) {
+      $.get(&#x27;/lessons/galleries/document/new_block?page=&#x27; + (page + 1) + &#x27;&amp;word=&#x27; + input.val());
+    }
+  });
+}
+
+/**
 Initialize image gallery in {{#crossLinkModule &quot;image-editor&quot;}}{{/crossLinkModule}}.
 @method initializeImageGalleryInImageEditor
 @for GalleriesInitializers

@@ -604,6 +604,73 @@ function lessonEditorDocumentReadyGalleries() {
     }
     removeGalleryInLessonEditor(&#x27;audio&#x27;);
   });
+  $body.on(&#x27;click&#x27;, &#x27;#lesson_editor_document_gallery_container #document_gallery .footerButtons .cancel&#x27;, function() {
+    removeGalleryInLessonEditor(&#x27;document&#x27;);
+    loadDocumentGalleryForSlideInLessonEditor($(&#x27;#lesson_editor_document_gallery_container&#x27;).data(&#x27;slide-id&#x27;));
+  });
+  $body.on(&#x27;click&#x27;, &#x27;#lesson_editor_document_gallery_container #document_gallery .footerButtons .attach&#x27;, function() {
+    removeGalleryInLessonEditor(&#x27;document&#x27;);
+    unLoadDocumentGalleryContent($(&#x27;#lesson_editor_document_gallery_container&#x27;).data(&#x27;slide-id&#x27;));
+    if($(&#x27;.document_attached .documentInGallery&#x27;).length == 0) {
+      $(&#x27;li._lesson_editor_current_slide .attached_document_internal&#x27;).hide();
+    } else {
+      $(&#x27;li._lesson_editor_current_slide .attached_document_internal&#x27;).show();
+    }
+    saveCurrentSlide(&#x27;&#x27;, false);
+  });
+  $body.on(&#x27;click&#x27;, &#x27;#lesson_editor_document_gallery_container .documentInGalleryExternal .documentInGallery:not(&quot;.disabled&quot;) .add_remove&#x27;, function() {
+    var document_id = $(this).data(&#x27;document-id&#x27;);
+    var target = $(&#x27;.attachedExternal .document_attached.not_full&#x27;).first();
+    var new_content = $(&#x27;&lt;div&gt;&#x27; + $(&#x27;#gallery_document_&#x27; + document_id).html() + &#x27;&lt;/div&gt;&#x27;);
+    new_content.find(&#x27;.to_be_removed&#x27;).each(function() {
+      $(this).replaceWith($(this).find(&#x27;u&#x27;).html());
+    });
+    target.html(new_content.html());
+    target.removeClass(&#x27;not_full&#x27;);
+    $(&#x27;#inputs_for_documents&#x27;).append(&#x27;&lt;input type=&quot;text&quot; name=&quot;&#x27; + target.attr(&#x27;id&#x27;).replace(&#x27;_attached&#x27;, &#x27;&#x27;) + &#x27;&quot; value=&quot;&#x27; + document_id + &#x27;&quot; /&gt;&#x27;);
+    updateEffectsInsideDocumentGallery();
+  });
+  $body.on(&#x27;click&#x27;, &#x27;#lesson_editor_document_gallery_container .document_attached .documentInGallery .add_remove&#x27;, function() {
+    var target = $(this).parents(&#x27;.document_attached&#x27;);
+    target.html($(&#x27;#&#x27; + target.attr(&#x27;id&#x27;) + &#x27;_empty&#x27;).html());
+    target.addClass(&#x27;not_full&#x27;);
+    $(&#x27;#inputs_for_documents input[name=&quot;&#x27; + target.attr(&#x27;id&#x27;).replace(&#x27;_attached&#x27;, &#x27;&#x27;) + &#x27;&quot;]&#x27;).remove();
+    updateEffectsInsideDocumentGallery();
+  });
+  $body.on(&#x27;keydown&#x27;, &#x27;#lesson_editor_document_gallery_container #document_gallery_filter&#x27;, function(e) {
+    if(e.which == 13) {
+      e.preventDefault();
+    } else if(e.which != 39 &amp;&amp; e.which != 37) {
+      var loader = $(&#x27;#lesson_editor_document_gallery_container .documentsFooter ._loader&#x27;);
+      var letters = $(this).data(&#x27;letters&#x27;);
+      letters += 1;
+      $(this).data(&#x27;letters&#x27;, letters);
+      loader.show();
+      setTimeout(function() {
+        var input = $(&#x27;#lesson_editor_document_gallery_container #document_gallery_filter&#x27;);
+        if(input.data(&#x27;letters&#x27;) == letters) {
+          loader.hide();
+          $.get(&#x27;/lessons/galleries/document/filter?word=&#x27; + input.val());
+        }
+      }, 1500);
+    }
+  });
+  $body.on(&#x27;mouseover&#x27;, &#x27;.barzeretti&#x27;, function() {
+    var father = $(this).parent();
+    if(!father.find(&#x27;.documentInGallery&#x27;).hasClass(&#x27;disabled&#x27;)) {
+      father.find(&#x27;.documentInGallery&#x27;).data(&#x27;rollovered&#x27;, true);
+      setTimeout(function() {
+        if(father.find(&#x27;.documentInGallery&#x27;).data(&#x27;rollovered&#x27;)) {
+          showPopuppina(father.attr(&#x27;id&#x27;));
+        }
+      }, 500);
+    }
+  });
+  $body.on(&#x27;mouseout&#x27;, &#x27;.barzeretti&#x27;, function() {
+    var father = $(this).parent();
+    father.find(&#x27;.documentInGallery&#x27;).data(&#x27;rollovered&#x27;, false);
+    hidePopuppina(father.attr(&#x27;id&#x27;));
+  });
 }
 
 /**
@@ -725,6 +792,10 @@ function lessonEditorDocumentReadyResize() {
       $(&#x27;ul#slides.new li:first&#x27;).css(&#x27;margin-left&#x27;, (($(window).width() - 900) / 2) + &#x27;px&#x27;);
     }
     $(&#x27;#footer&#x27;).css(&#x27;top&#x27;, ($(window).height() - 40) + &#x27;px&#x27;).css(&#x27;width&#x27;, ($(window).width() - 24) + &#x27;px&#x27;);
+    var open_gallery = $(&#x27;.lesson_editor_gallery_container:visible&#x27;);
+    if(open_gallery.length &gt; 0) {
+      centerThis(open_gallery);
+    }
   });
 }
 
@@ -761,7 +832,8 @@ function lessonEditorDocumentReadySlideButtons() {
       url: &#x27;/lessons/&#x27; + $(&#x27;#info_container&#x27;).data(&#x27;lesson-id&#x27;) + &#x27;/slides/&#x27; + slide.data(&#x27;slide-id&#x27;) + &#x27;/delete&#x27;
     });
   });
-  $body.on(&#x27;click&#x27;, &#x27;._attach_document&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;._attach_document, .attached_document_internal&#x27;, function() {
+    stopMediaInCurrentSlide();
     showDocumentGalleryInLessonEditor();
   });
 }
@@ -916,6 +988,46 @@ function saveCurrentSlide(action_suffix, with_loader) {
 
 
 /**
+Hides the small popup containing the description of a document inside the document gallery.
+@method hidePopuppina
+@for LessonEditorGalleries
+@param id {String} HTML id of the document
+**/
+function hidePopuppina(id) {
+  $(&#x27;#&#x27; + id + &#x27; .popuppina, #&#x27; + id + &#x27; .popuppina-tri&#x27;).hide();
+}
+
+/**
+Loads the documents from the slide to the gallery.
+@method loadDocumentGalleryContent
+@for LessonEditorGalleries
+@param slide_id {Number} the id of the slide
+**/
+function loadDocumentGalleryContent(slide_id) {
+  $(&#x27;#inputs_for_documents&#x27;).html($(&#x27;#slide_in_lesson_editor_&#x27; + slide_id + &#x27; .inputs_for_documents&#x27;).html());
+  for(var i = 1; i &lt; 4; i++) {
+    var doc = $(&#x27;#document_&#x27; + i + &#x27;_attached_in_slide_&#x27; + slide_id);
+    if(doc.length &gt; 0) {
+      $(&#x27;#document_&#x27; + i + &#x27;_attached&#x27;).html(doc.html()).removeClass(&#x27;not_full&#x27;);
+    } else {
+      $(&#x27;#document_&#x27; + i + &#x27;_attached&#x27;).html($(&#x27;#document_&#x27; + i + &#x27;_attached_empty&#x27;).html()).addClass(&#x27;not_full&#x27;);
+    }
+  }
+}
+
+/**
+Loads the specific gallery for documents relative to a slide. The gallery is supposed to have already been loaded previously, by {{#crossLink &quot;LessonEditorGalleries/showDocumentGalleryInLessonEditor:method&quot;}}{{/crossLink}}
+@method loadDocumentGalleryForSlideInLessonEditor
+@for LessonEditorGalleries
+@param slide_id {Number} the id of the slide
+**/
+function loadDocumentGalleryForSlideInLessonEditor(slide_id) {
+  loadDocumentGalleryContent(slide_id);
+  updateEffectsInsideDocumentGallery(slide_id);
+  $(&#x27;#lesson_editor_document_gallery_container&#x27;).data(&#x27;slide-id&#x27;, slide_id);
+}
+
+/**
 Hides media gallery for selected type.
 @method removeGalleryInLessonEditor
 @for LessonEditorGalleries
@@ -925,6 +1037,37 @@ function removeGalleryInLessonEditor(sti_type) {
   $(&#x27;#lesson_editor_&#x27; + sti_type + &#x27;_gallery_container&#x27;).hide();
   $(&#x27;li._lesson_editor_current_slide .slide-content&#x27;).children().show();
   showEverythingOutCurrentSlide();
+}
+
+/**
+Resets the filter of documents in the gallery.
+@method resetDocumentGalleryFilter
+@for LessonEditorGalleries
+@param callback {Function} to be called after ajax
+@param otherwise {Function} to be called if there is no filter to reset
+**/
+function resetDocumentGalleryFilter(callback, otherwise) {
+  var input = $(&#x27;#lesson_editor_document_gallery_container #document_gallery_filter&#x27;);
+  if(input.val() != &#x27;&#x27;) {
+    input.val(&#x27;&#x27;);
+    input.data(&#x27;letters&#x27;, 0);
+    $.ajax({
+      type: &#x27;get&#x27;,
+      url: &#x27;/lessons/galleries/document/filter?word=&#x27;,
+      complete: function() {
+        if(callback != undefined) {
+          callback();
+        }
+      }
+    });
+  } else {
+    if(callback != undefined) {
+      callback();
+    }
+    if(otherwise != undefined) {
+      otherwise();
+    }
+  }
 }
 
 /**
@@ -938,9 +1081,24 @@ function showDocumentGalleryInLessonEditor() {
   hideEverythingOutCurrentSlide();
   var gallery_container = $(&#x27;#lesson_editor_document_gallery_container&#x27;);
   if(gallery_container.data(&#x27;loaded&#x27;)) {
-    gallery_container.show();
-    $(&#x27;li._lesson_editor_current_slide .slide-content&#x27;).children().hide();
-    current_slide.find(&#x27;layer&#x27;).remove();
+    if(gallery_container.data(&#x27;slide-id&#x27;) != current_slide.data(&#x27;slide-id&#x27;)) {
+      var slide_id = current_slide.data(&#x27;slide-id&#x27;);
+      loadDocumentGalleryContent(slide_id);
+      $(&#x27;#lesson_editor_document_gallery_container&#x27;).data(&#x27;slide-id&#x27;, slide_id);
+      resetDocumentGalleryFilter(function() {
+        gallery_container.show();
+        centerThis(gallery_container);
+        $(&#x27;li._lesson_editor_current_slide .slide-content&#x27;).children().hide();
+        current_slide.find(&#x27;layer&#x27;).remove();
+      }, updateEffectsInsideDocumentGallery);
+    } else {
+      resetDocumentGalleryFilter(function() {
+        gallery_container.show();
+        centerThis(gallery_container);
+        $(&#x27;li._lesson_editor_current_slide .slide-content&#x27;).children().hide();
+        current_slide.find(&#x27;layer&#x27;).remove();
+      });
+    }
   } else {
     $.ajax({
       type: &#x27;get&#x27;,
@@ -964,6 +1122,7 @@ function showGalleryInLessonEditor(obj, sti_type) {
   var gallery_container = $(&#x27;#lesson_editor_&#x27; + sti_type + &#x27;_gallery_container&#x27;);
   if(gallery_container.data(&#x27;loaded&#x27;)) {
     gallery_container.show();
+    centerThis(gallery_container);
     $(&#x27;li._lesson_editor_current_slide .slide-content&#x27;).children().hide();
     current_slide.find(&#x27;layer&#x27;).remove();
   } else {
@@ -972,6 +1131,98 @@ function showGalleryInLessonEditor(obj, sti_type) {
       url: &#x27;/lessons/galleries/&#x27; + sti_type
     });
   }
+}
+
+/**
+Shows the small popup containing the description of a document inside the document gallery.
+@method showPopuppina
+@for LessonEditorGalleries
+@param id {String} HTML id of the document
+**/
+function showPopuppina(id) {
+  var container = $(&#x27;#lesson_editor_document_gallery_container&#x27;);
+  var parent = $(&#x27;#&#x27; + id);
+  var offset = parent.position();
+  var document = parent.find(&#x27;.documentInGallery&#x27;);
+  var popuppina = document.find(&#x27;.popuppina&#x27;);
+  var triangolo = document.find(&#x27;.popuppina-tri&#x27;);
+  if(parent.hasClass(&#x27;document_attached&#x27;)) {
+    popuppina.css(&#x27;top&#x27;, ((offset.top + 44) + &#x27;px&#x27;)).show(&#x27;fade&#x27;, {}, 300);
+    triangolo.css(&#x27;-webkit-transform&#x27;, (&#x27;rotate(180deg)&#x27;));
+    triangolo.css(&#x27;-moz-transform&#x27;, (&#x27;rotate(180deg)&#x27;));
+    triangolo.css(&#x27;-o-transform&#x27;, (&#x27;rotate(180deg)&#x27;));
+    triangolo.css(&#x27;-ms-transform&#x27;, (&#x27;rotate(180deg)&#x27;));
+    triangolo.css(&#x27;top&#x27;, ((offset.top + 34) + &#x27;px&#x27;)).css(&#x27;left&#x27;, ((offset.left + 24) + &#x27;px&#x27;)).show(&#x27;fade&#x27;, {}, 300);
+  } else {
+    var top_distance = offset.top - container.find(&#x27;.for-scroll-pain&#x27;).data(&#x27;jsp&#x27;).getContentPositionY();
+    if(top_distance &lt; (popuppina.height() + 5)) {
+      popuppina.css(&#x27;top&#x27;, ((offset.top + 49) + &#x27;px&#x27;)).show(&#x27;fade&#x27;, {}, 300);
+      triangolo.css(&#x27;-webkit-transform&#x27;, (&#x27;rotate(180deg)&#x27;));
+      triangolo.css(&#x27;-moz-transform&#x27;, (&#x27;rotate(180deg)&#x27;));
+      triangolo.css(&#x27;-o-transform&#x27;, (&#x27;rotate(180deg)&#x27;));
+      triangolo.css(&#x27;-ms-transform&#x27;, (&#x27;rotate(180deg)&#x27;));
+      triangolo.css(&#x27;top&#x27;, ((offset.top + 39) + &#x27;px&#x27;)).css(&#x27;left&#x27;, ((offset.left + 24) + &#x27;px&#x27;)).show(&#x27;fade&#x27;, {}, 300);
+    } else {
+      popuppina.css(&#x27;top&#x27;, ((offset.top - popuppina.height() - 5) + &#x27;px&#x27;)).show(&#x27;fade&#x27;, {}, 300);
+      triangolo.css(&#x27;-webkit-transform&#x27;, (&#x27;rotate(0deg)&#x27;));
+      triangolo.css(&#x27;-moz-transform&#x27;, (&#x27;rotate(0deg)&#x27;));
+      triangolo.css(&#x27;-o-transform&#x27;, (&#x27;rotate(0deg)&#x27;));
+      triangolo.css(&#x27;-ms-transform&#x27;, (&#x27;rotate(0deg)&#x27;));
+      triangolo.css(&#x27;top&#x27;, ((offset.top + 5) + &#x27;px&#x27;)).css(&#x27;left&#x27;, ((offset.left + 24) + &#x27;px&#x27;)).show(&#x27;fade&#x27;, {}, 300);
+    }
+  }
+}
+
+/**
+Unloads the documents to the slide.
+@method unLoadDocumentGalleryContent
+@for LessonEditorGalleries
+@param slide_id {Number} the id of the slide
+**/
+function unLoadDocumentGalleryContent(slide_id) {
+  $(&#x27;#slide_in_lesson_editor_&#x27; + slide_id + &#x27; .inputs_for_documents&#x27;).html($(&#x27;#inputs_for_documents&#x27;).html());
+  $(&#x27;#document_1_attached_in_slide_&#x27; + slide_id + &#x27;, #document_2_attached_in_slide_&#x27; + slide_id + &#x27;, #document_3_attached_in_slide_&#x27; + slide_id).remove();
+  for(var i = 1; i &lt; 4; i++) {
+    var doc = $(&#x27;#document_&#x27; + i + &#x27;_attached&#x27;);
+    if(!doc.hasClass(&#x27;not_full&#x27;)) {
+      var new_content = &#x27;&lt;div id=&quot;document_&#x27; + i + &#x27;_attached_in_slide_&#x27; + slide_id + &#x27;&quot;&gt;&#x27; + doc.html() + &#x27;&lt;/div&gt;&#x27;;
+      $(&#x27;#slide_in_lesson_editor_&#x27; + slide_id + &#x27; .hidden_html_for_documents&#x27;).append(new_content)
+    }
+  }
+}
+
+/**
+Updates the faded documents and the gallery is locked if three documents are loaded.
+@method updateEffectsInsideDocumentGallery
+@for LessonEditorGalleries
+**/
+function updateEffectsInsideDocumentGallery() {
+  var inputs = $(&#x27;#inputs_for_documents input&#x27;);
+  var ids = new Array();
+  inputs.each(function() {
+    ids.push($(this).val());
+  });
+  $(&#x27;.documentsExternal .documentInGallery.disabled&#x27;).each(function() {
+    $(this).removeClass(&#x27;disabled&#x27;);
+  });
+  for(var i = 0; i &lt; ids.length; i++) {
+    $(&#x27;#gallery_document_&#x27; + ids[i] + &#x27; .documentInGallery&#x27;).addClass(&#x27;disabled&#x27;);
+  }
+  if(!$(&#x27;#lesson_editor_document_gallery_container #document_gallery&#x27;).data(&#x27;empty&#x27;)) {
+    if(inputs.length == 3) {
+      $(&#x27;.documentsExternal .for-scroll-pain&#x27;).hide();
+      $(&#x27;.documentsExternal #empty_document_gallery&#x27;).show();
+      $(&#x27;.documentsFooter .triangolo, .documentsFooter .footerLeft&#x27;).hide();
+    } else {
+      $(&#x27;.documentsExternal .for-scroll-pain&#x27;).show();
+      $(&#x27;.documentsExternal #empty_document_gallery&#x27;).hide();
+      $(&#x27;.documentsFooter .triangolo, .documentsFooter .footerLeft&#x27;).show();
+    }
+  }
+  var container = $(&#x27;#lesson_editor_document_gallery_container&#x27;);
+  $(&#x27;.document_attached .documentInGallery .add_remove&#x27;).attr(&#x27;title&#x27;, container.data(&#x27;title-remove&#x27;));
+  $(&#x27;.documentInGalleryExternal .documentInGallery:not(.disabled) .add_remove&#x27;).attr(&#x27;title&#x27;, container.data(&#x27;title-add&#x27;));
+  $(&#x27;.documentInGalleryExternal .documentInGallery.disabled .add_remove&#x27;).attr(&#x27;title&#x27;, &#x27;&#x27;);
 }
 
 
