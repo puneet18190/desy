@@ -330,6 +330,22 @@ function lessonEditorDocumentReadyGalleries() {
       }, 1500);
     }
   });
+  $body.on('mouseover', '.documentInGalleryExternal, .document_attached', function() {
+    var father = $(this);
+    if(!father.find('.documentInGallery').hasClass('disabled')) {
+      father.find('.documentInGallery').data('rollovered', true);
+      setTimeout(function() {
+        if(father.find('.documentInGallery').data('rollovered')) {
+          showPopuppina(father.attr('id'));
+        }
+      }, 500);
+    }
+  });
+  $body.on('mouseout', '.documentInGalleryExternal, .document_attached', function() {
+    var father = $(this);
+    father.find('.documentInGallery').data('rollovered', false);
+    hidePopuppina(father.attr('id'));
+  });
 }
 
 /**

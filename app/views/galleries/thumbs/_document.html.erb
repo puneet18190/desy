@@ -5,7 +5,7 @@
   my_title = my_title.html_safe
 %>
 
-<div class="documentInGallery">
+<div class="documentInGallery" data-rollovered="false">
   <div class="popuppina-tri <%= document.icon_path.split('/').last.split('.').first %>" style="display:none"></div>
   <div class="popuppina" style="display:none; background-color:<%= documents_type_color(document) %>">
     <%= document.description %>
