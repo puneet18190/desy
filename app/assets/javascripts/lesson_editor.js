@@ -508,6 +508,7 @@ function lessonEditorDocumentReadySlideButtons() {
     });
   });
   $body.on('click', '._attach_document', function() {
+    stopMediaInCurrentSlide();
     showDocumentGalleryInLessonEditor();
   });
 }
