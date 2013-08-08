@@ -336,7 +336,8 @@ class GalleriesController < ApplicationController
   #
   def document_for_lesson_editor_new_block
     if @ok
-      get_documents(@page)
+      @word = params[:word].blank? ? nil : params[:word]
+      get_documents(@page, @word)
     else
       render :nothing => true
     end
