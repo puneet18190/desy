@@ -708,11 +708,13 @@ function resetDocumentGalleryFilter(callback, otherwise) {
         }
       }
     });
-  } else if(otherwise != undefined) {
+  } else {
     if(callback != undefined) {
       callback();
     }
-    otherwise();
+    if(otherwise != undefined) {
+      otherwise();
+    }
   }
 }
 
