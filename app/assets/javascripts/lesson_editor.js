@@ -837,6 +837,8 @@ function showPopuppina(id) {
     var top_distance = offset.top;
     if(container.find('.for-scroll-pain').hasClass('jspScrollable')) {
       top_distance -= container.find('.for-scroll-pain').data('jsp').getContentPositionY();
+    } else {
+      top_distance -= 205.75;
     }
     if(top_distance < (popuppina.height() + 5)) {
       var to_top = 5;
