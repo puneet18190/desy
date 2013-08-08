@@ -691,16 +691,28 @@ function removeGalleryInLessonEditor(sti_type) {
 Resets the filter of documents in the gallery.
 @method resetDocumentGalleryFilter
 @for LessonEditorGalleries
-@param callback {Function} to be called if there is no filter to reset
+@param callback {Function} to be called after ajax
+@param otherwise {Function} to be called if there is no filter to reset
 **/
-function resetDocumentGalleryFilter(callback) {
+function resetDocumentGalleryFilter(callback, otherwise) {
   var input = $('#lesson_editor_document_gallery_container #document_gallery_filter');
   if(input.val() != '') {
     input.val('');
     input.data('letters', 0);
-    $.get('/lessons/galleries/document/filter?word=');
-  } else if(callback != undefined) {
-    callback();
+    $.ajax({
+      type: 'get',
+      url: '/lessons/galleries/document/filter?word=',
+      complete: function() {
+        if(callback != undefined) {
+          callback();
+        }
+      }
+    });
+  } else if(otherwise != undefined) {
+    if(callback != undefined) {
+      callback();
+    }
+    otherwise();
   }
 }
 
@@ -719,13 +731,18 @@ function showDocumentGalleryInLessonEditor() {
       var slide_id = current_slide.data('slide-id');
       loadDocumentGalleryContent(slide_id);
       $('#lesson_editor_document_gallery_container').data('slide-id', slide_id);
-      resetDocumentGalleryFilter(updateEffectsInsideDocumentGallery);
+      resetDocumentGalleryFilter(function() {
+        gallery_container.show();
+        $('li._lesson_editor_current_slide .slide-content').children().hide();
+        current_slide.find('layer').remove();
+      }, updateEffectsInsideDocumentGallery);
     } else {
-      resetDocumentGalleryFilter();
+      resetDocumentGalleryFilter(function() {
+        gallery_container.show();
+        $('li._lesson_editor_current_slide .slide-content').children().hide();
+        current_slide.find('layer').remove();
+      });
     }
-    gallery_container.show();
-    $('li._lesson_editor_current_slide .slide-content').children().hide();
-    current_slide.find('layer').remove();
   } else {
     $.ajax({
       type: 'get',
