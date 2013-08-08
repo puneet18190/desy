@@ -291,6 +291,11 @@ function lessonEditorDocumentReadyGalleries() {
   $body.on('click', '#lesson_editor_document_gallery_container #document_gallery .footerButtons .attach', function() {
     removeGalleryInLessonEditor('document');
     unLoadDocumentGalleryContent($('#lesson_editor_document_gallery_container').data('slide-id'));
+    if($('.document_attached .documentInGallery').length == 0) {
+      $('li._lesson_editor_current_slide .attached_document_internal').hide();
+    } else {
+      $('li._lesson_editor_current_slide .attached_document_internal').show();
+    }
     saveCurrentSlide('', false);
   });
   $body.on('click', '#lesson_editor_document_gallery_container .documentInGalleryExternal .documentInGallery:not(".disabled") .add_remove', function() {
