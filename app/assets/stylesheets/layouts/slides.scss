@@ -32,18 +32,18 @@
     top: 0;
     left: 530px;
     z-index: 5;
-    padding: 15px 85px 2px 15px;
+    padding: 20px 90px 7px 20px;
     
     .icon {
       
       float: left;
-      width: 30px;
-      height: 30px;
+      width: 35px;
+      height: 35px;
       
       img {
         
-        width: 30px;
-        height: 30px;
+        width: 35px;
+        height: 35px;
         
       }
       
@@ -52,13 +52,14 @@
     .title_and_download {
       
       float: left;
-      height: 48px;
+      height: 45px;
       margin-left: 10px;
+      margin-top: 3px;
       
       .title {
         
         color: white;
-        margin-bottom: 3px;
+        margin-bottom: 1px;
         font-size: 13px;
         
       }
@@ -68,6 +69,12 @@
         color: #6D6C6C;
         font-size: 12px;
         font-weight: bold;
+        
+        &:hover {
+          
+          text-decoration: underline;
+          
+        }
         
       }
       
