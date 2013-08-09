@@ -40,6 +40,9 @@ function lessonViewerDocumentReadyDocuments() {
   $body.on('click', '._lesson_viewer_current_slide .attached_document_internal', function() {
     showDocumentsInLessonViewer();
   });
+  $body.on('mouseleave', '._lesson_viewer_current_slide .attached_document_internal_expanded', function() {
+    hideDocumentsInLessonViewer();
+  });
 }
 
 /**
@@ -86,8 +89,10 @@ Initializer for slides navigation.
 function lessonViewerDocumentReadySlidesNavigation() {
   $(document.documentElement).keyup(function(e) {
     if(e.keyCode == 37) {
+      hideDocumentsInLessonViewer();
       goToPrevSlideInLessonViewer(false);
     } else if(e.keyCode == 39) {
+      hideDocumentsInLessonViewer();
       goToNextSlideInLessonViewer(false);
     }
   });
@@ -107,11 +112,13 @@ function lessonViewerDocumentReadySlidesNavigation() {
   });
   $('.lesson-viewer-layout, .lesson-export-layout').on('swipeleft', function() {
     if(mustReactToSwipe()) {
+      hideDocumentsInLessonViewer();
       goToNextSlideInLessonViewer(true);
     }
   });
   $('.lesson-viewer-layout, .lesson-export-layout').on('swiperight', function() {
     if(mustReactToSwipe()) {
+      hideDocumentsInLessonViewer();
       goToPrevSlideInLessonViewer(true);
     }
   });
@@ -198,7 +205,8 @@ Hides the documents.
 @for LessonViewerGeneral
 **/
 function hideDocumentsInLessonViewer() {
-  
+  $('._lesson_viewer_current_slide .attached_document_internal').show();
+  $('._lesson_viewer_current_slide .attached_document_internal_expanded').hide();
 }
 
 /**
