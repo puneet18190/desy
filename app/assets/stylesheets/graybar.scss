@@ -20,78 +20,74 @@
     
   }
   
-  navlist {
+  a.navlist-item {
     
+    padding: 15px 30px;
+    margin: 2px 10px 0 0;
+    height: 22px;
+    cursor: pointer;
     float: left;
     
-    a {
+    &.b-dashboard {
       
-      padding: 15px 30px;
-      margin-right: 10px;
-      cursor: pointer;
+      background-color: #fafafa;
+      color: #b9b9bd;
       
-      .b-dashboard {
+      &:hover {
         
-        background-color: #fafafa;
-        color: #b9b9bd;
+        background-color: #fff;
+        
+      }
+      
+      &.current {
+        
+        background-color: #fff;
+        color: #727377;
         
         &:hover {
           
-          background-color: #fff;
-          
-        }
-        
-        &.current {
-          
-          background-color: #fff;
-          color: #727377;
-          
-          &:hover {
-            
-            cursor: default;
-            
-          }
+          cursor: default;
           
         }
         
       }
       
-      .b-lesson {
+    }
+    
+    &.b-lesson {
+      
+      background-color: $orange;
+      color: #fff;
+      
+      &:hover {
         
-        background-color: $orange;
-        color: #fff;
-        
-        &:hover {
-          
-          background-color: #f5a933;
-          
-        }
+        background-color: #f5a933;
         
       }
       
-      .b-media_element {
+    }
+    
+    &.b-media_element {
+      
+      background-color: $green;
+      color: #fff;
+      
+      &:hover {
         
-        background-color: $green;
-        color: #fff;
-        
-        &:hover {
-          
-          background-color: #67b855;
-          
-        }
+        background-color: #67b855;
         
       }
       
-      .b-document {
+    }
+    
+    &.b-document {
+      
+      background-color: $black;
+      color: #fff;
+      
+      &:hover {
         
-        background-color: $black;
-        color: #fff;
-        
-        &:hover {
-          
-          background-color: #908f8f;
-          
-        }
+        background-color: #908f8f;
         
       }
       

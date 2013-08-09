@@ -6,10 +6,8 @@
 
 <div class="gray-bar">
   <p class="fltlft lower titleSelected"><%= t('dashboard.selected_for_you') %></p>
-  <div class="navlist">
-    <a id="switch_to_lessons" class="b-dashboard current lower"><%= t('captions.lessons') %></a>
-    <a id="switch_to_media_elements" class="b-dashboard lower"><%= t('captions.media_elements') %></a>
-  </div>
+  <a id="switch_to_lessons" class="navlist-item b-dashboard current lower"><%= t('captions.lessons') %></a>
+  <a id="switch_to_media_elements" class="navlist-item b-dashboard lower"><%= t('captions.media_elements') %></a>
   <%= render :partial => "shared/search" %>
 </div>
 
