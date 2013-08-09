@@ -112,8 +112,9 @@ class Document < ActiveRecord::Base
   end
   
   # Returns the url
-  def url
-    attachment.url
+  def url(url_type = nil)
+    url = attachment.url
+    url_by_url_type url, url_type
   end
   
   # === Description

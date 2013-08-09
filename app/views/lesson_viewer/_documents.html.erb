@@ -9,7 +9,7 @@
       <div class="title">
         <%= document.title %>
       </div>
-      <a class="download" href="<%= document.url %>">
+      <a class="download" href="<%= document.url(url_type) %>">
         <%= t('documents.download') %>
       </a>
     </div>
