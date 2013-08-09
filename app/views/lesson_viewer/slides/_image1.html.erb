@@ -32,7 +32,7 @@
   </div>
   
   <% if slide.documents_slides.count > 0 %>
-    <%= render :partial => 'lesson_viewer/documents', :locals => {:documents_slides => slide.documents_slides} %>
+    <%= render :partial => 'lesson_viewer/documents', :locals => {:documents_slides => slide.documents_slides, :url_type => url_type} %>
   <% end %>
   
 </div>
