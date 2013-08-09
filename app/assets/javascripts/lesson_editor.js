@@ -291,10 +291,12 @@ function lessonEditorDocumentReadyGalleries() {
   $body.on('click', '#lesson_editor_document_gallery_container #document_gallery .footerButtons .attach', function() {
     removeGalleryInLessonEditor('document');
     unLoadDocumentGalleryContent($('#lesson_editor_document_gallery_container').data('slide-id'));
-    if($('.document_attached .documentInGallery').length == 0) {
+    var num_docs = $('.document_attached .documentInGallery').length;
+    if(num_docs == 0) {
       $('li._lesson_editor_current_slide .attached_document_internal').hide();
     } else {
-      $('li._lesson_editor_current_slide .attached_document_internal').show();
+      var my_title = $('#lesson_editor_document_gallery_container').data('title-' + num_docs + '-doc');
+      $('li._lesson_editor_current_slide .attached_document_internal').attr('title', my_title).show();
     }
     saveCurrentSlide('', false);
   });

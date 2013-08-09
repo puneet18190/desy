@@ -762,9 +762,13 @@ en:
         # 1 - views/lesson_editor/index.html.erb
         add: "Add"
         # Button that resumes the number of documents attached in the lesson editor (the variable %{num} is replaced by the number of documents)
-        # 1 - views/lesson_editor/index.html.erb
-        # 2 - views/lesson_editor/index.html.erb
-        # 3 - views/lesson_editor/index.html.erb
+        # 1 - app/views/lesson_editor/slides/_text.html.erb
+        # 2 - app/views/lesson_editor/slides/_audio.html.erb
+        # 3 - app/views/lesson_editor/slides/_image1.html.erb
+        # 4 - app/views/lesson_editor/slides/_video1.html.erb
+        # 5 - views/lesson_editor/index.html.erb
+        # 6 - views/lesson_editor/index.html.erb
+        # 7 - views/lesson_editor/index.html.erb
         attached: "You attached %{num} documents to this slide"
         # Modify title and description of the document
         # 1 - views/documents/_view_single_compact.html.erb
