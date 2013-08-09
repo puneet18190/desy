@@ -28,12 +28,50 @@
     
     background: $assets-documents-fondo_png top right no-repeat;
     background-color: #252323;
-    width: 370px;
-    height: 200px;
     position: absolute;
     top: 0;
     left: 530px;
     z-index: 5;
+    padding: 15px 85px 2px 15px;
+    
+    .icon {
+      
+      float: left;
+      width: 30px;
+      height: 30px;
+      
+      img {
+        
+        width: 30px;
+        height: 30px;
+        
+      }
+      
+    }
+    
+    .title_and_download {
+      
+      float: left;
+      height: 48px;
+      margin-left: 10px;
+      
+      .title {
+        
+        color: white;
+        margin-bottom: 3px;
+        font-size: 13px;
+        
+      }
+      
+      .download {
+        
+        color: #6D6C6C;
+        font-size: 12px;
+        font-weight: bold;
+        
+      }
+      
+    }
     
   }
   
