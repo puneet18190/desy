@@ -1,12 +1,11 @@
 <div class="gray-bar">
-  
   <ul class="navlist">
     <li><a class="createButtonMediaElements lower _load_media_element"><%= t('media_elements.load_new') %></a></li>
     <li><%= link_to t('media_elements.editor.menu_link'), new_media_elements_editor_path, :class => 'createButtonMediaElements lower' %></li>
   </ul>
-
   <%= render :partial => "shared/search" %>
 </div>
+
 <br class="clearfloat">
 <div class="griglia-contenuti">
   <div class="elements-content">

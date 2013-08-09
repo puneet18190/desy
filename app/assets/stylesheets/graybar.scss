@@ -12,7 +12,8 @@
   font: 80% 'Nunito', sans-serif;
   width: 95.9%;
   font-size: 120%;
-  height:55px;
+  height: 55px;
+  
   .titleSelected {
     
     padding-left: 2%
@@ -26,90 +27,89 @@
     white-space: nowrap;
     float: left;
     
-  }
-  
-  .navlist li {
-    
-    display: inline;
-    list-style-type: none;
-    margin-right: 5px;
-    
-  }
-  
-  .navlist a {
-    
-    padding: 15px 30px;
-    background-color: #fafafa;
-    color: #b9b9bd;
-  }
-  
-  .navlist a:hover  {
-    
-    background-color: #fff;
-    cursor: pointer;
-    
-  }
-  
-  .navlist a.current {
-    
-    padding: 15px 30px;
-    background-color: #fff;
-    color:#727377;
-    
-  }
-  
-  .navlist a.createButtonLesson {
-    
-    padding: 15px 30px;
-    background-color: $orange;
-    color: #fff;
-    
-    &:hover {
+    li {
       
-      background-color: #f5a933;
+      display: inline;
+      list-style-type: none;
+      margin-right: 5px;
       
     }
     
-    &.current {
+    a {
       
-      background-color: #f5a933;
+      padding: 15px 30px;
+      background-color: #fafafa;
+      color: #b9b9bd;
       
-    }
-    
-  }
-  
-  .uploadNewDocument {
-    
-    background-color: $black;
-    color: #fff;
-    width: 175px;
-    height: 16px;
-    padding: 20px 10px;
-    text-align: center;
-    float: left;
-    margin-right: 20px;
-    
-    &:hover {
+      &:hover {
+        
+        background-color: #fff;
+        cursor: pointer;
+        
+      }
       
-      background-color: #908f8f;
+      &.current {
+        
+        padding: 15px 30px;
+        background-color: #fff;
+        color:#727377;
+        
+      }
       
-    }
-  }
-  
-  .navlist a.createButtonMediaElements {
-    
-    padding: 15px 30px;
-    background-color: $green;
-    color: #fff;
-    
-    &:hover {
+      &.createButtonLesson {
+        
+        padding: 15px 30px;
+        background-color: $orange;
+        color: #fff;
+        
+        &:hover {
+          
+          background-color: #f5a933;
+          
+        }
+        
+        &.current {
+          
+          background-color: #f5a933;
+          
+        }
+        
+      }
       
-      background-color: #67b855;
+      &.createButtonMediaElements {
+        
+        padding: 15px 30px;
+        background-color: $green;
+        color: #fff;
+        
+        &:hover {
+          
+          background-color: #67b855;
+          
+        }
+        &.current {
+          
+          background-color: #67b855;
+          
+        }
+        
+      }
       
-    }
-    &.current {
-      
-      background-color: #67b855;
+      &.uploadNewDocument {
+        
+        background-color: $black;
+        color: #fff;
+        padding: 15px 30px;
+        text-align: center;
+        float: left;
+        margin-right: 20px;
+        
+        &:hover {
+          
+          background-color: #908f8f;
+          
+        }
+      }
       
     }
     
