@@ -45,9 +45,9 @@
      fit-margin-left="0"
      fit-margin-right="0"
      fit-margin-bottom="0"
-     inkscape:zoom="4"
-     inkscape:cx="129.68636"
-     inkscape:cy="57.079173"
+     inkscape:zoom="8"
+     inkscape:cx="140.01776"
+     inkscape:cy="11.692101"
      inkscape:window-x="65"
      inkscape:window-y="24"
      inkscape:window-maximized="1"
@@ -65,7 +65,7 @@
        position="59.665848,180.00457"
        id="guide3149" /><sodipodi:guide
        orientation="1,0"
-       position="60.007686,151.67578"
+       position="60,48.441406"
        id="guide3151" /><sodipodi:guide
        orientation="0,1"
        position="36.503713,60.005358"
@@ -74,7 +74,7 @@
        position="120.00371,105.00536"
        id="guide3155" /><sodipodi:guide
        orientation="1,0"
-       position="180.00658,99.631844"
+       position="179.99609,43.867188"
        id="guide3157" /><sodipodi:guide
        orientation="1,0"
        position="64.387696,150.25528"
@@ -114,7 +114,10 @@
        id="guide3115" /><sodipodi:guide
        orientation="1,0"
        position="235.623,113.36982"
-       id="guide3117" /></sodipodi:namedview><path
+       id="guide3117" /><sodipodi:guide
+       orientation="0,1"
+       position="150.08294,4.4045868"
+       id="guide3086" /></sodipodi:namedview><path
      sodipodi:type="arc"
      style="fill:#ffffff;fill-opacity:1;stroke:none"
      id="path3084-2"
