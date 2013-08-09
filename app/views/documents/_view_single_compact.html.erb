@@ -12,7 +12,7 @@
   
   <div class="contentInterno">
     <div class="documentsIcon">
-      <%= image_tag document.icon_path, :class=> "fltlft", :title => document.icon_title %>
+      <%= image_tag document.icon_url, :class=> "fltlft", :title => document.icon_title %>
       <h3><%= my_title %></h3>
     </div>
      <p class="upper"><%= document.size_and_extension %></p>
@@ -52,7 +52,7 @@
       </div>
       
       <div class="cols fltlft text-centered">
-        <%= image_tag document.icon_path %>
+        <%= image_tag document.icon_url %>
         <p style="margin-top:50px">
           <a class="upper buttonDownload" href="<%= document.url %>"><%= t('documents.download') %></a>
         </p>

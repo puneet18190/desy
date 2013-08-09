@@ -8,12 +8,12 @@
 %>
 
 <div class="documentInGallery" data-rollovered="false">
-  <div class="popuppina-tri <%= document.icon_path.split('/').last.split('.').first %>" style="display:none"></div>
+  <div class="popuppina-tri <%= document.icon_url.split('/').last.split('.').first %>" style="display:none"></div>
   <div class="popuppina" style="display:none; background-color:<%= documents_type_color(document) %>">
     <%= document.description %>
   </div>
   <div class="icon">
-    <%= image_tag document.icon_path, :title => document.icon_title %>
+    <%= image_tag document.icon_url, :title => document.icon_title %>
   </div>
   <div class="title">
     <%= my_title %>

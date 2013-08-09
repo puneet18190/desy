@@ -69,8 +69,8 @@ class Document < ActiveRecord::Base
   end
   
   # Returns the icon, depending on the extension
-  def icon_path
-    case extension
+  def icon_url(url_type = nil)
+    url = case extension
       when '.ppt', '.pptx', '.keynote', '.odp'       then 'documents/ppt.svg'
       when '.doc', '.docx', '.pages', '.odt', '.txt' then 'documents/doc.svg'
       when '.zip', '.gz'                             then 'documents/zip.svg'
@@ -78,11 +78,12 @@ class Document < ActiveRecord::Base
       when '.pdf', '.ps'                             then 'documents/pdf.svg'
       else 'documents/unknown.svg'
     end
+    url_by_url_type url, url_type
   end
   
   # Returns the title associated to the icon
   def icon_title
-    my_title = icon_path.split('/').last.split('.').first
+    my_title = icon_url.split('/').last.split('.').first
     I18n.t("titles.documents.#{my_title}")
   end
   
