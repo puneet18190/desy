@@ -1212,6 +1212,10 @@ Moves to a slide, update current slide in top navigation.
 @param callback {Object} callback function, to be executed after the slide (for instance, this function is used to call {{#crossLink "LessonEditorCurrentSlide/showNewSlideOptions:method"}}{{/crossLink}})
 **/
 function slideTo(slide_id, callback) {
+  var tiny_tool = $('#ta-' + $('li._lesson_editor_current_slide').data('slide-id') + '_external');
+  if(tiny_tool.length > 0) {
+    tiny_tool.hide();
+  }
   loadSlideAndAdhiacentInLessonEditor(slide_id);
   var slide = $('#slide_in_lesson_editor_' + slide_id);
   var position = slide.data('position');
