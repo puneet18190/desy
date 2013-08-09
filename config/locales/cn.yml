@@ -761,6 +761,11 @@ cn:
         # Add a document to a slide
         # 1 - views/lesson_editor/index.html.erb
         add: "Add" # TODO
+        # Button that resumes the number of documents attached in the lesson editor (the variable %{num} is replaced by the number of documents)
+        # 1 - views/lesson_editor/index.html.erb
+        # 2 - views/lesson_editor/index.html.erb
+        # 3 - views/lesson_editor/index.html.erb
+        attached: "You attached %{num} documents to this slide" # TODO
         # Modify title and description of the document
         # 1 - views/documents/_view_single_compact.html.erb
         change_info: "Modify title and description of the document" # TODO
