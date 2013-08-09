@@ -38,8 +38,7 @@ Initializer for functionalities of attached documents.
 **/
 function lessonViewerDocumentReadyDocuments() {
   $body.on('click', '._lesson_viewer_current_slide .attached_document_internal', function() {
-    $(this).hide();
-    $('._lesson_viewer_current_slide .attached_document_internal_expanded').show();
+    showDocumentsInLessonViewer();
   });
 }
 
@@ -194,6 +193,15 @@ function getLessonViewerCurrentSlide() {
 }
 
 /**
+Hides the documents.
+@method hideDocumentsInLessonViewer
+@for LessonViewerGeneral
+**/
+function hideDocumentsInLessonViewer() {
+  
+}
+
+/**
 Initializes the positions, and selects the right lesson in the playlist menu. Called in {{#crossLink "LessonViewerDocumentReady/lessonViewerDocumentReady:method"}}{{/crossLink}}.
 @method initializeLessonViewer
 @for LessonViewerGeneral
@@ -207,6 +215,19 @@ function initializeLessonViewer() {
   $(window).resize(function() {
     $('.lesson-viewer-layout .container, .lesson-export-layout .container').css('margin-top', ($(window).height() - 590) / 2 + 'px');
   });
+}
+
+/**
+Shows the documents.
+@method showDocumentsInLessonViewer
+@for LessonViewerGeneral
+**/
+function showDocumentsInLessonViewer() {
+  var to_hide = $('._lesson_viewer_current_slide .attached_document_internal');
+  var to_show = $('._lesson_viewer_current_slide .attached_document_internal_expanded');
+  to_hide.hide();
+  to_show.show();
+  to_show.css('left', ((900 - to_show.outerWidth()) + 'px'));
 }
 
 /**
