@@ -8,4 +8,8 @@
     <%= slide.text.html_safe if slide.text %>
   </div>
   
+  <% if slide.documents_slides.count > 0 %>
+    <a class="attached_document_internal" title="<%= t('titles.buttons.documents.attached_view') %>"></a>
+  <% end %>
+  
 </div>

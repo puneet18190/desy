@@ -770,6 +770,12 @@ en:
         # 6 - views/lesson_editor/index.html.erb
         # 7 - views/lesson_editor/index.html.erb
         attached: "You attached %{num} documents in this slide"
+        # Button in lesson viewer that tells the user that there are attached documents
+        # 1 - views/lesson_viewer/slides/_text.html.erb
+        # 2 - views/lesson_viewer/slides/_audio.html.erb
+        # 3 - views/lesson_viewer/slides/_image1.html.erb
+        # 4 - views/lesson_viewer/slides/_video1.html.erb
+        attached_view: "Download attached documents"
         # Modify title and description of the document
         # 1 - views/documents/_view_single_compact.html.erb
         change_info: "Modify title and description of the document"
