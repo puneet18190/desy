@@ -28,6 +28,19 @@ function lessonViewerDocumentReady() {
   lessonViewerDocumentReadyPlaylist();
   lessonViewerDocumentReadySlidesNavigation();
   lessonViewerDocumentReadySocialNetworks();
+  lessonViewerDocumentReadyDocuments();
+}
+
+/**
+Initializer for functionalities of attached documents.
+@method lessonViewerDocumentReadyDocuments
+@for LessonViewerDocumentReady
+**/
+function lessonViewerDocumentReadyDocuments() {
+  $body.on('click', '._lesson_viewer_current_slide .attached_document_internal', function() {
+    $(this).hide();
+    $('._lesson_viewer_current_slide .attached_document_internal_expanded').show();
+  });
 }
 
 /**

@@ -19,8 +19,15 @@
     @include svg-circle-icon-handler($assets-set-icone-editor_svg, 40px, 4, 12, 1, 3, 11, 1, 2, 11);
     position: absolute;
     top: 5px;
-    left: 852px;
+    left: 855px;
     z-index: 6;
+    
+  }
+  
+  .attached_document_internal_expanded {
+    
+    background: $assets-documents-fondo_png top right no-repeat;
+    background-color: #252323;
     
   }
   

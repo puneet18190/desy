@@ -514,7 +514,7 @@ function lessonEditorDocumentReadySlideButtons() {
       url: '/lessons/' + $('#info_container').data('lesson-id') + '/slides/' + slide.data('slide-id') + '/delete'
     });
   });
-  $body.on('click', '._attach_document, .attached_document_internal', function() {
+  $body.on('click', '._attach_document, li._lesson_editor_current_slide .attached_document_internal', function() {
     stopMediaInCurrentSlide();
     showDocumentGalleryInLessonEditor();
   });
