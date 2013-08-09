@@ -1,0 +1,17 @@
+<a class="attached_document_internal" title="<%= t('titles.buttons.documents.attached_view') %>"></a>
+<div class="attached_document_internal_expanded" style="display:none">
+  <% documents_slides.each do |ds| %>
+    <% document = ds.document %>
+    <div class="icon">
+      <%= image_tag document.icon_path, :title => document.icon_title %>
+    </div>
+    <div class="title_and_download">
+      <div class="title">
+        <%= document.title %>
+      </div>
+      <a class="download">
+        <%= t('documents.download') %>
+      </a>
+    </div>
+  <% end %>
+</div>

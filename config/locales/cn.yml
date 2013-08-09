@@ -771,10 +771,7 @@ cn:
         # 7 - views/lesson_editor/index.html.erb
         attached: "You attached %{num} documents in this slide" # TODO
         # Button in lesson viewer that tells the user that there are attached documents
-        # 1 - views/lesson_viewer/slides/_text.html.erb
-        # 2 - views/lesson_viewer/slides/_audio.html.erb
-        # 3 - views/lesson_viewer/slides/_image1.html.erb
-        # 4 - views/lesson_viewer/slides/_video1.html.erb
+        # 1 - views/lesson_viewer/_documents.html.erb
         attached_view: "Download attached documents" # TODO
         # Modify title and description of the document
         # 1 - views/documents/_view_single_compact.html.erb
@@ -2389,6 +2386,7 @@ cn:
     description_readonly_placeholder: "[No description given]" # TODO
     # Button to download a document
     # 1 - views/documents/_view_single_compact.html.erb
+    # 2 - views/lesson_viewer/_documents.html.erb
     download: "Download" # TODO
     # When there are no documents in your section
     # 1 - views/documents/_empty.html.erb

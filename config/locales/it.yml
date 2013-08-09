@@ -771,10 +771,7 @@ it:
         # 7 - views/lesson_editor/index.html.erb
         attached: "Hai allegato %{num} documenti a questa slide"
         # Button in lesson viewer that tells the user that there are attached documents
-        # 1 - views/lesson_viewer/slides/_text.html.erb
-        # 2 - views/lesson_viewer/slides/_audio.html.erb
-        # 3 - views/lesson_viewer/slides/_image1.html.erb
-        # 4 - views/lesson_viewer/slides/_video1.html.erb
+        # 1 - views/lesson_viewer/_documents.html.erb
         attached_view: "Scarica documenti allegati"
         # Modify title and description of the document
         # 1 - views/documents/_view_single_compact.html.erb
@@ -2389,6 +2386,7 @@ it:
     description_readonly_placeholder: "[Nessuna descrizione inserita]"
     # Button to download a document
     # 1 - views/documents/_view_single_compact.html.erb
+    # 2 - views/lesson_viewer/_documents.html.erb
     download: "Scarica"
     # When there are no documents in your section
     # 1 - views/documents/_empty.html.erb
