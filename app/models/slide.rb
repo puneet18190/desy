@@ -120,13 +120,13 @@ class Slide < ActiveRecord::Base
   validates_inclusion_of :kind, :in => KINDS
   validates_uniqueness_of :position, :scope => :lesson_id
   validates_uniqueness_of :kind, :scope => :lesson_id, :if => :is_cover
-  validate :validate_associations, :validate_impossible_changes, :validate_cover, :validate_text, :validate_title, :validate_max_number_slides#, :validate_math_images
+  validate :validate_associations, :validate_impossible_changes, :validate_cover, :validate_text, :validate_title, :validate_max_number_slides, :validate_math_images
   
   before_validation :init_validation
-  #before_update :save_math_images
-  #before_create :init_math_images_copy
-  #after_create :copy_math_images
-  before_destroy :stop_if_cover#, :remove_math_images_folder
+  before_update :save_math_images
+  before_create :init_math_images_copy
+  after_create :copy_math_images
+  before_destroy :stop_if_cover, :remove_math_images_folder
   
   # Getter for math images
   def math_images
@@ -566,19 +566,17 @@ class Slide < ActiveRecord::Base
   end
   
   def validate_math_images
-    if !math_images.is_a?(MathImages)                                                  ||
-       math_images.invalid?                                                            ||
-       ( persisted? && math_images.model_id != id )                                    ||
-       ( new_record? && math_images.model_id && !Slide.exists?(math_images.model_id) )
+    if !math_images.is_a?(MathImages)               ||
+       math_images.invalid?                         ||
+       ( persisted? && math_images.model_id != id )
       errors.add :math_images, :invalid
     end
   end
   
   def init_math_images_copy
-    if math_images.model_id
-      @math_images_copy_id = math_images.model_id
-      math_images.model_id = nil
-    end
+    @math_images_copy_id = math_images.model_id if math_images.model_id && math_images.model_id != id
+    math_images.model_id = nil
+
     true
   end
   

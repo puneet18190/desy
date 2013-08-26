@@ -155,7 +155,7 @@ class Seeds
   end
 
   def attachment(id)
-    my_file = case id % 6
+    f = case id % 6
       when 0 then 'doc1.ppt'
       when 1 then 'doc2.pdf'
       when 2 then 'doc3.tar.gz'
@@ -163,7 +163,7 @@ class Seeds
       when 4 then 'doc5.svg'
       when 5 then 'doc6.txt'
     end
-    File.open DOCUMENTS_FOLDER.join my_file
+    File.open DOCUMENTS_FOLDER.join f
   end
 
   def tags(id)
