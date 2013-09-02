@@ -296,7 +296,7 @@ DEPENDENCIES
   rails-erd
   recursive-open-struct
   rspec-rails
-  rubyzip
+  rubyzip (< 1.0.0)
   sass-rails (~> 3.2.3)
   schema_plus
   sdoc
