@@ -2630,6 +2630,10 @@ cn:
   admin:
     # Captions used inside the common navigational menu
     menu:
+      documents:
+        # Link to the section 'Documents'
+        # 1 - views/admin/_header.html.erb
+        link: "Documents" # TODO
       lessons:
         # Link to the section 'Lessons'
         # 1 - views/admin/_header.html.erb
