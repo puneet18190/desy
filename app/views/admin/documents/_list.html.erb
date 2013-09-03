@@ -39,9 +39,9 @@
         <tr id="<%= document.id %>">
           <td><%= document.id %></td>
           <td><%= document.title %></td>
+          <td><%= link_to document.user.full_name, admin_user_path(document.user_id), :target => :blank, :class => '_user_link_in_admin' %></td>
           <td><%= document.extension %></td>
           <td><%= document.human_size %></td>
-          <td><%= link_to document.user.full_name, admin_user_path(document.user_id), :target => :blank, :class => '_user_link_in_admin' %></td>
           <td><%= TimeConvert.to_string document.created_at %></td>
           <td><%= TimeConvert.to_string document.updated_at %></td>
           <td><!-- TODO MANCA link scarica documento --></td>
