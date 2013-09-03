@@ -26,9 +26,9 @@
 <% end %>
 <h3><%= t('admin.documents.title') %></h3>
 <% if @documents.length > 0 %>
-  <%= render :partial => "admin/list_heading", :locals => {:items => @documents} %>
+  <%= render :partial => "admin/list_heading", :locals => {:items => @documents, :expandable => false} %>
 <% end %>
 <%= render :partial => "list", :locals => {:documents => @documents} %>
 <% if @documents.length > 0 %>
-  <%= render :partial => "admin/list_heading", :locals => {:items => @documents} %>
+  <%= render :partial => "admin/list_heading", :locals => {:items => @documents, :expandable => false} %>
 <% end %>

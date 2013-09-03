@@ -24,7 +24,7 @@ class Admin::DocumentsController < AdminController
   # * ApplicationController#admin_authenticate
   #
   def index
-    documents = params[:search] ? AdminSearchForm.search_documents(params[:search]) : Document.all.order('id DESC')
+    documents = params[:search] ? AdminSearchForm.search_documents(params[:search]) : Document.order('id DESC')
     @documents = documents.page(params[:page])
   end
   
