@@ -348,6 +348,21 @@ function lessonViewerDocumentReady() {
   lessonViewerDocumentReadyPlaylist();
   lessonViewerDocumentReadySlidesNavigation();
   lessonViewerDocumentReadySocialNetworks();
+  lessonViewerDocumentReadyDocuments();
+}
+
+/**
+Initializer for functionalities of attached documents.
+@method lessonViewerDocumentReadyDocuments
+@for LessonViewerDocumentReady
+**/
+function lessonViewerDocumentReadyDocuments() {
+  $body.on(&#x27;click&#x27;, &#x27;._lesson_viewer_current_slide .attached_document_internal&#x27;, function() {
+    showDocumentsInLessonViewer();
+  });
+  $body.on(&#x27;mouseleave&#x27;, &#x27;._lesson_viewer_current_slide .attached_document_internal_expanded&#x27;, function() {
+    hideDocumentsInLessonViewer();
+  });
 }
 
 /**
@@ -394,8 +409,10 @@ Initializer for slides navigation.
 function lessonViewerDocumentReadySlidesNavigation() {
   $(document.documentElement).keyup(function(e) {
     if(e.keyCode == 37) {
+      hideDocumentsInLessonViewer();
       goToPrevSlideInLessonViewer(false);
     } else if(e.keyCode == 39) {
+      hideDocumentsInLessonViewer();
       goToNextSlideInLessonViewer(false);
     }
   });
@@ -415,11 +432,13 @@ function lessonViewerDocumentReadySlidesNavigation() {
   });
   $(&#x27;.lesson-viewer-layout, .lesson-export-layout&#x27;).on(&#x27;swipeleft&#x27;, function() {
     if(mustReactToSwipe()) {
+      hideDocumentsInLessonViewer();
       goToNextSlideInLessonViewer(true);
     }
   });
   $(&#x27;.lesson-viewer-layout, .lesson-export-layout&#x27;).on(&#x27;swiperight&#x27;, function() {
     if(mustReactToSwipe()) {
+      hideDocumentsInLessonViewer();
       goToPrevSlideInLessonViewer(true);
     }
   });
@@ -501,6 +520,16 @@ function getLessonViewerCurrentSlide() {
 }
 
 /**
+Hides the documents.
+@method hideDocumentsInLessonViewer
+@for LessonViewerGeneral
+**/
+function hideDocumentsInLessonViewer() {
+  $(&#x27;._lesson_viewer_current_slide .attached_document_internal&#x27;).show();
+  $(&#x27;._lesson_viewer_current_slide .attached_document_internal_expanded&#x27;).hide();
+}
+
+/**
 Initializes the positions, and selects the right lesson in the playlist menu. Called in {{#crossLink &quot;LessonViewerDocumentReady/lessonViewerDocumentReady:method&quot;}}{{/crossLink}}.
 @method initializeLessonViewer
 @for LessonViewerGeneral
@@ -514,6 +543,19 @@ function initializeLessonViewer() {
   $(window).resize(function() {
     $(&#x27;.lesson-viewer-layout .container, .lesson-export-layout .container&#x27;).css(&#x27;margin-top&#x27;, ($(window).height() - 590) / 2 + &#x27;px&#x27;);
   });
+}
+
+/**
+Shows the documents.
+@method showDocumentsInLessonViewer
+@for LessonViewerGeneral
+**/
+function showDocumentsInLessonViewer() {
+  var to_hide = $(&#x27;._lesson_viewer_current_slide .attached_document_internal&#x27;);
+  var to_show = $(&#x27;._lesson_viewer_current_slide .attached_document_internal_expanded&#x27;);
+  to_hide.hide();
+  to_show.show();
+  to_show.css(&#x27;left&#x27;, ((900 - to_show.outerWidth()) + &#x27;px&#x27;));
 }
 
 /**
