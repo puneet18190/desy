@@ -2730,6 +2730,44 @@ it:
       # Link used to enter in 'Administration' from outside (placed on the side of the link 'logout', only for administrators)
       # 1 - views/shared/_logout.html.erb
       link: "Amministrazione"
+    # Captions of the section 'documents'
+    documents:
+      # Title of the section
+      # 1 - views/admin/documents/index.html.erb
+      title: "Documenti"
+      # Popup which asks for confirmation before deleting a document
+      # 1 - views/admin/documents/_list.html.erb
+      delete_confirm: "Sei sicuro di voler cancellare questo documento?"
+      # Placeholder used when there are no documents associated to the selected filter
+      # 1 - views/admin/documents/_list.html.erb
+      empty: "Non sono stati trovati documenti"
+      # Labels for the fields of a document
+      fields:
+        # 1 - views/admin/documents/_list.html.erb
+        created_at: "Data di creazione"
+        # 1 - views/admin/documents/_list.html.erb
+        format: "Formato"
+        # 1 - views/admin/documents/_list.html.erb
+        id: "Id"
+        # 1 - views/admin/documents/_list.html.erb
+        size: "Dimensione"
+        # 1 - views/admin/documents/_list.html.erb
+        title: "Titolo"
+        # 1 - views/admin/documents/_list.html.erb
+        updated_at: "Ultima modifica"
+        # 1 - views/admin/documents/_list.html.erb
+        user: "Utente"
+      # Name used as label in the pagination (ex. '1-10 of 300 documents')
+      # 1 - helpers/admin_helper.rb
+      name: "Documenti"
+      # Frame for the documents search engine
+      search:
+        # Title of the frame
+        # 1 - views/admin/documents/index.html.erb
+        label: "Cerca documenti"
+        # Button to start the search
+        # 1 - views/admin/documents/index.html.erb
+        submit: "Cerca"
     # Section of lessons
     lessons:
       # Title of the section
@@ -2899,6 +2937,22 @@ it:
           # Case 2: the final date is before the initial date
           # 1 - views/admin/search/_alerts.html.erb
           final_preceeds_initial: "La data finale non può essere precedente a quella iniziale"
+      # Contents of search engine specific for documents
+      documents:
+        # Title of the frame
+        # 1 - views/admin/search/_documents_general.html.erb
+        title: "Generale"
+        # Fields used in the research
+        fields:
+          # 1 - views/admin/search/_documents_general.html.erb
+          # 2 - views/admin/search/_documents_general.html.erb
+          id: "Id"
+          # 1 - views/admin/search/_documents_general.html.erb
+          # 2 - views/admin/search/_documents_general.html.erb
+          title: "Titolo"
+          # 1 - views/admin/search/_documents_general.html.erb
+          # 2 - views/admin/search/_documents_general.html.erb
+          user: "Utente"
       # Contents of search engine specific for lessons
       lessons:
         # Title of the frame

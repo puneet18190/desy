@@ -2730,6 +2730,44 @@ cn:
       # Link used to enter in 'Administration' from outside (placed on the side of the link 'logout', only for administrators)
       # 1 - views/shared/_logout.html.erb
       link: "管理"
+    # Captions of the section 'documents'
+    documents:
+      # Title of the section
+      # 1 - views/admin/documents/index.html.erb
+      title: "Documents" # TODO
+      # Popup which asks for confirmation before deleting a document
+      # 1 - views/admin/documents/_list.html.erb
+      delete_confirm: "Are you sure you want to delete this document?" # TODO
+      # Placeholder used when there are no documents associated to the selected filter
+      # 1 - views/admin/documents/_list.html.erb
+      empty: "No documents found" # TODO
+      # Labels for the fields of a document
+      fields:
+        # 1 - views/admin/documents/_list.html.erb
+        created_at: "Creation date" # TODO
+        # 1 - views/admin/documents/_list.html.erb
+        format: "Format" # TODO
+        # 1 - views/admin/documents/_list.html.erb
+        id: "Id" # TODO
+        # 1 - views/admin/documents/_list.html.erb
+        size: "Size" # TODO
+        # 1 - views/admin/documents/_list.html.erb
+        title: "Title" # TODO
+        # 1 - views/admin/documents/_list.html.erb
+        updated_at: "Last update" # TODO
+        # 1 - views/admin/documents/_list.html.erb
+        user: "User" # TODO
+      # Name used as label in the pagination (ex. '1-10 of 300 documents')
+      # 1 - helpers/admin_helper.rb
+      name: "Documents" # TODO
+      # Frame for the documents search engine
+      search:
+        # Title of the frame
+        # 1 - views/admin/documents/index.html.erb
+        label: "Search documents" # TODO
+        # Button to start the search
+        # 1 - views/admin/documents/index.html.erb
+        submit: "Search" # TODO
     # Section of lessons
     lessons:
       # Title of the section
@@ -2899,6 +2937,22 @@ cn:
           # Case 2: the final date is before the initial date
           # 1 - views/admin/search/_alerts.html.erb
           final_preceeds_initial: "初始日期之前最后的日期不能处理"
+      # Contents of search engine specific for documents
+      documents:
+        # Title of the frame
+        # 1 - views/admin/search/_documents_general.html.erb
+        title: "General" # TODO
+        # Fields used in the research
+        fields:
+          # 1 - views/admin/search/_documents_general.html.erb
+          # 2 - views/admin/search/_documents_general.html.erb
+          id: "Id" # TODO
+          # 1 - views/admin/search/_documents_general.html.erb
+          # 2 - views/admin/search/_documents_general.html.erb
+          title: "Title" # TODO
+          # 1 - views/admin/search/_documents_general.html.erb
+          # 2 - views/admin/search/_documents_general.html.erb
+          user: "User" # TODO
       # Contents of search engine specific for lessons
       lessons:
         # Title of the frame
