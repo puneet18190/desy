@@ -55,6 +55,61 @@ class AdminSearchForm
   
   # === Description
   #
+  # Search for documents: used in Admin::DocumentsController
+  #
+  # === Args
+  #
+  # * *params*: url subparams, under the scope of the keyword 'search': the options are
+  #   * +id+: if present the methods filters by id
+  #   * +title+: if present the methods filters by title
+  #   * +date_range_field+: if present, it specifies which date field is used to filter by date (+created_at+ or +updated_at+)
+  #   * +from+: if the parameter +date_range_field+ is present, this parameter specifies the left border of the date range
+  #   * +to+: if the parameter +date_range_field+ is present, this parameter specifies the right border of the date range
+  #   * +user+: if present the methods filters by user name (the keyword is matched against +name+, +surname+ and +email+)
+  #   * +location_id+: if present the methods filters by location of the user (see settings.yml for the possible names of this parameter)
+  #   * +ordering+: if present the methods sorts the results: the content of this parameter is a code, used to extract the required ordering from the constant ORDERINGS
+  #   * +desc+: for default the ordering is +ASC+, if this parameter is present it's turned to +DESC+
+  #
+  # === Returns
+  #
+  # An array, not paginated yet, of records of type Document
+  #
+  def self.search_documents(params)
+    resp = Document.select('documents.id AS id, title, user_id, documents.created_at AS created_at, documents.updated_at AS updated_at, documents.metadata')
+    resp = resp.joins(:user)
+    if params[:ordering].present?
+      ord = ORDERINGS[:documents][params[:ordering].to_i]
+      ord = ORDERINGS[:lessons][0] if ord.nil?
+      if params[:desc] == 'true'
+        ord = ord.gsub('%{ord}', 'DESC')
+      else
+        ord = ord.gsub('%{ord}', 'ASC')
+      end
+      resp = resp.order(ord)
+    end
+    resp = resp.where(:documents => {:id => params[:id]}) if params[:id].present?
+    resp = resp.where('title ILIKE ?', "%#{params[:title]}%") if params[:title].present?
+    if params[:date_range_field].present? && params[:from].present? && params[:to].present?
+      date_range = (Date.strptime(params[:from], '%d-%m-%Y').beginning_of_day)..(Date.strptime(params[:to], '%d-%m-%Y').end_of_day)
+      resp = resp.where(:documents => {:"#{params[:date_range_field]}" => date_range})
+    end
+    resp = resp.where('users.name ILIKE ? OR users.surname ILIKE ? OR email ILIKE ?', "%#{params[:user]}%", "%#{params[:user]}%", "%#{params[:user]}%") if params[:user].present?
+    location = Location.get_from_chain_params(params)
+    if location
+      if location.depth == SETTINGS['location_types'].length - 1
+        resp = resp.where(:users => {:location_id => location.id})
+      else
+        resp = resp.joins(:user => :location)
+        anc = location.ancestry_with_me
+        anc.chop! if location.depth == SETTINGS['location_types'].length - 2
+        resp = resp.where('ancestry LIKE ?', "#{anc}%")
+      end
+    end
+    resp
+  end
+  
+  # === Description
+  #
   # Search for lessons: used in Admin::LessonsController
   #
   # === Args
