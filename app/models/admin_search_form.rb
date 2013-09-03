@@ -75,7 +75,7 @@ class AdminSearchForm
   # An array, not paginated yet, of records of type Document
   #
   def self.search_documents(params)
-    resp = Document.select('documents.id AS id, title, user_id, documents.created_at AS created_at, documents.updated_at AS updated_at, documents.metadata')
+    resp = Document.select('documents.id AS id, title, user_id, documents.created_at AS created_at, documents.updated_at AS updated_at, documents.metadata, documents.attachment')
     resp = resp.joins(:user)
     if params[:ordering].present?
       ord = ORDERINGS[:documents][params[:ordering].to_i]
