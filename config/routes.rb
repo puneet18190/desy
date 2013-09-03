@@ -89,7 +89,7 @@ Desy::Application.routes.draw do
   get  'lessons/view/playlist'                         => 'lesson_viewer#playlist', :as => :lesson_viewer_playlist
   get  'lessons/:lesson_id/view'                       => 'lesson_viewer#index',    :as => :lesson_viewer
   get  'lessons/:lesson_id/view/slides/:slide_id/load' => 'lesson_viewer#load_slide'
-  get  'lessons/:lesson_id/export'                   => 'lesson_export#export'
+  get  'lessons/:lesson_id/export'                     => 'lesson_export#export'
 
   # PROVVISORIA; SODDISFA I PATH RELATIVI
   get  'lesson_export'                   => 'lesson_export#export' if Rails.env.development?
@@ -199,6 +199,7 @@ Desy::Application.routes.draw do
     get       'settings/tags/:id/show/lessons'          => 'settings#lessons_for_tag'
     get       'settings/tags/:id/show/media_elements'   => 'settings#media_elements_for_tag'
     resources :lessons,                           :only => [:index, :destroy]
+    resources :documents,                         :only => [:index, :destroy]
     resources :media_elements,                    :only => [:new, :index, :destroy]
     resources :users,                             :only => [:index, :show, :destroy]
   end
@@ -206,10 +207,10 @@ Desy::Application.routes.draw do
   # UTILITIES
   get  ':locale'               => 'application#set_locale', constraints: { locale: /(en|cn|it)/ } if Desy::MORE_THAN_ONE_LANGUAGE
   if SETTINGS['media_test']
-    get  'videos_test'           => 'media_elements#videos_test'
-    get  'audios_test'           => 'media_elements#audios_test'
+    get  'videos_test'         => 'media_elements#videos_test'
+    get  'audios_test'         => 'media_elements#audios_test'
   end
   post 'browser_not_supported' => 'application#browser_not_supported'
-  match '*path',  :to => 'application#page_not_found' unless Rails.application.config.consider_all_requests_local
+  match '*path', :to => 'application#page_not_found' unless Rails.application.config.consider_all_requests_local
   
 end

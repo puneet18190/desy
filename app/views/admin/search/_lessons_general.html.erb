@@ -21,12 +21,12 @@
       <% Subject.all.each do |subject| %>
       <% if params.present? && (params[:subject_id].to_i == subject.id.to_i) %>
         <option value="<%= subject.id %>" selected="selected">
-      <%else%>
+      <% else %>
         <option value="<%= subject.id %>">
-      <%end%>
+      <% end %>
           <%= subject.description %>
         </option>
-      <%end%>
+      <% end %>
     </select>
   </div>
 </div>

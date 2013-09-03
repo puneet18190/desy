@@ -43,6 +43,12 @@ class AdminSearchForm
       'created_at %{ord}',
       'lessons_count %{ord}',
       'media_elements_count %{ord}'
+    ],
+    :documents => [
+      'id %{ord}',
+      'title %{ord}',
+      'created_at %{ord}',
+      'updated_at %{ord}'
     ]
   }
   
