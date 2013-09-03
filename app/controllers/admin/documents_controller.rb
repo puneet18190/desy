@@ -26,6 +26,11 @@ class Admin::DocumentsController < AdminController
   def index
     documents = params[:search] ? AdminSearchForm.search_documents(params[:search]) : Document.order('id DESC')
     @documents = documents.page(params[:page])
+    @locations = [Location.roots]
+    if params[:search]
+      location = Location.get_from_chain_params params[:search]
+      @locations = location.get_filled_select if location
+    end
   end
   
   # === Description
