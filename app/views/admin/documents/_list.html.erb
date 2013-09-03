@@ -44,7 +44,11 @@
           <td><%= document.human_size %></td>
           <td><%= TimeConvert.to_string document.created_at %></td>
           <td><%= TimeConvert.to_string document.updated_at %></td>
-          <td><!-- TODO MANCA link scarica documento --></td>
+          <td>
+            <a class="action" href="<%= document.url %>">
+              <i class="icon-eye-open"></i>
+            </a>
+          </td>
           <td>
             <a rel="nofollow" data-method="delete" data-confirm="<%= t('admin.documents.delete_confirm') %>" href="/admin/documents/<%= document.id %>?back_url=<%= manipulate_url(:page => back_page, :escape => true).html_safe %>">
               <i class="icon-remove"></i>
