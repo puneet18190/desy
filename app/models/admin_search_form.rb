@@ -45,10 +45,11 @@ class AdminSearchForm
       'media_elements_count %{ord}'
     ],
     :documents => [
-      'id %{ord}',
-      'title %{ord}',
-      'created_at %{ord}',
-      'updated_at %{ord}'
+      'documents.id %{ord}',
+      'documents.title %{ord}',
+      'users.surname %{ord}, users.name %{ord}',
+      'documents.created_at %{ord}',
+      'documents.updated_at %{ord}'
     ]
   }
   
