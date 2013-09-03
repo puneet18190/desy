@@ -47,7 +47,7 @@ class Slide::MathImages < Set
   def copy_to(copy_model_id)
     copy_folder = folder copy_model_id
     remove_folder copy_folder
-    FileUtils.cp_r folder, copy_folder
+    FileUtils.cp_r folder, copy_folder if folder.exist?
 
     copy = dup
     copy.model_id = copy_model_id

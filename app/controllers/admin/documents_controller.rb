@@ -47,7 +47,7 @@ class Admin::DocumentsController < AdminController
   #
   def destroy
     @document = Document.find(params[:id])
-    @element.destroy
+    @document.destroy_with_notifications
     redirect_to params[:back_url]
   end
   
