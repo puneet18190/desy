@@ -14,10 +14,14 @@
   <div class="item image-container">
     <div class="image read-only">
       <% if image1 %>
+        <%
+          url1 = image1.media_element.url(url_type)
+          effective_url1 = loaded ? url1 : ''
+        %>
         <% if is_horizontal?(image1.media_element.width, image1.media_element.height, 'image2') %>
-          <%= image_tag image1.media_element.url(url_type), :style => "left:#{image1.alignment}px; width:#{image_width1}px" %>
+          <%= image_tag effective_url1, :style => "left:#{image1.alignment}px; width:#{image_width1}px", :data => {:url => url1} %>
         <% else %>
-          <%= image_tag image1.media_element.url(url_type), :style => "top:#{image1.alignment}px; height:#{image_height1}px" %>
+          <%= image_tag effective_url1, :style => "top:#{image1.alignment}px; height:#{image_height1}px", :data => {:url => url1} %>
         <% end %>
         <% if !image1.caption.blank? %>
           <input class="caption" type="text" value="<%= image1.caption %>" disabled="disabled">
@@ -29,10 +33,14 @@
   <div class="item image-container" style="margin-right:0">
     <div class="image read-only">
       <% if image2 %>
+        <%
+          url2 = image2.media_element.url(url_type)
+          effective_url2 = loaded ? url2 : ''
+        %>
         <% if is_horizontal?(image2.media_element.width, image2.media_element.height, 'image2') %>
-          <%= image_tag image2.media_element.url(url_type), :style => "left:#{image2.alignment}px; width:#{image_width2}px" %>
+          <%= image_tag effective_url2, :style => "left:#{image2.alignment}px; width:#{image_width2}px", :data => {:url => url2} %>
         <% else %>
-          <%= image_tag image2.media_element.url(url_type), :style => "top:#{image2.alignment}px; height:#{image_height2}px" %>
+          <%= image_tag effective_url2, :style => "top:#{image2.alignment}px; height:#{image_height2}px", :data => {:url => url2} %>
         <% end %>
         <% if !image2.caption.blank? %>
           <input class="caption" type="text" value="<%= image2.caption %>" disabled="disabled">
