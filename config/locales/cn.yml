@@ -816,6 +816,9 @@ cn:
     # 4 - views/audio_editor/not_available.html.erb
     # 5 - views/media_elements/new.html.erb
     exit: "出口"
+    # Icon to export an offline lesson from lesson viewer
+    # 1 - views/lesson_viewer/_export.html.erb
+    export_lesson: "Export this lesson to a .zip file" # TODO
     # Same as above, but exit without saving
     # 1 - views/audio_editor/_header.html.erb
     # 2 - views/image_editor/_header.html.erb
