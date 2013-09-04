@@ -31,6 +31,8 @@ class LessonExportController < ApplicationController
   def export
     @slides = @lesson.slides.order(:position)
     @cover_img = @slides.first.media_elements_slides.first
+    @with_exit = false
+    @force_share = true
     archive_path = Export::Lesson::Archive.new(@lesson, render_to_string(action: :index)).public_path
     redirect_to archive_path
   end
