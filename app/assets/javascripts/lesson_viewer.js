@@ -451,7 +451,7 @@ Loads the slide without making any ajax call.
 **/
 function loadSlideInLessonViewer(slide) {
   var content = slide.find('.slide-content');
-  if(content.hasClass('video1 video2')) {
+  if(content.hasClass('video1') || content.hasClass('video2')) {
     var video = content.find('.video-container video');
     video.find('source[type="video/webm"]').attr('src', video.data('webm'));
     video.find('source[type="video/mp4"]').attr('src', video.data('mp4'));
@@ -463,9 +463,10 @@ function loadSlideInLessonViewer(slide) {
     audio.find('source[type="audio/m4a"]').attr('src', audio.data('m4a'));
     audio.load();
     initializeMedia(audio.parents('._instance_of_player').attr('id'), 'audio');
-  } else if(content.hasClass('cover image1 image2 image3 image4')) {
-    content.find('.image-container image').each(function() {
-      $(this).attr('src', $(this).data('url');
+  } else if(content.hasClass('cover') || content.hasClass('image1') || content.hasClass('image2') || content.hasClass('image3') || content.hasClass('image4')) {
+    content.find('.image-container img').each(function() {
+      var image = $(this);
+      image.attr('src', image.data('url'));
     });
   }
   slide.data('loaded', true);
@@ -505,10 +506,10 @@ function slideToInLessonViewer(to, with_drop, to_right) {
       loadSlideInLessonViewer(to_prev);
     }
     if(!to.data('loaded')) {
-      loadSlideInLessonViewer(to_prev);
+      loadSlideInLessonViewer(to);
     }
     if(!to_next.data('loaded')) {
-      loadSlideInLessonViewer(to_prev);
+      loadSlideInLessonViewer(to_next);
     }
     var media = to.find('._instance_of_player');
     var with_autoplay = mustAutoplayMediaInLessonViewer();
