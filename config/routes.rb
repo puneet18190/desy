@@ -86,10 +86,9 @@ Desy::Application.routes.draw do
   get 'images/galleries/image/new_block'     => 'galleries#image_for_image_editor_new_block'
   
   # LESSON VIEWER
-  get  'lessons/view/playlist'                         => 'lesson_viewer#playlist', :as => :lesson_viewer_playlist
-  get  'lessons/:lesson_id/view'                       => 'lesson_viewer#index',    :as => :lesson_viewer
-  get  'lessons/:lesson_id/view/slides/:slide_id/load' => 'lesson_viewer#load_slide'
-  get  'lessons/:lesson_id/export'                     => 'lesson_export#export'
+  get  'lessons/view/playlist'     => 'lesson_viewer#playlist', :as => :lesson_viewer_playlist
+  get  'lessons/:lesson_id/view'   => 'lesson_viewer#index',    :as => :lesson_viewer
+  get  'lessons/:lesson_id/export' => 'lesson_export#export'
   
   # VIRTUAL CLASSROOM
   post 'virtual_classroom/:lesson_id/remove_lesson_from_inside'          => 'virtual_classroom#remove_lesson_from_inside'
