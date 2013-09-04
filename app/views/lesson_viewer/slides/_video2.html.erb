@@ -11,7 +11,7 @@
     <div class="video read-only">
       <% if video %>
         <% if video.converted? %>
-          <%= render :partial => 'shared/players/video', :locals => {:video => video, :initialize_now => true, url_type: url_type} %>
+          <%= render :partial => 'shared/players/video', :locals => {:video => video, :initialize_now => true, url_type: url_type, exporting_slide: !loaded} %>
         <% else %>
           <%= image_tag video.placeholder_url(:lesson_viewer_big, url_type), :title => t('titles.not_available.video', :title => video.title) %>
         <% end %>

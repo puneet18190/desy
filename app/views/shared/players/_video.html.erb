@@ -1,5 +1,6 @@
 <%
   url_type ||= nil
+  exporting_slide ||= false
   if video
     video_class     = '_instance_of_player'
     webm            = video.webm_url url_type
@@ -16,7 +17,13 @@
 %>
 
 <div id="instance_<%= @video_counter[0] %>_<%= @video_counter[1] %>_of_video_player" class="videoPlayer <%= video_class %>" data-media-type="video" data-initialized="false" data-duration="<%= duration %>">
-  <video>
+  <video data-mp4="<%= mp4 %>" data-webm="<%= webm %>">
+    <%
+      if exporting_slide
+        mp4 = ''
+        webm = ''
+      end
+    %>
     <source src="<%= mp4 %>" type="video/mp4">
     <source src="<%= webm %>" type="video/webm">
     <div style="padding-top:150px; padding-bottom:120px; text-align:center"><h1><%= t('captions.dont_support_video') %></h1></div>

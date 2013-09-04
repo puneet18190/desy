@@ -15,11 +15,7 @@
           loaded = ([1, 2, slides.length].include? overall_counter)
         %>
         <li id="slide_in_lesson_viewer_<%= slide.id %>" class="_slide_in_lesson_viewer cover slide <%= class_current %> <%= class_cover %>" data-overall-counter="<%= overall_counter %>" data-lesson-id="<%= slide.lesson_id %>" data-loaded="<%= loaded %>" data-lesson-token="<%= params[:token] %>" data-lesson-updated-at="<%= slide.lesson.updated_at.to_i %>" data-slide-id="<%= slide.id %>" <%= style_current %>>
-          <% if loaded %>
-            <%= render :partial => "lesson_viewer/slides/#{slide.kind}", :locals => {slide: slide, url_type: url_type} %>
-          <% else %>
-            <%= render :partial => 'lesson_viewer/slides/loading', locals: { url_type: url_type } %>
-          <% end %>
+          <%= render :partial => "lesson_viewer/slides/#{slide.kind}", :locals => {slide: slide, url_type: url_type, loaded: loaded} %>
         </li>
         <%
           class_current = ''

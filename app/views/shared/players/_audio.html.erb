@@ -1,21 +1,29 @@
 <%
   url_type ||= nil
-  audio_class = '_empty_audio_player'
-  ogg = ''
-  m4a = ''
-  duration = ''
-  string_duration = ''
+  exporting_slide ||= false
   if audio
     audio_class = '_instance_of_player'
     ogg = audio.ogg_url url_type
     m4a = audio.m4a_url url_type
     duration = audio.min_duration
     string_duration = seconds_to_time(duration)
+  else
+    audio_class = '_empty_audio_player'
+    ogg = ''
+    m4a = ''
+    duration = ''
+    string_duration = ''
   end
 %>
 
 <div id="instance_<%= @audio_counter[0] %>_<%= @audio_counter[1] %>_of_audio_player" class="audioPlayer <%= audio_class %>" data-media-type="audio" data-initialized="false" data-duration="<%= duration %>">
-  <audio>
+  <audio data-m4a="<%= m4a %>" data-ogg="<%= ogg %>">
+    <%
+      if exporting_slide
+        m4a = ''
+        ogg = ''
+      end
+    %>
     <source src="<%= m4a %>" type="audio/mp4">
     <source src="<%= ogg %>" type="audio/ogg">
     <%= t('captions.dont_support_audio') %>
