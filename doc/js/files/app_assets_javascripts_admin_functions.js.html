@@ -696,6 +696,12 @@ function adminSortingDocumentReady() {
     $(&#x27;input#search_desc&#x27;).val($(this).data(&#x27;desc&#x27;));
     $(&#x27;#admin-search-tags&#x27;).submit();
   });
+  $body.on(&#x27;click&#x27;, &#x27;table#documents-list thead tr th a&#x27;, function(e) {
+    e.preventDefault();
+    $(&#x27;input#search_ordering&#x27;).val($(this).data(&#x27;ordering&#x27;));
+    $(&#x27;input#search_desc&#x27;).val($(this).data(&#x27;desc&#x27;));
+    $(&#x27;#admin-search-documents&#x27;).submit();
+  });
 }
 
 /**

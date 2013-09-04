@@ -20,10 +20,14 @@
   <div class="item image-container">
     <div class="image read-only">
       <% if image1 %>
+        <%
+          url1 = image1.media_element.url(url_type)
+          effective_url1 = loaded ? "src=\"#{url1}\"".html_safe : ''
+        %>
         <% if is_horizontal?(image1.media_element.width, image1.media_element.height, 'image4') %>
-          <%= image_tag image1.media_element.url(url_type), :style => "left:#{image1.alignment}px; width:#{image_width1}px" %>
+          <img style="left:<%= image1.alignment %>px; width:<%= image_width1 %>px" data-url="<%= url1 %>" alt="<%= image1.media_element.title %>" <%= effective_url1 %>>
         <% else %>
-          <%= image_tag image1.media_element.url(url_type), :style => "top:#{image1.alignment}px; height:#{image_height1}px" %>
+          <img style="top:<%= image1.alignment %>px; height:<%= image_height1 %>px" data-url="<%= url1 %>" alt="<%= image1.media_element.title %>" <%= effective_url1 %>>
         <% end %>
         <% if !image1.caption.blank? %>
           <input class="caption" type="text" value="<%= image1.caption %>" disabled="disabled">
@@ -35,10 +39,14 @@
   <div class="item image-container" style="margin-right:0">
     <div class="image read-only">
       <% if image2 %>
+        <%
+          url2 = image2.media_element.url(url_type)
+          effective_url2 = loaded ? "src=\"#{url2}\"".html_safe : ''
+        %>
         <% if is_horizontal?(image2.media_element.width, image2.media_element.height, 'image4') %>
-          <%= image_tag image2.media_element.url(url_type), :style => "left:#{image2.alignment}px; width:#{image_width2}px" %>
+          <img style="left:<%= image2.alignment %>px; width:<%= image_width2 %>px" data-url="<%= url2 %>" alt="<%= image2.media_element.title %>" <%= effective_url2 %>>
         <% else %>
-          <%= image_tag image2.media_element.url(url_type), :style => "top:#{image2.alignment}px; height:#{image_height2}px" %>
+          <img style="top:<%= image2.alignment %>px; height:<%= image_height2 %>px" data-url="<%= url2 %>" alt="<%= image2.media_element.title %>" <%= effective_url2 %>>
         <% end %>
         <% if !image2.caption.blank? %>
           <input class="caption" type="text" value="<%= image2.caption %>" disabled="disabled">
@@ -50,10 +58,14 @@
   <div class="item image-container" style="margin-bottom:0">
     <div class="image read-only">
       <% if image3 %>
+        <%
+          url3 = image3.media_element.url(url_type)
+          effective_url3 = loaded ? "src=\"#{url3}\"".html_safe : ''
+        %>
         <% if is_horizontal?(image3.media_element.width, image3.media_element.height, 'image4') %>
-          <%= image_tag image3.media_element.url(url_type), :style => "left:#{image3.alignment}px; width:#{image_width3}px" %>
+          <img style="left:<%= image3.alignment %>px; width:<%= image_width3 %>px" data-url="<%= url3 %>" alt="<%= image3.media_element.title %>" <%= effective_url3 %>>
         <% else %>
-          <%= image_tag image3.media_element.url(url_type), :style => "top:#{image3.alignment}px; height:#{image_height3}px" %>
+          <img style="top:<%= image3.alignment %>px; height:<%= image_height3 %>px" data-url="<%= url3 %>" alt="<%= image3.media_element.title %>" <%= effective_url3 %>>
         <% end %>
         <% if !image3.caption.blank? %>
           <input class="caption" type="text" value="<%= image3.caption %>" disabled="disabled">
@@ -65,10 +77,14 @@
   <div class="item image-container" style="margin-right:0; margin-bottom:0">
     <div class="image read-only">
       <% if image4 %>
+        <%
+          url4 = image4.media_element.url(url_type)
+          effective_url4 = loaded ? "src=\"#{url4}\"".html_safe : ''
+        %>
         <% if is_horizontal?(image4.media_element.width, image4.media_element.height, 'image4') %>
-          <%= image_tag image4.media_element.url(url_type), :style => "left:#{image4.alignment}px; width:#{image_width4}px" %>
+          <img style="left:<%= image4.alignment %>px; width:<%= image_width4 %>px" data-url="<%= url4 %>" alt="<%= image4.media_element.title %>" <%= effective_url4 %>>
         <% else %>
-          <%= image_tag image4.media_element.url(url_type), :style => "top:#{image4.alignment}px; height:#{image_height4}px" %>
+          <img style="top:<%= image4.alignment %>px; height:<%= image_height4 %>px" data-url="<%= url4 %>" alt="<%= image4.media_element.title %>" <%= effective_url4 %>>
         <% end %>
         <% if !image4.caption.blank? %>
           <input class="caption" type="text" value="<%= image4.caption %>" disabled="disabled">

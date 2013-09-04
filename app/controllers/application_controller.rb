@@ -72,6 +72,12 @@ class ApplicationController < ActionController::Base
     end
   end
   
+  # Uses ApplicationController#initialize_lesson and additionally checks if the logged user owns the lesson or the lesson is public
+  def initialize_lesson_with_owner_or_public
+    initialize_lesson
+    update_ok(@lesson && current_user.id == @lesson.user_id || @lesson.is_public)
+  end
+  
   # Uses ApplicationController#initialize_lesson and additionally checks if the logged user owns the lesson
   def initialize_lesson_with_owner
     initialize_lesson

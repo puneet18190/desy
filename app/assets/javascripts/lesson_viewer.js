@@ -98,17 +98,11 @@ function lessonViewerDocumentReadySlidesNavigation() {
   });
   $body.on('click', '#right_scroll', function(e) {
     e.preventDefault();
-    if(!$(this).hasClass('disabled')) {
-      $(this).addClass('disabled');
-      goToNextSlideInLessonViewer(false);
-    }
+    goToNextSlideInLessonViewer(false);
   });
   $body.on('click', '#left_scroll', function(e) {
     e.preventDefault();
-    if(!$(this).hasClass('disabled')) {
-      $(this).addClass('disabled');
-      goToPrevSlideInLessonViewer(false);
-    }
+    goToPrevSlideInLessonViewer(false);
   });
   $('.lesson-viewer-layout, .lesson-export-layout').on('swipeleft', function() {
     if(mustReactToSwipe()) {
@@ -451,6 +445,34 @@ function goToPrevSlideInLessonViewer(with_drop) {
 }
 
 /**
+Loads the slide without making any ajax call.
+@method loadSlideInLessonViewer
+@for LessonViewerSlidesNavigation
+**/
+function loadSlideInLessonViewer(slide) {
+  var content = slide.find('.slide-content');
+  if(content.hasClass('video1') || content.hasClass('video2')) {
+    var video = content.find('.video-container video');
+    video.find('source[type="video/webm"]').attr('src', video.data('webm'));
+    video.find('source[type="video/mp4"]').attr('src', video.data('mp4'));
+    video.load();
+    initializeMedia(video.parents('._instance_of_player').attr('id'), 'video');
+  } else if(content.hasClass('audio')) {
+    var audio = content.find('.audio-container audio');
+    audio.find('source[type="audio/ogg"]').attr('src', audio.data('ogg'));
+    audio.find('source[type="audio/m4a"]').attr('src', audio.data('m4a'));
+    audio.load();
+    initializeMedia(audio.parents('._instance_of_player').attr('id'), 'audio');
+  } else if(content.hasClass('cover') || content.hasClass('image1') || content.hasClass('image2') || content.hasClass('image3') || content.hasClass('image4')) {
+    content.find('.image-container img').each(function() {
+      var image = $(this);
+      image.attr('src', image.data('url'));
+    });
+  }
+  slide.data('loaded', true);
+}
+
+/**
 Goes to a given slide. If the new slide contains a media and the browser is not a mobile the media is automaticly played.
 @method slideToInLessonViewer
 @for LessonViewerSlidesNavigation
@@ -480,21 +502,14 @@ function slideToInLessonViewer(to, with_drop, to_right) {
     if(to_next.length == 0) {
       to_next = $('._slide_in_lesson_viewer').first();
     }
-    var loading_url = '/lessons/' + to.data('lesson-id') + '/view/slides/' + to.data('slide-id') + '/load?token=' + to.data('lesson-token');
-    if($('._lesson_title_in_playlist').length > 0) {
-      loading_url += '&with_playlist=true';
+    if(!to_prev.data('loaded')) {
+      loadSlideInLessonViewer(to_prev);
     }
-    if(!to_prev.data('loaded') || !to.data('loaded') || !to_next.data('loaded')) {
-      unbindLoader();
-      $.ajax({
-        type: 'get',
-        url: loading_url,
-        success: function() {
-          $('#left_scroll, #right_scroll').removeClass('disabled');
-        }
-      }).always(bindLoader);
-    } else {
-      $('#left_scroll, #right_scroll').removeClass('disabled');
+    if(!to.data('loaded')) {
+      loadSlideInLessonViewer(to);
+    }
+    if(!to_next.data('loaded')) {
+      loadSlideInLessonViewer(to_next);
     }
     var media = to.find('._instance_of_player');
     var with_autoplay = mustAutoplayMediaInLessonViewer();

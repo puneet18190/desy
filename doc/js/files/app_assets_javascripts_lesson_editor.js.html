@@ -611,10 +611,12 @@ function lessonEditorDocumentReadyGalleries() {
   $body.on(&#x27;click&#x27;, &#x27;#lesson_editor_document_gallery_container #document_gallery .footerButtons .attach&#x27;, function() {
     removeGalleryInLessonEditor(&#x27;document&#x27;);
     unLoadDocumentGalleryContent($(&#x27;#lesson_editor_document_gallery_container&#x27;).data(&#x27;slide-id&#x27;));
-    if($(&#x27;.document_attached .documentInGallery&#x27;).length == 0) {
+    var num_docs = $(&#x27;.document_attached .documentInGallery&#x27;).length;
+    if(num_docs == 0) {
       $(&#x27;li._lesson_editor_current_slide .attached_document_internal&#x27;).hide();
     } else {
-      $(&#x27;li._lesson_editor_current_slide .attached_document_internal&#x27;).show();
+      var my_title = $(&#x27;#lesson_editor_document_gallery_container&#x27;).data(&#x27;title-&#x27; + num_docs + &#x27;-doc&#x27;);
+      $(&#x27;li._lesson_editor_current_slide .attached_document_internal&#x27;).attr(&#x27;title&#x27;, my_title).show();
     }
     saveCurrentSlide(&#x27;&#x27;, false);
   });
@@ -832,7 +834,7 @@ function lessonEditorDocumentReadySlideButtons() {
       url: &#x27;/lessons/&#x27; + $(&#x27;#info_container&#x27;).data(&#x27;lesson-id&#x27;) + &#x27;/slides/&#x27; + slide.data(&#x27;slide-id&#x27;) + &#x27;/delete&#x27;
     });
   });
-  $body.on(&#x27;click&#x27;, &#x27;._attach_document, .attached_document_internal&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;._attach_document, li._lesson_editor_current_slide .attached_document_internal&#x27;, function() {
     stopMediaInCurrentSlide();
     showDocumentGalleryInLessonEditor();
   });
@@ -1154,14 +1156,23 @@ function showPopuppina(id) {
     triangolo.css(&#x27;-ms-transform&#x27;, (&#x27;rotate(180deg)&#x27;));
     triangolo.css(&#x27;top&#x27;, ((offset.top + 34) + &#x27;px&#x27;)).css(&#x27;left&#x27;, ((offset.left + 24) + &#x27;px&#x27;)).show(&#x27;fade&#x27;, {}, 300);
   } else {
-    var top_distance = offset.top - container.find(&#x27;.for-scroll-pain&#x27;).data(&#x27;jsp&#x27;).getContentPositionY();
+    var top_distance = offset.top;
+    if(container.find(&#x27;.for-scroll-pain&#x27;).hasClass(&#x27;jspScrollable&#x27;)) {
+      top_distance -= container.find(&#x27;.for-scroll-pain&#x27;).data(&#x27;jsp&#x27;).getContentPositionY();
+    } else {
+      top_distance -= 205.75;
+    }
     if(top_distance &lt; (popuppina.height() + 5)) {
-      popuppina.css(&#x27;top&#x27;, ((offset.top + 49) + &#x27;px&#x27;)).show(&#x27;fade&#x27;, {}, 300);
+      var to_top = 5;
+      if(parent.prev().length == 0) {
+        to_top = 0;
+      }
+      popuppina.css(&#x27;top&#x27;, ((offset.top + 44 + to_top) + &#x27;px&#x27;)).show(&#x27;fade&#x27;, {}, 300);
       triangolo.css(&#x27;-webkit-transform&#x27;, (&#x27;rotate(180deg)&#x27;));
       triangolo.css(&#x27;-moz-transform&#x27;, (&#x27;rotate(180deg)&#x27;));
       triangolo.css(&#x27;-o-transform&#x27;, (&#x27;rotate(180deg)&#x27;));
       triangolo.css(&#x27;-ms-transform&#x27;, (&#x27;rotate(180deg)&#x27;));
-      triangolo.css(&#x27;top&#x27;, ((offset.top + 39) + &#x27;px&#x27;)).css(&#x27;left&#x27;, ((offset.left + 24) + &#x27;px&#x27;)).show(&#x27;fade&#x27;, {}, 300);
+      triangolo.css(&#x27;top&#x27;, ((offset.top + 34 + to_top) + &#x27;px&#x27;)).css(&#x27;left&#x27;, ((offset.left + 24) + &#x27;px&#x27;)).show(&#x27;fade&#x27;, {}, 300);
     } else {
       popuppina.css(&#x27;top&#x27;, ((offset.top - popuppina.height() - 5) + &#x27;px&#x27;)).show(&#x27;fade&#x27;, {}, 300);
       triangolo.css(&#x27;-webkit-transform&#x27;, (&#x27;rotate(0deg)&#x27;));
@@ -1521,6 +1532,10 @@ Moves to a slide, update current slide in top navigation.
 @param callback {Object} callback function, to be executed after the slide (for instance, this function is used to call {{#crossLink &quot;LessonEditorCurrentSlide/showNewSlideOptions:method&quot;}}{{/crossLink}})
 **/
 function slideTo(slide_id, callback) {
+  var tiny_tool = $(&#x27;#ta-&#x27; + $(&#x27;li._lesson_editor_current_slide&#x27;).data(&#x27;slide-id&#x27;) + &#x27;_external&#x27;);
+  if(tiny_tool.length &gt; 0) {
+    tiny_tool.hide();
+  }
   loadSlideAndAdhiacentInLessonEditor(slide_id);
   var slide = $(&#x27;#slide_in_lesson_editor_&#x27; + slide_id);
   var position = slide.data(&#x27;position&#x27;);

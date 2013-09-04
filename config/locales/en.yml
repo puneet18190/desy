@@ -2630,6 +2630,10 @@ en:
   admin:
     # Captions used inside the common navigational menu
     menu:
+      documents:
+        # Link to the section 'Documents'
+        # 1 - views/admin/_header.html.erb
+        link: "Documents"
       lessons:
         # Link to the section 'Lessons'
         # 1 - views/admin/_header.html.erb
@@ -2730,6 +2734,44 @@ en:
       # Link used to enter in 'Administration' from outside (placed on the side of the link 'logout', only for administrators)
       # 1 - views/shared/_logout.html.erb
       link: "Administration"
+    # Captions of the section 'documents'
+    documents:
+      # Title of the section
+      # 1 - views/admin/documents/index.html.erb
+      title: "Documents"
+      # Popup which asks for confirmation before deleting a document
+      # 1 - views/admin/documents/_list.html.erb
+      delete_confirm: "Are you sure you want to delete this document?"
+      # Placeholder used when there are no documents associated to the selected filter
+      # 1 - views/admin/documents/_list.html.erb
+      empty: "No documents found"
+      # Labels for the fields of a document
+      fields:
+        # 1 - views/admin/documents/_list.html.erb
+        created_at: "Creation date"
+        # 1 - views/admin/documents/_list.html.erb
+        format: "Format"
+        # 1 - views/admin/documents/_list.html.erb
+        id: "Id"
+        # 1 - views/admin/documents/_list.html.erb
+        size: "Size"
+        # 1 - views/admin/documents/_list.html.erb
+        title: "Title"
+        # 1 - views/admin/documents/_list.html.erb
+        updated_at: "Last update"
+        # 1 - views/admin/documents/_list.html.erb
+        user: "User"
+      # Name used as label in the pagination (ex. '1-10 of 300 documents')
+      # 1 - helpers/admin_helper.rb
+      name: "Documents"
+      # Frame for the documents search engine
+      search:
+        # Title of the frame
+        # 1 - views/admin/documents/index.html.erb
+        label: "Search documents"
+        # Button to start the search
+        # 1 - views/admin/documents/index.html.erb
+        submit: "Search"
     # Section of lessons
     lessons:
       # Title of the section
@@ -2899,6 +2941,22 @@ en:
           # Case 2: the final date is before the initial date
           # 1 - views/admin/search/_alerts.html.erb
           final_preceeds_initial: "The final date can't be before the initial date"
+      # Contents of search engine specific for documents
+      documents:
+        # Title of the frame
+        # 1 - views/admin/search/_documents_general.html.erb
+        title: "General"
+        # Fields used in the research
+        fields:
+          # 1 - views/admin/search/_documents_general.html.erb
+          # 2 - views/admin/search/_documents_general.html.erb
+          id: "Id"
+          # 1 - views/admin/search/_documents_general.html.erb
+          # 2 - views/admin/search/_documents_general.html.erb
+          title: "Title"
+          # 1 - views/admin/search/_documents_general.html.erb
+          # 2 - views/admin/search/_documents_general.html.erb
+          user: "User"
       # Contents of search engine specific for lessons
       lessons:
         # Title of the frame
