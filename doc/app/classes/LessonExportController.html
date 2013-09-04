@@ -38,6 +38,25 @@
     <div id="bodyContent">
         <div id="content">
   
+    <div class="description">
+      
+<h2 id="label-Description">Description</h2>
+
+<p>Controller for exporting lessons</p>
+
+<h2 id="label-Models+used">Models used</h2>
+<ul><li>
+<p><a href="Lesson.html">Lesson</a></p>
+</li><li>
+<p><a href="Slide.html">Slide</a></p>
+</li><li>
+<p><a href="DocumentsSlide.html">DocumentsSlide</a></p>
+</li><li>
+<p><a href="MediaElementsSlide.html">MediaElementsSlide</a></p>
+</li></ul>
+
+    </div>
+  
 
 
   
@@ -100,7 +119,19 @@
           
           
             <div class="description">
-              
+              <h3 id="method-i-export-label-Description">Description</h3>
+
+<p>Downloads the lesson offline.</p>
+
+<h3 id="method-i-export-label-Mode">Mode</h3>
+
+<p>Html</p>
+
+<h3 id="method-i-export-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p><a
+href="ApplicationController.html#method-i-initialize_lesson_with_owner_or_public">ApplicationController#initialize_lesson_with_owner_or_public</a></p>
+</li></ul>
             </div>
           
           
@@ -116,13 +147,10 @@
                 
               </p>
               <div id="method-i-export_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/lesson_export_controller.rb, line 7</span>
+                <pre><span class="ruby-comment"># File app/controllers/lesson_export_controller.rb, line 31</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">export</span>
-  <span class="ruby-identifier">initialize_lesson</span>
-
   <span class="ruby-ivar">@slides</span> = <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">slides</span>.<span class="ruby-identifier">order</span>(<span class="ruby-value">:position</span>)
   <span class="ruby-ivar">@cover_img</span> = <span class="ruby-ivar">@slides</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">media_elements_slides</span>.<span class="ruby-identifier">first</span>
-
   <span class="ruby-identifier">archive_path</span> = <span class="ruby-constant">Export</span><span class="ruby-operator">::</span><span class="ruby-constant">Lesson</span><span class="ruby-operator">::</span><span class="ruby-constant">Archive</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@lesson</span>, <span class="ruby-identifier">render_to_string</span>(<span class="ruby-identifier">action</span><span class="ruby-operator">:</span> <span class="ruby-value">:index</span>)).<span class="ruby-identifier">public_path</span>
   <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">archive_path</span>
 <span class="ruby-keyword">end</span></pre>

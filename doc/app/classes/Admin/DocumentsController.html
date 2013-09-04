@@ -160,7 +160,7 @@ href="../ApplicationController.html#method-i-admin_authenticate">ApplicationCont
                 <pre><span class="ruby-comment"># File app/controllers/admin/documents_controller.rb, line 48</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">destroy</span>
   <span class="ruby-ivar">@document</span> = <span class="ruby-constant">Document</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
-  <span class="ruby-ivar">@element</span>.<span class="ruby-identifier">destroy</span>
+  <span class="ruby-ivar">@document</span>.<span class="ruby-identifier">destroy_with_notifications</span>
   <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:back_url</span>]
 <span class="ruby-keyword">end</span></pre>
               </div>

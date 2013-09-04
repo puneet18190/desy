@@ -336,7 +336,7 @@
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">copy_to</span>(<span class="ruby-identifier">copy_model_id</span>)
   <span class="ruby-identifier">copy_folder</span> = <span class="ruby-identifier">folder</span> <span class="ruby-identifier">copy_model_id</span>
   <span class="ruby-identifier">remove_folder</span> <span class="ruby-identifier">copy_folder</span>
-  <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">cp_r</span> <span class="ruby-identifier">folder</span>, <span class="ruby-identifier">copy_folder</span>
+  <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">cp_r</span> <span class="ruby-identifier">folder</span>, <span class="ruby-identifier">copy_folder</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">folder</span>.<span class="ruby-identifier">exist?</span>
 
   <span class="ruby-identifier">copy</span> = <span class="ruby-identifier">dup</span>
   <span class="ruby-identifier">copy</span>.<span class="ruby-identifier">model_id</span> = <span class="ruby-identifier">copy_model_id</span>

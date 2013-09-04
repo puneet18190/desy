@@ -4749,7 +4749,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 127,
+            "line": 121,
             "description": "Initializer for functionality of sharing the lesson in social networks.",
             "itemtype": "method",
             "name": "lessonViewerDocumentReadySocialNetworks",
@@ -4758,7 +4758,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 192,
+            "line": 186,
             "description": "Gets the HTML id of the current slide (marked with the class <b>lesson viewer current slide</b>).",
             "itemtype": "method",
             "name": "getLessonViewerCurrentSlide",
@@ -4771,7 +4771,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 202,
+            "line": 196,
             "description": "Hides the documents.",
             "itemtype": "method",
             "name": "hideDocumentsInLessonViewer",
@@ -4780,7 +4780,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 212,
+            "line": 206,
             "description": "Initializes the positions, and selects the right lesson in the playlist menu. Called in {{#crossLink \"LessonViewerDocumentReady/lessonViewerDocumentReady:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "initializeLessonViewer",
@@ -4789,7 +4789,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 228,
+            "line": 222,
             "description": "Shows the documents.",
             "itemtype": "method",
             "name": "showDocumentsInLessonViewer",
@@ -4798,7 +4798,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 241,
+            "line": 235,
             "description": "Stops media playing in current slide.",
             "itemtype": "method",
             "name": "stopMediaInLessonViewer",
@@ -4807,7 +4807,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 263,
+            "line": 257,
             "description": "Hides slides navigation arrows.",
             "itemtype": "method",
             "name": "hideArrowsInLessonViewer",
@@ -4816,7 +4816,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 272,
+            "line": 266,
             "description": "Shows slides navigation arrows.",
             "itemtype": "method",
             "name": "showArrowsInLessonViewer",
@@ -4825,7 +4825,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 285,
+            "line": 279,
             "description": "Closes the playlist menu and executes a callback.",
             "itemtype": "method",
             "name": "closePlaylistMenuInLessonViewer",
@@ -4841,7 +4841,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 300,
+            "line": 294,
             "description": "Opposite of {{#crossLink \"LessonViewerPlaylist/closePlaylistMenuInLessonViewer:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "openPlaylistMenuInLessonViewer",
@@ -4850,7 +4850,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 312,
+            "line": 306,
             "description": "Huge method that replaces missing functionalities of the bad plugin JScrollPain. The aim of this method is to select a lesson in the menu, adapt the size of the scroll pane, and if required scroll and execute a callback.",
             "itemtype": "method",
             "name": "selectComponentInLessonViewerPlaylistMenu",
@@ -4871,7 +4871,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 402,
+            "line": 396,
             "description": "This method can be used in two ways:\n<ul>\n  <li><b>with callback</b>, if the user clicks on a lesson in the menu</li>\n  <li><b>without callback</b>, if the user gets to a new lesson while navigating normally (he clicks only on <i>next slide</i> and <i>prev slide</i>, see {{#crossLink \"LessonViewerSlidesNavigation/slideToInLessonViewerWithLessonSwitch:method\"}}{{/crossLink}})</li>\n</ul>",
             "itemtype": "method",
             "name": "switchLessonInPlaylistMenuLessonViewer",
@@ -4892,7 +4892,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 425,
+            "line": 419,
             "description": "Goes to next slide using {{#crossLink \"LessonViewerSlidesNavigation/slideToInLessonViewer:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "goToNextSlideInLessonViewer",
@@ -4901,7 +4901,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 439,
+            "line": 433,
             "description": "Goes to previous slide using {{#crossLink \"LessonViewerSlidesNavigation/slideToInLessonViewer:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "goToPrevSlideInLessonViewer",
@@ -4910,7 +4910,16 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 453,
+            "line": 447,
+            "description": "Loads the slide without making any ajax call.",
+            "itemtype": "method",
+            "name": "loadSlideInLessonViewer",
+            "class": "LessonViewerSlidesNavigation",
+            "module": "lesson-viewer"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_viewer.js",
+            "line": 475,
             "description": "Goes to a given slide. If the new slide contains a media and the browser is not a mobile the media is automaticly played.",
             "itemtype": "method",
             "name": "slideToInLessonViewer",
@@ -4926,7 +4935,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 507,
+            "line": 522,
             "description": "Goes to a slide (using {{#crossLink \"LessonViewerSlidesNavigation/slideToInLessonViewer:method\"}}{{/crossLink}}) and updates the lesson in playlist menu (using {{#crossLink \"LessonViewerPlaylist/switchLessonInPlaylistMenuLessonViewer:method\"}}{{/crossLink}} without callbacks).",
             "itemtype": "method",
             "name": "slideToInLessonViewerWithLessonSwitch",

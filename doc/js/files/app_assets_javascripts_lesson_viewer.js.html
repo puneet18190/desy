@@ -418,17 +418,11 @@ function lessonViewerDocumentReadySlidesNavigation() {
   });
   $body.on(&#x27;click&#x27;, &#x27;#right_scroll&#x27;, function(e) {
     e.preventDefault();
-    if(!$(this).hasClass(&#x27;disabled&#x27;)) {
-      $(this).addClass(&#x27;disabled&#x27;);
-      goToNextSlideInLessonViewer(false);
-    }
+    goToNextSlideInLessonViewer(false);
   });
   $body.on(&#x27;click&#x27;, &#x27;#left_scroll&#x27;, function(e) {
     e.preventDefault();
-    if(!$(this).hasClass(&#x27;disabled&#x27;)) {
-      $(this).addClass(&#x27;disabled&#x27;);
-      goToPrevSlideInLessonViewer(false);
-    }
+    goToPrevSlideInLessonViewer(false);
   });
   $(&#x27;.lesson-viewer-layout, .lesson-export-layout&#x27;).on(&#x27;swipeleft&#x27;, function() {
     if(mustReactToSwipe()) {
@@ -771,6 +765,34 @@ function goToPrevSlideInLessonViewer(with_drop) {
 }
 
 /**
+Loads the slide without making any ajax call.
+@method loadSlideInLessonViewer
+@for LessonViewerSlidesNavigation
+**/
+function loadSlideInLessonViewer(slide) {
+  var content = slide.find(&#x27;.slide-content&#x27;);
+  if(content.hasClass(&#x27;video1&#x27;) || content.hasClass(&#x27;video2&#x27;)) {
+    var video = content.find(&#x27;.video-container video&#x27;);
+    video.find(&#x27;source[type=&quot;video/webm&quot;]&#x27;).attr(&#x27;src&#x27;, video.data(&#x27;webm&#x27;));
+    video.find(&#x27;source[type=&quot;video/mp4&quot;]&#x27;).attr(&#x27;src&#x27;, video.data(&#x27;mp4&#x27;));
+    video.load();
+    initializeMedia(video.parents(&#x27;._instance_of_player&#x27;).attr(&#x27;id&#x27;), &#x27;video&#x27;);
+  } else if(content.hasClass(&#x27;audio&#x27;)) {
+    var audio = content.find(&#x27;.audio-container audio&#x27;);
+    audio.find(&#x27;source[type=&quot;audio/ogg&quot;]&#x27;).attr(&#x27;src&#x27;, audio.data(&#x27;ogg&#x27;));
+    audio.find(&#x27;source[type=&quot;audio/m4a&quot;]&#x27;).attr(&#x27;src&#x27;, audio.data(&#x27;m4a&#x27;));
+    audio.load();
+    initializeMedia(audio.parents(&#x27;._instance_of_player&#x27;).attr(&#x27;id&#x27;), &#x27;audio&#x27;);
+  } else if(content.hasClass(&#x27;cover&#x27;) || content.hasClass(&#x27;image1&#x27;) || content.hasClass(&#x27;image2&#x27;) || content.hasClass(&#x27;image3&#x27;) || content.hasClass(&#x27;image4&#x27;)) {
+    content.find(&#x27;.image-container img&#x27;).each(function() {
+      var image = $(this);
+      image.attr(&#x27;src&#x27;, image.data(&#x27;url&#x27;));
+    });
+  }
+  slide.data(&#x27;loaded&#x27;, true);
+}
+
+/**
 Goes to a given slide. If the new slide contains a media and the browser is not a mobile the media is automaticly played.
 @method slideToInLessonViewer
 @for LessonViewerSlidesNavigation
@@ -800,21 +822,14 @@ function slideToInLessonViewer(to, with_drop, to_right) {
     if(to_next.length == 0) {
       to_next = $(&#x27;._slide_in_lesson_viewer&#x27;).first();
     }
-    var loading_url = &#x27;/lessons/&#x27; + to.data(&#x27;lesson-id&#x27;) + &#x27;/view/slides/&#x27; + to.data(&#x27;slide-id&#x27;) + &#x27;/load?token=&#x27; + to.data(&#x27;lesson-token&#x27;);
-    if($(&#x27;._lesson_title_in_playlist&#x27;).length &gt; 0) {
-      loading_url += &#x27;&amp;with_playlist=true&#x27;;
+    if(!to_prev.data(&#x27;loaded&#x27;)) {
+      loadSlideInLessonViewer(to_prev);
     }
-    if(!to_prev.data(&#x27;loaded&#x27;) || !to.data(&#x27;loaded&#x27;) || !to_next.data(&#x27;loaded&#x27;)) {
-      unbindLoader();
-      $.ajax({
-        type: &#x27;get&#x27;,
-        url: loading_url,
-        success: function() {
-          $(&#x27;#left_scroll, #right_scroll&#x27;).removeClass(&#x27;disabled&#x27;);
-        }
-      }).always(bindLoader);
-    } else {
-      $(&#x27;#left_scroll, #right_scroll&#x27;).removeClass(&#x27;disabled&#x27;);
+    if(!to.data(&#x27;loaded&#x27;)) {
+      loadSlideInLessonViewer(to);
+    }
+    if(!to_next.data(&#x27;loaded&#x27;)) {
+      loadSlideInLessonViewer(to_next);
     }
     var media = to.find(&#x27;._instance_of_player&#x27;);
     var with_autoplay = mustAutoplayMediaInLessonViewer();
