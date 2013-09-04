@@ -98,17 +98,11 @@ function lessonViewerDocumentReadySlidesNavigation() {
   });
   $body.on('click', '#right_scroll', function(e) {
     e.preventDefault();
-    if(!$(this).hasClass('disabled')) {
-      $(this).addClass('disabled');
-      goToNextSlideInLessonViewer(false);
-    }
+    goToNextSlideInLessonViewer(false);
   });
   $body.on('click', '#left_scroll', function(e) {
     e.preventDefault();
-    if(!$(this).hasClass('disabled')) {
-      $(this).addClass('disabled');
-      goToPrevSlideInLessonViewer(false);
-    }
+    goToPrevSlideInLessonViewer(false);
   });
   $('.lesson-viewer-layout, .lesson-export-layout').on('swipeleft', function() {
     if(mustReactToSwipe()) {
@@ -480,21 +474,14 @@ function slideToInLessonViewer(to, with_drop, to_right) {
     if(to_next.length == 0) {
       to_next = $('._slide_in_lesson_viewer').first();
     }
-    var loading_url = '/lessons/' + to.data('lesson-id') + '/view/slides/' + to.data('slide-id') + '/load?token=' + to.data('lesson-token');
-    if($('._lesson_title_in_playlist').length > 0) {
-      loading_url += '&with_playlist=true';
+    if(!to_prev.data('loaded')) {
+      loadSlideInLessonViewer(to_prev);
     }
-    if(!to_prev.data('loaded') || !to.data('loaded') || !to_next.data('loaded')) {
-      unbindLoader();
-      $.ajax({
-        type: 'get',
-        url: loading_url,
-        success: function() {
-          $('#left_scroll, #right_scroll').removeClass('disabled');
-        }
-      }).always(bindLoader);
-    } else {
-      $('#left_scroll, #right_scroll').removeClass('disabled');
+    if(!to.data('loaded')) {
+      loadSlideInLessonViewer(to_prev);
+    }
+    if(!to_next.data('loaded')) {
+      loadSlideInLessonViewer(to_prev);
     }
     var media = to.find('._instance_of_player');
     var with_autoplay = mustAutoplayMediaInLessonViewer();
