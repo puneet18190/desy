@@ -4,8 +4,6 @@ require 'zlib'
 
 require 'zip'
 
-require 'zip_file_patch'
-
 require 'env_relative_path'
 
 require 'export'
