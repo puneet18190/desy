@@ -15,7 +15,8 @@ module Export
 
       include EnvRelativePath
 
-      FOLDER                               = env_relative_pathname RAILS_PUBLIC, 'exports', 'lessons'
+      FOLDER                               = env_relative_pathname Rails.root, 'app', 'exports', 'lessons', 'archives'
+      PUBLIC_FOLDER                        = env_relative_pathname RAILS_PUBLIC, 'exports', 'lessons'
       MEDIA_ELEMENTS_UPFOLDER              = RAILS_PUBLIC
       ASSETS_ARCHIVE_MAIN_FOLDER_NAME      = 'assets'
       MATH_IMAGES_ARCHIVE_MAIN_FOLDER_NAME = 'math_images'
@@ -23,7 +24,7 @@ module Export
       # STORED or DEFLATED
       COMPRESSION_METHOD = Zip::Entry::STORED
 
-      WRITE_TIME_FORMAT = '%Y%m%d_%H%M%S_%Z_%N'
+      TIME_FORMAT = '%Y%m%d_%H%M%S_%Z_%N'
 
       INDEX_PAGE_NAME = 'index.html'
 
@@ -31,33 +32,50 @@ module Export
         FileUtils.rm_rf FOLDER
       end
 
+      def self.remove_public_folder!
+        FileUtils.rm_rf PUBLIC_FOLDER
+      end
+
       private
       attr_reader :lesson, :index, 
-                  :filename_without_extension, :archive_main_folder, :filename, :folder, :path, :assets_archive_main_folder, :math_images_archive_main_folder
+                  :filename_without_extension, :archive_main_folder,
+                  :folder, :path,
+                  :public_folder, :public_path,
+                  :assets_archive_main_folder, :math_images_archive_main_folder
       public
 
       def initialize(lesson, index)
         @lesson, @index = lesson, index
 
-        parameterized_title = lesson.title.parameterize
-        filename_without_extension_and_time = lesson.id.to_s
-        filename_without_extension_and_time << "_#{parameterized_title}" if parameterized_title.present?
+        filename_without_extension_and_time = ''.tap do |s|
+          s << lesson.id.to_s
 
-        filename_time = lesson.updated_at.utc.strftime(WRITE_TIME_FORMAT)
+          parameterized_title = lesson.title.parameterize
 
-        @filename_without_extension      = filename_without_extension_and_time << '_' << filename_time
-        @archive_main_folder             = filename_without_extension
-        @filename                        = "#{filename_without_extension}.zip"
+          s << "_#{parameterized_title}" if parameterized_title.present?
+        end
+
+        filename_time = lesson.updated_at.utc.strftime(TIME_FORMAT)
+
+        @filename_without_extension      = filename_without_extension_and_time + '_' + filename_time
+        @archive_main_folder             = filename_without_extension_and_time
+
+        filename                         = "#{filename_without_extension}.zip"
         @folder                          = FOLDER.join lesson.id.to_s
         @path                            = folder.join filename
+
+        public_filename                  = "#{filename_without_extension_and_time}.zip"
+        @public_folder                   = PUBLIC_FOLDER.join lesson.id.to_s
+        @public_path                     = public_folder.join public_filename
+
         @assets_archive_main_folder      = File.join archive_main_folder, ASSETS_ARCHIVE_MAIN_FOLDER_NAME
         @math_images_archive_main_folder = File.join archive_main_folder, MATH_IMAGES_ARCHIVE_MAIN_FOLDER_NAME
       end
 
-      def public_path
+      def url
         find_or_create
 
-        "/#{path.relative_path_from RAILS_PUBLIC}"
+        "/#{public_path.relative_path_from RAILS_PUBLIC}"
       end
 
       def find_or_create
@@ -69,9 +87,17 @@ module Export
         folder.mkpath unless folder.exist?
         remove_other_possible_archives
         create
+        
+        public_folder.mkpath unless public_folder.exist?
+        remove_other_possible_links
+        link
       end
 
+
       private
+      def link
+        public_path.make_symlink path.relative_path_from(public_path.dirname)
+      end
 
       def math_images
         lesson.slides.map{ |s| s.math_images.to_a(:with_folder) }.flatten.uniq_by{ |v| v.basename }
@@ -79,6 +105,10 @@ module Export
 
       def assets_compiled?
         ASSETS_FOLDER.exist? && !ASSETS_FOLDER.entries.empty?
+      end
+
+      def remove_other_possible_links
+        Pathname.glob(public_folder.join '*.zip').each{ |path| path.unlink }
       end
 
       def remove_other_possible_archives
@@ -117,6 +147,7 @@ module Export
         path.chmod 0644
       rescue => e
         path.unlink if path.exist?
+        public_path.unlink if public_path.exist?
         raise e
       end
 

@@ -3,10 +3,11 @@ namespace :exports do
 
     namespace :archives do
       
-      desc "Remove lesson archives"
+      desc "Remove lesson archives and public links"
       task :clean => :environment do
         require 'export'
         Export::Lesson::Archive.remove_folder!
+        Export::Lesson::Archive.remove_public_folder!
       end
 
     end
