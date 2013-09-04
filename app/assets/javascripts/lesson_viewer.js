@@ -450,7 +450,24 @@ Loads the slide without making any ajax call.
 @for LessonViewerSlidesNavigation
 **/
 function loadSlideInLessonViewer(slide) {
-  // TODO fare lo switch per tipo di slide
+  var content = slide.find('.slide-content');
+  if(content.hasClass('video1 video2')) {
+    var video = content.find('.video-container video');
+    video.find('source[type="video/webm"]').attr('src', video.data('webm'));
+    video.find('source[type="video/mp4"]').attr('src', video.data('mp4'));
+    video.load();
+    initializeMedia(video.parents('._instance_of_player').attr('id'), 'video');
+  } else if(content.hasClass('audio')) {
+    var audio = content.find('.audio-container audio');
+    audio.find('source[type="audio/ogg"]').attr('src', audio.data('ogg'));
+    audio.find('source[type="audio/m4a"]').attr('src', audio.data('m4a'));
+    audio.load();
+    initializeMedia(audio.parents('._instance_of_player').attr('id'), 'audio');
+  } else if(content.hasClass('cover image1 image2 image3 image4')) {
+    content.find('.image-container image').each(function() {
+      $(this).attr('src', $(this).data('url');
+    });
+  }
   slide.data('loaded', true);
 }
 
