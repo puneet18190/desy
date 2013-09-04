@@ -445,6 +445,16 @@ function goToPrevSlideInLessonViewer(with_drop) {
 }
 
 /**
+Loads the slide without making any ajax call.
+@method loadSlideInLessonViewer
+@for LessonViewerSlidesNavigation
+**/
+function loadSlideInLessonViewer(slide) {
+  // TODO fare lo switch per tipo di slide
+  slide.data('loaded', true);
+}
+
+/**
 Goes to a given slide. If the new slide contains a media and the browser is not a mobile the media is automaticly played.
 @method slideToInLessonViewer
 @for LessonViewerSlidesNavigation
