@@ -29,38 +29,15 @@
 
 
 $(document).ready(function() {
-  window.$loaderVisible = true;
-  window.$loading = $('#loading');
   window.$body = $('body');
   window.$captions = $('#popup_captions_container');
   window.$parameters = $('#popup_parameters_container');
   browsersDocumentReady();
   generalWindowResizeDocumentReady();
-  ajaxLoaderDocumentReady();
   defaultValueJavaScriptAnimationsDocumentReady();
-  dashboardDocumentReady();
-  reportsDocumentReady();
   filtersDocumentReady();
   expandedItemsDocumentReady();
-  galleriesDocumentReady();
-  lessonButtonsDocumentReady();
-  mediaElementButtonsDocumentReady();
   javaScriptAnimationsDocumentReady();
-  notificationsDocumentReady();
-  searchDocumentReady();
-  virtualClassroomDocumentReady();
-  imageEditorDocumentReady();
-  mediaElementLoaderDocumentReady();
-  lessonEditorDocumentReady();
-  preloginDocumentReady();
-  profileDocumentReady();
-  mediaElementEditorDocumentReady();
-  videoEditorDocumentReady();
-  audioEditorDocumentReady();
   playersDocumentReady();
   lessonViewerDocumentReady();
-  automaticLoginDocumentReady();
-  tagsDocumentReady();
-  locationsDocumentReady();
-  documentsDocumentReady();
 });
