@@ -22,7 +22,7 @@
       <% if image1 %>
         <%
           url1 = image1.media_element.url(url_type)
-          effective_url1 = loaded ? url1 : ''
+          effective_url1 = loaded ? "src=\"#{url1}\"".html_safe : ''
         %>
         <% if is_horizontal?(image1.media_element.width, image1.media_element.height, 'image4') %>
           <%= image_tag effective_url1, :style => "left:#{image1.alignment}px; width:#{image_width1}px", :data => {:url => url1} %>
@@ -41,7 +41,7 @@
       <% if image2 %>
         <%
           url2 = image2.media_element.url(url_type)
-          effective_url2 = loaded ? url2 : ''
+          effective_url2 = loaded ? "src=\"#{url2}\"".html_safe : ''
         %>
         <% if is_horizontal?(image2.media_element.width, image2.media_element.height, 'image4') %>
           <%= image_tag effective_url2, :style => "left:#{image2.alignment}px; width:#{image_width2}px", :data => {:url => url2} %>
@@ -60,7 +60,7 @@
       <% if image3 %>
         <%
           url3 = image3.media_element.url(url_type)
-          effective_url3 = loaded ? url3 : ''
+          effective_url3 = loaded ? "src=\"#{url3}\"".html_safe : ''
         %>
         <% if is_horizontal?(image3.media_element.width, image3.media_element.height, 'image4') %>
           <%= image_tag effective_url3, :style => "left:#{image3.alignment}px; width:#{image_width3}px", :data => {:url => url3} %>
@@ -79,7 +79,7 @@
       <% if image4 %>
         <%
           url4 = image4.media_element.url(url_type)
-          effective_url4 = loaded ? url4 : ''
+          effective_url4 = loaded ? "src=\"#{url4}\"".html_safe : ''
         %>
         <% if is_horizontal?(image4.media_element.width, image4.media_element.height, 'image4') %>
           <%= image_tag effective_url4, :style => "left:#{image4.alignment}px; width:#{image_width4}px", :data => {:url => url4} %>
