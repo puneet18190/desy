@@ -25,64 +25,22 @@
 //= require jquery.imgareaselect
 //= require jquery.peity
 //= require jquery-fileupload/basic
-//= require tinymce-jquery
-//= require dots_pagination
 //= require jquery.formparams
-//= require ajax_loader
-//= require audio_editor
-//= require buttons
-//= require dashboard
-//= require dialogs
-//= require documents
-//= require galleries
 //= require general
-//= require image_editor
-//= require lesson_editor
 //= require lesson_viewer
-//= require media_element_editor
-//= require media_element_loader
-//= require notifications
 //= require players
-//= require profile
-//= require search
-//= require tags
-//= require video_editor
-//= require virtual_classroom
 
 
 $(document).ready(function() {
-  window.$loaderVisible = true;
-  window.$loading = $('#loading');
   window.$body = $('body');
   window.$captions = $('#popup_captions_container');
   window.$parameters = $('#popup_parameters_container');
   browsersDocumentReady();
   generalWindowResizeDocumentReady();
-  ajaxLoaderDocumentReady();
   defaultValueJavaScriptAnimationsDocumentReady();
-  dashboardDocumentReady();
-  reportsDocumentReady();
   filtersDocumentReady();
   expandedItemsDocumentReady();
-  galleriesDocumentReady();
-  lessonButtonsDocumentReady();
-  mediaElementButtonsDocumentReady();
   javaScriptAnimationsDocumentReady();
-  notificationsDocumentReady();
-  searchDocumentReady();
-  virtualClassroomDocumentReady();
-  imageEditorDocumentReady();
-  mediaElementLoaderDocumentReady();
-  lessonEditorDocumentReady();
-  preloginDocumentReady();
-  profileDocumentReady();
-  mediaElementEditorDocumentReady();
-  videoEditorDocumentReady();
-  audioEditorDocumentReady();
   playersDocumentReady();
   lessonViewerDocumentReady();
-  automaticLoginDocumentReady();
-  tagsDocumentReady();
-  locationsDocumentReady();
-  documentsDocumentReady();
 });
