@@ -2,9 +2,10 @@ require 'fileutils'
 require 'pathname'
 require 'zlib'
 
-require 'zip/zip'
+require 'zip'
 
-require 'zip_entry_patch'
+require 'zip_file_patch'
+
 require 'env_relative_path'
 
 require 'export'
@@ -16,13 +17,13 @@ module Export
 
       include EnvRelativePath
 
-      # STORED or DEFLATED
-      COMPRESSION_METHOD = Zip::ZipEntry::STORED
-
       FOLDER                               = env_relative_pathname RAILS_PUBLIC, 'exports', 'lessons'
       MEDIA_ELEMENTS_UPFOLDER              = RAILS_PUBLIC
       ASSETS_ARCHIVE_MAIN_FOLDER_NAME      = 'assets'
       MATH_IMAGES_ARCHIVE_MAIN_FOLDER_NAME = 'math_images'
+
+      # STORED or DEFLATED
+      COMPRESSION_METHOD = Zip::Entry::STORED
 
       WRITE_TIME_FORMAT = '%Y%m%d_%H%M%S_%Z_%N'
 
@@ -40,10 +41,13 @@ module Export
       def initialize(lesson, index)
         @lesson, @index = lesson, index
 
-        filename_without_extension_and_time = lesson.title.parameterize
-        filename_time                       = lesson.updated_at.utc.strftime(WRITE_TIME_FORMAT)
+        parameterized_title = lesson.title.parameterize
+        filename_without_extension_and_time = lesson.id.to_s
+        filename_without_extension_and_time << "_#{parameterized_title}" if parameterized_title.present?
 
-        @filename_without_extension      = filename_without_extension_and_time + '_' + filename_time
+        filename_time = lesson.updated_at.utc.strftime(WRITE_TIME_FORMAT)
+
+        @filename_without_extension      = filename_without_extension_and_time << '_' << filename_time
         @archive_main_folder             = filename_without_extension
         @filename                        = "#{filename_without_extension}.zip"
         @folder                          = FOLDER.join lesson.id.to_s
@@ -94,7 +98,7 @@ module Export
 
       def create
         with_index_tmpfile do |index_path|
-          Zip::ZipFile.open(path, Zip::ZipFile::CREATE) do |archive|
+          Zip::File.open(path, Zip::File::CREATE) do |archive|
 
             add_index_entry archive, index_path
 
@@ -112,6 +116,7 @@ module Export
 
           end
         end
+        path.chmod 0644
       rescue => e
         path.unlink if path.exist?
         raise e
@@ -134,7 +139,7 @@ module Export
       end
 
       def add_entry(archive, path, archive_main_folder, relative_path_from_archive_main_folder)
-        entry = Zip::ZipEntry.new path.to_s, entry_path(archive_main_folder, relative_path_from_archive_main_folder), '', '', 0, 0, COMPRESSION_METHOD
+        entry = Zip::Entry.new path.to_s, entry_path(archive_main_folder, relative_path_from_archive_main_folder), '', '', 0, 0, COMPRESSION_METHOD
         archive.add entry, path
       end
 
