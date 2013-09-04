@@ -1,0 +1,41 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require jquery.selectbox
+ *= require jquery-ui-1.9.0.custom
+ */
+
+@import url(http://fonts.googleapis.com/css?family=Nunito);
+@import url(http://fonts.googleapis.com/css?family=Droid+Sans);
+
+$assets-bg-title-editor_gif: url("<%= asset_path 'bg_tile_editor.gif' %>");
+$assets-documents-fondo_png: url("<%= asset_path 'documents_fondo.png' %>");
+$assets-google-open-hand: url("https://mail.google.com/mail/images/2/openhand.cur");
+$assets-icone-player_svg: url("<%= asset_path 'icone-player.svg' %>");
+$assets-icon-share_png: url("<%= asset_path 'icon_share.png' %>");
+$assets-icon-share-roll_png: url("<%= asset_path 'icon_share_roll.png' %>");
+$assets-logo-facebook_png: url("<%= asset_path 'logo_facebook.png' %>");
+$assets-logo-facebook-on_png: url("<%= asset_path 'logo_facebook_on.png' %>");
+$assets-logo-google-plus_png: url("<%= asset_path 'logo_google_plus.png' %>");
+$assets-logo-google-plus-on_png: url("<%= asset_path 'logo_google_plus_on.png' %>");
+$assets-logo-twitter_png: url("<%= asset_path 'logo_twitter.png' %>");
+$assets-logo-twitter-on_png: url("<%= asset_path 'logo_twitter_on.png' %>");
+$assets-pallino_svg: url("<%= asset_path 'pallino.svg' %>");
+$assets-set-icone-editor_svg: url("<%= asset_path 'set-icone-editor.svg' %>");
+$assets-tendina-share_png: url("<%= asset_path 'tendina_share.png' %>");
+$assets-tiny-items_gif: url("<%= asset_path 'tiny_items.gif' %>");
+
+@import 'variables';
+@import 'mixins';
+@import 'shared';
+@import 'players';
+@import 'layouts/slides';
+@import 'layouts/lesson_viewer';

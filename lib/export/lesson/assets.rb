@@ -97,8 +97,8 @@ module Export
       def paths
         @paths ||= [
           ->(path) { !File.extname(path).in?(['.js', '.css']) } ,
-          /(?:\/|\\|\A)application\.(css|js)$/                  ,
-          # /(?:\/|\\|\A)(?<!admin[\\\/])application\.(css|js)$/   ,
+          /(?:\/|\\|\A)application_lesson_export\.(css|js)$/    ,
+          # /(?:\/|\\|\A)(?<!admin[\\\/])application\.(css|js)$/,
           'browser_not_supported/application.css'               ,
           'browser_not_supported/application.js'
         ]
