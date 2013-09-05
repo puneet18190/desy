@@ -29,6 +29,14 @@ function lessonViewerDocumentReady() {
   lessonViewerDocumentReadySlidesNavigation();
   lessonViewerDocumentReadySocialNetworks();
   lessonViewerDocumentReadyDocuments();
+  $body.on('click', '#open_export_lesson', function() {
+    $(this).hide();
+    $('#export_lesson').show();
+  });
+  $body.on('mouseleave', '#export_lesson', function(e) {
+    $(this).hide();
+    $('#open_export_lesson').show();
+  });
 }
 
 /**
