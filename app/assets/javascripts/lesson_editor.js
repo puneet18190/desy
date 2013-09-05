@@ -438,21 +438,7 @@ function lessonEditorDocumentReadyReplaceMediaElement() {
       granpa.find('.add').show();
     }
   });
-  $body.on('mouseout', '.slide-content .video.editable .mask video', function(e) {
-    var position = $(this).offset();
-    var top = position.top + 59;
-    var right = position.left + 291;
-    var bottom = position.top + 222;
-    var left = position.left + 129;
-    if($(this).width() > 420) {
-      top = position.top + 179;
-      right = position.left + 526;
-      bottom = position.top + 371;
-      left = position.left + 334;
-    }
-    if(left <= e.clientX && e.clientX <= right && top <= e.clientY && e.clientY <= bottom) {
-      return;
-    }
+  $body.on('mouseleave', '.slide-content .video.editable .mask video', function(e) {
     var granpa = $(this).parents('.mask');
     if(granpa.find('.alignable').data('rolloverable')) {
       granpa.find('.add').hide();

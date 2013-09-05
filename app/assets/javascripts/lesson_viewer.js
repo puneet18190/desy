@@ -128,15 +128,7 @@ function lessonViewerDocumentReadySocialNetworks() {
     $(this).hide();
     $('#social_networks').show();
   });
-  $body.on('mouseout', '#social_networks', function(e) {
-    var position = $(this).offset();
-    var top = position.top;
-    var right = position.left + 158;
-    var bottom = position.top + 214;
-    var left = position.left;
-    if(left <= e.clientX && e.clientX <= right && top <= e.clientY && e.clientY <= bottom) {
-      return;
-    }
+  $body.on('mouseleave', '#social_networks', function(e) {
     $(this).hide();
     $('#open_social_networks').show();
   });
