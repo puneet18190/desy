@@ -2,7 +2,7 @@
   
   h1 {
     
-    font: 180% 'Nunito', sans-serif;
+    font: 180% 'Nunito', "Arial Rounded MT Bold", sans-serif;
     
   }
 }
@@ -350,7 +350,7 @@
   height: $slide-title-inner-height;
   padding: $slide-title-padding;
   line-height: $slide-title-line-height;
-  font-family: "Nunito", Helvetica, sans-serif;
+  font-family: "Nunito", "Arial Rounded MT Bold", Helvetica, sans-serif;
   border: $slide-title-border solid #EFEFEF;
   color: $orange;
   letter-spacing: -4px;
@@ -458,7 +458,7 @@
 
 @mixin image-caption {
   
-  font-family: "Nunito", Helvetica, sans-serif;
+  font-family: "Nunito", "Arial Rounded MT Bold", Helvetica, sans-serif;
   background-color: rgba(50, 50, 50, 0.7);
   color: #FAFAFA;
   height: $image-caption-height;
@@ -475,7 +475,7 @@
   
   body {
     
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Nunito', "Arial Rounded MT Bold", sans-serif;
     background: #373737;
     color: #fff;
     text-align: center;
@@ -685,7 +685,7 @@
   
   h1 {
     
-    font:  110% 'Nunito', sans-serif;
+    font:  110% 'Nunito', "Arial Rounded MT Bold", sans-serif;
     color: $orange;
     padding: 0px;
     
@@ -693,7 +693,7 @@
   
   h2 {
     
-    font: 140% 'Nunito', sans-serif;
+    font: 140% 'Nunito', "Arial Rounded MT Bold", sans-serif;
     
   }
   
@@ -828,7 +828,7 @@
   
   input[type="submit"] {
     
-    font: 140% 'Nunito', sans-serif;
+    font: 140% 'Nunito', "Arial Rounded MT Bold", sans-serif;
     color: $black;
     background-color: transparent;
     cursor: pointer;
