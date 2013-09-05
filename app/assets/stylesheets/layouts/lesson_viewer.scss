@@ -352,7 +352,7 @@ html.lesson-viewer-layout, html.lesson-export-layout {
     padding: 20px;
     width: 120px;
     height: 176px;
-    background: $assets-tendina-share_png no-repeat scroll 0 0 transparent;
+    background: $assets-tendina-offline_png no-repeat scroll 0 0 transparent;
     position: absolute;
     top: 422px;
     left: 7px;
@@ -382,12 +382,12 @@ html.lesson-viewer-layout, html.lesson-export-layout {
     margin-right: 20px;
     width: 18px;
     height: 18px;
-    background: $assets-icon-share_png no-repeat scroll 0 0 transparent;
+    background: $assets-icon-offline_png no-repeat scroll 0 0 transparent;
     float: left;
     
     &:hover {
       
-      background: $assets-icon-share-roll_png no-repeat scroll 0 0 transparent;
+      background: $assets-icon-offline-roll_png no-repeat scroll 0 0 transparent;
       
     }
     
