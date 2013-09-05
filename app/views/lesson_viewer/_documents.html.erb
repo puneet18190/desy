@@ -3,7 +3,7 @@
   <% documents_slides.each_with_index do |ds, index| %>
     <% document = ds.document %>
     <div class="icon">
-      <%= image_tag document.icon_url(url_type), :title => document.icon_title %>
+      <img alt="<%= document.extension %>" title="<%= document.icon_title %>" src="<%= document.icon_url(url_type) %>">
     </div>
     <div class="title_and_download upper">
       <div class="title">

@@ -105,6 +105,8 @@ class Lesson < ActiveRecord::Base
   has_many :slides, :dependent => :destroy
   has_many :media_elements_slides, through: :slides
   has_many :media_elements, through: :media_elements_slides, uniq: true
+  has_many :documents_slides, through: :slides
+  has_many :documents, through: :documents_slides, uniq: true
   has_many :virtual_classroom_lessons
   
   validates_presence_of :user_id, :school_level_id, :subject_id, :title, :description

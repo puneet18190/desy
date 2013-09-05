@@ -18,6 +18,7 @@ module Export
       FOLDER                               = env_relative_pathname Rails.root, 'app', 'exports', 'lessons', 'archives'
       PUBLIC_FOLDER                        = env_relative_pathname RAILS_PUBLIC, 'exports', 'lessons'
       MEDIA_ELEMENTS_UPFOLDER              = RAILS_PUBLIC
+      DOCUMENTS_UPFOLDER                   = RAILS_PUBLIC
       ASSETS_ARCHIVE_MAIN_FOLDER_NAME      = 'assets'
       MATH_IMAGES_ARCHIVE_MAIN_FOLDER_NAME = 'math_images'
 
@@ -120,8 +121,13 @@ module Export
       end
 
       def media_elements_files
-        media_elements_folders = lesson.media_elements.map { |me| Pathname.new me.media.folder }
+        media_elements_folders = lesson.media_elements.map { |r| Pathname.new r.media.folder }
         media_elements_folders.map { |f| Pathname.glob f.join '**', '*' }.flatten
+      end
+
+      def documents_files
+        documents_folders = lesson.documents.map { |r| Pathname.new r.attachment.folder }
+        documents_folders.map { |f| Pathname.glob f.join '**', '*' }.flatten
       end
 
       def create
@@ -136,6 +142,10 @@ module Export
 
             media_elements_files.each do |path|
               add_entry archive, path, archive_main_folder, path.relative_path_from(MEDIA_ELEMENTS_UPFOLDER)
+            end
+
+            documents_files.each do |path|
+              add_entry archive, path, archive_main_folder, path.relative_path_from(DOCUMENTS_UPFOLDER)
             end
 
             math_images.each do |path|

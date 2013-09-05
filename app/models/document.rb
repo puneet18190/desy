@@ -71,7 +71,7 @@ class Document < ActiveRecord::Base
   
   # Returns the icon, depending on the extension
   def icon_url(url_type = nil)
-    url = case extension
+    url = '/assets/' << case extension
       when '.ppt', '.pptx', '.keynote', '.odp'       then 'documents/ppt.svg'
       when '.doc', '.docx', '.pages', '.odt', '.txt' then 'documents/doc.svg'
       when '.zip', '.gz'                             then 'documents/zip.svg'

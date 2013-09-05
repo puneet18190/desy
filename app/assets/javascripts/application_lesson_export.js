@@ -30,7 +30,6 @@
 //= require lesson_viewer
 //= require players
 
-
 $(document).ready(function() {
   window.$body = $('body');
   window.$captions = $('#popup_captions_container');
