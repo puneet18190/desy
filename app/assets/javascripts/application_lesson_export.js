@@ -30,6 +30,13 @@
 //= require lesson_viewer
 //= require players
 
+function wirisConvertSrc() {
+  var $images = $.each( $('.Wirisformula'), function(i, el) {
+    var $el = $(el);
+    $el.attr( 'src', 'math_images/'+UrlParser.parse($el.attr('src')).searchObj.formula );
+  });
+}
+
 $(document).ready(function() {
   window.$body = $('body');
   window.$captions = $('#popup_captions_container');
