@@ -46,6 +46,27 @@ class Document < ActiveRecord::Base
   # Maximum attachment size expressed in megabytes
   MAX_ATTACHMENT_SIZE = SETTINGS['max_document_size'].megabytes
   
+  # List of accepted types
+  TYPES_BY_EXTENSION = {
+    '.ppt'     => :ppt,
+    '.pptx'    => :ppt,
+    '.keynote' => :ppt,
+    '.odp'     => :ppt,
+    '.doc'     => :doc,
+    '.docx'    => :doc,
+    '.pages'   => :doc,
+    '.odt'     => :doc,
+    '.txt'     => :doc,
+    '.zip'     => :zip,
+    '.gz'      => :zip,
+    '.xls'     => :exc,
+    '.xlsx'    => :exc,
+    '.numbers' => :exc,
+    '.ods'     => :exc,
+    '.pdf'     => :pdf,
+    '.ps'      => :pdf,
+  }
+  
   serialize :metadata, OpenStruct
   
   attr_accessible :title, :description, :attachment
@@ -69,23 +90,19 @@ class Document < ActiveRecord::Base
     "#{extension.sub /\A\./, ''}, #{human_size}"
   end
   
+  # Checks in the list of accepted types
+  def type
+    TYPES_BY_EXTENSION.fetch extension, :unknown
+  end
+  
   # Returns the icon, depending on the extension
   def icon_url(url_type = nil)
-    url = '/assets/' << case extension
-      when '.ppt', '.pptx', '.keynote', '.odp'       then 'documents/ppt.svg'
-      when '.doc', '.docx', '.pages', '.odt', '.txt' then 'documents/doc.svg'
-      when '.zip', '.gz'                             then 'documents/zip.svg'
-      when '.xls', '.xlsx', '.numbers', '.ods'       then 'documents/exc.svg'
-      when '.pdf', '.ps'                             then 'documents/pdf.svg'
-      else 'documents/unknown.svg'
-    end
-    url_by_url_type url, url_type
+    url_by_url_type "/assets/documents/#{type.to_s}.svg", url_type
   end
   
   # Returns the title associated to the icon
   def icon_title
-    my_title = icon_url.split('/').last.split('.').first
-    I18n.t("titles.documents.#{my_title}")
+    I18n.t("titles.documents.#{type.to_s}")
   end
   
   # Returns the extension of the attachment after an upload

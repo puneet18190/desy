@@ -3,13 +3,13 @@ module ApplicationHelper
   
   # Gets the color of description popup into the document gallery
   def documents_type_color(document)
-    case document.icon_url
-      when 'documents/ppt.svg'     then '#EA943B'
-      when 'documents/doc.svg'     then '#5DA3DA'
-      when 'documents/zip.svg'     then '#57585B'
-      when 'documents/exc.svg'     then '#92BD4B'
-      when 'documents/pdf.svg'     then '#C61734'
-      when 'documents/unknown.svg' then '#A7A9AC'
+    case document.type
+      when :ppt     then '#EA943B'
+      when :doc     then '#5DA3DA'
+      when :zip     then '#57585B'
+      when :exc     then '#92BD4B'
+      when :pdf     then '#C61734'
+      when :unknown then '#A7A9AC'
     end
   end
   
