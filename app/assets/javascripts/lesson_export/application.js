@@ -13,7 +13,7 @@
 //= require underscore
 //= require url_parser
 //= require jquery
-//= require jquery_patches
+//= require ../jquery_patches
 //= require jquery_ujs
 //= require jquery.mousewheel
 //= require jquery.jscrollpane
@@ -26,9 +26,9 @@
 //= require jquery.peity
 //= require jquery-fileupload/basic
 //= require jquery.formparams
-//= require general
-//= require lesson_viewer
-//= require players
+//= require ../general
+//= require ../lesson_viewer
+//= require ../players
 
 function wirisConvertSrc() {
   var $images = $.each( $('.Wirisformula'), function(i, el) {
