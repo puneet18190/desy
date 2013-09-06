@@ -71,6 +71,7 @@ class LessonsController < ApplicationController
     end
     if @destination == ButtonDestinations::FOUND_LESSON
       prepare_lesson_for_js
+      @ok_msg = nil
       render 'lessons/reload_compact.js'
     else
       render :json => {:ok => @ok, :msg => (@ok ? @ok_msg : @error)}
