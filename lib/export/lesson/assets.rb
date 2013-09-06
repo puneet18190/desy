@@ -107,6 +107,7 @@ module Export
           placeholders/video_lesson_viewer_small.gif
           bg_tile_editor.gif
           documents_fondo.png
+          favicon32x32.png
           icone-player.svg
           icon_share.png
           icon_share_roll.png
