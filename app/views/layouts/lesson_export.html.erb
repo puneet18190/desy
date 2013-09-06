@@ -33,6 +33,12 @@
     <a id="left_scroll" class="navLeft" title="<%= t('titles.slides.back') %>"></a>
     <div class="container">
       <%= yield %>
+      <div id="footer">
+        <div id="lesson-title">
+          <%= image_tag "lesson-editor-logo-footer.png" %>
+          <p><%= @lesson.title if @lesson %></p>
+        </div>
+      </div>
     </div>
     <a id="right_scroll" class="navRight" title="<%= t('titles.slides.forward') %>"></a>
   </body>

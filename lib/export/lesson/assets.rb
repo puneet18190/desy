@@ -111,6 +111,7 @@ module Export
           icone-player.svg
           icon_share.png
           icon_share_roll.png
+          lesson-editor-logo-footer
           logo_facebook.png
           logo_facebook_on.png
           logo_google_plus.png
