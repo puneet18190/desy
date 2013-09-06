@@ -65,7 +65,7 @@ module Export
         @folder                          = FOLDER.join lesson.id.to_s
         @path                            = folder.join filename
 
-        public_filename                  = "#{filename_without_extension_and_time}.zip"
+        public_filename                  = "#{filename_without_extension}.zip"
         @public_folder                   = PUBLIC_FOLDER.join lesson.id.to_s
         @public_path                     = public_folder.join public_filename
 
