@@ -137,9 +137,7 @@ module ApplicationHelper
   def html_title(slides)
     controller = controller_path
     desy = SETTINGS['application_name']
-    
     return t('captions.titles.admin', :desy => desy) if controller[0, 6] == 'admin/'
-    
     case controller
     when 'documents'
       t('captions.titles.documents', :desy => desy)
@@ -151,8 +149,8 @@ module ApplicationHelper
       t('captions.titles.profile', :desy => desy)
     when 'virtual_classroom'
       t('captions.titles.virtual_classroom', :desy => desy)
-    when 'lesson_viewer'
-      if action_name == 'index'
+    when 'lesson_viewer', 'lesson_export'
+      if ['index', 'export'].include?(action_name)
         t('captions.titles.single_lesson', :desy => desy, :lesson => slides.first.lesson.title)
       else
         t('captions.titles.virtual_classroom', :desy => desy)
