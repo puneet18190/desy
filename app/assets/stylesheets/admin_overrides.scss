@@ -422,6 +422,18 @@
       
     }
     
+    &.documents {
+      
+      background-position: -510px 0;
+      
+      &:hover, &.active {
+        
+        background-position: -510px -85px;
+        
+      }
+      
+    }
+    
     &.users {
       
       background-position: -340px 0;
