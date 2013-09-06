@@ -179,6 +179,18 @@ function lessonViewerDocumentReadySocialNetworks() {
   });
 }
 
+/**
+Used only in the exported lesson, to convert the src of Wiris images (this function is not called by {{#crossLink "LessonViewerDocumentReady/lessonViewerDocumentReady:method"}}{{/crossLink}}.
+@method lessonViewerDocumentReadyWirisConvertSrc
+@for LessonViewerDocumentReady
+**/
+function lessonViewerDocumentReadyWirisConvertSrc() {
+  var $images = $.each( $('.Wirisformula'), function(i, el) {
+    var $el = $(el);
+    $el.attr( 'src', 'math_images/'+UrlParser.parse($el.attr('src')).searchObj.formula );
+  });
+}
+
 
 
 

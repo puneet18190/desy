@@ -31,3 +31,12 @@
   <% end %>
   
 </div>
+
+
+<% if !@export.nil? %>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      lessonViewerDocumentReadyWirisConvertSrc();
+    });
+  </script>
+<% end %>
