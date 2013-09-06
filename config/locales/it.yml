@@ -1644,6 +1644,12 @@ it:
     # Caption of the button which opens the playlist's navigational bar
     # 1 - views/lesson_viewer/playlist.html.erb
     open_playlist_bar: "Apri la barra della playlist"
+    # Area where it's possible to download offline the lesson
+    export_lesson:
+      # 1 - views/lesson_viewer/_export.html.erb
+      caption: "Vuoi scaricare una versione da visualizzare offline?"
+      # 1 - views/lesson_viewer/_export.html.erb
+      button: "Download"
   
   
   # SECTION 2.9: Caption used in the section 'my elements'
