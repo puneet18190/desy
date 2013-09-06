@@ -46,7 +46,7 @@ html.lesson-viewer-layout, html.lesson-export-layout {
   
   h1, h2, h3, h4, h5, h6, h7 {
     
-    font-family: "Nunito", Helvetica, sans-serif;
+    font-family: "Nunito", "Arial Rounded MT Bold", Helvetica, sans-serif;
     color: $orange;
     
   }
@@ -275,12 +275,13 @@ html.lesson-viewer-layout, html.lesson-export-layout {
     background: $assets-tendina-share_png no-repeat scroll 0 0 transparent;
     position: absolute;
     top: 422px;
-    left: 7px;
+    left: 61px;
     -webkit-box-shadow: 0px 6px 16px #434343;
     box-shadow: 0px 6px 16px #434343;
     color: #c1c0bc;
-    font-family: "Nunito", Helvetica, sans-serif;
+    font-family: "Nunito", "Arial Rounded MT Bold", Helvetica, sans-serif;
     font-size: 1.063em;
+    z-index: 2;
     
     a {
       
@@ -333,7 +334,7 @@ html.lesson-viewer-layout, html.lesson-export-layout {
   #open_social_networks {
     
     margin-top: 20px;
-    margin-left: 16px;
+    margin-left: 17px;
     width: 18px;
     height: 18px;
     background: $assets-icon-share_png no-repeat scroll 0 0 transparent;
@@ -350,26 +351,43 @@ html.lesson-viewer-layout, html.lesson-export-layout {
   #export_lesson {
     
     padding: 20px;
-    width: 120px;
-    height: 176px;
-    background: $assets-tendina-share_png no-repeat scroll 0 0 transparent;
+    width: 172px;
+    height: 134px;
+    background: $assets-tendina-offline_png no-repeat scroll 0 0 transparent;
     position: absolute;
-    top: 422px;
+    top: 465px;
     left: 7px;
     -webkit-box-shadow: 0px 6px 16px #434343;
     box-shadow: 0px 6px 16px #434343;
     color: #c1c0bc;
-    font-family: "Nunito", Helvetica, sans-serif;
+    font-family: "Nunito", "Arial Rounded MT Bold", Helvetica, sans-serif;
     font-size: 1.063em;
+    z-index: 2;
     
-    a {
+    p {
       
-      color: #c1c0bc;
-      font-size: 0.750em;
-      text-transform: uppercase;
-      margin: 5px 0px;
-      padding: 13px 0px 15px 48px;
+      margin-bottom: 20px;
+      text-align: center;
+      
+    }
+    
+    a.export_button {
+      
+      width: 172px;
+      height: 34px;
+      text-align: center;
+      padding-top: 15px;
+      color: #C1C0BC;
+      background-color: #1C1C1C;
+      cursor: pointer;
       display: block;
+      
+      &:hover {
+        
+        background-color: #C1C0BC;
+        color: #1C1C1C;
+        
+      }
       
     }
     
@@ -380,14 +398,14 @@ html.lesson-viewer-layout, html.lesson-export-layout {
     margin-top: 20px;
     margin-left: 16px;
     margin-right: 20px;
-    width: 18px;
-    height: 18px;
-    background: $assets-icon-share_png no-repeat scroll 0 0 transparent;
+    width: 17px;
+    height: 20px;
+    background: $assets-icon-offline_png no-repeat scroll 0 0 transparent;
     float: left;
     
     &:hover {
       
-      background: $assets-icon-share-roll_png no-repeat scroll 0 0 transparent;
+      background: $assets-icon-offline-roll_png no-repeat scroll 0 0 transparent;
       
     }
     

@@ -8,7 +8,7 @@
 %>
 
 <div class="documentInGallery" data-rollovered="false">
-  <div class="popuppina-tri <%= document.icon_url.split('/').last.split('.').first %>" style="display:none"></div>
+  <div class="popuppina-tri <%= document.type.to_s %>" style="display:none"></div>
   <div class="popuppina" style="display:none; background-color:<%= documents_type_color(document) %>">
     <%= document.description %>
   </div>

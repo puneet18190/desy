@@ -1,5 +1,8 @@
 <div id="export_lesson" style="display:none">
-  <%= link_to 'Facebook', 'javascript:;', :class => 'facebook' %>
+  <p>
+    <%= t('lesson_viewer.export_lesson.caption') %>
+  </p>
+  <%= link_to t('lesson_viewer.export_lesson.button'), lesson_export_path(lesson.id), :class => 'export_button upper' %>
 </div>
 
 <a id="open_export_lesson" title="<%= t('titles.export_lesson') %>"></a>
