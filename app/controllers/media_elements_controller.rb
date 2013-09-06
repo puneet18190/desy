@@ -162,6 +162,7 @@ class MediaElementsController < ApplicationController
     end
     if @destination == ButtonDestinations::FOUND_MEDIA_ELEMENT
       prepare_media_element_for_js
+      @ok_msg = nil
       render 'media_elements/reload.js'
     else
       render :json => {:ok => @ok, :msg => (@ok ? @ok_msg : @error)}
