@@ -95,38 +95,38 @@ module Export
       end
 
       def paths
-        @paths ||= [
-          'documents/doc.svg'                               ,
-          'documents/exc.svg'                               ,
-          'documents/pdf.svg'                               ,
-          'documents/ppt.svg'                               ,
-          'documents/unknown.svg'                           ,
-          'documents/zip.svg'                               ,
-          'placeholders/audio_lesson_viewer.gif'            ,
-          'placeholders/video_lesson_viewer_big.gif'        ,
-          'placeholders/video_lesson_viewer_small.gif'      ,
-          'bg_tile_editor.gif'                              ,
-          'documents_fondo.png'                             ,
-          'icone-player.svg'                                ,
-          'icon_share.png'                                  ,
-          'icon_share_roll.png'                             ,
-          'logo_facebook.png'                               ,
-          'logo_facebook_on.png'                            ,
-          'logo_google_plus.png'                            ,
-          'logo_google_plus_on.png'                         ,
-          'logo_twitter.png'                                ,
-          'logo_twitter_on.png'                             ,
-          'nav_left.png'                                    ,
-          'nav_right.png'                                   ,
-          'pallino.svg'                                     ,
-          'set-icone-editor.svg'                            ,
-          'tendina_share.png'                               ,
-          'tiny_items.gif'                                               ,
-          'lesson_export/application.css'                        ,
-          'lesson_export/application.js'                 ,
-          'browser_not_supported/application.css'                        ,
-          'browser_not_supported/application.js'
-        ]
+        @paths ||= %W(
+          documents/doc.svg
+          documents/exc.svg
+          documents/pdf.svg
+          documents/ppt.svg
+          documents/unknown.svg
+          documents/zip.svg
+          placeholders/audio_lesson_viewer.gif
+          placeholders/video_lesson_viewer_big.gif
+          placeholders/video_lesson_viewer_small.gif
+          bg_tile_editor.gif
+          documents_fondo.png
+          icone-player.svg
+          icon_share.png
+          icon_share_roll.png
+          logo_facebook.png
+          logo_facebook_on.png
+          logo_google_plus.png
+          logo_google_plus_on.png
+          logo_twitter.png
+          logo_twitter_on.png
+          nav_left.png
+          nav_right.png
+          pallino.svg
+          set-icone-editor.svg
+          tendina_share.png
+          tiny_items.gif
+          lesson_export/application.css
+          lesson_export/application.js
+          browser_not_supported/application.css
+          browser_not_supported/application.js
+        )
       end
       
       def bootstrap(assets)
