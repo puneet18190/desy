@@ -149,10 +149,16 @@ href="ApplicationController.html#method-i-initialize_lesson_with_owner_or_public
               <div id="method-i-export_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/controllers/lesson_export_controller.rb, line 31</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">export</span>
-  <span class="ruby-ivar">@slides</span> = <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">slides</span>.<span class="ruby-identifier">order</span>(<span class="ruby-value">:position</span>)
-  <span class="ruby-ivar">@cover_img</span> = <span class="ruby-ivar">@slides</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">media_elements_slides</span>.<span class="ruby-identifier">first</span>
-  <span class="ruby-identifier">archive_path</span> = <span class="ruby-constant">Export</span><span class="ruby-operator">::</span><span class="ruby-constant">Lesson</span><span class="ruby-operator">::</span><span class="ruby-constant">Archive</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@lesson</span>, <span class="ruby-identifier">render_to_string</span>(<span class="ruby-identifier">action</span><span class="ruby-operator">:</span> <span class="ruby-value">:index</span>)).<span class="ruby-identifier">public_path</span>
-  <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">archive_path</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@ok</span>
+    <span class="ruby-identifier">redirect_to</span> <span class="ruby-string">&#39;/dashboard&#39;</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-ivar">@slides</span> = <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">slides</span>.<span class="ruby-identifier">order</span>(<span class="ruby-value">:position</span>)
+    <span class="ruby-ivar">@cover_img</span> = <span class="ruby-ivar">@slides</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">media_elements_slides</span>.<span class="ruby-identifier">first</span>
+    <span class="ruby-ivar">@with_exit</span> = <span class="ruby-keyword">false</span>
+    <span class="ruby-ivar">@export</span> = <span class="ruby-keyword">true</span>
+    <span class="ruby-identifier">archive_url</span> = <span class="ruby-constant">Export</span><span class="ruby-operator">::</span><span class="ruby-constant">Lesson</span><span class="ruby-operator">::</span><span class="ruby-constant">Archive</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@lesson</span>, <span class="ruby-identifier">render_to_string</span>(<span class="ruby-identifier">action</span><span class="ruby-operator">:</span> <span class="ruby-value">:index</span>)).<span class="ruby-identifier">url</span>
+    <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">archive_url</span>
+  <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>

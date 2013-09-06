@@ -204,6 +204,18 @@ table <a href="DocumentsSlide.html">DocumentsSlide</a></p>
           </ul>
         </dd>
       
+        <dt>T</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-type">type</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
         <dt>U</dt>
         <dd>
           <ul>
@@ -329,6 +341,36 @@ table <a href="DocumentsSlide.html">DocumentsSlide</a></p>
             </tr>
           
         
+          <tr valign='top'>
+            <td class="attr-name">TYPES_BY_EXTENSION</td>
+            <td>=</td>
+            <td class="attr-value">{
+&#x27;.ppt&#x27;     =&gt; :ppt,
+&#x27;.pptx&#x27;    =&gt; :ppt,
+&#x27;.keynote&#x27; =&gt; :ppt,
+&#x27;.odp&#x27;     =&gt; :ppt,
+&#x27;.doc&#x27;     =&gt; :doc,
+&#x27;.docx&#x27;    =&gt; :doc,
+&#x27;.pages&#x27;   =&gt; :doc,
+&#x27;.odt&#x27;     =&gt; :doc,
+&#x27;.txt&#x27;     =&gt; :doc,
+&#x27;.zip&#x27;     =&gt; :zip,
+&#x27;.gz&#x27;      =&gt; :zip,
+&#x27;.xls&#x27;     =&gt; :exc,
+&#x27;.xlsx&#x27;    =&gt; :exc,
+&#x27;.numbers&#x27; =&gt; :exc,
+&#x27;.ods&#x27;     =&gt; :exc,
+&#x27;.pdf&#x27;     =&gt; :pdf,
+&#x27;.ps&#x27;      =&gt; :pdf,
+}</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"><p>List of accepted types</p></td>
+            </tr>
+          
+        
       </table>
     
 
@@ -373,7 +415,7 @@ href="Lesson.html">Lesson</a> containing it.</p>
                 
               </p>
               <div id="method-i-destroy_with_notifications_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/document.rb, line 129</span>
+                <pre><span class="ruby-comment"># File app/models/document.rb, line 146</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">destroy_with_notifications</span>
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">clear</span>
   <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span>
@@ -435,7 +477,7 @@ href="Lesson.html">Lesson</a> containing it.</p>
                 
               </p>
               <div id="method-i-extension_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/document.rb, line 111</span>
+                <pre><span class="ruby-comment"># File app/models/document.rb, line 128</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">extension</span>
   <span class="ruby-identifier">attachment</span>.<span class="ruby-identifier">original_extension</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">attachment</span> <span class="ruby-operator">?</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">extname</span>(<span class="ruby-identifier">attachment</span>.<span class="ruby-identifier">path</span>) <span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>
 <span class="ruby-keyword">end</span></pre>
@@ -470,7 +512,7 @@ href="Lesson.html">Lesson</a> containing it.</p>
                 
               </p>
               <div id="method-i-human_size_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/document.rb, line 107</span>
+                <pre><span class="ruby-comment"># File app/models/document.rb, line 124</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">human_size</span>
   <span class="ruby-identifier">number_to_human_size</span> <span class="ruby-identifier">size</span>
 <span class="ruby-keyword">end</span></pre>
@@ -505,10 +547,9 @@ href="Lesson.html">Lesson</a> containing it.</p>
                 
               </p>
               <div id="method-i-icon_title_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/document.rb, line 86</span>
+                <pre><span class="ruby-comment"># File app/models/document.rb, line 104</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">icon_title</span>
-  <span class="ruby-identifier">my_title</span> = <span class="ruby-identifier">icon_url</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;/&#39;</span>).<span class="ruby-identifier">last</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;.&#39;</span>).<span class="ruby-identifier">first</span>
-  <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-node">&quot;titles.documents.#{my_title}&quot;</span>)
+  <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-node">&quot;titles.documents.#{type.to_s}&quot;</span>)
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -541,17 +582,9 @@ href="Lesson.html">Lesson</a> containing it.</p>
                 
               </p>
               <div id="method-i-icon_url_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/document.rb, line 73</span>
+                <pre><span class="ruby-comment"># File app/models/document.rb, line 99</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">icon_url</span>(<span class="ruby-identifier">url_type</span> = <span class="ruby-keyword">nil</span>)
-  <span class="ruby-identifier">url</span> = <span class="ruby-keyword">case</span> <span class="ruby-identifier">extension</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;.ppt&#39;</span>, <span class="ruby-string">&#39;.pptx&#39;</span>, <span class="ruby-string">&#39;.keynote&#39;</span>, <span class="ruby-string">&#39;.odp&#39;</span>       <span class="ruby-keyword">then</span> <span class="ruby-string">&#39;documents/ppt.svg&#39;</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;.doc&#39;</span>, <span class="ruby-string">&#39;.docx&#39;</span>, <span class="ruby-string">&#39;.pages&#39;</span>, <span class="ruby-string">&#39;.odt&#39;</span>, <span class="ruby-string">&#39;.txt&#39;</span> <span class="ruby-keyword">then</span> <span class="ruby-string">&#39;documents/doc.svg&#39;</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;.zip&#39;</span>, <span class="ruby-string">&#39;.gz&#39;</span>                             <span class="ruby-keyword">then</span> <span class="ruby-string">&#39;documents/zip.svg&#39;</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;.xls&#39;</span>, <span class="ruby-string">&#39;.xlsx&#39;</span>, <span class="ruby-string">&#39;.numbers&#39;</span>, <span class="ruby-string">&#39;.ods&#39;</span>       <span class="ruby-keyword">then</span> <span class="ruby-string">&#39;documents/exc.svg&#39;</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;.pdf&#39;</span>, <span class="ruby-string">&#39;.ps&#39;</span>                             <span class="ruby-keyword">then</span> <span class="ruby-string">&#39;documents/pdf.svg&#39;</span>
-    <span class="ruby-keyword">else</span> <span class="ruby-string">&#39;documents/unknown.svg&#39;</span>
-  <span class="ruby-keyword">end</span>
-  <span class="ruby-identifier">url_by_url_type</span> <span class="ruby-identifier">url</span>, <span class="ruby-identifier">url_type</span>
+  <span class="ruby-identifier">url_by_url_type</span> <span class="ruby-node">&quot;/assets/documents/#{type.to_s}.svg&quot;</span>, <span class="ruby-identifier">url_type</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -584,7 +617,7 @@ href="Lesson.html">Lesson</a> containing it.</p>
                 
               </p>
               <div id="method-i-size_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/document.rb, line 97</span>
+                <pre><span class="ruby-comment"># File app/models/document.rb, line 114</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">size</span>
   <span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">size</span>
 <span class="ruby-keyword">end</span></pre>
@@ -619,7 +652,7 @@ href="Lesson.html">Lesson</a> containing it.</p>
                 
               </p>
               <div id="method-i-size-3D_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/document.rb, line 102</span>
+                <pre><span class="ruby-comment"># File app/models/document.rb, line 119</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">size=</span>(<span class="ruby-identifier">size</span>)
   <span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">size</span> = <span class="ruby-identifier">size</span>
 <span class="ruby-keyword">end</span></pre>
@@ -654,9 +687,44 @@ href="Lesson.html">Lesson</a> containing it.</p>
                 
               </p>
               <div id="method-i-size_and_extension_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/document.rb, line 68</span>
+                <pre><span class="ruby-comment"># File app/models/document.rb, line 89</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">size_and_extension</span>
   <span class="ruby-node">&quot;#{extension.sub /\A\./, &#39;&#39;}, #{human_size}&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-type">
+            
+              <b>type</b>()
+            
+            <a href="../classes/Document.html#method-i-type" name="method-i-type" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Checks in the list of accepted types</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-type_source')" id="l_method-i-type_source">show</a>
+                
+              </p>
+              <div id="method-i-type_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/models/document.rb, line 94</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">type</span>
+  <span class="ruby-constant">TYPES_BY_EXTENSION</span>.<span class="ruby-identifier">fetch</span> <span class="ruby-identifier">extension</span>, <span class="ruby-value">:unknown</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -689,7 +757,7 @@ href="Lesson.html">Lesson</a> containing it.</p>
                 
               </p>
               <div id="method-i-uploaded_filename_without_extension_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/document.rb, line 92</span>
+                <pre><span class="ruby-comment"># File app/models/document.rb, line 109</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">uploaded_filename_without_extension</span>
   <span class="ruby-identifier">attachment</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:original_filename_without_extension</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -724,7 +792,7 @@ href="Lesson.html">Lesson</a> containing it.</p>
                 
               </p>
               <div id="method-i-url_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/document.rb, line 116</span>
+                <pre><span class="ruby-comment"># File app/models/document.rb, line 133</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">url</span>(<span class="ruby-identifier">url_type</span> = <span class="ruby-keyword">nil</span>)
   <span class="ruby-identifier">url</span> = <span class="ruby-identifier">attachment</span>.<span class="ruby-identifier">url</span>
   <span class="ruby-identifier">url_by_url_type</span> <span class="ruby-identifier">url</span>, <span class="ruby-identifier">url_type</span>
@@ -760,7 +828,7 @@ href="Lesson.html">Lesson</a> containing it.</p>
                 
               </p>
               <div id="method-i-used_in_your_lessons-3F_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/document.rb, line 161</span>
+                <pre><span class="ruby-comment"># File app/models/document.rb, line 178</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">used_in_your_lessons?</span>
   <span class="ruby-constant">DocumentsSlide</span>.<span class="ruby-identifier">joins</span>(<span class="ruby-value">:slide</span>, {<span class="ruby-value">:slide</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:lesson</span>}).<span class="ruby-identifier">where</span>(<span class="ruby-value">:documents_slides</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-value">:document_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>}, <span class="ruby-value">:lessons</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">user_id</span>}).<span class="ruby-identifier">any?</span>
 <span class="ruby-keyword">end</span></pre>
@@ -798,7 +866,7 @@ href="Valid.html#method-c-get_association">Valid.get_association</a>)</p>
                 
               </p>
               <div id="method-i-init_validation_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/document.rb, line 190</span>
+                <pre><span class="ruby-comment"># File app/models/document.rb, line 207</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">init_validation</span>
   <span class="ruby-ivar">@document</span> = <span class="ruby-constant">Valid</span>.<span class="ruby-identifier">get_association</span> <span class="ruby-keyword">self</span>, <span class="ruby-value">:id</span>
   <span class="ruby-ivar">@user</span> = <span class="ruby-constant">Valid</span>.<span class="ruby-identifier">get_association</span> <span class="ruby-keyword">self</span>, <span class="ruby-value">:user_id</span>
@@ -834,7 +902,7 @@ href="Valid.html#method-c-get_association">Valid.get_association</a>)</p>
                 
               </p>
               <div id="method-i-set_size_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/document.rb, line 180</span>
+                <pre><span class="ruby-comment"># File app/models/document.rb, line 197</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">set_size</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">size</span> = <span class="ruby-identifier">attachment</span>.<span class="ruby-identifier">size</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">attachment</span>.<span class="ruby-identifier">size</span>
 <span class="ruby-keyword">end</span></pre>
@@ -869,7 +937,7 @@ href="Valid.html#method-c-get_association">Valid.get_association</a>)</p>
                 
               </p>
               <div id="method-i-validate_associations_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/document.rb, line 185</span>
+                <pre><span class="ruby-comment"># File app/models/document.rb, line 202</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">validate_associations</span>
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:user_id</span>, <span class="ruby-value">:doesnt_exist</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">nil?</span>
 <span class="ruby-keyword">end</span></pre>
@@ -905,7 +973,7 @@ href="Valid.html#method-c-get_association">Valid.get_association</a>)</p>
                 
               </p>
               <div id="method-i-validate_impossible_changes_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/document.rb, line 196</span>
+                <pre><span class="ruby-comment"># File app/models/document.rb, line 213</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">validate_impossible_changes</span>
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:user_id</span>, <span class="ruby-value">:cant_be_changed</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@document</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@document</span>.<span class="ruby-identifier">user_id</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">user_id</span>
 <span class="ruby-keyword">end</span></pre>
@@ -941,7 +1009,7 @@ maximum size available</p>
                 
               </p>
               <div id="method-i-validate_maximum_folder_size_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/document.rb, line 175</span>
+                <pre><span class="ruby-comment"># File app/models/document.rb, line 192</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">validate_maximum_folder_size</span>
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span> <span class="ruby-value">:attachment</span>, <span class="ruby-value">:folder_size_exceeded</span> <span class="ruby-keyword">if</span> <span class="ruby-constant">DocumentUploader</span>.<span class="ruby-identifier">maximum_folder_size_exceeded?</span>
 <span class="ruby-keyword">end</span></pre>
@@ -977,7 +1045,7 @@ configured in megabytes in settings.yml</p>
                 
               </p>
               <div id="method-i-validate_size_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/document.rb, line 168</span>
+                <pre><span class="ruby-comment"># File app/models/document.rb, line 185</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">validate_size</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">attachment</span>.<span class="ruby-identifier">present?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">attachment</span>.<span class="ruby-identifier">file</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-constant">MAX_ATTACHMENT_SIZE</span>
     <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:attachment</span>, <span class="ruby-value">:too_large</span>)

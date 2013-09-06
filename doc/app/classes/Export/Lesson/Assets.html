@@ -518,7 +518,7 @@
                 
               </p>
               <div id="method-i-bootstrap_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/export/lesson/assets.rb, line 107</span>
+                <pre><span class="ruby-comment"># File lib/export/lesson/assets.rb, line 134</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">bootstrap</span>(<span class="ruby-identifier">assets</span>)
   <span class="ruby-identifier">config</span> = <span class="ruby-constant">Rails</span>.<span class="ruby-identifier">application</span>.<span class="ruby-identifier">config</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">config</span>.<span class="ruby-identifier">assets</span>.<span class="ruby-identifier">compress</span>
@@ -681,13 +681,40 @@
               <div id="method-i-paths_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File lib/export/lesson/assets.rb, line 97</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">paths</span>
-  <span class="ruby-ivar">@paths</span> <span class="ruby-operator">||=</span> [
-    <span class="ruby-operator">-</span><span class="ruby-operator">&gt;</span>(<span class="ruby-identifier">path</span>) { <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">extname</span>(<span class="ruby-identifier">path</span>).<span class="ruby-identifier">in?</span>([<span class="ruby-string">&#39;.js&#39;</span>, <span class="ruby-string">&#39;.css&#39;</span>]) } ,
-    <span class="ruby-regexp">/(?:\/|\|\A)application\.(css|js)$/</span>                  ,
-    <span class="ruby-comment"># /(?:\/|\\|\A)(?&lt;!admin[\\\/])application\.(css|js)$/   ,</span>
-    <span class="ruby-string">&#39;browser_not_supported/application.css&#39;</span>               ,
-    <span class="ruby-string">&#39;browser_not_supported/application.js&#39;</span>
-  ]
+  <span class="ruby-ivar">@paths</span> <span class="ruby-operator">||=</span> <span class="ruby-node">%W(
+    documents/doc.svg
+    documents/exc.svg
+    documents/pdf.svg
+    documents/ppt.svg
+    documents/unknown.svg
+    documents/zip.svg
+    placeholders/audio_lesson_viewer.gif
+    placeholders/video_lesson_viewer_big.gif
+    placeholders/video_lesson_viewer_small.gif
+    bg_tile_editor.gif
+    documents_fondo.png
+    favicon32x32.png
+    icone-player.svg
+    icon_share.png
+    icon_share_roll.png
+    lesson-editor-logo-footer.png
+    logo_facebook.png
+    logo_facebook_on.png
+    logo_google_plus.png
+    logo_google_plus_on.png
+    logo_twitter.png
+    logo_twitter_on.png
+    nav_left.png
+    nav_right.png
+    pallino.svg
+    set-icone-editor.svg
+    tendina_share.png
+    tiny_items.gif
+    lesson_export/application.css
+    lesson_export/application.js
+    browser_not_supported/application.css
+    browser_not_supported/application.js
+  )</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>

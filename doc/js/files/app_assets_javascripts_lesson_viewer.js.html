@@ -349,6 +349,14 @@ function lessonViewerDocumentReady() {
   lessonViewerDocumentReadySlidesNavigation();
   lessonViewerDocumentReadySocialNetworks();
   lessonViewerDocumentReadyDocuments();
+  $body.on(&#x27;click&#x27;, &#x27;#open_export_lesson&#x27;, function() {
+    $(this).hide();
+    $(&#x27;#export_lesson&#x27;).show();
+  });
+  $body.on(&#x27;mouseleave&#x27;, &#x27;#export_lesson&#x27;, function(e) {
+    $(this).hide();
+    $(&#x27;#open_export_lesson&#x27;).show();
+  });
 }
 
 /**
@@ -448,15 +456,7 @@ function lessonViewerDocumentReadySocialNetworks() {
     $(this).hide();
     $(&#x27;#social_networks&#x27;).show();
   });
-  $body.on(&#x27;mouseout&#x27;, &#x27;#social_networks&#x27;, function(e) {
-    var position = $(this).offset();
-    var top = position.top;
-    var right = position.left + 158;
-    var bottom = position.top + 214;
-    var left = position.left;
-    if(left &lt;= e.clientX &amp;&amp; e.clientX &lt;= right &amp;&amp; top &lt;= e.clientY &amp;&amp; e.clientY &lt;= bottom) {
-      return;
-    }
+  $body.on(&#x27;mouseleave&#x27;, &#x27;#social_networks&#x27;, function(e) {
     $(this).hide();
     $(&#x27;#open_social_networks&#x27;).show();
   });
@@ -496,6 +496,18 @@ function lessonViewerDocumentReadySocialNetworks() {
       &#x27;google-plus-share-dialog&#x27;,
       &#x27;width=626,height=436&#x27;
     );
+  });
+}
+
+/**
+Used only in the exported lesson, to convert the src of Wiris images (this function is not called by {{#crossLink &quot;LessonViewerDocumentReady/lessonViewerDocumentReady:method&quot;}}{{/crossLink}}.
+@method lessonViewerDocumentReadyWirisConvertSrc
+@for LessonViewerDocumentReady
+**/
+function lessonViewerDocumentReadyWirisConvertSrc() {
+  var $images = $.each( $(&#x27;.Wirisformula&#x27;), function(i, el) {
+    var $el = $(el);
+    $el.attr( &#x27;src&#x27;, &#x27;math_images/&#x27;+UrlParser.parse($el.attr(&#x27;src&#x27;)).searchObj.formula );
   });
 }
 

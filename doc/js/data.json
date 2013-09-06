@@ -4722,7 +4722,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 34,
+            "line": 42,
             "description": "Initializer for functionalities of attached documents.",
             "itemtype": "method",
             "name": "lessonViewerDocumentReadyDocuments",
@@ -4731,7 +4731,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 48,
+            "line": 56,
             "description": "Initializer for functionalities of the playlist menu.",
             "itemtype": "method",
             "name": "lessonViewerDocumentReadyPlaylist",
@@ -4740,7 +4740,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 84,
+            "line": 92,
             "description": "Initializer for slides navigation.",
             "itemtype": "method",
             "name": "lessonViewerDocumentReadySlidesNavigation",
@@ -4749,7 +4749,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 121,
+            "line": 129,
             "description": "Initializer for functionality of sharing the lesson in social networks.",
             "itemtype": "method",
             "name": "lessonViewerDocumentReadySocialNetworks",
@@ -4758,7 +4758,16 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 186,
+            "line": 182,
+            "description": "Used only in the exported lesson, to convert the src of Wiris images (this function is not called by {{#crossLink \"LessonViewerDocumentReady/lessonViewerDocumentReady:method\"}}{{/crossLink}}.",
+            "itemtype": "method",
+            "name": "lessonViewerDocumentReadyWirisConvertSrc",
+            "class": "LessonViewerDocumentReady",
+            "module": "lesson-viewer"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_viewer.js",
+            "line": 198,
             "description": "Gets the HTML id of the current slide (marked with the class <b>lesson viewer current slide</b>).",
             "itemtype": "method",
             "name": "getLessonViewerCurrentSlide",
@@ -4771,7 +4780,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 196,
+            "line": 208,
             "description": "Hides the documents.",
             "itemtype": "method",
             "name": "hideDocumentsInLessonViewer",
@@ -4780,7 +4789,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 206,
+            "line": 218,
             "description": "Initializes the positions, and selects the right lesson in the playlist menu. Called in {{#crossLink \"LessonViewerDocumentReady/lessonViewerDocumentReady:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "initializeLessonViewer",
@@ -4789,7 +4798,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 222,
+            "line": 234,
             "description": "Shows the documents.",
             "itemtype": "method",
             "name": "showDocumentsInLessonViewer",
@@ -4798,7 +4807,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 235,
+            "line": 247,
             "description": "Stops media playing in current slide.",
             "itemtype": "method",
             "name": "stopMediaInLessonViewer",
@@ -4807,7 +4816,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 257,
+            "line": 269,
             "description": "Hides slides navigation arrows.",
             "itemtype": "method",
             "name": "hideArrowsInLessonViewer",
@@ -4816,7 +4825,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 266,
+            "line": 278,
             "description": "Shows slides navigation arrows.",
             "itemtype": "method",
             "name": "showArrowsInLessonViewer",
@@ -4825,7 +4834,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 279,
+            "line": 291,
             "description": "Closes the playlist menu and executes a callback.",
             "itemtype": "method",
             "name": "closePlaylistMenuInLessonViewer",
@@ -4841,7 +4850,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 294,
+            "line": 306,
             "description": "Opposite of {{#crossLink \"LessonViewerPlaylist/closePlaylistMenuInLessonViewer:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "openPlaylistMenuInLessonViewer",
@@ -4850,7 +4859,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 306,
+            "line": 318,
             "description": "Huge method that replaces missing functionalities of the bad plugin JScrollPain. The aim of this method is to select a lesson in the menu, adapt the size of the scroll pane, and if required scroll and execute a callback.",
             "itemtype": "method",
             "name": "selectComponentInLessonViewerPlaylistMenu",
@@ -4871,7 +4880,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 396,
+            "line": 408,
             "description": "This method can be used in two ways:\n<ul>\n  <li><b>with callback</b>, if the user clicks on a lesson in the menu</li>\n  <li><b>without callback</b>, if the user gets to a new lesson while navigating normally (he clicks only on <i>next slide</i> and <i>prev slide</i>, see {{#crossLink \"LessonViewerSlidesNavigation/slideToInLessonViewerWithLessonSwitch:method\"}}{{/crossLink}})</li>\n</ul>",
             "itemtype": "method",
             "name": "switchLessonInPlaylistMenuLessonViewer",
@@ -4892,7 +4901,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 419,
+            "line": 431,
             "description": "Goes to next slide using {{#crossLink \"LessonViewerSlidesNavigation/slideToInLessonViewer:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "goToNextSlideInLessonViewer",
@@ -4901,7 +4910,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 433,
+            "line": 445,
             "description": "Goes to previous slide using {{#crossLink \"LessonViewerSlidesNavigation/slideToInLessonViewer:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "goToPrevSlideInLessonViewer",
@@ -4910,7 +4919,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 447,
+            "line": 459,
             "description": "Loads the slide without making any ajax call.",
             "itemtype": "method",
             "name": "loadSlideInLessonViewer",
@@ -4919,7 +4928,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 475,
+            "line": 487,
             "description": "Goes to a given slide. If the new slide contains a media and the browser is not a mobile the media is automaticly played.",
             "itemtype": "method",
             "name": "slideToInLessonViewer",
@@ -4935,7 +4944,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 522,
+            "line": 534,
             "description": "Goes to a slide (using {{#crossLink \"LessonViewerSlidesNavigation/slideToInLessonViewer:method\"}}{{/crossLink}}) and updates the lesson in playlist menu (using {{#crossLink \"LessonViewerPlaylist/switchLessonInPlaylistMenuLessonViewer:method\"}}{{/crossLink}} without callbacks).",
             "itemtype": "method",
             "name": "slideToInLessonViewerWithLessonSwitch",

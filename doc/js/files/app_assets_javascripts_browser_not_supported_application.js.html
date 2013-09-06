@@ -330,31 +330,27 @@ Browser support checking, not supported browsers version. It substitutes the pag
 **/
 function browserSupport() {
   document.body.style.visibility = &#x27;hidden&#x27;;
-
   document.body.onload = function() {
     document.body.innerHTML = &#x27;&#x27;;
-
     var xmlhttp;
     if (window.XMLHttpRequest) {
       xmlhttp = new XMLHttpRequest();
     } else {
       xmlhttp = new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);
     }
-
     xmlhttp.onreadystatechange = function() {
       if (xmlhttp.readyState === 4 &amp;&amp; xmlhttp.status === 200) {
         document.body.innerHTML = xmlhttp.responseText;
         document.body.style.visibility = &#x27;visible&#x27;;
       }
     }
-
     var csrfToken = document.getElementsByName(&#x27;csrf-token&#x27;)[0].content;
     xmlhttp.open(&quot;POST&quot;, &quot;/browser_not_supported?authenticity_token=&quot;+csrfToken, true);
     xmlhttp.send();
-
     return false;
   }
 }
+
     </pre>
 </div>
 
