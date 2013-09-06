@@ -1650,6 +1650,9 @@ en:
       caption: "Download an offline version of this lesson"
       # 1 - views/lesson_viewer/_export.html.erb
       button: "Download"
+      # Footer of an exported lesson (the variable %{copyright} is replaced by the full name of the application including copyright).
+      # 1 - views/layouts/lesson_export.html.erb
+      made_in_desy: "Proudly produced in %{copyright}"
   
   
   # SECTION 2.9: Caption used in the section 'my elements'

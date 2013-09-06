@@ -36,7 +36,7 @@
       <div id="footer">
         <div id="lesson-title">
           <img src="assets/lesson-editor-logo-footer.png">
-          <p><%= @lesson.title if @lesson %></p>
+          <p><%= t('lesson_viewer.export_lesson.made_in_desy', :copyright => SETTINGS['application_copyright']) %></p>
         </div>
       </div>
     </div>
