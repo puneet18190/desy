@@ -2764,7 +2764,7 @@ cn:
         # 1 - views/admin/documents/_list.html.erb
         format: "Format" # TODO
         # 1 - views/admin/documents/_list.html.erb
-        id: "Id" # TODO
+        id: "Id"
         # 1 - views/admin/documents/_list.html.erb
         size: "Size" # TODO
         # 1 - views/admin/documents/_list.html.erb
@@ -2962,7 +2962,7 @@ cn:
         fields:
           # 1 - views/admin/search/_documents_general.html.erb
           # 2 - views/admin/search/_documents_general.html.erb
-          id: "Id" # TODO
+          id: "Id"
           # 1 - views/admin/search/_documents_general.html.erb
           # 2 - views/admin/search/_documents_general.html.erb
           title: "Title" # TODO
