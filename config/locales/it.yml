@@ -1086,19 +1086,19 @@ it:
     documents:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Lorem ipsum dolor" # TODO
+        title: "Allega un documento"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "Esistono innumerevoli variazioni dei passaggi del Lorem Ipsum, ma la maggior parte hanno subito delle variazioni del tempo, a causa dell’inserimento di passaggi ironici, o di sequenze casuali di caratteri palesemente poco verosimili." # TODO
+        content: "Puoi allegare alle tue lezioni on-line qualsiasi tipo di documento. In questa sezione puoi caricare i tuoi documenti personali, decidere una descrizione e un titolo, e organizzarli per averli pronti da usare nel Lesson Editor."
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Lorem ipsum dolor" # TODO
+        title: "Tipi di documenti"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "Esistono innumerevoli variazioni dei passaggi del Lorem Ipsum, ma la maggior parte hanno subito delle variazioni del tempo, a causa dell’inserimento di passaggi ironici, o di sequenze casuali di caratteri palesemente poco verosimili." # TODO
+        content: "In %{desy} i tuoi documenti sono suddivisi nelle seguenti categorie: <b>documenti regolari</b> (per esempio .txt, .doc, .odt); <b>fogli di calcolo</b> (per esempio .xls, .ods); <b>documenti vettoriali</b> (per esempio .pdf, .ps); <b>presentazioni</b> (come power point); <b>documenti compressi</b> (.zip, .tar.gz). Se l'estensione del tuo documento non rientra in nessuna di queste categorie, verrà visualizzato con un'icona specifica per <b>altri documenti</b>."
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Lorem ipsum dolor" # TODO
+        title: "Slides che ammettono allegati"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "Esistono innumerevoli variazioni dei passaggi del Lorem Ipsum, ma la maggior parte hanno subito delle variazioni del tempo, a causa dell’inserimento di passaggi ironici, o di sequenze casuali di caratteri palesemente poco verosimili." # TODO
+        content: "Non tutte le slides ammettono la presenza di documenti allegati: puoi allegare un documento solamente se la slide contiene un campo testo. Se stai lavorando su una slide che ammette allegati, clicca sull'icona <b>attach</b> alla destra della slide, aprirai in questo modo il manager dei documento. È possibile allegare documenti fino ad un limite massimo di tre per ogni slide."
     lessons:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb

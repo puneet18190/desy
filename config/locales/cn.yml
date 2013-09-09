@@ -1086,19 +1086,19 @@ cn:
     documents:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Lorem ipsum dolor" # TODO
+        title: "Attach a document" # TODO
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "Esistono innumerevoli variazioni dei passaggi del Lorem Ipsum, ma la maggior parte hanno subito delle variazioni del tempo, a causa dell’inserimento di passaggi ironici, o di sequenze casuali di caratteri palesemente poco verosimili." # TODO
+        content: "You can attach any type of documents to your on-line lessons. In this section you can upload your personal documents, set a description and a title, and organize them to have them ready to use in the Lesson Editor." # TODO
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Lorem ipsum dolor" # TODO
+        title: "Types of documents" # TODO
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "Esistono innumerevoli variazioni dei passaggi del Lorem Ipsum, ma la maggior parte hanno subito delle variazioni del tempo, a causa dell’inserimento di passaggi ironici, o di sequenze casuali di caratteri palesemente poco verosimili." # TODO
+        content: "In %{desy} your documents are cathegorized into: <b>regular documents</b> (for instance .txt, .doc, .odt); <b>spreadsheets</b> (for instance .xls, .ods); <b>vectorial documents</b> (for instance .pdf, .ps); <b>presentations</b> (such as power point); <b>compressed documents</b> (.zip, .tar.gz). If your document's extension doesn't fit any of these cathegories, it has a specific icon for <b>other documents</b>." # TODO
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Lorem ipsum dolor" # TODO
+        title: "Slides allowing documents" # TODO
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "Esistono innumerevoli variazioni dei passaggi del Lorem Ipsum, ma la maggior parte hanno subito delle variazioni del tempo, a causa dell’inserimento di passaggi ironici, o di sequenze casuali di caratteri palesemente poco verosimili." # TODO
+        content: "Not all the slides allow you to attach documents: you can do it only if the slide contains text. When you are working on a slide that allows to attach documents, click on the <b>attach</b> icon on the right to open the document manager inside Lesson Editor. You are allowed to attach a maximum of three documents for each slide." # TODO
     lessons:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
