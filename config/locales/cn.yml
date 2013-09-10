@@ -126,7 +126,7 @@ cn:
           # 4 - models/document.rb
           # 5 - models/document.rb
           # 6 - models/document.rb
-          problem_destroying: "The document couldn't be destroyed" # TODO
+          problem_destroying: "这个文档不能删除"
         lesson:
           # There was an error while trying to copy the lesson
           # 1 - controllers/lessons_controller.rb
@@ -302,19 +302,19 @@ cn:
       document:
         # Message
         # 1 - views/shared/_popups.html.erb
-        confirm: "Are you sure you want to delete it?" # TODO
+        confirm: "你确认删除它吗?"
         # Message if you are using the document in some of your lessons: it will be removed from each of his instances
         # 1 - views/shared/_popups.html.erb
-        confirm_bis: "You are attaching it in some of your lessons, it will be deleted in each of its instances" # TODO
+        confirm_bis: "你将它连接到你的课程,在每个实例将被删除"
         # Title
         # 1 - views/shared/_popups.html.erb
-        title: "Delete this document?" # TODO
+        title: "删除这个文档吗?"
         # Button to confirm
         # 1 - views/shared/_popups.html.erb
-        do: "Delete the document" # TODO
+        do: "删除这个文档吗"
         # Button to cancel
         # 1 - views/shared/_popups.html.erb
-        cancel: "Cancel" # TODO
+        cancel: "终止"
       # The application asks for confirmation about deleting a lesson
       lesson:
         # Message (if anybody is following the lesson, he will lose its link)
@@ -583,10 +583,10 @@ cn:
     error_captions:
       # The documents folder is full
       # 1 - controllers/application_controller.rb
-      document_folder_size_exceeded: "Document uploading is temporarly disabled; please try again later" # TODO
+      document_folder_size_exceeded: "文档上传临时终止;请稍后再试"
       # The document is blank
       # 1 - controllers/application_controller.rb
-      document_blank: "Attachment is blank" # TODO
+      document_blank: "附件是空的"
       # Standard error for a text field which hasn't been filled properly (i.e. exceeded max number of characters, not filled, etc.)
       # 1 - controllers/application_controller.rb
       # 2 - controllers/application_controller.rb
@@ -760,7 +760,7 @@ cn:
       documents:
         # Add a document to a slide
         # 1 - views/lesson_editor/index.html.erb
-        add: "Add" # TODO
+        add: "增加"
         # Button that resumes the number of documents attached in the lesson editor (the variable %{num} is replaced by the number of documents)
         # 1 - app/views/lesson_editor/slides/_text.html.erb
         # 2 - app/views/lesson_editor/slides/_audio.html.erb
@@ -769,22 +769,22 @@ cn:
         # 5 - views/lesson_editor/index.html.erb
         # 6 - views/lesson_editor/index.html.erb
         # 7 - views/lesson_editor/index.html.erb
-        attached: "You attached %{num} documents in this slide" # TODO
+        attached: "你已连接%{num}文档到这个幻灯片"
         # Button in lesson viewer that tells the user that there are attached documents
         # 1 - views/lesson_viewer/_documents.html.erb
-        attached_view: "Download attached documents" # TODO
+        attached_view: "下载连接的文档"
         # Modify title and description of the document
         # 1 - views/documents/_view_single_compact.html.erb
-        change_info: "Modify title and description of the document" # TODO
+        change_info: "修改标题和文档"
         # Destroy a document
         # 1 - views/documents/_view_single_compact.html.erb
-        destroy: "Delete" # TODO
+        destroy: "删除"
         # Preview a document
         # 1 - views/documents/_view_single_compact.html.erb
-        preview: "Preview" # TODO
+        preview: "预览"
         # Removes a document from a slide
         # 1 - views/lesson_editor/index.html.erb
-        remove: "Remove" # TODO
+        remove: "去除"
     # To close the preview of a media element (big 'x' on the bottom right of the preview)
     # 1 - views/media_elements/_popup.html.erb
     # 2 - views/documents/_view_single_compact.html.erb
@@ -793,22 +793,22 @@ cn:
     documents:
       # Includes .doc, .odt
       # 1 - models/document.rb
-      doc: "Regular document" # TODO
+      doc: "常规文档"
       # Includes .ppt
       # 1 - models/document.rb
-      ppt: "Slide presentation" # TODO
+      ppt: "幻灯片展示"
       # Includes .zip, .gz
       # 1 - models/document.rb
-      zip: "Compressed document" # TODO
+      zip: "压缩的文档"
       # Includes .xls, .ods
       # 1 - models/document.rb
-      exc: "Table" # TODO
+      exc: "表格"
       # Includes .pdf, .ps
       # 1 - models/document.rb
-      pdf: "Vectorial document" # TODO
+      pdf: "矢量文档"
       # All not recognized formats
       # 1 - models/document.rb
-      unknown: "Document in a not standard format" # TODO
+      unknown: "非标准格式的文档"
     # Icon of a small door with an arrow going out: it represents the exit from the current section, all over the application
     # 1 - views/video_editor/not_available.html.erb
     # 2 - views/lesson_viewer/_lesson_slides.html.erb
@@ -818,7 +818,7 @@ cn:
     exit: "出口"
     # Icon to export an offline lesson from lesson viewer
     # 1 - views/lesson_viewer/_export.html.erb
-    export_lesson: "Export this lesson to a .zip file" # TODO
+    export_lesson: "将这个课程输出成zip格式的文件"
     # Same as above, but exit without saving
     # 1 - views/audio_editor/_header.html.erb
     # 2 - views/image_editor/_header.html.erb
@@ -877,7 +877,7 @@ cn:
       # Add a slide in the last position
       # 1 - views/lesson_editor/index.html.erb
       # 2 - views/lesson_editor/index.html.erb
-      add_slide_in_last_position: "Add a slide in the last position" # TODO
+      add_slide_in_last_position: "在最后的位置增加一个幻灯片"
       # 1 - views/lesson_editor/_slide_buttons.html.erb
       add_slide_cancel: "终止"
       # Button '+' to replace an audio in the audio slide
@@ -898,13 +898,13 @@ cn:
       delete_slide: "移除幻灯片"
       # Button to insert a document
       # 1 - views/lesson_editor/_slide_buttons.html.erb
-      document: "Attach a document" # TODO
+      document: "附加文档"
       # It's not possible to add further slides, since the maximum number has been reacher (%{num} is replaced by the maximum number of slides inside a lesson)
       # 1 - views/lesson_editor/_slide_buttons.html.erb
       # 2 - views/lesson_editor/_slide_buttons.html.erb
       # 3 - views/lesson_editor/index.html.erb
       # 4 - views/lesson_editor/index.html.erb
-      last_slide_reached: "You reached the maximum allowed number of %{num} slides" # TODO
+      last_slide_reached: "你已抵达%{num}幻灯片数量"
       # Button to save the current slide
       # 1 - views/lesson_editor/_slide_buttons.html.erb
       save_slide: "保存目前的幻灯片"
@@ -1041,7 +1041,7 @@ cn:
       remove: "从你的虚拟教室中移除"
       # Button 'x' to remove from playlist
       # 1 - views/virtual_classroom/_view_single_playlist.html.erb
-      remove_from_playlist: "Remove from your playlist" # TODO
+      remove_from_playlist: "从你的播放列表中移除"
       # 'Mail' icon, to send the link of the lesson to your friends
       # 1 - views/virtual_classroom/_view_single.html.erb
       send_link: "送一个课程链接给你的朋友"
@@ -1086,19 +1086,19 @@ cn:
     documents:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Attach a document" # TODO
+        title: "附加一个文档"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "You can attach any type of documents to your on-line lessons. In this section you can upload your personal documents, set a description and a title, and organize them to have them ready to use in the Lesson Editor." # TODO
+        content: "你能附加任何的文档到你的在线课程中. 在这里你能上传你个人的文档,设置描述,标题,并组织准备在课程编辑器中使用它们."
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Types of documents" # TODO
+        title: "文档类型"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "In %{desy} your documents are cathegorized into: <b>regular documents</b> (for instance .txt, .doc, .odt); <b>spreadsheets</b> (for instance .xls, .ods); <b>vectorial documents</b> (for instance .pdf, .ps); <b>presentations</b> (such as power point); <b>compressed documents</b> (.zip, .tar.gz). If your document's extension doesn't fit any of these cathegories, it has a specific icon for <b>other documents</b>." # TODO
+        content: "在%{desy}中,你的文档归档成: <b>普通格式的文档</b> (如 .txt, .doc, .odt); <b>电子表格</b> (如 .xls, .ods); <b>矢量文档</b> (如 .pdf, .ps); <b>演示文档</b> (如 power point); <b>压缩文档</b> (.zip, .tar.gz). 如果你的文档扩展名没有任何适合的归档类型,有一个合适的图标指示<b>其它文档格式</b>."
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Slides allowing documents" # TODO
+        title: "幻灯片兼容的文档"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "Not all the slides allow you to attach documents: you can do it only if the slide contains text. When you are working on a slide that allows to attach documents, click on the <b>attach</b> icon on the right to open the document manager inside Lesson Editor. You are allowed to attach a maximum of three documents for each slide." # TODO
+        content: "不是所有的幻灯片许可你增加文档: 只有幻灯片包含文本时才能做它. 当你正在附加文档到幻灯片时,请点击<b>附加</b>在右面的按钮图标,打开课程编辑器里的文档管理器. 你充许每个幻灯片添加不超过3个文档."
     lessons:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
@@ -1253,7 +1253,7 @@ cn:
     # Used to refer to the user's documents
     # 1 - views/shared/_menu.html.erb
     # 2 - views/documents/index.html.erb
-    documents: "Documents" # TODO
+    documents: "文档"
     # Used as a placeholder in any <video> HTML tag, if the browser doesn't support either .webm or .mp4
     # 1 - views/shared/players/_video.html.erb
     # 2 - views/video_editor/previews/_video.html.erb
@@ -1297,7 +1297,7 @@ cn:
     show: "显示"
     # Used as a caption to select order inside the main sections (used only in 'documents')
     # 1 - views/documents/index.html.erb
-    sort: "Sort by" # TODO
+    sort: "排序"
     # titles of the tab for each section
     titles:
       # 1 - helpers/application_helper.rb
@@ -1305,7 +1305,7 @@ cn:
       # 1 - helpers/application_helper.rb
       default: "%{desy}"
       # 1 - helpers/application_helper.rb
-      documents: "%{desy} - documents" # TODO
+      documents: "%{desy} - 文档"
       # 1 - helpers/application_helper.rb
       lessons: "%{desy} - 课程"
       # 1 - helpers/application_helper.rb
@@ -1415,7 +1415,7 @@ cn:
       # 1 - views/galleries/contents/audio.html.erb
       audio: "你的音频库是空的"
       # 1 - views/galleries/_document.html.erb
-      document: "You don't have any documents!" # TODO
+      document: "你没有任何的文档!"
       # 1 - views/galleries/contents/image.html.erb
       image: "你的图像库是空的"
       # 1 - views/galleries/contents/video.html.erb
@@ -1423,22 +1423,22 @@ cn:
     documents:
       # The user cancels his modifications
       # 1 - views/galleries/_document.html.erb
-      cancel: "Cancel" # TODO
+      cancel: "终止"
       # The user attachs the documents
       # 1 - views/galleries/_document.html.erb
-      done: "Save" # TODO
+      done: "保存"
       # The user filtered by a word and found no result (%{word} is replaced by the word)
       # 1 - views/galleries/document_for_lesson_editor_filter.js.erb
-      empty_filter: "You have no documents containing the word <%{word}>" # TODO
+      empty_filter: "你没有包含<%{word}>这个关键字的文档"
       # Caption of the filter of documents
       # 1 - views/galleries/_document.html.erb
-      filter_by: "Filter by" # TODO
+      filter_by: "过滤"
       # Caption used when the user attaches the maximum allowed number of documents into a slide
       # 1 - views/galleries/_document.html.erb
-      locked: "You can't attach more than three documents" # TODO
+      locked: "你不能附加超过3个文档"
       # Placeholder for a document that has to be loaded
       # 1 - views/galleries/_document.html.erb
-      placeholder: "Add a document from the list below" # TODO
+      placeholder: "从下面列表中增加一个文档"
     images:
       # Caption for the size (in pixels) of the image inside the gallery
       # 1 - views/galleries/popups/_image.html.erb
@@ -1647,12 +1647,12 @@ cn:
     # Area where it's possible to download offline the lesson
     export_lesson:
       # 1 - views/lesson_viewer/_export.html.erb
-      caption: "Click on the button below to download an offline version of this lesson" # TODO
+      caption: "点击按钮下载这个课程的离线版本"
       # 1 - views/lesson_viewer/_export.html.erb
-      button: "Download" # TODO
+      button: "下载"
       # Footer of an exported lesson (the variable %{copyright} is replaced by the full name of the application including copyright).
       # 1 - views/layouts/lesson_export.html.erb
-      made_in_desy: "This lesson is a product of %{copyright}" # TODO
+      made_in_desy: "这个课程是%{copyright}的版权"
   
   
   # SECTION 2.9: Caption used in the section 'my elements'
@@ -1715,34 +1715,34 @@ cn:
     time_difference:
       # 1 - models/notification.rb
       # 2 - models/notification.rb
-      seconds: "A few seconds ago" # TODO
+      seconds: "几秒钟之前"
       # 1 - models/notification.rb
-      minute: "A minute ago" # TODO
+      minute: "几分钟之前"
       # 1 - models/notification.rb
-      minutes: "%{minutes} minutes ago" # TODO
+      minutes: "%{minutes}分钟之前"
       # 1 - models/notification.rb
-      hour:  "An hour ago" # TODO
+      hour:  "一小时之前"
       # 1 - models/notification.rb
-      hours:  "%{hours} hours ago" # TODO
+      hours:  "%{hours}小时之前"
       # 1 - models/notification.rb
-      day: "A day ago" # TODO
+      day: "一天之前"
       # 1 - models/notification.rb
-      days: "%{days} days ago" # TODO
+      days: "%{days}天之前"
       # 1 - models/notification.rb
-      month: "A month ago" # TODO
+      month: "一个月之前"
       # 1 - models/notification.rb
-      months: "%{months} months ago" # TODO
+      months: "%{months}个月之前"
       # 1 - models/notification.rb
-      year: "A year ago" # TODO
+      year: "一年之前"
       # 1 - models/notification.rb
-      years: "%{years} years ago" # TODO
+      years: "%{years}年之前"
     documents:
       # Notification sent by a user who destroyed a document attached to a lesson coped by somebody else, to inform all its followers (the variable %{lesson_title} is replaced by the title of the lesson, %{document_title} by the title of the document, and %{link} by the link to the lesson viewer for that lesson)
       # 1 - models/document.rb
-      destroyed: "<div class=\"title\">Warning!</div><div class=\"content\">The document <span class=\"variable\">%{document_title}</span> has been removed by its owner: this affects your lesson <span class=\"variable\">%{lesson_title}</span></div><div class=\"basement\"><span>%{lesson_title}</span><a href=\"%{link}\" class=\"preview\"></a></div>" # TODO
+      destroyed: "<div class=\"title\">警告!</div><div class=\"content\">这个文档 <span class=\"variable\">%{document_title}</span> 被它的所有者移除: 这会影响你的课程 <span class=\"variable\">%{lesson_title}</span></div><div class=\"basement\"><span>%{lesson_title}</span><a href=\"%{link}\" class=\"preview\"></a></div>"
       # Message attached to the notification of modifications automatically sent to users who have a link to a lesson containig a document which has been deleted (%{document_title} is  replaced by the title of the document)
       # 1 - models/document.rb
-      standard_message_for_linked_lessons: "I removed the attached document «%{document_title}»" # TODO
+      standard_message_for_linked_lessons: "我移除了那个附加文档 «%{document_title}»"
     lessons:
       # Message sent to a user who has the lesson link, in case the creator of that lesson deleted it (the variable %{user_name} is replaced by the name of the author of the lesson, %{lesson_title} by the title of the lesson)
       # 1 - models/lesson.rb
@@ -2384,37 +2384,37 @@ cn:
     # Form to change info
     change_info:
       # 1 - views/documents/_view_single_compact.html.erb
-      cancel: "Cancel" #  TODO
+      cancel: "终止"
       # 1 - views/documents/_view_single_compact.html.erb
-      done: "Save" # TODO
+      done: "保存"
       # 1 - views/documents/_view_single_compact.html.erb
-      title: "Change info" # TODO
+      title: "变更信息"
     # Placeholder in the form to change description and title (the variable %{num} is replaced by the maximum number of characters allowed)
     # 1 - views/documents/_new_form_popup.html.erb
     # 2 - views/documents/_view_single_compact.html.erb
-    description_placeholder: "Insert a description (max %{num} characters)" # TODO
+    description_placeholder: "插入一个字符(最大 %{num}字符)"
     # Placeholder in the popup not editable
     # 1 - views/documents/_view_single_compact.html.erb
-    description_readonly_placeholder: "[No description given]" # TODO
+    description_readonly_placeholder: "[没有描述]"
     # Button to download a document
     # 1 - views/documents/_view_single_compact.html.erb
     # 2 - views/lesson_viewer/_documents.html.erb
-    download: "Download" # TODO
+    download: "下载"
     # When there are no documents in your section
     # 1 - views/documents/_empty.html.erb
-    empty: "You don't have any document" # TODO
+    empty: "你没有任何的文档"
     # When the document search produced no results
     # 1 - views/documents/_empty_word.html.erb
-    empty_word: "No documents found matching <%{word}>" # TODO
+    empty_word: "没有发现配匹的文档 <%{word}>"
     # Placeholder to search a document
     # 1 - views/documents/_search.html.erb
-    search: "Filter by word:" # TODO
+    search: "过滤字符:"
     # Placeholder in the form to upload a document (the variable %{num} is replaced by the maximum number of characters allowed)
     # 1 - views/documents/_new_form_popup.html.erb
-    title_placeholder: "Insert a title (max %{num} characters)" # TODO
+    title_placeholder: "插入标题(最大%{num}字符)"
     # Button to upload a new document
     # 1 - views/documents/index.html.erb
-    upload: "Upload a document" # TODO
+    upload: "上传文档"
     # Captions used in the upload form
     upload_form:
       # Caption when a file has not been loaded yet
