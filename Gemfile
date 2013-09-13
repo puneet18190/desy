@@ -38,7 +38,7 @@ gem 'recursive-open-struct'
 gem "subexec", github: "ProGNOMmers/subexec"
 gem 'mini_magick', github: 'ProGNOMmers/minimagick', branch: 'batch_compatibility'
 gem 'carrierwave'
-gem 'tinymce-rails', '~> 3.0'
+gem 'tinymce-rails', '3.5.8.2'
 gem 'tinymce-rails-langs'
 gem 'kaminari'
 gem 'bcrypt-ruby', '~> 3.0.0'
