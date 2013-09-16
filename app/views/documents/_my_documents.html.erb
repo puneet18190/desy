@@ -1,13 +1,13 @@
 <div id="my_documents">
-  <% if @documents.empty? %>
-    <% if @word.nil? %>
+  <% if documents.empty? %>
+    <% if word.nil? %>
       <%= render :partial => 'documents/empty' %>
     <% else %>
-      <%= render :partial => 'documents/empty_word', :locals => {:word => @word} %>
+      <%= render :partial => 'documents/empty_word', :locals => {:word => word} %>
     <% end %>
   <% else %>
-    <% @documents.each do |document| %>
-      <%= render :partial => 'documents/view_single_compact', :locals => {:document => document, :word => @word} %>
+    <% documents.each do |document| %>
+      <%= render :partial => 'documents/view_single_compact', :locals => {:document => document, :word => word} %>
     <% end %>
   <% end %>
 </div>
