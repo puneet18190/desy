@@ -23,7 +23,7 @@
     <% end %>
     <% if @elements_reports.any? %>
       <% @elements_reports.each do |report| %>
-        <a href="/admin/media_elements?utf8=✓&from_reporting=<%= report.id %>&search%5Bid%5D=<%= report.reportable.id %>">
+        <a href="/admin/media_elements?utf8=✓&from_reporting=<%= report.id %>&search%5Bid%5D=<%= report.reportable_id %>">
           <blockquote class="elements">
             <div class="pull-right date-label elements">
               <%= TimeConvert.to_string report.created_at %>
@@ -72,7 +72,7 @@
     <% end %>
     <% if @lessons_reports.any? %>
       <% @lessons_reports.each do |report| %>
-        <a href="/admin/lessons?utf8=✓&from_reporting=<%= report.id %>&search%5Bid%5D=<%= report.reportable.id %>">
+        <a href="/admin/lessons?utf8=✓&from_reporting=<%= report.id %>&search%5Bid%5D=<%= report.reportable_id %>">
           <blockquote class="lessons">
             <div class="pull-right date-label lessons">
               <%= TimeConvert.to_string report.created_at %>
