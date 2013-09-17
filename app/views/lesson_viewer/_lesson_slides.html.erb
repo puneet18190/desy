@@ -27,9 +27,9 @@
   </div>
 </div>
 
-<% if @export.nil? %>
+<% if @export.nil? && !from_playlist %>
   <%= render :partial => 'lesson_viewer/export', :locals => {:lesson => slides.first.lesson} %>
-  <% if !from_playlist && slides.first.lesson.is_public %>
+  <% if slides.first.lesson.is_public %>
     <%= render :partial => 'lesson_viewer/social_networks', :locals => {:lesson => slides.first.lesson} %>
   <% end %>
 <% end %>
