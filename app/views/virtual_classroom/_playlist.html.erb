@@ -1,6 +1,6 @@
 <div id="virtual_classroom_playlist" class="playList">
   <% if lessons.empty? %>
-    <%= render :partial => "virtual_classroom/empty_playlist" %>
+    <%= render :partial => 'virtual_classroom/empty_playlist' %>
   <% else %>
     <div class="playInVirtualClassroom _playlist_play">
       <a class="lower"><%= t('virtual_classroom.playlist.play') %></a>
@@ -10,7 +10,7 @@
     <div class="titlePlaylist fltlft "  style="padding-left:0"><%= t('virtual_classroom.playlist.label') %><%= " (#{lessons.length} / #{SETTINGS['lessons_in_playlist']})".html_safe %></div>
     <div id="lessons_list_in_playlist" class="scroll-pane">
       <% lessons.each do |l| %>
-        <%= render :partial => "virtual_classroom/view_single_playlist", :locals => {:virtual => l} %>
+        <%= render :partial => 'virtual_classroom/view_single_playlist', :locals => {:virtual => l} %>
       <% end %>
     </div>
   <% end %>

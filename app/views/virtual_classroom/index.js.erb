@@ -1,6 +1,6 @@
 <% if @delete_item.blank? %>
   $('#my_virtual_classroom').hide('fade', {}, 500, function() {
-    $('#my_virtual_classroom').replaceWith('<%= j(render(:partial => "virtual_classroom/my_virtual_classroom")) %>');
+    $('#my_virtual_classroom').replaceWith('<%= j(render(:partial => "virtual_classroom/my_virtual_classroom", :locals => {:lessons => @lessons})) %>');
     <% if @lessons.any? %>
       $('#virtual_classroom_pagination').replaceWith("<%= j(render(:partial => 'virtual_classroom/pagination', :locals => {:page => @page, :pages_amount => @pages_amount, :force_index_url => nil})) %>");
     <% else %>
@@ -11,7 +11,7 @@
 <% else %>
   var to_delete = $('#<%= @delete_item %>');
   to_delete.hide('fade', {}, 500, function() {
-    $('#my_virtual_classroom').replaceWith('<%= j(render(:partial => "virtual_classroom/my_virtual_classroom")) %>');
+    $('#my_virtual_classroom').replaceWith('<%= j(render(:partial => "virtual_classroom/my_virtual_classroom", :locals => {:lessons => @lessons})) %>');
     <% if @lessons.any? %>
       $('#virtual_classroom_pagination').replaceWith("<%= j(render(:partial => 'virtual_classroom/pagination', :locals => {:page => @page, :pages_amount => @pages_amount, :force_index_url => nil})) %>");
     <% else %>

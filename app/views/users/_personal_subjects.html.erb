@@ -13,7 +13,7 @@
           <%= label_tag html_id, '' %>
         </div>
       <% else %>
-        <%= check_box_tag "user[subject_ids][]", subject.id, user.users_subjects.map(&:subject_id).include?(subject.id), id: html_id, class: "regular-checkbox big-checkbox" %>
+        <%= check_box_tag "user[subject_ids][]", subject.id, user.users_subjects.map(&:subject_id).include?(subject.id), id: html_id, class: 'regular-checkbox big-checkbox' %>
         <%= label_tag html_id, '' %>
       <% end %>
       <span><%= subject.to_s %></span>
