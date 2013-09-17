@@ -35,7 +35,7 @@ class MediaElementsController < ApplicationController
     skip_before_filter :authenticate, :initialize_location, :initialize_players_counter, :only => [:videos_test, :audios_test]
     before_filter :admin_authenticate, :only => [:videos_test, :audios_test]
     layout false, :only => [:videos_test, :audios_test]
-
+    
     # === Description
     #
     # Test useful to check correctness of conversion and cross browser visibility of all elements of kind Video
@@ -56,10 +56,30 @@ class MediaElementsController < ApplicationController
     #
     def videos_test
     end
+    
+    # === Description
+    #
+    # Test useful to check correctness of conversion and cross browser visibility of all elements of kind Audio
+    #
+    # === Mode
+    #
+    # Html
+    #
+    # === Specific filters
+    #
+    # * ApplicationController#admin_authenticate
+    #
+    # === Skipped filters
+    #
+    # * ApplicationController#authenticate
+    # * ApplicationController#initialize_location
+    # * ApplicationController#initialize_players_counter
+    #
     def audios_test
     end
+    
   end
-
+  
   # === Description
   #
   # Main page of the section 'elements'. When it's called via ajax it's because of the application of filters, paginations, or after an operation that changed the number of items in the page.
