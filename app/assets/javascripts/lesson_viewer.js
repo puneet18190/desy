@@ -446,6 +446,7 @@ function switchLessonInPlaylistMenuLessonViewer(lesson_id, callback) {
 Goes to next slide using {{#crossLink "LessonViewerSlidesNavigation/slideToInLessonViewer:method"}}{{/crossLink}}.
 @method goToNextSlideInLessonViewer
 @for LessonViewerSlidesNavigation
+@param callback {Function} callback after slide switch (it can't be undefined, since this function is called only clicking on the arrows; anyway, nothing would prevent the use of this function with undefined callback)
 **/
 function goToNextSlideInLessonViewer(with_drop, callback) {
   var next_slide = getLessonViewerCurrentSlide().next();
@@ -460,6 +461,7 @@ function goToNextSlideInLessonViewer(with_drop, callback) {
 Goes to previous slide using {{#crossLink "LessonViewerSlidesNavigation/slideToInLessonViewer:method"}}{{/crossLink}}.
 @method goToPrevSlideInLessonViewer
 @for LessonViewerSlidesNavigation
+@param callback {Function} callback after slide switch (it can't be undefined, since this function is called only clicking on the arrows; anyway, nothing would prevent the use of this function with undefined callback)
 **/
 function goToPrevSlideInLessonViewer(with_drop, callback) {
   var prev_slide = getLessonViewerCurrentSlide().prev();
@@ -503,6 +505,7 @@ Goes to a given slide. If the new slide contains a media and the browser is not 
 @method slideToInLessonViewer
 @for LessonViewerSlidesNavigation
 @param to {Object} destination slide
+@param callback {Function} callback after slide switch (it can be undefined)
 **/
 function slideToInLessonViewer(to, with_drop, to_right, callback) {
   stopMediaInLessonViewer();
@@ -553,6 +556,7 @@ Goes to a slide (using {{#crossLink "LessonViewerSlidesNavigation/slideToInLesso
 @method slideToInLessonViewerWithLessonSwitch
 @for LessonViewerSlidesNavigation
 @param component {Object} destination slide
+@param callback {Function} callback after slide switch (it can't be undefined, since this function is called only clicking on the arrows; anyway, nothing would prevent the use of this function with undefined callback)
 **/
 function slideToInLessonViewerWithLessonSwitch(component, with_drop, to_right, callback) {
   slideToInLessonViewer(component, with_drop, to_right, callback);
