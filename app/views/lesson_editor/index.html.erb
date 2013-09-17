@@ -13,7 +13,7 @@
   <nav id="heading">
     <div class="scrollOrange">
       <div class="scroll-pane horizontal-only" id="nav_list_menu">
-        <%= render :partial => "index_nav", :locals => {:slides => @slides, :with_current => true} %>
+        <%= render :partial => 'lesson_editor/index_nav', :locals => {:slides => @slides, :with_current => true} %>
       </div>
     </div>
   </nav>
@@ -21,7 +21,7 @@
 <% end %>
 
 <ul id="slides">
-  <%= render :partial => "index_slides", :locals => {:slides => @slides, :with_current => true} %>
+  <%= render :partial => 'lesson_editor/index_slides', :locals => {:slides => @slides, :with_current => true, :documents_slides => @documents_slides} %>
 </ul>
 
 <%= render :partial => 'lesson_editor/new_slide' %>
