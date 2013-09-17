@@ -47,10 +47,6 @@ class Admin::DashboardController < AdminController
       ],
       :colors => SETTINGS['graph_colors'][0..3]
     }
-    respond_to do |wants|
-      wants.html
-      wants.xml {render :xml => @elements}
-    end
   end
   
 end
