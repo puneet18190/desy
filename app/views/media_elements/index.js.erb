@@ -1,6 +1,6 @@
 <% if @delete_item.blank? %>
   $('#my_media_elements').hide('fade', {}, 500, function() {
-    $('#my_media_elements').replaceWith("<%= j(render(:partial => 'media_elements/my_media_elements')) %>");
+    $('#my_media_elements').replaceWith("<%= j(render(:partial => 'media_elements/my_media_elements', :locals => {:media_elements => @media_elements, :filter => @filter, :display => @display})) %>");
     <% if @media_elements.any? %>
       $('#general_pagination').replaceWith("<%= j(render(:partial => 'shared/pagination', :locals => {:page => @page, :pages_amount => @pages_amount})) %>");
     <% else %>
@@ -15,7 +15,7 @@
       showOkPopUp(temporary_msg);
       $('#popup_captions_container').data('temporary-msg', '');
     }
-    $('#my_media_elements').replaceWith("<%= j(render(:partial => 'media_elements/my_media_elements')) %>");
+    $('#my_media_elements').replaceWith("<%= j(render(:partial => 'media_elements/my_media_elements', :locals => {:media_elements => @media_elements, :filter => @filter, :display => @display})) %>");
     <% if @media_elements.any? %>
       $('#general_pagination').replaceWith("<%= j(render(:partial => 'shared/pagination', :locals => {:page => @page, :pages_amount => @pages_amount})) %>");
     <% else %>

@@ -21,8 +21,8 @@
   <div class="mediaStatus fltlft">
     <%= media_element.status(true) %>
   </div>
-  <%= render :partial => "media_elements/action_buttons", :locals => {:media_element => media_element, :destination => destination, :additional_class => additional_class} %>
-  <%= render :partial => "media_elements/popup", :locals => {:media_element => media_element, :locked => true} %>
+  <%= render :partial => 'media_elements/action_buttons', :locals => {:media_element => media_element, :destination => destination, :additional_class => additional_class} %>
+  <%= render :partial => 'media_elements/popup', :locals => {:media_element => media_element, :locked => true} %>
 </div>
 
 
