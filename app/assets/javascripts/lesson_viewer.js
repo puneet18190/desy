@@ -106,6 +106,20 @@ function lessonViewerDocumentReadySlidesNavigation() {
   });
   $body.on('click', '#right_scroll', function(e) {
     e.preventDefault();
+    
+    
+    
+    /*
+    
+    -    if(!$(this).hasClass('disabled')) {
+-      $(this).addClass('disabled');
+-      goToPrevSlidevInLessonViewer(false);
+-    } 
+
+
+    
+    */
+    
     goToNextSlideInLessonViewer(false);
   });
   $body.on('click', '#left_scroll', function(e) {
@@ -433,12 +447,12 @@ Goes to next slide using {{#crossLink "LessonViewerSlidesNavigation/slideToInLes
 @method goToNextSlideInLessonViewer
 @for LessonViewerSlidesNavigation
 **/
-function goToNextSlideInLessonViewer(with_drop) {
+function goToNextSlideInLessonViewer(with_drop, callback) {
   var next_slide = getLessonViewerCurrentSlide().next();
   if(next_slide.length == 0) {
-    slideToInLessonViewerWithLessonSwitch($('._slide_in_lesson_viewer').first(), with_drop, true);
+    slideToInLessonViewerWithLessonSwitch($('._slide_in_lesson_viewer').first(), with_drop, true, callback);
   } else {
-    slideToInLessonViewerWithLessonSwitch(next_slide, with_drop, true);
+    slideToInLessonViewerWithLessonSwitch(next_slide, with_drop, true, callback);
   }
 }
 
@@ -447,12 +461,12 @@ Goes to previous slide using {{#crossLink "LessonViewerSlidesNavigation/slideToI
 @method goToPrevSlideInLessonViewer
 @for LessonViewerSlidesNavigation
 **/
-function goToPrevSlideInLessonViewer(with_drop) {
+function goToPrevSlideInLessonViewer(with_drop, callback) {
   var prev_slide = getLessonViewerCurrentSlide().prev();
   if(prev_slide.length == 0) {
-    slideToInLessonViewerWithLessonSwitch($('._slide_in_lesson_viewer').last(), with_drop, false);
+    slideToInLessonViewerWithLessonSwitch($('._slide_in_lesson_viewer').last(), with_drop, false, callback);
   } else {
-    slideToInLessonViewerWithLessonSwitch(prev_slide, with_drop, false);
+    slideToInLessonViewerWithLessonSwitch(prev_slide, with_drop, false, callback);
   }
 }
 
@@ -490,7 +504,7 @@ Goes to a given slide. If the new slide contains a media and the browser is not 
 @for LessonViewerSlidesNavigation
 @param to {Object} destination slide
 **/
-function slideToInLessonViewer(to, with_drop, to_right) {
+function slideToInLessonViewer(to, with_drop, to_right, callback) {
   stopMediaInLessonViewer();
   var from = getLessonViewerCurrentSlide();
   from.removeClass('_lesson_viewer_current_slide');
@@ -528,6 +542,9 @@ function slideToInLessonViewer(to, with_drop, to_right) {
     if(media.length > 0 && with_autoplay) {
       media.find('._media_player_play').click();
     }
+    if(callback != undefined) {
+      callback();
+    }
   });
 }
 
@@ -537,7 +554,7 @@ Goes to a slide (using {{#crossLink "LessonViewerSlidesNavigation/slideToInLesso
 @for LessonViewerSlidesNavigation
 @param component {Object} destination slide
 **/
-function slideToInLessonViewerWithLessonSwitch(component, with_drop, to_right) {
-  slideToInLessonViewer(component, with_drop, to_right);
+function slideToInLessonViewerWithLessonSwitch(component, with_drop, to_right, callback) {
+  slideToInLessonViewer(component, with_drop, to_right, callback);
   switchLessonInPlaylistMenuLessonViewer(component.data('lesson-id'));
 }
