@@ -12,12 +12,12 @@
     <h3><%= lesson.title %></h3>
     <p><%= lesson.subject.description %></p>
     <p><%= lesson.status(true) %></p>
-    <%= render :partial => "lessons/action_buttons", :locals => {:lesson => lesson, :destination => destination, :additional_class => additional_class} %>
+    <%= render :partial => 'lessons/action_buttons', :locals => {:lesson => lesson, :destination => destination, :additional_class => additional_class} %>
   </div>
   
   <% if !disabled %>
     <div class="lessons-expanded _lesson_expanded">
-      <%= render :partial => "lessons/thumbnail", :locals => {:lesson => lesson} %>
+      <%= render :partial => 'lessons/thumbnail', :locals => {:lesson => lesson} %>
       <div class="info-text">
         <h1><%= t('lessons.created_on') %></h1>
         <%= TimeConvert.to_string(lesson.created_at) %>
@@ -26,7 +26,7 @@
           <span class="fltlft" style="padding-top:2px"><%= t('lessons.users_like_this', :likes => lesson.likes.count) %></span>
         </p>
         <% if lesson.is_reportable %>
-          <%= render :partial => "reports/lesson", :locals => {:lesson => lesson} %>
+          <%= render :partial => 'reports/lesson', :locals => {:lesson => lesson} %>
         <% end %>
       </div>
       <div class="description-text">
