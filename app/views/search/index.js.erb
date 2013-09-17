@@ -1,7 +1,7 @@
 <%
   items = @search_item == 'lessons' ? @lessons : @media_elements
   items_amount = @search_item == 'lessons' ? @lessons_amount : @media_elements_amount
-  pagination = render :partial => "shared/pagination", :locals => {:page => @page, :pages_amount => @pages_amount}
+  pagination = render :partial => 'shared/pagination', :locals => {:page => @page, :pages_amount => @pages_amount}
   results = render :partial => "search/#{@search_item}/results", :locals => {:"#{@search_item}" => items, :word => @word}
   amount = render :partial => "search/#{@search_item}/amount", :locals => {:amount => items_amount, :tags => @tags, :specific_tag => @specific_tag}
   tag_details = render :partial => "search/#{@search_item}/tag_details", :locals => {:tags => @tags, :specific_tag => @specific_tag}
