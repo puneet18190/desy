@@ -902,13 +902,7 @@ class Lesson < ActiveRecord::Base
     true
   end
   
-  def self.test
-    l = User.admin.create_lesson('test title', 'test description', 1, "asd, o, mar, rio, mare, test")
-    l = find l.id
-    _d l
-    l.destroy
-  end
-  
+  # Initialize metadata
   def initialize_metadata
     self.metadata.available_video = true
     self.metadata.available_audio = true
