@@ -25,8 +25,8 @@ class Admin::DashboardController < AdminController
   #
   def index
     @users = User.order('created_at DESC').limit(5)
-    @elements_reports = Report.order('created_at DESC').where(:reportable_type => 'MediaElement').limit(5)
-    @lessons_reports = Report.order('created_at DESC').where(:reportable_type => 'Lesson').limit(5)
+    @elements_reports = Report.includes(:user, :reportable).order('created_at DESC').where(:reportable_type => 'MediaElement').limit(5)
+    @lessons_reports = Report.includes(:user, :reportable).order('created_at DESC').where(:reportable_type => 'Lesson').limit(5)
     @all_liked_lessons    = Statistics.all_liked_lessons(3)
     @all_shared_elements  = Statistics.all_shared_elements
     @all_shared_lessons   = Statistics.all_shared_lessons
