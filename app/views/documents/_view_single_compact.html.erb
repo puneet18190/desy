@@ -18,7 +18,7 @@
      <p class="upper"><%= document.size_and_extension %></p>
     <div class="menuController buttons">
       <a title="<%= t('titles.buttons.documents.preview') %>" data-document-id="<%= document.id %>" class="preview"></a>
-      <a title="<%= t('titles.buttons.documents.destroy') %>" data-used-in-your-lessons="<%= document.used_in_your_lessons? %>" data-document-id="<%= document.id %>" class="destroy"></a>
+      <a title="<%= t('titles.buttons.documents.destroy') %>" data-used-in-your-lessons="<%= document.instances.to_i != 0 %>" data-document-id="<%= document.id %>" class="destroy"></a>
     </div>
   </div>
   
