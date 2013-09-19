@@ -168,6 +168,11 @@ class Admin::SettingsController < AdminController
   def lessons_for_tag
     @tag = Tag.find(params[:id])
     @lessons = @tag.get_lessons(params[:page])
+    covers = Slide.where(:lesson_id => @lessons.pluck(:id), :kind => 'cover').preload(:media_elements_slides, :media_elements_slides => :media_element)
+    @covers = {}
+    covers.each do |cov|
+      @covers[cov.lesson_id] = cov
+    end
   end
   
   # === Description

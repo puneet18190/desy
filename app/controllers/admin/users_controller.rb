@@ -52,6 +52,11 @@ class Admin::UsersController < AdminController
     @user = User.find(params[:id])
     Statistics.user = @user
     @user_lessons        = Lesson.where(:user_id => @user.id).order('updated_at DESC').limit(10)
+    user_lessons_covers  = Slide.where(:lesson_id => @user_lessons.pluck(:id), :kind => 'cover').preload(:media_elements_slides, :media_elements_slides => :media_element)
+    @user_lessons_covers = {}
+    user_lessons_covers.each do |cov|
+      @user_lessons_covers[cov.lesson_id] = cov
+    end
     @user_elements       = MediaElement.where(:user_id => @user.id).order('updated_at DESC').limit(10)
     @my_created_lessons  = Statistics.my_created_lessons
     @my_created_elements = Statistics.my_created_elements
