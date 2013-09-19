@@ -167,7 +167,7 @@ class Admin::SettingsController < AdminController
   #
   def lessons_for_tag
     @tag = Tag.find(params[:id])
-    @lessons = @tag.get_lessons(params[:page]).select('lessons.*, (SELECT COUNT (*) FROM likes WHERE likes.lesson_id = lessons.id) AS likes_count')
+    @lessons = @tag.get_lessons(params[:page]).select('lessons.*, (SELECT COUNT (*) FROM likes WHERE likes.lesson_id = lessons.id) AS likes_count').preload(:user, :subject, :taggings, :taggings => :tag)
     covers = Slide.where(:lesson_id => @lessons.pluck(:id), :kind => 'cover').preload(:media_elements_slides, :media_elements_slides => :media_element)
     @covers = {}
     covers.each do |cov|
