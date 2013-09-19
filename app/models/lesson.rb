@@ -310,19 +310,19 @@ class Lesson < ActiveRecord::Base
   #
   # * *an_user_id*: the id of the user who is asking permission to see the lesson.
   #
-  def set_status(an_user_id)
+  def set_status(an_user_id, selects={})
     return if self.new_record?
-
+    am_i_bookmarked = self.bookmarked?(an_user_id, selects[:bookmarked])
     if !self.is_public && !self.copied_not_modified && an_user_id == self.user_id
       @status = Statuses::PRIVATE
       @is_reportable = false
     elsif !self.is_public && self.copied_not_modified && an_user_id == self.user_id
       @status = Statuses::COPIED
       @is_reportable = false
-    elsif self.is_public && an_user_id != self.user_id && self.bookmarked?(an_user_id)
+    elsif self.is_public && an_user_id != self.user_id && am_i_bookmarked
       @status = Statuses::LINKED
       @is_reportable = true
-    elsif self.is_public && an_user_id != self.user_id && !self.bookmarked?(an_user_id)
+    elsif self.is_public && an_user_id != self.user_id && !am_i_bookmarked
       @status = Statuses::PUBLIC
       @is_reportable = true
     elsif self.is_public && an_user_id == self.user_id
@@ -332,10 +332,8 @@ class Lesson < ActiveRecord::Base
       @status = nil
       @is_reportable = nil
     end
-
-    @in_vc = self.in_virtual_classroom?(an_user_id)
-    @liked = self.liked?(an_user_id)
-    
+    @in_vc = self.in_virtual_classroom?(an_user_id, selects[:in_vc])
+    @liked = self.liked?(an_user_id, selects[:liked])
     true
   end
   
@@ -377,8 +375,9 @@ class Lesson < ActiveRecord::Base
   #
   # A boolean
   #
-  def bookmarked?(an_user_id)
+  def bookmarked?(an_user_id, select=nil)
     return false if self.new_record?
+    return (self.send(select).to_i != 0) if !select.nil?
     Bookmark.where(:user_id => an_user_id, :bookmarkable_type => 'Lesson', :bookmarkable_id => self.id).any?
   end
   
@@ -760,8 +759,9 @@ class Lesson < ActiveRecord::Base
   #
   # A boolean
   #
-  def in_virtual_classroom?(an_user_id)
+  def in_virtual_classroom?(an_user_id, select=nil)
     return false if self.new_record?
+    return (self.send(select).to_i != 0) if !select.nil?
     VirtualClassroomLesson.where(:user_id => an_user_id, :lesson_id => self.id).any?
   end
   
@@ -777,8 +777,9 @@ class Lesson < ActiveRecord::Base
   #
   # A boolean
   #
-  def liked?(an_user_id)
+  def liked?(an_user_id, select=nil)
     return false if self.new_record?
+    return (self.send(select).to_i != 0) if !select.nil?
     Like.where(:user_id => an_user_id, :lesson_id => self.id).any?
   end
   
