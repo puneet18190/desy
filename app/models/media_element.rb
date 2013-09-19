@@ -348,7 +348,7 @@ class MediaElement < ActiveRecord::Base
   # An array of Tag objects.
   #
   def tags
-    self.new_record? ? '' : Tag.get_friendly_tags(self.id, 'MediaElement')
+    self.new_record? ? '' : Tag.get_friendly_tags(self)
   end
   
   # === Description

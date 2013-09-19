@@ -96,15 +96,14 @@ class Tag < ActiveRecord::Base
   #
   # === Args
   #
-  # * *item_id*: if of the item (lesson or element)
-  # * *kind*: 'Lesson' or 'MediaElement'
+  # * *item*: item (lesson or element)
   #
   # === Returns
   #
   # A string of tags in the shape ',tag1,tag2,tag3,tag4,'
   #
-  def self.get_friendly_tags(item_id, kind)
-    tags = Tagging.where(:taggable_id => item_id, :taggable_type => kind).order(:tag_id)
+  def self.get_friendly_tags(item)
+    tags = item.taggings
     return '' if tags.empty?
     resp = ",#{tags.first.tag.word}"
     count = 1

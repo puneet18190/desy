@@ -226,7 +226,7 @@ class Lesson < ActiveRecord::Base
   # An array of Tag objects.
   #
   def tags
-    self.new_record? ? '' : Tag.get_friendly_tags(self.id, 'Lesson')
+    self.new_record? ? '' : Tag.get_friendly_tags(self)
   end
   
   # === Description

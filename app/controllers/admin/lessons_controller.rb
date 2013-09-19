@@ -25,8 +25,8 @@ class Admin::LessonsController < AdminController
   # * ApplicationController#admin_authenticate
   #
   def index
-    lessons = params[:search] ? AdminSearchForm.search_lessons(params[:search]) : Lesson.order('id DESC')
-    @lessons = lessons.page(params[:page])
+    lessons = AdminSearchForm.search_lessons((params[:search] ? params[:search] : {:ordering => 0, :desc => 'true'}))
+    @lessons = lessons.preload(:subject, :taggings, :taggings => :tag).page(params[:page])
     @locations = [Location.roots]
     if params[:search]
       location = Location.get_from_chain_params params[:search]
