@@ -43,7 +43,7 @@
           <td><%= lesson.id %></td>
           <td><%= lesson.title %></td>
           <td><%= lesson.subject.description %></td>
-          <td><%= link_to "#{lesson.users_name} #{lesson.users_surname}", admin_user_path(lesson.user_id), :target => :blank, :class => '_user_link_in_admin' %></td>
+          <td><%= link_to lesson.user.full_name, admin_user_path(lesson.user_id), :target => :blank, :class => '_user_link_in_admin' %></td>
           <td><%= TimeConvert.to_string lesson.created_at %></td>
           <td><%= TimeConvert.to_string lesson.updated_at %></td>
           <td><%= lesson.likes_count %></td>
@@ -68,7 +68,7 @@
             <div class="row-fluid">
               <div class="span3">
                 <div class="img-polaroid lesson-thumbnail" data-loaded="true">
-                  <%= render :partial => 'lessons/thumbnail', :locals => {:lesson => lesson} %>
+                  <%= render :partial => 'lessons/thumbnail', :locals => {:lesson => lesson, :cover => covers[lesson.id]} %>
                 </div>
               </div>
               <div class="span3">

@@ -131,7 +131,7 @@ class AdminSearchForm
   # An array, not paginated yet, of records of type Lesson
   #
   def self.search_lessons(params)
-    resp = Lesson.select('lessons.*, users.name AS users_name, users.surname AS users_surname, (SELECT COUNT (*) FROM likes WHERE likes.lesson_id = lessons.id) AS likes_count')
+    resp = Lesson.select('lessons.*, (SELECT COUNT (*) FROM likes WHERE likes.lesson_id = lessons.id) AS likes_count')
     resp = resp.joins(:user)
     if params[:ordering].present?
       ord = ORDERINGS[:lessons][params[:ordering].to_i]
