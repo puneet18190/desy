@@ -718,9 +718,9 @@ class User < ActiveRecord::Base
   #
   def suggested_media_elements(n)
     n = 1 if n.class != Fixnum || n < 0
-    resp = MediaElement.where('is_public = ? AND user_id != ? AND NOT EXISTS (SELECT * FROM bookmarks WHERE bookmarks.bookmarkable_type = ? AND bookmarks.bookmarkable_id = media_elements.id AND bookmarks.user_id = ?)', true, self.id, 'MediaElement', self.id).order('publication_date DESC').limit(n)
+    resp = MediaElement.select('media_elements.*, 0 AS bookmarks_count').where('is_public = ? AND user_id != ? AND NOT EXISTS (SELECT * FROM bookmarks WHERE bookmarks.bookmarkable_type = ? AND bookmarks.bookmarkable_id = media_elements.id AND bookmarks.user_id = ?)', true, self.id, 'MediaElement', self.id).order('publication_date DESC').limit(n)
     resp.each do |me|
-      me.set_status self.id
+      me.set_status self.id, {:bookmarked => :bookmarks_count}
     end
     resp
   end

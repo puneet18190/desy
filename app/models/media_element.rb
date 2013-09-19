@@ -394,17 +394,18 @@ class MediaElement < ActiveRecord::Base
   #
   # * *an_user_id*: the id of the user who is asking permission to see the element.
   #
-  def set_status(an_user_id)
+  def set_status(an_user_id, selects={})
     return if self.new_record?
+    am_i_bookmarked = self.bookmarked?(an_user_id, selects[:bookmarked])
     if !self.is_public && an_user_id == self.user_id
       @status = Statuses::PRIVATE
       @is_reportable = false
       @info_changeable = true
-    elsif self.is_public && !self.bookmarked?(an_user_id)
+    elsif self.is_public && !am_i_bookmarked
       @status = Statuses::PUBLIC
       @is_reportable = true
       @info_changeable = false
-    elsif self.is_public && self.bookmarked?(an_user_id)
+    elsif self.is_public && am_i_bookmarked
       @status = Statuses::LINKED
       @is_reportable = true
       @info_changeable = false
@@ -448,8 +449,9 @@ class MediaElement < ActiveRecord::Base
   #
   # A boolean
   #
-  def bookmarked?(an_user_id)
+  def bookmarked?(an_user_id, select=nil)
     return false if self.new_record?
+    return (self.send(select).to_i != 0) if !select.nil?
     Bookmark.where(:user_id => an_user_id, :bookmarkable_type => 'MediaElement', :bookmarkable_id => self.id).any?
   end
   

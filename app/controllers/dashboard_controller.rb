@@ -25,7 +25,7 @@ class DashboardController < ApplicationController
   # * ApplicationController#initialize_layout
   #
   def index
-    @lessons = current_user.suggested_lessons(@lessons_for_page * @lesson_pages)
+    @lessons = current_user.suggested_lessons(@lessons_for_page * @lesson_pages).preload(:subject)
     @lessons_emptied = Lesson.dashboard_emptied? current_user.id
     @media_elements = current_user.suggested_media_elements(@media_elements_for_page * @media_element_pages)
     @media_elements_emptied = MediaElement.dashboard_emptied? current_user.id
