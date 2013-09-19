@@ -189,7 +189,7 @@ class Admin::SettingsController < AdminController
   #
   def media_elements_for_tag
     @tag = Tag.find(params[:id])
-    @media_elements = @tag.get_media_elements(params[:page])
+    @media_elements = @tag.get_media_elements(params[:page]).preload(:user, :taggings, :taggings => :tag)
   end
   
 end
