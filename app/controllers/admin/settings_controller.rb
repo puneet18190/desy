@@ -26,7 +26,7 @@ class Admin::SettingsController < AdminController
   # * ApplicationController#admin_authenticate
   #
   def subjects
-    @subjects = Subject.all
+    @subjects = Subject.select('subjects.*, ((SELECT COUNT (*) FROM users_subjects WHERE users_subjects.subject_id = subjects.id) + (SELECT COUNT (*) FROM lessons WHERE lessons.subject_id = subjects.id)) AS instances')
   end
   
   # === Description
@@ -77,7 +77,7 @@ class Admin::SettingsController < AdminController
   # * ApplicationController#admin_authenticate
   #
   def school_levels
-    @school_levels = SchoolLevel.all
+    @school_levels = SchoolLevel.select('school_levels.*, ((SELECT COUNT (*) FROM users WHERE users.school_level_id = school_levels.id) + (SELECT COUNT (*) FROM lessons WHERE lessons.school_level_id = school_levels.id)) AS instances')
   end
   
   # === Description
