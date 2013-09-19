@@ -65,7 +65,7 @@ class Admin::MediaElementsController < AdminController
   # * ApplicationController#admin_authenticate
   #
   def edit
-    @private_elements = MediaElement.order('created_at DESC').where(:user_id => current_user.id, :is_public => false, :converted => true)
+    @private_elements = MediaElement.order('created_at DESC').where(:user_id => current_user.id, :is_public => false, :converted => true).preload(:user, :taggings, :taggings => :tag)
   end
   
   # === Description
