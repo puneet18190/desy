@@ -174,11 +174,6 @@ class Document < ActiveRecord::Base
     resp
   end
   
-  # Returns true if the document has been attached to your own lessons
-  def used_in_your_lessons?
-    DocumentsSlide.joins(:slide, {:slide => :lesson}).where(:documents_slides => {:document_id => self.id}, :lessons => {:user_id => self.user_id}).any?
-  end
-  
   private
   
   # Validates the size of the attached file, comparing it to the maximum size configured in megabytes in settings.yml

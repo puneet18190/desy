@@ -667,11 +667,11 @@ class User < ActiveRecord::Base
       when SearchOrders::TITLE
         order = 'title ASC, created_at DESC'
     end
-    relation = nil
+    relation = Document.select('documents.*, (SELECT COUNT(*) FROM documents_slides INNER JOIN slides ON slides.id = documents_slides.slide_id INNER JOIN lessons ON lessons.id = slides.lesson_id WHERE documents_slides.document_id = documents.id AND lessons.user_id = documents.user_id) AS instances')
     if word.nil?
-      relation = Document.where(:user_id => self.id).order(order)
+      relation = relation.where(:user_id => self.id).order(order)
     else
-      relation = Document.where('user_id = ? AND title ILIKE ?', self.id, "%#{word}%").order(order)
+      relation = relation.where('user_id = ? AND title ILIKE ?', self.id, "%#{word}%").order(order)
     end
     {
       :records => relation.limit(per_page).offset(offset),
