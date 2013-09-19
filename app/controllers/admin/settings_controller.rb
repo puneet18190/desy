@@ -128,7 +128,7 @@ class Admin::SettingsController < AdminController
   # * ApplicationController#admin_authenticate
   #
   def tags
-    tags = params[:search] ? AdminSearchForm.search_tags(params[:search]) : Tag.order('created_at DESC')
+    tags = AdminSearchForm.search_tags((params[:search] ? params[:search] : {:ordering => 2, :desc => 'true'}))
     @tags = tags.page(params[:page])
   end
   

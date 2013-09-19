@@ -26,7 +26,7 @@ class Admin::MediaElementsController < AdminController
   # * ApplicationController#admin_authenticate
   #
   def index
-    elements = params[:search] ? AdminSearchForm.search_media_elements(params[:search]) : MediaElement.where(converted: true).order('id DESC')
+    elements = AdminSearchForm.search_media_elements((params[:search] ? params[:search] : {:ordering => 0, :desc => 'true'}))
     @elements = elements.preload(:user, :taggings, :taggings => :tag).page(params[:page])
     @locations = [Location.roots]
     if params[:search]

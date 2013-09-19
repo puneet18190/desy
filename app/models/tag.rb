@@ -166,30 +166,6 @@ class Tag < ActiveRecord::Base
     MediaElement.joins(:taggings).where(:taggings => {:tag_id => self.id}).order('media_elements.updated_at DESC').page(page)
   end
   
-  # === Description
-  #
-  # Counts the media elements associated to this tag through Tagging (used in Admin::SettingsController#tags)
-  #
-  # === Returns
-  #
-  # An integer
-  #
-  def media_elements_count
-    Tagging.where(:taggable_type => 'MediaElement', :tag_id => self.id).count
-  end
-  
-  # === Description
-  #
-  # Counts the lessons associated to this tag through Tagging (used in Admin::SettingsController#tags)
-  #
-  # === Returns
-  #
-  # An integer
-  #
-  def lessons_count
-    Tagging.where(:taggable_type => 'Lesson', :tag_id => self.id).count
-  end
-  
   private
   
   # Initializes validation objects (see Valid.get_association)
