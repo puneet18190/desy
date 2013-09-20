@@ -304,7 +304,9 @@ class ExtractorTest < ActiveSupport::TestCase
   
   test 'suggested_media_elements' do
     assert @user2.bookmark 'MediaElement', @el3.id
-    assert_item_extractor [2, @el1.id, @el2.id, @el5.id, @el7.id], @user2.suggested_media_elements(80)
+    resp = @user2.suggested_media_elements(80)
+    assert_item_extractor [2, @el1.id, @el2.id, @el5.id, @el7.id], resp
+    assert_status resp, [['preview', 'add'], ['preview', 'add'], ['preview', 'add'], ['preview', 'add'], ['preview', 'add']]
   end
   
   test 'dashboard_emptied' do
