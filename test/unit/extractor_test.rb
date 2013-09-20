@@ -977,7 +977,7 @@ class ExtractorTest < ActiveSupport::TestCase
     assert @user2.like(@les7.id)
     resp = @user2.search_lessons('條聖', 1, 5, 'title', nil, nil)[:records]
     assert_item_extractor [@les7.id, @les9.id], resp
-    resp.sort { |a, b| a.id <=> b.id }
+    resp = resp.sort { |a, b| a.id <=> b.id }
     assert @les7.id < @les9.id
     assert_status resp, [['preview', 'add', 'dislike'], ['preview', 'copy', 'remove_virtual_classroom', 'like', 'remove']]
     @les7 = Lesson.find @les7.id
