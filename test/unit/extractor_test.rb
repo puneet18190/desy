@@ -1183,6 +1183,14 @@ class ExtractorTest < ActiveSupport::TestCase
     # check middle words
     assert_extractor [Tag.find_by_word('walter nudo').id], @user2.search_media_elements('walter ', 1, 5)[:tags]
     assert @user2.search_media_elements('nudo', 1, 5)[:tags].empty?
+    # test for status
+    resp = @user2.search_media_elements('加', 1, 5, 'title')[:records]
+    assert_ordered_item_extractor [@el2.id, @el4.id, 3], resp
+    assert @user2.bookmark('MediaElement', @el4.id)
+    resp = @user2.search_media_elements('加', 1, 5, 'title')[:records]
+    assert_item_extractor [@el2.id, @el4.id, 3], resp
+    resp = resp.sort { |a, b| a.id <=> b.id}
+    assert_status resp, [['preview', 'edit', 'destroy'], ['preview', 'add'], ['preview', 'edit', 'remove']]
   end
   
 end
