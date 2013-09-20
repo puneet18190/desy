@@ -762,11 +762,40 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_ordered_item_extractor [@les4.id, @les5.id, @les9.id, @les2.id, 2], p2[:records]
     assert_equal 10, p2[:records_amount]
     assert_equal 2, p2[:pages_amount]
+    assert_status p2[:records], [['preview', 'add', 'like'], ['preview', 'add', 'like'], ['preview', 'add', 'like'], ['preview', 'add', 'like'], ['preview', 'edit', 'add_virtual_classroom', 'unpublish', 'copy', 'destroy']]
     # seventh case
     p1 = @user2.search_lessons(nil, 1, 5, 'likes', 'all_lessons', 3)
     assert_ordered_item_extractor [@les3.id, @les9.id, 2], p1[:records]
     assert_equal 3, p1[:records_amount]
     assert_equal 1, p1[:pages_amount]
+    # test for correct status
+    Like.where(:lesson_id => @les4.id).last.delete
+    Like.where(:lesson_id => @les9.id).last.delete
+    assert @user2.bookmark('Lesson', @les4.id)
+    assert @les5.unpublish
+    Lesson.where(:id => @les5.id).update_all(:user_id => 2)
+    assert @les5.add_to_virtual_classroom(@user2.id)
+    Lesson.where(:id => 2).delete_all
+    assert Lesson.where(:id => 2).empty?
+    assert @user2.bookmark('Lesson', @les2.id)
+    copied = @les2.copy(@user2.id)
+    assert Like.where(:lesson_id => copied.id).empty?
+    assert @user2.like(@les9.id)
+    assert @user2.like(@les4.id)
+    assert_equal 2, Like.where(:lesson_id => @les4.id).count
+    assert_equal 1, Like.where(:lesson_id => @les9.id).count
+    date_now = '2011-01-01 20:00:00'.to_time
+    Lesson.order(:id).each do |l|
+      if ![@les7.id, @les2.id, @les9.id].include?(l.id)
+        Lesson.where(:id => l.id).update_all(:updated_at => date_now)
+      end
+      date_now -= 1
+    end
+    Lesson.where(:id => @les2.id).update_all(:updated_at => '1999-01-01 19:00:00')
+    Lesson.where(:id => @les9.id).update_all(:updated_at => '1999-01-01 20:00:00')
+    resp = @user2.search_lessons(nil, 2, 5, 'likes', 'all_lessons', nil)[:records]
+    assert_ordered_item_extractor [@les4.id, @les5.id, @les9.id, @les2.id, copied.id], resp
+    assert_status resp, [['preview', 'copy', 'add_virtual_classroom', 'dislike', 'remove'], ['preview', 'edit', 'remove_virtual_classroom', 'publish', 'copy', 'destroy'], ['preview', 'add', 'dislike'], ['preview', 'copy', 'add_virtual_classroom', 'like', 'remove'], ['preview', 'edit', 'destroy']]
   end
   
   test 'populate_tags' do
