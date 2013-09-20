@@ -290,9 +290,16 @@ class ExtractorTest < ActiveSupport::TestCase
     l = Lesson.find 2
     assert_equal 2, l.user_id
     assert_equal true, l.is_public
-    assert_item_extractor [@les1.id, @les2.id, @les3.id, @les4.id], @user2.suggested_lessons(6)
+    assert @user2.like(@les3.id)
+    assert @user2.like(@les4.id)
+    resp = @user2.suggested_lessons(6)
+    assert_item_extractor [@les1.id, @les2.id, @les3.id, @les4.id], resp
+    assert_status resp, [['preview', 'add', 'like'], ['preview', 'add', 'like'], ['preview', 'add', 'dislike'], ['preview', 'add', 'dislike']]
+    assert @user2.dislike(@les4.id)
     assert @user2.bookmark 'Lesson', @les2.id
-    assert_item_extractor [@les1.id, @les3.id, @les4.id], @user2.suggested_lessons(6)
+    resp = @user2.suggested_lessons(6)
+    assert_item_extractor [@les1.id, @les3.id, @les4.id], resp
+    assert_status resp, [['preview', 'add', 'like'], ['preview', 'add', 'dislike'], ['preview', 'add', 'like']]
   end
   
   test 'suggested_media_elements' do
