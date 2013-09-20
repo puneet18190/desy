@@ -575,19 +575,25 @@ class User < ActiveRecord::Base
   # * *records*: the effective content of the research, an array of object of type MediaElement
   # * *pages_amount*: an integer, the total number of pages in the method's result
   #
-  def own_media_elements(page, per_page, filter=Filters::ALL_MEDIA_ELEMENTS)
+  def own_media_elements(page, per_page, filter=Filters::ALL_MEDIA_ELEMENTS, from_gallery=false)
     page = 1 if !page.is_a?(Fixnum) || page <= 0
     for_page = 1 if !for_page.is_a?(Fixnum) || for_page <= 0
     offset = (page - 1) * per_page
-    relation = MediaElement.select("media_elements.*, (SELECT COUNT (*) FROM bookmarks WHERE bookmarks.bookmarkable_type = #{self.connection.quote 'MediaElement'} AND bookmarks.bookmarkable_id = media_elements.id AND bookmarks.user_id = #{self.connection.quote self.id.to_i}) AS bookmarks_count, (SELECT COUNT(*) FROM media_elements_slides WHERE (media_elements_slides.media_element_id = media_elements.id)) AS instances").of(self)
+    select = 'media_elements.*'
+    select = "#{select}, (SELECT COUNT (*) FROM bookmarks WHERE bookmarks.bookmarkable_type = #{self.connection.quote 'MediaElement'} AND bookmarks.bookmarkable_id = media_elements.id AND bookmarks.user_id = #{self.connection.quote self.id.to_i}) AS bookmarks_count, (SELECT COUNT(*) FROM media_elements_slides WHERE (media_elements_slides.media_element_id = media_elements.id)) AS instances" if !from_gallery
+    relation = MediaElement.select(select).of(self)
     if [Filters::VIDEO, Filters::AUDIO, Filters::IMAGE].include? filter
       relation = relation.where('sti_type = ?', filter.capitalize)
     end
     pages_amount = Rational(relation.count, per_page).ceil
     resp = []
-    relation.limit(per_page).offset(offset).each do |me|
-      me.set_status self.id, {:bookmarked => :bookmarks_count}
-      resp << me
+    if from_gallery
+      resp = relation.limit(per_page).offset(offset)
+    else
+      relation.limit(per_page).offset(offset).each do |me|
+        me.set_status self.id, {:bookmarked => :bookmarks_count}
+        resp << me
+      end
     end
     {:records => resp, :pages_amount => pages_amount}
   end

@@ -366,21 +366,21 @@ class GalleriesController < ApplicationController
   
   # Gets the audios, using User#own_media_elements with +filter+ = +audio+
   def get_audios(page)
-    x = current_user.own_media_elements(page, AUDIOS_FOR_PAGE, Filters::AUDIO)
+    x = current_user.own_media_elements(page, AUDIOS_FOR_PAGE, Filters::AUDIO, true)
     @audios = x[:records]
     @tot_pages = x[:pages_amount]
   end
   
   # Gets the videos, using User#own_media_elements with +filter+ = +video+
   def get_videos(page)
-    x = current_user.own_media_elements(page, VIDEOS_FOR_PAGE, Filters::VIDEO)
+    x = current_user.own_media_elements(page, VIDEOS_FOR_PAGE, Filters::VIDEO, true)
     @videos = x[:records]
     @tot_pages = x[:pages_amount]
   end
   
   # Gets the images, using User#own_media_elements with +filter+ = +image+
   def get_images(page)
-    x = current_user.own_media_elements(page, IMAGES_FOR_PAGE, Filters::IMAGE)
+    x = current_user.own_media_elements(page, IMAGES_FOR_PAGE, Filters::IMAGE, true)
     @images = x[:records]
     @tot_pages = x[:pages_amount]
   end
