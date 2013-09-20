@@ -353,6 +353,8 @@ class ExtractorTest < ActiveSupport::TestCase
     # copy a lesson and try the different buttons
     copied = @les2.copy(@user2.id)
     copied_and_modified = @les6.copy(@user2.id)
+    assert_not_nil copied
+    assert_not_nil copied_and_modified
     assert copied_and_modified.modify
     assert @user2.dislike(@les5.id)
     assert Lesson.find(2).add_to_virtual_classroom(@user2.id)
@@ -779,6 +781,7 @@ class ExtractorTest < ActiveSupport::TestCase
     assert Lesson.where(:id => 2).empty?
     assert @user2.bookmark('Lesson', @les2.id)
     copied = @les2.copy(@user2.id)
+    assert_not_nil copied
     assert Like.where(:lesson_id => copied.id).empty?
     assert @user2.like(@les9.id)
     assert @user2.like(@les4.id)
@@ -968,6 +971,35 @@ class ExtractorTest < ActiveSupport::TestCase
     xxx = @user2.search_lessons('cammelli', 1, 5)
     assert xxx[:records].empty?
     assert xxx[:tags].empty?
+    # test for status
+    assert @user2.bookmark('Lesson', @les9.id)
+    assert @les9.add_to_virtual_classroom(@user2.id)
+    assert @user2.like(@les7.id)
+    resp = @user2.search_lessons('條聖', 1, 5, 'title', nil, nil)[:records]
+    assert_item_extractor [@les7.id, @les9.id], resp
+    resp.sort { |a, b| a.id <=> b.id }
+    assert @les7.id < @les9.id
+    assert_status resp, [['preview', 'add', 'dislike'], ['preview', 'copy', 'remove_virtual_classroom', 'like', 'remove']]
+    @les7 = Lesson.find @les7.id
+    @les9 = Lesson.find @les9.id
+    x = @les9.copy(@user2.id)
+    assert_not_nil x
+    assert x.modify
+    assert x.publish
+    @les9.destroy
+    assert_nil Lesson.find_by_id(@les9.id)
+    y = x.copy(@user2.id)
+    assert_not_nil y
+    assert y.modify
+    assert y.add_to_virtual_classroom(@user2.id)
+    z = y.copy(@user2.id)
+    assert_not_nil z
+    assert @user2.dislike(@les7.id)
+    resp = @user2.search_lessons('條聖', 1, 5, 'title', nil, nil)[:records]
+    assert_item_extractor [@les7.id, x.id, y.id, z.id], resp
+    resp = resp.sort { |a, b| a.id <=> b.id }
+    assert x.id < y.id && y.id < z.id
+    assert_status resp, [['preview', 'add', 'like'], ['preview', 'edit', 'add_virtual_classroom', 'unpublish', 'copy', 'destroy'], ['preview', 'edit', 'remove_virtual_classroom', 'publish', 'copy', 'destroy'], ['preview', 'edit', 'destroy']]
   end
   
   test 'google_media_elements_without_tags' do
