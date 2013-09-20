@@ -367,7 +367,11 @@ class ExtractorTest < ActiveSupport::TestCase
     assert @user2.bookmark 'MediaElement', 2
     assert @user2.bookmark 'MediaElement', @el2.id
     assert @user2.bookmark 'MediaElement', @el5.id
-    assert_item_extractor [2, 3, 4, @el2.id, @el5.id], @user2.own_media_elements(1, 20)[:records]
+    resp = @user2.own_media_elements(1, 20)[:records]
+    assert_item_extractor [2, 3, 4, @el2.id, @el5.id], resp
+    resp = resp.sort {|a, b| a.id <=> b.id}
+    assert @el2.id < @el5.id
+    assert_status resp, [['preview', 'edit', 'remove'], ['preview', 'edit', 'destroy'], ['preview', 'edit', 'remove'], ['preview', 'edit', 'remove'], ['preview', 'edit', 'remove']]
     # last page true
     resp = @user2.own_media_elements(3, 2)
     assert_equal 1, resp[:records].length
