@@ -334,7 +334,14 @@ class ExtractorTest < ActiveSupport::TestCase
     assert @user2.bookmark 'Lesson', @les6.id
     assert @user2.bookmark 'Lesson', 1
     assert @user2.bookmark 'MediaElement', 1
-    assert_item_extractor [1, 2, @les2.id, @les5.id, @les6.id], @user2.own_lessons(1, 20)[:records]
+    assert @user2.like @les2.id
+    assert @user2.like @les5.id
+    assert @les5.add_to_virtual_classroom @user2.id
+    resp = @user2.own_lessons(1, 20)[:records]
+    assert_item_extractor [1, 2, @les2.id, @les5.id, @les6.id], resp
+    resp = resp.sort {|a, b| a.id <=> b.id}
+    assert @les2.id < @les5.id && @les5.id < @les6.id
+    assert_status resp, [['preview', 'copy', 'add_virtual_classroom', 'like', 'remove'], ['preview', 'edit', 'add_virtual_classroom', 'unpublish', 'copy', 'destroy'], ['preview', 'copy', 'add_virtual_classroom', 'dislike', 'remove'], ['preview', 'copy', 'remove_virtual_classroom', 'dislike', 'remove'], ['preview', 'copy', 'add_virtual_classroom', 'like', 'remove']]
     # last page true
     resp = @user2.own_lessons(3, 2)
     assert_equal 1, resp[:records].length
@@ -343,6 +350,17 @@ class ExtractorTest < ActiveSupport::TestCase
     resp = @user2.own_lessons(1, 3)
     assert_equal 3, resp[:records].length
     assert_equal 2, resp[:pages_amount]
+    # copy a lesson and try the different buttons
+    copied = @les2.copy(@user2.id)
+    copied_and_modified = @les6.copy(@user2.id)
+    assert copied_and_modified.modify
+    assert @user2.dislike(@les5.id)
+    assert Lesson.find(2).add_to_virtual_classroom(@user2.id)
+    resp = @user2.own_lessons(1, 20)[:records]
+    assert_item_extractor [1, 2, @les2.id, @les5.id, @les6.id, copied.id, copied_and_modified.id], resp
+    resp = resp.sort {|a, b| a.id <=> b.id}
+    assert copied.id < copied_and_modified.id
+    assert_status resp, [['preview', 'copy', 'add_virtual_classroom', 'like', 'remove'], ['preview', 'edit', 'remove_virtual_classroom', 'unpublish', 'copy', 'destroy'], ['preview', 'copy', 'add_virtual_classroom', 'dislike', 'remove'], ['preview', 'copy', 'remove_virtual_classroom', 'like', 'remove'], ['preview', 'copy', 'add_virtual_classroom', 'like', 'remove'], ['preview', 'edit', 'destroy'], ['preview', 'edit', 'add_virtual_classroom', 'publish', 'copy', 'destroy']]
   end
   
   test 'own_media_elements' do
