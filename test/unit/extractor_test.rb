@@ -1027,6 +1027,13 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_ordered_item_extractor [@el1.id, @el2.id, 2], p1[:records]
     assert_equal 3, p1[:records_amount]
     assert_equal 1, p1[:pages_amount]
+    # test for status
+    MediaElement.where(:id => @el2.id).update_all(:is_public => false, :publication_date => nil, :user_id => @user2.id)
+    assert @user2.bookmark 'MediaElement', 2
+    resp = @user2.search_media_elements('', 1, 5, 'title', 'video')[:records]
+    assert_item_extractor [2, @el1.id, @el2.id], resp
+    resp = resp.sort { |a, b| a.id <=> b.id }
+    assert_status resp, [['preview', 'edit', 'remove'], ['preview', 'add'], ['preview', 'edit', 'destroy']]
   end
   
   test 'google_media_elements_with_tags' do
