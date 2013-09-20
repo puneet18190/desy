@@ -49,4 +49,27 @@ class DocumentTest < ActiveSupport::TestCase
     assert_obj_saved @document
   end
   
+  test 'own_documents' do
+    DocumentsSlide.delete_all
+    d1 = DocumentsSlide.new
+    d1.slide_id = 3
+    d1.document_id = 2
+    assert_obj_saved d1
+    d2 = DocumentsSlide.new
+    d2.slide_id = 4
+    d2.document_id = 2
+    assert_obj_saved d2
+    resp = User.find(2).own_documents(1, 20)[:records]
+    assert_equal 1, resp.length
+    assert_equal '2', resp.first.instances
+    d2.destroy
+    assert DocumentsSlide.where(:id => d2.id).empty?
+    resp = User.find(2).own_documents(1, 20)[:records]
+    assert_equal 1, resp.length
+    assert_equal '1', resp.first.instances
+    resp = User.find(1).own_documents(1, 20)[:records]
+    assert_equal 1, resp.length
+    assert_equal '0', resp.first.instances
+  end
+  
 end
