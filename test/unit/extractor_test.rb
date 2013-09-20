@@ -258,7 +258,7 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_equal 6, Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => 1).count
     resp = @user1.own_lessons(1, 20)[:records]
     assert_equal 1, resp.length
-    assert_status resp, [['preview', 'edit', 'add_virtual_classroom', 'publish', 'copy', 'destroy']]
+    assert_status resp, [['preview', 'edit', 'add_virtual_classroom', 'unpublish', 'copy', 'destroy']]
   end
   
   test 'ordered_own_items' do
