@@ -1,4 +1,6 @@
 <%
+  likes_count ||= nil
+  likes_count = lesson.likes.count if likes_count.nil?
   current_class = (lesson.status == Statuses::COPIED) ? 'current'.html_safe : ''
   disabled = !lesson.available?
   additional_class = disabled ? '_disabled'.html_safe : ''
@@ -23,7 +25,7 @@
         <%= TimeConvert.to_string(lesson.created_at) %>
         <p>
           <span class="fltlft"><%= image_tag "star.png", :align => "left" %></span>
-          <span class="fltlft" style="padding-top:2px"><%= t('lessons.users_like_this', :likes => lesson.likes.count) %></span>
+          <span class="fltlft" style="padding-top:2px"><%= t('lessons.users_like_this', :likes => likes_count) %></span>
         </p>
         <% if lesson.is_reportable %>
           <%= render :partial => 'reports/lesson', :locals => {:lesson => lesson} %>
