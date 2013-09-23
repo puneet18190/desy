@@ -362,6 +362,7 @@ class LessonsController < ApplicationController
     current_user_own_lessons = current_user.own_lessons(@page, @for_page, @filter)
     @lessons = current_user_own_lessons[:records]
     @pages_amount = current_user_own_lessons[:pages_amount]
+    @covers = current_user_own_lessons[:covers]
   end
   
   # Initializes pagination parameters and filters

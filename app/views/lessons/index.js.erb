@@ -1,6 +1,6 @@
 <% if @delete_item.blank? %>
   $('#my_lessons').hide('fade', {}, 500, function() {
-    $('#my_lessons').replaceWith("<%= j(render(:partial => 'lessons/my_lessons', :locals => {:lessons => @lessons, :filter => @filter})) %>");
+    $('#my_lessons').replaceWith("<%= j(render(:partial => 'lessons/my_lessons', :locals => {:lessons => @lessons, :filter => @filter, :covers => @covers})) %>");
     <% if @lessons.any? %>
       $('#general_pagination').replaceWith("<%= j(render(:partial => 'shared/pagination', :locals => {:page => @page, :pages_amount => @pages_amount})) %>");
     <% else %>
@@ -15,7 +15,7 @@
       showOkPopUp(temporary_msg);
       $('#popup_captions_container').data('temporary-msg', '');
     }
-    $('#my_lessons').replaceWith("<%= j(render(:partial => 'lessons/my_lessons', :locals => {:lessons => @lessons, :filter => @filter})) %>");
+    $('#my_lessons').replaceWith("<%= j(render(:partial => 'lessons/my_lessons', :locals => {:lessons => @lessons, :filter => @filter, :covers => @covers})) %>");
     <% if @lessons.any? %>
       $('#general_pagination').replaceWith("<%= j(render(:partial => 'shared/pagination', :locals => {:page => @page, :pages_amount => @pages_amount})) %>");
     <% else %>

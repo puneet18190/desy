@@ -1,6 +1,7 @@
 <%
   likes_count ||= nil
   likes_count = lesson.likes.count if likes_count.nil?
+  cover ||= nil
   current_class = (lesson.status == Statuses::COPIED) ? 'current'.html_safe : ''
   disabled = !lesson.available?
   additional_class = disabled ? '_disabled'.html_safe : ''
@@ -19,7 +20,7 @@
   
   <% if !disabled %>
     <div class="lessons-expanded _lesson_expanded">
-      <%= render :partial => 'lessons/thumbnail', :locals => {:lesson => lesson} %>
+      <%= render :partial => 'lessons/thumbnail', :locals => {:lesson => lesson, :cover => cover} %>
       <div class="info-text">
         <h1><%= t('lessons.created_on') %></h1>
         <%= TimeConvert.to_string(lesson.created_at) %>

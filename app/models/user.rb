@@ -618,36 +618,48 @@ class User < ActiveRecord::Base
     page = 1 if !page.is_a?(Fixnum) || page <= 0
     for_page = 1 if !for_page.is_a?(Fixnum) || for_page <= 0
     offset = (page - 1) * per_page
-    relation = Lesson.preload(:subject).select("
+    relation1 = Lesson.preload(:subject, :user, :school_level, :user => :location).select("
       lessons.*,
       (SELECT COUNT (*) FROM bookmarks WHERE bookmarks.bookmarkable_type = #{self.connection.quote 'Lesson'} AND bookmarks.bookmarkable_id = lessons.id AND bookmarks.user_id = #{self.connection.quote self.id.to_i}) AS bookmarks_count,
       (SELECT COUNT (*) FROM virtual_classroom_lessons WHERE virtual_classroom_lessons.lesson_id = lessons.id AND virtual_classroom_lessons.user_id = #{self.connection.quote self.id.to_i}) AS virtuals_count,
       (SELECT COUNT (*) FROM likes WHERE likes.lesson_id = lessons.id AND likes.user_id = #{self.connection.quote self.id.to_i}) AS likes_count
     ")
-    relation =
-      case filter
+    relation2 = nil
+    case filter
       when Filters::PRIVATE
-        relation.where(user_id: self.id, is_public: false).order('updated_at DESC')
+        relation1 = relation1.where(user_id: self.id, is_public: false).order('updated_at DESC')
+        relation2 = Lesson.where(user_id: self.id, is_public: false).order('updated_at DESC')
       when Filters::PUBLIC
-        relation.of(self).where(is_public: true)
+        relation1 = relation1.of(self).where(is_public: true)
+        relation2 = Lesson.of(self).where(is_public: true)
       when Filters::LINKED
-        relation.joins(:bookmarks).where(bookmarks: { user_id: self.id }).order('bookmarks.created_at DESC')
+        relation1 = relation1.joins(:bookmarks).where(bookmarks: { user_id: self.id }).order('bookmarks.created_at DESC')
+        relation2 = Lesson.joins(:bookmarks).where(bookmarks: { user_id: self.id }).order('bookmarks.created_at DESC')
       when Filters::ONLY_MINE
-        relation.where(user_id: self.id).order('updated_at DESC')
+        relation1 = relation1.where(user_id: self.id).order('updated_at DESC')
+        relation2 = Lesson.where(user_id: self.id).order('updated_at DESC')
       when Filters::COPIED
-        relation.where(:user_id => self.id, :copied_not_modified => true).order('updated_at DESC')
+        relation1 = relation1.where(:user_id => self.id, :copied_not_modified => true).order('updated_at DESC')
+        relation2 = Lesson.where(:user_id => self.id, :copied_not_modified => true).order('updated_at DESC')
       when Filters::ALL_LESSONS
-        relation.of(self)
+        relation1 = relation1.of(self)
+        relation2 = Lesson.of(self)
       else
         raise ArgumentError, 'filter not supported'
-      end
-    pages_amount = Rational(relation.count, per_page).ceil
+    end
+    pages_amount = Rational(relation2.count, per_page).ceil
+    relation1 = relation1.limit(per_page).offset(offset)
+    relation2 = relation2.limit(per_page).offset(offset)
+    covers = {}
+    Slide.where(:lesson_id => relation2.pluck(:id), :kind => 'cover').preload(:media_elements_slides, :media_elements_slides => :media_element).each do |cov|
+      covers[cov.lesson_id] = cov
+    end
     resp = []
-    relation.limit(per_page).offset(offset).each do |lesson|
+    relation1.each do |lesson|
       lesson.set_status self.id, {:bookmarked => :bookmarks_count, :in_vc => :virtuals_count, :liked => :likes_count}
       resp << lesson
     end
-    {:records => resp, :pages_amount => pages_amount}
+    {:records => resp, :pages_amount => pages_amount, :covers => covers}
   end
   
   # === Description
