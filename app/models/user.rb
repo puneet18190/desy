@@ -828,7 +828,11 @@ class User < ActiveRecord::Base
     offset = (page - 1) * per_page
     resp = {}
     resp[:pages_amount] = Rational(VirtualClassroomLesson.where(:user_id => self.id).count, per_page).ceil
-    resp[:records] = VirtualClassroomLesson.includes(:lesson).where(:user_id => self.id).order('created_at DESC').offset(offset).limit(per_page)
+    resp[:records] = VirtualClassroomLesson.preload(:lesson, {:lesson => :user}, {:lesson => :subject}).where(:user_id => self.id).order('created_at DESC').offset(offset).limit(per_page)
+    resp[:covers] = {}
+    Slide.where(:lesson_id => resp[:records].pluck(:lesson_id), :kind => 'cover').preload(:media_elements_slides, :media_elements_slides => :media_element).each do |cov|
+      resp[:covers][cov.lesson_id] = cov
+    end
     return resp
   end
   

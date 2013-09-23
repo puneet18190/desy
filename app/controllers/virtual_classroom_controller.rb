@@ -364,6 +364,7 @@ class VirtualClassroomController < ApplicationController
     current_user_virtual_classroom_lessons = current_user.full_virtual_classroom(@page, @for_page)
     @lessons = current_user_virtual_classroom_lessons[:records]
     @pages_amount = current_user_virtual_classroom_lessons[:pages_amount]
+    @covers = current_user_virtual_classroom_lessons[:covers]
   end
   
   # Initializes paginator parameters

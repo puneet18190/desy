@@ -3,7 +3,7 @@
     <%= render :partial => 'virtual_classroom/empty' %>
   <% else %>
     <% lessons.each do |l| %>
-      <%= render :partial => 'virtual_classroom/view_single', :locals => {:virtual => l} %>
+      <%= render :partial => 'virtual_classroom/view_single', :locals => {:virtual => l, :cover => covers[l.lesson_id]} %>
     <% end %>
   <% end %>
 </div>
