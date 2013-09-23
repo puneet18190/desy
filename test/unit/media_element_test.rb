@@ -60,6 +60,17 @@ class MediaElementTest < ActiveSupport::TestCase
     assert_tags @media_element, ['gattaccio', 'cane', 'panda', 'ornitorinco']
   end
   
+  test 'too_many_tags' do
+    @media_element.validating_in_form = true
+    @media_element.tags = 'de sanctis, benatia, castan, balzaretti, maicon, strootman, de rossi, pjanic, florenzi, totti, gervinho, ljaic, marchetti, cana, konko, ciani, lulic, candreva, ledesma, hernanes, klose, higuain, albiol, britos, reina, mesto, zuniga, insigne, callejon, muntari, balotelli'
+    assert !@media_element.save, "MediaElement erroneously saved - #{@media_element.inspect} -- #{@media_element.tags.inspect}"
+    assert_equal 1, @media_element.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@media_element.errors.inspect}"
+    assert_equal 1, @media_element.errors.messages[:tags].length
+    assert @media_element.errors.added? :tags, :too_many
+    @media_element.tags = 'de sanctis, benatia, castan, balzaretti, maicon, strootman, de rossi, pjanic, florenzi, totti, gervinho, ljaic, marchetti, cana, konko, ciani, lulic, candreva, ledesma, hernanes, klose, higuain, albiol, britos, reina, mesto, zuniga, insigne, callejon, muntari'
+    assert_obj_saved @media_element
+  end
+  
   test 'empty_and_defaults' do
     @media_element = MediaElement.new
     assert_equal false, @media_element.is_public

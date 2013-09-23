@@ -492,6 +492,7 @@ class MediaElement < ActiveRecord::Base
   # Validates that the tags are at least the number configured in settings.yml, unless the attribute +validating_in_form+ is false
   def validate_tags_length
     errors.add(:tags, :are_not_enough) if @validating_in_form && @inner_tags.length < SETTINGS['min_tags_for_item']
+    errors.add(:tags, :too_many) if @validating_in_form && @inner_tags.length > SETTINGS['max_tags_for_item']
   end
   
   # Callback that updates the taggings associated to the element. If the corresponding Tag doesn't exist yet, it's created
