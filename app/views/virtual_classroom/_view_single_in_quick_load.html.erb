@@ -1,4 +1,5 @@
 <%
+  cover ||= nil
   style = ''
   if [0, 1, 2].include?(index)
     if index % 3 == 2
@@ -14,6 +15,6 @@
 <div id="virtual_classroom_quick_loaded_lesson_<%= lesson.id %>" class="boxViewSingleLesson _virtual_classroom_quick_loaded_lesson" data-available="<%= !lesson.in_virtual_classroom?(current_user.id) && !lesson.copied_not_modified %>" style="<%= style.html_safe %>">
   <%= hidden_field_tag "virtual_classroom_quick_loaded_lesson_name_#{lesson.id}", '0' %>
   <div  class="contentInterno" style="height:auto">
-    <%= render :partial => 'lessons/thumbnail', :locals => {:lesson => lesson} %>
+    <%= render :partial => 'lessons/thumbnail', :locals => {:lesson => lesson, :cover => cover} %>
   </div>
 </div>
