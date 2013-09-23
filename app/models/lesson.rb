@@ -171,23 +171,6 @@ class Lesson < ActiveRecord::Base
   
   # === Description
   #
-  # Checks whether the user needs to notify modifications to other users who have a link of the lesson.
-  #
-  # === Returns
-  #
-  # A boolean.
-  #
-  def not_notified?(cached=false)
-    return false if self.status.nil?
-    if cached
-      !self.notified && self.notification_bookmarks.to_i > 0
-    else
-      !self.notified && Bookmark.where('bookmarkable_type = ? AND bookmarkable_id = ? AND created_at < ?', 'Lesson', self.id, self.updated_at).any?
-    end
-  end
-  
-  # === Description
-  #
   # Checks whether the lesson is available for editing in the Lesson Editor (if at least one between +metadata+.+available_audio+ and +metadata+.+available_video+ is false, the lesson is not available). Used in the filters of LessonEditorController.
   #
   # === Args

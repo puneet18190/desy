@@ -7,7 +7,7 @@
     <% end %>
   <% else %>
     <% lessons.each do |l| %>
-      <%= render :partial => 'lessons/view_single_compact', :locals => {:lesson => l, :destination => ButtonDestinations::COMPACT_LESSON, :likes_count => l.likes_count, :cover => covers[l.id]} %>
+      <%= render :partial => 'lessons/view_single_compact', :locals => {:lesson => l, :destination => ButtonDestinations::COMPACT_LESSON, :likes_count => l.likes_count.to_i, :cover => covers[l.id], :notification_bookmarks => l.notification_bookmarks.to_i} %>
     <% end %>
   <% end %>
 </div>
