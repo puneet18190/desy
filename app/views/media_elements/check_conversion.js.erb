@@ -31,11 +31,11 @@ var black_list = new Array();
     if(item.length > 0) {
       var destination = item.attr('id').split('_')[0];
       if(destination == 'expanded') {
-        item.replaceWith('<%= j(render :partial => "media_elements/view_single_expanded", :locals => {:media_element => me[:media_element], :destination => ButtonDestinations::EXPANDED_MEDIA_ELEMENT}) %>');
+        item.replaceWith('<%= j(render :partial => "media_elements/view_single_expanded", :locals => {:media_element => me[:media_element], :destination => ButtonDestinations::EXPANDED_MEDIA_ELEMENT, :used_in_private_lessons => me[:media_element].media_elements_slides.any?}) %>');
       } else if(destination == 'compact') {
-        item.replaceWith('<%= j(render :partial => "media_elements/view_single_compact", :locals => {:media_element => me[:media_element], :destination => ButtonDestinations::COMPACT_MEDIA_ELEMENT}) %>');
+        item.replaceWith('<%= j(render :partial => "media_elements/view_single_compact", :locals => {:media_element => me[:media_element], :destination => ButtonDestinations::COMPACT_MEDIA_ELEMENT, :used_in_private_lessons => me[:media_element].media_elements_slides.any?}) %>');
       } else {
-        item.replaceWith('<%= j(render :partial => "media_elements/view_single_compact", :locals => {:media_element => me[:media_element], :destination => ButtonDestinations::FOUND_MEDIA_ELEMENT}) %>');
+        item.replaceWith('<%= j(render :partial => "media_elements/view_single_compact", :locals => {:media_element => me[:media_element], :destination => ButtonDestinations::FOUND_MEDIA_ELEMENT, :used_in_private_lessons => me[:media_element].media_elements_slides.any?}) %>');
       }
     }
     

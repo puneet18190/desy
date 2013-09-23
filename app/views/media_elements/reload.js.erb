@@ -4,7 +4,7 @@
   <% end %>
   removeCompletelyMediaElementPopup(<%= @media_element_id %>);
   var target = $('#<%= @destination %>_<%= @media_element_id %>');
-  <% js_content = j(render(:partial => "media_elements/view_single_compact", :locals => {:media_element => @media_element, :destination => @destination})) %>
+  <% js_content = j(render(:partial => 'media_elements/view_single_compact', :locals => {:media_element => @media_element, :destination => @destination, :used_in_private_lessons => @media_element.media_elements_slides.any?})) %>
   target.replaceWith("<%= js_content %>");
 <% else %>
   showErrorPopUp('<%= j @error %>');

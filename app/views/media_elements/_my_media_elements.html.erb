@@ -11,14 +11,14 @@
       <div style="width:auto;  margin:0 auto 0 auto;">
         <% media_elements.each do |me| %>
           <div class="_boxViewExpandedMediaElementWrapper">
-            <%= render :partial => 'media_elements/view_single_expanded', :locals => {:media_element => me, :destination => ButtonDestinations::EXPANDED_MEDIA_ELEMENT} %>
+            <%= render :partial => 'media_elements/view_single_expanded', :locals => {:media_element => me, :destination => ButtonDestinations::EXPANDED_MEDIA_ELEMENT, :used_in_private_lessons => (me.instances.to_i > 0)} %>
           </div>
         <% end %>
       </div>
     </div>
     <% else %>
       <% media_elements.each do |me| %>
-        <%= render :partial => 'media_elements/view_single_compact', :locals => {:media_element => me, :destination => ButtonDestinations::COMPACT_MEDIA_ELEMENT} %>
+        <%= render :partial => 'media_elements/view_single_compact', :locals => {:media_element => me, :destination => ButtonDestinations::COMPACT_MEDIA_ELEMENT, :used_in_private_lessons => (me.instances.to_i > 0)} %>
       <% end %>
     <% end %>
     
