@@ -246,6 +246,7 @@ class VirtualClassroomController < ApplicationController
     x = current_user.own_lessons(1, LESSONS_IN_QUICK_LOADER, Filters::ALL_LESSONS, true)
     @lessons = x[:records]
     @tot_pages = x[:pages_amount]
+    @covers = x[:covers]
   end
   
   # === Description
@@ -262,6 +263,7 @@ class VirtualClassroomController < ApplicationController
   #
   def select_lessons_new_block
     @lessons = current_user.own_lessons(@page, LESSONS_IN_QUICK_LOADER, Filters::ALL_LESSONS, true)[:records] if @ok
+    @covers = x[:covers]
   end
   
   # === Description

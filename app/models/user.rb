@@ -650,21 +650,21 @@ class User < ActiveRecord::Base
     end
     pages_amount = Rational(relation2.count, per_page).ceil
     relation2 = relation2.limit(per_page).offset(offset)
+    covers = {}
+    Slide.where(:lesson_id => relation2.pluck(:id), :kind => 'cover').preload(:media_elements_slides, :media_elements_slides => :media_element).each do |cov|
+      covers[cov.lesson_id] = cov
+    end
     if from_virtual_classroom
-      {:records => relation2, :pages_amount => pages_amount}
+      resp = relation2
     else
-      covers = {}
       relation1 = relation1.limit(per_page).offset(offset)
-      Slide.where(:lesson_id => relation2.pluck(:id), :kind => 'cover').preload(:media_elements_slides, :media_elements_slides => :media_element).each do |cov|
-        covers[cov.lesson_id] = cov
-      end
       resp = []
       relation1.each do |lesson|
         lesson.set_status self.id, {:bookmarked => :bookmarks_count, :in_vc => :virtuals_count, :liked => :likes_count}
         resp << lesson
       end
-      {:records => resp, :pages_amount => pages_amount, :covers => covers}
     end
+    {:records => resp, :pages_amount => pages_amount, :covers => covers}
   end
   
   # === Description
