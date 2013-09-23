@@ -262,8 +262,11 @@ class VirtualClassroomController < ApplicationController
   # * VirtualClassroomController#initialize_page
   #
   def select_lessons_new_block
-    @lessons = current_user.own_lessons(@page, LESSONS_IN_QUICK_LOADER, Filters::ALL_LESSONS, true)[:records] if @ok
-    @covers = x[:covers]
+    if @ok
+      x = current_user.own_lessons(@page, LESSONS_IN_QUICK_LOADER, Filters::ALL_LESSONS, true)
+      @lessons = x[:records]
+      @covers = x[:covers]
+    end
   end
   
   # === Description

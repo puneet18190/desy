@@ -618,13 +618,20 @@ class User < ActiveRecord::Base
     page = 1 if !page.is_a?(Fixnum) || page <= 0
     for_page = 1 if !for_page.is_a?(Fixnum) || for_page <= 0
     offset = (page - 1) * per_page
-    relation1 = Lesson.preload(:subject, :user, :school_level, {:user => :location}).select("
-      lessons.*,
-      (SELECT COUNT (*) FROM bookmarks WHERE bookmarks.bookmarkable_type = #{self.connection.quote 'Lesson'} AND bookmarks.bookmarkable_id = lessons.id AND bookmarks.user_id = #{self.connection.quote self.id.to_i}) AS bookmarks_count,
-      (SELECT COUNT (*) FROM bookmarks WHERE bookmarks.bookmarkable_type = #{self.connection.quote 'Lesson'} AND bookmarks.bookmarkable_id = lessons.id AND bookmarks.created_at < lessons.updated_at) AS notification_bookmarks,
-      (SELECT COUNT (*) FROM virtual_classroom_lessons WHERE virtual_classroom_lessons.lesson_id = lessons.id AND virtual_classroom_lessons.user_id = #{self.connection.quote self.id.to_i}) AS virtuals_count,
-      (SELECT COUNT (*) FROM likes WHERE likes.lesson_id = lessons.id AND likes.user_id = #{self.connection.quote self.id.to_i}) AS likes_count
-    ")
+    relation1 = nil
+    if from_virtual_classroom
+      relation1 = Lesson.preload(:subject, :user).select("lessons.*,
+        (SELECT COUNT (*) FROM virtual_classroom_lessons WHERE virtual_classroom_lessons.lesson_id = lessons.id AND virtual_classroom_lessons.user_id = #{self.connection.quote self.id.to_i}) AS virtuals_count
+      ")
+    else
+      relation1 = Lesson.preload(:subject, :user, :school_level, {:user => :location}).select("
+        lessons.*,
+        (SELECT COUNT (*) FROM bookmarks WHERE bookmarks.bookmarkable_type = #{self.connection.quote 'Lesson'} AND bookmarks.bookmarkable_id = lessons.id AND bookmarks.user_id = #{self.connection.quote self.id.to_i}) AS bookmarks_count,
+        (SELECT COUNT (*) FROM bookmarks WHERE bookmarks.bookmarkable_type = #{self.connection.quote 'Lesson'} AND bookmarks.bookmarkable_id = lessons.id AND bookmarks.created_at < lessons.updated_at) AS notification_bookmarks,
+        (SELECT COUNT (*) FROM virtual_classroom_lessons WHERE virtual_classroom_lessons.lesson_id = lessons.id AND virtual_classroom_lessons.user_id = #{self.connection.quote self.id.to_i}) AS virtuals_count,
+        (SELECT COUNT (*) FROM likes WHERE likes.lesson_id = lessons.id AND likes.user_id = #{self.connection.quote self.id.to_i}) AS likes_count
+      ")
+    end
     relation2 = nil
     case filter
       when Filters::PRIVATE
@@ -649,15 +656,15 @@ class User < ActiveRecord::Base
         raise ArgumentError, 'filter not supported'
     end
     pages_amount = Rational(relation2.count, per_page).ceil
+    relation1 = relation1.limit(per_page).offset(offset)
     relation2 = relation2.limit(per_page).offset(offset)
     covers = {}
     Slide.where(:lesson_id => relation2.pluck(:id), :kind => 'cover').preload(:media_elements_slides, {:media_elements_slides => :media_element}).each do |cov|
       covers[cov.lesson_id] = cov
     end
     if from_virtual_classroom
-      resp = relation2
+      resp = relation1
     else
-      relation1 = relation1.limit(per_page).offset(offset)
       resp = []
       relation1.each do |lesson|
         lesson.set_status self.id, {:bookmarked => :bookmarks_count, :in_vc => :virtuals_count, :liked => :likes_count}
