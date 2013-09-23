@@ -177,9 +177,13 @@ class Lesson < ActiveRecord::Base
   #
   # A boolean.
   #
-  def not_notified?
+  def not_notified?(cached=false)
     return false if self.status.nil?
-    !self.notified && Bookmark.where('bookmarkable_type = ? AND bookmarkable_id = ? AND created_at < ?', 'Lesson', self.id, self.updated_at).any?
+    if cached
+      !self.notified && self.notification_bookmarks.to_i > 0
+    else
+      !self.notified && Bookmark.where('bookmarkable_type = ? AND bookmarkable_id = ? AND created_at < ?', 'Lesson', self.id, self.updated_at).any?
+    end
   end
   
   # === Description

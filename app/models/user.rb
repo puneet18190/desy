@@ -621,6 +621,7 @@ class User < ActiveRecord::Base
     relation1 = Lesson.preload(:subject, :user, :school_level, :user => :location).select("
       lessons.*,
       (SELECT COUNT (*) FROM bookmarks WHERE bookmarks.bookmarkable_type = #{self.connection.quote 'Lesson'} AND bookmarks.bookmarkable_id = lessons.id AND bookmarks.user_id = #{self.connection.quote self.id.to_i}) AS bookmarks_count,
+      (SELECT COUNT (*) FROM bookmarks WHERE bookmarks.bookmarkable_type = #{self.connection.quote 'Lesson'} AND bookmarks.bookmarkable_id = lessons.id AND bookmarks.created_at < lessons.updated_at) AS notification_bookmarks,
       (SELECT COUNT (*) FROM virtual_classroom_lessons WHERE virtual_classroom_lessons.lesson_id = lessons.id AND virtual_classroom_lessons.user_id = #{self.connection.quote self.id.to_i}) AS virtuals_count,
       (SELECT COUNT (*) FROM likes WHERE likes.lesson_id = lessons.id AND likes.user_id = #{self.connection.quote self.id.to_i}) AS likes_count
     ")
