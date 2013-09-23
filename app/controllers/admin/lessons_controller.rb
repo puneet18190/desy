@@ -26,8 +26,8 @@ class Admin::LessonsController < AdminController
   #
   def index
     lessons = AdminSearchForm.search_lessons((params[:search] ? params[:search] : {:ordering => 0, :desc => 'true'}))
-    @lessons = lessons.preload(:user, :subject, :taggings, :taggings => :tag).page(params[:page])
-    covers = Slide.where(:lesson_id => @lessons.pluck(:id), :kind => 'cover').preload(:media_elements_slides, :media_elements_slides => :media_element)
+    @lessons = lessons.preload(:user, :subject, :taggings, {:taggings => :tag}).page(params[:page])
+    covers = Slide.where(:lesson_id => @lessons.pluck(:id), :kind => 'cover').preload(:media_elements_slides, {:media_elements_slides => :media_element})
     @covers = {}
     covers.each do |cov|
       @covers[cov.lesson_id] = cov

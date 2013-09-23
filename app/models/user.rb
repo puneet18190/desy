@@ -618,7 +618,7 @@ class User < ActiveRecord::Base
     page = 1 if !page.is_a?(Fixnum) || page <= 0
     for_page = 1 if !for_page.is_a?(Fixnum) || for_page <= 0
     offset = (page - 1) * per_page
-    relation1 = Lesson.preload(:subject, :user, :school_level, :user => :location).select("
+    relation1 = Lesson.preload(:subject, :user, :school_level, {:user => :location}).select("
       lessons.*,
       (SELECT COUNT (*) FROM bookmarks WHERE bookmarks.bookmarkable_type = #{self.connection.quote 'Lesson'} AND bookmarks.bookmarkable_id = lessons.id AND bookmarks.user_id = #{self.connection.quote self.id.to_i}) AS bookmarks_count,
       (SELECT COUNT (*) FROM bookmarks WHERE bookmarks.bookmarkable_type = #{self.connection.quote 'Lesson'} AND bookmarks.bookmarkable_id = lessons.id AND bookmarks.created_at < lessons.updated_at) AS notification_bookmarks,
@@ -651,7 +651,7 @@ class User < ActiveRecord::Base
     pages_amount = Rational(relation2.count, per_page).ceil
     relation2 = relation2.limit(per_page).offset(offset)
     covers = {}
-    Slide.where(:lesson_id => relation2.pluck(:id), :kind => 'cover').preload(:media_elements_slides, :media_elements_slides => :media_element).each do |cov|
+    Slide.where(:lesson_id => relation2.pluck(:id), :kind => 'cover').preload(:media_elements_slides, {:media_elements_slides => :media_element}).each do |cov|
       covers[cov.lesson_id] = cov
     end
     if from_virtual_classroom
@@ -830,7 +830,7 @@ class User < ActiveRecord::Base
     resp[:pages_amount] = Rational(VirtualClassroomLesson.where(:user_id => self.id).count, per_page).ceil
     resp[:records] = VirtualClassroomLesson.preload(:lesson, {:lesson => :user}, {:lesson => :subject}).where(:user_id => self.id).order('created_at DESC').offset(offset).limit(per_page)
     resp[:covers] = {}
-    Slide.where(:lesson_id => resp[:records].pluck(:lesson_id), :kind => 'cover').preload(:media_elements_slides, :media_elements_slides => :media_element).each do |cov|
+    Slide.where(:lesson_id => resp[:records].pluck(:lesson_id), :kind => 'cover').preload(:media_elements_slides, {:media_elements_slides => :media_element}).each do |cov|
       resp[:covers][cov.lesson_id] = cov
     end
     return resp
