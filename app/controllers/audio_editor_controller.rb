@@ -153,7 +153,7 @@ class AudioEditorController < ApplicationController
       Delayed::Job.enqueue Media::Audio::Editing::Composer::Job.new(parameters)
     else
       @error_ids = 'new'
-      @errors = convert_item_error_messages(record.errors.messages)
+      @errors = convert_item_error_messages(record.errors)
       @error_fields = record.errors.messages.keys
     end
     render 'media_elements/info_form_in_editor/save'
@@ -197,7 +197,7 @@ class AudioEditorController < ApplicationController
       Delayed::Job.enqueue Media::Audio::Editing::Composer::Job.new(parameters)
     else
       @error_ids = 'update'
-      @errors = convert_item_error_messages(record.errors.messages)
+      @errors = convert_item_error_messages(record.errors)
       @error_fields = record.errors.messages.keys
     end
     render 'media_elements/info_form_in_editor/save'

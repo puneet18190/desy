@@ -154,7 +154,7 @@ class VideoEditorController < ApplicationController
     else
       @error_ids = 'new'
       @errors = [t('forms.error_captions.media_folder_size_exceeded')] if record.errors.added? :media, :folder_size_exceeded
-      @errors ||= convert_item_error_messages(record.errors.messages)
+      @errors ||= convert_item_error_messages(record.errors)
       @error_fields = record.errors.messages.keys
     end
     render 'media_elements/info_form_in_editor/save'
@@ -199,7 +199,7 @@ class VideoEditorController < ApplicationController
     else
       @error_ids = 'update'
       @errors = [t('forms.error_captions.media_folder_size_exceeded')] if record.errors.added? :media, :folder_size_exceeded
-      @errors ||= convert_item_error_messages(record.errors.messages)
+      @errors ||= convert_item_error_messages(record.errors)
       @error_fields = record.errors.messages.keys
     end
     render 'media_elements/info_form_in_editor/save'

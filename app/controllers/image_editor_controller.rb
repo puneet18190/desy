@@ -137,7 +137,7 @@ class ImageEditorController < ApplicationController
       new_image.validating_in_form = true
       if !new_image.save
         @error_ids = 'new'
-        @errors = convert_item_error_messages(new_image.errors.messages)
+        @errors = convert_item_error_messages(new_image.errors)
         @error_fields = new_image.errors.messages.keys
       end
     else
@@ -169,7 +169,7 @@ class ImageEditorController < ApplicationController
       @image.validating_in_form = true
       if !@image.save
         @error_ids = 'update'
-        @errors = convert_item_error_messages(@image.errors.messages)
+        @errors = convert_item_error_messages(@image.errors)
         @error_fields = @image.errors.messages.keys
       else
         MediaElementsSlide.where(:media_element_id => @image.id).each do |mes|
