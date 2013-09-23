@@ -61,7 +61,7 @@
             <div class="suggested_media_elements_page" id="suggested_media_elements_<%= j + 1 %>" style="display:<%= (j != 0) ? 'none'.html_safe : 'block'.html_safe %>; width:auto;  margin:0 auto 0 auto;">
               <% media_elements_block.each do |me| %>
                 <div class="_boxViewExpandedMediaElementWrapper">
-                  <%= render :partial => 'media_elements/view_single_expanded', :locals => {:media_element => me, :destination => ButtonDestinations::EXPANDED_MEDIA_ELEMENT, :used_in_private_lessons => (me.instances.to_i > 0)} %>
+                  <%= render :partial => 'media_elements/view_single_expanded', :locals => {:media_element => me, :destination => ButtonDestinations::EXPANDED_MEDIA_ELEMENT, :used_in_private_lessons => false} %>
                 </div>
               <% end %>
               <div class="_boxViewExpandedMediaElementWrapper">

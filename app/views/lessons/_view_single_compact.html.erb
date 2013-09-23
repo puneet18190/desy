@@ -3,7 +3,7 @@
   likes_count = lesson.likes.count if likes_count.nil?
   cover ||= nil
   notification_bookmarks ||= nil
-  notification_bookmarks = Bookmark.where('bookmarkable_type = ? AND bookmarkable_id = ? AND created_at < ?', 'Lesson', self.id, self.updated_at).count if notification_bookmarks.nil?
+  notification_bookmarks = Bookmark.where('bookmarkable_type = ? AND bookmarkable_id = ? AND created_at < ?', 'Lesson', lesson.id, lesson.updated_at).count if notification_bookmarks.nil?
   lesson_not_notified = lesson.status.nil? ? false : (!lesson.notified && notification_bookmarks > 0)
   current_class = (lesson.status == Statuses::COPIED) ? 'current'.html_safe : ''
   disabled = !lesson.available?
