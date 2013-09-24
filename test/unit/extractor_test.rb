@@ -556,6 +556,21 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_equal 3, resp[:records][4].likes_general_count.to_i
     assert Like.where(:user_id => @user2.id, :lesson_id => @les2.id).any?
     # second part, covers
+    assert resp[:covers].has_key?(1)
+    assert_equal Slide, resp[:covers][1].class
+    assert_equal 1, resp[:covers][1].id
+    assert resp[:covers].has_key?(2)
+    assert_equal Slide, resp[:covers][2].class
+    assert_equal 2, resp[:covers][2].id
+    assert resp[:covers].has_key?(@les2.id)
+    assert_equal Slide, resp[:covers][@les2.id].class
+    assert_equal Slide.where(:kind => 'cover', :lesson_id => @les2.id).first.id, resp[:covers][@les2.id].id
+    assert resp[:covers].has_key?(@les5.id)
+    assert_equal Slide, resp[:covers][@les5.id].class
+    assert_equal Slide.where(:kind => 'cover', :lesson_id => @les5.id).first.id, resp[:covers][@les5.id].id
+    assert resp[:covers].has_key?(@les6.id)
+    assert_equal Slide, resp[:covers][@les6.id].class
+    assert_equal Slide.where(:kind => 'cover', :lesson_id => @les6.id).first.id, resp[:covers][@les6.id].id
     # third part, notifications_bookmarks
   end
   
