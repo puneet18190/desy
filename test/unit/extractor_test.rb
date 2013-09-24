@@ -535,6 +535,37 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_equal 2, resp[:pages_amount]
   end
   
+  test 'media_elements_optimized' do
+    x = MediaElementsSlide.new
+    x.slide_id = Lesson.find(1).cover.id
+    x.media_element_id = 5
+    x.alignment = 0
+    x.position = 1
+    assert_obj_saved x
+    s = Lesson.find(1).add_slide 'image4', 2
+    assert_not_nil s
+    x = MediaElementsSlide.new
+    x.slide_id = s.id
+    x.media_element_id = 5
+    x.alignment = 0
+    x.position = 3
+    assert_obj_saved x
+    s2 = Lesson.find(1).add_slide 'audio', 3
+    assert_not_nil s2
+    x = MediaElementsSlide.new
+    x.slide_id = s2.id
+    x.media_element_id = @el4.id
+    x.position = 1
+    assert_obj_saved x
+    resp = @user1.own_media_elements(1, 20)
+    resp[:records] = resp[:records].sort { |a, b| a.id <=> b.id }
+    assert_ordered_item_extractor [1, 5, @el4.id, @el6.id], resp[:records]
+    assert_equal 0, resp[:records][0].instances.to_i
+    assert_equal 2, resp[:records][1].instances.to_i
+    assert_equal 1, resp[:records][2].instances.to_i
+    assert_equal 0, resp[:records][3].instances.to_i
+  end
+  
   test 'lessons_optimized' do
     assert Lesson.find(1).publish
     assert @user2.bookmark 'Lesson', @les2.id
