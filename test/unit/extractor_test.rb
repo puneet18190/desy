@@ -578,6 +578,9 @@ class ExtractorTest < ActiveSupport::TestCase
     ids = []
     resp[:records].each do |l|
       ids << l.id
+      if l.id != @les9.id
+        assert l.modify
+      end
     end
     Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => ids).update_all(:created_at => '2000-01-01 10:00:00')
     Lesson.where(:id => ids).update_all(:updated_at => '2000-01-01 11:00:00')
@@ -586,11 +589,6 @@ class ExtractorTest < ActiveSupport::TestCase
     resp = @user1.own_lessons(1, 20)
     resp[:records] = resp[:records].sort { |a, b| a.id <=> b.id }
     assert_ordered_item_extractor [1, 2, @les1.id, @les2.id, @les3.id, @les4.id, @les5.id, @les6.id, @les7.id, @les8.id, @les9.id], resp[:records]
-    resp[:records].each do |l|
-      if l.id != @les9.id
-        assert l.modify
-      end
-    end
     assert_equal 1, resp[:records][0].notification_bookmarks.to_i
     assert_equal 0, resp[:records][1].notification_bookmarks.to_i
     azz = Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => resp[:records][1].id).first
@@ -604,9 +602,9 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_equal 0, resp[:records][4].notification_bookmarks.to_i
     assert_equal 0, resp[:records][5].notification_bookmarks.to_i
     assert_equal 1, resp[:records][6].notification_bookmarks.to_i
-    assert_equal 1, resp[:records][7].notification_bookmarks.to_i
-    assert_equal 2, resp[:records][8].notification_bookmarks.to_i
-    assert_equal 3, Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => resp[:records][8].id).count
+    assert_equal 2, resp[:records][7].notification_bookmarks.to_i
+    assert_equal 3, Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => resp[:records][7].id).count
+    assert_equal 0, resp[:records][8].notification_bookmarks.to_i
     assert_equal 0, resp[:records][9].notification_bookmarks.to_i
     assert_equal 0, resp[:records][10].notification_bookmarks.to_i
   end
