@@ -541,9 +541,12 @@ class ExtractorTest < ActiveSupport::TestCase
     assert @user2.bookmark 'Lesson', @les5.id
     assert @user2.bookmark 'Lesson', @les6.id
     assert @user2.bookmark 'Lesson', 1
-    # first part, likes_general_count
     load_likes
     assert @user2.like @les2.id
+    assert @liker4.bookmark 'Lesson', @les6.id
+    assert @liker3.bookmark 'Lesson', @les6.id
+    assert @liker3.bookmark 'Lesson', @les9.id
+    # first part, likes_general_count
     resp = @user2.own_lessons(1, 20)
     resp[:records] = resp[:records].sort { |a, b| a.id <=> b.id }
     assert_ordered_item_extractor [1, 2, @les2.id, @les5.id, @les6.id], resp[:records]
@@ -572,6 +575,43 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_equal Slide, resp[:covers][@les6.id].class
     assert_equal Slide.where(:kind => 'cover', :lesson_id => @les6.id).first.id, resp[:covers][@les6.id].id
     # third part, notifications_bookmarks
+    resp = @user1.own_lessons(1, 20)
+    resp[:records] = resp[:records].sort { |a, b| a.id <=> b.id }
+    assert_ordered_item_extractor [1, 2, @les1.id, @les2.id, @les3.id, @les4.id, @les5.id, @les6.id, @les7.id, @les8.id, @les9.id], resp[:records]
+    ids = []
+    resp[:records].each do |l|
+      ids << l.id
+      if l.id != @les9.id
+        assert l.modify
+      end
+    end
+    Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => ids).update_all(:created_at => '2000-01-01 10:00:00')
+    Lesson.where(:id => ids).update_all(:updated_at => '2000-01-01 11:00:00')
+    Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => @les6.id, :user_id => @user2.id).update_all(:created_at => '2000-01-01 12:00:00')
+    Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => @les2.id, :user_id => @user2.id).update_all(:created_at => '2000-01-01 12:00:00')
+    assert_equal 1, resp[:records][0].notification_bookmarks.to_i
+    assert_equal 0, resp[:records][1].notification_bookmarks.to_i
+    azz = Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => resp[:records][1].id).first
+    assert_not_nil azz
+    assert azz.created_at < resp[:records][1].updated_at
+    assert_equal 0, resp[:records][2].notification_bookmarks.to_i
+    assert_equal 0, resp[:records][3].notification_bookmarks.to_i
+    azz = Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => resp[:records][3].id).first
+    assert_not_nil azz
+    assert azz.created_at > resp[:records][1].updated_at
+    assert_equal 0, resp[:records][4].notification_bookmarks.to_i
+    assert_equal 0, resp[:records][5].notification_bookmarks.to_i
+    assert_equal 1, resp[:records][6].notification_bookmarks.to_i
+    assert_equal 1, resp[:records][7].notification_bookmarks.to_i
+    assert_equal 2, resp[:records][8].notification_bookmarks.to_i
+    assert_equal 3, Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => resp[:records][8].id).count
+    assert_equal 0, resp[:records][9].notification_bookmarks.to_i
+    assert_equal 0, resp[:records][10].notification_bookmarks.to_i
+    azz = Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => resp[:records][10].id)
+    assert_equal 1, azz.length
+    azz = azz.first
+    assert azz.created_at < resp[:records][10].updated_at
+    assert azz.user_id != @user1.id
   end
   
   test 'offset' do
