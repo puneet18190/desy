@@ -1193,4 +1193,13 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_status resp, [['preview', 'edit', 'destroy'], ['preview', 'add'], ['preview', 'edit', 'remove']]
   end
   
+  test 'optimization_modes' do
+    me = @user2.own_media_elements(1, 20, Filters::ALL_MEDIA_ELEMENTS, true)[:records].first
+    assert_raise(NoMethodError) {me.instances}
+    assert_nil me.status
+    le = @user2.own_lessons(1, 20, Filters::ALL_LESSONS, true)[:records].first
+    assert_raise(NoMethodError) {le.likes_general_count}
+    assert_nil le.status
+  end
+  
 end

@@ -614,7 +614,7 @@ class User < ActiveRecord::Base
   # * *records*: the effective content of the research, an array of object of type Lesson
   # * *pages_amount*: an integer, the total number of pages in the method's result
   #
-  def own_lessons(page, per_page, filter = Filters::ALL_LESSONS, from_virtual_classroom=false)
+  def own_lessons(page, per_page, filter=Filters::ALL_LESSONS, from_virtual_classroom=false)
     page = 1 if !page.is_a?(Fixnum) || page <= 0
     for_page = 1 if !for_page.is_a?(Fixnum) || for_page <= 0
     offset = (page - 1) * per_page
