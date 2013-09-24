@@ -1300,6 +1300,7 @@ class User < ActiveRecord::Base
   
   # Submethod of User#search_media_elements. It returns all the elements in the database, filtered by +filter+ (chosen among the ones in Filters), and ordered by +order_by+ (chosen among the ones in SearchOrders)
   def search_media_elements_without_tag(offset, limit, filter, order_by)
+    select = "media_elements.*, (SELECT COUNT (*) FROM bookmarks WHERE bookmarks.bookmarkable_type = #{self.connection.quote 'MediaElement'} AND bookmarks.bookmarkable_id = media_elements.id AND bookmarks.user_id = #{self.connection.quote self.id.to_i}) AS bookmarks_count, (SELECT COUNT(*) FROM media_elements_slides WHERE (media_elements_slides.media_element_id = media_elements.id)) AS instances"
     resp = {}
     order = ''
     case order_by
@@ -1313,20 +1314,20 @@ class User < ActiveRecord::Base
     case filter
       when Filters::ALL_MEDIA_ELEMENTS
         count = MediaElement.where('is_public = ? OR user_id = ?', true, self.id).count
-        query = MediaElement.where('is_public = ? OR user_id = ?', true, self.id).order(order).offset(offset).limit(limit)
+        query = MediaElement.select(select).where('is_public = ? OR user_id = ?', true, self.id).order(order).offset(offset).limit(limit)
       when Filters::VIDEO
         count = Video.where('is_public = ? OR user_id = ?', true, self.id).count
-        query = Video.where('is_public = ? OR user_id = ?', true, self.id).order(order).offset(offset).limit(limit)
+        query = Video.select(select).where('is_public = ? OR user_id = ?', true, self.id).order(order).offset(offset).limit(limit)
       when Filters::AUDIO
         count = Audio.where('is_public = ? OR user_id = ?', true, self.id).count
-        query = Audio.where('is_public = ? OR user_id = ?', true, self.id).order(order).offset(offset).limit(limit)
+        query = Audio.select(select).where('is_public = ? OR user_id = ?', true, self.id).order(order).offset(offset).limit(limit)
       when Filters::IMAGE
         count = Image.where('is_public = ? OR user_id = ?', true, self.id).count
-        query = Image.where('is_public = ? OR user_id = ?', true, self.id).order(order).offset(offset).limit(limit)
+        query = Image.select(select).where('is_public = ? OR user_id = ?', true, self.id).order(order).offset(offset).limit(limit)
     end
     resp[:records] = []
     query.each do |q|
-      q.set_status self.id
+      q.set_status self.id, {:bookmarked => :bookmarks_count}
       resp[:records] << q
     end
     resp[:records_amount] = count
