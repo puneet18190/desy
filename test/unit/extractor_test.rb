@@ -535,6 +535,30 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_equal 2, resp[:pages_amount]
   end
   
+  test 'lessons_optimized' do
+    assert Lesson.find(1).publish
+    assert @user2.bookmark 'Lesson', @les2.id
+    assert @user2.bookmark 'Lesson', @les5.id
+    assert @user2.bookmark 'Lesson', @les6.id
+    assert @user2.bookmark 'Lesson', 1
+    # first part, likes_general_count
+    load_likes
+    assert @user2.like @les2.id
+    resp = @user2.own_lessons(1, 20)
+    resp[:records] = resp[:records].sort { |a, b| a.id <=> b.id }
+    assert_ordered_item_extractor [1, 2, @les2.id, @les5.id, @les6.id], resp[:records]
+    assert_equal 0, resp[:records][0].likes_general_count.to_i
+    assert_equal 0, resp[:records][1].likes_general_count.to_i
+    assert_equal 2, resp[:records][2].likes_general_count.to_i
+    assert Like.where(:user_id => @user2.id, :lesson_id => @les2.id).any?
+    assert_equal 2, resp[:records][3].likes_general_count.to_i
+    assert Like.where(:user_id => @user2.id, :lesson_id => @les2.id).any?
+    assert_equal 3, resp[:records][4].likes_general_count.to_i
+    assert Like.where(:user_id => @user2.id, :lesson_id => @les2.id).any?
+    # second part, covers
+    # third part, notifications_bookmarks
+  end
+  
   test 'offset' do
     resp = @user1.own_lessons(1, 4)[:records]
     assert_equal 4, resp.length
