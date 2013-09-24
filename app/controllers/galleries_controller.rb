@@ -387,7 +387,7 @@ class GalleriesController < ApplicationController
   
   # Gets the documents, using User#own_documents
   def get_documents(page, word = nil)
-    x = current_user.own_documents(page, DOCUMENTS_FOR_PAGE, SearchOrders::CREATED_AT, word)
+    x = current_user.own_documents(page, DOCUMENTS_FOR_PAGE, SearchOrders::CREATED_AT, word, true)
     @documents = x[:records]
     @tot_pages = x[:pages_amount]
   end

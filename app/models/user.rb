@@ -691,7 +691,7 @@ class User < ActiveRecord::Base
   # * *records*: the effective content of the research, an array of object of type Document
   # * *pages_amount*: an integer, the total number of pages in the method's result
   #
-  def own_documents(page, per_page, order_by = SearchOrders::CREATED_AT, word = nil)
+  def own_documents(page, per_page, order_by=SearchOrders::CREATED_AT, word=nil, from_gallery=false)
     page = 1 if !page.is_a?(Fixnum) || page <= 0
     for_page = 1 if !for_page.is_a?(Fixnum) || for_page <= 0
     offset = (page - 1) * per_page
@@ -703,7 +703,9 @@ class User < ActiveRecord::Base
       when SearchOrders::TITLE
         order = 'title ASC, created_at DESC'
     end
-    relation = Document.select('documents.*, (SELECT COUNT(*) FROM documents_slides INNER JOIN slides ON slides.id = documents_slides.slide_id INNER JOIN lessons ON lessons.id = slides.lesson_id WHERE documents_slides.document_id = documents.id AND lessons.user_id = documents.user_id) AS instances')
+    select = 'documents.*'
+    select = "#{select}, (SELECT COUNT(*) FROM documents_slides INNER JOIN slides ON slides.id = documents_slides.slide_id INNER JOIN lessons ON lessons.id = slides.lesson_id WHERE documents_slides.document_id = documents.id AND lessons.user_id = documents.user_id) AS instances" if !from_gallery
+    relation = Document.select(select)
     if word.nil?
       relation = relation.where(:user_id => self.id).order(order)
     else
