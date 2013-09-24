@@ -1,6 +1,6 @@
 <%
-  likes_count ||= nil
-  likes_count = lesson.likes.count if likes_count.nil?
+  likes_general_count ||= nil
+  likes_general_count = lesson.likes.count if likes_general_count.nil?
   cover ||= nil
   notification_bookmarks ||= nil
   notification_bookmarks = Bookmark.where('bookmarkable_type = ? AND bookmarkable_id = ? AND created_at < ?', 'Lesson', lesson.id, lesson.updated_at).count if notification_bookmarks.nil?
@@ -29,7 +29,7 @@
         <%= TimeConvert.to_string(lesson.created_at) %>
         <p>
           <span class="fltlft"><%= image_tag "star.png", :align => "left" %></span>
-          <span class="fltlft" style="padding-top:2px"><%= t('lessons.users_like_this', :likes => likes_count) %></span>
+          <span class="fltlft" style="padding-top:2px"><%= t('lessons.users_like_this', :likes => likes_general_count) %></span>
         </p>
         <% if lesson.is_reportable %>
           <%= render :partial => 'reports/lesson', :locals => {:lesson => lesson} %>
