@@ -70,6 +70,8 @@ class DocumentTest < ActiveSupport::TestCase
     resp = User.find(1).own_documents(1, 20)[:records]
     assert_equal 1, resp.length
     assert_equal '0', resp.first.instances
+    # I test the mode not in gallery
+    assert_raise(NoMethodError) {User.find(1).own_documents(1, 20, SearchOrders::CREATED_AT, nil, true).first.instances}
   end
   
 end
