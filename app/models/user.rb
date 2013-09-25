@@ -1217,7 +1217,7 @@ class User < ActiveRecord::Base
         params << true
         params << self.id
     end
-    select = 'tags.id AS tag_id, COUNT(*) AS tags_count'
+    select = 'tags.* AS tag_id, COUNT(*) AS tags_count'
     where_for_current_tag = where.gsub('tags.word LIKE ?', 'tags.word = ?')
     where = "tags.word != ? AND #{where}"
     resp = []
@@ -1225,10 +1225,7 @@ class User < ActiveRecord::Base
       limit -= 1
       resp << Tag.find_by_word(word)
     end
-    Tagging.group('tags.id').select(select).joins(joins).where(where, word, *params).order('tags_count DESC, tags.word ASC').limit(limit).each do |q|
-      resp << Tag.find(q.tag_id)
-    end
-    resp
+    resp + Tagging.group('tags.id').select(select).joins(joins).where(where, word, *params).order('tags_count DESC, tags.word ASC').limit(limit)
   end
   
   # Submethod of User#search_media_elements. It returns the first +n+ tags associated to the result of the research, ordered by number of occurrences of these tags among the results; if the +word+ corresponds to a tag, this tag is put in the first place of the result even if it wouldn't be first according to the normal ordering.
