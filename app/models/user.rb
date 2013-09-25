@@ -1346,7 +1346,7 @@ class User < ActiveRecord::Base
       when SearchOrders::UPDATED_AT
         order = 'lessons.updated_at DESC'
       when SearchOrders::LIKES
-        select = "#{select}, (SELECT COUNT(*) FROM likes WHERE (likes.lesson_id = lessons.id)) AS likes_count"
+        select = "(SELECT COUNT(*) FROM likes WHERE (likes.lesson_id = lessons.id)) AS likes_count"
         order = 'likes_count DESC, lessons.updated_at DESC'
       when SearchOrders::TITLE
         order = 'lessons.title ASC, lessons.updated_at DESC'
