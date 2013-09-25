@@ -1239,7 +1239,7 @@ class User < ActiveRecord::Base
     where = 'tags.word != ? AND tags.word LIKE ? AND (media_elements.is_public = ? OR media_elements.user_id = ?)'
     where_for_current_tag = 'tags.word = ? AND (media_elements.is_public = ? OR media_elements.user_id = ?)'
     joins = "INNER JOIN tags ON (tags.id = taggings.tag_id) INNER JOIN media_elements ON (taggings.taggable_type = 'MediaElement' AND taggings.taggable_id = media_elements.id)"
-    select = 'tags.id AS tag_id, COUNT(*) AS tags_count'
+    select = 'tags.*, COUNT(*) AS tags_count'
     case filter
       when Filters::VIDEO
         where = "#{where} AND media_elements.sti_type = 'Video'"
@@ -1255,10 +1255,7 @@ class User < ActiveRecord::Base
       resp << Tag.find_by_word(word)
       limit -= 1
     end
-    Tagging.group('tags.id').select(select).joins(joins).where(where, word, "#{word}%", true, self.id).order('tags_count DESC, tags.word ASC').limit(limit).each do |tagging|
-      resp << Tag.find(tagging.tag_id)
-    end
-    resp
+    resp + Tagging.group('tags.id').select(select).joins(joins).where(where, word, "#{word}%", true, self.id).order('tags_count DESC, tags.word ASC').limit(limit)
   end
   
   # Submethod of User.search_media_elements: if +word+ is a Fixnum, it extracts all the elements associated to that word, otherwise it extracts all the elements whose tags match the +word+. Results are filtered by the +filter+ (chosen among the ones in Filters), and ordered by +order_by+ (chosen among SearchOrders)
@@ -1288,9 +1285,9 @@ class User < ActiveRecord::Base
         where = "#{where} AND media_elements.sti_type = 'Image'"
     end
     resp[:records] = []
-    Tagging.group('media_elements.id').select('media_elements.id AS media_element_id').joins(joins).where(where, params[0], params[1], params[2]).order(order).offset(offset).limit(limit).each do |q|
-      media_element = MediaElement.find_by_id q.media_element_id
-      media_element.set_status self.id
+    ids = Tagging.group('media_elements.id').joins(joins).where(where, params[0], params[1], params[2]).order(order).offset(offset).limit(limit).pluck('media_elements.id')
+    MediaElement.select( "media_elements.*, (SELECT COUNT (*) FROM bookmarks WHERE bookmarks.bookmarkable_type = #{self.connection.quote 'MediaElement'} AND bookmarks.bookmarkable_id = media_elements.id AND bookmarks.user_id = #{self.connection.quote self.id.to_i}) AS bookmarks_count, (SELECT COUNT(*) FROM media_elements_slides WHERE (media_elements_slides.media_element_id = media_elements.id)) AS instances").where(:id => ids).order(order).each do |media_element|
+      media_element.set_status self.id, {:bookmarked => :bookmarks_count}
       resp[:records] << media_element
     end
     resp[:records_amount] = Tagging.group('media_elements.id').joins(joins).where(where, params[0], params[1], params[2]).count.length
