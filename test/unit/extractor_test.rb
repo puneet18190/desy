@@ -607,6 +607,7 @@ class ExtractorTest < ActiveSupport::TestCase
       assert_equal 3, resp[:records][4].likes_general_count.to_i
       assert Like.where(:user_id => @user2.id, :lesson_id => @les2.id).any?
       # second part, covers
+      assert_equal 5, resp[:covers].keys.length
       assert resp[:covers].has_key?(1)
       assert_equal Slide, resp[:covers][1].class
       assert_equal 1, resp[:covers][1].id
