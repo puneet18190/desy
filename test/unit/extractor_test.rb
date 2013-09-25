@@ -567,6 +567,12 @@ class ExtractorTest < ActiveSupport::TestCase
   end
   
   test 'lessons_optimized' do
+    Tagging.delete_all
+    Tag.delete_all
+    Lesson.where(:id => [1, 2, @les2.id, @les5.id, @les6.id]).each do |l|
+      l.tags = 'cane, gatto, uovo sodo, mandarino'
+      assert_obj_saved l
+    end
     assert Lesson.find(1).publish
     assert @user2.bookmark 'Lesson', @les2.id
     assert @user2.bookmark 'Lesson', @les5.id
@@ -576,34 +582,48 @@ class ExtractorTest < ActiveSupport::TestCase
     assert @user2.like @les2.id
     assert @liker4.bookmark 'Lesson', @les6.id
     assert @liker3.bookmark 'Lesson', @les6.id
-    # first part, likes_general_count
-    resp = @user2.own_lessons(1, 20)
-    resp[:records] = resp[:records].sort { |a, b| a.id <=> b.id }
-    assert_ordered_item_extractor [1, 2, @les2.id, @les5.id, @les6.id], resp[:records]
-    assert_equal 0, resp[:records][0].likes_general_count.to_i
-    assert_equal 0, resp[:records][1].likes_general_count.to_i
-    assert_equal 2, resp[:records][2].likes_general_count.to_i
-    assert Like.where(:user_id => @user2.id, :lesson_id => @les2.id).any?
-    assert_equal 2, resp[:records][3].likes_general_count.to_i
-    assert Like.where(:user_id => @user2.id, :lesson_id => @les2.id).any?
-    assert_equal 3, resp[:records][4].likes_general_count.to_i
-    assert Like.where(:user_id => @user2.id, :lesson_id => @les2.id).any?
-    # second part, covers
-    assert resp[:covers].has_key?(1)
-    assert_equal Slide, resp[:covers][1].class
-    assert_equal 1, resp[:covers][1].id
-    assert resp[:covers].has_key?(2)
-    assert_equal Slide, resp[:covers][2].class
-    assert_equal 2, resp[:covers][2].id
-    assert resp[:covers].has_key?(@les2.id)
-    assert_equal Slide, resp[:covers][@les2.id].class
-    assert_equal Slide.where(:kind => 'cover', :lesson_id => @les2.id).first.id, resp[:covers][@les2.id].id
-    assert resp[:covers].has_key?(@les5.id)
-    assert_equal Slide, resp[:covers][@les5.id].class
-    assert_equal Slide.where(:kind => 'cover', :lesson_id => @les5.id).first.id, resp[:covers][@les5.id].id
-    assert resp[:covers].has_key?(@les6.id)
-    assert_equal Slide, resp[:covers][@les6.id].class
-    assert_equal Slide.where(:kind => 'cover', :lesson_id => @les6.id).first.id, resp[:covers][@les6.id].id
+    # preliminar extractions: I want to have the same results for own_lessons and search_lessons, and make the same assertions over them
+    resps = [@user2.own_lessons(1, 20)]
+    resps << @user2.search_lessons('uovo', 1, 20)
+    resps3 = @user2.search_lessons(nil, 1, 20)
+    resps3[:records].reject! do |l|
+      rejected = ![1, 2, @les2.id, @les5.id, @les6.id].include?(l.id)
+      resps3[:covers].delete(l.id) if rejected
+      rejected
+    end
+    resps << resps3
+    i = 0
+    while i < 3
+      resp = resps[i]
+      # first part, likes_general_count
+      resp[:records] = resp[:records].sort { |a, b| a.id <=> b.id }
+      assert_ordered_item_extractor [1, 2, @les2.id, @les5.id, @les6.id], resp[:records]
+      assert_equal 0, resp[:records][0].likes_general_count.to_i
+      assert_equal 0, resp[:records][1].likes_general_count.to_i
+      assert_equal 2, resp[:records][2].likes_general_count.to_i
+      assert Like.where(:user_id => @user2.id, :lesson_id => @les2.id).any?
+      assert_equal 2, resp[:records][3].likes_general_count.to_i
+      assert Like.where(:user_id => @user2.id, :lesson_id => @les2.id).any?
+      assert_equal 3, resp[:records][4].likes_general_count.to_i
+      assert Like.where(:user_id => @user2.id, :lesson_id => @les2.id).any?
+      # second part, covers
+      assert resp[:covers].has_key?(1)
+      assert_equal Slide, resp[:covers][1].class
+      assert_equal 1, resp[:covers][1].id
+      assert resp[:covers].has_key?(2)
+      assert_equal Slide, resp[:covers][2].class
+      assert_equal 2, resp[:covers][2].id
+      assert resp[:covers].has_key?(@les2.id)
+      assert_equal Slide, resp[:covers][@les2.id].class
+      assert_equal Slide.where(:kind => 'cover', :lesson_id => @les2.id).first.id, resp[:covers][@les2.id].id
+      assert resp[:covers].has_key?(@les5.id)
+      assert_equal Slide, resp[:covers][@les5.id].class
+      assert_equal Slide.where(:kind => 'cover', :lesson_id => @les5.id).first.id, resp[:covers][@les5.id].id
+      assert resp[:covers].has_key?(@les6.id)
+      assert_equal Slide, resp[:covers][@les6.id].class
+      assert_equal Slide.where(:kind => 'cover', :lesson_id => @les6.id).first.id, resp[:covers][@les6.id].id
+      i += 1
+    end
     # third part, notifications_bookmarks
     resp = @user1.own_lessons(1, 20)
     ids = []
