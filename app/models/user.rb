@@ -1374,7 +1374,7 @@ class User < ActiveRecord::Base
     resp[:records] = []
     ids = (select.blank? ? Tagging.group('lessons.id') : Tagging.group('lessons.id').select(select)).joins(joins).where(where, *params).order(order).offset(offset).limit(limit).pluck('lessons.id')
     order = order.gsub('likes', 'likes_general')
-    Lesson.select("
+    Lesson.preload(:subject, :user, :school_level, {:user => :location}).select("
       lessons.*,
       (SELECT COUNT (*) FROM bookmarks WHERE bookmarks.bookmarkable_type = #{self.connection.quote 'Lesson'} AND bookmarks.bookmarkable_id = lessons.id AND bookmarks.user_id = #{self.connection.quote self.id.to_i}) AS bookmarks_count,
       (SELECT COUNT (*) FROM bookmarks WHERE bookmarks.bookmarkable_type = #{self.connection.quote 'Lesson'} AND bookmarks.bookmarkable_id = lessons.id AND bookmarks.user_id != #{self.connection.quote self.id} AND bookmarks.created_at < lessons.updated_at) AS notification_bookmarks,
