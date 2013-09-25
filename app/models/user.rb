@@ -1372,7 +1372,7 @@ class User < ActiveRecord::Base
         params << self.id
     end
     resp[:records] = []
-    ids = Tagging.group('lessons.id').select(select).joins(joins).where(where, *params).order(order).offset(offset).limit(limit).pluck('lessons.id')
+    ids = (select.blank? ? Tagging.group('lessons.id') : Tagging.group('lessons.id').select(select)).joins(joins).where(where, *params).order(order).offset(offset).limit(limit).pluck('lessons.id')
     order = order.gsub('likes', 'likes_general')
     Lesson.select("
       lessons.*,
