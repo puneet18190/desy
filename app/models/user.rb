@@ -1389,15 +1389,21 @@ class User < ActiveRecord::Base
   def search_lessons_without_tag(offset, limit, filter, subject_id, order_by)
     resp = {}
     params = []
-    select = 'lessons.id AS lesson_id'
     where = ''
     order = ''
+    select = "
+      lessons.*,
+      (SELECT COUNT (*) FROM bookmarks WHERE bookmarks.bookmarkable_type = #{self.connection.quote 'Lesson'} AND bookmarks.bookmarkable_id = lessons.id AND bookmarks.user_id = #{self.connection.quote self.id.to_i}) AS bookmarks_count,
+      (SELECT COUNT (*) FROM bookmarks WHERE bookmarks.bookmarkable_type = #{self.connection.quote 'Lesson'} AND bookmarks.bookmarkable_id = lessons.id AND bookmarks.user_id != #{self.connection.quote self.id} AND bookmarks.created_at < lessons.updated_at) AS notification_bookmarks,
+      (SELECT COUNT (*) FROM virtual_classroom_lessons WHERE virtual_classroom_lessons.lesson_id = lessons.id AND virtual_classroom_lessons.user_id = #{self.connection.quote self.id.to_i}) AS virtuals_count,
+      (SELECT COUNT (*) FROM likes WHERE likes.lesson_id = lessons.id AND likes.user_id = #{self.connection.quote self.id.to_i}) AS likes_count,
+      (SELECT COUNT (*) FROM likes WHERE likes.lesson_id = lessons.id) AS likes_general_count
+    "
     case order_by
       when SearchOrders::UPDATED_AT
         order = 'updated_at DESC'
       when SearchOrders::LIKES
-        select = "#{select}, (SELECT COUNT(*) FROM likes WHERE (likes.lesson_id = lessons.id)) AS likes_count"
-        order = 'likes_count DESC, updated_at DESC'
+        order = 'likes_general_count DESC, updated_at DESC'
       when SearchOrders::TITLE
         order = 'title ASC, updated_at DESC'
     end
@@ -1422,13 +1428,18 @@ class User < ActiveRecord::Base
       params << subject_id
     end
     resp[:records] = []
-    Lesson.select(select).where(where, *params).order(order).offset(offset).limit(limit).each do |q|
-      lesson = Lesson.find_by_id q.lesson_id
-      lesson.set_status self.id
+    ids = []
+    Lesson.preload(:subject, :user, :school_level, {:user => :location}).select(select).where(where, *params).order(order).offset(offset).limit(limit).each do |lesson|
+      lesson.set_status self.id, {:bookmarked => :bookmarks_count, :in_vc => :virtuals_count, :liked => :likes_count}
+      ids << l.id
       resp[:records] << lesson
     end
     resp[:records_amount] = Lesson.where(where, *params).count
     resp[:pages_amount] = Rational(resp[:records_amount], limit).ceil
+    resp[:covers] = {}
+    Slide.where(:lesson_id => ids, :kind => 'cover').preload(:media_elements_slides, {:media_elements_slides => :media_element}).each do |cov|
+      resp[:covers][cov.lesson_id] = cov
+    end
     return resp
   end
   
