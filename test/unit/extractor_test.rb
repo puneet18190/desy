@@ -626,6 +626,10 @@ class ExtractorTest < ActiveSupport::TestCase
       i += 1
     end
     # third part, notifications_bookmarks
+    Lesson.where(:id => [@les1.id, @les3.id, @les4.id, @les7.id, @les8.id, @les9.id]).each do |l|
+      l.tags = 'cane, gatto, uovo sodo, mandarino'
+      assert_obj_saved l
+    end
     resp = @user1.own_lessons(1, 20)
     ids = []
     resp[:records].each do |l|
@@ -639,10 +643,6 @@ class ExtractorTest < ActiveSupport::TestCase
     Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => @les6.id, :user_id => @user2.id).update_all(:created_at => '2000-01-01 12:00:00')
     Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => @les2.id, :user_id => @user2.id).update_all(:created_at => '2000-01-01 12:00:00')
     # I extend the tags to the other lessons, to make them extracted by the search_engine
-    Lesson.where(:id => [@les1.id, @les3.id, @les4.id, @les7.id, @les8.id, @les9.id]).each do |l|
-      l.tags = 'cane, gatto, uovo sodo, mandarino'
-      assert_obj_saved l
-    end
     resps = [@user1.own_lessons(1, 20)]
     resps << @user1.search_lessons('uovo', 1, 20)
     resps3 = @user1.search_lessons(nil, 1, 20)
