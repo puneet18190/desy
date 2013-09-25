@@ -675,8 +675,6 @@ class ExtractorTest < ActiveSupport::TestCase
       assert_equal 0, resp[:records][8].notification_bookmarks.to_i
       assert_equal 0, resp[:records][9].notification_bookmarks.to_i
       assert_equal 0, resp[:records][10].notification_bookmarks.to_i
-      
-      
       i += 1
     end
   end
