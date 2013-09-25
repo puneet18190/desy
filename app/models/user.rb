@@ -1237,22 +1237,21 @@ class User < ActiveRecord::Base
     filter = Filters::ALL_MEDIA_ELEMENTS if filter.nil? || !Filters::MEDIA_ELEMENTS_SEARCH_SET.include?(filter)
     resp = []
     where = 'tags.word != ? AND tags.word LIKE ? AND (media_elements.is_public = ? OR media_elements.user_id = ?)'
-    where_additional = ''
+    where_for_current_tag = 'tags.word = ? AND (media_elements.is_public = ? OR media_elements.user_id = ?)'
     joins = "INNER JOIN tags ON (tags.id = taggings.tag_id) INNER JOIN media_elements ON (taggings.taggable_type = 'MediaElement' AND taggings.taggable_id = media_elements.id)"
     select = 'tags.*, COUNT(*) AS tags_count'
     case filter
       when Filters::VIDEO
-        where_additional = "AND media_elements.sti_type = 'Video'"
-        where = "#{where} #{where_additional}"
+        where = "#{where} AND media_elements.sti_type = 'Video'"
+        where_for_current_tag = "#{where_for_current_tag} AND media_elements.sti_type = 'Video'"
       when Filters::AUDIO
-        where_additional = "AND media_elements.sti_type = 'Audio'"
-        where = "#{where} #{where_additional}"
+        where = "#{where} AND media_elements.sti_type = 'Audio'"
+        where_for_current_tag = "#{where_for_current_tag} AND media_elements.sti_type = 'Audio'"
       when Filters::IMAGE
-        where_additional = "AND media_elements.sti_type = 'Image'"
-        where = "#{where} #{where_additional}"
+        where = "#{where} AND media_elements.sti_type = 'Image'"
+        where_for_current_tag = "#{where_for_current_tag} AND media_elements.sti_type = 'Image'"
     end
-    current_tag = Tag.find_by_word(word)
-    if !current_tag.nil? && Tagging.joins("INNER JOIN media_elements ON (taggings.taggable_type = 'MediaElement' AND taggings.taggable_id = media_elements.id)").where('taggings.tag_id = ? AND (media_elements.is_public = ? OR media_elements.user_id = ?)', current_tag.id, true, self.id).count > 0
+    if Tagging.joins(joins).where(where_for_current_tag, word, true, self.id).limit(1).length > 0
       resp << Tag.find_by_word(word)
       limit -= 1
     end
