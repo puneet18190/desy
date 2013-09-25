@@ -110,6 +110,7 @@ class SearchController < ApplicationController
     @lessons = resp[:records]
     @pages_amount = resp[:pages_amount]
     @lessons_amount = resp[:records_amount]
+    @covers = resp[:covers]
   end
   
   # Gets media elements using User#search_media_elements
@@ -128,6 +129,7 @@ class SearchController < ApplicationController
     @lessons = resp[:records]
     @pages_amount = resp[:pages_amount]
     @lessons_amount = resp[:records_amount]
+    @covers = resp[:covers]
     @tags = []
     @tags = resp[:tags] if resp.has_key? :tags
   end
