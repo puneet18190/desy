@@ -1336,7 +1336,7 @@ class User < ActiveRecord::Base
   def search_lessons_with_tag(word, offset, limit, filter, subject_id, order_by)
     resp = {}
     params = ["#{word}%"]
-    select = 'lessons.id AS lesson_id'
+    select = ''
     joins = "INNER JOIN tags ON (tags.id = taggings.tag_id) INNER JOIN lessons ON (taggings.taggable_type = 'Lesson' AND taggings.taggable_id = lessons.id)"
     where = 'tags.word LIKE ?'
     if word.class == Fixnum
@@ -1375,13 +1375,25 @@ class User < ActiveRecord::Base
         params << self.id
     end
     resp[:records] = []
-    Tagging.group('lessons.id').select(select).joins(joins).where(where, *params).order(order).offset(offset).limit(limit).each do |q|
-      lesson = Lesson.find_by_id q.lesson_id
-      lesson.set_status self.id
+    ids = Tagging.group('lessons.id').select(select).joins(joins).where(where, *params).order(order).offset(offset).limit(limit).pluck('lessons.id')
+    order = order.gsub('likes', 'likes_general')
+    Lesson.select("
+      lessons.*,
+      (SELECT COUNT (*) FROM bookmarks WHERE bookmarks.bookmarkable_type = #{self.connection.quote 'Lesson'} AND bookmarks.bookmarkable_id = lessons.id AND bookmarks.user_id = #{self.connection.quote self.id.to_i}) AS bookmarks_count,
+      (SELECT COUNT (*) FROM bookmarks WHERE bookmarks.bookmarkable_type = #{self.connection.quote 'Lesson'} AND bookmarks.bookmarkable_id = lessons.id AND bookmarks.user_id != #{self.connection.quote self.id} AND bookmarks.created_at < lessons.updated_at) AS notification_bookmarks,
+      (SELECT COUNT (*) FROM virtual_classroom_lessons WHERE virtual_classroom_lessons.lesson_id = lessons.id AND virtual_classroom_lessons.user_id = #{self.connection.quote self.id.to_i}) AS virtuals_count,
+      (SELECT COUNT (*) FROM likes WHERE likes.lesson_id = lessons.id AND likes.user_id = #{self.connection.quote self.id.to_i}) AS likes_count,
+      (SELECT COUNT (*) FROM likes WHERE likes.lesson_id = lessons.id) AS likes_general_count
+    ").where(:id => ids).order(order).each do |lesson|
+      lesson.set_status self.id, {:bookmarked => :bookmarks_count, :in_vc => :virtuals_count, :liked => :likes_count}
       resp[:records] << lesson
     end
     resp[:records_amount] = Tagging.group('lessons.id').joins(joins).where(where, *params).count.length
     resp[:pages_amount] = Rational(resp[:records_amount], limit).ceil
+    resp[:covers] = {}
+    Slide.where(:lesson_id => ids, :kind => 'cover').preload(:media_elements_slides, {:media_elements_slides => :media_element}).each do |cov|
+      resp[:covers][cov.lesson_id] = cov
+    end
     return resp
   end
   
