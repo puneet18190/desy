@@ -454,7 +454,7 @@ href="VideoEditorController.html#method-i-check_available_for_user">#check_avail
   <span class="ruby-keyword">else</span>
     <span class="ruby-ivar">@error_ids</span> = <span class="ruby-string">&#39;update&#39;</span>
     <span class="ruby-ivar">@errors</span> = [<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;forms.error_captions.media_folder_size_exceeded&#39;</span>)] <span class="ruby-keyword">if</span> <span class="ruby-identifier">record</span>.<span class="ruby-identifier">errors</span>.<span class="ruby-identifier">added?</span> <span class="ruby-value">:media</span>, <span class="ruby-value">:folder_size_exceeded</span>
-    <span class="ruby-ivar">@errors</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">convert_item_error_messages</span>(<span class="ruby-identifier">record</span>.<span class="ruby-identifier">errors</span>.<span class="ruby-identifier">messages</span>)
+    <span class="ruby-ivar">@errors</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">convert_item_error_messages</span>(<span class="ruby-identifier">record</span>.<span class="ruby-identifier">errors</span>)
     <span class="ruby-ivar">@error_fields</span> = <span class="ruby-identifier">record</span>.<span class="ruby-identifier">errors</span>.<span class="ruby-identifier">messages</span>.<span class="ruby-identifier">keys</span>
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">render</span> <span class="ruby-string">&#39;media_elements/info_form_in_editor/save&#39;</span>
@@ -583,7 +583,7 @@ href="VideoEditorController.html#method-i-check_available_for_user">#check_avail
   <span class="ruby-keyword">else</span>
     <span class="ruby-ivar">@error_ids</span> = <span class="ruby-string">&#39;new&#39;</span>
     <span class="ruby-ivar">@errors</span> = [<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;forms.error_captions.media_folder_size_exceeded&#39;</span>)] <span class="ruby-keyword">if</span> <span class="ruby-identifier">record</span>.<span class="ruby-identifier">errors</span>.<span class="ruby-identifier">added?</span> <span class="ruby-value">:media</span>, <span class="ruby-value">:folder_size_exceeded</span>
-    <span class="ruby-ivar">@errors</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">convert_item_error_messages</span>(<span class="ruby-identifier">record</span>.<span class="ruby-identifier">errors</span>.<span class="ruby-identifier">messages</span>)
+    <span class="ruby-ivar">@errors</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">convert_item_error_messages</span>(<span class="ruby-identifier">record</span>.<span class="ruby-identifier">errors</span>)
     <span class="ruby-ivar">@error_fields</span> = <span class="ruby-identifier">record</span>.<span class="ruby-identifier">errors</span>.<span class="ruby-identifier">messages</span>.<span class="ruby-identifier">keys</span>
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">render</span> <span class="ruby-string">&#39;media_elements/info_form_in_editor/save&#39;</span>

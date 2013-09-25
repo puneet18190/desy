@@ -822,7 +822,7 @@ href="Admin/MessagesController.html#method-i-filter_users">Admin::MessagesContro
                 
               </p>
               <div id="method-c-get_full_names_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 1032</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 1075</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">get_full_names</span>(<span class="ruby-identifier">term</span>)
   <span class="ruby-identifier">where</span>(<span class="ruby-string">&#39;email ILIKE ? OR name ILIKE ? OR surname ILIKE ?&#39;</span>, <span class="ruby-node">&quot;%#{term}%&quot;</span>, <span class="ruby-node">&quot;%#{term}%&quot;</span>, <span class="ruby-node">&quot;%#{term}%&quot;</span>).<span class="ruby-identifier">select</span>(<span class="ruby-string">&quot;id, name || &#39; &#39; || surname AS value&quot;</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -1006,7 +1006,7 @@ href="User.html#method-i-save_in_admin_quick_uploading_cache">#save_in_admin_qui
                 
               </p>
               <div id="method-i-admin_quick_uploading_cache_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 1134</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 1177</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">admin_quick_uploading_cache</span>
   <span class="ruby-keyword">return</span> [] <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-constant">Rails</span>.<span class="ruby-identifier">root</span>.<span class="ruby-identifier">join</span>(<span class="ruby-node">&quot;public/admin/#{self.id}/map.yml&quot;</span>))
   <span class="ruby-identifier">map</span> = <span class="ruby-constant">YAML</span><span class="ruby-operator">::</span><span class="ruby-identifier">load</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-constant">Rails</span>.<span class="ruby-identifier">root</span>.<span class="ruby-identifier">join</span>(<span class="ruby-node">&quot;public/admin/#{self.id}/map.yml&quot;</span>))
@@ -1240,7 +1240,7 @@ media element</p>
                 
               </p>
               <div id="method-i-bookmark_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 741</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 780</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">bookmark</span>(<span class="ruby-identifier">type</span>, <span class="ruby-identifier">target_id</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span>
   <span class="ruby-identifier">b</span> = <span class="ruby-constant">Bookmark</span>.<span class="ruby-identifier">new</span>
@@ -1303,7 +1303,7 @@ href="ApplicationController.html#method-i-convert_lesson_editor_messages">Applic
                 
               </p>
               <div id="method-i-create_lesson_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 926</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 969</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">create_lesson</span>(<span class="ruby-identifier">title</span>, <span class="ruby-identifier">description</span>, <span class="ruby-identifier">subject_id</span>, <span class="ruby-identifier">tags</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span>
   <span class="ruby-keyword">if</span> <span class="ruby-constant">UsersSubject</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>, <span class="ruby-value">:subject_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">subject_id</span>).<span class="ruby-identifier">empty?</span>
@@ -1370,7 +1370,7 @@ the user is visualizing</p>
                 
               </p>
               <div id="method-i-destroy_notification_and_reload_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 831</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 874</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">destroy_notification_and_reload</span>(<span class="ruby-identifier">notification_id</span>, <span class="ruby-identifier">offset</span>)
   <span class="ruby-identifier">notification_id</span> = <span class="ruby-number">0</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">notification_id</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Fixnum</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">notification_id</span> <span class="ruby-operator">&lt;</span> <span class="ruby-number">0</span>
   <span class="ruby-identifier">offset</span> = <span class="ruby-number">0</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">offset</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Fixnum</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">offset</span> <span class="ruby-operator">&lt;</span> <span class="ruby-number">0</span>
@@ -1437,7 +1437,7 @@ this using <a href="User.html#method-i-super_admin-3F">#super_admin?</a>)</p>
                 
               </p>
               <div id="method-i-destroy_with_dependencies_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 967</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 1010</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">destroy_with_dependencies</span>
   <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span> <span class="ruby-operator">||</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">super_admin?</span>
     <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:base</span>, <span class="ruby-value">:problem_destroying</span>)
@@ -1582,7 +1582,7 @@ href="VirtualClassroomController.html#method-i-empty_playlist">VirtualClassroomC
                 
               </p>
               <div id="method-i-empty_playlist_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 768</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 807</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">empty_playlist</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span>
   <span class="ruby-identifier">resp</span> = <span class="ruby-keyword">false</span>
@@ -1631,7 +1631,7 @@ href="VirtualClassroomController.html#method-i-empty_virtual_classroom">VirtualC
                 
               </p>
               <div id="method-i-empty_virtual_classroom_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 754</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 793</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">empty_virtual_classroom</span>
   <span class="ruby-constant">VirtualClassroomLesson</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">vcl</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">vcl</span>.<span class="ruby-identifier">destroy</span>
@@ -1732,14 +1732,18 @@ method&#39;s result</p>
                 
               </p>
               <div id="method-i-full_virtual_classroom_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 796</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 835</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">full_virtual_classroom</span>(<span class="ruby-identifier">page</span>, <span class="ruby-identifier">per_page</span>)
   <span class="ruby-identifier">page</span> = <span class="ruby-number">1</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">page</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Fixnum</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">page</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-number">0</span>
   <span class="ruby-identifier">for_page</span> = <span class="ruby-number">1</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">for_page</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Fixnum</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">for_page</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-number">0</span>
   <span class="ruby-identifier">offset</span> = (<span class="ruby-identifier">page</span> <span class="ruby-operator">-</span> <span class="ruby-number">1</span>) * <span class="ruby-identifier">per_page</span>
   <span class="ruby-identifier">resp</span> = {}
   <span class="ruby-identifier">resp</span>[<span class="ruby-value">:pages_amount</span>] = <span class="ruby-constant">Rational</span>(<span class="ruby-constant">VirtualClassroomLesson</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">count</span>, <span class="ruby-identifier">per_page</span>).<span class="ruby-identifier">ceil</span>
-  <span class="ruby-identifier">resp</span>[<span class="ruby-value">:records</span>] = <span class="ruby-constant">VirtualClassroomLesson</span>.<span class="ruby-identifier">includes</span>(<span class="ruby-value">:lesson</span>).<span class="ruby-identifier">where</span>(<span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;created_at DESC&#39;</span>).<span class="ruby-identifier">offset</span>(<span class="ruby-identifier">offset</span>).<span class="ruby-identifier">limit</span>(<span class="ruby-identifier">per_page</span>)
+  <span class="ruby-identifier">resp</span>[<span class="ruby-value">:records</span>] = <span class="ruby-constant">VirtualClassroomLesson</span>.<span class="ruby-identifier">preload</span>(<span class="ruby-value">:lesson</span>, {<span class="ruby-value">:lesson</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:user</span>}, {<span class="ruby-value">:lesson</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:subject</span>}).<span class="ruby-identifier">where</span>(<span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;created_at DESC&#39;</span>).<span class="ruby-identifier">offset</span>(<span class="ruby-identifier">offset</span>).<span class="ruby-identifier">limit</span>(<span class="ruby-identifier">per_page</span>)
+  <span class="ruby-identifier">resp</span>[<span class="ruby-value">:covers</span>] = {}
+  <span class="ruby-constant">Slide</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:lesson_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">resp</span>[<span class="ruby-value">:records</span>].<span class="ruby-identifier">pluck</span>(<span class="ruby-value">:lesson_id</span>), <span class="ruby-value">:kind</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;cover&#39;</span>).<span class="ruby-identifier">preload</span>(<span class="ruby-value">:media_elements_slides</span>, {<span class="ruby-value">:media_elements_slides</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:media_element</span>}).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">cov</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">resp</span>[<span class="ruby-value">:covers</span>][<span class="ruby-identifier">cov</span>.<span class="ruby-identifier">lesson_id</span>] = <span class="ruby-identifier">cov</span>
+  <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">return</span> <span class="ruby-identifier">resp</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
@@ -1877,7 +1881,7 @@ href="NotificationsController.html#method-i-get_new_block">NotificationsControll
                 
               </p>
               <div id="method-i-notifications_visible_block_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 855</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 898</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">notifications_visible_block</span>(<span class="ruby-identifier">offset</span>, <span class="ruby-identifier">limit</span>)
   <span class="ruby-constant">Notification</span>.<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;created_at DESC&#39;</span>).<span class="ruby-identifier">where</span>(<span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">offset</span>(<span class="ruby-identifier">offset</span>).<span class="ruby-identifier">limit</span>(<span class="ruby-identifier">limit</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -1921,7 +1925,7 @@ href="NotificationsController.html#method-i-seen">NotificationsController#seen</
                 
               </p>
               <div id="method-i-number_notifications_not_seen_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 867</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 910</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">number_notifications_not_seen</span>
   <span class="ruby-constant">Notification</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:seen</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>, <span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">count</span>
 <span class="ruby-keyword">end</span></pre>
@@ -1933,7 +1937,7 @@ href="NotificationsController.html#method-i-seen">NotificationsController#seen</
         <div class="method">
           <div class="title method-title" id="method-i-own_documents">
             
-              <b>own_documents</b>(page, per_page, order_by = SearchOrders::CREATED_AT, word = nil)
+              <b>own_documents</b>(page, per_page, order_by=SearchOrders::CREATED_AT, word=nil, from_gallery=false)
             
             <a href="../classes/User.html#method-i-own_documents" name="method-i-own_documents" class="permalink">Link</a>
           </div>
@@ -1982,8 +1986,8 @@ method&#39;s result</p>
                 
               </p>
               <div id="method-i-own_documents_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 658</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">own_documents</span>(<span class="ruby-identifier">page</span>, <span class="ruby-identifier">per_page</span>, <span class="ruby-identifier">order_by</span> = <span class="ruby-constant">SearchOrders</span><span class="ruby-operator">::</span><span class="ruby-constant">CREATED_AT</span>, <span class="ruby-identifier">word</span> = <span class="ruby-keyword">nil</span>)
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 695</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">own_documents</span>(<span class="ruby-identifier">page</span>, <span class="ruby-identifier">per_page</span>, <span class="ruby-identifier">order_by</span>=<span class="ruby-constant">SearchOrders</span><span class="ruby-operator">::</span><span class="ruby-constant">CREATED_AT</span>, <span class="ruby-identifier">word</span>=<span class="ruby-keyword">nil</span>, <span class="ruby-identifier">from_gallery</span>=<span class="ruby-keyword">false</span>)
   <span class="ruby-identifier">page</span> = <span class="ruby-number">1</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">page</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Fixnum</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">page</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-number">0</span>
   <span class="ruby-identifier">for_page</span> = <span class="ruby-number">1</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">for_page</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Fixnum</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">for_page</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-number">0</span>
   <span class="ruby-identifier">offset</span> = (<span class="ruby-identifier">page</span> <span class="ruby-operator">-</span> <span class="ruby-number">1</span>) * <span class="ruby-identifier">per_page</span>
@@ -1995,11 +1999,13 @@ method&#39;s result</p>
     <span class="ruby-keyword">when</span> <span class="ruby-constant">SearchOrders</span><span class="ruby-operator">::</span><span class="ruby-constant">TITLE</span>
       <span class="ruby-identifier">order</span> = <span class="ruby-string">&#39;title ASC, created_at DESC&#39;</span>
   <span class="ruby-keyword">end</span>
-  <span class="ruby-identifier">relation</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-identifier">select</span> = <span class="ruby-string">&#39;documents.*&#39;</span>
+  <span class="ruby-identifier">select</span> = <span class="ruby-node">&quot;#{select}, (SELECT COUNT(*) FROM documents_slides INNER JOIN slides ON slides.id = documents_slides.slide_id INNER JOIN lessons ON lessons.id = slides.lesson_id WHERE documents_slides.document_id = documents.id AND lessons.user_id = documents.user_id) AS instances&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">from_gallery</span>
+  <span class="ruby-identifier">relation</span> = <span class="ruby-constant">Document</span>.<span class="ruby-identifier">select</span>(<span class="ruby-identifier">select</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">word</span>.<span class="ruby-identifier">nil?</span>
-    <span class="ruby-identifier">relation</span> = <span class="ruby-constant">Document</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">order</span>(<span class="ruby-identifier">order</span>)
+    <span class="ruby-identifier">relation</span> = <span class="ruby-identifier">relation</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">order</span>(<span class="ruby-identifier">order</span>)
   <span class="ruby-keyword">else</span>
-    <span class="ruby-identifier">relation</span> = <span class="ruby-constant">Document</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&#39;user_id = ? AND title ILIKE ?&#39;</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>, <span class="ruby-node">&quot;%#{word}%&quot;</span>).<span class="ruby-identifier">order</span>(<span class="ruby-identifier">order</span>)
+    <span class="ruby-identifier">relation</span> = <span class="ruby-identifier">relation</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&#39;user_id = ? AND title ILIKE ?&#39;</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>, <span class="ruby-node">&quot;%#{word}%&quot;</span>).<span class="ruby-identifier">order</span>(<span class="ruby-identifier">order</span>)
   <span class="ruby-keyword">end</span>
   {
     <span class="ruby-value">:records</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">relation</span>.<span class="ruby-identifier">limit</span>(<span class="ruby-identifier">per_page</span>).<span class="ruby-identifier">offset</span>(<span class="ruby-identifier">offset</span>),
@@ -2014,7 +2020,7 @@ method&#39;s result</p>
         <div class="method">
           <div class="title method-title" id="method-i-own_lessons">
             
-              <b>own_lessons</b>(page, per_page, filter = Filters::ALL_LESSONS)
+              <b>own_lessons</b>(page, per_page, filter=Filters::ALL_LESSONS, from_virtual_classroom=false)
             
             <a href="../classes/User.html#method-i-own_lessons" name="method-i-own_lessons" class="permalink">Link</a>
           </div>
@@ -2065,35 +2071,66 @@ method&#39;s result</p>
                 
               </p>
               <div id="method-i-own_lessons_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 611</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">own_lessons</span>(<span class="ruby-identifier">page</span>, <span class="ruby-identifier">per_page</span>, <span class="ruby-identifier">filter</span> = <span class="ruby-constant">Filters</span><span class="ruby-operator">::</span><span class="ruby-constant">ALL_LESSONS</span>)
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 617</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">own_lessons</span>(<span class="ruby-identifier">page</span>, <span class="ruby-identifier">per_page</span>, <span class="ruby-identifier">filter</span>=<span class="ruby-constant">Filters</span><span class="ruby-operator">::</span><span class="ruby-constant">ALL_LESSONS</span>, <span class="ruby-identifier">from_virtual_classroom</span>=<span class="ruby-keyword">false</span>)
   <span class="ruby-identifier">page</span> = <span class="ruby-number">1</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">page</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Fixnum</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">page</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-number">0</span>
   <span class="ruby-identifier">for_page</span> = <span class="ruby-number">1</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">for_page</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Fixnum</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">for_page</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-number">0</span>
   <span class="ruby-identifier">offset</span> = (<span class="ruby-identifier">page</span> <span class="ruby-operator">-</span> <span class="ruby-number">1</span>) * <span class="ruby-identifier">per_page</span>
-  <span class="ruby-identifier">relation</span> = 
-    <span class="ruby-keyword">case</span> <span class="ruby-identifier">filter</span>
+  <span class="ruby-identifier">relation1</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">from_virtual_classroom</span>
+    <span class="ruby-identifier">relation1</span> = <span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">preload</span>(<span class="ruby-value">:subject</span>, <span class="ruby-value">:user</span>).<span class="ruby-identifier">select</span>(<span class="ruby-node">&quot;lessons.*,
+      (SELECT COUNT (*) FROM virtual_classroom_lessons WHERE virtual_classroom_lessons.lesson_id = lessons.id AND virtual_classroom_lessons.user_id = #{self.connection.quote self.id.to_i}) AS virtuals_count
+    &quot;</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">relation1</span> = <span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">preload</span>(<span class="ruby-value">:subject</span>, <span class="ruby-value">:user</span>, <span class="ruby-value">:school_level</span>, {<span class="ruby-value">:user</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:location</span>}).<span class="ruby-identifier">select</span>(<span class="ruby-node">&quot;
+      lessons.*,
+      (SELECT COUNT (*) FROM bookmarks WHERE bookmarks.bookmarkable_type = #{self.connection.quote &#39;Lesson&#39;} AND bookmarks.bookmarkable_id = lessons.id AND bookmarks.user_id = #{self.connection.quote self.id.to_i}) AS bookmarks_count,
+      (SELECT COUNT (*) FROM bookmarks WHERE bookmarks.bookmarkable_type = #{self.connection.quote &#39;Lesson&#39;} AND bookmarks.bookmarkable_id = lessons.id AND bookmarks.user_id != #{self.connection.quote self.id} AND bookmarks.created_at &lt; lessons.updated_at) AS notification_bookmarks,
+      (SELECT COUNT (*) FROM virtual_classroom_lessons WHERE virtual_classroom_lessons.lesson_id = lessons.id AND virtual_classroom_lessons.user_id = #{self.connection.quote self.id.to_i}) AS virtuals_count,
+      (SELECT COUNT (*) FROM likes WHERE likes.lesson_id = lessons.id AND likes.user_id = #{self.connection.quote self.id.to_i}) AS likes_count,
+      (SELECT COUNT (*) FROM likes WHERE likes.lesson_id = lessons.id) AS likes_general_count
+    &quot;</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">relation2</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-keyword">case</span> <span class="ruby-identifier">filter</span>
     <span class="ruby-keyword">when</span> <span class="ruby-constant">Filters</span><span class="ruby-operator">::</span><span class="ruby-constant">PRIVATE</span>
-      <span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">user_id</span><span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>, <span class="ruby-identifier">is_public</span><span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>).<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;updated_at DESC&#39;</span>)
+      <span class="ruby-identifier">relation1</span> = <span class="ruby-identifier">relation1</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">user_id</span><span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>, <span class="ruby-identifier">is_public</span><span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>).<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;updated_at DESC&#39;</span>)
+      <span class="ruby-identifier">relation2</span> = <span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">user_id</span><span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>, <span class="ruby-identifier">is_public</span><span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>).<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;updated_at DESC&#39;</span>)
     <span class="ruby-keyword">when</span> <span class="ruby-constant">Filters</span><span class="ruby-operator">::</span><span class="ruby-constant">PUBLIC</span>
-      <span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">of</span>(<span class="ruby-keyword">self</span>).<span class="ruby-identifier">where</span>(<span class="ruby-identifier">is_public</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>)
+      <span class="ruby-identifier">relation1</span> = <span class="ruby-identifier">relation1</span>.<span class="ruby-identifier">of</span>(<span class="ruby-keyword">self</span>).<span class="ruby-identifier">where</span>(<span class="ruby-identifier">is_public</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>)
+      <span class="ruby-identifier">relation2</span> = <span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">of</span>(<span class="ruby-keyword">self</span>).<span class="ruby-identifier">where</span>(<span class="ruby-identifier">is_public</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>)
     <span class="ruby-keyword">when</span> <span class="ruby-constant">Filters</span><span class="ruby-operator">::</span><span class="ruby-constant">LINKED</span>
-      <span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">joins</span>(<span class="ruby-value">:bookmarks</span>).<span class="ruby-identifier">where</span>(<span class="ruby-identifier">bookmarks</span><span class="ruby-operator">:</span> { <span class="ruby-identifier">user_id</span><span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span> }).<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;bookmarks.created_at DESC&#39;</span>)
+      <span class="ruby-identifier">relation1</span> = <span class="ruby-identifier">relation1</span>.<span class="ruby-identifier">joins</span>(<span class="ruby-value">:bookmarks</span>).<span class="ruby-identifier">where</span>(<span class="ruby-identifier">bookmarks</span><span class="ruby-operator">:</span> { <span class="ruby-identifier">user_id</span><span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span> }).<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;bookmarks.created_at DESC&#39;</span>)
+      <span class="ruby-identifier">relation2</span> = <span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">joins</span>(<span class="ruby-value">:bookmarks</span>).<span class="ruby-identifier">where</span>(<span class="ruby-identifier">bookmarks</span><span class="ruby-operator">:</span> { <span class="ruby-identifier">user_id</span><span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span> }).<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;bookmarks.created_at DESC&#39;</span>)
     <span class="ruby-keyword">when</span> <span class="ruby-constant">Filters</span><span class="ruby-operator">::</span><span class="ruby-constant">ONLY_MINE</span>
-      <span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">user_id</span><span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;updated_at DESC&#39;</span>)
+      <span class="ruby-identifier">relation1</span> = <span class="ruby-identifier">relation1</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">user_id</span><span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;updated_at DESC&#39;</span>)
+      <span class="ruby-identifier">relation2</span> = <span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">user_id</span><span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;updated_at DESC&#39;</span>)
     <span class="ruby-keyword">when</span> <span class="ruby-constant">Filters</span><span class="ruby-operator">::</span><span class="ruby-constant">COPIED</span>
-      <span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>, <span class="ruby-value">:copied_not_modified</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>).<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;updated_at DESC&#39;</span>)
+      <span class="ruby-identifier">relation1</span> = <span class="ruby-identifier">relation1</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>, <span class="ruby-value">:copied_not_modified</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>).<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;updated_at DESC&#39;</span>)
+      <span class="ruby-identifier">relation2</span> = <span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>, <span class="ruby-value">:copied_not_modified</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>).<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;updated_at DESC&#39;</span>)
     <span class="ruby-keyword">when</span> <span class="ruby-constant">Filters</span><span class="ruby-operator">::</span><span class="ruby-constant">ALL_LESSONS</span>
-      <span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">of</span>(<span class="ruby-keyword">self</span>)
+      <span class="ruby-identifier">relation1</span> = <span class="ruby-identifier">relation1</span>.<span class="ruby-identifier">of</span>(<span class="ruby-keyword">self</span>)
+      <span class="ruby-identifier">relation2</span> = <span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">of</span>(<span class="ruby-keyword">self</span>)
     <span class="ruby-keyword">else</span>
       <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-string">&#39;filter not supported&#39;</span>
-    <span class="ruby-keyword">end</span>
-  <span class="ruby-identifier">pages_amount</span> = <span class="ruby-constant">Rational</span>(<span class="ruby-identifier">relation</span>.<span class="ruby-identifier">count</span>, <span class="ruby-identifier">per_page</span>).<span class="ruby-identifier">ceil</span>
-  <span class="ruby-identifier">resp</span> = []
-  <span class="ruby-identifier">relation</span>.<span class="ruby-identifier">limit</span>(<span class="ruby-identifier">per_page</span>).<span class="ruby-identifier">offset</span>(<span class="ruby-identifier">offset</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">lesson</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">lesson</span>.<span class="ruby-identifier">set_status</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>
-    <span class="ruby-identifier">resp</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">lesson</span>
   <span class="ruby-keyword">end</span>
-  {<span class="ruby-value">:records</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">resp</span>, <span class="ruby-value">:pages_amount</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">pages_amount</span>}
+  <span class="ruby-identifier">pages_amount</span> = <span class="ruby-constant">Rational</span>(<span class="ruby-identifier">relation2</span>.<span class="ruby-identifier">count</span>, <span class="ruby-identifier">per_page</span>).<span class="ruby-identifier">ceil</span>
+  <span class="ruby-identifier">relation1</span> = <span class="ruby-identifier">relation1</span>.<span class="ruby-identifier">limit</span>(<span class="ruby-identifier">per_page</span>).<span class="ruby-identifier">offset</span>(<span class="ruby-identifier">offset</span>)
+  <span class="ruby-identifier">relation2</span> = <span class="ruby-identifier">relation2</span>.<span class="ruby-identifier">limit</span>(<span class="ruby-identifier">per_page</span>).<span class="ruby-identifier">offset</span>(<span class="ruby-identifier">offset</span>)
+  <span class="ruby-identifier">covers</span> = {}
+  <span class="ruby-constant">Slide</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:lesson_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">relation2</span>.<span class="ruby-identifier">pluck</span>(<span class="ruby-value">:id</span>), <span class="ruby-value">:kind</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;cover&#39;</span>).<span class="ruby-identifier">preload</span>(<span class="ruby-value">:media_elements_slides</span>, {<span class="ruby-value">:media_elements_slides</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:media_element</span>}).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">cov</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">covers</span>[<span class="ruby-identifier">cov</span>.<span class="ruby-identifier">lesson_id</span>] = <span class="ruby-identifier">cov</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">from_virtual_classroom</span>
+    <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">relation1</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">resp</span> = []
+    <span class="ruby-identifier">relation1</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">lesson</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">lesson</span>.<span class="ruby-identifier">set_status</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>, {<span class="ruby-value">:bookmarked</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:bookmarks_count</span>, <span class="ruby-value">:in_vc</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:virtuals_count</span>, <span class="ruby-value">:liked</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:likes_count</span>}
+      <span class="ruby-identifier">resp</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">lesson</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  {<span class="ruby-value">:records</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">resp</span>, <span class="ruby-value">:pages_amount</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">pages_amount</span>, <span class="ruby-value">:covers</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">covers</span>}
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -2146,7 +2183,7 @@ href="MailingListGroup.html">MailingListGroup</a></p>
         <div class="method">
           <div class="title method-title" id="method-i-own_media_elements">
             
-              <b>own_media_elements</b>(page, per_page, filter=Filters::ALL_MEDIA_ELEMENTS)
+              <b>own_media_elements</b>(page, per_page, filter=Filters::ALL_MEDIA_ELEMENTS, from_gallery=false)
             
             <a href="../classes/User.html#method-i-own_media_elements" name="method-i-own_media_elements" class="permalink">Link</a>
           </div>
@@ -2199,19 +2236,25 @@ method&#39;s result</p>
               </p>
               <div id="method-i-own_media_elements_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/models/user.rb, line 578</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">own_media_elements</span>(<span class="ruby-identifier">page</span>, <span class="ruby-identifier">per_page</span>, <span class="ruby-identifier">filter</span>=<span class="ruby-constant">Filters</span><span class="ruby-operator">::</span><span class="ruby-constant">ALL_MEDIA_ELEMENTS</span>)
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">own_media_elements</span>(<span class="ruby-identifier">page</span>, <span class="ruby-identifier">per_page</span>, <span class="ruby-identifier">filter</span>=<span class="ruby-constant">Filters</span><span class="ruby-operator">::</span><span class="ruby-constant">ALL_MEDIA_ELEMENTS</span>, <span class="ruby-identifier">from_gallery</span>=<span class="ruby-keyword">false</span>)
   <span class="ruby-identifier">page</span> = <span class="ruby-number">1</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">page</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Fixnum</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">page</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-number">0</span>
   <span class="ruby-identifier">for_page</span> = <span class="ruby-number">1</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">for_page</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Fixnum</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">for_page</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-number">0</span>
   <span class="ruby-identifier">offset</span> = (<span class="ruby-identifier">page</span> <span class="ruby-operator">-</span> <span class="ruby-number">1</span>) * <span class="ruby-identifier">per_page</span>
-  <span class="ruby-identifier">relation</span> = <span class="ruby-constant">MediaElement</span>.<span class="ruby-identifier">of</span>(<span class="ruby-keyword">self</span>)
+  <span class="ruby-identifier">select</span> = <span class="ruby-string">&#39;media_elements.*&#39;</span>
+  <span class="ruby-identifier">select</span> = <span class="ruby-node">&quot;#{select}, (SELECT COUNT (*) FROM bookmarks WHERE bookmarks.bookmarkable_type = #{self.connection.quote &#39;MediaElement&#39;} AND bookmarks.bookmarkable_id = media_elements.id AND bookmarks.user_id = #{self.connection.quote self.id.to_i}) AS bookmarks_count, (SELECT COUNT(*) FROM media_elements_slides WHERE (media_elements_slides.media_element_id = media_elements.id)) AS instances&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">from_gallery</span>
+  <span class="ruby-identifier">relation</span> = <span class="ruby-constant">MediaElement</span>.<span class="ruby-identifier">select</span>(<span class="ruby-identifier">select</span>).<span class="ruby-identifier">of</span>(<span class="ruby-keyword">self</span>)
   <span class="ruby-keyword">if</span> [<span class="ruby-constant">Filters</span><span class="ruby-operator">::</span><span class="ruby-constant">VIDEO</span>, <span class="ruby-constant">Filters</span><span class="ruby-operator">::</span><span class="ruby-constant">AUDIO</span>, <span class="ruby-constant">Filters</span><span class="ruby-operator">::</span><span class="ruby-constant">IMAGE</span>].<span class="ruby-identifier">include?</span> <span class="ruby-identifier">filter</span>
     <span class="ruby-identifier">relation</span> = <span class="ruby-identifier">relation</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&#39;sti_type = ?&#39;</span>, <span class="ruby-identifier">filter</span>.<span class="ruby-identifier">capitalize</span>)
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">pages_amount</span> = <span class="ruby-constant">Rational</span>(<span class="ruby-identifier">relation</span>.<span class="ruby-identifier">count</span>, <span class="ruby-identifier">per_page</span>).<span class="ruby-identifier">ceil</span>
   <span class="ruby-identifier">resp</span> = []
-  <span class="ruby-identifier">relation</span>.<span class="ruby-identifier">limit</span>(<span class="ruby-identifier">per_page</span>).<span class="ruby-identifier">offset</span>(<span class="ruby-identifier">offset</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">me</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">me</span>.<span class="ruby-identifier">set_status</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>
-    <span class="ruby-identifier">resp</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">me</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">from_gallery</span>
+    <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">relation</span>.<span class="ruby-identifier">limit</span>(<span class="ruby-identifier">per_page</span>).<span class="ruby-identifier">offset</span>(<span class="ruby-identifier">offset</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">relation</span>.<span class="ruby-identifier">limit</span>(<span class="ruby-identifier">per_page</span>).<span class="ruby-identifier">offset</span>(<span class="ruby-identifier">offset</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">me</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">me</span>.<span class="ruby-identifier">set_status</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>, {<span class="ruby-value">:bookmarked</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:bookmarks_count</span>}
+      <span class="ruby-identifier">resp</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">me</span>
+    <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
   {<span class="ruby-value">:records</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">resp</span>, <span class="ruby-value">:pages_amount</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">pages_amount</span>}
 <span class="ruby-keyword">end</span></pre>
@@ -2309,9 +2352,9 @@ href="VirtualClassroomLesson.html">VirtualClassroomLesson</a></p>
                 
               </p>
               <div id="method-i-playlist_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 891</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 934</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">playlist</span>
-  <span class="ruby-constant">VirtualClassroomLesson</span>.<span class="ruby-identifier">includes</span>(<span class="ruby-value">:lesson</span>).<span class="ruby-identifier">where</span>(<span class="ruby-string">&#39;user_id = ? AND position IS NOT NULL&#39;</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">order</span>(<span class="ruby-value">:position</span>)
+  <span class="ruby-constant">VirtualClassroomLesson</span>.<span class="ruby-identifier">preload</span>(<span class="ruby-value">:lesson</span>, {<span class="ruby-value">:lesson</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:subject</span>}).<span class="ruby-identifier">where</span>(<span class="ruby-string">&#39;user_id = ? AND position IS NOT NULL&#39;</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">order</span>(<span class="ruby-value">:position</span>)
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -2353,7 +2396,7 @@ correspond to the slides of the lessons in the playlist)</p>
                 
               </p>
               <div id="method-i-playlist_for_viewer_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 903</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 946</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">playlist_for_viewer</span>
   <span class="ruby-identifier">resp</span> = []
   <span class="ruby-constant">VirtualClassroomLesson</span>.<span class="ruby-identifier">includes</span>(<span class="ruby-value">:lesson</span>).<span class="ruby-identifier">where</span>(<span class="ruby-string">&#39;user_id = ? AND position IS NOT NULL&#39;</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">order</span>(<span class="ruby-value">:position</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">vc</span><span class="ruby-operator">|</span>
@@ -2398,7 +2441,7 @@ correspond to the slides of the lessons in the playlist)</p>
                 
               </p>
               <div id="method-i-playlist_full-3F_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 879</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 922</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">playlist_full?</span>
   <span class="ruby-constant">VirtualClassroomLesson</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&#39;user_id = ? AND position IS NOT NULL&#39;</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">count</span> <span class="ruby-operator">==</span> <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;lessons_in_playlist&#39;</span>]
 <span class="ruby-keyword">end</span></pre>
@@ -2489,7 +2532,7 @@ used as a key in the hash of files in uploading</p>
                 
               </p>
               <div id="method-i-remove_from_admin_quick_uploading_cache_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 1048</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 1091</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">remove_from_admin_quick_uploading_cache</span>(<span class="ruby-identifier">name</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-constant">Rails</span>.<span class="ruby-identifier">root</span>.<span class="ruby-identifier">join</span>(<span class="ruby-node">&quot;public/admin/#{self.id}/map.yml&quot;</span>))
   <span class="ruby-identifier">map</span> = <span class="ruby-constant">YAML</span><span class="ruby-operator">::</span><span class="ruby-identifier">load</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-constant">Rails</span>.<span class="ruby-identifier">root</span>.<span class="ruby-identifier">join</span>(<span class="ruby-node">&quot;public/admin/#{self.id}/map.yml&quot;</span>)))
@@ -2712,7 +2755,7 @@ uploaded</p>
                 
               </p>
               <div id="method-i-save_in_admin_quick_uploading_cache_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 1084</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 1127</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">save_in_admin_quick_uploading_cache</span>(<span class="ruby-identifier">file</span>, <span class="ruby-identifier">title</span>=<span class="ruby-keyword">nil</span>, <span class="ruby-identifier">description</span>=<span class="ruby-keyword">nil</span>, <span class="ruby-identifier">tags</span>=<span class="ruby-keyword">nil</span>)
   <span class="ruby-identifier">filetype</span> = <span class="ruby-constant">MediaElement</span>.<span class="ruby-identifier">filetype</span>(<span class="ruby-identifier">file</span>.<span class="ruby-identifier">original_filename</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">filetype</span>.<span class="ruby-identifier">nil?</span>
@@ -3125,16 +3168,16 @@ href="DashboardController.html#method-i-index">DashboardController#index</a>.</p
                 
               </p>
               <div id="method-i-suggested_lessons_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 694</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 733</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">suggested_lessons</span>(<span class="ruby-identifier">n</span>)
   <span class="ruby-identifier">n</span> = <span class="ruby-number">1</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">n</span>.<span class="ruby-identifier">class</span> <span class="ruby-operator">!=</span> <span class="ruby-constant">Fixnum</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">n</span> <span class="ruby-operator">&lt;</span> <span class="ruby-number">0</span>
   <span class="ruby-identifier">subject_ids</span> = []
   <span class="ruby-constant">UsersSubject</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">us</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">subject_ids</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">us</span>.<span class="ruby-identifier">subject_id</span>
   <span class="ruby-keyword">end</span>
-  <span class="ruby-identifier">resp</span> = <span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&#39;is_public = ? AND user_id != ? AND subject_id IN (?) AND NOT EXISTS (SELECT * FROM bookmarks WHERE bookmarks.bookmarkable_type = ? AND bookmarks.bookmarkable_id = lessons.id AND bookmarks.user_id = ?)&#39;</span>, <span class="ruby-keyword">true</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>, <span class="ruby-identifier">subject_ids</span>, <span class="ruby-string">&#39;Lesson&#39;</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;updated_at DESC&#39;</span>).<span class="ruby-identifier">limit</span>(<span class="ruby-identifier">n</span>)
+  <span class="ruby-identifier">resp</span> = <span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">preload</span>(<span class="ruby-value">:subject</span>).<span class="ruby-identifier">select</span>(<span class="ruby-node">&quot;lessons.*, 0 AS bookmarks_count, 0 AS virtuals_count, (SELECT COUNT (*) FROM likes WHERE likes.lesson_id = lessons.id AND likes.user_id = #{self.connection.quote self.id.to_i}) AS likes_count&quot;</span>).<span class="ruby-identifier">where</span>(<span class="ruby-string">&#39;is_public = ? AND user_id != ? AND subject_id IN (?) AND NOT EXISTS (SELECT * FROM bookmarks WHERE bookmarks.bookmarkable_type = ? AND bookmarks.bookmarkable_id = lessons.id AND bookmarks.user_id = ?)&#39;</span>, <span class="ruby-keyword">true</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>, <span class="ruby-identifier">subject_ids</span>, <span class="ruby-string">&#39;Lesson&#39;</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;updated_at DESC&#39;</span>).<span class="ruby-identifier">limit</span>(<span class="ruby-identifier">n</span>)
   <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">l</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">l</span>.<span class="ruby-identifier">set_status</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>
+    <span class="ruby-identifier">l</span>.<span class="ruby-identifier">set_status</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>, {<span class="ruby-value">:bookmarked</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:bookmarks_count</span>, <span class="ruby-value">:in_vc</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:virtuals_count</span>, <span class="ruby-value">:liked</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:likes_count</span>}
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">resp</span>
 <span class="ruby-keyword">end</span></pre>
@@ -3185,12 +3228,12 @@ href="DashboardController.html#method-i-index">DashboardController#index</a>.</p
                 
               </p>
               <div id="method-i-suggested_media_elements_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 719</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 758</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">suggested_media_elements</span>(<span class="ruby-identifier">n</span>)
   <span class="ruby-identifier">n</span> = <span class="ruby-number">1</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">n</span>.<span class="ruby-identifier">class</span> <span class="ruby-operator">!=</span> <span class="ruby-constant">Fixnum</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">n</span> <span class="ruby-operator">&lt;</span> <span class="ruby-number">0</span>
-  <span class="ruby-identifier">resp</span> = <span class="ruby-constant">MediaElement</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&#39;is_public = ? AND user_id != ? AND NOT EXISTS (SELECT * FROM bookmarks WHERE bookmarks.bookmarkable_type = ? AND bookmarks.bookmarkable_id = media_elements.id AND bookmarks.user_id = ?)&#39;</span>, <span class="ruby-keyword">true</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>, <span class="ruby-string">&#39;MediaElement&#39;</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;publication_date DESC&#39;</span>).<span class="ruby-identifier">limit</span>(<span class="ruby-identifier">n</span>)
+  <span class="ruby-identifier">resp</span> = <span class="ruby-constant">MediaElement</span>.<span class="ruby-identifier">select</span>(<span class="ruby-string">&#39;media_elements.*, 0 AS bookmarks_count&#39;</span>).<span class="ruby-identifier">where</span>(<span class="ruby-string">&#39;is_public = ? AND user_id != ? AND NOT EXISTS (SELECT * FROM bookmarks WHERE bookmarks.bookmarkable_type = ? AND bookmarks.bookmarkable_id = media_elements.id AND bookmarks.user_id = ?)&#39;</span>, <span class="ruby-keyword">true</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>, <span class="ruby-string">&#39;MediaElement&#39;</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;publication_date DESC&#39;</span>).<span class="ruby-identifier">limit</span>(<span class="ruby-identifier">n</span>)
   <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">me</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">me</span>.<span class="ruby-identifier">set_status</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>
+    <span class="ruby-identifier">me</span>.<span class="ruby-identifier">set_status</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>, {<span class="ruby-value">:bookmarked</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:bookmarks_count</span>}
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">resp</span>
 <span class="ruby-keyword">end</span></pre>
@@ -3233,7 +3276,7 @@ href="User.html#method-i-destroy_with_dependencies">#destroy_with_dependencies</
                 
               </p>
               <div id="method-i-super_admin-3F_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 954</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 997</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">super_admin?</span>
   <span class="ruby-identifier">super_admin</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">admin</span>
   <span class="ruby-operator">!</span><span class="ruby-identifier">super_admin</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">super_admin</span>.<span class="ruby-identifier">id</span>
@@ -3278,7 +3321,7 @@ href="NotificationsController.html#method-i-destroy">NotificationsController#des
                 
               </p>
               <div id="method-i-tot_notifications_number_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 814</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 857</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">tot_notifications_number</span>
   <span class="ruby-constant">Notification</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">count</span>
 <span class="ruby-keyword">end</span></pre>
@@ -3455,7 +3498,7 @@ ordering.</p>
                 
               </p>
               <div id="method-i-get_tags_associated_to_lesson_search_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 1150</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 1193</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">get_tags_associated_to_lesson_search</span>(<span class="ruby-identifier">word</span>, <span class="ruby-identifier">filter</span>, <span class="ruby-identifier">subject_id</span>)
   <span class="ruby-identifier">filter</span> = <span class="ruby-constant">Filters</span><span class="ruby-operator">::</span><span class="ruby-constant">ALL_LESSONS</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">filter</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> <span class="ruby-operator">!</span><span class="ruby-constant">Filters</span><span class="ruby-operator">::</span><span class="ruby-constant">LESSONS_SEARCH_SET</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">filter</span>)
   <span class="ruby-identifier">subject_id</span> = <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span>[<span class="ruby-constant">NilClass</span>, <span class="ruby-constant">Fixnum</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">subject_id</span>.<span class="ruby-identifier">class</span>)
@@ -3483,7 +3526,7 @@ ordering.</p>
       <span class="ruby-identifier">params</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-keyword">true</span>
       <span class="ruby-identifier">params</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>
   <span class="ruby-keyword">end</span>
-  <span class="ruby-identifier">select</span> = <span class="ruby-string">&#39;tags.id AS tag_id, COUNT(*) AS tags_count&#39;</span>
+  <span class="ruby-identifier">select</span> = <span class="ruby-string">&#39;tags.*, COUNT(*) AS tags_count&#39;</span>
   <span class="ruby-identifier">where_for_current_tag</span> = <span class="ruby-identifier">where</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-string">&#39;tags.word LIKE ?&#39;</span>, <span class="ruby-string">&#39;tags.word = ?&#39;</span>)
   <span class="ruby-identifier">where</span> = <span class="ruby-node">&quot;tags.word != ? AND #{where}&quot;</span>
   <span class="ruby-identifier">resp</span> = []
@@ -3491,10 +3534,7 @@ ordering.</p>
     <span class="ruby-identifier">limit</span> <span class="ruby-operator">-=</span> <span class="ruby-number">1</span>
     <span class="ruby-identifier">resp</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Tag</span>.<span class="ruby-identifier">find_by_word</span>(<span class="ruby-identifier">word</span>)
   <span class="ruby-keyword">end</span>
-  <span class="ruby-constant">Tagging</span>.<span class="ruby-identifier">group</span>(<span class="ruby-string">&#39;tags.id&#39;</span>).<span class="ruby-identifier">select</span>(<span class="ruby-identifier">select</span>).<span class="ruby-identifier">joins</span>(<span class="ruby-identifier">joins</span>).<span class="ruby-identifier">where</span>(<span class="ruby-identifier">where</span>, <span class="ruby-identifier">word</span>, *<span class="ruby-identifier">params</span>).<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;tags_count DESC, tags.word ASC&#39;</span>).<span class="ruby-identifier">limit</span>(<span class="ruby-identifier">limit</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">q</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">resp</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Tag</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">q</span>.<span class="ruby-identifier">tag_id</span>)
-  <span class="ruby-keyword">end</span>
-  <span class="ruby-identifier">resp</span>
+  <span class="ruby-identifier">resp</span> <span class="ruby-operator">+</span> <span class="ruby-constant">Tagging</span>.<span class="ruby-identifier">group</span>(<span class="ruby-string">&#39;tags.id&#39;</span>).<span class="ruby-identifier">select</span>(<span class="ruby-identifier">select</span>).<span class="ruby-identifier">joins</span>(<span class="ruby-identifier">joins</span>).<span class="ruby-identifier">where</span>(<span class="ruby-identifier">where</span>, <span class="ruby-identifier">word</span>, *<span class="ruby-identifier">params</span>).<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;tags_count DESC, tags.word ASC&#39;</span>).<span class="ruby-identifier">limit</span>(<span class="ruby-identifier">limit</span>)
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -3533,7 +3573,7 @@ normal ordering.</p>
                 
               </p>
               <div id="method-i-get_tags_associated_to_media_element_search_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 1192</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 1232</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">get_tags_associated_to_media_element_search</span>(<span class="ruby-identifier">word</span>, <span class="ruby-identifier">filter</span>)
   <span class="ruby-identifier">limit</span> = <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;tags_limit_in_search_engine&#39;</span>]
   <span class="ruby-identifier">filter</span> = <span class="ruby-constant">Filters</span><span class="ruby-operator">::</span><span class="ruby-constant">ALL_MEDIA_ELEMENTS</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">filter</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> <span class="ruby-operator">!</span><span class="ruby-constant">Filters</span><span class="ruby-operator">::</span><span class="ruby-constant">MEDIA_ELEMENTS_SEARCH_SET</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">filter</span>)
@@ -3541,7 +3581,7 @@ normal ordering.</p>
   <span class="ruby-identifier">where</span> = <span class="ruby-string">&#39;tags.word != ? AND tags.word LIKE ? AND (media_elements.is_public = ? OR media_elements.user_id = ?)&#39;</span>
   <span class="ruby-identifier">where_for_current_tag</span> = <span class="ruby-string">&#39;tags.word = ? AND (media_elements.is_public = ? OR media_elements.user_id = ?)&#39;</span>
   <span class="ruby-identifier">joins</span> = <span class="ruby-string">&quot;INNER JOIN tags ON (tags.id = taggings.tag_id) INNER JOIN media_elements ON (taggings.taggable_type = &#39;MediaElement&#39; AND taggings.taggable_id = media_elements.id)&quot;</span>
-  <span class="ruby-identifier">select</span> = <span class="ruby-string">&#39;tags.id AS tag_id, COUNT(*) AS tags_count&#39;</span>
+  <span class="ruby-identifier">select</span> = <span class="ruby-string">&#39;tags.*, COUNT(*) AS tags_count&#39;</span>
   <span class="ruby-keyword">case</span> <span class="ruby-identifier">filter</span>
     <span class="ruby-keyword">when</span> <span class="ruby-constant">Filters</span><span class="ruby-operator">::</span><span class="ruby-constant">VIDEO</span>
       <span class="ruby-identifier">where</span> = <span class="ruby-node">&quot;#{where} AND media_elements.sti_type = &#39;Video&#39;&quot;</span>
@@ -3557,10 +3597,7 @@ normal ordering.</p>
     <span class="ruby-identifier">resp</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Tag</span>.<span class="ruby-identifier">find_by_word</span>(<span class="ruby-identifier">word</span>)
     <span class="ruby-identifier">limit</span> <span class="ruby-operator">-=</span> <span class="ruby-number">1</span>
   <span class="ruby-keyword">end</span>
-  <span class="ruby-constant">Tagging</span>.<span class="ruby-identifier">group</span>(<span class="ruby-string">&#39;tags.id&#39;</span>).<span class="ruby-identifier">select</span>(<span class="ruby-identifier">select</span>).<span class="ruby-identifier">joins</span>(<span class="ruby-identifier">joins</span>).<span class="ruby-identifier">where</span>(<span class="ruby-identifier">where</span>, <span class="ruby-identifier">word</span>, <span class="ruby-node">&quot;#{word}%&quot;</span>, <span class="ruby-keyword">true</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;tags_count DESC, tags.word ASC&#39;</span>).<span class="ruby-identifier">limit</span>(<span class="ruby-identifier">limit</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">tagging</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">resp</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Tag</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">tagging</span>.<span class="ruby-identifier">tag_id</span>)
-  <span class="ruby-keyword">end</span>
-  <span class="ruby-identifier">resp</span>
+  <span class="ruby-identifier">resp</span> <span class="ruby-operator">+</span> <span class="ruby-constant">Tagging</span>.<span class="ruby-identifier">group</span>(<span class="ruby-string">&#39;tags.id&#39;</span>).<span class="ruby-identifier">select</span>(<span class="ruby-identifier">select</span>).<span class="ruby-identifier">joins</span>(<span class="ruby-identifier">joins</span>).<span class="ruby-identifier">where</span>(<span class="ruby-identifier">where</span>, <span class="ruby-identifier">word</span>, <span class="ruby-node">&quot;#{word}%&quot;</span>, <span class="ruby-keyword">true</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;tags_count DESC, tags.word ASC&#39;</span>).<span class="ruby-identifier">limit</span>(<span class="ruby-identifier">limit</span>)
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -3594,7 +3631,7 @@ href="Valid.html#method-c-get_association">Valid.get_association</a>)</p>
                 
               </p>
               <div id="method-i-init_validation_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 1395</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 1456</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">init_validation</span>
   <span class="ruby-ivar">@user</span> = <span class="ruby-constant">Valid</span>.<span class="ruby-identifier">get_association</span> <span class="ruby-keyword">self</span>, <span class="ruby-value">:id</span>
   <span class="ruby-ivar">@school_level</span> = <span class="ruby-constant">Valid</span>.<span class="ruby-identifier">get_association</span> <span class="ruby-keyword">self</span>, <span class="ruby-value">:school_level_id</span>
@@ -3637,11 +3674,11 @@ among the ones in <a href="Filters.html">Filters</a>) and by
                 
               </p>
               <div id="method-i-search_lessons_with_tag_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 1295</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 1333</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">search_lessons_with_tag</span>(<span class="ruby-identifier">word</span>, <span class="ruby-identifier">offset</span>, <span class="ruby-identifier">limit</span>, <span class="ruby-identifier">filter</span>, <span class="ruby-identifier">subject_id</span>, <span class="ruby-identifier">order_by</span>)
   <span class="ruby-identifier">resp</span> = {}
   <span class="ruby-identifier">params</span> = [<span class="ruby-node">&quot;#{word}%&quot;</span>]
-  <span class="ruby-identifier">select</span> = <span class="ruby-string">&#39;lessons.id AS lesson_id&#39;</span>
+  <span class="ruby-identifier">select</span> = <span class="ruby-string">&#39;&#39;</span>
   <span class="ruby-identifier">joins</span> = <span class="ruby-string">&quot;INNER JOIN tags ON (tags.id = taggings.tag_id) INNER JOIN lessons ON (taggings.taggable_type = &#39;Lesson&#39; AND taggings.taggable_id = lessons.id)&quot;</span>
   <span class="ruby-identifier">where</span> = <span class="ruby-string">&#39;tags.word LIKE ?&#39;</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">word</span>.<span class="ruby-identifier">class</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Fixnum</span>
@@ -3654,7 +3691,7 @@ among the ones in <a href="Filters.html">Filters</a>) and by
     <span class="ruby-keyword">when</span> <span class="ruby-constant">SearchOrders</span><span class="ruby-operator">::</span><span class="ruby-constant">UPDATED_AT</span>
       <span class="ruby-identifier">order</span> = <span class="ruby-string">&#39;lessons.updated_at DESC&#39;</span>
     <span class="ruby-keyword">when</span> <span class="ruby-constant">SearchOrders</span><span class="ruby-operator">::</span><span class="ruby-constant">LIKES</span>
-      <span class="ruby-identifier">select</span> = <span class="ruby-node">&quot;#{select}, (SELECT COUNT(*) FROM likes WHERE (likes.lesson_id = lessons.id)) AS likes_count&quot;</span>
+      <span class="ruby-identifier">select</span> = <span class="ruby-string">&quot;(SELECT COUNT(*) FROM likes WHERE (likes.lesson_id = lessons.id)) AS likes_count&quot;</span>
       <span class="ruby-identifier">order</span> = <span class="ruby-string">&#39;likes_count DESC, lessons.updated_at DESC&#39;</span>
     <span class="ruby-keyword">when</span> <span class="ruby-constant">SearchOrders</span><span class="ruby-operator">::</span><span class="ruby-constant">TITLE</span>
       <span class="ruby-identifier">order</span> = <span class="ruby-string">&#39;lessons.title ASC, lessons.updated_at DESC&#39;</span>
@@ -3680,13 +3717,25 @@ among the ones in <a href="Filters.html">Filters</a>) and by
       <span class="ruby-identifier">params</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">resp</span>[<span class="ruby-value">:records</span>] = []
-  <span class="ruby-constant">Tagging</span>.<span class="ruby-identifier">group</span>(<span class="ruby-string">&#39;lessons.id&#39;</span>).<span class="ruby-identifier">select</span>(<span class="ruby-identifier">select</span>).<span class="ruby-identifier">joins</span>(<span class="ruby-identifier">joins</span>).<span class="ruby-identifier">where</span>(<span class="ruby-identifier">where</span>, *<span class="ruby-identifier">params</span>).<span class="ruby-identifier">order</span>(<span class="ruby-identifier">order</span>).<span class="ruby-identifier">offset</span>(<span class="ruby-identifier">offset</span>).<span class="ruby-identifier">limit</span>(<span class="ruby-identifier">limit</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">q</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">lesson</span> = <span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">find_by_id</span> <span class="ruby-identifier">q</span>.<span class="ruby-identifier">lesson_id</span>
-    <span class="ruby-identifier">lesson</span>.<span class="ruby-identifier">set_status</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>
+  <span class="ruby-identifier">ids</span> = (<span class="ruby-identifier">select</span>.<span class="ruby-identifier">blank?</span> <span class="ruby-operator">?</span> <span class="ruby-constant">Tagging</span>.<span class="ruby-identifier">group</span>(<span class="ruby-string">&#39;lessons.id&#39;</span>) <span class="ruby-operator">:</span> <span class="ruby-constant">Tagging</span>.<span class="ruby-identifier">group</span>(<span class="ruby-string">&#39;lessons.id&#39;</span>).<span class="ruby-identifier">select</span>(<span class="ruby-identifier">select</span>)).<span class="ruby-identifier">joins</span>(<span class="ruby-identifier">joins</span>).<span class="ruby-identifier">where</span>(<span class="ruby-identifier">where</span>, *<span class="ruby-identifier">params</span>).<span class="ruby-identifier">order</span>(<span class="ruby-identifier">order</span>).<span class="ruby-identifier">offset</span>(<span class="ruby-identifier">offset</span>).<span class="ruby-identifier">limit</span>(<span class="ruby-identifier">limit</span>).<span class="ruby-identifier">pluck</span>(<span class="ruby-string">&#39;lessons.id&#39;</span>)
+  <span class="ruby-identifier">order</span> = <span class="ruby-identifier">order</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-string">&#39;likes&#39;</span>, <span class="ruby-string">&#39;likes_general&#39;</span>)
+  <span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">preload</span>(<span class="ruby-value">:subject</span>, <span class="ruby-value">:user</span>, <span class="ruby-value">:school_level</span>, {<span class="ruby-value">:user</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:location</span>}).<span class="ruby-identifier">select</span>(<span class="ruby-node">&quot;
+    lessons.*,
+    (SELECT COUNT (*) FROM bookmarks WHERE bookmarks.bookmarkable_type = #{self.connection.quote &#39;Lesson&#39;} AND bookmarks.bookmarkable_id = lessons.id AND bookmarks.user_id = #{self.connection.quote self.id.to_i}) AS bookmarks_count,
+    (SELECT COUNT (*) FROM bookmarks WHERE bookmarks.bookmarkable_type = #{self.connection.quote &#39;Lesson&#39;} AND bookmarks.bookmarkable_id = lessons.id AND bookmarks.user_id != #{self.connection.quote self.id} AND bookmarks.created_at &lt; lessons.updated_at) AS notification_bookmarks,
+    (SELECT COUNT (*) FROM virtual_classroom_lessons WHERE virtual_classroom_lessons.lesson_id = lessons.id AND virtual_classroom_lessons.user_id = #{self.connection.quote self.id.to_i}) AS virtuals_count,
+    (SELECT COUNT (*) FROM likes WHERE likes.lesson_id = lessons.id AND likes.user_id = #{self.connection.quote self.id.to_i}) AS likes_count,
+    (SELECT COUNT (*) FROM likes WHERE likes.lesson_id = lessons.id) AS likes_general_count
+  &quot;</span>).<span class="ruby-identifier">where</span>(<span class="ruby-value">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">ids</span>).<span class="ruby-identifier">order</span>(<span class="ruby-identifier">order</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">lesson</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">lesson</span>.<span class="ruby-identifier">set_status</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>, {<span class="ruby-value">:bookmarked</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:bookmarks_count</span>, <span class="ruby-value">:in_vc</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:virtuals_count</span>, <span class="ruby-value">:liked</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:likes_count</span>}
     <span class="ruby-identifier">resp</span>[<span class="ruby-value">:records</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">lesson</span>
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">resp</span>[<span class="ruby-value">:records_amount</span>] = <span class="ruby-constant">Tagging</span>.<span class="ruby-identifier">group</span>(<span class="ruby-string">&#39;lessons.id&#39;</span>).<span class="ruby-identifier">joins</span>(<span class="ruby-identifier">joins</span>).<span class="ruby-identifier">where</span>(<span class="ruby-identifier">where</span>, *<span class="ruby-identifier">params</span>).<span class="ruby-identifier">count</span>.<span class="ruby-identifier">length</span>
   <span class="ruby-identifier">resp</span>[<span class="ruby-value">:pages_amount</span>] = <span class="ruby-constant">Rational</span>(<span class="ruby-identifier">resp</span>[<span class="ruby-value">:records_amount</span>], <span class="ruby-identifier">limit</span>).<span class="ruby-identifier">ceil</span>
+  <span class="ruby-identifier">resp</span>[<span class="ruby-value">:covers</span>] = {}
+  <span class="ruby-constant">Slide</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:lesson_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">ids</span>, <span class="ruby-value">:kind</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;cover&#39;</span>).<span class="ruby-identifier">preload</span>(<span class="ruby-value">:media_elements_slides</span>, {<span class="ruby-value">:media_elements_slides</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:media_element</span>}).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">cov</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">resp</span>[<span class="ruby-value">:covers</span>][<span class="ruby-identifier">cov</span>.<span class="ruby-identifier">lesson_id</span>] = <span class="ruby-identifier">cov</span>
+  <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">return</span> <span class="ruby-identifier">resp</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
@@ -3725,19 +3774,25 @@ the ones in <a href="SearchOrders.html">SearchOrders</a>)</p>
                 
               </p>
               <div id="method-i-search_lessons_without_tag_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 1348</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 1398</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">search_lessons_without_tag</span>(<span class="ruby-identifier">offset</span>, <span class="ruby-identifier">limit</span>, <span class="ruby-identifier">filter</span>, <span class="ruby-identifier">subject_id</span>, <span class="ruby-identifier">order_by</span>)
   <span class="ruby-identifier">resp</span> = {}
   <span class="ruby-identifier">params</span> = []
-  <span class="ruby-identifier">select</span> = <span class="ruby-string">&#39;lessons.id AS lesson_id&#39;</span>
   <span class="ruby-identifier">where</span> = <span class="ruby-string">&#39;&#39;</span>
   <span class="ruby-identifier">order</span> = <span class="ruby-string">&#39;&#39;</span>
+  <span class="ruby-identifier">select</span> = <span class="ruby-node">&quot;
+    lessons.*,
+    (SELECT COUNT (*) FROM bookmarks WHERE bookmarks.bookmarkable_type = #{self.connection.quote &#39;Lesson&#39;} AND bookmarks.bookmarkable_id = lessons.id AND bookmarks.user_id = #{self.connection.quote self.id.to_i}) AS bookmarks_count,
+    (SELECT COUNT (*) FROM bookmarks WHERE bookmarks.bookmarkable_type = #{self.connection.quote &#39;Lesson&#39;} AND bookmarks.bookmarkable_id = lessons.id AND bookmarks.user_id != #{self.connection.quote self.id} AND bookmarks.created_at &lt; lessons.updated_at) AS notification_bookmarks,
+    (SELECT COUNT (*) FROM virtual_classroom_lessons WHERE virtual_classroom_lessons.lesson_id = lessons.id AND virtual_classroom_lessons.user_id = #{self.connection.quote self.id.to_i}) AS virtuals_count,
+    (SELECT COUNT (*) FROM likes WHERE likes.lesson_id = lessons.id AND likes.user_id = #{self.connection.quote self.id.to_i}) AS likes_count,
+    (SELECT COUNT (*) FROM likes WHERE likes.lesson_id = lessons.id) AS likes_general_count
+  &quot;</span>
   <span class="ruby-keyword">case</span> <span class="ruby-identifier">order_by</span>
     <span class="ruby-keyword">when</span> <span class="ruby-constant">SearchOrders</span><span class="ruby-operator">::</span><span class="ruby-constant">UPDATED_AT</span>
       <span class="ruby-identifier">order</span> = <span class="ruby-string">&#39;updated_at DESC&#39;</span>
     <span class="ruby-keyword">when</span> <span class="ruby-constant">SearchOrders</span><span class="ruby-operator">::</span><span class="ruby-constant">LIKES</span>
-      <span class="ruby-identifier">select</span> = <span class="ruby-node">&quot;#{select}, (SELECT COUNT(*) FROM likes WHERE (likes.lesson_id = lessons.id)) AS likes_count&quot;</span>
-      <span class="ruby-identifier">order</span> = <span class="ruby-string">&#39;likes_count DESC, updated_at DESC&#39;</span>
+      <span class="ruby-identifier">order</span> = <span class="ruby-string">&#39;likes_general_count DESC, updated_at DESC&#39;</span>
     <span class="ruby-keyword">when</span> <span class="ruby-constant">SearchOrders</span><span class="ruby-operator">::</span><span class="ruby-constant">TITLE</span>
       <span class="ruby-identifier">order</span> = <span class="ruby-string">&#39;title ASC, updated_at DESC&#39;</span>
   <span class="ruby-keyword">end</span>
@@ -3762,13 +3817,18 @@ the ones in <a href="SearchOrders.html">SearchOrders</a>)</p>
     <span class="ruby-identifier">params</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">subject_id</span>
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">resp</span>[<span class="ruby-value">:records</span>] = []
-  <span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">select</span>(<span class="ruby-identifier">select</span>).<span class="ruby-identifier">where</span>(<span class="ruby-identifier">where</span>, *<span class="ruby-identifier">params</span>).<span class="ruby-identifier">order</span>(<span class="ruby-identifier">order</span>).<span class="ruby-identifier">offset</span>(<span class="ruby-identifier">offset</span>).<span class="ruby-identifier">limit</span>(<span class="ruby-identifier">limit</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">q</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">lesson</span> = <span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">find_by_id</span> <span class="ruby-identifier">q</span>.<span class="ruby-identifier">lesson_id</span>
-    <span class="ruby-identifier">lesson</span>.<span class="ruby-identifier">set_status</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>
+  <span class="ruby-identifier">ids</span> = []
+  <span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">preload</span>(<span class="ruby-value">:subject</span>, <span class="ruby-value">:user</span>, <span class="ruby-value">:school_level</span>, {<span class="ruby-value">:user</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:location</span>}).<span class="ruby-identifier">select</span>(<span class="ruby-identifier">select</span>).<span class="ruby-identifier">where</span>(<span class="ruby-identifier">where</span>, *<span class="ruby-identifier">params</span>).<span class="ruby-identifier">order</span>(<span class="ruby-identifier">order</span>).<span class="ruby-identifier">offset</span>(<span class="ruby-identifier">offset</span>).<span class="ruby-identifier">limit</span>(<span class="ruby-identifier">limit</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">lesson</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">lesson</span>.<span class="ruby-identifier">set_status</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>, {<span class="ruby-value">:bookmarked</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:bookmarks_count</span>, <span class="ruby-value">:in_vc</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:virtuals_count</span>, <span class="ruby-value">:liked</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:likes_count</span>}
+    <span class="ruby-identifier">ids</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">lesson</span>.<span class="ruby-identifier">id</span>
     <span class="ruby-identifier">resp</span>[<span class="ruby-value">:records</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">lesson</span>
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">resp</span>[<span class="ruby-value">:records_amount</span>] = <span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">where</span>, *<span class="ruby-identifier">params</span>).<span class="ruby-identifier">count</span>
   <span class="ruby-identifier">resp</span>[<span class="ruby-value">:pages_amount</span>] = <span class="ruby-constant">Rational</span>(<span class="ruby-identifier">resp</span>[<span class="ruby-value">:records_amount</span>], <span class="ruby-identifier">limit</span>).<span class="ruby-identifier">ceil</span>
+  <span class="ruby-identifier">resp</span>[<span class="ruby-value">:covers</span>] = {}
+  <span class="ruby-constant">Slide</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:lesson_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">ids</span>, <span class="ruby-value">:kind</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;cover&#39;</span>).<span class="ruby-identifier">preload</span>(<span class="ruby-value">:media_elements_slides</span>, {<span class="ruby-value">:media_elements_slides</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:media_element</span>}).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">cov</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">resp</span>[<span class="ruby-value">:covers</span>][<span class="ruby-identifier">cov</span>.<span class="ruby-identifier">lesson_id</span>] = <span class="ruby-identifier">cov</span>
+  <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">return</span> <span class="ruby-identifier">resp</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
@@ -3809,7 +3869,7 @@ href="SearchOrders.html">SearchOrders</a>)</p>
                 
               </p>
               <div id="method-i-search_media_elements_with_tag_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 1222</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 1259</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">search_media_elements_with_tag</span>(<span class="ruby-identifier">word</span>, <span class="ruby-identifier">offset</span>, <span class="ruby-identifier">limit</span>, <span class="ruby-identifier">filter</span>, <span class="ruby-identifier">order_by</span>)
   <span class="ruby-identifier">resp</span> = {}
   <span class="ruby-identifier">params</span> = [<span class="ruby-node">&quot;#{word}%&quot;</span>, <span class="ruby-keyword">true</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>]
@@ -3836,9 +3896,9 @@ href="SearchOrders.html">SearchOrders</a>)</p>
       <span class="ruby-identifier">where</span> = <span class="ruby-node">&quot;#{where} AND media_elements.sti_type = &#39;Image&#39;&quot;</span>
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">resp</span>[<span class="ruby-value">:records</span>] = []
-  <span class="ruby-constant">Tagging</span>.<span class="ruby-identifier">group</span>(<span class="ruby-string">&#39;media_elements.id&#39;</span>).<span class="ruby-identifier">select</span>(<span class="ruby-string">&#39;media_elements.id AS media_element_id&#39;</span>).<span class="ruby-identifier">joins</span>(<span class="ruby-identifier">joins</span>).<span class="ruby-identifier">where</span>(<span class="ruby-identifier">where</span>, <span class="ruby-identifier">params</span>[<span class="ruby-number">0</span>], <span class="ruby-identifier">params</span>[<span class="ruby-number">1</span>], <span class="ruby-identifier">params</span>[<span class="ruby-number">2</span>]).<span class="ruby-identifier">order</span>(<span class="ruby-identifier">order</span>).<span class="ruby-identifier">offset</span>(<span class="ruby-identifier">offset</span>).<span class="ruby-identifier">limit</span>(<span class="ruby-identifier">limit</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">q</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">media_element</span> = <span class="ruby-constant">MediaElement</span>.<span class="ruby-identifier">find_by_id</span> <span class="ruby-identifier">q</span>.<span class="ruby-identifier">media_element_id</span>
-    <span class="ruby-identifier">media_element</span>.<span class="ruby-identifier">set_status</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>
+  <span class="ruby-identifier">ids</span> = <span class="ruby-constant">Tagging</span>.<span class="ruby-identifier">group</span>(<span class="ruby-string">&#39;media_elements.id&#39;</span>).<span class="ruby-identifier">joins</span>(<span class="ruby-identifier">joins</span>).<span class="ruby-identifier">where</span>(<span class="ruby-identifier">where</span>, <span class="ruby-identifier">params</span>[<span class="ruby-number">0</span>], <span class="ruby-identifier">params</span>[<span class="ruby-number">1</span>], <span class="ruby-identifier">params</span>[<span class="ruby-number">2</span>]).<span class="ruby-identifier">order</span>(<span class="ruby-identifier">order</span>).<span class="ruby-identifier">offset</span>(<span class="ruby-identifier">offset</span>).<span class="ruby-identifier">limit</span>(<span class="ruby-identifier">limit</span>).<span class="ruby-identifier">pluck</span>(<span class="ruby-string">&#39;media_elements.id&#39;</span>)
+  <span class="ruby-constant">MediaElement</span>.<span class="ruby-identifier">select</span>( <span class="ruby-node">&quot;media_elements.*, (SELECT COUNT (*) FROM bookmarks WHERE bookmarks.bookmarkable_type = #{self.connection.quote &#39;MediaElement&#39;} AND bookmarks.bookmarkable_id = media_elements.id AND bookmarks.user_id = #{self.connection.quote self.id.to_i}) AS bookmarks_count, (SELECT COUNT(*) FROM media_elements_slides WHERE (media_elements_slides.media_element_id = media_elements.id)) AS instances&quot;</span>).<span class="ruby-identifier">where</span>(<span class="ruby-value">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">ids</span>).<span class="ruby-identifier">order</span>(<span class="ruby-identifier">order</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">media_element</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">media_element</span>.<span class="ruby-identifier">set_status</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>, {<span class="ruby-value">:bookmarked</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:bookmarks_count</span>}
     <span class="ruby-identifier">resp</span>[<span class="ruby-value">:records</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">media_element</span>
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">resp</span>[<span class="ruby-value">:records_amount</span>] = <span class="ruby-constant">Tagging</span>.<span class="ruby-identifier">group</span>(<span class="ruby-string">&#39;media_elements.id&#39;</span>).<span class="ruby-identifier">joins</span>(<span class="ruby-identifier">joins</span>).<span class="ruby-identifier">where</span>(<span class="ruby-identifier">where</span>, <span class="ruby-identifier">params</span>[<span class="ruby-number">0</span>], <span class="ruby-identifier">params</span>[<span class="ruby-number">1</span>], <span class="ruby-identifier">params</span>[<span class="ruby-number">2</span>]).<span class="ruby-identifier">count</span>.<span class="ruby-identifier">length</span>
@@ -3881,8 +3941,9 @@ href="Filters.html">Filters</a>), and ordered by <code>order_by</code>
                 
               </p>
               <div id="method-i-search_media_elements_without_tag_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 1259</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 1296</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">search_media_elements_without_tag</span>(<span class="ruby-identifier">offset</span>, <span class="ruby-identifier">limit</span>, <span class="ruby-identifier">filter</span>, <span class="ruby-identifier">order_by</span>)
+  <span class="ruby-identifier">select</span> = <span class="ruby-node">&quot;media_elements.*, (SELECT COUNT (*) FROM bookmarks WHERE bookmarks.bookmarkable_type = #{self.connection.quote &#39;MediaElement&#39;} AND bookmarks.bookmarkable_id = media_elements.id AND bookmarks.user_id = #{self.connection.quote self.id.to_i}) AS bookmarks_count, (SELECT COUNT(*) FROM media_elements_slides WHERE (media_elements_slides.media_element_id = media_elements.id)) AS instances&quot;</span>
   <span class="ruby-identifier">resp</span> = {}
   <span class="ruby-identifier">order</span> = <span class="ruby-string">&#39;&#39;</span>
   <span class="ruby-keyword">case</span> <span class="ruby-identifier">order_by</span>
@@ -3896,20 +3957,20 @@ href="Filters.html">Filters</a>), and ordered by <code>order_by</code>
   <span class="ruby-keyword">case</span> <span class="ruby-identifier">filter</span>
     <span class="ruby-keyword">when</span> <span class="ruby-constant">Filters</span><span class="ruby-operator">::</span><span class="ruby-constant">ALL_MEDIA_ELEMENTS</span>
       <span class="ruby-identifier">count</span> = <span class="ruby-constant">MediaElement</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&#39;is_public = ? OR user_id = ?&#39;</span>, <span class="ruby-keyword">true</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">count</span>
-      <span class="ruby-identifier">query</span> = <span class="ruby-constant">MediaElement</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&#39;is_public = ? OR user_id = ?&#39;</span>, <span class="ruby-keyword">true</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">order</span>(<span class="ruby-identifier">order</span>).<span class="ruby-identifier">offset</span>(<span class="ruby-identifier">offset</span>).<span class="ruby-identifier">limit</span>(<span class="ruby-identifier">limit</span>)
+      <span class="ruby-identifier">query</span> = <span class="ruby-constant">MediaElement</span>.<span class="ruby-identifier">select</span>(<span class="ruby-identifier">select</span>).<span class="ruby-identifier">where</span>(<span class="ruby-string">&#39;is_public = ? OR user_id = ?&#39;</span>, <span class="ruby-keyword">true</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">order</span>(<span class="ruby-identifier">order</span>).<span class="ruby-identifier">offset</span>(<span class="ruby-identifier">offset</span>).<span class="ruby-identifier">limit</span>(<span class="ruby-identifier">limit</span>)
     <span class="ruby-keyword">when</span> <span class="ruby-constant">Filters</span><span class="ruby-operator">::</span><span class="ruby-constant">VIDEO</span>
       <span class="ruby-identifier">count</span> = <span class="ruby-constant">Video</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&#39;is_public = ? OR user_id = ?&#39;</span>, <span class="ruby-keyword">true</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">count</span>
-      <span class="ruby-identifier">query</span> = <span class="ruby-constant">Video</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&#39;is_public = ? OR user_id = ?&#39;</span>, <span class="ruby-keyword">true</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">order</span>(<span class="ruby-identifier">order</span>).<span class="ruby-identifier">offset</span>(<span class="ruby-identifier">offset</span>).<span class="ruby-identifier">limit</span>(<span class="ruby-identifier">limit</span>)
+      <span class="ruby-identifier">query</span> = <span class="ruby-constant">Video</span>.<span class="ruby-identifier">select</span>(<span class="ruby-identifier">select</span>).<span class="ruby-identifier">where</span>(<span class="ruby-string">&#39;is_public = ? OR user_id = ?&#39;</span>, <span class="ruby-keyword">true</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">order</span>(<span class="ruby-identifier">order</span>).<span class="ruby-identifier">offset</span>(<span class="ruby-identifier">offset</span>).<span class="ruby-identifier">limit</span>(<span class="ruby-identifier">limit</span>)
     <span class="ruby-keyword">when</span> <span class="ruby-constant">Filters</span><span class="ruby-operator">::</span><span class="ruby-constant">AUDIO</span>
       <span class="ruby-identifier">count</span> = <span class="ruby-constant">Audio</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&#39;is_public = ? OR user_id = ?&#39;</span>, <span class="ruby-keyword">true</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">count</span>
-      <span class="ruby-identifier">query</span> = <span class="ruby-constant">Audio</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&#39;is_public = ? OR user_id = ?&#39;</span>, <span class="ruby-keyword">true</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">order</span>(<span class="ruby-identifier">order</span>).<span class="ruby-identifier">offset</span>(<span class="ruby-identifier">offset</span>).<span class="ruby-identifier">limit</span>(<span class="ruby-identifier">limit</span>)
+      <span class="ruby-identifier">query</span> = <span class="ruby-constant">Audio</span>.<span class="ruby-identifier">select</span>(<span class="ruby-identifier">select</span>).<span class="ruby-identifier">where</span>(<span class="ruby-string">&#39;is_public = ? OR user_id = ?&#39;</span>, <span class="ruby-keyword">true</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">order</span>(<span class="ruby-identifier">order</span>).<span class="ruby-identifier">offset</span>(<span class="ruby-identifier">offset</span>).<span class="ruby-identifier">limit</span>(<span class="ruby-identifier">limit</span>)
     <span class="ruby-keyword">when</span> <span class="ruby-constant">Filters</span><span class="ruby-operator">::</span><span class="ruby-constant">IMAGE</span>
       <span class="ruby-identifier">count</span> = <span class="ruby-constant">Image</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&#39;is_public = ? OR user_id = ?&#39;</span>, <span class="ruby-keyword">true</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">count</span>
-      <span class="ruby-identifier">query</span> = <span class="ruby-constant">Image</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&#39;is_public = ? OR user_id = ?&#39;</span>, <span class="ruby-keyword">true</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">order</span>(<span class="ruby-identifier">order</span>).<span class="ruby-identifier">offset</span>(<span class="ruby-identifier">offset</span>).<span class="ruby-identifier">limit</span>(<span class="ruby-identifier">limit</span>)
+      <span class="ruby-identifier">query</span> = <span class="ruby-constant">Image</span>.<span class="ruby-identifier">select</span>(<span class="ruby-identifier">select</span>).<span class="ruby-identifier">where</span>(<span class="ruby-string">&#39;is_public = ? OR user_id = ?&#39;</span>, <span class="ruby-keyword">true</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">order</span>(<span class="ruby-identifier">order</span>).<span class="ruby-identifier">offset</span>(<span class="ruby-identifier">offset</span>).<span class="ruby-identifier">limit</span>(<span class="ruby-identifier">limit</span>)
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">resp</span>[<span class="ruby-value">:records</span>] = []
   <span class="ruby-identifier">query</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">q</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">q</span>.<span class="ruby-identifier">set_status</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>
+    <span class="ruby-identifier">q</span>.<span class="ruby-identifier">set_status</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>, {<span class="ruby-value">:bookmarked</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:bookmarks_count</span>}
     <span class="ruby-identifier">resp</span>[<span class="ruby-value">:records</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">q</span>
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">resp</span>[<span class="ruby-value">:records_amount</span>] = <span class="ruby-identifier">count</span>
@@ -3947,7 +4008,7 @@ href="Filters.html">Filters</a>), and ordered by <code>order_by</code>
                 
               </p>
               <div id="method-i-validate_associations_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 1401</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 1462</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">validate_associations</span>
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span> <span class="ruby-value">:school_level_id</span>, <span class="ruby-value">:doesnt_exist</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@school_level</span>.<span class="ruby-identifier">nil?</span>
   <span class="ruby-ivar">@location</span> = <span class="ruby-constant">Valid</span>.<span class="ruby-identifier">get_association</span> <span class="ruby-keyword">self</span>, <span class="ruby-value">:location_id</span>
@@ -3985,7 +4046,7 @@ href="Valid.html#method-c-email-3F">Valid.email?</a>)</p>
                 
               </p>
               <div id="method-i-validate_email_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 1413</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 1474</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">validate_email</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">email</span>.<span class="ruby-identifier">blank?</span>
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:email</span>, <span class="ruby-value">:not_a_valid_email</span>) <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">Valid</span>.<span class="ruby-identifier">email?</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">email</span>)
@@ -4021,7 +4082,7 @@ href="Valid.html#method-c-email-3F">Valid.email?</a>)</p>
                 
               </p>
               <div id="method-i-validate_email_not_changed_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 1408</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 1469</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">validate_email_not_changed</span>
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span> <span class="ruby-value">:email</span>, <span class="ruby-value">:changed</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">changed</span>.<span class="ruby-identifier">include?</span> <span class="ruby-string">&#39;email&#39;</span>
 <span class="ruby-keyword">end</span></pre>

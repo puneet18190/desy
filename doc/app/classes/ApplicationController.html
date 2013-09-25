@@ -573,7 +573,7 @@ href="User.html#method-i-admin-3F">User#admin?</a>)</p>
                 
               </p>
               <div id="method-i-convert_document_uploader_messages_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 241</span>
+                <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 245</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">convert_document_uploader_messages</span>(<span class="ruby-identifier">errors</span>)
   <span class="ruby-keyword">return</span> [<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;forms.error_captions.document_folder_size_exceeded&#39;</span>)] <span class="ruby-keyword">if</span> <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">added?</span> <span class="ruby-value">:attachment</span>, <span class="ruby-value">:folder_size_exceeded</span>
   <span class="ruby-identifier">resp</span> = []
@@ -589,7 +589,7 @@ href="User.html#method-i-admin-3F">User#admin?</a>)</p>
         <div class="method">
           <div class="title method-title" id="method-i-convert_item_error_messages">
             
-              <b>convert_item_error_messages</b>(errors)
+              <b>convert_item_error_messages</b>(errors_ext)
             
             <a href="../classes/ApplicationController.html#method-i-convert_item_error_messages" name="method-i-convert_item_error_messages" class="permalink">Link</a>
           </div>
@@ -597,8 +597,7 @@ href="User.html#method-i-admin-3F">User#admin?</a>)</p>
           
             <div class="description">
               <p>Used for errors in forms of elements general information: converts an item
-of type ActiveSupport::OrderedHash (errors.messages) into a translated
-message for the user.</p>
+of type ActiveModel::Errors into a translated message for the user.</p>
             </div>
           
           
@@ -615,7 +614,8 @@ message for the user.</p>
               </p>
               <div id="method-i-convert_item_error_messages_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 198</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">convert_item_error_messages</span>(<span class="ruby-identifier">errors</span>)
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">convert_item_error_messages</span>(<span class="ruby-identifier">errors_ext</span>)
+  <span class="ruby-identifier">errors</span> = <span class="ruby-identifier">errors_ext</span>.<span class="ruby-identifier">messages</span>
   <span class="ruby-identifier">resp</span> = []
   <span class="ruby-identifier">media_errors</span> = <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-value">:media</span>)
   <span class="ruby-identifier">sti_type_errors</span> = <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-value">:sti_type</span>)
@@ -624,7 +624,10 @@ message for the user.</p>
     <span class="ruby-identifier">resp</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;forms.error_captions.fill_all_the_fields_or_too_long&#39;</span>)
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">flag</span> = <span class="ruby-keyword">false</span>
-  <span class="ruby-identifier">resp</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;forms.error_captions.tags_are_not_enough&#39;</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">has_key?</span> <span class="ruby-value">:tags</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">has_key?</span> <span class="ruby-value">:tags</span>
+    <span class="ruby-identifier">resp</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;forms.error_captions.tags_are_not_enough&#39;</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">errors_ext</span>.<span class="ruby-identifier">added?</span> <span class="ruby-value">:tags</span>, <span class="ruby-value">:are_not_enough</span>
+    <span class="ruby-identifier">resp</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;forms.error_captions.tags_too_many&#39;</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">errors_ext</span>.<span class="ruby-identifier">added?</span> <span class="ruby-value">:tags</span>, <span class="ruby-value">:too_many</span>
+  <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">errors</span>[<span class="ruby-value">:media</span>] = <span class="ruby-identifier">media_errors</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">media_errors</span>.<span class="ruby-identifier">nil?</span>
   <span class="ruby-identifier">errors</span>[<span class="ruby-value">:sti_type</span>] = <span class="ruby-identifier">sti_type_errors</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">sti_type_errors</span>.<span class="ruby-identifier">nil?</span>
   <span class="ruby-identifier">errors</span>[<span class="ruby-value">:subject_id</span>] = <span class="ruby-identifier">subject_id_errors</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">subject_id_errors</span>.<span class="ruby-identifier">nil?</span>
@@ -646,8 +649,7 @@ message for the user.</p>
           
             <div class="description">
               <p>Used for errors in forms of lessons general information: converts an item
-of type ActiveSupport::OrderedHash (errors.messages) into a translated
-message for the user.</p>
+of type ActiveModel::Errors into a translated message for the user.</p>
             </div>
           
           
@@ -663,7 +665,7 @@ message for the user.</p>
                 
               </p>
               <div id="method-i-convert_lesson_editor_messages_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 215</span>
+                <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 219</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">convert_lesson_editor_messages</span>(<span class="ruby-identifier">errors</span>)
   <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">convert_item_error_messages</span> <span class="ruby-identifier">errors</span>
   <span class="ruby-identifier">resp</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;forms.error_captions.subject_missing_in_lesson&#39;</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">has_key?</span> <span class="ruby-value">:subject_id</span>
@@ -701,10 +703,10 @@ ActiveModel::Errors into a translated message for the user.</p>
                 
               </p>
               <div id="method-i-convert_media_element_uploader_messages_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 222</span>
+                <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 226</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">convert_media_element_uploader_messages</span>(<span class="ruby-identifier">errors</span>)
   <span class="ruby-keyword">return</span> [<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;forms.error_captions.media_folder_size_exceeded&#39;</span>)] <span class="ruby-keyword">if</span> <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">added?</span> <span class="ruby-value">:media</span>, <span class="ruby-value">:folder_size_exceeded</span>
-  <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">convert_item_error_messages</span> <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">messages</span>
+  <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">convert_item_error_messages</span> <span class="ruby-identifier">errors</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">messages</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value">:media</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">messages</span>[<span class="ruby-value">:media</span>].<span class="ruby-identifier">any?</span>
     <span class="ruby-keyword">return</span> ([<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;forms.error_captions.media_blank&#39;</span>)] <span class="ruby-operator">+</span> <span class="ruby-identifier">resp</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">added?</span> <span class="ruby-value">:media</span>, <span class="ruby-value">:blank</span>
     <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span>(<span class="ruby-regexp">/unsupported format/</span> <span class="ruby-operator">=~</span> <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">messages</span>[<span class="ruby-value">:media</span>].<span class="ruby-identifier">to_s</span>).<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> <span class="ruby-operator">!</span>(<span class="ruby-regexp">/invalid extension/</span> <span class="ruby-operator">=~</span> <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">messages</span>[<span class="ruby-value">:media</span>].<span class="ruby-identifier">to_s</span>).<span class="ruby-identifier">nil?</span>
@@ -751,7 +753,7 @@ ActiveModel::Errors into a translated message for the user.</p>
                 
               </p>
               <div id="method-i-convert_user_error_messages_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 250</span>
+                <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 254</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">convert_user_error_messages</span>(<span class="ruby-identifier">errors</span>)
   <span class="ruby-identifier">pas_min</span> = <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;minimum_password_length&#39;</span>]
   <span class="ruby-identifier">pas_max</span> = <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;maximum_password_length&#39;</span>]
@@ -1466,7 +1468,7 @@ in the same page</p>
                 
               </p>
               <div id="method-i-logged_in-3F_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 285</span>
+                <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 289</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">logged_in?</span>
   <span class="ruby-identifier">current_user</span>
 <span class="ruby-keyword">end</span></pre>

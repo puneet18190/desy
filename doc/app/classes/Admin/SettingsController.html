@@ -388,7 +388,12 @@ href="../ApplicationController.html#method-i-admin_authenticate">ApplicationCont
                 <pre><span class="ruby-comment"># File app/controllers/admin/settings_controller.rb, line 168</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">lessons_for_tag</span>
   <span class="ruby-ivar">@tag</span> = <span class="ruby-constant">Tag</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
-  <span class="ruby-ivar">@lessons</span> = <span class="ruby-ivar">@tag</span>.<span class="ruby-identifier">get_lessons</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>])
+  <span class="ruby-ivar">@lessons</span> = <span class="ruby-ivar">@tag</span>.<span class="ruby-identifier">get_lessons</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>]).<span class="ruby-identifier">select</span>(<span class="ruby-string">&#39;lessons.*, (SELECT COUNT (*) FROM likes WHERE likes.lesson_id = lessons.id) AS likes_count&#39;</span>).<span class="ruby-identifier">preload</span>(<span class="ruby-value">:user</span>, <span class="ruby-value">:subject</span>, <span class="ruby-value">:taggings</span>, {<span class="ruby-value">:taggings</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:tag</span>})
+  <span class="ruby-identifier">covers</span> = <span class="ruby-constant">Slide</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:lesson_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@lessons</span>.<span class="ruby-identifier">pluck</span>(<span class="ruby-value">:id</span>), <span class="ruby-value">:kind</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;cover&#39;</span>).<span class="ruby-identifier">preload</span>(<span class="ruby-value">:media_elements_slides</span>, {<span class="ruby-value">:media_elements_slides</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:media_element</span>})
+  <span class="ruby-ivar">@covers</span> = {}
+  <span class="ruby-identifier">covers</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">cov</span><span class="ruby-operator">|</span>
+    <span class="ruby-ivar">@covers</span>[<span class="ruby-identifier">cov</span>.<span class="ruby-identifier">lesson_id</span>] = <span class="ruby-identifier">cov</span>
+  <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -433,10 +438,10 @@ href="../ApplicationController.html#method-i-admin_authenticate">ApplicationCont
                 
               </p>
               <div id="method-i-media_elements_for_tag_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/admin/settings_controller.rb, line 185</span>
+                <pre><span class="ruby-comment"># File app/controllers/admin/settings_controller.rb, line 190</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">media_elements_for_tag</span>
   <span class="ruby-ivar">@tag</span> = <span class="ruby-constant">Tag</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
-  <span class="ruby-ivar">@media_elements</span> = <span class="ruby-ivar">@tag</span>.<span class="ruby-identifier">get_media_elements</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>])
+  <span class="ruby-ivar">@media_elements</span> = <span class="ruby-ivar">@tag</span>.<span class="ruby-identifier">get_media_elements</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>]).<span class="ruby-identifier">preload</span>(<span class="ruby-value">:user</span>, <span class="ruby-value">:taggings</span>, {<span class="ruby-value">:taggings</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:tag</span>})
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -579,7 +584,7 @@ href="../ApplicationController.html#method-i-admin_authenticate">ApplicationCont
               <div id="method-i-school_levels_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/controllers/admin/settings_controller.rb, line 79</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">school_levels</span>
-  <span class="ruby-ivar">@school_levels</span> = <span class="ruby-constant">SchoolLevel</span>.<span class="ruby-identifier">all</span>
+  <span class="ruby-ivar">@school_levels</span> = <span class="ruby-constant">SchoolLevel</span>.<span class="ruby-identifier">select</span>(<span class="ruby-string">&#39;school_levels.*, ((SELECT COUNT (*) FROM users WHERE users.school_level_id = school_levels.id) + (SELECT COUNT (*) FROM lessons WHERE lessons.school_level_id = school_levels.id)) AS instances&#39;</span>)
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -626,7 +631,7 @@ href="../ApplicationController.html#method-i-admin_authenticate">ApplicationCont
               <div id="method-i-subjects_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/controllers/admin/settings_controller.rb, line 28</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">subjects</span>
-  <span class="ruby-ivar">@subjects</span> = <span class="ruby-constant">Subject</span>.<span class="ruby-identifier">all</span>
+  <span class="ruby-ivar">@subjects</span> = <span class="ruby-constant">Subject</span>.<span class="ruby-identifier">select</span>(<span class="ruby-string">&#39;subjects.*, ((SELECT COUNT (*) FROM users_subjects WHERE users_subjects.subject_id = subjects.id) + (SELECT COUNT (*) FROM lessons WHERE lessons.subject_id = subjects.id)) AS instances&#39;</span>)
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -675,7 +680,7 @@ href="../ApplicationController.html#method-i-admin_authenticate">ApplicationCont
               <div id="method-i-tags_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/controllers/admin/settings_controller.rb, line 130</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">tags</span>
-  <span class="ruby-identifier">tags</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:search</span>] <span class="ruby-operator">?</span> <span class="ruby-constant">AdminSearchForm</span>.<span class="ruby-identifier">search_tags</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:search</span>]) <span class="ruby-operator">:</span> <span class="ruby-constant">Tag</span>.<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;created_at DESC&#39;</span>)
+  <span class="ruby-identifier">tags</span> = <span class="ruby-constant">AdminSearchForm</span>.<span class="ruby-identifier">search_tags</span>((<span class="ruby-identifier">params</span>[<span class="ruby-value">:search</span>] <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:search</span>] <span class="ruby-operator">:</span> {<span class="ruby-value">:ordering</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-number">2</span>, <span class="ruby-value">:desc</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;true&#39;</span>}))
   <span class="ruby-ivar">@tags</span> = <span class="ruby-identifier">tags</span>.<span class="ruby-identifier">page</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>])
 <span class="ruby-keyword">end</span></pre>
               </div>

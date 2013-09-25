@@ -495,7 +495,7 @@ function mediaElementButtonsDocumentReady() {
       var my_param = $(this).data(&#x27;clickparam&#x27;);
       var destination = $(this).data(&#x27;destination&#x27;);
       var current_url = $(&#x27;#info_container&#x27;).data(&#x27;currenturl&#x27;);
-      var used_in_private_lessons = $(this).data(&#x27;media-element-used-in-private-lessons&#x27;);
+      var used_in_private_lessons = $(this).parents(&#x27;._media_element_item&#x27;).data(&#x27;used-in-private-lessons&#x27;);
       destroyMediaElement(my_param, destination, current_url, used_in_private_lessons);
     }
   });
