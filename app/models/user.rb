@@ -1431,7 +1431,7 @@ class User < ActiveRecord::Base
     ids = []
     Lesson.preload(:subject, :user, :school_level, {:user => :location}).select(select).where(where, *params).order(order).offset(offset).limit(limit).each do |lesson|
       lesson.set_status self.id, {:bookmarked => :bookmarks_count, :in_vc => :virtuals_count, :liked => :likes_count}
-      ids << l.id
+      ids << lesson.id
       resp[:records] << lesson
     end
     resp[:records_amount] = Lesson.where(where, *params).count
