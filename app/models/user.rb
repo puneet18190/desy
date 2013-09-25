@@ -1217,7 +1217,7 @@ class User < ActiveRecord::Base
         params << true
         params << self.id
     end
-    select = 'tags.* AS tag_id, COUNT(*) AS tags_count'
+    select = 'tags.*, COUNT(*) AS tags_count'
     where_for_current_tag = where.gsub('tags.word LIKE ?', 'tags.word = ?')
     where = "tags.word != ? AND #{where}"
     resp = []
