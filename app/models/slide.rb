@@ -318,60 +318,6 @@ class Slide < ActiveRecord::Base
   
   # === Description
   #
-  # Returns the record of Video, obtained through MediaElementsSlide, associated to the given position. If the position is not valid, or there is no video in that position, it returns +nil+
-  #
-  # === Args
-  #
-  # * *position*: the position requested
-  #
-  # === Returns
-  #
-  # Either an object of type Video, or +nil+
-  #
-  def video_at(position)
-    return nil if self.accepted_media_element_sti_type != MediaElement::VIDEO_TYPE
-    x = media_element_at position
-    x.nil? ? nil : x.media_element
-  end
-  
-  # === Description
-  #
-  # Returns the record of Audio, obtained through MediaElementsSlide, associated to the given position. If the position is not valid, or there is no audio in that position, it returns +nil+
-  #
-  # === Args
-  #
-  # * *position*: the position requested
-  #
-  # === Returns
-  #
-  # Either an object of type Audio, or +nil+
-  #
-  def audio_at(position)
-    return nil if self.accepted_media_element_sti_type != MediaElement::AUDIO_TYPE
-    x = media_element_at position
-    x.nil? ? nil : x.media_element
-  end
-  
-  # === Description
-  #
-  # Returns the MediaElementsSlide, associated to an Image in the given position. If the position is not valid, or there is no image in that position, it returns +nil+. Notice that, unlike Slide#video_at and Slide#audio_at, this method returns an instance of MediaElementsSlide rather than of MediaElement.
-  #
-  # === Args
-  #
-  # * *position*: the position requested
-  #
-  # === Returns
-  #
-  # Either an object of type MediaElementsSlide, or +nil+
-  #
-  def image_at(position)
-    return nil if self.accepted_media_element_sti_type != MediaElement::IMAGE_TYPE
-    x = media_element_at position
-    x.nil? ? nil : x
-  end
-  
-  # === Description
-  #
   # Returns the previous slide if any
   #
   # === Returns
@@ -465,16 +411,35 @@ class Slide < ActiveRecord::Base
     resp
   end
   
+  def media_elements_at
+    case self.kind
+      when AUDIO, VIDEO1, VIDEO2
+        resp = self.media_elements_slides.first
+        resp.nil? ? nil : resp.media_element
+      when COVER, IMAGE1, IMAGE3
+        self.media_elements_slides.first
+      when IMAGE2
+        resp = self.media_elements_slides
+        resp.reverse! if (!resp.first.nil? && resp.first.position != 1) || (!resp.last.nil? && resp.last.position != 2)
+        *resp
+      when IMAGE4
+        resp = [nil, nil, nil, nil]
+        mes = self.media_elements_slides
+        resp[mes[0].position - 1] = mes[0] if !mes[0].nil?
+        resp[mes[1].position - 1] = mes[1] if !mes[1].nil?
+        resp[mes[2].position - 1] = mes[2] if !mes[2].nil?
+        resp[mes[3].position - 1] = mes[3] if !mes[3].nil?
+        *resp
+    else
+      nil
+    end
+  end
+  
   private
   
   # Validates that the lesson is not exceeding the maximum number of slides
   def validate_max_number_slides
     errors.add(:base, :too_many_slides) if @lesson && !@slide && Slide.where(:lesson_id => @lesson.id).count == SETTINGS['max_number_slides_in_a_lesson']
-  end
-  
-  # Extracts the media element at a given position
-  def media_element_at(position)
-    MediaElementsSlide.where(:slide_id => self.id, :position => position).first
   end
   
   # Validates that if the slide doesn't allow the +title+, it must be +nil+

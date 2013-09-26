@@ -1,8 +1,5 @@
 <%
-  image1 = slide.image_at(1)
-  image2 = slide.image_at(2)
-  image3 = slide.image_at(3)
-  image4 = slide.image_at(4)
+  image1, image2, image3, image4 = slide.media_elements_at
   image_height1 = resize_height(image1.media_element.width, image1.media_element.height, 'image4') if !image1.nil?
   image_width1 = resize_width(image1.media_element.width, image1.media_element.height, 'image4') if !image1.nil?
   image_height2 = resize_height(image2.media_element.width, image2.media_element.height, 'image4') if !image2.nil?
