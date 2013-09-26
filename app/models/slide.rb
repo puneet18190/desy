@@ -421,7 +421,7 @@ class Slide < ActiveRecord::Base
       when IMAGE2
         resp = self.media_elements_slides
         resp.reverse! if (!resp.first.nil? && resp.first.position != 1) || (!resp.last.nil? && resp.last.position != 2)
-        *resp
+        resp
       when IMAGE4
         resp = [nil, nil, nil, nil]
         mes = self.media_elements_slides
@@ -429,7 +429,7 @@ class Slide < ActiveRecord::Base
         resp[mes[1].position - 1] = mes[1] if !mes[1].nil?
         resp[mes[2].position - 1] = mes[2] if !mes[2].nil?
         resp[mes[3].position - 1] = mes[3] if !mes[3].nil?
-        *resp
+        resp
     else
       nil
     end
