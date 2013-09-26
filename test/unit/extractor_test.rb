@@ -536,6 +536,12 @@ class ExtractorTest < ActiveSupport::TestCase
   end
   
   test 'media_elements_optimized' do
+    Tagging.delete_all
+    Tag.delete_all
+    MediaElement.where(:id => [1, 5, @el4.id, @el6.id]).each do |me|
+      me.tags = 'cane, gatto, uovo sodo, mandarino'
+      assert_obj_saved me
+    end
     x = MediaElementsSlide.new
     x.slide_id = Lesson.find(1).cover.id
     x.media_element_id = 5
@@ -557,13 +563,25 @@ class ExtractorTest < ActiveSupport::TestCase
     x.media_element_id = @el4.id
     x.position = 1
     assert_obj_saved x
-    resp = @user1.own_media_elements(1, 20)
-    resp[:records] = resp[:records].sort { |a, b| a.id <=> b.id }
-    assert_ordered_item_extractor [1, 5, @el4.id, @el6.id], resp[:records]
-    assert_equal 0, resp[:records][0].instances.to_i
-    assert_equal 2, resp[:records][1].instances.to_i
-    assert_equal 1, resp[:records][2].instances.to_i
-    assert_equal 0, resp[:records][3].instances.to_i
+    # preliminar extractions: I want to have the same results for own_media_elements and search_media_elements, and make the same assertions over them
+    resps = [@user1.own_media_elements(1, 20)]
+    resps << @user1.search_media_elements('uovo', 1, 20)
+    resps3 = @user1.search_media_elements(nil, 1, 20)
+    resps3[:records].reject! do |me|
+      ![1, 5, @el4.id, @el6.id].include?(me.id)
+    end
+    resps << resps3
+    i = 0
+    while i < 3
+      resp = resps[i]
+      resp[:records] = resp[:records].sort { |a, b| a.id <=> b.id }
+      assert_ordered_item_extractor [1, 5, @el4.id, @el6.id], resp[:records]
+      assert_equal 0, resp[:records][0].instances.to_i
+      assert_equal 2, resp[:records][1].instances.to_i
+      assert_equal 1, resp[:records][2].instances.to_i
+      assert_equal 0, resp[:records][3].instances.to_i
+      i += 1
+    end
   end
   
   test 'lessons_optimized' do
