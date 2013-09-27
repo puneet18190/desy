@@ -555,6 +555,7 @@ class ExtractorTest < ActiveSupport::TestCase
     Tag.delete_all
     MediaElement.where(:id => [1, 5, @el4.id, @el6.id]).each do |me|
       me.tags = 'cane, gatto, uovo sodo, mandarino'
+      me.validating_in_form = true
       assert_obj_saved me
     end
     x = MediaElementsSlide.new
@@ -604,6 +605,7 @@ class ExtractorTest < ActiveSupport::TestCase
     Tag.delete_all
     Lesson.where(:id => [1, 2, @les2.id, @les5.id, @les6.id]).each do |l|
       l.tags = 'cane, gatto, uovo sodo, mandarino'
+      l.validating_in_form = true
       assert_obj_saved l
     end
     assert Lesson.find(1).publish
@@ -661,6 +663,7 @@ class ExtractorTest < ActiveSupport::TestCase
     # third part, notifications_bookmarks
     Lesson.where(:id => [@les1.id, @les3.id, @les4.id, @les7.id, @les8.id, @les9.id]).each do |l|
       l.tags = 'cane, gatto, uovo sodo, mandarino'
+      l.validating_in_form = true
       assert_obj_saved l
     end
     resp = @user1.own_lessons(1, 20)
