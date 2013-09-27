@@ -407,6 +407,34 @@ class SlideTest < ActiveSupport::TestCase
     assert_not_nil resp
     assert_equal Audio, resp.class
     assert_equal 3, resp.id
+    # 7 - video1
+    assert User.find(2).bookmark 'MediaElement', 2
+    MediaElementsSlide.where(:slide_id => @video1.id).first.destroy
+    assert MediaElementsSlide.where(:slide_id => @video1.id).empty?
+    assert_nil @video1.media_elements_at
+    @video1_1 = MediaElementsSlide.new
+    @video1_1.slide_id = @video1.id
+    @video1_1.position = 1
+    @video1_1.media_element_id = 2
+    assert_obj_saved @video1_1
+    @video1 = Slide.find(@video1.id)
+    resp = @video1.media_elements_at
+    assert_not_nil resp
+    assert_equal Video, resp.class
+    assert_equal 2, resp.id
+    # 8 - video2
+    assert MediaElementsSlide.where(:slide_id => @video2.id).empty?
+    assert_nil @video2.media_elements_at
+    @video2_1 = MediaElementsSlide.new
+    @video2_1.slide_id = @video2.id
+    @video2_1.position = 1
+    @video2_1.media_element_id = 2
+    assert_obj_saved @video2_1
+    @video2 = Slide.find(@video2.id)
+    resp = @video2.media_elements_at
+    assert_not_nil resp
+    assert_equal Video, resp.class
+    assert_equal 2, resp.id
   end
   
 end
