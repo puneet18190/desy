@@ -408,6 +408,7 @@ class Lesson < ActiveRecord::Base
       lesson.user_id = an_user_id
       lesson.parent_id = self.id
       lesson.tags = self.tags
+      lesson.validating_in_form = true
       if !lesson.save
         errors.add(:base, :problem_copying)
         raise ActiveRecord::Rollback
