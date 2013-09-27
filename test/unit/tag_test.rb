@@ -22,7 +22,7 @@ class TagTest < ActiveSupport::TestCase
     me[4].save_tags = true
     assert_obj_saved me[4]
     me[5].tags = 'paniere, pagnotta, pane, pagliaccio'
-    me[6].save_tags = true
+    me[5].save_tags = true
     assert_obj_saved me[5]
     le = Lesson.all
     le[0].tags = 'paniere, pane, cagnaccio, pagliaccio'
