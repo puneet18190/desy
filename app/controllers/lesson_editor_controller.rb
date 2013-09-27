@@ -49,9 +49,9 @@ class LessonEditorController < ApplicationController
       redirect_to '/dashboard'
       return
     else
-      @slides = Slide.preload(:lesson, :media_elements_slides, {:media_elements_slides => :media_element}).where(:lesson_id => @lesson_id).order(:position)
+      @slides = Slide.preload(:lesson, :media_elements_slides, {:media_elements_slides => :media_element}, :documents_slides).where(:lesson_id => @lesson_id).order(:position)
       @max_slides = @lesson.reached_the_maximum_of_slides?
-      @documents_slides = [[], ((@slides.length > 1) ? DocumentsSlide.where(:slide_id => @slides[1].id) : [])]
+      @documents_slides = [[], ((@slides.length > 1) ? @slides[1].documents_slides : [])]
     end
   end
   
