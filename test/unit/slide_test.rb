@@ -378,6 +378,21 @@ class SlideTest < ActiveSupport::TestCase
     assert_equal @image4_3.id, resp3.id
     assert_equal MediaElementsSlide, resp4.class
     assert_equal @image4_4.id, resp4.id
+    # remove position 2
+    @image4_2.destroy
+    assert_nil MediaElementsSlide.find_by_id(@image4_2.id)
+    @image4 = Slide.find(@image4.id)
+    resp1, resp2, resp3, resp4 = @image4.media_elements_at
+    assert_not_nil resp1
+    assert_nil resp2
+    assert_not_nil resp3
+    assert_not_nil resp4
+    assert_equal MediaElementsSlide, resp1.class
+    assert_equal @image4_1.id, resp1.id
+    assert_equal MediaElementsSlide, resp3.class
+    assert_equal @image4_3.id, resp3.id
+    assert_equal MediaElementsSlide, resp4.class
+    assert_equal @image4_4.id, resp4.id
   end
   
 end
