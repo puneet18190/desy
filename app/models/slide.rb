@@ -419,8 +419,10 @@ class Slide < ActiveRecord::Base
       when COVER, IMAGE1, IMAGE3
         self.media_elements_slides.first
       when IMAGE2
-        resp = self.media_elements_slides
-        resp.reverse! if (!resp.first.nil? && resp.first.position != 1) || (!resp.last.nil? && resp.last.position != 2)
+        resp = [nil, nil]
+        mes = self.media_elements_slides
+        resp[mes[0].position - 1] = mes[0] if !mes[0].nil?
+        resp[mes[1].position - 1] = mes[1] if !mes[1].nil?
         resp
       when IMAGE4
         resp = [nil, nil, nil, nil]
