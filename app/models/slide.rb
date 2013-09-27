@@ -411,6 +411,14 @@ class Slide < ActiveRecord::Base
     resp
   end
   
+  # === Description
+  #
+  # Extracts the media elements optimizing the number of queries
+  #
+  # === Returns
+  #
+  # Either a MediaElementsSlide (if it contains an image), or a MediaElement (if it contains an audio or a video), or an array (if the slide accepts more than one media element)
+  #
   def media_elements_at
     case self.kind
       when AUDIO, VIDEO1, VIDEO2
