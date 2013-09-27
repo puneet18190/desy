@@ -257,6 +257,7 @@ class SlideTest < ActiveSupport::TestCase
     resp1, resp2 = @image2.media_elements_at
     assert_nil resp1
     assert_nil resp2
+    # position 2
     @image2_2 = MediaElementsSlide.new
     @image2_2.slide_id = @image2.id
     @image2_2.position = 2
@@ -269,6 +270,7 @@ class SlideTest < ActiveSupport::TestCase
     assert_not_nil resp2
     assert_equal MediaElementsSlide, resp2.class
     assert_equal @image2_2.id, resp2.id
+    # position 1
     @image2_1 = MediaElementsSlide.new
     @image2_1.slide_id = @image2.id
     @image2_1.position = 1
@@ -297,6 +299,85 @@ class SlideTest < ActiveSupport::TestCase
     assert_not_nil resp
     assert_equal MediaElementsSlide, resp.class
     assert_equal @image3_1.id, resp.id
+    # 5 - image4
+    assert MediaElementsSlide.where(:slide_id => @image4.id).empty?
+    resp1, resp2, resp3, resp4 = @image4.media_elements_at
+    assert_nil resp1
+    assert_nil resp2
+    assert_nil resp3
+    assert_nil resp4
+    # position 2
+    @image4_2 = MediaElementsSlide.new
+    @image4_2.slide_id = @image4.id
+    @image4_2.position = 2
+    @image4_2.alignment = 0
+    @image4_2.media_element_id = 6
+    assert_obj_saved @image4_2
+    @image4 = Slide.find(@image4.id)
+    resp1, resp2, resp3, resp4 = @image4.media_elements_at
+    assert_nil resp1
+    assert_not_nil resp2
+    assert_nil resp3
+    assert_nil resp4
+    assert_equal MediaElementsSlide, resp2.class
+    assert_equal @image4_2.id, resp2.id
+    # position 1
+    @image4_1 = MediaElementsSlide.new
+    @image4_1.slide_id = @image4.id
+    @image4_1.position = 1
+    @image4_1.alignment = 0
+    @image4_1.media_element_id = 6
+    assert_obj_saved @image4_1
+    @image4 = Slide.find(@image4.id)
+    resp1, resp2, resp3, resp4 = @image4.media_elements_at
+    assert_not_nil resp1
+    assert_not_nil resp2
+    assert_nil resp3
+    assert_nil resp4
+    assert_equal MediaElementsSlide, resp1.class
+    assert_equal @image4_1.id, resp1.id
+    assert_equal MediaElementsSlide, resp2.class
+    assert_equal @image4_2.id, resp2.id
+    # position 4
+    @image4_4 = MediaElementsSlide.new
+    @image4_4.slide_id = @image4.id
+    @image4_4.position = 4
+    @image4_4.alignment = 0
+    @image4_4.media_element_id = 6
+    assert_obj_saved @image4_4
+    @image4 = Slide.find(@image4.id)
+    resp1, resp2, resp3, resp4 = @image4.media_elements_at
+    assert_not_nil resp1
+    assert_not_nil resp2
+    assert_nil resp3
+    assert_not_nil resp4
+    assert_equal MediaElementsSlide, resp1.class
+    assert_equal @image4_1.id, resp1.id
+    assert_equal MediaElementsSlide, resp2.class
+    assert_equal @image4_2.id, resp2.id
+    assert_equal MediaElementsSlide, resp4.class
+    assert_equal @image4_4.id, resp4.id
+    # position 3
+    @image4_3 = MediaElementsSlide.new
+    @image4_3.slide_id = @image4.id
+    @image4_3.position = 3
+    @image4_3.alignment = 0
+    @image4_3.media_element_id = 6
+    assert_obj_saved @image4_3
+    @image4 = Slide.find(@image4.id)
+    resp1, resp2, resp3, resp4 = @image4.media_elements_at
+    assert_not_nil resp1
+    assert_not_nil resp2
+    assert_not_nil resp3
+    assert_not_nil resp4
+    assert_equal MediaElementsSlide, resp1.class
+    assert_equal @image4_1.id, resp1.id
+    assert_equal MediaElementsSlide, resp2.class
+    assert_equal @image4_2.id, resp2.id
+    assert_equal MediaElementsSlide, resp3.class
+    assert_equal @image4_3.id, resp3.id
+    assert_equal MediaElementsSlide, resp4.class
+    assert_equal @image4_4.id, resp4.id
   end
   
 end
