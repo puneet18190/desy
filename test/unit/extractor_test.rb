@@ -159,66 +159,66 @@ class ExtractorTest < ActiveSupport::TestCase
     }
     me1 = MediaElement.find 1
     me1.tags = tag_map[0]
-    me1.save_slides = true
+    me1.save_tags = true
     assert_obj_saved me1
     me2 = MediaElement.find 2
     me2.tags = tag_map[1]
-    me2.save_slides = true
+    me2.save_tags = true
     assert_obj_saved me2
     me3 = MediaElement.find 3
     me3.tags = tag_map[2]
-    me3.save_slides = true
+    me3.save_tags = true
     assert_obj_saved me3
     me4 = MediaElement.find 4
     me4.tags = tag_map[3]
-    me4.save_slides = true
+    me4.save_tags = true
     assert_obj_saved me4
     me5 = MediaElement.find 5
     me5.tags = tag_map[4]
-    me5.save_slides = true
+    me5.save_tags = true
     assert_obj_saved me5
     me6 = MediaElement.find 6
     me6.tags = tag_map[5]
-    me6.save_slides = true
+    me6.save_tags = true
     assert_obj_saved me6
     media_video = {:mp4 => Rails.root.join('test/samples/one.mp4').to_s, :webm => Rails.root.join('test/samples/one.webm').to_s, :filename => 'video_test'}
     media_audio = {:m4a => Rails.root.join('test/samples/one.m4a').to_s, :ogg => Rails.root.join('test/samples/one.ogg').to_s, :filename => 'audio_test'}
     media_image = File.open(Rails.root.join('test/samples/one.jpg'))
     @el1 = Video.new :description => 'desc1', :title => 'titl1', :media => media_video, :tags => tag_map[8]
     @el1.user_id = 1
-    @el1.save_slides = true
+    @el1.save_tags = true
     assert_obj_saved @el1
     @el2 = Video.new :description => 'desc2', :title => 'titl2', :media => media_video, :tags => tag_map[9]
     @el2.user_id = 1
-    @el2.save_slides = true
+    @el2.save_tags = true
     assert_obj_saved @el2
     @el3 = Audio.new :description => 'desc3', :title => 'titl3', :media => media_audio, :tags => tag_map[0]
     @el3.user_id = 1
-    @el3.save_slides = true
+    @el3.save_tags = true
     assert_obj_saved @el3
     @el4 = Audio.new :description => 'desc4', :title => 'titl4', :media => media_audio, :tags => tag_map[6]
     @el4.user_id = 1
-    @el4.save_slides = true
+    @el4.save_tags = true
     assert_obj_saved @el4
     @el5 = Image.new :description => 'desc5', :title => 'titl5', :media => media_image, :tags => tag_map[1]
     @el5.user_id = 1
-    @el5.save_slides = true
+    @el5.save_tags = true
     assert_obj_saved @el5
     @el6 = Image.new :description => 'desc6', :title => 'titl6', :media => media_image, :tags => tag_map[7]
     @el6.user_id = 1
-    @el6.save_slides = true
+    @el6.save_tags = true
     assert_obj_saved @el6
     @el7 = Image.new :description => 'desc7', :title => 'titl7', :media => media_image, :tags => tag_map[2]
     @el7.user_id = 1
-    @el7.save_slides = true
+    @el7.save_tags = true
     assert_obj_saved @el7
     le1 = Lesson.find 1
     le1.tags = tag_map[3]
-    le1.save_slides = true
+    le1.save_tags = true
     assert_obj_saved le1
     le2 = Lesson.find 2
     le2.tags = tag_map[4]
-    le2.save_slides = true
+    le2.save_tags = true
     assert_obj_saved le2
     @les1 = @user1.create_lesson('title1', 'desc1', 1, tag_map[8])
     @les2 = @user1.create_lesson('title2', 'desc2', 2, tag_map[9])
@@ -555,7 +555,7 @@ class ExtractorTest < ActiveSupport::TestCase
     Tag.delete_all
     MediaElement.where(:id => [1, 5, @el4.id, @el6.id]).each do |me|
       me.tags = 'cane, gatto, uovo sodo, mandarino'
-      me.save_slides = true
+      me.save_tags = true
       assert_obj_saved me
     end
     x = MediaElementsSlide.new
@@ -605,7 +605,7 @@ class ExtractorTest < ActiveSupport::TestCase
     Tag.delete_all
     Lesson.where(:id => [1, 2, @les2.id, @les5.id, @les6.id]).each do |l|
       l.tags = 'cane, gatto, uovo sodo, mandarino'
-      l.save_slides = true
+      l.save_tags = true
       assert_obj_saved l
     end
     assert Lesson.find(1).publish
@@ -663,7 +663,7 @@ class ExtractorTest < ActiveSupport::TestCase
     # third part, notifications_bookmarks
     Lesson.where(:id => [@les1.id, @les3.id, @les4.id, @les7.id, @les8.id, @les9.id]).each do |l|
       l.tags = 'cane, gatto, uovo sodo, mandarino'
-      l.save_slides = true
+      l.save_tags = true
       assert_obj_saved l
     end
     resp = @user1.own_lessons(1, 20)
@@ -1063,7 +1063,7 @@ class ExtractorTest < ActiveSupport::TestCase
     # fourth case - filters and orders on the last search
     lees2 = Lesson.find 2
     lees2.tags = '個名, Tonio de curtis, acquazzone, zzzzaggiunta a caso'
-    lees2.save_slides = true
+    lees2.save_tags = true
     assert_obj_saved lees2
     assert_equal 37, Tag.count
     assert_equal 165, Tagging.count
@@ -1303,11 +1303,11 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_obj_saved @el6
     mee3 = MediaElement.find 3
     mee3.tags = 'torriere architettoniche, mare, petrolio, sostenibilità, di immondizia, tonquinamento atmosferico, tonquinamento, 加條聖, 條聖'
-    mee3.save_slides = true
+    mee3.save_tags = true
     assert_obj_saved mee3
     @el2 = MediaElement.find @el2.id
     @el2.tags = 'di escrementi di usignolo, tonquinamento atmosferico, acquario, 拿, walter nudo, mare, tonquinamento, 加條聖, 條聖'
-    @el2.save_slides = true
+    @el2.save_tags = true
     assert_obj_saved @el2
     MediaElement.where(:id => @el2.id).update_all(:is_public => false)
     @el2.media = {:mp4 => Rails.root.join("test/samples/one.mp4").to_s, :webm => Rails.root.join("test/samples/one.webm").to_s, :filename => "video_test"}
