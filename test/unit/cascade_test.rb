@@ -53,14 +53,14 @@ class CascadeTest < ActiveSupport::TestCase
     @copied_lesson.user_id = 1
     @copied_lesson.parent_id = 2
     @copied_lesson.tags = 'a, b, c, topolino'
-    @copied_lesson.validating_in_form = true
+    @copied_lesson.save_slides = true
     assert_obj_saved @copied_lesson
     assert_nil Tag.find_by_word('pippo')
     assert_nil Tag.find_by_word('pluto')
     assert_nil Tag.find_by_word('paperino')
     assert_not_nil Tag.find_by_word('topolino')
     @lesson.tags = 'pippo, pluto, paperino, topolino'
-    @lesson.validating_in_form = true
+    @lesson.save_slides = true
     assert_obj_saved @lesson
     assert_not_nil Tag.find_by_word('topolino')
     assert_not_nil Tag.find_by_word('pippo')
