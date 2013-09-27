@@ -1,4 +1,4 @@
-Fri, 27 Sep 2013 11:21:08 +0200
+Fri, 27 Sep 2013 11:42:39 +0200
 app/controllers/admin/dashboard_controller.rb	Wed, 18 Sep 2013 16:27:46 +0200
 app/controllers/admin/documents_controller.rb	Thu, 19 Sep 2013 11:28:33 +0200
 app/controllers/admin/lessons_controller.rb	Mon, 23 Sep 2013 16:31:38 +0200
@@ -14,7 +14,7 @@ app/controllers/dashboard_controller.rb	Fri, 20 Sep 2013 17:16:51 +0200
 app/controllers/documents_controller.rb	Mon, 23 Sep 2013 11:18:31 +0200
 app/controllers/galleries_controller.rb	Tue, 24 Sep 2013 12:17:23 +0200
 app/controllers/image_editor_controller.rb	Mon, 23 Sep 2013 11:22:12 +0200
-app/controllers/lesson_editor_controller.rb	Thu, 26 Sep 2013 12:45:35 +0200
+app/controllers/lesson_editor_controller.rb	Fri, 27 Sep 2013 11:31:12 +0200
 app/controllers/lesson_export_controller.rb	Thu, 05 Sep 2013 17:44:05 +0200
 app/controllers/lesson_viewer_controller.rb	Wed, 04 Sep 2013 12:42:20 +0200
 app/controllers/lessons_controller.rb	Mon, 23 Sep 2013 14:55:11 +0200
@@ -40,12 +40,12 @@ app/models/bookmark.rb	Tue, 30 Apr 2013 17:43:55 +0200
 app/models/document.rb	Mon, 23 Sep 2013 12:04:09 +0200
 app/models/documents_slide.rb	Thu, 08 Aug 2013 15:37:52 +0200
 app/models/image.rb	Thu, 08 Aug 2013 15:37:52 +0200
-app/models/lesson.rb	Mon, 23 Sep 2013 15:41:10 +0200
+app/models/lesson.rb	Fri, 27 Sep 2013 11:42:33 +0200
 app/models/like.rb	Tue, 30 Apr 2013 17:43:55 +0200
 app/models/location.rb	Wed, 08 May 2013 16:04:24 +0200
 app/models/mailing_list_address.rb	Tue, 30 Apr 2013 17:43:55 +0200
 app/models/mailing_list_group.rb	Mon, 05 Aug 2013 12:37:58 +0200
-app/models/media_element.rb	Mon, 23 Sep 2013 12:46:00 +0200
+app/models/media_element.rb	Fri, 27 Sep 2013 11:42:00 +0200
 app/models/media_elements_slide.rb	Tue, 30 Apr 2013 17:43:55 +0200
 app/models/notification.rb	Thu, 08 Aug 2013 15:37:52 +0200
 app/models/report.rb	Tue, 30 Apr 2013 17:43:55 +0200

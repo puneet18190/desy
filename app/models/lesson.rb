@@ -296,6 +296,7 @@ class Lesson < ActiveRecord::Base
   # === Args
   #
   # * *an_user_id*: the id of the user who is asking permission to see the lesson.
+  # * *selects*: optionally, a hash of symbols of methods that optimize the extraction of records in other tables, necessary to set the status. These symbols are passed to Lesson#bookmarked?, Lesson#in_virtual_classroom? and Lesson#liked?
   #
   def set_status(an_user_id, selects={})
     return if self.new_record?
@@ -357,6 +358,7 @@ class Lesson < ActiveRecord::Base
   # === Args
   #
   # * *an_user_id*: the id of the User
+  # * *select*: a symbol representing a method that optimizes the extraction of bookmarks (if it's passed it means that the record has been optimized)
   #
   # === Returns
   #
@@ -741,6 +743,7 @@ class Lesson < ActiveRecord::Base
   # === Args
   #
   # * *an_user_id*: the id of the User
+  # * *select*: a symbol representing a method that optimizes the extraction of virtual classroom lessons (if it's passed it means that the record has been optimized)
   #
   # === Returns
   #
@@ -759,6 +762,7 @@ class Lesson < ActiveRecord::Base
   # === Args
   #
   # * *an_user_id*: the id of the User
+  # * *select*: a symbol representing a method that optimizes the extraction of likes (if it's passed it means that the record has been optimized)
   #
   # === Returns
   #
