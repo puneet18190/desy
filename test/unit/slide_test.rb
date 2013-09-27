@@ -204,4 +204,26 @@ class SlideTest < ActiveSupport::TestCase
     assert_obj_saved s
   end
   
+  test 'media_elements_at' do
+    @lesson = Lesson.find(2)
+    @cover = @lesson.cover
+    @audio = Slide.where(:lesson_id => @lesson.id, :position => 2).first
+    assert_equal 'audio', @audio.kind
+    @image1 = @lesson.add_slide 'image1', 3
+    assert_not_nil @image1
+    @image2 = @lesson.add_slide 'image2', 4
+    assert_not_nil @image2
+    @image3 = @lesson.add_slide 'image3', 5
+    assert_not_nil @image3
+    @image4 = @lesson.add_slide 'image4', 6
+    assert_not_nil @image4
+    @video1 = Slide.where(:lesson_id => @lesson.id, :position => 7).first
+    assert_equal 'video1', @video1.kind
+    @video2 = @lesson.add_slide 'video2', 8
+    assert_not_nil @video2
+    @lesson = Lesson.find(@lesson.id)
+    assert_equal 8, @lesson.slides.length
+    # finished preliminar phase, I start testing the method now
+  end
+  
 end
