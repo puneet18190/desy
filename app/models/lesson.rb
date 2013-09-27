@@ -808,7 +808,7 @@ class Lesson < ActiveRecord::Base
   
   # Callback that updates the taggings associated to the lesson. If the corresponding Tag doesn't exist yet, it's created
   def update_or_create_tags
-    return true unless @inner_tags
+    return true if @inner_tags.nil? || !@validating_in_form
     words = []
     @inner_tags.each do |t|
       raise ActiveRecord::Rollback if t.new_record? && !t.save
