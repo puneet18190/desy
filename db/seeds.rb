@@ -238,6 +238,7 @@ class Seeds
       record.media                   = media(record, row)
       record.skip_public_validations = true
       record.tags                    = tags(record.id)
+      record.save_slides      = true
       record.save!
     end
   end
@@ -249,6 +250,7 @@ class Seeds
       record.skip_public_validations = true
       record.skip_cover_creation     = true
       record.tags                    = tags(record.id)
+      record.save_slides      = true
       record.save!
     end
   end

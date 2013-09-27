@@ -973,7 +973,7 @@ class User < ActiveRecord::Base
       lesson.copied_not_modified = false
       lesson.user_id = self.id
       lesson.tags = tags
-      lesson.validating_in_form = true
+      lesson.save_slides = true
       lesson.valid?
       lesson.errors.add(:subject_id, :is_not_your_subject)
       return lesson.errors
@@ -982,7 +982,7 @@ class User < ActiveRecord::Base
     lesson.copied_not_modified = false
     lesson.user_id = self.id
     lesson.tags = tags
-    lesson.validating_in_form = true
+    lesson.save_slides = true
     return lesson.save ? lesson : lesson.errors
   end
   

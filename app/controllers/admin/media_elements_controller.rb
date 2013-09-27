@@ -128,7 +128,7 @@ class Admin::MediaElementsController < AdminController
       me.description = params[:description_placeholder].blank? ? params[:description] : ''
       me.tags = params[:tags_placeholder].blank? ? params[:tags] : ''
       me.user_id = current_user.id
-      me.validating_in_form = true
+      me.save_slides = true
       @saved = me.save
       if !@saved
         fields = me.errors.messages.keys
@@ -173,7 +173,7 @@ class Admin::MediaElementsController < AdminController
       @media_element.title = params[:title]
       @media_element.description = params[:description]
       @media_element.tags = params[:tags]
-      @media_element.validating_in_form = true
+      @media_element.save_slides = true
       if params[:is_public]
         @media_element.is_public = true
         @media_element.publication_date = Time.zone.now

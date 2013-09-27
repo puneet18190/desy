@@ -47,7 +47,7 @@ require 'lessons_media_elements_shared'
 # * *if* *new* *record* +is_public+ must be false
 # * *if* *public* +copied_not_modified+ must be false. <b>This validation is not fired if skip_public_validations is +true+</b>
 # * *modifications* *not* *available* for the +user_id+, +parent_id+, +token+
-# * *minimum* *number* of tags (configurated in settings.yml), <b>only if the attribute validating_in_form is set as +true+</b>
+# * *minimum* *number* of tags (configurated in settings.yml), <b>only if the attribute save_slides is set as +true+</b>
 #
 # == Callbacks
 #
@@ -85,7 +85,7 @@ class Lesson < ActiveRecord::Base
   # True if in the front end the element contains the icon to send a report
   attr_reader :is_reportable
   # Set to true if it's necessary to validate the number of tags (typically this happens in the public front end)
-  attr_writer :validating_in_form
+  attr_writer :save_slides
   # Set to true if it's necessary to skip cover creation (used in seeding)
   attr_accessor :skip_cover_creation
   # Set to true if it's necessary to skip public validations (used in seeding)
@@ -408,7 +408,7 @@ class Lesson < ActiveRecord::Base
       lesson.user_id = an_user_id
       lesson.parent_id = self.id
       lesson.tags = self.tags
-      lesson.validating_in_form = true
+      lesson.save_slides = true
       if !lesson.save
         errors.add(:base, :problem_copying)
         raise ActiveRecord::Rollback
@@ -777,10 +777,10 @@ class Lesson < ActiveRecord::Base
   
   private
   
-  # Validates that the tags are at least the number configured in settings.yml, unless the attribute +validating_in_form+ is false
+  # Validates that the tags are at least the number configured in settings.yml, unless the attribute +save_slides+ is false
   def validate_tags_length
-    errors.add(:tags, :are_not_enough) if @validating_in_form && @inner_tags.length < SETTINGS['min_tags_for_item']
-    errors.add(:tags, :too_many) if @validating_in_form && @inner_tags.length > SETTINGS['max_tags_for_item']
+    errors.add(:tags, :are_not_enough) if @save_slides && @inner_tags.length < SETTINGS['min_tags_for_item']
+    errors.add(:tags, :too_many) if @save_slides && @inner_tags.length > SETTINGS['max_tags_for_item']
   end
   
   # Extracts the corresponding button depending on the fact that the lesson is in the Virtual Classroom or not
@@ -809,7 +809,7 @@ class Lesson < ActiveRecord::Base
   
   # Callback that updates the taggings associated to the lesson. If the corresponding Tag doesn't exist yet, it's created
   def update_or_create_tags
-    return true if @inner_tags.nil? || !@validating_in_form
+    return true if @inner_tags.nil? || !@save_slides
     words = []
     @inner_tags.each do |t|
       raise ActiveRecord::Rollback if t.new_record? && !t.save
