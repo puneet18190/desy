@@ -944,11 +944,7 @@ class User < ActiveRecord::Base
   # An array of ordered objects of type Slide (they correspond to the slides of the lessons in the playlist)
   #
   def playlist_for_viewer
-    resp = []
-    VirtualClassroomLesson.includes(:lesson).where('user_id = ? AND position IS NOT NULL', self.id).order(:position).each do |vc|
-      resp += vc.lesson.slides.order(:position)
-    end
-    resp
+    Slide.preload(:media_elements_slides, {:media_elements_slides => :media_element}).joins(:lesson, {:lesson => :virtual_classroom_lessons}).where('virtual_classroom_lessons.user_id = ? AND virtual_classroom_lessons.lesson_id = lessons.id AND virtual_classroom_lessons.position IS NOT NULL', self.id).order('virtual_classroom_lessons.position ASC, slides.position ASC')
   end
   
   # === Description

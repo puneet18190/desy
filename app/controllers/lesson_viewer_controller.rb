@@ -57,6 +57,12 @@ class LessonViewerController < ApplicationController
     if @vc_lessons.length == 0
       redirect_to '/dashboard'
       return
+    else
+      covers = Slide.where(:lesson_id => @vc_lessons.pluck(:lesson_id), :kind => 'cover').preload(:media_elements_slides, {:media_elements_slides => :media_element})
+      @covers = {}
+      covers.each do |cov|
+        @covers[cov.lesson_id] = cov
+      end
     end
   end
   
