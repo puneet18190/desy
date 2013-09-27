@@ -393,6 +393,20 @@ class SlideTest < ActiveSupport::TestCase
     assert_equal @image4_3.id, resp3.id
     assert_equal MediaElementsSlide, resp4.class
     assert_equal @image4_4.id, resp4.id
+    # 6 - audio
+    MediaElementsSlide.where(:slide_id => @audio.id).first.destroy
+    assert MediaElementsSlide.where(:slide_id => @audio.id).empty?
+    assert_nil @audio.media_elements_at
+    @audio_1 = MediaElementsSlide.new
+    @audio_1.slide_id = @audio.id
+    @audio_1.position = 1
+    @audio_1.media_element_id = 3
+    assert_obj_saved @audio_1
+    @audio = Slide.find(@audio.id)
+    resp = @audio.media_elements_at
+    assert_not_nil resp
+    assert_equal Audio, resp.class
+    assert_equal 3, resp.id
   end
   
 end
