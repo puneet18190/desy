@@ -119,7 +119,7 @@ class LessonEditorController < ApplicationController
       @lesson.description =  params[:description]
       @lesson.subject_id = params[:lesson_subject]
       @lesson.tags = params[:tags_value]
-      @lesson.save_slides = true
+      @lesson.save_tags = true
       if !@lesson.save
         @errors = convert_item_error_messages @lesson.errors
         @error_fields = @lesson.errors.messages.keys

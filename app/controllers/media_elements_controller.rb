@@ -132,7 +132,7 @@ class MediaElementsController < ApplicationController
     record.description = params[:description_placeholder] != '0' ? '' : params[:description]
     record.tags = params[:tags_value]
     record.user_id = current_user.id
-    record.save_slides = true
+    record.save_tags = true
     if record.save
       Notification.send_to current_user.id, t("notifications.#{record.class.to_s.downcase}.upload.started", item: record.title) if !record.image?
     else
@@ -275,7 +275,7 @@ class MediaElementsController < ApplicationController
       @media_element.title = params[:title]
       @media_element.description = params[:description]
       @media_element.tags = params[:tags_value]
-      @media_element.save_slides = true
+      @media_element.save_tags = true
       if !@media_element.save
         @errors = convert_item_error_messages @media_element.errors
         @error_fields = @media_element.errors.messages.keys
