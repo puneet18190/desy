@@ -7,21 +7,29 @@ class TagTest < ActiveSupport::TestCase
   def load_tags
     me = MediaElement.all
     me[0].tags = 'pane, pagliaccio, cane, cagnaccio'
+    me[0].save_tags = true
     assert_obj_saved me[0]
     me[1].tags = 'paglierino, pappardelle, cane, cagnaccio'
+    me[1].save_tags = true
     assert_obj_saved me[1]
     me[2].tags = 'pappardelle, pagliaccio, cagnolino, candreva'
+    me[2].save_tags = true
     assert_obj_saved me[2]
     me[3].tags = 'pane, paniere, paglierino, pagnotta'
+    me[3].save_tags = true
     assert_obj_saved me[3]
     me[4].tags = 'cagnolino, cagnetto, cane, cagnaccio'
+    me[4].save_tags = true
     assert_obj_saved me[4]
     me[5].tags = 'paniere, pagnotta, pane, pagliaccio'
+    me[6].save_tags = true
     assert_obj_saved me[5]
     le = Lesson.all
     le[0].tags = 'paniere, pane, cagnaccio, pagliaccio'
+    le[0].save_tags = true
     assert_obj_saved le[0]
     le[1].tags = 'pane e salame, pagnotta, pane, cagnolino, pa, ca'
+    le[1].save_tags = true
     assert_obj_saved le[1]
     assert_equal 14, Tag.count
     tag_ca = Tag.find_by_word 'ca'
@@ -101,6 +109,7 @@ class TagTest < ActiveSupport::TestCase
       media = {:mp4 => Rails.root.join('test/samples/one.mp4').to_s, :webm => Rails.root.join('test/samples/one.webm').to_s, :filename => 'video_test'}
       v = Video.new :description => l.description, :title => l.title, :media => media, :tags => l.tags
       v.user_id = 1
+      v.save_tags = true
       assert_obj_saved v
     end
     assert_tags_ordered user.search_lessons('pa', 1, 20)[:tags], ['pa', 'pane', 'pagliaccio', 'pagnotta', 'paniere', 'paglierino', 'pappardelle', 'pane e salame']
