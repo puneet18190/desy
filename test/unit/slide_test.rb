@@ -224,6 +224,20 @@ class SlideTest < ActiveSupport::TestCase
     @lesson = Lesson.find(@lesson.id)
     assert_equal 8, @lesson.slides.length
     # finished preliminar phase, I start testing the method now
+    # 1 - cover
+    assert MediaElementsSlide.where(:slide_id => @cover.id).empty?
+    assert_nil @cover.media_elements_at
+    @cover_1 = MediaElementsSlide.new
+    @cover_1.slide_id = @cover.id
+    @cover_1.position = 1
+    @cover_1.alignment = 0
+    @cover_1.media_element_id = 6
+    assert_obj_saved @cover_1
+    @cover = Slide.find(@cover.id)
+    resp = @cover.media_elements_at
+    assert_not_nil resp
+    assert_equal MediaElementsSlide, resp.class
+    assert_equal @cover_1.id, resp.id
   end
   
 end
