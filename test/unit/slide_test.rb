@@ -238,6 +238,20 @@ class SlideTest < ActiveSupport::TestCase
     assert_not_nil resp
     assert_equal MediaElementsSlide, resp.class
     assert_equal @cover_1.id, resp.id
+    # 2 - image1
+    assert MediaElementsSlide.where(:slide_id => @image1.id).empty?
+    assert_nil @image1.media_elements_at
+    @image1_1 = MediaElementsSlide.new
+    @image1_1.slide_id = @image1.id
+    @image1_1.position = 1
+    @image1_1.alignment = 0
+    @image1_1.media_element_id = 6
+    assert_obj_saved @image1_1
+    @image1 = Slide.find(@image1.id)
+    resp = @image1.media_elements_at
+    assert_not_nil resp
+    assert_equal MediaElementsSlide, resp.class
+    assert_equal @image1_1.id, resp.id
   end
   
 end
