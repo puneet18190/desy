@@ -1060,6 +1060,7 @@ class ExtractorTest < ActiveSupport::TestCase
     # fourth case - filters and orders on the last search
     lees2 = Lesson.find 2
     lees2.tags = '個名, Tonio de curtis, acquazzone, zzzzaggiunta a caso'
+    lees2.validating_in_form = true
     assert_obj_saved lees2
     assert_equal 37, Tag.count
     assert_equal 165, Tagging.count
@@ -1299,9 +1300,11 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_obj_saved @el6
     mee3 = MediaElement.find 3
     mee3.tags = 'torriere architettoniche, mare, petrolio, sostenibilità, di immondizia, tonquinamento atmosferico, tonquinamento, 加條聖, 條聖'
+    mee3.validating_in_form = true
     assert_obj_saved mee3
     @el2 = MediaElement.find @el2.id
     @el2.tags = 'di escrementi di usignolo, tonquinamento atmosferico, acquario, 拿, walter nudo, mare, tonquinamento, 加條聖, 條聖'
+    @el2.validating_in_form = true
     assert_obj_saved @el2
     MediaElement.where(:id => @el2.id).update_all(:is_public => false)
     @el2.media = {:mp4 => Rails.root.join("test/samples/one.mp4").to_s, :webm => Rails.root.join("test/samples/one.webm").to_s, :filename => "video_test"}
