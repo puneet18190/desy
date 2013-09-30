@@ -53,7 +53,7 @@ class LessonViewerController < ApplicationController
     @with_exit = false
     @back = '/virtual_classroom'
     @slides = current_user.playlist_for_viewer
-    @vc_lessons = current_user.playlist
+    @vc_lessons = current_user.playlist(true)
     if @vc_lessons.length == 0
       redirect_to '/dashboard'
       return

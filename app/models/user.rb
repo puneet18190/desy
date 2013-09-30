@@ -931,8 +931,9 @@ class User < ActiveRecord::Base
   #
   # An array of objects of type VirtualClassroomLesson
   #
-  def playlist
-    VirtualClassroomLesson.preload(:lesson, {:lesson => :subject}, {:lesson => :user}).where('user_id = ? AND position IS NOT NULL', self.id).order(:position)
+  def playlist(from_viewer=false)
+    resp = from_viewer ? VirtualClassroomLesson.preload(:lesson, {:lesson => :subject}, {:lesson => :user}) : VirtualClassroomLesson.preload(:lesson, {:lesson => :subject})
+    resp.where('user_id = ? AND position IS NOT NULL', self.id).order(:position)
   end
   
   # === Description
