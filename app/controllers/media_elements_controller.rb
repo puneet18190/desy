@@ -32,6 +32,7 @@ class MediaElementsController < ApplicationController
   before_filter :initialize_media_element_destination, :only => [:add, :remove, :destroy, :destroy_fake]
   
   if SETTINGS['media_test']
+    
     skip_before_filter :authenticate, :initialize_location, :initialize_players_counter, :only => [:videos_test, :audios_test]
     before_filter :admin_authenticate, :only => [:videos_test, :audios_test]
     layout false, :only => [:videos_test, :audios_test]
