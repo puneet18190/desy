@@ -927,6 +927,10 @@ class User < ActiveRecord::Base
   #
   # Returns the playlist of the user's Virtual Classroom
   #
+  # === Args
+  #
+  # * *from_viewer*: true if the method needs to preload users together with the lesson
+  #
   # === Returns
   #
   # An array of objects of type VirtualClassroomLesson
@@ -945,7 +949,7 @@ class User < ActiveRecord::Base
   # An array of ordered objects of type Slide (they correspond to the slides of the lessons in the playlist)
   #
   def playlist_for_viewer
-    Slide.preload(:media_elements_slides, {:media_elements_slides => :media_element}).joins(:lesson, {:lesson => :virtual_classroom_lessons}).where('virtual_classroom_lessons.user_id = ? AND virtual_classroom_lessons.lesson_id = lessons.id AND virtual_classroom_lessons.position IS NOT NULL', self.id).order('virtual_classroom_lessons.position ASC, slides.position ASC')
+    Slide.preload(:documents_slides, {:documents_slides => :document}, :lesson, {:lesson => :user}, {:lesson => :subject}, :media_elements_slides, {:media_elements_slides => :media_element}).joins(:lesson, {:lesson => :virtual_classroom_lessons}).where('virtual_classroom_lessons.user_id = ? AND virtual_classroom_lessons.lesson_id = lessons.id AND virtual_classroom_lessons.position IS NOT NULL', self.id).order('virtual_classroom_lessons.position ASC, slides.position ASC')
   end
   
   # === Description
