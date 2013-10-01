@@ -150,4 +150,40 @@ class VirtualClassroomLessonTest < ActiveSupport::TestCase
     assert_obj_saved vc
   end
   
+  test 'playlist_for_viewer' do
+    @user1 = User.find(1)
+    @les1 = Lesson.find(1)
+    @les2 = Lesson.find(2)
+    @les3 = @user1.create_lesson('title3', 'desc3', 3, 'cane, gatto, topo, aragosta')
+    @les4 = @user1.create_lesson('title4', 'desc4', 3, 'cane, gatto, topo, aragosta')
+    @les5 = @user1.create_lesson('title5', 'desc5', 3, 'cane, gatto, topo, aragosta')
+    @les6 = @user1.create_lesson('title6', 'desc6', 3, 'cane, gatto, topo, aragosta')
+    @les7 = @user1.create_lesson('title7', 'desc7', 3, 'cane, gatto, topo, aragosta')
+    @les8 = @user1.create_lesson('title8', 'desc8', 3, 'cane, gatto, topo, aragosta')
+    @les9 = @user1.create_lesson('title9', 'desc9', 3, 'cane, gatto, topo, aragosta')
+    assert @les3.kind_of?(Lesson)
+    assert @les4.kind_of?(Lesson)
+    assert @les5.kind_of?(Lesson)
+    assert @les6.kind_of?(Lesson)
+    assert @les7.kind_of?(Lesson)
+    assert @les8.kind_of?(Lesson)
+    assert @les9.kind_of?(Lesson)
+    assert @les1.add_to_virtual_classroom(1)
+    assert_equal 1, VirtualClassroomLesson.where(:user_id => 1, :lesson_id => 2).count
+    assert @les3.add_to_virtual_classroom(1)
+    assert @les4.add_to_virtual_classroom(1)
+    assert @les5.add_to_virtual_classroom(1)
+    assert @les6.add_to_virtual_classroom(1)
+    assert @les7.add_to_virtual_classroom(1)
+    assert @les8.add_to_virtual_classroom(1)
+    assert @les9.add_to_virtual_classroom(1)
+    
+    
+#      def playlist_for_viewer
+#        Slide.joins(:lesson, {:lesson => :virtual_classroom_lessons}).where('virtual_classroom_lessons.user_id = ? AND virtual_classroom_lessons.lesson_id = lessons.id AND virtual_classroom_lessons.position IS NOT NULL', self.id).order('virtual_classroom_lessons.position ASC, slides.position ASC')
+#      end
+    
+    
+  end
+  
 end
