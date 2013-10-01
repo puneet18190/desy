@@ -185,12 +185,21 @@ class VirtualClassroomLessonTest < ActiveSupport::TestCase
     end
     assert VirtualClassroomLesson.where(:lesson_id => @les8.id).first.remove_from_playlist
     assert VirtualClassroomLesson.where(:lesson_id => @les3.id).first.remove_from_playlist
-    assert VirtualClassroomLesson.where(:lesson_id => @les2.id).first.change_position_in_playlist(4)
-    assert VirtualClassroomLesson.where(:lesson_id => @les6.id).first.change_position_in_playlist(1)
-    playlist = VirtualClassroomLesson.where('position IS NOT NULL AND user_id = 1').order('position DESC')
+    assert VirtualClassroomLesson.where(:lesson_id => @les2.id).first.change_position(4)
+    assert VirtualClassroomLesson.where(:lesson_id => @les6.id).first.change_position(1)
+    playlist = VirtualClassroomLesson.where('position IS NOT NULL AND user_id = 1').order('position ASC')
     assert_equal 5, playlist.length
-    assert_ordered_item_extractor [@les6.id, @les1.id, @les5.id, @les2.id, @les9.id], playlist
-    assert (@les1.id < @les6.id) && (@les2.id < @les5.id) && (@les2.id < @les9.id) && (@les1.id < @les5.id)
+    @vcl1 = VirtualClassroomLesson.where(:user_id => 1, :lesson_id => @les1.id).first
+    @vcl2 = VirtualClassroomLesson.where(:user_id => 1, :lesson_id => @les2.id).first
+    @vcl5 = VirtualClassroomLesson.where(:user_id => 1, :lesson_id => @les5.id).first
+    @vcl6 = VirtualClassroomLesson.where(:user_id => 1, :lesson_id => @les6.id).first
+    @vcl9 = VirtualClassroomLesson.where(:user_id => 1, :lesson_id => @les9.id).first
+    assert_equal @vcl6.id, playlist[0].id
+    assert_equal @vcl1.id, playlist[1].id
+    assert_equal @vcl5.id, playlist[2].id
+    assert_equal @vcl2.id, playlist[3].id
+    assert_equal @vcl9.id, playlist[4].id
+    assert (@vcl1.id < @vcl6.id) && (@vcl2.id < @vcl5.id) && (@vcl2.id < @vcl9.id) && (@vcl1.id < @vcl5.id)
     @les1 = Lesson.find @les1.id
     @les2 = Lesson.find @les2.id
     @les3 = Lesson.find @les3.id
