@@ -225,19 +225,37 @@ class VirtualClassroomLessonTest < ActiveSupport::TestCase
     assert_not_nil @slide_5_3
     @slide_5_4 = @les5.add_slide 'audio', 4
     assert_not_nil @slide_5_4
-    
-    
-    
-    #devo cambiare posizione alle slides all'interno della stessa lezione, e verificare che alcune slides non appartengono!!!! quelle della lezione 7 e 8!!! prendere solo la copertina
-    
-   # resp = User.find(1).playlist_for_viewer
-    
-    
-#      def playlist_for_viewer
-#        Slide.joins(:lesson, {:lesson => :virtual_classroom_lessons}).where('virtual_classroom_lessons.user_id = ? AND virtual_classroom_lessons.lesson_id = lessons.id AND virtual_classroom_lessons.position IS NOT NULL', self.id).order('virtual_classroom_lessons.position ASC, slides.position ASC')
-#      end
-    
-    
+    assert @slide_5_4.change_position(2)
+    # slides of lesson 6
+    @slide_6_1 = @les6.cover
+    # slides of lesson 9
+    @slide_9_1 = @les9.cover
+    @slide_9_2 = @les9.add_slide 'video2', 2
+    assert_not_nil @slide_9_2
+    @slide_9_3 = @les9.add_slide 'image3', 3
+    assert_not_nil @slide_9_3
+    # covers not included in the playlist
+    @cover7 = @les7.cover
+    @cover8 = @les8.cover
+    # extract now!
+    resp = User.find(1).playlist_for_viewer
+    assert_equal 12, resp.length
+    assert_equal @slide_6_1.id, resp[0].id
+    assert_equal @slide_1_1.id, resp[1].id
+    assert_equal @slide_5_1.id, resp[2].id
+    assert_equal @slide_5_4.id, resp[3].id
+    assert_equal @slide_5_2.id, resp[4].id
+    assert_equal @slide_5_3.id, resp[5].id
+    assert_equal @slide_2_1.id, resp[6].id
+    assert_equal @slide_2_2.id, resp[7].id
+    assert_equal @slide_2_3.id, resp[8].id
+    assert_equal @slide_9_1.id, resp[9].id
+    assert_equal @slide_9_2.id, resp[10].id
+    assert_equal @slide_9_3.id, resp[11].id
+    # slides not included
+    resp.each do |r|
+      assert ![@cover7.id, @cover8.id].include?(r.id)
+    end
   end
   
 end
