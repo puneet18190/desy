@@ -177,7 +177,15 @@ class VirtualClassroomLessonTest < ActiveSupport::TestCase
     assert @les7.add_to_virtual_classroom(1)
     assert @les8.add_to_virtual_classroom(1)
     assert @les9.add_to_virtual_classroom(1)
-    
+    VirtualClassroomLesson.where(:user_id => 1, :lesson_id => [@les4.id, @les7.id]).update_all(:user_id => 2)
+    assert_equal 7, VirtualClassroomLesson.where(:user_id => 1).count
+    VirtualClassroomLesson.where('user_id = 1 AND id != 1').each_with_index do |vcl, i|
+      vcl.position = i + 2
+      assert_obj_saved vcl
+    end
+    assert VirtualClassroomLesson.where(:lesson_id => @les8.id).first.remove_from_playlist
+    assert VirtualClassroomLesson.where(:lesson_id => @les3.id).first.remove_from_playlist
+    assert_equal 5, VirtualClassroomLesson.where('position IS NOT NULL AND user_id = 1').count
     
 #      def playlist_for_viewer
 #        Slide.joins(:lesson, {:lesson => :virtual_classroom_lessons}).where('virtual_classroom_lessons.user_id = ? AND virtual_classroom_lessons.lesson_id = lessons.id AND virtual_classroom_lessons.position IS NOT NULL', self.id).order('virtual_classroom_lessons.position ASC, slides.position ASC')
