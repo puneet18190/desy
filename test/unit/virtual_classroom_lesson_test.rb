@@ -185,7 +185,24 @@ class VirtualClassroomLessonTest < ActiveSupport::TestCase
     end
     assert VirtualClassroomLesson.where(:lesson_id => @les8.id).first.remove_from_playlist
     assert VirtualClassroomLesson.where(:lesson_id => @les3.id).first.remove_from_playlist
-    assert_equal 5, VirtualClassroomLesson.where('position IS NOT NULL AND user_id = 1').count
+    assert VirtualClassroomLesson.where(:lesson_id => @les2.id).first.change_position_in_playlist(4)
+    assert VirtualClassroomLesson.where(:lesson_id => @les6.id).first.change_position_in_playlist(1)
+    playlist = VirtualClassroomLesson.where('position IS NOT NULL AND user_id = 1').order('position DESC')
+    assert_equal 5, playlist.length
+    assert_ordered_item_extractor [@les6.id, @les1.id, @les5.id, @les2.id, @les9.id], playlist
+    assert (@les1.id < @les6.id) && (@les2.id < @les5.id) && (@les2.id < @les9.id) && (@les1.id < @les5.id)
+    @les1 = Lesson.find @les1.id
+    @les2 = Lesson.find @les2.id
+    @les3 = Lesson.find @les3.id
+    @les4 = Lesson.find @les4.id
+    @les5 = Lesson.find @les5.id
+    @les6 = Lesson.find @les6.id
+    @les7 = Lesson.find @les7.id
+    @les8 = Lesson.find @les8.id
+    @les9 = Lesson.find @les9.id
+    assert_equal 1, @les1.slides.length
+    assert_equal 3, @les2.slides.length
+    
     
 #      def playlist_for_viewer
 #        Slide.joins(:lesson, {:lesson => :virtual_classroom_lessons}).where('virtual_classroom_lessons.user_id = ? AND virtual_classroom_lessons.lesson_id = lessons.id AND virtual_classroom_lessons.position IS NOT NULL', self.id).order('virtual_classroom_lessons.position ASC, slides.position ASC')
