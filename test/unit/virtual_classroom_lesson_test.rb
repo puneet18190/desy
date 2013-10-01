@@ -209,8 +209,28 @@ class VirtualClassroomLessonTest < ActiveSupport::TestCase
     @les7 = Lesson.find @les7.id
     @les8 = Lesson.find @les8.id
     @les9 = Lesson.find @les9.id
+    # slides of lesson 1
     assert_equal 1, @les1.slides.length
+    @slide_1_1 = @les1.cover
+    # slides of lesson 2
     assert_equal 3, @les2.slides.length
+    @slide_2_1 = @les2.cover
+    @slide_2_2 = Slide.where(:lesson_id => @les2.id, :position => 2).first
+    @slide_2_3 = Slide.where(:lesson_id => @les2.id, :position => 3).first
+    # slides of lesson 5
+    @slide_5_1 = @les5.cover
+    @slide_5_2 = @les5.add_slide 'text', 2
+    assert_not_nil @slide_5_2
+    @slide_5_3 = @les5.add_slide 'title', 3
+    assert_not_nil @slide_5_3
+    @slide_5_4 = @les5.add_slide 'audio', 4
+    assert_not_nil @slide_5_4
+    
+    
+    
+    #devo cambiare posizione alle slides all'interno della stessa lezione, e verificare che alcune slides non appartengono!!!! quelle della lezione 7 e 8!!! prendere solo la copertina
+    
+   # resp = User.find(1).playlist_for_viewer
     
     
 #      def playlist_for_viewer
