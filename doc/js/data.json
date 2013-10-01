@@ -4942,7 +4942,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 516,
+            "line": 520,
             "description": "Goes to a given slide. If the new slide contains a media and the browser is not a mobile the media is automaticly played.",
             "itemtype": "method",
             "name": "slideToInLessonViewer",
@@ -4963,7 +4963,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 567,
+            "line": 571,
             "description": "Goes to a slide (using {{#crossLink \"LessonViewerSlidesNavigation/slideToInLessonViewer:method\"}}{{/crossLink}}) and updates the lesson in playlist menu (using {{#crossLink \"LessonViewerPlaylist/switchLessonInPlaylistMenuLessonViewer:method\"}}{{/crossLink}} without callbacks).",
             "itemtype": "method",
             "name": "slideToInLessonViewerWithLessonSwitch",

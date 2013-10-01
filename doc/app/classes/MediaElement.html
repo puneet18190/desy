@@ -191,8 +191,8 @@ application, see <a href="User.html#method-c-admin">User.admin</a>)</p>
 </li><li>
 <p><strong>minimum</strong> <strong>number</strong> of tags (configurated in
 config/settings.yml), <strong>only if the attribute <a
-href="MediaElement.html#attribute-i-validating_in_form">#validating_in_form</a>
-is set as <code>true</code></strong></p>
+href="MediaElement.html#attribute-i-save_tags">#save_tags</a> is set as
+<code>true</code></strong></p>
 </li><li>
 <p><strong>size</strong> of the file attached to <code>media</code>
 (configured in settings.yml, in megabytes)</p>
@@ -682,20 +682,20 @@ information</p></td>
         
           <tr valign='top'>
             <td class='attr-rw'>
+              [W]
+            </td>
+            <td class='attr-name'>save_tags</td>
+            <td class='attr-desc'><p>Set to true if it&#39;s necessary to validate the number of tags (typically
+this happens in the public front end)</p></td>
+          </tr>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
               [RW]
             </td>
             <td class='attr-name'>skip_public_validations</td>
             <td class='attr-desc'><p>Set to true when it&#39;s necessary to skip the public error (used in
 seeding)</p></td>
-          </tr>
-        
-          <tr valign='top'>
-            <td class='attr-rw'>
-              [W]
-            </td>
-            <td class='attr-name'>validating_in_form</td>
-            <td class='attr-desc'><p>Set to true if it&#39;s necessary to validate the number of tags (typically
-this happens in the public front end)</p></td>
           </tr>
         
       </table>
@@ -1822,7 +1822,7 @@ created</p>
               <div id="method-i-update_or_create_tags_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/models/media_element.rb, line 499</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">update_or_create_tags</span>
-  <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span> <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@inner_tags</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@inner_tags</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@save_tags</span>
   <span class="ruby-identifier">words</span> = []
   <span class="ruby-ivar">@inner_tags</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">t</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">raise</span> <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Rollback</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">t</span>.<span class="ruby-identifier">new_record?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">t</span>.<span class="ruby-identifier">save</span>
@@ -2061,7 +2061,7 @@ configured in megabytes in settings.yml</p>
           
             <div class="description">
               <p>Validates that the tags are at least the number configured in settings.yml,
-unless the attribute <code>validating_in_form</code> is false</p>
+unless the attribute <code>save_tags</code> is false</p>
             </div>
           
           
@@ -2079,8 +2079,8 @@ unless the attribute <code>validating_in_form</code> is false</p>
               <div id="method-i-validate_tags_length_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/models/media_element.rb, line 493</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">validate_tags_length</span>
-  <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:tags</span>, <span class="ruby-value">:are_not_enough</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@validating_in_form</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@inner_tags</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;min_tags_for_item&#39;</span>]
-  <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:tags</span>, <span class="ruby-value">:too_many</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@validating_in_form</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@inner_tags</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&gt;</span> <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;max_tags_for_item&#39;</span>]
+  <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:tags</span>, <span class="ruby-value">:are_not_enough</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@save_tags</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@inner_tags</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;min_tags_for_item&#39;</span>]
+  <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:tags</span>, <span class="ruby-value">:too_many</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@save_tags</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@inner_tags</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&gt;</span> <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;max_tags_for_item&#39;</span>]
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>

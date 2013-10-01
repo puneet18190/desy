@@ -247,7 +247,7 @@ href="../ApplicationController.html#method-i-admin_authenticate">ApplicationCont
     <span class="ruby-identifier">me</span>.<span class="ruby-identifier">description</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:description_placeholder</span>].<span class="ruby-identifier">blank?</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:description</span>] <span class="ruby-operator">:</span> <span class="ruby-string">&#39;&#39;</span>
     <span class="ruby-identifier">me</span>.<span class="ruby-identifier">tags</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:tags_placeholder</span>].<span class="ruby-identifier">blank?</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:tags</span>] <span class="ruby-operator">:</span> <span class="ruby-string">&#39;&#39;</span>
     <span class="ruby-identifier">me</span>.<span class="ruby-identifier">user_id</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>
-    <span class="ruby-identifier">me</span>.<span class="ruby-identifier">validating_in_form</span> = <span class="ruby-keyword">true</span>
+    <span class="ruby-identifier">me</span>.<span class="ruby-identifier">save_tags</span> = <span class="ruby-keyword">true</span>
     <span class="ruby-ivar">@saved</span> = <span class="ruby-identifier">me</span>.<span class="ruby-identifier">save</span>
     <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@saved</span>
       <span class="ruby-identifier">fields</span> = <span class="ruby-identifier">me</span>.<span class="ruby-identifier">errors</span>.<span class="ruby-identifier">messages</span>.<span class="ruby-identifier">keys</span>
@@ -676,7 +676,7 @@ href="../ApplicationController.html#method-i-initialize_media_element_with_owner
     <span class="ruby-ivar">@media_element</span>.<span class="ruby-identifier">title</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:title</span>]
     <span class="ruby-ivar">@media_element</span>.<span class="ruby-identifier">description</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:description</span>]
     <span class="ruby-ivar">@media_element</span>.<span class="ruby-identifier">tags</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:tags</span>]
-    <span class="ruby-ivar">@media_element</span>.<span class="ruby-identifier">validating_in_form</span> = <span class="ruby-keyword">true</span>
+    <span class="ruby-ivar">@media_element</span>.<span class="ruby-identifier">save_tags</span> = <span class="ruby-keyword">true</span>
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:is_public</span>]
       <span class="ruby-ivar">@media_element</span>.<span class="ruby-identifier">is_public</span> = <span class="ruby-keyword">true</span>
       <span class="ruby-ivar">@media_element</span>.<span class="ruby-identifier">publication_date</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">zone</span>.<span class="ruby-identifier">now</span>

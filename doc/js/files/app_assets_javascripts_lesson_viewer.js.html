@@ -814,16 +814,20 @@ function loadSlideInLessonViewer(slide) {
   var content = slide.find(&#x27;.slide-content&#x27;);
   if(content.hasClass(&#x27;video1&#x27;) || content.hasClass(&#x27;video2&#x27;)) {
     var video = content.find(&#x27;.video-container video&#x27;);
-    video.find(&#x27;source[type=&quot;video/webm&quot;]&#x27;).attr(&#x27;src&#x27;, video.data(&#x27;webm&#x27;));
-    video.find(&#x27;source[type=&quot;video/mp4&quot;]&#x27;).attr(&#x27;src&#x27;, video.data(&#x27;mp4&#x27;));
-    video.load();
-    initializeMedia(video.parents(&#x27;._instance_of_player&#x27;).attr(&#x27;id&#x27;), &#x27;video&#x27;);
+    if(video.length &gt; 0) {
+      video.find(&#x27;source[type=&quot;video/webm&quot;]&#x27;).attr(&#x27;src&#x27;, video.data(&#x27;webm&#x27;));
+      video.find(&#x27;source[type=&quot;video/mp4&quot;]&#x27;).attr(&#x27;src&#x27;, video.data(&#x27;mp4&#x27;));
+      video.load();
+      initializeMedia(video.parents(&#x27;._instance_of_player&#x27;).attr(&#x27;id&#x27;), &#x27;video&#x27;);
+    }
   } else if(content.hasClass(&#x27;audio&#x27;)) {
     var audio = content.find(&#x27;.audio-container audio&#x27;);
-    audio.find(&#x27;source[type=&quot;audio/ogg&quot;]&#x27;).attr(&#x27;src&#x27;, audio.data(&#x27;ogg&#x27;));
-    audio.find(&#x27;source[type=&quot;audio/m4a&quot;]&#x27;).attr(&#x27;src&#x27;, audio.data(&#x27;m4a&#x27;));
-    audio.load();
-    initializeMedia(audio.parents(&#x27;._instance_of_player&#x27;).attr(&#x27;id&#x27;), &#x27;audio&#x27;);
+    if(audio.length &gt; 0) {
+      audio.find(&#x27;source[type=&quot;audio/ogg&quot;]&#x27;).attr(&#x27;src&#x27;, audio.data(&#x27;ogg&#x27;));
+      audio.find(&#x27;source[type=&quot;audio/m4a&quot;]&#x27;).attr(&#x27;src&#x27;, audio.data(&#x27;m4a&#x27;));
+      audio.load();
+      initializeMedia(audio.parents(&#x27;._instance_of_player&#x27;).attr(&#x27;id&#x27;), &#x27;audio&#x27;);
+    }
   } else if(content.hasClass(&#x27;cover&#x27;) || content.hasClass(&#x27;image1&#x27;) || content.hasClass(&#x27;image2&#x27;) || content.hasClass(&#x27;image3&#x27;) || content.hasClass(&#x27;image4&#x27;)) {
     content.find(&#x27;.image-container img&#x27;).each(function() {
       var image = $(this);

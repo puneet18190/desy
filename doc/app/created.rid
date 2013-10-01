@@ -1,25 +1,25 @@
-Fri, 27 Sep 2013 11:42:39 +0200
+Tue, 01 Oct 2013 11:52:54 +0200
 app/controllers/admin/dashboard_controller.rb	Wed, 18 Sep 2013 16:27:46 +0200
 app/controllers/admin/documents_controller.rb	Thu, 19 Sep 2013 11:28:33 +0200
 app/controllers/admin/lessons_controller.rb	Mon, 23 Sep 2013 16:31:38 +0200
-app/controllers/admin/media_elements_controller.rb	Mon, 23 Sep 2013 16:30:11 +0200
+app/controllers/admin/media_elements_controller.rb	Fri, 27 Sep 2013 15:37:50 +0200
 app/controllers/admin/messages_controller.rb	Thu, 19 Sep 2013 15:04:49 +0200
 app/controllers/admin/reports_controller.rb	Mon, 29 Apr 2013 12:27:25 +0200
 app/controllers/admin/settings_controller.rb	Mon, 23 Sep 2013 16:30:47 +0200
 app/controllers/admin/users_controller.rb	Mon, 23 Sep 2013 16:31:20 +0200
 app/controllers/admin_controller.rb	Mon, 29 Apr 2013 12:27:25 +0200
 app/controllers/application_controller.rb	Mon, 23 Sep 2013 11:17:29 +0200
-app/controllers/audio_editor_controller.rb	Mon, 23 Sep 2013 11:18:00 +0200
+app/controllers/audio_editor_controller.rb	Fri, 27 Sep 2013 15:38:29 +0200
 app/controllers/dashboard_controller.rb	Fri, 20 Sep 2013 17:16:51 +0200
 app/controllers/documents_controller.rb	Mon, 23 Sep 2013 11:18:31 +0200
 app/controllers/galleries_controller.rb	Tue, 24 Sep 2013 12:17:23 +0200
-app/controllers/image_editor_controller.rb	Mon, 23 Sep 2013 11:22:12 +0200
-app/controllers/lesson_editor_controller.rb	Fri, 27 Sep 2013 11:31:12 +0200
+app/controllers/image_editor_controller.rb	Fri, 27 Sep 2013 15:38:32 +0200
+app/controllers/lesson_editor_controller.rb	Fri, 27 Sep 2013 16:54:03 +0200
 app/controllers/lesson_export_controller.rb	Thu, 05 Sep 2013 17:44:05 +0200
-app/controllers/lesson_viewer_controller.rb	Wed, 04 Sep 2013 12:42:20 +0200
+app/controllers/lesson_viewer_controller.rb	Mon, 30 Sep 2013 17:33:32 +0200
 app/controllers/lessons_controller.rb	Mon, 23 Sep 2013 14:55:11 +0200
 app/controllers/mailing_lists_controller.rb	Tue, 17 Sep 2013 10:40:08 +0200
-app/controllers/media_elements_controller.rb	Mon, 23 Sep 2013 14:14:31 +0200
+app/controllers/media_elements_controller.rb	Mon, 30 Sep 2013 18:11:35 +0200
 app/controllers/notifications_controller.rb	Mon, 05 Aug 2013 12:37:58 +0200
 app/controllers/prelogin_controller.rb	Wed, 08 May 2013 16:02:08 +0200
 app/controllers/reports_controller.rb	Tue, 17 Sep 2013 11:35:51 +0200
@@ -27,7 +27,7 @@ app/controllers/search_controller.rb	Thu, 26 Sep 2013 11:35:02 +0200
 app/controllers/tags_controller.rb	Mon, 29 Apr 2013 12:27:25 +0200
 app/controllers/users/sessions_controller.rb	Tue, 30 Apr 2013 17:43:55 +0200
 app/controllers/users_controller.rb	Thu, 09 May 2013 12:13:35 +0200
-app/controllers/video_editor_controller.rb	Mon, 23 Sep 2013 11:15:44 +0200
+app/controllers/video_editor_controller.rb	Fri, 27 Sep 2013 15:37:46 +0200
 app/controllers/virtual_classroom_controller.rb	Mon, 23 Sep 2013 17:16:59 +0200
 app/helpers/admin_helper.rb	Thu, 02 May 2013 16:02:34 +0200
 app/helpers/application_helper.rb	Fri, 06 Sep 2013 15:02:14 +0200
@@ -40,12 +40,12 @@ app/models/bookmark.rb	Tue, 30 Apr 2013 17:43:55 +0200
 app/models/document.rb	Mon, 23 Sep 2013 12:04:09 +0200
 app/models/documents_slide.rb	Thu, 08 Aug 2013 15:37:52 +0200
 app/models/image.rb	Thu, 08 Aug 2013 15:37:52 +0200
-app/models/lesson.rb	Fri, 27 Sep 2013 11:42:33 +0200
+app/models/lesson.rb	Fri, 27 Sep 2013 15:38:02 +0200
 app/models/like.rb	Tue, 30 Apr 2013 17:43:55 +0200
 app/models/location.rb	Wed, 08 May 2013 16:04:24 +0200
 app/models/mailing_list_address.rb	Tue, 30 Apr 2013 17:43:55 +0200
 app/models/mailing_list_group.rb	Mon, 05 Aug 2013 12:37:58 +0200
-app/models/media_element.rb	Fri, 27 Sep 2013 11:42:00 +0200
+app/models/media_element.rb	Fri, 27 Sep 2013 15:38:06 +0200
 app/models/media_elements_slide.rb	Tue, 30 Apr 2013 17:43:55 +0200
 app/models/notification.rb	Thu, 08 Aug 2013 15:37:52 +0200
 app/models/report.rb	Tue, 30 Apr 2013 17:43:55 +0200
@@ -54,7 +54,7 @@ app/models/slide.rb	Fri, 27 Sep 2013 11:20:54 +0200
 app/models/subject.rb	Thu, 19 Sep 2013 15:13:22 +0200
 app/models/tag.rb	Thu, 19 Sep 2013 15:30:37 +0200
 app/models/tagging.rb	Tue, 30 Apr 2013 17:43:55 +0200
-app/models/user.rb	Thu, 26 Sep 2013 10:16:04 +0200
+app/models/user.rb	Tue, 01 Oct 2013 10:42:04 +0200
 app/models/users_subject.rb	Mon, 29 Apr 2013 12:27:25 +0200
 app/models/video.rb	Thu, 08 Aug 2013 15:37:52 +0200
 app/models/virtual_classroom_lesson.rb	Tue, 30 Apr 2013 17:43:55 +0200
