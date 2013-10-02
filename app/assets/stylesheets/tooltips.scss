@@ -12,11 +12,7 @@
   background-color: #fff;
   border: 1px solid #e8e8e8;
   
-  .list ul {
-    
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
+  .list .ul_notifications {
     
     span {
       
@@ -25,10 +21,9 @@
       
     }
     
-    li {
+    .li_notifications {
       
       margin: 5px 0 5px 0;
-      padding: 0%;
       position: relative;
       
       .cancelTooltip {

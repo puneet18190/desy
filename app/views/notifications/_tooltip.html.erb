@@ -1,7 +1,7 @@
 <span class="tooltip" id="tooltip_content" data-offset="<%= offset %>" data-tot-number="<%= tot %>">
   <%= image_tag('freccia_tooltip.png', :class => 'callout') %>
   <div class="list">
-    <ul class="navlist">
+    <div class="ul_notifications">
       <div id="notifications_list" class="scroll-pane">
         <% if notifications.empty? %>
           <%= render :partial => 'notifications/empty' %>
@@ -11,6 +11,6 @@
           <% end %>
         <% end %>
       </div>
-    </ul>
+    </div>
   </div>
 </span>
