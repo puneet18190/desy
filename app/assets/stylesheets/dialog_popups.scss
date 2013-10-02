@@ -350,21 +350,42 @@
       height: 293px;
       padding-left: 24px;
       
-      .buttonRow {
+      .up_up_up {
         
-        padding: 0em;
-        margin-top: 19em;
-        height: 3em;
+        width: 247px;
+        height: 263px;
+        
+      }
+      
+      .down_down_down {
+        
+        width: 247px;
+        height: 30px;
         
         a {
           
           text-transform: lowercase;
           color: white;
-          margin-right: 0.5em;
           
-          &.buttonForm {
+          &.muttonForm {
             
             background-color: $black;
+            font: 18px 'Nunito', "Arial Rounded MT Bold", sans-serif;
+            padding: 0 30px;
+            display: block;
+            line-height: 30px;
+            
+            &._yes {
+              
+              float: left;
+              
+            }
+            
+            &._no {
+              
+              float: right;
+              
+            }
             
             &:hover {
               
