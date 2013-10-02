@@ -105,32 +105,31 @@ namespace :db do
   
   desc "Rebuild notifications without re-initializing the database"
   task :notifications => :environment do
-    Notification.all.each do |n|
-      n.destroy
-    end
-    notifics = []
-    notifics << 'Ma De Rossi a Roma che cosa ci sta a fare quando le cose vanno male è sempre colpa sua'
-    notifics << "a daniè t'avevo detto che dovevi annà al city"
-    notifics << "共產黨通過「鎮壓反革命」嘅運動，對私有經濟同財產進行城市工商業"
-    notifics << "Prova il brivido del Poker online Gioca su StarCasinò. Bonus 1.000€!"
-    notifics << "Io i napoletani li conosco benissimo senza la violenza sono gente morta"
-    notifics << "CMQ SE DOVESSERO ESSERE STANCHI CI PENSA IL DR.FAJARDO A TIRARLI SU."
-    notifics << "La unica cosa certa che c'e' e' che gli juventini e i napoletani sono riusciti a fare odiare la nazionale"
-    notifics << "la lazio e' l'unica squadra forte che abbiamo in italia... juventus e napoli si credono real madrid e barcellona "
-    notifics << "stai dicendo fregnacce.....taci e meglio,e non condannare prima del tempo."
-    notifics << "Uhm e chi sarebbero i giocatori della juve che non han giocato???"
-    notifics << "se la pensi cosi è meglio che cambi sport!!!!"
-    notifics << "La squadra piu ladra del pianeta rubera' l'ennesimo scudetto ,,,cavolo che soddisfazione !!! "
-    notifics << "scommettiamo che la prossima degli azzurri non gioca neanche Pirlo?"
-    notifics << "Il fatto che per eliminare l'italia quella partita dovesse finire non solo in un pareggio, ma anche esattamente 2-2, le è sfuggito per caso, mica perchè avrebbe screditato le sue teorie, giusto?"
-    notifics << "Irlanda travolta 6-1. Trap: «Non mi dimetto»"
-    notifics << "Mou: «Balotelli? Potrei scriverci un romanzo»"
-    notifics.each do |n|
-      Notification.send_to 1, n
-    end
-    Notification.limit(10).each do |n|
-      n.has_been_seen
-    end
+    an_user_id = User.admin.id
+    Notification.delete_all
+    Notification.send_to an_user_id, I18n.t('notifications.lessons.destroyed', :user_name => 'Luciano Moggi', :lesson_title => 'Gelato al cioccolato')
+    Notification.send_to an_user_id, I18n.t('notifications.lessons.link_sent', :title => 'Gelato al cioccolato', :message => 'Guardate che bella lezione!', :emails => 'moggi@figc.it, carraro@figc.it')
+    Notification.send_to an_user_id, I18n.t('notifications.lessons.modified', :lesson_title => 'Gelato al cioccolato', :message => 'Ho aggiornato le ultime slides', :link => 'www.google.com')
+    Notification.send_to an_user_id, I18n.t('notifications.lessons.unpublished', :user_name => 'Luciano Moggi', :lesson_title => 'Gelato al cioccolato')
+    Notification.send_to an_user_id, I18n.t('notifications.audio.compose.update.started', :item => 'Gelato al cioccolato')
+    Notification.send_to an_user_id, I18n.t('notifications.audio.compose.update.ok', :item => 'Gelato al cioccolato')
+    Notification.send_to an_user_id, I18n.t('notifications.audio.compose.update.failed', :item => 'Gelato al cioccolato', :link => 'www.google.com')
+    Notification.send_to an_user_id, I18n.t('notifications.audio.compose.create.started', :item => 'Gelato al cioccolato')
+    Notification.send_to an_user_id, I18n.t('notifications.audio.compose.create.ok', :item => 'Gelato al cioccolato')
+    Notification.send_to an_user_id, I18n.t('notifications.audio.compose.create.failed', :item => 'Gelato al cioccolato', :link => 'www.google.com')
+    Notification.send_to an_user_id, I18n.t('notifications.audio.upload.started', :item => 'Gelato al cioccolato')
+    Notification.send_to an_user_id, I18n.t('notifications.audio.upload.ok', :item => 'Gelato al cioccolato')
+    Notification.send_to an_user_id, I18n.t('notifications.audio.upload.failed', :item => 'Gelato al cioccolato')
+    Notification.send_to an_user_id, I18n.t('notifications.video.compose.update.started', :item => 'Gelato al cioccolato')
+    Notification.send_to an_user_id, I18n.t('notifications.video.compose.update.ok', :item => 'Gelato al cioccolato')
+    Notification.send_to an_user_id, I18n.t('notifications.video.compose.update.failed', :item => 'Gelato al cioccolato', :link => 'www.google.com')
+    Notification.send_to an_user_id, I18n.t('notifications.video.compose.create.started', :item => 'Gelato al cioccolato')
+    Notification.send_to an_user_id, I18n.t('notifications.video.compose.create.ok', :item => 'Gelato al cioccolato')
+    Notification.send_to an_user_id, I18n.t('notifications.video.compose.create.failed', :item => 'Gelato al cioccolato', :link => 'www.google.com')
+    Notification.send_to an_user_id, I18n.t('notifications.video.upload.started', :item => 'Gelato al cioccolato')
+    Notification.send_to an_user_id, I18n.t('notifications.video.upload.ok', :item => 'Gelato al cioccolato')
+    Notification.send_to an_user_id, I18n.t('notifications.video.upload.failed', :item => 'Gelato al cioccolato')
+    Notification.send_to an_user_id, I18n.t('notifications.documents.destroyed', :document_title => 'La seconda guerra mondiale', :lesson_title => 'Gelato al cioccolato', :link => 'www.google.com')
   end
   
 end
