@@ -274,13 +274,12 @@
         
         width: 354px;
         height: 30px;
-        background-color: red;
         margin-top: 15px;
         
         .sbHolder {
           
           width: 354px;
-          height: 23px;
+          height: 30px;
           font-size: 12px;
           font-family: 'Nunito', sans-serif;
           padding: 0;
@@ -290,7 +289,9 @@
             
             width: 354px;
             color: #999999;
-            height: 28px;
+            height: 30px;
+            line-height: 30px;
+            box-shadow: none;
             
           }
           
