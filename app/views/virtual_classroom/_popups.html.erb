@@ -8,11 +8,16 @@
   <div class="left_side">
     <%= form_tag '/virtual_classroom/lesson_id/send_link', :remote => true do %>
       <%= hidden_field_tag 'emails', '', :id => 'virtual_classroom_send_link_hidden_emails' %>
-      <div id="virtual_classroom_send_link_mails_box"></div>
+      
+      <div class="virtual_classroom_send_link_mails_box_container">
+        <div id="virtual_classroom_send_link_mails_box"></div>
+      </div>
+      
       <div class="virtual_classroom_emails_selector_container">
         <input id="virtual_classroom_emails_selector" data-placeholdered="true"/>
         <a id="virtual_classroom_emails_submitter"></a>
       </div>
+      
       <div class="boxSelectMailingList">
         <%= select_tag 'groups', options_from_collection_for_select(@mailing_list_groups, 'id','name'), :prompt => t('virtual_classroom.send_link.mailing_lists'), :id => 'select_mailing_list' %>
         <div id="virtual_classroom_hidden_mailing_lists" style="display:none">
@@ -28,7 +33,11 @@
           <% end %>
         </div>
       </div>
-      <%= text_area_tag 'message', '', :id => 'virtual_classroom_send_link_message', :class => 'campoMessaggio' %>
+      
+      <div class="write_message_for_send_link">
+        <%= text_area_tag 'message', '', :id => 'virtual_classroom_send_link_message', :class => 'campoMessaggio' %>
+      </div>
+      
       <%= hidden_field_tag 'message_placeholer', '', :id => 'virtual_classroom_send_link_message_placeholder' %>
     <% end %>
   </div>

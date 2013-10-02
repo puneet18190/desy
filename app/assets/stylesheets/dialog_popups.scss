@@ -156,70 +156,78 @@
       
       float: left;
       margin-left: 20px;
-      width: 362px;
+      width: 354px;
       height: 293px;
-      padding-right: 20px;
+      padding-right: 24px;
       border-right: 1px solid #d2d2d2;
       
-      #virtual_classroom_send_link_mails_box {
+      .virtual_classroom_send_link_mails_box_container {
         
-        border-radius: 4px 4px 4px 4px;
-        box-shadow: -1px -1px 1px 0 rgba(210, 210, 210, 0.6), -1px -1px 1px rgba(252, 252, 252, 0.8) inset;
-        color: #999999;
-        background-color: white;
-        width: 352px;
+        width: 354px;
         height: 84px;
-        margin-bottom: 8px;
+        background-color: aqua;
         
-        .jspContainer .jspVerticalBar {
+        #virtual_classroom_send_link_mails_box {
           
-          top: 0;
+          border-radius: 4px 4px 4px 4px;
+          box-shadow: -1px -1px 1px 0 rgba(210, 210, 210, 0.6), -1px -1px 1px rgba(252, 252, 252, 0.8) inset;
+          color: #999999;
+          background-color: white;
+          width: 352px;
+          height: 84px;
+          margin-bottom: 8px;
           
-          .jspTrack {
+          .jspContainer .jspVerticalBar {
             
-            background-color: #b3b1b1;
+            top: 0;
             
-            .jspDrag {
+            .jspTrack {
               
-              background: $blue;
+              background-color: #b3b1b1;
+              
+              .jspDrag {
+                
+                background: $blue;
+                
+              }
               
             }
             
           }
           
-        }
-        
-        ._email {
-          
-          float: left;
-          height: 20px;
-          width: auto;
-          margin-left: 10px;
-          margin-right: 10px;
-          margin-top: 6px;
-          
-          ._remove {
+          ._email {
             
-            width: 15px;
-            height: 15px;
-            display: block;
             float: left;
-            background-repeat: no-repeat;
-            margin: 0px 0px 0px 5px;
-            color: #373737;
-            background-image: $assets-azzurro_png;
+            height: 20px;
+            width: auto;
+            margin-left: 10px;
+            margin-right: 10px;
+            margin-top: 6px;
             
-            &:hover {
+            ._remove {
               
-              background-image: $assets-bianca_png;
+              width: 15px;
+              height: 15px;
+              display: block;
+              float: left;
+              background-repeat: no-repeat;
+              margin: 0px 0px 0px 5px;
+              color: #373737;
+              background-image: $assets-azzurro_png;
+              
+              &:hover {
+                
+                background-image: $assets-bianca_png;
+                
+              }
               
             }
             
-          }
-          
-          ._text {
-            
-            float: left;
+            ._text {
+              
+              float: left;
+              
+            }
             
           }
           
@@ -228,6 +236,11 @@
       }
       
       .virtual_classroom_emails_selector_container {
+        
+        width: 354px;
+        height: 30px;
+        background-color: yellow;
+        margin-top: 15px;
         
         input {
           
@@ -248,7 +261,7 @@
         
         a {
           
-          @include svg-circle-icon-handler($assets-icone-player_svg, 10px, 5, 4, 0.1, 4, 1, 0.4, 4, 1);
+          @include svg-circle-icon-handler($assets-icone-player_svg, 30px, 5, 4, 0.1, 4, 1, 0.4, 4, 1);
           
         }
         
@@ -256,7 +269,10 @@
       
       .boxSelectMailingList {
         
-        margin-bottom: 8px;
+        width: 354px;
+        height: 30px;
+        background-color: red;
+        margin-top: 15px;
         
         .sbHolder {
           
@@ -295,14 +311,23 @@
         
       }
       
-      textarea {
+      .write_message_for_send_link {
         
-        border: none;
-        width: 332px;
+        width: 354px;
+        height: 104px;
+        background-color: blue;
+        margin-top: 15px;
         
-        &.campoMessaggio {
+        textarea {
           
-          height: 85px;
+          border: none;
+          width: 332px;
+          
+          &.campoMessaggio {
+            
+            height: 85px;
+            
+          }
           
         }
         
@@ -315,7 +340,7 @@
       float: left;
       width: 247px;
       height: 293px;
-      padding-left: 20px;
+      padding-left: 24px;
       
       .buttonRow {
         
