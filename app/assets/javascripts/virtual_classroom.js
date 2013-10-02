@@ -222,6 +222,10 @@ function virtualClassroomDocumentReadySendLink() {
         var emails = $('#virtual_classroom_hidden_mailing_lists ._mailing_list_' + val + ' div');
         for(var i = 0; i < emails.length; i++) {
           $('#virtual_classroom_send_link_mails_box .jspPane').append(emails[i].outerHTML);
+          resetVirtualClassroomSendLinkLines();
+          setTimeout(function() {
+            resetVirtualClassroomSendLinkLines();
+          }, 700);
         }
       }
     }
