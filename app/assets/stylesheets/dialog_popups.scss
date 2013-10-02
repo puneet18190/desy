@@ -175,7 +175,6 @@
           background-color: white;
           width: 352px;
           height: 84px;
-          margin-bottom: 8px;
           
           .jspContainer .jspVerticalBar {
             
@@ -202,7 +201,13 @@
             width: auto;
             margin-left: 10px;
             margin-right: 10px;
-            margin-top: 6px;
+            margin-bottom: 6px;
+            
+            &.first_line {
+              
+              margin-top: 6px;
+              
+            }
             
             ._remove {
               
@@ -225,6 +230,7 @@
             
             ._text {
               
+              height: 20px;
               float: left;
               
             }
