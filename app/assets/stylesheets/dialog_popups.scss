@@ -244,18 +244,15 @@
         
         width: 354px;
         height: 30px;
-        background-color: yellow;
         margin-top: 15px;
         
         input {
           
           width: 300px;
           height: 10px;
-          margin-top: 7px;
-          margin-bottom: 15px;
           float: left;
           background-color: #fff;
-          font-family: Arial, sans-serif;
+          font-family: 'Nunito', sans-serif;
           font-size: 12px;
           padding: 10px;
           border-radius: 4px 4px 4px 4px;
@@ -266,6 +263,7 @@
         
         a {
           
+          margin-left: 3px;
           @include svg-circle-icon-handler($assets-icone-player_svg, 30px, 5, 4, 0.1, 4, 1, 0.4, 4, 1);
           
         }
@@ -281,13 +279,16 @@
         
         .sbHolder {
           
-          width: 352px;
+          width: 354px;
           height: 23px;
+          font-size: 12px;
+          font-family: 'Nunito', sans-serif;
+          padding: 0;
           box-shadow: -1px -1px 1px 0 rgba(210, 210, 210, 0.6), -1px -1px 1px rgba(252, 252, 252, 0.8) inset;
           
           .sbSelector {
             
-            width: 352px;
+            width: 354px;
             color: #999999;
             height: 28px;
             
@@ -295,7 +296,7 @@
           
           .sbOptions {
             
-            width: 351px;
+            width: 354px;
             
             a {
               
