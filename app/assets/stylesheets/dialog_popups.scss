@@ -129,17 +129,207 @@
       
     }
     
+    .top_side {
+      
+      float: left;
+      margin-left: 15px;
+      margin-top: 15px;
+      width: 660px;
+      height: 72px;
+      
+    }
+    
     .left_side {
       
-      /* TODO manca width e height */
+      float: left;
+      margin-left: 15px;
+      width: 383px;
+      height: 308px;
+      padding-right: 15px;
+      
+      form {
+        
+        border-right: 1px solid #d2d2d2;
+        padding-left: 10px;
+        margin-top: 15px;
+        width: 366px;
+        margin: 0;
+        float: left;
+        
+      }
+      
+      input, textarea {
+        
+        background-color: #fff;
+        font-family: Arial, sans-serif;
+        font-size: 12px;
+        padding: 10px;
+        width: 326px;
+        border-radius: 4px 4px 4px 4px;
+        box-shadow: -1px -1px 1px 0 rgba(210, 210, 210, 0.6), -1px -1px 1px rgba(252, 252, 252, 0.8) inset;
+        color: #999999;
+        
+        &.campoEmail {
+          
+          height: 15px;
+          
+        }
+        
+      }
+      
+      .boxSelectMailingList .sbHolder {
+        
+        width: 346px;
+        margin-bottom: 1em;
+        height: 23px;
+        
+        .sbSelector {
+          
+          width: 346px;
+          color: #999999;
+          height: 28px;
+          
+        }
+        
+        .sbOptions {
+          
+          width: 345px;
+          
+          a {
+            
+            color: #999999;
+            
+          }
+          
+          a.sbFocus {
+            
+            background-color: #f5f5f5;
+            color: #999999;
+            
+          }
+          
+        }
+        
+      }
+      
+      .boxSelectLesson .sbHolder {
+        
+        width: 247px;
+        height: 17px;
+        margin-bottom: 1em;
+        background-color: #f4a932;
+        
+        .sbSelector {
+          
+          width: 247px;
+          height: 23px;
+          line-height: 24px;
+          color: #fff;
+          
+        }
+        
+        .sbOptions {
+          
+          width: 247px;
+          
+        }
+        
+        .sbToggle {
+          
+          top: -2px;
+          height: 20px;
+          background: $assets-select-icons-lessons-white_png 0 -118px no-repeat;
+          opacity: 0.7;
+          
+        }
+        
+      }
+      
+      textarea {
+        
+        border: none;
+        
+        &.campoMessaggio {
+          
+          height: 85px;
+          
+        }
+        
+      }
+      
+      #virtual_classroom_send_link_mails_box {
+        
+        border-radius: 4px 4px 4px 4px;
+        box-shadow: -1px -1px 1px 0 rgba(210, 210, 210, 0.6), -1px -1px 1px rgba(252, 252, 252, 0.8) inset;
+        color: #999999;
+        background-color: white;
+        width: 330px;
+        padding: 10px;
+        height: 82px;
+        margin-bottom: 8px;
+        
+        .jspContainer .jspVerticalBar {
+          
+          top: 0em;
+          
+          .jspTrack {
+            
+            background-color: #b3b1b1;
+            
+            .jspDrag {
+              
+              background: $blue;
+              
+            }
+            
+          }
+          
+        }
+        
+        ._email {
+          
+          float: left;
+          height: 20px;
+          width: auto;
+          
+          ._remove {
+            
+            width: 15px;
+            height: 15px;
+            display: block;
+            float: left;
+            background-repeat: no-repeat;
+            margin: 0px 0px 0px 5px;
+            color: #373737;
+            background-image: $assets-azzurro_png;
+            
+            &:hover {
+              
+              background-image: $assets-bianca_png;
+              
+            }
+            
+          }
+          
+          ._text {
+            
+            float: left;
+            padding-left: 10px;
+            
+          }
+          
+        }
+        
+      }
       
     }
     
     .right_side {
       
       float: left;
-      width: 263px;
-      margin-left: 20px;
+      width: 247px;
+      height: 308px;
+      padding-left: 15px;
       
       .buttonRow {
         
@@ -165,193 +355,6 @@
             }
             
           }
-          
-        }
-        
-      }
-      
-    }
-    
-    h1 {
-      
-      padding: 0.5em 0.5em 0 0.5em;
-      
-    }
-    
-    p {
-      
-      padding: 0 0 2em 1em;
-      
-    }
-    
-    form {
-      
-      border-right: 1px solid #d2d2d2;
-      padding-left: 10px;
-      margin-top: 15px;
-      width: 366px;
-      margin: 0;
-      float: left;
-      
-    }
-    
-    input, textarea {
-      
-      background-color: #fff;
-      font-family: Arial, sans-serif;
-      font-size: 12px;
-      padding: 10px;
-      width: 326px;
-      border-radius: 4px 4px 4px 4px;
-      box-shadow: -1px -1px 1px 0 rgba(210, 210, 210, 0.6), -1px -1px 1px rgba(252, 252, 252, 0.8) inset;
-      color: #999999;
-      
-      &.campoEmail {
-        
-        height: 15px;
-        
-      }
-      
-    }
-    
-    .boxSelectMailingList .sbHolder {
-      
-      width: 346px;
-      margin-bottom: 1em;
-      height: 23px;
-      
-      .sbSelector {
-        
-        width: 346px;
-        color: #999999;
-        height: 28px;
-        
-      }
-      
-      .sbOptions {
-        
-        width: 345px;
-        
-        a {
-          
-          color: #999999;
-          
-        }
-        
-        a.sbFocus {
-          
-          background-color: #f5f5f5;
-          color: #999999;
-          
-        }
-        
-      }
-      
-    }
-    
-    .boxSelectLesson .sbHolder {
-      
-      width: 247px;
-      height: 17px;
-      margin-bottom: 1em;
-      background-color: #f4a932;
-      
-      .sbSelector {
-        
-        width: 247px;
-        height: 23px;
-        line-height: 24px;
-        color: #fff;
-        
-      }
-      
-      .sbOptions {
-        
-        width: 247px;
-        
-      }
-      
-      .sbToggle {
-        
-        top: -2px;
-        height: 20px;
-        background: $assets-select-icons-lessons-white_png 0 -118px no-repeat;
-        opacity: 0.7;
-        
-      }
-      
-    }
-    
-    textarea {
-      
-      border: none;
-      
-      &.campoMessaggio {
-        
-        height: 85px;
-        
-      }
-      
-    }
-    
-    #virtual_classroom_send_link_mails_box {
-      
-      border-radius: 4px 4px 4px 4px;
-      box-shadow: -1px -1px 1px 0 rgba(210, 210, 210, 0.6), -1px -1px 1px rgba(252, 252, 252, 0.8) inset;
-      color: #999999;
-      background-color: white;
-      width: 330px;
-      padding: 10px;
-      height: 82px;
-      margin-bottom: 8px;
-      
-      .jspContainer .jspVerticalBar {
-        
-        top: 0em;
-        
-        .jspTrack {
-          
-          background-color: #b3b1b1;
-          
-          .jspDrag {
-            
-            background: $blue;
-            
-          }
-          
-        }
-        
-      }
-      
-      ._email {
-        
-        float: left;
-        height: 20px;
-        width: auto;
-        
-        ._remove {
-          
-          width: 15px;
-          height: 15px;
-          display: block;
-          float: left;
-          background-repeat: no-repeat;
-          margin: 0px 0px 0px 5px;
-          color: #373737;
-          background-image: $assets-azzurro_png;
-          
-          &:hover {
-            
-            background-image: $assets-bianca_png;
-            
-          }
-          
-        }
-        
-        ._text {
-          
-          float: left;
-          padding-left: 10px;
           
         }
         
