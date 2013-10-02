@@ -122,7 +122,55 @@
     background-color: #f5f5f5;
     font-family: 'Nunito', sans-serif;
     color: $black;
-    padding: 0px 15px;
+    
+    &.ui-dialog-content.ui-widget-content {
+      
+      padding: 0;
+      
+    }
+    
+    .left_side {
+      
+      /* TODO manca width e height */
+      
+    }
+    
+    .right_side {
+      
+      float: left;
+      width: 263px;
+      margin-left: 20px;
+      
+      .buttonRow {
+        
+        padding: 0em;
+        margin-top: 19em;
+        height: 3em;
+        
+        a {
+          
+          text-transform: lowercase;
+          color: white;
+          margin-right: 0.5em;
+          
+          &.buttonForm {
+            
+            background-color: $black;
+            
+            &:hover {
+              
+              background-color: #b3b1b1;
+              border: none;
+              
+            }
+            
+          }
+          
+        }
+        
+      }
+      
+    }
     
     h1 {
       
@@ -246,12 +294,69 @@
       
     }
     
-    .colonnaCoverLesson {
+    #virtual_classroom_send_link_mails_box {
       
-      float: left;
-      width: 263px;
-      margin-left: 20px;
-     
+      border-radius: 4px 4px 4px 4px;
+      box-shadow: -1px -1px 1px 0 rgba(210, 210, 210, 0.6), -1px -1px 1px rgba(252, 252, 252, 0.8) inset;
+      color: #999999;
+      background-color: white;
+      width: 330px;
+      padding: 10px;
+      height: 82px;
+      margin-bottom: 8px;
+      
+      .jspContainer .jspVerticalBar {
+        
+        top: 0em;
+        
+        .jspTrack {
+          
+          background-color: #b3b1b1;
+          
+          .jspDrag {
+            
+            background: $blue;
+            
+          }
+          
+        }
+        
+      }
+      
+      ._email {
+        
+        float: left;
+        height: 20px;
+        width: auto;
+        
+        ._remove {
+          
+          width: 15px;
+          height: 15px;
+          display: block;
+          float: left;
+          background-repeat: no-repeat;
+          margin: 0px 0px 0px 5px;
+          color: #373737;
+          background-image: $assets-azzurro_png;
+          
+          &:hover {
+            
+            background-image: $assets-bianca_png;
+            
+          }
+          
+        }
+        
+        ._text {
+          
+          float: left;
+          padding-left: 10px;
+          
+        }
+        
+      }
+      
     }
     
   }
@@ -428,100 +533,6 @@
   opacity: 0.9;
   background-color: #000;
   z-index: 11;
-  
-}
-
-#dialog-virtual-classroom-send-link .colonnaCoverLesson .buttonRow {
-  
-  padding: 0em;
-  margin-top: 19em;
-  height: 3em;
-  
-  a {
-    
-    text-transform: lowercase;
-    color: white;
-    margin-right: 0.5em;
-    
-    &.buttonForm {
-      
-      background-color: $black;
-      
-      &:hover {
-        
-        background-color: #b3b1b1;
-        border: none;
-        
-      }
-      
-    }
-    
-  }
-  
-}
-
-#virtual_classroom_send_link_mails_box {
-  
-  border-radius: 4px 4px 4px 4px;
-  box-shadow: -1px -1px 1px 0 rgba(210, 210, 210, 0.6), -1px -1px 1px rgba(252, 252, 252, 0.8) inset;
-  color: #999999;
-  background-color: white;
-  width: 330px;
-  padding: 10px;
-  height: 82px;
-  margin-bottom: 8px;
-  
-  .jspContainer .jspVerticalBar {
-    
-    top: 0em;
-    
-    .jspTrack {
-      
-      background-color: #b3b1b1;
-      
-      .jspDrag {
-        
-        background: $blue;
-        
-      }
-      
-    }
-    
-  }
-  
-  ._email {
-    
-    float: left;
-    height: 20px;
-    width: auto;
-    
-    ._remove {
-      
-      width: 15px;
-      height: 15px;
-      display: block;
-      float: left;
-      background-repeat: no-repeat;
-      margin: 0px 0px 0px 5px;
-      color: #373737;
-      background-image: $assets-azzurro_png;
-      
-      &:hover {
-        
-        background-image: $assets-bianca_png;
-        
-      }
-      
-    }
-    
-    ._text {
-      
-      float: left;
-      padding-left: 10px;
-      
-    }
-    
-  }
   
 }
 
