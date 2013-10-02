@@ -169,7 +169,6 @@
         font-family: Arial, sans-serif;
         font-size: 12px;
         padding: 10px;
-        width: 326px;
         border-radius: 4px 4px 4px 4px;
         box-shadow: -1px -1px 1px 0 rgba(210, 210, 210, 0.6), -1px -1px 1px rgba(252, 252, 252, 0.8) inset;
         color: #999999;
@@ -177,6 +176,7 @@
         &.campoEmail {
           
           height: 15px;
+          width: 326px;
           
         }
         
@@ -184,13 +184,13 @@
       
       .boxSelectMailingList .sbHolder {
         
-        width: 346px;
+        width: 352px;
         margin-bottom: 1em;
         height: 23px;
         
         .sbSelector {
           
-          width: 346px;
+          width: 352px;
           color: #999999;
           height: 28px;
           
@@ -198,7 +198,7 @@
         
         .sbOptions {
           
-          width: 345px;
+          width: 351px;
           
           a {
             
@@ -217,42 +217,10 @@
         
       }
       
-      .boxSelectLesson .sbHolder {
-        
-        width: 247px;
-        height: 17px;
-        margin-bottom: 1em;
-        background-color: #f4a932;
-        
-        .sbSelector {
-          
-          width: 247px;
-          height: 23px;
-          line-height: 24px;
-          color: #fff;
-          
-        }
-        
-        .sbOptions {
-          
-          width: 247px;
-          
-        }
-        
-        .sbToggle {
-          
-          top: -2px;
-          height: 20px;
-          background: $assets-select-icons-lessons-white_png 0 -118px no-repeat;
-          opacity: 0.7;
-          
-        }
-        
-      }
-      
       textarea {
         
         border: none;
+        width: 332px;
         
         &.campoMessaggio {
           
@@ -268,7 +236,7 @@
         box-shadow: -1px -1px 1px 0 rgba(210, 210, 210, 0.6), -1px -1px 1px rgba(252, 252, 252, 0.8) inset;
         color: #999999;
         background-color: white;
-        width: 330px;
+        width: 332px;
         padding: 10px;
         height: 82px;
         margin-bottom: 8px;
