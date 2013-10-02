@@ -321,19 +321,21 @@
         
         width: 354px;
         height: 104px;
-        background-color: blue;
         margin-top: 15px;
         
         textarea {
           
-          border: none;
-          width: 332px;
-          
-          &.campoMessaggio {
-            
-            height: 85px;
-            
-          }
+          width: 334px;
+          height: 84px;
+          background-color: #fff;
+          font-family: 'Nunito', sans-serif;
+          font-size: 12px;
+          padding: 10px;
+          border-radius: 4px 4px 4px 4px;
+          box-shadow: -1px -1px 1px 0 rgba(210, 210, 210, 0.6), -1px -1px 1px rgba(252, 252, 252, 0.8) inset;
+          color: #999999;
+          position: relative;
+          top: -1px;
           
         }
         
