@@ -531,6 +531,7 @@ function virtualClassroomDocumentReadySendLink() {
   });
   $body.on(&#x27;click&#x27;, &#x27;#virtual_classroom_send_link_mails_box ._remove&#x27;, function() {
     $(this).parent().remove();
+    resetVirtualClassroomSendLinkLines();
   });
   $(&#x27;#select_mailing_list&#x27;).selectbox({
     onChange: function(val, inst) {
@@ -747,7 +748,34 @@ function addEmailToVirtualClassroomSendLessonLinkSelector() {
   if(!selector.data(&#x27;placeholdered&#x27;) &amp;&amp; selector.val() != &#x27;&#x27;) {
     $(&#x27;#virtual_classroom_send_link_mails_box .jspPane&#x27;).append(&#x27;&lt;div class=&quot;_email&quot;&gt;&lt;span class=&quot;_text&quot;&gt;&#x27; + selector.val() + &#x27;&lt;/span&gt;&lt;a class=&quot;_remove&quot;&gt;&lt;/a&gt;&lt;/div&gt;&#x27;);
     selector.val(&#x27;&#x27;);
+    resetVirtualClassroomSendLinkLines();
   }
+}
+
+/**
+Resets the spaces between the emails sent.
+@method resetVirtualClassroomSendLinkLines
+@for VirtualClassroomSendLink
+**/
+function resetVirtualClassroomSendLinkLines() {
+  var container = $(&#x27;#virtual_classroom_send_link_mails_box .jspPane&#x27;);
+  var must_first_line = true;
+  container.find(&#x27;._email&#x27;).removeClass(&#x27;first_line&#x27;);
+  container.find(&#x27;._email&#x27;).each(function() {
+    if(must_first_line) {
+      var me = $(this);
+      var prev = me.prev();
+      if(prev.length &gt; 0) {
+        if(me.position().top != prev.position().top) {
+          must_first_line = false;
+        } else {
+          me.addClass(&#x27;first_line&#x27;);
+        }
+      } else {
+        me.addClass(&#x27;first_line&#x27;);
+      }
+    }
+  });
 }
 
     </pre>

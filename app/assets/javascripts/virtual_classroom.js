@@ -432,6 +432,11 @@ function addEmailToVirtualClassroomSendLessonLinkSelector() {
   }
 }
 
+/**
+Resets the spaces between the emails sent.
+@method resetVirtualClassroomSendLinkLines
+@for VirtualClassroomSendLink
+**/
 function resetVirtualClassroomSendLinkLines() {
   var container = $('#virtual_classroom_send_link_mails_box .jspPane');
   var must_first_line = true;
