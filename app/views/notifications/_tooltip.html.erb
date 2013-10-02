@@ -1,16 +1,14 @@
 <span class="tooltip" id="tooltip_content" data-offset="<%= offset %>" data-tot-number="<%= tot %>">
   <%= image_tag('freccia_tooltip.png', :class => 'callout') %>
-  <div class="list">
-    <div class="ul_notifications">
-      <div id="notifications_list" class="scroll-pane">
-        <% if notifications.empty? %>
-          <%= render :partial => 'notifications/empty' %>
-        <% else %>
-          <% notifications.each do |n| %>
-            <%= render :partial => "notifications/notification", :locals => {:notification => n} %>
-          <% end %>
+  <div class="ul_notifications">
+    <div id="notifications_list" class="scroll-pane">
+      <% if notifications.empty? %>
+        <%= render :partial => 'notifications/empty' %>
+      <% else %>
+        <% notifications.each do |n| %>
+          <%= render :partial => "notifications/notification", :locals => {:notification => n} %>
         <% end %>
-      </div>
+      <% end %>
     </div>
   </div>
 </span>
