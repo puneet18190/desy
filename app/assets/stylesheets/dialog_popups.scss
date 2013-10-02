@@ -374,16 +374,11 @@
             padding: 0 30px;
             display: block;
             line-height: 35px;
-            
-            &._yes {
-              
-              float: left;
-              
-            }
+            float: right;
             
             &._no {
               
-              float: right;
+              margin-left: 20px;
               
             }
             
