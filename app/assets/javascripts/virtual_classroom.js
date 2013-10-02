@@ -212,6 +212,9 @@ function virtualClassroomDocumentReadySendLink() {
   $body.on('click', '#virtual_classroom_send_link_mails_box ._remove', function() {
     $(this).parent().remove();
     resetVirtualClassroomSendLinkLines();
+    setTimeout(function() {
+      resetVirtualClassroomSendLinkLines();
+    }, 700);
   });
   $('#select_mailing_list').selectbox({
     onChange: function(val, inst) {
@@ -429,6 +432,9 @@ function addEmailToVirtualClassroomSendLessonLinkSelector() {
     $('#virtual_classroom_send_link_mails_box .jspPane').append('<div class="_email"><span class="_text">' + selector.val() + '</span><a class="_remove"></a></div>');
     selector.val('');
     resetVirtualClassroomSendLinkLines();
+    setTimeout(function() {
+      resetVirtualClassroomSendLinkLines();
+    }, 700);
   }
 }
 
