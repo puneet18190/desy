@@ -5,7 +5,7 @@
   
   width: 100%;
   height: 34px;
-  background-color: white;
+  background-color: transparent;
   position: relative;
   
   .hidden {
@@ -14,7 +14,7 @@
     
   }
   
-  #expanded_notification, .tooltip, .tooltipArancione, #notifications_button, #help, .tooltipHelp {
+  #expanded_notification, .tooltip, .tooltipArancione, .tooltipHelp {
     
     position: absolute;
     
@@ -22,9 +22,12 @@
   
   #notifications_button, #help {
     
+    float: right;
     background-image: $assets-notice_png;
     background-repeat: no-repeat;
     cursor: pointer;
+    width: 36px;
+    height: 36px;
     
   }
   
@@ -261,6 +264,7 @@
   #notifications_button {
     
     background-position: 1px 0px;
+    margin-right: 10px;
     
     &:hover, &.current {
       
@@ -273,6 +277,7 @@
   #help {
     
     background-position: -68px 0px;
+    margin-right: 40px;
     
     &:hover, &.current {
       
