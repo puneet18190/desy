@@ -3,6 +3,8 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.14'
 gem 'pg'
 
+# Gems by group in alphabetic sorting
+
 gem 'ancestry'
 gem 'bcrypt-ruby',              '~> 3.0.0'
 gem 'carrierwave'
@@ -25,29 +27,28 @@ gem 'unicorn',                              platforms: :ruby
 gem 'whenever',                                                                                                                 require: false
 gem 'win32-dir',                            platforms: :mingw
 
-# Gems used only for assets and not required
-# in production environments by default.
+# Gems used only for assets and not required in production environments by default
 group :assets do
-  gem 'sass-rails',              '~> 3.2.3'
-  gem 'coffee-rails',            '~> 3.2.1'
   gem 'bootstrap-sass',          '~> 2.2.2.0'
-  gem 'libv8',                   '~> 3.11.8', platforms: :ruby
-  gem 'therubyracer',                         platforms: :ruby
-  gem 'uglifier',                '>= 1.0.3'
+  gem 'coffee-rails',            '~> 3.2.1'
   gem 'jquery-fileupload-rails'
+  gem 'libv8',                   '~> 3.11.8',  platforms: :ruby
+  gem 'sass-rails',              '~> 3.2.3'
+  gem 'therubyracer',                          platforms: :ruby
+  gem 'uglifier',                '>= 1.0.3'
 end
 
 group :development do
-  gem 'rails-erd'
-  gem 'mailcatcher',  platforms: :ruby
+  gem 'irb-benchmark'
+  gem 'mailcatcher',   platforms: :ruby
   # Basta assets che monopolizzano il log dell'application server!
   gem 'quiet_assets'
-  gem 'irb-benchmark'
+  gem 'rails-erd'
 end
 
 group :development, :test do
-  gem 'rspec-rails'
   gem 'colorize'
+  gem 'rspec-rails'
 end
 
 group :irbtools do
