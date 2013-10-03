@@ -188,7 +188,7 @@ function notificationsDocumentReadyTooltips() {
     }
   });
   $body.on('click', '._destroy_notification', function(e) {
-    e.preventDefault();
+    e.stopImmediatePropagation();
     var my_id = $(this).data('param');
     var offset = $('#tooltip_content').data('offset');
     $.post('/notifications/' + my_id + '/destroy?offset=' + offset);
