@@ -258,7 +258,7 @@ function initializeNotifications() {
       }
     }
   });
-  $body.on('click', '._single_notification .notification_gatto', function() {
+  $body.on('click', '._single_notification', function() {
     var closest_li = $(this).closest('._single_notification');
     var my_own_id = closest_li.attr('id')
     var my_content = $('#' + my_own_id + ' ._expanded_notification').html();

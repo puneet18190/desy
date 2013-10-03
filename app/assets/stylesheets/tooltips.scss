@@ -33,61 +33,52 @@
       height: 65px;
       width: 268px;
       margin-top: 5px;
+      background-color: #c1e6f6;
+      background-image: $assets-arrow-tooltip-notice_png;
+      background-position: top center;
+      background-repeat: no-repeat;
+      border-radius: 3px;
+      -webkit-border-radius: 3px;
+      border-radius: 3px;
+      color: $black;
+      cursor: pointer;
       
-      
-      .notification_gatto {
+      &.current {
         
-        display: block;
+        background-image: none;
+        background-color: #f5f5f5;
+        
+      }
+      
+      .notification_gatto_sx {
+        
+        width: 210px;
+        height: 45px;
+        margin-top: 10px;
+        overflow: hidden;
+        float: left;
+        
+      }
+      
+      .notification_gatto_dx {
+        
+        width: 58px;
         height: 65px;
-        width: 268px;
-        background-color: #c1e6f6;
-        background-image: $assets-arrow-tooltip-notice_png;
-        background-position: top center;
-        background-repeat: no-repeat;
-        border-radius: 3px;
-        -webkit-border-radius: 3px;
-        border-radius: 3px;
-        color: $black;
-        cursor: pointer;
+        float: left;
         
-        &.current {
+        .cancelTooltip { /* TODO rifare l'icona! e assicurarsi che l'svg funzioni bene */
           
-          background-image: none;
-          background-color: #f5f5f5;
+          right: 0;
+          top: 0;
+          background-image: $assets-cancel-tooltip-notice_png;
+          background-position: center center;
+          background-repeat: no-repeat;
+          background-color: transparent;
+          cursor: pointer;
           
-        }
-        
-        .notification_gattino_sx {
-          
-          width: 210px;
-          height: 45px;
-          margin-top: 10px;
-          overflow: hidden;
-          float: left;
-          
-        }
-        
-        .notification_gattino_dx {
-          
-          width: 58px;
-          height: 65px;
-          float: left;
-          
-          .cancelTooltip { /* TODO rifare l'icona! e assicurarsi che l'svg funzioni bene */
+          &:hover {
             
-            right: 0;
-            top: 0;
-            background-image: $assets-cancel-tooltip-notice_png;
-            background-position: center center;
-            background-repeat: no-repeat;
-            background-color: transparent;
-            cursor: pointer;
-            
-            &:hover {
-              
-              background-image: $assets-cancel-tooltip-notice-on_png;
-              
-            }
+            background-image: $assets-cancel-tooltip-notice-on_png;
             
           }
           
