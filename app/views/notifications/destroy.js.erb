@@ -1,6 +1,13 @@
 <% if @ok %>
-  $("#notification_<%= @notification_id %>").hide('fade', {}, 500, function() {
+  var was_first = $('#notification_<%= @notification_id %>').hasClass('no-margin');
+  $('#notification_<%= @notification_id %>').hide('fade', {}, 500, function() {
     $('#notification_<%= @notification_id %>').replaceWith('');
+    if(was_first) {
+      var first_new_notification = $('._single_notification').first();
+      if(first_new_notification.length > 0) {
+        first_new_notification.addClass('no-margin');
+      }
+    }
     $('#tooltip_content').data('offset', <%= @offset_notifications %>);
     $('#tooltip_content').data('tot-number', <%= @tot_notifications %>);
     $('#tooltip_arancione').data('number', <%= @new_notifications %>);
