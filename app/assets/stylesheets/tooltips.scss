@@ -50,11 +50,18 @@
         
       }
       
+      &.no-margin {
+        
+        margin-top: 0;
+        
+      }
+      
       .notification_gatto_sx {
         
         width: 210px;
         height: 45px;
         margin-top: 10px;
+        margin-left: 20px;
         overflow: hidden;
         float: left;
         
@@ -62,7 +69,7 @@
       
       .notification_gatto_dx {
         
-        width: 58px;
+        width: 38px;
         height: 65px;
         float: left;
         

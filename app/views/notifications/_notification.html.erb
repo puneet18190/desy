@@ -1,4 +1,4 @@
-<div id="notification_<%= notification.id %>" class="_single_notification <%= notification.seen ? 'current'.html_safe : '' %>" data-param="<%= notification.id %>">
+<div id="notification_<%= notification.id %>" class="_single_notification <%= notification.seen ? 'current'.html_safe : '' %> <%= without_margin ? 'no-margin'.html_safe : '' %>" data-param="<%= notification.id %>">
   
   <div class="notification_gatto_sx">
     <p class="_notification_time_<%= notification.id %>" style="font-style:italic; font-size:11px; color:#2FAADC"><%= notification.only_time %></p>

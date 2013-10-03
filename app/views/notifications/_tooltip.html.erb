@@ -4,8 +4,8 @@
     <% if notifications.empty? %>
       <%= render :partial => 'notifications/empty' %>
     <% else %>
-      <% notifications.each do |n| %>
-        <%= render :partial => "notifications/notification", :locals => {:notification => n} %>
+      <% notifications.each_with_index do |n, index| %>
+        <%= render :partial => "notifications/notification", :locals => {:notification => n, :without_margin => (index == 0)} %>
       <% end %>
     <% end %>
   </div>
