@@ -549,13 +549,6 @@
   
 }
 
-@mixin background-mix {
-  
-  background-image: $assets-notice_png;
-  background-repeat: no-repeat;
-  
-}
-
 @mixin border-formatting {
   
   border-radius: 5px;

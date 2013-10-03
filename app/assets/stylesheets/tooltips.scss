@@ -8,9 +8,22 @@
   background-color: white;
   position: relative;
   
-  #expanded_notification {
+  #expanded_notification, .tooltip, .tooltipArancione, #notifications_button, #help, .tooltipHelp {
     
     position: absolute;
+    
+  }
+  
+  #notifications_button, #help {
+    
+    background-image: $assets-notice_png;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    
+  }
+  
+  #expanded_notification {
+    
     z-index: 30;
     border-radius: 3px;
     -webkit-border-radius: 3px;
@@ -111,7 +124,6 @@
   
   .tooltip {
     
-    position: absolute;
     z-index: 10;
     height: 275px;
     width: 281px;
@@ -232,7 +244,6 @@
   
   .tooltipArancione {
     
-    position: absolute;
     z-index: 10;
     border-radius: 3px;
     -webkit-border-radius: 3px;
@@ -243,21 +254,11 @@
   
   #notifications_button {
     
-    position: absolute;
     background-position: 1px 0px;
-    @include background-mix;
     
-    &:hover {
+    &:hover, &.current {
       
       background-position: -33px 0px;
-      cursor: pointer;
-      
-    }
-    
-    &.current {
-      
-      background-position: -33px 0px;
-      @include background-mix;
       
     }
     
@@ -265,21 +266,11 @@
   
   #help {
     
-    position: absolute;
     background-position: -68px 0px;
-    @include background-mix;
     
-    &:hover {
+    &:hover, &.current {
       
       background-position: -103px 0px;
-      cursor: pointer;
-      
-    }
-    
-    &.current {
-      
-      background-position: -103px 0px;
-      @include background-mix;
       
     }
     
@@ -287,7 +278,6 @@
   
   .tooltipHelp {
     
-    position: absolute;
     z-index: 10;
     border-radius: 3px;
     -webkit-border-radius: 3px;
