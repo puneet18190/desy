@@ -1,169 +1,232 @@
 @import 'variables';
 @import 'mixins';
 
-.notice-help {
+#notification_main {
   
-  padding-right: 2%;
-  margin: 0px;
-  float: right;
+  width: 100%;
+  height: 34px;
+  background-color: white;
   position: relative;
   
-  a {
+  #expanded_notification {
     
-    padding: 0px 18px 23px 18px;
-    margin-right: 10px;
-    
-  }
-  
-  .notice {
-    
-    padding: 0px;
+    position: absolute;
     margin: 0px;
-    float: left;
-    height: 34px;
+    z-index: 30;
+    border-radius: 3px 0 0 3px;
+    border-radius: 3px 0 0 3px;
+    -webkit-border-radius: 3px 0 0 3px;
+    right: 336%;
+    top: -9px;
+    overflow: hidden;
+    width: 430px;
+    height: 285px;
+    background-color: #fff;
+    border-top: 1px solid #e8e8e8;
+    border-left: 1px solid #e8e8e8;
+    border-bottom: 1px solid #e8e8e8;
+    color: $black;
     
-    a {
+    .title {
       
-      @include background-mix;
-      background-position: 1px 0px;
+      padding: 20px;
+      height: 20px;
+      font: 155% 'Nunito', sans-serif;
+      letter-spacing: -1px;
+      font-weight: bold;
+      color: #2FAADC;
       
-      &:hover {
+    }
+    
+    .time {
+      
+      padding: 0 20px 7px 20px;
+      height: 10px;
+      font-style: italic;
+      font-size: 11px;
+      color: #2FAADC;
+      
+    }
+    
+    .content {
+      
+      padding: 0 20px 20px 20px;
+      height: 135px;
+      color: $black;
+      
+      .link {
         
-        background-position: -33px 0px;
-        cursor: pointer;
+        color: #2FAADC;
+        font-weight: bold;
+        padding: 0;
+        
+      }
+      
+      .message {
+        
+        font-style: italic;
         
       }
       
     }
     
-    a.current {
+    .variable {
       
-      background-position: -33px 0px;
-      @include background-mix;
+      font-weight: bold;
       
     }
     
-  }
-  
-  .help {
-    
-    padding: 0px;
-    margin: 0px;
-    float: left;
-    height: 34px;
-    
-    a {
+    .basement {
       
-      @include background-mix;
-      background-position: -68px 0px;
+      margin-left: 20px;
+      padding: 10px;
+      width: 86%;
+      height: 19px;
+      background-color: #FBFAFB;
       
-      &:hover {
+      span {
         
-        background-position: -103px 0px;
-        cursor: pointer;
+        float: left;
+        font-weight: bold;
         
       }
       
-    }
-    
-    a.current {
+      a.preview {
+        
+        float: right;
+        width: 3.5em;
+        height: 3.5em;
+        background-image: $assets-action-buttons_svg;
+        background-repeat: no-repeat;
+        background-size: 7em 35em;
+        background-position: 0 -24.5em;
+        padding: 0;
+        font-size: 0.7em;
+        margin-top: -7px;
+        
+      }
       
-      background-position: -103px 0px;
-      @include background-mix;
-      
+      a.preview:hover {
+        
+        background-position: -3.5em -24.5em;
+        
+      }
     }
     
   }
   
-}
-
-.tooltip {
-  
-  display: none;
-  right: 110%;
-  top: -9px;
-  padding: 5px;
-  height: 275px;
-  width: 281px;
-  background-color: #fff;
-  border: 1px solid #e8e8e8;
-  @include misc;
-  
-  #notifications_list {
+  .tooltip {
     
+    position: absolute;
+    display: none;
+    right: 110%;
+    top: -9px;
+    padding: 5px;
     height: 275px;
     width: 281px;
+    background-color: #fff;
+    border: 1px solid #e8e8e8;
+    @include misc;
     
-    .empty_notifications {
+    #notifications_list {
       
-      color: $black;
-      font-weight: bold;
+      height: 275px;
       width: 281px;
-      text-align: center;
-      margin-top: 10px;
       
-    }
-    
-    ._single_notification {
-      
-      height: 65px; /* width is 268 if there is a scrollbar, and 268 + 8 + 5 = 281 if there is not a scrollbar */
-      margin-top: 5px;
-      background-color: #c1e6f6;
-      background-image: $assets-arrow-tooltip-notice_png;
-      background-position: 3px center;
-      background-repeat: no-repeat;
-      border-radius: 3px;
-      -webkit-border-radius: 3px;
-      color: $black;
-      cursor: pointer;
-      font: 12.8px Arial, Helvetica, sans-serif;
-      line-height: 15px;
-      
-      &.current {
+      .empty_notifications {
         
-        background-color: #f5f5f5;
-        
-      }
-      
-      &.no-margin {
-        
-        margin-top: 0;
-        
-      }
-      
-      .notification_gatto_sx {
-        
-        width: 210px;
-        height: 45px;
+        color: $black;
+        font-weight: bold;
+        width: 281px;
+        text-align: center;
         margin-top: 10px;
-        margin-left: 20px;
-        overflow: hidden;
-        float: left;
         
       }
       
-      .notification_gatto_dx {
+      ._single_notification {
         
-        width: 38px;
-        height: 65px;
-        float: right;
+        height: 65px; /* width is 268 if there is a scrollbar, and 268 + 8 + 5 = 281 if there is not a scrollbar */
+        margin-top: 5px;
+        background-color: #c1e6f6;
+        background-image: $assets-arrow-tooltip-notice_png;
+        background-position: 3px center;
+        background-repeat: no-repeat;
+        border-radius: 3px;
+        -webkit-border-radius: 3px;
+        color: $black;
+        cursor: pointer;
+        font: 12.8px Arial, Helvetica, sans-serif;
+        line-height: 15px;
         
-        .cancelTooltip {
+        &.current {
           
+          background-color: #f5f5f5;
+          
+        }
+        
+        &.no-margin {
+          
+          margin-top: 0;
+          
+        }
+        
+        .notification_gatto_sx {
+          
+          width: 210px;
+          height: 45px;
+          margin-top: 10px;
+          margin-left: 20px;
+          overflow: hidden;
+          float: left;
+          
+        }
+        
+        .notification_gatto_dx {
+          
+          width: 38px;
+          height: 65px;
           float: right;
-          width: 13px;
-          height: 13px;
-          margin-top: 2px;
-          margin-right: 2px;
-          background-image: $assets-cancel-tooltip-notice_png;
-          background-position: center center;
-          background-repeat: no-repeat;
-          background-color: transparent;
-          cursor: pointer;
           
-          &:hover {
+          .cancelTooltip {
             
-            background-image: $assets-cancel-tooltip-notice-on_png;
+            float: right;
+            width: 13px;
+            height: 13px;
+            margin-top: 2px;
+            margin-right: 2px;
+            background-image: $assets-cancel-tooltip-notice_png;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-color: transparent;
+            cursor: pointer;
+            
+            &:hover {
+              
+              background-image: $assets-cancel-tooltip-notice-on_png;
+              
+            }
+            
+          }
+          
+        }
+        
+      }
+      
+      .jspVerticalBar {
+        
+        top: 0;
+        border-radius: 3px;
+        -webkit-border-radius: 3px;
+        
+        .jspTrack {
+          
+          border-radius: 3px;
+          -webkit-border-radius: 3px;
+          
+          .jspDrag {
+            
+            border-radius: 3px;
+            -webkit-border-radius: 3px;
             
           }
           
@@ -173,25 +236,92 @@
       
     }
     
-    .jspVerticalBar {
+  }
+  
+  .tooltipArancione {
+    
+    position: absolute;
+    display: none;
+    @include misc;
+    padding: 7px;
+    right: 110%;
+    top: 0px;
+    color: #fff;
+    background-color: $orange;
+    
+  }
+  
+  #notifications_button {
+    
+    position: absolute;
+    background-position: 1px 0px;
+    @include background-mix;
+    
+    &:hover {
       
-      top: 0;
-      border-radius: 3px;
-      -webkit-border-radius: 3px;
+      background-position: -33px 0px;
+      cursor: pointer;
       
-      .jspTrack {
-        
-        border-radius: 3px;
-        -webkit-border-radius: 3px;
-        
-        .jspDrag {
-          
-          border-radius: 3px;
-          -webkit-border-radius: 3px;
-          
-        }
-        
-      }
+    }
+    
+    &.current {
+      
+      background-position: -33px 0px;
+      @include background-mix;
+      
+    }
+    
+  }
+  
+  #help {
+    
+    position: absolute;
+    background-position: -68px 0px;
+    @include background-mix;
+    
+    &:hover {
+      
+      background-position: -103px 0px;
+      cursor: pointer;
+      
+    }
+    
+    &.current {
+      
+      background-position: -103px 0px;
+      @include background-mix;
+      
+    }
+    
+  }
+  
+  .tooltipHelp {
+    
+    position: absolute;
+    display: none;
+    @include misc;
+    padding: 2.5% 10% 2.5% 10%;
+    right: 70%;
+    top: -9px;
+    float: right;
+    background-color: #fff;
+    border: 1px solid #e8e8e8;
+    width: 520%;
+    
+    strong {
+      
+      color: $orange;
+      font-size: 110%;
+      
+    }
+    
+    p {
+      
+      display: inline-block;
+      width: 30%;
+      padding: 1%;
+      vertical-align: top;
+      color: $black;
       
     }
     
@@ -199,48 +329,13 @@
   
 }
 
-.tooltipArancione {
-  
-  display: none;
-  @include misc;
-  padding: 7px;
-  right: 110%;
-  top: 0px;
-  color: #fff;
-  background-color: $orange;
-  
-}
 
-.tooltipHelp {
-  
-  display: none;
-  @include misc;
-  padding: 2.5% 10% 2.5% 10%;
-  right: 70%;
-  top: -9px;
-  float: right;
-  background-color: #fff;
-  border: 1px solid #e8e8e8;
-  width: 520%;
-  
-  strong {
-    
-    color: $orange;
-    font-size: 110%;
-    
-  }
-  
-  p {
-    
-    display: inline-block;
-    width: 30%;
-    padding: 1%;
-    vertical-align: top;
-    color: $black;
-    
-  }
-  
-}
+
+
+
+
+
+
 
 .lesson_tooltipForm {
   
@@ -315,112 +410,5 @@
   width: 100%;
   height: 305px;
   overflow: auto;
-  
-}
-
-#expanded_notification {
-  
-  margin: 0px;
-  z-index: 30;
-  border-radius: 3px 0 0 3px;
-  border-radius: 3px 0 0 3px;
-  -webkit-border-radius: 3px 0 0 3px;
-  position: absolute;
-  right: 336%;
-  top: -9px;
-  overflow: hidden;
-  width: 430px;
-  height: 285px;
-  background-color: #fff;
-  border-top: 1px solid #e8e8e8;
-  border-left: 1px solid #e8e8e8;
-  border-bottom: 1px solid #e8e8e8;
-  color: $black;
-  
-  .title {
-    
-    padding: 20px;
-    height: 20px;
-    font: 155% 'Nunito', sans-serif;
-    letter-spacing: -1px;
-    font-weight: bold;
-    color: #2FAADC;
-    
-  }
-  
-  .time {
-    
-    padding: 0 20px 7px 20px;
-    height: 10px;
-    font-style: italic;
-    font-size: 11px;
-    color: #2FAADC;
-    
-  }
-  
-  .content {
-    
-    padding: 0 20px 20px 20px;
-    height: 135px;
-    color: $black;
-    
-    .link {
-      
-      color: #2FAADC;
-      font-weight: bold;
-      padding: 0;
-      
-    }
-    
-    .message {
-      
-      font-style: italic;
-      
-    }
-    
-  }
-  
-  .variable {
-    
-    font-weight: bold;
-    
-  }
-  
-  .basement {
-    
-    margin-left: 20px;
-    padding: 10px;
-    width: 86%;
-    height: 19px;
-    background-color: #FBFAFB;
-    
-    span {
-      
-      float: left;
-      font-weight: bold;
-      
-    }
-    
-    a.preview {
-      
-      float: right;
-      width: 3.5em;
-      height: 3.5em;
-      background-image: $assets-action-buttons_svg;
-      background-repeat: no-repeat;
-      background-size: 7em 35em;
-      background-position: 0 -24.5em;
-      padding: 0;
-      font-size: 0.7em;
-      margin-top: -7px;
-      
-    }
-    
-    a.preview:hover {
-      
-      background-position: -3.5em -24.5em;
-      
-    }
-  }
   
 }

@@ -1,6 +1,8 @@
-<div id="expanded_notification" style="display:none;" data-contentid="0"></div>
-<a id="notifications_button" title="<%= t('titles.notifications.label') %>"></a>
-<%= render :partial => 'notifications/tooltip_arancione', :locals => {:news => news} %>
-<%= render :partial => 'notifications/tooltip', :locals => {:notifications => notifications, :offset => offset, :tot => tot} %>
-<a id="help"  title="<%= t('titles.help_tooltip') %>"></a>
-<%= render :partial => 'notifications/tooltip_help' %>
+<div id="notification_main">
+  <div id="expanded_notification" style="display:none;" data-contentid="0"></div>
+  <%= render :partial => 'notifications/tooltip', :locals => {:notifications => notifications, :offset => offset, :tot => tot} %>
+  <%= render :partial => 'notifications/tooltip_arancione', :locals => {:news => news} %>
+  <a id="notifications_button" title="<%= t('titles.notifications.label') %>"></a>
+  <a id="help" title="<%= t('titles.help_tooltip') %>"></a>
+  <%= render :partial => 'notifications/tooltip_help' %>
+</div>
