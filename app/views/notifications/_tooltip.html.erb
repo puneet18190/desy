@@ -1,4 +1,4 @@
-<span class="tooltip" id="tooltip_content" data-offset="<%= offset %>" data-tot-number="<%= tot %>">
+<div class="tooltip" id="tooltip_content" data-offset="<%= offset %>" data-tot-number="<%= tot %>">
   <%= image_tag('freccia_tooltip.png', :class => 'callout') %>
   <div id="notifications_list" class="scroll-pane">
     <% if notifications.empty? %>
@@ -9,4 +9,4 @@
       <% end %>
     <% end %>
   </div>
-</span>
+</div>

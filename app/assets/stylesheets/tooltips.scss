@@ -4,97 +4,96 @@
 .tooltip {
   
   display: none;
-  @include misc;
-  padding: 2px 5px 2px 5px;
   right: 110%;
   top: -9px;
-  width: 218%;
+  padding: 5px;
+  height: 275px;
+  width: 281px;
   background-color: #fff;
   border: 1px solid #e8e8e8;
+  @include misc;
   
   #notifications_list {
     
-    span {
+    height: 275px;
+    width: 281px;
+    
+    .empty_notifications {
       
       color: $black;
       font-weight: bold;
+      width: 281px;
+      text-align: center;
+      margin-top: 10px;
       
     }
     
-    .li_notifications {
+    ._single_notification {
       
-      margin: 5px 0 5px 0;
-      position: relative;
+      height: 65px;
+      width: 268px;
+      margin-top: 5px;
       
-      .cancelTooltip {
+      
+      .notification_gatto {
         
-        position: absolute;
-        right: 0.1em;
-        top: 0.1em;
-        background-image: $assets-cancel-tooltip-notice_png;
-        background-position: center center;
+        display: block;
+        height: 65px;
+        width: 268px;
+        background-color: #c1e6f6;
+        background-image: $assets-arrow-tooltip-notice_png;
+        background-position: top center;
         background-repeat: no-repeat;
-        padding: 10px;
-        background-color: transparent;
+        border-radius: 3px;
+        -webkit-border-radius: 3px;
+        border-radius: 3px;
+        color: $black;
         cursor: pointer;
         
-      }
-      
-      .cancelTooltip:hover {
+        &.current {
+          
+          background-image: none;
+          background-color: #f5f5f5;
+          
+        }
         
-        background-image: $assets-cancel-tooltip-notice-on_png;
+        .notification_gattino_sx {
+          
+          width: 210px;
+          height: 45px;
+          margin-top: 10px;
+          overflow: hidden;
+          float: left;
+          
+        }
+        
+        .notification_gattino_dx {
+          
+          width: 58px;
+          height: 65px;
+          float: left;
+          
+          .cancelTooltip { /* TODO rifare l'icona! e assicurarsi che l'svg funzioni bene */
+            
+            right: 0;
+            top: 0;
+            background-image: $assets-cancel-tooltip-notice_png;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-color: transparent;
+            cursor: pointer;
+            
+            &:hover {
+              
+              background-image: $assets-cancel-tooltip-notice-on_png;
+              
+            }
+            
+          }
+          
+        }
         
       }
-      
-    }
-    
-    .notification_gatto {
-      
-      display: block;
-      background-color: #c1e6f6;
-      background-image: $assets-arrow-tooltip-notice_png;
-      background-position: 0.3em center;
-      background-repeat: no-repeat;
-      border-radius: 3px;
-      -webkit-border-radius: 3px;
-      border-radius: 3px;
-      margin-right: 0;
-      padding: 10px;
-      
-    }
-    
-    .notification_gatto.expanded {
-      
-      display: block;
-      background-image: none;
-      background-image: $assets-arrow-tooltip-notice_png;
-      background-position: 0.3em center;
-      background-repeat: no-repeat;
-      border-radius: 3px;
-      -webkit-border-radius: 3px;
-      margin-right: 0;
-      padding: 10px 10px 10px 20px;
-      margin-bottom: 10px;
-      color: $black;
-      
-    }
-    
-    .notification_gatto:hover {
-      
-      cursor: pointer;
-      
-    }
-    
-    .notification_gatto:link, .navlist .notification_gatto:visited {
-      
-      text-decoration: none;
-      
-    }
-    
-    .current {
-      
-      background-image: none;
-      background-color: #f5f5f5;
       
     }
     
