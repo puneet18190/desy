@@ -38,7 +38,6 @@
       background-repeat: no-repeat;
       border-radius: 3px;
       -webkit-border-radius: 3px;
-      border-radius: 3px;
       color: $black;
       cursor: pointer;
       
@@ -86,6 +85,28 @@
             background-image: $assets-cancel-tooltip-notice-on_png;
             
           }
+          
+        }
+        
+      }
+      
+    }
+    
+    .jspVerticalBar {
+      
+      top: 0;
+      border-radius: 3px;
+      -webkit-border-radius: 3px;
+      
+      .jspTrack {
+        
+        border-radius: 3px;
+        -webkit-border-radius: 3px;
+        
+        .jspDrag {
+          
+          border-radius: 3px;
+          -webkit-border-radius: 3px;
           
         }
         
