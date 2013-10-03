@@ -1,8 +1,14 @@
 <%
+  likes_general_count ||= nil
+  likes_general_count = lesson.likes.count if likes_general_count.nil?
+  cover ||= nil
+  notification_bookmarks ||= nil
+  notification_bookmarks = Bookmark.where('bookmarkable_type = ? AND bookmarkable_id = ? AND created_at < ?', 'Lesson', lesson.id, lesson.updated_at).count if notification_bookmarks.nil?
+  lesson_not_notified = lesson.status.nil? ? false : (!lesson.notified && notification_bookmarks > 0)
   current_class = (lesson.status == Statuses::COPIED) ? 'current'.html_safe : ''
   disabled = !lesson.available?
   additional_class = disabled ? '_disabled'.html_safe : ''
-  current_class = "#{current_class} _lesson_change_not_notified" if lesson.not_notified?
+  current_class = "#{current_class} _lesson_change_not_notified" if lesson_not_notified
 %>
 
 
@@ -12,21 +18,21 @@
     <h3><%= lesson.title %></h3>
     <p><%= lesson.subject.description %></p>
     <p><%= lesson.status(true) %></p>
-    <%= render :partial => "lessons/action_buttons", :locals => {:lesson => lesson, :destination => destination, :additional_class => additional_class} %>
+    <%= render :partial => 'lessons/action_buttons', :locals => {:lesson => lesson, :destination => destination, :additional_class => additional_class} %>
   </div>
   
   <% if !disabled %>
     <div class="lessons-expanded _lesson_expanded">
-      <%= render :partial => "lessons/thumbnail", :locals => {:lesson => lesson} %>
+      <%= render :partial => 'lessons/thumbnail', :locals => {:lesson => lesson, :cover => cover} %>
       <div class="info-text">
         <h1><%= t('lessons.created_on') %></h1>
         <%= TimeConvert.to_string(lesson.created_at) %>
         <p>
           <span class="fltlft"><%= image_tag "star.png", :align => "left" %></span>
-          <span class="fltlft" style="padding-top:2px"><%= t('lessons.users_like_this', :likes => lesson.likes.count) %></span>
+          <span class="fltlft" style="padding-top:2px"><%= t('lessons.users_like_this', :likes => likes_general_count) %></span>
         </p>
         <% if lesson.is_reportable %>
-          <%= render :partial => "reports/lesson", :locals => {:lesson => lesson} %>
+          <%= render :partial => 'reports/lesson', :locals => {:lesson => lesson} %>
         <% end %>
       </div>
       <div class="description-text">

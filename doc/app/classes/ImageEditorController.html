@@ -399,10 +399,10 @@ href="ImageEditorController.html#method-i-initialize_image_with_owner_and_privat
     <span class="ruby-ivar">@image</span>.<span class="ruby-identifier">description</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:update_description</span>]
     <span class="ruby-ivar">@image</span>.<span class="ruby-identifier">tags</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:update_tags_value</span>]
     <span class="ruby-ivar">@image</span>.<span class="ruby-identifier">media</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span> <span class="ruby-ivar">@image</span>.<span class="ruby-identifier">current_editing_image</span>
-    <span class="ruby-ivar">@image</span>.<span class="ruby-identifier">validating_in_form</span> = <span class="ruby-keyword">true</span>
+    <span class="ruby-ivar">@image</span>.<span class="ruby-identifier">save_tags</span> = <span class="ruby-keyword">true</span>
     <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@image</span>.<span class="ruby-identifier">save</span>
       <span class="ruby-ivar">@error_ids</span> = <span class="ruby-string">&#39;update&#39;</span>
-      <span class="ruby-ivar">@errors</span> = <span class="ruby-identifier">convert_item_error_messages</span>(<span class="ruby-ivar">@image</span>.<span class="ruby-identifier">errors</span>.<span class="ruby-identifier">messages</span>)
+      <span class="ruby-ivar">@errors</span> = <span class="ruby-identifier">convert_item_error_messages</span>(<span class="ruby-ivar">@image</span>.<span class="ruby-identifier">errors</span>)
       <span class="ruby-ivar">@error_fields</span> = <span class="ruby-ivar">@image</span>.<span class="ruby-identifier">errors</span>.<span class="ruby-identifier">messages</span>.<span class="ruby-identifier">keys</span>
     <span class="ruby-keyword">else</span>
       <span class="ruby-constant">MediaElementsSlide</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:media_element_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@image</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">mes</span><span class="ruby-operator">|</span>
@@ -469,10 +469,10 @@ href="ImageEditorController.html#method-i-initialize_image_with_owner_or_public"
     <span class="ruby-identifier">new_image</span>.<span class="ruby-identifier">tags</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:new_tags_value</span>]
     <span class="ruby-identifier">new_image</span>.<span class="ruby-identifier">user_id</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>
     <span class="ruby-identifier">new_image</span>.<span class="ruby-identifier">media</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span> <span class="ruby-ivar">@image</span>.<span class="ruby-identifier">current_editing_image</span>
-    <span class="ruby-identifier">new_image</span>.<span class="ruby-identifier">validating_in_form</span> = <span class="ruby-keyword">true</span>
+    <span class="ruby-identifier">new_image</span>.<span class="ruby-identifier">save_tags</span> = <span class="ruby-keyword">true</span>
     <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">new_image</span>.<span class="ruby-identifier">save</span>
       <span class="ruby-ivar">@error_ids</span> = <span class="ruby-string">&#39;new&#39;</span>
-      <span class="ruby-ivar">@errors</span> = <span class="ruby-identifier">convert_item_error_messages</span>(<span class="ruby-identifier">new_image</span>.<span class="ruby-identifier">errors</span>.<span class="ruby-identifier">messages</span>)
+      <span class="ruby-ivar">@errors</span> = <span class="ruby-identifier">convert_item_error_messages</span>(<span class="ruby-identifier">new_image</span>.<span class="ruby-identifier">errors</span>)
       <span class="ruby-ivar">@error_fields</span> = <span class="ruby-identifier">new_image</span>.<span class="ruby-identifier">errors</span>.<span class="ruby-identifier">messages</span>.<span class="ruby-identifier">keys</span>
     <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">else</span>

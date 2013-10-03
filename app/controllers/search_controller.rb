@@ -110,6 +110,7 @@ class SearchController < ApplicationController
     @lessons = resp[:records]
     @pages_amount = resp[:pages_amount]
     @lessons_amount = resp[:records_amount]
+    @covers = resp[:covers]
   end
   
   # Gets media elements using User#search_media_elements
@@ -128,6 +129,7 @@ class SearchController < ApplicationController
     @lessons = resp[:records]
     @pages_amount = resp[:pages_amount]
     @lessons_amount = resp[:records_amount]
+    @covers = resp[:covers]
     @tags = []
     @tags = resp[:tags] if resp.has_key? :tags
   end
@@ -150,14 +152,14 @@ class SearchController < ApplicationController
   # Called from SearchController#initialize_paginator_and_filters, it contains specific parameters for elements
   def initialize_paginator_and_filters_for_media_elements
     @filter = Filters::MEDIA_ELEMENTS_SEARCH_SET.include?(params[:filter]) ? params[:filter] : Filters::ALL_MEDIA_ELEMENTS
-    @order = SearchOrders::MEDIA_ELEMENTS_SET.include?(params[:order]) ? params[:order] : SearchOrders::UPDATED_AT
+    @order = SearchOrders::MEDIA_ELEMENTS_SET.include?(params[:order]) ? params[:order] : SearchOrders::TITLE
     @for_page = MEDIA_ELEMENTS_FOR_PAGE
   end
   
   # Called from SearchController#initialize_paginator_and_filters, it contains specific parameters for lessons
   def initialize_paginator_and_filters_for_lessons
     @filter = Filters::LESSONS_SEARCH_SET.include?(params[:filter]) ? params[:filter] : Filters::ALL_LESSONS
-    @order = SearchOrders::LESSONS_SET.include?(params[:order]) ? params[:order] : SearchOrders::UPDATED_AT
+    @order = SearchOrders::LESSONS_SET.include?(params[:order]) ? params[:order] : SearchOrders::TITLE
     @subject_id = correct_integer?(params[:subject_id]) ? params[:subject_id].to_i : nil
     @for_page = LESSONS_FOR_PAGE
   end

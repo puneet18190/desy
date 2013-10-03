@@ -49,9 +49,9 @@ class LessonEditorController < ApplicationController
       redirect_to '/dashboard'
       return
     else
-      @slides = @lesson.slides.order(:position)
+      @slides = Slide.preload(:lesson, :media_elements_slides, {:media_elements_slides => :media_element}, :documents_slides, {:documents_slides => :document}).where(:lesson_id => @lesson_id).order(:position)
       @max_slides = @lesson.reached_the_maximum_of_slides?
-      @documents_slides = [[], ((@slides.length > 1) ? DocumentsSlide.where(:slide_id => @slides[1].id) : [])]
+      @documents_slides = [[], ((@slides.length > 1) ? @slides[1].documents_slides : [])]
     end
   end
   
@@ -91,7 +91,7 @@ class LessonEditorController < ApplicationController
     if new_lesson.instance_of?(Lesson)
       @lesson = new_lesson
     else
-      @errors = convert_lesson_editor_messages new_lesson.messages
+      @errors = convert_lesson_editor_messages new_lesson
       @error_fields = new_lesson.keys
     end
     p new_lesson
@@ -119,9 +119,9 @@ class LessonEditorController < ApplicationController
       @lesson.description =  params[:description]
       @lesson.subject_id = params[:lesson_subject]
       @lesson.tags = params[:tags_value]
-      @lesson.validating_in_form = true
+      @lesson.save_tags = true
       if !@lesson.save
-        @errors = convert_item_error_messages @lesson.errors.messages
+        @errors = convert_item_error_messages @lesson.errors
         @error_fields = @lesson.errors.messages.keys
       else
         @lesson.modify

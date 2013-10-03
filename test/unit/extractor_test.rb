@@ -159,51 +159,66 @@ class ExtractorTest < ActiveSupport::TestCase
     }
     me1 = MediaElement.find 1
     me1.tags = tag_map[0]
+    me1.save_tags = true
     assert_obj_saved me1
     me2 = MediaElement.find 2
     me2.tags = tag_map[1]
+    me2.save_tags = true
     assert_obj_saved me2
     me3 = MediaElement.find 3
     me3.tags = tag_map[2]
+    me3.save_tags = true
     assert_obj_saved me3
     me4 = MediaElement.find 4
     me4.tags = tag_map[3]
+    me4.save_tags = true
     assert_obj_saved me4
     me5 = MediaElement.find 5
     me5.tags = tag_map[4]
+    me5.save_tags = true
     assert_obj_saved me5
     me6 = MediaElement.find 6
     me6.tags = tag_map[5]
+    me6.save_tags = true
     assert_obj_saved me6
     media_video = {:mp4 => Rails.root.join('test/samples/one.mp4').to_s, :webm => Rails.root.join('test/samples/one.webm').to_s, :filename => 'video_test'}
     media_audio = {:m4a => Rails.root.join('test/samples/one.m4a').to_s, :ogg => Rails.root.join('test/samples/one.ogg').to_s, :filename => 'audio_test'}
     media_image = File.open(Rails.root.join('test/samples/one.jpg'))
     @el1 = Video.new :description => 'desc1', :title => 'titl1', :media => media_video, :tags => tag_map[8]
     @el1.user_id = 1
+    @el1.save_tags = true
     assert_obj_saved @el1
     @el2 = Video.new :description => 'desc2', :title => 'titl2', :media => media_video, :tags => tag_map[9]
     @el2.user_id = 1
+    @el2.save_tags = true
     assert_obj_saved @el2
     @el3 = Audio.new :description => 'desc3', :title => 'titl3', :media => media_audio, :tags => tag_map[0]
     @el3.user_id = 1
+    @el3.save_tags = true
     assert_obj_saved @el3
     @el4 = Audio.new :description => 'desc4', :title => 'titl4', :media => media_audio, :tags => tag_map[6]
     @el4.user_id = 1
+    @el4.save_tags = true
     assert_obj_saved @el4
     @el5 = Image.new :description => 'desc5', :title => 'titl5', :media => media_image, :tags => tag_map[1]
     @el5.user_id = 1
+    @el5.save_tags = true
     assert_obj_saved @el5
     @el6 = Image.new :description => 'desc6', :title => 'titl6', :media => media_image, :tags => tag_map[7]
     @el6.user_id = 1
+    @el6.save_tags = true
     assert_obj_saved @el6
     @el7 = Image.new :description => 'desc7', :title => 'titl7', :media => media_image, :tags => tag_map[2]
     @el7.user_id = 1
+    @el7.save_tags = true
     assert_obj_saved @el7
     le1 = Lesson.find 1
     le1.tags = tag_map[3]
+    le1.save_tags = true
     assert_obj_saved le1
     le2 = Lesson.find 2
     le2.tags = tag_map[4]
+    le2.save_tags = true
     assert_obj_saved le2
     @les1 = @user1.create_lesson('title1', 'desc1', 1, tag_map[8])
     @les2 = @user1.create_lesson('title2', 'desc2', 2, tag_map[9])
@@ -256,7 +271,9 @@ class ExtractorTest < ActiveSupport::TestCase
     assert @liker5.bookmark 'Lesson', 1
     assert @liker6.bookmark 'Lesson', 1
     assert_equal 6, Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => 1).count
-    assert_equal 1, @user1.own_lessons(1, 20)[:records].length
+    resp = @user1.own_lessons(1, 20)[:records]
+    assert_equal 1, resp.length
+    assert_status resp, [['preview', 'edit', 'add_virtual_classroom', 'unpublish', 'copy', 'destroy']]
   end
   
   test 'ordered_own_items' do
@@ -288,14 +305,23 @@ class ExtractorTest < ActiveSupport::TestCase
     l = Lesson.find 2
     assert_equal 2, l.user_id
     assert_equal true, l.is_public
-    assert_item_extractor [@les1.id, @les2.id, @les3.id, @les4.id], @user2.suggested_lessons(6)
+    assert @user2.like(@les3.id)
+    assert @user2.like(@les4.id)
+    resp = @user2.suggested_lessons(6)
+    assert_item_extractor [@les1.id, @les2.id, @les3.id, @les4.id], resp
+    assert_status resp, [['preview', 'add', 'like'], ['preview', 'add', 'like'], ['preview', 'add', 'dislike'], ['preview', 'add', 'dislike']]
+    assert @user2.dislike(@les4.id)
     assert @user2.bookmark 'Lesson', @les2.id
-    assert_item_extractor [@les1.id, @les3.id, @les4.id], @user2.suggested_lessons(6)
+    resp = @user2.suggested_lessons(6)
+    assert_item_extractor [@les1.id, @les3.id, @les4.id], resp
+    assert_status resp, [['preview', 'add', 'like'], ['preview', 'add', 'dislike'], ['preview', 'add', 'like']]
   end
   
   test 'suggested_media_elements' do
     assert @user2.bookmark 'MediaElement', @el3.id
-    assert_item_extractor [2, @el1.id, @el2.id, @el5.id, @el7.id], @user2.suggested_media_elements(80)
+    resp = @user2.suggested_media_elements(80)
+    assert_item_extractor [2, @el1.id, @el2.id, @el5.id, @el7.id], resp
+    assert_status resp, [['preview', 'add'], ['preview', 'add'], ['preview', 'add'], ['preview', 'add'], ['preview', 'add']]
   end
   
   test 'dashboard_emptied' do
@@ -323,7 +349,14 @@ class ExtractorTest < ActiveSupport::TestCase
     assert @user2.bookmark 'Lesson', @les6.id
     assert @user2.bookmark 'Lesson', 1
     assert @user2.bookmark 'MediaElement', 1
-    assert_item_extractor [1, 2, @les2.id, @les5.id, @les6.id], @user2.own_lessons(1, 20)[:records]
+    assert @user2.like @les2.id
+    assert @user2.like @les5.id
+    assert @les5.add_to_virtual_classroom @user2.id
+    resp = @user2.own_lessons(1, 20)[:records]
+    assert_item_extractor [1, 2, @les2.id, @les5.id, @les6.id], resp
+    resp = resp.sort {|a, b| a.id <=> b.id}
+    assert @les2.id < @les5.id && @les5.id < @les6.id
+    assert_status resp, [['preview', 'copy', 'add_virtual_classroom', 'like', 'remove'], ['preview', 'edit', 'add_virtual_classroom', 'unpublish', 'copy', 'destroy'], ['preview', 'copy', 'add_virtual_classroom', 'dislike', 'remove'], ['preview', 'copy', 'remove_virtual_classroom', 'dislike', 'remove'], ['preview', 'copy', 'add_virtual_classroom', 'like', 'remove']]
     # last page true
     resp = @user2.own_lessons(3, 2)
     assert_equal 1, resp[:records].length
@@ -332,13 +365,30 @@ class ExtractorTest < ActiveSupport::TestCase
     resp = @user2.own_lessons(1, 3)
     assert_equal 3, resp[:records].length
     assert_equal 2, resp[:pages_amount]
+    # copy a lesson and try the different buttons
+    copied = @les2.copy(@user2.id)
+    copied_and_modified = @les6.copy(@user2.id)
+    assert_not_nil copied
+    assert_not_nil copied_and_modified
+    assert copied_and_modified.modify
+    assert @user2.dislike(@les5.id)
+    assert Lesson.find(2).add_to_virtual_classroom(@user2.id)
+    resp = @user2.own_lessons(1, 20)[:records]
+    assert_item_extractor [1, 2, @les2.id, @les5.id, @les6.id, copied.id, copied_and_modified.id], resp
+    resp = resp.sort {|a, b| a.id <=> b.id}
+    assert copied.id < copied_and_modified.id
+    assert_status resp, [['preview', 'copy', 'add_virtual_classroom', 'like', 'remove'], ['preview', 'edit', 'remove_virtual_classroom', 'unpublish', 'copy', 'destroy'], ['preview', 'copy', 'add_virtual_classroom', 'dislike', 'remove'], ['preview', 'copy', 'remove_virtual_classroom', 'like', 'remove'], ['preview', 'copy', 'add_virtual_classroom', 'like', 'remove'], ['preview', 'edit', 'destroy'], ['preview', 'edit', 'add_virtual_classroom', 'publish', 'copy', 'destroy']]
   end
   
   test 'own_media_elements' do
     assert @user2.bookmark 'MediaElement', 2
     assert @user2.bookmark 'MediaElement', @el2.id
     assert @user2.bookmark 'MediaElement', @el5.id
-    assert_item_extractor [2, 3, 4, @el2.id, @el5.id], @user2.own_media_elements(1, 20)[:records]
+    resp = @user2.own_media_elements(1, 20)[:records]
+    assert_item_extractor [2, 3, 4, @el2.id, @el5.id], resp
+    resp = resp.sort {|a, b| a.id <=> b.id}
+    assert @el2.id < @el5.id
+    assert_status resp, [['preview', 'edit', 'remove'], ['preview', 'edit', 'destroy'], ['preview', 'edit', 'remove'], ['preview', 'edit', 'remove'], ['preview', 'edit', 'remove']]
     # last page true
     resp = @user2.own_media_elements(3, 2)
     assert_equal 1, resp[:records].length
@@ -498,6 +548,171 @@ class ExtractorTest < ActiveSupport::TestCase
     resp = @user2.own_lessons(1, 2, 'copied')
     assert_equal 2, resp[:records].length
     assert_equal 2, resp[:pages_amount]
+  end
+  
+  test 'media_elements_optimized' do
+    Tagging.delete_all
+    Tag.delete_all
+    MediaElement.where(:id => [1, 5, @el4.id, @el6.id]).each do |me|
+      me.tags = 'cane, gatto, uovo sodo, mandarino'
+      me.save_tags = true
+      assert_obj_saved me
+    end
+    x = MediaElementsSlide.new
+    x.slide_id = Lesson.find(1).cover.id
+    x.media_element_id = 5
+    x.alignment = 0
+    x.position = 1
+    assert_obj_saved x
+    s = Lesson.find(1).add_slide 'image4', 2
+    assert_not_nil s
+    x = MediaElementsSlide.new
+    x.slide_id = s.id
+    x.media_element_id = 5
+    x.alignment = 0
+    x.position = 3
+    assert_obj_saved x
+    s2 = Lesson.find(1).add_slide 'audio', 3
+    assert_not_nil s2
+    x = MediaElementsSlide.new
+    x.slide_id = s2.id
+    x.media_element_id = @el4.id
+    x.position = 1
+    assert_obj_saved x
+    # preliminar extractions: I want to have the same results for own_media_elements and search_media_elements, and make the same assertions over them
+    resps = [@user1.own_media_elements(1, 20)]
+    resps << @user1.search_media_elements('uovo', 1, 20)
+    resps3 = @user1.search_media_elements(nil, 1, 20)
+    resps3[:records].reject! do |me|
+      ![1, 5, @el4.id, @el6.id].include?(me.id)
+    end
+    resps << resps3
+    i = 0
+    while i < 3
+      resp = resps[i]
+      resp[:records] = resp[:records].sort { |a, b| a.id <=> b.id }
+      assert_ordered_item_extractor [1, 5, @el4.id, @el6.id], resp[:records]
+      assert_equal 0, resp[:records][0].instances.to_i
+      assert_equal 2, resp[:records][1].instances.to_i
+      assert_equal 1, resp[:records][2].instances.to_i
+      assert_equal 0, resp[:records][3].instances.to_i
+      i += 1
+    end
+  end
+  
+  test 'lessons_optimized' do
+    Tagging.delete_all
+    Tag.delete_all
+    Lesson.where(:id => [1, 2, @les2.id, @les5.id, @les6.id]).each do |l|
+      l.tags = 'cane, gatto, uovo sodo, mandarino'
+      l.save_tags = true
+      assert_obj_saved l
+    end
+    assert Lesson.find(1).publish
+    assert @user2.bookmark 'Lesson', @les2.id
+    assert @user2.bookmark 'Lesson', @les5.id
+    assert @user2.bookmark 'Lesson', @les6.id
+    assert @user2.bookmark 'Lesson', 1
+    load_likes
+    assert @user2.like @les2.id
+    assert @liker4.bookmark 'Lesson', @les6.id
+    assert @liker3.bookmark 'Lesson', @les6.id
+    # preliminar extractions: I want to have the same results for own_lessons and search_lessons, and make the same assertions over them
+    resps = [@user2.own_lessons(1, 20)]
+    resps << @user2.search_lessons('uovo', 1, 20)
+    resps3 = @user2.search_lessons(nil, 1, 20)
+    resps3[:records].reject! do |l|
+      rejected = ![1, 2, @les2.id, @les5.id, @les6.id].include?(l.id)
+      resps3[:covers].delete(l.id) if rejected
+      rejected
+    end
+    resps << resps3
+    i = 0
+    while i < 3
+      resp = resps[i]
+      # first part, likes_general_count
+      resp[:records] = resp[:records].sort { |a, b| a.id <=> b.id }
+      assert_ordered_item_extractor [1, 2, @les2.id, @les5.id, @les6.id], resp[:records]
+      assert_equal 0, resp[:records][0].likes_general_count.to_i
+      assert_equal 0, resp[:records][1].likes_general_count.to_i
+      assert_equal 2, resp[:records][2].likes_general_count.to_i
+      assert Like.where(:user_id => @user2.id, :lesson_id => @les2.id).any?
+      assert_equal 2, resp[:records][3].likes_general_count.to_i
+      assert Like.where(:user_id => @user2.id, :lesson_id => @les2.id).any?
+      assert_equal 3, resp[:records][4].likes_general_count.to_i
+      assert Like.where(:user_id => @user2.id, :lesson_id => @les2.id).any?
+      # second part, covers
+      assert_equal 5, resp[:covers].keys.length
+      assert resp[:covers].has_key?(1)
+      assert_equal Slide, resp[:covers][1].class
+      assert_equal 1, resp[:covers][1].id
+      assert resp[:covers].has_key?(2)
+      assert_equal Slide, resp[:covers][2].class
+      assert_equal 2, resp[:covers][2].id
+      assert resp[:covers].has_key?(@les2.id)
+      assert_equal Slide, resp[:covers][@les2.id].class
+      assert_equal Slide.where(:kind => 'cover', :lesson_id => @les2.id).first.id, resp[:covers][@les2.id].id
+      assert resp[:covers].has_key?(@les5.id)
+      assert_equal Slide, resp[:covers][@les5.id].class
+      assert_equal Slide.where(:kind => 'cover', :lesson_id => @les5.id).first.id, resp[:covers][@les5.id].id
+      assert resp[:covers].has_key?(@les6.id)
+      assert_equal Slide, resp[:covers][@les6.id].class
+      assert_equal Slide.where(:kind => 'cover', :lesson_id => @les6.id).first.id, resp[:covers][@les6.id].id
+      i += 1
+    end
+    # third part, notifications_bookmarks
+    Lesson.where(:id => [@les1.id, @les3.id, @les4.id, @les7.id, @les8.id, @les9.id]).each do |l|
+      l.tags = 'cane, gatto, uovo sodo, mandarino'
+      l.save_tags = true
+      assert_obj_saved l
+    end
+    resp = @user1.own_lessons(1, 20)
+    ids = []
+    resp[:records].each do |l|
+      ids << l.id
+      if l.id != @les9.id
+        assert l.modify
+      end
+    end
+    Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => ids).update_all(:created_at => '2000-01-01 10:00:00')
+    Lesson.where(:id => ids).update_all(:updated_at => '2000-01-01 11:00:00')
+    Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => @les6.id, :user_id => @user2.id).update_all(:created_at => '2000-01-01 12:00:00')
+    Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => @les2.id, :user_id => @user2.id).update_all(:created_at => '2000-01-01 12:00:00')
+    # I extend the tags to the other lessons, to make them extracted by the search_engine
+    resps = [@user1.own_lessons(1, 20)]
+    resps << @user1.search_lessons('uovo', 1, 20)
+    resps3 = @user1.search_lessons(nil, 1, 20)
+    resps3[:records].reject! do |l|
+      rejected = ![1, 2, @les1.id, @les2.id, @les3.id, @les4.id, @les5.id, @les6.id, @les7.id, @les8.id, @les9.id].include?(l.id)
+      resps3[:covers].delete(l.id) if rejected
+      rejected
+    end
+    resps << resps3
+    i = 0
+    while i < 3
+      resp = resps[i]
+      resp[:records] = resp[:records].sort { |a, b| a.id <=> b.id }
+      assert_ordered_item_extractor [1, 2, @les1.id, @les2.id, @les3.id, @les4.id, @les5.id, @les6.id, @les7.id, @les8.id, @les9.id], resp[:records]
+      assert_equal 1, resp[:records][0].notification_bookmarks.to_i
+      assert_equal 0, resp[:records][1].notification_bookmarks.to_i
+      azz = Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => resp[:records][1].id).first
+      assert_not_nil azz
+      assert azz.created_at < Lesson.find(resp[:records][1].id).updated_at
+      assert_equal 0, resp[:records][2].notification_bookmarks.to_i
+      assert_equal 0, resp[:records][3].notification_bookmarks.to_i
+      azz = Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => resp[:records][3].id).first
+      assert_not_nil azz
+      assert azz.created_at > Lesson.find(resp[:records][3].id).updated_at
+      assert_equal 0, resp[:records][4].notification_bookmarks.to_i
+      assert_equal 0, resp[:records][5].notification_bookmarks.to_i
+      assert_equal 1, resp[:records][6].notification_bookmarks.to_i
+      assert_equal 2, resp[:records][7].notification_bookmarks.to_i
+      assert_equal 3, Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => resp[:records][7].id).count
+      assert_equal 0, resp[:records][8].notification_bookmarks.to_i
+      assert_equal 0, resp[:records][9].notification_bookmarks.to_i
+      assert_equal 0, resp[:records][10].notification_bookmarks.to_i
+      i += 1
+    end
   end
   
   test 'offset' do
@@ -729,11 +944,41 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_ordered_item_extractor [@les4.id, @les5.id, @les9.id, @les2.id, 2], p2[:records]
     assert_equal 10, p2[:records_amount]
     assert_equal 2, p2[:pages_amount]
+    assert_status p2[:records], [['preview', 'add', 'like'], ['preview', 'add', 'like'], ['preview', 'add', 'like'], ['preview', 'add', 'like'], ['preview', 'edit', 'add_virtual_classroom', 'unpublish', 'copy', 'destroy']]
     # seventh case
     p1 = @user2.search_lessons(nil, 1, 5, 'likes', 'all_lessons', 3)
     assert_ordered_item_extractor [@les3.id, @les9.id, 2], p1[:records]
     assert_equal 3, p1[:records_amount]
     assert_equal 1, p1[:pages_amount]
+    # test for correct status
+    Like.where(:lesson_id => @les4.id).last.delete
+    Like.where(:lesson_id => @les9.id).last.delete
+    assert @user2.bookmark('Lesson', @les4.id)
+    assert @les5.unpublish
+    Lesson.where(:id => @les5.id).update_all(:user_id => 2)
+    assert @les5.add_to_virtual_classroom(@user2.id)
+    Lesson.where(:id => 2).delete_all
+    assert Lesson.where(:id => 2).empty?
+    assert @user2.bookmark('Lesson', @les2.id)
+    copied = @les2.copy(@user2.id)
+    assert_not_nil copied
+    assert Like.where(:lesson_id => copied.id).empty?
+    assert @user2.like(@les9.id)
+    assert @user2.like(@les4.id)
+    assert_equal 2, Like.where(:lesson_id => @les4.id).count
+    assert_equal 1, Like.where(:lesson_id => @les9.id).count
+    date_now = '2011-01-01 20:00:00'.to_time
+    Lesson.order(:id).each do |l|
+      if ![@les7.id, @les2.id, @les9.id].include?(l.id)
+        Lesson.where(:id => l.id).update_all(:updated_at => date_now)
+      end
+      date_now -= 1
+    end
+    Lesson.where(:id => @les2.id).update_all(:updated_at => '1999-01-01 19:00:00')
+    Lesson.where(:id => @les9.id).update_all(:updated_at => '1999-01-01 20:00:00')
+    resp = @user2.search_lessons(nil, 2, 5, 'likes', 'all_lessons', nil)[:records]
+    assert_ordered_item_extractor [@les4.id, @les5.id, @les9.id, @les2.id, copied.id], resp
+    assert_status resp, [['preview', 'copy', 'add_virtual_classroom', 'dislike', 'remove'], ['preview', 'edit', 'remove_virtual_classroom', 'publish', 'copy', 'destroy'], ['preview', 'add', 'dislike'], ['preview', 'copy', 'add_virtual_classroom', 'like', 'remove'], ['preview', 'edit', 'destroy']]
   end
   
   test 'populate_tags' do
@@ -818,6 +1063,7 @@ class ExtractorTest < ActiveSupport::TestCase
     # fourth case - filters and orders on the last search
     lees2 = Lesson.find 2
     lees2.tags = '個名, Tonio de curtis, acquazzone, zzzzaggiunta a caso'
+    lees2.save_tags = true
     assert_obj_saved lees2
     assert_equal 37, Tag.count
     assert_equal 165, Tagging.count
@@ -906,6 +1152,35 @@ class ExtractorTest < ActiveSupport::TestCase
     xxx = @user2.search_lessons('cammelli', 1, 5)
     assert xxx[:records].empty?
     assert xxx[:tags].empty?
+    # test for status
+    assert @user2.bookmark('Lesson', @les9.id)
+    assert @les9.add_to_virtual_classroom(@user2.id)
+    assert @user2.like(@les7.id)
+    resp = @user2.search_lessons('條聖', 1, 5, 'title', nil, nil)[:records]
+    assert_item_extractor [@les7.id, @les9.id], resp
+    resp = resp.sort { |a, b| a.id <=> b.id }
+    assert @les7.id < @les9.id
+    assert_status resp, [['preview', 'add', 'dislike'], ['preview', 'copy', 'remove_virtual_classroom', 'like', 'remove']]
+    @les7 = Lesson.find @les7.id
+    @les9 = Lesson.find @les9.id
+    x = @les9.copy(@user2.id)
+    assert_not_nil x
+    assert x.modify
+    assert x.publish
+    @les9.destroy
+    assert_nil Lesson.find_by_id(@les9.id)
+    y = x.copy(@user2.id)
+    assert_not_nil y
+    assert y.modify
+    assert y.add_to_virtual_classroom(@user2.id)
+    z = y.copy(@user2.id)
+    assert_not_nil z
+    assert @user2.dislike(@les7.id)
+    resp = @user2.search_lessons('條聖', 1, 5, 'title', nil, nil)[:records]
+    assert_item_extractor [@les7.id, x.id, y.id, z.id], resp
+    resp = resp.sort { |a, b| a.id <=> b.id }
+    assert x.id < y.id && y.id < z.id
+    assert_status resp, [['preview', 'add', 'like'], ['preview', 'edit', 'add_virtual_classroom', 'unpublish', 'copy', 'destroy'], ['preview', 'edit', 'remove_virtual_classroom', 'publish', 'copy', 'destroy'], ['preview', 'edit', 'destroy']]
   end
   
   test 'google_media_elements_without_tags' do
@@ -933,6 +1208,13 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_ordered_item_extractor [@el1.id, @el2.id, 2], p1[:records]
     assert_equal 3, p1[:records_amount]
     assert_equal 1, p1[:pages_amount]
+    # test for status
+    MediaElement.where(:id => @el2.id).update_all(:is_public => false, :publication_date => nil, :user_id => @user2.id)
+    assert @user2.bookmark 'MediaElement', 2
+    resp = @user2.search_media_elements('', 1, 5, 'title', 'video')[:records]
+    assert_item_extractor [2, @el1.id, @el2.id], resp
+    resp = resp.sort { |a, b| a.id <=> b.id }
+    assert_status resp, [['preview', 'edit', 'remove'], ['preview', 'add'], ['preview', 'edit', 'destroy']]
   end
   
   test 'google_media_elements_with_tags' do
@@ -1021,9 +1303,11 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_obj_saved @el6
     mee3 = MediaElement.find 3
     mee3.tags = 'torriere architettoniche, mare, petrolio, sostenibilità, di immondizia, tonquinamento atmosferico, tonquinamento, 加條聖, 條聖'
+    mee3.save_tags = true
     assert_obj_saved mee3
     @el2 = MediaElement.find @el2.id
     @el2.tags = 'di escrementi di usignolo, tonquinamento atmosferico, acquario, 拿, walter nudo, mare, tonquinamento, 加條聖, 條聖'
+    @el2.save_tags = true
     assert_obj_saved @el2
     MediaElement.where(:id => @el2.id).update_all(:is_public => false)
     @el2.media = {:mp4 => Rails.root.join("test/samples/one.mp4").to_s, :webm => Rails.root.join("test/samples/one.webm").to_s, :filename => "video_test"}
@@ -1082,6 +1366,23 @@ class ExtractorTest < ActiveSupport::TestCase
     # check middle words
     assert_extractor [Tag.find_by_word('walter nudo').id], @user2.search_media_elements('walter ', 1, 5)[:tags]
     assert @user2.search_media_elements('nudo', 1, 5)[:tags].empty?
+    # test for status
+    resp = @user2.search_media_elements('加', 1, 5, 'title')[:records]
+    assert_ordered_item_extractor [@el2.id, @el4.id, 3], resp
+    assert @user2.bookmark('MediaElement', @el4.id)
+    resp = @user2.search_media_elements('加', 1, 5, 'title')[:records]
+    assert_item_extractor [@el2.id, @el4.id, 3], resp
+    resp = resp.sort { |a, b| a.id <=> b.id}
+    assert_status resp, [['preview', 'edit', 'destroy'], ['preview', 'add'], ['preview', 'edit', 'remove']]
+  end
+  
+  test 'optimization_modes' do
+    me = @user2.own_media_elements(1, 20, Filters::ALL_MEDIA_ELEMENTS, true)[:records].first
+    assert_raise(NoMethodError) {me.instances}
+    assert_nil me.status
+    le = @user2.own_lessons(1, 20, Filters::ALL_LESSONS, true)[:records].first
+    assert_raise(NoMethodError) {le.likes_general_count}
+    assert_nil le.status
   end
   
 end

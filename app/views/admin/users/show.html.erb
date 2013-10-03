@@ -136,7 +136,7 @@
 <div class="row-fluid">
   <div class="span12">
     <h4><%= t('admin.users.lessons', :user => @user.full_name) %></h4>
-    <%= render :partial => 'admin/lessons/list', :locals => {:lessons => @user_lessons, :from_reporting => false} %>
+    <%= render :partial => 'admin/lessons/list', :locals => {:lessons => @user_lessons, :from_reporting => false, :covers => @user_lessons_covers} %>
   </div>
 </div>
 <div class="row-fluid">

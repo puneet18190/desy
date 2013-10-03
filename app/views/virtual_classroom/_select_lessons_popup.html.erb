@@ -2,7 +2,7 @@
 <div id="virtual_classroom_quick_select_container" class="contentPopUp scroll-pane" data-tot-pages="<%= tot_pages %>" data-page="1">
   <%= form_tag load_lessons_path, :remote => true do %>
     <% lessons.each_with_index do |l, index| %>
-      <%= render :partial => 'virtual_classroom/view_single_in_quick_load', :locals => {:lesson => l, :index => index} %>
+      <%= render :partial => 'virtual_classroom/view_single_in_quick_load', :locals => {:lesson => l, :index => index, :cover => covers[l.id]} %>
     <% end %>
   <% end %>
 </div>

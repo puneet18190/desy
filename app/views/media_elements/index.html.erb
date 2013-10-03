@@ -1,7 +1,7 @@
 <div class="gray-bar">
   <a class="navlist-item b-media_element lower _load_media_element"><%= t('media_elements.load_new') %></a>
   <%= link_to t('media_elements.editor.menu_link'), new_media_elements_editor_path, :class => 'navlist-item b-media_element lower' %>
-  <%= render :partial => "shared/search" %>
+  <%= render :partial => 'shared/search' %>
 </div>
 
 <br class="clearfloat">
@@ -9,7 +9,7 @@
   <div class="elements-content">
     <%= render :partial => 'media_elements/title_bar' %>
     <br class="clearfloat">
-    <%= render :partial => "media_elements/my_media_elements" %>
+    <%= render :partial => 'media_elements/my_media_elements', :locals => {:media_elements => @media_elements, :filter => @filter, :display => @display} %>
     <div id="info_container" style="display:none" data-currenturl="<%= request.url %>"></div>
     <br class="clearfloat">
     <% if @media_elements.any? %>

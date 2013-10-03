@@ -80,8 +80,8 @@ class Admin::MessagesController < AdminController
   # * ApplicationController#admin_authentication
   #
   def reports
-    @elements_reports = Report.order('created_at DESC').where(:reportable_type => 'MediaElement').page(params[:elements_page])
-    @lessons_reports = Report.order('created_at DESC').where(:reportable_type => 'Lesson').page(params[:lessons_page])
+    @elements_reports = Report.order('created_at DESC').where(:reportable_type => 'MediaElement').preload(:reportable, :user).page(params[:elements_page])
+    @lessons_reports = Report.order('created_at DESC').where(:reportable_type => 'Lesson').preload(:reportable, :user).page(params[:lessons_page])
   end
   
   private

@@ -11,7 +11,7 @@
 <div id="gallery_image_<%= image.id %>" class="_image_gallery_thumb pseudo-li <%= classs %>" data-image-id="<%= image.id %>" title="<%= image.title %>" <%= personal_margin %>>
   <a><%= image_tag image.thumb_url, :width => '111' %></a>
   <div class="imageInGalleryPopUp" id="dialog-image-gallery-<%= image.id %>" data-image-id="<%= image.id %>">
-    <%= image_tag image.url, :class => "popup_expanded", :style => "max-height: 420px; max-width: 420px" %>
+    <%= image_tag image.url, :class => 'popup_expanded', :style => "max-height: 420px; max-width: 420px" %>
     <div class=" _bottom_of_image_popup_in_gallery">
       <div class="caption">
         <p><%= image.title %></p>

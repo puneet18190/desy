@@ -135,6 +135,11 @@ class Document < ActiveRecord::Base
     url_by_url_type url, url_type
   end
   
+  # Returns true if the document has been attached to your own lessons
+  def used_in_your_lessons?
+    DocumentsSlide.joins(:slide, {:slide => :lesson}).where(:documents_slides => {:document_id => self.id}, :lessons => {:user_id => self.user_id}).any?
+  end
+  
   # === Description
   #
   # Destroys the document and sends notifications to the users who had a Lesson containing it.
@@ -172,11 +177,6 @@ class Document < ActiveRecord::Base
       resp = true
     end
     resp
-  end
-  
-  # Returns true if the document has been attached to your own lessons
-  def used_in_your_lessons?
-    DocumentsSlide.joins(:slide, {:slide => :lesson}).where(:documents_slides => {:document_id => self.id}, :lessons => {:user_id => self.user_id}).any?
   end
   
   private

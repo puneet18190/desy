@@ -1,12 +1,16 @@
-<li id="notification_<%= notification.id %>" class="_single_notification" data-param="<%= notification.id %>">
-  <div class="notification_gatto expanded <%= notification.seen ? 'current'.html_safe : '' %>">
-    <div style="overflow:hidden; width:210px; height:45px;">
-      <p class="_notification_time_<%= notification.id %>" style="font-style:italic; font-size:11px; color:#2FAADC"><%= notification.only_time %></p>
-      <%= strip_tags remove_title_from_notification(notification.message).html_safe %>
-    </div>
+<div id="notification_<%= notification.id %>" class="_single_notification <%= notification.seen ? 'current'.html_safe : '' %> <%= without_margin ? 'no-margin'.html_safe : '' %>" data-param="<%= notification.id %>">
+  
+  <div class="notification_gatto_sx">
+    <p class="_notification_time_<%= notification.id %>" style="font-style:italic; font-size:11px; color:#2FAADC"><%= notification.only_time %></p>
+    <%= strip_tags remove_title_from_notification(notification.message).html_safe %>
   </div>
-  <div class="cancelTooltip _destroy_notification" data-param="<%= notification.id %>" title="<%= t('titles.notifications.remove') %>"></div>
+  
+  <div class="notification_gatto_dx">
+    <div class="cancelTooltip _destroy_notification" data-param="<%= notification.id %>" title="<%= t('titles.notifications.remove') %>"></div>
+  </div>
+  
   <div class="_expanded_notification" style="display:none">
     <%= notification.message_with_time.html_safe %>
   </div>
-</li>
+  
+</div>

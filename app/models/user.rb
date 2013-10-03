@@ -575,19 +575,25 @@ class User < ActiveRecord::Base
   # * *records*: the effective content of the research, an array of object of type MediaElement
   # * *pages_amount*: an integer, the total number of pages in the method's result
   #
-  def own_media_elements(page, per_page, filter=Filters::ALL_MEDIA_ELEMENTS)
+  def own_media_elements(page, per_page, filter=Filters::ALL_MEDIA_ELEMENTS, from_gallery=false)
     page = 1 if !page.is_a?(Fixnum) || page <= 0
     for_page = 1 if !for_page.is_a?(Fixnum) || for_page <= 0
     offset = (page - 1) * per_page
-    relation = MediaElement.of(self)
+    select = 'media_elements.*'
+    select = "#{select}, (SELECT COUNT (*) FROM bookmarks WHERE bookmarks.bookmarkable_type = #{self.connection.quote 'MediaElement'} AND bookmarks.bookmarkable_id = media_elements.id AND bookmarks.user_id = #{self.connection.quote self.id.to_i}) AS bookmarks_count, (SELECT COUNT(*) FROM media_elements_slides WHERE (media_elements_slides.media_element_id = media_elements.id)) AS instances" if !from_gallery
+    relation = MediaElement.select(select).of(self)
     if [Filters::VIDEO, Filters::AUDIO, Filters::IMAGE].include? filter
       relation = relation.where('sti_type = ?', filter.capitalize)
     end
     pages_amount = Rational(relation.count, per_page).ceil
     resp = []
-    relation.limit(per_page).offset(offset).each do |me|
-      me.set_status self.id
-      resp << me
+    if from_gallery
+      resp = relation.limit(per_page).offset(offset)
+    else
+      relation.limit(per_page).offset(offset).each do |me|
+        me.set_status self.id, {:bookmarked => :bookmarks_count}
+        resp << me
+      end
     end
     {:records => resp, :pages_amount => pages_amount}
   end
@@ -608,34 +614,65 @@ class User < ActiveRecord::Base
   # * *records*: the effective content of the research, an array of object of type Lesson
   # * *pages_amount*: an integer, the total number of pages in the method's result
   #
-  def own_lessons(page, per_page, filter = Filters::ALL_LESSONS)
+  def own_lessons(page, per_page, filter=Filters::ALL_LESSONS, from_virtual_classroom=false)
     page = 1 if !page.is_a?(Fixnum) || page <= 0
     for_page = 1 if !for_page.is_a?(Fixnum) || for_page <= 0
     offset = (page - 1) * per_page
-    relation = 
-      case filter
+    relation1 = nil
+    if from_virtual_classroom
+      relation1 = Lesson.preload(:subject, :user).select("lessons.*,
+        (SELECT COUNT (*) FROM virtual_classroom_lessons WHERE virtual_classroom_lessons.lesson_id = lessons.id AND virtual_classroom_lessons.user_id = #{self.connection.quote self.id.to_i}) AS virtuals_count
+      ")
+    else
+      relation1 = Lesson.preload(:subject, :user, :school_level, {:user => :location}).select("
+        lessons.*,
+        (SELECT COUNT (*) FROM bookmarks WHERE bookmarks.bookmarkable_type = #{self.connection.quote 'Lesson'} AND bookmarks.bookmarkable_id = lessons.id AND bookmarks.user_id = #{self.connection.quote self.id.to_i}) AS bookmarks_count,
+        (SELECT COUNT (*) FROM bookmarks WHERE bookmarks.bookmarkable_type = #{self.connection.quote 'Lesson'} AND bookmarks.bookmarkable_id = lessons.id AND bookmarks.user_id != #{self.connection.quote self.id} AND bookmarks.created_at < lessons.updated_at) AS notification_bookmarks,
+        (SELECT COUNT (*) FROM virtual_classroom_lessons WHERE virtual_classroom_lessons.lesson_id = lessons.id AND virtual_classroom_lessons.user_id = #{self.connection.quote self.id.to_i}) AS virtuals_count,
+        (SELECT COUNT (*) FROM likes WHERE likes.lesson_id = lessons.id AND likes.user_id = #{self.connection.quote self.id.to_i}) AS likes_count,
+        (SELECT COUNT (*) FROM likes WHERE likes.lesson_id = lessons.id) AS likes_general_count
+      ")
+    end
+    relation2 = nil
+    case filter
       when Filters::PRIVATE
-        Lesson.where(user_id: self.id, is_public: false).order('updated_at DESC')
+        relation1 = relation1.where(user_id: self.id, is_public: false).order('updated_at DESC')
+        relation2 = Lesson.where(user_id: self.id, is_public: false).order('updated_at DESC')
       when Filters::PUBLIC
-        Lesson.of(self).where(is_public: true)
+        relation1 = relation1.of(self).where(is_public: true)
+        relation2 = Lesson.of(self).where(is_public: true)
       when Filters::LINKED
-        Lesson.joins(:bookmarks).where(bookmarks: { user_id: self.id }).order('bookmarks.created_at DESC')
+        relation1 = relation1.joins(:bookmarks).where(bookmarks: { user_id: self.id }).order('bookmarks.created_at DESC')
+        relation2 = Lesson.joins(:bookmarks).where(bookmarks: { user_id: self.id }).order('bookmarks.created_at DESC')
       when Filters::ONLY_MINE
-        Lesson.where(user_id: self.id).order('updated_at DESC')
+        relation1 = relation1.where(user_id: self.id).order('updated_at DESC')
+        relation2 = Lesson.where(user_id: self.id).order('updated_at DESC')
       when Filters::COPIED
-        Lesson.where(:user_id => self.id, :copied_not_modified => true).order('updated_at DESC')
+        relation1 = relation1.where(:user_id => self.id, :copied_not_modified => true).order('updated_at DESC')
+        relation2 = Lesson.where(:user_id => self.id, :copied_not_modified => true).order('updated_at DESC')
       when Filters::ALL_LESSONS
-        Lesson.of(self)
+        relation1 = relation1.of(self)
+        relation2 = Lesson.of(self)
       else
         raise ArgumentError, 'filter not supported'
-      end
-    pages_amount = Rational(relation.count, per_page).ceil
-    resp = []
-    relation.limit(per_page).offset(offset).each do |lesson|
-      lesson.set_status self.id
-      resp << lesson
     end
-    {:records => resp, :pages_amount => pages_amount}
+    pages_amount = Rational(relation2.count, per_page).ceil
+    relation1 = relation1.limit(per_page).offset(offset)
+    relation2 = relation2.limit(per_page).offset(offset)
+    covers = {}
+    Slide.where(:lesson_id => relation2.pluck(:id), :kind => 'cover').preload(:media_elements_slides, {:media_elements_slides => :media_element}).each do |cov|
+      covers[cov.lesson_id] = cov
+    end
+    if from_virtual_classroom
+      resp = relation1
+    else
+      resp = []
+      relation1.each do |lesson|
+        lesson.set_status self.id, {:bookmarked => :bookmarks_count, :in_vc => :virtuals_count, :liked => :likes_count}
+        resp << lesson
+      end
+    end
+    {:records => resp, :pages_amount => pages_amount, :covers => covers}
   end
   
   # === Description
@@ -655,7 +692,7 @@ class User < ActiveRecord::Base
   # * *records*: the effective content of the research, an array of object of type Document
   # * *pages_amount*: an integer, the total number of pages in the method's result
   #
-  def own_documents(page, per_page, order_by = SearchOrders::CREATED_AT, word = nil)
+  def own_documents(page, per_page, order_by=SearchOrders::CREATED_AT, word=nil, from_gallery=false)
     page = 1 if !page.is_a?(Fixnum) || page <= 0
     for_page = 1 if !for_page.is_a?(Fixnum) || for_page <= 0
     offset = (page - 1) * per_page
@@ -667,11 +704,13 @@ class User < ActiveRecord::Base
       when SearchOrders::TITLE
         order = 'title ASC, created_at DESC'
     end
-    relation = nil
+    select = 'documents.*'
+    select = "#{select}, (SELECT COUNT(*) FROM documents_slides INNER JOIN slides ON slides.id = documents_slides.slide_id INNER JOIN lessons ON lessons.id = slides.lesson_id WHERE documents_slides.document_id = documents.id AND lessons.user_id = documents.user_id) AS instances" if !from_gallery
+    relation = Document.select(select)
     if word.nil?
-      relation = Document.where(:user_id => self.id).order(order)
+      relation = relation.where(:user_id => self.id).order(order)
     else
-      relation = Document.where('user_id = ? AND title ILIKE ?', self.id, "%#{word}%").order(order)
+      relation = relation.where('user_id = ? AND title ILIKE ?', self.id, "%#{word}%").order(order)
     end
     {
       :records => relation.limit(per_page).offset(offset),
@@ -697,9 +736,9 @@ class User < ActiveRecord::Base
     UsersSubject.where(:user_id => self.id).each do |us|
       subject_ids << us.subject_id
     end
-    resp = Lesson.where('is_public = ? AND user_id != ? AND subject_id IN (?) AND NOT EXISTS (SELECT * FROM bookmarks WHERE bookmarks.bookmarkable_type = ? AND bookmarks.bookmarkable_id = lessons.id AND bookmarks.user_id = ?)', true, self.id, subject_ids, 'Lesson', self.id).order('updated_at DESC').limit(n)
+    resp = Lesson.preload(:subject).select("lessons.*, 0 AS bookmarks_count, 0 AS virtuals_count, (SELECT COUNT (*) FROM likes WHERE likes.lesson_id = lessons.id AND likes.user_id = #{self.connection.quote self.id.to_i}) AS likes_count").where('is_public = ? AND user_id != ? AND subject_id IN (?) AND NOT EXISTS (SELECT * FROM bookmarks WHERE bookmarks.bookmarkable_type = ? AND bookmarks.bookmarkable_id = lessons.id AND bookmarks.user_id = ?)', true, self.id, subject_ids, 'Lesson', self.id).order('updated_at DESC').limit(n)
     resp.each do |l|
-      l.set_status self.id
+      l.set_status self.id, {:bookmarked => :bookmarks_count, :in_vc => :virtuals_count, :liked => :likes_count}
     end
     resp
   end
@@ -718,9 +757,9 @@ class User < ActiveRecord::Base
   #
   def suggested_media_elements(n)
     n = 1 if n.class != Fixnum || n < 0
-    resp = MediaElement.where('is_public = ? AND user_id != ? AND NOT EXISTS (SELECT * FROM bookmarks WHERE bookmarks.bookmarkable_type = ? AND bookmarks.bookmarkable_id = media_elements.id AND bookmarks.user_id = ?)', true, self.id, 'MediaElement', self.id).order('publication_date DESC').limit(n)
+    resp = MediaElement.select('media_elements.*, 0 AS bookmarks_count').where('is_public = ? AND user_id != ? AND NOT EXISTS (SELECT * FROM bookmarks WHERE bookmarks.bookmarkable_type = ? AND bookmarks.bookmarkable_id = media_elements.id AND bookmarks.user_id = ?)', true, self.id, 'MediaElement', self.id).order('publication_date DESC').limit(n)
     resp.each do |me|
-      me.set_status self.id
+      me.set_status self.id, {:bookmarked => :bookmarks_count}
     end
     resp
   end
@@ -799,7 +838,11 @@ class User < ActiveRecord::Base
     offset = (page - 1) * per_page
     resp = {}
     resp[:pages_amount] = Rational(VirtualClassroomLesson.where(:user_id => self.id).count, per_page).ceil
-    resp[:records] = VirtualClassroomLesson.includes(:lesson).where(:user_id => self.id).order('created_at DESC').offset(offset).limit(per_page)
+    resp[:records] = VirtualClassroomLesson.preload(:lesson, {:lesson => :user}, {:lesson => :subject}).where(:user_id => self.id).order('created_at DESC').offset(offset).limit(per_page)
+    resp[:covers] = {}
+    Slide.where(:lesson_id => resp[:records].pluck(:lesson_id), :kind => 'cover').preload(:media_elements_slides, {:media_elements_slides => :media_element}).each do |cov|
+      resp[:covers][cov.lesson_id] = cov
+    end
     return resp
   end
   
@@ -884,12 +927,17 @@ class User < ActiveRecord::Base
   #
   # Returns the playlist of the user's Virtual Classroom
   #
+  # === Args
+  #
+  # * *from_viewer*: true if the method needs to preload users together with the lesson
+  #
   # === Returns
   #
   # An array of objects of type VirtualClassroomLesson
   #
-  def playlist
-    VirtualClassroomLesson.includes(:lesson).where('user_id = ? AND position IS NOT NULL', self.id).order(:position)
+  def playlist(from_viewer=false)
+    resp = from_viewer ? VirtualClassroomLesson.preload(:lesson, {:lesson => :subject}, {:lesson => :user}) : VirtualClassroomLesson.preload(:lesson, {:lesson => :subject})
+    resp.where('user_id = ? AND position IS NOT NULL', self.id).order(:position)
   end
   
   # === Description
@@ -901,11 +949,7 @@ class User < ActiveRecord::Base
   # An array of ordered objects of type Slide (they correspond to the slides of the lessons in the playlist)
   #
   def playlist_for_viewer
-    resp = []
-    VirtualClassroomLesson.includes(:lesson).where('user_id = ? AND position IS NOT NULL', self.id).order(:position).each do |vc|
-      resp += vc.lesson.slides.order(:position)
-    end
-    resp
+    Slide.preload(:documents_slides, {:documents_slides => :document}, :lesson, {:lesson => :user}, {:lesson => :subject}, :media_elements_slides, {:media_elements_slides => :media_element}).joins(:lesson, {:lesson => :virtual_classroom_lessons}).where('virtual_classroom_lessons.user_id = ? AND virtual_classroom_lessons.lesson_id = lessons.id AND virtual_classroom_lessons.position IS NOT NULL', self.id).order('virtual_classroom_lessons.position ASC, slides.position ASC')
   end
   
   # === Description
@@ -930,7 +974,7 @@ class User < ActiveRecord::Base
       lesson.copied_not_modified = false
       lesson.user_id = self.id
       lesson.tags = tags
-      lesson.validating_in_form = true
+      lesson.save_tags = true
       lesson.valid?
       lesson.errors.add(:subject_id, :is_not_your_subject)
       return lesson.errors
@@ -939,7 +983,7 @@ class User < ActiveRecord::Base
     lesson.copied_not_modified = false
     lesson.user_id = self.id
     lesson.tags = tags
-    lesson.validating_in_form = true
+    lesson.save_tags = true
     return lesson.save ? lesson : lesson.errors
   end
   
@@ -1174,7 +1218,7 @@ class User < ActiveRecord::Base
         params << true
         params << self.id
     end
-    select = 'tags.id AS tag_id, COUNT(*) AS tags_count'
+    select = 'tags.*, COUNT(*) AS tags_count'
     where_for_current_tag = where.gsub('tags.word LIKE ?', 'tags.word = ?')
     where = "tags.word != ? AND #{where}"
     resp = []
@@ -1182,10 +1226,7 @@ class User < ActiveRecord::Base
       limit -= 1
       resp << Tag.find_by_word(word)
     end
-    Tagging.group('tags.id').select(select).joins(joins).where(where, word, *params).order('tags_count DESC, tags.word ASC').limit(limit).each do |q|
-      resp << Tag.find(q.tag_id)
-    end
-    resp
+    resp + Tagging.group('tags.id').select(select).joins(joins).where(where, word, *params).order('tags_count DESC, tags.word ASC').limit(limit)
   end
   
   # Submethod of User#search_media_elements. It returns the first +n+ tags associated to the result of the research, ordered by number of occurrences of these tags among the results; if the +word+ corresponds to a tag, this tag is put in the first place of the result even if it wouldn't be first according to the normal ordering.
@@ -1196,7 +1237,7 @@ class User < ActiveRecord::Base
     where = 'tags.word != ? AND tags.word LIKE ? AND (media_elements.is_public = ? OR media_elements.user_id = ?)'
     where_for_current_tag = 'tags.word = ? AND (media_elements.is_public = ? OR media_elements.user_id = ?)'
     joins = "INNER JOIN tags ON (tags.id = taggings.tag_id) INNER JOIN media_elements ON (taggings.taggable_type = 'MediaElement' AND taggings.taggable_id = media_elements.id)"
-    select = 'tags.id AS tag_id, COUNT(*) AS tags_count'
+    select = 'tags.*, COUNT(*) AS tags_count'
     case filter
       when Filters::VIDEO
         where = "#{where} AND media_elements.sti_type = 'Video'"
@@ -1212,10 +1253,7 @@ class User < ActiveRecord::Base
       resp << Tag.find_by_word(word)
       limit -= 1
     end
-    Tagging.group('tags.id').select(select).joins(joins).where(where, word, "#{word}%", true, self.id).order('tags_count DESC, tags.word ASC').limit(limit).each do |tagging|
-      resp << Tag.find(tagging.tag_id)
-    end
-    resp
+    resp + Tagging.group('tags.id').select(select).joins(joins).where(where, word, "#{word}%", true, self.id).order('tags_count DESC, tags.word ASC').limit(limit)
   end
   
   # Submethod of User.search_media_elements: if +word+ is a Fixnum, it extracts all the elements associated to that word, otherwise it extracts all the elements whose tags match the +word+. Results are filtered by the +filter+ (chosen among the ones in Filters), and ordered by +order_by+ (chosen among SearchOrders)
@@ -1245,9 +1283,9 @@ class User < ActiveRecord::Base
         where = "#{where} AND media_elements.sti_type = 'Image'"
     end
     resp[:records] = []
-    Tagging.group('media_elements.id').select('media_elements.id AS media_element_id').joins(joins).where(where, params[0], params[1], params[2]).order(order).offset(offset).limit(limit).each do |q|
-      media_element = MediaElement.find_by_id q.media_element_id
-      media_element.set_status self.id
+    ids = Tagging.group('media_elements.id').joins(joins).where(where, params[0], params[1], params[2]).order(order).offset(offset).limit(limit).pluck('media_elements.id')
+    MediaElement.select( "media_elements.*, (SELECT COUNT (*) FROM bookmarks WHERE bookmarks.bookmarkable_type = #{self.connection.quote 'MediaElement'} AND bookmarks.bookmarkable_id = media_elements.id AND bookmarks.user_id = #{self.connection.quote self.id.to_i}) AS bookmarks_count, (SELECT COUNT(*) FROM media_elements_slides WHERE (media_elements_slides.media_element_id = media_elements.id)) AS instances").where(:id => ids).order(order).each do |media_element|
+      media_element.set_status self.id, {:bookmarked => :bookmarks_count}
       resp[:records] << media_element
     end
     resp[:records_amount] = Tagging.group('media_elements.id').joins(joins).where(where, params[0], params[1], params[2]).count.length
@@ -1257,6 +1295,7 @@ class User < ActiveRecord::Base
   
   # Submethod of User#search_media_elements. It returns all the elements in the database, filtered by +filter+ (chosen among the ones in Filters), and ordered by +order_by+ (chosen among the ones in SearchOrders)
   def search_media_elements_without_tag(offset, limit, filter, order_by)
+    select = "media_elements.*, (SELECT COUNT (*) FROM bookmarks WHERE bookmarks.bookmarkable_type = #{self.connection.quote 'MediaElement'} AND bookmarks.bookmarkable_id = media_elements.id AND bookmarks.user_id = #{self.connection.quote self.id.to_i}) AS bookmarks_count, (SELECT COUNT(*) FROM media_elements_slides WHERE (media_elements_slides.media_element_id = media_elements.id)) AS instances"
     resp = {}
     order = ''
     case order_by
@@ -1270,20 +1309,20 @@ class User < ActiveRecord::Base
     case filter
       when Filters::ALL_MEDIA_ELEMENTS
         count = MediaElement.where('is_public = ? OR user_id = ?', true, self.id).count
-        query = MediaElement.where('is_public = ? OR user_id = ?', true, self.id).order(order).offset(offset).limit(limit)
+        query = MediaElement.select(select).where('is_public = ? OR user_id = ?', true, self.id).order(order).offset(offset).limit(limit)
       when Filters::VIDEO
         count = Video.where('is_public = ? OR user_id = ?', true, self.id).count
-        query = Video.where('is_public = ? OR user_id = ?', true, self.id).order(order).offset(offset).limit(limit)
+        query = Video.select(select).where('is_public = ? OR user_id = ?', true, self.id).order(order).offset(offset).limit(limit)
       when Filters::AUDIO
         count = Audio.where('is_public = ? OR user_id = ?', true, self.id).count
-        query = Audio.where('is_public = ? OR user_id = ?', true, self.id).order(order).offset(offset).limit(limit)
+        query = Audio.select(select).where('is_public = ? OR user_id = ?', true, self.id).order(order).offset(offset).limit(limit)
       when Filters::IMAGE
         count = Image.where('is_public = ? OR user_id = ?', true, self.id).count
-        query = Image.where('is_public = ? OR user_id = ?', true, self.id).order(order).offset(offset).limit(limit)
+        query = Image.select(select).where('is_public = ? OR user_id = ?', true, self.id).order(order).offset(offset).limit(limit)
     end
     resp[:records] = []
     query.each do |q|
-      q.set_status self.id
+      q.set_status self.id, {:bookmarked => :bookmarks_count}
       resp[:records] << q
     end
     resp[:records_amount] = count
@@ -1295,7 +1334,7 @@ class User < ActiveRecord::Base
   def search_lessons_with_tag(word, offset, limit, filter, subject_id, order_by)
     resp = {}
     params = ["#{word}%"]
-    select = 'lessons.id AS lesson_id'
+    select = ''
     joins = "INNER JOIN tags ON (tags.id = taggings.tag_id) INNER JOIN lessons ON (taggings.taggable_type = 'Lesson' AND taggings.taggable_id = lessons.id)"
     where = 'tags.word LIKE ?'
     if word.class == Fixnum
@@ -1308,7 +1347,7 @@ class User < ActiveRecord::Base
       when SearchOrders::UPDATED_AT
         order = 'lessons.updated_at DESC'
       when SearchOrders::LIKES
-        select = "#{select}, (SELECT COUNT(*) FROM likes WHERE (likes.lesson_id = lessons.id)) AS likes_count"
+        select = "(SELECT COUNT(*) FROM likes WHERE (likes.lesson_id = lessons.id)) AS likes_count"
         order = 'likes_count DESC, lessons.updated_at DESC'
       when SearchOrders::TITLE
         order = 'lessons.title ASC, lessons.updated_at DESC'
@@ -1334,13 +1373,25 @@ class User < ActiveRecord::Base
         params << self.id
     end
     resp[:records] = []
-    Tagging.group('lessons.id').select(select).joins(joins).where(where, *params).order(order).offset(offset).limit(limit).each do |q|
-      lesson = Lesson.find_by_id q.lesson_id
-      lesson.set_status self.id
+    ids = (select.blank? ? Tagging.group('lessons.id') : Tagging.group('lessons.id').select(select)).joins(joins).where(where, *params).order(order).offset(offset).limit(limit).pluck('lessons.id')
+    order = order.gsub('likes', 'likes_general')
+    Lesson.preload(:subject, :user, :school_level, {:user => :location}).select("
+      lessons.*,
+      (SELECT COUNT (*) FROM bookmarks WHERE bookmarks.bookmarkable_type = #{self.connection.quote 'Lesson'} AND bookmarks.bookmarkable_id = lessons.id AND bookmarks.user_id = #{self.connection.quote self.id.to_i}) AS bookmarks_count,
+      (SELECT COUNT (*) FROM bookmarks WHERE bookmarks.bookmarkable_type = #{self.connection.quote 'Lesson'} AND bookmarks.bookmarkable_id = lessons.id AND bookmarks.user_id != #{self.connection.quote self.id} AND bookmarks.created_at < lessons.updated_at) AS notification_bookmarks,
+      (SELECT COUNT (*) FROM virtual_classroom_lessons WHERE virtual_classroom_lessons.lesson_id = lessons.id AND virtual_classroom_lessons.user_id = #{self.connection.quote self.id.to_i}) AS virtuals_count,
+      (SELECT COUNT (*) FROM likes WHERE likes.lesson_id = lessons.id AND likes.user_id = #{self.connection.quote self.id.to_i}) AS likes_count,
+      (SELECT COUNT (*) FROM likes WHERE likes.lesson_id = lessons.id) AS likes_general_count
+    ").where(:id => ids).order(order).each do |lesson|
+      lesson.set_status self.id, {:bookmarked => :bookmarks_count, :in_vc => :virtuals_count, :liked => :likes_count}
       resp[:records] << lesson
     end
     resp[:records_amount] = Tagging.group('lessons.id').joins(joins).where(where, *params).count.length
     resp[:pages_amount] = Rational(resp[:records_amount], limit).ceil
+    resp[:covers] = {}
+    Slide.where(:lesson_id => ids, :kind => 'cover').preload(:media_elements_slides, {:media_elements_slides => :media_element}).each do |cov|
+      resp[:covers][cov.lesson_id] = cov
+    end
     return resp
   end
   
@@ -1348,15 +1399,21 @@ class User < ActiveRecord::Base
   def search_lessons_without_tag(offset, limit, filter, subject_id, order_by)
     resp = {}
     params = []
-    select = 'lessons.id AS lesson_id'
     where = ''
     order = ''
+    select = "
+      lessons.*,
+      (SELECT COUNT (*) FROM bookmarks WHERE bookmarks.bookmarkable_type = #{self.connection.quote 'Lesson'} AND bookmarks.bookmarkable_id = lessons.id AND bookmarks.user_id = #{self.connection.quote self.id.to_i}) AS bookmarks_count,
+      (SELECT COUNT (*) FROM bookmarks WHERE bookmarks.bookmarkable_type = #{self.connection.quote 'Lesson'} AND bookmarks.bookmarkable_id = lessons.id AND bookmarks.user_id != #{self.connection.quote self.id} AND bookmarks.created_at < lessons.updated_at) AS notification_bookmarks,
+      (SELECT COUNT (*) FROM virtual_classroom_lessons WHERE virtual_classroom_lessons.lesson_id = lessons.id AND virtual_classroom_lessons.user_id = #{self.connection.quote self.id.to_i}) AS virtuals_count,
+      (SELECT COUNT (*) FROM likes WHERE likes.lesson_id = lessons.id AND likes.user_id = #{self.connection.quote self.id.to_i}) AS likes_count,
+      (SELECT COUNT (*) FROM likes WHERE likes.lesson_id = lessons.id) AS likes_general_count
+    "
     case order_by
       when SearchOrders::UPDATED_AT
         order = 'updated_at DESC'
       when SearchOrders::LIKES
-        select = "#{select}, (SELECT COUNT(*) FROM likes WHERE (likes.lesson_id = lessons.id)) AS likes_count"
-        order = 'likes_count DESC, updated_at DESC'
+        order = 'likes_general_count DESC, updated_at DESC'
       when SearchOrders::TITLE
         order = 'title ASC, updated_at DESC'
     end
@@ -1381,13 +1438,18 @@ class User < ActiveRecord::Base
       params << subject_id
     end
     resp[:records] = []
-    Lesson.select(select).where(where, *params).order(order).offset(offset).limit(limit).each do |q|
-      lesson = Lesson.find_by_id q.lesson_id
-      lesson.set_status self.id
+    ids = []
+    Lesson.preload(:subject, :user, :school_level, {:user => :location}).select(select).where(where, *params).order(order).offset(offset).limit(limit).each do |lesson|
+      lesson.set_status self.id, {:bookmarked => :bookmarks_count, :in_vc => :virtuals_count, :liked => :likes_count}
+      ids << lesson.id
       resp[:records] << lesson
     end
     resp[:records_amount] = Lesson.where(where, *params).count
     resp[:pages_amount] = Rational(resp[:records_amount], limit).ceil
+    resp[:covers] = {}
+    Slide.where(:lesson_id => ids, :kind => 'cover').preload(:media_elements_slides, {:media_elements_slides => :media_element}).each do |cov|
+      resp[:covers][cov.lesson_id] = cov
+    end
     return resp
   end
   

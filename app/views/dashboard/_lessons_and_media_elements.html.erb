@@ -1,12 +1,12 @@
 <div id="dashboard">
   
   <div id="lessons_in_dashboard">
-    <% if @lessons.empty? %>
-      <%= render :partial => 'dashboard/lessons_empty', :locals => {:emptied => @lessons_emptied} %>
+    <% if lessons.empty? %>
+      <%= render :partial => 'dashboard/lessons_empty', :locals => {:emptied => lessons_emptied} %>
     <% else %>
       <% tot_lesson = 0 %>
       <% (0...SETTINGS['lesson_pages_in_dashboard']).each do |j| %>
-        <% lessons_block = @lessons[tot_lesson, SETTINGS['lessons_for_page_in_dashboard']].to_a %>
+        <% lessons_block = lessons[tot_lesson, SETTINGS['lessons_for_page_in_dashboard']].to_a %>
         <% if lessons_block.any? %>
           <div class="suggested_lessons_page" id="suggested_lessons_<%= j + 1 %>" style="display:<%= (j != 0) ? 'none'.html_safe : 'block'.html_safe %>">
             <% cont = 0 %>
@@ -14,7 +14,7 @@
               <% if cont == 0 %>
                 <div>
               <% end %>
-              <%= render :partial => "lessons/view_single_expanded", :locals => {:lesson => l, :destination => ButtonDestinations::EXPANDED_LESSON} %>
+              <%= render :partial => 'lessons/view_single_expanded', :locals => {:lesson => l, :destination => ButtonDestinations::EXPANDED_LESSON} %>
               <% if cont == 1 %>
                 </div>
               <% end %>
@@ -50,18 +50,18 @@
   </div>
   
   <div id="media_elements_in_dashboard" style="display:none">
-    <% if @media_elements.empty? %>
-      <%= render :partial => 'dashboard/media_elements_empty', :locals => {:emptied => @media_elements_emptied} %>
+    <% if media_elements.empty? %>
+      <%= render :partial => 'dashboard/media_elements_empty', :locals => {:emptied => media_elements_emptied} %>
     <% else %>
       <% tot_media_element = 0 %>
       <% (0...SETTINGS['media_element_pages_in_dashboard']).each do |j| %>
-        <% media_elements_block = @media_elements[tot_media_element, SETTINGS['media_elements_for_page_in_dashboard']].to_a %>
+        <% media_elements_block = media_elements[tot_media_element, SETTINGS['media_elements_for_page_in_dashboard']].to_a %>
         <% if media_elements_block.any? %>
           <div style="text-align:center; width: 100%;">
             <div class="suggested_media_elements_page" id="suggested_media_elements_<%= j + 1 %>" style="display:<%= (j != 0) ? 'none'.html_safe : 'block'.html_safe %>; width:auto;  margin:0 auto 0 auto;">
               <% media_elements_block.each do |me| %>
                 <div class="_boxViewExpandedMediaElementWrapper">
-                  <%= render :partial => "media_elements/view_single_expanded", :locals => {:media_element => me, :destination => ButtonDestinations::EXPANDED_MEDIA_ELEMENT} %>
+                  <%= render :partial => 'media_elements/view_single_expanded', :locals => {:media_element => me, :destination => ButtonDestinations::EXPANDED_MEDIA_ELEMENT, :used_in_private_lessons => false} %>
                 </div>
               <% end %>
               <div class="_boxViewExpandedMediaElementWrapper">

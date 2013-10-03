@@ -415,7 +415,7 @@ href="Lesson.html">Lesson</a> containing it.</p>
                 
               </p>
               <div id="method-i-destroy_with_notifications_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/document.rb, line 146</span>
+                <pre><span class="ruby-comment"># File app/models/document.rb, line 151</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">destroy_with_notifications</span>
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">clear</span>
   <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span>
@@ -828,7 +828,7 @@ href="Lesson.html">Lesson</a> containing it.</p>
                 
               </p>
               <div id="method-i-used_in_your_lessons-3F_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/document.rb, line 178</span>
+                <pre><span class="ruby-comment"># File app/models/document.rb, line 139</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">used_in_your_lessons?</span>
   <span class="ruby-constant">DocumentsSlide</span>.<span class="ruby-identifier">joins</span>(<span class="ruby-value">:slide</span>, {<span class="ruby-value">:slide</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:lesson</span>}).<span class="ruby-identifier">where</span>(<span class="ruby-value">:documents_slides</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-value">:document_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>}, <span class="ruby-value">:lessons</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">user_id</span>}).<span class="ruby-identifier">any?</span>
 <span class="ruby-keyword">end</span></pre>

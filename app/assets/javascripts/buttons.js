@@ -175,7 +175,7 @@ function mediaElementButtonsDocumentReady() {
       var my_param = $(this).data('clickparam');
       var destination = $(this).data('destination');
       var current_url = $('#info_container').data('currenturl');
-      var used_in_private_lessons = $(this).data('media-element-used-in-private-lessons');
+      var used_in_private_lessons = $(this).parents('._media_element_item').data('used-in-private-lessons');
       destroyMediaElement(my_param, destination, current_url, used_in_private_lessons);
     }
   });

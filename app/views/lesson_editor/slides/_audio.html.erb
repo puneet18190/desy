@@ -1,5 +1,5 @@
 <%
-  audio = slide.audio_at(1)
+  audio = slide.media_elements_at
   audio_title = audio.nil? ? '' : audio.title
   slide_title = slide.title.blank? ? t('lesson_editor.placeholders.title') : slide.title
 %>

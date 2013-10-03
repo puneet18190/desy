@@ -26,8 +26,8 @@ class Admin::MediaElementsController < AdminController
   # * ApplicationController#admin_authenticate
   #
   def index
-    elements = params[:search] ? AdminSearchForm.search_media_elements(params[:search]) : MediaElement.where(converted: true).order('id DESC')
-    @elements = elements.page(params[:page])
+    elements = AdminSearchForm.search_media_elements((params[:search] ? params[:search] : {:ordering => 0, :desc => 'true'}))
+    @elements = elements.preload(:user, :taggings, {:taggings => :tag}).page(params[:page])
     @locations = [Location.roots]
     if params[:search]
       location = Location.get_from_chain_params params[:search]
@@ -65,7 +65,7 @@ class Admin::MediaElementsController < AdminController
   # * ApplicationController#admin_authenticate
   #
   def edit
-    @private_elements = MediaElement.order('created_at DESC').where(:user_id => current_user.id, :is_public => false, :converted => true)
+    @private_elements = MediaElement.order('created_at DESC').where(:user_id => current_user.id, :is_public => false, :converted => true).preload(:user, :taggings, {:taggings => :tag})
   end
   
   # === Description
@@ -128,7 +128,7 @@ class Admin::MediaElementsController < AdminController
       me.description = params[:description_placeholder].blank? ? params[:description] : ''
       me.tags = params[:tags_placeholder].blank? ? params[:tags] : ''
       me.user_id = current_user.id
-      me.validating_in_form = true
+      me.save_tags = true
       @saved = me.save
       if !@saved
         fields = me.errors.messages.keys
@@ -173,13 +173,13 @@ class Admin::MediaElementsController < AdminController
       @media_element.title = params[:title]
       @media_element.description = params[:description]
       @media_element.tags = params[:tags]
-      @media_element.validating_in_form = true
+      @media_element.save_tags = true
       if params[:is_public]
         @media_element.is_public = true
         @media_element.publication_date = Time.zone.now
       end
       if !@media_element.save
-        @errors = convert_item_error_messages @media_element.errors.messages
+        @errors = convert_item_error_messages @media_element.errors
         @error_fields = @media_element.errors.messages.keys
       end
     end

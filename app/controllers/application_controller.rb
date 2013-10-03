@@ -194,8 +194,9 @@ class ApplicationController < ActionController::Base
     @ok = @ok && condition
   end
   
-  # Used for errors in forms of elements general information: converts an item of type ActiveSupport::OrderedHash (errors.messages) into a translated message for the user.
-  def convert_item_error_messages(errors)
+  # Used for errors in forms of elements general information: converts an item of type ActiveModel::Errors into a translated message for the user.
+  def convert_item_error_messages(errors_ext)
+    errors = errors_ext.messages
     resp = []
     media_errors = errors.delete(:media)
     sti_type_errors = errors.delete(:sti_type)
@@ -204,14 +205,17 @@ class ApplicationController < ActionController::Base
       resp << t('forms.error_captions.fill_all_the_fields_or_too_long')
     end
     flag = false
-    resp << t('forms.error_captions.tags_are_not_enough') if errors.has_key? :tags
+    if errors.has_key? :tags
+      resp << t('forms.error_captions.tags_are_not_enough') if errors_ext.added? :tags, :are_not_enough
+      resp << t('forms.error_captions.tags_too_many') if errors_ext.added? :tags, :too_many
+    end
     errors[:media] = media_errors if !media_errors.nil?
     errors[:sti_type] = sti_type_errors if !sti_type_errors.nil?
     errors[:subject_id] = subject_id_errors if !subject_id_errors.nil?
     resp
   end
   
-  # Used for errors in forms of lessons general information: converts an item of type ActiveSupport::OrderedHash (errors.messages) into a translated message for the user.
+  # Used for errors in forms of lessons general information: converts an item of type ActiveModel::Errors into a translated message for the user.
   def convert_lesson_editor_messages(errors)
     resp = convert_item_error_messages errors
     resp << t('forms.error_captions.subject_missing_in_lesson') if errors.has_key? :subject_id
@@ -221,7 +225,7 @@ class ApplicationController < ActionController::Base
   # Used for errors in forms of element uploader: converts an item of type ActiveModel::Errors into a translated message for the user.
   def convert_media_element_uploader_messages(errors)
     return [t('forms.error_captions.media_folder_size_exceeded')] if errors.added? :media, :folder_size_exceeded
-    resp = convert_item_error_messages errors.messages
+    resp = convert_item_error_messages errors
     if errors.messages.has_key?(:media) && errors.messages[:media].any?
       return ([t('forms.error_captions.media_blank')] + resp) if errors.added? :media, :blank
       if !(/unsupported format/ =~ errors.messages[:media].to_s).nil? || !(/invalid extension/ =~ errors.messages[:media].to_s).nil?

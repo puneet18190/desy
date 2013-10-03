@@ -50,7 +50,7 @@ require 'lessons_media_elements_shared'
 # * *the* *element* *cannot* *be* *public* if new record. <b>This validation is not fired if skip_public_validations is +true+</b>
 # * *if* *the* *element* *is* *public*, the fields +media+, +title+, +description+, +is_public+, +publication_date+ can't be changed anymore. <b>This validation is not fired if skip_public_validations is +true+</b>
 # * *if* *the* *element* *is* *private*, the field +user_id+ can't be changed (this field may be changed only if the element is public, because if the user decides to close his profile, the public elements that he created can't be deleted: using User#destroy_with_dependencies they are switched to another owner (the super administrator of the application, see User.admin)
-# * *minimum* *number* of tags (configurated in config/settings.yml), <b>only if the attribute validating_in_form is set as +true+</b>
+# * *minimum* *number* of tags (configurated in config/settings.yml), <b>only if the attribute save_tags is set as +true+</b>
 # * *size* of the file attached to +media+ (configured in settings.yml, in megabytes)
 # * *specific* *media* *validation* depending on the type of attached media (see Media::Video::Uploader::Validation, Media::Audio::Uploader::Validation, ImageUploader, this last being carried out automatically by CarrierWave)
 # * <b>the maximum size of the media elements folder size</b> (configured in config/settings.yml, in gigabytes)
@@ -115,7 +115,7 @@ class MediaElement < ActiveRecord::Base
   # True if in the front end the element contains the icon to change general information
   attr_reader :info_changeable
   # Set to true if it's necessary to validate the number of tags (typically this happens in the public front end)
-  attr_writer :validating_in_form
+  attr_writer :save_tags
   # Set to true when it's necessary to destroy public elements (used in the administrator section, see Admin::MediaElementsController#destroy)
   attr_accessor :destroyable_even_if_public
   # Set to true when it's necessary to skip the public error (used in seeding)
@@ -134,9 +134,7 @@ class MediaElement < ActiveRecord::Base
   validates_numericality_of :user_id, :only_integer => true, :greater_than => 0
   validates_length_of :title, :maximum => MAX_TITLE_LENGTH
   validates_length_of :description, :maximum => I18n.t('language_parameters.media_element.length_description')
-
   validates_presence_of :media, :unless => proc{ |record| [Video, Audio].include?(record.class) && record.composing }
-
   validate :validate_associations, 
            :validate_publication_date, 
            :validate_impossible_changes, 
@@ -348,7 +346,7 @@ class MediaElement < ActiveRecord::Base
   # An array of Tag objects.
   #
   def tags
-    self.new_record? ? '' : Tag.get_friendly_tags(self.id, 'MediaElement')
+    self.new_record? ? '' : Tag.get_friendly_tags(self)
   end
   
   # === Description
@@ -393,18 +391,20 @@ class MediaElement < ActiveRecord::Base
   # === Args
   #
   # * *an_user_id*: the id of the user who is asking permission to see the element.
+  # * *selects*: optionally, a hash of symbols of methods that optimize the extraction of records in other tables, necessary to set the status. These symbols are passed to MediaElement#bookmarked?
   #
-  def set_status(an_user_id)
+  def set_status(an_user_id, selects={})
     return if self.new_record?
+    am_i_bookmarked = self.bookmarked?(an_user_id, selects[:bookmarked])
     if !self.is_public && an_user_id == self.user_id
       @status = Statuses::PRIVATE
       @is_reportable = false
       @info_changeable = true
-    elsif self.is_public && !self.bookmarked?(an_user_id)
+    elsif self.is_public && !am_i_bookmarked
       @status = Statuses::PUBLIC
       @is_reportable = true
       @info_changeable = false
-    elsif self.is_public && self.bookmarked?(an_user_id)
+    elsif self.is_public && am_i_bookmarked
       @status = Statuses::LINKED
       @is_reportable = true
       @info_changeable = false
@@ -443,13 +443,15 @@ class MediaElement < ActiveRecord::Base
   # === Args
   #
   # * *an_user_id*: the id of the User
+  # * *select*: a symbol representing a method that optimizes the extraction of bookmarks (if it's passed it means that the record has been optimized)
   #
   # === Returns
   #
   # A boolean
   #
-  def bookmarked?(an_user_id)
+  def bookmarked?(an_user_id, select=nil)
     return false if self.new_record?
+    return (self.send(select).to_i != 0) if !select.nil?
     Bookmark.where(:user_id => an_user_id, :bookmarkable_type => 'MediaElement', :bookmarkable_id => self.id).any?
   end
   
@@ -487,14 +489,15 @@ class MediaElement < ActiveRecord::Base
   
   private
   
-  # Validates that the tags are at least the number configured in settings.yml, unless the attribute +validating_in_form+ is false
+  # Validates that the tags are at least the number configured in settings.yml, unless the attribute +save_tags+ is false
   def validate_tags_length
-    errors.add(:tags, :are_not_enough) if @validating_in_form && @inner_tags.length < SETTINGS['min_tags_for_item']
+    errors.add(:tags, :are_not_enough) if @save_tags && @inner_tags.length < SETTINGS['min_tags_for_item']
+    errors.add(:tags, :too_many) if @save_tags && @inner_tags.length > SETTINGS['max_tags_for_item']
   end
   
   # Callback that updates the taggings associated to the element. If the corresponding Tag doesn't exist yet, it's created
   def update_or_create_tags
-    return true unless @inner_tags
+    return true if @inner_tags.nil? || !@save_tags
     words = []
     @inner_tags.each do |t|
       raise ActiveRecord::Rollback if t.new_record? && !t.save

@@ -1,24 +1,24 @@
 <div id="my_media_elements">
-  <% if @media_elements.empty? %>
-    <% if @filter == Filters::ALL_MEDIA_ELEMENTS %>
-      <%= render :partial => "media_elements/empty" %>
+  <% if media_elements.empty? %>
+    <% if filter == Filters::ALL_MEDIA_ELEMENTS %>
+      <%= render :partial => 'media_elements/empty' %>
     <% else %>
-      <%= render :partial => "media_elements/empty_filter" %>
+      <%= render :partial => 'media_elements/empty_filter' %>
     <% end %>
   <% else %>
-    <% if @display == MediaElement::DISPLAY_MODES[:expanded] %>
+    <% if display == MediaElement::DISPLAY_MODES[:expanded] %>
     <div style="text-align:center; width: 100%;">
       <div style="width:auto;  margin:0 auto 0 auto;">
-        <% @media_elements.each do |me| %>
+        <% media_elements.each do |me| %>
           <div class="_boxViewExpandedMediaElementWrapper">
-            <%= render :partial => "media_elements/view_single_expanded", :locals => {:media_element => me, :destination => ButtonDestinations::EXPANDED_MEDIA_ELEMENT} %>
+            <%= render :partial => 'media_elements/view_single_expanded', :locals => {:media_element => me, :destination => ButtonDestinations::EXPANDED_MEDIA_ELEMENT, :used_in_private_lessons => (me.instances.to_i > 0)} %>
           </div>
         <% end %>
       </div>
     </div>
     <% else %>
-      <% @media_elements.each do |me| %>
-        <%= render :partial => "media_elements/view_single_compact", :locals => {:media_element => me, :destination => ButtonDestinations::COMPACT_MEDIA_ELEMENT} %>
+      <% media_elements.each do |me| %>
+        <%= render :partial => 'media_elements/view_single_compact', :locals => {:media_element => me, :destination => ButtonDestinations::COMPACT_MEDIA_ELEMENT, :used_in_private_lessons => (me.instances.to_i > 0)} %>
       <% end %>
     <% end %>
     

@@ -3,7 +3,7 @@
     <%= render :partial => 'search/media_elements/empty', :locals => {:word => word} %>
   <% else %>
     <% media_elements.each do |me| %>
-      <%= render :partial => 'media_elements/view_single_compact', :locals => {:media_element => me, :destination => ButtonDestinations::FOUND_MEDIA_ELEMENT} %>
+      <%= render :partial => 'media_elements/view_single_compact', :locals => {:media_element => me, :destination => ButtonDestinations::FOUND_MEDIA_ELEMENT, :used_in_private_lessons => (me.instances.to_i > 0)} %>
     <% end %>
   <% end %>
 </div>

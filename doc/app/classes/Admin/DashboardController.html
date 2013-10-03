@@ -148,8 +148,8 @@ href="../ApplicationController.html#method-i-admin_authenticate">ApplicationCont
                 <pre><span class="ruby-comment"># File app/controllers/admin/dashboard_controller.rb, line 26</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">index</span>
   <span class="ruby-ivar">@users</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;created_at DESC&#39;</span>).<span class="ruby-identifier">limit</span>(<span class="ruby-number">5</span>)
-  <span class="ruby-ivar">@elements_reports</span> = <span class="ruby-constant">Report</span>.<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;created_at DESC&#39;</span>).<span class="ruby-identifier">where</span>(<span class="ruby-value">:reportable_type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;MediaElement&#39;</span>).<span class="ruby-identifier">limit</span>(<span class="ruby-number">5</span>)
-  <span class="ruby-ivar">@lessons_reports</span> = <span class="ruby-constant">Report</span>.<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;created_at DESC&#39;</span>).<span class="ruby-identifier">where</span>(<span class="ruby-value">:reportable_type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Lesson&#39;</span>).<span class="ruby-identifier">limit</span>(<span class="ruby-number">5</span>)
+  <span class="ruby-ivar">@elements_reports</span> = <span class="ruby-constant">Report</span>.<span class="ruby-identifier">includes</span>(<span class="ruby-value">:user</span>, <span class="ruby-value">:reportable</span>).<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;created_at DESC&#39;</span>).<span class="ruby-identifier">where</span>(<span class="ruby-value">:reportable_type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;MediaElement&#39;</span>).<span class="ruby-identifier">limit</span>(<span class="ruby-number">5</span>)
+  <span class="ruby-ivar">@lessons_reports</span> = <span class="ruby-constant">Report</span>.<span class="ruby-identifier">includes</span>(<span class="ruby-value">:user</span>, <span class="ruby-value">:reportable</span>).<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;created_at DESC&#39;</span>).<span class="ruby-identifier">where</span>(<span class="ruby-value">:reportable_type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Lesson&#39;</span>).<span class="ruby-identifier">limit</span>(<span class="ruby-number">5</span>)
   <span class="ruby-ivar">@all_liked_lessons</span>    = <span class="ruby-constant">Statistics</span>.<span class="ruby-identifier">all_liked_lessons</span>(<span class="ruby-number">3</span>)
   <span class="ruby-ivar">@all_shared_elements</span>  = <span class="ruby-constant">Statistics</span>.<span class="ruby-identifier">all_shared_elements</span>
   <span class="ruby-ivar">@all_shared_lessons</span>   = <span class="ruby-constant">Statistics</span>.<span class="ruby-identifier">all_shared_lessons</span>
@@ -170,10 +170,6 @@ href="../ApplicationController.html#method-i-admin_authenticate">ApplicationCont
     ],
     <span class="ruby-value">:colors</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;graph_colors&#39;</span>][<span class="ruby-number">0</span><span class="ruby-operator">..</span><span class="ruby-number">3</span>]
   }
-  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">wants</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">wants</span>.<span class="ruby-identifier">html</span>
-    <span class="ruby-identifier">wants</span>.<span class="ruby-identifier">xml</span> {<span class="ruby-identifier">render</span> <span class="ruby-value">:xml</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@elements</span>}
-  <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>

@@ -420,7 +420,7 @@ href="LessonEditorController.html#method-i-check_available_for_user">#check_avai
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">new_lesson</span>.<span class="ruby-identifier">instance_of?</span>(<span class="ruby-constant">Lesson</span>)
     <span class="ruby-ivar">@lesson</span> = <span class="ruby-identifier">new_lesson</span>
   <span class="ruby-keyword">else</span>
-    <span class="ruby-ivar">@errors</span> = <span class="ruby-identifier">convert_lesson_editor_messages</span> <span class="ruby-identifier">new_lesson</span>.<span class="ruby-identifier">messages</span>
+    <span class="ruby-ivar">@errors</span> = <span class="ruby-identifier">convert_lesson_editor_messages</span> <span class="ruby-identifier">new_lesson</span>
     <span class="ruby-ivar">@error_fields</span> = <span class="ruby-identifier">new_lesson</span>.<span class="ruby-identifier">keys</span>
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">p</span> <span class="ruby-identifier">new_lesson</span>
@@ -587,9 +587,9 @@ href="ApplicationController.html#method-i-initialize_lesson_with_owner">Applicat
     <span class="ruby-identifier">redirect_to</span> <span class="ruby-string">&#39;/dashboard&#39;</span>
     <span class="ruby-keyword">return</span>
   <span class="ruby-keyword">else</span>
-    <span class="ruby-ivar">@slides</span> = <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">slides</span>.<span class="ruby-identifier">order</span>(<span class="ruby-value">:position</span>)
+    <span class="ruby-ivar">@slides</span> = <span class="ruby-constant">Slide</span>.<span class="ruby-identifier">preload</span>(<span class="ruby-value">:lesson</span>, <span class="ruby-value">:media_elements_slides</span>, {<span class="ruby-value">:media_elements_slides</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:media_element</span>}, <span class="ruby-value">:documents_slides</span>, {<span class="ruby-value">:documents_slides</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:document</span>}).<span class="ruby-identifier">where</span>(<span class="ruby-value">:lesson_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@lesson_id</span>).<span class="ruby-identifier">order</span>(<span class="ruby-value">:position</span>)
     <span class="ruby-ivar">@max_slides</span> = <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">reached_the_maximum_of_slides?</span>
-    <span class="ruby-ivar">@documents_slides</span> = [[], ((<span class="ruby-ivar">@slides</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&gt;</span> <span class="ruby-number">1</span>) <span class="ruby-operator">?</span> <span class="ruby-constant">DocumentsSlide</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:slide_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@slides</span>[<span class="ruby-number">1</span>].<span class="ruby-identifier">id</span>) <span class="ruby-operator">:</span> [])]
+    <span class="ruby-ivar">@documents_slides</span> = [[], ((<span class="ruby-ivar">@slides</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&gt;</span> <span class="ruby-number">1</span>) <span class="ruby-operator">?</span> <span class="ruby-ivar">@slides</span>[<span class="ruby-number">1</span>].<span class="ruby-identifier">documents_slides</span> <span class="ruby-operator">:</span> [])]
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
@@ -901,9 +901,9 @@ href="ApplicationController.html#method-i-initialize_lesson_with_owner">Applicat
     <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">description</span> =  <span class="ruby-identifier">params</span>[<span class="ruby-value">:description</span>]
     <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">subject_id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:lesson_subject</span>]
     <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">tags</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:tags_value</span>]
-    <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">validating_in_form</span> = <span class="ruby-keyword">true</span>
+    <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">save_tags</span> = <span class="ruby-keyword">true</span>
     <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">save</span>
-      <span class="ruby-ivar">@errors</span> = <span class="ruby-identifier">convert_item_error_messages</span> <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">errors</span>.<span class="ruby-identifier">messages</span>
+      <span class="ruby-ivar">@errors</span> = <span class="ruby-identifier">convert_item_error_messages</span> <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">errors</span>
       <span class="ruby-ivar">@error_fields</span> = <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">errors</span>.<span class="ruby-identifier">messages</span>.<span class="ruby-identifier">keys</span>
     <span class="ruby-keyword">else</span>
       <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">modify</span>

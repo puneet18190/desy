@@ -31,6 +31,8 @@ min_tag_length: 1
 max_tag_length: 25
 # Minimum amount of tags for an item (lesson or media element)
 min_tags_for_item: 4
+# Maximum amount of tags for an item (lesson or media element)
+max_tags_for_item: 30
 # Minimum amount of characters needed to activate js autocomplete
 min_characters_to_search_tags: 2
 # Amount of tags to be shown in js autocomplete

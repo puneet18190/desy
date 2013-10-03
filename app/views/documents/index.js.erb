@@ -1,6 +1,6 @@
 <% if @delete_item.blank? %>
   $('#my_documents').hide('fade', {}, 500, function() {
-    $('#my_documents').replaceWith("<%= j(render(:partial => 'documents/my_documents')) %>");
+    $('#my_documents').replaceWith("<%= j(render(:partial => 'documents/my_documents', :locals => {:documents => @documents, :word => @word})) %>");
     <% if @documents.any? %>
       $('#general_pagination').replaceWith("<%= j(render(:partial => 'shared/pagination', :locals => {:page => @page, :pages_amount => @pages_amount})) %>");
     <% else %>
@@ -10,7 +10,7 @@
 <% else %>
   var to_delete = $('#<%= @delete_item %>');
   to_delete.hide('fade', {}, 500, function() {
-    $('#my_documents').replaceWith("<%= j(render(:partial => 'documents/my_documents')) %>");
+    $('#my_documents').replaceWith("<%= j(render(:partial => 'documents/my_documents', :locals => {:documents => @documents, :word => @word})) %>");
     <% if @documents.any? %>
       $('#general_pagination').replaceWith("<%= j(render(:partial => 'shared/pagination', :locals => {:page => @page, :pages_amount => @pages_amount})) %>");
     <% else %>

@@ -16,7 +16,7 @@ dialog.data('loaded', true);
 dialog.data('loaded-msg', msg);
 
 
-$('#my_virtual_classroom').replaceWith("<%= j(render(:partial => "virtual_classroom/my_virtual_classroom")) %>");
+$('#my_virtual_classroom').replaceWith('<%= j(render(:partial => "virtual_classroom/my_virtual_classroom", :locals => {:lessons => @lessons, :covers => @covers})) %>');
 <% if @lessons.any? %>
   $('#virtual_classroom_pagination').replaceWith("<%= j(render(:partial => 'virtual_classroom/pagination', :locals => {:page => @page, :pages_amount => @pages_amount, :force_index_url => my_virtual_classroom_path})) %>");
   $('#empty_virtual_classroom').removeClass('disabled');

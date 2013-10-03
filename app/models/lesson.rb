@@ -47,7 +47,7 @@ require 'lessons_media_elements_shared'
 # * *if* *new* *record* +is_public+ must be false
 # * *if* *public* +copied_not_modified+ must be false. <b>This validation is not fired if skip_public_validations is +true+</b>
 # * *modifications* *not* *available* for the +user_id+, +parent_id+, +token+
-# * *minimum* *number* of tags (configurated in settings.yml), <b>only if the attribute validating_in_form is set as +true+</b>
+# * *minimum* *number* of tags (configurated in settings.yml), <b>only if the attribute save_tags is set as +true+</b>
 #
 # == Callbacks
 #
@@ -85,7 +85,7 @@ class Lesson < ActiveRecord::Base
   # True if in the front end the element contains the icon to send a report
   attr_reader :is_reportable
   # Set to true if it's necessary to validate the number of tags (typically this happens in the public front end)
-  attr_writer :validating_in_form
+  attr_writer :save_tags
   # Set to true if it's necessary to skip cover creation (used in seeding)
   attr_accessor :skip_cover_creation
   # Set to true if it's necessary to skip public validations (used in seeding)
@@ -171,19 +171,6 @@ class Lesson < ActiveRecord::Base
   
   # === Description
   #
-  # Checks whether the user needs to notify modifications to other users who have a link of the lesson.
-  #
-  # === Returns
-  #
-  # A boolean.
-  #
-  def not_notified?
-    return false if self.status.nil?
-    !self.notified && Bookmark.where('bookmarkable_type = ? AND bookmarkable_id = ? AND created_at < ?', 'Lesson', self.id, self.updated_at).any?
-  end
-  
-  # === Description
-  #
   # Checks whether the lesson is available for editing in the Lesson Editor (if at least one between +metadata+.+available_audio+ and +metadata+.+available_video+ is false, the lesson is not available). Used in the filters of LessonEditorController.
   #
   # === Args
@@ -226,7 +213,7 @@ class Lesson < ActiveRecord::Base
   # An array of Tag objects.
   #
   def tags
-    self.new_record? ? '' : Tag.get_friendly_tags(self.id, 'Lesson')
+    self.new_record? ? '' : Tag.get_friendly_tags(self)
   end
   
   # === Description
@@ -309,20 +296,21 @@ class Lesson < ActiveRecord::Base
   # === Args
   #
   # * *an_user_id*: the id of the user who is asking permission to see the lesson.
+  # * *selects*: optionally, a hash of symbols of methods that optimize the extraction of records in other tables, necessary to set the status. These symbols are passed to Lesson#bookmarked?, Lesson#in_virtual_classroom? and Lesson#liked?
   #
-  def set_status(an_user_id)
+  def set_status(an_user_id, selects={})
     return if self.new_record?
-
+    am_i_bookmarked = self.bookmarked?(an_user_id, selects[:bookmarked])
     if !self.is_public && !self.copied_not_modified && an_user_id == self.user_id
       @status = Statuses::PRIVATE
       @is_reportable = false
     elsif !self.is_public && self.copied_not_modified && an_user_id == self.user_id
       @status = Statuses::COPIED
       @is_reportable = false
-    elsif self.is_public && an_user_id != self.user_id && self.bookmarked?(an_user_id)
+    elsif self.is_public && an_user_id != self.user_id && am_i_bookmarked
       @status = Statuses::LINKED
       @is_reportable = true
-    elsif self.is_public && an_user_id != self.user_id && !self.bookmarked?(an_user_id)
+    elsif self.is_public && an_user_id != self.user_id && !am_i_bookmarked
       @status = Statuses::PUBLIC
       @is_reportable = true
     elsif self.is_public && an_user_id == self.user_id
@@ -332,10 +320,8 @@ class Lesson < ActiveRecord::Base
       @status = nil
       @is_reportable = nil
     end
-
-    @in_vc = self.in_virtual_classroom?(an_user_id)
-    @liked = self.liked?(an_user_id)
-    
+    @in_vc = self.in_virtual_classroom?(an_user_id, selects[:in_vc])
+    @liked = self.liked?(an_user_id, selects[:liked])
     true
   end
   
@@ -372,13 +358,15 @@ class Lesson < ActiveRecord::Base
   # === Args
   #
   # * *an_user_id*: the id of the User
+  # * *select*: a symbol representing a method that optimizes the extraction of bookmarks (if it's passed it means that the record has been optimized)
   #
   # === Returns
   #
   # A boolean
   #
-  def bookmarked?(an_user_id)
+  def bookmarked?(an_user_id, select=nil)
     return false if self.new_record?
+    return (self.send(select).to_i != 0) if !select.nil?
     Bookmark.where(:user_id => an_user_id, :bookmarkable_type => 'Lesson', :bookmarkable_id => self.id).any?
   end
   
@@ -420,6 +408,7 @@ class Lesson < ActiveRecord::Base
       lesson.user_id = an_user_id
       lesson.parent_id = self.id
       lesson.tags = self.tags
+      lesson.save_tags = true
       if !lesson.save
         errors.add(:base, :problem_copying)
         raise ActiveRecord::Rollback
@@ -755,13 +744,15 @@ class Lesson < ActiveRecord::Base
   # === Args
   #
   # * *an_user_id*: the id of the User
+  # * *select*: a symbol representing a method that optimizes the extraction of virtual classroom lessons (if it's passed it means that the record has been optimized)
   #
   # === Returns
   #
   # A boolean
   #
-  def in_virtual_classroom?(an_user_id)
+  def in_virtual_classroom?(an_user_id, select=nil)
     return false if self.new_record?
+    return (self.send(select).to_i != 0) if !select.nil?
     VirtualClassroomLesson.where(:user_id => an_user_id, :lesson_id => self.id).any?
   end
   
@@ -772,21 +763,24 @@ class Lesson < ActiveRecord::Base
   # === Args
   #
   # * *an_user_id*: the id of the User
+  # * *select*: a symbol representing a method that optimizes the extraction of likes (if it's passed it means that the record has been optimized)
   #
   # === Returns
   #
   # A boolean
   #
-  def liked?(an_user_id)
+  def liked?(an_user_id, select=nil)
     return false if self.new_record?
+    return (self.send(select).to_i != 0) if !select.nil?
     Like.where(:user_id => an_user_id, :lesson_id => self.id).any?
   end
   
   private
   
-  # Validates that the tags are at least the number configured in settings.yml, unless the attribute +validating_in_form+ is false
+  # Validates that the tags are at least the number configured in settings.yml, unless the attribute +save_tags+ is false
   def validate_tags_length
-    errors.add(:tags, :are_not_enough) if @validating_in_form && @inner_tags.length < SETTINGS['min_tags_for_item']
+    errors.add(:tags, :are_not_enough) if @save_tags && @inner_tags.length < SETTINGS['min_tags_for_item']
+    errors.add(:tags, :too_many) if @save_tags && @inner_tags.length > SETTINGS['max_tags_for_item']
   end
   
   # Extracts the corresponding button depending on the fact that the lesson is in the Virtual Classroom or not
@@ -815,7 +809,7 @@ class Lesson < ActiveRecord::Base
   
   # Callback that updates the taggings associated to the lesson. If the corresponding Tag doesn't exist yet, it's created
   def update_or_create_tags
-    return true unless @inner_tags
+    return true if @inner_tags.nil? || !@save_tags
     words = []
     @inner_tags.each do |t|
       raise ActiveRecord::Rollback if t.new_record? && !t.save
@@ -902,13 +896,7 @@ class Lesson < ActiveRecord::Base
     true
   end
   
-  def self.test
-    l = User.admin.create_lesson('test title', 'test description', 1, "asd, o, mar, rio, mare, test")
-    l = find l.id
-    _d l
-    l.destroy
-  end
-  
+  # Initialize metadata
   def initialize_metadata
     self.metadata.available_video = true
     self.metadata.available_audio = true

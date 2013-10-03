@@ -1,4 +1,5 @@
 <%
+  image = slide.media_elements_at
   slide_title = slide.title.blank? ? t('lesson_editor.placeholders.title') : slide.title
 %>
 
@@ -10,7 +11,7 @@
     </div>
     
     <div class="item image-container">
-      <%= render :partial => 'lesson_editor/slides/parts/image', :locals => {:slide => slide, :position => 1, :image => slide.image_at(1)} %>
+      <%= render :partial => 'lesson_editor/slides/parts/image', :locals => {:slide => slide, :position => 1, :image => image} %>
     </div>
     
     <div class="item text-container">

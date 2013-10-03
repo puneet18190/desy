@@ -35,7 +35,7 @@ class LessonTest < ActiveSupport::TestCase
   end
   
   test 'tags' do
-    @lesson.validating_in_form = true
+    @lesson.save_tags = true
     @lesson.tags = 'gatto, gatto, gatto  ,   , cane, topo'
     assert !@lesson.save, "Lesson erroneously saved - #{@lesson.inspect} -- #{@lesson.tags.inspect}"
     assert_equal 1, @lesson.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@lesson.errors.inspect}"
@@ -70,6 +70,17 @@ class LessonTest < ActiveSupport::TestCase
     assert_equal 8, Tag.count
     @lesson.reload
     assert_tags @lesson, ['gattaccio', 'cane', 'panda', 'ornitorinco']
+  end
+  
+  test 'too_many_tags' do
+    @lesson.save_tags = true
+    @lesson.tags = 'de sanctis, benatia, castan, balzaretti, maicon, strootman, de rossi, pjanic, florenzi, totti, gervinho, ljaic, marchetti, cana, konko, ciani, lulic, candreva, ledesma, hernanes, klose, higuain, albiol, britos, reina, mesto, zuniga, insigne, callejon, muntari, balotelli'
+    assert !@lesson.save, "Lesson erroneously saved - #{@lesson.inspect} -- #{@lesson.tags.inspect}"
+    assert_equal 1, @lesson.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@lesson.errors.inspect}"
+    assert_equal 1, @lesson.errors.messages[:tags].length
+    assert @lesson.errors.added? :tags, :too_many
+    @lesson.tags = 'de sanctis, benatia, castan, balzaretti, maicon, strootman, de rossi, pjanic, florenzi, totti, gervinho, ljaic, marchetti, cana, konko, ciani, lulic, candreva, ledesma, hernanes, klose, higuain, albiol, britos, reina, mesto, zuniga, insigne, callejon, muntari'
+    assert_obj_saved @lesson
   end
   
   test 'empty_and_defaults' do

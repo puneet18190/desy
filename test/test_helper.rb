@@ -8,6 +8,22 @@ class ActiveSupport::TestCase
   
   setup :initialize_media_path_for_media_elements, :initialize_attachment_path_for_documents
   
+  def assert_status(items, statuses)
+    i = 0
+    while i < items.length
+      assert_buttons items[i].buttons, statuses[i]
+      i += 1
+    end
+  end
+  
+  def assert_buttons(buttons, buttons_check)
+    i = 0
+    while i < buttons.length
+      assert_equal buttons_check[i], buttons[i]
+      i += 1
+    end
+  end
+  
   def assert_invalid_email(object)
     valid_long_email = "#{long_string(249)}@uo.it"
     valid_email = object.email

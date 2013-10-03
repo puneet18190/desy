@@ -120,138 +120,281 @@
     box-shadow: 0px 5px 15px #454343;
     -webkit-box-shadow: 0px 5px 15px #454343;
     background-color: #f5f5f5;
-    font-family: 'Nunito', sans-serif;
     color: $black;
-    padding: 0px 15px;
     
-    h1 {
+    &.ui-dialog-content.ui-widget-content {
       
-      padding: 0.5em 0.5em 0 0.5em;
+      padding: 0;
       
     }
     
-    p {
+    .top_side {
       
-      padding: 0 0 2em 1em;
-      
-    }
-    
-    form {
-      
-      border-right: 1px solid #d2d2d2;
-      padding-left: 10px;
-      margin-top: 15px;
-      width: 366px;
-      margin: 0;
       float: left;
+      margin-left: 20px;
+      margin-top: 15px;
+      width: 655px;
+      height: 82px;
+      font-family: 'Nunito', sans-serif;
       
-    }
-    
-    input, textarea {
-      
-      background-color: #fff;
-      font-family: Arial, sans-serif;
-      font-size: 12px;
-      padding: 10px;
-      width: 326px;
-      border-radius: 4px 4px 4px 4px;
-      box-shadow: -1px -1px 1px 0 rgba(210, 210, 210, 0.6), -1px -1px 1px rgba(252, 252, 252, 0.8) inset;
-      color: #999999;
-      
-      &.campoEmail {
+      h1 {
         
-        height: 15px;
+        padding: 0;
+        
+      }
+      
+      p {
+        
+        padding-left: 5px;
+        padding-top: 5px;
         
       }
       
     }
     
-    .boxSelectMailingList .sbHolder {
+    .left_side {
       
-      width: 346px;
-      margin-bottom: 1em;
-      height: 23px;
+      float: left;
+      margin-left: 20px;
+      width: 354px;
+      height: 293px;
+      padding-right: 24px;
+      border-right: 1px solid #d2d2d2;
       
-      .sbSelector {
+      .virtual_classroom_send_link_mails_box_container {
         
-        width: 346px;
-        color: #999999;
-        height: 28px;
+        width: 354px;
+        height: 84px;
+        
+        #virtual_classroom_send_link_mails_box {
+          
+          border-radius: 4px 4px 4px 4px;
+          box-shadow: -1px -1px 1px 0 rgba(210, 210, 210, 0.6), -1px -1px 1px rgba(252, 252, 252, 0.8) inset;
+          color: #999999;
+          background-color: white;
+          width: 354px;
+          height: 84px;
+          
+          .jspContainer .jspVerticalBar {
+            
+            top: 0;
+            
+            .jspTrack {
+              
+              background-color: #b3b1b1;
+              
+              .jspDrag {
+                
+                background: $blue;
+                
+              }
+              
+            }
+            
+          }
+          
+          ._email {
+            
+            float: left;
+            height: 20px;
+            width: auto;
+            margin-left: 10px;
+            margin-right: 10px;
+            margin-bottom: 6px;
+            
+            &.first_line {
+              
+              margin-top: 6px;
+              
+            }
+            
+            ._remove {
+              
+              width: 15px;
+              height: 15px;
+              display: block;
+              float: left;
+              background-repeat: no-repeat;
+              margin: 2px 0px 0px 5px;
+              color: #373737;
+              background-image: $assets-azzurro_png;
+              
+              &:hover {
+                
+                background-image: $assets-bianca_png;
+                
+              }
+              
+            }
+            
+            ._text {
+              
+              height: 20px;
+              float: left;
+              
+            }
+            
+          }
+          
+        }
         
       }
       
-      .sbOptions {
+      .virtual_classroom_emails_selector_container {
         
-        width: 345px;
+        width: 354px;
+        height: 30px;
+        margin-top: 15px;
+        
+        input {
+          
+          width: 300px;
+          height: 10px;
+          float: left;
+          background-color: #fff;
+          font-family: 'Nunito', sans-serif;
+          font-size: 12px;
+          padding: 10px;
+          border-radius: 4px 4px 4px 4px;
+          box-shadow: -1px -1px 1px 0 rgba(210, 210, 210, 0.6), -1px -1px 1px rgba(252, 252, 252, 0.8) inset;
+          color: #999999;
+          
+        }
         
         a {
           
-          color: #999999;
-          
-        }
-        
-        a.sbFocus {
-          
-          background-color: #f5f5f5;
-          color: #999999;
+          margin-left: 3px;
+          @include svg-circle-icon-handler($assets-icone-player_svg, 30px, 5, 4, 0.1, 4, 1, 0.4, 4, 1);
           
         }
         
       }
       
+      .boxSelectMailingList {
+        
+        width: 354px;
+        height: 30px;
+        margin-top: 15px;
+        
+        .sbHolder {
+          
+          width: 354px;
+          height: 30px;
+          font-size: 12px;
+          font-family: 'Nunito', sans-serif;
+          padding: 0;
+          box-shadow: -1px -1px 1px 0 rgba(210, 210, 210, 0.6), -1px -1px 1px rgba(252, 252, 252, 0.8) inset;
+          
+          .sbSelector {
+            
+            width: 354px;
+            color: #999999;
+            height: 30px;
+            line-height: 30px;
+            box-shadow: none;
+            
+          }
+          
+          .sbOptions {
+            
+            width: 354px;
+            
+            a {
+              
+              color: #999999;
+              
+            }
+            
+            a.sbFocus {
+              
+              background-color: #f5f5f5;
+              color: #999999;
+              
+            }
+            
+          }
+          
+        }
+        
+      }
+      
+      .write_message_for_send_link {
+        
+        width: 354px;
+        height: 104px;
+        margin-top: 15px;
+        
+        textarea {
+          
+          width: 334px;
+          height: 84px;
+          background-color: #fff;
+          font-family: 'Nunito', sans-serif;
+          font-size: 12px;
+          padding: 10px;
+          border-radius: 4px 4px 4px 4px;
+          box-shadow: -1px -1px 1px 0 rgba(210, 210, 210, 0.6), -1px -1px 1px rgba(252, 252, 252, 0.8) inset;
+          color: #999999;
+          line-height: 10px;
+          
+        }
+        
+      }
+      
     }
     
-    .boxSelectLesson .sbHolder {
-      
-      width: 247px;
-      height: 17px;
-      margin-bottom: 1em;
-      background-color: #f4a932;
-      
-      .sbSelector {
-        
-        width: 247px;
-        height: 23px;
-        line-height: 24px;
-        color: #fff;
-        
-      }
-      
-      .sbOptions {
-        
-        width: 247px;
-        
-      }
-      
-      .sbToggle {
-        
-        top: -2px;
-        height: 20px;
-        background: $assets-select-icons-lessons-white_png 0 -118px no-repeat;
-        opacity: 0.7;
-        
-      }
-      
-    }
-    
-    textarea {
-      
-      border: none;
-      
-      &.campoMessaggio {
-        
-        height: 85px;
-        
-      }
-      
-    }
-    
-    .colonnaCoverLesson {
+    .right_side {
       
       float: left;
-      width: 263px;
-      margin-left: 20px;
-     
+      width: 247px;
+      height: 293px;
+      padding-left: 24px;
+      
+      .up_up_up {
+        
+        width: 247px;
+        height: 258px;
+        
+      }
+      
+      .down_down_down {
+        
+        width: 247px;
+        height: 35px;
+        
+        a {
+          
+          text-transform: lowercase;
+          color: white;
+          
+          &.muttonForm {
+            
+            background-color: $black;
+            font: 18px 'Nunito', "Arial Rounded MT Bold", sans-serif;
+            padding: 0 30px;
+            display: block;
+            line-height: 35px;
+            float: right;
+            
+            &._no {
+              
+              margin-left: 20px;
+              
+            }
+            
+            &:hover {
+              
+              background-color: #b3b1b1;
+              border: none;
+              
+            }
+            
+          }
+          
+        }
+        
+      }
+      
     }
     
   }
@@ -428,135 +571,6 @@
   opacity: 0.9;
   background-color: #000;
   z-index: 11;
-  
-}
-
-#dialog-virtual-classroom-send-link .colonnaCoverLesson .buttonRow {
-  
-  padding: 0em;
-  margin-top: 19em;
-  height: 3em;
-  
-  a {
-    
-    text-transform: lowercase;
-    color: white;
-    margin-right: 0.5em;
-    
-    &.buttonForm {
-      
-      background-color: $black;
-      
-      &:hover {
-        
-        background-color: #b3b1b1;
-        border: none;
-        
-      }
-      
-    }
-    
-  }
-  
-}
-
-#virtual_classroom_send_link_mails_box {
-  
-  border-radius: 4px 4px 4px 4px;
-  box-shadow: -1px -1px 1px 0 rgba(210, 210, 210, 0.6), -1px -1px 1px rgba(252, 252, 252, 0.8) inset;
-  color: #999999;
-  background-color: white;
-  width: 330px;
-  padding: 10px;
-  height: 82px;
-  margin-bottom: 8px;
-  
-  .jspContainer .jspVerticalBar {
-    
-    top: 0em;
-    
-    .jspTrack {
-      
-      background-color: #b3b1b1;
-      
-      .jspDrag {
-        
-        background: $blue;
-        
-      }
-      
-    }
-    
-  }
-  
-  ._email {
-    
-    float: left;
-    height: 20px;
-    width: auto;
-    
-    ._remove {
-      
-      width: 15px;
-      height: 15px;
-      display: block;
-      float: left;
-      background-repeat: no-repeat;
-      margin: 0px 0px 0px 5px;
-      color: #373737;
-      background-image: $assets-azzurro_png;
-      
-      &:hover {
-        
-        background-image: $assets-bianca_png;
-        
-      }
-      
-    }
-    
-    ._text {
-      
-      float: left;
-      padding-left: 10px;
-      
-    }
-    
-  }
-  
-}
-
-#virtual_classroom_emails_submitter {
-  
-  float: left;
-  margin-top: 7px;
-  margin-left: 4px;
-  cursor: pointer;
-  width: $dialog-popups-button-size;
-  height: $dialog-popups-button-size;
-  background-image: $assets-icone-player_svg;
-  background-repeat: no-repeat;
-  background-size: ($dialog-popups-button-size * 5) ($dialog-popups-button-size * 4);
-  background-position: (-$dialog-popups-button-size * 4) (-$dialog-popups-button-size);
-  padding: 0;
-  opacity: 0.1;
-  
-  &:hover {
-    
-    cursor: pointer;
-    background-position: (-$dialog-popups-button-size * 4) (-$dialog-popups-button-size);
-    opacity: 0.4;
-    
-  }
-  
-}
-
-#virtual_classroom_emails_selector {
-  
-  width: 300px;
-  height: 10px;
-  margin-top: 7px;
-  margin-bottom: 15px;
-  float: left;
   
 }
 

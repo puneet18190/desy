@@ -29,9 +29,9 @@
 <% end %>
 <h3><%= t('admin.lessons.title') %></h3>
 <% if @lessons.length > 0 %>
-  <%= render :partial => "admin/list_heading", :locals => {:items => @lessons, :expandable => true} %>
+  <%= render :partial => 'admin/list_heading', :locals => {:items => @lessons, :expandable => true} %>
 <% end %>
-<%= render :partial => "list", :locals => {:lessons => @lessons, :from_reporting => @from_reporting} %>
+<%= render :partial => 'admin/lessons/list', :locals => {:lessons => @lessons, :from_reporting => @from_reporting, :covers => @covers} %>
 <% if @lessons.length > 0 %>
-  <%= render :partial => "admin/list_heading", :locals => {:items => @lessons, :expandable => true} %>
+  <%= render :partial => 'admin/list_heading', :locals => {:items => @lessons, :expandable => true} %>
 <% end %>

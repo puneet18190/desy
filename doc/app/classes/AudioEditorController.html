@@ -435,7 +435,7 @@ href="AudioEditorController.html#method-i-check_available_for_user">#check_avail
   <span class="ruby-identifier">record</span>.<span class="ruby-identifier">title</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:update_title</span>]
   <span class="ruby-identifier">record</span>.<span class="ruby-identifier">description</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:update_description</span>]
   <span class="ruby-identifier">record</span>.<span class="ruby-identifier">tags</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:update_tags_value</span>]
-  <span class="ruby-identifier">record</span>.<span class="ruby-identifier">validating_in_form</span> = <span class="ruby-keyword">true</span>
+  <span class="ruby-identifier">record</span>.<span class="ruby-identifier">save_tags</span> = <span class="ruby-keyword">true</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">record</span>.<span class="ruby-identifier">valid?</span>
     <span class="ruby-identifier">parameters</span>[<span class="ruby-value">:initial_audio</span>] = {
       <span class="ruby-value">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">parameters</span>[<span class="ruby-value">:initial_audio</span>],
@@ -448,7 +448,7 @@ href="AudioEditorController.html#method-i-check_available_for_user">#check_avail
     <span class="ruby-constant">Delayed</span><span class="ruby-operator">::</span><span class="ruby-constant">Job</span>.<span class="ruby-identifier">enqueue</span> <span class="ruby-constant">Media</span><span class="ruby-operator">::</span><span class="ruby-constant">Audio</span><span class="ruby-operator">::</span><span class="ruby-constant">Editing</span><span class="ruby-operator">::</span><span class="ruby-constant">Composer</span><span class="ruby-operator">::</span><span class="ruby-constant">Job</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">parameters</span>)
   <span class="ruby-keyword">else</span>
     <span class="ruby-ivar">@error_ids</span> = <span class="ruby-string">&#39;update&#39;</span>
-    <span class="ruby-ivar">@errors</span> = <span class="ruby-identifier">convert_item_error_messages</span>(<span class="ruby-identifier">record</span>.<span class="ruby-identifier">errors</span>.<span class="ruby-identifier">messages</span>)
+    <span class="ruby-ivar">@errors</span> = <span class="ruby-identifier">convert_item_error_messages</span>(<span class="ruby-identifier">record</span>.<span class="ruby-identifier">errors</span>)
     <span class="ruby-ivar">@error_fields</span> = <span class="ruby-identifier">record</span>.<span class="ruby-identifier">errors</span>.<span class="ruby-identifier">messages</span>.<span class="ruby-identifier">keys</span>
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">render</span> <span class="ruby-string">&#39;media_elements/info_form_in_editor/save&#39;</span>
@@ -568,7 +568,7 @@ href="AudioEditorController.html#method-i-check_available_for_user">#check_avail
     <span class="ruby-identifier">r</span>.<span class="ruby-identifier">tags</span>        = <span class="ruby-identifier">params</span>[<span class="ruby-value">:new_tags_value</span>]
     <span class="ruby-identifier">r</span>.<span class="ruby-identifier">user_id</span>     = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>
     <span class="ruby-identifier">r</span>.<span class="ruby-identifier">composing</span>   = <span class="ruby-keyword">true</span>
-    <span class="ruby-identifier">r</span>.<span class="ruby-identifier">validating_in_form</span> = <span class="ruby-keyword">true</span>
+    <span class="ruby-identifier">r</span>.<span class="ruby-identifier">save_tags</span> = <span class="ruby-keyword">true</span>
   <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">record</span>.<span class="ruby-identifier">save</span>
     <span class="ruby-identifier">parameters</span>[<span class="ruby-value">:initial_audio</span>] = {<span class="ruby-value">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">record</span>.<span class="ruby-identifier">id</span>}
@@ -576,7 +576,7 @@ href="AudioEditorController.html#method-i-check_available_for_user">#check_avail
     <span class="ruby-constant">Delayed</span><span class="ruby-operator">::</span><span class="ruby-constant">Job</span>.<span class="ruby-identifier">enqueue</span> <span class="ruby-constant">Media</span><span class="ruby-operator">::</span><span class="ruby-constant">Audio</span><span class="ruby-operator">::</span><span class="ruby-constant">Editing</span><span class="ruby-operator">::</span><span class="ruby-constant">Composer</span><span class="ruby-operator">::</span><span class="ruby-constant">Job</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">parameters</span>)
   <span class="ruby-keyword">else</span>
     <span class="ruby-ivar">@error_ids</span> = <span class="ruby-string">&#39;new&#39;</span>
-    <span class="ruby-ivar">@errors</span> = <span class="ruby-identifier">convert_item_error_messages</span>(<span class="ruby-identifier">record</span>.<span class="ruby-identifier">errors</span>.<span class="ruby-identifier">messages</span>)
+    <span class="ruby-ivar">@errors</span> = <span class="ruby-identifier">convert_item_error_messages</span>(<span class="ruby-identifier">record</span>.<span class="ruby-identifier">errors</span>)
     <span class="ruby-ivar">@error_fields</span> = <span class="ruby-identifier">record</span>.<span class="ruby-identifier">errors</span>.<span class="ruby-identifier">messages</span>.<span class="ruby-identifier">keys</span>
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">render</span> <span class="ruby-string">&#39;media_elements/info_form_in_editor/save&#39;</span>

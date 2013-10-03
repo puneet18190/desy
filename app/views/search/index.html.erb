@@ -8,6 +8,7 @@
     :results => {
       :records => @lessons,
       :amount => @lessons_amount,
+      :covers => @covers,
       :tags => @tags,
       :specific_tag => @specific_tag
     }
@@ -30,7 +31,7 @@
 
 <div class="gray-bar advancedSearch">
   <div class="cols fltlft">
-    <%= image_tag("ico_advanced_search.png", :align => "left", :style => "padding-top:5px; padding-right: 10px") %><%= t('search.label') %><h1><%= t('search.title') %></h1>
+    <%= image_tag 'ico_advanced_search.png', :align => 'left', :style => 'padding-top:5px; padding-right: 10px' %><%= t('search.label') %><h1><%= t('search.title') %></h1>
   </div>
   <div class="cols fltrt" style="width:240px">
     <p><%= t('search.description_title') %><br><%= t('search.description') %></p>

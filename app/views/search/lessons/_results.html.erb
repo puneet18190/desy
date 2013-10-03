@@ -3,7 +3,7 @@
     <%= render :partial => 'search/lessons/empty', :locals => {:word => word} %>
   <% else %>
     <% lessons.each do |l| %>
-      <%= render :partial => 'lessons/view_single_compact', :locals => {:lesson => l, :destination => ButtonDestinations::FOUND_LESSON} %>
+      <%= render :partial => 'lessons/view_single_compact', :locals => {:lesson => l, :destination => ButtonDestinations::FOUND_LESSON, :likes_general_count => l.likes_general_count.to_i, :cover => covers[l.id], :notification_bookmarks => l.notification_bookmarks.to_i} %>
     <% end %>
   <% end %>
 </div>

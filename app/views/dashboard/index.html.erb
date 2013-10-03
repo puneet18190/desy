@@ -13,7 +13,7 @@
 
 <br class="clearfloat">
 <div class="griglia-contenuti">
-  <%= render :partial => "dashboard/lessons_and_media_elements" %>
+  <%= render :partial => 'dashboard/lessons_and_media_elements', :locals => {:lessons => @lessons, :media_elements => @media_elements, :lessons_emptied => @lessons_emptied, :media_elements_emptied => @media_elements_emptied} %>
   <br class="clearfloat">
   <div id="info_container" style="display:none" data-currenturl="<%= request.url %>"></div>
   <% if @lessons.any? || @media_elements.any? %>

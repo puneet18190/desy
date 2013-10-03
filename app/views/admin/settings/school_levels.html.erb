@@ -4,14 +4,14 @@
 
 <ul class="nav nav-tabs nav-stacked school_levels">
   <% @school_levels.each do |level| %>
-  <li id="level-<%=level.id%>" data-param="<%= level.id %>">
-    <a>
-      <%= level.description %>
-      <% if level.is_deletable? %>
-        <i class="pull-right icon-remove"></i>
-      <% end %>
-    </a>
-  </li>
+    <li id="level-<%= level.id %>" data-param="<%= level.id %>">
+      <a>
+        <%= level.description %>
+        <% if level.instances.to_i == 0 %>
+          <i class="pull-right icon-remove"></i>
+        <% end %>
+      </a>
+    </li>
   <% end %>
 </ul>
 

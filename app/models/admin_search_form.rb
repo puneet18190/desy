@@ -75,7 +75,7 @@ class AdminSearchForm
   # An array, not paginated yet, of records of type Document
   #
   def self.search_documents(params)
-    resp = Document.select('documents.id AS id, title, user_id, documents.created_at AS created_at, documents.updated_at AS updated_at, documents.metadata, documents.attachment')
+    resp = Document.select('documents.*, users.name AS users_name, users.surname AS users_surname')
     resp = resp.joins(:user)
     if params[:ordering].present?
       ord = ORDERINGS[:documents][params[:ordering].to_i]
@@ -131,7 +131,7 @@ class AdminSearchForm
   # An array, not paginated yet, of records of type Lesson
   #
   def self.search_lessons(params)
-    resp = Lesson.select('lessons.id AS id, title, subject_id, user_id, lessons.created_at AS created_at, lessons.updated_at AS updated_at, token, lessons.description AS description, (SELECT COUNT (*) FROM likes WHERE likes.lesson_id = lessons.id) AS likes_count')
+    resp = Lesson.select('lessons.*, (SELECT COUNT (*) FROM likes WHERE likes.lesson_id = lessons.id) AS likes_count')
     resp = resp.joins(:user)
     if params[:ordering].present?
       ord = ORDERINGS[:lessons][params[:ordering].to_i]

@@ -1,6 +1,6 @@
 <div class="gray-bar">
   <%= link_to t('lessons.create_new'), '/lessons/new', :class => 'navlist-item b-lesson lower' %>
-  <%= render :partial => "shared/search" %>
+  <%= render :partial => 'shared/search' %>
 </div>
 
 <br class="clearfloat">
@@ -19,7 +19,7 @@
       </div>
     </div>
     <br class="clearfloat">
-    <%= render :partial => "lessons/my_lessons" %>
+    <%= render :partial => 'lessons/my_lessons', :locals => {:lessons => @lessons, :filter => @filter, :covers => @covers} %>
     <div id="info_container" style="display:none" data-currenturl="<%= request.url %>"></div>
     <br class="clearfloat">
     <% if @lessons.present? %>

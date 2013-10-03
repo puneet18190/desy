@@ -105,7 +105,7 @@
         <h4><%= t('admin.messages.reports.media_elements') %></h4>
         <% if @elements_reports.any? %>
           <% @elements_reports.each do |report| %>
-            <a href="/admin/media_elements?utf8=✓&search%5Bid%5D=<%= report.reportable.id %>#list-anchor">
+            <a href="/admin/media_elements?utf8=✓&search%5Bid%5D=<%= report.reportable_id %>#list-anchor">
               <blockquote class="elements">
                 <div class="pull-right date-label elements">
                   <%= TimeConvert.to_string report.created_at %>
@@ -124,7 +124,7 @@
         <h4><%= t('admin.messages.reports.lessons') %></h4>
         <% if @lessons_reports.any? %>
           <% @lessons_reports.each do |report| %>
-            <a href="/admin/lessons?utf8=✓&search%5Bid%5D=<%= report.reportable.id %>#list-anchor">
+            <a href="/admin/lessons?utf8=✓&search%5Bid%5D=<%= report.reportable_id %>#list-anchor">
               <blockquote class="lessons">
                 <div class="pull-right date-label lessons">
                   <%= TimeConvert.to_string report.created_at %>
@@ -157,7 +157,7 @@
                 <% end %>
               </td>
               <td>
-                <% texts = "\"#{@subjects_chart[:texts].join("\", \"")}\"" %>
+                <% texts = "\"#{@hard_disk_chart[:texts].join("\", \"")}\"" %>
                 <span class="pie_hard_disk" data-text="[<%= texts %>]" data-diameter="250" class="fltrt"><%= @hard_disk_chart[:data].join(',') %></span>
               </td>
             </tr>

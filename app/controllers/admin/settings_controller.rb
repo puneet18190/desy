@@ -26,7 +26,7 @@ class Admin::SettingsController < AdminController
   # * ApplicationController#admin_authenticate
   #
   def subjects
-    @subjects = Subject.all
+    @subjects = Subject.select('subjects.*, ((SELECT COUNT (*) FROM users_subjects WHERE users_subjects.subject_id = subjects.id) + (SELECT COUNT (*) FROM lessons WHERE lessons.subject_id = subjects.id)) AS instances')
   end
   
   # === Description
@@ -77,7 +77,7 @@ class Admin::SettingsController < AdminController
   # * ApplicationController#admin_authenticate
   #
   def school_levels
-    @school_levels = SchoolLevel.all
+    @school_levels = SchoolLevel.select('school_levels.*, ((SELECT COUNT (*) FROM users WHERE users.school_level_id = school_levels.id) + (SELECT COUNT (*) FROM lessons WHERE lessons.school_level_id = school_levels.id)) AS instances')
   end
   
   # === Description
@@ -128,7 +128,7 @@ class Admin::SettingsController < AdminController
   # * ApplicationController#admin_authenticate
   #
   def tags
-    tags = params[:search] ? AdminSearchForm.search_tags(params[:search]) : Tag.order('created_at DESC')
+    tags = AdminSearchForm.search_tags((params[:search] ? params[:search] : {:ordering => 2, :desc => 'true'}))
     @tags = tags.page(params[:page])
   end
   
@@ -167,7 +167,12 @@ class Admin::SettingsController < AdminController
   #
   def lessons_for_tag
     @tag = Tag.find(params[:id])
-    @lessons = @tag.get_lessons(params[:page])
+    @lessons = @tag.get_lessons(params[:page]).select('lessons.*, (SELECT COUNT (*) FROM likes WHERE likes.lesson_id = lessons.id) AS likes_count').preload(:user, :subject, :taggings, {:taggings => :tag})
+    covers = Slide.where(:lesson_id => @lessons.pluck(:id), :kind => 'cover').preload(:media_elements_slides, {:media_elements_slides => :media_element})
+    @covers = {}
+    covers.each do |cov|
+      @covers[cov.lesson_id] = cov
+    end
   end
   
   # === Description
@@ -184,7 +189,7 @@ class Admin::SettingsController < AdminController
   #
   def media_elements_for_tag
     @tag = Tag.find(params[:id])
-    @media_elements = @tag.get_media_elements(params[:page])
+    @media_elements = @tag.get_media_elements(params[:page]).preload(:user, :taggings, {:taggings => :tag})
   end
   
 end

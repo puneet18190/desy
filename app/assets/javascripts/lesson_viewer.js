@@ -95,33 +95,60 @@ Initializer for slides navigation.
 @for LessonViewerDocumentReady
 **/
 function lessonViewerDocumentReadySlidesNavigation() {
+  var scrolls = $('#left_scroll, #right_scroll');
   $(document.documentElement).keyup(function(e) {
     if(e.keyCode == 37) {
-      hideDocumentsInLessonViewer();
-      goToPrevSlideInLessonViewer(false);
+      if(!scrolls.first().hasClass('disabled')) {
+        scrolls.addClass('disabled');
+        hideDocumentsInLessonViewer();
+        goToPrevSlideInLessonViewer(false, function() {
+          scrolls.removeClass('disabled');
+        });
+      }
     } else if(e.keyCode == 39) {
-      hideDocumentsInLessonViewer();
-      goToNextSlideInLessonViewer(false);
+      if(!scrolls.first().hasClass('disabled')) {
+        scrolls.addClass('disabled');
+        hideDocumentsInLessonViewer();
+        goToNextSlideInLessonViewer(false, function() {
+          scrolls.removeClass('disabled');
+        });
+      }
+    }
+  });
+  $body.on('click', '#left_scroll', function(e) {
+    e.preventDefault();
+    if(!scrolls.first().hasClass('disabled')) {
+      scrolls.addClass('disabled');
+      goToPrevSlideInLessonViewer(false, function() {
+        scrolls.removeClass('disabled');
+      });
     }
   });
   $body.on('click', '#right_scroll', function(e) {
     e.preventDefault();
-    goToNextSlideInLessonViewer(false);
-  });
-  $body.on('click', '#left_scroll', function(e) {
-    e.preventDefault();
-    goToPrevSlideInLessonViewer(false);
-  });
-  $('.lesson-viewer-layout, .lesson-export-layout').on('swipeleft', function() {
-    if(mustReactToSwipe()) {
-      hideDocumentsInLessonViewer();
-      goToNextSlideInLessonViewer(true);
+    if(!scrolls.first().hasClass('disabled')) {
+      scrolls.addClass('disabled');
+      goToNextSlideInLessonViewer(false, function() {
+        scrolls.removeClass('disabled');
+      });
     }
   });
   $('.lesson-viewer-layout, .lesson-export-layout').on('swiperight', function() {
-    if(mustReactToSwipe()) {
+    if(mustReactToSwipe() && !scrolls.first().hasClass('disabled')) {
+      scrolls.addClass('disabled');
       hideDocumentsInLessonViewer();
-      goToPrevSlideInLessonViewer(true);
+      goToPrevSlideInLessonViewer(false, function() {
+        scrolls.removeClass('disabled');
+      });
+    }
+  });
+  $('.lesson-viewer-layout, .lesson-export-layout').on('swipeleft', function() {
+    if(mustReactToSwipe() && !scrolls.first().hasClass('disabled')) {
+      scrolls.addClass('disabled');
+      hideDocumentsInLessonViewer();
+      goToNextSlideInLessonViewer(false, function() {
+        scrolls.removeClass('disabled');
+      });
     }
   });
 }
@@ -432,13 +459,14 @@ function switchLessonInPlaylistMenuLessonViewer(lesson_id, callback) {
 Goes to next slide using {{#crossLink "LessonViewerSlidesNavigation/slideToInLessonViewer:method"}}{{/crossLink}}.
 @method goToNextSlideInLessonViewer
 @for LessonViewerSlidesNavigation
+@param callback {Function} callback after slide switch (it can't be undefined, since this function is called only clicking on the arrows; anyway, nothing would prevent the use of this function with undefined callback)
 **/
-function goToNextSlideInLessonViewer(with_drop) {
+function goToNextSlideInLessonViewer(with_drop, callback) {
   var next_slide = getLessonViewerCurrentSlide().next();
   if(next_slide.length == 0) {
-    slideToInLessonViewerWithLessonSwitch($('._slide_in_lesson_viewer').first(), with_drop, true);
+    slideToInLessonViewerWithLessonSwitch($('._slide_in_lesson_viewer').first(), with_drop, true, callback);
   } else {
-    slideToInLessonViewerWithLessonSwitch(next_slide, with_drop, true);
+    slideToInLessonViewerWithLessonSwitch(next_slide, with_drop, true, callback);
   }
 }
 
@@ -446,13 +474,14 @@ function goToNextSlideInLessonViewer(with_drop) {
 Goes to previous slide using {{#crossLink "LessonViewerSlidesNavigation/slideToInLessonViewer:method"}}{{/crossLink}}.
 @method goToPrevSlideInLessonViewer
 @for LessonViewerSlidesNavigation
+@param callback {Function} callback after slide switch (it can't be undefined, since this function is called only clicking on the arrows; anyway, nothing would prevent the use of this function with undefined callback)
 **/
-function goToPrevSlideInLessonViewer(with_drop) {
+function goToPrevSlideInLessonViewer(with_drop, callback) {
   var prev_slide = getLessonViewerCurrentSlide().prev();
   if(prev_slide.length == 0) {
-    slideToInLessonViewerWithLessonSwitch($('._slide_in_lesson_viewer').last(), with_drop, false);
+    slideToInLessonViewerWithLessonSwitch($('._slide_in_lesson_viewer').last(), with_drop, false, callback);
   } else {
-    slideToInLessonViewerWithLessonSwitch(prev_slide, with_drop, false);
+    slideToInLessonViewerWithLessonSwitch(prev_slide, with_drop, false, callback);
   }
 }
 
@@ -465,16 +494,20 @@ function loadSlideInLessonViewer(slide) {
   var content = slide.find('.slide-content');
   if(content.hasClass('video1') || content.hasClass('video2')) {
     var video = content.find('.video-container video');
-    video.find('source[type="video/webm"]').attr('src', video.data('webm'));
-    video.find('source[type="video/mp4"]').attr('src', video.data('mp4'));
-    video.load();
-    initializeMedia(video.parents('._instance_of_player').attr('id'), 'video');
+    if(video.length > 0) {
+      video.find('source[type="video/webm"]').attr('src', video.data('webm'));
+      video.find('source[type="video/mp4"]').attr('src', video.data('mp4'));
+      video.load();
+      initializeMedia(video.parents('._instance_of_player').attr('id'), 'video');
+    }
   } else if(content.hasClass('audio')) {
     var audio = content.find('.audio-container audio');
-    audio.find('source[type="audio/ogg"]').attr('src', audio.data('ogg'));
-    audio.find('source[type="audio/m4a"]').attr('src', audio.data('m4a'));
-    audio.load();
-    initializeMedia(audio.parents('._instance_of_player').attr('id'), 'audio');
+    if(audio.length > 0) {
+      audio.find('source[type="audio/ogg"]').attr('src', audio.data('ogg'));
+      audio.find('source[type="audio/m4a"]').attr('src', audio.data('m4a'));
+      audio.load();
+      initializeMedia(audio.parents('._instance_of_player').attr('id'), 'audio');
+    }
   } else if(content.hasClass('cover') || content.hasClass('image1') || content.hasClass('image2') || content.hasClass('image3') || content.hasClass('image4')) {
     content.find('.image-container img').each(function() {
       var image = $(this);
@@ -489,8 +522,9 @@ Goes to a given slide. If the new slide contains a media and the browser is not 
 @method slideToInLessonViewer
 @for LessonViewerSlidesNavigation
 @param to {Object} destination slide
+@param callback {Function} callback after slide switch (it can be undefined)
 **/
-function slideToInLessonViewer(to, with_drop, to_right) {
+function slideToInLessonViewer(to, with_drop, to_right, callback) {
   stopMediaInLessonViewer();
   var from = getLessonViewerCurrentSlide();
   from.removeClass('_lesson_viewer_current_slide');
@@ -528,6 +562,9 @@ function slideToInLessonViewer(to, with_drop, to_right) {
     if(media.length > 0 && with_autoplay) {
       media.find('._media_player_play').click();
     }
+    if(callback != undefined) {
+      callback();
+    }
   });
 }
 
@@ -536,8 +573,9 @@ Goes to a slide (using {{#crossLink "LessonViewerSlidesNavigation/slideToInLesso
 @method slideToInLessonViewerWithLessonSwitch
 @for LessonViewerSlidesNavigation
 @param component {Object} destination slide
+@param callback {Function} callback after slide switch (it can't be undefined, since this function is called only clicking on the arrows; anyway, nothing would prevent the use of this function with undefined callback)
 **/
-function slideToInLessonViewerWithLessonSwitch(component, with_drop, to_right) {
-  slideToInLessonViewer(component, with_drop, to_right);
+function slideToInLessonViewerWithLessonSwitch(component, with_drop, to_right, callback) {
+  slideToInLessonViewer(component, with_drop, to_right, callback);
   switchLessonInPlaylistMenuLessonViewer(component.data('lesson-id'));
 }

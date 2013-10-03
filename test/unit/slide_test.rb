@@ -204,63 +204,237 @@ class SlideTest < ActiveSupport::TestCase
     assert_obj_saved s
   end
   
-  test 'adhiacent_slides' do
-    vcl2 = VirtualClassroomLesson.first
-    vcl1 = VirtualClassroomLesson.new
-    vcl1.user_id = 1
-    vcl1.lesson_id = 1
-    assert_obj_saved vcl1
-    l1 = Lesson.find(1)
-    assert_equal 1, l1.slides.count
-    l2 = Lesson.find(2)
-    assert_equal 3, l2.slides.count
-    assert_equal l1.id, vcl1.lesson_id
-    assert_equal l2.id, vcl2.lesson_id
-    s = l2.cover.following
-    assert_equal 2, s.position
-    # normale da dx a sx e viceversa in playlist
-    assert_equal 4, s.get_adhiacent_slide_in_lesson_viewer(1, true, false).id
-    assert_equal 2, s.get_adhiacent_slide_in_lesson_viewer(1, true, true).id
-    # normale da dx a sx e viceversa non in playlist
-    assert_equal 4, s.get_adhiacent_slide_in_lesson_viewer(1, false, false).id
-    assert_equal 2, s.get_adhiacent_slide_in_lesson_viewer(1, false, true).id
-    # dalla fine all'inizio in playlist
-    s = Slide.find(4)
-    assert_equal 2, s.get_adhiacent_slide_in_lesson_viewer(1, true, false).id
-    # idem non in playlist
-    assert_equal 2, s.get_adhiacent_slide_in_lesson_viewer(1, false, false).id
-    # dall'inizio alla fine in playlist
-    s = Slide.find(2)
-    assert_equal 4, s.get_adhiacent_slide_in_lesson_viewer(1, true, true).id
-    # idem non in playlist
-    assert_equal 4, s.get_adhiacent_slide_in_lesson_viewer(1, false, true).id
-    # dalla slide a se stessa fuori playlist
-    s = Slide.find(1)
-    assert_equal 1, s.get_adhiacent_slide_in_lesson_viewer(1, false, true).id
-    assert_equal 1, s.get_adhiacent_slide_in_lesson_viewer(1, false, false).id
-    # dalla slide a se stessa in playlist
-    assert vcl2.remove_from_playlist
-    assert vcl1.add_to_playlist
-    assert_equal 1, s.get_adhiacent_slide_in_lesson_viewer(1, true, true).id
-    assert_equal 1, s.get_adhiacent_slide_in_lesson_viewer(1, true, false).id
-    # da lezione alla successiva in playlist (x4 casi)
-    assert vcl2.add_to_playlist
-    assert_equal 2, s.get_adhiacent_slide_in_lesson_viewer(1, true, false).id
-    assert_equal 4, s.get_adhiacent_slide_in_lesson_viewer(1, true, true).id
-    s = Slide.find(4)
-    # da lezione alla successiva in playlist
-    assert_equal 1, s.get_adhiacent_slide_in_lesson_viewer(1, true, false).id
-    s = Slide.find(2)
-    assert_equal 1, s.get_adhiacent_slide_in_lesson_viewer(1, true, true).id
-    # ignoro la playlist
-    assert_equal 4, s.get_adhiacent_slide_in_lesson_viewer(1, false, true).id
-    s = Slide.find(4)
-    assert_equal 2, s.get_adhiacent_slide_in_lesson_viewer(1, false, false).id
-    assert vcl2.remove_from_playlist
-    assert_nil s.get_adhiacent_slide_in_lesson_viewer(1, true, false)
-    VirtualClassroomLesson.delete_all
-    assert VirtualClassroomLesson.all.empty?
-    assert_nil s.get_adhiacent_slide_in_lesson_viewer(1, true, false)
+  test 'media_elements_at' do
+    @lesson = Lesson.find(2)
+    @cover = @lesson.cover
+    @audio = Slide.where(:lesson_id => @lesson.id, :position => 2).first
+    assert_equal 'audio', @audio.kind
+    @image1 = @lesson.add_slide 'image1', 3
+    assert_not_nil @image1
+    @image2 = @lesson.add_slide 'image2', 4
+    assert_not_nil @image2
+    @image3 = @lesson.add_slide 'image3', 5
+    assert_not_nil @image3
+    @image4 = @lesson.add_slide 'image4', 6
+    assert_not_nil @image4
+    @video1 = Slide.where(:lesson_id => @lesson.id, :position => 7).first
+    assert_equal 'video1', @video1.kind
+    @video2 = @lesson.add_slide 'video2', 8
+    assert_not_nil @video2
+    @lesson = Lesson.find(@lesson.id)
+    assert_equal 8, @lesson.slides.length
+    # finished preliminar phase, I start testing the method now
+    # 1 - cover
+    assert MediaElementsSlide.where(:slide_id => @cover.id).empty?
+    assert_nil @cover.media_elements_at
+    @cover_1 = MediaElementsSlide.new
+    @cover_1.slide_id = @cover.id
+    @cover_1.position = 1
+    @cover_1.alignment = 0
+    @cover_1.media_element_id = 6
+    assert_obj_saved @cover_1
+    @cover = Slide.find(@cover.id)
+    resp = @cover.media_elements_at
+    assert_not_nil resp
+    assert_equal MediaElementsSlide, resp.class
+    assert_equal @cover_1.id, resp.id
+    # 2 - image1
+    assert MediaElementsSlide.where(:slide_id => @image1.id).empty?
+    assert_nil @image1.media_elements_at
+    @image1_1 = MediaElementsSlide.new
+    @image1_1.slide_id = @image1.id
+    @image1_1.position = 1
+    @image1_1.alignment = 0
+    @image1_1.media_element_id = 6
+    assert_obj_saved @image1_1
+    @image1 = Slide.find(@image1.id)
+    resp = @image1.media_elements_at
+    assert_not_nil resp
+    assert_equal MediaElementsSlide, resp.class
+    assert_equal @image1_1.id, resp.id
+    # 3 - image2
+    assert MediaElementsSlide.where(:slide_id => @image2.id).empty?
+    resp1, resp2 = @image2.media_elements_at
+    assert_nil resp1
+    assert_nil resp2
+    # position 2
+    @image2_2 = MediaElementsSlide.new
+    @image2_2.slide_id = @image2.id
+    @image2_2.position = 2
+    @image2_2.alignment = 0
+    @image2_2.media_element_id = 6
+    assert_obj_saved @image2_2
+    @image2 = Slide.find(@image2.id)
+    resp1, resp2 = @image2.media_elements_at
+    assert_nil resp1
+    assert_not_nil resp2
+    assert_equal MediaElementsSlide, resp2.class
+    assert_equal @image2_2.id, resp2.id
+    # position 1
+    @image2_1 = MediaElementsSlide.new
+    @image2_1.slide_id = @image2.id
+    @image2_1.position = 1
+    @image2_1.alignment = 0
+    @image2_1.media_element_id = 6
+    assert_obj_saved @image2_1
+    @image2 = Slide.find(@image2.id)
+    resp1, resp2 = @image2.media_elements_at
+    assert_not_nil resp1
+    assert_not_nil resp2
+    assert_equal MediaElementsSlide, resp1.class
+    assert_equal @image2_1.id, resp1.id
+    assert_equal MediaElementsSlide, resp2.class
+    assert_equal @image2_2.id, resp2.id
+    # 4 - image3
+    assert MediaElementsSlide.where(:slide_id => @image3.id).empty?
+    assert_nil @image3.media_elements_at
+    @image3_1 = MediaElementsSlide.new
+    @image3_1.slide_id = @image3.id
+    @image3_1.position = 1
+    @image3_1.alignment = 0
+    @image3_1.media_element_id = 6
+    assert_obj_saved @image3_1
+    @image3 = Slide.find(@image3.id)
+    resp = @image3.media_elements_at
+    assert_not_nil resp
+    assert_equal MediaElementsSlide, resp.class
+    assert_equal @image3_1.id, resp.id
+    # 5 - image4
+    assert MediaElementsSlide.where(:slide_id => @image4.id).empty?
+    resp1, resp2, resp3, resp4 = @image4.media_elements_at
+    assert_nil resp1
+    assert_nil resp2
+    assert_nil resp3
+    assert_nil resp4
+    # position 2
+    @image4_2 = MediaElementsSlide.new
+    @image4_2.slide_id = @image4.id
+    @image4_2.position = 2
+    @image4_2.alignment = 0
+    @image4_2.media_element_id = 6
+    assert_obj_saved @image4_2
+    @image4 = Slide.find(@image4.id)
+    resp1, resp2, resp3, resp4 = @image4.media_elements_at
+    assert_nil resp1
+    assert_not_nil resp2
+    assert_nil resp3
+    assert_nil resp4
+    assert_equal MediaElementsSlide, resp2.class
+    assert_equal @image4_2.id, resp2.id
+    # position 1
+    @image4_1 = MediaElementsSlide.new
+    @image4_1.slide_id = @image4.id
+    @image4_1.position = 1
+    @image4_1.alignment = 0
+    @image4_1.media_element_id = 6
+    assert_obj_saved @image4_1
+    @image4 = Slide.find(@image4.id)
+    resp1, resp2, resp3, resp4 = @image4.media_elements_at
+    assert_not_nil resp1
+    assert_not_nil resp2
+    assert_nil resp3
+    assert_nil resp4
+    assert_equal MediaElementsSlide, resp1.class
+    assert_equal @image4_1.id, resp1.id
+    assert_equal MediaElementsSlide, resp2.class
+    assert_equal @image4_2.id, resp2.id
+    # position 4
+    @image4_4 = MediaElementsSlide.new
+    @image4_4.slide_id = @image4.id
+    @image4_4.position = 4
+    @image4_4.alignment = 0
+    @image4_4.media_element_id = 6
+    assert_obj_saved @image4_4
+    @image4 = Slide.find(@image4.id)
+    resp1, resp2, resp3, resp4 = @image4.media_elements_at
+    assert_not_nil resp1
+    assert_not_nil resp2
+    assert_nil resp3
+    assert_not_nil resp4
+    assert_equal MediaElementsSlide, resp1.class
+    assert_equal @image4_1.id, resp1.id
+    assert_equal MediaElementsSlide, resp2.class
+    assert_equal @image4_2.id, resp2.id
+    assert_equal MediaElementsSlide, resp4.class
+    assert_equal @image4_4.id, resp4.id
+    # position 3
+    @image4_3 = MediaElementsSlide.new
+    @image4_3.slide_id = @image4.id
+    @image4_3.position = 3
+    @image4_3.alignment = 0
+    @image4_3.media_element_id = 6
+    assert_obj_saved @image4_3
+    @image4 = Slide.find(@image4.id)
+    resp1, resp2, resp3, resp4 = @image4.media_elements_at
+    assert_not_nil resp1
+    assert_not_nil resp2
+    assert_not_nil resp3
+    assert_not_nil resp4
+    assert_equal MediaElementsSlide, resp1.class
+    assert_equal @image4_1.id, resp1.id
+    assert_equal MediaElementsSlide, resp2.class
+    assert_equal @image4_2.id, resp2.id
+    assert_equal MediaElementsSlide, resp3.class
+    assert_equal @image4_3.id, resp3.id
+    assert_equal MediaElementsSlide, resp4.class
+    assert_equal @image4_4.id, resp4.id
+    # remove position 2
+    @image4_2.destroy
+    assert_nil MediaElementsSlide.find_by_id(@image4_2.id)
+    @image4 = Slide.find(@image4.id)
+    resp1, resp2, resp3, resp4 = @image4.media_elements_at
+    assert_not_nil resp1
+    assert_nil resp2
+    assert_not_nil resp3
+    assert_not_nil resp4
+    assert_equal MediaElementsSlide, resp1.class
+    assert_equal @image4_1.id, resp1.id
+    assert_equal MediaElementsSlide, resp3.class
+    assert_equal @image4_3.id, resp3.id
+    assert_equal MediaElementsSlide, resp4.class
+    assert_equal @image4_4.id, resp4.id
+    # 6 - audio
+    MediaElementsSlide.where(:slide_id => @audio.id).first.destroy
+    assert MediaElementsSlide.where(:slide_id => @audio.id).empty?
+    assert_nil @audio.media_elements_at
+    @audio_1 = MediaElementsSlide.new
+    @audio_1.slide_id = @audio.id
+    @audio_1.position = 1
+    @audio_1.media_element_id = 3
+    assert_obj_saved @audio_1
+    @audio = Slide.find(@audio.id)
+    resp = @audio.media_elements_at
+    assert_not_nil resp
+    assert_equal Audio, resp.class
+    assert_equal 3, resp.id
+    # 7 - video1
+    assert User.find(2).bookmark 'MediaElement', 2
+    MediaElementsSlide.where(:slide_id => @video1.id).first.destroy
+    assert MediaElementsSlide.where(:slide_id => @video1.id).empty?
+    assert_nil @video1.media_elements_at
+    @video1_1 = MediaElementsSlide.new
+    @video1_1.slide_id = @video1.id
+    @video1_1.position = 1
+    @video1_1.media_element_id = 2
+    assert_obj_saved @video1_1
+    @video1 = Slide.find(@video1.id)
+    resp = @video1.media_elements_at
+    assert_not_nil resp
+    assert_equal Video, resp.class
+    assert_equal 2, resp.id
+    # 8 - video2
+    assert MediaElementsSlide.where(:slide_id => @video2.id).empty?
+    assert_nil @video2.media_elements_at
+    @video2_1 = MediaElementsSlide.new
+    @video2_1.slide_id = @video2.id
+    @video2_1.position = 1
+    @video2_1.media_element_id = 2
+    assert_obj_saved @video2_1
+    @video2 = Slide.find(@video2.id)
+    resp = @video2.media_elements_at
+    assert_not_nil resp
+    assert_equal Video, resp.class
+    assert_equal 2, resp.id
   end
   
 end

@@ -594,6 +594,9 @@ cn:
       # The user didn't write the minimum amount of tags
       # 1 - controllers/application_controller.rb
       tags_are_not_enough: "标签不够"
+      # The user inserted too many tags
+      # 1 - controllers/application_controller.rb
+      tags_too_many: "太多的標籤"
       # The user didn't select a file to be uploaded
       # 1 - controllers/application_controller.rb
       media_blank: "没有文件上传"

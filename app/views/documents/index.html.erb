@@ -27,7 +27,7 @@
       </div>
     </div>
     <br class="clearfloat">
-    <%= render :partial => 'documents/my_documents' %>
+    <%= render :partial => 'documents/my_documents', :locals => {:documents => @documents, :word => @word} %>
     <div id="info_container" style="display:none" data-currenturl="<%= request.url %>"></div>
     <br class="clearfloat">
     <% if @documents.present? %>

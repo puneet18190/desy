@@ -48,7 +48,7 @@ class VirtualClassroomController < ApplicationController
     end
     @playlist = current_user.playlist
     @mailing_list_groups = current_user.own_mailing_list_groups
-    @emptier = current_user.own_lessons(1, LESSONS_IN_QUICK_LOADER)[:records].empty?
+    @emptier = current_user.own_lessons(1, LESSONS_IN_QUICK_LOADER, Filters::ALL_LESSONS, true)[:records].empty?
     render_js_or_html_index
   end
   
@@ -243,9 +243,10 @@ class VirtualClassroomController < ApplicationController
   # Ajax
   #
   def select_lessons
-    x = current_user.own_lessons(1, LESSONS_IN_QUICK_LOADER)
+    x = current_user.own_lessons(1, LESSONS_IN_QUICK_LOADER, Filters::ALL_LESSONS, true)
     @lessons = x[:records]
     @tot_pages = x[:pages_amount]
+    @covers = x[:covers]
   end
   
   # === Description
@@ -261,7 +262,11 @@ class VirtualClassroomController < ApplicationController
   # * VirtualClassroomController#initialize_page
   #
   def select_lessons_new_block
-    @lessons = current_user.own_lessons(@page, LESSONS_IN_QUICK_LOADER)[:records] if @ok
+    if @ok
+      x = current_user.own_lessons(@page, LESSONS_IN_QUICK_LOADER, Filters::ALL_LESSONS, true)
+      @lessons = x[:records]
+      @covers = x[:covers]
+    end
   end
   
   # === Description
@@ -362,6 +367,7 @@ class VirtualClassroomController < ApplicationController
     current_user_virtual_classroom_lessons = current_user.full_virtual_classroom(@page, @for_page)
     @lessons = current_user_virtual_classroom_lessons[:records]
     @pages_amount = current_user_virtual_classroom_lessons[:pages_amount]
+    @covers = current_user_virtual_classroom_lessons[:covers]
   end
   
   # Initializes paginator parameters

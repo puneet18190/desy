@@ -211,6 +211,10 @@ function virtualClassroomDocumentReadySendLink() {
   });
   $body.on('click', '#virtual_classroom_send_link_mails_box ._remove', function() {
     $(this).parent().remove();
+    resetVirtualClassroomSendLinkLines();
+    setTimeout(function() {
+      resetVirtualClassroomSendLinkLines();
+    }, 700);
   });
   $('#select_mailing_list').selectbox({
     onChange: function(val, inst) {
@@ -218,6 +222,10 @@ function virtualClassroomDocumentReadySendLink() {
         var emails = $('#virtual_classroom_hidden_mailing_lists ._mailing_list_' + val + ' div');
         for(var i = 0; i < emails.length; i++) {
           $('#virtual_classroom_send_link_mails_box .jspPane').append(emails[i].outerHTML);
+          resetVirtualClassroomSendLinkLines();
+          setTimeout(function() {
+            resetVirtualClassroomSendLinkLines();
+          }, 700);
         }
       }
     }
@@ -427,5 +435,35 @@ function addEmailToVirtualClassroomSendLessonLinkSelector() {
   if(!selector.data('placeholdered') && selector.val() != '') {
     $('#virtual_classroom_send_link_mails_box .jspPane').append('<div class="_email"><span class="_text">' + selector.val() + '</span><a class="_remove"></a></div>');
     selector.val('');
+    resetVirtualClassroomSendLinkLines();
+    setTimeout(function() {
+      resetVirtualClassroomSendLinkLines();
+    }, 700);
   }
+}
+
+/**
+Resets the spaces between the emails sent.
+@method resetVirtualClassroomSendLinkLines
+@for VirtualClassroomSendLink
+**/
+function resetVirtualClassroomSendLinkLines() {
+  var container = $('#virtual_classroom_send_link_mails_box .jspPane');
+  var must_first_line = true;
+  container.find('._email').removeClass('first_line');
+  container.find('._email').each(function() {
+    if(must_first_line) {
+      var me = $(this);
+      var prev = me.prev();
+      if(prev.length > 0) {
+        if(me.position().top != prev.position().top) {
+          must_first_line = false;
+        } else {
+          me.addClass('first_line');
+        }
+      } else {
+        me.addClass('first_line');
+      }
+    }
+  });
 }

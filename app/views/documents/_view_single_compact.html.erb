@@ -12,13 +12,13 @@
   
   <div class="contentInterno">
     <div class="documentsIcon">
-      <%= image_tag document.icon_url, :class=> "fltlft", :title => document.icon_title %>
+      <%= image_tag document.icon_url, :class=> 'fltlft', :title => document.icon_title %>
       <h3><%= my_title %></h3>
     </div>
      <p class="upper"><%= document.size_and_extension %></p>
     <div class="menuController buttons">
       <a title="<%= t('titles.buttons.documents.preview') %>" data-document-id="<%= document.id %>" class="preview"></a>
-      <a title="<%= t('titles.buttons.documents.destroy') %>" data-used-in-your-lessons="<%= document.used_in_your_lessons? %>" data-document-id="<%= document.id %>" class="destroy"></a>
+      <a title="<%= t('titles.buttons.documents.destroy') %>" data-used-in-your-lessons="<%= used_in_your_lessons %>" data-document-id="<%= document.id %>" class="destroy"></a>
     </div>
   </div>
   

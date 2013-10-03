@@ -269,7 +269,7 @@ href="Document.html">Document</a></p>
               <div id="method-c-search_documents_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/models/admin_search_form.rb, line 77</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">search_documents</span>(<span class="ruby-identifier">params</span>)
-  <span class="ruby-identifier">resp</span> = <span class="ruby-constant">Document</span>.<span class="ruby-identifier">select</span>(<span class="ruby-string">&#39;documents.id AS id, title, user_id, documents.created_at AS created_at, documents.updated_at AS updated_at, documents.metadata, documents.attachment&#39;</span>)
+  <span class="ruby-identifier">resp</span> = <span class="ruby-constant">Document</span>.<span class="ruby-identifier">select</span>(<span class="ruby-string">&#39;documents.*, users.name AS users_name, users.surname AS users_surname&#39;</span>)
   <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">joins</span>(<span class="ruby-value">:user</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:ordering</span>].<span class="ruby-identifier">present?</span>
     <span class="ruby-identifier">ord</span> = <span class="ruby-constant">ORDERINGS</span>[<span class="ruby-value">:documents</span>][<span class="ruby-identifier">params</span>[<span class="ruby-value">:ordering</span>].<span class="ruby-identifier">to_i</span>]
@@ -378,7 +378,7 @@ href="Lesson.html">Lesson</a></p>
               <div id="method-c-search_lessons_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/models/admin_search_form.rb, line 133</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">search_lessons</span>(<span class="ruby-identifier">params</span>)
-  <span class="ruby-identifier">resp</span> = <span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">select</span>(<span class="ruby-string">&#39;lessons.id AS id, title, subject_id, user_id, lessons.created_at AS created_at, lessons.updated_at AS updated_at, token, lessons.description AS description, (SELECT COUNT (*) FROM likes WHERE likes.lesson_id = lessons.id) AS likes_count&#39;</span>)
+  <span class="ruby-identifier">resp</span> = <span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">select</span>(<span class="ruby-string">&#39;lessons.*, (SELECT COUNT (*) FROM likes WHERE likes.lesson_id = lessons.id) AS likes_count&#39;</span>)
   <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">joins</span>(<span class="ruby-value">:user</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:ordering</span>].<span class="ruby-identifier">present?</span>
     <span class="ruby-identifier">ord</span> = <span class="ruby-constant">ORDERINGS</span>[<span class="ruby-value">:lessons</span>][<span class="ruby-identifier">params</span>[<span class="ruby-value">:ordering</span>].<span class="ruby-identifier">to_i</span>]

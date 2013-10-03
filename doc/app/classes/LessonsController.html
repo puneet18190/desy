@@ -1067,6 +1067,7 @@ href="User.html#method-i-own_lessons">User#own_lessons</a></p>
   <span class="ruby-identifier">current_user_own_lessons</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">own_lessons</span>(<span class="ruby-ivar">@page</span>, <span class="ruby-ivar">@for_page</span>, <span class="ruby-ivar">@filter</span>)
   <span class="ruby-ivar">@lessons</span> = <span class="ruby-identifier">current_user_own_lessons</span>[<span class="ruby-value">:records</span>]
   <span class="ruby-ivar">@pages_amount</span> = <span class="ruby-identifier">current_user_own_lessons</span>[<span class="ruby-value">:pages_amount</span>]
+  <span class="ruby-ivar">@covers</span> = <span class="ruby-identifier">current_user_own_lessons</span>[<span class="ruby-value">:covers</span>]
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -1099,7 +1100,7 @@ href="User.html#method-i-own_lessons">User#own_lessons</a></p>
                 
               </p>
               <div id="method-i-initialize_paginator_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 368</span>
+                <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 369</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize_paginator</span>
   <span class="ruby-ivar">@page</span> = <span class="ruby-identifier">correct_integer?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-number">1</span>
   <span class="ruby-ivar">@for_page</span> = <span class="ruby-constant">FOR_PAGE</span>

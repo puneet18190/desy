@@ -35,7 +35,7 @@ class LessonViewerController < ApplicationController
       @is_back = (!params[:back].nil? && !params[:back].empty?)
       @with_exit = logged_in?
       @back = params[:back]
-      @slides = @lesson.slides.order(:position)
+      @slides = @lesson.slides.preload(:media_elements_slides, {:media_elements_slides => :media_element}, :documents_slides, {:documents_slides => :document}).order(:position)
       @cover_img = @slides.first.media_elements_slides.first
     end
   end
@@ -53,10 +53,16 @@ class LessonViewerController < ApplicationController
     @with_exit = false
     @back = '/virtual_classroom'
     @slides = current_user.playlist_for_viewer
-    @vc_lessons = current_user.playlist
+    @vc_lessons = current_user.playlist(true)
     if @vc_lessons.length == 0
       redirect_to '/dashboard'
       return
+    else
+      covers = Slide.where(:lesson_id => @vc_lessons.pluck(:lesson_id), :kind => 'cover').preload(:media_elements_slides, {:media_elements_slides => :media_element})
+      @covers = {}
+      covers.each do |cov|
+        @covers[cov.lesson_id] = cov
+      end
     end
   end
   
