@@ -3,8 +3,8 @@
   <div class="button">
     <a class="_show_login_form_container"><%= t('registration.login.title') %></a>
   </div>
-  <div id="login_form_container" class="tooltip">
-    <%= image_tag("freccia_tooltip_up.png", :class => "callout") %>
+  <div id="login_form_container" class="tooltippe">
+    <%= image_tag 'freccia_tooltip_up.png', :class => 'callout' %>
     <%= form_tag users_sessions_path, id: 'new_users_session_form' do %>
       <%=  hidden_field_tag :redirect_to, params[:redirect_to] %>
       <table cellpadding="0" cellspacing="0">
