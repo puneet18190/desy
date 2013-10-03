@@ -12,7 +12,7 @@ gem 'eventmachine',                         platforms: :ruby
 gem 'facter'
 gem 'jquery-rails',             '~> 2.1.4'
 gem 'kaminari'
-gem 'mini_magick',                                             github: 'ProGNOMmers/minimagick',  branch: 'batch_compatibility'
+gem 'mini_magick',                                             github: 'ProGNOMmers/minimagick', branch: 'batch_compatibility'
 gem 'oj'
 gem 'recursive-open-struct'
 gem 'rubyzip'
@@ -22,7 +22,7 @@ gem 'subexec',                                                 github: 'ProGNOMm
 gem 'tinymce-rails',            '~> 3.0'
 gem 'tinymce-rails-langs'
 gem 'unicorn',                              platforms: :ruby
-gem 'whenever',                                                                                                                  require: false
+gem 'whenever',                                                                                                                 require: false
 gem 'win32-dir',                            platforms: :mingw
 
 # Gems used only for assets and not required
