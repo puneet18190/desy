@@ -502,10 +502,10 @@ it:
     see_my_lesson:
       # Subject
       # 1 - mailers/user_mailer.rb
-      subject: "%{desy} - Collegamento alla lezione"
+      subject: "%{desy} - Link alla lezione"
       # Message
       # 1 - mailers/user_mailer.rb
-      message: "<p>L'utente %{name} pensa che potresti essere interessato a una lezione di %{desy}.</p><div class=\"messageContent\">%{message}</div><p>Segui questo collegamento per vedere la lezione (se il link non è attivo, è possibile copiare e incollare nel vostro browser):</p><br/>"
+      message: "<p>L'utente %{name} pensa che potresti essere interessato a una lezione di %{desy}.</p><div class=\"messageContent\">%{message}</div><p>Segui questo link per vedere la lezione (se il link non è attivo, è possibile copiare e incollare nel vostro browser):</p><br/>"
   
   
   # SECTION 1.4: Standard forms for editing the general information of lessons or media elements. For 'general information' it's meant:
@@ -1112,7 +1112,7 @@ it:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Pulsanti"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "Tutte le azioni che si possono effettuare sulle lezioni presenti nelle cartelle sono identificate da icone grafiche.<br/>L'icona \"occhio\" permette di vedere la lezione selezionata, l'icona \"matita\" consente di modificare la lezione. Quest'ultima funzione non è disponibile per le lezioni <b>collegate</b>, in questo caso troverai solo l'icona \"copia\" (due cerchi sovrapposti): difatti non è possibile modificare lezioni realizzate da altri utenti senza averne fatto prima una copia. L'icona \"monitor con un occhio\" carica la lezione nella tua Virtual Classroom; l'icona \"pubblico\" (tre piccoli cerchi interconnessi da due linee) viene accesa, se la lezione è condivisa; se ti piace particolarmente la lezione di qualche altro utente, clicca sull'icona \"star\". Infine, l'icona con la \"x\" cancella la lezione (se la lezione è <b>condivisa</b> questa icona è sostituita dal \"-\", che elimina il collegamento)."
+        content: "Tutte le azioni che si possono effettuare sulle lezioni presenti nelle cartelle sono identificate da icone grafiche.<br/>L'icona \"occhio\" permette di vedere la lezione selezionata, l'icona \"matita\" consente di modificare la lezione. Quest'ultima funzione non è disponibile per le lezioni <b>collegate</b>, in questo caso troverai solo l'icona \"copia\" (due cerchi sovrapposti): difatti non è possibile modificare lezioni realizzate da altri utenti senza averne fatto prima una copia. L'icona \"monitor con un occhio\" carica la lezione nella tua Virtual Classroom; l'icona \"pubblico\" (tre piccoli cerchi interconnessi da due linee) viene accesa, se la lezione è condivisa; se ti piace particolarmente la lezione di qualche altro utente, clicca sull'icona \"star\". Infine, l'icona con la \"x\" cancella la lezione (se la lezione è <b>collegata</b> questa icona è sostituita dal \"-\", che elimina il collegamento)."
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Create a new lesson"
