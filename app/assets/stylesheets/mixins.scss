@@ -805,16 +805,6 @@
   
 }
 
-@mixin misc {
-  
-  position: absolute;
-  margin: 0px;
-  z-index: 10;
-  border-radius: 3px;
-  -webkit-border-radius: 3px;
-  
-}
-
 @mixin call {
   
   z-index: 20;
