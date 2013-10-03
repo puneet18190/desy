@@ -57,8 +57,17 @@ server {
     deny all;
   }
 
+  # Assets: max expiration cache and serve gzip static files (.gz)
+  location /assets/ {
+    expires max;
+    add_header Cache-Control public;
+    add_header ETag "";
+    gzip_static on;
+    break;
+  }
+
   # Media elements: max expiration cache
-  location ~ ^/(assets|media_elements/(videos|audios|images))/ {
+  location ~ ^/media_elements/(videos|audios|images)/ {
     expires max;
     add_header Cache-Control public;
     add_header ETag "";
