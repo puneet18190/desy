@@ -30,8 +30,7 @@
     
     ._single_notification {
       
-      height: 65px;
-      width: 268px;
+      height: 65px; /* width is 268 if there is a scrollbar, and 268 - 8 - 5 = 255 if there is not a scrollbar */
       margin-top: 5px;
       background-color: #c1e6f6;
       background-image: $assets-arrow-tooltip-notice_png;
@@ -71,7 +70,7 @@
         
         width: 38px;
         height: 65px;
-        float: left;
+        float: right;
         
         .cancelTooltip { /* TODO rifare l'icona! e assicurarsi che l'svg funzioni bene */
           
