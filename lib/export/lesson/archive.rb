@@ -15,6 +15,7 @@ module Export
 
       include EnvRelativePath
 
+      ASSETS_FOLDER                        = Lesson::FOLDER.join 'archives', 'assets'
       FOLDER                               = env_relative_pathname RAILS_PUBLIC, 'exports', 'lessons'
       MEDIA_ELEMENTS_UPFOLDER              = RAILS_PUBLIC
       DOCUMENTS_UPFOLDER                   = RAILS_PUBLIC

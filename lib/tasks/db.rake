@@ -50,7 +50,7 @@ namespace :db do
   end
 
   desc "Create the database, load the schema, and initialize with the seed data (use db:reset to also drop the db first)"
-  task :setup => %w( db:create db:structure:load db:seed )
+  task :setup => %w( db:create db:structure:load db:seed db:analyze )
   
   desc "Recreate the database, load the schema, and initialize with the seed data"
   task :reset => %w( db:drop db:setup )
@@ -60,46 +60,46 @@ namespace :db do
 
   desc "empties all notifications"
   task :empty_notifications => :environment do
-    Notification.all.each do |l|
-      l.destroy
+    Notification.all.each do |r|
+      r.destroy
     end
   end
   
   desc "empties your lessons"
   task :empty_dashboard_lessons => :environment do
-    Lesson.all.each do |l|
-      l.destroy
+    Lesson.all.each do |r|
+      r.destroy
     end
-    Bookmark.where(:bookmarkable_type => 'Lesson', :user_id => 1).each do |b|
-      b.destroy
+    Bookmark.where(:bookmarkable_type => 'Lesson', :user_id => 1).each do |r|
+      r.destroy
     end
   end
   
   desc "empties your lessons"
   task :empty_lessons => :environment do
-    Lesson.where(:user_id => 1).each do |l|
-      l.destroy
+    Lesson.where(:user_id => 1).each do |r|
+      r.destroy
     end
-    Bookmark.where(:bookmarkable_type => 'Lesson', :user_id => 1).each do |b|
-      b.destroy
+    Bookmark.where(:bookmarkable_type => 'Lesson', :user_id => 1).each do |r|
+      r.destroy
     end
   end
   
   desc "empties dashboard media elements"
   task :empty_dashboard_media_elements => :environment do
     admin = User.admin
-    MediaElement.where(:is_public => true).each do |me|
-      admin.bookmark 'MediaElement', me.id
+    MediaElement.where(:is_public => true).each do |r|
+      admin.bookmark 'MediaElement', r.id
     end
   end
   
   desc "empties your media elements"
   task :empty_media_elements => :environment do
-    MediaElement.where(:user_id => 1).each do |l|
-      l.destroy
+    MediaElement.where(:user_id => 1).each do |r|
+      r.destroy
     end
-    Bookmark.where(:bookmarkable_type => 'MediaElement', :user_id => 1).each do |b|
-      b.destroy
+    Bookmark.where(:bookmarkable_type => 'MediaElement', :user_id => 1).each do |r|
+      r.destroy
     end
   end
   

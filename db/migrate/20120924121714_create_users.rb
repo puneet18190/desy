@@ -12,6 +12,7 @@ class CreateUsers < ActiveRecord::Migration
       t.integer :location_id,        null: false
       t.string  :confirmation_token,              index: true
       t.text    :metadata
+      t.string  :password_token,                  index: true
       t.timestamps
     end
   end
