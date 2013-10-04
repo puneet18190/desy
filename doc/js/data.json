@@ -5418,7 +5418,7 @@
         },
         {
             "file": "app/assets/javascripts/notifications.js",
-            "line": 201,
+            "line": 202,
             "description": "Initializes the graphical tools of the <b>help tooltip</b>.",
             "itemtype": "method",
             "name": "initializeHelp",
@@ -5427,7 +5427,7 @@
         },
         {
             "file": "app/assets/javascripts/notifications.js",
-            "line": 229,
+            "line": 230,
             "description": "Initializes the graphical tools and the routes attached to the <b>notifications tooltip</b>.",
             "itemtype": "method",
             "name": "initializeNotifications",
@@ -7090,7 +7090,7 @@
         },
         {
             "file": "app/assets/javascripts/virtual_classroom.js",
-            "line": 249,
+            "line": 256,
             "description": "Gets the highest zIndex value among elements of a given class.",
             "itemtype": "method",
             "name": "getMaximumZIndex",
@@ -7110,7 +7110,7 @@
         },
         {
             "file": "app/assets/javascripts/virtual_classroom.js",
-            "line": 267,
+            "line": 274,
             "description": "Initializes the functionality of dragging a single lesson into the playlist.",
             "itemtype": "method",
             "name": "initializeDraggableVirtualClassroomLesson",
@@ -7126,7 +7126,7 @@
         },
         {
             "file": "app/assets/javascripts/virtual_classroom.js",
-            "line": 308,
+            "line": 315,
             "description": "Initialize playlist container (using <i>JQueryUi sortable</i>)and jScrollPane.",
             "itemtype": "method",
             "name": "initializePlaylist",
@@ -7135,7 +7135,7 @@
         },
         {
             "file": "app/assets/javascripts/virtual_classroom.js",
-            "line": 369,
+            "line": 376,
             "description": "Uses together {{#crossLink \"VirtualClassroomJavaScriptAnimations/initializeDraggableVirtualClassroomLesson:method\"}}{{/crossLink}} and {{#crossLink \"VirtualClassroomJavaScriptAnimations/initializePlaylist:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "initializeVirtualClassroom",
@@ -7144,7 +7144,7 @@
         },
         {
             "file": "app/assets/javascripts/virtual_classroom.js",
-            "line": 389,
+            "line": 396,
             "description": "Initializer for lessons that can't be loaded from the multiple lessons loader.",
             "itemtype": "method",
             "name": "initializeNotAvailableLessonsToLoadQuick",
@@ -7153,7 +7153,7 @@
         },
         {
             "file": "app/assets/javascripts/virtual_classroom.js",
-            "line": 402,
+            "line": 409,
             "description": "Initializer for the JScrollPain in the multiple lessons loader (event infinite scroll to load more lessons).",
             "itemtype": "method",
             "name": "initializeScrollPaneQuickLessonSelector",
@@ -7162,7 +7162,7 @@
         },
         {
             "file": "app/assets/javascripts/virtual_classroom.js",
-            "line": 421,
+            "line": 428,
             "description": "Add email to recipients list on email add button (+).",
             "itemtype": "method",
             "name": "addEmailToVirtualClassroomSendLessonLinkSelector",
@@ -7171,7 +7171,7 @@
         },
         {
             "file": "app/assets/javascripts/virtual_classroom.js",
-            "line": 435,
+            "line": 445,
             "description": "Resets the spaces between the emails sent.",
             "itemtype": "method",
             "name": "resetVirtualClassroomSendLinkLines",

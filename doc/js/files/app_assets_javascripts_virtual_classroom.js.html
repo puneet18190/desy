@@ -532,6 +532,9 @@ function virtualClassroomDocumentReadySendLink() {
   $body.on(&#x27;click&#x27;, &#x27;#virtual_classroom_send_link_mails_box ._remove&#x27;, function() {
     $(this).parent().remove();
     resetVirtualClassroomSendLinkLines();
+    setTimeout(function() {
+      resetVirtualClassroomSendLinkLines();
+    }, 700);
   });
   $(&#x27;#select_mailing_list&#x27;).selectbox({
     onChange: function(val, inst) {
@@ -539,6 +542,10 @@ function virtualClassroomDocumentReadySendLink() {
         var emails = $(&#x27;#virtual_classroom_hidden_mailing_lists ._mailing_list_&#x27; + val + &#x27; div&#x27;);
         for(var i = 0; i &lt; emails.length; i++) {
           $(&#x27;#virtual_classroom_send_link_mails_box .jspPane&#x27;).append(emails[i].outerHTML);
+          resetVirtualClassroomSendLinkLines();
+          setTimeout(function() {
+            resetVirtualClassroomSendLinkLines();
+          }, 700);
         }
       }
     }
@@ -749,6 +756,9 @@ function addEmailToVirtualClassroomSendLessonLinkSelector() {
     $(&#x27;#virtual_classroom_send_link_mails_box .jspPane&#x27;).append(&#x27;&lt;div class=&quot;_email&quot;&gt;&lt;span class=&quot;_text&quot;&gt;&#x27; + selector.val() + &#x27;&lt;/span&gt;&lt;a class=&quot;_remove&quot;&gt;&lt;/a&gt;&lt;/div&gt;&#x27;);
     selector.val(&#x27;&#x27;);
     resetVirtualClassroomSendLinkLines();
+    setTimeout(function() {
+      resetVirtualClassroomSendLinkLines();
+    }, 700);
   }
 }
 

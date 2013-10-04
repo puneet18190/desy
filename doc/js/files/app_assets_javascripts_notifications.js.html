@@ -507,7 +507,8 @@ function notificationsDocumentReadyTooltips() {
       $.get(&#x27;/notifications/get_new_block?offset=&#x27; + offset);
     }
   });
-  $body.on(&#x27;click&#x27;, &#x27;._destroy_notification&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;._destroy_notification&#x27;, function(e) {
+    e.stopImmediatePropagation();
     var my_id = $(this).data(&#x27;param&#x27;);
     var offset = $(&#x27;#tooltip_content&#x27;).data(&#x27;offset&#x27;);
     $.post(&#x27;/notifications/&#x27; + my_id + &#x27;/destroy?offset=&#x27; + offset);
@@ -578,8 +579,8 @@ function initializeNotifications() {
       }
     }
   });
-  $body.on(&#x27;click&#x27;, &#x27;._single_notification .notification_gatto&#x27;, function() {
-    var closest_li = $(this).closest(&#x27;li&#x27;);
+  $body.on(&#x27;click&#x27;, &#x27;._single_notification&#x27;, function() {
+    var closest_li = $(this).closest(&#x27;._single_notification&#x27;);
     var my_own_id = closest_li.attr(&#x27;id&#x27;)
     var my_content = $(&#x27;#&#x27; + my_own_id + &#x27; ._expanded_notification&#x27;).html();
     var my_expanded = $(&#x27;#expanded_notification&#x27;);
