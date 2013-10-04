@@ -292,25 +292,26 @@
     
     z-index: 10;
     padding: 3px 13px;
-    width: 670px;
+    width: 636px;
     border-radius: 3px;
     -webkit-border-radius: 3px;
     background-color: #fff;
     border: 1px solid #e8e8e8;
+    right: 95px;
+    top: -10px;
     
     strong {
       
       color: $orange;
-      font-size: 110%; /* TODO */
+      font-size: 12.8px;
       
     }
     
-    p { /* TODO */
+    p {
       
-      display: inline-block;
-      width: 30%;
-      padding: 1%;
-      vertical-align: top;
+      float: left;
+      width: 200px;
+      padding: 6px;
       color: $black;
       
     }
