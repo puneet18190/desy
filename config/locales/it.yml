@@ -1808,7 +1808,7 @@ it:
         create:
           # The process of video composition started. The variable %{item} is replaced by the name of the video which is going to be composed
           # 1 - controllers/video_editor_controller.rb
-          started: "<div class=\"title\">Creazione video</div><div class=\"content\">La creazione del video <span class=\"variable\">%{item}</span> è iniziato! L'Editor video è temporaneamente non disponibile.</div>"
+          started: "<div class=\"title\">Creazione video</div><div class=\"content\">La creazione del video <span class=\"variable\">%{item}</span> è iniziata! L'Editor video è temporaneamente non disponibile.</div>"
           # The process of video composition ended successfully. The variable %{item} is replaced by the name of the new video
           # 1 - ../lib/media/video/editing/composer.rb
           ok: "<div class=\"title\">Complimenti!</div><div class=\"content\">La creazione del video <span class=\"variable\">%{item}</span> è terminato con successo! L'Editor video è di nuovo disponibile.</div>"
