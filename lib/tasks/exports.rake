@@ -40,7 +40,7 @@ namespace :exports do
 
         desc "Compile lesson exporting assets"
         task :compile => :environment do
-          continue_or_reboot_rake_task 'exports:lessons:assets:compile'
+          continue_or_reboot_rake_task 'exports:lessons:archives:assets:compile'
 
           require 'export/lesson/archive/assets'
           Export::Lesson::Archive::Assets.compile
@@ -50,7 +50,7 @@ namespace :exports do
         task :recompile => :environment do
           require 'export/lesson/archive/assets'
           clean
-          invoke_or_reboot_rake_task 'exports:lessons:assets:compile'
+          invoke_or_reboot_rake_task 'exports:lessons:archives:assets:compile'
         end
 
       end

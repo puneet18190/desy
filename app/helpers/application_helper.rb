@@ -149,8 +149,8 @@ module ApplicationHelper
       t('captions.titles.profile', :desy => desy)
     when 'virtual_classroom'
       t('captions.titles.virtual_classroom', :desy => desy)
-    when 'lesson_viewer', 'lesson_export'
-      if ['index', 'export'].include?(action_name)
+    when 'lesson_viewer', 'lesson_archive'
+      if ['index', 'archive'].include?(action_name)
         t('captions.titles.single_lesson', :desy => desy, :lesson => slides.first.lesson.title)
       else
         t('captions.titles.virtual_classroom', :desy => desy)

@@ -126,8 +126,8 @@ module Export
             set-icone-editor.svg
             tendina_share.png
             tiny_items.gif
-            lesson_export/application.css
-            lesson_export/application.js
+            lesson_archive/application.css
+            lesson_archive/application.js
             browser_not_supported/application.css
             browser_not_supported/application.js
           )
