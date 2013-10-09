@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html class="virtual_classroom-layout <%= controller_html_class %> <%= action_html_class %>">
-  <%= render :partial => "shared/head" %>
+  
+  <%= render :partial => 'shared/head' %>
+  
   <body>
-
-    <%= render :partial => "shared/browser_support_script" %>
-    <%= render :partial => "shared/popups" %>
-    <%= render :partial => "virtual_classroom/popups" %>
-    <%= render :partial => "shared/loading" %>
-    
+    <%= render :partial => 'shared/browser_support_script' %>
+    <%= render :partial => 'shared/popups' %>
+    <%= render :partial => 'virtual_classroom/popups' %>
+    <%= render :partial => 'shared/loading' %>
     <div class="container">
       <%= yield %>
-      <%= render :partial => "shared/footer" %>
+      <%= render :partial => 'shared/footer' %>
     </div>
   </body>
+  
 </html>
