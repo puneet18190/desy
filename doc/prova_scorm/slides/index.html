@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html class="lesson-export-layout lesson_export-controller export-action">
+  
+  <head>
+    <title>DESY - Prova SCORM</title>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <link href="assets/favicon32x32.png" rel="shortcut icon" type="image/png" />
+
+    <!--[if lt IE 9]>
+      <link href="assets/browser_not_supported/application.css" media="all" rel="stylesheet" type="text/css" />
+      <script type="text/javascript" src="assets/browser_not_supported/application.js"></script>
+    <![endif]-->
+
+    <!--[if gte IE 9]>
+      <link href="assets/lesson_export/application.css" media="all" rel="stylesheet" type="text/css" />
+      <script type="text/javascript" src="assets/lesson_export/application.js"></script>
+    <![endif]-->
+
+    <!--[if !IE]> -->
+      <link href="assets/lesson_export/application.css" media="all" rel="stylesheet" type="text/css" />
+      <script type="text/javascript" src="assets/lesson_export/application.js"></script>
+    <!-- <![endif]-->
+  </head>
+  
+  <body>
+      <img style="display:none" itemprop="image" src="media_elements/images/144/thumb_dsc06605_dw4qPC7QFBDMhXyYOTY0zA.jpg"/>
+    <script type="text/javascript">browserSupport()</script>
+    
+
+<div class="timedPopUp" id="dialog-error" style="display:none"></div>
+
+<div class="timedPopUp" id="dialog-ok" style="display:none"></div>
+
+<div class="confirmPopUp" id="dialog-confirm" style="display:none"></div>
+
+<div class="restoreCacheMediaElementEditorPopUp" id="dialog-restore-cache-media-element-editor" style="display:none"></div>
+
+<div id="popup_captions_container" style="display:none" data-publish-confirm="Every element contained in it will be automatically shared" data-publish-yes="Publish the lesson" data-publish-no="Cancel" data-publish-title="Publish this lesson" data-unpublish-confirm="Are you sure? Everyone who linked the lesson will lose it" data-unpublish-yes="Yes I am sure" data-unpublish-no="Cancel" data-unpublish-title="Turn back a lesson into private" data-destroy-lesson-confirm="Everybody who linked the lesson will lose it" data-destroy-lesson-title="Delete this lesson" data-destroy-lesson-yes="Delete the lesson" data-destroy-lesson-no="Cancel" data-destroy-media-element-confirm="Are you sure you want to delete it?" data-destroy-media-element-confirm-bis="You are using it in some of your lessons, it will be deleted in each of its instances" data-destroy-media-element-title="Delete this element?" data-destroy-media-element-yes="Delete the element" data-destroy-media-element-no="Cancel" data-destroy-document-confirm="Are you sure you want to delete it?" data-destroy-document-confirm-bis="You are attaching it in some of your lessons, it will be deleted in each of its instances" data-destroy-document-title="Delete this document?" data-destroy-document-yes="Delete the document" data-destroy-document-no="Cancel" data-invalid-component-duration-in-video-editor="Insert a duration! (an integer greater than 0)" data-empty-text-component-in-video-editor="Insert a text" data-restore-cache-media-element-editor-message="A previous working session was closed unexpectedly!" data-restore-cache-media-element-editor-yes="Restore" data-restore-cache-media-element-editor-no="Clear" data-exit-video-editor-title="Leaving the video editor" data-exit-video-editor-confirm="Are you sure you want to leave?" data-exit-video-editor-yes="Yes" data-exit-video-editor-no="Stay on the page" data-exit-audio-editor-title="Leaving the audio editor" data-exit-audio-editor-confirm="Are you sure you want to leave?" data-exit-audio-editor-yes="Yes" data-exit-audio-editor-no="Stay on the page" data-save-media-element-editor-title="Saving a private element" data-save-media-element-editor-confirm="Since the element you modified is private, you can overwrite it" data-save-media-element-editor-yes="Overwrite" data-save-media-element-editor-no="Save as new element" data-overwrite-media-element-editor-title="This element is in use!" data-overwrite-media-element-editor-confirm="If you overwrite it, it will be replaced in any private lesson containing it" data-overwrite-media-element-editor-yes="Overwrite" data-overwrite-media-element-editor-no="Cancel" data-mailing-list-general-error="Error in mailing list!" data-empty-virtual-classroom-playlist-title="Empty your playlist" data-empty-virtual-classroom-playlist-confirm="Are you sure you want to empty it?" data-empty-virtual-classroom-playlist-yes="Yes" data-empty-virtual-classroom-playlist-no="Cancel" data-empty-virtual-classroom-title="Empty your Virtual Classroom" data-empty-virtual-classroom-confirm="Are you sure you want to empty it?" data-empty-virtual-classroom-yes="Yes" data-empty-virtual-classroom-no="Cancel" data-title-unpublish="Turn back your lesson into private" data-title-lesson-modification-not-notified="Notify about the modifications you made to this public lesson" data-title-pagination-left="Go to previous page" data-title-pagination-right="Go to next page" data-media-error-audio="Couldn't load audio: error code %{code} (%{message})" data-media-error-video="Couldn't load video: error code %{code} (%{message})" data-media-error-code-1="The fetching process for the media resource was aborted by the user" data-media-error-code-2="A network error has caused the user agent to stop fetching the media resource" data-media-error-code-3="An error has occurred in the decoding of the media resource" data-media-error-code-4="The media resource specified by src was not usable" data-temporary-msg="" ></div>
+
+<div id="popup_parameters_container" style="display:none" data-timeout="2500" data-cache-time="60000" data-min-length-search-tags="2" data-min-tag-length="1" ></div>
+
+<div class="lessonNotificationPopUp" id="lesson-notification" style="display:none" data-message-placeholder="Write the details of your changes (max 280 characters)" data-lesson-id="">
+  <div class="notificationWrapper">
+    <h2>You edited a shared lesson!</h2>
+    <p>This lesson is followed by other users in DESY: would you like to inform them about the modifications you made?</p>
+    <form data-remote="true" method="post">
+      <textarea id="lesson_notify_modification_details" name="details">
+</textarea>
+      <input id="lesson_notify_modification_details_placeholder" name="details_placeholder" type="hidden" value="" />
+      <br class="clearfloat">
+      <input class="_yes" name="commit" type="submit" value="Send notification" />
+      <a class="_no">I don&#x27;t want to notify</a>
+    </form>
+    <div class="_lesson_notification_cover img_expanded"></div>
+  </div>
+</div>
+
+
+    <a id="left_scroll" class="navLeft" title="Back"></a>
+    <div class="container">
+      
+<div id="carousel_container">
+  <div id="carousel_inner">
+    <ul id="carousel_ul">
+        <li id="slide_in_lesson_viewer_314" class="_slide_in_lesson_viewer cover slide _lesson_viewer_current_slide _cover_bookmark_for_lesson_viewer_51" data-overall-counter="1" data-lesson-id="51" data-loaded="true" data-slide-id="314" style="display:block">
+          
+<div class="slide-content cover normal-size">
+  
+  <div class="image-container item">
+    
+    <div class="image read-only">
+          <img style="top:-284px; height:1201px" data-url="media_elements/images/144/dsc06605_dw4qPC7QFBDMhXyYOTY0zA.jpg" alt="Salgado" src="media_elements/images/144/dsc06605_dw4qPC7QFBDMhXyYOTY0zA.jpg">
+    </div>
+    
+    <div class="title-container">
+      <div class="lessonTitle">Prova SCORM</div>
+    </div>
+    
+  </div>
+  
+  <div class="footer-container item">
+    <div class="subject pull-left">
+      Computer Science
+    </div>
+    <div class="author pull-right">
+      Author: <span class="name">DESY Admin User</span>
+    </div>
+  </div>
+  
+</div>
+
+        </li>
+        <li id="slide_in_lesson_viewer_315" class="_slide_in_lesson_viewer cover slide  " data-overall-counter="2" data-lesson-id="51" data-loaded="true" data-slide-id="315" style="display:none">
+          <div class="slide-content title normal-size">
+  
+  <div class="item title-container">
+    <textarea class="title read-only" disabled="disabled">Titolo di Prova</textarea>
+  </div>
+  
+</div>
+
+        </li>
+        <li id="slide_in_lesson_viewer_316" class="_slide_in_lesson_viewer cover slide  " data-overall-counter="3" data-lesson-id="51" data-loaded="false" data-slide-id="316" style="display:none">
+          
+<div class="slide-content text normal-size">
+  
+  <div class="item title-container">
+    <input class="title read-only" type="text" value="Solo testo" disabled="disabled">
+  </div>
+  
+  <div class="item text-container read-only">
+    <p class="size4"><span>Qui va scritto solamente del testo</span></p>
+<p class="size4">&nbsp;</p>
+<p class="size2"><span style="color: #0000ff;">e questa &egrave; la formula integrale di Cauchy in analisi complessa:</span></p>
+<p class="size4"><span><img class="Wirisformula" src="../../../../assets/tinymce/plugins/tiny_mce_wiris/integration/showimage.php?formula=6c5937c3bf3c625b2819ea267bbe13fd.png" alt="f left parenthesis a right parenthesis thin space equal thin space fraction numerator 1 over denominator 2 italic pi i end fraction contour integral subscript italic gamma fraction numerator f left parenthesis italic zeta right parenthesis over denominator italic zeta space minus space a end fraction d italic zeta" /></span></p>
+  </div>
+  
+  
+</div>
+
+        </li>
+        <li id="slide_in_lesson_viewer_317" class="_slide_in_lesson_viewer cover slide  " data-overall-counter="4" data-lesson-id="51" data-loaded="false" data-slide-id="317" style="display:none">
+          
+
+<div class="slide-content image1 normal-size">
+  
+  <div class="item title-container">
+    <input class="title read-only" type="text" value="Impariamo ad apprezzare i pony" disabled="disabled">
+  </div>
+  
+  <div class="item image-container">
+    <div class="image read-only">
+          <img style="left:-169px; width:652px" data-url="media_elements/images/148/1-_josef_koudelka__romania__1968_jNhvYo5O002TgSNzEINupw.jpg" alt="Koudelka" >
+          <input class="caption" type="text" value="Un bel pony" disabled="disabled">
+    </div>
+  </div>
+  
+  <div class="item text-container read-only">
+    <p class="size3"><span>Kevin Strootman &egrave; diventato una delle chiavi del centrocampo perfetto della Roma di Rudi Garcia. Si sta ambientando al meglio nella nuova realt&agrave; giallorossa e dal ritiro della nazionale olandese si &egrave; soffermato su questo inizio di campionato e l'attesissima sfida con il Napoli di venerd&igrave; 18 ottobre, allo stadio Olimpico (calcio d'inizio ore 20.45)</span></p>
+  </div>
+  
+  
+</div>
+
+        </li>
+        <li id="slide_in_lesson_viewer_318" class="_slide_in_lesson_viewer cover slide  " data-overall-counter="5" data-lesson-id="51" data-loaded="false" data-slide-id="318" style="display:none">
+          
+
+<div class="slide-content image3 normal-size">
+  
+  <div class="item image-container">
+    <div class="image read-only">
+          <img style="top:-96px; height:646px" data-url="media_elements/images/231/marmotta_J6Z5lhnH2DiibIeIiv4hSA.jpeg" alt="La marmotta" >
+          <input class="caption" type="text" value="Guarda la marmotta!" disabled="disabled">
+    </div>
+  </div>
+  
+</div>
+
+        </li>
+        <li id="slide_in_lesson_viewer_319" class="_slide_in_lesson_viewer cover slide  " data-overall-counter="6" data-lesson-id="51" data-loaded="false" data-slide-id="319" style="display:none">
+          
+
+<div class="slide-content image2 normal-size">
+  
+  <div class="item image-container">
+    <div class="image read-only">
+          <img style="top:-49px; height:637px" data-url="media_elements/images/166/josefkoudelka_hmTZ-wQaDglhh7cmdDmJ2A.jpg" alt="Koudelka" >
+          <input class="caption" type="text" value="Che simpatico fotografo!" disabled="disabled">
+    </div>
+  </div>
+  
+  <div class="item image-container" style="margin-right:0">
+    <div class="image read-only">
+          <img style="left:-263px; width:978px" data-url="media_elements/images/183/dexter-tv-series-1920x1080-wallpaper-542_GcGA4wuASNna_kSBhGdp9A.jpg" alt="Dexter" >
+    </div>
+  </div>
+  
+</div>
+
+        </li>
+        <li id="slide_in_lesson_viewer_320" class="_slide_in_lesson_viewer cover slide  " data-overall-counter="7" data-lesson-id="51" data-loaded="false" data-slide-id="320" style="display:none">
+          
+
+<div class="slide-content image4 normal-size">
+  
+  <div class="item image-container">
+    <div class="image read-only">
+          <img style="left:-163px; width:706px" data-url="media_elements/images/220/tmp_liescPOskDDYK4XwxZ9pYg.png" alt="Anna C 5-1" >
+    </div>
+  </div>
+  
+  <div class="item image-container" style="margin-right:0">
+    <div class="image read-only">
+          <img style="top:-14px; height:279px" data-url="media_elements/images/199/gufo_3nz-md45fUfqxcxdsEdKpw.jpg" alt="Gufo" >
+          <input class="caption" type="text" value="Scendi dal trespolo!" disabled="disabled">
+    </div>
+  </div>
+  
+  <div class="item image-container" style="margin-bottom:0">
+    <div class="image read-only">
+          <img style="top:-15px; height:280px" data-url="media_elements/images/207/cavallo_jx5cDgcLJMbl-m5XbEX2cg.jpg" alt="Cavallo islandese" >
+    </div>
+  </div>
+  
+  <div class="item image-container" style="margin-right:0; margin-bottom:0">
+    <div class="image read-only">
+          <img style="top:-39px; height:316px" data-url="media_elements/images/208/20130809_102830_pqDJO7kt2EidN8gLHw4ICQ.jpg" alt="Cane labrador" >
+    </div>
+  </div>
+  
+</div>
+
+        </li>
+        <li id="slide_in_lesson_viewer_321" class="_slide_in_lesson_viewer cover slide  " data-overall-counter="8" data-lesson-id="51" data-loaded="false" data-slide-id="321" style="display:none">
+          
+
+<div class="slide-content video2 normal-size">
+  
+  <div class="item video-container">
+    <div class="video read-only">
+          
+<div id="instance_B7vfNFgAYJWL8tSUDnOa-Q_1_of_video_player" class="videoPlayer _instance_of_player" data-media-type="video" data-initialized="false" data-duration="10">
+  <video data-mp4="media_elements/videos/62/virus_Q6X2iFsTmXSABGB61-KVaQ.mp4" data-webm="media_elements/videos/62/virus_Q6X2iFsTmXSABGB61-KVaQ.webm">
+    <source src="" type="video/mp4">
+    <source src="" type="video/webm">
+    <div style="padding-top:150px; padding-bottom:120px; text-align:center"><h1>Your browser does not support videos</h1></div>
+  </video>
+  <a class="play _media_player_play" title="Play video"></a>
+  <a class="pause _media_player_pause" title="Pause video"></a>
+  <div class="_media_player_current_time secondTime">00:00</div>
+  <div class="videoSlider _media_player_slider"></div>
+  <div class="_media_player_total_time secondTime">00:10</div>
+  <a class="fullScreen _video_full_screen" title="Fullscreen"></a>
+  <div class="sliderDisabler _media_player_slider_disabler" style="display: none;"></div>
+</div>
+
+
+
+
+
+    </div>
+  </div>
+  
+</div>
+
+        </li>
+        <li id="slide_in_lesson_viewer_322" class="_slide_in_lesson_viewer cover slide  " data-overall-counter="9" data-lesson-id="51" data-loaded="false" data-slide-id="322" style="display:none">
+          
+
+<div class="slide-content video1 normal-size">
+  
+  <div class="item title-container">
+    <input class="title read-only" type="text" value="Prova con video e documento" disabled="disabled">
+  </div>
+  
+  <div class="item video-container">
+    <div class="video read-only">
+          
+<div id="instance_B7vfNFgAYJWL8tSUDnOa-Q_2_of_video_player" class="videoPlayer _instance_of_player" data-media-type="video" data-initialized="false" data-duration="19">
+  <video data-mp4="media_elements/videos/57/mare_zWh36aPODFkzhdbjHvEGGw.mp4" data-webm="media_elements/videos/57/mare_zWh36aPODFkzhdbjHvEGGw.webm">
+    <source src="" type="video/mp4">
+    <source src="" type="video/webm">
+    <div style="padding-top:150px; padding-bottom:120px; text-align:center"><h1>Your browser does not support videos</h1></div>
+  </video>
+  <a class="play _media_player_play" title="Play video"></a>
+  <a class="pause _media_player_pause" title="Pause video"></a>
+  <div class="_media_player_current_time secondTime">00:00</div>
+  <div class="videoSlider _media_player_slider"></div>
+  <div class="_media_player_total_time secondTime">00:19</div>
+  <a class="fullScreen _video_full_screen" title="Fullscreen"></a>
+  <div class="sliderDisabler _media_player_slider_disabler" style="display: none;"></div>
+</div>
+
+
+
+
+
+    </div>
+  </div>
+  
+  <div class="item text-container read-only">
+    <p>Il futuro? Io non sono uno che si accontenta di quanto ha raggiunto. Voglio sempre qualcosa di nuovo. Le mie gambe sono a posto, come all'inizio della carriera. Tranne alcuni leggeri malanni, nella mia attivit&agrave; agonistica n<span style="text-decoration: underline;">on ho mai patito infortuni gravi. Io sono davvero in ordine sotto il profilo del fisico. In tutti i test biofisici risulto sempre tra coloro che ottengono i migliori risultati. Questo mi d&agrave; conferme. Vivo come ho sempre vissuto: senza alcol, sono attento all'alimentazione e vado a letto presto. Queste sono state le mie regole fin dall'inizio perch&eacute; ho sempre mirato a migliorarmi, a puntare in alto. Adesso che ho pi&ugrave; di 30 anni, ho la soddisfazione di tenere il passo degli altri. Il che per me &egrave; veramente bello</span></p>
+  </div>
+  
+    <a class="attached_document_internal" title="Download attached documents"></a>
+<div class="attached_document_internal_expanded" style="display:none">
+    <div class="icon">
+      <img alt=".gz" title="Compressed document" src="assets/documents/zip.svg">
+    </div>
+    <div class="title_and_download upper">
+      <div class="title">
+        Pacchetto di immagini compresse
+      </div>
+      <a class="download" href="documents/3/espandibili-tar_akxjd2lUjnlSDqwmrC_pKA.gz">
+        Download
+      </a>
+    </div>
+      <br class="clearfloat" />
+    <div class="icon">
+      <img alt=".pptx" title="Slide presentation" src="assets/documents/ppt.svg">
+    </div>
+    <div class="title_and_download upper">
+      <div class="title">
+        Proposta Coldiretti
+      </div>
+      <a class="download" href="documents/4/coldiretti-it__rev_sp3_27052010_wmHjC4w1X3r8UOAlMTMsrg.pptx">
+        Download
+      </a>
+    </div>
+      <br class="clearfloat" />
+    <div class="icon">
+      <img alt=".odt" title="Regular document" src="assets/documents/doc.svg">
+    </div>
+    <div class="title_and_download upper">
+      <div class="title">
+        Struttura conversazioni multicast
+      </div>
+      <a class="download" href="documents/2/conversazioni_multicast_V0_Gku5sX_k2wyViHBSFcg.odt">
+        Download
+      </a>
+    </div>
+</div>
+
+  
+</div>
+
+        </li>
+        <li id="slide_in_lesson_viewer_323" class="_slide_in_lesson_viewer cover slide  " data-overall-counter="10" data-lesson-id="51" data-loaded="true" data-slide-id="323" style="display:none">
+          
+<div class="slide-content audio normal-size">
+  
+  <div class="item title-container">
+    <input class="title read-only" type="text" value="E qui proviamo l&#x27;audio" disabled="disabled">
+  </div>
+  
+  <div class="item audio-container">
+    <div class="audio read-only">
+          
+<div id="instance_dbPeuRC9haYJ-6TxOHK1rA_1_of_audio_player" class="audioPlayer _instance_of_player" data-media-type="audio" data-initialized="false" data-duration="190">
+  <audio data-m4a="media_elements/audios/196/7-tangerine_pq9ayLGFi2ntuTQ-qxkqfQ.m4a" data-ogg="media_elements/audios/196/7-tangerine_pq9ayLGFi2ntuTQ-qxkqfQ.ogg">
+    <source src="media_elements/audios/196/7-tangerine_pq9ayLGFi2ntuTQ-qxkqfQ.m4a" type="audio/m4a">
+    <source src="media_elements/audios/196/7-tangerine_pq9ayLGFi2ntuTQ-qxkqfQ.ogg" type="audio/ogg">
+    Your browser does not support audios
+  </audio>
+  <a class="play _media_player_play" title="Play audio"></a>
+  <a class="pause _media_player_pause" title="Pause audio"></a>
+  <div class="_media_player_current_time secondTime">00:00</div>
+  <div class="audioSlider _media_player_slider"></div>
+  <div class="_media_player_total_time secondTime">03:10</div>
+  <div class="sliderDisabler _media_player_slider_disabler" style="display: none;"></div>
+</div>
+
+
+  <script type="text/javascript">
+    initializeMedia('instance_dbPeuRC9haYJ-6TxOHK1rA_1_of_audio_player', 'audio');
+  </script>
+
+
+
+    </div>
+  </div>
+  
+  <div class="item text-container read-only">
+    <p class="size2"><span><strong>Grazie presidente Paul Biya, foss&rsquo;anche solo per questa volta: invitato a un&rsquo;udienza nel palazzo presidenziale del Camerun, Samuel Eto&rsquo;o ha accettato di continuare a giocare per i Leoni indomabili e promesso di portarli ai Mondiali di calcio del 2014. Al centravanti del Chelsea, riferisce il portale d&rsquo;informazione Misna, Biya ha chiesto di &ldquo;accompagnare la selezione nazionale&rdquo; ai Mondiali. Nel concreto si tratta di giocare e vincere. A partire dall&rsquo;andata dello spareggio in programma sabato in Tunisia contro le Aquile di Cartagine. Chi ha la meglio nei 180 minuti va in Brasile, chi perde guarda le partite in televisione. Il rischio era che Eto&rsquo;o, gi&agrave; trentaduenne ma ancora il miglior giocatore del Camerun, disertasse la gara con la Tunisia. Il centravanti aveva annunciato il ritiro il mese scorso, dopo la vittoria nel gruppo di qualificazione a spese della Libia. Da Yaound&eacute; a Douala, per&ograve;, i tifosi avevano continuato a sperare. Ricordavano la rottura con la nazionale del 2011, quando Eto&rsquo;o aveva guidato uno sciopero contro la federazione calcio ed era stato squalificato per otto mesi. Ma ricordavano anche il palmares di Biya; presidente padrone dal 1982, gi&agrave; intervenuto a palla ferma quando si trattava di portare ai Mondiali italiani un grande vecchio che voleva ritirarsi, Roger Milla.</strong></span></p>
+  </div>
+  
+  
+</div>
+
+        </li>
+    </ul>
+  </div>
+</div>
+
+
+<a class="esciButton fltrt" title="Exit" href="#" style="margin-top:20px; display:none"></a>
+
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      lessonViewerDocumentReadyWirisConvertSrc();
+      $('#footer').css('top', (parseInt($(window).outerHeight()) - 40) + 'px').css('width', (parseInt($(window).outerWidth()) - 24) + 'px');
+      $(window).resize(function() {
+        $('#footer').css('top', ($(window).height() - 40) + 'px').css('width', ($(window).width() - 24) + 'px');
+      });
+    });
+  </script>
+
+
+      <div id="footer">
+        <div id="lesson-title">
+          <img src="assets/lesson-editor-logo-footer.png">
+          <p>Proudly produced in ©2013 DESY. All rights reserved</p>
+        </div>
+      </div>
+    </div>
+    <a id="right_scroll" class="navRight" title="Forward"></a>
+  </body>
+  
+</html>

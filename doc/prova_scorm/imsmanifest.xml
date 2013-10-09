@@ -1,0 +1,73 @@
+<!--
+  
+  LISTA DEI FILES ALLEGATI .xsd
+  
+  adlcp_v1p3.xsd  => USATO
+  adlnav_v1p3.xsd => USATO
+  adlseq_v1p3.xsd  => USATO
+  datatypes.dtd TODO
+  imscp_v1p1.xsd => USATO
+  imsss_v1p0auxresource.xsd => USATO INDIRETTAMENTE
+  imsss_v1p0control.xsd => USATO INDIRETTAMENTE
+  imsss_v1p0delivery.xsd => USATO INDIRETTAMENTE
+  imsss_v1p0limit.xsd => USATO INDIRETTAMENTE
+  imsss_v1p0objective.xsd => USATO INDIRETTAMENTE
+  imsss_v1p0random.xsd => USATO INDIRETTAMENTE
+  imsss_v1p0rollup.xsd => USATO INDIRETTAMENTE
+  imsss_v1p0seqrule.xsd => USATO INDIRETTAMENTE
+  imsss_v1p0util.xsd TODO
+  imsss_v1p0.xsd => USATO
+  ims_xml.xsd TODO
+  lom.xsd => USATO
+  XMLSchema.dtd TODO
+  xml.xsd TODO
+
+-->
+
+
+
+
+
+<?xml version="1.0" standalone="no" ?>
+
+<manifest identifier="desy.lesson.51"
+          xmlns="http://www.imsglobal.org/xsd/imscp_v1p1"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xmlns:adlcp="http://www.adlnet.org/xsd/adlcp_v1p3"
+          xmlns:adlseq="http://www.adlnet.org/xsd/adlseq_v1p3"
+          xmlns:adlnav="http://www.adlnet.org/xsd/adlnav_v1p3"
+          xmlns:imsss="http://www.imsglobal.org/xsd/imsss"
+          xmlns:lom="http://ltsc.ieee.org/xsd/LOM"
+          xsi:schemaLocation="http://www.imsglobal.org/xsd/imscp_v1p1 imscp_v1p1.xsd
+                              http://www.adlnet.org/xsd/adlcp_v1p3 adlcp_v1p3.xsd
+                              http://www.adlnet.org/xsd/adlseq_v1p3 adlseq_v1p3.xsd
+                              http://www.adlnet.org/xsd/adlnav_v1p3 adlnav_v1p3.xsd
+                              http://www.imsglobal.org/xsd/imsss imsss_v1p0.xsd
+                              http://ltsc.ieee.org/xsd/LOM lom.xsd">
+  
+  
+  <metadata>
+    <schema>ADL SCORM</schema>
+    <schemaversion>2004 3rd Edition</schemaversion>
+    <!-- TODO 
+      <lom xmlns="http://ltsc.ieee.org/xsd/LOM" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ltsc.ieee.org/xsd/LOM lom.xsd">
+    -->
+  </metadata>
+  
+  
+  <organizations default="slides">
+    <organization identifier="slides">
+      <title>Golf Explained - CP Single SCO</title>
+      <!-- TODO -->
+    </organization>
+  </organizations>
+  
+  
+  <resources>
+    <resource identifier="resource_1" type="webcontent" adlcp:scormType="sco" href="shared/launchpage.html">
+      <!-- TODO -->
+    </resource>
+  </resources>
+  
+  
+</manifest>
