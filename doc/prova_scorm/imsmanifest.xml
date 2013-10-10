@@ -83,9 +83,54 @@
     
     <!-- media_elements -->
     
+    <resource identifier="media_element_144" type="webcontent" adlcp:scormType="asset">
+      <file href="html/media_elements/images/144/dsc06605_dw4qPC7QFBDMhXyYOTY0zA.jpg"/>
+      <file href="html/media_elements/images/144/thumb_dsc06605_dw4qPC7QFBDMhXyYOTY0zA.jpg"/>
+    </resource>
+    
+    <resource identifier="media_element_148" type="webcontent" adlcp:scormType="asset">
+      <file href="html/media_elements/images/148/1-_josef_koudelka__romania__1968_jNhvYo5O002TgSNzEINupw.jpg"/>
+      <file href="html/media_elements/images/148/thumb_1-_josef_koudelka__romania__1968_jNhvYo5O002TgSNzEINupw.jpg"/>
+    </resource>
+    
+    <resource identifier="media_element_166" type="webcontent" adlcp:scormType="asset">
+      <file href="html/media_elements/images/166/josefkoudelka_hmTZ-wQaDglhh7cmdDmJ2A.jpg"/>
+      <file href="html/media_elements/images/166/thumb_josefkoudelka_hmTZ-wQaDglhh7cmdDmJ2A.jpg"/>
+    </resource>
+    
+    <resource identifier="media_element_183" type="webcontent" adlcp:scormType="asset">
+      <file href="html/media_elements/images/183/dexter-tv-series-1920x1080-wallpaper-542_GcGA4wuASNna_kSBhGdp9A.jpg"/>
+      <file href="html/media_elements/images/183/thumb_dexter-tv-series-1920x1080-wallpaper-542_GcGA4wuASNna_kSBhGdp9A.jpg"/>
+    </resource>
+    
     <resource identifier="media_element_196" type="webcontent" adlcp:scormType="asset">
       <file href="html/media_elements/audios/196/7-tangerine_pq9ayLGFi2ntuTQ-qxkqfQ.m4a"/>
       <file href="html/media_elements/audios/196/7-tangerine_pq9ayLGFi2ntuTQ-qxkqfQ.ogg"/>
+    </resource>
+    
+    <resource identifier="media_element_199" type="webcontent" adlcp:scormType="asset">
+      <file href="html/media_elements/images/199/gufo_3nz-md45fUfqxcxdsEdKpw.jpg"/>
+      <file href="html/media_elements/images/199/thumb_gufo_3nz-md45fUfqxcxdsEdKpw.jpg"/>
+    </resource>
+    
+    <resource identifier="media_element_207" type="webcontent" adlcp:scormType="asset">
+      <file href="html/media_elements/images/207/cavallo_jx5cDgcLJMbl-m5XbEX2cg.jpg"/>
+      <file href="html/media_elements/images/207/thumb_cavallo_jx5cDgcLJMbl-m5XbEX2cg.jpg"/>
+    </resource>
+    
+    <resource identifier="media_element_208" type="webcontent" adlcp:scormType="asset">
+      <file href="html/media_elements/images/208/20130809_102830_pqDJO7kt2EidN8gLHw4ICQ.jpg"/>
+      <file href="html/media_elements/images/208/thumb_20130809_102830_pqDJO7kt2EidN8gLHw4ICQ.jpg"/>
+    </resource>
+    
+    <resource identifier="media_element_220" type="webcontent" adlcp:scormType="asset">
+      <file href="html/media_elements/images/220/tmp_liescPOskDDYK4XwxZ9pYg.png"/>
+      <file href="html/media_elements/images/220/thumb_tmp_liescPOskDDYK4XwxZ9pYg.png"/>
+    </resource>
+    
+    <resource identifier="media_element_231" type="webcontent" adlcp:scormType="asset">
+      <file href="html/media_elements/images/231/marmotta_J6Z5lhnH2DiibIeIiv4hSA.jpeg"/>
+      <file href="html/media_elements/images/231/thumb_marmotta_J6Z5lhnH2DiibIeIiv4hSA.jpeg"/>
     </resource>
     
     <!-- qui sotto pacchetti di livello più alto -->
