@@ -65,6 +65,58 @@
   
   <resources>
     
+    <!-- qui sotto le slides -->
+    
+    <resource identifier="slide_314" type="webcontent" adlcp:scormType="asset" href="html/slide314.html">
+      <file href="html/slide314.html"/>
+      <dependency identifierref="common"/>
+    </resource>
+    
+    <resource identifier="slide_315" type="webcontent" adlcp:scormType="asset" href="html/slide315.html">
+      <file href="html/slide315.html"/>
+      <dependency identifierref="common"/>
+    </resource>
+    
+    <resource identifier="slide_316" type="webcontent" adlcp:scormType="asset" href="html/slide316.html">
+      <file href="html/slide316.html"/>
+      <dependency identifierref="common"/>
+    </resource>
+    
+    <resource identifier="slide_317" type="webcontent" adlcp:scormType="asset" href="html/slide317.html">
+      <file href="html/slide317.html"/>
+      <dependency identifierref="common"/>
+    </resource>
+    
+    <resource identifier="slide_318" type="webcontent" adlcp:scormType="asset" href="html/slide318.html">
+      <file href="html/slide318.html"/>
+      <dependency identifierref="common"/>
+    </resource>
+    
+    <resource identifier="slide_319" type="webcontent" adlcp:scormType="asset" href="html/slide319.html">
+      <file href="html/slide319.html"/>
+      <dependency identifierref="common"/>
+    </resource>
+    
+    <resource identifier="slide_320" type="webcontent" adlcp:scormType="asset" href="html/slide320.html">
+      <file href="html/slide320.html"/>
+      <dependency identifierref="common"/>
+    </resource>
+    
+    <resource identifier="slide_321" type="webcontent" adlcp:scormType="asset" href="html/slide321.html">
+      <file href="html/slide321.html"/>
+      <dependency identifierref="common"/>
+    </resource>
+    
+    <resource identifier="slide_322" type="webcontent" adlcp:scormType="asset" href="html/slide322.html">
+      <file href="html/slide322.html"/>
+      <dependency identifierref="common"/>
+    </resource>
+    
+    <resource identifier="slide_323" type="webcontent" adlcp:scormType="asset" href="html/slide323.html">
+      <file href="html/slide323.html"/>
+      <dependency identifierref="common"/>
+    </resource>
+    
     <!-- qui sotto i pacchetti di elementi variabili (documents, media_elements) -->
     
     <!-- documents -->
@@ -82,7 +134,6 @@
     </resource>
     
     <!-- media_elements -->
-    
     
     <resource identifier="media_element_57" type="webcontent" adlcp:scormType="asset">
       <file href="html/media_elements/videos/57/mare_zWh36aPODFkzhdbjHvEGGw.mp4"/>
