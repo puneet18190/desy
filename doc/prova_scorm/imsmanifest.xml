@@ -67,6 +67,27 @@
     
     <!-- qui sotto i pacchetti di elementi variabili (documents, media_elements) -->
     
+    <!-- documents -->
+    
+    <resource identifier="document_2" type="webcontent" adlcp:scormType="asset">
+      <file href="html/documents/2/conversazioni_multicast_V0_Gku5sX_k2wyViHBSFcg.odt"/>
+    </resource>
+    
+    <resource identifier="document_3" type="webcontent" adlcp:scormType="asset">
+      <file href="html/documents/3/espandibili-tar_akxjd2lUjnlSDqwmrC_pKA.gz"/>
+    </resource>
+    
+    <resource identifier="document_4" type="webcontent" adlcp:scormType="asset">
+      <file href="html/documents/4/coldiretti-it__rev_sp3_27052010_wmHjC4w1X3r8UOAlMTMsrg.pptx"/>
+    </resource>
+    
+    <!-- media_elements -->
+    
+    <resource identifier="media_element_196" type="webcontent" adlcp:scormType="asset">
+      <file href="html/media_elements/audios/196/7-tangerine_pq9ayLGFi2ntuTQ-qxkqfQ.m4a"/>
+      <file href="html/media_elements/audios/196/7-tangerine_pq9ayLGFi2ntuTQ-qxkqfQ.ogg"/>
+    </resource>
+    
     <!-- qui sotto pacchetti di livello più alto -->
     
     <resource identifier="common" type="webcontent" adlcp:scormType="asset">
