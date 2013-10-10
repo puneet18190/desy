@@ -147,14 +147,17 @@
     
     <resource identifier="document_2" type="webcontent" adlcp:scormType="asset">
       <file href="html/documents/2/conversazioni_multicast_V0_Gku5sX_k2wyViHBSFcg.odt"/>
+      <file href="html/assets/documents/doc.svg"/>
     </resource>
     
     <resource identifier="document_3" type="webcontent" adlcp:scormType="asset">
       <file href="html/documents/3/espandibili-tar_akxjd2lUjnlSDqwmrC_pKA.gz"/>
+      <file href="html/assets/documents/zip.svg"/>
     </resource>
     
     <resource identifier="document_4" type="webcontent" adlcp:scormType="asset">
       <file href="html/documents/4/coldiretti-it__rev_sp3_27052010_wmHjC4w1X3r8UOAlMTMsrg.pptx"/>
+      <file href="html/assets/documents/ppt.svg"/>
     </resource>
     
     <!-- media_elements -->
@@ -237,12 +240,6 @@
     
     <resource identifier="documents" type="webcontent" adlcp:scormType="asset">
       <file href="html/assets/documents_fondo.png"/>
-      <file href="html/assets/documents/doc.svg"/>
-      <file href="html/assets/documents/exc.svg"/>
-      <file href="html/assets/documents/pdf.svg"/>
-      <file href="html/assets/documents/ppt.svg"/>
-      <file href="html/assets/documents/unknown.svg"/>
-      <file href="html/assets/documents/zip.svg"/>
     </resource>
     
     <resource identifier="tinyMCE" type="webcontent" adlcp:scormType="asset">
