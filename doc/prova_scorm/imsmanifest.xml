@@ -76,7 +76,7 @@
     </resource>
     
     <resource identifier="players" type="webcontent" adlcp:scormType="asset">
-      <file href="html/assets/documents/icone-player.svg"/>
+      <file href="html/assets/icone-player.svg"/>
     </resource>
     
     <resource identifier="documents" type="webcontent" adlcp:scormType="asset">
