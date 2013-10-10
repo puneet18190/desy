@@ -64,6 +64,42 @@
         <title>Prova SCORM</title> <!-- questo è il titolo della slide -->
       </item>
       
+      <item identifier="activity_slide_315" identifierref="slide_315">
+        <title>Titolo di Prova</title>
+      </item>
+      
+      <item identifier="activity_slide_316" identifierref="slide_316">
+        <title>Solo testo</title>
+      </item>
+      
+      <item identifier="activity_slide_317" identifierref="slide_317">
+        <title>Impariamo ad apprezzare i pony</title>
+      </item>
+      
+      <item identifier="activity_slide_318" identifierref="slide_318">
+        <title>Guarda la marmotta!</title> <!-- in assenza di titolo della slide, metto il titolo del primo elemento didattico contenuto, oppure blank se non ve ne sono; in caso di immagini, metto la prima caption se c'è, tagliata a 200 caratteri -->
+      </item>
+      
+      <item identifier="activity_slide_319" identifierref="slide_319">
+        <title>Che simpatico fotografo!</title>
+      </item>
+      
+      <item identifier="activity_slide_320" identifierref="slide_320">
+        <title>Scendi dal trespolo!</title>
+      </item>
+      
+      <item identifier="activity_slide_323" identifierref="slide_323">
+        <title>E qui proviamo l'audio</title>
+      </item>
+      
+      <item identifier="activity_slide_321" identifierref="slide_321">
+        <title>Look at the virus closely</title>
+      </item>
+      
+      <item identifier="activity_slide_322" identifierref="slide_322">
+        <title>Prova con video e documento</title>
+      </item>
+      
     </organization>
     
   </organizations>
