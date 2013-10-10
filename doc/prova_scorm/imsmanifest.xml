@@ -65,22 +65,48 @@
   
   <resources>
     
+    <!-- qui sotto i pacchetti di elementi variabili (documents, media_elements) -->
+    
+    <!-- qui sotto pacchetti di livello più alto -->
+    
     <resource identifier="common" type="webcontent" adlcp:scormType="asset">
+      <dependency identifierref="common_js"/>
+      <dependency identifierref="common_css"/>
+      <dependency identifierref="common_images"/>
     </resource>
     
     <resource identifier="players" type="webcontent" adlcp:scormType="asset">
+      <file href="html/assets/documents/icone-player.svg"/>
     </resource>
     
     <resource identifier="documents" type="webcontent" adlcp:scormType="asset">
+      <file href="html/assets/documents_fondo.png"/>
+      <file href="html/assets/documents/doc.svg"/>
+      <file href="html/assets/documents/exc.svg"/>
+      <file href="html/assets/documents/pdf.svg"/>
+      <file href="html/assets/documents/ppt.svg"/>
+      <file href="html/assets/documents/unknown.svg"/>
+      <file href="html/assets/documents/zip.svg"/>
     </resource>
     
+    <resource identifier="tinyMCE" type="webcontent" adlcp:scormType="asset">
+      <file href="html/assets/pallino.svg"/>
+      <file href="html/assets/tiny_items.gif"/>
+    </resource>
+    
+    <!-- qui sotto pacchetti di livello più basso -->
+    
     <resource identifier="common_js" type="webcontent" adlcp:scormType="asset">
+      <file href="html/assets/lesson_export/application.js"/>
     </resource>
     
     <resource identifier="common_css" type="webcontent" adlcp:scormType="asset">
+      <file href="html/assets/lesson_export/application.css"/>
     </resource>
     
     <resource identifier="common_images" type="webcontent" adlcp:scormType="asset">
+      <file href="html/assets/favicon32x32.png"/>
+      <file href="html/assets/lesson-editor-logo-footer.png"/>
     </resource>
     
   </resources>
