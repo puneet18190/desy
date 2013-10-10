@@ -83,6 +83,21 @@
     
     <!-- media_elements -->
     
+    
+    <resource identifier="media_element_57" type="webcontent" adlcp:scormType="asset">
+      <file href="html/media_elements/videos/57/mare_zWh36aPODFkzhdbjHvEGGw.mp4"/>
+      <file href="html/media_elements/videos/57/mare_zWh36aPODFkzhdbjHvEGGw.webm"/>
+      <file href="html/media_elements/videos/57/cover_mare_zWh36aPODFkzhdbjHvEGGw.jpg"/>
+      <file href="html/media_elements/videos/57/thumb_mare_zWh36aPODFkzhdbjHvEGGw.jpg"/>
+    </resource>
+    
+    <resource identifier="media_element_62" type="webcontent" adlcp:scormType="asset">
+      <file href="html/media_elements/videos/62/virus_Q6X2iFsTmXSABGB61-KVaQ.mp4"/>
+      <file href="html/media_elements/videos/62/virus_Q6X2iFsTmXSABGB61-KVaQ.webm"/>
+      <file href="html/media_elements/videos/62/cover_virus_Q6X2iFsTmXSABGB61-KVaQ.jpg"/>
+      <file href="html/media_elements/videos/62/thumb_virus_Q6X2iFsTmXSABGB61-KVaQ.jpg"/>
+    </resource>
+    
     <resource identifier="media_element_144" type="webcontent" adlcp:scormType="asset">
       <file href="html/media_elements/images/144/dsc06605_dw4qPC7QFBDMhXyYOTY0zA.jpg"/>
       <file href="html/media_elements/images/144/thumb_dsc06605_dw4qPC7QFBDMhXyYOTY0zA.jpg"/>
