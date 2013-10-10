@@ -69,6 +69,7 @@
     
     <resource identifier="slide_314" type="webcontent" adlcp:scormType="asset" href="html/slide314.html">
       <file href="html/slide314.html"/>
+      <dependency identifierref="media_element_144"/>
       <dependency identifierref="common"/>
     </resource>
     
@@ -79,6 +80,8 @@
     
     <resource identifier="slide_316" type="webcontent" adlcp:scormType="asset" href="html/slide316.html">
       <file href="html/slide316.html"/>
+      <file href="html/math_images/6c5937c3bf3c625b2819ea267bbe13fd.png"/>
+      <dependency identifierref="tinyMCE"/>
       <dependency identifierref="common"/>
     </resource>
     
