@@ -1,3 +1,6 @@
+<?xml version="1.0" standalone="no" ?>
+
+
 <!--
   
   LISTA DEI FILES ALLEGATI .xsd
@@ -24,11 +27,6 @@
 
 -->
 
-
-
-
-
-<?xml version="1.0" standalone="no" ?>
 
 <manifest identifier="desy.lesson.51"
           xmlns="http://www.imsglobal.org/xsd/imscp_v1p1"
