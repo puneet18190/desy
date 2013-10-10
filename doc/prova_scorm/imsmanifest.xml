@@ -56,10 +56,16 @@
   
   
   <organizations default="slides">
+    
     <organization identifier="slides">
-      <title>Golf Explained - CP Single SCO</title>
-      <!-- TODO -->
+      <title>Prova SCORM</title> <!-- questo è il titolo della lezione -->
+      
+      <item identifier="activity_slide_314" identifierref="slide_314">
+        <title>Prova SCORM</title> <!-- questo è il titolo della slide -->
+      </item>
+      
     </organization>
+    
   </organizations>
   
   
