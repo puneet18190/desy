@@ -49,9 +49,6 @@
   <metadata>
     <schema>ADL SCORM</schema>
     <schemaversion>2004 3rd Edition</schemaversion>
-    <!-- TODO 
-      <lom xmlns="http://ltsc.ieee.org/xsd/LOM" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ltsc.ieee.org/xsd/LOM lom.xsd">
-    -->
   </metadata>
   
   
