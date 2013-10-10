@@ -87,36 +87,54 @@
     
     <resource identifier="slide_317" type="webcontent" adlcp:scormType="asset" href="html/slide317.html">
       <file href="html/slide317.html"/>
+      <dependency identifierref="media_element_148"/>
+      <dependency identifierref="tinyMCE"/>
       <dependency identifierref="common"/>
     </resource>
     
     <resource identifier="slide_318" type="webcontent" adlcp:scormType="asset" href="html/slide318.html">
       <file href="html/slide318.html"/>
+      <dependency identifierref="media_element_231"/>
       <dependency identifierref="common"/>
     </resource>
     
     <resource identifier="slide_319" type="webcontent" adlcp:scormType="asset" href="html/slide319.html">
       <file href="html/slide319.html"/>
+      <dependency identifierref="media_element_166"/>
+      <dependency identifierref="media_element_183"/>
       <dependency identifierref="common"/>
     </resource>
     
     <resource identifier="slide_320" type="webcontent" adlcp:scormType="asset" href="html/slide320.html">
       <file href="html/slide320.html"/>
+      <dependency identifierref="media_element_220"/>
+      <dependency identifierref="media_element_199"/>
+      <dependency identifierref="media_element_207"/>
+      <dependency identifierref="media_element_208"/>
       <dependency identifierref="common"/>
     </resource>
     
     <resource identifier="slide_321" type="webcontent" adlcp:scormType="asset" href="html/slide321.html">
       <file href="html/slide321.html"/>
+      
+      
+      
       <dependency identifierref="common"/>
     </resource>
     
     <resource identifier="slide_322" type="webcontent" adlcp:scormType="asset" href="html/slide322.html">
       <file href="html/slide322.html"/>
+      
+      
+      
       <dependency identifierref="common"/>
     </resource>
     
     <resource identifier="slide_323" type="webcontent" adlcp:scormType="asset" href="html/slide323.html">
       <file href="html/slide323.html"/>
+      
+      
+      
       <dependency identifierref="common"/>
     </resource>
     
