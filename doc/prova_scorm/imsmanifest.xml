@@ -116,25 +116,28 @@
     
     <resource identifier="slide_321" type="webcontent" adlcp:scormType="asset" href="html/slide321.html">
       <file href="html/slide321.html"/>
-      
-      
-      
+      <dependency identifierref="media_element_62"/>
+      <dependency identifierref="players"/>
       <dependency identifierref="common"/>
     </resource>
     
     <resource identifier="slide_322" type="webcontent" adlcp:scormType="asset" href="html/slide322.html">
       <file href="html/slide322.html"/>
-      
-      
-      
+      <dependency identifierref="document_2"/>
+      <dependency identifierref="document_3"/>
+      <dependency identifierref="document_4"/>
+      <dependency identifierref="media_element_57"/>
+      <dependency identifierref="players"/>
+      <dependency identifierref="documents"/>
+      <dependency identifierref="tinyMCE"/>
       <dependency identifierref="common"/>
     </resource>
     
     <resource identifier="slide_323" type="webcontent" adlcp:scormType="asset" href="html/slide323.html">
       <file href="html/slide323.html"/>
-      
-      
-      
+      <dependency identifierref="media_element_196"/>
+      <dependency identifierref="players"/>
+      <dependency identifierref="tinyMCE"/>
       <dependency identifierref="common"/>
     </resource>
     
