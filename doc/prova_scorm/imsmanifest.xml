@@ -64,9 +64,25 @@
   
   
   <resources>
-    <resource identifier="resource_1" type="webcontent" adlcp:scormType="sco" href="shared/launchpage.html">
-      <!-- TODO -->
+    
+    <resource identifier="common" type="webcontent" adlcp:scormType="asset">
     </resource>
+    
+    <resource identifier="players" type="webcontent" adlcp:scormType="asset">
+    </resource>
+    
+    <resource identifier="documents" type="webcontent" adlcp:scormType="asset">
+    </resource>
+    
+    <resource identifier="common_js" type="webcontent" adlcp:scormType="asset">
+    </resource>
+    
+    <resource identifier="common_css" type="webcontent" adlcp:scormType="asset">
+    </resource>
+    
+    <resource identifier="common_images" type="webcontent" adlcp:scormType="asset">
+    </resource>
+    
   </resources>
   
   
