@@ -30,7 +30,7 @@
   
 }
 
-.audioSlider .ui-slider-handle {
+.audioSlider.ui-slider .ui-slider-handle {
   
   background-color: $green;
   top: -.2em;
@@ -104,7 +104,7 @@
   
 }
 
-.videoSlider .ui-slider-handle {
+.videoSlider.ui-slider .ui-slider-handle {
   
   background-color: $green;
   top: -.2em;
