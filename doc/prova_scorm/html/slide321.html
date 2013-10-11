@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="lesson-scorm-layout lesson_scorm-controller export-action">
+<html class="lesson-export-layout lesson_scorm-controller export-action">
   
   <head>
     <title>DESY - Prova SCORM (slide 1)</title>
@@ -12,26 +12,37 @@
   
   <body>
     <script type="text/javascript">browserSupport()</script>
-    <div id="slide_in_lesson_viewer_321" class="slide-content video2 normal-size">
-      <div class="item video-container">
-        <div class="video read-only">
-          <div id="instance_B7vfNFgAYJWL8tSUDnOa-Q_1_of_video_player" class="videoPlayer _instance_of_player" data-media-type="video" data-initialized="true" data-duration="10">
-            <video>
-              <source src="media_elements/videos/62/virus_Q6X2iFsTmXSABGB61-KVaQ.mp4" type="video/mp4">
-              <source src="media_elements/videos/62/virus_Q6X2iFsTmXSABGB61-KVaQ.webm" type="video/webm">
-              <div style="padding-top:150px; padding-bottom:120px; text-align:center"><h1>Your browser does not support videos</h1></div>
-            </video>
-            <a class="play _media_player_play" title="Play video"></a>
-            <a class="pause _media_player_pause" title="Pause video"></a>
-            <div class="_media_player_current_time secondTime">00:00</div>
-            <div class="videoSlider _media_player_slider"></div>
-            <div class="_media_player_total_time secondTime">00:10</div>
-            <a class="fullScreen _video_full_screen" title="Fullscreen"></a>
-            <div class="sliderDisabler _media_player_slider_disabler" style="display: none;"></div>
-          </div>
+    <div class="container">
+      <div id="carousel_container">
+        <div id="carousel_inner">
+          <ul id="carousel_ul">
+            <li id="slide_in_lesson_viewer_321" class="cover slide">
+              <div class="slide-content video2 normal-size">
+                <div class="item video-container">
+                  <div class="video read-only">
+                    <div id="instance_B7vfNFgAYJWL8tSUDnOa-Q_1_of_video_player" class="videoPlayer _instance_of_player" data-media-type="video" data-initialized="true" data-duration="10">
+                      <video>
+                        <source src="media_elements/videos/62/virus_Q6X2iFsTmXSABGB61-KVaQ.mp4" type="video/mp4">
+                        <source src="media_elements/videos/62/virus_Q6X2iFsTmXSABGB61-KVaQ.webm" type="video/webm">
+                        <div style="padding-top:150px; padding-bottom:120px; text-align:center"><h1>Your browser does not support videos</h1></div>
+                      </video>
+                      <a class="play _media_player_play" title="Play video"></a>
+                      <a class="pause _media_player_pause" title="Pause video"></a>
+                      <div class="_media_player_current_time secondTime">00:00</div>
+                      <div class="videoSlider _media_player_slider"></div>
+                      <div class="_media_player_total_time secondTime">00:10</div>
+                      <a class="fullScreen _video_full_screen" title="Fullscreen"></a>
+                      <div class="sliderDisabler _media_player_slider_disabler" style="display: none;"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
+    
     <script type="text/javascript">
       $(document).ready(function() {
         initializeMedia('instance_B7vfNFgAYJWL8tSUDnOa-Q_1_of_video_player', 'video');
