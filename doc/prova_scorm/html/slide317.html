@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="lesson-scorm-layout lesson_scorm-controller export-action">
+<html class="lesson-export-layout lesson_scorm-controller export-action">
   
   <head>
     <title>DESY - Prova SCORM (slide 1)</title>
@@ -12,37 +12,47 @@
   
   <body>
     <script type="text/javascript">browserSupport()</script>
-      <div id="slide_in_lesson_viewer_317" class="slide-content image1 normal-size">
-        <div class="item title-container">
-          <input class="title read-only" type="text" value="Impariamo ad apprezzare i pony" disabled="disabled">
-        </div>
-        <div class="item image-container">
-          <div class="image read-only">
-            <img style="left:-169px; width:652px" src="media_elements/images/148/1-_josef_koudelka__romania__1968_jNhvYo5O002TgSNzEINupw.jpg" alt="Koudelka" >
-            <input class="caption" type="text" value="Un bel pony" disabled="disabled">
-          </div>
-        </div>
-        <div class="item text-container read-only">
-          <p class="size3">
-            <span>Kevin Strootman &egrave; diventato una delle chiavi del centrocampo perfetto della Roma di Rudi Garcia. Si sta ambientando al meglio nella nuova realt&agrave; giallorossa e dal ritiro della nazionale olandese si &egrave; soffermato su questo inizio di campionato e l'attesissima sfida con il Napoli di venerd&igrave; 18 ottobre, allo stadio Olimpico (calcio d'inizio ore 20.45)</span>
-          </p>
+    <div class="container">
+      <div id="carousel_container">
+        <div id="carousel_inner">
+          <ul id="carousel_ul">
+            <li id="slide_in_lesson_viewer_317" class="_slide_in_lesson_viewer cover slide  " data-overall-counter="5" data-lesson-id="51" data-loaded="false" data-slide-id="317" style="display:none">
+              <div class="slide-content image1 normal-size">
+                <div class="item title-container">
+                  <input class="title read-only" type="text" value="Impariamo ad apprezzare i pony" disabled="disabled">
+                </div>
+                <div class="item image-container">
+                  <div class="image read-only">
+                    <img style="left:-169px; width:652px" src="media_elements/images/148/1-_josef_koudelka__romania__1968_jNhvYo5O002TgSNzEINupw.jpg" alt="Koudelka" >
+                    <input class="caption" type="text" value="Un bel pony" disabled="disabled">
+                  </div>
+                </div>
+                <div class="item text-container read-only">
+                  <p class="size3">
+                    <span>Kevin Strootman &egrave; diventato una delle chiavi del centrocampo perfetto della Roma di Rudi Garcia. Si sta ambientando al meglio nella nuova realt&agrave; giallorossa e dal ritiro della nazionale olandese si &egrave; soffermato su questo inizio di campionato e l'attesissima sfida con il Napoli di venerd&igrave; 18 ottobre, allo stadio Olimpico (calcio d'inizio ore 20.45)</span>
+                  </p>
+                </div>
+              </div>
+            </li>
+          </ul>
         </div>
       </div>
-      <script type="text/javascript">
-        $(document).ready(function() {
-          lessonViewerDocumentReadyWirisConvertSrc();
-          $('#footer').css('top', (parseInt($(window).outerHeight()) - 40) + 'px').css('width', (parseInt($(window).outerWidth()) - 24) + 'px');
-          $(window).resize(function() {
-            $('#footer').css('top', ($(window).height() - 40) + 'px').css('width', ($(window).width() - 24) + 'px');
-          });
+    </div>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        lessonViewerDocumentReadyWirisConvertSrc();
+        $('#footer').css('top', (parseInt($(window).outerHeight()) - 40) + 'px').css('width', (parseInt($(window).outerWidth()) - 24) + 'px');
+        $(window).resize(function() {
+          $('#footer').css('top', ($(window).height() - 40) + 'px').css('width', ($(window).width() - 24) + 'px');
         });
-      </script>
-      <div id="footer">
-        <div id="lesson-title">
-          <img src="assets/lesson-editor-logo-footer.png">
-          <p>Proudly produced in ©2013 DESY. All rights reserved</p>
-        </div>
+      });
+    </script>
+    <div id="footer">
+      <div id="lesson-title">
+        <img src="assets/lesson-editor-logo-footer.png">
+        <p>Proudly produced in ©2013 DESY. All rights reserved</p>
       </div>
+    </div>
   </body>
   
 </html>
