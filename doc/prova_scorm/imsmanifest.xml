@@ -95,6 +95,10 @@
         <title>Prova con video e documento</title>
       </item>
       
+      <imsss:sequencing>
+        <imsss:controlMode choice="true" flow="true"/>
+      </imsss:sequencing>
+      
     </organization>
     
   </organizations>
