@@ -73,6 +73,25 @@
           <string language="it">esempi</string> <!-- locale -->
         </keyword>
       </general>
+      <lifeCycle>
+        <status>
+          <source>LOMv1.0</source>
+          <value>final</value>
+        </status>
+        <contribute>
+          <role>
+            <source>LOMv1.0</source>
+            <value>author</value>
+          </role>
+          <entity>BEGIN:VCARD&#13;&#10;VERSION:2.1&#13;&#10;FN:DESY Admin User&#13;&#10;END:VCARD</entity>
+          <date>
+            <dateTime>2013-10-04</dateTime>
+            <description>
+              <string language="en">Date of last modification</string>
+            </description>
+          </date>
+        </contribute>
+      </lifeCycle>
     </lom>
   </metadata>
   
