@@ -180,6 +180,15 @@
         </context>
         <language>it</language> <!-- locale -->
       </educational>
+      <rights>
+        <copyrightAndOtherRestrictions>
+          <source>LOMv1.0</source>
+          <value>yes</value>
+        </copyrightAndOtherRestrictions>
+        <description>
+          <string language="en">©2013 DESY. For information about copyright contact Morgan S.P.A. via degli Olmetti 36</string> <!-- inserire copyright e riempirlo -->
+        </description>
+      </rights>
     </lom>
   </metadata>
   
