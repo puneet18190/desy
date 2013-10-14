@@ -29,24 +29,43 @@ module Export
       # STORED or DEFLATED
       COMPRESSION_METHOD = Zip::Entry::STORED
 
+      def self.remove_folder!
+        FileUtils.rm_rf FOLDER
+      end
+
       private
-      attr_reader :lesson, :slides_without_cover, :cover_slide, :path
+      attr_reader :lesson, :slides_without_cover, :cover_slide, :filename_without_extension, :folder, :filename, :path
       public
 
       def initialize(lesson)
         @lesson               = lesson
-        @slides_without_cover = @lesson.slides.includes(SLIDES_INCLUDES).eager_load(SLIDES_EAGER_LOAD).order(SLIDES_ORDER) # @slides_without_cover includes cover slide...
-        @cover_slide          = @slides_without_cover.shift # ... till now
+        @slides_without_cover = @lesson.slides.includes(SLIDES_INCLUDES).eager_load(SLIDES_EAGER_LOAD).order(SLIDES_ORDER)
+        @cover_slide          = @slides_without_cover.shift # @slides_without_cover includes cover slide till now
 
-        @path = Pathname '/home/mdesantis/prova.epub'
+        parameterized_title = lesson.title.parameterize
+        time                = lesson.updated_at.utc.strftime(WRITE_TIME_FORMAT)
 
-        FileUtils.rm_rf path
+        @filename_without_extension = lesson.id.to_s.tap{ |s| s << "_#{parameterized_title}" if parameterized_title.present? }
+        @folder                     = FOLDER.join lesson.id.to_s, time
+        @filename                   = "#{filename_without_extension}.epub"
+        @path                       = folder.join filename
       end
 
       def url
+        find_or_create
+
+        "/#{path.relative_path_from RAILS_PUBLIC}"
       end
 
-      def dev
+      def find_or_create
+        return if path.exist?
+        
+        remove_other_possible_files if folder.exist?
+        folder.mkpath
+        create
+      end
+
+      def create
         Zip::File.open(path, Zip::File::CREATE) do |archive|
           add_path_entry archive, template_path('mimetype'), 'mimetype'
 

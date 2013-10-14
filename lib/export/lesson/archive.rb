@@ -24,8 +24,6 @@ module Export
       # STORED or DEFLATED
       COMPRESSION_METHOD = Zip::Entry::STORED
 
-      WRITE_TIME_FORMAT = '%Y%m%d_%H%M%S_%Z_%N'
-
       INDEX_PAGE_NAME = 'index.html'
 
       def self.remove_folder!
@@ -34,7 +32,7 @@ module Export
 
       private
       attr_reader :lesson, :index_page, 
-                  :filename_without_extension, :archive_root_folder, :filename, :folder, :path, :assets_archive_folder, :math_images_archive_folder
+                  :filename_without_extension, :folder, :filename, :archive_root_folder, :path, :assets_archive_folder, :math_images_archive_folder
       public
 
       # index_page: String
@@ -65,7 +63,7 @@ module Export
         # raises if export assets are not compiled
         raise "Assets are not compiled. Please create them using rake exports:lessons:archives:assets:compile" unless assets_compiled?
 
-        remove_other_possible_archives if folder.exist?
+        remove_other_possible_files if folder.exist?
         folder.mkpath
         create
       end
@@ -74,10 +72,6 @@ module Export
 
       def assets_compiled?
         ASSETS_FOLDER.exist? && !ASSETS_FOLDER.entries.empty?
-      end
-
-      def remove_other_possible_archives
-        Pathname.glob(folder.join '..', '*').each{ |path| FileUtils.rm_rf path }
       end
 
       def assets_files

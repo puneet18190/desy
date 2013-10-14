@@ -56,5 +56,15 @@ namespace :exports do
       end
 
     end
+
+    namespace :ebooks do
+      
+      desc "Remove lesson ebooks"
+      task :clean => :environment do
+        require 'export'
+        Export::Lesson::Ebook.remove_folder!
+      end
+
+    end
   end
 end

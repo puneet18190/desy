@@ -37,7 +37,7 @@ class LessonExportController < ApplicationController
   end
 
   def ebook
-    # redirect_to Export::Lesson::Ebook.new(@lesson, render_to_string).url
+    redirect_to Export::Lesson::Ebook.new(@lesson).url
   end
 
   private
