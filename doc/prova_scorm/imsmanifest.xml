@@ -72,6 +72,9 @@
         <keyword>
           <string language="it">esempi</string> <!-- locale -->
         </keyword>
+        <coverage>
+          <string language="en">Lesson about Geography</string> <!-- non tradurlo, lasciarlo sempre in inglese, e metterci dentro la materia della lezione -->
+        </coverage>
       </general>
       <lifeCycle>
         <status>
@@ -158,6 +161,25 @@
           </orComposite>
         </requirement>
       </technical>
+      <educational>
+        <interactivityType>
+          <source>LOMv1.0</source>
+          <value>expositive</value>
+        </interactivityType>
+        <interactivityLevel>
+          <source>LOMv1.0</source>
+          <value>low</value>
+        </interactivityLevel>
+        <intendedEndUserRole>
+          <source>LOMv1.0</source>
+          <value>learner</value>
+        </intendedEndUserRole>
+        <context>
+          <source>LOMv1.0</source>
+          <value>school</value> <!-- qui devo mappare lo school_level in qualche modo -->
+        </context>
+        <language>it</language> <!-- locale -->
+      </educational>
     </lom>
   </metadata>
   
