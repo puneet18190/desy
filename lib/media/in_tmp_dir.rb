@@ -25,7 +25,7 @@ module Media
   
     # Takes a block in which you can access to a temporary folder path set to <tt>@tmp_dir</tt>. It takes care of clearing <tt>@tmp_dir</tt> after the block execution or if an error occurs
     def in_tmp_dir
-      Dir.mktmpdir(CONFIG.tmp_prefix) do |dir|
+      Dir.mktmpdir(Desy::TMP_PREFIX.call) do |dir|
         @tmp_dir = dir
         yield
       end

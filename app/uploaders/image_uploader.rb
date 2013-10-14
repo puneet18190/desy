@@ -97,4 +97,8 @@ class ImageUploader < CarrierWave::Uploader::Base
     "#{original_filename_without_extension.parameterize}_#{model.filename_token}#{original_extension}" if original_filename
   end
 
+  def paths
+    { main: file.path, thumb: thumb.file.path }
+  end
+
 end

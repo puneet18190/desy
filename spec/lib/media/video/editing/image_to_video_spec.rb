@@ -26,7 +26,7 @@ module Media
   
         describe '#run' do
           def output_prefix
-            @output_prefix ||= Tempfile.new(::Thread.current.object_id.to_s)
+            @output_prefix ||= Tempfile.new(Desy::TMP_PREFIX.call)
           end
           
           def duration

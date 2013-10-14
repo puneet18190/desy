@@ -8,6 +8,10 @@ require 'media/shared'
 # 
 class Audio < MediaElement
   
+  include Media::Shared
+  include UrlByUrlType
+  extend Media::Audio::Editing::Parameters
+  
   # Instance of specific uploader for an audio
   UPLOADER = Media::Audio::Uploader
   
@@ -19,10 +23,8 @@ class Audio < MediaElement
   
   # Url of the thumb to be used in the section 'elements'
   THUMB_URL = '/assets/simbolo-audio.svg'
-  
-  include Media::Shared
-  include UrlByUrlType
-  extend Media::Audio::Editing::Parameters
+
+  EBOOK_FORMATS = UPLOADER::FORMATS + UPLOADER::VERSION_FORMATS.keys - [:thumb]
   
   # === Description
   #

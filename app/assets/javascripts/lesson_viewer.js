@@ -212,7 +212,7 @@ Used only in the exported lesson, to convert the src of Wiris images (this funct
 @for LessonViewerDocumentReady
 **/
 function lessonViewerDocumentReadyWirisConvertSrc() {
-  var $images = $.each( $('.Wirisformula'), function(i, el) {
+  var $images = $.each( $('img.Wirisformula'), function(i, el) {
     var $el = $(el);
     $el.attr( 'src', 'math_images/'+UrlParser.parse($el.attr('src')).searchObj.formula );
   });

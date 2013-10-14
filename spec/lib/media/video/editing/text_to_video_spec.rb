@@ -6,9 +6,9 @@ module Media
       describe TextToVideo do
 
         let(:text) do
-          Tempfile.new('desy_spec').tap do |f|
+          Tempfile.open(Desy::TMP_PREFIX.call) do |f|
             f.write("Test\ntest")
-            f.close
+            f
           end
         end
         let(:dir)                      { Dir.mktmpdir('desy_spec') }

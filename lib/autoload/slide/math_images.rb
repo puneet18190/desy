@@ -6,6 +6,7 @@ class Slide::MathImages < Set
 
   CACHE_FOLDER = Rails.root.join 'vendor', 'assets', 'javascripts', 'tinymce', 'plugins', 'tiny_mce_wiris', 'cache'
   FOLDER       = Rails.root.join 'app', 'exports', 'lessons', 'math_images'
+  CSS_SELECTOR = 'img.Wirisformula'
 
   attr_accessor :model_id
 
