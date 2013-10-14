@@ -47,6 +47,33 @@
   <metadata>
     <schema>ADL SCORM</schema>
     <schemaversion>2004 3rd Edition</schemaversion>
+    <lom>
+      <general>
+        <identifier>
+          <catalog>URI</catalog>
+          <entry>http://desy.morganspa.com/lessons/51/view</entry>
+        </identifier>
+        <title>
+          <string language="it">Prova SCORM</string> <!-- qui va il locale -->
+        </title>
+        <language>it</language> <!-- locale -->
+        <description>
+          <string language="it">Lezione di prova da scaricare e usare come bozza per un pacchetto SCORM</string> <!-- qui va il locale -->
+        </description>
+        <keyword>
+          <string language="it">prova</string> <!-- locale -->
+        </keyword>
+        <keyword>
+          <string language="it">lezione</string> <!-- locale -->
+        </keyword>
+        <keyword>
+          <string language="it">scorm</string> <!-- locale -->
+        </keyword>
+        <keyword>
+          <string language="it">esempi</string> <!-- locale -->
+        </keyword>
+      </general>
+    </lom>
   </metadata>
   
   
