@@ -242,6 +242,21 @@
         <imsss:controlMode choice="true" flow="true"/>
       </imsss:sequencing>
       
+      <metadata>
+        <lom>
+          <general>
+            <structure>
+              <source>LOMv1.0</source>
+              <value>linear</value>
+            </structure>
+            <aggregationLevel>
+              <source>LOMv1.0</source>
+              <value>2</value>
+            </aggregationLevel>
+          </general>
+        </lom>
+      </metadata>
+      
     </organization>
     
   </organizations>
