@@ -109,6 +109,54 @@
             <minimumVersion>9.0</minimumVersion>
           </orComposite>
         </requirement>
+        <requirement>
+          <orComposite>
+            <type>
+              <source>LOMv1.0</source>
+              <value>browser</value>
+            </type>
+            <name>
+              <source>LOMv1.0</source>
+              <value>webkit</value>
+            </name>
+          </orComposite>
+        </requirement>
+        <requirement>
+          <orComposite>
+            <type>
+              <source>LOMv1.0</source>
+              <value>browser</value>
+            </type>
+            <name>
+              <source>LOMv1.0</source>
+              <value>mozilla</value>
+            </name>
+          </orComposite>
+        </requirement>
+        <requirement>
+          <orComposite>
+            <type>
+              <source>LOMv1.0</source>
+              <value>browser</value>
+            </type>
+            <name>
+              <source>LOMv1.0</source>
+              <value>safari</value>
+            </name>
+          </orComposite>
+        </requirement>
+        <requirement>
+          <orComposite>
+            <type>
+              <source>LOMv1.0</source>
+              <value>browser</value>
+            </type>
+            <name>
+              <source>LOMv1.0</source>
+              <value>opera</value>
+            </name>
+          </orComposite>
+        </requirement>
       </technical>
     </lom>
   </metadata>
