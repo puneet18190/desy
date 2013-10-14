@@ -97,6 +97,7 @@
       </lifeCycle>
       <metaMetadata>
         <metadataSchema>LOMv1.0</metadataSchema>
+        <language>en</language>
       </metaMetadata>
       <technical>
         <requirement>
@@ -254,6 +255,10 @@
               <value>2</value>
             </aggregationLevel>
           </general>
+          <metaMetadata>
+            <metadataSchema>LOMv1.0</metadataSchema>
+            <language>en</language>
+          </metaMetadata>
         </lom>
       </metadata>
       
