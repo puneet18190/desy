@@ -159,10 +159,11 @@ module ScormHelper
   end
   
   def scorm_slide_dependencies(slide)
-    <dependency identifierref="tinyMCE"/> questo solo se contiene tiny
-    <dependency identifierref="common"/>
-    <dependency identifierref="players"/> se contiene un player
-    <dependency identifierref="documents"/> se contiene documenti
+    resp = "<dependency identifierref=\"common\"/>"
+    resp = "#{resp}<dependency identifierref=\"tinyMCE\"/>" if [AUDIO, IMAGE1, TEXT, VIDEO1].include?(slide.kind)
+    resp = "#{resp}<dependency identifierref=\"players\"/>" if [AUDIO, VIDEO1, VIDEO2].include?(slide.kind)
+    resp = "#{resp}<dependency identifierref=\"documents\"/>" if slide.documents_slides.any?
+    resp
   end
   
 end
