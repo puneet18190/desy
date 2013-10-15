@@ -150,4 +150,19 @@ module ScormHelper
     "
   end
   
+  def scorm_math_images(slide)
+    resp = ''
+    slide.math_images.each do |mi|
+      resp = "#{resp}<file href=\"html/math_images/#{mi.code}.png\"/>" # TODO farlo sul serio
+    end
+    resp
+  end
+  
+  def scorm_slide_dependencies(slide)
+    <dependency identifierref="tinyMCE"/> questo solo se contiene tiny
+    <dependency identifierref="common"/>
+    <dependency identifierref="players"/> se contiene un player
+    <dependency identifierref="documents"/> se contiene documenti
+  end
+  
 end
