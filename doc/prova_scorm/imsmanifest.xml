@@ -1460,7 +1460,23 @@
     <!-- documents -->
     
     <resource identifier="document_2" type="webcontent" adlcp:scormType="asset">
-      <file href="html/documents/2/conversazioni_multicast_V0_Gku5sX_k2wyViHBSFcg.odt"/>
+      <file href="html/documents/2/conversazioni_multicast_V0_Gku5sX_k2wyViHBSFcg.odt">
+        <metadata>
+          <lom>
+            <general>
+              <identifier>
+                <catalog>URI</catalog>
+                <entry>url di questo documento</entry>
+              </identifier>
+            </general>
+            <technical>
+              <format>format/format</format>
+              <size>123</size>
+              <location>url di questo documento</location>
+            </technical>
+          </lom>
+        </metadata>
+      </file>
       <file href="html/assets/documents/doc.svg"/>
       <metadata>
         <lom>
@@ -1500,7 +1516,23 @@
     </resource>
     
     <resource identifier="document_3" type="webcontent" adlcp:scormType="asset">
-      <file href="html/documents/3/espandibili-tar_akxjd2lUjnlSDqwmrC_pKA.gz"/>
+      <file href="html/documents/3/espandibili-tar_akxjd2lUjnlSDqwmrC_pKA.gz">
+        <metadata>
+          <lom>
+            <general>
+              <identifier>
+                <catalog>URI</catalog>
+                <entry>url di questo documento</entry>
+              </identifier>
+            </general>
+            <technical>
+              <format>format/format</format>
+              <size>123</size>
+              <location>url di questo documento</location>
+            </technical>
+          </lom>
+        </metadata>
+      </file>
       <file href="html/assets/documents/zip.svg"/>
       <metadata>
         <lom>
@@ -1540,7 +1572,23 @@
     </resource>
     
     <resource identifier="document_4" type="webcontent" adlcp:scormType="asset">
-      <file href="html/documents/4/coldiretti-it__rev_sp3_27052010_wmHjC4w1X3r8UOAlMTMsrg.pptx"/>
+      <file href="html/documents/4/coldiretti-it__rev_sp3_27052010_wmHjC4w1X3r8UOAlMTMsrg.pptx">
+        <metadata>
+          <lom>
+            <general>
+              <identifier>
+                <catalog>URI</catalog>
+                <entry>url di questo documento</entry>
+              </identifier>
+            </general>
+            <technical>
+              <format>format/format</format>
+              <size>123</size>
+              <location>url di questo documento</location>
+            </technical>
+          </lom>
+        </metadata>
+      </file>
       <file href="html/assets/documents/ppt.svg"/>
       <metadata>
         <lom>
