@@ -1,33 +1,6 @@
 <?xml version="1.0" standalone="no" ?>
 
 
-<!--
-  
-  LISTA DEI FILES ALLEGATI .xsd
-  
-  adlcp_v1p3.xsd  => USATO
-  adlnav_v1p3.xsd => USATO
-  adlseq_v1p3.xsd  => USATO
-  datatypes.dtd TODO
-  imscp_v1p1.xsd => USATO
-  imsss_v1p0auxresource.xsd => USATO INDIRETTAMENTE
-  imsss_v1p0control.xsd => USATO INDIRETTAMENTE
-  imsss_v1p0delivery.xsd => USATO INDIRETTAMENTE
-  imsss_v1p0limit.xsd => USATO INDIRETTAMENTE
-  imsss_v1p0objective.xsd => USATO INDIRETTAMENTE
-  imsss_v1p0random.xsd => USATO INDIRETTAMENTE
-  imsss_v1p0rollup.xsd => USATO INDIRETTAMENTE
-  imsss_v1p0seqrule.xsd => USATO INDIRETTAMENTE
-  imsss_v1p0util.xsd TODO
-  imsss_v1p0.xsd => USATO
-  ims_xml.xsd TODO
-  lom.xsd => USATO
-  XMLSchema.dtd TODO
-  xml.xsd TODO
-
--->
-
-
 <manifest identifier="desy.lesson.51"
           xmlns="http://www.imsglobal.org/xsd/imscp_v1p1"
           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
