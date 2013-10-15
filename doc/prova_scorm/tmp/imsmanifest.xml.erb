@@ -33,11 +33,7 @@
         <description>
           <string language="<%= scorm_locale %>"><%= @lesson.description %></string>
         </description>
-        <% @lesson.tags.split(',').each do |t| %>
-          <keyword>
-            <string language="<%= scorm_locale %>"><%= t %></string>
-          </keyword>
-        <% end %>
+        <%= scorm_tags @lesson.tags %>
         <coverage>
           <string language="en">Lesson about <%= @lesson.subject.description %></string>
         </coverage>
@@ -68,19 +64,11 @@
         </intendedEndUserRole>
         <context>
           <source>LOMv1.0</source>
-          <value>school</value> <!-- qui devo mappare lo school_level in qualche modo -->
+          <value><%= scorm_school_level @lesson.school_level %></value>
         </context>
-        <language>it</language> <!-- locale -->
+        <language><%= scorm_locale %></language>
       </educational>
-      <rights>
-        <copyrightAndOtherRestrictions>
-          <source>LOMv1.0</source>
-          <value>yes</value>
-        </copyrightAndOtherRestrictions>
-        <description>
-          <string language="en">©2013 DESY. For information about copyright contact Morgan S.P.A. via degli Olmetti 36</string> <!-- inserire copyright e riempirlo -->
-        </description>
-      </rights>
+      <%= scorm_copyrights %>
     </lom>
   </metadata>
   
@@ -88,227 +76,16 @@
   <organizations default="slides">
     
     <organization identifier="slides">
-      <title>Prova SCORM</title> <!-- questo è il titolo della lezione -->
+      <title><%= @lesson.title %></title>
       
-      <item identifier="activity_slide_314" identifierref="slide_314">
-        <title>Cover</title> <!-- titolo della copertina: cover -->
-        <metadata>
-          <lom>
-            <general>
-              <title>
-                <string language="it">Cover</string> <!-- qui va il locale -->
-              </title>
-              <language>it</language> <!-- locale -->
-              <aggregationLevel>
-                <source>LOMv1.0</source>
-                <value>1</value>
-              </aggregationLevel>
-            </general>
-            <metaMetadata>
-              <metadataSchema>LOMv1.0</metadataSchema>
-              <language>en</language>
-            </metaMetadata>
-          </lom>
-        </metadata>
-      </item>
-      
-      <item identifier="activity_slide_315" identifierref="slide_315">
-        <title>Slide 1 - Titolo di Prova</title> <!-- titolo della slide: posizione meno uno -->
-        <metadata>
-          <lom>
-            <general>
-              <title>
-                <string language="it">Slide 1 - Titolo di Prova</string> <!-- qui va il locale -->
-              </title>
-              <language>it</language> <!-- locale -->
-              <aggregationLevel>
-                <source>LOMv1.0</source>
-                <value>1</value>
-              </aggregationLevel>
-            </general>
-            <metaMetadata>
-              <metadataSchema>LOMv1.0</metadataSchema>
-              <language>en</language>
-            </metaMetadata>
-          </lom>
-        </metadata>
-      </item>
-      
-      <item identifier="activity_slide_316" identifierref="slide_316">
-        <title>Slide 2 - Solo testo</title>
-        <metadata>
-          <lom>
-            <general>
-              <title>
-                <string language="it">Slide 2 - Solo testo</string> <!-- qui va il locale -->
-              </title>
-              <language>it</language> <!-- locale -->
-              <aggregationLevel>
-                <source>LOMv1.0</source>
-                <value>1</value>
-              </aggregationLevel>
-            </general>
-            <metaMetadata>
-              <metadataSchema>LOMv1.0</metadataSchema>
-              <language>en</language>
-            </metaMetadata>
-          </lom>
-        </metadata>
-      </item>
-      
-      <item identifier="activity_slide_317" identifierref="slide_317">
-        <title>Slide 3 - Impariamo ad apprezzare i pony</title>
-        <metadata>
-          <lom>
-            <general>
-              <title>
-                <string language="it">Slide 3 - Impariamo ad apprezzare i pony</string> <!-- qui va il locale -->
-              </title>
-              <language>it</language> <!-- locale -->
-              <aggregationLevel>
-                <source>LOMv1.0</source>
-                <value>1</value>
-              </aggregationLevel>
-            </general>
-            <metaMetadata>
-              <metadataSchema>LOMv1.0</metadataSchema>
-              <language>en</language>
-            </metaMetadata>
-          </lom>
-        </metadata>
-      </item>
-      
-      <item identifier="activity_slide_318" identifierref="slide_318">
-        <title>Slide 4</title> <!-- slide senza titolo: solamente la posizione -->
-        <metadata>
-          <lom>
-            <general>
-              <title>
-                <string language="it">Slide 4</string> <!-- qui va il locale -->
-              </title>
-              <language>it</language> <!-- locale -->
-              <aggregationLevel>
-                <source>LOMv1.0</source>
-                <value>1</value>
-              </aggregationLevel>
-            </general>
-            <metaMetadata>
-              <metadataSchema>LOMv1.0</metadataSchema>
-              <language>en</language>
-            </metaMetadata>
-          </lom>
-        </metadata>
-      </item>
-      
-      <item identifier="activity_slide_319" identifierref="slide_319">
-        <title>Slide 5</title>
-        <metadata>
-          <lom>
-            <general>
-              <title>
-                <string language="it">Slide 5</string> <!-- qui va il locale -->
-              </title>
-              <language>it</language> <!-- locale -->
-              <aggregationLevel>
-                <source>LOMv1.0</source>
-                <value>1</value>
-              </aggregationLevel>
-            </general>
-            <metaMetadata>
-              <metadataSchema>LOMv1.0</metadataSchema>
-              <language>en</language>
-            </metaMetadata>
-          </lom>
-        </metadata>
-      </item>
-      
-      <item identifier="activity_slide_320" identifierref="slide_320">
-        <title>Slide 6</title>
-        <metadata>
-          <lom>
-            <general>
-              <title>
-                <string language="it">Slide 6</string> <!-- qui va il locale -->
-              </title>
-              <language>it</language> <!-- locale -->
-              <aggregationLevel>
-                <source>LOMv1.0</source>
-                <value>1</value>
-              </aggregationLevel>
-            </general>
-            <metaMetadata>
-              <metadataSchema>LOMv1.0</metadataSchema>
-              <language>en</language>
-            </metaMetadata>
-          </lom>
-        </metadata>
-      </item>
-      
-      <item identifier="activity_slide_323" identifierref="slide_323">
-        <title>Slide 7 - E qui proviamo l'audio</title>
-        <metadata>
-          <lom>
-            <general>
-              <title>
-                <string language="it">Slide 7 - E qui proviamo l'audio</string> <!-- qui va il locale -->
-              </title>
-              <language>it</language> <!-- locale -->
-              <aggregationLevel>
-                <source>LOMv1.0</source>
-                <value>1</value>
-              </aggregationLevel>
-            </general>
-            <metaMetadata>
-              <metadataSchema>LOMv1.0</metadataSchema>
-              <language>en</language>
-            </metaMetadata>
-          </lom>
-        </metadata>
-      </item>
-      
-      <item identifier="activity_slide_321" identifierref="slide_321">
-        <title>Slide 8</title>
-        <metadata>
-          <lom>
-            <general>
-              <title>
-                <string language="it">Slide 8</string> <!-- qui va il locale -->
-              </title>
-              <language>it</language> <!-- locale -->
-              <aggregationLevel>
-                <source>LOMv1.0</source>
-                <value>1</value>
-              </aggregationLevel>
-            </general>
-            <metaMetadata>
-              <metadataSchema>LOMv1.0</metadataSchema>
-              <language>en</language>
-            </metaMetadata>
-          </lom>
-        </metadata>
-      </item>
-      
-      <item identifier="activity_slide_322" identifierref="slide_322">
-        <title>Slide 9 - Prova con video e documento</title>
-        <metadata>
-          <lom>
-            <general>
-              <title>
-                <string language="it">Slide 9 - Prova con video e documento</string> <!-- qui va il locale -->
-              </title>
-              <language>it</language> <!-- locale -->
-              <aggregationLevel>
-                <source>LOMv1.0</source>
-                <value>1</value>
-              </aggregationLevel>
-            </general>
-            <metaMetadata>
-              <metadataSchema>LOMv1.0</metadataSchema>
-              <language>en</language>
-            </metaMetadata>
-          </lom>
-        </metadata>
-      </item>
+      <% @lesson.slides.each do |slide| %>
+        
+        <item identifier="activity_slide_<%= slide.id %>" identifierref="slide_<%= slide.id %>">
+          <title><%= scorm_slide_title slide %></title>
+          <%= scorm_slide_metadata slide %>
+        </item>
+        
+      <% end %>
       
       <imsss:sequencing>
         <imsss:controlMode choice="true" flow="true"/>
@@ -326,10 +103,7 @@
               <value>2</value>
             </aggregationLevel>
           </general>
-          <metaMetadata>
-            <metadataSchema>LOMv1.0</metadataSchema>
-            <language>en</language>
-          </metaMetadata>
+          <%= scorm_metametadata %>
         </lom>
       </metadata>
       

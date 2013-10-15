@@ -1,7 +1,7 @@
 module ScormHelper
   
   def scorm_locale
-    'en' # TODO
+    'en' # TODO estrarlo in modo migliore
   end
   
   def scorm_author(author, date)
@@ -95,6 +95,59 @@ module ScormHelper
       </orComposite>
     </requirement>
     '
+  end
+  
+  def scorm_school_level(school_level)
+    'school' # TODO mapparlo in qualche modo
+  end
+  
+  def scorm_tags(tags)
+    resp = ''
+    tags.split(',').each do |t|
+      resp = "#{resp}<keyword><string language=\"#{scorm_locale}\">#{t}</string></keyword>"
+    end
+    resp
+  end
+  
+  def scorm_copyrights
+    "
+    <rights>
+      <copyrightAndOtherRestrictions>
+        <source>LOMv1.0</source>
+        <value>yes</value>
+      </copyrightAndOtherRestrictions>
+      <description>
+        <string language=\"en\">#{SETTINGS['application_copyright']}. For information about copyright contact Morgan S.P.A. via degli Olmetti 36</string>
+      </description>
+    </rights>
+    "
+  end
+  
+  def scorm_slide_title(slide)
+    return 'Cover' if slide.cover?
+    resp = "Slide #{slide.position - 1}"
+    resp = "#{resp} - #{slide.title}" if slide.title.present?
+    resp
+  end
+  
+  def scorm_slide_metadata(slide)
+    "
+    <metadata>
+      <lom>
+        <general>
+          <title>
+            <string language=\"#{scorm_locale}\">#{scorm_slide_title slide}</string>
+          </title>
+          <language>#{scorm_locale}</language>
+          <aggregationLevel>
+            <source>LOMv1.0</source>
+            <value>1</value>
+          </aggregationLevel>
+        </general>
+        #{scorm_metametadata}
+      </lom>
+    </metadata>
+    "
   end
   
 end
