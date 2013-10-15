@@ -201,6 +201,24 @@
       
       <item identifier="activity_slide_314" identifierref="slide_314">
         <title>Cover</title> <!-- titolo della copertina: cover -->
+        <metadata>
+          <lom>
+            <general>
+              <title>
+                <string language="it">Cover</string> <!-- qui va il locale -->
+              </title>
+              <language>it</language> <!-- locale -->
+              <aggregationLevel>
+                <source>LOMv1.0</source>
+                <value>1</value>
+              </aggregationLevel>
+            </general>
+            <metaMetadata>
+              <metadataSchema>LOMv1.0</metadataSchema>
+              <language>en</language>
+            </metaMetadata>
+          </lom>
+        </metadata>
       </item>
       
       <item identifier="activity_slide_315" identifierref="slide_315">
