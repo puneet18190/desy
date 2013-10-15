@@ -16,7 +16,8 @@
                               http://www.imsglobal.org/xsd/imsss imsss_v1p0.xsd
                               http://ltsc.ieee.org/xsd/LOM lom.xsd">
   
-  <% media_elements_slides = {} %>
+  <% media_elements = {} %>
+  <% documents = {} %>
   
   
   <metadata>
@@ -45,7 +46,7 @@
           <source>LOMv1.0</source>
           <value>final</value>
         </status>
-        <%= scorm_author @lesson.user.full_name, @lesson.updated_at %>
+        <%= scorm_author @lesson.user.full_name, @lesson.updated_at, 'Date of last modification' %>
       </lifeCycle>
       <%= scorm_metametadata %>
       <technical>
@@ -109,18 +110,20 @@
       <resource identifier="slide_<%= slide.id %>" type="webcontent" adlcp:scormType="asset" href="html/slide<%= slide.id %>.html">
         <file href="html/slide<%= slide.id %>.html"/>
         <%= scorm_math_images slide %>
-        <% media_elements_slides[slide.id] = [] %>
+        <% my_media_elements_slides = [] %>
         <% slide.media_elements_slides.each do |mes| %>
-          <% if !media_elements_slides[slide.id].include?(mes.media_element_id) %>
+          <% if !my_media_elements_slides.include?(mes.media_element_id) %>
             <dependency identifierref="media_element_<%= mes.media_element_id %>"/>
-            <% media_elements_slides[slide.id].push(mes.media_element_id) %>
+            <% my_media_elements_slides.push(mes.media_element_id) %>
+            <% media_elements[mes.media_element_id] = true %>
           <% end %>
         <% end %>
-        <% documents_slides[slide.id] = [] %>
+        <% my_documents_slides = [] %>
         <% slide.documents_slides.each do |ds| %>
-          <% if !documents_slides[slide.id].include?(ds.document_id) %>
+          <% if !my_documents_slides.include?(ds.document_id) %>
             <dependency identifierref="document_<%= ds.document_id %>"/>
-            <% documents_slides[slide.id].push(ds.document_id) %>
+            <% my_documents_slides.push(ds.document_id) %>
+            <% documents[ds.document_id] = true %>
           <% end %>
         <% end %>
         <%= scorm_slide_dependencies slide %>
@@ -148,178 +151,22 @@
         </metadata>
       </resource>
     <% end %>
-    
-    <!-- qui sotto i pacchetti di elementi variabili (documents, media_elements) -->
-    
-    <!-- documents -->
-    
-    <resource identifier="document_2" type="webcontent" adlcp:scormType="asset">
-      <file href="html/documents/2/conversazioni_multicast_V0_Gku5sX_k2wyViHBSFcg.odt">
+    <% documents.keys.each do |document| %>
+      <resource identifier="document_<%= document.id %>" type="webcontent" adlcp:scormType="asset">
+        <%= scorm_document_file document %>
+        <file href="html/assets/documents/<%= document.type %>.svg"/>
         <metadata>
           <lom>
-            <general>
-              <identifier>
-                <catalog>URI</catalog>
-                <entry>url di questo documento</entry>
-              </identifier>
-            </general>
-            <technical>
-              <format>format/format</format>
-              <size>123</size>
-              <location>url di questo documento</location>
-            </technical>
+            <%= scorm_document_general_metadata document %>
+            <lifeCycle>
+              <%= scorm_author document.user.full_name, document.created_at, 'Date of creation' %>
+            </lifeCycle>
+            <%= scorm_metametadata %>
           </lom>
         </metadata>
-      </file>
-      <file href="html/assets/documents/doc.svg"/>
-      <metadata>
-        <lom>
-          <general>
-            <title>
-              <string language="it">Titolo di questo documento</string> <!-- qui va il locale -->
-            </title>
-            <description>
-              <string language="it">Descrizione di questo documento</string> <!-- qui va il locale -->
-            </description>
-            <structure>
-              <source>LOMv1.0</source>
-              <value>atomic</value>
-            </structure>
-          </general>
-          <lifeCycle>
-            <contribute>
-              <role>
-                <source>LOMv1.0</source>
-                <value>author</value>
-              </role>
-              <entity>BEGIN:VCARD&#13;&#10;VERSION:2.1&#13;&#10;FN:Autore Del Documento&#13;&#10;END:VCARD</entity>
-              <date>
-                <dateTime>2013-10-04</dateTime> <!-- data di creazione -->
-                <description>
-                  <string language="en">Date of creation</string>
-                </description>
-              </date>
-            </contribute>
-          </lifeCycle>
-          <metaMetadata>
-            <metadataSchema>LOMv1.0</metadataSchema>
-            <language>en</language>
-          </metaMetadata>
-        </lom>
-      </metadata>
-    </resource>
+      </resource>
+    <% end %>
     
-    <resource identifier="document_3" type="webcontent" adlcp:scormType="asset">
-      <file href="html/documents/3/espandibili-tar_akxjd2lUjnlSDqwmrC_pKA.gz">
-        <metadata>
-          <lom>
-            <general>
-              <identifier>
-                <catalog>URI</catalog>
-                <entry>url di questo documento</entry>
-              </identifier>
-            </general>
-            <technical>
-              <format>format/format</format>
-              <size>123</size>
-              <location>url di questo documento</location>
-            </technical>
-          </lom>
-        </metadata>
-      </file>
-      <file href="html/assets/documents/zip.svg"/>
-      <metadata>
-        <lom>
-          <general>
-            <title>
-              <string language="it">Titolo di questo documento</string> <!-- qui va il locale -->
-            </title>
-            <description>
-              <string language="it">Descrizione di questo documento</string> <!-- qui va il locale -->
-            </description>
-            <structure>
-              <source>LOMv1.0</source>
-              <value>atomic</value>
-            </structure>
-          </general>
-          <lifeCycle>
-            <contribute>
-              <role>
-                <source>LOMv1.0</source>
-                <value>author</value>
-              </role>
-              <entity>BEGIN:VCARD&#13;&#10;VERSION:2.1&#13;&#10;FN:Autore Del Documento&#13;&#10;END:VCARD</entity>
-              <date>
-                <dateTime>2013-10-04</dateTime> <!-- data di creazione -->
-                <description>
-                  <string language="en">Date of creation</string>
-                </description>
-              </date>
-            </contribute>
-          </lifeCycle>
-          <metaMetadata>
-            <metadataSchema>LOMv1.0</metadataSchema>
-            <language>en</language>
-          </metaMetadata>
-        </lom>
-      </metadata>
-    </resource>
-    
-    <resource identifier="document_4" type="webcontent" adlcp:scormType="asset">
-      <file href="html/documents/4/coldiretti-it__rev_sp3_27052010_wmHjC4w1X3r8UOAlMTMsrg.pptx">
-        <metadata>
-          <lom>
-            <general>
-              <identifier>
-                <catalog>URI</catalog>
-                <entry>url di questo documento</entry>
-              </identifier>
-            </general>
-            <technical>
-              <format>format/format</format>
-              <size>123</size>
-              <location>url di questo documento</location>
-            </technical>
-          </lom>
-        </metadata>
-      </file>
-      <file href="html/assets/documents/ppt.svg"/>
-      <metadata>
-        <lom>
-          <general>
-            <title>
-              <string language="it">Titolo di questo documento</string> <!-- qui va il locale -->
-            </title>
-            <description>
-              <string language="it">Descrizione di questo documento</string> <!-- qui va il locale -->
-            </description>
-            <structure>
-              <source>LOMv1.0</source>
-              <value>atomic</value>
-            </structure>
-          </general>
-          <lifeCycle>
-            <contribute>
-              <role>
-                <source>LOMv1.0</source>
-                <value>author</value>
-              </role>
-              <entity>BEGIN:VCARD&#13;&#10;VERSION:2.1&#13;&#10;FN:Autore Del Documento&#13;&#10;END:VCARD</entity>
-              <date>
-                <dateTime>2013-10-04</dateTime> <!-- data di creazione -->
-                <description>
-                  <string language="en">Date of creation</string>
-                </description>
-              </date>
-            </contribute>
-          </lifeCycle>
-          <metaMetadata>
-            <metadataSchema>LOMv1.0</metadataSchema>
-            <language>en</language>
-          </metaMetadata>
-        </lom>
-      </metadata>
-    </resource>
     
     <!-- media_elements -->
     

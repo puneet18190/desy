@@ -4,7 +4,7 @@ module ScormHelper
     'en' # TODO estrarlo in modo migliore
   end
   
-  def scorm_author(author, date)
+  def scorm_author(author, date, type)
     "
     <contribute>
       <role>
@@ -15,10 +15,49 @@ module ScormHelper
       <date>
         <dateTime>#{date.strftime('%Y-%m-%d')}</dateTime>
         <description>
-          <string language=\"en\">Date of last modification</string>
+          <string language=\"en\">#{type}</string>
         </description>
       </date>
     </contribute>
+    "
+  end
+  
+  def scorm_document_general_metadata(document)
+    "
+    <general>
+      <title>
+        <string language=\"#{scorm_locale}\">#{document.title}</string>
+      </title>
+      <description>
+        <string language=\"#{scorm_locale}\">#{document.description}</string>
+      </description>
+      <structure>
+        <source>LOMv1.0</source>
+        <value>atomic</value>
+      </structure>
+    </general>
+    "
+  end
+  
+  def scorm_document_file(document) # TODO ricontrollarne i metodi e riempire quelli che mancano
+    "
+    <file href=\"html/documents/#{document.id}/#{document.url.gsub('bla', '')}\">
+      <metadata>
+        <lom>
+          <general>
+            <identifier>
+              <catalog>URI</catalog>
+              <entry>#{document.url}</entry>
+            </identifier>
+          </general>
+          <technical>
+            <format>document/#{document.extension}</format>
+            <size>#{document.size}</size>
+            <location>#{documen.url}</location>
+          </technical>
+        </lom>
+      </metadata>
+    </file>
     "
   end
   
