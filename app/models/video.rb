@@ -8,8 +8,8 @@ require 'media/shared'
 # 
 class Video < MediaElement
 
-  include UrlByUrlType
   include Media::Shared
+  include UrlByUrlType
   extend  Media::Video::Editing::Parameters
   
   # Instance of specific uploader for a video
@@ -20,6 +20,8 @@ class Video < MediaElement
   
   # Path for restoring the video editor cache
   CACHE_RESTORE_PATH = '/videos/cache/restore'
+
+  EBOOK_FORMATS = UPLOADER::FORMATS + UPLOADER::VERSION_FORMATS.keys - [:thumb]
   
   # === Description
   #
@@ -97,8 +99,14 @@ class Video < MediaElement
   #
   #   <%= image_tag video.cover_url %>
   #
-  def cover_url
-    media.try(:url, :cover) if converted
+  def cover_url(url_type = nil)
+    return nil unless converted
+
+    url = media.try(:url, :cover)
+
+    return nil unless url
+    
+    url_by_url_type url, url_type
   end
   
   # === Description

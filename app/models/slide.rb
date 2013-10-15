@@ -32,6 +32,7 @@
 # * *the* *title* must be +nil+ if the kind of slide doesn't contain title
 # * *the* *maximum* *number* of slides must be the one configured in settings.yml. This validation uses Lesson#reached_the_maximum_of_slides?
 # * *correctness* of math images
+# * *correctness* of math images links
 #
 # == Callbacks
 #
@@ -48,10 +49,11 @@ class Slide < ActiveRecord::Base
   
   attr_accessible :position, :title, :text
   
+  belongs_to :lesson
   has_many :media_elements_slides
   has_many :media_elements, through: :media_elements_slides
-  belongs_to :lesson
   has_many :documents_slides
+  has_many :documents, through: :documents_slides
   
   # Slide of kind 'audio': it contains
   # 1. a title
@@ -119,8 +121,8 @@ class Slide < ActiveRecord::Base
   validates_length_of :title, :maximum => MAX_COVER_TITLE_LENGTH, :allow_nil => true, if: proc{ cover? }
   validates_inclusion_of :kind, :in => KINDS
   validates_uniqueness_of :position, :scope => :lesson_id
-  validates_uniqueness_of :kind, :scope => :lesson_id, :if => :is_cover
-  validate :validate_associations, :validate_impossible_changes, :validate_cover, :validate_text, :validate_title, :validate_max_number_slides, :validate_math_images
+  validates_uniqueness_of :kind, :scope => :lesson_id, :if => :cover?
+  validate :validate_associations, :validate_impossible_changes, :validate_cover, :validate_text, :validate_title, :validate_max_number_slides, :validate_math_images, :validate_math_images_links
   
   before_validation :init_validation
   before_update :save_math_images
@@ -462,11 +464,6 @@ class Slide < ActiveRecord::Base
     errors.add(:text, :must_be_null_in_this_slide) if !self.allows_text? && !self.text.nil?
   end
   
-  # Checks if the slide is the cover of the lesson
-  def is_cover
-    self.kind == COVER
-  end
-  
   # Initializes validation objects (see Valid.get_association)
   def init_validation
     @slide = Valid.get_association self, :id
@@ -512,6 +509,45 @@ class Slide < ActiveRecord::Base
        math_images.invalid?                         ||
        ( persisted? && math_images.model_id != id )
       errors.add :math_images, :invalid
+    end
+  end
+
+  # Validates math images links contained inside +text+. They must be valid in order to create a valid ebook. For each Wiris element it checks:
+  #
+  # 1. Nokogiri doesn't give any error parsing the document
+  # 2. The +src+ attribute of the Wiris element is a valid +URI::HTTP+ path and has a valid query string
+  # 3. The +formula+ query key exists and contains only one value
+  # 4. The +formula+ query key value is inside +math_images+ attribute
+  def validate_math_images_links
+    return unless text
+
+    # 1.
+    fragment = nil
+    begin
+      fragment = Nokogiri::XML::DocumentFragment.parse(text)
+    rescue
+      return errors.add(:text, :invalid_math_images_links)
+    end
+
+    fragment.css(MathImages::CSS_SELECTOR).each do |el|
+
+      uri, query = nil, nil
+      # 2.
+      begin
+        uri   = URI "http://www.example.com/#{el[:src]}"
+        query = CGI.parse uri.query
+      rescue
+        return errors.add(:text, :invalid_math_images_links)
+      end
+
+      math_image_filenames = query['formula']
+
+      # 3.
+      return errors.add(:text, :invalid_math_images_links) if math_image_filenames.empty? || math_image_filenames.size != 1
+
+      # 4.
+      math_image_filename = math_image_filenames.first
+      return errors.add(:text, :invalid_math_images_links) unless math_images.include?(Pathname math_image_filename)
     end
   end
   

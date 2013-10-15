@@ -150,7 +150,10 @@ GEM
     method_source (0.8.2)
     methodfinder (1.2.5)
     mime-types (1.25)
+    mini_portile (0.5.1)
     multi_json (1.8.0)
+    nokogiri (1.6.0)
+      mini_portile (~> 0.5.0)
     oj (2.1.4)
     ori (0.1.0)
     paint (0.8.6)
@@ -277,6 +280,7 @@ DEPENDENCIES
   colorize
   daemons
   delayed_job_active_record
+  erubis
   eventmachine
   exception_notification!
   facter
@@ -288,6 +292,7 @@ DEPENDENCIES
   libv8 (~> 3.11.8)
   mailcatcher
   mini_magick!
+  nokogiri
   oj
   pg
   quiet_assets

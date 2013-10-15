@@ -8,23 +8,21 @@ require 'env_relative_path'
 
 require 'export'
 require 'export/lesson'
+require 'export/lesson/shared/archive_and_ebook'
 
 module Export
   module Lesson
     class Archive
 
       include EnvRelativePath
+      include Shared::ArchiveAndEbook
 
-      FOLDER                               = env_relative_pathname RAILS_PUBLIC, 'exports', 'lessons'
-      MEDIA_ELEMENTS_UPFOLDER              = RAILS_PUBLIC
-      DOCUMENTS_UPFOLDER                   = RAILS_PUBLIC
-      ASSETS_ARCHIVE_MAIN_FOLDER_NAME      = 'assets'
-      MATH_IMAGES_ARCHIVE_MAIN_FOLDER_NAME = 'math_images'
+      ASSETS_FOLDER              = Lesson::FOLDER.join 'archives', 'assets'
+      FOLDER                     = env_relative_pathname RAILS_PUBLIC, 'lessons', 'exports', 'archives'
+      ASSETS_ARCHIVE_FOLDER_NAME = 'assets'
 
       # STORED or DEFLATED
       COMPRESSION_METHOD = Zip::Entry::STORED
-
-      WRITE_TIME_FORMAT = '%Y%m%d_%H%M%S_%Z_%N'
 
       INDEX_PAGE_NAME = 'index.html'
 
@@ -33,23 +31,24 @@ module Export
       end
 
       private
-      attr_reader :lesson, :index, 
-                  :filename_without_extension, :archive_main_folder, :filename, :folder, :path, :assets_archive_main_folder, :math_images_archive_main_folder
+      attr_reader :lesson, :index_page, 
+                  :filename_without_extension, :folder, :filename, :archive_root_folder, :path, :assets_archive_folder, :math_images_archive_folder
       public
 
-      def initialize(lesson, index)
-        @lesson, @index = lesson, index
+      # index_page: String
+      def initialize(lesson, index_page)
+        @lesson, @index_page = lesson, index_page
 
         parameterized_title = lesson.title.parameterize
         time                = lesson.updated_at.utc.strftime(WRITE_TIME_FORMAT)
 
-        @filename_without_extension      = lesson.id.to_s.tap{ |s| s << "_#{parameterized_title}" if parameterized_title.present? }
-        @folder                          = FOLDER.join lesson.id.to_s, time
-        @filename                        = "#{filename_without_extension}.zip"
-        @path                            = folder.join filename
-        @archive_main_folder             = filename_without_extension
-        @assets_archive_main_folder      = File.join archive_main_folder, ASSETS_ARCHIVE_MAIN_FOLDER_NAME
-        @math_images_archive_main_folder = File.join archive_main_folder, MATH_IMAGES_ARCHIVE_MAIN_FOLDER_NAME
+        @filename_without_extension = lesson.id.to_s.tap{ |s| s << "_#{parameterized_title}" if parameterized_title.present? }
+        @folder                     = FOLDER.join lesson.id.to_s, time
+        @filename                   = "#{filename_without_extension}.zip"
+        @path                       = folder.join filename
+        @archive_root_folder        = Pathname filename_without_extension
+        @assets_archive_folder      = archive_root_folder.join ASSETS_ARCHIVE_FOLDER_NAME
+        @math_images_archive_folder = archive_root_folder.join MATH_IMAGES_ARCHIVE_FOLDER_NAME
       end
 
       def url
@@ -62,88 +61,48 @@ module Export
         return if path.exist?
         
         # raises if export assets are not compiled
-        raise "Assets are not compiled. Please create them using rake exports:lessons:assets:compile" unless assets_compiled?
+        raise "Assets are not compiled. Please create them using rake exports:lessons:archives:assets:compile" unless assets_compiled?
 
-        remove_other_possible_archives if folder.exist?
+        remove_other_possible_files if folder.exist?
         folder.mkpath
         create
       end
 
       private
 
-      def math_images
-        lesson.slides.map{ |r| r.math_images.to_a(:with_folder) }.flatten.uniq_by{ |v| v.basename }
-      end
-
       def assets_compiled?
         ASSETS_FOLDER.exist? && !ASSETS_FOLDER.entries.empty?
-      end
-
-      def remove_other_possible_archives
-        Pathname.glob(folder.join '..', '*').each{ |path| FileUtils.rm_rf path }
       end
 
       def assets_files
         Pathname.glob ASSETS_FOLDER.join('**', '*')
       end
 
-      def media_elements_files
-        lesson.media_elements.map { |r| Pathname.new r.media.folder }.map { |f| Pathname.glob f.join '**', '*' }.flatten
-      end
-
-      def documents_files
-        lesson.documents.map { |r| Pathname.new r.attachment.folder }.map { |f| Pathname.glob f.join '**', '*' }.flatten
-      end
-
       def create
-        with_index_tmpfile do |index_path|
-          Zip::File.open(path, Zip::File::CREATE) do |archive|
+        Zip::File.open(path, Zip::File::CREATE) do |archive|
+          add_string_entry archive, index_page, archive_root_folder.join(INDEX_PAGE_NAME)
 
-            add_index_entry archive, index_path
+          assets_files.each do |path|
+            add_path_entry archive, path, assets_archive_folder.join(path.relative_path_from ASSETS_FOLDER)
+          end
 
-            assets_files.each do |path|
-              add_entry archive, path, assets_archive_main_folder, path.relative_path_from(ASSETS_FOLDER)
-            end
+          media_elements_files.each do |path|
+            add_path_entry archive, path, archive_root_folder.join(path.relative_path_from MEDIA_ELEMENTS_UPFOLDER)
+          end
 
-            media_elements_files.each do |path|
-              add_entry archive, path, archive_main_folder, path.relative_path_from(MEDIA_ELEMENTS_UPFOLDER)
-            end
+          documents_files.each do |path|
+            add_path_entry archive, path, archive_root_folder.join(path.relative_path_from DOCUMENTS_UPFOLDER)
+          end
 
-            documents_files.each do |path|
-              add_entry archive, path, archive_main_folder, path.relative_path_from(DOCUMENTS_UPFOLDER)
-            end
-
-            math_images.each do |path|
-              add_entry archive, path, math_images_archive_main_folder, path.basename
-            end
-
+          math_images.each do |path|
+            add_path_entry archive, path, math_images_archive_folder.join(path.basename)
           end
         end
+
         path.chmod 0644
-      rescue => e
+      rescue
         path.unlink if path.exist?
-        raise e
-      end
-
-      def with_index_tmpfile
-        Tempfile.open('desy') do |file|
-          file.write index
-          file.close
-          yield file.path
-        end
-      end
-
-      def add_index_entry(archive, index_path)
-        add_entry archive, index_path, archive_main_folder, INDEX_PAGE_NAME
-      end
-
-      def entry_path(archive_main_folder, relative_path_from_archive_main_folder)
-        File.join archive_main_folder, relative_path_from_archive_main_folder
-      end
-
-      def add_entry(archive, path, archive_main_folder, relative_path_from_archive_main_folder)
-        entry = Zip::Entry.new path.to_s, entry_path(archive_main_folder, relative_path_from_archive_main_folder), '', '', 0, 0, COMPRESSION_METHOD
-        archive.add entry, path
+        raise
       end
 
     end

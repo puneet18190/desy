@@ -1,3 +1,5 @@
+require 'facter'
+
 # Child of Thread class which raises an exception if an error occurs and releases the database connection at the begin or at the end of the execution
 class EnhancedThread < Thread
 
@@ -41,7 +43,7 @@ class EnhancedThread < Thread
       return thread_blocks.present? ? join(*thread_blocks, close_connection_before_execution: close_connection_before_execution) : nil
     end
 
-    thread_blocks.each_slice(n){ |slice| slice.map { |s| new(close_connection_before_execution, &s) }.each(&:join) }
+    thread_blocks.each_slice(n) { |slice| slice.map { |s| new(close_connection_before_execution, &s) }.each(&:join) }
     nil
   end
 

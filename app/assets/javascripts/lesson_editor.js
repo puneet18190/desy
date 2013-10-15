@@ -1295,6 +1295,7 @@ function initTinymce(tiny_id) {
   tinyMCE.init({
     mode: 'exact',
     elements: tiny_id,
+    element_format: 'xhtml',
     theme: 'advanced',
     editor_selector: 'tinymce',
     skin: 'desy',
