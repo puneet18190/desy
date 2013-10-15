@@ -166,129 +166,65 @@
         </metadata>
       </resource>
     <% end %>
-    
-    
-    <!-- media_elements -->
-    
-    <resource identifier="media_element_57" type="webcontent" adlcp:scormType="asset">
-      <file href="html/media_elements/videos/57/mare_zWh36aPODFkzhdbjHvEGGw.mp4">
+    <% media_elements.keys.each do |media_element| %>
+      <resource identifier="media_element_<%= media_element.id %>" type="webcontent" adlcp:scormType="asset">
+        <%= scorm_media_element_files media_element %>
         <metadata>
           <lom>
             <general>
-              <identifier>
-                <catalog>URI</catalog>
-                <entry>url di questo elemento</entry>
-              </identifier>
-            </general>
-            <technical>
-              <format>video/mp4</format>
-              <size>123</size>
-              <location>url di questo elemento</location>
-              <duration>123</duration>
-            </technical>
-          </lom>
-        </metadata>
-      </file>
-      <file href="html/media_elements/videos/57/mare_zWh36aPODFkzhdbjHvEGGw.webm">
-        <metadata>
-          <lom>
-            <general>
-              <identifier>
-                <catalog>URI</catalog>
-                <entry>url di questo elemento</entry>
-              </identifier>
-            </general>
-            <technical>
-              <format>video/webm</format>
-              <size>123</size>
-              <location>url di questo elemento</location>
-              <duration>123</duration>
-            </technical>
-          </lom>
-        </metadata>
-      </file>
-      <file href="html/media_elements/videos/57/cover_mare_zWh36aPODFkzhdbjHvEGGw.jpg">
-        <metadata>
-          <lom>
-            <general>
-              <identifier>
-                <catalog>URI</catalog>
-                <entry>url di questo elemento</entry>
-              </identifier>
-            </general>
-            <technical>
-              <format>image/jpeg</format>
-              <size>123</size>
-              <location>url di questo elemento</location>
-            </technical>
-          </lom>
-        </metadata>
-      </file>
-      <file href="html/media_elements/videos/57/thumb_mare_zWh36aPODFkzhdbjHvEGGw.jpg">
-        <metadata>
-          <lom>
-            <general>
-              <identifier>
-                <catalog>URI</catalog>
-                <entry>url di questo elemento</entry>
-              </identifier>
-            </general>
-            <technical>
-              <format>image/jpeg</format>
-              <size>123</size>
-              <location>url di questo elemento</location>
-            </technical>
-          </lom>
-        </metadata>
-      </file>
-      <metadata>
-        <lom>
-          <general>
-            <title>
-              <string language="it">Titolo di questo elemento</string> <!-- qui va il locale -->
-            </title>
-            <description>
-              <string language="it">Descrizione di questo elemento</string> <!-- qui va il locale -->
-            </description>
-            <structure>
-              <source>LOMv1.0</source>
-              <value>atomic</value>
-            </structure>
-            <keyword>
-              <string language="it">tag1</string> <!-- locale -->
-            </keyword>
-            <keyword>
-              <string language="it">tag2</string> <!-- locale -->
-            </keyword>
-            <keyword>
-              <string language="it">tag3</string> <!-- locale -->
-            </keyword>
-            <keyword>
-              <string language="it">tag4</string> <!-- locale -->
-            </keyword>
-          </general>
-          <lifeCycle>
-            <contribute>
-              <role>
+              <title>
+                <string language="it">Titolo di questo elemento</string> <!-- qui va il locale -->
+              </title>
+              <description>
+                <string language="it">Descrizione di questo elemento</string> <!-- qui va il locale -->
+              </description>
+              <structure>
                 <source>LOMv1.0</source>
-                <value>author</value>
-              </role>
-              <entity>BEGIN:VCARD&#13;&#10;VERSION:2.1&#13;&#10;FN:Autore Dell'Elemento&#13;&#10;END:VCARD</entity>
-              <date>
-                <dateTime>2013-10-04</dateTime> <!-- data di creazione -->
-                <description>
-                  <string language="en">Date of creation</string>
-                </description>
-              </date>
-            </contribute>
-          </lifeCycle>
-          <metaMetadata>
-            <metadataSchema>LOMv1.0</metadataSchema>
-            <language>en</language>
-          </metaMetadata>
-        </lom>
-      </metadata>
-    </resource>
+                <value>atomic</value>
+              </structure>
+              <keyword>
+                <string language="it">tag1</string> <!-- locale -->
+              </keyword>
+              <keyword>
+                <string language="it">tag2</string> <!-- locale -->
+              </keyword>
+              <keyword>
+                <string language="it">tag3</string> <!-- locale -->
+              </keyword>
+              <keyword>
+                <string language="it">tag4</string> <!-- locale -->
+              </keyword>
+            </general>
+            <lifeCycle>
+              <contribute>
+                <role>
+                  <source>LOMv1.0</source>
+                  <value>author</value>
+                </role>
+                <entity>BEGIN:VCARD&#13;&#10;VERSION:2.1&#13;&#10;FN:Autore Dell'Elemento&#13;&#10;END:VCARD</entity>
+                <date>
+                  <dateTime>2013-10-04</dateTime> <!-- data di creazione -->
+                  <description>
+                    <string language="en">Date of creation</string>
+                  </description>
+                </date>
+              </contribute>
+            </lifeCycle>
+            <metaMetadata>
+              <metadataSchema>LOMv1.0</metadataSchema>
+              <language>en</language>
+            </metaMetadata>
+          </lom>
+        </metadata>
+      </resource>
+    
+    
+    
+    <!-- TODO TODO TODO giunto quiiii -->
+    
+    
+    
+    
     
     <resource identifier="media_element_62" type="webcontent" adlcp:scormType="asset">
       <file href="html/media_elements/videos/62/virus_Q6X2iFsTmXSABGB61-KVaQ.mp4">

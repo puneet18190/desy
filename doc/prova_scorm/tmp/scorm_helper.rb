@@ -6,133 +6,203 @@ module ScormHelper
   
   def scorm_author(author, date, type)
     "
-    <contribute>
-      <role>
-        <source>LOMv1.0</source>
-        <value>author</value>
-      </role>
-      <entity>BEGIN:VCARD&#13;&#10;VERSION:2.1&#13;&#10;FN:#{author}&#13;&#10;END:VCARD</entity>
-      <date>
-        <dateTime>#{date.strftime('%Y-%m-%d')}</dateTime>
-        <description>
-          <string language=\"en\">#{type}</string>
-        </description>
-      </date>
-    </contribute>
+      <contribute>
+        <role>
+          <source>LOMv1.0</source>
+          <value>author</value>
+        </role>
+        <entity>BEGIN:VCARD&#13;&#10;VERSION:2.1&#13;&#10;FN:#{author}&#13;&#10;END:VCARD</entity>
+        <date>
+          <dateTime>#{date.strftime('%Y-%m-%d')}</dateTime>
+          <description>
+            <string language=\"en\">#{type}</string>
+          </description>
+        </date>
+      </contribute>
     "
   end
   
   def scorm_document_general_metadata(document)
     "
-    <general>
-      <title>
-        <string language=\"#{scorm_locale}\">#{document.title}</string>
-      </title>
-      <description>
-        <string language=\"#{scorm_locale}\">#{document.description}</string>
-      </description>
-      <structure>
-        <source>LOMv1.0</source>
-        <value>atomic</value>
-      </structure>
-    </general>
+      <general>
+        <title>
+          <string language=\"#{scorm_locale}\">#{document.title}</string>
+        </title>
+        <description>
+          <string language=\"#{scorm_locale}\">#{document.description}</string>
+        </description>
+        <structure>
+          <source>LOMv1.0</source>
+          <value>atomic</value>
+        </structure>
+      </general>
     "
   end
   
-  def scorm_document_file(document) # TODO ricontrollarne i metodi e riempire quelli che mancano
+  def scorm_media_element_file_metadata(media_element, extension) # TODO sistemare i metodi url
+    my_duration = (media_element.sti_type == 'Image' || extension == 'jpeg') ? '' : media_element.min_duration
+    my_url = case extension # TODO mancano le thumb etc etc -- il cambio va esteso alla chiamata di tale metodo in caso di image oppure video!!!
+    when 'mp4'
+      media_element.mp4_url
+    when 'webm'
+      media_element.webm_url
+    when 'm4a'
+      media_element.m4a_url
+    when 'ogg'
+      media_element.ogg_url
+    end
     "
-    <file href=\"html/documents/#{document.id}/#{document.url.gsub('bla', '')}\">
       <metadata>
         <lom>
           <general>
             <identifier>
               <catalog>URI</catalog>
-              <entry>#{document.url}</entry>
+              <entry>#{my_url}</entry>
             </identifier>
           </general>
           <technical>
-            <format>document/#{document.extension}</format>
-            <size>#{document.size}</size>
-            <location>#{documen.url}</location>
+            <format>#{media_element.sti_type.downcase}/#{extension}</format>
+            <size>#{media_element.size}</size>
+            <location>#{my_url}</location>
+            #{my_duration}
           </technical>
         </lom>
       </metadata>
-    </file>
+    "
+  end
+  
+  def scorm_media_element_files(media_element) # TODO ricontrollarne i metodi e riempire quelli che mancano
+    case media_element.sti_type
+    when 'Video'
+      return "
+        <file href=\"html/media_elements/videos/#{media_element.id}/#{media_element.mp4_url.gsub('bla', '')}\">
+          #{scorm_media_element_file_metadata(media_element, 'mp4')}
+        </file>
+        <file href=\"html/media_elements/videos/#{media_element.id}/#{media_element.mp4_url.gsub('bla', '')}\">
+          #{scorm_media_element_file_metadata(media_element, 'webm')}
+        </file>
+        <file href=\"html/media_elements/videos/#{media_element.id}/#{media_element.mp4_url.gsub('bla', '')}\">
+          #{scorm_media_element_file_metadata(media_element, 'jpeg')}
+        </file>
+        <file href=\"html/media_elements/videos/#{media_element.id}/#{media_element.mp4_url.gsub('bla', '')}\">
+          #{scorm_media_element_file_metadata(media_element, 'jpeg')}
+        </file>
+      "
+    when 'Image'
+      return "
+        <file href=\"html/media_elements/videos/#{media_element.id}/#{media_element.mp4_url.gsub('bla', '')}\">
+          #{scorm_media_element_file_metadata(media_element, 'jpeg')}
+        </file>
+        <file href=\"html/media_elements/videos/#{media_element.id}/#{media_element.mp4_url.gsub('bla', '')}\">
+          #{scorm_media_element_file_metadata(media_element, 'jpeg')}
+        </file>
+      "
+    when 'Audio'
+      return "
+        <file href=\"html/media_elements/videos/#{media_element.id}/#{media_element.mp4_url.gsub('bla', '')}\">
+          #{scorm_media_element_file_metadata(media_element, 'm4a')}
+        </file>
+        <file href=\"html/media_elements/videos/#{media_element.id}/#{media_element.mp4_url.gsub('bla', '')}\">
+          #{scorm_media_element_file_metadata(media_element, 'ogg')}
+        </file>
+      "
+    end
+  end
+  
+  def scorm_document_file(document) # TODO ricontrollarne i metodi e riempire quelli che mancano
+    "
+      <file href=\"html/documents/#{document.id}/#{document.url.gsub('bla', '')}\">
+        <metadata>
+          <lom>
+            <general>
+              <identifier>
+                <catalog>URI</catalog>
+                <entry>#{document.url}</entry>
+              </identifier>
+            </general>
+            <technical>
+              <format>document/#{document.extension}</format>
+              <size>#{document.size}</size>
+              <location>#{documen.url}</location>
+            </technical>
+          </lom>
+        </metadata>
+      </file>
     "
   end
   
   def scorm_metametadata
     '
-    <metaMetadata>
-      <metadataSchema>LOMv1.0</metadataSchema>
-      <language>en</language>
-    </metaMetadata>
+      <metaMetadata>
+        <metadataSchema>LOMv1.0</metadataSchema>
+        <language>en</language>
+      </metaMetadata>
     '
   end
   
   def scorm_requirements
     '
-    <requirement>
-      <orComposite>
-        <type>
-          <source>LOMv1.0</source>
-          <value>browser</value>
-        </type>
-        <name>
-          <source>LOMv1.0</source>
-          <value>ms-internet explorer</value>
-        </name>
-        <minimumVersion>9.0</minimumVersion>
-      </orComposite>
-    </requirement>
-    <requirement>
-      <orComposite>
-        <type>
-          <source>LOMv1.0</source>
-          <value>browser</value>
-        </type>
-        <name>
-          <source>LOMv1.0</source>
-          <value>webkit</value>
-        </name>
-      </orComposite>
-    </requirement>
-    <requirement>
-      <orComposite>
-        <type>
-          <source>LOMv1.0</source>
-          <value>browser</value>
-        </type>
-        <name>
-          <source>LOMv1.0</source>
-          <value>mozilla</value>
-        </name>
-      </orComposite>
-    </requirement>
-    <requirement>
-      <orComposite>
-        <type>
-          <source>LOMv1.0</source>
-          <value>browser</value>
-        </type>
-        <name>
-          <source>LOMv1.0</source>
-          <value>safari</value>
-        </name>
-      </orComposite>
-    </requirement>
-    <requirement>
-      <orComposite>
-        <type>
-          <source>LOMv1.0</source>
-          <value>browser</value>
-        </type>
-        <name>
-          <source>LOMv1.0</source>
-          <value>opera</value>
-        </name>
-      </orComposite>
-    </requirement>
+      <requirement>
+        <orComposite>
+          <type>
+            <source>LOMv1.0</source>
+            <value>browser</value>
+          </type>
+          <name>
+            <source>LOMv1.0</source>
+            <value>ms-internet explorer</value>
+          </name>
+          <minimumVersion>9.0</minimumVersion>
+        </orComposite>
+      </requirement>
+      <requirement>
+        <orComposite>
+          <type>
+            <source>LOMv1.0</source>
+            <value>browser</value>
+          </type>
+          <name>
+            <source>LOMv1.0</source>
+            <value>webkit</value>
+          </name>
+        </orComposite>
+      </requirement>
+      <requirement>
+        <orComposite>
+          <type>
+            <source>LOMv1.0</source>
+            <value>browser</value>
+          </type>
+          <name>
+            <source>LOMv1.0</source>
+            <value>mozilla</value>
+          </name>
+        </orComposite>
+      </requirement>
+      <requirement>
+        <orComposite>
+          <type>
+            <source>LOMv1.0</source>
+            <value>browser</value>
+          </type>
+          <name>
+            <source>LOMv1.0</source>
+            <value>safari</value>
+          </name>
+        </orComposite>
+      </requirement>
+      <requirement>
+        <orComposite>
+          <type>
+            <source>LOMv1.0</source>
+            <value>browser</value>
+          </type>
+          <name>
+            <source>LOMv1.0</source>
+            <value>opera</value>
+          </name>
+        </orComposite>
+      </requirement>
     '
   end
   
@@ -150,15 +220,15 @@ module ScormHelper
   
   def scorm_copyrights
     "
-    <rights>
-      <copyrightAndOtherRestrictions>
-        <source>LOMv1.0</source>
-        <value>yes</value>
-      </copyrightAndOtherRestrictions>
-      <description>
-        <string language=\"en\">#{SETTINGS['application_copyright']}. For information about copyright contact Morgan S.P.A. via degli Olmetti 36</string>
-      </description>
-    </rights>
+      <rights>
+        <copyrightAndOtherRestrictions>
+          <source>LOMv1.0</source>
+          <value>yes</value>
+        </copyrightAndOtherRestrictions>
+        <description>
+          <string language=\"en\">#{SETTINGS['application_copyright']}. For information about copyright contact Morgan S.P.A. via degli Olmetti 36</string>
+        </description>
+      </rights>
     "
   end
   
@@ -171,21 +241,21 @@ module ScormHelper
   
   def scorm_slide_metadata(slide)
     "
-    <metadata>
-      <lom>
-        <general>
-          <title>
-            <string language=\"#{scorm_locale}\">#{scorm_slide_title slide}</string>
-          </title>
-          <language>#{scorm_locale}</language>
-          <aggregationLevel>
-            <source>LOMv1.0</source>
-            <value>1</value>
-          </aggregationLevel>
-        </general>
-        #{scorm_metametadata}
-      </lom>
-    </metadata>
+      <metadata>
+        <lom>
+          <general>
+            <title>
+              <string language=\"#{scorm_locale}\">#{scorm_slide_title slide}</string>
+            </title>
+            <language>#{scorm_locale}</language>
+            <aggregationLevel>
+              <source>LOMv1.0</source>
+              <value>1</value>
+            </aggregationLevel>
+          </general>
+          #{scorm_metametadata}
+        </lom>
+      </metadata>
     "
   end
   
