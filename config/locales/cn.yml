@@ -1654,7 +1654,7 @@ cn:
       # 1 - views/lesson_viewer/_export.html.erb
       button: "下载"
       # Footer of an exported lesson (the variable %{copyright} is replaced by the full name of the application including copyright).
-      # 1 - views/layouts/lesson_export.html.erb
+      # 1 - views/layouts/lesson_archive.html.erb
       made_in_desy: "这个课程是%{copyright}的版权"
   
   

@@ -1,8 +1,6 @@
 <%
   url_type ||= nil
   image = slide.media_elements_at
-  image_height = resize_height(image.media_element.width, image.media_element.height, 'image3') if !image.nil?
-  image_width = resize_width(image.media_element.width, image.media_element.height, 'image3') if !image.nil?
 %>
 
 
@@ -12,15 +10,17 @@
     <div class="image read-only">
       <% if image %>
         <%
+          image_height = resize_height(image.media_element.width, image.media_element.height, 'image3')
+          image_width = resize_width(image.media_element.width, image.media_element.height, 'image3')
           url = image.media_element.url(url_type)
-          effective_url = loaded ? "src=\"#{url}\"".html_safe : ''
+          effective_url = loaded ? "src=\"#{h url}\"".html_safe : ''
         %>
         <% if is_horizontal?(image.media_element.width, image.media_element.height, 'image3') %>
           <img style="left:<%= image.alignment %>px; width:<%= image_width %>px" data-url="<%= url %>" alt="<%= image.media_element.title %>" <%= effective_url %>>
         <% else %>
           <img style="top:<%= image.alignment %>px; height:<%= image_height %>px" data-url="<%= url %>" alt="<%= image.media_element.title %>" <%= effective_url %>>
         <% end %>
-        <% if !image.caption.blank? %>
+        <% if image.caption.present? %>
           <input class="caption" type="text" value="<%= image.caption %>" disabled="disabled">
         <% end %>
       <% end %>

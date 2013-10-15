@@ -13,12 +13,12 @@ require 'export'
 #
 class LessonExportController < ApplicationController
   
-  before_filter :initialize_lesson_with_owner_or_public
-  layout 'lesson_export', only: :export
+  before_filter :initialize_lesson_with_owner_or_public, :redirect_or_setup
+  layout 'lesson_archive', only: :archive
   
   # === Description
   #
-  # Downloads the lesson offline.
+  # Downloads the lesson as archive
   #
   # === Mode
   #
@@ -28,16 +28,24 @@ class LessonExportController < ApplicationController
   #
   # * ApplicationController#initialize_lesson_with_owner_or_public
   #
-  def export
+  def archive
+    @slides = @lesson.slides
+    @cover_img = @slides.first.media_elements_slides.first
+    @with_exit = false
+    @export = true
+    redirect_to Export::Lesson::Archive.new(@lesson, render_to_string).url
+  end
+
+  def ebook
+    redirect_to Export::Lesson::Ebook.new(@lesson).url
+  end
+
+  private
+  
+  def redirect_or_setup
     if !@ok
-      redirect_to '/dashboard'
-    else
-      @slides = @lesson.slides.order(:position)
-      @cover_img = @slides.first.media_elements_slides.first
-      @with_exit = false
-      @export = true
-      archive_url = Export::Lesson::Archive.new(@lesson, render_to_string(action: :index)).url
-      redirect_to archive_url
+      redirect_to dashboard_path
+      return
     end
   end
   

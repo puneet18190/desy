@@ -13,8 +13,11 @@ class Image < MediaElement
 
   # List of accepted extensions for an image
   EXTENSION_WHITE_LIST = ImageUploader::EXTENSION_WHITE_LIST
-  # Extensions globbing for finding images with <tt>Dir.glob</tt>
-  EXTENSIONS_GLOB      = "*.{#{EXTENSION_WHITE_LIST.join(',')}}"
+
+  # Glob for find images using <tt>Dir.glob</tt>
+  EXTENSIONS_GLOB = "*.{#{EXTENSION_WHITE_LIST.join(',')}}"
+
+  EBOOK_FORMATS = [nil]
   
   mount_uploader :media, ImageUploader
   
@@ -239,7 +242,7 @@ class Image < MediaElement
       font_size = Media::Image::Editing.ratio_value img[:width], img[:height], t[:font_size]
       coord_x = Media::Image::Editing.ratio_value img[:width], img[:height], t[:coord_x]
       coord_y = Media::Image::Editing.ratio_value img[:width], img[:height], t[:coord_y]
-      tmp_file = Tempfile.new('textarea')
+      tmp_file = Tempfile.new(Desy::TMP_PREFIX.call)
       begin
         tmp_file.write(t[:text])
         tmp_file.close

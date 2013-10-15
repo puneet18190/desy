@@ -59,7 +59,6 @@ module Media
   #         thumb_sizes:: video thumb image sizes
   # duration_threshold:: maximum difference of duration between the generated videos
   CONFIG = RecursiveOpenStruct.new({
-    tmp_prefix: "desy#{::Thread.current.object_id}",
     avtools: {
       avprobe: {
         cmd: {

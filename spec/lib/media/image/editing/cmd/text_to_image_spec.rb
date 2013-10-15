@@ -12,9 +12,9 @@ module Media
             end
 
             let(:text) do
-              Tempfile.new('desy_spec').tap do |f|
+              Tempfile.open(Desy::TMP_PREFIX.call) do |f|
                 f.write("Test\ntest")
-                f.close
+                f
               end
             end
 

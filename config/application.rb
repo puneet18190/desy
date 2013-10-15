@@ -72,4 +72,7 @@ module Desy
 
   MORE_THAN_ONE_LANGUAGE = SETTINGS['languages'].size > 1
 
+  # Prefix for temporary files and folders
+  TMP_PREFIX = ->() { "desy.#{Thread.current.object_id}" }
+
 end

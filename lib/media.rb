@@ -14,8 +14,15 @@ module Media
 
   # The folder where are located the static files
   RAILS_PUBLIC_FOLDER = Pathname.new Rails.public_path
-  # The prefix of the temporary files created by the media processings
-  TMP_PREFIX          = CONFIG.tmp_prefix
+
+  # MIME types of the generated media
+  MIME_TYPES = { '.jpg'  => 'image/jpeg' ,
+                 '.jpeg' => 'image/jpeg' ,
+                 '.png'  => 'image/png'  ,
+                 '.mp4'  => 'video/mp4'  ,
+                 '.webm' => 'video/webm' ,
+                 '.m4a'  => 'audio/mp4'  ,
+                 '.ogg'  => 'audio/ogg'  }
 
 end
 

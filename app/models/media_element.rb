@@ -264,7 +264,23 @@ class MediaElement < ActiveRecord::Base
     end
     
   end
+
+  # === Description
+  #
+  # Checks if the it is the +lesson+ argument cover
+  #
+  # === Returns
+  #
+  # A boolean-compliant value
+  #
+  def cover_of?(lesson)
+    is_a?(Image) && self == lesson.cover.media_elements.first
+  end
   
+  def ebook_resources_formats
+    self.class::EBOOK_FORMATS
+  end
+
   # === Description
   #
   # Extracts the translation of the +sti_type+ from the translation file

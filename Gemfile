@@ -3,18 +3,19 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.14'
 gem 'pg'
 
-# Gems by group in alphabetic sorting
-
+# Gems by group alphabetically sorted
 gem 'ancestry'
 gem 'bcrypt-ruby',              '~> 3.0.0'
 gem 'carrierwave'
 gem 'daemons'
 gem 'delayed_job_active_record'
+gem 'erubis'
 gem 'eventmachine',                         platforms: :ruby
 gem 'facter'
 gem 'jquery-rails',             '~> 2.1.4'
 gem 'kaminari'
 gem 'mini_magick',                                             github: 'ProGNOMmers/minimagick', branch: 'batch_compatibility'
+gem 'nokogiri'
 gem 'oj'
 gem 'recursive-open-struct'
 gem 'rubyzip'

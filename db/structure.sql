@@ -9,6 +9,20 @@ SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
 
+--
+-- Name: uuid-ossp; Type: EXTENSION; Schema: -; Owner: -
+--
+
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
+
+
+--
+-- Name: EXTENSION "uuid-ossp"; Type: COMMENT; Schema: -; Owner: -
+--
+
+COMMENT ON EXTENSION "uuid-ossp" IS 'generate universally unique identifiers (UUIDs)';
+
+
 SET search_path = public, pg_catalog;
 
 --
@@ -188,6 +202,7 @@ ALTER SEQUENCE documents_slides_id_seq OWNED BY documents_slides.id;
 
 CREATE TABLE lessons (
     id integer NOT NULL,
+    uuid uuid DEFAULT uuid_generate_v4() NOT NULL,
     user_id integer NOT NULL,
     school_level_id integer NOT NULL,
     subject_id integer NOT NULL,
@@ -713,9 +728,9 @@ CREATE TABLE users (
     location_id integer NOT NULL,
     confirmation_token character varying(255),
     metadata text,
+    password_token character varying(255),
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    password_token character varying(255)
+    updated_at timestamp without time zone NOT NULL
 );
 
 
@@ -1619,6 +1634,8 @@ ALTER TABLE ONLY virtual_classroom_lessons
 
 SET search_path TO "$user",public;
 
+INSERT INTO schema_migrations (version) VALUES ('20120923120617');
+
 INSERT INTO schema_migrations (version) VALUES ('20120924120617');
 
 INSERT INTO schema_migrations (version) VALUES ('20120924121212');
@@ -1662,8 +1679,6 @@ INSERT INTO schema_migrations (version) VALUES ('20130115155629');
 INSERT INTO schema_migrations (version) VALUES ('20130131093624');
 
 INSERT INTO schema_migrations (version) VALUES ('20130131094635');
-
-INSERT INTO schema_migrations (version) VALUES ('20130418143554');
 
 INSERT INTO schema_migrations (version) VALUES ('20130709101814');
 
