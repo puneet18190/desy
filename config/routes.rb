@@ -91,7 +91,8 @@ Desy::Application.routes.draw do
 
   # LESSON EXPORT
   get  'lessons/:lesson_id/archive' => 'lesson_export#archive',  as: :lesson_archive
-  get  'lessons/:lesson_id/ebook'   => 'lesson_export#ebook',  as: :lesson_ebook
+  # Temporarly disabled in production
+  get  'lessons/:lesson_id/ebook'   => 'lesson_export#ebook',    as: :lesson_ebook   unless Rails.env.production?
   
   # VIRTUAL CLASSROOM
   post 'virtual_classroom/:lesson_id/remove_lesson_from_inside'          => 'virtual_classroom#remove_lesson_from_inside'
