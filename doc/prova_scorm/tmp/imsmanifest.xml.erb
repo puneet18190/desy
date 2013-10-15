@@ -1,24 +1,11 @@
 <?xml version="1.0" standalone="no" ?>
 
+<%
+  media_elements = {}
+  documents = {}
+%>
 
-<manifest identifier="desy.lesson.51"
-          xmlns="http://www.imsglobal.org/xsd/imscp_v1p1"
-          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xmlns:adlcp="http://www.adlnet.org/xsd/adlcp_v1p3"
-          xmlns:adlseq="http://www.adlnet.org/xsd/adlseq_v1p3"
-          xmlns:adlnav="http://www.adlnet.org/xsd/adlnav_v1p3"
-          xmlns:imsss="http://www.imsglobal.org/xsd/imsss"
-          xmlns:lom="http://ltsc.ieee.org/xsd/LOM"
-          xsi:schemaLocation="http://www.imsglobal.org/xsd/imscp_v1p1 imscp_v1p1.xsd
-                              http://www.adlnet.org/xsd/adlcp_v1p3 adlcp_v1p3.xsd
-                              http://www.adlnet.org/xsd/adlseq_v1p3 adlseq_v1p3.xsd
-                              http://www.adlnet.org/xsd/adlnav_v1p3 adlnav_v1p3.xsd
-                              http://www.imsglobal.org/xsd/imsss imsss_v1p0.xsd
-                              http://ltsc.ieee.org/xsd/LOM lom.xsd">
-  
-  <% media_elements = {} %>
-  <% documents = {} %>
-  
+<manifest <%= scorm_manifest_header @lesson %>>
   
   <metadata>
     <schema>ADL SCORM</schema>
@@ -114,16 +101,20 @@
         <% slide.media_elements_slides.each do |mes| %>
           <% if !my_media_elements_slides.include?(mes.media_element_id) %>
             <dependency identifierref="media_element_<%= mes.media_element_id %>"/>
-            <% my_media_elements_slides.push(mes.media_element_id) %>
-            <% media_elements[mes.media_element_id] = true %>
+            <%
+              my_media_elements_slides.push(mes.media_element_id)
+              media_elements[mes.media_element_id] = true
+            %>
           <% end %>
         <% end %>
         <% my_documents_slides = [] %>
         <% slide.documents_slides.each do |ds| %>
           <% if !my_documents_slides.include?(ds.document_id) %>
             <dependency identifierref="document_<%= ds.document_id %>"/>
-            <% my_documents_slides.push(ds.document_id) %>
-            <% documents[ds.document_id] = true %>
+            <%
+              my_documents_slides.push(ds.document_id)
+              documents[ds.document_id] = true
+            %>
           <% end %>
         <% end %>
         <%= scorm_slide_dependencies slide %>
@@ -194,6 +185,5 @@
     <% end %>
     <%= scorm_base_packages %>
   </resources>
-  
   
 </manifest>
