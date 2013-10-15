@@ -275,4 +275,111 @@ module ScormHelper
     resp
   end
   
+  def scorm_base_packages
+    "
+      <resource identifier=\"common\" type=\"webcontent\" adlcp:scormType=\"asset\">
+        <dependency identifierref=\"common_js\"/>
+        <dependency identifierref=\"common_css\"/>
+        <dependency identifierref=\"common_images\"/>
+        <metadata>
+          <lom>
+            <general>
+              <structure>
+                <source>LOMv1.0</source>
+                <value>collection</value>
+              </structure>
+            </general>
+            #{scorm_metametadata}
+          </lom>
+        </metadata>
+      </resource>
+      <resource identifier=\"players\" type=\"webcontent\" adlcp:scormType=\"asset\">
+        <file href=\"html/assets/icone-player.svg\"/>
+        <metadata>
+          <lom>
+            <general>
+              <structure>
+                <source>LOMv1.0</source>
+                <value>collection</value>
+              </structure>
+            </general>
+            #{scorm_metametadata}
+          </lom>
+        </metadata>
+      </resource>
+      <resource identifier=\"documents\" type=\"webcontent\" adlcp:scormType=\"asset\">
+        <file href=\"html/assets/documents_fondo.png\"/>
+        <metadata>
+          <lom>
+            <general>
+              <structure>
+                <source>LOMv1.0</source>
+                <value>collection</value>
+              </structure>
+            </general>
+            #{scorm_metametadata}
+          </lom>
+        </metadata>
+      </resource>
+      <resource identifier=\"tinyMCE\" type=\"webcontent\" adlcp:scormType=\"asset\">
+        <file href=\"html/assets/pallino.svg\"/>
+        <file href=\"html/assets/tiny_items.gif\"/>
+        <metadata>
+          <lom>
+            <general>
+              <structure>
+                <source>LOMv1.0</source>
+                <value>collection</value>
+              </structure>
+            </general>
+            #{scorm_metametadata}
+          </lom>
+        </metadata>
+      </resource>
+      <resource identifier=\"common_js\" type=\"webcontent\" adlcp:scormType=\"asset\">
+        <file href=\"html/assets/lesson_export/application.js\"/>
+        <metadata>
+          <lom>
+            <general>
+              <structure>
+                <source>LOMv1.0</source>
+                <value>collection</value>
+              </structure>
+            </general>
+            #{scorm_metametadata}
+          </lom>
+        </metadata>
+      </resource>
+      <resource identifier=\"common_css\" type=\"webcontent\" adlcp:scormType=\"asset\">
+        <file href=\"html/assets/lesson_export/application.css\"/>
+        <metadata>
+          <lom>
+            <general>
+              <structure>
+                <source>LOMv1.0</source>
+                <value>collection</value>
+              </structure>
+            </general>
+            #{scorm_metametadata}
+          </lom>
+        </metadata>
+      </resource>
+      <resource identifier=\"common_images\" type=\"webcontent\" adlcp:scormType=\"asset\">
+        <file href=\"html/assets/favicon32x32.png\"/>
+        <file href=\"html/assets/lesson-editor-logo-footer.png\"/>
+        <metadata>
+          <lom>
+            <general>
+              <structure>
+                <source>LOMv1.0</source>
+                <value>collection</value>
+              </structure>
+            </general>
+            #{scorm_metametadata}
+          </lom>
+        </metadata>
+      </resource>
+    "
+  end
+  
 end
