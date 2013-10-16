@@ -57,4 +57,9 @@ $(document).ready(function() {
       moveToAdhiacentSlideInLessonViewer(scrolls, goToNextSlideInLessonViewer);
     }
   });
+  lessonViewerDocumentReadyWirisConvertSrc();
+  $('#footer').css('top', (parseInt($(window).outerHeight()) - 40) + 'px').css('width', (parseInt($(window).outerWidth()) - 24) + 'px');
+  $(window).resize(function() {
+    $('#footer').css('top', ($(window).height() - 40) + 'px').css('width', ($(window).width() - 24) + 'px');
+  });
 });
