@@ -102,7 +102,7 @@ function test_install_rbenv_and_ruby () {
   _assertFalse "[ -d \"$user_home/.rbenv\" ]"
   _assertFalse "[ -d \"$user_home/.rbenv/plugins/ruby-build\" ]"
   _assertFalse "su --login --command 'which ruby' \"$username\""
-  _assertFalse "su --login --command 'ruby --version 2> /dev/null | grep \"^ruby 2\.0\.0p0 \"' \"$username\""
+  _assertFalse "su --login --command 'ruby --version 2> /dev/null | grep \"^ruby 2\.0\.0p247 \"' \"$username\""
 
   # FIXME: there's no way to call a no-interactive `gem`
   # install_rbenv_and_ruby > /dev/null 2>&1
@@ -113,7 +113,7 @@ function test_install_rbenv_and_ruby () {
   _assertTrue "[ -d \"$user_home/.rbenv\" ]"
   _assertTrue "[ -d \"$user_home/.rbenv/plugins/ruby-build\" ]"
   _assertTrue "su --login --command 'which ruby' \"$username\""
-  _assertTrue "su --login --command 'ruby --version 2> /dev/null | grep \"^ruby 2\.0\.0p0 \"' \"$username\""
+  _assertTrue "su --login --command 'ruby --version 2> /dev/null | grep \"^ruby 2\.0\.0p247 \"' \"$username\""
   assertEquals "$last_ruybgems_version" "`su --login --command 'gem --version' \"$username\"`"
 }
 
@@ -230,7 +230,7 @@ function test_install_and_configure_nginx () {
 }
 
 function test_install_postgresql () {
-  local package=postgresql-9.2
+  local package=postgresql-9.3
 
   apt-get --assume-yes purge "$package" > /dev/null 2>&1
   apt-get --assume-yes autoremove > /dev/null 2>&1
@@ -241,6 +241,20 @@ function test_install_postgresql () {
   install_postgresql > /dev/null 2>&1
 
   _assertTrue "dpkg-query --show --showformat='\${Version}' \"$package\" 2> /dev/null | grep --quiet '^9\.[2-9]'"
+}
+
+function test_install_postgresql_contrib () {
+  local package=postgresql-contrib-9.3
+
+  apt-get --assume-yes purge "$package" > /dev/null 2>&1
+  apt-get --assume-yes autoremove > /dev/null 2>&1
+  apt-get --assume-yes update > /dev/null 2>&1
+
+  _assertFalse "dpkg-query --show --showformat='\${db:Status-abbrev}' \"$package\" 2> /dev/null | grep --quiet '^i'"
+
+  install_postgresql_contrib > /dev/null 2>&1
+
+  _assertTrue "dpkg-query --show --showformat='\${Version}' \"$package\" 2> /dev/null | grep --quiet '^9\.[3-9]'"
 }
 
 function test_configure_unicorn_service () {

@@ -39,9 +39,9 @@ function install_rbenv_and_ruby () {
   suc "echo 'export PATH=\"\$HOME/.rbenv/bin:\$PATH\"' >> \$HOME/.profile"
   suc "echo 'eval \"\$(rbenv init -)\"' >> \$HOME/.profile"
 
-  echo '  Installing Ruby 2.0.0-p0'
-  suc 'export CFLAGS="-march=native -O3 -pipe" && rbenv install 2.0.0-p0'
-  suc 'rbenv global 2.0.0-p0'
+  echo '  Installing Ruby 2.0.0-p247'
+  suc 'export CFLAGS="-march=native -O3 -pipe" && rbenv install 2.0.0-p247'
+  suc 'rbenv global 2.0.0-p247'
 
   # fi
 
@@ -76,7 +76,7 @@ function pg_last_version_of_package () {
   # grep example: echo 'Version: 9.2.4-0ppa1~quantal' | grep --perl-regexp --only-matching '(?<=^Version: )9\.[2-9].*' #=> 9.2.4-0ppa1~quantal
   echo "\$1: $1" 1>&2
   apt-cache show "$1" 2> /dev/null                                                \
-   | grep --perl-regexp --only-matching '(?<=^Version: )9\.[2-9].*' \
+   | grep --perl-regexp --only-matching '(?<=^Version: )9\.[3-9].*' \
    | sort                                                                         \
    | tail --lines=1
 }
@@ -95,9 +95,9 @@ function add_postgresql_apt_repository () {
 }
 
 function install_postgresql () {
-  echo '  Installing postgresql 9.2 or newer'
+  echo '  Installing postgresql 9.3 or newer'
 
-  local pg_packages=(postgresql postgresql-9.2)
+  local pg_packages=(postgresql postgresql-9.3)
   local pg_installed=false
   local pg_version=''
 
@@ -124,8 +124,39 @@ function install_postgresql () {
   fi
 }
 
+function install_postgresql_contrib () {
+  echo '  Installing postgresql-contrib 9.3 or newer'
+
+  local pg_packages=(postgresql-contrib postgresql-contrib-9.3)
+  local pg_installed=false
+  local pg_version=''
+
+  for pg_package in "${pg_packages[@]}"; do
+    [ -z "$DEBUG" ] && set +e
+    pg_version=`pg_last_version_of_package "$pg_package"`
+    echo "pg_package: $pg_package pg_version: $pg_version"
+    [ -z "$DEBUG" ] && set -e
+
+    if [ -n "$pg_version" ]; then
+      apt-get --assume-yes install "$pg_package"="$pg_version"
+      pg_installed=true
+      break
+    fi
+  done
+
+  if [ "$pg_installed" = false ]; then
+    if [ "$1" = 'exit_if_error' ]; then
+      echo "  Couldn't install $pg_package" 1>&2
+      exit 1
+    fi
+
+    add_postgresql_apt_repository
+    install_postgresql_contrib 'exit_if_error'
+  fi
+}
+
 function install_libpq_dev () {
-  echo '  Installing libpq-dev 9.2 or newer'
+  echo '  Installing libpq-dev 9.3 or newer'
 
   local pg_packages=(libpq-dev)
   local pg_installed=false
@@ -373,6 +404,7 @@ function distro_install () {
     install_and_configure_nginx
     install_and_configure_php
     install_postgresql            # PostgreSQL requires manual configuration
+    install_postgresql_contrib
     configure_unicorn_service
   else
     configure_delayed_job_service

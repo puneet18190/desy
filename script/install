@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 function fail () {
   echo '' 1>&2
   echo 'Aborting' 1>&2
