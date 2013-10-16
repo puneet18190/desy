@@ -34,16 +34,6 @@
   <% end %>
 <% end %>
 
-<a class="esciButton fltrt" title="<%= t('titles.exit') %>" href="#" style="margin-top:20px; display:none"></a>
-
 <% if with_exit %>
-  <script type="text/javascript" charset="utf-8">
-    var bb = $('.esciButton');
-    <% if back.present? %>
-      bb.attr('href', '<%= back %>');
-    <% else %>
-      bb.attr('href', 'javascript:history.back()');
-    <% end %>
-    bb.show();
-  </script>
+  <a class="esciButton fltrt" title="<%= t('titles.exit') %>" href="<%= back.present? ? back.to_json : 'javascript:history.back()' %>" style="margin-top:20px"></a>
 <% end %>
