@@ -30,7 +30,7 @@
 <% if with_icons %>
   <%= render :partial => 'lesson_viewer/export', :locals => {:lesson => slides.first.lesson} %>
   <% if slides.first.lesson.is_public %>
-    <%= render :partial => 'lesson_viewer/social_networks', :locals => {:lesson => slides.first.lesson} %>
+    <%= render :partial => 'lesson_viewer/social_networks', :locals => {:lesson => slides.first.lesson, :cover_img => slides.first.media_elements_slides.first} %>
   <% end %>
 <% end %>
 

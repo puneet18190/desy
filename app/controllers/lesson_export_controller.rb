@@ -14,20 +14,8 @@ require 'export'
 class LessonExportController < ApplicationController
   
   before_filter :initialize_lesson_with_owner_or_public, :redirect_or_setup
-  layout 'lesson_archive', only: :archive
+  layout 'lesson_archive', :only => :archive
   
-  # === Description
-  #
-  # Downloads the lesson as archive
-  #
-  # === Mode
-  #
-  # Html
-  #
-  # === Specific filters
-  #
-  # * ApplicationController#initialize_lesson_with_owner_or_public
-  #
   def archive
     @slides = @lesson.slides
     @cover_img = @slides.first.media_elements_slides.first
