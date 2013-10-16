@@ -32,7 +32,6 @@ class LessonViewerController < ApplicationController
     if !@ok
       redirect_to '/dashboard'
     else
-      @is_back = (!params[:back].nil? && !params[:back].empty?)
       @with_exit = logged_in?
       @back = params[:back]
       @slides = @lesson.slides.preload(:media_elements_slides, {:media_elements_slides => :media_element}, :documents_slides, {:documents_slides => :document}).order(:position)
@@ -49,7 +48,6 @@ class LessonViewerController < ApplicationController
   # Html
   #
   def playlist
-    @is_back = true
     @with_exit = false
     @back = '/virtual_classroom'
     @slides = current_user.playlist_for_viewer
