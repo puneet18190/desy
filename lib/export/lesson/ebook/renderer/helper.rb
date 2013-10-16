@@ -8,7 +8,7 @@ require 'slide/math_images'
 require 'export'
 require 'export/lesson'
 require 'export/lesson/ebook'
-require 'export/lesson/shared/archive_and_ebook'
+require 'export/lesson/shared'
 require 'export/lesson/shared/ebook_and_ebook_renderer'
 
 module Export
@@ -22,7 +22,7 @@ module Export
           DCTERMS_MODIFIED_FORMAT         = '%Y-%m-%dT%H:%M:%SZ'
           UNKNOWN_MIME_TYPE               = 'application/octet-stream'
           MEDIA_ELEMENT_MIME_TYPES        = Media::MIME_TYPES
-          MATH_IMAGES_ARCHIVE_FOLDER_NAME = Shared::ArchiveAndEbook::MATH_IMAGES_ARCHIVE_FOLDER_NAME
+          MATH_IMAGES_ARCHIVE_FOLDER_NAME = Shared::MATH_IMAGES_ARCHIVE_FOLDER_NAME
 
           def dcterms_modified(lesson)
             lesson.updated_at.utc.strftime DCTERMS_MODIFIED_FORMAT
@@ -95,7 +95,6 @@ module Export
               media_type: media_element_mime_type(href) }
           end
 
-          # TODO validare l'url delle immagini di Wiris in fase di salvataggio della slide
           def slide_content(slide)
             return nil unless slide.text
             
