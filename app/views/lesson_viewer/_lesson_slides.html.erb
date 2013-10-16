@@ -27,35 +27,13 @@
   </div>
 </div>
 
-<% if @export.nil? && !from_playlist %>
+<% if with_icons %>
   <%= render :partial => 'lesson_viewer/export', :locals => {:lesson => slides.first.lesson} %>
   <% if slides.first.lesson.is_public %>
-    <%= render :partial => 'lesson_viewer/social_networks', :locals => {:lesson => slides.first.lesson} %>
+    <%= render :partial => 'lesson_viewer/social_networks', :locals => {:lesson => slides.first.lesson, :cover_img => slides.first.media_elements_slides.first} %>
   <% end %>
 <% end %>
 
-<a class="esciButton fltrt" title="<%= t('titles.exit') %>" href="#" style="margin-top:20px; display:none"></a>
-
 <% if with_exit %>
-  <script type="text/javascript" charset="utf-8">
-    var bb = $('.esciButton');
-    <% if is_back %>
-      bb.attr('href', '<%= back %>');
-    <% else %>
-      bb.attr('href', 'javascript:history.back()');
-    <% end %>
-    bb.show();
-  </script>
-<% end %>
-
-<% if !@export.nil? %>
-  <script type="text/javascript">
-    $(document).ready(function() {
-      lessonViewerDocumentReadyWirisConvertSrc();
-      $('#footer').css('top', (parseInt($(window).outerHeight()) - 40) + 'px').css('width', (parseInt($(window).outerWidth()) - 24) + 'px');
-      $(window).resize(function() {
-        $('#footer').css('top', ($(window).height() - 40) + 'px').css('width', ($(window).width() - 24) + 'px');
-      });
-    });
-  </script>
+  <a class="esciButton fltrt" title="<%= t('titles.exit') %>" href="<%= back.present? ? back.to_json : 'javascript:history.back()' %>" style="margin-top:20px"></a>
 <% end %>

@@ -1,4 +1,4 @@
-<%= render :partial => 'lesson_slides', :locals => {:slides => @slides, :is_back => @is_back, :with_exit => @with_exit, :back => @back, :from_playlist => true} %>
+<%= render :partial => 'lesson_slides', :locals => {:slides => @slides, :with_exit => @with_exit, :back => @back, :with_icons => false} %>
 <%= render :partial => 'playlist_menu', :locals => {:vc_lessons => @vc_lessons, :covers => @covers} %>
 <div class="playlist_footer">
   <%= link_to '', my_virtual_classroom_path, :class => 'esciButton fltrt', :title => t('titles.exit') %>

@@ -8,7 +8,7 @@ require 'env_relative_path'
 
 require 'export'
 require 'export/lesson'
-require 'export/lesson/shared/archive_and_ebook'
+require 'export/lesson/shared'
 
 module Export
   module Lesson
@@ -17,7 +17,7 @@ module Export
       require 'export/lesson/shared/ebook_and_ebook_renderer'
 
       include EnvRelativePath
-      include Shared::ArchiveAndEbook
+      include Shared
       include Shared::EbookAndEbookRenderer
 
       FOLDER               = env_relative_pathname RAILS_PUBLIC, 'lessons', 'exports', 'ebooks'
@@ -60,7 +60,7 @@ module Export
       def find_or_create
         return if path.exist?
         
-        remove_other_possible_files if folder.exist?
+        remove_old_files if folder.exist?
         folder.mkpath
         create
       end

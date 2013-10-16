@@ -1,0 +1,189 @@
+<?xml version="1.0" standalone="no" ?>
+
+<%
+  media_elements = {}
+  documents = {}
+%>
+
+<manifest <%= scorm_manifest_header @lesson %>>
+  
+  <metadata>
+    <schema>ADL SCORM</schema>
+    <schemaversion>2004 4th Edition</schemaversion>
+    <lom>
+      <general>
+        <identifier>
+          <catalog>URI</catalog>
+          <entry><%= lesson_viewer_url @lesson.id %></entry>
+        </identifier>
+        <title>
+          <string language="<%= scorm_locale %>"><%= @lesson.title %></string>
+        </title>
+        <language><%= scorm_locale %></language>
+        <description>
+          <string language="<%= scorm_locale %>"><%= @lesson.description %></string>
+        </description>
+        <%= scorm_tags @lesson.tags %>
+        <coverage>
+          <string language="en">Lesson about <%= @lesson.subject.description %></string>
+        </coverage>
+      </general>
+      <lifeCycle>
+        <status>
+          <source>LOMv1.0</source>
+          <value>final</value>
+        </status>
+        <%= scorm_author @lesson.user.full_name, @lesson.updated_at, 'Date of last modification' %>
+      </lifeCycle>
+      <%= scorm_metametadata %>
+      <technical>
+        <%= scorm_requirements %>
+      </technical>
+      <educational>
+        <interactivityType>
+          <source>LOMv1.0</source>
+          <value>expositive</value>
+        </interactivityType>
+        <interactivityLevel>
+          <source>LOMv1.0</source>
+          <value>low</value>
+        </interactivityLevel>
+        <intendedEndUserRole>
+          <source>LOMv1.0</source>
+          <value>learner</value>
+        </intendedEndUserRole>
+        <context>
+          <source>LOMv1.0</source>
+          <value><%= scorm_school_level @lesson.school_level %></value>
+        </context>
+        <language><%= scorm_locale %></language>
+      </educational>
+      <%= scorm_copyrights %>
+    </lom>
+  </metadata>
+  
+  <organizations default="slides">
+    <organization identifier="slides">
+      <title><%= @lesson.title %></title>
+      <% @lesson.slides.each do |slide| %>
+        <item identifier="activity_slide_<%= slide.id %>" identifierref="slide_<%= slide.id %>">
+          <title><%= scorm_slide_title slide %></title>
+          <%= scorm_slide_metadata slide %>
+        </item>
+      <% end %>
+      <imsss:sequencing>
+        <imsss:controlMode choice="true" flow="true"/>
+      </imsss:sequencing>
+      <metadata>
+        <lom>
+          <general>
+            <structure>
+              <source>LOMv1.0</source>
+              <value>linear</value>
+            </structure>
+            <aggregationLevel>
+              <source>LOMv1.0</source>
+              <value>2</value>
+            </aggregationLevel>
+          </general>
+          <%= scorm_metametadata %>
+        </lom>
+      </metadata>
+    </organization>
+  </organizations>
+  
+  <resources>
+    <% @lesson.slides.each do |slide| %>
+      <resource identifier="slide_<%= slide.id %>" type="webcontent" adlcp:scormType="asset" href="html/slide<%= slide.id %>.html">
+        <file href="html/slide<%= slide.id %>.html"/>
+        <%= scorm_math_images slide %>
+        <% my_media_elements_slides = [] %>
+        <% slide.media_elements_slides.each do |mes| %>
+          <% if !my_media_elements_slides.include?(mes.media_element_id) %>
+            <dependency identifierref="media_element_<%= mes.media_element_id %>"/>
+            <%
+              my_media_elements_slides.push(mes.media_element_id)
+              media_elements[mes.media_element_id] = true
+            %>
+          <% end %>
+        <% end %>
+        <% my_documents_slides = [] %>
+        <% slide.documents_slides.each do |ds| %>
+          <% if !my_documents_slides.include?(ds.document_id) %>
+            <dependency identifierref="document_<%= ds.document_id %>"/>
+            <%
+              my_documents_slides.push(ds.document_id)
+              documents[ds.document_id] = true
+            %>
+          <% end %>
+        <% end %>
+        <%= scorm_slide_dependencies slide %>
+        <metadata>
+          <lom>
+            <general>
+              <structure>
+                <source>LOMv1.0</source>
+                <value>collection</value>
+              </structure>
+            </general>
+            <technical>
+              <format>text/html</format>
+              <%= scorm_requirements %>
+            </technical>
+            <educational>
+              <learningResourceType>
+                <source>LOMv1.0</source>
+                <value>slide</value>
+              </learningResourceType>
+            </educational>
+            <%= scorm_copyrights %>
+            <%= scorm_metametadata %>
+          </lom>
+        </metadata>
+      </resource>
+    <% end %>
+    <% documents.keys.each do |document| %>
+      <resource identifier="document_<%= document.id %>" type="webcontent" adlcp:scormType="asset">
+        <%= scorm_document_file document %>
+        <file href="html/assets/documents/<%= document.type %>.svg"/>
+        <metadata>
+          <lom>
+            <%= scorm_document_general_metadata document %>
+            <lifeCycle>
+              <%= scorm_author document.user.full_name, document.created_at, 'Date of creation' %>
+            </lifeCycle>
+            <%= scorm_metametadata %>
+          </lom>
+        </metadata>
+      </resource>
+    <% end %>
+    <% media_elements.keys.each do |media_element| %>
+      <resource identifier="media_element_<%= media_element.id %>" type="webcontent" adlcp:scormType="asset">
+        <%= scorm_media_element_files media_element %>
+        <metadata>
+          <lom>
+            <general>
+              <title>
+                <string language="<%= scorm_locale %>"><%= media_element.title %></string>
+              </title>
+              <description>
+                <string language="<%= scorm_locale %>"><%= media_element.description %></string>
+              </description>
+              <structure>
+                <source>LOMv1.0</source>
+                <value>atomic</value>
+              </structure>
+              <%= scorm_tags media_element.tags %>
+            </general>
+            <lifeCycle>
+              <%= scorm_author media_element.user.full_name, media_element.created_at, 'Date of creation' %>
+            </lifeCycle>
+            <%= scorm_metametadata %>
+          </lom>
+        </metadata>
+      </resource>
+    <% end %>
+    <%= scorm_base_packages %>
+  </resources>
+  
+</manifest>

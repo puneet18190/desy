@@ -12,13 +12,13 @@ require 'export/lesson/shared'
 
 module Export
   module Lesson
-    class Archive
+    class Scorm
 
       include EnvRelativePath
       include Shared
 
-      ASSETS_FOLDER              = Lesson::FOLDER.join 'archives', 'assets'
-      FOLDER                     = env_relative_pathname RAILS_PUBLIC, 'lessons', 'exports', 'archives'
+      ASSETS_FOLDER              = Lesson::FOLDER.join 'scorms', 'assets'
+      FOLDER                     = env_relative_pathname RAILS_PUBLIC, 'lessons', 'exports', 'scorms'
       ASSETS_ARCHIVE_FOLDER_NAME = 'assets'
 
       # STORED or DEFLATED
@@ -31,13 +31,11 @@ module Export
       end
 
       private
-      attr_reader :lesson, :index_page, 
-                  :filename_without_extension, :folder, :filename, :archive_root_folder, :path, :assets_archive_folder, :math_images_archive_folder
+      attr_reader :lesson, :rendered_slides, :filename_without_extension, :folder, :filename, :archive_root_folder, :path
       public
 
-      # index_page: String
-      def initialize(lesson, index_page)
-        @lesson, @index_page = lesson, index_page
+      def initialize(lesson, rendered_slides)
+        @lesson, @rendered_slides = lesson, rendered_slides
 
         parameterized_title = lesson.title.parameterize
         time                = lesson.updated_at.utc.strftime(WRITE_TIME_FORMAT)
@@ -61,12 +59,13 @@ module Export
         return if path.exist?
         
         # raises if export assets are not compiled
-        raise "Assets are not compiled. Please create them using rake exports:lessons:archives:assets:compile" unless assets_compiled?
+#        raise "Assets are not compiled. Please create them using rake exports:lessons:scorms:assets:compile" unless assets_compiled?
 
         remove_old_files if folder.exist?
         folder.mkpath
         create
       end
+      
 
       private
 
@@ -79,23 +78,23 @@ module Export
       end
 
       def create
-        Zip::File.open(path, Zip::File::CREATE) do |archive|
-          add_string_entry archive, index_page, archive_root_folder.join(INDEX_PAGE_NAME)
+        Zip::File.open(path, Zip::File::CREATE) do |scorm|
+#          add_string_entry scorm, index_page, archive_root_folder.join(INDEX_PAGE_NAME)
 
-          assets_files.each do |path|
-            add_path_entry archive, path, assets_archive_folder.join(path.relative_path_from ASSETS_FOLDER)
-          end
+#          assets_files.each do |path|
+#            add_path_entry scorm, path, assets_archive_folder.join(path.relative_path_from ASSETS_FOLDER)
+#          end
 
           media_elements_files.each do |path|
-            add_path_entry archive, path, archive_root_folder.join(path.relative_path_from MEDIA_ELEMENTS_UPFOLDER)
+            add_path_entry scorm, path, archive_root_folder.join(path.relative_path_from MEDIA_ELEMENTS_UPFOLDER)
           end
 
           documents_files.each do |path|
-            add_path_entry archive, path, archive_root_folder.join(path.relative_path_from DOCUMENTS_UPFOLDER)
+            add_path_entry scorm, path, archive_root_folder.join(path.relative_path_from DOCUMENTS_UPFOLDER)
           end
 
           math_images.each do |path|
-            add_path_entry archive, path, math_images_archive_folder.join(path.basename)
+            add_path_entry scorm, path, math_images_archive_folder.join(path.basename)
           end
         end
 
