@@ -17,7 +17,7 @@ class LessonExportController < ApplicationController
   layout 'lesson_archive', :only => :archive
   
   def archive
-    @slides = @lesson.slides
+    @slides = @lesson.slides.preload(:media_elements_slides, {:media_elements_slides => :media_element}, :documents_slides, {:documents_slides => :document}).order(:position)
     redirect_to Export::Lesson::Archive.new(@lesson, render_to_string).url
   end
   
