@@ -67,7 +67,7 @@ module Export
 
               def pathname_nestings
                 nesting = 0
-                @pathname.ascend do |v| 
+                @pathname.ascend do |v|
                   break if v.to_s.in? Rails.application.config.assets.paths
                   nesting += 1
                 end
@@ -114,8 +114,8 @@ module Export
             pallino.svg
             set-icone-editor.svg
             tiny_items.gif
-            lesson_export/application.css
-            lesson_export/application.js
+            lesson_archive/application.css
+            lesson_archive/application.js
             browser_not_supported/application.css
             browser_not_supported/application.js
           )

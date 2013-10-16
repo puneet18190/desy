@@ -86,7 +86,7 @@ module Export
             add_path_entry archive, path, assets_archive_folder.join(path.relative_path_from ASSETS_FOLDER)
           end
 
-          media_elements_files.each do |path|
+          media_elements_files(exclude_versions: [ :thumb, :cover ]).each do |path|
             add_path_entry archive, path, archive_root_folder.join(path.relative_path_from MEDIA_ELEMENTS_UPFOLDER)
           end
 
