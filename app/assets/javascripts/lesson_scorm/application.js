@@ -42,19 +42,8 @@ $(document).ready(function() {
   javaScriptAnimationsDocumentReady();
   playersDocumentReady();
   lessonViewerDocumentReady();
-  var scrolls = $('#left_scroll, #right_scroll');
-  $('.lesson-archive-layout .container').css('margin-top', ($(window).height() - 590) / 2 + 'px');
+  $('.lesson-scorm-layout .container').css('margin-top', ($(window).height() - 590) / 2 + 'px');
   $(window).resize(function() {
-    $('.lesson-archive-layout .container').css('margin-top', ($(window).height() - 590) / 2 + 'px');
-  });
-  $('.lesson-archive-layout').on('swiperight', function() {
-    if(mustReactToSwipe()) {
-      moveToAdhiacentSlideInLessonViewer(scrolls, goToPrevSlideInLessonViewer);
-    }
-  });
-  $('.lesson-archive-layout').on('swipeleft', function() {
-    if(mustReactToSwipe()) {
-      moveToAdhiacentSlideInLessonViewer(scrolls, goToNextSlideInLessonViewer);
-    }
+    $('.lesson-scorm-layout .container').css('margin-top', ($(window).height() - 590) / 2 + 'px');
   });
 });

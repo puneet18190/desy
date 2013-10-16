@@ -98,57 +98,27 @@ function lessonViewerDocumentReadySlidesNavigation() {
   var scrolls = $('#left_scroll, #right_scroll');
   $(document.documentElement).keyup(function(e) {
     if(e.keyCode == 37) {
-      if(!scrolls.first().hasClass('disabled')) {
-        scrolls.addClass('disabled');
-        hideDocumentsInLessonViewer();
-        goToPrevSlideInLessonViewer(false, function() {
-          scrolls.removeClass('disabled');
-        });
-      }
+      moveToAdhiacentSlideInLessonViewer(scrolls, goToPrevSlideInLessonViewer);
     } else if(e.keyCode == 39) {
-      if(!scrolls.first().hasClass('disabled')) {
-        scrolls.addClass('disabled');
-        hideDocumentsInLessonViewer();
-        goToNextSlideInLessonViewer(false, function() {
-          scrolls.removeClass('disabled');
-        });
-      }
+      moveToAdhiacentSlideInLessonViewer(scrolls, goToNextSlideInLessonViewer);
     }
   });
   $body.on('click', '#left_scroll', function(e) {
     e.preventDefault();
-    if(!scrolls.first().hasClass('disabled')) {
-      scrolls.addClass('disabled');
-      goToPrevSlideInLessonViewer(false, function() {
-        scrolls.removeClass('disabled');
-      });
-    }
+    moveToAdhiacentSlideInLessonViewer(scrolls, goToPrevSlideInLessonViewer);
   });
   $body.on('click', '#right_scroll', function(e) {
     e.preventDefault();
-    if(!scrolls.first().hasClass('disabled')) {
-      scrolls.addClass('disabled');
-      goToNextSlideInLessonViewer(false, function() {
-        scrolls.removeClass('disabled');
-      });
+    moveToAdhiacentSlideInLessonViewer(scrolls, goToNextSlideInLessonViewer);
+  });
+  $('.lesson-viewer-layout').on('swiperight', function() {
+    if(mustReactToSwipe()) {
+      moveToAdhiacentSlideInLessonViewer(scrolls, goToPrevSlideInLessonViewer);
     }
   });
-  $('.lesson-viewer-layout, .lesson-archive-layout').on('swiperight', function() {
-    if(mustReactToSwipe() && !scrolls.first().hasClass('disabled')) {
-      scrolls.addClass('disabled');
-      hideDocumentsInLessonViewer();
-      goToPrevSlideInLessonViewer(false, function() {
-        scrolls.removeClass('disabled');
-      });
-    }
-  });
-  $('.lesson-viewer-layout, .lesson-archive-layout').on('swipeleft', function() {
-    if(mustReactToSwipe() && !scrolls.first().hasClass('disabled')) {
-      scrolls.addClass('disabled');
-      hideDocumentsInLessonViewer();
-      goToNextSlideInLessonViewer(false, function() {
-        scrolls.removeClass('disabled');
-      });
+  $('.lesson-viewer-layout').on('swipeleft', function() {
+    if(mustReactToSwipe()) {
+      moveToAdhiacentSlideInLessonViewer(scrolls, goToNextSlideInLessonViewer);
     }
   });
 }
@@ -252,9 +222,9 @@ function initializeLessonViewer() {
   if($('._playlist_menu_item').length <= 3) {
     $('#playlist_menu').css('overflow', 'hidden');
   }
-  $('.lesson-viewer-layout .container, .lesson-archive-layout .container').css('margin-top', ($(window).height() - 590) / 2 + 'px');
+  $('.lesson-viewer-layout .container').css('margin-top', ($(window).height() - 590) / 2 + 'px');
   $(window).resize(function() {
-    $('.lesson-viewer-layout .container, .lesson-archive-layout .container').css('margin-top', ($(window).height() - 590) / 2 + 'px');
+    $('.lesson-viewer-layout .container').css('margin-top', ($(window).height() - 590) / 2 + 'px');
   });
 }
 
@@ -515,6 +485,23 @@ function loadSlideInLessonViewer(slide) {
     });
   }
   slide.data('loaded', true);
+}
+
+/**
+Function to attach to the arrows
+@method moveToAdhiacentSlideInLessonViewer
+@for LessonViewerSlidesNavigation
+@param scrolls {Object} arrows which must be enabled
+@param movingFunction {function} function to be called to move
+**/
+function moveToAdhiacentSlideInLessonViewer(scrolls, movingFunction) {
+  if(!scrolls.first().hasClass('disabled')) {
+    scrolls.addClass('disabled');
+    hideDocumentsInLessonViewer();
+    movingFunction(false, function() {
+      scrolls.removeClass('disabled');
+    });
+  }
 }
 
 /**
