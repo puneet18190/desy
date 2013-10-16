@@ -21,9 +21,6 @@
   </head>
   
   <body>
-    <% if @cover_img %>
-      <img style="display:none" itemprop="image" src="media_elements/images/<%= @cover_img.media_element.id %>/<%= File.basename @cover_img.media_element.media.thumb.path %>"/>
-    <% end %>
     <%= render :partial => 'shared/browser_support_script' %>
     <%= render :partial => 'shared/popups' %>
     <a id="left_scroll" class="navLeft" title="<%= t('titles.slides.back') %>"></a>

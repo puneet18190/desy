@@ -18,7 +18,6 @@ class LessonExportController < ApplicationController
   
   def archive
     @slides = @lesson.slides
-    @cover_img = @slides.first.media_elements_slides.first
     redirect_to Export::Lesson::Archive.new(@lesson, render_to_string).url
   end
   
