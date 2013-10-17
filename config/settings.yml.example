@@ -15,6 +15,8 @@ application:
   maintainer:
     # The recipients of the emails related to maintenance tasks (errors, administration tasks) sent by the application
     emails: ['maintainer@morganspa.com']
+  # Email used in Contact Us link
+  contact_us_email: 'info@morganspa.com'
 # Types of the locations related to Desy
 # The order is important: it determines the parent->child relation
 # The last location is the one associated the the user
