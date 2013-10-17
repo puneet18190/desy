@@ -30,14 +30,14 @@ module Media
 
     # Media folder size (descendants)
     def self.folder_size
-      return 0 unless Dir.exists? self::FOLDER
-      Find.find(self::FOLDER).sum { |f| File.stat(f).size }
+      return 0 unless self::FOLDER.directory?
+      Find.find(self::FOLDER.to_s).sum { |f| File.stat(f).size }
     end
 
     # Media folder size
     def self.media_elements_folder_size
-      return 0 unless Dir.exists? MEDIA_ELEMENTS_FOLDER
-      Find.find(MEDIA_ELEMENTS_FOLDER).sum { |f| File.stat(f).size }
+      return 0 unless MEDIA_ELEMENTS_FOLDER.directory?
+      Find.find(MEDIA_ELEMENTS_FOLDER.to_s).sum { |f| File.stat(f).size }
     end
 
     # Whether the media folder size exceeds the maximum size or not
