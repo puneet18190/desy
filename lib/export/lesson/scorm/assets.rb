@@ -1,9 +1,7 @@
 require 'fileutils'
 require 'pathname'
 require 'uri'
-
 require 'sprockets'
-
 require 'export'
 require 'export/lesson'
 require 'export/lesson/scorm'
