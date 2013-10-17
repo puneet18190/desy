@@ -1,0 +1,2824 @@
+<?xml version="1.0" standalone="no" ?>
+
+
+<manifest identifier="desy.lesson.51"
+          xmlns="http://www.imsglobal.org/xsd/imscp_v1p1"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xmlns:adlcp="http://www.adlnet.org/xsd/adlcp_v1p3"
+          xmlns:adlseq="http://www.adlnet.org/xsd/adlseq_v1p3"
+          xmlns:adlnav="http://www.adlnet.org/xsd/adlnav_v1p3"
+          xmlns:imsss="http://www.imsglobal.org/xsd/imsss"
+          xmlns:lom="http://ltsc.ieee.org/xsd/LOM"
+          xsi:schemaLocation="http://www.imsglobal.org/xsd/imscp_v1p1 imscp_v1p1.xsd
+                              http://www.adlnet.org/xsd/adlcp_v1p3 adlcp_v1p3.xsd
+                              http://www.adlnet.org/xsd/adlseq_v1p3 adlseq_v1p3.xsd
+                              http://www.adlnet.org/xsd/adlnav_v1p3 adlnav_v1p3.xsd
+                              http://www.imsglobal.org/xsd/imsss imsss_v1p0.xsd
+                              http://ltsc.ieee.org/xsd/LOM lom.xsd">
+  
+  
+  <metadata>
+    <schema>ADL SCORM</schema>
+    <schemaversion>2004 4th Edition</schemaversion>
+    <lom>
+      <general>
+        <identifier>
+          <catalog>URI</catalog>
+          <entry>http://desy.morganspa.com/lessons/51/view</entry>
+        </identifier>
+        <title>
+          <string language="it">Prova SCORM</string> <!-- qui va il locale -->
+        </title>
+        <language>it</language> <!-- locale -->
+        <description>
+          <string language="it">Lezione di prova da scaricare e usare come bozza per un pacchetto SCORM</string> <!-- qui va il locale -->
+        </description>
+        <keyword>
+          <string language="it">prova</string> <!-- locale -->
+        </keyword>
+        <keyword>
+          <string language="it">lezione</string> <!-- locale -->
+        </keyword>
+        <keyword>
+          <string language="it">scorm</string> <!-- locale -->
+        </keyword>
+        <keyword>
+          <string language="it">esempi</string> <!-- locale -->
+        </keyword>
+        <coverage>
+          <string language="en">Lesson about Geography</string> <!-- non tradurlo, lasciarlo sempre in inglese, e metterci dentro la materia della lezione -->
+        </coverage>
+      </general>
+      <lifeCycle>
+        <status>
+          <source>LOMv1.0</source>
+          <value>final</value>
+        </status>
+        <contribute>
+          <role>
+            <source>LOMv1.0</source>
+            <value>author</value>
+          </role>
+          <entity>BEGIN:VCARD&#13;&#10;VERSION:2.1&#13;&#10;FN:DESY Admin User&#13;&#10;END:VCARD</entity>
+          <date>
+            <dateTime>2013-10-04</dateTime> <!-- updated_at -->
+            <description>
+              <string language="en">Date of last modification</string>
+            </description>
+          </date>
+        </contribute>
+      </lifeCycle>
+      <metaMetadata>
+        <metadataSchema>LOMv1.0</metadataSchema>
+        <language>en</language>
+      </metaMetadata>
+      <technical>
+        <requirement>
+          <orComposite>
+            <type>
+              <source>LOMv1.0</source>
+              <value>browser</value>
+            </type>
+            <name>
+              <source>LOMv1.0</source>
+              <value>ms-internet explorer</value>
+            </name>
+            <minimumVersion>9.0</minimumVersion>
+          </orComposite>
+        </requirement>
+        <requirement>
+          <orComposite>
+            <type>
+              <source>LOMv1.0</source>
+              <value>browser</value>
+            </type>
+            <name>
+              <source>LOMv1.0</source>
+              <value>webkit</value>
+            </name>
+          </orComposite>
+        </requirement>
+        <requirement>
+          <orComposite>
+            <type>
+              <source>LOMv1.0</source>
+              <value>browser</value>
+            </type>
+            <name>
+              <source>LOMv1.0</source>
+              <value>mozilla</value>
+            </name>
+          </orComposite>
+        </requirement>
+        <requirement>
+          <orComposite>
+            <type>
+              <source>LOMv1.0</source>
+              <value>browser</value>
+            </type>
+            <name>
+              <source>LOMv1.0</source>
+              <value>safari</value>
+            </name>
+          </orComposite>
+        </requirement>
+        <requirement>
+          <orComposite>
+            <type>
+              <source>LOMv1.0</source>
+              <value>browser</value>
+            </type>
+            <name>
+              <source>LOMv1.0</source>
+              <value>opera</value>
+            </name>
+          </orComposite>
+        </requirement>
+      </technical>
+      <educational>
+        <interactivityType>
+          <source>LOMv1.0</source>
+          <value>expositive</value>
+        </interactivityType>
+        <interactivityLevel>
+          <source>LOMv1.0</source>
+          <value>low</value>
+        </interactivityLevel>
+        <intendedEndUserRole>
+          <source>LOMv1.0</source>
+          <value>learner</value>
+        </intendedEndUserRole>
+        <context>
+          <source>LOMv1.0</source>
+          <value>school</value> <!-- qui devo mappare lo school_level in qualche modo -->
+        </context>
+        <language>it</language> <!-- locale -->
+      </educational>
+      <rights>
+        <copyrightAndOtherRestrictions>
+          <source>LOMv1.0</source>
+          <value>yes</value>
+        </copyrightAndOtherRestrictions>
+        <description>
+          <string language="en">©2013 DESY. For information about copyright contact Morgan S.P.A. via degli Olmetti 36</string> <!-- inserire copyright e riempirlo -->
+        </description>
+      </rights>
+    </lom>
+  </metadata>
+  
+  
+  <organizations default="slides">
+    
+    <organization identifier="slides">
+      <title>Prova SCORM</title> <!-- questo è il titolo della lezione -->
+      
+      <item identifier="activity_slide_314" identifierref="slide_314">
+        <title>Cover</title> <!-- titolo della copertina: cover -->
+        <metadata>
+          <lom>
+            <general>
+              <title>
+                <string language="it">Cover</string> <!-- qui va il locale -->
+              </title>
+              <language>it</language> <!-- locale -->
+              <aggregationLevel>
+                <source>LOMv1.0</source>
+                <value>1</value>
+              </aggregationLevel>
+            </general>
+            <metaMetadata>
+              <metadataSchema>LOMv1.0</metadataSchema>
+              <language>en</language>
+            </metaMetadata>
+          </lom>
+        </metadata>
+      </item>
+      
+      <item identifier="activity_slide_315" identifierref="slide_315">
+        <title>Slide 1 - Titolo di Prova</title> <!-- titolo della slide: posizione meno uno -->
+        <metadata>
+          <lom>
+            <general>
+              <title>
+                <string language="it">Slide 1 - Titolo di Prova</string> <!-- qui va il locale -->
+              </title>
+              <language>it</language> <!-- locale -->
+              <aggregationLevel>
+                <source>LOMv1.0</source>
+                <value>1</value>
+              </aggregationLevel>
+            </general>
+            <metaMetadata>
+              <metadataSchema>LOMv1.0</metadataSchema>
+              <language>en</language>
+            </metaMetadata>
+          </lom>
+        </metadata>
+      </item>
+      
+      <item identifier="activity_slide_316" identifierref="slide_316">
+        <title>Slide 2 - Solo testo</title>
+        <metadata>
+          <lom>
+            <general>
+              <title>
+                <string language="it">Slide 2 - Solo testo</string> <!-- qui va il locale -->
+              </title>
+              <language>it</language> <!-- locale -->
+              <aggregationLevel>
+                <source>LOMv1.0</source>
+                <value>1</value>
+              </aggregationLevel>
+            </general>
+            <metaMetadata>
+              <metadataSchema>LOMv1.0</metadataSchema>
+              <language>en</language>
+            </metaMetadata>
+          </lom>
+        </metadata>
+      </item>
+      
+      <item identifier="activity_slide_317" identifierref="slide_317">
+        <title>Slide 3 - Impariamo ad apprezzare i pony</title>
+        <metadata>
+          <lom>
+            <general>
+              <title>
+                <string language="it">Slide 3 - Impariamo ad apprezzare i pony</string> <!-- qui va il locale -->
+              </title>
+              <language>it</language> <!-- locale -->
+              <aggregationLevel>
+                <source>LOMv1.0</source>
+                <value>1</value>
+              </aggregationLevel>
+            </general>
+            <metaMetadata>
+              <metadataSchema>LOMv1.0</metadataSchema>
+              <language>en</language>
+            </metaMetadata>
+          </lom>
+        </metadata>
+      </item>
+      
+      <item identifier="activity_slide_318" identifierref="slide_318">
+        <title>Slide 4</title> <!-- slide senza titolo: solamente la posizione -->
+        <metadata>
+          <lom>
+            <general>
+              <title>
+                <string language="it">Slide 4</string> <!-- qui va il locale -->
+              </title>
+              <language>it</language> <!-- locale -->
+              <aggregationLevel>
+                <source>LOMv1.0</source>
+                <value>1</value>
+              </aggregationLevel>
+            </general>
+            <metaMetadata>
+              <metadataSchema>LOMv1.0</metadataSchema>
+              <language>en</language>
+            </metaMetadata>
+          </lom>
+        </metadata>
+      </item>
+      
+      <item identifier="activity_slide_319" identifierref="slide_319">
+        <title>Slide 5</title>
+        <metadata>
+          <lom>
+            <general>
+              <title>
+                <string language="it">Slide 5</string> <!-- qui va il locale -->
+              </title>
+              <language>it</language> <!-- locale -->
+              <aggregationLevel>
+                <source>LOMv1.0</source>
+                <value>1</value>
+              </aggregationLevel>
+            </general>
+            <metaMetadata>
+              <metadataSchema>LOMv1.0</metadataSchema>
+              <language>en</language>
+            </metaMetadata>
+          </lom>
+        </metadata>
+      </item>
+      
+      <item identifier="activity_slide_320" identifierref="slide_320">
+        <title>Slide 6</title>
+        <metadata>
+          <lom>
+            <general>
+              <title>
+                <string language="it">Slide 6</string> <!-- qui va il locale -->
+              </title>
+              <language>it</language> <!-- locale -->
+              <aggregationLevel>
+                <source>LOMv1.0</source>
+                <value>1</value>
+              </aggregationLevel>
+            </general>
+            <metaMetadata>
+              <metadataSchema>LOMv1.0</metadataSchema>
+              <language>en</language>
+            </metaMetadata>
+          </lom>
+        </metadata>
+      </item>
+      
+      <item identifier="activity_slide_323" identifierref="slide_323">
+        <title>Slide 7 - E qui proviamo l'audio</title>
+        <metadata>
+          <lom>
+            <general>
+              <title>
+                <string language="it">Slide 7 - E qui proviamo l'audio</string> <!-- qui va il locale -->
+              </title>
+              <language>it</language> <!-- locale -->
+              <aggregationLevel>
+                <source>LOMv1.0</source>
+                <value>1</value>
+              </aggregationLevel>
+            </general>
+            <metaMetadata>
+              <metadataSchema>LOMv1.0</metadataSchema>
+              <language>en</language>
+            </metaMetadata>
+          </lom>
+        </metadata>
+      </item>
+      
+      <item identifier="activity_slide_321" identifierref="slide_321">
+        <title>Slide 8</title>
+        <metadata>
+          <lom>
+            <general>
+              <title>
+                <string language="it">Slide 8</string> <!-- qui va il locale -->
+              </title>
+              <language>it</language> <!-- locale -->
+              <aggregationLevel>
+                <source>LOMv1.0</source>
+                <value>1</value>
+              </aggregationLevel>
+            </general>
+            <metaMetadata>
+              <metadataSchema>LOMv1.0</metadataSchema>
+              <language>en</language>
+            </metaMetadata>
+          </lom>
+        </metadata>
+      </item>
+      
+      <item identifier="activity_slide_322" identifierref="slide_322">
+        <title>Slide 9 - Prova con video e documento</title>
+        <metadata>
+          <lom>
+            <general>
+              <title>
+                <string language="it">Slide 9 - Prova con video e documento</string> <!-- qui va il locale -->
+              </title>
+              <language>it</language> <!-- locale -->
+              <aggregationLevel>
+                <source>LOMv1.0</source>
+                <value>1</value>
+              </aggregationLevel>
+            </general>
+            <metaMetadata>
+              <metadataSchema>LOMv1.0</metadataSchema>
+              <language>en</language>
+            </metaMetadata>
+          </lom>
+        </metadata>
+      </item>
+      
+      <imsss:sequencing>
+        <imsss:controlMode choice="true" flow="true"/>
+      </imsss:sequencing>
+      
+      <metadata>
+        <lom>
+          <general>
+            <structure>
+              <source>LOMv1.0</source>
+              <value>linear</value>
+            </structure>
+            <aggregationLevel>
+              <source>LOMv1.0</source>
+              <value>2</value>
+            </aggregationLevel>
+          </general>
+          <metaMetadata>
+            <metadataSchema>LOMv1.0</metadataSchema>
+            <language>en</language>
+          </metaMetadata>
+        </lom>
+      </metadata>
+      
+    </organization>
+    
+  </organizations>
+  
+  
+  <resources>
+    
+    <!-- qui sotto le slides -->
+    
+    <resource identifier="slide_314" type="webcontent" adlcp:scormType="asset" href="html/slide314.html">
+      <file href="html/slide314.html"/>
+      <dependency identifierref="media_element_144"/>
+      <dependency identifierref="common"/>
+      <metadata>
+        <lom>
+          <general>
+            <structure>
+              <source>LOMv1.0</source>
+              <value>collection</value>
+            </structure>
+          </general>
+          <technical>
+            <format>text/html</format>
+            <requirement>
+              <orComposite>
+                <type>
+                  <source>LOMv1.0</source>
+                  <value>browser</value>
+                </type>
+                <name>
+                  <source>LOMv1.0</source>
+                  <value>ms-internet explorer</value>
+                </name>
+                <minimumVersion>9.0</minimumVersion>
+              </orComposite>
+            </requirement>
+            <requirement>
+              <orComposite>
+                <type>
+                  <source>LOMv1.0</source>
+                  <value>browser</value>
+                </type>
+                <name>
+                  <source>LOMv1.0</source>
+                  <value>webkit</value>
+                </name>
+              </orComposite>
+            </requirement>
+            <requirement>
+              <orComposite>
+                <type>
+                  <source>LOMv1.0</source>
+                  <value>browser</value>
+                </type>
+                <name>
+                  <source>LOMv1.0</source>
+                  <value>mozilla</value>
+                </name>
+              </orComposite>
+            </requirement>
+            <requirement>
+              <orComposite>
+                <type>
+                  <source>LOMv1.0</source>
+                  <value>browser</value>
+                </type>
+                <name>
+                  <source>LOMv1.0</source>
+                  <value>safari</value>
+                </name>
+              </orComposite>
+            </requirement>
+            <requirement>
+              <orComposite>
+                <type>
+                  <source>LOMv1.0</source>
+                  <value>browser</value>
+                </type>
+                <name>
+                  <source>LOMv1.0</source>
+                  <value>opera</value>
+                </name>
+              </orComposite>
+            </requirement>
+          </technical>
+          <educational>
+            <learningResourceType>
+              <source>LOMv1.0</source>
+              <value>slide</value>
+            </learningResourceType>
+          </educational>
+          <rights>
+            <copyrightAndOtherRestrictions>
+              <source>LOMv1.0</source>
+              <value>yes</value>
+            </copyrightAndOtherRestrictions>
+            <description>
+              <string language="en">©2013 DESY. For information about copyright contact Morgan S.P.A. via degli Olmetti 36</string> <!-- inserire copyright e riempirlo -->
+            </description>
+          </rights>
+          <metaMetadata>
+            <metadataSchema>LOMv1.0</metadataSchema>
+            <language>en</language>
+          </metaMetadata>
+        </lom>
+      </metadata>
+    </resource>
+    
+    <resource identifier="slide_315" type="webcontent" adlcp:scormType="asset" href="html/slide315.html">
+      <file href="html/slide315.html"/>
+      <dependency identifierref="common"/>
+      <metadata>
+        <lom>
+          <general>
+            <structure>
+              <source>LOMv1.0</source>
+              <value>collection</value>
+            </structure>
+          </general>
+          <technical>
+            <format>text/html</format>
+            <requirement>
+              <orComposite>
+                <type>
+                  <source>LOMv1.0</source>
+                  <value>browser</value>
+                </type>
+                <name>
+                  <source>LOMv1.0</source>
+                  <value>ms-internet explorer</value>
+                </name>
+                <minimumVersion>9.0</minimumVersion>
+              </orComposite>
+            </requirement>
+            <requirement>
+              <orComposite>
+                <type>
+                  <source>LOMv1.0</source>
+                  <value>browser</value>
+                </type>
+                <name>
+                  <source>LOMv1.0</source>
+                  <value>webkit</value>
+                </name>
+              </orComposite>
+            </requirement>
+            <requirement>
+              <orComposite>
+                <type>
+                  <source>LOMv1.0</source>
+                  <value>browser</value>
+                </type>
+                <name>
+                  <source>LOMv1.0</source>
+                  <value>mozilla</value>
+                </name>
+              </orComposite>
+            </requirement>
+            <requirement>
+              <orComposite>
+                <type>
+                  <source>LOMv1.0</source>
+                  <value>browser</value>
+                </type>
+                <name>
+                  <source>LOMv1.0</source>
+                  <value>safari</value>
+                </name>
+              </orComposite>
+            </requirement>
+            <requirement>
+              <orComposite>
+                <type>
+                  <source>LOMv1.0</source>
+                  <value>browser</value>
+                </type>
+                <name>
+                  <source>LOMv1.0</source>
+                  <value>opera</value>
+                </name>
+              </orComposite>
+            </requirement>
+          </technical>
+          <educational>
+            <learningResourceType>
+              <source>LOMv1.0</source>
+              <value>slide</value>
+            </learningResourceType>
+          </educational>
+          <rights>
+            <copyrightAndOtherRestrictions>
+              <source>LOMv1.0</source>
+              <value>yes</value>
+            </copyrightAndOtherRestrictions>
+            <description>
+              <string language="en">©2013 DESY. For information about copyright contact Morgan S.P.A. via degli Olmetti 36</string> <!-- inserire copyright e riempirlo -->
+            </description>
+          </rights>
+          <metaMetadata>
+            <metadataSchema>LOMv1.0</metadataSchema>
+            <language>en</language>
+          </metaMetadata>
+        </lom>
+      </metadata>
+    </resource>
+    
+    <resource identifier="slide_316" type="webcontent" adlcp:scormType="asset" href="html/slide316.html">
+      <file href="html/slide316.html"/>
+      <file href="html/math_images/6c5937c3bf3c625b2819ea267bbe13fd.png"/>
+      <dependency identifierref="tinyMCE"/>
+      <dependency identifierref="common"/>
+      <metadata>
+        <lom>
+          <general>
+            <structure>
+              <source>LOMv1.0</source>
+              <value>collection</value>
+            </structure>
+          </general>
+          <technical>
+            <format>text/html</format>
+            <requirement>
+              <orComposite>
+                <type>
+                  <source>LOMv1.0</source>
+                  <value>browser</value>
+                </type>
+                <name>
+                  <source>LOMv1.0</source>
+                  <value>ms-internet explorer</value>
+                </name>
+                <minimumVersion>9.0</minimumVersion>
+              </orComposite>
+            </requirement>
+            <requirement>
+              <orComposite>
+                <type>
+                  <source>LOMv1.0</source>
+                  <value>browser</value>
+                </type>
+                <name>
+                  <source>LOMv1.0</source>
+                  <value>webkit</value>
+                </name>
+              </orComposite>
+            </requirement>
+            <requirement>
+              <orComposite>
+                <type>
+                  <source>LOMv1.0</source>
+                  <value>browser</value>
+                </type>
+                <name>
+                  <source>LOMv1.0</source>
+                  <value>mozilla</value>
+                </name>
+              </orComposite>
+            </requirement>
+            <requirement>
+              <orComposite>
+                <type>
+                  <source>LOMv1.0</source>
+                  <value>browser</value>
+                </type>
+                <name>
+                  <source>LOMv1.0</source>
+                  <value>safari</value>
+                </name>
+              </orComposite>
+            </requirement>
+            <requirement>
+              <orComposite>
+                <type>
+                  <source>LOMv1.0</source>
+                  <value>browser</value>
+                </type>
+                <name>
+                  <source>LOMv1.0</source>
+                  <value>opera</value>
+                </name>
+              </orComposite>
+            </requirement>
+          </technical>
+          <educational>
+            <learningResourceType>
+              <source>LOMv1.0</source>
+              <value>slide</value>
+            </learningResourceType>
+          </educational>
+          <rights>
+            <copyrightAndOtherRestrictions>
+              <source>LOMv1.0</source>
+              <value>yes</value>
+            </copyrightAndOtherRestrictions>
+            <description>
+              <string language="en">©2013 DESY. For information about copyright contact Morgan S.P.A. via degli Olmetti 36</string> <!-- inserire copyright e riempirlo -->
+            </description>
+          </rights>
+          <metaMetadata>
+            <metadataSchema>LOMv1.0</metadataSchema>
+            <language>en</language>
+          </metaMetadata>
+        </lom>
+      </metadata>
+    </resource>
+    
+    <resource identifier="slide_317" type="webcontent" adlcp:scormType="asset" href="html/slide317.html">
+      <file href="html/slide317.html"/>
+      <dependency identifierref="media_element_148"/>
+      <dependency identifierref="tinyMCE"/>
+      <dependency identifierref="common"/>
+      <metadata>
+        <lom>
+          <general>
+            <structure>
+              <source>LOMv1.0</source>
+              <value>collection</value>
+            </structure>
+          </general>
+          <technical>
+            <format>text/html</format>
+            <requirement>
+              <orComposite>
+                <type>
+                  <source>LOMv1.0</source>
+                  <value>browser</value>
+                </type>
+                <name>
+                  <source>LOMv1.0</source>
+                  <value>ms-internet explorer</value>
+                </name>
+                <minimumVersion>9.0</minimumVersion>
+              </orComposite>
+            </requirement>
+            <requirement>
+              <orComposite>
+                <type>
+                  <source>LOMv1.0</source>
+                  <value>browser</value>
+                </type>
+                <name>
+                  <source>LOMv1.0</source>
+                  <value>webkit</value>
+                </name>
+              </orComposite>
+            </requirement>
+            <requirement>
+              <orComposite>
+                <type>
+                  <source>LOMv1.0</source>
+                  <value>browser</value>
+                </type>
+                <name>
+                  <source>LOMv1.0</source>
+                  <value>mozilla</value>
+                </name>
+              </orComposite>
+            </requirement>
+            <requirement>
+              <orComposite>
+                <type>
+                  <source>LOMv1.0</source>
+                  <value>browser</value>
+                </type>
+                <name>
+                  <source>LOMv1.0</source>
+                  <value>safari</value>
+                </name>
+              </orComposite>
+            </requirement>
+            <requirement>
+              <orComposite>
+                <type>
+                  <source>LOMv1.0</source>
+                  <value>browser</value>
+                </type>
+                <name>
+                  <source>LOMv1.0</source>
+                  <value>opera</value>
+                </name>
+              </orComposite>
+            </requirement>
+          </technical>
+          <educational>
+            <learningResourceType>
+              <source>LOMv1.0</source>
+              <value>slide</value>
+            </learningResourceType>
+          </educational>
+          <rights>
+            <copyrightAndOtherRestrictions>
+              <source>LOMv1.0</source>
+              <value>yes</value>
+            </copyrightAndOtherRestrictions>
+            <description>
+              <string language="en">©2013 DESY. For information about copyright contact Morgan S.P.A. via degli Olmetti 36</string> <!-- inserire copyright e riempirlo -->
+            </description>
+          </rights>
+          <metaMetadata>
+            <metadataSchema>LOMv1.0</metadataSchema>
+            <language>en</language>
+          </metaMetadata>
+        </lom>
+      </metadata>
+    </resource>
+    
+    <resource identifier="slide_318" type="webcontent" adlcp:scormType="asset" href="html/slide318.html">
+      <file href="html/slide318.html"/>
+      <dependency identifierref="media_element_231"/>
+      <dependency identifierref="common"/>
+      <metadata>
+        <lom>
+          <general>
+            <structure>
+              <source>LOMv1.0</source>
+              <value>collection</value>
+            </structure>
+          </general>
+          <technical>
+            <format>text/html</format>
+            <requirement>
+              <orComposite>
+                <type>
+                  <source>LOMv1.0</source>
+                  <value>browser</value>
+                </type>
+                <name>
+                  <source>LOMv1.0</source>
+                  <value>ms-internet explorer</value>
+                </name>
+                <minimumVersion>9.0</minimumVersion>
+              </orComposite>
+            </requirement>
+            <requirement>
+              <orComposite>
+                <type>
+                  <source>LOMv1.0</source>
+                  <value>browser</value>
+                </type>
+                <name>
+                  <source>LOMv1.0</source>
+                  <value>webkit</value>
+                </name>
+              </orComposite>
+            </requirement>
+            <requirement>
+              <orComposite>
+                <type>
+                  <source>LOMv1.0</source>
+                  <value>browser</value>
+                </type>
+                <name>
+                  <source>LOMv1.0</source>
+                  <value>mozilla</value>
+                </name>
+              </orComposite>
+            </requirement>
+            <requirement>
+              <orComposite>
+                <type>
+                  <source>LOMv1.0</source>
+                  <value>browser</value>
+                </type>
+                <name>
+                  <source>LOMv1.0</source>
+                  <value>safari</value>
+                </name>
+              </orComposite>
+            </requirement>
+            <requirement>
+              <orComposite>
+                <type>
+                  <source>LOMv1.0</source>
+                  <value>browser</value>
+                </type>
+                <name>
+                  <source>LOMv1.0</source>
+                  <value>opera</value>
+                </name>
+              </orComposite>
+            </requirement>
+          </technical>
+          <educational>
+            <learningResourceType>
+              <source>LOMv1.0</source>
+              <value>slide</value>
+            </learningResourceType>
+          </educational>
+          <rights>
+            <copyrightAndOtherRestrictions>
+              <source>LOMv1.0</source>
+              <value>yes</value>
+            </copyrightAndOtherRestrictions>
+            <description>
+              <string language="en">©2013 DESY. For information about copyright contact Morgan S.P.A. via degli Olmetti 36</string> <!-- inserire copyright e riempirlo -->
+            </description>
+          </rights>
+          <metaMetadata>
+            <metadataSchema>LOMv1.0</metadataSchema>
+            <language>en</language>
+          </metaMetadata>
+        </lom>
+      </metadata>
+    </resource>
+    
+    <resource identifier="slide_319" type="webcontent" adlcp:scormType="asset" href="html/slide319.html">
+      <file href="html/slide319.html"/>
+      <dependency identifierref="media_element_166"/>
+      <dependency identifierref="media_element_183"/>
+      <dependency identifierref="common"/>
+      <metadata>
+        <lom>
+          <general>
+            <structure>
+              <source>LOMv1.0</source>
+              <value>collection</value>
+            </structure>
+          </general>
+          <technical>
+            <format>text/html</format>
+            <requirement>
+              <orComposite>
+                <type>
+                  <source>LOMv1.0</source>
+                  <value>browser</value>
+                </type>
+                <name>
+                  <source>LOMv1.0</source>
+                  <value>ms-internet explorer</value>
+                </name>
+                <minimumVersion>9.0</minimumVersion>
+              </orComposite>
+            </requirement>
+            <requirement>
+              <orComposite>
+                <type>
+                  <source>LOMv1.0</source>
+                  <value>browser</value>
+                </type>
+                <name>
+                  <source>LOMv1.0</source>
+                  <value>webkit</value>
+                </name>
+              </orComposite>
+            </requirement>
+            <requirement>
+              <orComposite>
+                <type>
+                  <source>LOMv1.0</source>
+                  <value>browser</value>
+                </type>
+                <name>
+                  <source>LOMv1.0</source>
+                  <value>mozilla</value>
+                </name>
+              </orComposite>
+            </requirement>
+            <requirement>
+              <orComposite>
+                <type>
+                  <source>LOMv1.0</source>
+                  <value>browser</value>
+                </type>
+                <name>
+                  <source>LOMv1.0</source>
+                  <value>safari</value>
+                </name>
+              </orComposite>
+            </requirement>
+            <requirement>
+              <orComposite>
+                <type>
+                  <source>LOMv1.0</source>
+                  <value>browser</value>
+                </type>
+                <name>
+                  <source>LOMv1.0</source>
+                  <value>opera</value>
+                </name>
+              </orComposite>
+            </requirement>
+          </technical>
+          <educational>
+            <learningResourceType>
+              <source>LOMv1.0</source>
+              <value>slide</value>
+            </learningResourceType>
+          </educational>
+          <rights>
+            <copyrightAndOtherRestrictions>
+              <source>LOMv1.0</source>
+              <value>yes</value>
+            </copyrightAndOtherRestrictions>
+            <description>
+              <string language="en">©2013 DESY. For information about copyright contact Morgan S.P.A. via degli Olmetti 36</string> <!-- inserire copyright e riempirlo -->
+            </description>
+          </rights>
+          <metaMetadata>
+            <metadataSchema>LOMv1.0</metadataSchema>
+            <language>en</language>
+          </metaMetadata>
+        </lom>
+      </metadata>
+    </resource>
+    
+    <resource identifier="slide_320" type="webcontent" adlcp:scormType="asset" href="html/slide320.html">
+      <file href="html/slide320.html"/>
+      <dependency identifierref="media_element_220"/>
+      <dependency identifierref="media_element_199"/>
+      <dependency identifierref="media_element_207"/>
+      <dependency identifierref="media_element_208"/>
+      <dependency identifierref="common"/>
+      <metadata>
+        <lom>
+          <general>
+            <structure>
+              <source>LOMv1.0</source>
+              <value>collection</value>
+            </structure>
+          </general>
+          <technical>
+            <format>text/html</format>
+            <requirement>
+              <orComposite>
+                <type>
+                  <source>LOMv1.0</source>
+                  <value>browser</value>
+                </type>
+                <name>
+                  <source>LOMv1.0</source>
+                  <value>ms-internet explorer</value>
+                </name>
+                <minimumVersion>9.0</minimumVersion>
+              </orComposite>
+            </requirement>
+            <requirement>
+              <orComposite>
+                <type>
+                  <source>LOMv1.0</source>
+                  <value>browser</value>
+                </type>
+                <name>
+                  <source>LOMv1.0</source>
+                  <value>webkit</value>
+                </name>
+              </orComposite>
+            </requirement>
+            <requirement>
+              <orComposite>
+                <type>
+                  <source>LOMv1.0</source>
+                  <value>browser</value>
+                </type>
+                <name>
+                  <source>LOMv1.0</source>
+                  <value>mozilla</value>
+                </name>
+              </orComposite>
+            </requirement>
+            <requirement>
+              <orComposite>
+                <type>
+                  <source>LOMv1.0</source>
+                  <value>browser</value>
+                </type>
+                <name>
+                  <source>LOMv1.0</source>
+                  <value>safari</value>
+                </name>
+              </orComposite>
+            </requirement>
+            <requirement>
+              <orComposite>
+                <type>
+                  <source>LOMv1.0</source>
+                  <value>browser</value>
+                </type>
+                <name>
+                  <source>LOMv1.0</source>
+                  <value>opera</value>
+                </name>
+              </orComposite>
+            </requirement>
+          </technical>
+          <educational>
+            <learningResourceType>
+              <source>LOMv1.0</source>
+              <value>slide</value>
+            </learningResourceType>
+          </educational>
+          <rights>
+            <copyrightAndOtherRestrictions>
+              <source>LOMv1.0</source>
+              <value>yes</value>
+            </copyrightAndOtherRestrictions>
+            <description>
+              <string language="en">©2013 DESY. For information about copyright contact Morgan S.P.A. via degli Olmetti 36</string> <!-- inserire copyright e riempirlo -->
+            </description>
+          </rights>
+          <metaMetadata>
+            <metadataSchema>LOMv1.0</metadataSchema>
+            <language>en</language>
+          </metaMetadata>
+        </lom>
+      </metadata>
+    </resource>
+    
+    <resource identifier="slide_321" type="webcontent" adlcp:scormType="asset" href="html/slide321.html">
+      <file href="html/slide321.html"/>
+      <dependency identifierref="media_element_62"/>
+      <dependency identifierref="players"/>
+      <dependency identifierref="common"/>
+      <metadata>
+        <lom>
+          <general>
+            <structure>
+              <source>LOMv1.0</source>
+              <value>collection</value>
+            </structure>
+          </general>
+          <technical>
+            <format>text/html</format>
+            <requirement>
+              <orComposite>
+                <type>
+                  <source>LOMv1.0</source>
+                  <value>browser</value>
+                </type>
+                <name>
+                  <source>LOMv1.0</source>
+                  <value>ms-internet explorer</value>
+                </name>
+                <minimumVersion>9.0</minimumVersion>
+              </orComposite>
+            </requirement>
+            <requirement>
+              <orComposite>
+                <type>
+                  <source>LOMv1.0</source>
+                  <value>browser</value>
+                </type>
+                <name>
+                  <source>LOMv1.0</source>
+                  <value>webkit</value>
+                </name>
+              </orComposite>
+            </requirement>
+            <requirement>
+              <orComposite>
+                <type>
+                  <source>LOMv1.0</source>
+                  <value>browser</value>
+                </type>
+                <name>
+                  <source>LOMv1.0</source>
+                  <value>mozilla</value>
+                </name>
+              </orComposite>
+            </requirement>
+            <requirement>
+              <orComposite>
+                <type>
+                  <source>LOMv1.0</source>
+                  <value>browser</value>
+                </type>
+                <name>
+                  <source>LOMv1.0</source>
+                  <value>safari</value>
+                </name>
+              </orComposite>
+            </requirement>
+            <requirement>
+              <orComposite>
+                <type>
+                  <source>LOMv1.0</source>
+                  <value>browser</value>
+                </type>
+                <name>
+                  <source>LOMv1.0</source>
+                  <value>opera</value>
+                </name>
+              </orComposite>
+            </requirement>
+          </technical>
+          <educational>
+            <learningResourceType>
+              <source>LOMv1.0</source>
+              <value>slide</value>
+            </learningResourceType>
+          </educational>
+          <rights>
+            <copyrightAndOtherRestrictions>
+              <source>LOMv1.0</source>
+              <value>yes</value>
+            </copyrightAndOtherRestrictions>
+            <description>
+              <string language="en">©2013 DESY. For information about copyright contact Morgan S.P.A. via degli Olmetti 36</string> <!-- inserire copyright e riempirlo -->
+            </description>
+          </rights>
+          <metaMetadata>
+            <metadataSchema>LOMv1.0</metadataSchema>
+            <language>en</language>
+          </metaMetadata>
+        </lom>
+      </metadata>
+    </resource>
+    
+    <resource identifier="slide_322" type="webcontent" adlcp:scormType="asset" href="html/slide322.html">
+      <file href="html/slide322.html"/>
+      <dependency identifierref="document_2"/>
+      <dependency identifierref="document_3"/>
+      <dependency identifierref="document_4"/>
+      <dependency identifierref="media_element_57"/>
+      <dependency identifierref="players"/>
+      <dependency identifierref="documents"/>
+      <dependency identifierref="tinyMCE"/>
+      <dependency identifierref="common"/>
+      <metadata>
+        <lom>
+          <general>
+            <structure>
+              <source>LOMv1.0</source>
+              <value>collection</value>
+            </structure>
+          </general>
+          <technical>
+            <format>text/html</format>
+            <requirement>
+              <orComposite>
+                <type>
+                  <source>LOMv1.0</source>
+                  <value>browser</value>
+                </type>
+                <name>
+                  <source>LOMv1.0</source>
+                  <value>ms-internet explorer</value>
+                </name>
+                <minimumVersion>9.0</minimumVersion>
+              </orComposite>
+            </requirement>
+            <requirement>
+              <orComposite>
+                <type>
+                  <source>LOMv1.0</source>
+                  <value>browser</value>
+                </type>
+                <name>
+                  <source>LOMv1.0</source>
+                  <value>webkit</value>
+                </name>
+              </orComposite>
+            </requirement>
+            <requirement>
+              <orComposite>
+                <type>
+                  <source>LOMv1.0</source>
+                  <value>browser</value>
+                </type>
+                <name>
+                  <source>LOMv1.0</source>
+                  <value>mozilla</value>
+                </name>
+              </orComposite>
+            </requirement>
+            <requirement>
+              <orComposite>
+                <type>
+                  <source>LOMv1.0</source>
+                  <value>browser</value>
+                </type>
+                <name>
+                  <source>LOMv1.0</source>
+                  <value>safari</value>
+                </name>
+              </orComposite>
+            </requirement>
+            <requirement>
+              <orComposite>
+                <type>
+                  <source>LOMv1.0</source>
+                  <value>browser</value>
+                </type>
+                <name>
+                  <source>LOMv1.0</source>
+                  <value>opera</value>
+                </name>
+              </orComposite>
+            </requirement>
+          </technical>
+          <educational>
+            <learningResourceType>
+              <source>LOMv1.0</source>
+              <value>slide</value>
+            </learningResourceType>
+          </educational>
+          <rights>
+            <copyrightAndOtherRestrictions>
+              <source>LOMv1.0</source>
+              <value>yes</value>
+            </copyrightAndOtherRestrictions>
+            <description>
+              <string language="en">©2013 DESY. For information about copyright contact Morgan S.P.A. via degli Olmetti 36</string> <!-- inserire copyright e riempirlo -->
+            </description>
+          </rights>
+          <metaMetadata>
+            <metadataSchema>LOMv1.0</metadataSchema>
+            <language>en</language>
+          </metaMetadata>
+        </lom>
+      </metadata>
+    </resource>
+    
+    <resource identifier="slide_323" type="webcontent" adlcp:scormType="asset" href="html/slide323.html">
+      <file href="html/slide323.html"/>
+      <dependency identifierref="media_element_196"/>
+      <dependency identifierref="players"/>
+      <dependency identifierref="tinyMCE"/>
+      <dependency identifierref="common"/>
+      <metadata>
+        <lom>
+          <general>
+            <structure>
+              <source>LOMv1.0</source>
+              <value>collection</value>
+            </structure>
+          </general>
+          <technical>
+            <format>text/html</format>
+            <requirement>
+              <orComposite>
+                <type>
+                  <source>LOMv1.0</source>
+                  <value>browser</value>
+                </type>
+                <name>
+                  <source>LOMv1.0</source>
+                  <value>ms-internet explorer</value>
+                </name>
+                <minimumVersion>9.0</minimumVersion>
+              </orComposite>
+            </requirement>
+            <requirement>
+              <orComposite>
+                <type>
+                  <source>LOMv1.0</source>
+                  <value>browser</value>
+                </type>
+                <name>
+                  <source>LOMv1.0</source>
+                  <value>webkit</value>
+                </name>
+              </orComposite>
+            </requirement>
+            <requirement>
+              <orComposite>
+                <type>
+                  <source>LOMv1.0</source>
+                  <value>browser</value>
+                </type>
+                <name>
+                  <source>LOMv1.0</source>
+                  <value>mozilla</value>
+                </name>
+              </orComposite>
+            </requirement>
+            <requirement>
+              <orComposite>
+                <type>
+                  <source>LOMv1.0</source>
+                  <value>browser</value>
+                </type>
+                <name>
+                  <source>LOMv1.0</source>
+                  <value>safari</value>
+                </name>
+              </orComposite>
+            </requirement>
+            <requirement>
+              <orComposite>
+                <type>
+                  <source>LOMv1.0</source>
+                  <value>browser</value>
+                </type>
+                <name>
+                  <source>LOMv1.0</source>
+                  <value>opera</value>
+                </name>
+              </orComposite>
+            </requirement>
+          </technical>
+          <educational>
+            <learningResourceType>
+              <source>LOMv1.0</source>
+              <value>slide</value>
+            </learningResourceType>
+          </educational>
+          <rights>
+            <copyrightAndOtherRestrictions>
+              <source>LOMv1.0</source>
+              <value>yes</value>
+            </copyrightAndOtherRestrictions>
+            <description>
+              <string language="en">©2013 DESY. For information about copyright contact Morgan S.P.A. via degli Olmetti 36</string> <!-- inserire copyright e riempirlo -->
+            </description>
+          </rights>
+          <metaMetadata>
+            <metadataSchema>LOMv1.0</metadataSchema>
+            <language>en</language>
+          </metaMetadata>
+        </lom>
+      </metadata>
+    </resource>
+    
+    <!-- qui sotto i pacchetti di elementi variabili (documents, media_elements) -->
+    
+    <!-- documents -->
+    
+    <resource identifier="document_2" type="webcontent" adlcp:scormType="asset">
+      <file href="html/documents/2/conversazioni_multicast_V0_Gku5sX_k2wyViHBSFcg.odt">
+        <metadata>
+          <lom>
+            <general>
+              <identifier>
+                <catalog>URI</catalog>
+                <entry>url di questo documento</entry>
+              </identifier>
+            </general>
+            <technical>
+              <format>format/format</format>
+              <size>123</size>
+              <location>url di questo documento</location>
+            </technical>
+          </lom>
+        </metadata>
+      </file>
+      <file href="html/assets/documents/doc.svg"/>
+      <metadata>
+        <lom>
+          <general>
+            <title>
+              <string language="it">Titolo di questo documento</string> <!-- qui va il locale -->
+            </title>
+            <description>
+              <string language="it">Descrizione di questo documento</string> <!-- qui va il locale -->
+            </description>
+            <structure>
+              <source>LOMv1.0</source>
+              <value>atomic</value>
+            </structure>
+          </general>
+          <lifeCycle>
+            <contribute>
+              <role>
+                <source>LOMv1.0</source>
+                <value>author</value>
+              </role>
+              <entity>BEGIN:VCARD&#13;&#10;VERSION:2.1&#13;&#10;FN:Autore Del Documento&#13;&#10;END:VCARD</entity>
+              <date>
+                <dateTime>2013-10-04</dateTime> <!-- data di creazione -->
+                <description>
+                  <string language="en">Date of creation</string>
+                </description>
+              </date>
+            </contribute>
+          </lifeCycle>
+          <metaMetadata>
+            <metadataSchema>LOMv1.0</metadataSchema>
+            <language>en</language>
+          </metaMetadata>
+        </lom>
+      </metadata>
+    </resource>
+    
+    <resource identifier="document_3" type="webcontent" adlcp:scormType="asset">
+      <file href="html/documents/3/espandibili-tar_akxjd2lUjnlSDqwmrC_pKA.gz">
+        <metadata>
+          <lom>
+            <general>
+              <identifier>
+                <catalog>URI</catalog>
+                <entry>url di questo documento</entry>
+              </identifier>
+            </general>
+            <technical>
+              <format>format/format</format>
+              <size>123</size>
+              <location>url di questo documento</location>
+            </technical>
+          </lom>
+        </metadata>
+      </file>
+      <file href="html/assets/documents/zip.svg"/>
+      <metadata>
+        <lom>
+          <general>
+            <title>
+              <string language="it">Titolo di questo documento</string> <!-- qui va il locale -->
+            </title>
+            <description>
+              <string language="it">Descrizione di questo documento</string> <!-- qui va il locale -->
+            </description>
+            <structure>
+              <source>LOMv1.0</source>
+              <value>atomic</value>
+            </structure>
+          </general>
+          <lifeCycle>
+            <contribute>
+              <role>
+                <source>LOMv1.0</source>
+                <value>author</value>
+              </role>
+              <entity>BEGIN:VCARD&#13;&#10;VERSION:2.1&#13;&#10;FN:Autore Del Documento&#13;&#10;END:VCARD</entity>
+              <date>
+                <dateTime>2013-10-04</dateTime> <!-- data di creazione -->
+                <description>
+                  <string language="en">Date of creation</string>
+                </description>
+              </date>
+            </contribute>
+          </lifeCycle>
+          <metaMetadata>
+            <metadataSchema>LOMv1.0</metadataSchema>
+            <language>en</language>
+          </metaMetadata>
+        </lom>
+      </metadata>
+    </resource>
+    
+    <resource identifier="document_4" type="webcontent" adlcp:scormType="asset">
+      <file href="html/documents/4/coldiretti-it__rev_sp3_27052010_wmHjC4w1X3r8UOAlMTMsrg.pptx">
+        <metadata>
+          <lom>
+            <general>
+              <identifier>
+                <catalog>URI</catalog>
+                <entry>url di questo documento</entry>
+              </identifier>
+            </general>
+            <technical>
+              <format>format/format</format>
+              <size>123</size>
+              <location>url di questo documento</location>
+            </technical>
+          </lom>
+        </metadata>
+      </file>
+      <file href="html/assets/documents/ppt.svg"/>
+      <metadata>
+        <lom>
+          <general>
+            <title>
+              <string language="it">Titolo di questo documento</string> <!-- qui va il locale -->
+            </title>
+            <description>
+              <string language="it">Descrizione di questo documento</string> <!-- qui va il locale -->
+            </description>
+            <structure>
+              <source>LOMv1.0</source>
+              <value>atomic</value>
+            </structure>
+          </general>
+          <lifeCycle>
+            <contribute>
+              <role>
+                <source>LOMv1.0</source>
+                <value>author</value>
+              </role>
+              <entity>BEGIN:VCARD&#13;&#10;VERSION:2.1&#13;&#10;FN:Autore Del Documento&#13;&#10;END:VCARD</entity>
+              <date>
+                <dateTime>2013-10-04</dateTime> <!-- data di creazione -->
+                <description>
+                  <string language="en">Date of creation</string>
+                </description>
+              </date>
+            </contribute>
+          </lifeCycle>
+          <metaMetadata>
+            <metadataSchema>LOMv1.0</metadataSchema>
+            <language>en</language>
+          </metaMetadata>
+        </lom>
+      </metadata>
+    </resource>
+    
+    <!-- media_elements -->
+    
+    <resource identifier="media_element_57" type="webcontent" adlcp:scormType="asset">
+      <file href="html/media_elements/videos/57/mare_zWh36aPODFkzhdbjHvEGGw.mp4">
+        <metadata>
+          <lom>
+            <general>
+              <identifier>
+                <catalog>URI</catalog>
+                <entry>url di questo elemento</entry>
+              </identifier>
+            </general>
+            <technical>
+              <format>video/mp4</format>
+              <size>123</size>
+              <location>url di questo elemento</location>
+              <duration>123</duration>
+            </technical>
+          </lom>
+        </metadata>
+      </file>
+      <file href="html/media_elements/videos/57/mare_zWh36aPODFkzhdbjHvEGGw.webm">
+        <metadata>
+          <lom>
+            <general>
+              <identifier>
+                <catalog>URI</catalog>
+                <entry>url di questo elemento</entry>
+              </identifier>
+            </general>
+            <technical>
+              <format>video/webm</format>
+              <size>123</size>
+              <location>url di questo elemento</location>
+              <duration>123</duration>
+            </technical>
+          </lom>
+        </metadata>
+      </file>
+      <file href="html/media_elements/videos/57/cover_mare_zWh36aPODFkzhdbjHvEGGw.jpg">
+        <metadata>
+          <lom>
+            <general>
+              <identifier>
+                <catalog>URI</catalog>
+                <entry>url di questo elemento</entry>
+              </identifier>
+            </general>
+            <technical>
+              <format>image/jpeg</format>
+              <size>123</size>
+              <location>url di questo elemento</location>
+            </technical>
+          </lom>
+        </metadata>
+      </file>
+      <file href="html/media_elements/videos/57/thumb_mare_zWh36aPODFkzhdbjHvEGGw.jpg">
+        <metadata>
+          <lom>
+            <general>
+              <identifier>
+                <catalog>URI</catalog>
+                <entry>url di questo elemento</entry>
+              </identifier>
+            </general>
+            <technical>
+              <format>image/jpeg</format>
+              <size>123</size>
+              <location>url di questo elemento</location>
+            </technical>
+          </lom>
+        </metadata>
+      </file>
+      <metadata>
+        <lom>
+          <general>
+            <title>
+              <string language="it">Titolo di questo elemento</string> <!-- qui va il locale -->
+            </title>
+            <description>
+              <string language="it">Descrizione di questo elemento</string> <!-- qui va il locale -->
+            </description>
+            <structure>
+              <source>LOMv1.0</source>
+              <value>atomic</value>
+            </structure>
+            <keyword>
+              <string language="it">tag1</string> <!-- locale -->
+            </keyword>
+            <keyword>
+              <string language="it">tag2</string> <!-- locale -->
+            </keyword>
+            <keyword>
+              <string language="it">tag3</string> <!-- locale -->
+            </keyword>
+            <keyword>
+              <string language="it">tag4</string> <!-- locale -->
+            </keyword>
+          </general>
+          <lifeCycle>
+            <contribute>
+              <role>
+                <source>LOMv1.0</source>
+                <value>author</value>
+              </role>
+              <entity>BEGIN:VCARD&#13;&#10;VERSION:2.1&#13;&#10;FN:Autore Dell'Elemento&#13;&#10;END:VCARD</entity>
+              <date>
+                <dateTime>2013-10-04</dateTime> <!-- data di creazione -->
+                <description>
+                  <string language="en">Date of creation</string>
+                </description>
+              </date>
+            </contribute>
+          </lifeCycle>
+          <metaMetadata>
+            <metadataSchema>LOMv1.0</metadataSchema>
+            <language>en</language>
+          </metaMetadata>
+        </lom>
+      </metadata>
+    </resource>
+    
+    <resource identifier="media_element_62" type="webcontent" adlcp:scormType="asset">
+      <file href="html/media_elements/videos/62/virus_Q6X2iFsTmXSABGB61-KVaQ.mp4">
+        <metadata>
+          <lom>
+            <general>
+              <identifier>
+                <catalog>URI</catalog>
+                <entry>url di questo elemento</entry>
+              </identifier>
+            </general>
+            <technical>
+              <format>video/mp4</format>
+              <size>123</size>
+              <location>url di questo elemento</location>
+              <duration>123</duration>
+            </technical>
+          </lom>
+        </metadata>
+      </file>
+      <file href="html/media_elements/videos/62/virus_Q6X2iFsTmXSABGB61-KVaQ.webm">
+        <metadata>
+          <lom>
+            <general>
+              <identifier>
+                <catalog>URI</catalog>
+                <entry>url di questo elemento</entry>
+              </identifier>
+            </general>
+            <technical>
+              <format>video/webm</format>
+              <size>123</size>
+              <location>url di questo elemento</location>
+              <duration>123</duration>
+            </technical>
+          </lom>
+        </metadata>
+      </file>
+      <file href="html/media_elements/videos/62/cover_virus_Q6X2iFsTmXSABGB61-KVaQ.jpg">
+        <metadata>
+          <lom>
+            <general>
+              <identifier>
+                <catalog>URI</catalog>
+                <entry>url di questo elemento</entry>
+              </identifier>
+            </general>
+            <technical>
+              <format>image/jpeg</format>
+              <size>123</size>
+              <location>url di questo elemento</location>
+            </technical>
+          </lom>
+        </metadata>
+      </file>
+      <file href="html/media_elements/videos/62/thumb_virus_Q6X2iFsTmXSABGB61-KVaQ.jpg">
+        <metadata>
+          <lom>
+            <general>
+              <identifier>
+                <catalog>URI</catalog>
+                <entry>url di questo elemento</entry>
+              </identifier>
+            </general>
+            <technical>
+              <format>image/jpeg</format>
+              <size>123</size>
+              <location>url di questo elemento</location>
+            </technical>
+          </lom>
+        </metadata>
+      </file>
+      <metadata>
+        <lom>
+          <general>
+            <title>
+              <string language="it">Titolo di questo elemento</string> <!-- qui va il locale -->
+            </title>
+            <description>
+              <string language="it">Descrizione di questo elemento</string> <!-- qui va il locale -->
+            </description>
+            <structure>
+              <source>LOMv1.0</source>
+              <value>atomic</value>
+            </structure>
+            <keyword>
+              <string language="it">tag1</string> <!-- locale -->
+            </keyword>
+            <keyword>
+              <string language="it">tag2</string> <!-- locale -->
+            </keyword>
+            <keyword>
+              <string language="it">tag3</string> <!-- locale -->
+            </keyword>
+            <keyword>
+              <string language="it">tag4</string> <!-- locale -->
+            </keyword>
+          </general>
+          <lifeCycle>
+            <contribute>
+              <role>
+                <source>LOMv1.0</source>
+                <value>author</value>
+              </role>
+              <entity>BEGIN:VCARD&#13;&#10;VERSION:2.1&#13;&#10;FN:Autore Dell'Elemento&#13;&#10;END:VCARD</entity>
+              <date>
+                <dateTime>2013-10-04</dateTime> <!-- data di creazione -->
+                <description>
+                  <string language="en">Date of creation</string>
+                </description>
+              </date>
+            </contribute>
+          </lifeCycle>
+          <metaMetadata>
+            <metadataSchema>LOMv1.0</metadataSchema>
+            <language>en</language>
+          </metaMetadata>
+        </lom>
+      </metadata>
+    </resource>
+    
+    <resource identifier="media_element_144" type="webcontent" adlcp:scormType="asset">
+      <file href="html/media_elements/images/144/dsc06605_dw4qPC7QFBDMhXyYOTY0zA.jpg">
+        <metadata>
+          <lom>
+            <general>
+              <identifier>
+                <catalog>URI</catalog>
+                <entry>url di questo elemento</entry>
+              </identifier>
+            </general>
+            <technical>
+              <format>image/jpeg</format>
+              <size>123</size>
+              <location>url di questo elemento</location>
+            </technical>
+          </lom>
+        </metadata>
+      </file>
+      <file href="html/media_elements/images/144/thumb_dsc06605_dw4qPC7QFBDMhXyYOTY0zA.jpg">
+        <metadata>
+          <lom>
+            <general>
+              <identifier>
+                <catalog>URI</catalog>
+                <entry>url di questo elemento</entry>
+              </identifier>
+            </general>
+            <technical>
+              <format>image/jpeg</format>
+              <size>123</size>
+              <location>url di questo elemento</location>
+            </technical>
+          </lom>
+        </metadata>
+      </file>
+      <metadata>
+        <lom>
+          <general>
+            <title>
+              <string language="it">Titolo di questo elemento</string> <!-- qui va il locale -->
+            </title>
+            <description>
+              <string language="it">Descrizione di questo elemento</string> <!-- qui va il locale -->
+            </description>
+            <structure>
+              <source>LOMv1.0</source>
+              <value>atomic</value>
+            </structure>
+            <keyword>
+              <string language="it">tag1</string> <!-- locale -->
+            </keyword>
+            <keyword>
+              <string language="it">tag2</string> <!-- locale -->
+            </keyword>
+            <keyword>
+              <string language="it">tag3</string> <!-- locale -->
+            </keyword>
+            <keyword>
+              <string language="it">tag4</string> <!-- locale -->
+            </keyword>
+          </general>
+          <lifeCycle>
+            <contribute>
+              <role>
+                <source>LOMv1.0</source>
+                <value>author</value>
+              </role>
+              <entity>BEGIN:VCARD&#13;&#10;VERSION:2.1&#13;&#10;FN:Autore Dell'Elemento&#13;&#10;END:VCARD</entity>
+              <date>
+                <dateTime>2013-10-04</dateTime> <!-- data di creazione -->
+                <description>
+                  <string language="en">Date of creation</string>
+                </description>
+              </date>
+            </contribute>
+          </lifeCycle>
+          <metaMetadata>
+            <metadataSchema>LOMv1.0</metadataSchema>
+            <language>en</language>
+          </metaMetadata>
+        </lom>
+      </metadata>
+    </resource>
+    
+    <resource identifier="media_element_148" type="webcontent" adlcp:scormType="asset">
+      <file href="html/media_elements/images/148/1-_josef_koudelka__romania__1968_jNhvYo5O002TgSNzEINupw.jpg">
+        <metadata>
+          <lom>
+            <general>
+              <identifier>
+                <catalog>URI</catalog>
+                <entry>url di questo elemento</entry>
+              </identifier>
+            </general>
+            <technical>
+              <format>image/jpeg</format>
+              <size>123</size>
+              <location>url di questo elemento</location>
+            </technical>
+          </lom>
+        </metadata>
+      </file>
+      <file href="html/media_elements/images/148/thumb_1-_josef_koudelka__romania__1968_jNhvYo5O002TgSNzEINupw.jpg">
+        <metadata>
+          <lom>
+            <general>
+              <identifier>
+                <catalog>URI</catalog>
+                <entry>url di questo elemento</entry>
+              </identifier>
+            </general>
+            <technical>
+              <format>image/jpeg</format>
+              <size>123</size>
+              <location>url di questo elemento</location>
+            </technical>
+          </lom>
+        </metadata>
+      </file>
+      <metadata>
+        <lom>
+          <general>
+            <title>
+              <string language="it">Titolo di questo elemento</string> <!-- qui va il locale -->
+            </title>
+            <description>
+              <string language="it">Descrizione di questo elemento</string> <!-- qui va il locale -->
+            </description>
+            <structure>
+              <source>LOMv1.0</source>
+              <value>atomic</value>
+            </structure>
+            <keyword>
+              <string language="it">tag1</string> <!-- locale -->
+            </keyword>
+            <keyword>
+              <string language="it">tag2</string> <!-- locale -->
+            </keyword>
+            <keyword>
+              <string language="it">tag3</string> <!-- locale -->
+            </keyword>
+            <keyword>
+              <string language="it">tag4</string> <!-- locale -->
+            </keyword>
+          </general>
+          <lifeCycle>
+            <contribute>
+              <role>
+                <source>LOMv1.0</source>
+                <value>author</value>
+              </role>
+              <entity>BEGIN:VCARD&#13;&#10;VERSION:2.1&#13;&#10;FN:Autore Dell'Elemento&#13;&#10;END:VCARD</entity>
+              <date>
+                <dateTime>2013-10-04</dateTime> <!-- data di creazione -->
+                <description>
+                  <string language="en">Date of creation</string>
+                </description>
+              </date>
+            </contribute>
+          </lifeCycle>
+          <metaMetadata>
+            <metadataSchema>LOMv1.0</metadataSchema>
+            <language>en</language>
+          </metaMetadata>
+        </lom>
+      </metadata>
+    </resource>
+    
+    <resource identifier="media_element_166" type="webcontent" adlcp:scormType="asset">
+      <file href="html/media_elements/images/166/josefkoudelka_hmTZ-wQaDglhh7cmdDmJ2A.jpg">
+        <metadata>
+          <lom>
+            <general>
+              <identifier>
+                <catalog>URI</catalog>
+                <entry>url di questo elemento</entry>
+              </identifier>
+            </general>
+            <technical>
+              <format>image/jpeg</format>
+              <size>123</size>
+              <location>url di questo elemento</location>
+            </technical>
+          </lom>
+        </metadata>
+      </file>
+      <file href="html/media_elements/images/166/thumb_josefkoudelka_hmTZ-wQaDglhh7cmdDmJ2A.jpg">
+        <metadata>
+          <lom>
+            <general>
+              <identifier>
+                <catalog>URI</catalog>
+                <entry>url di questo elemento</entry>
+              </identifier>
+            </general>
+            <technical>
+              <format>image/jpeg</format>
+              <size>123</size>
+              <location>url di questo elemento</location>
+            </technical>
+          </lom>
+        </metadata>
+      </file>
+      <metadata>
+        <lom>
+          <general>
+            <title>
+              <string language="it">Titolo di questo elemento</string> <!-- qui va il locale -->
+            </title>
+            <description>
+              <string language="it">Descrizione di questo elemento</string> <!-- qui va il locale -->
+            </description>
+            <structure>
+              <source>LOMv1.0</source>
+              <value>atomic</value>
+            </structure>
+            <keyword>
+              <string language="it">tag1</string> <!-- locale -->
+            </keyword>
+            <keyword>
+              <string language="it">tag2</string> <!-- locale -->
+            </keyword>
+            <keyword>
+              <string language="it">tag3</string> <!-- locale -->
+            </keyword>
+            <keyword>
+              <string language="it">tag4</string> <!-- locale -->
+            </keyword>
+          </general>
+          <lifeCycle>
+            <contribute>
+              <role>
+                <source>LOMv1.0</source>
+                <value>author</value>
+              </role>
+              <entity>BEGIN:VCARD&#13;&#10;VERSION:2.1&#13;&#10;FN:Autore Dell'Elemento&#13;&#10;END:VCARD</entity>
+              <date>
+                <dateTime>2013-10-04</dateTime> <!-- data di creazione -->
+                <description>
+                  <string language="en">Date of creation</string>
+                </description>
+              </date>
+            </contribute>
+          </lifeCycle>
+          <metaMetadata>
+            <metadataSchema>LOMv1.0</metadataSchema>
+            <language>en</language>
+          </metaMetadata>
+        </lom>
+      </metadata>
+    </resource>
+    
+    <resource identifier="media_element_183" type="webcontent" adlcp:scormType="asset">
+      <file href="html/media_elements/images/183/dexter-tv-series-1920x1080-wallpaper-542_GcGA4wuASNna_kSBhGdp9A.jpg">
+        <metadata>
+          <lom>
+            <general>
+              <identifier>
+                <catalog>URI</catalog>
+                <entry>url di questo elemento</entry>
+              </identifier>
+            </general>
+            <technical>
+              <format>image/jpeg</format>
+              <size>123</size>
+              <location>url di questo elemento</location>
+            </technical>
+          </lom>
+        </metadata>
+      </file>
+      <file href="html/media_elements/images/183/thumb_dexter-tv-series-1920x1080-wallpaper-542_GcGA4wuASNna_kSBhGdp9A.jpg">
+        <metadata>
+          <lom>
+            <general>
+              <identifier>
+                <catalog>URI</catalog>
+                <entry>url di questo elemento</entry>
+              </identifier>
+            </general>
+            <technical>
+              <format>image/jpeg</format>
+              <size>123</size>
+              <location>url di questo elemento</location>
+            </technical>
+          </lom>
+        </metadata>
+      </file>
+      <metadata>
+        <lom>
+          <general>
+            <title>
+              <string language="it">Titolo di questo elemento</string> <!-- qui va il locale -->
+            </title>
+            <description>
+              <string language="it">Descrizione di questo elemento</string> <!-- qui va il locale -->
+            </description>
+            <structure>
+              <source>LOMv1.0</source>
+              <value>atomic</value>
+            </structure>
+            <keyword>
+              <string language="it">tag1</string> <!-- locale -->
+            </keyword>
+            <keyword>
+              <string language="it">tag2</string> <!-- locale -->
+            </keyword>
+            <keyword>
+              <string language="it">tag3</string> <!-- locale -->
+            </keyword>
+            <keyword>
+              <string language="it">tag4</string> <!-- locale -->
+            </keyword>
+          </general>
+          <lifeCycle>
+            <contribute>
+              <role>
+                <source>LOMv1.0</source>
+                <value>author</value>
+              </role>
+              <entity>BEGIN:VCARD&#13;&#10;VERSION:2.1&#13;&#10;FN:Autore Dell'Elemento&#13;&#10;END:VCARD</entity>
+              <date>
+                <dateTime>2013-10-04</dateTime> <!-- data di creazione -->
+                <description>
+                  <string language="en">Date of creation</string>
+                </description>
+              </date>
+            </contribute>
+          </lifeCycle>
+          <metaMetadata>
+            <metadataSchema>LOMv1.0</metadataSchema>
+            <language>en</language>
+          </metaMetadata>
+        </lom>
+      </metadata>
+    </resource>
+    
+    <resource identifier="media_element_196" type="webcontent" adlcp:scormType="asset">
+      <file href="html/media_elements/audios/196/7-tangerine_pq9ayLGFi2ntuTQ-qxkqfQ.m4a">
+        <metadata>
+          <lom>
+            <general>
+              <identifier>
+                <catalog>URI</catalog>
+                <entry>url di questo elemento</entry>
+              </identifier>
+            </general>
+            <technical>
+              <format>audio/m4a</format>
+              <size>123</size>
+              <location>url di questo elemento</location>
+              <duration>123</duration>
+            </technical>
+          </lom>
+        </metadata>
+      </file>
+      <file href="html/media_elements/audios/196/7-tangerine_pq9ayLGFi2ntuTQ-qxkqfQ.ogg">
+        <metadata>
+          <lom>
+            <general>
+              <identifier>
+                <catalog>URI</catalog>
+                <entry>url di questo elemento</entry>
+              </identifier>
+            </general>
+            <technical>
+              <format>audio/ogg</format>
+              <size>123</size>
+              <location>url di questo elemento</location>
+              <duration>123</duration>
+            </technical>
+          </lom>
+        </metadata>
+      </file>
+      <metadata>
+        <lom>
+          <general>
+            <title>
+              <string language="it">Titolo di questo elemento</string> <!-- qui va il locale -->
+            </title>
+            <description>
+              <string language="it">Descrizione di questo elemento</string> <!-- qui va il locale -->
+            </description>
+            <structure>
+              <source>LOMv1.0</source>
+              <value>atomic</value>
+            </structure>
+            <keyword>
+              <string language="it">tag1</string> <!-- locale -->
+            </keyword>
+            <keyword>
+              <string language="it">tag2</string> <!-- locale -->
+            </keyword>
+            <keyword>
+              <string language="it">tag3</string> <!-- locale -->
+            </keyword>
+            <keyword>
+              <string language="it">tag4</string> <!-- locale -->
+            </keyword>
+          </general>
+          <lifeCycle>
+            <contribute>
+              <role>
+                <source>LOMv1.0</source>
+                <value>author</value>
+              </role>
+              <entity>BEGIN:VCARD&#13;&#10;VERSION:2.1&#13;&#10;FN:Autore Dell'Elemento&#13;&#10;END:VCARD</entity>
+              <date>
+                <dateTime>2013-10-04</dateTime> <!-- data di creazione -->
+                <description>
+                  <string language="en">Date of creation</string>
+                </description>
+              </date>
+            </contribute>
+          </lifeCycle>
+          <metaMetadata>
+            <metadataSchema>LOMv1.0</metadataSchema>
+            <language>en</language>
+          </metaMetadata>
+        </lom>
+      </metadata>
+    </resource>
+    
+    <resource identifier="media_element_199" type="webcontent" adlcp:scormType="asset">
+      <file href="html/media_elements/images/199/gufo_3nz-md45fUfqxcxdsEdKpw.jpg">
+        <metadata>
+          <lom>
+            <general>
+              <identifier>
+                <catalog>URI</catalog>
+                <entry>url di questo elemento</entry>
+              </identifier>
+            </general>
+            <technical>
+              <format>image/jpeg</format>
+              <size>123</size>
+              <location>url di questo elemento</location>
+            </technical>
+          </lom>
+        </metadata>
+      </file>
+      <file href="html/media_elements/images/199/thumb_gufo_3nz-md45fUfqxcxdsEdKpw.jpg">
+        <metadata>
+          <lom>
+            <general>
+              <identifier>
+                <catalog>URI</catalog>
+                <entry>url di questo elemento</entry>
+              </identifier>
+            </general>
+            <technical>
+              <format>image/jpeg</format>
+              <size>123</size>
+              <location>url di questo elemento</location>
+            </technical>
+          </lom>
+        </metadata>
+      </file>
+      <metadata>
+        <lom>
+          <general>
+            <title>
+              <string language="it">Titolo di questo elemento</string> <!-- qui va il locale -->
+            </title>
+            <description>
+              <string language="it">Descrizione di questo elemento</string> <!-- qui va il locale -->
+            </description>
+            <structure>
+              <source>LOMv1.0</source>
+              <value>atomic</value>
+            </structure>
+            <keyword>
+              <string language="it">tag1</string> <!-- locale -->
+            </keyword>
+            <keyword>
+              <string language="it">tag2</string> <!-- locale -->
+            </keyword>
+            <keyword>
+              <string language="it">tag3</string> <!-- locale -->
+            </keyword>
+            <keyword>
+              <string language="it">tag4</string> <!-- locale -->
+            </keyword>
+          </general>
+          <lifeCycle>
+            <contribute>
+              <role>
+                <source>LOMv1.0</source>
+                <value>author</value>
+              </role>
+              <entity>BEGIN:VCARD&#13;&#10;VERSION:2.1&#13;&#10;FN:Autore Dell'Elemento&#13;&#10;END:VCARD</entity>
+              <date>
+                <dateTime>2013-10-04</dateTime> <!-- data di creazione -->
+                <description>
+                  <string language="en">Date of creation</string>
+                </description>
+              </date>
+            </contribute>
+          </lifeCycle>
+          <metaMetadata>
+            <metadataSchema>LOMv1.0</metadataSchema>
+            <language>en</language>
+          </metaMetadata>
+        </lom>
+      </metadata>
+    </resource>
+    
+    <resource identifier="media_element_207" type="webcontent" adlcp:scormType="asset">
+      <file href="html/media_elements/images/207/cavallo_jx5cDgcLJMbl-m5XbEX2cg.jpg">
+        <metadata>
+          <lom>
+            <general>
+              <identifier>
+                <catalog>URI</catalog>
+                <entry>url di questo elemento</entry>
+              </identifier>
+            </general>
+            <technical>
+              <format>image/jpeg</format>
+              <size>123</size>
+              <location>url di questo elemento</location>
+            </technical>
+          </lom>
+        </metadata>
+      </file>
+      <file href="html/media_elements/images/207/thumb_cavallo_jx5cDgcLJMbl-m5XbEX2cg.jpg">
+        <metadata>
+          <lom>
+            <general>
+              <identifier>
+                <catalog>URI</catalog>
+                <entry>url di questo elemento</entry>
+              </identifier>
+            </general>
+            <technical>
+              <format>image/jpeg</format>
+              <size>123</size>
+              <location>url di questo elemento</location>
+            </technical>
+          </lom>
+        </metadata>
+      </file>
+      <metadata>
+        <lom>
+          <general>
+            <title>
+              <string language="it">Titolo di questo elemento</string> <!-- qui va il locale -->
+            </title>
+            <description>
+              <string language="it">Descrizione di questo elemento</string> <!-- qui va il locale -->
+            </description>
+            <structure>
+              <source>LOMv1.0</source>
+              <value>atomic</value>
+            </structure>
+            <keyword>
+              <string language="it">tag1</string> <!-- locale -->
+            </keyword>
+            <keyword>
+              <string language="it">tag2</string> <!-- locale -->
+            </keyword>
+            <keyword>
+              <string language="it">tag3</string> <!-- locale -->
+            </keyword>
+            <keyword>
+              <string language="it">tag4</string> <!-- locale -->
+            </keyword>
+          </general>
+          <lifeCycle>
+            <contribute>
+              <role>
+                <source>LOMv1.0</source>
+                <value>author</value>
+              </role>
+              <entity>BEGIN:VCARD&#13;&#10;VERSION:2.1&#13;&#10;FN:Autore Dell'Elemento&#13;&#10;END:VCARD</entity>
+              <date>
+                <dateTime>2013-10-04</dateTime> <!-- data di creazione -->
+                <description>
+                  <string language="en">Date of creation</string>
+                </description>
+              </date>
+            </contribute>
+          </lifeCycle>
+          <metaMetadata>
+            <metadataSchema>LOMv1.0</metadataSchema>
+            <language>en</language>
+          </metaMetadata>
+        </lom>
+      </metadata>
+    </resource>
+    
+    <resource identifier="media_element_208" type="webcontent" adlcp:scormType="asset">
+      <file href="html/media_elements/images/208/20130809_102830_pqDJO7kt2EidN8gLHw4ICQ.jpg">
+        <metadata>
+          <lom>
+            <general>
+              <identifier>
+                <catalog>URI</catalog>
+                <entry>url di questo elemento</entry>
+              </identifier>
+            </general>
+            <technical>
+              <format>image/jpeg</format>
+              <size>123</size>
+              <location>url di questo elemento</location>
+            </technical>
+          </lom>
+        </metadata>
+      </file>
+      <file href="html/media_elements/images/208/thumb_20130809_102830_pqDJO7kt2EidN8gLHw4ICQ.jpg">
+        <metadata>
+          <lom>
+            <general>
+              <identifier>
+                <catalog>URI</catalog>
+                <entry>url di questo elemento</entry>
+              </identifier>
+            </general>
+            <technical>
+              <format>image/jpeg</format>
+              <size>123</size>
+              <location>url di questo elemento</location>
+            </technical>
+          </lom>
+        </metadata>
+      </file>
+      <metadata>
+        <lom>
+          <general>
+            <title>
+              <string language="it">Titolo di questo elemento</string> <!-- qui va il locale -->
+            </title>
+            <description>
+              <string language="it">Descrizione di questo elemento</string> <!-- qui va il locale -->
+            </description>
+            <structure>
+              <source>LOMv1.0</source>
+              <value>atomic</value>
+            </structure>
+            <keyword>
+              <string language="it">tag1</string> <!-- locale -->
+            </keyword>
+            <keyword>
+              <string language="it">tag2</string> <!-- locale -->
+            </keyword>
+            <keyword>
+              <string language="it">tag3</string> <!-- locale -->
+            </keyword>
+            <keyword>
+              <string language="it">tag4</string> <!-- locale -->
+            </keyword>
+          </general>
+          <lifeCycle>
+            <contribute>
+              <role>
+                <source>LOMv1.0</source>
+                <value>author</value>
+              </role>
+              <entity>BEGIN:VCARD&#13;&#10;VERSION:2.1&#13;&#10;FN:Autore Dell'Elemento&#13;&#10;END:VCARD</entity>
+              <date>
+                <dateTime>2013-10-04</dateTime> <!-- data di creazione -->
+                <description>
+                  <string language="en">Date of creation</string>
+                </description>
+              </date>
+            </contribute>
+          </lifeCycle>
+          <metaMetadata>
+            <metadataSchema>LOMv1.0</metadataSchema>
+            <language>en</language>
+          </metaMetadata>
+        </lom>
+      </metadata>
+    </resource>
+    
+    <resource identifier="media_element_220" type="webcontent" adlcp:scormType="asset">
+      <file href="html/media_elements/images/220/tmp_liescPOskDDYK4XwxZ9pYg.png">
+        <metadata>
+          <lom>
+            <general>
+              <identifier>
+                <catalog>URI</catalog>
+                <entry>url di questo elemento</entry>
+              </identifier>
+            </general>
+            <technical>
+              <format>image/png</format>
+              <size>123</size>
+              <location>url di questo elemento</location>
+            </technical>
+          </lom>
+        </metadata>
+      </file>
+      <file href="html/media_elements/images/220/thumb_tmp_liescPOskDDYK4XwxZ9pYg.png">
+        <metadata>
+          <lom>
+            <general>
+              <identifier>
+                <catalog>URI</catalog>
+                <entry>url di questo elemento</entry>
+              </identifier>
+            </general>
+            <technical>
+              <format>image/png</format>
+              <size>123</size>
+              <location>url di questo elemento</location>
+            </technical>
+          </lom>
+        </metadata>
+      </file>
+      <metadata>
+        <lom>
+          <general>
+            <title>
+              <string language="it">Titolo di questo elemento</string> <!-- qui va il locale -->
+            </title>
+            <description>
+              <string language="it">Descrizione di questo elemento</string> <!-- qui va il locale -->
+            </description>
+            <structure>
+              <source>LOMv1.0</source>
+              <value>atomic</value>
+            </structure>
+            <keyword>
+              <string language="it">tag1</string> <!-- locale -->
+            </keyword>
+            <keyword>
+              <string language="it">tag2</string> <!-- locale -->
+            </keyword>
+            <keyword>
+              <string language="it">tag3</string> <!-- locale -->
+            </keyword>
+            <keyword>
+              <string language="it">tag4</string> <!-- locale -->
+            </keyword>
+          </general>
+          <lifeCycle>
+            <contribute>
+              <role>
+                <source>LOMv1.0</source>
+                <value>author</value>
+              </role>
+              <entity>BEGIN:VCARD&#13;&#10;VERSION:2.1&#13;&#10;FN:Autore Dell'Elemento&#13;&#10;END:VCARD</entity>
+              <date>
+                <dateTime>2013-10-04</dateTime> <!-- data di creazione -->
+                <description>
+                  <string language="en">Date of creation</string>
+                </description>
+              </date>
+            </contribute>
+          </lifeCycle>
+          <metaMetadata>
+            <metadataSchema>LOMv1.0</metadataSchema>
+            <language>en</language>
+          </metaMetadata>
+        </lom>
+      </metadata>
+    </resource>
+    
+    <resource identifier="media_element_231" type="webcontent" adlcp:scormType="asset">
+      <file href="html/media_elements/images/231/marmotta_J6Z5lhnH2DiibIeIiv4hSA.jpeg">
+        <metadata>
+          <lom>
+            <general>
+              <identifier>
+                <catalog>URI</catalog>
+                <entry>url di questo elemento</entry>
+              </identifier>
+            </general>
+            <technical>
+              <format>image/jpeg</format>
+              <size>123</size>
+              <location>url di questo elemento</location>
+            </technical>
+          </lom>
+        </metadata>
+      </file>
+      <file href="html/media_elements/images/231/thumb_marmotta_J6Z5lhnH2DiibIeIiv4hSA.jpeg">
+        <metadata>
+          <lom>
+            <general>
+              <identifier>
+                <catalog>URI</catalog>
+                <entry>url di questo elemento</entry>
+              </identifier>
+            </general>
+            <technical>
+              <format>image/jpeg</format>
+              <size>123</size>
+              <location>url di questo elemento</location>
+            </technical>
+          </lom>
+        </metadata>
+      </file>
+      <metadata>
+        <lom>
+          <general>
+            <title>
+              <string language="it">Titolo di questo elemento</string> <!-- qui va il locale -->
+            </title>
+            <description>
+              <string language="it">Descrizione di questo elemento</string> <!-- qui va il locale -->
+            </description>
+            <structure>
+              <source>LOMv1.0</source>
+              <value>atomic</value>
+            </structure>
+            <keyword>
+              <string language="it">tag1</string> <!-- locale -->
+            </keyword>
+            <keyword>
+              <string language="it">tag2</string> <!-- locale -->
+            </keyword>
+            <keyword>
+              <string language="it">tag3</string> <!-- locale -->
+            </keyword>
+            <keyword>
+              <string language="it">tag4</string> <!-- locale -->
+            </keyword>
+          </general>
+          <lifeCycle>
+            <contribute>
+              <role>
+                <source>LOMv1.0</source>
+                <value>author</value>
+              </role>
+              <entity>BEGIN:VCARD&#13;&#10;VERSION:2.1&#13;&#10;FN:Autore Dell'Elemento&#13;&#10;END:VCARD</entity>
+              <date>
+                <dateTime>2013-10-04</dateTime> <!-- data di creazione -->
+                <description>
+                  <string language="en">Date of creation</string>
+                </description>
+              </date>
+            </contribute>
+          </lifeCycle>
+          <metaMetadata>
+            <metadataSchema>LOMv1.0</metadataSchema>
+            <language>en</language>
+          </metaMetadata>
+        </lom>
+      </metadata>
+    </resource>
+    
+    <!-- qui sotto pacchetti di livello più alto -->
+    
+    <resource identifier="common" type="webcontent" adlcp:scormType="asset">
+      <dependency identifierref="common_js"/>
+      <dependency identifierref="common_css"/>
+      <dependency identifierref="common_images"/>
+      <metadata>
+        <lom>
+          <general>
+            <structure>
+              <source>LOMv1.0</source>
+              <value>collection</value>
+            </structure>
+          </general>
+          <metaMetadata>
+            <metadataSchema>LOMv1.0</metadataSchema>
+            <language>en</language>
+          </metaMetadata>
+        </lom>
+      </metadata>
+    </resource>
+    
+    <resource identifier="players" type="webcontent" adlcp:scormType="asset">
+      <file href="html/assets/icone-player.svg"/>
+      <metadata>
+        <lom>
+          <general>
+            <structure>
+              <source>LOMv1.0</source>
+              <value>collection</value>
+            </structure>
+          </general>
+          <metaMetadata>
+            <metadataSchema>LOMv1.0</metadataSchema>
+            <language>en</language>
+          </metaMetadata>
+        </lom>
+      </metadata>
+    </resource>
+    
+    <resource identifier="documents" type="webcontent" adlcp:scormType="asset">
+      <file href="html/assets/documents_fondo.png"/>
+      <metadata>
+        <lom>
+          <general>
+            <structure>
+              <source>LOMv1.0</source>
+              <value>collection</value>
+            </structure>
+          </general>
+          <metaMetadata>
+            <metadataSchema>LOMv1.0</metadataSchema>
+            <language>en</language>
+          </metaMetadata>
+        </lom>
+      </metadata>
+    </resource>
+    
+    <resource identifier="tinyMCE" type="webcontent" adlcp:scormType="asset">
+      <file href="html/assets/pallino.svg"/>
+      <file href="html/assets/tiny_items.gif"/>
+      <metadata>
+        <lom>
+          <general>
+            <structure>
+              <source>LOMv1.0</source>
+              <value>collection</value>
+            </structure>
+          </general>
+          <metaMetadata>
+            <metadataSchema>LOMv1.0</metadataSchema>
+            <language>en</language>
+          </metaMetadata>
+        </lom>
+      </metadata>
+    </resource>
+    
+    <!-- qui sotto pacchetti di livello più basso -->
+    
+    <resource identifier="common_js" type="webcontent" adlcp:scormType="asset">
+      <file href="html/assets/lesson_export/application.js"/>
+      <metadata>
+        <lom>
+          <general>
+            <structure>
+              <source>LOMv1.0</source>
+              <value>collection</value>
+            </structure>
+          </general>
+          <metaMetadata>
+            <metadataSchema>LOMv1.0</metadataSchema>
+            <language>en</language>
+          </metaMetadata>
+        </lom>
+      </metadata>
+    </resource>
+    
+    <resource identifier="common_css" type="webcontent" adlcp:scormType="asset">
+      <file href="html/assets/lesson_export/application.css"/>
+      <metadata>
+        <lom>
+          <general>
+            <structure>
+              <source>LOMv1.0</source>
+              <value>collection</value>
+            </structure>
+          </general>
+          <metaMetadata>
+            <metadataSchema>LOMv1.0</metadataSchema>
+            <language>en</language>
+          </metaMetadata>
+        </lom>
+      </metadata>
+    </resource>
+    
+    <resource identifier="common_images" type="webcontent" adlcp:scormType="asset">
+      <file href="html/assets/favicon32x32.png"/>
+      <file href="html/assets/lesson-editor-logo-footer.png"/>
+      <metadata>
+        <lom>
+          <general>
+            <structure>
+              <source>LOMv1.0</source>
+              <value>collection</value>
+            </structure>
+          </general>
+          <metaMetadata>
+            <metadataSchema>LOMv1.0</metadataSchema>
+            <language>en</language>
+          </metaMetadata>
+        </lom>
+      </metadata>
+    </resource>
+    
+  </resources>
+  
+  
+</manifest>
