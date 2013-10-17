@@ -1,5 +1,9 @@
 # Global helpers
 module ApplicationHelper
+
+  def prelogin_contact_us_menu_link
+    link_to t('prelogin.contact_us.menu_link'), "mailto:#{SETTINGS['application']['contact_us_email']}"
+  end
   
   # Gets the color of description popup into the document gallery
   def documents_type_color(document)

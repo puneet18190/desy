@@ -4,7 +4,7 @@
     <li><%= link_to t('prelogin.main_page.menu_link'), root_path, :class => 'current' %></li>
     <li><%= link_to t('prelogin.what_is_desy.menu_link', :desy => SETTINGS['application_name']), what_is_desy_path %></li>
     <li><%= link_to t('prelogin.sign_up.menu_link'), sign_up_path %></li>
-    <li><a href="mailto:<%= SETTINGS['application']['maintainer']['emails'][0] %>"><%= t('prelogin.contact_us.menu_link') %></a></li>
+    <li><%= contact_us_link %></li>
   </ul>
   <%= render :partial => '/prelogin/login' %>
   </div>
