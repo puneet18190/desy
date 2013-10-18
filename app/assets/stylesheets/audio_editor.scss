@@ -65,7 +65,7 @@ html.audio_editor-controller {
           float: left;
           background-image: none;
           margin-right: 12px;
-          background: $assets-rew-laterale_png top left no-repeat;
+          background: $assets-rew-laterale_png no-repeat top left;
           width: 35px;
           height: 35px;
           
@@ -80,7 +80,7 @@ html.audio_editor-controller {
         a.play {
           
           float: right;
-          background: $assets-play-lateral_png top left  no-repeat;
+          background: $assets-play-lateral_png  no-repeat top left;
           width: 35px;
           height: 35px;
           opacity: 1;
@@ -97,7 +97,7 @@ html.audio_editor-controller {
         a.pause {
           
           float: left;
-          background: $assets-pause-lateral_png top left  no-repeat;
+          background: $assets-pause-lateral_png  no-repeat top left;
           width: 35px;
           height: 35px;
           opacity: 1;
@@ -313,7 +313,7 @@ html.audio_editor-controller {
             .ui-slider-range {
               
               position: absolute;
-              background: $assets-bg-ui-slider-horizontal_png top left repeat-x;
+              background: $assets-bg-ui-slider-horizontal_png repeat-x top left;
               
             }
             
@@ -365,7 +365,7 @@ html.audio_editor-controller {
             float: left;
             background-image: none;
             margin-right: 12px;
-            background: $assets-rew_png top left no-repeat;
+            background: $assets-rew_png no-repeat top left;
             width: 18px;
             height: 18px;
             
@@ -380,7 +380,7 @@ html.audio_editor-controller {
           a.play {
             
             float: right;
-            background: $assets-play_png top left no-repeat;
+            background: $assets-play_png no-repeat top left;
             width: 18px;
             height: 18px;
             opacity: 1;
@@ -397,7 +397,7 @@ html.audio_editor-controller {
           a.pause {
             
             float: left;
-            background: $assets-pause_png top left no-repeat;
+            background: $assets-pause_png no-repeat top left;
             width: 18px;
             height: 18px;
             opacity: 1;
@@ -539,7 +539,7 @@ html.audio_editor-controller {
   
   .emptyAudioEditor {
     
-    background: $assets-empty-audio-editor_png center center no-repeat;
+    background: $assets-empty-audio-editor_png no-repeat center center;
     padding: 60px 290px;
     position: absolute;
     right: 190px;

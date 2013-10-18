@@ -195,7 +195,7 @@
 
 ._keep_searching {
   
-  background: $assets-select-icons_png 0 -123px no-repeat;
+  background: $assets-select-icons_png no-repeat 0 -123px;
   padding-left: 30px;
   margin-left: -4px;
   
@@ -250,7 +250,7 @@
       
       .cerca {
         
-        background: #555;
+        background-color: #555;
         border-radius: 0;
         color: #fff;
         text-transform: uppercase;
@@ -261,14 +261,14 @@
         
         &:hover {
           
-          background: #999;
+          background-color: #999;
           
         }
         
         &.current, &:hover.current {
           
           color: #ccc;
-          background: #999;
+          background-color: #999;
           
         }
         
@@ -348,7 +348,7 @@ label {
   border-radius: 50px;
   position: absolute;
   top: 3px;
-  background: #99a1a7;
+  background-color: #99a1a7;
   text-shadow: 0px;
   left: 3px;
   

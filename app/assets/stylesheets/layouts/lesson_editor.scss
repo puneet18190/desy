@@ -108,7 +108,7 @@ html.lesson-editor-layout {
       
       .jspTrack {
         
-        background: #3f3f3f;
+        background-color: #3f3f3f;
         z-index: 99999;
         
       }
@@ -127,7 +127,7 @@ html.lesson-editor-layout {
       
       .jspDrag {
         
-        background: $orange;
+        background-color: $orange;
         z-index: 99999;
         
       }
@@ -243,7 +243,7 @@ html.lesson-editor-layout {
     padding: 0;
     height: 17px;
     width: 17px;
-    background: $assets-add-small-on-off_png top center no-repeat transparent;
+    background: transparent $assets-add-small-on-off_png no-repeat top center;
     z-index: 100000;
     
     &:hover {
@@ -272,7 +272,7 @@ html.lesson-editor-layout {
     
     @include slide-miniature;
     margin-left: -27px;
-    background: $assets-lesson-editor-tooltip-bg_png top left no-repeat;
+    background: $assets-lesson-editor-tooltip-bg_png no-repeat top left;
     
   }
   
@@ -280,7 +280,7 @@ html.lesson-editor-layout {
     
     @include slide-miniature;
     margin-left: -247px;
-    background: $assets-lesson-editor-tooltip-bg-to-left_png top left no-repeat;
+    background: $assets-lesson-editor-tooltip-bg-to-left_png no-repeat top left;
     
   }
   
@@ -716,19 +716,19 @@ html.lesson-editor-layout {
       .sbToggle {
         
         margin-top: 10px;
-        background: $assets-select-icons-lessons-white_png 0 -123px no-repeat;
+        background: $assets-select-icons-lessons-white_png no-repeat 0 -123px;
         
        }
        
        .sbToggle:hover {
          
-         background: $assets-select-icons-lessons-white_png 0 -123px no-repeat;
+         background: $assets-select-icons-lessons-white_png no-repeat 0 -123px;
          
        }
        
        .sbToggleOpen {
          
-         background: $assets-select-icons-lessons-white_png 0 -22px no-repeat;
+         background: $assets-select-icons-lessons-white_png no-repeat 0 -22px;
          
        }
        
@@ -975,14 +975,14 @@ html.lesson-editor-layout {
   right: 0;
   top: 0;
   height: 100%;
-  background: #aaa;
+  background-color: #aaa;
   
 }
 
 .jScrollPaneDrag {
   
   position: absolute;
-  background: #666;
+  background-color: #666;
   cursor: pointer;
   overflow: hidden;
   

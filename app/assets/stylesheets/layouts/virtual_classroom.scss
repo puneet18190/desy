@@ -8,7 +8,7 @@ html.virtual_classroom-controller {
   body {
     
     font: 80% Arial, Helvetica, sans-serif;
-    background: #252525;
+    background-color: #252525;
     margin: 0;
     padding: 0;
     color: #FFF;
@@ -25,7 +25,7 @@ html.virtual_classroom-controller {
   .container {
     
     width: 100%;
-    background: #252525;
+    background-color: #252525;
     margin: 0 auto;
     
   }
@@ -461,7 +461,7 @@ html.virtual_classroom-controller {
     .playInVirtualClassroom {
       
       padding: 8px 10px 10px 70px;
-      background: #252525 $assets-freccina-play-virtual_png 1.6em 0.6em no-repeat;
+      background: #252525 $assets-freccina-play-virtual_png no-repeat 1.6em 0.6em;
       color: #fff;
       font: 180% 'Nunito', sans-serif;
       margin-bottom: 15px;
@@ -518,13 +518,13 @@ html.virtual_classroom-controller {
   
   .createButton a {
     
-    background: $assets-add-vc-off_svg bottom right no-repeat;
+    background: $assets-add-vc-off_svg no-repeat bottom right;
     background-size: 8em;
     padding: 1em 3em 6em 5em;
     
     &:hover {
       
-      background: $assets-add-vc-on_svg bottom right no-repeat;
+      background: $assets-add-vc-on_svg no-repeat bottom right;
       background-size: 8em;
       padding: 1em 3em 6em 5em;
       
@@ -615,7 +615,7 @@ html.virtual_classroom-controller {
     
     color: #727377;
     padding-bottom: 46px;
-    background: $assets-bg-playlist-empty_png top right no-repeat;
+    background: $assets-bg-playlist-empty_png no-repeat top right;
     
     p {
       

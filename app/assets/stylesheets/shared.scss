@@ -86,7 +86,7 @@ a.cerca.current {
     
     .createButton a {
       
-      background: $assets-create_png top left no-repeat;
+      background: $assets-create_png no-repeat top left;
       padding-bottom: 90px;
       padding-left: 120px;
       
@@ -94,14 +94,14 @@ a.cerca.current {
     
     .createButton a:hover {
       
-      background: $assets-create-white_png top center no-repeat;
+      background: $assets-create-white_png no-repeat top center;
       cursor: pointer;
       
     }
     
     .createButton a.current {
       
-      background: $assets-create-white_png top center no-repeat;
+      background: $assets-create-white_png  no-repeat top center;
       
     }
     
@@ -670,12 +670,12 @@ a.cerca.current {
     
     a.createButton {
       
-      background: $assets-create_png top center no-repeat;
+      background: $assets-create_png no-repeat top center;
       padding: 50px;
       
       &:hover {
         
-        background: $assets-create-white_png top center no-repeat;
+        background: $assets-create-white_png no-repeat top center;
         cursor: pointer;
         
       }
@@ -684,7 +684,7 @@ a.cerca.current {
     
     a.current {
       
-      background: $assets-create-white_png top center no-repeat;
+      background: $assets-create-white_png no-repeat top center;
       
     }
     
@@ -1281,7 +1281,7 @@ label.filebutton span input#new_media_element_input {
 
 .emptyGalleryAudioEditor {
   
-  background: $assets-big-audio_jpg center center no-repeat;
+  background: $assets-big-audio_jpg no-repeat center center;
   margin-top: 5px;
   padding-top: 180px;
   
@@ -1297,7 +1297,7 @@ label.filebutton span input#new_media_element_input {
 
 .emptyGalleryVideoEditor {
   
-  background: $assets-big-video_jpg center center no-repeat;
+  background: $assets-big-video_jpg no-repeat center center;
   margin-top: 5px;
   padding-top: 180px;
   
@@ -1313,7 +1313,7 @@ label.filebutton span input#new_media_element_input {
 
 .emptyGalleryImageEditor {
   
-  background: $assets-big-image_jpg center center no-repeat;
+  background: $assets-big-image_jpg no-repeat center center;
   margin-top: 54px;
   padding-top: 180px;
   

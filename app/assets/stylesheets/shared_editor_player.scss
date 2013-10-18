@@ -20,7 +20,7 @@
   
   .jspTrack {
     
-    background: #3f3f3f;
+    background-color: #3f3f3f;
     
   }
   
@@ -31,7 +31,7 @@
   
   .jspDrag {
     
-    background: $green;
+    background-color: $green;
     
   }
   
@@ -41,7 +41,7 @@
   
   .jspTrack {
     
-    background: #3f3f3f;
+    background-color: #3f3f3f;
     
   }
   
@@ -52,7 +52,7 @@
   
   .jspDrag {
     
-    background: $blue;
+    background-color: $blue;
     
   }
   
@@ -246,7 +246,7 @@ a.addButtonContent {
 
 .navLeft {
   
-  background: $assets-nav-left_png center left no-repeat;
+  background: $assets-nav-left_png no-repeat center left;
   opacity: 0.6;
   position: absolute;
   left: 0%;
@@ -264,7 +264,7 @@ a.addButtonContent {
 
 .navRight {
   
-  background: $assets-nav-right_png center left no-repeat;
+  background: $assets-nav-right_png no-repeat center left;
   opacity: 0.6;
   position: absolute;
   right: 0%;

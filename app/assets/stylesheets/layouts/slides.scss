@@ -26,7 +26,7 @@
   
   .attached_document_internal_expanded {
     
-    background: $assets-documents-fondo_png top right no-repeat;
+    background: $assets-documents-fondo_png  no-repeat top right;
     background-color: #252323;
     position: absolute;
     top: 0;
@@ -147,7 +147,7 @@
         
         .add:hover {
           
-          background: $assets-icone-piene_svg no-repeat scroll -2em center / 6em 1em transparent;
+          background: transparent $assets-icone-piene_svg no-repeat scroll -2em center / 6em 1em;
           
         }
         
@@ -161,7 +161,7 @@
         
         .add:hover {
           
-          background: $assets-icone-piene_svg no-repeat scroll -1em center / 6em 1em transparent;
+          background: transparent $assets-icone-piene_svg no-repeat scroll -1em center / 6em 1em;
           
         }
         
@@ -179,7 +179,7 @@
           
           &:hover {
             
-            background: $assets-icone-piene_svg no-repeat scroll 0em center / 6em 1em transparent;
+            background: transparent $assets-icone-piene_svg no-repeat scroll 0em center / 6em 1em;
             
           }
           

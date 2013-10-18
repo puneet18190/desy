@@ -192,37 +192,37 @@
       
       &.doc {
         
-        background: $assets-documents-triangles-doc_png top left no-repeat;
+        background: $assets-documents-triangles-doc_png no-repeat top left;
         
       }
       
       &.exc {
         
-        background: $assets-documents-triangles-exc_png top left no-repeat;
+        background: $assets-documents-triangles-exc_png no-repeat top left;
         
       }
       
       &.pdf {
         
-        background: $assets-documents-triangles-pdf_png top left no-repeat;
+        background: $assets-documents-triangles-pdf_png no-repeat top left;
         
       }
       
       &.ppt {
         
-        background: $assets-documents-triangles-ppt_png top left no-repeat;
+        background: $assets-documents-triangles-ppt_png no-repeat top left;
         
       }
       
       &.unknown {
         
-        background: $assets-documents-triangles-unknown_png top left no-repeat;
+        background: $assets-documents-triangles-unknown_png no-repeat top left;
         
       }
       
       &.zip {
         
-        background: $assets-documents-triangles-zip_png top left no-repeat;
+        background: $assets-documents-triangles-zip_png no-repeat top left;
         
       }
       
@@ -383,7 +383,7 @@
       position: absolute;
       width: 18px;
       height: 9px;
-      background: $assets-triangolo_png center left no-repeat;
+      background: $assets-triangolo_png no-repeat center left;
       top: 518px;
       left: 45px;
       

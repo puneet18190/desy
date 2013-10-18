@@ -10,7 +10,7 @@
   top: 0;
   width: 100%;
   height: 100%;
-  background: transparent;
+  background-color: transparent;
   opacity: 0.8;
   text-align: center;
   
@@ -78,7 +78,7 @@
   
   .createButton a {
     
-    background: $assets-add-element-off_svg bottom right no-repeat;
+    background: $assets-add-element-off_svg no-repeat bottom right;
     background-size: 6em;
     padding: 1em 4em 4em 2em;
     width: 76px;
@@ -87,7 +87,7 @@
   
   .createButton a:hover {
     
-    background: $assets-add-element-on_svg bottom right no-repeat;
+    background: $assets-add-element-on_svg no-repeat bottom right;
     background-size: 6em;
     cursor: pointer;
     
@@ -95,7 +95,7 @@
   
  .createButton  a.current {
     
-    background: $assets-add-element-on_svg bottom right no-repeat;
+    background: $assets-add-element-on_svg no-repeat bottom right;
     background-size: 6em;
     cursor: pointer;
     

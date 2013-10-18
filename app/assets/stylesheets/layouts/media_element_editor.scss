@@ -900,7 +900,7 @@ html.media_element_editor-layout {
   
   #video_editor_preview_go_to_left_component {
     
-    background: $assets-arrow-cutter-left_png top left  no-repeat;
+    background: $assets-arrow-cutter-left_png  no-repeat top left;
     position: absolute;
     left: -26px;
     top: 65px;
@@ -909,7 +909,7 @@ html.media_element_editor-layout {
     
     &:hover {
       
-      background: $assets-arrow-cutter-left-on_png top left no-repeat;
+      background: $assets-arrow-cutter-left-on_png no-repeat top left;
       
     }
     
@@ -917,7 +917,7 @@ html.media_element_editor-layout {
   
   #video_editor_preview_go_to_right_component {
     
-    background: $assets-arrow-cutter-right_png top left no-repeat;
+    background: $assets-arrow-cutter-right_png no-repeat top left;
     position: absolute;
     right: -26px;
     top: 65px;
@@ -926,7 +926,7 @@ html.media_element_editor-layout {
     
     &:hover {
       
-      background: $assets-arrow-cutter-right-on_png top left no-repeat;
+      background: $assets-arrow-cutter-right-on_png no-repeat top left;
       
     }
     
@@ -946,7 +946,7 @@ html.media_element_editor-layout {
     
     .left {
       
-      background: $assets-arrow-cutter-left_png top left no-repeat;
+      background: $assets-arrow-cutter-left_png no-repeat top left;
       float: left;
       width: 10px;
       height: 15px;
@@ -954,7 +954,7 @@ html.media_element_editor-layout {
       
       &:hover {
         
-        background: $assets-arrow-cutter-left-on_png top left no-repeat;
+        background: $assets-arrow-cutter-left-on_png no-repeat top left;
         
       }
       
@@ -962,7 +962,7 @@ html.media_element_editor-layout {
     
     .right {
       
-      background: $assets-arrow-cutter-right_png top left  no-repeat;
+      background: $assets-arrow-cutter-right_png  no-repeat top left;
       float: right;
       width: 10px;
       height: 15px;
@@ -970,7 +970,7 @@ html.media_element_editor-layout {
       
       &:hover {
         
-        background: $assets-arrow-cutter-right-on_png top left no-repeat;
+        background: $assets-arrow-cutter-right-on_png no-repeat top left;
         
       }
       
@@ -982,7 +982,7 @@ html.media_element_editor-layout {
       bottom: -3px;
       right: 110px;
       background-image: none;
-      background: $assets-rew_png top left no-repeat;
+      background: $assets-rew_png no-repeat top left;
       width: 2.4em;
       height: 2.4em;
       
@@ -999,7 +999,7 @@ html.media_element_editor-layout {
       position: absolute;
       bottom: -3px;
       right: 80px;
-      background: $assets-play_png top left no-repeat;
+      background: $assets-play_png no-repeat top left;
       background-size: 18px 18px;
       
       &:hover {
@@ -1015,7 +1015,7 @@ html.media_element_editor-layout {
       position: absolute;
       bottom: -3px;
       right: 80px;
-      background: $assets-pause_png top left no-repeat;
+      background: $assets-pause_png  no-repeat top left;
       background-size: 18px 18px;
       
     }
@@ -1153,7 +1153,7 @@ html.media_element_editor-layout {
         .ui-slider-range {
           
           position: absolute;
-          background: $assets-bg-ui-slider-horizontal_png top left repeat-x;
+          background: $assets-bg-ui-slider-horizontal_png repeat-x top left;
           
         }
         
@@ -1281,7 +1281,7 @@ html.media_element_editor-layout {
     
     .emptyGalleryImageEditor {
       
-      background: $assets-big-image_jpg center center no-repeat;
+      background: $assets-big-image_jpg no-repeat center center;
       margin-top: 54px;
       padding-top: 180px;
       

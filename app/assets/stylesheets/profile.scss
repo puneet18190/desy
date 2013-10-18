@@ -204,7 +204,7 @@
   
   input[type="submit"] {
     
-    background: #555;
+    background-color: #555;
     color: #fff;
     text-transform: uppercase;
     padding: 10px 30px;
@@ -214,14 +214,14 @@
     
     &:hover {
       
-      background: #999;
+      background-color: #999;
       
     }
     
     &.current, &:hover.current {
       
       color: #ccc;
-      background: #999;
+      background-color: #999;
       
     }
     

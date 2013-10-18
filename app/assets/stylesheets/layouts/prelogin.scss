@@ -6,7 +6,7 @@ html.prelogin-layout {
   body {
     
     font: 80% Arial, Helvetica, sans-serif;
-    background: #248fba;
+    background-color: #248fba;
     margin: 0;
     color: #fff;
     text-align: center;
@@ -300,13 +300,13 @@ html.prelogin-layout {
       
       .sbToggle {
         
-        background: $assets-select-icons-blue_png 0 -116px no-repeat;
+        background: $assets-select-icons-blue_png no-repeat 0 -116px;
         
       }
       
       .sbToggleOpen {
         
-        background: $assets-select-icons-blue_png 0 -16px no-repeat;
+        background: $assets-select-icons-blue_png no-repeat 0 -16px;
         
       }
       
@@ -352,7 +352,7 @@ html.prelogin-layout {
         padding: 10px 30px 10px 40px;
         border-top: 7px solid #fdb525;
         float: left;
-        background: #fff;
+        background-color: #fff;
         color: #cecdcd;
         font-size: 75%;
         text-transform: lowercase;
@@ -388,7 +388,7 @@ html.prelogin-layout {
       
       .containerText {
         
-        background: $assets-bg-register_png top right no-repeat;
+        background: $assets-bg-register_png no-repeat top right;
         padding: 200px 90px 20px 90px;
         font-family: 'Nunito', sans-serif;
         
@@ -428,7 +428,7 @@ html.prelogin-layout {
     
     body {
       
-      background: #505051;
+      background-color: #505051;
       margin: 0;
       color: #6d6d6e;
       text-align: center;
@@ -496,7 +496,7 @@ html.prelogin-layout {
         
         padding: 10px 30px 10px 40px;
         border-top: 7px solid #fdb525;
-        background: #fff;
+        background-color: #fff;
         color: #cecdcd;
         font-size: 75%;
         text-transform: lowercase;
