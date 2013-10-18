@@ -217,16 +217,16 @@
   }
   
   body {
-    background: #FFF;
+    background-color: #FFF;
   }
   
   body.mceForceColors {
-    background: #FFF;
+    background-color: #FFF;
     color: #000;
   }
   
   body.mceBrowserDefaults {
-    background: transparent;
+    background-color: transparent;
     color: inherit;
     font-size: inherit;
     font-family: inherit;
@@ -272,7 +272,7 @@
   }
   
   span.mceItemNbsp {
-    background: #DDD;
+    background-color: #DDD;
   }
   
   td.mceSelected, th.mceSelected {
@@ -360,7 +360,7 @@
 
 @mixin image-icon {
   
-  background: $assets-icone-piene_svg no-repeat scroll -2em center / 6em 1em transparent;
+  background: transparent $assets-icone-piene_svg no-repeat scroll -2em center / 6em 1em;
   
 }
 
@@ -393,7 +393,7 @@
 
 @mixin video-icon {
   
-  background: $assets-icone-piene_svg no-repeat scroll -1em center / 6em 1em transparent;
+  background: transparent $assets-icone-piene_svg no-repeat scroll -1em center / 6em 1em;
   
 }
 
@@ -417,7 +417,7 @@
 
 @mixin audio-icon {
   
-  background: $assets-icone-piene_svg no-repeat scroll 0em center / 6em 1em transparent;
+  background: transparent $assets-icone-piene_svg no-repeat scroll 0em center / 6em 1em;
   cursor: pointer;
   position: absolute;
   
@@ -476,7 +476,7 @@
   body {
     
     font-family: 'Nunito', "Arial Rounded MT Bold", sans-serif;
-    background: #373737;
+    background-color: #373737;
     color: #fff;
     text-align: center;
     
@@ -921,7 +921,7 @@
   
   .top {
     margin-bottom: -220px;
-    background: transparent;
+    background-color: transparent;
     width: 1px;
     height: 40%;
     float: left;
