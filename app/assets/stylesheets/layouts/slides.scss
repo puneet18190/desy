@@ -360,6 +360,8 @@
             .add {
               
               @include svg-circle-icon-handler($assets-icone-piene_svg, $audio-small-icon-dimension, 6, 1, 1, 0, 0, 1, 3, 0);
+              position: absolute;
+              cursor: pointer;
               top: $audio-icon-top-position;
               left: $audio-icon-left-position;
               
@@ -387,6 +389,7 @@
             .add {
               
               @include svg-circle-icon-handler($assets-icone-piene_svg, $audio-big-icon-dimension, 6, 1, 1, 0, 0, 1, 3, 0);
+              position: absolute;
               top: $audio-icon-top-position-empty;
               left: $audio-icon-left-position-empty;
               
