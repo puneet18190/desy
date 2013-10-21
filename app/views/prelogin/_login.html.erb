@@ -1,5 +1,5 @@
 <div class="login">
-  <p><%= link_to t('registration.problems_with_password'), user_request_reset_password_path %></p>
+  
   <div class="button">
     <a class="_show_login_form_container"><%= t('registration.login.title') %></a>
   </div>
@@ -23,5 +23,6 @@
       </table>
       <%= submit_tag t('registration.login.done') %>
     <% end %>
+    <p><%= link_to t('registration.problems_with_password'), user_request_reset_password_path %></p>
   </div>
 </div>
