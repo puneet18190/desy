@@ -1,7 +1,7 @@
 <%
   reload = 'false'
   reload = 'true' if [ButtonDestinations::FOUND_LESSON, ButtonDestinations::FOUND_MEDIA_ELEMENT].include? destination
-  my_title = "titles.buttons.add.#{item.class.underscore}"
+  my_title = "titles.buttons.add.#{item.class.to_s.underscore}"
 %>
 
 <a class="<%= Buttons::ADD %> _<%= item.class %>_button_<%= Buttons::ADD %>" data-clickparam="<%= item.id %>" data-destination="<%= destination %>" data-reload="<%= reload %>" title="<%= t(my_title) %>"></a>
