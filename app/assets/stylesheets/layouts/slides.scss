@@ -359,15 +359,9 @@
             
             .add {
               
-              @include audio-icon-small;
+              @include svg-circle-icon-handler($assets-icone-piene_svg, $audio-small-icon-dimension, 6, 1, 1, 0, 0, 1, 3, 0);
               top: $audio-icon-top-position;
               left: $audio-icon-left-position;
-              
-              &:hover {
-                
-                @include plus-icon;
-                
-              }
               
             }
             
@@ -392,15 +386,9 @@
             
             .add {
               
-              @include audio-icon-big;
+              @include svg-circle-icon-handler($assets-icone-piene_svg, $audio-big-icon-dimension, 6, 1, 1, 0, 0, 1, 3, 0);
               top: $audio-icon-top-position-empty;
               left: $audio-icon-left-position-empty;
-              
-              &:hover {
-                
-                @include plus-icon;
-                
-              }
               
             }
             
@@ -519,17 +507,10 @@
       
       .add {
         
-        @include image-icon-big;
-        cursor: pointer;
+        @include svg-circle-icon-handler($assets-icone-piene_svg, $big-icon-dimension, 6, 1, 1, 2, 0, 1, 3, 0);
         position: absolute;
         top: $big-icon-top-position-in-empty-cover;
         left: $big-icon-left-position-in-cover;
-        
-        &:hover {
-          
-          @include plus-icon;
-          
-        }
         
       }
       
@@ -689,17 +670,10 @@
       
       .add {
         
-        @include image-icon-small;
-        cursor: pointer;
+        @include svg-circle-icon-handler($assets-icone-piene_svg, $small-icon-dimension, 6, 1, 1, 2, 0, 1, 3, 0);
         position: absolute;
         top: $small-icon-top-position-in-full-height-image-with-title-empty;
         left: $small-icon-left-position-in-half-width-image;
-        
-        &:hover {
-          
-          @include plus-icon;
-          
-        }
         
       }
       
@@ -813,17 +787,10 @@
       
       .add {
         
-        @include image-icon-big;
-        cursor: pointer;
+        @include svg-circle-icon-handler($assets-icone-piene_svg, $big-icon-dimension, 6, 1, 1, 2, 0, 1, 3, 0);
         position: absolute;
         top: $big-icon-top-position-in-full-height-image-empty;
         left: $big-icon-left-position-in-half-width-image;
-        
-        &:hover {
-          
-          @include plus-icon;
-          
-        }
         
       }
       
@@ -915,17 +882,10 @@
       
       .add {
         
-        @include image-icon-big;
-        cursor: pointer;
+        @include svg-circle-icon-handler($assets-icone-piene_svg, $big-icon-dimension, 6, 1, 1, 2, 0, 1, 3, 0);
         position: absolute;
         top: $big-icon-top-position-in-full-height-image-empty;
         left: $big-icon-left-position-in-full-width-image;
-        
-        &:hover {
-          
-          @include plus-icon;
-          
-        }
         
       }
       
@@ -1019,17 +979,10 @@
       
       .add {
         
-        @include image-icon-tiny;
-        cursor: pointer;
+        @include svg-circle-icon-handler($assets-icone-piene_svg, $tiny-icon-dimension, 6, 1, 1, 2, 0, 1, 3, 0);
         position: absolute;
         top: $tiny-icon-top-position-in-half-height-image-empty;
         left: $tiny-icon-left-position-in-half-width-image;
-        
-        &:hover {
-          
-          @include plus-icon;
-          
-        }
         
       }
       
@@ -1262,17 +1215,10 @@
       
       .add {
         
-        @include video-icon-small;
-        cursor: pointer;
+        @include svg-circle-icon-handler($assets-icone-piene_svg, $small-icon-dimension, 6, 1, 1, 1, 0, 1, 3, 0);
         position: absolute;
         top: $small-icon-top-position-in-full-height-video-with-title-empty;
         left: $small-icon-left-position-in-half-width-video;
-        
-        &:hover {
-          
-          @include plus-icon;
-          
-        }
         
       }
       
@@ -1428,17 +1374,10 @@
       
       .add {
         
-        @include video-icon-big;
-        cursor: pointer;
+        @include svg-circle-icon-handler($assets-icone-piene_svg, $big-icon-dimension, 6, 1, 1, 1, 0, 1, 3, 0);
         position: absolute;
         top: $big-icon-top-position-in-full-height-video-empty;
         left: $big-icon-left-position-in-full-width-video;
-        
-        &:hover {
-          
-          @include plus-icon;
-          
-        }
         
       }
       

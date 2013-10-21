@@ -359,56 +359,6 @@
   
 }
 
-@mixin video-icon {
-  
-  background: transparent $assets-icone-piene_svg no-repeat scroll -1em center / 6em 1em;
-  
-}
-
-@mixin video-icon-big {
-  
-  @include video-icon;
-  font-size: $big-icon-dimension;
-  width: $big-icon-dimension;
-  height: $big-icon-dimension;
-  
-}
-
-@mixin video-icon-small {
-  
-  @include video-icon;
-  font-size: $small-icon-dimension;
-  width: $small-icon-dimension;
-  height: $small-icon-dimension;
-  
-}
-
-@mixin audio-icon {
-  
-  background: transparent $assets-icone-piene_svg no-repeat scroll 0em center / 6em 1em;
-  cursor: pointer;
-  position: absolute;
-  
-}
-
-@mixin audio-icon-big {
-  
-  @include audio-icon;
-  font-size: $audio-big-icon-dimension;
-  width: $audio-big-icon-dimension;
-  height: $audio-big-icon-dimension;
-  
-}
-
-@mixin audio-icon-small {
-  
-  @include audio-icon;
-  font-size: $audio-small-icon-dimension;
-  width: $audio-small-icon-dimension;
-  height: $audio-small-icon-dimension;
-  
-}
-
 @mixin general-empty-mask {
   
   color: #999999;
