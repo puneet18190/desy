@@ -685,7 +685,7 @@ it:
         rewind: "Riavvolgi clip"
       # Arrow on the bottom - right of the screen: it's used to commit the user's work and decide title and description of the new audio
       # 1 - views/audio_editor/edit.html.erb
-      commit: "Salva"
+      commit: "Secondo passo: scegli titolo, descrizione e tags del nuovo audio"
       components:
         # Icon 'plus' on the top of the right column: it's used to add a new audio component
         # 1 - views/audio_editor/_lateral_controls.html.erb
@@ -868,7 +868,7 @@ it:
       text: "Aggiungi del testo all'immagine"
       # Arrow on the bottom - right of the screen: it's used to commit the user's work and decide title and description of the new image
       # 1 - views/image_editor/edit.html.erb
-      commit: "Salva"
+      commit: "Secondo passo: scegli titolo, descrizione e tags della nuova immagine"
     images:
       # Index of the element editor: there are three icons, each of them is a link to the specific editor of audio, image and video: the caption below appears over the 'note' icon representing the image editor
       # 1 - views/media_elements/new.html.erb
@@ -1004,7 +1004,7 @@ it:
       close_preview: "Chiudi la modalità preview"
       # Arrow on the bottom - right of the screen: it's used to commit the user's work and decide title and description of the new video
       # 1 - views/video_editor/edit.html.erb
-      commit: "Salva"
+      commit: "Secondo passo: scegli titolo, descrizione e tags del nuovo video"
       # Three icons in the small menu of each video component
       component_menu:
         # Scissors
