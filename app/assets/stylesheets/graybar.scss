@@ -297,14 +297,33 @@
     
   }
   
-  .sbOptions a {
+  .sbOptions li a {
     
     color: #939393;
     
     &:hover, &.sbFocus {
       
       color: #fff;
+      
+    }
+    
+  }
+  
+  #search_lessons_main_page .sbOptions li a {
+    
+    &:hover, &.sbFocus {
+      
       background-color: $orange;
+      
+    }
+    
+  }
+  
+  #search_media_elements_main_page .sbOptions li a {
+    
+    &:hover, &.sbFocus {
+      
+      background-color: $green;
       
     }
     
