@@ -110,10 +110,16 @@ html.prelogin-layout .header, html.home-layout .header {
       a {
         
         color: $orange;
-        font-size: 120%;
+        font-size: 100%;
         
       }
-      
+      p {
+        font-size: 80%;
+        
+        a {
+          color:#fff;
+        }
+      }
       .text {
         
         border: 1px solid #424141;
