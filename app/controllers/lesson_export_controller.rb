@@ -38,7 +38,7 @@ class LessonExportController < ApplicationController
   def initialize_and_authenticate_for_lesson_export
     @lesson_id = correct_integer?(params[:lesson_id]) ? params[:lesson_id].to_i : 0
     @lesson = Lesson.find_by_id @lesson_id
-    @ok = @lesson.nil?
+    @ok = !@lesson.nil?
     return if !@ok
     if logged_in?
       if current_user.trial?
