@@ -9,38 +9,8 @@
         <% lessons_block = lessons[tot_lesson, SETTINGS['lessons_for_page_in_dashboard']].to_a %>
         <% if lessons_block.any? %>
           <div class="suggested_lessons_page" id="suggested_lessons_<%= j + 1 %>" style="display:<%= (j != 0) ? 'none'.html_safe : 'block'.html_safe %>">
-            <% cont = 0 %>
-            <% lessons_block.each do |l| %>
-              <% if cont == 0 %>
-                <div>
-              <% end %>
+            <% lessons_block.each_with_index do |l, index| %>
               <%= render :partial => 'lessons/view_single_expanded', :locals => {:lesson => l, :destination => ButtonDestinations::EXPANDED_LESSON} %>
-              <% if cont == 1 %>
-                </div>
-              <% end %>
-              <% cont = (cont == 0) ? 1 : 0 %>
-            <% end %>
-            <% if cont == 1 %>
-              <div class="boxNewLesson fltrt _empty_lessons">
-                <div class="contentInterno">
-                  <div class="contentNew">
-                    <div class="createButton"><a class="_empty_lessons_hover"></a></div>
-                    <p><%= t('dashboard.create_new_lesson') %></p>
-                  </div>
-                </div>
-                <div class="vuoto"></div>
-              </div>
-              </div>
-            <% else %>
-              <div class="boxNewLesson _empty_lessons" style="float:left">
-                <div class="contentInterno">
-                  <div class="contentNew">
-                    <div class="createButton"><a class="_empty_lessons_hover"></a></div>
-                    <p><%= t('dashboard.create_new_lesson') %></p>
-                  </div>
-                </div>
-                <div class="vuoto"></div>
-              </div>
             <% end %>
           </div>
         <% end %>
@@ -64,15 +34,6 @@
                   <%= render :partial => 'media_elements/view_single_expanded', :locals => {:media_element => me, :destination => ButtonDestinations::EXPANDED_MEDIA_ELEMENT, :used_in_private_lessons => false} %>
                 </div>
               <% end %>
-              <div class="_boxViewExpandedMediaElementWrapper">
-                <div class="boxNewMediaElement _empty_media_elements _load_media_element">
-                  <div class="contentNew">
-                    <a class="createButton _empty_media_elements_hover">&nbsp;</a>
-                    <p><%= t('dashboard.load_new_media_element') %></p>
-                  </div>
-                  <div class="vuoto"></div>
-                </div>
-              </div>
             </div>
           </div>
         <% end %>

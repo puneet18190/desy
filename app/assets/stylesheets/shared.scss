@@ -42,12 +42,6 @@ a.cerca.current {
   float: left;
   width: 49%;
   
-  &:last-child {
-    
-    float: right;
-    
-  }
-  
   .contentInterno {
     
     @include contentInterno;
