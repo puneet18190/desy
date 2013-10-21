@@ -13,7 +13,8 @@ require 'export'
 #
 class LessonExportController < ApplicationController
   
-  before_filter :initialize_lesson_with_owner_or_public, :redirect_or_setup
+  skip_before_filter :authenticate
+  before_filter :initialize_and_authenticate_for_lesson_export, :redirect_or_setup
   layout 'lesson_archive', :only => :archive
   
   def archive
@@ -33,6 +34,19 @@ class LessonExportController < ApplicationController
   end
   
   private
+  
+  def initialize_and_authenticate_for_lesson_export
+    if logged_in
+      if current_user.trial?
+        @ok = @lesson.is_public
+        return
+      else
+        @ok = (@lesson.is_public || @lesson.user_id == current_user.id)
+        return
+      end
+    end
+    @ok = (@lesson.is_public || @lesson.token == params[:token])
+  end
   
   def redirect_or_setup
     if !@ok

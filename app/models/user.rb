@@ -234,6 +234,18 @@ class User < ActiveRecord::Base
   
   # === Description
   #
+  # True if the user is trial
+  #
+  # === Returns
+  #
+  # Boolean
+  #
+  def trial?
+    false # TODO self.purchase_id.nil?
+  end
+  
+  # === Description
+  #
   # Creates a temporary unique new name for a MailingListGroup (used in MailingListController#create_group)
   #
   # === Returns
