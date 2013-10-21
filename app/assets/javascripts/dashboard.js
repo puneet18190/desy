@@ -36,6 +36,15 @@ function dashboardDocumentReady() {
   $('#switch_to_media_elements').click(function() {
     switchToSuggestedMediaElements();
   });
+  var left = true;
+  $('#lessons_in_dashboard .boxViewExpandedLesson').each(function() {
+    if(left) {
+      $(this).addClass('lefth');
+    } else {
+      $(this).addClass('righth');
+    }
+    left = !left;
+  });
 }
 
 
