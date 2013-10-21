@@ -5,6 +5,7 @@
     font: 180% 'Nunito', "Arial Rounded MT Bold", sans-serif;
     
   }
+  
 }
 
 @mixin title-bar {
@@ -358,39 +359,6 @@
   
 }
 
-@mixin image-icon {
-  
-  background: transparent $assets-icone-piene_svg no-repeat scroll -2em center / 6em 1em;
-  
-}
-
-@mixin image-icon-big {
-  
-  @include image-icon;
-  font-size: $big-icon-dimension;
-  width: $big-icon-dimension;
-  height: $big-icon-dimension;
-  
-}
-
-@mixin image-icon-small {
-  
-  @include image-icon;
-  font-size: $small-icon-dimension;
-  width: $small-icon-dimension;
-  height: $small-icon-dimension;
-  
-}
-
-@mixin image-icon-tiny {
-  
-  @include image-icon;
-  font-size: $tiny-icon-dimension;
-  width: $tiny-icon-dimension;
-  height: $tiny-icon-dimension;
-  
-}
-
 @mixin video-icon {
   
   background: transparent $assets-icone-piene_svg no-repeat scroll -1em center / 6em 1em;
@@ -438,12 +406,6 @@
   font-size: $audio-small-icon-dimension;
   width: $audio-small-icon-dimension;
   height: $audio-small-icon-dimension;
-  
-}
-
-@mixin plus-icon {
-  
-  background-position: -3em center;
   
 }
 
