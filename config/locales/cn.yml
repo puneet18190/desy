@@ -720,8 +720,11 @@ cn:
     # Icons of the general buttons menu for lessons and media elements
     buttons:
       # To add a lesson or a media element to your personal folder
-      # 1 - views/shared/buttons/_add.html.erb
-      add: "将这个项目增加到你的部分"
+      add:
+        # 1 - views/shared/buttons/_add.html.erb
+        lesson: "Add to your lessons" # TODO
+        # 1 - views/shared/buttons/_add.html.erb
+        media_element: "Add to your elements" # TODO
       # To add a lesson to your Virtual Classroom
       # 1 - views/shared/buttons/_add_virtual_classroom.html.erb
       add_virtual_classroom: "增加课程到虚拟教室"

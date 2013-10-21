@@ -720,8 +720,11 @@ it:
     # Icons of the general buttons menu for lessons and media elements
     buttons:
       # To add a lesson or a media element to your personal folder
-      # 1 - views/shared/buttons/_add.html.erb
-      add: "Aggiungi il link di questo oggetto"
+      add:
+        # 1 - views/shared/buttons/_add.html.erb
+        lesson: "Aggiungi alle tue lezioni"
+        # 1 - views/shared/buttons/_add.html.erb
+        media_element: "Aggiungi ai tuoi elementi"
       # To add a lesson to your Virtual Classroom
       # 1 - views/shared/buttons/_add_virtual_classroom.html.erb
       add_virtual_classroom: "Aggiungi la lezione alla Virtual Classroom"
