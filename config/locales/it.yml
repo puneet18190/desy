@@ -1498,7 +1498,7 @@ it:
       sample_letter: "A"
     # Caption of the button 'undo'
     # 1 - views/image_editor/edit.html.erb
-    undo: "Indietro"
+    undo: "Cancella"
   
   
   # SECTION 2.6: Captions used inside the Lesson Editor
