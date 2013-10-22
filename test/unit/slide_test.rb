@@ -453,48 +453,15 @@ class SlideTest < ActiveSupport::TestCase
       # 3: finally, the image is right
       FileUtils.cp right_img, @slide.math_images.folder
       assert @slide.math_images.valid?
-    
-    
-    
-    
-    
-    
-    
-
-
-
-
-#    begin
-#      fragment = Nokogiri::XML::DocumentFragment.parse(text)
-#    rescue
-#      return errors.add(:text, :invalid_math_images_links)
-#    end
-#    fragment.css(MathImages::CSS_SELECTOR).each do |el|
-#      uri, query = nil, nil
-#      # 2.
-#      begin
-#        uri   = URI "http://www.example.com/#{el[:src]}"
-#        query = CGI.parse uri.query
-#      rescue
-#        return errors.add(:text, :invalid_math_images_links)
-#      end
-#      math_image_filenames = query['formula']
-#      # 3.
-#      return errors.add(:text, :invalid_math_images_links) if math_image_filenames.empty? || math_image_filenames.size != 1
-#      # 4.
-#      math_image_filename = math_image_filenames.first
-#      return errors.add(:text, :invalid_math_images_links) unless math_images.include?(Pathname math_image_filename)
-
-
-
-
-
-
-    
-    
+      # Now I start with the test of text
+      assert_invalid @slide, :text, 'ciaoo <img class="Wirisformula" src="www.corrieredellosport.it"/>', 'ciaoo <img src="www.corrieredellosport.it"/>', :invalid_math_images_links
+      assert_invalid @slide, :text, 'ciaoo <img class="Wirisformula" src="www.corrieredellosport.it?formula=bahh"/>', 'ciao', :invalid_math_images_links
+      @slide.text = 'ciaoo <img class="Wirisformula" src="www.corrieredellosport.it?formula=valid math_image.png"/>'
+      assert @slide.valid?
+      # Clean up of the folder
       @slide.math_images.remove_folder
     rescue
-      # Clean up of the folder
+      # Clean up of the folder in case of exception
       @slide.math_images.remove_folder
       assert false
     end
