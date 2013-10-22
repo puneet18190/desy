@@ -114,6 +114,7 @@ html.prelogin-layout .header, html.home-layout .header {
       z-index: 10;
       margin: 0px;
       border-radius: 3px;
+
       -webkit-border-radius: 3px;
       
       a {
@@ -144,6 +145,7 @@ html.prelogin-layout .header, html.home-layout .header {
         margin-bottom: 10px;
         padding-left: 10px;
         font-size: 120%;
+         box-shadow:none;
         
       }
       
@@ -160,5 +162,6 @@ html.prelogin-layout .header, html.home-layout .header {
     }
     
   }
+  
   
 }

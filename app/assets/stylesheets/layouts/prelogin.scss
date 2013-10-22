@@ -64,7 +64,16 @@ html.prelogin-layout {
     line-height: 100%;
     
   }
-  
+  .footer {
+    border-top:1px solid #f7f9fa;
+    padding-top:15px;
+    /*position: relative;*/
+    .footer_logo_content {
+      width: 96%;
+      padding: 0 2% 0 2%;
+      float: left;
+    }      
+  }
   .container {
     
     margin: 0 auto;
@@ -75,9 +84,14 @@ html.prelogin-layout {
     
     .header {
       
-      padding: 20px;
       background-image: none;
-      
+      .headerMenu {
+        padding: 4px 0px 3px 3px;
+        background-color: #fff;
+        float: left;
+        width: 947px;
+        height: 29px;
+      }
     }
     
     .logoDesyPrelogin {
@@ -428,7 +442,7 @@ html.prelogin-layout {
     
     body {
       
-      background-color: #505051;
+      background-color: #fff;
       margin: 0;
       color: #6d6d6e;
       text-align: center;
@@ -438,9 +452,9 @@ html.prelogin-layout {
     }
     
     .container {
-      
+      position:relative;
       padding: 0;
-      width: 984px;
+      width: 972px;
       
       .header {
         
@@ -448,11 +462,7 @@ html.prelogin-layout {
         
       }
       
-      .headerMenu {
-        
-        background-color: #f7f6f6;
-        
-      }
+      
       
       .containerText {
         
