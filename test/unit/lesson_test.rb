@@ -44,8 +44,7 @@ class LessonTest < ActiveSupport::TestCase
     @lesson = Lesson.find @lesson.id
     assert_equal old_uuid, @lesson.uuid
     # I test the error thrown by the database
-    @lesson.uuid = 'uuid not valid dasgdsgdsg'
-    @lesson.save
+    assert_raise(ActiveRecord::StatementInvalid) {Lesson.where(:id => @lesson.id).update_all(:uuid => (Lesson.find(@lesson.id).uuid + 'dagdgdgdsgdsgds'))}
   end
   
   test 'tags' do
