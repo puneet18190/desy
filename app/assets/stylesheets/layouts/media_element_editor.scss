@@ -3,6 +3,14 @@
 
 html.media_element_editor-layout {
   
+  #only_to_conserve_tags {
+    
+    float: left;
+    position: relative;
+    font-size: 12px;
+    
+  }
+  
   #video_editor_preview_slider_box_ghost.boxGhost {
     
     position: absolute;
@@ -205,6 +213,24 @@ html.media_element_editor-layout {
         
         padding-top: 40px;
         text-align: left;
+        
+        &.ad_hoc_per_check {
+          
+          width: 670px;
+          
+          a {
+            
+            float: right;
+            
+            &._cancel {
+              
+              margin-right: 5px;
+              
+            }
+            
+          }
+          
+        }
         
       }
       
@@ -1266,7 +1292,7 @@ html.media_element_editor-layout {
     
   }
   
-  .mediaEditorElementContainer {
+  .mediaEditorElementContainer.image_editor_only {
     
     width: 984px;
     display: inline-block;
