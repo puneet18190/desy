@@ -438,27 +438,61 @@ class SlideTest < ActiveSupport::TestCase
   end
   
   test 'math_images' do
-    assert_obj_saved @slide
-    @slide.math_images.folder.mkpath
-    wrong_img = Rails.root.join 'test/samples/one.jpg'
-    right_img = Rails.root.join 'test/samples/valid math_image.png'
-    # 1: the image is wrong (not png)
-    FileUtils.cp wrong_img, @slide.math_images.folder
-    @slide.math_images = [wrong_img]
-    assert @slide.math_images.invalid?
-    # 2: the image is not wrong, but it hasn't been copied in the required folder
-    @slide.math_images = [right_img]
-    assert @slide.math_images.invalid?
-    # 3: finally, the image is right
-    FileUtils.cp right_img, @slide.math_images.folder
-    assert @slide.math_images.valid?
+    begin
+      assert_obj_saved @slide
+      @slide.math_images.folder.mkpath
+      wrong_img = Rails.root.join 'test/samples/one.jpg'
+      right_img = Rails.root.join 'test/samples/valid math_image.png'
+      # 1: the image is wrong (not png)
+      FileUtils.cp wrong_img, @slide.math_images.folder
+      @slide.math_images = [wrong_img]
+      assert @slide.math_images.invalid?
+      # 2: the image is not wrong, but it hasn't been copied in the required folder
+      @slide.math_images = [right_img]
+      assert @slide.math_images.invalid?
+      # 3: finally, the image is right
+      FileUtils.cp right_img, @slide.math_images.folder
+      assert @slide.math_images.valid?
     
     
-    # TODO altri tests
+
+
+
+
+#    begin
+#      fragment = Nokogiri::XML::DocumentFragment.parse(text)
+#    rescue
+#      return errors.add(:text, :invalid_math_images_links)
+#    end
+#    fragment.css(MathImages::CSS_SELECTOR).each do |el|
+#      uri, query = nil, nil
+#      # 2.
+#      begin
+#        uri   = URI "http://www.example.com/#{el[:src]}"
+#        query = CGI.parse uri.query
+#      rescue
+#        return errors.add(:text, :invalid_math_images_links)
+#      end
+#      math_image_filenames = query['formula']
+#      # 3.
+#      return errors.add(:text, :invalid_math_images_links) if math_image_filenames.empty? || math_image_filenames.size != 1
+#      # 4.
+#      math_image_filename = math_image_filenames.first
+#      return errors.add(:text, :invalid_math_images_links) unless math_images.include?(Pathname math_image_filename)
+
+
+
+
+
+
     
     
-    # Clean up of the folder
-    @slide.math_images.remove_folder
+    
+    
+    rescue
+      # Clean up of the folder
+      @slide.math_images.remove_folder
+    end
   end
   
 end
