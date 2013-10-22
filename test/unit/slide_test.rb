@@ -437,4 +437,32 @@ class SlideTest < ActiveSupport::TestCase
     assert_equal 2, resp.id
   end
   
+  test 'math_images' do
+    begin
+      assert_obj_saved @slide
+      @slide.math_images.folder.mkpath
+      wrong_img = Rails.root.join 'test/samples/one.jpg'
+      right_img = Rails.root.join 'test/samples/valid math_image.png'
+      # 1: the image is wrong (not png)
+      FileUtils.cp wrong_img, @slide.math_images.folder
+      @slide.math_images = [wrong_img]
+      assert @slide.math_images.invalid?
+      # 2: the image is not wrong, but it hasn't been copied in the required folder
+      @slide.math_images = [right_img]
+      assert @slide.math_images.invalid?
+      # 3: finally, the image is right
+      FileUtils.cp right_img, @slide.math_images.folder
+      assert @slide.math_images.valid?
+      # Now I start with the test of text
+      assert_invalid @slide, :text, 'ciaoo <img class="Wirisformula" src="www.corrieredellosport.it"/>', 'ciaoo <img src="www.corrieredellosport.it"/>', :invalid_math_images_links
+      assert_invalid @slide, :text, 'ciaoo <img class="Wirisformula" src="www.corrieredellosport.it?formula=bahh"/>', 'ciao', :invalid_math_images_links
+      assert_invalid @slide, :text, 'ciaoo <img class="Wirisformula" src="www.corrieredellosport.it?formula=/ciao/pippo/pluto/valid%20math_image.png"/>', 'ciao', :invalid_math_images_links
+      @slide.text = 'ciaoo <img class="Wirisformula" src="www.corrieredellosport.it?formula=valid%20math_image.png"/>'
+      assert @slide.valid?
+    ensure
+      # Clean up of the folder in case of exception
+      @slide.math_images.remove_folder
+    end
+  end
+  
 end

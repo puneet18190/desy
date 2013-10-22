@@ -30,9 +30,25 @@
       </div>
     </div>
     <br class="clearfloat">
-    <div class="cols" style="float:right">
-      <a class="_cancel buttonForm"><%= t('forms.new_media_element_in_editor.cancel') %></a>
-      <a class="_commit buttonForm"><%= t('forms.new_media_element_in_editor.done') %></a>
+    <div class="cols ad_hoc_per_check" style="float:right">
+      <% if edited %>
+        <div id="only_to_conserve_tags">
+          <input id="check_ad_hoc" type="checkbox">
+          <%= t('forms.new_media_element_in_editor.conserve_tags') %>
+          <div class="edited_container" style="display:none">
+            <div class="edited_tags_container">
+              <% Tagging.includes(:tag).where(:taggable_type => 'MediaElement', :taggable_id => edited.id).order(:tag_id).reverse.each do |t| %>
+                <span><%= t.tag.word.strip %><a class="remove"></a></span>
+              <% end %>
+            </div>
+            <input class="edited_tags" type="hidden" value="<%= edited.tags %>"/>
+            <input class="edited_title" type="hidden" value="<%= edited.title %>"/>
+            <input class="edited_description" type="hidden" value="<%= edited.description %>"/>
+          </div>
+        </div>
+      <% end %>
+      <a class="_commit buttonForm lower"><%= t('forms.new_media_element_in_editor.done') %></a>
+      <a class="_cancel buttonForm lower"><%= t('forms.new_media_element_in_editor.cancel') %></a>
     </div>
   </div>
 </div>

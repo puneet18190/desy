@@ -3,6 +3,21 @@
 
 html.media_element_editor-layout {
   
+  #only_to_conserve_tags {
+    
+    float: left;
+    position: relative;
+    font-size: 12px;
+    cursor: pointer;
+    
+    &.disabled {
+      
+      cursor: default;
+      
+    }
+    
+  }
+  
   #video_editor_preview_slider_box_ghost.boxGhost {
     
     position: absolute;
@@ -205,6 +220,24 @@ html.media_element_editor-layout {
         
         padding-top: 40px;
         text-align: left;
+        
+        &.ad_hoc_per_check {
+          
+          width: 670px;
+          
+          a {
+            
+            float: right;
+            
+            &._cancel {
+              
+              margin-right: 5px;
+              
+            }
+            
+          }
+          
+        }
         
       }
       
@@ -1266,10 +1299,19 @@ html.media_element_editor-layout {
     
   }
   
-  .mediaEditorElementContainer {
+  .mediaEditorElementContainer.image_editor_only {
     
     width: 984px;
+    margin-top: 40px;
+    position: relative;
     display: inline-block;
+    
+    #form_info_new_media_element_in_editor, #form_info_update_media_element_in_editor {
+      
+      top: 0;
+      left: 0;
+      
+    }
     
     .imagesContainer {
       
@@ -1448,7 +1490,7 @@ html.media_element_editor-layout {
       
     }
     
-    textarea {
+    textarea._inner_textarea {
       
       background-color: rgba(230,230,230,0.5);
       border: 1px solid rgba(255,255,255,0.5);

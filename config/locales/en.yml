@@ -569,6 +569,8 @@ en:
       cancel: "Cancel"
       # 1 - views/media_elements/info_form_in_editor/_new.html.erb
       done: "Save"
+      # 1 - views/media_elements/info_form_in_editor/_new.html.erb
+      conserve_tags: "Reuse title, description and tags of the original element"
     # Form for editing general information of an element after having overwritten its content with one of the three editors (image / audio / video)
     overwrite_media_element_in_editor:
       # 1 - views/media_elements/info_form_in_editor/_edit.html.erb
