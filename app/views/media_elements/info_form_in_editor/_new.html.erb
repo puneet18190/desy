@@ -35,7 +35,16 @@
         <div id="only_to_conserve_tags">
           <input id="check_ad_hoc" type="checkbox">
           <%= t('forms.new_media_element_in_editor.conserve_tags') %>
-          <div class="container" style="display:none"><%= edited %></div>
+          <div class="edited_container" style="display:none">
+            <div class="edited_tags_container">
+              <% Tagging.includes(:tag).where(:taggable_type => 'MediaElement', :taggable_id => edited.id).order(:tag_id).reverse.each do |t| %>
+                <span><%= t.tag.word.strip %><a class="remove"></a></span>
+              <% end %>
+            </div>
+            <input class="edited_tags" type="hidden" value="<%= edited.tags %>"/>
+            <input class="edited_title" type="hidden" value="<%= edited.title %>"/>
+            <input class="edited_description" type="hidden" value="<%= edited.description %>"/>
+          </div>
         </div>
       <% end %>
       <a class="_commit buttonForm lower"><%= t('forms.new_media_element_in_editor.done') %></a>
