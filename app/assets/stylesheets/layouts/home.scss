@@ -8,7 +8,7 @@ html.home-layout {
   body {
     
     font: 80% Arial, Helvetica, sans-serif;
-    background-color: #505051;
+    background-color: #fff;
     margin: 0;
     color: #505051;
     text-align: center;
@@ -20,16 +20,16 @@ html.home-layout {
   .container {
     
     background-color: #fff;
-    width: 984px;
+    width: 972px;
     padding: 0;
     text-align: left;
     display: inline-block;
     position: relative;
-    
+    outline:1px solid red;
     .containerText {
       
-      padding: 30px;
-      background-color: #fff;
+      padding: 0px;
+      
       float: left;
       
       a {
@@ -57,20 +57,17 @@ html.home-layout {
       
     }
     
-    .footer {
-      
-      padding: 10px 30px 10px 40px;
-      border-top: 7px solid #fdb525;
-      background-color: #fff;
-      color: #cecdcd;
-      font-size: 75%;
-      text-transform: lowercase;
-      position: relative;
-      width: 914px;
-      height: 40px;
-      
-    }
+    
     
   }
-  
+  .footer {
+    border-top:1px solid #f7f9fa;
+    padding-top:15px;
+    /*position: relative;*/
+    .footer_logo_content {
+      width: 96%;
+      padding: 0 2% 0 2%;
+      float: left;
+    }      
+  }
 }
