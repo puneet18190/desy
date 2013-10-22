@@ -1485,9 +1485,6 @@ cn:
     # 2 - views/image_editor/edit.html.erb
     # 3 - views/image_editor/undo.js.erb
     original_size: "原始图像大小"
-    # Label on the left column, it refers to the buttons associated to each possible action (crop, add text)
-    # 1 - views/image_editor/edit.html.erb
-    select_an_action: "选择一个动作"
     # Instructions and label of 'do' and 'cancel' buttons when the user is in 'add text' mode (same structure of 'crop', see above)
     text:
       # 1 - views/image_editor/edit.html.erb

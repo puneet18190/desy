@@ -1484,10 +1484,7 @@ it:
     # 1 - views/image_editor/crop.js.erb
     # 2 - views/image_editor/edit.html.erb
     # 3 - views/image_editor/undo.js.erb
-    original_size: "Dimensioni originali dell'immagine"
-    # Label on the left column, it refers to the buttons associated to each possible action (crop, add text)
-    # 1 - views/image_editor/edit.html.erb
-    select_an_action: "Seleziona un'azione"
+    original_size: "Dimensioni originali"
     # Instructions and label of 'do' and 'cancel' buttons when the user is in 'add text' mode (same structure of 'crop', see above)
     text:
       # 1 - views/image_editor/edit.html.erb
