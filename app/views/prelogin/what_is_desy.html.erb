@@ -4,13 +4,9 @@
     <ul>
       <li><%= link_to t('prelogin.main_page.menu_link'), root_path %></li>
       <li><%= link_to t('prelogin.what_is_desy.menu_link', :desy => SETTINGS['application_name']), what_is_desy_path, :class => 'current' %></li>
-      <li><%= link_to t('prelogin.sign_up.menu_link'), sign_up_path %></li>
-      <li><%= prelogin_contact_us_menu_link %></a></li>
+      <li><!-- traduzz --><%= prelogin_contact_us_menu_link %></li>
     </ul>
-    <div class="logoDesyPrelogin fltrt">
-      <%= image_tag "logo_desy_gray.png" %>
-      <p class="upper"><%= SETTINGS['application_extended_name'] %></p>
-    </div> 
+    <%= render :partial => '/prelogin/login' %>
   </div>
 </div>
 
@@ -28,12 +24,4 @@
   <p style="margin-bottom:80px;"><%= t('prelogin.what_is_desy.right_column.caption1', :desy => SETTINGS['application_name']).html_safe %></p>
 </div>
 
-<br class="clearfloat">
-<div class="footer">
- <div class="fltlft" >
-      <img src="<%= asset_path 'partner_logo.jpg' %>">
-    </div>
-    <div class="fltrt" style="padding-top:20px">
-      <%= SETTINGS['application_copyright'] %>
-    </div>
-</div>
+

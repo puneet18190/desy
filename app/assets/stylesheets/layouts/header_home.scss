@@ -7,16 +7,16 @@ html.prelogin-layout .header, html.home-layout .header {
   background-repeat: no-repeat;
   background-position: top center;*/
   padding: 0px;
-  outline:1px solid red;
+  
   font-family: 'Nunito', sans-serif;
   float:left;
   .headerMenu {
     
-    padding: 5px 0px 5px 3px;
+    padding: 4px 0px 3px 3px;
     background-color: #fff;
     float: left;
     width: 947px;
-    
+    height:29px;
     ul {
       
       margin: 0;
@@ -55,7 +55,7 @@ html.prelogin-layout .header, html.home-layout .header {
     float: right;
     color: rgb(136, 134, 134);
     font-size: 95%;
-    width: 30%;
+    width: 18%;
     
     p {
       
@@ -78,10 +78,10 @@ html.prelogin-layout .header, html.home-layout .header {
     .button a {
       
       float: right;
-      padding: 5px 15px 5px 15px;
+      padding: 4px 15px 4px 15px;
       background-color: #4bab36;
       text-align: center;
-      font-weight: bold;
+      
       font-size: 120%;
       color: #fff;
       
@@ -90,13 +90,21 @@ html.prelogin-layout .header, html.home-layout .header {
         background-color:#282828;
         
       }
-      
-    }
     
+  }
+  .buttonRegistration a {
+      float: left;
+      padding: 4px 15px 4px 15px;
+      background-color: #9bc3eb;
+      text-align: center;
+      
+      font-size: 120%;
+      color: #fff;
+    }    
     .tooltippe {
       
       border: none;
-      top: 70px;
+      top: 40px;
       right: 20px;
       width: 196px;
       background-color: #2f2e2e;
@@ -106,6 +114,7 @@ html.prelogin-layout .header, html.home-layout .header {
       z-index: 10;
       margin: 0px;
       border-radius: 3px;
+
       -webkit-border-radius: 3px;
       
       a {
@@ -136,6 +145,7 @@ html.prelogin-layout .header, html.home-layout .header {
         margin-bottom: 10px;
         padding-left: 10px;
         font-size: 120%;
+         box-shadow:none;
         
       }
       
@@ -152,5 +162,6 @@ html.prelogin-layout .header, html.home-layout .header {
     }
     
   }
+  
   
 }
