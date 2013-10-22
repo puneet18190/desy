@@ -123,6 +123,8 @@ function resetMediaElementEditorForms() {
   $('#form_info_new_media_element_in_editor .error_messages, #form_info_update_media_element_in_editor .error_messages').html('');
   var new_form = $('#form_info_new_media_element_in_editor');
   var update_form = $('#form_info_update_media_element_in_editor');
+  new_form.find('#only_to_conserve_tags').removeClass('disabled');
+  new_form.find('#only_to_conserve_tags #check_ad_hoc').removeAttr('disabled').removeAttr('checked');
   new_form.find('#new_title').val(new_form.data('title'));
   new_form.find('#new_title').removeClass('form_error');
   new_form.find('#new_title_placeholder').val('');
