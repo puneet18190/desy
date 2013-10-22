@@ -103,7 +103,7 @@ function mediaElementEditorDocumentReady() {
       var old_tags_value = form.find('._tags_container #new_tags_value')[0].outerHTML;
       var old_tags = form.find('#new_tags')[0].outerHTML;
       form.find('._tags_container').html(form.find('#only_to_conserve_tags .edited_container .edited_tags_container').html());
-      form.find('._tags_container').append(old_tags_placeholder + old_tags_value + old_tags);
+      form.find('._tags_container').append(old_tags + old_tags_placeholder + old_tags_value);
       form.find('._tags_container ._placeholder').hide();
       form.find('#new_tags_value').val(form.find('#only_to_conserve_tags .edited_container .edited_tags').val());
     }
