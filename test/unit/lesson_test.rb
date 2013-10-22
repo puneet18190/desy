@@ -34,6 +34,17 @@ class LessonTest < ActiveSupport::TestCase
     assert_equal old_token, @lesson.token
   end
   
+  test 'uuid_creation' do
+    assert_nil @lesson.uuid
+    assert @lesson.save
+    assert_not_nil @lesson.uuid
+    old_uuid = Lesson.find(@lesson.id).uuid
+    @lesson.title = 'bah'
+    assert @lesson.save
+    @lesson = Lesson.find @lesson.id
+    assert_equal old_uuid, @lesson.uuid
+  end
+  
   test 'tags' do
     @lesson.save_tags = true
     @lesson.tags = 'gatto, gatto, gatto  ,   , cane, topo'
@@ -166,7 +177,9 @@ class LessonTest < ActiveSupport::TestCase
   test 'impossible_changes' do
     @lesson.parent_id = 1
     assert_obj_saved @lesson
+    uuid = Lesson.find(@lesson.id).uuid
     assert_invalid @lesson, :user_id, 2, 1, :cant_be_changed
+    assert_invalid @lesson, :uuid, (uuid + 'azzo'), uuid, :cant_be_changed
     old_token = @lesson.token
     last_char = old_token.split(old_token.chop)[1]
     different_token = last_char == 'a' ? "#{old_token.chop}b" : "#{old_token.chop}a"

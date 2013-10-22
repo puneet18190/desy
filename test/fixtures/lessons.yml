@@ -9,6 +9,7 @@ one:
   copied_not_modified: false
   token: 'qwertyuiopqwertyuiop'
   updated_at: '2012-01-01 20:00:00'
+  uuid: 'dd852ad7-4da8-4d87-bb7f-288ccb30f542'
 
 two:
   id: 2
@@ -21,3 +22,4 @@ two:
   copied_not_modified: false
   token: 'qwertyuiopqwertyuiop'
   updated_at: '2012-01-01 19:00:00'
+  uuid: 'bd853ad7-4da8-4da7-bb7f-28yccb31f548'
