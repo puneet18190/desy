@@ -1476,7 +1476,7 @@ en:
       # 1 - views/image_editor/edit.html.erb
       title: "What to do?"
       # 1 - views/image_editor/edit.html.erb
-      description: "Select the scissors to cut the image"
+      description: "Select the scissors to cut the image, or the button 'ABC' to insert a text"
     # Label for the header
     # 1 - views/image_editor/_header.html.erb
     label: "Edit image"
