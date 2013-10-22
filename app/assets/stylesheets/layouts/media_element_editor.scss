@@ -1295,7 +1295,16 @@ html.media_element_editor-layout {
   .mediaEditorElementContainer.image_editor_only {
     
     width: 984px;
+    margin-top: 40px;
+    position: relative;
     display: inline-block;
+    
+    #form_info_new_media_element_in_editor, #form_info_update_media_element_in_editor {
+      
+      top: 0;
+      left: 0;
+      
+    }
     
     .imagesContainer {
       
@@ -1474,7 +1483,7 @@ html.media_element_editor-layout {
       
     }
     
-    textarea {
+    textarea._inner_textarea {
       
       background-color: rgba(230,230,230,0.5);
       border: 1px solid rgba(255,255,255,0.5);
