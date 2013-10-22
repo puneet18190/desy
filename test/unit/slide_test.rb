@@ -456,14 +456,12 @@ class SlideTest < ActiveSupport::TestCase
       # Now I start with the test of text
       assert_invalid @slide, :text, 'ciaoo <img class="Wirisformula" src="www.corrieredellosport.it"/>', 'ciaoo <img src="www.corrieredellosport.it"/>', :invalid_math_images_links
       assert_invalid @slide, :text, 'ciaoo <img class="Wirisformula" src="www.corrieredellosport.it?formula=bahh"/>', 'ciao', :invalid_math_images_links
-      @slide.text = 'ciaoo <img class="Wirisformula" src="www.corrieredellosport.it?formula=valid math_image.png"/>'
+      assert_invalid @slide, :text, 'ciaoo <img class="Wirisformula" src="www.corrieredellosport.it?formula=/ciao/pippo/pluto/valid%20math_image.png"/>', 'ciao', :invalid_math_images_links
+      @slide.text = 'ciaoo <img class="Wirisformula" src="www.corrieredellosport.it?formula=valid%20math_image.png"/>'
       assert @slide.valid?
-      # Clean up of the folder
-      @slide.math_images.remove_folder
-    rescue
+    ensure
       # Clean up of the folder in case of exception
       @slide.math_images.remove_folder
-      assert false
     end
   end
   
