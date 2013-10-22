@@ -3,25 +3,31 @@
   <ul>
     <li><%= link_to t('prelogin.main_page.menu_link'), root_path, :class => 'current' %></li>
     <li><%= link_to t('prelogin.what_is_desy.menu_link', :desy => SETTINGS['application_name']), what_is_desy_path %></li>
-    <li><%= link_to t('prelogin.sign_up.menu_link'), sign_up_path %></li>
-    <li><%= prelogin_contact_us_menu_link %></li>
+    <li><!-- traduzz --><%= prelogin_contact_us_menu_link %></li>
   </ul>
-  <%= render :partial => '/prelogin/login' %>
+   <%= render :partial => '/prelogin/login' %>
   </div>
+</div>
+<br class="clearfloat">
+<div class="contentVideoHomePrelogin">
+  <%= image_tag 'bg_video_prelogin.jpg' %>
+  <!--div class="homeVideoContainer">
+    <video controls="controls" width="973" height="390">
+      
+    </video>
+  </div--> 
 </div>
 
 <div class="containerText">
   <div class="fltlft" style="width:47%">
     <%= image_tag "logo_prelogin.png" %>
   </div>
-  <div class="fltlft" style="width:26%">
+  <div class="fltrt" style="width:40%">
     <h1><%= t('prelogin.main_page.title', :desy => SETTINGS['application_name']) %></h1>
     <p><%= t('prelogin.main_page.description', :desy => SETTINGS['application_name']).html_safe %></p>
-    <p><a href="http://www.youtube.com/watch?v=Kel6FHJ8SWI&feature=youtu.be" target="_blank"><%= t('prelogin.main_page.video') %></a></p>
+    <p><a href="" target="_blank"><!-- traduzz --> Prova subito la versione trial!</a></p>
   </div>
-  <div class="fltrt">
-    <%= image_tag 'screenshot_elements.jpg' %>
-  </div>
+  
 </div>
 <br class="clearfloat">
 

@@ -9,6 +9,9 @@ html.home-layout {
     
     font: 80% Arial, Helvetica, sans-serif;
     background-color: #fff;
+    background-image: $assets-bg-prelogin_jpg;
+    background-repeat: repeat-x;
+    background-position:0px 36px;
     margin: 0;
     color: #505051;
     text-align: center;
@@ -25,10 +28,10 @@ html.home-layout {
     text-align: left;
     display: inline-block;
     position: relative;
-    outline:1px solid red;
+    
     .containerText {
       
-      padding: 0px;
+      padding-top: 20px;
       
       float: left;
       
@@ -56,7 +59,19 @@ html.home-layout {
       }
       
     }
-    
+  .contentVideoHomePrelogin {
+    background-color:#d9e0e7; 
+    padding:0; 
+    margin:0; 
+    height:393px; 
+    position:relative; 
+    .homeVideoContainer {
+      background-color:#d9e0e7; 
+      position:absolute; 
+      top:0; 
+      left:0; 
+    }
+  }  
     
     
   }
