@@ -169,7 +169,7 @@ class LessonTest < ActiveSupport::TestCase
     assert_invalid @lesson, :is_public, true, false, :cant_be_true_for_new_records
     assert_obj_saved @lesson
     @lesson.is_public = true
-    assert @lesson.valid?
+    assert @lesson.valid?, "Error, #{@lesson.errors.inspect}"
     assert_invalid @lesson, :copied_not_modified, true, false, :cant_be_true_if_public
     assert_obj_saved @lesson
   end

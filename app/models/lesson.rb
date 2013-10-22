@@ -897,7 +897,7 @@ class Lesson < ActiveRecord::Base
       errors.add(:token, :cant_be_changed) if @lesson.token != self.token
       errors.add(:user_id, :cant_be_changed) if @lesson.user_id != self.user_id
       errors.add(:parent_id, :cant_be_changed) if self.parent_id && @lesson.parent_id != self.parent_id
-      errors.add(:uuid, :cant_be_changed) if persisted? && @lesson.uuid != self.uuid
+      errors.add(:uuid, :cant_be_changed) if @lesson.uuid_changed?
     end
   end
   
