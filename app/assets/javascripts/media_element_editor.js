@@ -76,15 +76,29 @@ Initializes the placeholder of the <b>commit forms</b> used in {{#crossLinkModul
 function mediaElementEditorDocumentReady() {
   $body.on('focus', '#form_info_new_media_element_in_editor #new_title', function() {
     if($('#form_info_new_media_element_in_editor #new_title_placeholder').val() == '') {
-      $(this).attr('value', '');
-      $('#form_info_new_media_element_in_editor #new_title_placeholder').attr('value', '0');
+      $(this).val('');
+      $('#form_info_new_media_element_in_editor #new_title_placeholder').val('0');
     }
   });
   $body.on('focus', '#form_info_new_media_element_in_editor #new_description', function() {
     if($('#form_info_new_media_element_in_editor #new_description_placeholder').val() == '') {
-      $(this).attr('value', '');
-      $('#form_info_new_media_element_in_editor #new_description_placeholder').attr('value', '0');
+      $(this).val('');
+      $('#form_info_new_media_element_in_editor #new_description_placeholder').val('0');
     }
+  });
+  $body.on('click', '#form_info_new_media_element_in_editor #only_to_conserve_tags #check_ad_hoc', function() {
+    // TODO MANCA CONTROLLO SE GIÀ FATTO
+    var form = $('#form_info_new_media_element_in_editor');
+    form.find('#new_title').val(form.find('#only_to_conserve_tags #edited_container .edited_title').val());
+    form.find('#new_title_placeholder').val('0');
+    form.find('#new_description').val(form.find('#only_to_conserve_tags #edited_container .edited_description').val());
+    form.find('#new_description_placeholder').val('0');
+    var old_tags_placeholder = form.find('._tags_container ._placeholder')[0].outerHTML;
+    var old_tags_value = form.find('._tags_container #new_tags_value')[0].outerHTML;
+    form.find('._tags_container').html(form.find('#only_to_conserve_tags #edited_container .edited_tags_container').html());
+    form.find('._tags_container').append(old_tags_placeholder + old_tags_value);
+    form.find('._tags_container ._placeholder').hide();
+    form.find('#new_tags_value').val(form.find('#only_to_conserve_tags #edited_container .edited_tags');
   });
 }
 
