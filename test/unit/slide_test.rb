@@ -455,6 +455,11 @@ class SlideTest < ActiveSupport::TestCase
       assert @slide.math_images.valid?
     
     
+    
+    
+    
+    
+    
 
 
 
@@ -487,11 +492,11 @@ class SlideTest < ActiveSupport::TestCase
 
     
     
-    
-    
+      @slide.math_images.remove_folder
     rescue
       # Clean up of the folder
       @slide.math_images.remove_folder
+      assert false
     end
   end
   
