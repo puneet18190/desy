@@ -11,17 +11,25 @@
 </div>
 
 <br class="clearfloat">
+<div style="outline:1px solid red">
+  <%= image_tag "logo_prelogin.png" %>
+</div> 
+<div class="containerText" style="outline:1px dotted blue">
 
-<div class="containerText">
   <h1><%= t('prelogin.what_is_desy.title', :desy => SETTINGS['application_name']).html_safe %></h1>
   <h3><%= t('prelogin.what_is_desy.subtitle', :desy => SETTINGS['application_name']).html_safe %></h3>
+  
+  <div class="colS fltlft">
   <p><%= t('prelogin.what_is_desy.description', :desy => SETTINGS['application_name']).html_safe %></p>
 </div>
-
-<div class="colDx">
-  <p style="margin-bottom:150px;"><%= t('prelogin.what_is_desy.right_column.caption3', :desy => SETTINGS['application_name']).html_safe %></p>
-  <p style="margin-bottom:125px;"><%= t('prelogin.what_is_desy.right_column.caption2', :desy => SETTINGS['application_name']).html_safe %></p>
-  <p style="margin-bottom:80px;"><%= t('prelogin.what_is_desy.right_column.caption1', :desy => SETTINGS['application_name']).html_safe %></p>
+<div class="colS fltrt">
+  <ul>
+    <li><%= t('prelogin.what_is_desy.right_column.caption3', :desy => SETTINGS['application_name']).html_safe %></li>
+    <li><%= t('prelogin.what_is_desy.right_column.caption2', :desy => SETTINGS['application_name']).html_safe %></li>
+    <li><%= t('prelogin.what_is_desy.right_column.caption1', :desy => SETTINGS['application_name']).html_safe %></li>
+  </ul>
 </div>
+</div>
+
 
 

@@ -466,11 +466,11 @@ html.prelogin-layout {
       
       .containerText {
         
-        background-image: none;
-        padding: 100px 20px 20px 20px;
-        width: 47%;
+        display:inline-block;
+        padding: 0;
+        /*width: 47%;*/
         color: #6d6d6e;
-        float: left;
+        
         
         h1, h3 {
           
@@ -499,8 +499,13 @@ html.prelogin-layout {
           }
           
         }
-        
+        .colS {
+         width:45%;
+           
+          
+        }  
       }
+      
       
       .footer {
         
@@ -516,26 +521,7 @@ html.prelogin-layout {
         
       }
       
-      .colDx {
-        
-        float: right;
-        margin-top: 47px;
-        width: 158px;
-        background-image: $assets-colonna-destra_jpg;
-        background-repeat: no-repeat;
-        background-position: top left;
-        padding: 118px 40px 0px 258px;
-        font-size: 10px;
-        
-        h1 {
-          
-          font-size: 18px;
-          color: #25aae1;
-          font-family: 'Nunito', sans-serif;
-          
-        }
-        
-      }
+      
       
     }
     
