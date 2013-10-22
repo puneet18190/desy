@@ -3,18 +3,19 @@
 
 html.prelogin-layout .header, html.home-layout .header {
   
-  background-image: $assets-bg-prelogin_jpg;
+  /*background-image: $assets-bg-prelogin_jpg;
   background-repeat: no-repeat;
-  background-position: top center;
-  padding: 25px 18px 352px 18px;
+  background-position: top center;*/
+  padding: 0px;
+  outline:1px solid red;
   font-family: 'Nunito', sans-serif;
-  
+  float:left;
   .headerMenu {
     
-    padding: 5px 5px 5px 20px;
+    padding: 5px 0px 5px 3px;
     background-color: #fff;
     float: left;
-    width: 922px;
+    width: 947px;
     
     ul {
       
