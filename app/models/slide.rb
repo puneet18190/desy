@@ -114,16 +114,22 @@ class Slide < ActiveRecord::Base
   MAX_COVER_TITLE_LENGTH = (I18n.t('language_parameters.lesson.length_title') > 255 ? 255 : I18n.t('language_parameters.lesson.length_title'))
   
   serialize :metadata, OpenStruct
-
+  
   validates_presence_of :lesson_id, :position
   validates_numericality_of :lesson_id, :position, :only_integer => true, :greater_than => 0
   validates_length_of :title, :maximum => 255, :allow_nil => true, unless: proc{ cover? }
   validates_length_of :title, :maximum => MAX_COVER_TITLE_LENGTH, :allow_nil => true, if: proc{ cover? }
   validates_inclusion_of :kind, :in => KINDS
   validates_uniqueness_of :position, :scope => :lesson_id
-  validates_uniqueness_of :kind, :scope => :lesson_id, :if => :cover?
-  validate :validate_associations, :validate_impossible_changes, :validate_cover, :validate_text, :validate_title, :validate_max_number_slides, :validate_math_images, :validate_math_images_links
-  
+  validates_uniqueness_of :kind, :scope => :lesson_id, if: proc{ cover? }
+  validate :validate_associations,
+           :validate_impossible_changes,
+           :validate_cover,
+           :validate_text,
+           :validate_title,
+           :validate_max_number_slides,
+           :validate_math_images,
+           :validate_math_images_links
   before_validation :init_validation
   before_update :save_math_images
   before_create :init_math_images_copy
@@ -484,26 +490,31 @@ class Slide < ActiveRecord::Base
     end
   end
   
+  # The cover must have position = 1 and the other slides must have position > 1
   def validate_cover
     errors.add(:position, :cover_must_be_first_slide) if self.kind == COVER && self.position != 1
     errors.add(:position, :if_not_cover_cant_be_first_slide) if self.kind != COVER && self.position == 1
   end
   
+  # Stops the deletion if the slide is of kind 'cover'
   def stop_if_cover
     @slide = self.new_record? ? nil : Slide.where(:id => self.id).first
     return true if @slide.nil?
     return @slide.kind != COVER
   end
   
+  # Removes the folder where math images are conserved
   def remove_math_images_folder
     math_images.remove_folder
   end
   
+  # Saves math images
   def save_math_images
     math_images.save
     true
   end
   
+  # Validates math images
   def validate_math_images
     if !math_images.is_a?(MathImages)               ||
        math_images.invalid?                         ||
@@ -511,7 +522,7 @@ class Slide < ActiveRecord::Base
       errors.add :math_images, :invalid
     end
   end
-
+  
   # Validates math images links contained inside +text+. They must be valid in order to create a valid ebook. For each Wiris element it checks:
   #
   # 1. Nokogiri doesn't give any error parsing the document
@@ -520,7 +531,6 @@ class Slide < ActiveRecord::Base
   # 4. The +formula+ query key value is inside +math_images+ attribute
   def validate_math_images_links
     return unless text
-
     # 1.
     fragment = nil
     begin
@@ -528,9 +538,7 @@ class Slide < ActiveRecord::Base
     rescue
       return errors.add(:text, :invalid_math_images_links)
     end
-
     fragment.css(MathImages::CSS_SELECTOR).each do |el|
-
       uri, query = nil, nil
       # 2.
       begin
@@ -539,25 +547,23 @@ class Slide < ActiveRecord::Base
       rescue
         return errors.add(:text, :invalid_math_images_links)
       end
-
       math_image_filenames = query['formula']
-
       # 3.
       return errors.add(:text, :invalid_math_images_links) if math_image_filenames.empty? || math_image_filenames.size != 1
-
       # 4.
       math_image_filename = math_image_filenames.first
       return errors.add(:text, :invalid_math_images_links) unless math_images.include?(Pathname math_image_filename)
     end
   end
   
+  # Initializes math images copy
   def init_math_images_copy
     @math_images_copy_id = math_images.model_id if math_images.model_id && math_images.model_id != id
     math_images.model_id = nil
-
     true
   end
   
+  # Copies the math images
   def copy_math_images
     return true unless @math_images_copy_id
     self.math_images = Slide.find(@math_images_copy_id).math_images.copy_to(id)

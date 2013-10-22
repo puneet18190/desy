@@ -284,7 +284,19 @@ contains the specific methods needed for media elements of type
           
             <tr valign='top'>
               <td>&nbsp;</td>
-              <td colspan="2" class="attr-desc"><p>Extensions globbing for finding images with <code>Dir.glob</code></p></td>
+              <td colspan="2" class="attr-desc"><p>Glob for find images using <code>Dir.glob</code></p></td>
+            </tr>
+          
+        
+          <tr valign='top'>
+            <td class="attr-name">EBOOK_FORMATS</td>
+            <td>=</td>
+            <td class="attr-value">[nil]</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"></td>
             </tr>
           
         
@@ -363,7 +375,7 @@ text</p>
                 
               </p>
               <div id="method-i-add_text_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/image.rb, line 235</span>
+                <pre><span class="ruby-comment"># File app/models/image.rb, line 238</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">add_text</span>(<span class="ruby-identifier">texts</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">in_edit_mode?</span> <span class="ruby-operator">||</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">save_editing_prev</span>
   <span class="ruby-identifier">img</span> = <span class="ruby-constant">MiniMagick</span><span class="ruby-operator">::</span><span class="ruby-constant">Image</span>.<span class="ruby-identifier">open</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">current_editing_image</span>
@@ -371,7 +383,7 @@ text</p>
     <span class="ruby-identifier">font_size</span> = <span class="ruby-constant">Media</span><span class="ruby-operator">::</span><span class="ruby-constant">Image</span><span class="ruby-operator">::</span><span class="ruby-constant">Editing</span>.<span class="ruby-identifier">ratio_value</span> <span class="ruby-identifier">img</span>[<span class="ruby-value">:width</span>], <span class="ruby-identifier">img</span>[<span class="ruby-value">:height</span>], <span class="ruby-identifier">t</span>[<span class="ruby-value">:font_size</span>]
     <span class="ruby-identifier">coord_x</span> = <span class="ruby-constant">Media</span><span class="ruby-operator">::</span><span class="ruby-constant">Image</span><span class="ruby-operator">::</span><span class="ruby-constant">Editing</span>.<span class="ruby-identifier">ratio_value</span> <span class="ruby-identifier">img</span>[<span class="ruby-value">:width</span>], <span class="ruby-identifier">img</span>[<span class="ruby-value">:height</span>], <span class="ruby-identifier">t</span>[<span class="ruby-value">:coord_x</span>]
     <span class="ruby-identifier">coord_y</span> = <span class="ruby-constant">Media</span><span class="ruby-operator">::</span><span class="ruby-constant">Image</span><span class="ruby-operator">::</span><span class="ruby-constant">Editing</span>.<span class="ruby-identifier">ratio_value</span> <span class="ruby-identifier">img</span>[<span class="ruby-value">:width</span>], <span class="ruby-identifier">img</span>[<span class="ruby-value">:height</span>], <span class="ruby-identifier">t</span>[<span class="ruby-value">:coord_y</span>]
-    <span class="ruby-identifier">tmp_file</span> = <span class="ruby-constant">Tempfile</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;textarea&#39;</span>)
+    <span class="ruby-identifier">tmp_file</span> = <span class="ruby-constant">Tempfile</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">Desy</span><span class="ruby-operator">::</span><span class="ruby-constant">TMP_PREFIX</span>.<span class="ruby-identifier">call</span>)
     <span class="ruby-keyword">begin</span>
       <span class="ruby-identifier">tmp_file</span>.<span class="ruby-identifier">write</span>(<span class="ruby-identifier">t</span>[<span class="ruby-value">:text</span>])
       <span class="ruby-identifier">tmp_file</span>.<span class="ruby-identifier">close</span>
@@ -434,7 +446,7 @@ crop</p>
                 
               </p>
               <div id="method-i-crop_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/image.rb, line 269</span>
+                <pre><span class="ruby-comment"># File app/models/image.rb, line 272</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">crop</span>(<span class="ruby-identifier">x1</span>, <span class="ruby-identifier">y1</span>, <span class="ruby-identifier">x2</span>, <span class="ruby-identifier">y2</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">in_edit_mode?</span> <span class="ruby-operator">||</span> <span class="ruby-operator">!</span><span class="ruby-identifier">save_editing_prev</span>
   <span class="ruby-constant">Media</span><span class="ruby-operator">::</span><span class="ruby-constant">Image</span><span class="ruby-operator">::</span><span class="ruby-constant">Editing</span><span class="ruby-operator">::</span><span class="ruby-constant">Crop</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">current_editing_image</span>, <span class="ruby-identifier">current_editing_image</span>, <span class="ruby-identifier">x1</span>, <span class="ruby-identifier">y1</span>, <span class="ruby-identifier">x2</span>, <span class="ruby-identifier">y2</span>).<span class="ruby-identifier">run</span>
@@ -477,7 +489,7 @@ crop</p>
                 
               </p>
               <div id="method-i-current_editing_image_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/image.rb, line 118</span>
+                <pre><span class="ruby-comment"># File app/models/image.rb, line 121</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">current_editing_image</span>
   <span class="ruby-keyword">return</span> <span class="ruby-string">&#39;&#39;</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">in_edit_mode?</span>
   <span class="ruby-node">&quot;#{self.media.folder}/editing/user_#{@edit_mode}/tmp.#{self.media.file.extension}&quot;</span>
@@ -520,7 +532,7 @@ during editing.</p>
                 
               </p>
               <div id="method-i-editing_url_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/image.rb, line 91</span>
+                <pre><span class="ruby-comment"># File app/models/image.rb, line 94</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">editing_url</span>
   <span class="ruby-keyword">return</span> <span class="ruby-string">&#39;&#39;</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">in_edit_mode?</span>
   <span class="ruby-identifier">file_name</span> = <span class="ruby-node">&quot;/#{url.split(&#39;/&#39;).last}&quot;</span>
@@ -567,7 +579,7 @@ href="ImageEditorController.html">ImageEditorController</a>.</p>
                 
               </p>
               <div id="method-i-enter_edit_mode_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/image.rb, line 147</span>
+                <pre><span class="ruby-comment"># File app/models/image.rb, line 150</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">enter_edit_mode</span>(<span class="ruby-identifier">user_id</span>)
   <span class="ruby-ivar">@edit_mode</span> = <span class="ruby-identifier">user_id</span>
   <span class="ruby-identifier">ed_dir</span> = <span class="ruby-node">&quot;#{self.media.folder}/editing/user_#{@edit_mode}&quot;</span>
@@ -613,7 +625,7 @@ href="ImageEditorController.html">ImageEditorController</a>.</p>
                 
               </p>
               <div id="method-i-height_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/image.rb, line 80</span>
+                <pre><span class="ruby-comment"># File app/models/image.rb, line 83</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">height</span>
   <span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">height</span>
 <span class="ruby-keyword">end</span></pre>
@@ -662,7 +674,7 @@ the access to specific methods if the image is not in editing.</p>
                 
               </p>
               <div id="method-i-in_edit_mode-3F_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/image.rb, line 135</span>
+                <pre><span class="ruby-comment"># File app/models/image.rb, line 138</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">in_edit_mode?</span>
   <span class="ruby-operator">!</span><span class="ruby-ivar">@edit_mode</span>.<span class="ruby-identifier">nil?</span>
 <span class="ruby-keyword">end</span></pre>
@@ -710,7 +722,7 @@ href="ImageEditorController.html#method-i-edit">ImageEditorController#edit</a>.<
                 
               </p>
               <div id="method-i-leave_edit_mode_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/image.rb, line 168</span>
+                <pre><span class="ruby-comment"># File app/models/image.rb, line 171</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">leave_edit_mode</span>(<span class="ruby-identifier">user_id</span>)
   <span class="ruby-identifier">ed_dir</span> = <span class="ruby-node">&quot;#{self.media.folder}/editing/user_#{user_id}&quot;</span>
   <span class="ruby-keyword">begin</span>
@@ -759,7 +771,7 @@ replaces the current step if the user clicks on &#39;undo&#39;</p>
                 
               </p>
               <div id="method-i-prev_editing_image_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/image.rb, line 105</span>
+                <pre><span class="ruby-comment"># File app/models/image.rb, line 108</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">prev_editing_image</span>
   <span class="ruby-keyword">return</span> <span class="ruby-string">&#39;&#39;</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">in_edit_mode?</span>
   <span class="ruby-node">&quot;#{self.media.folder}/editing/user_#{@edit_mode}/prev.#{self.media.file.extension}&quot;</span>
@@ -801,7 +813,7 @@ replaces the current step if the user clicks on &#39;undo&#39;</p>
                 
               </p>
               <div id="method-i-save_editing_prev_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/image.rb, line 187</span>
+                <pre><span class="ruby-comment"># File app/models/image.rb, line 190</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">save_editing_prev</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">in_edit_mode?</span>
   <span class="ruby-identifier">prev_path</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">prev_editing_image</span>
@@ -855,7 +867,7 @@ replaces the current step if the user clicks on &#39;undo&#39;</p>
                 
               </p>
               <div id="method-i-thumb_url_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/image.rb, line 56</span>
+                <pre><span class="ruby-comment"># File app/models/image.rb, line 59</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">thumb_url</span>
   <span class="ruby-identifier">media</span>.<span class="ruby-identifier">thumb</span>.<span class="ruby-identifier">url</span>
 <span class="ruby-keyword">end</span></pre>
@@ -898,7 +910,7 @@ href="ImageEditorController.html#method-i-undo">ImageEditorController#undo</a>.<
                 
               </p>
               <div id="method-i-undo_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/image.rb, line 208</span>
+                <pre><span class="ruby-comment"># File app/models/image.rb, line 211</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">undo</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">in_edit_mode?</span>
   <span class="ruby-identifier">prev_path</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">prev_editing_image</span>
@@ -950,7 +962,7 @@ href="ImageEditorController.html#method-i-undo">ImageEditorController#undo</a>.<
                 
               </p>
               <div id="method-i-url_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/image.rb, line 38</span>
+                <pre><span class="ruby-comment"># File app/models/image.rb, line 41</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">url</span>(<span class="ruby-identifier">url_type</span> = <span class="ruby-keyword">nil</span>)
   <span class="ruby-identifier">url</span> = <span class="ruby-identifier">media</span>.<span class="ruby-identifier">url</span>
 
@@ -993,7 +1005,7 @@ href="ImageEditorController.html#method-i-undo">ImageEditorController#undo</a>.<
                 
               </p>
               <div id="method-i-width_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/image.rb, line 68</span>
+                <pre><span class="ruby-comment"># File app/models/image.rb, line 71</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">width</span>
   <span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">width</span>
 <span class="ruby-keyword">end</span></pre>
@@ -1030,7 +1042,7 @@ href="ImageEditorController.html#method-i-undo">ImageEditorController#undo</a>.<
                 
               </p>
               <div id="method-i-height-3D_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/image.rb, line 283</span>
+                <pre><span class="ruby-comment"># File app/models/image.rb, line 286</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">height=</span>(<span class="ruby-identifier">height</span>)
   <span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">height</span> = <span class="ruby-identifier">height</span>
 <span class="ruby-keyword">end</span></pre>
@@ -1065,7 +1077,7 @@ href="ImageEditorController.html#method-i-undo">ImageEditorController#undo</a>.<
                 
               </p>
               <div id="method-i-set_converted_to_true_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/image.rb, line 294</span>
+                <pre><span class="ruby-comment"># File app/models/image.rb, line 297</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">set_converted_to_true</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">converted</span> = <span class="ruby-keyword">true</span>
   <span class="ruby-keyword">true</span>
@@ -1102,7 +1114,7 @@ contained in <code>media</code></p>
                 
               </p>
               <div id="method-i-set_width_and_height_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/image.rb, line 288</span>
+                <pre><span class="ruby-comment"># File app/models/image.rb, line 291</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">set_width_and_height</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">width</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">height</span> = <span class="ruby-identifier">media</span>.<span class="ruby-identifier">width</span>, <span class="ruby-identifier">media</span>.<span class="ruby-identifier">height</span>
   <span class="ruby-keyword">true</span>
@@ -1138,7 +1150,7 @@ contained in <code>media</code></p>
                 
               </p>
               <div id="method-i-width-3D_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/image.rb, line 278</span>
+                <pre><span class="ruby-comment"># File app/models/image.rb, line 281</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">width=</span>(<span class="ruby-identifier">width</span>)
   <span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">width</span> = <span class="ruby-identifier">width</span>
 <span class="ruby-keyword">end</span></pre>

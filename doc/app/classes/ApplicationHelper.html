@@ -163,6 +163,18 @@
           </ul>
         </dd>
       
+        <dt>P</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-prelogin_contact_us_menu_link">prelogin_contact_us_menu_link</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
         <dt>R</dt>
         <dd>
           <ul>
@@ -268,7 +280,7 @@
                 
               </p>
               <div id="method-i-action_html_class_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 39</span>
+                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 43</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">action_html_class</span>
   <span class="ruby-node">&quot;#{h action_name}-action&quot;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -303,7 +315,7 @@
                 
               </p>
               <div id="method-i-controller_html_class_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 34</span>
+                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 38</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">controller_html_class</span>
   <span class="ruby-node">&quot;#{h controller_path}-controller&quot;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -338,7 +350,7 @@
                 
               </p>
               <div id="method-i-documents_type_color_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 5</span>
+                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 9</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">documents_type_color</span>(<span class="ruby-identifier">document</span>)
   <span class="ruby-keyword">case</span> <span class="ruby-identifier">document</span>.<span class="ruby-identifier">type</span>
     <span class="ruby-keyword">when</span> <span class="ruby-value">:ppt</span>     <span class="ruby-keyword">then</span> <span class="ruby-string">&#39;#EA943B&#39;</span>
@@ -380,7 +392,7 @@
                 
               </p>
               <div id="method-i-is_horizontal-3F_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 60</span>
+                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 64</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">is_horizontal?</span>(<span class="ruby-identifier">width</span>, <span class="ruby-identifier">height</span>, <span class="ruby-identifier">kind</span>)
   ( <span class="ruby-identifier">width</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">/</span> <span class="ruby-identifier">height</span>.<span class="ruby-identifier">to_f</span> ) <span class="ruby-operator">&gt;=</span>
     <span class="ruby-keyword">case</span> <span class="ruby-identifier">kind</span>
@@ -422,7 +434,7 @@
                 
               </p>
               <div id="method-i-jsd_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 104</span>
+                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 108</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">jsd</span>(<span class="ruby-identifier">object</span>)
 <span class="ruby-keyword">end</span></pre>
               </div>
@@ -456,7 +468,7 @@
                 
               </p>
               <div id="method-i-manipulate_url_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 44</span>
+                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 48</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">manipulate_url</span>(<span class="ruby-identifier">options</span> = {})
   <span class="ruby-identifier">param_to_remove</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:remove_query_param</span>]
   <span class="ruby-identifier">page</span>            = <span class="ruby-identifier">options</span>[<span class="ruby-value">:page</span>]
@@ -470,6 +482,41 @@
   <span class="ruby-identifier">url</span> = <span class="ruby-node">&quot;#{path}?#{query_string}&quot;</span>
   <span class="ruby-identifier">url</span> = <span class="ruby-constant">URI</span>.<span class="ruby-identifier">escape</span>(<span class="ruby-identifier">url</span>)
   <span class="ruby-identifier">escape</span> <span class="ruby-operator">?</span> <span class="ruby-constant">CGI</span>.<span class="ruby-identifier">escape</span>(<span class="ruby-identifier">url</span>) <span class="ruby-operator">:</span> <span class="ruby-identifier">url</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-prelogin_contact_us_menu_link">
+            
+              <b>prelogin_contact_us_menu_link</b>()
+            
+            <a href="../classes/ApplicationHelper.html#method-i-prelogin_contact_us_menu_link" name="method-i-prelogin_contact_us_menu_link" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-prelogin_contact_us_menu_link_source')" id="l_method-i-prelogin_contact_us_menu_link_source">show</a>
+                
+              </p>
+              <div id="method-i-prelogin_contact_us_menu_link_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 4</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">prelogin_contact_us_menu_link</span>
+  <span class="ruby-identifier">link_to</span> <span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;prelogin.contact_us.menu_link&#39;</span>), <span class="ruby-node">&quot;mailto:#{SETTINGS[&#39;application&#39;][&#39;contact_us_email&#39;]}&quot;</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -503,7 +550,7 @@ href="NotificationsController.html">NotificationsController</a>.</p>
                 
               </p>
               <div id="method-i-remove_title_from_notification_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 85</span>
+                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 89</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">remove_title_from_notification</span>(<span class="ruby-identifier">notification</span>)
    <span class="ruby-identifier">x</span> = (<span class="ruby-identifier">notification</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/&lt;\/div&gt;/</span>)
    <span class="ruby-identifier">x</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">notification</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">notification</span>[<span class="ruby-identifier">x</span> <span class="ruby-operator">+</span> <span class="ruby-number">6</span>, <span class="ruby-identifier">notification</span>.<span class="ruby-identifier">length</span>]
@@ -539,7 +586,7 @@ href="NotificationsController.html">NotificationsController</a>.</p>
                 
               </p>
               <div id="method-i-resize_height_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 91</span>
+                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 95</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">resize_height</span>(<span class="ruby-identifier">width</span>, <span class="ruby-identifier">height</span>, <span class="ruby-identifier">kind</span>)
   (<span class="ruby-identifier">height</span>.<span class="ruby-identifier">to_f</span> *
     <span class="ruby-keyword">case</span> <span class="ruby-identifier">kind</span>
@@ -581,7 +628,7 @@ href="NotificationsController.html">NotificationsController</a>.</p>
                 
               </p>
               <div id="method-i-resize_width_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 72</span>
+                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 76</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">resize_width</span>(<span class="ruby-identifier">width</span>, <span class="ruby-identifier">height</span>, <span class="ruby-identifier">kind</span>)
   (<span class="ruby-identifier">width</span>.<span class="ruby-identifier">to_f</span> *
     <span class="ruby-keyword">case</span> <span class="ruby-identifier">kind</span>
@@ -624,7 +671,7 @@ href="NotificationsController.html">NotificationsController</a>.</p>
                 
               </p>
               <div id="method-i-seconds_to_time_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 29</span>
+                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 33</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">seconds_to_time</span>(<span class="ruby-identifier">seconds</span>)
   <span class="ruby-constant">Time</span>.<span class="ruby-identifier">at</span>(<span class="ruby-identifier">seconds</span>).<span class="ruby-identifier">utc</span>.<span class="ruby-identifier">strftime</span>(<span class="ruby-identifier">seconds</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-number">3600</span> <span class="ruby-operator">?</span> <span class="ruby-string">&#39;%T&#39;</span> <span class="ruby-operator">:</span> <span class="ruby-string">&#39;%M:%S&#39;</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -659,7 +706,7 @@ href="NotificationsController.html">NotificationsController</a>.</p>
                 
               </p>
               <div id="method-i-select_your_subjects_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 17</span>
+                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 21</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">select_your_subjects</span>(<span class="ruby-identifier">subjects</span>)
   <span class="ruby-node">&quot;&lt;option value=\&quot;\&quot;&gt;#{t(&#39;forms.placeholders.subject_id&#39;)}&lt;/option&gt;#{options_from_collection_for_select(subjects, &#39;id&#39;, &#39;description&#39;)}&quot;</span>.<span class="ruby-identifier">html_safe</span>
 <span class="ruby-keyword">end</span></pre>
@@ -697,7 +744,7 @@ and similar methods.</p>
                 
               </p>
               <div id="method-i-standard_form_error_messages_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 22</span>
+                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 26</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">standard_form_error_messages</span>(<span class="ruby-identifier">errors</span>, <span class="ruby-identifier">color</span> = <span class="ruby-string">&#39;white&#39;</span>)
   <span class="ruby-identifier">msg</span> = <span class="ruby-node">&quot;&lt;img src=&#39;/assets/puntoesclamativo.png&#39; style=&#39;margin: 0 5px -3px 0&#39; /&gt;&lt;span class=\&quot;lower\&quot; style=\&quot;color:#{h color}\&quot;&gt;&quot;</span>
   <span class="ruby-identifier">msg</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">map</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">e</span><span class="ruby-operator">|</span> <span class="ruby-identifier">h</span> <span class="ruby-identifier">e</span> }.<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;; &#39;</span>)
@@ -736,15 +783,12 @@ and similar methods.</p>
                 
               </p>
               <div id="method-i-full_url_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 164</span>
+                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 168</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">full_url</span>(<span class="ruby-identifier">path</span>)
   <span class="ruby-identifier">uri</span> = <span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span> <span class="ruby-identifier">path</span>
-
   <span class="ruby-identifier">scheme</span>, <span class="ruby-identifier">host</span>, <span class="ruby-identifier">port</span> = <span class="ruby-identifier">request</span>.<span class="ruby-identifier">scheme</span>, <span class="ruby-identifier">request</span>.<span class="ruby-identifier">host</span>, <span class="ruby-identifier">request</span>.<span class="ruby-identifier">port</span>
   <span class="ruby-identifier">port</span> = <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">port</span> <span class="ruby-operator">==</span> <span class="ruby-number">80</span>
-  
   <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">scheme</span>, <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">host</span>, <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">port</span> = <span class="ruby-identifier">scheme</span>, <span class="ruby-identifier">host</span>, <span class="ruby-identifier">port</span>
-  
   <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">to_s</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
@@ -780,7 +824,7 @@ that takes into consideration nested url parameters</p>
                 
               </p>
               <div id="method-i-get_recursive_array_from_params_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 115</span>
+                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 119</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">get_recursive_array_from_params</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-identifier">params</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">params</span>.<span class="ruby-identifier">kind_of?</span>(<span class="ruby-constant">Hash</span>)
   <span class="ruby-identifier">resp</span> = []
@@ -832,7 +876,7 @@ that takes into consideration nested url parameters</p>
                 
               </p>
               <div id="method-i-html_title_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 137</span>
+                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 141</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">html_title</span>(<span class="ruby-identifier">slides</span>)
   <span class="ruby-identifier">controller</span> = <span class="ruby-identifier">controller_path</span>
   <span class="ruby-identifier">desy</span> = <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;application_name&#39;</span>]
@@ -849,7 +893,7 @@ that takes into consideration nested url parameters</p>
   <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;virtual_classroom&#39;</span>
     <span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;captions.titles.virtual_classroom&#39;</span>, <span class="ruby-value">:desy</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">desy</span>)
   <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;lesson_viewer&#39;</span>, <span class="ruby-string">&#39;lesson_export&#39;</span>
-    <span class="ruby-keyword">if</span> [<span class="ruby-string">&#39;index&#39;</span>, <span class="ruby-string">&#39;export&#39;</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">action_name</span>)
+    <span class="ruby-keyword">if</span> [<span class="ruby-string">&#39;index&#39;</span>, <span class="ruby-string">&#39;archive&#39;</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">action_name</span>)
       <span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;captions.titles.single_lesson&#39;</span>, <span class="ruby-value">:desy</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">desy</span>, <span class="ruby-value">:lesson</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">slides</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">lesson</span>.<span class="ruby-identifier">title</span>)
     <span class="ruby-keyword">else</span>
       <span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;captions.titles.virtual_classroom&#39;</span>, <span class="ruby-value">:desy</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">desy</span>)
@@ -889,7 +933,7 @@ that takes into consideration nested url parameters</p>
                 
               </p>
               <div id="method-i-url_by_url_type_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 175</span>
+                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 176</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">url_by_url_type</span>(<span class="ruby-identifier">url</span>, <span class="ruby-identifier">url_type</span>)
   <span class="ruby-constant">UrlByUrlType</span>.<span class="ruby-identifier">url_by_url_type</span> <span class="ruby-identifier">url</span> ,<span class="ruby-identifier">url_type</span>
 <span class="ruby-keyword">end</span></pre>

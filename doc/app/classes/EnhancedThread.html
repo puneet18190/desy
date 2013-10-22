@@ -214,7 +214,7 @@ href="EnhancedThread.html#method-c-new">::new</a></p>
                 
               </p>
               <div id="method-c-join_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/autoload/enhanced_thread.rb, line 30</span>
+                <pre><span class="ruby-comment"># File lib/autoload/enhanced_thread.rb, line 32</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">join</span>(*<span class="ruby-identifier">thread_blocks</span>, <span class="ruby-identifier">close_connection_before_execution</span><span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>)
   <span class="ruby-identifier">n</span> = <span class="ruby-constant">DATABASE_POOL</span><span class="ruby-operator">-</span><span class="ruby-constant">Thread</span>.<span class="ruby-identifier">list</span>.<span class="ruby-identifier">count</span>
 
@@ -229,7 +229,7 @@ href="EnhancedThread.html#method-c-new">::new</a></p>
     <span class="ruby-keyword">return</span> <span class="ruby-identifier">thread_blocks</span>.<span class="ruby-identifier">present?</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">join</span>(*<span class="ruby-identifier">thread_blocks</span>, <span class="ruby-identifier">close_connection_before_execution</span><span class="ruby-operator">:</span> <span class="ruby-identifier">close_connection_before_execution</span>) <span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>
   <span class="ruby-keyword">end</span>
 
-  <span class="ruby-identifier">thread_blocks</span>.<span class="ruby-identifier">each_slice</span>(<span class="ruby-identifier">n</span>){ <span class="ruby-operator">|</span><span class="ruby-identifier">slice</span><span class="ruby-operator">|</span> <span class="ruby-identifier">slice</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span> <span class="ruby-identifier">new</span>(<span class="ruby-identifier">close_connection_before_execution</span>, &amp;<span class="ruby-identifier">s</span>) }.<span class="ruby-identifier">each</span>(&amp;<span class="ruby-value">:join</span>) }
+  <span class="ruby-identifier">thread_blocks</span>.<span class="ruby-identifier">each_slice</span>(<span class="ruby-identifier">n</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">slice</span><span class="ruby-operator">|</span> <span class="ruby-identifier">slice</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span> <span class="ruby-identifier">new</span>(<span class="ruby-identifier">close_connection_before_execution</span>, &amp;<span class="ruby-identifier">s</span>) }.<span class="ruby-identifier">each</span>(&amp;<span class="ruby-value">:join</span>) }
   <span class="ruby-keyword">nil</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
@@ -278,7 +278,7 @@ EnhancedThread.new(true)  { User.first } # raises an error</pre>
                 
               </p>
               <div id="method-c-new_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/autoload/enhanced_thread.rb, line 61</span>
+                <pre><span class="ruby-comment"># File lib/autoload/enhanced_thread.rb, line 63</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize</span>(<span class="ruby-identifier">close_connection_before_execution</span> = <span class="ruby-keyword">false</span>, &amp;<span class="ruby-identifier">block</span>)
   <span class="ruby-identifier">thread_block</span> = 
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">close_connection_before_execution</span>

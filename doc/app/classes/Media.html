@@ -291,14 +291,20 @@ implementation.</p>
           
         
           <tr valign='top'>
-            <td class="attr-name">TMP_PREFIX</td>
+            <td class="attr-name">MIME_TYPES</td>
             <td>=</td>
-            <td class="attr-value">CONFIG.tmp_prefix</td>
+            <td class="attr-value">{ &#x27;.jpg&#x27;  =&gt; &#x27;image/jpeg&#x27; ,
+&#x27;.jpeg&#x27; =&gt; &#x27;image/jpeg&#x27; ,
+&#x27;.png&#x27;  =&gt; &#x27;image/png&#x27;  ,
+&#x27;.mp4&#x27;  =&gt; &#x27;video/mp4&#x27;  ,
+&#x27;.webm&#x27; =&gt; &#x27;video/webm&#x27; ,
+&#x27;.m4a&#x27;  =&gt; &#x27;audio/mp4&#x27;  ,
+&#x27;.ogg&#x27;  =&gt; &#x27;audio/ogg&#x27;  }</td>
           </tr>
           
             <tr valign='top'>
               <td>&nbsp;</td>
-              <td colspan="2" class="attr-desc"><p>The prefix of the temporary files created by the media processings</p></td>
+              <td colspan="2" class="attr-desc"><p>MIME types of the generated media</p></td>
             </tr>
           
         
@@ -306,7 +312,6 @@ implementation.</p>
             <td class="attr-name">CONFIG</td>
             <td>=</td>
             <td class="attr-value">RecursiveOpenStruct.new({
-tmp_prefix: &quot;desy#{::Thread.current.object_id}&quot;,
 avtools: {
 avprobe: {
 cmd: {

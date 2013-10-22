@@ -6,7 +6,7 @@ require 'lessons_media_elements_shared'
 #
 # == Fields
 #
-# * *uuid*: UUID v5, used for ... TODO
+# * *uuid*: UUID v5, used for ebooks univoque identifying
 # * *user_id*: id of the creator of the lesson
 # * *school_level_id*: id of the school level of the lesson (which corresponds to the school level of its creator)
 # * *subject_id*: id of the subject of the lesson
@@ -136,20 +136,10 @@ class Lesson < ActiveRecord::Base
     where('bookmarks.user_id IS NOT NULL OR lessons.user_id = ?', user_id).
     order('COALESCE(bookmarks.created_at, lessons.updated_at) DESC')
   end
+  
+  # Important! This scope has not been tested, it shoudln't be used in the application but only in the console!!!
   scope :copiable_by, ->(user_or_user_id) do
-    Lesson.where("( EXISTS (
-                      SELECT * FROM bookmarks
-                      WHERE bookmarks.bookmarkable_type = 'Lesson'
-                      AND bookmarks.user_id = :user_id
-                      AND bookmarks.bookmarkable_id = lessons.id
-                    )
-                    OR lessons.user_id = :user_id )
-                  AND NOT EXISTS ( 
-                    SELECT * FROM lessons AS son_lessons
-                    WHERE son_lessons.parent_id = lessons.id
-                    AND son_lessons.user_id = :user_id
-                  )
-                  AND lessons.copied_not_modified = FALSE", user_id: user_or_user_id)
+    where("(EXISTS (SELECT * FROM bookmarks WHERE bookmarks.bookmarkable_type = 'Lesson' AND bookmarks.user_id = :user_id AND bookmarks.bookmarkable_id = lessons.id) OR lessons.user_id = :user_id) AND NOT EXISTS (SELECT * FROM lessons AS son_lessons WHERE son_lessons.parent_id = lessons.id AND son_lessons.user_id = :user_id) AND lessons.copied_not_modified = FALSE", user_id: user_or_user_id)
   end
   
   # === Description
@@ -922,7 +912,7 @@ class Lesson < ActiveRecord::Base
     self.metadata.available_video = true
     self.metadata.available_audio = true
   end
-
+  
   # Create UUIDv4
   def create_uuid
     self.uuid = ActiveRecord::DB_DEFAULT unless self.uuid

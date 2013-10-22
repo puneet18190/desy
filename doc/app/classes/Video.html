@@ -162,16 +162,16 @@ href="Media/Shared.html">Media::Shared</a>.</p>
       
         <li>
           
-            <a href="UrlByUrlType.html">
-              UrlByUrlType
+            <a href="Media/Shared.html">
+              Media::Shared
             </a>
           
         </li>
       
         <li>
           
-            <a href="Media/Shared.html">
-              Media::Shared
+            <a href="UrlByUrlType.html">
+              UrlByUrlType
             </a>
           
         </li>
@@ -228,6 +228,18 @@ href="Media/Shared.html">Media::Shared</a>.</p>
             </tr>
           
         
+          <tr valign='top'>
+            <td class="attr-name">EBOOK_FORMATS</td>
+            <td>=</td>
+            <td class="attr-value">UPLOADER::FORMATS + UPLOADER::VERSION_FORMATS.keys - [:thumb]</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"></td>
+            </tr>
+          
+        
       </table>
     
 
@@ -242,7 +254,7 @@ href="Media/Shared.html">Media::Shared</a>.</p>
         <div class="method">
           <div class="title method-title" id="method-i-cover_url">
             
-              <b>cover_url</b>()
+              <b>cover_url</b>(url_type = nil)
             
             <a href="../classes/Video.html#method-i-cover_url" name="method-i-cover_url" class="permalink">Link</a>
           </div>
@@ -277,9 +289,15 @@ video, in 960 x 540 pixels).</p>
                 
               </p>
               <div id="method-i-cover_url_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/video.rb, line 100</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">cover_url</span>
-  <span class="ruby-identifier">media</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:url</span>, <span class="ruby-value">:cover</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">converted</span>
+                <pre><span class="ruby-comment"># File app/models/video.rb, line 102</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">cover_url</span>(<span class="ruby-identifier">url_type</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">converted</span>
+
+  <span class="ruby-identifier">url</span> = <span class="ruby-identifier">media</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:url</span>, <span class="ruby-value">:cover</span>)
+
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">url</span>
+  
+  <span class="ruby-identifier">url_by_url_type</span> <span class="ruby-identifier">url</span>, <span class="ruby-identifier">url_type</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -325,7 +343,7 @@ used without risks.</p>
                 
               </p>
               <div id="method-i-min_duration_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/video.rb, line 36</span>
+                <pre><span class="ruby-comment"># File app/models/video.rb, line 38</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">min_duration</span>
   [<span class="ruby-identifier">mp4_duration</span>, <span class="ruby-identifier">webm_duration</span>].<span class="ruby-identifier">map</span>(&amp;<span class="ruby-value">:to_i</span>).<span class="ruby-identifier">min</span>
 <span class="ruby-keyword">end</span></pre>
@@ -366,7 +384,7 @@ used without risks.</p>
                 
               </p>
               <div id="method-i-mp4_duration_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/video.rb, line 156</span>
+                <pre><span class="ruby-comment"># File app/models/video.rb, line 164</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">mp4_duration</span>
   <span class="ruby-identifier">converted</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">mp4_duration</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>
 <span class="ruby-keyword">end</span></pre>
@@ -410,7 +428,7 @@ duration to be set</p>
                 
               </p>
               <div id="method-i-mp4_duration-3D_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/video.rb, line 168</span>
+                <pre><span class="ruby-comment"># File app/models/video.rb, line 176</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">mp4_duration=</span>(<span class="ruby-identifier">mp4_duration</span>)
   <span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">mp4_duration</span> = <span class="ruby-identifier">mp4_duration</span>
 <span class="ruby-keyword">end</span></pre>
@@ -457,7 +475,7 @@ duration to be set</p>
                 
               </p>
               <div id="method-i-mp4_url_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/video.rb, line 54</span>
+                <pre><span class="ruby-comment"># File app/models/video.rb, line 56</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">mp4_url</span>(<span class="ruby-identifier">url_type</span> = <span class="ruby-keyword">nil</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">converted</span>
 
@@ -529,7 +547,7 @@ kind &#39;video1&#39;, see <a href="Slide.html">Slide</a>)</p>
                 
               </p>
               <div id="method-i-placeholder_url_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/video.rb, line 144</span>
+                <pre><span class="ruby-comment"># File app/models/video.rb, line 152</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">placeholder_url</span>(<span class="ruby-identifier">type</span>, <span class="ruby-identifier">url_type</span> = <span class="ruby-keyword">nil</span>)
   <span class="ruby-identifier">url_by_url_type</span> <span class="ruby-node">&quot;/assets/placeholders/video_#{type}.gif&quot;</span>, <span class="ruby-identifier">url_type</span>
 <span class="ruby-keyword">end</span></pre>
@@ -575,7 +593,7 @@ middle frame of the video resized to 200 x 200 pixels).</p>
                 
               </p>
               <div id="method-i-thumb_url_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/video.rb, line 116</span>
+                <pre><span class="ruby-comment"># File app/models/video.rb, line 124</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">thumb_url</span>
   <span class="ruby-identifier">media</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:url</span>, <span class="ruby-value">:thumb</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">converted</span>
 <span class="ruby-keyword">end</span></pre>
@@ -616,7 +634,7 @@ middle frame of the video resized to 200 x 200 pixels).</p>
                 
               </p>
               <div id="method-i-webm_duration_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/video.rb, line 180</span>
+                <pre><span class="ruby-comment"># File app/models/video.rb, line 188</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">webm_duration</span>
   <span class="ruby-identifier">converted</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">webm_duration</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>
 <span class="ruby-keyword">end</span></pre>
@@ -660,7 +678,7 @@ duration to be set</p>
                 
               </p>
               <div id="method-i-webm_duration-3D_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/video.rb, line 192</span>
+                <pre><span class="ruby-comment"># File app/models/video.rb, line 200</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">webm_duration=</span>(<span class="ruby-identifier">webm_duration</span>)
   <span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">webm_duration</span> = <span class="ruby-identifier">webm_duration</span>
 <span class="ruby-keyword">end</span></pre>
@@ -707,7 +725,7 @@ duration to be set</p>
                 
               </p>
               <div id="method-i-webm_url_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/video.rb, line 78</span>
+                <pre><span class="ruby-comment"># File app/models/video.rb, line 80</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">webm_url</span>(<span class="ruby-identifier">url_type</span> = <span class="ruby-keyword">nil</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">converted</span>
 
