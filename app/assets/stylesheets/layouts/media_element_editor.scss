@@ -8,6 +8,13 @@ html.media_element_editor-layout {
     float: left;
     position: relative;
     font-size: 12px;
+    cursor: pointer;
+    
+    &.disabled {
+      
+      cursor: default;
+      
+    }
     
   }
   

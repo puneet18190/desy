@@ -294,11 +294,13 @@ function tagsDocumentReadyNewMediaElement() {
     }
   });
   $body.on('focus', '#form_info_new_media_element_in_editor ._tags_container', function() {
-    $('#form_info_new_media_element_in_editor #only_to_conserve_tags #check_ad_hoc').removeAttr('disabled').removeClass('disabled').removeAttr('checked');
+    $('#form_info_new_media_element_in_editor #only_to_conserve_tags').removeClass('disabled');
+    $('#form_info_new_media_element_in_editor #only_to_conserve_tags #check_ad_hoc').removeAttr('disabled').removeAttr('checked');
     $(this).find('._placeholder').hide();
   });
   $body.on('click', '#form_info_new_media_element_in_editor ._tags_container', function() {
-    $('#form_info_new_media_element_in_editor #only_to_conserve_tags #check_ad_hoc').removeAttr('disabled').removeClass('disabled').removeAttr('checked');
+  $('#form_info_new_media_element_in_editor #only_to_conserve_tags').removeClass('disabled');
+    $('#form_info_new_media_element_in_editor #only_to_conserve_tags #check_ad_hoc').removeAttr('disabled').removeAttr('checked');
     $('#form_info_new_media_element_in_editor #new_tags').focus();
     $(this).find('._placeholder').hide();
   });

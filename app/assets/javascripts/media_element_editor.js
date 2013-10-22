@@ -88,18 +88,20 @@ function mediaElementEditorDocumentReady() {
       $('#form_info_new_media_element_in_editor #new_description_placeholder').val('0');
     }
   });
-  $body.on('click', '#form_info_new_media_element_in_editor #only_to_conserve_tags #check_ad_hoc', function() {
+  $body.on('click', '#form_info_new_media_element_in_editor #only_to_conserve_tags', function() {
     if(!$(this).hasClass('disabled')) {
       var form = $('#form_info_new_media_element_in_editor');
-      form.find('#only_to_conserve_tags #check_ad_hoc').attr('disabled', 'disabled').addClass('disabled');
+      $(this).addClass('disabled');
+      form.find('#only_to_conserve_tags #check_ad_hoc').attr('checked', 'checked').attr('disabled', 'disabled');
       form.find('#new_title').val(form.find('#only_to_conserve_tags .edited_container .edited_title').val());
       form.find('#new_title_placeholder').val('0');
       form.find('#new_description').val(form.find('#only_to_conserve_tags .edited_container .edited_description').val());
       form.find('#new_description_placeholder').val('0');
       var old_tags_placeholder = form.find('._tags_container ._placeholder')[0].outerHTML;
       var old_tags_value = form.find('._tags_container #new_tags_value')[0].outerHTML;
+      var old_tags = form.find('#new_tags')[0].outerHTML;
       form.find('._tags_container').html(form.find('#only_to_conserve_tags .edited_container .edited_tags_container').html());
-      form.find('._tags_container').append(old_tags_placeholder + old_tags_value);
+      form.find('._tags_container').append(old_tags_placeholder + old_tags_value + old_tags);
       form.find('._tags_container ._placeholder').hide();
       form.find('#new_tags_value').val(form.find('#only_to_conserve_tags .edited_container .edited_tags').val());
     }
