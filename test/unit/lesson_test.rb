@@ -43,6 +43,8 @@ class LessonTest < ActiveSupport::TestCase
     assert @lesson.save
     @lesson = Lesson.find @lesson.id
     assert_equal old_uuid, @lesson.uuid
+    # I test the error thrown by the database
+    assert_raise(ActiveRecord::StatementInvalid) {Lesson.where(:id => @lesson.id).update_all(:uuid => (Lesson.find(@lesson.id).uuid + 'dagdgdgdsgdsgds'))}
   end
   
   test 'tags' do
@@ -177,9 +179,12 @@ class LessonTest < ActiveSupport::TestCase
   test 'impossible_changes' do
     @lesson.parent_id = 1
     assert_obj_saved @lesson
+    old_uuid = @lesson.uuid
     uuid = Lesson.find(@lesson.id).uuid
+    new_uuid = uuid[0, uuid.length - 1] + ((uuid[uuid.length - 1] == 'a') ? 'b' : 'a')
+    assert new_uuid != uuid
     assert_invalid @lesson, :user_id, 2, 1, :cant_be_changed
-    assert_invalid @lesson, :uuid, (uuid + 'azzo'), uuid, :cant_be_changed
+    assert_invalid @lesson, :uuid, new_uuid, old_uuid, :cant_be_changed
     old_token = @lesson.token
     last_char = old_token.split(old_token.chop)[1]
     different_token = last_char == 'a' ? "#{old_token.chop}b" : "#{old_token.chop}a"
