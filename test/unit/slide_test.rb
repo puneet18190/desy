@@ -445,13 +445,13 @@ class SlideTest < ActiveSupport::TestCase
     # 1: the image is wrong (not png)
     FileUtils.cp wrong_img, @slide.math_images.folder
     @slide.math_images = [wrong_img]
-    assert !@slide.math_images.valid?
+    assert @slide.math_images.invalid?
     # 2: the image is not wrong, but it hasn't been copied in the required folder
     @slide.math_images = [right_img]
-    assert !@slide.math_images.valid?
+    assert @slide.math_images.invalid?
     # 3: finally, the image is right
-    FileUtils.cp wrong_img, @slide.math_images.folder
-    assert !@slide.math_images.valid?
+    FileUtils.cp right_img, @slide.math_images.folder
+    assert @slide.math_images.valid?
     
     
     # TODO altri tests
