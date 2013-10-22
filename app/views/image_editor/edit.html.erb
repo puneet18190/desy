@@ -22,7 +22,7 @@
         <input type="hidden" name="y2" value="" class="_coord"/>
         <%= render :partial => 'media_elements/info_form_in_editor/new', :locals => {:sti_type => @image.sti_type } %>
         <% if !@is_public %>
-          <%= render :partial => 'media_elements/info_form_in_editor/edit', :locals => {:media_element => @image} %>
+          <%= render :partial => 'media_elements/info_form_in_editor/edit', :locals => {:media_element => @image, :edited => @image} %>
         <% end %>
       </form>
     </div>

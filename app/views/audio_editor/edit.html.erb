@@ -7,7 +7,7 @@
   <%= form_tag audio_editor_save_cache_path, :id => 'audio_editor_form', :remote => true do %>
     <%= render :partial => 'media_elements/info_form_in_editor/new', :locals => {:sti_type => MediaElement::AUDIO_TYPE} %>
     <% if @parameters[:initial_audio] %>
-      <%= render :partial => 'media_elements/info_form_in_editor/edit', :locals => {:media_element => @parameters[:initial_audio]} %>
+      <%= render :partial => 'media_elements/info_form_in_editor/edit', :locals => {:media_element => @parameters[:initial_audio], :edited => @edited_audio} %>
     <% end %>
     <% if @parameters[:initial_audio] %>
       <%= hidden_field_tag 'initial_audio_id', @parameters[:initial_audio].id, :id => 'initial_audio_in_audio_editor_input' %>

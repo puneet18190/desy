@@ -32,6 +32,7 @@ class AudioEditorController < ApplicationController
   #
   def edit
     if @ok
+      @edited_audio = @audio
       @parameters = convert_audio_to_parameters
       @total_length = Audio.total_prototype_time(@parameters)
       @used_in_private_lessons = used_in_private_lessons

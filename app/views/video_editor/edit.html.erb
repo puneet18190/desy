@@ -33,7 +33,7 @@
   <%= form_tag video_editor_save_cache_path, :id => 'video_editor_form', :remote => true do %>
     <%= render :partial => 'media_elements/info_form_in_editor/new', :locals => {:sti_type => MediaElement::VIDEO_TYPE} %>
     <% if @parameters[:initial_video] %>
-      <%= render :partial => 'media_elements/info_form_in_editor/edit', :locals => {:media_element => @parameters[:initial_video]} %>
+      <%= render :partial => 'media_elements/info_form_in_editor/edit', :locals => {:media_element => @parameters[:initial_video], :edited => @edited_video} %>
     <% end %>
     <div class="mediaEditorListaElementi">
       <% if @parameters[:initial_video] %>

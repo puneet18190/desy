@@ -32,6 +32,7 @@ class VideoEditorController < ApplicationController
   #
   def edit
     if @ok
+      @edited_video = @video
       @parameters = convert_video_to_parameters
       @total_length = Video.total_prototype_time(@parameters)
       @used_in_private_lessons = used_in_private_lessons
