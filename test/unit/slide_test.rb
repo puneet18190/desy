@@ -437,4 +437,28 @@ class SlideTest < ActiveSupport::TestCase
     assert_equal 2, resp.id
   end
   
+  test 'math_images' do
+    assert_obj_saved @slide
+    @slide.math_images.folder.mkpath
+    wrong_img = Rails.root.join 'test/samples/one.jpg'
+    right_img = Rails.root.join 'test/samples/valid math_image.png'
+    # 1: the image is wrong (not png)
+    FileUtils.cp wrong_img, @slide.math_images.folder
+    @slide.math_images = [wrong_img]
+    assert !@slide.math_images.valid?
+    # 2: the image is not wrong, but it hasn't been copied in the required folder
+    @slide.math_images = [right_img]
+    assert !@slide.math_images.valid?
+    # 3: finally, the image is right
+    FileUtils.cp wrong_img, @slide.math_images.folder
+    assert !@slide.math_images.valid?
+    
+    
+    # TODO altri tests
+    
+    
+    # Clean up of the folder
+    @slide.math_images.remove_folder
+  end
+  
 end
