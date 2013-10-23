@@ -1646,10 +1646,10 @@ it:
   lesson_viewer:
     # Caption of the button which closes the playlist's navigational bar
     # 1 - views/lesson_viewer/playlist.html.erb
-    close_playlist_bar: "Chiudi la barra della playlist"
+    close_playlist_bar: "Chiudi la lista"
     # Caption of the button which opens the playlist's navigational bar
     # 1 - views/lesson_viewer/playlist.html.erb
-    open_playlist_bar: "Apri la barra della playlist"
+    open_playlist_bar: "Lezioni in playlist"
     # Area where it's possible to download offline the lesson
     export_lesson:
       # 1 - views/lesson_viewer/_export.html.erb
@@ -1945,7 +1945,7 @@ it:
   reports:
     # Link to open the report form
     # 1 - views/reports/_lesson.html.erb
-    title: "Segnala un contenuto non appropriato"
+    title: "Contenuto non appropriato"
     # Title of the report form
     # 1 - views/reports/_lesson.html.erb
     # 2 - views/reports/_media_element.html.erb
