@@ -1839,9 +1839,7 @@ cn:
   prelogin:
     # Secton of contacts
     contact_us:
-      # 1 - views/prelogin/registration.html.erb
-      # 2 - views/prelogin/home.html.erb
-      # 3 - views/prelogin/what_is.html.erb
+      # 1 - helpers/application_helper.rb
       menu_link: "联系我们"
     # Home page
     main_page:

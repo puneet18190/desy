@@ -1,10 +1,9 @@
-
 <div class="header">
   <div class="headerMenu">
     <ul>
       <li><%= link_to t('prelogin.main_page.menu_link'), root_path %></li>
       <li><%= link_to t('prelogin.what_is.menu_link', :desy => SETTINGS['application_name']), what_is_path, :class => 'current' %></li>
-      <li><!-- traduzz --><%= prelogin_contact_us_menu_link %></li>
+      <li><%= prelogin_contact_us_menu_link %></li>
     </ul>
     <%= render :partial => '/prelogin/login' %>
   </div>
