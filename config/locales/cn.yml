@@ -1852,9 +1852,8 @@ cn:
       title: "新教法"
       # 1 - views/prelogin/home.html.erb
       description: "<b>%{desy}</b>是奉献教育界的新平台. 使用<b>%{desy}</b>你能轻松地建立职业在线课程, 好的用户界面和好的平台设计. 课程可以包含图像、音频和视频, 它能上传,剪切和提升自己. 用户也能利用我们的社区, 分享和接收媒体单元并准备重用.<i>使用<b>%{desy}</b>我们能保证高质量平台和注重细节</i>."
-      # Caption of the link to the video explaining things about the application
       # 1 - views/prelogin/home.html.erb
-      video: "观看视频"
+      trial: "Try it for free!" # TODO
     # Section where the user signs up
     sign_up:
       # 1 - views/prelogin/registration.html.erb

@@ -1852,9 +1852,8 @@ en:
       title: "A new way of teaching"
       # 1 - views/prelogin/home.html.erb
       description: "<b>%{desy}</b> is the new platform dedicated to the world of education. With <b>%{desy}</b> you can easily create professional online lessons, good looking and designed in every detail. A lesson may contain images, audio tracks and videos, which you can upload, cut and improve inside the application itself. Users also take advantage of our Community, sharing and receiving media elements ready to be re-used. <i>With <b>%{desy}</b> we guarantee high quality and care for details</i>."
-      # Caption of the link to the video explaining things about the application
       # 1 - views/prelogin/home.html.erb
-      video: "Watch the video"
+      trial: "Try it for free!"
     # Section where the user signs up
     sign_up:
       # 1 - views/prelogin/registration.html.erb
