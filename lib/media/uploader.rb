@@ -30,8 +30,8 @@ module Media
 
     # Media folder size (descendants)
     def self.folder_size
-      return 0 unless self::FOLDER.directory?
-      Find.find(self::FOLDER.to_s).sum { |f| File.stat(f).size }
+      return 0 unless  Dir.exists? self::FOLDER
+      Find.find(self::FOLDER).sum { |f| File.stat(f).size }
     end
 
     # Media folder size
