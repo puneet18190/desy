@@ -17,7 +17,7 @@ class UserTest < ActiveSupport::TestCase
   
   test 'empty_and_defaults' do
     @user = User.new
-    assert_error_size 15, @user
+    assert_error_size 12, @user
   end
   
   test 'attr_accessible' do
@@ -34,6 +34,8 @@ class UserTest < ActiveSupport::TestCase
     assert_invalid @user, :location_id, 2.8, 1, :not_an_integer
     assert_invalid @user, :active, nil, false, :inclusion
     assert_invalid @user, :confirmed, nil, true, :inclusion
+    assert_obj_saved @user
+    @user.location_id = nil
     assert_obj_saved @user
   end
   

@@ -31,7 +31,7 @@
 # * *virtual_classroom_lessons*: list of lessons present in the user's Virtual Classroom (see VirtualClassroomLesson) (*has_many*)
 # * *mailing_list_groups*: all the mailing list groups that this user created (see MailingListGroup) (*has_many*)
 # * *school_level*: the SchoolLevel associated to this user (*belongs_to*)
-# * *location*: the Location associated to this user (*belongs_to*)
+# * *location*: the Location associated to this user (*belongs_to*, it can be nil)
 # * *documents*: documents uploaded by the user (see Document) (*has_many*)
 #
 # == Validations
@@ -109,8 +109,9 @@ class User < ActiveRecord::Base
   belongs_to :school_level
   belongs_to :location, :class_name => location_association_class
   
-  validates_presence_of :email, :name, :surname, :school_level_id, :location_id
-  validates_numericality_of :school_level_id, :location_id, :only_integer => true, :greater_than => 0
+  validates_presence_of :email, :name, :surname, :school_level_id
+  validates_numericality_of :school_level_id, :only_integer => true, :greater_than => 0
+  validates_numericality_of :location_id, :only_integer => true, :greater_than => 0, :allow_nil => true
   validates_confirmation_of :password
   validates_presence_of :users_subjects
   validates_uniqueness_of :email
@@ -1473,8 +1474,10 @@ class User < ActiveRecord::Base
   # Validates the presence of all the associated objects
   def validate_associations
     errors.add :school_level_id, :doesnt_exist if @school_level.nil?
-    @location = Valid.get_association self, :location_id
-    errors.add :location_id, :doesnt_exist if @location.nil? || @location.sti_type != SETTINGS['location_types'].last
+    if self.location_id
+      @location = Valid.get_association self, :location_id
+      errors.add :location_id, :doesnt_exist if @location.nil? || @location.sti_type != SETTINGS['location_types'].last
+    end
   end
   
   # If the user is not new, it validates that the email didn't change
