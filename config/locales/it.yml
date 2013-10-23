@@ -1266,6 +1266,7 @@ it:
     # 1 - views/shared/players/_video.html.erb
     # 2 - views/video_editor/previews/_video.html.erb
     # 3 - views/admin/media_elements/previews/_video.html.erb
+    # 4 - views/prelogin/home.html.erb
     dont_support_video: "Il tuo browser non supporta i video"
     # Used as a placeholder in any <audio> HTML tag, if the browser doesn't support either .ogg or .m4a
     # 1 - views/shared/players/_audio.html.erb
