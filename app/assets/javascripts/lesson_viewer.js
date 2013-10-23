@@ -37,6 +37,9 @@ function lessonViewerDocumentReady() {
     $(this).hide();
     $('#open_export_lesson').show();
   });
+  $body.on('mouseleave', '.playlistMenu', function(e) {
+    closePlaylistMenuInLessonViewer(function() {});
+  });
 }
 
 /**
