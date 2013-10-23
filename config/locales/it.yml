@@ -1859,7 +1859,7 @@ it:
       # 1 - views/prelogin/registration.html.erb
       # 2 - views/prelogin/home.html.erb
       # 3 - views/prelogin/what_is.html.erb
-      menu_link: "Registrazione"
+      menu_link: "Registrati"
       # 1 - views/prelogin/registration.html.erb
       # 2 - views/users/edit.html.erb
       select_a: "Seleziona un"
