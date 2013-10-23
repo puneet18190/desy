@@ -1841,13 +1841,13 @@ it:
     contact_us:
       # 1 - views/prelogin/registration.html.erb
       # 2 - views/prelogin/home.html.erb
-      # 3 - views/prelogin/what_is_desy.html.erb
+      # 3 - views/prelogin/what_is.html.erb
       menu_link: "Contatti"
     # Home page
     main_page:
       # 1 - views/prelogin/registration.html.erb
       # 2 - views/prelogin/home.html.erb
-      # 3 - views/prelogin/what_is_desy.html.erb
+      # 3 - views/prelogin/what_is.html.erb
       menu_link: "Home"
       # 1 - views/prelogin/home.html.erb
       title: "Un nuovo modo di insegnare"
@@ -1860,29 +1860,29 @@ it:
     sign_up:
       # 1 - views/prelogin/registration.html.erb
       # 2 - views/prelogin/home.html.erb
-      # 3 - views/prelogin/what_is_desy.html.erb
+      # 3 - views/prelogin/what_is.html.erb
       menu_link: "Registrazione"
       # 1 - views/prelogin/registration.html.erb
       # 2 - views/users/edit.html.erb
       select_a: "Seleziona un"
     # Section with further explanations about the application
-    what_is_desy:
+    what_is:
       # 1 - views/prelogin/registration.html.erb
       # 2 - views/prelogin/home.html.erb
-      # 3 - views/prelogin/what_is_desy.html.erb
+      # 3 - views/prelogin/what_is.html.erb
       menu_link: "Cos'è %{desy}?"
-      # 1- views/prelogin/what_is_desy.html.erb
+      # 1- views/prelogin/what_is.html.erb
       title: "Cos'è %{desy}?"
-      # 1- views/prelogin/what_is_desy.html.erb
+      # 1- views/prelogin/what_is.html.erb
       subtitle: "Scopri i vantaggi di %{desy}"
-      # 1- views/prelogin/what_is_desy.html.erb
+      # 1- views/prelogin/what_is.html.erb
       description: "%{desy} è un sistema di didattica digitale che consente ai docenti di creare lezioni multimediali in piena autonomia e con grande facilità.<br><br>Non solo: la piattaforma su cui poggia consente la condivisione degli elementi didattici e la socializzazione dei contenuti, da cui discendono vantaggi e funzionalità aggiuntive, tra cui:<ul><li>la possibilità di costruire lezioni e percorsi didattici interdisciplinari;</li><li>la continuità del processo di affinamento e arricchimento dei contenuti;</li><li>la crescita del sistema grazie ad un meccanismo di autoalimentazione a zero costi;</li><li>il rafforzamento e la valorizzazione del ruolo dei docenti nella elaborazione degli strumenti didattici.</li></ul>Oltre che nella scuola e nelle università, %{desy} può essere utilizzato nella formazione professionale e aziendale, attraverso portali formativi autonomi installati all’interno delle  intranet delle imprese, che consentono di raccogliere in modo sicuro e riservato i saperi aziendali, e al tempo stesso di condividerli con i docenti chiamati a curare l’aggiornamento e l’innovazione."
       right_column:
-        # 1 - views/prelogin/what_is_desy.html.erb
+        # 1 - views/prelogin/what_is.html.erb
         caption1: "Partecipa alla comunità di %{desy} condividendo le tue lezioni contenenti video didattici, audio e immagini!"
-        # 1 - views/prelogin/what_is_desy.html.erb
+        # 1 - views/prelogin/what_is.html.erb
         caption2: "Crea la tua lezione di alta qualità con un editor lezioni semplice e user-oriented"
-        # 1 - views/prelogin/what_is_desy.html.erb
+        # 1 - views/prelogin/what_is.html.erb
         caption3: "Visualizza le lezioni di altri utenti aumentando le vostre conoscenze culturali"
   
   

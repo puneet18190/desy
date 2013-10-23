@@ -1841,13 +1841,13 @@ en:
     contact_us:
       # 1 - views/prelogin/registration.html.erb
       # 2 - views/prelogin/home.html.erb
-      # 3 - views/prelogin/what_is_desy.html.erb
+      # 3 - views/prelogin/what_is.html.erb
       menu_link: "Contact us"
     # Home page
     main_page:
       # 1 - views/prelogin/registration.html.erb
       # 2 - views/prelogin/home.html.erb
-      # 3 - views/prelogin/what_is_desy.html.erb
+      # 3 - views/prelogin/what_is.html.erb
       menu_link: "Home"
       # 1 - views/prelogin/home.html.erb
       title: "A new way of teaching"
@@ -1860,29 +1860,29 @@ en:
     sign_up:
       # 1 - views/prelogin/registration.html.erb
       # 2 - views/prelogin/home.html.erb
-      # 3 - views/prelogin/what_is_desy.html.erb
+      # 3 - views/prelogin/what_is.html.erb
       menu_link: "Sign up"
       # 1 - views/prelogin/registration.html.erb
       # 2 - views/users/edit.html.erb
       select_a: "Select a"
     # Section with further explanations about the application
-    what_is_desy:
+    what_is:
       # 1 - views/prelogin/registration.html.erb
       # 2 - views/prelogin/home.html.erb
-      # 3 - views/prelogin/what_is_desy.html.erb
+      # 3 - views/prelogin/what_is.html.erb
       menu_link: "What is %{desy}?"
-      # 1- views/prelogin/what_is_desy.html.erb
+      # 1- views/prelogin/what_is.html.erb
       title: "What is %{desy}?"
-      # 1- views/prelogin/what_is_desy.html.erb
+      # 1- views/prelogin/what_is.html.erb
       subtitle: "Find out the benefits of %{desy}"
-      # 1- views/prelogin/what_is_desy.html.erb
+      # 1- views/prelogin/what_is.html.erb
       description: "%{desy} is a didactic digital system which allows teachers to create multimedia lessons in full autonomy and easily.<br><br>Not only: the platform where it lays allows for sharing didactic elements and socialization of contents, from which advantages and additional functionalities are derived among which:<ul><li>the possibility to build lessons and didactic interdisciplinary methods;</li><li>the continuity of the affinity process and enrichment of contents;</li><li>the growth of the system thanks to self feeding at 0 cost;</li><li>the reinforcement and evaluation of the teachers' role in elaborating didactic instruments.</li></ul>other than in schools and universities, %{desy} can be used in a company professional formation, through formative portals installed within companies' intranet, which allow to gather the company know how in a secure and reserve way and at the same time to share them with the teachers called to look after updating and innovation."
       right_column:
-        # 1 - views/prelogin/what_is_desy.html.erb
+        # 1 - views/prelogin/what_is.html.erb
         caption1: "Participate in the community of %{desy} by sharing your lessons containing didactic videos, audios and images!"
-        # 1 - views/prelogin/what_is_desy.html.erb
+        # 1 - views/prelogin/what_is.html.erb
         caption2: "Create your high quality lesson with an easy and user-oriented lesson editor"
-        # 1 - views/prelogin/what_is_desy.html.erb
+        # 1 - views/prelogin/what_is.html.erb
         caption3: "Visualize other users' lessons and increase your cultural knowledge"
   
   

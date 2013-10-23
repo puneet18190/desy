@@ -75,7 +75,7 @@ class PreloginController < ApplicationController
   #
   # * PreloginController#redirect_to_dashboard_if_logged_in
   #
-  def what_is_desy
+  def what_is
   end
   
   private

@@ -1841,13 +1841,13 @@ cn:
     contact_us:
       # 1 - views/prelogin/registration.html.erb
       # 2 - views/prelogin/home.html.erb
-      # 3 - views/prelogin/what_is_desy.html.erb
+      # 3 - views/prelogin/what_is.html.erb
       menu_link: "联系我们"
     # Home page
     main_page:
       # 1 - views/prelogin/registration.html.erb
       # 2 - views/prelogin/home.html.erb
-      # 3 - views/prelogin/what_is_desy.html.erb
+      # 3 - views/prelogin/what_is.html.erb
       menu_link: "主页"
       # 1 - views/prelogin/home.html.erb
       title: "新教法"
@@ -1860,29 +1860,29 @@ cn:
     sign_up:
       # 1 - views/prelogin/registration.html.erb
       # 2 - views/prelogin/home.html.erb
-      # 3 - views/prelogin/what_is_desy.html.erb
+      # 3 - views/prelogin/what_is.html.erb
       menu_link: "签到"
       # 1 - views/prelogin/registration.html.erb
       # 2 - views/users/edit.html.erb
       select_a: "选择一个"
     # Section with further explanations about the application
-    what_is_desy:
+    what_is:
       # 1 - views/prelogin/registration.html.erb
       # 2 - views/prelogin/home.html.erb
-      # 3 - views/prelogin/what_is_desy.html.erb
+      # 3 - views/prelogin/what_is.html.erb
       menu_link: "%{desy}是什么？"
-      # 1- views/prelogin/what_is_desy.html.erb
+      # 1- views/prelogin/what_is.html.erb
       title: "%{desy}是什么？"
-      # 1- views/prelogin/what_is_desy.html.erb
+      # 1- views/prelogin/what_is.html.erb
       subtitle: "找出%{desy}的益处"
-      # 1- views/prelogin/what_is_desy.html.erb
+      # 1- views/prelogin/what_is.html.erb
       description: "%{desy}是教学数字系统，它充许教师非常自由和容易地建立多媒体课程<br><br>不仅仅是: 它所处的平台充许分享教育单元和社会内容, 优点和额外的功能源于:<ul><li>建立课程和教学跨学科的可能性;</li><li>亲和力和丰富内容的连续性;</li><li>系统的增长感谢是零费用;</li><li>利用教学工具来加强与改善教学.</li></ul>与学校与大学相比, %{desy}能用于公司, 安装在公司局域网内通过门户网站。"
       right_column:
-        # 1 - views/prelogin/what_is_desy.html.erb
+        # 1 - views/prelogin/what_is.html.erb
         caption1: "通过分享你的包括视频、音频和图像课程来加入%{desy}社区"
-        # 1 - views/prelogin/what_is_desy.html.erb
+        # 1 - views/prelogin/what_is.html.erb
         caption2: "用容易和面向用户的课程编辑来建立高质量的课程"
-        # 1 - views/prelogin/what_is_desy.html.erb
+        # 1 - views/prelogin/what_is.html.erb
         caption3: "可视化其他用户的课程，增加你的知识点"
   
   
