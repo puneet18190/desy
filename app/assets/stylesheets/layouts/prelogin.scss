@@ -466,23 +466,26 @@ html.prelogin-layout {
       
       .containerText {
         
-        background-image: none;
-        padding: 100px 20px 20px 20px;
-        width: 47%;
+        display:inline-block;
+        padding: 40px;
+        /*width: 47%;*/
         color: #6d6d6e;
-        float: left;
+        
         
         h1, h3 {
           
           font-family: 'Nunito', sans-serif;
-          color: #fdb525;
+          
           
         }
-        
+         h1 {
+          color:#3c9927;
+          font-size:22px;
+        }
         h3 {
           
           padding-bottom: 25px;
-          
+          color: #fdb525;
         }
         
         ul {
@@ -499,8 +502,13 @@ html.prelogin-layout {
           }
           
         }
-        
+        .colS {
+         width:45%;
+           
+          
+        }  
       }
+      
       
       .footer {
         
@@ -516,26 +524,7 @@ html.prelogin-layout {
         
       }
       
-      .colDx {
-        
-        float: right;
-        margin-top: 47px;
-        width: 158px;
-        background-image: $assets-colonna-destra_jpg;
-        background-repeat: no-repeat;
-        background-position: top left;
-        padding: 118px 40px 0px 258px;
-        font-size: 10px;
-        
-        h1 {
-          
-          font-size: 18px;
-          color: #25aae1;
-          font-family: 'Nunito', sans-serif;
-          
-        }
-        
-      }
+      
       
     }
     
