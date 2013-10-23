@@ -2807,6 +2807,8 @@ it:
         # 1 - views/admin/lessons/_list.html.erb
         id: "Id"
         # 1 - views/admin/lessons/_list.html.erb
+        is_public: "Pubblicata"
+        # 1 - views/admin/lessons/_list.html.erb
         likes: "Mi piace"
         # 1 - views/admin/lessons/_list.html.erb
         subject: "Materia"

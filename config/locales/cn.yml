@@ -2807,6 +2807,8 @@ cn:
         # 1 - views/admin/lessons/_list.html.erb
         id: "Id"
         # 1 - views/admin/lessons/_list.html.erb
+        is_public: "公共"
+        # 1 - views/admin/lessons/_list.html.erb
         likes: "喜欢"
         # 1 - views/admin/lessons/_list.html.erb
         subject: "科目"

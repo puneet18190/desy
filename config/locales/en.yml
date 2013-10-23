@@ -2807,6 +2807,8 @@ en:
         # 1 - views/admin/lessons/_list.html.erb
         id: "Id"
         # 1 - views/admin/lessons/_list.html.erb
+        is_public: "Public"
+        # 1 - views/admin/lessons/_list.html.erb
         likes: "Likes"
         # 1 - views/admin/lessons/_list.html.erb
         subject: "Subject"

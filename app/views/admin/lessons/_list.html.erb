@@ -23,6 +23,9 @@
         <th>
           <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.lessons.fields.likes'), :ordering => 6} %>
         </th>
+        <th>
+          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.lessons.fields.is_public'), :ordering => nil} %>
+        </th>
         <th></th>
         <th></th>
         <% if from_reporting.present? %>
@@ -47,6 +50,7 @@
           <td><%= TimeConvert.to_string lesson.created_at %></td>
           <td><%= TimeConvert.to_string lesson.updated_at %></td>
           <td><%= lesson.likes_count %></td>
+          <td><%= lesson.is_public.to_s %></td>
           <td><%= link_to '<i class="icon-eye-open"></i>'.html_safe, "/lessons/#{lesson.id}/view?token=#{lesson.token}", :target => :blank, :class => 'action' %><a href="#" target="_blank" class="action"></a></td>
           <% if from_reporting.present? %>
             <td>
