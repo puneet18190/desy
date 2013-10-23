@@ -5,7 +5,7 @@
   
   <body>
     <%= render :partial => 'shared/browser_support_script' %>
-    <div class="container" style="outline:1px solid red">
+    <div class="container">
       <%= render partial: 'layouts/flash', locals: { flash: flash } %>
       <%= yield %>
     </div>

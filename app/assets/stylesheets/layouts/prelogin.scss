@@ -467,7 +467,7 @@ html.prelogin-layout {
       .containerText {
         
         display:inline-block;
-        padding: 0;
+        padding: 40px;
         /*width: 47%;*/
         color: #6d6d6e;
         
@@ -475,14 +475,17 @@ html.prelogin-layout {
         h1, h3 {
           
           font-family: 'Nunito', sans-serif;
-          color: #fdb525;
+          
           
         }
-        
+         h1 {
+          color:#3c9927;
+          font-size:22px;
+        }
         h3 {
           
           padding-bottom: 25px;
-          
+          color: #fdb525;
         }
         
         ul {
