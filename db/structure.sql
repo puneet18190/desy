@@ -772,7 +772,7 @@ CREATE TABLE users (
     encrypted_password character varying(255) NOT NULL,
     confirmed boolean NOT NULL,
     active boolean NOT NULL,
-    location_id integer NOT NULL,
+    location_id integer,
     confirmation_token character varying(255),
     metadata text,
     password_token character varying(255),

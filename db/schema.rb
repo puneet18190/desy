@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(:version => 20131023145739) do
     t.string   "encrypted_password", :null => false
     t.boolean  "confirmed",          :null => false
     t.boolean  "active",             :null => false
-    t.integer  "location_id",        :null => false
+    t.integer  "location_id"
     t.string   "confirmation_token"
     t.text     "metadata"
     t.string   "password_token"
