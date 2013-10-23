@@ -29,7 +29,7 @@
         </div>
         <br style="clear:both"/>
         <div class="fltrt" style="margin-top:30px">
-          <div class="fltlft" style="margin-top:5px;"><%= link_to t('forms.new_lesson.cancel').downcase, my_lessons_path, :class => "buttonForm" %></div>
+          <div class="fltlft" style="margin-top:5px;"><%= link_to t('forms.new_lesson.cancel').downcase, my_lessons_path, :class => 'buttonForm' %></div>
           <div class="fltrt">
             <%= submit_tag t('forms.new_lesson.done').downcase, :class => 'lesson-create' %>
           </div>
@@ -41,7 +41,7 @@
         <%= t('lessons.school_level') %>: <%= current_user.school_level.description %>
       </div>
       <div class="author pull-right">
-        <%= t('lessons.author') %>: <span class="name"><%=  current_user.full_name %></span>
+        <%= t('lessons.author') %>: <span class="name"><%= current_user.full_name %></span>
       </div>
     </div>
     <div id="info_container" data-tag-just-selected="false"></div>

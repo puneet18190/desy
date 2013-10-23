@@ -19,19 +19,19 @@
         </div>
         <br style="clear:both"/>
         <div class="fltrt" style="margin-top:30px">
-          <div class="fltlft"><%= link_to t('forms.update_lesson.cancel').downcase, lesson_editor_path(@lesson), :class => "buttonForm pull-right" %></div>
+          <div class="fltlft"><%= link_to t('forms.update_lesson.cancel').downcase, lesson_editor_path(@lesson), :class => 'buttonForm pull-right' %></div>
           <div class="fltrt">
-            <%= submit_tag t('forms.update_lesson.done').downcase, :class => "lesson-create pull-right" %>
+            <%= submit_tag t('forms.update_lesson.done').downcase, :class => 'lesson-create pull-right' %>
           </div>
         </div>
       <% end %>
     </div>
     <div class="info-slide-footer">
       <div class="school-level pull-left">
-        <%= t('lessons.school_level') %>: <%=  current_user.school_level.description %>
+        <%= t('lessons.school_level') %>: <%= current_user.school_level.description %>
       </div>
       <div class="author pull-right">
-        <%= t('lessons.author') %>: <span class="name"><%=  current_user.full_name %></span>
+        <%= t('lessons.author') %>: <span class="name"><%= current_user.full_name %></span>
       </div>
     </div>
   </li>

@@ -7,7 +7,7 @@
       <div class="MediaElementPopUpContainer" data-param="<%= media_element.id %>">
         <% if media_element.info_changeable %>
           <% my_tags = Tagging.includes(:tag).where(:taggable_type => 'MediaElement', :taggable_id => media_element.id).order(:tag_id) %>
-          <div class="_change_info_container ChangeInfoContainer" style="display:none;" data-param="<%= media_element.id %>" data-title="<%= media_element.title %>" data-description="<%= media_element.description %>" data-tags="<%= media_element.tags %>">
+          <div class="_change_info_container ChangeInfoContainer" style="display:none" data-param="<%= media_element.id %>" data-title="<%= media_element.title %>" data-description="<%= media_element.description %>" data-tags="<%= media_element.tags %>">
             <h1><%= t('forms.change_info_media_element.title') %></h1>
             <p><%= t('forms.change_info_media_element.description') %></p>
             <%= form_tag media_element_path(media_element.id), :remote => true, :class => 'formModifyInfo' do %>

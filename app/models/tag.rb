@@ -103,7 +103,7 @@ class Tag < ActiveRecord::Base
   # A string of tags in the shape ',tag1,tag2,tag3,tag4,'
   #
   def self.get_friendly_tags(item)
-    tags = item.taggings
+    tags = item.taggings.order(:tag_id)
     return '' if tags.empty?
     ([''] + (tags.map { |t| t.tag.word }) + ['']).join(',')
   end
