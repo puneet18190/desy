@@ -146,15 +146,14 @@ class User < ActiveRecord::Base
   
   # === Description
   #
-  # It checks if the user is administrator or not (i.e., if the user is allowed to enter in the administration module, see for instance Admin::DashboardController). TODO important: at the moment only the super administrator is considered an administrator: in future it'll be necessary to add to config.yml a list of emails of administrators (or alternatively, to add a boolean field +admin+ to the table +users+). <b>The method must be changed without changing its name</b>: it should return something like
-  #   self.super_admin? || SETTINGS['grant_admin_privileges'].include?(self.email)
+  # It checks if the user is administrator or not (i.e., if the user is allowed to enter in the administration module, see for instance Admin::DashboardController)
   #
   # === Returns
   #
   # A boolean
   #
   def admin?
-    self.super_admin?
+    self.super_admin? || SETTINGS['grant_admin_privileges'].include?(self.email)
   end
 
   # === Description
