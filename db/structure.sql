@@ -280,7 +280,8 @@ CREATE TABLE locations (
     sti_type character varying(255),
     ancestry character varying(255),
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    code character varying(255)
 );
 
 
@@ -473,6 +474,52 @@ CREATE SEQUENCE notifications_id_seq
 --
 
 ALTER SEQUENCE notifications_id_seq OWNED BY notifications.id;
+
+
+--
+-- Name: purchases; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE purchases (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    responsible character varying(255) NOT NULL,
+    phone_number character varying(255),
+    fax character varying(255),
+    email character varying(255) NOT NULL,
+    ssn_code character varying(255),
+    vat_code character varying(255),
+    address character varying(255),
+    postal_code character varying(255),
+    city character varying(255),
+    country character varying(255),
+    accounts_number integer NOT NULL,
+    includes_invoice boolean NOT NULL,
+    release_date timestamp without time zone NOT NULL,
+    start_date timestamp without time zone NOT NULL,
+    expiration_date timestamp without time zone NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: purchases_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE purchases_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: purchases_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE purchases_id_seq OWNED BY purchases.id;
 
 
 --
@@ -730,7 +777,8 @@ CREATE TABLE users (
     metadata text,
     password_token character varying(255),
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    purchase_id integer
 );
 
 
@@ -906,6 +954,13 @@ ALTER TABLE ONLY notifications ALTER COLUMN id SET DEFAULT nextval('notification
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY purchases ALTER COLUMN id SET DEFAULT nextval('purchases_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY reports ALTER COLUMN id SET DEFAULT nextval('reports_id_seq'::regclass);
 
 
@@ -1066,6 +1121,14 @@ ALTER TABLE ONLY media_elements_slides
 
 ALTER TABLE ONLY notifications
     ADD CONSTRAINT notifications_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: purchases_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY purchases
+    ADD CONSTRAINT purchases_pkey PRIMARY KEY (id);
 
 
 --
@@ -1293,6 +1356,13 @@ CREATE INDEX fk__taggings_tag_id ON taggings USING btree (tag_id);
 --
 
 CREATE INDEX fk__users_location_id ON users USING btree (location_id);
+
+
+--
+-- Name: fk__users_purchase_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX fk__users_purchase_id ON users USING btree (purchase_id);
 
 
 --
@@ -1589,6 +1659,14 @@ ALTER TABLE ONLY users
 
 
 --
+-- Name: fk_users_purchase_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY users
+    ADD CONSTRAINT fk_users_purchase_id FOREIGN KEY (purchase_id) REFERENCES purchases(id);
+
+
+--
 -- Name: fk_users_school_level_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1683,3 +1761,7 @@ INSERT INTO schema_migrations (version) VALUES ('20130131094635');
 INSERT INTO schema_migrations (version) VALUES ('20130709101814');
 
 INSERT INTO schema_migrations (version) VALUES ('20130709121200');
+
+INSERT INTO schema_migrations (version) VALUES ('20131023143716');
+
+INSERT INTO schema_migrations (version) VALUES ('20131023145739');

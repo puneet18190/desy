@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130709121200) do
+ActiveRecord::Schema.define(:version => 20131023145739) do
 
   create_table "locations", :force => true do |t|
     t.string   "name",       :null => false
@@ -19,7 +19,29 @@ ActiveRecord::Schema.define(:version => 20130709121200) do
     t.string   "ancestry"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "code"
     t.index ["ancestry"], :name => "index_locations_on_ancestry", :order => {"ancestry" => :asc}
+  end
+
+  create_table "purchases", :force => true do |t|
+    t.string   "name",             :null => false
+    t.string   "responsible",      :null => false
+    t.string   "phone_number"
+    t.string   "fax"
+    t.string   "email",            :null => false
+    t.string   "ssn_code"
+    t.string   "vat_code"
+    t.string   "address"
+    t.string   "postal_code"
+    t.string   "city"
+    t.string   "country"
+    t.integer  "accounts_number",  :null => false
+    t.boolean  "includes_invoice", :null => false
+    t.datetime "release_date",     :null => false
+    t.datetime "start_date",       :null => false
+    t.datetime "expiration_date",  :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   create_table "school_levels", :force => true do |t|
@@ -42,7 +64,9 @@ ActiveRecord::Schema.define(:version => 20130709121200) do
     t.string   "password_token"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
+    t.integer  "purchase_id"
     t.index ["location_id"], :name => "fk__users_location_id", :order => {"location_id" => :asc}
+    t.index ["purchase_id"], :name => "fk__users_purchase_id", :order => {"purchase_id" => :asc}
     t.index ["school_level_id"], :name => "fk__users_school_level_id", :order => {"school_level_id" => :asc}
     t.index ["active"], :name => "index_users_on_active", :order => {"active" => :asc}
     t.index ["confirmation_token"], :name => "index_users_on_confirmation_token", :order => {"confirmation_token" => :asc}
@@ -50,6 +74,7 @@ ActiveRecord::Schema.define(:version => 20130709121200) do
     t.index ["email"], :name => "index_users_on_email", :unique => true, :order => {"email" => :asc}
     t.index ["password_token"], :name => "index_users_on_password_token", :order => {"password_token" => :asc}
     t.foreign_key ["location_id"], "locations", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_users_location_id"
+    t.foreign_key ["purchase_id"], "purchases", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_users_purchase_id"
     t.foreign_key ["school_level_id"], "school_levels", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_users_school_level_id"
   end
 
