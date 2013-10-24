@@ -2,12 +2,10 @@ one:
   id: 1
   name: 'Roma'
   sti_type: 'School'
-  ancestry: nil
   code: 'XCMY0'
 
 two:
   id: 2
   name: 'Milano'
   sti_type: 'School'
-  ancestry: nil
   code: 'XCMYAA'

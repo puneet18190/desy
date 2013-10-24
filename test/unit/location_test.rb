@@ -21,7 +21,7 @@ class LocationTest < ActiveSupport::TestCase
   test 'types' do
     assert_invalid @location, :name, long_string(256), long_string(255), :too_long, {:count => 255}
     assert_invalid @location, :code, long_string(256), long_string(255), :too_long, {:count => 255}
-    assert_invalid @location, :sti_type, 'Town', 'City', :included
+    assert_invalid @location, :sti_type, 'Town', 'City', :inclusion
     assert_obj_saved @location
     @location.code = nil
     assert_obj_saved @location
