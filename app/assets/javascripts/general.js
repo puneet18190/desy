@@ -178,8 +178,6 @@ function generalWindowResizeDocumentReady() {
       recenterMyMediaElements();
     }
   });
-  
-  
 }
 
 /**
