@@ -1,0 +1,37 @@
+<%= render :partial => 'menu', :locals => {:current => 'locations'} %>
+
+<h3>Locations!</h3> <!-- TODO traduzz -->
+
+
+<table class="outer">
+  <tr>
+    <% (0...(SETTINGS['location_types'].length)).to_a.each do |i| %>
+      <th>
+        <%= Location.label_at(i) %>
+      </th>
+    <% end %>
+  </tr>
+  <tr>
+    <% SETTINGS['location_types'].each_with_index do |location, index| %>
+      <td>
+        <% if !@locations[index].nil? %>
+          <table class="inner">
+            <% @locations[index].each do |l| %>
+              <tr>
+                <td>
+                  <%= l.name %>
+                </td>
+                <td>
+                  <%= l.code %>
+                </td>
+                <td>
+                  <%= link_to 'edit', 'settings/locations/:id/update', :remote => true %> <!-- TODO traduzz -->
+                </td>
+              </tr>
+            <% end %>
+          <% end %>
+        </table>
+      </td>
+    <% end %>
+  </tr>
+</table>

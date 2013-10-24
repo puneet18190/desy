@@ -192,4 +192,20 @@ class Admin::SettingsController < AdminController
     @media_elements = @tag.get_media_elements(params[:page]).preload(:user, :taggings, {:taggings => :tag})
   end
   
+  def locations
+    @locations = [Location.roots]
+    if params[:selected]
+      location = Location.get_from_chain_params params[:selected]
+      @locations = location.get_filled_select if location
+    end
+  end
+  
+  def update_location
+    
+  end
+  
+  def create_location
+    
+  end
+  
 end
