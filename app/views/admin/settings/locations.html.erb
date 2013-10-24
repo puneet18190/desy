@@ -3,7 +3,7 @@
 <h3>Locations!</h3> <!-- TODO traduzz -->
 
 
-<table class="outer">
+<table class="outer_locations">
   <tr>
     <% (0...(SETTINGS['location_types'].length)).to_a.each do |i| %>
       <th>
@@ -15,9 +15,9 @@
     <% SETTINGS['location_types'].each_with_index do |location, index| %>
       <td>
         <% if !@locations[index].nil? %>
-          <table class="inner">
-            <% @locations[index].each do |l| %>
-              <tr>
+          <table class="inner_locations">
+            <% @locations[index][:content].each do |l| %>
+              <tr class="<%= (l.id == @locations[index][:selected]) ? 'on' : 'off' %>">
                 <td>
                   <%= l.name %>
                 </td>

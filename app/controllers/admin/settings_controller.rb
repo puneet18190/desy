@@ -195,8 +195,8 @@ class Admin::SettingsController < AdminController
   def locations
     @locations = [Location.roots]
     if params[:selected]
-      location = Location.get_from_chain_params params[:selected]
-      @locations = location.get_filled_select if location
+      location = Location.find_by_id params[:selected]
+      @locations = location.get_filled_select_for_personal_info if location
     end
   end
   
