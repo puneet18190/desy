@@ -7,6 +7,7 @@
 # * *name*: the name of the location
 # * *sti_type*: category to which the location belongs (for example city, region, etc)
 # * *ancestry*: list of ancestries of the location. If the location belongs to the top category, this field is +nil+; if it belongs to the second category from the top, the field is a string containing only the id of the parent location; for any other case, the field contains a string with the list top-bottom of all the ancestries of the location (ex. "1/5/13/18")
+# * *code*: a unique code for each sti_type (it is not compulsory)
 #
 # == Associations
 #
@@ -15,6 +16,8 @@
 # == Validations
 #
 # * *presence* and length of +name+ (maximum 255)
+# * *length* for code if not nil (maximum 255)
+# * *uniqueness* for code with scope inside locations of the same sti_type
 #
 # == Callbacks
 #
@@ -28,10 +31,11 @@ class Location < ActiveRecord::Base
   
   self.inheritance_column = :sti_type
   
-  attr_accessible :name, :parent
+  attr_accessible :name, :parent, :code
   
   validates_presence_of :name
-  validates_length_of :name, :maximum => 255
+  validates_length_of :name, :code, :maximum => 255
+  validates_uniqueness_of :code, :scope => :sti_type
   
   has_ancestry
   
