@@ -27,6 +27,10 @@ class LocationTest < ActiveSupport::TestCase
     assert_obj_saved @location
   end
   
+  test 'association_methods' do
+    assert_nothing_raised {@location.parent}
+  end
+  
   test 'uniqueness' do
     @location.code = 'XCMYAA'
     assert_equal 1, Location.where(:code => 'XCMYAA').count

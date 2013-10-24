@@ -11,13 +11,16 @@
 #
 # == Associations
 #
-# None
+# * *parent* the parent location if there is one, found with the field ancestry
 #
 # == Validations
 #
 # * *presence* and length of +name+ (maximum 255)
+# * *presence* of sti_type
 # * *length* for code if not nil (maximum 255)
 # * *uniqueness* for code with scope inside locations of the same sti_type
+# * *inclusion* of sti_type in the list of allowed classes
+# * *internal* *validations* for the field ancestry (this are not very strict, because we don't want to overload the model of validations which must interact with an external gem; for the same reason there are not associations 'has_many' from here)
 #
 # == Callbacks
 #
@@ -33,7 +36,7 @@ class Location < ActiveRecord::Base
   
   attr_accessible :name, :parent, :code
   
-  validates_presence_of :name
+  validates_presence_of :name, :sti_type
   validates_length_of :name, :code, :maximum => 255
   validates_uniqueness_of :code, :scope => :sti_type, :unless => proc { |record| record.code.blank? }
   validates_inclusion_of :sti_type, :in => SETTINGS['location_types']
