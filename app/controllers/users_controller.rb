@@ -148,7 +148,8 @@ class UsersController < ApplicationController
   def edit
     @user = current_user
     @school_level_ids = SchoolLevel.order(:description).map{ |sl| [sl.to_s, sl.id] }
-    @locations = @user.location.get_filled_select_for_personal_info
+    location = @user.location
+    @locations = location.nil? ? [{:selected => 0, :content => Location.roots}] : location.get_filled_select_for_personal_info
   end
   
   # === Description
