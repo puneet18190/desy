@@ -12,6 +12,7 @@
 # * *confirmed*: boolean, +true+ if the user has completed the registration procedure clicking on a link he received by email
 # * *active*: boolean, false if the user is banned
 # * *location_id*: location of the user
+# * *purchase_id*: references to the Purchase that allows the user to log in
 # * *confirmation_token*: token used for confirmation, generated automaticly
 # * *password_token*: token used for resetting the password, generated automaticly
 # * *metadata*:
@@ -33,11 +34,13 @@
 # * *school_level*: the SchoolLevel associated to this user (*belongs_to*)
 # * *location*: the Location associated to this user (*belongs_to*, it can be nil)
 # * *documents*: documents uploaded by the user (see Document) (*has_many*)
+# * *purchase*: the Purchase allowing the user to be logged in with his account
 #
 # == Validations
 #
 # * *presence* of +email+, +name+, +surname+
-# * *presence* with numericality greater than 0 and presence of associated object for +location_id+ and +school_level_id+ (for the location, it's also checked that the subclass is the last in the locations chain, see Location)
+# * *presence* with numericality greater than 0 and presence of associated object for +school_level_id+
+# * *numericality* greater than 0 and allow_nil and eventually presence of associated object for +location_id+ and +purchase_id+ (for the location, it's also checked that the subclass is the last in the locations chain, see Location)
 # * *confirmation* of +encrypted_password+ (the attribute password must coincide with its confirmation provided by the user): this validation uses the private attribute +password_confirmation+, associated to password
 # * *presence* of at least one associated record of UsersSubject
 # * *uniqueness* of +email+
@@ -107,11 +110,12 @@ class User < ActiveRecord::Base
   has_many :mailing_list_groups
   has_many :documents
   belongs_to :school_level
+  belongs_to :purchase
   belongs_to :location, :class_name => location_association_class
   
   validates_presence_of :email, :name, :surname, :school_level_id
   validates_numericality_of :school_level_id, :only_integer => true, :greater_than => 0
-  validates_numericality_of :location_id, :only_integer => true, :greater_than => 0, :allow_nil => true
+  validates_numericality_of :location_id, :purchase_id, :only_integer => true, :greater_than => 0, :allow_nil => true
   validates_confirmation_of :password
   validates_presence_of :users_subjects
   validates_uniqueness_of :email
@@ -1469,11 +1473,13 @@ class User < ActiveRecord::Base
   def init_validation
     @user = Valid.get_association self, :id
     @school_level = Valid.get_association self, :school_level_id
+    @purchase = Valid.get_association self, :purchase_id
   end
   
   # Validates the presence of all the associated objects
   def validate_associations
     errors.add :school_level_id, :doesnt_exist if @school_level.nil?
+    errors.add :purchase_id, :doesnt_exist if @purchase.nil? && self.purchase_id.present?
     if self.location_id
       @location = Valid.get_association self, :location_id
       errors.add :location_id, :doesnt_exist if @location.nil? || @location.sti_type != SETTINGS['location_types'].last

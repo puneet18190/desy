@@ -493,6 +493,7 @@ CREATE TABLE purchases (
     postal_code character varying(255),
     city character varying(255),
     country character varying(255),
+    location_id integer,
     accounts_number integer NOT NULL,
     includes_invoice boolean NOT NULL,
     release_date timestamp without time zone NOT NULL,
@@ -1331,6 +1332,13 @@ CREATE INDEX fk__notifications_user_id ON notifications USING btree (user_id);
 
 
 --
+-- Name: fk__purchases_location_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX fk__purchases_location_id ON purchases USING btree (location_id);
+
+
+--
 -- Name: fk__reports_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -1624,6 +1632,14 @@ ALTER TABLE ONLY media_elements
 
 ALTER TABLE ONLY notifications
     ADD CONSTRAINT fk_notifications_user_id FOREIGN KEY (user_id) REFERENCES users(id);
+
+
+--
+-- Name: fk_purchases_location_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY purchases
+    ADD CONSTRAINT fk_purchases_location_id FOREIGN KEY (location_id) REFERENCES locations(id);
 
 
 --

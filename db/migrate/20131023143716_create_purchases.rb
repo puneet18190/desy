@@ -13,6 +13,7 @@ class CreatePurchases < ActiveRecord::Migration
       t.string   :postal_code       
       t.string   :city              
       t.string   :country           
+      t.integer  :location_id       
       t.integer  :accounts_number,  null: false
       t.boolean  :includes_invoice, null: false
       t.datetime :release_date,     null: false

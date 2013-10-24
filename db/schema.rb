@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(:version => 20131023145739) do
     t.string   "postal_code"
     t.string   "city"
     t.string   "country"
+    t.integer  "location_id"
     t.integer  "accounts_number",  :null => false
     t.boolean  "includes_invoice", :null => false
     t.datetime "release_date",     :null => false
@@ -42,6 +43,8 @@ ActiveRecord::Schema.define(:version => 20131023145739) do
     t.datetime "expiration_date",  :null => false
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+    t.index ["location_id"], :name => "fk__purchases_location_id", :order => {"location_id" => :asc}
+    t.foreign_key ["location_id"], "locations", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_purchases_location_id"
   end
 
   create_table "school_levels", :force => true do |t|
