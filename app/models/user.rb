@@ -299,7 +299,8 @@ class User < ActiveRecord::Base
   # A string
   #
   def base_location
-    self.location.name
+    my_location = self.location
+    my_location.nil? ? '-' : my_location.name
   end
   
   # === Description
@@ -314,6 +315,7 @@ class User < ActiveRecord::Base
     resp = ''
     first = true
     current_location = self.location
+    return '-' if current_location.nil?
     (0...SETTINGS['location_types'].length).to_a.each do |index|
       if current_location.class.to_s != SETTINGS['location_types'].last
         if first
