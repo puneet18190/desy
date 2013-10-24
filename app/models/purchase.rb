@@ -1,3 +1,51 @@
+# == Description
+#
+# ActiveRecord class that corresponds to the table +purchases+.
+#
+# == Fields
+#
+# * *name*: 
+# * *responsible*:
+# * *phone_number*:
+# * *fax*:
+# * *email*:
+# * *ssn_code*:
+# * *vat_code*:
+# * *address*:
+# * *postal_code*:
+# * *city*:
+# * *country*:
+# * *accounts_number*:
+# * *includes_invoice*:
+# * *release_date*:
+# * *start_date*:
+# * *expiration_date*:
+# * *location_id*:
+#
+# == Associations
+#
+# * *users*: users associated to this purchase (see User) (*has_many*)
+# * *location*: location to which all the user must belong (this is not inserted into a validation, not to overload the model, but just in the methods for the frontend) (*belongs_to*, it can be nil)
+#
+# == Validations
+#
+# * *presence* of +name+, +responsible+, +email+, +accounts_number+, +release_date+, +start_date+, +expiration_date+
+# * *numericality* greater than 0 for +accounts_number+
+# * *numericality* greater than 0 and allow_nil and eventually presence of associated object for +location_id+
+# * *length* of +name+, +responsible+, +phone_number+, +fax+, +email+, +ssn_code+, +vat_code+, +address+, +postal_code+, +city+, +country+ (maximum 255)
+# * *inclusion* of +includes_invoice+ in [true, false]
+# * *correctness* of +email+ as an e-mail address
+# * *format* of dates +release_date+, +start_date+, +expiration_date+
+# * *presence* of at least one between +vat_code+ and +ssn_code+
+#
+# == Callbacks
+#
+# None
+#
+# == Database callbacks
+#
+# None
+#
 class Purchase < ActiveRecord::Base
   
   # List of attributes which are accessible for massive assignment
