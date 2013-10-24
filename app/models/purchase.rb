@@ -4,7 +4,7 @@ class Purchase < ActiveRecord::Base
   ATTR_ACCESSIBLE = [:name,             :responsible,  :phone_number, :fax,
                      :email,            :ssn_code,     :vat_code,     :address,
                      :postal_code,      :city,         :country,      :accounts_number,
-                     :includes_invoice, :release_date, :start_date,   :expiration_date, :location_id,]
+                     :includes_invoice, :release_date, :start_date,   :expiration_date, :location_id]
   attr_accessible *ATTR_ACCESSIBLE
   
   has_many :users
@@ -16,7 +16,7 @@ class Purchase < ActiveRecord::Base
   validates_length_of :name, :responsible, :phone_number, :fax, :email, :ssn_code, :vat_code, :address, :postal_code, :city, :country, :maximum => 255
   validates_inclusion_of :includes_invoice, :in => [true, false]
   
-  validate :validate_email, :validate_dates, :validate_associations # TODO manca validazione che almeno uno dei codici sia presente
+  validate :validate_email, :validate_dates, :validate_associations, :validate_codes
   
   before_validation :init_validation
   
@@ -26,6 +26,11 @@ class Purchase < ActiveRecord::Base
   def init_validation
     @purchase = Valid.get_association self, :id
     @location = Valid.get_association self, :location_id
+  end
+  
+  # Validates that at least one between vat_code and ssn_code is present
+  def validate_codes
+    errors.add :base, :missing_both_codes if self.vat_code.blank? && self.ssn_code.blank?
   end
   
   # Validates the presence of associated elements
