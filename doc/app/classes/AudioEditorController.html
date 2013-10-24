@@ -267,6 +267,7 @@ href="AudioEditorController.html#method-i-extract_cache">#extract_cache</a></p>
                 <pre><span class="ruby-comment"># File app/controllers/audio_editor_controller.rb, line 33</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">edit</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
+    <span class="ruby-ivar">@edited_audio</span> = <span class="ruby-ivar">@audio</span>
     <span class="ruby-ivar">@parameters</span> = <span class="ruby-identifier">convert_audio_to_parameters</span>
     <span class="ruby-ivar">@total_length</span> = <span class="ruby-constant">Audio</span>.<span class="ruby-identifier">total_prototype_time</span>(<span class="ruby-ivar">@parameters</span>)
     <span class="ruby-ivar">@used_in_private_lessons</span> = <span class="ruby-identifier">used_in_private_lessons</span>
@@ -319,7 +320,7 @@ href="AudioEditorController.html#method-i-check_available_for_user">#check_avail
                 
               </p>
               <div id="method-i-empty_cache_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/audio_editor_controller.rb, line 99</span>
+                <pre><span class="ruby-comment"># File app/controllers/audio_editor_controller.rb, line 100</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">empty_cache</span>
   <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">audio_editor_cache!</span>
   <span class="ruby-identifier">render</span> <span class="ruby-value">:nothing</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>
@@ -370,7 +371,7 @@ href="AudioEditorController.html#method-i-extract_cache">#extract_cache</a></p>
                 
               </p>
               <div id="method-i-new_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/audio_editor_controller.rb, line 58</span>
+                <pre><span class="ruby-comment"># File app/controllers/audio_editor_controller.rb, line 59</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">new</span>
   <span class="ruby-ivar">@parameters</span> = <span class="ruby-identifier">empty_parameters</span>
   <span class="ruby-ivar">@total_length</span> = <span class="ruby-constant">Audio</span>.<span class="ruby-identifier">total_prototype_time</span>(<span class="ruby-ivar">@parameters</span>)
@@ -421,7 +422,7 @@ href="AudioEditorController.html#method-i-check_available_for_user">#check_avail
                 
               </p>
               <div id="method-i-overwrite_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/audio_editor_controller.rb, line 174</span>
+                <pre><span class="ruby-comment"># File app/controllers/audio_editor_controller.rb, line 175</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">overwrite</span>
   <span class="ruby-identifier">parameters</span> = <span class="ruby-constant">Audio</span>.<span class="ruby-identifier">convert_to_primitive_parameters</span>(<span class="ruby-identifier">extract_form_parameters</span>, <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
   <span class="ruby-ivar">@redirect</span> = <span class="ruby-keyword">false</span>
@@ -501,7 +502,7 @@ href="AudioEditorController.html#method-i-extract_cache">#extract_cache</a></p>
                 
               </p>
               <div id="method-i-restore_cache_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/audio_editor_controller.rb, line 79</span>
+                <pre><span class="ruby-comment"># File app/controllers/audio_editor_controller.rb, line 80</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">restore_cache</span>
   <span class="ruby-ivar">@parameters</span> = <span class="ruby-ivar">@cache</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">empty_parameters</span> <span class="ruby-operator">:</span> <span class="ruby-ivar">@cache</span>
   <span class="ruby-ivar">@cache</span> = <span class="ruby-keyword">nil</span>
@@ -552,7 +553,7 @@ href="AudioEditorController.html#method-i-check_available_for_user">#check_avail
                 
               </p>
               <div id="method-i-save_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/audio_editor_controller.rb, line 133</span>
+                <pre><span class="ruby-comment"># File app/controllers/audio_editor_controller.rb, line 134</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">save</span>
   <span class="ruby-identifier">parameters</span> = <span class="ruby-constant">Audio</span>.<span class="ruby-identifier">convert_to_primitive_parameters</span>(<span class="ruby-identifier">extract_form_parameters</span>, <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
   <span class="ruby-ivar">@redirect</span> = <span class="ruby-keyword">false</span>
@@ -624,7 +625,7 @@ href="AudioEditorController.html#method-i-check_available_for_user">#check_avail
                 
               </p>
               <div id="method-i-save_cache_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/audio_editor_controller.rb, line 116</span>
+                <pre><span class="ruby-comment"># File app/controllers/audio_editor_controller.rb, line 117</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">save_cache</span>
   <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">audio_editor_cache!</span> <span class="ruby-identifier">extract_form_parameters</span>
   <span class="ruby-identifier">render</span> <span class="ruby-value">:nothing</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>
@@ -663,7 +664,7 @@ href="User.html#method-i-audio_editor_available">User#audio_editor_available</a>
                 
               </p>
               <div id="method-i-check_available_for_user_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/audio_editor_controller.rb, line 215</span>
+                <pre><span class="ruby-comment"># File app/controllers/audio_editor_controller.rb, line 216</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">check_available_for_user</span>
   <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">audio_editor_available</span>
     <span class="ruby-identifier">render</span> <span class="ruby-string">&#39;not_available&#39;</span>
@@ -702,7 +703,7 @@ href="Media/Audio/Editing/Parameters.html">Media::Audio::Editing::Parameters</a>
                 
               </p>
               <div id="method-i-convert_audio_to_parameters_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/audio_editor_controller.rb, line 254</span>
+                <pre><span class="ruby-comment"># File app/controllers/audio_editor_controller.rb, line 255</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">convert_audio_to_parameters</span>
   <span class="ruby-identifier">resp</span> = {}
   <span class="ruby-identifier">resp</span>[<span class="ruby-value">:initial_audio_id</span>] = <span class="ruby-ivar">@audio</span>.<span class="ruby-identifier">is_public</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">nil</span> <span class="ruby-operator">:</span> <span class="ruby-ivar">@audio</span>.<span class="ruby-identifier">id</span>
@@ -746,7 +747,7 @@ from an empty audio editor</p>
                 
               </p>
               <div id="method-i-empty_parameters_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/audio_editor_controller.rb, line 266</span>
+                <pre><span class="ruby-comment"># File app/controllers/audio_editor_controller.rb, line 267</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">empty_parameters</span>
   <span class="ruby-identifier">resp</span> = {}
   <span class="ruby-identifier">resp</span>[<span class="ruby-value">:initial_audio</span>] = <span class="ruby-keyword">nil</span>
@@ -784,7 +785,7 @@ from an empty audio editor</p>
                 
               </p>
               <div id="method-i-extract_cache_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/audio_editor_controller.rb, line 274</span>
+                <pre><span class="ruby-comment"># File app/controllers/audio_editor_controller.rb, line 275</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">extract_cache</span>
   <span class="ruby-ivar">@cache</span> = <span class="ruby-constant">Audio</span>.<span class="ruby-identifier">convert_parameters</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">audio_editor_cache</span>, <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>
 <span class="ruby-keyword">end</span></pre>
@@ -820,7 +821,7 @@ href="Media/Audio/Editing/Parameters.html">Media::Audio::Editing::Parameters</a>
                 
               </p>
               <div id="method-i-extract_form_parameters_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/audio_editor_controller.rb, line 223</span>
+                <pre><span class="ruby-comment"># File app/controllers/audio_editor_controller.rb, line 224</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">extract_form_parameters</span>
   <span class="ruby-identifier">unordered_resp</span> = {}
   <span class="ruby-identifier">ordered_resp</span> = {}
@@ -883,7 +884,7 @@ audio, but not modify it)</p>
                 
               </p>
               <div id="method-i-initialize_audio_with_owner_or_public_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/audio_editor_controller.rb, line 279</span>
+                <pre><span class="ruby-comment"># File app/controllers/audio_editor_controller.rb, line 280</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize_audio_with_owner_or_public</span>
   <span class="ruby-ivar">@audio_id</span> = <span class="ruby-identifier">correct_integer?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:audio_id</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:audio_id</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-number">0</span>
   <span class="ruby-ivar">@audio</span> = <span class="ruby-constant">Audio</span>.<span class="ruby-identifier">find_by_id</span> <span class="ruby-ivar">@audio_id</span>
@@ -920,7 +921,7 @@ audio, but not modify it)</p>
                 
               </p>
               <div id="method-i-used_in_private_lessons_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/audio_editor_controller.rb, line 209</span>
+                <pre><span class="ruby-comment"># File app/controllers/audio_editor_controller.rb, line 210</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">used_in_private_lessons</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@parameters</span>[<span class="ruby-value">:initial_audio</span>].<span class="ruby-identifier">nil?</span>
   <span class="ruby-ivar">@parameters</span>[<span class="ruby-value">:initial_audio</span>].<span class="ruby-identifier">media_elements_slides</span>.<span class="ruby-identifier">any?</span>

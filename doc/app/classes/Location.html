@@ -60,15 +60,34 @@ belongs to the second category from the top, the field is a string
 containing only the id of the parent location; for any other case, the
 field contains a string with the list top-bottom of all the ancestries of
 the location (ex. “1/5/13/18”)</p>
+</li><li>
+<p><strong>code</strong>: a unique code for each sti_type (it is not
+compulsory)</p>
 </li></ul>
 
 <h2 id="label-Associations">Associations</h2>
-
-<p>None</p>
+<ul><li>
+<p><strong>parent</strong> the parent location if there is one, found with the
+field ancestry</p>
+</li></ul>
 
 <h2 id="label-Validations">Validations</h2>
 <ul><li>
 <p><strong>presence</strong> and length of <code>name</code> (maximum 255)</p>
+</li><li>
+<p><strong>presence</strong> of sti_type</p>
+</li><li>
+<p><strong>length</strong> for code if not nil (maximum 255)</p>
+</li><li>
+<p><strong>uniqueness</strong> for code with scope inside locations of the
+same sti_type</p>
+</li><li>
+<p><strong>inclusion</strong> of sti_type in the list of allowed classes</p>
+</li><li>
+<p><strong>internal</strong> <strong>validations</strong> for the field
+ancestry (this are not very strict, because we don&#39;t want to overload
+the model of validations which must interact with an external gem; for the
+same reason there are not associations &#39;has_many&#39; from here)</p>
 </li></ul>
 
 <h2 id="label-Callbacks">Callbacks</h2>
@@ -248,7 +267,7 @@ end</td>
                 
               </p>
               <div id="method-c-base_label_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/location.rb, line 81</span>
+                <pre><span class="ruby-comment"># File app/models/location.rb, line 89</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">base_label</span>
   <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;locations.labels&#39;</span>).<span class="ruby-identifier">last</span>
 <span class="ruby-keyword">end</span></pre>
@@ -298,7 +317,7 @@ keys</p>
                 
               </p>
               <div id="method-c-get_from_chain_params_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/location.rb, line 159</span>
+                <pre><span class="ruby-comment"># File app/models/location.rb, line 167</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">get_from_chain_params</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">flag</span> = <span class="ruby-keyword">true</span>
   <span class="ruby-identifier">index</span> = <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;location_types&#39;</span>].<span class="ruby-identifier">length</span> <span class="ruby-operator">-</span> <span class="ruby-number">1</span>
@@ -355,7 +374,7 @@ keys</p>
                 
               </p>
               <div id="method-c-label_at_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/location.rb, line 97</span>
+                <pre><span class="ruby-comment"># File app/models/location.rb, line 105</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">label_at</span>(<span class="ruby-identifier">index</span>)
   <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;locations.labels&#39;</span>)[<span class="ruby-identifier">index</span>]
 <span class="ruby-keyword">end</span></pre>
@@ -399,7 +418,7 @@ the current location</p>
                 
               </p>
               <div id="method-i-ancestry_with_me_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/location.rb, line 67</span>
+                <pre><span class="ruby-comment"># File app/models/location.rb, line 75</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">ancestry_with_me</span>
   <span class="ruby-identifier">anc</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">ancestry</span>
   <span class="ruby-identifier">anc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;/&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">anc</span>.<span class="ruby-identifier">present?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-regexp">/\//</span> <span class="ruby-operator">!~</span> <span class="ruby-identifier">anc</span>
@@ -443,7 +462,7 @@ associated to this particular location</p>
                 
               </p>
               <div id="method-i-get_filled_select_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/location.rb, line 121</span>
+                <pre><span class="ruby-comment"># File app/models/location.rb, line 129</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">get_filled_select</span>
   <span class="ruby-identifier">resp</span> = []
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">ancestors</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">anc</span><span class="ruby-operator">|</span>
@@ -490,7 +509,7 @@ info</p>
                 
               </p>
               <div id="method-i-get_filled_select_for_personal_info_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/location.rb, line 137</span>
+                <pre><span class="ruby-comment"># File app/models/location.rb, line 145</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">get_filled_select_for_personal_info</span>
   <span class="ruby-identifier">resp</span> = []
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">ancestors</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">anc</span><span class="ruby-operator">|</span>
@@ -538,7 +557,7 @@ info</p>
                 
               </p>
               <div id="method-i-label_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/location.rb, line 51</span>
+                <pre><span class="ruby-comment"># File app/models/location.rb, line 59</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">label</span>
   <span class="ruby-identifier">index</span> = <span class="ruby-number">0</span>
   <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;location_types&#39;</span>].<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">t</span>, <span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
@@ -583,7 +602,7 @@ info</p>
                 
               </p>
               <div id="method-i-to_s_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/location.rb, line 109</span>
+                <pre><span class="ruby-comment"># File app/models/location.rb, line 117</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">to_s</span>
   <span class="ruby-identifier">name</span>.<span class="ruby-identifier">to_s</span>
 <span class="ruby-keyword">end</span></pre>

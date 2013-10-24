@@ -4,23 +4,23 @@
 #
 # == Fields
 #
-# * *name*: 
-# * *responsible*:
-# * *phone_number*:
-# * *fax*:
-# * *email*:
-# * *ssn_code*:
-# * *vat_code*:
-# * *address*:
-# * *postal_code*:
-# * *city*:
-# * *country*:
-# * *accounts_number*:
-# * *includes_invoice*:
-# * *release_date*:
-# * *start_date*:
-# * *expiration_date*:
-# * *location_id*:
+# * *name*: name of the buyer
+# * *responsible*: name and surname of the person who is responsible for the transaction
+# * *phone_number*: phone number of the responsible
+# * *fax*: fax of the responsible
+# * *email*: official email of the buyer
+# * *ssn_code*: personal code
+# * *vat_code*: code of the company
+# * *address*: address of the buyer
+# * *postal_code*: postal code of the buyer
+# * *city*: city of the buyer
+# * *country*: country of the buyer
+# * *accounts_number*: how many accounts are associated to this purchase
+# * *includes_invoice*: if true, the purchae must be associated to an invoice (not implemented in the application)
+# * *release_date*: date of purchase
+# * *start_date*: date of beginning of the validity of the purchase
+# * *expiration_date*: expiration date of the purchase
+# * *location_id*: location which must be forced to the users who benefit this purchase
 #
 # == Associations
 #
