@@ -34,7 +34,7 @@ class PurchaseTest < ActiveSupport::TestCase
     assert_invalid @purchase, :responsible, long_string(256), long_string(255), :too_long, {:count => 255}
     assert_invalid @purchase, :phone_number, long_string(256), long_string(255), :too_long, {:count => 255}
     assert_invalid @purchase, :fax, long_string(256), long_string(255), :too_long, {:count => 255}
-    assert_invalid @purchase, :email, long_string(256), long_string(255), :too_long, {:count => 255}
+    assert_invalid @purchase, :email, (long_string(248) + '@ciao.it'), (long_string(247) + '@ciao.it'), :too_long, {:count => 255}
     assert_invalid @purchase, :ssn_code, long_string(256), long_string(255), :too_long, {:count => 255}
     assert_invalid @purchase, :vat_code, long_string(256), long_string(255), :too_long, {:count => 255}
     assert_invalid @purchase, :address, long_string(256), long_string(255), :too_long, {:count => 255}
@@ -42,14 +42,17 @@ class PurchaseTest < ActiveSupport::TestCase
     assert_invalid @purchase, :city, long_string(256), long_string(255), :too_long, {:count => 255}
     assert_invalid @purchase, :country, long_string(256), long_string(255), :too_long, {:count => 255}
     assert_invalid @purchase, :includes_invoice, nil, false, :inclusion
-    # TODO mancano solo le date
+    assert_invalid @purchase, :release_date, 1, '2012-01-01 10:00:00', :is_not_a_date
+    assert_invalid @purchase, :start_date, 1, '2012-01-01 10:00:00', :is_not_a_date
+    assert_invalid @purchase, :expiration_date, 1, '2012-01-01 10:00:00', :is_not_a_date
     assert_obj_saved @purchase
     @purchase.location_id = nil
     assert_obj_saved @purchase
   end
   
   test 'associations' do
-    # TODO
+    assert_invalid @purchase, :location_id, 1000, 1, :doesnt_exist
+    assert_obj_saved @purchase
   end
   
   test 'association_methods' do
