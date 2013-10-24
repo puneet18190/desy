@@ -15,21 +15,6 @@ Initializer for the animation effects of the Dashboard.
 @for DashboardDocumentReady
 **/
 function dashboardDocumentReady() {
-  $body.on('mouseover', '._empty_media_elements', function() {
-    $(this).find('._empty_media_elements_hover').addClass('current');
-  });
-  $body.on('mouseout', '._empty_media_elements', function() {
-    $(this).find('._empty_media_elements_hover').removeClass('current');
-  });
-  $body.on('mouseover', '._empty_lessons', function() {
-    $(this).find('._empty_lessons_hover').addClass('current');
-  });
-  $body.on('mouseout', '._empty_lessons', function() {
-    $(this).find('._empty_lessons_hover').removeClass('current');
-  });
-  $body.on('click', '._empty_lessons', function() {
-    window.location = '/lessons/new';
-  });
   $('#switch_to_lessons').click(function() {
     switchToSuggestedLessons();
   });

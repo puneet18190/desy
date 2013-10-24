@@ -57,7 +57,7 @@ function browsersDocumentReady() {
     return el !== 'version';
   })[0];
   if(name) {
-    $('html').addClass(name);
+    $html.addClass(name);
   }
 }
 
@@ -77,6 +77,29 @@ function defaultValueJavaScriptAnimationsDocumentReady() {
   $('#filter_search_lessons_subject option[selected]').first().attr('selected', 'selected');
   $('._order_lessons_radio_input[checked]').first().attr('checked', 'checked');
   $('._order_media_elements_radio_input[checked]').first().attr('checked', 'checked');
+}
+
+/**
+This function manages situations where resources are empty.
+@method emptyResourcesDocumentReady
+@for GeneralDocumentReady
+**/
+function emptyResourcesDocumentReady() {
+  $body.on('mouseover', '._empty_media_elements', function() {
+    $(this).find('._empty_media_elements_hover').addClass('current');
+  });
+  $body.on('mouseout', '._empty_media_elements', function() {
+    $(this).find('._empty_media_elements_hover').removeClass('current');
+  });
+  $body.on('mouseover', '._empty_lessons', function() {
+    $(this).find('._empty_lessons_hover').addClass('current');
+  });
+  $body.on('mouseout', '._empty_lessons', function() {
+    $(this).find('._empty_lessons_hover').removeClass('current');
+  });
+  $body.on('click', '._empty_lessons', function() {
+    window.location = '/lessons/new';
+  });
 }
 
 /**

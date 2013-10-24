@@ -51,6 +51,8 @@
 
 
 $(document).ready(function() {
+  var $html = $('html');
+
   window.$loaderVisible = true;
   window.$loading = $('#loading');
   window.$body = $('body');

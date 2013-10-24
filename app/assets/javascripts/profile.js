@@ -13,7 +13,7 @@ Initializes the action that shows automaticly the login form when somebody opens
 @for ProfilePrelogin
 **/
 function automaticLoginDocumentReady() {
-  if($('html').hasClass('prelogin-controller home-action')) {
+  if( $html.hasClass('prelogin-controller home-action') ) {
     var parsedLocation = UrlParser.parse(window.location.href);
     if(_.contains(_.keys(parsedLocation.searchObj), 'login')) {
       $('._show_login_form_container').click();
