@@ -4,34 +4,36 @@
 
 
 <table class="outer_locations">
-  <tr>
-    <% (0...(SETTINGS['location_types'].length)).to_a.each do |i| %>
-      <th>
-        <%= Location.label_at(i) %>
-      </th>
-    <% end %>
-  </tr>
-  <tr>
-    <% SETTINGS['location_types'].each_with_index do |location, index| %>
-      <td>
-        <% if !@locations[index].nil? %>
-          <table class="inner_locations">
-            <% @locations[index][:content].each do |l| %>
-              <tr class="<%= (l.id == @locations[index][:selected]) ? 'on' : 'off' %>">
-                <td>
-                  <%= l.name %>
-                </td>
-                <td>
-                  <%= l.code %>
-                </td>
-                <td>
-                  <%= link_to 'edit', 'settings/locations/:id/update', :remote => true %> <!-- TODO traduzz -->
-                </td>
-              </tr>
+  <tbody>
+    <tr>
+      <% (0...(SETTINGS['location_types'].length)).to_a.each do |i| %>
+        <th>
+          <%= Location.label_at(i) %>
+        </th>
+      <% end %>
+    </tr>
+    <tr>
+      <% SETTINGS['location_types'].each_with_index do |location, index| %>
+        <td>
+          <% if !@locations[index].nil? %>
+            <table class="inner_locations">
+              <% @locations[index][:content].each do |l| %>
+                <tr class="<%= (l.id == @locations[index][:selected]) ? 'on' : 'off' %>">
+                  <td>
+                    <%= l.name %>
+                  </td>
+                  <td>
+                    <%= l.code %>
+                  </td>
+                  <td>
+                    <%= link_to 'edit', 'settings/locations/:id/update', :remote => true %> <!-- TODO traduzz -->
+                  </td>
+                </tr>
+              <% end %>
             <% end %>
-          <% end %>
-        </table>
-      </td>
-    <% end %>
-  </tr>
+          </table>
+        </td>
+      <% end %>
+    </tr>
+  </tbody>
 </table>
