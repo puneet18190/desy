@@ -61,7 +61,16 @@ class PurchaseTest < ActiveSupport::TestCase
   end
   
   test 'at_least_one_code' do
-    # TODO
+    @purchase.vat_code = nil
+    @purchase.ssn_code = nil
+    assert !@purchase.save, "Purchase erroneously saved - #{@purchase.inspect}"
+    assert_equal 1, @purchase.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@purchase.errors.inspect}"
+    assert @purchase.errors.added? :base, :missing_both_codes
+    @purchase.vat_code = 'dsgdsg'
+    assert @purchase.valid?, "Purchase not valid: #{@purchase.errors.inspect}"
+    @purchase.vat_code = nil
+    @purchase.ssn_code = 'dsgdsg'
+    assert @purchase.valid?, "Purchase not valid: #{@purchase.errors.inspect}"
   end
   
 end
