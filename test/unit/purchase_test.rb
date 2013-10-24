@@ -15,7 +15,7 @@ class PurchaseTest < ActiveSupport::TestCase
   
   test 'empty_and_defaults' do
     @purchase = Purchase.new
-    assert_error_size 12, @purchase
+    assert_error_size 13, @purchase
   end
   
   test 'attr_accessible' do
@@ -24,7 +24,25 @@ class PurchaseTest < ActiveSupport::TestCase
   
   test 'types' do
     assert_invalid_email @purchase
-    # TODO
+    assert_invalid @purchase, :accounts_number, 'et', 1, :not_a_number
+    assert_invalid @purchase, :accounts_number, 0, 1, :greater_than, {:count => 0}
+    assert_invalid @purchase, :accounts_number, 1.1, 1, :not_an_integer
+    assert_invalid @purchase, :location_id, 'et', 1, :not_a_number
+    assert_invalid @purchase, :location_id, 0, 1, :greater_than, {:count => 0}
+    assert_invalid @purchase, :location_id, 1.1, 1, :not_an_integer
+    assert_invalid @purchase, :name, long_string(256), long_string(255), :too_long, {:count => 255}
+    assert_invalid @purchase, :responsible, long_string(256), long_string(255), :too_long, {:count => 255}
+    assert_invalid @purchase, :phone_number, long_string(256), long_string(255), :too_long, {:count => 255}
+    assert_invalid @purchase, :fax, long_string(256), long_string(255), :too_long, {:count => 255}
+    assert_invalid @purchase, :email, long_string(256), long_string(255), :too_long, {:count => 255}
+    assert_invalid @purchase, :ssn_code, long_string(256), long_string(255), :too_long, {:count => 255}
+    assert_invalid @purchase, :vat_code, long_string(256), long_string(255), :too_long, {:count => 255}
+    assert_invalid @purchase, :address, long_string(256), long_string(255), :too_long, {:count => 255}
+    assert_invalid @purchase, :postal_code, long_string(256), long_string(255), :too_long, {:count => 255}
+    assert_invalid @purchase, :city, long_string(256), long_string(255), :too_long, {:count => 255}
+    assert_invalid @purchase, :country, long_string(256), long_string(255), :too_long, {:count => 255}
+    assert_invalid @purchase, :includes_invoice, nil, false, :inclusion
+    # TODO mancano solo le date
     assert_obj_saved @purchase
     @purchase.location_id = nil
     assert_obj_saved @purchase
@@ -37,10 +55,6 @@ class PurchaseTest < ActiveSupport::TestCase
   test 'association_methods' do
     assert_nothing_raised {@purchase.users}
     assert_nothing_raised {@purchase.location}
-  end
-  
-  test 'dates' do
-    # TODO
   end
   
   test 'at_least_one_code' do
