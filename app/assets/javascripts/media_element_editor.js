@@ -14,10 +14,10 @@ One step of the repeated <b>cache</b> saving (used in {{#crossLinkModule "image-
 **/
 function saveCacheLoop() {
   var cache_form = '';
-  if($('html').hasClass('video_editor-controller')) {
+  if( $html.hasClass('video_editor-controller') ) {
     cache_form = $('#video_editor_form');
   }
-  if($('html').hasClass('audio_editor-controller')) {
+  if( $html.hasClass('audio_editor-controller') ) {
     cache_form = $('#audio_editor_form');
   }
   var time = $parameters.data('cache-time');
