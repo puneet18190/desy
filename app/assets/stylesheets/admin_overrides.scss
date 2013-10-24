@@ -41,6 +41,49 @@
     
   }
   
+  table.outer_locations td {
+    
+    padding: 0px;
+    
+  }
+  
+  table.inner_locations {
+    
+    width: 100%;
+    
+    tr {
+      
+      border-bottom: 1px solid #DDDDDD;
+      
+      td {
+        
+        border: none;
+        padding: 5px;
+        
+      }
+      
+    }
+    
+    tr.off {
+      
+      background-color: white;
+      
+    }
+    
+    tr.on {
+      
+      background-color: red;
+      
+    }
+    
+  }
+  
+  .outer_locations.table-striped tbody > tr:nth-child(2n+1) > td {
+    
+    background-color: transparent;
+    
+  }
+  
   .brand {
     
     margin-top: 4px;
@@ -299,25 +342,6 @@
         }
         
       }
-      
-    }
-    
-  }
-  
-  #settings-locations {
-    
-    .control-group.heading {
-      
-      width: 100%;
-      display: block;
-      
-    }
-    
-    #new-location {
-      
-      clear: both;
-      padding: 0 40px 30px 40px;
-      width: 80%;
       
     }
     

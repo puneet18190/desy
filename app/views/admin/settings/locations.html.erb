@@ -3,7 +3,7 @@
 <h3>Locations!</h3> <!-- TODO traduzz -->
 
 
-<table class="outer_locations">
+<table class="outer_locations table table-striped table-bordered table-rounded">
   <tbody>
     <tr>
       <% (0...(SETTINGS['location_types'].length)).to_a.each do |i| %>
@@ -23,7 +23,7 @@
                     <%= l.name %>
                   </td>
                   <td>
-                    <%= l.code %>
+                    <%= l.code.present? ? code : 'null' %>
                   </td>
                   <td>
                     <%= link_to 'edit', 'settings/locations/:id/update', :remote => true %> <!-- TODO traduzz -->
