@@ -245,7 +245,7 @@ class User < ActiveRecord::Base
   # Boolean
   #
   def trial?
-    false # TODO self.purchase_id.nil?
+    SETTINGS['paas_registration_mode'] && self.purchase_id.nil?
   end
   
   # === Description
