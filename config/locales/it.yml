@@ -623,9 +623,6 @@ it:
       # The user's email is not valid or already present in the database
       # 1 - controllers/application_controller.rb
       not_valid_email: "L'email inserita non è valida o già presente nel nostro archivio"
-      # The user's didn't choose a location (the variable %{location} is replaced by the label which corresponds to the lowest kind of location (for instance, Town)
-      # 1 - controllers/application_controller.rb
-      choose_a_location: "Scegli una %{location}"
       # The user hasn't selected any subject
       # 1 - controllers/application_controller.rb
       select_at_least_a_subject: "Selezionarne almeno uno"
