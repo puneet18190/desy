@@ -285,7 +285,7 @@ class ApplicationController < ActionController::Base
   
   # Checks if there is a logged user
   def logged_in?
-    current_user
+    !current_user.nil?
   end
   
 end

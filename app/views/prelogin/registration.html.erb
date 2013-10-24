@@ -42,6 +42,7 @@
   <%= render partial: 'users/personal_info', :locals => locals_for_general_info %>
   <h2><%= t('registration.subjects.title') %></h2>
   <%= render partial: 'users/personal_subjects', :locals => locals_for_personal_subjects %>
+  <hr>
   <div class="contentForm">
     <% @user.registration_policies.each_with_index do |policy, index| %>
       <p>
