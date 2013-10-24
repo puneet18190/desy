@@ -51,40 +51,42 @@
 
 
 $(document).ready(function() {
-  var $html = $('html');
-
+  window.$html = $('html');
   window.$loaderVisible = true;
   window.$loading = $('#loading');
   window.$body = $('body');
   window.$captions = $('#popup_captions_container');
   window.$parameters = $('#popup_parameters_container');
+
   browsersDocumentReady();
-  generalWindowResizeDocumentReady();
+
   ajaxLoaderDocumentReady();
+  audioEditorDocumentReady();
+  automaticLoginDocumentReady();
+  if ( $html.hasClass('dashboard-controller index-action') ) dashboardDocumentReady();
   defaultValueJavaScriptAnimationsDocumentReady();
-  dashboardDocumentReady();
-  reportsDocumentReady();
-  filtersDocumentReady();
+  documentsDocumentReady();
+  emptyResourcesDocumentReady()
   expandedItemsDocumentReady();
+  filtersDocumentReady();
   galleriesDocumentReady();
-  lessonButtonsDocumentReady();
-  mediaElementButtonsDocumentReady();
-  javaScriptAnimationsDocumentReady();
-  notificationsDocumentReady();
-  searchDocumentReady();
-  virtualClassroomDocumentReady();
+  generalWindowResizeDocumentReady();
   imageEditorDocumentReady();
-  mediaElementLoaderDocumentReady();
+  javaScriptAnimationsDocumentReady();
+  lessonButtonsDocumentReady();
   lessonEditorDocumentReady();
+  lessonViewerDocumentReady();
+  locationsDocumentReady();
+  mediaElementButtonsDocumentReady();
+  mediaElementEditorDocumentReady();
+  mediaElementLoaderDocumentReady();
+  notificationsDocumentReady();
+  playersDocumentReady();
   preloginDocumentReady();
   profileDocumentReady();
-  mediaElementEditorDocumentReady();
-  videoEditorDocumentReady();
-  audioEditorDocumentReady();
-  playersDocumentReady();
-  lessonViewerDocumentReady();
-  automaticLoginDocumentReady();
+  reportsDocumentReady();
+  searchDocumentReady();
   tagsDocumentReady();
-  locationsDocumentReady();
-  documentsDocumentReady();
+  videoEditorDocumentReady();
+  virtualClassroomDocumentReady();
 });
