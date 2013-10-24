@@ -41,6 +41,18 @@
     
   }
   
+  table.outer_locations td, .outer_locations th {
+    
+    text-align: center;
+    
+  }
+  
+  table.inner_locations tr:last-child {
+    
+    border-bottom: 0;
+    
+  }
+  
   table.outer_locations td {
     
     padding: 0px;
