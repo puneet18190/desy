@@ -228,7 +228,7 @@ class Admin::SettingsController < AdminController
       else
         @ok = false
       end
-      @location.ancestry = parent_location.ancestry_with_me if @ok
+      @location.ancestry = parent_location.ancestry_with_me.chop if @ok
     else
       @ok = true
     end
