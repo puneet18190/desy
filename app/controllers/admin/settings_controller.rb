@@ -212,7 +212,27 @@ class Admin::SettingsController < AdminController
   end
   
   def create_location
-    
+    settings = SETTINGS['location_names']
+    @location = Location.new
+    @location.sti_type = params[:sti_type]
+    @location.name = params[:name]
+    @location.code = params[:code]
+    if settings[0] == @location.sti_type
+      @location.ancestry = '/'
+    else
+      parent_location = Location.find_by_id params[:parent]
+      if !parent_location.nil?
+        index = 0
+        settings.each_with_index do |n, i|
+          index = i + 1 if n == parent_location.sti_type
+        end
+        @ok = (settings[i + 1] == @location.sti_type)
+      else
+        @ok = false
+      end
+      @location.ancestry = parent_location.ancestry_with_me if @ok
+    end
+    @ok = @location.save if @ok
   end
   
 end

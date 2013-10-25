@@ -189,7 +189,7 @@ function adminLocationsDocumentReady() {
       url: '/admin/settings/locations/create?name=' + father.find('.create_admin_location_name').val() + '&code=' + father.find('.create_admin_location_name').val() + '&sti_type=' + $(this).data('location-type-for-form') + '&parent=' + $(this).data('location-parent'),
       type: 'post'
     });
-  }
+  });
 }
 
 /**
