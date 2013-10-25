@@ -25,7 +25,8 @@ module User::Authentication
     # The matched user if found, +nil+ otherwise
     def authenticate(email, password)
       return false if email.blank? || password.blank?
-      user = active.confirmed.where(email: email).first
+      user = authenticable.where(email: email).first
+      
       # and user: in order to return the user
       user.try(:valid_password?, password) and user
     end

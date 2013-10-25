@@ -135,6 +135,14 @@ class User < ActiveRecord::Base
   scope :not_confirmed, where(confirmed: false)
   scope :active,        where(active: true)
   
+  scope :authenticable, Proc.new {
+    user = active.confirmed
+    if SETTINGS['saas_registration_mode']
+      user = user# TODO
+    end
+    user
+  }
+  
   alias_attribute :"#{SETTINGS['location_types'].last.downcase}", :location
   
   # === Description
@@ -245,7 +253,7 @@ class User < ActiveRecord::Base
   # Boolean
   #
   def trial?
-    SETTINGS['paas_registration_mode'] && self.purchase_id.nil?
+    SETTINGS['saas_registration_mode'] && self.purchase_id.nil?
   end
   
   # === Description
