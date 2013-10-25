@@ -3296,6 +3296,55 @@ it:
       # Title of the section
       # 1 - views/admin/settings/_menu.html.erb
       title: "Configurazioni dell'applicazione"
+      # Subsection, nested list of locations
+      locations:
+        # Caption to create a location
+        # 1 - views/admin/settings/locations.html.erb
+        create: "Crea"
+        # Caption to edit a location
+        # 1 - views/admin/settings/_location.html.erb
+        edit: "Edita"
+        # Caption to expand a location and load its children
+        # 1 - views/admin/settings/_location.html.erb
+        expand: "Espandi"
+        # Fields for creation form
+        fields:
+          # 1 - views/admin/settings/locations.html.erb
+          name: "Nome: "
+          # 1 - views/admin/settings/locations.html.erb
+          code: "Codice: "
+        # Link inside the settings menu
+        # 1 - views/admin/settings/_menu.html.erb
+        menu_link: "Luoghi"
+        # Caption to open the form to create a new location (the variable %{location} is replaced by the cathegory of the specific location to be created)
+        # 1 - views/admin/settings/locations.html.erb
+        new: "Aggiungi %{location}"
+        # Title of the subsection
+        # 1 - views/admin/settings/locations.html.erb
+        title: "Lista di luoghi suddivisi per categoria"
+        # Frame for the locations search engine
+        search:
+          # Title of the frame
+          # 1 - views/admin/settings/locations.html.erb
+          label: "Cerca luoghi"
+          # Label of research by id
+          # 1 - views/admin/settings/locations.html.erb
+          by_id: "Cerca per id: "
+          # Label of research by code and type (part one, before the selection of type)
+          # 1 - views/admin/settings/locations.html.erb
+          by_code_1: "Cerca "
+          # Label of research by code and type (part two, after the selection of type)
+          # 1 - views/admin/settings/locations.html.erb
+          by_code_2: " per codice: "
+          # Button to start the search by id
+          # 1 - views/admin/settings/locations.html.erb
+          submit_id: "Vai!"
+          # Button to start the search by code and type
+          # 1 - views/admin/settings/locations.html.erb
+          submit_code: "Vai!"
+        # Caption to update a location
+        # 1 - views/admin/settings/_location.html.erb
+        update: "Fatto"
       # Subsection, list of school levels
       school_levels:
         # Link inside the settings menu

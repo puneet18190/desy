@@ -3296,6 +3296,55 @@ cn:
       # Title of the section
       # 1 - views/admin/settings/_menu.html.erb
       title: "应用设置"
+      # Subsection, nested list of locations
+      locations:
+        # Caption to create a location
+        # 1 - views/admin/settings/locations.html.erb
+        create: "Create" # TODO
+        # Caption to edit a location
+        # 1 - views/admin/settings/_location.html.erb
+        edit: "Edit" # TODO
+        # Caption to expand a location and load its children
+        # 1 - views/admin/settings/_location.html.erb
+        expand: "Expand" # TODO
+        # Fields for creation form
+        fields:
+          # 1 - views/admin/settings/locations.html.erb
+          name: "Name: " # TODO
+          # 1 - views/admin/settings/locations.html.erb
+          code: "Code: " # TODO
+        # Link inside the settings menu
+        # 1 - views/admin/settings/_menu.html.erb
+        menu_link: "Locations" # TODO
+        # Caption to open the form to create a new location (the variable %{location} is replaced by the cathegory of the specific location to be created)
+        # 1 - views/admin/settings/locations.html.erb
+        new: "Add a %{location}" # TODO
+        # Title of the subsection
+        # 1 - views/admin/settings/locations.html.erb
+        title: "Locations divided by cathegory" # TODO
+        # Frame for the locations search engine
+        search:
+          # Title of the frame
+          # 1 - views/admin/settings/locations.html.erb
+          label: "Search locations" # TODO
+          # Label of research by id
+          # 1 - views/admin/settings/locations.html.erb
+          by_id: "Search by id: " # TODO
+          # Label of research by code and type (part one, before the selection of type)
+          # 1 - views/admin/settings/locations.html.erb
+          by_code_1: "Search a " # TODO
+          # Label of research by code and type (part two, after the selection of type)
+          # 1 - views/admin/settings/locations.html.erb
+          by_code_2: " by code: " # TODO
+          # Button to start the search by id
+          # 1 - views/admin/settings/locations.html.erb
+          submit_id: "Go!" # TODO
+          # Button to start the search by code and type
+          # 1 - views/admin/settings/locations.html.erb
+          submit_code: "Go!" # TODO
+        # Caption to update a location
+        # 1 - views/admin/settings/_location.html.erb
+        update: "Done" # TODO
       # Subsection, list of school levels
       school_levels:
         # Link inside the settings menu
