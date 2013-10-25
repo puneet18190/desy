@@ -22,7 +22,7 @@
   </div>
 </div>
 
-<h3>Locations!</h3> <!-- TODO traduzz -->
+<h3><%= t('admin.settings.locations.title') %></h3>
 <table class="outer_locations table table-striped table-bordered table-rounded">
   <tbody>
     <tr>
@@ -55,18 +55,20 @@
               <tbody>
                 <tr>
                   <td>
-                    name: <input class="create_admin_location_name" type="text" value=""> <!-- TODO traduzz -->
+                    <%= t('admin.settings.locations.fields.name') %><input class="create_admin_location_name" type="text" value="">
                   </td>
                   <td>
-                    code: <input class="create_admin_location_code" type="text" value=""> <!-- TODO traduzz -->
+                    <%= t('admin.settings.locations.fields.code') %><input class="create_admin_location_code" type="text" value="">
                   </td>
                   <td>
-                    <a class="create_admin_location_form_done" data-location-type="<%= location.downcase %>" data-location-type-for-form="<%= location %>" data-location-parent="<%= (index != 0) ? @locations[index - 1][:selected] : '' %>">create</a> <!-- TODO traduzz -->
+                    <a class="create_admin_location_form_done" data-location-type="<%= location.downcase %>" data-location-type-for-form="<%= location %>" data-location-parent="<%= (index != 0) ? @locations[index - 1][:selected] : '' %>"><%= t('admin.settings.locations.create') %></a>
                   </td>
                 </tr>
               </tbody>
             </table>
-            <a class="create_admin_location" data-location-type="<%= location.downcase %>">Add <%= Location.label_at(index).downcase %></a> <!-- TODO traduzz -->
+            <a class="create_admin_location" data-location-type="<%= location.downcase %>">
+              <%= t('admin.settings.locations.new', :location => Location.label_at(index).downcase) %>
+            </a>
           </td>
         <% end %>
       <% end %>

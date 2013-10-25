@@ -3302,9 +3302,24 @@ en:
       
       # Subsection, nested list of locations
       locations:
+        # Caption to create a location
+        # 1 - views/admin/settings/_menu.html.erb
+        create: "Create"
+        # Fields for creation form
+        fields:
+          # 1 - views/admin/settings/_menu.html.erb
+          name: "Name: "
+          # 1 - views/admin/settings/_menu.html.erb
+          code: "Code: "
         # Link inside the settings menu
         # 1 - views/admin/settings/_menu.html.erb
         menu_link: "Locations"
+        # Caption to open the form to create a new location (the variable %{location} is replaced by the cathegory of the specific location to be created)
+        # 1 - views/admin/settings/_menu.html.erb
+        new: "Add a %{location}"
+        # Title of the subsection
+        # 1 - views/admin/settings/locations.html.erb
+        title: "Locations divided by cathegory"
         # Frame for the locations search engine
         search:
           # Title of the frame
