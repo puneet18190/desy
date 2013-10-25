@@ -187,7 +187,7 @@ function reloadLessonsDashboardPagination(pos, pages_amount) {
       changePageDashboardLessons(pos, (pos + 1), pages_amount);
       return true;
     }
-    new DotsPagination($('[role=pages]'), pages_amount, prevPage, nextPage);
+    new DotsPagination($('[role=pages]'), pages_amount, { 'onComplete': { 'prev': prevPage, 'next': nextPage } });
   });
 }
 
@@ -217,6 +217,6 @@ function reloadMediaElementsDashboardPagination(pos, pages_amount) {
       changePageDashboardMediaElements(pos, (pos + 1), pages_amount);
       return true;
     }
-    new DotsPagination($('[role=pages]'), pages_amount, prevPage, nextPage);
+    new DotsPagination($('[role=pages]'), pages_amount, { 'onComplete': { 'prev': prevPage, 'next': nextPage } });
   });
 }

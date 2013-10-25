@@ -2,7 +2,14 @@
 #
 # It must to be called in this way es.:
 # 
+#   # Initializes a pagination on role[pages] elements with 5 pages
 #   new DotsPagination($('role[pages]'), 5)
+#
+#   # Initializes a pagination on role[pages] elements with 5 pages and callbacks called when the page change starts
+#   new DotsPagination($('role[pages]'), 5, { 'onStart': { 'prev': function(page_number) { console.log(page_number), 'next': function(page_number) { console.log(page_number) } } })
+#
+#   # Initializes a pagination on role[pages] elements with 5 pages and callbacks called when the page change is completed
+#   new DotsPagination($('role[pages]'), 5, { 'onComplete': { 'prev': function(page_number) { console.log(page_number), 'next': function(page_number) { console.log(page_number) } } })
 #
 # where the first argument is the container of the pagination links,
 # and the second is the total pages amount.
@@ -33,14 +40,26 @@
 #     <a href="#" data-page="1"></a><a href="#" role="current" data-page="2"></a><a href="#" role="disabled"></a>
 #   </span>
 #
-# The pagination can take two callback functions, one for the previous and one for the next page.
+# The pagination can take options, which is an object that can contain:
+#
+#    'onStart': object which can contain 'prev': callback called when the page gets decremented, at the start
+#                                        'next': callback called when the page gets incremented, at the start
+#
+#    'onComplete': object which can contain 'prev': callback called when the page gets decremented, at the complete
+#                                           'next': callback called when the page gets incremented, at the complete
 class DotsPagination
-  constructor: (@$pages, @pagesAmount, @prevPageCallback, @nextPageCallback) ->
+  constructor: (@$pages, @pagesAmount, options) ->
     @$current = @$pages.find('[role=current]')
 
     # @$pages.find(':not([role=current],[role=disabled])').on('mouseenter', @pageLinkMouseEnter).on('mouseleave', @pageLinkMouseLeave)
     @$current.prev(':not([role=disabled])').on('click', { direction: 'prev' }, @changePage)
     @$current.next(':not([role=disabled])').on('click', { direction: 'next' }, @changePage)
+
+    options['onStart'] ||= {}
+    @onStart = options['onStart']
+
+    options['onComplete'] ||= {}
+    @onComplete = options['onComplete']
 
   # pageLinkMouseEnter: (event) =>
   #   $(event.currentTarget).addClass 'current'
@@ -53,12 +72,12 @@ class DotsPagination
   changePage: (event) =>
     event.preventDefault()
 
-    [ exCurrentDirection, nearLinkSelector, nearLinkFunction, insertNearLinkFunction, animateLeftSign, pageIncrement, pageLimit, callback ] =
+    [ exCurrentDirection, nearLinkSelector, nearLinkFunction, insertNearLinkFunction, animateLeftSign, pageIncrement, pageLimit, onStart, onComplete ] =
       switch direction = event.data.direction
         when 'prev'
-          [ 'next', ':first-child', direction, 'before', '', -1, 1,            @prevPageCallback ]
+          [ 'next', ':first-child', direction, 'before', '', -1, 1,            @onStart[direction], @onComplete[direction] ]
         when 'next'
-          [ 'prev', ':last-child',  direction, 'after',  '-', 1, @pagesAmount, @nextPageCallback ]
+          [ 'prev', ':last-child',  direction, 'after',  '-', 1, @pagesAmount, @onStart[direction], @onComplete[direction] ]
         else 
           throw "unknown direction '#{direction}'"
 
@@ -97,7 +116,7 @@ class DotsPagination
 
     @$pages.animate(
       { left: "+=#{animateLeftSign}#{$this.outerWidth(true)}" }, 
-      { complete: () -> callback(page) } if callback
+      { complete: () -> onComplete(page) } if onComplete
     )
 
 window.DotsPagination = DotsPagination
