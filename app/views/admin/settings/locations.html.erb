@@ -1,8 +1,5 @@
 <%= render :partial => 'menu', :locals => {:current => 'locations'} %>
-
 <h3>Locations!</h3> <!-- TODO traduzz -->
-
-
 <table class="outer_locations table table-striped table-bordered table-rounded">
   <tbody>
     <tr>
@@ -17,11 +14,20 @@
         <td>
           <% if !@locations[index].nil? %>
             <table class="inner_locations">
-              <% @locations[index][:content].each do |l| %>
-                <%= render :partial => 'location', :locals => {:location => l, :selected => (l.id == @locations[index][:selected])} %>
-              <% end %>
-            <% end %>
-          </table>
+              <tbody>
+                <% @locations[index][:content].each do |l| %>
+                  <%= render :partial => 'location', :locals => {:location => l, :selected => (l.id == @locations[index][:selected])} %>
+                <% end %>
+              </tbody>
+            </table>
+          <% end %>
+        </td>
+      <% end %>
+    </tr>
+    <tr>
+      <% (0...(SETTINGS['location_types'].length)).to_a.each do |i| %>
+        <td>
+          <a class="create_admin_location" data-sti_type="<%= SETTINGS['location_types'][i] %>">Add <%= SETTINGS['location_types'][i].downcase %></a> <!-- TODO traduzz -->
         </td>
       <% end %>
     </tr>
