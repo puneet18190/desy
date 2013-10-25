@@ -26,27 +26,32 @@
     </tr>
     <tr>
       <% (0...(SETTINGS['location_types'].length)).to_a.each do |i| %>
-        <td id="create_admin_location_<%= SETTINGS['location_types'][i].downcase %>">
-          <table class="create_admin_location_form" style="display:none">
-            <tbody>
-              <form method="post" action="/admin/settings/locations/create" accept-charset="UTF-8">
-                <%= hidden_field_tag 'type', SETTINGS['location_types'][i] %>
-                <tr>
-                  <td>
-                    name: <input name="name" type="text" value=""> <!-- TODO traduzz -->
-                  </td>
-                  <td>
-                    code: <input name="code" type="text" value=""> <!-- TODO traduzz -->
-                  </td>
-                  <td>
-                    <%= submit_tag 'create' %> <!-- TODO traduzz -->
-                  </td>
-                </tr>
-              </form>
-            </tbody>
-          </table>
-          <a class="create_admin_location" data-location-type="<%= SETTINGS['location_types'][i].downcase %>">Add <%= SETTINGS['location_types'][i].downcase %></a> <!-- TODO traduzz -->
-        </td>
+        <% if !@locations[i].nil? %>
+          <td id="create_admin_location_<%= SETTINGS['location_types'][i].downcase %>">
+            <table class="create_admin_location_form" style="display:none">
+              <tbody>
+                <form method="post" action="/admin/settings/locations/create" accept-charset="UTF-8">
+                  <%= hidden_field_tag 'type', SETTINGS['location_types'][i] %>
+                  <% if i != 0 %>
+                    <%= hidden_field_tag 'parent', @locations[i - 1][:selected] %>
+                  <% end %>
+                  <tr>
+                    <td>
+                      name: <input name="name" type="text" value=""> <!-- TODO traduzz -->
+                    </td>
+                    <td>
+                      code: <input name="code" type="text" value=""> <!-- TODO traduzz -->
+                    </td>
+                    <td>
+                      <%= submit_tag 'create' %> <!-- TODO traduzz -->
+                    </td>
+                  </tr>
+                </form>
+              </tbody>
+            </table>
+            <a class="create_admin_location" data-location-type="<%= SETTINGS['location_types'][i].downcase %>">Add <%= SETTINGS['location_types'][i].downcase %></a> <!-- TODO traduzz -->
+          </td>
+        <% end %>
       <% end %>
     </tr>
   </tbody>
