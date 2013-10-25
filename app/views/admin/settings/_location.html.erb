@@ -12,10 +12,14 @@
     <span class="code_readonly"><%= l.code.present? ? l.code : 'null' %></span>
   </td>
   <td>
-    <a class="edit_admin_location" data-location-id="<%= l.id %>">edit</a> <!-- TODO traduzz -->
-    <a class="edit_admin_location_done" data-location-id="<%= l.id %>" style="display:none">done</a> <!-- TODO traduzz -->
+    <a class="edit_admin_location" data-location-id="<%= l.id %>">
+      <%= t('admin.settings.locations.edit') %>
+    </a>
+    <a class="edit_admin_location_done" data-location-id="<%= l.id %>" style="display:none">
+      <%= t('admin.settings.locations.done') %>
+    </a>
   </td>
   <td>
-    <%= link_to 'expand', "/admin/settings/locations?selected=#{l.id}" %> <!-- TODO traduzz -->
+    <%= link_to t('admin.settings.locations.expand'), "/admin/settings/locations?selected=#{l.id}" %>
   </td>
 </tr>

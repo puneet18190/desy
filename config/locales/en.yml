@@ -3296,26 +3296,28 @@ en:
       # Title of the section
       # 1 - views/admin/settings/_menu.html.erb
       title: "Application settings"
-      
-      
-      
-      
       # Subsection, nested list of locations
       locations:
         # Caption to create a location
-        # 1 - views/admin/settings/_menu.html.erb
+        # 1 - views/admin/settings/locations.html.erb
         create: "Create"
+        # Caption to edit a location
+        # 1 - views/admin/settings/_location.html.erb
+        edit: "Edit"
+        # Caption to expand a location and load its children
+        # 1 - views/admin/settings/_location.html.erb
+        expand: "Expand"
         # Fields for creation form
         fields:
-          # 1 - views/admin/settings/_menu.html.erb
+          # 1 - views/admin/settings/locations.html.erb
           name: "Name: "
-          # 1 - views/admin/settings/_menu.html.erb
+          # 1 - views/admin/settings/locations.html.erb
           code: "Code: "
         # Link inside the settings menu
         # 1 - views/admin/settings/_menu.html.erb
         menu_link: "Locations"
         # Caption to open the form to create a new location (the variable %{location} is replaced by the cathegory of the specific location to be created)
-        # 1 - views/admin/settings/_menu.html.erb
+        # 1 - views/admin/settings/locations.html.erb
         new: "Add a %{location}"
         # Title of the subsection
         # 1 - views/admin/settings/locations.html.erb
@@ -3340,10 +3342,9 @@ en:
           # Button to start the search by code and type
           # 1 - views/admin/settings/locations.html.erb
           submit_code: "Go!"
-      
-      
-      
-      
+        # Caption to update a location
+        # 1 - views/admin/settings/_location.html.erb
+        update: "Done"
       # Subsection, list of school levels
       school_levels:
         # Link inside the settings menu
