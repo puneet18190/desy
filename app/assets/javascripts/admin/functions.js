@@ -172,6 +172,9 @@ function adminLocationsDocumentReady() {
     father.find('.edit_admin_location_done').show();
     father.find('.edit_admin_location').hide();
   });
+  $('.edit_admin_location_done').on('click', function() {
+    var father = $('#admin_location_' + $(this).data('location-id'));
+  });
 }
 
 /**

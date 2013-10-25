@@ -1,0 +1,18 @@
+<% l = location %>
+<tr id="admin_location_<%= l.id %>" class="<%= (l.id == @locations[index][:selected]) ? 'on' : 'off' %>">
+  <td>
+    <input class="name_write" type="text" style="display:none" value="<%= l.name %>">
+    <span class="name_readonly"><%= l.name %></span>
+  </td>
+  <td>
+    <input class="code_write" type="text" style="display:none" value="<%= l.code %>">
+    <span class="code_readonly"><%= l.code.present? ? code : 'null' %></span>
+  </td>
+  <td>
+    <a class="edit_admin_location" data-location-id="<%= l.id %>">edit</a> <!-- TODO traduzz -->
+    <a class="edit_admin_location_done" data-location-id="<%= l.id %>" style="display:none">done</a> <!-- TODO traduzz -->
+  </td>
+  <td>
+    <%= link_to 'expand', "/admin/settings/locations?selected=#{l.id}" %> <!-- TODO traduzz -->
+  </td>
+</tr>
