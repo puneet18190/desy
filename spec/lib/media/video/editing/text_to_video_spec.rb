@@ -6,7 +6,7 @@ module Media
       describe TextToVideo do
 
         let(:text) do
-          Tempfile.open(Desy::TMP_PREFIX.call) do |f|
+          Tempfile.open(Rails.application.config.tempfiles_prefix.call) do |f|
             f.write("Test\ntest")
             f
           end

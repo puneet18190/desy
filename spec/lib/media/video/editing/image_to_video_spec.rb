@@ -26,7 +26,7 @@ module Media
   
         describe '#run' do
           def output_prefix
-            @output_prefix ||= Tempfile.new(Desy::TMP_PREFIX.call)
+            @output_prefix ||= Tempfile.new(Rails.application.config.tempfiles_prefix.call)
           end
           
           def duration

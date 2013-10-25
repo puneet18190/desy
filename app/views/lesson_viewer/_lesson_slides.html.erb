@@ -35,5 +35,5 @@
 <% end %>
 
 <% if with_exit %>
-  <a class="esciButton fltrt" title="<%= t('titles.exit') %>" href="<%= back.present? ? back.to_json : 'javascript:history.back()' %>" style="margin-top:20px"></a>
+  <a class="esciButton fltrt" title="<%= t('titles.exit') %>" href="<%= back.present? ? back : 'javascript:history.back()' %>" style="margin-top:20px"></a>
 <% end %>

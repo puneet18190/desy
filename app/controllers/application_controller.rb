@@ -9,12 +9,12 @@ class ApplicationController < ActionController::Base
   
   # List of actions that in no case require the autentication.
   OUT_OF_AUTHENTICATION_ACTIONS = [:page_not_found, :browser_not_supported]
-  OUT_OF_AUTHENTICATION_ACTIONS << :set_locale if Desy::MORE_THAN_ONE_LANGUAGE
+  OUT_OF_AUTHENTICATION_ACTIONS << :set_locale if Rails.application.config.more_than_one_language
   
   protect_from_forgery
   #before_filter :verify_authenticity_token, only: :browser_not_supported
   
-  before_filter :get_locale if Desy::MORE_THAN_ONE_LANGUAGE
+  before_filter :get_locale if Rails.application.config.more_than_one_language
   before_filter :authenticate, :initialize_location, :initialize_players_counter, :except => OUT_OF_AUTHENTICATION_ACTIONS
   
   # The user who is logged in in this section
@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
     render :partial => 'shared/browser_not_supported', :layout => false
   end 
 
-  if Desy::MORE_THAN_ONE_LANGUAGE
+  if Rails.application.config.more_than_one_language
     # Action that sets the current language of the application
     def set_locale
       available_languages = SETTINGS['languages']
@@ -43,7 +43,7 @@ class ApplicationController < ActionController::Base
   
   private
   
-  if Desy::MORE_THAN_ONE_LANGUAGE
+  if Rails.application.config.more_than_one_language
     # Gets the current language (see ApplicationController#set_locale)
     def get_locale
       I18n.locale = session[:locale] || I18n.default_locale
