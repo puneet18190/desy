@@ -1,5 +1,5 @@
 <% l = location %>
-<tr id="admin_location_<%= l.id %>" class="<%= (l.id == @locations[index][:selected]) ? 'on' : 'off' %>">
+<tr id="admin_location_<%= l.id %>" class="<%= selected ? 'on' : 'off' %>">
   <td>
     <input class="name_write" type="text" style="display:none" value="<%= l.name %>">
     <span class="name_readonly"><%= l.name %></span>

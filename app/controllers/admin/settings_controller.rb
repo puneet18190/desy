@@ -201,7 +201,14 @@ class Admin::SettingsController < AdminController
   end
   
   def update_location
-    
+    @location = Location.find_by_id(params[:id])
+    if @location
+      @location.code = params[:code]
+      @location.name = params[:name]
+      @ok = @location.save
+    else
+      @ok = false
+    end
   end
   
   def create_location

@@ -18,7 +18,7 @@
           <% if !@locations[index].nil? %>
             <table class="inner_locations">
               <% @locations[index][:content].each do |l| %>
-                <%= render :partial => 'location', :locals => {:location => l, :index => index} %>
+                <%= render :partial => 'location', :locals => {:location => l, :selected => (l.id == @locations[index][:selected])} %>
               <% end %>
             <% end %>
           </table>
