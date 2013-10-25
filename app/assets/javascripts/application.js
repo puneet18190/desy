@@ -57,9 +57,7 @@ $(document).ready(function() {
   window.$body = $('body');
   window.$captions = $('#popup_captions_container');
   window.$parameters = $('#popup_parameters_container');
-
   browsersDocumentReady();
-
   ajaxLoaderDocumentReady();
   audioEditorDocumentReady();
   automaticLoginDocumentReady();
