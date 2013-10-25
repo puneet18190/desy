@@ -1,6 +1,9 @@
 <% l = location %>
 <tr id="admin_location_<%= l.id %>" class="<%= selected ? 'on' : 'off' %>">
   <td>
+    <%= l.id %>
+  </td>
+  <td>
     <input class="name_write" type="text" style="display:none" value="<%= l.name %>">
     <span class="name_readonly"><%= l.name %></span>
   </td>

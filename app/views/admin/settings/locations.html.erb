@@ -1,4 +1,19 @@
 <%= render :partial => 'menu', :locals => {:current => 'locations'} %>
+
+<h4>Search locations</h4> <!-- TODO traduzz -->
+<%= form_tag 'locations', :method => :get, :class => 'search-form', :id => 'admin-search-locations' do %>
+  <div class="row-fluid">
+    <div class="span12">
+      Search by id: <%= text_field_tag 'search_by_id', '' %> <!-- TODO traduzz -->
+    </div>
+  </div>
+  <div class="row-fluid">
+    <div class="span4">
+      Search by code: <%= text_field_tag 'search_by_code', '' %> <!-- TODO traduzz -->
+    </div>
+  </div>
+<% end %>
+
 <h3>Locations!</h3> <!-- TODO traduzz -->
 <table class="outer_locations table table-striped table-bordered table-rounded">
   <tbody>
