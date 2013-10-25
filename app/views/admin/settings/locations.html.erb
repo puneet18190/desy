@@ -1,23 +1,23 @@
 <%= render :partial => 'menu', :locals => {:current => 'locations'} %>
 
-<h4>Search locations</h4> <!-- TODO traduzz -->
+<h4><%= t('admin.settings.locations.search.label') %></h4>
 <div class="search-foam">
   <div class="row-fluid">
     <%= form_tag 'locations', :method => :get, :id => 'admin-search-locations' do %>
-      Search by id: <%= text_field_tag 'selected', '' %> <!-- TODO traduzz -->
-      <%= submit_tag 'daje!' %> <!-- TODO -->
+      <%= t('admin.settings.locations.search.by_id') %><%= text_field_tag 'selected', '' %>
+      <%= submit_tag t('admin.settings.locations.search.submit_id') %>
     <% end %>
   </div>
   <div class="row-fluid">
     <%= form_tag 'locations', :method => :get, :id => 'admin-search-locations' do %>
-      Search a  <!-- TODO traduzz -->
+      <%= t('admin.settings.locations.search.by_code_1') %>
       <select name="search_by_code_type">
         <% SETTINGS['location_types'].each do |location| %>
           <option value="<%= location %>"><%= location %></option>
         <% end %>
       </select>
-      by code: <%= text_field_tag 'search_by_code', '' %> <!-- TODO traduzz -->
-      <%= submit_tag 'daje!' %> <!-- TODO -->
+      <%= t('admin.settings.locations.search.by_code_2') %><%= text_field_tag 'search_by_code', '' %>
+      <%= submit_tag t('admin.settings.locations.search.submit_code') %>
     <% end %>
   </div>
 </div>

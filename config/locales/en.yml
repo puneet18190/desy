@@ -3296,6 +3296,39 @@ en:
       # Title of the section
       # 1 - views/admin/settings/_menu.html.erb
       title: "Application settings"
+      
+      
+      
+      
+      # Subsection, nested list of locations
+      locations:
+        # Link inside the settings menu
+        # 1 - views/admin/settings/_menu.html.erb
+        menu_link: "Locations"
+        # Frame for the locations search engine
+        search:
+          # Title of the frame
+          # 1 - views/admin/settings/locations.html.erb
+          label: "Search locations"
+          # Label of research by id
+          # 1 - views/admin/settings/locations.html.erb
+          by_id: "Search by id: "
+          # Label of research by code and type (part one, before the selection of type)
+          # 1 - views/admin/settings/locations.html.erb
+          by_code_1: "Search a "
+          # Label of research by code and type (part two, after the selection of type)
+          # 1 - views/admin/settings/locations.html.erb
+          by_code_2: " by code: "
+          # Button to start the search by id
+          # 1 - views/admin/settings/locations.html.erb
+          submit_id: "Go!"
+          # Button to start the search by code and type
+          # 1 - views/admin/settings/locations.html.erb
+          submit_code: "Go!"
+      
+      
+      
+      
       # Subsection, list of school levels
       school_levels:
         # Link inside the settings menu
