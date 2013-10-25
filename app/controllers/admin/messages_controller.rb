@@ -27,7 +27,7 @@ class Admin::MessagesController < AdminController
   # * ApplicationController#admin_authentication
   #
   def new_notification
-    @locations = [Location.roots]
+    @locations = [Location.roots.order(:name)]
     if params[:search]
       location = Location.get_from_chain_params params[:search]
       @locations = location.get_filled_select if location

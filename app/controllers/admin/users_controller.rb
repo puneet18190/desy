@@ -29,7 +29,7 @@ class Admin::UsersController < AdminController
   def index
     users = AdminSearchForm.search_users((params[:search] ? params[:search] : {:ordering => 0, :desc => 'true'}))
     @users = users.preload(:location, :school_level).page(params[:page])
-    @locations = [Location.roots]
+    @locations = [Location.roots.order(:name)]
     if params[:search]
       location = Location.get_from_chain_params params[:search]
       @locations = location.get_filled_select if location

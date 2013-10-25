@@ -44,7 +44,7 @@ class UsersController < ApplicationController
     else
       @errors = convert_user_error_messages @user.errors
       location = Location.get_from_chain_params params[:location]
-      @locations = location.nil? ? [{:selected => 0, :content => Location.roots}] : location.get_filled_select_for_personal_info
+      @locations = location.nil? ? [{:selected => 0, :content => Location.roots.order(:name)}] : location.get_filled_select_for_personal_info
       @school_level_ids = SchoolLevel.order(:description).map{ |sl| [sl.to_s, sl.id] }
       @subjects         = Subject.order(:description)
       render 'prelogin/registration'
@@ -149,7 +149,7 @@ class UsersController < ApplicationController
     @user = current_user
     @school_level_ids = SchoolLevel.order(:description).map{ |sl| [sl.to_s, sl.id] }
     location = @user.location
-    @locations = location.nil? ? [{:selected => 0, :content => Location.roots}] : location.get_filled_select_for_personal_info
+    @locations = location.nil? ? [{:selected => 0, :content => Location.roots.order(:name)}] : location.get_filled_select_for_personal_info
   end
   
   # === Description

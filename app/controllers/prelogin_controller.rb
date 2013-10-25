@@ -54,7 +54,7 @@ class PreloginController < ApplicationController
   def registration
     @user             = User.new(params[:user])
     @school_level_ids = SchoolLevel.order(:description).map{ |sl| [sl.to_s, sl.id] }
-    @locations        = [{:selected => 0, :content => Location.roots}]
+    @locations        = [{:selected => 0, :content => Location.roots.order(:name)}]
     @user_location    = {}
     @subjects         = Subject.order(:description)
   end

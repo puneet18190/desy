@@ -193,7 +193,7 @@ class Admin::SettingsController < AdminController
   end
   
   def locations
-    @locations = [{:selected => 0, :content => Location.roots}]
+    @locations = [{:selected => 0, :content => Location.roots.order(:name)}]
     if params[:selected]
       location = Location.find_by_id params[:selected]
       @locations = location.get_filled_select_for_personal_info if location

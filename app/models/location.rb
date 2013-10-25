@@ -129,9 +129,9 @@ class Location < ActiveRecord::Base
   def get_filled_select
     resp = []
     self.ancestors.each do |anc|
-      resp << anc.siblings
+      resp << anc.siblings.order(:name)
     end
-    resp + [self.siblings]
+    resp + [self.siblings.order(:name)]
   end
   
   # === Description
@@ -145,10 +145,10 @@ class Location < ActiveRecord::Base
   def get_filled_select_for_personal_info
     resp = []
     self.ancestors.each do |anc|
-      resp << {:selected => anc.id, :content => anc.siblings}
+      resp << {:selected => anc.id, :content => anc.siblings.order(:name)}
     end
-    resp << {:selected => self.id, :content => self.siblings}
-    resp << {:selected => 0, :content => self.children} if self.class.to_s != SETTINGS['location_types'].last
+    resp << {:selected => self.id, :content => self.siblings.order(:name)}
+    resp << {:selected => 0, :content => self.children.order(:name)} if self.class.to_s != SETTINGS['location_types'].last
     resp
   end
   
