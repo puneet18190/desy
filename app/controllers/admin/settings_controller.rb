@@ -198,6 +198,10 @@ class Admin::SettingsController < AdminController
       location = Location.find_by_id params[:selected]
       @locations = location.get_filled_select_for_personal_info if location
     end
+    if params[:search_by_code_type]
+      location = Location.where(:sti_type => params[:search_by_code_type], :code => params[:search_by_code]).first
+      @locations = location.get_filled_select_for_personal_info if location
+    end
   end
   
   def update_location
