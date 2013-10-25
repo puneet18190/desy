@@ -139,6 +139,8 @@ max_documents_in_slide: 3
 media_test: false
 # Enables payments and trial for new users, according to the business model 'platform as a service (PaaS)'
 paas_registration_mode: true
+# Duration (in days) of the trial in paas
+paas_trial_duration: 30
 # URL types for url retrieving
 url_types: 
   - :export
