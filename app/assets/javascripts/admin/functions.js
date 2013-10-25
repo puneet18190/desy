@@ -180,7 +180,7 @@ function adminLocationsDocumentReady() {
     });
   });
   $body.on('click', '.create_admin_location', function() {
-    $('#create_admin_location_' + $(this).data('location-type')).show();
+    $('#create_admin_location_' + $(this).data('location-type') + ' .create_admin_location_form').show();
     $(this).hide();
   });
 }
