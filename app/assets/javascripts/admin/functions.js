@@ -163,7 +163,7 @@ function adminLocationsDocumentReady() {
       }
     }
   });
-  $('.edit_admin_location').on('click', function() {
+  $body.on('click', '.edit_admin_location', function() {
     var father = $('#admin_location_' + $(this).data('location-id'));
     father.find('.name_write').show();
     father.find('.name_readonly').hide();
@@ -172,7 +172,7 @@ function adminLocationsDocumentReady() {
     father.find('.edit_admin_location_done').show();
     father.find('.edit_admin_location').hide();
   });
-  $('.edit_admin_location_done').on('click', function() {
+  $body.on('click', '.edit_admin_location_done', function() {
     var father = $('#admin_location_' + $(this).data('location-id'));
     $.ajax({
       url: '/admin/settings/locations/' + $(this).data('location-id') + '/update?name=' + father.find('.name_write').val() + '&code=' + father.find('.code_write').val(),

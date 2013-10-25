@@ -6,7 +6,7 @@
   </td>
   <td>
     <input class="code_write" type="text" style="display:none" value="<%= l.code %>">
-    <span class="code_readonly"><%= l.code.present? ? code : 'null' %></span>
+    <span class="code_readonly"><%= l.code.present? ? l.code : 'null' %></span>
   </td>
   <td>
     <a class="edit_admin_location" data-location-id="<%= l.id %>">edit</a> <!-- TODO traduzz -->
