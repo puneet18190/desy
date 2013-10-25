@@ -212,7 +212,7 @@ class Admin::SettingsController < AdminController
   end
   
   def create_location
-    settings = SETTINGS['location_names']
+    settings = SETTINGS['location_types']
     @location = Location.new
     @location.sti_type = params[:sti_type]
     @location.name = params[:name]
