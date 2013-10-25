@@ -183,6 +183,13 @@ function adminLocationsDocumentReady() {
     $('#create_admin_location_' + $(this).data('location-type') + ' .create_admin_location_form').show();
     $(this).hide();
   });
+  $body.on('click', '.create_admin_location_form_done', function() {
+    var father = $('#create_admin_location_' + $(this).data('location-type'));
+    $.ajax({
+      url: '/admin/settings/locations/create?name=' + father.find('.create_admin_location_name').val() + '&code=' + father.find('.create_admin_location_name').val() + '&sti_type=' + $(this).data('location-type-for-form') + '&parent=' + $(this).data('location-parent'),
+      type: 'post'
+    });
+  }
 }
 
 /**
