@@ -163,6 +163,15 @@ function adminLocationsDocumentReady() {
       }
     }
   });
+  $('.edit_admin_location').on('click', function() {
+    var father = $('#admin_location_' + $(this).data('location-id'));
+    father.find('.name_write').show();
+    father.find('.name_readonly').hide();
+    father.find('.code_write').show();
+    father.find('.code_readonly').hide();
+    father.find('.edit_admin_location_done').show();
+    father.find('.edit_admin_location').hide();
+  });
 }
 
 /**
