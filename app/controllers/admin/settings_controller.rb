@@ -192,6 +192,18 @@ class Admin::SettingsController < AdminController
     @media_elements = @tag.get_media_elements(params[:page]).preload(:user, :taggings, {:taggings => :tag})
   end
   
+  # === Description
+  #
+  # 'Show' action for locations
+  #
+  # === Mode
+  #
+  # Html
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#admin_authenticate
+  #
   def locations
     @locations = [{:selected => 0, :content => Location.roots.order(:name)}]
     if params[:selected]
@@ -204,6 +216,18 @@ class Admin::SettingsController < AdminController
     end
   end
   
+  # === Description
+  #
+  # Updates a location
+  #
+  # === Mode
+  #
+  # JavaScript
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#admin_authenticate
+  #
   def update_location
     @location = Location.find_by_id(params[:id])
     if @location
@@ -215,6 +239,18 @@ class Admin::SettingsController < AdminController
     end
   end
   
+  # === Description
+  #
+  # Creates a new location
+  #
+  # === Mode
+  #
+  # JavaScript
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#admin_authenticate
+  #
   def create_location
     settings = SETTINGS['location_types']
     @location = Location.new

@@ -267,7 +267,7 @@ end</td>
                 
               </p>
               <div id="method-c-base_label_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/location.rb, line 89</span>
+                <pre><span class="ruby-comment"># File app/models/location.rb, line 87</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">base_label</span>
   <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;locations.labels&#39;</span>).<span class="ruby-identifier">last</span>
 <span class="ruby-keyword">end</span></pre>
@@ -374,7 +374,7 @@ keys</p>
                 
               </p>
               <div id="method-c-label_at_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/location.rb, line 105</span>
+                <pre><span class="ruby-comment"># File app/models/location.rb, line 103</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">label_at</span>(<span class="ruby-identifier">index</span>)
   <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;locations.labels&#39;</span>)[<span class="ruby-identifier">index</span>]
 <span class="ruby-keyword">end</span></pre>
@@ -420,9 +420,7 @@ the current location</p>
               <div id="method-i-ancestry_with_me_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/models/location.rb, line 75</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">ancestry_with_me</span>
-  <span class="ruby-identifier">anc</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">ancestry</span>
-  <span class="ruby-identifier">anc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;/&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">anc</span>.<span class="ruby-identifier">present?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-regexp">/\//</span> <span class="ruby-operator">!~</span> <span class="ruby-identifier">anc</span>
-  <span class="ruby-node">&quot;#{anc}#{self.id}/&quot;</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">ancestry</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">?</span> <span class="ruby-node">&quot;#{self.id}/&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-node">&quot;#{self.ancestry}/#{self.id}/&quot;</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -462,13 +460,15 @@ associated to this particular location</p>
                 
               </p>
               <div id="method-i-get_filled_select_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/location.rb, line 129</span>
+                <pre><span class="ruby-comment"># File app/models/location.rb, line 127</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">get_filled_select</span>
   <span class="ruby-identifier">resp</span> = []
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">ancestors</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">anc</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">resp</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">anc</span>.<span class="ruby-identifier">siblings</span>
+    <span class="ruby-identifier">resp</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">anc</span>.<span class="ruby-identifier">siblings</span>.<span class="ruby-identifier">order</span>(<span class="ruby-value">:name</span>)
   <span class="ruby-keyword">end</span>
-  <span class="ruby-identifier">resp</span> <span class="ruby-operator">+</span> [<span class="ruby-keyword">self</span>.<span class="ruby-identifier">siblings</span>]
+  <span class="ruby-identifier">resp</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">siblings</span>.<span class="ruby-identifier">order</span>(<span class="ruby-value">:name</span>)
+  <span class="ruby-identifier">resp</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">children</span>.<span class="ruby-identifier">order</span>(<span class="ruby-value">:name</span>) <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">!=</span> <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;location_types&#39;</span>].<span class="ruby-identifier">last</span>
+  <span class="ruby-identifier">resp</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -513,10 +513,10 @@ info</p>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">get_filled_select_for_personal_info</span>
   <span class="ruby-identifier">resp</span> = []
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">ancestors</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">anc</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">resp</span> <span class="ruby-operator">&lt;&lt;</span> {<span class="ruby-value">:selected</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">anc</span>.<span class="ruby-identifier">id</span>, <span class="ruby-value">:content</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">anc</span>.<span class="ruby-identifier">siblings</span>}
+    <span class="ruby-identifier">resp</span> <span class="ruby-operator">&lt;&lt;</span> {<span class="ruby-value">:selected</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">anc</span>.<span class="ruby-identifier">id</span>, <span class="ruby-value">:content</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">anc</span>.<span class="ruby-identifier">siblings</span>.<span class="ruby-identifier">order</span>(<span class="ruby-value">:name</span>)}
   <span class="ruby-keyword">end</span>
-  <span class="ruby-identifier">resp</span> <span class="ruby-operator">&lt;&lt;</span> {<span class="ruby-value">:selected</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>, <span class="ruby-value">:content</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">siblings</span>}
-  <span class="ruby-identifier">resp</span> <span class="ruby-operator">&lt;&lt;</span> {<span class="ruby-value">:selected</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-number">0</span>, <span class="ruby-value">:content</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">children</span>} <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">!=</span> <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;location_types&#39;</span>].<span class="ruby-identifier">last</span>
+  <span class="ruby-identifier">resp</span> <span class="ruby-operator">&lt;&lt;</span> {<span class="ruby-value">:selected</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>, <span class="ruby-value">:content</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">siblings</span>.<span class="ruby-identifier">order</span>(<span class="ruby-value">:name</span>)}
+  <span class="ruby-identifier">resp</span> <span class="ruby-operator">&lt;&lt;</span> {<span class="ruby-value">:selected</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-number">0</span>, <span class="ruby-value">:content</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">children</span>.<span class="ruby-identifier">order</span>(<span class="ruby-value">:name</span>)} <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">!=</span> <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;location_types&#39;</span>].<span class="ruby-identifier">last</span>
   <span class="ruby-identifier">resp</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
@@ -602,7 +602,7 @@ info</p>
                 
               </p>
               <div id="method-i-to_s_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/location.rb, line 117</span>
+                <pre><span class="ruby-comment"># File app/models/location.rb, line 115</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">to_s</span>
   <span class="ruby-identifier">name</span>.<span class="ruby-identifier">to_s</span>
 <span class="ruby-keyword">end</span></pre>

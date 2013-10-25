@@ -294,9 +294,7 @@ href="Document.html">Document</a></p>
       <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:users</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-value">:location_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">location</span>.<span class="ruby-identifier">id</span>})
     <span class="ruby-keyword">else</span>
       <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">joins</span>(<span class="ruby-value">:user</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:location</span>)
-      <span class="ruby-identifier">anc</span> = <span class="ruby-identifier">location</span>.<span class="ruby-identifier">ancestry_with_me</span>
-      <span class="ruby-identifier">anc</span>.<span class="ruby-identifier">chop!</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">location</span>.<span class="ruby-identifier">depth</span> <span class="ruby-operator">==</span> <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;location_types&#39;</span>].<span class="ruby-identifier">length</span> <span class="ruby-operator">-</span> <span class="ruby-number">2</span>
-      <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&#39;ancestry LIKE ?&#39;</span>, <span class="ruby-node">&quot;#{anc}%&quot;</span>)
+      <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&#39;ancestry LIKE ?&#39;</span>, <span class="ruby-node">&quot;#{location.ancestry_with_me}%&quot;</span>)
     <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">resp</span>
@@ -376,7 +374,7 @@ href="Lesson.html">Lesson</a></p>
                 
               </p>
               <div id="method-c-search_lessons_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/admin_search_form.rb, line 133</span>
+                <pre><span class="ruby-comment"># File app/models/admin_search_form.rb, line 131</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">search_lessons</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">resp</span> = <span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">select</span>(<span class="ruby-string">&#39;lessons.*, (SELECT COUNT (*) FROM likes WHERE likes.lesson_id = lessons.id) AS likes_count&#39;</span>)
   <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">joins</span>(<span class="ruby-value">:user</span>)
@@ -413,9 +411,7 @@ href="Lesson.html">Lesson</a></p>
       <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:users</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-value">:location_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">location</span>.<span class="ruby-identifier">id</span>})
     <span class="ruby-keyword">else</span>
       <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">joins</span>(<span class="ruby-value">:user</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:location</span>)
-      <span class="ruby-identifier">anc</span> = <span class="ruby-identifier">location</span>.<span class="ruby-identifier">ancestry_with_me</span>
-      <span class="ruby-identifier">anc</span>.<span class="ruby-identifier">chop!</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">location</span>.<span class="ruby-identifier">depth</span> <span class="ruby-operator">==</span> <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;location_types&#39;</span>].<span class="ruby-identifier">length</span> <span class="ruby-operator">-</span> <span class="ruby-number">2</span>
-      <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&#39;ancestry LIKE ?&#39;</span>, <span class="ruby-node">&quot;#{anc}%&quot;</span>)
+      <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&#39;ancestry LIKE ?&#39;</span>, <span class="ruby-node">&quot;#{location.ancestry_with_me}%&quot;</span>)
     <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">resp</span>
@@ -496,7 +492,7 @@ href="MediaElement.html">MediaElement</a></p>
                 
               </p>
               <div id="method-c-search_media_elements_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/admin_search_form.rb, line 199</span>
+                <pre><span class="ruby-comment"># File app/models/admin_search_form.rb, line 195</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">search_media_elements</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">resp</span> = <span class="ruby-constant">MediaElement</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:converted</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:ordering</span>].<span class="ruby-identifier">present?</span>
@@ -529,9 +525,7 @@ href="MediaElement.html">MediaElement</a></p>
         <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:users</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-value">:location_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">location</span>.<span class="ruby-identifier">id</span>})
       <span class="ruby-keyword">else</span>
         <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">joins</span>(<span class="ruby-value">:user</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:location</span>)
-        <span class="ruby-identifier">anc</span> = <span class="ruby-identifier">location</span>.<span class="ruby-identifier">ancestry_with_me</span>
-        <span class="ruby-identifier">anc</span>.<span class="ruby-identifier">chop!</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">location</span>.<span class="ruby-identifier">depth</span> <span class="ruby-operator">==</span> <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;location_types&#39;</span>].<span class="ruby-identifier">length</span> <span class="ruby-operator">-</span> <span class="ruby-number">2</span>
-        <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&#39;ancestry LIKE ?&#39;</span>, <span class="ruby-node">&quot;#{anc}%&quot;</span>)
+        <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&#39;ancestry LIKE ?&#39;</span>, <span class="ruby-node">&quot;#{location.ancestry_with_me}%&quot;</span>)
       <span class="ruby-keyword">end</span>
     <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
@@ -611,7 +605,7 @@ href="User.html">User</a></p>
                 
               </p>
               <div id="method-c-search_notifications_users_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/admin_search_form.rb, line 366</span>
+                <pre><span class="ruby-comment"># File app/models/admin_search_form.rb, line 358</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">search_notifications_users</span>(<span class="ruby-identifier">params</span>, <span class="ruby-identifier">count_only</span>=<span class="ruby-keyword">false</span>)
   <span class="ruby-identifier">resp</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">scoped</span>
   <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:school_level_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:school_level_id</span>]) <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:school_level_id</span>].<span class="ruby-identifier">present?</span>
@@ -626,9 +620,7 @@ href="User.html">User</a></p>
       <span class="ruby-keyword">if</span> <span class="ruby-identifier">location</span>.<span class="ruby-identifier">depth</span> <span class="ruby-operator">==</span> <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;location_types&#39;</span>].<span class="ruby-identifier">length</span> <span class="ruby-operator">-</span> <span class="ruby-number">1</span>
         <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:users</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-value">:location_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">location</span>.<span class="ruby-identifier">id</span>})
       <span class="ruby-keyword">else</span>
-        <span class="ruby-identifier">anc</span> = <span class="ruby-identifier">location</span>.<span class="ruby-identifier">ancestry_with_me</span>
-        <span class="ruby-identifier">anc</span>.<span class="ruby-identifier">chop!</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">location</span>.<span class="ruby-identifier">depth</span> <span class="ruby-operator">==</span> <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;location_types&#39;</span>].<span class="ruby-identifier">length</span> <span class="ruby-operator">-</span> <span class="ruby-number">2</span>
-        <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&#39;ancestry LIKE ?&#39;</span>, <span class="ruby-node">&quot;#{anc}%&quot;</span>)
+        <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&#39;ancestry LIKE ?&#39;</span>, <span class="ruby-node">&quot;#{location.ancestry_with_me}%&quot;</span>)
       <span class="ruby-keyword">end</span>
     <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
@@ -724,7 +716,7 @@ parameter is present it&#39;s turned to <code>DESC</code></p>
                 
               </p>
               <div id="method-c-search_tags_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/admin_search_form.rb, line 328</span>
+                <pre><span class="ruby-comment"># File app/models/admin_search_form.rb, line 320</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">search_tags</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">resp</span> = <span class="ruby-constant">Tag</span>.<span class="ruby-identifier">select</span>(<span class="ruby-string">&quot;id, word, created_at, (SELECT COUNT (*) FROM taggings WHERE taggings.tag_id = tags.id AND taggings.taggable_type = &#39;MediaElement&#39;) AS media_elements_count, (SELECT COUNT (*) FROM taggings WHERE taggings.tag_id = tags.id AND taggings.taggable_type = &#39;Lesson&#39;) AS lessons_count&quot;</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:ordering</span>].<span class="ruby-identifier">present?</span>
@@ -819,7 +811,7 @@ href="User.html">User</a>.</p>
                 
               </p>
               <div id="method-c-search_users_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/admin_search_form.rb, line 262</span>
+                <pre><span class="ruby-comment"># File app/models/admin_search_form.rb, line 256</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">search_users</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">resp</span> = <span class="ruby-constant">User</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:ordering</span>].<span class="ruby-identifier">present?</span>
@@ -860,9 +852,7 @@ href="User.html">User</a>.</p>
         <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:users</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-value">:location_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">location</span>.<span class="ruby-identifier">id</span>})
       <span class="ruby-keyword">else</span>
         <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">joins</span>(<span class="ruby-value">:location</span>)
-        <span class="ruby-identifier">anc</span> = <span class="ruby-identifier">location</span>.<span class="ruby-identifier">ancestry_with_me</span>
-        <span class="ruby-identifier">anc</span>.<span class="ruby-identifier">chop!</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">location</span>.<span class="ruby-identifier">depth</span> <span class="ruby-operator">==</span> <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;location_types&#39;</span>].<span class="ruby-identifier">length</span> <span class="ruby-operator">-</span> <span class="ruby-number">2</span>
-        <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&#39;ancestry LIKE ?&#39;</span>, <span class="ruby-node">&quot;#{anc}%&quot;</span>)
+        <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&#39;ancestry LIKE ?&#39;</span>, <span class="ruby-node">&quot;#{location.ancestry_with_me}%&quot;</span>)
       <span class="ruby-keyword">end</span>
     <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>

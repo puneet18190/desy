@@ -248,7 +248,7 @@ notification sender main page</p>
               <div id="method-i-new_notification_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/controllers/admin/messages_controller.rb, line 29</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">new_notification</span>
-  <span class="ruby-ivar">@locations</span> = [<span class="ruby-constant">Location</span>.<span class="ruby-identifier">roots</span>]
+  <span class="ruby-ivar">@locations</span> = [<span class="ruby-constant">Location</span>.<span class="ruby-identifier">roots</span>.<span class="ruby-identifier">order</span>(<span class="ruby-value">:name</span>)]
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:search</span>]
     <span class="ruby-identifier">location</span> = <span class="ruby-constant">Location</span>.<span class="ruby-identifier">get_from_chain_params</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:search</span>]
     <span class="ruby-ivar">@locations</span> = <span class="ruby-identifier">location</span>.<span class="ruby-identifier">get_filled_select</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">location</span>
