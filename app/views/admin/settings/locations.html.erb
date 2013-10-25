@@ -9,7 +9,7 @@
   </div>
   <div class="row-fluid">
     <div class="span4">
-      Search a 
+      Search a  <!-- TODO traduzz -->
       <select name="search_by_code_type">
         <% SETTINGS['location_types'].each do |location| %>
           <option value="<%= location %>"><%= location %></option>
@@ -31,13 +31,13 @@
       <% end %>
     </tr>
     <tr>
-      <% SETTINGS['location_types'].each_with_index do |location, index| %>
+      <% (0...(SETTINGS['location_types'].length)).to_a.each do |i| %>
         <td>
-          <% if !@locations[index].nil? %>
+          <% if !@locations[i].nil? %>
             <table class="inner_locations">
               <tbody>
-                <% @locations[index][:content].each do |l| %>
-                  <%= render :partial => 'location', :locals => {:location => l, :selected => (l.id == @locations[index][:selected])} %>
+                <% @locations[i][:content].each do |l| %>
+                  <%= render :partial => 'location', :locals => {:location => l, :selected => (l.id == @locations[i][:selected])} %>
                 <% end %>
               </tbody>
             </table>
