@@ -313,19 +313,23 @@ class User < ActiveRecord::Base
   #
   def parent_locations
     resp = ''
+    locations = []
     first = true
     current_location = self.location
     return '-' if current_location.nil?
     (0...SETTINGS['location_types'].length).to_a.each do |index|
       if current_location.class.to_s != SETTINGS['location_types'].last
-        if first
-          resp = "#{current_location.name}"
-          first = false
-        else
-          resp = "#{resp} - #{current_location.name}"
-        end
+        locations << current_location
       end
       current_location = current_location.parent
+    end
+    locations.reverse.each do |l|
+      if first
+        resp = "#{l.name}"
+        first = false
+      else
+        resp = "#{resp} - #{l.name}"
+      end
     end
     resp
   end
