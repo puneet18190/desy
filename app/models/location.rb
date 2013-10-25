@@ -73,9 +73,7 @@ class Location < ActiveRecord::Base
   # A string of ids separated by '/'
   #
   def ancestry_with_me
-    anc = self.ancestry
-    anc << "/" if anc.present? && /\// !~ anc
-    "#{anc}#{self.id}/"
+    self.ancestry.nil? ? "#{self.id}/" : "#{self.ancestry}/#{self.id}/"
   end
   
   # === Description

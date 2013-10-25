@@ -100,9 +100,7 @@ class AdminSearchForm
         resp = resp.where(:users => {:location_id => location.id})
       else
         resp = resp.joins(:user => :location)
-        anc = location.ancestry_with_me
-        anc.chop! if location.depth == SETTINGS['location_types'].length - 2
-        resp = resp.where('ancestry LIKE ?', "#{anc}%")
+        resp = resp.where('ancestry LIKE ?', "#{location.ancestry_with_me}%")
       end
     end
     resp
@@ -166,9 +164,7 @@ class AdminSearchForm
         resp = resp.where(:users => {:location_id => location.id})
       else
         resp = resp.joins(:user => :location)
-        anc = location.ancestry_with_me
-        anc.chop! if location.depth == SETTINGS['location_types'].length - 2
-        resp = resp.where('ancestry LIKE ?', "#{anc}%")
+        resp = resp.where('ancestry LIKE ?', "#{location.ancestry_with_me}%")
       end
     end
     resp
@@ -228,9 +224,7 @@ class AdminSearchForm
           resp = resp.where(:users => {:location_id => location.id})
         else
           resp = resp.joins(:user => :location)
-          anc = location.ancestry_with_me
-          anc.chop! if location.depth == SETTINGS['location_types'].length - 2
-          resp = resp.where('ancestry LIKE ?', "#{anc}%")
+          resp = resp.where('ancestry LIKE ?', "#{location.ancestry_with_me}%")
         end
       end
     end
@@ -299,9 +293,7 @@ class AdminSearchForm
           resp = resp.where(:users => {:location_id => location.id})
         else
           resp = resp.joins(:location)
-          anc = location.ancestry_with_me
-          anc.chop! if location.depth == SETTINGS['location_types'].length - 2
-          resp = resp.where('ancestry LIKE ?', "#{anc}%")
+          resp = resp.where('ancestry LIKE ?', "#{location.ancestry_with_me}%")
         end
       end
     end
@@ -377,9 +369,7 @@ class AdminSearchForm
         if location.depth == SETTINGS['location_types'].length - 1
           resp = resp.where(:users => {:location_id => location.id})
         else
-          anc = location.ancestry_with_me
-          anc.chop! if location.depth == SETTINGS['location_types'].length - 2
-          resp = resp.where('ancestry LIKE ?', "#{anc}%")
+          resp = resp.where('ancestry LIKE ?', "#{location.ancestry_with_me}%")
         end
       end
     end
