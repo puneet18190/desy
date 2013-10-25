@@ -224,11 +224,13 @@ class Admin::SettingsController < AdminController
         settings.each_with_index do |n, i|
           index = i + 1 if n == parent_location.sti_type
         end
-        @ok = (settings[i + 1] == @location.sti_type)
+        @ok = (settings[index + 1] == @location.sti_type)
       else
         @ok = false
       end
       @location.ancestry = parent_location.ancestry_with_me if @ok
+    else
+      @ok = true
     end
     @ok = @location.save if @ok
   end
