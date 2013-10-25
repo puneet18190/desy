@@ -129,7 +129,9 @@ class Location < ActiveRecord::Base
     self.ancestors.each do |anc|
       resp << anc.siblings.order(:name)
     end
-    resp + [self.siblings.order(:name)]
+    resp << self.siblings.order(:name)
+    resp << self.children.order(:name) if self.class.to_s != SETTINGS['location_types'].last
+    resp
   end
   
   # === Description
