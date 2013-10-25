@@ -174,6 +174,10 @@ function adminLocationsDocumentReady() {
   });
   $('.edit_admin_location_done').on('click', function() {
     var father = $('#admin_location_' + $(this).data('location-id'));
+    $.ajax({
+      url: '/admin/settings/locations/' + $(this).data('location-id') + '/update',
+      type: 'put'
+    });
   });
 }
 
