@@ -27,7 +27,7 @@
     <tr>
       <% (0...(SETTINGS['location_types'].length)).to_a.each do |i| %>
         <td>
-          <a class="create_admin_location" data-sti_type="<%= SETTINGS['location_types'][i] %>">Add <%= SETTINGS['location_types'][i].downcase %></a> <!-- TODO traduzz -->
+          <%= link_to "Add #{SETTINGS['location_types'][i].downcase}", "settings/locations/#{SETTINGS['location_types'][i]}/create" %> <!-- TODO traduzz -->
         </td>
       <% end %>
     </tr>

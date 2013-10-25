@@ -201,7 +201,7 @@ Desy::Application.routes.draw do
     get       'settings/tags/:id/show/media_elements'   => 'settings#media_elements_for_tag'
     get       'settings/locations'                      => 'settings#locations'
     put       'settings/locations/:id/update'           => 'settings#update_location'
-    post      'settings/locations/create'               => 'settings#create_location'
+    post      'settings/locations/:type/create'         => 'settings#create_location'
     resources :lessons,                           :only => [:index, :destroy]
     resources :documents,                         :only => [:index, :destroy]
     resources :media_elements,                    :only => [:new, :index, :destroy]
