@@ -22,7 +22,7 @@
       changePageDashboardLessons(1, 2, <%= l_tot %>);
       return true;
     }
-    new DotsPagination($('[role=pages]'), <%= j l_tot.to_s %>, { 'onComplete': { 'prev': prevPage, 'next': nextPage } });
+    new DotsPagination($('[role=pages]'), <%= j l_tot.to_s %>, { 'complete': { 'prev': prevPage, 'next': nextPage } });
   });
   
 </script>

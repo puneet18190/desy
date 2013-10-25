@@ -28,7 +28,7 @@
       $.get(url);
       return true;
     }
-    new DotsPagination($('[role=pages]'), <%= j pages_amount.to_s %>, { 'onComplete': { 'prev': prevPage, 'next': nextPage } });
+    new DotsPagination($('[role=pages]'), <%= j pages_amount.to_s %>, { 'complete': { 'prev': prevPage, 'next': nextPage } });
   });
   
 </script>
