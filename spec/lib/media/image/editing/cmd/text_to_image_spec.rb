@@ -8,7 +8,7 @@ module Media
         describe TextToImage do
           context 'with valid arguments' do
             def output
-              @output ||= Rails.root.join('tmp/test.jpg').to_s
+              @output ||= Rails.root.join('tmp', 'test.jpg').to_s
             end
 
             let(:text) do

@@ -144,3 +144,5 @@ paas_trial_duration: 30
 # URL types for url retrieving
 url_types: 
   - :export
+# Prefix added to temporary files and folders names
+tempfiles_prefix: 'desy'
