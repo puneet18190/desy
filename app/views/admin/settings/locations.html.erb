@@ -26,10 +26,10 @@
                     <%= l.code.present? ? code : 'null' %>
                   </td>
                   <td>
-                    <%= link_to 'edit', 'settings/locations/:id/update', :remote => true %> <!-- TODO traduzz -->
+                    <%= link_to 'edit', '/admin/settings/locations/:id/update', :remote => true %> <!-- TODO traduzz -->
                   </td>
                   <td>
-                    <%= link_to 'freccia', 'settings/locations/:id/update', :remote => true %> <!-- TODO traduzz icona -->
+                    <%= link_to 'expand', "/admin/settings/locations?selected=#{l.id}" %> <!-- TODO traduzz -->
                   </td>
                 </tr>
               <% end %>
