@@ -222,7 +222,7 @@ class Admin::SettingsController < AdminController
       if !parent_location.nil?
         index = 0
         settings.each_with_index do |n, i|
-          index = i + 1 if n == parent_location.sti_type
+          index = i if n == parent_location.sti_type
         end
         @ok = (settings[index + 1] == @location.sti_type)
       else
