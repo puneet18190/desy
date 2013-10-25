@@ -26,8 +26,13 @@
     </tr>
     <tr>
       <% (0...(SETTINGS['location_types'].length)).to_a.each do |i| %>
-        <td>
-          <%= link_to "Add #{SETTINGS['location_types'][i].downcase}", "/admin/settings/locations/create?type=#{SETTINGS['location_types'][i]}", :method => :post  %> <!-- TODO traduzz -->
+        <td id="create_admin_location_<%= SETTINGS['location_types'][i].downcase %>">
+          <form class="create_admin_location_form" method="post" action="/admin/settings/locations/create" accept-charset="UTF-8" style="display:none">
+            name: <input name="name" type="text" value=""> <!-- TODO traduzz -->
+            code: <input name="code" type="text" value=""> <!-- TODO traduzz -->
+            <%= hidden_field_tag 'type', SETTINGS['location_types'][i] %>
+          </form>
+          <a class="create_admin_location" data-location-type="<%= SETTINGS['location_types'][i].downcase %>">Add <%= SETTINGS['location_types'][i].downcase %></a> <!-- TODO traduzz -->
         </td>
       <% end %>
     </tr>

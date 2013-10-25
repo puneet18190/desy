@@ -179,6 +179,10 @@ function adminLocationsDocumentReady() {
       type: 'put'
     });
   });
+  $body.on('click', '.create_admin_location', function() {
+    $('#create_admin_location_' + $(this).data('location-type')).show();
+    $(this).hide();
+  });
 }
 
 /**
