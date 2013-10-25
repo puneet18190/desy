@@ -30,7 +30,7 @@
           <td id="create_admin_location_<%= SETTINGS['location_types'][i].downcase %>">
             <table class="create_admin_location_form" style="display:none">
               <tbody>
-                <form method="post" action="/admin/settings/locations/create" accept-charset="UTF-8">
+                <%= form_tag '/admin/settings/locations/create', :method => :post do %>
                   <%= hidden_field_tag 'type', SETTINGS['location_types'][i] %>
                   <% if i != 0 %>
                     <%= hidden_field_tag 'parent', @locations[i - 1][:selected] %>
@@ -46,7 +46,7 @@
                       <%= submit_tag 'create' %> <!-- TODO traduzz -->
                     </td>
                   </tr>
-                </form>
+                <% end %>
               </tbody>
             </table>
             <a class="create_admin_location" data-location-type="<%= SETTINGS['location_types'][i].downcase %>">Add <%= SETTINGS['location_types'][i].downcase %></a> <!-- TODO traduzz -->
