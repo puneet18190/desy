@@ -217,9 +217,7 @@ class Admin::SettingsController < AdminController
     @location.sti_type = params[:sti_type]
     @location.name = params[:name]
     @location.code = params[:code]
-    if settings[0] == @location.sti_type
-      @location.ancestry = '/'
-    else
+    if settings[0] != @location.sti_type
       parent_location = Location.find_by_id params[:parent]
       if !parent_location.nil?
         index = 0
