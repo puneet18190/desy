@@ -68,11 +68,19 @@ module Desy
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    # More than one language
+    config.more_than_one_language = SETTINGS['languages'].size > 1
+
+    # Prefix for temporary files and folders
+    config.tempfiles_prefix = ->() { "#{SETTINGS['application_name']}.#{Thread.current.object_id}" }
+
+    # Stylesheets configs
+    config.assets.stylesheets = ActiveSupport::OrderedOptions.new
+    config.assets.stylesheets.paths = ActiveSupport::OrderedOptions.new
+    # Assets urls declarations
+    config.assets.stylesheets.paths.urls = Rails.root.join 'app', 'assets', 'stylesheets', 'urls.scss.erb'
+
   end
-
-  MORE_THAN_ONE_LANGUAGE = SETTINGS['languages'].size > 1
-
-  # Prefix for temporary files and folders
-  TMP_PREFIX = ->() { "desy.#{Thread.current.object_id}" }
 
 end

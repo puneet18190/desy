@@ -242,7 +242,7 @@ class Image < MediaElement
       font_size = Media::Image::Editing.ratio_value img[:width], img[:height], t[:font_size]
       coord_x = Media::Image::Editing.ratio_value img[:width], img[:height], t[:coord_x]
       coord_y = Media::Image::Editing.ratio_value img[:width], img[:height], t[:coord_y]
-      tmp_file = Tempfile.new(Desy::TMP_PREFIX.call)
+      tmp_file = Tempfile.new(Rails.application.config.tempfiles_prefix.call)
       begin
         tmp_file.write(t[:text])
         tmp_file.close

@@ -18,7 +18,7 @@
 @import url(http://fonts.googleapis.com/css?family=Droid+Sans);
 
 <%# assets urls %>
-<%= Erubis::Eruby.new( File.read File.expand_path('../urls.scss.erb', __FILE__) ).result binding() %>
+<%= Erubis::Eruby.new( Rails.application.config.assets.stylesheets.paths.urls.read ).result binding() %>
 
 <% SETTINGS["colors"].each do |key, value| %>
   $<%= key %>:<%= value['code'] %>;
