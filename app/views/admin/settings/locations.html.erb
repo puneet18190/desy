@@ -27,7 +27,7 @@
     <tr>
       <% (0...(SETTINGS['location_types'].length)).to_a.each do |i| %>
         <td>
-          <%= link_to "Add #{SETTINGS['location_types'][i].downcase}", "settings/locations/#{SETTINGS['location_types'][i]}/create" %> <!-- TODO traduzz -->
+          <%= link_to "Add #{SETTINGS['location_types'][i].downcase}", "/admin/settings/locations/create?type=#{SETTINGS['location_types'][i]}", :method => :post  %> <!-- TODO traduzz -->
         </td>
       <% end %>
     </tr>
