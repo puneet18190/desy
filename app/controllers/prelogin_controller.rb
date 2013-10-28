@@ -13,6 +13,8 @@ class PreloginController < ApplicationController
   
   skip_before_filter :authenticate
   before_filter :redirect_to_dashboard_if_logged_in
+
+  layout 'prelogin'
     
   # === Description
   #
