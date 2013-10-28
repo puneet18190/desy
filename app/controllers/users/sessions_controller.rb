@@ -33,8 +33,8 @@ class Users::SessionsController < ApplicationController
         # 1: I check that the user exists
         user = User.active.confirmed.where(:email => params[:email]).first
         error = t('other_popup_messages.login.wrong_content')
-        # 2: I check that the user has a valid payment (only if saas)
-        if user && SETTINGS['saas_registration_mode']
+        # 2: I check that the user has a valid payment (only if saas, and if the user is not admin)
+        if user && SETTINGS['saas_registration_mode'] && !user.admin?
           now = Time.zone.now
           purchase = user.purchase
           if purchase
