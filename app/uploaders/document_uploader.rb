@@ -13,7 +13,7 @@ class DocumentUploader < CarrierWave::Uploader::Base
   storage :file
 
   STORE_DIR = env_relative_path "documents"
-  FOLDER    = Media::RAILS_PUBLIC_FOLDER.join(STORE_DIR).to_s
+  FOLDER    = Rails.public_pathname.join(STORE_DIR).to_s
   
   # Maximum allowed size for media elements folder; if exceeded, upload gets disabled
   MAXIMUM_FOLDER_SIZE = SETTINGS['maximum_documents_folder_size'].gigabytes.to_i
