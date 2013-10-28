@@ -75,17 +75,17 @@
       <% if SETTINGS['saas_registration_mode'] %>
         <li class="dropdown">
           <a href="/admin/purchases" class="dropdown-toggle first-level purchases <%= 'active' if controller_name == 'purchases' %>" data-toggle="dropdown">
-            <%= t('admin.menu.purchases.link') %> <!-- TODO traduzz -->
+            <%= t('admin.menu.purchases.link') %>
           </a>
           <ul class="dropdown-menu">
             <li>
               <a href="/admin/purchases">
-                LIST <!-- TODO traduzz -->
+                <%= t('admin.menu.purchases.list') %>
               </a>
             </li>
             <li>
               <a href="/admin/purchases/new">
-                CREATE <!-- TODO traduzz -->
+                <%= t('admin.menu.purchases.create') %>
               </a>
             </li>
           </ul>

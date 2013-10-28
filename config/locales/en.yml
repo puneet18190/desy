@@ -2669,6 +2669,16 @@ en:
         # Link to the subsection 'Edit and publication of uploaded elements'
         # 1 - views/admin/_header.html.erb
         publish: "Publish private elements"
+      purchases:
+        # Link to the section 'Purchases'
+        # 1 - views/admin/_header.html.erb
+        link: "Purchases"
+        # Link to the subsection 'List of purchases'
+        # 1 - views/admin/_header.html.erb
+        list: "List"
+        # Link to the subsection 'Create a purchase'
+        # 1 - views/admin/_header.html.erb
+        create: "Create"
       users:
         # Link to the section 'Users'
         # 1 - views/admin/_header.html.erb
@@ -2920,6 +2930,19 @@ en:
         # Button to start the search
         # 1 - views/admin/media_elements/index.html.erb
         submit: "Search"
+    
+    
+    
+    
+    # Section of purchases
+    purchases:
+      # Name used as label in the pagination (ex. '1-10 of 300 purchases')
+      # 1 - helpers/admin_helper.rb
+      name: "Purchases"
+    
+    
+    
+    
     # Captions of the contents of the search engine inside the 'Administration' section. The content depends on the selected subsection, and appears inside the corresponding frame (see admin.[section].search)
     search:
       # Section where the user filters by location

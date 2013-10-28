@@ -2669,6 +2669,16 @@ it:
         # Link to the subsection 'Edit and publication of uploaded elements'
         # 1 - views/admin/_header.html.erb
         publish: "Publica elementi privati"
+      purchases:
+        # Link to the section 'Purchases'
+        # 1 - views/admin/_header.html.erb
+        link: "Acquisti"
+        # Link to the subsection 'List of purchases'
+        # 1 - views/admin/_header.html.erb
+        list: "Lista"
+        # Link to the subsection 'Create a purchase'
+        # 1 - views/admin/_header.html.erb
+        create: "Crea nuovo"
       users:
         # Link to the section 'Users'
         # 1 - views/admin/_header.html.erb

@@ -18,8 +18,9 @@ module AdminHelper
           to = items.total_count
         end
       end
-      label = "admin.#{items.first.class.name.pluralize.downcase}.name" # TODO traduzz per purchases
+      label = "admin.#{items.first.class.name.pluralize.downcase}.name"
       label = 'admin.media_elements.name' if MediaElement::STI_TYPES.include?(items.first.class.name)
+      label = 'admin.purchases.name' if items.first.class == Purchase
       label = 'admin.settings.tags.name' if items.first.class == Tag
       label = 'admin.messages.reports.name' if items.first.class == Report
       return "#{from} - #{to} #{t('views.pagination.of_range')} #{items.total_count} #{t(label)}".downcase
