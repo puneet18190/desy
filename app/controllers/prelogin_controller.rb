@@ -13,9 +13,7 @@ class PreloginController < ApplicationController
   
   skip_before_filter :authenticate
   before_filter :redirect_to_dashboard_if_logged_in
-  
-  layout proc{ |controller| controller.action_name == 'home' ? 'home' : 'prelogin' }
-  
+    
   # === Description
   #
   # Home page of the application
