@@ -56,6 +56,11 @@
       <li class="dropdown">
         <a href="/admin/settings/subjects" class="dropdown-toggle first-level settings" data-toggle="dropdown"><%= t('admin.menu.settings.link') %></a>
       </li>
+      <% if SETTINGS['saas_registration_mode'] %>
+        <li class="dropdown">
+          <a href="/admin/purchases" class="dropdown-toggle first-level settings" data-toggle="dropdown"><%= t('admin.menu.purchases.link') %></a> <!-- TODO traduzz -->
+        </li>
+      <% end %>
     </ul>
   </div>
 </div>
