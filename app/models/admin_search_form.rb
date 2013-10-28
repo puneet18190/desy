@@ -50,6 +50,21 @@ class AdminSearchForm
       'users.surname %{ord}, users.name %{ord}',
       'documents.created_at %{ord}',
       'documents.updated_at %{ord}'
+    ],
+    :purchases => [
+      'id %{ord}',
+      'name %{ord}',
+      'responsible %{ord}',
+      'email %{ord}',
+      'ssn_code %{ord}',
+      'vat_code %{ord}',
+      'postal_code %{ord}',
+      'city %{ord}',
+      'country %{ord}',
+      'accounts_number %{ord}',
+      'release_date %{ord}',
+      'start_date %{ord}',
+      'expiration_date %{ord}'
     ]
   }
   
@@ -104,6 +119,10 @@ class AdminSearchForm
       end
     end
     resp
+  end
+  
+  def self.search_purchases(params)
+    Purchase.all
   end
   
   # === Description
