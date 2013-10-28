@@ -5,6 +5,7 @@ class CreateLocations < ActiveRecord::Migration
       t.string :name, null: false
       t.string :sti_type
       t.string :ancestry, index: true
+      t.string :code
       t.timestamps
     end
   end
