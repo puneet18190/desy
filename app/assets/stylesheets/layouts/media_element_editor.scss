@@ -236,7 +236,23 @@ html.media_element_editor-layout {
             }
             
           }
-          
+          .checkboxElement .regular-checkbox + label, .checkboxElement label {
+            background-color: #fff;
+            padding: 3px 9px;
+            border-radius: 3px;
+            height: 15px;
+            width: 4px;
+            box-shadow:none;
+          }
+          .checkboxElement .regular-checkbox:checked + label {
+            background-color: #cdcdce;
+            cursor: default;
+            
+          }
+          .checkboxElement .regular-checkbox:checked + label::after {
+            color: #41a62a;
+            padding: 2px 3px;
+          }
         }
         
       }

@@ -73,7 +73,7 @@ module Desy
     config.more_than_one_language = SETTINGS['languages'].size > 1
 
     # Prefix for temporary files and folders
-    config.tempfiles_prefix = ->() { p "#{SETTINGS['tempfiles_prefix']}.#{Thread.current.object_id}" }
+    config.tempfiles_prefix = ->() { "#{SETTINGS['tempfiles_prefix']}.#{Thread.current.object_id}" }
 
     # Stylesheets configs
     config.assets.stylesheets = ActiveSupport::OrderedOptions.new
