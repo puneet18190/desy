@@ -499,6 +499,7 @@ CREATE TABLE purchases (
     release_date timestamp without time zone NOT NULL,
     start_date timestamp without time zone NOT NULL,
     expiration_date timestamp without time zone NOT NULL,
+    token character varying(255) NOT NULL,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );

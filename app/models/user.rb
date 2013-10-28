@@ -50,6 +50,7 @@
 # * *correctness* of +email+ as an e-mail address
 # * *modifications* *not* *available* for +email+ if the user is not a new record
 # * *acceptance* of each policy configured in settings.yml
+# * *control* that accounts_number in purchase is less than users count associated to that Purchase (if purchase_id is not nil)
 #
 # == Callbacks
 #

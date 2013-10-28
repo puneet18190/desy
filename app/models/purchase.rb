@@ -21,6 +21,7 @@
 # * *start_date*: date of beginning of the validity of the purchase
 # * *expiration_date*: expiration date of the purchase
 # * *location_id*: location which must be forced to the users who benefit this purchase
+# * *token*: token used to associate a user subscription to this purchase
 #
 # == Associations
 #
@@ -37,10 +38,11 @@
 # * *correctness* of +email+ as an e-mail address
 # * *format* of dates +release_date+, +start_date+, +expiration_date+
 # * *presence* of at least one between +vat_code+ and +ssn_code+
+# * *modifications* *not* *available* for +accounts_number+, +token+
 #
 # == Callbacks
 #
-# None
+# 1. *before_create* creates a random encoded string and writes it in +token+
 #
 # == Database callbacks
 #
@@ -67,6 +69,7 @@ class Purchase < ActiveRecord::Base
   validate :validate_email, :validate_dates, :validate_associations, :validate_codes, :validate_impossible_changes
   
   before_validation :init_validation
+  before_create :create_token
   
   private
   
@@ -103,7 +106,14 @@ class Purchase < ActiveRecord::Base
   def validate_impossible_changes
     if @purchase
       errors.add(:accounts_number, :cant_be_changed) if @purchase.accounts_number != self.accounts_number
+      errors.add(:token, :cant_be_changed) if @purchase.token != self.token
     end
+  end
+  
+  # Callback that creates a random secure token and sets is as the +token+ of the purchase
+  def create_token
+    self.token = SecureRandom.urlsafe_base64(16)
+    true
   end
   
 end

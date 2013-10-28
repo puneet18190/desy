@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(:version => 20130709121200) do
     t.datetime "release_date",     :null => false
     t.datetime "start_date",       :null => false
     t.datetime "expiration_date",  :null => false
+    t.string   "token",            :null => false
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
     t.index ["location_id"], :name => "fk__purchases_location_id", :order => {"location_id" => :asc}

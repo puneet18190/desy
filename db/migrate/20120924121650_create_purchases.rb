@@ -19,6 +19,7 @@ class CreatePurchases < ActiveRecord::Migration
       t.datetime :release_date,     null: false
       t.datetime :start_date,       null: false
       t.datetime :expiration_date,  null: false
+      t.string   :token,            null: false
       t.timestamps
     end
   end
