@@ -94,7 +94,7 @@ class AdminSearchForm
     resp = resp.joins(:user)
     if params[:ordering].present?
       ord = ORDERINGS[:documents][params[:ordering].to_i]
-      ord = ORDERINGS[:lessons][0] if ord.nil?
+      ord = ORDERINGS[:documents][0] if ord.nil?
       if params[:desc] == 'true'
         ord = ord.gsub('%{ord}', 'DESC')
       else
@@ -121,8 +121,43 @@ class AdminSearchForm
     resp
   end
   
+  # === Description
+  #
+  # Search for purchases: used in Admin::PurchasesController
+  #
+  # === Args
+  #
+  # * *params*: url subparams, under the scope of the keyword 'search': the options are
+  #   * +id+: if present the methods filters by id
+  #   * +ssn_code+: if present the methods filters by ssn_code with an like on both sides
+  #   * +vat_code+: if present the methods filters by vat_code with an like on both sides
+  #   * +name+: if present the methods filters by name with an like on both sides
+  #   * +responsible+: if present the methods filters by responsible with an like on both sides
+  #   * +email+: if present the methods filters by email with an like on both sides
+  #
+  # === Returns
+  #
+  # An array, not paginated yet, of records of type Document
+  #
   def self.search_purchases(params)
-    Purchase.where('id > 0')
+    resp = Purchase
+    if params[:ordering].present?
+      ord = ORDERINGS[:purchases][params[:ordering].to_i]
+      ord = ORDERINGS[:purchases][0] if ord.nil?
+      if params[:desc] == 'true'
+        ord = ord.gsub('%{ord}', 'DESC')
+      else
+        ord = ord.gsub('%{ord}', 'ASC')
+      end
+      resp = resp.order(ord)
+    end
+    resp = resp.where(:id => params[:id]) if params[:id].present?
+    resp = resp.where('ssn_code ILIKE ?', "%#{params[:ssn_code]}%") if params[:ssn_code].present?
+    resp = resp.where('vat_code ILIKE ?', "%#{params[:vat_code]}%") if params[:vat_code].present?
+    resp = resp.where('name ILIKE ?', "%#{params[:name]}%") if params[:name].present?
+    resp = resp.where('responsible ILIKE ?', "%#{params[:responsible]}%") if params[:responsible].present?
+    resp = resp.where('email ILIKE ?', "%#{params[:email]}%") if params[:email].present?
+    resp
   end
   
   # === Description
