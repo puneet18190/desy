@@ -93,6 +93,11 @@ these search methods are not optimized and indicized.</p>
             
               
               <li>
+                <a href="#method-c-search_purchases">search_purchases</a>,
+              </li>
+            
+              
+              <li>
                 <a href="#method-c-search_tags">search_tags</a>,
               </li>
             
@@ -178,6 +183,21 @@ these search methods are not optimized and indicized.</p>
 &#x27;users.surname %{ord}, users.name %{ord}&#x27;,
 &#x27;documents.created_at %{ord}&#x27;,
 &#x27;documents.updated_at %{ord}&#x27;
+],
+:purchases =&gt; [
+&#x27;id %{ord}&#x27;,
+&#x27;name %{ord}&#x27;,
+&#x27;responsible %{ord}&#x27;,
+&#x27;email %{ord}&#x27;,
+&#x27;ssn_code %{ord}&#x27;,
+&#x27;vat_code %{ord}&#x27;,
+&#x27;postal_code %{ord}&#x27;,
+&#x27;city %{ord}&#x27;,
+&#x27;country %{ord}&#x27;,
+&#x27;accounts_number %{ord}&#x27;,
+&#x27;release_date %{ord}&#x27;,
+&#x27;start_date %{ord}&#x27;,
+&#x27;expiration_date %{ord}&#x27;
 ]
 }</td>
           </tr>
@@ -267,7 +287,7 @@ href="Document.html">Document</a></p>
                 
               </p>
               <div id="method-c-search_documents_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/admin_search_form.rb, line 77</span>
+                <pre><span class="ruby-comment"># File app/models/admin_search_form.rb, line 92</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">search_documents</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">resp</span> = <span class="ruby-constant">Document</span>.<span class="ruby-identifier">select</span>(<span class="ruby-string">&#39;documents.*, users.name AS users_name, users.surname AS users_surname&#39;</span>)
   <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">joins</span>(<span class="ruby-value">:user</span>)
@@ -374,7 +394,7 @@ href="Lesson.html">Lesson</a></p>
                 
               </p>
               <div id="method-c-search_lessons_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/admin_search_form.rb, line 131</span>
+                <pre><span class="ruby-comment"># File app/models/admin_search_form.rb, line 150</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">search_lessons</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">resp</span> = <span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">select</span>(<span class="ruby-string">&#39;lessons.*, (SELECT COUNT (*) FROM likes WHERE likes.lesson_id = lessons.id) AS likes_count&#39;</span>)
   <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">joins</span>(<span class="ruby-value">:user</span>)
@@ -492,7 +512,7 @@ href="MediaElement.html">MediaElement</a></p>
                 
               </p>
               <div id="method-c-search_media_elements_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/admin_search_form.rb, line 195</span>
+                <pre><span class="ruby-comment"># File app/models/admin_search_form.rb, line 214</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">search_media_elements</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">resp</span> = <span class="ruby-constant">MediaElement</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:converted</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:ordering</span>].<span class="ruby-identifier">present?</span>
@@ -605,7 +625,7 @@ href="User.html">User</a></p>
                 
               </p>
               <div id="method-c-search_notifications_users_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/admin_search_form.rb, line 358</span>
+                <pre><span class="ruby-comment"># File app/models/admin_search_form.rb, line 377</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">search_notifications_users</span>(<span class="ruby-identifier">params</span>, <span class="ruby-identifier">count_only</span>=<span class="ruby-keyword">false</span>)
   <span class="ruby-identifier">resp</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">scoped</span>
   <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:school_level_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:school_level_id</span>]) <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:school_level_id</span>].<span class="ruby-identifier">present?</span>
@@ -655,6 +675,41 @@ href="User.html">User</a></p>
       <span class="ruby-keyword">return</span> <span class="ruby-identifier">resp</span>
     <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-c-search_purchases">
+            
+              <b>search_purchases</b>(params)
+            
+            <a href="../classes/AdminSearchForm.html#method-c-search_purchases" name="method-c-search_purchases" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-search_purchases_source')" id="l_method-c-search_purchases_source">show</a>
+                
+              </p>
+              <div id="method-c-search_purchases_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/models/admin_search_form.rb, line 124</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">search_purchases</span>(<span class="ruby-identifier">params</span>)
+  <span class="ruby-constant">Purchase</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&#39;id &gt; 0&#39;</span>)
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -716,7 +771,7 @@ parameter is present it&#39;s turned to <code>DESC</code></p>
                 
               </p>
               <div id="method-c-search_tags_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/admin_search_form.rb, line 320</span>
+                <pre><span class="ruby-comment"># File app/models/admin_search_form.rb, line 339</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">search_tags</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">resp</span> = <span class="ruby-constant">Tag</span>.<span class="ruby-identifier">select</span>(<span class="ruby-string">&quot;id, word, created_at, (SELECT COUNT (*) FROM taggings WHERE taggings.tag_id = tags.id AND taggings.taggable_type = &#39;MediaElement&#39;) AS media_elements_count, (SELECT COUNT (*) FROM taggings WHERE taggings.tag_id = tags.id AND taggings.taggable_type = &#39;Lesson&#39;) AS lessons_count&quot;</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:ordering</span>].<span class="ruby-identifier">present?</span>
@@ -811,7 +866,7 @@ href="User.html">User</a>.</p>
                 
               </p>
               <div id="method-c-search_users_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/admin_search_form.rb, line 256</span>
+                <pre><span class="ruby-comment"># File app/models/admin_search_form.rb, line 275</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">search_users</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">resp</span> = <span class="ruby-constant">User</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:ordering</span>].<span class="ruby-identifier">present?</span>

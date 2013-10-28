@@ -23,7 +23,7 @@
         </h1>
         <ul class="files">
             <li>app/models/purchase.rb</li>
-            <li>Last modified: 2013-10-25 15:46:23 +0200</li>
+            <li>Last modified: 2013-10-28 15:57:31 +0100</li>
         </ul>
     </div>
 
@@ -76,6 +76,9 @@ purchase</p>
 </li><li>
 <p><strong>location_id</strong>: location which must be forced to the users
 who benefit this purchase</p>
+</li><li>
+<p><strong>token</strong>: token used to associate a user subscription to this
+purchase</p>
 </li></ul>
 
 <h2 id="label-Associations">Associations</h2>
@@ -117,11 +120,19 @@ false]</p>
 </li><li>
 <p><strong>presence</strong> of at least one between <code>vat_code</code> and
 <code>ssn_code</code></p>
+</li><li>
+<p><strong>modifications</strong> <strong>not</strong>
+<strong>available</strong> for <code>accounts_number</code>,
+<code>token</code></p>
+</li><li>
+<p><strong>uniqueness</strong> ok <code>token</code></p>
 </li></ul>
 
 <h2 id="label-Callbacks">Callbacks</h2>
-
-<p>None</p>
+<ol><li>
+<p><strong>before_create</strong> creates a random encoded string and writes
+it in <code>token</code></p>
+</li></ol>
 
 <h2 id="label-Database+callbacks">Database callbacks</h2>
 

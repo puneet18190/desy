@@ -119,7 +119,6 @@
             <td class="attr-value">(PEPPER_PATH.exist? and PEPPER_PATH.read.chomp) or (
 warn &quot;The file #{PEPPER_PATH} does not exists or is empty.&quot;
 warn &quot;Generating a new pepper and writing to #{PEPPER_PATH}; this will invalidate the previous user passwords.&quot;
-
 require &#x27;securerandom&#x27;
 SecureRandom.hex(64).tap{ |token| PEPPER_PATH.open(&#x27;w&#x27;){ |io| io.write token } }
 )</td>
@@ -184,11 +183,10 @@ as <code>after_save</code></p>
                 
               </p>
               <div id="method-c-included_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/autoload/user/authentication.rb, line 78</span>
+                <pre><span class="ruby-comment"># File lib/autoload/user/authentication.rb, line 66</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">included</span>(<span class="ruby-identifier">receiver</span>)
   <span class="ruby-identifier">receiver</span>.<span class="ruby-identifier">extend</span>         <span class="ruby-constant">ClassMethods</span>
   <span class="ruby-identifier">receiver</span>.<span class="ruby-identifier">send</span> <span class="ruby-value">:include</span>, <span class="ruby-constant">InstanceMethods</span>
-
   <span class="ruby-identifier">receiver</span>.<span class="ruby-identifier">instance_eval</span> <span class="ruby-keyword">do</span>
     <span class="ruby-identifier">before_save</span> <span class="ruby-value">:encrypt_password</span>
     <span class="ruby-identifier">after_save</span>  <span class="ruby-value">:clear_password_and_password_confirmation</span>

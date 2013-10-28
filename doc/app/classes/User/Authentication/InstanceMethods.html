@@ -135,7 +135,7 @@ attributes</p>
                 
               </p>
               <div id="method-i-clear_password_and_password_confirmation_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/autoload/user/authentication.rb, line 71</span>
+                <pre><span class="ruby-comment"># File lib/autoload/user/authentication.rb, line 59</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">clear_password_and_password_confirmation</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">password</span> = <span class="ruby-keyword">nil</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">password_confirmation</span> = <span class="ruby-keyword">nil</span>
@@ -171,7 +171,7 @@ attributes</p>
                 
               </p>
               <div id="method-i-encrypt_password_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/autoload/user/authentication.rb, line 52</span>
+                <pre><span class="ruby-comment"># File lib/autoload/user/authentication.rb, line 40</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">encrypt_password</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">password</span> <span class="ruby-keyword">and</span> <span class="ruby-operator">!</span><span class="ruby-identifier">password</span>.<span class="ruby-identifier">empty?</span>
     <span class="ruby-keyword">self</span>.<span class="ruby-identifier">encrypted_password</span> = <span class="ruby-constant">BCrypt</span><span class="ruby-operator">::</span><span class="ruby-constant">Password</span>.<span class="ruby-identifier">create</span>(<span class="ruby-node">&quot;#{password}#{PEPPER}&quot;</span>, <span class="ruby-identifier">cost</span><span class="ruby-operator">:</span> <span class="ruby-constant">COST</span>).<span class="ruby-identifier">to_s</span>
@@ -213,7 +213,7 @@ attributes</p>
                 
               </p>
               <div id="method-i-valid_password-3F_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/autoload/user/authentication.rb, line 64</span>
+                <pre><span class="ruby-comment"># File lib/autoload/user/authentication.rb, line 52</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">valid_password?</span>(<span class="ruby-identifier">password</span>)
   <span class="ruby-identifier">bcrypt</span> = <span class="ruby-constant">BCrypt</span><span class="ruby-operator">::</span><span class="ruby-constant">Password</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">encrypted_password</span>)
   <span class="ruby-identifier">password</span> = <span class="ruby-constant">BCrypt</span><span class="ruby-operator">::</span><span class="ruby-constant">Engine</span>.<span class="ruby-identifier">hash_secret</span>(<span class="ruby-node">&quot;#{password}#{PEPPER}&quot;</span>, <span class="ruby-identifier">bcrypt</span>.<span class="ruby-identifier">salt</span>)
