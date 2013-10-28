@@ -511,6 +511,18 @@
       
     }
     
+    &.purchases {
+      
+      background-position: -595px 0;
+      
+      &:hover, &.active {
+        
+        background-position: -595px -85px;
+        
+      }
+      
+    }
+    
     &.settings {
       
       background-position: -425px 0;
