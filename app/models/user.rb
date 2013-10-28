@@ -125,6 +125,7 @@ class User < ActiveRecord::Base
   validates_inclusion_of :active, :confirmed, :in => [true, false]
   validate :validate_associations, :validate_email
   validate :validate_email_not_changed, :on => :update
+  validate :validate_accounts_number_for_purchase
   REGISTRATION_POLICIES.each do |policy|
     validates_acceptance_of policy, on: :create, allow_nil: false
   end
@@ -1480,6 +1481,15 @@ class User < ActiveRecord::Base
     @user = Valid.get_association self, :id
     @school_level = Valid.get_association self, :school_level_id
     @purchase = Valid.get_association self, :purchase_id
+  end
+  
+  # Validates that there are not too many users associated to the same purchase
+  def validate_accounts_number_for_purchase
+    if @user
+      errors.add(:purchase_id, :too_many_users_for_purchase) if @purchase && self.purchase_id != @user.purchase_id && @purchase.accounts_number == User.where(:purchase_id => self.purchase_id).count
+    else
+      errors.add(:purchase_id, :too_many_users_for_purchase) if @purchase && @purchase.accounts_number == User.where(:purchase_id => self.purchase_id).count
+    end
   end
   
   # Validates the presence of all the associated objects

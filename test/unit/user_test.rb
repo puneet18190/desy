@@ -79,4 +79,17 @@ class UserTest < ActiveSupport::TestCase
     assert_nothing_raised {@user.purchase}
   end
   
+  test 'purchases' do
+    User.where(:id => [1, 2]).update_all(:purchase_id => 1)
+    Purchase.where(:id => 1).update_all(:accounts_number => 2)
+    assert_equal 2, User.count
+    assert_invalid @user, :purchase_id, 1, nil, :too_many_users_for_purchase
+    assert_obj_saved @user
+    assert_equal 3, User.count
+    assert_invalid @user, :purchase_id, 1, nil, :too_many_users_for_purchase
+    User.where(:id => 1).update_all(:purchase_id => nil)
+    @user.purchase_id = 1
+    assert_obj_saved @user
+  end
+  
 end
