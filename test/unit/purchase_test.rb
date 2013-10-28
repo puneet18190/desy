@@ -73,8 +73,25 @@ class PurchaseTest < ActiveSupport::TestCase
     assert @purchase.valid?, "Purchase not valid: #{@purchase.errors.inspect}"
   end
   
+  test 'token_creation' do
+    assert_nil @purchase.token
+    assert @purchase.save
+    assert_not_nil @purchase.token
+    assert @purchase.token.length > 16
+    old_token = @purchase.token
+    @purchase.title = 'bah'
+    assert @purchase.save
+    @purchase = purchase.find @purchase.id
+    assert_equal old_token, @purchase.token
+  end
+  
   test 'impossible_changes' do
     assert_obj_saved @purchase
+    old_token = @purchase.token
+    last_char = old_token.split(old_token.chop)[1]
+    different_token = last_char == 'a' ? "#{old_token.chop}b" : "#{old_token.chop}a"
+    assert different_token != old_token
+    assert_invalid @purchase, :token, different_token, old_token, :cant_be_changed
     assert_invalid @purchase, :accounts_number, 2, 100, :cant_be_changed
     assert_obj_saved @purchase
   end
