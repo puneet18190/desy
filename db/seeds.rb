@@ -29,7 +29,7 @@ class Seeds
   end
   
   # List of models to seed
-  MODELS = [ Location, SchoolLevel, Subject, User, Document, MediaElement, Lesson, Slide, MediaElementsSlide, Like, Bookmark, Purchase ]
+  MODELS = [ Location, SchoolLevel, Subject, Purchase, User, Document, MediaElement, Lesson, Slide, MediaElementsSlide, Like, Bookmark ]
   
   def run
     puts "Applying #{Rails.env} seeds (#{MODELS.map{ |m| humanize_table_name(m.table_name) }.join(', ')})"

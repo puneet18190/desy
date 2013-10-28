@@ -79,9 +79,9 @@
           <td><%= link_to purchase.location.name, "/admin/locations?selected=#{purchase.location_id}" %></td>
           <td><%= "#{purchase.users.count} / #{purchase.accounts_number}" %></td>
           <td><%= purchase.includes_invoice.to_s %></td>
-          <td><%= seconds_to_time purchase.release_date %></td>
-          <td><%= seconds_to_time purchase.start_date %></td>
-          <td><%= seconds_to_time purchase.expiration_date %></td>
+          <td><%= TimeConvert.to_string purchase.release_date %></td>
+          <td><%= TimeConvert.to_string purchase.start_date %></td>
+          <td><%= TimeConvert.to_string purchase.expiration_date %></td>
           <td>
             <!-- TODO view links -->
           </td>

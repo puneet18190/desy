@@ -1,5 +1,5 @@
 id,name,responsible,phone_number,fax,email,ssn_code,vat_code,address,postal_code,city,country,location_id,accounts_number,includes_invoice,release_date,start_date,expiration_date,token
 1,"Scuola degli arbitri","Luciano Moggi",111222,06/9988776,lucianone@moggi.com,safdsfdsf,fdsgfdsg3,"via Napoli 1",00100,Roma,Italia,105,3,true,2012-01-01 10:00:00,2012-01-01 11:00:00,2015-01-01 10:00:00,"IXtqV_KFAf6jiiBC8PjcxA"
-2,"Scuola dei designatori",Nicchi,06/7803456,06/9988776,lucian1@moggi.com,safdsfdsf,fdsgfdsg3,"via Napoli 1",00100,Roma,Italia,105,3,true,2012-01-01 10:00:00,2012-01-01 11:00:00,2015-01-01 10:00:00,"IXxqV_K1Af6jiiBC8PjcxA"
-3,"Scuola dei camorristi",Bettega,5654654,06/9988776,lucian0ne@moggi.com,safdsfdsf,fdsgfdsg3,"via Napoli 1",00100,Roma,Italia,105,3,true,2012-01-01 10:00:00,2012-01-01 11:00:00,2015-01-01 10:00:00,"IXxqV_KFAf6jiiBC8PjcxA"
-4,Visconti,Franco Carraro,7658658,06/9988776,lucianone@mogi.com,safdsfdsf,fdsgfdsg3,"via Napoli 1",100,Roma,Italia,105,3,true,2012-01-01 10:00:00,2012-01-01 11:00:00,2015-01-01 10:00:00,"IXxqV_KF2f6jiiBC8PjcxA"
+2,"Scuola dei designatori",Nicchi,06/7803456,06/9988776,lucian1@moggi.com,safdsfdsf,fdsgfdsg3,"via Napoli 1",00100,Roma,Italia,39,3,true,2012-01-01 10:00:00,2012-01-01 11:00:00,2015-01-01 10:00:00,"IXxqV_K1Af6jiiBC8PjcxA"
+3,"Scuola dei camorristi",Bettega,5654654,06/9988776,lucian0ne@moggi.com,safdsfdsf,fdsgfdsg3,"via Napoli 1",00100,Roma,Italia,33,3,true,2012-01-01 10:00:00,2012-01-01 11:00:00,2015-01-01 10:00:00,"IXxqV_KFAf6jiiBC8PjcxA"
+4,Visconti,Franco Carraro,7658658,06/9988776,lucianone@mogi.com,safdsfdsf,fdsgfdsg3,"via Napoli 1",100,Roma,Italia,,3,true,2012-01-01 10:00:00,2012-01-01 11:00:00,2015-01-01 10:00:00,"IXxqV_KF2f6jiiBC8PjcxA"
