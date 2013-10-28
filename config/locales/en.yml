@@ -2930,10 +2930,6 @@ en:
         # Button to start the search
         # 1 - views/admin/media_elements/index.html.erb
         submit: "Search"
-    
-    
-    
-    
     # Section of purchases
     purchases:
       # Name used as label in the pagination (ex. '1-10 of 300 purchases')
@@ -2947,10 +2943,6 @@ en:
         # Button to start the search
         # 1 - views/admin/purchases/index.html.erb
         submit: "Search"
-    
-    
-    
-    
     # Captions of the contents of the search engine inside the 'Administration' section. The content depends on the selected subsection, and appears inside the corresponding frame (see admin.[section].search)
     search:
       # Section where the user filters by location

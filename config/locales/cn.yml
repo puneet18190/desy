@@ -2930,6 +2930,19 @@ cn:
         # Button to start the search
         # 1 - views/admin/media_elements/index.html.erb
         submit: "查找"
+    # Section of purchases
+    purchases:
+      # Name used as label in the pagination (ex. '1-10 of 300 purchases')
+      # 1 - helpers/admin_helper.rb
+      name: "Purchases" # TODO
+      # Frame for the purchases search engine
+      search:
+        # Title of the frame
+        # 1 - views/admin/purchases/index.html.erb
+        label: "Search purchases" # TODO
+        # Button to start the search
+        # 1 - views/admin/purchases/index.html.erb
+        submit: "查找"
     # Captions of the contents of the search engine inside the 'Administration' section. The content depends on the selected subsection, and appears inside the corresponding frame (see admin.[section].search)
     search:
       # Section where the user filters by location
