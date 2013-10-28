@@ -136,9 +136,11 @@ class User < ActiveRecord::Base
   scope :active,        where(active: true)
   
   scope :authenticable, Proc.new {
+    now = Time.zone.now
+    expiring_days = SETTINGS['saas_trial_duration'] * 60 * 60 * 24
     user = active.confirmed
     if SETTINGS['saas_registration_mode']
-      user = user# TODO
+      user = user.where('EXISTS (SELECT * FROM purchases WHERE purchases.id = users.purchase_id AND purchases.expiration_date > ?) OR created_at < :date', now, (now - expiring_days))
     end
     user
   }
