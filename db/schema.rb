@@ -11,15 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131023145739) do
+ActiveRecord::Schema.define(:version => 20130709121200) do
 
   create_table "locations", :force => true do |t|
     t.string   "name",       :null => false
     t.string   "sti_type"
     t.string   "ancestry"
+    t.string   "code"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.string   "code"
     t.index ["ancestry"], :name => "index_locations_on_ancestry", :order => {"ancestry" => :asc}
   end
 
@@ -65,9 +65,9 @@ ActiveRecord::Schema.define(:version => 20131023145739) do
     t.string   "confirmation_token"
     t.text     "metadata"
     t.string   "password_token"
+    t.integer  "purchase_id"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
-    t.integer  "purchase_id"
     t.index ["location_id"], :name => "fk__users_location_id", :order => {"location_id" => :asc}
     t.index ["purchase_id"], :name => "fk__users_purchase_id", :order => {"purchase_id" => :asc}
     t.index ["school_level_id"], :name => "fk__users_school_level_id", :order => {"school_level_id" => :asc}

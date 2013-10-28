@@ -279,9 +279,9 @@ CREATE TABLE locations (
     name character varying(255) NOT NULL,
     sti_type character varying(255),
     ancestry character varying(255),
+    code character varying(255),
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    code character varying(255)
+    updated_at timestamp without time zone NOT NULL
 );
 
 
@@ -777,9 +777,9 @@ CREATE TABLE users (
     confirmation_token character varying(255),
     metadata text,
     password_token character varying(255),
+    purchase_id integer,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    purchase_id integer
+    updated_at timestamp without time zone NOT NULL
 );
 
 
@@ -1736,6 +1736,8 @@ INSERT INTO schema_migrations (version) VALUES ('20120924121212');
 
 INSERT INTO schema_migrations (version) VALUES ('20120924121636');
 
+INSERT INTO schema_migrations (version) VALUES ('20120924121650');
+
 INSERT INTO schema_migrations (version) VALUES ('20120924121714');
 
 INSERT INTO schema_migrations (version) VALUES ('20120924121814');
@@ -1777,7 +1779,3 @@ INSERT INTO schema_migrations (version) VALUES ('20130131094635');
 INSERT INTO schema_migrations (version) VALUES ('20130709101814');
 
 INSERT INTO schema_migrations (version) VALUES ('20130709121200');
-
-INSERT INTO schema_migrations (version) VALUES ('20131023143716');
-
-INSERT INTO schema_migrations (version) VALUES ('20131023145739');
