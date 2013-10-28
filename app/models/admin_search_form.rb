@@ -122,7 +122,7 @@ class AdminSearchForm
   end
   
   def self.search_purchases(params)
-    Purchase.all
+    Purchase.where('id > 0')
   end
   
   # === Description

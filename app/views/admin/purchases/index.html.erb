@@ -10,13 +10,46 @@
   </div>
   <div class="row-fluid">
     <div class="span4">
-      <%= render :partial => 'admin/search/purchases_general', :locals => {:params => params[:search]} %>
-    </div>  
-    <div class="span4">
-      <%= render :partial => 'admin/search/date', :locals => {:params => params[:search]} %>
+      <div class="control-group">
+        <label for="id">ID</label> <!-- TODO traduzz -->
+        <div class="controls">
+          <%= text_field_tag 'search[id]', params[:search] ? params[:search][:id] : '', :class => 'input-small', :placeholder => 'id' %> <!-- TODO traduzz stesso di sopra -->
+        </div>
+      </div>
+      <div class="control-group">
+        <label>ssn code</label> <!-- TODO traduzz -->
+        <div class="controls">
+          <%= text_field_tag 'search[title]', params[:search] ? params[:search][:title] : '', :class => 'input-medium', :placeholder => 'ssn code' %> <!-- TODO traduzz -->
+        </div>
+      </div>
     </div>
     <div class="span4">
-      <%= render :partial => 'admin/search/location', :locals => {:locations => @locations, :params => params[:search]} %>
+      <div class="control-group">
+        <label>vat code</label> <!-- TODO traduzz -->
+        <div class="controls">
+          <%= text_field_tag 'search[title]', params[:search] ? params[:search][:title] : '', :class => 'input-medium', :placeholder => 'vat code' %> <!-- TODO traduzz -->
+        </div>
+      </div>
+      <div class="control-group">
+        <label>name</label> <!-- TODO traduzz -->
+        <div class="controls">
+          <%= text_field_tag 'search[title]', params[:search] ? params[:search][:title] : '', :class => 'input-medium', :placeholder => 'name' %> <!-- TODO traduzz -->
+        </div>
+      </div>
+    </div>
+    <div class="span4">
+      <div class="control-group">
+        <label>responsible</label> <!-- TODO traduzz -->
+        <div class="controls">
+          <%= text_field_tag 'search[title]', params[:search] ? params[:search][:title] : '', :class => 'input-medium', :placeholder => 'responsible' %> <!-- TODO traduzz -->
+        </div>
+      </div>
+      <div class="control-group">
+        <label>email</label> <!-- TODO traduzz -->
+        <div class="controls">
+          <%= text_field_tag 'search[title]', params[:search] ? params[:search][:title] : '', :class => 'input-medium', :placeholder => 'email' %> <!-- TODO traduzz -->
+        </div>
+      </div>
     </div>
   </div>
   <div class="row-fluid">
