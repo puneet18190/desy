@@ -95,4 +95,11 @@ class PurchaseTest < ActiveSupport::TestCase
     assert_obj_saved @purchase
   end
   
+  test 'uniqueness' do
+    assert_obj_saved @purchase
+    old_token = @purchase.token
+    assert_invalid @purchase, :token, 'qwertyuiopqwertyuiop', old_token, :taken
+    assert_obj_saved @purchase
+  end
+  
 end

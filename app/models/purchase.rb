@@ -39,6 +39,7 @@
 # * *format* of dates +release_date+, +start_date+, +expiration_date+
 # * *presence* of at least one between +vat_code+ and +ssn_code+
 # * *modifications* *not* *available* for +accounts_number+, +token+
+# * *uniqueness* ok +token+
 #
 # == Callbacks
 #
@@ -63,6 +64,7 @@ class Purchase < ActiveRecord::Base
   validates_presence_of :name, :responsible, :email, :accounts_number, :release_date, :start_date, :expiration_date
   validates_numericality_of :accounts_number, :greater_than => 0, :only_integer => true
   validates_numericality_of :location_id, :greater_than => 0, :only_integer => true, :allow_nil => true
+  validates_uniqueness_of :token
   validates_length_of :name, :responsible, :phone_number, :fax, :email, :ssn_code, :vat_code, :address, :postal_code, :city, :country, :maximum => 255
   validates_inclusion_of :includes_invoice, :in => [true, false]
   
@@ -112,7 +114,11 @@ class Purchase < ActiveRecord::Base
   
   # Callback that creates a random secure token and sets is as the +token+ of the purchase
   def create_token
-    self.token = SecureRandom.urlsafe_base64(16)
+    my_token = SecureRandom.urlsafe_base64(16)
+    while Purchase.where(:token => my_token).any?
+      my_token = SecureRandom.urlsafe_base64(16)
+    end
+    self.token = my_token
     true
   end
   
