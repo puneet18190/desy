@@ -79,9 +79,8 @@ class PurchaseTest < ActiveSupport::TestCase
     assert_not_nil @purchase.token
     assert @purchase.token.length > 16
     old_token = @purchase.token
-    @purchase.title = 'bah'
     assert @purchase.save
-    @purchase = purchase.find @purchase.id
+    @purchase = Purchase.find @purchase.id
     assert_equal old_token, @purchase.token
   end
   
