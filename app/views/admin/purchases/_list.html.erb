@@ -1,0 +1,99 @@
+<% if purchases.length > 0 %>
+  <table id="purchases-list" class="table table-striped table-hover table-bordered table-rounded">
+    <thead>
+      <tr>
+        <th>
+          <%= render :partial => 'admin/ordering', :locals => {:name => 'id', :ordering => 0} %> <!-- TODO traduzz -->
+        </th>
+        <th>
+          <%= render :partial => 'admin/ordering', :locals => {:name => 'name', :ordering => 1} %> <!-- TODO traduzz -->
+        </th>
+        <th>
+          <%= render :partial => 'admin/ordering', :locals => {:name => 'responsible', :ordering => 2} %> <!-- TODO traduzz -->
+        </th>
+        <th>
+          <%= render :partial => 'admin/ordering', :locals => {:name => 'phone_number', :ordering => nil} %> <!-- TODO traduzz -->
+        </th>
+        <th>
+          <%= render :partial => 'admin/ordering', :locals => {:name => 'fax', :ordering => nil} %> <!-- TODO traduzz -->
+        </th>
+        <th>
+          <%= render :partial => 'admin/ordering', :locals => {:name => 'email', :ordering => 3} %> <!-- TODO traduzz -->
+        </th>
+        <th>
+          <%= render :partial => 'admin/ordering', :locals => {:name => 'ssn_code', :ordering => 4} %> <!-- TODO traduzz -->
+        </th>
+        <th>
+          <%= render :partial => 'admin/ordering', :locals => {:name => 'vat_code', :ordering => 5} %> <!-- TODO traduzz -->
+        </th>
+        <th>
+          <%= render :partial => 'admin/ordering', :locals => {:name => 'address', :ordering => nil} %> <!-- TODO traduzz -->
+        </th>
+        <th>
+          <%= render :partial => 'admin/ordering', :locals => {:name => 'postal_code', :ordering => 6} %> <!-- TODO traduzz -->
+        </th>
+        <th>
+          <%= render :partial => 'admin/ordering', :locals => {:name => 'city', :ordering => 7} %> <!-- TODO traduzz -->
+        </th>
+        <th>
+          <%= render :partial => 'admin/ordering', :locals => {:name => 'country', :ordering => 8} %> <!-- TODO traduzz -->
+        </th>
+        <th>
+          <%= render :partial => 'admin/ordering', :locals => {:name => 'location_id', :ordering => nil} %> <!-- TODO traduzz -->
+        </th>
+        <th>
+          <%= render :partial => 'admin/ordering', :locals => {:name => 'accounts_number', :ordering => 9} %> <!-- TODO traduzz -->
+        </th>
+        <th>
+          <%= render :partial => 'admin/ordering', :locals => {:name => 'includes_invoice', :ordering => nil} %> <!-- TODO traduzz -->
+        </th>
+        <th>
+          <%= render :partial => 'admin/ordering', :locals => {:name => 'release_date', :ordering => 10} %> <!-- TODO traduzz -->
+        </th>
+        <th>
+          <%= render :partial => 'admin/ordering', :locals => {:name => 'start_date', :ordering => 11} %> <!-- TODO traduzz -->
+        </th>
+        <th>
+          <%= render :partial => 'admin/ordering', :locals => {:name => 'expiration_date', :ordering => 12} %> <!-- TODO traduzz -->
+        </th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <a name="list-anchor"></a>
+      <% purchases.each do |purchase| %>
+        <tr class="collapse" id="<%= purchase.id %>">
+          <td><%= purchase.id %></td>
+          <td><%= purchase.name %></td>
+          <td><%= purchase.responsible %></td>
+          <td><%= purchase.phone_number %></td>
+          <td><%= purchase.fax %></td>
+          <td><%= purchase.email %></td>
+          <td><%= purchase.ssn_code %></td>
+          <td><%= purchase.vat_code %></td>
+          <td><%= purchase.address %></td>
+          <td><%= purchase.postal_code %></td>
+          <td><%= purchase.city %></td>
+          <td><%= purchase.country %></td>
+          <td><%= link_to purchase.location.name, "/admin/locations?selected=#{purchase.location_id}" %></td>
+          <td><%= purchase.accounts_number %></td>
+          <td><%= purchase.includes_invoice.to_s %></td>
+          <td><%= seconds_to_time purchase.release_date %></td>
+          <td><%= seconds_to_time purchase.start_date %></td>
+          <td><%= seconds_to_time purchase.expiration_date %></td>
+          <td>
+            <!-- TODO view links -->
+          </td>
+          <td>
+            <!-- TODO view links -->
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div class="widget">
+    THERE ARE NO PURCHASES! AHIAHIAHI <!-- TODO traduzz -->
+  </div>
+<% end %>
