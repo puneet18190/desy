@@ -73,4 +73,10 @@ class PurchaseTest < ActiveSupport::TestCase
     assert @purchase.valid?, "Purchase not valid: #{@purchase.errors.inspect}"
   end
   
+  test 'impossible_changes' do
+    assert_obj_saved @purchase
+    assert_invalid @purchase, :accounts_number, 2, 10, :cant_be_changed
+    assert_obj_saved @purchase
+  end
+  
 end

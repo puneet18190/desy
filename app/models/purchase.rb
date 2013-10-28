@@ -64,7 +64,7 @@ class Purchase < ActiveRecord::Base
   validates_length_of :name, :responsible, :phone_number, :fax, :email, :ssn_code, :vat_code, :address, :postal_code, :city, :country, :maximum => 255
   validates_inclusion_of :includes_invoice, :in => [true, false]
   
-  validate :validate_email, :validate_dates, :validate_associations, :validate_codes
+  validate :validate_email, :validate_dates, :validate_associations, :validate_codes, :validate_impossible_changes
   
   before_validation :init_validation
   
@@ -97,6 +97,13 @@ class Purchase < ActiveRecord::Base
     errors.add(:release_date, :is_not_a_date) if !self.release_date.kind_of?(Time)
     errors.add(:start_date, :is_not_a_date) if !self.start_date.kind_of?(Time)
     errors.add(:expiration_date, :is_not_a_date) if !self.expiration_date.kind_of?(Time)
+  end
+  
+  # Validates that if the purchase is not new record the field +accounts_number+ cannot be changed
+  def validate_impossible_changes
+    if @lesson
+      errors.add(:accounts_number, :cant_be_changed) if @lesson.accounts_number != self.accounts_number
+    end
   end
   
 end
