@@ -247,6 +247,7 @@ class User < ActiveRecord::Base
   # Boolean
   #
   def trial?
+    return false if self.admin?
     SETTINGS['saas_registration_mode'] && self.purchase_id.nil?
   end
   
