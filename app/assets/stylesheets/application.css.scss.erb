@@ -20,7 +20,7 @@
 <%# assets urls %>
 <%= Erubis::Eruby.new( Rails.application.config.assets.stylesheets.paths.urls.read ).result binding() %>
 
-<% SETTINGS["colors"].each do |key, value| %>
+<% SETTINGS['colors'].each do |key, value| %>
   $<%= key %>:<%= value['code'] %>;
   .color_<%= key %>{
     color: <%= value['code'] %>;
