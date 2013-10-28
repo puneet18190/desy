@@ -1,4 +1,4 @@
-<h4>Purchases</h4> <!-- TODO traduzz -->
+<h4><%= t('admin.purchases.search.label') %></h4>
 <%= form_tag 'purchases', :method => :get, :id => 'admin-search-purchases', :class => 'search-form' do %>
   <%= hidden_field_tag 'search[search_type]', 'purchases' %>
   <%= hidden_field_tag 'search[ordering]', '' %>
@@ -6,43 +6,43 @@
   <div class="row-fluid">
     <div class="span4">
       <div class="control-group">
-        <label for="id">ID</label> <!-- TODO traduzz -->
+        <label for="id"><%= t('admin.search.purchases.fields.id') %></label>
         <div class="controls">
-          <%= text_field_tag 'search[id]', params[:search] ? params[:search][:id] : '', :class => 'input-small', :placeholder => 'id' %> <!-- TODO traduzz stesso di sopra -->
+          <%= text_field_tag 'search[id]', params[:search] ? params[:search][:id] : '', :class => 'input-small', :placeholder => t('admin.search.purchases.fields.id') %>
         </div>
       </div>
       <div class="control-group">
-        <label>ssn code</label> <!-- TODO traduzz -->
+        <label><%= t('admin.search.purchases.fields.ssn_code') %></label>
         <div class="controls">
-          <%= text_field_tag 'search[ssn_code]', params[:search] ? params[:search][:ssn_code] : '', :class => 'input-medium', :placeholder => 'ssn code' %> <!-- TODO traduzz -->
-        </div>
-      </div>
-    </div>
-    <div class="span4">
-      <div class="control-group">
-        <label>vat code</label> <!-- TODO traduzz -->
-        <div class="controls">
-          <%= text_field_tag 'search[vat_code]', params[:search] ? params[:search][:vat_code] : '', :class => 'input-medium', :placeholder => 'vat code' %> <!-- TODO traduzz -->
-        </div>
-      </div>
-      <div class="control-group">
-        <label>name</label> <!-- TODO traduzz -->
-        <div class="controls">
-          <%= text_field_tag 'search[name]', params[:search] ? params[:search][:name] : '', :class => 'input-medium', :placeholder => 'name' %> <!-- TODO traduzz -->
+          <%= text_field_tag 'search[ssn_code]', params[:search] ? params[:search][:ssn_code] : '', :class => 'input-medium', :placeholder => t('admin.search.purchases.fields.ssn_code') %>
         </div>
       </div>
     </div>
     <div class="span4">
       <div class="control-group">
-        <label>responsible</label> <!-- TODO traduzz -->
+        <label><%= t('admin.search.purchases.fields.vat_code') %></label>
         <div class="controls">
-          <%= text_field_tag 'search[responsible]', params[:search] ? params[:search][:responsible] : '', :class => 'input-medium', :placeholder => 'responsible' %> <!-- TODO traduzz -->
+          <%= text_field_tag 'search[vat_code]', params[:search] ? params[:search][:vat_code] : '', :class => 'input-medium', :placeholder => t('admin.search.purchases.fields.vat_code') %>
         </div>
       </div>
       <div class="control-group">
-        <label>email</label> <!-- TODO traduzz -->
+        <label><%= t('admin.search.purchases.fields.name') %></label>
         <div class="controls">
-          <%= text_field_tag 'search[email]', params[:search] ? params[:search][:email] : '', :class => 'input-medium', :placeholder => 'email' %> <!-- TODO traduzz -->
+          <%= text_field_tag 'search[name]', params[:search] ? params[:search][:name] : '', :class => 'input-medium', :placeholder => t('admin.search.purchases.fields.name') %>
+        </div>
+      </div>
+    </div>
+    <div class="span4">
+      <div class="control-group">
+        <label><%= t('admin.search.purchases.fields.responsible') %></label>
+        <div class="controls">
+          <%= text_field_tag 'search[responsible]', params[:search] ? params[:search][:responsible] : '', :class => 'input-medium', :placeholder => t('admin.search.purchases.fields.responsible') %>
+        </div>
+      </div>
+      <div class="control-group">
+        <label><%= t('admin.search.purchases.fields.email') %></label>
+        <div class="controls">
+          <%= text_field_tag 'search[email]', params[:search] ? params[:search][:email] : '', :class => 'input-medium', :placeholder => t('admin.search.purchases.fields.email') %>
         </div>
       </div>
     </div>
@@ -50,7 +50,7 @@
   <div class="row-fluid">
     <div class="span12">
       <div class="form-actions">
-        <button type="submit" class="btn btn-block btn-info">CERCA PURCHASES</button> <!-- TODO traduzz -->
+        <button type="submit" class="btn btn-block btn-info"><%= t('admin.purchases.search.submit').upcase %></button>
       </div>
     </div>
   </div>

@@ -2922,7 +2922,7 @@ en:
       # This label is used in a checkbox on the multiple upload form: when checked, the element will be saved and automatically published (this option is possible only for images, since audios and videos must be converted before they can be shared)
       # 1 - views/admin/media_elements/_media_element_upload.html.erb
       publish_now: "Publish now"
-      # Frame for the lessons search engine
+      # Frame for the media elements search engine
       search:
         # Title of the form
         # 1 - views/admin/media_elements/index.html.erb
@@ -2939,6 +2939,14 @@ en:
       # Name used as label in the pagination (ex. '1-10 of 300 purchases')
       # 1 - helpers/admin_helper.rb
       name: "Purchases"
+      # Frame for the purchases search engine
+      search:
+        # Title of the frame
+        # 1 - views/admin/purchases/index.html.erb
+        label: "Search purchases"
+        # Button to start the search
+        # 1 - views/admin/purchases/index.html.erb
+        submit: "Search"
     
     
     
@@ -3043,6 +3051,42 @@ en:
           # 1 - views/admin/search/_elements_general.html.erb
           # 2 - views/admin/search/_elements_general.html.erb
           user: "User"
+          
+          
+          
+          
+          
+      # Contents of search engine specific for purchases
+      purchases:
+        # Fields used in the research
+        fields:
+          # 1 - views/admin/purchases/index.html.erb
+          # 2 - views/admin/purchases/index.html.erb
+          id: "Id"
+          # 1 - views/admin/purchases/index.html.erb
+          # 2 - views/admin/purchases/index.html.erb
+          ssn_code: "SSN code"
+          # 1 - views/admin/purchases/index.html.erb
+          # 2 - views/admin/purchases/index.html.erb
+          vat_code: "VAT code"
+          # 1 - views/admin/purchases/index.html.erb
+          # 2 - views/admin/purchases/index.html.erb
+          name: "Name of the purchaser"
+          # 1 - views/admin/purchases/index.html.erb
+          # 2 - views/admin/purchases/index.html.erb
+          responsible: "Name of the responsible"
+          # 1 - views/admin/purchases/index.html.erb
+          # 2 - views/admin/purchases/index.html.erb
+          email: "Email"
+          
+          
+          
+          
+          
+          
+          
+          
+          
       notifications:
         # Title of the frame: since the labels contained in this frame are the same of the section 'Users', this title is the only caption which differs from the labels used in that section
         # 1 - views/admin/search/_notifications_filter.html.erb
@@ -3190,7 +3234,7 @@ en:
       # Name used as label in the pagination (ex. '1-10 of 300 users')
       # 1 - helpers/admin_helper.rb
       name: "Users"
-      # Frame for the lessons search engine
+      # Frame for the users search engine
       search:
         # Title of the frame
         # 1 - views/admin/users/index.html.erb

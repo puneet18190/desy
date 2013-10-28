@@ -2922,7 +2922,7 @@ cn:
       # This label is used in a checkbox on the multiple upload form: when checked, the element will be saved and automatically published (this option is possible only for images, since audios and videos must be converted before they can be shared)
       # 1 - views/admin/media_elements/_media_element_upload.html.erb
       publish_now: "现在发布"
-      # Frame for the lessons search engine
+      # Frame for the media elements search engine
       search:
         # Title of the form
         # 1 - views/admin/media_elements/index.html.erb
@@ -3177,7 +3177,7 @@ cn:
       # Name used as label in the pagination (ex. '1-10 of 300 users')
       # 1 - helpers/admin_helper.rb
       name: "用户"
-      # Frame for the lessons search engine
+      # Frame for the users search engine
       search:
         # Title of the frame
         # 1 - views/admin/users/index.html.erb
