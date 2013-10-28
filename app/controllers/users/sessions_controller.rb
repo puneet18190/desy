@@ -51,7 +51,7 @@ class Users::SessionsController < ApplicationController
         end
         # 3: I check that the user's password is valid
         if user
-          user = nil if !valid_password?(params[:password])
+          user = nil if !user.valid_password?(params[:password])
         end
         self.current_user = user
         if current_user

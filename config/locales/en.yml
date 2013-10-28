@@ -65,6 +65,12 @@ en:
       # The user tried to login with wrong username or password
       # 1 - controllers/users/sessions_controller.rb
       wrong_content: "Wrong username or password"
+      # The user has an associated purchase but it expired
+      # 1 - controllers/users/sessions_controller.rb
+      expired_purchase: "Your subscription has expired, please renew it"
+      # The user is in trial mode but his trial expired
+      # 1 - controllers/users/sessions_controller.rb
+      expired_trial: "Your trial has expired, please subscribe"
     mailing_list:
       # An error occurred while updating the user's mailing list (general message for any kind of error)
       # 1 - views/shared/_popups.html.erb
