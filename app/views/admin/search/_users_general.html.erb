@@ -4,11 +4,11 @@
 <div class="control-group">
   <label for="id"><%= t('admin.search.users.fields.id') %></label>
   <div class="controls">
-    <%= text_field_tag 'search[id]', params ? params[:id] : ''  ,:class => 'input-mini', :placeholder => t('admin.search.users.fields.id') %>
+    <%= text_field_tag 'search[id]', params ? params[:id] : '', :class => 'input-mini', :placeholder => t('admin.search.users.fields.id') %>
   </div>
 </div>
 <div class="control-group">
-  <label for="keyword"><%= t('admin.search.users.fields.name') %></label>
+  <label><%= t('admin.search.users.fields.name') %></label>
   <div class="controls">
     <%= text_field_tag 'search[user]', params ? params[:user] : '', :class => 'input-medium', :placeholder => t('admin.search.users.fields.name') %>
   </div>

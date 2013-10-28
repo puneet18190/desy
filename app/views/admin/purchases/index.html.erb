@@ -1,0 +1,37 @@
+<h4>Purchases</h4> <!-- TODO traduzz -->
+<%= form_tag 'purchases', :method => :get, :id => 'admin-search-purchases', :class => 'search-form' do %>
+  <%= hidden_field_tag 'search[search_type]', 'purchases' %>
+  <%= hidden_field_tag 'search[ordering]', '' %>
+  <%= hidden_field_tag 'search[desc]', '' %>
+  <div class="row-fluid">
+    <div class="span12">
+      <%= render :partial => 'admin/search/alerts' %>
+    </div>
+  </div>
+  <div class="row-fluid">
+    <div class="span4">
+      <%= render :partial => 'admin/search/purchases_general', :locals => {:params => params[:search]} %>
+    </div>  
+    <div class="span4">
+      <%= render :partial => 'admin/search/date', :locals => {:params => params[:search]} %>
+    </div>
+    <div class="span4">
+      <%= render :partial => 'admin/search/location', :locals => {:locations => @locations, :params => params[:search]} %>
+    </div>
+  </div>
+  <div class="row-fluid">
+    <div class="span12">
+      <div class="form-actions">
+        <button type="submit" class="btn btn-block btn-warning">CERCA PURCHASES</button> <!-- TODO traduzz -->
+      </div>
+    </div>
+  </div>
+<% end %>
+<h3>LISTA DI PURCHASES</h3> <!-- TODO traduzz -->
+<% if @purchases.length > 0 %>
+  <%= render :partial => 'admin/list_heading', :locals => {:items => @purchases, :expandable => true} %>
+<% end %>
+<%= render :partial => 'admin/purchases/list', :locals => {:purchases => @purchases} %>
+<% if @purchases.length > 0 %>
+  <%= render :partial => 'admin/list_heading', :locals => {:items => @purchases, :expandable => true} %>
+<% end %>
