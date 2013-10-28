@@ -30,11 +30,34 @@ class Users::SessionsController < ApplicationController
       if params[:email].blank? || params[:password].blank?
         failed_authentication_redirect_args path_params, t('other_popup_messages.login.missing_fields')
       else
-        self.current_user = User.authenticate(params[:email], params[:password])
+        # 1: I check that the user exists
+        user = User.active.confirmed.where(:email => params[:email]).first
+        error = t('other_popup_messages.login.wrong_content')
+        # 2: I check that the user has a valid payment (only if saas)
+        if user && SETTINGS['saas_registration_mode']
+          now = Time.zone.now
+          purchase = user.purchase
+          if purchase
+            if purchase.expiration_date < now
+              error = t('other_popup_messages.login.expired_purchase') # TODO traduzz
+              user = nil
+            end
+          else
+            if user.created_at < now - (SETTINGS['saas_trial_duration'] * 60 * 60 * 24)
+              error = t('other_popup_messages.login.expired_trial') # TODO traduzz
+              user = nil
+            end
+          end
+        end
+        # 3: I check that the user's password is valid
+        if user
+          user = nil if !valid_password?(params[:password])
+        end
+        self.current_user = user
         if current_user
           uri_path_and_query(redirect_to_param) || [dashboard_path]
         else
-          failed_authentication_redirect_args path_params, t('other_popup_messages.login.wrong_content')
+          failed_authentication_redirect_args path_params, error
         end
       end
     redirect_to *redirect_args

@@ -135,16 +135,6 @@ class User < ActiveRecord::Base
   scope :not_confirmed, where(confirmed: false)
   scope :active,        where(active: true)
   
-  scope :authenticable, Proc.new {
-    now = Time.zone.now
-    expiring_days = SETTINGS['saas_trial_duration'] * 60 * 60 * 24
-    user = active.confirmed
-    if SETTINGS['saas_registration_mode']
-      user = user.where('EXISTS (SELECT * FROM purchases WHERE purchases.id = users.purchase_id AND purchases.expiration_date > ?) OR created_at < :date', now, (now - expiring_days))
-    end
-    user
-  }
-  
   alias_attribute :"#{SETTINGS['location_types'].last.downcase}", :location
   
   # === Description
