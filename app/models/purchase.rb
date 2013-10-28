@@ -101,8 +101,8 @@ class Purchase < ActiveRecord::Base
   
   # Validates that if the purchase is not new record the field +accounts_number+ cannot be changed
   def validate_impossible_changes
-    if @lesson
-      errors.add(:accounts_number, :cant_be_changed) if @lesson.accounts_number != self.accounts_number
+    if @purchase
+      errors.add(:accounts_number, :cant_be_changed) if @purchase.accounts_number != self.accounts_number
     end
   end
   

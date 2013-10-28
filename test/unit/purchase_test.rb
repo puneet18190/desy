@@ -75,7 +75,7 @@ class PurchaseTest < ActiveSupport::TestCase
   
   test 'impossible_changes' do
     assert_obj_saved @purchase
-    assert_invalid @purchase, :accounts_number, 2, 10, :cant_be_changed
+    assert_invalid @purchase, :accounts_number, 2, 100, :cant_be_changed
     assert_obj_saved @purchase
   end
   
