@@ -77,7 +77,7 @@ class PurchaseTest < ActiveSupport::TestCase
     assert_nil @purchase.token
     assert @purchase.save
     assert_not_nil @purchase.token
-    assert @purchase.token.length > 16
+    assert_equal 16, @purchase.token.length
     old_token = @purchase.token
     assert @purchase.save
     @purchase = Purchase.find @purchase.id
@@ -98,7 +98,7 @@ class PurchaseTest < ActiveSupport::TestCase
   test 'uniqueness' do
     assert_obj_saved @purchase
     old_token = @purchase.token
-    assert_invalid @purchase, :token, 'qwertyuiopqwertyuiop', old_token, :taken
+    assert_invalid @purchase, :token, '0000111122223333', old_token, :taken
     assert_obj_saved @purchase
   end
   

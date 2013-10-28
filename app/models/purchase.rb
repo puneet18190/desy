@@ -114,12 +114,21 @@ class Purchase < ActiveRecord::Base
   
   # Callback that creates a random secure token and sets is as the +token+ of the purchase
   def create_token
-    my_token = SecureRandom.urlsafe_base64(16)
+    my_token = generate_token
     while Purchase.where(:token => my_token).any?
-      my_token = SecureRandom.urlsafe_base64(16)
+      my_token = generate_token
     end
     self.token = my_token
     true
+  end
+  
+  # Token generator
+  def generate_token
+    resp = SecureRandom.random_number(10000000000000000).to_s
+    while resp.length < 16
+      resp = "0#{resp}"
+    end
+    resp
   end
   
 end
