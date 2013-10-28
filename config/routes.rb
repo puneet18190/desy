@@ -202,9 +202,7 @@ Desy::Application.routes.draw do
     get       'settings/locations'                      => 'settings#locations'
     put       'settings/locations/:id/update'           => 'settings#update_location'
     post      'settings/locations/create'               => 'settings#create_location'
-    get       'purchases'                               => 'purchases#index'
-    put       'purchases/:id/update'                    => 'purchases#update'
-    post      'purchases/create'                        => 'purchases#create'
+    resources :purchases,                         :only => [:index, :new, :create, :edit, :update]
     resources :lessons,                           :only => [:index, :destroy]
     resources :documents,                         :only => [:index, :destroy]
     resources :media_elements,                    :only => [:new, :index, :destroy]

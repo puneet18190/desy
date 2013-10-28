@@ -27,12 +27,29 @@ class Admin::PurchasesController < AdminController
   # * Admin::PurchaseController#check_saas
   #
   def index
-    if @ok
+    if !@ok
       redirect_to '/admin'
       return
     end
     purchases = AdminSearchForm.search_purchases((params[:search] ? params[:search] : {:ordering => 0, :desc => 'true'}))
     @purchases = purchases.page(params[:page])
+  end
+  
+  # === Description
+  #
+  # Form to create a new purchase
+  #
+  # === Mode
+  #
+  # Html
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#admin_authenticate
+  # * Admin::PurchaseController#check_saas
+  #
+  def new
+    
   end
   
   private
