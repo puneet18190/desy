@@ -291,6 +291,7 @@ class AdminSearchForm
       resp = resp.order(ord)
     end
     resp = resp.where(:users => {:id => params[:id]}) if params[:id].present?
+    resp = resp.where(:users => {:purchase_id => params[:purchase_id]}) if params[:purchase_id].present?
     resp = resp.where('users.name ILIKE ? OR surname ILIKE ? OR email ILIKE ?', "%#{params[:user]}%" , "%#{params[:user]}%", "%#{params[:user]}%") if params[:user].present?
     resp = resp.where(:school_level_id => params[:school_level_id]) if params[:school_level_id].present?
     if params[:date_range_field].present? && params[:from].present? && params[:to].present?
