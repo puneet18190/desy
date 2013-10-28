@@ -3051,11 +3051,6 @@ en:
           # 1 - views/admin/search/_elements_general.html.erb
           # 2 - views/admin/search/_elements_general.html.erb
           user: "User"
-          
-          
-          
-          
-          
       # Contents of search engine specific for purchases
       purchases:
         # Fields used in the research
@@ -3063,9 +3058,11 @@ en:
           # 1 - views/admin/purchases/index.html.erb
           # 2 - views/admin/purchases/index.html.erb
           id: "Id"
+          # Commercial code of the person, see http://en.wikipedia.org/wiki/Social_Security_number
           # 1 - views/admin/purchases/index.html.erb
           # 2 - views/admin/purchases/index.html.erb
           ssn_code: "SSN code"
+          # Commercial code of the company, see http://en.wikipedia.org/wiki/VAT_identification_number
           # 1 - views/admin/purchases/index.html.erb
           # 2 - views/admin/purchases/index.html.erb
           vat_code: "VAT code"
@@ -3078,15 +3075,6 @@ en:
           # 1 - views/admin/purchases/index.html.erb
           # 2 - views/admin/purchases/index.html.erb
           email: "Email"
-          
-          
-          
-          
-          
-          
-          
-          
-          
       notifications:
         # Title of the frame: since the labels contained in this frame are the same of the section 'Users', this title is the only caption which differs from the labels used in that section
         # 1 - views/admin/search/_notifications_filter.html.erb
