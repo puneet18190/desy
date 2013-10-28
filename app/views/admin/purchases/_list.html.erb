@@ -76,7 +76,7 @@
           <td><%= purchase.postal_code %></td>
           <td><%= purchase.city %></td>
           <td><%= purchase.country %></td>
-          <td><%= link_to purchase.location.name, "/admin/locations?selected=#{purchase.location_id}" %></td>
+          <td><%= purchase.location.nil? ? '' : (link_to purchase.location.name, "/admin/settings/locations?selected=#{purchase.location_id}") %></td>
           <td><%= "#{purchase.users.count} / #{purchase.accounts_number}" %></td>
           <td><%= purchase.includes_invoice.to_s %></td>
           <td><%= TimeConvert.to_string purchase.release_date %></td>
