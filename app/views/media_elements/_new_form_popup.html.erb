@@ -10,7 +10,7 @@
       <%= form_tag media_elements_path, :method => :post, :id => 'new_media_element', :class => 'formModifyInfo', :multipart => true do %>
         
         <div class="cols fltlft">
-          <div id="media_element_media_show" class="fk_carica_elemento_file fltrt"></div>
+          <div id="media_element_media_show" class="fk_carica_elemento_file fltrt basta_caos_porca_miseria"></div>
           <label class="filebutton">
             <span>
               <input type="file" id="new_media_element_input" name="media">
@@ -18,9 +18,9 @@
           </label>
           <br class="clearfloat">
           <br><br>
-          <%= text_field_tag 'title', '' %>
+          <%= text_field_tag 'title', '', :class => 'basta_caos_porca_miseria' %>
           <%= hidden_field_tag 'title_placeholder', '' %>
-          <%= text_area_tag 'description', '' %>
+          <%= text_area_tag 'description', '', :class => 'basta_caos_porca_miseria' %>
           <%= hidden_field_tag 'description_placeholder', '' %>
         </div>
         
@@ -29,7 +29,7 @@
           <p style="padding-bottom:30px"><%= t('forms.upload_media_element.description') %></p>
           <br class="clearfloat">
           <div class="ui-widget pull-right _tags_container">
-            <%= text_field_tag 'tags', '', :maxlength => SETTINGS['max_tag_length'], :class => 'lower' %>
+            <%= text_field_tag 'tags', '', :maxlength => SETTINGS['max_tag_length'], :class => 'lower basta_caos_porca_miseria' %>
             <div class="_placeholder">
               <%= tags_max %>
             </div>
