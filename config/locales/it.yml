@@ -2932,6 +2932,19 @@ it:
         submit: "Cerca"
     # Section of purchases
     purchases:
+      # List of available actions on a single purchase
+      actions:
+        # 1 - views/admin/purchases/_list.html.erb
+        edit: "Edita"
+        # Opens a form to send the purchase token to the clients
+        # 1 - views/admin/purchases/_list.html.erb
+        links: "Links"
+        # Creates a new purchase with the same invoicing data of the current purchase. The administrator can personalize the data before saving
+        # 1 - views/admin/purchases/_list.html.erb
+        renew: "Rinnova"
+      # Message if there are no purchases in the database
+      # 1 - views/admin/purchases/_list.html.erb
+      empty: "Non ci sono acquisti nel database"
       # Name used as label in the pagination (ex. '1-10 of 300 purchases')
       # 1 - helpers/admin_helper.rb
       name: "Acquisti"
@@ -3109,7 +3122,7 @@ it:
           vat_code: "Partita IVA"
           # 1 - views/admin/purchases/index.html.erb
           # 2 - views/admin/purchases/index.html.erb
-          name: "Acquirente"
+          name: "Denominazione"
           # 1 - views/admin/purchases/index.html.erb
           # 2 - views/admin/purchases/index.html.erb
           responsible: "Responsabile"

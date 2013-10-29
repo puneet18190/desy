@@ -2932,6 +2932,19 @@ en:
         submit: "Search"
     # Section of purchases
     purchases:
+      # List of available actions on a single purchase
+      actions:
+        # 1 - views/admin/purchases/_list.html.erb
+        edit: "Edit"
+        # Opens a form to send the purchase token to the clients
+        # 1 - views/admin/purchases/_list.html.erb
+        links: "Links"
+        # Creates a new purchase with the same invoicing data of the current purchase. The administrator can personalize the data before saving
+        # 1 - views/admin/purchases/_list.html.erb
+        renew: "Renew"
+      # Message if there are no purchases in the database
+      # 1 - views/admin/purchases/_list.html.erb
+      empty: "There are no purchases in the database"
       # Name used as label in the pagination (ex. '1-10 of 300 purchases')
       # 1 - helpers/admin_helper.rb
       name: "Purchases"

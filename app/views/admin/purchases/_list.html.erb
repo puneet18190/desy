@@ -84,13 +84,13 @@
           <td><%= TimeConvert.to_string purchase.start_date %></td>
           <td><%= TimeConvert.to_string purchase.expiration_date %></td>
           <td>
-            <a>links</a> <!-- TODO view links TODO traduzz -->
+            <a><%= t('admin.purchases.actions.links') %></a>
           </td>
           <td>
-            <a>edit</a> <!-- TODO view links TODO traduzz -->
+            <a><%= t('admin.purchases.actions.edit') %></a>
           </td>
           <td>
-            <a>renew</a> <!-- TODO view links TODO traduzz -->
+            <a><%= t('admin.purchases.actions.renew') %></a>
           </td>
         </tr>
       <% end %>
@@ -98,6 +98,6 @@
   </table>
 <% else %>
   <div class="widget">
-    THERE ARE NO PURCHASES! AHIAHIAHI <!-- TODO traduzz -->
+    <%= t('admin.purchases.empty') %>
   </div>
 <% end %>
