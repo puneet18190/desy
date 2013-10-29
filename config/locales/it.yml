@@ -3117,6 +3117,9 @@ it:
           # 1 - views/admin/search/_users_general.html.erb
           # 2 - views/admin/search/_users_general.html.erb
           name: "Nome"
+          # 1 - views/admin/search/_users_general.html.erb
+          # 2 - views/admin/search/_users_general.html.erb
+          purchase_id: "Id acquisto"
           # Unlike the lessons, a user may be associated to more than a subject
           # 1 - views/admin/search/_users_general.html.erb
           # 2 - views/admin/search/_notifications_filter.html.erb
