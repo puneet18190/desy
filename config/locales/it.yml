@@ -3193,6 +3193,9 @@ it:
         id: "Id"
         # 1 - views/admin/users/show.html.erb
         # 2 - views/admin/users/_list.html.erb
+        is_admin: "Admin"
+        # 1 - views/admin/users/show.html.erb
+        # 2 - views/admin/users/_list.html.erb
         email: "Email"
         # 1 - views/admin/users/show.html.erb
         location: "Posizione"

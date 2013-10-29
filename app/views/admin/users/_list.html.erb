@@ -25,7 +25,7 @@
           <%= render :partial => 'admin/ordering', :locals => {:name => t('locations.parents_label'), :ordering => 6} %>
         </th>
         <th>
-          <%= render :partial => 'admin/ordering', :locals => {:name => 'admin', :ordering => nil} %> <!-- TODO traduzz -->
+          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.users.fields.is_admin'), :ordering => nil} %>
         </th>
         <th>
           <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.users.fields.created_at'), :ordering => 7} %>

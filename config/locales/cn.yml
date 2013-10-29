@@ -3193,6 +3193,9 @@ cn:
         id: "Id"
         # 1 - views/admin/users/show.html.erb
         # 2 - views/admin/users/_list.html.erb
+        is_admin: "Admin" # TODO
+        # 1 - views/admin/users/show.html.erb
+        # 2 - views/admin/users/_list.html.erb
         email: "邮件地址"
         # 1 - views/admin/users/show.html.erb
         location: "位置"
