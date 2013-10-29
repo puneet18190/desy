@@ -138,10 +138,10 @@ module ApplicationHelper
   end
   
   # method to create the title of the html tab
-  def html_title(slides)
+  def title_tag(slides = nil)
     controller = controller_path
     desy = SETTINGS['application_name']
-    return t('captions.titles.admin', :desy => desy) if controller[0, 6] == 'admin/'
+    return t('captions.titles.admin', :desy => desy) if controller.start_with? 'admin/'
     case controller
     when 'documents'
       t('captions.titles.documents', :desy => desy)

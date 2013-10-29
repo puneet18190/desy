@@ -353,7 +353,7 @@ html.prelogin-layout {
     
   }
   
-  &.registration-action, &.users-controller.create-action {
+  &.prelogin-controller.registration-action, &.users-controller.create-action {
     
     .container {
       
@@ -438,7 +438,7 @@ html.prelogin-layout {
     
   }
   
-  &.what_is-action  {
+  &.prelogin-controller.what_is-action  {
     
     body {
       
@@ -524,12 +524,10 @@ html.prelogin-layout {
         
       }
       
-      
-      
     }
     
   }
-  
+
   &.users-controller.request_reset_password-action, &.users-controller.send_reset_password-action, &.users-controller.reset_password-action, &.users-controller.confirm-action {
     
     @include handle-registrations;

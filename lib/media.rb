@@ -12,9 +12,6 @@ module Media
   # It defines CONFIG
   require 'media/config'
 
-  # The folder where are located the static files
-  RAILS_PUBLIC_FOLDER = Pathname.new Rails.public_path
-
   # MIME types of the generated media
   MIME_TYPES = { '.jpg'  => 'image/jpeg' ,
                  '.jpeg' => 'image/jpeg' ,

@@ -19,7 +19,7 @@ module Media
       # Path to audios folder relative to Rails public folder (for web URLs)
       PUBLIC_RELATIVE_FOLDER        = env_relative_path File.join(PUBLIC_RELATIVE_MEDIA_ELEMENTS_FOLDER, 'audios')
       # Absolute path to audios folder
-      FOLDER                        = File.join RAILS_PUBLIC_FOLDER, PUBLIC_RELATIVE_FOLDER
+      FOLDER                        = File.join Rails.public_pathname, PUBLIC_RELATIVE_FOLDER
       # Allowed uploaded audio extensions
       EXTENSION_WHITE_LIST          = %w(mp3 ogg oga flac aiff wav wma aac m4a)
       # Allowed uploaded audio extensions with dots

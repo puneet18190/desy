@@ -43,7 +43,7 @@ module Export
           end
 
           def image_path(image)
-            Pathname(image.media.path).relative_path_from RAILS_PUBLIC
+            Pathname(image.media.path).relative_path_from Rails.public_pathname
           end
 
           def cover_image_path(cover_slide)

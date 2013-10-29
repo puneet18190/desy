@@ -20,7 +20,7 @@ module Export
       include Shared
       include Shared::EbookAndEbookRenderer
 
-      FOLDER               = env_relative_pathname RAILS_PUBLIC, 'lessons', 'exports', 'ebooks'
+      FOLDER               = env_relative_pathname Rails.public_pathname, 'lessons', 'exports', 'ebooks'
       SLIDES_INCLUDES      = [ :documents_slides, :documents, :media_elements_slides, :media_elements ]
       SLIDES_EAGER_LOAD    = SLIDES_INCLUDES
       SLIDES_ORDER         = 'slides.position'
@@ -54,7 +54,7 @@ module Export
       def url
         find_or_create
 
-        "/#{path.relative_path_from RAILS_PUBLIC}"
+        "/#{path.relative_path_from Rails.public_pathname}"
       end
 
       def find_or_create

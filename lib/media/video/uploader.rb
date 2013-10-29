@@ -22,7 +22,7 @@ module Media
       # Path to videos folder relative to Rails public folder (for web URLs)
       PUBLIC_RELATIVE_FOLDER        = env_relative_path File.join(PUBLIC_RELATIVE_MEDIA_ELEMENTS_FOLDER, 'videos')
       # Absolute path to videos folder
-      FOLDER                        = File.join RAILS_PUBLIC_FOLDER, PUBLIC_RELATIVE_FOLDER
+      FOLDER                        = File.join Rails.public_pathname, PUBLIC_RELATIVE_FOLDER
       # Allowed uploaded video extensions
       EXTENSION_WHITE_LIST          = %w(avi divx flv h264 mkv mov mp4 mpe mpeg mpg ogm ogv webm wmv xvid)
       # Allowed uploaded video extensions with dots
