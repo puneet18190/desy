@@ -55,7 +55,7 @@
     </div>
   </div>
 <% end %>
-<h3>LISTA DI PURCHASES</h3> <!-- TODO traduzz -->
+<h3><%= t('admin.purchases.title') %></h3>
 <% if @purchases.length > 0 %>
   <%= render :partial => 'admin/list_heading', :locals => {:items => @purchases, :expandable => false} %>
 <% end %>

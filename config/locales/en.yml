@@ -2935,6 +2935,52 @@ en:
       # Name used as label in the pagination (ex. '1-10 of 300 purchases')
       # 1 - helpers/admin_helper.rb
       name: "Purchases"
+      # Labels for the fields of a purchase - try to write short labels if possible, since the space in the table is not enough
+      fields:
+        # Number of accounts available
+        # 1 - views/admin/purchases/_list.html.erb
+        accounts_number: "Accounts"
+        # Address 1 - street, number, etc
+        # 1 - views/admin/purchases/_list.html.erb
+        address: "Address"
+        # Address 2 - postal code
+        # 1 - views/admin/purchases/_list.html.erb
+        postal_code: "Postal Code"
+        # Address 3 - City (this is just a string, it has nothing to do with the location of the application)
+        # 1 - views/admin/purchases/_list.html.erb
+        city: "City"
+        # Address 4 - Country
+        # 1 - views/admin/purchases/_list.html.erb
+        country: "Country"
+        # 1 - views/admin/purchases/_list.html.erb
+        email: "Email"
+        # 1 - views/admin/purchases/_list.html.erb
+        id: "Id"
+        # True if the purchase includes an invoice
+        # 1 - views/admin/purchases/_list.html.erb
+        includes_invoice: "Invoice"
+        # Name of the company that made the purchase
+        # 1 - views/admin/purchases/_list.html.erb
+        name: "Name"
+        # Name of the responsible person for that company
+        # 1 - views/admin/purchases/_list.html.erb
+        responsible: "Responsible"
+        # Commercial code of the person, see http://en.wikipedia.org/wiki/Social_Security_number
+        # 1 - views/admin/purchases/_list.html.erb
+        ssn_code: "SSN"
+        # Commercial code of the company, see http://en.wikipedia.org/wiki/VAT_identification_number
+        # 1 - views/admin/purchases/_list.html.erb
+        vat_code: "VAT"
+        # 1 - views/admin/purchases/_list.html.erb
+        phone_number: "Phone"
+        # 1 - views/admin/purchases/_list.html.erb
+        fax: "Fax"
+        # 1 - views/admin/purchases/_list.html.erb
+        release_date: "Release"
+        # 1 - views/admin/purchases/_list.html.erb
+        start_date: "Activation"
+        # 1 - views/admin/purchases/_list.html.erb
+        expiration_date: "Expires"
       # Frame for the purchases search engine
       search:
         # Title of the frame
@@ -2943,6 +2989,9 @@ en:
         # Button to start the search
         # 1 - views/admin/purchases/index.html.erb
         submit: "Search"
+      # Title of the section
+      # 1 - views/admin/purchases/index.html.erb
+      title: "List of purchases"
     # Captions of the contents of the search engine inside the 'Administration' section. The content depends on the selected subsection, and appears inside the corresponding frame (see admin.[section].search)
     search:
       # Section where the user filters by location
