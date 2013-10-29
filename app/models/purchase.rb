@@ -94,7 +94,7 @@ class Purchase < ActiveRecord::Base
   # A string
   #
   def location_to_s
-    return 'No limitations' if self.location_id.nil? # TODO traduzz
+    return I18n.t('admin.purchases.links.empty_location') if self.location_id.nil?
     resp = ''
     my_location = self.location
     locations = []

@@ -2966,6 +2966,12 @@ en:
         # Caption of the submit button
         # 1 - views/admin/purchases/link_form.html.erb
         send: "Send"
+        # Label if there is no message attached
+        # 1 - controllers/admin/purchases_controller.rb
+        empty_message: "[no message given]"
+        # Label if there is no limitation to the users who will use accounts associated to this purchase
+        # 1 - models/purchase.rb
+        empty_location: "No limitations"
       # Name used as label in the pagination (ex. '1-10 of 300 purchases')
       # 1 - helpers/admin_helper.rb
       name: "Purchases"
