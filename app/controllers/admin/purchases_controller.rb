@@ -70,7 +70,8 @@ class Admin::PurchasesController < AdminController
       redirect_to '/admin/purchases'
       return
     end
-    UserMailer.purchase_resume(params[:emails].split(','), @purchase, params[:message], request.host, request.port).deliver
+    @message = params[:message].blank? ? '[no message given]' # TODO traduzz
+    UserMailer.purchase_resume(params[:emails].split(','), @purchase, @message, request.host, request.port).deliver
     redirect_to '/admin/purchases'
   end
   
