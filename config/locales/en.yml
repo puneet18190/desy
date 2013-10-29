@@ -2946,7 +2946,7 @@ en:
         edit: "Edit"
         # Opens a form to send the purchase token to the clients
         # 1 - views/admin/purchases/_list.html.erb
-        links: "Links"
+        links: "Instructions"
         # Creates a new purchase with the same invoicing data of the current purchase. The administrator can personalize the data before saving
         # 1 - views/admin/purchases/_list.html.erb
         renew: "Renew"
@@ -2969,14 +2969,17 @@ en:
         # Label if there is no message attached
         # 1 - controllers/admin/purchases_controller.rb
         empty_message: "[no message given]"
-        # Label if there is no limitation to the users who will use accounts associated to this purchase
+        # Label if there is no restriction to the users who will use accounts associated to this purchase
         # 1 - models/purchase.rb
-        empty_location: "No limitations"
+        # 2 - views/admin/purchases/_list.html.erb
+        empty_location: "No restrictions"
       # Name used as label in the pagination (ex. '1-10 of 300 purchases')
       # 1 - helpers/admin_helper.rb
       name: "Purchases"
       # Labels for the fields of a purchase - try to write short labels if possible, since the space in the table is not enough
       fields:
+        # 1 - views/admin/purchases/_list.html.erb
+        location_id: "Restricted to"
         # Number of accounts available
         # 1 - views/admin/purchases/_list.html.erb
         accounts_number: "Accounts"
