@@ -487,7 +487,7 @@ cn:
       subject: "%{desy} - 账号确认"
       # Message
       # 1 - mailers/user_mailer.rb
-      message: "<p>恭喜%{name}</p>,<p>谢谢你的注册%{desy}!</p><p><b>为了完成你的注册，请点击以下链接:</b></p><p>如果此链接没有出现，请拷贝和粘贴到你的浏览器.<br/>当确认注册, 此链接不再是合法.<br/>为了进入系统，请用用户名与密码.</p><br/><p>N.B.</p><p>只能确认那个账号一次.</p>"
+      message: "<p>恭喜%{name}</p>, <p>谢谢你的注册%{desy}!</p><p><b>为了完成你的注册，请点击以下链接:</b></p><p>如果此链接没有出现，请拷贝和粘贴到你的浏览器.<br/>当确认注册, 此链接不再是合法.<br/>为了进入系统，请用用户名与密码.</p><br/><p>N.B.</p><p>只能确认那个账号一次.</p>"
     # Mail containing the link to reset a forgotten password
     reset_password:
       # Subject

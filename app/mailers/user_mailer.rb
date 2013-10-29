@@ -50,8 +50,26 @@ class UserMailer < ActionMailer::Base
     host_and_port!(host, port)
     @message = message
     @purchase = purchase
-    @mail_content = I18n.t('mailer.purchase_resume.message', :purchase => @purchase.to_s, :message => @message, :desy => APPLICATION_NAME).html_safe # TODO traduzz
-    mail to: emails, subject: t('mailer.purchase_resume.subject', :desy => APPLICATION_NAME) # TODO traduzz
+    @mail_content = I18n.t(
+      'mailer.purchase_resume.message',
+      :release_date    => TimeConvert.to_string @purchase.release_date,
+      :message         => @message, # TODO
+      :desy            => APPLICATION_NAME
+      :name            => @purchase.name
+      :responsible     => @purchase.responsible
+      :address         => @purchase.address_to_s # TODO
+      :phone_number    => @purchase.phone_number
+      :fax             => @purchase.fax
+      :email           => @purchase.email
+      :ssn_code        => @purchase.ssn_code
+      :vat_code        => @purchase.vat_code
+      :accounts_number => @purchase.accounts_number
+      :location        => @purchase.location_to_s # TODO e uniformarlo con user
+      :start_date      => TimeConvert.to_string @purchase.start_date,
+      :expiration_date => TimeConvert.to_string @purchase.expiration_date,
+      :token           => @purchase.token
+    ).html_safe
+    mail to: emails, subject: t('mailer.purchase_resume.subject', :desy => APPLICATION_NAME)
   end
   
   private

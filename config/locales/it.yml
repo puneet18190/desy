@@ -487,7 +487,7 @@ it:
       subject: "%{desy} - Conferma nome utente"
       # Message
       # 1 - mailers/user_mailer.rb
-      message: "<p>Benvenuto %{name}</p>,<p>Grazie per esserti registrato a %{desy}!</p><p><b>Per completare la tua registrazione clicca sul seguente link:</b></p><p>Se il link non è cliccabile, copia e incollalo nel browser.<br/>Quando la registrazione sarà confermata, il link non sarà più valido.<br/>Per accedere al sistema inserisci il nome utente e la password prescelti durante la fase di registrazione.</p><br/><p>N.B.</p><p>La conferma dell'utente può essere effettuata una volta sola.</p>"
+      message: "<p>Benvenuto %{name}</p>, <p>Grazie per esserti registrato a %{desy}!</p><p><b>Per completare la tua registrazione clicca sul seguente link:</b></p><p>Se il link non è cliccabile, copia e incollalo nel browser.<br/>Quando la registrazione sarà confermata, il link non sarà più valido.<br/>Per accedere al sistema inserisci il nome utente e la password prescelti durante la fase di registrazione.</p><br/><p>N.B.</p><p>La conferma dell'utente può essere effettuata una volta sola.</p>"
     # Mail containing the link to reset a forgotten password
     reset_password:
       # Subject
