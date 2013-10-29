@@ -514,6 +514,7 @@
     &.purchases {
       
       background-position: -595px 0;
+      margin-right: 0;
       
       &:hover, &.active {
         
@@ -526,7 +527,6 @@
     &.settings {
       
       background-position: -425px 0;
-      margin-right: 0;
       
       &:hover, &.active {
         
