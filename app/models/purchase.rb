@@ -85,6 +85,37 @@ class Purchase < ActiveRecord::Base
     resp = ([self.address, self.postal_code, self.city, self.country].reject {|i| i.blank?}).join(', ')
   end
   
+  # === Description
+  #
+  # Method used in the front end that returns the resume of the location
+  #
+  # === Returns
+  #
+  # A string
+  #
+  def location_to_s
+    return 'No limitations' if self.location_id.nil? # TODO traduzz
+    resp = ''
+    my_location = self.location
+    locations = []
+    first = true
+    current_location = self.location
+    return '-' if current_location.nil?
+    (0...SETTINGS['location_types'].length).to_a.each do |index|
+      locations << current_location
+      current_location = current_location.parent
+    end
+    locations.reverse.each do |l|
+      if first
+        resp = "#{l.name}"
+        first = false
+      else
+        resp = "#{resp} - #{l.name}"
+      end
+    end
+    resp
+  end
+  
   private
   
   # Initializes the objects needed for the validation

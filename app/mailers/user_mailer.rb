@@ -64,7 +64,7 @@ class UserMailer < ActionMailer::Base
       :ssn_code        => @purchase.ssn_code
       :vat_code        => @purchase.vat_code
       :accounts_number => @purchase.accounts_number
-      :location        => @purchase.location_to_s # TODO e uniformarlo con user
+      :location        => @purchase.location_to_s
       :start_date      => TimeConvert.to_string @purchase.start_date,
       :expiration_date => TimeConvert.to_string @purchase.expiration_date,
       :token           => @purchase.token
