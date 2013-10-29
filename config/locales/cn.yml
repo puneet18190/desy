@@ -2953,6 +2953,19 @@ cn:
       # Message if there are no purchases in the database
       # 1 - views/admin/purchases/_list.html.erb
       empty: "There are no purchases in the database" # TODO
+      # Labels of the subsection where the administrator can send the link of a purchase
+      links:
+        # Title of the section (the variable %{purchaser} is replaced by the name of the purchaser)
+        # 1 - views/admin/purchases/link_form.html.erb
+        title: "Send the resume of the purchase made by %{purchaser}" # TODO
+        # 1 - views/admin/purchases/link_form.html.erb
+        email: "Email" # TODO
+        # 1 - views/admin/purchases/link_form.html.erb
+        # 2 - views/admin/purchases/link_form.html.erb
+        message: "Message" # TODO
+        # Caption of the submit button
+        # 1 - views/admin/purchases/link_form.html.erb
+        send: "Send" # TODO
       # Name used as label in the pagination (ex. '1-10 of 300 purchases')
       # 1 - helpers/admin_helper.rb
       name: "Purchases" # TODO
