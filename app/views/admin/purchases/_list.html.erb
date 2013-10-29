@@ -84,7 +84,7 @@
           <td><%= TimeConvert.to_string purchase.start_date %></td>
           <td><%= TimeConvert.to_string purchase.expiration_date %></td>
           <td>
-            <a href="/admin/purchases/:id/links/form"><%= t('admin.purchases.actions.links') %></a>
+            <a href="/admin/purchases/<%= purchase.id %>/links/form"><%= t('admin.purchases.actions.links') %></a>
           </td>
           <td>
             <a><%= t('admin.purchases.actions.edit') %></a>
