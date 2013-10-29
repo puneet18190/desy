@@ -2982,44 +2982,59 @@ en:
         accounts_number: "Accounts"
         # Address 1 - street, number, etc
         # 1 - views/admin/purchases/_list.html.erb
+        # 2 - views/admin/purchases/_common_form.html.erb
         address: "Address"
         # Address 2 - postal code
         # 1 - views/admin/purchases/_list.html.erb
+        # 2 - views/admin/purchases/_common_form.html.erb
         postal_code: "Postal Code"
         # Address 3 - City (this is just a string, it has nothing to do with the location of the application)
         # 1 - views/admin/purchases/_list.html.erb
+        # 2 - views/admin/purchases/_common_form.html.erb
         city: "City"
         # Address 4 - Country
         # 1 - views/admin/purchases/_list.html.erb
+        # 2 - views/admin/purchases/_common_form.html.erb
         country: "Country"
         # 1 - views/admin/purchases/_list.html.erb
+        # 2 - views/admin/purchases/_common_form.html.erb
         email: "Email"
         # 1 - views/admin/purchases/_list.html.erb
         id: "Id"
         # True if the purchase includes an invoice
         # 1 - views/admin/purchases/_list.html.erb
+        # 2 - views/admin/purchases/_common_form.html.erb
         includes_invoice: "Invoice"
         # Name of the company that made the purchase
         # 1 - views/admin/purchases/_list.html.erb
+        # 2 - views/admin/purchases/_common_form.html.erb
         name: "Name"
         # Name of the responsible person for that company
         # 1 - views/admin/purchases/_list.html.erb
+        # 2 - views/admin/purchases/_common_form.html.erb
         responsible: "Responsible"
         # Commercial code of the person, see http://en.wikipedia.org/wiki/Social_Security_number
         # 1 - views/admin/purchases/_list.html.erb
+        # 2 - views/admin/purchases/_common_form.html.erb
         ssn_code: "SSN"
         # Commercial code of the company, see http://en.wikipedia.org/wiki/VAT_identification_number
         # 1 - views/admin/purchases/_list.html.erb
+        # 2 - views/admin/purchases/_common_form.html.erb
         vat_code: "VAT"
         # 1 - views/admin/purchases/_list.html.erb
+        # 2 - views/admin/purchases/_common_form.html.erb
         phone_number: "Phone"
         # 1 - views/admin/purchases/_list.html.erb
+        # 2 - views/admin/purchases/_common_form.html.erb
         fax: "Fax"
         # 1 - views/admin/purchases/_list.html.erb
+        # 2 - views/admin/purchases/_common_form.html.erb
         release_date: "Release"
         # 1 - views/admin/purchases/_list.html.erb
+        # 2 - views/admin/purchases/_common_form.html.erb
         start_date: "Activation"
         # 1 - views/admin/purchases/_list.html.erb
+        # 2 - views/admin/purchases/_common_form.html.erb
         expiration_date: "Expires"
       # Frame for the purchases search engine
       search:
