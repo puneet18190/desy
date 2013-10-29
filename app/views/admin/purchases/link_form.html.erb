@@ -1,11 +1,11 @@
 <h3><%= t('admin.purchases.send_link.title', :purchaser => @purchase.name) %></h3> <!-- TODO traduzz -->
-<%= form_tag "/admin/purchases/#{@purchase.id}/link/send", :method => :post, :id => 'admin-purchases-send-link', :class => 'search-form' do %>
+<%= form_tag "/admin/purchases/#{@purchase.id}/links/send", :method => :post, :id => 'admin-purchases-send-link', :class => 'search-form' do %>
   <div class="row-fluid">
     <div class="span4">
       <div class="control-group">
         <h4>INSERIRE EMAILS</h4> <!-- TODO traduzz -->
         <div class="controls">
-          <%= text_area_tag 'emails', @purchase.email, :style => 'height:150px; width:400px' %>
+          <%= text_area_tag 'emails', @purchase.email, :style => 'height:150px; width:400px; resize:none' %>
         </div>
       </div>
     </div>
@@ -13,7 +13,7 @@
       <div class="control-group">
         <h4>Messaggio</h4> <!-- TODO traduzz -->
         <div class="controls">
-          <%= text_area_tag 'message', '', :placeholder => 'messaggio aggiuntivo', :style => 'height:150px; width:400px' %> <!-- TODO traduzz stessa di sopra -->
+          <%= text_area_tag 'message', '', :placeholder => 'messaggio aggiuntivo', :style => 'height:150px; width:400px; resize:none' %> <!-- TODO traduzz stessa di sopra -->
         </div>
       </div>
     </div>
