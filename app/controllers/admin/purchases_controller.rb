@@ -49,7 +49,44 @@ class Admin::PurchasesController < AdminController
   # * Admin::PurchaseController#check_saas
   #
   def new
+  end
+  
+  # === Description
+  #
+  # Action to send to a list of emails the instructions to use the purchase code
+  #
+  # === Mode
+  #
+  # Html
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#admin_authenticate
+  # * Admin::PurchaseController#check_saas
+  #
+  def send_link
     
+  end
+  
+  # === Description
+  #
+  # Form to send to a list of emails the instructions to use the purchase code
+  #
+  # === Mode
+  #
+  # Html
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#admin_authenticate
+  # * Admin::PurchaseController#check_saas
+  #
+  def link_form
+    @purchase = Purchase.find_by_id params[:id]
+    if !@purchase
+      redirect_to '/admin/purchases'
+      return
+    end
   end
   
   private

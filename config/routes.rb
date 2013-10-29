@@ -202,6 +202,8 @@ Desy::Application.routes.draw do
     get       'settings/locations'                      => 'settings#locations'
     put       'settings/locations/:id/update'           => 'settings#update_location'
     post      'settings/locations/create'               => 'settings#create_location'
+    get       'purchases/:id/links/form'                => 'purchases#link_form'
+    post      'purchases/:id/links/send'                => 'purchases#send_link'
     resources :purchases,                         :only => [:index, :new, :create, :edit, :update]
     resources :lessons,                           :only => [:index, :destroy]
     resources :documents,                         :only => [:index, :destroy]

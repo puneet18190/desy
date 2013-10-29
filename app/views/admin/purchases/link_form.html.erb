@@ -1,0 +1,28 @@
+<h4><%= t('admin.purchases.send_link.title', :purchaser => @purchase.name) %></h4> <!-- TODO traduzz -->
+<%= form_tag "/admin/purchases/#{@purchase.id}/link/send", :method => :post, :id => 'admin-purchases-send-link', :class => 'search-form' do %>
+  <div class="row-fluid">
+    <div class="span4">
+      <div class="control-group">
+        <label for="id">INSERIRE EMAILS</label> <!-- TODO traduzz -->
+        <div class="controls">
+          qui va una textarea con la email inserita per prima separate da virgole <!-- TODO farlo reale -->
+        </div>
+      </div>
+    </div>
+    <div class="span4">
+      <div class="control-group">
+        <label>Messaggio</label> <!-- TODO traduzz -->
+        <div class="controls">
+          qui va una textarea con il messaggio aggiuntivo da inserire <!-- TODO farlo reale -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row-fluid">
+    <div class="span12">
+      <div class="form-actions">
+        <button type="submit" class="btn btn-block btn-info">SEND</button> <!-- TODO traduzz -->
+      </div>
+    </div>
+  </div>
+<% end %>
