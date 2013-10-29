@@ -1,19 +1,19 @@
-<h4><%= t('admin.purchases.send_link.title', :purchaser => @purchase.name) %></h4> <!-- TODO traduzz -->
+<h3><%= t('admin.purchases.send_link.title', :purchaser => @purchase.name) %></h3> <!-- TODO traduzz -->
 <%= form_tag "/admin/purchases/#{@purchase.id}/link/send", :method => :post, :id => 'admin-purchases-send-link', :class => 'search-form' do %>
   <div class="row-fluid">
     <div class="span4">
       <div class="control-group">
-        <label for="id">INSERIRE EMAILS</label> <!-- TODO traduzz -->
+        <h4>INSERIRE EMAILS</h4> <!-- TODO traduzz -->
         <div class="controls">
-          qui va una textarea con la email inserita per prima separate da virgole <!-- TODO farlo reale -->
+          <%= text_area_tag 'emails', @purchase.email, :style => 'height:150px; width:400px' %>
         </div>
       </div>
     </div>
     <div class="span4">
       <div class="control-group">
-        <label>Messaggio</label> <!-- TODO traduzz -->
+        <h4>Messaggio</h4> <!-- TODO traduzz -->
         <div class="controls">
-          qui va una textarea con il messaggio aggiuntivo da inserire <!-- TODO farlo reale -->
+          <%= text_area_tag 'message', '', :placeholder => 'messaggio aggiuntivo', :style => 'height:150px; width:400px' %> <!-- TODO traduzz stessa di sopra -->
         </div>
       </div>
     </div>
