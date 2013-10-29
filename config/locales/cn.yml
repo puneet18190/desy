@@ -2982,44 +2982,59 @@ cn:
         accounts_number: "Accounts" # TODO
         # Address 1 - street, number, etc
         # 1 - views/admin/purchases/_list.html.erb
+        # 2 - views/admin/purchases/_common_form.html.erb
         address: "Address" # TODO
         # Address 2 - postal code
         # 1 - views/admin/purchases/_list.html.erb
+        # 2 - views/admin/purchases/_common_form.html.erb
         postal_code: "Postal Code" # TODO
         # Address 3 - City (this is just a string, it has nothing to do with the location of the application)
         # 1 - views/admin/purchases/_list.html.erb
+        # 2 - views/admin/purchases/_common_form.html.erb
         city: "City" # TODO
         # Address 4 - Country
         # 1 - views/admin/purchases/_list.html.erb
+        # 2 - views/admin/purchases/_common_form.html.erb
         country: "Country" # TODO
         # 1 - views/admin/purchases/_list.html.erb
+        # 2 - views/admin/purchases/_common_form.html.erb
         email: "Email" # TODO
         # 1 - views/admin/purchases/_list.html.erb
         id: "Id"
         # True if the purchase includes an invoice
         # 1 - views/admin/purchases/_list.html.erb
+        # 2 - views/admin/purchases/_common_form.html.erb
         includes_invoice: "Invoice" # TODO
         # Name of the company that made the purchase
         # 1 - views/admin/purchases/_list.html.erb
+        # 2 - views/admin/purchases/_common_form.html.erb
         name: "Name" # TODO
         # Name of the responsible person for that company
         # 1 - views/admin/purchases/_list.html.erb
+        # 2 - views/admin/purchases/_common_form.html.erb
         responsible: "Responsible" # TODO
         # Commercial code of the person, see http://en.wikipedia.org/wiki/Social_Security_number
         # 1 - views/admin/purchases/_list.html.erb
+        # 2 - views/admin/purchases/_common_form.html.erb
         ssn_code: "社會安全號碼"
         # Commercial code of the company, see http://en.wikipedia.org/wiki/VAT_identification_number
         # 1 - views/admin/purchases/_list.html.erb
+        # 2 - views/admin/purchases/_common_form.html.erb
         vat_code: "VAT" # TODO
         # 1 - views/admin/purchases/_list.html.erb
+        # 2 - views/admin/purchases/_common_form.html.erb
         phone_number: "Phone" # TODO
         # 1 - views/admin/purchases/_list.html.erb
+        # 2 - views/admin/purchases/_common_form.html.erb
         fax: "Fax" # TODO
         # 1 - views/admin/purchases/_list.html.erb
+        # 2 - views/admin/purchases/_common_form.html.erb
         release_date: "Release" # TODO
         # 1 - views/admin/purchases/_list.html.erb
+        # 2 - views/admin/purchases/_common_form.html.erb
         start_date: "Activation" # TODO
         # 1 - views/admin/purchases/_list.html.erb
+        # 2 - views/admin/purchases/_common_form.html.erb
         expiration_date: "Expires" # TODO
       # Frame for the purchases search engine
       search:
