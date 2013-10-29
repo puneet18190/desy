@@ -71,6 +71,25 @@ class Admin::PurchasesController < AdminController
   
   # === Description
   #
+  # Action to create a new purchase
+  #
+  # === Mode
+  #
+  # Html
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#admin_authenticate
+  # * Admin::PurchaseController#check_saas
+  #
+  def create
+    @purchase = Purchase.new params[:purchase]
+    @purchase.save
+    redirect_to '/admin/purchases'
+  end
+  
+  # === Description
+  #
   # Action to send to a list of emails the instructions to use the purchase code
   #
   # === Mode

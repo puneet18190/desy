@@ -2,5 +2,5 @@
 <%= form_for(@purchase, :id => 'admin-purchases-new', :class => 'search-form', :url => admin_purchases_path) do |f| %>
   <%= render :partial => 'common_form', :locals => {:f => f} %>
   <%#= render :partial => 'restrictions_form', :locals => {:f => f} %> <!-- TODO -->
-  <%= f.submit %>
+  <%= f.submit %> <!-- TODO traduzz -->
 <% end %>
