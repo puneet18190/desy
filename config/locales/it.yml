@@ -488,6 +488,14 @@ it:
       # Message
       # 1 - mailers/user_mailer.rb
       message: "<p>Benvenuto %{name}</p>, <p>Grazie per esserti registrato a %{desy}!</p><p><b>Per completare la tua registrazione clicca sul seguente link:</b></p><p>Se il link non è cliccabile, copia e incollalo nel browser.<br/>Quando la registrazione sarà confermata, il link non sarà più valido.<br/>Per accedere al sistema inserisci il nome utente e la password prescelti durante la fase di registrazione.</p><br/><p>N.B.</p><p>La conferma dell'utente può essere effettuata una volta sola.</p>"
+    # Email containing the instructions and resume of a purchase
+    purchase_resume:
+      # Subject
+      # 1 - mailers/user_mailer.rb
+      subject: "%{desy} - Resoconto dell'acquisto"
+      # Message
+      # 1 - mailers/user_mailer.rb
+      message: "<p><b>Resoconto del tuo acquisto in %{desy}</b> (%{release_date})</p><br/><ul><li>Denominazione sociale: <i>%{name}</i></li><li>Responsabile: <i>%{responsible}</i></li><li>Indirizzo: <i>%{address}</i></li><li>Numero telefonico: <i>%{phone_number}</i></li><li>Fax: <i>%{fax}</i></li><li>Email: <i>%{email}</i></li><li>Codice fiscale: <i>%{ssn_code}</i></li><li>Partita IVA: <i>%{vat_code}</i></li><li>Numero di utenze: <i>%{accounts_number}</i></li><li>Restrizione per gli utenti: <i>%{location}</i></li><li>Valido da: <i>%{start_date}</i></li><li>Valido a: <i>%{expiration_date}</i></li></ul><br/><br/><h2>Codice di acquisto: %{token}</h2><br/><br/><p>Per creare una nuova utenza, segui questo link: <a href=\"%{link_sign_up}\">%{link_sign_up}</a>, compila il formulario con i tuoi dati, e inserisci il <b>codice di acquisto</b><br/><br/>Per confermare una utenza \"trial\", segui il link <a href=\"%{link_home}\">%{link_home}</a>, apri la finestra di login e inserisci il <b>codice di acquisto</b></p><br/><br/><p>Messaggio dal venditore: <i>%{message}</i></p><p>Se i links non sono attivi, copia quello di cui hai bisogno e incollalo nella finestra di navigazione del tuo browser</p>"
     # Mail containing the link to reset a forgotten password
     reset_password:
       # Subject

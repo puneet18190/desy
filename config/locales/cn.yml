@@ -488,6 +488,14 @@ cn:
       # Message
       # 1 - mailers/user_mailer.rb
       message: "<p>恭喜%{name}</p>, <p>谢谢你的注册%{desy}!</p><p><b>为了完成你的注册，请点击以下链接:</b></p><p>如果此链接没有出现，请拷贝和粘贴到你的浏览器.<br/>当确认注册, 此链接不再是合法.<br/>为了进入系统，请用用户名与密码.</p><br/><p>N.B.</p><p>只能确认那个账号一次.</p>"
+    # Email containing the instructions and resume of a purchase
+    purchase_resume:
+      # Subject
+      # 1 - mailers/user_mailer.rb
+      subject: "%{desy} - Purchase resume" # TODO
+      # Message
+      # 1 - mailers/user_mailer.rb
+      message: "<p><b>Resume of your purchase in %{desy}</b> (%{release_date})</p><br/><ul><li>Name of the purchaser: <i>%{name}</i></li><li>Responsible: <i>%{responsible}</i></li><li>Address: <i>%{address}</i></li><li>Phone number: <i>%{phone_number}</i></li><li>Fax: <i>%{fax}</i></li><li>Email: <i>%{email}</i></li><li>SSN: <i>%{ssn_code}</i></li><li>VAT: <i>%{vat_code}</i></li><li>Accounts number: <i>%{accounts_number}</i></li><li>Users restricted to: <i>%{location}</i></li><li>Valid since: <i>%{start_date}</i></li><li>Valid until: <i>%{expiration_date}</i></li></ul><br/><br/><h2>Purchase code: %{token}</h2><br/><br/><p>To create a new account, click on this link: <a href=\"%{link_sign_up}\">%{link_sign_up}</a>, fill in the form with your data, and insert the <b>purchase code</b><br/><br/>To confirm a trial account, click on the link <a href=\"%{link_home}\">%{link_home}</a>, open the login form and insert the <b>purchase code</b></p><br/><br/><p>Message from the vendor: <i>%{message}</i></p><p>If the links don't appear clickable copy the one you need and paste it into your browser</p>" # TODO
     # Mail containing the link to reset a forgotten password
     reset_password:
       # Subject
