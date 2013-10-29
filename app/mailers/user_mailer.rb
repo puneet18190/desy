@@ -53,11 +53,11 @@ class UserMailer < ActionMailer::Base
     @mail_content = I18n.t(
       'mailer.purchase_resume.message',
       :release_date    => TimeConvert.to_string @purchase.release_date,
-      :message         => @message, # TODO
+      :message         => @message,
       :desy            => APPLICATION_NAME
       :name            => @purchase.name
       :responsible     => @purchase.responsible
-      :address         => @purchase.address_to_s # TODO
+      :address         => @purchase.address_to_s
       :phone_number    => @purchase.phone_number
       :fax             => @purchase.fax
       :email           => @purchase.email

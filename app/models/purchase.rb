@@ -73,6 +73,18 @@ class Purchase < ActiveRecord::Base
   before_validation :init_validation
   before_create :create_token
   
+  # === Description
+  #
+  # Used in the front end, it returns a resume of the address depending on the field filled up
+  #
+  # === Returns
+  #
+  # A string
+  #
+  def address_to_s
+    resp = ([self.address, self.postal_code, self.city, self.country].reject {|i| i.blank?}).join(', ')
+  end
+  
   private
   
   # Initializes the objects needed for the validation
