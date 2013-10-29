@@ -3012,7 +3012,7 @@ it:
         # Name of the responsible person for that company
         # 1 - views/admin/purchases/_list.html.erb
         # 2 - views/admin/purchases/_common_form.html.erb
-        responsible: "Resp."
+        responsible: "Responsab."
         # Commercial code of the person, see http://en.wikipedia.org/wiki/Social_Security_number
         # 1 - views/admin/purchases/_list.html.erb
         # 2 - views/admin/purchases/_common_form.html.erb
