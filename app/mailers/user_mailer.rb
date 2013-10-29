@@ -52,22 +52,24 @@ class UserMailer < ActionMailer::Base
     @purchase = purchase
     @mail_content = I18n.t(
       'mailer.purchase_resume.message',
-      :release_date    => TimeConvert.to_string @purchase.release_date,
+      :release_date    => TimeConvert.to_string(@purchase.release_date),
       :message         => @message,
-      :desy            => APPLICATION_NAME
-      :name            => @purchase.name
-      :responsible     => @purchase.responsible
-      :address         => @purchase.address_to_s
-      :phone_number    => @purchase.phone_number
-      :fax             => @purchase.fax
-      :email           => @purchase.email
-      :ssn_code        => @purchase.ssn_code
-      :vat_code        => @purchase.vat_code
-      :accounts_number => @purchase.accounts_number
-      :location        => @purchase.location_to_s
-      :start_date      => TimeConvert.to_string @purchase.start_date,
-      :expiration_date => TimeConvert.to_string @purchase.expiration_date,
-      :token           => @purchase.token
+      :desy            => APPLICATION_NAME,
+      :name            => @purchase.name,
+      :responsible     => @purchase.responsible,
+      :address         => @purchase.address_to_s,
+      :phone_number    => @purchase.phone_number,
+      :fax             => @purchase.fax,
+      :email           => @purchase.email,
+      :ssn_code        => @purchase.ssn_code,
+      :vat_code        => @purchase.vat_code,
+      :accounts_number => @purchase.accounts_number,
+      :location        => @purchase.location_to_s,
+      :start_date      => TimeConvert.to_string(@purchase.start_date),
+      :expiration_date => TimeConvert.to_string(@purchase.expiration_date),
+      :token           => @purchase.token,
+      :link_sign_up    => sign_up_url(*host_and_port(login: true)),
+      :link_home       => home_url(*host_and_port(login: true))
     ).html_safe
     mail to: emails, subject: t('mailer.purchase_resume.subject', :desy => APPLICATION_NAME)
   end
