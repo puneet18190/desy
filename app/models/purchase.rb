@@ -101,7 +101,7 @@ class Purchase < ActiveRecord::Base
     first = true
     current_location = self.location
     return '-' if current_location.nil?
-    (0...SETTINGS['location_types'].length).to_a.each do |index|
+    while !current_location.nil?
       locations << current_location
       current_location = current_location.parent
     end
