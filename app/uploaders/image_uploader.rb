@@ -14,7 +14,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   storage :file
 
   STORE_DIR            = env_relative_path "media_elements/images"
-  FOLDER               = Media::RAILS_PUBLIC_FOLDER.join(STORE_DIR).to_s
+  FOLDER               = Rails.public_pathname.join(STORE_DIR).to_s
   EXTENSION_WHITE_LIST = %w(jpg jpeg png)
 
   def self.remove_folder!

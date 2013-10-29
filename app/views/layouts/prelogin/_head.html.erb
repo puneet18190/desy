@@ -1,4 +1,4 @@
-<title><%= html_title @slides %></title>
+<title><%= title_tag @slides %></title>
 <%= favicon_link_tag 'favicon32x32.png', type: 'image/png' %>
 
 <!--[if lt IE 9]>
@@ -7,12 +7,12 @@
 <![endif]-->
 
 <!--[if gte IE 9]>
-  <%= stylesheet_link_tag "application", :media => "all" %>
+  <%= stylesheet_link_tag "layouts/prelogin/application", :media => "all" %>
   <%= javascript_include_tag "application" %>
 <![endif]-->
 
 <!--[if !IE]> -->
-  <%= stylesheet_link_tag "application", :media => "all" %>
+  <%= stylesheet_link_tag "layouts/prelogin/application", :media => "all" %>
   <%= javascript_include_tag "application" %>
 <!-- <![endif]-->
 

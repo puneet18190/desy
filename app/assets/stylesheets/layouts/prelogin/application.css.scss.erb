@@ -15,44 +15,17 @@
  */
 
 @import url(http://fonts.googleapis.com/css?family=Nunito);
-@import url(http://fonts.googleapis.com/css?family=Droid+Sans);
 
 <%# assets urls %>
 <%= Erubis::Eruby.new( Rails.application.config.assets.stylesheets.paths.urls.read ).result binding() %>
 
-<% SETTINGS['colors'].each do |key, value| %>
-  $<%= key %>:<%= value['code'] %>;
-  .color_<%= key %>{
-    color: <%= value['code'] %>;
-  }
-  .background_color_<%= key %>{
-    background-color: <%= value['code'] %>;
-  }
-<% end %>
-
 @import 'variables';
 @import 'mixins';
-@import 'dialog_popups';
 @import 'global';
 @import 'shared';
-@import 'galleries';
-@import 'players';
-@import 'shared_editor_player';
-@import 'header';
-@import 'menu';
 @import 'graybar';
-@import 'tooltips';
-@import 'content';
-@import 'dots_pagination';
-@import 'lessons';
-@import 'elements';
 @import 'profile';
-@import 'layouts/lesson_editor';
-@import 'layouts/slides';
-@import 'layouts/lesson_viewer';
-@import 'layouts/media_element_editor';
-@import 'layouts/document';
-@import 'tags_container';
-@import 'layouts/virtual_classroom';
-@import 'audio_editor';
+@import 'layout';
+@import 'header';
+@import 'home';
 @import 'msie';

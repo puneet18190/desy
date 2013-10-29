@@ -19,7 +19,7 @@ module Media
     # Media folder (relative to the app public/ folder, for using in URLs)
     PUBLIC_RELATIVE_MEDIA_ELEMENTS_FOLDER = 'media_elements'
     # Absolute path to the media folders (for using in paths)
-    MEDIA_ELEMENTS_FOLDER                 = RAILS_PUBLIC_FOLDER.join PUBLIC_RELATIVE_MEDIA_ELEMENTS_FOLDER
+    MEDIA_ELEMENTS_FOLDER                 = Rails.public_pathname.join PUBLIC_RELATIVE_MEDIA_ELEMENTS_FOLDER
     # Maximum allowed size for media elements folder; if exceeded, upload gets disabled
     MAXIMUM_MEDIA_ELEMENTS_FOLDER_SIZE    = SETTINGS['maximum_media_elements_folder_size'].gigabytes.to_i
 

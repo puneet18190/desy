@@ -18,7 +18,7 @@ module Export
       include Shared
 
       ASSETS_FOLDER              = Lesson::FOLDER.join 'archives', 'assets'
-      FOLDER                     = env_relative_pathname RAILS_PUBLIC, 'lessons', 'exports', 'archives'
+      FOLDER                     = env_relative_pathname Rails.public_pathname, 'lessons', 'exports', 'archives'
       ASSETS_ARCHIVE_FOLDER_NAME = 'assets'
 
       # STORED or DEFLATED
@@ -54,7 +54,7 @@ module Export
       def url
         find_or_create
 
-        "/#{path.relative_path_from RAILS_PUBLIC}"
+        "/#{path.relative_path_from Rails.public_pathname}"
       end
 
       def find_or_create

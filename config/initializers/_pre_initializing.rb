@@ -1,3 +1,5 @@
+require 'pathname'
+
 require 'dumpable'
 require 'controller_info'
 require 'errors_logger'
@@ -45,5 +47,11 @@ if WINDOWS
         old_ref(glob_pattern)
       end
     end
+  end
+end
+
+module Rails
+  def self.public_pathname
+    @public_pathname ||= Pathname.new public_path
   end
 end
