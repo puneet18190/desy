@@ -64,9 +64,8 @@ class Admin::PurchasesController < AdminController
       @purchase.city = renewed.city
       @purchase.country = renewed.country
       @purchase.includes_invoice = renewed.includes_invoice
-      @purchase.release_date = renewed.release_date
-      @purchase.start_date = renewed.start_date
-      @purchase.expiration_date = renewed.expiration_date
+      @purchase.release_date = Time.zone.now
+      @purchase.start_date = renewed.expiration_date
     end
   end
   
