@@ -409,6 +409,12 @@ function adminSortingDocumentReady() {
     $('input#search_desc').val($(this).data('desc'));
     $('#admin-search-documents').submit();
   });
+  $body.on('click', 'table#purchases-list thead tr th a', function(e) {
+    e.preventDefault();
+    $('input#search_ordering').val($(this).data('ordering'));
+    $('input#search_desc').val($(this).data('desc'));
+    $('#admin-search-purchases').submit();
+  });
 }
 
 /**
