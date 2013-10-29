@@ -65,7 +65,13 @@ class Admin::PurchasesController < AdminController
   # * Admin::PurchaseController#check_saas
   #
   def send_link
-    
+    @purchase = Purchase.find_by_id params[:id]
+    if !@purchase
+      redirect_to '/admin/purchases'
+      return
+    end
+    UserMailer.purchase_resume(params[:emails].split(','), @purchase, params[:message], request.host, request.port).deliver
+    redirect_to '/admin/purchases'
   end
   
   # === Description

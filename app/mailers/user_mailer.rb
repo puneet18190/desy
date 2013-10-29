@@ -45,6 +45,15 @@ class UserMailer < ActionMailer::Base
     mail to: @user.email, subject: t('mailer.reset_password_confirmed.subject', :desy => APPLICATION_NAME)
   end
   
+  # Mail containing the link of a lesson
+  def purchase_resume(emails, purchase, message, host = nil, port = nil)
+    host_and_port!(host, port)
+    @message = message
+    @purchase = purchase
+    @mail_content = I18n.t('mailer.purchase_resume.message', :purchase => @purchase.to_s, :message => @message, :desy => APPLICATION_NAME).html_safe # TODO traduzz
+    mail to: emails, subject: t('mailer.purchase_resume.subject', :desy => APPLICATION_NAME) # TODO traduzz
+  end
+  
   private
   
   # Extracts host and port
