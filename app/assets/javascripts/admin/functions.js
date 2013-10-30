@@ -199,19 +199,37 @@ function adminLocationsDocumentReady() {
     } else {
       var me = $('#admin_purchase_choose_location_' + $(this).val());
       me.removeAttr('disabled').removeClass('disabled');;
-      prev = me.prev();
+      var prev = me.prev();
+      while(!prev.hasClass('_admin_purchase_choose_location_select_box') && prev.length > 0) {
+        prev = prev.next();
+      }
       while(prev.length > 0) {
         prev.removeAttr('disabled').removeClass('disabled');
         prev = prev.prev();
+        while(!prev.hasClass('_admin_purchase_choose_location_select_box') && prev.length > 0) {
+          prev = prev.next();
+        }
       }
-      next = me.next();
+      var next = me.next();
+      while(!next.hasClass('_admin_purchase_choose_location_select_box') && next.length > 0) {
+        next = next.next();
+      }
       while(next.length > 0) {
         next.attr('disabled', 'disabled').addClass('disabled');
         next = next.next();
+        while(!next.hasClass('_admin_purchase_choose_location_select_box') && next.length > 0) {
+          next = next.next();
+        }
       }
       $('#hidden_messages_for_admin_purchase_choose_location').show();
       var translated_location = $(this).find('option.' + $(this).val()).data('translated');
       $('#hidden_messages_for_admin_purchase_choose_location .location').html(translated_location);
+      if(me.val() != '0') {
+        $.ajax({
+          type: 'get',
+          url: '/admin/purchases/locations/' + me.val() + '/find'
+        });
+      }
     }
   });
   $body.on('change', '._admin_purchase_choose_location_select_box', function() {
