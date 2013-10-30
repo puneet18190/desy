@@ -198,10 +198,10 @@ function adminLocationsDocumentReady() {
       $('#hidden_messages_for_admin_purchase_choose_location').hide();
     } else {
       var me = $('#admin_purchase_choose_location_' + $(this).val());
-      me.removeAttr('disabled');
+      me.removeAttr('disabled').removeClass('disabled');;
       prev = me.prev();
       while(prev.length > 0) {
-        prev.removeAttr('disabled');
+        prev.removeAttr('disabled').removeClass('disabled');
         prev = prev.prev();
       }
       next = me.next();
