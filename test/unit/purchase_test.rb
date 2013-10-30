@@ -91,7 +91,8 @@ class PurchaseTest < ActiveSupport::TestCase
     different_token = last_char == 'a' ? "#{old_token.chop}b" : "#{old_token.chop}a"
     assert different_token != old_token
     assert_invalid @purchase, :token, different_token, old_token, :cant_be_changed
-    assert_invalid @purchase, :accounts_number, 2, 100, :cant_be_changed
+    assert_invalid @purchase, :accounts_number, 99, 100, :cant_be_decreased
+    @purchase.accounts_number = 102
     assert_obj_saved @purchase
   end
   

@@ -38,7 +38,8 @@
 # * *correctness* of +email+ as an e-mail address
 # * *format* of dates +release_date+, +start_date+, +expiration_date+
 # * *presence* of at least one between +vat_code+ and +ssn_code+
-# * *modifications* *not* *available* for +accounts_number+, +token+
+# * *modifications* *not* *available* for +token+
+# * *decrease* *not* *available* for +accounts_number+
 # * *uniqueness* ok +token+
 #
 # == Callbacks
@@ -150,7 +151,7 @@ class Purchase < ActiveRecord::Base
   # Validates that if the purchase is not new record the field +accounts_number+ cannot be changed
   def validate_impossible_changes
     if @purchase
-      errors.add(:accounts_number, :cant_be_changed) if @purchase.accounts_number != self.accounts_number
+      errors.add(:accounts_number, :cant_be_decreased) if @purchase.accounts_number > self.accounts_number
       errors.add(:token, :cant_be_changed) if @purchase.token != self.token
     end
   end
