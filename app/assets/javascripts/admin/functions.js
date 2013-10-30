@@ -193,7 +193,7 @@ function adminLocationsDocumentReady() {
   $body.on('change', '#admin_purchase_choose_location_kind', function() {
     if($(this).val() == '0') {
       $('#admin_purchase_choose_location_wrapper select').each(function() {
-        $(this).attr('disabled', 'disabled');
+        $(this).attr('disabled', 'disabled').addClass('disabled');
       });
       $('#hidden_messages_for_admin_purchase_choose_location').hide();
     } else {
@@ -206,7 +206,7 @@ function adminLocationsDocumentReady() {
       }
       next = me.next();
       while(next.length > 0) {
-        next.attr('disabled', 'disabled');
+        next.attr('disabled', 'disabled').addClass('disabled');
         next = next.next();
       }
       $('#hidden_messages_for_admin_purchase_choose_location').show();
@@ -215,10 +215,13 @@ function adminLocationsDocumentReady() {
     }
   });
   $body.on('change', '._admin_purchase_choose_location_select_box', function() {
-    $.ajax({
-      type: 'get',
-      url: '/admin/purchases/location/' + $(this).val() + '/find'
-    });
+    var me = $(this);
+    if(!me.data('last') && !me.next().hasClass('disabled')) {
+      $.ajax({
+        type: 'get',
+        url: '/admin/purchases/locations/' + me.val() + '/find'
+      });
+    }
   });
 }
 
