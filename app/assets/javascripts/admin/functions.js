@@ -236,6 +236,12 @@ function adminLocationsDocumentReady() {
       $('#purchase_location_id').val(me.val());
     }
   });
+  $body.on('click', '#get_location_by_code_or_id', function() {
+    $.ajax({
+      type: 'get',
+      url: '/admin/purchases/locations/fill?' + $('#get_location_code_type').val() + '=' + $('#get_location_code').val()
+    });
+  });
 }
 
 /**
