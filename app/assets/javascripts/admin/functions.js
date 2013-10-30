@@ -214,12 +214,19 @@ function adminLocationsDocumentReady() {
       while(!next.hasClass('_admin_purchase_choose_location_select_box') && next.length > 0) {
         next = next.next();
       }
+      var first_next = true;
       while(next.length > 0) {
         next.attr('disabled', 'disabled').addClass('disabled');
+        if(first_next) {
+          next.find('option.dont_delete_me').attr('selected', 'selected');
+        } else {
+          next.find('option').not('.dont_delete_me').remove();
+        }
         next = next.next();
         while(!next.hasClass('_admin_purchase_choose_location_select_box') && next.length > 0) {
           next = next.next();
         }
+        first_next = false
       }
       $('#hidden_messages_for_admin_purchase_choose_location').show();
       var translated_location = $(this).find('option.' + $(this).val()).data('translated');
