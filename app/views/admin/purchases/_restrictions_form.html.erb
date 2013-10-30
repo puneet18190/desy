@@ -1,0 +1,12 @@
+<%= t('admin.purchases.fields.country') %>: <%= f.hidden_field :location_id %><br/>
+
+<select id="admin_purchase_choose_location_kind">
+  <option value="0" data-location-type="0" selected="selected">
+    <%= t('admin.purchases.empty_location') %>
+  </option>
+  <% SETTINGS['location_types'].each_with_index do |location, index| %>
+    <option value="<%= location.downcase %>" data-location-type="<%= location.downcase %>">
+      <%= t('admin.purchases.present_location', :location => location.downcase) %>
+    </option>
+  <% end %>
+</select>

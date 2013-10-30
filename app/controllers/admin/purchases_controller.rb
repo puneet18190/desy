@@ -84,8 +84,6 @@ class Admin::PurchasesController < AdminController
   #
   def create
     @purchase = Purchase.new params[:purchase]
-    @purchase.accounts_number = 3 # TODO
-    @purchase.location_id = nil # TODO
     if @purchase.save
       redirect_to '/admin/purchases'
     else
