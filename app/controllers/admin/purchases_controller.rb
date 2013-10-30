@@ -152,6 +152,8 @@ class Admin::PurchasesController < AdminController
   # * Admin::PurchaseController#check_saas
   #
   def find_locations
+    parent = Location.find_by_id params[:id]
+    @locations = parent.nil? ? [] : parent.children.order(:name)
   end
   
   private

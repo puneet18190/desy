@@ -22,8 +22,7 @@ Restringi ??? <!-- TODO traduzz -->
     <% is_last = (index == SETTINGS['location_types'].length - 1) %>
     <%= Location.label_at(index) %>:
     <select id="admin_purchase_choose_location_<%= location.downcase %>" class="_admin_purchase_choose_location_select_box disabled" disabled="disabled" data-last="<%= is_last %>">
-      <option value="0"><%= t('locations.placeholder', :location => Location.label_at(index)).downcase %></option>
-      <%= options_from_collection_for_select(locations, 'id', 'name', 0) %>
+      <%= render :partial => 'admin/purchases/location', :locals => {:locations => locations, :selected => 0, :index => index} %>
     </select>
     <% locations = [] %>
     <br/>
