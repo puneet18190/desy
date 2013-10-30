@@ -32,7 +32,7 @@ Restringi ??? <!-- TODO traduzz -->
 <br/><br/>
 
 <div id="hidden_messages_for_admin_purchase_choose_location" style="display:none">
-  cerca <span class="location"></span> per <!-- TODO traduzz -->
+  <%= t('admin.purchases.restrictions.search.instructions.regular', :location => '<span class="location"></span>'.html_safe).html_safe %>
   <select id="get_location_code_type">
     <option val="id" selected="selected">
       id <!-- TODO traduzz -->
@@ -42,5 +42,7 @@ Restringi ??? <!-- TODO traduzz -->
     </option>
   </select>: <input id="get_location_code" val=""/> <a id="get_location_by_code_or_id">GO</a> <!-- TODO traduzz -->
   <br/><br/>
-  registra <span class="location"></span> nel gestore di locations <!-- TODO traduzz -->
+  <a href="/admin/purchases" target="_blank">
+    <%= t('admin.purchases.restrictions.search.instructions.add', :location => '<span class="location"></span>'.html_safe).html_safe %>
+  </a>
 </div>

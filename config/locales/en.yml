@@ -3052,6 +3052,16 @@ en:
         # Label if the admin wants to restrict the location of the user to a particular kind of location (the variable %{location} is replaced by the kind)
         # 1 - views/admin/purchases/_restrictions_form.html.erb
         location: "Restrict to a specific %{location}"
+        # Form to search a location inside the page
+        search:
+          # Instructions
+          instructions:
+            # The variable %{location} is replaced by the <span> contaning a dynamic label for the location
+            # 1 - views/admin/purchases/_restrictions_form.html.erb
+            regular: "Search a %{location} by "
+            # The variable %{location} is replaced by the <span> contaning a dynamic label for the location
+            # 1 - views/admin/purchases/_restrictions_form.html.erb
+            add: "Create a new %{location} in the location administrator"
       # Frame for the purchases search engine
       search:
         # Title of the frame
