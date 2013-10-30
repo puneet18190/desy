@@ -202,21 +202,12 @@ function adminLocationsDocumentReady() {
       if(me.val() != '0') {
         $('#purchase_location_id').val(me.val());
       }
-      var prev = me.prev();
-      while(!prev.hasClass('_admin_purchase_choose_location_select_box') && prev.length > 0) {
-        prev = prev.prev();
-      }
+      var prev = me.prevUntil('._admin_purchase_choose_location_select_box').prev();
       while(prev.length > 0) {
         prev.removeAttr('disabled').removeClass('disabled');
-        prev = prev.prev();
-        while(!prev.hasClass('_admin_purchase_choose_location_select_box') && prev.length > 0) {
-          prev = prev.prev();
-        }
+        prev = prev.prevUntil('._admin_purchase_choose_location_select_box').prev();
       }
-      var next = me.next();
-      while(!next.hasClass('_admin_purchase_choose_location_select_box') && next.length > 0) {
-        next = next.next();
-      }
+      var next = me.nextUntil('._admin_purchase_choose_location_select_box').next();
       var first_next = true;
       while(next.length > 0) {
         next.attr('disabled', 'disabled').addClass('disabled').removeClass('eletto');
@@ -225,10 +216,7 @@ function adminLocationsDocumentReady() {
         } else {
           next.find('option').not('.dont_delete_me').remove();
         }
-        next = next.next();
-        while(!next.hasClass('_admin_purchase_choose_location_select_box') && next.length > 0) {
-          next = next.next();
-        }
+        next = next.nextUntil('._admin_purchase_choose_location_select_box').next();
         first_next = false
       }
       $('#hidden_messages_for_admin_purchase_choose_location').show();
