@@ -196,6 +196,16 @@ function adminLocationsDocumentReady() {
         $(this).attr('disabled', 'disabled').addClass('disabled').removeClass('eletto');
       });
       $('#hidden_messages_for_admin_purchase_choose_location').hide();
+      var first = true;
+      $('._admin_purchase_choose_location_select_box').each(function() {
+        if(first) {
+          $(this).find('option').not('.dont_delete_me').removeAttr('selected');
+          $(this).find('option.dont_delete_me').attr('selected', 'selected');
+        } else {
+          $(this).find('option').not('.dont_delete_me').remove();
+        }
+        first = false;
+      });
     } else {
       var me = $('#admin_purchase_choose_location_' + $(this).val());
       me.removeAttr('disabled').removeClass('disabled').addClass('eletto');
