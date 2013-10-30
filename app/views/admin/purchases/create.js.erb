@@ -1,0 +1,5 @@
+<% if @ok %>
+  window.location = '/admin/purchases';
+<% else %>
+  alert('<%= @errors.inspect %>'); // TODO HANDLE ERRORS
+<% end %>

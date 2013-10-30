@@ -86,10 +86,10 @@ class Admin::PurchasesController < AdminController
   def create
     @purchase = Purchase.new params[:purchase]
     if @purchase.save
-      redirect_to '/admin/purchases'
+      @ok = true
     else
+      @ok = false
       @errors = @purchase.errors.messages
-      render 'new'
     end
   end
   
