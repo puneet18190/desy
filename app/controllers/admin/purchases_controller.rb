@@ -156,6 +156,26 @@ class Admin::PurchasesController < AdminController
     @locations = parent.nil? ? [] : parent.children.order(:name)
   end
   
+  # === Description
+  #
+  # It fills the locations in the restriction form, receiving as input an id or a code
+  #
+  # === Mode
+  #
+  # Html
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#admin_authenticate
+  # * Admin::PurchaseController#check_saas
+  #
+  def fill_locations
+    location_id = Location.find_by_id params[:id]
+    location_code = Location.where(:code => params[:code], :sti_type => params[:sti_type]).first
+    location = location_id.nil? ? location_code : location_id
+    # TODO
+  end
+  
   private
   
   # Filter that checks if this section is enabled

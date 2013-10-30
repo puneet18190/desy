@@ -147,6 +147,7 @@ Desy::Application.routes.draw do
   get 'locations/:id/find'                 => 'users#find_locations'
   get 'admin/locations/:id/find'           => 'admin/users#find_locations'
   get 'admin/purchases/locations/:id/find' => 'admin/purchases#find_locations'
+  get 'admin/purchases/locations/:id/fill' => 'admin/purchases#fill_locations'
   
   # MAILING LIST
   post   'mailing_lists/create'                                 => 'mailing_lists#create_group'
