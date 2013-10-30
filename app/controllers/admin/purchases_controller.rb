@@ -129,6 +129,13 @@ class Admin::PurchasesController < AdminController
     @purchase.includes_invoice = (params[:purchase][:includes_invoice] == '1')
     if @purchase.save
       @ok = true
+      renewed = Purchase.find_by_id params[:renewed_id]
+      if renewed
+        renewed.users.each do |u|
+          u.purchase_id = @purchase.id
+          u.save
+        end
+      end
     else
       @ok = false
       @errors = @purchase.errors.messages.keys
