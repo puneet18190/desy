@@ -4,7 +4,7 @@
 %>
 
 <% ((first_depth + 1)...(SETTINGS['location_types'].length)).to_a.each do |depth| %>
-  $('select#locations_list_<%= depth %>').html('');
+  $('select#admin_purchase_choose_location_<%= SETTINGS["location_types"][depth].downcase %>').html('<%= j render(:partial => "admin/purchases/locations", :locals => {:locations => [], :selected => 0, :index => depth}) %>');
 <% end %>
 <% if @locations.any? %>
   $('select#admin_purchase_choose_location_<%= SETTINGS["location_types"][@locations.first.depth].downcase %>').html('<%= j render(:partial => "admin/purchases/locations", :locals => {:locations => @locations, :selected => 0, :index => @locations.first.depth}) %>');
