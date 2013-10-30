@@ -2248,6 +2248,11 @@ cn:
       # Button to save
       # 1 - views/users/subjects.html.erb
       save: "保存"
+    # Captions used for trial accounts
+    trial:
+      # 1 - views/admin/users/_list.html.erb
+      # 2 - views/admin/users/show.html.erb
+      label: "Trial" # TODO
   
   
   # SECTION 2.16: Captions used inside the Video Editor
@@ -3319,6 +3324,9 @@ cn:
         surname: "别名"
         # 1 - views/admin/users/show.html.erb
         updated_at: "上次更新"
+        # 1 - views/admin/users/show.html.erb
+        # 2 - views/admin/users/_list.html.erb
+        purchase_id: "Subscription" # TODO
       # Caption of the frame containing all the lesson of a specific user
       # 1 - views/admin/users/show.html.erb
       lessons: "%{user}的课程"
