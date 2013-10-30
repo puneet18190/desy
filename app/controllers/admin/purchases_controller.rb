@@ -89,7 +89,7 @@ class Admin::PurchasesController < AdminController
       @ok = true
     else
       @ok = false
-      @errors = @purchase.errors.messages
+      @errors = @purchase.errors.messages.keys
     end
   end
   

@@ -1,5 +1,8 @@
 <% if @ok %>
   window.location = '/admin/purchases';
 <% else %>
-  alert('<%= @errors.inspect %>'); // TODO HANDLE ERRORS
+  $('.erroraccio').removeClass('erroraccio');
+  <% @errors.each do |e| %>
+    $('#purchase_<%= e.to_s %>').addClass('erroraccio');
+  <% end %>
 <% end %>
