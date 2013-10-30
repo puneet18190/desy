@@ -6,8 +6,9 @@
   <%= render :partial => 'restrictions_form', :locals => {:f => f, :locations => @locations} %>
   <hr/>
   <% if @renewed %>
-    Rinnova automaticamente a tutti gli utenti: <%= check_box_tag 'renewed', '0' %>
+    Rinnova automaticamente a tutti gli utenti: <%= check_box_tag 'renewed', '0' %> <!-- TODO traduzz -->
     <%= hidden_field_tag 'renewed_id', @renewed.id %>
+    <hr/>
   <% end %>
   <%= f.submit %> <!-- TODO traduzz -->
 <% end %>
