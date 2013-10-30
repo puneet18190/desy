@@ -193,12 +193,15 @@ function adminLocationsDocumentReady() {
   $body.on('change', '#admin_purchase_choose_location_kind', function() {
     if($(this).val() == '0') {
       $('#admin_purchase_choose_location_wrapper select').each(function() {
-        $(this).attr('disabled', 'disabled').addClass('disabled');
+        $(this).attr('disabled', 'disabled').addClass('disabled').removeClass('eletto');
       });
       $('#hidden_messages_for_admin_purchase_choose_location').hide();
     } else {
       var me = $('#admin_purchase_choose_location_' + $(this).val());
-      me.removeAttr('disabled').removeClass('disabled');;
+      me.removeAttr('disabled').removeClass('disabled').addClass('eletto');
+      if(me.val() != '0') {
+        alert('location_id settato a ' + me.val()); // TODO
+      }
       var prev = me.prev();
       while(!prev.hasClass('_admin_purchase_choose_location_select_box') && prev.length > 0) {
         prev = prev.prev();
@@ -216,7 +219,7 @@ function adminLocationsDocumentReady() {
       }
       var first_next = true;
       while(next.length > 0) {
-        next.attr('disabled', 'disabled').addClass('disabled');
+        next.attr('disabled', 'disabled').addClass('disabled').removeClass('eletto');
         if(first_next) {
           next.find('option.dont_delete_me').attr('selected', 'selected');
         } else {
@@ -240,6 +243,9 @@ function adminLocationsDocumentReady() {
         type: 'get',
         url: '/admin/purchases/locations/' + me.val() + '/find'
       });
+    }
+    if(me.hasClass('eletto')) {
+      alert('location_id settato a ' + me.val()); // TODO
     }
   });
 }
