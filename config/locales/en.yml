@@ -3082,21 +3082,12 @@ en:
             # The variable %{location} is replaced by the <span> contaning a dynamic label for the location
             # 1 - views/admin/purchases/_restrictions_form.html.erb
             add: "Create a new %{location} in the location administrator"
-            
-            
-            
-            
-            
             # Fields to search locations
             fields:
               # 1 - views/admin/purchases/_restrictions_form.html.erb
               id: "Id"
               # 1 - views/admin/purchases/_restrictions_form.html.erb
               code: "Code"
-            
-            
-            
-            
       # Frame for the purchases search engine
       search:
         # Title of the frame
