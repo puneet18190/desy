@@ -90,24 +90,24 @@ class Admin::PurchasesController < AdminController
   # * Admin::PurchaseController#check_saas
   #
   def new
-    renewed = Purchase.find_by_id params[:renew]
+    @renewed = Purchase.find_by_id params[:renew]
     @purchase = Purchase.new
     @locations = Location.roots.order(:name)
-    if renewed
-      @purchase.name = renewed.name
-      @purchase.responsible = renewed.responsible
-      @purchase.phone_number = renewed.phone_number
-      @purchase.fax = renewed.fax
-      @purchase.email = renewed.email
-      @purchase.ssn_code = renewed.ssn_code
-      @purchase.vat_code = renewed.vat_code
-      @purchase.address = renewed.address
-      @purchase.postal_code = renewed.postal_code
-      @purchase.city = renewed.city
-      @purchase.country = renewed.country
-      @purchase.includes_invoice = renewed.includes_invoice
+    if @renewed
+      @purchase.name = @renewed.name
+      @purchase.responsible = @renewed.responsible
+      @purchase.phone_number = @renewed.phone_number
+      @purchase.fax = @renewed.fax
+      @purchase.email = @renewed.email
+      @purchase.ssn_code = @renewed.ssn_code
+      @purchase.vat_code = @renewed.vat_code
+      @purchase.address = @renewed.address
+      @purchase.postal_code = @renewed.postal_code
+      @purchase.city = @renewed.city
+      @purchase.country = @renewed.country
+      @purchase.includes_invoice = @renewed.includes_invoice
       @purchase.release_date = Time.zone.now
-      @purchase.start_date = renewed.expiration_date
+      @purchase.start_date = @renewed.expiration_date
     end
   end
   
@@ -126,6 +126,7 @@ class Admin::PurchasesController < AdminController
   #
   def create
     @purchase = Purchase.new params[:purchase]
+    @purchase.includes_invoice = (params[:purchase][:includes_invoice] == '1')
     if @purchase.save
       @ok = true
     else
