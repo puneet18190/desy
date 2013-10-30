@@ -37,6 +37,47 @@ class Admin::PurchasesController < AdminController
   
   # === Description
   #
+  # Form to edit a purchase
+  #
+  # === Mode
+  #
+  # Html
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#admin_authenticate
+  # * Admin::PurchaseController#check_saas
+  #
+  def edit
+    @purchase = Purchase.find_by_id params[:id]
+  end
+  
+  # === Description
+  #
+  # Action to update a purchase
+  #
+  # === Mode
+  #
+  # Html
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#admin_authenticate
+  # * Admin::PurchaseController#check_saas
+  #
+  def update
+    @purchase = Purchase.find_by_id params[:id]
+    @purchase.attributes = params[:purchase]
+    if @purchase.save
+      @ok = true
+    else
+      @ok = false
+      @errors = @purchase.errors.messages.keys
+    end
+  end
+  
+  # === Description
+  #
   # Form to create a new purchase
   #
   # === Mode
