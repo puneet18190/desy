@@ -15,12 +15,15 @@ Restringi ??? <!-- TODO traduzz -->
   <% end %>
 </select>
 
+<br/><br/>
+
 <% SETTINGS['location_types'].each_with_index do |location, index| %>
-  <%= Location.label_at(index) %><br>
+  <%= Location.label_at(index) %>:
   <select id="admin_purchase_choose_location_<%= location.downcase %>" class="_location_select_box" disabled="disabled">
     <%= render :partial => 'admin/users/locations_list', :locals => {:locations => locations, :param => nil} %>
   </select>
-  <% locations = nil %>
+  <% locations = [] %>
+  <br/>
 <% end %>
 
 <div id="hidden_messages_for_admin_purchase_choose_location" style="display:none">
