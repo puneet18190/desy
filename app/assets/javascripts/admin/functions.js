@@ -214,7 +214,7 @@ function adminLocationsDocumentReady() {
       }
       var prev = me.prevUntil('._admin_purchase_choose_location_select_box').prev();
       while(prev.length > 0) {
-        prev.removeAttr('disabled').removeClass('disabled');
+        prev.removeAttr('disabled').removeClass('disabled').removeClass('eletto');
         prev = prev.prevUntil('._admin_purchase_choose_location_select_box').prev();
       }
       var next = me.nextUntil('._admin_purchase_choose_location_select_box').next();
