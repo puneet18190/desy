@@ -1,9 +1,5 @@
 <%= f.hidden_field :location_id %>
-
-Restringi ??? <!-- TODO traduzz -->
-
-<br/><br/>
-
+<%= t('admin.purchases.restrictions.title') %><br/><br/>
 <select id="admin_purchase_choose_location_kind">
   <option value="0" selected="selected">
     <%= t('admin.purchases.restrictions.empty') %>
@@ -13,10 +9,7 @@ Restringi ??? <!-- TODO traduzz -->
       <%= t('admin.purchases.restrictions.location', :location => Location.label_at(index).downcase) %>
     </option>
   <% end %>
-</select>
-
-<br/><br/>
-
+</select><br/><br/>
 <div id="admin_purchase_choose_location_wrapper">
   <% SETTINGS['location_types'].each_with_index do |location, index| %>
     <% is_last = (index == SETTINGS['location_types'].length - 1) %>
@@ -27,20 +20,19 @@ Restringi ??? <!-- TODO traduzz -->
     <% locations = [] %>
     <br/>
   <% end %>
-</div>
-
-<br/><br/>
-
+</div><br/><br/>
 <div id="hidden_messages_for_admin_purchase_choose_location" style="display:none">
   <%= t('admin.purchases.restrictions.search.instructions.regular', :location => '<span class="location"></span>'.html_safe).html_safe %>
   <select id="get_location_code_type">
     <option val="id" selected="selected">
-      id <!-- TODO traduzz -->
+      <%= t('admin.purchases.restrictions.search.fields.id') %>
     </option>
     <option val="code">
-      code <!-- TODO traduzz -->
+      <%= t('admin.purchases.restrictions.search.fields.code') %>
     </option>
-  </select>: <input id="get_location_code" val=""/> <a id="get_location_by_code_or_id">GO</a> <!-- TODO traduzz -->
+  </select>: <input id="get_location_code" val=""/> <a id="get_location_by_code_or_id">
+    <%= t('admin.purchases.restrictions.submit') %>
+  </a>
   <br/><br/>
   <a id="open_location_administrator" href="/admin/settings/locations" target="_blank">
     <%= t('admin.purchases.restrictions.search.instructions.add', :location => '<span class="location"></span>'.html_safe).html_safe %>
