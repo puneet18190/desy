@@ -224,25 +224,11 @@ function adminLocationsDocumentReady() {
       $('#hidden_messages_for_admin_purchase_choose_location').show();
       var translated_location = $(this).find('option.' + $(this).val()).data('translated');
       $('#hidden_messages_for_admin_purchase_choose_location .location').html(translated_location);
-      var me_selected = me.prev();
-      while(!me_selected.hasClass('_admin_purchase_choose_location_select_box') && me_selected.length > 0) {
-        me_selected = me_selected.prev();
-      }
-      if(me_selected.length > 0 && me_selected.val() != '0') {
-        $.ajax({
-          type: 'get',
-          url: '/admin/purchases/locations/' + me_selected.val() + '/find'
-        });
-      }
     }
   });
   $body.on('change', '._admin_purchase_choose_location_select_box', function() {
     var me = $(this);
-    var next = me.next();
-    while(!next.hasClass('_admin_purchase_choose_location_select_box')) {
-      next = next.next();
-    }
-    if(!me.data('last') && !next.hasClass('disabled') && me.val() != '0') {
+    if(!me.data('last') && me.val() != '0') {
       $.ajax({
         type: 'get',
         url: '/admin/purchases/locations/' + me.val() + '/find'
