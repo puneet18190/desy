@@ -377,7 +377,7 @@ function adminMiscellaneaDocumentReady() {
       url: 'reports/' + $(this).data('report-id') + '/accept'
     });
   });
-  $body.on('click', '#admin-purchases-new #renewed', function() {
+  $body.on('click', '#new_purchase #renewed', function() {
     $('#purchase_accounts_number').val($(this).data('accounts-number'));
     $('#renewed_id').val($(this).data('renewed-id'));
   });
