@@ -2982,6 +2982,7 @@ cn:
         location_id: "Restricted to" # TODO
         # Number of accounts available
         # 1 - views/admin/purchases/_list.html.erb
+        # 2 - views/admin/purchases/_common_form.html.erb
         accounts_number: "Accounts" # TODO
         # Address 1 - street, number, etc
         # 1 - views/admin/purchases/_list.html.erb
