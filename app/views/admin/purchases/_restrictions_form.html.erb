@@ -9,7 +9,7 @@ Restringi ??? <!-- TODO traduzz -->
     <%= t('admin.purchases.restrictions.empty') %>
   </option>
   <% SETTINGS['location_types'].each_with_index do |location, index| %>
-    <option value="<%= location.downcase %>">
+    <option class="<%= location.downcase %>" value="<%= location.downcase %>" data-translated="<%= Location.label_at(index).downcase %>">
       <%= t('admin.purchases.restrictions.location', :location => Location.label_at(index).downcase) %>
     </option>
   <% end %>

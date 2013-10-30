@@ -210,7 +210,8 @@ function adminLocationsDocumentReady() {
         next = next.next();
       }
       $('#hidden_messages_for_admin_purchase_choose_location').show();
-      $('#hidden_messages_for_admin_purchase_choose_location .location').html($(this).val());
+      var translated_location = $(this).find('option.' + $(this).val()).data('translated');
+      $('#hidden_messages_for_admin_purchase_choose_location .location').html(translated_location);
     }
   });
 }
