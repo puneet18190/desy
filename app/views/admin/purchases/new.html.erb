@@ -1,6 +1,7 @@
 <h3>CREA NUOVO!!</h3> <!-- TODO traduzz -->
 <%= form_for(@purchase, :id => 'admin-purchases-new', :class => 'search-form', :url => admin_purchases_path) do |f| %>
   <%= render :partial => 'common_form', :locals => {:f => f} %>
+  <hr/>
   <%= render :partial => 'restrictions_form', :locals => {:f => f} %>
   <%= f.submit %> <!-- TODO traduzz -->
 <% end %>

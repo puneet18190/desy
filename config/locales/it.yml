@@ -2977,11 +2977,7 @@ it:
         # Label if there is no restriction to the users who will use accounts associated to this purchase
         # 1 - models/purchase.rb
         # 2 - views/admin/purchases/_list.html.erb
-        # 3 - views/admin/purchases/_restrictions_form.html.erb
         empty_location: "Nessuna restrizione"
-        # Label if the admin wants to restrict the location of the user to a particular kind of location (the variable %{location} is replaced by the kind)
-        # 1 - views/admin/purchases/_restrictions_form.html.erb
-        present_location: "Restringi ad una specifica %{location}"
       # Name used as label in the pagination (ex. '1-10 of 300 purchases')
       # 1 - helpers/admin_helper.rb
       name: "Acquisti"
@@ -3049,6 +3045,13 @@ it:
         # 1 - views/admin/purchases/_list.html.erb
         # 2 - views/admin/purchases/_common_form.html.erb
         expiration_date: "Scadenza"
+      # Section of restrictions related to the location
+      restrictions:
+        # 1 - views/admin/purchases/_restrictions_form.html.erb
+        empty: "No restrictions"
+        # Label if the admin wants to restrict the location of the user to a particular kind of location (the variable %{location} is replaced by the kind)
+        # 1 - views/admin/purchases/_restrictions_form.html.erb
+        location: "Restringi per %{location}"
       # Frame for the purchases search engine
       search:
         # Title of the frame
