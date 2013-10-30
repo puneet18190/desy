@@ -24,14 +24,14 @@
 <div id="hidden_messages_for_admin_purchase_choose_location" style="display:none">
   <%= t('admin.purchases.restrictions.search.instructions.regular', :location => '<span class="location"></span>'.html_safe).html_safe %>
   <select id="get_location_code_type">
-    <option val="id" selected="selected">
+    <option value="id" selected="selected">
       <%= t('admin.purchases.restrictions.search.fields.id') %>
     </option>
-    <option val="code">
+    <option value="code">
       <%= t('admin.purchases.restrictions.search.fields.code') %>
     </option>
-  </select>: <input id="get_location_code" val=""/> <a id="get_location_by_code_or_id">
-    <%= t('admin.purchases.restrictions.submit') %>
+  </select>: <input id="get_location_code" value=""/> <a id="get_location_by_code_or_id">
+    <%= t('admin.purchases.restrictions.commit') %>
   </a>
   <br/><br/>
   <a id="open_location_administrator" href="/admin/settings/locations" target="_blank">
