@@ -51,6 +51,7 @@ class Admin::PurchasesController < AdminController
   def new
     renewed = Purchase.find_by_id params[:renew]
     @purchase = Purchase.new
+    @locations = Location.roots.order(:name)
     if renewed
       @purchase.name = renewed.name
       @purchase.responsible = renewed.responsible

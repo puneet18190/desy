@@ -3,7 +3,7 @@
   <hr/>
   <%= render :partial => 'common_form', :locals => {:f => f} %>
   <hr/>
-  <%= render :partial => 'restrictions_form', :locals => {:f => f} %>
+  <%= render :partial => 'restrictions_form', :locals => {:f => f, :locations => @locations} %>
   <hr/>
   <%= f.submit %> <!-- TODO traduzz -->
 <% end %>
