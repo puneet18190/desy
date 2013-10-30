@@ -232,6 +232,7 @@ function adminLocationsDocumentReady() {
       $('#hidden_messages_for_admin_purchase_choose_location').show();
       var translated_location = $(this).find('option.' + $(this).val()).data('translated');
       $('#hidden_messages_for_admin_purchase_choose_location .location').html(translated_location);
+      $('#get_location_by_code_or_id').data('type', $(this).val());
     }
   });
   $body.on('change', '._admin_purchase_choose_location_select_box', function() {
@@ -253,7 +254,7 @@ function adminLocationsDocumentReady() {
   $body.on('click', '#get_location_by_code_or_id', function() {
     $.ajax({
       type: 'get',
-      url: '/admin/purchases/locations/fill?' + $('#get_location_code_type').val() + '=' + $('#get_location_code').val()
+      url: '/admin/purchases/locations/fill?' + $('#get_location_code_type').val() + '=' + $('#get_location_code').val() + '&sti_type=' + $(this).data('type')
     });
   });
 }

@@ -171,9 +171,14 @@ class Admin::PurchasesController < AdminController
   #
   def fill_locations
     location_id = Location.find_by_id params[:id]
-    location_code = Location.where(:code => params[:code], :sti_type => params[:sti_type]).first
+    location_code = Location.where(:code => params[:code], :sti_type => params[:sti_type].camelize).first
     location = location_id.nil? ? location_code : location_id
-    # TODO
+    if location
+      @ok = true
+      @locations = location.get_filled_select_for_personal_info
+    else
+      @ok = false
+    end
   end
   
   private
