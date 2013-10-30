@@ -3045,6 +3045,39 @@ en:
         # 1 - views/admin/purchases/_list.html.erb
         # 2 - views/admin/purchases/_common_form.html.erb
         expiration_date: "Expires"
+      
+      
+      # Form to edit a purchase
+      edit:
+        # 1 - views/admin/purchases/edit.html.erb
+        title: "Edit a purchase"
+        # 1 - views/admin/purchases/edit.html.erb
+        submit: "Edit purchase"
+      # Form to create a new purchase
+      new:
+        # 1 - views/admin/purchases/new.html.erb
+        title: "Create a new purchase"
+        # Clicking here, the administrator automatically associates to the new purchase the users of a purchase to be renewed
+        # 1 - views/admin/purchases/new.html.erb
+        renew: "Associate automatically to this purchase the users of the original one"
+        # 1 - views/admin/purchases/new.html.erb
+        submit: "Create purchase"
+      
+      
+      
+      
+      
+#views/admin/purchases/_restrictions_form.html.erb:3:Restringi ??? <!-- TODO traduzz -->
+#views/admin/purchases/_restrictions_form.html.erb:38:      id <!-- TODO traduzz -->
+#views/admin/purchases/_restrictions_form.html.erb:41:      code <!-- TODO traduzz -->
+#views/admin/purchases/_restrictions_form.html.erb:43:  </select>: <input id="get_location_code" val=""/> <a id="get_location_by_code_or_id">GO</a> <!-- TODO traduzz -->
+
+      
+      
+      
+      
+      
+      
       # Section of restrictions related to the location
       restrictions:
         # 1 - views/admin/purchases/_restrictions_form.html.erb

@@ -1,4 +1,4 @@
-<h3>CREA NUOVO!!</h3> <!-- TODO traduzz -->
+<h3><%= t('admin.purchases.new.title').upcase %></h3>
 <%= form_for(@purchase, :url => admin_purchases_path, :remote => true) do |f| %>
   <hr/>
   <%= render :partial => 'common_form', :locals => {:f => f} %>
@@ -6,9 +6,11 @@
   <%= render :partial => 'restrictions_form', :locals => {:f => f, :locations => @locations} %>
   <hr/>
   <% if @renewed %>
-    <a id="renewed" data-renewed-id="<%= @renewed.id %>" data-accounts-number="<%= @renewed.accounts_number %>">Rinnova automaticamente a tutti gli utenti</a> <!-- TODO traduzz -->
+    <a id="renewed" data-renewed-id="<%= @renewed.id %>" data-accounts-number="<%= @renewed.accounts_number %>">
+      <%= t('admin.purchases.new.renew') %>
+    </a>
     <%= hidden_field_tag 'renewed_id', '' %>
     <hr/>
   <% end %>
-  <%= f.submit %> <!-- TODO traduzz -->
+  <%= f.submit t('admin.purchases.new.submit') %>
 <% end %>
