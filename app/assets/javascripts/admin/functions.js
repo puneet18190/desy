@@ -214,6 +214,12 @@ function adminLocationsDocumentReady() {
       $('#hidden_messages_for_admin_purchase_choose_location .location').html(translated_location);
     }
   });
+  $body.on('change', '._admin_purchase_choose_location_select_box', function() {
+    $.ajax({
+      type: 'get',
+      url: '/admin/purchases/location/' + $(this).val() + '/find'
+    });
+  });
 }
 
 /**

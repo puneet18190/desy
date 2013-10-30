@@ -138,6 +138,22 @@ class Admin::PurchasesController < AdminController
     end
   end
   
+  # === Description
+  #
+  # It fills the locations in the restriction form; specific for purchases
+  #
+  # === Mode
+  #
+  # Html
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#admin_authenticate
+  # * Admin::PurchaseController#check_saas
+  #
+  def find_locations
+  end
+  
   private
   
   # Filter that checks if this section is enabled

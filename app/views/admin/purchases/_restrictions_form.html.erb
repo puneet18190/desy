@@ -19,8 +19,9 @@ Restringi ??? <!-- TODO traduzz -->
 
 <div id="admin_purchase_choose_location_wrapper">
   <% SETTINGS['location_types'].each_with_index do |location, index| %>
+    <% is_last = (index == SETTINGS['location_types'].length - 1) %>
     <%= Location.label_at(index) %>:
-    <select id="admin_purchase_choose_location_<%= location.downcase %>" class="_admin_purchase_choose_location_select_box" disabled="disabled">
+    <select id="admin_purchase_choose_location_<%= location.downcase %>" class="_admin_purchase_choose_location_select_box" disabled="disabled" data-last="<%= is_last %>">
       <%= render :partial => 'admin/users/locations_list', :locals => {:locations => locations, :param => nil} %>
     </select>
     <% locations = [] %>
