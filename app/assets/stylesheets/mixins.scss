@@ -84,20 +84,22 @@
   
 }
 
-@mixin slideshow($slidesAmount) {
-  .slideshow {
+@mixin slideshow($slidesAmount, $slideshowSel: ".slideshow", $slidesSel: ".slides", $slideSel: ".slide") {
+  #{$slideshowSel} {
     /*margin: 0 auto;*/
     overflow: hidden;
-  }
-  .slides {
-    width: calc(100% * #{$slidesAmount}); /* calc(100% * n) dove n è il numero di slides */
-    position: relative;
-  }
-  .slide {
-    margin: 0;
-    padding: 0;
-    float: left;
-    width: calc(100% / #{$slidesAmount}); /* calc(100% / n) dove n è il numero di slides */
+
+    #{$slidesSel} {
+      width: calc(100% * #{$slidesAmount}); /* calc(100% * n) dove n è il numero di slides */
+      position: relative;
+      
+      #{$slideSel} {
+        margin: 0;
+        padding: 0;
+        float: left;
+        width: calc(100% / #{$slidesAmount}); /* calc(100% / n) dove n è il numero di slides */
+      }
+    }
   }
 }
 
