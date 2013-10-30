@@ -172,10 +172,10 @@ class Admin::PurchasesController < AdminController
   def fill_locations
     location_id = Location.where(:id => params[:id], :sti_type => params[:sti_type].camelize).first
     location_code = params[:code].present? ? Location.where(:code => params[:code], :sti_type => params[:sti_type].camelize).first : nil
-    location = location_id.nil? ? location_code : location_id
-    if location
+    @location = location_id.nil? ? location_code : location_id
+    if @location
       @ok = true
-      @locations = location.get_filled_select_for_personal_info
+      @locations = @location.get_filled_select_for_personal_info
     else
       @ok = false
     end
