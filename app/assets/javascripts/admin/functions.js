@@ -191,17 +191,26 @@ function adminLocationsDocumentReady() {
     });
   });
   $body.on('change', '#admin_purchase_choose_location_kind', function() {
-    var me = $('#admin_purchase_choose_location_' + $(this).val());
-    me.removeAttr('disabled');
-    prev = me.prev();
-    while(prev.length > 0) {
-      prev.removeAttr('disabled');
-      prev = prev.prev();
-    }
-    next = me.next();
-    while(next.length > 0) {
-      next.attr('disabled', 'disabled');
-      next = next.next();
+    if($(this).val() == '0') {
+      $('#admin_purchase_choose_location_wrapper select').each(function() {
+        $(this).attr('disabled', 'disabled');
+      });
+      $('#hidden_messages_for_admin_purchase_choose_location').hide();
+    } else {
+      var me = $('#admin_purchase_choose_location_' + $(this).val());
+      me.removeAttr('disabled');
+      prev = me.prev();
+      while(prev.length > 0) {
+        prev.removeAttr('disabled');
+        prev = prev.prev();
+      }
+      next = me.next();
+      while(next.length > 0) {
+        next.attr('disabled', 'disabled');
+        next = next.next();
+      }
+      $('#hidden_messages_for_admin_purchase_choose_location').show();
+      $('#hidden_messages_for_admin_purchase_choose_location .location').html($(this).val());
     }
   });
 }

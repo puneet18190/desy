@@ -17,7 +17,7 @@ Restringi ??? <!-- TODO traduzz -->
 
 <br/><br/>
 
-<div class="location_wrapper">
+<div id="admin_purchase_choose_location_wrapper">
   <% SETTINGS['location_types'].each_with_index do |location, index| %>
     <%= Location.label_at(index) %>:
     <select id="admin_purchase_choose_location_<%= location.downcase %>" class="_admin_purchase_choose_location_select_box" disabled="disabled">
@@ -28,5 +28,9 @@ Restringi ??? <!-- TODO traduzz -->
   <% end %>
 </div>
 
+<br/><br/>
+
 <div id="hidden_messages_for_admin_purchase_choose_location" style="display:none">
+  cerca <span class="location"></span><br/> <!-- TODO traduzz -->
+  registra <span class="location"></span> nel gestore di locations <!-- TODO traduzz -->
 </div>
