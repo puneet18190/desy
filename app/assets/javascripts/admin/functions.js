@@ -200,7 +200,7 @@ function adminLocationsDocumentReady() {
       var me = $('#admin_purchase_choose_location_' + $(this).val());
       me.removeAttr('disabled').removeClass('disabled').addClass('eletto');
       if(me.val() != '0') {
-        alert('location_id settato a ' + me.val()); // TODO
+        $('#purchase_location_id').val(me.val());
       }
       var prev = me.prev();
       while(!prev.hasClass('_admin_purchase_choose_location_select_box') && prev.length > 0) {
@@ -245,7 +245,7 @@ function adminLocationsDocumentReady() {
       });
     }
     if(me.hasClass('eletto')) {
-      alert('location_id settato a ' + me.val()); // TODO
+      $('#purchase_location_id').val(me.val());
     }
   });
 }
