@@ -812,9 +812,24 @@
     color: #555555;
     
   }
+  
   .clearfloat {
   
-  clear: both;
-  height: 0;
+    clear: both;
+    height: 0;
+    
   }
+  
+  #get_location_code {
+    
+    width: 100px;
+    
+  }
+  
+  #get_location_by_code_or_id {
+    
+    cursor: pointer;
+    
+  }
+  
 }
