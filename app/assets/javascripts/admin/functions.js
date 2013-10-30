@@ -377,6 +377,14 @@ function adminMiscellaneaDocumentReady() {
       url: 'reports/' + $(this).data('report-id') + '/accept'
     });
   });
+  $body.on('click', '#admin-purchases-new #renewed', function() {
+    if($(this).hasClass('checked')) {
+      $(this).removeClass('checked');
+    } else {
+      $(this).addClass('checked');
+      $('#purchase_accounts_number').val($(this).data('accounts-number'));
+    }
+  });
 }
 
 /**
