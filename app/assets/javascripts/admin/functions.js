@@ -226,14 +226,18 @@ function adminLocationsDocumentReady() {
   });
   $body.on('change', '._admin_purchase_choose_location_select_box', function() {
     var me = $(this);
-    if(!me.data('last') && me.val() != '0') {
-      $.ajax({
-        type: 'get',
-        url: '/admin/purchases/locations/' + me.val() + '/find'
-      });
-    }
-    if(me.hasClass('eletto')) {
-      $('#purchase_location_id').val(me.val());
+    if(me.val() != '0') {
+      if(!me.data('last')) {
+        $.ajax({
+          type: 'get',
+          url: '/admin/purchases/locations/' + me.val() + '/find'
+        });
+      }
+      if(me.hasClass('eletto')) {
+        $('#purchase_location_id').val(me.val());
+      } else {
+        $('#open_location_administrator').attr('href', '/admin/settings/locations?selected=' + me.val());
+      }
     }
   });
   $body.on('click', '#get_location_by_code_or_id', function() {
