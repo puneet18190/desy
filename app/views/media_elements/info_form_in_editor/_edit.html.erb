@@ -12,9 +12,9 @@
     </div>
     <div class="error_messages"></div>
     <div class="cols" style="float:left">
-      <%= text_field_tag 'update_title', media_element.title %>
+      <%= text_field_tag 'update_title', media_element.title, :class => 'basta_caos_porca_miseria' %>
       <br>
-      <%= text_area_tag 'update_description', media_element.description %>
+      <%= text_area_tag 'update_description', media_element.description, :class => 'basta_caos_porca_miseria' %>
     </div>
     <div class="cols" style="float:right">
       <div class="_tags_placeholder" data-tags="<%= media_element.tags %>" style="display:none">
@@ -26,7 +26,7 @@
         <% my_tags.each do |t| %>
           <span><%= t.tag.word.strip %><a class="remove"></a></span>
         <% end %>
-        <%= text_field_tag 'update_tags', '', :maxlength => SETTINGS['max_tag_length'], :class => 'lower' %>
+        <%= text_field_tag 'update_tags', '', :maxlength => SETTINGS['max_tag_length'], :class => 'lower basta_caos_porca_miseria' %>
         <%= hidden_field_tag 'update_tags_value', media_element.tags %>
       </div>
     </div>
