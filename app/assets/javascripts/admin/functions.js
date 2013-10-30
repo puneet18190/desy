@@ -216,7 +216,11 @@ function adminLocationsDocumentReady() {
   });
   $body.on('change', '._admin_purchase_choose_location_select_box', function() {
     var me = $(this);
-    if(!me.data('last') && !me.next().hasClass('disabled')) {
+    var next = me.next();
+    while(!next.hasClass('_admin_purchase_choose_location_select_box')) {
+      next = next.next();
+    }
+    if(!me.data('last') && !next.hasClass('disabled') && me.val() != '0') {
       $.ajax({
         type: 'get',
         url: '/admin/purchases/locations/' + me.val() + '/find'
