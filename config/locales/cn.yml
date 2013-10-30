@@ -2964,7 +2964,7 @@ cn:
         # 1 - views/admin/purchases/link_form.html.erb
         title: "Send the resume of the purchase made by %{purchaser}" # TODO
         # 1 - views/admin/purchases/link_form.html.erb
-        email: "Email" # TODO
+        email: "Emails separated by comma" # TODO
         # 1 - views/admin/purchases/link_form.html.erb
         # 2 - views/admin/purchases/link_form.html.erb
         message: "Message" # TODO

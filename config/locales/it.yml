@@ -2964,7 +2964,7 @@ it:
         # 1 - views/admin/purchases/link_form.html.erb
         title: "Invia il promemoria dell'acquisto di %{purchaser}"
         # 1 - views/admin/purchases/link_form.html.erb
-        email: "Email"
+        email: "Email separate da virgola"
         # 1 - views/admin/purchases/link_form.html.erb
         # 2 - views/admin/purchases/link_form.html.erb
         message: "Messaggio"
