@@ -28,7 +28,7 @@
           <td><%= @user.base_location %></td>
           <td><%= @user.parent_locations %></td>
           <td><%= @user.admin?.to_s %></td>
-          <td><%= user.purchase_id.nil? ? user.purchase.name : (user.trial? ? t('users.trial.label') : '') %></td>
+          <td><%= @user.purchase_id.nil? ? (@user.trial? ? t('users.trial.label') : '') : (link_to @user.purchase.name, "/admin/purchases?search[id]=#{@user.purchase_id}") %></td>
           <td><%= TimeConvert.to_string @user.created_at %></td>
           <td><%= TimeConvert.to_string @user.updated_at %></td>
           <td>
