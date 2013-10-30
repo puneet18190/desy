@@ -170,8 +170,8 @@ class Admin::PurchasesController < AdminController
   # * Admin::PurchaseController#check_saas
   #
   def fill_locations
-    location_id = Location.find_by_id params[:id]
-    location_code = Location.where(:code => params[:code], :sti_type => params[:sti_type].camelize).first
+    location_id = Location.where(:id => params[:id], :sti_type => params[:sti_type].camelize).first
+    location_code = params[:code].present? ? Location.where(:code => params[:code], :sti_type => params[:sti_type].camelize).first : nil
     location = location_id.nil? ? location_code : location_id
     if location
       @ok = true
