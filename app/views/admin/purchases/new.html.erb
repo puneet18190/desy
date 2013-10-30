@@ -6,8 +6,8 @@
   <%= render :partial => 'restrictions_form', :locals => {:f => f, :locations => @locations} %>
   <hr/>
   <% if @renewed %>
-    Rinnova automaticamente a tutti gli utenti: <%= check_box_tag 'renewed', '0', false, :data => {:'accounts-number' => @renewed.accounts_number} %> <!-- TODO traduzz -->
-    <%= hidden_field_tag 'renewed_id', @renewed.id %>
+    <a id="renewed" data-renewed-id="<%= @renewed.id %>" data-accounts-number="<%= @renewed.accounts_number %>">Rinnova automaticamente a tutti gli utenti</a> <!-- TODO traduzz -->
+    <%= hidden_field_tag 'renewed_id', '' %>
     <hr/>
   <% end %>
   <%= f.submit %> <!-- TODO traduzz -->

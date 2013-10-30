@@ -378,12 +378,11 @@ function adminMiscellaneaDocumentReady() {
     });
   });
   $body.on('click', '#admin-purchases-new #renewed', function() {
-    if($(this).hasClass('checked')) {
-      $(this).removeClass('checked');
-    } else {
-      $(this).addClass('checked');
-      $('#purchase_accounts_number').val($(this).data('accounts-number'));
-    }
+    $('#purchase_accounts_number').val($(this).data('accounts-number'));
+    $('#renewed_id').val($(this).data('renewed-id'));
+  });
+  $body.on('focus', '#purchase_accounts_number', function() {
+    $('#renewed_id').val('');
   });
 }
 
