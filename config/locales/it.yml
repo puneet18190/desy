@@ -3048,7 +3048,7 @@ it:
       # Section of restrictions related to the location
       restrictions:
         # 1 - views/admin/purchases/_restrictions_form.html.erb
-        empty: "No restrictions"
+        empty: "Nessuna restrizione"
         # Label if the admin wants to restrict the location of the user to a particular kind of location (the variable %{location} is replaced by the kind)
         # 1 - views/admin/purchases/_restrictions_form.html.erb
         location: "Restringi per %{location}"
