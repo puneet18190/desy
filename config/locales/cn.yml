@@ -3045,8 +3045,28 @@ cn:
         # 1 - views/admin/purchases/_list.html.erb
         # 2 - views/admin/purchases/_common_form.html.erb
         expiration_date: "Expires" # TODO
+      # Form to edit a purchase
+      edit:
+        # 1 - views/admin/purchases/edit.html.erb
+        title: "Edit a purchase" # TODO
+        # 1 - views/admin/purchases/edit.html.erb
+        submit: "Update purchase" # TODO
+      # Form to create a new purchase
+      new:
+        # 1 - views/admin/purchases/new.html.erb
+        title: "Create a new purchase" # TODO
+        # Clicking here, the administrator automatically associates to the new purchase the users of a purchase to be renewed
+        # 1 - views/admin/purchases/new.html.erb
+        renew: "Associate automatically to this purchase the users of the original one" # TODO
+        # 1 - views/admin/purchases/new.html.erb
+        submit: "Create purchase" # TODO
       # Section of restrictions related to the location
       restrictions:
+        # 1 - views/admin/purchases/_restrictions_form.html.erb
+        title: "Restrict the location of users associated to this purchase" # TODO
+        # Clicking this button, the selected location is inserted in the selects above
+        # 1 - views/admin/purchases/_restrictions_form.html.erb
+        commit: "Insert location" # TODO
         # 1 - views/admin/purchases/_restrictions_form.html.erb
         empty: "No restrictions" # TODO
         # Label if the admin wants to restrict the location of the user to a particular kind of location (the variable %{location} is replaced by the kind)
