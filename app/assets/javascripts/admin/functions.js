@@ -190,6 +190,20 @@ function adminLocationsDocumentReady() {
       type: 'post'
     });
   });
+  $body.on('change', '#admin_purchase_choose_location_kind', function() {
+    var me = $('#admin_purchase_choose_location_' + $(this).val());
+    me.removeAttr('disabled');
+    prev = me.prev();
+    while(prev.length > 0) {
+      prev.removeAttr('disabled');
+      prev = prev.prev();
+    }
+    next = me.next();
+    while(next.length > 0) {
+      next.attr('disabled', 'disabled');
+      next = next.next();
+    }
+  });
 }
 
 /**

@@ -5,26 +5,28 @@ Restringi ??? <!-- TODO traduzz -->
 <br/><br/>
 
 <select id="admin_purchase_choose_location_kind">
-  <option value="0" data-location-type="0" selected="selected">
+  <option value="0" selected="selected">
     <%= t('admin.purchases.restrictions.empty') %>
   </option>
   <% SETTINGS['location_types'].each_with_index do |location, index| %>
-    <option value="<%= location.downcase %>" data-location-type="<%= location.downcase %>">
-      <%= t('admin.purchases.restrictions.location', :location => location.downcase) %>
+    <option value="<%= location.downcase %>">
+      <%= t('admin.purchases.restrictions.location', :location => Location.label_at(index).downcase) %>
     </option>
   <% end %>
 </select>
 
 <br/><br/>
 
-<% SETTINGS['location_types'].each_with_index do |location, index| %>
-  <%= Location.label_at(index) %>:
-  <select id="admin_purchase_choose_location_<%= location.downcase %>" class="_location_select_box" disabled="disabled">
-    <%= render :partial => 'admin/users/locations_list', :locals => {:locations => locations, :param => nil} %>
-  </select>
-  <% locations = [] %>
-  <br/>
-<% end %>
+<div class="location_wrapper">
+  <% SETTINGS['location_types'].each_with_index do |location, index| %>
+    <%= Location.label_at(index) %>:
+    <select id="admin_purchase_choose_location_<%= location.downcase %>" class="_admin_purchase_choose_location_select_box" disabled="disabled">
+      <%= render :partial => 'admin/users/locations_list', :locals => {:locations => locations, :param => nil} %>
+    </select>
+    <% locations = [] %>
+    <br/>
+  <% end %>
+</div>
 
 <div id="hidden_messages_for_admin_purchase_choose_location" style="display:none">
 </div>
