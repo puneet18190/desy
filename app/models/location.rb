@@ -7,14 +7,20 @@
 # * *name*: the name of the location
 # * *sti_type*: category to which the location belongs (for example city, region, etc)
 # * *ancestry*: list of ancestries of the location. If the location belongs to the top category, this field is +nil+; if it belongs to the second category from the top, the field is a string containing only the id of the parent location; for any other case, the field contains a string with the list top-bottom of all the ancestries of the location (ex. "1/5/13/18")
+# * *code*: a unique code for each sti_type (it is not compulsory)
 #
 # == Associations
 #
-# None
+# * *parent* the parent location if there is one, found with the field ancestry
 #
 # == Validations
 #
 # * *presence* and length of +name+ (maximum 255)
+# * *presence* of sti_type
+# * *length* for code if not nil (maximum 255)
+# * *uniqueness* for code with scope inside locations of the same sti_type
+# * *inclusion* of sti_type in the list of allowed classes
+# * *internal* *validations* for the field ancestry (this are not very strict, because we don't want to overload the model of validations which must interact with an external gem; for the same reason there are not associations 'has_many' from here)
 #
 # == Callbacks
 #
@@ -28,10 +34,12 @@ class Location < ActiveRecord::Base
   
   self.inheritance_column = :sti_type
   
-  attr_accessible :name, :parent
+  attr_accessible :name, :parent, :code
   
-  validates_presence_of :name
-  validates_length_of :name, :maximum => 255
+  validates_presence_of :name, :sti_type
+  validates_length_of :name, :code, :maximum => 255
+  validates_uniqueness_of :code, :scope => :sti_type, :unless => proc { |record| record.code.blank? }
+  validates_inclusion_of :sti_type, :in => SETTINGS['location_types']
   
   has_ancestry
   
@@ -65,9 +73,27 @@ class Location < ActiveRecord::Base
   # A string of ids separated by '/'
   #
   def ancestry_with_me
-    anc = self.ancestry
-    anc << "/" if anc.present? && /\// !~ anc
-    "#{anc}#{self.id}/"
+    self.ancestry.nil? ? "#{self.id}/" : "#{self.ancestry}/#{self.id}/"
+  end
+  
+  # === Description
+  #
+  # Checks if the current location is a descendant of a given one
+  #
+  # === Parameters
+  #
+  # An object of type Location
+  #
+  # === Returns
+  #
+  # A boolean
+  #
+  def is_descendant_of?(ancestor)
+    if ancestor.ancestry.nil?
+      self.ancestry == ancestor.id.to_s || (/#{ancestor.ancestry_with_me}/ =~ self.ancestry) == 0
+    else
+      (/#{ancestor.ancestry_with_me}/ =~ self.ancestry) == 0
+    end
   end
   
   # === Description
@@ -121,9 +147,11 @@ class Location < ActiveRecord::Base
   def get_filled_select
     resp = []
     self.ancestors.each do |anc|
-      resp << anc.siblings
+      resp << anc.siblings.order(:name)
     end
-    resp + [self.siblings]
+    resp << self.siblings.order(:name)
+    resp << self.children.order(:name) if self.class.to_s != SETTINGS['location_types'].last
+    resp
   end
   
   # === Description
@@ -137,10 +165,10 @@ class Location < ActiveRecord::Base
   def get_filled_select_for_personal_info
     resp = []
     self.ancestors.each do |anc|
-      resp << {:selected => anc.id, :content => anc.siblings}
+      resp << {:selected => anc.id, :content => anc.siblings.order(:name)}
     end
-    resp << {:selected => self.id, :content => self.siblings}
-    resp << {:selected => 0, :content => self.children} if self.class.to_s != SETTINGS['location_types'].last
+    resp << {:selected => self.id, :content => self.siblings.order(:name)}
+    resp << {:selected => 0, :content => self.children.order(:name)} if self.class.to_s != SETTINGS['location_types'].last
     resp
   end
   

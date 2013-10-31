@@ -65,6 +65,12 @@ cn:
       # The user tried to login with wrong username or password
       # 1 - controllers/users/sessions_controller.rb
       wrong_content: "错误的用户名或密码"
+      # The user has an associated purchase but it expired
+      # 1 - controllers/users/sessions_controller.rb
+      expired_purchase: "Your subscription has expired, please renew it" # TODO
+      # The user is in trial mode but his trial expired
+      # 1 - controllers/users/sessions_controller.rb
+      expired_trial: "Your trial has expired, please subscribe" # TODO
     mailing_list:
       # An error occurred while updating the user's mailing list (general message for any kind of error)
       # 1 - views/shared/_popups.html.erb
@@ -481,7 +487,15 @@ cn:
       subject: "%{desy} - 账号确认"
       # Message
       # 1 - mailers/user_mailer.rb
-      message: "<p>恭喜%{name}</p>,<p>谢谢你的注册%{desy}!</p><p><b>为了完成你的注册，请点击以下链接:</b></p><p>如果此链接没有出现，请拷贝和粘贴到你的浏览器.<br/>当确认注册, 此链接不再是合法.<br/>为了进入系统，请用用户名与密码.</p><br/><p>N.B.</p><p>只能确认那个账号一次.</p>"
+      message: "<p>恭喜%{name}</p>, <p>谢谢你的注册%{desy}!</p><p><b>为了完成你的注册，请点击以下链接:</b></p><p>如果此链接没有出现，请拷贝和粘贴到你的浏览器.<br/>当确认注册, 此链接不再是合法.<br/>为了进入系统，请用用户名与密码.</p><br/><p>N.B.</p><p>只能确认那个账号一次.</p>"
+    # Email containing the instructions and resume of a purchase
+    purchase_resume:
+      # Subject
+      # 1 - mailers/user_mailer.rb
+      subject: "%{desy} - Purchase resume" # TODO
+      # Message
+      # 1 - mailers/user_mailer.rb
+      message: "<p><b>Resume of your purchase in %{desy}</b> (%{release_date})</p><br/><ul><li>Name of the purchaser: <i>%{name}</i></li><li>Responsible: <i>%{responsible}</i></li><li>Address: <i>%{address}</i></li><li>Phone number: <i>%{phone_number}</i></li><li>Fax: <i>%{fax}</i></li><li>Email: <i>%{email}</i></li><li>SSN: <i>%{ssn_code}</i></li><li>VAT: <i>%{vat_code}</i></li><li>Accounts number: <i>%{accounts_number}</i></li><li>Users restricted to: <i>%{location}</i></li><li>Valid since: <i>%{start_date}</i></li><li>Valid until: <i>%{expiration_date}</i></li></ul><br/><br/><h2>Purchase code: %{token}</h2><br/><br/><p>To create a new account, click on this link: <a href=\"%{link_sign_up}\">%{link_sign_up}</a>, fill in the form with your data, and insert the <b>purchase code</b><br/><br/>To confirm a trial account, click on the link <a href=\"%{link_home}\">%{link_home}</a>, open the login form and insert the <b>purchase code</b></p><br/><br/><p>Message from the vendor: <i>%{message}</i></p><p>If the links don't appear clickable copy the one you need and paste it into your browser</p>" # TODO
     # Mail containing the link to reset a forgotten password
     reset_password:
       # Subject
@@ -623,9 +637,6 @@ cn:
       # The user's email is not valid or already present in the database
       # 1 - controllers/application_controller.rb
       not_valid_email: "你插入的邮件地址是非法的或在我们的数据库中已经存在"
-      # The user's didn't choose a location (the variable %{location} is replaced by the label which corresponds to the lowest kind of location (for instance, Town)
-      # 1 - controllers/application_controller.rb
-      choose_a_location: "选择 %{location}"
       # The user hasn't selected any subject
       # 1 - controllers/application_controller.rb
       select_at_least_a_subject: "至少选择一个主题"
@@ -1892,10 +1903,7 @@ cn:
     title: "注册"
     # Subtitle of the registration form
     # 1 - views/prelogin/registration.html.erb
-    subtitle: "发现了%{desy}的益处"
-    # Text describing the registration benefits
-    # 1 - views/prelogin/registration.html.erb
-    description: "用音频、视频或图像建立你自己的多媒体课程. 与其他教师%{desy}分享课程. 使用或修改适合使用 %{desy}的其他教师课程的需求. 在虚拟教室组织你的课程并发现新教法"
+    subtitle: "Insert your personal data and join us in the world of %{desy}" # TODO
     # Button to submit the registration form
     # 1 - views/prelogin/registration.html.erb
     done: "签到"
@@ -2237,6 +2245,11 @@ cn:
       # Button to save
       # 1 - views/users/subjects.html.erb
       save: "保存"
+    # Captions used for trial accounts
+    trial:
+      # 1 - views/admin/users/_list.html.erb
+      # 2 - views/admin/users/show.html.erb
+      label: "Trial" # TODO
   
   
   # SECTION 2.16: Captions used inside the Video Editor
@@ -2614,7 +2627,7 @@ cn:
         "县",
         "学校"
       ]
-    # This is the label used when the application needs to resume the chain of higher locations corresponding to a lower one: if for instance for a user we have the field 'Shanghai district - Shanghai province', an appropriate label for it (to be configured here) would be 'District / province'
+    # This is the label used when the application needs to resume the chain of higher locations corresponding to a lower one: if for instance for a user we have the field 'Shanghai district - Shanghai province', an appropriate label for it (to be configured here) would be 'District / province'. Important: it must be DESCENDANT, from the higher level to the lower location
     # 1 - views/admin/users/show.html.erb
     # 2 - views/admin/users/_list.html.erb
     parents_label: "省/市/县"
@@ -2666,6 +2679,16 @@ cn:
         # Link to the subsection 'Edit and publication of uploaded elements'
         # 1 - views/admin/_header.html.erb
         publish: "发布私人单元"
+      purchases:
+        # Link to the section 'Purchases'
+        # 1 - views/admin/_header.html.erb
+        link: "Purchases" # TODO
+        # Link to the subsection 'List of purchases'
+        # 1 - views/admin/_header.html.erb
+        list: "List" # TODO
+        # Link to the subsection 'Create a purchase'
+        # 1 - views/admin/_header.html.erb
+        create: "Create" # TODO
       users:
         # Link to the section 'Users'
         # 1 - views/admin/_header.html.erb
@@ -2909,7 +2932,7 @@ cn:
       # This label is used in a checkbox on the multiple upload form: when checked, the element will be saved and automatically published (this option is possible only for images, since audios and videos must be converted before they can be shared)
       # 1 - views/admin/media_elements/_media_element_upload.html.erb
       publish_now: "现在发布"
-      # Frame for the lessons search engine
+      # Frame for the media elements search engine
       search:
         # Title of the form
         # 1 - views/admin/media_elements/index.html.erb
@@ -2917,6 +2940,162 @@ cn:
         # Button to start the search
         # 1 - views/admin/media_elements/index.html.erb
         submit: "查找"
+    # Section of purchases
+    purchases:
+      # List of available actions on a single purchase
+      actions:
+        # 1 - views/admin/purchases/_list.html.erb
+        edit: "Edit" # TODO
+        # Opens a form to send the purchase token to the clients
+        # 1 - views/admin/purchases/_list.html.erb
+        links: "Instructions" # TODO
+        # Creates a new purchase with the same invoicing data of the current purchase. The administrator can personalize the data before saving
+        # 1 - views/admin/purchases/_list.html.erb
+        renew: "Renew" # TODO
+      # Message if there are no purchases in the database
+      # 1 - views/admin/purchases/_list.html.erb
+      empty: "There are no purchases in the database" # TODO
+      # Labels of the subsection where the administrator can send the link of a purchase
+      links:
+        # Title of the section (the variable %{purchaser} is replaced by the name of the purchaser)
+        # 1 - views/admin/purchases/link_form.html.erb
+        title: "Send the resume of the purchase made by %{purchaser}" # TODO
+        # 1 - views/admin/purchases/link_form.html.erb
+        email: "Emails separated by comma" # TODO
+        # 1 - views/admin/purchases/link_form.html.erb
+        # 2 - views/admin/purchases/link_form.html.erb
+        message: "Message" # TODO
+        # Caption of the submit button
+        # 1 - views/admin/purchases/link_form.html.erb
+        send: "Send" # TODO
+        # Label if there is no message attached
+        # 1 - controllers/admin/purchases_controller.rb
+        empty_message: "[没有信息]"
+        # Label if there is no restriction to the users who will use accounts associated to this purchase
+        # 1 - models/purchase.rb
+        # 2 - views/admin/purchases/_list.html.erb
+        empty_location: "No restrictions" # TODO
+      # Name used as label in the pagination (ex. '1-10 of 300 purchases')
+      # 1 - helpers/admin_helper.rb
+      name: "Purchases" # TODO
+      # Labels for the fields of a purchase - try to write short labels if possible, since the space in the table is not enough
+      fields:
+        # 1 - views/admin/purchases/_list.html.erb
+        location_id: "Restricted to" # TODO
+        # Number of accounts available
+        # 1 - views/admin/purchases/_list.html.erb
+        # 2 - views/admin/purchases/_common_form.html.erb
+        accounts_number: "Accounts" # TODO
+        # Address 1 - street, number, etc
+        # 1 - views/admin/purchases/_list.html.erb
+        # 2 - views/admin/purchases/_common_form.html.erb
+        address: "Address" # TODO
+        # Address 2 - postal code
+        # 1 - views/admin/purchases/_list.html.erb
+        # 2 - views/admin/purchases/_common_form.html.erb
+        postal_code: "Postal Code" # TODO
+        # Address 3 - City (this is just a string, it has nothing to do with the location of the application)
+        # 1 - views/admin/purchases/_list.html.erb
+        # 2 - views/admin/purchases/_common_form.html.erb
+        city: "City" # TODO
+        # Address 4 - Country
+        # 1 - views/admin/purchases/_list.html.erb
+        # 2 - views/admin/purchases/_common_form.html.erb
+        country: "Country" # TODO
+        # 1 - views/admin/purchases/_list.html.erb
+        # 2 - views/admin/purchases/_common_form.html.erb
+        email: "Email" # TODO
+        # 1 - views/admin/purchases/_list.html.erb
+        id: "Id"
+        # True if the purchase includes an invoice
+        # 1 - views/admin/purchases/_list.html.erb
+        # 2 - views/admin/purchases/_common_form.html.erb
+        includes_invoice: "Invoice" # TODO
+        # Name of the company that made the purchase
+        # 1 - views/admin/purchases/_list.html.erb
+        # 2 - views/admin/purchases/_common_form.html.erb
+        name: "Name" # TODO
+        # Name of the responsible person for that company
+        # 1 - views/admin/purchases/_list.html.erb
+        # 2 - views/admin/purchases/_common_form.html.erb
+        responsible: "Responsible" # TODO
+        # Commercial code of the person, see http://en.wikipedia.org/wiki/Social_Security_number
+        # 1 - views/admin/purchases/_list.html.erb
+        # 2 - views/admin/purchases/_common_form.html.erb
+        ssn_code: "社會安全號碼"
+        # Commercial code of the company, see http://en.wikipedia.org/wiki/VAT_identification_number
+        # 1 - views/admin/purchases/_list.html.erb
+        # 2 - views/admin/purchases/_common_form.html.erb
+        vat_code: "VAT" # TODO
+        # 1 - views/admin/purchases/_list.html.erb
+        # 2 - views/admin/purchases/_common_form.html.erb
+        phone_number: "Phone" # TODO
+        # 1 - views/admin/purchases/_list.html.erb
+        # 2 - views/admin/purchases/_common_form.html.erb
+        fax: "Fax" # TODO
+        # 1 - views/admin/purchases/_list.html.erb
+        # 2 - views/admin/purchases/_common_form.html.erb
+        release_date: "Release" # TODO
+        # 1 - views/admin/purchases/_list.html.erb
+        # 2 - views/admin/purchases/_common_form.html.erb
+        start_date: "Activation" # TODO
+        # 1 - views/admin/purchases/_list.html.erb
+        # 2 - views/admin/purchases/_common_form.html.erb
+        expiration_date: "Expires" # TODO
+      # Form to edit a purchase
+      edit:
+        # 1 - views/admin/purchases/edit.html.erb
+        title: "Edit a purchase" # TODO
+        # 1 - views/admin/purchases/edit.html.erb
+        submit: "Update purchase" # TODO
+      # Form to create a new purchase
+      new:
+        # 1 - views/admin/purchases/new.html.erb
+        title: "Create a new purchase" # TODO
+        # Clicking here, the administrator automatically associates to the new purchase the users of a purchase to be renewed
+        # 1 - views/admin/purchases/new.html.erb
+        renew: "Associate automatically to this purchase the users of the original one" # TODO
+        # 1 - views/admin/purchases/new.html.erb
+        submit: "Create purchase" # TODO
+      # Section of restrictions related to the location
+      restrictions:
+        # 1 - views/admin/purchases/_restrictions_form.html.erb
+        title: "Restrict the location of users associated to this purchase" # TODO
+        # Clicking this button, the selected location is inserted in the selects above
+        # 1 - views/admin/purchases/_restrictions_form.html.erb
+        commit: "Insert location" # TODO
+        # 1 - views/admin/purchases/_restrictions_form.html.erb
+        empty: "No restrictions" # TODO
+        # Label if the admin wants to restrict the location of the user to a particular kind of location (the variable %{location} is replaced by the kind)
+        # 1 - views/admin/purchases/_restrictions_form.html.erb
+        location: "Restrict to a specific %{location}" # TODO
+        # Form to search a location inside the page
+        search:
+          # Instructions
+          instructions:
+            # The variable %{location} is replaced by the <span> contaning a dynamic label for the location
+            # 1 - views/admin/purchases/_restrictions_form.html.erb
+            regular: "Search a %{location} by " # TODO
+            # The variable %{location} is replaced by the <span> contaning a dynamic label for the location
+            # 1 - views/admin/purchases/_restrictions_form.html.erb
+            add: "Create a new %{location} in the location administrator" # TODO
+          # Fields to search locations
+          fields:
+            # 1 - views/admin/purchases/_restrictions_form.html.erb
+            id: "Id"
+            # 1 - views/admin/purchases/_restrictions_form.html.erb
+            code: "Code" # TODO
+      # Frame for the purchases search engine
+      search:
+        # Title of the frame
+        # 1 - views/admin/purchases/index.html.erb
+        label: "Search purchases" # TODO
+        # Button to start the search
+        # 1 - views/admin/purchases/index.html.erb
+        submit: "查找"
+      # Title of the section
+      # 1 - views/admin/purchases/index.html.erb
+      title: "List of purchases" # TODO
     # Captions of the contents of the search engine inside the 'Administration' section. The content depends on the selected subsection, and appears inside the corresponding frame (see admin.[section].search)
     search:
       # Section where the user filters by location
@@ -3017,6 +3196,30 @@ cn:
           # 1 - views/admin/search/_elements_general.html.erb
           # 2 - views/admin/search/_elements_general.html.erb
           user: "用户"
+      # Contents of search engine specific for purchases
+      purchases:
+        # Fields used in the research
+        fields:
+          # 1 - views/admin/purchases/index.html.erb
+          # 2 - views/admin/purchases/index.html.erb
+          id: "Id"
+          # Commercial code of the person, see http://en.wikipedia.org/wiki/Social_Security_number
+          # 1 - views/admin/purchases/index.html.erb
+          # 2 - views/admin/purchases/index.html.erb
+          ssn_code: "社會安全號碼"
+          # Commercial code of the company, see http://en.wikipedia.org/wiki/VAT_identification_number
+          # 1 - views/admin/purchases/index.html.erb
+          # 2 - views/admin/purchases/index.html.erb
+          vat_code: "VAT code" # TODO
+          # 1 - views/admin/purchases/index.html.erb
+          # 2 - views/admin/purchases/index.html.erb
+          name: "Name of the purchaser" # TODO
+          # 1 - views/admin/purchases/index.html.erb
+          # 2 - views/admin/purchases/index.html.erb
+          responsible: "Name of the responsible" # TODO
+          # 1 - views/admin/purchases/index.html.erb
+          # 2 - views/admin/purchases/index.html.erb
+          email: "Email" # TODO
       notifications:
         # Title of the frame: since the labels contained in this frame are the same of the section 'Users', this title is the only caption which differs from the labels used in that section
         # 1 - views/admin/search/_notifications_filter.html.erb
@@ -3067,6 +3270,9 @@ cn:
           # 1 - views/admin/search/_users_general.html.erb
           # 2 - views/admin/search/_users_general.html.erb
           name: "名字"
+          # 1 - views/admin/search/_users_general.html.erb
+          # 2 - views/admin/search/_users_general.html.erb
+          purchase_id: "Purchase id" # TODO
           # Unlike the lessons, a user may be associated to more than a subject
           # 1 - views/admin/search/_users_general.html.erb
           # 2 - views/admin/search/_notifications_filter.html.erb
@@ -3143,6 +3349,9 @@ cn:
         id: "Id"
         # 1 - views/admin/users/show.html.erb
         # 2 - views/admin/users/_list.html.erb
+        is_admin: "Admin" # TODO
+        # 1 - views/admin/users/show.html.erb
+        # 2 - views/admin/users/_list.html.erb
         email: "邮件地址"
         # 1 - views/admin/users/show.html.erb
         location: "位置"
@@ -3155,6 +3364,9 @@ cn:
         surname: "别名"
         # 1 - views/admin/users/show.html.erb
         updated_at: "上次更新"
+        # 1 - views/admin/users/show.html.erb
+        # 2 - views/admin/users/_list.html.erb
+        purchase_id: "Subscription" # TODO
       # Caption of the frame containing all the lesson of a specific user
       # 1 - views/admin/users/show.html.erb
       lessons: "%{user}的课程"
@@ -3164,7 +3376,7 @@ cn:
       # Name used as label in the pagination (ex. '1-10 of 300 users')
       # 1 - helpers/admin_helper.rb
       name: "用户"
-      # Frame for the lessons search engine
+      # Frame for the users search engine
       search:
         # Title of the frame
         # 1 - views/admin/users/index.html.erb
@@ -3299,6 +3511,55 @@ cn:
       # Title of the section
       # 1 - views/admin/settings/_menu.html.erb
       title: "应用设置"
+      # Subsection, nested list of locations
+      locations:
+        # Caption to create a location
+        # 1 - views/admin/settings/locations.html.erb
+        create: "Create" # TODO
+        # Caption to edit a location
+        # 1 - views/admin/settings/_location.html.erb
+        edit: "Edit" # TODO
+        # Caption to expand a location and load its children
+        # 1 - views/admin/settings/_location.html.erb
+        expand: "Expand" # TODO
+        # Fields for creation form
+        fields:
+          # 1 - views/admin/settings/locations.html.erb
+          name: "Name: " # TODO
+          # 1 - views/admin/settings/locations.html.erb
+          code: "Code: " # TODO
+        # Link inside the settings menu
+        # 1 - views/admin/settings/_menu.html.erb
+        menu_link: "Locations" # TODO
+        # Caption to open the form to create a new location (the variable %{location} is replaced by the cathegory of the specific location to be created)
+        # 1 - views/admin/settings/locations.html.erb
+        new: "Add a %{location}" # TODO
+        # Title of the subsection
+        # 1 - views/admin/settings/locations.html.erb
+        title: "Locations divided by cathegory" # TODO
+        # Frame for the locations search engine
+        search:
+          # Title of the frame
+          # 1 - views/admin/settings/locations.html.erb
+          label: "Search locations" # TODO
+          # Label of research by id
+          # 1 - views/admin/settings/locations.html.erb
+          by_id: "Search by id: " # TODO
+          # Label of research by code and type (part one, before the selection of type)
+          # 1 - views/admin/settings/locations.html.erb
+          by_code_1: "Search a " # TODO
+          # Label of research by code and type (part two, after the selection of type)
+          # 1 - views/admin/settings/locations.html.erb
+          by_code_2: " by code: " # TODO
+          # Button to start the search by id
+          # 1 - views/admin/settings/locations.html.erb
+          submit_id: "Go!" # TODO
+          # Button to start the search by code and type
+          # 1 - views/admin/settings/locations.html.erb
+          submit_code: "Go!" # TODO
+        # Caption to update a location
+        # 1 - views/admin/settings/_location.html.erb
+        update: "Done" # TODO
       # Subsection, list of school levels
       school_levels:
         # Link inside the settings menu

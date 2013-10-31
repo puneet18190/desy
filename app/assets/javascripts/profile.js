@@ -77,4 +77,7 @@ function profileDocumentReady() {
       $(this).data('placeholder', false);
     }
   });
+  $body.on('click', '.profileLink', function() {
+    window.location = '/profile';
+  });
 }

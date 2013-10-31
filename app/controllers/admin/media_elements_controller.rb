@@ -28,7 +28,7 @@ class Admin::MediaElementsController < AdminController
   def index
     elements = AdminSearchForm.search_media_elements((params[:search] ? params[:search] : {:ordering => 0, :desc => 'true'}))
     @elements = elements.preload(:user, :taggings, {:taggings => :tag}).page(params[:page])
-    @locations = [Location.roots]
+    @locations = [Location.roots.order(:name)]
     if params[:search]
       location = Location.get_from_chain_params params[:search]
       @locations = location.get_filled_select if location

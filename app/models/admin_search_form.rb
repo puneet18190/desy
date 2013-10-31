@@ -6,7 +6,7 @@
 class AdminSearchForm
   
   # List of possible values for the parameter 'recency'
-  RECENCIES = [1.day.ago, 1.week.ago, 1.month.ago, 1.year.ago]
+  RECENCIES = [1.day, 1.week, 1.month, 1.year]
   
   # Hash of possible orderings, one for each method.
   ORDERINGS = {
@@ -50,6 +50,21 @@ class AdminSearchForm
       'users.surname %{ord}, users.name %{ord}',
       'documents.created_at %{ord}',
       'documents.updated_at %{ord}'
+    ],
+    :purchases => [
+      'id %{ord}',
+      'name %{ord}',
+      'responsible %{ord}',
+      'email %{ord}',
+      'ssn_code %{ord}',
+      'vat_code %{ord}',
+      'postal_code %{ord}',
+      'city %{ord}',
+      'country %{ord}',
+      'accounts_number %{ord}',
+      'release_date %{ord}',
+      'start_date %{ord}',
+      'expiration_date %{ord}'
     ]
   }
   
@@ -79,7 +94,7 @@ class AdminSearchForm
     resp = resp.joins(:user)
     if params[:ordering].present?
       ord = ORDERINGS[:documents][params[:ordering].to_i]
-      ord = ORDERINGS[:lessons][0] if ord.nil?
+      ord = ORDERINGS[:documents][0] if ord.nil?
       if params[:desc] == 'true'
         ord = ord.gsub('%{ord}', 'DESC')
       else
@@ -100,11 +115,52 @@ class AdminSearchForm
         resp = resp.where(:users => {:location_id => location.id})
       else
         resp = resp.joins(:user => :location)
-        anc = location.ancestry_with_me
-        anc.chop! if location.depth == SETTINGS['location_types'].length - 2
-        resp = resp.where('ancestry LIKE ?', "#{anc}%")
+        if location.ancestry.nil?
+          resp = resp.where('ancestry LIKE ? OR ancestry = ?', "#{location.ancestry_with_me}%", location.id.to_s)
+        else
+          resp = resp.where('ancestry LIKE ?', "#{location.ancestry_with_me}%")
+        end
       end
     end
+    resp
+  end
+  
+  # === Description
+  #
+  # Search for purchases: used in Admin::PurchasesController
+  #
+  # === Args
+  #
+  # * *params*: url subparams, under the scope of the keyword 'search': the options are
+  #   * +id+: if present the methods filters by id
+  #   * +ssn_code+: if present the methods filters by ssn_code with an like on both sides
+  #   * +vat_code+: if present the methods filters by vat_code with an like on both sides
+  #   * +name+: if present the methods filters by name with an like on both sides
+  #   * +responsible+: if present the methods filters by responsible with an like on both sides
+  #   * +email+: if present the methods filters by email with an like on both sides
+  #
+  # === Returns
+  #
+  # An array, not paginated yet, of records of type Document
+  #
+  def self.search_purchases(params)
+    resp = Purchase
+    if params[:ordering].present?
+      ord = ORDERINGS[:purchases][params[:ordering].to_i]
+      ord = ORDERINGS[:purchases][0] if ord.nil?
+      if params[:desc] == 'true'
+        ord = ord.gsub('%{ord}', 'DESC')
+      else
+        ord = ord.gsub('%{ord}', 'ASC')
+      end
+      resp = resp.order(ord)
+    end
+    resp = resp.where(:id => params[:id]) if params[:id].present?
+    resp = resp.where('ssn_code ILIKE ?', "%#{params[:ssn_code]}%") if params[:ssn_code].present?
+    resp = resp.where('vat_code ILIKE ?', "%#{params[:vat_code]}%") if params[:vat_code].present?
+    resp = resp.where('name ILIKE ?', "%#{params[:name]}%") if params[:name].present?
+    resp = resp.where('responsible ILIKE ?', "%#{params[:responsible]}%") if params[:responsible].present?
+    resp = resp.where('email ILIKE ?', "%#{params[:email]}%") if params[:email].present?
     resp
   end
   
@@ -166,9 +222,11 @@ class AdminSearchForm
         resp = resp.where(:users => {:location_id => location.id})
       else
         resp = resp.joins(:user => :location)
-        anc = location.ancestry_with_me
-        anc.chop! if location.depth == SETTINGS['location_types'].length - 2
-        resp = resp.where('ancestry LIKE ?', "#{anc}%")
+        if location.ancestry.nil?
+          resp = resp.where('ancestry LIKE ? OR ancestry = ?', "#{location.ancestry_with_me}%", location.id.to_s)
+        else
+          resp = resp.where('ancestry LIKE ?', "#{location.ancestry_with_me}%")
+        end
       end
     end
     resp
@@ -228,9 +286,11 @@ class AdminSearchForm
           resp = resp.where(:users => {:location_id => location.id})
         else
           resp = resp.joins(:user => :location)
-          anc = location.ancestry_with_me
-          anc.chop! if location.depth == SETTINGS['location_types'].length - 2
-          resp = resp.where('ancestry LIKE ?', "#{anc}%")
+          if location.ancestry.nil?
+            resp = resp.where('ancestry LIKE ? OR ancestry = ?', "#{location.ancestry_with_me}%", location.id.to_s)
+          else
+            resp = resp.where('ancestry LIKE ?', "#{location.ancestry_with_me}%")
+          end
         end
       end
     end
@@ -278,6 +338,7 @@ class AdminSearchForm
       resp = resp.order(ord)
     end
     resp = resp.where(:users => {:id => params[:id]}) if params[:id].present?
+    resp = resp.where(:users => {:purchase_id => params[:purchase_id]}) if params[:purchase_id].present?
     resp = resp.where('users.name ILIKE ? OR surname ILIKE ? OR email ILIKE ?', "%#{params[:user]}%" , "%#{params[:user]}%", "%#{params[:user]}%") if params[:user].present?
     resp = resp.where(:school_level_id => params[:school_level_id]) if params[:school_level_id].present?
     if params[:date_range_field].present? && params[:from].present? && params[:to].present?
@@ -299,9 +360,11 @@ class AdminSearchForm
           resp = resp.where(:users => {:location_id => location.id})
         else
           resp = resp.joins(:location)
-          anc = location.ancestry_with_me
-          anc.chop! if location.depth == SETTINGS['location_types'].length - 2
-          resp = resp.where('ancestry LIKE ?', "#{anc}%")
+          if location.ancestry.nil?
+            resp = resp.where('ancestry LIKE ? OR ancestry = ?', "#{location.ancestry_with_me}%", location.id.to_s)
+          else
+            resp = resp.where('ancestry LIKE ?', "#{location.ancestry_with_me}%")
+          end
         end
       end
     end
@@ -339,7 +402,7 @@ class AdminSearchForm
     end
     resp = resp.where(:id => params[:id]) if params[:id].present?
     resp = resp.where('word ILIKE ?', "%#{params[:word]}%") if params[:word].present?
-    resp = resp.where('created_at >= ?', RECENCIES[params[:recency].to_i - 1]) if params[:recency].present?
+    resp = resp.where('created_at >= ?', RECENCIES[params[:recency].to_i - 1].ago) if params[:recency].present?
     resp
   end
   
@@ -377,9 +440,11 @@ class AdminSearchForm
         if location.depth == SETTINGS['location_types'].length - 1
           resp = resp.where(:users => {:location_id => location.id})
         else
-          anc = location.ancestry_with_me
-          anc.chop! if location.depth == SETTINGS['location_types'].length - 2
-          resp = resp.where('ancestry LIKE ?', "#{anc}%")
+          if location.ancestry.nil?
+            resp = resp.where('ancestry LIKE ? OR ancestry = ?', "#{location.ancestry_with_me}%", location.id.to_s)
+          else
+            resp = resp.where('ancestry LIKE ?', "#{location.ancestry_with_me}%")
+          end
         end
       end
     end

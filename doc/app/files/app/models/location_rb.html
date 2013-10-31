@@ -23,7 +23,7 @@
         </h1>
         <ul class="files">
             <li>app/models/location.rb</li>
-            <li>Last modified: 2013-10-18 11:32:30 +0200</li>
+            <li>Last modified: 2013-10-28 10:37:53 +0100</li>
         </ul>
     </div>
 
@@ -52,15 +52,34 @@ belongs to the second category from the top, the field is a string
 containing only the id of the parent location; for any other case, the
 field contains a string with the list top-bottom of all the ancestries of
 the location (ex. “1/5/13/18”)</p>
+</li><li>
+<p><strong>code</strong>: a unique code for each sti_type (it is not
+compulsory)</p>
 </li></ul>
 
 <h2 id="label-Associations">Associations</h2>
-
-<p>None</p>
+<ul><li>
+<p><strong>parent</strong> the parent location if there is one, found with the
+field ancestry</p>
+</li></ul>
 
 <h2 id="label-Validations">Validations</h2>
 <ul><li>
 <p><strong>presence</strong> and length of <code>name</code> (maximum 255)</p>
+</li><li>
+<p><strong>presence</strong> of sti_type</p>
+</li><li>
+<p><strong>length</strong> for code if not nil (maximum 255)</p>
+</li><li>
+<p><strong>uniqueness</strong> for code with scope inside locations of the
+same sti_type</p>
+</li><li>
+<p><strong>inclusion</strong> of sti_type in the list of allowed classes</p>
+</li><li>
+<p><strong>internal</strong> <strong>validations</strong> for the field
+ancestry (this are not very strict, because we don&#39;t want to overload
+the model of validations which must interact with an external gem; for the
+same reason there are not associations &#39;has_many&#39; from here)</p>
 </li></ul>
 
 <h2 id="label-Callbacks">Callbacks</h2>

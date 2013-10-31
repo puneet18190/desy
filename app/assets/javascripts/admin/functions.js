@@ -78,7 +78,7 @@ function adminBrowsersDocumentReady() {
   if(!$.browser.msie) {
     $('#admin-media-elements-quick-upload-form').fileupload();
   } else {
-    $('#admin-media-elements-quick-upload-form').append($('<input name="from_ie" val="true" style="display:none" />'));
+    $('#admin-media-elements-quick-upload-form').append($('<input name="from_ie" value="true" style="display:none" />'));
     $('#hint_not_for_ie').hide();
     $('#qume_file').change(function() {
       $('#admin-media-elements-quick-upload-form').submit();
@@ -162,6 +162,100 @@ function adminLocationsDocumentReady() {
         });
       }
     }
+  });
+  $body.on('click', '.edit_admin_location', function() {
+    var father = $('#admin_location_' + $(this).data('location-id'));
+    father.find('.name_write').show();
+    father.find('.name_readonly').hide();
+    father.find('.code_write').show();
+    father.find('.code_readonly').hide();
+    father.find('.edit_admin_location_done').show();
+    father.find('.edit_admin_location').hide();
+  });
+  $body.on('click', '.edit_admin_location_done', function() {
+    var father = $('#admin_location_' + $(this).data('location-id'));
+    $.ajax({
+      url: '/admin/settings/locations/' + $(this).data('location-id') + '/update?name=' + father.find('.name_write').val() + '&code=' + father.find('.code_write').val(),
+      type: 'put'
+    });
+  });
+  $body.on('click', '.create_admin_location', function() {
+    $('#create_admin_location_' + $(this).data('location-type') + ' .create_admin_location_form').show();
+    $(this).hide();
+  });
+  $body.on('click', '.create_admin_location_form_done', function() {
+    var father = $('#create_admin_location_' + $(this).data('location-type'));
+    $.ajax({
+      url: '/admin/settings/locations/create?name=' + father.find('.create_admin_location_name').val() + '&code=' + father.find('.create_admin_location_code').val() + '&sti_type=' + $(this).data('location-type-for-form') + '&parent=' + $(this).data('location-parent'),
+      type: 'post'
+    });
+  });
+  $body.on('change', '#admin_purchase_choose_location_kind', function() {
+    if($(this).val() == '0') {
+      $('#admin_purchase_choose_location_wrapper select').each(function() {
+        $(this).attr('disabled', 'disabled').addClass('disabled').removeClass('eletto');
+      });
+      $('#hidden_messages_for_admin_purchase_choose_location').hide();
+      var first = true;
+      $('._admin_purchase_choose_location_select_box').each(function() {
+        if(first) {
+          $(this).find('option').not('.dont_delete_me').removeAttr('selected');
+          $(this).find('option.dont_delete_me').attr('selected', 'selected');
+        } else {
+          $(this).find('option').not('.dont_delete_me').remove();
+        }
+        first = false;
+      });
+    } else {
+      var me = $('#admin_purchase_choose_location_' + $(this).val());
+      me.removeAttr('disabled').removeClass('disabled').addClass('eletto');
+      if(me.val() != '0') {
+        $('#purchase_location_id').val(me.val());
+      }
+      var prev = me.prevUntil('._admin_purchase_choose_location_select_box').prev();
+      while(prev.length > 0) {
+        prev.removeAttr('disabled').removeClass('disabled').removeClass('eletto');
+        prev = prev.prevUntil('._admin_purchase_choose_location_select_box').prev();
+      }
+      var next = me.nextUntil('._admin_purchase_choose_location_select_box').next();
+      var first_next = true;
+      while(next.length > 0) {
+        next.attr('disabled', 'disabled').addClass('disabled').removeClass('eletto');
+        if(first_next) {
+          next.find('option.dont_delete_me').attr('selected', 'selected');
+        } else {
+          next.find('option').not('.dont_delete_me').remove();
+        }
+        next = next.nextUntil('._admin_purchase_choose_location_select_box').next();
+        first_next = false
+      }
+      $('#hidden_messages_for_admin_purchase_choose_location').show();
+      var translated_location = $(this).find('option.' + $(this).val()).data('translated');
+      $('#hidden_messages_for_admin_purchase_choose_location .location').html(translated_location);
+      $('#get_location_by_code_or_id').data('type', $(this).val());
+    }
+  });
+  $body.on('change', '._admin_purchase_choose_location_select_box', function() {
+    var me = $(this);
+    if(me.val() != '0') {
+      if(!me.data('last')) {
+        $.ajax({
+          type: 'get',
+          url: '/admin/purchases/locations/' + me.val() + '/find'
+        });
+      }
+      if(me.hasClass('eletto')) {
+        $('#purchase_location_id').val(me.val());
+      } else {
+        $('#open_location_administrator').attr('href', '/admin/settings/locations?selected=' + me.val());
+      }
+    }
+  });
+  $body.on('click', '#get_location_by_code_or_id', function() {
+    $.ajax({
+      type: 'get',
+      url: '/admin/purchases/locations/fill?' + $('#get_location_code_type').val() + '=' + $('#get_location_code').val() + '&sti_type=' + $(this).data('type')
+    });
   });
 }
 
@@ -283,6 +377,13 @@ function adminMiscellaneaDocumentReady() {
       url: 'reports/' + $(this).data('report-id') + '/accept'
     });
   });
+  $body.on('click', '#new_purchase #renewed', function() {
+    $('#purchase_accounts_number').val($(this).data('accounts-number'));
+    $('#renewed_id').val($(this).data('renewed-id'));
+  });
+  $body.on('focus', '#purchase_accounts_number', function() {
+    $('#renewed_id').val('');
+  });
 }
 
 /**
@@ -381,6 +482,12 @@ function adminSortingDocumentReady() {
     $('input#search_ordering').val($(this).data('ordering'));
     $('input#search_desc').val($(this).data('desc'));
     $('#admin-search-documents').submit();
+  });
+  $body.on('click', 'table#purchases-list thead tr th a', function(e) {
+    e.preventDefault();
+    $('input#search_ordering').val($(this).data('ordering'));
+    $('input#search_desc').val($(this).data('desc'));
+    $('#admin-search-purchases').submit();
   });
 }
 

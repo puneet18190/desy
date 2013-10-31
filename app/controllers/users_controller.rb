@@ -18,7 +18,8 @@ class UsersController < ApplicationController
   
   skip_before_filter :authenticate, :only => [:create, :confirm, :request_reset_password, :reset_password, :send_reset_password, :find_locations]
   before_filter :initialize_layout, :only => [:edit, :update, :subjects, :statistics, :mailing_lists]
-  layout 'prelogin', :only => [:create, :request_reset_password]
+  layout 'prelogin', :only => :create
+  layout 'fullpage_notification', :only => :request_reset_password
   
   # === Description
   #
@@ -37,14 +38,15 @@ class UsersController < ApplicationController
     @user = User.active.not_confirmed.new(params[:user]) do |user|
       user.email = email
       user.location_id = params[:location][SETTINGS['location_types'].last.downcase] if params[:location].has_key? SETTINGS['location_types'].last.downcase
+      user.location_id = nil if user.location_id.to_i == 0
     end
     if @user.save
       UserMailer.account_confirmation(@user, request.host, request.port).deliver
-      render 'users/fullpage_notifications/confirmation/email_sent', :layout => 'ad_hoc'
+      render 'users/fullpage_notifications/confirmation/email_sent', :layout => 'fullpage_notification'
     else
       @errors = convert_user_error_messages @user.errors
       location = Location.get_from_chain_params params[:location]
-      @locations = location.nil? ? [{:selected => 0, :content => Location.roots}] : location.get_filled_select_for_personal_info
+      @locations = location.nil? ? [{:selected => 0, :content => Location.roots.order(:name)}] : location.get_filled_select_for_personal_info
       @school_level_ids = SchoolLevel.order(:description).map{ |sl| [sl.to_s, sl.id] }
       @subjects         = Subject.order(:description)
       render 'prelogin/registration'
@@ -65,9 +67,9 @@ class UsersController < ApplicationController
   #
   def confirm
     if User.confirm!(params[:token])
-      render 'users/fullpage_notifications/confirmation/received', :layout => 'prelogin'
+      render 'users/fullpage_notifications/confirmation/received', :layout => 'fullpage_notification'
     else
-      render 'users/fullpage_notifications/expired_link', :layout => 'prelogin'
+      render 'users/fullpage_notifications/expired_link', :layout => 'fullpage_notification'
     end
   end
   
@@ -108,7 +110,7 @@ class UsersController < ApplicationController
       user.password_token!
       UserMailer.new_password(user, request.host, request.port).deliver
     end
-    render 'users/fullpage_notifications/reset_password/email_sent', :layout => 'prelogin'
+    render 'users/fullpage_notifications/reset_password/email_sent', :layout => 'fullpage_notification'
   end
   
   # === Description
@@ -127,9 +129,9 @@ class UsersController < ApplicationController
     new_password, user = *User.reset_password!(params[:token])
     if new_password
       UserMailer.new_password_confirmed(user, new_password, request.host, request.port).deliver
-      render 'users/fullpage_notifications/reset_password/received', :layout => 'prelogin'
+      render 'users/fullpage_notifications/reset_password/received', :layout => 'fullpage_notification'
     else
-      render 'users/fullpage_notifications/expired_link', :layout => 'prelogin'
+      render 'users/fullpage_notifications/expired_link', :layout => 'fullpage_notification'
     end
   end
   
@@ -148,7 +150,17 @@ class UsersController < ApplicationController
   def edit
     @user = current_user
     @school_level_ids = SchoolLevel.order(:description).map{ |sl| [sl.to_s, sl.id] }
-    @locations = @user.location.get_filled_select_for_personal_info
+    location = @user.location
+    if @user.purchase && @user.purchase.location
+      @forced_location = @user.purchase.location
+      if location && location.is_descendant_of?(@forced_location)
+        @locations = location.get_filled_select_for_personal_info
+      else
+        @locations = @forced_location.get_filled_select_for_personal_info
+      end
+    else
+      @locations = location.nil? ? [{:selected => 0, :content => Location.roots.order(:name)}] : location.get_filled_select_for_personal_info
+    end
   end
   
   # === Description
@@ -165,7 +177,7 @@ class UsersController < ApplicationController
   #
   def find_locations
     parent = Location.find_by_id params[:id]
-    @locations = parent.nil? ? [] : parent.children
+    @locations = parent.nil? ? [] : parent.children.order(:name)
   end
   
   # === Description
@@ -205,10 +217,8 @@ class UsersController < ApplicationController
       params[:user][:subject_ids] ||= []
     else
       key_last_location = SETTINGS['location_types'].last.downcase
-      if params.has_key?(:location) && params[:location].has_key?(key_last_location)
+      if params.has_key?(:location) && params[:location].has_key?(key_last_location) && params[:location][key_last_location].to_i != 0
         params[:user][:location_id] = params[:location][key_last_location]
-      else
-        params[:user][:location_id] = 0
       end
       password = params[:user].try(:[], :password)
       if !password || password.empty?
@@ -225,6 +235,7 @@ class UsersController < ApplicationController
         render :subjects
       else
         @locations = Location.get_from_chain_params(params[:location]).get_filled_select_for_personal_info
+        @forced_location = @user.purchase.location if @user.purchase && @user.purchase.location
         @school_level_ids = SchoolLevel.order(:description).map{ |sl| [sl.to_s, sl.id] }
         render :edit
       end

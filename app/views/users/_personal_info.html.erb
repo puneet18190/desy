@@ -54,33 +54,32 @@
 <fieldset class="insert-content">
   
   <%
-    location_with_errors = user.errors.include?(:location_id)
-    last_correct_location_index = -1
+    disabling = !forced_location.nil?
+    forced_ancestors = (forced_location.ancestors + [forced_location]) if disabling
   %>
   <% SETTINGS['location_types'].each_with_index do |location, index| %>
     <%
       is_last = (index == SETTINGS['location_types'].length - 1)
-      local_location_with_errors = location_with_errors ? locations[index + 1].to_a.empty? : false
-      last_correct_location_index = index if !local_location_with_errors
       my_own_locations = locations[index].nil? ? {:selected => 0, :content => []} : locations[index]
     %>
     <div class="inputElement">
-      <div class="_location_selector <%= local_location_with_errors ? 'field_with_errors'.html_safe : '' %>">
+      <div class="_location_selector">
         <%= Location.label_at(index) %><br>
-        <select id="<%= location.downcase %>_id" class="_location_select_box" data-is-last="<%= is_last %>" name="location[<%= location.downcase %>]">
-          <%= render :partial => 'users/locations_list', :locals => {:locations => my_own_locations[:content], :selected => my_own_locations[:selected], :edit => edit} %>
-        </select>
+        <% if disabling %>
+          <div id="<%= location.downcase %>_id"><%= forced_ancestors[index].name %></div>
+        <% else %>
+          <select id="<%= location.downcase %>_id" class="_location_select_box" data-is-last="<%= is_last %>" name="location[<%= location.downcase %>]">
+            <%= render :partial => 'users/locations_list', :locals => {:locations => my_own_locations[:content], :selected => my_own_locations[:selected], :edit => edit} %>
+          </select>
+        <% end %>
       </div>
     </div>
+    <% disabling = false if disabling && forced_location.sti_type == location %>
   <% end %>
   
-  <br class="clearfloat"/>
-  
-  <ul class="listaErrori">
-    <% location_errors.each do |err| %>
-      <li><%= err.gsub('%{location}', SETTINGS['location_types'][last_correct_location_index + 1].downcase) %></li>
-    <% end %>
-  </ul>
+  <% if forced_location && forced_location.sti_type == SETTINGS['location_types'].last %>
+    <input id="user_location_id" type="hidden" value="<%= forced_location.id %>" name="user[location_id]">
+  <% end %>
   
 </fieldset>
 

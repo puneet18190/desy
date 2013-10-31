@@ -192,4 +192,87 @@ class Admin::SettingsController < AdminController
     @media_elements = @tag.get_media_elements(params[:page]).preload(:user, :taggings, {:taggings => :tag})
   end
   
+  # === Description
+  #
+  # 'Show' action for locations
+  #
+  # === Mode
+  #
+  # Html
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#admin_authenticate
+  #
+  def locations
+    @locations = [{:selected => 0, :content => Location.roots.order(:name)}]
+    if params[:selected]
+      location = Location.find_by_id params[:selected]
+      @locations = location.get_filled_select_for_personal_info if location
+    end
+    if params[:search_by_code_type]
+      location = Location.where(:sti_type => params[:search_by_code_type], :code => params[:search_by_code]).first
+      @locations = location.get_filled_select_for_personal_info if location
+    end
+  end
+  
+  # === Description
+  #
+  # Updates a location
+  #
+  # === Mode
+  #
+  # JavaScript
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#admin_authenticate
+  #
+  def update_location
+    @location = Location.find_by_id(params[:id])
+    if @location
+      @location.code = params[:code]
+      @location.name = params[:name]
+      @ok = @location.save
+    else
+      @ok = false
+    end
+  end
+  
+  # === Description
+  #
+  # Creates a new location
+  #
+  # === Mode
+  #
+  # JavaScript
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#admin_authenticate
+  #
+  def create_location
+    settings = SETTINGS['location_types']
+    @location = Location.new
+    @location.sti_type = params[:sti_type]
+    @location.name = params[:name]
+    @location.code = params[:code]
+    if settings[0] != @location.sti_type
+      parent_location = Location.find_by_id params[:parent]
+      if !parent_location.nil?
+        index = 0
+        settings.each_with_index do |n, i|
+          index = i if n == parent_location.sti_type
+        end
+        @ok = (settings[index + 1] == @location.sti_type)
+      else
+        @ok = false
+      end
+      @location.ancestry = parent_location.ancestry_with_me.chop if @ok
+    else
+      @ok = true
+    end
+    @ok = @location.save if @ok
+  end
+  
 end

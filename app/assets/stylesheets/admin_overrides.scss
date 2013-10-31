@@ -41,6 +41,81 @@
     
   }
   
+  table.outer_locations td, .outer_locations th {
+    
+    text-align: center;
+    
+  }
+  
+  table.inner_locations tr:last-child {
+    
+    border-bottom: 0;
+    
+  }
+  
+  table.outer_locations td {
+    
+    padding: 0px;
+    
+  }
+  
+  table.outer_locations a {
+    
+    cursor: pointer;
+    
+  }
+  
+  table.inner_locations, table.create_admin_location_form {
+    
+    width: 100%;
+    
+    a {
+      
+      cursor: pointer;
+      
+    }
+    
+    input {
+      
+      padding: 0;
+      margin: 0;
+      width: 60px;
+      
+    }
+    
+    tr {
+      
+      border-bottom: 1px solid #DDDDDD;
+      
+      td {
+        
+        border: none;
+        padding: 5px;
+        
+      }
+      
+    }
+    
+    tr.off {
+      
+      background-color: white;
+      
+    }
+    
+    tr.on {
+      
+      background-color: #CED8F6;
+      
+    }
+    
+  }
+  
+  .outer_locations.table-striped tbody > tr:nth-child(2n+1) > td {
+    
+    background-color: transparent;
+    
+  }
+  
   .brand {
     
     margin-top: 4px;
@@ -203,6 +278,15 @@
     
   }
   
+  .search-foam {
+    
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #FAFAFA;
+    padding: 20px 0 0 15px;
+    
+  }
+  
   form {
     
     &.search-form {
@@ -299,25 +383,6 @@
         }
         
       }
-      
-    }
-    
-  }
-  
-  #settings-locations {
-    
-    .control-group.heading {
-      
-      width: 100%;
-      display: block;
-      
-    }
-    
-    #new-location {
-      
-      clear: both;
-      padding: 0 40px 30px 40px;
-      width: 80%;
       
     }
     
@@ -446,10 +511,22 @@
       
     }
     
+    &.purchases {
+      
+      background-position: -595px 0;
+      margin-right: 0;
+      
+      &:hover, &.active {
+        
+        background-position: -595px -85px;
+        
+      }
+      
+    }
+    
     &.settings {
       
       background-position: -425px 0;
-      margin-right: 0;
       
       &:hover, &.active {
         
@@ -735,9 +812,42 @@
     color: #555555;
     
   }
+  
   .clearfloat {
   
-  clear: both;
-  height: 0;
+    clear: both;
+    height: 0;
+    
   }
+  
+  #get_location_code {
+    
+    width: 100px;
+    
+  }
+  
+  #get_location_by_code_or_id {
+    
+    cursor: pointer;
+    
+  }
+  
+  .erroraccio {
+    
+    outline: 1px solid red;
+    
+  }
+  
+  #new_purchase #renewed {
+    
+    cursor: pointer;
+    
+  }
+  
+  #purchases-list tr.expired, #purchases-list tr.expired:hover, #purchases-list tr.expired td, #purchases-list tr.expired td:hover {
+    
+    background-color: #F7F2E0;
+    
+  }
+  
 }

@@ -27,6 +27,8 @@ admin:
   surname: 'Admin User'
   email: 'desy@morganspa.com'
   password: 'desymorgan'
+# More emails to grant admin privileges to
+grant_admin_privileges: ['email1@gmail.com', 'email2@gmail.com', 'email3@gmail.com']
 # Minimum length of a tag (in characters)
 min_tag_length: 1
 # Maximu length of a tag (in characters)
@@ -135,6 +137,10 @@ max_documents_in_slide: 3
 # Enables media debugging routes and controllers /audios_test => media_elements#audios_test 
 #                                                /videos_test => media_elements#videos_test
 media_test: false
+# Enables payments and trial for new users, according to the business model 'platform as a service (PaaS)'
+saas_registration_mode: true
+# Duration (in days) of the trial in paas
+saas_trial_duration: 30
 # URL types for url retrieving
 url_types: 
   - :export

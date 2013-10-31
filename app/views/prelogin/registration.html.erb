@@ -7,9 +7,9 @@
       <li><%= prelogin_contact_us_menu_link %></a></li>
     </ul>
     <div class="logoDesyPrelogin fltrt">
-    <%= image_tag "logo_prelogin_small.png" %>
-    <p style="color:white" class="upper"><%= SETTINGS['application_extended_name'] %></p>
-    </div> 
+      <%= image_tag 'logo_prelogin_small.png' %>
+      <p style="color:white" class="upper"><%= SETTINGS['application_extended_name'] %></p>
+    </div>
   </div>
 </div>
 
@@ -17,11 +17,18 @@
 <div class="containerText">
   <h1><%= t('registration.title') %></h1>
   <h2><%= t('registration.subtitle', :desy => SETTINGS['application_name']) %></h2>
-  <p><%= t('registration.description', :desy => SETTINGS['application_name']) %></p>
 </div>
 
 
 <%= form_for @user do |f| %>
+  <% if SETTINGS['saas_registration_mode'] %>
+    <fieldset class="insert-content">
+      Codice di acquisto:<br/> <!-- TODO traduzz -->
+      <%= text_field_tag 'purchase_id', '' %><br/>
+      Non ho un codice di acquisto, ma voglio attivare una trial di <%= SETTINGS['saas_trial_duration'] %> giorni<br/> <!-- TODO traduzz -->
+      <%= check_box_tag 'trial', '0', false, :class => 'regular-checkbox big-checkbox', :style => 'display:block' %>
+    </fieldset><hr/>
+  <% end %>
   <%
     locals_for_general_info = {
       :f => f,
@@ -30,7 +37,8 @@
       :general_errors => (@errors.nil? ? [] : @errors[:general]),
       :location_errors => (@errors.nil? ? [] : @errors[:location]),
       :locations => @locations,
-      :school_level_ids => @school_level_ids
+      :school_level_ids => @school_level_ids,
+      :forced_location => @forced_location
     }
     locals_for_personal_subjects = {
       :f => f,
@@ -42,6 +50,7 @@
   <%= render partial: 'users/personal_info', :locals => locals_for_general_info %>
   <h2><%= t('registration.subjects.title') %></h2>
   <%= render partial: 'users/personal_subjects', :locals => locals_for_personal_subjects %>
+  <hr>
   <div class="contentForm">
     <% @user.registration_policies.each_with_index do |policy, index| %>
       <p>

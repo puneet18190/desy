@@ -12,6 +12,7 @@
 # * *confirmed*: boolean, +true+ if the user has completed the registration procedure clicking on a link he received by email
 # * *active*: boolean, false if the user is banned
 # * *location_id*: location of the user
+# * *purchase_id*: references to the Purchase that allows the user to log in
 # * *confirmation_token*: token used for confirmation, generated automaticly
 # * *password_token*: token used for resetting the password, generated automaticly
 # * *metadata*:
@@ -31,13 +32,15 @@
 # * *virtual_classroom_lessons*: list of lessons present in the user's Virtual Classroom (see VirtualClassroomLesson) (*has_many*)
 # * *mailing_list_groups*: all the mailing list groups that this user created (see MailingListGroup) (*has_many*)
 # * *school_level*: the SchoolLevel associated to this user (*belongs_to*)
-# * *location*: the Location associated to this user (*belongs_to*)
+# * *location*: the Location associated to this user (*belongs_to*, it can be nil)
 # * *documents*: documents uploaded by the user (see Document) (*has_many*)
+# * *purchase*: the Purchase allowing the user to be logged in with his account
 #
 # == Validations
 #
 # * *presence* of +email+, +name+, +surname+
-# * *presence* with numericality greater than 0 and presence of associated object for +location_id+ and +school_level_id+ (for the location, it's also checked that the subclass is the last in the locations chain, see Location)
+# * *presence* with numericality greater than 0 and presence of associated object for +school_level_id+
+# * *numericality* greater than 0 and allow_nil and eventually presence of associated object for +location_id+ and +purchase_id+ (for the location, it's also checked that the subclass is the last in the locations chain, see Location)
 # * *confirmation* of +encrypted_password+ (the attribute password must coincide with its confirmation provided by the user): this validation uses the private attribute +password_confirmation+, associated to password
 # * *presence* of at least one associated record of UsersSubject
 # * *uniqueness* of +email+
@@ -47,6 +50,7 @@
 # * *correctness* of +email+ as an e-mail address
 # * *modifications* *not* *available* for +email+ if the user is not a new record
 # * *acceptance* of each policy configured in settings.yml
+# * *control* that accounts_number in purchase is less than users count associated to that Purchase (if purchase_id is not nil)
 #
 # == Callbacks
 #
@@ -72,7 +76,7 @@ class User < ActiveRecord::Base
   serialize :metadata, OpenStruct
   
   # List of attributes to be made accessible (the list includes private attributes that don't correspond to fields, for instance +password_confirmation+)
-  ATTR_ACCESSIBLE = [:password, :password_confirmation, :name, :surname, :school_level_id, :location_id, :subject_ids] + REGISTRATION_POLICIES
+  ATTR_ACCESSIBLE = [:password, :password_confirmation, :name, :surname, :school_level_id, :location_id, :subject_ids, :purchase_id] + REGISTRATION_POLICIES
   attr_accessible *ATTR_ACCESSIBLE
   
   # Hash of constraints for the length of the password
@@ -107,10 +111,12 @@ class User < ActiveRecord::Base
   has_many :mailing_list_groups
   has_many :documents
   belongs_to :school_level
+  belongs_to :purchase
   belongs_to :location, :class_name => location_association_class
   
-  validates_presence_of :email, :name, :surname, :school_level_id, :location_id
-  validates_numericality_of :school_level_id, :location_id, :only_integer => true, :greater_than => 0
+  validates_presence_of :email, :name, :surname, :school_level_id
+  validates_numericality_of :school_level_id, :only_integer => true, :greater_than => 0
+  validates_numericality_of :location_id, :purchase_id, :only_integer => true, :greater_than => 0, :allow_nil => true
   validates_confirmation_of :password
   validates_presence_of :users_subjects
   validates_uniqueness_of :email
@@ -120,6 +126,7 @@ class User < ActiveRecord::Base
   validates_inclusion_of :active, :confirmed, :in => [true, false]
   validate :validate_associations, :validate_email
   validate :validate_email_not_changed, :on => :update
+  validate :validate_accounts_number_for_purchase
   REGISTRATION_POLICIES.each do |policy|
     validates_acceptance_of policy, on: :create, allow_nil: false
   end
@@ -146,15 +153,14 @@ class User < ActiveRecord::Base
   
   # === Description
   #
-  # It checks if the user is administrator or not (i.e., if the user is allowed to enter in the administration module, see for instance Admin::DashboardController). TODO important: at the moment only the super administrator is considered an administrator: in future it'll be necessary to add to config.yml a list of emails of administrators (or alternatively, to add a boolean field +admin+ to the table +users+). <b>The method must be changed without changing its name</b>: it should return something like
-  #   self.super_admin? || SETTINGS['grant_admin_privileges'].include?(self.email)
+  # It checks if the user is administrator or not (i.e., if the user is allowed to enter in the administration module, see for instance Admin::DashboardController)
   #
   # === Returns
   #
   # A boolean
   #
   def admin?
-    self.super_admin?
+    self.super_admin? || SETTINGS['grant_admin_privileges'].include?(self.email)
   end
 
   # === Description
@@ -241,7 +247,8 @@ class User < ActiveRecord::Base
   # Boolean
   #
   def trial?
-    false # TODO self.purchase_id.nil?
+    return false if self.admin?
+    SETTINGS['saas_registration_mode'] && self.purchase_id.nil?
   end
   
   # === Description
@@ -295,7 +302,8 @@ class User < ActiveRecord::Base
   # A string
   #
   def base_location
-    self.location.name
+    my_location = self.location
+    my_location.nil? ? '-' : my_location.name
   end
   
   # === Description
@@ -308,18 +316,23 @@ class User < ActiveRecord::Base
   #
   def parent_locations
     resp = ''
+    locations = []
     first = true
     current_location = self.location
+    return '-' if current_location.nil?
     (0...SETTINGS['location_types'].length).to_a.each do |index|
       if current_location.class.to_s != SETTINGS['location_types'].last
-        if first
-          resp = "#{current_location.name}"
-          first = false
-        else
-          resp = "#{resp} - #{current_location.name}"
-        end
+        locations << current_location
       end
       current_location = current_location.parent
+    end
+    locations.reverse.each do |l|
+      if first
+        resp = "#{l.name}"
+        first = false
+      else
+        resp = "#{resp} - #{l.name}"
+      end
     end
     resp
   end
@@ -1469,13 +1482,26 @@ class User < ActiveRecord::Base
   def init_validation
     @user = Valid.get_association self, :id
     @school_level = Valid.get_association self, :school_level_id
+    @purchase = Valid.get_association self, :purchase_id
+  end
+  
+  # Validates that there are not too many users associated to the same purchase
+  def validate_accounts_number_for_purchase
+    if @user
+      errors.add(:purchase_id, :too_many_users_for_purchase) if @purchase && self.purchase_id != @user.purchase_id && @purchase.accounts_number == User.where(:purchase_id => self.purchase_id).count
+    else
+      errors.add(:purchase_id, :too_many_users_for_purchase) if @purchase && @purchase.accounts_number == User.where(:purchase_id => self.purchase_id).count
+    end
   end
   
   # Validates the presence of all the associated objects
   def validate_associations
     errors.add :school_level_id, :doesnt_exist if @school_level.nil?
-    @location = Valid.get_association self, :location_id
-    errors.add :location_id, :doesnt_exist if @location.nil? || @location.sti_type != SETTINGS['location_types'].last
+    errors.add :purchase_id, :doesnt_exist if @purchase.nil? && self.purchase_id.present?
+    if self.location_id
+      @location = Valid.get_association self, :location_id
+      errors.add :location_id, :doesnt_exist if @location.nil? || @location.sti_type != SETTINGS['location_types'].last
+    end
   end
   
   # If the user is not new, it validates that the email didn't change

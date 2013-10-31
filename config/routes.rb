@@ -144,8 +144,10 @@ Desy::Application.routes.draw do
   put 'profile/update'        => 'users#update',        :as => :user
   
   # LOCATIONS
-  get 'locations/:id/find'       => 'users#find_locations'
-  get 'admin/locations/:id/find' => 'admin/users#find_locations'
+  get 'locations/:id/find'                 => 'users#find_locations'
+  get 'admin/locations/:id/find'           => 'admin/users#find_locations'
+  get 'admin/purchases/locations/:id/find' => 'admin/purchases#find_locations'
+  get 'admin/purchases/locations/fill'     => 'admin/purchases#fill_locations'
   
   # MAILING LIST
   post   'mailing_lists/create'                                 => 'mailing_lists#create_group'
@@ -199,6 +201,12 @@ Desy::Application.routes.draw do
     delete    'settings/tags/:id/delete'                => 'settings#delete_tag'
     get       'settings/tags/:id/show/lessons'          => 'settings#lessons_for_tag'
     get       'settings/tags/:id/show/media_elements'   => 'settings#media_elements_for_tag'
+    get       'settings/locations'                      => 'settings#locations'
+    put       'settings/locations/:id/update'           => 'settings#update_location'
+    post      'settings/locations/create'               => 'settings#create_location'
+    get       'purchases/:id/links/form'                => 'purchases#link_form'
+    post      'purchases/:id/links/send'                => 'purchases#send_link'
+    resources :purchases,                         :only => [:index, :new, :create, :edit, :update]
     resources :lessons,                           :only => [:index, :destroy]
     resources :documents,                         :only => [:index, :destroy]
     resources :media_elements,                    :only => [:new, :index, :destroy]

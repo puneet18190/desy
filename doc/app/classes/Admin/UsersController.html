@@ -386,7 +386,7 @@ href="../ApplicationController.html#method-i-admin_authenticate">ApplicationCont
                 <pre><span class="ruby-comment"># File app/controllers/admin/users_controller.rb, line 114</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">find_locations</span>
   <span class="ruby-identifier">parent</span> = <span class="ruby-constant">Location</span>.<span class="ruby-identifier">find_by_id</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>]
-  <span class="ruby-ivar">@locations</span> = <span class="ruby-identifier">parent</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">?</span> [] <span class="ruby-operator">:</span> <span class="ruby-identifier">parent</span>.<span class="ruby-identifier">children</span>
+  <span class="ruby-ivar">@locations</span> = <span class="ruby-identifier">parent</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">?</span> [] <span class="ruby-operator">:</span> <span class="ruby-identifier">parent</span>.<span class="ruby-identifier">children</span>.<span class="ruby-identifier">order</span>(<span class="ruby-value">:name</span>)
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -486,7 +486,7 @@ href="../ApplicationController.html#method-i-admin_authenticate">ApplicationCont
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">index</span>
   <span class="ruby-identifier">users</span> = <span class="ruby-constant">AdminSearchForm</span>.<span class="ruby-identifier">search_users</span>((<span class="ruby-identifier">params</span>[<span class="ruby-value">:search</span>] <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:search</span>] <span class="ruby-operator">:</span> {<span class="ruby-value">:ordering</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-number">0</span>, <span class="ruby-value">:desc</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;true&#39;</span>}))
   <span class="ruby-ivar">@users</span> = <span class="ruby-identifier">users</span>.<span class="ruby-identifier">preload</span>(<span class="ruby-value">:location</span>, <span class="ruby-value">:school_level</span>).<span class="ruby-identifier">page</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>])
-  <span class="ruby-ivar">@locations</span> = [<span class="ruby-constant">Location</span>.<span class="ruby-identifier">roots</span>]
+  <span class="ruby-ivar">@locations</span> = [<span class="ruby-constant">Location</span>.<span class="ruby-identifier">roots</span>.<span class="ruby-identifier">order</span>(<span class="ruby-value">:name</span>)]
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:search</span>]
     <span class="ruby-identifier">location</span> = <span class="ruby-constant">Location</span>.<span class="ruby-identifier">get_from_chain_params</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:search</span>]
     <span class="ruby-ivar">@locations</span> = <span class="ruby-identifier">location</span>.<span class="ruby-identifier">get_filled_select</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">location</span>

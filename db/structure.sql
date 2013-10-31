@@ -279,6 +279,7 @@ CREATE TABLE locations (
     name character varying(255) NOT NULL,
     sti_type character varying(255),
     ancestry character varying(255),
+    code character varying(255),
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );
@@ -473,6 +474,54 @@ CREATE SEQUENCE notifications_id_seq
 --
 
 ALTER SEQUENCE notifications_id_seq OWNED BY notifications.id;
+
+
+--
+-- Name: purchases; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE purchases (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    responsible character varying(255) NOT NULL,
+    phone_number character varying(255),
+    fax character varying(255),
+    email character varying(255) NOT NULL,
+    ssn_code character varying(255),
+    vat_code character varying(255),
+    address character varying(255),
+    postal_code character varying(255),
+    city character varying(255),
+    country character varying(255),
+    location_id integer,
+    accounts_number integer NOT NULL,
+    includes_invoice boolean NOT NULL,
+    release_date timestamp without time zone NOT NULL,
+    start_date timestamp without time zone NOT NULL,
+    expiration_date timestamp without time zone NOT NULL,
+    token character varying(255) NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: purchases_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE purchases_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: purchases_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE purchases_id_seq OWNED BY purchases.id;
 
 
 --
@@ -725,10 +774,11 @@ CREATE TABLE users (
     encrypted_password character varying(255) NOT NULL,
     confirmed boolean NOT NULL,
     active boolean NOT NULL,
-    location_id integer NOT NULL,
+    location_id integer,
     confirmation_token character varying(255),
     metadata text,
     password_token character varying(255),
+    purchase_id integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );
@@ -906,6 +956,13 @@ ALTER TABLE ONLY notifications ALTER COLUMN id SET DEFAULT nextval('notification
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY purchases ALTER COLUMN id SET DEFAULT nextval('purchases_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY reports ALTER COLUMN id SET DEFAULT nextval('reports_id_seq'::regclass);
 
 
@@ -1066,6 +1123,14 @@ ALTER TABLE ONLY media_elements_slides
 
 ALTER TABLE ONLY notifications
     ADD CONSTRAINT notifications_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: purchases_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY purchases
+    ADD CONSTRAINT purchases_pkey PRIMARY KEY (id);
 
 
 --
@@ -1268,6 +1333,13 @@ CREATE INDEX fk__notifications_user_id ON notifications USING btree (user_id);
 
 
 --
+-- Name: fk__purchases_location_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX fk__purchases_location_id ON purchases USING btree (location_id);
+
+
+--
 -- Name: fk__reports_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -1293,6 +1365,13 @@ CREATE INDEX fk__taggings_tag_id ON taggings USING btree (tag_id);
 --
 
 CREATE INDEX fk__users_location_id ON users USING btree (location_id);
+
+
+--
+-- Name: fk__users_purchase_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX fk__users_purchase_id ON users USING btree (purchase_id);
 
 
 --
@@ -1557,6 +1636,14 @@ ALTER TABLE ONLY notifications
 
 
 --
+-- Name: fk_purchases_location_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY purchases
+    ADD CONSTRAINT fk_purchases_location_id FOREIGN KEY (location_id) REFERENCES locations(id);
+
+
+--
 -- Name: fk_reports_user_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1586,6 +1673,14 @@ ALTER TABLE ONLY taggings
 
 ALTER TABLE ONLY users
     ADD CONSTRAINT fk_users_location_id FOREIGN KEY (location_id) REFERENCES locations(id);
+
+
+--
+-- Name: fk_users_purchase_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY users
+    ADD CONSTRAINT fk_users_purchase_id FOREIGN KEY (purchase_id) REFERENCES purchases(id);
 
 
 --
@@ -1641,6 +1736,8 @@ INSERT INTO schema_migrations (version) VALUES ('20120924120617');
 INSERT INTO schema_migrations (version) VALUES ('20120924121212');
 
 INSERT INTO schema_migrations (version) VALUES ('20120924121636');
+
+INSERT INTO schema_migrations (version) VALUES ('20120924121650');
 
 INSERT INTO schema_migrations (version) VALUES ('20120924121714');
 

@@ -760,12 +760,10 @@ ActiveModel::Errors into a translated message for the user.</p>
   <span class="ruby-identifier">resp</span> = {
     <span class="ruby-value">:general</span> =<span class="ruby-operator">&gt;</span> [],
     <span class="ruby-value">:subjects</span> =<span class="ruby-operator">&gt;</span> [],
-    <span class="ruby-value">:policies</span> =<span class="ruby-operator">&gt;</span> [],
-    <span class="ruby-value">:location</span> =<span class="ruby-operator">&gt;</span> []
+    <span class="ruby-value">:policies</span> =<span class="ruby-operator">&gt;</span> []
   }
   <span class="ruby-identifier">resp</span>[<span class="ruby-value">:general</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;forms.error_captions.fill_all_the_fields_or_too_long&#39;</span>) <span class="ruby-keyword">if</span> (<span class="ruby-identifier">errors</span>.<span class="ruby-identifier">messages</span>.<span class="ruby-identifier">keys</span> &amp; [<span class="ruby-value">:name</span>, <span class="ruby-value">:surname</span>]).<span class="ruby-identifier">any?</span>
   <span class="ruby-identifier">resp</span>[<span class="ruby-value">:general</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;forms.error_captions.not_valid_email&#39;</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">messages</span>.<span class="ruby-identifier">has_key?</span> <span class="ruby-value">:email</span>
-  <span class="ruby-identifier">resp</span>[<span class="ruby-value">:location</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;forms.error_captions.choose_a_location&#39;</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">messages</span>.<span class="ruby-identifier">has_key?</span> <span class="ruby-value">:location_id</span>
   <span class="ruby-identifier">resp</span>[<span class="ruby-value">:subjects</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;forms.error_captions.select_at_least_a_subject&#39;</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">messages</span>.<span class="ruby-identifier">has_key?</span> <span class="ruby-value">:users_subjects</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">messages</span>.<span class="ruby-identifier">has_key?</span> <span class="ruby-value">:password</span>
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">added?</span>(<span class="ruby-value">:password</span>, <span class="ruby-value">:too_short</span>, {<span class="ruby-value">:count</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">pas_min</span>}) <span class="ruby-operator">||</span> <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">added?</span>(<span class="ruby-value">:password</span>, <span class="ruby-value">:too_long</span>, {<span class="ruby-value">:count</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">pas_max</span>})
@@ -1468,9 +1466,9 @@ in the same page</p>
                 
               </p>
               <div id="method-i-logged_in-3F_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 289</span>
+                <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 287</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">logged_in?</span>
-  <span class="ruby-identifier">current_user</span>
+  <span class="ruby-operator">!</span><span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">nil?</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>

@@ -9,10 +9,11 @@ class CreateUsers < ActiveRecord::Migration
       t.string  :encrypted_password, null: false
       t.boolean :confirmed,          null: false, index: true
       t.boolean :active,             null: false, index: true
-      t.integer :location_id,        null: false
+      t.integer :location_id         
       t.string  :confirmation_token,              index: true
       t.text    :metadata
       t.string  :password_token,                  index: true
+      t.integer :purchase_id
       t.timestamps
     end
   end

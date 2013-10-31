@@ -1,0 +1,6 @@
+<% if @ok %>
+  <% @locations.each_with_index do |locations, index| %>
+    $('select#admin_purchase_choose_location_<%= SETTINGS["location_types"][index].downcase %>').html('<%= j render(:partial => "admin/purchases/locations", :locals => {:locations => locations[:content], :selected => locations[:selected], :index => index}) %>');
+  <% end %>
+  $('#purchase_location_id').val('<%= @location.id %>');
+<% end %>

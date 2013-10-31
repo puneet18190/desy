@@ -109,7 +109,7 @@
             
               
               <li>
-                <a href="#method-i-what_is_desy">what_is_desy</a>
+                <a href="#method-i-what_is">what_is</a>
               </li>
             
           </ul>
@@ -238,7 +238,7 @@ href="PreloginController.html#method-i-redirect_to_dashboard_if_logged_in">#redi
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">registration</span>
   <span class="ruby-ivar">@user</span>             = <span class="ruby-constant">User</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:user</span>])
   <span class="ruby-ivar">@school_level_ids</span> = <span class="ruby-constant">SchoolLevel</span>.<span class="ruby-identifier">order</span>(<span class="ruby-value">:description</span>).<span class="ruby-identifier">map</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">sl</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">sl</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-identifier">sl</span>.<span class="ruby-identifier">id</span>] }
-  <span class="ruby-ivar">@locations</span>        = [{<span class="ruby-value">:selected</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-number">0</span>, <span class="ruby-value">:content</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Location</span>.<span class="ruby-identifier">roots</span>}]
+  <span class="ruby-ivar">@locations</span>        = [{<span class="ruby-value">:selected</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-number">0</span>, <span class="ruby-value">:content</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Location</span>.<span class="ruby-identifier">roots</span>.<span class="ruby-identifier">order</span>(<span class="ruby-value">:name</span>)}]
   <span class="ruby-ivar">@user_location</span>    = {}
   <span class="ruby-ivar">@subjects</span>         = <span class="ruby-constant">Subject</span>.<span class="ruby-identifier">order</span>(<span class="ruby-value">:description</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -248,30 +248,30 @@ href="PreloginController.html#method-i-redirect_to_dashboard_if_logged_in">#redi
           </div>
         
         <div class="method">
-          <div class="title method-title" id="method-i-what_is_desy">
+          <div class="title method-title" id="method-i-what_is">
             
-              <b>what_is_desy</b>()
+              <b>what_is</b>()
             
-            <a href="../classes/PreloginController.html#method-i-what_is_desy" name="method-i-what_is_desy" class="permalink">Link</a>
+            <a href="../classes/PreloginController.html#method-i-what_is" name="method-i-what_is" class="permalink">Link</a>
           </div>
           
           
             <div class="description">
-              <h3 id="method-i-what_is_desy-label-Description">Description</h3>
+              <h3 id="method-i-what_is-label-Description">Description</h3>
 
 <p>Section of the main page</p>
 
-<h3 id="method-i-what_is_desy-label-Mode">Mode</h3>
+<h3 id="method-i-what_is-label-Mode">Mode</h3>
 
 <p>Html</p>
 
-<h3 id="method-i-what_is_desy-label-Specific+filters">Specific filters</h3>
+<h3 id="method-i-what_is-label-Specific+filters">Specific filters</h3>
 <ul><li>
 <p><a
 href="ApplicationController.html#method-i-authenticate">ApplicationController#authenticate</a></p>
 </li></ul>
 
-<h3 id="method-i-what_is_desy-label-Skipped+filters">Skipped filters</h3>
+<h3 id="method-i-what_is-label-Skipped+filters">Skipped filters</h3>
 <ul><li>
 <p><a
 href="PreloginController.html#method-i-redirect_to_dashboard_if_logged_in">#redirect_to_dashboard_if_logged_in</a></p>
@@ -287,12 +287,12 @@ href="PreloginController.html#method-i-redirect_to_dashboard_if_logged_in">#redi
               
               <p class="source-link">
                 Source: 
-                <a href="javascript:toggleSource('method-i-what_is_desy_source')" id="l_method-i-what_is_desy_source">show</a>
+                <a href="javascript:toggleSource('method-i-what_is_source')" id="l_method-i-what_is_source">show</a>
                 
               </p>
-              <div id="method-i-what_is_desy_source" class="dyn-source">
+              <div id="method-i-what_is_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/controllers/prelogin_controller.rb, line 78</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">what_is_desy</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">what_is</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>

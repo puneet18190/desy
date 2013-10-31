@@ -400,91 +400,12 @@
   
 }
 
-@mixin handle-registrations {
-  
-  body {
-    
-    font-family: 'Nunito', "Arial Rounded MT Bold", sans-serif;
-    background-color: #373737;
-    color: #fff;
-    text-align: center;
-    
-  }
-  
-  .container {
-    
-    background-color: transparent;
-    display: table;
-    padding: 20px;
-    height: 90%;
-    text-align: center;
-    width: auto;
-    
-    .dialog {
-      
-      display: table-cell;
-      vertical-align: middle;
-      text-align: left;
-      padding: 20px;
-      margin: 0;
-      
-      h1 {
-        
-        font-size: 260%;
-        color: #25aae1;
-        padding: 0;
-        margin: 0;
-        
-      }
-      
-      p {
-        
-        padding: 0px;
-        margin-bottom: 30px;
-        
-      }
-      
-      label {
-        
-        font-size: 90%;
-        margin-left: 10px;
-        
-      }
-      
-      input[type="submit"] {
-        
-        font-size: 120%;
-        cursor: pointer;
-        color: #fff;
-        background-color: transparent;
-        
-      }
-      
-      input[type="email"] {
-        
-        border: 1px solid #424141;
-        box-shadow: none;
-        height: 29px;
-        background-color: #2e2c2d;
-        border-radius: 10px;
-        color: #fff;
-        font-size: 120%;
-        
-      }
-      
-    }
-    
-  }
-  
-}
-
 @mixin border-formatting {
   
   border-radius: 5px;
   -webkit-border-radius: 5px;
   
 }
-
 
 @mixin iconEditorElement($font-size) {
   

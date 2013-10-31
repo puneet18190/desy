@@ -310,7 +310,7 @@ href="ApplicationController.html#method-i-authenticate">ApplicationController#au
   <span class="ruby-keyword">else</span>
     <span class="ruby-ivar">@errors</span> = <span class="ruby-identifier">convert_user_error_messages</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">errors</span>
     <span class="ruby-identifier">location</span> = <span class="ruby-constant">Location</span>.<span class="ruby-identifier">get_from_chain_params</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:location</span>]
-    <span class="ruby-ivar">@locations</span> = <span class="ruby-identifier">location</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">?</span> [{<span class="ruby-value">:selected</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-number">0</span>, <span class="ruby-value">:content</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Location</span>.<span class="ruby-identifier">roots</span>}] <span class="ruby-operator">:</span> <span class="ruby-identifier">location</span>.<span class="ruby-identifier">get_filled_select_for_personal_info</span>
+    <span class="ruby-ivar">@locations</span> = <span class="ruby-identifier">location</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">?</span> [{<span class="ruby-value">:selected</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-number">0</span>, <span class="ruby-value">:content</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Location</span>.<span class="ruby-identifier">roots</span>.<span class="ruby-identifier">order</span>(<span class="ruby-value">:name</span>)}] <span class="ruby-operator">:</span> <span class="ruby-identifier">location</span>.<span class="ruby-identifier">get_filled_select_for_personal_info</span>
     <span class="ruby-ivar">@school_level_ids</span> = <span class="ruby-constant">SchoolLevel</span>.<span class="ruby-identifier">order</span>(<span class="ruby-value">:description</span>).<span class="ruby-identifier">map</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">sl</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">sl</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-identifier">sl</span>.<span class="ruby-identifier">id</span>] }
     <span class="ruby-ivar">@subjects</span>         = <span class="ruby-constant">Subject</span>.<span class="ruby-identifier">order</span>(<span class="ruby-value">:description</span>)
     <span class="ruby-identifier">render</span> <span class="ruby-string">&#39;prelogin/registration&#39;</span>
@@ -363,7 +363,8 @@ href="ApplicationController.html#method-i-initialize_layout">ApplicationControll
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">edit</span>
   <span class="ruby-ivar">@user</span> = <span class="ruby-identifier">current_user</span>
   <span class="ruby-ivar">@school_level_ids</span> = <span class="ruby-constant">SchoolLevel</span>.<span class="ruby-identifier">order</span>(<span class="ruby-value">:description</span>).<span class="ruby-identifier">map</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">sl</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">sl</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-identifier">sl</span>.<span class="ruby-identifier">id</span>] }
-  <span class="ruby-ivar">@locations</span> = <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">location</span>.<span class="ruby-identifier">get_filled_select_for_personal_info</span>
+  <span class="ruby-identifier">location</span> = <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">location</span>
+  <span class="ruby-ivar">@locations</span> = <span class="ruby-identifier">location</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">?</span> [{<span class="ruby-value">:selected</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-number">0</span>, <span class="ruby-value">:content</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Location</span>.<span class="ruby-identifier">roots</span>.<span class="ruby-identifier">order</span>(<span class="ruby-value">:name</span>)}] <span class="ruby-operator">:</span> <span class="ruby-identifier">location</span>.<span class="ruby-identifier">get_filled_select_for_personal_info</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -408,10 +409,10 @@ href="ApplicationController.html#method-i-authenticate">ApplicationController#au
                 
               </p>
               <div id="method-i-find_locations_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 166</span>
+                <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 167</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">find_locations</span>
   <span class="ruby-identifier">parent</span> = <span class="ruby-constant">Location</span>.<span class="ruby-identifier">find_by_id</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>]
-  <span class="ruby-ivar">@locations</span> = <span class="ruby-identifier">parent</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">?</span> [] <span class="ruby-operator">:</span> <span class="ruby-identifier">parent</span>.<span class="ruby-identifier">children</span>
+  <span class="ruby-ivar">@locations</span> = <span class="ruby-identifier">parent</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">?</span> [] <span class="ruby-operator">:</span> <span class="ruby-identifier">parent</span>.<span class="ruby-identifier">children</span>.<span class="ruby-identifier">order</span>(<span class="ruby-value">:name</span>)
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -457,7 +458,7 @@ href="ApplicationController.html#method-i-initialize_layout">ApplicationControll
                 
               </p>
               <div id="method-i-mailing_lists_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 246</span>
+                <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 247</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">mailing_lists</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
@@ -659,7 +660,7 @@ href="ApplicationController.html#method-i-initialize_layout">ApplicationControll
                 
               </p>
               <div id="method-i-statistics_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 261</span>
+                <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 262</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">statistics</span>
   <span class="ruby-constant">Statistics</span>.<span class="ruby-identifier">user</span> = <span class="ruby-identifier">current_user</span>
   <span class="ruby-ivar">@my_created_lessons</span>  = <span class="ruby-constant">Statistics</span>.<span class="ruby-identifier">my_created_lessons</span>
@@ -721,7 +722,7 @@ href="ApplicationController.html#method-i-initialize_layout">ApplicationControll
                 
               </p>
               <div id="method-i-subjects_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 183</span>
+                <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 184</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">subjects</span>
   <span class="ruby-ivar">@user</span> = <span class="ruby-identifier">current_user</span>
   <span class="ruby-ivar">@subjects</span> = <span class="ruby-constant">Subject</span>.<span class="ruby-identifier">order</span>(<span class="ruby-value">:description</span>)
@@ -771,7 +772,7 @@ href="ApplicationController.html#method-i-initialize_layout">ApplicationControll
                 
               </p>
               <div id="method-i-update_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 200</span>
+                <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 201</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">update</span>
   <span class="ruby-ivar">@user</span> = <span class="ruby-identifier">current_user</span>
   <span class="ruby-identifier">in_subjects</span> = <span class="ruby-operator">!</span><span class="ruby-operator">!</span><span class="ruby-identifier">params</span>[<span class="ruby-value">:in_subjects</span>]

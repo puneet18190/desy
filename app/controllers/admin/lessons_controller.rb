@@ -32,7 +32,7 @@ class Admin::LessonsController < AdminController
     covers.each do |cov|
       @covers[cov.lesson_id] = cov
     end
-    @locations = [Location.roots]
+    @locations = [Location.roots.order(:name)]
     if params[:search]
       location = Location.get_from_chain_params params[:search]
       @locations = location.get_filled_select if location

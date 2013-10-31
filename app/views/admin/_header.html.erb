@@ -15,47 +15,82 @@
     </p>
     <ul class="nav">
       <li class="dropdown">
-        <a href="/admin" class="first-level <%= 'active' if controller_name == "dashboard" %>">
+        <a href="/admin" class="first-level <%= 'active' if controller_name == 'dashboard' %>">
           <%= t('admin.menu.dashboard.link') %>
         </a>
       </li>
       <li class="dropdown">
-        <a href="/admin/media_elements" class="dropdown-toggle first-level elements <%= 'active' if controller_name == "media_elements" %>" data-toggle="dropdown">
+        <a href="/admin/media_elements" class="dropdown-toggle first-level elements <%= 'active' if controller_name == 'media_elements' %>" data-toggle="dropdown">
           <%= t('admin.menu.media_elements.link') %>
-          </a>
+        </a>
         <ul class="dropdown-menu">
-          <li><a href="/admin/media_elements"><%= t('admin.menu.media_elements.list') %></a></li>
-          <li><a href="/admin/media_elements/new"><%= t('admin.menu.media_elements.upload') %></a></li>
-          <li><a href="/admin/media_elements/edit"><%= t('admin.menu.media_elements.publish') %></a></li>
+          <li>
+            <a href="/admin/media_elements"><%= t('admin.menu.media_elements.list') %></a>
+          </li>
+          <li>
+            <a href="/admin/media_elements/new"><%= t('admin.menu.media_elements.upload') %></a>
+          </li>
+          <li>
+            <a href="/admin/media_elements/edit"><%= t('admin.menu.media_elements.publish') %></a>
+          </li>
         </ul>
       </li>
       <li class="dropdown">
-        <a href="/admin/lessons" class="first-level lessons <%= 'active' if controller_name == "lessons" %>"><%= t('admin.menu.lessons.link') %></a>
+        <a href="/admin/lessons" class="first-level lessons <%= 'active' if controller_name == 'lessons' %>">
+          <%= t('admin.menu.lessons.link') %>
+        </a>
       </li>
       <li class="dropdown">
-        <a href="/admin/documents" class="first-level documents <%= 'active' if controller_name == "documents" %>"><%= t('admin.menu.documents.link') %></a>
+        <a href="/admin/documents" class="first-level documents <%= 'active' if controller_name == 'documents' %>">
+          <%= t('admin.menu.documents.link') %>
+        </a>
       </li>
       <li class="dropdown">
-        <a href="/admin/messages/new_notification" class="dropdown-toggle first-level messages <%= 'active' if controller_name == "messages" %>" data-toggle="dropdown"><%= t('admin.menu.messages.link') %></a>
+        <a href="/admin/messages/new_notification" class="dropdown-toggle first-level messages <%= 'active' if controller_name == 'messages' %>" data-toggle="dropdown">
+          <%= t('admin.menu.messages.link') %>
+        </a>
         <ul class="dropdown-menu">
-          <li><a href="/admin/messages/new_notification">
-            <%= t('admin.menu.messages.notifications') %></a>
+          <li>
+            <a href="/admin/messages/new_notification">
+              <%= t('admin.menu.messages.notifications') %>
+            </a>
           </li>
           <li>
             <a href="/admin/messages/reports">
               <%= t('admin.menu.messages.reports') %>
-              <div class="label"></div>
             </a>
           </li>
         </ul>
       </li>
       <li class="dropdown">
-        <a href="/admin/users" class="dropdown-toggle first-level users <%= 'active' if controller_name == "users" %>" data-toggle="dropdown">
-          <%= t('admin.menu.users.link') %></a>
+        <a href="/admin/users" class="dropdown-toggle first-level users <%= 'active' if controller_name == 'users' %>" data-toggle="dropdown">
+          <%= t('admin.menu.users.link') %>
+        </a>
       </li>
       <li class="dropdown">
-        <a href="/admin/settings/subjects" class="dropdown-toggle first-level settings" data-toggle="dropdown"><%= t('admin.menu.settings.link') %></a>
+        <a href="/admin/settings/subjects" class="dropdown-toggle first-level settings <%= 'active' if controller_name == 'settings' %>" data-toggle="dropdown">
+          <%= t('admin.menu.settings.link') %>
+        </a>
       </li>
+      <% if SETTINGS['saas_registration_mode'] && current_user.super_admin? %>
+        <li class="dropdown">
+          <a href="/admin/purchases" class="dropdown-toggle first-level purchases <%= 'active' if controller_name == 'purchases' %>" data-toggle="dropdown">
+            <%= t('admin.menu.purchases.link') %>
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a href="/admin/purchases">
+                <%= t('admin.menu.purchases.list') %>
+              </a>
+            </li>
+            <li>
+              <a href="/admin/purchases/new">
+                <%= t('admin.menu.purchases.create') %>
+              </a>
+            </li>
+          </ul>
+        </li>
+      <% end %>
     </ul>
   </div>
 </div>

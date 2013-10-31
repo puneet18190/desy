@@ -155,7 +155,7 @@ after the block execution or if an error occurs</p>
               <div id="method-i-in_tmp_dir_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File lib/media/in_tmp_dir.rb, line 27</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">in_tmp_dir</span>
-  <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">mktmpdir</span>(<span class="ruby-constant">Desy</span><span class="ruby-operator">::</span><span class="ruby-constant">TMP_PREFIX</span>.<span class="ruby-identifier">call</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">dir</span><span class="ruby-operator">|</span>
+  <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">mktmpdir</span>(<span class="ruby-constant">Rails</span>.<span class="ruby-identifier">application</span>.<span class="ruby-identifier">config</span>.<span class="ruby-identifier">tempfiles_prefix</span>.<span class="ruby-identifier">call</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">dir</span><span class="ruby-operator">|</span>
     <span class="ruby-ivar">@tmp_dir</span> = <span class="ruby-identifier">dir</span>
     <span class="ruby-keyword">yield</span>
   <span class="ruby-keyword">end</span>
