@@ -3,13 +3,15 @@
   <hr/>
   <%= render :partial => 'common_form', :locals => {:f => f} %>
   <hr/>
-  <%= render :partial => 'restrictions_form', :locals => {:f => f, :locations => @locations} %>
-  <hr/>
   <% if @renewed %>
+    <input id="purchase_location_id" type="hidden" value="<%= @renewed.location_id %>" name="purchase[location_id]">
+    <%= hidden_field_tag 'renewed_id', '' %>
     <a id="renewed" data-renewed-id="<%= @renewed.id %>" data-accounts-number="<%= @renewed.accounts_number %>">
       <%= t('admin.purchases.new.renew') %>
     </a>
-    <%= hidden_field_tag 'renewed_id', '' %>
+    <hr/>
+  <% else %>
+    <%= render :partial => 'restrictions_form', :locals => {:f => f, :locations => @locations} %>
     <hr/>
   <% end %>
   <%= f.submit t('admin.purchases.new.submit') %>
