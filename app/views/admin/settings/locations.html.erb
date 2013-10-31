@@ -12,8 +12,8 @@
     <%= form_tag 'locations', :method => :get, :id => 'admin-search-locations' do %>
       <%= t('admin.settings.locations.search.by_code_1') %>
       <select name="search_by_code_type">
-        <% SETTINGS['location_types'].each do |location| %>
-          <option value="<%= location %>"><%= location %></option>
+        <% SETTINGS['location_types'].each_with_index do |location, index| %>
+          <option value="<%= location %>"><%= Location.label_at(index) %></option>
         <% end %>
       </select>
       <%= t('admin.settings.locations.search.by_code_2') %><%= text_field_tag 'search_by_code', '' %>

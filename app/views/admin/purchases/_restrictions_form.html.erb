@@ -25,10 +25,10 @@
   <%= t('admin.purchases.restrictions.search.instructions.regular', :location => '<span class="location"></span>'.html_safe).html_safe %>
   <select id="get_location_code_type">
     <option value="id" selected="selected">
-      <%= t('admin.purchases.restrictions.search.fields.id') %>
+      <%= t('admin.purchases.restrictions.search.fields.id').downcase %>
     </option>
     <option value="code">
-      <%= t('admin.purchases.restrictions.search.fields.code') %>
+      <%= t('admin.purchases.restrictions.search.fields.code').downcase %>
     </option>
   </select>: <input id="get_location_code" value=""/> <a id="get_location_by_code_or_id">
     <%= t('admin.purchases.restrictions.commit') %>
