@@ -50,7 +50,7 @@ function purchaseCodeRegistrationDocumentReady() {
   $body.on('blur', '#registration_purchase_id', function() {
     $.ajax({
       type: 'get',
-      url: 'sign_up/purchase_code'
+      url: 'sign_up/purchase_code?token=' + $(this).val()
     });
   });
 }

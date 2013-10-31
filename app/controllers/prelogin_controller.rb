@@ -51,6 +51,7 @@ class PreloginController < ApplicationController
   # * ApplicationController#authenticate
   #
   def purchase_code
+    @purchase = Purchase.find_by_token(params[:token])
   end
   
   # === Description
