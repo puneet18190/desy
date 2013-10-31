@@ -77,6 +77,10 @@
     <% disabling = false if disabling && forced_location.sti_type == location %>
   <% end %>
   
+  <% if forced_location && forced_location.sti_type == SETTINGS['location_types'].last %>
+    <input id="user_location_id" type="hidden" value="<%= forced_location.id %>" name="user[location_id]">
+  <% end %>
+  
 </fieldset>
 
 
