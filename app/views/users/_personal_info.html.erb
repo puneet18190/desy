@@ -74,7 +74,7 @@
         <% end %>
       </div>
     </div>
-    <% disabling = false if forced_location.sti_type == location %>
+    <% disabling = false if disabling && forced_location.sti_type == location %>
   <% end %>
   
 </fieldset>
