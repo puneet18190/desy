@@ -94,8 +94,6 @@
       position: relative;
       
       #{$slideSel} {
-        margin: 0;
-        padding: 0;
         float: left;
         width: calc(100% / #{$slidesAmount}); /* calc(100% / n) dove n è il numero di slides */
       }
