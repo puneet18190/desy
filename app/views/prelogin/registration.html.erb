@@ -21,7 +21,7 @@
 
 <%= form_for @user do |f| %>
   <% if SETTINGS['saas_registration_mode'] %>
-    <fieldset class="insert-content">
+    <fieldset class="insert-content formCodAcquisto">
       Codice di acquisto:<br/> <!-- TODO traduzz -->
       <%= text_field_tag 'purchase_id', '', :class => 'text', :id => 'registration_purchase_id' %><br/>
       Non ho un codice di acquisto, ma voglio attivare una trial di <%= SETTINGS['saas_trial_duration'] %> giorni<br/> <!-- TODO traduzz -->
