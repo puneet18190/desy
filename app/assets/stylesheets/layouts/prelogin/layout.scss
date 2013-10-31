@@ -26,6 +26,7 @@ html.prelogin-layout {
     height: 1px;
     width: 100%;
     border: 0;
+    margin-bottom:10px;
     
   }
   
@@ -145,7 +146,7 @@ html.prelogin-layout {
     
     .insert-content {
       
-      padding: 0px 90px 0px 90px;
+      padding: 0px;
       margin-top: 20px;
       margin-bottom: 20px;
       
@@ -171,7 +172,7 @@ html.prelogin-layout {
     
     .contentForm {
       
-      padding: 30px 90px 40px 90px;
+      padding: 30px 0px 40px 0px;
       width: auto;
       
       .checkbox-content {
@@ -225,7 +226,7 @@ html.prelogin-layout {
             position: absolute;
             top: -3px;
             left: 2px;
-            color: #248fba;
+            color: #939393;
             
           }
           
@@ -250,7 +251,7 @@ html.prelogin-layout {
       
       .big-checkbox:checked + label, label {
         
-        background-color: #248fba;
+        background-color: #fff;
         box-shadow: 0 1px 1px rgba(50,50,50,0.5) inset;
         border-radius: 5px;
         padding: 15px;
@@ -267,7 +268,7 @@ html.prelogin-layout {
       
       .big-checkbox:checked + label:after {
         
-        color: #fff;
+        color: #939393;
         left: 4px;
         top: -2px;
         font-size: 22px;
@@ -278,11 +279,11 @@ html.prelogin-layout {
     
     input[type="text"], input[type="password"], input[type="email"] {
       
-      background-color: #248fba;
-      color: #fff;
+      
+      
       font-size: 120%;
       margin-top: 5px;
-      box-shadow: -1px -1px 1px 0px rgba(30,121,158,0.8), inset -1px -1px 1px rgba(128,190,215,0.8);
+      
       width: 227px;
       margin-bottom: 10px;
       margin-right: 12px;
@@ -302,7 +303,7 @@ html.prelogin-layout {
       margin-right: 16px;
       margin-top: 5px;
       margin-bottom: 10px;
-      background-color: #248fba;
+      
       
       .sbSelector {
         
@@ -310,7 +311,7 @@ html.prelogin-layout {
         
         &:link {
           
-          color: #fff;
+          color: #939393;
           
         }
         
@@ -318,19 +319,20 @@ html.prelogin-layout {
       
       .sbToggle {
         
-        background: $assets-select-icons-blue_png no-repeat 0 -116px;
+        background: $assets-select-icons_png no-repeat 0 -116px;
         
       }
       
       .sbToggleOpen {
         
-        background: $assets-select-icons-blue_png no-repeat 0 -16px;
+        background: $assets-select-icons_png no-repeat 0 -16px;
+        
         
       }
       
       .sbOptions {
         
-        width: 227px;
+        width: 187px;
         
         li a {
           
