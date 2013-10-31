@@ -25,13 +25,32 @@ class PreloginController < ApplicationController
   #
   # === Specific filters
   #
-  # * ApplicationController#authenticate
+  # * PreloginController#redirect_to_dashboard_if_logged_in
   #
   # === Skipped filters
   #
-  # * PreloginController#redirect_to_dashboard_if_logged_in
+  # * ApplicationController#authenticate
   #
   def home
+  end
+  
+  # === Description
+  #
+  # Matches the purchase code in the sign_up form
+  #
+  # === Mode
+  #
+  # Js
+  #
+  # === Specific filters
+  #
+  # * PreloginController#redirect_to_dashboard_if_logged_in
+  #
+  # === Skipped filters
+  #
+  # * ApplicationController#authenticate
+  #
+  def purchase_code
   end
   
   # === Description
@@ -44,11 +63,11 @@ class PreloginController < ApplicationController
   #
   # === Specific filters
   #
-  # * ApplicationController#authenticate
+  # * PreloginController#redirect_to_dashboard_if_logged_in
   #
   # === Skipped filters
   #
-  # * PreloginController#redirect_to_dashboard_if_logged_in
+  # * ApplicationController#authenticate
   #
   def registration
     @user             = User.new(params[:user])
@@ -68,11 +87,11 @@ class PreloginController < ApplicationController
   #
   # === Specific filters
   #
-  # * ApplicationController#authenticate
+  # * PreloginController#redirect_to_dashboard_if_logged_in
   #
   # === Skipped filters
   #
-  # * PreloginController#redirect_to_dashboard_if_logged_in
+  # * ApplicationController#authenticate
   #
   def what_is
   end

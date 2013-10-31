@@ -197,7 +197,7 @@ class Admin::PurchasesController < AdminController
   #
   # === Mode
   #
-  # Html
+  # Js
   #
   # === Specific filters
   #
@@ -215,7 +215,7 @@ class Admin::PurchasesController < AdminController
   #
   # === Mode
   #
-  # Html
+  # Js
   #
   # === Specific filters
   #
