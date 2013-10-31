@@ -6,7 +6,11 @@ html.prelogin-layout {
   body {
     
     font: 80% Arial, Helvetica, sans-serif;
-    background-color: #248fba;
+    background-color: #9bc3eb;
+
+    background-image: $assets-bg-register_jpg;
+    background-repeat: repeat-x ;
+    background-position:0px 0px;
     margin: 0;
     color: #fff;
     text-align: center;
@@ -357,9 +361,9 @@ html.prelogin-layout {
     
     .container {
       
-      background-color: $blue;
+      position: relative;
       padding: 0px;
-      width: 984px;
+      width: 972px;
       
       .footer {
         
@@ -376,34 +380,12 @@ html.prelogin-layout {
         
       }
       
-      .header {
-        
-        background-color: $blue;
-        
-      }
       
-      .header .headerMenu {
-        
-        background-color: #000;
-        
-        a {
-          
-          color: white;
-          
-          &:hover,&.current {
-            
-            color: #fdb525;
-            
-          }
-          
-        }
-        
-      }
       
       .containerText {
-        
-        background: $assets-bg-register_png no-repeat top right;
-        padding: 200px 90px 20px 90px;
+        background-color:#9bc3eb;
+        margin-top:11px; 
+        padding: 0px 90px 20px 0px;
         font-family: 'Nunito', sans-serif;
         
       }
