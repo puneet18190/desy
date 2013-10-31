@@ -23,7 +23,7 @@
   <% if SETTINGS['saas_registration_mode'] %>
     <fieldset class="insert-content">
       Codice di acquisto:<br/> <!-- TODO traduzz -->
-      <%= text_field_tag 'purchase_id', '' %><br/>
+      <%= text_field_tag 'purchase_id', '', :id => 'registration_purchase_id' %><br/>
       Non ho un codice di acquisto, ma voglio attivare una trial di <%= SETTINGS['saas_trial_duration'] %> giorni<br/> <!-- TODO traduzz -->
       <%= check_box_tag 'trial', '0', false, :class => 'regular-checkbox big-checkbox', :style => 'display:block' %>
     </fieldset><hr/>

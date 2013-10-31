@@ -169,6 +169,7 @@ Desy::Application.routes.draw do
   get  'users/password'              => 'users#request_reset_password', :as => :user_request_reset_password
   post 'users/password/send'         => 'users#send_reset_password',    :as => :user_send_reset_password
   get  'users/password/reset/:token' => 'users#reset_password',         :as => :user_reset_password
+  get  'sign_up/purchase_code'       => 'prelogin#purchase_code',       :as => :match_purchase_code
   
   # APPLICATION ROOT
   root :to => 'prelogin#home'
