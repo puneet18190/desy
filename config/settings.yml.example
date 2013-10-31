@@ -28,7 +28,7 @@ admin:
   email: 'desy@morganspa.com'
   password: 'desymorgan'
 # More emails to grant admin privileges to
-grant_admin_privileges: ['email1@gmail.com', 'email2@gmail.com', 'email3@gmail.com']
+grant_admin_privileges: ['email1@example.com', 'email2@example.com', 'email3@example.com']
 # Minimum length of a tag (in characters)
 min_tag_length: 1
 # Maximu length of a tag (in characters)
