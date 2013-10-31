@@ -30,7 +30,8 @@
       :general_errors => (@errors.nil? ? [] : @errors[:general]),
       :location_errors => (@errors.nil? ? [] : @errors[:location]),
       :locations => @locations,
-      :school_level_ids => @school_level_ids
+      :school_level_ids => @school_level_ids,
+      :forced_location => @forced_location
     }
     locals_for_personal_subjects = {
       :f => f,
