@@ -844,4 +844,10 @@
     
   }
   
+  #purchases-list tr.expired, #purchases-list tr.expired:hover, #purchases-list tr.expired td, #purchases-list tr.expired td:hover {
+    
+    background-color: #CECEF6;
+    
+  }
+  
 }
