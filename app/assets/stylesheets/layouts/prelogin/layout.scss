@@ -7,7 +7,6 @@ html.prelogin-layout {
     
     font: 80% Arial, Helvetica, sans-serif;
     background-color: #9bc3eb;
-
     background-image: $assets-bg-register_jpg;
     background-repeat: repeat-x ;
     background-position:0px 0px;
@@ -87,17 +86,7 @@ html.prelogin-layout {
     text-align: left;
     padding: 20px;
     
-    .header {
-      
-      background-image: none;
-      .headerMenu {
-        padding: 4px 0px 3px 3px;
-        background-color: #fff;
-        float: left;
-        width: 947px;
-        height: 29px;
-      }
-    }
+    
     
     .logoDesyPrelogin {
       
@@ -453,6 +442,7 @@ html.prelogin-layout {
     body {
       
       background-color: #fff;
+      background-image: none;
       margin: 0;
       color: #6d6d6e;
       text-align: center;
@@ -466,11 +456,7 @@ html.prelogin-layout {
       padding: 0;
       width: 972px;
       
-      .header {
-        
-        background-color: white;
-        
-      }
+      
       
       
       
