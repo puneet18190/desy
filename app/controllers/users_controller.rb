@@ -149,7 +149,16 @@ class UsersController < ApplicationController
     @user = current_user
     @school_level_ids = SchoolLevel.order(:description).map{ |sl| [sl.to_s, sl.id] }
     location = @user.location
-    @locations = location.nil? ? [{:selected => 0, :content => Location.roots.order(:name)}] : location.get_filled_select_for_personal_info
+    if @user.purchase && @user.purchase.location
+      forced_location = @user.purchase.location
+      if location && location.is_descendant?(forced_location) # TODO
+        @locations = location.get_filled_select_for_personal_info(forced_location.id) # TODO
+      else
+        @locations = forced_location.get_filled_select_for_personal_info(forced_location.id)
+      end
+    else
+      @locations = location.nil? ? [{:selected => 0, :content => Location.roots.order(:name)}] : location.get_filled_select_for_personal_info
+    end
   end
   
   # === Description
