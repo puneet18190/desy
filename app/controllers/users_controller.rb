@@ -217,8 +217,9 @@ class UsersController < ApplicationController
       key_last_location = SETTINGS['location_types'].last.downcase
       if params.has_key?(:location) && params[:location].has_key?(key_last_location)
         params[:user][:location_id] = params[:location][key_last_location]
+        params[:user][:location_id] = nil if params[:user][:location_id].to_i == 0
       else
-        params[:user][:location_id] = 0
+        params[:user][:location_id] = nil
       end
       password = params[:user].try(:[], :password)
       if !password || password.empty?
@@ -235,6 +236,7 @@ class UsersController < ApplicationController
         render :subjects
       else
         @locations = Location.get_from_chain_params(params[:location]).get_filled_select_for_personal_info
+        @forced_location = @user.purchase.location if @user.purchase && @user.purchase.location
         @school_level_ids = SchoolLevel.order(:description).map{ |sl| [sl.to_s, sl.id] }
         render :edit
       end
