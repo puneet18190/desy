@@ -53,7 +53,12 @@
 
 <fieldset class="insert-content">
   
+  <% disabling = !forced_location.nil? %>
   <% SETTINGS['location_types'].each_with_index do |location, index| %>
+    <%
+      disabled = disabling ? "disabled=\"disabled\"".html_safe : ''
+      disabling = false if forced_location.sti_type == location
+    %>
     <%
       is_last = (index == SETTINGS['location_types'].length - 1)
       my_own_locations = locations[index].nil? ? {:selected => 0, :content => []} : locations[index]
@@ -61,7 +66,7 @@
     <div class="inputElement">
       <div class="_location_selector">
         <%= Location.label_at(index) %><br>
-        <select id="<%= location.downcase %>_id" class="_location_select_box" data-is-last="<%= is_last %>" name="location[<%= location.downcase %>]">
+        <select id="<%= location.downcase %>_id" class="_location_select_box" data-is-last="<%= is_last %>" name="location[<%= location.downcase %>]" <%= disabled %>>
           <%= render :partial => 'users/locations_list', :locals => {:locations => my_own_locations[:content], :selected => my_own_locations[:selected], :edit => edit} %>
         </select>
       </div>
