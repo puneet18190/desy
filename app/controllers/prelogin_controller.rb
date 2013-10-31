@@ -76,6 +76,7 @@ class PreloginController < ApplicationController
   # * ApplicationController#authenticate
   #
   def registration
+    @trial            = params[:trial].present?
     @user             = User.new(params[:user])
     @school_level_ids = SchoolLevel.order(:description).map{ |sl| [sl.to_s, sl.id] }
     @locations        = [{:selected => 0, :content => Location.roots.order(:name)}]

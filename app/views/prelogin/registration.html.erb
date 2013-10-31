@@ -20,12 +20,20 @@
 
 
 <%= form_for @user do |f| %>
+  <%
+    input_purchase_code = "<input id=\"registration_purchase_id\" class=\"text\" type=\"text\" value=\"\" name=\"purchase_id\">".html_safe
+    input_trial_checkbox = "<input id=\"registration_trial\" class=\"regular-checkbox\" type=\"checkbox\" value=\"0\" name=\"trial\">".html_safe
+    if @trial
+      input_purchase_code = "<input id=\"registration_purchase_id\" class=\"text disabled\" type=\"text\" value=\"\" name=\"purchase_id\" disabled=\"disabled\">".html_safe
+      input_trial_checkbox = "<input id=\"registration_trial\" class=\"regular-checkbox\" type=\"checkbox\" value=\"1\" name=\"trial\" checked=\"checked\">".html_safe
+    end
+  %>
   <% if SETTINGS['saas_registration_mode'] %>
     <fieldset class="insert-content formCodAcquisto">
       Codice di acquisto:<br/> <!-- TODO traduzz -->
-      <%= text_field_tag 'purchase_id', '', :class => 'text', :id => 'registration_purchase_id' %><br/>
+      <%= input_purchase_code %>
       Non ho un codice di acquisto, ma voglio attivare una trial di <%= SETTINGS['saas_trial_duration'] %> giorni<br/> <!-- TODO traduzz -->
-      <%= check_box_tag 'trial', '0', false, :class => 'regular-checkbox', :id => 'registration_trial' %>
+      <%= input_trial_checkbox %>
       <%= label_tag 'registration_trial', '' %>
     </fieldset><hr/>
   <% end %>
