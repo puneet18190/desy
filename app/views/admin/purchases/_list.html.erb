@@ -64,7 +64,7 @@
     <tbody>
       <a name="list-anchor"></a>
       <% purchases.each do |purchase| %>
-        <tr class="collapse" id="<%= purchase.id %>">
+        <tr class="collapse <%= purchase.expired? ? 'expired' : '' %>" id="<%= purchase.id %>">
           <td><%= purchase.id %></td>
           <td><%= purchase.name %></td>
           <td><%= purchase.responsible %></td>

@@ -135,6 +135,8 @@ class Admin::PurchasesController < AdminController
           u.purchase_id = @purchase.id
           u.save
         end
+        renewed.expiration_date = Time.zone.now
+        renewed.save
       end
     else
       @ok = false

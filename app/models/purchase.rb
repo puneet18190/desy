@@ -117,6 +117,18 @@ class Purchase < ActiveRecord::Base
     resp
   end
   
+  # === Description
+  #
+  # Checks if the actual time is greater than expiration_date
+  #
+  # === Returns
+  #
+  # A boolean
+  #
+  def expired?
+    self.expiration_date < Time.zone.now
+  end
+  
   private
   
   # Initializes the objects needed for the validation
