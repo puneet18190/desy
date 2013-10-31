@@ -52,7 +52,7 @@ class PreloginController < ApplicationController
   #
   def purchase_code
     @purchase = Purchase.find_by_token(params[:token])
-    @purchase = nil if @purchase.users.count >= @purchase.accounts_number
+    @purchase = nil if @purchase && @purchase.users.count >= @purchase.accounts_number
     if @purchase && @purchase.location
       @forced_location = @purchase.location
       @locations = @forced_location.get_filled_select_for_personal_info
