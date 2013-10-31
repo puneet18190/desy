@@ -48,10 +48,13 @@ Initializes the handler of the login form.
 **/
 function purchaseCodeRegistrationDocumentReady() {
   $body.on('blur', '#registration_purchase_id', function() {
-    $.ajax({
-      type: 'get',
-      url: 'sign_up/purchase_code?token=' + $(this).val()
-    });
+    var token = $(this).val();
+    if(token != '') {
+      $.ajax({
+        type: 'get',
+        url: 'sign_up/purchase_code?token=' + token
+      });
+    }
   });
 }
 
