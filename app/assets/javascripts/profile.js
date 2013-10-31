@@ -42,7 +42,7 @@ function preloginDocumentReady() {
 }
 
 /**
-Initializes the handler of the login form.
+Initializes handler of purchase code in prelogin registration.
 @method purchaseCodeRegistrationDocumentReady
 @for ProfilePrelogin
 **/
@@ -54,6 +54,16 @@ function purchaseCodeRegistrationDocumentReady() {
         type: 'get',
         url: 'sign_up/purchase_code?token=' + token
       });
+    }
+  });
+  $body.on('click', '#registration_trial', function() {
+    var me = $(this);
+    if(!me.hasClass('checked')) {
+      me.addClass('checked');
+      $('#registration_purchase_id').val('').addClass('disabled').attr('disabled', 'disabled');
+    } else {
+      me.removeClass('checked');
+      $('#registration_purchase_id').removeAttr('disabled').removeClass('disabled');
     }
   });
 }
