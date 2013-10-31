@@ -41,6 +41,20 @@ function preloginDocumentReady() {
   });
 }
 
+/**
+Initializes the handler of the login form.
+@method purchaseCodeRegistrationDocumentReady
+@for ProfilePrelogin
+**/
+function purchaseCodeRegistrationDocumentReady() {
+  $body.on('blur', '#registration_purchase_id', function() {
+    $.ajax({
+      type: 'get',
+      url: 'sign_up/purchase_code'
+    });
+  });
+}
+
 
 
 

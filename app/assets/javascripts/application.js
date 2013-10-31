@@ -82,6 +82,7 @@ $(document).ready(function() {
   playersDocumentReady();
   preloginDocumentReady();
   profileDocumentReady();
+  purchaseCodeRegistrationDocumentReady();
   reportsDocumentReady();
   searchDocumentReady();
   tagsDocumentReady();
