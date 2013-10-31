@@ -41,7 +41,7 @@ class UsersController < ApplicationController
     end
     if @user.save
       UserMailer.account_confirmation(@user, request.host, request.port).deliver
-      render 'users/fullpage_notifications/confirmation/email_sent', :layout => 'ad_hoc'
+      render 'users/fullpage_notifications/confirmation/email_sent'
     else
       @errors = convert_user_error_messages @user.errors
       location = Location.get_from_chain_params params[:location]
