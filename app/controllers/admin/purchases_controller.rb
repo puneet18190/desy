@@ -73,6 +73,7 @@ class Admin::PurchasesController < AdminController
     else
       @ok = false
       @errors = @purchase.errors.messages.keys
+      @errors << :ssn_code if @errors.include?(:base)
     end
   end
   
@@ -141,6 +142,7 @@ class Admin::PurchasesController < AdminController
     else
       @ok = false
       @errors = @purchase.errors.messages.keys
+      @errors << :ssn_code if @errors.include?(:base)
     end
   end
   
