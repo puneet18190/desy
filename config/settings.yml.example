@@ -28,7 +28,7 @@ admin:
   email: 'desy@morganspa.com'
   password: 'desymorgan'
 # More emails to grant admin privileges to
-grant_admin_privileges: ['email1@gmail.com', 'email2@gmail.com', 'email3@gmail.com']
+grant_admin_privileges: ['email1@example.com', 'email2@example.com', 'email3@example.com']
 # Minimum length of a tag (in characters)
 min_tag_length: 1
 # Maximu length of a tag (in characters)
@@ -134,7 +134,7 @@ cookie_key: '_desy_session'
 session_timeout: 48
 # The maximum number of documents allowed in a slide
 max_documents_in_slide: 3
-# Enables media debugging routes and controllers /audios_test => media_elements#audios_test 
+# Enables media debugging routes and controllers /audios_test => media_elements#audios_test
 #                                                /videos_test => media_elements#videos_test
 media_test: false
 # Enables payments and trial for new users, according to the business model 'platform as a service (PaaS)'
