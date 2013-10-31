@@ -1903,10 +1903,7 @@ en:
     title: "Sign up"
     # Subtitle of the registration form
     # 1 - views/prelogin/registration.html.erb
-    subtitle: "Discover the benefits of %{desy}"
-    # Text describing the registration benefits
-    # 1 - views/prelogin/registration.html.erb
-    description: "Create your own multimedia lessons containing audio, video or images. Share them with other teachers in %{desy}. Use lessons of other teachers, or modify them to suit your needs. Organize your lessons in your Virtual Classroom and discover a new way of teaching."
+    subtitle: "Insert your personal data and join us in the world of %{desy}"
     # Button to submit the registration form
     # 1 - views/prelogin/registration.html.erb
     done: "Sign up"

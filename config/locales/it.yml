@@ -1900,13 +1900,10 @@ it:
   registration:
     # Title of the registration form
     # 1 - views/prelogin/registration.html.erb
-    title: "Registrazione"
+    title: "Mancavi soltanto tu!"
     # Subtitle of the registration form
     # 1 - views/prelogin/registration.html.erb
-    subtitle: "Scopri i vantaggi di %{desy}"
-    # Text describing the registration benefits
-    # 1 - views/prelogin/registration.html.erb
-    description: "Crea le tue lezioni multimediali con audio, video o immagini. Condividi con gli altri insegnanti di %{desy}. E' possibile utilizzare o modificare in base alle proprie esigenze le lezioni di altri insegnanti che utilizzano %{desy}. Organizza le tue lezioni nella tua Virtual Classroom e scopri un nuovo modo di insegnare."
+    subtitle: "Inserisci i tuoi dati per completare la registrazione ed unisciti alla nostra community"
     # Button to submit the registration form
     # 1 - views/prelogin/registration.html.erb
     done: "Registrazione"
