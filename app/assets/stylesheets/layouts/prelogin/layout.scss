@@ -134,13 +134,25 @@ html.prelogin-layout {
     }
     .formCodAcquisto {
         color:#434244;
-        input[type="text"], .regular-checkbox + label, label {
+        input[type="text"] {
           background-color:#83a5c8;
           color:white;
           border-top: none;
           &.error {
             background-color:#fd2f25;  
           }
+          &.correct {
+            background-color:#44bc09;  
+          }
+          &.disabled {
+            background-color:#e9ecee;  
+          }
+        }
+        .regular-checkbox + label, label {
+          cursor:pointer;
+          background-color:#83a5c8;
+          color:white;
+          border-top: none;
         }
         .regular-checkbox:checked + label:after {
           color: white;
