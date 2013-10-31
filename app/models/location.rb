@@ -78,6 +78,26 @@ class Location < ActiveRecord::Base
   
   # === Description
   #
+  # Checks if the current location is a descendant of a given one
+  #
+  # === Parameters
+  #
+  # An object of type Location
+  #
+  # === Returns
+  #
+  # A boolean
+  #
+  def is_descendant_of?(ancestor)
+    if ancestor.ancestry.nil?
+      self.ancestry == ancestor.id.to_s || (/#{ancestor.ancestry_with_me}/ =~ self.ancestry) == 0
+    else
+      (/#{ancestor.ancestry_with_me}/ =~ self.ancestry) == 0
+    end
+  end
+  
+  # === Description
+  #
   # Returns the label of the lowest category of location
   #
   # === Returns

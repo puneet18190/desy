@@ -151,7 +151,7 @@ class UsersController < ApplicationController
     location = @user.location
     if @user.purchase && @user.purchase.location
       forced_location = @user.purchase.location
-      if location && location.is_descendant?(forced_location) # TODO
+      if location && location.is_descendant_of?(forced_location) # TODO
         @locations = location.get_filled_select_for_personal_info(forced_location.id) # TODO
       else
         @locations = forced_location.get_filled_select_for_personal_info(forced_location.id)
