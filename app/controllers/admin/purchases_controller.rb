@@ -238,7 +238,7 @@ class Admin::PurchasesController < AdminController
   
   # Filter that checks if this section is enabled
   def check_saas
-    @ok = SETTINGS['saas_registration_mode']
+    @ok = (SETTINGS['saas_registration_mode'] && current_user.super_admin?)
   end
   
 end

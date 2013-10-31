@@ -78,7 +78,7 @@ function adminBrowsersDocumentReady() {
   if(!$.browser.msie) {
     $('#admin-media-elements-quick-upload-form').fileupload();
   } else {
-    $('#admin-media-elements-quick-upload-form').append($('<input name="from_ie" val="true" style="display:none" />'));
+    $('#admin-media-elements-quick-upload-form').append($('<input name="from_ie" value="true" style="display:none" />'));
     $('#hint_not_for_ie').hide();
     $('#qume_file').change(function() {
       $('#admin-media-elements-quick-upload-form').submit();

@@ -72,7 +72,7 @@
           <%= t('admin.menu.settings.link') %>
         </a>
       </li>
-      <% if SETTINGS['saas_registration_mode'] %>
+      <% if SETTINGS['saas_registration_mode'] && current_user.super_admin? %>
         <li class="dropdown">
           <a href="/admin/purchases" class="dropdown-toggle first-level purchases <%= 'active' if controller_name == 'purchases' %>" data-toggle="dropdown">
             <%= t('admin.menu.purchases.link') %>
