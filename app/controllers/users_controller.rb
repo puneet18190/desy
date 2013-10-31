@@ -215,11 +215,8 @@ class UsersController < ApplicationController
       params[:user][:subject_ids] ||= []
     else
       key_last_location = SETTINGS['location_types'].last.downcase
-      if params.has_key?(:location) && params[:location].has_key?(key_last_location)
+      if params.has_key?(:location) && params[:location].has_key?(key_last_location) && params[:location][key_last_location].to_i != 0
         params[:user][:location_id] = params[:location][key_last_location]
-        params[:user][:location_id] = nil if params[:user][:location_id].to_i == 0
-      else
-        params[:user][:location_id] = nil
       end
       password = params[:user].try(:[], :password)
       if !password || password.empty?
