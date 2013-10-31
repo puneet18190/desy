@@ -115,7 +115,11 @@ class AdminSearchForm
         resp = resp.where(:users => {:location_id => location.id})
       else
         resp = resp.joins(:user => :location)
-        resp = resp.where('ancestry LIKE ?', "#{location.ancestry_with_me}%")
+        if location.ancestry.nil?
+          resp = resp.where('ancestry LIKE ? OR ancestry = ?', "#{location.ancestry_with_me}%", location.id.to_s)
+        else
+          resp = resp.where('ancestry LIKE ?', "#{location.ancestry_with_me}%")
+        end
       end
     end
     resp
@@ -218,7 +222,11 @@ class AdminSearchForm
         resp = resp.where(:users => {:location_id => location.id})
       else
         resp = resp.joins(:user => :location)
-        resp = resp.where('ancestry LIKE ?', "#{location.ancestry_with_me}%")
+        if location.ancestry.nil?
+          resp = resp.where('ancestry LIKE ? OR ancestry = ?', "#{location.ancestry_with_me}%", location.id.to_s)
+        else
+          resp = resp.where('ancestry LIKE ?', "#{location.ancestry_with_me}%")
+        end
       end
     end
     resp
@@ -278,7 +286,11 @@ class AdminSearchForm
           resp = resp.where(:users => {:location_id => location.id})
         else
           resp = resp.joins(:user => :location)
-          resp = resp.where('ancestry LIKE ?', "#{location.ancestry_with_me}%")
+          if location.ancestry.nil?
+            resp = resp.where('ancestry LIKE ? OR ancestry = ?', "#{location.ancestry_with_me}%", location.id.to_s)
+          else
+            resp = resp.where('ancestry LIKE ?', "#{location.ancestry_with_me}%")
+          end
         end
       end
     end
@@ -348,7 +360,11 @@ class AdminSearchForm
           resp = resp.where(:users => {:location_id => location.id})
         else
           resp = resp.joins(:location)
-          resp = resp.where('ancestry LIKE ?', "#{location.ancestry_with_me}%")
+          if location.ancestry.nil?
+            resp = resp.where('ancestry LIKE ? OR ancestry = ?', "#{location.ancestry_with_me}%", location.id.to_s)
+          else
+            resp = resp.where('ancestry LIKE ?', "#{location.ancestry_with_me}%")
+          end
         end
       end
     end
@@ -424,7 +440,11 @@ class AdminSearchForm
         if location.depth == SETTINGS['location_types'].length - 1
           resp = resp.where(:users => {:location_id => location.id})
         else
-          resp = resp.where('ancestry LIKE ?', "#{location.ancestry_with_me}%")
+          if location.ancestry.nil?
+            resp = resp.where('ancestry LIKE ? OR ancestry = ?', "#{location.ancestry_with_me}%", location.id.to_s)
+          else
+            resp = resp.where('ancestry LIKE ?', "#{location.ancestry_with_me}%")
+          end
         end
       end
     end
