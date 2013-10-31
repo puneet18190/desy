@@ -639,7 +639,7 @@ it:
       not_valid_email: "L'email inserita non è valida o già presente nel nostro archivio"
       # The user hasn't selected any subject
       # 1 - controllers/application_controller.rb
-      select_at_least_a_subject: "Selezionarne almeno uno"
+      select_at_least_a_subject: "Selezionarne almeno una"
       # The user inserted a short or blank password (the variable %{min} is replaced by the configured minimum length for a password)
       # 1 - controllers/application_controller.rb
       password_too_short: "Inserire una password di almeno %{min} caratteri"
