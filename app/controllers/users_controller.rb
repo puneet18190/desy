@@ -18,7 +18,8 @@ class UsersController < ApplicationController
   
   skip_before_filter :authenticate, :only => [:create, :confirm, :request_reset_password, :reset_password, :send_reset_password, :find_locations]
   before_filter :initialize_layout, :only => [:edit, :update, :subjects, :statistics, :mailing_lists]
-  layout 'prelogin', :only => [:create, :request_reset_password]
+  layout 'prelogin', :only => :create
+  layout 'fullpage_notification', :only => :request_reset_password
   
   # === Description
   #
@@ -41,7 +42,7 @@ class UsersController < ApplicationController
     end
     if @user.save
       UserMailer.account_confirmation(@user, request.host, request.port).deliver
-      render 'users/fullpage_notifications/confirmation/email_sent'
+      render 'users/fullpage_notifications/confirmation/email_sent', :layout => 'fullpage_notification'
     else
       @errors = convert_user_error_messages @user.errors
       location = Location.get_from_chain_params params[:location]
@@ -66,9 +67,9 @@ class UsersController < ApplicationController
   #
   def confirm
     if User.confirm!(params[:token])
-      render 'users/fullpage_notifications/confirmation/received', :layout => 'prelogin'
+      render 'users/fullpage_notifications/confirmation/received', :layout => 'fullpage_notification'
     else
-      render 'users/fullpage_notifications/expired_link', :layout => 'prelogin'
+      render 'users/fullpage_notifications/expired_link', :layout => 'fullpage_notification'
     end
   end
   
@@ -109,7 +110,7 @@ class UsersController < ApplicationController
       user.password_token!
       UserMailer.new_password(user, request.host, request.port).deliver
     end
-    render 'users/fullpage_notifications/reset_password/email_sent', :layout => 'prelogin'
+    render 'users/fullpage_notifications/reset_password/email_sent', :layout => 'fullpage_notification'
   end
   
   # === Description
@@ -128,9 +129,9 @@ class UsersController < ApplicationController
     new_password, user = *User.reset_password!(params[:token])
     if new_password
       UserMailer.new_password_confirmed(user, new_password, request.host, request.port).deliver
-      render 'users/fullpage_notifications/reset_password/received', :layout => 'prelogin'
+      render 'users/fullpage_notifications/reset_password/received', :layout => 'fullpage_notification'
     else
-      render 'users/fullpage_notifications/expired_link', :layout => 'prelogin'
+      render 'users/fullpage_notifications/expired_link', :layout => 'fullpage_notification'
     end
   end
   
