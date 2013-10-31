@@ -149,6 +149,9 @@ html.prelogin-layout {
           background-color:#83a5c8;
           color:white;
           border-top: none;
+          &.error {
+            background-color:#fd2f25;  
+          }
         }
         .regular-checkbox:checked + label:after {
           color: white;
@@ -185,7 +188,7 @@ html.prelogin-layout {
           height: 26px;
           margin: 5px 16px 10px 0;
           padding: 10px 0 0 10px;
-          background-color: #fff;
+          background-color: #e9ecee;
           border-radius: 5px;
           -moz-border-radius: 5px;
           -webkit-border-radius: 5px;
