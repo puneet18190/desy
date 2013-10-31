@@ -37,6 +37,7 @@ class UsersController < ApplicationController
     @user = User.active.not_confirmed.new(params[:user]) do |user|
       user.email = email
       user.location_id = params[:location][SETTINGS['location_types'].last.downcase] if params[:location].has_key? SETTINGS['location_types'].last.downcase
+      user.location_id = nil if user.location_id.to_i == 0
     end
     if @user.save
       UserMailer.account_confirmation(@user, request.host, request.port).deliver
