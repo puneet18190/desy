@@ -118,4 +118,7 @@ function profileDocumentReady() {
   $body.on('click', '.profileLink', function() {
     window.location = '/profile';
   });
+  $('.verticalScroll').jScrollPane({
+    autoReinitialise: true
+  });
 }
