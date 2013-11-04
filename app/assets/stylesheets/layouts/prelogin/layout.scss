@@ -92,6 +92,14 @@ html.prelogin-layout {
       line-height: 100%;
       
     }
+    .verticalScroll {
+      overflow-x:hidden; 
+      overflow-y:auto; 
+      height:140px;
+      p {
+        padding-right:10px
+      }
+    }
     .validationOk {
       padding:0; 
       margin:0; 
