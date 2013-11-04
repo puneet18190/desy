@@ -59,10 +59,10 @@ function purchaseCodeRegistrationDocumentReady() {
   $body.on('click', '#registration_trial', function() {
     var me = $(this);
     if(!me.hasClass('checked')) {
-      me.addClass('checked');
+      me.addClass('checked').val('1');
       $('#registration_purchase_id').val('').addClass('disabled').attr('disabled', 'disabled');
     } else {
-      me.removeClass('checked');
+      me.removeClass('checked').val('0');
       $('#registration_purchase_id').removeAttr('disabled').removeClass('disabled');
     }
   });

@@ -19,13 +19,13 @@
 
 
 
-<%= form_for @user do |f| %>
+<%= form_for @user, :html => {:autocomplete => 'off'} do |f| %>
   <%
     input_purchase_code = "<input id=\"registration_purchase_id\" class=\"text\" type=\"text\" value=\"\" name=\"purchase_id\">".html_safe
     input_trial_checkbox = "<input id=\"registration_trial\" class=\"regular-checkbox\" type=\"checkbox\" value=\"0\" name=\"trial\">".html_safe
     if @trial
       input_purchase_code = "<input id=\"registration_purchase_id\" class=\"text disabled\" type=\"text\" value=\"\" name=\"purchase_id\" disabled=\"disabled\">".html_safe
-      input_trial_checkbox = "<input id=\"registration_trial\" class=\"regular-checkbox\" type=\"checkbox\" value=\"1\" name=\"trial\" checked=\"checked\">".html_safe
+      input_trial_checkbox = "<input id=\"registration_trial\" class=\"regular-checkbox checked\" type=\"checkbox\" value=\"1\" name=\"trial\" checked=\"checked\">".html_safe
     end
   %>
   <% if SETTINGS['saas_registration_mode'] %>

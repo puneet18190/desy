@@ -34,6 +34,7 @@ class UsersController < ApplicationController
   #
   def create
     email = params[:user].try(:delete, :email)
+    @trial            = params[:trial] == '1'
     @user = User.active.not_confirmed.new(params[:user]) do |user|
       user.email = email
       user.location_id = params[:location][SETTINGS['location_types'].last.downcase] if params[:location].has_key? SETTINGS['location_types'].last.downcase
@@ -45,7 +46,6 @@ class UsersController < ApplicationController
     else
       @errors = convert_user_error_messages @user.errors
       location = Location.get_from_chain_params params[:location]
-      @trial            = params[:trial].present?
       @locations = location.nil? ? [{:selected => 0, :content => Location.roots.order(:name)}] : location.get_filled_select_for_personal_info
       @school_level_ids = SchoolLevel.order(:description).map{ |sl| [sl.to_s, sl.id] }
       @subjects         = Subject.order(:description)
