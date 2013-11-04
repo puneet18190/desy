@@ -478,11 +478,10 @@
 
     <div class="description">
         <p>This method has the same cases of use of <a href="../classes/PlayersAudioEditor.html#method_initializeActionOfMediaTimeUpdaterInAudioEditor" class="crosslink">initializeActionOfMediaTimeUpdaterInAudioEditor</a>, with a couple of details more due to the more complicated environment present in <a href="../modules/video-editor.html">video-editor</a>:</p>
-
 <ul>
   <li>the passage from a component to another (the method called in this case is <a href="../classes/VideoEditorPreview.html#method_playVideoEditorComponent" class="crosslink">playVideoEditorComponent</a>) must handle a <b>transition</b> of one second</li>
-  <li>it's necessary to hide and show the preview <b>progress bar</b> (see <a href="../classes/VideoEditorPreviewAccessories.html#method_showVideoEditorPreviewComponentProgressBar" class="crosslink">showVideoEditorPreviewComponentProgressBar</a>) positioning it with the help of the methods in <a href="../classes/MediaElementEditorHorizontalTimelines.html" class="crosslink">MediaElementEditorHorizontalTimelines</a></li>
-  <li>the method needs also to update the <b>background audio track</b>, but only if it's present and if the <b>global preview time</b> is not greater than its duration.</li>
+  <li>it&#39;s necessary to hide and show the preview <b>progress bar</b> (see <a href="../classes/VideoEditorPreviewAccessories.html#method_showVideoEditorPreviewComponentProgressBar" class="crosslink">showVideoEditorPreviewComponentProgressBar</a>) positioning it with the help of the methods in <a href="../classes/MediaElementEditorHorizontalTimelines.html" class="crosslink">MediaElementEditorHorizontalTimelines</a></li>
+  <li>the method needs also to update the <b>background audio track</b>, but only if it&#39;s present and if the <b>global preview time</b> is not greater than its duration.</li>
 </ul>
     </div>
 
@@ -502,6 +501,7 @@
 
                     <div class="param-description">
                         <p>HTML selector for the video</p>
+
                     </div>
 
                     
@@ -517,6 +517,7 @@
 
                     <div class="param-description">
                         <p>unique identifier for the video component (see <a href="../modules/video-editor.html">video-editor</a>)</p>
+
                     </div>
 
                     
@@ -531,7 +532,8 @@
                     
 
                     <div class="param-description">
-                        <p>forces the last second of the video; normally it's <i>false</i>, except the case in which the duration of the video is very close to the biggest lower integer (for instance, the duration is 10.01, which is very close to 10): in this case, the signal that the video ended <b>is not received directly by the current method</b>, but rather by the event handler <b>ended</b> initialized in the end of <a href="../classes/PlayersVideoEditor.html#method_initializeVideoInVideoEditorPreview" class="crosslink">initializeVideoInVideoEditorPreview</a></p>
+                        <p>forces the last second of the video; normally it&#39;s <i>false</i>, except the case in which the duration of the video is very close to the biggest lower integer (for instance, the duration is 10.01, which is very close to 10): in this case, the signal that the video ended <b>is not received directly by the current method</b>, but rather by the event handler <b>ended</b> initialized in the end of <a href="../classes/PlayersVideoEditor.html#method_initializeVideoInVideoEditorPreview" class="crosslink">initializeVideoInVideoEditorPreview</a></p>
+
                     </div>
 
                     
@@ -607,6 +609,7 @@
 
     <div class="description">
         <p>This is the method that associates <a href="../classes/PlayersVideoEditor.html#method_initializeActionOfMediaTimeUpdaterInVideoEditor" class="crosslink">initializeActionOfMediaTimeUpdaterInVideoEditor</a> to the event of <b>timeupdate</b>. Notice that the method waits until he receives the event <b>loadedmetadata</b> before working.</p>
+
     </div>
 
     
@@ -625,6 +628,7 @@
 
                     <div class="param-description">
                         <p>HTML selector for the audio or video</p>
+
                     </div>
 
                     
@@ -640,6 +644,7 @@
 
                     <div class="param-description">
                         <p>unique identifier of a video component (see <a href="../modules/video-editor.html">video-editor</a>)</p>
+
                     </div>
 
                     
@@ -709,6 +714,7 @@
 
     <div class="description">
         <p>Initializes two sliders: one (JQueryUi single slider) for the <b>cursor</b>, and one (JQueryUi double slider) for the <b>cutting handles</b>. It also initializes how to handle the event <b>ended</b> associated to the video.</p>
+
     </div>
 
     
@@ -727,6 +733,7 @@
 
                     <div class="param-description">
                         <p>the unique identifier of the video component (see <a href="../modules/video-editor.html">video-editor</a>)</p>
+
                     </div>
 
                     
@@ -802,6 +809,7 @@
 
     <div class="description">
         <p>Method that <b>updates the video cursor</b>, in case one of the two handles passes over the cursor (the cursor must follow the handle).</p>
+
     </div>
 
     
@@ -820,6 +828,7 @@
 
                     <div class="param-description">
                         <p>the JQuery object representing the cutter for that particular component (see <a href="../modules/video-editor.html">video-editor</a>)</p>
+
                     </div>
 
                     
@@ -835,6 +844,7 @@
 
                     <div class="param-description">
                         <p>the value to be assigned</p>
+
                     </div>
 
                     
@@ -903,7 +913,8 @@
     </div>
 
     <div class="description">
-        <p>Specific method to call if the event <b>ended</b> is fired on the video and we are not in the <a href="../modules/video-editor.html">video-editor</a> preview mode (unlike in <a href="../classes/PlayersAudioEditor.html" class="crosslink">PlayersAudioEditor</a>, in this case it's separated by the method <a href="../classes/PlayersVideoEditor.html#method_initializeVideoInVideoEditorPreview" class="crosslink">initializeVideoInVideoEditorPreview</a>, since it's more complicated.</p>
+        <p>Specific method to call if the event <b>ended</b> is fired on the video and we are not in the <a href="../modules/video-editor.html">video-editor</a> preview mode (unlike in <a href="../classes/PlayersAudioEditor.html" class="crosslink">PlayersAudioEditor</a>, in this case it&#39;s separated by the method <a href="../classes/PlayersVideoEditor.html#method_initializeVideoInVideoEditorPreview" class="crosslink">initializeVideoInVideoEditorPreview</a>, since it&#39;s more complicated.</p>
+
     </div>
 
     
@@ -922,6 +933,7 @@
 
                     <div class="param-description">
                         <p>the unique identifier of the video component</p>
+
                     </div>
 
                     

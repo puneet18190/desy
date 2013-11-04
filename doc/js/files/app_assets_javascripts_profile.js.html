@@ -333,7 +333,7 @@ Initializes the action that shows automaticly the login form when somebody opens
 @for ProfilePrelogin
 **/
 function automaticLoginDocumentReady() {
-  if($(&#x27;html&#x27;).hasClass(&#x27;prelogin-controller home-action&#x27;)) {
+  if( $html.hasClass(&#x27;prelogin-controller home-action&#x27;) ) {
     var parsedLocation = UrlParser.parse(window.location.href);
     if(_.contains(_.keys(parsedLocation.searchObj), &#x27;login&#x27;)) {
       $(&#x27;._show_login_form_container&#x27;).click();
@@ -358,6 +358,44 @@ function preloginDocumentReady() {
   });
   $body.on(&#x27;click&#x27;, &#x27;#submit_login_form&#x27;, function() {
     $(&#x27;#new_users_session_form&#x27;).submit();
+  });
+}
+
+/**
+Initializes handler of purchase code in prelogin registration.
+@method purchaseCodeRegistrationDocumentReady
+@for ProfilePrelogin
+**/
+function purchaseCodeRegistrationDocumentReady() {
+  $body.on(&#x27;blur&#x27;, &#x27;#registration_purchase_id&#x27;, function() {
+    var token = $(this).val();
+    if(token != &#x27;&#x27;) {
+      $.ajax({
+        type: &#x27;get&#x27;,
+        url: &#x27;sign_up/purchase_code?token=&#x27; + token
+      });
+    }
+  });
+  $body.on(&#x27;click&#x27;, &#x27;#registration_trial&#x27;, function() {
+    var me = $(this);
+    if(!me.hasClass(&#x27;checked&#x27;)) {
+      me.addClass(&#x27;checked&#x27;).val(&#x27;1&#x27;);
+      $(&#x27;#registration_purchase_id&#x27;).val(&#x27;&#x27;).removeClass(&#x27;error&#x27;).addClass(&#x27;disabled&#x27;).attr(&#x27;disabled&#x27;, &#x27;disabled&#x27;);
+      $(&#x27;#registration_ok&#x27;).hide();
+    } else {
+      me.removeClass(&#x27;checked&#x27;).val(&#x27;0&#x27;);
+      $(&#x27;#registration_purchase_id&#x27;).removeAttr(&#x27;disabled&#x27;).removeClass(&#x27;disabled&#x27;);
+    }
+  });
+  $body.on(&#x27;click&#x27;, &#x27;#locations_disclaimer&#x27;, function() {
+    var me = $(this);
+    if(!me.hasClass(&#x27;checked&#x27;)) {
+      me.addClass(&#x27;checked&#x27;);
+      $(&#x27;#location_container_in_personal_info&#x27;).hide();
+    } else {
+      me.removeClass(&#x27;checked&#x27;);
+      $(&#x27;#location_container_in_personal_info&#x27;).show();
+    }
   });
 }
 
@@ -396,6 +434,9 @@ function profileDocumentReady() {
       $(this).val(&#x27;&#x27;);
       $(this).data(&#x27;placeholder&#x27;, false);
     }
+  });
+  $body.on(&#x27;click&#x27;, &#x27;.profileLink&#x27;, function() {
+    window.location = &#x27;/profile&#x27;;
   });
 }
 

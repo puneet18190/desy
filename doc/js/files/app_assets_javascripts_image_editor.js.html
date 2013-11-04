@@ -477,7 +477,6 @@ Initializer for the general graphical properties of the editor: position and res
 @for ImageEditorDocumentReady
 **/
 function imageEditorDocumentReadyGeneral() {
-  $(&#x27;.image_editor_only #form_info_new_media_element_in_editor, .image_editor_only #form_info_update_media_element_in_editor&#x27;).css(&quot;left&quot;,($(window).width()/2)-495);
   $(&#x27;#image_gallery_for_image_editor ._select_image_from_gallery&#x27;).addClass(&#x27;_add_image_to_image_editor&#x27;);
   $(&#x27;#image_gallery_for_image_editor .gallery-header&#x27;).css(&#x27;left&#x27;, ($(window).width()/2) - 420);
   $body.on(&#x27;click&#x27;, &#x27;._add_image_to_image_editor&#x27;, function() {

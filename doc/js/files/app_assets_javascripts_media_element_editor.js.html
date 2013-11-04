@@ -334,10 +334,10 @@ One step of the repeated &lt;b&gt;cache&lt;/b&gt; saving (used in {{#crossLinkMo
 **/
 function saveCacheLoop() {
   var cache_form = &#x27;&#x27;;
-  if($(&#x27;html&#x27;).hasClass(&#x27;video_editor-controller&#x27;)) {
+  if( $html.hasClass(&#x27;video_editor-controller&#x27;) ) {
     cache_form = $(&#x27;#video_editor_form&#x27;);
   }
-  if($(&#x27;html&#x27;).hasClass(&#x27;audio_editor-controller&#x27;)) {
+  if( $html.hasClass(&#x27;audio_editor-controller&#x27;) ) {
     cache_form = $(&#x27;#audio_editor_form&#x27;);
   }
   var time = $parameters.data(&#x27;cache-time&#x27;);
@@ -395,15 +395,37 @@ Initializes the placeholder of the &lt;b&gt;commit forms&lt;/b&gt; used in {{#cr
 **/
 function mediaElementEditorDocumentReady() {
   $body.on(&#x27;focus&#x27;, &#x27;#form_info_new_media_element_in_editor #new_title&#x27;, function() {
+    $(&#x27;#form_info_new_media_element_in_editor #only_to_conserve_tags&#x27;).removeClass(&#x27;disabled&#x27;);
+    $(&#x27;#form_info_new_media_element_in_editor #only_to_conserve_tags #check_ad_hoc&#x27;).removeAttr(&#x27;disabled&#x27;).removeAttr(&#x27;checked&#x27;);
     if($(&#x27;#form_info_new_media_element_in_editor #new_title_placeholder&#x27;).val() == &#x27;&#x27;) {
-      $(this).attr(&#x27;value&#x27;, &#x27;&#x27;);
-      $(&#x27;#form_info_new_media_element_in_editor #new_title_placeholder&#x27;).attr(&#x27;value&#x27;, &#x27;0&#x27;);
+      $(this).val(&#x27;&#x27;);
+      $(&#x27;#form_info_new_media_element_in_editor #new_title_placeholder&#x27;).val(&#x27;0&#x27;);
     }
   });
   $body.on(&#x27;focus&#x27;, &#x27;#form_info_new_media_element_in_editor #new_description&#x27;, function() {
+    $(&#x27;#form_info_new_media_element_in_editor #only_to_conserve_tags&#x27;).removeClass(&#x27;disabled&#x27;);
+    $(&#x27;#form_info_new_media_element_in_editor #only_to_conserve_tags #check_ad_hoc&#x27;).removeAttr(&#x27;disabled&#x27;).removeAttr(&#x27;checked&#x27;);
     if($(&#x27;#form_info_new_media_element_in_editor #new_description_placeholder&#x27;).val() == &#x27;&#x27;) {
-      $(this).attr(&#x27;value&#x27;, &#x27;&#x27;);
-      $(&#x27;#form_info_new_media_element_in_editor #new_description_placeholder&#x27;).attr(&#x27;value&#x27;, &#x27;0&#x27;);
+      $(this).val(&#x27;&#x27;);
+      $(&#x27;#form_info_new_media_element_in_editor #new_description_placeholder&#x27;).val(&#x27;0&#x27;);
+    }
+  });
+  $body.on(&#x27;click&#x27;, &#x27;#form_info_new_media_element_in_editor #only_to_conserve_tags&#x27;, function() {
+    if(!$(this).hasClass(&#x27;disabled&#x27;)) {
+      var form = $(&#x27;#form_info_new_media_element_in_editor&#x27;);
+      $(this).addClass(&#x27;disabled&#x27;);
+      form.find(&#x27;#only_to_conserve_tags #check_ad_hoc&#x27;).attr(&#x27;checked&#x27;, &#x27;checked&#x27;).attr(&#x27;disabled&#x27;, &#x27;disabled&#x27;);
+      form.find(&#x27;#new_title&#x27;).val(form.find(&#x27;#only_to_conserve_tags .edited_container .edited_title&#x27;).val());
+      form.find(&#x27;#new_title_placeholder&#x27;).val(&#x27;0&#x27;);
+      form.find(&#x27;#new_description&#x27;).val(form.find(&#x27;#only_to_conserve_tags .edited_container .edited_description&#x27;).val());
+      form.find(&#x27;#new_description_placeholder&#x27;).val(&#x27;0&#x27;);
+      var old_tags_placeholder = form.find(&#x27;._tags_container ._placeholder&#x27;)[0].outerHTML;
+      var old_tags_value = form.find(&#x27;._tags_container #new_tags_value&#x27;)[0].outerHTML;
+      var old_tags = form.find(&#x27;#new_tags&#x27;)[0].outerHTML;
+      form.find(&#x27;._tags_container&#x27;).html(form.find(&#x27;#only_to_conserve_tags .edited_container .edited_tags_container&#x27;).html());
+      form.find(&#x27;._tags_container&#x27;).append(old_tags + old_tags_placeholder + old_tags_value);
+      form.find(&#x27;._tags_container ._placeholder&#x27;).hide();
+      form.find(&#x27;#new_tags_value&#x27;).val(form.find(&#x27;#only_to_conserve_tags .edited_container .edited_tags&#x27;).val());
     }
   });
 }
@@ -421,6 +443,8 @@ function resetMediaElementEditorForms() {
   $(&#x27;#form_info_new_media_element_in_editor .error_messages, #form_info_update_media_element_in_editor .error_messages&#x27;).html(&#x27;&#x27;);
   var new_form = $(&#x27;#form_info_new_media_element_in_editor&#x27;);
   var update_form = $(&#x27;#form_info_update_media_element_in_editor&#x27;);
+  new_form.find(&#x27;#only_to_conserve_tags&#x27;).removeClass(&#x27;disabled&#x27;);
+  new_form.find(&#x27;#only_to_conserve_tags #check_ad_hoc&#x27;).removeAttr(&#x27;disabled&#x27;).removeAttr(&#x27;checked&#x27;);
   new_form.find(&#x27;#new_title&#x27;).val(new_form.data(&#x27;title&#x27;));
   new_form.find(&#x27;#new_title&#x27;).removeClass(&#x27;form_error&#x27;);
   new_form.find(&#x27;#new_title_placeholder&#x27;).val(&#x27;&#x27;);
