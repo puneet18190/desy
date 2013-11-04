@@ -59,10 +59,11 @@ function purchaseCodeRegistrationDocumentReady() {
   $body.on('click', '#registration_trial', function() {
     var me = $(this);
     if(!me.hasClass('checked')) {
-      me.addClass('checked');
-      $('#registration_purchase_id').val('').addClass('disabled').attr('disabled', 'disabled');
+      me.addClass('checked').val('1');
+      $('#registration_purchase_id').val('').removeClass('error').addClass('disabled').attr('disabled', 'disabled');
+      $('#registration_ok').hide();
     } else {
-      me.removeClass('checked');
+      me.removeClass('checked').val('0');
       $('#registration_purchase_id').removeAttr('disabled').removeClass('disabled');
     }
   });

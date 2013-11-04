@@ -3366,6 +3366,9 @@ it:
         created_at: "Creato"
         # 1 - views/admin/users/show.html.erb
         # 2 - views/admin/users/_list.html.erb
+        confirmed: "Confermato"
+        # 1 - views/admin/users/show.html.erb
+        # 2 - views/admin/users/_list.html.erb
         id: "Id"
         # 1 - views/admin/users/show.html.erb
         # 2 - views/admin/users/_list.html.erb

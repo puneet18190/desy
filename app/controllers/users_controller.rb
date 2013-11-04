@@ -18,7 +18,7 @@ class UsersController < ApplicationController
   
   skip_before_filter :authenticate, :only => [:create, :confirm, :request_reset_password, :reset_password, :send_reset_password, :find_locations]
   before_filter :initialize_layout, :only => [:edit, :update, :subjects, :statistics, :mailing_lists]
-  layout 'fullpage_notification', :only => [:request_reset_password, :reset_password, :send_reset_password, :confirm]
+  layout 'fullpage_notification', :only => [:request_reset_password, :reset_password, :send_reset_password, :confirm, :create]
   
   # === Description
   #
@@ -34,10 +34,15 @@ class UsersController < ApplicationController
   #
   def create
     email = params[:user].try(:delete, :email)
+    @trial            = params[:trial] == '1'
+    purchase = Purchase.find_by_token params[:purchase_id]
     @user = User.active.not_confirmed.new(params[:user]) do |user|
       user.email = email
-      user.location_id = params[:location][SETTINGS['location_types'].last.downcase] if params[:location].has_key? SETTINGS['location_types'].last.downcase
-      user.location_id = nil if user.location_id.to_i == 0
+      key_last_location = SETTINGS['location_types'].last.downcase
+      if params.has_key?(:location) && params[:location].has_key?(key_last_location) && params[:location][key_last_location].to_i != 0
+        user.location_id = params[:location][key_last_location]
+      end
+      user.purchase_id = (!@trial && purchase) ? purchase.id : nil
     end
     if @user.save
       UserMailer.account_confirmation(@user, request.host, request.port).deliver
@@ -45,7 +50,6 @@ class UsersController < ApplicationController
     else
       @errors = convert_user_error_messages @user.errors
       location = Location.get_from_chain_params params[:location]
-      @trial            = params[:trial].present?
       @locations = location.nil? ? [{:selected => 0, :content => Location.roots.order(:name)}] : location.get_filled_select_for_personal_info
       @school_level_ids = SchoolLevel.order(:description).map{ |sl| [sl.to_s, sl.id] }
       @subjects         = Subject.order(:description)
