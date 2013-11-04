@@ -410,6 +410,12 @@ html.prelogin-layout {
   
   &.prelogin-controller.registration-action, &.users-controller.create-action {
     
+    label[for=locations_disclaimer] {
+      
+      cursor: pointer;
+      
+    }
+    
     .container {
       
       background-color: transparent;
