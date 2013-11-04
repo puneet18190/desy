@@ -31,7 +31,7 @@
   <% if SETTINGS['saas_registration_mode'] %>
     <fieldset class="insert-content formCodAcquisto">
       <%= t('registration.purchase_id') %><br/>
-      <%= input_purchase_code %> <div class="validationOk fltlft" id="registration_ok">&#10004;</div>
+      <%= input_purchase_code %> <div class="validationOk fltlft" style="display:none" id="registration_ok">&#10004;</div>
       <br class="clearfloat">
       <%= t('registration.trial', :days => SETTINGS['saas_trial_duration']) %><br>
       <%= input_trial_checkbox %>
