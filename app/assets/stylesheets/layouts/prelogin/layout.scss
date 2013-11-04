@@ -92,6 +92,17 @@ html.prelogin-layout {
       line-height: 100%;
       
     }
+    .verticalScroll {
+      overflow-x:hidden; 
+      overflow-y:auto; 
+      height:140px;
+      p {
+        padding-right:10px
+      }
+      .jspDrag {
+        background:#83a5c8;
+      }
+    }
     .validationOk {
       padding:0; 
       margin:0; 
@@ -207,8 +218,8 @@ html.prelogin-layout {
         
         .sbHolderDeselect {
           
-          width: 217px;
-          height: 26px;
+          width: 237px;
+          height: 25px;
           margin: 5px 16px 10px 0;
           padding: 10px 0 0 10px;
           background-color: #e9ecee;
@@ -349,7 +360,7 @@ html.prelogin-layout {
     
     .sbHolder {
       
-      width: 227px;
+      width: 247px;
       height: 29px;
       margin-right: 16px;
       margin-top: 5px;
@@ -357,7 +368,7 @@ html.prelogin-layout {
       
       .sbSelector {
         
-        width: 227px;
+        width: 247px;
         
         &:link {
           
@@ -381,7 +392,7 @@ html.prelogin-layout {
       
       .sbOptions {
         
-        width: 187px;
+        width: 207px;
         
         li a {
           
@@ -409,6 +420,12 @@ html.prelogin-layout {
   }
   
   &.prelogin-controller.registration-action, &.users-controller.create-action {
+    
+    label[for=locations_disclaimer] {
+      
+      cursor: pointer;
+      
+    }
     
     .container {
       

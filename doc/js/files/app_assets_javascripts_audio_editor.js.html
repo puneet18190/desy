@@ -519,7 +519,7 @@ function selectAudioEditorComponent(component) {
   component.find(&#x27;._box_ghost&#x27;).hide();
   component.find(&#x27;._sort_handle&#x27;).addClass(&#x27;current&#x27;);
   component.find(&#x27;._player_content&#x27;).css(&#x27;opacity&#x27;, 1);
-  if($(&#x27;html&#x27;).hasClass(&#x27;msie&#x27;)) {
+  if( $html.hasClass(&#x27;msie&#x27;) ) {
     component.find(&#x27;._double_slider .ui-slider-range&#x27;).css(&#x27;opacity&#x27;, 1);
   }
   component.find(&#x27;._controls&#x27;).css(&#x27;visibility&#x27;, &#x27;visible&#x27;);
@@ -859,7 +859,7 @@ function audioEditorDocumentReadyGeneral() {
       }
     }
   });
-  if($(&#x27;html&#x27;).hasClass(&#x27;msie&#x27;)) {
+  if( $html.hasClass(&#x27;msie&#x27;) ) {
     $(&#x27;._audio_editor_component ._double_slider .ui-slider-range&#x27;).css(&#x27;opacity&#x27;, 0.4);
   }
 }

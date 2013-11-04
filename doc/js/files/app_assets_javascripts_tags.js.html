@@ -614,9 +614,13 @@ function tagsDocumentReadyNewMediaElement() {
     }
   });
   $body.on(&#x27;focus&#x27;, &#x27;#form_info_new_media_element_in_editor ._tags_container&#x27;, function() {
+    $(&#x27;#form_info_new_media_element_in_editor #only_to_conserve_tags&#x27;).removeClass(&#x27;disabled&#x27;);
+    $(&#x27;#form_info_new_media_element_in_editor #only_to_conserve_tags #check_ad_hoc&#x27;).removeAttr(&#x27;disabled&#x27;).removeAttr(&#x27;checked&#x27;);
     $(this).find(&#x27;._placeholder&#x27;).hide();
   });
   $body.on(&#x27;click&#x27;, &#x27;#form_info_new_media_element_in_editor ._tags_container&#x27;, function() {
+  $(&#x27;#form_info_new_media_element_in_editor #only_to_conserve_tags&#x27;).removeClass(&#x27;disabled&#x27;);
+    $(&#x27;#form_info_new_media_element_in_editor #only_to_conserve_tags #check_ad_hoc&#x27;).removeAttr(&#x27;disabled&#x27;).removeAttr(&#x27;checked&#x27;);
     $(&#x27;#form_info_new_media_element_in_editor #new_tags&#x27;).focus();
     $(this).find(&#x27;._placeholder&#x27;).hide();
   });

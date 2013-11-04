@@ -55,6 +55,15 @@
   <%= render :partial => 'users/personal_locations', :locals => {:forced_location => forced_location, :locations => locations, :edit => edit} %>
 </fieldset>
 
+<% if SETTINGS['saas_registration_mode'] && !edit %>
+  <div id="outer_locations_disclaimer">
+    <input id="locations_disclaimer" class="regular-checkbox" type="checkbox" value="0">
+    <%= label_tag 'locations_disclaimer', '' %>
+    <%= t('registration.locations_disclaimer', :location => Location.base_label.downcase) %>
+  </div>
+<% end %>
+
+<br/><br/><br/>
 
 <hr>
 
@@ -69,5 +78,6 @@
   
 </fieldset>
 
+<br/><br/>
 
 <hr>

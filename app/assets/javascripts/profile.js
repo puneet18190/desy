@@ -67,6 +67,16 @@ function purchaseCodeRegistrationDocumentReady() {
       $('#registration_purchase_id').removeAttr('disabled').removeClass('disabled');
     }
   });
+  $body.on('click', '#locations_disclaimer', function() {
+    var me = $(this);
+    if(!me.hasClass('checked')) {
+      me.addClass('checked');
+      $('#location_container_in_personal_info').hide();
+    } else {
+      me.removeClass('checked');
+      $('#location_container_in_personal_info').show();
+    }
+  });
 }
 
 
@@ -107,5 +117,8 @@ function profileDocumentReady() {
   });
   $body.on('click', '.profileLink', function() {
     window.location = '/profile';
+  });
+  $('.verticalScroll').jScrollPane({
+    autoReinitialise: true
   });
 }

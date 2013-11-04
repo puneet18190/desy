@@ -357,6 +357,9 @@ function lessonViewerDocumentReady() {
     $(this).hide();
     $(&#x27;#open_export_lesson&#x27;).show();
   });
+  $body.on(&#x27;mouseleave&#x27;, &#x27;.playlistMenu&#x27;, function(e) {
+    closePlaylistMenuInLessonViewer(function() {});
+  });
 }
 
 /**
@@ -418,57 +421,27 @@ function lessonViewerDocumentReadySlidesNavigation() {
   var scrolls = $(&#x27;#left_scroll, #right_scroll&#x27;);
   $(document.documentElement).keyup(function(e) {
     if(e.keyCode == 37) {
-      if(!scrolls.first().hasClass(&#x27;disabled&#x27;)) {
-        scrolls.addClass(&#x27;disabled&#x27;);
-        hideDocumentsInLessonViewer();
-        goToPrevSlideInLessonViewer(false, function() {
-          scrolls.removeClass(&#x27;disabled&#x27;);
-        });
-      }
+      moveToAdhiacentSlideInLessonViewer(scrolls, goToPrevSlideInLessonViewer);
     } else if(e.keyCode == 39) {
-      if(!scrolls.first().hasClass(&#x27;disabled&#x27;)) {
-        scrolls.addClass(&#x27;disabled&#x27;);
-        hideDocumentsInLessonViewer();
-        goToNextSlideInLessonViewer(false, function() {
-          scrolls.removeClass(&#x27;disabled&#x27;);
-        });
-      }
+      moveToAdhiacentSlideInLessonViewer(scrolls, goToNextSlideInLessonViewer);
     }
   });
   $body.on(&#x27;click&#x27;, &#x27;#left_scroll&#x27;, function(e) {
     e.preventDefault();
-    if(!scrolls.first().hasClass(&#x27;disabled&#x27;)) {
-      scrolls.addClass(&#x27;disabled&#x27;);
-      goToPrevSlideInLessonViewer(false, function() {
-        scrolls.removeClass(&#x27;disabled&#x27;);
-      });
-    }
+    moveToAdhiacentSlideInLessonViewer(scrolls, goToPrevSlideInLessonViewer);
   });
   $body.on(&#x27;click&#x27;, &#x27;#right_scroll&#x27;, function(e) {
     e.preventDefault();
-    if(!scrolls.first().hasClass(&#x27;disabled&#x27;)) {
-      scrolls.addClass(&#x27;disabled&#x27;);
-      goToNextSlideInLessonViewer(false, function() {
-        scrolls.removeClass(&#x27;disabled&#x27;);
-      });
+    moveToAdhiacentSlideInLessonViewer(scrolls, goToNextSlideInLessonViewer);
+  });
+  $(&#x27;.lesson-viewer-layout&#x27;).on(&#x27;swiperight&#x27;, function() {
+    if(mustReactToSwipe()) {
+      moveToAdhiacentSlideInLessonViewer(scrolls, goToPrevSlideInLessonViewer);
     }
   });
-  $(&#x27;.lesson-viewer-layout, .lesson-export-layout&#x27;).on(&#x27;swiperight&#x27;, function() {
-    if(mustReactToSwipe() &amp;&amp; !scrolls.first().hasClass(&#x27;disabled&#x27;)) {
-      scrolls.addClass(&#x27;disabled&#x27;);
-      hideDocumentsInLessonViewer();
-      goToPrevSlideInLessonViewer(false, function() {
-        scrolls.removeClass(&#x27;disabled&#x27;);
-      });
-    }
-  });
-  $(&#x27;.lesson-viewer-layout, .lesson-export-layout&#x27;).on(&#x27;swipeleft&#x27;, function() {
-    if(mustReactToSwipe() &amp;&amp; !scrolls.first().hasClass(&#x27;disabled&#x27;)) {
-      scrolls.addClass(&#x27;disabled&#x27;);
-      hideDocumentsInLessonViewer();
-      goToNextSlideInLessonViewer(false, function() {
-        scrolls.removeClass(&#x27;disabled&#x27;);
-      });
+  $(&#x27;.lesson-viewer-layout&#x27;).on(&#x27;swipeleft&#x27;, function() {
+    if(mustReactToSwipe()) {
+      moveToAdhiacentSlideInLessonViewer(scrolls, goToNextSlideInLessonViewer);
     }
   });
 }
@@ -532,7 +505,7 @@ Used only in the exported lesson, to convert the src of Wiris images (this funct
 @for LessonViewerDocumentReady
 **/
 function lessonViewerDocumentReadyWirisConvertSrc() {
-  var $images = $.each( $(&#x27;.Wirisformula&#x27;), function(i, el) {
+  var $images = $.each( $(&#x27;img.Wirisformula&#x27;), function(i, el) {
     var $el = $(el);
     $el.attr( &#x27;src&#x27;, &#x27;math_images/&#x27;+UrlParser.parse($el.attr(&#x27;src&#x27;)).searchObj.formula );
   });
@@ -572,9 +545,9 @@ function initializeLessonViewer() {
   if($(&#x27;._playlist_menu_item&#x27;).length &lt;= 3) {
     $(&#x27;#playlist_menu&#x27;).css(&#x27;overflow&#x27;, &#x27;hidden&#x27;);
   }
-  $(&#x27;.lesson-viewer-layout .container, .lesson-export-layout .container&#x27;).css(&#x27;margin-top&#x27;, ($(window).height() - 590) / 2 + &#x27;px&#x27;);
+  $(&#x27;.lesson-viewer-layout .container&#x27;).css(&#x27;margin-top&#x27;, ($(window).height() - 590) / 2 + &#x27;px&#x27;);
   $(window).resize(function() {
-    $(&#x27;.lesson-viewer-layout .container, .lesson-export-layout .container&#x27;).css(&#x27;margin-top&#x27;, ($(window).height() - 590) / 2 + &#x27;px&#x27;);
+    $(&#x27;.lesson-viewer-layout .container&#x27;).css(&#x27;margin-top&#x27;, ($(window).height() - 590) / 2 + &#x27;px&#x27;);
   });
 }
 
@@ -835,6 +808,23 @@ function loadSlideInLessonViewer(slide) {
     });
   }
   slide.data(&#x27;loaded&#x27;, true);
+}
+
+/**
+Function to attach to the arrows
+@method moveToAdhiacentSlideInLessonViewer
+@for LessonViewerSlidesNavigation
+@param scrolls {Object} arrows which must be enabled
+@param movingFunction {function} function to be called to move
+**/
+function moveToAdhiacentSlideInLessonViewer(scrolls, movingFunction) {
+  if(!scrolls.first().hasClass(&#x27;disabled&#x27;)) {
+    scrolls.addClass(&#x27;disabled&#x27;);
+    hideDocumentsInLessonViewer();
+    movingFunction(false, function() {
+      scrolls.removeClass(&#x27;disabled&#x27;);
+    });
+  }
 }
 
 /**

@@ -655,6 +655,9 @@ cn:
       # The user didn't accept a policy (the variable %{policy} is replaced by the name of the policy)
       # 1 - controllers/application_controller.rb
       policy_not_accepted: "你必须同意%{policy}"
+      # The user inserted an invalid purchase token
+      # 1 - controllers/application_controller.rb
+      invalid_purchase_id: "Invalid purchase code" # TODO
     # Placeholders for the fields (they are used only when the lesson / element is new: if the lesson / element is being updated, the application fills the fields with the current data)
     placeholders:
       # Description (the variable %{num} represents the maximum number of characters)
@@ -1930,6 +1933,9 @@ cn:
     # Trial checkbox (the variable %{days} is replaced by the number of days the trial is valid)
     # 1 - views/prelogin/registration.html.erb
     trial: "I don't have a purchase code, but I want to activate a %{days} days trial account" # TODO
+    # Disclaimer to state that the location is not compulsory (the variable %{location} is replaced by the lowest leaf in the location tree)
+    # 1 - views/users/_personal_info.html.erb
+    locations_disclaimer: "You didn't find your %{location} in our database? Skip the selection" # TODO
     subjects:
       # Caption for subjects selection
       # 1 - views/prelogin/registration.html.erb
@@ -2653,6 +2659,31 @@ cn:
     image: "图像"
     # 1 - models/media_element.rb
     video: "视频"
+  
+  
+  # SECTION 3.5: Size formats
+  
+  # Number formats, to be used in the expression of the size of a file. See the method number_to_human_size in models/document.rb
+  number:
+    # 1 - models/document.rb
+    format:
+      delimiter: ! ','
+      precision: 3
+      separator: .
+      significant: false
+      strip_insignificant_zeros: false
+    # 1 - models/document.rb
+    human:
+      storage_units:
+        format: ! '%n %u'
+        units:
+          byte:
+            one: Byte
+            other: Byte
+          gb: GB
+          kb: KB
+          mb: MB
+          tb: TB
   
   
   

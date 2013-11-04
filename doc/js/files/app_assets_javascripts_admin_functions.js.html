@@ -398,7 +398,7 @@ function adminBrowsersDocumentReady() {
   if(!$.browser.msie) {
     $(&#x27;#admin-media-elements-quick-upload-form&#x27;).fileupload();
   } else {
-    $(&#x27;#admin-media-elements-quick-upload-form&#x27;).append($(&#x27;&lt;input name=&quot;from_ie&quot; val=&quot;true&quot; style=&quot;display:none&quot; /&gt;&#x27;));
+    $(&#x27;#admin-media-elements-quick-upload-form&#x27;).append($(&#x27;&lt;input name=&quot;from_ie&quot; value=&quot;true&quot; style=&quot;display:none&quot; /&gt;&#x27;));
     $(&#x27;#hint_not_for_ie&#x27;).hide();
     $(&#x27;#qume_file&#x27;).change(function() {
       $(&#x27;#admin-media-elements-quick-upload-form&#x27;).submit();
@@ -482,6 +482,100 @@ function adminLocationsDocumentReady() {
         });
       }
     }
+  });
+  $body.on(&#x27;click&#x27;, &#x27;.edit_admin_location&#x27;, function() {
+    var father = $(&#x27;#admin_location_&#x27; + $(this).data(&#x27;location-id&#x27;));
+    father.find(&#x27;.name_write&#x27;).show();
+    father.find(&#x27;.name_readonly&#x27;).hide();
+    father.find(&#x27;.code_write&#x27;).show();
+    father.find(&#x27;.code_readonly&#x27;).hide();
+    father.find(&#x27;.edit_admin_location_done&#x27;).show();
+    father.find(&#x27;.edit_admin_location&#x27;).hide();
+  });
+  $body.on(&#x27;click&#x27;, &#x27;.edit_admin_location_done&#x27;, function() {
+    var father = $(&#x27;#admin_location_&#x27; + $(this).data(&#x27;location-id&#x27;));
+    $.ajax({
+      url: &#x27;/admin/settings/locations/&#x27; + $(this).data(&#x27;location-id&#x27;) + &#x27;/update?name=&#x27; + father.find(&#x27;.name_write&#x27;).val() + &#x27;&amp;code=&#x27; + father.find(&#x27;.code_write&#x27;).val(),
+      type: &#x27;put&#x27;
+    });
+  });
+  $body.on(&#x27;click&#x27;, &#x27;.create_admin_location&#x27;, function() {
+    $(&#x27;#create_admin_location_&#x27; + $(this).data(&#x27;location-type&#x27;) + &#x27; .create_admin_location_form&#x27;).show();
+    $(this).hide();
+  });
+  $body.on(&#x27;click&#x27;, &#x27;.create_admin_location_form_done&#x27;, function() {
+    var father = $(&#x27;#create_admin_location_&#x27; + $(this).data(&#x27;location-type&#x27;));
+    $.ajax({
+      url: &#x27;/admin/settings/locations/create?name=&#x27; + father.find(&#x27;.create_admin_location_name&#x27;).val() + &#x27;&amp;code=&#x27; + father.find(&#x27;.create_admin_location_code&#x27;).val() + &#x27;&amp;sti_type=&#x27; + $(this).data(&#x27;location-type-for-form&#x27;) + &#x27;&amp;parent=&#x27; + $(this).data(&#x27;location-parent&#x27;),
+      type: &#x27;post&#x27;
+    });
+  });
+  $body.on(&#x27;change&#x27;, &#x27;#admin_purchase_choose_location_kind&#x27;, function() {
+    if($(this).val() == &#x27;0&#x27;) {
+      $(&#x27;#admin_purchase_choose_location_wrapper select&#x27;).each(function() {
+        $(this).attr(&#x27;disabled&#x27;, &#x27;disabled&#x27;).addClass(&#x27;disabled&#x27;).removeClass(&#x27;eletto&#x27;);
+      });
+      $(&#x27;#hidden_messages_for_admin_purchase_choose_location&#x27;).hide();
+      var first = true;
+      $(&#x27;._admin_purchase_choose_location_select_box&#x27;).each(function() {
+        if(first) {
+          $(this).find(&#x27;option&#x27;).not(&#x27;.dont_delete_me&#x27;).removeAttr(&#x27;selected&#x27;);
+          $(this).find(&#x27;option.dont_delete_me&#x27;).attr(&#x27;selected&#x27;, &#x27;selected&#x27;);
+        } else {
+          $(this).find(&#x27;option&#x27;).not(&#x27;.dont_delete_me&#x27;).remove();
+        }
+        first = false;
+      });
+    } else {
+      var me = $(&#x27;#admin_purchase_choose_location_&#x27; + $(this).val());
+      me.removeAttr(&#x27;disabled&#x27;).removeClass(&#x27;disabled&#x27;).addClass(&#x27;eletto&#x27;);
+      if(me.val() != &#x27;0&#x27;) {
+        $(&#x27;#purchase_location_id&#x27;).val(me.val());
+      }
+      var prev = me.prevUntil(&#x27;._admin_purchase_choose_location_select_box&#x27;).prev();
+      while(prev.length &gt; 0) {
+        prev.removeAttr(&#x27;disabled&#x27;).removeClass(&#x27;disabled&#x27;).removeClass(&#x27;eletto&#x27;);
+        prev = prev.prevUntil(&#x27;._admin_purchase_choose_location_select_box&#x27;).prev();
+      }
+      var next = me.nextUntil(&#x27;._admin_purchase_choose_location_select_box&#x27;).next();
+      var first_next = true;
+      while(next.length &gt; 0) {
+        next.attr(&#x27;disabled&#x27;, &#x27;disabled&#x27;).addClass(&#x27;disabled&#x27;).removeClass(&#x27;eletto&#x27;);
+        if(first_next) {
+          next.find(&#x27;option.dont_delete_me&#x27;).attr(&#x27;selected&#x27;, &#x27;selected&#x27;);
+        } else {
+          next.find(&#x27;option&#x27;).not(&#x27;.dont_delete_me&#x27;).remove();
+        }
+        next = next.nextUntil(&#x27;._admin_purchase_choose_location_select_box&#x27;).next();
+        first_next = false
+      }
+      $(&#x27;#hidden_messages_for_admin_purchase_choose_location&#x27;).show();
+      var translated_location = $(this).find(&#x27;option.&#x27; + $(this).val()).data(&#x27;translated&#x27;);
+      $(&#x27;#hidden_messages_for_admin_purchase_choose_location .location&#x27;).html(translated_location);
+      $(&#x27;#get_location_by_code_or_id&#x27;).data(&#x27;type&#x27;, $(this).val());
+    }
+  });
+  $body.on(&#x27;change&#x27;, &#x27;._admin_purchase_choose_location_select_box&#x27;, function() {
+    var me = $(this);
+    if(me.val() != &#x27;0&#x27;) {
+      if(!me.data(&#x27;last&#x27;)) {
+        $.ajax({
+          type: &#x27;get&#x27;,
+          url: &#x27;/admin/purchases/locations/&#x27; + me.val() + &#x27;/find&#x27;
+        });
+      }
+      if(me.hasClass(&#x27;eletto&#x27;)) {
+        $(&#x27;#purchase_location_id&#x27;).val(me.val());
+      } else {
+        $(&#x27;#open_location_administrator&#x27;).attr(&#x27;href&#x27;, &#x27;/admin/settings/locations?selected=&#x27; + me.val());
+      }
+    }
+  });
+  $body.on(&#x27;click&#x27;, &#x27;#get_location_by_code_or_id&#x27;, function() {
+    $.ajax({
+      type: &#x27;get&#x27;,
+      url: &#x27;/admin/purchases/locations/fill?&#x27; + $(&#x27;#get_location_code_type&#x27;).val() + &#x27;=&#x27; + $(&#x27;#get_location_code&#x27;).val() + &#x27;&amp;sti_type=&#x27; + $(this).data(&#x27;type&#x27;)
+    });
   });
 }
 
@@ -603,6 +697,13 @@ function adminMiscellaneaDocumentReady() {
       url: &#x27;reports/&#x27; + $(this).data(&#x27;report-id&#x27;) + &#x27;/accept&#x27;
     });
   });
+  $body.on(&#x27;click&#x27;, &#x27;#new_purchase #renewed&#x27;, function() {
+    $(&#x27;#purchase_accounts_number&#x27;).val($(this).data(&#x27;accounts-number&#x27;));
+    $(&#x27;#renewed_id&#x27;).val($(this).data(&#x27;renewed-id&#x27;));
+  });
+  $body.on(&#x27;focus&#x27;, &#x27;#purchase_accounts_number&#x27;, function() {
+    $(&#x27;#renewed_id&#x27;).val(&#x27;&#x27;);
+  });
 }
 
 /**
@@ -701,6 +802,12 @@ function adminSortingDocumentReady() {
     $(&#x27;input#search_ordering&#x27;).val($(this).data(&#x27;ordering&#x27;));
     $(&#x27;input#search_desc&#x27;).val($(this).data(&#x27;desc&#x27;));
     $(&#x27;#admin-search-documents&#x27;).submit();
+  });
+  $body.on(&#x27;click&#x27;, &#x27;table#purchases-list thead tr th a&#x27;, function(e) {
+    e.preventDefault();
+    $(&#x27;input#search_ordering&#x27;).val($(this).data(&#x27;ordering&#x27;));
+    $(&#x27;input#search_desc&#x27;).val($(this).data(&#x27;desc&#x27;));
+    $(&#x27;#admin-search-purchases&#x27;).submit();
   });
 }
 

@@ -335,26 +335,20 @@ Initializer for the animation effects of the Dashboard.
 @for DashboardDocumentReady
 **/
 function dashboardDocumentReady() {
-  $body.on(&#x27;mouseover&#x27;, &#x27;._empty_media_elements&#x27;, function() {
-    $(this).find(&#x27;._empty_media_elements_hover&#x27;).addClass(&#x27;current&#x27;);
-  });
-  $body.on(&#x27;mouseout&#x27;, &#x27;._empty_media_elements&#x27;, function() {
-    $(this).find(&#x27;._empty_media_elements_hover&#x27;).removeClass(&#x27;current&#x27;);
-  });
-  $body.on(&#x27;mouseover&#x27;, &#x27;._empty_lessons&#x27;, function() {
-    $(this).find(&#x27;._empty_lessons_hover&#x27;).addClass(&#x27;current&#x27;);
-  });
-  $body.on(&#x27;mouseout&#x27;, &#x27;._empty_lessons&#x27;, function() {
-    $(this).find(&#x27;._empty_lessons_hover&#x27;).removeClass(&#x27;current&#x27;);
-  });
-  $body.on(&#x27;click&#x27;, &#x27;._empty_lessons&#x27;, function() {
-    window.location = &#x27;/lessons/new&#x27;;
-  });
   $(&#x27;#switch_to_lessons&#x27;).click(function() {
     switchToSuggestedLessons();
   });
   $(&#x27;#switch_to_media_elements&#x27;).click(function() {
     switchToSuggestedMediaElements();
+  });
+  var left = true;
+  $(&#x27;#lessons_in_dashboard .boxViewExpandedLesson&#x27;).each(function() {
+    if(left) {
+      $(this).addClass(&#x27;lefth&#x27;);
+    } else {
+      $(this).addClass(&#x27;righth&#x27;);
+    }
+    left = !left;
   });
 }
 
@@ -513,7 +507,7 @@ function reloadLessonsDashboardPagination(pos, pages_amount) {
       changePageDashboardLessons(pos, (pos + 1), pages_amount);
       return true;
     }
-    new DotsPagination($(&#x27;[role=pages]&#x27;), pages_amount, prevPage, nextPage);
+    new DotsPagination($(&#x27;[role=pages]&#x27;), pages_amount, { &#x27;complete&#x27;: { &#x27;prev&#x27;: prevPage, &#x27;next&#x27;: nextPage } });
   });
 }
 
@@ -543,7 +537,7 @@ function reloadMediaElementsDashboardPagination(pos, pages_amount) {
       changePageDashboardMediaElements(pos, (pos + 1), pages_amount);
       return true;
     }
-    new DotsPagination($(&#x27;[role=pages]&#x27;), pages_amount, prevPage, nextPage);
+    new DotsPagination($(&#x27;[role=pages]&#x27;), pages_amount, { &#x27;complete&#x27;: { &#x27;prev&#x27;: prevPage, &#x27;next&#x27;: nextPage } });
   });
 }
 

@@ -6,6 +6,9 @@
     $('._location_select_box').each(function() {
       $('#' + $(this).attr('id')).selectbox();
     });
+    <% if @forced_location.sti_type == SETTINGS['location_types'].last %>
+      $('#outer_locations_disclaimer').hide();
+    <% end %>
   <% end %>
 <% else %>
   $('#registration_purchase_id').addClass('error');
