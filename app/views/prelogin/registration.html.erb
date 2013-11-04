@@ -9,7 +9,7 @@
   </div>
 </div>
 <br class="clearfloat">
-<div style="padding-top:53px">
+<div style="padding-top:53px; height:95px">
   <%= image_tag "logo_prelogin.png" %>
 </div> 
 <br class="clearfloat">
@@ -32,7 +32,8 @@
     <fieldset class="insert-content formCodAcquisto">
       <%= t('registration.purchase_id') %><br/>
       <%= input_purchase_code %>
-      <%= t('registration.trial', :days => SETTINGS['saas_trial_duration']) %><br/>
+      <br>
+      <%= t('registration.trial', :days => SETTINGS['saas_trial_duration']) %><br>
       <%= input_trial_checkbox %>
       <%= label_tag 'registration_trial', '' %>
     </fieldset><hr/>
