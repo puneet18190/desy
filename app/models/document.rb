@@ -122,7 +122,7 @@ class Document < ActiveRecord::Base
   
   # Renders the size with mega, giga, etc
   def human_size
-    number_to_human_size size, precision: 3, separator: '.'
+    number_to_human_size size
   end
   
   def extension
