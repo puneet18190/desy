@@ -36,7 +36,12 @@
       <%= t('registration.trial', :days => SETTINGS['saas_trial_duration']) %><br>
       <%= input_trial_checkbox %>
       <%= label_tag 'registration_trial', '' %>
-    </fieldset><hr/>
+    </fieldset>
+    <% if @errors && @errors.has_key?(:purchase_id) %>
+      <ul class="listaErrori">
+        <li><%= @errors[:purchase_id] %></li>
+      </ul>
+    <% end %>
   <% end %>
   <%
     locals_for_general_info = {
