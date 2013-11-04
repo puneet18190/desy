@@ -92,7 +92,13 @@ html.prelogin-layout {
       line-height: 100%;
       
     }
-    
+    .validationOk {
+      padding:0; 
+      margin:0; 
+      font-size:35px; 
+      color:green;
+      
+    }
     .logoDesyPrelogin {
       
       position: relative;
