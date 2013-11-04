@@ -42,7 +42,7 @@ class UsersController < ApplicationController
       if params.has_key?(:location) && params[:location].has_key?(key_last_location) && params[:location][key_last_location].to_i != 0
         user.location_id = params[:location][key_last_location]
       end
-      user.purchase_id = (!@trial && purchase) ? purchase.id : nil
+      user.purchase_id = @trial ? nil : (purchase ? purchase.id : 0)
     end
     if @user.save
       UserMailer.account_confirmation(@user, request.host, request.port).deliver
