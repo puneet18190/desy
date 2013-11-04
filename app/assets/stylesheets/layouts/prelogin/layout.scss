@@ -139,13 +139,13 @@ html.prelogin-layout {
           color:white;
           border-top: none;
           &.error {
-            background-color:#fd2f25;  
+            background-color:#D20B0B;  
           }
           &.correct {
             background-color:#44bc09;  
           }
           &.disabled {
-            background-color:#e9ecee;  
+            background-color:#accff2;  
           }
         }
         .regular-checkbox + label, label {
@@ -432,7 +432,7 @@ html.prelogin-layout {
         
         input, select, .sbSelector, textarea, .regular-checkbox + label  {
           
-          border: 2px solid #fff;
+          border: 2px solid #D20B0B;
           
         }
         
