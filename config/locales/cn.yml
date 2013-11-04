@@ -1924,6 +1924,12 @@ cn:
     # Link to ask for help, in case the user forgot his password
     # 1 - views/prelogin/_login.html.erb
     problems_with_password: "忘记你的口令"
+    # Purchase code
+    # 1 - views/prelogin/registration.html.erb
+    purchase_id: "Purchase code:" # TODO
+    # Trial checkbox (the variable %{days} is replaced by the number of days the trial is valid)
+    # 1 - views/prelogin/registration.html.erb
+    trial: "I don't have a purchase code, but I want to activate a %{days} days trial account" # TODO
     subjects:
       # Caption for subjects selection
       # 1 - views/prelogin/registration.html.erb
