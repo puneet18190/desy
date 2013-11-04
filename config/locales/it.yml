@@ -270,6 +270,20 @@ it:
           # 3 - models/virtual_classroom_lesson.rb
           # 4 - models/virtual_classroom_lesson.rb
           problem_removing_from_playlist: "La lezione non può essere rimossa dalla playlist"
+  number:
+    human:
+      # File sizes
+      # 1 - models/document.rb (number_to_human_size)
+      storage_units:
+        format: ! '%n %u'
+        units:
+          byte:
+            one: Byte
+            other: Byte
+          gb: GB
+          kb: KB
+          mb: MB
+          tb: TB
   
   
   # SECTION 1.2: small windows with title, description and two buttons (they are used in whenever the application asks the user for confirmation of an action)
