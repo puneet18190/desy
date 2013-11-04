@@ -18,7 +18,7 @@ class UsersController < ApplicationController
   
   skip_before_filter :authenticate, :only => [:create, :confirm, :request_reset_password, :reset_password, :send_reset_password, :find_locations]
   before_filter :initialize_layout, :only => [:edit, :update, :subjects, :statistics, :mailing_lists]
-  layout 'fullpage_notification', :only => [:request_reset_password, :reset_password, :send_reset_password, :confirm]
+  layout 'fullpage_notification', :only => [:request_reset_password, :reset_password, :send_reset_password, :confirm, :create]
   
   # === Description
   #
