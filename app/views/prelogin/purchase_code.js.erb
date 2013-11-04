@@ -1,5 +1,6 @@
 <% if @purchase %>
-  $('#registration_purchase_id').removeClass('error').addClass('correct');
+  $('#registration_purchase_id').removeClass('error');
+  $('#registration_ok').show();
   <% if @forced_location %>
     $('#location_container_in_personal_info').html('<%= j (render :partial => "users/personal_locations", :locals => {:forced_location => @forced_location, :locations => @locations, :edit => false}) %>');
     $('._location_select_box').each(function() {
@@ -7,5 +8,6 @@
     });
   <% end %>
 <% else %>
-  $('#registration_purchase_id').removeClass('correct').addClass('error');
+  $('#registration_purchase_id').addClass('error');
+  $('#registration_ok').hide();
 <% end %>
