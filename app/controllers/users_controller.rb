@@ -38,8 +38,10 @@ class UsersController < ApplicationController
     purchase = Purchase.find_by_token params[:purchase_id]
     @user = User.active.not_confirmed.new(params[:user]) do |user|
       user.email = email
-      user.location_id = params[:location][SETTINGS['location_types'].last.downcase] if params[:location].has_key? SETTINGS['location_types'].last.downcase
-      user.location_id = nil if user.location_id.to_i == 0
+      key_last_location = SETTINGS['location_types'].last.downcase
+      if params.has_key?(:location) && params[:location].has_key?(key_last_location) && params[:location][key_last_location].to_i != 0
+        user.location_id = params[:location][key_last_location]
+      end
       user.purchase_id = (!@trial && purchase) ? purchase.id : nil
     end
     if @user.save
