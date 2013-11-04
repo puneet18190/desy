@@ -655,6 +655,9 @@ en:
       # The user didn't accept a policy (the variable %{policy} is replaced by the name of the policy)
       # 1 - controllers/application_controller.rb
       policy_not_accepted: "You must accept %{policy}"
+      # The user inserted an invalid purchase token
+      # 1 - controllers/application_controller.rb
+      invalid_purchase_id: "Invalid purchase code"
     # Placeholders for the fields (they are used only when the lesson / element is new: if the lesson / element is being updated, the application fills the fields with the current data)
     placeholders:
       # Description (the variable %{num} represents the maximum number of characters)
@@ -1930,6 +1933,9 @@ en:
     # Trial checkbox (the variable %{days} is replaced by the number of days the trial is valid)
     # 1 - views/prelogin/registration.html.erb
     trial: "I don't have a purchase code, but I want to activate a %{days} days trial account"
+    # Disclaimer to state that the location is not compulsory (the variable %{location} is replaced by the lowest leaf in the location tree)
+    # 1 - views/users/_personal_info.html.erb
+    locations_disclaimer: "You didn't find your %{location} in our database? Skip the selection"
     subjects:
       # Caption for subjects selection
       # 1 - views/prelogin/registration.html.erb

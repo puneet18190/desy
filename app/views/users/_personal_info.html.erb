@@ -59,7 +59,7 @@
   <div id="outer_locations_disclaimer">
     <input id="locations_disclaimer" class="regular-checkbox" type="checkbox" value="0">
     <%= label_tag 'locations_disclaimer', '' %>
-    <%= t('registration.locations_disclaimer') %> <!-- TODO traduzz -->
+    <%= t('registration.locations_disclaimer', :location => Location.base_label) %>
   </div>
 <% end %>
 
