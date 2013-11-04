@@ -31,6 +31,9 @@
           <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.users.fields.purchase_id'), :ordering => nil} %>
         </th>
         <th>
+          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.users.fields.confirmed'), :ordering => nil} %>
+        </th>
+        <th>
           <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.users.fields.created_at'), :ordering => 7} %>
         </th>
         <th></th>
@@ -51,6 +54,7 @@
           <td><%= user.parent_locations %></td>
           <td><%= user.admin?.to_s %></td>
           <td><%= user.purchase_id.nil? ? (user.trial? ? t('users.trial.label') : '') : (link_to user.purchase.name, "/admin/purchases?search[id]=#{user.purchase_id}") %></td>
+          <td><%= user.confirmed.to_s %></td>
           <td><%= TimeConvert.to_string user.created_at %></td>
           <td><%= link_to '<i class="icon-eye-open"></i>'.html_safe, admin_user_path(user), :title => t('admin.users.show'), :target => :blank, :class => 'action' %></td>
           <td><%= link_to '<i class="icon-envelope"></i>'.html_safe, "/admin/messages/new_notification?users=#{user.id}", :title => t('admin.users.actions.message'), :target => :blank, :class => 'action' %></td>
