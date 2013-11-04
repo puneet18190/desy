@@ -89,8 +89,11 @@ class Location < ActiveRecord::Base
   # A boolean
   #
   def is_descendant_of?(ancestor)
+    max_depth = SETTINGS['location_types'].length
     if ancestor.ancestry.nil?
       self.ancestry == ancestor.id.to_s || (/#{ancestor.ancestry_with_me}/ =~ self.ancestry) == 0
+    elsif self.depth == max_depth - 1 && ancestor.depth == max_depth - 2
+      (/#{ancestor.ancestry_with_me.chop}/ =~ self.ancestry) == 0
     else
       (/#{ancestor.ancestry_with_me}/ =~ self.ancestry) == 0
     end
