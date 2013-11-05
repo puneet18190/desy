@@ -3369,10 +3369,10 @@ en:
       # 1 - views/admin/users/show.html.erb
       # 2 - views/admin/users/_list.html.erb
       delete: "Delete user"
-      # Popup which asks for confirmation before deleting a media_element
+      # Popup which asks for confirmation before deleting a user
       # 1 - views/admin/users/_list.html.erb
       delete_confirm: "Are you sure you want to delete this user?"
-      # Placeholder used when there are no media elements associated to the selected filter
+      # Placeholder used when there are no users associated to the selected filter
       # 1 - views/admin/users/_list.html.erb
       empty: "No users found"
       # Fields of users

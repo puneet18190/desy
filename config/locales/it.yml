@@ -3369,10 +3369,10 @@ it:
       # 1 - views/admin/users/show.html.erb
       # 2 - views/admin/users/_list.html.erb
       delete: "Elimina utente"
-      # Popup which asks for confirmation before deleting a media_element
+      # Popup which asks for confirmation before deleting a user
       # 1 - views/admin/users/_list.html.erb
       delete_confirm: "Sei sicuro di voler eliminare questo utente?"
-      # Placeholder used when there are no media elements associated to the selected filter
+      # Placeholder used when there are no users associated to the selected filter
       # 1 - views/admin/users/_list.html.erb
       empty: "Nessun utente trovato"
       # Fields of users
@@ -3449,7 +3449,7 @@ it:
         media_elements:
           # Uploaded media elements
           # 1 - views/admin/users/_list.html.erb
-          loaded: "Caricato"
+          loaded: "Caricati"
           # Title of the subframe
           # 1 - views/admin/users/_list.html.erb
           title: "Elementi"
@@ -3689,7 +3689,7 @@ it:
           # 1 - views/admin/settings/lessons_for_tag.html.erb
           lessons: "Lezioni associate alla tag <b>\"%{tag}\"</b>"
           # 1 - views/admin/settings/media_elements_for_tag.html.erb
-          media_elements: "Elementi associati alla the tag <b>\"%{tag}\"</b>"
+          media_elements: "Elementi associati alla tag <b>\"%{tag}\"</b>"
   
   
   # SECTION 4.2: characters and words used in automatic pagination inside the section 'Administrator'
