@@ -109,21 +109,21 @@ it:
           # There was an error while trying to add the lesson to your personal folder
           # 1 - controllers/lessons_controller.rb
           # 2 - controllers/lessons_controller.rb
-          problem_creating_for_lesson: "La lezione non può essere aggiunta"
+          problem_creating_for_lesson: "La lezione non è stata aggiunta"
           # There was an error while trying to add the element to your personal folder
           # 1 - controllers/media_elements_controller.rb
           # 2 - controllers/media_elements_controller.rb
-          problem_creating_for_media_element: "L'elemento non può essere aggiunto"
+          problem_creating_for_media_element: "L'elemento non è stato aggiunto"
           # There was an error while trying to remove the lesson from your personal folder
           # 1 - controllers/lessons_controller.rb
           # 2 - controllers/lessons_controller.rb
           # 3 - controllers/lessons_controller.rb
-          problem_destroying_for_lesson: "La lezione non può essere rimossa"
+          problem_destroying_for_lesson: "La lezione non è stata rimossa"
           # There was an error while trying to remove the element from your personal folder
           # 1 - controllers/media_elements_controller.rb
           # 2 - controllers/media_elements_controller.rb
           # 3 - controllers/media_elements_controller.rb
-          problem_destroying_for_media_element: "L'elemento non può essere rimosso"
+          problem_destroying_for_media_element: "L'elemento non è stata rimosso"
         document:
           # There was a problem while destroying a document
           # 1 - controllers/documents_controller.rb
@@ -158,14 +158,14 @@ it:
           # 3 - models/lesson.rb
           # 4 - models/lesson.rb
           # 5 - models/lesson.rb
-          problem_publishing: "La lezione non può essere condivisa"
+          problem_publishing: "La lezione non è stata condivisa"
           # There was an error while trying to undo the sharing
           # 1 - controllers/lessons_controller.rb
           # 2 - models/lesson.rb
           # 3 - models/lesson.rb
           # 4 - models/lesson.rb
           # 5 - models/lesson.rb
-          problem_unpublishing: "La condivisione della lezione non può essere annullata"
+          problem_unpublishing: "Non è stato possibile settare la lezione come privata"
           # The selected lesson is not shared, hence the sharing can't be undone
           # 1 - models/lesson.rb
           already_unpublished: "Questa lezione non è stata ancora condivisa"
@@ -174,18 +174,18 @@ it:
           # 2 - models/lesson.rb
           # 3 - models/lesson.rb
           # 4 - models/lesson.rb
-          problem_destroying: "La lezione non può essere cancellata"
+          problem_destroying: "La lezione non è stata cancellata"
           # There was an error while trying to add the lesson to your Virtual Classroom
           # 1 - controllers/virtual_classroom_controller.rb
           # 2 - models/lesson.rb
           # 3 - models/lesson.rb
-          problem_adding_to_virtual_classroom: "La lezione non può essere aggiunta alla tua Virtual Classroom"
+          problem_adding_to_virtual_classroom: "La lezione non è stata aggiunta alla tua Virtual Classroom"
           # The selected lesson is already in your Virtual Classroom, hence you can't add it again
           # 1 - models/lesson.rb
           lesson_already_in_virtual_classroom: "Questa lezione è già presente nella tua Virtual Classroom"
           # For some reason, the selected lesson cannot be added to your Virtual Classroom
           # 1 - models/lesson.rb
-          lesson_not_available_for_virtual_classroom: "La lezione non può essere aggiunta alla tua Virtual Classroom"
+          lesson_not_available_for_virtual_classroom: "La lezione non è stata aggiunta alla tua Virtual Classroom"
           # There was an error while trying to remove the lesson from your Virtual Classroom
           # 1 - controllers/virtual_classroom_controller.rb
           # 2 - controllers/virtual_classroom_controller.rb
@@ -193,23 +193,23 @@ it:
           # 4 - models/lesson.rb
           # 5 - models/lesson.rb
           # 6 - models/lesson.rb
-          problem_removing_from_virtual_classroom: "La lezione non può essere rimossa dalla tua Virtual Classroom"
+          problem_removing_from_virtual_classroom: "La lezione non è stata rimossa dalla tua Virtual Classroom"
         like:
           # There was an error while you were trying to remove 'I like it' from a lesson
           # 1 - controllers/lessons_controller.rb
           # 2 - controllers/lessons_controller.rb
-          problem_destroying: "Il tuo 'Mi piace' non può essere rimosso"
+          problem_destroying: "Il tuo 'Mi piace' non è stato rimosso"
           # There was an error while you were trying to add 'I like it' to the selected lesson
           # 1 - controllers/lessons_controller.rb
           # 2 - controllers/lessons_controller.rb
-          problem_creating: "Il tuo 'Mi piace' non può essere registrato"
+          problem_creating: "Il tuo 'Mi piace' non è stato registrato"
         media_element:
           # There was an error while trying to delete an element
           # 1 - controllers/media_elements_controller.rb
           # 2 - models/media_element.rb
           # 3 - models/media_element.rb
           # 4 - models/media_element.rb
-          problem_destroying: "L'elemento non può essere cancellato"
+          problem_destroying: "L'elemento non è stato cancellato"
           # Since the element is public, it's not possible to delete it
           # 1 - models/media_element.rb
           cant_destroy_public: "Questo elemento è pubblico, non puoi cancellarlo"
@@ -219,7 +219,7 @@ it:
           # 1 - models/user.rb
           # 1 - models/user.rb
           # 1 - models/user.rb
-          problem_destroying: "L'utente non può essere cancellato"
+          problem_destroying: "L'utente non è stato cancellato"
           # This message is associated with the form used to report an inappropriate content (both for lessons and elements): a problem occurred, the report couldn't be sent
           # 1 - controllers/reports_controller.rb
           # 2 - controllers/reports_controller.rb
@@ -227,7 +227,7 @@ it:
           # 4 - models/user.rb
           # 5 - models/user.rb
           # 6 - models/user.rb
-          problem_reporting: "La tua segnalazione non può essere inviata"
+          problem_reporting: "La tua segnalazione non è stato inviato"
           # Same situation: the user is trying to report the same lesson twice
           # 1 - models/user.rb
           lesson_already_reported: "Hai già segnalato questa lezione"
@@ -238,7 +238,7 @@ it:
           # There was an error while trying to delete a notification
           # 1 - controllers/notifications_controller.rb
           # 2 - controllers/notifications_controller.rb
-          problem_destroying: "La notifica non può essere cancellata"
+          problem_destroying: "La notifica non è stata cancellata"
         virtual_classroom_lesson:
           # You tried to insert the lesson in an invalid position inside the playlist
           # 1 - models/virtual_classroom_lesson.rb
@@ -251,13 +251,13 @@ it:
           # 4 - models/virtual_classroom_lesson.rb
           # 5 - models/virtual_classroom_lesson.rb
           # 6 - models/virtual_classroom_lesson.rb
-          problem_changing_position_in_playlist: "La posizione della lezione non può essere cambiata"
+          problem_changing_position_in_playlist: "La posizione della lezione non è stata cambiata"
           # There was an error while trying to add the lesson to the playlist
           # 1 - controllers/virtual_classroom_controller.rb
           # 2 - models/virtual_classroom_lesson.rb
           # 3 - models/virtual_classroom_lesson.rb
           # 4 - models/virtual_classroom_lesson.rb
-          problem_adding_to_playlist: "La lezione non può essere aggiunta alla playlist"
+          problem_adding_to_playlist: "La lezione non è stata aggiunta alla playlist"
           # There was an error while trying to empty the playlist inside your Virtual Classroom'
           # 1 - controllers/virtual_classroom_controller.rb
           problem_emptying_playlist: "Non è stato possibile svuotare la tua playlist"
@@ -269,7 +269,7 @@ it:
           # 2 - models/virtual_classroom_lesson.rb
           # 3 - models/virtual_classroom_lesson.rb
           # 4 - models/virtual_classroom_lesson.rb
-          problem_removing_from_playlist: "La lezione non può essere rimossa dalla playlist"
+          problem_removing_from_playlist: "La lezione non è stata rimossa dalla playlist"
   
   
   # SECTION 1.2: small windows with title, description and two buttons (they are used in whenever the application asks the user for confirmation of an action)
