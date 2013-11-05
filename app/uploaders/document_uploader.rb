@@ -41,6 +41,10 @@ class DocumentUploader < CarrierWave::Uploader::Base
     File.join STORE_DIR, "#{model.id}"
   end
 
+  def absolute_store_dir_pathname
+    Rails.public_pathname.join store_dir
+  end
+
   def cache_dir
     Rails.root.join 'tmp/documents'
   end
