@@ -138,7 +138,7 @@ max_documents_in_slide: 3
 #                                                /videos_test => media_elements#videos_test
 media_test: false
 # Enables payments and trial for new users, according to the business model 'platform as a service (PaaS)'
-saas_registration_mode: true
+saas_registration_mode: false
 # Duration (in days) of the trial in paas
 saas_trial_duration: 30
 # URL types for url retrieving
