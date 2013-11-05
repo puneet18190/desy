@@ -1,0 +1,90 @@
+<%= form_for user, :html => {:autocomplete => 'off'} do |f| %>
+  <%
+    input_purchase_code = "<input id=\"registration_purchase_id\" class=\"text fltlft\" type=\"text\" value=\"\" name=\"purchase_id\">".html_safe
+    input_trial_checkbox = "<input id=\"registration_trial\" class=\"regular-checkbox\" type=\"checkbox\" value=\"0\" name=\"trial\">".html_safe
+    if trial
+      input_purchase_code = "<input id=\"registration_purchase_id\" class=\"text disabled fltlft\" type=\"text\" value=\"\" name=\"purchase_id\" disabled=\"disabled\">".html_safe
+      input_trial_checkbox = "<input id=\"registration_trial\" class=\"regular-checkbox checked\" type=\"checkbox\" value=\"1\" name=\"trial\" checked=\"checked\">".html_safe
+    end
+  %>
+  <% if SETTINGS['saas_registration_mode'] %>
+    <fieldset class="insert-content formCodAcquisto">
+      <%= t('registration.purchase_id') %><br/>
+      <%= input_purchase_code %> <div class="validationOk fltlft" style="display:none" id="registration_ok">&#10004;</div>
+      <br class="clearfloat">
+      <%= t('registration.trial', :days => SETTINGS['saas_trial_duration']) %><br>
+      <%= input_trial_checkbox %>
+      <%= label_tag 'registration_trial', '' %>
+    </fieldset>
+    <% if errors && errors.has_key?(:purchase_id) %>
+      <ul class="listaErrori">
+        <li><%= errors[:purchase_id] %></li>
+      </ul>
+    <% end %>
+  <% end %>
+  <%
+    locals_for_general_info = {
+      :f => f,
+      :edit => false,
+      :user => user,
+      :general_errors => (errors.nil? ? [] : errors[:general]),
+      :location_errors => (errors.nil? ? [] : errors[:location]),
+      :locations => locations,
+      :school_level_ids => school_level_ids,
+      :forced_location => forced_location
+    }
+    locals_for_personal_subjects = {
+      :f => f,
+      :user => user,
+      :errors => (errors.nil? ? [] : errors[:subjects]),
+      :subjects => subjects
+    }
+  %>
+  <%= render partial: 'users/personal_info', :locals => locals_for_general_info %>
+  <h2><%= t('registration.subjects.title') %></h2>
+  <%= render partial: 'users/personal_subjects', :locals => locals_for_personal_subjects %>
+  <hr>
+  <div class="contentForm">
+    <% user.registration_policies.each_with_index do |policy, index| %>
+      <% my_policy = t('registration.policies')[index] %>
+      <p>
+        <strong><%= my_policy['title'] %></strong><br><br>
+      </p>
+      <div class="verticalScroll">
+        <p><%= my_policy['description'].html_safe %></p>
+      </div>
+      <div class="checkbox-content">
+        <div class="checkboxElement">
+          <table>
+            <tr>
+              <td>
+                <% if user.errors.include?(policy) %>
+                  <div class="field_with_errors">
+                    <%= f.hidden_field policy, value: '0', id: nil %>
+                    <%= check_box_tag "user[#{policy}]", '1', user.send(policy) == '1', class: 'regular-checkbox' %>
+                    <%= label_tag "user[#{policy}]", '' %>
+                  </div>
+                <% else %>
+                  <%= f.hidden_field policy, value: '0', id: nil %>
+                  <%= check_box_tag "user[#{policy}]", '1', user.send(policy) == '1', class: 'regular-checkbox' %>
+                  <%= label_tag "user[#{policy}]", '' %>
+                <% end %>
+              </td>
+              <td><%= my_policy['accept'] %></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <br class="clearfloat">
+    <% end %>
+    
+    <ul class="listaErrori">
+      <% (errors.nil? ? [] : errors[:policies]).each do |err| %>
+        <li><%= err %></li>
+      <% end %>
+    </ul>
+    
+    <%= f.submit t('registration.done') %>
+  </div>
+  
+<% end %>
