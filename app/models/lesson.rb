@@ -107,6 +107,7 @@ class Lesson < ActiveRecord::Base
   has_many :likes
   has_many :reports, :as => :reportable, :dependent => :destroy
   has_many :taggings, :as => :taggable, :dependent => :destroy
+  has_many :tags_through_taggings, :through => :taggings, :source => :tag
   has_many :slides, :dependent => :destroy
   has_many :media_elements_slides, through: :slides
   has_many :media_elements, through: :media_elements_slides, uniq: true
