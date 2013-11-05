@@ -1,19 +1,16 @@
-<%
-  first_depth = 0
-  first_depth = @locations.first.depth if @locations.any?
-%>
-
-$('._location_select_box').each(function() {
-  $('#' + $(this).attr('id')).selectbox('detach');
-});
-
-<% ((first_depth + 1)...(SETTINGS['location_types'].length)).to_a.each do |depth| %>
-  $('select#<%= SETTINGS["location_types"][depth].downcase %>_id').html('');
-<% end %>
 <% if @locations.any? %>
+  <%
+    first_depth = 0
+    first_depth = @locations.first.depth if @locations.any?
+  %>
+  $('._location_select_box').each(function() {
+    $('#' + $(this).attr('id')).selectbox('detach');
+  });
+  <% ((first_depth + 1)...(SETTINGS['location_types'].length)).to_a.each do |depth| %>
+    $('select#<%= SETTINGS["location_types"][depth].downcase %>_id').html('');
+  <% end %>
   $('select#<%= @locations.first.sti_type.downcase %>_id').html('<%= j render(:partial => "users/locations_list", :locals => {:locations => @locations, :selected => nil, :edit => false}) %>');
+  $('._location_select_box').each(function() {
+    $('#' + $(this).attr('id')).selectbox();
+  });
 <% end %>
-
-$('._location_select_box').each(function() {
-  $('#' + $(this).attr('id')).selectbox();
-});
