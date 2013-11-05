@@ -134,14 +134,16 @@ class Seeds
     case record
     when Audio
       v = Pathname.glob(AUDIOS_FOLDER.join record.id.to_s, '*.m4a').first
-      { m4a: v.to_s, ogg: v.sub_ext('.ogg').to_s, filename: v.basename(v.extname).to_s, 
+      n = v.basename(v.extname).to_s # .gsub /_.*/, ''
+      { m4a: v.to_s, ogg: v.sub_ext('.ogg').to_s, filename: n, 
         m4a_duration: row['m4a_duration'].try(:to_f), ogg_duration: row['ogg_duration'].try(:to_f) }
     when Video
       f = VIDEOS_FOLDER.join record.id.to_s
       v = Pathname.glob(f.join '*.mp4').first
       c = Pathname.glob(f.join 'cover_*.jpg').first.try(:to_s)
       t = Pathname.glob(f.join 'thumb_*.jpg').first.try(:to_s)
-      { mp4: v.to_s, webm: v.sub_ext('.webm').to_s, filename: v.basename(v.extname).to_s,
+      n = v.basename(v.extname).to_s # .gsub /_.*/, ''
+      { mp4: v.to_s, webm: v.sub_ext('.webm').to_s, filename: n,
         mp4_duration: row['mp4_duration'].try(:to_f), webm_duration: row['webm_duration'].try(:to_f), cover: c, thumb: t }
     when Image
       File.open Pathname.glob(IMAGES_FOLDER.join(record.id.to_s, Image::EXTENSIONS_GLOB), File::FNM_CASEFOLD).first
@@ -149,15 +151,22 @@ class Seeds
   end
   
   def attachment(id)
-    f = case id % 6
-      when 0 then 'doc1.ppt'
-      when 1 then 'doc2.pdf'
-      when 2 then 'doc3.tar.gz'
-      when 3 then 'doc4.ods'
-      when 4 then 'doc5.svg'
-      when 5 then 'doc6.txt'
-    end
-    File.open DOCUMENTS_FOLDER.join f
+    path =
+      case Rails.env
+      when 'production'
+        Pathname.glob(DOCUMENTS_FOLDER.join id.to_s, '*').first
+      else
+        DOCUMENTS_FOLDER.join(
+          case id % 6
+            when 0 then 'doc1.ppt'
+            when 1 then 'doc2.pdf'
+            when 2 then 'doc3.tar.gz'
+            when 3 then 'doc4.ods'
+            when 4 then 'doc5.svg'
+            when 5 then 'doc6.txt'
+          end )
+      end
+    File.open path
   end
   
   def tags(id)
