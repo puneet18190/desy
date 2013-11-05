@@ -437,10 +437,10 @@ it:
     save_media_element_editor:
       # Title
       # 1 - views/shared/_popups.html.erb
-      title: "Salvare un elemento privato"
+      title: "Salvataggio di un elemento privato"
       # Message
       # 1 - views/shared/_popups.html.erb
-      confirm: "Avendo modificato un elemento privato, hai la possibilità di sovrascriverlo"
+      confirm: "L'elemento che hai modificato è privata, dunque hai la possibilità di sovrascriverlo"
       # Button to overwrite
       # 1 - views/shared/_popups.html.erb
       do: "Sovrascrivi"
@@ -454,7 +454,7 @@ it:
       title: "Questo elemento è in uso!"
       # Message
       # 1 - views/shared/_popups.html.erb
-      confirm: "Se si sovrascrive, verrà sostituito in qualsiasi lezione privata che lo contiene"
+      confirm: "Se lo si sovrascrive, verrà sostituito in tutte le lezioni privata che lo contiengono"
       # Button to confirm
       # 1 - views/shared/_popups.html.erb
       do: "Sovrascrivi"
@@ -590,7 +590,7 @@ it:
       # 1 - views/media_elements/info_form_in_editor/_edit.html.erb
       title: "Hai fatto modifiche importanti?"
       # 1 - views/media_elements/info_form_in_editor/_edit.html.erb
-      description: "Aggiorna le informazioni sulla lezione in virtù del nuovo contenuto"
+      description: "Aggiorna le informazioni sull'elemento in virtù del nuovo contenuto"
       # 1 - views/media_elements/info_form_in_editor/_edit.html.erb
       cancel: "Annulla"
       # 1 - views/media_elements/info_form_in_editor/_edit.html.erb
@@ -1615,7 +1615,7 @@ it:
     empty: "Non ci sono lezioni nella tua sezione"
     # Message which appears in the middle of the page if the filter you applied produced an empty result
     # 1 - views/lessons/_empty_filter.html.erb
-    empty_filter: "Il filtro per la lezione non ha prodotto risultati"
+    empty_filter: "Il filtro da te applicato non ha prodotto risultati"
     # Captions of the bar on top of the lesson's list
     headers:
       # The status of a lesson (linked, private, shared, etc)
@@ -1715,7 +1715,7 @@ it:
     empty: "Non ci sono elementi nella tua sezione"
     # Message which appears in the middle of the page if the filter you applied produced an empty result
     # 1 - views/media_elements/_empty_filter.html.erb
-    empty_filter: "Il filtro dell'elemento non ha prodotto risultati"
+    empty_filter: "Il filtro da te applicato non ha prodotto risultati"
     # Caption of the link to open the window to upload a new element (on the left of the bar above the element's list)
     # 1 - views/media_elements/index.html.erb
     load_new: "Carica un nuovo elemento"
@@ -1997,7 +1997,7 @@ it:
     description_title: "Stai cercando una lezione o un elemento didattico?"
     # General instructions about how to use the engine
     # 1 - views/search/index.html.erb
-    description: "Inserisci una parola da ricercare, scegli un filtro e vai!"
+    description: "Inserisci una parola chiave, scegli un filtro e vai!"
     # After the first search, the search parameters are hidden: to open them again and make another search, you click on this button
     # 1 - views/search/lessons/_main.html.erb
     # 2 - views/search/media_elements/_main.html.erb
@@ -2012,7 +2012,7 @@ it:
       result_with_tags: "Trovato %{num} risultati (delimitare la ricerca selezionando tra i tag qui sotto)"
       # General captions for the results that the engine retrieved (the variable %{num} is replaced by the number of results found, spiegare %{tag})
       # 1 - views/search/lessons/_amount.html.erb
-      result_filtered_by_tag: "Trovato %{num} risultati (solo elementi associati al tag &lt%{tag}&gt)"
+      result_filtered_by_tag: "Trovato %{num} risultati (solo lezioni associate al tag &lt%{tag}&gt)"
       # Response if the result was empty (%{word} is replaced by the search word inserted by the user)
       # 1 - views/search/lessons/_empty.html.erb
       empty_word: "Non sono state trovate lezioni associate ai tag che contengono &lt%{word}&gt: provare a inserire una parola più corta, o modificare i parametri di ricerca"
@@ -2057,10 +2057,10 @@ it:
       result_filtered_by_tag: "Trovato %{num} risultati (solo elementi associati al tag &lt%{tag}&gt)"
       # Response if the result was empty (%{word} is replaced by the search word inserted by the user)
       # 1 - views/search/media_elements/_empty.html.erb
-      empty_word: "Non sono state trovati elementi associati ai tag che contengono &lt%{word}&gt: provare a inserire una parola più corta, o modificare i parametri di ricerca"
+      empty_word: "Non sono stati trovati elementi associati ai tag che contengono &lt%{word}&gt: provare a inserire una parola più corta, o modificare i parametri di ricerca"
       # Response if the filters the user applied are too strict and this makes the result to be empty
       # 1 - views/search/media_elements/_empty.html.erb
-      empty_filter: "Nessuna elemento è stato trovato con i filtri che hai scelto"
+      empty_filter: "Nessun elemento è stato trovato con i filtri che hai scelto"
       keyword:
         # Label for the space where the user inserts the word he searchs for
         # 1 - views/search/media_elements/_main.html.erb
@@ -2478,30 +2478,30 @@ it:
     lessons:
       # A lesson is 'private' if only the owner may see it
       # 1 - ../lib/autoload/lessons_media_elements_shared.rb
-      private: "Privato"
+      private: "Privata"
       # A lesson is 'just copied' if the user copied from another lesson, but he hasn't personalized it yet
       # 1 - ../lib/autoload/lessons_media_elements_shared.rb
-      copied: "Copiato"
+      copied: "Copiata"
       # A lesson is 'linked' if the user doesn't own it, it's just a link to another user's lesson
       # 1 - ../lib/autoload/lessons_media_elements_shared.rb
-      linked: "Collegato"
+      linked: "Link"
       # A lesson is 'public' when you are not the creator and you haven't linked it yet
       # 1 - ../lib/autoload/lessons_media_elements_shared.rb
-      public: "Pubblico"
+      public: "Pubblica"
       # A lesson is 'shared' when you are the creator and it's visible to other users
       # 1 - ../lib/autoload/lessons_media_elements_shared.rb
-      shared: "Condiviso"
+      shared: "Condivisa"
     # The list of statuses for media elements
     media_elements:
       # An element is 'private' if you are the owner and you haven't used it inside a public lesson
       # 1 - ../lib/autoload/lessons_media_elements_shared.rb
-      private: "Privato"
+      private: "Privata"
       # An element is 'public' if you are not the owner and you haven't linked it yet 
       # 1 - ../lib/autoload/lessons_media_elements_shared.rb
-      public: "Pubblico"
+      public: "Pubblica"
       # An element is 'linked' if the user doesn't own it, it's just a link to a public element
       # 1 - ../lib/autoload/lessons_media_elements_shared.rb
-      linked: "Collegato"
+      linked: "Link"
   # Filters for both lessons and media elements
   filters:
     # All lessons without any filters
@@ -2521,7 +2521,7 @@ it:
     only_mine: "Di tua proprietà"
     # All the lessons that you just copied without personalizing them yet
     # 1 - ../lib/autoload/lessons_media_elements_shared.rb
-    copied: "appena copiato"
+    copied: "Appena copiato"
     # All the media elements, without any filter
     # 1 - ../lib/autoload/lessons_media_elements_shared.rb
     all_media_elements: "Tutti i formati"
@@ -2967,7 +2967,7 @@ it:
         content_title: "Elementi pronti per essere salvati"
       # This label is used in a checkbox on the multiple upload form: when checked, the element will be saved and automatically published (this option is possible only for images, since audios and videos must be converted before they can be shared)
       # 1 - views/admin/media_elements/_media_element_upload.html.erb
-      publish_now: "Adesso pubblica"
+      publish_now: "Pubblicalo adesso"
       # Frame for the media elements search engine
       search:
         # Title of the form
