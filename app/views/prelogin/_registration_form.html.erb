@@ -77,14 +77,11 @@
       </div>
       <br class="clearfloat">
     <% end %>
-    
     <ul class="listaErrori">
       <% (errors.nil? ? [] : errors[:policies]).each do |err| %>
         <li><%= err %></li>
       <% end %>
     </ul>
-    
     <%= f.submit t('registration.done') %>
   </div>
-  
 <% end %>
