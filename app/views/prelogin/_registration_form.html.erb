@@ -47,9 +47,7 @@
   <div class="contentForm">
     <% user.registration_policies.each_with_index do |policy, index| %>
       <% my_policy = t('registration.policies')[index] %>
-      <p>
-        <strong><%= my_policy['title'] %></strong><br><br>
-      </p>
+      <strong><%= my_policy['title'] %></strong><br><br>
       <div class="verticalScroll">
         <%= my_policy['description'].html_safe %>
       </div>
