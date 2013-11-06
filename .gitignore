@@ -58,5 +58,5 @@
 /vendor/assets/javascripts/tinymce/plugins/tiny_mce_wiris/formulas/*
 /vendor/assets/javascripts/tinymce/plugins/tiny_mce_wiris/cache/*
 
-# AmicoCloud
-/amico_cloud
+# AmicoCloud settings yml
+/amico_cloud/config/settings.yml
