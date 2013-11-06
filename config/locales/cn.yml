@@ -1427,6 +1427,7 @@ cn:
   # Audio Editor => Audio (to add new tracks)
   # Image Editor => Image (to pick the image to be modified)
   # Video Editor => Image (to create an image component) + Video (to create a video component) + Audio (to select an audio track for the video)
+  
   galleries:
     audios:
       # Title of a generic audio gallery
