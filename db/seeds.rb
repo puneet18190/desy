@@ -1,36 +1,55 @@
 require 'csv'
+
 require 'env_relative_path'
 
 class Seeds
   include EnvRelativePath
+
+  def self.environment_paths(path)
+    ENVIRONMENT_PATHS.map{ |v| v.join path }
+  end
+
+  # If suffix exists, it will be appended at the end of each path with a path join before to detect the first existing path
+  def self.first_existing_path(paths, suffix = nil)
+    paths = paths.map { |v| v.join suffix } if suffix
+    paths.detect { |path| path.exist? }
+  end
   
-  # Directory containing csv
-  CSV_DIR     = Rails.root.join("db/seeds/environments/#{Rails.env}/csv")
+  # Paths searchable for seeds files
+  ENVIRONMENT_PATHS = Rails.application.config.paths[ Rails.application.config.db_seeds_enviroment_path ].expanded.map{ |v| Pathname(v) }
+
+  # Folder containing csv
+  CSV_FOLDERS = environment_paths 'csv'
   # Options for the csv loading
   CSV_OPTIONS = { headers: true }
+
   # Public media element folders
   PUBLIC_MEDIA_ELEMENTS_FOLDERS     = [ Media::Video::Uploader, Media::Audio::Uploader, ImageUploader ].map{ |u| u.const_get(:FOLDER) }
   # Folder where backups of media elements are stored
   OLD_PUBLIC_MEDIA_ELEMENTS_FOLDERS = Hash[ PUBLIC_MEDIA_ELEMENTS_FOLDERS.map{ |f| [ f, "#{f}.old" ] } ]
+
   # Normal folder of media elements
-  MEDIA_ELEMENTS_FOLDER = Rails.root.join "db/seeds/environments/#{Rails.env}/media_elements"
+  MEDIA_ELEMENTS_FOLDER = environment_paths 'media_elements'
+
+  # AUDIOS_FOLDER, VIDEOS_FOLDER, IMAGES_FOLDER
+  %w(audios videos images).each do |media_folder|
+    const_set :"#{media_folder.upcase}_FOLDER", first_existing_path( MEDIA_ELEMENTS_FOLDER, env_relative_pathname(media_folder) )
+  end
+
   # Public documents folder
   PUBLIC_DOCUMENTS_FOLDER     = DocumentUploader::FOLDER
   # Folder where backups of documents are stored
   OLD_PUBLIC_DOCUMENTS_FOLDER = "#{DocumentUploader::FOLDER}.old"
+
   # Folder of documents
-  DOCUMENTS_FOLDER = Rails.root.join "db/seeds/environments/#{Rails.env}/documents"
+  DOCUMENTS_FOLDER = first_existing_path environment_paths 'documents'
+
   # Pepper code
   PEPPER = '3e0e6d5ebaa86768a0a51be98fce6367e44352d31685debf797b9f6ccb7e2dd0f5139170376240945fcfae8222ff640756dd42645336f8b56cdfe634144dfa7d'
-  
-  # AUDIOS_FOLDER, VIDEOS_FOLDER, IMAGES_FOLDER
-  %w(audios videos images).each do |media_folder|
-    const_set :"#{media_folder.upcase}_FOLDER", Pathname.new(env_relative_path MEDIA_ELEMENTS_FOLDER, media_folder)
-  end
-  
+    
   # List of models to seed
   MODELS = [ Location, SchoolLevel, Subject, Purchase, User, Document, MediaElement, Lesson, Slide, MediaElementsSlide, Like, Bookmark ]
-  
+
   def run
     puts "Applying #{Rails.env} seeds (#{MODELS.map{ |m| humanize_table_name(m.table_name) }.join(', ')})"
     backup_old_media_elements_folders
@@ -62,7 +81,7 @@ class Seeds
     warn "The pepper doesn't correspond to the seeds pepper; replacing" 
     warn "Moving #{pepper} to #{old_pepper}"
     FileUtils.mv pepper, old_pepper
-    pepper.open('w'){ |io| io.write PEPPER }
+    pepper.open('w') { |io| io.write PEPPER }
     User::Authentication.const_set :PEPPER, PEPPER
   end
   
@@ -115,7 +134,7 @@ class Seeds
   end
   
   def csv_path(filename = @table_name)
-    CSV_DIR.join "#{filename}.csv"
+    self.class.first_existing_path CSV_FOLDERS, "#{filename}.csv"
   end
   
   def csv_open(csv_path = csv_path)

@@ -23,6 +23,10 @@ module Desy
     config.settings = ::SettingsLoader.load_settings config
     ::SETTINGS      = config.settings
 
+    # Seeds files depending by environment paths
+    config.db_seeds_enviroment_path = "db/seeds/environments/#{Rails.env}"
+    config.paths.add config.db_seeds_enviroment_path
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
