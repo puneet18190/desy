@@ -12,8 +12,10 @@ end
 module Desy
   class Application < Rails::Application
 
+    config.settings_path = 'config/settings.yml'
+
     # Per-application settings file paths
-    config.paths.add 'config/settings.yml'
+    config.paths.add config.settings_path
 
     # Load per-application settings
     require_relative 'settings'
