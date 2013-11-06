@@ -1110,7 +1110,7 @@ it:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Allega un documento"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "Puoi allegare alle tue lezioni on-line qualsiasi tipo di documento. In questa sezione puoi caricare i tuoi documenti personali, decidere una descrizione e un titolo, e organizzarli per averli pronti da usare nel Lesson Editor."
+        content: "Puoi allegare alle tue lezioni on-line qualsiasi tipo di documento. In questa sezione puoi caricare i tuoi documenti personali, decidere una descrizione e un titolo, e organizzarli per averli pronti da usare nell'Editor delle lezioni."
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Tipi di documenti"
