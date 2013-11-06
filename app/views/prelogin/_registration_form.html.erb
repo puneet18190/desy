@@ -47,7 +47,7 @@
   <div class="contentForm">
     <% user.registration_policies.each_with_index do |policy, index| %>
       <% my_policy = t('registration.policies')[index] %>
-      <strong><%= my_policy['title'] %></strong><br><br>
+      <strong><%= my_policy['title'] %></strong><br>
       <div class="verticalScroll">
         <%= my_policy['description'].html_safe %>
       </div>
@@ -73,7 +73,7 @@
           </table>
         </div>
       </div>
-      <br class="clearfloat">
+      <br><br>
     <% end %>
     <ul class="listaErrori">
       <% (errors.nil? ? [] : errors[:policies]).each do |err| %>
