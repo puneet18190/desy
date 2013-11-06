@@ -12,14 +12,13 @@ end
 module Desy
   class Application < Rails::Application
 
-    # Loading settings or exit
-    require 'yaml'
-    settings_path = Rails.root.join('config/settings.yml')
-    unless settings_path.exist?
-      abort "The settings file #{settings_path} was not found; " << 
-            "you can create it copying #{settings_path}.example to it and customizing it."
-    end
-    ::SETTINGS = YAML.load(settings_path.read)
+    # Per-application settings file paths
+    config.paths.add 'config/settings.yml'
+
+    # Load per-application settings
+    require_relative 'settings'
+    config.settings = ::SettingsLoader.load_settings config
+    ::SETTINGS      = config.settings
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
@@ -41,7 +40,7 @@ module Desy
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
-    config.i18n.default_locale = SETTINGS['languages'].first
+    config.i18n.default_locale = ::SETTINGS['languages'].first
 
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
@@ -70,10 +69,10 @@ module Desy
     config.assets.version = '1.0'
 
     # More than one language
-    config.more_than_one_language = SETTINGS['languages'].size > 1
+    config.more_than_one_language = ::SETTINGS['languages'].size > 1
 
     # Prefix for temporary files and folders
-    config.tempfiles_prefix = ->() { "#{SETTINGS['tempfiles_prefix']}.#{Thread.current.object_id}" }
+    config.tempfiles_prefix = ->() { "#{::SETTINGS['tempfiles_prefix']}.#{Thread.current.object_id}" }
 
     # Stylesheets configs
     config.assets.stylesheets = ActiveSupport::OrderedOptions.new
