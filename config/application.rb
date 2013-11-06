@@ -12,6 +12,7 @@ end
 module Desy
   class Application < Rails::Application
 
+    # Per-application settings path
     config.settings_path = 'config/settings.yml'
 
     # Per-application settings file paths
