@@ -207,7 +207,7 @@ class UsersController < ApplicationController
       user.upgrade_trial_token!(purchase.id)
       #UserMailer.new_password(user, request.host, request.port).deliver TODO inserire il mailer
     end
-    render 'users/fullpage_notifications/reset_password/email_sent'
+    render 'users/fullpage_notifications/upgrade_trial/email_sent'
   end
   
   # === Description

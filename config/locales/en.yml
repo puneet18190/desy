@@ -1259,7 +1259,7 @@ en:
         # 1 - views/users/fullpage_notifications/upgrade_trial/email_sent.html.erb
         title: "Upgrade a trial account"
         # 1 - views/users/fullpage_notifications/upgrade_trial/email_sent.html.erb
-        description: "If the address you inserted corresponds to a trial account, and if the purchase code you wrote is valid, you will receive an email containing the link to confirm your upgrade"
+        description: "If the address you inserted corresponds to a trial account, and if the purchase code you wrote is valid,<br> you will receive an email containing the link to confirm your upgrade"
       # The user wants to upgrade his trial account: this message appears when the account has been successfully upgraded and confirmed (the variable %{expiration_date} is replaced by the date of expiration of the purchase code inserted)
       received:
         # 1 - views/users/fullpage_notifications/upgrade_trial/received.html.erb
