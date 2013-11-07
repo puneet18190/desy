@@ -1227,6 +1227,7 @@ it:
     # 4 - views/users/fullpage_notifications/confirmation/email_sent.html.erb
     # 5 - views/users/fullpage_notifications/expired_link.html.erb
     # 6 - views/users/request_reset_password.html.erb
+    # 7 - views/users/request_update_trial.html.erb
     back: "Torna alla home page"
     # This message appears if a user tries to click on a confirmation link (or a reset password link) which is no longer valid
     expired_link:
@@ -1927,6 +1928,9 @@ it:
     # Link to ask for help, in case the user forgot his password
     # 1 - views/prelogin/_login.html.erb
     problems_with_password: "Hai dimenticato la tua password?"
+    # Link to upgrade a trial account
+    # 1 - views/prelogin/_login.html.erb
+    update_trial: "Fai l'upgrade di un account trial"
     # Purchase code
     # 1 - views/prelogin/_registration_form.html.erb
     purchase_id: "Codice di acquisto:"
