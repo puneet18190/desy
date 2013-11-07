@@ -778,6 +778,7 @@ CREATE TABLE users (
     confirmation_token character varying(255),
     metadata text,
     password_token character varying(255),
+    upgrade_trial_token character varying(255),
     purchase_id integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
@@ -1498,6 +1499,13 @@ CREATE UNIQUE INDEX index_users_on_email ON users USING btree (email);
 --
 
 CREATE INDEX index_users_on_password_token ON users USING btree (password_token);
+
+
+--
+-- Name: index_users_on_upgrade_trial_token; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_users_on_upgrade_trial_token ON users USING btree (upgrade_trial_token);
 
 
 --
