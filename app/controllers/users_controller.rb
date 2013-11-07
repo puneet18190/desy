@@ -200,15 +200,14 @@ class UsersController < ApplicationController
       redirect_to user_request_upgrade_trial_path, { flash: { alert: t('flash.email_or_purchase_token_is_blank') } }
       return
     end
-    
-    #if user = User.active.confirmed.where(email: email).first
-    #  user.password_token!
-    #  UserMailer.new_password(user, request.host, request.port).deliver
-    #end
-    
-    
-    
-    #render 'users/fullpage_notifications/reset_password/email_sent' # TODO trialzz
+    user = User.active.confirmed.where(email: email).first
+    purchase = Purchase.find_by_token(token)
+    purchase = nil if purchase && purchase.users.count >= purchase.accounts_number
+    if user && purchase && user.purchase_id.nil?
+      user.upgrade_trial_token!
+      #UserMailer.new_password(user, request.host, request.port).deliver TODO inserire il mailer
+    end
+    render 'users/fullpage_notifications/reset_password/email_sent'
   end
   
   # === Description

@@ -10,7 +10,7 @@ module User::UpgradeTrial
     def generate_upgrade_trial_token
       loop do
         token = SecureRandom.urlsafe_base64(16)
-        break token unless where(:password_token => token).first
+        break token unless where(:upgrade_trial_token => token).first
       end
     end
     
@@ -27,7 +27,7 @@ module User::UpgradeTrial
   # Module containing the instance methods
   module InstanceMethods
     
-    # Sets the password token using the automatic generator
+    # Sets the upgrade trial token using the automatic generator
     def upgrade_trial_token!
       self.upgrade_trial_token = self.class.generate_upgrade_trial_token
       self.save!
