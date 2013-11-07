@@ -26,6 +26,8 @@
       <%= submit_tag t('registration.login.done') %>
     <% end %>
     <p><%= link_to t('registration.problems_with_password'), user_request_reset_password_path %></p>
-    <p><%= link_to 'Upgrade your trial account', user_request_update_trial_path %></p> <!-- TODO traduzz -->
+    <% if SETTINGS['saas_registration_mode'] %>
+      <p><%= link_to 'Upgrade your trial account', user_request_update_trial_path %></p> <!-- TODO traduzz -->
+    <% end %>
   </div>
 </div>

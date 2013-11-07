@@ -16,9 +16,28 @@
 #
 class UsersController < ApplicationController
   
-  skip_before_filter :authenticate, :only => [:create, :confirm, :request_reset_password, :reset_password, :send_reset_password, :find_locations]
+  skip_before_filter :authenticate, :only => [
+    :create,
+    :confirm,
+    :request_reset_password,
+    :reset_password,
+    :send_reset_password,
+    :request_update_trial,
+    :update_trial,
+    :send_update_trial,
+    :find_locations
+  ]
   before_filter :initialize_layout, :only => [:edit, :update, :subjects, :statistics, :mailing_lists]
-  layout 'fullpage_notification', :only => [:request_reset_password, :reset_password, :send_reset_password, :confirm, :create]
+  layout 'fullpage_notification', :only => [
+    :request_reset_password,
+    :reset_password,
+    :send_reset_password,
+    :request_update_trial,
+    :update_trial,
+    :send_update_trial,
+    :confirm,
+    :create
+  ]
   
   # === Description
   #
@@ -151,7 +170,11 @@ class UsersController < ApplicationController
   #
   # * ApplicationController#authenticate
   #
-  def request_update_trial # TODO trialzz
+  def request_update_trial
+    if !SETTINGS['saas_registration_mode']
+      redirect_to home_path
+      return
+    end
   end
   
   # === Description
@@ -167,6 +190,10 @@ class UsersController < ApplicationController
   # * ApplicationController#authenticate
   #
   def send_update_trial
+    if !SETTINGS['saas_registration_mode']
+      redirect_to home_path
+      return
+    end
     render 'users/fullpage_notifications/reset_password/email_sent' # TODO trialzz
   end
   
@@ -183,6 +210,10 @@ class UsersController < ApplicationController
   # * ApplicationController#authenticate
   #
   def update_trial
+    if !SETTINGS['saas_registration_mode']
+      redirect_to home_path
+      return
+    end
     if new_password
       UserMailer.new_password_confirmed(user, new_password, request.host, request.port).deliver
       render 'users/fullpage_notifications/reset_password/received' # TODO trialzz

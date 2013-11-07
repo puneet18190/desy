@@ -1,0 +1,12 @@
+<div class="dialog">
+  <h1>Update your trial!</h1> <!-- TODO traduzz fallo standard -->
+  <p>Su, Su, dammi il codice di acquisto</p> <!-- TODO traduzz fallo standard -->
+  <%= form_tag user_send_update_trial_path do |f| %>
+    <%= label_tag 'email', t('users.email') %>:<br> <%= email_field_tag :email, nil, id: 'email' %> <!-- TODO traduzz aggiorna solamente i luoghi di utilizzo di users.email -->
+    <%= label_tag 'purchase_id', t('users.purchase_id') %>:<br> <%= text_field_tag :purchase_id, nil, id: 'update_trial_purchase_id' %> <!-- TODO traduzz analoga a email -->
+    <%= submit_tag 'daje' %> <!-- TODO traduzz fallo standard -->
+  <% end %>
+  <p style="padding-top:30px">
+    <%= link_to image_tag('logo_grigio.png'), home_path, :title => 'torna' %> <!-- TODO traduzz fallo standard -->
+  </p>
+</div>
