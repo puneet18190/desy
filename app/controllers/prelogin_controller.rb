@@ -51,6 +51,10 @@ class PreloginController < ApplicationController
   # * ApplicationController#authenticate
   #
   def purchase_code
+    if !SETTINGS['saas_registration_mode']
+      render :nothing => true
+      return
+    end
     @purchase = Purchase.find_by_token(params[:token])
     @purchase = nil if @purchase && @purchase.users.count >= @purchase.accounts_number
     if @purchase && @purchase.location
