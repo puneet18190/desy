@@ -204,7 +204,7 @@ class UsersController < ApplicationController
     purchase = Purchase.find_by_token(token)
     purchase = nil if purchase && purchase.users.count >= purchase.accounts_number
     if user && purchase && user.purchase_id.nil?
-      user.upgrade_trial_token!
+      user.upgrade_trial_token!(purchase.id)
       #UserMailer.new_password(user, request.host, request.port).deliver TODO inserire il mailer
     end
     render 'users/fullpage_notifications/reset_password/email_sent'

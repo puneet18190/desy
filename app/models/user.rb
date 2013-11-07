@@ -180,6 +180,32 @@ class User < ActiveRecord::Base
   
   # === Description
   #
+  # Saves the temporary purchase id; if the param is +nil+, the purchase id is emptied. Notice that this method raises an exception
+  #
+  # === Args
+  #
+  # * *purchase_id*: the purchase_id to be saved
+  #
+  def upgrade_trial_purchase_id!(purchase_id = nil)
+    self.metadata = OpenStruct.new(metadata.marshal_dump.merge(upgrade_trial_purchase_id: purchase_id))
+    self.save!
+    nil
+  end
+  
+  # === Description
+  #
+  # Returns the temporary purchase_id
+  #
+  # === Returns
+  #
+  # A hash with parameters (for a sample structure, see Media::Video::Editing::Parameters#convert_parameters)
+  #
+  def upgrade_trial_purchase_id
+    metadata.try(:upgrade_trial_purchase_id)
+  end
+  
+  # === Description
+  #
   # Saves the Video Editor cache; if the param is +nil+, the cache is emptied
   #
   # === Args

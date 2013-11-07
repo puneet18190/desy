@@ -28,9 +28,9 @@ module User::UpgradeTrial
   module InstanceMethods
     
     # Sets the upgrade trial token using the automatic generator
-    def upgrade_trial_token!
+    def upgrade_trial_token!(purchase_id = nil)
       self.upgrade_trial_token = self.class.generate_upgrade_trial_token
-      self.save!
+      self.upgrade_trial_purchase_id!(purchase_id)
     end
     
   end
