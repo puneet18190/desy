@@ -28,6 +28,9 @@ cn:
     # The user forgot to insert an email
     # 1 - controllers/users_controller.rb
     email_is_blank: "邮件地址是空的"
+    # The user forgot to insert email or purchase code
+    # 1 - controllers/users_controller.rb
+    email_or_purchase_token_is_blank: "One between email and purchase code is blank" # 2 TODO
   # Messages shown inside a popup, all over the application
   other_popup_messages:
     correct:

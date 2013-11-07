@@ -28,6 +28,9 @@ it:
     # The user forgot to insert an email
     # 1 - controllers/users_controller.rb
     email_is_blank: "Il campo Email non è valorizzato"
+    # The user forgot to insert email or purchase code
+    # 1 - controllers/users_controller.rb
+    email_or_purchase_token_is_blank: "Uno dei due campi, Email e Codice d'acquisto, non è valorizzato"
   # Messages shown inside a popup, all over the application
   other_popup_messages:
     correct:

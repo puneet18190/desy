@@ -194,7 +194,21 @@ class UsersController < ApplicationController
       redirect_to home_path
       return
     end
-    render 'users/fullpage_notifications/reset_password/email_sent' # TODO trialzz
+    email = params[:email]
+    token = params[:purchase_id]
+    if email.blank? || token.blank?
+      redirect_to user_request_upgrade_trial_path, { flash: { alert: t('flash.email_or_purchase_token_is_blank') } }
+      return
+    end
+    
+    #if user = User.active.confirmed.where(email: email).first
+    #  user.password_token!
+    #  UserMailer.new_password(user, request.host, request.port).deliver
+    #end
+    
+    
+    
+    #render 'users/fullpage_notifications/reset_password/email_sent' # TODO trialzz
   end
   
   # === Description
