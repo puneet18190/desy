@@ -2108,7 +2108,11 @@ cn:
   users:
     # Caption for the email which univoquely identifies the user
     # 1 - views/users/request_reset_password.html.erb
+    # 2 - views/users/request_upgrade_trial.html.erb
     email: "邮件地址"
+    # General caption for the user's purchase code
+    # 1 - views/users/request_upgrade_trial.html.erb
+    purchase_id: "Purchase code" # 2 TODO
     # Section 1: personal info
     info:
       # Caption of the link inside the profile's menu
