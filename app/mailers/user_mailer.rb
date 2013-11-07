@@ -9,7 +9,7 @@ class UserMailer < ActionMailer::Base
   
   layout 'shared/mailer'
   
-  default :from => SETTINGS['admin']['email']
+  default :from => SETTINGS['super_admin']
   
   # Mail sent to confirm a new user account
   def account_confirmation(user, host = nil, port = nil)

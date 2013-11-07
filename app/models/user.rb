@@ -148,7 +148,7 @@ class User < ActiveRecord::Base
   # An object of type User
   #
   def self.admin
-    find_by_email SETTINGS['admin']['email']
+    find_by_email SETTINGS['super_admin']
   end
   
   # === Description

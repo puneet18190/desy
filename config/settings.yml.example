@@ -21,12 +21,8 @@ application:
 # The order is important: it determines the parent->child relation
 # The last location is the one associated the the user
 location_types: ['Province', 'City', 'County', 'School']
-# Initial attributes of the super-admin user
-admin:
-  name: 'DESY'
-  surname: 'Admin User'
-  email: 'desy@morganspa.com'
-  password: 'desymorgan'
+# Email of the only super admin user
+super_admin: 'desy@morganspa.com'
 # More emails to grant admin privileges to
 grant_admin_privileges: ['email1@example.com', 'email2@example.com', 'email3@example.com']
 # Minimum length of a tag (in characters)
