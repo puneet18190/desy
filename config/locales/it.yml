@@ -2189,15 +2189,26 @@ it:
         name: "Nome"
     # Page that is opened when the user clicks on the link 'Forgot your password?'
     reset_password:
-       # Title
-       # 1 - views/users/request_reset_password.html.erb
-       title: "Hai dimenticato la password?"
-       # Instructions
-       # 1 - views/users/request_reset_password.html.erb
-       description: "Inserisci il tuo indirizzo email per ricevere una nuova password"
-       # Button to send reset
-       # 1 - views/users/request_reset_password.html.erb
-       done: "Reset password"
+      # Title
+      # 1 - views/users/request_reset_password.html.erb
+      title: "Hai dimenticato la password?"
+      # Instructions
+      # 1 - views/users/request_reset_password.html.erb
+      description: "Inserisci il tuo indirizzo email per ricevere una nuova password"
+      # Button to send reset
+      # 1 - views/users/request_reset_password.html.erb
+      done: "Reset password"
+    # Page that is opened when the user clicks on the link 'Upgrade your trial account'
+    upgrade_trial:
+      # Title
+      # 1 - views/users/request_upgrade_trial.html.erb
+      title: "Vuoi fare l'upgrade del tuo account di tipo 'trial'?"
+      # Instructions
+      # 1 - views/users/request_upgrade_trial.html.erb
+      description: "Inserisci la tua email e un codice d'acquisto valido"
+      # Button to send upgrade
+      # 1 - views/users/request_upgrade_trial.html.erb
+      done: "Fai l'upgrade"
     # Section 3: user's personal and general statistics
     statistics:
       # Link inside the user's profile menu
