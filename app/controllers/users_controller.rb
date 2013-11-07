@@ -141,6 +141,58 @@ class UsersController < ApplicationController
   
   # === Description
   #
+  # Opens the page where the user writes an email and a purchase code to update his trial account
+  #
+  # === Mode
+  #
+  # Html
+  #
+  # === Skipped filters
+  #
+  # * ApplicationController#authenticate
+  #
+  def request_update_trial # TODO trialzz
+  end
+  
+  # === Description
+  #
+  # Sends to the user an email containing the update trial token
+  #
+  # === Mode
+  #
+  # Html
+  #
+  # === Skipped filters
+  #
+  # * ApplicationController#authenticate
+  #
+  def send_update_trial
+    render 'users/fullpage_notifications/reset_password/email_sent' # TODO trialzz
+  end
+  
+  # === Description
+  #
+  # Checks the token and updates the trial account of the user
+  #
+  # === Mode
+  #
+  # Html
+  #
+  # === Skipped filters
+  #
+  # * ApplicationController#authenticate
+  #
+  def update_trial
+    if new_password
+      UserMailer.new_password_confirmed(user, new_password, request.host, request.port).deliver
+      render 'users/fullpage_notifications/reset_password/received' # TODO trialzz
+    else
+      render 'users/fullpage_notifications/expired_link' # TODO trialzz
+    end
+  end
+  
+  # === Description
+  #
   # Form to edit the general information about your profile
   #
   # === Mode
