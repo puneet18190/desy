@@ -15,7 +15,7 @@
 # * *purchase_id*: references to the Purchase that allows the user to log in
 # * *confirmation_token*: token used for confirmation, generated automaticly
 # * *password_token*: token used for resetting the password, generated automaticly
-# * *upgrade_trial_token*: token used for updating a trial account, generated automaticly
+# * *upgrade_trial_token*: token used for upgrading a trial account, generated automaticly
 # * *metadata*:
 #   * +video_editor_cache+: cache of the Video Editor (screenshot of the last video edited)
 #   * +audio_editor_cache+: cache of the Audio Editor (screenshot of the last audio edited)

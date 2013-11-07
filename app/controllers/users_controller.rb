@@ -160,7 +160,7 @@ class UsersController < ApplicationController
   
   # === Description
   #
-  # Opens the page where the user writes an email and a purchase code to update his trial account
+  # Opens the page where the user writes an email and a purchase code to upgrade his trial account
   #
   # === Mode
   #
@@ -179,7 +179,7 @@ class UsersController < ApplicationController
   
   # === Description
   #
-  # Sends to the user an email containing the update trial token
+  # Sends to the user an email containing the upgrade trial token
   #
   # === Mode
   #
@@ -199,7 +199,7 @@ class UsersController < ApplicationController
   
   # === Description
   #
-  # Checks the token and updates the trial account of the user
+  # Checks the token and upgrades the trial account of the user
   #
   # === Mode
   #
