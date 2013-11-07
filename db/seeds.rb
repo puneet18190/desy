@@ -48,7 +48,7 @@ class Seeds
   PEPPER = '3e0e6d5ebaa86768a0a51be98fce6367e44352d31685debf797b9f6ccb7e2dd0f5139170376240945fcfae8222ff640756dd42645336f8b56cdfe634144dfa7d'
     
   # List of models to seed
-  MODELS = [ Location, SchoolLevel, Subject, Purchase, User, Document, MediaElement, Lesson, Slide, MediaElementsSlide, Like, Bookmark ]
+  MODELS = [ Location, SchoolLevel, Subject, Purchase, User, Document, MediaElement, Lesson, Slide, MediaElementsSlide, DocumentsSlide, Like, Bookmark ]
 
   def run
     puts "Applying #{Rails.env} seeds (#{MODELS.map{ |m| humanize_table_name(m.table_name) }.join(', ')})"
@@ -287,6 +287,14 @@ class Seeds
       progress(i)
       record = csv_row_to_record(row)
       record.attachment = attachment(record.id)
+      record.save!
+    end
+  end
+  
+  def documents_slides!
+    csv_open.each.each_with_index do |row, i|
+      progress(i)
+      record = csv_row_to_record(row)
       record.save!
     end
   end
