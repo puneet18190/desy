@@ -22,9 +22,9 @@ class UsersController < ApplicationController
     :request_reset_password,
     :reset_password,
     :send_reset_password,
-    :request_update_trial,
-    :update_trial,
-    :send_update_trial,
+    :request_upgrade_trial,
+    :upgrade_trial,
+    :send_upgrade_trial,
     :find_locations
   ]
   before_filter :initialize_layout, :only => [:edit, :update, :subjects, :statistics, :mailing_lists]
@@ -32,9 +32,9 @@ class UsersController < ApplicationController
     :request_reset_password,
     :reset_password,
     :send_reset_password,
-    :request_update_trial,
-    :update_trial,
-    :send_update_trial,
+    :request_upgrade_trial,
+    :upgrade_trial,
+    :send_upgrade_trial,
     :confirm,
     :create
   ]
@@ -170,7 +170,7 @@ class UsersController < ApplicationController
   #
   # * ApplicationController#authenticate
   #
-  def request_update_trial
+  def request_upgrade_trial
     if !SETTINGS['saas_registration_mode']
       redirect_to home_path
       return
@@ -189,7 +189,7 @@ class UsersController < ApplicationController
   #
   # * ApplicationController#authenticate
   #
-  def send_update_trial
+  def send_upgrade_trial
     if !SETTINGS['saas_registration_mode']
       redirect_to home_path
       return
@@ -209,7 +209,7 @@ class UsersController < ApplicationController
   #
   # * ApplicationController#authenticate
   #
-  def update_trial
+  def upgrade_trial
     if !SETTINGS['saas_registration_mode']
       redirect_to home_path
       return
