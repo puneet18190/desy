@@ -21,6 +21,9 @@ to_delete.hide('fade', {}, 500, function() {
     $('#popup_captions_container').data('temporary-msg', '');
   }
   $('#dashboard').replaceWith("<%= j(render(:partial => 'dashboard/lessons_and_media_elements', :locals => {:lessons => @lessons, :media_elements => @media_elements, :lessons_emptied => @lessons_emptied, :media_elements_emptied => @media_elements_emptied})) %>");
+  $(document).ready(function() {
+    realignDashboardLessons();
+  });
   reloadDashboardPages(lessons_page, media_elements_page);
   if('<%= @delete_item %>'.search('media_element') != -1) {
     $('#lessons_in_dashboard').hide();

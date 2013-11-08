@@ -21,6 +21,19 @@ function dashboardDocumentReady() {
   $('#switch_to_media_elements').click(function() {
     switchToSuggestedMediaElements();
   });
+  realignDashboardLessons();
+}
+
+
+
+
+
+/**
+Assigns a class to leave the correct space between the two columns of lessons
+@method realignDashboardLessons
+@for DashboardGeneral
+**/
+function realignDashboardLessons() {
   var left = true;
   $('#lessons_in_dashboard .boxViewExpandedLesson').each(function() {
     if(left) {
@@ -32,12 +45,8 @@ function dashboardDocumentReady() {
   });
 }
 
-
-
-
-
 /**
-This function switched to the page of suggested lessons, and reloads the pagination (if there are no suggested lessons the pagination is removed).
+This function switches to the page of suggested lessons, and reloads the pagination (if there are no suggested lessons the pagination is removed).
 @method switchToSuggestedLessons
 @for DashboardGeneral
 **/
