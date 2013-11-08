@@ -97,9 +97,11 @@ html.prelogin-layout .header {
       padding: 4px 15px 4px 15px;
       background-color: #9bc3eb;
       text-align: center;
-      
       font-size: 120%;
       color: #fff;
+      &:hover {
+        background-color: #83A5C8;  
+      }
     }    
     .tooltippe {
       
@@ -128,6 +130,9 @@ html.prelogin-layout .header {
         
         a {
           color:#fff;
+          &:hover {
+            text-decoration:underline;
+          }
         }
       }
       .text {
