@@ -192,9 +192,26 @@ class UsersController < ApplicationController
       redirect_to home_path
       return
     end
-    
-    # TODO!!!! 
-    
+    if params[:email].blank? || params[:password].blank? || params[:purchase_id].blank?
+      redirect_to user_request_upgrade_trial_path, { flash: { alert: t('flash.upgrade_trial.missing_fields') } }
+      return
+    end
+    user = User.active.confirmed.where(:email => params[:email]).first
+    if !user || !user.trial? || !user.valid_password?(params[:password])
+      redirect_to user_request_upgrade_trial_path, { flash: { alert: t('flash.upgrade_trial.wrong_login_or_not_trial') } }
+      return
+    end
+    purchase = Purchase.find_by_token(params[:token])
+    if !purchase || purchase.users.count >= purchase.accounts_number
+      redirect_to user_request_upgrade_trial_path, { flash: { alert: t('flash.upgrade_trial.purchase_token_not_valid') } }
+      return
+    end
+    user.purchase_id = purchase.id
+    user.location_id = purchase.location_id if purchase.location && purchase.location.sti_type == SETTINGS['location_types'].last
+    if !user.save
+      redirect_to user_request_upgrade_trial_path, { flash: { alert: t('flash.upgrade_trial.generic_error') } }
+      return
+    end
   end
   
   # === Description
