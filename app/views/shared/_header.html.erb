@@ -1,7 +1,7 @@
 <div class="header-main">
   <% if current_user.trial? %>
     <%= link_to image_tag('logo_trial.gif'), '/dashboard', :class => 'header-link' %>
-    <div class="freeTrial">Il tuo account scadrà tra <span>14 giorni</span></div>
+    <div class="freeTrial"><%= t('users.trial.expiration', :days => 14.to_s).html_safe %></div>
   <% else %>
     <%= link_to image_tag('logo.gif'), '/dashboard', :class => 'header-link' %>
   <% end %>

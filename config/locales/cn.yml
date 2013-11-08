@@ -2313,6 +2313,9 @@ cn:
       # 1 - views/admin/users/_list.html.erb
       # 2 - views/admin/users/show.html.erb
       label: "Trial" # TODO
+      # Caption to remember to the user the expiration (the variable %{days} is replaced by the number of days left to expiration)
+      # 1 - views/shared/_header.html.erb
+      expiration: "Your trial account will expire in <span>%{days} days</span>" # 2 TODO
   
   
   # SECTION 2.16: Captions used inside the Video Editor
