@@ -6,6 +6,16 @@
   background-color: #373737;
   padding: 0px 52px 0px 39px;
   //height: 33px;
+  .accountVersion {
+    position:absolute;
+    top:54px;
+    left:43px;
+    color:white;
+    font-size:10px;
+    span {
+      color:#f29400;
+    }
+  }
   
   .logout {
     

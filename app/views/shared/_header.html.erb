@@ -1,5 +1,11 @@
 <div class="header">
+  
   <%= link_to image_tag('logo.gif'), '/dashboard' %>
+  <% if current_user.trial? %>
+    <div class="accountVersion">Il tuo account scadrà tra <span>14 giorni</span></div>
+    <% else %>
+    <div class="accountVersion">Digital Education System</div>
+  <% end %>
   <%= render :partial => 'shared/logout' %>
 </div>
 <%= render :partial => 'shared/menu' %>
