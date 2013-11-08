@@ -1,7 +1,7 @@
 <div class="dialog">
   <h1><%= t('users.upgrade_trial.title') %></h1>
   <p><%= t('users.upgrade_trial.description') %></p>
-  <%= form_tag user_send_upgrade_trial_path do |f| %>
+  <%= form_tag user_send_upgrade_trial_path, :autocomplete => 'off' do |f| %>
     <%= label_tag 'email', t('users.email') %>:<br> <%= email_field_tag :email, nil %><br><br>
     <%= label_tag 'password', t('users.password') %>:<br> <%= password_field_tag :password, nil %><br><br>
     <%= label_tag 'purchase_id', t('users.purchase_id') %>:<br> <%= text_field_tag :purchase_id, nil %><br><br>
