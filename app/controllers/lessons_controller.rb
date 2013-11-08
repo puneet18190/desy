@@ -216,16 +216,21 @@ class LessonsController < ApplicationController
   # * ApplicationController#initialize_lesson_destination
   #
   def publish
-    @ok_msg = t('other_popup_messages.correct.publish')
-    if @ok
-      if !@lesson.publish
-        @ok = false
-        @error = @lesson.get_base_error
-      end
+    if current_user.trial?
+      @ok = false
+      @error = 'Sei trial, non puoi pubblicare le tue lezioni' # TODO traduzz
     else
-      @error = I18n.t('activerecord.errors.models.lesson.problem_publishing')
+      @ok_msg = t('other_popup_messages.correct.publish')
+      if @ok
+        if !@lesson.publish
+          @ok = false
+          @error = @lesson.get_base_error
+        end
+      else
+        @error = I18n.t('activerecord.errors.models.lesson.problem_publishing')
+      end
+      prepare_lesson_for_js
     end
-    prepare_lesson_for_js
     if [ButtonDestinations::FOUND_LESSON, ButtonDestinations::COMPACT_LESSON].include? @destination
       render 'lessons/reload_compact.js'
     else

@@ -175,6 +175,10 @@ Initializer for popup sending the public link of a lesson.
 **/
 function virtualClassroomDocumentReadySendLink() {
   $body.on('click', '._send_lesson_link', function() {
+    if($('#info_container').data('user-trial')) {
+      showErrorPopUp($captions.data('trial-user-lock-virtual-classroom-send-link'));
+      return
+    }
     var lesson_id = $(this).data('lesson-id');
     showSendLessonLinkPopUp(lesson_id);
     $('#virtual_classroom_send_link_mails_box').jScrollPane({

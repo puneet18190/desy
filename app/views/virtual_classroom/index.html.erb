@@ -25,7 +25,7 @@
         <div class="dots_pagination_container paginatoreCentrato" id="virtual_classroom_pagination"></div>
       <% end %>
     </div>
-    <div id="info_container" style="display:none" data-currenturl="<%= request.url %>"></div>
+    <div id="info_container" style="display:none" data-user-trial="<%= current_user.trial? %>" data-currenturl="<%= request.url %>"></div>
   </div>
   <br class="clearfloat">
   
