@@ -5,7 +5,7 @@
       <li><%= link_to t('prelogin.what_is.menu_link', :desy => SETTINGS['application_name']), what_is_path %></li>
       <li><%= prelogin_contact_us_menu_link %></li>
     </ul>
-   <%= render :partial => '/prelogin/login' %>
+   <%= render :partial => '/prelogin/login', :locals => {:from_sign_up => true} %>
   </div>
 </div>
 <br class="clearfloat">
