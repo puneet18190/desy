@@ -61,9 +61,6 @@
 # 1. *cascade* *destruction* for the associated table MailingListGroup
 #
 class User < ActiveRecord::Base
-  
-  require 'user/authentication'
-  require 'user/confirmation'
   include Authentication
   include Confirmation
   include ResetPassword
