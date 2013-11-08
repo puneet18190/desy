@@ -23,7 +23,6 @@ class UsersController < ApplicationController
     :reset_password,
     :send_reset_password,
     :request_upgrade_trial,
-    :upgrade_trial,
     :send_upgrade_trial,
     :find_locations
   ]
@@ -33,7 +32,6 @@ class UsersController < ApplicationController
     :reset_password,
     :send_reset_password,
     :request_upgrade_trial,
-    :upgrade_trial,
     :send_upgrade_trial,
     :confirm,
     :create
@@ -194,6 +192,9 @@ class UsersController < ApplicationController
       redirect_to home_path
       return
     end
+    
+    # TODO!!!! 
+    
   end
   
   # === Description

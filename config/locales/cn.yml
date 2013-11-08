@@ -1228,6 +1228,7 @@ cn:
     # 5 - views/users/fullpage_notifications/expired_link.html.erb
     # 6 - views/users/request_reset_password.html.erb
     # 7 - views/users/request_upgrade_trial.html.erb
+    # 8 - views/users/send_upgrade_trial.html.erb
     back: "回到主页"
     # This message appears if a user tries to click on a confirmation link (or a reset password link) which is no longer valid
     expired_link:
@@ -1261,6 +1262,12 @@ cn:
         title: "帐号已确认"
         # 1 - views/users/fullpage_notifications/confirmation/received.html.erb
         description: "你的帐号成功确认"
+    # Window shown to the user to confirm the successfully upgrading of his trial account
+    upgrade_trial:
+      # 1 - views/users/send_upgrade_trial.html.erb
+      title: "Congratulations!" # 2 TODO
+      # 1 - views/users/send_upgrade_trial.html.erb
+      description: "Your trial account has been successfully upgraded to a regular one!<br> To start using your account just go back to the home page and log in" # 2 TODO
   
   
   

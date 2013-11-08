@@ -1228,6 +1228,7 @@ it:
     # 5 - views/users/fullpage_notifications/expired_link.html.erb
     # 6 - views/users/request_reset_password.html.erb
     # 7 - views/users/request_upgrade_trial.html.erb
+    # 8 - views/users/send_upgrade_trial.html.erb
     back: "Torna alla home page"
     # This message appears if a user tries to click on a confirmation link (or a reset password link) which is no longer valid
     expired_link:
@@ -1261,6 +1262,12 @@ it:
         title: "Account confermato"
         # 1 - views/users/fullpage_notifications/confirmation/received.html.erb
         description: "Il tuo account è stato confermato con successo"
+    # Window shown to the user to confirm the successfully upgrading of his trial account
+    upgrade_trial:
+      # 1 - views/users/send_upgrade_trial.html.erb
+      title: "Congratulazioni!"
+      # 1 - views/users/send_upgrade_trial.html.erb
+      description: "L'upgrade del tuo account di tipo 'trial' è stato effettuato con successo!<br> Per cominciare a usare il tuo account, torna alla home page ed effettua l'accesso"
   
   
   
