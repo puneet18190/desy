@@ -2105,6 +2105,9 @@ it:
     # General caption for the user's purchase code
     # 1 - views/users/request_upgrade_trial.html.erb
     purchase_id: "Codice d'acquisto"
+    # General caption for the user's password
+    # 1 - views/users/request_upgrade_trial.html.erb
+    password: "Password"
     # Section 1: personal info
     info:
       # Caption of the link inside the profile's menu
@@ -2197,7 +2200,7 @@ it:
       title: "Vuoi fare l'upgrade del tuo account di tipo 'trial'?"
       # Instructions
       # 1 - views/users/request_upgrade_trial.html.erb
-      description: "Inserisci la tua email e un codice d'acquisto valido"
+      description: "Inserisci la tua email, la tua password, e un codice d'acquisto valido"
       # Button to send upgrade
       # 1 - views/users/request_upgrade_trial.html.erb
       done: "Fai l'upgrade"

@@ -2105,6 +2105,9 @@ cn:
     # General caption for the user's purchase code
     # 1 - views/users/request_upgrade_trial.html.erb
     purchase_id: "Purchase code" # 2 TODO
+    # General caption for the user's password
+    # 1 - views/users/request_upgrade_trial.html.erb
+    password: "Password" # 2 TODO
     # Section 1: personal info
     info:
       # Caption of the link inside the profile's menu
@@ -2197,7 +2200,7 @@ cn:
       title: "Do you want to upgrade your trial account?" # 2 TODO
       # Instructions
       # 1 - views/users/request_upgrade_trial.html.erb
-      description: "Insert your email and a valid purchase code" # 2 TODO
+      description: "Insert your email, your password, and a valid purchase code" # 2 TODO
       # Button to send upgrade
       # 1 - views/users/request_upgrade_trial.html.erb
       done: "Upgrade" # 2 TODO

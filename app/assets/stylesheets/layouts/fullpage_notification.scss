@@ -56,9 +56,15 @@ html.fullpage-notification-layout {
         color: #fff;
         background-color: transparent;
         
+        &:hover {
+          
+          text-decoration: underline;
+          
+        }
+        
       }
       
-      input[type="email"], input[type="text"] {
+      input[type="email"], input[type="text"], input[type="password"] {
         
         border: 1px solid #424141;
         box-shadow: none;
