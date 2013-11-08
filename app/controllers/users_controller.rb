@@ -201,7 +201,7 @@ class UsersController < ApplicationController
       redirect_to user_request_upgrade_trial_path, { flash: { alert: t('flash.upgrade_trial.wrong_login_or_not_trial') } }
       return
     end
-    purchase = Purchase.find_by_token(params[:token])
+    purchase = Purchase.find_by_token(params[:purchase_id])
     if !purchase || purchase.users.count >= purchase.accounts_number
       redirect_to user_request_upgrade_trial_path, { flash: { alert: t('flash.upgrade_trial.purchase_token_not_valid') } }
       return
