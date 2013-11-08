@@ -115,18 +115,6 @@
           </ul>
         </dd>
       
-        <dt>H</dt>
-        <dd>
-          <ul>
-            
-              
-              <li>
-                <a href="#method-i-html_title">html_title</a>
-              </li>
-            
-          </ul>
-        </dd>
-      
         <dt>I</dt>
         <dd>
           <ul>
@@ -214,6 +202,18 @@
               
               <li>
                 <a href="#method-i-standard_form_error_messages">standard_form_error_messages</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>T</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-title_tag">title_tag</a>
               </li>
             
           </ul>
@@ -851,11 +851,11 @@ that takes into consideration nested url parameters</p>
           </div>
         
         <div class="method">
-          <div class="title method-title" id="method-i-html_title">
+          <div class="title method-title" id="method-i-title_tag">
             
-              <b>html_title</b>(slides)
+              <b>title_tag</b>(slides = nil)
             
-            <a href="../classes/ApplicationHelper.html#method-i-html_title" name="method-i-html_title" class="permalink">Link</a>
+            <a href="../classes/ApplicationHelper.html#method-i-title_tag" name="method-i-title_tag" class="permalink">Link</a>
           </div>
           
           
@@ -872,15 +872,15 @@ that takes into consideration nested url parameters</p>
               
               <p class="source-link">
                 Source: 
-                <a href="javascript:toggleSource('method-i-html_title_source')" id="l_method-i-html_title_source">show</a>
+                <a href="javascript:toggleSource('method-i-title_tag_source')" id="l_method-i-title_tag_source">show</a>
                 
               </p>
-              <div id="method-i-html_title_source" class="dyn-source">
+              <div id="method-i-title_tag_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 141</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">html_title</span>(<span class="ruby-identifier">slides</span>)
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">title_tag</span>(<span class="ruby-identifier">slides</span> = <span class="ruby-keyword">nil</span>)
   <span class="ruby-identifier">controller</span> = <span class="ruby-identifier">controller_path</span>
   <span class="ruby-identifier">desy</span> = <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;application_name&#39;</span>]
-  <span class="ruby-keyword">return</span> <span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;captions.titles.admin&#39;</span>, <span class="ruby-value">:desy</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">desy</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">controller</span>[<span class="ruby-number">0</span>, <span class="ruby-number">6</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&#39;admin/&#39;</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;captions.titles.admin&#39;</span>, <span class="ruby-value">:desy</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">desy</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">controller</span>.<span class="ruby-identifier">start_with?</span> <span class="ruby-string">&#39;admin/&#39;</span>
   <span class="ruby-keyword">case</span> <span class="ruby-identifier">controller</span>
   <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;documents&#39;</span>
     <span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;captions.titles.documents&#39;</span>, <span class="ruby-value">:desy</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">desy</span>)

@@ -86,6 +86,18 @@
           </ul>
         </dd>
       
+        <dt>P</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-purchase_code">purchase_code</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
         <dt>R</dt>
         <dd>
           <ul>
@@ -159,13 +171,13 @@
 <h3 id="method-i-home-label-Specific+filters">Specific filters</h3>
 <ul><li>
 <p><a
-href="ApplicationController.html#method-i-authenticate">ApplicationController#authenticate</a></p>
+href="PreloginController.html#method-i-redirect_to_dashboard_if_logged_in">#redirect_to_dashboard_if_logged_in</a></p>
 </li></ul>
 
 <h3 id="method-i-home-label-Skipped+filters">Skipped filters</h3>
 <ul><li>
 <p><a
-href="PreloginController.html#method-i-redirect_to_dashboard_if_logged_in">#redirect_to_dashboard_if_logged_in</a></p>
+href="ApplicationController.html#method-i-authenticate">ApplicationController#authenticate</a></p>
 </li></ul>
             </div>
           
@@ -182,8 +194,70 @@ href="PreloginController.html#method-i-redirect_to_dashboard_if_logged_in">#redi
                 
               </p>
               <div id="method-i-home_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/prelogin_controller.rb, line 35</span>
+                <pre><span class="ruby-comment"># File app/controllers/prelogin_controller.rb, line 34</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">home</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-purchase_code">
+            
+              <b>purchase_code</b>()
+            
+            <a href="../classes/PreloginController.html#method-i-purchase_code" name="method-i-purchase_code" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <h3 id="method-i-purchase_code-label-Description">Description</h3>
+
+<p>Matches the purchase code in the sign_up form</p>
+
+<h3 id="method-i-purchase_code-label-Mode">Mode</h3>
+
+<p>Js</p>
+
+<h3 id="method-i-purchase_code-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p><a
+href="PreloginController.html#method-i-redirect_to_dashboard_if_logged_in">#redirect_to_dashboard_if_logged_in</a></p>
+</li></ul>
+
+<h3 id="method-i-purchase_code-label-Skipped+filters">Skipped filters</h3>
+<ul><li>
+<p><a
+href="ApplicationController.html#method-i-authenticate">ApplicationController#authenticate</a></p>
+</li></ul>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-purchase_code_source')" id="l_method-i-purchase_code_source">show</a>
+                
+              </p>
+              <div id="method-i-purchase_code_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/prelogin_controller.rb, line 53</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">purchase_code</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;saas_registration_mode&#39;</span>]
+    <span class="ruby-identifier">render</span> <span class="ruby-value">:nothing</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>
+    <span class="ruby-keyword">return</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@purchase</span> = <span class="ruby-constant">Purchase</span>.<span class="ruby-identifier">find_by_token</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:token</span>])
+  <span class="ruby-ivar">@purchase</span> = <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@purchase</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@purchase</span>.<span class="ruby-identifier">users</span>.<span class="ruby-identifier">count</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-ivar">@purchase</span>.<span class="ruby-identifier">accounts_number</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@purchase</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@purchase</span>.<span class="ruby-identifier">location</span>
+    <span class="ruby-ivar">@forced_location</span> = <span class="ruby-ivar">@purchase</span>.<span class="ruby-identifier">location</span>
+    <span class="ruby-ivar">@locations</span> = <span class="ruby-ivar">@forced_location</span>.<span class="ruby-identifier">get_filled_select_for_personal_info</span>
+  <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -211,13 +285,13 @@ href="PreloginController.html#method-i-redirect_to_dashboard_if_logged_in">#redi
 <h3 id="method-i-registration-label-Specific+filters">Specific filters</h3>
 <ul><li>
 <p><a
-href="ApplicationController.html#method-i-authenticate">ApplicationController#authenticate</a></p>
+href="PreloginController.html#method-i-redirect_to_dashboard_if_logged_in">#redirect_to_dashboard_if_logged_in</a></p>
 </li></ul>
 
 <h3 id="method-i-registration-label-Skipped+filters">Skipped filters</h3>
 <ul><li>
 <p><a
-href="PreloginController.html#method-i-redirect_to_dashboard_if_logged_in">#redirect_to_dashboard_if_logged_in</a></p>
+href="ApplicationController.html#method-i-authenticate">ApplicationController#authenticate</a></p>
 </li></ul>
             </div>
           
@@ -234,8 +308,9 @@ href="PreloginController.html#method-i-redirect_to_dashboard_if_logged_in">#redi
                 
               </p>
               <div id="method-i-registration_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/prelogin_controller.rb, line 54</span>
+                <pre><span class="ruby-comment"># File app/controllers/prelogin_controller.rb, line 82</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">registration</span>
+  <span class="ruby-ivar">@trial</span>            = <span class="ruby-identifier">params</span>[<span class="ruby-value">:trial</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&#39;1&#39;</span>
   <span class="ruby-ivar">@user</span>             = <span class="ruby-constant">User</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:user</span>])
   <span class="ruby-ivar">@school_level_ids</span> = <span class="ruby-constant">SchoolLevel</span>.<span class="ruby-identifier">order</span>(<span class="ruby-value">:description</span>).<span class="ruby-identifier">map</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">sl</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">sl</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-identifier">sl</span>.<span class="ruby-identifier">id</span>] }
   <span class="ruby-ivar">@locations</span>        = [{<span class="ruby-value">:selected</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-number">0</span>, <span class="ruby-value">:content</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Location</span>.<span class="ruby-identifier">roots</span>.<span class="ruby-identifier">order</span>(<span class="ruby-value">:name</span>)}]
@@ -268,13 +343,13 @@ href="PreloginController.html#method-i-redirect_to_dashboard_if_logged_in">#redi
 <h3 id="method-i-what_is-label-Specific+filters">Specific filters</h3>
 <ul><li>
 <p><a
-href="ApplicationController.html#method-i-authenticate">ApplicationController#authenticate</a></p>
+href="PreloginController.html#method-i-redirect_to_dashboard_if_logged_in">#redirect_to_dashboard_if_logged_in</a></p>
 </li></ul>
 
 <h3 id="method-i-what_is-label-Skipped+filters">Skipped filters</h3>
 <ul><li>
 <p><a
-href="PreloginController.html#method-i-redirect_to_dashboard_if_logged_in">#redirect_to_dashboard_if_logged_in</a></p>
+href="ApplicationController.html#method-i-authenticate">ApplicationController#authenticate</a></p>
 </li></ul>
             </div>
           
@@ -291,7 +366,7 @@ href="PreloginController.html#method-i-redirect_to_dashboard_if_logged_in">#redi
                 
               </p>
               <div id="method-i-what_is_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/prelogin_controller.rb, line 78</span>
+                <pre><span class="ruby-comment"># File app/controllers/prelogin_controller.rb, line 107</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">what_is</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
@@ -328,7 +403,7 @@ href="DashboardController.html#method-i-index">DashboardController#index</a></p>
                 
               </p>
               <div id="method-i-redirect_to_dashboard_if_logged_in_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/prelogin_controller.rb, line 84</span>
+                <pre><span class="ruby-comment"># File app/controllers/prelogin_controller.rb, line 113</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">redirect_to_dashboard_if_logged_in</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">logged_in?</span>
     <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">dashboard_path</span>

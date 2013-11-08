@@ -503,7 +503,7 @@
               <div id="method-i-image_path_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File lib/export/lesson/ebook/renderer/helper.rb, line 45</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">image_path</span>(<span class="ruby-identifier">image</span>)
-  <span class="ruby-constant">Pathname</span>(<span class="ruby-identifier">image</span>.<span class="ruby-identifier">media</span>.<span class="ruby-identifier">path</span>).<span class="ruby-identifier">relative_path_from</span> <span class="ruby-constant">RAILS_PUBLIC</span>
+  <span class="ruby-constant">Pathname</span>(<span class="ruby-identifier">image</span>.<span class="ruby-identifier">media</span>.<span class="ruby-identifier">path</span>).<span class="ruby-identifier">relative_path_from</span> <span class="ruby-constant">Rails</span>.<span class="ruby-identifier">public_pathname</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>

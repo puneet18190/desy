@@ -797,7 +797,7 @@ end</td>
               <div id="method-c-admin_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/models/user.rb, line 150</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">admin</span>
-  <span class="ruby-identifier">find_by_email</span> <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;admin&#39;</span>][<span class="ruby-string">&#39;email&#39;</span>]
+  <span class="ruby-identifier">find_by_email</span> <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;super_admin&#39;</span>]
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -845,7 +845,7 @@ href="Admin/MessagesController.html#method-i-filter_users">Admin::MessagesContro
                 
               </p>
               <div id="method-c-get_full_names_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 1100</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 1101</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">get_full_names</span>(<span class="ruby-identifier">term</span>)
   <span class="ruby-identifier">where</span>(<span class="ruby-string">&#39;email ILIKE ? OR name ILIKE ? OR surname ILIKE ?&#39;</span>, <span class="ruby-node">&quot;%#{term}%&quot;</span>, <span class="ruby-node">&quot;%#{term}%&quot;</span>, <span class="ruby-node">&quot;%#{term}%&quot;</span>).<span class="ruby-identifier">select</span>(<span class="ruby-string">&quot;id, name || &#39; &#39; || surname AS value&quot;</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -1021,7 +1021,7 @@ href="User.html#method-i-save_in_admin_quick_uploading_cache">#save_in_admin_qui
                 
               </p>
               <div id="method-i-admin_quick_uploading_cache_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 1202</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 1203</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">admin_quick_uploading_cache</span>
   <span class="ruby-keyword">return</span> [] <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-constant">Rails</span>.<span class="ruby-identifier">root</span>.<span class="ruby-identifier">join</span>(<span class="ruby-node">&quot;public/admin/#{self.id}/map.yml&quot;</span>))
   <span class="ruby-identifier">map</span> = <span class="ruby-constant">YAML</span><span class="ruby-operator">::</span><span class="ruby-identifier">load</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-constant">Rails</span>.<span class="ruby-identifier">root</span>.<span class="ruby-identifier">join</span>(<span class="ruby-node">&quot;public/admin/#{self.id}/map.yml&quot;</span>))
@@ -1074,7 +1074,7 @@ href="AudioEditorController.html">AudioEditorController</a></p>
                 
               </p>
               <div id="method-i-audio_editor_available_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 359</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 360</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">audio_editor_available</span>
   <span class="ruby-constant">Audio</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:converted</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>, <span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">id</span>).<span class="ruby-identifier">all?</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">record</span><span class="ruby-operator">|</span> <span class="ruby-identifier">record</span>.<span class="ruby-identifier">uploaded?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">record</span>.<span class="ruby-identifier">modified?</span> }
 <span class="ruby-keyword">end</span></pre>
@@ -1206,7 +1206,7 @@ href="Location.html">Location</a> attached to the user</p>
                 
               </p>
               <div id="method-i-base_location_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 303</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 304</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">base_location</span>
   <span class="ruby-identifier">my_location</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">location</span>
   <span class="ruby-identifier">my_location</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">?</span> <span class="ruby-string">&#39;-&#39;</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">my_location</span>.<span class="ruby-identifier">name</span>
@@ -1256,7 +1256,7 @@ media element</p>
                 
               </p>
               <div id="method-i-bookmark_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 804</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 805</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">bookmark</span>(<span class="ruby-identifier">type</span>, <span class="ruby-identifier">target_id</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span>
   <span class="ruby-identifier">b</span> = <span class="ruby-constant">Bookmark</span>.<span class="ruby-identifier">new</span>
@@ -1319,7 +1319,7 @@ href="ApplicationController.html#method-i-convert_lesson_editor_messages">Applic
                 
               </p>
               <div id="method-i-create_lesson_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 994</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 995</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">create_lesson</span>(<span class="ruby-identifier">title</span>, <span class="ruby-identifier">description</span>, <span class="ruby-identifier">subject_id</span>, <span class="ruby-identifier">tags</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span>
   <span class="ruby-keyword">if</span> <span class="ruby-constant">UsersSubject</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>, <span class="ruby-value">:subject_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">subject_id</span>).<span class="ruby-identifier">empty?</span>
@@ -1386,7 +1386,7 @@ the user is visualizing</p>
                 
               </p>
               <div id="method-i-destroy_notification_and_reload_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 898</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 899</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">destroy_notification_and_reload</span>(<span class="ruby-identifier">notification_id</span>, <span class="ruby-identifier">offset</span>)
   <span class="ruby-identifier">notification_id</span> = <span class="ruby-number">0</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">notification_id</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Fixnum</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">notification_id</span> <span class="ruby-operator">&lt;</span> <span class="ruby-number">0</span>
   <span class="ruby-identifier">offset</span> = <span class="ruby-number">0</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">offset</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Fixnum</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">offset</span> <span class="ruby-operator">&lt;</span> <span class="ruby-number">0</span>
@@ -1453,7 +1453,7 @@ this using <a href="User.html#method-i-super_admin-3F">#super_admin?</a>)</p>
                 
               </p>
               <div id="method-i-destroy_with_dependencies_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 1035</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 1036</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">destroy_with_dependencies</span>
   <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span> <span class="ruby-operator">||</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">super_admin?</span>
     <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:base</span>, <span class="ruby-value">:problem_destroying</span>)
@@ -1550,7 +1550,7 @@ appreciate anymore</p>
                 
               </p>
               <div id="method-i-dislike_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 578</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 579</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">dislike</span>(<span class="ruby-identifier">lesson_id</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span> <span class="ruby-operator">||</span> <span class="ruby-operator">!</span><span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-identifier">lesson_id</span>)
   <span class="ruby-identifier">like</span> = <span class="ruby-constant">Like</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:lesson_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">lesson_id</span>, <span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">first</span>
@@ -1598,7 +1598,7 @@ href="VirtualClassroomController.html#method-i-empty_playlist">VirtualClassroomC
                 
               </p>
               <div id="method-i-empty_playlist_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 831</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 832</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">empty_playlist</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span>
   <span class="ruby-identifier">resp</span> = <span class="ruby-keyword">false</span>
@@ -1647,7 +1647,7 @@ href="VirtualClassroomController.html#method-i-empty_virtual_classroom">VirtualC
                 
               </p>
               <div id="method-i-empty_virtual_classroom_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 817</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 818</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">empty_virtual_classroom</span>
   <span class="ruby-constant">VirtualClassroomLesson</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">vcl</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">vcl</span>.<span class="ruby-identifier">destroy</span>
@@ -1691,7 +1691,7 @@ user</p>
                 
               </p>
               <div id="method-i-full_name_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 291</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 292</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">full_name</span>
   <span class="ruby-node">&quot;#{self.name} #{self.surname}&quot;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -1748,7 +1748,7 @@ method&#39;s result</p>
                 
               </p>
               <div id="method-i-full_virtual_classroom_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 859</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 860</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">full_virtual_classroom</span>(<span class="ruby-identifier">page</span>, <span class="ruby-identifier">per_page</span>)
   <span class="ruby-identifier">page</span> = <span class="ruby-number">1</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">page</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Fixnum</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">page</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-number">0</span>
   <span class="ruby-identifier">for_page</span> = <span class="ruby-number">1</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">for_page</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Fixnum</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">for_page</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-number">0</span>
@@ -1804,7 +1804,7 @@ method&#39;s result</p>
                 
               </p>
               <div id="method-i-like_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 557</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 558</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">like</span>(<span class="ruby-identifier">lesson_id</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span> <span class="ruby-operator">||</span> <span class="ruby-operator">!</span><span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-identifier">lesson_id</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span> <span class="ruby-keyword">if</span> <span class="ruby-constant">Like</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:lesson_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">lesson_id</span>, <span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">any?</span>
@@ -1852,7 +1852,7 @@ MailingListController#create_group)</p>
                 
               </p>
               <div id="method-i-new_mailing_list_name_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 261</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 262</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">new_mailing_list_name</span>
   <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;users.mailing_list.label&#39;</span>, <span class="ruby-value">:number</span> =<span class="ruby-operator">&gt;</span> (<span class="ruby-constant">MailingListGroup</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">count</span> <span class="ruby-operator">+</span> <span class="ruby-number">1</span>))
 <span class="ruby-keyword">end</span></pre>
@@ -1897,7 +1897,7 @@ href="NotificationsController.html#method-i-get_new_block">NotificationsControll
                 
               </p>
               <div id="method-i-notifications_visible_block_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 922</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 923</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">notifications_visible_block</span>(<span class="ruby-identifier">offset</span>, <span class="ruby-identifier">limit</span>)
   <span class="ruby-constant">Notification</span>.<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;created_at DESC&#39;</span>).<span class="ruby-identifier">where</span>(<span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">offset</span>(<span class="ruby-identifier">offset</span>).<span class="ruby-identifier">limit</span>(<span class="ruby-identifier">limit</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -1941,7 +1941,7 @@ href="NotificationsController.html#method-i-seen">NotificationsController#seen</
                 
               </p>
               <div id="method-i-number_notifications_not_seen_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 934</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 935</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">number_notifications_not_seen</span>
   <span class="ruby-constant">Notification</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:seen</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>, <span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">count</span>
 <span class="ruby-keyword">end</span></pre>
@@ -2002,7 +2002,7 @@ method&#39;s result</p>
                 
               </p>
               <div id="method-i-own_documents_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 719</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 720</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">own_documents</span>(<span class="ruby-identifier">page</span>, <span class="ruby-identifier">per_page</span>, <span class="ruby-identifier">order_by</span>=<span class="ruby-constant">SearchOrders</span><span class="ruby-operator">::</span><span class="ruby-constant">CREATED_AT</span>, <span class="ruby-identifier">word</span>=<span class="ruby-keyword">nil</span>, <span class="ruby-identifier">from_gallery</span>=<span class="ruby-keyword">false</span>)
   <span class="ruby-identifier">page</span> = <span class="ruby-number">1</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">page</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Fixnum</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">page</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-number">0</span>
   <span class="ruby-identifier">for_page</span> = <span class="ruby-number">1</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">for_page</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Fixnum</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">for_page</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-number">0</span>
@@ -2087,7 +2087,7 @@ method&#39;s result</p>
                 
               </p>
               <div id="method-i-own_lessons_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 641</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 642</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">own_lessons</span>(<span class="ruby-identifier">page</span>, <span class="ruby-identifier">per_page</span>, <span class="ruby-identifier">filter</span>=<span class="ruby-constant">Filters</span><span class="ruby-operator">::</span><span class="ruby-constant">ALL_LESSONS</span>, <span class="ruby-identifier">from_virtual_classroom</span>=<span class="ruby-keyword">false</span>)
   <span class="ruby-identifier">page</span> = <span class="ruby-number">1</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">page</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Fixnum</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">page</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-number">0</span>
   <span class="ruby-identifier">for_page</span> = <span class="ruby-number">1</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">for_page</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Fixnum</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">for_page</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-number">0</span>
@@ -2251,7 +2251,7 @@ method&#39;s result</p>
                 
               </p>
               <div id="method-i-own_media_elements_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 602</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 603</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">own_media_elements</span>(<span class="ruby-identifier">page</span>, <span class="ruby-identifier">per_page</span>, <span class="ruby-identifier">filter</span>=<span class="ruby-constant">Filters</span><span class="ruby-operator">::</span><span class="ruby-constant">ALL_MEDIA_ELEMENTS</span>, <span class="ruby-identifier">from_gallery</span>=<span class="ruby-keyword">false</span>)
   <span class="ruby-identifier">page</span> = <span class="ruby-number">1</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">page</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Fixnum</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">page</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-number">0</span>
   <span class="ruby-identifier">for_page</span> = <span class="ruby-number">1</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">for_page</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Fixnum</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">for_page</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-number">0</span>
@@ -2312,7 +2312,7 @@ the user</p>
                 
               </p>
               <div id="method-i-parent_locations_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 316</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 317</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">parent_locations</span>
   <span class="ruby-identifier">resp</span> = <span class="ruby-string">&#39;&#39;</span>
   <span class="ruby-identifier">locations</span> = []
@@ -2379,7 +2379,7 @@ href="VirtualClassroomLesson.html">VirtualClassroomLesson</a></p>
                 
               </p>
               <div id="method-i-playlist_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 962</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 963</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">playlist</span>(<span class="ruby-identifier">from_viewer</span>=<span class="ruby-keyword">false</span>)
   <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">from_viewer</span> <span class="ruby-operator">?</span> <span class="ruby-constant">VirtualClassroomLesson</span>.<span class="ruby-identifier">preload</span>(<span class="ruby-value">:lesson</span>, {<span class="ruby-value">:lesson</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:subject</span>}, {<span class="ruby-value">:lesson</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:user</span>}) <span class="ruby-operator">:</span> <span class="ruby-constant">VirtualClassroomLesson</span>.<span class="ruby-identifier">preload</span>(<span class="ruby-value">:lesson</span>, {<span class="ruby-value">:lesson</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:subject</span>})
   <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&#39;user_id = ? AND position IS NOT NULL&#39;</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">order</span>(<span class="ruby-value">:position</span>)
@@ -2424,7 +2424,7 @@ correspond to the slides of the lessons in the playlist)</p>
                 
               </p>
               <div id="method-i-playlist_for_viewer_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 975</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 976</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">playlist_for_viewer</span>
   <span class="ruby-constant">Slide</span>.<span class="ruby-identifier">preload</span>(<span class="ruby-value">:documents_slides</span>, {<span class="ruby-value">:documents_slides</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:document</span>}, <span class="ruby-value">:lesson</span>, {<span class="ruby-value">:lesson</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:user</span>}, {<span class="ruby-value">:lesson</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:subject</span>}, <span class="ruby-value">:media_elements_slides</span>, {<span class="ruby-value">:media_elements_slides</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:media_element</span>}).<span class="ruby-identifier">joins</span>(<span class="ruby-value">:lesson</span>, {<span class="ruby-value">:lesson</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:virtual_classroom_lessons</span>}).<span class="ruby-identifier">where</span>(<span class="ruby-string">&#39;virtual_classroom_lessons.user_id = ? AND virtual_classroom_lessons.lesson_id = lessons.id AND virtual_classroom_lessons.position IS NOT NULL&#39;</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;virtual_classroom_lessons.position ASC, slides.position ASC&#39;</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -2465,7 +2465,7 @@ correspond to the slides of the lessons in the playlist)</p>
                 
               </p>
               <div id="method-i-playlist_full-3F_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 946</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 947</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">playlist_full?</span>
   <span class="ruby-constant">VirtualClassroomLesson</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&#39;user_id = ? AND position IS NOT NULL&#39;</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">count</span> <span class="ruby-operator">==</span> <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;lessons_in_playlist&#39;</span>]
 <span class="ruby-keyword">end</span></pre>
@@ -2504,7 +2504,7 @@ contains all the policies as configured in settings.yml</p>
                 
               </p>
               <div id="method-i-registration_policies_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 269</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 270</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">registration_policies</span>
   <span class="ruby-constant">REGISTRATION_POLICIES</span>
 <span class="ruby-keyword">end</span></pre>
@@ -2556,7 +2556,7 @@ used as a key in the hash of files in uploading</p>
                 
               </p>
               <div id="method-i-remove_from_admin_quick_uploading_cache_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 1116</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 1117</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">remove_from_admin_quick_uploading_cache</span>(<span class="ruby-identifier">name</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-constant">Rails</span>.<span class="ruby-identifier">root</span>.<span class="ruby-identifier">join</span>(<span class="ruby-node">&quot;public/admin/#{self.id}/map.yml&quot;</span>))
   <span class="ruby-identifier">map</span> = <span class="ruby-constant">YAML</span><span class="ruby-operator">::</span><span class="ruby-identifier">load</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-constant">Rails</span>.<span class="ruby-identifier">root</span>.<span class="ruby-identifier">join</span>(<span class="ruby-node">&quot;public/admin/#{self.id}/map.yml&quot;</span>)))
@@ -2615,7 +2615,7 @@ href="Lesson.html">Lesson</a></p>
                 
               </p>
               <div id="method-i-report_lesson_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 488</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 489</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">report_lesson</span>(<span class="ruby-identifier">lesson_id</span>, <span class="ruby-identifier">msg</span>)
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">clear</span>
   <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span>
@@ -2682,7 +2682,7 @@ href="MediaElement.html">MediaElement</a></p>
                 
               </p>
               <div id="method-i-report_media_element_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 523</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 524</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">report_media_element</span>(<span class="ruby-identifier">media_element_id</span>, <span class="ruby-identifier">msg</span>)
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">clear</span>
   <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span>
@@ -2779,7 +2779,7 @@ uploaded</p>
                 
               </p>
               <div id="method-i-save_in_admin_quick_uploading_cache_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 1152</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 1153</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">save_in_admin_quick_uploading_cache</span>(<span class="ruby-identifier">file</span>, <span class="ruby-identifier">title</span>=<span class="ruby-keyword">nil</span>, <span class="ruby-identifier">description</span>=<span class="ruby-keyword">nil</span>, <span class="ruby-identifier">tags</span>=<span class="ruby-keyword">nil</span>)
   <span class="ruby-identifier">filetype</span> = <span class="ruby-constant">MediaElement</span>.<span class="ruby-identifier">filetype</span>(<span class="ruby-identifier">file</span>.<span class="ruby-identifier">original_filename</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">filetype</span>.<span class="ruby-identifier">nil?</span>
@@ -2940,7 +2940,7 @@ occurrences among the search results (i.e. order of relevance)</p>
                 
               </p>
               <div id="method-i-search_lessons_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 449</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 450</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">search_lessons</span>(<span class="ruby-identifier">word</span>, <span class="ruby-identifier">page</span>, <span class="ruby-identifier">for_page</span>, <span class="ruby-identifier">order</span>=<span class="ruby-keyword">nil</span>, <span class="ruby-identifier">filter</span>=<span class="ruby-keyword">nil</span>, <span class="ruby-identifier">subject_id</span>=<span class="ruby-keyword">nil</span>, <span class="ruby-identifier">only_tags</span>=<span class="ruby-keyword">nil</span>)
   <span class="ruby-identifier">only_tags</span> = <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">only_tags</span>.<span class="ruby-identifier">nil?</span>
   <span class="ruby-identifier">page</span> = <span class="ruby-number">1</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">page</span>.<span class="ruby-identifier">class</span> <span class="ruby-operator">!=</span> <span class="ruby-constant">Fixnum</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">page</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-number">0</span>
@@ -3081,7 +3081,7 @@ occurrences among the search results (i.e. order of relevance)</p>
                 
               </p>
               <div id="method-i-search_media_elements_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 393</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 394</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">search_media_elements</span>(<span class="ruby-identifier">word</span>, <span class="ruby-identifier">page</span>, <span class="ruby-identifier">for_page</span>, <span class="ruby-identifier">order</span>=<span class="ruby-keyword">nil</span>, <span class="ruby-identifier">filter</span>=<span class="ruby-keyword">nil</span>, <span class="ruby-identifier">only_tags</span>=<span class="ruby-keyword">nil</span>)
   <span class="ruby-identifier">only_tags</span> = <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">only_tags</span>.<span class="ruby-identifier">nil?</span>
   <span class="ruby-identifier">page</span> = <span class="ruby-number">1</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">page</span>.<span class="ruby-identifier">class</span> <span class="ruby-operator">!=</span> <span class="ruby-constant">Fixnum</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">page</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-number">0</span>
@@ -3140,7 +3140,7 @@ href="UsersSubject.html">UsersSubject</a>)</p>
                 
               </p>
               <div id="method-i-subject_ids-3D_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 277</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 278</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">subject_ids=</span>(<span class="ruby-identifier">subject_ids</span>)
   <span class="ruby-identifier">users_subjects</span>.<span class="ruby-identifier">reload</span>.<span class="ruby-identifier">clear</span>
   <span class="ruby-identifier">subject_ids</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">id</span><span class="ruby-operator">|</span> <span class="ruby-identifier">users_subjects</span>.<span class="ruby-identifier">build</span> <span class="ruby-value">:user</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>, <span class="ruby-value">:subject_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">id</span> } <span class="ruby-keyword">if</span> <span class="ruby-identifier">subject_ids</span>
@@ -3192,7 +3192,7 @@ href="DashboardController.html#method-i-index">DashboardController#index</a>.</p
                 
               </p>
               <div id="method-i-suggested_lessons_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 757</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 758</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">suggested_lessons</span>(<span class="ruby-identifier">n</span>)
   <span class="ruby-identifier">n</span> = <span class="ruby-number">1</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">n</span>.<span class="ruby-identifier">class</span> <span class="ruby-operator">!=</span> <span class="ruby-constant">Fixnum</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">n</span> <span class="ruby-operator">&lt;</span> <span class="ruby-number">0</span>
   <span class="ruby-identifier">subject_ids</span> = []
@@ -3252,7 +3252,7 @@ href="DashboardController.html#method-i-index">DashboardController#index</a>.</p
                 
               </p>
               <div id="method-i-suggested_media_elements_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 782</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 783</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">suggested_media_elements</span>(<span class="ruby-identifier">n</span>)
   <span class="ruby-identifier">n</span> = <span class="ruby-number">1</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">n</span>.<span class="ruby-identifier">class</span> <span class="ruby-operator">!=</span> <span class="ruby-constant">Fixnum</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">n</span> <span class="ruby-operator">&lt;</span> <span class="ruby-number">0</span>
   <span class="ruby-identifier">resp</span> = <span class="ruby-constant">MediaElement</span>.<span class="ruby-identifier">select</span>(<span class="ruby-string">&#39;media_elements.*, 0 AS bookmarks_count&#39;</span>).<span class="ruby-identifier">where</span>(<span class="ruby-string">&#39;is_public = ? AND user_id != ? AND NOT EXISTS (SELECT * FROM bookmarks WHERE bookmarks.bookmarkable_type = ? AND bookmarks.bookmarkable_id = media_elements.id AND bookmarks.user_id = ?)&#39;</span>, <span class="ruby-keyword">true</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>, <span class="ruby-string">&#39;MediaElement&#39;</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;publication_date DESC&#39;</span>).<span class="ruby-identifier">limit</span>(<span class="ruby-identifier">n</span>)
@@ -3300,7 +3300,7 @@ href="User.html#method-i-destroy_with_dependencies">#destroy_with_dependencies</
                 
               </p>
               <div id="method-i-super_admin-3F_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 1022</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 1023</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">super_admin?</span>
   <span class="ruby-identifier">super_admin</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">admin</span>
   <span class="ruby-operator">!</span><span class="ruby-identifier">super_admin</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">super_admin</span>.<span class="ruby-identifier">id</span>
@@ -3345,7 +3345,7 @@ href="NotificationsController.html#method-i-destroy">NotificationsController#des
                 
               </p>
               <div id="method-i-tot_notifications_number_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 881</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 882</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">tot_notifications_number</span>
   <span class="ruby-constant">Notification</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">count</span>
 <span class="ruby-keyword">end</span></pre>
@@ -3388,6 +3388,7 @@ href="NotificationsController.html#method-i-destroy">NotificationsController#des
               <div id="method-i-trial-3F_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/models/user.rb, line 249</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">trial?</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">admin?</span>
   <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;saas_registration_mode&#39;</span>] <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">purchase_id</span>.<span class="ruby-identifier">nil?</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
@@ -3430,7 +3431,7 @@ href="VideoEditorController.html">VideoEditorController</a></p>
                 
               </p>
               <div id="method-i-video_editor_available_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 347</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 348</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">video_editor_available</span>
   <span class="ruby-constant">Video</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:converted</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>, <span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">id</span>).<span class="ruby-identifier">all?</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">record</span><span class="ruby-operator">|</span> <span class="ruby-identifier">record</span>.<span class="ruby-identifier">uploaded?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">record</span>.<span class="ruby-identifier">modified?</span> }
 <span class="ruby-keyword">end</span></pre>
@@ -3563,7 +3564,7 @@ ordering.</p>
                 
               </p>
               <div id="method-i-get_tags_associated_to_lesson_search_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 1218</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 1219</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">get_tags_associated_to_lesson_search</span>(<span class="ruby-identifier">word</span>, <span class="ruby-identifier">filter</span>, <span class="ruby-identifier">subject_id</span>)
   <span class="ruby-identifier">filter</span> = <span class="ruby-constant">Filters</span><span class="ruby-operator">::</span><span class="ruby-constant">ALL_LESSONS</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">filter</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> <span class="ruby-operator">!</span><span class="ruby-constant">Filters</span><span class="ruby-operator">::</span><span class="ruby-constant">LESSONS_SEARCH_SET</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">filter</span>)
   <span class="ruby-identifier">subject_id</span> = <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span>[<span class="ruby-constant">NilClass</span>, <span class="ruby-constant">Fixnum</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">subject_id</span>.<span class="ruby-identifier">class</span>)
@@ -3638,7 +3639,7 @@ normal ordering.</p>
                 
               </p>
               <div id="method-i-get_tags_associated_to_media_element_search_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 1257</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 1258</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">get_tags_associated_to_media_element_search</span>(<span class="ruby-identifier">word</span>, <span class="ruby-identifier">filter</span>)
   <span class="ruby-identifier">limit</span> = <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;tags_limit_in_search_engine&#39;</span>]
   <span class="ruby-identifier">filter</span> = <span class="ruby-constant">Filters</span><span class="ruby-operator">::</span><span class="ruby-constant">ALL_MEDIA_ELEMENTS</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">filter</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> <span class="ruby-operator">!</span><span class="ruby-constant">Filters</span><span class="ruby-operator">::</span><span class="ruby-constant">MEDIA_ELEMENTS_SEARCH_SET</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">filter</span>)
@@ -3696,7 +3697,7 @@ href="Valid.html#method-c-get_association">Valid.get_association</a>)</p>
                 
               </p>
               <div id="method-i-init_validation_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 1481</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 1482</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">init_validation</span>
   <span class="ruby-ivar">@user</span> = <span class="ruby-constant">Valid</span>.<span class="ruby-identifier">get_association</span> <span class="ruby-keyword">self</span>, <span class="ruby-value">:id</span>
   <span class="ruby-ivar">@school_level</span> = <span class="ruby-constant">Valid</span>.<span class="ruby-identifier">get_association</span> <span class="ruby-keyword">self</span>, <span class="ruby-value">:school_level_id</span>
@@ -3740,7 +3741,7 @@ among the ones in <a href="Filters.html">Filters</a>) and by
                 
               </p>
               <div id="method-i-search_lessons_with_tag_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 1358</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 1359</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">search_lessons_with_tag</span>(<span class="ruby-identifier">word</span>, <span class="ruby-identifier">offset</span>, <span class="ruby-identifier">limit</span>, <span class="ruby-identifier">filter</span>, <span class="ruby-identifier">subject_id</span>, <span class="ruby-identifier">order_by</span>)
   <span class="ruby-identifier">resp</span> = {}
   <span class="ruby-identifier">params</span> = [<span class="ruby-node">&quot;#{word}%&quot;</span>]
@@ -3840,7 +3841,7 @@ the ones in <a href="SearchOrders.html">SearchOrders</a>)</p>
                 
               </p>
               <div id="method-i-search_lessons_without_tag_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 1423</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 1424</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">search_lessons_without_tag</span>(<span class="ruby-identifier">offset</span>, <span class="ruby-identifier">limit</span>, <span class="ruby-identifier">filter</span>, <span class="ruby-identifier">subject_id</span>, <span class="ruby-identifier">order_by</span>)
   <span class="ruby-identifier">resp</span> = {}
   <span class="ruby-identifier">params</span> = []
@@ -3935,7 +3936,7 @@ href="SearchOrders.html">SearchOrders</a>)</p>
                 
               </p>
               <div id="method-i-search_media_elements_with_tag_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 1284</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 1285</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">search_media_elements_with_tag</span>(<span class="ruby-identifier">word</span>, <span class="ruby-identifier">offset</span>, <span class="ruby-identifier">limit</span>, <span class="ruby-identifier">filter</span>, <span class="ruby-identifier">order_by</span>)
   <span class="ruby-identifier">resp</span> = {}
   <span class="ruby-identifier">params</span> = [<span class="ruby-node">&quot;#{word}%&quot;</span>, <span class="ruby-keyword">true</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>]
@@ -4007,7 +4008,7 @@ href="Filters.html">Filters</a>), and ordered by <code>order_by</code>
                 
               </p>
               <div id="method-i-search_media_elements_without_tag_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 1321</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 1322</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">search_media_elements_without_tag</span>(<span class="ruby-identifier">offset</span>, <span class="ruby-identifier">limit</span>, <span class="ruby-identifier">filter</span>, <span class="ruby-identifier">order_by</span>)
   <span class="ruby-identifier">select</span> = <span class="ruby-node">&quot;media_elements.*, (SELECT COUNT (*) FROM bookmarks WHERE bookmarks.bookmarkable_type = #{self.connection.quote &#39;MediaElement&#39;} AND bookmarks.bookmarkable_id = media_elements.id AND bookmarks.user_id = #{self.connection.quote self.id.to_i}) AS bookmarks_count, (SELECT COUNT(*) FROM media_elements_slides WHERE (media_elements_slides.media_element_id = media_elements.id)) AS instances&quot;</span>
   <span class="ruby-identifier">resp</span> = {}
@@ -4074,7 +4075,7 @@ href="Filters.html">Filters</a>), and ordered by <code>order_by</code>
                 
               </p>
               <div id="method-i-validate_accounts_number_for_purchase_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 1488</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 1489</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">validate_accounts_number_for_purchase</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@user</span>
     <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:purchase_id</span>, <span class="ruby-value">:too_many_users_for_purchase</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@purchase</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">purchase_id</span> <span class="ruby-operator">!=</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">purchase_id</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@purchase</span>.<span class="ruby-identifier">accounts_number</span> <span class="ruby-operator">==</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:purchase_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">purchase_id</span>).<span class="ruby-identifier">count</span>
@@ -4113,7 +4114,7 @@ href="Filters.html">Filters</a>), and ordered by <code>order_by</code>
                 
               </p>
               <div id="method-i-validate_associations_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 1497</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 1498</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">validate_associations</span>
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span> <span class="ruby-value">:school_level_id</span>, <span class="ruby-value">:doesnt_exist</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@school_level</span>.<span class="ruby-identifier">nil?</span>
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span> <span class="ruby-value">:purchase_id</span>, <span class="ruby-value">:doesnt_exist</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@purchase</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">purchase_id</span>.<span class="ruby-identifier">present?</span>
@@ -4154,7 +4155,7 @@ href="Valid.html#method-c-email-3F">Valid.email?</a>)</p>
                 
               </p>
               <div id="method-i-validate_email_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 1512</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 1513</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">validate_email</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">email</span>.<span class="ruby-identifier">blank?</span>
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:email</span>, <span class="ruby-value">:not_a_valid_email</span>) <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">Valid</span>.<span class="ruby-identifier">email?</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">email</span>)
@@ -4190,7 +4191,7 @@ href="Valid.html#method-c-email-3F">Valid.email?</a>)</p>
                 
               </p>
               <div id="method-i-validate_email_not_changed_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 1507</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 1508</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">validate_email_not_changed</span>
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span> <span class="ruby-value">:email</span>, <span class="ruby-value">:changed</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">changed</span>.<span class="ruby-identifier">include?</span> <span class="ruby-string">&#39;email&#39;</span>
 <span class="ruby-keyword">end</span></pre>

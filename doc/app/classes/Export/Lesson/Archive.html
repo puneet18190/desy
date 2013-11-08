@@ -200,7 +200,7 @@
           <tr valign='top'>
             <td class="attr-name">FOLDER</td>
             <td>=</td>
-            <td class="attr-value">env_relative_pathname RAILS_PUBLIC, &#x27;lessons&#x27;, &#x27;exports&#x27;, &#x27;archives&#x27;</td>
+            <td class="attr-value">env_relative_pathname Rails.public_pathname, &#x27;lessons&#x27;, &#x27;exports&#x27;, &#x27;archives&#x27;</td>
           </tr>
           
             <tr valign='top'>
@@ -489,7 +489,7 @@
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">url</span>
   <span class="ruby-identifier">find_or_create</span>
 
-  <span class="ruby-node">&quot;/#{path.relative_path_from RAILS_PUBLIC}&quot;</span>
+  <span class="ruby-node">&quot;/#{path.relative_path_from Rails.public_pathname}&quot;</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
