@@ -15,7 +15,6 @@
 # * *purchase_id*: references to the Purchase that allows the user to log in
 # * *confirmation_token*: token used for confirmation, generated automaticly
 # * *password_token*: token used for resetting the password, generated automaticly
-# * *upgrade_trial_token*: token used for upgrading a trial account, generated automaticly
 # * *metadata*:
 #   * +video_editor_cache+: cache of the Video Editor (screenshot of the last video edited)
 #   * +audio_editor_cache+: cache of the Audio Editor (screenshot of the last audio edited)
@@ -68,7 +67,6 @@ class User < ActiveRecord::Base
   include Authentication
   include Confirmation
   include ResetPassword
-  include UpgradeTrial
   
   # List of registration policies, configured in settings.yml
   REGISTRATION_POLICIES = SETTINGS['user_registration_policies'].map(&:to_sym)
@@ -176,32 +174,6 @@ class User < ActiveRecord::Base
   #
   def accept_policies
     registration_policies.each{ |p| send("#{p}=", '1') }
-  end
-  
-  # === Description
-  #
-  # Saves the temporary purchase id; if the param is +nil+, the purchase id is emptied. Notice that this method raises an exception
-  #
-  # === Args
-  #
-  # * *purchase_id*: the purchase_id to be saved
-  #
-  def upgrade_trial_purchase_id!(purchase_id = nil)
-    self.metadata = OpenStruct.new(metadata.marshal_dump.merge(upgrade_trial_purchase_id: purchase_id))
-    self.save!
-    nil
-  end
-  
-  # === Description
-  #
-  # Returns the temporary purchase_id
-  #
-  # === Returns
-  #
-  # A hash with parameters (for a sample structure, see Media::Video::Editing::Parameters#convert_parameters)
-  #
-  def upgrade_trial_purchase_id
-    metadata.try(:upgrade_trial_purchase_id)
   end
   
   # === Description

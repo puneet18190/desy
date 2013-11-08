@@ -13,7 +13,6 @@ class CreateUsers < ActiveRecord::Migration
       t.string  :confirmation_token,              index: true
       t.text    :metadata
       t.string  :password_token,                  index: true
-      t.string  :upgrade_trial_token,             index: true
       t.integer :purchase_id
       t.timestamps
     end
