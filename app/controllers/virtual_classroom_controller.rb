@@ -304,6 +304,10 @@ class VirtualClassroomController < ApplicationController
   # * VirtualClassroomController#initialize_emails
   #
   def send_link
+    if current_user.trial?
+      render :nothing => true
+      return
+    end
     if @ok
       UserMailer.see_my_lesson(@emails, current_user, @lesson, @message, request.host, request.port).deliver
       string_emails = ''
