@@ -28,9 +28,6 @@ en:
     # The user forgot to insert an email
     # 1 - controllers/users_controller.rb
     email_is_blank: "Email is blank"
-    # The user forgot to insert email or purchase code
-    # 1 - controllers/users_controller.rb
-    email_or_purchase_token_is_blank: "One between email and purchase code is blank"
   # Messages shown inside a popup, all over the application
   other_popup_messages:
     correct:
@@ -1226,13 +1223,11 @@ en:
     # Title for the link used to go back to the homepage
     # 1 - views/users/fullpage_notifications/reset_password/received.html.erb
     # 2 - views/users/fullpage_notifications/reset_password/email_sent.html.erb
-    # 3 - views/users/fullpage_notifications/upgrade_trial/received.html.erb
-    # 4 - views/users/fullpage_notifications/upgrade_trial/email_sent.html.erb
-    # 5 - views/users/fullpage_notifications/confirmation/received.html.erb
-    # 6 - views/users/fullpage_notifications/confirmation/email_sent.html.erb
-    # 7 - views/users/fullpage_notifications/expired_link.html.erb
-    # 8 - views/users/request_reset_password.html.erb
-    # 9 - views/users/request_upgrade_trial.html.erb
+    # 3 - views/users/fullpage_notifications/confirmation/received.html.erb
+    # 4 - views/users/fullpage_notifications/confirmation/email_sent.html.erb
+    # 5 - views/users/fullpage_notifications/expired_link.html.erb
+    # 6 - views/users/request_reset_password.html.erb
+    # 7 - views/users/request_upgrade_trial.html.erb
     back: "Back to home page"
     # This message appears if a user tries to click on a confirmation link (or a reset password link) which is no longer valid
     expired_link:
@@ -1253,19 +1248,6 @@ en:
         title: "Reset password"
         # 1 - views/users/fullpage_notifications/reset_password/received.html.erb
         description: "Password reset successfully! We sent you an email containing a temporary password:<br/>with such a password you can login, and choose a new password in your personal profile"
-    upgrade_trial:
-      # The user wants to upgrade his trial account: he received an email with a special link to confirm his upgrade
-      email_sent:
-        # 1 - views/users/fullpage_notifications/upgrade_trial/email_sent.html.erb
-        title: "Upgrade a trial account"
-        # 1 - views/users/fullpage_notifications/upgrade_trial/email_sent.html.erb
-        description: "If the address you inserted corresponds to a trial account, and if the purchase code you wrote is valid,<br> you will receive an email containing the link to confirm your upgrade"
-      # The user wants to upgrade his trial account: this message appears when the account has been successfully upgraded and confirmed (the variable %{expiration_date} is replaced by the date of expiration of the purchase code inserted)
-      received:
-        # 1 - views/users/fullpage_notifications/upgrade_trial/received.html.erb
-        title: "Upgrade a trial account"
-        # 1 - views/users/fullpage_notifications/upgrade_trial/received.html.erb
-        description: "Your trial account has been upgraded successfully to a regular account! Expiration: %{expiration_date}"
     confirmation:
       # The user filled his sign up form, and there were no errors: the application sent him an email with a link to confirm his account
       email_sent:

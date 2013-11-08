@@ -194,45 +194,6 @@ class UsersController < ApplicationController
       redirect_to home_path
       return
     end
-    email = params[:email]
-    token = params[:purchase_id]
-    if email.blank? || token.blank?
-      redirect_to user_request_upgrade_trial_path, { flash: { alert: t('flash.email_or_purchase_token_is_blank') } }
-      return
-    end
-    user = User.active.confirmed.where(email: email).first
-    purchase = Purchase.find_by_token(token)
-    purchase = nil if purchase && purchase.users.count >= purchase.accounts_number
-    if user && purchase && user.purchase_id.nil?
-      user.upgrade_trial_token!(purchase.id)
-      #UserMailer.new_password(user, request.host, request.port).deliver TODO inserire il mailer
-    end
-    render 'users/fullpage_notifications/upgrade_trial/email_sent'
-  end
-  
-  # === Description
-  #
-  # Checks the token and upgrades the trial account of the user
-  #
-  # === Mode
-  #
-  # Html
-  #
-  # === Skipped filters
-  #
-  # * ApplicationController#authenticate
-  #
-  def upgrade_trial
-    if !SETTINGS['saas_registration_mode']
-      redirect_to home_path
-      return
-    end
-    if new_password
-      UserMailer.new_password_confirmed(user, new_password, request.host, request.port).deliver
-      render 'users/fullpage_notifications/reset_password/received' # TODO trialzz
-    else
-      render 'users/fullpage_notifications/expired_link' # TODO trialzz
-    end
   end
   
   # === Description
