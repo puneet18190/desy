@@ -577,7 +577,7 @@ href="ApplicationController.html#method-i-initialize_lesson_with_owner">Applicat
                 
               </p>
               <div id="method-i-dont_notify_modification_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 342</span>
+                <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 347</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">dont_notify_modification</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
     <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">dont_notify_changes</span>
@@ -756,7 +756,7 @@ href="ApplicationController.html#method-i-initialize_lesson_with_owner">Applicat
                 
               </p>
               <div id="method-i-notify_modification_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 323</span>
+                <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 328</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">notify_modification</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
     <span class="ruby-identifier">msg</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:details_placeholder</span>].<span class="ruby-identifier">blank?</span> <span class="ruby-operator">?</span> <span class="ruby-string">&#39;&#39;</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:details</span>]
@@ -822,16 +822,21 @@ href="ApplicationController.html#method-i-initialize_lesson_destination">Applica
               <div id="method-i-publish_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 218</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">publish</span>
-  <span class="ruby-ivar">@ok_msg</span> = <span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;other_popup_messages.correct.publish&#39;</span>)
-  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">publish</span>
-      <span class="ruby-ivar">@ok</span> = <span class="ruby-keyword">false</span>
-      <span class="ruby-ivar">@error</span> = <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">get_base_error</span>
-    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">trial?</span>
+    <span class="ruby-ivar">@ok</span> = <span class="ruby-keyword">false</span>
+    <span class="ruby-ivar">@error</span> = <span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;registration.trial_limitations_messages.cant_publish_lesson&#39;</span>)
   <span class="ruby-keyword">else</span>
-    <span class="ruby-ivar">@error</span> = <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;activerecord.errors.models.lesson.problem_publishing&#39;</span>)
+    <span class="ruby-ivar">@ok_msg</span> = <span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;other_popup_messages.correct.publish&#39;</span>)
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">publish</span>
+        <span class="ruby-ivar">@ok</span> = <span class="ruby-keyword">false</span>
+        <span class="ruby-ivar">@error</span> = <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">get_base_error</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-ivar">@error</span> = <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;activerecord.errors.models.lesson.problem_publishing&#39;</span>)
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">prepare_lesson_for_js</span>
   <span class="ruby-keyword">end</span>
-  <span class="ruby-identifier">prepare_lesson_for_js</span>
   <span class="ruby-keyword">if</span> [<span class="ruby-constant">ButtonDestinations</span><span class="ruby-operator">::</span><span class="ruby-constant">FOUND_LESSON</span>, <span class="ruby-constant">ButtonDestinations</span><span class="ruby-operator">::</span><span class="ruby-constant">COMPACT_LESSON</span>].<span class="ruby-identifier">include?</span> <span class="ruby-ivar">@destination</span>
     <span class="ruby-identifier">render</span> <span class="ruby-string">&#39;lessons/reload_compact.js&#39;</span>
   <span class="ruby-keyword">else</span>
@@ -891,7 +896,7 @@ href="ApplicationController.html#method-i-initialize_lesson_destination">Applica
                 
               </p>
               <div id="method-i-remove_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 286</span>
+                <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 291</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">remove</span>
   <span class="ruby-ivar">@ok_msg</span> = <span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;other_popup_messages.correct.remove.lesson&#39;</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
@@ -970,7 +975,7 @@ href="ApplicationController.html#method-i-initialize_lesson_destination">Applica
                 
               </p>
               <div id="method-i-unpublish_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 252</span>
+                <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 257</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">unpublish</span>
   <span class="ruby-ivar">@ok_msg</span> = <span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;other_popup_messages.correct.unpublish&#39;</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
@@ -1022,7 +1027,7 @@ video in conversion)</p>
                 
               </p>
               <div id="method-i-check_available_for_user_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 352</span>
+                <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 357</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">check_available_for_user</span>
   <span class="ruby-identifier">l</span> = <span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">find_by_id</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:lesson_id</span>]
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">l</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">l</span>.<span class="ruby-identifier">available?</span>
@@ -1062,7 +1067,7 @@ href="User.html#method-i-own_lessons">User#own_lessons</a></p>
                 
               </p>
               <div id="method-i-get_own_lessons_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 361</span>
+                <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 366</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">get_own_lessons</span>
   <span class="ruby-identifier">current_user_own_lessons</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">own_lessons</span>(<span class="ruby-ivar">@page</span>, <span class="ruby-ivar">@for_page</span>, <span class="ruby-ivar">@filter</span>)
   <span class="ruby-ivar">@lessons</span> = <span class="ruby-identifier">current_user_own_lessons</span>[<span class="ruby-value">:records</span>]
@@ -1100,7 +1105,7 @@ href="User.html#method-i-own_lessons">User#own_lessons</a></p>
                 
               </p>
               <div id="method-i-initialize_paginator_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 369</span>
+                <pre><span class="ruby-comment"># File app/controllers/lessons_controller.rb, line 374</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize_paginator</span>
   <span class="ruby-ivar">@page</span> = <span class="ruby-identifier">correct_integer?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-number">1</span>
   <span class="ruby-ivar">@for_page</span> = <span class="ruby-constant">FOR_PAGE</span>

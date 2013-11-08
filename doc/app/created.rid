@@ -1,4 +1,4 @@
-Fri, 08 Nov 2013 11:13:23 +0100
+Fri, 08 Nov 2013 17:47:21 +0100
 app/controllers/admin/dashboard_controller.rb	Wed, 06 Nov 2013 17:10:38 +0100
 app/controllers/admin/documents_controller.rb	Wed, 06 Nov 2013 17:10:38 +0100
 app/controllers/admin/lessons_controller.rb	Wed, 06 Nov 2013 17:10:38 +0100
@@ -9,7 +9,7 @@ app/controllers/admin/reports_controller.rb	Wed, 06 Nov 2013 17:10:38 +0100
 app/controllers/admin/settings_controller.rb	Wed, 06 Nov 2013 17:10:38 +0100
 app/controllers/admin/users_controller.rb	Wed, 06 Nov 2013 17:10:38 +0100
 app/controllers/admin_controller.rb	Wed, 06 Nov 2013 17:10:38 +0100
-app/controllers/application_controller.rb	Fri, 08 Nov 2013 11:13:17 +0100
+app/controllers/application_controller.rb	Fri, 08 Nov 2013 17:40:38 +0100
 app/controllers/audio_editor_controller.rb	Wed, 06 Nov 2013 17:10:38 +0100
 app/controllers/dashboard_controller.rb	Wed, 06 Nov 2013 17:10:38 +0100
 app/controllers/documents_controller.rb	Wed, 06 Nov 2013 17:10:38 +0100
@@ -18,18 +18,18 @@ app/controllers/image_editor_controller.rb	Wed, 06 Nov 2013 17:10:38 +0100
 app/controllers/lesson_editor_controller.rb	Wed, 06 Nov 2013 17:10:38 +0100
 app/controllers/lesson_export_controller.rb	Wed, 06 Nov 2013 17:10:38 +0100
 app/controllers/lesson_viewer_controller.rb	Wed, 06 Nov 2013 17:10:38 +0100
-app/controllers/lessons_controller.rb	Wed, 06 Nov 2013 17:10:38 +0100
+app/controllers/lessons_controller.rb	Fri, 08 Nov 2013 16:29:41 +0100
 app/controllers/mailing_lists_controller.rb	Wed, 06 Nov 2013 17:10:38 +0100
 app/controllers/media_elements_controller.rb	Wed, 06 Nov 2013 17:10:38 +0100
 app/controllers/notifications_controller.rb	Wed, 06 Nov 2013 17:10:38 +0100
-app/controllers/prelogin_controller.rb	Fri, 08 Nov 2013 11:13:17 +0100
+app/controllers/prelogin_controller.rb	Fri, 08 Nov 2013 17:40:38 +0100
 app/controllers/reports_controller.rb	Wed, 06 Nov 2013 17:10:38 +0100
 app/controllers/search_controller.rb	Wed, 06 Nov 2013 17:10:38 +0100
 app/controllers/tags_controller.rb	Wed, 06 Nov 2013 17:10:38 +0100
 app/controllers/users/sessions_controller.rb	Wed, 06 Nov 2013 17:10:38 +0100
-app/controllers/users_controller.rb	Fri, 08 Nov 2013 11:03:52 +0100
+app/controllers/users_controller.rb	Fri, 08 Nov 2013 16:29:41 +0100
 app/controllers/video_editor_controller.rb	Wed, 06 Nov 2013 17:10:38 +0100
-app/controllers/virtual_classroom_controller.rb	Wed, 06 Nov 2013 17:10:38 +0100
+app/controllers/virtual_classroom_controller.rb	Fri, 08 Nov 2013 16:29:41 +0100
 app/helpers/admin_helper.rb	Wed, 06 Nov 2013 17:10:38 +0100
 app/helpers/application_helper.rb	Wed, 06 Nov 2013 17:10:38 +0100
 app/helpers/mailer_helper.rb	Wed, 06 Nov 2013 17:10:38 +0100
@@ -56,7 +56,7 @@ app/models/slide.rb	Wed, 06 Nov 2013 17:10:38 +0100
 app/models/subject.rb	Wed, 06 Nov 2013 17:10:38 +0100
 app/models/tag.rb	Wed, 06 Nov 2013 17:10:38 +0100
 app/models/tagging.rb	Wed, 06 Nov 2013 17:10:38 +0100
-app/models/user.rb	Fri, 08 Nov 2013 09:14:31 +0100
+app/models/user.rb	Fri, 08 Nov 2013 17:46:59 +0100
 app/models/users_subject.rb	Wed, 06 Nov 2013 17:10:38 +0100
 app/models/video.rb	Wed, 06 Nov 2013 17:10:38 +0100
 app/models/virtual_classroom_lesson.rb	Wed, 06 Nov 2013 17:10:38 +0100

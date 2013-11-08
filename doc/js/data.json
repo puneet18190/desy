@@ -2975,8 +2975,17 @@
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
-            "line": 39,
-            "description": "This function switched to the page of suggested lessons, and reloads the pagination (if there are no suggested lessons the pagination is removed).",
+            "line": 31,
+            "description": "Assigns a class to leave the correct space between the two columns of lessons",
+            "itemtype": "method",
+            "name": "realignDashboardLessons",
+            "class": "DashboardGeneral",
+            "module": "dashboard"
+        },
+        {
+            "file": "app/assets/javascripts/dashboard.js",
+            "line": 48,
+            "description": "This function switches to the page of suggested lessons, and reloads the pagination (if there are no suggested lessons the pagination is removed).",
             "itemtype": "method",
             "name": "switchToSuggestedLessons",
             "class": "DashboardGeneral",
@@ -2984,7 +2993,7 @@
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
-            "line": 57,
+            "line": 66,
             "description": "This function switches to the page of suggested elements, and reloads the pagination (if there are no suggested elements the pagination is removed).",
             "itemtype": "method",
             "name": "switchToSuggestedMediaElements",
@@ -2993,7 +3002,7 @@
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
-            "line": 79,
+            "line": 88,
             "description": "This function changes page of the section containing suggested lessons. As already mentioned, the method reloads the pagination using {{#crossLink \"DashboardPagination/reloadLessonsDashboardPagination:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "changePageDashboardLessons",
@@ -3019,7 +3028,7 @@
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
-            "line": 95,
+            "line": 104,
             "description": "This function changes page of the section containing suggested elements. As already mentioned, the method reloads the pagination using {{#crossLink \"DashboardPagination/reloadMediaElementsDashboardPagination:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "changePageDashboardMediaElements",
@@ -3045,7 +3054,7 @@
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
-            "line": 111,
+            "line": 120,
             "description": "This function generates HTML code with the same functionality of the one defined in the partial <i>views/shared/pagination.html.erb</i>.",
             "itemtype": "method",
             "name": "getHtmlPagination",
@@ -3070,7 +3079,7 @@
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
-            "line": 152,
+            "line": 161,
             "description": "This function sets the current pages of lessons and elements, without loading the pagination. It's only used in the index.js.erb for pagination.",
             "itemtype": "method",
             "name": "reloadDashboardPages",
@@ -3091,7 +3100,7 @@
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
-            "line": 166,
+            "line": 175,
             "description": "This function reloads the pagination for lessons (it uses {{#crossLink \"DashboardPagination/getHtmlPagination:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "reloadLessonsDashboardPagination",
@@ -3112,7 +3121,7 @@
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
-            "line": 194,
+            "line": 203,
             "description": "This function reloads the pagination for media elements (it uses {{#crossLink \"DashboardPagination/getHtmlPagination:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "reloadMediaElementsDashboardPagination",
@@ -7129,7 +7138,7 @@
         },
         {
             "file": "app/assets/javascripts/virtual_classroom.js",
-            "line": 256,
+            "line": 260,
             "description": "Gets the highest zIndex value among elements of a given class.",
             "itemtype": "method",
             "name": "getMaximumZIndex",
@@ -7149,7 +7158,7 @@
         },
         {
             "file": "app/assets/javascripts/virtual_classroom.js",
-            "line": 274,
+            "line": 278,
             "description": "Initializes the functionality of dragging a single lesson into the playlist.",
             "itemtype": "method",
             "name": "initializeDraggableVirtualClassroomLesson",
@@ -7165,7 +7174,7 @@
         },
         {
             "file": "app/assets/javascripts/virtual_classroom.js",
-            "line": 315,
+            "line": 319,
             "description": "Initialize playlist container (using <i>JQueryUi sortable</i>)and jScrollPane.",
             "itemtype": "method",
             "name": "initializePlaylist",
@@ -7174,7 +7183,7 @@
         },
         {
             "file": "app/assets/javascripts/virtual_classroom.js",
-            "line": 376,
+            "line": 380,
             "description": "Uses together {{#crossLink \"VirtualClassroomJavaScriptAnimations/initializeDraggableVirtualClassroomLesson:method\"}}{{/crossLink}} and {{#crossLink \"VirtualClassroomJavaScriptAnimations/initializePlaylist:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "initializeVirtualClassroom",
@@ -7183,7 +7192,7 @@
         },
         {
             "file": "app/assets/javascripts/virtual_classroom.js",
-            "line": 396,
+            "line": 400,
             "description": "Initializer for lessons that can't be loaded from the multiple lessons loader.",
             "itemtype": "method",
             "name": "initializeNotAvailableLessonsToLoadQuick",
@@ -7192,7 +7201,7 @@
         },
         {
             "file": "app/assets/javascripts/virtual_classroom.js",
-            "line": 409,
+            "line": 413,
             "description": "Initializer for the JScrollPain in the multiple lessons loader (event infinite scroll to load more lessons).",
             "itemtype": "method",
             "name": "initializeScrollPaneQuickLessonSelector",
@@ -7201,7 +7210,7 @@
         },
         {
             "file": "app/assets/javascripts/virtual_classroom.js",
-            "line": 428,
+            "line": 432,
             "description": "Add email to recipients list on email add button (+).",
             "itemtype": "method",
             "name": "addEmailToVirtualClassroomSendLessonLinkSelector",
@@ -7210,7 +7219,7 @@
         },
         {
             "file": "app/assets/javascripts/virtual_classroom.js",
-            "line": 445,
+            "line": 449,
             "description": "Resets the spaces between the emails sent.",
             "itemtype": "method",
             "name": "resetVirtualClassroomSendLinkLines",
