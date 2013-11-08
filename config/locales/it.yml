@@ -2315,7 +2315,7 @@ it:
       label: "Trial"
       # Caption to remember to the user the expiration (the variable %{days} is replaced by the number of days left to expiration)
       # 1 - views/shared/_header.html.erb
-      expiration: "Il tuo account 'trial' scadrà tra %{days} giorni"
+      expiration: "Il tuo account 'trial' scadrà tra <span>%{days} giorni</span>"
   
   
   # SECTION 2.16: Captions used inside the Video Editor
