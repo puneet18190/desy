@@ -32,7 +32,7 @@ it:
     upgrade_trial:
       # Case 1: the user forgot to fill in one of the three compulsory fields
       # 1 - controllers/users_controller.rb
-      missing_fields "Riempi tutti i campi richiesti"
+      missing_fields: "Riempi tutti i campi richiesti"
       # Case 2: either the login data is wrong, or the account is not trial
       # 1 - controllers/users_controller.rb
       wrong_login_or_not_trial: "Non ci sono accounts 'trial' in corrispondenza con i dati che hai inserito"
