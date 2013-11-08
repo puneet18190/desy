@@ -159,7 +159,20 @@ class User < ActiveRecord::Base
   def admin?
     self.super_admin? || SETTINGS['grant_admin_privileges'].include?(self.email)
   end
-
+  
+  # === Description
+  #
+  # Returns the days missing to the expiration of the trial account
+  #
+  # === Returns
+  #
+  # An integer
+  #
+  def trial_to_expiration
+    return nil if !self.trial?
+    (self.created_at.to_i + (SETTINGS['saas_trial_duration'] * 86400) - Time.zone.now.to_i) / 86400 + 1
+  end
+  
   # === Description
   #
   # It accepts all the policies declared in +registration_policies+. Example:
