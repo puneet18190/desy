@@ -1,7 +1,4 @@
-<div class="header">
-  <%= link_to image_tag('logo.gif'), '/dashboard' %>
-  <%= render :partial => 'shared/logout' %>
-</div>
+<%= render :partial => 'shared/header' %>
 <div class="bluBar">
   <h1 style="width:30%" class="lower"><%= t('captions.virtual_classroom') %></h1>
   <%= render :partial => 'virtual_classroom/header_buttons', :locals => {:empty => @lessons.empty?, :emptier => @emptier} %>

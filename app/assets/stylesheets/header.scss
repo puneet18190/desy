@@ -1,29 +1,18 @@
 @import 'variables';
 @import 'mixins';
 
-.header {
+.header-main {
   
   background-color: #373737;
-  padding: 0px 52px 0px 59px;
-  //height: 33px;
-  .freeTrial {
-    position:absolute;
-    top:56px;
-    left:60px;
-    color:white;
-    font-size:10px;
-    span {
-      color:#f29400;
-    }
-  }
-  .noFreeTrial {
-    position:absolute;
-    top:46px;
-    left:60px;
-    color:white;
-    font-size:10px;
+  padding: 0px 50px 0px 50px;
+  height: 72px;
+  
+  .header-link img {
+    
+    margin-top: 20px;
     
   }
+  
   .logout {
     
     float: right;
@@ -32,7 +21,9 @@
     font-weight: bold;
     font-size: 87.5%;
     line-height: 15px;
-    padding:20px 0px 0px 0px; 
+    height: 32px;
+    padding: 20px 0px 20px 0px;
+    
     img {
       
       margin-right: 1px;
@@ -92,6 +83,25 @@
       }
       
     }
+    
+  }
+  
+  .freeTrial {
+    position:absolute;
+    top:56px;
+    left:60px;
+    color:white;
+    font-size:10px;
+    span {
+      color:#f29400;
+    }
+  }
+  .noFreeTrial {
+    position:absolute;
+    top:46px;
+    left:60px;
+    color:white;
+    font-size:10px;
     
   }
   
