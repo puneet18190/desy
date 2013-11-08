@@ -1323,7 +1323,7 @@ en:
     # 5 - views/search/_item_selector.html.erb
     media_elements: "Elements"
     # Used to refer to the user's personal profile
-    # 1 - views/shared/_logout.html.erb
+    # 1 - views/shared/_header.html.erb
     # 2 - views/users/statistics.html.erb
     # 3 - views/users/mailing_lists.html.erb
     # 4 - views/users/edit.html.erb
@@ -1951,7 +1951,7 @@ en:
       # 1 - views/prelogin/_login.html.erb
       title: "Login"
     # Link to logout
-    # 1 - views/shared/_logout.html.erb
+    # 1 - views/shared/_header.html.erb
     # 2 - views/admin/_header.html.erb
     logout: "Logout"
     # Link to ask for help, in case the user forgot his password
@@ -2858,7 +2858,7 @@ en:
       # 1 - views/admin/_list_heading.html.erb
       expand_all: "Expand all"
       # Link used to enter in 'Administration' from outside (placed on the side of the link 'logout', only for administrators)
-      # 1 - views/shared/_logout.html.erb
+      # 1 - views/shared/_header.html.erb
       link: "Administration"
     # Captions of the section 'documents'
     documents:

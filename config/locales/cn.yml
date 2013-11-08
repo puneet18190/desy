@@ -1323,7 +1323,7 @@ cn:
     # 5 - views/search/_item_selector.html.erb
     media_elements: "单元"
     # Used to refer to the user's personal profile
-    # 1 - views/shared/_logout.html.erb
+    # 1 - views/shared/_header.html.erb
     # 2 - views/users/statistics.html.erb
     # 3 - views/users/mailing_lists.html.erb
     # 4 - views/users/edit.html.erb
@@ -1951,7 +1951,7 @@ cn:
       # 1 - views/prelogin/_login.html.erb
       title: "登陆"
     # Link to logout
-    # 1 - views/shared/_logout.html.erb
+    # 1 - views/shared/_header.html.erb
     # 2 - views/admin/_header.html.erb
     logout: "退出"
     # Link to ask for help, in case the user forgot his password
@@ -2858,7 +2858,7 @@ cn:
       # 1 - views/admin/_list_heading.html.erb
       expand_all: "展开所有"
       # Link used to enter in 'Administration' from outside (placed on the side of the link 'logout', only for administrators)
-      # 1 - views/shared/_logout.html.erb
+      # 1 - views/shared/_header.html.erb
       link: "管理"
     # Captions of the section 'documents'
     documents:
