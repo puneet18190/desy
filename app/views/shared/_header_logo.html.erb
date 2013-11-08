@@ -1,0 +1,7 @@
+<% if current_user.trial? %>
+  <%= link_to image_tag('logo_trial.gif'), '/dashboard' %>
+  <div class="freeTrial">Il tuo account scadrà tra <span>14 giorni</span></div>
+<% else %>
+  <%= link_to image_tag('logo.gif'), '/dashboard' %>
+  <div class="noFreeTrial">Digital Education System</div>
+<% end %>
