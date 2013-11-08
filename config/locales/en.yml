@@ -1932,6 +1932,14 @@ en:
     # Button to submit the registration form
     # 1 - views/prelogin/_registration_form.html.erb
     done: "Sign up"
+    # Messages shown to the trial users if they try to do forbidden actions
+    trial_limitations_messages:
+      # First action: trial users can't publish their lessons
+      # 1 - controllers/lessons_controller.rb
+      cant_publish_lesson: "Trial users can't publish lessons"
+      # Second case: trial users can't send links from the Virtual Classroom
+      # 1 - views/shared/_popups.html.erb
+      cant_send_link: "Trial users can't send lessons"
     # Captions of the login window: title + two captions for email and password + button to submit
     login:
       # 1 - views/prelogin/_login.html.erb

@@ -218,7 +218,7 @@ class LessonsController < ApplicationController
   def publish
     if current_user.trial?
       @ok = false
-      @error = 'Sei trial, non puoi pubblicare le tue lezioni' # TODO traduzz
+      @error = t('registration.trial_limitations_messages.cant_publish_lesson')
     else
       @ok_msg = t('other_popup_messages.correct.publish')
       if @ok
