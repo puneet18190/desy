@@ -7,6 +7,9 @@
         <li><%= link_to t('users.subjects.menu_link'), my_subjects_path, :class => 'current' %></li>
         <li><%= link_to t('users.mailing_list.menu_link'), my_mailing_lists_path %></li>
         <li><%= link_to t('users.statistics.menu_link'), my_statistics_path %></li>
+        <% if current_user.trial? %>
+          <li><%= link_to t('users.trial.menu_link'), my_trial_path %></li>
+        <% end %>
       </ul>
     </div>
     <br class="clearfloat">

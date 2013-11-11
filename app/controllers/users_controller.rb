@@ -278,6 +278,25 @@ class UsersController < ApplicationController
   
   # === Description
   #
+  # Section of your profile about trial version handling
+  #
+  # === Mode
+  #
+  # Html
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#initialize_layout
+  #
+  def trial
+    if !current_user.trial?
+      redirect_to my_profile_path
+      return
+    end
+  end
+  
+  # === Description
+  #
   # Updates your profile (it can be called either from UsersController#edit or from UsersController#subjects)
   #
   # === Mode
