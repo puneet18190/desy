@@ -26,7 +26,15 @@ class UsersController < ApplicationController
     :send_upgrade_trial,
     :find_locations
   ]
-  before_filter :initialize_layout, :only => [:edit, :update, :subjects, :statistics, :mailing_lists, :trial]
+  before_filter :initialize_layout, :only => [
+    :edit,
+    :update,
+    :subjects,
+    :statistics,
+    :mailing_lists,
+    :trial,
+    :logged_upgrade_trial
+  ]
   layout 'fullpage_notification', :only => [
     :request_reset_password,
     :reset_password,
@@ -293,6 +301,7 @@ class UsersController < ApplicationController
       redirect_to my_profile_path
       return
     end
+    user = current_user
     purchase = Purchase.find_by_token(params[:purchase_id])
     if !purchase || purchase.users.count >= purchase.accounts_number
       @error = 'codice errato' # TODO traduzz
@@ -306,7 +315,7 @@ class UsersController < ApplicationController
       render 'trial'
       return
     end
-    redirect_to dashboard_path, { flash: { alert: 'eddajeeee ce lai fatta' } } # TODO traduzz
+    redirect_to dashboard_path, { flash: { notice: 'eddajeeee ce lai fatta' } } # TODO traduzz
   end
   
   # === Description

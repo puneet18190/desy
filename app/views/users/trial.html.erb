@@ -15,17 +15,17 @@
         <h2><%= t('users.trial.title') %></h2> <!-- TODO traduzz -->
         <p><%= t('users.trial.description') %></p> <!-- TODO traduzz -->
       </header>
-      <fieldset class="insert-content">
-        <%= form_tag user_logged_upgrade_trial_path, :method => :post do %>
+      <%= form_tag user_logged_upgrade_trial_path, :method => :post, :autocomplete => 'off' do %>
+        <fieldset class="insert-content">
           <div class="inputElement">
             Purchase code <!-- TODO traduzz --> <br>
             <%= text_field_tag 'purchase_id', '', :class => 'text' %>
           </div>
-        <% end %>
-      </fieldset>
-      <div class="form_submit">
-        <%= submit_tag 'daje' %> <!-- TODO traduzz -->
-      </div>
+        </fieldset>
+        <div class="form_submit">
+          <%= submit_tag 'daje' %> <!-- TODO traduzz -->
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
