@@ -166,7 +166,7 @@ class Admin::PurchasesController < AdminController
       return
     end
     @message = params[:message].blank? ? I18n.t('admin.purchases.links.empty_message') : params[:message]
-    UserMailer.purchase_resume(params[:emails].split(','), @purchase, @message, request.host, request.port).deliver
+    UserMailer.purchase_resume(params[:emails].split(','), @purchase, @message, request.protocol, request.host, request.port).deliver
     redirect_to '/admin/purchases'
   end
   
