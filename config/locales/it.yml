@@ -1328,6 +1328,7 @@ it:
     # 3 - views/users/mailing_lists.html.erb
     # 4 - views/users/edit.html.erb
     # 5 - views/users/subjects.html.erb
+    # 6 - views/users/trial.html.erb
     profile: "Profilo"
     # Used anywhere the user needs to insert a time duration in seconds: here goes the shortened form for the word 'seconds'
     # 1 - views/galleries/mixed_for_video_editor.js.erb
@@ -2137,6 +2138,7 @@ it:
       # 2 - views/users/mailing_lists.html.erb
       # 3 - views/users/edit.html.erb
       # 4 - views/users/subjects.html.erb
+      # 5 - views/users/trial.html.erb
       menu_link: "Dati personali"
       # Title of the section
       # 1 - views/users/edit.html.erb
@@ -2175,6 +2177,7 @@ it:
       # 2 - views/users/mailing_lists.html.erb
       # 3 - views/users/edit.html.erb
       # 4 - views/users/subjects.html.erb
+      # 5 - views/users/trial.html.erb
       menu_link: "Mailing lists"
       # Title of the subsection
       # 1 - views/users/mailing_lists.html.erb
@@ -2233,6 +2236,7 @@ it:
       # 2 - views/users/mailing_lists.html.erb
       # 3 - views/users/edit.html.erb
       # 4 - views/users/subjects.html.erb
+      # 5 - views/users/trial.html.erb
       menu_link: "Statistiche"
       # Title
       # 1 - views/users/statistics.html.erb
@@ -2298,6 +2302,7 @@ it:
       # 2 - views/users/mailing_lists.html.erb
       # 3 - views/users/edit.html.erb
       # 4 - views/users/subjects.html.erb
+      # 5 - views/users/trial.html.erb
       menu_link: "Materie"
       # Title
       # 1 - views/users/subjects.html.erb
@@ -2313,6 +2318,13 @@ it:
       # 1 - views/admin/users/_list.html.erb
       # 2 - views/admin/users/show.html.erb
       label: "Trial"
+      # Link in the profile menu
+      # 1 - views/users/subjects.html.erb
+      # 2 - views/users/statistics.html.erb
+      # 3 - views/users/edit.html.erb
+      # 4 - views/users/mailing_lists.html.erb
+      # 5 - views/users/trial.html.erb
+      menu_link: "Gestione trial"
       # Caption to remember to the user the expiration (the variable %{days} is replaced by the number of days left to expiration)
       # 1 - views/shared/_header.html.erb
       expiration: "Il tuo account 'trial' scadrà tra <span>%{days} giorni</span>"
