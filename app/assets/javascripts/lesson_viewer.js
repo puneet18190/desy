@@ -226,7 +226,11 @@ function initializeLessonViewer() {
     $('#playlist_menu').css('overflow', 'hidden');
   }
   var height = $(window).height();
-  $('.lesson-viewer-layout .container').css('margin-top', (height - 690) / 2 + 'px');
+  var margin_top = (height - 690) / 2;
+  if(margin_top < 50) {
+    margin_top = 50;
+  }
+  $('.lesson-viewer-layout .container').css('margin-top', margin_top + 'px');
   if(height > 690) {
     $('body').css('overflow', 'hidden');
   } else {
