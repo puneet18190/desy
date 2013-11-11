@@ -141,6 +141,7 @@ Desy::Application.routes.draw do
   get 'profile/subjects'      => 'users#subjects',      :as => :my_subjects
   get 'profile/statistics'    => 'users#statistics',    :as => :my_statistics
   get 'profile/mailing_lists' => 'users#mailing_lists', :as => :my_mailing_lists
+  get 'profile/trial'         => 'users#trial',         :as => :my_trial
   put 'profile/update'        => 'users#update',        :as => :user
   
   # LOCATIONS

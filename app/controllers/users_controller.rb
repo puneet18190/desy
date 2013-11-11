@@ -26,7 +26,7 @@ class UsersController < ApplicationController
     :send_upgrade_trial,
     :find_locations
   ]
-  before_filter :initialize_layout, :only => [:edit, :update, :subjects, :statistics, :mailing_lists]
+  before_filter :initialize_layout, :only => [:edit, :update, :subjects, :statistics, :mailing_lists, :trial]
   layout 'fullpage_notification', :only => [
     :request_reset_password,
     :reset_password,
@@ -274,6 +274,25 @@ class UsersController < ApplicationController
   def subjects
     @user = current_user
     @subjects = Subject.order(:description)
+  end
+  
+  # === Description
+  #
+  # Section of your profile about trial version handling
+  #
+  # === Mode
+  #
+  # Html
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#initialize_layout
+  #
+  def trial
+    if !current_user.trial?
+      redirect_to my_profile_path
+      return
+    end
   end
   
   # === Description

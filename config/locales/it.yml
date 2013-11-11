@@ -193,13 +193,13 @@ it:
           # 1 - controllers/virtual_classroom_controller.rb
           # 2 - models/lesson.rb
           # 3 - models/lesson.rb
-          problem_adding_to_virtual_classroom: "La lezione non è stata aggiunta alla tua Virtual Classroom"
+          problem_adding_to_virtual_classroom: "La lezione non è stata aggiunta al tuo Elenco" # FIXME "La lezione non è stata aggiunta alla tua Virtual Classroom"
           # The selected lesson is already in your Virtual Classroom, hence you can't add it again
           # 1 - models/lesson.rb
-          lesson_already_in_virtual_classroom: "Questa lezione è già presente nella tua Virtual Classroom"
+          lesson_already_in_virtual_classroom: "Questa lezione è già presente nel tuo Elenco" # FIXME "Questa lezione è già presente nella tua Virtual Classroom"
           # For some reason, the selected lesson cannot be added to your Virtual Classroom
           # 1 - models/lesson.rb
-          lesson_not_available_for_virtual_classroom: "La lezione non è stata aggiunta alla tua Virtual Classroom"
+          lesson_not_available_for_virtual_classroom: "La lezione non è stata aggiunta al tuo Elenco" # FIXME "La lezione non è stata aggiunta alla tua Virtual Classroom"
           # There was an error while trying to remove the lesson from your Virtual Classroom
           # 1 - controllers/virtual_classroom_controller.rb
           # 2 - controllers/virtual_classroom_controller.rb
@@ -207,7 +207,7 @@ it:
           # 4 - models/lesson.rb
           # 5 - models/lesson.rb
           # 6 - models/lesson.rb
-          problem_removing_from_virtual_classroom: "La lezione non è stata rimossa dalla tua Virtual Classroom"
+          problem_removing_from_virtual_classroom: "La lezione non è stata rimossa dal tuo Elenco" # FIXME "La lezione non è stata rimossa dalla tua Virtual Classroom"
         like:
           # There was an error while you were trying to remove 'I like it' from a lesson
           # 1 - controllers/lessons_controller.rb
@@ -409,10 +409,10 @@ it:
     empty_virtual_classroom:
       # Title
       # 1 - views/shared/_popups.html.erb
-      title: "Svuota la tua Virtual Classroom"
+      title: "Svuota il tuo Elenco" # FIXME "Svuota la tua Virtual Classroom"
       # Message
       # 1 - views/shared/_popups.html.erb
-      confirm: "Sei sicuro di volerla svuotare?"
+      confirm: "Sei sicuro di volerlo svuotare?" # FIXME "Sei sicuro di volerla svuotare?"
       # Button to confirm
       # 1 - views/shared/_popups.html.erb
       do: "Si"
@@ -757,7 +757,7 @@ it:
         media_element: "Aggiungi ai tuoi elementi"
       # To add a lesson to your Virtual Classroom
       # 1 - views/shared/buttons/_add_virtual_classroom.html.erb
-      add_virtual_classroom: "Aggiungi la lezione alla Virtual Classroom"
+      add_virtual_classroom: "Aggiungi la lezione al tuo Elenco" # FIXME "Aggiungi la lezione alla Virtual Classroom"
       # To copy a lesson
       # 1 - views/shared/buttons/_copy.html.erb
       copy: "Crea una tua copia della lezione"
@@ -787,7 +787,7 @@ it:
       remove: "Rimuovi questo oggetto"
       # To remove a lesson from your Virtual Classroom
       # 1 - views/shared/buttons/_remove_virtual_classroom.html.erb
-      remove_virtual_classroom: "Rimuovi dalla tua Virtual Classroom"
+      remove_virtual_classroom: "Rimuovi dal tuo Elenco" # FIXME "Rimuovi dalla tua Virtual Classroom"
       # To turn a shared lesson back into private
       # 1 - views/shared/buttons/_unpublish.html.erb
       # 2 - views/shared/_popups.html.erb
@@ -1074,7 +1074,7 @@ it:
       preview: "Apri il visualizzatore della lezione"
       # 'X' icon, to remove the lesson from Virtual Classroom
       # 1 - views/virtual_classroom/_view_single.html.erb
-      remove: "Rimuovi dalla tua Virtual Classroom"
+      remove: "Rimuovi dal tuo Elenco" # FIXME "Rimuovi dalla tua Virtual Classroom"
       # Button 'x' to remove from playlist
       # 1 - views/virtual_classroom/_view_single_playlist.html.erb
       remove_from_playlist: "Rimuovi dalla tua playlist"
@@ -1145,7 +1145,7 @@ it:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Pulsanti"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "Tutte le azioni che si possono effettuare sulle lezioni presenti nelle cartelle sono identificate da icone grafiche.<br/>L'icona \"occhio\" permette di vedere la lezione selezionata, l'icona \"matita\" consente di modificare la lezione. Quest'ultima funzione non è disponibile per le lezioni <b>collegate</b>, in questo caso troverai solo l'icona \"copia\" (due cerchi sovrapposti): difatti non è possibile modificare lezioni realizzate da altri utenti senza averne fatto prima una copia. L'icona \"monitor con un occhio\" carica la lezione nella tua Virtual Classroom; l'icona \"pubblico\" (tre piccoli cerchi interconnessi da due linee) viene accesa, se la lezione è condivisa; se ti piace particolarmente la lezione di qualche altro utente, clicca sull'icona \"star\". Infine, l'icona con la \"x\" cancella la lezione (se la lezione è <b>collegata</b> questa icona è sostituita dal \"-\", che elimina il collegamento)."
+        content: "Tutte le azioni che si possono effettuare sulle lezioni presenti nelle cartelle sono identificate da icone grafiche.<br/>L'icona \"occhio\" permette di vedere la lezione selezionata, l'icona \"matita\" consente di modificare la lezione. Quest'ultima funzione non è disponibile per le lezioni <b>collegate</b>, in questo caso troverai solo l'icona \"copia\" (due cerchi sovrapposti): difatti non è possibile modificare lezioni realizzate da altri utenti senza averne fatto prima una copia. L'icona \"monitor con un occhio\" carica la lezione nella tua Playlist; l'icona \"pubblico\" (tre piccoli cerchi interconnessi da due linee) viene accesa, se la lezione è condivisa; se ti piace particolarmente la lezione di qualche altro utente, clicca sull'icona \"star\". Infine, l'icona con la \"x\" cancella la lezione (se la lezione è <b>collegata</b> questa icona è sostituita dal \"-\", che elimina il collegamento)." # FIXME "Tutte le azioni che si possono effettuare sulle lezioni presenti nelle cartelle sono identificate da icone grafiche.<br/>L'icona \"occhio\" permette di vedere la lezione selezionata, l'icona \"matita\" consente di modificare la lezione. Quest'ultima funzione non è disponibile per le lezioni <b>collegate</b>, in questo caso troverai solo l'icona \"copia\" (due cerchi sovrapposti): difatti non è possibile modificare lezioni realizzate da altri utenti senza averne fatto prima una copia. L'icona \"monitor con un occhio\" carica la lezione nella tua Virtual Classroom; l'icona \"pubblico\" (tre piccoli cerchi interconnessi da due linee) viene accesa, se la lezione è condivisa; se ti piace particolarmente la lezione di qualche altro utente, clicca sull'icona \"star\". Infine, l'icona con la \"x\" cancella la lezione (se la lezione è <b>collegata</b> questa icona è sostituita dal \"-\", che elimina il collegamento)."
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Create a new lesson"
@@ -1194,7 +1194,7 @@ it:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Dati personali, mailing list"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "La sezione \"materie\" contiene l'elenco delle tue materie: puoi modificare questo elenco in ogni momento. Ricorda che %{desy} analizza le materie di interesse indicate per suggerirti le lezioni che trovi proposte nella tua home pages. La sezione \"mailing list\" contiene un elenco di gruppi di indirizzi e-mail, che puoi utilizzare per inviare i collegamenti alle tue lezioni presenti all'interno della tua Virtual Classroom: clicca sul pulsante \"aggiungi un nuovo gruppo\" per crearne uno nuovo."
+        content: "La sezione \"materie\" contiene l'elenco delle tue materie: puoi modificare questo elenco in ogni momento. Ricorda che %{desy} analizza le materie di interesse indicate per suggerirti le lezioni che trovi proposte nella tua home pages. La sezione \"mailing list\" contiene un elenco di gruppi di indirizzi e-mail, che puoi utilizzare per inviare i collegamenti alle tue lezioni presenti all'interno della tua Playlist: clicca sul pulsante \"aggiungi un nuovo gruppo\" per crearne uno nuovo." # FIXME "La sezione \"materie\" contiene l'elenco delle tue materie: puoi modificare questo elenco in ogni momento. Ricorda che %{desy} analizza le materie di interesse indicate per suggerirti le lezioni che trovi proposte nella tua home pages. La sezione \"mailing list\" contiene un elenco di gruppi di indirizzi e-mail, che puoi utilizzare per inviare i collegamenti alle tue lezioni presenti all'interno della tua Virtual Classroom: clicca sul pulsante \"aggiungi un nuovo gruppo\" per crearne uno nuovo."
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Statistiche"
@@ -1203,14 +1203,14 @@ it:
     virtual_classroom:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Virtual Classroom %{desy}"
+        title: "Playlist di %{desy}" # FIXME "Virtual Classroom %{desy}"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "Benvenuto nella tua Virtual Classroom! Qui puoi caricare le lezioni presenti nella cartella personale e organizzarle in una playlist. Il pulsante \"aggiungi lezione\" apre una finestra per caricare più lezioni contemporaneamente."
+        content: "Benvenuto nella tua Playlist! Qui puoi caricare le lezioni presenti nella cartella personale e organizzarle in una playlist. Il pulsante \"aggiungi lezione\" apre una finestra per caricare più lezioni contemporaneamente." # FIXME "Benvenuto nella tua Virtual Classroom! Qui puoi caricare le lezioni presenti nella cartella personale e organizzarle in una playlist. Il pulsante \"aggiungi lezione\" apre una finestra per caricare più lezioni contemporaneamente."
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Playlist"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "Una delle caratteristiche più utili della Virtual Classroom di %{desy} è l'utilizzo di una playlist: per inserire una lezione nella playlist, trascinala all'interno dell'area sulla destra. Per riprodurre la playlist nella sequenza più adatta ai vostri obiettivi didattici, è possibile ordinare le lezioni."
+        content: "Una delle caratteristiche più utili della Playlist di %{desy} è l'utilizzo di una funzione che consente di organizzare le lezioni da somministrare: per inserire una lezione nella playlist, trascinala all'interno dell'area sulla destra. Per riprodurre la playlist nella sequenza più adatta ai vostri obiettivi didattici, è possibile ordinare le lezioni." # FIXME "Una delle caratteristiche più utili della Virtual Classroom di %{desy} è l'utilizzo di una playlist: per inserire una lezione nella playlist, trascinala all'interno dell'area sulla destra. Per riprodurre la playlist nella sequenza più adatta ai vostri obiettivi didattici, è possibile ordinare le lezioni."
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Invia un link ai tuoi amici"
@@ -1328,6 +1328,7 @@ it:
     # 3 - views/users/mailing_lists.html.erb
     # 4 - views/users/edit.html.erb
     # 5 - views/users/subjects.html.erb
+    # 6 - views/users/trial.html.erb
     profile: "Profilo"
     # Used anywhere the user needs to insert a time duration in seconds: here goes the shortened form for the word 'seconds'
     # 1 - views/galleries/mixed_for_video_editor.js.erb
@@ -1364,7 +1365,7 @@ it:
     # Caption for Virtual Classroom
     # 1 - views/shared/_menu.html.erb
     # 2 - views/virtual_classroom/index.html.erb
-    virtual_classroom: "Virtual Classroom"
+    virtual_classroom: "Playlist" # FIXME "Virtual Classroom"
     # Used in the login, before the logged user's name
     # 1 - views/admin/_header.html.erb
     welcome: "Benvenuto"
@@ -2137,6 +2138,7 @@ it:
       # 2 - views/users/mailing_lists.html.erb
       # 3 - views/users/edit.html.erb
       # 4 - views/users/subjects.html.erb
+      # 5 - views/users/trial.html.erb
       menu_link: "Dati personali"
       # Title of the section
       # 1 - views/users/edit.html.erb
@@ -2175,6 +2177,7 @@ it:
       # 2 - views/users/mailing_lists.html.erb
       # 3 - views/users/edit.html.erb
       # 4 - views/users/subjects.html.erb
+      # 5 - views/users/trial.html.erb
       menu_link: "Mailing lists"
       # Title of the subsection
       # 1 - views/users/mailing_lists.html.erb
@@ -2233,6 +2236,7 @@ it:
       # 2 - views/users/mailing_lists.html.erb
       # 3 - views/users/edit.html.erb
       # 4 - views/users/subjects.html.erb
+      # 5 - views/users/trial.html.erb
       menu_link: "Statistiche"
       # Title
       # 1 - views/users/statistics.html.erb
@@ -2298,6 +2302,7 @@ it:
       # 2 - views/users/mailing_lists.html.erb
       # 3 - views/users/edit.html.erb
       # 4 - views/users/subjects.html.erb
+      # 5 - views/users/trial.html.erb
       menu_link: "Materie"
       # Title
       # 1 - views/users/subjects.html.erb
@@ -2313,6 +2318,13 @@ it:
       # 1 - views/admin/users/_list.html.erb
       # 2 - views/admin/users/show.html.erb
       label: "Trial"
+      # Link in the profile menu
+      # 1 - views/users/subjects.html.erb
+      # 2 - views/users/statistics.html.erb
+      # 3 - views/users/edit.html.erb
+      # 4 - views/users/mailing_lists.html.erb
+      # 5 - views/users/trial.html.erb
+      menu_link: "Gestione trial"
       # Caption to remember to the user the expiration (the variable %{days} is replaced by the number of days left to expiration)
       # 1 - views/shared/_header.html.erb
       expiration: "Il tuo account 'trial' scadrà tra <span>%{days} giorni</span>"
@@ -2417,24 +2429,24 @@ it:
       done: "Carica"
       # Caption used when the user has no lessons to upload in his Virtual Classroom
       # 1 - views/virtual_classroom/_select_lessons_popup.html.erb
-      empty: "Non ci sono lezioni da aggiungere alla Virtual Classroom"
+      empty: "Non ci sono lezioni da aggiungere alla Playlist" # FIXME "Non ci sono lezioni da aggiungere alla Virtual Classroom"
       # Button to open the window from the main bar inside Virtual Classroom
       # 1 - views/virtual_classroom/_header_buttons.html.erb
       label: "Aggiungi lezioni"
       # Instructions
       # 1 - views/virtual_classroom/_select_lessons_popup.html.erb
-      description: "Seleziona la lezione da aggiungere alla Virtual Classroom"
+      description: "Seleziona la lezione da aggiungere alla Playlist" # FIXME "Seleziona la lezione da aggiungere alla Virtual Classroom"
     # Caption that appears when the Virtual Classroom is empty
     # 1 - views/virtual_classroom/_empty.html.erb
-    empty: "La tua Virtual Classroom è vuota"
+    empty: "La tua Playlist è vuota" # FIXME "La tua Virtual Classroom è vuota"
     # Caption of the button which empties your Virtual Classroom
     # 1 - views/virtual_classroom/_header_buttons.html.erb
-    make_it_empty: "Svuota la tua Virtual Classroom"
+    make_it_empty: "Svuota la tua Playlist" # FIXME "Svuota la tua Virtual Classroom"
     # Captions used for the composition of the playlist
     playlist:
       # Placeholder and instructions when the playlist is empty
       # 1 - views/virtual_classroom/_empty_playlist.html.erb
-      instructions: "Dopo aver aggiunto le lezioni nella Virtual Classroom, trascinarle in questa area per creare una playlist"
+      instructions: "Dopo aver aggiunto le lezioni nella Playlist, trascinale in questa area" # FIXME "Dopo aver aggiunto le lezioni nella Virtual Classroom, trascinarle in questa area per creare una playlist"
       # Label for the playlist column on the right
       # 1 - views/virtual_classroom/_playlist.html.erb
       label: "Playlist"
