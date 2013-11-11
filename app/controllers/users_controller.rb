@@ -26,7 +26,7 @@ class UsersController < ApplicationController
     :send_upgrade_trial,
     :find_locations
   ]
-  before_filter :initialize_layout, :only => [:edit, :update, :subjects, :statistics, :mailing_lists]
+  before_filter :initialize_layout, :only => [:edit, :update, :subjects, :statistics, :mailing_lists, :trial]
   layout 'fullpage_notification', :only => [
     :request_reset_password,
     :reset_password,
