@@ -278,6 +278,39 @@ class UsersController < ApplicationController
   
   # === Description
   #
+  # Sends to the user an email containing the upgrade trial token
+  #
+  # === Mode
+  #
+  # Html
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#initialize_layout
+  #
+  def logged_upgrade_trial
+    if !current_user.trial?
+      redirect_to my_profile_path
+      return
+    end
+    purchase = Purchase.find_by_token(params[:purchase_id])
+    if !purchase || purchase.users.count >= purchase.accounts_number
+      @error = 'codice errato' # TODO traduzz
+      render 'trial'
+      return
+    end
+    user.purchase_id = purchase.id
+    user.location_id = purchase.location_id if purchase.location && purchase.location.sti_type == SETTINGS['location_types'].last
+    if !user.save
+      @error = 'probblema' # TODO traduzz
+      render 'trial'
+      return
+    end
+    redirect_to dashboard_path, { flash: { alert: 'eddajeeee ce lai fatta' } } # TODO traduzz
+  end
+  
+  # === Description
+  #
   # Section of your profile about trial version handling
   #
   # === Mode

@@ -172,6 +172,7 @@ Desy::Application.routes.draw do
   get  'users/password/reset/:token' => 'users#reset_password',         :as => :user_reset_password
   get  'users/upgrade_trial'         => 'users#request_upgrade_trial',  :as => :user_request_upgrade_trial
   post 'users/upgrade_trial'         => 'users#send_upgrade_trial',     :as => :user_send_upgrade_trial
+  post 'users/upgrade_trial/logged'  => 'users#logged_upgrade_trial',   :as => :user_logged_upgrade_trial
   get  'sign_up/purchase_code'       => 'prelogin#purchase_code',       :as => :match_purchase_code
   
   # APPLICATION ROOT

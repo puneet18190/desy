@@ -16,7 +16,7 @@
         <p><%= t('users.trial.description') %></p> <!-- TODO traduzz -->
       </header>
       <fieldset class="insert-content">
-        <%= form_tag user_send_upgrade_trial_path, :method => :post do %>
+        <%= form_tag user_logged_upgrade_trial_path, :method => :post do %>
           <div class="inputElement">
             Purchase code <!-- TODO traduzz --> <br>
             <%= text_field_tag 'purchase_id', '', :class => 'text' %>

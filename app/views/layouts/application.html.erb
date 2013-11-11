@@ -9,6 +9,7 @@
     <%= render :partial => 'shared/loading' %>
     <%= render :partial => 'lessons/notification_popup' %>
     <div class="container">
+      <%= render :partial => 'layouts/flash', :locals => {:flash => flash} %>
       <%= render :partial => 'shared/header' %>
       <%= render :partial => 'shared/menu' %>
       <br class="clearfloat">
