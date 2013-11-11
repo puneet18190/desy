@@ -232,9 +232,9 @@ function initializeLessonViewer() {
   }
   $('.lesson-viewer-layout .container').css('margin-top', margin_top + 'px');
   if(height > 690) {
-    $('body').css('overflow', 'hidden');
+    $('.lesson-viewer-layout').css('overflow', 'hidden');
   } else {
-    $('body').css('overflow', 'default');
+    $('.lesson-viewer-layout').css('overflow', 'default');
   }
 }
 
