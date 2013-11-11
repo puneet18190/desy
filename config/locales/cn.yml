@@ -81,10 +81,10 @@ cn:
       wrong_content: "错误的用户名或密码"
       # The user has an associated purchase but it expired
       # 1 - controllers/users/sessions_controller.rb
-      expired_purchase: "Your subscription has expired, please renew it" # TODO
+      expired_purchase: "您的预订已到期,请充值"
       # The user is in trial mode but his trial expired
       # 1 - controllers/users/sessions_controller.rb
-      expired_trial: "Your trial has expired, please subscribe" # TODO
+      expired_trial: "您的试用已截至,请付款"
     mailing_list:
       # An error occurred while updating the user's mailing list (general message for any kind of error)
       # 1 - views/shared/_popups.html.erb
@@ -506,10 +506,10 @@ cn:
     purchase_resume:
       # Subject
       # 1 - mailers/user_mailer.rb
-      subject: "%{desy} - Purchase resume" # TODO
+      subject: "%{desy} - 购买开始"
       # Message
       # 1 - mailers/user_mailer.rb
-      message: "<p><b>Resume of your purchase in %{desy}</b> (%{release_date})</p><br/><ul><li>Name of the purchaser: <i>%{name}</i></li><li>Responsible: <i>%{responsible}</i></li><li>Address: <i>%{address}</i></li><li>Phone number: <i>%{phone_number}</i></li><li>Fax: <i>%{fax}</i></li><li>Email: <i>%{email}</i></li><li>SSN: <i>%{ssn_code}</i></li><li>VAT: <i>%{vat_code}</i></li><li>Accounts number: <i>%{accounts_number}</i></li><li>Users restricted to: <i>%{location}</i></li><li>Valid since: <i>%{start_date}</i></li><li>Valid until: <i>%{expiration_date}</i></li></ul><br/><br/><h2>Purchase code: %{token}</h2><br/><br/><p>To create a new account, click on this link: <a href=\"%{link_sign_up}\">%{link_sign_up}</a>, fill in the form with your data, and insert the <b>purchase code</b><br/><br/>To confirm a trial account, click on the link <a href=\"%{link_home}\">%{link_home}</a>, open the login form and insert the <b>purchase code</b></p><br/><br/><p>Message from the vendor: <i>%{message}</i></p><p>If the links don't appear clickable copy the one you need and paste it into your browser</p>" # TODO
+      message: "<p><b>在%{desy}中，开始购买</b> (%{release_date})</p><br/><ul><li>购买者的名字: <i>%{name}</i></li><li>职责: <i>%{responsible}</i></li><li>地址: <i>%{address}</i></li><li>电话号码: <i>%{phone_number}</i></li><li>传真: <i>%{fax}</i></li><li>电子邮件: <i>%{email}</i></li><li>社会安全码: <i>%{ssn_code}</i></li><li>VAT: <i>%{vat_code}</i></li><li>账号: <i>%{accounts_number}</i></li><li>用户禁止到: <i>%{location}</i></li><li>开始日期: <i>%{start_date}</i></li><li>截至日期: <i>%{expiration_date}</i></li></ul><br/><br/><h2>订购码: %{token}</h2><br/><br/><p>点击链接建立账号: <a href=\"%{link_sign_up}\">%{link_sign_up}</a>, 填写表格, 并插入 <b>订购码</b><br/><br/>点击链接确认账号 <a href=\"%{link_home}\">%{link_home}</a>, 在表格中填写你的数据，并插入 <b>订购码</b></p><br/><br/><p>来自供应商的信息: <i>%{message}</i></p><p>如果链接打不开,请拷贝把它粘帖到你的浏览器中</p>"
     # Mail containing the link to reset a forgotten password
     reset_password:
       # Subject
@@ -598,7 +598,7 @@ cn:
       # 1 - views/media_elements/info_form_in_editor/_new.html.erb
       done: "保存"
       # 1 - views/media_elements/info_form_in_editor/_new.html.erb
-      conserve_tags: "Conserve title, description and tags of the original element" # TODO
+      conserve_tags: "保存标题,描述和原始单元标签"
     # Form for editing general information of an element after having overwritten its content with one of the three editors (image / audio / video)
     overwrite_media_element_in_editor:
       # 1 - views/media_elements/info_form_in_editor/_edit.html.erb
@@ -671,7 +671,7 @@ cn:
       policy_not_accepted: "你必须同意%{policy}"
       # The user inserted an invalid purchase token
       # 1 - controllers/application_controller.rb
-      invalid_purchase_id: "Invalid purchase code" # TODO
+      invalid_purchase_id: "非法购买注册码"
     # Placeholders for the fields (they are used only when the lesson / element is new: if the lesson / element is being updated, the application fills the fields with the current data)
     placeholders:
       # Description (the variable %{num} represents the maximum number of characters)
@@ -715,7 +715,7 @@ cn:
         rewind: "倒回片段"
       # Arrow on the bottom - right of the screen: it's used to commit the user's work and decide title and description of the new audio
       # 1 - views/audio_editor/edit.html.erb
-      commit: "Next step: choose title, descriptions and tags of your audio" # TODO
+      commit: "下一步: 选择标题,描述和你的音频标签"
       components:
         # Icon 'plus' on the top of the right column: it's used to add a new audio component
         # 1 - views/audio_editor/_lateral_controls.html.erb
@@ -752,9 +752,9 @@ cn:
       # To add a lesson or a media element to your personal folder
       add:
         # 1 - views/shared/buttons/_add.html.erb
-        lesson: "Add to your lessons" # TODO
+        lesson: "增加到你的课程"
         # 1 - views/shared/buttons/_add.html.erb
-        media_element: "Add to your elements" # TODO
+        media_element: "增加到你的单元"
       # To add a lesson to your Virtual Classroom
       # 1 - views/shared/buttons/_add_virtual_classroom.html.erb
       add_virtual_classroom: "增加课程到虚拟教室"
@@ -898,7 +898,7 @@ cn:
       text: "在图像中增加文本"
       # Arrow on the bottom - right of the screen: it's used to commit the user's work and decide title and description of the new image
       # 1 - views/image_editor/edit.html.erb
-      commit: "Next step: choose title, descriptions and tags of your image" # TODO
+      commit: "下一步: 选择标题,描述和你的图像标签"
     images:
       # Index of the element editor: there are three icons, each of them is a link to the specific editor of audio, image and video: the caption below appears over the 'note' icon representing the image editor
       # 1 - views/media_elements/new.html.erb
@@ -1034,7 +1034,7 @@ cn:
       close_preview: "关闭之前的模式"
       # Arrow on the bottom - right of the screen: it's used to commit the user's work and decide title and description of the new video
       # 1 - views/video_editor/edit.html.erb
-      commit: "Next step: choose title, descriptions and tags of your video" # TODO
+      commit: "下一步: 选择标题,描述和你的视频标签"
       # Three icons in the small menu of each video component
       component_menu:
         # Scissors
@@ -1513,7 +1513,7 @@ cn:
       # 1 - views/image_editor/edit.html.erb
       title: "做什么？"
       # 1 - views/image_editor/edit.html.erb
-      description: "Select the scissors to cut the image, or the button 'ABC' to insert a text" # TODO
+      description: "选择剪子剪辑图片,或点击ABC按钮插入一文本"
     # Label for the header
     # 1 - views/image_editor/_header.html.erb
     label: "编辑图像"
@@ -1889,7 +1889,7 @@ cn:
       # 1 - views/prelogin/home.html.erb
       description: "<b>%{desy}</b>是奉献教育界的新平台. 使用<b>%{desy}</b>你能轻松地建立职业在线课程, 好的用户界面和好的平台设计. 课程可以包含图像、音频和视频, 它能上传,剪切和提升自己. 用户也能利用我们的社区, 分享和接收媒体单元并准备重用.<i>使用<b>%{desy}</b>我们能保证高质量平台和注重细节</i>."
       # 1 - views/prelogin/home.html.erb
-      trial: "Try it for free!" # TODO
+      trial: "免费试用!"
     # Section where the user signs up
     sign_up:
       # 1 - views/prelogin/registration.html.erb
@@ -1928,7 +1928,7 @@ cn:
     title: "注册"
     # Subtitle of the registration form
     # 1 - views/prelogin/registration.html.erb
-    subtitle: "Insert your personal data and join us in the world of %{desy}" # TODO
+    subtitle: "输入的数据,加入%{desy}世界"
     # Button to submit the registration form
     # 1 - views/prelogin/_registration_form.html.erb
     done: "签到"
@@ -1962,13 +1962,13 @@ cn:
     upgrade_trial: "Upgrade your trial account" # 2 TODO
     # Purchase code
     # 1 - views/prelogin/_registration_form.html.erb
-    purchase_id: "Purchase code:" # TODO
+    purchase_id: "购买注册码:"
     # Trial checkbox (the variable %{days} is replaced by the number of days the trial is valid)
     # 1 - views/prelogin/_registration_form.html.erb
-    trial: "I don't have a purchase code, but I want to activate a %{days} days trial account" # TODO
+    trial: "我没有购买码,但想激活 %{days}天的试用账号"
     # Disclaimer to state that the location is not compulsory (the variable %{location} is replaced by the lowest leaf in the location tree)
     # 1 - views/users/_personal_info.html.erb
-    locations_disclaimer: "You didn't find your %{location} in our database? Skip the selection" # TODO
+    locations_disclaimer: "在数据库中没有发现%{location}?请跳过选择"
     subjects:
       # Caption for subjects selection
       # 1 - views/prelogin/_registration_form.html.erb
@@ -2312,7 +2312,7 @@ cn:
     trial:
       # 1 - views/admin/users/_list.html.erb
       # 2 - views/admin/users/show.html.erb
-      label: "Trial" # TODO
+      label: "试用"
       # Caption to remember to the user the expiration (the variable %{days} is replaced by the number of days left to expiration)
       # 1 - views/shared/_header.html.erb
       expiration: "Your trial account will expire in <span>%{days} days</span>" # 2 TODO
@@ -2773,13 +2773,13 @@ cn:
       purchases:
         # Link to the section 'Purchases'
         # 1 - views/admin/_header.html.erb
-        link: "Purchases" # TODO
+        link: "购买"
         # Link to the subsection 'List of purchases'
         # 1 - views/admin/_header.html.erb
-        list: "List" # TODO
+        list: "列表"
         # Link to the subsection 'Create a purchase'
         # 1 - views/admin/_header.html.erb
-        create: "Create" # TODO
+        create: "建立"
       users:
         # Link to the section 'Users'
         # 1 - views/admin/_header.html.erb
@@ -3036,80 +3036,80 @@ cn:
       # List of available actions on a single purchase
       actions:
         # 1 - views/admin/purchases/_list.html.erb
-        edit: "Edit" # TODO
+        edit: "编辑"
         # Opens a form to send the purchase token to the clients
         # 1 - views/admin/purchases/_list.html.erb
-        links: "Instructions" # TODO
+        links: "指令"
         # Creates a new purchase with the same invoicing data of the current purchase. The administrator can personalize the data before saving
         # 1 - views/admin/purchases/_list.html.erb
-        renew: "Renew" # TODO
+        renew: "更新"
       # Message if there are no purchases in the database
       # 1 - views/admin/purchases/_list.html.erb
-      empty: "There are no purchases in the database" # TODO
+      empty: "数据库中无购买注册码"
       # Labels of the subsection where the administrator can send the link of a purchase
       links:
         # Title of the section (the variable %{purchaser} is replaced by the name of the purchaser)
         # 1 - views/admin/purchases/link_form.html.erb
-        title: "Send the resume of the purchase made by %{purchaser}" # TODO
+        title: "发送由%{purchaser}产生的订购"
         # 1 - views/admin/purchases/link_form.html.erb
-        email: "Emails separated by comma" # TODO
+        email: "邮件由逗号分割"
         # 1 - views/admin/purchases/link_form.html.erb
         # 2 - views/admin/purchases/link_form.html.erb
-        message: "Message" # TODO
+        message: "信息"
         # Caption of the submit button
         # 1 - views/admin/purchases/link_form.html.erb
-        send: "Send" # TODO
+        send: "发送"
         # Label if there is no message attached
         # 1 - controllers/admin/purchases_controller.rb
         empty_message: "[没有信息]"
         # Label if there is no restriction to the users who will use accounts associated to this purchase
         # 1 - models/purchase.rb
         # 2 - views/admin/purchases/_list.html.erb
-        empty_location: "No restrictions" # TODO
+        empty_location: "无限制"
       # Name used as label in the pagination (ex. '1-10 of 300 purchases')
       # 1 - helpers/admin_helper.rb
-      name: "Purchases" # TODO
+      name: "购买注册吗"
       # Labels for the fields of a purchase - try to write short labels if possible, since the space in the table is not enough
       fields:
         # 1 - views/admin/purchases/_list.html.erb
-        location_id: "Restricted to" # TODO
+        location_id: "限制"
         # Number of accounts available
         # 1 - views/admin/purchases/_list.html.erb
         # 2 - views/admin/purchases/_common_form.html.erb
-        accounts_number: "Accounts" # TODO
+        accounts_number: "账号"
         # Address 1 - street, number, etc
         # 1 - views/admin/purchases/_list.html.erb
         # 2 - views/admin/purchases/_common_form.html.erb
-        address: "Address" # TODO
+        address: "地址"
         # Address 2 - postal code
         # 1 - views/admin/purchases/_list.html.erb
         # 2 - views/admin/purchases/_common_form.html.erb
-        postal_code: "Postal Code" # TODO
+        postal_code: "邮政编码"
         # Address 3 - City (this is just a string, it has nothing to do with the location of the application)
         # 1 - views/admin/purchases/_list.html.erb
         # 2 - views/admin/purchases/_common_form.html.erb
-        city: "City" # TODO
+        city: "城市"
         # Address 4 - Country
         # 1 - views/admin/purchases/_list.html.erb
         # 2 - views/admin/purchases/_common_form.html.erb
-        country: "Country" # TODO
+        country: "国家"
         # 1 - views/admin/purchases/_list.html.erb
         # 2 - views/admin/purchases/_common_form.html.erb
-        email: "Email" # TODO
+        email: "邮件地址"
         # 1 - views/admin/purchases/_list.html.erb
         id: "Id"
         # True if the purchase includes an invoice
         # 1 - views/admin/purchases/_list.html.erb
         # 2 - views/admin/purchases/_common_form.html.erb
-        includes_invoice: "Invoice" # TODO
+        includes_invoice: "发票"
         # Name of the company that made the purchase
         # 1 - views/admin/purchases/_list.html.erb
         # 2 - views/admin/purchases/_common_form.html.erb
-        name: "Name" # TODO
+        name: "名字"
         # Name of the responsible person for that company
         # 1 - views/admin/purchases/_list.html.erb
         # 2 - views/admin/purchases/_common_form.html.erb
-        responsible: "Responsible" # TODO
+        responsible: "责任"
         # Commercial code of the person, see http://en.wikipedia.org/wiki/Social_Security_number
         # 1 - views/admin/purchases/_list.html.erb
         # 2 - views/admin/purchases/_common_form.html.erb
@@ -3117,76 +3117,76 @@ cn:
         # Commercial code of the company, see http://en.wikipedia.org/wiki/VAT_identification_number
         # 1 - views/admin/purchases/_list.html.erb
         # 2 - views/admin/purchases/_common_form.html.erb
-        vat_code: "VAT" # TODO
+        vat_code: "VAT"
         # 1 - views/admin/purchases/_list.html.erb
         # 2 - views/admin/purchases/_common_form.html.erb
-        phone_number: "Phone" # TODO
+        phone_number: "电话"
         # 1 - views/admin/purchases/_list.html.erb
         # 2 - views/admin/purchases/_common_form.html.erb
-        fax: "Fax" # TODO
+        fax: "传真"
         # 1 - views/admin/purchases/_list.html.erb
         # 2 - views/admin/purchases/_common_form.html.erb
-        release_date: "Release" # TODO
+        release_date: "发布"
         # 1 - views/admin/purchases/_list.html.erb
         # 2 - views/admin/purchases/_common_form.html.erb
-        start_date: "Activation" # TODO
+        start_date: "激活"
         # 1 - views/admin/purchases/_list.html.erb
         # 2 - views/admin/purchases/_common_form.html.erb
-        expiration_date: "Expires" # TODO
+        expiration_date: "截止日期"
       # Form to edit a purchase
       edit:
         # 1 - views/admin/purchases/edit.html.erb
-        title: "Edit a purchase" # TODO
+        title: "编辑购买"
         # 1 - views/admin/purchases/edit.html.erb
-        submit: "Update purchase" # TODO
+        submit: "添加购买"
       # Form to create a new purchase
       new:
         # 1 - views/admin/purchases/new.html.erb
-        title: "Create a new purchase" # TODO
+        title: "建立一新的购买"
         # Clicking here, the administrator automatically associates to the new purchase the users of a purchase to be renewed
         # 1 - views/admin/purchases/new.html.erb
-        renew: "Associate automatically to this purchase the users of the original one" # TODO
+        renew: "自动将用户原始的购买关联"
         # 1 - views/admin/purchases/new.html.erb
-        submit: "Create purchase" # TODO
+        submit: "建立购买"
       # Section of restrictions related to the location
       restrictions:
         # 1 - views/admin/purchases/_restrictions_form.html.erb
-        title: "Restrict the location of users associated to this purchase" # TODO
+        title: "限制与这个购买的位置"
         # Clicking this button, the selected location is inserted in the selects above
         # 1 - views/admin/purchases/_restrictions_form.html.erb
-        commit: "Insert location" # TODO
+        commit: "插入位置"
         # 1 - views/admin/purchases/_restrictions_form.html.erb
-        empty: "No restrictions" # TODO
+        empty: "无限制"
         # Label if the admin wants to restrict the location of the user to a particular kind of location (the variable %{location} is replaced by the kind)
         # 1 - views/admin/purchases/_restrictions_form.html.erb
-        location: "Restrict to a specific %{location}" # TODO
+        location: "限制特别%{location}"
         # Form to search a location inside the page
         search:
           # Instructions
           instructions:
             # The variable %{location} is replaced by the <span> contaning a dynamic label for the location
             # 1 - views/admin/purchases/_restrictions_form.html.erb
-            regular: "Search a %{location} by " # TODO
+            regular: "查找一个 %{location} "
             # The variable %{location} is replaced by the <span> contaning a dynamic label for the location
             # 1 - views/admin/purchases/_restrictions_form.html.erb
-            add: "Create a new %{location} in the location administrator" # TODO
+            add: "用管理员建立一个新的%{location}"
           # Fields to search locations
           fields:
             # 1 - views/admin/purchases/_restrictions_form.html.erb
             id: "Id"
             # 1 - views/admin/purchases/_restrictions_form.html.erb
-            code: "Code" # TODO
+            code: "编码"
       # Frame for the purchases search engine
       search:
         # Title of the frame
         # 1 - views/admin/purchases/index.html.erb
-        label: "Search purchases" # TODO
+        label: "查找购买"
         # Button to start the search
         # 1 - views/admin/purchases/index.html.erb
         submit: "查找"
       # Title of the section
       # 1 - views/admin/purchases/index.html.erb
-      title: "List of purchases" # TODO
+      title: "购买列表"
     # Captions of the contents of the search engine inside the 'Administration' section. The content depends on the selected subsection, and appears inside the corresponding frame (see admin.[section].search)
     search:
       # Section where the user filters by location
