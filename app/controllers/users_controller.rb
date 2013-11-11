@@ -62,7 +62,7 @@ class UsersController < ApplicationController
       user.purchase_id = @trial ? nil : (purchase ? purchase.id : 0)
     end
     if @user.save
-      UserMailer.account_confirmation(@user, request.host, request.port).deliver
+      UserMailer.account_confirmation(@user).deliver
       render 'users/fullpage_notifications/confirmation/email_sent'
     else
       @errors = convert_user_error_messages @user.errors
@@ -129,7 +129,7 @@ class UsersController < ApplicationController
     end
     if user = User.active.confirmed.where(email: email).first
       user.password_token!
-      UserMailer.new_password(user, request.host, request.port).deliver
+      UserMailer.new_password(user).deliver
     end
     render 'users/fullpage_notifications/reset_password/email_sent'
   end
@@ -149,7 +149,7 @@ class UsersController < ApplicationController
   def reset_password
     new_password, user = *User.reset_password!(params[:token])
     if new_password
-      UserMailer.new_password_confirmed(user, new_password, request.host, request.port).deliver
+      UserMailer.new_password_confirmed(user, new_password).deliver
       render 'users/fullpage_notifications/reset_password/received'
     else
       render 'users/fullpage_notifications/expired_link'

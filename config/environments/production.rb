@@ -86,7 +86,7 @@ Desy::Application.configure do
   # ExceptionNotifier configuration
   config.middleware.use ExceptionNotifier,
                         email_prefix:         "[DESY] ",
-                        sender_address:       '"Error" <noreply@desy.morganspa.com>',
+                        sender_address:       %Q{"Error" #{SETTINGS['application']['email']}},
                         exception_recipients: SETTINGS['application']['maintainer']['emails'],
                         ignore_exceptions:    [],
                         notifier_proc:        ->(env, exception) do

@@ -75,6 +75,9 @@ module Desy
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
+    # Options used by url_for when used in email contexts
+    config.action_mailer.default_url_options = SETTINGS['application']['mailer_default_url_options']
+
     # More than one language
     config.more_than_one_language = ::SETTINGS['languages'].size > 1
 

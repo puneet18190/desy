@@ -309,7 +309,7 @@ class VirtualClassroomController < ApplicationController
       return
     end
     if @ok
-      UserMailer.see_my_lesson(@emails, current_user, @lesson, @message, request.host, request.port).deliver
+      UserMailer.see_my_lesson(@emails, current_user, @lesson, @message).deliver
       string_emails = ''
       @emails.each do |em|
         string_emails = "#{string_emails} '#{em}',"

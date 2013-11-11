@@ -7,22 +7,27 @@ application_extended_name: 'Digital Education System'
 # Copyright of the application (it's displayed in the HTML footer)
 application_copyright: '©2013 DESY. All rights reserved'
 application:
+  # Url options used when sending emails
+  mailer_default_url_options:
+    :protocol: http
+    :host: www.example.com
+    :port:
   # Rails Mailing parameters (see guides.rubyonrails.org/action_mailer_basics.html for details about available settings)
   smtp:
     :address: 'smtp.example.com'
   # The sender of the mail sent by the application
-  email: 'noreply@desy.morganspa.com'
+  email: 'noreply@example.com'
   maintainer:
     # The recipients of the emails related to maintenance tasks (errors, administration tasks) sent by the application
-    emails: ['maintainer@morganspa.com']
+    emails: ['maintainer@example.com']
   # Email used in Contact Us link
-  contact_us_email: 'info@morganspa.com'
+  contact_us_email: 'info@example.com'
 # Types of the locations related to Desy
 # The order is important: it determines the parent->child relation
 # The last location is the one associated the the user
 location_types: ['Province', 'City', 'County', 'School']
 # Email of the only super admin user
-super_admin: 'desy@morganspa.com'
+super_admin: 'desy@example.com'
 # More emails to grant admin privileges to
 grant_admin_privileges: ['email1@example.com', 'email2@example.com', 'email3@example.com']
 # Minimum length of a tag (in characters)
