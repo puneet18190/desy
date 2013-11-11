@@ -225,10 +225,13 @@ function initializeLessonViewer() {
   if($('._playlist_menu_item').length <= 3) {
     $('#playlist_menu').css('overflow', 'hidden');
   }
-  $('.lesson-viewer-layout .container').css('margin-top', ($(window).height() - 590) / 2 + 'px');
-  $(window).resize(function() {
-    $('.lesson-viewer-layout .container').css('margin-top', ($(window).height() - 590) / 2 + 'px');
-  });
+  var height = $(window).height();
+  $('.lesson-viewer-layout .container').css('margin-top', (height - 590) / 2 + 'px');
+  if(height > 690) {
+    $('body').css('overflow', 'hidden');
+  } else {
+    $('body').css('overflow', 'default');
+  }
 }
 
 /**
