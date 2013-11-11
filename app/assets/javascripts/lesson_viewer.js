@@ -226,7 +226,7 @@ function initializeLessonViewer() {
     $('#playlist_menu').css('overflow', 'hidden');
   }
   var height = $(window).height();
-  $('.lesson-viewer-layout .container').css('margin-top', (height - 590) / 2 + 'px');
+  $('.lesson-viewer-layout .container').css('margin-top', (height - 690) / 2 + 'px');
   if(height > 690) {
     $('body').css('overflow', 'hidden');
   } else {
