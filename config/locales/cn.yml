@@ -32,16 +32,16 @@ cn:
     upgrade_trial:
       # Case 1: the user forgot to fill in one of the three compulsory fields
       # 1 - controllers/users_controller.rb
-      missing_fields: "Please fill in all the fields" # 2 TODO
+      missing_fields: "Please fill in all the fields" # TODO
       # Case 2: either the login data is wrong, or the account is not trial
       # 1 - controllers/users_controller.rb
-      wrong_login_or_not_trial: "No trial account corresponding to the email and password you inserted" # 2 TODO
+      wrong_login_or_not_trial: "No trial account corresponding to the email and password you inserted" # TODO
       # Case 3: either the purchase code doesn't correspond to a purchase in the database, or that purchase has already reached its maximum amount of users
       # 1 - controllers/users_controller.rb
-      purchase_token_not_valid: "The purchase code is not valid" # 2 TODO
+      purchase_token_not_valid: "The purchase code is not valid" # TODO
       # Case 4: generic error while saving the user
       # 1 - controllers/users_controller.rb
-      generic_error: "Error" # 2 TODO
+      generic_error: "Error" # TODO
   # Messages shown inside a popup, all over the application
   other_popup_messages:
     correct:
@@ -1279,9 +1279,9 @@ cn:
     # Window shown to the user to confirm the successfully upgrading of his trial account
     upgrade_trial:
       # 1 - views/users/send_upgrade_trial.html.erb
-      title: "Congratulations!" # 2 TODO
+      title: "Congratulations!" # TODO
       # 1 - views/users/send_upgrade_trial.html.erb
-      description: "Your trial account has been successfully upgraded to a regular one!<br> To start using your account just go back to the home page and log in" # 2 TODO
+      description: "Your trial account has been successfully upgraded to a regular one!<br> To start using your account just go back to the home page and log in" # TODO
   
   
   
@@ -1936,10 +1936,10 @@ cn:
     trial_limitations_messages:
       # First action: trial users can't publish their lessons
       # 1 - controllers/lessons_controller.rb
-      cant_publish_lesson: "Trial users can't publish lessons" # 2 TODO
+      cant_publish_lesson: "Trial users can't publish lessons" # TODO
       # Second case: trial users can't send links from the Virtual Classroom
       # 1 - views/shared/_popups.html.erb
-      cant_send_link: "Trial users can't send lessons" # 2 TODO
+      cant_send_link: "Trial users can't send lessons" # TODO
     # Captions of the login window: title + two captions for email and password + button to submit
     login:
       # 1 - views/prelogin/_login.html.erb
@@ -1959,7 +1959,7 @@ cn:
     problems_with_password: "忘记你的口令"
     # Link to upgrade a trial account
     # 1 - views/prelogin/_login.html.erb
-    upgrade_trial: "Upgrade your trial account" # 2 TODO
+    upgrade_trial: "Upgrade your trial account" # TODO
     # Purchase code
     # 1 - views/prelogin/_registration_form.html.erb
     purchase_id: "购买注册码:"
@@ -2126,10 +2126,10 @@ cn:
     email: "邮件地址"
     # General caption for the user's purchase code
     # 1 - views/users/request_upgrade_trial.html.erb
-    purchase_id: "Purchase code" # 2 TODO
+    purchase_id: "Purchase code" # TODO
     # General caption for the user's password
     # 1 - views/users/request_upgrade_trial.html.erb
-    password: "Password" # 2 TODO
+    password: "Password" # TODO
     # Section 1: personal info
     info:
       # Caption of the link inside the profile's menu
@@ -2219,13 +2219,13 @@ cn:
     upgrade_trial:
       # Title
       # 1 - views/users/request_upgrade_trial.html.erb
-      title: "Do you want to upgrade your trial account?" # 2 TODO
+      title: "Do you want to upgrade your trial account?" # TODO
       # Instructions
       # 1 - views/users/request_upgrade_trial.html.erb
-      description: "Insert your email, your password, and a valid purchase code" # 2 TODO
+      description: "Insert your email, your password, and a valid purchase code" # TODO
       # Button to send upgrade
       # 1 - views/users/request_upgrade_trial.html.erb
-      done: "Upgrade" # 2 TODO
+      done: "Upgrade" # TODO
     # Section 3: user's personal and general statistics
     statistics:
       # Link inside the user's profile menu
@@ -2315,7 +2315,7 @@ cn:
       label: "试用"
       # Caption to remember to the user the expiration (the variable %{days} is replaced by the number of days left to expiration)
       # 1 - views/shared/_header.html.erb
-      expiration: "Your trial account will expire in <span>%{days} days</span>" # 2 TODO
+      expiration: "Your trial account will expire in <span>%{days} days</span>" # TODO
   
   
   # SECTION 2.16: Captions used inside the Video Editor
@@ -3301,16 +3301,16 @@ cn:
           # Commercial code of the company, see http://en.wikipedia.org/wiki/VAT_identification_number
           # 1 - views/admin/purchases/index.html.erb
           # 2 - views/admin/purchases/index.html.erb
-          vat_code: "VAT code" # TODO
+          vat_code: "VAT码"
           # 1 - views/admin/purchases/index.html.erb
           # 2 - views/admin/purchases/index.html.erb
-          name: "Name of the purchaser" # TODO
+          name: "购买者的名字"
           # 1 - views/admin/purchases/index.html.erb
           # 2 - views/admin/purchases/index.html.erb
-          responsible: "Name of the responsible" # TODO
+          responsible: "以责任的名义"
           # 1 - views/admin/purchases/index.html.erb
           # 2 - views/admin/purchases/index.html.erb
-          email: "Email" # TODO
+          email: "邮件地址"
       notifications:
         # Title of the frame: since the labels contained in this frame are the same of the section 'Users', this title is the only caption which differs from the labels used in that section
         # 1 - views/admin/search/_notifications_filter.html.erb
@@ -3363,7 +3363,7 @@ cn:
           name: "名字"
           # 1 - views/admin/search/_users_general.html.erb
           # 2 - views/admin/search/_users_general.html.erb
-          purchase_id: "Purchase id" # TODO
+          purchase_id: "购买注册码"
           # Unlike the lessons, a user may be associated to more than a subject
           # 1 - views/admin/search/_users_general.html.erb
           # 2 - views/admin/search/_notifications_filter.html.erb
@@ -3437,13 +3437,13 @@ cn:
         created_at: "已建立"
         # 1 - views/admin/users/show.html.erb
         # 2 - views/admin/users/_list.html.erb
-        confirmed: "Confirmed" # TODO
+        confirmed: "已确认"
         # 1 - views/admin/users/show.html.erb
         # 2 - views/admin/users/_list.html.erb
         id: "Id"
         # 1 - views/admin/users/show.html.erb
         # 2 - views/admin/users/_list.html.erb
-        is_admin: "Admin" # TODO
+        is_admin: "管理者"
         # 1 - views/admin/users/show.html.erb
         # 2 - views/admin/users/_list.html.erb
         email: "邮件地址"
@@ -3460,7 +3460,7 @@ cn:
         updated_at: "上次更新"
         # 1 - views/admin/users/show.html.erb
         # 2 - views/admin/users/_list.html.erb
-        purchase_id: "Subscription" # TODO
+        purchase_id: "订阅"
       # Caption of the frame containing all the lesson of a specific user
       # 1 - views/admin/users/show.html.erb
       lessons: "%{user}的课程"
@@ -3609,51 +3609,51 @@ cn:
       locations:
         # Caption to create a location
         # 1 - views/admin/settings/locations.html.erb
-        create: "Create" # TODO
+        create: "建立"
         # Caption to edit a location
         # 1 - views/admin/settings/_location.html.erb
-        edit: "Edit" # TODO
+        edit: "编辑"
         # Caption to expand a location and load its children
         # 1 - views/admin/settings/_location.html.erb
-        expand: "Expand" # TODO
+        expand: "展开"
         # Fields for creation form
         fields:
           # 1 - views/admin/settings/locations.html.erb
-          name: "Name: " # TODO
+          name: "名字: "
           # 1 - views/admin/settings/locations.html.erb
-          code: "Code: " # TODO
+          code: "编码: "
         # Link inside the settings menu
         # 1 - views/admin/settings/_menu.html.erb
-        menu_link: "Locations" # TODO
+        menu_link: "位置"
         # Caption to open the form to create a new location (the variable %{location} is replaced by the cathegory of the specific location to be created)
         # 1 - views/admin/settings/locations.html.erb
-        new: "Add a %{location}" # TODO
+        new: "增加一个 %{location}"
         # Title of the subsection
         # 1 - views/admin/settings/locations.html.erb
-        title: "Locations divided by cathegory" # TODO
+        title: "位置分类"
         # Frame for the locations search engine
         search:
           # Title of the frame
           # 1 - views/admin/settings/locations.html.erb
-          label: "Search locations" # TODO
+          label: "查找位置"
           # Label of research by id
           # 1 - views/admin/settings/locations.html.erb
-          by_id: "Search by id: " # TODO
+          by_id: "通过id查找: "
           # Label of research by code and type (part one, before the selection of type)
           # 1 - views/admin/settings/locations.html.erb
-          by_code_1: "Search a " # TODO
+          by_code_1: "查找 "
           # Label of research by code and type (part two, after the selection of type)
           # 1 - views/admin/settings/locations.html.erb
-          by_code_2: " by code: " # TODO
+          by_code_2: "通过: "
           # Button to start the search by id
           # 1 - views/admin/settings/locations.html.erb
-          submit_id: "Go!" # TODO
+          submit_id: "继续!"
           # Button to start the search by code and type
           # 1 - views/admin/settings/locations.html.erb
-          submit_code: "Go!" # TODO
+          submit_code: "继续!"
         # Caption to update a location
         # 1 - views/admin/settings/_location.html.erb
-        update: "Done" # TODO
+        update: "完成"
       # Subsection, list of school levels
       school_levels:
         # Link inside the settings menu
