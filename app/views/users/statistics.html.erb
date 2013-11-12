@@ -2,15 +2,7 @@
   <div class="profile-content">
     <div class="title-bar">
       <h1><%= t('captions.profile') %></h1>
-      <ul class="navlist">
-        <li><%= link_to t('users.info.menu_link'), my_profile_path %></li>
-        <li><%= link_to t('users.subjects.menu_link'), my_subjects_path %></li>
-        <li><%= link_to t('users.mailing_list.menu_link'), my_mailing_lists_path %></li>
-        <li><%= link_to t('users.statistics.menu_link'), my_statistics_path, :class => 'current' %></li>
-        <% if current_user.trial? %>
-          <li><%= link_to t('users.trial.menu_link'), my_trial_path %></li>
-        <% end %>
-      </ul>
+      <%= render :partial => 'users/profile_menu', :locals => {:classes => ['', '', '', 'current', '']} %>
     </div>
     <div class="contentForm">
       <header>
