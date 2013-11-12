@@ -12,8 +12,8 @@
     </div>
     <div class="contentForm">
       <header>
-        <h2><%= t('users.trial.title') %></h2> <!-- TODO traduzz -->
-        <p><%= t('users.trial.description') %></p> <!-- TODO traduzz -->
+        <h2><%= t('users.trial.title') %></h2>
+        <p><%= t('users.trial.description', :desy => SETTINGS['application_name']) %></p>
       </header>
       <%= form_tag user_logged_upgrade_trial_path, :method => :post, :autocomplete => 'off' do %>
         <fieldset class="insert-content">

@@ -2336,7 +2336,13 @@ it:
         # 1 - controllers/users_controller.rb
         problem_saving: "C'è stato un problema durante il processo di upgrade, per favore riprova"
         # 1 - controllers/users_controller.rb
-        code_not_valid: "Codice di acquisto non valido"
+        code_not_valid: "Codice d'acquisto non valido"
+      # Title of the section "upgrade your trial account while already logged in"
+      # 1 - views/users/trial.html.erb
+      title: "Stanco delle limitazioni?"
+      # Description of the section "upgrade your trial account while already logged in" (the variable %{desy} is replaced by the name of the application)
+      # 1 - views/users/trial.html.erb
+      description: "Goditi la versione completa di %{desy}! Inserisci un codice d'acquisto valido ed effettua l'upgrade del tuo account di tipo 'trial'"
   
   
   # SECTION 2.16: Captions used inside the Video Editor

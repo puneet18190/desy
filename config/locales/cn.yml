@@ -2337,6 +2337,12 @@ cn:
         problem_saving: "There was a problem upgrading your trial account, please try again" # TODO
         # 1 - controllers/users_controller.rb
         code_not_valid: "The purchase code is not valid" # TODO
+      # Title of the section "upgrade your trial account while already logged in"
+      # 1 - views/users/trial.html.erb
+      title: "Tired of limitations?" # TODO
+      # Description of the section "upgrade your trial account while already logged in" (the variable %{desy} is replaced by the name of the application)
+      # 1 - views/users/trial.html.erb
+      description: "Enjoy the full version of %{desy}! Insert a valid purchase code and upgrade your trial account" # TODO
   
   
   # SECTION 2.16: Captions used inside the Video Editor
