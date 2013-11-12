@@ -130,6 +130,10 @@ namespace :db do
     Notification.send_to an_user_id, I18n.t('notifications.video.upload.ok', :item => 'Gelato al cioccolato')
     Notification.send_to an_user_id, I18n.t('notifications.video.upload.failed', :item => 'Gelato al cioccolato')
     Notification.send_to an_user_id, I18n.t('notifications.documents.destroyed', :document_title => 'La seconda guerra mondiale', :lesson_title => 'Gelato al cioccolato', :link => 'www.google.com')
+    Notification.send_to an_user_id, I18n.t('notifications.account.welcome', :user_name => 'Luciano Moggi', :desy => 'DESY', :expiration_date => '1 gennaio 2014')
+    Notification.send_to an_user_id, I18n.t('notifications.account.renewed', :expiration_date => '1 gennaio 2014')
+    Notification.send_to an_user_id, I18n.t('notifications.account.trial', :user_name => 'Luciano Moggi', :desy => 'DESY', :validity => '30':link => 'www.google.com')
+    Notification.send_to an_user_id, I18n.t('notifications.account.upgraded', :expiration_date => '1 gennaio 2014')
   end
   
 end
