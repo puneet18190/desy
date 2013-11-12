@@ -1,11 +1,4 @@
 GIT
-  remote: git://github.com/ProGNOMmers/exception_notification.git
-  revision: 8d3ab597338343c6c4afcfd13ecfa89eb0102dec
-  specs:
-    exception_notification (3.0.1)
-      actionmailer (>= 3.0.4)
-
-GIT
   remote: git://github.com/ProGNOMmers/minimagick.git
   revision: 87503073be84f64817fcf34e04fc6e361d41ab62
   branch: batch_compatibility
@@ -88,6 +81,9 @@ GEM
     erubis (2.7.0)
     eventmachine (1.0.3)
     every_day_irb (1.5.1)
+    exception_notification (4.0.1)
+      actionmailer (>= 3.0.4)
+      activesupport (>= 3.0.4)
     execjs (2.0.2)
     facter (1.7.3)
     fancy_irb (0.7.3)
@@ -284,7 +280,7 @@ DEPENDENCIES
   delayed_job_active_record
   erubis
   eventmachine
-  exception_notification!
+  exception_notification
   facter
   irb-benchmark
   irbtools

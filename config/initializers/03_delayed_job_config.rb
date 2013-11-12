@@ -1,7 +1,5 @@
-# The requires are needed by delayed_job jobs
+# The requires are needed by delayed_job jobs (excluding previously loaded initializers)
 require 'media'
-require 'exception_notifier/notifier'
-require 'exception_notifier_job'
 require 'notifications_job'
 require 'eventmachine' unless WINDOWS
 

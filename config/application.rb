@@ -90,6 +90,30 @@ module Desy
     # Assets urls declarations
     config.assets.stylesheets.paths.urls = Rails.root.join 'app', 'assets', 'stylesheets', 'urls.scss.erb'
 
+    # ExceptionNotifier configuration
+    # config.middleware.use ExceptionNotifier,
+    #                       email_prefix:         "[#{SETTINGS['application_name']}] ",
+    #                       sender_address:       %Q{"Error" #{SETTINGS['application']['email']}},
+    #                       exception_recipients: SETTINGS['application']['maintainer']['emails'],
+    #                       ignore_exceptions:    [],
+    #                       notifier_proc:        ->(env, exception) do
+    #                         ErrorsLogger.log(env, exception)
+
+    #                         md_env = Dumpable.hash(env)
+    #                         md_env['action_controller.instance'] = 
+    #                           ControllerInfo.new env['action_controller.instance'].try(:controller_name), 
+    #                                              env['action_controller.instance'].try(:action_name)
+    #                         md_exception = Dumpable.exception(exception)
+
+    #                         Delayed::Job.enqueue ExceptionNotifierJob.new(md_env, md_exception)
+    #                       end
+    # config.middleware.use ExceptionNotification::Rack,
+    #                       email: {
+    #                         email_prefix:         "[#{SETTINGS['application_name']}] "            ,
+    #                         sender_address:       %Q{"Error" #{SETTINGS['application']['email']}} ,
+    #                         exception_recipients: SETTINGS['application']['maintainer']['emails']
+    #                       },
+    #                       ignore_exceptions:    []
   end
 
 end
