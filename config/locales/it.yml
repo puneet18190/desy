@@ -1865,6 +1865,16 @@ it:
         # The process of video uploading ended with an error. The variable %{item} is replaced by the name of the video which the user tried to upload
         # 1 - ../lib/media/video/editing/conversion.rb
         failed: "<div class=\"title\">Errore!</div><div class=\"content\">Il caricamento del video <span class=\"variable\">%{item}</span> è fallito! Si prega di riprovare.</div>"
+    # Notifications related to the user's account cycle: account created, trial upgraded, account renewed, etc
+    account:
+      # The user has created a new account with a regular purchase code. The variable %{user_name} is replaced by the name of the user, %{desy} by the application name, and %{expiration_date} by the date of expiration of the user's account
+      welcome: "<div class=\"title\">Benvenuto %{user_name}!</div><div class=\"content\">Hai attivato un account in <span class=\"variable\">%{desy}</span>: il tuo account sarà valido fino a <span class=\"variable\">%{expiration_date}</span>.</div>"
+      # The user has renewed his regular account. The variable %{expiration_date} is replaced by the date of expiration of the user's account
+      renewed: "<div class=\"title\">Congratulazioni!</div><div class=\"content\">Il tuo account è stato rinnovato fino al <span class=\"variable\">%{expiration_date}</span>.</div>"
+      # The user has created a trial account. The variable %{user_name} is replaced by the name of the user, %{desy} by the application name, %{validity} by the validity (in days) of the user's trial account, %{link} by the link to the upgrade form
+      trial: "<div class=\"title\">Benvenuto %{user_name}!</div><div class=\"content\">Hai attivato un account di tipo 'trial' in %{desy}: il tuo account sarà valido per <span class=\"variable\">%{validity} giorni</span>.<br/><br/>Un <span class=\"variable\">account di tipo 'trial'</span> abilita tutte le funzionalità, tranne<br/><ul><li>condivisione di prodotti con la nostra community</li><li>scaricamento offline delle tue lezioni</li></ul></div><div class=\"basement\"><span>Acquista %{desy}</span><a href=\"%{link}\" class=\"trial\"></a></div>"
+      # The user has upgraded his trial account to a regular one. The variable %{validity} is replaced by the validity (in days) of the user's trial account
+      upgraded: "<div class=\"title\">Congratulazioni!</div><div class=\"content\">Il tuo account di tipo 'trial' è stato convertito in un account standard, che sarà valido fino al <span class=\"variable\">%{expiration_date}</span>.</div>"
   
   
   # SECTION 2.11: Captions and texts inside the presentation pages (which are shown when the user is not logged in)
