@@ -14,6 +14,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   #before_filter :verify_authenticity_token, only: :browser_not_supported
   
+  # TODO togliere quando finito con aggiornamento ExceptionNotification
   before_filter :raise_for_test
   before_filter :get_locale if Rails.application.config.more_than_one_language
   before_filter :authenticate, :initialize_location, :initialize_players_counter, :except => OUT_OF_AUTHENTICATION_ACTIONS
@@ -22,6 +23,7 @@ class ApplicationController < ActionController::Base
   attr_reader :current_user
   helper_method :current_user
   
+  # TODO togliere quando finito con aggiornamento ExceptionNotification
   def raise_for_test
     raise 'for test'
   end
