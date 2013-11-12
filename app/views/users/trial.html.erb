@@ -19,8 +19,18 @@
         <fieldset class="insert-content">
           <div class="inputElement">
             Purchase code <!-- TODO traduzz --> <br>
-            <%= text_field_tag 'purchase_id', '', :class => 'text' %>
+            <% if @error.blank? %>
+              <%= text_field_tag 'purchase_id', '', :class => 'text' %>
+            <% else %>
+              <div class="field_with_errors">
+                <%= text_field_tag 'purchase_id', '', :class => 'text' %>
+              </div>
+            <% end %>
           </div>
+          <br class="clearfloat"/>
+          <ul class="listaErrori">
+            <li><%= @error %></li>
+          </ul>
         </fieldset>
         <div class="form_submit">
           <%= submit_tag 'daje' %> <!-- TODO traduzz -->
