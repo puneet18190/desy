@@ -2343,6 +2343,12 @@ it:
       # Description of the section "upgrade your trial account while already logged in" (the variable %{desy} is replaced by the name of the application)
       # 1 - views/users/trial.html.erb
       description: "Goditi la versione completa di %{desy}! Inserisci un codice d'acquisto valido ed effettua l'upgrade del tuo account di tipo 'trial'"
+      # Label of the purchase code in the form to upgrade your trial account
+      # 1 - views/users/trial.html.erb
+      purchase_code: "Codice d'acquisto"
+      # Label of the commit button in the form to upgrade your trial account
+      # 1 - views/users/trial.html.erb
+      commit: "Fai l'upgrade"
   
   
   # SECTION 2.16: Captions used inside the Video Editor

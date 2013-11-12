@@ -2127,10 +2127,10 @@ cn:
     email: "邮件地址"
     # General caption for the user's purchase code
     # 1 - views/users/request_upgrade_trial.html.erb
-    purchase_id: "Purchase code" # TODO
+    purchase_id: "购买注册码"
     # General caption for the user's password
     # 1 - views/users/request_upgrade_trial.html.erb
-    password: "Password" # TODO
+    password: "口令"
     # Section 1: personal info
     info:
       # Caption of the link inside the profile's menu
@@ -2343,6 +2343,12 @@ cn:
       # Description of the section "upgrade your trial account while already logged in" (the variable %{desy} is replaced by the name of the application)
       # 1 - views/users/trial.html.erb
       description: "Enjoy the full version of %{desy}! Insert a valid purchase code and upgrade your trial account" # TODO
+      # Label of the purchase code in the form to upgrade your trial account
+      # 1 - views/users/trial.html.erb
+      purchase_code: "购买注册码"
+      # Label of the commit button in the form to upgrade your trial account
+      # 1 - views/users/trial.html.erb
+      commit: "Upgrade" # TODO
   
   
   # SECTION 2.16: Captions used inside the Video Editor

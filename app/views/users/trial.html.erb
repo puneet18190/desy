@@ -18,7 +18,7 @@
       <%= form_tag user_logged_upgrade_trial_path, :method => :post, :autocomplete => 'off' do %>
         <fieldset class="insert-content">
           <div class="inputElement">
-            Purchase code <!-- TODO traduzz --> <br>
+            <%= t('users.trial.purchase_code') %><br>
             <% if @error.blank? %>
               <%= text_field_tag 'purchase_id', '', :class => 'text' %>
             <% else %>
@@ -35,7 +35,7 @@
           <% end %>
         </fieldset>
         <div class="form_submit">
-          <%= submit_tag 'daje' %> <!-- TODO traduzz -->
+          <%= submit_tag t('users.trial.commit') %>
         </div>
       <% end %>
     </div>
