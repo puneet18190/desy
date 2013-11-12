@@ -1868,7 +1868,7 @@ it:
     # Notifications related to the user's account cycle: account created, trial upgraded, account renewed, etc
     account:
       # The user has created a new account with a regular purchase code. The variable %{user_name} is replaced by the name of the user, %{desy} by the application name, and %{expiration_date} by the date of expiration of the user's account
-      welcome: "<div class=\"title\">Benvenuto %{user_name}!</div><div class=\"content\">Hai attivato un account in <span class=\"variable\">%{desy}</span>: il tuo account sarà valido fino a <span class=\"variable\">%{expiration_date}</span>.</div>"
+      welcome: "<div class=\"title\">Benvenuto %{user_name}!</div><div class=\"content\">Hai attivato un account in <span class=\"variable\">%{desy}</span>: il tuo account sarà valido fino al <span class=\"variable\">%{expiration_date}</span>.</div>"
       # The user has renewed his regular account. The variable %{expiration_date} is replaced by the date of expiration of the user's account
       renewed: "<div class=\"title\">Congratulazioni!</div><div class=\"content\">Il tuo account è stato rinnovato fino al <span class=\"variable\">%{expiration_date}</span>.</div>"
       # The user has created a trial account. The variable %{user_name} is replaced by the name of the user, %{desy} by the application name, %{validity} by the validity (in days) of the user's trial account, %{link} by the link to the upgrade form
