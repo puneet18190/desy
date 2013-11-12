@@ -4,6 +4,6 @@
   <li><%= link_to t('users.mailing_list.menu_link'), my_mailing_lists_path, :class => classes[2] %></li>
   <li><%= link_to t('users.statistics.menu_link'), my_statistics_path, :class => classes[3] %></li>
   <% if current_user.trial? %>
-    <li><%= link_to t('users.trial.menu_link', :desy => SETTINGS['application_name']), my_trial_path, :class => classes[4] %></li>
+    <li><%= link_to t('users.trial.menu_link', :desy => SETTINGS['application_name']).html_safe, my_trial_path, :class => classes[4] %></li>
   <% end %>
 </ul>
