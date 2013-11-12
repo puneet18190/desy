@@ -2305,9 +2305,9 @@ it:
       # Link from the header to the upgrade trial section of your profile
       # 1 - views/shared/_header.html.erb
       header_link: "Upgrade del tuo account 'trial'"
-      # Link in the profile menu
+      # Link in the profile menu (the variable %{desy} is replaced by the name of the application)
       # 1 - views/users/_profile_menu.html.erb
-      menu_link: "Gestione trial"
+      menu_link: "Acquista %{desy}"
       # Caption to remember to the user the expiration (the variable %{days} is replaced by the number of days left to expiration)
       # 1 - views/shared/_header.html.erb
       expiration: "Il tuo account 'trial' scadrà tra <span>%{days} giorni</span>"
@@ -2317,9 +2317,9 @@ it:
         problem_saving: "C'è stato un problema durante il processo di upgrade, per favore riprova"
         # 1 - controllers/users_controller.rb
         code_not_valid: "Codice d'acquisto non valido"
-      # Title of the section "upgrade your trial account while already logged in"
+      # Title of the section "upgrade your trial account while already logged in" (the variable %{desy} is replaced by the name of the application)
       # 1 - views/users/trial.html.erb
-      title: "Stanco delle limitazioni?"
+      title: "Acquista %{desy}"
       # Description of the section "upgrade your trial account while already logged in" (the variable %{desy} is replaced by the name of the application)
       # 1 - views/users/trial.html.erb
       description: "Goditi la versione completa di %{desy}! Inserisci un codice d'acquisto valido ed effettua l'upgrade del tuo account di tipo 'trial'"
