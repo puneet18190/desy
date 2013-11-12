@@ -11,14 +11,8 @@
     <div class="fltlft">
       <span class="nome"><%= current_user.name %></span>
       <span class="cognome"><%= current_user.surname %></span>
-     <br class="clearfloat">
-      <% if current_user.trial? %>
-        <%= link_to t('users.trial.header_link'), my_trial_path %> |
-      <% end %>
-      <%= link_to t('registration.logout'), users_session_path, method: :delete %>
-      <% if current_user.admin? %>
-        | <%= link_to t('admin.general.link'), '/admin' %>
-      <% end %>
+      <br class="clearfloat">
+      <%= render :partial => 'shared/logged_links', :locals => {:user => current_user} %>
       </div>
       <div id="profile_link" class="fltrt">
         <%= image_tag('logo_profile.png') %>
