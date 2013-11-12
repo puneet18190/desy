@@ -128,9 +128,9 @@
       
       a.trial {
         
-        @include svg-circle-icon-handler($assets-action-buttons_svg, 31px, 2, 10, 1, 0, 7, 1, 1, 7, right);
+        @include svg-circle-icon-handler($assets-simbolino_svg, 26px, 2, 1, 1, 1, 0, 1, 0, 0, right);
         position: relative;
-        bottom: 6px;
+        bottom: 4px;
         
       }
       
