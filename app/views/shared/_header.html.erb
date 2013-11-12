@@ -4,16 +4,16 @@
     <span class="vertical-aligner"></span>
     <%= image_tag(logo_path) %>
   </a>
-  <% if current_user.trial? -%>
+  <% if current_user.trial? %>
     <div class="freeTrial"><%= t('users.trial.expiration', :days => current_user.trial_to_expiration.to_s).html_safe %></div>
-  <% end -%>
+  <% end %>
   <div class="logout">
     <div class="fltlft">
       <span class="nome"><%= current_user.name %></span>
       <span class="cognome"><%= current_user.surname %></span>
      <br class="clearfloat">
       <% if current_user.trial? %>
-        <%= link_to t('users.trial.header_link'), my_trial_path %> | <!-- TODO traduzz -->
+        <%= link_to t('users.trial.header_link'), my_trial_path %> |
       <% end %>
       <%= link_to t('registration.logout'), users_session_path, method: :delete %>
       <% if current_user.admin? %>
@@ -25,6 +25,6 @@
         <span class="profileLink fltrt"><%= link_to t('captions.profile'), my_profile_path %></span>
       </div>
     </div>
-    <br style="clear: both" />
+    <br style="clear:both"/>
   </div>
 </div>

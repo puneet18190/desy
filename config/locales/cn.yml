@@ -2318,6 +2318,9 @@ cn:
       # 1 - views/admin/users/_list.html.erb
       # 2 - views/admin/users/show.html.erb
       label: "试用"
+      # Link from the header to the upgrade trial section of your profile
+      # 1 - views/shared/_header.html.erb
+      header_link: "Upgrade your trial account" # TODO
       # Link in the profile menu
       # 1 - views/users/subjects.html.erb
       # 2 - views/users/statistics.html.erb

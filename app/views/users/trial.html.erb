@@ -28,9 +28,11 @@
             <% end %>
           </div>
           <br class="clearfloat"/>
-          <ul class="listaErrori">
-            <li><%= @error %></li>
-          </ul>
+          <% if @error.present? %>
+            <ul class="listaErrori">
+              <li><%= @error %></li>
+            </ul>
+          <% end %>
         </fieldset>
         <div class="form_submit">
           <%= submit_tag 'daje' %> <!-- TODO traduzz -->
