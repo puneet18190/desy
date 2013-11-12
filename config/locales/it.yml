@@ -2328,6 +2328,12 @@ it:
       # Caption to remember to the user the expiration (the variable %{days} is replaced by the number of days left to expiration)
       # 1 - views/shared/_header.html.erb
       expiration: "Il tuo account 'trial' scadrà tra <span>%{days} giorni</span>"
+      # Errors while trying to upgrade a trial account by a logged user
+      errors:
+        # 1 - controllers/users_controller.rb
+        problem_saving: "C'è stato un problema durante il processo di upgrade, per favore riprova"
+        # 1 - controllers/users_controller.rb
+        code_not_valid: "Codice di acquisto non valido"
   
   
   # SECTION 2.16: Captions used inside the Video Editor

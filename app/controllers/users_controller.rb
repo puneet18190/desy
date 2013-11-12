@@ -304,14 +304,14 @@ class UsersController < ApplicationController
     user = current_user
     purchase = Purchase.find_by_token(params[:purchase_id])
     if !purchase || purchase.users.count >= purchase.accounts_number
-      @error = 'codice errato' # TODO traduzz
+      @error = t('users.trial.errors.code_not_valid')
       render 'trial'
       return
     end
     user.purchase_id = purchase.id
     user.location_id = purchase.location_id if purchase.location && purchase.location.sti_type == SETTINGS['location_types'].last
     if !user.save
-      @error = 'probblema' # TODO traduzz
+      @error = t('users.trial.errors.problem_saving')
       render 'trial'
       return
     end
