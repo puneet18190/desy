@@ -2134,11 +2134,7 @@ it:
     # Section 1: personal info
     info:
       # Caption of the link inside the profile's menu
-      # 1 - views/users/statistics.html.erb
-      # 2 - views/users/mailing_lists.html.erb
-      # 3 - views/users/edit.html.erb
-      # 4 - views/users/subjects.html.erb
-      # 5 - views/users/trial.html.erb
+      # 1 - views/users/_profile_menu.html.erb
       menu_link: "Dati personali"
       # Title of the section
       # 1 - views/users/edit.html.erb
@@ -2173,11 +2169,7 @@ it:
     # Section 2: mailing lists
     mailing_list:
       # Caption of the link inside the user's profile menu
-      # 1 - views/users/statistics.html.erb
-      # 2 - views/users/mailing_lists.html.erb
-      # 3 - views/users/edit.html.erb
-      # 4 - views/users/subjects.html.erb
-      # 5 - views/users/trial.html.erb
+      # 1 - views/users/_profile_menu.html.erb
       menu_link: "Mailing lists"
       # Title of the subsection
       # 1 - views/users/mailing_lists.html.erb
@@ -2232,11 +2224,7 @@ it:
     # Section 3: user's personal and general statistics
     statistics:
       # Link inside the user's profile menu
-      # 1 - views/users/statistics.html.erb
-      # 2 - views/users/mailing_lists.html.erb
-      # 3 - views/users/edit.html.erb
-      # 4 - views/users/subjects.html.erb
-      # 5 - views/users/trial.html.erb
+      # 1 - views/users/_profile_menu.html.erb
       menu_link: "Statistiche"
       # Title
       # 1 - views/users/statistics.html.erb
@@ -2298,11 +2286,7 @@ it:
     # Section 4: list of the user's subjects
     subjects:
       # Caption for the link inside the user's profile menu
-      # 1 - views/users/statistics.html.erb
-      # 2 - views/users/mailing_lists.html.erb
-      # 3 - views/users/edit.html.erb
-      # 4 - views/users/subjects.html.erb
-      # 5 - views/users/trial.html.erb
+      # 1 - views/users/_profile_menu.html.erb
       menu_link: "Materie"
       # Title
       # 1 - views/users/subjects.html.erb
@@ -2322,11 +2306,7 @@ it:
       # 1 - views/shared/_header.html.erb
       header_link: "Upgrade del tuo account 'trial'"
       # Link in the profile menu
-      # 1 - views/users/subjects.html.erb
-      # 2 - views/users/statistics.html.erb
-      # 3 - views/users/edit.html.erb
-      # 4 - views/users/mailing_lists.html.erb
-      # 5 - views/users/trial.html.erb
+      # 1 - views/users/_profile_menu.html.erb
       menu_link: "Gestione trial"
       # Caption to remember to the user the expiration (the variable %{days} is replaced by the number of days left to expiration)
       # 1 - views/shared/_header.html.erb
