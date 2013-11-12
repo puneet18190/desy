@@ -2349,6 +2349,9 @@ en:
       # Label of the commit button in the form to upgrade your trial account
       # 1 - views/users/trial.html.erb
       commit: "Upgrade"
+      # Timed popup which appears when you successfully upgraded your trial account
+      # 1 - controllers/users_controller.rb
+      successful_upgrade: "You successfully upgraded your account"
   
   
   # SECTION 2.16: Captions used inside the Video Editor

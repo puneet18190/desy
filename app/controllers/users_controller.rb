@@ -315,7 +315,7 @@ class UsersController < ApplicationController
       render 'trial'
       return
     end
-    redirect_to dashboard_path, { flash: { notice: 'eddajeeee ce lai fatta' } } # TODO traduzz
+    redirect_to dashboard_path, { flash: { notice: t('users.trial.successful_upgrade') } }
   end
   
   # === Description
