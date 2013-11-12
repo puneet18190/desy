@@ -2317,7 +2317,7 @@ it:
       header_link: "Upgrade del tuo account 'trial'"
       # Link in the profile menu (the variable %{desy} is replaced by the name of the application)
       # 1 - views/users/_profile_menu.html.erb
-      menu_link: "Acquista <span class=\"upper\">%{desy}</span>"
+      menu_link: "Acquista"
       # Caption to remember to the user the expiration (the variable %{days} is replaced by the number of days left to expiration)
       # 1 - views/shared/_header.html.erb
       expiration: "Il tuo account 'trial' scadrà tra <span>%{days} giorni</span>"
@@ -2329,7 +2329,7 @@ it:
         code_not_valid: "Codice d'acquisto non valido"
       # Title of the section "upgrade your trial account while already logged in" (the variable %{desy} is replaced by the name of the application)
       # 1 - views/users/trial.html.erb
-      title: "Acquista <span class=\"upper\">%{desy}</span>"
+      title: "Acquista <span style=\"text-transform:none\">%{desy}</span>"
       # Description of the section "upgrade your trial account while already logged in" (the variable %{desy} is replaced by the name of the application)
       # 1 - views/users/trial.html.erb
       description: "Goditi la versione completa di %{desy}! Inserisci un codice d'acquisto valido ed effettua l'upgrade del tuo account di tipo 'trial'"
