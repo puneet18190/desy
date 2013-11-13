@@ -135,6 +135,7 @@ class Admin::PurchasesController < AdminController
         renewed.users.each do |u|
           u.purchase_id = @purchase.id
           u.save
+          Notification.send_to u.id, t('notifications.account.renewed', :expiration_date => TimeConvert.to_string(@purchase.expiration_date))
         end
         renewed.expiration_date = Time.zone.now
         renewed.save
