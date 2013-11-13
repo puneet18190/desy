@@ -70,6 +70,20 @@ class UsersController < ApplicationController
       user.purchase_id = @trial ? nil : (purchase ? purchase.id : 0)
     end
     if @user.save
+      if @user.trial?
+        Notification.send_to @user.id, t('notifications.account.trial',
+          :user_name => @user.full_name,
+          :desy      => SETTINGS['application_name'],
+          :validity  => SETTINGS['saas_trial_duration'],
+          :link      => upgrade_trial_link
+        )
+      else
+        Notification.send_to @user.id, t('notifications.account.welcome',
+          :user_name       => @user.full_name,
+          :desy            => SETTINGS['application_name'],
+          :expiration_date => TimeConvert.to_string(purchase.expiration_date)
+        )
+      end
       UserMailer.account_confirmation(@user).deliver
       render 'users/fullpage_notifications/confirmation/email_sent'
     else
@@ -426,6 +440,12 @@ class UsersController < ApplicationController
       :texts  => Statistics.subjects,
       :colors => Subject.chart_colors
     }
+  end
+  
+  private
+  
+  def upgrade_trial_link
+    my_trial_path
   end
   
 end
