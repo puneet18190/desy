@@ -72,14 +72,14 @@ class UsersController < ApplicationController
     if @user.save
       if @user.trial?
         Notification.send_to @user.id, t('notifications.account.trial',
-          :user_name => @user.full_name,
+          :user_name => @user.name,
           :desy      => SETTINGS['application_name'],
           :validity  => SETTINGS['saas_trial_duration'],
           :link      => upgrade_trial_link
         )
       else
         Notification.send_to @user.id, t('notifications.account.welcome',
-          :user_name       => @user.full_name,
+          :user_name       => @user.name,
           :desy            => SETTINGS['application_name'],
           :expiration_date => TimeConvert.to_string(purchase.expiration_date)
         )
