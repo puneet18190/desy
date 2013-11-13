@@ -12,7 +12,6 @@ class ApplicationController < ActionController::Base
   OUT_OF_AUTHENTICATION_ACTIONS << :set_locale if Rails.application.config.more_than_one_language
   
   protect_from_forgery
-  #before_filter :verify_authenticity_token, only: :browser_not_supported
   
   before_filter :get_locale if Rails.application.config.more_than_one_language
   before_filter :authenticate, :initialize_location, :initialize_players_counter, :except => OUT_OF_AUTHENTICATION_ACTIONS
@@ -20,7 +19,7 @@ class ApplicationController < ActionController::Base
   # The user who is logged in in this section
   attr_reader :current_user
   helper_method :current_user
-  
+
   # In *production* environment pages with 404 status are catched by the web server, so we don't make the effort to render a 404 page
   def page_not_found
     render :text => '<h1>Page not found</h1>', :status => 404, :layout => false

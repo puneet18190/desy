@@ -89,7 +89,6 @@ module Desy
     config.assets.stylesheets.paths = ActiveSupport::OrderedOptions.new
     # Assets urls declarations
     config.assets.stylesheets.paths.urls = Rails.root.join 'app', 'assets', 'stylesheets', 'urls.scss.erb'
-
   end
 
 end

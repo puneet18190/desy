@@ -56,6 +56,6 @@ group :irbtools do
   gem 'irbtools', platforms: :ruby
 end
 
-group :production do
-  gem 'exception_notification', github: 'ProGNOMmers/exception_notification'
-end
+# group :production do
+  gem 'exception_notification' #, github: 'ProGNOMmers/exception_notification'
+# end

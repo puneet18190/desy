@@ -15,7 +15,7 @@ module Dumpable
     end
   end
 
-  # converts an exception to a dumpable one
+  # converts an exception to a dumpable one (if it isn't)
   def self.exception(e)
     case e
     when ::NoMethodError
@@ -38,13 +38,16 @@ module Dumpable
   end
 
   # converts an hash to a dumpable version of it
-  # XXX it's recursive so prone to a +stack level too deep+ error :-/ this is not Haskell!
+  # XXX It's recursive thus prone to a +stack level too deep+ error :-/ this is not Haskell!
+  #     (it shouldn't be a problem since it should be used only for "short chain" hashes)
   def self.hash(hash)
     Hash[ hash.map do |k, v|
       [ k,
         case v
         when Hash
           hash(v)
+        when ActionDispatch::RemoteIp::GetIp
+          v.to_s
         else
           begin
             Marshal.dump(v)
