@@ -5,45 +5,59 @@ require 'exception_notification/rails'
 
 require 'dumpable'
 
-module ExceptionsLogger
-  # Path to the errors log file
-  LOG_PATH = Rails.root.join 'log', "exceptions.#{Rails.env}.log"
-  # logger instance
-  LOGGER   = Logger.new(LOG_PATH)
+# Contains the custom notifiers
+module ExceptionNotifier
+  
+  # Notifier for the exception logs
+  class LogNotifier
 
-  LOGGER.level     = Logger::ERROR
-  LOGGER.formatter = Logger::Formatter.new
+    module ExceptionLogger
+      LOG_FOLDER = Pathname(Rails.application.config.paths['log'].first).dirname
+      # Path to the errors log file
+      LOG_PATH   = LOG_FOLDER.join "exceptions.#{Rails.env}.log"
+      # logger instance
+      LOGGER     = Logger.new(LOG_PATH)
 
-  # log action
-  # TODO usare pp
-  def self.log(exception, env)
-    LOGGER.error <<-LOG
+      LOGGER.level     = Logger::ERROR
+      LOGGER.formatter = Logger::Formatter.new
+
+      # Logs exception together with an env hash (which can be +nil+)
+      def self.log(exception, env = nil)
+        pp_env      = ''.tap { |s| PP.pp(env, s) }
+        log_content = { message: exception.message, backtrace: exception.backtrace.join("\n"), env: pp_env }.to_yaml
+
+        LOGGER.error <<-LOG
 
 -- BEG EXCEPTION (#{exception.class}) --
-message:    #{exception.message}
-backtrace:  #{exception.backtrace.join("\n")}
-env: #{env.inspect}
+#{log_content}
 -- END EXCEPTION (#{exception.class}) --
 LOG
+      end
+    end
+
+    def initialize(options)
+    end
+
+    def call(exception, options = {})
+      ExceptionLogger.log(exception, options[:env])
+    end
   end
-end
 
-# Used by exceptions logging in order to provide controller informations avoiding the whole controller instance dump
-class ControllerInfo
-  attr_reader :controller_name, :action_name
-
-  def initialize(controller_name, action_name)
-    @controller_name, @action_name = controller_name, action_name
-  end
-end
-
-module ExceptionNotifier
+  # Notifier for email notifications sent by delayed jobs
   class DelayedJobEmailNotifier < ExceptionNotifier::EmailNotifier
 
     ENV_ACTION_CONTROLLER_INSTANCE_KEY = 'action_controller.instance'
 
+    # Used by exceptions logging in order to provide controller informations avoiding the dump the controller instance entirely
+    class ControllerInfo
+      attr_reader :controller_name, :action_name
+
+      def initialize(controller_name, action_name)
+        @controller_name, @action_name = controller_name, action_name
+      end
+    end
+
     def call_with_delayed_job_support(exception, options = {})
-      ExceptionsLogger.log(exception, options[:env])
       delayed_call marshal_dumpable_exception(exception), marshal_dumpable_options(options)
     end
     alias_method_chain :call, :delayed_job_support
@@ -85,9 +99,9 @@ ExceptionNotification.configure do |config|
 
   # Adds a condition to decide when an exception must be ignored or not.
   # The ignore_if method can be invoked multiple times to add extra conditions.
-  # config.ignore_if do |exception, options|
-  #   not Rails.env.production?
-  # end
+  config.ignore_if do |exception, options|
+    not Rails.env.production?
+  end
 
   # Notifiers =================================================================
 
@@ -98,6 +112,10 @@ ExceptionNotification.configure do |config|
   #   :exception_recipients => %w{exceptions@example.com}
   # }
 
+  # Exception logs
+  config.add_notifier :log, {}
+
+  # Email notifications sent by delayed jobs
   config.add_notifier :delayed_job_email, {
     email_prefix:         "[#{SETTINGS['application_name']}] "            ,
     sender_address:       %Q{"Error" #{SETTINGS['application']['email']}} ,

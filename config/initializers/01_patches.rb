@@ -51,8 +51,9 @@ WINDOWS = Facter::Util::Config.is_windows?
 #   end
 # end
 
-# +Rails.public_pathname+ returns Rails public path as Pathname instance
+# +Rails+ patches
 module Rails
+  # +Rails.public_pathname+ returns Rails public path as Pathname instance
   def self.public_pathname
     @public_pathname ||= Pathname.new public_path
   end

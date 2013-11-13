@@ -38,7 +38,8 @@ module Dumpable
   end
 
   # converts an hash to a dumpable version of it
-  # XXX it's recursive thus prone to a +stack level too deep+ error :-/ this is not Haskell!
+  # XXX It's recursive thus prone to a +stack level too deep+ error :-/ this is not Haskell!
+  #     (it shouldn't be a problem since it should be used only for "short chain" hashes)
   def self.hash(hash)
     Hash[ hash.map do |k, v|
       [ k,
