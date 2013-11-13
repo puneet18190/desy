@@ -42,6 +42,10 @@ class Users::SessionsController < ApplicationController
               error = t('other_popup_messages.login.expired_purchase')
               user = nil
             end
+            if purchase.start_date > now
+              error = t('other_popup_messages.login.purchase_not_active_yet')
+              user = nil
+            end
           else
             if user.created_at < now - (SETTINGS['saas_trial_duration'] * 60 * 60 * 24)
               error = t('other_popup_messages.login.expired_trial')

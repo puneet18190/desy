@@ -85,6 +85,9 @@ en:
       # The user is in trial mode but his trial expired
       # 1 - controllers/users/sessions_controller.rb
       expired_trial: "Your trial has expired, please subscribe"
+      # The purchase is not yet active
+      # 1 - controllers/users/sessions_controller.rb
+      purchase_not_active_yet: "Your subscription is not active yet"
     mailing_list:
       # An error occurred while updating the user's mailing list (general message for any kind of error)
       # 1 - views/shared/_popups.html.erb
