@@ -7,10 +7,12 @@ application_extended_name: 'Digital Education System'
 # Copyright of the application (it's displayed in the HTML footer)
 application_copyright: '©2013 DESY. All rights reserved'
 application:
+  # Whether to use SSL or not (only for production environment)
+  force_ssl: false
   # Url options used when sending emails
   mailer_default_url_options:
-    :protocol: http
-    :host: www.example.com
+    :protocol: 'http'
+    :host: 'www.example.com'
     :port:
   # Rails Mailing parameters (see guides.rubyonrails.org/action_mailer_basics.html for details about available settings)
   smtp:
