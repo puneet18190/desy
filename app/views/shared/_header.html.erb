@@ -14,11 +14,7 @@
       <br class="clearfloat">
       <%= render :partial => 'shared/logged_links', :locals => {:user => current_user} %>
     </div>
-    <div id="profile_link" class="fltrt">
-      <%= image_tag('logo_profile.png') %>
-      <span class="profileLink fltrt"><%= link_to t('captions.profile'), my_profile_path %></span>
-    </div>
-    <%#= render :partial => 'notifications/main', :locals => {:notifications => @notifications, :news => @new_notifications, :offset => @offset_notifications, :tot => @tot_notifications} %>
+    <%= render :partial => 'notifications/main', :locals => {:notifications => @notifications, :news => @new_notifications, :offset => @offset_notifications, :tot => @tot_notifications} %>
   </div>
   <br style="clear:both"/>
 </div>

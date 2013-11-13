@@ -52,12 +52,6 @@
       
     }
     
-    #profile_link a:hover {
-      
-      text-decoration: none;
-      
-    }
-    
     span {
       
       color: #fff;
@@ -65,27 +59,6 @@
       &.nome, &.cognome {
         
         font-size: 120%;
-        
-      }
-      
-      &.profileLink {
-        
-        padding: 10px 20px 0 20px;
-        background-color: #58585a;
-        cursor: pointer;
-        height: 22px;
-        
-        &:hover {
-          
-          background-color: #999;
-          
-        }
-        
-        a {
-          
-          color: #fff;
-          
-        }
         
       }
       
