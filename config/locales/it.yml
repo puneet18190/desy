@@ -492,6 +492,20 @@ it:
       # Button to cancel
       # 1 - views/virtual_classroom/_popups.html.erb
       cancel: "Annulla"
+    # Popup asking for confirmation before deleting a slide in the Lesson Editor
+    confirm_delete_slide:
+      # Title
+      # 1 - views/shared/_popups.html.erb
+      title: "Rimozione di una slide"
+      # Message
+      # 1 - views/shared/_popups.html.erb
+      confirm: "Sei sicuro di voler eliminare questa slide?"
+      # Button to confirm
+      # 1 - views/shared/_popups.html.erb
+      do: "Elimina"
+      # Button to cancel
+      # 1 - views/shared/_popups.html.erb
+      cancel: "Annulla"
   
   
   # SECTION 1.3: contents of emails automatically sent by the application; the variables %{name}, %{password}, %{message} and similar will be replaced by the application, depending on the user
