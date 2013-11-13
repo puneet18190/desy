@@ -13,12 +13,11 @@
       <span class="cognome"><%= current_user.surname %></span>
       <br class="clearfloat">
       <%= render :partial => 'shared/logged_links', :locals => {:user => current_user} %>
-      </div>
-      <div id="profile_link" class="fltrt">
-        <%= image_tag('logo_profile.png') %>
-        <span class="profileLink fltrt"><%= link_to t('captions.profile'), my_profile_path %></span>
-      </div>
     </div>
-    <br style="clear:both"/>
+    <div id="profile_link" class="fltrt">
+      <%= image_tag('logo_profile.png') %>
+      <span class="profileLink fltrt"><%= link_to t('captions.profile'), my_profile_path %></span>
+    </div>
   </div>
+  <br style="clear:both"/>
 </div>
