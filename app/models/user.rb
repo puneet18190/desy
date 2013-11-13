@@ -162,7 +162,7 @@ class User < ActiveRecord::Base
   
   # === Description
   #
-  # Returns the days missing to the expiration of the trial account
+  # Returns the seconds missing to the expiration of the trial account
   #
   # === Returns
   #
@@ -170,7 +170,7 @@ class User < ActiveRecord::Base
   #
   def trial_to_expiration
     return nil if !self.trial?
-    (self.created_at.to_i + (SETTINGS['saas_trial_duration'] * 86400) - Time.zone.now.to_i) / 86400 + 1
+    self.created_at.to_i + (SETTINGS['saas_trial_duration'] * 86400) - Time.zone.now.to_i
   end
   
   # === Description
