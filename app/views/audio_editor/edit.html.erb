@@ -42,7 +42,7 @@
 <div id="info_container" data-last-component-id="<%= @parameters[:components].count %>" data-total-length="<%= @total_length %>" data-save-cache="false" data-cache-enabled-first-time="true" data-used-in-private-lessons="<%= @used_in_private_lessons %>" data-in-preview="false" data-current-preview-time="0" data-force-kevin-luck-autoreinitialise="true" style="display:none"></div>
 
 
-<script type="text/javascript">
+<script>
   $(document).ready(function() {
     <% if @cache.nil? %>
       setTimeout(function() {
