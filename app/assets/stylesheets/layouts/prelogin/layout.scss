@@ -480,9 +480,15 @@ html.prelogin-layout {
       font-size: 20px;
       font-family: 'Nunito', sans-serif;
       text-transform: none;
-      margin: 40px 0 0 0;
+      margin: 0 0 20px 0;
       padding: 0px;
       cursor: pointer;
+      
+      &:hover {
+        
+        text-decoration: underline;
+        
+      }
       
     }
     
