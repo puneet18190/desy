@@ -1,4 +1,4 @@
-<span id="tooltip_help" class="tooltipHelp hidden">
+<div id="tooltip_help" class="tooltipHelp hidden">
   <%= image_tag("freccia_tooltip.png", :class => "callout") %>
   <p>
     <strong><%= t("help.#{@where}.first.title", :desy => SETTINGS['application_name']).html_safe %></strong><br>
@@ -12,4 +12,4 @@
     <strong><%= t("help.#{@where}.third.title", :desy => SETTINGS['application_name']).html_safe %></strong><br>
     <%= t("help.#{@where}.third.content", :desy => SETTINGS['application_name'], :tags => SETTINGS['min_tags_for_item']).html_safe %>
   </p>
-</span>
+</div>

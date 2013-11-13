@@ -6,7 +6,7 @@
  <p><%= t('reports.placeholder') %></p>
   <%= form_tag "/reports/media_element", :remote => true do %>
     <input type="hidden" value="<%= media_element.id %>" name="media_element_id">
-    <table summary="" cellpadding="0" cellspacing="0">
+    <table>
       <tbody>
         <tr>
           <td>
