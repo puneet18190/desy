@@ -5,7 +5,7 @@
 </div>
 
 <% if !specific_tag.nil? %>
-  <script type="text/javascript">
+  <script>
     $(document).ready(function() {
       $('#clickable_tag_<%= specific_tag.id %>').addClass('current').attr('title', '<%= j t("titles.tags.cancel_filter") %>');
     });

@@ -1865,6 +1865,16 @@ en:
         # The process of video uploading ended with an error. The variable %{item} is replaced by the name of the video which the user tried to upload
         # 1 - ../lib/media/video/editing/conversion.rb
         failed: "<div class=\"title\">Error!</div><div class=\"content\">The uploading of the video <span class=\"variable\">%{item}</span> failed! Please try again.</div>"
+    # Notifications related to the user's account cycle: account created, trial upgraded, account renewed, etc
+    account:
+      # The user has created a new account with a regular purchase code. The variable %{user_name} is replaced by the name of the user, %{desy} by the application name, and %{expiration_date} by the date of expiration of the user's account
+      welcome: "<div class=\"title\">Welcome %{user_name}!</div><div class=\"content\">You activated a regular account in <span class=\"variable\">%{desy}</span>: your account will be valid until <span class=\"variable\">%{expiration_date}</span>.</div>"
+      # The user has renewed his regular account. The variable %{expiration_date} is replaced by the date of expiration of the user's account
+      renewed: "<div class=\"title\">Congratulations!</div><div class=\"content\">Your regular account has been renewed until <span class=\"variable\">%{expiration_date}</span>.</div>"
+      # The user has created a trial account. The variable %{user_name} is replaced by the name of the user, %{desy} by the application name, %{validity} by the validity (in days) of the user's trial account, %{link} by the link to the upgrade form
+      trial: "<div class=\"title\">Welcome %{user_name}!</div><div class=\"content\">You activated a trial account in %{desy}: your account will be valid for <span class=\"variable\">%{validity} days</span>.<br/><br/>A <span class=\"variable\">trial account</span> enables all the functionalities, except for<br/><ul><li>sharing things among our community</li><li>downloading your own lessons</li></ul></div><div class=\"basement\"><span>Upgrade your account</span><a href=\"%{link}\" class=\"trial\"></a></div>"
+      # The user has upgraded his trial account to a regular one. The variable %{validity} is replaced by the validity (in days) of the user's trial account
+      upgraded: "<div class=\"title\">Congratulations!</div><div class=\"content\">Your trial account has been upgraded to a regular one, which will be valid until <span class=\"variable\">%{expiration_date}</span>.</div>"
   
   
   # SECTION 2.11: Captions and texts inside the presentation pages (which are shown when the user is not logged in)
@@ -2134,11 +2144,7 @@ en:
     # Section 1: personal info
     info:
       # Caption of the link inside the profile's menu
-      # 1 - views/users/statistics.html.erb
-      # 2 - views/users/mailing_lists.html.erb
-      # 3 - views/users/edit.html.erb
-      # 4 - views/users/subjects.html.erb
-      # 5 - views/users/trial.html.erb
+      # 1 - views/users/_profile_menu.html.erb
       menu_link: "Personal info"
       # Title of the section
       # 1 - views/users/edit.html.erb
@@ -2173,11 +2179,7 @@ en:
     # Section 2: mailing lists
     mailing_list:
       # Caption of the link inside the user's profile menu
-      # 1 - views/users/statistics.html.erb
-      # 2 - views/users/mailing_lists.html.erb
-      # 3 - views/users/edit.html.erb
-      # 4 - views/users/subjects.html.erb
-      # 5 - views/users/trial.html.erb
+      # 1 - views/users/_profile_menu.html.erb
       menu_link: "Mailing lists"
       # Title of the subsection
       # 1 - views/users/mailing_lists.html.erb
@@ -2232,11 +2234,7 @@ en:
     # Section 3: user's personal and general statistics
     statistics:
       # Link inside the user's profile menu
-      # 1 - views/users/statistics.html.erb
-      # 2 - views/users/mailing_lists.html.erb
-      # 3 - views/users/edit.html.erb
-      # 4 - views/users/subjects.html.erb
-      # 5 - views/users/trial.html.erb
+      # 1 - views/users/_profile_menu.html.erb
       menu_link: "Statistics"
       # Title
       # 1 - views/users/statistics.html.erb
@@ -2298,11 +2296,7 @@ en:
     # Section 4: list of the user's subjects
     subjects:
       # Caption for the link inside the user's profile menu
-      # 1 - views/users/statistics.html.erb
-      # 2 - views/users/mailing_lists.html.erb
-      # 3 - views/users/edit.html.erb
-      # 4 - views/users/subjects.html.erb
-      # 5 - views/users/trial.html.erb
+      # 1 - views/users/_profile_menu.html.erb
       menu_link: "Subjects"
       # Title
       # 1 - views/users/subjects.html.erb
@@ -2321,13 +2315,9 @@ en:
       # Link from the header to the upgrade trial section of your profile
       # 1 - views/shared/_header.html.erb
       header_link: "Upgrade your trial account"
-      # Link in the profile menu
-      # 1 - views/users/subjects.html.erb
-      # 2 - views/users/statistics.html.erb
-      # 3 - views/users/edit.html.erb
-      # 4 - views/users/mailing_lists.html.erb
-      # 5 - views/users/trial.html.erb
-      menu_link: "Upgrade trial"
+      # Link in the profile menu (the variable %{desy} is replaced by the name of the application)
+      # 1 - views/users/_profile_menu.html.erb
+      menu_link: "Buy"
       # Caption to remember to the user the expiration (the variable %{days} is replaced by the number of days left to expiration)
       # 1 - views/shared/_header.html.erb
       expiration: "Your trial account will expire in <span>%{days} days</span>"
@@ -2337,12 +2327,21 @@ en:
         problem_saving: "There was a problem upgrading your trial account, please try again"
         # 1 - controllers/users_controller.rb
         code_not_valid: "The purchase code is not valid"
-      # Title of the section "upgrade your trial account while already logged in"
+      # Title of the section "upgrade your trial account while already logged in" (the variable %{desy} is replaced by the name of the application)
       # 1 - views/users/trial.html.erb
-      title: "Tired of limitations?"
+      title: "Buy <span style=\"text-transform:none\">%{desy}</span>"
       # Description of the section "upgrade your trial account while already logged in" (the variable %{desy} is replaced by the name of the application)
       # 1 - views/users/trial.html.erb
       description: "Enjoy the full version of %{desy}! Insert a valid purchase code and upgrade your trial account"
+      # Label of the purchase code in the form to upgrade your trial account
+      # 1 - views/users/trial.html.erb
+      purchase_code: "Purchase code"
+      # Label of the commit button in the form to upgrade your trial account
+      # 1 - views/users/trial.html.erb
+      commit: "Upgrade"
+      # Timed popup which appears when you successfully upgraded your trial account
+      # 1 - controllers/users_controller.rb
+      successful_upgrade: "You successfully upgraded your account"
   
   
   # SECTION 2.16: Captions used inside the Video Editor

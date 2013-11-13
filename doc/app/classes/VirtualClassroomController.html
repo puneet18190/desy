@@ -989,7 +989,7 @@ href="VirtualClassroomController.html#method-i-initialize_emails">#initialize_em
     <span class="ruby-keyword">return</span>
   <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ok</span>
-    <span class="ruby-constant">UserMailer</span>.<span class="ruby-identifier">see_my_lesson</span>(<span class="ruby-ivar">@emails</span>, <span class="ruby-identifier">current_user</span>, <span class="ruby-ivar">@lesson</span>, <span class="ruby-ivar">@message</span>, <span class="ruby-identifier">request</span>.<span class="ruby-identifier">host</span>, <span class="ruby-identifier">request</span>.<span class="ruby-identifier">port</span>).<span class="ruby-identifier">deliver</span>
+    <span class="ruby-constant">UserMailer</span>.<span class="ruby-identifier">see_my_lesson</span>(<span class="ruby-ivar">@emails</span>, <span class="ruby-identifier">current_user</span>, <span class="ruby-ivar">@lesson</span>, <span class="ruby-ivar">@message</span>).<span class="ruby-identifier">deliver</span>
     <span class="ruby-identifier">string_emails</span> = <span class="ruby-string">&#39;&#39;</span>
     <span class="ruby-ivar">@emails</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">em</span><span class="ruby-operator">|</span>
       <span class="ruby-identifier">string_emails</span> = <span class="ruby-node">&quot;#{string_emails} &#39;#{em}&#39;,&quot;</span>

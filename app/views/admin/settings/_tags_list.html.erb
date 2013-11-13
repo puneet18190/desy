@@ -47,7 +47,7 @@
   </table>
   
   <% if params[:search].present? && params[:search][:id].present? %>
-    <script type="text/javascript" charset="utf-8">
+    <script>
       openAndLoadNextTr($('tr#<%=params[:search][:id] %>'));
     </script>
   <% end %>

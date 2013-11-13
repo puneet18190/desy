@@ -1,3 +1,5 @@
+
+
 @import 'variables';
 @import 'mixins';
 
@@ -158,9 +160,24 @@
       
     }
     
+    textarea.text {
+      
+      background-color: #f5f5f5;
+      color: #434244;
+      font-size: 120%;
+      padding: 10px 10px 0px 10px;
+      border: none;
+      border-radius: 4px;
+      -webkit-border-radius: 4px;
+      box-shadow: 0 1px 2px rgba(50, 50, 50, 0.2) inset;
+      width: 534px;
+      height: 192px;
+      
+    }
+    
     .sbHolder, .sbOptions, .sbSelector {
       
-      color: #7d7d7d; 
+      color: #7d7d7d;
       font: 13px 'Nunito', sans-serif;
       width: 226px;
       

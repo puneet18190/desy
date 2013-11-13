@@ -111,7 +111,7 @@
 <div id="info_container" data-last-component-id="<%= @parameters[:components].count %>" data-current-component="" data-replacing-component="false" data-total-length="<%= @total_length %>" data-save-cache="false" data-cache-enabled-first-time="true" data-forced-kevin-luck-style="" data-used-in-private-lessons="<%= @used_in_private_lessons %>" style="display:none"></div>
 
 
-<script type="text/javascript">
+<script>
   $(document).ready(function() {
     <% if @cache.nil? %>
       setTimeout(function() {
