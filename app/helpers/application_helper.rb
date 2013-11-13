@@ -113,6 +113,11 @@ module ApplicationHelper
     end
   end
   
+  # Renders a two digits number even in the case the number is only one-digit
+  def two_digits_number(x)
+    x < 10 ? "0#{x}" : x.to_s
+  end
+  
   private
   
   # Submethod of #manipulate_url, that takes into consideration nested url parameters
