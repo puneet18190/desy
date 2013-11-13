@@ -1242,7 +1242,7 @@ it:
     title: "Browser non supportato"
     # Content of the page
     content:
-      title: "%{desy} non support il tuo browser!"
+      title: "%{desy} non supporta il tuo browser!"
       description: "Le tecnologie usate nell'applicazione non funzionerebbero correttamente sul tuo browser. Per usare %{desy} è necessario aggiornare il browser, o scaricarne l'ultima versione."
     # Links where it's possible to download updated browsers
     links: "Links per aggiornare il tuo browser"

@@ -36,6 +36,11 @@ module Statistics
       MediaElement.where(:user_id => user.id).count
     end
     
+    # Number of bookmarks on my lessons
+    def my_linked_lessons_count
+      Bookmark.joins("INNER JOIN lessons ON (bookmarks.bookmarkable_type = 'Lesson' AND bookmarks.bookmarkable_id = lessons.id)").where(:lessons => {:user_id => user.id}).count
+    end
+    
     # The total amount of likes received by lessons created by the current user
     def my_likes_count
       Like.joins(:lesson).where(:lessons => {:user_id => user.id}).count
