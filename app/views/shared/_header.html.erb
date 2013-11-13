@@ -5,11 +5,7 @@
     <%= image_tag(logo_path) %>
   </a>
   <% if current_user.trial? %>
-    <%
-      expiration = current_user.trial_to_expiration / 86400
-      expiration = 1 if expiration == 0
-    %>
-    <div class="freeTrial"><%= t('users.trial.expiration', :days => expiration.to_s).html_safe %></div>
+    <div class="freeTrial"><%= t('users.trial.expiration', :days => (current_user.trial_to_expiration / 86400 + 1).to_s).html_safe %></div>
   <% end %>
   <div class="logout">
     <div class="fltlft">
