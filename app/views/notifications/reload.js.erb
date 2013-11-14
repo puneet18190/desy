@@ -1,10 +1,12 @@
 if($('#tooltip_arancione').data('number') < <%= @new_notifications %>) {
+  var old_help = $('#tooltip_help').html();
   $('#notifications_main').replaceWith('<%= j(render :partial => "notifications/main", :locals => {:notifications => @notifications, :news => @new_notifications, :offset => @offset_notifications, :tot => @tot_notifications}) %>');
   $('#notifications_list').jScrollPane({
     autoReinitialise: true
   });
   $('#tooltip_arancione').show();
   $('#notifications_button').addClass('current');
+  $('#tooltip_help').html(old_help);
 } else {
   <% @notifications.each do |n| %>
     var notification = $('#notification_<%= n.id %>');

@@ -212,6 +212,7 @@ function initializeHelp() {
         showHelpTooltip();
       });
       showHelpButton();
+      $body.css('overflow-x', 'hidden');
     } else {
       $('#tooltip_help').hide('fade', {}, 500, function() {
         hideHelpTooltip();
