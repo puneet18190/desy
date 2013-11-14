@@ -2331,6 +2331,9 @@ it:
       # Button to save
       # 1 - views/users/subjects.html.erb
       save: "Salva"
+      # Popup shown when the users correctly saves his subjects
+      # 1 - views/users/subjects.html.erb
+      ok_popup: "Materie aggiornate con successo"
     # Captions used for trial accounts
     trial:
       # 1 - views/admin/users/_list.html.erb

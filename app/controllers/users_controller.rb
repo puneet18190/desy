@@ -388,6 +388,7 @@ class UsersController < ApplicationController
       @errors = convert_user_error_messages @user.errors
       if in_subjects
         @subjects = Subject.order(:description)
+        @subjects_updated = true
         render :subjects
       else
         @locations = Location.get_from_chain_params(params[:location]).get_filled_select_for_personal_info

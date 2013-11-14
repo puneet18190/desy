@@ -2331,6 +2331,9 @@ cn:
       # Button to save
       # 1 - views/users/subjects.html.erb
       save: "保存"
+      # Popup shown when the users correctly saves his subjects
+      # 1 - views/users/subjects.html.erb
+      ok_popup: "Subjects correctly updated" # TODO
     # Captions used for trial accounts
     trial:
       # 1 - views/admin/users/_list.html.erb
