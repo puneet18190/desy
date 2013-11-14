@@ -189,8 +189,8 @@ class ApplicationController < ActionController::Base
   
   # Used as a submethod to filters like ApplicationController#initialize_lesson: this method allows these filters to be used without a specified order, it's not necessary that the attribute +ok+ has been already initialized
   def update_ok(condition)
-    @ok = true if @ok.nil?
-    @ok = @ok && condition
+    @ok = true if defined?(@ok)
+    @ok = !!(@ok && condition)
   end
   
   # Used for errors in forms of elements general information: converts an item of type ActiveModel::Errors into a translated message for the user.
