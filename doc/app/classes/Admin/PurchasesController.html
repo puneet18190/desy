@@ -253,6 +253,7 @@ href="../ApplicationController.html#method-i-admin_authenticate">ApplicationCont
       <span class="ruby-identifier">renewed</span>.<span class="ruby-identifier">users</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">u</span><span class="ruby-operator">|</span>
         <span class="ruby-identifier">u</span>.<span class="ruby-identifier">purchase_id</span> = <span class="ruby-ivar">@purchase</span>.<span class="ruby-identifier">id</span>
         <span class="ruby-identifier">u</span>.<span class="ruby-identifier">save</span>
+        <span class="ruby-constant">Notification</span>.<span class="ruby-identifier">send_to</span> <span class="ruby-identifier">u</span>.<span class="ruby-identifier">id</span>, <span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;notifications.account.renewed&#39;</span>, <span class="ruby-value">:expiration_date</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">TimeConvert</span>.<span class="ruby-identifier">to_string</span>(<span class="ruby-ivar">@purchase</span>.<span class="ruby-identifier">expiration_date</span>))
       <span class="ruby-keyword">end</span>
       <span class="ruby-identifier">renewed</span>.<span class="ruby-identifier">expiration_date</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">zone</span>.<span class="ruby-identifier">now</span>
       <span class="ruby-identifier">renewed</span>.<span class="ruby-identifier">save</span>
@@ -358,7 +359,7 @@ href="../ApplicationController.html#method-i-admin_authenticate">ApplicationCont
                 
               </p>
               <div id="method-i-fill_locations_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/admin/purchases_controller.rb, line 225</span>
+                <pre><span class="ruby-comment"># File app/controllers/admin/purchases_controller.rb, line 226</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">fill_locations</span>
   <span class="ruby-identifier">location_id</span> = <span class="ruby-constant">Location</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>], <span class="ruby-value">:sti_type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:sti_type</span>].<span class="ruby-identifier">camelize</span>).<span class="ruby-identifier">first</span>
   <span class="ruby-identifier">location_code</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:code</span>].<span class="ruby-identifier">present?</span> <span class="ruby-operator">?</span> <span class="ruby-constant">Location</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:code</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:code</span>], <span class="ruby-value">:sti_type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:sti_type</span>].<span class="ruby-identifier">camelize</span>).<span class="ruby-identifier">first</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>
@@ -415,7 +416,7 @@ href="../ApplicationController.html#method-i-admin_authenticate">ApplicationCont
                 
               </p>
               <div id="method-i-find_locations_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/admin/purchases_controller.rb, line 207</span>
+                <pre><span class="ruby-comment"># File app/controllers/admin/purchases_controller.rb, line 208</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">find_locations</span>
   <span class="ruby-identifier">parent</span> = <span class="ruby-constant">Location</span>.<span class="ruby-identifier">find_by_id</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>]
   <span class="ruby-ivar">@locations</span> = <span class="ruby-identifier">parent</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">?</span> [] <span class="ruby-operator">:</span> <span class="ruby-identifier">parent</span>.<span class="ruby-identifier">children</span>.<span class="ruby-identifier">order</span>(<span class="ruby-value">:name</span>)
@@ -522,7 +523,7 @@ href="../ApplicationController.html#method-i-admin_authenticate">ApplicationCont
                 
               </p>
               <div id="method-i-link_form_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/admin/purchases_controller.rb, line 186</span>
+                <pre><span class="ruby-comment"># File app/controllers/admin/purchases_controller.rb, line 187</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">link_form</span>
   <span class="ruby-ivar">@purchase</span> = <span class="ruby-constant">Purchase</span>.<span class="ruby-identifier">find_by_id</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>]
   <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@purchase</span>
@@ -643,7 +644,7 @@ href="../ApplicationController.html#method-i-admin_authenticate">ApplicationCont
                 
               </p>
               <div id="method-i-send_link_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/admin/purchases_controller.rb, line 162</span>
+                <pre><span class="ruby-comment"># File app/controllers/admin/purchases_controller.rb, line 163</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">send_link</span>
   <span class="ruby-ivar">@purchase</span> = <span class="ruby-constant">Purchase</span>.<span class="ruby-identifier">find_by_id</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>]
   <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@purchase</span>
@@ -744,7 +745,7 @@ href="../ApplicationController.html#method-i-admin_authenticate">ApplicationCont
                 
               </p>
               <div id="method-i-check_saas_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/admin/purchases_controller.rb, line 240</span>
+                <pre><span class="ruby-comment"># File app/controllers/admin/purchases_controller.rb, line 241</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">check_saas</span>
   <span class="ruby-ivar">@ok</span> = (<span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;saas_registration_mode&#39;</span>] <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">super_admin?</span>)
 <span class="ruby-keyword">end</span></pre>

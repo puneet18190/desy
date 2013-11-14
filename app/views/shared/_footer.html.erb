@@ -2,13 +2,13 @@
   <div class="footer_content">
     <% if controller_name != "dashboard" %>
     <div class="fltrt dashboard">
-      <%= link_to t('captions.back_to_dashboard'), dashboard_path %> <%= image_tag "lesson-editor-logo-footer.png" %>
+      <%= link_to t('captions.back_to_dashboard'), dashboard_path %> <%= image_tag 'lesson-editor-logo-footer.png' %>
     </div>
     <% end %>
   </div>
   <div class="footer_logo_content">
     <div class="fltlft" style="padding:10px">
-      <img src="<%= asset_path 'partner_logo.jpg' %>" alt="">
+      <%= image_tag 'partner_logo.jpg' %>
     </div>
     <div class="fltrt" style="padding-top:30px">
       <%= SETTINGS['application_copyright'] %>

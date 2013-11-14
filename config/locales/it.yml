@@ -2308,6 +2308,9 @@ it:
         # How many 'I like it' in total your lessons received
         # 1 - views/users/statistics.html.erb
         likes: "'Mi piace' su tue lezioni"
+        # How many links by other users the user has on his public lessons
+        # 1 - views/users/statistics.html.erb
+        links: "Numero di followers"
         # How many elements you created
         # 1 - views/users/statistics.html.erb
         media_elements_loaded: "Elementi didattici caricati"

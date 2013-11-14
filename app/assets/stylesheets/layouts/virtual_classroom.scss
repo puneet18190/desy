@@ -17,9 +17,9 @@ html.virtual_classroom-controller {
   }
   
   .content {
-    
+    display: inline-block;
     color: #fff;
-    
+    width:100%;
   }
   
   .container {
@@ -488,7 +488,7 @@ html.virtual_classroom-controller {
     color: #727377;
     width: 400px;
     clear: none;
-    
+   
     .emptyContent {
       
       float: left;

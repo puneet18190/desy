@@ -124,7 +124,7 @@ filtering the associated objects that are not <code>marshal_dump</code>able</p>
           
           
             <div class="description">
-              <p>converts an exception to a dumpable one</p>
+              <p>converts an exception to a dumpable one (if it isn&#39;t)</p>
             </div>
           
           
@@ -176,8 +176,10 @@ filtering the associated objects that are not <code>marshal_dump</code>able</p>
           
           
             <div class="description">
-              <p>converts an hash to a dumpable version of it XXX it&#39;s recursive so
+              <p>converts an hash to a dumpable version of it XXX It&#39;s recursive thus
 prone to a +stack level too deep+ error :-/ this is not Haskell!</p>
+
+<pre>(it shouldn&#39;t be a problem since it should be used only for &quot;short chain&quot; hashes)</pre>
             </div>
           
           
@@ -193,13 +195,15 @@ prone to a +stack level too deep+ error :-/ this is not Haskell!</p>
                 
               </p>
               <div id="method-c-hash_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/dumpable.rb, line 42</span>
+                <pre><span class="ruby-comment"># File lib/dumpable.rb, line 43</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">hash</span>(<span class="ruby-identifier">hash</span>)
   <span class="ruby-constant">Hash</span>[ <span class="ruby-identifier">hash</span>.<span class="ruby-identifier">map</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>, <span class="ruby-identifier">v</span><span class="ruby-operator">|</span>
     [ <span class="ruby-identifier">k</span>,
       <span class="ruby-keyword">case</span> <span class="ruby-identifier">v</span>
       <span class="ruby-keyword">when</span> <span class="ruby-constant">Hash</span>
         <span class="ruby-identifier">hash</span>(<span class="ruby-identifier">v</span>)
+      <span class="ruby-keyword">when</span> <span class="ruby-constant">ActionDispatch</span><span class="ruby-operator">::</span><span class="ruby-constant">RemoteIp</span><span class="ruby-operator">::</span><span class="ruby-constant">GetIp</span>
+        <span class="ruby-identifier">v</span>.<span class="ruby-identifier">to_s</span>
       <span class="ruby-keyword">else</span>
         <span class="ruby-keyword">begin</span>
           <span class="ruby-constant">Marshal</span>.<span class="ruby-identifier">dump</span>(<span class="ruby-identifier">v</span>)
