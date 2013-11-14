@@ -280,6 +280,90 @@ p {
   
 }
 
+.lesson_tooltipForm {
+  
+  position: absolute;
+  margin: 0px;
+  z-index: 10;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  @include elementiComuni;
+  left: 0.2em;
+  bottom: 3.3em;
+  @include inputSend;
+  
+  h3 {
+    
+    font: 120% 'Nunito', sans-serif;
+    color: $black;
+    
+  }
+  
+  .calloutForm {
+    
+    bottom: -8px;
+    z-index: 20;
+    position: absolute;
+    border: 0;
+    left: 8px;
+    
+  }
+  
+}
+
+.media_element_tooltipForm {
+  
+  position: absolute;
+  margin: 0px;
+  z-index: 10;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  @include elementiComuni;
+  right: 4px;
+  bottom: 41px;
+  @include inputSend;
+  
+  h3 {
+    
+    font: 140% 'Nunito', sans-serif;
+    color: $black;
+    
+  }
+  
+  .calloutForm {
+    
+    bottom: -7px;
+    z-index: 20;
+    position: absolute;
+    border: 0;
+    right: 59px;
+    
+  }
+  
+}
+
+.callout {
+  
+  top: -10px;
+  @include call;
+  
+}
+
+.calloutTooltipArancione {
+  
+  top: 4px;
+  @include call;
+  
+}
+
+.scroll-pane {
+  
+  width: 100%;
+  height: 305px;
+  overflow: auto;
+  
+}
+
 .basta_caos_porca_miseria {
   
   font-size: 13px !important;
