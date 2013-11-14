@@ -74,13 +74,13 @@ class ApplicationController < ActionController::Base
   # Uses ApplicationController#initialize_lesson and additionally checks if the logged user owns the lesson or the lesson is public
   def initialize_lesson_with_owner_or_public
     initialize_lesson
-    update_ok(@lesson && current_user.id == @lesson.user_id || @lesson.is_public)
+    update_ok(!@lesson.nil? && current_user.id == @lesson.user_id || @lesson.is_public)
   end
   
   # Uses ApplicationController#initialize_lesson and additionally checks if the logged user owns the lesson
   def initialize_lesson_with_owner
     initialize_lesson
-    update_ok(@lesson && current_user.id == @lesson.user_id)
+    update_ok(!@lesson.nil? && current_user.id == @lesson.user_id)
   end
   
   # Checks if the parameter +lesson_id+ is correct and a corresponding lesson exists
@@ -99,26 +99,26 @@ class ApplicationController < ActionController::Base
   # Uses ApplicationController#initialize_media_element and returns true if additionally the logged user owns the element or the element is public
   def initialize_media_element_with_owner_or_public
     initialize_media_element
-    update_ok(@media_element && (@media_element.is_public || current_user.id == @media_element.user_id))
+    update_ok(!@media_element.nil? && (@media_element.is_public || current_user.id == @media_element.user_id))
   end
   
   # Uses ApplicationController#initialize_media_element_with_owner and returns true if additionally the element is private
   def initialize_media_element_with_owner_and_private
     initialize_media_element_with_owner
-    update_ok(@media_element && !@media_element.is_public)
+    update_ok(!@media_element.nil? && !@media_element.is_public)
   end
   
   # Checks if the parameter +document_id+ is correct and a corresponding document exists, and it belongs to the current user
   def initialize_document
     @document_id = correct_integer?(params[:document_id]) ? params[:document_id].to_i : 0
     @document = Document.find_by_id @document_id
-    update_ok(@document && current_user.id == @document.user_id)
+    update_ok(!@document.nil? && current_user.id == @document.user_id)
   end
   
   # Uses ApplicationController#initialize_media_element and returns true if additionally the logged user owns the element
   def initialize_media_element_with_owner
     initialize_media_element
-    update_ok(@media_element && current_user.id == @media_element.user_id)
+    update_ok(!@media_element.nil? && current_user.id == @media_element.user_id)
   end
   
   # Checks if the parameter +media_element_id+ is correct and a corresponding element exists
