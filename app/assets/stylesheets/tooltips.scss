@@ -79,11 +79,18 @@
         font-weight: bold;
         padding: 0;
         
+        &:hover {
+          
+          text-decoration: underline;
+          
+        }
+        
       }
       
       .message {
         
         font-style: italic;
+        color: #2FAADC;
         
       }
       
@@ -96,6 +103,7 @@
     }
     
     .basement {
+      
       margin-left: 20px;
       padding: 12px 10px;
       width: 370px;
@@ -103,9 +111,11 @@
       background-color: #FBFAFB;
       
       span {
-        color:#5d5c5c;
+        
+        color: #5d5c5c;
         float: left;
         font-weight: bold;
+        font-size: 13px;
         
       }
       
