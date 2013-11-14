@@ -2,8 +2,8 @@
 @import 'mixins';
 
 #notifications_main {
+  
   text-align:left;
-  /*height: 34px;*/
   background-color: transparent;
   position: relative;
   bottom:9px;
@@ -35,7 +35,7 @@
     border-right: none;
     color: $black;
     top: 61px;
-    right: 351px;
+    right: 303px;
     
     ul {
       
@@ -47,7 +47,7 @@
       
       padding: 20px;
       height: 20px;
-      font: 155% 'Nunito', sans-serif;
+      font: 20px 'Nunito', sans-serif;
       letter-spacing: -1px;
       font-weight: bold;
       color: #2FAADC;
@@ -60,12 +60,15 @@
       height: 10px;
       font-style: italic;
       font-size: 11px;
+      font-weight: normal;
       color: #2FAADC;
       
     }
     
     .content {
-      font-weight:normal;
+      
+      font-weight: normal;
+      font-size: 13px;
       padding: 0 20px 20px 20px;
       height: 135px;
       color: $black;
@@ -95,7 +98,7 @@
     .basement {
       margin-left: 20px;
       padding: 12px 10px;
-      width: 86%;
+      width: 370px;
       height: 13px;
       background-color: #FBFAFB;
       
