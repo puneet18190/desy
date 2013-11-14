@@ -189,7 +189,7 @@ class ApplicationController < ActionController::Base
   
   # Used as a submethod to filters like ApplicationController#initialize_lesson: this method allows these filters to be used without a specified order, it's not necessary that the attribute +ok+ has been already initialized
   def update_ok(condition)
-    @ok = true if defined?(@ok)
+    @ok = true if !defined?(@ok)
     @ok = !!(@ok && condition)
   end
   
