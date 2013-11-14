@@ -20,13 +20,6 @@
     
   }
   
-  #notifications_button, #help, #profile_link {
-    
-    float: right;
-    cursor: pointer;
-    
-  }
-  
   #expanded_notification {
     
     z-index: 30;
@@ -272,11 +265,11 @@
   #notifications_button {
     
     margin-right: 10px;
-    /* TODO INCLUDE ETC */
+    @include svg-circle-icon-handler($assets-icone-header_svg, 36px, 2, 3, 1, 0, 0, 1, 1, 0, right);
     
     &.current {
       
-      /* TODO INCLUDE ETC */
+      @include svg-circle-icon-handler-without-hover($assets-icone-header_svg, 36px, 2, 3, 1, 1, 0, right);
       
     }
     
@@ -285,11 +278,11 @@
   #help {
     
     margin-right: 47px;
-    /* TODO INCLUDE ETC */
+    @include svg-circle-icon-handler($assets-icone-header_svg, 36px, 2, 3, 1, 0, 2, 1, 1, 2, right);
     
     &.current {
       
-      /* TODO INCLUDE ETC */
+      @include svg-circle-icon-handler-without-hover($assets-icone-header_svg, 36px, 2, 3, 1, 1, 2, right);
       
     }
     
@@ -298,7 +291,7 @@
   #profile_link {
     
     margin-right: 10px;
-    /* TODO INCLUDE ETC */
+    @include svg-circle-icon-handler($assets-icone-header_svg, 36px, 2, 3, 1, 0, 1, 1, 1, 1, right);
     
   }
   
