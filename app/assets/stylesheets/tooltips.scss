@@ -20,14 +20,10 @@
     
   }
   
-  #notifications_button, #help {
+  #notifications_button, #help, #profile_link {
     
     float: right;
-    background-image: $assets-notice_png;
-    background-repeat: no-repeat;
     cursor: pointer;
-    width: 36px;
-    height: 36px;
     
   }
   
@@ -275,12 +271,12 @@
   
   #notifications_button {
     
-    background-position: 1px 0px;
     margin-right: 10px;
+    /* TODO INCLUDE ETC */
     
-    &:hover, &.current {
+    &.current {
       
-      background-position: -33px 0px;
+      /* TODO INCLUDE ETC */
       
     }
     
@@ -288,14 +284,21 @@
   
   #help {
     
-    background-position: -68px 0px;
     margin-right: 47px;
+    /* TODO INCLUDE ETC */
     
-    &:hover, &.current {
+    &.current {
       
-      background-position: -103px 0px;
+      /* TODO INCLUDE ETC */
       
     }
+    
+  }
+  
+  #profile_link {
+    
+    margin-right: 10px;
+    /* TODO INCLUDE ETC */
     
   }
   

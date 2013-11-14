@@ -1008,6 +1008,11 @@ cn:
       # 5 - views/virtual_classroom/_pagination.html.erb
       # 6 - views/virtual_classroom/_pagination.html.erb
       next: "到下一页"
+    # Titles for the user profile
+    profile:
+      # Label on the link
+      # 1 - views/notifications/_main.html.erb
+      label: "Profile" # TODO
     # Icon to report an offensive lesson or media element
     # 1 - views/reports/_media_element.html.erb
     report: "报告有攻击性的内容"

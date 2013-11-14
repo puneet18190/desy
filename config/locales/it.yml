@@ -1008,6 +1008,11 @@ it:
       # 5 - views/virtual_classroom/_pagination.html.erb
       # 6 - views/virtual_classroom/_pagination.html.erb
       next: "Vai alla pagina successiva"
+    # Titles for the user profile
+    profile:
+      # Label on the link
+      # 1 - views/notifications/_main.html.erb
+      label: "Profilo"
     # Icon to report an offensive lesson or media element
     # 1 - views/reports/_media_element.html.erb
     report: "Segnala contenuti non appropriati"
