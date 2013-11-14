@@ -324,7 +324,7 @@ class VirtualClassroomController < ApplicationController
   # Initializes the lesson and checks that it's in the Virtual Classroom
   def initialize_lesson_for_sending_link
     initialize_lesson
-    update_ok(@lesson && @lesson.in_virtual_classroom?(current_user.id))
+    update_ok(!@lesson.nil? && @lesson.in_virtual_classroom?(current_user.id))
   end
   
   # Initializes the lessons just loaded in the multiple loader

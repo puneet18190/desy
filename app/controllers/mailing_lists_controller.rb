@@ -111,7 +111,7 @@ class MailingListsController < ApplicationController
   # Initializes mailing list group and checks that current_user is the owner
   def initialize_mailing_list_group_with_owner
     initialize_mailing_list_group
-    update_ok(@mailing_list_group && current_user.id == @mailing_list_group.user_id)
+    update_ok(!@mailing_list_group.nil? && current_user.id == @mailing_list_group.user_id)
   end
   
   # Initializes mailing list group
@@ -125,9 +125,7 @@ class MailingListsController < ApplicationController
   def initialize_mailing_list_address_with_owner
     initialize_mailing_list_address
     initialize_mailing_list_group
-    update_ok(@mailing_list_address && @mailing_list_group)
-    update_ok(@mailing_list_address.group_id == @mailing_list_group.id)
-    update_ok(current_user.id == @mailing_list_group.user_id)
+    update_ok(!@mailing_list_address.nil? && !@mailing_list_group.nil? && @mailing_list_address.group_id == @mailing_list_group.id && current_user.id == @mailing_list_group.user_id)
   end
   
   # Initializes mailing list address
