@@ -826,12 +826,21 @@ function lessonEditorDocumentReadySlideButtons() {
     }
   });
   $body.on(&#x27;click&#x27;, &#x27;._delete_slide&#x27;, function() {
-    stopMediaInCurrentSlide();
-    var slide = $(&#x27;li._lesson_editor_current_slide&#x27;);
-    slide.prepend(&#x27;&lt;layer class=&quot;_not_current_slide_disabled&quot;&gt;&lt;/layer&gt;&#x27;);
-    $.ajax({
-      type: &#x27;post&#x27;,
-      url: &#x27;/lessons/&#x27; + $(&#x27;#info_container&#x27;).data(&#x27;lesson-id&#x27;) + &#x27;/slides/&#x27; + slide.data(&#x27;slide-id&#x27;) + &#x27;/delete&#x27;
+    var title = $captions.data(&#x27;confirm-delete-slide-title&#x27;);
+    var confirm = $captions.data(&#x27;confirm-delete-slide-confirm&#x27;);
+    var yes = $captions.data(&#x27;confirm-delete-slide-yes&#x27;);
+    var no = $captions.data(&#x27;confirm-delete-slide-no&#x27;);
+    showConfirmPopUp(title, confirm, yes, no, function() {
+      closePopUp(&#x27;dialog-confirm&#x27;);
+      stopMediaInCurrentSlide();
+      var slide = $(&#x27;li._lesson_editor_current_slide&#x27;);
+      slide.prepend(&#x27;&lt;layer class=&quot;_not_current_slide_disabled&quot;&gt;&lt;/layer&gt;&#x27;);
+      $.ajax({
+        type: &#x27;post&#x27;,
+        url: &#x27;/lessons/&#x27; + $(&#x27;#info_container&#x27;).data(&#x27;lesson-id&#x27;) + &#x27;/slides/&#x27; + slide.data(&#x27;slide-id&#x27;) + &#x27;/delete&#x27;
+      });
+    }, function() {
+      closePopUp(&#x27;dialog-confirm&#x27;);
     });
   });
   $body.on(&#x27;click&#x27;, &#x27;._attach_document, li._lesson_editor_current_slide .attached_document_internal&#x27;, function() {

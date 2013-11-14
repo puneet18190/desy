@@ -213,7 +213,12 @@
             
               
               <li>
-                <a href="#method-i-title_tag">title_tag</a>
+                <a href="#method-i-title_tag">title_tag</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-two_digits_number">two_digits_number</a>
               </li>
             
           </ul>
@@ -754,6 +759,41 @@ and similar methods.</p>
             </div>
             
           </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-two_digits_number">
+            
+              <b>two_digits_number</b>(x)
+            
+            <a href="../classes/ApplicationHelper.html#method-i-two_digits_number" name="method-i-two_digits_number" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Renders a two digits number even in the case the number is only one-digit</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-two_digits_number_source')" id="l_method-i-two_digits_number_source">show</a>
+                
+              </p>
+              <div id="method-i-two_digits_number_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 117</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">two_digits_number</span>(<span class="ruby-identifier">x</span>)
+  <span class="ruby-identifier">x</span> <span class="ruby-operator">&lt;</span> <span class="ruby-number">10</span> <span class="ruby-operator">?</span> <span class="ruby-node">&quot;0#{x}&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">to_s</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
               
       <div class="sectiontitle">Instance Private methods</div>
       
@@ -783,7 +823,7 @@ and similar methods.</p>
                 
               </p>
               <div id="method-i-full_url_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 168</span>
+                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 173</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">full_url</span>(<span class="ruby-identifier">path</span>)
   <span class="ruby-identifier">uri</span> = <span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span> <span class="ruby-identifier">path</span>
   <span class="ruby-identifier">scheme</span>, <span class="ruby-identifier">host</span>, <span class="ruby-identifier">port</span> = <span class="ruby-identifier">request</span>.<span class="ruby-identifier">scheme</span>, <span class="ruby-identifier">request</span>.<span class="ruby-identifier">host</span>, <span class="ruby-identifier">request</span>.<span class="ruby-identifier">port</span>
@@ -824,7 +864,7 @@ that takes into consideration nested url parameters</p>
                 
               </p>
               <div id="method-i-get_recursive_array_from_params_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 119</span>
+                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 124</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">get_recursive_array_from_params</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-identifier">params</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">params</span>.<span class="ruby-identifier">kind_of?</span>(<span class="ruby-constant">Hash</span>)
   <span class="ruby-identifier">resp</span> = []
@@ -876,7 +916,7 @@ that takes into consideration nested url parameters</p>
                 
               </p>
               <div id="method-i-title_tag_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 141</span>
+                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 146</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">title_tag</span>(<span class="ruby-identifier">slides</span> = <span class="ruby-keyword">nil</span>)
   <span class="ruby-identifier">controller</span> = <span class="ruby-identifier">controller_path</span>
   <span class="ruby-identifier">desy</span> = <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;application_name&#39;</span>]
@@ -933,7 +973,7 @@ that takes into consideration nested url parameters</p>
                 
               </p>
               <div id="method-i-url_by_url_type_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 176</span>
+                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 181</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">url_by_url_type</span>(<span class="ruby-identifier">url</span>, <span class="ruby-identifier">url_type</span>)
   <span class="ruby-constant">UrlByUrlType</span>.<span class="ruby-identifier">url_by_url_type</span> <span class="ruby-identifier">url</span> ,<span class="ruby-identifier">url_type</span>
 <span class="ruby-keyword">end</span></pre>

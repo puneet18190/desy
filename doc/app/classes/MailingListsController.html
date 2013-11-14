@@ -440,7 +440,7 @@ href="UsersController.html#method-i-mailing_lists">UsersController#mailing_lists
                 
               </p>
               <div id="method-i-initialize_mailing_list_address_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/mailing_lists_controller.rb, line 134</span>
+                <pre><span class="ruby-comment"># File app/controllers/mailing_lists_controller.rb, line 132</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize_mailing_list_address</span>
   <span class="ruby-ivar">@mailing_list_address_id</span> = <span class="ruby-identifier">correct_integer?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:address_id</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:address_id</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-number">0</span>
   <span class="ruby-ivar">@mailing_list_address</span> = <span class="ruby-constant">MailingListAddress</span>.<span class="ruby-identifier">find_by_id</span> <span class="ruby-ivar">@mailing_list_address_id</span>
@@ -482,9 +482,7 @@ of the corresponding group</p>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize_mailing_list_address_with_owner</span>
   <span class="ruby-identifier">initialize_mailing_list_address</span>
   <span class="ruby-identifier">initialize_mailing_list_group</span>
-  <span class="ruby-identifier">update_ok</span>(<span class="ruby-ivar">@mailing_list_address</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@mailing_list_group</span>)
-  <span class="ruby-identifier">update_ok</span>(<span class="ruby-ivar">@mailing_list_address</span>.<span class="ruby-identifier">group_id</span> <span class="ruby-operator">==</span> <span class="ruby-ivar">@mailing_list_group</span>.<span class="ruby-identifier">id</span>)
-  <span class="ruby-identifier">update_ok</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">==</span> <span class="ruby-ivar">@mailing_list_group</span>.<span class="ruby-identifier">user_id</span>)
+  <span class="ruby-identifier">update_ok</span>(<span class="ruby-operator">!</span><span class="ruby-ivar">@mailing_list_address</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@mailing_list_group</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@mailing_list_address</span>.<span class="ruby-identifier">group_id</span> <span class="ruby-operator">==</span> <span class="ruby-ivar">@mailing_list_group</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">==</span> <span class="ruby-ivar">@mailing_list_group</span>.<span class="ruby-identifier">user_id</span>)
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -557,7 +555,7 @@ of the corresponding group</p>
                 <pre><span class="ruby-comment"># File app/controllers/mailing_lists_controller.rb, line 112</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize_mailing_list_group_with_owner</span>
   <span class="ruby-identifier">initialize_mailing_list_group</span>
-  <span class="ruby-identifier">update_ok</span>(<span class="ruby-ivar">@mailing_list_group</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">==</span> <span class="ruby-ivar">@mailing_list_group</span>.<span class="ruby-identifier">user_id</span>)
+  <span class="ruby-identifier">update_ok</span>(<span class="ruby-operator">!</span><span class="ruby-ivar">@mailing_list_group</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">==</span> <span class="ruby-ivar">@mailing_list_group</span>.<span class="ruby-identifier">user_id</span>)
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
