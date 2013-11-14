@@ -205,11 +205,9 @@ Initializes the graphical tools of the <b>help tooltip</b>.
 @for NotificationsGraphics
 **/
 function initializeHelp() {
-  $('#help').click(function() {
+  $body.on('click', '#help', function() {
     if(!$('#tooltip_help').is(':visible')) {
       hideNotificationsTooltip();
-      hideNotificationsButton();
-      hideNotificationsFumetto();
       $('#tooltip_help').show('fade', {}, 500, function() {
         showHelpTooltip();
       });
@@ -219,10 +217,6 @@ function initializeHelp() {
         hideHelpTooltip();
       });
       hideHelpButton();
-      if($('#tooltip_arancione').data('number') > 0) {
-        showNotificationsButton();
-        showNotificationsFumetto();
-      }
     }
   });
 }
