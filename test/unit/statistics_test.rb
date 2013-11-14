@@ -318,4 +318,36 @@ class StatisticsTest < ActiveSupport::TestCase
     assert_equal 6, Lesson.where('parent_id IS NOT NULL').count
   end
   
+  test 'my_linked_lessons_count' do
+    load_items
+    user2 = User.find(2)
+    user3 = User.confirmed.new(:name => 'Javier Ernesto', :surname => 'Chevanton3', :school_level_id => 1, :location_id => 1, :password => 'osososos', :password_confirmation => 'osososos', :subject_ids => [1], :purchase_id => 1) do |user|
+      user.email = 'em3@em.em'
+      user.active = true
+    end
+    user3.policy_1 = '1'
+    user3.policy_2 = '1'
+    assert_obj_saved user3
+    user4 = User.confirmed.new(:name => 'Javier Ernesto', :surname => 'Chevanton4', :school_level_id => 1, :location_id => 1, :password => 'osososos', :password_confirmation => 'osososos', :subject_ids => [1], :purchase_id => 1) do |user|
+      user.email = 'em4@em.em'
+      user.active = true
+    end
+    user4.policy_1 = '1'
+    user4.policy_2 = '1'
+    assert_obj_saved user4
+    assert Bookmark.where('bookmarkable_type = ? AND user_id != ?', 'Lesson', 1).empty?
+    assert user2.bookmark 'Lesson', @les1.id
+    assert user2.bookmark 'Lesson', @les2.id
+    assert user2.bookmark 'Lesson', @les3.id
+    assert user2.bookmark 'Lesson', @les4.id
+    assert_equal 4, Statistics.my_linked_lessons_count
+    assert user3.bookmark 'Lesson', @les3.id
+    assert user4.bookmark 'Lesson', @les3.id
+    assert_equal 6, Statistics.my_linked_lessons_count
+    assert user3.bookmark 'Lesson', @les5.id
+    assert user4.bookmark 'Lesson', @les6.id
+    assert user4.bookmark 'Lesson', @les1.id
+    assert_equal 9, Statistics.my_linked_lessons_count
+  end
+  
 end
