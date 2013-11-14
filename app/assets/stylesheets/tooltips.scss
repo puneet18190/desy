@@ -137,7 +137,7 @@
     border-radius: 3px;
     -webkit-border-radius: 3px;
     top: 61px;
-    right: 58px;
+    right: 11px;
 
     
     #notifications_list {
@@ -260,7 +260,7 @@
     color: #fff;
     background-color: #e10000;
     padding: 2px 5px;
-    right: 87px;
+    right: 40px;
     
   }
   
@@ -279,7 +279,7 @@
   
   #help {
     
-    margin-right: 47px;
+    margin-right: 0;
     @include svg-circle-icon-handler($assets-icone-header_svg, 36px, 2, 3, 1, 0, 2, 1, 1, 2, right);
     
     &.current {
