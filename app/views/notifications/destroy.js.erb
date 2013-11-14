@@ -11,7 +11,7 @@
     $('#tooltip_content').data('offset', <%= @offset_notifications %>);
     $('#tooltip_content').data('tot-number', <%= @tot_notifications %>);
     $('#tooltip_arancione').data('number', <%= @new_notifications %>);
-    $('#tooltip_arancione').html('<img class="calloutTooltipArancione" src="/assets/freccia_arancione.png" alt="Freccia_arancione"><%= @new_notifications %>');
+    $('#tooltip_arancione').html('<%= @new_notifications %>');
     <% if @next_notification %>
       $('#tooltip_content #notifications_list .jspPane').append('<%= j(render(:partial => "notifications/notification", :locals => {:notification => @next_notification, :without_margin => false})) %>');
     <% elsif @offset_notifications == 0 %>

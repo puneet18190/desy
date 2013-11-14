@@ -1,7 +1,5 @@
 <% if @ok %>
-  
   $('#notification_<%= @notification_id %>').addClass('current');
-  $('#tooltip_arancione').html('<img class="calloutTooltipArancione" src="/assets/freccia_arancione.png" alt="Freccia_arancione"><%= @new_notifications %>');
+  $('#tooltip_arancione').html('<%= @new_notifications %>');
   $('#tooltip_arancione').data('number', <%= @new_notifications %>);
-  
 <% end %>
