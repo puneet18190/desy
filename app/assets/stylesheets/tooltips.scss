@@ -292,6 +292,12 @@
     margin-right: 10px;
     @include svg-circle-icon-handler($assets-icone-header_svg, 36px, 2, 3, 1, 0, 1, 1, 1, 1, right);
     
+    &.current {
+      
+      @include svg-circle-icon-handler-without-hover($assets-icone-header_svg, 36px, 2, 3, 1, 1, 1, right);
+      
+    }
+    
   }
   
   .tooltipHelp {
