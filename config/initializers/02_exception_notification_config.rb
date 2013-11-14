@@ -23,7 +23,7 @@ module ExceptionNotifier
 
       # Logs exception together with an env hash (which can be +nil+)
       def self.log(exception, env = nil)
-        pp_env      = ''.tap { |s| PP.pp(env, s) }
+        pp_env      = PP.pp env, ''
         log_content = { message: exception.message, backtrace: exception.backtrace.join("\n"), env: pp_env }.to_yaml
 
         LOGGER.error <<-LOG
