@@ -4,20 +4,23 @@
 .header-main {
   
   background-color: #373737;
-  padding: 0px 50px 0px 50px;
-  
+  padding: 0 2% 0 2%;
   height: 72px;
   vertical-align: middle;
-
+  
   .vertical-aligner {
+    
     display: inline-block;
     height: 100%;
     vertical-align: middle;
+    
   }
-
+  
   .header-link img {
+    
     vertical-align: middle;
     margin-top: 0px;
+    
   }
   
   .logout {
