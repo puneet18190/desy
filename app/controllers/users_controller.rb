@@ -427,17 +427,18 @@ class UsersController < ApplicationController
   #
   def statistics
     Statistics.user = current_user
-    @my_created_lessons  = Statistics.my_created_lessons
-    @my_created_elements = Statistics.my_created_elements
-    @my_copied_lessons   = Statistics.my_copied_lessons
-    @my_liked_lessons    = Statistics.my_liked_lessons(3)
-    @all_liked_lessons   = Statistics.all_liked_lessons(3)
-    @my_likes_count      = Statistics.my_likes_count
-    @all_shared_elements = Statistics.all_shared_elements
-    @all_shared_lessons  = Statistics.all_shared_lessons
-    @all_users           = Statistics.all_users
-    @all_users_like      = Statistics.all_users_like(3)
-    @subjects_chart      = {
+    @my_created_lessons      = Statistics.my_created_lessons
+    @my_created_elements     = Statistics.my_created_elements
+    @my_copied_lessons       = Statistics.my_copied_lessons
+    @my_liked_lessons        = Statistics.my_liked_lessons(3)
+    @my_linked_lessons_count = Statistics.my_linked_lessons_count
+    @all_liked_lessons       = Statistics.all_liked_lessons(3)
+    @my_likes_count          = Statistics.my_likes_count
+    @all_shared_elements     = Statistics.all_shared_elements
+    @all_shared_lessons      = Statistics.all_shared_lessons
+    @all_users               = Statistics.all_users
+    @all_users_like          = Statistics.all_users_like(3)
+    @subjects_chart          = {
       :data   => Statistics.subjects_chart,
       :texts  => Statistics.subjects,
       :colors => Subject.chart_colors

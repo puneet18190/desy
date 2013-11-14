@@ -3413,7 +3413,7 @@ href="NotificationsController.html#method-i-destroy">NotificationsController#des
             <div class="description">
               <h3 id="method-i-trial_to_expiration-label-Description">Description</h3>
 
-<p>Returns the days missing to the expiration of the trial account</p>
+<p>Returns the seconds missing to the expiration of the trial account</p>
 
 <h3 id="method-i-trial_to_expiration-label-Returns">Returns</h3>
 
@@ -3436,7 +3436,7 @@ href="NotificationsController.html#method-i-destroy">NotificationsController#des
                 <pre><span class="ruby-comment"># File app/models/user.rb, line 171</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">trial_to_expiration</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">trial?</span>
-  (<span class="ruby-keyword">self</span>.<span class="ruby-identifier">created_at</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-operator">+</span> (<span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;saas_trial_duration&#39;</span>] * <span class="ruby-number">86400</span>) <span class="ruby-operator">-</span> <span class="ruby-constant">Time</span>.<span class="ruby-identifier">zone</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">to_i</span>) <span class="ruby-operator">/</span> <span class="ruby-number">86400</span> <span class="ruby-operator">+</span> <span class="ruby-number">1</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">created_at</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-operator">+</span> (<span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;saas_trial_duration&#39;</span>] * <span class="ruby-number">86400</span>) <span class="ruby-operator">-</span> <span class="ruby-constant">Time</span>.<span class="ruby-identifier">zone</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">to_i</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
