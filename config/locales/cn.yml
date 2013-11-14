@@ -2176,6 +2176,9 @@ cn:
       # Description of the section
       # 1 - views/users/edit.html.erb
       description: "在这个区中你能更新或修改你帐号所有的参数"
+      # Popup shown when the users correctly updates his profile
+      # 1 - controllers/users_controller.rb
+      ok_popup: "Profile correctly updated" # TODO
       # Captions for each profile attribute that can be modified by the user
       attributes:
         # 1 - views/users/_personal_info.html.erb
@@ -2332,7 +2335,7 @@ cn:
       # 1 - views/users/subjects.html.erb
       save: "保存"
       # Popup shown when the users correctly saves his subjects
-      # 1 - views/users/subjects.html.erb
+      # 1 - controllers/users_controller.rb
       ok_popup: "Subjects correctly updated" # TODO
     # Captions used for trial accounts
     trial:

@@ -2176,6 +2176,9 @@ en:
       # Description of the section
       # 1 - views/users/edit.html.erb
       description: "In this area you can update or modify all the parameters of your account"
+      # Popup shown when the users correctly updates his profile
+      # 1 - controllers/users_controller.rb
+      ok_popup: "Profile correctly updated"
       # Captions for each profile attribute that can be modified by the user
       attributes:
         # 1 - views/users/_personal_info.html.erb
@@ -2332,7 +2335,7 @@ en:
       # 1 - views/users/subjects.html.erb
       save: "Save"
       # Popup shown when the users correctly saves his subjects
-      # 1 - views/users/subjects.html.erb
+      # 1 - controllers/users_controller.rb
       ok_popup: "Subjects correctly updated"
     # Captions used for trial accounts
     trial:

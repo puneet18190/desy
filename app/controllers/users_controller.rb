@@ -383,12 +383,17 @@ class UsersController < ApplicationController
       end
     end
     if @user.update_attributes(params[:user])
-      redirect_to in_subjects ? my_subjects_path : my_profile_path
+      ok_message = t('users.info.ok_popup')
+      my_redirect = my_profile_path
+      if in_subjects
+        ok_message = t('users.subjects.ok_popup')
+        my_redirect = my_subjects_path
+      end
+      redirect_to my_redirect, { flash: { notice: ok_message } }
     else
       @errors = convert_user_error_messages @user.errors
       if in_subjects
         @subjects = Subject.order(:description)
-        @subjects_updated = true
         render :subjects
       else
         @locations = Location.get_from_chain_params(params[:location]).get_filled_select_for_personal_info

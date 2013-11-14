@@ -27,11 +27,3 @@
     </div>
   </div>
 </div>
-
-<% if @subjects_updated %>
-  <script>
-    $(document).ready(function() {
-      showOkPopUp(<%= t('users.subjects.ok_popup').to_json %>);
-    });
-  </script>
-<% end %>
