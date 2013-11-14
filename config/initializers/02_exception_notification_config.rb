@@ -55,6 +55,10 @@ LOG
       def initialize(controller_name, action_name)
         @controller_name, @action_name = controller_name, action_name
       end
+
+      def to_s
+        inspect
+      end
     end
 
     def call_with_delayed_job_support(exception, options = {})
