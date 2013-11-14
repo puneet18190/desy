@@ -449,7 +449,7 @@ function getHtmlPagination(pos, pages_amount) {
   var prev_attrs = {};
   var next_attrs = {};
   if(pos &lt;= 1) {
-    prev_attrs.role = &#x27;disabled&#x27;;
+    prev_attrs[&#x27;class&#x27;] = &#x27;disabled&#x27;;
   } else {
     prev_attrs.data = {
       page: pos - 1
@@ -457,7 +457,7 @@ function getHtmlPagination(pos, pages_amount) {
     prev_attrs.title = $captions.data(&#x27;title-pagination-left&#x27;);
   }
   if(pos &gt;= pages_amount) {
-    next_attrs.role = &#x27;disabled&#x27;;
+    next_attrs[&#x27;class&#x27;] = &#x27;disabled&#x27;;
   } else {
     next_attrs.data = {
       page: pos + 1
@@ -468,9 +468,9 @@ function getHtmlPagination(pos, pages_amount) {
     &#x27;class&#x27;: &#x27;dots_pagination&#x27;
   });
   pagination.append($(&#x27;&lt;span/&gt;&#x27;, {
-    role: &#x27;pages&#x27;
+    &#x27;class&#x27;: &#x27;pages&#x27;
   }).append($(&#x27;&lt;a/&gt;&#x27;, prev_attrs)).append($(&#x27;&lt;a/&gt;&#x27;, {
-    role: &#x27;current&#x27;,
+    &#x27;class&#x27;: &#x27;current&#x27;,
     data: {
       page: pos
     }
@@ -516,7 +516,7 @@ function reloadLessonsDashboardPagination(pos, pages_amount) {
       changePageDashboardLessons(pos, (pos + 1), pages_amount);
       return true;
     }
-    new DotsPagination($(&#x27;[role=pages]&#x27;), pages_amount, { &#x27;complete&#x27;: { &#x27;prev&#x27;: prevPage, &#x27;next&#x27;: nextPage } });
+    new DotsPagination($(&#x27;.pages&#x27;), pages_amount, { &#x27;complete&#x27;: { &#x27;prev&#x27;: prevPage, &#x27;next&#x27;: nextPage } });
   });
 }
 
@@ -546,7 +546,7 @@ function reloadMediaElementsDashboardPagination(pos, pages_amount) {
       changePageDashboardMediaElements(pos, (pos + 1), pages_amount);
       return true;
     }
-    new DotsPagination($(&#x27;[role=pages]&#x27;), pages_amount, { &#x27;complete&#x27;: { &#x27;prev&#x27;: prevPage, &#x27;next&#x27;: nextPage } });
+    new DotsPagination($(&#x27;.pages&#x27;), pages_amount, { &#x27;complete&#x27;: { &#x27;prev&#x27;: prevPage, &#x27;next&#x27;: nextPage } });
   });
 }
 

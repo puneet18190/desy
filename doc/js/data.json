@@ -5415,6 +5415,15 @@
         {
             "file": "app/assets/javascripts/notifications.js",
             "line": 115,
+            "description": "Component of document ready for notifications, used to initialize the action of reload on scroll.",
+            "itemtype": "method",
+            "name": "initializeScrollAtBottomNewBlockNotification",
+            "class": "NotificationsDocumentReady",
+            "module": "notifications"
+        },
+        {
+            "file": "app/assets/javascripts/notifications.js",
+            "line": 131,
             "description": "Global initializer for notifications and help. The function {{#crossLink \"NotificationsDocumentReady/notificationsDocumentReadyLoop:method\"}}{{/crossLink}} is called after a time of 2500 not to be called at the same time of {{#crossLink \"MediaElementLoaderConversion/mediaElementLoaderConversionOverview:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "notificationsDocumentReady",
@@ -5423,7 +5432,7 @@
         },
         {
             "file": "app/assets/javascripts/notifications.js",
-            "line": 130,
+            "line": 146,
             "description": "Initializes the form for notifying a lesson's modifications. These actions are linked on the button {{#crossLink \"ButtonsLesson/unpublishLesson:method\"}}{{/crossLink}}, provided that it has the class <i>lesson change not notified</i>.",
             "itemtype": "method",
             "name": "notificationsDocumentReadyLessonModification",
@@ -5432,7 +5441,7 @@
         },
         {
             "file": "app/assets/javascripts/notifications.js",
-            "line": 158,
+            "line": 174,
             "description": "Initializer for the loop that updates the notifications",
             "itemtype": "method",
             "name": "notificationsDocumentReadyLoop",
@@ -5448,7 +5457,7 @@
         },
         {
             "file": "app/assets/javascripts/notifications.js",
-            "line": 175,
+            "line": 191,
             "description": "General initializer for help and notifications tooltips.",
             "itemtype": "method",
             "name": "notificationsDocumentReadyTooltips",
@@ -5457,7 +5466,7 @@
         },
         {
             "file": "app/assets/javascripts/notifications.js",
-            "line": 202,
+            "line": 212,
             "description": "Initializes the graphical tools of the <b>help tooltip</b>.",
             "itemtype": "method",
             "name": "initializeHelp",
@@ -5466,7 +5475,7 @@
         },
         {
             "file": "app/assets/javascripts/notifications.js",
-            "line": 230,
+            "line": 235,
             "description": "Initializes the graphical tools and the routes attached to the <b>notifications tooltip</b>.",
             "itemtype": "method",
             "name": "initializeNotifications",

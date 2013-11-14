@@ -433,6 +433,22 @@ function showNotificationsTooltip() {
 
 
 /**
+Component of document ready for notifications, used to initialize the action of reload on scroll.
+@method initializeScrollAtBottomNewBlockNotification
+@for NotificationsDocumentReady
+**/
+
+function initializeScrollAtBottomNewBlockNotification() {
+  $(&#x27;#tooltip_content .scroll-pane&#x27;).bind(&#x27;jsp-arrow-change&#x27;, function(event, isAtTop, isAtBottom, isAtLeft, isAtRight) {
+    var tot_number = $(&#x27;#tooltip_content&#x27;).data(&#x27;tot-number&#x27;);
+    var offset = $(&#x27;#tooltip_content&#x27;).data(&#x27;offset&#x27;);
+    if(isAtBottom &amp;&amp; (offset &lt; tot_number)) {
+      $.get(&#x27;/notifications/get_new_block?offset=&#x27; + offset);
+    }
+  });
+}
+
+/**
 Global initializer for notifications and help. The function {{#crossLink &quot;NotificationsDocumentReady/notificationsDocumentReadyLoop:method&quot;}}{{/crossLink}} is called after a time of 2500 not to be called at the same time of {{#crossLink &quot;MediaElementLoaderConversion/mediaElementLoaderConversionOverview:method&quot;}}{{/crossLink}}.
 @method notificationsDocumentReady
 @for NotificationsDocumentReady
@@ -500,13 +516,7 @@ General initializer for help and notifications tooltips.
 function notificationsDocumentReadyTooltips() {
   initializeNotifications();
   initializeHelp();
-  $(&#x27;#tooltip_content .scroll-pane&#x27;).bind(&#x27;jsp-arrow-change&#x27;, function(event, isAtTop, isAtBottom, isAtLeft, isAtRight) {
-    var tot_number = $(&#x27;#tooltip_content&#x27;).data(&#x27;tot-number&#x27;);
-    var offset = $(&#x27;#tooltip_content&#x27;).data(&#x27;offset&#x27;);
-    if(isAtBottom &amp;&amp; (offset &lt; tot_number)) {
-      $.get(&#x27;/notifications/get_new_block?offset=&#x27; + offset);
-    }
-  });
+  initializeScrollAtBottomNewBlockNotification();
   $body.on(&#x27;click&#x27;, &#x27;._destroy_notification&#x27;, function(e) {
     e.stopImmediatePropagation();
     var my_id = $(this).data(&#x27;param&#x27;);
@@ -525,24 +535,19 @@ Initializes the graphical tools of the &lt;b&gt;help tooltip&lt;/b&gt;.
 @for NotificationsGraphics
 **/
 function initializeHelp() {
-  $(&#x27;#help&#x27;).click(function() {
+  $body.on(&#x27;click&#x27;, &#x27;#help&#x27;, function() {
     if(!$(&#x27;#tooltip_help&#x27;).is(&#x27;:visible&#x27;)) {
       hideNotificationsTooltip();
-      hideNotificationsButton();
-      hideNotificationsFumetto();
       $(&#x27;#tooltip_help&#x27;).show(&#x27;fade&#x27;, {}, 500, function() {
         showHelpTooltip();
       });
       showHelpButton();
+      $body.css(&#x27;overflow-x&#x27;, &#x27;hidden&#x27;);
     } else {
       $(&#x27;#tooltip_help&#x27;).hide(&#x27;fade&#x27;, {}, 500, function() {
         hideHelpTooltip();
       });
       hideHelpButton();
-      if($(&#x27;#tooltip_arancione&#x27;).data(&#x27;number&#x27;) &gt; 0) {
-        showNotificationsButton();
-        showNotificationsFumetto();
-      }
     }
   });
 }

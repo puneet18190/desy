@@ -113,6 +113,22 @@ function showNotificationsTooltip() {
 
 
 /**
+Component of document ready for notifications, used to initialize the action of reload on scroll.
+@method initializeScrollAtBottomNewBlockNotification
+@for NotificationsDocumentReady
+**/
+
+function initializeScrollAtBottomNewBlockNotification() {
+  $('#tooltip_content .scroll-pane').bind('jsp-arrow-change', function(event, isAtTop, isAtBottom, isAtLeft, isAtRight) {
+    var tot_number = $('#tooltip_content').data('tot-number');
+    var offset = $('#tooltip_content').data('offset');
+    if(isAtBottom && (offset < tot_number)) {
+      $.get('/notifications/get_new_block?offset=' + offset);
+    }
+  });
+}
+
+/**
 Global initializer for notifications and help. The function {{#crossLink "NotificationsDocumentReady/notificationsDocumentReadyLoop:method"}}{{/crossLink}} is called after a time of 2500 not to be called at the same time of {{#crossLink "MediaElementLoaderConversion/mediaElementLoaderConversionOverview:method"}}{{/crossLink}}.
 @method notificationsDocumentReady
 @for NotificationsDocumentReady
@@ -180,13 +196,7 @@ General initializer for help and notifications tooltips.
 function notificationsDocumentReadyTooltips() {
   initializeNotifications();
   initializeHelp();
-  $('#tooltip_content .scroll-pane').bind('jsp-arrow-change', function(event, isAtTop, isAtBottom, isAtLeft, isAtRight) {
-    var tot_number = $('#tooltip_content').data('tot-number');
-    var offset = $('#tooltip_content').data('offset');
-    if(isAtBottom && (offset < tot_number)) {
-      $.get('/notifications/get_new_block?offset=' + offset);
-    }
-  });
+  initializeScrollAtBottomNewBlockNotification();
   $body.on('click', '._destroy_notification', function(e) {
     e.stopImmediatePropagation();
     var my_id = $(this).data('param');

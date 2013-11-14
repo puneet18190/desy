@@ -4,6 +4,7 @@ if($('#tooltip_arancione').data('number') < <%= @new_notifications %>) {
   $('#notifications_list').jScrollPane({
     autoReinitialise: true
   });
+  initializeScrollAtBottomNewBlockNotification();
   $('#tooltip_arancione').show();
   $('#notifications_button').addClass('current');
   $('#tooltip_help').html(old_help);
