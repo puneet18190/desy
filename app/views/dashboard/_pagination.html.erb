@@ -1,10 +1,10 @@
 <div class="dots_pagination_container" id="dashboard_pagination" data-lessons-tot="<%= l_tot %>" data-media-elements-tot="<%= me_tot %>" data-lessons-page="1" data-media-elements-page="1">
   <span class="dots_pagination">
-    <span role="pages">
+    <span class="pages">
       <% if l_tot <= 1 %>
-        <a data-page="0" role="disabled"></a><a data-page="1" role="current"></a><a data-page="2" role="disabled"></a>
+        <a data-page="0" class="disabled"></a><a data-page="1" class="current"></a><a data-page="2" class="disabled"></a>
       <% else %>
-        <a data-page="0" role="disabled"></a><a data-page="1" role="current"></a><a data-page="1" title="<%= t('titles.pagination.next') %>"></a>
+        <a data-page="0" class="disabled"></a><a data-page="1" class="current"></a><a data-page="1" title="<%= t('titles.pagination.next') %>"></a>
       <% end %>
     </span>
   </span>
@@ -22,7 +22,7 @@
       changePageDashboardLessons(1, 2, <%= l_tot %>);
       return true;
     }
-    new DotsPagination($('[role=pages]'), <%= j l_tot.to_s %>, { 'complete': { 'prev': prevPage, 'next': nextPage } });
+    new DotsPagination($('.pages'), <%= j l_tot.to_s %>, { 'complete': { 'prev': prevPage, 'next': nextPage } });
   });
   
 </script>

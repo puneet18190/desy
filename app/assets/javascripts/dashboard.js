@@ -129,7 +129,7 @@ function getHtmlPagination(pos, pages_amount) {
   var prev_attrs = {};
   var next_attrs = {};
   if(pos <= 1) {
-    prev_attrs.role = 'disabled';
+    prev_attrs['class'] = 'disabled';
   } else {
     prev_attrs.data = {
       page: pos - 1
@@ -137,7 +137,7 @@ function getHtmlPagination(pos, pages_amount) {
     prev_attrs.title = $captions.data('title-pagination-left');
   }
   if(pos >= pages_amount) {
-    next_attrs.role = 'disabled';
+    next_attrs['class'] = 'disabled';
   } else {
     next_attrs.data = {
       page: pos + 1
@@ -148,9 +148,9 @@ function getHtmlPagination(pos, pages_amount) {
     'class': 'dots_pagination'
   });
   pagination.append($('<span/>', {
-    role: 'pages'
+    'class': 'pages'
   }).append($('<a/>', prev_attrs)).append($('<a/>', {
-    role: 'current',
+    'class': 'current',
     data: {
       page: pos
     }
@@ -196,7 +196,7 @@ function reloadLessonsDashboardPagination(pos, pages_amount) {
       changePageDashboardLessons(pos, (pos + 1), pages_amount);
       return true;
     }
-    new DotsPagination($('[role=pages]'), pages_amount, { 'complete': { 'prev': prevPage, 'next': nextPage } });
+    new DotsPagination($('.pages'), pages_amount, { 'complete': { 'prev': prevPage, 'next': nextPage } });
   });
 }
 
@@ -226,6 +226,6 @@ function reloadMediaElementsDashboardPagination(pos, pages_amount) {
       changePageDashboardMediaElements(pos, (pos + 1), pages_amount);
       return true;
     }
-    new DotsPagination($('[role=pages]'), pages_amount, { 'complete': { 'prev': prevPage, 'next': nextPage } });
+    new DotsPagination($('.pages'), pages_amount, { 'complete': { 'prev': prevPage, 'next': nextPage } });
   });
 }

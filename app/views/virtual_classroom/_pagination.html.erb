@@ -1,14 +1,14 @@
 <div class="dots_pagination_container paginatoreCentrato" id="virtual_classroom_pagination" style="display:block">
   <span class="dots_pagination">
-    <span role="pages">
+    <span class="pages">
       <% if page <= 1 && page >= pages_amount %>
-        <a data-page="<%= page-1 %>" role="disabled"></a><a data-page="<%= page %>" role="current"></a><a data-page="<%= page+1 %>" role="disabled"></a>
+        <a data-page="<%= page-1 %>" class="disabled"></a><a data-page="<%= page %>" class="current"></a><a data-page="<%= page+1 %>" class="disabled"></a>
       <% elsif page <= 1 %>
-        <a data-page="<%= page-1 %>" role="disabled"></a><a data-page="<%= page %>" role="current"></a><a data-page="<%= page+1 %>" title="<%= t('titles.pagination.next') %>"></a>
+        <a data-page="<%= page-1 %>" class="disabled"></a><a data-page="<%= page %>" class="current"></a><a data-page="<%= page+1 %>" title="<%= t('titles.pagination.next') %>"></a>
       <% elsif page >= pages_amount %>
-        <a data-page="<%= page-1 %>" title="<%= t('titles.pagination.prev') %>"></a><a data-page="<%= page %>" role="current"></a><a data-page="<%= page+1 %>" role="disabled"></a>
+        <a data-page="<%= page-1 %>" title="<%= t('titles.pagination.prev') %>"></a><a data-page="<%= page %>" class="current"></a><a data-page="<%= page+1 %>" class="disabled"></a>
       <% else %>
-        <a data-page="<%= page-1 %>" title="<%= t('titles.pagination.prev') %>"></a><a data-page="<%= page %>" role="current"></a><a data-page="<%= page+1 %>" title="<%= t('titles.pagination.next') %>"></a>
+        <a data-page="<%= page-1 %>" title="<%= t('titles.pagination.prev') %>"></a><a data-page="<%= page %>" class="current"></a><a data-page="<%= page+1 %>" title="<%= t('titles.pagination.next') %>"></a>
       <% end %>
     </span>
   </span>
@@ -28,7 +28,7 @@
       $.get(url);
       return true;
     }
-    new DotsPagination($('[role=pages]'), <%= j pages_amount.to_s %>, { 'complete': { 'prev': prevPage, 'next': nextPage } });
+    new DotsPagination($('.pages'), <%= j pages_amount.to_s %>, { 'complete': { 'prev': prevPage, 'next': nextPage } });
   });
   
 </script>

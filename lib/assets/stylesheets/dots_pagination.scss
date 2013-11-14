@@ -20,7 +20,7 @@ $dots-pagination-link-disabled-color: #F3F1F3;
     overflow: hidden;
     white-space: nowrap;
 
-    [role=pages] {
+    .pages {
       position: relative;
       a {
         display: inline-block;
@@ -31,19 +31,19 @@ $dots-pagination-link-disabled-color: #F3F1F3;
         outline-width: 0px;
         cursor: pointer;
 
-        &, &[role=current].default {
+        &, &.current.default {
           background-color: $dots-pagination-link-default-color;
           &:hover {
             background-color: $dots-pagination-link-default-hover-color;
           }
         }
         
-        &[role=current], &.current {
+        &.current, &.current {
           background-color: $dots-pagination-link-current-color;
           cursor: default;
         }
 
-        &[role=disabled] {
+        &.disabled {
           background-color: $dots-pagination-link-disabled-color;
           cursor: default;
         }
