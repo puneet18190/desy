@@ -2308,6 +2308,9 @@ cn:
         # How many 'I like it' in total your lessons received
         # 1 - views/users/statistics.html.erb
         likes: "喜欢你的课程"
+        # How many links by other users the user has on his public lessons
+        # 1 - views/users/statistics.html.erb
+        links: "Lessons followed by other users" # TODO
         # How many elements you created
         # 1 - views/users/statistics.html.erb
         media_elements_loaded: "教学单元已上传"
