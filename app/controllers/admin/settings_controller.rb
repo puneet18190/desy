@@ -26,7 +26,7 @@ class Admin::SettingsController < AdminController
   # * ApplicationController#admin_authenticate
   #
   def subjects
-    @subjects = Subject.select('subjects.*, ((SELECT COUNT (*) FROM users_subjects WHERE users_subjects.subject_id = subjects.id) + (SELECT COUNT (*) FROM lessons WHERE lessons.subject_id = subjects.id)) AS instances')
+    @subjects = Subject.select('subjects.*, ((SELECT COUNT (*) FROM users_subjects WHERE users_subjects.subject_id = subjects.id) + (SELECT COUNT (*) FROM lessons WHERE lessons.subject_id = subjects.id)) AS instances').order(:description)
   end
   
   # === Description
