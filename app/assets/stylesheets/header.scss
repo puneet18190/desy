@@ -7,7 +7,22 @@
   padding: 0 2% 0 2%;
   height: 72px;
   vertical-align: middle;
-  
+  #trial_header {
+    
+    a {
+      background-color:#262626;
+      color:#a7a9ac;
+      font-size:13px;
+      text-transform: uppercase;
+      padding:7px 12px;
+      border-radius: 10px;
+      -webkit-border-radius: 104px;
+      box-shadow: 0 1px 2px rgba(50, 50, 50, 0.2) inset;
+      &:hover {
+        background-color:#5d5c5c;
+      }
+    }
+  }
   .vertical-aligner {
     
     display: inline-block;
