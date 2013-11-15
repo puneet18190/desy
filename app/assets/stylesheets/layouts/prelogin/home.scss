@@ -59,30 +59,47 @@ html.prelogin-layout.prelogin-controller.home-action {
       }
       
     }
-  .contentVideoHomePrelogin {
-    background-color:#d9e0e7; 
-    padding:0; 
-    margin:0; 
-    height:393px; 
-    position:relative; 
-    .homeVideoContainer {
-      background-color:#d9e0e7; 
-      position:absolute; 
-      top:0; 
-      left:0; 
-    }
-  }  
     
+    .contentVideoHomePrelogin {
+      
+      background-color: #d9e0e7;
+      padding: 0;
+      margin: 0;
+      height: 393px;
+      position: relative;
+      
+      .homeVideoContainer {
+        
+        background-color: #d9e0e7;
+        position: absolute;
+        top: 0;
+        left: 0;
+        
+      }
+      
+    }
     
   }
+  
   .footer {
-    border-top:1px solid #f7f9fa;
-    padding-top:15px;
-    /*position: relative;*/
+    
+    border-top: 1px solid #f7f9fa;
+    padding-top: 15px;
+    
     .footer_logo_content {
+      
       width: 96%;
       padding: 0 2% 0 2%;
       float: left;
-    }      
+      
+    }
+    
   }
+  
+  .tryTrial:hover {
+    
+    text-decoration: underline;
+    
+  }
+  
 }

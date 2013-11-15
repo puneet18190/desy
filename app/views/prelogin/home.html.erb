@@ -21,7 +21,7 @@
     <h1><%= t('prelogin.main_page.title', :desy => SETTINGS['application_name']) %></h1>
     <p><%= t('prelogin.main_page.description', :desy => SETTINGS['application_name']).html_safe %></p>
     <% if SETTINGS['saas_registration_mode'] %>
-      <p><a href="/sign_up?trial=1"><%= t('prelogin.main_page.trial') %></a></p>
+      <p><a class="tryTrial" href="/sign_up?trial=1"><%= t('prelogin.main_page.trial') %></a></p>
     <% end %>
   </div>
   
