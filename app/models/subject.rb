@@ -72,7 +72,8 @@ class Subject < ActiveRecord::Base
       resp << {:label => cat[0], :items => Subject.where(:id => cat[1]).order(:description)}
       taken_subjects += cat[1]
     end
-    resp << {:label => nil, :items => Subject.where('id NOT IN (?)', taken_subjects).order(:description)}
+    remaining_subjects = Subject.where('id NOT IN (?)', taken_subjects).order(:description)
+    resp << {:label => nil, :items => remaining_subjects} if remaining_subjects.any?
     resp
   end
   
