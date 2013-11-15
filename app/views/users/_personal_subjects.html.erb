@@ -1,11 +1,18 @@
+<%
+  my_style = ''
+  other_label = t('users.subjects.no_cathegory')
+  my_style = 'border-bottom:0' if subjects.length == 1
+  other_label = '' if subjects.first[:label].blank?
+%>
+
 <fieldset class="insert-content">
   <% unless user.new_record? %>
     <%= hidden_field_tag :in_subjects, true %>
   <% end %>
   <% subjects.each do |cathegory| %>
-    <div class="cathegorySubjectContainer">
+    <div class="cathegorySubjectContainer" style="<%= my_style %>">
       <div class="cathegorySubjectName">
-        <%= cathegory[:label].present? ? cathegory[:label] : t('users.subjects.no_cathegory') %>
+        <%= cathegory[:label].present? ? cathegory[:label] : other_label %>
       </div>
       <% cathegory[:items].each do |subject| %>
         <% html_id = "users_subject_ids_#{subject.id}" %>
@@ -26,7 +33,6 @@
       <% if !edit && cathegory[:label].present? %>
         <a class="checkAllSubjects"><%= t('registration.select_all_subjects') %></a>
       <% end %>
-      
     </div>
   <% end %>
   <br class="clearfloat">
