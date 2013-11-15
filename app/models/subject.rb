@@ -61,6 +61,21 @@ class Subject < ActiveRecord::Base
   
   # === Description
   #
+  # Used to assign a cathegory to each subject
+  #
+  def self.extract_with_cathegories
+    resp = []
+    taken_subjects = []
+    SETTINGS['subject_cathegories'].each do |cat|
+      resp << {:label => cat[0], :items => Subject.where(:id => cat[1]).order(:description)}
+      taken_subjects += cat[1]
+    end
+    resp << {:label => nil, :items => Subject.where('id NOT IN (?)', taken_subjects).order(:description)}
+    resp
+  end
+  
+  # === Description
+  #
   # A subject is deletable if it has no associated lessons or users. Used in the administrator (Admin::SettingsController#subjects)
   #
   # === Returns

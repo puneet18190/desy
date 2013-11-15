@@ -296,7 +296,7 @@ class UsersController < ApplicationController
   #
   def subjects
     @user = current_user
-    @subjects = Subject.order(:description)
+    @subjects = Subject.extract_with_cathegories
   end
   
   # === Description
