@@ -85,7 +85,13 @@ class PreloginController < ApplicationController
     @school_level_ids = SchoolLevel.order(:description).map{ |sl| [sl.to_s, sl.id] }
     @locations        = [{:selected => 0, :content => Location.roots.order(:name)}]
     @user_location    = {}
-    @subjects         = Subject.order(:description)
+    @subjects = []
+    taken_subjects = []
+    SETTINGS['subject_cathegories'].each do |cat|
+      @subjects << {:label => cat[0], :items => Subject.where(:id => cat[1]).order(:description)}
+      taken_subjects += cat[1]
+    end
+    @subjects << {:label => nil, :items => Subject.where('id NOT IN (?)', taken_subjects).order(:description)}
   end
   
   # === Description
