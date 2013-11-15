@@ -22,7 +22,7 @@
           <span><%= subject.to_s %></span>
         </div>
       <% end %>
-      <% if !edit %>
+      <% if !edit && cathegory[:label].present? %>
         <a class="checkAllSubjects"><%= t('registration.select_all_subjects') %></a>
       <% end %>
     </div>
