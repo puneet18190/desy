@@ -1964,6 +1964,9 @@ it:
     # Button to submit the registration form
     # 1 - views/prelogin/_registration_form.html.erb
     done: "Registrazione"
+    # Button to select all the subjects of a cathegory
+    # 1 - views/users/_personal_subjects.html.erb
+    select_all_subjects: "Selezionale tutte"
     # Messages shown to the trial users if they try to do forbidden actions
     trial_limitations_messages:
       # First action: trial users can't publish their lessons
@@ -2337,6 +2340,9 @@ it:
       # Popup shown when the users correctly saves his subjects
       # 1 - controllers/users_controller.rb
       ok_popup: "Materie aggiornate con successo"
+      # If the subject has no cathegory, this will be the label
+      # 1 - views/users/_personal_subjects.html.erb
+      no_cathegory: "Altro"
     # Captions used for trial accounts
     trial:
       # 1 - views/admin/users/_list.html.erb

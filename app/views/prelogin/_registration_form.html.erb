@@ -37,7 +37,8 @@
       :f => f,
       :user => user,
       :errors => (errors.nil? ? [] : errors[:subjects]),
-      :subjects => subjects
+      :subjects => subjects,
+      :edit => false
     }
   %>
   <%= render partial: 'users/personal_info', :locals => locals_for_general_info %>
