@@ -14,14 +14,14 @@ gem 'eventmachine',                         platforms: :ruby
 gem 'facter'
 gem 'jquery-rails',             '~> 2.1.4'
 gem 'kaminari'
-gem 'mini_magick',                                             github: 'ProGNOMmers/minimagick', branch: 'batch_compatibility'
+gem 'mini_magick',                                             github: 'mdesantis/minimagick', branch: 'batch_compatibility'
 gem 'nokogiri'
 gem 'oj'
 gem 'recursive-open-struct'
 gem 'rubyzip'
 gem 'schema_plus'
 gem 'sdoc'
-gem 'subexec',                                                 github: 'ProGNOMmers/subexec'
+gem 'subexec',                                                 github: 'mdesantis/subexec'
 gem 'tinymce-rails',            '~> 3.0'
 gem 'tinymce-rails-langs'
 gem 'unicorn',                              platforms: :ruby
@@ -56,6 +56,6 @@ group :irbtools do
   gem 'irbtools', platforms: :ruby
 end
 
-# group :production do
-  gem 'exception_notification' #, github: 'ProGNOMmers/exception_notification'
-# end
+group :production do
+  gem 'exception_notification'
+end
