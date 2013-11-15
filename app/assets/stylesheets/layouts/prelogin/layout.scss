@@ -198,7 +198,7 @@ html.prelogin-layout {
       .cathegorySubjectContainer {
         float: left;
         width: 100%;
-        padding:0;
+        padding:15px 0;
         border-bottom: 1px solid #83a5c8;
         margin-bottom: 20px;
 
@@ -206,6 +206,15 @@ html.prelogin-layout {
           color:#434244;
           font-size:14px;
           padding:10px 0px;
+        }
+        a.checkAllSubjects {
+          background-color:#bad7f3;
+          color:#434244;
+          padding:5px 40px;
+          font-size:11px;
+          &:hover {
+            color:#7096bd;
+          }
         }
       }
       .inputElement {
