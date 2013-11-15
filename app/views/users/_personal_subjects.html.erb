@@ -5,7 +5,12 @@
   <% end %>
   
   <% subjects.each do |cathegory| %>
-    <% if cathegory[:label].nil? %>
+    
+    <div class="cathegorySubjectContainer">
+      <div class="cathegorySubjectName">
+        <%= cathegory[:label].present? ? cathegory[:label] : 'Altro' %><!-- TODO traduzz -->
+      </div>
+
       <% cathegory[:items].each do |subject| %>
         <% html_id = "users_subject_ids_#{subject.id}" %>
         <div class="checkboxElement">
@@ -20,29 +25,12 @@
           <% end %>
           <span><%= subject.to_s %></span>
         </div>
+
       <% end %>
-    <% else %>
-      <div class="cathegorySubjectContainer">
-        <span class="cathegorySubjectName">
-          <%= cathegory[:label] %>
-        </span>
-        <% cathegory[:items].each do |subject| %>
-          <% html_id = "users_subject_ids_#{subject.id}" %>
-          <div class="checkboxElement">
-            <% if user.errors.include?(:users_subjects) %>
-              <div class="field_with_errors">
-                <%= check_box_tag 'user[subject_ids][]', subject.id, user.users_subjects.map(&:subject_id).include?(subject.id), id: html_id, class: 'regular-checkbox big-checkbox' %>
-                <%= label_tag html_id, '' %>
-              </div>
-            <% else %>
-              <%= check_box_tag 'user[subject_ids][]', subject.id, user.users_subjects.map(&:subject_id).include?(subject.id), id: html_id, class: 'regular-checkbox big-checkbox' %>
-              <%= label_tag html_id, '' %>
-            <% end %>
-            <span><%= subject.to_s %></span>
-          </div>
-        <% end %>
-      </div>
-    <% end %>
+
+    </div>
+
+    
   <% end %>
   
   <br class="clearfloat">

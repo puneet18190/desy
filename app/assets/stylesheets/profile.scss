@@ -114,7 +114,18 @@
     padding: 2%;
     margin: 20px 20px 20px 0;
     width: 96%;
-    
+    .cathegorySubjectContainer {
+      float: left;
+      width: 100%;
+      padding:0;
+      border-bottom: 1px solid #efefef;;
+      margin-bottom: 20px;
+      .cathegorySubjectName {
+        color:#434244;
+        font-size:14px;
+        padding:10px 0px;
+      }
+    }
     .inputElement {
       
       font: 100% 'Nunito', sans-serif;

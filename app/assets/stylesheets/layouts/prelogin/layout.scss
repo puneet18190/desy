@@ -195,7 +195,19 @@ html.prelogin-layout {
       padding: 0px;
       margin-top: 20px;
       margin-bottom: 20px;
-      
+      .cathegorySubjectContainer {
+        float: left;
+        width: 100%;
+        padding:0;
+        border-bottom: 1px solid #83a5c8;;
+        margin-bottom: 20px;
+
+        .cathegorySubjectName {
+          color:#434244;
+          font-size:14px;
+          padding:10px 0px;
+        }
+      }
       .inputElement {
         
         float: left;
