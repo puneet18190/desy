@@ -149,3 +149,11 @@ url_types:
   - :export
 # Prefix added to temporary files and folders names
 tempfiles_prefix: 'desy'
+# Cathegories of subjects (optional)
+subject_cathegories:
+  sciences:
+    label: "Scienze"
+    ids: [1, 2, 3]
+  literatures:
+    label: "Letterature"
+    ids: [4, 5, 6]
