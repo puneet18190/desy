@@ -64,9 +64,11 @@ class Subject < ActiveRecord::Base
   # Used to assign a cathegory to each subject
   #
   def self.extract_with_cathegories
+    cathegories = SETTINGS['subject_cathegories']
+    return [{:label => nil, :items => Subject.order(:description)}] if cathegories.blank?
     resp = []
     taken_subjects = []
-    SETTINGS['subject_cathegories'].each do |cat|
+    cathegories.each do |cat|
       resp << {:label => cat[0], :items => Subject.where(:id => cat[1]).order(:description)}
       taken_subjects += cat[1]
     end

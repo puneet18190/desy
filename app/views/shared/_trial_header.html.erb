@@ -1,0 +1,4 @@
+<span id="trial_header">
+  <%= t('users.trial.expiration', :days => (current_user.trial_to_expiration / 86400 + 1).to_s).html_safe %>
+  <%= link_to t('users.trial.header_link'), my_trial_path %>
+</span>

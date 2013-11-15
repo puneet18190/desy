@@ -1,18 +1,20 @@
 <div class="header-main">
-  <% logo_path = current_user.trial? ? 'logo_trial.gif' : 'logo.gif' %>
   <a href="<%= dashboard_path %>" class="header-link">
     <span class="vertical-aligner"></span>
-    <%= image_tag(logo_path) %>
+    <%= image_tag('logo.gif') %>
   </a>
   <% if current_user.trial? %>
-    <div class="freeTrial"><%= t('users.trial.expiration', :days => (current_user.trial_to_expiration / 86400 + 1).to_s).html_safe %></div>
+    <%= render :partial => 'shared/trial_header' %>
   <% end %>
   <div class="logout">
-    <div class="fltlft">
+    <div class="fltlft nome_e_cognome">
       <span class="nome"><%= current_user.name %></span>
       <span class="cognome"><%= current_user.surname %></span>
       <br class="clearfloat">
-      <%= render :partial => 'shared/logged_links', :locals => {:user => current_user} %>
+      <%= link_to t('registration.logout'), users_session_path, method: :delete %>
+      <% if current_user.admin? %>
+        | <%= link_to t('admin.general.link'), '/admin' %>
+      <% end %>
     </div>
     <%= render :partial => 'notifications/main', :locals => {:notifications => @notifications, :news => @new_notifications, :offset => @offset_notifications, :tot => @tot_notifications} %>
   </div>
