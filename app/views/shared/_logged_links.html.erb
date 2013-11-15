@@ -1,9 +1,0 @@
-<div id="logged_links">
-  <% if user.trial? %>
-    <%= link_to t('users.trial.header_link'), my_trial_path %> |
-  <% end %>
-  <%= link_to t('registration.logout'), users_session_path, method: :delete %>
-  <% if user.admin? %>
-    | <%= link_to t('admin.general.link'), '/admin' %>
-  <% end %>
-</div>
