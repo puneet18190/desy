@@ -1,5 +1,14 @@
 namespace :exports do
   namespace :lessons do
+    
+    desc "Cleans and recompiles all the types of lesson download"
+    task :reset => [
+      'exports:lessons:archives:clean',
+      'exports:lessons:archives:assets:recompile',
+      'exports:lessons:scorms:clean',
+      'exports:lessons:scorms:assets:recompile'
+    ]
+    
     namespace :archives do
       
       desc "Remove lesson archives"
