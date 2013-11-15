@@ -150,10 +150,4 @@ url_types:
 # Prefix added to temporary files and folders names
 tempfiles_prefix: 'desy'
 # Cathegories of subjects (optional)
-subject_cathegories:
-  sciences:
-    label: "Scienze"
-    ids: [1, 2, 3]
-  literatures:
-    label: "Letterature"
-    ids: [4, 5, 6]
+subject_cathegories: [["Scienze", [1, 2, 3]], ["Letterature", [4, 5, 6]]]
