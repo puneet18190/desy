@@ -2343,14 +2343,14 @@ cn:
       # 2 - views/admin/users/show.html.erb
       label: "试用"
       # Link from the header to the upgrade trial section of your profile
-      # 1 - views/shared/_header.html.erb
-      header_link: "Upgrade your trial account" # TODO
+      # 1 - views/shared/_trial_header.html.erb
+      header_link: "Upgrade" # TODO
       # Link in the profile menu (the variable %{desy} is replaced by the name of the application)
       # 1 - views/users/_profile_menu.html.erb
       menu_link: "Buy" # TODO
       # Caption to remember to the user the expiration (the variable %{days} is replaced by the number of days left to expiration)
-      # 1 - views/shared/_header.html.erb
-      expiration: "Your trial account will expire in <span>%{days} days</span>" # TODO
+      # 1 - views/shared/_trial_header.html.erb
+      expiration: "Trial - %{days} days left" # TODO
       # Errors while trying to upgrade a trial account by a logged user
       errors:
         # 1 - controllers/users_controller.rb
