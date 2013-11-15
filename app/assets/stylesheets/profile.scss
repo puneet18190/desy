@@ -107,7 +107,6 @@
   }
   
   .insert-content {
-    
     float: left;
     border: 1px solid #efefef;
     color: #999;
@@ -118,11 +117,14 @@
       float: left;
       width: 100%;
       padding:0;
-      border-bottom: 1px solid #efefef;;
+      border-bottom: 1px solid #efefef;
       margin-bottom: 20px;
+      &:nth-child(3n+1) {
+        border-bottom: none;
+      }
       .cathegorySubjectName {
-        color:#434244;
-        font-size:14px;
+        color:#7d7d7d;
+        font-size:16px;
         padding:10px 0px;
       }
     }
