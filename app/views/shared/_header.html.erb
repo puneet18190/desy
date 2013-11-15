@@ -4,8 +4,10 @@
     <%= image_tag('logo.gif') %>
   </a>
   <% if current_user.trial? %>
-    <span id="trial_header">
-      <%= t('users.trial.expiration', :days => (current_user.trial_to_expiration / 86400 + 1).to_s).html_safe %>
+    <span id="trial_header" class="trialHeader">
+      <span class="UpTrialHeader"></span> 
+        <%= t('users.trial.expiration', :days => (current_user.trial_to_expiration / 86400 + 1).to_s).html_safe %>
+       
     </span>
     <%= render :partial => 'shared/trial_header' %>
   <% end %>
