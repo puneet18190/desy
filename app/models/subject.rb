@@ -66,7 +66,8 @@ class Subject < ActiveRecord::Base
   def self.extract_with_cathegories
     resp = []
     taken_subjects = []
-    SETTINGS['subject_cathegories'].each do |cat|
+    cathegories = SETTINGS['subject_cathegories']
+    (cathegories.present? ? cathegories : []).each do |cat|
       resp << {:label => cat[0], :items => Subject.where(:id => cat[1]).order(:description)}
       taken_subjects += cat[1]
     end
