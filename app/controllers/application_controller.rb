@@ -156,6 +156,11 @@ class ApplicationController < ActionController::Base
     @where = controller_name
   end
   
+  # Used to check if the user has been banned
+  def banned_pre_authenticate
+    self.current_user = nil if !current_user.active
+  end
+  
   # Used only if saas authentication mode
   def saas_pre_authenticate
     logged_user = current_user
@@ -179,6 +184,7 @@ class ApplicationController < ActionController::Base
   
   # Authenticates the user
   def authenticate
+    banned_pre_authenticate
     saas_pre_authenticate if SETTINGS['saas_registration_mode']
     return redirect_to root_path(redirect_to: request.fullpath, login: true) unless current_user
   end

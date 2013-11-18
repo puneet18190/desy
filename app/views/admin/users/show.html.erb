@@ -128,7 +128,7 @@
       <tbody>
         <tr>
           <td>
-            <% @user.subjects.each do |subj| %>
+            <% @user.subjects.order(:description).each do |subj| %>
               <div class="label subjects">
                 <%= subj.description %>
               </div>
