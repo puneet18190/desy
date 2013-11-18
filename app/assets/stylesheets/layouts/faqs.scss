@@ -1,0 +1,54 @@
+@import 'variables';
+@import 'mixins';
+
+html.faqs-controller {
+  .faqsHeader {
+    background-color: #5d5d5d;
+    padding: 8px 0 12px 40px;
+    height:34px;
+    h1 {
+      color:white;
+      font: 30px 'Nunito', sans-serif;
+      padding:0px;
+    }
+  }
+  .content {
+    padding-top:0;
+    .gray-description {
+      background-color: #f5f5f5;
+      padding:30px 40px;
+      color:#666;
+    }
+    .faqs_content {
+      padding:30px 40px;
+      div {
+        float:left;
+        width: 304px;
+        height:300px;
+        margin:0 10% 5% 0;
+        &:last-child {
+          margin-right: 0;
+        }
+        li {
+          list-style: none;
+          margin-bottom:15px;
+          font-weight: bold;
+        }
+      }
+      h2 {
+        font: 23px 'Nunito', sans-serif;  
+        text-transform:uppercase;
+        font-weight: 700;
+      }
+      .lessons h2 {
+        color: $orange;
+      }
+      .media_elements h2 {
+        color: $green;
+      }
+      .virtual_classroom h2 {
+        color: $blue
+      }
+    }
+  }
+}
