@@ -2355,7 +2355,7 @@ cn:
       # 1 - views/users/_profile_menu.html.erb
       menu_link: "Buy" # TODO
       # Caption to remember to the user the expiration (the variable %{days} is replaced by the number of days left to expiration)
-      # 1 - views/shared/_trial_header.html.erb
+      # 1 - views/shared/_header.html.erb
       expiration: "Trial - %{days} days left" # TODO
       # Errors while trying to upgrade a trial account by a logged user
       errors:

@@ -5,9 +5,8 @@
   </a>
   <% if current_user.trial? %>
     <span id="trial_header" class="trialHeader" style="background-size: 10% 100%;"><!-- TODO da settare -->
-      <span class="UpTrialHeader"></span> 
-        <%= t('users.trial.expiration', :days => (current_user.trial_to_expiration / 86400 + 1).to_s).html_safe %>
-       
+      <span class="UpTrialHeader"></span>
+      <%= t('users.trial.expiration', :days => (current_user.trial_to_expiration / 86400 + 1).to_s).html_safe %>
     </span>
     <%= render :partial => 'shared/trial_header' %>
   <% end %>
