@@ -519,6 +519,14 @@ en:
       # Message
       # 1 - mailers/user_mailer.rb
       message: "<p>Welcome %{name}</p>, <p>Thank you for your registration into %{desy}!</p><p><b>In order to complete your registration click on the link below:</b></p><p>If the link does not appear clickable copy it and paste it into your browser.<br/>When the registration is confirmed, the link will not be valid anymore.<br/>Sign in with the username and the password inserted during the registration phase in order to access to the system.</p><br/><p>N.B.</p><p>The confirmation of the account can only be made once.</p>"
+    # Email sent in case a purchase reached the maximum numberr of users allowed
+    purchase_full:
+      # Subject
+      # 1 - mailers/user_mailer.rb
+      subject: "%{desy} - Purchase has reached the limit of users"
+      # Message
+      # 1 - mailers/user_mailer.rb
+      message: "<h2>The following purchase has reached its limit of %{accounts_number} users: if you want to keep using it, you need to modify it or to generate and distribute a new purchase code</h2><br/><ul><li>Name of the purchaser: <i>%{name}</i></li><li>Responsible: <i>%{responsible}</i></li><li>Address: <i>%{address}</i></li><li>Phone number: <i>%{phone_number}</i></li><li>Fax: <i>%{fax}</i></li><li>Email: <i>%{email}</i></li><li>SSN: <i>%{ssn_code}</i></li><li>VAT: <i>%{vat_code}</i></li><li>Accounts number: <i>%{accounts_number}</i></li><li>Users restricted to: <i>%{location}</i></li><li>Valid since: <i>%{start_date}</i></li><li>Valid until: <i>%{expiration_date}</i></li></ul><br/><br/><h2>Purchase code: %{token}</h2>"
     # Email containing the instructions and resume of a purchase
     purchase_resume:
       # Subject
