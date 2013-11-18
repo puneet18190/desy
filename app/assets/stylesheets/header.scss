@@ -17,7 +17,10 @@
     padding:10px 25px 8px 25px;
     border-radius: 10px;
     -webkit-border-radius: 104px;
-    box-shadow: 1px 1px 1px rgba(255, 255, 255, 0.2) inset;
+    
+    background-image: url("/assets/bg_trialHeader.png");
+    background-size: 0% 100%;
+    background-repeat: no-repeat;
     margin: 0 10px 0 15px;
     .UpTrialHeader {
       
