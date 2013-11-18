@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html class="application-layout <%= controller_html_class %> <%= action_html_class %>">
+  
+  <head><%= render :partial => 'layouts/application/head' %></head>
+  
+  <body>
+    <%= render :partial => 'shared/browser_support_script' %>
+    <div class="container">
+      <%= render :partial => 'shared/header' %>
+      <div id="faqs_header">
+        <%= t('faqs.title') %>
+      </div>
+      <div class="content">
+        <%= yield %>
+      </div>
+      <%= render :partial => 'shared/footer' %>
+    </div>
+  </body>
+  
+</html>
