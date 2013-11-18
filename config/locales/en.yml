@@ -2345,9 +2345,10 @@ en:
       no_cathegory: "Other"
     # Captions used for trial accounts
     trial:
+      # The variable %{expiration_date} is replaced by the date of expiration of the trial
       # 1 - views/admin/users/_list.html.erb
       # 2 - views/admin/users/show.html.erb
-      label: "Trial"
+      label: "Trial (expires %{expiration_date})"
       # Link from the header to the upgrade trial section of your profile
       # 1 - views/shared/_trial_header.html.erb
       header_link: "Upgrade"

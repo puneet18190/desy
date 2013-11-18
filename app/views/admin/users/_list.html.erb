@@ -53,7 +53,7 @@
           <td><%= user.base_location %></td>
           <td><%= user.parent_locations %></td>
           <td><%= user.admin?.to_s %></td>
-          <td><%= user.purchase_id.nil? ? (user.trial? ? t('users.trial.label') : '') : (link_to user.purchase.name, "/admin/purchases?search[id]=#{user.purchase_id}") %></td>
+          <td><%= user.purchase_id.nil? ? (user.trial? ? t('users.trial.label', :expiration_date => TimeConvert.to_string(@user.created_at + SETTINGS['saas_trial_duration'] * 86400)) : '') : (link_to user.purchase.name, "/admin/purchases?search[id]=#{user.purchase_id}") %></td>
           <td><%= user.confirmed.to_s %></td>
           <td><%= TimeConvert.to_string user.created_at %></td>
           <td><%= link_to '<i class="icon-eye-open"></i>'.html_safe, admin_user_path(user), :title => t('admin.users.show'), :target => :blank, :class => 'action' %></td>
