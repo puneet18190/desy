@@ -39,6 +39,9 @@ function preloginDocumentReady() {
   $body.on('click', '#submit_login_form', function() {
     $('#new_users_session_form').submit();
   });
+  $body.on('click', '.checkAllSubjects', function() {
+    $(this).parent().find('.checkboxElement label').click();
+  });
 }
 
 /**

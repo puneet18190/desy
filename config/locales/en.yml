@@ -531,7 +531,7 @@ en:
     reset_password:
       # Subject
       # 1 - mailers/user_mailer.rb
-      subject: "%{desy} - New password"
+      subject: "%{desy} - Request of a new password"
       # Message
       # 1 - mailers/user_mailer.rb
       message: "<h1>%{name},</h1><p>we received your password reset request. To confirm your email address and receive a new password, click on the url below:</p>"
