@@ -149,5 +149,7 @@ url_types:
   - :export
 # Prefix added to temporary files and folders names
 tempfiles_prefix: 'desy'
+# Person who manages the business of purchases
+purchase_administrator: 'purchases@example.com'
 # Cathegories of subjects (optional)
 subject_cathegories: [["Scienze", [1, 2, 3]], ["Letterature", [4, 5, 6]]]
