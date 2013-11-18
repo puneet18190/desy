@@ -7,8 +7,8 @@
     <%= render :partial => 'shared/browser_support_script' %>
     <div class="container">
       <%= render :partial => 'shared/header' %>
-      <div id="faqs_header">
-        <%= t('faqs.title') %>
+      <div id="faqs_header" class="faqsHeader">
+        <h1><%= t('faqs.title') %></h1>
       </div>
       <div class="content">
         <%= yield %>
