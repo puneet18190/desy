@@ -66,4 +66,26 @@ class UserMailer < ActionMailer::Base
     mail to: emails, subject: t('mailer.purchase_resume.subject', :desy => APPLICATION_NAME)
   end
   
+  # Mail sent in case a purchase reached the maximum numberr of users allowed
+  def purchase_full(purchase)
+    @purchase = purchase
+    @mail_content = I18n.t(
+      'mailer.purchase_full.message',
+      :name            => @purchase.name,
+      :responsible     => @purchase.responsible,
+      :address         => @purchase.address_to_s,
+      :phone_number    => @purchase.phone_number,
+      :fax             => @purchase.fax,
+      :email           => @purchase.email,
+      :ssn_code        => @purchase.ssn_code,
+      :vat_code        => @purchase.vat_code,
+      :accounts_number => @purchase.accounts_number,
+      :location        => @purchase.location_to_s,
+      :start_date      => TimeConvert.to_string(@purchase.start_date),
+      :expiration_date => TimeConvert.to_string(@purchase.expiration_date),
+      :token           => @purchase.token,
+    ).html_safe
+    mail to: SETTINGS['purchase_administrator'], subject: t('mailer.purchase_full.subject', :desy => APPLICATION_NAME)
+  end
+  
 end
