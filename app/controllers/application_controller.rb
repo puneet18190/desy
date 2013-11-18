@@ -158,7 +158,7 @@ class ApplicationController < ActionController::Base
   
   # Used to check if the user has been banned
   def banned_pre_authenticate
-    self.current_user = nil if !current_user.active
+    self.current_user = nil if current_user && !current_user.active
   end
   
   # Used only if saas authentication mode
