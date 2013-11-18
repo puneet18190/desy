@@ -175,6 +175,19 @@ class User < ActiveRecord::Base
   
   # === Description
   #
+  # Returns a string representing the percentage of trial expiration
+  #
+  # === Returns
+  #
+  # An integer
+  #
+  def trial_to_expiration_percentage
+    return nil if !self.trial?
+    "#{((100.to_f * self.trial_to_expiration.to_f) / (SETTINGS['saas_trial_duration'].to_f * 86400.to_f)).to_s}%"
+  end
+  
+  # === Description
+  #
   # It accepts all the policies declared in +registration_policies+. Example:
   #   User.new.accept_policies
   #
