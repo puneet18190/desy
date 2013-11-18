@@ -4,6 +4,7 @@
 #
 class FaqsController < ApplicationController
   
+  before_filter :initialize_layout
   layout 'faqs'
   
   # Index of all the FAQS
@@ -18,7 +19,7 @@ class FaqsController < ApplicationController
   def lessons
     @answer = t('faqs.lessons.contents')[params[:num].to_i - 1]
     if !correct_integer?(params[:num]) || @answer.nil?
-      render :status => :not_found
+      render_not_found
       return
     end
   end
@@ -27,7 +28,7 @@ class FaqsController < ApplicationController
   def media_elements
     @answer = t('faqs.media_elements.contents')[params[:num].to_i - 1]
     if !correct_integer?(params[:num]) || @answer.nil?
-      render :status => :not_found
+      render_not_found
       return
     end
   end
@@ -36,7 +37,7 @@ class FaqsController < ApplicationController
   def virtual_classroom
     @answer = t('faqs.virtual_classroom.contents')[params[:num].to_i - 1]
     if !correct_integer?(params[:num]) || @answer.nil?
-      render :status => :not_found
+      render_not_found
       return
     end
   end
@@ -45,9 +46,16 @@ class FaqsController < ApplicationController
   def profile
     @answer = t('faqs.profile.contents')[params[:num].to_i - 1]
     if !correct_integer?(params[:num]) || @answer.nil?
-      render :status => :not_found
+      render_not_found
       return
     end
+  end
+  
+  private
+  
+  # Renders not found page
+  def render_not_found
+    render text: '404 Not found', :status => :not_found, layout: false
   end
   
 end
