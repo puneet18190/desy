@@ -20,35 +20,69 @@ html.faqs-controller {
       color:#666;
     }
     .faqs_content {
-      padding:30px 40px;
+      
       div {
         float:left;
         width: 304px;
         height:300px;
-        margin:0 10% 5% 0;
+        margin:0 5% 5% 0;
         &:last-child {
           margin-right: 0;
         }
-        li {
-          list-style: none;
-          margin-bottom:15px;
-          font-weight: bold;
+        ul {
+          padding-top:15px;
+          li {
+            list-style: none;
+            margin-bottom:15px;
+            font-weight: bold;
+          }
         }
       }
-      h2 {
-        font: 23px 'Nunito', sans-serif;  
-        text-transform:uppercase;
-        font-weight: 700;
-      }
-      .lessons h2 {
+    }
+    h2 {
+      font: 23px 'Nunito', sans-serif;  
+      text-transform:uppercase;
+      font-weight: 700;
+      padding-bottom:0;
+    }
+    h3 {
+      font: 23px 'Nunito', sans-serif;  
+      color:#5d5c5c;
+      font-size:20px;
+      padding-top:10px;
+    }
+    .lessons {
+      padding:30px 40px;
+        h2.title {
         color: $orange;
       }
-      .media_elements h2 {
+    }
+    .media_elements {
+      padding:30px 40px;
+      h2.title {
         color: $green;
       }
-      .virtual_classroom h2 {
+    }
+    .virtual_classroom {
+      padding:30px 40px;
+      h2.title {
         color: $blue
       }
     }
+    .profile {
+      padding:30px 40px;
+    }
+  }
+  .backBtn {
+    text-transform: uppercase;
+    font-size:13px;
+    font-weight: bold;
+    color:#5d5d5d;
+    padding:10px 35px;
+    background-image: url('/assets/back_arrow.png');
+    background-repeat: no-repeat;
+    background-size: 26px 26px;
+    background-position: center left;
+
   }
 }
