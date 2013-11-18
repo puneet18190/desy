@@ -515,7 +515,7 @@ it:
     account_confirmation:
       # Subject
       # 1 - mailers/user_mailer.rb
-      subject: "%{desy} - Conferma nome utente"
+      subject: "%{desy} - Conferma il tuo account"
       # Message
       # 1 - mailers/user_mailer.rb
       message: "<p>Benvenuto %{name}</p>, <p>Grazie per esserti registrato a %{desy}!</p><p><b>Per completare la tua registrazione clicca sul seguente link:</b></p><p>Se il link non è cliccabile, copia e incollalo nel browser.<br/>Quando la registrazione sarà confermata, il link non sarà più valido.<br/>Per accedere al sistema inserisci il nome utente e la password prescelti durante la fase di registrazione.</p><br/><p>N.B.</p><p>La conferma dell'utente può essere effettuata una volta sola.</p>"
@@ -531,7 +531,7 @@ it:
     reset_password:
       # Subject
       # 1 - mailers/user_mailer.rb
-      subject: "%{desy} - Nuova password"
+      subject: "%{desy} - Conferma richiesta di una nuova password"
       # Message
       # 1 - mailers/user_mailer.rb
       message: "<h1>%{name},</h1><p>abbiamo ricevuto la tua richiesta di modifica della password. Per confermare il tuo indirizzo email e ricevere una nuova password, clicca sulla seguente URL:</p>"
@@ -3433,7 +3433,7 @@ it:
           # Placeholder used when no subject is selected
           # 1 - views/admin/search/_users_general.html.erb
           # 2 - views/admin/search/_notifications_filter.html.erb
-          select_subject: "SSeleziona una materia"
+          select_subject: "Seleziona una materia"
           # 1 - views/admin/search/_users_general.html.erb
           # 2 - views/admin/search/_notifications_filter.html.erb
           school_level: "Livello scolastico"
