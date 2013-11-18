@@ -156,8 +156,30 @@ class ApplicationController < ActionController::Base
     @where = controller_name
   end
   
+  # Used only if saas authentication mode
+  def saas_pre_authenticate
+    logged_user = current_user
+    if logged_user && !logged_user.admin?
+      now = Time.zone.now
+      purchase = logged_user.purchase
+      if purchase
+        if purchase.expiration_date < now
+          self.current_user = nil
+        end
+        if purchase.start_date > now
+          self.current_user = nil
+        end
+      else
+        if logged_user.created_at < now - (SETTINGS['saas_trial_duration'] * 60 * 60 * 24)
+          self.current_user = nil
+        end
+      end
+    end
+  end
+  
   # Authenticates the user
   def authenticate
+    saas_pre_authenticate if SETTINGS['saas_registration_mode']
     return redirect_to root_path(redirect_to: request.fullpath, login: true) unless current_user
   end
   

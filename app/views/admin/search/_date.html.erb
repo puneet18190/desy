@@ -1,3 +1,6 @@
+<%
+  now = Time.zone.now.strftime('%d-%m-%Y')
+%>
 <div class="control-group heading">
   <label><h5><%= t('admin.search.date.title') %></h5></label>
 </div>
@@ -22,12 +25,12 @@
 <div class="control-group">
   <label><%= t('admin.search.date.from') %></label>
   <div class="controls">
-    <%= text_field_tag 'search[from]', (params && params[:from]) ? params[:from] : Time.now.strftime('%d-%m-%Y'), :id => 'dpd1', :class=>"input input-medium datepick disabled", 'data-date'=>Time.now.strftime('%d-%m-%Y'), 'data-date-format' => 'dd-mm-yyyy', :disabled => :disabled %>
+    <%= text_field_tag 'search[from]', (params && params[:from]) ? params[:from] : now, :id => 'dpd1', :class => 'input input-medium datepick disabled', 'data-date' => now, 'data-date-format' => 'dd-mm-yyyy', :disabled => :disabled %>
   </div>
 </div>
 <div class="control-group">
   <label><%= t('admin.search.date.to') %></label>
   <div class="controls">
-    <%= text_field_tag 'search[to]', (params && params[:to]) ? params[:to] : Time.now.strftime('%d-%m-%Y'), :id => 'dpd2', :class=>"input input-medium datepick", 'data-date'=>Time.now.strftime('%d-%m-%Y'), 'data-date-format' => 'dd-mm-yyyy', :disabled => :disabled %>
+    <%= text_field_tag 'search[to]', (params && params[:to]) ? params[:to] : now, :id => 'dpd2', :class=>"input input-medium datepick", 'data-date'=> now, 'data-date-format' => 'dd-mm-yyyy', :disabled => :disabled %>
   </div>
 </div>
