@@ -1435,7 +1435,7 @@ cn:
     create_new_lesson_now: "现在建立课程"
     # Caption of the link to download the user guide (bottom right in the page)
     # 1 - views/dashboard/index.html.erb
-    download_manual: "下载用户指南"
+    download_manual: "Go to the FAQs" # TODO (FAQs = Frequently Asked Questions)
     # Caption which appears if there are no suggested lessons inside the Dashboard, because the user picked all the lessons the application suggested him
     # 1 - views/dashboard/_lessons_empty.html.erb
     emptied_lessons: "你已选择所有被推荐的课程"
