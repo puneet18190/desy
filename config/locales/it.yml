@@ -1435,7 +1435,7 @@ it:
     create_new_lesson_now: "Crea una lezione ora"
     # Caption of the link to download the user guide (bottom right in the page)
     # 1 - views/dashboard/index.html.erb
-    download_manual: "Scarica la guida per gli utenti"
+    download_manual: "Vai alle FAQs"
     # Caption which appears if there are no suggested lessons inside the Dashboard, because the user picked all the lessons the application suggested him
     # 1 - views/dashboard/_lessons_empty.html.erb
     emptied_lessons: "Hai scelto tutte le lezioni suggerite"
@@ -2345,9 +2345,10 @@ it:
       no_cathegory: "Altro"
     # Captions used for trial accounts
     trial:
+      # The variable %{expiration_date} is replaced by the date of expiration of the trial
       # 1 - views/admin/users/_list.html.erb
       # 2 - views/admin/users/show.html.erb
-      label: "Trial"
+      label: "Trial (scadenza %{expiration_date})"
       # Link from the header to the upgrade trial section of your profile
       # 1 - views/shared/_trial_header.html.erb
       header_link: "Upgrade"
