@@ -1,4 +1,7 @@
-<div class="gray-description"><%= t('faqs.profile.description').html_safe %></div>
+<div class="gray-description">
+  <%= t('faqs.profile.description').html_safe %>
+  <%= contact_us_link %>
+</div>
 <div id="profile_faq" class="profile">
   <h2 class="title"><%= t('faqs.profile.title') %></h2>
   <h3 class="answer_title"><%= @answer[0] %></h3>

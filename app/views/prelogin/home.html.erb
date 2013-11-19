@@ -3,7 +3,7 @@
   <ul>
     <li><%= link_to t('prelogin.main_page.menu_link'), root_path, :class => 'current' %></li>
     <li><%= link_to t('prelogin.what_is.menu_link', :desy => SETTINGS['application_name']), what_is_path %></li>
-    <li><%= prelogin_contact_us_menu_link %></li>
+    <li><%= contact_us_link %></li>
   </ul>
    <%= render :partial => '/prelogin/login' %>
   </div>
@@ -24,7 +24,5 @@
       <p><a class="tryTrial" href="/sign_up?trial=1"><%= t('prelogin.main_page.trial') %></a></p>
     <% end %>
   </div>
-  
 </div>
 <br class="clearfloat">
-
