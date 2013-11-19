@@ -1115,137 +1115,137 @@ en:
   
   # SECTION 1.6: content of the 'Help' tips. Each 'Help' contains three subsections, with title and description. There is a different 'Help' tip for each of the following sections:
   # 1) dashboard (you find it below the keyword 'dashboard')
-  # 2) my lessons (keyword 'lessons')
-  # 3) my media elements (keyword 'media_elements')
-  # 4) advanced search (keyword 'search')
-  # 5) user's personal profile (keyword 'users')
-  # 6) Virtual Classroom (keyword 'virtual_classroom')
+  # 2) my documents (keyword 'documents')
+  # 3) my lessons (keyword 'lessons')
+  # 4) my media elements (keyword 'media_elements')
+  # 5) advanced search (keyword 'search')
+  # 6) user's personal profile (keyword 'users')
+  # 7) Virtual Classroom (keyword 'virtual_classroom')
   # For each of these keywords, the texts are structured in the following way:
   #  keyword:
   #    first:
   #      title:
-  #      description
+  #      content:
   #    second:
   #      title:
-  #      description
+  #      content:
   #    third:
   #      title:
-  #      description
+  #      content:
   
   help:
     dashboard:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Welcome to %{desy}!"
+        title: "Welcome to DESY!"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "In this dashboard you find lessons and elements selected in our database according to your subjects of interests. If you click on the \"plus\" icon of a lesson or an element, you'll add it to your personal section, where you can modify it and use it. The \"small eye\" icon opens a preview."
+        content: "Is it your first time in DESY? In this page you find lessons and elements that might interest you. Any new lesson or didactic element, associated to one of your subjects of interest, will be added to this section as soon as it appears in our public database."
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Selected for you - elements"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "Pick elements among the ones we propose to you! If you don't find anything interesting, by clicking on the \"load a new element\" button you can upload your own elements."
+        content: "Find out which are the last didactic elements loaded in DESY's community. Add the ones you like more to your personal section (by clicking on the '+' icon). If you are looking for something specific, use the link to the search engine."
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Selected for you - lessons"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "In this dashboard %{desy} stores all the new lessons that might interest you. If at this moment there are no new lessons available, you can create your own by clicking on the \"create a new lesson\" button that you find on each page: you will be redirected to the Lesson Editor. Before using the Lesson Editor make sure to have enough elements."
+        content: "New lessons associated to one of your subjects are automatically loaded in this section. Open the lesson preview, and add to your personal section the lessons you like (using the '+' icon). If you are looking for specific lessons, use the link to the search engine."
     documents:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Attach a document"
+        title: "Attaching files to a lesson"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "You can attach any type of documents to your on-line lessons. In this section you can upload your personal documents, set a description and a title, and organize them to have them ready to use in the Lesson Editor."
+        content: "A multimedia lesson produced in DESY is composed by a sequence of slides.<br/>If you reckon that texts and media elements are not enough to write exhaustively about your topic, DESY allows you to attach <b>documents</b> or <b>external files</b> to your slides.<br/>Remember that, similarly to what happens for didactic elements, it's not possible to load documents directly from inside the Lesson Editor: hence, you need to load and manage your documents before opening the editor."
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Types of documents"
+        title: "Which formats of documents are allowed?"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "In %{desy} your documents are cathegorized into: <b>regular documents</b> (for instance .txt, .doc, .odt); <b>spreadsheets</b> (for instance .xls, .ods); <b>vectorial documents</b> (for instance .pdf, .ps); <b>presentations</b> (such as power point); <b>compressed documents</b> (.zip, .tar.gz). If your document's extension doesn't fit any of these cathegories, it has a specific icon for <b>other documents</b>."
+        content: "DESY accepts <b>all the common formats</b> of files.<br/>Just take care about the size of your document, which must not exceed <b>50MB</b>"
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Slides allowing documents"
+        title: "Slide templates which allow to attach files"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "Not all the slides allow you to attach documents: you can do it only if the slide contains text. When you are working on a slide that allows to attach documents, click on the <b>attach</b> icon on the right to open the document manager inside Lesson Editor. You are allowed to attach a maximum of three documents for each slide."
+        content: "It's not possible to attach a document just in any slide: you'll realize that you can attach documents if you find the <b>attach</b> icon on the right of your slide.<br/>You can attach <b>a maximum of three documents</b> to each slide."
     lessons:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Status of lessons"
+        title: "Sei nella pagina delle tue lezioni"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "This page contains your personal folder of lessons, together with a set of instruments to handle them and create new ones. Pay attention to the status of your lessons:<br/><b>private</b> corresponds to a lesson that only you can use and see, <b>shared</b> identifies lessons which you have decided to share and that can be seen by other %{desy} users; <b>linked</b> indicates lessons created by other users."
+        content: "Tutte le lezioni che hai creato o che hai selezionato fra quelle realizzate da altri utenti saranno archiviate in questa pagina. Fai attenzione allo stato delle tue lezioni:<br/><b>privato</b> corrisponde ad una lezione che solo per te è possibile utilizzare e vedere, <b>pubblico</b> identifica le lezioni che hai deciso di condividere con gli altri utenti di DESY, lo stato di <b>link</b> invece indica tutte le lezioni create da altri utenti che hai deciso di aggiungere alla tua lista personale. Avere il link di una lezione non vuol dire averla copiata, una notifica ti avvertirà nel caso l'autore applichi una o più modifiche ad una delle lezioni di cui hai link."
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Action buttons"
+        title: "Pulsanti"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "All the actions you may carry out on the lessons present in your folders are identified by graphic icons.<br/>The \"eye\" icon allows you to see the selected lesson, the \"pencil\" icon permits you to modify the lesson. This last function is not allowed for <b>linked</b> lessons, in this case you find only the \"copy\" icon (two circles overlapped): in fact, it's not possible to modify lessons realized by other users without first making a copy. The \"monitor with an eye\" icon uploads the lesson into your Virtual Classroom; the \"share\" icon (three small circles connected by two lines) is turned on if the lesson is shared; if you particularly like somebody else's lesson, click on the \"star\" icon. Finally, the icon with a \"x\" deletes the lesson (if the lesson is <b>linked</b> this icon is replaced by a \"minus\", which deletes the link)."
+        content: "L'icona <b>occhio</b> visualizza l'anteprima della lezione, la <b>matita</b> ti permette di modificare la lezione selezionata. Quest'ultima funzione non è disponibile per le lezioni di cui hai il link, in questo caso troverai solo l'icona <b>copia</b> (due cerchi sovrapposti); non è possibile modificare lezioni realizzate da altri utenti senza averne fatto prima una copia.<br/>L'icona <b>monitor con un occhio</b> aggiunge la lezione selezionata nella sezione <b>Playlist</b>; l'icona <b>condividi</b> (la nuvoletta con la freccina) ti permette di condividere la tua lezione con gli altri utenti di DESY. Se vorrai successivamente riportare su <b>privato</b> lo stato di una delle tue lezioni sarà sufficiente cliccare nuovamente sull'icona <b>condividi</b> per ripristinare lo stato privato della tua lezione.<br/>Se credi che una delle lezioni realizzate da un altro utente sia particolarmente interessante accendi l'icona della <b>stella</b>. Valutare una lezione di DESY è importante, tutti i risultati prodotti dal motore di ricerca potranno essere organizzati anche per numero di like al fine di offrire maggiore visibilità ai contenuti maggiormente apprezzati dagli utenti.<br/>L'icona con la <b>x</b> cancella la lezione (se la lezione è un link questa icona è sostituita dal <b>-</b> , che elimina il link)." # FIXME nomenclatura VirtualClassroom
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Create a new lesson"
+        title: "Crea una nuova lezione"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "Once you added a sufficient amount of elements, you are ready to create your own lesson: click on the \"create a new lesson\" button, which will redirect you to %{desy}'s Lesson Editor."
+        content: "Clicca su <b>Crea una nuova lezione</b> per accedere all'editor di DESY ed iniziare a comporre la tua nuova lezione multimediale. Ricorda che prima di iniziare ad utilizzare l'editor delle lezioni dovrai aver popolato la tua lista di elementi didattici. Non è infatti possibile cercare o caricare immagini, video o file audio direttamente dall'editor lezioni."
     media_elements:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Your didactic elements"
+        title: "I tuoi elementi"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "This page contains your personal folder of elements, together with a set of instruments to handle them and create new ones.<br/>As soon as an element is uploaded %{desy} assigns it the status <b>private</b>. Unlike for lessons, you can't share directly your private elements: when you share a lesson, the application shares automaticly all the elements contained in it. When an element passes to status <b>public</b>, it is automaticly moved from your personal folder to %{desy}'s public one: in your folder you'll keep a link of it, which allows you to use it but not modify nor delete it."
+        content: "Tutti gli elementi didattici (immagini, video o file audio) che hai caricato o selezionato dal database di DESY verranno archiviate in questa pagina.<br/>Se decidi di caricare un nuovo elemento didattico, questo resterà <b>privato</b> finchè non verrà utilizzato all'interno di una lezione multimediale che decidi di condividere su DESY.<br/>A differenza di una lezione un elemento didattico che è stato condiviso non potrà riacquisire lo stato di privato. Un elemento didattico condiviso sarà a disposizione di tutti gli utenti che utilizzano DESY e <b>non potrà più essere eliminato</b> dall'utente che l'ha caricato."
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Element Editors"
+        title: "Editor degli elementi"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "The \"pencil\" icon on each element opens that element's specific Editor (Audio, Image or Video). If the element containing the pencil is <b>public</b>, the Editor will force you to save your work as a new element (since you can't modify a public one), whereas if the element is <b>private</b> you can choose whether overwrite or not the original one. The button \"elements editor\" lets you choose a type of element and opens the corresponding empty Editor."
+        content: "Un elemento didattico dopo essere stato caricato può anche essere <b>modificato</b>. Utilizzando gli editor di DESY ti sarà possibile tagliare o aggiungere del testo ad una foto, modificare un video esistente o crearne uno nuovo assemblando insieme vari elementi didattici; tagliare o modificare un file audio.<br/>Un elemento didattico <b>privato</b> può essere <b>modificato</b> ed eventualmente anche <b>sovrascritto</b>, caratteristica non possibile su tutti gli elementi didattici che sono stati <b>condivisi</b> con il network di DESY.<br/>L'editing di un elemento <b>condiviso</b> (immagine, video, file audio) darà sempre come risultato la creazione di un <b>nuovo elemento didattico.</b>"
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Element preview"
+        title: "Anteprima degli elementi"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "The \"eye\" icon opens the preview of an element. In the preview of <b>private</b> elements you can find a button containing three small lines: clicking on it you open a form that you can use to modify the element's general information (title, description, and tags)."
+        content: "L'icona <b>occhio</b> visualizza l'anteprima di un elemento. Soltanto per gli <b>elementi privati</b> è presente il pulsante di <b>modifica info</b>, (icona con tre righette di testo) utile a modificare il titolo, la descrizione e le tags attribuite al file in fase di caricamento."
     search:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Search Engine"
+        title: "Motore di ricerca"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "%{desy}'s Search Engine may be used for both lessons and elements; the engine is based on tags.<br/>Any lesson or element found may be added to your corresponding personal folder by using the \"plus\" icon."
+        content: "Il motore di ricerca può aiutarti a trovare <b>lezioni o elementi didattici</b> già presenti nel database di DESY.<br/>Ogni lezione o elemento, può essere aggiunto alla tua lista personale utilizzando l'icona del <b>+</b>.<br/>Fai attenzione, quando si carica un nuovo elemento o si crea una nuova lezione è importante inserire delle tags precise. Una corretta etichettatura permette al motore di ricerca di trovare più facilmente uno dei contenuti presenti nel database, offrendoti un risultato di ricerca più preciso ed efficace."
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Suggestions for a good search"
+        title: "Suggerimenti per una ricerca efficace"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "While you are typing the keyword for your search, %{desy}'s Search Engine suggests you the most used tags (beginning with your keyword) among the ones present in the database. This way you'll have a wider choice and a more complete search result."
+        content: "Digitando una <b>parola chiave</b>, DESY ti suggerisce i <b>tags</b> più comuni vicini alla parola che stai digitando. Utilizza questa caratteristica per aumentare le tue possibilità di ricerca all'interno del database di DESY."
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Suggestions for a good tagging"
-        # Here the variable %{tags} is replaced by the minimum amount of tags for an item in the application
+        title: "Ordinare i risultati"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "When you upload a new element or create a new lesson it's important to insert the a good range of tags. A proper tagging allows the Search Engine to find more easily your lessons. You must insert a minimum of %{tags} tags."
+        content: "Utilizzando la <b>ricerca avanzata</b> potrai ordinare i risultati delle tue ricerche utilizzando il criterio <b>alfabetico</b>, per <b>data di modifica</b>, o per numero di <b>likes</b> (stelle) che sono stati attribuiti a quel contenuto didattico."
     users:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Your profile page"
+        title: "La tua pagina Profilo"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "In this page you can review and modify your profile. Have a look at the menu on the top of the page: each link redirects you to the corresponding section of your profile."
+        content: "In questa pagina puoi vedere ed eventualmente modificare tutti i dati relativi al tuo profilo utente. L'etichetta <b>materie</b> ti consente di modificare la lista delle materie a cui vuoi essere collegato.<br/>Ricorda che DESY analizza le materie di interesse che hai selezionato per suggerirti le lezioni nella dashboard dell'applicazione."
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Personal data, mailing lists"
+        title: "Crea una mailing list"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "The section \"subjects\" contains the list of your subjects: you can update this list at any time. Remember that %{desy} checks out your subjects to choose the suggested lessons that you find in the main page. The section \"mailing list\" contains a list of groups of e-mail addresses, that you can use to send your lesson links from inside your Virtual Classroom: click on the button \"add new group\" to create a new mailing list."
+        content: "L'etichetta <b>mailing lists</b> ti permette di creare dei gruppi di indirizzi email che potrai utilizzare all'interno della sezione <b>Playlist</b> per inviare i link delle tue lezioni didattiche multimediali." # FIXME nomenclatura VirtualClassroom
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Statistics"
+        title: "Statistiche"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "The section \"statistics\" contains interesting statistics about your profile and about all %{desy}. The statistics are divided by categories and easy to consult."
+        content: "L'etichetta <b>statistiche</b> ti mostra alcuni dati relativi al tuo utilizzo di DESY ed alla tipologia di contenuti presenti nel database dell'applicazione. Potrai visualizzare quante lezioni hai creato, quanti elementi didattici hai caricato e quali delle tue lezioni hanno ricevuto il maggior numero di like (stelle) dagli altri utenti di DESY."
     virtual_classroom:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "%{desy}'s Virtual Classroom"
+        title: "Playlist di DESY" # FIXME nomenclatura VirtualClassroom
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "Welcome to your Virtual Classroom! Here you may upload lessons from your personal folder and organize them into a playlist. The button \"add lessons\" opens a window to load quickly multiple lessons."
+        content: "Organizzare un grande numero di lezioni può essere difficoltoso. La sezione <b>Playlist</b> nasce per aiutarti nella razionalizzazione e nella pianificazione dei tuoi contenuti didattici.<br/>Utilizza la sezione <b>Playlist</b> per gestire tutte le lezioni che stai per riprodurre, organizzale in liste di riproduzione, o invia da questa pagina il link di una lezione ad uno o più indirizzi email." # FIXME nomenclatura VirtualClassroom
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Playlist"
+        title: "Crea una lista di riproduzione"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "One of the useful features of %{desy}'s Virtual Classroom is the playlist: to move a lesson inside the playlist, drag it to the zone on the right. To reproduce the playlist in the sequence which is most suitable to your didactive objectives, you can sort its elements by dragging them."
+        content: "Dopo aver aggiunto delle lezioni alla sezione <b>Playlist</b>, trascina quelle che vuoi riprodurre in sequenza, nell'<b>area attiva</b> alla destra della pagina.<br/>Caricata la tua lista di riproduzione potrai modificarne l'ordine semplicemente spostando in alto o in basso una delle  lezioni caricate." # FIXME nomenclatura VirtualClassroom
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Send a link to your friends"
+        title: "Invia una lezione via mail"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "The \"envelope\" icon located below each lesson opens a window where you can select a list of e-mail addresses: click on the button \"send\" to send an email containing the public link of your lessons (using this link your students are able to visualize the lesson without being registered in %{desy})."
+        content: "L'icona della <b>busta</b> ti permette di inviare il link di una lezione ad un indirizzo email o ad una mailing list precedentemente compilata.<br/>Fai attenzione, per creare una nuova <b>mailing list</b> devi accedere alla sezione <b>Profilo</b>"
   
   
   # SECTION 1.7: Page rendered if the browser is not supported by the application

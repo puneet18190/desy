@@ -1113,24 +1113,25 @@ it:
       send_link: "Invia il collegamento a questa lezione ai tuoi amici"
   
   
-  # SECTION 1.6: content of the 'Help' tips. Each 'Help' contains three subsections, with title and description. There is a different 'Help' tip for each of the following sections:
+    # SECTION 1.6: content of the 'Help' tips. Each 'Help' contains three subsections, with title and description. There is a different 'Help' tip for each of the following sections:
   # 1) dashboard (you find it below the keyword 'dashboard')
-  # 2) my lessons (keyword 'lessons')
-  # 3) my media elements (keyword 'media_elements')
-  # 4) advanced search (keyword 'search')
-  # 5) user's personal profile (keyword 'users')
-  # 6) Virtual Classroom (keyword 'virtual_classroom')
+  # 2) my documents (keyword 'documents')
+  # 3) my lessons (keyword 'lessons')
+  # 4) my media elements (keyword 'media_elements')
+  # 5) advanced search (keyword 'search')
+  # 6) user's personal profile (keyword 'users')
+  # 7) Virtual Classroom (keyword 'virtual_classroom')
   # For each of these keywords, the texts are structured in the following way:
   #  keyword:
   #    first:
   #      title:
-  #      description
+  #      content:
   #    second:
   #      title:
-  #      description
+  #      content:
   #    third:
   #      title:
-  #      description
+  #      content:
   
   help:
     dashboard:
@@ -1152,7 +1153,7 @@ it:
     documents:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Che cosa sono i documenti?"
+        title: "Come aggiungere degli approfondimenti?"
         # 1 - views/notifications/_tooltip_help.html.erb
         content: "Una lezione multimediale prodotta con DESY è composta da una sequenza di slides.<br/>Se il contenuto che hai inserito in una delle diapositive non fosse sufficientemente esaustivo o ritieni utile approfondire uno o più argomenti trattati nella lezione, DESY ti permette di <b>allegare dei file esterni</b> ad ogni singola slide.<br/>Ricordati che come avviene per gli elementi didattici non sarà possibile caricare documenti direttamente dall'editor delle lezioni; popola la tua lista di documenti prima di iniziare a comporre la tua lezione multimediale."
       second:

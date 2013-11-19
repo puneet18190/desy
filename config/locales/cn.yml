@@ -1115,22 +1115,23 @@ cn:
   
   # SECTION 1.6: content of the 'Help' tips. Each 'Help' contains three subsections, with title and description. There is a different 'Help' tip for each of the following sections:
   # 1) dashboard (you find it below the keyword 'dashboard')
-  # 2) my lessons (keyword 'lessons')
-  # 3) my media elements (keyword 'media_elements')
-  # 4) advanced search (keyword 'search')
-  # 5) user's personal profile (keyword 'users')
-  # 6) Virtual Classroom (keyword 'virtual_classroom')
+  # 2) my documents (keyword 'documents')
+  # 3) my lessons (keyword 'lessons')
+  # 4) my media elements (keyword 'media_elements')
+  # 5) advanced search (keyword 'search')
+  # 6) user's personal profile (keyword 'users')
+  # 7) Virtual Classroom (keyword 'virtual_classroom')
   # For each of these keywords, the texts are structured in the following way:
   #  keyword:
   #    first:
   #      title:
-  #      description
+  #      content:
   #    second:
   #      title:
-  #      description
+  #      content:
   #    third:
   #      title:
-  #      description
+  #      content:
   
   help:
     dashboard:
