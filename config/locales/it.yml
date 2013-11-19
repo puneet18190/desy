@@ -1136,116 +1136,115 @@ it:
     dashboard:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Benvenuti in %{desy}!"
+        title: "Benvenuti in AmicoCloud!"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "In questo pannello potete trovare le lezioni e gli elementi selezionati nel nostro archivio che potrebbero essere di vostro interesse. Se si clicca sull'icona \"+\" di una lezione o di un elemento, si potranno aggiungere alla tua area personale, dove potrai eventualmente modificarli e usarli. L'icona \"occhio\" mostra una anteprima."
+        content: "È la prima volta che utilizzi AmicoCloud? In questa pagina troverai tutti i contenuti presenti in AmicoCloud che potrebbero interessarti. Ogni nuovo elemento didattico o lezione multimediale relativa alle tue materie di riferimento che si aggiungerà al database di AmicoCloud ti verrà proposta in questa pagina."
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Scelti per te - elementi"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "Scegli elementi tra quelli proposti! Se non trovate nulla di interessante, cliccando sul pulsante \"carica un nuovo elemento\" puoi caricare i tuoi elementi."
+        content: "Scopri tutti i nuovi elementi che sono stati aggiunti in AmicoCloud. Aggiungi gli elementi didattici che più ti piacciono alla tua lista personale (utilizzando l'icona del +) o utilizza il motore di ricerca per cercarne di nuove."
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Scelti per te - lezioni"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "In questo pannello, %{desy} memorizza tutti le nuove lezioni che potrebbero interessarti. Se in questo momento non ci sono nuove lezioni disponibili, è possibile creare la propria cliccando sul pulsante \"crea una nuova lezione\" che si trova in ogni pagina: sarete reindirizzati all'Editor delle Lezioni. Prima di utilizzare l'Editor delle Lezioni, assicuratevi di avere un numero di elementi sufficienti."
+        content: "Tutte le nuove lezioni presenti su AmicoCloud relative alle materie a cui ti sei collegato in fase di registrazione ti verranno consigliate in questa pagina. Visualizzale in anteprima e successivamente aggiungile (utilizzando l'icona del +) alla tua personale lista di lezioni.<br/>Il motore di ricerca ti aiuterà a trovarne di nuove."
     documents:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Allega un documento"
+        title: "Che cosa sono gli approfondimenti?"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "Puoi allegare alle tue lezioni on-line qualsiasi tipo di documento. In questa sezione puoi caricare i tuoi documenti personali, decidere una descrizione e un titolo, e organizzarli per averli pronti da usare nell'Editor delle lezioni."
+        content: "Una lezione multimediale prodotta con AmicoCloud è composta da una sequenza di slides.<br/>Se il contenuto che hai inserito in una delle diapositive non fosse sufficientemente esaustivo o ritieni utile approfondire uno o più argomenti trattati nella lezione, AmicoCloud ti permette di <b>allegare dei file esterni</b> ad ogni singola slide.<br/>Ricordati che come avviene per gli elementi didattici non sarà possibile caricare approfondimenti direttamente dall'editor delle lezioni; popola la tua lista di approfondimenti prima di iniziare a comporre la tua lezione multimediale."
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Tipi di documenti"
+        title: "In che formato può essere un approfondimento?"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "In %{desy} i tuoi documenti sono suddivisi nelle seguenti categorie: <b>documenti regolari</b> (per esempio .txt, .doc, .odt); <b>fogli di calcolo</b> (per esempio .xls, .ods); <b>documenti vettoriali</b> (per esempio .pdf, .ps); <b>presentazioni</b> (come power point); <b>documenti compressi</b> (.zip, .tar.gz). Se l'estensione del tuo documento non rientra in nessuna di queste categorie, verrà visualizzato con un'icona specifica per <b>altri documenti</b>."
+        content: "AmicoCloud accetta <b>tutti i formati</b> di file più diffusi.<br/>Fai solo attenzione a che il tuo Approfondimento non superi i <b>50MB</b> di peso."
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Slides che ammettono allegati"
+        title: "Templates che ammettono approfondimenti allegati"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "Non tutte le slides ammettono la presenza di documenti allegati: puoi allegare un documento solamente se la slide contiene un campo testo. Se stai lavorando su una slide che ammette allegati, clicca sull'icona <b>attach</b> alla destra della slide, aprirai in questo modo il manager dei documenti. È possibile allegare documenti fino ad un limite massimo di tre per ogni slide."
+        content: "Non tutti i templates permettono di allegare degli approfondimenti. Se fra le icone di comando alla destra della slide è presente l'icona dell'<b>attaches</b>, il template in uso consente di allegare un approfondimento.<br/>Ricordati che puoi allegare un <b>massimo di tre approfondimenti</b> per ogni singola slide."
     lessons:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Stato delle lezioni"
+        title: "Sei nella pagina delle tue lezioni"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "Questa pagina contiene la cartella personale delle lezioni, insieme ad una serie di strumenti per gestirle e crearne di nuove. Fai attenzione allo stato delle tue lezioni:<br/><b>privato</b> corrisponde a una lezione che solo per te è possibile utilizzare e vedere, <b>pubblico</b> identifica le lezioni che hai deciso di condividere e che possono essere viste da altri utenti %{desy}; <b>collegate</b> indica lezioni create da altri utenti."
+        content: "Tutte le lezioni che hai creato o che hai selezionato fra quelle realizzate da altri utenti saranno archiviate in questa pagina. Fai attenzione allo stato delle tue lezioni:<br/><b>privato</b> corrisponde ad una lezione che solo per te è possibile utilizzare e vedere, <b>pubblico</b> identifica le lezioni che hai deciso di condividere con gli altri utenti di AmicoCloud, lo stato di <b>link</b> invece indica tutte le lezioni create da altri utenti che hai deciso di aggiungere alla tua lista personale. Avere il link di una lezione non vuol dire averla copiata, una notifica ti avvertirà nel caso l'autore applichi una o più modifiche ad una delle lezioni di cui hai link."
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Pulsanti"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "Tutte le azioni che si possono effettuare sulle lezioni presenti nelle cartelle sono identificate da icone grafiche.<br/>L'icona \"occhio\" permette di vedere la lezione selezionata, l'icona \"matita\" consente di modificare la lezione. Quest'ultima funzione non è disponibile per le lezioni <b>collegate</b>, in questo caso troverai solo l'icona \"copia\" (due cerchi sovrapposti): difatti non è possibile modificare lezioni realizzate da altri utenti senza averne fatto prima una copia. L'icona \"monitor con un occhio\" carica la lezione nella tua Playlist; l'icona \"pubblico\" (tre piccoli cerchi interconnessi da due linee) viene accesa, se la lezione è condivisa; se ti piace particolarmente la lezione di qualche altro utente, clicca sull'icona \"star\". Infine, l'icona con la \"x\" cancella la lezione (se la lezione è <b>collegata</b> questa icona è sostituita dal \"-\", che elimina il collegamento)." # FIXME "Tutte le azioni che si possono effettuare sulle lezioni presenti nelle cartelle sono identificate da icone grafiche.<br/>L'icona \"occhio\" permette di vedere la lezione selezionata, l'icona \"matita\" consente di modificare la lezione. Quest'ultima funzione non è disponibile per le lezioni <b>collegate</b>, in questo caso troverai solo l'icona \"copia\" (due cerchi sovrapposti): difatti non è possibile modificare lezioni realizzate da altri utenti senza averne fatto prima una copia. L'icona \"monitor con un occhio\" carica la lezione nella tua Virtual Classroom; l'icona \"pubblico\" (tre piccoli cerchi interconnessi da due linee) viene accesa, se la lezione è condivisa; se ti piace particolarmente la lezione di qualche altro utente, clicca sull'icona \"star\". Infine, l'icona con la \"x\" cancella la lezione (se la lezione è <b>collegata</b> questa icona è sostituita dal \"-\", che elimina il collegamento)."
+        content: "L'icona <b>occhio</b> visualizza l'anteprima della lezione, la <b>matita</b> ti permette di modificare la lezione selezionata. Quest'ultima funzione non è disponibile per le lezioni di cui hai il link, in questo caso troverai solo l'icona <b>copia</b> (due cerchi sovrapposti); non è possibile modificare lezioni realizzate da altri utenti senza averne fatto prima una copia.<br/>L'icona <b>monitor con un occhio</b> aggiunge la lezione selezionata nella sezione <b>Playlist</b>; l'icona <b>condividi</b> (la nuvoletta con la freccina) ti permette di condividere la tua lezione con gli altri utenti di AmicoCloud. Se vorrai successivamente riportare su <b>privato</b> lo stato di una delle tue lezioni sarà sufficiente cliccare nuovamente sull'icona <b>condividi</b> per ripristinare lo stato privato della tua lezione.<br/>Se credi che una delle lezioni realizzate da un altro utente sia particolarmente interessante accendi l'icona della <b>stella</b>. Valutare una lezione di AmicoCloud è importante, tutti i risultati prodotti dal motore di ricerca potranno essere organizzati anche per numero di like al fine di offrire maggiore visibilità ai contenuti maggiormente apprezzati dagli utenti.<br/>L'icona con la <b>x</b> cancella la lezione (se la lezione è un link questa icona è sostituita dal <b>-</b> , che elimina il link)." # FIXME nomenclatura VirtualClassroom
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Create a new lesson"
+        title: "Crea una nuova lezione"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "Una volta che avrete aggiunto una quantità sufficiente di elementi, si è pronti per creare la propria lezione: cliccare sul pulsante \"crea una nuova lezione\", che indirizza all'Editor delle Lezioni %{desy}."
+        content: "Clicca su <b>Crea una nuova lezione</b> per accedere all'editor di AmicoCloud ed iniziare a comporre la tua nuova lezione multimediale. Ricorda che prima di iniziare ad utilizzare l'editor delle lezioni dovrai aver popolato la tua lista di elementi didattici. Non è infatti possibile cercare o caricare immagini, video o file audio direttamente dall'editor lezioni."
     media_elements:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "I tuoi elementi didattici"
+        title: "I tuoi elementi"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "Questa pagina contiene la cartella personale degli elementi didattici, insieme a una serie di strumenti per gestirli e crearne nuovi.<br/>Appena un elemento viene caricato, %{desy} assegna lo stato <b>privato</b>. Diversamente da quanto avviene per le lezioni, non è possibile condividere direttamente gli elementi privati: quando si condivide una lezione, l'applicazione condivide automaticamente tutti gli elementi didattici in essa contenuti. Quando un elemento passa allo stato <b>pubblico</b>, viene automaticamente spostato dalla cartella personale a quella pubblica di %{desy}: nella vostra cartella verrà mantenuto un collegamento con esso, che consente di utilizzarlo, ma non di modificarlo o eliminarlo."
+        content: "Tutti gli elementi didattici (immagini, video o file audio) che hai caricato o selezionato dal database di AmicoCloud verranno archiviate in questa pagina.<br/>Se decidi di caricare un nuovo elemento didattico, questo resterà <b>privato</b> finchè non verrà utilizzato all'interno di una lezione multimediale che decidi di condividere su AmicoCloud.<br/>A differenza di una lezione un elemento didattico che è stato condiviso non potrà riacquisire lo stato di privato. Un elemento didattico condiviso sarà a disposizione di tutti gli utenti che utilizzano AmicoCloud e <b>non potrà più essere eliminato</b> dall'utente che l'ha caricato."
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Editor degli elementi"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "L'icona \"matita\" consente l'apertura con uno specifico Editor (Audio, Immagine o Video). Se l'elemento che contiene la matita è <b>pubblico</b>, l'Editor vi costringerà a salvare il lavoro come un nuovo elemento (dal momento che non è possibile modificare un elemento pubblico), mentre se l'elemento è <b>privato</b> è possibile scegliere se sovrascrivere o meno quello originale. Il pulsante \"Editor degli elementi\" permette di scegliere un tipo di elemento e apre l'editor corrispondente."
+        content: "Un elemento didattico dopo essere stato caricato può anche essere <b>modificato</b>. Utilizzando gli editor di AmicoCloud ti sarà possibile tagliare o aggiungere del testo ad una foto, modificare un video esistente o crearne uno nuovo assemblando insieme vari elementi didattici; tagliare o modificare un file audio.<br/>Un elemento didattico <b>privato</b> può essere <b>modificato</b> ed eventualmente anche <b>sovrascritto</b>, caratteristica non possibile su tutti gli elementi didattici che sono stati <b>condivisi</b> con il network di AmicoCloud.<br/>L'editing di un elemento <b>condiviso</b> (immagine, video, file audio) darà sempre come risultato la creazione di un <b>nuovo elemento didattico.</b>"
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Anteprima degli elementi"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "L'icona \"occhio\" consente l'anteprima di un elemento. Durante l'anteprima di un elemento <b>privato</b> è possibile trovare un pulsante contenente tre piccole linee: cliccando su di esso si apre un pannello tramite il quale è possibile modificare le informazioni generali dell'elemento (titolo, descrizione e tag)."
+        content: "L'icona <b>occhio</b> visualizza l'anteprima di un elemento. Soltanto per gli <b>elementi privati</b> è presente il pulsante di <b>modifica info</b>, (icona con tre righette di testo) utile a modificare il titolo, la descrizione e le tags attribuite al file in fase di caricamento."
     search:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Motore di ricerca"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "Il motore di ricerca %{desy} può essere utilizzato sia per trovare lezioni che elementi; Il motore effettua la ricerca sui tag.<br/>Ogni lezione o elemento trovato possono essere aggiunti alla cartella personale utilizzando l'icona \"+\"."
+        content: "Il motore di ricerca può aiutarti a trovare <b>lezioni o elementi didattici</b> già presenti nel database di AmicoCloud.<br/>Ogni lezione o elemento, può essere aggiunto alla tua lista personale utilizzando l'icona del <b>+</b>.<br/>Fai attenzione, quando si carica un nuovo elemento o si crea una nuova lezione è importante inserire delle tags precise. Una corretta etichettatura permette al motore di ricerca di trovare più facilmente uno dei contenuti presenti nel database, offrendoti un risultato di ricerca più preciso ed efficace."
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Suggerimenti per una ricerca efficace"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "Mentre si digita la parola chiave per la ricerca, il motore di ricerca di %{desy} suggerisce i tags più usati (che iniziano con la parola chiave) tra quelli presenti in archivio. In questo modo avrete una scelta più ampia e un risultato di ricerca più preciso."
+        content: "Digitando una <b>parola chiave</b>, AmicoCloud ti suggerisce i <b>tags</b> più comuni vicini alla parola che stai digitando. Utilizza questa caratteristica per aumentare le tue possibilità di ricerca all'interno del database di AmicoCloud."
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Suggerimenti per una corretta 'etichettatura (tags)'"
-        # Here the variable %{tags} is replaced by the minimum amount of tags for an item in the application
+        title: "Ordinare i risultati"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "Quando si carica un nuovo elemento o si crea una nuova lezione è importante inserire etichette (tags) il più coerenti possibile. Una corretta etichettatura permette al motore di ricerca di trovare più facilmente le tue lezioni. E' necessario inserire un numero minimo di %{tags} tags."
+        content: "Utilizzando la <b>ricerca avanzata</b> potrai ordinare i risultati delle tue ricerche utilizzando il criterio <b>alfabetico</b>, per <b>data di modifica</b>, o per numero di <b>likes</b> (stelle) che sono stati attribuiti a quel contenuto didattico."
     users:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "La tua pagina Profilo"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "In questa pagina è possibile rivedere e modificare il tuo profilo utente. Dai un'occhiata al menu nella parte superiore della pagina: ogni collegamento indirizza alla sezione corrispondente del tuo profilo."
+        content: "In questa pagina puoi vedere ed eventualmente modificare tutti i dati relativi al tuo profilo utente. L'etichetta <b>materie</b> ti consente di modificare la lista delle materie a cui vuoi essere collegato.<br/>Ricorda che AmicoCloud analizza le materie di interesse che hai selezionato per suggerirti le lezioni nella dashboard dell'applicazione."
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Dati personali, mailing list"
+        title: "Crea una mailing list"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "La sezione \"materie\" contiene l'elenco delle tue materie: puoi modificare questo elenco in ogni momento. Ricorda che %{desy} analizza le materie di interesse indicate per suggerirti le lezioni che trovi proposte nella tua home pages. La sezione \"mailing list\" contiene un elenco di gruppi di indirizzi e-mail, che puoi utilizzare per inviare i collegamenti alle tue lezioni presenti all'interno della tua Playlist: clicca sul pulsante \"aggiungi un nuovo gruppo\" per crearne uno nuovo." # FIXME "La sezione \"materie\" contiene l'elenco delle tue materie: puoi modificare questo elenco in ogni momento. Ricorda che %{desy} analizza le materie di interesse indicate per suggerirti le lezioni che trovi proposte nella tua home pages. La sezione \"mailing list\" contiene un elenco di gruppi di indirizzi e-mail, che puoi utilizzare per inviare i collegamenti alle tue lezioni presenti all'interno della tua Virtual Classroom: clicca sul pulsante \"aggiungi un nuovo gruppo\" per crearne uno nuovo."
+        content: "L'etichetta <b>mailing lists</b> ti permette di creare dei gruppi di indirizzi email che potrai utilizzare all'interno della sezione <b>Playlist</b> per inviare i link delle tue lezioni didattiche multimediali." # FIXME nomenclatura VirtualClassroom
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Statistiche"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "La sezione \"statistiche\" contiene interessanti statistiche relative al tuo profilo e a %{desy} in generale. Le statistiche sono suddivise per categorie e sono di facile consultazione."
+        content: "L'etichetta <b>statistiche</b> ti mostra alcuni dati relativi al tuo utilizzo di AmicoCloud ed alla tipologia di contenuti presenti nel database dell'applicazione. Potrai visualizzare quante lezioni hai creato, quanti elementi didattici hai caricato e quali delle tue lezioni hanno ricevuto il maggior numero di like (stelle) dagli altri utenti di AmicoCloud."
     virtual_classroom:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Playlist di %{desy}" # FIXME "Virtual Classroom %{desy}"
+        title: "Playlist di AmicoCloud" # FIXME nomenclatura VirtualClassroom
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "Benvenuto nella tua Playlist! Qui puoi caricare le lezioni presenti nella cartella personale e organizzarle in una playlist. Il pulsante \"aggiungi lezione\" apre una finestra per caricare più lezioni contemporaneamente." # FIXME "Benvenuto nella tua Virtual Classroom! Qui puoi caricare le lezioni presenti nella cartella personale e organizzarle in una playlist. Il pulsante \"aggiungi lezione\" apre una finestra per caricare più lezioni contemporaneamente."
+        content: "Organizzare un grande numero di lezioni può essere difficoltoso. La sezione <b>Playlist</b> nasce per aiutarti nella razionalizzazione e nella pianificazione dei tuoi contenuti didattici.<br/>Utilizza la sezione <b>Playlist</b> per gestire tutte le lezioni che stai per riprodurre, organizzale in liste di riproduzione, o invia da questa pagina il link di una lezione ad uno o più indirizzi email." # FIXME nomenclatura VirtualClassroom
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Playlist"
+        title: "Crea una lista di riproduzione"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "Una delle caratteristiche più utili della Playlist di %{desy} è l'utilizzo di una funzione che consente di organizzare le lezioni da somministrare: per inserire una lezione nella playlist, trascinala all'interno dell'area sulla destra. Per riprodurre la playlist nella sequenza più adatta ai vostri obiettivi didattici, è possibile ordinare le lezioni." # FIXME "Una delle caratteristiche più utili della Virtual Classroom di %{desy} è l'utilizzo di una playlist: per inserire una lezione nella playlist, trascinala all'interno dell'area sulla destra. Per riprodurre la playlist nella sequenza più adatta ai vostri obiettivi didattici, è possibile ordinare le lezioni."
+        content: "Dopo aver aggiunto delle lezioni alla sezione <b>Playlist</b>, trascina quelle che vuoi riprodurre in sequenza, nell'<b>area attiva</b> alla destra della pagina.<br/>Caricata la tua lista di riproduzione potrai modificarne l'ordine semplicemente spostando in alto o in basso una delle  lezioni caricate." # FIXME nomenclatura VirtualClassroom
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Invia un link ai tuoi amici"
+        title: "Invia una lezione via mail"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "L'icona \"busta\" che si trova sotto ogni lezione, apre una finestra dove è possibile selezionare una lista di indirizzi e-mail: clicca sul pulsante \"invia\" per spedire una email contenete un indirizzo internet pubblico della tua lezione (utilizzando questo link i tuoi studenti sono in grado di visualizzare la lezione senza essere iscritti a %{desy})."
+        content: "L'icona della <b>busta</b> ti permette di inviare il link di una lezione ad un indirizzo email o ad una mailing list precedentemente compilata.<br/>Fai attenzione, per creare una nuova <b>mailing list</b> devi accedere alla sezione <b>Profilo</b>"
   
   
   # SECTION 1.7: Page rendered if the browser is not supported by the application
