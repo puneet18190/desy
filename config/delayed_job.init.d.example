@@ -10,8 +10,8 @@
 #
 ### END INIT INFO
 
-# Author: https://github.com/ProGNOMmers
-# URL:    https://gist.github.com/ProGNOMmers/5143648
+# Author: https://github.com/mdesantis
+# URL:    https://gist.github.com/mdesantis/5143648
 #
 # This is /etc/init.d/delayed_job (without .sh)
 # init.d script for single or multiple delayed_job installations. 
@@ -23,7 +23,7 @@
 #
 # If you have issues with this script, let me know it commenting to this gist:
 #
-#   https://gist.github.com/ProGNOMmers/5143648
+#   https://gist.github.com/mdesantis/5143648
 #
 # Configuration
 # 

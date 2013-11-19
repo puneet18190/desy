@@ -10,13 +10,13 @@
 #
 ### END INIT INFO
 
-# Author: https://github.com/ProGNOMmers
-# URL:    https://gist.github.com/ProGNOMmers/4740439
+# Author: https://github.com/mdesantis
+# URL:    https://gist.github.com/mdesantis/4740439
 #
 # This is /etc/init.d/unicorn (without .sh)
 # init.d script for single or multiple unicorn installations. 
 #
-# Modified by https://github.com/ProGNOMmers
+# Modified by https://github.com/mdesantis
 # based on modified version by https://github.com/romaimperator
 # which is based on modified version by jay@gooby.org https://github.com/jaygooby
 # which is based on https://gist.github.com/308216 by https://github.com/mguterl
@@ -33,7 +33,7 @@
 #
 # If you have issues with this script, let me know it commenting to this gist:
 #
-#   https://gist.github.com/ProGNOMmers/4740439
+#   https://gist.github.com/mdesantis/4740439
 #
 # Configuration
 # 
