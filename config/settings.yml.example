@@ -30,7 +30,7 @@ application:
 location_types: ['Province', 'City', 'County', 'School']
 # Email of the only super admin user
 super_admin: 'desy@example.com'
-# More emails to grant admin privileges to
+# More emails to grant admin privileges to: IMPORTANT, these emails must be configured ONLY AFTER the corresponding user has registered and confirmed.
 grant_admin_privileges: ['email1@example.com', 'email2@example.com', 'email3@example.com']
 # Minimum length of a tag (in characters)
 min_tag_length: 1
