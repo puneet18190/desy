@@ -1203,33 +1203,33 @@ en:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "DESY's search engine"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "Il motore di ricerca può aiutarti a trovare <b>lezioni o elementi didattici</b> già presenti nel database di DESY.<br/>Ogni lezione o elemento, può essere aggiunto alla tua lista personale utilizzando l'icona del <b>+</b>.<br/>Fai attenzione, quando si carica un nuovo elemento o si crea una nuova lezione è importante inserire delle tags precise. Una corretta etichettatura permette al motore di ricerca di trovare più facilmente uno dei contenuti presenti nel database, offrendoti un risultato di ricerca più preciso ed efficace."
+        content: "Our search engine helps you finding in DESY's database lessons and didactic elements that you need.<br/>Once you find a lesson or element that fits your desires, you can add it clicking on the icon '+'.<br/>Keep in mind that while loading a new element or creating a new lesson it's very important to assign a correct amount of tags that describe it. A good set of tags gives visibility to your contents, since it makes them more likely to be found by somebody who needs them."
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Suggerimenti per una ricerca efficace"
+        title: "Suggestions for an efficient search"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "Digitando una <b>parola chiave</b>, DESY ti suggerisce i <b>tags</b> più comuni vicini alla parola che stai digitando. Utilizza questa caratteristica per aumentare le tue possibilità di ricerca all'interno del database di DESY."
+        content: "While you are inserting a <b>keyword</b> in the search engine, DESY suggests you the most popular tags which are close to what you are writing. You can take advantage of this feature to increase your chances to find what you need inside DESY."
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Ordinare i risultati"
+        title: "Sorting the results"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "Utilizzando la <b>ricerca avanzata</b> potrai ordinare i risultati delle tue ricerche utilizzando il criterio <b>alfabetico</b>, per <b>data di modifica</b>, o per numero di <b>likes</b> (stelle) che sono stati attribuiti a quel contenuto didattico."
+        content: "Using the <b>advanced search</b> you are able to sort your results <b>alfabetically</b>, by <b>date of last modification</b>, or by number of <b>likes</b> (stars) received by that content."
     users:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "La tua pagina Profilo"
+        title: "Your personal profile"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "In questa pagina puoi vedere ed eventualmente modificare tutti i dati relativi al tuo profilo utente. L'etichetta <b>materie</b> ti consente di modificare la lista delle materie a cui vuoi essere collegato.<br/>Ricorda che DESY analizza le materie di interesse che hai selezionato per suggerirti le lezioni nella dashboard dell'applicazione."
+        content: "In this section you can review and modify your personal data, such as name, password, etc. The subsection <b>subjects</b> allows you to update the list of the subjects of your interest.<br/>Remember that DESY analyzes the subjects you selected, to retrieve you in the dashboard lessons and media elements that might interest you."
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Crea una mailing list"
+        title: "Create mailing lists"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "L'etichetta <b>mailing lists</b> ti permette di creare dei gruppi di indirizzi email che potrai utilizzare all'interno della sezione <b>Playlist</b> per inviare i link delle tue lezioni didattiche multimediali." # FIXME nomenclatura VirtualClassroom
+        content: "The subsection <b>mailing list</b> allows you to create groups of email addresses that you can use inside your <b>Virtual Classroom</b> to send the links of your lessons to more than one person at the same time."
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Statistiche"
+        title: "Statistics"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "L'etichetta <b>statistiche</b> ti mostra alcuni dati relativi al tuo utilizzo di DESY ed alla tipologia di contenuti presenti nel database dell'applicazione. Potrai visualizzare quante lezioni hai creato, quanti elementi didattici hai caricato e quali delle tue lezioni hanno ricevuto il maggior numero di like (stelle) dagli altri utenti di DESY."
+        content: "The subsection <b>statistics</b> contains information about how you are using your personal account in DESY, and about lesson and elements contained in the application's database. You can see how many lessons you created, how many didactic elements you loaded and which among your lessons received more popularity in DESY's community."
     virtual_classroom:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
