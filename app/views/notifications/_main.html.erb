@@ -7,5 +7,5 @@
   <span id="tooltip_arancione" class="tooltipArancione hidden" data-number="<%= news %>">
     <%= news %>
   </span>
-  <%= render :partial => 'notifications/tooltip_help' %>
+  <%= render :partial => 'notifications/tooltip_help', :locals => {:where => where} %>
 </div>
