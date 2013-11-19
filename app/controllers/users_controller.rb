@@ -85,7 +85,8 @@ class UsersController < ApplicationController
         )
       end
       UserMailer.account_confirmation(@user).deliver
-      UserMailer.purchase_full(@user.purchase).deliver if @user.purchase
+      purchase = @user.purchase
+      UserMailer.purchase_full(purchase).deliver if purchase && User.where(:purchase_id => purchase.id).count >= purchase.accounts_number
       render 'users/fullpage_notifications/confirmation/email_sent'
     else
       @errors = convert_user_error_messages @user.errors
