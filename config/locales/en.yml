@@ -1181,27 +1181,27 @@ en:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Create a new lesson"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "Clicca su <b>Crea una nuova lezione</b> per accedere all'editor di DESY ed iniziare a comporre la tua nuova lezione multimediale. Ricorda che prima di iniziare ad utilizzare l'editor delle lezioni dovrai aver popolato la tua lista di elementi didattici. Non è infatti possibile cercare o caricare immagini, video o file audio direttamente dall'editor lezioni."
+        content: "Click on the button <b>create a new lesson</b> to open DESY's Lesson Editor and start composing a brand new multimedia lesson. Remember that before entering the Lesson Editor you need to fill your galleries with an appropriate number of media elements (since it's not possible to load or search such elements from inside the editor)."
     media_elements:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "I tuoi elementi"
+        title: "Your didactic elements"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "Tutti gli elementi didattici (immagini, video o file audio) che hai caricato o selezionato dal database di DESY verranno archiviate in questa pagina.<br/>Se decidi di caricare un nuovo elemento didattico, questo resterà <b>privato</b> finchè non verrà utilizzato all'interno di una lezione multimediale che decidi di condividere su DESY.<br/>A differenza di una lezione un elemento didattico che è stato condiviso non potrà riacquisire lo stato di privato. Un elemento didattico condiviso sarà a disposizione di tutti gli utenti che utilizzano DESY e <b>non potrà più essere eliminato</b> dall'utente che l'ha caricato."
+        content: "In this page are stored all the didactic elements (images, videos, or audio tracks) that you either loaded personally or selected form DESY's database.<br/>If you want to load a new element, this will remain <b>private</b> as far as it's not used inside a public lesson. Unlike lessons, for didactic elements the process of sharing is not reversible, since a shared element can be reused by other users in the community. In particular, a <b>public element can't be deleted anymore</b>, even by its original owner (actually in DESY we consider all public elements as owned by the community)."
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Editor degli elementi"
+        title: "DESY's Elements Editor"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "Un elemento didattico dopo essere stato caricato può anche essere <b>modificato</b>. Utilizzando gli editor di DESY ti sarà possibile tagliare o aggiungere del testo ad una foto, modificare un video esistente o crearne uno nuovo assemblando insieme vari elementi didattici; tagliare o modificare un file audio.<br/>Un elemento didattico <b>privato</b> può essere <b>modificato</b> ed eventualmente anche <b>sovrascritto</b>, caratteristica non possibile su tutti gli elementi didattici che sono stati <b>condivisi</b> con il network di DESY.<br/>L'editing di un elemento <b>condiviso</b> (immagine, video, file audio) darà sempre come risultato la creazione di un <b>nuovo elemento didattico.</b>"
+        content: "Once you loaded a didactic element, it can be <b>modified</b> online. Using DESY's Elements Editor you are able to achieve the necessary modifications to your images, audio and videos: for instance, you can crop a photo or add a text to it; cut and modify an audio file; modify an existing video or create a new one composed by existing didactic elements.<br/>A <b>private</b> didactic element san be modified and then overwritten, which is not possible for public elements: a public element can be modified but the modifications are saved on a new element."
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Anteprima degli elementi"
+        title: "Preview of a media element"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "L'icona <b>occhio</b> visualizza l'anteprima di un elemento. Soltanto per gli <b>elementi privati</b> è presente il pulsante di <b>modifica info</b>, (icona con tre righette di testo) utile a modificare il titolo, la descrizione e le tags attribuite al file in fase di caricamento."
+        content: "The icon <b>eye</b> opens a popup containing the preview of a didactic element. If the element is <b>private</b>, the popup contains a button to modify its general information (the icon with three horizontal lines): for 'general information' of an element it's meant its title, description and tags, which are inserted in the form to load elements."
     search:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Motore di ricerca"
+        title: "DESY's search engine"
         # 1 - views/notifications/_tooltip_help.html.erb
         content: "Il motore di ricerca può aiutarti a trovare <b>lezioni o elementi didattici</b> già presenti nel database di DESY.<br/>Ogni lezione o elemento, può essere aggiunto alla tua lista personale utilizzando l'icona del <b>+</b>.<br/>Fai attenzione, quando si carica un nuovo elemento o si crea una nuova lezione è importante inserire delle tags precise. Una corretta etichettatura permette al motore di ricerca di trovare più facilmente uno dei contenuti presenti nel database, offrendoti un risultato di ricerca più preciso ed efficace."
       second:
