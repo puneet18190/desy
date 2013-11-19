@@ -14,7 +14,9 @@
           <th><%= Location.base_label %></th>
           <th><%= t('locations.parents_label') %></th>
           <th><%= t('admin.users.fields.is_admin') %></th>
-          <th><%= t('admin.users.fields.purchase_id') %></th>
+          <% if current_user.super_admin? %>
+            <th><%= t('admin.users.fields.purchase_id') %></th>
+          <% end %>
           <th><%= t('admin.users.fields.confirmed') %></th>
           <th><%= t('admin.users.fields.created_at') %></th>
           <th><%= t('admin.users.fields.updated_at') %></th>
@@ -29,7 +31,9 @@
           <td><%= @user.base_location %></td>
           <td><%= @user.parent_locations %></td>
           <td><%= @user.admin?.to_s %></td>
-          <td><%= @user.purchase_id.nil? ? (@user.trial? ? t('users.trial.label') : '') : (link_to @user.purchase.name, "/admin/purchases?search[id]=#{@user.purchase_id}") %></td>
+          <% if current_user.super_admin? %>
+            <td><%= @user.purchase_id.nil? ? (@user.trial? ? t('users.trial.label', :expiration_date => TimeConvert.to_string(@user.created_at + SETTINGS['saas_trial_duration'] * 86400)) : '') : (link_to @user.purchase.name, "/admin/purchases?search[id]=#{@user.purchase_id}") %></td>
+          <% end %>
           <td><%= @user.confirmed.to_s %></td>
           <td><%= TimeConvert.to_string @user.created_at %></td>
           <td><%= TimeConvert.to_string @user.updated_at %></td>
@@ -128,7 +132,7 @@
       <tbody>
         <tr>
           <td>
-            <% @user.subjects.each do |subj| %>
+            <% @user.subjects.order(:description).each do |subj| %>
               <div class="label subjects">
                 <%= subj.description %>
               </div>

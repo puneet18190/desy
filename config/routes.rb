@@ -175,6 +175,13 @@ Desy::Application.routes.draw do
   post 'users/upgrade_trial/logged'  => 'users#logged_upgrade_trial',   :as => :user_logged_upgrade_trial
   get  'sign_up/purchase_code'       => 'prelogin#purchase_code',       :as => :match_purchase_code
   
+  # FAQS
+  get 'faqs'                               => 'faqs#index',             :as => :faqs
+  get 'faqs/lessons/:num/answer'           => 'faqs#lessons',           :as => :lessons_faqs
+  get 'faqs/media_elements/:num/answer'    => 'faqs#media_elements',    :as => :media_elements_faqs
+  get 'faqs/virtual_classroom/:num/answer' => 'faqs#virtual_classroom', :as => :virtual_classroom_faqs
+  get 'faqs/profile/:num/answer'           => 'faqs#profile',           :as => :profile_faqs
+  
   # APPLICATION ROOT
   root :to => 'prelogin#home'
   

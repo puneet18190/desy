@@ -85,7 +85,7 @@ class PreloginController < ApplicationController
     @school_level_ids = SchoolLevel.order(:description).map{ |sl| [sl.to_s, sl.id] }
     @locations        = [{:selected => 0, :content => Location.roots.order(:name)}]
     @user_location    = {}
-    @subjects = Subject.extract_with_cathegories
+    @subjects         = Subject.extract_with_cathegories
   end
   
   # === Description

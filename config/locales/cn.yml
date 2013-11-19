@@ -519,6 +519,14 @@ cn:
       # Message
       # 1 - mailers/user_mailer.rb
       message: "<p>恭喜%{name}</p>, <p>谢谢你的注册%{desy}!</p><p><b>为了完成你的注册，请点击以下链接:</b></p><p>如果此链接没有出现，请拷贝和粘贴到你的浏览器.<br/>当确认注册, 此链接不再是合法.<br/>为了进入系统，请用用户名与密码.</p><br/><p>N.B.</p><p>只能确认那个账号一次.</p>"
+    # Email sent in case a purchase reached the maximum numberr of users allowed
+    purchase_full:
+      # Subject
+      # 1 - mailers/user_mailer.rb
+      subject: "%{desy} - Purchase has reached the limit of users"
+      # Message
+      # 1 - mailers/user_mailer.rb
+      message: "<h2>The following purchase has reached its limit of %{accounts_number} users: if you want to keep using it, you need to modify it or to generate and distribute a new purchase code</h2><br/><ul><li>Name of the purchaser: <i>%{name}</i></li><li>Responsible: <i>%{responsible}</i></li><li>Address: <i>%{address}</i></li><li>Phone number: <i>%{phone_number}</i></li><li>Fax: <i>%{fax}</i></li><li>Email: <i>%{email}</i></li><li>SSN: <i>%{ssn_code}</i></li><li>VAT: <i>%{vat_code}</i></li><li>Accounts number: <i>%{accounts_number}</i></li><li>Users restricted to: <i>%{location}</i></li><li>Valid since: <i>%{start_date}</i></li><li>Valid until: <i>%{expiration_date}</i></li></ul><br/><br/><h2>Purchase code: %{token}</h2>" # TODO
     # Email containing the instructions and resume of a purchase
     purchase_resume:
       # Subject
@@ -1107,22 +1115,23 @@ cn:
   
   # SECTION 1.6: content of the 'Help' tips. Each 'Help' contains three subsections, with title and description. There is a different 'Help' tip for each of the following sections:
   # 1) dashboard (you find it below the keyword 'dashboard')
-  # 2) my lessons (keyword 'lessons')
-  # 3) my media elements (keyword 'media_elements')
-  # 4) advanced search (keyword 'search')
-  # 5) user's personal profile (keyword 'users')
-  # 6) Virtual Classroom (keyword 'virtual_classroom')
+  # 2) my documents (keyword 'documents')
+  # 3) my lessons (keyword 'lessons')
+  # 4) my media elements (keyword 'media_elements')
+  # 5) advanced search (keyword 'search')
+  # 6) user's personal profile (keyword 'users')
+  # 7) Virtual Classroom (keyword 'virtual_classroom')
   # For each of these keywords, the texts are structured in the following way:
   #  keyword:
   #    first:
   #      title:
-  #      description
+  #      content:
   #    second:
   #      title:
-  #      description
+  #      content:
   #    third:
   #      title:
-  #      description
+  #      content:
   
   help:
     dashboard:
@@ -1435,7 +1444,7 @@ cn:
     create_new_lesson_now: "现在建立课程"
     # Caption of the link to download the user guide (bottom right in the page)
     # 1 - views/dashboard/index.html.erb
-    download_manual: "下载用户指南"
+    download_manual: "Go to the FAQs" # TODO (FAQs = Frequently Asked Questions)
     # Caption which appears if there are no suggested lessons inside the Dashboard, because the user picked all the lessons the application suggested him
     # 1 - views/dashboard/_lessons_empty.html.erb
     emptied_lessons: "你已选择所有被推荐的课程"
@@ -2345,9 +2354,10 @@ cn:
       no_cathegory: "Other" # TODO
     # Captions used for trial accounts
     trial:
+      # The variable %{expiration_date} is replaced by the date of expiration of the trial
       # 1 - views/admin/users/_list.html.erb
       # 2 - views/admin/users/show.html.erb
-      label: "试用"
+      label: "Trial (expires %{expiration_date})" # TODO
       # Link from the header to the upgrade trial section of your profile
       # 1 - views/shared/_trial_header.html.erb
       header_link: "Upgrade" # TODO
@@ -2355,7 +2365,7 @@ cn:
       # 1 - views/users/_profile_menu.html.erb
       menu_link: "Buy" # TODO
       # Caption to remember to the user the expiration (the variable %{days} is replaced by the number of days left to expiration)
-      # 1 - views/shared/_trial_header.html.erb
+      # 1 - views/shared/_header.html.erb
       expiration: "Trial - %{days} days left" # TODO
       # Errors while trying to upgrade a trial account by a logged user
       errors:
@@ -3828,3 +3838,84 @@ cn:
       # Word used in the expression '1-10 <of> 300 items'
       # 1 - helpers/admin_helper.rb
       of_range: "属于"
+  
+  
+  # SECTION 4.3: FAQS
+  
+  faqs:
+    # Title
+    # 1 - views/layouts/faqs.html.erb
+    title: "Help and tutorials"
+    # Description visible on the gray header
+    # 1 - views/faqs/index.html.erb
+    description: "E' più di un'idea. Una tentazione forte, suggestiva, possibile. A Walter Sabatini piange il cuore. Javier Pastore, il “suo” Pastore scovato in Argentina e portato a Palermo nel 2009 quando aveva appena 20 anni, langue tra panchina e tribuna nel Paris St.Germain. Blanc non lo vede, lui gioca poco e male. Quale miglior momento per tentare l'assalto all'ex fuoriclasse del Palermo? Il ragazzo dell’Huracan deve davvero tanto al ds Sabatini."
+    # Link to come back to the main FAQS page
+    # 1 - views/faqs/lessons.html.erb
+    # 2 - views/faqs/media_elements.html.erb
+    # 3 - views/faqs/virtual_classroom.html.erb
+    # 4 - views/faqs/profile.html.erb
+    back: "Back to list"
+    # FAQS about lessons (all of them have a common description which is visible on the gray header)
+    lessons:
+      # 1 - views/faqs/index.html.erb
+      # 2 - views/faqs/lessons.html.erb
+      title: "Lessons"
+      # 1 - views/faqs/lessons.html.erb
+      description: "Dzemaili pensava di poter avere più spazio in questo inizio stagione, ma siamo a un terzo del campionato, saprà rendersi utile come già capitato con la precedente gestione di Mazzarri, quando non iniziò tra i titolari ma seppe conquistarsi un spazio importante, realizzando gol pesanti, che magari non avrebbe fatto se per esempio lo scorso gennaio Nocerino avesse accettato il trasferimento a Napoli."
+      # They are organized in arrays, which first element is the title and the second element is the content
+      # 1 - controllers/faqs_controller.rb
+      # 2 - controllers/faqs_controller.rb
+      contents: [
+        ["Come creare una lezione", "Frecciata di Claudio Lotito a James Pallotta. Il numero uno della Roma ha dichiarato che in Lega ci vogliono uomini nuovi e il presidente della Lazio al suo arrivo in via Rosellini ha replicato: \"Se lui viene qui può dare un contribuito, ma se l'uomo nuovo è l'ex amministratore che ha creato un buco di 50 milioni in Alitalia...\". Poi a ruota su Thohir: \"Lo aspettiamo per conoscerci. Potrà dare un contributo sui diritti esteri e siamo aperti a tutti i contributi che possono dare una mano a far crescere il nostro movimento\"."],
+        ["Posso far tornare privata o eliminare una lezione che ho condiviso?", "Sì, condividere le tue lezioni è importante. Potrai comunque decidere in qualsiasi momento di farle tornare private, modificarle o eliminarle. Ogni volta che effettui una azione su una tua lezione condivisa il sistema avvertirà gli utenti che la stanno seguendo."],
+        ["Posso usare o modificare la lezione di un altro docente?", "Sì, ci sono due modi di utilizzare le lezioni condivise da altri docenti: seguire una lezione o creare una copia modificabile. Nel primo caso, tutte le azioni del docente proprietario avranno effetto anche sulla tua visualizzazione. Creando una copia avrai a disposizione l’ultima versione “congelata” della lezione sulla quale dovrai effettuare modifiche o integrazioni."],
+        ["Cosa succede se un docente modifica una sua lezione che sto usando?", "Le azioni che un docente può effettuare su una sua lezione condivisa hanno effetto su tutte le condivisioni. Quando un docente rende privata, cancella o effettua una modifica su una sua lezione che stai utilizzando, il sistema provvederà ad inviarti una notifica. Se hai bisogno di una versione “congelata” di una lezione puoi creare una copia modificabile."],
+        ["Posso visualizzare le mie lezioni offline?", "Sì, DESY ti dà la possibilità di guardare le lezioni anche quando non sei connesso ad internet. Quando sei in fase di visualizzazione, clicca sull’icona ( ) per scaricare la lezione sul tuo computer."],
+        ["Sono un docente di matematica, posso aggiungere formule alla mia lezione?", "Certamente, puoi farlo in una qualsiasi slide di testo tra quelle a disposizione. Clicca sull’icona ( ) nella palette degli strumenti di formattazione testuale per accedere all’editor matematico, scrivi la tua formula e aggiungila alla slide."]
+      ]
+    # FAQS about media elements (all of them have a common description which is visible on the gray header)
+    media_elements:
+      # 1 - views/faqs/index.html.erb
+      # 2 - views/faqs/media_elements.html.erb
+      title: "Elements"
+      # 1 - views/faqs/media_elements.html.erb
+      description: "È saltato in Lega Calcio il primo incontro ufficiale tra il neopresidente nerazzurro Erick Thohir e Adriano Galliani. Thohir infatti ha lasciato la sede della Lega verso le 11.45, subito dopo i saluti del ministro Angelino Alfano, mentre Adriano Galliani è arrivato per ultimo all'assemblea pochi istanti dopo che il suo rivale sportivo era uscito. Il presidente dell'Inter era accompagnato dal suo vice Angelomario Moratti."
+      # They are organized in arrays, which first element is the title and the second element is the content
+      # 1 - controllers/faqs_controller.rb
+      # 2 - controllers/faqs_controller.rb
+      contents: [
+        ["Quali file multimediali posso usare nelle mie lezioni?", "Puoi caricare i più comuni formati di immagini, audio e video con i quali comporre le tue lezioni multimediali. Inoltre è possibile caricare diverse tipologie di documenti di approfondimento che puoi aggiungere alle tue slide come allegati disponibili al download. (Segue lista)"],
+        ["Posso eliminare un elemento che ho reso pubblico?", "No, non puoi far tornare privato o eliminare un elemento che hai già condiviso. Ricorda che anche quando rendi pubblica una lezione, tutti gli elementi didattici in essa contenuti vengono automaticamente condivisi nell’archivio e, a differenza della lezione, non potranno più essere cancellati o resi privati. Puoi comunque inviare una segnalazione alla redazione che provvederà alla rimozione dell’elemento. Fai attenzione che se metti un elemento privato in una lezione pubblica tale elemento verrà automaticamente reso pubblico"],
+        ["Ho caricato un video, ma vorrei usarne solo una parte...", "Nessun problema. Grazie agli speciali strumenti di editing di DESY puoi tagliare e combinare video, immagini e audio per creare nuovi elementi multimediali più adatti alle tue esigenze didattiche."],
+        ["Posso usare o modificare elementi di altri utenti?", "Sì, per utilizzare elementi di altri utenti è sufficiente utilizzare il motore di ricerca e aggiungere gli elementi che preferisci al tuo archivio personale. Successivamente potrai aggiungerli alle tue lezioni, modificarli o combinarli con gli speciali editor multimediali di DESY."],
+        ["Ho trovato un contenuto inappropriato...", "La redazione di DESY tiene in costante controllo la qualità dei contenuti caricati dagli utenti, ma se dovessi imbatterti in un contenuto che ritieni inappropriato segnalano alla redazione."]
+      ]
+    # FAQS about the Virtual Classroom (all of them have a common description which is visible on the gray header)
+    virtual_classroom:
+      # 1 - views/faqs/index.html.erb
+      # 2 - views/faqs/virtual_classroom.html.erb
+      title: "Virtual Classroom"
+      # 1 - views/faqs/virtual_classroom.html.erb
+      description: "L'episodio di Marassi e degli ultrà del Genoa ha fatto 'scuola' e così, ieri, al termine della partita persa per 3-1 sul campo del Francavilla in Sinni i tifosi del Monopoli (terzo in classifica nel Girone H della Serie D) hanno preteso che i giocatori si togliessero le maglie della squadra biancoverde e le lasciassero sul campo. Il 22 aprile del 2012 i giocatori del Genoa furono costretti a togliersi le magliette durante il secondo tempo, quando, in casa, stavano perdendo 4-0 contro il Siena."
+      # They are organized in arrays, which first element is the title and the second element is the content
+      # 1 - controllers/faqs_controller.rb
+      # 2 - controllers/faqs_controller.rb
+      contents: [
+        ["Quali tipologie di elementi didattici posso usare?", "In DESY puoi caricare i più comuni formati di immagini, audio e video con i quali comporre le tue lezioni multimediali. Inoltre è possibile caricare diverse tipologie di documenti di approfondimento che puoi aggiungere alle tue slide come allegati disponibili al download."],
+        ["Posso inviare una lezione via mail?", "Sì, è possibile inviare le tue lezioni via posta o condividerle sui principali social network. Se vuoi inviare le tue lezioni a uno o più gruppi di indirizzi, puoi creare delle liste personalizzate nella sezione “Mailing list” del tuo profilo."],
+        ["Posso inviare una playlist via mail?", "No, purtroppo non è possibile. Le lezioni posso essere inviate via email o condivise sui social network solo singolarmente."]
+      ]
+    # FAQS about the user's profile (all of them have a common description which is visible on the gray header)
+    profile:
+      # 1 - views/faqs/index.html.erb
+      # 2 - views/faqs/profile.html.erb
+      title: "Profile"
+      # 1 - views/faqs/profile.html.erb
+      description: "Tachtisidis è stato acquistato per sostituire Lodi. In qualche circostanza, magari, questa sensazione è stata confermata anche da più di un addetto ai lavori. Se pensiamo al pallonetto spettacolare che fece nel mese di luglio di un anno fa, quando sulla panchina c'era Zeman e il greco era giunto nella Capitale per illuminare il centrocampo, per prendere le redini della regia della squadra giallorossa (più volte al posto di De Rossi)."
+      # They are organized in arrays, which first element is the title and the second element is the content
+      # 1 - controllers/faqs_controller.rb
+      # 2 - controllers/faqs_controller.rb
+      contents: [
+        ["Come faccio a sapere quanti utenti seguono una mia lezione?", "Per conoscere tutte le statistiche che riguardano la tua attività su DESY puoi accedere alla sezione “Statistiche” del tuo profilo."],
+        ["Come faccio a sapere quanti utenti seguono una mia lezione?", "Per conoscere tutte le statistiche che riguardano la tua attività su DESY puoi accedere alla sezione “Statistiche” del tuo profilo."]
+      ]

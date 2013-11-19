@@ -21,12 +21,16 @@
   <% end %>
   <br class="clearfloat">
   <div class="boxContentIndex">
-    <p><%= t('dashboard.help_using_desy', :desy => SETTINGS['application_name']) %><br/>
-    <%= link_to t('dashboard.download_manual'), "/user_guide_#{I18n.locale.to_s}.pdf", :target => "_blank" %>
+    <p>
+      <%= t('dashboard.help_using_desy', :desy => SETTINGS['application_name']) %><br/>
+      <%= link_to t('dashboard.download_manual'), faqs_path %>
+    </p>
   </div>
   <div class="boxContentIndex" style="float:right">
-    <p><%= t('dashboard.talk_with_desy', :desy => SETTINGS['application_name']) %><br>
-    <a><%= t('dashboard.contact_us') %></a></p>
+    <p>
+      <%= t('dashboard.talk_with_desy', :desy => SETTINGS['application_name']) %><br>
+      <%= link_to t('dashboard.contact_us'), "mailto:#{SETTINGS['application']['contact_us_email']}" %>
+    </p>
   </div>
 </div>
 

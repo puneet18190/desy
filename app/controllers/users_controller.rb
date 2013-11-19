@@ -85,13 +85,15 @@ class UsersController < ApplicationController
         )
       end
       UserMailer.account_confirmation(@user).deliver
+      purchase = @user.purchase
+      UserMailer.purchase_full(purchase).deliver if purchase && User.where(:purchase_id => purchase.id).count >= purchase.accounts_number
       render 'users/fullpage_notifications/confirmation/email_sent'
     else
       @errors = convert_user_error_messages @user.errors
       location = Location.get_from_chain_params params[:location]
       @locations = location.nil? ? [{:selected => 0, :content => Location.roots.order(:name)}] : location.get_filled_select_for_personal_info
       @school_level_ids = SchoolLevel.order(:description).map{ |sl| [sl.to_s, sl.id] }
-      @subjects         = Subject.order(:description)
+      @subjects         = Subject.extract_with_cathegories
       render 'prelogin/registration', :layout => 'prelogin'
     end
   end
@@ -393,7 +395,7 @@ class UsersController < ApplicationController
     else
       @errors = convert_user_error_messages @user.errors
       if in_subjects
-        @subjects = Subject.order(:description)
+        @subjects = Subject.extract_with_cathegories
         render :subjects
       else
         @locations = Location.get_from_chain_params(params[:location]).get_filled_select_for_personal_info

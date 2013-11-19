@@ -3,7 +3,7 @@
     <ul>
       <li><%= link_to t('prelogin.main_page.menu_link'), root_path %></li>
       <li><%= link_to t('prelogin.what_is.menu_link', :desy => SETTINGS['application_name']), what_is_path %></li>
-      <li><%= prelogin_contact_us_menu_link %></li>
+      <li><%= contact_us_link %></li>
     </ul>
    <%= render :partial => '/prelogin/login', :locals => {:from_sign_up => true} %>
   </div>
@@ -16,6 +16,6 @@
 <div class="containerText">
   <h1><%= t('registration.title') %></h1>
   <h2><%= t('registration.subtitle', :desy => SETTINGS['application_name']) %></h2>
-  <%= render :partial => 'registration_form', :locals => {:user => @user, :trial => @trial, :errors => @errors, :locations => @locations, :school_level_ids => @school_level_ids, :forced_location => @forced_location, :subjects => @subjects} %>
+  <%= render :partial => 'prelogin/registration_form', :locals => {:user => @user, :trial => @trial, :errors => @errors, :locations => @locations, :school_level_ids => @school_level_ids, :forced_location => @forced_location, :subjects => @subjects} %>
   <br class="clearfloat"><br class="clearfloat"><br class="clearfloat">
 </div>
