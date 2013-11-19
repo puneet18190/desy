@@ -85,6 +85,7 @@ class UsersController < ApplicationController
         )
       end
       UserMailer.account_confirmation(@user).deliver
+      UserMailer.purchase_full(@user.purchase).deliver if @user.purchase
       render 'users/fullpage_notifications/confirmation/email_sent'
     else
       @errors = convert_user_error_messages @user.errors
