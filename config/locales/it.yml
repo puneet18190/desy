@@ -1432,7 +1432,7 @@ it:
   dashboard:
     # The caption of the link to open the 'contacts' page (the link is on the bottom left of the Dashboard)
     # 1 - views/dashboard/index.html.erb
-    contact_us: "Contatti"
+    contact_us: "Contattaci"
     # Caption of the link opening the lesson editor (in each page of lessons inside the Dashboard, after the last lesson there is a button with a 'plus' which opens the lesson editor)
     # 1 - views/dashboard/_lessons_and_media_elements.html.erb
     # 2 - views/dashboard/_lessons_and_media_elements.html.erb
@@ -1916,7 +1916,7 @@ it:
     # Secton of contacts
     contact_us:
       # 1 - helpers/application_helper.rb
-      menu_link: "Contatti"
+      menu_link: "Contattaci"
     # Home page
     main_page:
       # 1 - views/prelogin/registration.html.erb

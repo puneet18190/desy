@@ -2,87 +2,154 @@
 @import 'mixins';
 
 html.faqs-controller {
+  
   .faqsHeader {
+    
     background-color: #5d5d5d;
     padding: 8px 0 12px 40px;
-    height:34px;
+    height: 34px;
+    
     h1 {
-      color:white;
+      
+      color: white;
       font: 30px 'Nunito', sans-serif;
-      padding:0px;
+      padding: 0px;
+      
     }
+    
   }
+  
   .content {
-    padding-top:0;
+    
+    padding-top: 0;
+    
     .gray-description {
+      
       background-color: #f5f5f5;
-      padding:30px 40px;
-      color:#666;
+      padding: 30px 40px;
+      color: #666;
+      
+      a {
+        
+        font-weight: bold;
+        
+      }
+      
+      a:hover {
+        
+        text-decoration: underline;
+        
+      }
+      
     }
+    
     .faqs_content {
       
       div {
-        float:left;
+        
+        float: left;
         width: 304px;
-        height:300px;
-        margin:0 3% 5% 0;
+        height: 300px;
+        margin: 0 3% 5% 0;
+        
         &:last-child {
+          
           margin-right: 0;
+          
         }
+        
         ul {
-          padding-top:15px;
+          
+          padding-top: 15px;
+          
           li {
+            
             list-style: none;
-            margin-bottom:15px;
+            margin-bottom: 15px;
             font-weight: bold;
+            
           }
+          
         }
+        
       }
+      
     }
+    
     h2 {
-      font: 23px 'Nunito', sans-serif;  
-      text-transform:uppercase;
+      
+      font: 23px 'Nunito', sans-serif;
+      text-transform: uppercase;
       font-weight: 700;
-      padding-bottom:0;
+      padding-bottom: 0;
+      
     }
+    
     h3 {
-      font: 23px 'Nunito', sans-serif;  
-      color:#5d5c5c;
-      font-size:20px;
-      padding-top:10px;
+      
+      font: 23px 'Nunito', sans-serif;
+      color: #5d5c5c;
+      font-size: 20px;
+      padding-top: 10px;
+      
     }
+    
     .lessons {
-      padding:30px 40px;
-        h2.title {
+      
+      padding: 30px 40px;
+        
+      h2.title {
+        
         color: $orange;
+        
       }
+      
     }
+    
     .media_elements {
-      padding:30px 40px;
+      
+      padding: 30px 40px;
+      
       h2.title {
+        
         color: $green;
+        
       }
+      
     }
+    
     .virtual_classroom {
-      padding:30px 40px;
+      
+      padding: 30px 40px;
+      
       h2.title {
-        color: $blue
+        
+        color: $blue;
+        
       }
+      
     }
+    
     .profile {
-      padding:30px 40px;
+      
+      padding: 30px 40px;
+      
     }
+    
   }
+  
   .backBtn {
+    
     text-transform: uppercase;
-    font-size:13px;
+    font-size: 13px;
     font-weight: bold;
-    color:#5d5d5d;
-    padding:10px 35px;
+    color: #5d5d5d;
+    padding: 10px 35px;
     background-image: url('/assets/back_arrow.png');
     background-repeat: no-repeat;
     background-size: 26px 26px;
     background-position: center left;
-
+    
   }
+  
 }
