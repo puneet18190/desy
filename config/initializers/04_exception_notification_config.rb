@@ -1,5 +1,3 @@
-require 'pp'
-
 require 'exception_notification'
 require 'exception_notification/rails'
 
@@ -11,31 +9,8 @@ module ExceptionNotifier
   # Notifier for the exception logs
   class LogNotifier
 
-    module ExceptionLogger
-      LOG_FOLDER = Pathname(Rails.application.config.paths['log'].first).dirname
-      # Path to the errors log file
-      LOG_PATH   = LOG_FOLDER.join "exceptions.#{Rails.env}.log"
-      # logger instance
-      LOGGER     = Logger.new(LOG_PATH)
-
-      LOGGER.level     = Logger::ERROR
-      LOGGER.formatter = Logger::Formatter.new
-
-      # Logs exception together with an env hash (which can be +nil+)
-      def self.log(exception, env = nil)
-        pp_env      = PP.pp env, ''
-        log_content = { message: exception.message, backtrace: exception.backtrace.join("\n"), env: pp_env }.to_yaml
-
-        LOGGER.error <<-LOG
-
--- BEG EXCEPTION (#{exception.class}) --
-#{log_content}
--- END EXCEPTION (#{exception.class}) --
-LOG
-      end
-    end
-
     def initialize(options)
+      @options = options
     end
 
     def call(exception, options = {})
@@ -83,7 +58,7 @@ LOG
     end
 
     def marshal_dumpable_env(env)
-      return env if env.empty?
+      return env if env.blank?
 
       env = env.dup
 
@@ -103,13 +78,13 @@ ExceptionNotification.configure do |config|
 
   # Adds a condition to decide when an exception must be ignored or not.
   # The ignore_if method can be invoked multiple times to add extra conditions.
-  config.ignore_if do |exception, options|
-    not Rails.env.production?
-  end
+  #config.ignore_if do |exception, options|
+  #  not Rails.env.production?
+  #end
 
   # Notifiers =================================================================
 
-  # Email notifier sends notifications by email.
+  # Email notifier sends notifications by email
   # config.add_notifier :email, {
   #   :email_prefix         => "[ERROR] ",
   #   :sender_address       => %{"Notifier" <notifier@example.com>},
@@ -117,10 +92,11 @@ ExceptionNotification.configure do |config|
   # }
 
   # Exception logs
-  config.add_notifier :log, {}
+  config.add_notifier :log, {}  
 
-  # Email notifications sent by delayed jobs
-  config.add_notifier :delayed_job_email, {
+  # The email notifier is :email when we are in a Delayed::Job process, otherwise (when we are in the web app process) is :delayed_job_email
+  notifier_name = DELAYED_JOB ? :email : :delayed_job_email
+  config.add_notifier notifier_name, {
     email_prefix:         "[#{SETTINGS['application_name']}] "            ,
     sender_address:       %Q{"Error" #{SETTINGS['application']['email']}} ,
     exception_recipients: SETTINGS['application']['maintainer']['emails']

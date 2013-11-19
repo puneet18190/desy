@@ -12,6 +12,10 @@ module Media
           # Performs the job
           def perform
             Composer.new(params).run
+          rescue => e
+            ExceptionLogger.log e
+            ExceptionNotifier.notify_exception e
+            raise e
           end
         end
       end
