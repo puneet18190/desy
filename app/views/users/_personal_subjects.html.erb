@@ -20,11 +20,11 @@
           <% if user.errors.include?(:users_subjects) %>
             <div class="field_with_errors">
               <%= check_box_tag 'user[subject_ids][]', subject.id, user.users_subjects.map(&:subject_id).include?(subject.id), id: html_id, class: 'regular-checkbox big-checkbox' %>
-              <%= label_tag html_id, '' %>
+              <%= label_tag html_id, '', :class => 'unchecked' %>
             </div>
           <% else %>
             <%= check_box_tag 'user[subject_ids][]', subject.id, user.users_subjects.map(&:subject_id).include?(subject.id), id: html_id, class: 'regular-checkbox big-checkbox' %>
-            <%= label_tag html_id, '' %>
+            <%= label_tag html_id, '', :class => 'unchecked' %>
           <% end %>
           <span><%= subject.to_s %></span>
         </div>
