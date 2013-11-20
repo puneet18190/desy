@@ -1240,7 +1240,7 @@ it:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Crea una lista di riproduzione"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "Dopo aver aggiunto delle lezioni alla sezione <b>Playlist</b>, trascina quelle che vuoi riprodurre in sequenza, nell'<b>area attiva</b> alla destra della pagina.<br/>Caricata la tua lista di riproduzione potrai modificarne l'ordine semplicemente spostando in alto o in basso una delle  lezioni caricate." # FIXME nomenclatura VirtualClassroom
+        content: "Dopo aver aggiunto delle lezioni alla sezione <b>Playlist</b>, trascina quelle che vuoi riprodurre in sequenza, nell'<b>area attiva</b> alla destra della pagina.<br/>Caricata la tua lista di riproduzione potrai modificarne l'ordine semplicemente spostando in alto o in basso una delle lezioni caricate." # FIXME nomenclatura VirtualClassroom
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Invia una lezione via mail"

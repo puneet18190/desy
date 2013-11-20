@@ -1233,19 +1233,19 @@ en:
     virtual_classroom:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Playlist di DESY" # FIXME nomenclatura VirtualClassroom
+        title: "DESY's Virtual Classroom"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "Organizzare un grande numero di lezioni può essere difficoltoso. La sezione <b>Playlist</b> nasce per aiutarti nella razionalizzazione e nella pianificazione dei tuoi contenuti didattici.<br/>Utilizza la sezione <b>Playlist</b> per gestire tutte le lezioni che stai per riprodurre, organizzale in liste di riproduzione, o invia da questa pagina il link di una lezione ad uno o più indirizzi email." # FIXME nomenclatura VirtualClassroom
+        content: "Organizing a large number of lessons is not easy: the section called <b>Virtual Classroom</b> is a space thought to help you organizing lessons' visualization.<br/>Use your Virtual Classroom to manage the lessons you want to reproduce, create playlists, or send them by email to your friends"
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Crea una lista di riproduzione"
+        title: "Creating a playlist"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "Dopo aver aggiunto delle lezioni alla sezione <b>Playlist</b>, trascina quelle che vuoi riprodurre in sequenza, nell'<b>area attiva</b> alla destra della pagina.<br/>Caricata la tua lista di riproduzione potrai modificarne l'ordine semplicemente spostando in alto o in basso una delle  lezioni caricate." # FIXME nomenclatura VirtualClassroom
+        content: "Once you added a set of lessons to your <b>Virtual Classroom</b>, drag the ones you wish to reproduce in sequence to the active area on the right of the screen.<br/>You can modify the order of reproduction of your playlist just dragging and moving the lessons vertically"
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Invia una lezione via mail"
+        title: "Send a lesson by email"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "L'icona della <b>busta</b> ti permette di inviare il link di una lezione ad un indirizzo email o ad una mailing list precedentemente compilata.<br/>Fai attenzione, per creare una nuova <b>mailing list</b> devi accedere alla sezione <b>Profilo</b>"
+        content: "The icon <b>mailbox</b> allows you to send the public url of your lessons to an email address or to a mailing list previously loaded.<br/>Remember that mailing lists can be created in the section <b>personal profile</b>"
   
   
   # SECTION 1.7: Page rendered if the browser is not supported by the application
