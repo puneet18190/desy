@@ -206,11 +206,23 @@
     
     .plus {
       
-      @include svg-circle-icon-handler($assets-empty-add-buttons_svg, 56px, 2, 2, 1, 0, 1, 1, 1, 1);
+      @include svg-circle-icon-handler-without-hover($assets-empty-add-buttons_svg, 56px, 2, 2, 1, 0, 1);
+      
+      &.encendido {
+        
+        @include svg-circle-icon-handler-without-hover($assets-empty-add-buttons_svg, 56px, 2, 2, 1, 1, 1);
+        
+      }
       
       &.vc {
         
-        @include svg-circle-icon-handler($assets-empty-add-buttons_svg, 56px, 2, 2, 1, 0, 0, 1, 1, 0);
+        @include svg-circle-icon-handler-without-hover($assets-empty-add-buttons_svg, 56px, 2, 2, 1, 0, 0);
+        
+        &.encendido {
+          
+          @include svg-circle-icon-handler-without-hover($assets-empty-add-buttons_svg, 56px, 2, 2, 1, 1, 0);
+          
+        }
         
       }
       

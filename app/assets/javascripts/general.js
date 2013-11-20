@@ -186,6 +186,12 @@ Initializer for all javascript and JQuery plugins.
 @for GeneralDocumentReady
 **/
 function javaScriptAnimationsDocumentReady() {
+  $body.on('mouseenter', '.empty-situation-container a', function() {
+    $(this).find('.plus').addClass('encendido');
+  });
+  $body.on('mouseleave', '.empty-situation-container a', function() {
+    $(this).find('.plus').removeClass('encendido');
+  });
   $('#notifications_list').jScrollPane({
     autoReinitialise: true
   });
