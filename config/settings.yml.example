@@ -144,9 +144,6 @@ media_test: false
 saas_registration_mode: false
 # Duration (in days) of the trial in paas
 saas_trial_duration: 30
-# URL types for url retrieving
-url_types: 
-  - :export
 # Prefix added to temporary files and folders names
 tempfiles_prefix: 'desy'
 # Person who manages the business of purchases

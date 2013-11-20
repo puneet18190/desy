@@ -2,7 +2,7 @@ require 'pathname'
 
 module UrlByUrlType
 
-  URL_TYPES = Hash[ SETTINGS['url_types'].map{ |v| [v,v] } ]
+  EXPORT = :export
 
   module InstanceMethods
 
@@ -11,7 +11,7 @@ module UrlByUrlType
     def url_by_url_type(url, url_type)
       case url_type
 
-      when URL_TYPES[:export]
+      when EXPORT
         Pathname(url).relative_path_from(Pathname('/')).to_s
       else
         url
