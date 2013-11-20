@@ -3859,7 +3859,7 @@ it:
     lessons:
       # 1 - views/faqs/index.html.erb
       # 2 - views/faqs/lessons.html.erb
-      title: "Lessons"
+      title: "Lezioni"
       # 1 - views/faqs/lessons.html.erb
       description: "L'area lezioni è la sezione di DESY dove vengono archiviate tutte le lezioni che hai creato o che hai deciso di seguire fra quelle prodotte da altri utenti del network. Se hai dei dubbi relativi alla gestione o alla creazione di una nuova lezione che non vengono risolti da una delle nostre FAQs non esitare a contattarci."
       # They are organized in arrays, which first element is the title and the second element is the content
@@ -3877,7 +3877,7 @@ it:
     media_elements:
       # 1 - views/faqs/index.html.erb
       # 2 - views/faqs/media_elements.html.erb
-      title: "Elements"
+      title: "Elementi"
       # 1 - views/faqs/media_elements.html.erb
       description: "L'area elementi è la sezione di DESY dove vengono archiviati tutti gli elementi didattici che hai caricato o che hai deciso di aggiungere alla tua lista personale fra quelle presenti nel database di DESY. In questa sezione hai accesso agli editor specifici (immagine, audio, video) utili a modificare un elemento sistente o a crearne uno nuovo. Se nessuna delle nostre FAQs ti sarà utile a risolvere i tuoi dubbi relativi all'utilizzo della sezione non esitare a contattarci."
       # They are organized in arrays, which first element is the title and the second element is the content
