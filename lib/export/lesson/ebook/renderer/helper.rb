@@ -24,6 +24,9 @@ module Export
           MEDIA_ELEMENT_MIME_TYPES        = Media::MIME_TYPES
           MATH_IMAGES_ARCHIVE_FOLDER_NAME = Shared::MATH_IMAGES_ARCHIVE_FOLDER_NAME
 
+          include ActionView::Helpers::TranslationHelper
+          include ApplicationHelper
+
           def dcterms_modified(lesson)
             lesson.updated_at.utc.strftime DCTERMS_MODIFIED_FORMAT
           end

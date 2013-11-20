@@ -18,10 +18,10 @@
         %>
         <% if is_horizontal?(width, height, 'cover') %>
           <% resized_width = resize_width(width, height, 'cover') %>
-          <img style="left:<%= image.alignment %>px; width:<%= resized_width %>px" data-url="<%= url %>" alt="<%= image.media_element.title %>" <%= effective_url %>>
+          <img style="left:<%= image.alignment %>px; width:<%= resized_width %>px" data-url="<%= url %>" alt="<%= image.media_element.title %>" <%= effective_url %>/>
         <% else %>
           <% resized_height = resize_height(width, height, 'cover') %>
-          <img style="top:<%= image.alignment %>px; height:<%= resized_height %>px" data-url="<%= url %>" alt="<%= image.media_element.title %>" <%= effective_url %>>
+          <img style="top:<%= image.alignment %>px; height:<%= resized_height %>px" data-url="<%= url %>" alt="<%= image.media_element.title %>" <%= effective_url %>/>
         <% end %>
       <% end %>
     </div>
