@@ -172,7 +172,7 @@ Initializer for the loading form.
 @for DocumentsDocumentReady
 **/
 function documentsDocumentReadyUploader() {
-  $body.on('click', '#upload_document', function() {
+  $body.on('click', '._load_document', function() {
     showLoadDocumentPopUp();
   });
   $body.on('change', 'input#new_document_input', function() {
