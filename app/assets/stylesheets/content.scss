@@ -193,13 +193,15 @@
 .empty-situation-container {
   
   width: 100%;
+  height: 200px;
+  margin-top: 70px;
   text-align: center;
+  font: 100% 'Nunito', "Arial Rounded MT Bold", sans-serif;
   
   a {
     
     display: inline-block;
     height: 76px;
-    background-color: red;
     text-align: left;
     
     .plus {
@@ -221,13 +223,19 @@
       
       .reason {
         
-        
+        height: 13px;
+        padding: 15px 0 0 10px;
+        font: 13px Arial,Helvetica,sans-serif;
+        color: #939393;
         
       }
       
       .big-prompt {
         
-        
+        height: 23px;
+        padding: 2px 0 23px 10px;
+        font-size: 23px;
+        color: #5D5C5C;
         
       }
       
