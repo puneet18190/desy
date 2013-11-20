@@ -3877,26 +3877,26 @@ en:
     media_elements:
       # 1 - views/faqs/index.html.erb
       # 2 - views/faqs/media_elements.html.erb
-      title: "Elementi"
+      title: "Elements"
       # 1 - views/faqs/media_elements.html.erb
-      description: "L'area elementi è la sezione di DESY dove vengono archiviati tutti gli elementi didattici che hai caricato o che hai deciso di aggiungere alla tua lista personale fra quelle presenti nel database di DESY. In questa sezione hai accesso agli editor specifici (immagine, audio, video) utili a modificare un elemento sistente o a crearne uno nuovo. Se nessuna delle nostre FAQs ti sarà utile a risolvere i tuoi dubbi relativi all'utilizzo della sezione non esitare a contattarci."
+      description: "The elements page is the section of DESY where all your didactic elements are stored, together with the ones you linked from the public database. From this section you can open the specific editors (Image, Audio and Video Editor) useful to edit an existing element or to craete a new one. If our FAQs don't satisfy your doubts about this section, don't hesitate contacting us."
       # They are organized in arrays, which first element is the title and the second element is the content
       # 1 - controllers/faqs_controller.rb
       # 2 - controllers/faqs_controller.rb
       contents: [
-        ["Quali file multimediali posso usare nelle mie lezioni?", "Puoi caricare i più comuni formati di immagini, audio e video con i quali comporre le tue lezioni multimediali. Inoltre è possibile caricare diverse tipologie di documenti di approfondimento che puoi aggiungere alle tue slide come allegati disponibili al download."],
-        ["Posso eliminare un elemento che ho reso pubblico?", "No, non puoi far tornare privato o eliminare un elemento che hai già condiviso. Ricorda che anche quando rendi pubblica una lezione, tutti gli elementi didattici in essa contenuti vengono automaticamente condivisi nell'archivio e, a differenza della lezione, non potranno più essere cancellati o resi privati. Puoi comunque inviare una segnalazione alla redazione che provvederà alla rimozione dell'elemento.<br/>Un elemento privato verrà automaticamente condiviso anche al momento del suo inserimento in una lezione già pubblica."],
-        ["Ho caricato un video, ma vorrei usarne solo una parte...", "Nessun problema. Grazie agli speciali strumenti di editing di DESY puoi tagliare e combinare video, immagini e audio per creare nuovi elementi multimediali più adatti alle tue esigenze didattiche."],
-        ["Posso usare o modificare elementi di altri utenti?", "Sì, per utilizzare elementi di altri utenti è sufficiente utilizzare il motore di ricerca e aggiungere gli elementi che preferisci al tuo archivio personale. Successivamente potrai aggiungerli alle tue lezioni, modificarli o combinarli con gli speciali editor multimediali di DESY."],
-        ["Ho trovato un contenuto inappropriato...", "La redazione di DESY tiene in costante controllo la qualità dei contenuti caricati dagli utenti, ma se dovessi imbatterti in un contenuto che ritieni inappropriato segnalano alla redazione."]
+        ["Which multimedia files I am allowed to use inside my lessons?", "You can load images, videos and audios in all the most common formats. Moreover, it's possible to load different types of documents to be attached to the slides."],
+        ["May I remove a public element?", "No, you can't remove nor modify an element that you already shared. Remember that when you share a lesson all the private elements contained in it are automatically shared, and unlike for lessons, for elements sharing is not reversible. If you make a mistake and shared an element that you really want to keep private, you can always contact the webmaster and ask to remove the element.<br/>A private element is automatically shared also in case it is added to a lesson which is already public."],
+        ["I loaded a video, but I need to use only a part of it...", "No problem. Thanks to DESY's Video Editor you can cut any video, and compose a new one out of existing images, videos and audio tracks."],
+        ["May I use or modify elements loaded by other users?", "Yes, to find elements loaded by other users just go on the search engine page and look for them. Once they have been added to your elements page, you can modify them using the specific editor."],
+        ["I found an inappropriate content...", "DESY's administration team keeps constantly an eye on the quality of contents loaded by the users; in any case, if you find anything that in your opinion is inappropriate, we invite you to send us a notification about it using the specific button."]
       ]
     # FAQS about the Virtual Classroom (all of them have a common description which is visible on the gray header)
     virtual_classroom:
       # 1 - views/faqs/index.html.erb
       # 2 - views/faqs/virtual_classroom.html.erb
-      title: "Playlist" # FIXME "Virtual Classroom"
+      title: "Virtual Classroom"
       # 1 - views/faqs/virtual_classroom.html.erb
-      description: "La sezione <b>Playlist</b> è stata pensata per aiutarti a razionalizzare al meglio i contenuti didattici che stai per utilizzare. Carica nella sezione Playlist tutte le lezioni che stai per esporre e se ti è utile crea una lista di riproduzione per visualizzare più lezioni in sequenza.<br/>Da questa pagina potrai anche inviare il link ad una delle tue lezioni ad uno o più indirizzi email.<br/>Se hai dei dubbi sull'utilizzo di questa sezione, non esitare a contattarci." # FIXME nomenclatura VirtualClassroom
+      description: "The section called <b>Virtual Classroom</b> has been thought to help you organizing the lessons you want to reproduce. Load in your Virtual Classroom all the lessons that you are going to reproduce, and in case of necessity help yourself with a playlist to visualize them in sequence.<br/>From this page you are also allowed to send your lessons to users who are not subscribed in DESY.<br/>If after reading our FAQs you have still doubts about the use of this section, don't hesitate contacting us."
       # They are organized in arrays, which first element is the title and the second element is the content
       # 1 - controllers/faqs_controller.rb
       # 2 - controllers/faqs_controller.rb
