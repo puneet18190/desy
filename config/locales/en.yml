@@ -1252,12 +1252,13 @@ en:
   
   browsers:
     # Title of the page
-    title: "Browser not supported"
-    # Content of the page
-    content:
-      title: "%{desy} doesn't support your browser!"
-      description: "The technologies used in our application wouldn't work properly in your browser. To use %{desy} you need to update your browser, or download a newer one."
+    # 1 - views/shared/_browser_not_supported.html.erb
+    title: "%{desy} doesn't support your browser!"
+    # Description of the page
+    # 1 - views/shared/_browser_not_supported.html.erb
+    description: "The technologies used in our application wouldn't work properly in your browser. To use %{desy} you need to update your browser, or download a newer one."
     # Links where it's possible to download updated browsers
+    # 1 - views/shared/_browser_not_supported.html.erb
     links: "Links to update your browser"
   
   

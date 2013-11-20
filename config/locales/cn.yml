@@ -1133,132 +1133,132 @@ cn:
   #      title:
   #      content:
   
-  help:
+    help:
     dashboard:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "欢迎到%{desy}！"
+        title: "Welcome to DESY!" # TODO
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "基于你感兴趣的主题，在我们的数据库中，在这个栏目中你能发现课程和单元。如果你点击课程或单元\"加号\"图标，你将把它增加到你个人部分，在那里你能修改和使用它。那个 \"小眼睛\"图标打开预览。"
+        content: "Is it your first time in DESY? In this page you find lessons and elements that might interest you. Any new lesson or didactic element, associated to one of your subjects of interest, will be added to this section as soon as it appears in our public database." # TODO
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "为你选择 - 单元"
+        title: "Selected for you - elements" # TODO
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "请选择我们为你推荐的课程单元！如果你没有找到任何感兴趣的课程单元，点击\"加载新单元\"按钮，你能上传你自己的课程单元。"
+        content: "Find out which are the last didactic elements loaded in DESY's community. Add the ones you like more to your personal section (by clicking on the '+' icon). If you are looking for something specific, use the link to the search engine." # TODO
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "为你选择 - 课程"
+        title: "Selected for you - lessons" # TODO
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "在这个栏目中，%{desy}保存你感兴趣的所有新课程。在这时，如果没有新课程提供，你能点击在每一页发现的那个 \"建立新课程\"按钮建立你自己的新课程：你将重定向到那个课程编辑器。在使用课程编辑器之前，确保有足够的课程单元。"
+        content: "New lessons associated to one of your subjects are automatically loaded in this section. Open the lesson preview, and add to your personal section the lessons you like (using the '+' icon). If you are looking for specific lessons, use the link to the search engine." # TODO
     documents:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "附加一个文档"
+        title: "Attaching files to a lesson" # TODO
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "你能附加任何的文档到你的在线课程中. 在这里你能上传你个人的文档,设置描述,标题,并组织准备在课程编辑器中使用它们."
+        content: "A multimedia lesson produced in DESY is composed by a sequence of slides.<br/>If you reckon that texts and media elements are not enough to write exhaustively about your topic, DESY allows you to attach <b>documents</b> or <b>external files</b> to your slides.<br/>Remember that, similarly to what happens for didactic elements, it's not possible to load documents directly from inside the Lesson Editor: hence, you need to load and manage your documents before opening the editor." # TODO
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "文档类型"
+        title: "Which formats of documents are allowed?" # TODO
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "在%{desy}中,你的文档归档成: <b>普通格式的文档</b> (如 .txt, .doc, .odt); <b>电子表格</b> (如 .xls, .ods); <b>矢量文档</b> (如 .pdf, .ps); <b>演示文档</b> (如 power point); <b>压缩文档</b> (.zip, .tar.gz). 如果你的文档扩展名没有任何适合的归档类型,有一个合适的图标指示<b>其它文档格式</b>."
+        content: "DESY accepts <b>all the common formats</b> of files.<br/>Just take care about the size of your document, which must not exceed <b>50MB</b>" # TODO
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "幻灯片兼容的文档"
+        title: "Slide templates which allow to attach files" # TODO
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "不是所有的幻灯片许可你增加文档: 只有幻灯片包含文本时才能做它. 当你正在附加文档到幻灯片时,请点击<b>附加</b>在右面的按钮图标,打开课程编辑器里的文档管理器. 你充许每个幻灯片添加不超过3个文档."
+        content: "It's not possible to attach a document just in any slide: you'll realize that you can attach documents if you find the <b>attach</b> icon on the right of your slide.<br/>You can attach <b>a maximum of three documents</b> to each slide." # TODO
     lessons:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "课程的状态"
+        title: "These are your lessons" # TODO
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "这一页包括你个人课程文件夹，还有一套处理和建立新课程的指令。请注意你的新课程的状态：那个<br/><b>私有的</b>仅仅跟你看到与使用的课程相关，<b>已经分享</b>确认被其它的%{desy}用户看见和你已决定分享的课程；<b>已链接</b>指示其他用户建立的课程。"
+        content: "In this page are stored all the lessons you created, copied, or linked from other users. Have a look at the status of your lessons:<br/><b>private</b> corresponds to a lesson that you created and is visible only to you; <b>shared</b> corresponds to a lesson created by you that you decided to share among the other users in DESY; a lesson is <b>linked</b> if it belongs to another user and you picked its link. Having the link of a lesson is not the same as having copied it, since in the second case you have your own copy of the lesson, whereas in the first case the original owner can still modify it." # TODO
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "动作按钮"
+        title: "Buttons" # TODO
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "你能执行的出现在你的文件夹中所有的课程的动作按钮都是通过图像图标来识别的。<br/>那个\"眼睛\"图标充许你看到被选择的课程，那个\"铅笔\"图标充许你修改课程。最后一个功能是不充许<b>被链接的</b>课程，在这个案例中，你只能发现\"拷贝\" 图标（两个圆重叠）：实际上，没有经过第一次拷贝的其他用户的实现，要想修改那个课程是不可能的。那个\"用眼睛看\"图标上传课程到你的虚拟教室；如果课程分享，那个\"分享\"图标（由两条线连接的三个小圆）被打开。如果你特别喜欢某人的其他课程，请点击\"开始\"图标。最后，带有\"x\"那个图标删除那个课程（如果这个课程是已链接，那么这个图标被\"减号\"替换，它删除那个链接）"
+        content: "The icon <b>eye</b> opens the preview of the lesson; the small <b>pencil</b> opens the Lesson Editor and allows you to modify the selected lesson; if the lesson is linked, you can't edit but rather <b>copy</b> it, by clicking on the icon with two overlapped circles (it's not possible to modify other users' lessons, you can only copy them and then edit your own copy).<br/>The icon <b>screen with an eye</b> adds the lesson to your <b>Virtual Classroom</b>; the icon <b>share</b> (a small cloud with an incoming arrow) allows you to turn your lesson into shared (if your lesson is already shared, and you want to turn it back into <b>private</b>, click on the same icon).<br/>If you particularly appreciate one of the lessons created by other users, click on the icon <b>star</b>. Giving a good feedback of other people's lessons is important, since the results found from the search engine can be sorted by number of 'stars' received: a lesson with more stars is more likely to be found and receives more visibility inside the community.<br/>The icon <b>x</b> deletes the lesson (if the lesson is linked, such icon is replaced by a <b>-</b>, which deletes the link)." # TODO
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "建立一个新课程"
+        title: "Create a new lesson" # TODO
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "一旦你增加了足够多的单元，就准备建立你自己的课程：点击\"建立一新课程\"按钮，它将把你带到 %{desy}的课程编辑器。"
+        content: "Click on the button <b>create a new lesson</b> to open DESY's Lesson Editor and start composing a brand new multimedia lesson. Remember that before entering the Lesson Editor you need to fill your galleries with an appropriate number of media elements (since it's not possible to load or search such elements from inside the editor)." # TODO
     media_elements:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "你的教学单元"
+        title: "Your didactic elements" # TODO
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "这一页包含你个人单元文件夹，还有一套建立和处理新课程的指令。<br/>只要有一个单元上传，%{desy}就分配一个 <b>私有的</b>状态给它。对于不喜欢的课程，你不能直接与你的私有单元共享：当你分享时，应用自动分享所有的单元。当单元转换<b>公共</b>状态时，它将从你的个人文件夹移到%{desy}的公共文件夹：在你的文件夹中，你将保持它的一个链接，当那个链接充许你使用，但既不能修改也不能删除。"
+        content: "In this page are stored all the didactic elements (images, videos, or audio tracks) that you either loaded personally or selected form DESY's database.<br/>If you want to load a new element, this will remain <b>private</b> as far as it's not used inside a public lesson. Unlike lessons, for didactic elements the process of sharing is not reversible, since a shared element can be reused by other users in the community. In particular, a <b>public element can't be deleted anymore</b>, even by its original owner (actually in DESY we consider all public elements as owned by the community)." # TODO
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "单元编辑器"
+        title: "DESY's Elements Editor" # TODO
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "在每一个单元的那个 \"铅笔\"图标打开那个单元的特别编辑器（音频，图像或视频）。如果包含 \"铅笔\"的单元是<b>公共的</b>，那么这个编辑器将迫使你作为一个新单元保存你的工作（你不能修改公共单元），反之，如果那个单元是<b>私有的</b>，你能选择要么重写或不是原有的那个。\"单元编辑\"按钮让你选择某种类型的单元并打开相应的空的编辑器。"
+        content: "Once you loaded a didactic element, it can be <b>modified</b> online. Using DESY's Elements Editor you are able to achieve the necessary modifications to your images, audio and videos: for instance, you can crop a photo or add a text to it; cut and modify an audio file; modify an existing video or create a new one composed by existing didactic elements.<br/>A <b>private</b> didactic element san be modified and then overwritten, which is not possible for public elements: a public element can be modified but the modifications are saved on a new element." # TODO
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title:  "单元预览"
+        title: "Preview of a media element" # TODO
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "那个 \"眼睛\"图标打开预览单元。在预览<b>私有的</b>单元时，你能发现包含有三条小的线段的按钮：点击它，你能打开用于修改单元的一般信息格式（标题，描述，和标签）。"
+        content: "The icon <b>eye</b> opens a popup containing the preview of a didactic element. If the element is <b>private</b>, the popup contains a button to modify its general information (the icon with three horizontal lines): for 'general information' of an element it's meant its title, description and tags, which are inserted in the form to load elements." # TODO
     search:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "搜索引擎"
+        title: "DESY's search engine" # TODO
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "%{desy}的搜索引擎可用于课程和单元；引擎是基于标签。<br/>通过使用\"加号\"图标任意被发现的课程或单元可增加到你相应个人文件夹中。"
+        content: "Our search engine helps you finding in DESY's database lessons and didactic elements that you need.<br/>Once you find a lesson or element that fits your desires, you can add it clicking on the icon '+'.<br/>Keep in mind that while loading a new element or creating a new lesson it's very important to assign a correct amount of tags that describe it. A good set of tags gives visibility to your contents, since it makes them more likely to be found by somebody who needs them." # TODO
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "推荐一个好的搜索"
+        title: "Suggestions for an efficient search" # TODO
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "当你打你的搜索关键字时，%{desy}搜索引擎建议你大部分被使用的在数据库中的标签（开始你的关键字）。这种方式你将有一个范围比较广的选择并能进一步完成搜寻结果。"
+        content: "While you are inserting a <b>keyword</b> in the search engine, DESY suggests you the most popular tags which are close to what you are writing. You can take advantage of this feature to increase your chances to find what you need inside DESY." # TODO
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "推荐一个好的标签"
-        # Here the variable %{tags} is replaced by the minimum amount of tags for an item in the application
+        title: "Sorting the results" # TODO
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "当你上传一个新的单元或建立一个新的课程时，插入一排好的标签是非常的重要的。适合的标签充许搜索引擎更容易找到你的课程。你必须插入最小的 %{tags}标签。"
+        content: "Using the <b>advanced search</b> you are able to sort your results <b>alfabetically</b>, by <b>date of last modification</b>, or by number of <b>likes</b> (stars) received by that content." # TODO
     users:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "你的个人资料页"
+        title: "Your personal profile" # TODO
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "在这一页你能显示和修改你的个人资料。看一看这页顶部的菜单栏：每一链接引导你到相应页面。"
+        content: "In this section you can review and modify your personal data, such as name, password, etc. The subsection <b>subjects</b> allows you to update the list of the subjects of your interest.<br/>Remember that DESY analyzes the subjects you selected, to retrieve you in the dashboard lessons and media elements that might interest you." # TODO
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "个人资料，邮件列表"
+        title: "Create mailing lists" # TODO
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "这部分\"科目\"包括你的科目列表：任何时候你能更新这个列表。记得%{desy}检查你在主页中选择发现被建议课程的科目。那部分\"邮件\"包含一组Email地址的列表，它用于从虚拟教室发送你的课程链接：点击那个按钮\"增加新组\"建立新的邮件列表。"
+        content: "The subsection <b>mailing list</b> allows you to create groups of email addresses that you can use inside your <b>Virtual Classroom</b> to send the links of your lessons to more than one person at the same time." # TODO
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "统计"
+        title: "Statistics" # TODO
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "这部分\"统计\"包括关于你个人资料和所有的 %{desy}有趣的统计。统计通过目录划分，容易查询。"
+        content: "The subsection <b>statistics</b> contains information about how you are using your personal account in DESY, and about lesson and elements contained in the application's database. You can see how many lessons you created, how many didactic elements you loaded and which among your lessons received more popularity in DESY's community." # TODO
     virtual_classroom:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "%{desy}的虚拟教室"
+        title: "DESY's Virtual Classroom" # TODO
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "欢迎到你的虚拟教室！这里离可以从个人文件夹中上传课程并且组织它们进入播放列表。按钮\"增加\"打开一个窗口快速加载多个课程。"
+        content: "Organizing a large number of lessons is not easy: the section called <b>Virtual Classroom</b> is a space thought to help you organizing lessons' visualization.<br/>Use your Virtual Classroom to manage the lessons you want to reproduce, create playlists, or send them by email to your friends" # TODO
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "播放列表"
+        title: "Creating a playlist" # TODO
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "%{desy}的虚拟教室的有用特征之一是播放列表：在播放内移除课程，拖它到右边的区域。在更适合你的教学目标的序列中重新产生那个播放列表，你能拖动它们将单元分类。"
+        content: "Once you added a set of lessons to your <b>Virtual Classroom</b>, drag the ones you wish to reproduce in sequence to the active area on the right of the screen.<br/>You can modify the order of reproduction of your playlist just dragging and moving the lessons vertically" # TODO
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "送链接给你的朋友"
+        title: "Send a lesson by email" # TODO
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "位于每一课程下边的那个\"信箱\"图标打开一个窗口，在那里你能选择e-mail地址列表：点击那个按钮\"发送\"包含你课程的公共链接的邮件（使用这个链接，你的学生能可视化不用在%{desy}中注册课程）。"
+        content: "The icon <b>mailbox</b> allows you to send the public url of your lessons to an email address or to a mailing list previously loaded.<br/>Remember that mailing lists can be created in the section <b>personal profile</b>" # TODO
   
   
   # SECTION 1.7: Page rendered if the browser is not supported by the application
   
   browsers:
     # Title of the page
-    title: "浏览器不支持"
-    # Content of the page
-    content:
-      title: "%{desy}不支持该浏览器"
-      description: "我们的应用使用该浏览器不能适合工作。为了使用%{desy}，你需要更新你的浏览器，或下载新的浏览器。"
+    # 1 - views/shared/_browser_not_supported.html.erb
+    title: "%{desy}不支持该浏览器"
+    # Description of the page
+    # 1 - views/shared/_browser_not_supported.html.erb
+    description: "我们的应用使用该浏览器不能适合工作。为了使用%{desy}，你需要更新你的浏览器，或下载新的浏览器。"
     # Links where it's possible to download updated browsers
+    # 1 - views/shared/_browser_not_supported.html.erb
     links: "你能更新的浏览器列表"
   
   
