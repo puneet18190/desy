@@ -1,0 +1,10 @@
+<% if video = slide.media_elements_at -%>
+  <video controls="controls">
+    <source src="<%= media_element_path(video, :mp4) %>" type="video/mp4"/>
+    <source src="<%= media_element_path(video, :webm) %>" type="video/webm"/>
+    <img src="<%= media_element_path(video, :cover) %>" alt="<%= video.title %>"/>
+  </video>
+<% end -%>
+<%= slide_content(slide) %>
+
+<%= render_with_default_context partial: 'OEBPS/slides/documents.xhtml', locals: { documents: slide.documents } %>

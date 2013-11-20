@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:epub="http://www.idpf.org/2007/ops">
+  <head>
+    <title><%= lesson.title %></title>
+  </head>
+  <body>
+    <div>
+      <% if cover_image_path = cover_image_path(cover_slide) -%>
+        <img src="<%= cover_image_path(cover_slide) %>" alt="Cover"/>
+      <% end -%>
+    </div>
+  </body>
+</html>

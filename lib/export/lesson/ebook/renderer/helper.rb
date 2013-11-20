@@ -47,7 +47,9 @@ module Export
           end
 
           def cover_image_path(cover_slide)
-            image_path cover_slide.media_elements_slides.first.media_element
+            media_element = cover_slide.media_elements_slides.first.try(:media_element)
+            return nil unless media_element
+            image_path media_element
           end
 
           def media_element_mime_type(path)

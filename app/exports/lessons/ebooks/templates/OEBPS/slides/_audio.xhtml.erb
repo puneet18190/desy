@@ -1,0 +1,11 @@
+<% if audio = slide.media_elements_at -%>
+  <audio controls="controls">
+    <source src="<%= media_element_path(audio, :m4a) %>" type="audio/m4a"/>
+    <source src="<%= media_element_path(audio, :ogg) %>" type="audio/ogg"/>
+    <p><%= audio.title %></p>
+    <p><%= audio.description %></p>
+  </audio>
+<% end -%>
+<%= slide_content(slide) %>
+
+<%= render_with_default_context partial: 'OEBPS/slides/documents.xhtml', locals: { documents: slide.documents } %>

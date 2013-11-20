@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<package xmlns="http://www.idpf.org/2007/opf"
+         xmlns:dc="http://purl.org/dc/elements/1.1/"
+         xmlns:dcterms="http://purl.org/dc/terms/"
+         version="3.0"
+         unique-identifier="<%= PACKAGE_ID %>">
+
+   <metadata>
+    <dc:identifier id="<%= PACKAGE_ID %>">urn:uuid:<%= lesson.uuid %></dc:identifier>
+    <meta property="dcterms:modified"><%= dcterms_modified(lesson) %></meta>
+    <dc:title><%= lesson.title %></dc:title>
+    <dc:language>en</dc:language>
+  </metadata>
+
+  <manifest>
+    <item id="toc"
+          properties="nav"
+          media-type="application/xhtml+xml"
+          href="toc.xhtml"/>
+
+    <item id="cover"
+          href="cover.xhtml"
+          media-type="application/xhtml+xml"/>
+
+    <% slides_without_cover.each do |r| -%>
+      <item id="<%= slide_item_id(r) %>"
+            href="<%= slide_path(r) %>"
+            media-type="application/xhtml+xml"/>
+    <% end -%>
+
+    <% lesson.media_elements.each do |r| -%>
+      <% r.ebook_resources_formats.each do |format| -%>
+        <% attributes = media_element_item_attributes(r, lesson, format) -%>
+        <item id="<%= attributes[:id] %>"
+              <% if properties = attributes[:properties] -%>properties="<%= properties %>"<% end -%>
+              href="<%= attributes[:href] %>"
+              media-type="<%= attributes[:media_type] %>"/>
+      <% end -%>
+    <% end -%>
+
+    <% lesson.documents.each do |r| -%>
+        <% attributes          = document_item_attributes(r) -%>
+        <% fallback_attributes = document_item_fallback_attributes(r) -%>
+      <item id="<%= attributes[:id] %>"
+            href="<%= attributes[:href] %>"
+            fallback="<%= attributes[:fallback] %>"
+            media-type="<%= attributes[:media_type] %>"/>
+      <item id="<%= fallback_attributes[:id] %>"
+            href="<%= fallback_attributes[:href] %>"
+            media-type="application/xhtml+xml"/>
+    <% end -%>
+    <% math_images.each_with_index do |math_image, i| -%>
+        <item id="<%= math_image_item_id(i) %>"
+              href="<%= math_image_item_href(math_image) %>"
+              media-type="image/png"/>
+    <% end -%>
+  </manifest>
+
+   <spine>
+    <% lesson.documents.each do |r| -%>
+      <itemref idref="<%= document_item_id(r) %>" linear="no"/>
+    <% end -%>
+    <itemref idref="cover"/>
+    <itemref idref="toc"/>
+    <% slides_without_cover.each do |r| -%>
+      <itemref idref="<%= slide_item_id(r) %>"/>
+    <% end -%>
+  </spine>
+
+</package>

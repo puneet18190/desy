@@ -10,7 +10,7 @@ module Export
       module EbookAndEbookRenderer
         require 'export/lesson/ebook/renderer'
 
-        TEMPLATES_FOLDER                                 = Lesson::FOLDER.join 'ebooks', 'template'
+        TEMPLATES_FOLDER                                 = Lesson::FOLDER.join 'ebooks', 'templates'
         LOOKUP_CONTEXT                                   = ActionView::LookupContext.new TEMPLATES_FOLDER
         VIEW_RENDERER                                    = Ebook::Renderer.new LOOKUP_CONTEXT
         CONTEXT                                          = VIEW_RENDERER

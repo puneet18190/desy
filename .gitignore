@@ -43,7 +43,7 @@
 # files
 /public/lessons
 # assets
-/app/exports
+/app/exports/lessons/archives/assets
 
 # Cartella temporanea che contiene i file in caricamento multiplo dell'amministratore
 /public/admin
