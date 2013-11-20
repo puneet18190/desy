@@ -1020,7 +1020,7 @@ cn:
     profile:
       # Label on the link
       # 1 - views/notifications/_main.html.erb
-      label: "Profile" # TODO
+      label: "个人资料"
     # Icon to report an offensive lesson or media element
     # 1 - views/reports/_media_element.html.erb
     report: "报告有攻击性的内容"
