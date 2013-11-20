@@ -17,7 +17,7 @@ module Export
       class Renderer < ActionView::Renderer
         # TODO provare a memoizzare per vedere l'effetto che fa
         module Helper
-          # TODO spostarlo nel config
+          # TODO spostarlo in SETTINGS
           PACKAGE_ID                      = 'DESYLesson'
           DCTERMS_MODIFIED_FORMAT         = '%Y-%m-%dT%H:%M:%SZ'
           UNKNOWN_MIME_TYPE               = 'application/octet-stream'
@@ -43,7 +43,7 @@ module Export
           end
 
           def image_path(image)
-            image.url UrlType::EXPORT
+            image.url UrlTypes::EXPORT
           end
 
           def cover_image_path(cover_slide)
@@ -61,7 +61,7 @@ module Export
           end
 
           def document_path(document)
-            document.url UrlType::EXPORT
+            document.url UrlTypes::EXPORT
           end
 
           def document_item_attributes(document)
@@ -80,7 +80,7 @@ module Export
 
           def media_element_path(media_element, format = nil)
             href_method = format ? :"#{format}_url" : :url
-            media_element.send href_method, UrlType::EXPORT
+            media_element.send href_method, UrlTypes::EXPORT
           end
 
           def media_element_item_attributes(media_element, lesson, format)

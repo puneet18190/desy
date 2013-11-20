@@ -38,7 +38,7 @@ class Document < ActiveRecord::Base
   include ActionView::Helpers::NumberHelper
   include Rails.application.routes.url_helpers
   include FilenameToken
-  include UrlType
+  include UrlTypes
   
   # Maximum length of the title
   MAX_TITLE_LENGTH = (I18n.t('language_parameters.document.length_title') > 255 ? 255 : I18n.t('language_parameters.document.length_title'))
