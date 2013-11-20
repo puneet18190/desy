@@ -1,29 +1,3 @@
-@mixin title-bar {
-  
-  margin-bottom: 12px;
-  float: left;
-  width: 98%;
-  color: #fff;
-  
-}
-
-@mixin float-content {
-  
-  p {
-    
-    text-align: center;
-    float: left;
-    
-  }
-  
-  div {
-    
-    float: right;
-    
-  }
-  
-}
-
 @mixin ulGallery {
   
   .pseudo-ul {
