@@ -1,6 +1,6 @@
 require 'pathname'
 
-module UrlByUrlType
+module UrlType
 
   EXPORT = :export
 

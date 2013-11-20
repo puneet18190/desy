@@ -9,7 +9,7 @@ require 'media/shared'
 class Video < MediaElement
 
   include Media::Shared
-  include UrlByUrlType
+  include UrlType
   extend  Media::Video::Editing::Parameters
   
   # Instance of specific uploader for a video

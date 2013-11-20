@@ -9,7 +9,7 @@ require 'media/image/editing/crop'
 # 
 class Image < MediaElement
   
-  include UrlByUrlType
+  include UrlType
 
   # List of accepted extensions for an image
   EXTENSION_WHITE_LIST = ImageUploader::EXTENSION_WHITE_LIST

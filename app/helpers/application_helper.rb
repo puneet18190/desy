@@ -179,7 +179,7 @@ module ApplicationHelper
   end
   
   def url_by_url_type(url, url_type)
-    UrlByUrlType.url_by_url_type url ,url_type
+    UrlType.url_by_url_type url ,url_type
   end
   
 end

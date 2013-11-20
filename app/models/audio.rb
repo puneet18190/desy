@@ -9,7 +9,7 @@ require 'media/shared'
 class Audio < MediaElement
   
   include Media::Shared
-  include UrlByUrlType
+  include UrlType
   extend Media::Audio::Editing::Parameters
   
   # Instance of specific uploader for an audio

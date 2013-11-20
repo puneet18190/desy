@@ -43,7 +43,7 @@ module Export
           end
 
           def image_path(image)
-            image.url UrlByUrlType::EXPORT
+            image.url UrlType::EXPORT
           end
 
           def cover_image_path(cover_slide)
@@ -61,7 +61,7 @@ module Export
           end
 
           def document_path(document)
-            document.url UrlByUrlType::EXPORT
+            document.url UrlType::EXPORT
           end
 
           def document_item_attributes(document)
@@ -80,7 +80,7 @@ module Export
 
           def media_element_path(media_element, format = nil)
             href_method = format ? :"#{format}_url" : :url
-            media_element.send href_method, UrlByUrlType::EXPORT
+            media_element.send href_method, UrlType::EXPORT
           end
 
           def media_element_item_attributes(media_element, lesson, format)
