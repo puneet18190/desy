@@ -1,9 +1,13 @@
-<div class="empty">
-  <div class="createButton">
-    <%= link_to '', select_lessons_for_virtual_classroom_path, :remote => true %>
-  </div>
-  <div class="emptyContent">
-    <h1><%= t('virtual_classroom.empty') %></h1>
-    <h2><%= t('virtual_classroom.add_lesson_now') %></h2>
-  </div>
+<div class="empty-situation-container">
+  <a class="empty-situation" href="/virtual_classroom/select_lessons" data-remote="true">
+    <div class="plus"></div>
+    <div class="prompts">
+      <div class="reason">
+        <%= t('virtual_classroom.empty') %>
+      </div>
+      <div class="big-prompt">
+        <%= t('virtual_classroom.add_lesson_now') %>
+      </div>
+    </div>
+  </a>
 </div>

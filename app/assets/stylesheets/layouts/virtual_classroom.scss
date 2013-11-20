@@ -510,28 +510,6 @@ html.virtual_classroom-controller {
     
   }
   
-  .createButton {
-    
-    float: left;
-    
-  }
-  
-  .createButton a {
-    
-    background: $assets-add-vc-off_svg no-repeat bottom right;
-    background-size: 8em;
-    padding: 1em 3em 6em 5em;
-    
-    &:hover {
-      
-      background: $assets-add-vc-on_svg no-repeat bottom right;
-      background-size: 8em;
-      padding: 1em 3em 6em 5em;
-      
-    }
-    
-  }
-  
   .virtualClassroomQuickSelectPopUp {
     
     background-color: #373737;

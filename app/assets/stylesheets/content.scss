@@ -61,70 +61,6 @@
   
 }
 
-.empty {
-  
-  margin: 0 auto;
-  padding-top: 5em;
-  padding-bottom: 10em;
-  clear: both;
-  width: 26%;
-  @include emptyFormat;
-  
-  .createButton {
-    
-    float: left;
-    
-  }
-  
-  .createButton a {
-    
-    background: $assets-add-element-off_svg no-repeat bottom right;
-    background-size: 6em;
-    padding: 1em 4em 4em 2em;
-    width: 76px;
-    
-  }
-  
-  .createButton a:hover {
-    
-    background: $assets-add-element-on_svg no-repeat bottom right;
-    background-size: 6em;
-    cursor: pointer;
-    
-  }
-  
- .createButton  a.current {
-    
-    background: $assets-add-element-on_svg no-repeat bottom right;
-    background-size: 6em;
-    cursor: pointer;
-    
-  }
-  
-}
-
-._empty_media_elements:hover, ._empty_documents:hover {
-  
-  cursor: pointer;
-  
-}
-
-._empty_lessons:hover {
-  
-  cursor: pointer;
-  
-}
-
-.emptyFilter {
-  
-  margin: 0 auto;
-  padding-top: 5em;
-  padding-bottom: 5em;
-  text-align: center;
-  @include emptyFormat;
-  
-}
-
 .advanced-search-content {
   
   float: left;
@@ -241,5 +177,15 @@
   top: 66px;
   cursor: pointer;
   text-align: center;
+  
+}
+
+.emptyFilter {
+  
+  margin: 0 auto;
+  padding-top: 5em;
+  padding-bottom: 5em;
+  text-align: center;
+  font: 180% 'Nunito', "Arial Rounded MT Bold", sans-serif;
   
 }
