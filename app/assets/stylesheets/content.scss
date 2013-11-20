@@ -201,16 +201,16 @@
   a {
     
     display: inline-block;
-    height: 76px;
+    height: 56px;
     text-align: left;
     
     .plus {
       
-      @include svg-circle-icon-handler($assets-empty-add-buttons_svg, 76px, 2, 2, 1, 0, 1, 1, 1, 1);
+      @include svg-circle-icon-handler($assets-empty-add-buttons_svg, 56px, 2, 2, 1, 0, 1, 1, 1, 1);
       
       &.vc {
         
-        @include svg-circle-icon-handler($assets-empty-add-buttons_svg, 76px, 2, 2, 1, 0, 0, 1, 1, 0);
+        @include svg-circle-icon-handler($assets-empty-add-buttons_svg, 56px, 2, 2, 1, 0, 0, 1, 1, 0);
         
       }
       
@@ -218,13 +218,13 @@
     
     .prompts {
       
-      height: 76px;
+      height: 56px;
       float: right;
       
       .reason {
         
         height: 13px;
-        padding: 15px 0 0 10px;
+        padding: 5px 0 0 10px;
         font: 13px Arial,Helvetica,sans-serif;
         color: #939393;
         
@@ -233,7 +233,7 @@
       .big-prompt {
         
         height: 23px;
-        padding: 2px 0 23px 10px;
+        padding: 2px 0 13px 10px;
         font-size: 23px;
         color: #5D5C5C;
         
