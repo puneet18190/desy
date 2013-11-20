@@ -189,3 +189,44 @@
   font: 180% 'Nunito', "Arial Rounded MT Bold", sans-serif;
   
 }
+
+.empty-situation-container {
+  
+  width: 100%;
+  text-align: center;
+  
+  a {
+    
+    display: inline-block;
+    height: 76px;
+    background-color: red;
+    text-align: left;
+    
+    .plus {
+      
+      @include svg-circle-icon-handler($svg, $size, $how-many-h, $how-many-v, $opacity, $pos-h, $pos-v, $opacity-hover, $pos-h-hover, $pos-v-hover); /* TODO */
+      
+    }
+    
+    .prompts {
+      
+      height: 76px;
+      float: right;
+      
+      .reason {
+        
+        
+        
+      }
+      
+      .big-prompt {
+        
+        
+        
+      }
+      
+    }
+    
+  }
+  
+}
