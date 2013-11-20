@@ -5884,7 +5884,7 @@
         },
         {
             "file": "app/assets/javascripts/profile.js",
-            "line": 44,
+            "line": 54,
             "description": "Initializes handler of purchase code in prelogin registration.",
             "itemtype": "method",
             "name": "purchaseCodeRegistrationDocumentReady",
@@ -5893,7 +5893,7 @@
         },
         {
             "file": "app/assets/javascripts/profile.js",
-            "line": 86,
+            "line": 96,
             "description": "Initializes the javascript effects of the registration / modify profile form.",
             "itemtype": "method",
             "name": "profileDocumentReady",
