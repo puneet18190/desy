@@ -3565,10 +3565,10 @@ it:
           title: "Lezioni"
           # Number of lesson created by the selected user and copie by other user
           # 1 - views/admin/users/_list.html.erb
-          copied: "Copiata da un altro utente"
+          copied: "Copiate da un altro utente"
           # Number of lessons created by the selected user
           # 1 - views/admin/users/_list.html.erb
-          created: "Creata"
+          created: "Create"
         # Lessons which received more likes, among the ones created by the selected user
         # 1 - views/admin/users/_list.html.erb
         likes: "Lezioni con più 'Mi piace'"
@@ -3901,7 +3901,7 @@ it:
       # 1 - controllers/faqs_controller.rb
       # 2 - controllers/faqs_controller.rb
       contents: [
-        ["Posso inviare una lezione via mail?", "Sì, è possibile inviare le tue lezioni via posta o condividerle sui principali social network. Se vuoi inviare le tue lezioni a uno o più gruppi di indirizzi, puoi creare delle liste personalizzate nella sezione “Mailing list” del tuo profilo."],
+        ["Posso inviare una lezione via mail?", "Sì, è possibile inviare le tue lezioni via posta o condividerle sui principali social network. Se vuoi inviare le tue lezioni a uno o più gruppi di indirizzi, puoi creare delle liste personalizzate nella sezione \"Mailing list\" del tuo profilo."],
         ["Posso inviare una playlist via mail?", "No, purtroppo non è possibile. Le lezioni posso essere inviate via email o condivise sui social network solo singolarmente."] # FIXME nomenclatura VirtualClassroom
       ]
     # FAQS about the user's profile (all of them have a common description which is visible on the gray header)
@@ -3915,5 +3915,5 @@ it:
       # 1 - controllers/faqs_controller.rb
       # 2 - controllers/faqs_controller.rb
       contents: [
-        ["Come faccio a sapere quanti utenti seguono una mia lezione?", "Per conoscere tutte le statistiche che riguardano la tua attività su DESY puoi accedere alla sezione “Statistiche” del tuo profilo."]
+        ["Come faccio a sapere quanti utenti seguono una mia lezione?", "Per conoscere tutte le statistiche che riguardano la tua attività su DESY puoi accedere alla sezione \"Statistiche\" del tuo profilo."]
       ]

@@ -3901,7 +3901,7 @@ en:
       # 1 - controllers/faqs_controller.rb
       # 2 - controllers/faqs_controller.rb
       contents: [
-        ["Posso inviare una lezione via mail?", "Sì, è possibile inviare le tue lezioni via posta o condividerle sui principali social network. Se vuoi inviare le tue lezioni a uno o più gruppi di indirizzi, puoi creare delle liste personalizzate nella sezione “Mailing list” del tuo profilo."],
+        ["May I send a lesson by email?", "Yes, it's possible to send your lessons by email, or share them on the most common social networks. If you want to send your lessons to one or more emails, you can help yourself with the section \"Mailing List\" of your personal profile."],
         ["Posso inviare una playlist via mail?", "No, purtroppo non è possibile. Le lezioni posso essere inviate via email o condivise sui social network solo singolarmente."] # FIXME nomenclatura VirtualClassroom
       ]
     # FAQS about the user's profile (all of them have a common description which is visible on the gray header)
