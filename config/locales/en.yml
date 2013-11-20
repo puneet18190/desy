@@ -3902,18 +3902,18 @@ en:
       # 2 - controllers/faqs_controller.rb
       contents: [
         ["May I send a lesson by email?", "Yes, it's possible to send your lessons by email, or share them on the most common social networks. If you want to send your lessons to one or more emails, you can help yourself with the section \"Mailing List\" of your personal profile."],
-        ["Posso inviare una playlist via mail?", "No, purtroppo non è possibile. Le lezioni posso essere inviate via email o condivise sui social network solo singolarmente."] # FIXME nomenclatura VirtualClassroom
+        ["May I send a playlist by email?", "No, unfortunately this is not possible. Lessons may be sent by email or shared on social networks only singularly."]
       ]
     # FAQS about the user's profile (all of them have a common description which is visible on the gray header)
     profile:
       # 1 - views/faqs/index.html.erb
       # 2 - views/faqs/profile.html.erb
-      title: "Profilo"
+      title: "Profile"
       # 1 - views/faqs/profile.html.erb
-      description: "Nella pagina <b>profilo</b> troverai tutti i dati realtivi al tuo account DESY.<br/>Puoi decidere di modificare le tue informazioni personali in qualunque momento ed anche attivare il tuo Account definitivo se la versione trial ti ha convinto sulla qualità che DESY può offrirti.<br/>Nella sezione profilo puoi anche creare le tue mailing list personali o consultare le statistiche di utilizzo dell'applicazione.<br/>Se hai dubbi sulle funzionalità della sezione non esitare a contattarci."
+      description: "In the section of your <b>personal profile</b> you find any interesting information about your contribute to DESY's didactic community.<br/>You can decide to modify your personal data in any moment.<br/>In your personal profile you can also create and manage your playling lists or have a look at your personal statistics in the application.<br/>If you have any further doubts about the functionalities found in this section, don't hesitate contacting us."
       # They are organized in arrays, which first element is the title and the second element is the content
       # 1 - controllers/faqs_controller.rb
       # 2 - controllers/faqs_controller.rb
       contents: [
-        ["Come faccio a sapere quanti utenti seguono una mia lezione?", "Per conoscere tutte le statistiche che riguardano la tua attività su DESY puoi accedere alla sezione “Statistiche” del tuo profilo."]
+        ["Come faccio a sapere quanti utenti seguono una mia lezione?", "Per conoscere tutte le statistiche che riguardano la tua attività su DESY puoi accedere alla sezione \"Statistiche\" del tuo profilo."]
       ]
