@@ -3894,15 +3894,15 @@ it:
     virtual_classroom:
       # 1 - views/faqs/index.html.erb
       # 2 - views/faqs/virtual_classroom.html.erb
-      title: "Playlist"
+      title: "Playlist" # FIXME "Virtual Classroom"
       # 1 - views/faqs/virtual_classroom.html.erb
-      description: "La sezione <b>Playlist</b> è stata pensata per aiutarti a razionalizzare al meglio i contenuti didattici che stai per utilizzare. Carica nella sezione Playlist tutte le lezioni che stai per esporre e se ti è utile crea una lista di riproduzione per visualizzare più lezioni in sequenza.<br/>Da questa pagina potrai anche inviare il link ad una delle tue lezioni ad uno o più indirizzi email.<br/>Se hai dei dubbi sull'utilizzo di questa sezione, non esitare a contattarci."
+      description: "La sezione <b>Playlist</b> è stata pensata per aiutarti a razionalizzare al meglio i contenuti didattici che stai per utilizzare. Carica nella sezione Playlist tutte le lezioni che stai per esporre e se ti è utile crea una lista di riproduzione per visualizzare più lezioni in sequenza.<br/>Da questa pagina potrai anche inviare il link ad una delle tue lezioni ad uno o più indirizzi email.<br/>Se hai dei dubbi sull'utilizzo di questa sezione, non esitare a contattarci." # FIXME nomenclatura VirtualClassroom
       # They are organized in arrays, which first element is the title and the second element is the content
       # 1 - controllers/faqs_controller.rb
       # 2 - controllers/faqs_controller.rb
       contents: [
         ["Posso inviare una lezione via mail?", "Sì, è possibile inviare le tue lezioni via posta o condividerle sui principali social network. Se vuoi inviare le tue lezioni a uno o più gruppi di indirizzi, puoi creare delle liste personalizzate nella sezione “Mailing list” del tuo profilo."],
-        ["Posso inviare una playlist via mail?", "No, purtroppo non è possibile. Le lezioni posso essere inviate via email o condivise sui social network solo singolarmente."]
+        ["Posso inviare una playlist via mail?", "No, purtroppo non è possibile. Le lezioni posso essere inviate via email o condivise sui social network solo singolarmente."] # FIXME nomenclatura VirtualClassroom
       ]
     # FAQS about the user's profile (all of them have a common description which is visible on the gray header)
     profile:
