@@ -3915,5 +3915,5 @@ en:
       # 1 - controllers/faqs_controller.rb
       # 2 - controllers/faqs_controller.rb
       contents: [
-        ["Come faccio a sapere quanti utenti seguono una mia lezione?", "Per conoscere tutte le statistiche che riguardano la tua attività su DESY puoi accedere alla sezione \"Statistiche\" del tuo profilo."]
+        ["How can I know how many users are following my lessons?", "To find out this and all the other statistics concerning your profile in DESY, enter in the section \"Statistics\" of your personal profile."]
       ]
