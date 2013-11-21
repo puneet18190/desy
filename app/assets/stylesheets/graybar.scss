@@ -193,25 +193,6 @@
   
 }
 
-._keep_searching {
-  
-  height: 20px;
-  
-  .keep_searching_icon {
-    
-    @include svg-circle-icon-handler-without-hover($assets-select-icons_png, 20px, 5, 2, 1, 1, 1);
-    
-  }
-  
-  .keep_searching_label {
-    
-    float: left;
-    height: 20px;
-    
-  }
-  
-}
-
 .advanced-search-content {
   
   width: 100%;
@@ -283,6 +264,26 @@
           
           color: #ccc;
           background-color: #999;
+          
+        }
+        
+      }
+      
+      ._keep_searching {
+        
+        height: 20px;
+        
+        .keep_searching_icon {
+          
+          @include svg-circle-icon-handler-without-hover($assets-select-icons_png, 20px, 5, 2, 1, 1, 1);
+          margin-right: 10px;
+          
+        }
+        
+        .keep_searching_label {
+          
+          float: left;
+          height: 20px;
           
         }
         
