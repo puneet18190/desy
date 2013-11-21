@@ -64,7 +64,6 @@ $(document).ready(function() {
   if ( $html.hasClass('dashboard-controller index-action') ) dashboardDocumentReady();
   defaultValueJavaScriptAnimationsDocumentReady();
   documentsDocumentReady();
-  emptyResourcesDocumentReady()
   expandedItemsDocumentReady();
   filtersDocumentReady();
   galleriesDocumentReady();

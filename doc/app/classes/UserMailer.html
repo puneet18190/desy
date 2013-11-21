@@ -96,6 +96,11 @@
             
               
               <li>
+                <a href="#method-i-purchase_full">purchase_full</a>,
+              </li>
+            
+              
+              <li>
                 <a href="#method-i-purchase_resume">purchase_resume</a>
               </li>
             
@@ -260,6 +265,58 @@
   <span class="ruby-ivar">@user</span>, <span class="ruby-ivar">@password</span> = <span class="ruby-identifier">user</span>, <span class="ruby-identifier">password</span>
   <span class="ruby-ivar">@mail_content</span> = <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;mailer.reset_password_confirmed.message&#39;</span>, <span class="ruby-value">:password</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@password</span>, <span class="ruby-value">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">full_name</span>, <span class="ruby-value">:desy</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">APPLICATION_NAME</span>).<span class="ruby-identifier">html_safe</span>
   <span class="ruby-identifier">mail</span> <span class="ruby-identifier">to</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">email</span>, <span class="ruby-identifier">subject</span><span class="ruby-operator">:</span> <span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;mailer.reset_password_confirmed.subject&#39;</span>, <span class="ruby-value">:desy</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">APPLICATION_NAME</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-purchase_full">
+            
+              <b>purchase_full</b>(purchase)
+            
+            <a href="../classes/UserMailer.html#method-i-purchase_full" name="method-i-purchase_full" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Mail sent in case a purchase reached the maximum numberr of users allowed</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-purchase_full_source')" id="l_method-i-purchase_full_source">show</a>
+                
+              </p>
+              <div id="method-i-purchase_full_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/mailers/user_mailer.rb, line 70</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">purchase_full</span>(<span class="ruby-identifier">purchase</span>)
+  <span class="ruby-ivar">@purchase</span> = <span class="ruby-identifier">purchase</span>
+  <span class="ruby-ivar">@mail_content</span> = <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(
+    <span class="ruby-string">&#39;mailer.purchase_full.message&#39;</span>,
+    <span class="ruby-value">:name</span>            =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@purchase</span>.<span class="ruby-identifier">name</span>,
+    <span class="ruby-value">:responsible</span>     =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@purchase</span>.<span class="ruby-identifier">responsible</span>,
+    <span class="ruby-value">:address</span>         =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@purchase</span>.<span class="ruby-identifier">address_to_s</span>,
+    <span class="ruby-value">:phone_number</span>    =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@purchase</span>.<span class="ruby-identifier">phone_number</span>,
+    <span class="ruby-value">:fax</span>             =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@purchase</span>.<span class="ruby-identifier">fax</span>,
+    <span class="ruby-value">:email</span>           =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@purchase</span>.<span class="ruby-identifier">email</span>,
+    <span class="ruby-value">:ssn_code</span>        =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@purchase</span>.<span class="ruby-identifier">ssn_code</span>,
+    <span class="ruby-value">:vat_code</span>        =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@purchase</span>.<span class="ruby-identifier">vat_code</span>,
+    <span class="ruby-value">:accounts_number</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@purchase</span>.<span class="ruby-identifier">accounts_number</span>,
+    <span class="ruby-value">:location</span>        =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@purchase</span>.<span class="ruby-identifier">location_to_s</span>,
+    <span class="ruby-value">:start_date</span>      =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">TimeConvert</span>.<span class="ruby-identifier">to_string</span>(<span class="ruby-ivar">@purchase</span>.<span class="ruby-identifier">start_date</span>),
+    <span class="ruby-value">:expiration_date</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">TimeConvert</span>.<span class="ruby-identifier">to_string</span>(<span class="ruby-ivar">@purchase</span>.<span class="ruby-identifier">expiration_date</span>),
+    <span class="ruby-value">:token</span>           =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@purchase</span>.<span class="ruby-identifier">token</span>,
+  ).<span class="ruby-identifier">html_safe</span>
+  <span class="ruby-identifier">mail</span> <span class="ruby-identifier">to</span><span class="ruby-operator">:</span> <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;purchase_administrator&#39;</span>], <span class="ruby-identifier">subject</span><span class="ruby-operator">:</span> <span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;mailer.purchase_full.subject&#39;</span>, <span class="ruby-value">:desy</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">APPLICATION_NAME</span>)
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>

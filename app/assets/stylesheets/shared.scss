@@ -84,27 +84,6 @@ a.cerca.current {
       
     }
     
-    .createButton a {
-      
-      background: $assets-create_png no-repeat top left;
-      padding-bottom: 90px;
-      padding-left: 120px;
-      
-    }
-    
-    .createButton a:hover {
-      
-      background: $assets-create-white_png no-repeat top center;
-      cursor: pointer;
-      
-    }
-    
-    .createButton a.current {
-      
-      background: $assets-create-white_png  no-repeat top center;
-      
-    }
-    
   }
   
   .vuoto {
@@ -665,26 +644,6 @@ a.cerca.current {
       
       font: 110% 'Nunito', "Arial Rounded MT Bold", sans-serif;
       padding-top: 40px;
-      
-    }
-    
-    a.createButton {
-      
-      background: $assets-create_png no-repeat top center;
-      padding: 50px;
-      
-      &:hover {
-        
-        background: $assets-create-white_png no-repeat top center;
-        cursor: pointer;
-        
-      }
-      
-    }
-    
-    a.current {
-      
-      background: $assets-create-white_png no-repeat top center;
       
     }
     

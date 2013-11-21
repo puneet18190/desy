@@ -1020,7 +1020,7 @@ cn:
     profile:
       # Label on the link
       # 1 - views/notifications/_main.html.erb
-      label: "Profile" # TODO
+      label: "个人资料"
     # Icon to report an offensive lesson or media element
     # 1 - views/reports/_media_element.html.erb
     report: "报告有攻击性的内容"
@@ -1133,132 +1133,132 @@ cn:
   #      title:
   #      content:
   
-  help:
+    help:
     dashboard:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "欢迎到%{desy}！"
+        title: "Welcome to DESY!" # TODO
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "基于你感兴趣的主题，在我们的数据库中，在这个栏目中你能发现课程和单元。如果你点击课程或单元\"加号\"图标，你将把它增加到你个人部分，在那里你能修改和使用它。那个 \"小眼睛\"图标打开预览。"
+        content: "Is it your first time in DESY? In this page you find lessons and elements that might interest you. Any new lesson or didactic element, associated to one of your subjects of interest, will be added to this section as soon as it appears in our public database." # TODO
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "为你选择 - 单元"
+        title: "Selected for you - elements" # TODO
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "请选择我们为你推荐的课程单元！如果你没有找到任何感兴趣的课程单元，点击\"加载新单元\"按钮，你能上传你自己的课程单元。"
+        content: "Find out which are the last didactic elements loaded in DESY's community. Add the ones you like more to your personal section (by clicking on the '+' icon). If you are looking for something specific, use the link to the search engine." # TODO
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "为你选择 - 课程"
+        title: "Selected for you - lessons" # TODO
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "在这个栏目中，%{desy}保存你感兴趣的所有新课程。在这时，如果没有新课程提供，你能点击在每一页发现的那个 \"建立新课程\"按钮建立你自己的新课程：你将重定向到那个课程编辑器。在使用课程编辑器之前，确保有足够的课程单元。"
+        content: "New lessons associated to one of your subjects are automatically loaded in this section. Open the lesson preview, and add to your personal section the lessons you like (using the '+' icon). If you are looking for specific lessons, use the link to the search engine." # TODO
     documents:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "附加一个文档"
+        title: "Attaching files to a lesson" # TODO
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "你能附加任何的文档到你的在线课程中. 在这里你能上传你个人的文档,设置描述,标题,并组织准备在课程编辑器中使用它们."
+        content: "A multimedia lesson produced in DESY is composed by a sequence of slides.<br/>If you reckon that texts and media elements are not enough to write exhaustively about your topic, DESY allows you to attach <b>documents</b> or <b>external files</b> to your slides.<br/>Remember that, similarly to what happens for didactic elements, it's not possible to load documents directly from inside the Lesson Editor: hence, you need to load and manage your documents before opening the editor." # TODO
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "文档类型"
+        title: "Which formats of documents are allowed?" # TODO
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "在%{desy}中,你的文档归档成: <b>普通格式的文档</b> (如 .txt, .doc, .odt); <b>电子表格</b> (如 .xls, .ods); <b>矢量文档</b> (如 .pdf, .ps); <b>演示文档</b> (如 power point); <b>压缩文档</b> (.zip, .tar.gz). 如果你的文档扩展名没有任何适合的归档类型,有一个合适的图标指示<b>其它文档格式</b>."
+        content: "DESY accepts <b>all the common formats</b> of files.<br/>Just take care about the size of your document, which must not exceed <b>50MB</b>" # TODO
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "幻灯片兼容的文档"
+        title: "Slide templates which allow to attach files" # TODO
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "不是所有的幻灯片许可你增加文档: 只有幻灯片包含文本时才能做它. 当你正在附加文档到幻灯片时,请点击<b>附加</b>在右面的按钮图标,打开课程编辑器里的文档管理器. 你充许每个幻灯片添加不超过3个文档."
+        content: "It's not possible to attach a document just in any slide: you'll realize that you can attach documents if you find the <b>attach</b> icon on the right of your slide.<br/>You can attach <b>a maximum of three documents</b> to each slide." # TODO
     lessons:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "课程的状态"
+        title: "These are your lessons" # TODO
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "这一页包括你个人课程文件夹，还有一套处理和建立新课程的指令。请注意你的新课程的状态：那个<br/><b>私有的</b>仅仅跟你看到与使用的课程相关，<b>已经分享</b>确认被其它的%{desy}用户看见和你已决定分享的课程；<b>已链接</b>指示其他用户建立的课程。"
+        content: "In this page are stored all the lessons you created, copied, or linked from other users. Have a look at the status of your lessons:<br/><b>private</b> corresponds to a lesson that you created and is visible only to you; <b>shared</b> corresponds to a lesson created by you that you decided to share among the other users in DESY; a lesson is <b>linked</b> if it belongs to another user and you picked its link. Having the link of a lesson is not the same as having copied it, since in the second case you have your own copy of the lesson, whereas in the first case the original owner can still modify it." # TODO
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "动作按钮"
+        title: "Buttons" # TODO
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "你能执行的出现在你的文件夹中所有的课程的动作按钮都是通过图像图标来识别的。<br/>那个\"眼睛\"图标充许你看到被选择的课程，那个\"铅笔\"图标充许你修改课程。最后一个功能是不充许<b>被链接的</b>课程，在这个案例中，你只能发现\"拷贝\" 图标（两个圆重叠）：实际上，没有经过第一次拷贝的其他用户的实现，要想修改那个课程是不可能的。那个\"用眼睛看\"图标上传课程到你的虚拟教室；如果课程分享，那个\"分享\"图标（由两条线连接的三个小圆）被打开。如果你特别喜欢某人的其他课程，请点击\"开始\"图标。最后，带有\"x\"那个图标删除那个课程（如果这个课程是已链接，那么这个图标被\"减号\"替换，它删除那个链接）"
+        content: "The icon <b>eye</b> opens the preview of the lesson; the small <b>pencil</b> opens the Lesson Editor and allows you to modify the selected lesson; if the lesson is linked, you can't edit but rather <b>copy</b> it, by clicking on the icon with two overlapped circles (it's not possible to modify other users' lessons, you can only copy them and then edit your own copy).<br/>The icon <b>screen with an eye</b> adds the lesson to your <b>Virtual Classroom</b>; the icon <b>share</b> (a small cloud with an incoming arrow) allows you to turn your lesson into shared (if your lesson is already shared, and you want to turn it back into <b>private</b>, click on the same icon).<br/>If you particularly appreciate one of the lessons created by other users, click on the icon <b>star</b>. Giving a good feedback of other people's lessons is important, since the results found from the search engine can be sorted by number of 'stars' received: a lesson with more stars is more likely to be found and receives more visibility inside the community.<br/>The icon <b>x</b> deletes the lesson (if the lesson is linked, such icon is replaced by a <b>-</b>, which deletes the link)." # TODO
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "建立一个新课程"
+        title: "Create a new lesson" # TODO
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "一旦你增加了足够多的单元，就准备建立你自己的课程：点击\"建立一新课程\"按钮，它将把你带到 %{desy}的课程编辑器。"
+        content: "Click on the button <b>create a new lesson</b> to open DESY's Lesson Editor and start composing a brand new multimedia lesson. Remember that before entering the Lesson Editor you need to fill your galleries with an appropriate number of media elements (since it's not possible to load or search such elements from inside the editor)." # TODO
     media_elements:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "你的教学单元"
+        title: "Your didactic elements" # TODO
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "这一页包含你个人单元文件夹，还有一套建立和处理新课程的指令。<br/>只要有一个单元上传，%{desy}就分配一个 <b>私有的</b>状态给它。对于不喜欢的课程，你不能直接与你的私有单元共享：当你分享时，应用自动分享所有的单元。当单元转换<b>公共</b>状态时，它将从你的个人文件夹移到%{desy}的公共文件夹：在你的文件夹中，你将保持它的一个链接，当那个链接充许你使用，但既不能修改也不能删除。"
+        content: "In this page are stored all the didactic elements (images, videos, or audio tracks) that you either loaded personally or selected form DESY's database.<br/>If you want to load a new element, this will remain <b>private</b> as far as it's not used inside a public lesson. Unlike lessons, for didactic elements the process of sharing is not reversible, since a shared element can be reused by other users in the community. In particular, a <b>public element can't be deleted anymore</b>, even by its original owner (actually in DESY we consider all public elements as owned by the community)." # TODO
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "单元编辑器"
+        title: "DESY's Elements Editor" # TODO
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "在每一个单元的那个 \"铅笔\"图标打开那个单元的特别编辑器（音频，图像或视频）。如果包含 \"铅笔\"的单元是<b>公共的</b>，那么这个编辑器将迫使你作为一个新单元保存你的工作（你不能修改公共单元），反之，如果那个单元是<b>私有的</b>，你能选择要么重写或不是原有的那个。\"单元编辑\"按钮让你选择某种类型的单元并打开相应的空的编辑器。"
+        content: "Once you loaded a didactic element, it can be <b>modified</b> online. Using DESY's Elements Editor you are able to achieve the necessary modifications to your images, audio and videos: for instance, you can crop a photo or add a text to it; cut and modify an audio file; modify an existing video or create a new one composed by existing didactic elements.<br/>A <b>private</b> didactic element san be modified and then overwritten, which is not possible for public elements: a public element can be modified but the modifications are saved on a new element." # TODO
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title:  "单元预览"
+        title: "Preview of a media element" # TODO
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "那个 \"眼睛\"图标打开预览单元。在预览<b>私有的</b>单元时，你能发现包含有三条小的线段的按钮：点击它，你能打开用于修改单元的一般信息格式（标题，描述，和标签）。"
+        content: "The icon <b>eye</b> opens a popup containing the preview of a didactic element. If the element is <b>private</b>, the popup contains a button to modify its general information (the icon with three horizontal lines): for 'general information' of an element it's meant its title, description and tags, which are inserted in the form to load elements." # TODO
     search:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "搜索引擎"
+        title: "DESY's search engine" # TODO
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "%{desy}的搜索引擎可用于课程和单元；引擎是基于标签。<br/>通过使用\"加号\"图标任意被发现的课程或单元可增加到你相应个人文件夹中。"
+        content: "Our search engine helps you finding in DESY's database lessons and didactic elements that you need.<br/>Once you find a lesson or element that fits your desires, you can add it clicking on the icon '+'.<br/>Keep in mind that while loading a new element or creating a new lesson it's very important to assign a correct amount of tags that describe it. A good set of tags gives visibility to your contents, since it makes them more likely to be found by somebody who needs them." # TODO
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "推荐一个好的搜索"
+        title: "Suggestions for an efficient search" # TODO
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "当你打你的搜索关键字时，%{desy}搜索引擎建议你大部分被使用的在数据库中的标签（开始你的关键字）。这种方式你将有一个范围比较广的选择并能进一步完成搜寻结果。"
+        content: "While you are inserting a <b>keyword</b> in the search engine, DESY suggests you the most popular tags which are close to what you are writing. You can take advantage of this feature to increase your chances to find what you need inside DESY." # TODO
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "推荐一个好的标签"
-        # Here the variable %{tags} is replaced by the minimum amount of tags for an item in the application
+        title: "Sorting the results" # TODO
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "当你上传一个新的单元或建立一个新的课程时，插入一排好的标签是非常的重要的。适合的标签充许搜索引擎更容易找到你的课程。你必须插入最小的 %{tags}标签。"
+        content: "Using the <b>advanced search</b> you are able to sort your results <b>alfabetically</b>, by <b>date of last modification</b>, or by number of <b>likes</b> (stars) received by that content." # TODO
     users:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "你的个人资料页"
+        title: "Your personal profile" # TODO
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "在这一页你能显示和修改你的个人资料。看一看这页顶部的菜单栏：每一链接引导你到相应页面。"
+        content: "In this section you can review and modify your personal data, such as name, password, etc. The subsection <b>subjects</b> allows you to update the list of the subjects of your interest.<br/>Remember that DESY analyzes the subjects you selected, to retrieve you in the dashboard lessons and media elements that might interest you." # TODO
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "个人资料，邮件列表"
+        title: "Create mailing lists" # TODO
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "这部分\"科目\"包括你的科目列表：任何时候你能更新这个列表。记得%{desy}检查你在主页中选择发现被建议课程的科目。那部分\"邮件\"包含一组Email地址的列表，它用于从虚拟教室发送你的课程链接：点击那个按钮\"增加新组\"建立新的邮件列表。"
+        content: "The subsection <b>mailing list</b> allows you to create groups of email addresses that you can use inside your <b>Virtual Classroom</b> to send the links of your lessons to more than one person at the same time." # TODO
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "统计"
+        title: "Statistics" # TODO
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "这部分\"统计\"包括关于你个人资料和所有的 %{desy}有趣的统计。统计通过目录划分，容易查询。"
+        content: "The subsection <b>statistics</b> contains information about how you are using your personal account in DESY, and about lesson and elements contained in the application's database. You can see how many lessons you created, how many didactic elements you loaded and which among your lessons received more popularity in DESY's community." # TODO
     virtual_classroom:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "%{desy}的虚拟教室"
+        title: "DESY's Virtual Classroom" # TODO
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "欢迎到你的虚拟教室！这里离可以从个人文件夹中上传课程并且组织它们进入播放列表。按钮\"增加\"打开一个窗口快速加载多个课程。"
+        content: "Organizing a large number of lessons is not easy: the section called <b>Virtual Classroom</b> is a space thought to help you organizing lessons' visualization.<br/>Use your Virtual Classroom to manage the lessons you want to reproduce, create playlists, or send them by email to your friends" # TODO
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "播放列表"
+        title: "Creating a playlist" # TODO
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "%{desy}的虚拟教室的有用特征之一是播放列表：在播放内移除课程，拖它到右边的区域。在更适合你的教学目标的序列中重新产生那个播放列表，你能拖动它们将单元分类。"
+        content: "Once you added a set of lessons to your <b>Virtual Classroom</b>, drag the ones you wish to reproduce in sequence to the active area on the right of the screen.<br/>You can modify the order of reproduction of your playlist just dragging and moving the lessons vertically" # TODO
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "送链接给你的朋友"
+        title: "Send a lesson by email" # TODO
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "位于每一课程下边的那个\"信箱\"图标打开一个窗口，在那里你能选择e-mail地址列表：点击那个按钮\"发送\"包含你课程的公共链接的邮件（使用这个链接，你的学生能可视化不用在%{desy}中注册课程）。"
+        content: "The icon <b>mailbox</b> allows you to send the public url of your lessons to an email address or to a mailing list previously loaded.<br/>Remember that mailing lists can be created in the section <b>personal profile</b>" # TODO
   
   
   # SECTION 1.7: Page rendered if the browser is not supported by the application
   
   browsers:
     # Title of the page
-    title: "浏览器不支持"
-    # Content of the page
-    content:
-      title: "%{desy}不支持该浏览器"
-      description: "我们的应用使用该浏览器不能适合工作。为了使用%{desy}，你需要更新你的浏览器，或下载新的浏览器。"
+    # 1 - views/shared/_browser_not_supported.html.erb
+    title: "%{desy}不支持该浏览器"
+    # Description of the page
+    # 1 - views/shared/_browser_not_supported.html.erb
+    description: "我们的应用使用该浏览器不能适合工作。为了使用%{desy}，你需要更新你的浏览器，或下载新的浏览器。"
     # Links where it's possible to download updated browsers
+    # 1 - views/shared/_browser_not_supported.html.erb
     links: "你能更新的浏览器列表"
   
   
@@ -1300,7 +1300,7 @@ cn:
         # 1 - views/users/fullpage_notifications/confirmation/email_sent.html.erb
         title: "注册"
         # 1 - views/users/fullpage_notifications/confirmation/email_sent.html.erb
-        description: "成功完成注册：为了确认，请检查你的邮件"
+        description: "The registration was completed successfully: check your email address in order to confirm it, you'll find a message containing the link to confirm your account. If you don't find our email, check out the spam folder of your email manager. In case of further problems, don't hesitate contacting us" # TODO
       # The user clicked on the confirmation link he received by email: he is redirected to the main page of the application, with this message (to log in he still needs to write username and password, he is not automatically logged in)
       received:
         # 1 - views/users/fullpage_notifications/confirmation/received.html.erb
@@ -3845,77 +3845,75 @@ cn:
   faqs:
     # Title
     # 1 - views/layouts/faqs.html.erb
-    title: "Help and tutorials"
+    title: "Help and tutorials" # TODO
     # Description visible on the gray header
     # 1 - views/faqs/index.html.erb
-    description: "E' più di un'idea. Una tentazione forte, suggestiva, possibile. A Walter Sabatini piange il cuore. Javier Pastore, il “suo” Pastore scovato in Argentina e portato a Palermo nel 2009 quando aveva appena 20 anni, langue tra panchina e tribuna nel Paris St.Germain. Blanc non lo vede, lui gioca poco e male. Quale miglior momento per tentare l'assalto all'ex fuoriclasse del Palermo? Il ragazzo dell’Huracan deve davvero tanto al ds Sabatini."
+    description: "Welcome to DESY, the new digital platform designed for creation and condivision of didactic multimedia contents.<br/>Using DESY is easy and intuitive, but if you have doubts about some of the application's functionalities, please read our FAQs to find the answer you need.<br/>In case you don't find the answer to your problem don't hesitate contacting us, we will be glad to help you taking the most of DESY's potential." # TODO
     # Link to come back to the main FAQS page
     # 1 - views/faqs/lessons.html.erb
     # 2 - views/faqs/media_elements.html.erb
     # 3 - views/faqs/virtual_classroom.html.erb
     # 4 - views/faqs/profile.html.erb
-    back: "Back to list"
+    back: "Back to list" # TODO
     # FAQS about lessons (all of them have a common description which is visible on the gray header)
     lessons:
       # 1 - views/faqs/index.html.erb
       # 2 - views/faqs/lessons.html.erb
-      title: "Lessons"
+      title: "课程"
       # 1 - views/faqs/lessons.html.erb
-      description: "Dzemaili pensava di poter avere più spazio in questo inizio stagione, ma siamo a un terzo del campionato, saprà rendersi utile come già capitato con la precedente gestione di Mazzarri, quando non iniziò tra i titolari ma seppe conquistarsi un spazio importante, realizzando gol pesanti, che magari non avrebbe fatto se per esempio lo scorso gennaio Nocerino avesse accettato il trasferimento a Napoli."
+      description: "The lessons page is the section of DESY where you find stored all your lessons, together with the ones you linked from other users. If you have any further doubts about the management or the creation of a new lesson, don't hesitate contacting us." # TODO
       # They are organized in arrays, which first element is the title and the second element is the content
       # 1 - controllers/faqs_controller.rb
       # 2 - controllers/faqs_controller.rb
       contents: [
-        ["Come creare una lezione", "Frecciata di Claudio Lotito a James Pallotta. Il numero uno della Roma ha dichiarato che in Lega ci vogliono uomini nuovi e il presidente della Lazio al suo arrivo in via Rosellini ha replicato: \"Se lui viene qui può dare un contribuito, ma se l'uomo nuovo è l'ex amministratore che ha creato un buco di 50 milioni in Alitalia...\". Poi a ruota su Thohir: \"Lo aspettiamo per conoscerci. Potrà dare un contributo sui diritti esteri e siamo aperti a tutti i contributi che possono dare una mano a far crescere il nostro movimento\"."],
-        ["Posso far tornare privata o eliminare una lezione che ho condiviso?", "Sì, condividere le tue lezioni è importante. Potrai comunque decidere in qualsiasi momento di farle tornare private, modificarle o eliminarle. Ogni volta che effettui una azione su una tua lezione condivisa il sistema avvertirà gli utenti che la stanno seguendo."],
-        ["Posso usare o modificare la lezione di un altro docente?", "Sì, ci sono due modi di utilizzare le lezioni condivise da altri docenti: seguire una lezione o creare una copia modificabile. Nel primo caso, tutte le azioni del docente proprietario avranno effetto anche sulla tua visualizzazione. Creando una copia avrai a disposizione l’ultima versione “congelata” della lezione sulla quale dovrai effettuare modifiche o integrazioni."],
-        ["Cosa succede se un docente modifica una sua lezione che sto usando?", "Le azioni che un docente può effettuare su una sua lezione condivisa hanno effetto su tutte le condivisioni. Quando un docente rende privata, cancella o effettua una modifica su una sua lezione che stai utilizzando, il sistema provvederà ad inviarti una notifica. Se hai bisogno di una versione “congelata” di una lezione puoi creare una copia modificabile."],
-        ["Posso visualizzare le mie lezioni offline?", "Sì, DESY ti dà la possibilità di guardare le lezioni anche quando non sei connesso ad internet. Quando sei in fase di visualizzazione, clicca sull’icona ( ) per scaricare la lezione sul tuo computer."],
-        ["Sono un docente di matematica, posso aggiungere formule alla mia lezione?", "Certamente, puoi farlo in una qualsiasi slide di testo tra quelle a disposizione. Clicca sull’icona ( ) nella palette degli strumenti di formattazione testuale per accedere all’editor matematico, scrivi la tua formula e aggiungila alla slide."]
-      ]
+        ["How to create a lesson", "It's easy to create a multimedia lesson with DESY: to start, open your lessons page and click on the button <b>create a new lesson</b>. Once you inserted the title, a short description and a set of proper tags, you are redirected to the Lesson Editor and you can start composing your slides.<br/>DESY's Lesson Editor saves automatically any modification you achieve on the lesson you are editing; in any case, if you want to be sure that your lesson is saved, use the 'save' button on the right of the current slide.<br/>Remember that the lesson that you just created is automatically set as <b>private</b>, hence you are the only user who can use and see it, and the private elements you used are not yet shared among the other users of DESY. If you decide to share your lesson, also the didactic elements it contains are automatically shared."], # TODO
+        ["May I remove or turn back into private a lesson that I shared?", "Yes, sharing a lesson is important, but if for any reason you want to turn it back into private of course you can do it, as well as remove it or modify it: you are always the administrator of lessons you created, regardless of their status. Anyway, each time you achieve an action on a shared lesson that is being linked by other users in DESY, the sistem automatically sends a notification to all the followers of the lesson."], # TODO
+        ["May I use or modify another user's lesson?", "Yes, there are two ways to use a lesson of another user in DESY: linking that lesson (doing this you become a <b>follower</b> of that lesson) or creating your own copy of it. In the first case, all the actions of the owner of the lesson will affect your link; if you instead create a copy, you are able to modify it at your will."], # TODO
+        ["What happens if a lesson that I am following gets modified by its owner?", "The actions achieved by the owner on a public lesson affect all the links of its followers. In any case, when this happens the system sends an automatic notification to all the followers of the lesson. If you want a copy of the lessons which is not affected by external changes, you shouldn't link but rather copy it."], # TODO
+        ["May I visualize my lessons offline?", "Yes, DESY allows you to watch your lessons in absence of an internet connection: you can download any lesson in a .zip file which doesn't need a connection to work (to download such an offline lesson, use the icon <b>download</b> inside the lesson viewer)."], # TODO
+        ["I am a teacher of a scientific subject: may I add mathematical formulas to my lessons?", "Of course you can, mathematical formula insertion is enabled in any slide template allowing text. Click on the icon <b>square root</b> in the text editor's toolbar to open a specific <b>mathematical formula's editor</b>."]
+      ] # TODO
     # FAQS about media elements (all of them have a common description which is visible on the gray header)
     media_elements:
       # 1 - views/faqs/index.html.erb
       # 2 - views/faqs/media_elements.html.erb
-      title: "Elements"
+      title: "单元"
       # 1 - views/faqs/media_elements.html.erb
-      description: "È saltato in Lega Calcio il primo incontro ufficiale tra il neopresidente nerazzurro Erick Thohir e Adriano Galliani. Thohir infatti ha lasciato la sede della Lega verso le 11.45, subito dopo i saluti del ministro Angelino Alfano, mentre Adriano Galliani è arrivato per ultimo all'assemblea pochi istanti dopo che il suo rivale sportivo era uscito. Il presidente dell'Inter era accompagnato dal suo vice Angelomario Moratti."
+      description: "The elements page is the section of DESY where all your didactic elements are stored, together with the ones you linked from the public database. From this section you can open the specific editors (Image, Audio and Video Editor) useful to edit an existing element or to craete a new one. If our FAQs don't satisfy your doubts about this section, don't hesitate contacting us." # TODO
       # They are organized in arrays, which first element is the title and the second element is the content
       # 1 - controllers/faqs_controller.rb
       # 2 - controllers/faqs_controller.rb
       contents: [
-        ["Quali file multimediali posso usare nelle mie lezioni?", "Puoi caricare i più comuni formati di immagini, audio e video con i quali comporre le tue lezioni multimediali. Inoltre è possibile caricare diverse tipologie di documenti di approfondimento che puoi aggiungere alle tue slide come allegati disponibili al download. (Segue lista)"],
-        ["Posso eliminare un elemento che ho reso pubblico?", "No, non puoi far tornare privato o eliminare un elemento che hai già condiviso. Ricorda che anche quando rendi pubblica una lezione, tutti gli elementi didattici in essa contenuti vengono automaticamente condivisi nell’archivio e, a differenza della lezione, non potranno più essere cancellati o resi privati. Puoi comunque inviare una segnalazione alla redazione che provvederà alla rimozione dell’elemento. Fai attenzione che se metti un elemento privato in una lezione pubblica tale elemento verrà automaticamente reso pubblico"],
-        ["Ho caricato un video, ma vorrei usarne solo una parte...", "Nessun problema. Grazie agli speciali strumenti di editing di DESY puoi tagliare e combinare video, immagini e audio per creare nuovi elementi multimediali più adatti alle tue esigenze didattiche."],
-        ["Posso usare o modificare elementi di altri utenti?", "Sì, per utilizzare elementi di altri utenti è sufficiente utilizzare il motore di ricerca e aggiungere gli elementi che preferisci al tuo archivio personale. Successivamente potrai aggiungerli alle tue lezioni, modificarli o combinarli con gli speciali editor multimediali di DESY."],
-        ["Ho trovato un contenuto inappropriato...", "La redazione di DESY tiene in costante controllo la qualità dei contenuti caricati dagli utenti, ma se dovessi imbatterti in un contenuto che ritieni inappropriato segnalano alla redazione."]
+        ["Which multimedia files I am allowed to use inside my lessons?", "You can load images, videos and audios in all the most common formats. Moreover, it's possible to load different types of documents to be attached to the slides."], # TODO
+        ["May I remove a public element?", "No, you can't remove nor modify an element that you already shared. Remember that when you share a lesson all the private elements contained in it are automatically shared, and unlike for lessons, for elements sharing is not reversible. If you make a mistake and shared an element that you really want to keep private, you can always contact the webmaster and ask to remove the element.<br/>A private element is automatically shared also in case it is added to a lesson which is already public."], # TODO
+        ["I loaded a video, but I need to use only a part of it...", "No problem. Thanks to DESY's Video Editor you can cut any video, and compose a new one out of existing images, videos and audio tracks."], # TODO
+        ["May I use or modify elements loaded by other users?", "Yes, to find elements loaded by other users just go on the search engine page and look for them. Once they have been added to your elements page, you can modify them using the specific editor."], # TODO
+        ["I found an inappropriate content...", "DESY's administration team keeps constantly an eye on the quality of contents loaded by the users; in any case, if you find anything that in your opinion is inappropriate, we invite you to send us a notification about it using the specific button."] # TODO
       ]
     # FAQS about the Virtual Classroom (all of them have a common description which is visible on the gray header)
     virtual_classroom:
       # 1 - views/faqs/index.html.erb
       # 2 - views/faqs/virtual_classroom.html.erb
-      title: "Virtual Classroom"
+      title: "虚拟教室"
       # 1 - views/faqs/virtual_classroom.html.erb
-      description: "L'episodio di Marassi e degli ultrà del Genoa ha fatto 'scuola' e così, ieri, al termine della partita persa per 3-1 sul campo del Francavilla in Sinni i tifosi del Monopoli (terzo in classifica nel Girone H della Serie D) hanno preteso che i giocatori si togliessero le maglie della squadra biancoverde e le lasciassero sul campo. Il 22 aprile del 2012 i giocatori del Genoa furono costretti a togliersi le magliette durante il secondo tempo, quando, in casa, stavano perdendo 4-0 contro il Siena."
+      description: "The section called <b>Virtual Classroom</b> has been thought to help you organizing the lessons you want to reproduce. Load in your Virtual Classroom all the lessons that you are going to reproduce, and in case of necessity help yourself with a playlist to visualize them in sequence.<br/>From this page you are also allowed to send your lessons to users who are not subscribed in DESY.<br/>If after reading our FAQs you have still doubts about the use of this section, don't hesitate contacting us." # TODO
       # They are organized in arrays, which first element is the title and the second element is the content
       # 1 - controllers/faqs_controller.rb
       # 2 - controllers/faqs_controller.rb
       contents: [
-        ["Quali tipologie di elementi didattici posso usare?", "In DESY puoi caricare i più comuni formati di immagini, audio e video con i quali comporre le tue lezioni multimediali. Inoltre è possibile caricare diverse tipologie di documenti di approfondimento che puoi aggiungere alle tue slide come allegati disponibili al download."],
-        ["Posso inviare una lezione via mail?", "Sì, è possibile inviare le tue lezioni via posta o condividerle sui principali social network. Se vuoi inviare le tue lezioni a uno o più gruppi di indirizzi, puoi creare delle liste personalizzate nella sezione “Mailing list” del tuo profilo."],
-        ["Posso inviare una playlist via mail?", "No, purtroppo non è possibile. Le lezioni posso essere inviate via email o condivise sui social network solo singolarmente."]
+        ["May I send a lesson by email?", "Yes, it's possible to send your lessons by email, or share them on the most common social networks. If you want to send your lessons to one or more emails, you can help yourself with the section \"Mailing List\" of your personal profile."], # TODO
+        ["May I send a playlist by email?", "No, unfortunately this is not possible. Lessons may be sent by email or shared on social networks only singularly."] # TODO
       ]
     # FAQS about the user's profile (all of them have a common description which is visible on the gray header)
     profile:
       # 1 - views/faqs/index.html.erb
       # 2 - views/faqs/profile.html.erb
-      title: "Profile"
+      title: "个人资料"
       # 1 - views/faqs/profile.html.erb
-      description: "Tachtisidis è stato acquistato per sostituire Lodi. In qualche circostanza, magari, questa sensazione è stata confermata anche da più di un addetto ai lavori. Se pensiamo al pallonetto spettacolare che fece nel mese di luglio di un anno fa, quando sulla panchina c'era Zeman e il greco era giunto nella Capitale per illuminare il centrocampo, per prendere le redini della regia della squadra giallorossa (più volte al posto di De Rossi)."
+      description: "In the section of your <b>personal profile</b> you find any interesting information about your contribute to DESY's didactic community.<br/>You can decide to modify your personal data in any moment.<br/>In your personal profile you can also create and manage your playling lists or have a look at your personal statistics in the application.<br/>If you have any further doubts about the functionalities found in this section, don't hesitate contacting us." # TODO
       # They are organized in arrays, which first element is the title and the second element is the content
       # 1 - controllers/faqs_controller.rb
       # 2 - controllers/faqs_controller.rb
       contents: [
-        ["Come faccio a sapere quanti utenti seguono una mia lezione?", "Per conoscere tutte le statistiche che riguardano la tua attività su DESY puoi accedere alla sezione “Statistiche” del tuo profilo."],
-        ["Come faccio a sapere quanti utenti seguono una mia lezione?", "Per conoscere tutte le statistiche che riguardano la tua attività su DESY puoi accedere alla sezione “Statistiche” del tuo profilo."]
+        ["How can I know how many users are following my lessons?", "To find out this and all the other statistics concerning your profile in DESY, enter in the section \"Statistics\" of your personal profile."] # TODO
       ]

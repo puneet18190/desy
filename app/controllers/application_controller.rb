@@ -27,8 +27,8 @@ class ApplicationController < ActionController::Base
   
   def browser_not_supported
     render :partial => 'shared/browser_not_supported', :layout => false
-  end 
-
+  end
+  
   if Rails.application.config.more_than_one_language
     # Action that sets the current language of the application
     def set_locale

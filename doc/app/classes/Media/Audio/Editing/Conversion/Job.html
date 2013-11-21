@@ -125,6 +125,10 @@
                 <pre><span class="ruby-comment"># File lib/media/audio/editing/conversion/job.rb, line 13</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">perform</span>
   <span class="ruby-constant">Conversion</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">uploaded_path</span>, <span class="ruby-identifier">output_path_without_extension</span>, <span class="ruby-identifier">original_filename</span>, <span class="ruby-identifier">model_id</span>).<span class="ruby-identifier">run</span>
+<span class="ruby-keyword">rescue</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+  <span class="ruby-constant">ExceptionLogger</span>.<span class="ruby-identifier">log</span> <span class="ruby-identifier">e</span>
+  <span class="ruby-constant">ExceptionNotifier</span>.<span class="ruby-identifier">notify_exception</span> <span class="ruby-identifier">e</span>
+  <span class="ruby-identifier">raise</span> <span class="ruby-identifier">e</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
