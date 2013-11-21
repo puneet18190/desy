@@ -505,6 +505,7 @@
   .filter {
     
     margin-right: 20px;
+    position: relative;
     
     input.text {
       
@@ -525,8 +526,8 @@
     ._loader {
       
       position: absolute;
-      top: 287px;
-      left: 82.7%;
+      top: 3px;
+      right: 1px;
       
     }
     
