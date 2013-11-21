@@ -373,6 +373,30 @@
   background-color: $green;
   text-shadow: #399125 0px 2px 0px;
   
+  #format_media_elements {
+    
+    float: right;
+    font: 13px Arial,Helvetica,sans-serif;
+    line-height: 13px;
+    padding: 6px 0 6px 0;
+    text-shadow: none;
+    margin-right: 20px;
+    
+    a {
+      
+      color: #9EDA90;
+      
+      &.current {
+        
+        color: white;
+        cursor: default;
+        
+      }
+      
+    }
+    
+  }
+  
   .filter, .for-page {
     
     float: right;
@@ -381,9 +405,9 @@
       
       float: left;
       font: 15px 'Nunito',sans-serif;
+      line-height: 15px;
       color: white;
       margin-right: 10px;
-      line-height: 15px;
       padding-top: 5px;
       
     }
