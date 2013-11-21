@@ -29,6 +29,12 @@ module Export
       ASSETS_FOLDER = Lesson::FOLDER.join 'ebooks', 'assets'
       ASSETS_PATHS  = %W(
         lesson_ebook/application.css
+        set-icone-editor.svg
+        documents_fondo.png
+        icone_piene.svg
+        pallino.svg
+        tiny_items.gif
+        openhand.cur
       )
 
       # STORED or DEFLATED
