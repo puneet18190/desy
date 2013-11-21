@@ -200,10 +200,10 @@ function javaScriptAnimationsDocumentReady() {
   $('#order_documents').selectbox();
   $('#filter_search_lessons').selectbox();
   $('#filter_search_lessons_subject').selectbox();
-  $('#profile_school_level').selectbox();
   $('#for_page_media_elements').selectbox();
   $('#filter_media_elements').selectbox();
   $('#filter_search_media_elements').selectbox();
+  $('#user_school_level_id').selectbox();
   $body.on('keyup blur', 'input[maxlength], textarea[maxlength]', function () {
     var myself = $(this);
     var len = myself.val().length;
