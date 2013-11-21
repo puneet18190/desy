@@ -565,6 +565,55 @@
   
   background-color: $black;
   text-shadow: #4D4C4C 0px 2px 0px;
+  height: 40px;
+  
+  h1 {
+    
+    font: 30px 'Nunito', sans-serif;
+    line-height: 40px;
+    
+  }
+  
+  ul.navlist {
+    
+    float: right;
+    width: auto;
+    list-style: none;
+    
+    li {
+      
+      float: left;
+      width: auto;
+      
+      a {
+        
+        font: 14px 'Nunito', sans-serif;
+        text-transform: lowercase;
+        background-color: #999;
+        color: #fff;
+        float: left;
+        width: 110px;
+        display: block;
+        margin: 5px 0 5px 20px;
+        width: 100px;
+        height: 20px;
+        padding: 5px;
+        text-align: center;
+        display: block;
+        text-shadow: none;
+        
+        &:hover, &.current {
+          
+          background-color: #fff;
+          color: #666;
+          
+        }
+        
+      }
+      
+    }
+    
+  }
   
 }
 
