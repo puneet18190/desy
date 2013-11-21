@@ -398,12 +398,14 @@ html.prelogin-layout {
       .sbToggle {
         
         @include svg-circle-icon-handler-without-hover($assets-select-icons_png, 20px, 5, 2, 1, 1, 1);
+        margin-top: 9px;
+        margin-right: 4px;
         
-      }
-      
-      .sbToggleOpen {
-        
-        @include svg-circle-icon-handler-without-hover($assets-select-icons_png, 20px, 5, 2, 1, 1, 0);
+        &.sbToggleOpen {
+          
+          @include svg-circle-icon-handler-without-hover($assets-select-icons_png, 20px, 5, 2, 1, 1, 0);
+          
+        }
         
       }
       

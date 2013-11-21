@@ -195,7 +195,7 @@
 
 ._keep_searching {
   
-  background: $assets-select-icons_png no-repeat 0 -123px;
+  @include svg-circle-icon-handler-without-hover($assets-select-icons_png, 20px, 5, 2, 1, 1, 1);
   padding-left: 30px;
   margin-left: -4px;
   
