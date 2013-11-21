@@ -317,8 +317,26 @@
   background-color: $orange;
   text-shadow: #D68300 0px 2px 0px;
   
+  .filter {
+    
+    float: right;
+    
+    h2 {
+      
+      float: left;
+      font: 15px 'Nunito',sans-serif;
+      color: white;
+      margin-right: 10px;
+      line-height: 15px;
+      padding-top: 5px;
+      
+    }
+    
+  }
+  
   .sbHolder {
     
+    float: left;
     background-color: #D78300;
     
     .sbToggle {
@@ -458,7 +476,8 @@
   .sbHolder {
     
     width: 180px;
-    height: 25px;
+    height: 19px;
+    padding: 3px 0 3px 0;
     border-radius: 2px;
     -webkit-border-radius: 2px;
     
@@ -474,6 +493,13 @@
       
       color: #fff;
       text-shadow: none;
+      
+    }
+    
+    .sbToggle {
+      
+      margin-top: 3px;
+      margin-right: 3px;
       
     }
     
