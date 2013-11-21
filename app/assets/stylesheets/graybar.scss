@@ -195,13 +195,27 @@
 
 ._keep_searching {
   
-  @include svg-circle-icon-handler-without-hover($assets-select-icons_png, 20px, 5, 2, 1, 1, 1);
-  padding-left: 30px;
-  margin-left: -4px;
+  height: 20px;
+  
+  .keep_searching_icon {
+    
+    @include svg-circle-icon-handler-without-hover($assets-select-icons_png, 20px, 5, 2, 1, 1, 1);
+    
+  }
+  
+  .keep_searching_label {
+    
+    float: left;
+    height: 20px;
+    
+  }
   
 }
 
 .advanced-search-content {
+  
+  width: 100%;
+  margin-bottom: 5%;
   
   .boxViewSingleLesson.current {
     
@@ -217,7 +231,7 @@
     form {
       
       font: 100% 'Nunito', sans-serif;
-      padding: 1% 3%;
+      padding: 18px;
       border: 1px solid #efefef;
       
       label {
