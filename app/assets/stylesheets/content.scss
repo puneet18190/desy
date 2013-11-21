@@ -502,16 +502,16 @@
     
     input.text {
       
-      padding: 3px 5px;
+      padding: 3px 25px 3px 5px;
       background-color: #6d6c6c;
       color: #fff;
       font-size: 12px;
       border: none;
-      width: 150px;
+      width: 130px;
       height: 19px;
       border-radius: 4px;
       -webkit-border-radius: 4px;
-      margin-right: 10px;
+      margin-right: 0;
       box-shadow: 0 1px 2px rgba(50, 50, 50, 0.2) inset;
       
     }
@@ -520,7 +520,7 @@
       
       position: absolute;
       top: 287px;
-      left: 83.5%;
+      left: 82.7%;
       
     }
     
