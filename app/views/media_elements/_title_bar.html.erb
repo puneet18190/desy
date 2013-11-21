@@ -1,17 +1,15 @@
 <div id="media_elements_title_bar" class="title-bar">
   <h1 class="lower"><%= t('captions.media_elements') %></h1>
     <div class="for-page">
-      <h2 class="lower"><%= t('media_elements.display') %></h2>
-      <div class="selectDisplay fltrt">
-        <select name="display" id="for_page_media_elements">
-          <% @for_page_options.each do |f| %>
-            <option value="<%= f %>" <%= (@for_page == f) ? "selected=\"selected\"".html_safe : '' %>><%= f %></option>
-          <% end %>
-        </select>
-      </div>
+      <h2><%= t('media_elements.display') %></h2>
+      <select name="display" id="for_page_media_elements">
+        <% @for_page_options.each do |f| %>
+          <option value="<%= f %>" <%= (@for_page == f) ? "selected=\"selected\"".html_safe : '' %>><%= f %></option>
+        <% end %>
+      </select>
     </div>
     <div class="filter">
-      <h2 class="lower"><%= t('captions.show') %></h2>
+      <h2><%= t('captions.show') %></h2>
       <select name="ricerca" id="filter_media_elements">
         <% Filters::MEDIA_ELEMENTS_SET.each do |f| %>
           <option value="<%= f %>" <%= (@filter == f) ? "selected=\"selected\"".html_safe : '' %>><%= MediaElement.filter(f) %></option>

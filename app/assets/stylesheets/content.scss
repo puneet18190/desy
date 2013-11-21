@@ -287,8 +287,7 @@
 
 .elements-content {
   
-  float: left;
-  width: 99.5%;
+  width: 100%;
   margin-bottom: 3%;
   
   .boxViewSingleMediaElement {
@@ -374,8 +373,50 @@
   background-color: $green;
   text-shadow: #399125 0px 2px 0px;
   
+  .filter, .for-page {
+    
+    float: right;
+    
+    h2 {
+      
+      float: left;
+      font: 15px 'Nunito',sans-serif;
+      color: white;
+      margin-right: 10px;
+      line-height: 15px;
+      padding-top: 5px;
+      
+    }
+    
+  }
+  
+  .for-page {
+    
+    margin-left: 20px;
+    
+    .sbHolder {
+      
+      width: 60px;
+      
+      .sbSelector {
+        
+        width: 60px;
+        
+      }
+      
+      .sbOptions {
+        
+        width: 60px;
+        
+      }
+      
+    }
+    
+  }
+  
   .sbHolder {
     
+    float: left;
     background-color: #5AB046;
     
     .sbToggle {
@@ -484,8 +525,8 @@
     
     .sbSelector {
       
-      height: 25px;
-      line-height: 25px;
+      height: 26px;
+      line-height: 26px;
       width: 180px;
       
       &:link, &:visited, &:hover {
