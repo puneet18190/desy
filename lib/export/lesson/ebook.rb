@@ -73,7 +73,9 @@ module Export
 
           locals = { lesson: lesson, slides_without_cover: slides_without_cover, cover_slide: cover_slide }
 
-          add_template archive, locals.merge(math_images: math_images), CONTENTS_FOLDER_NAME.join('lesson.opf')
+          add_template archive, locals.merge(math_images: math_images), CONTENTS_FOLDER_NAME.join('package.opf')
+
+          add_path_entry archive, template_path('OEBPS/package.css'), 'OEBPS/package.css'
 
           add_template archive, locals, CONTENTS_FOLDER_NAME.join('toc.xhtml')
 
