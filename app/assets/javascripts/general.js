@@ -195,18 +195,15 @@ function javaScriptAnimationsDocumentReady() {
   $('#notifications_list').jScrollPane({
     autoReinitialise: true
   });
-  $('#select_lesson_list').selectbox();
   $('#which_item_to_search').selectbox();
   $('#filter_lessons').selectbox();
   $('#order_documents').selectbox();
   $('#filter_search_lessons').selectbox();
   $('#filter_search_lessons_subject').selectbox();
   $('#profile_school_level').selectbox();
-  $('#profile_region').selectbox();
   $('#for_page_media_elements').selectbox();
   $('#filter_media_elements').selectbox();
   $('#filter_search_media_elements').selectbox();
-  $('#user_school_level_id').selectbox();
   $body.on('keyup blur', 'input[maxlength], textarea[maxlength]', function () {
     var myself = $(this);
     var len = myself.val().length;
