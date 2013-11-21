@@ -714,21 +714,15 @@ html.lesson-editor-layout {
       }
       
       .sbToggle {
-        
-        margin-top: 10px;
-        background: $assets-select-icons-lessons-white_png no-repeat 0 -123px;
-        
-       }
-       
-       .sbToggle:hover {
          
-         background: $assets-select-icons-lessons-white_png no-repeat 0 -123px;
+         margin-top: 10px;
+         @include svg-circle-icon-handler-without-hover($assets-select-icons_png, 20px, 5, 2, 1, 2, 1);
          
        }
        
        .sbToggleOpen {
          
-         background: $assets-select-icons-lessons-white_png no-repeat 0 -22px;
+         @include svg-circle-icon-handler-without-hover($assets-select-icons_png, 20px, 5, 2, 1, 2, 0);
          
        }
        

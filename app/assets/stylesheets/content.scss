@@ -34,8 +34,8 @@
 
 .griglia-contenuti {
   
-  width: 97%;
-  margin: 0 auto;
+  width: 98%;
+  margin: 0 1%;
   
 }
 
@@ -274,8 +274,7 @@
 
 .lessons-content {
   
-  float: left;
-  width: 99.5%;
+  width: 100%;
   margin-bottom: 3%;
   
   .current {
@@ -306,6 +305,210 @@
       
       font-size: 80%;
       padding-top: 0.6%;
+      
+    }
+    
+  }
+  
+}
+
+#lessons_title_bar {
+  
+  background-color: $orange;
+  text-shadow: #D68300 0px 2px 0px;
+  
+  .sbHolder {
+    
+    background-color: #D78300;
+    
+    .sbToggle {
+      
+      @include svg-circle-icon-handler-without-hover($assets-select-icons_png, 20px, 5, 2, 1, 3, 1);
+      
+    }
+    
+    .sbToggleOpen {
+      
+      @include svg-circle-icon-handler-without-hover($assets-select-icons_png, 20px, 5, 2, 1, 3, 0);
+      
+    }
+    
+    .sbOptions {
+      
+      a {
+        
+        &:hover, &:focus, &.sbFocus {
+          
+          background-color: $orange;
+          
+        }
+        
+      }
+      
+    }
+    
+  }
+  
+}
+
+#media_elements_title_bar {
+  
+  background-color: $green;
+  text-shadow: #399125 0px 2px 0px;
+  
+  .sbHolder {
+    
+    background-color: #5AB046;
+    
+    .sbToggle {
+      
+      @include svg-circle-icon-handler-without-hover($assets-select-icons_png, 20px, 5, 2, 1, 4, 1);
+      
+    }
+    
+    .sbToggleOpen {
+      
+      @include svg-circle-icon-handler-without-hover($assets-select-icons_png, 20px, 5, 2, 1, 4, 0);
+      
+    }
+    
+    .sbOptions {
+      
+      a {
+        
+        &:hover, &:focus, &.sbFocus {
+          
+          background-color: $green;
+          
+        }
+        
+      }
+      
+    }
+    
+  }
+  
+}
+
+#documents_title_bar {
+  
+  background-color: $black;
+  text-shadow: #4D4C4C 0px 2px 0px;
+  
+  .sbHolder {
+    
+    background-color: #6D6C6C;
+    
+    .sbToggle {
+      
+      @include svg-circle-icon-handler-without-hover($assets-select-icons_png, 20px, 5, 2, 1, 0, 1);
+      
+    }
+    
+    .sbToggleOpen {
+      
+      @include svg-circle-icon-handler-without-hover($assets-select-icons_png, 20px, 5, 2, 1, 0, 0);
+      
+    }
+    
+    .sbOptions {
+      
+      a {
+        
+        &:hover, &:focus, &.sbFocus {
+          
+          background-color: $black;
+          
+        }
+        
+      }
+      
+    }
+    
+  }
+  
+}
+
+#profile_title_bar {
+  
+  background-color: $black;
+  text-shadow: #4D4C4C 0px 2px 0px;
+  
+}
+
+.title-bar {
+  
+  margin-bottom: 12px;
+  width: calc(100% - 32px);
+  color: #fff;
+  padding: 10px 16px;
+  height: 25px;
+  
+  h1 {
+    
+    color: #fff;
+    padding: 0;
+    margin: 0;
+    font: 25px 'Nunito', sans-serif;
+    line-height: 25px;
+    float: left;
+    
+  }
+  
+  .sbHolder {
+    
+    width: 180px;
+    height: 25px;
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    
+    .sbSelector {
+      
+      height: 25px;
+      line-height: 25px;
+      width: 180px;
+      
+    }
+    
+    .sbSelector:link, .sbSelector:visited, .sbSelector:hover {
+      
+      color: #fff;
+      text-shadow: none;
+      
+    }
+    
+    .sbOptions {
+      
+      width: 180px;
+      left: 0px;
+      border: none;
+      
+      li {
+        
+        padding: 7px;
+        
+      }
+      
+      a {
+        
+        text-shadow: none;
+        padding: 7px;
+        font-weight: bold;
+        
+        &:link, &:visited {
+          
+          color: #939393;
+          text-decoration: none;
+          
+        }
+        
+        &:hover, &:focus, &.sbFocus {
+          
+          color: #fff;
+          
+        }
+        
+      }
       
     }
     

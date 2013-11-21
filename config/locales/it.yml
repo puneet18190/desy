@@ -1666,14 +1666,6 @@ it:
     # Message which appears in the middle of the page if the filter you applied produced an empty result
     # 1 - views/lessons/_empty_filter.html.erb
     empty_filter: "Il filtro da te applicato non ha prodotto risultati"
-    # Captions of the bar on top of the lesson's list
-    headers:
-      # The status of a lesson (linked, private, shared, etc)
-      # 1 - views/lessons/index.html.erb
-      status: "Stato"
-      # The subject of the lesson
-      # 1 - views/lessons/index.html.erb
-      subject: "Materia"
     # Window used to notify your lesson's modification to all the users who linked it
     notify_modifications:
       # Title of the window

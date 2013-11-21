@@ -2,15 +2,13 @@
   <%= link_to t('lessons.create_new'), '/lessons/new', :class => 'navlist-item b-lesson lower' %>
   <%= render :partial => 'shared/search' %>
 </div>
-
 <br class="clearfloat">
 <div class="griglia-contenuti">
   <div class="lessons-content">
-    <div class="title-bar">
+    <div id="lessons_title_bar" class="title-bar">
       <h1 class="lower"><%= t('captions.lessons') %></h1>
-      <p><%= t('lessons.headers.subject') %></p>
-      <p><%= t('lessons.headers.status') %></p>
-      <div style="float:right"><h2 style="padding-right:10px"><%= t('captions.show') %></h2>
+      <div class="filter">
+        <h2><%= t('captions.show') %></h2>
         <select name="ricerca" id="filter_lessons">
           <% Filters::LESSONS_SET.each do |f| %>
             <option value="<%= f %>" <%= (@filter == f) ? "selected=\"selected\"".html_safe : '' %>><%= Lesson.filter(f) %></option>
