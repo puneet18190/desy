@@ -479,8 +479,56 @@
   background-color: $black;
   text-shadow: #4D4C4C 0px 2px 0px;
   
+  .sort, .filter {
+    
+    float: right;
+    
+    h2 {
+      
+      float: left;
+      font: 15px 'Nunito',sans-serif;
+      color: white;
+      margin-right: 10px;
+      line-height: 15px;
+      padding-top: 5px;
+      
+    }
+    
+  }
+  
+  .filter {
+    
+    margin-right: 20px;
+    
+    input.text {
+      
+      padding: 3px 5px;
+      background-color: #6d6c6c;
+      color: #fff;
+      font-size: 12px;
+      border: none;
+      width: 150px;
+      height: 19px;
+      border-radius: 4px;
+      -webkit-border-radius: 4px;
+      margin-right: 10px;
+      box-shadow: 0 1px 2px rgba(50, 50, 50, 0.2) inset;
+      
+    }
+    
+    ._loader {
+      
+      position: absolute;
+      top: 287px;
+      left: 83.5%;
+      
+    }
+    
+  }
+  
   .sbHolder {
     
+    float: left;
     background-color: #6D6C6C;
     
     .sbToggle {
