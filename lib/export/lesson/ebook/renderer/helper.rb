@@ -27,6 +27,10 @@ module Export
           include ActionView::Helpers::TranslationHelper
           include ApplicationHelper
 
+          def stylesheet_path
+            File.join 'assets', File.basename( ASSETS_PATHS.find { |path| File.extname(path) == '.css' } )
+          end
+
           def dcterms_modified(lesson)
             lesson.updated_at.utc.strftime DCTERMS_MODIFIED_FORMAT
           end

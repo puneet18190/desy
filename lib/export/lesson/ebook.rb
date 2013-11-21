@@ -26,6 +26,11 @@ module Export
       SLIDES_ORDER         = 'slides.position'
       CONTENTS_FOLDER_NAME = Pathname 'OEBPS'
 
+      ASSETS_FOLDER = Lesson::FOLDER.join 'ebooks', 'assets'
+      ASSETS_PATHS  = %W(
+        lesson_ebook/application.css
+      )
+
       # STORED or DEFLATED
       COMPRESSION_METHOD = Zip::Entry::STORED
 
@@ -58,12 +63,17 @@ module Export
       def find_or_create
         return if path.exist?
         
+        # raises if export assets are not compiled
+        raise "Assets are not compiled. Please create them using rake exports:lessons:ebooks:assets:compile" unless assets_compiled?
+
         remove_old_files if folder.exist?
         folder.mkpath
         create
 
         self
       end
+
+      private
 
       def create
         Zip::File.open(path, Zip::File::CREATE) do |archive|
@@ -75,7 +85,11 @@ module Export
 
           add_template archive, locals.merge(math_images: math_images), CONTENTS_FOLDER_NAME.join('package.opf')
 
-          add_path_entry archive, template_path('OEBPS/package.css'), 'OEBPS/package.css'
+          # add_path_entry archive, template_path('OEBPS/package.css'), 'OEBPS/package.css'
+
+          assets_files.each do |path|
+            add_path_entry archive, path, CONTENTS_FOLDER_NAME.join('assets', File.basename(path.relative_path_from ASSETS_FOLDER) )
+          end
 
           add_template archive, locals, CONTENTS_FOLDER_NAME.join('toc.xhtml')
 
@@ -110,7 +124,13 @@ module Export
         raise
       end
 
-      private
+      def assets_compiled?
+        ASSETS_FOLDER.exist? && !ASSETS_FOLDER.entries.empty?
+      end
+
+      def assets_files
+        Pathname.glob ASSETS_FOLDER.join('**', '*')
+      end
 
       def add_template(archive, locals, archive_entry_path, template_path_relative_from_template_folder = nil)
         template_path_relative_from_template_folder ||= archive_entry_path

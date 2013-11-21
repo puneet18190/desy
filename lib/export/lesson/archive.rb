@@ -17,8 +17,9 @@ module Export
       include EnvRelativePath
       include Shared
 
-      ASSETS_FOLDER              = Lesson::FOLDER.join 'archives', 'assets'
       FOLDER                     = env_relative_pathname Rails.public_pathname, 'lessons', 'exports', 'archives'
+      
+      ASSETS_FOLDER              = Lesson::FOLDER.join 'archives', 'assets'
       ASSETS_ARCHIVE_FOLDER_NAME = 'assets'
 
       # STORED or DEFLATED
