@@ -25,16 +25,12 @@ module Export
       SLIDES_EAGER_LOAD    = SLIDES_INCLUDES
       SLIDES_ORDER         = 'slides.position'
       CONTENTS_FOLDER_NAME = Pathname 'OEBPS'
+      EBOOK_ASSETS_FOLDER  = CONTENTS_FOLDER_NAME.join 'assets'
 
       ASSETS_FOLDER = Lesson::FOLDER.join 'ebooks', 'assets'
       ASSETS_PATHS  = %W(
         lesson_ebook/application.css
-        set-icone-editor.svg
-        documents_fondo.png
-        icone_piene.svg
         pallino.svg
-        tiny_items.gif
-        openhand.cur
       )
 
       # STORED or DEFLATED
@@ -91,10 +87,8 @@ module Export
 
           add_template archive, locals.merge(math_images: math_images), CONTENTS_FOLDER_NAME.join('package.opf')
 
-          # add_path_entry archive, template_path('OEBPS/package.css'), 'OEBPS/package.css'
-
           assets_files.each do |path|
-            add_path_entry archive, path, CONTENTS_FOLDER_NAME.join('assets', File.basename(path.relative_path_from ASSETS_FOLDER) )
+            add_path_entry archive, path, EBOOK_ASSETS_FOLDER.join(File.basename path.relative_path_from ASSETS_FOLDER)
           end
 
           add_template archive, locals, CONTENTS_FOLDER_NAME.join('toc.xhtml')
@@ -135,7 +129,7 @@ module Export
       end
 
       def assets_files
-        Pathname.glob ASSETS_FOLDER.join('**', '*')
+        Pathname.glob( ASSETS_FOLDER.join('**', '*') ).reject{ |path| path.directory? }
       end
 
       def add_template(archive, locals, archive_entry_path, template_path_relative_from_template_folder = nil)
