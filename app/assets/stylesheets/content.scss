@@ -456,7 +456,6 @@
 
 .title-bar {
   
-  margin-bottom: 12px;
   width: calc(100% - 32px);
   color: #fff;
   padding: 10px 16px;
@@ -480,6 +479,8 @@
     padding: 3px 0 3px 0;
     border-radius: 2px;
     -webkit-border-radius: 2px;
+    font: 11px 'Nunito', sans-serif;
+    font-weight: normal;
     
     .sbSelector {
       
@@ -487,12 +488,12 @@
       line-height: 25px;
       width: 180px;
       
-    }
-    
-    .sbSelector:link, .sbSelector:visited, .sbSelector:hover {
-      
-      color: #fff;
-      text-shadow: none;
+      &:link, &:visited, &:hover {
+        
+        color: #fff;
+        text-shadow: none;
+        
+      }
       
     }
     
@@ -511,26 +512,28 @@
       
       li {
         
-        padding: 7px;
+        padding: 3px;
         
-      }
-      
-      a {
-        
-        text-shadow: none;
-        padding: 7px;
-        font-weight: bold;
-        
-        &:link, &:visited {
+        a {
           
-          color: #939393;
-          text-decoration: none;
+          text-shadow: none;
+          padding: 3px 7px 3px 7px;
+          line-height: 19px;
+          border-radius: 2px;
+          -webkit-border-radius: 2px;
           
-        }
-        
-        &:hover, &:focus, &.sbFocus {
+          &:link, &:visited {
+            
+            color: #939393;
+            text-decoration: none;
+            
+          }
           
-          color: #fff;
+          &:hover, &:focus, &.sbFocus {
+            
+            color: #fff;
+            
+          }
           
         }
         
