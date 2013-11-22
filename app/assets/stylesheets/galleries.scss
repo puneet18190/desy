@@ -64,37 +64,22 @@
     
   }
   
-  .imageInGalleryPopUp {
-    
-    display: none;
-    background-color: #48484a;
-    color: #fff;
-    
-    img {
-      
-      max-height: 420px;
-      max-width: 420px;
-      
-    }
-    
-    .caption {
-      
-      margin: 0;
-      padding: 0;
-      
-    }
-    
-    .addButtonContent {
-      
-      @include svg-circle-icon-handler($assets-icone-player_svg, 44px, 5, 4, 0.5, 4, 2, 1, 4, 0);
-      
-    }
-    
-  }
-  
   img:hover {
     
     outline: 1px solid white;
+    
+  }
+  
+}
+
+.imageInGalleryPopUp {
+  
+  display: none;
+  
+  .addButtonContent {
+    
+    @include svg-circle-icon-handler($assets-icone-player_svg, 44px, 5, 4, 0.5, 4, 2, 1, 4, 0);
+    margin-top: 5px;
     
   }
   
@@ -540,6 +525,7 @@
       .addButtonContent {
         
         @include svg-circle-icon-handler($assets-icone-player_svg, 26px, 5, 4, 0.5, 4, 2, 1, 4, 0);
+        margin-top: 4px;
         
       }
       
