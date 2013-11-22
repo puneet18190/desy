@@ -15,7 +15,12 @@
       <span class="nome"><%= current_user.name %></span>
       <span class="cognome"><%= current_user.surname %></span>
       <br class="clearfloat">
-      <%= link_to t('registration.logout'), users_session_path, method: :delete %>
+      <% if personificated_user -%>
+        <%# TODO traduzz %>
+        <%= link_to 'Spersonifica', admin_personification_path, method: :delete %>
+      <% else -%>
+        <%= link_to t('registration.logout'), users_session_path, method: :delete %>
+      <% end -%>
       <% if current_user.admin? %>
         | <%= link_to t('admin.general.link'), '/admin' %>
       <% end %>

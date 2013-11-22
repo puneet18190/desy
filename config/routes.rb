@@ -223,6 +223,8 @@ Desy::Application.routes.draw do
     resources :documents,                         :only => [:index, :destroy]
     resources :media_elements,                    :only => [:new, :index, :destroy]
     resources :users,                             :only => [:index, :show, :destroy]
+    post      'personifications/:id'                    => 'personifications#create',  :as => :personifications
+    delete    'personifications'                        => 'personifications#destroy', :as => :personification
   end
   
   # UTILITIES
