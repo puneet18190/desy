@@ -21,6 +21,9 @@
           <th><%= t('admin.users.fields.created_at') %></th>
           <th><%= t('admin.users.fields.updated_at') %></th>
           <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -38,25 +41,35 @@
           <td><%= TimeConvert.to_string @user.created_at %></td>
           <td><%= TimeConvert.to_string @user.updated_at %></td>
           <td>
-            <div class="btn-group pull-right">
-              <% if @user.active %>
-                <a class="btn btn-small" href="/admin/users/<%= @user.id %>/ban" data-method="put">
-                  <i class="icon-ban-circle _show_status _show_ban"></i><%= t('admin.users.actions.ban').downcase %>
-                </a>
-              <% else %>
-                <a class="btn btn-small" href="/admin/users/<%= @user.id %>/activate" data-method="put">
-                  <i class="icon-ok _show_status _show_active"></i><%= t('admin.users.actions.activate').downcase %>
-                </a>
+            <% if @user.active %>
+              <%= link_to admin_users_ban_path(@user), title: t('admin.users.actions.ban'), method: :put do %>
+                <i class="icon-ban-circle _show_status _show_ban"></i>
               <% end %>
-              <a class="btn btn-small" href="/admin/messages/new_notification?users=<%= @user.id %>" data-method="get">
-                <i class="icon-envelope"></i><%= t('admin.users.actions.message').downcase %>
-              </a>
-              <% if !@user.super_admin? %>
-                <a class="btn btn-small" href="<%= admin_user_path %>" data-method="delete">
-                  <i class="icon-remove"></i><%= t('admin.users.delete').downcase %>
-                </a>
+            <% else %>
+              <%= link_to admin_users_activate_path(@user), title: t('admin.users.actions.activate'), method: :put do %>
+                <i class="icon-ok _show_status _show_active"></i>
               <% end %>
-            </div>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to admin_messages_new_notification_path(users: @user.id), title: t('admin.users.actions.message') do %>
+              <i class="icon-envelope"></i>
+            <% end %>
+          </td>
+          <td>
+            <% if current_user.super_admin? && current_user != @user -%>
+              <%# TODO traduzz admin.users.actions.personificate %>
+              <%= link_to admin_personifications_path(@user), title: t('admin.users.actions.personificate'), method: :post do %>
+                <i class="icon-user"></i>
+              <% end %>
+            <% end -%>
+          </td>
+          <td>
+            <% if !@user.super_admin? %>
+              <%= link_to admin_user_path, title: t('admin.users.delete'), method: :delete do %>
+                <i class="icon-remove"></i>
+              <% end %>
+            <% end %>
           </td>
         </tr>
       </tbody>
