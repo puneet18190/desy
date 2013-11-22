@@ -112,9 +112,24 @@
       
     }
     
-    .sbSelector {
+    .sbHolder {
       
-      width: 127px;
+      .sbSelector {
+        
+        width: 127px;
+        
+      }
+      
+      .sbOptions {
+        
+        a:hover, a:focus, a.sbFocus {
+          
+          background-color: #f5f5f5;
+          color: #999999;
+          
+        }
+        
+      }
       
     }
     
