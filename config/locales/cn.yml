@@ -1174,78 +1174,78 @@ cn:
         content: "在这一页你能储存所有的来自由其他用户创立,拷贝或链接的课程. 看看你的课程状态:<br/><b>私有的</b> 跟你建立的课程相关,它只能对你自己可见; <b>分享</b> 跟你创建的课程相关,在DESY社区中,你决定是否要与其他人分享; 这个课程<b>已被链接</b>如果是属于其他用户,你已获得那个链接. 拷贝链接与链接是不一样的, 在第二种情况,你拥有自己课程拷贝,第一种情况, 原始的创立者还能修改它."
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Buttons" # TODO
+        title: "按钮"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "The icon <b>eye</b> opens the preview of the lesson; the small <b>pencil</b> opens the Lesson Editor and allows you to modify the selected lesson; if the lesson is linked, you can't edit but rather <b>copy</b> it, by clicking on the icon with two overlapped circles (it's not possible to modify other users' lessons, you can only copy them and then edit your own copy).<br/>The icon <b>screen with an eye</b> adds the lesson to your <b>Virtual Classroom</b>; the icon <b>share</b> (a small cloud with an incoming arrow) allows you to turn your lesson into shared (if your lesson is already shared, and you want to turn it back into <b>private</b>, click on the same icon).<br/>If you particularly appreciate one of the lessons created by other users, click on the icon <b>star</b>. Giving a good feedback of other people's lessons is important, since the results found from the search engine can be sorted by number of 'stars' received: a lesson with more stars is more likely to be found and receives more visibility inside the community.<br/>The icon <b>x</b> deletes the lesson (if the lesson is linked, such icon is replaced by a <b>-</b>, which deletes the link)." # TODO
+        content: "这个图标<b>眼睛</b>打开课程预览; 这个小<b>铅笔</b> 打开课程编辑器.充许你修改被选择的课程; 如果课程被连接, 你不能编辑,但可<b>拷贝</b>它, 点击有两个重叠圆圈的图标 (修改其他用户课程是不可能的, 你只能拷贝他们并且只能编辑自己的拷贝).<br/>这个图标<b>带有眼睛屏幕</b>增加课程到你的<b>虚拟教室</b>; 这个图标<b>分享</b> (带有即将来临的箭头的小云朵)充许你把你的课程变成分享(如果你的课程已经分享, 你又想把你的课程变回<b>私有</b>, 请点击同样的图标).<br/>如果你想有其他用户创建的课程表示感激, 请点击这个图标<b>开始</b>. 给这个创立课程的人有好的反馈是非常的重要的, 这个是通过搜索引擎由星号的数量的多少来排序: 带有更多星号的课程将被发现.在社区里,有更多的可见度.<br/>这个图标<b>x</b> 删除课程(如果课程被连接, 这样的图标将被<b>-</b>替代, 说明这个连接被删除)."
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Create a new lesson" # TODO
+        title: "建立新课程"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "Click on the button <b>create a new lesson</b> to open DESY's Lesson Editor and start composing a brand new multimedia lesson. Remember that before entering the Lesson Editor you need to fill your galleries with an appropriate number of media elements (since it's not possible to load or search such elements from inside the editor)." # TODO
+        content: "点击按钮 <b>创建新课程</b> 打开课程编辑器.开始创作新的多媒体课程. 记住,把课程录入课程编辑器之前, 你需要合适的媒体号码填入媒体库 (在编辑器里,载入或查找这样的单元是不可能的)."
     media_elements:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Your didactic elements" # TODO
+        title: "你的训练单元"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "In this page are stored all the didactic elements (images, videos, or audio tracks) that you either loaded personally or selected form DESY's database.<br/>If you want to load a new element, this will remain <b>private</b> as far as it's not used inside a public lesson. Unlike lessons, for didactic elements the process of sharing is not reversible, since a shared element can be reused by other users in the community. In particular, a <b>public element can't be deleted anymore</b>, even by its original owner (actually in DESY we consider all public elements as owned by the community)." # TODO
+        content: "这一页所有的教学单元 (图像, 视频, 或音频)你要么从本地载入, 要么从DESY数据库中载入.<br/>你想载入新的单元, 这将是 <b>私有的</b>,它不在公共课程范围内. 不像课程, 对于教学单元, 分享过程是不可逆的, 分享课程在社区里能被其他用户使用. 一般情况下,<b>公共单元不能随意删除</b>, 甚至是原始的创建者 (实际上, 我们认为公共课程的所有权是社区)."
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "DESY's Elements Editor" # TODO
+        title: "DESY单元编辑器"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "Once you loaded a didactic element, it can be <b>modified</b> online. Using DESY's Elements Editor you are able to achieve the necessary modifications to your images, audio and videos: for instance, you can crop a photo or add a text to it; cut and modify an audio file; modify an existing video or create a new one composed by existing didactic elements.<br/>A <b>private</b> didactic element san be modified and then overwritten, which is not possible for public elements: a public element can be modified but the modifications are saved on a new element." # TODO
+        content: "当你载入教学单元时, 它能在线<b>修改</b>. 使用DESY单元编辑器, 你能修改你的图标, 音频和视频: 如, 你能修剪图片或增加文本到编辑器里; 剪切和修改音频文件; 修改已存在的视频,或通过已经存在教学单元建立新的教学单元.<br/>一个<b>私有</b>教学单元能被修改和重写, 对于公共单元是不能修改与重写的: 公共单元能被修改,但修改后保存一新的单元."
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Preview of a media element" # TODO
+        title: "预览多媒体单元"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "The icon <b>eye</b> opens a popup containing the preview of a didactic element. If the element is <b>private</b>, the popup contains a button to modify its general information (the icon with three horizontal lines): for 'general information' of an element it's meant its title, description and tags, which are inserted in the form to load elements." # TODO
+        content: "这个图标<b>预览</b> 打开包含训练单元预览弹出框. 如果那个单元是<b>私有</b>, 那个包含按钮的弹出框修改一般的信息(带有水平线的按钮): 对于单元的'一般信息',意思是它的标题, 描述和标签, 对载入单元的形式感兴趣."
     search:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "DESY's search engine" # TODO
+        title: "DESY搜索引擎"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "Our search engine helps you finding in DESY's database lessons and didactic elements that you need.<br/>Once you find a lesson or element that fits your desires, you can add it clicking on the icon '+'.<br/>Keep in mind that while loading a new element or creating a new lesson it's very important to assign a correct amount of tags that describe it. A good set of tags gives visibility to your contents, since it makes them more likely to be found by somebody who needs them." # TODO
+        content: "我们的搜索引擎能帮你在DESY数据库中搜索你所需要的课程和训练单元.<br/>当你找到你希望的课程或单元时, 你能点击图标'+'.<br/>记住,当载入或建立新课程时,分配正确数量的标签是非常的重要的,一套好的标签使你的内容可视化,使需要的人们更容易找到."
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Suggestions for an efficient search" # TODO
+        title: "推荐有效的搜索"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "While you are inserting a <b>keyword</b> in the search engine, DESY suggests you the most popular tags which are close to what you are writing. You can take advantage of this feature to increase your chances to find what you need inside DESY." # TODO
+        content: "当你在搜索引擎中插入<b>关键字</b>时, DESY推荐使用与你写作有关的流行标签. 你能利用这个特征搜索到你在DESY中你想要的材料."
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Sorting the results" # TODO
+        title: "分类结果"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "Using the <b>advanced search</b> you are able to sort your results <b>alfabetically</b>, by <b>date of last modification</b>, or by number of <b>likes</b> (stars) received by that content." # TODO
+        content: "使用<b>高级搜素</b> 你能通过<b>字母表</b>将你的结果分类, 或通过<b>最后修改的日期</b>, 或通过内容接受<b>喜欢</b>的(星号)数量."
     users:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Your personal profile" # TODO
+        title: "你的个人资料"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "In this section you can review and modify your personal data, such as name, password, etc. The subsection <b>subjects</b> allows you to update the list of the subjects of your interest.<br/>Remember that DESY analyzes the subjects you selected, to retrieve you in the dashboard lessons and media elements that might interest you." # TODO
+        content: "这部分,你能预览和修改你的个人资料, 如名称, 密码, 等等. 分部 <b>主题</b>容许你添加你感兴趣的主题列表.<br/>记住, DESY分析你选择的主题, 把你带回到你感兴趣的仪表盘课程和媒体单元."
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Create mailing lists" # TODO
+        title: "建立邮件列表"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "The subsection <b>mailing list</b> allows you to create groups of email addresses that you can use inside your <b>Virtual Classroom</b> to send the links of your lessons to more than one person at the same time." # TODO
+        content: "分部<b>邮件列表</b>在<b>虚拟教室内</b>你能使用你建立的许多邮件列表并同时发送课程的多个链接给多个人."
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Statistics" # TODO
+        title: "统计"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "The subsection <b>statistics</b> contains information about how you are using your personal account in DESY, and about lesson and elements contained in the application's database. You can see how many lessons you created, how many didactic elements you loaded and which among your lessons received more popularity in DESY's community." # TODO
+        content: "分部<b>统计</b>在DESY中,关于怎样使用你的个人账号, 还有你的应用数据库中的课程与单元. 你能看到你建立多少课程, 你上传多少训练单元.在DESY社区中,你能接受更流行."
     virtual_classroom:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "DESY's Virtual Classroom" # TODO
+        title: "DESY虚拟教室"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "Organizing a large number of lessons is not easy: the section called <b>Virtual Classroom</b> is a space thought to help you organizing lessons' visualization.<br/>Use your Virtual Classroom to manage the lessons you want to reproduce, create playlists, or send them by email to your friends" # TODO
+        content: "组织大量的课程是不容易的: 这里称作<b>虚拟教室</b>她是帮你组织课程的空间.<br/>使用你的虚拟教室管理你想制作的课程, 创建播放列表, 或通过电子邮件把播放列表发给你的朋友"
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Creating a playlist" # TODO
+        title: "建立课程列表"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "Once you added a set of lessons to your <b>Virtual Classroom</b>, drag the ones you wish to reproduce in sequence to the active area on the right of the screen.<br/>You can modify the order of reproduction of your playlist just dragging and moving the lessons vertically" # TODO
+        content: "当你增加一套课程到你的<b>虚拟教室</b>, 在屏幕的右边,你能拖动课程重新排列你希望的顺序到你的活动区.<br/>你能修改播放列表的顺序,只要上下拖动或移动课程"
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Send a lesson by email" # TODO
+        title: "通过电子邮件发送课程"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "The icon <b>mailbox</b> allows you to send the public url of your lessons to an email address or to a mailing list previously loaded.<br/>Remember that mailing lists can be created in the section <b>personal profile</b>" # TODO
+        content: "这个图标<b>邮箱</b>她能发送你的课程的URL到邮件地址或者之前加载的邮件列表.<br/>请记住,在这个部分能建立邮件列表<b>个人资料</b>"
   
   
   # SECTION 1.7: Page rendered if the browser is not supported by the application
