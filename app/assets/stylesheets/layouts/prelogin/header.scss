@@ -2,14 +2,11 @@
 @import 'mixins';
 
 html.prelogin-layout .header {
-
-  /*background-image: $assets-bg-prelogin_jpg;
-  background-repeat: no-repeat;
-  background-position: top center;*/
+  
   padding: 0px;
-
   font-family: 'Nunito', sans-serif;
   float: left;
+  
   .headerMenu {
     
     padding: 5px 0px 4px 3px;
@@ -59,7 +56,6 @@ html.prelogin-layout .header {
     
     p {
       
-      float: left;
       padding-top: 8px;
       
     }
@@ -81,7 +77,6 @@ html.prelogin-layout .header {
       padding: 4px 15px 4px 15px;
       background-color: #4bab36;
       text-align: center;
-      
       font-size: 120%;
       color: #fff;
       
@@ -90,19 +85,26 @@ html.prelogin-layout .header {
         background-color:#282828;
         
       }
+      
+    }
     
-  }
-  .buttonRegistration a {
+    .buttonRegistration a {
+      
       float: left;
       padding: 4px 15px 4px 15px;
       background-color: #9bc3eb;
       text-align: center;
       font-size: 120%;
       color: #fff;
+      
       &:hover, &.current  {
-        background-color: #83A5C8;  
+        
+        background-color: #83A5C8;
+        
       }
-    }    
+      
+    }
+    
     .tooltippe {
       
       border: none;
@@ -116,7 +118,6 @@ html.prelogin-layout .header {
       z-index: 10;
       margin: 0px;
       border-radius: 3px;
-
       -webkit-border-radius: 3px;
       
       a {
@@ -125,16 +126,25 @@ html.prelogin-layout .header {
         font-size: 100%;
         
       }
+      
       p {
+        
         font-size: 80%;
         
         a {
-          color:#fff;
+          
+          color: #fff;
+          
           &:hover {
-            text-decoration:underline;
+            
+            text-decoration: underline;
+            
           }
+          
         }
+        
       }
+      
       .text {
         
         border: 1px solid #424141;
@@ -150,7 +160,7 @@ html.prelogin-layout .header {
         margin-bottom: 10px;
         padding-left: 10px;
         font-size: 120%;
-         box-shadow:none;
+        box-shadow: none;
         
       }
       
@@ -167,5 +177,5 @@ html.prelogin-layout .header {
     }
     
   }
- 
+  
 }
