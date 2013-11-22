@@ -64,31 +64,22 @@
     
   }
   
-  .imageInGalleryPopUp {
-    
-    display: none;
-    background-color: #48484a;
-    color: #fff;
-    
-    img {
-      
-      max-height: 420px;
-      max-width: 420px;
-      
-    }
-    
-    .caption {
-      
-      margin: 0;
-      padding: 0;
-      
-    }
-    
-  }
-  
   img:hover {
     
     outline: 1px solid white;
+    
+  }
+  
+}
+
+.imageInGalleryPopUp {
+  
+  display: none;
+  
+  .addButtonContent {
+    
+    @include svg-circle-icon-handler($assets-icone-player_svg, 44px, 5, 4, 0.5, 4, 2, 1, 4, 0);
+    margin-top: 5px;
     
   }
   
@@ -531,6 +522,13 @@
         
       }
       
+      .addButtonContent {
+        
+        @include svg-circle-icon-handler($assets-icone-player_svg, 26px, 5, 4, 0.5, 4, 2, 1, 4, 0);
+        margin-top: 4px;
+        
+      }
+      
     }
     
     .audioTrackExpanded {
@@ -594,36 +592,6 @@
     
     top: 190px;
     height: 304px;
-    
-  }
-  
-  .audioInGalleryPopUp {
-    
-    display: none;
-    background-color: #fff;
-    color: #666;
-    max-height: 420px;
-    max-width: 420px;
-    
-    img {
-      
-      max-height: 420px;
-      max-width: 420px;
-      
-    }
-    
-    .caption {
-      
-      margin: 0;
-      padding: 0;
-      
-    }
-    
-  }
-  
-  .addButtonContent {
-    
-    margin-top: 5px;
     
   }
   
@@ -705,27 +673,16 @@
     
   }
   
-  .videoInGalleryPopUp {
+}
+
+.videoInGalleryPopUp {
+  
+  display: none;
+  
+  .addButtonContent {
     
-    display: none;
-    background-color: #fff;
-    color: #666;
-    max-height: 420px;
-    max-width: 420px;
-    
-    img {
-      
-      max-height: 420px;
-      max-width: 420px;
-      
-    }
-    
-    .caption {
-      
-      margin: 0;
-      padding: 0;
-      
-    }
+    @include svg-circle-icon-handler($assets-icone-player_svg, 44px, 5, 4, 0.5, 4, 2, 1, 4, 0);
+    margin-top: 9px;
     
   }
   
