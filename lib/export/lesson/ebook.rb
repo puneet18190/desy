@@ -33,9 +33,9 @@ module Export
         FileUtils.rm_rf FOLDER
       end
 
-      private
-      attr_reader :lesson, :slides_without_cover, :cover_slide, :filename_without_extension, :folder, :filename, :path
-      public
+      private_attr_readers = [ :lesson, :slides_without_cover, :cover_slide, :filename_without_extension, :folder, :filename, :path ]
+      attr_reader *private_attr_readers
+      private     *private_attr_readers
 
       def initialize(lesson)
         @lesson               = lesson
