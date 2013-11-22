@@ -3867,16 +3867,16 @@ cn:
       # 2 - views/faqs/media_elements.html.erb
       title: "单元"
       # 1 - views/faqs/media_elements.html.erb
-      description: "The elements page is the section of DESY where all your didactic elements are stored, together with the ones you linked from the public database. From this section you can open the specific editors (Image, Audio and Video Editor) useful to edit an existing element or to craete a new one. If our FAQs don't satisfy your doubts about this section, don't hesitate contacting us." # TODO
+      description: "单元页面是DESY保存所有的你的训练单元的地方, 还有来自链接公共数据库的单元. 从这里,你能打开特别的编辑器(图像,视频和音频),它是有用的编辑已经存在的单元或建立新的单元. 如果FAQs.不能满足你的要求,请毫不犹豫的联系我们"
       # They are organized in arrays, which first element is the title and the second element is the content
       # 1 - controllers/faqs_controller.rb
       # 2 - controllers/faqs_controller.rb
       contents: [
-        ["Which multimedia files I am allowed to use inside my lessons?", "You can load images, videos and audios in all the most common formats. Moreover, it's possible to load different types of documents to be attached to the slides."], # TODO
-        ["May I remove a public element?", "No, you can't remove nor modify an element that you already shared. Remember that when you share a lesson all the private elements contained in it are automatically shared, and unlike for lessons, for elements sharing is not reversible. If you make a mistake and shared an element that you really want to keep private, you can always contact the webmaster and ask to remove the element.<br/>A private element is automatically shared also in case it is added to a lesson which is already public."], # TODO
-        ["I loaded a video, but I need to use only a part of it...", "No problem. Thanks to DESY's Video Editor you can cut any video, and compose a new one out of existing images, videos and audio tracks."], # TODO
-        ["May I use or modify elements loaded by other users?", "Yes, to find elements loaded by other users just go on the search engine page and look for them. Once they have been added to your elements page, you can modify them using the specific editor."], # TODO
-        ["I found an inappropriate content...", "DESY's administration team keeps constantly an eye on the quality of contents loaded by the users; in any case, if you find anything that in your opinion is inappropriate, we invite you to send us a notification about it using the specific button."] # TODO
+        ["在我的课程里,那种多媒体文件我能使用?", "你能以大部格式下载图像,视频和音频. 而且,你能下载不同类型的文档链接到幻灯片成为可能."],
+        ["我能移除公共单元吗?", "不可以,你不能移除或修改已共享的单元. 记住, 但你分享课程时,课程里的所有的私用的单元将被自动分享,与课程分享不同, 因为单元分享是不能恢复的. 如果你发生错误分享单元,如果你确实保持私有, 你能联系网络管理员请求删去单元.<br/>私有单元将自动分享,有些情况,它也将增加到已经是公共的课程里去."],
+        ["我加载了视频,但我仅需要使用视频的一部分...", "没有问题. 多亏DESY视频编辑器. 你能剪辑视频,并且你能从存在的图像,视频和音频中制作新的图像,视频和音频."],
+        ["我能使用或修改其他人加载的视频吗?", "可以, 寻找由其他人加载的单元.到索搜引擎页寻找单元. 之前你已经将单元增加到单元页, 你能使用特别的编辑器修改它们."],
+        ["我发现了不适合的内容...", "DESY的管理者随时注意用户上传的文档; 任何情况, 如果你发现你认为不适合的文档, 请使用那个特别的按钮发送一个关于它的通知."]
       ]
     # FAQS about the Virtual Classroom (all of them have a common description which is visible on the gray header)
     virtual_classroom:
@@ -3884,13 +3884,13 @@ cn:
       # 2 - views/faqs/virtual_classroom.html.erb
       title: "虚拟教室"
       # 1 - views/faqs/virtual_classroom.html.erb
-      description: "The section called <b>Virtual Classroom</b> has been thought to help you organizing the lessons you want to reproduce. Load in your Virtual Classroom all the lessons that you are going to reproduce, and in case of necessity help yourself with a playlist to visualize them in sequence.<br/>From this page you are also allowed to send your lessons to users who are not subscribed in DESY.<br/>If after reading our FAQs you have still doubts about the use of this section, don't hesitate contacting us." # TODO
+      description: "这部分<b>虚拟教室</b>考虑帮助你组织你要产生的课程. 将你打算制作的课程加载到你的虚拟教室,借助播放列表的帮助依次可视化他们.<br/>通过这一页,你被充许发送课程在DESY中没有注册的用户.<br/>如果你读了我们的FAQs后,你还是不知道使用这部分, 请毫不犹豫地联系我们."
       # They are organized in arrays, which first element is the title and the second element is the content
       # 1 - controllers/faqs_controller.rb
       # 2 - controllers/faqs_controller.rb
       contents: [
-        ["May I send a lesson by email?", "Yes, it's possible to send your lessons by email, or share them on the most common social networks. If you want to send your lessons to one or more emails, you can help yourself with the section \"Mailing List\" of your personal profile."], # TODO
-        ["May I send a playlist by email?", "No, unfortunately this is not possible. Lessons may be sent by email or shared on social networks only singularly."] # TODO
+        ["我能通过电子邮件发送课程吗?", "是的，它是可能的, 它也能在公共网络上分享. 如果你想发送你的课程至一个以上的电子邮件,请在你个人资料的 \"Mailing List\"的部分寻找帮助."],
+        ["我能通过电子邮件发送播放列表吗?", "对不起,这个不可以. 课程可以通过电子邮件发送,或公共网络分享."]
       ]
     # FAQS about the user's profile (all of them have a common description which is visible on the gray header)
     profile:
@@ -3898,10 +3898,10 @@ cn:
       # 2 - views/faqs/profile.html.erb
       title: "个人资料"
       # 1 - views/faqs/profile.html.erb
-      description: "In the section of your <b>personal profile</b> you find any interesting information about your contribute to DESY's didactic community.<br/>You can decide to modify your personal data in any moment.<br/>In your personal profile you can also create and manage your playling lists or have a look at your personal statistics in the application.<br/>If you have any further doubts about the functionalities found in this section, don't hesitate contacting us." # TODO
+      description: "在你的<b>个人资料</b>里,你能找到跟DESY社区有趣的任何信息.<br/>任何时候,你能修改个人资料.<br/>在个人资料页,你也能建立或管理你的播放列表,也能查看你个人信息统计.<br/>如果你有任何的疑问, 请毫不犹豫地联系我们!"
       # They are organized in arrays, which first element is the title and the second element is the content
       # 1 - controllers/faqs_controller.rb
       # 2 - controllers/faqs_controller.rb
       contents: [
-        ["How can I know how many users are following my lessons?", "To find out this and all the other statistics concerning your profile in DESY, enter in the section \"Statistics\" of your personal profile."] # TODO
+        ["在DESY中找出跟你的个人资料有关的所有的统计, 输入你个人资料的统计 \"统计\"."]
       ]
