@@ -78,9 +78,9 @@ ExceptionNotification.configure do |config|
 
   # Adds a condition to decide when an exception must be ignored or not.
   # The ignore_if method can be invoked multiple times to add extra conditions.
-  #config.ignore_if do |exception, options|
-  #  not Rails.env.production?
-  #end
+  config.ignore_if do |exception, options|
+    not Rails.env.production?
+  end
 
   # Notifiers =================================================================
 
@@ -98,7 +98,7 @@ ExceptionNotification.configure do |config|
   notifier_name = DELAYED_JOB ? :email : :delayed_job_email
   config.add_notifier notifier_name, {
     email_prefix:         "[#{SETTINGS['application_name']}] "            ,
-    sender_address:       %Q{"Error" #{SETTINGS['application']['email']}} ,
+    sender_address:       SETTINGS['application']['email']                ,
     exception_recipients: SETTINGS['application']['maintainer']['emails']
   }
 
