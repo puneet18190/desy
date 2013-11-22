@@ -520,11 +520,15 @@ html.audio_editor-controller {
     
   }
   
-  #add_new_audio_component_in_audio_editor.disabled:hover {
+  #add_new_audio_component_in_audio_editor {
     
-    background-position: -8em -4em;
-    opacity: 0.5;
-    cursor: default;
+    @include svg-circle-icon-handler($assets-icone-player_svg, 53px, 5, 4, 0.5, 4, 2, 1, 4, 0);
+    
+    &.disabled {
+      
+      @include svg-circle-icon-handler($assets-icone-player_svg, 53px, 5, 4, 0.5, 4, 2, 0.5, 4, 2);
+      
+    }
     
   }
   
