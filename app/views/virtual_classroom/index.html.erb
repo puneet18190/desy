@@ -5,7 +5,7 @@
 </div>
 <div class="content">
   <div class="griglia-contenuti">
-    <div class="playListContainer">
+    <div class="playListContainer" style="margin-top:<%= @lessons.empty? ? '-70px' : '0' %>">
       <%= render :partial => 'virtual_classroom/playlist', :locals => {:lessons => @playlist} %>
     </div>
     <div class="listContainer">

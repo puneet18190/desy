@@ -285,7 +285,7 @@ href="ApplicationController.html#method-i-authenticate">ApplicationController#au
                 
               </p>
               <div id="method-i-confirm_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 111</span>
+                <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 113</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">confirm</span>
   <span class="ruby-keyword">if</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">confirm!</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:token</span>])
     <span class="ruby-identifier">render</span> <span class="ruby-string">&#39;users/fullpage_notifications/confirmation/received&#39;</span>
@@ -365,13 +365,15 @@ href="ApplicationController.html#method-i-authenticate">ApplicationController#au
       )
     <span class="ruby-keyword">end</span>
     <span class="ruby-constant">UserMailer</span>.<span class="ruby-identifier">account_confirmation</span>(<span class="ruby-ivar">@user</span>).<span class="ruby-identifier">deliver</span>
+    <span class="ruby-identifier">purchase</span> = <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">purchase</span>
+    <span class="ruby-constant">UserMailer</span>.<span class="ruby-identifier">purchase_full</span>(<span class="ruby-identifier">purchase</span>).<span class="ruby-identifier">deliver</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">purchase</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:purchase_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">purchase</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">count</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-identifier">purchase</span>.<span class="ruby-identifier">accounts_number</span>
     <span class="ruby-identifier">render</span> <span class="ruby-string">&#39;users/fullpage_notifications/confirmation/email_sent&#39;</span>
   <span class="ruby-keyword">else</span>
     <span class="ruby-ivar">@errors</span> = <span class="ruby-identifier">convert_user_error_messages</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">errors</span>
     <span class="ruby-identifier">location</span> = <span class="ruby-constant">Location</span>.<span class="ruby-identifier">get_from_chain_params</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:location</span>]
     <span class="ruby-ivar">@locations</span> = <span class="ruby-identifier">location</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">?</span> [{<span class="ruby-value">:selected</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-number">0</span>, <span class="ruby-value">:content</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Location</span>.<span class="ruby-identifier">roots</span>.<span class="ruby-identifier">order</span>(<span class="ruby-value">:name</span>)}] <span class="ruby-operator">:</span> <span class="ruby-identifier">location</span>.<span class="ruby-identifier">get_filled_select_for_personal_info</span>
     <span class="ruby-ivar">@school_level_ids</span> = <span class="ruby-constant">SchoolLevel</span>.<span class="ruby-identifier">order</span>(<span class="ruby-value">:description</span>).<span class="ruby-identifier">map</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">sl</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">sl</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-identifier">sl</span>.<span class="ruby-identifier">id</span>] }
-    <span class="ruby-ivar">@subjects</span>         = <span class="ruby-constant">Subject</span>.<span class="ruby-identifier">order</span>(<span class="ruby-value">:description</span>)
+    <span class="ruby-ivar">@subjects</span>         = <span class="ruby-constant">Subject</span>.<span class="ruby-identifier">extract_with_cathegories</span>
     <span class="ruby-identifier">render</span> <span class="ruby-string">&#39;prelogin/registration&#39;</span>, <span class="ruby-value">:layout</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;prelogin&#39;</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
@@ -418,7 +420,7 @@ href="ApplicationController.html#method-i-initialize_layout">ApplicationControll
                 
               </p>
               <div id="method-i-edit_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 252</span>
+                <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 254</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">edit</span>
   <span class="ruby-ivar">@user</span> = <span class="ruby-identifier">current_user</span>
   <span class="ruby-ivar">@school_level_ids</span> = <span class="ruby-constant">SchoolLevel</span>.<span class="ruby-identifier">order</span>(<span class="ruby-value">:description</span>).<span class="ruby-identifier">map</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">sl</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">sl</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-identifier">sl</span>.<span class="ruby-identifier">id</span>] }
@@ -477,7 +479,7 @@ href="ApplicationController.html#method-i-authenticate">ApplicationController#au
                 
               </p>
               <div id="method-i-find_locations_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 280</span>
+                <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 282</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">find_locations</span>
   <span class="ruby-identifier">parent</span> = <span class="ruby-constant">Location</span>.<span class="ruby-identifier">find_by_id</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>]
   <span class="ruby-ivar">@locations</span> = <span class="ruby-identifier">parent</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">?</span> [] <span class="ruby-operator">:</span> <span class="ruby-identifier">parent</span>.<span class="ruby-identifier">children</span>.<span class="ruby-identifier">order</span>(<span class="ruby-value">:name</span>)
@@ -525,7 +527,7 @@ href="ApplicationController.html#method-i-initialize_layout">ApplicationControll
                 
               </p>
               <div id="method-i-logged_upgrade_trial_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 314</span>
+                <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 316</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">logged_upgrade_trial</span>
   <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">trial?</span>
     <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">my_profile_path</span>
@@ -592,7 +594,7 @@ href="ApplicationController.html#method-i-initialize_layout">ApplicationControll
                 
               </p>
               <div id="method-i-mailing_lists_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 413</span>
+                <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 421</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">mailing_lists</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
@@ -638,7 +640,7 @@ href="ApplicationController.html#method-i-authenticate">ApplicationController#au
                 
               </p>
               <div id="method-i-request_reset_password_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 131</span>
+                <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 133</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">request_reset_password</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
@@ -685,7 +687,7 @@ href="ApplicationController.html#method-i-authenticate">ApplicationController#au
                 
               </p>
               <div id="method-i-request_upgrade_trial_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 193</span>
+                <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 195</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">request_upgrade_trial</span>
   <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;saas_registration_mode&#39;</span>]
     <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">home_path</span>
@@ -736,7 +738,7 @@ href="ApplicationController.html#method-i-authenticate">ApplicationController#au
                 
               </p>
               <div id="method-i-reset_password_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 171</span>
+                <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 173</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">reset_password</span>
   <span class="ruby-identifier">new_password</span>, <span class="ruby-identifier">user</span> = *<span class="ruby-constant">User</span>.<span class="ruby-identifier">reset_password!</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:token</span>])
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">new_password</span>
@@ -789,7 +791,7 @@ href="ApplicationController.html#method-i-authenticate">ApplicationController#au
                 
               </p>
               <div id="method-i-send_reset_password_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 146</span>
+                <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 148</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">send_reset_password</span>
   <span class="ruby-identifier">email</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:email</span>]
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">email</span>.<span class="ruby-identifier">blank?</span>
@@ -845,7 +847,7 @@ href="ApplicationController.html#method-i-authenticate">ApplicationController#au
                 
               </p>
               <div id="method-i-send_upgrade_trial_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 212</span>
+                <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 214</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">send_upgrade_trial</span>
   <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;saas_registration_mode&#39;</span>]
     <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">home_path</span>
@@ -916,7 +918,7 @@ href="ApplicationController.html#method-i-initialize_layout">ApplicationControll
                 
               </p>
               <div id="method-i-statistics_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 428</span>
+                <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 436</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">statistics</span>
   <span class="ruby-constant">Statistics</span>.<span class="ruby-identifier">user</span> = <span class="ruby-identifier">current_user</span>
   <span class="ruby-ivar">@my_created_lessons</span>      = <span class="ruby-constant">Statistics</span>.<span class="ruby-identifier">my_created_lessons</span>
@@ -979,10 +981,10 @@ href="ApplicationController.html#method-i-initialize_layout">ApplicationControll
                 
               </p>
               <div id="method-i-subjects_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 297</span>
+                <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 299</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">subjects</span>
   <span class="ruby-ivar">@user</span> = <span class="ruby-identifier">current_user</span>
-  <span class="ruby-ivar">@subjects</span> = <span class="ruby-constant">Subject</span>.<span class="ruby-identifier">order</span>(<span class="ruby-value">:description</span>)
+  <span class="ruby-ivar">@subjects</span> = <span class="ruby-constant">Subject</span>.<span class="ruby-identifier">extract_with_cathegories</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -1027,7 +1029,7 @@ href="ApplicationController.html#method-i-initialize_layout">ApplicationControll
                 
               </p>
               <div id="method-i-trial_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 349</span>
+                <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 351</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">trial</span>
   <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">trial?</span>
     <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">my_profile_path</span>
@@ -1079,7 +1081,7 @@ href="ApplicationController.html#method-i-initialize_layout">ApplicationControll
                 
               </p>
               <div id="method-i-update_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 368</span>
+                <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 370</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">update</span>
   <span class="ruby-ivar">@user</span> = <span class="ruby-identifier">current_user</span>
   <span class="ruby-identifier">in_subjects</span> = <span class="ruby-operator">!</span><span class="ruby-operator">!</span><span class="ruby-identifier">params</span>[<span class="ruby-value">:in_subjects</span>]
@@ -1098,11 +1100,17 @@ href="ApplicationController.html#method-i-initialize_layout">ApplicationControll
     <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:user</span>])
-    <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">in_subjects</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">my_subjects_path</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">my_profile_path</span>
+    <span class="ruby-identifier">ok_message</span> = <span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;users.info.ok_popup&#39;</span>)
+    <span class="ruby-identifier">my_redirect</span> = <span class="ruby-identifier">my_profile_path</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">in_subjects</span>
+      <span class="ruby-identifier">ok_message</span> = <span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;users.subjects.ok_popup&#39;</span>)
+      <span class="ruby-identifier">my_redirect</span> = <span class="ruby-identifier">my_subjects_path</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">my_redirect</span>, { <span class="ruby-identifier">flash</span><span class="ruby-operator">:</span> { <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-identifier">ok_message</span> } }
   <span class="ruby-keyword">else</span>
     <span class="ruby-ivar">@errors</span> = <span class="ruby-identifier">convert_user_error_messages</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">errors</span>
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">in_subjects</span>
-      <span class="ruby-ivar">@subjects</span> = <span class="ruby-constant">Subject</span>.<span class="ruby-identifier">order</span>(<span class="ruby-value">:description</span>)
+      <span class="ruby-ivar">@subjects</span> = <span class="ruby-constant">Subject</span>.<span class="ruby-identifier">extract_with_cathegories</span>
       <span class="ruby-identifier">render</span> <span class="ruby-value">:subjects</span>
     <span class="ruby-keyword">else</span>
       <span class="ruby-ivar">@locations</span> = <span class="ruby-constant">Location</span>.<span class="ruby-identifier">get_from_chain_params</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:location</span>]).<span class="ruby-identifier">get_filled_select_for_personal_info</span>
@@ -1145,7 +1153,7 @@ href="ApplicationController.html#method-i-initialize_layout">ApplicationControll
                 
               </p>
               <div id="method-i-upgrade_trial_link_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 450</span>
+                <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 458</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">upgrade_trial_link</span>
   <span class="ruby-identifier">my_trial_path</span>
 <span class="ruby-keyword">end</span></pre>

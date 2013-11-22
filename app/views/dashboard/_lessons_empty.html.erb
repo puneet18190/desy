@@ -1,11 +1,17 @@
-<div class="empty _empty_lessons">
-  <div class="createButton">
-    <a class="_empty_lessons_hover"></a>
-  </div>
-  <div class="fltlft"><% if emptied %>
-    <%= t('dashboard.emptied_lessons') %>
-  <% else %>
-    <%= t('dashboard.empty_lessons') %>
-  <% end %>
-  <h1><%= t('dashboard.create_new_lesson_now') %></h1></div>
+<div class="empty-situation-container">
+  <a href="/lessons/new">
+    <div class="plus"></div>
+    <div class="prompts">
+      <div class="reason">
+        <% if emptied %>
+          <%= t('dashboard.emptied_lessons') %>
+        <% else %>
+          <%= t('dashboard.empty_lessons') %>
+        <% end %>
+      </div>
+      <div class="big-prompt">
+        <%= t('dashboard.create_new_lesson_now') %>
+      </div>
+    </div>
+  </a>
 </div>

@@ -160,9 +160,7 @@ html.virtual_classroom-controller {
     
     float: left;
     width: 270px;
-    margin-right: 20px;
-    margin-top: 20px;
-    margin-bottom: 0;
+    margin: 20px 20px 0 0;
     -webkit-box-shadow: none;
     box-shadow: none;
     background-color: #434343;
@@ -505,28 +503,6 @@ html.virtual_classroom-controller {
     h2 {
       
       font: 240% 'Nunito', sans-serif;
-      
-    }
-    
-  }
-  
-  .createButton {
-    
-    float: left;
-    
-  }
-  
-  .createButton a {
-    
-    background: $assets-add-vc-off_svg no-repeat bottom right;
-    background-size: 8em;
-    padding: 1em 3em 6em 5em;
-    
-    &:hover {
-      
-      background: $assets-add-vc-on_svg no-repeat bottom right;
-      background-size: 8em;
-      padding: 1em 3em 6em 5em;
       
     }
     

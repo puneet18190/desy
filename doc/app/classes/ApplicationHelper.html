@@ -73,6 +73,11 @@
             
               
               <li>
+                <a href="#method-i-contact_us_link">contact_us_link</a>,
+              </li>
+            
+              
+              <li>
                 <a href="#method-i-controller_html_class">controller_html_class</a>
               </li>
             
@@ -146,18 +151,6 @@
               
               <li>
                 <a href="#method-i-manipulate_url">manipulate_url</a>
-              </li>
-            
-          </ul>
-        </dd>
-      
-        <dt>P</dt>
-        <dd>
-          <ul>
-            
-              
-              <li>
-                <a href="#method-i-prelogin_contact_us_menu_link">prelogin_contact_us_menu_link</a>
               </li>
             
           </ul>
@@ -288,6 +281,41 @@
                 <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 43</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">action_html_class</span>
   <span class="ruby-node">&quot;#{h action_name}-action&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-contact_us_link">
+            
+              <b>contact_us_link</b>()
+            
+            <a href="../classes/ApplicationHelper.html#method-i-contact_us_link" name="method-i-contact_us_link" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-contact_us_link_source')" id="l_method-i-contact_us_link_source">show</a>
+                
+              </p>
+              <div id="method-i-contact_us_link_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 4</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">contact_us_link</span>
+  <span class="ruby-identifier">link_to</span> <span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;prelogin.contact_us.menu_link&#39;</span>), <span class="ruby-node">&quot;mailto:#{SETTINGS[&#39;application&#39;][&#39;contact_us_email&#39;]}&quot;</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -487,41 +515,6 @@
   <span class="ruby-identifier">url</span> = <span class="ruby-node">&quot;#{path}?#{query_string}&quot;</span>
   <span class="ruby-identifier">url</span> = <span class="ruby-constant">URI</span>.<span class="ruby-identifier">escape</span>(<span class="ruby-identifier">url</span>)
   <span class="ruby-identifier">escape</span> <span class="ruby-operator">?</span> <span class="ruby-constant">CGI</span>.<span class="ruby-identifier">escape</span>(<span class="ruby-identifier">url</span>) <span class="ruby-operator">:</span> <span class="ruby-identifier">url</span>
-<span class="ruby-keyword">end</span></pre>
-              </div>
-            </div>
-            
-          </div>
-        
-        <div class="method">
-          <div class="title method-title" id="method-i-prelogin_contact_us_menu_link">
-            
-              <b>prelogin_contact_us_menu_link</b>()
-            
-            <a href="../classes/ApplicationHelper.html#method-i-prelogin_contact_us_menu_link" name="method-i-prelogin_contact_us_menu_link" class="permalink">Link</a>
-          </div>
-          
-          
-            <div class="description">
-              
-            </div>
-          
-          
-          
-          
-          
-            
-            <div class="sourcecode">
-              
-              <p class="source-link">
-                Source: 
-                <a href="javascript:toggleSource('method-i-prelogin_contact_us_menu_link_source')" id="l_method-i-prelogin_contact_us_menu_link_source">show</a>
-                
-              </p>
-              <div id="method-i-prelogin_contact_us_menu_link_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 4</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">prelogin_contact_us_menu_link</span>
-  <span class="ruby-identifier">link_to</span> <span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;prelogin.contact_us.menu_link&#39;</span>), <span class="ruby-node">&quot;mailto:#{SETTINGS[&#39;application&#39;][&#39;contact_us_email&#39;]}&quot;</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
