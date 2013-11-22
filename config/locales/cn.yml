@@ -32,16 +32,16 @@ cn:
     upgrade_trial:
       # Case 1: the user forgot to fill in one of the three compulsory fields
       # 1 - controllers/users_controller.rb
-      missing_fields: "Please fill in all the fields" # TODO
+      missing_fields: "请填写所有的字段"
       # Case 2: either the login data is wrong, or the account is not trial
       # 1 - controllers/users_controller.rb
-      wrong_login_or_not_trial: "No trial account corresponding to the email and password you inserted" # TODO
+      wrong_login_or_not_trial: "没有试用账号与你插入的邮件地址与密码关联"
       # Case 3: either the purchase code doesn't correspond to a purchase in the database, or that purchase has already reached its maximum amount of users
       # 1 - controllers/users_controller.rb
-      purchase_token_not_valid: "The purchase code is not valid" # TODO
+      purchase_token_not_valid: "购买注册码是非法的"
       # Case 4: generic error while saving the user
       # 1 - controllers/users_controller.rb
-      generic_error: "Error" # TODO
+      generic_error: "错误"
   # Messages shown inside a popup, all over the application
   other_popup_messages:
     correct:
@@ -87,7 +87,7 @@ cn:
       expired_trial: "您的试用已截至,请付款"
       # The purchase is not yet active
       # 1 - controllers/users/sessions_controller.rb
-      purchase_not_active_yet: "Your subscription is not active yet" # TODO
+      purchase_not_active_yet: "您的注册码还没有激活"
     mailing_list:
       # An error occurred while updating the user's mailing list (general message for any kind of error)
       # 1 - views/shared/_popups.html.erb
@@ -496,10 +496,10 @@ cn:
     confirm_delete_slide:
       # Title
       # 1 - views/shared/_popups.html.erb
-      title: "Slide deletion" # TODO
+      title: "幻灯片删除"
       # Message
       # 1 - views/shared/_popups.html.erb
-      confirm: "Are you sure you want to delete this slide?" # TODO
+      confirm: "您确认要删除这个幻灯片吗?"
       # Button to confirm
       # 1 - views/shared/_popups.html.erb
       do: "删除"
@@ -526,7 +526,7 @@ cn:
       subject: "%{desy} - Purchase has reached the limit of users"
       # Message
       # 1 - mailers/user_mailer.rb
-      message: "<h2>The following purchase has reached its limit of %{accounts_number} users: if you want to keep using it, you need to modify it or to generate and distribute a new purchase code</h2><br/><ul><li>Name of the purchaser: <i>%{name}</i></li><li>Responsible: <i>%{responsible}</i></li><li>Address: <i>%{address}</i></li><li>Phone number: <i>%{phone_number}</i></li><li>Fax: <i>%{fax}</i></li><li>Email: <i>%{email}</i></li><li>SSN: <i>%{ssn_code}</i></li><li>VAT: <i>%{vat_code}</i></li><li>Accounts number: <i>%{accounts_number}</i></li><li>Users restricted to: <i>%{location}</i></li><li>Valid since: <i>%{start_date}</i></li><li>Valid until: <i>%{expiration_date}</i></li></ul><br/><br/><h2>Purchase code: %{token}</h2>" # TODO
+      message: "<h2>%下列购买已达到{accounts_number}用户限制: 如果想继续使用, 你需要修改或产生一新的注册码</h2><br/><ul><li>购买者的名字: <i>%{name}</i></li><li>回答: <i>%{responsible}</i></li><li>地址: <i>%{address}</i></li><li>电话号码: <i>%{phone_number}</i></li><li>传真: <i>%{fax}</i></li><li>电子邮件: <i>%{email}</i></li><li>社会安全码: <i>%{ssn_code}</i></li><li>VAT: <i>%{vat_code}</i></li><li>账号: <i>%{accounts_number}</i></li><li>用户限制: <i>%{location}</i></li><li>合法开始日期: <i>%{start_date}</i></li><li>合法截至日期: <i>%{expiration_date}</i></li></ul><br/><br/><h2>注册码: %{token}</h2>"
     # Email containing the instructions and resume of a purchase
     purchase_resume:
       # Subject
@@ -1137,41 +1137,41 @@ cn:
     dashboard:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Welcome to DESY!" # TODO
+        title: "欢迎到DESY!"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "Is it your first time in DESY? In this page you find lessons and elements that might interest you. Any new lesson or didactic element, associated to one of your subjects of interest, will be added to this section as soon as it appears in our public database." # TODO
+        content: "你第一次来到DESY? 在这里你能找到你感兴趣的课程. 任何与你学习科目相关的新课程或训练单元都能添加到这里."
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Selected for you - elements" # TODO
+        title: "你的选择 - 单元"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "Find out which are the last didactic elements loaded in DESY's community. Add the ones you like more to your personal section (by clicking on the '+' icon). If you are looking for something specific, use the link to the search engine." # TODO
+        content: "找出哪一个是载入DESY社区最后一次训练单元. 添加到你喜欢个人部分 (点击 '+' 图标). 如果你想寻找特别的事情,请点击这个链接进入搜素引擎."
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Selected for you - lessons" # TODO
+        title: "你的选择 - 课程"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "New lessons associated to one of your subjects are automatically loaded in this section. Open the lesson preview, and add to your personal section the lessons you like (using the '+' icon). If you are looking for specific lessons, use the link to the search engine." # TODO
+        content: "与你的科目有关的新的课程将自动加载到这里. 打开课程预览, 将你喜欢的课程增加到你个人部分 (用 '+' 图标). 如果你想寻找特别的事情,请点击这个链接进入搜素引擎."
     documents:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Attaching files to a lesson" # TODO
+        title: "粘贴文件到课程"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "A multimedia lesson produced in DESY is composed by a sequence of slides.<br/>If you reckon that texts and media elements are not enough to write exhaustively about your topic, DESY allows you to attach <b>documents</b> or <b>external files</b> to your slides.<br/>Remember that, similarly to what happens for didactic elements, it's not possible to load documents directly from inside the Lesson Editor: hence, you need to load and manage your documents before opening the editor." # TODO
+        content: "在DESY中,制作多媒体课程由一系列的幻灯片组成.<br/>如果你认为用文本和媒体元素制作你的主题完全不够的话, DESY充许你粘贴<b>文档</b> 或<b>外部的文件</b>到你的幻灯片中<br/>提醒, 与训练课程的情形是相似的, 从课程编辑器内直接加载文档是没有问题的: 因此,在打开文档编辑器之前,你必须加载,管理你的文档."
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Which formats of documents are allowed?" # TODO
+        title: "充许那种格式?"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "DESY accepts <b>all the common formats</b> of files.<br/>Just take care about the size of your document, which must not exceed <b>50MB</b>" # TODO
+        content: "DESY接受 <b>所有的普通文件格式.</b><br/>只是注意文档的大小, 不能超过<b>50MB</b>"
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Slide templates which allow to attach files" # TODO
+        title: "许可粘贴文件的幻灯片模板"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "It's not possible to attach a document just in any slide: you'll realize that you can attach documents if you find the <b>attach</b> icon on the right of your slide.<br/>You can attach <b>a maximum of three documents</b> to each slide." # TODO
+        content: "在任何的幻灯片中粘贴文档是不可能的: 如果你在幻灯片的右边找到<b>粘贴</b>图标,你能实现粘贴文档.<br/>对于每个幻灯片来说,你能粘贴<b>最多三个文档</b>."
     lessons:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "These are your lessons" # TODO
+        title: "你的课程"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "In this page are stored all the lessons you created, copied, or linked from other users. Have a look at the status of your lessons:<br/><b>private</b> corresponds to a lesson that you created and is visible only to you; <b>shared</b> corresponds to a lesson created by you that you decided to share among the other users in DESY; a lesson is <b>linked</b> if it belongs to another user and you picked its link. Having the link of a lesson is not the same as having copied it, since in the second case you have your own copy of the lesson, whereas in the first case the original owner can still modify it." # TODO
+        content: "在这一页你能储存所有的来自由其他用户创立,拷贝或链接的课程. 看看你的课程状态:<br/><b>私有的</b> 跟你建立的课程相关,它只能对你自己可见; <b>分享</b> 跟你创建的课程相关,在DESY社区中,你决定是否要与其他人分享; 这个课程<b>已被链接</b>如果是属于其他用户,你已获得那个链接. 拷贝链接与链接是不一样的, 在第二种情况,你拥有自己课程拷贝,第一种情况, 原始的创立者还能修改它."
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Buttons" # TODO
