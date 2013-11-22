@@ -46,12 +46,12 @@
           <td><%= lesson.id %></td>
           <td><%= lesson.title %></td>
           <td><%= lesson.subject.description %></td>
-          <td><%= link_to lesson.user.full_name, admin_user_path(lesson.user_id), :target => :blank, :class => '_user_link_in_admin' %></td>
+          <td><%= link_to lesson.user.full_name, admin_user_path(lesson.user_id), :class => '_user_link_in_admin' %></td>
           <td><%= TimeConvert.to_string lesson.created_at %></td>
           <td><%= TimeConvert.to_string lesson.updated_at %></td>
           <td><%= lesson.likes_count %></td>
           <td><%= lesson.is_public.to_s %></td>
-          <td><%= link_to '<i class="icon-eye-open"></i>'.html_safe, "/lessons/#{lesson.id}/view?token=#{lesson.token}", :target => :blank, :class => 'action' %><a href="#" target="_blank" class="action"></a></td>
+          <td><%= link_to '<i class="icon-eye-open"></i>'.html_safe, "/lessons/#{lesson.id}/view?token=#{lesson.token}", :class => 'action' %><a href="#" target="_blank" class="action"></a></td>
           <% if from_reporting.present? %>
             <td>
               <a class="_report_item" data-report-id="<%= from_reporting %>"><%= t('admin.messages.reports.actions.delete') %></a>

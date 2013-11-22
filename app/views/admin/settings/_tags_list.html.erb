@@ -33,8 +33,8 @@
           <td><%= tag.id %></td>
           <td><%= tag.word %></td>
           <td><%= TimeConvert.to_string tag.created_at %></td>
-          <td><%= link_to tag.lessons_count, "/admin/settings/tags/#{tag.id}/show/lessons", :target => :blank %></td>
-          <td><%= link_to tag.media_elements_count, "/admin/settings/tags/#{tag.id}/show/media_elements", :target => :blank %></td>
+          <td><%= link_to tag.lessons_count, "/admin/settings/tags/#{tag.id}/show/lessons" %></td>
+          <td><%= link_to tag.media_elements_count, "/admin/settings/tags/#{tag.id}/show/media_elements" %></td>
           <td>
             <a rel="nofollow" data-method="delete" data-confirm="<%= t('admin.settings.tags.delete_confirm') %>" href="/admin/settings/tags/<%= tag.id %>/delete?back_url=<%= manipulate_url(:page => back_page, :escape => true).html_safe %>">
               <i class="icon-remove"></i>

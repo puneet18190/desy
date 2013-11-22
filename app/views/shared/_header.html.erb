@@ -16,8 +16,8 @@
       <span class="cognome"><%= current_user.surname %></span>
       <br class="clearfloat">
       <% if personificated_user -%>
-        <%# TODO traduzz %>
-        <%= link_to 'Spersonifica', admin_personification_path, method: :delete %>
+        <%# TODO traduzz admin.users.actions.unpersonificate %>
+        <%= link_to t('admin.users.actions.unpersonificate'), admin_personification_path, method: :delete %>
       <% else -%>
         <%= link_to t('registration.logout'), users_session_path, method: :delete %>
       <% end -%>
