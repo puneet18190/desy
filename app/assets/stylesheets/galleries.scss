@@ -673,33 +673,16 @@
     
   }
   
-  .videoInGalleryPopUp {
+}
+
+.videoInGalleryPopUp {
+  
+  display: none;
+  
+  .addButtonContent {
     
-    display: none;
-    background-color: #fff;
-    color: #666;
-    max-height: 420px;
-    max-width: 420px;
-    
-    img {
-      
-      max-height: 420px;
-      max-width: 420px;
-      
-    }
-    
-    .caption {
-      
-      margin: 0;
-      padding: 0;
-      
-    }
-    
-    .addButtonContent {
-      
-      @include svg-circle-icon-handler($assets-icone-player_svg, 44px, 5, 4, 0.5, 4, 2, 1, 4, 0);
-      
-    }
+    @include svg-circle-icon-handler($assets-icone-player_svg, 44px, 5, 4, 0.5, 4, 2, 1, 4, 0);
+    margin-top: 9px;
     
   }
   
