@@ -1133,7 +1133,7 @@ cn:
   #      title:
   #      content:
   
-    help:
+  help:
     dashboard:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
