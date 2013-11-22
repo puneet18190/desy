@@ -1300,7 +1300,7 @@ cn:
         # 1 - views/users/fullpage_notifications/confirmation/email_sent.html.erb
         title: "注册"
         # 1 - views/users/fullpage_notifications/confirmation/email_sent.html.erb
-        description: "The registration was completed successfully: check your email address in order to confirm it, you'll find a message containing the link to confirm your account. If you don't find our email, check out the spam folder of your email manager. In case of further problems, don't hesitate contacting us" # TODO
+        description: "注册成功完成: 确认它,请检查你的邮件地址, 你将发现包含链接信息的确认你的账号. 如果你没有发现我们的邮件, 请检查你的垃圾邮件. 如有问题, 请毫不犹豫地联系我们"
       # The user clicked on the confirmation link he received by email: he is redirected to the main page of the application, with this message (to log in he still needs to write username and password, he is not automatically logged in)
       received:
         # 1 - views/users/fullpage_notifications/confirmation/received.html.erb
@@ -1310,9 +1310,9 @@ cn:
     # Window shown to the user to confirm the successfully upgrading of his trial account
     upgrade_trial:
       # 1 - views/users/send_upgrade_trial.html.erb
-      title: "Congratulations!" # TODO
+      title: "恭喜!"
       # 1 - views/users/send_upgrade_trial.html.erb
-      description: "Your trial account has been successfully upgraded to a regular one!<br> To start using your account just go back to the home page and log in" # TODO
+      description: "你的试用账号已成功升级到正式账号!<br>开始使用你的账号,回到你的主页并登陆"
   
   
   
@@ -1440,7 +1440,7 @@ cn:
     create_new_lesson_now: "现在建立课程"
     # Caption of the link to download the user guide (bottom right in the page)
     # 1 - views/dashboard/index.html.erb
-    download_manual: "Go to the FAQs" # TODO (FAQs = Frequently Asked Questions)
+    download_manual: "去回答问题页"
     # Caption which appears if there are no suggested lessons inside the Dashboard, because the user picked all the lessons the application suggested him
     # 1 - views/dashboard/_lessons_empty.html.erb
     emptied_lessons: "你已选择所有被推荐的课程"
@@ -1886,13 +1886,13 @@ cn:
     # Notifications related to the user's account cycle: account created, trial upgraded, account renewed, etc
     account:
       # The user has created a new account with a regular purchase code. The variable %{user_name} is replaced by the name of the user, %{desy} by the application name, and %{expiration_date} by the date of expiration of the user's account
-      welcome: "<div class=\"title\">Welcome %{user_name}!</div><div class=\"content\">You activated a regular account in <span class=\"variable\">%{desy}</span>: your account will be valid until <span class=\"variable\">%{expiration_date}</span>.</div>" # TODO
+      welcome: "<div class=\"title\">欢迎 %{user_name}!</div><div class=\"content\">在<span class=\"variable\">%{desy}</span>里,你激活了你的账号: 你的账号是合法的,直到<span class=\"variable\">%{expiration_date}</span>.</div>"
       # The user has renewed his regular account. The variable %{expiration_date} is replaced by the date of expiration of the user's account
-      renewed: "<div class=\"title\">Congratulations!</div><div class=\"content\">Your regular account has been renewed until <span class=\"variable\">%{expiration_date}</span>.</div>" # TODO
+      renewed: "<div class=\"title\">恭喜!</div><div class=\"content\">你的正式账号已经被更新直到 <span class=\"variable\">%{expiration_date}</span>.</div>"
       # The user has created a trial account. The variable %{user_name} is replaced by the name of the user, %{desy} by the application name, %{validity} by the validity (in days) of the user's trial account, %{link} by the link to the upgrade form
-      trial: "<div class=\"title\">Welcome %{user_name}!</div><div class=\"content\">You activated a trial account in %{desy}: your account will be valid for <span class=\"variable\">%{validity} days</span>.<br/><br/>A <span class=\"variable\">trial account</span> enables all the functionalities, except for<br/><ul><li>sharing things among our community</li><li>downloading your own lessons</li></ul></div><div class=\"basement\"><span>Upgrade your account</span><a href=\"%{link}\" class=\"trial\"></a></div>" # TODO
+      trial: "<div class=\"title\">欢迎%{user_name}!</div><div class=\"content\">在%{desy}中,你已激活试用账号: 你的帐号在<span class=\"variable\">%{validity}天内是合法的</span>.<br/><br/>A <span class=\"variable\">使用账号</span>激活所有的功能, 除了<br/><ul><li>在社区分享外</li><li>下载你的课程</li></ul></div><div class=\"basement\"><span>升级你的账号</span><a href=\"%{link}\" class=\"trial\"></a></div>"
       # The user has upgraded his trial account to a regular one. The variable %{validity} is replaced by the validity (in days) of the user's trial account
-      upgraded: "<div class=\"title\">Congratulations!</div><div class=\"content\">Your trial account has been upgraded to a regular one, which will be valid until <span class=\"variable\">%{expiration_date}</span>.</div>" # TODO
+      upgraded: "<div class=\"title\">恭喜!</div><div class=\"content\">你的试用账号已被升级到正式账号, 它是合法的直到 <span class=\"variable\">%{expiration_date}</span>.</div>"
   
   
   # SECTION 2.11: Captions and texts inside the presentation pages (which are shown when the user is not logged in)
@@ -1963,15 +1963,15 @@ cn:
     done: "签到"
     # Button to select all the subjects of a cathegory
     # 1 - views/users/_personal_subjects.html.erb
-    select_all_subjects: "Select all" # TODO
+    select_all_subjects: "选择所有"
     # Messages shown to the trial users if they try to do forbidden actions
     trial_limitations_messages:
       # First action: trial users can't publish their lessons
       # 1 - controllers/lessons_controller.rb
-      cant_publish_lesson: "Trial users can't publish lessons" # TODO
+      cant_publish_lesson: "试用用户不能发布课程"
       # Second case: trial users can't send links from the Virtual Classroom
       # 1 - views/shared/_popups.html.erb
-      cant_send_link: "Trial users can't send lessons" # TODO
+      cant_send_link: "试用用户不能发送课程"
     # Captions of the login window: title + two captions for email and password + button to submit
     login:
       # 1 - views/prelogin/_login.html.erb
@@ -1991,7 +1991,7 @@ cn:
     problems_with_password: "忘记你的口令"
     # Link to upgrade a trial account
     # 1 - views/prelogin/_login.html.erb
-    upgrade_trial: "Upgrade your trial account" # TODO
+    upgrade_trial: "升级的试用账户"
     # Purchase code
     # 1 - views/prelogin/_registration_form.html.erb
     purchase_id: "购买注册码:"
@@ -2178,7 +2178,7 @@ cn:
       description: "在这个区中你能更新或修改你帐号所有的参数"
       # Popup shown when the users correctly updates his profile
       # 1 - controllers/users_controller.rb
-      ok_popup: "Profile correctly updated" # TODO
+      ok_popup: "个人资料已正确添加"
       # Captions for each profile attribute that can be modified by the user
       attributes:
         # 1 - views/users/_personal_info.html.erb
@@ -2248,13 +2248,13 @@ cn:
     upgrade_trial:
       # Title
       # 1 - views/users/request_upgrade_trial.html.erb
-      title: "Do you want to upgrade your trial account?" # TODO
+      title: "你想升级你的试用账户吗?"
       # Instructions
       # 1 - views/users/request_upgrade_trial.html.erb
-      description: "Insert your email, your password, and a valid purchase code" # TODO
+      description: "插入的电子邮件,密码,和合法的注册码"
       # Button to send upgrade
       # 1 - views/users/request_upgrade_trial.html.erb
-      done: "Upgrade" # TODO
+      done: "升级"
     # Section 3: user's personal and general statistics
     statistics:
       # Link inside the user's profile menu
@@ -2313,7 +2313,7 @@ cn:
         likes: "喜欢你的课程"
         # How many links by other users the user has on his public lessons
         # 1 - views/users/statistics.html.erb
-        links: "Lessons followed by other users" # TODO
+        links: "教訓其次是其他用戶"
         # How many elements you created
         # 1 - views/users/statistics.html.erb
         media_elements_loaded: "教学单元已上传"
@@ -2336,46 +2336,46 @@ cn:
       save: "保存"
       # Popup shown when the users correctly saves his subjects
       # 1 - controllers/users_controller.rb
-      ok_popup: "Subjects correctly updated" # TODO
+      ok_popup: "主题已正确添加"
       # If the subject has no cathegory, this will be the label
       # 1 - views/users/_personal_subjects.html.erb
-      no_cathegory: "Other" # TODO
+      no_cathegory: "其它"
     # Captions used for trial accounts
     trial:
       # The variable %{expiration_date} is replaced by the date of expiration of the trial
       # 1 - views/admin/users/_list.html.erb
       # 2 - views/admin/users/show.html.erb
-      label: "Trial (expires %{expiration_date})" # TODO
+      label: "试用 (截至 %{expiration_date})"
       # Link from the header to the upgrade trial section of your profile
       # 1 - views/shared/_trial_header.html.erb
-      header_link: "Upgrade" # TODO
-      # Link in the profile menu (the variable %{desy} is replaced by the name of the application)
+      header_link: "升级"
+      # Link in the profile menu
       # 1 - views/users/_title_bar.html.erb
-      menu_link: "Buy" # TODO
+      menu_link: "购买"
       # Caption to remember to the user the expiration (the variable %{days} is replaced by the number of days left to expiration)
       # 1 - views/shared/_header.html.erb
-      expiration: "Trial - %{days} days left" # TODO
+      expiration: "试用 - 还剩%{days} 天"
       # Errors while trying to upgrade a trial account by a logged user
       errors:
         # 1 - controllers/users_controller.rb
-        problem_saving: "There was a problem upgrading your trial account, please try again" # TODO
+        problem_saving: "升级你的试用账户有问题, 请再试"
         # 1 - controllers/users_controller.rb
-        code_not_valid: "The purchase code is not valid" # TODO
+        code_not_valid: "注册码是非法的"
       # Title of the section "upgrade your trial account while already logged in" (the variable %{desy} is replaced by the name of the application)
       # 1 - views/users/trial.html.erb
-      title: "Buy <span style=\"text-transform:none\">%{desy}</span>" # TODO
+      title: "购买 <span style=\"text-transform:none\">%{desy}</span>"
       # Description of the section "upgrade your trial account while already logged in" (the variable %{desy} is replaced by the name of the application)
       # 1 - views/users/trial.html.erb
-      description: "Enjoy the full version of %{desy}! Insert a valid purchase code and upgrade your trial account" # TODO
+      description: "享受%{desy}完整版! 插入合法注册码, 并升级的试用账号"
       # Label of the purchase code in the form to upgrade your trial account
       # 1 - views/users/trial.html.erb
       purchase_code: "购买注册码"
       # Label of the commit button in the form to upgrade your trial account
       # 1 - views/users/trial.html.erb
-      commit: "Upgrade" # TODO
+      commit: "升级"
       # Timed popup which appears when you successfully upgraded your trial account
       # 1 - controllers/users_controller.rb
-      successful_upgrade: "You successfully upgraded your account" # TODO
+      successful_upgrade: "你已成功升级了你的账号"
   
   
   # SECTION 2.16: Captions used inside the Video Editor
@@ -3833,34 +3833,34 @@ cn:
   faqs:
     # Title
     # 1 - views/layouts/faqs.html.erb
-    title: "Help and tutorials" # TODO
+    title: "帮助与授课"
     # Description visible on the gray header
     # 1 - views/faqs/index.html.erb
-    description: "Welcome to DESY, the new digital platform designed for creation and condivision of didactic multimedia contents.<br/>Using DESY is easy and intuitive, but if you have doubts about some of the application's functionalities, please read our FAQs to find the answer you need.<br/>In case you don't find the answer to your problem don't hesitate contacting us, we will be glad to help you taking the most of DESY's potential." # TODO
+    description: "欢迎到DESY, 她的目的是提供教学,学习与管理的多媒体数字平台.<br/>DESY非常容易使用而且很直观, 但是,如果对于平台的新功能有任何的疑问,请阅读我们的FAQs找到你满意的答案.<br/>如果在任何情况下,找不到问题的答案,请毫不犹豫的联系我们,我们很高兴帮助你找到DESY潜在的主题."
     # Link to come back to the main FAQS page
     # 1 - views/faqs/lessons.html.erb
     # 2 - views/faqs/media_elements.html.erb
     # 3 - views/faqs/virtual_classroom.html.erb
     # 4 - views/faqs/profile.html.erb
-    back: "Back to list" # TODO
+    back: "回到列表"
     # FAQS about lessons (all of them have a common description which is visible on the gray header)
     lessons:
       # 1 - views/faqs/index.html.erb
       # 2 - views/faqs/lessons.html.erb
       title: "课程"
       # 1 - views/faqs/lessons.html.erb
-      description: "The lessons page is the section of DESY where you find stored all your lessons, together with the ones you linked from other users. If you have any further doubts about the management or the creation of a new lesson, don't hesitate contacting us." # TODO
+      description: "课程页面是你找到DESY保存所有课程的地方, 还有来自其他用户的链接. 如果你有关于建立或管理新课程的问题, 请毫不犹豫地联系我们."
       # They are organized in arrays, which first element is the title and the second element is the content
       # 1 - controllers/faqs_controller.rb
       # 2 - controllers/faqs_controller.rb
       contents: [
-        ["How to create a lesson", "It's easy to create a multimedia lesson with DESY: to start, open your lessons page and click on the button <b>create a new lesson</b>. Once you inserted the title, a short description and a set of proper tags, you are redirected to the Lesson Editor and you can start composing your slides.<br/>DESY's Lesson Editor saves automatically any modification you achieve on the lesson you are editing; in any case, if you want to be sure that your lesson is saved, use the 'save' button on the right of the current slide.<br/>Remember that the lesson that you just created is automatically set as <b>private</b>, hence you are the only user who can use and see it, and the private elements you used are not yet shared among the other users of DESY. If you decide to share your lesson, also the didactic elements it contains are automatically shared."], # TODO
-        ["May I remove or turn back into private a lesson that I shared?", "Yes, sharing a lesson is important, but if for any reason you want to turn it back into private of course you can do it, as well as remove it or modify it: you are always the administrator of lessons you created, regardless of their status. Anyway, each time you achieve an action on a shared lesson that is being linked by other users in DESY, the sistem automatically sends a notification to all the followers of the lesson."], # TODO
-        ["May I use or modify another user's lesson?", "Yes, there are two ways to use a lesson of another user in DESY: linking that lesson (doing this you become a <b>follower</b> of that lesson) or creating your own copy of it. In the first case, all the actions of the owner of the lesson will affect your link; if you instead create a copy, you are able to modify it at your will."], # TODO
-        ["What happens if a lesson that I am following gets modified by its owner?", "The actions achieved by the owner on a public lesson affect all the links of its followers. In any case, when this happens the system sends an automatic notification to all the followers of the lesson. If you want a copy of the lessons which is not affected by external changes, you shouldn't link but rather copy it."], # TODO
-        ["May I visualize my lessons offline?", "Yes, DESY allows you to watch your lessons in absence of an internet connection: you can download any lesson in a .zip file which doesn't need a connection to work (to download such an offline lesson, use the icon <b>download</b> inside the lesson viewer)."], # TODO
-        ["I am a teacher of a scientific subject: may I add mathematical formulas to my lessons?", "Of course you can, mathematical formula insertion is enabled in any slide template allowing text. Click on the icon <b>square root</b> in the text editor's toolbar to open a specific <b>mathematical formula's editor</b>."]
-      ] # TODO
+        ["怎样建立课程", "用DESY很容易建立多媒体课程: 首先, 打开你的课程页面,点击这个按钮<b>建立新课程</b>. 输入一个标题, 简短的描述和一套适合的标签, 你将导航到课程编辑器。你开始制作你的幻灯片.<br/>DESY课程编辑器能自动保存你正在编辑的任何修改; 无论如何,你想确认课程是否被保存,请使用当前幻灯片右边的保存按钮.<br/>提醒,你刚刚建立的课程自动保存成<b>私有</b>, 因此,你是看到与使用它的唯一用户,你使用的这个单元在DESY平台还没有与其他用户分享. 如果你决定分享你的课程, 她包括建立课程的内容将被分享."],
+        ["我能移除或把我所分享课程变成私有吗?", "是的,分享课程是非常的重要的,但是由于某种原因,你想把你的建立的课程变成私有的,移除或修改它:通常你是建立课程的管理员, 与她们所处的状态无关. 总之, 每次在DESY中与其他用户分享课程, 系统将发送共享课程的通知给每个用户."],
+        ["我可以修改其他用户的课程吗?", "可以,这里有两种方式使用其他用户的课程: 链接这个课程(你将成为这个课程的<b>支持者</b>)或者建立这个课程的拷贝. 在第一次使用时, 课程的所有者行为将影响你的链接; 如果你有兴趣建立拷贝, 你能依据你的喜好修改它."],
+        ["如果我的课程被其他人修改,会怎样?", "在公共课程里产生的行为将影响所有的支持者发生的链接. 总之, 当这个发生时, 系统将向所有的支持者发送一个通知. 如果你想拷贝一个不受外面改变的影响的课程, 你不应该链接而是拷贝."],
+        ["我可以线下观看我的课程吗?", "可以,DESY充许你在无国际互联网的情况下观看视视频: 你能以ZIP文件格式下载课程.(为了下载离线课程, 在课程阅读器里点击<b>下载</b>图标)."],
+        ["我是一个教授科学科目的老师: 我能增加数学论坛到我的课程里吗?", "当然能, 在任何有文本的模板里都能插入数学论坛. 在文本编辑器的工具条点击<b>方根</b>打开<b>数学论坛编辑器</b>."]
+      ]
     # FAQS about media elements (all of them have a common description which is visible on the gray header)
     media_elements:
       # 1 - views/faqs/index.html.erb

@@ -2349,7 +2349,7 @@ it:
       # Link from the header to the upgrade trial section of your profile
       # 1 - views/shared/_trial_header.html.erb
       header_link: "Upgrade"
-      # Link in the profile menu (the variable %{desy} is replaced by the name of the application)
+      # Link in the profile menu
       # 1 - views/users/_title_bar.html.erb
       menu_link: "Acquista"
       # Caption to remember to the user the expiration (the variable %{days} is replaced by the number of days left to expiration)
