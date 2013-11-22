@@ -84,6 +84,12 @@
       
     }
     
+    .addButtonContent {
+      
+      @include svg-circle-icon-handler($assets-icone-player_svg, 44px, 5, 4, 0.5, 4, 2, 1, 4, 0);
+      
+    }
+    
   }
   
   img:hover {
@@ -531,6 +537,12 @@
         
       }
       
+      .addButtonContent {
+        
+        @include svg-circle-icon-handler($assets-icone-player_svg, 26px, 5, 4, 0.5, 4, 2, 1, 4, 0);
+        
+      }
+      
     }
     
     .audioTrackExpanded {
@@ -694,6 +706,12 @@
       
       margin: 0;
       padding: 0;
+      
+    }
+    
+    .addButtonContent {
+      
+      @include svg-circle-icon-handler($assets-icone-player_svg, 44px, 5, 4, 0.5, 4, 2, 1, 4, 0);
       
     }
     
