@@ -30,10 +30,8 @@ module Export
         FileUtils.rm_rf FOLDER
       end
 
-      private_attr_readers [ :lesson, :index_page, 
-                             :filename_without_extension, :folder, :filename, :archive_root_folder, :path, :assets_archive_folder, :math_images_archive_folder ]
-      attr_reader *private_attr_readers
-      private     *private_attr_readers
+      attr_reader :lesson, :index_page, 
+                  :filename_without_extension, :folder, :filename, :archive_root_folder, :path, :assets_archive_folder, :math_images_archive_folder
 
       # index_page: String
       def initialize(lesson, index_page)
