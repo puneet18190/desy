@@ -42,6 +42,7 @@
         <th></th>
         <th></th>
         <th></th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -60,8 +61,16 @@
           <% end %>
           <td><%= user.confirmed.to_s %></td>
           <td><%= TimeConvert.to_string user.created_at %></td>
-          <td><%= link_to '<i class="icon-eye-open"></i>'.html_safe, admin_user_path(user), :title => t('admin.users.show'), :target => :blank, :class => 'action' %></td>
-          <td><%= link_to '<i class="icon-envelope"></i>'.html_safe, "/admin/messages/new_notification?users=#{user.id}", :title => t('admin.users.actions.message'), :target => :blank, :class => 'action' %></td>
+          <td>
+            <%= link_to admin_user_path(user), :title => t('admin.users.show'), :target => :blank, :class => 'action' do %>
+            <i class="icon-eye-open"></i>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to "/admin/messages/new_notification?users=#{user.id}", :title => t('admin.users.actions.message'), :target => :blank, :class => 'action' do %>
+              <i class="icon-envelope"></i>
+            <% end %>
+          </td>
           <td id="user_<%= user.id %>_status">
             <% if user.active %>
               <%= link_to '', '#', :title => t('admin.users.actions.ban'), :class => 'icon-ban-circle action _active_status ban', :data => {:param => user.id} %>
@@ -70,8 +79,17 @@
             <% end %>
           </td>
           <td>
+            <% if current_user.super_admin? && current_user != user -%>
+              <%= link_to admin_personifications_path(user), method: :post do %>
+                <i class="icon-user"></i>
+              <% end %>
+            <% end -%>
+          </td>
+          <td>
             <% if !user.super_admin? %>
-              <%= link_to '<i class="icon-remove"></i>'.html_safe, admin_user_path(user), :method => :delete, :remote => true, :confirm => t('admin.users.delete_confirm'), :title=> t('admin.users.delete'), :class => 'action' %>
+              <%= link_to admin_user_path(user), :method => :delete, :remote => true, :confirm => t('admin.users.delete_confirm'), :title=> t('admin.users.delete'), :class => 'action' do %>
+                <i class="icon-remove"></i>
+              <% end %>
             <% end %>
           </td>
         </tr>
