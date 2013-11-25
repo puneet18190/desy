@@ -15,7 +15,7 @@
           url = image.media_element.url(url_type)
           effective_url = loaded ? "src=\"#{h url}\"".html_safe : ''
         %>
-        <% if image.is_horizontal?(slide.kind) %>
+        <% if image.is_horizontal? %>
           <img style="left:<%= image.alignment %>px; width:<%= image_width %>px" data-url="<%= url %>" alt="<%= image.media_element.title %>" <%= effective_url %>>
         <% else %>
           <img style="top:<%= image.alignment %>px; height:<%= image_height %>px" data-url="<%= url %>" alt="<%= image.media_element.title %>" <%= effective_url %>>

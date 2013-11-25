@@ -13,7 +13,7 @@
     
     <% if image %>
       <div class="image read-only">
-        <% if image.is_horizontal?(slide.kind) %>
+        <% if image.is_horizontal? %>
           <%= image_tag image.media_element.url, :style => "left:#{image.alignment}px; width:#{image_width}px" %>
         <% else %>
           <%= image_tag image.media_element.url, :style => "top:#{image.alignment}px; height:#{image_height}px" %>

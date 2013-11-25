@@ -55,8 +55,8 @@ class MediaElementsSlide < ActiveRecord::Base
   
   after_destroy :restore_lesson_availability
 
-  def is_horizontal?(kind)
-    media_element.is_horizontal? kind
+  def is_horizontal?(kind = nil)
+    media_element.is_horizontal?(kind || slide.kind)
   end
   
   private
