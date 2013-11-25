@@ -26,6 +26,23 @@ class Image < MediaElement
   
   attr_reader :edit_mode
   
+
+  # Horizontal check values
+  IS_HORIZONTAL_VALUES_BY_KIND = {
+    'cover'                   => 1.6  ,
+    'image1'                  => 1    ,
+    'image2'                  => 0.75 ,
+    'image3'                  => 1.55 ,
+    'image4'                  => 1.55 ,
+    'video_component'         => 1.77 ,
+    'video_component_preview' => 1.77
+  }
+
+  # Used to give an orientation on images
+  def is_horizontal?(kind)
+    ( width.to_f / height.to_f ) >= IS_HORIZONTAL_VALUES_BY_KIND[kind]
+  end
+
   # === Description
   #
   # Returns the url of the attached image.

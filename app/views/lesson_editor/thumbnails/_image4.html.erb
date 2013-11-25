@@ -16,7 +16,7 @@
   <div class="image-container item">
     <% if image1 %>
       <div class="image read-only">
-        <% if slide.is_horizontal?(image1.media_element.width, image1.media_element.height) %>
+        <% if image1.is_horizontal?(slide.kind) %>
           <%= image_tag image1.media_element.url, :style => "left:#{image1.alignment}px; width:#{image_width1}px" %>
         <% else %>
           <%= image_tag image1.media_element.url, :style => "top:#{image1.alignment}px; height:#{image_height1}px" %>
@@ -37,7 +37,7 @@
   <div class="image-container item" style="margin-right:0">
     <% if image2 %>
       <div class="image read-only">
-        <% if slide.is_horizontal?(image2.media_element.width, image2.media_element.height) %>
+        <% if image2.is_horizontal?(slide.kind) %>
           <%= image_tag image2.media_element.url, :style => "left:#{image2.alignment}px; width:#{image_width2}px" %>
         <% else %>
           <%= image_tag image2.media_element.url, :style => "top:#{image2.alignment}px; height:#{image_height2}px" %>
@@ -58,7 +58,7 @@
   <div class="image-container item" style="margin-bottom:0">
     <% if image3 %>
       <div class="image read-only">
-        <% if slide.is_horizontal?(image3.media_element.width, image3.media_element.height) %>
+        <% if image3.is_horizontal?(slide.kind) %>
           <%= image_tag image3.media_element.url, :style => "left:#{image3.alignment}px; width:#{image_width3}px" %>
         <% else %>
           <%= image_tag image3.media_element.url, :style => "top:#{image3.alignment}px; height:#{image_height3}px" %>
@@ -79,7 +79,7 @@
   <div class="image-container item" style="margin-right:0; margin-bottom:0">
     <% if image4 %>
       <div class="image read-only">
-        <% if slide.is_horizontal?(image4.media_element.width, image4.media_element.height) %>
+        <% if image4.is_horizontal?(slide.kind) %>
           <%= image_tag image4.media_element.url, :style => "left:#{image4.alignment}px; width:#{image_width4}px" %>
         <% else %>
           <%= image_tag image4.media_element.url, :style => "top:#{image4.alignment}px; height:#{image_height4}px" %>

@@ -54,6 +54,10 @@ class MediaElementsSlide < ActiveRecord::Base
   before_validation :init_validation
   
   after_destroy :restore_lesson_availability
+
+  def is_horizontal?(kind)
+    media_element.is_horizontal? kind
+  end
   
   private
   
