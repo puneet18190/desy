@@ -80,29 +80,6 @@ function defaultValueJavaScriptAnimationsDocumentReady() {
 }
 
 /**
-This function manages situations where resources are empty.
-@method emptyResourcesDocumentReady
-@for GeneralDocumentReady
-**/
-function emptyResourcesDocumentReady() {
-  $body.on('mouseover', '._empty_media_elements', function() {
-    $(this).find('._empty_media_elements_hover').addClass('current');
-  });
-  $body.on('mouseout', '._empty_media_elements', function() {
-    $(this).find('._empty_media_elements_hover').removeClass('current');
-  });
-  $body.on('mouseover', '._empty_lessons', function() {
-    $(this).find('._empty_lessons_hover').addClass('current');
-  });
-  $body.on('mouseout', '._empty_lessons', function() {
-    $(this).find('._empty_lessons_hover').removeClass('current');
-  });
-  $body.on('click', '._empty_lessons', function() {
-    window.location = '/lessons/new';
-  });
-}
-
-/**
 Initialization for all the functionalities of expanded lessons and media element popup (see also {{#crossLink "DialogsWithForm/showMediaElementInfoPopUp:method"}}{{/crossLink}}).
 @method expandedItemsDocumentReady
 @for GeneralDocumentReady
@@ -209,17 +186,20 @@ Initializer for all javascript and JQuery plugins.
 @for GeneralDocumentReady
 **/
 function javaScriptAnimationsDocumentReady() {
+  $body.on('mouseenter', '.empty-situation-container a', function() {
+    $(this).find('.plus').addClass('encendido');
+  });
+  $body.on('mouseleave', '.empty-situation-container a', function() {
+    $(this).find('.plus').removeClass('encendido');
+  });
   $('#notifications_list').jScrollPane({
     autoReinitialise: true
   });
-  $('#select_lesson_list').selectbox();
   $('#which_item_to_search').selectbox();
   $('#filter_lessons').selectbox();
   $('#order_documents').selectbox();
   $('#filter_search_lessons').selectbox();
   $('#filter_search_lessons_subject').selectbox();
-  $('#profile_school_level').selectbox();
-  $('#profile_region').selectbox();
   $('#for_page_media_elements').selectbox();
   $('#filter_media_elements').selectbox();
   $('#filter_search_media_elements').selectbox();

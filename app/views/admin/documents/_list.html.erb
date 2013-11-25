@@ -39,7 +39,7 @@
         <tr id="<%= document.id %>">
           <td><%= document.id %></td>
           <td><%= document.title %></td>
-          <td><%= link_to "#{document.users_name} #{document.users_surname}", admin_user_path(document.user_id), :target => :blank, :class => '_user_link_in_admin' %></td>
+          <td><%= link_to "#{document.users_name} #{document.users_surname}", admin_user_path(document.user_id), :class => '_user_link_in_admin' %></td>
           <td><%= document.extension %></td>
           <td><%= document.human_size %></td>
           <td><%= TimeConvert.to_string document.created_at %></td>

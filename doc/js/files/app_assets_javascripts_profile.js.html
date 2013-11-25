@@ -359,6 +359,16 @@ function preloginDocumentReady() {
   $body.on(&#x27;click&#x27;, &#x27;#submit_login_form&#x27;, function() {
     $(&#x27;#new_users_session_form&#x27;).submit();
   });
+  $body.on(&#x27;click&#x27;, &#x27;.cathegorySubjectContainer .checkboxElement label&#x27;, function() {
+    if($(this).hasClass(&#x27;unchecked&#x27;)) {
+      $(this).removeClass(&#x27;unchecked&#x27;);
+    } else {
+      $(this).addClass(&#x27;unchecked&#x27;);
+    }
+  });
+  $body.on(&#x27;click&#x27;, &#x27;.checkAllSubjects&#x27;, function() {
+    $(this).parent().find(&#x27;.checkboxElement label.unchecked&#x27;).click();
+  });
 }
 
 /**

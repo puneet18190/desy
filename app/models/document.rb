@@ -66,6 +66,15 @@ class Document < ActiveRecord::Base
     '.pdf'     => :pdf,
     '.ps'      => :pdf,
   }
+
+  COLORS_BY_TYPE = {
+    ppt:     '#EA943B',
+    doc:     '#5DA3DA',
+    zip:     '#57585B',
+    exc:     '#92BD4B',
+    pdf:     '#C61734',
+    unknown: '#A7A9AC'
+  }
   
   serialize :metadata, OpenStruct
   

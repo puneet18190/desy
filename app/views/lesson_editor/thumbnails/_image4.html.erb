@@ -1,13 +1,13 @@
 <%
   image1, image2, image3, image4 = slide.media_elements_at
-  image_height1 = resize_height(image1.media_element.width, image1.media_element.height, 'image4') if !image1.nil?
-  image_width1 = resize_width(image1.media_element.width, image1.media_element.height, 'image4') if !image1.nil?
-  image_height2 = resize_height(image2.media_element.width, image2.media_element.height, 'image4') if !image2.nil?
-  image_width2 = resize_width(image2.media_element.width, image2.media_element.height, 'image4') if !image2.nil?
-  image_height3 = resize_height(image3.media_element.width, image3.media_element.height, 'image4') if !image3.nil?
-  image_width3 = resize_width(image3.media_element.width, image3.media_element.height, 'image4') if !image3.nil?
-  image_height4 = resize_height(image4.media_element.width, image4.media_element.height, 'image4') if !image4.nil?
-  image_width4 = resize_width(image4.media_element.width, image4.media_element.height, 'image4') if !image4.nil?
+  image_height1 = image1.resize_height if !image1.nil?
+  image_width1 = image1.resize_width if !image1.nil?
+  image_height2 = image2.resize_height if !image2.nil?
+  image_width2 = image2.resize_width if !image2.nil?
+  image_height3 = image3.resize_height if !image3.nil?
+  image_width3 = image3.resize_width if !image3.nil?
+  image_height4 = image4.resize_height if !image4.nil?
+  image_width4 = image4.resize_width if !image4.nil?
 %>
 
 
@@ -16,7 +16,7 @@
   <div class="image-container item">
     <% if image1 %>
       <div class="image read-only">
-        <% if is_horizontal?(image1.media_element.width, image1.media_element.height, 'image4') %>
+        <% if image1.is_horizontal? %>
           <%= image_tag image1.media_element.url, :style => "left:#{image1.alignment}px; width:#{image_width1}px" %>
         <% else %>
           <%= image_tag image1.media_element.url, :style => "top:#{image1.alignment}px; height:#{image_height1}px" %>
@@ -37,7 +37,7 @@
   <div class="image-container item" style="margin-right:0">
     <% if image2 %>
       <div class="image read-only">
-        <% if is_horizontal?(image2.media_element.width, image2.media_element.height, 'image4') %>
+        <% if image2.is_horizontal? %>
           <%= image_tag image2.media_element.url, :style => "left:#{image2.alignment}px; width:#{image_width2}px" %>
         <% else %>
           <%= image_tag image2.media_element.url, :style => "top:#{image2.alignment}px; height:#{image_height2}px" %>
@@ -58,7 +58,7 @@
   <div class="image-container item" style="margin-bottom:0">
     <% if image3 %>
       <div class="image read-only">
-        <% if is_horizontal?(image3.media_element.width, image3.media_element.height, 'image4') %>
+        <% if image3.is_horizontal? %>
           <%= image_tag image3.media_element.url, :style => "left:#{image3.alignment}px; width:#{image_width3}px" %>
         <% else %>
           <%= image_tag image3.media_element.url, :style => "top:#{image3.alignment}px; height:#{image_height3}px" %>
@@ -79,7 +79,7 @@
   <div class="image-container item" style="margin-right:0; margin-bottom:0">
     <% if image4 %>
       <div class="image read-only">
-        <% if is_horizontal?(image4.media_element.width, image4.media_element.height, 'image4') %>
+        <% if image4.is_horizontal? %>
           <%= image_tag image4.media_element.url, :style => "left:#{image4.alignment}px; width:#{image_width4}px" %>
         <% else %>
           <%= image_tag image4.media_element.url, :style => "top:#{image4.alignment}px; height:#{image_height4}px" %>

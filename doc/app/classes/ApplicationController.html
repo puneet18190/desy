@@ -101,6 +101,11 @@ href="ApplicationController.html#method-i-initialize_players_counter">#initializ
             
               
               <li>
+                <a href="#method-i-banned_pre_authenticate">banned_pre_authenticate</a>,
+              </li>
+            
+              
+              <li>
                 <a href="#method-i-browser_not_supported">browser_not_supported</a>
               </li>
             
@@ -287,6 +292,11 @@ href="ApplicationController.html#method-i-initialize_players_counter">#initializ
         <dt>S</dt>
         <dd>
           <ul>
+            
+              
+              <li>
+                <a href="#method-i-saas_pre_authenticate">saas_pre_authenticate</a>,
+              </li>
             
               
               <li>
@@ -503,7 +513,7 @@ href="User.html#method-i-admin-3F">User#admin?</a>)</p>
                 
               </p>
               <div id="method-i-admin_authenticate_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 165</span>
+                <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 193</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">admin_authenticate</span>
   <span class="ruby-keyword">return</span> <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">root_path</span>(<span class="ruby-identifier">redirect_to</span><span class="ruby-operator">:</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">fullpath</span>, <span class="ruby-identifier">login</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>) <span class="ruby-keyword">if</span> <span class="ruby-keyword">not</span> <span class="ruby-identifier">current_user</span> <span class="ruby-keyword">or</span> <span class="ruby-keyword">not</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">admin?</span>
 <span class="ruby-keyword">end</span></pre>
@@ -538,9 +548,46 @@ href="User.html#method-i-admin-3F">User#admin?</a>)</p>
                 
               </p>
               <div id="method-i-authenticate_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 160</span>
+                <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 186</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">authenticate</span>
+  <span class="ruby-identifier">banned_pre_authenticate</span>
+  <span class="ruby-identifier">saas_pre_authenticate</span> <span class="ruby-keyword">if</span> <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;saas_registration_mode&#39;</span>]
   <span class="ruby-keyword">return</span> <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">root_path</span>(<span class="ruby-identifier">redirect_to</span><span class="ruby-operator">:</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">fullpath</span>, <span class="ruby-identifier">login</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">current_user</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-banned_pre_authenticate">
+            
+              <b>banned_pre_authenticate</b>()
+            
+            <a href="../classes/ApplicationController.html#method-i-banned_pre_authenticate" name="method-i-banned_pre_authenticate" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Used to check if the user has been banned</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-banned_pre_authenticate_source')" id="l_method-i-banned_pre_authenticate_source">show</a>
+                
+              </p>
+              <div id="method-i-banned_pre_authenticate_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 160</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">banned_pre_authenticate</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">current_user</span> = <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">active</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -573,7 +620,7 @@ href="User.html#method-i-admin-3F">User#admin?</a>)</p>
                 
               </p>
               <div id="method-i-convert_document_uploader_messages_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 244</span>
+                <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 272</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">convert_document_uploader_messages</span>(<span class="ruby-identifier">errors</span>)
   <span class="ruby-keyword">return</span> [<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;forms.error_captions.document_folder_size_exceeded&#39;</span>)] <span class="ruby-keyword">if</span> <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">added?</span> <span class="ruby-value">:attachment</span>, <span class="ruby-value">:folder_size_exceeded</span>
   <span class="ruby-identifier">resp</span> = []
@@ -613,7 +660,7 @@ of type ActiveModel::Errors into a translated message for the user.</p>
                 
               </p>
               <div id="method-i-convert_item_error_messages_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 197</span>
+                <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 225</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">convert_item_error_messages</span>(<span class="ruby-identifier">errors_ext</span>)
   <span class="ruby-identifier">errors</span> = <span class="ruby-identifier">errors_ext</span>.<span class="ruby-identifier">messages</span>
   <span class="ruby-identifier">resp</span> = []
@@ -665,7 +712,7 @@ of type ActiveModel::Errors into a translated message for the user.</p>
                 
               </p>
               <div id="method-i-convert_lesson_editor_messages_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 218</span>
+                <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 246</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">convert_lesson_editor_messages</span>(<span class="ruby-identifier">errors</span>)
   <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">convert_item_error_messages</span> <span class="ruby-identifier">errors</span>
   <span class="ruby-identifier">resp</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;forms.error_captions.subject_missing_in_lesson&#39;</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">has_key?</span> <span class="ruby-value">:subject_id</span>
@@ -703,7 +750,7 @@ ActiveModel::Errors into a translated message for the user.</p>
                 
               </p>
               <div id="method-i-convert_media_element_uploader_messages_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 225</span>
+                <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 253</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">convert_media_element_uploader_messages</span>(<span class="ruby-identifier">errors</span>)
   <span class="ruby-keyword">return</span> [<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;forms.error_captions.media_folder_size_exceeded&#39;</span>)] <span class="ruby-keyword">if</span> <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">added?</span> <span class="ruby-value">:media</span>, <span class="ruby-value">:folder_size_exceeded</span>
   <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">convert_item_error_messages</span> <span class="ruby-identifier">errors</span>
@@ -753,7 +800,7 @@ ActiveModel::Errors into a translated message for the user.</p>
                 
               </p>
               <div id="method-i-convert_user_error_messages_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 253</span>
+                <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 281</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">convert_user_error_messages</span>(<span class="ruby-identifier">errors</span>)
   <span class="ruby-identifier">pas_min</span> = <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;minimum_password_length&#39;</span>]
   <span class="ruby-identifier">pas_max</span> = <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;maximum_password_length&#39;</span>]
@@ -820,7 +867,7 @@ integer</p>
                 
               </p>
               <div id="method-i-correct_integer-3F_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 186</span>
+                <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 214</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">correct_integer?</span>(<span class="ruby-identifier">x</span>)
   <span class="ruby-identifier">x</span>.<span class="ruby-identifier">class</span> <span class="ruby-operator">==</span> <span class="ruby-constant">String</span> <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-identifier">x</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/\A\d+\Z/</span>) <span class="ruby-operator">==</span> <span class="ruby-number">0</span>
 <span class="ruby-keyword">end</span></pre>
@@ -856,7 +903,7 @@ href="ApplicationController.html#attribute-i-current_user">#current_user</a></p>
                 
               </p>
               <div id="method-i-current_user-3D_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 175</span>
+                <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 203</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">current_user=</span>(<span class="ruby-identifier">user</span>)
   <span class="ruby-identifier">session</span>[<span class="ruby-value">:user_id</span>] = <span class="ruby-identifier">user</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>
   <span class="ruby-ivar">@current_user</span> = <span class="ruby-identifier">user</span>
@@ -1467,7 +1514,7 @@ in the same page</p>
                 
               </p>
               <div id="method-i-logged_in-3F_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 287</span>
+                <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 315</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">logged_in?</span>
   <span class="ruby-operator">!</span><span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">nil?</span>
 <span class="ruby-keyword">end</span></pre>
@@ -1584,9 +1631,60 @@ href="DashboardController.html#method-i-index">DashboardController#index</a>)</p
                 
               </p>
               <div id="method-i-render_js_or_html_index_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 181</span>
+                <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 209</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">render_js_or_html_index</span>
   <span class="ruby-identifier">render</span> <span class="ruby-string">&#39;index&#39;</span>, <span class="ruby-identifier">formats</span><span class="ruby-operator">:</span> [<span class="ruby-identifier">request</span>.<span class="ruby-identifier">xhr?</span> <span class="ruby-operator">?</span> <span class="ruby-value">:js</span> <span class="ruby-operator">:</span> <span class="ruby-value">:html</span>]
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-saas_pre_authenticate">
+            
+              <b>saas_pre_authenticate</b>()
+            
+            <a href="../classes/ApplicationController.html#method-i-saas_pre_authenticate" name="method-i-saas_pre_authenticate" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Used only if saas authentication mode</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-saas_pre_authenticate_source')" id="l_method-i-saas_pre_authenticate_source">show</a>
+                
+              </p>
+              <div id="method-i-saas_pre_authenticate_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 165</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">saas_pre_authenticate</span>
+  <span class="ruby-identifier">logged_user</span> = <span class="ruby-identifier">current_user</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">logged_user</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">logged_user</span>.<span class="ruby-identifier">admin?</span>
+    <span class="ruby-identifier">now</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">zone</span>.<span class="ruby-identifier">now</span>
+    <span class="ruby-identifier">purchase</span> = <span class="ruby-identifier">logged_user</span>.<span class="ruby-identifier">purchase</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">purchase</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">purchase</span>.<span class="ruby-identifier">expiration_date</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">now</span>
+        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">current_user</span> = <span class="ruby-keyword">nil</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">purchase</span>.<span class="ruby-identifier">start_date</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">now</span>
+        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">current_user</span> = <span class="ruby-keyword">nil</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">logged_user</span>.<span class="ruby-identifier">created_at</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">now</span> <span class="ruby-operator">-</span> (<span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;saas_trial_duration&#39;</span>] * <span class="ruby-number">60</span> * <span class="ruby-number">60</span> * <span class="ruby-number">24</span>)
+        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">current_user</span> = <span class="ruby-keyword">nil</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -1623,7 +1721,7 @@ initialized</p>
                 
               </p>
               <div id="method-i-update_ok_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 191</span>
+                <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 219</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">update_ok</span>(<span class="ruby-identifier">condition</span>)
   <span class="ruby-ivar">@ok</span> = <span class="ruby-keyword">true</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-keyword">defined?</span>(<span class="ruby-ivar">@ok</span>)
   <span class="ruby-ivar">@ok</span> = <span class="ruby-operator">!</span><span class="ruby-operator">!</span>(<span class="ruby-ivar">@ok</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">condition</span>)

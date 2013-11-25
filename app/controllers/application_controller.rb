@@ -16,17 +16,19 @@ class ApplicationController < ActionController::Base
   before_filter :get_locale if Rails.application.config.more_than_one_language
   before_filter :authenticate, :initialize_location, :initialize_players_counter, :except => OUT_OF_AUTHENTICATION_ACTIONS
   
-  # The user who is logged in in this section
-  attr_reader :current_user
-  helper_method :current_user
+  helper_method :current_user, :personificated_user
 
   # In *production* environment pages with 404 status are catched by the web server, so we don't make the effort to render a 404 page
   def page_not_found
-    render :text => '<h1>Page not found</h1>', :status => 404, :layout => false
+    render layout: false, text: '<h1>Page not found</h1>', status: :not_found
   end
   
   def browser_not_supported
-    render :partial => 'shared/browser_not_supported', :layout => false
+    render layout: false, partial: 'shared/browser_not_supported'
+  end
+
+  def unauthorized
+    render layout: false, text: '401 Unauthorized', status: :unauthorized
   end
   
   if Rails.application.config.more_than_one_language
@@ -196,13 +198,28 @@ class ApplicationController < ActionController::Base
   
   # Returns the logged user
   def current_user
-    @current_user ||= ( session[:user_id] and User.confirmed.find_by_id(session[:user_id]) )
+    @current_user ||= personificated_user || current_user!
   end
-  
+
+  # Returns the logged user without checking for @current_user truthy
+  def current_user!
+    session[:user_id] and User.confirmed.find_by_id(session[:user_id])
+  end
+
   # Setter method for the attribute current_user
   def current_user=(user)
     session[:user_id] = user ? user.id : nil
-    @current_user = user
+  end
+
+  # Returns the personificated user
+  def personificated_user
+    return nil unless current_user!.try :super_admin?
+    @personificated_user ||= session[:personificated_user_id] and User.confirmed.find_by_id(session[:personificated_user_id])
+  end
+
+  # Sets directly @current_user in order to avoid #current_user to check session[:user_id]
+  def personificated_user=(user)
+    session[:personificated_user_id] = user ? user.id : nil
   end
   
   # Used in all the actions which have double possible rendering (Html + Ajax, see for instance DashboardController#index)
@@ -212,12 +229,12 @@ class ApplicationController < ActionController::Base
   
   # Used in ApplicationController#initialize_lesson and similar methods, to check if the id passed as parameter is a correct integer
   def correct_integer?(x)
-    x.class == String && (x =~ /\A\d+\Z/) == 0
+    x.is_a?(String) && x =~ /\A\d+\z/
   end
   
   # Used as a submethod to filters like ApplicationController#initialize_lesson: this method allows these filters to be used without a specified order, it's not necessary that the attribute +ok+ has been already initialized
   def update_ok(condition)
-    @ok = true if !defined?(@ok)
+    @ok = true unless defined?(@ok)
     @ok = !!(@ok && condition)
   end
   

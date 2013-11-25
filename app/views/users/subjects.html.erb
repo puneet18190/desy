@@ -1,9 +1,6 @@
 <div class="griglia-contenuti">
   <div class="profile-content">
-    <div class="title-bar">
-      <h1><%= t('captions.profile') %></h1>
-      <%= render :partial => 'users/profile_menu', :locals => {:classes => ['', 'current', '', '', '']} %>
-    </div>
+    <%= render :partial => 'users/title_bar', :locals => {:classes => ['', 'current', '', '', '']} %>
     <br class="clearfloat">
     <div class="contentForm">
       <header>

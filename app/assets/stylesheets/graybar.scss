@@ -10,13 +10,13 @@
   margin-bottom: 20px;
   margin-left: 1%;
   font: 80% 'Nunito', sans-serif;
-  width: 95.9%;
+  width: calc(98% - 16px);
   font-size: 120%;
   height: 55px;
   
   .titleSelected {
     
-    padding-left: 2%
+    padding: 15px 0 0 15px;
     
   }
   
@@ -112,9 +112,24 @@
       
     }
     
-    .sbSelector {
+    .sbHolder {
       
-      width: 127px;
+      .sbSelector {
+        
+        width: 127px;
+        
+      }
+      
+      .sbOptions {
+        
+        a:hover, a:focus, a.sbFocus {
+          
+          background-color: #f5f5f5;
+          color: #999999;
+          
+        }
+        
+      }
       
     }
     
@@ -161,7 +176,7 @@
       
       font-size: 80%;
       padding-top: 10px;
-      margin: 0;
+      margin: 0 10px 0 0;
       color: #c0bebe;
       
     }
@@ -193,15 +208,10 @@
   
 }
 
-._keep_searching {
-  
-  background: $assets-select-icons_png no-repeat 0 -123px;
-  padding-left: 30px;
-  margin-left: -4px;
-  
-}
-
 .advanced-search-content {
+  
+  width: 100%;
+  margin-bottom: 5%;
   
   .boxViewSingleLesson.current {
     
@@ -217,7 +227,7 @@
     form {
       
       font: 100% 'Nunito', sans-serif;
-      padding: 1% 3%;
+      padding: 18px;
       border: 1px solid #efefef;
       
       label {
@@ -269,6 +279,26 @@
           
           color: #ccc;
           background-color: #999;
+          
+        }
+        
+      }
+      
+      ._keep_searching {
+        
+        height: 20px;
+        
+        .keep_searching_icon {
+          
+          @include svg-circle-icon-handler-without-hover($assets-select-icons_png, 20px, 5, 2, 1, 1, 1);
+          margin-right: 10px;
+          
+        }
+        
+        .keep_searching_label {
+          
+          float: left;
+          height: 20px;
           
         }
         

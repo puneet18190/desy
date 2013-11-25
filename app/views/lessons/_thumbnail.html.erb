@@ -8,21 +8,21 @@
 %>
 
 <div class="img_expanded _lesson_thumb _lesson_<%= lesson.id %>" data-lesson-id="<%= lesson.id %>" style="width:247px; height:162px">
-  <% if !image %>
-    <div style="width:247px; height:144px; background-color:white"></div>
-  <% else %>
+  <% if image %>
     <%
-      image_height = resize_height(image.width, image.height, 'cover') / 3.64
-      image_width = resize_width(image.width, image.height, 'cover') / 3.64
+      image_height = image_cover.resize_height / 3.64
+      image_width = image_cover.resize_width / 3.64
       image_alignment = image_cover.alignment / 3.64
     %>
     <div class="cover" style="height:144px">
-      <% if is_horizontal?(image.width, image.height, 'cover') %>
+      <% if image_cover.is_horizontal? %>
         <%= image_tag image.url, :style => "left:#{image_alignment}px; height: 153px; width: #{image_width}px" %>
       <% else %>
         <%= image_tag image.url, :style => "top:#{image_alignment}px; width: 247px; height: #{image_height}px" %>
       <% end %>
     </div>
+  <% else %>
+    <div style="width:247px; height:144px; background-color:white"></div>
   <% end %>
   <div class="bg_text" style="height:30px">
     <div class="lessonTitle"><%= lesson.title %></div>

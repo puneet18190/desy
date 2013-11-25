@@ -2,19 +2,12 @@
 module ApplicationHelper
   
   def contact_us_link
-    link_to t('prelogin.contact_us.menu_link'), "mailto:#{SETTINGS['application']['contact_us_email']}"
+    mail_to SETTINGS['application']['contact_us_email'], t('prelogin.contact_us.menu_link')
   end
   
   # Gets the color of description popup into the document gallery
   def documents_type_color(document)
-    case document.type
-      when :ppt     then '#EA943B'
-      when :doc     then '#5DA3DA'
-      when :zip     then '#57585B'
-      when :exc     then '#92BD4B'
-      when :pdf     then '#C61734'
-      when :unknown then '#A7A9AC'
-    end
+    Document::COLORS_BY_TYPE[document.type]
   end
   
   # Select for a list of subjects.
@@ -50,57 +43,24 @@ module ApplicationHelper
     page            = options[:page]
     escape          = options[:escape]
     path            = options[:path] || request.path
+
     query_params = request.query_parameters.deep_dup
     query_params.delete(param_to_remove.to_s) if param_to_remove && query_params.present?
     query_params[:page] = page if page
+
     query_string = get_recursive_array_from_params(query_params).join('&')
+
     return path if query_string.blank?
+
     url = "#{path}?#{query_string}"
     url = URI.escape(url)
     escape ? CGI.escape(url) : url
   end
   
-  # Used to give an orientation on images
-  def is_horizontal?(width, height, kind)
-    ( width.to_f / height.to_f ) >=
-      case kind
-      when 'cover'                                      then 1.6
-      when 'image1'                                     then 1
-      when 'image2'                                     then 0.75
-      when 'image3', 'image4'                           then 1.55
-      when 'video_component', 'video_component_preview' then 1.77
-      end
-  end
-  
-  # Resizes the width of an image
-  def resize_width(width, height, kind)
-    (width.to_f *
-      case kind
-      when 'cover'                   then 560
-      when 'image1'                  then 420
-      when 'image2', 'image3'        then 550
-      when 'image4'                  then 265
-      when 'video_component'         then 88
-      when 'video_component_preview' then 360
-      end / height).to_i + 1
-  end
-  
   # Removes the title of a notification. Used in NotificationsController.
   def remove_title_from_notification(notification)
-     x = (notification =~ /<\/div>/)
+     x = notification =~ /<\/div>/
      x.nil? ? notification : notification[x + 6, notification.length]
-  end
-  
-  # Resizes the height of an image
-  def resize_height(width, height, kind)
-    (height.to_f *
-      case kind
-      when 'cover'                      then 900
-      when 'image1', 'image2', 'image4' then 420
-      when 'image3'                     then 860
-      when 'video_component'            then 156
-      when 'video_component_preview'    then 640
-      end / width).to_i + 1
   end
   
   # Method to help debugging views
@@ -123,12 +83,13 @@ module ApplicationHelper
   # Submethod of #manipulate_url, that takes into consideration nested url parameters
   def get_recursive_array_from_params(params)
     return params if !params.kind_of?(Hash)
+
     resp = []
+
     params.each do |k, v|
       rec_ar = get_recursive_array_from_params(v)
-      if !rec_ar.kind_of?(Array)
-        resp << "#{k}=#{rec_ar}"
-      else
+
+      if rec_ar.kind_of?(Array)
         rec_ar.each do |r|
           if (r =~ /\]/).nil?
             resp << "#{k}[#{r.gsub('=', ']=')}"
@@ -137,16 +98,20 @@ module ApplicationHelper
             resp << "#{k}[#{r[0, (r =~ /\[/)]}][#{temp_string}"
           end
         end
+      else
+        resp << "#{k}=#{rec_ar}"
       end
     end
+
     resp
   end
   
   # method to create the title of the html tab
   def title_tag(slides = nil)
-    controller = controller_path
-    desy = SETTINGS['application_name']
+    controller, desy = controller_path, SETTINGS['application_name']
+
     return t('captions.titles.admin', :desy => desy) if controller.start_with? 'admin/'
+
     case controller
     when 'documents'
       t('captions.titles.documents', :desy => desy)
@@ -159,7 +124,8 @@ module ApplicationHelper
     when 'virtual_classroom'
       t('captions.titles.virtual_classroom', :desy => desy)
     when 'lesson_viewer', 'lesson_export'
-      if ['index', 'archive'].include?(action_name)
+      case action_name
+      when 'index', 'archive'
         t('captions.titles.single_lesson', :desy => desy, :lesson => slides.first.lesson.title)
       else
         t('captions.titles.virtual_classroom', :desy => desy)
@@ -172,9 +138,9 @@ module ApplicationHelper
   # +path+ must be an absolute path
   def full_url(path)
     uri = URI.parse path
-    scheme, host, port = request.scheme, request.host, request.port
-    port = nil if port == 80
-    uri.scheme, uri.host, uri.port = scheme, host, port
+
+    uri.scheme, uri.host, uri.port = request.scheme, request.host, (request.port == 80 ? nil : request.port)
+
     uri.to_s
   end
   

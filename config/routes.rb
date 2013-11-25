@@ -1,4 +1,6 @@
 Desy::Application.routes.draw do
+  # APPLICATION ROOT
+  root :to => 'prelogin#home'
   
   # MAIN SECTIONS
   get  'dashboard'         => 'dashboard#index',         :as => :dashboard
@@ -162,7 +164,6 @@ Desy::Application.routes.draw do
   delete 'users_session'  => 'users/sessions#destroy'
   
   # USER NOT LOGGED
-  get  'home'                        => 'prelogin#home',                :as => :home
   get  'what_is'                     => 'prelogin#what_is',             :as => :what_is
   get  'sign_up'                     => 'prelogin#registration',        :as => :sign_up
   post 'sign_up'                     => 'users#create',                 :as => :users
@@ -182,23 +183,20 @@ Desy::Application.routes.draw do
   get 'faqs/virtual_classroom/:num/answer' => 'faqs#virtual_classroom', :as => :virtual_classroom_faqs
   get 'faqs/profile/:num/answer'           => 'faqs#profile',           :as => :profile_faqs
   
-  # APPLICATION ROOT
-  root :to => 'prelogin#home'
-  
   # ADMINISTRATION SECTION
   namespace 'admin' do
     root      :to                                       => 'dashboard#index'
     get       'users/get_full_names'                    => 'users#get_full_names'
     put       'users/:id/set_status'                    => 'users#set_status'
-    put       'users/:id/activate'                      => 'users#activate'
-    put       'users/:id/ban'                           => 'users#ban'
+    put       'users/:id/activate'                      => 'users#activate',                        :as => :users_activate
+    put       'users/:id/ban'                           => 'users#ban',                             :as => :users_ban
     get       'media_elements/edit'                     => 'media_elements#edit'
     get       'media_elements/:id/load'                 => 'media_elements#load_media_element'
     post      'media_elements/quick_upload'             => 'media_elements#quick_upload'
     post      'media_elements/:key/create'              => 'media_elements#create'
     delete    'media_elements/quick_upload/:key/delete' => 'media_elements#quick_upload_delete'
     put       'media_elements/:media_element_id/update' => 'media_elements#update'
-    get       'messages/new_notification'               => 'messages#new_notification'
+    get       'messages/new_notification'               => 'messages#new_notification',             :as => :messages_new_notification
     get       'messages/reports'                        => 'messages#reports'
     post      'messages/filter_users'                   => 'messages#filter_users'
     delete    'reports/:id/accept'                      => 'reports#accept'
@@ -223,6 +221,8 @@ Desy::Application.routes.draw do
     resources :documents,                         :only => [:index, :destroy]
     resources :media_elements,                    :only => [:new, :index, :destroy]
     resources :users,                             :only => [:index, :show, :destroy]
+    post      'personifications/:id'                    => 'personifications#create',               :as => :personifications
+    delete    'personifications'                        => 'personifications#destroy',              :as => :personification
   end
   
   # UTILITIES

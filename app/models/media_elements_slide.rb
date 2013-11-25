@@ -54,6 +54,18 @@ class MediaElementsSlide < ActiveRecord::Base
   before_validation :init_validation
   
   after_destroy :restore_lesson_availability
+
+  def is_horizontal?(kind = nil)
+    media_element.is_horizontal?(kind || slide.kind)
+  end
+
+  def resize_width(kind = nil)
+    media_element.resize_width(kind || slide.kind)
+  end
+
+  def resize_height(kind = nil)
+    media_element.resize_height(kind || slide.kind)
+  end
   
   private
   

@@ -25,15 +25,6 @@ html.audio_editor-controller {
       font-size: 12px;
       text-align: center;
       
-      a.addButtonContent {
-        
-        font-size: 2.2em;
-        margin-bottom: 20px;
-        float: none;
-        padding: 0.4em 1em;
-        
-      }
-      
       p {
         
         margin-top: 30px;
@@ -52,9 +43,9 @@ html.audio_editor-controller {
           margin: 0;
           
         }
-        
+
       }
-      
+
       .audioLateralControls {
         
         padding-top: 14px;
@@ -529,11 +520,15 @@ html.audio_editor-controller {
     
   }
   
-  #add_new_audio_component_in_audio_editor.disabled:hover {
+  #add_new_audio_component_in_audio_editor {
+    margin-left:22px;
+    @include svg-circle-icon-handler($assets-icone-player_svg, 53px, 5, 4, 0.5, 4, 2, 1, 4, 0);
     
-    background-position: -8em -4em;
-    opacity: 0.5;
-    cursor: default;
+    &.disabled {
+      
+      @include svg-circle-icon-handler($assets-icone-player_svg, 53px, 5, 4, 0.5, 4, 2, 0.5, 4, 2);
+      
+    }
     
   }
   
@@ -558,7 +553,7 @@ html.audio_editor-controller {
   .lateralContentGatto {
     
     width: 98px;
-    height: 295px;
+    height: 278px;
     
   }
   

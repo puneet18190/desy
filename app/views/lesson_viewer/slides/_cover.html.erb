@@ -16,11 +16,11 @@
           width, height = image.media_element.width, image.media_element.height
           effective_url = loaded ? "src=\"#{url}\"".html_safe : ''
         %>
-        <% if is_horizontal?(width, height, 'cover') %>
-          <% resized_width = resize_width(width, height, 'cover') %>
+        <% if image.is_horizontal? %>
+          <% resized_width = image.resize_width %>
           <img style="left:<%= image.alignment %>px; width:<%= resized_width %>px" data-url="<%= url %>" alt="<%= image.media_element.title %>" <%= effective_url %>/>
         <% else %>
-          <% resized_height = resize_height(width, height, 'cover') %>
+          <% resized_height = image.resize_height %>
           <img style="top:<%= image.alignment %>px; height:<%= resized_height %>px" data-url="<%= url %>" alt="<%= image.media_element.title %>" <%= effective_url %>/>
         <% end %>
       <% end %>
