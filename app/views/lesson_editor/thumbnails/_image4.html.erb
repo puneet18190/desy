@@ -1,13 +1,13 @@
 <%
   image1, image2, image3, image4 = slide.media_elements_at
-  image_height1 = resize_height(image1.media_element.width, image1.media_element.height, 'image4') if !image1.nil?
-  image_width1 = resize_width(image1.media_element.width, image1.media_element.height, 'image4') if !image1.nil?
-  image_height2 = resize_height(image2.media_element.width, image2.media_element.height, 'image4') if !image2.nil?
-  image_width2 = resize_width(image2.media_element.width, image2.media_element.height, 'image4') if !image2.nil?
-  image_height3 = resize_height(image3.media_element.width, image3.media_element.height, 'image4') if !image3.nil?
-  image_width3 = resize_width(image3.media_element.width, image3.media_element.height, 'image4') if !image3.nil?
-  image_height4 = resize_height(image4.media_element.width, image4.media_element.height, 'image4') if !image4.nil?
-  image_width4 = resize_width(image4.media_element.width, image4.media_element.height, 'image4') if !image4.nil?
+  image_height1 = image1.resize_height if !image1.nil?
+  image_width1 = image1.resize_width if !image1.nil?
+  image_height2 = image2.resize_height if !image2.nil?
+  image_width2 = image2.resize_width if !image2.nil?
+  image_height3 = image3.resize_height if !image3.nil?
+  image_width3 = image3.resize_width if !image3.nil?
+  image_height4 = image4.resize_height if !image4.nil?
+  image_width4 = image4.resize_width if !image4.nil?
 %>
 
 

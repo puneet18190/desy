@@ -10,8 +10,8 @@
     <div class="image read-only">
       <% if image1 %>
         <%
-          image_height1 = resize_height(image1.media_element.width, image1.media_element.height, 'image4')
-          image_width1 = resize_width(image1.media_element.width, image1.media_element.height, 'image4')
+          image_height1 = image1.resize_height
+          image_width1 = image1.resize_width
           url1 = image1.media_element.url(url_type)
           effective_url1 = loaded ? "src=\"#{h url1}\"".html_safe : ''
         %>
@@ -31,8 +31,8 @@
     <div class="image read-only">
       <% if image2 %>
         <%
-          image_height2 = resize_height(image2.media_element.width, image2.media_element.height, 'image4')
-          image_width2 = resize_width(image2.media_element.width, image2.media_element.height, 'image4')
+          image_height2 = image2.resize_height
+          image_width2 = image2.resize_width
           url2 = image2.media_element.url(url_type)
           effective_url2 = loaded ? "src=\"#{h url2}\"".html_safe : ''
         %>
@@ -52,8 +52,8 @@
     <div class="image read-only">
       <% if image3 %>
         <%
-          image_height3 = resize_height(image3.media_element.width, image3.media_element.height, 'image4')
-          image_width3 = resize_width(image3.media_element.width, image3.media_element.height, 'image4')
+          image_height3 = image3.resize_height
+          image_width3 = image3.resize_width
           url3 = image3.media_element.url(url_type)
           effective_url3 = loaded ? "src=\"#{h url3}\"".html_safe : ''
         %>
@@ -73,8 +73,8 @@
     <div class="image read-only">
       <% if image4 %>
         <%
-          image_height4 = resize_height(image4.media_element.width, image4.media_element.height, 'image4')
-          image_width4 = resize_width(image4.media_element.width, image4.media_element.height, 'image4')
+          image_height4 = image4.resize_height
+          image_width4 = image4.resize_width
           url4 = image4.media_element.url(url_type)
           effective_url4 = loaded ? "src=\"#{h url4}\"".html_safe : ''
         %>

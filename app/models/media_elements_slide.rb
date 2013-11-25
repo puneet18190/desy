@@ -58,6 +58,14 @@ class MediaElementsSlide < ActiveRecord::Base
   def is_horizontal?(kind = nil)
     media_element.is_horizontal?(kind || slide.kind)
   end
+
+  def resize_width(kind = nil)
+    media_element.resize_width(kind || slide.kind)
+  end
+
+  def resize_height(kind = nil)
+    media_element.resize_height(kind || slide.kind)
+  end
   
   private
   

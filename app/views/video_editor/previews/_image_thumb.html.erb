@@ -1,7 +1,7 @@
 <%
   horizontal = image.is_horizontal? 'video_component_preview'
-  height = resize_height image.width, image.height, 'video_component_preview'
-  width = resize_width image.width, image.height, 'video_component_preview'
+  height = image.resize_height 'video_component_preview'
+  width = image.resize_width 'video_component_preview'
   offset = horizontal ? ((width - 640) / 2) : ((height - 360) / 2)
 %>
 

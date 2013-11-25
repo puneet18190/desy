@@ -8,11 +8,11 @@
     url = image.media_element.url
     orientation = 'vertical'
     alignment = "top:#{image.alignment}px"
-    resize = "height=\"#{resize_height(width, height, slide.kind)}\""
+    resize = "height=\"#{image.resize_height}\""
     if image.is_horizontal?
       orientation = 'horizontal'
       alignment = "left:#{image.alignment}px"
-      resize = "width=\"#{resize_width(width, height, slide.kind)}\""
+      resize = "width=\"#{image.resize_width}\""
     end
   end
 %>

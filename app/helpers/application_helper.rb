@@ -57,35 +57,10 @@ module ApplicationHelper
     escape ? CGI.escape(url) : url
   end
   
-  # Resizes the width of an image
-  def resize_width(width, height, kind)
-    ( width.to_f *
-        case kind
-        when 'cover'                   then 560
-        when 'image1'                  then 420
-        when 'image2', 'image3'        then 550
-        when 'image4'                  then 265
-        when 'video_component'         then 88
-        when 'video_component_preview' then 360
-        end / height ).to_i + 1
-  end
-  
   # Removes the title of a notification. Used in NotificationsController.
   def remove_title_from_notification(notification)
      x = notification =~ /<\/div>/
      x.nil? ? notification : notification[x + 6, notification.length]
-  end
-  
-  # Resizes the height of an image
-  def resize_height(width, height, kind)
-    ( height.to_f *
-        case kind
-        when 'cover'                      then 900
-        when 'image1', 'image2', 'image4' then 420
-        when 'image3'                     then 860
-        when 'video_component'            then 156
-        when 'video_component_preview'    then 640
-        end / width ).to_i + 1
   end
   
   # Method to help debugging views

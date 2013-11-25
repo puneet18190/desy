@@ -1,9 +1,9 @@
 <%
   image1, image2 = slide.media_elements_at
-  image_height1 = resize_height(image1.media_element.width, image1.media_element.height, 'image2') if !image1.nil?
-  image_width1 = resize_width(image1.media_element.width, image1.media_element.height, 'image2') if !image1.nil?
-  image_height2 = resize_height(image2.media_element.width, image2.media_element.height, 'image2') if !image2.nil?
-  image_width2 = resize_width(image2.media_element.width, image2.media_element.height, 'image2') if !image2.nil?
+  image_height1 = image1.resize_height if !image1.nil?
+  image_width1 = image1.resize_width if !image1.nil?
+  image_height2 = image2.resize_height if !image2.nil?
+  image_width2 = image2.resize_width if !image2.nil?
 %>
 
 

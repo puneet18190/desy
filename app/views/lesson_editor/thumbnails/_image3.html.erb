@@ -1,7 +1,7 @@
 <%
   image = slide.media_elements_at
-  image_height = resize_height(image.media_element.width, image.media_element.height, 'image3') if !image.nil?
-  image_width = resize_width(image.media_element.width, image.media_element.height, 'image3') if !image.nil?
+  image_height = image.resize_height if !image.nil?
+  image_width = image.resize_width if !image.nil?
 %>
 
 
