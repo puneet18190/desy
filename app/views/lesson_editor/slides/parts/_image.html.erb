@@ -8,7 +8,7 @@
     orientation = 'vertical'
     alignment = "top:#{image.alignment}px"
     resize = "height=\"#{resize_height(width, height, slide.kind)}\""
-    if is_horizontal?(width, height, slide.kind)
+    if slide.is_horizontal?(width, height)
       orientation = 'horizontal'
       alignment = "left:#{image.alignment}px"
       resize = "width=\"#{resize_width(width, height, slide.kind)}\""

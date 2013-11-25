@@ -15,7 +15,7 @@
           url1 = image1.media_element.url(url_type)
           effective_url1 = loaded ? "src=\"#{h url1}\"".html_safe : ''
         %>
-        <% if is_horizontal?(image1.media_element.width, image1.media_element.height, 'image4') %>
+        <% if slide.is_horizontal?(image1.media_element.width, image1.media_element.height) %>
           <img style="left:<%= image1.alignment %>px; width:<%= image_width1 %>px" data-url="<%= url1 %>" alt="<%= image1.media_element.title %>" <%= effective_url1 %>>
         <% else %>
           <img style="top:<%= image1.alignment %>px; height:<%= image_height1 %>px" data-url="<%= url1 %>" alt="<%= image1.media_element.title %>" <%= effective_url1 %>>
@@ -36,7 +36,7 @@
           url2 = image2.media_element.url(url_type)
           effective_url2 = loaded ? "src=\"#{h url2}\"".html_safe : ''
         %>
-        <% if is_horizontal?(image2.media_element.width, image2.media_element.height, 'image4') %>
+        <% if slide.is_horizontal?(image2.media_element.width, image2.media_element.height) %>
           <img style="left:<%= image2.alignment %>px; width:<%= image_width2 %>px" data-url="<%= url2 %>" alt="<%= image2.media_element.title %>" <%= effective_url2 %>>
         <% else %>
           <img style="top:<%= image2.alignment %>px; height:<%= image_height2 %>px" data-url="<%= url2 %>" alt="<%= image2.media_element.title %>" <%= effective_url2 %>>
@@ -57,7 +57,7 @@
           url3 = image3.media_element.url(url_type)
           effective_url3 = loaded ? "src=\"#{h url3}\"".html_safe : ''
         %>
-        <% if is_horizontal?(image3.media_element.width, image3.media_element.height, 'image4') %>
+        <% if slide.is_horizontal?(image3.media_element.width, image3.media_element.height) %>
           <img style="left:<%= image3.alignment %>px; width:<%= image_width3 %>px" data-url="<%= url3 %>" alt="<%= image3.media_element.title %>" <%= effective_url3 %>>
         <% else %>
           <img style="top:<%= image3.alignment %>px; height:<%= image_height3 %>px" data-url="<%= url3 %>" alt="<%= image3.media_element.title %>" <%= effective_url3 %>>
@@ -78,7 +78,7 @@
           url4 = image4.media_element.url(url_type)
           effective_url4 = loaded ? "src=\"#{h url4}\"".html_safe : ''
         %>
-        <% if is_horizontal?(image4.media_element.width, image4.media_element.height, 'image4') %>
+        <% if slide.is_horizontal?(image4.media_element.width, image4.media_element.height) %>
           <img style="left:<%= image4.alignment %>px; width:<%= image_width4 %>px" data-url="<%= url4 %>" alt="<%= image4.media_element.title %>" <%= effective_url4 %>>
         <% else %>
           <img style="top:<%= image4.alignment %>px; height:<%= image_height4 %>px" data-url="<%= url4 %>" alt="<%= image4.media_element.title %>" <%= effective_url4 %>>

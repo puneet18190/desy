@@ -1,5 +1,5 @@
 <%
-  horizontal = is_horizontal? image.width, image.height, 'video_component_preview'
+  horizontal = slide.is_horizontal? image.width, image.height, 'video_component_preview'
   height = resize_height image.width, image.height, 'video_component_preview'
   width = resize_width image.width, image.height, 'video_component_preview'
   offset = horizontal ? ((width - 640) / 2) : ((height - 360) / 2)

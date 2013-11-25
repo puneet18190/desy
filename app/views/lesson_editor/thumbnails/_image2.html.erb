@@ -12,7 +12,7 @@
   <div class="image-container item">
     <% if image1 %>
       <div class="image read-only">
-        <% if is_horizontal?(image1.media_element.width, image1.media_element.height, 'image2') %>
+        <% if slide.is_horizontal?(image1.media_element.width, image1.media_element.height) %>
           <%= image_tag image1.media_element.url, :style => "left:#{image1.alignment}px; width:#{image_width1}px" %>
         <% else %>
           <%= image_tag image1.media_element.url, :style => "top:#{image1.alignment}px; height:#{image_height1}px" %>

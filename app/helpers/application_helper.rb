@@ -7,7 +7,7 @@ module ApplicationHelper
   
   # Gets the color of description popup into the document gallery
   def documents_type_color(document)
-    Document::COLORS_BY_TYPE(document.type)
+    Document::COLORS_BY_TYPE[document.type]
   end
   
   # Select for a list of subjects.
@@ -55,18 +55,6 @@ module ApplicationHelper
     url = "#{path}?#{query_string}"
     url = URI.escape(url)
     escape ? CGI.escape(url) : url
-  end
-  
-  # Used to give an orientation on images
-  def is_horizontal?(width, height, kind)
-    ( width.to_f / height.to_f ) >=
-      case kind
-      when 'cover'                                      then 1.6
-      when 'image1'                                     then 1
-      when 'image2'                                     then 0.75
-      when 'image3', 'image4'                           then 1.55
-      when 'video_component', 'video_component_preview' then 1.77
-      end
   end
   
   # Resizes the width of an image
