@@ -28,33 +28,33 @@ class Image < MediaElement
   
   # Horizontal detection values
   IS_HORIZONTAL_VALUES_BY_KIND = {
-    'cover'                   => 1.6  ,
-    'image1'                  => 1    ,
-    'image2'                  => 0.75 ,
-    'image3'                  => 1.55 ,
-    'image4'                  => 1.55 ,
+    Slide::COVER              => 1.6  ,
+    Slide::IMAGE1             => 1    ,
+    Slide::IMAGE2             => 0.75 ,
+    Slide::IMAGE3             => 1.55 ,
+    Slide::IMAGE4             => 1.55 ,
     'video_component'         => 1.77 ,
     'video_component_preview' => 1.77
   }
 
   # Resize width values
   RESIZE_WIDTH_VALUES_BY_KIND = {
-    'cover'                   => 560 ,
-    'image1'                  => 420 ,
-    'image2'                  => 550 ,
-    'image3'                  => 550 ,
-    'image4'                  => 265 ,
+    Slide::COVER              => 560 ,
+    Slide::IMAGE1             => 420 ,
+    Slide::IMAGE2             => 550 ,
+    Slide::IMAGE3             => 550 ,
+    Slide::IMAGE4             => 265 ,
     'video_component'         => 88  ,
     'video_component_preview' => 360
   }
 
   # Resize height values
   RESIZE_HEIGHT_VALUES_BY_KIND = {
-    'cover'                   => 900 ,
-    'image1'                  => 420 ,
-    'image2'                  => 420 ,
-    'image3'                  => 860 ,
-    'image4'                  => 420 ,
+    Slide::COVER              => 900 ,
+    Slide::IMAGE1             => 420 ,
+    Slide::IMAGE2             => 420 ,
+    Slide::IMAGE3             => 860 ,
+    Slide::IMAGE4             => 420 ,
     'video_component'         => 156 ,
     'video_component_preview' => 640
   }
