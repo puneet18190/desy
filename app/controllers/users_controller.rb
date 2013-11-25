@@ -194,7 +194,7 @@ class UsersController < ApplicationController
   #
   def request_upgrade_trial
     if !SETTINGS['saas_registration_mode']
-      redirect_to home_path
+      redirect_to root_path
       return
     end
   end
@@ -213,7 +213,7 @@ class UsersController < ApplicationController
   #
   def send_upgrade_trial
     if !SETTINGS['saas_registration_mode']
-      redirect_to home_path
+      redirect_to root_path
       return
     end
     if params[:email].blank? || params[:password].blank? || params[:purchase_id].blank?
