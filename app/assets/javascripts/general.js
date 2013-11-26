@@ -212,6 +212,31 @@ function javaScriptAnimationsDocumentReady() {
       myself.val(myself.val().slice(0, maxlength));
     }
   });
+  $(document).bind('click', function (e) {
+    var click_id = $(e.target).attr('id');
+    var my_report = $('.tooltipForm:visible');
+    var my_login = $('#login_form_container:visible');
+    if($('#tooltip_content').length > 0) {
+      if($('#tooltip_content').is(':visible')) {
+        if(click_id != 'tooltip_content' && click_id != 'expanded_notification' && click_id != 'notifications_button' && $(e.target).parents('#tooltip_content').length == 0 && $(e.target).parents('#expanded_notification').length == 0) {
+          $('#notifications_button').trigger('click');
+        }
+      }
+    }
+    if($('#tooltip_help').length > 0) {
+      if($('#tooltip_help').is(':visible')) {
+        if(click_id != 'tooltip_help' && click_id != 'help' && $(e.target).parents('#tooltip_help').length == 0) {
+          $('#help').trigger('click');
+        }
+      }
+    }
+    if(my_report.length > 0 && $(e.target).parents('#' + my_report.attr('id')).length == 0) {
+      my_report.parent().find('.report_light, ._reportable_lesson_icon').click();
+    }
+    if(my_login.length > 0 && $(e.target).parents('#login_form_container').length == 0 && !$(e.target).hasClass('_show_login_form_container')) {
+      $('._show_login_form_container').click();
+    }
+  });
 }
 
 /**
@@ -279,12 +304,6 @@ function reportsDocumentReady() {
   });
   $body.on('click', '._report_form_content ._send', function(e) {
     $(this).closest('form').submit();
-  });
-  $(document).bind('click', function (e) {
-    var my_target = $('.tooltipForm:visible');
-    if(my_target.length > 0 && $(e.target).parents('#' + my_target.attr('id')).length == 0) {
-      my_target.parent().find('.report_light, ._reportable_lesson_icon').click();
-    }
   });
 }
 

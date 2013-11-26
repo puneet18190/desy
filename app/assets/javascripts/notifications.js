@@ -300,21 +300,4 @@ function initializeNotifications() {
       }
     }
   });
-  $(document).bind('click', function (e) {
-    var click_id = $(e.target).attr('id');
-    if($('#tooltip_content').length > 0) {
-      if($('#tooltip_content').is(':visible')) {
-        if(click_id != 'tooltip_content' && click_id != 'expanded_notification' && click_id != 'notifications_button' && $(e.target).parents('#tooltip_content').length == 0 && $(e.target).parents('#expanded_notification').length == 0) {
-          $('#notifications_button').trigger('click');
-        }
-      }
-    }
-    if($('#tooltip_help').length > 0) {
-      if($('#tooltip_help').is(':visible')) {
-        if(click_id != 'tooltip_help' && click_id != 'help' && $(e.target).parents('#tooltip_help').length == 0) {
-          $('#help').trigger('click');
-        }
-      }
-    }
-  });
 }
