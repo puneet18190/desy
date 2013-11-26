@@ -2097,6 +2097,11 @@ cn:
         # 1 - views/search/lessons/_main.html.erb
         author: "目录"
         # 1 - views/search/lessons/_main.html.erb
+        school_level: "学校标准"
+        # Placeholder to select all the subjects
+        # 1 - views/search/lessons/_main.html.erb
+        all_school_levels: "所有学校标准"
+        # 1 - views/search/lessons/_main.html.erb
         subject: "科目"
         # Placeholder to select all the subjects
         # 1 - views/search/lessons/_main.html.erb
@@ -3480,6 +3485,13 @@ cn:
         # 1 - views/admin/users/show.html.erb
         # 2 - views/admin/users/_list.html.erb
         message: "发送信息给这个用户"
+        # The admin logs in as a different user (available only for super admin)
+        # 1 - views/admin/users/_list.html.erb
+        # 2 - views/admin/users/show.html.erb
+        personificate: "身份盗窃"
+        # The super admin gets back to his original identity
+        # 1 - views/shared/_header.html.erb
+        unpersonificate: "回到您的身份"
       # Caption to delete a user
       # 1 - views/admin/users/show.html.erb
       # 2 - views/admin/users/_list.html.erb

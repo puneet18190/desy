@@ -200,6 +200,7 @@ function javaScriptAnimationsDocumentReady() {
   $('#order_documents').selectbox();
   $('#filter_search_lessons').selectbox();
   $('#filter_search_lessons_subject').selectbox();
+  $('#filter_search_lessons_school_level').selectbox();
   $('#for_page_media_elements').selectbox();
   $('#filter_media_elements').selectbox();
   $('#filter_search_media_elements').selectbox();

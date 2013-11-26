@@ -101,6 +101,9 @@
 #
 #   APP_USER            The user which runs the unicorn server process
 #     defaults to       the part before the colon (:) of the configuration file name
+#
+#   APP_GROUP           The group which runs the delayed_job server process
+#     defaults to       <APP_USER>
 #  
 #   APP_NAME            The application name
 #     defaults to       the part after the colon (:) of the configuration file name
@@ -151,13 +154,12 @@ PATH=/sbin:/usr/sbin:/bin:/usr/bin
 
 . /lib/lsb/init-functions
 
-# returns the correct exit_status when $VERBOSE = no
-unicorn_log_end_msg () {
-  [ "$VERBOSE" != no ] && log_end_msg $1 || return $1;
+unicorn_log_daemon_msg () {
+  log_daemon_msg $1 "$APP_DESC"
 }
 
-unicorn_log_daemon_msg () {
-  [ "$VERBOSE" != no ] && log_daemon_msg $1 "$APP_DESC"
+unicorn_log_end_msg () {
+  log_end_msg $1
 }
  
 do_start () {
@@ -165,7 +167,7 @@ do_start () {
 
   local start_stop_daemon_args process_args
 
-  set -- --start --quiet --user "$APP_USER" --pidfile "$PIDFILE" \
+  set -- --start --quiet --chuid "$APP_USER":"$APP_GROUP" --pidfile "$PIDFILE" \
        --chdir "$APP_PATH" --exec /usr/bin/env PATH="$APPEND_TO_ENV_PATH":"$PATH"
   start_stop_daemon_args="$@"
 
@@ -292,6 +294,7 @@ cmd () {
 
 unset_variables () {
   unset APP_USER
+  unset APP_GROUP
   unset APP_NAME
   unset APP_PATH
   unset APPEND_TO_ENV_PATH
@@ -307,6 +310,8 @@ setup () {
   CONFIG=$1
 
   [ -z "$APP_USER" ] && APP_USER=`basename $1 | cut -f 1 -d :`
+
+  [ -z "$APP_GROUP" ] && APP_GROUP=`id --group $APP_USER`
 
   [ -z "$APP_NAME" ] && APP_NAME=`basename $1 | cut -f 2- -d :`
   

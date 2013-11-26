@@ -1220,6 +1220,7 @@
         
         @include svg-circle-icon-handler($assets-icone-piene_svg, $small-icon-dimension, 6, 1, 1, 1, 0, 1, 3, 0);
         position: absolute;
+        cursor: pointer;
         top: $small-icon-top-position-in-full-height-video-with-title-empty;
         left: $small-icon-left-position-in-half-width-video;
         
@@ -1379,6 +1380,7 @@
         
         @include svg-circle-icon-handler($assets-icone-piene_svg, $big-icon-dimension, 6, 1, 1, 1, 0, 1, 3, 0);
         position: absolute;
+        cursor: pointer;
         top: $big-icon-top-position-in-full-height-video-empty;
         left: $big-icon-left-position-in-full-width-video;
         

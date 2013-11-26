@@ -460,6 +460,7 @@ class User < ActiveRecord::Base
   # * *order*: one of the keywords defined in SearchOrders
   # * *filter*: one of the keywords defined in Filters
   # * *subject_id*: the id of a Subject, this extends the filter to lessons associated to that subject
+  # * *school_level_id*: the school level of the lesson
   # * *only_tags*: optional boolean, if used with a +word+ of kind String returns only the list of tags associated to the search
   #
   # === Returns
@@ -470,28 +471,29 @@ class User < ActiveRecord::Base
   # * *pages_amount*: an integer, the total number of pages in the search result
   # * *tags*: if required, an array of objects of type Tag. This is the list of the first 20 tags associated to at least a lesson in the search result, ordered by numbers of occurrences among the search results (i.e. order of relevance)
   #
-  def search_lessons(word, page, for_page, order=nil, filter=nil, subject_id=nil, only_tags=nil)
+  def search_lessons(word, page, for_page, order=nil, filter=nil, subject_id=nil, only_tags=nil, school_level_id=nil)
     only_tags = false if only_tags.nil?
     page = 1 if page.class != Fixnum || page <= 0
     for_page = 1 if for_page.class != Fixnum || for_page <= 0
     subject_id = nil if ![NilClass, Fixnum].include?(subject_id.class)
+    school_level_id = nil if ![NilClass, Fixnum].include?(school_level_id.class)
     filter = Filters::ALL_LESSONS if filter.nil? || !Filters::LESSONS_SEARCH_SET.include?(filter)
     order = SearchOrders::UPDATED_AT if order.nil? || !SearchOrders::LESSONS_SET.include?(order)
     offset = (page - 1) * for_page
     if word.blank?
-      return search_lessons_without_tag(offset, for_page, filter, subject_id, order)
+      return search_lessons_without_tag(offset, for_page, filter, subject_id, order, school_level_id)
     else
       if word.class != Fixnum
         word = word.to_s
         if only_tags
-          return get_tags_associated_to_lesson_search(word, filter, subject_id)
+          return get_tags_associated_to_lesson_search(word, filter, subject_id, school_level_id)
         else
-          resp = search_lessons_with_tag(word, offset, for_page, filter, subject_id, order)
-          resp[:tags] = get_tags_associated_to_lesson_search(word, filter, subject_id)
+          resp = search_lessons_with_tag(word, offset, for_page, filter, subject_id, order, school_level_id)
+          resp[:tags] = get_tags_associated_to_lesson_search(word, filter, subject_id, school_level_id)
           return resp
         end
       else
-        return search_lessons_with_tag(word, offset, for_page, filter, subject_id, order)
+        return search_lessons_with_tag(word, offset, for_page, filter, subject_id, order, school_level_id)
       end
     end
   end
@@ -1239,9 +1241,7 @@ class User < ActiveRecord::Base
   private
   
   # Submethod of User#search_lessons. It returns the first +n+ tags associated to the result of the research, ordered by number of occurrences of these tags among the results; if the +word+ corresponds to a tag, this tag is put in the first place of the result even if it wouldn't be first according to the normal ordering.
-  def get_tags_associated_to_lesson_search(word, filter, subject_id)
-    filter = Filters::ALL_LESSONS if filter.nil? || !Filters::LESSONS_SEARCH_SET.include?(filter)
-    subject_id = nil if ![NilClass, Fixnum].include?(subject_id.class)
+  def get_tags_associated_to_lesson_search(word, filter, subject_id, school_level_id)
     limit = SETTINGS['tags_limit_in_search_engine']
     params = ["#{word}%"]
     joins = "INNER JOIN tags ON (tags.id = taggings.tag_id) INNER JOIN lessons ON (taggings.taggable_type = 'Lesson' AND taggings.taggable_id = lessons.id)"
@@ -1249,6 +1249,10 @@ class User < ActiveRecord::Base
     if !subject_id.nil?
       where = "#{where} AND lessons.subject_id = ?"
       params << subject_id
+    end
+    if !school_level_id.nil?
+      where = "#{where} AND lessons.school_level_id = ?"
+      params << school_level_id
     end
     case filter
       when Filters::ALL_LESSONS
@@ -1280,7 +1284,6 @@ class User < ActiveRecord::Base
   # Submethod of User#search_media_elements. It returns the first +n+ tags associated to the result of the research, ordered by number of occurrences of these tags among the results; if the +word+ corresponds to a tag, this tag is put in the first place of the result even if it wouldn't be first according to the normal ordering.
   def get_tags_associated_to_media_element_search(word, filter)
     limit = SETTINGS['tags_limit_in_search_engine']
-    filter = Filters::ALL_MEDIA_ELEMENTS if filter.nil? || !Filters::MEDIA_ELEMENTS_SEARCH_SET.include?(filter)
     resp = []
     where = 'tags.word != ? AND tags.word LIKE ? AND (media_elements.is_public = ? OR media_elements.user_id = ?)'
     where_for_current_tag = 'tags.word = ? AND (media_elements.is_public = ? OR media_elements.user_id = ?)'
@@ -1379,7 +1382,7 @@ class User < ActiveRecord::Base
   end
   
   # Submethod of User.search_lessons: if +word+ is a Fixnum, it extracts all the lessons associated to that word, otherwise it extracts all the lessons whose tags match the +word+. Results are filtered by the +filter+ (chosen among the ones in Filters) and by +subject_id+, and ordered by +order_by+ (chosen among SearchOrders)
-  def search_lessons_with_tag(word, offset, limit, filter, subject_id, order_by)
+  def search_lessons_with_tag(word, offset, limit, filter, subject_id, order_by, school_level_id)
     resp = {}
     params = ["#{word}%"]
     select = ''
@@ -1403,6 +1406,10 @@ class User < ActiveRecord::Base
     if !subject_id.nil?
       where = "#{where} AND lessons.subject_id = ?"
       params << subject_id
+    end
+    if !school_level_id.nil?
+      where = "#{where} AND lessons.school_level_id = ?"
+      params << school_level_id
     end
     case filter
       when Filters::ALL_LESSONS
@@ -1444,7 +1451,7 @@ class User < ActiveRecord::Base
   end
   
   # Submethod of User#search_lessons. It returns all the lessons in the database, filtered by +filter+ (chosen among the ones in Filters) and by +subject_id+, and ordered by +order_by+ (chosen among the ones in SearchOrders)
-  def search_lessons_without_tag(offset, limit, filter, subject_id, order_by)
+  def search_lessons_without_tag(offset, limit, filter, subject_id, order_by, school_level_id)
     resp = {}
     params = []
     where = ''
@@ -1484,6 +1491,10 @@ class User < ActiveRecord::Base
     if !subject_id.nil?
       where = "#{where} AND subject_id = ?"
       params << subject_id
+    end
+    if !school_level_id.nil?
+      where = "#{where} AND school_level_id = ?"
+      params << school_level_id
     end
     resp[:records] = []
     ids = []
