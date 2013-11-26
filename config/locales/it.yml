@@ -2097,6 +2097,11 @@ it:
         # 1 - views/search/lessons/_main.html.erb
         author: "Categoria"
         # 1 - views/search/lessons/_main.html.erb
+        school_level: "Livello scolastico"
+        # Placeholder to select all the subjects
+        # 1 - views/search/lessons/_main.html.erb
+        all_school_levels: "Tutti i livelli scolastici"
+        # 1 - views/search/lessons/_main.html.erb
         subject: "Materia"
         # Placeholder to select all the subjects
         # 1 - views/search/lessons/_main.html.erb

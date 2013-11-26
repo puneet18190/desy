@@ -91,6 +91,7 @@ class SearchController < ApplicationController
       end
     end
     @subjects = Subject.order(:description)
+    @school_levels = SchoolLevel.order(:created_at)
     render_js_or_html_index
   end
   

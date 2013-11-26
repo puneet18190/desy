@@ -2097,6 +2097,11 @@ cn:
         # 1 - views/search/lessons/_main.html.erb
         author: "目录"
         # 1 - views/search/lessons/_main.html.erb
+        school_level: "学校标准"
+        # Placeholder to select all the subjects
+        # 1 - views/search/lessons/_main.html.erb
+        all_school_levels: "所有学校标准"
+        # 1 - views/search/lessons/_main.html.erb
         subject: "科目"
         # Placeholder to select all the subjects
         # 1 - views/search/lessons/_main.html.erb
