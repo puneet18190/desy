@@ -2039,6 +2039,10 @@ cn:
     # 1 - views/reports/_lesson.html.erb
     # 2 - views/reports/_media_element.html.erb
     placeholder: "记下你报告的原因。谢谢你的合作！"
+    # Button to send the form
+    # 1 - views/reports/_lesson.html.erb
+    # 2 - views/reports/_media_element.html.erb
+    commit: "发送"
   
   
   # SECTION 2.14: Captions used in the search engine

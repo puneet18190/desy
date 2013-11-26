@@ -2039,6 +2039,10 @@ it:
     # 1 - views/reports/_lesson.html.erb
     # 2 - views/reports/_media_element.html.erb
     placeholder: "Scrivi il motivo della segnalazione. Grazie per la tua collaborazione!"
+    # Button to send the form
+    # 1 - views/reports/_lesson.html.erb
+    # 2 - views/reports/_media_element.html.erb
+    commit: "Invia"
   
   
   # SECTION 2.14: Captions used in the search engine
