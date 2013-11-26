@@ -3480,6 +3480,10 @@ cn:
         # 1 - views/admin/users/show.html.erb
         # 2 - views/admin/users/_list.html.erb
         message: "发送信息给这个用户"
+        # The admin logs in as a different user (available only for super admin)
+        # 1 - views/admin/users/_list.html.erb
+        # 2 - views/admin/users/show.html.erb
+        personificate: "身份盗窃"
       # Caption to delete a user
       # 1 - views/admin/users/show.html.erb
       # 2 - views/admin/users/_list.html.erb

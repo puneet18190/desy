@@ -3480,6 +3480,10 @@ en:
         # 1 - views/admin/users/show.html.erb
         # 2 - views/admin/users/_list.html.erb
         message: "Send a message to this user"
+        # The admin logs in as a different user (available only for super admin)
+        # 1 - views/admin/users/_list.html.erb
+        # 2 - views/admin/users/show.html.erb
+        personificate: "Identity theft"
       # Caption to delete a user
       # 1 - views/admin/users/show.html.erb
       # 2 - views/admin/users/_list.html.erb

@@ -80,7 +80,6 @@
           </td>
           <td>
             <% if current_user.super_admin? && current_user != user -%>
-              <%# TODO traduzz admin.users.actions.personificate %>
               <%= link_to admin_personifications_path(user), title: t('admin.users.actions.personificate'), method: :post do %>
                 <i class="icon-user"></i>
               <% end %>
