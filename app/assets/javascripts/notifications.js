@@ -224,9 +224,7 @@ function initializeHelp() {
       showHelpButton();
       $body.css('overflow-x', 'hidden');
     } else {
-      $('#tooltip_help').hide('fade', {}, 500, function() {
-        hideHelpTooltip();
-      });
+      hideHelpTooltip();
       hideHelpButton();
     }
   });
