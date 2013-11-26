@@ -255,6 +255,11 @@ class ExtractorTest < ActiveSupport::TestCase
       Lesson.where(:id => l.id).update_all(:updated_at => date_now)
       date_now -= 1
     end
+    Lesson.where(:id => [@les2.id, @les4.id, @les5.id, @les6.id]).update_all(:school_level_id => 2)
+    assert_equal '2011-01-01 19:59:57'.to_time, Lesson.find(@les2.id).updated_at
+    assert_equal '2011-01-01 19:59:55'.to_time, Lesson.find(@les4.id).updated_at
+    assert_equal '2011-01-01 19:59:54'.to_time, Lesson.find(@les5.id).updated_at
+    assert_equal '2011-01-01 19:59:53'.to_time, Lesson.find(@les6.id).updated_at
   end
   
   test 'lesson_multiplicity' do
@@ -922,7 +927,7 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_equal 8, p2[:records_amount]
     assert_equal 2, p2[:pages_amount]
     # fifth case
-    p1 = @user2.search_lessons('', 1, 5, 'title', 'public', 1)
+    p1 = @user2.search_lessons('', 1, 5, 'title', 'public', 1, nil, 'oi')
     assert_ordered_item_extractor [@les1.id, 1], p1[:records]
     assert_equal 2, p1[:records_amount]
     assert_equal 1, p1[:pages_amount]
@@ -936,8 +941,8 @@ class ExtractorTest < ActiveSupport::TestCase
     assert @les9.publish
     assert @les8.publish
     assert @les7.publish
-    p1 = @user2.search_lessons(nil, 1, 5, 'likes', 'all_lessons', nil)
-    p2 = @user2.search_lessons(nil, 2, 5, 'likes', 'all_lessons', nil)
+    p1 = @user2.search_lessons(nil, 1, 5, 'likes', 'all_lessons', nil, nil, nil)
+    p2 = @user2.search_lessons(nil, 2, 5, 'likes', 'all_lessons', nil, nil, nil)
     assert_ordered_item_extractor [@les1.id, @les8.id, @les3.id, @les6.id, @les7.id], p1[:records]
     assert_equal 10, p1[:records_amount]
     assert_equal 2, p1[:pages_amount]
@@ -945,10 +950,20 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_equal 10, p2[:records_amount]
     assert_equal 2, p2[:pages_amount]
     assert_status p2[:records], [['preview', 'add', 'like'], ['preview', 'add', 'like'], ['preview', 'add', 'like'], ['preview', 'add', 'like'], ['preview', 'edit', 'add_virtual_classroom', 'unpublish', 'copy', 'destroy']]
+    # case 6.1: school_level_ids
+    p1 = @user2.search_lessons(nil, 1, 5, 'likes', 'all_lessons', nil, nil, 1)
+    assert_ordered_item_extractor [@les1.id, @les8.id, @les3.id, @les7.id, @les9.id], p1[:records]
+    assert_equal 6, p1[:records_amount]
+    assert_equal 2, p1[:pages_amount]
     # seventh case
     p1 = @user2.search_lessons(nil, 1, 5, 'likes', 'all_lessons', 3)
     assert_ordered_item_extractor [@les3.id, @les9.id, 2], p1[:records]
     assert_equal 3, p1[:records_amount]
+    assert_equal 1, p1[:pages_amount]
+    # I filter for school level id
+    p1 = @user2.search_lessons(nil, 1, 5, 'likes', 'all_lessons', 2, nil, 2)
+    assert_ordered_item_extractor [@les2.id], p1[:records]
+    assert_equal 1, p1[:records_amount]
     assert_equal 1, p1[:pages_amount]
     # test for correct status
     Like.where(:lesson_id => @les4.id).last.delete

@@ -2097,6 +2097,11 @@ en:
         # 1 - views/search/lessons/_main.html.erb
         author: "Category"
         # 1 - views/search/lessons/_main.html.erb
+        school_level: "School level"
+        # Placeholder to select all the subjects
+        # 1 - views/search/lessons/_main.html.erb
+        all_school_levels: "All school levels"
+        # 1 - views/search/lessons/_main.html.erb
         subject: "Subject"
         # Placeholder to select all the subjects
         # 1 - views/search/lessons/_main.html.erb
@@ -3480,6 +3485,13 @@ en:
         # 1 - views/admin/users/show.html.erb
         # 2 - views/admin/users/_list.html.erb
         message: "Send a message to this user"
+        # The admin logs in as a different user (available only for super admin)
+        # 1 - views/admin/users/_list.html.erb
+        # 2 - views/admin/users/show.html.erb
+        personificate: "Identity theft"
+        # The super admin gets back to his original identity
+        # 1 - views/shared/_header.html.erb
+        unpersonificate: "Back to your identity"
       # Caption to delete a user
       # 1 - views/admin/users/show.html.erb
       # 2 - views/admin/users/_list.html.erb
