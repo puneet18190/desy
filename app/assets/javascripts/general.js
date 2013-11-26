@@ -90,7 +90,7 @@ function expandedItemsDocumentReady() {
       var my_id = $(this).parent().attr('id');
       var my_expanded = $('#' + my_id + ' ._lesson_expanded');
       if(my_expanded.is(':visible')) {
-        my_expanded.find('.tooltipForm').parent().find('._reportable_lesson_icon').click();
+        my_expanded.find('.tooltipForm:visible').parent().find('._reportable_lesson_icon').click();
         my_expanded.hide('blind', {}, 500, function() {
           my_expanded.hide();
         });
