@@ -625,10 +625,10 @@ a.cerca.current {
 
 .mediaStatus {
   
-  padding: 5% 0 0 5%;
+  padding: 10px 0 0 10px;
   color: #c0c0c0;
   font-weight: bold;
-  font-size: 85%;
+  font-size: 11px;
   
 }
 
@@ -1094,11 +1094,12 @@ label.filebutton span input#new_media_element_input {
 .menuController {
   
   background-color: #fff;
-  padding: 0.5%;
   border-top: 1px solid #f2f1f2;
   text-align: right;
   color: #cbcbcb;
   display: block;
+  height: 30px;
+  font-size: 7px;
   
   a {
     
@@ -1248,7 +1249,7 @@ label.filebutton span input#new_media_element_input {
   
 }
 
-&._disabled .menuController a {
+._disabled .menuController a {
   
   cursor: default;
   
