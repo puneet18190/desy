@@ -1,3 +1,11 @@
+<%
+  maxwidths = {
+    'Audio' => '834px',
+    'Image' => '297px',
+    'Video' => '297px'
+  }
+%>
+
 <div class="mediaElementInfoPopUp" id="dialog-media-element-<%= media_element.id %>" style="display:none">
   
   <% if !locked %>
@@ -44,7 +52,7 @@
           <%= render :partial => "media_elements/previews/#{media_element.sti_type.downcase}", :locals => {:media_element => media_element} %>
         <% end %>
         
-        <div <%= media_element.audio? ? "style=\"max-width:800px;\"".html_safe : "class=\"fltlft\" style=\"max-width:210px;\"".html_safe %>>
+        <div style="width:<%= maxwidths[media_element.sti_type] %>; float:<%= media_element.audio? ? 'none' : 'left' %>">
           <h2><%= media_element.sti_type_to_s %></h2>
           <h3><%= media_element.title %></h3>
           <p><%= media_element.description %></p>
