@@ -292,18 +292,18 @@ function reportsDocumentReady() {
     } else {
       $(this).removeClass('report_light');
       $(this).addClass('report');
-      obj.hide('fade', {}, 500, function() {
-        obj.hide();
-      });
+      obj.hide();
     }
-    return false;
-  });
-  $body.on('click', '._report_form_content', function(e) {
-    e.preventDefault();
     return false;
   });
   $body.on('click', '._report_form_content ._send', function(e) {
     $(this).closest('form').submit();
+  });
+  $(document).bind('click', function (e) {
+    var my_target = $('.tooltipForm:visible');
+    if(my_target.length > 0 && $(e.target).parents('#' + my_target.attr('id')).length == 0) {
+      my_target.parent().find('.report_light').click();
+    }
   });
 }
 
