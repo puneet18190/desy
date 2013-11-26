@@ -7,8 +7,8 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert !uu.destroy_with_dependencies
     assert_equal 1, uu.errors.messages[:base].length
     assert uu.errors.added? :base, :problem_destroying
-    resp = User.confirmed.new(:password => SETTINGS['admin']['password'], :password_confirmation => SETTINGS['admin']['password'], :name => 'oo', :surname => 'fsg', :school_level_id => 1, :location_id => 1, :subject_ids => [1, 2]) do |user|
-      user.email = SETTINGS['admin']['email']
+    resp = User.confirmed.new(:password => '12345678', :password_confirmation => '12345678', :name => 'oo', :surname => 'fsg', :school_level_id => 1, :location_id => 1, :subject_ids => [1, 2]) do |user|
+      user.email = SETTINGS['super_admin']
     end
     resp.policy_1 = '1'
     resp.policy_2 = '1'
