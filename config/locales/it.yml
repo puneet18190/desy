@@ -3484,6 +3484,9 @@ it:
         # 1 - views/admin/users/_list.html.erb
         # 2 - views/admin/users/show.html.erb
         personificate: "Furto d'identità"
+        # The super admin gets back to his original identity
+        # 1 - views/shared/_header.html.erb
+        unpersonificate: "Ritorna alla tua identità"
       # Caption to delete a user
       # 1 - views/admin/users/show.html.erb
       # 2 - views/admin/users/_list.html.erb
