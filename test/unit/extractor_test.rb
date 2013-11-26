@@ -255,6 +255,11 @@ class ExtractorTest < ActiveSupport::TestCase
       Lesson.where(:id => l.id).update_all(:updated_at => date_now)
       date_now -= 1
     end
+    Lesson.where(:id => [@les2.id, @les4.id, @les5.id, @les6.id]).update_all(:school_level_id => 2)
+    assert_equal '2011-01-01 19:59:57'.to_time, Lesson.find(@les2.id).updated_at
+    assert_equal '2011-01-01 19:59:55'.to_time, Lesson.find(@les4.id).updated_at
+    assert_equal '2011-01-01 19:59:54'.to_time, Lesson.find(@les5.id).updated_at
+    assert_equal '2011-01-01 19:59:53'.to_time, Lesson.find(@les6.id).updated_at
   end
   
   test 'lesson_multiplicity' do
