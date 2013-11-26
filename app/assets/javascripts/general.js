@@ -280,7 +280,7 @@ function reportsDocumentReady() {
   $(document).bind('click', function (e) {
     var my_target = $('.tooltipForm:visible');
     if(my_target.length > 0 && $(e.target).parents('#' + my_target.attr('id')).length == 0) {
-      my_target.parent().find('.report_light').click();
+      my_target.parent().find('.report_light, ._reportable_lesson_icon').click();
     }
   });
 }
