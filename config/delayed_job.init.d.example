@@ -129,13 +129,12 @@ PATH=/sbin:/usr/sbin:/bin:/usr/bin
 
 . /lib/lsb/init-functions
 
-# returns the correct exit_status when $VERBOSE = no
-delayed_job_log_end_msg () {
-  [ "$VERBOSE" != no ] && log_end_msg $1 || return $1
+delayed_job_log_daemon_msg () {
+  log_daemon_msg $1 "$APP_DESC"
 }
 
-delayed_job_log_daemon_msg () {
-  [ "$VERBOSE" != no ] && log_daemon_msg $1 "$APP_DESC"
+delayed_job_log_end_msg () {
+  log_end_msg $1
 }
 
 set_start_stop_daemon_args () {
@@ -145,7 +144,7 @@ set_start_stop_daemon_args () {
   shift 1
   args="$@"
 
-  set -- "$action" --quiet --user "$APP_USER" --chuid "$APP_USER:$APP_GROUP" --pidfile "$PIDFILE"
+  set -- "$action" --quiet --chuid "$APP_USER":"$APP_GROUP" --pidfile "$PIDFILE"
 
   if [ "$action" = --status ]; then
     START_STOP_DAEMON_ARGS="$@"
@@ -257,7 +256,7 @@ setup () {
 
   [ -z "$APP_USER" ] && APP_USER=`basename $1 | cut -f 1 -d :`
 
-  [ -z "$APP_GROUP" ] && APP_GROUP="$APP_USER"
+  [ -z "$APP_GROUP" ] && APP_GROUP=`id --group $APP_USER`
 
   [ -z "$APP_NAME" ] && APP_NAME=`basename $1 | cut -f 2- -d :`
   
