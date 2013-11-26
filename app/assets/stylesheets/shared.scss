@@ -1319,85 +1319,60 @@ label.filebutton span input#new_media_element_input {
     
     background-color: #fff;
     padding: 5px;
-    color: #cbcbcb;
-    font-size: 75%;
     display: block;
-    border: none;
+    height: 36px;
+    
+    &.at_left {
+      
+      float: left;
+      margin-left: 5px;
+      
+    }
+    
+    &.at_right {
+      
+      float: right;
+      
+    }
     
     a {
       
-      display: inline-block;
-      width: $shared-button-size2;
-      height: $shared-button-size2;
-      background-image: $assets-icons-set-1_svg;
-      background-repeat: no-repeat;
-      background-size: ($shared-button-size2 * 2) ($shared-button-size2 * 5);
-      padding: 0;
       margin-right: 8px;
-      
-      &:hover {
-        
-        cursor: pointer;
-        
-      }
+      cursor: pointer;
       
       &.edit {
         
-        background-position: 0 (-$shared-button-size2 * 2);
-        
-      }
-      
-      &.edit:hover {
-        
-        background-position: (-$shared-button-size2) (-$shared-button-size2 * 2);
+        @include svg-circle-icon-handler($assets-icons-set-1_svg, 36px, 2, 5, 1, 0, 2, 1, 1, 2);
         
       }
       
       &.report {
         
-        background-position: 0 0;
-        
-      }
-      
-      &.report:hover {
-        
-        background-position: (-$shared-button-size2) 0;
+        @include svg-circle-icon-handler($assets-icons-set-1_svg, 36px, 2, 5, 1, 0, 0, 1, 1, 0);
         
       }
       
       &.report_light {
         
-        background-position: (-$shared-button-size2) 0;
+        @include svg-circle-icon-handler-without-hover($assets-icons-set-1_svg, 36px, 2, 5, 1, 1, 0);
         
       }
       
       &.close {
         
-        background-position: 0 (-$shared-button-size2);
-        
-      }
-      
-      &.close:hover {
-        
-        background-position: (-$shared-button-size2) (-$shared-button-size2);
+        @include svg-circle-icon-handler($assets-icons-set-1_svg, 36px, 2, 5, 1, 0, 1, 1, 1, 1);
         
       }
       
       &.change_info {
         
-        background-position: 0 (-$shared-button-size2 * 3);
-        
-      }
-      
-      &.change_info:hover {
-        
-        background-position: (-$shared-button-size2) (-$shared-button-size2 * 3);
+        @include svg-circle-icon-handler($assets-icons-set-1_svg, 36px, 2, 5, 1, 0, 3, 1, 1, 3);
         
       }
       
       &.change_info_light {
         
-        background-position: (-$shared-button-size2) (-$shared-button-size2 * 3);
+        @include svg-circle-icon-handler-without-hover($assets-icons-set-1_svg, 36px, 2, 5, 1, 1, 3);
         
       }
       
