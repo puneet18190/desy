@@ -244,7 +244,7 @@ it:
           # 4 - models/user.rb
           # 5 - models/user.rb
           # 6 - models/user.rb
-          problem_reporting: "La tua segnalazione non è stato inviato"
+          problem_reporting: "La tua segnalazione non è stata inviata"
           # Same situation: the user is trying to report the same lesson twice
           # 1 - models/user.rb
           lesson_already_reported: "Hai già segnalato questa lezione"

@@ -273,6 +273,10 @@ function reportsDocumentReady() {
     }
     return false;
   });
+  $body.on('click', '._report_form_content', function(e) {
+    e.preventDefault();
+    return false;
+  });
   $body.on('click', '._report_form_content ._send', function(e) {
     $(this).closest('form').submit();
   });
