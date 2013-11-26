@@ -6,8 +6,7 @@
   <% end %>
   <% if destination != ButtonDestinations::EXPANDED_LESSON %>
     <% while cont < 6 %>
-      <% style = (cont < 5) ? 'margin-right:8px;'.html_safe : '' %>
-      <a class="remove" style="background-image:none; width:3.5em; height:1em;"><%= image_tag 'hidden.png', :style => style, :width => 1, :height => 1 %></a>
+      <a class="placeholder-btn"></a>
       <% cont += 1 %>
     <% end %>
   <% end %>
