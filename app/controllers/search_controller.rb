@@ -61,7 +61,7 @@ class SearchController < ApplicationController
                 get_result_lessons
               end
             else
-              @tags = current_user.search_lessons(@word, 1, @for_page, SearchOrders::TITLE, @filter, @subject_id, true)
+              @tags = current_user.search_lessons(@word, 1, @for_page, SearchOrders::TITLE, @filter, @subject_id, true, @school_level_id)
             end
           end
         when 'media_elements'
@@ -106,7 +106,7 @@ class SearchController < ApplicationController
   
   # Gets lessons by specific tag, using User#search_lessons_with_tag
   def get_result_lessons_by_specific_tag
-    resp = current_user.search_lessons(@specific_tag_id, @page, @for_page, @order, @filter, @subject_id)
+    resp = current_user.search_lessons(@specific_tag_id, @page, @for_page, @order, @filter, @subject_id, nil, @school_level_id)
     @lessons = resp[:records]
     @pages_amount = resp[:pages_amount]
     @lessons_amount = resp[:records_amount]
@@ -125,7 +125,7 @@ class SearchController < ApplicationController
   
   # Gets lessons using User#search_lessons
   def get_result_lessons
-    resp = current_user.search_lessons(@word, @page, @for_page, @order, @filter, @subject_id)
+    resp = current_user.search_lessons(@word, @page, @for_page, @order, @filter, @subject_id, nil, @school_level_id)
     @lessons = resp[:records]
     @pages_amount = resp[:pages_amount]
     @lessons_amount = resp[:records_amount]
@@ -161,6 +161,7 @@ class SearchController < ApplicationController
     @filter = Filters::LESSONS_SEARCH_SET.include?(params[:filter]) ? params[:filter] : Filters::ALL_LESSONS
     @order = SearchOrders::LESSONS_SET.include?(params[:order]) ? params[:order] : SearchOrders::TITLE
     @subject_id = correct_integer?(params[:subject_id]) ? params[:subject_id].to_i : nil
+    @school_level_id = correct_integer?(params[:school_level_id]) ? params[:school_level_id].to_i : nil
     @for_page = LESSONS_FOR_PAGE
   end
   
