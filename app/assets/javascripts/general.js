@@ -91,7 +91,7 @@ function expandedItemsDocumentReady() {
       var my_expanded = $('#' + my_id + ' ._lesson_expanded');
       if(my_expanded.is(':visible')) {
         my_expanded.find('._report_form_content').hide();
-        my_expanded.find('._reportable_icon').removeClass('report_light _report_selected').addClass('report');
+        my_expanded.find('._reportable_lesson_icon .icon-content').removeClass('report_light').addClass('report');
         my_expanded.hide('blind', {}, 500, function() {
           my_expanded.hide();
         });
@@ -244,51 +244,29 @@ Initializes reports forms for both lessons and media elements.
 @for GeneralDocumentReady
 **/
 function reportsDocumentReady() {
-  $body.on('mouseover', '._report_lesson_click', function() {
-    var obj = $('#' + this.id + ' a._reportable_icon');
-    if(!obj.hasClass('_report_selected')) {
-      obj.removeClass('report');
-      obj.addClass('report_light');
-    }
+  $body.on('mouseenter', '._reportable_lesson_icon', function() {
+    $(this).find('.icon-content').removeClass('report').addClass('report_light');
   });
-  $body.on('mouseout', '._report_lesson_click', function() {
-    var obj = $('#' + this.id + ' a._reportable_icon');
-    if(!obj.hasClass('_report_selected')) {
-      obj.removeClass('report_light');
-      obj.addClass('report');
-    }
+  $body.on('mouseleave', '._reportable_lesson_icon', function() {
+    $(this).find('.icon-content').addClass('report').removeClass('report_light');
   });
-  $body.on('click', '._report_lesson_click', function() {
-    var param = $(this).data('param');
-    var obj = $('#lesson_report_form_' + param);
+  $body.on('click', '._reportable_lesson_icon', function() {
+    var obj = $(this).next();
     if(!obj.is(':visible')) {
-      var button = $('#' + this.id + ' a._reportable_icon');
-      button.addClass('_report_selected');
-      button.removeClass('report');
-      button.addClass('report_light');
-      obj.show('fade', {}, 500, function() {
-        obj.show();
-      });
+      $(this).find('.icon-content').removeClass('report').addClass('report_light report_selected');
+      obj.show('fade', {}, 500);
     } else {
-      var button = $('#' + this.id + ' a._reportable_icon');
-      button.removeClass('_report_selected');
-      button.removeClass('report_light');
-      button.addClass('report');
-      obj.hide('fade', {}, 500, function() {
-        obj.hide();
-      });
+      $(this).find('.icon-content').addClass('report').removeClass('report_light report_selected');
+      obj.hide();
     }
     return false;
   });
   $body.on('click', '._report_media_element_click', function() {
-    var param = $(this).data('param');
-    var obj = $('#media_element_report_form_' + param);
+    var obj = $(this).next();
     if(!obj.is(':visible')) {
       $(this).removeClass('report');
       $(this).addClass('report_light');
-      obj.show('fade', {}, 500, function() {
-        obj.show();
-      });
+      obj.show('fade', {}, 500);
     } else {
       $(this).removeClass('report_light');
       $(this).addClass('report');

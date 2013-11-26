@@ -259,18 +259,25 @@ a.cerca.current {
         
       }
       
-      ._report_lesson_click:hover {
-        
-        cursor: pointer;
-        
-      }
-      
-      ._report_lesson_click {
+      ._reportable_lesson_icon {
         
         bottom: -39px;
         left: 10px;
-        padding: 0;
+        height: 20px;
         position: absolute;
+        cursor: pointer;
+        
+        .icon-content {
+          
+          @include svg-circle-icon-handler-without-hover($assets-icons-set-1_svg, 20px, 2, 5, 1, 0, 0);
+          
+          &.report_light, &.report_selected {
+            
+            @include svg-circle-icon-handler-without-hover($assets-icons-set-1_svg, 20px, 2, 5, 1, 1, 0);
+            
+          }
+          
+        }
         
       }
       

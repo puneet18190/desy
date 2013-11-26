@@ -1,8 +1,4 @@
-$('#media_element_report_form_<%= @media_element_id %>').hide();
-var obj = $('#report_media_element_click_<%= @media_element_id %>');
-obj.removeClass('<%= Buttons::REPORT %>_light');
-obj.addClass('<%= Buttons::REPORT %>');
-
+$('.tooltipForm:visible').parent().find('.report_light').click();
 <% if @resp %>
   showOkPopUp('<%= j t("other_popup_messages.correct.report") %>');
 <% else %>
