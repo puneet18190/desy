@@ -2038,7 +2038,7 @@ it:
     # Description of the report form
     # 1 - views/reports/_lesson.html.erb
     # 2 - views/reports/_media_element.html.erb
-    placeholder: "Scrivi il motivo della tua segnalazione. Grazie per la vostra collaborazione!"
+    placeholder: "Scrivi il motivo della segnalazione. Grazie per la tua collaborazione!"
   
   
   # SECTION 2.14: Captions used in the search engine

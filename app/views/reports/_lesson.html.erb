@@ -5,11 +5,11 @@ height: 3.5em;"></a>
   </div>
   <span style="padding-top:1.2em; float:left"><%= t('reports.title') %></span>
 </div>
-<span class="lesson_tooltipForm _report_form_content" id="lesson_report_form_<%= lesson.id %>">
-  <%= image_tag("freccia_tooltip_form.png", :class => "calloutForm") %>
- <h3><%= t('reports.description') %></h3>
- <p style="padding-top:0px"><%= t('reports.placeholder') %></p>
-  <%= form_tag "/reports/lesson", :remote => true do %>
+<span class="tooltipForm _report_form_content" id="lesson_report_form_<%= lesson.id %>" style="display:none">
+  <%= image_tag 'freccia_tooltip_form.png', :class => 'calloutForm' %>
+  <h3><%= t('reports.description') %></h3>
+  <p style="padding-top:0px"><%= t('reports.placeholder') %></p>
+  <%= form_tag '/reports/lesson', :remote => true do %>
     <input type="hidden" value="<%= lesson.id %>" name="lesson_id">
     <table>
       <tbody>

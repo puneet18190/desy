@@ -621,42 +621,6 @@
   
 }
 
-@mixin inputSend {
-  
-  input[type="submit"] {
-    
-    font: 140% 'Nunito', "Arial Rounded MT Bold", sans-serif;
-    color: $black;
-    background-color: transparent;
-    cursor: pointer;
-    
-  }
-  
-}
-
-@mixin elementiComuni {
-  
-  display: none;
-  padding: 10px;
-  float: right;
-  background-color: #fbfbfb;
-  color: #c0c0c0;
-  border: 1px solid #c6c5c3;
-  width: 350px;
-  
-  .text {
-    
-    margin: 10px 0 10px 0;
-    width: 336px;
-    overflow: hidden;
-    padding-top: 0px;
-    padding-bottom: 50px;
-    border: 1px solid #f0e5e5;
-    
-  }
-  
-}
-
 @mixin svg-circle-icon-handler-without-hover($svg, $size, $how-many-h, $how-many-v, $opacity, $pos-h, $pos-v, $float: left) {
   
   width: $size;
