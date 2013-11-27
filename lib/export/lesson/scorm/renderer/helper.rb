@@ -99,18 +99,9 @@ module Export
                 <file href=\"html/media_elements/videos/#{media_element.id}/#{media_element.mp4_url.gsub('bla', '')}\">
                   #{scorm_media_element_file_metadata(media_element, 'webm')}
                 </file>
-                <file href=\"html/media_elements/videos/#{media_element.id}/#{media_element.mp4_url.gsub('bla', '')}\">
-                  #{scorm_media_element_file_metadata(media_element, 'jpeg')}
-                </file>
-                <file href=\"html/media_elements/videos/#{media_element.id}/#{media_element.mp4_url.gsub('bla', '')}\">
-                  #{scorm_media_element_file_metadata(media_element, 'jpeg')}
-                </file>
               "
             when 'Image'
               return "
-                <file href=\"html/media_elements/videos/#{media_element.id}/#{media_element.mp4_url.gsub('bla', '')}\">
-                  #{scorm_media_element_file_metadata(media_element, 'jpeg')}
-                </file>
                 <file href=\"html/media_elements/videos/#{media_element.id}/#{media_element.mp4_url.gsub('bla', '')}\">
                   #{scorm_media_element_file_metadata(media_element, 'jpeg')}
                 </file>
