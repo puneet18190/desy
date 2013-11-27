@@ -8,13 +8,14 @@ require 'slide/math_images'
 require 'export'
 require 'export/lesson'
 require 'export/lesson/ebook'
+require 'export/lesson/ebook/renderer'
 require 'export/lesson/shared'
 require 'export/lesson/shared/ebook_and_ebook_renderer'
 
 module Export
   module Lesson
     class Ebook
-      class Renderer < ActionView::Renderer
+      class Renderer
         # TODO provare a memoizzare per vedere l'effetto che fa
         module Helper
           # TODO spostarlo in SETTINGS
