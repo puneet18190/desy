@@ -144,7 +144,7 @@ class Video < MediaElement
   # === Usage
   #
   #   <% if video.converted? %>
-  #     <%= render :partial => 'shared/players/video', :locals => {:video => video} %>
+  #     <%= render :partial => "shared/players/custom/video", :locals => {:video => video} %>
   #   <% else %>
   #     <%= image_tag video.placeholder_url(:lesson_viewer_small) %>
   #   <% end %>
