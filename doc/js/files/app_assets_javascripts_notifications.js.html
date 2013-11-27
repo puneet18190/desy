@@ -544,9 +544,7 @@ function initializeHelp() {
       showHelpButton();
       $body.css(&#x27;overflow-x&#x27;, &#x27;hidden&#x27;);
     } else {
-      $(&#x27;#tooltip_help&#x27;).hide(&#x27;fade&#x27;, {}, 500, function() {
-        hideHelpTooltip();
-      });
+      hideHelpTooltip();
       hideHelpButton();
     }
   });
@@ -617,23 +615,6 @@ function initializeNotifications() {
         my_expanded.hide(&#x27;fade&#x27;, {}, 500, function() {
           hideExpandedNotification();
         });
-      }
-    }
-  });
-  $(document).bind(&#x27;click&#x27;, function (e) {
-    var click_id = $(e.target).attr(&#x27;id&#x27;);
-    if($(&#x27;#tooltip_content&#x27;).length &gt; 0){
-      if($(&#x27;#tooltip_content&#x27;).is(&#x27;:visible&#x27;)) {
-        if(click_id != &#x27;tooltip_content&#x27; &amp;&amp; click_id != &#x27;expanded_notification&#x27; &amp;&amp; click_id != &#x27;notifications_button&#x27; &amp;&amp; $(e.target).parents(&#x27;#tooltip_content&#x27;).length == 0 &amp;&amp; $(e.target).parents(&#x27;#expanded_notification&#x27;).length == 0) {
-          $(&#x27;#notifications_button&#x27;).trigger(&#x27;click&#x27;);
-        }
-      }
-    }
-    if($(&#x27;#tooltip_help&#x27;).length &gt; 0) {
-      if($(&#x27;#tooltip_help&#x27;).is(&#x27;:visible&#x27;)) {
-        if(click_id != &#x27;tooltip_help&#x27; &amp;&amp; click_id != &#x27;help&#x27; &amp;&amp; $(e.target).parents(&#x27;#tooltip_help&#x27;).length == 0) {
-          $(&#x27;#help&#x27;).trigger(&#x27;click&#x27;);
-        }
       }
     }
   });

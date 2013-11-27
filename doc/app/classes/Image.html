@@ -134,7 +134,12 @@ contains the specific methods needed for media elements of type
             
               
               <li>
-                <a href="#method-i-in_edit_mode-3F">in_edit_mode?</a>
+                <a href="#method-i-in_edit_mode-3F">in_edit_mode?</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-is_horizontal-3F">is_horizontal?</a>
               </li>
             
           </ul>
@@ -159,6 +164,23 @@ contains the specific methods needed for media elements of type
               
               <li>
                 <a href="#method-i-prev_editing_image">prev_editing_image</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>R</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-resize_height">resize_height</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-resize_width">resize_width</a>
               </li>
             
           </ul>
@@ -300,6 +322,66 @@ contains the specific methods needed for media elements of type
             </tr>
           
         
+          <tr valign='top'>
+            <td class="attr-name">IS_HORIZONTAL_VALUES_BY_KIND</td>
+            <td>=</td>
+            <td class="attr-value">{
+Slide::COVER              =&gt; 1.6  ,
+Slide::IMAGE1             =&gt; 1    ,
+Slide::IMAGE2             =&gt; 0.75 ,
+Slide::IMAGE3             =&gt; 1.55 ,
+Slide::IMAGE4             =&gt; 1.55 ,
+&#x27;video_component&#x27;         =&gt; 1.77 ,
+&#x27;video_component_preview&#x27; =&gt; 1.77
+}</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"><p>Horizontal detection values</p></td>
+            </tr>
+          
+        
+          <tr valign='top'>
+            <td class="attr-name">RESIZE_WIDTH_VALUES_BY_KIND</td>
+            <td>=</td>
+            <td class="attr-value">{
+Slide::COVER              =&gt; 560 ,
+Slide::IMAGE1             =&gt; 420 ,
+Slide::IMAGE2             =&gt; 550 ,
+Slide::IMAGE3             =&gt; 550 ,
+Slide::IMAGE4             =&gt; 265 ,
+&#x27;video_component&#x27;         =&gt; 88  ,
+&#x27;video_component_preview&#x27; =&gt; 360
+}</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"><p>Resize width values</p></td>
+            </tr>
+          
+        
+          <tr valign='top'>
+            <td class="attr-name">RESIZE_HEIGHT_VALUES_BY_KIND</td>
+            <td>=</td>
+            <td class="attr-value">{
+Slide::COVER              =&gt; 900 ,
+Slide::IMAGE1             =&gt; 420 ,
+Slide::IMAGE2             =&gt; 420 ,
+Slide::IMAGE3             =&gt; 860 ,
+Slide::IMAGE4             =&gt; 420 ,
+&#x27;video_component&#x27;         =&gt; 156 ,
+&#x27;video_component_preview&#x27; =&gt; 640
+}</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"><p>Resize height values</p></td>
+            </tr>
+          
+        
       </table>
     
 
@@ -375,7 +457,7 @@ text</p>
                 
               </p>
               <div id="method-i-add_text_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/image.rb, line 238</span>
+                <pre><span class="ruby-comment"># File app/models/image.rb, line 286</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">add_text</span>(<span class="ruby-identifier">texts</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">in_edit_mode?</span> <span class="ruby-operator">||</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">save_editing_prev</span>
   <span class="ruby-identifier">img</span> = <span class="ruby-constant">MiniMagick</span><span class="ruby-operator">::</span><span class="ruby-constant">Image</span>.<span class="ruby-identifier">open</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">current_editing_image</span>
@@ -446,7 +528,7 @@ crop</p>
                 
               </p>
               <div id="method-i-crop_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/image.rb, line 272</span>
+                <pre><span class="ruby-comment"># File app/models/image.rb, line 320</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">crop</span>(<span class="ruby-identifier">x1</span>, <span class="ruby-identifier">y1</span>, <span class="ruby-identifier">x2</span>, <span class="ruby-identifier">y2</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">in_edit_mode?</span> <span class="ruby-operator">||</span> <span class="ruby-operator">!</span><span class="ruby-identifier">save_editing_prev</span>
   <span class="ruby-constant">Media</span><span class="ruby-operator">::</span><span class="ruby-constant">Image</span><span class="ruby-operator">::</span><span class="ruby-constant">Editing</span><span class="ruby-operator">::</span><span class="ruby-constant">Crop</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">current_editing_image</span>, <span class="ruby-identifier">current_editing_image</span>, <span class="ruby-identifier">x1</span>, <span class="ruby-identifier">y1</span>, <span class="ruby-identifier">x2</span>, <span class="ruby-identifier">y2</span>).<span class="ruby-identifier">run</span>
@@ -489,7 +571,7 @@ crop</p>
                 
               </p>
               <div id="method-i-current_editing_image_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/image.rb, line 121</span>
+                <pre><span class="ruby-comment"># File app/models/image.rb, line 169</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">current_editing_image</span>
   <span class="ruby-keyword">return</span> <span class="ruby-string">&#39;&#39;</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">in_edit_mode?</span>
   <span class="ruby-node">&quot;#{self.media.folder}/editing/user_#{@edit_mode}/tmp.#{self.media.file.extension}&quot;</span>
@@ -532,7 +614,7 @@ during editing.</p>
                 
               </p>
               <div id="method-i-editing_url_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/image.rb, line 94</span>
+                <pre><span class="ruby-comment"># File app/models/image.rb, line 142</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">editing_url</span>
   <span class="ruby-keyword">return</span> <span class="ruby-string">&#39;&#39;</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">in_edit_mode?</span>
   <span class="ruby-identifier">file_name</span> = <span class="ruby-node">&quot;/#{url.split(&#39;/&#39;).last}&quot;</span>
@@ -579,7 +661,7 @@ href="ImageEditorController.html">ImageEditorController</a>.</p>
                 
               </p>
               <div id="method-i-enter_edit_mode_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/image.rb, line 150</span>
+                <pre><span class="ruby-comment"># File app/models/image.rb, line 198</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">enter_edit_mode</span>(<span class="ruby-identifier">user_id</span>)
   <span class="ruby-ivar">@edit_mode</span> = <span class="ruby-identifier">user_id</span>
   <span class="ruby-identifier">ed_dir</span> = <span class="ruby-node">&quot;#{self.media.folder}/editing/user_#{@edit_mode}&quot;</span>
@@ -625,7 +707,7 @@ href="ImageEditorController.html">ImageEditorController</a>.</p>
                 
               </p>
               <div id="method-i-height_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/image.rb, line 83</span>
+                <pre><span class="ruby-comment"># File app/models/image.rb, line 131</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">height</span>
   <span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">height</span>
 <span class="ruby-keyword">end</span></pre>
@@ -674,9 +756,44 @@ the access to specific methods if the image is not in editing.</p>
                 
               </p>
               <div id="method-i-in_edit_mode-3F_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/image.rb, line 138</span>
+                <pre><span class="ruby-comment"># File app/models/image.rb, line 186</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">in_edit_mode?</span>
   <span class="ruby-operator">!</span><span class="ruby-ivar">@edit_mode</span>.<span class="ruby-identifier">nil?</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-is_horizontal-3F">
+            
+              <b>is_horizontal?</b>(kind)
+            
+            <a href="../classes/Image.html#method-i-is_horizontal-3F" name="method-i-is_horizontal-3F" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Used to give an orientation on images</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-is_horizontal-3F_source')" id="l_method-i-is_horizontal-3F_source">show</a>
+                
+              </p>
+              <div id="method-i-is_horizontal-3F_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/models/image.rb, line 63</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">is_horizontal?</span>(<span class="ruby-identifier">kind</span>)
+  ( <span class="ruby-identifier">width</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">/</span> <span class="ruby-identifier">height</span>.<span class="ruby-identifier">to_f</span> ) <span class="ruby-operator">&gt;=</span> <span class="ruby-constant">IS_HORIZONTAL_VALUES_BY_KIND</span>[<span class="ruby-identifier">kind</span>]
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -722,7 +839,7 @@ href="ImageEditorController.html#method-i-edit">ImageEditorController#edit</a>.<
                 
               </p>
               <div id="method-i-leave_edit_mode_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/image.rb, line 171</span>
+                <pre><span class="ruby-comment"># File app/models/image.rb, line 219</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">leave_edit_mode</span>(<span class="ruby-identifier">user_id</span>)
   <span class="ruby-identifier">ed_dir</span> = <span class="ruby-node">&quot;#{self.media.folder}/editing/user_#{user_id}&quot;</span>
   <span class="ruby-keyword">begin</span>
@@ -771,10 +888,80 @@ replaces the current step if the user clicks on &#39;undo&#39;</p>
                 
               </p>
               <div id="method-i-prev_editing_image_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/image.rb, line 108</span>
+                <pre><span class="ruby-comment"># File app/models/image.rb, line 156</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">prev_editing_image</span>
   <span class="ruby-keyword">return</span> <span class="ruby-string">&#39;&#39;</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">in_edit_mode?</span>
   <span class="ruby-node">&quot;#{self.media.folder}/editing/user_#{@edit_mode}/prev.#{self.media.file.extension}&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-resize_height">
+            
+              <b>resize_height</b>(kind)
+            
+            <a href="../classes/Image.html#method-i-resize_height" name="method-i-resize_height" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Resizes the height of an image</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-resize_height_source')" id="l_method-i-resize_height_source">show</a>
+                
+              </p>
+              <div id="method-i-resize_height_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/models/image.rb, line 73</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">resize_height</span>(<span class="ruby-identifier">kind</span>)
+  ( <span class="ruby-identifier">height</span>.<span class="ruby-identifier">to_f</span> * <span class="ruby-constant">RESIZE_HEIGHT_VALUES_BY_KIND</span>[<span class="ruby-identifier">kind</span>] <span class="ruby-operator">/</span> <span class="ruby-identifier">width</span>  ).<span class="ruby-identifier">to_i</span> <span class="ruby-operator">+</span> <span class="ruby-number">1</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-resize_width">
+            
+              <b>resize_width</b>(kind)
+            
+            <a href="../classes/Image.html#method-i-resize_width" name="method-i-resize_width" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Resizes the width of an image</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-resize_width_source')" id="l_method-i-resize_width_source">show</a>
+                
+              </p>
+              <div id="method-i-resize_width_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/models/image.rb, line 68</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">resize_width</span>(<span class="ruby-identifier">kind</span>)
+  ( <span class="ruby-identifier">width</span>.<span class="ruby-identifier">to_f</span>  * <span class="ruby-constant">RESIZE_WIDTH_VALUES_BY_KIND</span>[<span class="ruby-identifier">kind</span>]  <span class="ruby-operator">/</span> <span class="ruby-identifier">height</span> ).<span class="ruby-identifier">to_i</span> <span class="ruby-operator">+</span> <span class="ruby-number">1</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -813,7 +1000,7 @@ replaces the current step if the user clicks on &#39;undo&#39;</p>
                 
               </p>
               <div id="method-i-save_editing_prev_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/image.rb, line 190</span>
+                <pre><span class="ruby-comment"># File app/models/image.rb, line 238</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">save_editing_prev</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">in_edit_mode?</span>
   <span class="ruby-identifier">prev_path</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">prev_editing_image</span>
@@ -867,7 +1054,7 @@ replaces the current step if the user clicks on &#39;undo&#39;</p>
                 
               </p>
               <div id="method-i-thumb_url_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/image.rb, line 59</span>
+                <pre><span class="ruby-comment"># File app/models/image.rb, line 107</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">thumb_url</span>
   <span class="ruby-identifier">media</span>.<span class="ruby-identifier">thumb</span>.<span class="ruby-identifier">url</span>
 <span class="ruby-keyword">end</span></pre>
@@ -910,7 +1097,7 @@ href="ImageEditorController.html#method-i-undo">ImageEditorController#undo</a>.<
                 
               </p>
               <div id="method-i-undo_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/image.rb, line 211</span>
+                <pre><span class="ruby-comment"># File app/models/image.rb, line 259</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">undo</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">in_edit_mode?</span>
   <span class="ruby-identifier">prev_path</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">prev_editing_image</span>
@@ -962,7 +1149,7 @@ href="ImageEditorController.html#method-i-undo">ImageEditorController#undo</a>.<
                 
               </p>
               <div id="method-i-url_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/image.rb, line 41</span>
+                <pre><span class="ruby-comment"># File app/models/image.rb, line 89</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">url</span>(<span class="ruby-identifier">url_type</span> = <span class="ruby-keyword">nil</span>)
   <span class="ruby-identifier">url</span> = <span class="ruby-identifier">media</span>.<span class="ruby-identifier">url</span>
 
@@ -1005,7 +1192,7 @@ href="ImageEditorController.html#method-i-undo">ImageEditorController#undo</a>.<
                 
               </p>
               <div id="method-i-width_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/image.rb, line 71</span>
+                <pre><span class="ruby-comment"># File app/models/image.rb, line 119</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">width</span>
   <span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">width</span>
 <span class="ruby-keyword">end</span></pre>
@@ -1042,7 +1229,7 @@ href="ImageEditorController.html#method-i-undo">ImageEditorController#undo</a>.<
                 
               </p>
               <div id="method-i-height-3D_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/image.rb, line 286</span>
+                <pre><span class="ruby-comment"># File app/models/image.rb, line 334</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">height=</span>(<span class="ruby-identifier">height</span>)
   <span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">height</span> = <span class="ruby-identifier">height</span>
 <span class="ruby-keyword">end</span></pre>
@@ -1077,7 +1264,7 @@ href="ImageEditorController.html#method-i-undo">ImageEditorController#undo</a>.<
                 
               </p>
               <div id="method-i-set_converted_to_true_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/image.rb, line 297</span>
+                <pre><span class="ruby-comment"># File app/models/image.rb, line 345</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">set_converted_to_true</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">converted</span> = <span class="ruby-keyword">true</span>
   <span class="ruby-keyword">true</span>
@@ -1114,7 +1301,7 @@ contained in <code>media</code></p>
                 
               </p>
               <div id="method-i-set_width_and_height_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/image.rb, line 291</span>
+                <pre><span class="ruby-comment"># File app/models/image.rb, line 339</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">set_width_and_height</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">width</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">height</span> = <span class="ruby-identifier">media</span>.<span class="ruby-identifier">width</span>, <span class="ruby-identifier">media</span>.<span class="ruby-identifier">height</span>
   <span class="ruby-keyword">true</span>
@@ -1150,7 +1337,7 @@ contained in <code>media</code></p>
                 
               </p>
               <div id="method-i-width-3D_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/image.rb, line 281</span>
+                <pre><span class="ruby-comment"># File app/models/image.rb, line 329</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">width=</span>(<span class="ruby-identifier">width</span>)
   <span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">width</span> = <span class="ruby-identifier">width</span>
 <span class="ruby-keyword">end</span></pre>

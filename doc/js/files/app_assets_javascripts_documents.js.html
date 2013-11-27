@@ -423,12 +423,6 @@ Initializer for documents functionality (general javascripts).
 @for DocumentsDocumentReady
 **/
 function documentsDocumentReadyGeneral() {
-  $body.on(&#x27;mouseover&#x27;, &#x27;._empty_documents&#x27;, function() {
-    $(this).find(&#x27;._empty_documents_hover&#x27;).addClass(&#x27;current&#x27;);
-  });
-  $body.on(&#x27;mouseout&#x27;, &#x27;._empty_documents&#x27;, function() {
-    $(this).find(&#x27;._empty_documents_hover&#x27;).removeClass(&#x27;current&#x27;);
-  });
   $body.on(&#x27;change&#x27;, &#x27;#order_documents&#x27;, function() {
     var order = $(&#x27;#order_documents option:selected&#x27;).val();
     var redirect_url = getCompleteDocumentsUrlWithoutOrder() + &#x27;&amp;order=&#x27; + order;
@@ -498,7 +492,7 @@ Initializer for the loading form.
 @for DocumentsDocumentReady
 **/
 function documentsDocumentReadyUploader() {
-  $body.on(&#x27;click&#x27;, &#x27;._empty_documents, #upload_document&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;._load_document&#x27;, function() {
     showLoadDocumentPopUp();
   });
   $body.on(&#x27;change&#x27;, &#x27;input#new_document_input&#x27;, function() {
