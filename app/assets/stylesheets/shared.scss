@@ -1318,9 +1318,7 @@ label.filebutton span input#new_media_element_input {
 
 ._lesson_change_not_notified .menuController a.unpublish {
   
-  background-image: $assets-lesson-modified-notice_svg;
-  background-position: 0em 0em;
-  background-size: 3.4em;
+  @include svg-circle-icon-handler-without-hover($assets-lesson-modified-notice_svg, 34px, 1, 1, 1, 0, 0, none);
   
 }
 
