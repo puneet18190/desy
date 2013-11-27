@@ -1,0 +1,13 @@
+id,user_id,title,description,sti_type,is_public,publication_date,mp4_duration,webm_duration,m4a_duration,ogg_duration
+57,1,"Video57","blabla bla57",Video,f,,19,19,,
+62,1,"Video62","blabla bla62",Video,f,,10,10,,
+144,1,"Image144","blabla bla144",Image,f,,,,,,
+148,1,"Image148","blabla bla148",Image,f,,,,,,
+166,1,"Image166","blabla bla166",Image,f,,,,,,
+183,1,"Image183","blabla bla183",Image,f,,,,,,
+196,1,"Audio196","blabla bla196",Audio,f,,,,,190,190
+199,1,"Image199","blabla bla199",Image,f,,,,,,
+207,1,"Image207","blabla bla207",Image,f,,,,,,
+208,1,"Image208","blabla bla208",Image,f,,,,,,
+220,1,"Image220","blabla bla220",Image,f,,,,,,
+231,1,"Image231","blabla bla231",Image,f,,,,,,
