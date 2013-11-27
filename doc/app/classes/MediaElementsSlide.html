@@ -154,7 +154,12 @@ href="Lesson.html#method-i-available-21">Lesson#available!</a></p>
             
               
               <li>
-                <a href="#method-i-init_validation">init_validation</a>
+                <a href="#method-i-init_validation">init_validation</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-is_horizontal-3F">is_horizontal?</a>
               </li>
             
           </ul>
@@ -163,6 +168,16 @@ href="Lesson.html#method-i-available-21">Lesson#available!</a></p>
         <dt>R</dt>
         <dd>
           <ul>
+            
+              
+              <li>
+                <a href="#method-i-resize_height">resize_height</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-resize_width">resize_width</a>,
+              </li>
             
               
               <li>
@@ -230,6 +245,113 @@ href="Lesson.html#method-i-available-21">Lesson#available!</a></p>
 
     <!-- Methods -->
         
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-is_horizontal-3F">
+            
+              <b>is_horizontal?</b>(kind = nil)
+            
+            <a href="../classes/MediaElementsSlide.html#method-i-is_horizontal-3F" name="method-i-is_horizontal-3F" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-is_horizontal-3F_source')" id="l_method-i-is_horizontal-3F_source">show</a>
+                
+              </p>
+              <div id="method-i-is_horizontal-3F_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/models/media_elements_slide.rb, line 58</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">is_horizontal?</span>(<span class="ruby-identifier">kind</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">media_element</span>.<span class="ruby-identifier">is_horizontal?</span>(<span class="ruby-identifier">kind</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">slide</span>.<span class="ruby-identifier">kind</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-resize_height">
+            
+              <b>resize_height</b>(kind = nil)
+            
+            <a href="../classes/MediaElementsSlide.html#method-i-resize_height" name="method-i-resize_height" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-resize_height_source')" id="l_method-i-resize_height_source">show</a>
+                
+              </p>
+              <div id="method-i-resize_height_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/models/media_elements_slide.rb, line 66</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">resize_height</span>(<span class="ruby-identifier">kind</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">media_element</span>.<span class="ruby-identifier">resize_height</span>(<span class="ruby-identifier">kind</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">slide</span>.<span class="ruby-identifier">kind</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-resize_width">
+            
+              <b>resize_width</b>(kind = nil)
+            
+            <a href="../classes/MediaElementsSlide.html#method-i-resize_width" name="method-i-resize_width" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-resize_width_source')" id="l_method-i-resize_width_source">show</a>
+                
+              </p>
+              <div id="method-i-resize_width_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/models/media_elements_slide.rb, line 62</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">resize_width</span>(<span class="ruby-identifier">kind</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">media_element</span>.<span class="ruby-identifier">resize_width</span>(<span class="ruby-identifier">kind</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">slide</span>.<span class="ruby-identifier">kind</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+              
       <div class="sectiontitle">Instance Private methods</div>
       
         <div class="method">
@@ -259,7 +381,7 @@ href="Valid.html#method-c-get_association">Valid.get_association</a>)</p>
                 
               </p>
               <div id="method-i-init_validation_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/media_elements_slide.rb, line 73</span>
+                <pre><span class="ruby-comment"># File app/models/media_elements_slide.rb, line 85</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">init_validation</span>
   <span class="ruby-ivar">@media_elements_slide</span> = <span class="ruby-constant">Valid</span>.<span class="ruby-identifier">get_association</span> <span class="ruby-keyword">self</span>, <span class="ruby-value">:id</span>
   <span class="ruby-ivar">@slide</span> = <span class="ruby-constant">Valid</span>.<span class="ruby-identifier">get_association</span> <span class="ruby-keyword">self</span>, <span class="ruby-value">:slide_id</span>
@@ -297,7 +419,7 @@ instance of the element was the last one locking it</p>
                 
               </p>
               <div id="method-i-restore_lesson_availability_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/media_elements_slide.rb, line 61</span>
+                <pre><span class="ruby-comment"># File app/models/media_elements_slide.rb, line 73</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">restore_lesson_availability</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">media_element</span> <span class="ruby-operator">&amp;&amp;</span> 
      <span class="ruby-operator">!</span><span class="ruby-identifier">media_element</span>.<span class="ruby-identifier">converted?</span> <span class="ruby-operator">&amp;&amp;</span>
@@ -339,7 +461,7 @@ instance of the element was the last one locking it</p>
                 
               </p>
               <div id="method-i-validate_associations_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/media_elements_slide.rb, line 87</span>
+                <pre><span class="ruby-comment"># File app/models/media_elements_slide.rb, line 99</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">validate_associations</span>
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:media_element_id</span>, <span class="ruby-value">:doesnt_exist</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@media_element</span>.<span class="ruby-identifier">nil?</span>
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:slide_id</span>, <span class="ruby-value">:doesnt_exist</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@slide</span>.<span class="ruby-identifier">nil?</span>
@@ -377,7 +499,7 @@ it&#39;s audio or video, the same fields must be null</p>
                 
               </p>
               <div id="method-i-validate_image_properties_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/media_elements_slide.rb, line 80</span>
+                <pre><span class="ruby-comment"># File app/models/media_elements_slide.rb, line 92</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">validate_image_properties</span>
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:alignment</span>, <span class="ruby-value">:must_be_null_if_not_image</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@media_element</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@media_element</span>.<span class="ruby-identifier">image?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">alignment</span>.<span class="ruby-identifier">nil?</span>
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:alignment</span>, <span class="ruby-value">:cant_be_null_if_image</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@media_element</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@media_element</span>.<span class="ruby-identifier">image?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">alignment</span>.<span class="ruby-identifier">nil?</span>
@@ -414,7 +536,7 @@ it&#39;s audio or video, the same fields must be null</p>
                 
               </p>
               <div id="method-i-validate_impossible_changes_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/media_elements_slide.rb, line 109</span>
+                <pre><span class="ruby-comment"># File app/models/media_elements_slide.rb, line 121</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">validate_impossible_changes</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@media_elements_slide</span>
     <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:slide_id</span>, <span class="ruby-value">:cant_be_changed</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@media_elements_slide</span>.<span class="ruby-identifier">slide_id</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">slide_id</span>
@@ -452,7 +574,7 @@ public or mine)</p>
                 
               </p>
               <div id="method-i-validate_media_element_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/media_elements_slide.rb, line 104</span>
+                <pre><span class="ruby-comment"># File app/models/media_elements_slide.rb, line 116</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">validate_media_element</span>
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:media_element_id</span>, <span class="ruby-value">:is_not_available</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@media_element</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@slide</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@media_element</span>.<span class="ruby-identifier">is_public</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@media_element</span>.<span class="ruby-identifier">user_id</span> <span class="ruby-operator">!=</span> <span class="ruby-ivar">@slide</span>.<span class="ruby-identifier">lesson</span>.<span class="ruby-identifier">user_id</span>
 <span class="ruby-keyword">end</span></pre>
@@ -488,7 +610,7 @@ href="Slide.html">Slide</a></p>
                 
               </p>
               <div id="method-i-validate_position_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/media_elements_slide.rb, line 98</span>
+                <pre><span class="ruby-comment"># File app/models/media_elements_slide.rb, line 110</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">validate_position</span>
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:position</span>, <span class="ruby-value">:cant_have_two_elements_in_this_slide</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@media_element</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@slide</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">position</span> <span class="ruby-operator">==</span> <span class="ruby-number">2</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span>[<span class="ruby-constant">Slide</span><span class="ruby-operator">::</span><span class="ruby-constant">IMAGE2</span>, <span class="ruby-constant">Slide</span><span class="ruby-operator">::</span><span class="ruby-constant">IMAGE4</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-ivar">@slide</span>.<span class="ruby-identifier">kind</span>)
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:position</span>, <span class="ruby-value">:cant_have_more_than_two_elements_in_this_slide</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@media_element</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@slide</span> <span class="ruby-operator">&amp;&amp;</span> [<span class="ruby-number">3</span>, <span class="ruby-number">4</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">position</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@slide</span>.<span class="ruby-identifier">kind</span> <span class="ruby-operator">!=</span> <span class="ruby-constant">Slide</span><span class="ruby-operator">::</span><span class="ruby-constant">IMAGE4</span>
@@ -525,7 +647,7 @@ type of the <a href="Slide.html">Slide</a></p>
                 
               </p>
               <div id="method-i-validate_type_in_slide_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/media_elements_slide.rb, line 93</span>
+                <pre><span class="ruby-comment"># File app/models/media_elements_slide.rb, line 105</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">validate_type_in_slide</span>
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:media_element_id</span>, <span class="ruby-value">:is_not_compatible_with_slide</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@media_element</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@slide</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@slide</span>.<span class="ruby-identifier">accepted_media_element_sti_type</span> <span class="ruby-operator">!=</span> <span class="ruby-ivar">@media_element</span>.<span class="ruby-identifier">sti_type</span>
 <span class="ruby-keyword">end</span></pre>

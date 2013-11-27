@@ -123,22 +123,6 @@ a.cerca.current {
       
     }
     
-    .menuController {
-      
-      a {
-        
-        @include button-test;
-        
-        &:hover {
-          
-          cursor: default;
-          
-        }
-        
-      }
-      
-    }
-    
   }
   
   .contentInterno {
@@ -259,38 +243,33 @@ a.cerca.current {
         
       }
       
-      .tooltipForm h1 {
-        
-        font: 150% 'Nunito', "Arial Rounded MT Bold", sans-serif;
-        color: $black;
-        
-      }
-      
-      .tooltipForm p {
-        
-        display: inline-block;
-        padding: 0% 1%;
-        
-      }
-      
-      ._report_lesson_click:hover {
-        
-        cursor: pointer;
-        
-      }
-      
-      ._report_lesson_click {
+      ._reportable_lesson_icon {
         
         bottom: -39px;
         left: 10px;
-        padding: 0;
+        height: 20px;
         position: absolute;
+        cursor: pointer;
         
-      }
-      
-      .lesson_tooltipForm {
+        .icon-content {
+          
+          @include svg-circle-icon-handler-without-hover($assets-icons-set-1_svg, 20px, 2, 5, 1, 0, 0);
+          
+          &.report_light, &.report_selected {
+            
+            @include svg-circle-icon-handler-without-hover($assets-icons-set-1_svg, 20px, 2, 5, 1, 1, 0);
+            
+          }
+          
+        }
         
-        bottom: -2px;
+        .report-title {
+          
+          margin-left: 5px;
+          position: relative;
+          top: 5px;
+          
+        }
         
       }
       
@@ -465,19 +444,6 @@ a.cerca.current {
     .menuController {
       
       opacity: 0.3;
-      font-size: 55%;
-      
-      a {
-        
-        @include button-test;
-        
-        &:hover {
-          
-          cursor: default;
-          
-        }
-        
-      }
       
     }
     
@@ -513,12 +479,6 @@ a.cerca.current {
     
   }
   
-  .menuController {
-    
-    font-size: 55%;
-    
-  }
-  
   .description {
     
     padding-top: 1%;
@@ -549,18 +509,6 @@ a.cerca.current {
       border-top: none;
       background-color: transparent;
       text-align: left;
-      
-      a {
-        
-        @include button-test;
-        
-        &:hover {
-          
-          cursor: default;
-          
-        }
-        
-      }
       
     }
     
@@ -677,10 +625,10 @@ a.cerca.current {
 
 .mediaStatus {
   
-  padding: 5% 0 0 5%;
+  padding: 10px 0 0 10px;
   color: #c0c0c0;
   font-weight: bold;
-  font-size: 85%;
+  font-size: 11px;
   
 }
 
@@ -768,7 +716,7 @@ a.cerca.current {
   .contentElement {
     
     float: left;
-    margin-right: 30px;
+    margin-right: 20px;
     height: 340px;
     
     .videoPlayer {
@@ -1146,76 +1094,214 @@ label.filebutton span input#new_media_element_input {
 .menuController {
   
   background-color: #fff;
-  padding: 0.5%;
   border-top: 1px solid #f2f1f2;
   text-align: right;
   color: #cbcbcb;
-  font-size: 75%;
   display: block;
+  font-size: 7px;
+  height: 38px;
   
   a {
     
-    @include button-test;
+    display: inline-block;
+    margin-right: 8px;
+    cursor: pointer;
+    margin-top: 2px;
     
-    &.preview:hover {
+    &.add {
       
-      background-position: (-$shared-button-size1) (-$shared-button-size1 * 7);
+      @include svg-circle-icon-handler($assets-action-buttons_svg, 34px, 2, 10, 1, 0, 9, 1, 1, 9, none);
+      
+    }
+    
+    &.add_virtual_classroom {
+      
+      @include svg-circle-icon-handler($assets-action-buttons_svg, 34px, 2, 10, 1, 0, 5, 1, 1, 5, none);
+      
+    }
+    
+    &.copy {
+      
+      @include svg-circle-icon-handler($assets-action-buttons_svg, 34px, 2, 10, 1, 0, 2, 1, 1, 2, none);
+      
+    }
+    
+    &.destroy {
+      
+      @include svg-circle-icon-handler($assets-action-buttons_svg, 34px, 2, 10, 1, 0, 1, 1, 1, 1, none);
+      
+    }
+    
+    &.dislike {
+      
+      @include svg-circle-icon-handler($assets-action-buttons_svg, 34px, 2, 10, 1, 1, 3, 1, 0, 3, none);
+      
+    }
+    
+    &.edit {
+      
+      @include svg-circle-icon-handler($assets-action-buttons_svg, 34px, 2, 10, 1, 0, 6, 1, 1, 6, none);
+      
+    }
+    
+    &.like {
+      
+      @include svg-circle-icon-handler($assets-action-buttons_svg, 34px, 2, 10, 1, 0, 3, 1, 1, 3, none);
+      
+    }
+    
+    &.preview {
+      
+      @include svg-circle-icon-handler($assets-action-buttons_svg, 34px, 2, 10, 1, 0, 7, 1, 1, 7, none);
+      
+    }
+    
+    &.publish {
+      
+      @include svg-circle-icon-handler($assets-action-buttons_svg, 34px, 2, 10, 1, 0, 4, 1, 1, 4, none);
+      
+    }
+    
+    &.remove {
+      
+      @include svg-circle-icon-handler($assets-action-buttons_svg, 34px, 2, 10, 1, 0, 8, 1, 1, 8, none);
+      
+    }
+    
+    &.remove_virtual_classroom {
+      
+      @include svg-circle-icon-handler($assets-action-buttons_svg, 34px, 2, 10, 1, 1, 5, 1, 0, 5, none);
+      
+    }
+    
+    &.unpublish {
+      
+      @include svg-circle-icon-handler($assets-action-buttons_svg, 34px, 2, 10, 1, 1, 4, 1, 0, 4, none);
+      
+    }
+    
+    &.placeholder-btn {
+      
+      width: 34px;
+      height: 34px;
+      
+    }
+    
+  }
+  
+}
+
+.boxViewExpandedMediaElement {
+  
+  .menuController {
+    
+    height: 30px;
+    
+    a {
+      
+      &.add {
+        
+        @include svg-circle-icon-handler($assets-action-buttons_svg, 25px, 2, 10, 1, 0, 9, 1, 1, 9, none);
+        
+      }
+      
+      &.destroy {
+        
+        @include svg-circle-icon-handler($assets-action-buttons_svg, 25px, 2, 10, 1, 0, 1, 1, 1, 1, none);
+        
+      }
+      
+      &.edit {
+        
+        @include svg-circle-icon-handler($assets-action-buttons_svg, 25px, 2, 10, 1, 0, 6, 1, 1, 6, none);
+        
+      }
+      
+      &.preview {
+        
+        @include svg-circle-icon-handler($assets-action-buttons_svg, 25px, 2, 10, 1, 0, 7, 1, 1, 7, none);
+        
+      }
+      
+      &.remove {
+        
+        @include svg-circle-icon-handler($assets-action-buttons_svg, 25px, 2, 10, 1, 0, 8, 1, 1, 8, none);
+        
+      }
+      
+    }
+    
+  }
+  
+  &._disabled .menuController a {
+    
+    cursor: default;
+    
+    &.destroy:hover {
+      
+      @include svg-circle-icon-handler-without-hover($assets-action-buttons_svg, 25px, 2, 10, 1, 0, 1, none);
       
     }
     
     &.edit:hover {
       
-      background-position: (-$shared-button-size1) (-$shared-button-size1 * 6);
+      @include svg-circle-icon-handler-without-hover($assets-action-buttons_svg, 25px, 2, 10, 1, 0, 6, none);
       
     }
     
-    &.publish:hover {
+    &.preview:hover {
       
-      background-position: (-$shared-button-size1) (-$shared-button-size1 * 4);
-      
-    }
-    
-    &.add:hover {
-      
-      background-position: (-$shared-button-size1) (-$shared-button-size1 * 9);
+      @include svg-circle-icon-handler-without-hover($assets-action-buttons_svg, 25px, 2, 10, 1, 0, 7, none);
       
     }
     
-    &.remove:hover {
-      
-      background-position: (-$shared-button-size1) (-$shared-button-size1 * 8);
-      
-    }
+  }
+  
+}
+
+._disabled .menuController a {
+  
+  cursor: default;
+  
+  &.add_virtual_classroom:hover {
     
-    &.destroy:hover {
-      
-      background-position: (-$shared-button-size1) (-$shared-button-size1);
-      
-    }
+    @include svg-circle-icon-handler-without-hover($assets-action-buttons_svg, 34px, 2, 10, 1, 0, 5, none);
     
-    &.like:hover {
-      
-      background-position: (-$shared-button-size1) (-$shared-button-size1 * 3);
-      
-    }
+  }
+  
+  &.copy:hover {
     
-    &.report:hover {
-      
-      background-position: (-$shared-button-size1) 0;
-      
-    }
+    @include svg-circle-icon-handler-without-hover($assets-action-buttons_svg, 34px, 2, 10, 1, 0, 2, none);
     
-    &.add_virtual_classroom:hover {
-      
-      background-position: (-$shared-button-size1) (-$shared-button-size1 * 5);
-      
-    }
+  }
+  
+  &.destroy:hover {
     
-    &.copy:hover {
-      
-      background-position: (-$shared-button-size1) (-$shared-button-size1 * 2);
-      
-    }
+    @include svg-circle-icon-handler-without-hover($assets-action-buttons_svg, 34px, 2, 10, 1, 0, 1, none);
+    
+  }
+  
+  &.edit:hover {
+    
+    @include svg-circle-icon-handler-without-hover($assets-action-buttons_svg, 34px, 2, 10, 1, 0, 6, none);
+    
+  }
+  
+  &.preview:hover {
+    
+    @include svg-circle-icon-handler-without-hover($assets-action-buttons_svg, 34px, 2, 10, 1, 0, 7, none);
+    
+  }
+  
+  &.publish:hover {
+    
+    @include svg-circle-icon-handler-without-hover($assets-action-buttons_svg, 34px, 2, 10, 1, 0, 4, none);
+    
+  }
+  
+  &.remove_virtual_classroom:hover {
+    
+    @include svg-circle-icon-handler-without-hover($assets-action-buttons_svg, 34px, 2, 10, 1, 1, 5, none);
     
   }
   
@@ -1319,85 +1405,60 @@ label.filebutton span input#new_media_element_input {
     
     background-color: #fff;
     padding: 5px;
-    color: #cbcbcb;
-    font-size: 75%;
     display: block;
-    border: none;
+    height: 36px;
+    
+    &.at_left {
+      
+      float: left;
+      margin-left: 5px;
+      
+    }
+    
+    &.at_right {
+      
+      float: right;
+      
+    }
     
     a {
       
-      display: inline-block;
-      width: $shared-button-size2;
-      height: $shared-button-size2;
-      background-image: $assets-icons-set-1_svg;
-      background-repeat: no-repeat;
-      background-size: ($shared-button-size2 * 2) ($shared-button-size2 * 5);
-      padding: 0;
       margin-right: 8px;
-      
-      &:hover {
-        
-        cursor: pointer;
-        
-      }
+      cursor: pointer;
       
       &.edit {
         
-        background-position: 0 (-$shared-button-size2 * 2);
-        
-      }
-      
-      &.edit:hover {
-        
-        background-position: (-$shared-button-size2) (-$shared-button-size2 * 2);
+        @include svg-circle-icon-handler($assets-icons-set-1_svg, 36px, 2, 5, 1, 0, 2, 1, 1, 2);
         
       }
       
       &.report {
         
-        background-position: 0 0;
-        
-      }
-      
-      &.report:hover {
-        
-        background-position: (-$shared-button-size2) 0;
+        @include svg-circle-icon-handler($assets-icons-set-1_svg, 36px, 2, 5, 1, 0, 0, 1, 1, 0);
         
       }
       
       &.report_light {
         
-        background-position: (-$shared-button-size2) 0;
+        @include svg-circle-icon-handler-without-hover($assets-icons-set-1_svg, 36px, 2, 5, 1, 1, 0);
         
       }
       
       &.close {
         
-        background-position: 0 (-$shared-button-size2);
-        
-      }
-      
-      &.close:hover {
-        
-        background-position: (-$shared-button-size2) (-$shared-button-size2);
+        @include svg-circle-icon-handler($assets-icons-set-1_svg, 36px, 2, 5, 1, 0, 1, 1, 1, 1);
         
       }
       
       &.change_info {
         
-        background-position: 0 (-$shared-button-size2 * 3);
-        
-      }
-      
-      &.change_info:hover {
-        
-        background-position: (-$shared-button-size2) (-$shared-button-size2 * 3);
+        @include svg-circle-icon-handler($assets-icons-set-1_svg, 36px, 2, 5, 1, 0, 3, 1, 1, 3);
         
       }
       
       &.change_info_light {
         
-        background-position: (-$shared-button-size2) (-$shared-button-size2 * 3);
+        @include svg-circle-icon-handler-without-hover($assets-icons-set-1_svg, 36px, 2, 5, 1, 1, 3);
         
       }
       

@@ -360,7 +360,7 @@
                 
               </p>
               <div id="method-c-new_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/export/lesson/archive.rb, line 39</span>
+                <pre><span class="ruby-comment"># File lib/export/lesson/archive.rb, line 37</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize</span>(<span class="ruby-identifier">lesson</span>, <span class="ruby-identifier">index_page</span>)
   <span class="ruby-ivar">@lesson</span>, <span class="ruby-ivar">@index_page</span> = <span class="ruby-identifier">lesson</span>, <span class="ruby-identifier">index_page</span>
 
@@ -443,7 +443,7 @@
                 
               </p>
               <div id="method-i-find_or_create_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/export/lesson/archive.rb, line 60</span>
+                <pre><span class="ruby-comment"># File lib/export/lesson/archive.rb, line 58</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">find_or_create</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">path</span>.<span class="ruby-identifier">exist?</span>
   
@@ -485,7 +485,7 @@
                 
               </p>
               <div id="method-i-url_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/export/lesson/archive.rb, line 54</span>
+                <pre><span class="ruby-comment"># File lib/export/lesson/archive.rb, line 52</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">url</span>
   <span class="ruby-identifier">find_or_create</span>
 
@@ -524,7 +524,7 @@
                 
               </p>
               <div id="method-i-assets_compiled-3F_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/export/lesson/archive.rb, line 73</span>
+                <pre><span class="ruby-comment"># File lib/export/lesson/archive.rb, line 71</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">assets_compiled?</span>
   <span class="ruby-constant">ASSETS_FOLDER</span>.<span class="ruby-identifier">exist?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-constant">ASSETS_FOLDER</span>.<span class="ruby-identifier">entries</span>.<span class="ruby-identifier">empty?</span>
 <span class="ruby-keyword">end</span></pre>
@@ -559,7 +559,7 @@
                 
               </p>
               <div id="method-i-assets_files_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/export/lesson/archive.rb, line 77</span>
+                <pre><span class="ruby-comment"># File lib/export/lesson/archive.rb, line 75</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">assets_files</span>
   <span class="ruby-constant">Pathname</span>.<span class="ruby-identifier">glob</span> <span class="ruby-constant">ASSETS_FOLDER</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;**&#39;</span>, <span class="ruby-string">&#39;*&#39;</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -594,7 +594,7 @@
                 
               </p>
               <div id="method-i-create_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/export/lesson/archive.rb, line 81</span>
+                <pre><span class="ruby-comment"># File lib/export/lesson/archive.rb, line 79</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">create</span>
   <span class="ruby-constant">Zip</span><span class="ruby-operator">::</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">path</span>, <span class="ruby-constant">Zip</span><span class="ruby-operator">::</span><span class="ruby-constant">File</span><span class="ruby-operator">::</span><span class="ruby-constant">CREATE</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">archive</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">add_string_entry</span> <span class="ruby-identifier">archive</span>, <span class="ruby-identifier">index_page</span>, <span class="ruby-identifier">archive_root_folder</span>.<span class="ruby-identifier">join</span>(<span class="ruby-constant">INDEX_PAGE_NAME</span>)

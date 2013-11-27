@@ -214,9 +214,13 @@ p {
   line-height: 0px;
   
 }
+
 .text-centered {
-  text-align:center;
+  
+  text-align: center;
+  
 }
+
 .dots_pagination_container {
   
   padding-bottom: 15px;
@@ -280,22 +284,45 @@ p {
   
 }
 
-.lesson_tooltipForm {
+.tooltipForm {
   
   position: absolute;
-  margin: 0px;
+  float: right;
+  background-color: #FBFBFB;
+  border: 1px solid #C6C5C3;
+  color: #C0C0C0;
+  margin: 0;
+  width: 350px;
+  padding: 10px;
   z-index: 10;
   border-radius: 3px;
   -webkit-border-radius: 3px;
-  @include elementiComuni;
-  left: 0.2em;
-  bottom: 3.3em;
-  @include inputSend;
   
   h3 {
     
-    font: 120% 'Nunito', sans-serif;
+    font: 14px 'Nunito', sans-serif;
     color: $black;
+    
+  }
+  
+  p {
+    
+    font: 12px 'Nunito', sans-serif;
+    
+  }
+  
+  input._send {
+    
+    font: 16px 'Nunito', "Arial Rounded MT Bold", sans-serif;
+    color: $black;
+    background-color: transparent;
+    cursor: pointer;
+    
+    &:hover {
+      
+      text-decoration: underline;
+      
+    }
     
   }
   
@@ -304,39 +331,32 @@ p {
     bottom: -8px;
     z-index: 20;
     position: absolute;
-    border: 0;
+    
+  }
+  
+  &.for-media-elements {
+    
+    left: 450px;
+    bottom: 46px;
+    
+    .calloutForm {
+      
+      left: 339px;
+      
+    }
+    
+  }
+  
+  &.for-lessons {
+    
     left: 8px;
+    bottom: -8px;
     
-  }
-  
-}
-
-.media_element_tooltipForm {
-  
-  position: absolute;
-  margin: 0px;
-  z-index: 10;
-  border-radius: 3px;
-  -webkit-border-radius: 3px;
-  @include elementiComuni;
-  right: 4px;
-  bottom: 41px;
-  @include inputSend;
-  
-  h3 {
-    
-    font: 140% 'Nunito', sans-serif;
-    color: $black;
-    
-  }
-  
-  .calloutForm {
-    
-    bottom: -7px;
-    z-index: 20;
-    position: absolute;
-    border: 0;
-    right: 59px;
+    .calloutForm {
+      
+      left: 3px;
+      
+    }
     
   }
   

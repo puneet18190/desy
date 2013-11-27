@@ -3460,7 +3460,7 @@
         },
         {
             "file": "app/assets/javascripts/documents.js",
-            "line": 151,
+            "line": 145,
             "description": "Initializer for documents functionality (search and placeholders javascripts).",
             "itemtype": "method",
             "name": "documentsDocumentReadySearch",
@@ -3469,7 +3469,7 @@
         },
         {
             "file": "app/assets/javascripts/documents.js",
-            "line": 175,
+            "line": 169,
             "description": "Initializer for the loading form.",
             "itemtype": "method",
             "name": "documentsDocumentReadyUploader",
@@ -3478,7 +3478,7 @@
         },
         {
             "file": "app/assets/javascripts/documents.js",
-            "line": 218,
+            "line": 212,
             "description": "Dialog containing the form to upload a new document.",
             "itemtype": "method",
             "name": "showLoadDocumentPopUp",
@@ -3487,7 +3487,7 @@
         },
         {
             "file": "app/assets/javascripts/documents.js",
-            "line": 253,
+            "line": 247,
             "description": "Handles 413 status error, file too large.",
             "itemtype": "method",
             "name": "uploadDocumentDone",
@@ -3500,7 +3500,7 @@
         },
         {
             "file": "app/assets/javascripts/documents.js",
-            "line": 269,
+            "line": 263,
             "description": "Reloads documents page after new document is successfully loaded.",
             "itemtype": "method",
             "name": "uploadDocumentLoaderDoneRedirect",
@@ -3509,7 +3509,7 @@
         },
         {
             "file": "app/assets/javascripts/documents.js",
-            "line": 281,
+            "line": 275,
             "description": "Update form fields with error labels.",
             "itemtype": "method",
             "name": "uploadDocumentLoaderError",
@@ -3525,7 +3525,7 @@
         },
         {
             "file": "app/assets/javascripts/documents.js",
-            "line": 303,
+            "line": 297,
             "description": "Sets iframe as target for form submit, and adds a callback function to control 413 status error; notice that <b>upload target</b> is the HTML id of the frame.",
             "itemtype": "method",
             "name": "initDocumentLoader",
@@ -3719,15 +3719,6 @@
         {
             "file": "app/assets/javascripts/general.js",
             "line": 82,
-            "description": "This function manages situations where resources are empty.",
-            "itemtype": "method",
-            "name": "emptyResourcesDocumentReady",
-            "class": "GeneralDocumentReady",
-            "module": "general"
-        },
-        {
-            "file": "app/assets/javascripts/general.js",
-            "line": 105,
             "description": "Initialization for all the functionalities of expanded lessons and media element popup (see also {{#crossLink \"DialogsWithForm/showMediaElementInfoPopUp:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "expandedItemsDocumentReady",
@@ -3736,7 +3727,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 170,
+            "line": 146,
             "description": "Similar to {{#crossLink \"GeneralDocumentReady/defaultValueJavaScriptAnimationsDocumentReady:method\"}}{{/crossLink}}, this function initializes the initial value of the raio buttons styled using a javascript plugin.",
             "itemtype": "method",
             "name": "filtersDocumentReady",
@@ -3745,7 +3736,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 193,
+            "line": 169,
             "description": "Initializer for consequences of window resizing.",
             "itemtype": "method",
             "name": "generalWindowResizeDocumentReady",
@@ -3754,7 +3745,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 206,
+            "line": 182,
             "description": "Initializer for all javascript and JQuery plugins.",
             "itemtype": "method",
             "name": "javaScriptAnimationsDocumentReady",
@@ -3763,7 +3754,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 237,
+            "line": 242,
             "description": "Initializer for locations automatic filling.",
             "itemtype": "method",
             "name": "locationsDocumentReady",
@@ -3772,7 +3763,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 260,
+            "line": 265,
             "description": "Initializes reports forms for both lessons and media elements.",
             "itemtype": "method",
             "name": "reportsDocumentReady",
@@ -3781,7 +3772,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 333,
+            "line": 314,
             "description": "Gets the requested format to visualize media elements.",
             "itemtype": "method",
             "name": "getMediaElementsFormat",
@@ -3790,7 +3781,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 346,
+            "line": 327,
             "description": "Shows a red error icon when somethings goes wrong. Widely used in {{#crossLinkModule \"lesson-editor\"}}{{/crossLinkModule}} and in {{#crossLinkModule \"image-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "redError",
@@ -3799,7 +3790,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 357,
+            "line": 338,
             "description": "Function to convert seconds into a time string of the kind <i>02:35</i>; used in {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}} and in {{#crossLinkModule \"audio-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "secondsToDateString",
@@ -3815,7 +3806,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 385,
+            "line": 366,
             "description": "Browser support checking, supported browsers version. It is empty. The not supported browsers version is implemented {{#crossLink \"BrowserSupportMain/browserSupport:method\"}}here{{/crossLink}}",
             "itemtype": "method",
             "name": "browserSupport",
@@ -3824,7 +3815,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 394,
+            "line": 375,
             "description": "This function returns an url for media elements without the parameter 'for_page'. The original url is extracted by the method {{#crossLink \"GeneralMiscellanea/getMediaElementsFormat:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "getCompleteMediaElementsUrlWithoutForPage",
@@ -3837,7 +3828,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 406,
+            "line": 387,
             "description": "This function returns an url for media elements without the parameter 'filter'. The original url is extracted by the method {{#crossLink \"GeneralMiscellanea/getMediaElementsFormat:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "getCompleteMediaElementsUrlWithoutFilter",
@@ -3850,7 +3841,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 418,
+            "line": 399,
             "description": "This function returns an url for documents without the parameter 'order'. The original url is extracted by the method {{#crossLink \"GeneralMiscellanea/getMediaElementsFormat:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "getCompleteDocumentsUrlWithoutOrder",
@@ -3863,7 +3854,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 429,
+            "line": 410,
             "description": "Removes a parameter from an url.",
             "itemtype": "method",
             "name": "removeURLParameter",
@@ -3888,7 +3879,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 455,
+            "line": 436,
             "description": "Adds or update new parameters to an url.",
             "itemtype": "method",
             "name": "updateURLParameter",
@@ -5475,7 +5466,7 @@
         },
         {
             "file": "app/assets/javascripts/notifications.js",
-            "line": 235,
+            "line": 233,
             "description": "Initializes the graphical tools and the routes attached to the <b>notifications tooltip</b>.",
             "itemtype": "method",
             "name": "initializeNotifications",

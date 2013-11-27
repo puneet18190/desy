@@ -400,29 +400,6 @@ function defaultValueJavaScriptAnimationsDocumentReady() {
 }
 
 /**
-This function manages situations where resources are empty.
-@method emptyResourcesDocumentReady
-@for GeneralDocumentReady
-**/
-function emptyResourcesDocumentReady() {
-  $body.on(&#x27;mouseover&#x27;, &#x27;._empty_media_elements&#x27;, function() {
-    $(this).find(&#x27;._empty_media_elements_hover&#x27;).addClass(&#x27;current&#x27;);
-  });
-  $body.on(&#x27;mouseout&#x27;, &#x27;._empty_media_elements&#x27;, function() {
-    $(this).find(&#x27;._empty_media_elements_hover&#x27;).removeClass(&#x27;current&#x27;);
-  });
-  $body.on(&#x27;mouseover&#x27;, &#x27;._empty_lessons&#x27;, function() {
-    $(this).find(&#x27;._empty_lessons_hover&#x27;).addClass(&#x27;current&#x27;);
-  });
-  $body.on(&#x27;mouseout&#x27;, &#x27;._empty_lessons&#x27;, function() {
-    $(this).find(&#x27;._empty_lessons_hover&#x27;).removeClass(&#x27;current&#x27;);
-  });
-  $body.on(&#x27;click&#x27;, &#x27;._empty_lessons&#x27;, function() {
-    window.location = &#x27;/lessons/new&#x27;;
-  });
-}
-
-/**
 Initialization for all the functionalities of expanded lessons and media element popup (see also {{#crossLink &quot;DialogsWithForm/showMediaElementInfoPopUp:method&quot;}}{{/crossLink}}).
 @method expandedItemsDocumentReady
 @for GeneralDocumentReady
@@ -433,8 +410,7 @@ function expandedItemsDocumentReady() {
       var my_id = $(this).parent().attr(&#x27;id&#x27;);
       var my_expanded = $(&#x27;#&#x27; + my_id + &#x27; ._lesson_expanded&#x27;);
       if(my_expanded.is(&#x27;:visible&#x27;)) {
-        my_expanded.find(&#x27;._report_form_content&#x27;).hide();
-        my_expanded.find(&#x27;._reportable_icon&#x27;).removeClass(&#x27;report_light _report_selected&#x27;).addClass(&#x27;report&#x27;);
+        my_expanded.find(&#x27;.tooltipForm:visible&#x27;).parent().find(&#x27;._reportable_lesson_icon&#x27;).click();
         my_expanded.hide(&#x27;blind&#x27;, {}, 500, function() {
           my_expanded.hide();
         });
@@ -529,17 +505,21 @@ Initializer for all javascript and JQuery plugins.
 @for GeneralDocumentReady
 **/
 function javaScriptAnimationsDocumentReady() {
+  $body.on(&#x27;mouseenter&#x27;, &#x27;.empty-situation-container a&#x27;, function() {
+    $(this).find(&#x27;.plus&#x27;).addClass(&#x27;encendido&#x27;);
+  });
+  $body.on(&#x27;mouseleave&#x27;, &#x27;.empty-situation-container a&#x27;, function() {
+    $(this).find(&#x27;.plus&#x27;).removeClass(&#x27;encendido&#x27;);
+  });
   $(&#x27;#notifications_list&#x27;).jScrollPane({
     autoReinitialise: true
   });
-  $(&#x27;#select_lesson_list&#x27;).selectbox();
   $(&#x27;#which_item_to_search&#x27;).selectbox();
   $(&#x27;#filter_lessons&#x27;).selectbox();
   $(&#x27;#order_documents&#x27;).selectbox();
   $(&#x27;#filter_search_lessons&#x27;).selectbox();
   $(&#x27;#filter_search_lessons_subject&#x27;).selectbox();
-  $(&#x27;#profile_school_level&#x27;).selectbox();
-  $(&#x27;#profile_region&#x27;).selectbox();
+  $(&#x27;#filter_search_lessons_school_level&#x27;).selectbox();
   $(&#x27;#for_page_media_elements&#x27;).selectbox();
   $(&#x27;#filter_media_elements&#x27;).selectbox();
   $(&#x27;#filter_search_media_elements&#x27;).selectbox();
@@ -550,6 +530,31 @@ function javaScriptAnimationsDocumentReady() {
     var maxlength = myself.attr(&#x27;maxlength&#x27;)
     if (maxlength &amp;&amp; len &gt; maxlength) {
       myself.val(myself.val().slice(0, maxlength));
+    }
+  });
+  $(document).bind(&#x27;click&#x27;, function (e) {
+    var click_id = $(e.target).attr(&#x27;id&#x27;);
+    var my_report = $(&#x27;.tooltipForm:visible&#x27;);
+    var my_login = $(&#x27;#login_form_container:visible&#x27;);
+    if($(&#x27;#tooltip_content&#x27;).length &gt; 0) {
+      if($(&#x27;#tooltip_content&#x27;).is(&#x27;:visible&#x27;)) {
+        if(click_id != &#x27;tooltip_content&#x27; &amp;&amp; click_id != &#x27;expanded_notification&#x27; &amp;&amp; click_id != &#x27;notifications_button&#x27; &amp;&amp; $(e.target).parents(&#x27;#tooltip_content&#x27;).length == 0 &amp;&amp; $(e.target).parents(&#x27;#expanded_notification&#x27;).length == 0) {
+          $(&#x27;#notifications_button&#x27;).trigger(&#x27;click&#x27;);
+        }
+      }
+    }
+    if($(&#x27;#tooltip_help&#x27;).length &gt; 0) {
+      if($(&#x27;#tooltip_help&#x27;).is(&#x27;:visible&#x27;)) {
+        if(click_id != &#x27;tooltip_help&#x27; &amp;&amp; click_id != &#x27;help&#x27; &amp;&amp; $(e.target).parents(&#x27;#tooltip_help&#x27;).length == 0) {
+          $(&#x27;#help&#x27;).trigger(&#x27;click&#x27;);
+        }
+      }
+    }
+    if(my_report.length &gt; 0 &amp;&amp; $(e.target).parents(&#x27;#&#x27; + my_report.attr(&#x27;id&#x27;)).length == 0) {
+      my_report.parent().find(&#x27;.report_light, ._reportable_lesson_icon&#x27;).click();
+    }
+    if(my_login.length &gt; 0 &amp;&amp; $(e.target).parents(&#x27;#login_form_container&#x27;).length == 0 &amp;&amp; !$(e.target).hasClass(&#x27;_show_login_form_container&#x27;)) {
+      $(&#x27;._show_login_form_container&#x27;).click();
     }
   });
 }
@@ -583,57 +588,33 @@ Initializes reports forms for both lessons and media elements.
 @for GeneralDocumentReady
 **/
 function reportsDocumentReady() {
-  $body.on(&#x27;mouseover&#x27;, &#x27;._report_lesson_click&#x27;, function() {
-    var obj = $(&#x27;#&#x27; + this.id + &#x27; a._reportable_icon&#x27;);
-    if(!obj.hasClass(&#x27;_report_selected&#x27;)) {
-      obj.removeClass(&#x27;report&#x27;);
-      obj.addClass(&#x27;report_light&#x27;);
-    }
+  $body.on(&#x27;mouseenter&#x27;, &#x27;._reportable_lesson_icon&#x27;, function() {
+    $(this).find(&#x27;.icon-content&#x27;).removeClass(&#x27;report&#x27;).addClass(&#x27;report_light&#x27;);
   });
-  $body.on(&#x27;mouseout&#x27;, &#x27;._report_lesson_click&#x27;, function() {
-    var obj = $(&#x27;#&#x27; + this.id + &#x27; a._reportable_icon&#x27;);
-    if(!obj.hasClass(&#x27;_report_selected&#x27;)) {
-      obj.removeClass(&#x27;report_light&#x27;);
-      obj.addClass(&#x27;report&#x27;);
-    }
+  $body.on(&#x27;mouseleave&#x27;, &#x27;._reportable_lesson_icon&#x27;, function() {
+    $(this).find(&#x27;.icon-content&#x27;).addClass(&#x27;report&#x27;).removeClass(&#x27;report_light&#x27;);
   });
-  $body.on(&#x27;click&#x27;, &#x27;._report_lesson_click&#x27;, function() {
-    var param = $(this).data(&#x27;param&#x27;);
-    var obj = $(&#x27;#lesson_report_form_&#x27; + param);
+  $body.on(&#x27;click&#x27;, &#x27;._reportable_lesson_icon&#x27;, function() {
+    var obj = $(this).next();
     if(!obj.is(&#x27;:visible&#x27;)) {
-      var button = $(&#x27;#&#x27; + this.id + &#x27; a._reportable_icon&#x27;);
-      button.addClass(&#x27;_report_selected&#x27;);
-      button.removeClass(&#x27;report&#x27;);
-      button.addClass(&#x27;report_light&#x27;);
-      obj.show(&#x27;fade&#x27;, {}, 500, function() {
-        obj.show();
-      });
+      $(this).find(&#x27;.icon-content&#x27;).removeClass(&#x27;report&#x27;).addClass(&#x27;report_light report_selected&#x27;);
+      obj.show(&#x27;fade&#x27;, {}, 500);
     } else {
-      var button = $(&#x27;#&#x27; + this.id + &#x27; a._reportable_icon&#x27;);
-      button.removeClass(&#x27;_report_selected&#x27;);
-      button.removeClass(&#x27;report_light&#x27;);
-      button.addClass(&#x27;report&#x27;);
-      obj.hide(&#x27;fade&#x27;, {}, 500, function() {
-        obj.hide();
-      });
+      $(this).find(&#x27;.icon-content&#x27;).addClass(&#x27;report&#x27;).removeClass(&#x27;report_light report_selected&#x27;);
+      obj.hide();
     }
     return false;
   });
   $body.on(&#x27;click&#x27;, &#x27;._report_media_element_click&#x27;, function() {
-    var param = $(this).data(&#x27;param&#x27;);
-    var obj = $(&#x27;#media_element_report_form_&#x27; + param);
+    var obj = $(this).next();
     if(!obj.is(&#x27;:visible&#x27;)) {
       $(this).removeClass(&#x27;report&#x27;);
       $(this).addClass(&#x27;report_light&#x27;);
-      obj.show(&#x27;fade&#x27;, {}, 500, function() {
-        obj.show();
-      });
+      obj.show(&#x27;fade&#x27;, {}, 500);
     } else {
       $(this).removeClass(&#x27;report_light&#x27;);
       $(this).addClass(&#x27;report&#x27;);
-      obj.hide(&#x27;fade&#x27;, {}, 500, function() {
-        obj.hide();
-      });
+      obj.hide();
     }
     return false;
   });

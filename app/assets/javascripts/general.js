@@ -90,8 +90,7 @@ function expandedItemsDocumentReady() {
       var my_id = $(this).parent().attr('id');
       var my_expanded = $('#' + my_id + ' ._lesson_expanded');
       if(my_expanded.is(':visible')) {
-        my_expanded.find('._report_form_content').hide();
-        my_expanded.find('._reportable_icon').removeClass('report_light _report_selected').addClass('report');
+        my_expanded.find('.tooltipForm:visible').parent().find('._reportable_lesson_icon').click();
         my_expanded.hide('blind', {}, 500, function() {
           my_expanded.hide();
         });
@@ -213,6 +212,31 @@ function javaScriptAnimationsDocumentReady() {
       myself.val(myself.val().slice(0, maxlength));
     }
   });
+  $(document).bind('click', function (e) {
+    var click_id = $(e.target).attr('id');
+    var my_report = $('.tooltipForm:visible');
+    var my_login = $('#login_form_container:visible');
+    if($('#tooltip_content').length > 0) {
+      if($('#tooltip_content').is(':visible')) {
+        if(click_id != 'tooltip_content' && click_id != 'expanded_notification' && click_id != 'notifications_button' && $(e.target).parents('#tooltip_content').length == 0 && $(e.target).parents('#expanded_notification').length == 0) {
+          $('#notifications_button').trigger('click');
+        }
+      }
+    }
+    if($('#tooltip_help').length > 0) {
+      if($('#tooltip_help').is(':visible')) {
+        if(click_id != 'tooltip_help' && click_id != 'help' && $(e.target).parents('#tooltip_help').length == 0) {
+          $('#help').trigger('click');
+        }
+      }
+    }
+    if(my_report.length > 0 && $(e.target).parents('#' + my_report.attr('id')).length == 0) {
+      my_report.parent().find('.report_light, ._reportable_lesson_icon').click();
+    }
+    if(my_login.length > 0 && $(e.target).parents('#login_form_container').length == 0 && !$(e.target).hasClass('_show_login_form_container')) {
+      $('._show_login_form_container').click();
+    }
+  });
 }
 
 /**
@@ -244,57 +268,33 @@ Initializes reports forms for both lessons and media elements.
 @for GeneralDocumentReady
 **/
 function reportsDocumentReady() {
-  $body.on('mouseover', '._report_lesson_click', function() {
-    var obj = $('#' + this.id + ' a._reportable_icon');
-    if(!obj.hasClass('_report_selected')) {
-      obj.removeClass('report');
-      obj.addClass('report_light');
-    }
+  $body.on('mouseenter', '._reportable_lesson_icon', function() {
+    $(this).find('.icon-content').removeClass('report').addClass('report_light');
   });
-  $body.on('mouseout', '._report_lesson_click', function() {
-    var obj = $('#' + this.id + ' a._reportable_icon');
-    if(!obj.hasClass('_report_selected')) {
-      obj.removeClass('report_light');
-      obj.addClass('report');
-    }
+  $body.on('mouseleave', '._reportable_lesson_icon', function() {
+    $(this).find('.icon-content').addClass('report').removeClass('report_light');
   });
-  $body.on('click', '._report_lesson_click', function() {
-    var param = $(this).data('param');
-    var obj = $('#lesson_report_form_' + param);
+  $body.on('click', '._reportable_lesson_icon', function() {
+    var obj = $(this).next();
     if(!obj.is(':visible')) {
-      var button = $('#' + this.id + ' a._reportable_icon');
-      button.addClass('_report_selected');
-      button.removeClass('report');
-      button.addClass('report_light');
-      obj.show('fade', {}, 500, function() {
-        obj.show();
-      });
+      $(this).find('.icon-content').removeClass('report').addClass('report_light report_selected');
+      obj.show('fade', {}, 500);
     } else {
-      var button = $('#' + this.id + ' a._reportable_icon');
-      button.removeClass('_report_selected');
-      button.removeClass('report_light');
-      button.addClass('report');
-      obj.hide('fade', {}, 500, function() {
-        obj.hide();
-      });
+      $(this).find('.icon-content').addClass('report').removeClass('report_light report_selected');
+      obj.hide();
     }
     return false;
   });
   $body.on('click', '._report_media_element_click', function() {
-    var param = $(this).data('param');
-    var obj = $('#media_element_report_form_' + param);
+    var obj = $(this).next();
     if(!obj.is(':visible')) {
       $(this).removeClass('report');
       $(this).addClass('report_light');
-      obj.show('fade', {}, 500, function() {
-        obj.show();
-      });
+      obj.show('fade', {}, 500);
     } else {
       $(this).removeClass('report_light');
       $(this).addClass('report');
-      obj.hide('fade', {}, 500, function() {
-        obj.hide();
-      });
+      obj.hide();
     }
     return false;
   });

@@ -1,9 +1,4 @@
-$('#lesson_report_form_<%= @lesson_id %>').hide();
-var obj = $('#report_lesson_click_<%= @lesson_id %> a._reportable_icon');
-obj.removeClass('_report_selected');
-obj.removeClass('<%= Buttons::REPORT %>_light');
-obj.addClass('<%= Buttons::REPORT %>');
-
+$('.tooltipForm:visible').parent().find('._reportable_lesson_icon').click();
 <% if @resp %>
   showOkPopUp('<%= j t("other_popup_messages.correct.report") %>');
 <% else %>

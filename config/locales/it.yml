@@ -244,7 +244,7 @@ it:
           # 4 - models/user.rb
           # 5 - models/user.rb
           # 6 - models/user.rb
-          problem_reporting: "La tua segnalazione non è stato inviato"
+          problem_reporting: "La tua segnalazione non è stata inviata"
           # Same situation: the user is trying to report the same lesson twice
           # 1 - models/user.rb
           lesson_already_reported: "Hai già segnalato questa lezione"
@@ -2038,7 +2038,11 @@ it:
     # Description of the report form
     # 1 - views/reports/_lesson.html.erb
     # 2 - views/reports/_media_element.html.erb
-    placeholder: "Scrivi il motivo della tua segnalazione. Grazie per la vostra collaborazione!"
+    placeholder: "Scrivi il motivo della segnalazione. Grazie per la tua collaborazione!"
+    # Button to send the form
+    # 1 - views/reports/_lesson.html.erb
+    # 2 - views/reports/_media_element.html.erb
+    commit: "Invia"
   
   
   # SECTION 2.14: Captions used in the search engine
@@ -2615,10 +2619,10 @@ it:
     media_elements:
       # An element is 'private' if you are the owner and you haven't used it inside a public lesson
       # 1 - ../lib/autoload/lessons_media_elements_shared.rb
-      private: "Privata"
+      private: "Privato"
       # An element is 'public' if you are not the owner and you haven't linked it yet 
       # 1 - ../lib/autoload/lessons_media_elements_shared.rb
-      public: "Pubblica"
+      public: "Pubblico"
       # An element is 'linked' if the user doesn't own it, it's just a link to a public element
       # 1 - ../lib/autoload/lessons_media_elements_shared.rb
       linked: "Link"
@@ -2629,19 +2633,19 @@ it:
     all_lessons: "Tutte le lezioni"
     # Only private lessons
     # 1 - ../lib/autoload/lessons_media_elements_shared.rb
-    private: "Privato"
+    private: "Private"
     # Only public lessons (they can be either lessons that you shared, or public lessons created by somebody else)
     # 1 - ../lib/autoload/lessons_media_elements_shared.rb
-    public: "Pubblico"
+    public: "Pubbliche"
     # Lessons which don't belong to you but that you linked
     # 1 - ../lib/autoload/lessons_media_elements_shared.rb
-    linked: "Collegato"
+    linked: "Link"
     # All your lessons (including both public and private)
     # 1 - ../lib/autoload/lessons_media_elements_shared.rb
     only_mine: "Di tua proprietà"
     # All the lessons that you just copied without personalizing them yet
     # 1 - ../lib/autoload/lessons_media_elements_shared.rb
-    copied: "Appena copiato"
+    copied: "Appena copiate"
     # All the media elements, without any filter
     # 1 - ../lib/autoload/lessons_media_elements_shared.rb
     all_media_elements: "Tutti i formati"

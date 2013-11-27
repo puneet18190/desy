@@ -2039,6 +2039,10 @@ en:
     # 1 - views/reports/_lesson.html.erb
     # 2 - views/reports/_media_element.html.erb
     placeholder: "Write the reason for your report. Thank you for your cooperation!"
+    # Button to send the form
+    # 1 - views/reports/_lesson.html.erb
+    # 2 - views/reports/_media_element.html.erb
+    commit: "Send"
   
   
   # SECTION 2.14: Captions used in the search engine

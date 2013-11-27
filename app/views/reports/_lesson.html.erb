@@ -1,15 +1,12 @@
-<div id="report_lesson_click_<%= lesson.id %>" class="_report_lesson_click" data-param="<%= lesson.id %>">
-  <div class="menuController" style="padding-top:6px; width:2.4em">
-    <a class="<%= Buttons::REPORT %> _reportable_icon" style="width: 2.4em;
-height: 3.5em;"></a>
-  </div>
-  <span style="padding-top:1.2em; float:left"><%= t('reports.title') %></span>
-</div>
-<span class="lesson_tooltipForm _report_form_content" id="lesson_report_form_<%= lesson.id %>">
-  <%= image_tag("freccia_tooltip_form.png", :class => "calloutForm") %>
- <h3><%= t('reports.description') %></h3>
- <p style="padding-top:0px"><%= t('reports.placeholder') %></p>
-  <%= form_tag "/reports/lesson", :remote => true do %>
+<a class="<%= Buttons::REPORT %> _reportable_lesson_icon">
+  <div class="icon-content"></div>
+  <span class="report-title"><%= t('reports.title') %></span>
+</a>
+<span id="lesson_report_form_<%= lesson.id %>" class="tooltipForm for-lessons _report_form_content" style="display:none">
+  <%= image_tag 'freccia_tooltip_form.png', :class => 'calloutForm' %>
+  <h3><%= t('reports.description') %></h3>
+  <p style="padding-top:0px"><%= t('reports.placeholder') %></p>
+  <%= form_tag '/reports/lesson', :remote => true do %>
     <input type="hidden" value="<%= lesson.id %>" name="lesson_id">
     <table>
       <tbody>
@@ -20,7 +17,7 @@ height: 3.5em;"></a>
         </tr>
         <tr>
           <td align="right">
-            <input class="_send" type="submit" value="Send" name="commit">
+            <input class="_send" type="submit" value="<%= t('reports.commit') %>" name="commit">
           </td>
         </tr>
       </tbody>

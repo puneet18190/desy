@@ -1,3 +1,22 @@
+<%
+  image_width = '0'
+  if media_element.image?
+    width = media_element.width.to_f
+    height = media_element.height.to_f
+    ratio = (340.to_f / 500.to_f)
+    if (height / width) <= ratio
+      image_width = '314px'
+    else
+      image_width = "#{(814 - width * 340.to_f / height).to_i}px"
+    end
+  end
+  maxwidths = {
+    'Audio' => '834px',
+    'Image' => image_width,
+    'Video' => '297px'
+  }
+%>
+
 <div class="mediaElementInfoPopUp" id="dialog-media-element-<%= media_element.id %>" style="display:none">
   
   <% if !locked %>
@@ -44,7 +63,7 @@
           <%= render :partial => "media_elements/previews/#{media_element.sti_type.downcase}", :locals => {:media_element => media_element} %>
         <% end %>
         
-        <div <%= media_element.audio? ? "style=\"max-width:800px;\"".html_safe : "class=\"fltlft\" style=\"max-width:210px;\"".html_safe %>>
+        <div style="width:<%= maxwidths[media_element.sti_type] %>; float:<%= media_element.audio? ? 'none' : 'left' %>">
           <h2><%= media_element.sti_type_to_s %></h2>
           <h3><%= media_element.title %></h3>
           <p><%= media_element.description %></p>
@@ -60,13 +79,13 @@
       
       
       <div class="menuPopUp">
-        <div class="menuIconButton" style="float:left; padding-left:10px">
+        <div class="menuIconButton at_left">
           <%= render :partial => "shared/buttons/#{Buttons::EDIT}", :locals => {:item => media_element} %>
           <% if media_element.info_changeable %>
             <a class="<%= Buttons::CHANGE_INFO %> _change_info_to_pick" data-param="<%= media_element.id %>" title="<%= t('titles.media_elements.change_info') %>"></a>
           <% end %>
         </div>
-        <div class="menuIconButton" style="float:right">
+        <div class="menuIconButton at_right">
           <% if media_element.is_reportable %>
             <%= render :partial => 'reports/media_element', :locals => {:media_element => media_element} %>
           <% end %>
