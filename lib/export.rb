@@ -1,6 +1,7 @@
 module Export
 end
 
+require 'export/renderer'
 require 'export/lesson'
 require 'export/lesson/shared'
 require 'export/lesson/archive'
