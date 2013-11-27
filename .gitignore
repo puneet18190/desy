@@ -43,8 +43,9 @@
 # files
 /public/lessons
 # assets
-/app/exports/lessons/archives/assets
-/app/exports/lessons/ebooks/assets
+/app/exports/lessons/archives/assets/
+/app/exports/lessons/ebooks/assets/
+/app/exports/lessons/math_images/
 
 # Cartella temporanea che contiene i file in caricamento multiplo dell'amministratore
 /public/admin

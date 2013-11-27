@@ -79,10 +79,6 @@ module Export
             @asset_path_upfolders ||= {}
             @asset_path_upfolders[@pathname] ||= (['..'] * pathname_nestings).join('/')
           end
-
-          def asset_path(source, options = {})
-            URI.escape "#{asset_path_upfolders}/assets/#{source}"
-          end
         end
 
         assets.context_class.instance_eval do

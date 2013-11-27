@@ -8,16 +8,8 @@
   </head>
   <body>
 
-  <%= render_with_default_context file: Rails.root.join('app/views/lesson_viewer/slides/_cover.html.erb').to_s, 
+  <%= render_with_default_context file: Rails.root.join('app/views/lesson_viewer/slides/_cover.html.erb'),
                                   locals: { loaded: true, slide: cover_slide, url_type: UrlTypes::EXPORT } %>
-
-  <% if false %>
-  <div>
-    <% if cover_image_path = cover_image_path(cover_slide) -%>
-      <img src="<%= cover_image_path(cover_slide) %>" alt="Cover"/>
-    <% end -%>
-  </div>
-  <% end %>
 
   </body>
 </html>

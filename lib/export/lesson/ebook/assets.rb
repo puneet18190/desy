@@ -20,6 +20,22 @@ module Export
         def paths
           @paths ||= ASSETS_PATHS
         end
+
+        private
+
+        def env
+          @sub_env ||= begin
+            assets = super
+
+            assets.context_class.class_eval do
+              def asset_path(source, options = {})
+                URI.escape "../assets/#{source}"
+              end
+            end
+
+            assets
+          end
+        end
         
       end
     end

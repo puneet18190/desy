@@ -16,6 +16,20 @@ module Export
 
         FOLDER = ASSETS_FOLDER
 
+        def env
+          @sub_env ||= begin
+            assets = super
+
+            assets.context_class.class_eval do
+              def asset_path(source, options = {})
+                URI.escape "#{asset_path_upfolders}/assets/#{source}"
+              end
+            end
+
+            assets
+          end
+        end
+
         def paths
           @paths ||= %W(
             documents/doc.svg
