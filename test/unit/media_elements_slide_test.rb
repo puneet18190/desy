@@ -28,7 +28,8 @@ class MediaElementsSlideTest < ActiveSupport::TestCase
   test 'empty_and_defaults' do
     assert !@new_slide.new_record?
     @media_elements_slide = MediaElementsSlide.new
-    assert_error_size 7, @media_elements_slide
+    @media_elements_slide.inscribed = nil
+    assert_error_size 8, @media_elements_slide
   end
   
   test 'attr_accessible' do
@@ -37,6 +38,7 @@ class MediaElementsSlideTest < ActiveSupport::TestCase
     assert_raise(ActiveModel::MassAssignmentSecurity::Error) {MediaElementsSlide.new(:media_element_id => 1)}
     assert_raise(ActiveModel::MassAssignmentSecurity::Error) {MediaElementsSlide.new(:alignment => 1)}
     assert_raise(ActiveModel::MassAssignmentSecurity::Error) {MediaElementsSlide.new(:caption => 1)}
+    assert_raise(ActiveModel::MassAssignmentSecurity::Error) {MediaElementsSlide.new(:inscribed => 1)}
   end
   
   test 'types' do
@@ -52,6 +54,7 @@ class MediaElementsSlideTest < ActiveSupport::TestCase
     assert @media_elements_slide.valid?
     @media_elements_slide.alignment = -8
     assert @media_elements_slide.valid?
+    assert_invalid @media_elements_slide, :inscribed, nil, false, :inclusion
     assert_invalid @media_elements_slide, :media_element_id, 'y3', 6, :not_a_number
     assert_invalid @media_elements_slide, :slide_id, 3.4, @new_slide.id, :not_an_integer
     assert_invalid @media_elements_slide, :slide_id, -3, @new_slide.id, :greater_than, {:count => 0}
@@ -66,9 +69,11 @@ class MediaElementsSlideTest < ActiveSupport::TestCase
   test 'alignment_and_caption' do
     assert_invalid @media_elements_slide, :caption, 'dgsbkj', ' ', :must_be_null_if_not_image
     assert_invalid @media_elements_slide, :alignment, 10, nil, :must_be_null_if_not_image
+    assert_invalid @media_elements_slide, :inscribed, true, false, :must_be_false_if_not_image
     get_new_slide 'image3'
     @media_elements_slide.slide_id = @new_slide.id
     @media_elements_slide.media_element_id = 6
+    @media_elements_slide.inscribed = true
     assert_invalid @media_elements_slide, :alignment, nil, -1, :cant_be_null_if_image
     assert_obj_saved @media_elements_slide
   end

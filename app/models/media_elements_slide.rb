@@ -9,6 +9,7 @@
 # * *position*: the position of the media element inside the slide, (if there is only one element available, the position is 1)
 # * *caption*: the caption to put below the media element, if it's an image
 # * *alignment*: the alignment of the media element, if it's an image
+# * *inscribed*: true if the image is inscribed inside the available space without parts left outside
 #
 # == Associations
 #
@@ -21,12 +22,14 @@
 # * *presence* with numericality and existence of associated record for +media_element_id+ and +slide_id+
 # * *numericality* allowing +nil+ values for +alignment+
 # * *inclusion* of +position+ in [1, 2, 3, 4]
+# * *inclusion* of +inscribed+ in [true, false]
 # * *uniqueness* of the triple [+position+, +media_element_id+, +slide_id+]
 # * *coherence* of the type of the Slide with the MediaElement
 # * *coherence* of the +position+ with the type of the Slide (if the slide is of kind image1 it may have for instance only position = 1)
 # * *availability* of the MediaElement (it must be public or belongs to the User who created the Lesson in which the Slide is contained)
 # * *modifications* *not* *available* for the field +slide_id+
 # * *properties* *specific* *for* *images*, such as +alignment+ and +caption+ are checked to be present only if the MediaElement is an Image
+# * *inscribed* *cannot* *be* *true* if the element is not an image
 #
 # == Callbacks
 #
@@ -48,21 +51,58 @@ class MediaElementsSlide < ActiveRecord::Base
   validates_numericality_of :media_element_id, :slide_id, :only_integer => true, :greater_than => 0
   validates_numericality_of :alignment, :only_integer => true, :allow_nil => true
   validates_inclusion_of :position, :in => [1, 2, 3, 4]
+  validates_inclusion_of :inscribed, :in => [true, false]
   validates_uniqueness_of :position, :scope => [:media_element_id, :slide_id]
   validate :validate_associations, :validate_type_in_slide, :validate_position, :validate_media_element, :validate_impossible_changes, :validate_image_properties
   
   before_validation :init_validation
   
   after_destroy :restore_lesson_availability
-
+  
+  # === Description
+  #
+  # Method to check that it's horizontal
+  #
+  # === Args
+  #
+  # * *kind*: the kind of the slide (it can be nil)
+  #
+  # === Returns
+  #
+  # A boolean
+  #
   def is_horizontal?(kind = nil)
     media_element.is_horizontal?(kind || slide.kind)
   end
-
+  
+  # === Description
+  #
+  # Method that resizes width according to the kind
+  #
+  # === Args
+  #
+  # * *kind*: the kind of the slide (it can be nil)
+  #
+  # === Returns
+  #
+  # A float
+  #
   def resize_width(kind = nil)
     media_element.resize_width(kind || slide.kind)
   end
-
+  
+  # === Description
+  #
+  # Method that resizes height according to the kind
+  #
+  # === Args
+  #
+  # * *kind*: the kind of the slide (it can be nil)
+  #
+  # === Returns
+  #
+  # A float
+  #
   def resize_height(kind = nil)
     media_element.resize_height(kind || slide.kind)
   end
@@ -93,6 +133,7 @@ class MediaElementsSlide < ActiveRecord::Base
     errors.add(:alignment, :must_be_null_if_not_image) if @media_element && !@media_element.image? && !self.alignment.nil?
     errors.add(:alignment, :cant_be_null_if_image) if @media_element && @media_element.image? && self.alignment.nil?
     errors.add(:caption, :must_be_null_if_not_image) if @media_element && !@media_element.image? && !self.caption.blank?
+    errors.add(:inscribed, :must_be_false_if_not_image) if @media_element && !@media_element.image? && self.inscribed
   end
   
   # Validates the presence of all the associated objects

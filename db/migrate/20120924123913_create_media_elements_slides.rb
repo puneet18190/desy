@@ -6,6 +6,7 @@ class CreateMediaElementsSlides < ActiveRecord::Migration
       t.integer  :slide_id,         :null => false, :on_delete => :cascade
       t.integer  :position,         :null => false
       t.text     :caption
+      t.boolean  :inscribed,        :null => false, :default => false
       t.integer  :alignment
       t.timestamps
     end
