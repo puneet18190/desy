@@ -54,6 +54,7 @@ class MediaElementsSlideTest < ActiveSupport::TestCase
     assert @media_elements_slide.valid?
     @media_elements_slide.alignment = -8
     assert @media_elements_slide.valid?
+    assert_invalid @media_elements_slide, :inscribed, nil, false, :inclusion
     assert_invalid @media_elements_slide, :media_element_id, 'y3', 6, :not_a_number
     assert_invalid @media_elements_slide, :slide_id, 3.4, @new_slide.id, :not_an_integer
     assert_invalid @media_elements_slide, :slide_id, -3, @new_slide.id, :greater_than, {:count => 0}
@@ -68,9 +69,11 @@ class MediaElementsSlideTest < ActiveSupport::TestCase
   test 'alignment_and_caption' do
     assert_invalid @media_elements_slide, :caption, 'dgsbkj', ' ', :must_be_null_if_not_image
     assert_invalid @media_elements_slide, :alignment, 10, nil, :must_be_null_if_not_image
+    assert_invalid @media_elements_slide, :inscribed, true, false, :must_be_false_if_not_image
     get_new_slide 'image3'
     @media_elements_slide.slide_id = @new_slide.id
     @media_elements_slide.media_element_id = 6
+    @media_elements_slide.inscribed = true
     assert_invalid @media_elements_slide, :alignment, nil, -1, :cant_be_null_if_image
     assert_obj_saved @media_elements_slide
   end
