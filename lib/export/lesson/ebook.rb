@@ -2,7 +2,6 @@ require 'fileutils'
 require 'pathname'
 require 'zlib'
 
-require 'action_view/lookup_context'
 require 'zip'
 
 require 'env_relative_path'
@@ -29,14 +28,6 @@ module Export
       EBOOK_ASSETS_FOLDER  = CONTENTS_FOLDER_NAME.join 'assets'
 
       VIEW_FOLDER = View::FOLDER
-      LOOKUP_CONTEXT   = begin
-        lookup_context = ActionView::LookupContext.new VIEW_FOLDER
-        lookup_context.view_paths.push *Rails.application.config.paths['app/views'].to_a
-        lookup_context
-      end
-      VIEW_RENDERER    = Renderer.new LOOKUP_CONTEXT
-      CONTEXT          = VIEW_RENDERER
-      VIEW             = View.new VIEW_RENDERER
 
       ASSETS_FOLDER = Lesson::FOLDER.join 'ebooks', 'assets'
       ASSETS_PATHS  = %W(
@@ -148,7 +139,7 @@ module Export
 
         options = { template: view_path_relative_from_template_folder, locals: locals }
 
-        add_string_entry archive, VIEW.render(options), archive_entry_path
+        add_string_entry archive, View.instance.render(options), archive_entry_path
       end
 
       def view_path(path)
