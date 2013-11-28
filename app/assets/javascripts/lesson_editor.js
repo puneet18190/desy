@@ -411,11 +411,13 @@ function lessonEditorDocumentReadyReplaceMediaElement() {
   $body.on('mouseover', '.slide-content .image.editable .mask', function() {
     if($(this).find('.alignable').data('rolloverable')) {
       $(this).find('.add').show();
+      $(this).find('.inscribe, .deinscribe').show();
     }
   });
   $body.on('mouseout', '.slide-content .image.editable .mask', function() {
     if($(this).find('.alignable').data('rolloverable')) {
       $(this).find('.add').hide();
+      $(this).find('.inscribe, .deinscribe').hide();
     }
   });
   $body.on('mouseover', '.slide-content .video.editable .mask video', function(e) {
