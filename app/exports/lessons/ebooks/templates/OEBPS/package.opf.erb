@@ -3,10 +3,10 @@
          xmlns:dc="http://purl.org/dc/elements/1.1/"
          xmlns:dcterms="http://purl.org/dc/terms/"
          version="3.0"
-         unique-identifier="<%= PACKAGE_ID %>">
+         unique-identifier="<%= package_id %>">
 
    <metadata>
-    <dc:identifier id="<%= PACKAGE_ID %>">urn:uuid:<%= lesson.uuid %></dc:identifier>
+    <dc:identifier id="<%= package_id %>">urn:uuid:<%= lesson.uuid %></dc:identifier>
     <meta property="dcterms:modified"><%= dcterms_modified(lesson) %></meta>
     <dc:title><%= lesson.title %></dc:title>
     <dc:language>en</dc:language>

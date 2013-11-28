@@ -13,12 +13,12 @@ require 'export/lesson/shared'
 module Export
   module Lesson
     class Ebook
-      require 'export/lesson/ebook/renderer'
-      require 'export/lesson/shared/ebook_and_ebook_renderer'
+      require 'export/lesson/ebook/view'
+      require 'export/lesson/shared/ebook_and_ebook_view'
 
       include EnvRelativePath
       include Shared
-      include Shared::EbookAndEbookRenderer
+      include Shared::EbookAndEbookView
 
       FOLDER               = env_relative_pathname Rails.public_pathname, 'lessons', 'exports', 'ebooks'
       SLIDES_INCLUDES      = [ :documents_slides, :documents, :media_elements_slides, :media_elements ]
@@ -26,6 +26,16 @@ module Export
       SLIDES_ORDER         = 'slides.position'
       CONTENTS_FOLDER_NAME = Pathname 'OEBPS'
       EBOOK_ASSETS_FOLDER  = CONTENTS_FOLDER_NAME.join 'assets'
+
+      TEMPLATES_FOLDER = Lesson::FOLDER.join 'ebooks', 'templates'
+      LOOKUP_CONTEXT   = begin
+        lookup_context = ActionView::LookupContext.new TEMPLATES_FOLDER
+        lookup_context.view_paths.push *Rails.application.config.paths['app/views'].to_a
+        lookup_context
+      end
+      VIEW_RENDERER    = Renderer.new LOOKUP_CONTEXT
+      CONTEXT          = VIEW_RENDERER
+      VIEW             = View.new VIEW_RENDERER
 
       ASSETS_FOLDER = Lesson::FOLDER.join 'ebooks', 'assets'
       ASSETS_PATHS  = %W(
@@ -137,7 +147,7 @@ module Export
 
         options = { template: template_path_relative_from_template_folder, locals: locals }
 
-        add_string_entry archive, VIEW_RENDERER.render_with_default_context(options), archive_entry_path
+        add_string_entry archive, VIEW.render(options), archive_entry_path
       end
 
       def template_path(path)

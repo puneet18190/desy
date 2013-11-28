@@ -7,6 +7,6 @@
     <link rel="stylesheet" type="text/css" href="assets/application.css"/>
   </head>
   <body>
-    <%= render_with_default_context partial: "OEBPS/slides/#{slide.kind.downcase}.xhtml", locals: { slide: slide } %>
+    <%= render partial: "OEBPS/slides/#{slide.kind.downcase}.xhtml", locals: { slide: slide } %>
   </body>
 </html>

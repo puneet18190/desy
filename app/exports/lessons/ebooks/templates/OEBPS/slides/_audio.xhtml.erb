@@ -12,6 +12,6 @@
 <% end -%>
 <%= slide_content(slide) %>
 
-<%= render_with_default_context partial: 'OEBPS/slides/documents.xhtml', locals: { documents: slide.documents } %>
+<%= render partial: 'OEBPS/slides/documents.xhtml', locals: { documents: slide.documents } %>
 
 <% end %>

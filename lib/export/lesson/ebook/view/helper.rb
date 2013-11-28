@@ -8,16 +8,17 @@ require 'slide/math_images'
 require 'export'
 require 'export/lesson'
 require 'export/lesson/ebook'
-require 'export/lesson/ebook/renderer'
+require 'export/lesson/ebook/view'
 require 'export/lesson/shared'
-require 'export/lesson/shared/ebook_and_ebook_renderer'
+require 'export/lesson/shared/ebook_and_ebook_view'
 
 module Export
   module Lesson
     class Ebook
-      class Renderer
+      class View
         # TODO provare a memoizzare per vedere l'effetto che fa
         module Helper
+
           # TODO spostarlo in SETTINGS
           PACKAGE_ID                      = 'DESYLesson'
           DCTERMS_MODIFIED_FORMAT         = '%Y-%m-%dT%H:%M:%SZ'
@@ -25,12 +26,17 @@ module Export
           MEDIA_ELEMENT_MIME_TYPES        = Media::MIME_TYPES
           MATH_IMAGES_ARCHIVE_FOLDER_NAME = Shared::MATH_IMAGES_ARCHIVE_FOLDER_NAME
 
-          include ActionView::Helpers::RenderingHelper
-          include ActionView::Helpers::TranslationHelper
           include ApplicationHelper
 
+          require 'export/lesson/shared/ebook_and_ebook_view'
+          include Shared::EbookAndEbookView
+
+          def package_id
+            PACKAGE_ID
+          end
+
           def render_slide(slide, locals = {})
-            render_with_default_context file:   Pathname(Rails.application.config.paths['app/views'].first).join("lesson_viewer/slides/_#{slide.kind}.html.erb"),
+            render partial: "lesson_viewer/slides/#{slide.kind}",
                                         locals: { slide: slide }.merge(locals)
           end
 
