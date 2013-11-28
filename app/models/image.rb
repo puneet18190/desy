@@ -59,16 +59,6 @@ class Image < MediaElement
     'video_component_preview' => 640
   }
   
-  # Returns the correspondent constant
-  def resized_width_value_by_kind(kind)
-    RESIZE_WIDTH_VALUES_BY_KIND[kind]
-  end
-  
-  # Returns the correspondent constant
-  def resized_height_value_by_kind(kind)
-    RESIZE_HEIGHT_VALUES_BY_KIND[kind]
-  end
-  
   # Used to give an orientation on images
   def is_horizontal?(kind)
     ( width.to_f / height.to_f ) >= IS_HORIZONTAL_VALUES_BY_KIND[kind]
