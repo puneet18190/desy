@@ -28,7 +28,8 @@ class MediaElementsSlideTest < ActiveSupport::TestCase
   test 'empty_and_defaults' do
     assert !@new_slide.new_record?
     @media_elements_slide = MediaElementsSlide.new
-    assert_error_size 7, @media_elements_slide
+    @media_elements_slide.inscribed = nil
+    assert_error_size 8, @media_elements_slide
   end
   
   test 'attr_accessible' do
@@ -37,6 +38,7 @@ class MediaElementsSlideTest < ActiveSupport::TestCase
     assert_raise(ActiveModel::MassAssignmentSecurity::Error) {MediaElementsSlide.new(:media_element_id => 1)}
     assert_raise(ActiveModel::MassAssignmentSecurity::Error) {MediaElementsSlide.new(:alignment => 1)}
     assert_raise(ActiveModel::MassAssignmentSecurity::Error) {MediaElementsSlide.new(:caption => 1)}
+    assert_raise(ActiveModel::MassAssignmentSecurity::Error) {MediaElementsSlide.new(:inscribed => 1)}
   end
   
   test 'types' do
