@@ -112,7 +112,10 @@ module Export
 
           document_fallback_view_path = CONTENTS_FOLDER_NAME.join('documents/fallback.xhtml')
           lesson.documents.each_with_index do |document, i|
-            add_template archive, { document: document, position: i+1 }, CONTENTS_FOLDER_NAME.join(document_fallbacks_relative_from_content_path document), document_fallback_view_path
+            add_template archive                                                                           ,
+                         { document: document, position: i+1 }                                             ,
+                         CONTENTS_FOLDER_NAME.join(document_fallbacks_relative_from_content_path document) , 
+                         document_fallback_view_path
           end
 
           math_images.each do |path|
@@ -137,9 +140,9 @@ module Export
       def add_template(archive, locals, archive_entry_path, view_path_relative_from_template_folder = nil)
         view_path_relative_from_template_folder ||= archive_entry_path
 
-        options = { template: view_path_relative_from_template_folder, locals: locals }
-
-        add_string_entry archive, View.instance.render(options), archive_entry_path
+        add_string_entry archive                                                                                 ,
+                         View.instance.render(template: view_path_relative_from_template_folder, locals: locals) ,
+                         archive_entry_path
       end
 
       def view_path(path)
