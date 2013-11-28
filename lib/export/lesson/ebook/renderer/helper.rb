@@ -25,11 +25,12 @@ module Export
           MEDIA_ELEMENT_MIME_TYPES        = Media::MIME_TYPES
           MATH_IMAGES_ARCHIVE_FOLDER_NAME = Shared::MATH_IMAGES_ARCHIVE_FOLDER_NAME
 
+          include ActionView::Helpers::RenderingHelper
           include ActionView::Helpers::TranslationHelper
           include ApplicationHelper
 
           def render_slide(slide, locals = {})
-            render_with_default_context file:   Rails.root.join("app/views/lesson_viewer/slides/_#{slide.kind}.html.erb"),
+            render_with_default_context file:   Pathname(Rails.application.config.paths['app/views'].first).join("lesson_viewer/slides/_#{slide.kind}.html.erb"),
                                         locals: { slide: slide }.merge(locals)
           end
 

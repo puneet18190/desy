@@ -9,5 +9,9 @@ module Export
       render self.class::CONTEXT, options
     end
 
+    def logger
+      nil
+    end
+
   end
 end

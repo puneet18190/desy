@@ -11,10 +11,15 @@ module Export
         require 'export/lesson/ebook/renderer'
 
         TEMPLATES_FOLDER                                 = Lesson::FOLDER.join 'ebooks', 'templates'
-        LOOKUP_CONTEXT                                   = ActionView::LookupContext.new TEMPLATES_FOLDER
+        LOOKUP_CONTEXT                                   = begin
+          lookup_context = ActionView::LookupContext.new TEMPLATES_FOLDER
+          lookup_context.view_paths.push *Rails.application.config.paths['app/views'].to_a
+          lookup_context
+        end
         VIEW_RENDERER                                    = Ebook::Renderer.new LOOKUP_CONTEXT
         CONTEXT                                          = VIEW_RENDERER
         DOCUMENT_FALLBACKS_RELATIVE_FROM_CONTENTS_FOLDER = File.join DocumentUploader::STORE_DIR, 'fallbacks'
+
 
         def slide_item_id(slide)
           "slide_#{slide.position-1}"
