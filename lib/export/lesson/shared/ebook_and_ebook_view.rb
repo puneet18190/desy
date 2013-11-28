@@ -10,7 +10,6 @@ module Export
 
         DOCUMENT_FALLBACKS_RELATIVE_FROM_CONTENTS_FOLDER = File.join DocumentUploader::STORE_DIR, 'fallbacks'
 
-
         def slide_item_id(slide)
           "slide_#{slide.position-1}"
         end

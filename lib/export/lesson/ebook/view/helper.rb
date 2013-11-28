@@ -118,20 +118,15 @@ module Export
           end
 
           def slide_content(slide)
-            return nil unless slide.text
-            
-            fragment = Nokogiri::XML::DocumentFragment.parse(slide.text)
-            
-            fragment.css(Slide::MathImages::CSS_SELECTOR).each do |el|
-              math_image_basename = File.basename CGI.parse(URI("http://www.example.com/#{el[:src]}").query)['formula'].first
-              el[:src] = math_image_path_relative_from_contents_folder math_image_basename
-            end
-            
-            fragment.to_s.html_safe
+            slide.text(math_images_path_relative_from_folder: math_images_archive_folder_name)
           end
 
           def math_image_item_id(i)
             "math_image_#{i}"
+          end
+
+          def math_images_archive_folder_name
+            self.class::MATH_IMAGES_ARCHIVE_FOLDER_NAME
           end
 
           def math_image_item_href(math_image)

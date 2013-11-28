@@ -1,4 +1,11 @@
-<%= render_slide slide, { loaded: true, url_type: UrlTypes::EXPORT, show_documents: false, media_viewer_type: MediaElement::ViewerTypes::SIMPLE } %>
+<%= 
+  render_slide slide, 
+               { loaded:             true                                                                       ,
+                 url_type:           UrlTypes::EXPORT                                                           ,
+                 show_documents:     false                                                                      ,
+                 media_viewer_type:  MediaElement::ViewerTypes::SIMPLE                                          ,
+                 slide_text_options: { math_images_path_relative_from_folder: math_images_archive_folder_name } }
+-%>
 
 <% if false %>
 

@@ -1,8 +1,10 @@
 <%
-  url_type          ||= nil
-  audio               = slide.media_elements_at
-  show_documents      = true unless defined? show_documents
-  media_viewer_type   = MediaElement::ViewerTypes::CUSTOM unless defined? media_viewer_type
+  url_type           ||= nil
+  audio                = slide.media_elements_at
+  show_documents       = true unless defined? show_documents
+  media_viewer_type    = MediaElement::ViewerTypes::CUSTOM unless defined? media_viewer_type
+  slide_text_options ||= {}
+  slide_text           = slide.text(slide_text_options)
 %>
 
 <div class="slide-content audio normal-size">
@@ -24,7 +26,7 @@
   </div>
   
   <div class="item text-container read-only">
-    <%= slide.text.html_safe if slide.text %>
+    <%= slide_text.html_safe if slide_text %>
   </div>
   
   <% if show_documents && slide.documents_slides.length > 0 %>
