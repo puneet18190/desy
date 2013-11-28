@@ -8,7 +8,7 @@
     orientation = 'vertical'
     alignment = "top:#{image.alignment}px"
     resize = "height=\"#{height}\""
-    if !image.inscribed
+    if image.inscribed
       alignment = "left:#{(image.resized_width_value_by_kind - width) / 2 + image.alignment}px"
       resize = "width=\"#{width}\""
     end
@@ -16,7 +16,7 @@
       orientation = 'horizontal'
       alignment = "left:#{image.alignment}px"
       resize = "width=\"#{width}\""
-      if !image.inscribed
+      if image.inscribed
         alignment = "top:#{(image.resized_height_value_by_kind - height) / 2 + image.alignment}px"
         resize = "height=\"#{height}\""
       end
