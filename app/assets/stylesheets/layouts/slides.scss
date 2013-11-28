@@ -789,6 +789,27 @@
               
             }
             
+            .inscribe, deinscribe {
+              
+              position: absolute;
+              cursor: pointer;
+              top: $inscribe-icon-top;
+              right: $inscribe-icon-right;
+              
+            }
+            
+            .inscribe {
+              
+              @include svg-circle-icon-handler($assets-icone-resize_svg, $inscribe-icon-dimension, 2, 1, 0.8, 0, 0, 1, 0, 0);
+              
+            }
+            
+            .deinscribe {
+              
+              @include svg-circle-icon-handler($assets-icone-resize_svg, $inscribe-icon-dimension, 2, 1, 0.8, 0, 1, 1, 0, 1);
+              
+            }
+            
           }
           
           .empty-mask {
@@ -882,6 +903,27 @@
               
               top: $big-icon-top-position-in-full-height-image;
               opacity: 0.8;
+              
+            }
+            
+            .inscribe, deinscribe {
+              
+              position: absolute;
+              cursor: pointer;
+              top: $inscribe-icon-top;
+              right: $inscribe-icon-right;
+              
+            }
+            
+            .inscribe {
+              
+              @include svg-circle-icon-handler($assets-icone-resize_svg, $inscribe-icon-dimension, 2, 1, 0.8, 0, 0, 1, 0, 0);
+              
+            }
+            
+            .deinscribe {
+              
+              @include svg-circle-icon-handler($assets-icone-resize_svg, $inscribe-icon-dimension, 2, 1, 0.8, 0, 1, 1, 0, 1);
               
             }
             
@@ -980,6 +1022,27 @@
               
               top: $tiny-icon-top-position-in-half-height-image;
               opacity: 0.8;
+              
+            }
+            
+            .inscribe, deinscribe {
+              
+              position: absolute;
+              cursor: pointer;
+              top: $inscribe-icon-top;
+              right: $inscribe-icon-right;
+              
+            }
+            
+            .inscribe {
+              
+              @include svg-circle-icon-handler($assets-icone-resize_svg, $inscribe-icon-dimension, 2, 1, 0.8, 0, 0, 1, 0, 0);
+              
+            }
+            
+            .deinscribe {
+              
+              @include svg-circle-icon-handler($assets-icone-resize_svg, $inscribe-icon-dimension, 2, 1, 0.8, 0, 1, 1, 0, 1);
               
             }
             
