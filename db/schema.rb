@@ -204,13 +204,14 @@ ActiveRecord::Schema.define(:version => 20130709121200) do
   end
 
   create_table "media_elements_slides", :force => true do |t|
-    t.integer  "media_element_id", :null => false
-    t.integer  "slide_id",         :null => false
-    t.integer  "position",         :null => false
+    t.integer  "media_element_id",                    :null => false
+    t.integer  "slide_id",                            :null => false
+    t.integer  "position",                            :null => false
     t.text     "caption"
+    t.boolean  "inscribed",        :default => false, :null => false
     t.integer  "alignment"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
     t.index ["media_element_id"], :name => "fk__media_elements_slides_media_element_id"
     t.index ["slide_id"], :name => "fk__media_elements_slides_slide_id"
     t.foreign_key ["media_element_id"], "media_elements", ["id"], :on_update => :no_action, :on_delete => :cascade, :name => "fk_media_elements_slides_media_element_id"

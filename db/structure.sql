@@ -418,10 +418,10 @@ CREATE TABLE media_elements_slides (
     slide_id integer NOT NULL,
     "position" integer NOT NULL,
     caption text,
+    inscribed boolean DEFAULT false NOT NULL,
     alignment integer,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    inscribed boolean DEFAULT false NOT NULL
+    updated_at timestamp without time zone NOT NULL
 );
 
 
@@ -1781,5 +1781,3 @@ INSERT INTO schema_migrations (version) VALUES ('20130131094635');
 INSERT INTO schema_migrations (version) VALUES ('20130709101814');
 
 INSERT INTO schema_migrations (version) VALUES ('20130709121200');
-
-INSERT INTO schema_migrations (version) VALUES ('20131128095310');
