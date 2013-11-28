@@ -13,7 +13,7 @@ module Export
         include Helper
         self.prepare nil, Helper
 
-        FOLDER           = Lesson::FOLDER.join 'ebooks', 'templates'
+        FOLDER           = Lesson::FOLDER.join 'ebooks', 'views'
         LOOKUP_CONTEXT   = begin
           lookup_context = ActionView::LookupContext.new FOLDER
           lookup_context.view_paths.push *Rails.application.config.paths['app/views'].to_a
