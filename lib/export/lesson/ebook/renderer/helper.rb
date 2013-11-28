@@ -28,6 +28,11 @@ module Export
           include ActionView::Helpers::TranslationHelper
           include ApplicationHelper
 
+          def render_slide(slide, locals = {})
+            render_with_default_context file:   Rails.root.join("app/views/lesson_viewer/slides/_#{slide.kind}.html.erb"),
+                                        locals: { slide: slide }.merge(locals)
+          end
+
           def stylesheet_path
             File.join 'assets', File.basename( ASSETS_PATHS.find { |path| File.extname(path) == '.css' } )
           end

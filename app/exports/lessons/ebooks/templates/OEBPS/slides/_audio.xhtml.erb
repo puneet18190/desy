@@ -1,3 +1,7 @@
+<%= render_slide slide, { loaded: true, url_type: UrlTypes::EXPORT, show_documents: false, media_viewer_type: MediaElement::ViewerTypes::SIMPLE } %>
+
+<% if false %>
+
 <% if audio = slide.media_elements_at -%>
   <audio controls="controls">
     <source src="<%= media_element_path(audio, :m4a) %>" type="audio/m4a"/>
@@ -9,3 +13,5 @@
 <%= slide_content(slide) %>
 
 <%= render_with_default_context partial: 'OEBPS/slides/documents.xhtml', locals: { documents: slide.documents } %>
+
+<% end %>

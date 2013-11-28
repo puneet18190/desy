@@ -4,6 +4,7 @@
       xmlns:epub="http://www.idpf.org/2007/ops">
   <head>
     <title><%= slide_title(slide) %></title>
+    <link rel="stylesheet" type="text/css" href="assets/application.css"/>
   </head>
   <body>
     <%= render_with_default_context partial: "OEBPS/slides/#{slide.kind.downcase}.xhtml", locals: { slide: slide } %>

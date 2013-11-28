@@ -3,6 +3,13 @@
   audio               = slide.media_elements_at
   show_documents      = true unless defined? show_documents
   media_viewer_type   = MediaElement::ViewerTypes::CUSTOM unless defined? media_viewer_type
+  render_file         = false unless defined? render_file
+  rendering =
+    if render_file
+      { :file => Rails.root.join "shared/players/#{media_viewer_type}/audio" }
+    else
+      { :partial => "shared/players/#{media_viewer_type}/audio" }
+    end
 %>
 
 <div class="slide-content audio normal-size">
@@ -15,7 +22,7 @@
     <div class="audio read-only">
       <% if audio %>
         <% if audio.converted? %>
-          <%= render :partial => "shared/players/#{media_viewer_type}/audio", :locals => {:audio => audio, :initialize_now => loaded, url_type: url_type, exporting_slide: !loaded} %>
+          <%= render rendering, :locals => {:audio => audio, :initialize_now => loaded, url_type: url_type, exporting_slide: !loaded} %>
         <% else %>
           <%= image_tag audio.placeholder_url(:lesson_viewer, url_type), :title => t('titles.not_available.audio', :title => audio.title) %>
         <% end %>
