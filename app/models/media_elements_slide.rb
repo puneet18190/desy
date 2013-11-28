@@ -61,6 +61,38 @@ class MediaElementsSlide < ActiveRecord::Base
   
   # === Description
   #
+  # # Returns the correspondent constant
+  #
+  # === Args
+  #
+  # * *kind*: the kind of the slide (it can be nil)
+  #
+  # === Returns
+  #
+  # An integer
+  #
+  def resized_width_value_by_kind(kind = nil)
+    media_element.resized_width_value_by_kind(kind || slide.kind)
+  end
+  
+  # === Description
+  #
+  # # Returns the correspondent constant
+  #
+  # === Args
+  #
+  # * *kind*: the kind of the slide (it can be nil)
+  #
+  # === Returns
+  #
+  # An integer
+  #
+  def resized_height_value_by_kind(kind = nil)
+    media_element.resized_height_value_by_kind(kind || slide.kind)
+  end
+  
+  # === Description
+  #
   # Method to check that it's horizontal
   #
   # === Args
