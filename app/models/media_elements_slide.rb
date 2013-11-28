@@ -130,10 +130,19 @@ class MediaElementsSlide < ActiveRecord::Base
   
   # Validates that if the associated element is an image, the fields +alignment+ and +caption+ can't be null; if it's audio or video, the same fields must be null
   def validate_image_properties
-    errors.add(:alignment, :must_be_null_if_not_image) if @media_element && !@media_element.image? && !self.alignment.nil?
-    errors.add(:alignment, :cant_be_null_if_image) if @media_element && @media_element.image? && self.alignment.nil?
-    errors.add(:caption, :must_be_null_if_not_image) if @media_element && !@media_element.image? && !self.caption.blank?
-    errors.add(:inscribed, :must_be_false_if_not_image) if @media_element && !@media_element.image? && self.inscribed
+    if @media_element
+      if @media_element.image?
+        errors.add(:alignment, :cant_be_null_if_image) if self.alignment.nil?
+        if @slide && @slide.cover?
+          errors.add(:inscribed, :must_be_false_if_cover) if self.inscribed
+          errors.add(:inscribed, :must_be_null_if_cover) if !self.caption.blank?
+        end
+      else
+        errors.add(:alignment, :must_be_null_if_not_image) if !self.alignment.nil?
+        errors.add(:caption, :must_be_null_if_not_image) if !self.caption.blank?
+        errors.add(:inscribed, :must_be_false_if_not_image) if self.inscribed
+      end
+    end
   end
   
   # Validates the presence of all the associated objects
