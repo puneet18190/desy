@@ -1,5 +1,3 @@
-require 'action_view/lookup_context'
-
 require 'export'
 require 'export/lesson'
 require 'export/lesson/shared'

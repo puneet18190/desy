@@ -2,6 +2,7 @@ require 'fileutils'
 require 'pathname'
 require 'zlib'
 
+require 'action_view/lookup_context'
 require 'zip'
 
 require 'env_relative_path'
@@ -27,9 +28,9 @@ module Export
       CONTENTS_FOLDER_NAME = Pathname 'OEBPS'
       EBOOK_ASSETS_FOLDER  = CONTENTS_FOLDER_NAME.join 'assets'
 
-      TEMPLATES_FOLDER = Lesson::FOLDER.join 'ebooks', 'templates'
+      VIEW_FOLDER = View::FOLDER
       LOOKUP_CONTEXT   = begin
-        lookup_context = ActionView::LookupContext.new TEMPLATES_FOLDER
+        lookup_context = ActionView::LookupContext.new VIEW_FOLDER
         lookup_context.view_paths.push *Rails.application.config.paths['app/views'].to_a
         lookup_context
       end
@@ -89,9 +90,9 @@ module Export
 
       def create
         Zip::File.open(path, Zip::File::CREATE) do |archive|
-          add_path_entry archive, template_path('mimetype'), 'mimetype'
+          add_path_entry archive, view_path('mimetype'), 'mimetype'
 
-          add_path_entry archive, template_path('META-INF/container.xml'), 'META-INF/container.xml'
+          add_path_entry archive, view_path('META-INF/container.xml'), 'META-INF/container.xml'
 
           locals = { lesson: lesson, slides_without_cover: slides_without_cover, cover_slide: cover_slide }
 
@@ -105,9 +106,9 @@ module Export
 
           add_template archive, locals, CONTENTS_FOLDER_NAME.join('cover.xhtml')
 
-          slide_template_path = CONTENTS_FOLDER_NAME.join('slide.xhtml')
+          slide_view_path = CONTENTS_FOLDER_NAME.join('slide.xhtml')
           slides_without_cover.each do |slide|
-            add_template archive, { slide: slide }, CONTENTS_FOLDER_NAME.join(slide_filename slide), slide_template_path
+            add_template archive, { slide: slide }, CONTENTS_FOLDER_NAME.join(slide_filename slide), slide_view_path
           end
 
           media_elements_files(exclude_versions: [ :thumb ]).each do |path|
@@ -118,9 +119,9 @@ module Export
             add_path_entry archive, path, CONTENTS_FOLDER_NAME.join(path.relative_path_from DOCUMENTS_UPFOLDER)
           end
 
-          document_fallback_template_path = CONTENTS_FOLDER_NAME.join('documents/fallback.xhtml')
+          document_fallback_view_path = CONTENTS_FOLDER_NAME.join('documents/fallback.xhtml')
           lesson.documents.each_with_index do |document, i|
-            add_template archive, { document: document, position: i+1 }, CONTENTS_FOLDER_NAME.join(document_fallbacks_relative_from_content_path document), document_fallback_template_path
+            add_template archive, { document: document, position: i+1 }, CONTENTS_FOLDER_NAME.join(document_fallbacks_relative_from_content_path document), document_fallback_view_path
           end
 
           math_images.each do |path|
@@ -142,16 +143,16 @@ module Export
         Pathname.glob( ASSETS_FOLDER.join('**', '*') ).reject{ |path| path.directory? }
       end
 
-      def add_template(archive, locals, archive_entry_path, template_path_relative_from_template_folder = nil)
-        template_path_relative_from_template_folder ||= archive_entry_path
+      def add_template(archive, locals, archive_entry_path, view_path_relative_from_template_folder = nil)
+        view_path_relative_from_template_folder ||= archive_entry_path
 
-        options = { template: template_path_relative_from_template_folder, locals: locals }
+        options = { template: view_path_relative_from_template_folder, locals: locals }
 
         add_string_entry archive, VIEW.render(options), archive_entry_path
       end
 
-      def template_path(path)
-        TEMPLATES_FOLDER.join path
+      def view_path(path)
+        VIEW_FOLDER.join path
       end
 
     end

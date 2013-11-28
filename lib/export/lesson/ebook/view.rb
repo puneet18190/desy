@@ -6,13 +6,12 @@ module Export
   module Lesson
     class Ebook
       class View < View
-
         require 'export/lesson/ebook/view/helper'
 
-        include Helper
-        
-        self.prepare nil, Helper
+        FOLDER = Lesson::FOLDER.join 'ebooks', 'templates'
 
+        include Helper
+        self.prepare nil, Helper
       end
     end
   end
