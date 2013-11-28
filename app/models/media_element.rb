@@ -87,11 +87,6 @@ require 'lessons_media_elements_shared'
 class MediaElement < ActiveRecord::Base
   include FilenameToken
   extend LessonsMediaElementsShared
-
-  module ViewerTypes
-    SIMPLE = :simple
-    CUSTOM = :custom
-  end
   
   self.inheritance_column = :sti_type
   

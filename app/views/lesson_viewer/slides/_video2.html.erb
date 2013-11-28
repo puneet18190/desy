@@ -1,7 +1,7 @@
 <%
   url_type ||= nil
   video = slide.media_elements_at
-  media_viewer_type = MediaElement::ViewerTypes::CUSTOM unless defined? media_viewer_type
+  unless defined? media_viewer_type then media_viewer_type = MediaElement::ViewerTypes::CUSTOM end
 %>
 
 
