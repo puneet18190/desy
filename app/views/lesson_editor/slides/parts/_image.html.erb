@@ -21,9 +21,11 @@
   
   <% if image %>
     <%= hidden_field_tag "media_element_align_#{position}", image.alignment.to_s, :class => 'align' %>
+    <%= hidden_field_tag "media_element_inscribed_#{position}", image.inscribed.to_s, :class => 'inscribed' %>
     <%= hidden_field_tag "media_element_#{position}", image.media_element_id, :class => 'image-id' %>
   <% else %>
     <%= hidden_field_tag "media_element_align_#{position}", '0', :class => 'align' %>
+    <%= hidden_field_tag "media_element_inscribed_#{position}", 'false', :class => 'inscribed' %>
     <%= hidden_field_tag "media_element_#{position}", '', :class => 'image-id' %>
   <% end %>
   
@@ -32,6 +34,11 @@
       <img src="<%= url %>" <%= resize.html_safe %>/>
     </div>
     <span class="add hidden" data-position="<%= position %>" title="<%= t('titles.lesson_editor.change_image') %>"></span>
+    <% if image && image.inscribed %>
+      <span class="deinscribe hidden" data-position="<%= position %>" title="<%= t('titles.lesson_editor.deinscribe_image') %>"></span> <!-- TODO traduzz -->
+    <% else %>
+      <span class="inscribe hidden" data-position="<%= position %>" title="<%= t('titles.lesson_editor.inscribe_image') %>"></span> <!-- TODO traduzz -->
+    <% end %>
     <%= text_field_tag "caption_#{position}", ((image.nil? || image.caption.blank?) ? t('lesson_editor.placeholders.image_caption') : image.caption), :class => 'caption _lesson_editor_placeholder', :data => {:placeholder => (image.nil? || image.caption.blank?)} %>
   </div>
   
