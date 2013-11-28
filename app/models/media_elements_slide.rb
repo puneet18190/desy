@@ -135,7 +135,7 @@ class MediaElementsSlide < ActiveRecord::Base
         errors.add(:alignment, :cant_be_null_if_image) if self.alignment.nil?
         if @slide && @slide.cover?
           errors.add(:inscribed, :must_be_false_if_cover) if self.inscribed
-          errors.add(:inscribed, :must_be_null_if_cover) if !self.caption.blank?
+          errors.add(:caption, :must_be_null_if_cover) if !self.caption.blank?
         end
       else
         errors.add(:alignment, :must_be_null_if_not_image) if !self.alignment.nil?

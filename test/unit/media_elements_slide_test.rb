@@ -78,6 +78,21 @@ class MediaElementsSlideTest < ActiveSupport::TestCase
     assert_obj_saved @media_elements_slide
   end
   
+  test 'inscribed_in_cover' do
+    cover = Lesson.find(1).cover
+    mes_old = MediaElementsSlide.find(1)
+    assert_equal cover.id, mes_old.slide_id
+    mes_old.destroy
+    mes = MediaElementsSlide.new
+    mes.slide_id = cover.id
+    mes.media_element_id = 6
+    mes.alignment = 10
+    mes.position = 1
+    assert_obj_saved mes
+    assert_invalid mes, :caption, 'cia', '', :must_be_null_if_cover
+    assert_invalid mes, :inscribed, true, false, :must_be_false_if_cover
+  end
+  
   test 'uniqueness' do
     # I start simulating assert_invalid
     @media_elements_slide.slide_id = 4
