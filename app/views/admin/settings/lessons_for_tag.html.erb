@@ -35,11 +35,11 @@
 <div class="row-fluid">
   <div class="span12">
     <h4><%= t('admin.settings.tags.show.lessons', :tag => @tag.word).html_safe %></h4>
-    <% if @lessons.length > 0 %>
+    <% if @lessons.present? %>
       <%= render :partial => 'admin/list_heading', :locals => {:items => @lessons, :expandable => false} %>
     <% end %>
     <%= render :partial => 'admin/lessons/list', :locals => {:lessons => @lessons, :from_reporting => false, :covers => @covers} %>
-    <% if @lessons.length > 0 %>
+    <% if @lessons.present? %>
       <%= render :partial => 'admin/list_heading', :locals => {:items => @lessons, :expandable => false} %>
     <% end %>
   </div>

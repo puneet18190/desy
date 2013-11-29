@@ -1274,7 +1274,7 @@ class User < ActiveRecord::Base
     where_for_current_tag = where.gsub('tags.word LIKE ?', 'tags.word = ?')
     where = "tags.word != ? AND #{where}"
     resp = []
-    if Tagging.joins(joins).where(where_for_current_tag, word, *params[1, params.length]).limit(1).length > 0
+    if Tagging.joins(joins).where(where_for_current_tag, word, *params[1, params.length]).limit(1).present?
       limit -= 1
       resp << Tag.find_by_word(word)
     end
@@ -1300,7 +1300,7 @@ class User < ActiveRecord::Base
         where = "#{where} AND media_elements.sti_type = 'Image'"
         where_for_current_tag = "#{where_for_current_tag} AND media_elements.sti_type = 'Image'"
     end
-    if Tagging.joins(joins).where(where_for_current_tag, word, true, self.id).limit(1).length > 0
+    if Tagging.joins(joins).where(where_for_current_tag, word, true, self.id).limit(1).present?
       resp << Tag.find_by_word(word)
       limit -= 1
     end
