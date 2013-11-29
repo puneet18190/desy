@@ -4,7 +4,7 @@
   slide_text_options ||= {}
   slide_text           = slide.text(slide_text_options)
   unless defined? show_documents    then show_documents = true                                 end
-  unless defined? media_viewer_type then media_viewer_type = MediaElement::ViewerTypes::SIMPLE end
+  unless defined? media_viewer_type then media_viewer_type = MediaElement::ViewerTypes::CUSTOM end
 %>
 
 <div class="slide-content audio normal-size <%= "#{media_viewer_type}_player" %>">
