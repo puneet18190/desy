@@ -1080,7 +1080,7 @@ Method that deinscribes the image.
 @param place_id {String} HTML id for the container to make draggable
 **/
 function lessonEditorDeinscribeImage(place_id) {
-  var place = $('#' + place);
+  var place = $('#' + place_id);
   var full_place = place.find('.mask');
   var alignable = full_place.find('.alignable');
   var image = alignable.find('img');
@@ -1109,7 +1109,7 @@ Method that inscribes the image.
 @param place_id {String} HTML id for the container to make draggable
 **/
 function lessonEditorInscribeImage(place_id) {
-  var place = $('#' + place);
+  var place = $('#' + place_id);
   var full_place = place.find('.mask');
   var alignable = full_place.find('.alignable');
   var image = alignable.find('img');
