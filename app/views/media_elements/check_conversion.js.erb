@@ -8,7 +8,7 @@ var black_list = new Array();
   <% if !me[:ok] %>
     
     black_list.push(<%= me[:media_element_id] %>);
-    if(item.present?) {
+    if(item.length > 0) {
       var destination = item.attr('id').split('_')[0] + '_media_element';
       var current_url = $('#info_container').data('currenturl');
       var redirect_url = addDeleteItemToCurrentUrl(current_url, (destination + '_' + id));
@@ -30,7 +30,7 @@ var black_list = new Array();
     <% used_in_private_lessons = me[:media_element].media_elements_slides.any? %>
     
     black_list.push(<%= me[:media_element_id] %>);
-    if(item.present?) {
+    if(item.length > 0) {
       var destination = item.attr('id').split('_')[0];
       if(destination == 'expanded') {
         item.replaceWith('<%= j(render :partial => "media_elements/view_single_expanded", :locals => {:media_element => me[:media_element], :destination => ButtonDestinations::EXPANDED_MEDIA_ELEMENT, :used_in_private_lessons => used_in_private_lessons}) %>');

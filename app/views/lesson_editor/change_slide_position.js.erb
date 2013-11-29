@@ -9,7 +9,7 @@
     end
   %>
   $('#nav_list_menu').data('jsp').destroy();
-  if($("ta-<%= @current_slide.id %>").present?){
+  if($("ta-<%= @current_slide.id %>").length > 0){
     tinyMCE.get('ta-<%= @current_slide.id %>').remove();
   }
   var to_be_moved = $('#slide_in_lesson_editor_<%= @current_slide.id %>');
