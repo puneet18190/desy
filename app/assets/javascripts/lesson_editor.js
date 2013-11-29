@@ -1068,26 +1068,37 @@ Inizializes jQueryUI <b>draggable</b> function on slide image containers (to und
 **/
 function makeDraggable(place_id) {
   var full_place = $('#' + place_id + ' .mask');
-  var axe = 'x';
-  if(full_place.hasClass('vertical')) {
-    axe = 'y';
+  if(full_place.hasClass('hidden')) {
+    return;
   }
   var image = $('#' + place_id + ' .mask img');
-  var side = '';
-  var maskedImgWidth;
-  var maskedImgHeight;
-  var dist;
-  if(axe == 'x') {
-    maskedImgWidth = image.attr('width');
-    dist = maskedImgWidth - full_place.width();
-    side = 'left';
+  var inscribed = (full_place.find('.deinscribe').length > 0);
+  var side;
+  var limit_max;
+  var limit_min;
+  if(full_place.hasClass('vertical')) {
+    if(inscribed) {
+      side = 'left';
+      limit_min = 0;
+      limit_max = full_place.width() - image.width();
+    } else {
+      side = 'top';
+      limit_min = full_place.height() - image.height();
+      limit_max = 0;
+    }
   } else {
-    maskedImgHeight = image.attr('height');
-    side = 'top';
-    dist = maskedImgHeight - full_place.height();
+    if(inscribed) {
+      side = 'top';
+      limit_min = 0;
+      limit_max = full_place.height() - image.height();
+    } else {
+      side = 'left';
+      limit_min = full_place.width() - image.width();
+      limit_max = 0;
+    }
   }
   $('#' + place_id + ' .mask .alignable').draggable({
-    axis: axe,
+    axis: ((side == 'top') ? 'y' : 'x'),
     cursor: 'move',
     distance: 10,
     start: function() {
@@ -1099,34 +1110,38 @@ function makeDraggable(place_id) {
       $('#' + place_id + ' .mask img').css('cursor', 'url(https://mail.google.com/mail/images/2/openhand.cur), move');
       $('#' + place_id + ' .alignable').data('rolloverable', true);
       $('#' + place_id + ' span').show();
-      var thisDrag = $(this);
-      var offset = thisDrag.css(side);
-      if(parseInt(offset) > 0) {
-        offset = 0;
-        if(side == 'left') {
-          thisDrag.animate({
-            left: '0'
+      var myself = $(this);
+      var offset;
+      if(side == 'top') {
+        offset = myself.position().top;
+        if(offset < limit_min) {
+          offset = limit_min;
+          myself.animate({
+            top: limit_min
           }, 100);
-        } else {
-          thisDrag.animate({
-            top: '0'
+        }
+        if(offset > limit_max) {
+          offset = limit_max;
+          myself.animate({
+            top: limit_max
           }, 100);
         }
       } else {
-        if(parseInt(offset) < -(parseInt(dist))) {
-          offset = -parseInt(dist);
-          if(side == 'left') {
-            thisDrag.animate({
-              left: '-' + dist + 'px'
-            }, 100);
-          } else {
-            thisDrag.animate({
-              top: '-' + dist + 'px'
-            }, 100);
-          }
+        offset = myself.position().left;
+        if(offset < limit_min) {
+          offset = limit_min;
+          myself.animate({
+            left: limit_min
+          }, 100);
+        }
+        if(offset > limit_max) {
+          offset = limit_max;
+          myself.animate({
+            left: limit_max
+          }, 100);
         }
       }
-      $('#' + place_id + ' .align').val(parseInt(offset));
+      $('#' + place_id + ' .align').val(offset);
     }
   });
 }
