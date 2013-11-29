@@ -1068,12 +1068,20 @@ Method that deinscribes the image.
 **/
 function lessonEditorDeinscribeImage(place_id) {
   var full_place = $('#' + place_id + ' .mask');
+  var alignable = full_place.find('.alignable');
+  var image = alignable.find('img');
   if(full_place.hasClass('hidden')) {
     return;
   }
   $('#' + place_id + ' .align').val(0);
   $('#' + place_id + ' .inscribed').val('false');
   $('#' + place_id + ' .deinscribe').removeClass('deinscribe').addClass('inscribe');
+  alignable.css('top', 0).css('left', 0);
+  if(full_place.hasClass('vertical')) {
+    // cambia height => width dentro img
+  } else {
+    // cambia width => height dentro img
+  }
 }
 
 /**
@@ -1083,16 +1091,24 @@ Method that inscribes the image.
 @param place_id {String} HTML id for the container to make draggable
 **/
 function lessonEditorInscribeImage(place_id) {
-  if($('#' + place_id + ' .mask').hasClass('hidden')) {
+  var full_place = $('#' + place_id + ' .mask');
+  var alignable = full_place.find('.alignable');
+  if(full_place.hasClass('hidden')) {
     return;
   }
   $('#' + place_id + ' .align').val(0);
   $('#' + place_id + ' .inscribed').val('true');
   $('#' + place_id + ' .inscribe').removeClass('inscribe').addClass('deinscribe');
+  alignable.css('top', 0).css('left', 0);
+  if(full_place.hasClass('vertical')) {
+    // cambia height => width dentro img
+  } else {
+    // cambia width => height dentro img
+  }
 }
 
 /**
-Inizializes jQueryUI <b>draggable</b> function on slide image containers (to understand if the draggable is vertical or horizontal it uses {{#crossLink "LessonEditorImageResizing/isHorizontalMask:method"}}{{/crossLink}}).
+Inizializes jQueryUI <b>draggable</b> function on slide image containers.
 @method makeDraggable
 @for LessonEditorJqueryAnimations
 @param place_id {String} HTML id for the container to make draggable
