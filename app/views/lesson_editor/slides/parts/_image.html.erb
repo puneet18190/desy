@@ -29,13 +29,13 @@
 <div id="media_element_<%= position %>_in_slide_<%= slide.id %>" class="image editable">
   
   <% if image %>
-    <%= hidden_field_tag "media_element_align_#{position}", image.alignment.to_s, :class => 'align' %>
-    <%= hidden_field_tag "media_element_inscribed_#{position}", image.inscribed.to_s, :class => 'inscribed' %>
-    <%= hidden_field_tag "media_element_#{position}", image.media_element_id, :class => 'image-id' %>
+    <input class="align" type="hidden" value="<%= image.alignment.to_s %>" name="media_element_align_<%= position %>" autocomplete="off">
+    <input class="inscribed" type="hidden" value="<%= image.inscribed.to_s %>" name="media_element_inscribed_<%= position %>" autocomplete="off">
+    <input class="image-id" type="hidden" value="<%= image.media_element_id %>" name="media_element_<%= position %>" autocomplete="off">
   <% else %>
-    <%= hidden_field_tag "media_element_align_#{position}", '0', :class => 'align' %>
-    <%= hidden_field_tag "media_element_inscribed_#{position}", 'false', :class => 'inscribed' %>
-    <%= hidden_field_tag "media_element_#{position}", '', :class => 'image-id' %>
+    <input class="align" type="hidden" value="0" name="media_element_align_<%= position %>" autocomplete="off">
+    <input class="inscribed" type="hidden" value="false" name="media_element_inscribed_<%= position %>" autocomplete="off">
+    <input class="image-id" type="hidden" value="" name="media_element_<%= position %>" autocomplete="off">
   <% end %>
   
   <div class="mask <%= orientation %> <%= image.nil? ? 'hidden' : 'visible' %>">
