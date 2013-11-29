@@ -1300,7 +1300,7 @@ it:
         # 1 - views/users/fullpage_notifications/confirmation/email_sent.html.erb
         title: "Registrazione"
         # 1 - views/users/fullpage_notifications/confirmation/email_sent.html.erb
-        description: "La registrazione è stata portata a termine con successo: per confermarla controlla il tuo indirizzo email, troverai un messaggio con il link di conferma.<br/>Se non dovessi trovare la nostra email, controlla la cartella spam del tuo gestore mail. In caso di ulteriori problemi non esitare a contattarci"
+        description: "La registrazione è stata portata a termine con successo: per confermarla controlla il tuo indirizzo email, troverai un messaggio con il link di conferma.<br/><br/>Se non dovessi trovare la nostra email, controlla la cartella spam del tuo gestore mail. In caso di ulteriori problemi non esitare a contattarci"
       # The user clicked on the confirmation link he received by email: he is redirected to the main page of the application, with this message (to log in he still needs to write username and password, he is not automatically logged in)
       received:
         # 1 - views/users/fullpage_notifications/confirmation/received.html.erb
