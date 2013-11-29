@@ -648,7 +648,7 @@ it:
       fill_all_the_fields_or_too_long: "Compila tutti i campi senza superare la lunghezza massima"
       # The user didn't write the minimum amount of tags
       # 1 - controllers/application_controller.rb
-      tags_are_not_enough: "Numero dei tags (etichette) non sufficente"
+      tags_are_not_enough: "Numero dei tags (etichette) non sufficiente"
       # The user inserted too many tags
       # 1 - controllers/application_controller.rb
       tags_too_many: "Hai inserito troppe tags"
@@ -672,7 +672,7 @@ it:
       media_file_too_large: "File troppo grande"
       # The user didn't choose a subject for a new lesson
       # 1 - controllers/application_controller.rb
-      subject_missing_in_lesson: "Scegli un argomento"
+      subject_missing_in_lesson: "Scegli una materia"
       # The user's email is not valid or already present in the database
       # 1 - controllers/application_controller.rb
       not_valid_email: "L'email inserita non è valida o già presente nel nostro archivio"
@@ -1300,7 +1300,7 @@ it:
         # 1 - views/users/fullpage_notifications/confirmation/email_sent.html.erb
         title: "Registrazione"
         # 1 - views/users/fullpage_notifications/confirmation/email_sent.html.erb
-        description: "La registrazione è stata portata a termine con successo: per confermarla controlla il tuo indirizzo email, troverai un messaggio con il link di conferma. Se non dovessi trovare la nostra email, controlla la cartella spam del tuo gestore mail. In caso di ulteriori problemi non esitare a contattarci"
+        description: "La registrazione è stata portata a termine con successo: per confermarla controlla il tuo indirizzo email, troverai un messaggio con il link di conferma.<br/><br/>Se non dovessi trovare la nostra email, controlla la cartella spam del tuo gestore mail. In caso di ulteriori problemi non esitare a contattarci"
       # The user clicked on the confirmation link he received by email: he is redirected to the main page of the application, with this message (to log in he still needs to write username and password, he is not automatically logged in)
       received:
         # 1 - views/users/fullpage_notifications/confirmation/received.html.erb
@@ -2838,7 +2838,7 @@ it:
         upload: "Carica nuovi elementi"
         # Link to the subsection 'Edit and publication of uploaded elements'
         # 1 - views/admin/_header.html.erb
-        publish: "Publica elementi privati"
+        publish: "Pubblica elementi privati"
       purchases:
         # Link to the section 'Purchases'
         # 1 - views/admin/_header.html.erb
